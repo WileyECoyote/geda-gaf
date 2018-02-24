@@ -77,6 +77,7 @@
 #define GEDA_CONFIG_SYS_SUFFIX    "-system.conf"
 #define GEDA_CONFIG_USER_SUFFIX   "-user.conf"
 
+/*! USER_CONFIG_DIR (with comma's) are pass to geda_strconcat */
 #if defined (GEDA_USE_XDG)
   #define GEDA_CONFIG_SYSDIR      XDG_CONFIG_DIRS_DEFAULT
   #define USER_CONFIG_DIR         STD_USER_CONFIG_DIRS, XDG_SUBDIR
