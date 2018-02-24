@@ -993,7 +993,25 @@ int test_path (void)
     }
   }
 
-  /* === Function 07: geda_user_config_path geda_file_path_user_config === */
+  /* === Function 07: geda_file_path_user_config === */
+
+  path = (char*) geda_user_config_path();
+
+  if (path == NULL) {
+    fprintf(stderr, "FAILED: (F030701A) geda_file_path_user_config <%s>\n", path);
+    result++;
+  }
+  else {
+
+    char *config_dir = g_build_filename (USER_CONFIG_DIR, NULL);
+
+    if (!strstr(path, config_dir)) {
+      fprintf(stderr, "FAILED: (F030701B) geda_file_path_user_config <%s>\n", path);
+      result++;
+    }
+    g_free(config_dir);
+  }
+
   /* ensure directory is restored, regardless of what happened above */
 
   geda_file_path_free();
