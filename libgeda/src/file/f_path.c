@@ -379,8 +379,11 @@ const char *geda_file_path_sys_data (void) {
 
   /* If GEDADATA is set in the environment, use that path */
   if (sys_data_path == NULL) {
+
     const char *path;
+
     path = getenv (DATA_ENV_STR);
+
     if (path != NULL) {
       sys_data_path = geda_strdup(path);
     }
@@ -425,8 +428,11 @@ const char *geda_file_path_sys_doc (void) {
 
   /* If GEDADOC is set in the environment, use that path */
   if (sys_doc_path == NULL) {
+
     const char *path;
+
     path = getenv (DOC_ENV_STR);
+
     if (path != NULL) {
       sys_doc_path = geda_strdup(path);
     }
@@ -461,8 +467,11 @@ const char *geda_file_path_sys_config (void) {
 
   /* If GEDADATARC is set in the environment, use that path */
   if (sys_config_path == NULL) {
+
     const char *path;
+
     path = getenv (RCDATA_ENV_STR);
+
     if (path != NULL) {
       sys_config_path = geda_strdup(path);
     }
