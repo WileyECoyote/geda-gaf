@@ -977,7 +977,22 @@ int test_path (void)
     }
   }
 
-  /* === Function 06: geda_sys_config_path geda_file_path_sys_config === */
+  /* === Function 06: geda_file_path_sys_config === */
+
+  path = (char*) geda_sys_config_path();
+
+  if (path == NULL) {
+    fprintf(stderr, "FAILED: (F030601A) geda_file_path_sys_config <%s>\n", path);
+    result++;
+  }
+  else {
+
+    if (!strstr(path, "geda-gaf/libgeda")) {
+      fprintf(stderr, "FAILED: (F030601B) geda_file_path_sys_config <%s>\n", path);
+      result++;
+    }
+  }
+
   /* === Function 07: geda_user_config_path geda_file_path_user_config === */
   /* ensure directory is restored, regardless of what happened above */
 
