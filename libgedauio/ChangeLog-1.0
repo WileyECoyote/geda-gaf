@@ -1,3 +1,9 @@
+2018-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_check_menu_item.c: Revise function geda_real_
+      check_menu_item_draw_indicator to adjust the offset in a positive
+      sense rather than adding in both clauses of the conditional.
+
 2018-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
