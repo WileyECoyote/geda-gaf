@@ -360,9 +360,9 @@ static void *libgeda_module_handle (void)
 
 #endif /* G_OS_WIN32 */
 
-/*! \brief Get the directory with the gEDA system data.
- *
- *  \par Function description
+/*!
+ * \brief Get the directory with the gEDA system data.
+ * \par Function description
  *  Returns the path to be searched for gEDA data shared between all
  *  users. If the GEDADATA environment variable is set, returns its
  *  value; otherwise, uses a compiled-in path.
@@ -370,10 +370,10 @@ static void *libgeda_module_handle (void)
  *  On Windows, the compiled in path is *not* used, as it might not
  *  match the path where the user has installed gEDA.
  *
- *  \warning The returned string is owned by libgeda and should not be
- *  modified or free'd.
+ * \warning The returned string is owned by libgeda and should not be
+ *          modified or free'd.
  *
- *  \return the gEDA shared data path, or NULL if none could be found.
+ * \return the gEDA shared data path, or NULL if none could be found.
  */
 const char *geda_file_path_sys_data (void) {
 
