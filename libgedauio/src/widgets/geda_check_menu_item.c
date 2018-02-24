@@ -219,11 +219,10 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
   }
 }
 
-static void
-geda_check_menu_item_get_property (GObject      *object,
-                                   unsigned int  prop_id,
-                                   GValue       *value,
-                                   GParamSpec   *pspec)
+static void geda_check_menu_item_get_property (GObject      *object,
+                                               unsigned int  prop_id,
+                                               GValue       *value,
+                                               GParamSpec   *pspec)
 {
   GedaCheckMenuItem *checkitem = (GedaCheckMenuItem*)object;
 
@@ -247,11 +246,10 @@ geda_check_menu_item_get_property (GObject      *object,
   }
 }
 
-static void
-geda_check_menu_item_set_property (GObject      *object,
-                                   unsigned int  prop_id,
-                                   const GValue *value,
-                                   GParamSpec   *pspec)
+static void geda_check_menu_item_set_property (GObject      *object,
+                                               unsigned int  prop_id,
+                                               const GValue *value,
+                                               GParamSpec   *pspec)
 {
   GedaCheckMenuItem *checkitem = (GedaCheckMenuItem*)object;
 
@@ -275,8 +273,7 @@ geda_check_menu_item_set_property (GObject      *object,
   }
 }
 
-static void
-geda_check_menu_item_finalize (GObject *object)
+static void geda_check_menu_item_finalize (GObject *object)
 {
   //GedaCheckMenuItem *check_menu_item = GEDA_CHECK_MENU_ITEM (object);
 
@@ -300,8 +297,7 @@ geda_check_menu_item_finalize (GObject *object)
  * \param [in]  class       GedaCheckMenuItemClass class we are initializing
  * \param [in]  class_data  GedaCheckMenuItem structure associated with the class
  */
-static void
-geda_check_menu_item_class_init(void *class, void *class_data)
+static void geda_check_menu_item_class_init(void *class, void *class_data)
 {
   GedaCheckMenuItemClass *check_menu_class;
   GObjectClass           *gobject_class;
@@ -416,8 +412,7 @@ geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
  *
  *  \return GedaType identifier associated with GedaCheckMenuItem.
  */
-GedaType
-geda_check_menu_item_get_type (void)
+GedaType geda_check_menu_item_get_type (void)
 {
   static volatile GedaType geda_check_menu_item_type = 0;
 
@@ -463,8 +458,7 @@ geda_check_menu_item_get_type (void)
  *
  * \retval TRUE if \a check_menu_item is a valid GedaCheckMenuItem
  */
-bool
-is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
+bool is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
 {
   if ((check_menu_item != NULL) && (check_menu_item_hash != NULL)) {
     return g_hash_table_lookup(check_menu_item_hash, check_menu_item) ? TRUE : FALSE;
@@ -549,8 +543,7 @@ geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
  *
  * \returns a new #GedaCheckMenuItem
  */
-GtkWidget*
-geda_check_menu_item_new (void)
+GtkWidget *geda_check_menu_item_new (void)
 {
   return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM, NULL);
 }
@@ -565,8 +558,7 @@ geda_check_menu_item_new (void)
  *
  * \returns a new #GedaCheckMenuItem
  */
-GtkWidget*
-geda_check_menu_item_new_with_label (const char  *label)
+GtkWidget *geda_check_menu_item_new_with_label (const char *label)
 {
   return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
                       "label", label,
@@ -585,8 +577,7 @@ geda_check_menu_item_new_with_label (const char  *label)
  *
  * \returns a new #GedaCheckMenuItem
  */
-GtkWidget*
-geda_check_menu_item_new_with_mnemonic (const char  *label)
+GtkWidget *geda_check_menu_item_new_with_mnemonic (const char *label)
 {
   return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
                       "label", label,
@@ -606,8 +597,7 @@ geda_check_menu_item_new_with_mnemonic (const char  *label)
  *
  * \sa geda_check_menu_item_set_active
  */
-bool
-geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
+bool geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
 
@@ -625,9 +615,8 @@ geda_check_menu_item_get_active (GedaCheckMenuItem *check_menu_item)
  *
  * \sa geda_check_menu_item_get_active
  */
-void
-geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
-                                 bool               is_active)
+void geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
+                                      bool               is_active)
 {
   g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
 
@@ -647,8 +636,7 @@ geda_check_menu_item_set_active (GedaCheckMenuItem *check_menu_item,
  *
  * \returns Whether the menu item looks like a #GedaRadioMenuItem
  */
-bool
-geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item)
+bool geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
 
@@ -663,9 +651,8 @@ geda_check_menu_item_get_draw_as_radio (GedaCheckMenuItem *check_menu_item)
  * \param [in] check_menu_item Pointer to a #GedaCheckMenuItem
  * \param [in] draw_as_radio   If TRUE the indicator will be drawn as a radio.
  */
-void
-geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
-                                        bool               draw_as_radio)
+void geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
+                                             bool               draw_as_radio)
 {
   g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
 
@@ -690,8 +677,7 @@ geda_check_menu_item_set_draw_as_radio (GedaCheckMenuItem *check_menu_item,
  *
  * \retval %TRUE if inconsistent
  */
-bool
-geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
+bool geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item), FALSE);
 
@@ -714,9 +700,8 @@ geda_check_menu_item_get_inconsistent (GedaCheckMenuItem *check_menu_item)
  * \param [in] check_menu_item Pointer to #GedaCheckMenuItem
  * \param [in] setting         %TRUE to display an "inconsistent" third state check
  */
-void
-geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
-                                       bool               setting)
+void geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
+                                            bool               setting)
 {
   g_return_if_fail (GEDA_IS_CHECK_MENU_ITEM (check_menu_item));
 
@@ -739,8 +724,7 @@ geda_check_menu_item_set_inconsistent (GedaCheckMenuItem *check_menu_item,
  *
  * \returns value of always_show_toggle
  */
-bool
-geda_check_menu_item_get_show_toggle (GedaCheckMenuItem *menu_item)
+bool geda_check_menu_item_get_show_toggle (GedaCheckMenuItem *menu_item)
 {
   if (GEDA_IS_CHECK_MENU_ITEM (menu_item)) {
     return menu_item->always_show_toggle;
@@ -756,9 +740,8 @@ geda_check_menu_item_get_show_toggle (GedaCheckMenuItem *menu_item)
  * \param [in] menu_item a #GedaCheckMenuItem
  * \param [in] show      %TRUE if the toggle widget is to be displayed
  */
-void
-geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
-                                      bool               show)
+void geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
+                                           bool               show)
 {
   if (GEDA_IS_CHECK_MENU_ITEM (menu_item)) {
     menu_item->always_show_toggle = show;
@@ -772,8 +755,7 @@ geda_check_menu_item_set_show_toggle (GedaCheckMenuItem *menu_item,
  *
  * \param [in] check_menu_item a #GedaCheckMenuItem
  */
-void
-geda_check_menu_item_toggled (GedaCheckMenuItem *check_menu_item)
+void geda_check_menu_item_toggled (GedaCheckMenuItem *check_menu_item)
 {
   g_signal_emit (check_menu_item, check_menu_item_signals[TOGGLED], 0);
 }
