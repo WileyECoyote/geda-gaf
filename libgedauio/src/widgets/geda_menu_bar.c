@@ -129,7 +129,7 @@ static void geda_menu_bar_move_current                (GedaMenuShell  *menu_shel
 static GtkShadowType get_shadow_type                  (GedaMenuBar    *menubar);
 
 static const char menu_bar_list_key[] = "menu-bar-list";
-static const char menu_bar_accel_key[] = "menu-bar-accel";
+static const char menu_bar_accel_key[] = "gtk-menu-bar-accel";
 
 static void *geda_menu_bar_parent_class = NULL;
 

@@ -5,6 +5,9 @@
       sense rather than adding in both clauses of the conditional
       and shift right rather than dividing.
 
+    * src/widgets/geda_menu_bar.c: Add the "gtk" prefix back on the menu_bar_
+      accel_key string because this is a "gtksetting" key.
+
 2018-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Update documentation for:
