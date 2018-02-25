@@ -1,5 +1,8 @@
 2018-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Remove unneeded cast to GtkCellLayout
+      with geda_get_child_widget, the macro cast to type void pointer.
+
     * src/widgets/geda_handlebox.c: Replace compounded conditional with
       switch case in geda_handle_box_motion.
 

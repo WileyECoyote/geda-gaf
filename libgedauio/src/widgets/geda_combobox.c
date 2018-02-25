@@ -4904,7 +4904,7 @@ static void pack_start_recurse (GtkWidget *menu, GtkCellRenderer *cell, bool exp
 
       GtkCellLayout *layout;
 
-      layout = (GtkCellLayout*)geda_get_child_widget(iter->data);
+      layout = geda_get_child_widget(iter->data);
 
       gtk_cell_layout_pack_start (layout, cell, expand);
     }
@@ -4965,7 +4965,7 @@ static void pack_end_recurse (GtkWidget *menu, GtkCellRenderer *cell, bool expan
 
       GtkCellLayout *layout;
 
-      layout = (GtkCellLayout*)geda_get_child_widget(iter->data);
+      layout = geda_get_child_widget(iter->data);
 
       gtk_cell_layout_pack_end (layout, cell, expand);
     }
@@ -5039,7 +5039,7 @@ static void clear_recurse (GtkWidget *menu)
 
       GtkCellLayout *layout;
 
-      layout = (GtkCellLayout*)geda_get_child_widget(iter->data);
+      layout = geda_get_child_widget(iter->data);
 
       gtk_cell_layout_clear (layout);
     }
@@ -5104,7 +5104,7 @@ static void add_attribute_recurse (GtkWidget       *menu,
 
       GtkCellLayout *layout;
 
-      layout = (GtkCellLayout*)geda_get_child_widget(iter->data);
+      layout = geda_get_child_widget(iter->data);
 
       gtk_cell_layout_add_attribute (layout, cell, attribute, column);
     }
@@ -5268,7 +5268,7 @@ clear_attributes_recurse (GtkWidget *menu, GtkCellRenderer *cell)
 
       GtkCellLayout *layout;
 
-      layout = (GtkCellLayout*)geda_get_child_widget(iter->data);
+      layout = geda_get_child_widget(iter->data);
 
       gtk_cell_layout_clear_attributes (layout, cell);
     }
@@ -5334,7 +5334,7 @@ static void reorder_recurse (GtkWidget       *menu,
 
       GtkCellLayout *layout;
 
-      layout = (GtkCellLayout*)geda_get_child_widget(iter->data);
+      layout = geda_get_child_widget(iter->data);
 
       gtk_cell_layout_reorder (layout, cell, position);
     }
