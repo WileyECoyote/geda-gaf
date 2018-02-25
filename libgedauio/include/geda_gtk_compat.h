@@ -139,10 +139,10 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define gdk_screen_get_monitor_workarea gdk_screen_get_monitor_geometry
 
 /*! \def gtk_widget_get_allocated_height Not in Gtk < 3 */
-#define gtk_widget_get_allocated_height(widget) (((GtkWidget *) (widget))->allocation.height)
+#define gtk_widget_get_allocated_height(widget) (((GtkWidget*) (widget))->allocation.height)
 
 /*! \def gtk_widget_get_allocated_width Not in Gtk < 3 */
-#define gtk_widget_get_allocated_width(widget)  (((GtkWidget *) (widget))->allocation.width)
+#define gtk_widget_get_allocated_width(widget) (((GtkWidget*) (widget))->allocation.width)
 
 /*! \def gtk_widget_reset_style Not in Gtk < 3 */
 #define gtk_widget_reset_style gtk_widget_reset_rc_styles
@@ -185,8 +185,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define geda_device_grab_remove(w,p) gtk_device_grab_remove(GTK_WIDGET(w),p)
 
 /* Gtk[VH]ButtonBox */
-#   define gtk_vbutton_box_new()    gtk_button_box_new(GTK_ORIENTATION_VERTICAL)
-#   define gtk_hbutton_box_new()    gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL)
+#   define gtk_vbutton_box_new() gtk_button_box_new(GTK_ORIENTATION_VERTICAL)
+#   define gtk_hbutton_box_new() gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL)
 
 /* Gtk[VH]Separator */
 #   define gtk_vseparator_new() geda_separator_new(GTK_ORIENTATION_VERTICAL)
@@ -197,10 +197,10 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define gtk_hpaned_new() gtk_paned_new(GTK_ORIENTATION_HORIZONTAL)
 
 /* Gtk[VH]Scrollbar */
-#   define gtk_vscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
-#   define gtk_hscrollbar_new(adj)  gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
+#   define gtk_vscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
+#   define gtk_hscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 
-#   define geda_get_container_border_width(w)  gtk_container_get_border_width((GtkContainer*)w)
+#   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
 
 #endif
 
