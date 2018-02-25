@@ -6,7 +6,7 @@
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
  *
- * Copyright (C) 1998-2016 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2018 gEDA Contributors (see ChangeLog for details)
  *
  * Code originally based on GTK 2.14.5 gtk/gtkaccellabel.h (LGPL)
  *
@@ -18,20 +18,19 @@
  *
  * Adapted for gEDA by Peter Clifton <peter@clifton-electronics.co.uk>
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Library General Public License as published
+ * by the Free Software Foundation; version 2 of the License.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Library General Public
+ * License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA, <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along
+ * with this library; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA,
+ * <http://www.gnu.org/licenses/>.
  */
 
 /* 03/13/2014 WEH Renamed Gschem->Geda through-out

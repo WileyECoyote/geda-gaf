@@ -1,5 +1,8 @@
 2018-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_*.h: Update copyright headers; remove "any later version"
+      clause.
+
     * src/widgets/geda_check_menu_item.c: Revise geda_real_check_menu_item_
       draw_indicator to avoid reassigning state_type; check if the widget
       sensitive and set state_type once.
