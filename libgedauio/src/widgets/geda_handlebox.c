@@ -306,8 +306,7 @@ effective_handle_position (GedaHandleBox *handlebox)
   }
   else {
 
-    switch (handlebox->handle_position)
-    {
+    switch (handlebox->handle_position) {
       case GTK_POS_LEFT:
         handle_position = GTK_POS_RIGHT;
         break;
@@ -432,8 +431,8 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
   }
 
   /* First, check if the snapped edge is aligned */
-  switch (snap_edge)
-  {
+  switch (snap_edge) {
+
     case GTK_POS_TOP:
       is_snapped = abs (handlebox->attach_allocation.y - new_y) < TOLERANCE;
       break;
@@ -977,8 +976,8 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
    * height);
    */
   /* Determine coordinates for the "handle" */
-  switch (handle_position)
-  {
+  switch (handle_position) {
+
     case GTK_POS_LEFT:
       rect.x             = 0;
       rect.y             = 0;
@@ -1446,8 +1445,8 @@ geda_handle_box_get_property (GObject        *object,
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)object;
 
-  switch (prop_id)
-  {
+  switch (prop_id) {
+
     case PROP_SHADOW:
     case PROP_SHADOW_TYPE:
       g_value_set_enum (value, handlebox->shadow_type);
@@ -1486,8 +1485,8 @@ geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)object;
 
-  switch (prop_id)
-  {
+  switch (prop_id) {
+
     case PROP_SHADOW:
     case PROP_SHADOW_TYPE:
       geda_handle_box_set_shadow_type (handlebox, g_value_get_enum (value));
