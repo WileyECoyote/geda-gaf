@@ -1,5 +1,9 @@
 2018-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_check_menu_item.c: Revise geda_real_check_menu_item_
+      draw_indicator to avoid reassigning state_type; check if the widget
+      sensitive and set state_type once.
+
     * src/widgets/geda_combobox.c: Remove unneeded cast to GtkCellLayout
       with geda_get_child_widget, the macro cast to type void pointer.
 
