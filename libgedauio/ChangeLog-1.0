@@ -10,6 +10,13 @@
     * src/widgets/geda_handlebox.c: Replace compounded conditional with
       switch case in geda_handle_box_motion.
 
+    * src/widgets/geda_image_menu_item.c: Add ancillary parent widget pointer
+      and utilize gtk_widget_get_parent in:
+
+          * geda_image_menu_item_toggle_size_request
+          * geda_image_menu_item_size_request
+          * geda_image_menu_item_size_allocate
+
 2018-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Revise function geda_real_
