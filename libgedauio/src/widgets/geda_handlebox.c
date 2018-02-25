@@ -403,9 +403,19 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 
   snap_edge = handlebox->snap_edge;
 
-  if (snap_edge == -1)
-    snap_edge = (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT) ?
-                 GTK_POS_TOP : GTK_POS_LEFT;
+  if (snap_edge == -1) {
+
+    switch (handle_position) {
+      case GTK_POS_LEFT:
+      case GTK_POS_RIGHT:
+        snap_edge = GTK_POS_TOP;
+        break;
+
+      default:
+        snap_edge = GTK_POS_LEFT;
+        break;
+    }
+  }
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
 
