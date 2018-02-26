@@ -1,3 +1,8 @@
+2018-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Revise function o_edit_lock_selection to
+      use setters geda_object_set_selectable and geda_object_set_color.
+
 2018-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/es.po: Update Spanish translations.

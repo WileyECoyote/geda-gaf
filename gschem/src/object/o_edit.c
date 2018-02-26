@@ -197,11 +197,15 @@ void o_edit_lock_selection (GschemToplevel *w_current)
     GedaObject *object = (GedaObject*) s_current->data;
 
     if (object) {
-      object->selectable   = FALSE;
+
+      geda_object_set_selectable(object, FALSE);
+
       if (object->color   != LOCK_COLOR) {
         object->locked_color = object->color;
       }
-      object->color        = LOCK_COLOR;
+
+      geda_object_set_color(object, LOCK_COLOR);
+
       geda_page_set_changed(page, TRUE);
     }
 
