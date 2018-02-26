@@ -1118,28 +1118,29 @@ void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
 {
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
-  if (image == image_menu_item->image)
-    return;
+  if (image != image_menu_item->image) {
 
     if (image_menu_item->image) {
       geda_container_remove (image_menu_item, image_menu_item->image);
     }
 
-  image_menu_item->image = image;
+    image_menu_item->image = image;
 
-  if (image == NULL) {
-    image_menu_item->show_image = FALSE;
-    return;
+    if (image == NULL) {
+      image_menu_item->show_image = FALSE;
+    }
+    else {
+
+      gtk_widget_set_parent (image, (GtkWidget*)image_menu_item);
+
+      g_object_set (image,
+                    "visible", show_image (image_menu_item),
+                    "no-show-all", TRUE,
+                    NULL);
+
+      GEDA_OBJECT_NOTIFY (image_menu_item, "image");
+    }
   }
-
-  gtk_widget_set_parent (image, (GtkWidget*)image_menu_item);
-
-  g_object_set (image,
-                "visible", show_image (image_menu_item),
-                "no-show-all", TRUE,
-                NULL);
-
-  GEDA_OBJECT_NOTIFY (image_menu_item, "image");
 }
 
 /*! \brief Get the image object associated with the menu item
