@@ -609,7 +609,7 @@ static void geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
 
   PackDirection pack_dir;
 
-  parent = gtk_widget_get_parent((GtkWidget*)menu_item);
+  parent = geda_get_widget_parent(menu_item);
 
   if (GEDA_IS_MENU_BAR (parent)) {
     pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
@@ -709,7 +709,7 @@ static void geda_image_menu_item_size_request (GtkWidget      *widget,
   int child_width;
   int child_height;
 
-  parent = gtk_widget_get_parent(widget);
+  parent = geda_get_widget_parent(widget);
 
   if (GEDA_IS_MENU_BAR (parent)) {
     pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
@@ -758,7 +758,7 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
 
   PackDirection   pack_dir;
 
-  parent = gtk_widget_get_parent(widget);
+  parent = geda_get_widget_parent(widget);
 
   if (GEDA_IS_MENU_BAR (parent)) {
     pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
@@ -1093,7 +1093,7 @@ GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_me
 
   g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), NULL);
 
-  widget = gtk_widget_get_parent((GtkWidget*)image_menu_item);
+  widget = geda_get_widget_parent(image_menu_item);
 
   if (GEDA_IS_MENU(widget)) {
     return geda_menu_widget_get_accel_group(widget);
