@@ -1,3 +1,8 @@
+2018-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Fix not setting result when error are detected in
+      for geda_follow_symlinks in test_sys.
+
 2018-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Add check for:

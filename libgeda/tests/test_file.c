@@ -1110,10 +1110,12 @@ int test_sys (void)
   string = geda_follow_symlinks(NULL, &err);
   if (string) {
     fprintf(stderr, "FAILED: (F050300A) geda_follow_symlinks NULL\n");
+    result++;
   }
   else {
     if (!err) {
       fprintf(stderr, "FAILED: (F050300B) geda_follow_symlinks NULL\n");
+      result++;
     }
     else {
       g_error_free (err);
@@ -1199,6 +1201,7 @@ int test_sys (void)
 
   string = geda_normalize_filename("./../src", NULL);
   if (string) {
+
     if (strncmp(string, "/", 1)) {
       fprintf(stderr, "FAILED: (F050401A) geda_normalize_filename <%s>\n", string);
       result++;
