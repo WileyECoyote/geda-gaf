@@ -676,6 +676,7 @@ static void geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item
     set_label ((GedaMenuItem*)image_menu_item, resolved_label);
 }
 
+/* menu_item_class->set_label */
 static void geda_image_menu_item_set_label (GedaMenuItem *menu_item,
                                               const char *label)
 {
