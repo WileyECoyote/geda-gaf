@@ -1,5 +1,9 @@
 2018-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macro geda_adjustment_new common to all
+      Gtk version but primarly for Gtk < 3 which oddly returns a GtkObject.
+      The macro cast to type void*.
+
     * include/geda_*.h: Update copyright headers; remove "any later version"
       clause.
 
