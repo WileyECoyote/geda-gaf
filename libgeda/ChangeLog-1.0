@@ -1,5 +1,7 @@
 2018-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Add accessor geda_object_locked_color.
+
     * tests/test_file.c: Fix not setting result when error are detected in
       for geda_follow_symlinks in test_sys. Add checks for:
 

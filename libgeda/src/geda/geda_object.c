@@ -207,6 +207,24 @@ const GList *geda_object_get_conn_list (const GedaObject *object)
 }
 
 /*!
+ * \brief Retrieve the Value of the GedaObject Locked Color Index
+ * \par Function Description
+ *  Returns the value of the object->locked_color member, which holes the
+ *  index of the locked color value, not the color value. The color index
+ *  of the object is saved to the locked_color member when the object is
+ *  locked so that the previous color can be restored when the object is
+ *  unlocked.
+ *
+ * \sa geda_object_get_color
+ */
+int geda_object_locked_color (const GedaObject *object) {
+  if (is_a_geda_object(object)) {
+    return object->locked_color;
+  }
+  return -0;
+}
+
+/*!
  * \brief Get an object's parent Page.
  * \par Function Description
  *  Returns the Page structure which owns \a object. If \a object is
