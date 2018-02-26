@@ -295,7 +295,6 @@ remove_settings_signal (GedaHandleBox *handlebox, GdkScreen *screen)
   }
 }
 
-
 static int
 effective_handle_position (GedaHandleBox *handlebox)
 {
@@ -307,12 +306,15 @@ effective_handle_position (GedaHandleBox *handlebox)
   else {
 
     switch (handlebox->handle_position) {
+
       case GTK_POS_LEFT:
         handle_position = GTK_POS_RIGHT;
         break;
+
       case GTK_POS_RIGHT:
         handle_position = GTK_POS_LEFT;
         break;
+
       default:
         handle_position = handlebox->handle_position;
         break;
@@ -336,6 +338,7 @@ geda_handle_box_get_invisible (void)
   if (!handle_box_invisible) {
 
     handle_box_invisible = gtk_invisible_new ();
+
     gtk_widget_show (handle_box_invisible);
   }
 
@@ -422,9 +425,11 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       case GTK_POS_LEFT:
         snap_edge = GTK_POS_RIGHT;
         break;
+
       case GTK_POS_RIGHT:
         snap_edge = GTK_POS_LEFT;
         break;
+
       default:
         break;
     }
@@ -471,6 +476,7 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
         float_pos1 = new_x;
         float_pos2 = new_x + handlebox->float_allocation.width;
         break;
+
       case GTK_POS_LEFT:
       case GTK_POS_RIGHT:
         attach_pos1 = handlebox->attach_allocation.y;
@@ -517,13 +523,16 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       case GTK_POS_LEFT:
         new_y += ((int)handlebox->float_allocation.height - height) >> 1;  /* Divide by 2 */
         break;
+
       case GTK_POS_RIGHT:
         new_x += (int)handlebox->float_allocation.width - width;
         new_y += ((int)handlebox->float_allocation.height - height) >> 1;
         break;
+
       case GTK_POS_TOP:
         new_x += ((int)handlebox->float_allocation.width - width) >> 1;
         break;
+
       case GTK_POS_BOTTOM:
         new_x += ((int)handlebox->float_allocation.width - width) >> 1;
         new_y += (int)handlebox->float_allocation.height - height;
