@@ -1103,7 +1103,22 @@ int test_sys (void)
 
   /* === Function 02: geda_cmp_file_mod_time geda_file_sys_cmp_mod_time === */
 
-      /* TODO: check geda_cmp_file_mod_time */
+  time_t now;
+  int secs;
+
+  secs = geda_file_sys_cmp_mod_time(NULL, time(&now));
+
+  if (++secs) {
+    fprintf(stderr, "FAILED: (F050200) geda_file_sys_cmp_mod_time secs <%d>\n", secs);
+    result++;
+  }
+
+  secs = geda_file_sys_cmp_mod_time("nonexistence", time(&now));
+
+  if (++secs) {
+    fprintf(stderr, "FAILED: (F050201) geda_file_sys_cmp_mod_time secs <%d>\n", secs);
+    result++;
+  }
 
   /* === Function 03: geda_file_sys_follow_symlinks === */
 
