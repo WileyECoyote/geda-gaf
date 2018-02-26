@@ -1,5 +1,7 @@
 2018-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macros geda_get_widget_parent.
+
     * src/widgets/geda_image_menu_item.c: Reverse conditional logic in
       geda_image_menu_item_set_image so the routine is executed if the
       passed image is not the current image.
