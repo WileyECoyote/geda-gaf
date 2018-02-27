@@ -605,14 +605,14 @@ static void geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
                                                                int *requisition)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)menu_item;
-  GtkWidget         *parent;
+  GedaMenuBar       *parent;
 
   PackDirection pack_dir;
 
   parent = geda_get_widget_parent(menu_item);
 
   if (GEDA_IS_MENU_BAR (parent)) {
-    pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
+    pack_dir = geda_menu_bar_get_child_pack_direction (parent);
   }
   else {
     pack_dir = PACK_DIRECTION_LTR;
@@ -703,7 +703,7 @@ static void geda_image_menu_item_size_request (GtkWidget      *widget,
                                                GtkRequisition *requisition)
 {
   GedaImageMenuItem *image_menu_item;
-  GtkWidget         *parent;
+  GedaMenuBar       *parent;
 
   PackDirection pack_dir;
 
@@ -713,7 +713,7 @@ static void geda_image_menu_item_size_request (GtkWidget      *widget,
   parent = geda_get_widget_parent(widget);
 
   if (GEDA_IS_MENU_BAR (parent)) {
-    pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
+    pack_dir = geda_menu_bar_get_child_pack_direction (parent);
   }
   else {
     pack_dir = PACK_DIRECTION_LTR;
@@ -755,14 +755,14 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
                                                 GtkAllocation *allocated)
 {
   GedaImageMenuItem *image_menu_item;
-  GtkWidget         *parent;
+  GedaMenuBar       *parent;
 
   PackDirection   pack_dir;
 
   parent = geda_get_widget_parent(widget);
 
   if (GEDA_IS_MENU_BAR (parent)) {
-    pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)parent);
+    pack_dir = geda_menu_bar_get_child_pack_direction (parent);
   }
   else {
     pack_dir = PACK_DIRECTION_LTR;
