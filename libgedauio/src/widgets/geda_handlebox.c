@@ -2021,11 +2021,11 @@ GtkToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
 }
 
 /*!
- * \brief Replace the Toolbar in a GedaHandleBox
+ * \brief Set or Replace the Toolbar in a GedaHandleBox
  * \par Function Description
- * This function allows clients to change the tool that is contained
+ * This function allows clients to change the toolbar that is contained
  * within the #GedaHandleBox. The clients should maintain a reference
- * to any previous toolbars.
+ * to any previous toolbars if needed.
  *
  * \param [in] handlebox The #GedaHandleBox object
  * \param [in] toolbar   Toolbar object to be put in the handlebox

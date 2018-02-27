@@ -3,7 +3,8 @@
     * src/widgets/geda_handlebox.c: Revert to conventional function wrapping,
       utilize geda_get_child_widget macro in geda_handle_box_button_press and
       geda_handle_box_paint, eliminating ancillary GtkBin. Add missing braces
-      in geda_handle_box_size_allocate.
+      in geda_handle_box_size_allocate. Update function documentation/comments
+      for geda_handle_box_set_toolbar.
 
     * src/widgets/geda_image_menu_item.c: Change type GtkWidget parent to
       GedaMenuBar and remove cast in geda_menu_bar_get_child_pack_direction.
