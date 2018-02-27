@@ -714,7 +714,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
     if (event->window != handlebox->bin_window)
       return FALSE;
 
-    child = ((GtkBin*)handlebox)->child;
+    child = geda_get_child_widget(handlebox);
 
     if (child) {
 
@@ -936,7 +936,6 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 /*! \internal helper for geda_handle_box_expose */
 static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
 {
-  GtkBin        *bin;
   GedaHandleBox *handlebox;
   GdkRectangle  *area;
   GdkRectangle   rect;
@@ -945,7 +944,6 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
   int            width, height;
 
   area               = &event->area;
-  bin                = (GtkBin*)widget;
   handlebox          = (GedaHandleBox*)widget;
   handle_orientation = GTK_ORIENTATION_VERTICAL;
   handle_position    = effective_handle_position (handlebox);
@@ -1021,8 +1019,8 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
                        handle_orientation);
   }
 
-  /* If a widget is in the handlebox, aka a Toolbar */
-  if (bin->child) {
+  /* If a child widget is in the handlebox, aka a Toolbar */
+  if (geda_get_child_widget(widget)) {
     GTK_WIDGET_CLASS (geda_handle_box_parent_class)->expose_event (widget, event);
   }
 }

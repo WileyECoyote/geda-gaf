@@ -1,6 +1,8 @@
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_handlebox.c: Revert to conventional function wrapping.
+    * src/widgets/geda_handlebox.c: Revert to conventional function wrapping,
+      utilize geda_get_child_widget macro in geda_handle_box_button_press and
+      geda_handle_box_paint, eliminating ancillary GtkBin.
 
     * src/widgets/geda_image_menu_item.c: Change type GtkWidget parent to
       GedaMenuBar and remove cast in geda_menu_bar_get_child_pack_direction.
