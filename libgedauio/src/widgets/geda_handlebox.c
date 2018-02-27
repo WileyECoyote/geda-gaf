@@ -244,22 +244,19 @@ change_handle_size (GedaHandleBox *handlebox)
 
 /* Callback used when a GtkSettings value changes */
 static void
-settings_notify_cb (GObject       *object,
-                    GParamSpec    *pspec,
-                    GedaHandleBox *handlebox)
+settings_notify_cb (GObject *object, GParamSpec *pspec, GedaHandleBox *handlebox)
 {
   const char *name;
 
   name = g_param_spec_get_name (pspec);
 
-  /* Check if menu-bar-accel is what was changed */
+  /* Check if handle-size is what was changed */
   if (!strcmp (name, "handle-size")) {
     change_handle_size (handlebox);
   }
 }
 
-static void
-connect_settings_signal(GedaHandleBox *handlebox)
+static void connect_settings_signal(GedaHandleBox *handlebox)
 {
   GedaHandleBoxData *priv = handlebox->priv;
 
@@ -278,8 +275,7 @@ connect_settings_signal(GedaHandleBox *handlebox)
 }
 
 /* Removes the settings signal handler. It's safe to call multiple times */
-static void
-remove_settings_signal (GedaHandleBox *handlebox, GdkScreen *screen)
+static void remove_settings_signal (GedaHandleBox *handlebox, GdkScreen *screen)
 {
   GedaHandleBoxData *priv = handlebox->priv;
 
@@ -295,8 +291,7 @@ remove_settings_signal (GedaHandleBox *handlebox, GdkScreen *screen)
   }
 }
 
-static int
-effective_handle_position (GedaHandleBox *handlebox)
+static int effective_handle_position (GedaHandleBox *handlebox)
 {
   int handle_position;
 
@@ -330,8 +325,7 @@ effective_handle_position (GedaHandleBox *handlebox)
  *           2.) geda_handle_box_end_drag
  */
 
-static GtkWidget *
-geda_handle_box_get_invisible (void)
+static GtkWidget *geda_handle_box_get_invisible (void)
 {
   static GtkWidget *handle_box_invisible = NULL;
 
@@ -363,8 +357,7 @@ geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
 }
 
 /* Helped for geda_handle_box_grab_event */
-static bool
-geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
+static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
   GdkGeometry    geometry;
@@ -605,8 +598,9 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
  * Connected by:    geda_handle_box_button_press
  * Disconnected by: geda_handle_box_end_drag
 */
-static bool
-geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *handlebox)
+static bool geda_handle_box_grab_event(GtkWidget     *widget,
+                                       GdkEvent      *event,
+                                       GedaHandleBox *handlebox)
 {
   bool event_handled = FALSE;
 
@@ -643,8 +637,7 @@ geda_handle_box_grab_event(GtkWidget *widget, GdkEvent *event, GedaHandleBox *ha
  *            2.) geda_handle_box_delete_event
  *            3.) geda_handle_box_dock
  */
-static void
-geda_handle_box_reattach (GedaHandleBox *handlebox)
+static void geda_handle_box_reattach (GedaHandleBox *handlebox)
 {
   GtkWidget *widget = (GtkWidget*)handlebox;
 
@@ -682,8 +675,7 @@ geda_handle_box_reattach (GedaHandleBox *handlebox)
 }
 
 /* container_class->add */
-static void
-geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
+static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 {
   if (GEDA_IS_HANDLE_BOX(container)) {
 
@@ -707,8 +699,8 @@ geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 }
 
 /* widget_class->button_press == callback for mouse button press event */
-static bool
-geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
+static bool geda_handle_box_button_press (GtkWidget      *widget,
+                                          GdkEventButton *event)
 {
   bool event_handled = FALSE;
 
@@ -848,8 +840,7 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
 }
 
 /* widget_class->delete_event */
-static int
-geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
+static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
@@ -861,8 +852,7 @@ geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 }
 
 /*! \internal helper for geda_handle_box_expose */
-static void
-geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
+static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 {
   GtkWidget *widget;
   unsigned int x;
@@ -944,8 +934,7 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 }
 
 /*! \internal helper for geda_handle_box_expose */
-static void
-geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
+static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
 {
   GtkBin        *bin;
   GedaHandleBox *handlebox;
@@ -1039,8 +1028,7 @@ geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
 }
 
 /* widget_class->expose_event */
-static bool
-geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
+static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   if (gtk_widget_is_drawable (widget)) {
 
@@ -1067,8 +1055,7 @@ geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 }
 
 /* widget_class->map */
-static void
-geda_handle_box_map (GtkWidget *widget)
+static void geda_handle_box_map (GtkWidget *widget)
 {
   GtkBin        *bin;
   GedaHandleBox *handlebox;
@@ -1097,8 +1084,7 @@ geda_handle_box_map (GtkWidget *widget)
 }
 
 /* widget_class->unmap */
-static void
-geda_handle_box_unmap (GtkWidget *widget)
+static void geda_handle_box_unmap (GtkWidget *widget)
 {
   GedaHandleBox *handlebox;
 
@@ -1117,8 +1103,7 @@ geda_handle_box_unmap (GtkWidget *widget)
 }
 
 /* widget_class->realize */
-static void
-geda_handle_box_realize (GtkWidget *widget)
+static void geda_handle_box_realize (GtkWidget *widget)
 {
   GdkWindowAttr  attributes;
   GtkAllocation *allocation;
@@ -1225,9 +1210,8 @@ geda_handle_box_unrealize (GtkWidget *widget)
 }
 
 /* widget_class->size_allocate */
-static void
-geda_handle_box_size_allocate (GtkWidget     *widget,
-                               GtkAllocation *allocation)
+static void geda_handle_box_size_allocate (GtkWidget     *widget,
+                                           GtkAllocation *allocation)
 {
   GtkWidget     *child;
   GedaHandleBox *handlebox;
@@ -1345,9 +1329,8 @@ geda_handle_box_size_allocate (GtkWidget     *widget,
 }
 
 /* widget_class->size_request */
-static void
-geda_handle_box_size_request (GtkWidget      *widget,
-                              GtkRequisition *requisition)
+static void geda_handle_box_size_request (GtkWidget      *widget,
+                                          GtkRequisition *requisition)
 {
   GtkBin        *bin;
   GedaHandleBox *handlebox;
@@ -1429,8 +1412,7 @@ geda_handle_box_size_request (GtkWidget      *widget,
 }
 
 /* widget_class->style_set */
-static void
-geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
+static void geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
@@ -1446,11 +1428,10 @@ geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
 }
 
 /* gobject_class->get_property */
-static void
-geda_handle_box_get_property (GObject        *object,
-                              unsigned int     prop_id,
-                              GValue          *value,
-                              GParamSpec      *pspec)
+static void geda_handle_box_get_property (GObject      *object,
+                                          unsigned int  prop_id,
+                                          GValue       *value,
+                                          GParamSpec   *pspec)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)object;
 
@@ -1488,9 +1469,10 @@ geda_handle_box_get_property (GObject        *object,
   }
 }
 
-static void
-geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
-                              const GValue *value, GParamSpec *pspec)
+static void geda_handle_box_set_property (GObject      *object,
+                                          unsigned int  prop_id,
+                                          const GValue *value,
+                                          GParamSpec   *pspec)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)object;
 
@@ -1524,8 +1506,7 @@ geda_handle_box_set_property (GObject  *object, unsigned int prop_id,
   }
 }
 
-static void
-geda_handle_box_finalize (GObject *object)
+static void geda_handle_box_finalize (GObject *object)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)object;
 
@@ -1551,8 +1532,7 @@ geda_handle_box_finalize (GObject *object)
  * \param [in]  g_class     GedaHandleBoxClass class being initializing
  * \param [in]  class_data  Associated GedaHandleBoxClass structure
  */
-static void
-geda_handle_box_class_init(void *g_class, void *class_data)
+static void geda_handle_box_class_init(void *g_class, void *class_data)
 {
   GObjectClass       *object_class;
   GtkWidgetClass     *widget_class;
@@ -1706,8 +1686,7 @@ geda_handle_box_class_init(void *g_class, void *class_data)
  * \param [in] instance The GedaHandleBox structure being initialized,
  * \param [in] g_class  The GedaHandleBox class we are initializing.
  */
-static void
-geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
+static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)instance;
 
@@ -1788,8 +1767,7 @@ GedaType geda_handle_box_get_type (void)
  *
  * \return TRUE if \a handlebox is a valid GedaHandleBox
  */
-bool
-is_a_geda_handle_box (GedaHandleBox *handlebox)
+bool is_a_geda_handle_box (GedaHandleBox *handlebox)
 {
   if ((handlebox != NULL) && (handlebox_hash != NULL)) {
     return g_hash_table_lookup(handlebox_hash, handlebox) ? TRUE : FALSE;
@@ -1802,8 +1780,7 @@ is_a_geda_handle_box (GedaHandleBox *handlebox)
  * \par Function Description
  *  Creates and returns a new GedaHandleBox instance
  */
-GtkWidget*
-geda_handle_box_new (void)
+GtkWidget *geda_handle_box_new (void)
 {
   return g_object_new (GEDA_TYPE_HANDLE_BOX, NULL);
 }
@@ -1813,8 +1790,8 @@ geda_handle_box_new (void)
  * \par Function Description
  *  Creates and returns a new GedaHandleBox instance
  */
-void
-geda_handle_box_dock (GedaHandleBox *handlebox) {
+void geda_handle_box_dock (GedaHandleBox *handlebox)
+{
   if (GEDA_IS_HANDLE_BOX(handlebox)) {
     g_object_set (((GtkBin*)handlebox)->child, "orientation", handlebox->dock_orientation, NULL);
     geda_handle_box_reattach (handlebox);
@@ -1831,8 +1808,7 @@ geda_handle_box_dock (GedaHandleBox *handlebox) {
  *
  * \returns %TRUE if the child is currently detached, otherwise %FALSE
  */
-bool
-geda_handle_box_get_child_detached (GedaHandleBox *handlebox)
+bool geda_handle_box_get_child_detached (GedaHandleBox *handlebox)
 {
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handlebox), FALSE);
 
@@ -1855,9 +1831,8 @@ geda_handle_box_get_child_detached (GedaHandleBox *handlebox)
  *    <DT>GTK_POS_BOTTOM</DT>
  *  </DL>
  */
-void
-geda_handle_box_set_handle_position (GedaHandleBox   *handlebox,
-                                     GtkPositionType  position)
+void geda_handle_box_set_handle_position (GedaHandleBox   *handlebox,
+                                          GtkPositionType  position)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handlebox));
 
@@ -1879,8 +1854,7 @@ geda_handle_box_set_handle_position (GedaHandleBox   *handlebox,
  *
  * \returns the current handle position.
  */
-GtkPositionType
-geda_handle_box_get_handle_position (GedaHandleBox *handlebox)
+GtkPositionType geda_handle_box_get_handle_position (GedaHandleBox *handlebox)
 {
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handlebox), GTK_POS_LEFT);
 
@@ -1903,8 +1877,7 @@ geda_handle_box_get_handle_position (GedaHandleBox *handlebox)
  *    <DT>GTK_SHADOW_ETCHED_OUT</DT>
  *  </DL>
  */
-void
-geda_handle_box_set_shadow_type (GedaHandleBox *handlebox, GtkShadowType type)
+void geda_handle_box_set_shadow_type (GedaHandleBox *handlebox, GtkShadowType type)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handlebox));
 
@@ -1927,8 +1900,7 @@ geda_handle_box_set_shadow_type (GedaHandleBox *handlebox, GtkShadowType type)
  *
  * \returns the type of shadow currently drawn around the handle box.
  */
-GtkShadowType
-geda_handle_box_get_shadow_type (GedaHandleBox *handlebox)
+GtkShadowType geda_handle_box_get_shadow_type (GedaHandleBox *handlebox)
 {
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handlebox), GTK_SHADOW_ETCHED_OUT);
 
@@ -1944,8 +1916,7 @@ geda_handle_box_get_shadow_type (GedaHandleBox *handlebox)
  *
  * \returns shrink-on-detach property or FALSE.
  */
-bool
-geda_handle_box_get_shrink_on_detach (GedaHandleBox *handlebox)
+bool geda_handle_box_get_shrink_on_detach (GedaHandleBox *handlebox)
 {
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handlebox), FALSE);
 
@@ -1966,8 +1937,7 @@ geda_handle_box_get_shrink_on_detach (GedaHandleBox *handlebox)
  * \param [in] handlebox The #GedaHandleBox object
  * \param [in] shrink     Whether the handle should shrink or not.
  */
-void
-geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, bool shrink)
+void geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, bool shrink)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handlebox));
 
@@ -1995,8 +1965,7 @@ geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, bool shrink)
  *    <DT>GTK_POS_BOTTOM</DT>
  *  </DL>
  */
-void
-geda_handle_box_set_snap_edge (GedaHandleBox *handlebox, GtkPositionType edge)
+void geda_handle_box_set_snap_edge (GedaHandleBox *handlebox, GtkPositionType edge)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handlebox));
 
@@ -2022,8 +1991,7 @@ geda_handle_box_set_snap_edge (GedaHandleBox *handlebox, GtkPositionType edge)
  * \returns the edge used for determining reattachment, or (GtkPositionType)-1
  *          if this is determined (as per default) from the handle position.
  */
-GtkPositionType
-geda_handle_box_get_snap_edge (GedaHandleBox *handlebox)
+GtkPositionType geda_handle_box_get_snap_edge (GedaHandleBox *handlebox)
 {
   g_return_val_if_fail (GEDA_IS_HANDLE_BOX (handlebox), (GtkPositionType)-1);
 
@@ -2039,8 +2007,7 @@ geda_handle_box_get_snap_edge (GedaHandleBox *handlebox)
  *
  * \returns the toolbar widget or NULL if handlebox is not a GedaHandleBox.
  */
-GtkToolbar*
-geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
+GtkToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
 {
   if (GEDA_IS_HANDLE_BOX (handlebox)) {
     return (GtkToolbar*)gtk_bin_get_child((GtkBin*)handlebox);
@@ -2061,8 +2028,7 @@ geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
  * \param [in] handlebox The #GedaHandleBox object
  * \param [in] toolbar   Toolbar object to be put in the handlebox
  */
-void
-geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
+void geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
 {
   if (GEDA_IS_HANDLE_BOX (handlebox)) {
 
@@ -2085,9 +2051,8 @@ geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
  *  \par Function Description
  *
  */
-void
-geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
-                                        GtkPositionType  position)
+void geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
+                                             GtkPositionType  position)
 {
   geda_handle_box_set_handle_position ((GedaHandleBox*)handlebox, position);
 }
@@ -2097,8 +2062,7 @@ geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
  *  \par Function Description
  *
  */
-void
-geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
+void geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
 {
   geda_handle_box_set_shadow_type ((GedaHandleBox*)handlebox, type);
 }
@@ -2108,8 +2072,7 @@ geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
  *  \par Function Description
  *
  */
-void
-geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
+void geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
 {
   geda_handle_box_set_shrink_on_detach ((GedaHandleBox*)handlebox, shrink);
 }
@@ -2119,8 +2082,7 @@ geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
  *  \par Function Description
  *
  */
-void
-geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
+void geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
 {
   geda_handle_box_set_snap_edge ((GedaHandleBox*)handlebox, edge);
 }
@@ -2130,8 +2092,7 @@ geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
  *  \par Function Description
  *
  */
-void
-geda_handle_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
+void geda_handle_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
 {
   geda_handle_box_set_toolbar ((GedaHandleBox*)handlebox, toolbar);
 }
