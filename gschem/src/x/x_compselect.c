@@ -2443,9 +2443,9 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
     geda_check_menu_item_set_draw_as_radio((GedaCheckMenuItem*) menuitem, FALSE);
     geda_menu_append (menu, menuitem);
 
-    handler = g_signal_connect (menuitem, "toggled",
-                                G_CALLBACK (compselect_popup_toggle_style),
-                                compselect);
+    handler = GTK_CALLBACK_TOGGLED (menuitem,
+                                    compselect_popup_toggle_style,
+                                    compselect);
 
     GEDA_OBJECT_SET_DATA(menuitem, (void*)handler, "handler");
     GEDA_OBJECT_SET_DATA(menuitem, (void*)(long)index, "index");
@@ -2919,9 +2919,9 @@ compselect_create_styles_menu (Compselect *ThisDialog)
     gtk_widget_show (menuitem);
 
     /* Setup callback for when a menu item is selected */
-    handler= g_signal_connect (menuitem, "toggled",
-                               G_CALLBACK (compselect_toggle_style),
-                               ThisDialog);
+    handler= GTK_CALLBACK_TOGGLED (menuitem,
+                                   compselect_toggle_style,
+                                   ThisDialog);
 
     GEDA_OBJECT_SET_DATA(menuitem, (void*)handler, "handler");
   }
