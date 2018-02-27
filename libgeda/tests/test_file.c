@@ -1120,6 +1120,32 @@ int test_sys (void)
     result++;
   }
 
+  struct stat stat_02;
+
+  errno = 0;
+
+  if (stat (SYM_FILE, &stat_02) != 0) {
+
+    if (errno == ENOENT) {
+      /* The file does not exist. */
+      fprintf(stderr, "FAILED: (F050202A) test file <%s> is missing\n", SYM_FILE);
+      result++;
+    }
+    else {
+      fprintf(stderr, "FAILED: (F050202B) an error occured, file <%s>: %s\n", SYM_FILE, strerror(errno));
+      result++;
+    }
+  }
+  else {
+
+    secs = geda_file_sys_cmp_mod_time(SYM_FILE, time(&now));
+
+    if (secs != difftime (time(&now), stat_02.st_mtime)) {
+      fprintf(stderr, "FAILED: (F050202C) geda_file_sys_cmp_mod_time secs <%d>\n", secs);
+      result++;
+    }
+  }
+
   /* === Function 03: geda_file_sys_follow_symlinks === */
 
   string = geda_follow_symlinks(NULL, &err);
