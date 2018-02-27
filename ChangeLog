@@ -1,3 +1,8 @@
+2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Replace gtk_container_add with
+      geda_container_add macro.
+
 2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_toolbars.h: Replace GTK_SIGNAL_FUNC with G_CALLBACK.

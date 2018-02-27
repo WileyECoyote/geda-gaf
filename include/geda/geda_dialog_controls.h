@@ -75,6 +75,8 @@
  *                | The dialog argument was not used by create_geda_switch.
  * ------------------------------------------------------------------
  * WEH | 05/13/17 | Go back to gtk_widget_show instead of g_object_set.
+ * ------------------------------------------------------------------
+ * WEH | 02/27/27 | Replace gtk_container_add with geda_container_add macro.
 */
 
 #pragma once
@@ -167,7 +169,7 @@ typedef struct
 #define GTK_START_TAB(name) \
   GtkWidget *name##Tab_vbox = gtk_vbox_new (FALSE, 0); \
   gtk_widget_show(name##Tab_vbox);     \
-  gtk_container_add ((GtkContainer*)notebook, name##Tab_vbox);
+  geda_container_add (notebook, name##Tab_vbox);
 
 #define GTK_END_TAB(name) \
   GtkWidget *name##Tab = geda_visible_label_new (_TAB_LABEL(name));     \
@@ -395,20 +397,20 @@ typedef struct
         /* Create outer alignment to hold the Frame */ \
         GtkWidget *name##Align1 = gtk_alignment_new (xalign, yalign, 0, 0); \
         gtk_widget_set_size_request (name##Align1, width, height + space); \
-        gtk_container_add((GtkContainer*)parent, name##Align1);  \
+        geda_container_add (parent, name##Align1);  \
         gtk_widget_show (name##Align1);    \
         /* Create a Frame and put in the outer alignment */ \
         GtkWidget *name##Frame = gtk_frame_new (_(#name)); \
         gtk_widget_set_size_request (name##Frame, width, height); \
-        gtk_container_add((GtkContainer*)name##Align1, name##Frame); \
+        geda_container_add (name##Align1, name##Frame); \
         gtk_widget_show (name##Frame); \
         /* Create inner alignment and put inside the Frame */ \
         GtkWidget *name##Align2 = gtk_alignment_new (0, 0, 0, 0); \
-        gtk_container_add((GtkContainer*)name##Frame, name##Align2);  \
+        geda_container_add (name##Frame, name##Align2);  \
         gtk_widget_show (name##Align2); \
         /* Create a horizontal box and put inside the inner alignment */ \
         GtkWidget *name##_hbox = gtk_hbox_new (FALSE, NOT_BELOW_ZERO (DIALOG_H_SPACING)); \
-        gtk_container_add((GtkContainer*)name##Align2, name##_hbox); \
+        geda_container_add (name##Align2, name##_hbox); \
         gtk_widget_show (name##_##hbox); \
         gtk_box_set_spacing(GTK_BOX(name##_##hbox), space); \
 
@@ -609,12 +611,12 @@ typedef struct
         GtkWidget *hbox; \
         GtkWidget *LightOn; \
         GtkWidget *LightOff; \
-        alignment = gtk_alignment_new (0, 0, 1, 0);                 /* Create new Alignment Widget */ \
+        alignment = gtk_alignment_new (0, 0, 1, 0);                    /* Create new Alignment Widget */ \
         gtk_widget_show (alignment); \
-        gtk_container_add ((GtkContainer*)name##Radio, alignment);  /* Put Alignment Widget Inside the Radio */ \
-        hbox = gtk_hbox_new (FALSE, 2);                             /* Create new Box container */ \
+        geda_container_add (name##Radio, alignment);                   /* Put Alignment Widget Inside the Radio */ \
+        hbox = gtk_hbox_new (FALSE, 2);                                /* Create new Box container */ \
         gtk_widget_show (hbox); \
-        gtk_container_add ((GtkContainer*)alignment, hbox);         /* Put box container inside the Alignment */ \
+        geda_container_add (alignment, hbox);                          /* Put box container inside the Alignment */ \
         LightOn = x_dialog_get_bulb_image(TRUE); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); /* Put both images inside box container */ \
         GEDA_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
@@ -855,7 +857,7 @@ typedef struct
 #define GTK_VIEW_TREE( parent, name, data, source, xsize, ysize) \
         name##View = GTK_WIDGET( gtk_tree_view_new()); \
         gtk_widget_show (name##View); \
-        gtk_container_add ((GtkContainer*)parent, name##View); \
+        geda_container_add (parent, name##View); \
         initialize_tree_View(GTK_TREE_VIEW(name##View), 0, 1, G_TYPE_STRING); \
         load_tree_view_##source (GTK_TREE_VIEW(name##View), data); \
         connect_list_view( ThisDialog, GTK_TREE_VIEW(name##View)); \
