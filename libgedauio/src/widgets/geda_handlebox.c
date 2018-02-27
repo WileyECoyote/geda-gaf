@@ -1308,18 +1308,22 @@ static void geda_handle_box_size_allocate (GtkWidget     *widget,
       child_allocation->width  = MAX (1, (int)width - border_widthx2);
       child_allocation->height = MAX (1, (int)height - border_widthx2);
 
-      if (handle_position == GTK_POS_LEFT ||
-        handle_position == GTK_POS_RIGHT)
+      if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
+      {
         child_allocation->width -= handlebox->handle_size;
+      }
       else
+      {
         child_allocation->height -= handlebox->handle_size;
+      }
 
-      if (gtk_widget_get_realized (widget))
+      if (gtk_widget_get_realized (widget)) {
         gdk_window_move_resize (handlebox->bin_window,
                                 0,
                                 0,
                                 width,
                                 height);
+      }
     }
 
     gtk_widget_size_allocate (child, child_allocation);
