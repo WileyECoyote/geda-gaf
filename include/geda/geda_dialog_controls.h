@@ -77,6 +77,7 @@
  * WEH | 05/13/17 | Go back to gtk_widget_show instead of g_object_set.
  * ------------------------------------------------------------------
  * WEH | 02/27/27 | Replace gtk_container_add with geda_container_add macro.
+ *                | Rename GTK_CALLBACK_ENABLER-> GTK_CALLBACK_TOGGLED.
 */
 
 #pragma once
@@ -418,7 +419,7 @@ typedef struct
 #define GTK_CONNECT_CALLBACK(name, signal, function, data) \
         g_signal_connect (name, signal, G_CALLBACK(function), data);
 
-#define GTK_CALLBACK_ENABLER(name, function, target) \
+#define GTK_CALLBACK_TOGGLED(name, function, target) \
         GTK_CONNECT_CALLBACK(name, "toggled", function, target)
 
 #define GTK_ICALLBACK(name, signal, function, data) \
