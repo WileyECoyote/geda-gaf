@@ -848,4 +848,23 @@ void geda_object_set_selectable (GedaObject *object, int state) {
   }
 }
 
+/*!
+ * \brief Set the Locked Color Index of a GedaObject
+ * \par Function Description
+ *  The locked color can be used to store the index of the color of an enity
+ *  when the objected is locked. This value can later be restored if and when
+ *  the object is unlocked. Setting the locked color of a Complex object has
+ *  no effect.
+ */
+void geda_object_set_locked_color (GedaObject *object, int index) {
+  if (is_a_geda_object(object)) {
+    if (index > BACKGROUND_COLOR) {
+      object->locked_color = index;
+    }
+    else {
+      BUG_IMSG("Refusing to set color index to value <%d>", index);
+    }
+  }
+}
+
 /** @} endgroup geda-object */

@@ -1,7 +1,8 @@
 2018-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Rename geda_object_locked_color -> with "get"
-      geda_object_get_locked_color, oops.
+      geda_object_get_locked_color, oops. Add geda_object_set_locked_color.
+
 
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
