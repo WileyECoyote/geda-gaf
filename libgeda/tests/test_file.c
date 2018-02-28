@@ -1327,6 +1327,12 @@ int test_sys (void)
         fprintf(stderr,"FAILED: (F050501)  <%s>: %s\n", TEST_FILE, strerror(errno));
         exit (1);
       }
+
+      /* Verify that the file was actually removed */
+      if (access(TEST_FILE, R_OK) == 0) {
+        fprintf(stderr, "FAILED: (F050502) geda_remove_file <%s>\n", TEST_FILE);
+        result++;
+      }
     }
     else {
       fprintf(stderr,"Error accessing file <%s>: %s\n", TEST_FILE, strerror(errno));

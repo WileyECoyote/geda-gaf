@@ -3,6 +3,9 @@
     * src/geda/geda_object.c: Rename geda_object_locked_color -> with "get"
       geda_object_get_locked_color, oops. Add geda_object_set_locked_color.
 
+    * tests/test_file.c: Revise geda_remove_file checks to verify that the
+      file was actually removed.
+
 
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
