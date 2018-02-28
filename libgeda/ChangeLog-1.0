@@ -6,6 +6,8 @@
     * tests/test_file.c: Revise geda_remove_file checks to verify that the
       file was actually removed.
 
+    * tests/test_picture_object.c: Update error message when pretest fails.
+
 
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 

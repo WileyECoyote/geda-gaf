@@ -251,7 +251,7 @@ main (int argc, char *argv[])
 #endif
 
   if (pretest()) {
-    fprintf(stderr, "Now wtf?\n\n");
+    fprintf(stderr, "Error during pretest, check %s\n\n", __FILE__);
     return 1;
   }
 
