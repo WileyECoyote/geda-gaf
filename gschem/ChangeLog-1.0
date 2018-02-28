@@ -2,6 +2,8 @@
 
     * po/fr.po: Update French translations.
 
+    * po/he.po: Update Hebrew translations.
+
     * src/x/x_multiattrib.c: Replace gtk_bin_get_child with macro in
       multiattrib_init.
 

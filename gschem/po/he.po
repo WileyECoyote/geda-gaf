@@ -1273,17 +1273,15 @@ msgstr ""
 msgid "Undo failed"
 msgstr ""
 
-# Hierarchy Error
+# Search for
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Search for:"
-msgstr "שגיאת היררכיה"
+msgstr "לחפש אחר:"
 
-# Set the sequence number
+# Set the search criteria
 #: gschem/src/x/x_autonumber.c:117
-#, fuzzy
 msgid "Set the search criteria"
-msgstr "הגדר את מספר הרצף"
+msgstr "הגדר את קריטריוני החיפוש"
 
 #: gschem/src/x/x_autonumber.c:118
 msgid "Autonumber text in:"
@@ -1297,11 +1295,10 @@ msgstr ""
 msgid "Skip numbers found in:"
 msgstr ""
 
-# Set the active slot number
+# Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:119
-#, fuzzy
 msgid "Set where NOT to look for numbers"
-msgstr "הגדר את מספר החריץ הפעיל"
+msgstr "הגדר היכן לא לחפש מספרים"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Sort order:"
@@ -1427,10 +1424,10 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
+# Open all
 #: gschem/src/x/x_compselect.c:126
-#, fuzzy
 msgid "Open all"
-msgstr "קובץ פתוח"
+msgstr "תפתח הכל"
 
 # Close
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:149
@@ -2393,11 +2390,10 @@ msgstr ""
 msgid "Add Attribute"
 msgstr ""
 
-# Attribute
+# Edit Attribute
 #: gschem/src/x/x_edit_attrib.c:412
-#, fuzzy
 msgid "Edit Attribute"
-msgstr "תְכוּנָה"
+msgstr "ערוך את התכונה"
 
 #: gschem/src/x/x_edit_attrib.c:414
 msgid "Select the name of the attribute to add"
@@ -3496,20 +3492,20 @@ msgstr ""
 msgid "_View"
 msgstr "הצג"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "Grid"
+msgstr "רֶשֶׁת"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "קואורדינטות חלון תצוגה"
+msgstr "הצג נקודות רשת"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "הצגת חלון מסוף"
+msgstr "רשת תצוגה"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
