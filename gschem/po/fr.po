@@ -3527,20 +3527,20 @@ msgstr ""
 msgid "_View"
 msgstr "_Affichage"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "Mode Arc de cercle"
+msgstr "la grille"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Afficher les coordonnées"
+msgstr "Afficher la grille de points"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Afficher les Fenêtre de la console"
+msgstr "Afficher la grille de maillage"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"

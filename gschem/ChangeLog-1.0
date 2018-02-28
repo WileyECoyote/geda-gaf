@@ -1,5 +1,7 @@
 2018-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/fr.po: Update French translations.
+
     * src/x/x_multiattrib.c: Replace gtk_bin_get_child with macro in
       multiattrib_init.
 
