@@ -1,3 +1,8 @@
+2018-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add ancillary child widget and utilize
+      geda_get_child_widget macro in function geda_handle_box_realize.
+
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Revert to conventional function wrapping,

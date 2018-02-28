@@ -1044,7 +1044,7 @@ static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
       geda_handle_box_paint (widget, event);
     }
 
-    child = ((GtkBin*)widget)->child;
+    child = geda_get_child_widget(widget);
 
     geda_container_propagate_expose (widget, child, event);
   }
@@ -1106,6 +1106,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   GdkWindowAttr  attributes;
   GtkAllocation *allocation;
   GedaHandleBox *handlebox;
+  GtkWidget     *child;
   int            attributes_mask;
 
   handlebox = (GedaHandleBox*)widget;
@@ -1144,8 +1145,10 @@ static void geda_handle_box_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (handlebox->bin_window, widget);
 
-  if (((GtkBin*)handlebox)->child) {
-    gtk_widget_set_parent_window (((GtkBin*)handlebox)->child, handlebox->bin_window);
+  child = geda_get_child_widget(handlebox);
+
+  if (child) {
+    gtk_widget_set_parent_window (child, handlebox->bin_window);
   }
 
   attributes.x           = 0;
