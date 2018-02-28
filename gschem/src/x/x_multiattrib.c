@@ -2264,7 +2264,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
 
   combo = x_multiattrib_new_entry_combo();
 
-  ThisDialog->combo_entry = gtk_bin_get_child(GTK_BIN(combo));
+  ThisDialog->combo_entry = geda_get_child_widget(combo);
 
   gtk_table_attach (GTK_TABLE (table), combo,
                     1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 6, 3);
