@@ -217,7 +217,7 @@ const GList *geda_object_get_conn_list (const GedaObject *object)
  *
  * \sa geda_object_get_color
  */
-int geda_object_locked_color (const GedaObject *object) {
+int geda_object_get_locked_color (const GedaObject *object) {
   if (is_a_geda_object(object)) {
     return object->locked_color;
   }
