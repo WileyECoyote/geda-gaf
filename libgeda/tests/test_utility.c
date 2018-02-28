@@ -429,6 +429,7 @@ int test_log (void)
   }
 
   /* === Function 07: geda_read_log geda_utility_log_read === */
+
   /* === Function 13: geda_log_s geda_utility_log_system === */
 
   /* === Function 01 geda_utility_log_close === */
@@ -473,9 +474,34 @@ int test_refdes (void)
   int index;
   int result = 0;
 
-  /* === Function 01: geda_refdes_get_ieee      geda_utility_refdes_get_ieee === */
-  /* === Function 02: geda_refdes_get_standard  geda_utility_refdes_get_standard  === */
-  /* === Function 03: geda_refdes_get_spice     geda_utility_refdes_get_spice === */
+  const GedaRefDes *designators;
+
+  /* === Function 01: geda_utility_refdes_get_ieee === */
+
+  designators = geda_get_ieee_refdes();
+
+  if (designators == NULL) {
+    fprintf(stderr, "FAILED: (U050101) geda_utility_refdes_get_ieee NULL\n");
+    result++;
+  }
+
+  /* === Function 02: geda_utility_refdes_get_spice === */
+
+  designators = geda_get_spice_refdes();
+
+  if (designators == NULL) {
+    fprintf(stderr, "FAILED: (U050201) geda_utility_refdes_get_spice NULL\n");
+    result++;
+  }
+
+  /* === Function 03: geda_utility_refdes_get_standard  === */
+
+  designators = geda_get_standard_refdes();
+
+  if (designators == NULL) {
+    fprintf(stderr, "FAILED: (U050301) geda_utility_refdes_get_standard NULL\n");
+    result++;
+  }
 
   /* === Function 04: geda_utility_refdes_reset === */
 

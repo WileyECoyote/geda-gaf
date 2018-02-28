@@ -1,4 +1,4 @@
-2018-02-26 Wiley E. Hill <wileyhill@gmail.com>
+2018-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Rename geda_object_locked_color -> with "get"
       geda_object_get_locked_color, oops. Add geda_object_set_locked_color.
@@ -8,6 +8,11 @@
 
     * tests/test_picture_object.c: Update error message when pretest fails.
 
+    * tests/test_utility.c: Add minimalist checks for:
+
+          * geda_utility_refdes_get_ieee
+          * geda_utility_refdes_get_spice
+          * geda_utility_refdes_get_standard
 
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
