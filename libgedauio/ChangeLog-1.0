@@ -1,5 +1,8 @@
 2018-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_check_menu_item.c: Use GParamSpec variable for
+      "draw-as-radio" like other parameter specifications.
+
     * src/x/x_menus.c: Replace gtk_adjustment_new with geda_adjustment_new
       macro.
 
