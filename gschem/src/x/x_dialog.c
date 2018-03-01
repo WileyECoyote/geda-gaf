@@ -2528,9 +2528,9 @@ void x_dialog_find_text(GschemToplevel *w_current)
                       G_CALLBACK (x_dialog_find_text_response),
                       w_current);
 
-    g_signal_connect (checkdescend, "toggled",
-                      G_CALLBACK (x_dialog_find_text_on_descend),
-                      checkascent);
+    GTK_CALLBACK_TOGGLED (checkdescend,
+                          x_dialog_find_text_on_descend,
+                          checkascent);
 
     gtk_widget_show_all(ThisDialog);
   }
