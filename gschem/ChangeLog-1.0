@@ -2,6 +2,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/it.po: Update Italian translations.
+
     * src/x/x_dialog.c: Replace g_signal_connect with GTK_CALLBACK_TOGGLED
       macro.
 
