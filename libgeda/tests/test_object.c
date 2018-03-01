@@ -32,7 +32,7 @@
  *  \brief Tests for geda_object.c module
  *  \par
  *  This module provides basic unit tests for construction and destruction
- *  of GedaObjects..
+ *  of GedaObjects.
  */
 
 void weak_notify_func(void *obj, void *user_data)
