@@ -3462,20 +3462,20 @@ msgstr ""
 msgid "_View"
 msgstr "Nézet"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "Ív üzemmód"
+msgstr "Rács"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "Mutasd konzolt ablak"
+msgstr "Megjelenítési pontok rács"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "Mutasd konzolt ablak"
+msgstr "Kijelző háló"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"

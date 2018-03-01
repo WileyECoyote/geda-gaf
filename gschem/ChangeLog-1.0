@@ -1,5 +1,7 @@
 2018-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/hu.po: Update Hungarian translations.
+
     * src/x/x_dialog.c: Replace g_signal_connect with GTK_CALLBACK_TOGGLED
       macro.
 
