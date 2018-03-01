@@ -4763,16 +4763,17 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         }
 
         menu->tearoff_adjustment =
-        GTK_ADJUSTMENT (gtk_adjustment_new (0,
-                                            0,
-                                            ((GtkWidget*)menu)->requisition.height,
-                                            MENU_SCROLL_STEP2,
-                                            height >> 1, /* divide by 2 */
-                                            height));
+                 geda_adjustment_new (0,
+                                      0,
+                                      ((GtkWidget*)menu)->requisition.height,
+                                      MENU_SCROLL_STEP2,
+                                      height >> 1, /* divide by 2 */
+                                      height);
 
         g_object_connect (menu->tearoff_adjustment,
                           "signal::value-changed", geda_menu_scrollbar_changed, menu,
                           NULL);
+
         menu->tearoff_scrollbar = gtk_vscrollbar_new (menu->tearoff_adjustment);
 
         gtk_box_pack_end (GTK_BOX (menu->tearoff_hbox),
