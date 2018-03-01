@@ -3644,30 +3644,35 @@ msgstr "khsae aksaar meakrau"
 msgid "Oops... got a NULL menu name"
 msgstr "aur!... ttuol ban chhmoh robsa meunouy tte"
 
+# View
 #: gschem/src/x/x_menus.c:876 gschem/etc/system-gschemrc.scm:2386
 msgid "_View"
-msgstr ""
+msgstr "meul"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
 msgstr "Kraleachatrang"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
 msgid "Display dots grid"
-msgstr ""
+msgstr "bangheanh kraleachatrangk chamnoch"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
 msgid "Display mesh grid"
-msgstr ""
+msgstr "bangheanh kraleachatrangk saamnanh"
 
+# Turn off the grid display
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
-msgstr ""
+msgstr "bet kar bangheanh kraleachatrang"
 
+# Toolbars
 #: gschem/src/x/x_menus.c:947
 msgid "_Toolbars"
-msgstr ""
+msgstr "rbar ubakar"
 
 #: gschem/src/x/x_menus.c:994
 msgid "Toggle visibility of the Standard toolbar"
@@ -3802,29 +3807,33 @@ msgstr "rk minkheunh sakammopheap"
 msgid "Menu path not found"
 msgstr "rk minkheunh phlauv meunouy"
 
+# Error: did not find path
 #: gschem/src/x/x_menus.c:1966 gschem/src/x/x_menus.c:1999
 msgid "Error: did not find path"
-msgstr ""
+msgstr "kamhosa: minban rk kheunh phlauv"
 
 #: gschem/src/x/x_menus.c:2104
 msgid "Could not open file"
 msgstr "min ach baek eksar samyobrachoum"
 
+# Remove
 #: gschem/src/x/x_menus.c:2212
 msgid "Remove"
-msgstr ""
+msgstr "yokchenh"
 
+# Show path
 #: gschem/src/x/x_menus.c:2219
 msgid "_Show path"
-msgstr ""
+msgstr "bangheanh phlauv"
 
+# Clear
 #: gschem/src/x/x_menus.c:2348
 msgid "Clear"
-msgstr ""
+msgstr "Chomreah"
 
 #: gschem/src/x/x_misc.c:73
 msgid "The operating system is out of memory or resources."
-msgstr ""
+msgstr "brapnth bratebatte kar ku asa sate ryy thonthea."
 
 #: gschem/src/x/x_misc.c:127 gschem/src/x/x_misc.c:145
 #: gschem/src/x/x_misc.c:159 gschem/src/x/x_settings.c:413
