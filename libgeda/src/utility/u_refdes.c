@@ -158,7 +158,7 @@ geda_utility_refdes_get_ieee(void)
   return IeeeRefDes;
 }
 
-/*! U0503
+/*! U0502
  * \brief Return refdes prefixes Associated with SPICE components
  * \par Function Description
  *  Returns a pointer to SpiceRefDes.
@@ -169,7 +169,7 @@ geda_utility_refdes_get_spice(void)
   return SpiceRefDes;
 }
 
-/*! U0501
+/*! U0503
  * \brief Return gEDA standard refdes prefixes
  * \par Function Description
  *  Returns a pointer to StdRefDes.
