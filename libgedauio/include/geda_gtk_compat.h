@@ -61,7 +61,8 @@
 
 #ifndef GTK_STATE_FLAG_INSENSITIVE
 #define GTK_STATE_FLAG_INSENSITIVE GTK_STATE_INSENSITIVE
-#endif
+
+#endif /* End if !GTK_CHECK_VERSION(3, 0, 0) */
 
 /* The remaining GtkStateFlags:
  *
