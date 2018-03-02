@@ -572,9 +572,9 @@ static int connection_type (GedaObject *object)
 NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
                      GedaObject *object, char *hierarchy_tag, int type)
 {
-  NET   *new_net;
-  CONN  *c_current;
-  GList *cl_current;
+        NET   *new_net;
+        CONN  *c_current;
+  const GList *cl_current;
 
   visit (object);
 
