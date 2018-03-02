@@ -693,8 +693,8 @@ static void geda_image_menu_item_set_label (GedaMenuItem *menu_item,
   }
 }
 
-static const char *
-geda_image_menu_item_get_label (GedaMenuItem *menu_item)
+/* menu_item_class->get_label */
+static const char *geda_image_menu_item_get_label (GedaMenuItem *menu_item)
 {
   return ((GedaImageMenuItem*)menu_item)->label;
 }
