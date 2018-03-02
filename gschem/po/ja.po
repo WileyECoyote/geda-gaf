@@ -3482,20 +3482,20 @@ msgstr ""
 msgid "_View"
 msgstr "表示(_V)"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
-#, fuzzy
 msgid "_Grid"
-msgstr "円弧モード"
+msgstr "グリッド"
 
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "コンソールウィンドウを表示する"
+msgstr "ドットグリッドを表示する"
 
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "コンソールウィンドウを表示する"
+msgstr "メッシュグリッドを表示する"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
