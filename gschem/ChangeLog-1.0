@@ -2,6 +2,8 @@
 
     * po/ja.po: Update Japanese translations.
 
+    * po/ml.po: Updated Malayalam translations.
+
     * src/x/x_confirm_close.c: Remove unnecessary GTK_WIDGET cast from
       g_object_new.
 

@@ -3545,21 +3545,20 @@ msgstr ""
 msgid "_View"
 msgstr "വീക്ഷണം"
 
+# Grid
 #: gschem/src/x/x_menus.c:892
 msgid "_Grid"
-msgstr ""
+msgstr "ഗ്രിഡ്"
 
-# Reveal the console window
+# Display dots grid
 #: gschem/src/x/x_menus.c:927
-#, fuzzy
 msgid "Display dots grid"
-msgstr "കൺസോൾ വിൻഡോ വെളിപ്പെടുത്തുക"
+msgstr "ഡോട്ടുകൾ ഗ്രിഡ് പ്രദർശിപ്പിക്കുക"
 
-# Reveal the console window
+# Display mesh grid
 #: gschem/src/x/x_menus.c:928
-#, fuzzy
 msgid "Display mesh grid"
-msgstr "കൺസോൾ വിൻഡോ വെളിപ്പെടുത്തുക"
+msgstr "മെഷ് ഗ്രിഡ് പ്രദർശിപ്പിക്കുക"
 
 #: gschem/src/x/x_menus.c:929
 msgid "Turn off the grid display"
