@@ -528,7 +528,7 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     nets->nid = -1;
 
     /* This avoids us adding an unnamed net for an unconnected pin */
-    if (o_current->conn_list != NULL) {
+    if (geda_object_get_conn_list(o_current)) {
 
       /* result of s_traverse_net() is not used, implicitly cast function value (void) */
       s_traverse_net (pr_current, nets, TRUE, o_current, hierarchy_tag, cpins->node_type);
@@ -673,7 +673,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
     exit(-1);
   }
 
-  cl_current = object->conn_list;
+  cl_current = geda_object_get_conn_list(object);
 
   while (cl_current != NULL) {
 

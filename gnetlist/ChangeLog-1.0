@@ -1,3 +1,9 @@
+2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c Revise s_traverse_component and s_traverse_net to
+      utilize accessor geda_object_get_conn_list instead of referencing
+      the object's conn_list member directly.
+
 2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Add .tex .pdf to suffixes and require docsman_DATA
