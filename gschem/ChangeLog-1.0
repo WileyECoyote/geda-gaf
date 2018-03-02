@@ -1,3 +1,8 @@
+2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_confirm_close.c: Remove unnecessary GTK_WIDGET cast from
+      g_object_new.
+
 2018-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/hu.po: Update Hungarian translations.

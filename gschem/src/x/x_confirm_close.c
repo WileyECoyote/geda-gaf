@@ -267,28 +267,28 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
   const char        *text;
 
   /* place the treeview and its caption into their own box */
-  vbox = GTK_WIDGET (g_object_new (GTK_TYPE_VBOX,
-                                   /* GtkBox */
-                                   "homogeneous", FALSE,
-                                   "spacing",     8,
-                                   NULL));
+  vbox = g_object_new (GTK_TYPE_VBOX,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing",     8,
+                       NULL);
 
   /* the list of pages with changes */
   /*  - scrolled window as container for the treeview first */
-  scrolled_window = GTK_WIDGET (g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                              /* GtkScrolledWindow */
-                             "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                             "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
-                                    "shadow-type",       GTK_SHADOW_IN,
-                                                                  NULL));
+  scrolled_window = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                  /* GtkScrolledWindow */
+                                  "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                  "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                                  "shadow-type",       GTK_SHADOW_IN,
+                                  NULL);
   /*  - then the treeview */
   /* create model for treeview and populate */
-  treeview = GTK_WIDGET (g_object_new (GTK_TYPE_TREE_VIEW,
-                                       /* GtkTreeView */
-                                 "enable-search",   FALSE,
-                                 "headers-visible", FALSE,
-                     "model", dialog->store_unsaved_pages,
-                                                     NULL));
+  treeview = g_object_new (GTK_TYPE_TREE_VIEW,
+                           /* GtkTreeView */
+                           "enable-search",   FALSE,
+                           "headers-visible", FALSE,
+                           "model", dialog->store_unsaved_pages,
+                           NULL);
 
   renderer = gtk_cell_renderer_toggle_new ();
 
@@ -318,14 +318,14 @@ confirm_close_dialog_build_page_list (ConfirmCloseDialog *dialog)
   gtk_box_pack_end (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
   /* the caption label above the list of pages */
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkMisc */
-                                    "xalign",          0.0,
-                                    "yalign",          0.0,
-                                    /* GtkLabel */
-                                    "wrap",            TRUE,
-                                    "mnemonic-widget", treeview,
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign",          0.0,
+                        "yalign",          0.0,
+                        /* GtkLabel */
+                        "wrap",            TRUE,
+                        "mnemonic-widget", treeview,
+                        NULL);
   text = _("S_elect the schematics you want to save:");
   gtk_label_set_text_with_mnemonic (GTK_LABEL (label), text);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
@@ -465,13 +465,13 @@ confirm_close_dialog_constructor (GedaType type,
                                            &iter);
 
   /* here starts the layout of the dialog */
-  hbox = GTK_WIDGET (g_object_new (GTK_TYPE_HBOX,
-                                   /* GtkContainer */
-                                   "border-width", 5,
-                                   /* GtkBox */
-                                   "homogeneous",  FALSE,
-                                   "spacing",      12,
-                                   NULL));
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       /* GtkContainer */
+                       "border-width", 5,
+                       /* GtkBox */
+                       "homogeneous",  FALSE,
+                       "spacing",      12,
+                       NULL);
 
   /* warning image */
   image = g_object_new (GTK_TYPE_IMAGE,
@@ -486,11 +486,11 @@ confirm_close_dialog_constructor (GedaType type,
   gtk_box_pack_start (GTK_BOX (hbox), image,  FALSE, FALSE, 0);
 
   /* vertical box on the right hand side of the dialog */
-  vbox = GTK_WIDGET (g_object_new (GTK_TYPE_VBOX,
-                                   /* GtkBox */
-                                   "homogeneous", FALSE,
-                                   "spacing",     12,
-                                   NULL));
+  vbox = g_object_new (GTK_TYPE_VBOX,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing",     12,
+                       NULL);
 
   /* primary label */
   if (single_page) {
@@ -514,16 +514,16 @@ confirm_close_dialog_constructor (GedaType type,
   str = geda_strconcat ("<big><b>", tmp, "</b></big>", NULL);
   GEDA_FREE (tmp);
 
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkMisc */
-                                    "xalign",     0.0,
-                                    "yalign",     0.0,
-                                    "selectable", TRUE,
-                                    /* GtkLabel */
-                                    "wrap",       TRUE,
-                                    "use-markup", TRUE,
-                                    "label",      str,
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign",     0.0,
+                        "yalign",     0.0,
+                        "selectable", TRUE,
+                        /* GtkLabel */
+                        "wrap",       TRUE,
+                        "use-markup", TRUE,
+                        "label",      str,
+                        NULL);
   GEDA_FREE (str);
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
@@ -537,15 +537,15 @@ confirm_close_dialog_constructor (GedaType type,
 
   /* secondary label */
   cstr = _("If you don't save, all your changes will be permanently lost.");
-  label = GTK_WIDGET (g_object_new (GTK_TYPE_LABEL,
-                                    /* GtkMisc */
-                                    "xalign",     0.0,
-                                    "yalign",     0.0,
-                                    "selectable", TRUE,
-                                    /* GtkLabel */
-                                    "wrap",       TRUE,
-                                    "label",      cstr,
-                                    NULL));
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign",     0.0,
+                        "yalign",     0.0,
+                        "selectable", TRUE,
+                        /* GtkLabel */
+                        "wrap",       TRUE,
+                        "label",      cstr,
+                        NULL);
 
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
