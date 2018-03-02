@@ -548,7 +548,7 @@ static void s_check_connections (const GList *obj_list, SYMCHECK *s_current)
 
     GedaObject *o_current = iter->data;
 
-    if (o_current->conn_list) {
+    if (geda_object_get_conn_list(o_current)) {
 
       message = geda_strdup (_("Found a connection inside a symbol\n"));
       ADD_ERROR_MESSAGE(message);
