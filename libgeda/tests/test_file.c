@@ -948,13 +948,13 @@ int test_path (void)
   path = (char*) geda_sys_data_path();
 
   if (path == NULL) {
-    fprintf(stderr, "FAILED: (F030401A) geda_sys_data_path\n");
+    fprintf(stderr, "FAILED: (F030401A) geda_file_path_sys_data\n");
     result++;
   }
   else {
 
     if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
-      fprintf(stderr, "FAILED: (F030401B) geda_sys_data_path <%s>\n", path);
+      fprintf(stderr, "FAILED: (F030401B) geda_file_path_sys_data <%s>\n", path);
       result++;
     }
   }
@@ -1012,7 +1012,7 @@ int test_path (void)
     g_free(config_dir);
   }
 
-  /* ensure directory is restored, regardless of what happened above */
+  /* Ensure directory is restored, regardless of what happened above */
 
   geda_file_path_free();
 
@@ -1150,12 +1150,12 @@ int test_sys (void)
 
   string = geda_follow_symlinks(NULL, &err);
   if (string) {
-    fprintf(stderr, "FAILED: (F050300A) geda_follow_symlinks NULL\n");
+    fprintf(stderr, "FAILED: (F050300A) geda_file_sys_follow_symlinks NULL\n");
     result++;
   }
   else {
     if (!err) {
-      fprintf(stderr, "FAILED: (F050300B) geda_follow_symlinks NULL\n");
+      fprintf(stderr, "FAILED: (F050300B) geda_file_sys_follow_symlinks NULL\n");
       result++;
     }
     else {
@@ -1166,10 +1166,10 @@ int test_sys (void)
   string = geda_follow_symlinks(BAD_LINK_FILE, &err);
   if (!string) {
     if (!err) {
-      fprintf(stderr, "FAILED: (F050301A) geda_follow_symlinks <%s>\n", strerror(errno));
+      fprintf(stderr, "FAILED: (F050301A) geda_file_sys_follow_symlinks <%s>\n", strerror(errno));
     }
     else {
-      fprintf(stderr, "FAILED: (F050301B) geda_follow_symlinks <%s>\n", err->message);
+      fprintf(stderr, "FAILED: (F050301B) geda_file_sys_follow_symlinks <%s>\n", err->message);
       g_error_free (err);
     }
     result++;
@@ -1190,7 +1190,7 @@ int test_sys (void)
     }
 
     if (strcmp(string, target)) {
-      fprintf(stderr, "FAILED: (F050301C) geda_follow_symlinks <%s>", string);
+      fprintf(stderr, "FAILED: (F050301C) geda_file_sys_follow_symlinks <%s>", string);
       fprintf(stderr, " expected <%s>\n",target);
       result++;
     }
@@ -1202,10 +1202,10 @@ int test_sys (void)
   string = geda_follow_symlinks(GOOD_LINK_FILE, &err);
   if (!string) {
     if (!err) {
-      fprintf(stderr, "FAILED: (F050302A) geda_follow_symlinks <%s>\n", strerror(errno));
+      fprintf(stderr, "FAILED: (F050302A) geda_file_sys_follow_symlinks <%s>\n", strerror(errno));
     }
     else {
-      fprintf(stderr, "FAILED: (F050302B) geda_follow_symlinks <%s>\n", err->message);
+      fprintf(stderr, "FAILED: (F050302B) geda_file_sys_follow_symlinks <%s>\n", err->message);
       g_error_free (err);
     }
     result++;
@@ -1223,7 +1223,7 @@ int test_sys (void)
 
     /* string = "data/ATMega32-DIP_test.sym" */
     if (strcmp(string, target)) {
-      fprintf(stderr, "FAILED: (F050302C) geda_follow_symlinks <%s>",string);
+      fprintf(stderr, "FAILED: (F050302C) geda_file_sys_follow_symlinks <%s>",string);
       fprintf(stderr, " expected <%s>\n", target);
       result++;
     }
@@ -1236,7 +1236,7 @@ int test_sys (void)
 
   string = geda_normalize_filename(NULL, NULL);
   if (string) {
-    fprintf(stderr, "FAILED: (F050400) geda_normalize_filename <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050400) geda_file_sys_normalize_name <%s>\n", string);
     result++;
   }
 
@@ -1244,13 +1244,13 @@ int test_sys (void)
   if (string) {
 
     if (strncmp(string, "/", 1)) {
-      fprintf(stderr, "FAILED: (F050401A) geda_normalize_filename <%s>\n", string);
+      fprintf(stderr, "FAILED: (F050401A) geda_file_sys_normalize_name <%s>\n", string);
       result++;
       string = NULL;
     }
     else {
       if (!strstr(string, "/libgeda/src")) {
-        fprintf(stderr, "FAILED: (F050401B) geda_normalize_filename <%s>\n", string);
+        fprintf(stderr, "FAILED: (F050401B) geda_file_sys_normalize_name <%s>\n", string);
         result++;
         string = NULL;
       }
@@ -1258,7 +1258,7 @@ int test_sys (void)
 
   }
   else {
-    fprintf(stderr, "FAILED: (F050401C) geda_normalize_filename NULL\n");
+    fprintf(stderr, "FAILED: (F050401C) geda_file_sys_normalize_name NULL\n");
     result++;
     string = NULL;
   }
@@ -1270,30 +1270,30 @@ int test_sys (void)
     string = geda_normalize_filename("../tests/../src", NULL);
     if (string) {
       if (strncmp(string, "/", 1)) {
-        fprintf(stderr, "FAILED: (F050402A) geda_normalize_filename <%s>\n", string);
+        fprintf(stderr, "FAILED: (F050402A) geda_file_sys_normalize_name <%s>\n", string);
         result++;
       }
       else {
         if (!strstr(string, "/libgeda/src")) {
-          fprintf(stderr, "FAILED: (F050402B) geda_normalize_filename <%s>\n", string);
+          fprintf(stderr, "FAILED: (F050402B) geda_file_sys_normalize_name <%s>\n", string);
           result++;
         }
         if (strstr(string, "..")) {
-          fprintf(stderr, "FAILED: (F050402B) geda_normalize_filename <%s>\n", string);
+          fprintf(stderr, "FAILED: (F050402B) geda_file_sys_normalize_name <%s>\n", string);
           result++;
         }
       }
       free(string);
     }
     else {
-      fprintf(stderr, "FAILED: (F050402D) geda_normalize_filename NULL\n");
+      fprintf(stderr, "FAILED: (F050402D) geda_file_sys_normalize_name NULL\n");
       result++;
     }
   }
 
   string = geda_normalize_filename("../noexist", NULL);
   if (string) {
-    fprintf(stderr, "FAILED: (F050403) geda_normalize_filename <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050403) geda_file_sys_normalize_name <%s>\n", string);
     result++;
   }
 
@@ -1302,7 +1302,7 @@ int test_sys (void)
   string = geda_normalize_filename("../noexist", &F0504_err);
 
   if (!F0504_err) {
-    fprintf(stderr, "FAILED: (F050404) geda_normalize_filename <%s>\n", string);
+    fprintf(stderr, "FAILED: (F050404) geda_file_sys_normalize_name <%s>\n", string);
     result++;
   }
   else {
@@ -1330,7 +1330,7 @@ int test_sys (void)
 
       /* Verify that the file was actually removed */
       if (access(TEST_FILE, R_OK) == 0) {
-        fprintf(stderr, "FAILED: (F050502) geda_remove_file <%s>\n", TEST_FILE);
+        fprintf(stderr, "FAILED: (F050502) geda_file_sys_remove <%s>\n", TEST_FILE);
         result++;
       }
     }
@@ -1357,7 +1357,7 @@ int test_sys (void)
   string = geda_strdup (F06_str[0].input); /* "" */
 
   if (geda_remove_extension (string)) {
-    fprintf(stderr, "FAILED: (F050601) geda_remove_extension\n");
+    fprintf(stderr, "FAILED: (F050601) geda_file_sys_remove_extension\n");
     result++;
   }
   g_free(string);
@@ -1365,7 +1365,7 @@ int test_sys (void)
   string = geda_strdup (F06_str[1].input); /* "a" */
 
   if (geda_remove_extension (string)) {
-    fprintf(stderr, "FAILED: (F050602) geda_remove_extension\n");
+    fprintf(stderr, "FAILED: (F050602) geda_file_sys_remove_extension\n");
     result++;
   }
   g_free(string);
@@ -1374,11 +1374,11 @@ int test_sys (void)
   expected = F06_str[2].expected;
 
   if (!geda_remove_extension (string)) {
-    fprintf(stderr, "FAILED: (F050603A) geda_remove_extension\n");
+    fprintf(stderr, "FAILED: (F050603A) geda_file_sys_remove_extension\n");
     result++;
   }
   else if (strcmp(string, expected)) {      /* See structure F06_str */
-    fprintf(stderr, "FAILED: (F050603B) geda_remove_extension <%s>\n",string);
+    fprintf(stderr, "FAILED: (F050603B) geda_file_sys_remove_extension <%s>\n",string);
     result++;
   }
   g_free(string);
@@ -1387,11 +1387,11 @@ int test_sys (void)
   expected = F06_str[3].expected;
 
   if (!geda_remove_extension (string)) {
-    fprintf(stderr, "FAILED: (F050604A) geda_remove_extension\n");
+    fprintf(stderr, "FAILED: (F050604A) geda_file_sys_remove_extension\n");
     result++;
   }
   else if (strcmp(string, expected)) {      /* See structure F06_str */
-    fprintf(stderr, "FAILED: (F050604B) geda_remove_extension <%s>\n",string);
+    fprintf(stderr, "FAILED: (F050604B) geda_file_sys_remove_extension <%s>\n",string);
     result++;
   }
   g_free(string);
@@ -1400,11 +1400,11 @@ int test_sys (void)
   expected = F06_str[4].expected;
 
   if (!geda_remove_extension (string)) {
-    fprintf(stderr, "FAILED: (F050605A) geda_remove_extension\n");
+    fprintf(stderr, "FAILED: (F050605A) geda_file_sys_remove_extension\n");
     result++;
   }
   else if (strcmp(string, expected)) {      /* See structure F06_str */
-    fprintf(stderr, "FAILED: (F050605B) geda_remove_extension <%s> expected <%s>\n",string, expected);
+    fprintf(stderr, "FAILED: (F050605B) geda_file_sys_remove_extension <%s> expected <%s>\n",string, expected);
     result++;
   }
   g_free(string);
@@ -1413,11 +1413,11 @@ int test_sys (void)
   expected = F06_str[5].expected;
 
   if (!geda_remove_extension (string)) {
-    fprintf(stderr, "FAILED: (F050606A) geda_remove_extension\n");
+    fprintf(stderr, "FAILED: (F050606A) geda_file_sys_remove_extension\n");
     result++;
   }
   else if (strcmp(string, expected)) {      /* See structure F06_str */
-    fprintf(stderr, "FAILED: (F050606B) geda_remove_extension <%s> expected <%s>\n",string, expected);
+    fprintf(stderr, "FAILED: (F050606B) geda_file_sys_remove_extension <%s> expected <%s>\n",string, expected);
     result++;
   }
   g_free(string);

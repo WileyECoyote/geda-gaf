@@ -1,3 +1,7 @@
+2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Revise outputs to use the full name of functions.
+
 2018-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Rename geda_object_locked_color -> with "get"
