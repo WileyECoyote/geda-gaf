@@ -2,7 +2,9 @@
 
     * src/s_traverse.c Revise s_traverse_component and s_traverse_net to
       utilize accessor geda_object_get_conn_list instead of referencing
-      the object's conn_list member directly.
+      the object's conn_list member directly and add accillary pcurrent
+      in s_traverse_component and utilize geda_toplevel_get_current_page
+      to obtain a reference to the current page.
 
 2018-02-18 Wiley E. Hill <wileyhill@gmail.com>
 

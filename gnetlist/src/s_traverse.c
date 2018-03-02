@@ -530,10 +530,14 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     /* This avoids us adding an unnamed net for an unconnected pin */
     if (geda_object_get_conn_list(o_current)) {
 
+      Page *pcurrent;
+
       /* result of s_traverse_net() is not used, implicitly cast function value (void) */
       s_traverse_net (pr_current, nets, TRUE, o_current, hierarchy_tag, cpins->node_type);
 
-      s_traverse_clear_all_visited (geda_struct_page_get_objects (pr_current->page_current));
+      pcurrent = geda_toplevel_get_current_page (pr_current);
+
+      s_traverse_clear_all_visited (geda_struct_page_get_objects (pcurrent));
     }
 
     cpins->nets = nets_head;
