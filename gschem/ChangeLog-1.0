@@ -4,7 +4,8 @@
       o_edit_unlock_selection.
 
     * src/object/o_move.c: Utilize geda_object_get_conn_list in
-      o_move_check_endpoint.
+      o_move_check_endpoint and reduce the scope of c_current and
+      whichone.
 
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
