@@ -526,8 +526,7 @@ int o_move_return_whichone(GedaObject *object, int x, int y)
  *  \par Function Description
  *
  */
-static
-void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
+static void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   GList        *cl_current;
@@ -559,7 +558,8 @@ void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
 
     if (object->type == OBJ_PIN && other->type == OBJ_PIN) {
 
-     GedaObject *new_net;
+      GedaObject *new_net;
+
       /* other object is a pin, insert a net */
       new_net = geda_net_object_new (NET_COLOR,
                                      c_current->x, c_current->y,
@@ -590,8 +590,9 @@ void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
 #endif
 
     if (whichone == 0 || whichone == 1) {
-      w_current->stretch_list =
-        o_move_stretch_add (w_current->stretch_list, other, whichone);
+      w_current->stretch_list = o_move_stretch_add (w_current->stretch_list,
+                                                    other,
+                                                    whichone);
     }
   }
 }
