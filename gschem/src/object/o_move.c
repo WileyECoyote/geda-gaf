@@ -534,7 +534,7 @@ void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
   CONN         *c_current;
   int           whichone;
 
-  for (cl_current = object->conn_list; cl_current != NULL; NEXT(cl_current))
+  for (cl_current = geda_object_get_conn_list(object); cl_current; NEXT(cl_current))
   {
     GedaObject *other;
 
