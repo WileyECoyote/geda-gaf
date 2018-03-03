@@ -1986,7 +1986,7 @@ multiattrib_finalize (GObject *object)
 
   multiattrib_destroy_popup(ThisDialog);
 
-  G_OBJECT_CLASS (multiattrib_parent_class)->finalize (object);
+  ((GObjectClass*)multiattrib_parent_class)->finalize (object);
 }
 /*! \brief GedaType class initializer for Multiattrib
  *
@@ -2002,7 +2002,7 @@ static void multiattrib_class_init(MultiattribClass *class)
   GObjectClass      *gobject_class;
   GschemDialogClass *gschem_dialog_class;
 
-  gobject_class        = G_OBJECT_CLASS (class);
+  gobject_class        = (GObjectClass*)class;
   gschem_dialog_class  = (GschemDialogClass*)class;
 
   gschem_dialog_class->geometry_save    = multiattrib_geometry_save;

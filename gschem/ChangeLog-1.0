@@ -7,6 +7,9 @@
       o_move_check_endpoint and reduce the scope of c_current and
       whichone.
 
+    * src/x/x_multiattrib.c: Replace G_OBJECT_CLASS cast with static
+      cast; the pointer is is or it is not.
+
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ja.po: Update Japanese translations.
