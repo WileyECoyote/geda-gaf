@@ -319,12 +319,11 @@ static int effective_handle_position (GedaHandleBox *handlebox)
   return handle_position;
 }
 
-/* Common help
+/*! \internal Common helper
  *
  * Called by 1.) geda_handle_box_button_press
  *           2.) geda_handle_box_end_drag
  */
-
 static GtkWidget *geda_handle_box_get_invisible (void)
 {
   static GtkWidget *handle_box_invisible = NULL;
