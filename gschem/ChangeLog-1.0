@@ -1,3 +1,8 @@
+2018-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_edit.c: Utilize geda_object_set_selectable in
+      o_edit_unlock_selection.
+
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ja.po: Update Japanese translations.

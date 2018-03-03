@@ -236,7 +236,9 @@ void o_edit_unlock_selection(GschemToplevel *w_current)
     GedaObject *object = (GedaObject*) s_current->data;
 
     if (object) {
-      object->selectable        = TRUE;
+
+      geda_object_set_selectable(object, TRUE);
+
       if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
         object->color           = object->locked_color;
       else object->color        = geda_object_color_get_default(object->type);
