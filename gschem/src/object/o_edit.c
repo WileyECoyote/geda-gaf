@@ -532,7 +532,7 @@ void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool s
       }
       else {
 
-        /* unlock */
+        /* Unlock, note 0 is BACKGROUND_COLOR */
         if (object->locked_color != LOCK_COLOR && object->locked_color > 0)
         {
           object->color = object->locked_color;
