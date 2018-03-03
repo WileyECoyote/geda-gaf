@@ -41,6 +41,10 @@
 #define OBJ_PLACEHOLDER 'X'  /* added 1.19.2005 by SDB to prevent
                               * deletion of unfound symbol files */
 
+/* Schematic and Sysmbol file delimiter characters used in
+ * o_object.c while loading and parsing files, also used in
+ * geda_attrib_object_read()
+ */
 #define STARTATTACH_ATTR	'{'
 #define ENDATTACH_ATTR		'}'
 #define START_EMBEDDED		'['
