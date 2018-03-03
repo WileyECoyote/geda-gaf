@@ -445,8 +445,7 @@ static char *fix_spaces (char *str)
    *   is now relative.  The hi_res mark_x,mark_y and text_x,text_y resolutions
    *   are 100x the other formats.
    */
-PcbElement *
-pcb_element_line_parse (char *line)
+PcbElement *pcb_element_line_parse (char *line)
 {
   PcbElement *el;
   char *t;
@@ -549,8 +548,7 @@ pcb_element_free (PcbElement *el)
   }
 }
 
-static void
-get_pcb_element_list (char *pcb_file)
+static void get_pcb_element_list (char *pcb_file)
 {
   FILE *f;
   PcbElement *el;
@@ -579,8 +577,7 @@ get_pcb_element_list (char *pcb_file)
   fclose (f);
 }
 
-static PcbElement *
-pcb_element_exists (PcbElement * el_test, _Bool record)
+static PcbElement *pcb_element_exists (PcbElement * el_test, _Bool record)
 {
   GList *list;
 
@@ -619,8 +616,7 @@ pcb_element_exists (PcbElement * el_test, _Bool record)
  * Current m4 elements use the old format but they seem to have a
  * reasonable initial mark().
  */
-static void
-simple_translate (PcbElement * el)
+static void simple_translate (PcbElement * el)
 {
   g_free(el->x);
   g_free(el->y);
@@ -697,8 +693,7 @@ insert_element (FILE *f_out,     char *element_file,
   return retval;
 }
 
-char *
-find_element (char *dir_path, char *element)
+char *find_element (char *dir_path, char *element)
 {
   GDir *dir;
   char *name;
@@ -766,8 +761,7 @@ find_element (char *dir_path, char *element)
   return found;
 }
 
-char *
-search_element_directories (PcbElement *el)
+char *search_element_directories (PcbElement *el)
 {
   GList *list;
   char  *elname = NULL;
@@ -856,8 +850,7 @@ search_element_directories (PcbElement *el)
  *
  *      100-Pin-jack -> 100 Pin jack
  */
-static PcbElement *
-pkg_to_element (FILE *f, char *pkg_line)
+static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
 {
   PcbElement   *el;
   char **args, *s;
@@ -967,8 +960,7 @@ pkg_to_element (FILE *f, char *pkg_line)
  * strip out any elements if they are already present so that the new
  * pcb file will only have new elements.
  */
-static int
-add_elements (char *pcb_file)
+static int add_elements (char *pcb_file)
 {
   FILE       *f_in, *f_out;
   PcbElement *el = NULL;
@@ -1102,8 +1094,7 @@ add_elements (char *pcb_file)
   return total;
 }
 
-static void
-update_element_descriptions (char *pcb_file, char *bak)
+static void update_element_descriptions (char *pcb_file, char *bak)
 {
   FILE       *f_in;
   FILE       *f_out;
@@ -1173,8 +1164,7 @@ update_element_descriptions (char *pcb_file, char *bak)
   GEDA_FREE (tmp);
 }
 
-static void
-prune_elements (char *pcb_file, char *bak)
+static void prune_elements (char *pcb_file, char *bak)
 {
   FILE       *f_in, *f_out;
   GList      *list;
@@ -1269,8 +1259,7 @@ prune_elements (char *pcb_file, char *bak)
   GEDA_FREE (tmp);
 }
 
-static void
-add_m4_file (char *arg)
+static void add_m4_file (char *arg)
 {
   if (!m4_files)
     m4_files = geda_utility_string_strdup (arg);
@@ -1316,8 +1305,7 @@ static char *expand_dir (char *dir)
   return path;
 }
 
-static void
-add_default_m4_files (void)
+static void add_default_m4_files (void)
 {
   char *path;
 
@@ -1334,8 +1322,7 @@ add_default_m4_files (void)
 
 }
 
-static void
-add_schematic (char *sch)
+static void add_schematic (char *sch)
 {
   const char *s;
 
@@ -1347,8 +1334,7 @@ add_schematic (char *sch)
   }
 }
 
-static void
-add_multiple_schematics (char *sch)
+static void add_multiple_schematics (char *sch)
 {
   /* parse the string using shell semantics */
   int      count;
@@ -1373,8 +1359,7 @@ add_multiple_schematics (char *sch)
   }
 }
 
-static int
-parse_config (char *config, char *arg)
+static int parse_config (char *config, char *arg)
 {
   int   result;
 
@@ -1472,8 +1457,7 @@ parse_config (char *config, char *arg)
  *  \par Function Description
  *   Attempts to load project file \a filename.
  */
-static void
-load_project (char *filename)
+static void load_project (char *filename)
 {
   FILE *f;
   char *s, buf[1024], config[32], arg[768];
@@ -1509,8 +1493,7 @@ load_project (char *filename)
  *  This function calls load_project in an attempt to load global
  *  "gsch2pcb" files.
  */
-static void
-load_extra_project_files (void)
+static void load_extra_project_files (void)
 {
   const char *config_dir;
   const char *home_dir;
@@ -1623,8 +1606,7 @@ static char *usage_string1 =
   "  gEDA homepage:        http://www.geda-project.org\n"
   "  PCB homepage:         http://pcb.geda-project.org\n"  "\n";
 
-static void
-usage ()
+static void usage ()
 {
   puts (usage_string0);
   printf ("                         %s\n\n", default_m4_pcbdir);
@@ -1632,8 +1614,7 @@ usage ()
   exit (0);
 }
 
-static void
-get_args (int argc, char **argv)
+static void get_args (int argc, char **argv)
 {
   int i, r;
 
