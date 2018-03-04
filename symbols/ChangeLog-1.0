@@ -6,6 +6,9 @@
     * national/DS26C31-1.sym: Add description and documentation attributes,
       resequenced attributes.
 
+    * national/DS26C31-2.sym: Update documentation attribute, resequenced
+      attributes.
+
 2018-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * national/ADC0831-1.sym: Add description attribute, update attribute

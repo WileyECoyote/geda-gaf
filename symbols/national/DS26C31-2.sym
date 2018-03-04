@@ -98,16 +98,27 @@ pinlabel=O1-
 T 2050 2650 5 8 0 1 0 2 1
 pintype=out
 }
-P 100 2300 400 2300 1 0 0
+P 100 4200 400 4200 1 0 0
 {
-T 250 2350 5 8 1 1 0 6 1
-pinnumber=7
-T 250 2350 5 8 0 1 0 6 1
-pinseq=7
-T 450 2350 9 8 1 1 0 0 1
-pinlabel=I2
-T 450 2250 5 8 0 1 0 2 1
+T 250 4250 5 8 1 1 0 6 1
+pinnumber=4
+T 250 4250 5 8 0 1 0 6 1
+pinseq=4
+T 450 4250 9 8 0 1 0 0 1
+pinlabel=EN
+T 450 4150 5 8 0 1 0 2 1
 pintype=in
+}
+P 2300 1900 2000 1900 1 0 0
+{
+T 2150 1950 5 8 1 1 0 0 1
+pinnumber=5
+T 2150 1950 5 8 0 1 0 0 1
+pinseq=5
+T 1950 1950 9 8 1 1 0 6 1
+pinlabel=O2-
+T 2050 1850 5 8 0 1 0 2 1
+pintype=out
 }
 P 2300 2300 2000 2300 1 0 0
 {
@@ -120,16 +131,16 @@ pinlabel=O2+
 T 2050 2250 5 8 0 1 0 2 1
 pintype=out
 }
-P 2300 1900 2000 1900 1 0 0
+P 100 2300 400 2300 1 0 0
 {
-T 2150 1950 5 8 1 1 0 0 1
-pinnumber=5
-T 2150 1950 5 8 0 1 0 0 1
-pinseq=5
-T 1950 1950 9 8 1 1 0 6 1
-pinlabel=O2-
-T 2050 1850 5 8 0 1 0 2 1
-pintype=out
+T 250 2350 5 8 1 1 0 6 1
+pinnumber=7
+T 250 2350 5 8 0 1 0 6 1
+pinseq=7
+T 450 2350 9 8 1 1 0 0 1
+pinlabel=I2
+T 450 2250 5 8 0 1 0 2 1
+pintype=in
 }
 P 100 1500 400 1500 1 0 0
 {
@@ -164,27 +175,16 @@ pinlabel=O3-
 T 2050 1050 5 8 0 1 0 2 1
 pintype=out
 }
-P 100 700 400 700 1 0 0
+P 100 3800 400 3800 1 0 0
 {
-T 300 750 5 8 1 1 0 6 1
-pinnumber=15
-T 300 750 5 8 0 1 0 6 1
-pinseq=15
-T 450 750 9 8 1 1 0 0 1
-pinlabel=I4
-T 450 650 5 8 0 1 0 2 1
+T 300 3850 5 8 1 1 0 6 1
+pinnumber=12
+T 300 3850 5 8 0 1 0 6 1
+pinseq=12
+T 450 3850 9 8 0 1 0 0 1
+pinlabel=DIS
+T 450 3750 5 8 0 1 0 2 1
 pintype=in
-}
-P 2300 700 2000 700 1 0 0
-{
-T 2150 750 5 8 1 1 0 0 1
-pinnumber=14
-T 2150 750 5 8 0 1 0 0 1
-pinseq=14
-T 1950 750 9 8 1 1 0 6 1
-pinlabel=O4+
-T 2050 650 5 8 0 1 0 2 1
-pintype=out
 }
 P 2300 300 2000 300 1 0 0
 {
@@ -197,26 +197,26 @@ pinlabel=O4-
 T 2050 250 5 8 0 1 0 2 1
 pintype=out
 }
-P 100 4200 400 4200 1 0 0
+P 2300 700 2000 700 1 0 0
 {
-T 250 4250 5 8 1 1 0 6 1
-pinnumber=4
-T 250 4250 5 8 0 1 0 6 1
-pinseq=4
-T 450 4250 9 8 0 1 0 0 1
-pinlabel=EN
-T 450 4150 5 8 0 1 0 2 1
-pintype=in
+T 2150 750 5 8 1 1 0 0 1
+pinnumber=14
+T 2150 750 5 8 0 1 0 0 1
+pinseq=14
+T 1950 750 9 8 1 1 0 6 1
+pinlabel=O4+
+T 2050 650 5 8 0 1 0 2 1
+pintype=out
 }
-P 100 3800 400 3800 1 0 0
+P 100 700 400 700 1 0 0
 {
-T 300 3850 5 8 1 1 0 6 1
-pinnumber=12
-T 300 3850 5 8 0 1 0 6 1
-pinseq=12
-T 450 3850 9 8 0 1 0 0 1
-pinlabel=DIS
-T 450 3750 5 8 0 1 0 2 1
+T 300 750 5 8 1 1 0 6 1
+pinnumber=15
+T 300 750 5 8 0 1 0 6 1
+pinseq=15
+T 450 750 9 8 1 1 0 0 1
+pinlabel=I4
+T 450 650 5 8 0 1 0 2 1
 pintype=in
 }
 T 2000 4550 8 10 1 1 0 6 1
@@ -229,8 +229,8 @@ T 400 4750 5 10 0 1 0 0 1
 footprint=SOIC16
 T 400 4950 5 10 0 1 0 0 1
 description=Quad Differential Line Driver
-T 400 5550 5 10 0 0 0 0 1
-documentation=TBD
+T 400 5550 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/ds26c31mqml.pdf
 T 400 5750 5 10 0 0 0 0 1
 net=VCC:16
 T 400 5950 5 10 0 0 0 0 1
