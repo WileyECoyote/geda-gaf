@@ -3,6 +3,9 @@
     * national/DAC0808-1.sym: Revamp symbol; add description and documentation
       attributes, set pin types, update attribute locations and visibility.
 
+    * national/DS26C31-1.sym: Add description and documentation attributes,
+      resequenced attributes.
+
 2018-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * national/ADC0831-1.sym: Add description attribute, update attribute
