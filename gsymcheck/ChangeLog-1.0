@@ -1,3 +1,8 @@
+2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Revise s_check_pintype to include the pin number
+      in the "unknown pintype" error message if the pin number is known.
+
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c Revise s_check_connections to utilize accessor

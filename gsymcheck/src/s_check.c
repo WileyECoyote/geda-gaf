@@ -1064,7 +1064,22 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
           ADD_INFO_MESSAGE(message);
 
           if (geda_pin_lookup_etype(pintype) == PIN_ELECT_VOID) {
-            message = geda_sprintf (_("Unknown pintype=%s attribute\n"), pintype);
+
+            const char *msg_ukn = _("Unknown pintype");
+            const char *msg_rib = _("attribute");
+            const char *msg_chk = _("check pin number");
+
+            char *pin_num;
+
+            pin_num = geda_attrib_search_object_by_name (o_current, "pinnumber", 0);
+
+            if (pin_num) {
+              message = geda_sprintf ("%s=%s %s, %s <%s>\n", msg_ukn, pintype, msg_rib, msg_chk, pin_num);
+              GEDA_FREE(pin_num);
+            }
+            else {
+              message = geda_sprintf ("%s=%s %s\n", msg_ukn, pintype, msg_rib);
+            }
             ADD_ERROR_MESSAGE(message);
           }
 
