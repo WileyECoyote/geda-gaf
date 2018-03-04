@@ -1,3 +1,8 @@
+2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * national/DAC0808-1.sym: Revamp symbol; add description and documentation
+      attributes, set pin types, update attribute locations and visibility.
+
 2018-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * national/ADC0831-1.sym: Add description attribute, update attribute
