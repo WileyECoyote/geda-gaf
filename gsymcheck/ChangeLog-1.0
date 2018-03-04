@@ -2,6 +2,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/it.po: Update Italian translations.
+
     * src/s_check.c: Revise s_check_pintype to include the pin number
       in the "unknown pintype" error message if the pin number is known.
 

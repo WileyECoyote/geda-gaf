@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-02-18 00:07-0600\n"
+"POT-Creation-Date: 2018-03-04 00:49-0600\n"
 "PO-Revision-Date: 2015-01-12 10:15+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -302,143 +302,153 @@ msgstr "Trovato attributo pinseq=%s duplicato nel simbolo\n"
 msgid "Found pintype=%s attribute\n"
 msgstr "Trovato attributo pintype=%s\n"
 
-#: gsymcheck/src/s_check.c:1067
-#, c-format
-msgid "Unknown pintype=%s attribute\n"
-msgstr "pintype=%s Unknown attributo\n"
+# Unknown pintype
+#: gsymcheck/src/s_check.c:1068
+msgid "Unknown pintype"
+msgstr "Sconosciuto pintype"
 
-#: gsymcheck/src/s_check.c:1105
+# attribute
+#: gsymcheck/src/s_check.c:1069
+msgid "attribute"
+msgstr "attributo"
+
+# check pin number
+#: gsymcheck/src/s_check.c:1070
+msgid "check pin number"
+msgstr "controllare numero pin"
+
+#: gsymcheck/src/s_check.c:1120
 #, c-format
 msgid "Found offgrid pin at location (x1=%d,y1=%d)\n"
 msgstr "Trovato pin fuori griglia alla posizione (x1=%d,y1=%d)\n"
 
-#: gsymcheck/src/s_check.c:1116
+#: gsymcheck/src/s_check.c:1131
 #, c-format
 msgid "Found offgrid pin at location (x2=%d,y2=%d)\n"
 msgstr "Trovato pin fuori griglia alla posizione (x2=%d,y2=%d)\n"
 
-#: gsymcheck/src/s_check.c:1162
+#: gsymcheck/src/s_check.c:1177
 #, c-format
 msgid "Found numslots=%s attribute\n"
 msgstr "Trovati attributi numslots=%s\n"
 
-#: gsymcheck/src/s_check.c:1167
+#: gsymcheck/src/s_check.c:1182
 msgid "numslots set to zero, symbol does not have slots\n"
 msgstr "numslots impostato a zero, il simbolo non ha slots\n"
 
-#: gsymcheck/src/s_check.c:1187
+#: gsymcheck/src/s_check.c:1202
 #, c-format
 msgid "Found %s slotdef= attributes. Expecting %s slotdef= attributes\n"
 msgstr "Trovati %s attributi slotdef=. Previsti %s attributi slotdef=\n"
 
-#: gsymcheck/src/s_check.c:1193
+#: gsymcheck/src/s_check.c:1208
 #, c-format
 msgid "Found slotdef=%s attribute\n"
 msgstr "Trovato attributo slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1200 gsymcheck/src/s_check.c:1229
-#: gsymcheck/src/s_check.c:1238 gsymcheck/src/s_check.c:1246
+#: gsymcheck/src/s_check.c:1215 gsymcheck/src/s_check.c:1244
+#: gsymcheck/src/s_check.c:1253 gsymcheck/src/s_check.c:1261
 #, c-format
 msgid "Invalid slotdef=%s attributes\n"
 msgstr "attributi non valido slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1208
+#: gsymcheck/src/s_check.c:1223
 msgid "Found a zero slot in slotdef"
 msgstr "Trovato uno zero slot in slotdef"
 
-#: gsymcheck/src/s_check.c:1220
+#: gsymcheck/src/s_check.c:1235
 #, c-format
 msgid "Slot %s is larger then the maximum number of slots (%s)\n"
 msgstr "Slot %s è più grande del valore massimo di slot (%s)\n"
 
-#: gsymcheck/src/s_check.c:1256
+#: gsymcheck/src/s_check.c:1271
 msgid "Duplicate slot number in slotdef"
 msgstr "Numero slot duplicato in slotdef"
 
-#: gsymcheck/src/s_check.c:1276
+#: gsymcheck/src/s_check.c:1291
 msgid "Not enough pins in slotdef"
 msgstr "Non abbastanza pin in slotdef"
 
-#: gsymcheck/src/s_check.c:1284
+#: gsymcheck/src/s_check.c:1299
 msgid "Too many pins in slotdef"
 msgstr "Troppi pin in slotdef"
 
-#: gsymcheck/src/s_check.c:1294
+#: gsymcheck/src/s_check.c:1309
 msgid "Found a zero pin in slotdef"
 msgstr "Trovato uno zero pin in slotdef"
 
-#: gsymcheck/src/s_check.c:1312
+#: gsymcheck/src/s_check.c:1327
 #, c-format
 msgid "Missing slotdef= (there should be %s slotdef= attributes)\n"
 msgstr "Mancante slotdef= (dovrebbero esserci %s attributi slotdef=)\n"
 
-#: gsymcheck/src/s_check.c:1331
+#: gsymcheck/src/s_check.c:1346
 msgid "Malformed slotdef= (the format is #:#,#,#,...)\n"
 msgstr "Malformato slotdef= (il formato è #:#,#,#,...)\n"
 
-#: gsymcheck/src/s_check.c:1376
+#: gsymcheck/src/s_check.c:1391
 #, c-format
 msgid "Found %d distinct pins in slots\n"
 msgstr "Trovati %d pin distinti negli slot\n"
 
-#: gsymcheck/src/s_check.c:1452
+#: gsymcheck/src/s_check.c:1467
 #, c-format
 msgid "Found old pin#=# attribute: %s\n"
 msgstr "Trovato vecchio attributo pin#=#: %s\n"
 
-#: gsymcheck/src/s_check.c:1515
+#: gsymcheck/src/s_check.c:1530
 msgid "Found old slot#=# attribute"
 msgstr "Trovato vecchio attributo slot#=#"
 
-#: gsymcheck/src/s_check.c:1540
+#: gsymcheck/src/s_check.c:1555
 #, c-format
 msgid "Missing %s= attribute\n"
 msgstr "Attributo %s= mancante\n"
 
-#: gsymcheck/src/s_check.c:1547
+#: gsymcheck/src/s_check.c:1562
 #, c-format
 msgid "Found %s=%s attribute\n"
 msgstr "Trovato attributo %s=%s\n"
 
-#: gsymcheck/src/s_check.c:1557
+#: gsymcheck/src/s_check.c:1572
 #, c-format
 msgid "Found multiple %s=%s attributes\n"
 msgstr "Trovati attributi %s=%s multipli\n"
 
-#: gsymcheck/src/s_check.c:1595
+#: gsymcheck/src/s_check.c:1610
 msgid "Check pin number"
 msgstr "Controllare il numero pin"
 
-#: gsymcheck/src/s_check.c:1603
+#: gsymcheck/src/s_check.c:1618
 msgid "Check pin sequence"
 msgstr "Controllare la sequenza pin"
 
-#: gsymcheck/src/s_check.c:1617 gsymcheck/src/s_check.c:1623
+#: gsymcheck/src/s_check.c:1632 gsymcheck/src/s_check.c:1638
 #, c-format
 msgid "Found %s attribute\n"
 msgstr "Trovato attributo %s\n"
 
-#: gsymcheck/src/s_check.c:1631
+#: gsymcheck/src/s_check.c:1646
 msgid "Missing footprint= attribute\n"
 msgstr "Attributo footprint= mancante\n"
 
-#: gsymcheck/src/s_check.c:1636
+#: gsymcheck/src/s_check.c:1651
 msgid "Multiple footprint= attributes found\n"
 msgstr "Trovati multipli attributi footprint=\n"
 
-#: gsymcheck/src/s_check.c:1641
+#: gsymcheck/src/s_check.c:1656
 msgid "Missing refdes= attribute\n"
 msgstr "Attributo refdes= mancante\n"
 
-#: gsymcheck/src/s_check.c:1646
+#: gsymcheck/src/s_check.c:1661
 msgid "Multiple refdes= attributes found\n"
 msgstr "Trovati multipli attributi refdes=\n"
 
-#: gsymcheck/src/s_check.c:1667
+#: gsymcheck/src/s_check.c:1682
 msgid "Found a net inside a symbol\n"
 msgstr "Trovata una net dentro un simbolo\n"
 
-#: gsymcheck/src/s_check.c:1674
+#: gsymcheck/src/s_check.c:1689
 msgid "Found a bus inside a symbol\n"
 msgstr "Trovato un bus dentro un simbolo\n"
 
