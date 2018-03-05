@@ -519,9 +519,11 @@ static void x_dialog_edit_properties_response(GtkWidget     *Dialog,
     gtk_widget_destroy (Dialog);
     GEDA_FREE (properties);
     break;
+
   case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_properties_ok(Dialog, properties);
     break;
+
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
   }
@@ -941,12 +943,15 @@ static void x_dialog_edit_properties_load_refdes(GtkWidget *dialog, int type)
     case RefDesStd:
       designators = geda_utility_refdes_get_standard();
       break;
+
     case RefDesSpice:
       designators = geda_utility_refdes_get_spice();
       break;
+
     case RefDesIeee:
       designators = geda_utility_refdes_get_ieee();
       break;
+
     default:
       designators = geda_utility_refdes_get_standard();
       break;
@@ -986,12 +991,15 @@ static void radio_responder(GtkWidget *widget,  int control)
       case RefDesStd:
         x_dialog_set_bulb_off(RefDesIeeeRadio); x_dialog_set_bulb_off(RefDesSpiceRadio);
         break;
+
       case RefDesIeee:
         x_dialog_set_bulb_off(RefDesStdRadio); x_dialog_set_bulb_off(RefDesSpiceRadio);
         break;
+
       case RefDesSpice:
         x_dialog_set_bulb_off(RefDesStdRadio); x_dialog_set_bulb_off(RefDesIeeeRadio);
         break;
+
       default:
         break;
     }
