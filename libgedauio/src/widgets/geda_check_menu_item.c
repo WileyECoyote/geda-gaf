@@ -347,7 +347,7 @@ static void geda_check_menu_item_class_init(void *class, void *class_data)
                                _("Draw as radio menu item"),
                                _("Whether the menu item looks like a radio menu item"),
                                   FALSE,
-                                  G_PARAM_READWRITE)
+                                  G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_DRAW_AS_RADIO, params);
 
