@@ -759,9 +759,9 @@ bool x_confirm_close_window (GschemToplevel *w_current)
   Page         *p_current;
   Page         *keep_page;
   GList        *unsaved_pages, *p_unsaved;
+  bool          return_value;
 
-  bool return_value = FALSE;
-
+  return_value  = FALSE;
   unsaved_pages = NULL;
 
   /* Loop through all the pages */
@@ -796,6 +796,7 @@ bool x_confirm_close_window (GschemToplevel *w_current)
 
       case GEDA_RESPONSE_YES:
         /* action selected: save */
+        unsaved_pages = NULL;
         g_object_get (dialog, "selected-pages", &unsaved_pages, NULL);
         return_value = TRUE;
         keep_page = geda_toplevel_get_current_page(toplevel);

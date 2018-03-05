@@ -1,7 +1,10 @@
-2018-03-03 Wiley E. Hill <wileyhill@gmail.com>
+2018-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Reduce the scope of o_current in
       o_move_prep_rubberband.
+
+    * src/x/x_confirm_close.c: Reset pointer to glist to NULL
+      before reusing.
 
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
