@@ -2646,8 +2646,8 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
   /* always select the text in the search entry */
   textentry = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_HIDE_TEXT);
-  SetEntryText   ( textentry, text_buffer );
-  EntrySelectAll (textentry );
+  SetEntryText (textentry, text_buffer);
+  EntrySelectAll (textentry);
 }
 
 /*********** End of hide text dialog box *******/
