@@ -264,8 +264,7 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
  *  \param [in] event  the mouse event record
  *  \param [in] data   NULL, this parameter is not used
  */
-static int on_mouse_button_press(GtkWidget *widget,
-                                 GdkEventButton *event, void * data)
+static int on_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void *data)
 {
     GdkModifierType mods;
     GtkWidget *sheet = GTK_WIDGET(widget);
@@ -324,7 +323,7 @@ static int clipboard_handler(GtkSheet *sheet, GdkEventKey *key)
  *  This function is not used.
  */
 static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
-                    GtkSheetRange *new_range, void * data)
+                    GtkSheetRange *new_range, void *data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
                                     old_range->rowi, old_range->coli);
