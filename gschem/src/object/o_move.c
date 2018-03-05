@@ -146,10 +146,13 @@ static void o_move_stretch_destroy_all (GList *list)
 
 /** @} END Group Stretch */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Low-Level Move Object
+ * \par Function Description
+ *  This is calls geda_object_translate to reposition the object
+ *  (diff_x, diff_y) from the current location. If object is an
+ *  electrical object any connection re first remove and then
+ *  reconnected after the object is moved.
  */
 void o_move_end_lowlevel (GschemToplevel *w_current,
                           GedaObject     *object,
