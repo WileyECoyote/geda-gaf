@@ -44,11 +44,10 @@ msgstr "Kon lêer nie vind"
 msgid "Exported schematic to"
 msgstr "Uitgereik skematiese na"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Kon lêer nie vind"
+msgstr "Kon nie meetkunde van lêer laai nie"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
