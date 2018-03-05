@@ -307,7 +307,7 @@ void x_window_init()
   main_vbox = gtk_vbox_new(FALSE,1);
   geda_set_container_border_width(main_vbox, 1);
   geda_container_add(main_window, main_vbox);
-  gtk_widget_show((GtkWidget*)main_vbox);
+  gtk_widget_show(main_vbox);
 
   /* -----  Now create menu bar  ----- */
   menu_bar = x_menu_create_menu(main_window);
