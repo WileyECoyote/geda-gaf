@@ -44,10 +44,10 @@ msgstr "لا يمكن ايجاد الملف"
 msgid "Exported schematic to"
 msgstr "تصدير التخطيطي ل"
 
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "لا يمكن ايجاد الملف"
+msgstr "تعذر تحميل الهندسة من الملف"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
