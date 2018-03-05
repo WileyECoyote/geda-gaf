@@ -1,3 +1,8 @@
+2018-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_move.c: Reduce the scope of o_current in
+      o_move_prep_rubberband.
+
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Revise o_edit_lock_selection to use

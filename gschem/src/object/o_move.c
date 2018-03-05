@@ -607,13 +607,13 @@ static void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
  */
 void o_move_prep_rubberband(GschemToplevel *w_current)
 {
-  GList *s_current;
+  GList      *s_current;
   GedaObject *object;
- GedaObject *o_current;
-  GList *iter;
+  GList      *iter;
 
   for (s_current = geda_list_get_glist (Current_Selection);
        s_current != NULL; NEXT(s_current)) {
+
     object = s_current->data;
 
     if (object == NULL)
@@ -630,7 +630,7 @@ void o_move_prep_rubberband(GschemToplevel *w_current)
       case (OBJ_PLACEHOLDER):
         for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter))
         {
-          o_current = iter->data;
+          GedaObject *o_current = iter->data;
 
           if (o_current->type == OBJ_PIN) {
             o_move_check_endpoint (w_current, o_current);
