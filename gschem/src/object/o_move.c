@@ -48,7 +48,7 @@
  * in \a list
  *
  */
-GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
+static GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
 {
   GList   *s_iter;
   STRETCH *s_new;
@@ -90,7 +90,7 @@ static int find_object (const void *a, const void *b)
  *  \par Function Description
  *
  */
-GList *o_move_stretch_remove (GList *list, GedaObject *object)
+static GList *o_move_stretch_remove (GList *list, GedaObject *object)
 {
   GList *item;
 
@@ -111,7 +111,7 @@ GList *o_move_stretch_remove (GList *list, GedaObject *object)
  *   Prints name of members to the standard out.
  *
  */
-void o_move_stretch_print_all (GList *list)
+static void o_move_stretch_print_all (GList *list)
 {
   GList *iter;
 
@@ -139,7 +139,7 @@ void o_move_stretch_print_all (GList *list)
  *  This function is used to free the memory associated with
  *  the scretch routines.
  */
-void o_move_stretch_destroy_all (GList *list)
+static void o_move_stretch_destroy_all (GList *list)
 {
   geda_glist_free_full (list, g_free);
 }

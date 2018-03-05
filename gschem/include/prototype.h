@@ -547,10 +547,10 @@ void       o_move_invalidate_rubber     (GschemToplevel *w_current, int drawing)
 void       o_move_motion                (GschemToplevel *w_current, int x, int y);
 void       o_move_prep_rubberband       (GschemToplevel *w_current);
 int        o_move_return_whichone       (GedaObject     *object, int x, int y);
-GLT       *o_move_stretch_add           (GList *list, GedaObject *object, int whichone);
-GLT       *o_move_stretch_remove        (GList *list, GedaObject *object);
-void       o_move_stretch_print_all     (GList *list);
-void       o_move_stretch_destroy_all   (GList *list);
+//GLT       *o_move_stretch_add           (GList *list, GedaObject *object, int whichone);
+//GLT       *o_move_stretch_remove        (GList *list, GedaObject *object);
+//void       o_move_stretch_print_all     (GList *list);
+//void       o_move_stretch_destroy_all   (GList *list);
 void       o_move_start                 (GschemToplevel *w_current, int x, int y);
 void       o_move_start_drag            (GschemToplevel *w_current, int w_x, int w_y);
 
