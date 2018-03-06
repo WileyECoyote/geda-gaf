@@ -5,7 +5,10 @@
     * national/DS26C61-1.sym: Remove symbol; does not appear to ever have been
       such a device.
 
-    * packages/DIP8-300-1.sym: Resequence pin attributes.
+    * packages: Resequence pin attributes.
+
+            * packages/DIP8-300-1.sym
+            * packages/DIP14-300-1.sym
 
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
