@@ -1,5 +1,8 @@
 2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_handlebox.c: Update function documentation for
+      geda_handle_widget_set_handle_position.
+
     * src/widgets/geda_label.c: Replace g_object_set_data with GEDA_OBJECT_
       SET_DATA macro.
 

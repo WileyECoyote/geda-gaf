@@ -2050,10 +2050,16 @@ void geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaHandleBox Widget Handle Position
+ * \par Function Description
+ *  Sets the side of the handlebox where the handle is drawn.
  *
+ * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] position   Side of the handlebox where the handle should
+ *                        be drawn.
+ *
+ * \sa geda_handle_box_set_handle_position
  */
 void geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
                                              GtkPositionType  position)
