@@ -46,11 +46,10 @@ msgstr "Файлът не можа да бъде намерен"
 msgid "Exported schematic to"
 msgstr "Изнесено схематично до"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Файлът не можа да бъде намерен"
+msgstr "Geometria не може да се зареди от файла"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
