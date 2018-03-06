@@ -1,5 +1,7 @@
 2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/temperature/LM75-1.sym: Update attribute locations and visibility.
+
     * national/DS26C61-1.sym: Remove symbol; does not appear to ever have been
       such a device.
 
