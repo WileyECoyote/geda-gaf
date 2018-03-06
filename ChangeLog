@@ -1,3 +1,8 @@
+2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_wrap.h: Cast the third argument to g_object_set_data
+      to type void in macro GEDA_OBJECT_SET_DATA.
+
 2018-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Replace gtk_container_add with
