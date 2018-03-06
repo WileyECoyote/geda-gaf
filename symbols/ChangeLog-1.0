@@ -1,3 +1,8 @@
+2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * national/DS26C61-1.sym: Remove symbol; does not appear to ever have been
+      such a device.
+
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * national/DAC0808-1.sym: Revamp symbol; add description and documentation
