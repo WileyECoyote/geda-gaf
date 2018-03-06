@@ -5189,16 +5189,15 @@ static void activate_cb (GtkWidget *menuitem, GedaLabel *label)
   g_signal_emit_by_name (label, signal);
 }
 
-static void
-append_action_signal (GedaLabel   *label,
-                      GtkWidget   *menu,
-                      const char  *stock_id,
-                      const char  *signal,
-                      bool         sensitive)
+static void append_action_signal (GedaLabel  *label,
+                                  GtkWidget  *menu,
+                                  const char *stock_id,
+                                  const char *signal,
+                                  bool        sensitive)
 {
   GtkWidget *menuitem = geda_image_menu_item_new_from_stock (stock_id, NULL);
 
-  g_object_set_data ((GObject*)menuitem, "eda-signal", (char*)signal);
+  GEDA_OBJECT_SET_DATA (menuitem, signal, "eda-signal");
 
   g_signal_connect (menuitem, "activate", G_CALLBACK (activate_cb), label);
 

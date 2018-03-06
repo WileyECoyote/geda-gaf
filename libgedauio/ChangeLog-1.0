@@ -1,3 +1,8 @@
+2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Replace g_object_set_data with GEDA_OBJECT_
+      SET_DATA macro.
+
 2018-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Use GParamSpec variable for
