@@ -46,11 +46,10 @@ msgstr "No s'ha pogut trobar el fitxer"
 msgid "Exported schematic to"
 msgstr "S'ha exportat esquemàticament a"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "No s'ha pogut trobar el fitxer"
+msgstr "No s'ha pogut carregar la geometria del fitxer"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"

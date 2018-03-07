@@ -46,11 +46,10 @@ msgstr "Ne mogu naći datoteku"
 msgid "Exported schematic to"
 msgstr "Šema izvezena u"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Ne mogu naći datoteku"
+msgstr "Nije moguće učitati geometriju iz datoteke"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
