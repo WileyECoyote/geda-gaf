@@ -3,6 +3,8 @@
     * gsch2pcb/gsch2pcb.c: Add missing braces on verbose conditionals,
       replace back-tick quote with double quote for "command failed"
       message in function run_gnetlist. Wrap string message with gettext.
+      Utilize m4_override_file variable for output message in create_m4_
+      override_file.
 
 2018-03-03 Wiley E. Hill <wileyhill@gmail.com>
 

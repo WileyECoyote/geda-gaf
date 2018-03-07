@@ -90,12 +90,12 @@ static _Bool remove_unfound_elements = TRUE,
              preserve, fix_elements, bak_done, need_PKG_purge;
 
 
-static void
-create_m4_override_file ()
+static void create_m4_override_file ()
 {
   FILE *f;
 
   m4_override_file = "gnet-gsch2pcb-tmp.scm";
+
   f = fopen (m4_override_file, "wb");
 
   if (!f) {
@@ -116,7 +116,7 @@ create_m4_override_file ()
   if (verbose) {
 
     printf ("Default m4-pcbdir: %s\n", default_m4_pcbdir);
-    printf ("--------\ngnet-gsch2pcb-tmp.scm override file:\n");
+    printf ("--------\n%s override file:\n", m4_override_file);
 
     if (m4_pcbdir)
       printf ("    (define gsch2pcb:pcb-m4-dir \"%s\")\n", m4_pcbdir);
