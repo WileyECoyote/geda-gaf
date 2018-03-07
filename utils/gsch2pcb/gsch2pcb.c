@@ -189,8 +189,9 @@ build_and_run_command (const char *format, ...)
     char **args;
     int    status;
 
-    if (verbose)
+    if (verbose) {
       printf ("%s:\n\t", "Running command");
+    }
 
     args = GEDA_MEM_ALLOC0(sizeof(char*) * g_list_length (tmp) + 1);
 
@@ -198,12 +199,14 @@ build_and_run_command (const char *format, ...)
 
     for (p = tmp; p; p = g_list_next (p)) {
       args[i++] = p->data;
-      if (verbose)
+      if (verbose) {
         printf ("%s ", (char*)p->data);
+      }
     }
 
-    if (verbose)
+    if (verbose) {
       printf ("\n%s", SEP_STRING);
+    }
 
     if (g_spawn_sync (".",                  /* Working directory */
                       args,                /* argv */
@@ -234,8 +237,9 @@ build_and_run_command (const char *format, ...)
       g_error_free(error);
     }
 
-    if (verbose)
+    if (verbose) {
       printf ("\n%s", SEP_STRING);
+    }
 
     GEDA_FREE(standard_error);
     GEDA_FREE(standard_output);
@@ -275,8 +279,9 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
   if (gnetlist == NULL)
     gnetlist = "gnetlist";
 
-  if (!verbose)
+  if (!verbose) {
     verboseList = g_list_append (verboseList, "-q");
+  }
 
   result = build_and_run_command ("%s %l -g pcbpins -o %s %l %l",
                                   gnetlist,
@@ -710,8 +715,9 @@ char *find_element (char *dir_path, char *element)
     return NULL;
   }
 
-  if (verbose > 1)
+  if (verbose > 1) {
     printf ("\t  Searching: \"%s\" for \"%s\"\n", dir_path, element);
+  }
 
   while ((name = (char *) g_dir_read_name (dir)) != NULL) {
 
@@ -802,21 +808,24 @@ char *search_element_directories (PcbElement *el)
     return NULL;
   }
 
-  if (verbose > 1)
+  if (verbose > 1) {
     printf ("\tSearching directories looking for file element: %s\n", elname);
+  }
 
   for (list = element_directory_list; list; list = g_list_next (list)) {
 
     char *dir_path = list->data;
 
-    if (verbose > 1)
+    if (verbose > 1) {
       printf ("\tLooking in directory: \"%s\"\n", dir_path);
+    }
 
     path = find_element (dir_path, elname);
 
     if (path) {
-      if (verbose)
+      if (verbose) {
         printf ("\tFound: %s\n", path);
+      }
       break;
     }
   }
@@ -926,10 +935,11 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
   g_strfreev (args);
 
   if (empty_footprint_name && !strcmp (el->description, empty_footprint_name)) {
-    if (verbose)
+    if (verbose) {
       printf
         ("%s: has the empty footprint attribute \"%s\" so won't be in the layout.\n",
          el->refdes, el->description);
+    }
     n_empty += 1;
     el->omit_PKG = TRUE;
   }
@@ -1041,9 +1051,10 @@ static int add_elements (char *pcb_file)
         skipping = is_m4;
         is_m4 = FALSE;
         ++n_added_ef;
-        if (verbose)
+        if (verbose) {
           printf (_("%s: added new file element for footprint %s (value=%s)\n"),
                   el->refdes, el->description, el->value);
+        }
       }
       else if (!is_m4) {
 
@@ -1067,9 +1078,10 @@ static int add_elements (char *pcb_file)
     if (is_m4) {
       fputs (buf, f_out);
       ++n_added_m4;
-      if (verbose)
+      if (verbose) {
         printf (_("%s: added new m4 element for footprint   %s (value=%s)\n"),
                 el->refdes, el->description, el->value);
+      }
     }
 
     pcb_element_free (el);
@@ -1219,9 +1231,10 @@ static void prune_elements (char *pcb_file, char *bak)
         && (el_exists = pcb_element_exists (el, FALSE)) != NULL
         && !el_exists->still_exists && !preserve) {
       skipping = TRUE;
-      if (verbose)
+      if (verbose) {
         printf (_("%s: deleted element %s (value=%s)\n"),
                 el->refdes, el->description, el->value);
+      }
       pcb_element_free (el);
       continue;
     }
@@ -1233,10 +1246,11 @@ static void prune_elements (char *pcb_file, char *bak)
       fprintf (f_out, fmt,
                el->res_char, el->flags, el->description, el->refdes,
                el_exists->changed_value, el->x, el->y, el->tail);
-      if (verbose)
+      if (verbose) {
         printf (_("%s: changed element %s value: %s -> %s\n"),
                 el->refdes, el->description,
                 el->value, el_exists->changed_value);
+      }
     }
     else if (!strncmp (s, "PKG_", 4)) {
       ++n_PKG_removed_old;
@@ -1374,8 +1388,9 @@ static int parse_config (char *config, char *arg)
     *s = '\0';
   }
 
-  if (verbose)
+  if (verbose) {
     printf ("    %s \"%s\"\n", config, arg ? arg : "");
+  }
 
   if (!strcmp (config, "remove-unfound") || !strcmp (config, "r")) {
 
@@ -1740,8 +1755,9 @@ int main (int argc, char **argv)
   if (g_file_test ("packages", G_FILE_TEST_IS_DIR))
     element_directory_list = g_list_append (element_directory_list, "packages");
 
-  if (verbose)
+  if (verbose) {
     printf ("%s \"%s\"\n", _("Processing PCBLIBPATH="), PCBLIBPATH);
+  }
 
   path = geda_utility_string_strdup (PCBLIBPATH);
 
@@ -1803,8 +1819,10 @@ int main (int argc, char **argv)
       prune_elements (pcb_file_name, bak_file_name);
 
       /* Report work done during processing */
-      if (verbose)
+      if (verbose) {
         printf ("\n");
+      }
+
       printf ("\n----------------------------------\n");
       printf (_("Done processing. Work performed:\n"));
 
@@ -1894,8 +1912,9 @@ int main (int argc, char **argv)
       }
 
       /* Tell user what to do next */
-      if (verbose)
+      if (verbose) {
         printf ("\n");
+      }
 
       if (n_added_ef + n_added_m4 > 0) {
           printf ("\n%s:\n",      _("Next step"));
