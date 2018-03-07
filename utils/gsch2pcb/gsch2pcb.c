@@ -322,11 +322,13 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
       if (!result) {
 
         if (stat (pcb_file, &st) != 0 || mtime == st.st_mtime) {
-          fprintf (stderr,
-                   "gsch2pcb: gnetlist command failed, \"%s\" not updated\n",
-                   pcb_file
-          );
           if (m4_override_file)
+
+          const char *msg_1 = _("command failed");
+          const char *msg_2 = _("not updated");
+
+          fprintf (stderr, "gsch2pcb: gnetlist %s, \"%s\" %s\n", msg_1, pcb_file, msg_2);
+
             fprintf (stderr,
                      "    At least gnetlist 20030901 is required for m4-xxx options.\n");
         }
