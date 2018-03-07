@@ -190,7 +190,7 @@ build_and_run_command (const char *format, ...)
     int    status;
 
     if (verbose) {
-      printf ("%s:\n\t", "Running command");
+      printf ("%s:\n\t", _("Running command"));
     }
 
     args = GEDA_MEM_ALLOC0(sizeof(char*) * g_list_length (tmp) + 1);
