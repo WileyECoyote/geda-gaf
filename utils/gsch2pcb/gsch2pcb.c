@@ -323,7 +323,7 @@ run_gnetlist (char *pins_file, char *net_file, char *pcb_file,
 
         if (stat (pcb_file, &st) != 0 || mtime == st.st_mtime) {
           fprintf (stderr,
-                   "gsch2pcb: gnetlist command failed, `%s' not updated\n",
+                   "gsch2pcb: gnetlist command failed, \"%s\" not updated\n",
                    pcb_file
           );
           if (m4_override_file)
