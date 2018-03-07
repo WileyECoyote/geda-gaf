@@ -109,6 +109,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gattrib %s (%s) (g%.7s)\n"
+"Πνευματικά δικαιώματα (C) 1998-2017 προγραμματιστές του gEDA\n"
+"Αυτό είναι δωρεάν λογισμικό, και μπορείτε να το αναδιανείμετε ελεύθερα υπό\n"
+"συγκεκριμένους όρους. Για λεπτομέρειες, δείτε το αρχείο `COPYING', το οποίο\n"
+"συμπεριλαμβάνεται στη διανομή του gEDA.\n"
+"Δεν υπάρχει ΚΑΜΙΑ ΕΓΓΥΗΣΗ, στα πλαίσια που επιτρέπει ο νόμος.\n"
 
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
