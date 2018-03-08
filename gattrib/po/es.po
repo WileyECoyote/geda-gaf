@@ -44,10 +44,10 @@ msgstr "No se encontró archivo"
 msgid "Exported schematic to"
 msgstr ""
 
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "No se encontró archivo"
+msgstr "No se pudo cargar la geometría desde el archivo"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
