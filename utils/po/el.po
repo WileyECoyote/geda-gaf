@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2017-11-19 11:16-0600\n"
+"POT-Creation-Date: 2018-03-07 23:47-0600\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -18,212 +18,222 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: utils/gsch2pcb/gsch2pcb.c:232
+#: utils/gsch2pcb/gsch2pcb.c:193
+msgid "Running command"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:235
 msgid "Failed to execute external program"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1043
+#: utils/gsch2pcb/gsch2pcb.c:326
+msgid "command failed"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:327
+msgid "not updated"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1049
 msgid "No file element found"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1053
-#, c-format
-msgid "%s: added new file element for footprint %s (value=%s)\n"
-msgstr ""
-
 #: utils/gsch2pcb/gsch2pcb.c:1059
-#, c-format
-msgid "%s: can't find PCB element for footprint %s (value=%s)\n"
+msgid "added new file element for footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1064
+#: utils/gsch2pcb/gsch2pcb.c:1066
+msgid "cannot find PCB element for footprint"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1074
 #, c-format
 msgid "So device %s will not be in the layout.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1079
-#, c-format
-msgid "%s: added new m4 element for footprint   %s (value=%s)\n"
+#: utils/gsch2pcb/gsch2pcb.c:1092
+msgid "added new m4 element for footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1122
+#: utils/gsch2pcb/gsch2pcb.c:1136
 #, c-format
 msgid "Could not find any elements to fix.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1145
+#: utils/gsch2pcb/gsch2pcb.c:1159
 msgid "updating element Description"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1192
-#, c-format
-msgid "Preserving PCB element not in the schematic:    %s (element   %s)\n"
+#: utils/gsch2pcb/gsch2pcb.c:1204
+msgid "Preserving PCB element not in the schematic"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1233
-#, c-format
-msgid "%s: deleted element %s (value=%s)\n"
+#: utils/gsch2pcb/gsch2pcb.c:1248
+msgid "deleted element"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1247
-#, c-format
-msgid "%s: changed element %s value: %s -> %s\n"
+#: utils/gsch2pcb/gsch2pcb.c:1263
+msgid "changed element"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1370
+#: utils/gsch2pcb/gsch2pcb.c:1264
+msgid "value"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1384
 msgid "invalid schematics option"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1434
+#: utils/gsch2pcb/gsch2pcb.c:1448
 msgid "Adding directory to file element directory list"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1487
+#: utils/gsch2pcb/gsch2pcb.c:1500
 msgid "Reading project file"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1687
+#: utils/gsch2pcb/gsch2pcb.c:1697
 msgid "bad or incomplete arg:"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1763
+#: utils/gsch2pcb/gsch2pcb.c:1773
 msgid "Processing PCBLIBPATH="
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1771
+#: utils/gsch2pcb/gsch2pcb.c:1782
 #, c-format
 msgid "Adding %s to the newlib search path\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1804
+#: utils/gsch2pcb/gsch2pcb.c:1815
 #, c-format
 msgid "Failed to run gnetlist\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1814
+#: utils/gsch2pcb/gsch2pcb.c:1825
 #, c-format
 msgid "No elements found, so nothing to do.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1828
+#: utils/gsch2pcb/gsch2pcb.c:1841
 #, c-format
 msgid "Done processing. Work performed:\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1832
+#: utils/gsch2pcb/gsch2pcb.c:1845
 msgid "is backed up as"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1837
+#: utils/gsch2pcb/gsch2pcb.c:1850
 msgid "elements deleted from"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1842
+#: utils/gsch2pcb/gsch2pcb.c:1855
 msgid "file elements and"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1843
+#: utils/gsch2pcb/gsch2pcb.c:1856
 msgid "elements added to"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1848
+#: utils/gsch2pcb/gsch2pcb.c:1861
 msgid "No elements to add, not creating"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1854
+#: utils/gsch2pcb/gsch2pcb.c:1867
 msgid "not found elements added to"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1860
+#: utils/gsch2pcb/gsch2pcb.c:1873
 msgid "components had no footprint attribute and are omitted"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1865
+#: utils/gsch2pcb/gsch2pcb.c:1878
 msgid "components with footprint \"none\" omitted from"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1870
+#: utils/gsch2pcb/gsch2pcb.c:1883
 msgid "components with empty footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1871
+#: utils/gsch2pcb/gsch2pcb.c:1884
 msgid "omitted from"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1877
+#: utils/gsch2pcb/gsch2pcb.c:1890
 msgid "elements had a value change in"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1882
+#: utils/gsch2pcb/gsch2pcb.c:1895
 msgid "elements fixed in"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1887 utils/gsch2pcb/gsch2pcb.c:1899
+#: utils/gsch2pcb/gsch2pcb.c:1900 utils/gsch2pcb/gsch2pcb.c:1912
 msgid "elements could not be found"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1890 utils/gsch2pcb/gsch2pcb.c:1902
+#: utils/gsch2pcb/gsch2pcb.c:1903 utils/gsch2pcb/gsch2pcb.c:1915
 msgid "is incomplete"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1911
+#: utils/gsch2pcb/gsch2pcb.c:1924
 msgid "elements not in the schematic preserved in"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1920
+#: utils/gsch2pcb/gsch2pcb.c:1934
 msgid "Next step"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1921
+#: utils/gsch2pcb/gsch2pcb.c:1935
 msgid "Run pcb on your file"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1923
+#: utils/gsch2pcb/gsch2pcb.c:1937
 msgid "You will find all your footprints in a bundle ready for you to place"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1924
+#: utils/gsch2pcb/gsch2pcb.c:1938
 msgid "or disperse with \"Select -> Disperse all elements\" in PCB"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1925
+#: utils/gsch2pcb/gsch2pcb.c:1939
 msgid "from within PCB, select \"File -> Load netlist file\" and select"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1926
+#: utils/gsch2pcb/gsch2pcb.c:1940
 msgid "to load the netlist"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1927 utils/gsch2pcb/gsch2pcb.c:1938
+#: utils/gsch2pcb/gsch2pcb.c:1941 utils/gsch2pcb/gsch2pcb.c:1952
 msgid "From within PCB, enter"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1929
+#: utils/gsch2pcb/gsch2pcb.c:1943
 msgid "to propagate the pin names of all footprints to the layout"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1932
+#: utils/gsch2pcb/gsch2pcb.c:1946
 msgid "From within PCB, select \"File -> Load layout data to paste buffer\""
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1933
+#: utils/gsch2pcb/gsch2pcb.c:1947
 msgid "    and select"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1934
+#: utils/gsch2pcb/gsch2pcb.c:1948
 #, c-format
 msgid "to load the new footprints into your existing layout.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1935
+#: utils/gsch2pcb/gsch2pcb.c:1949
 msgid "From within PCB, select \"File -> Load netlist file\" and select"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1936
+#: utils/gsch2pcb/gsch2pcb.c:1950
 msgid "to load the updated netlist"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1940
+#: utils/gsch2pcb/gsch2pcb.c:1954
 msgid "to update the pin names of all footprints"
 msgstr ""
 
@@ -244,7 +254,7 @@ msgid ""
 msgstr ""
 
 #: utils/gsch2pdf/parsecmd.c:93
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -253,12 +263,12 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA %s (g%.7s)\n"
-"Πνευματικά δικαιώματα (C) 1998-2012 προγραμματιστές του gEDA\n"
-"Αυτό είναι δωρεάν λογισμικό, και μπορείτε να το αναδιανείμετε ελεύθερα υπό\n"
-"συγκεκριμένους όρους. Για λεπτομέρειες, δείτε το αρχείο `COPYING', το οποίο\n"
-"συμπεριλαμβάνεται στη διανομή του gEDA.\n"
-"Δεν υπάρχει ΚΑΜΙΑ ΕΓΓΥΗΣΗ, στα πλαίσια που επιτρέπει ο νόμος.\n"
+"gEDA/gsch2pdf %s (%s) (g%.7s)\n"
+"?????????? ?????????? (C) 1998-2017 ??????????????? ??? gEDA\n"
+"???? ????? ?????? ?????????, ??? ???????? ?? ?? ????????????? ???????? ???\n"
+"?????????????? ?????. ??? ????????????, ????? ?? ?????? `COPYING', ?? ?????\n"
+"????????????????? ??? ??????? ??? gEDA.\n"
+"??? ??????? ????? ???????, ??? ??????? ??? ????????? ? ?????.\n"
 
 #: utils/gschlas/g_rc.c:73
 #, c-format
@@ -328,7 +338,7 @@ msgid "  -h, --help        This message\n"
 msgstr ""
 
 #: utils/gschlas/parsecmd.c:80
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "gEDA/gschlas %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -337,27 +347,9 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
-"gEDA %s (g%.7s)\n"
-"Πνευματικά δικαιώματα (C) 1998-2012 προγραμματιστές του gEDA\n"
-"Αυτό είναι δωρεάν λογισμικό, και μπορείτε να το αναδιανείμετε ελεύθερα υπό\n"
-"συγκεκριμένους όρους. Για λεπτομέρειες, δείτε το αρχείο `COPYING', το οποίο\n"
-"συμπεριλαμβάνεται στη διανομή του gEDA.\n"
-"Δεν υπάρχει ΚΑΜΙΑ ΕΓΓΥΗΣΗ, στα πλαίσια που επιτρέπει ο νόμος.\n"
-
-#, fuzzy
-#~ msgid ""
-#~ "gEDA/gschlas version %s (%s) (g%.7s)\n"
-#~ "Copyright (C) 1998-2013 gEDA developers\n"
-#~ "This is free software, and you are welcome to redistribute it under\n"
-#~ "certain conditions. For details, see the file `COPYING', which is\n"
-#~ "included in the gEDA distribution.\n"
-#~ "There is NO WARRANTY, to the extent permitted by law.\n"
-#~ msgstr ""
-#~ "gEDA %s (g%.7s)\n"
-#~ "Πνευματικά δικαιώματα (C) 1998-2012 προγραμματιστές του gEDA\n"
-#~ "Αυτό είναι δωρεάν λογισμικό, και μπορείτε να το αναδιανείμετε ελεύθερα "
-#~ "υπό\n"
-#~ "συγκεκριμένους όρους. Για λεπτομέρειες, δείτε το αρχείο `COPYING', το "
-#~ "οποίο\n"
-#~ "συμπεριλαμβάνεται στη διανομή του gEDA.\n"
-#~ "Δεν υπάρχει ΚΑΜΙΑ ΕΓΓΥΗΣΗ, στα πλαίσια που επιτρέπει ο νόμος.\n"
+"gEDA/gschlas %s (%s) (g%.7s)\n"
+"?????????? ?????????? (C) 1998-2017 ??????????????? ??? gEDA\n"
+"???? ????? ?????? ?????????, ??? ???????? ?? ?? ????????????? ???????? ???\n"
+"?????????????? ?????. ??? ????????????, ????? ?? ?????? `COPYING', ?? ?????\n"
+"????????????????? ??? ??????? ??? gEDA.\n"
+"??? ??????? ????? ???????, ??? ??????? ??? ????????? ? ?????.\n"
