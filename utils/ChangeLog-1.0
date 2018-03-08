@@ -1,3 +1,9 @@
+2018-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Revise message outputs in add_elements; add
+      ancillary string pointer to translated portion in order to reduce
+      formating specifiers in the translation files.
+
 2018-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Add missing braces on verbose conditionals,

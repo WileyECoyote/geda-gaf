@@ -1056,17 +1056,20 @@ static int add_elements (char *pcb_file)
         is_m4 = FALSE;
         ++n_added_ef;
         if (verbose) {
-          printf (_("%s: added new file element for footprint %s (value=%s)\n"),
-                  el->refdes, el->description, el->value);
+        const char *msg = _("added new file element for footprint");
+          printf ("%s: %s %s (value=%s)\n",
+                  el->refdes, msg, el->description, el->value);
         }
       }
       else if (!is_m4) {
 
-        fprintf (stderr,
-               _("%s: can't find PCB element for footprint %s (value=%s)\n"),
-                 el->refdes, el->description, el->value);
+        const char *msg = _("cannot find PCB element for footprint");
+
+        fprintf (stderr, "%s: %s %s (value=%s)\n",
+                 el->refdes, msg, el->description, el->value);
 
         if (remove_unfound_elements && !fix_elements) {
+
           fprintf (stderr,
                  _("So device %s will not be in the layout.\n"), el->refdes);
           ++n_PKG_removed_new;
