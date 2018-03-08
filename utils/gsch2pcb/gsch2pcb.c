@@ -1263,9 +1263,10 @@ static void prune_elements (char *pcb_file, char *bak)
                el->res_char, el->flags, el->description, el->refdes,
                el_exists->changed_value, el->x, el->y, el->tail);
       if (verbose) {
-        printf (_("%s: changed element %s value: %s -> %s\n"),
-                el->refdes, el->description,
-                el->value, el_exists->changed_value);
+        const char *msg1 = _("changed element");
+        const char *msg2 = _("value");
+        printf ("%s: %s %s %s: %s -> %s\n", el->refdes, msg1, el->description, msg2,
+                                            el->value, el_exists->changed_value);
       }
     }
     else if (!strncmp (s, "PKG_", 4)) {
