@@ -1248,8 +1248,8 @@ static void prune_elements (char *pcb_file, char *bak)
         && !el_exists->still_exists && !preserve) {
       skipping = TRUE;
       if (verbose) {
-        printf (_("%s: deleted element %s (value=%s)\n"),
-                el->refdes, el->description, el->value);
+        const char *msg = _("deleted element");
+        printf ("%s: %s %s (value=%s)\n", el->refdes, msg, el->description, el->value);
       }
       pcb_element_free (el);
       continue;
@@ -1257,8 +1257,8 @@ static void prune_elements (char *pcb_file, char *bak)
 
     if (el_exists && el_exists->changed_value) {
       fmt = el->quoted_flags ?
-        "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
-        "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
+                            "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
+                            "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
       fprintf (f_out, fmt,
                el->res_char, el->flags, el->description, el->refdes,
                el_exists->changed_value, el->x, el->y, el->tail);
