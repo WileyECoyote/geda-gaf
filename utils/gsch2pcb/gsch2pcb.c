@@ -1200,13 +1200,18 @@ static void prune_elements (char *pcb_file, char *bak)
     el = (PcbElement *) list->data;
     if (!el->still_exists) {
       if (preserve) {
+
+        const char *msg1 = _("Preserving PCB element not in the schematic");
+        const char *msg2 = _("element");
+
         ++n_preserved;
-        fprintf (stderr,
-               _("Preserving PCB element not in the schematic:    %s (element   %s)\n"),
-                 el->refdes, el->description);
-      } else
+
+        fprintf (stderr, "%s:    %s (%s   %s)\n", msg1, el->refdes, msg2, el->description);
+      }
+      else
         ++n_deleted;
-    } else if (el->changed_value)
+    }
+    else if (el->changed_value)
       ++n_changed_value;
   }
 
