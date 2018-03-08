@@ -1083,11 +1083,15 @@ static int add_elements (char *pcb_file)
     }
 
     if (is_m4) {
+
       fputs (buf, f_out);
       ++n_added_m4;
+
       if (verbose) {
-        printf (_("%s: added new m4 element for footprint   %s (value=%s)\n"),
-                el->refdes, el->description, el->value);
+
+        const char *msg = _("added new m4 element for footprint");
+
+        printf ("%s: %s   %s (value=%s)\n", el->refdes, msg, el->description, el->value);
       }
     }
 
