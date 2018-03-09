@@ -6,6 +6,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/bs.po: Update Bosnian translations
+
 2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Update function documentation for

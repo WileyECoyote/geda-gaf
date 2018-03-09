@@ -412,19 +412,19 @@ msgstr ""
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
+# Show style
 #: libgedauio/src/widgets/geda_font_button.c:818
-#, fuzzy
 msgid "Show style"
-msgstr "Prikaži skriveno"
+msgstr "Pokažite stil"
 
 #: libgedauio/src/widgets/geda_font_button.c:819
 msgid "Whether the selected font style is shown in the label"
 msgstr ""
 
+# Show size
 #: libgedauio/src/widgets/geda_font_button.c:831
-#, fuzzy
 msgid "Show size"
-msgstr "Prikaži skriveno"
+msgstr "Prikaži veličinu"
 
 #: libgedauio/src/widgets/geda_font_button.c:832
 msgid "Whether selected font size is shown in the label"
@@ -584,10 +584,10 @@ msgstr ""
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
+# Handle Size
 #: libgedauio/src/widgets/geda_handlebox.c:1672
-#, fuzzy
 msgid "Handle Size"
-msgstr "indikator Veličina"
+msgstr "Veličina ručke"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid "Size of the drag handle in pixels."
@@ -611,10 +611,10 @@ msgstr ""
 msgid "Whether to use the label text to create a stock menu item"
 msgstr ""
 
+# Show image
 #: libgedauio/src/widgets/geda_image_menu_item.c:443
-#, fuzzy
 msgid "Show image"
-msgstr "Prikaži skriveno"
+msgstr "Prikaži sliku"
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:444
 msgid "Whether the image will always be shown"
