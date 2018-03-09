@@ -42,10 +42,10 @@ msgstr "de van egy verziója"
 msgid "Exported schematic to"
 msgstr ""
 
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "de van egy verziója"
+msgstr "Nem sikerült betölteni a geometriát a fájlból"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
