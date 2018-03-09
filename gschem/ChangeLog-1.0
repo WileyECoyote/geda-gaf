@@ -1,3 +1,9 @@
+2018-03-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Remove unneeded cast to GEDA_RADIO_MENU_ITEM
+      in call to geda_radio_menu_item_group in create_endtype_menu and
+      create_linetype_menu.
+
 2018-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Reduce the scope of o_current in
