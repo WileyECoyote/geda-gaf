@@ -1,3 +1,7 @@
+2018-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
 2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Update function documentation for
