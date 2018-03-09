@@ -545,9 +545,11 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
 
     font_name = eda_renderer_get_font_name (CairoRenderer);
     font_button = geda_font_button_new_with_font (font_name);
+
     geda_font_button_set_title((GedaFontButton*)font_button,
                                "Select font and size");
     gtk_widget_set_tooltip_text (GTK_WIDGET(font_button), font_button_tip);
+
     g_object_set (font_button, "use-font", TRUE, "show-style", FALSE, NULL);
 
     gtk_table_attach (GTK_TABLE (table), font_button, 1, 2, 2, 3,
@@ -623,6 +625,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                   x_dialog_text_edit_update_selection, NULL);
 
     gtk_widget_show_all(ThisDialog);
+
     w_current->tewindow = ThisDialog;
   }
 
