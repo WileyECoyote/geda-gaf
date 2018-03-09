@@ -46,11 +46,10 @@ msgstr "Fichier introuvable"
 msgid "Exported schematic to"
 msgstr "Schéma exporté vers"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Fichier introuvable"
+msgstr "Impossible de charger la géométrie à partir du fichier"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
