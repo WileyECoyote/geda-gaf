@@ -9,6 +9,7 @@
       group public functions. Remove redundant validations in:
 
           * geda_label_widget_get_use_markup
+          * geda_label_widget_get_use_underline
 
 2018-03-09 Wiley E. Hill <wileyhill@gmail.com>
 

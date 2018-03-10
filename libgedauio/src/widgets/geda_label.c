@@ -7134,8 +7134,6 @@ bool geda_label_widget_get_use_markup (GtkWidget *widget)
  */
 bool geda_label_widget_get_use_underline (GtkWidget *widget)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
-
   return geda_label_get_use_underline ((GedaLabel*)widget);
 }
 
