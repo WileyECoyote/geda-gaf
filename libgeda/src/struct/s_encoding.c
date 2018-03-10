@@ -134,8 +134,6 @@ geda_struct_encoding_base64_encode (char         *src,
     (input[2] >> 6);
     output[3] = (input[2] & 0x3f);
 
-    //g_assert ((dstpos + 4) < *dstlenp);
-
     /* Map output to the Base64 alphabet */
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[0]];
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[1]];
@@ -165,8 +163,6 @@ geda_struct_encoding_base64_encode (char         *src,
     output[2] = ((input[1] & 0x0f) << 2) +
     (input[2] >> 6);
 
-    //g_assert ((dstpos + 4) < *dstlenp);
-
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[0]];
     dst[dstpos++] = s_encoding_Base64[(unsigned int) output[1]];
 
@@ -177,8 +173,6 @@ geda_struct_encoding_base64_encode (char         *src,
 
     dst[dstpos++] = s_encoding_Pad64;
   }
-
-  //g_assert (dstpos <= *dstlenp);
 
   dst[dstpos] = '\0';
 
