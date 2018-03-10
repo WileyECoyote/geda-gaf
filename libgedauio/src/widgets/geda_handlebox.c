@@ -2050,6 +2050,13 @@ void geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
   }
 }
 
+/**
+ * \defgroup GedaHandleBoxWidgets Handle Box Public Widget Functions
+ * @{
+ *
+ * \par Begin Widget Versions
+ */
+
 /*!
  * \brief Set GedaHandleBox Widget Handle Position
  * \par Function Description
@@ -2107,5 +2114,6 @@ void geda_handle_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
   geda_handle_box_set_toolbar ((GedaHandleBox*)handlebox, toolbar);
 }
 
+/** @} end group GedaHandleBoxWidgets */
 /** @} end group GedaHandleBoxFunctions */
 /** @} end group GedaHandleBox */

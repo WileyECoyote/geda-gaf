@@ -1,5 +1,8 @@
 2018-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_handlebox.c: Add Doxygen subgroup GedaHandleBoxWidgets
+      to group public widget versions.
+
     * src/widgets/geda_label.c: Revert to conventional function wrapping,
       replace geda_menu_shell_append with geda_menu_append macro. Add
       Doxygen group GedaLabelFunctions to group public functions.
