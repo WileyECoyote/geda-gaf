@@ -7148,10 +7148,7 @@ bool geda_label_widget_get_use_underline (GtkWidget *widget)
  */
 void geda_label_widget_set_use_underline (GtkWidget *widget, bool setting)
 {
-  g_return_if_fail (GEDA_IS_LABEL(widget));
-
   geda_label_set_use_underline ((GedaLabel*)widget, setting);
-
 }
 
 /*!
