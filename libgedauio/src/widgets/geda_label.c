@@ -5205,7 +5205,7 @@ static void append_action_signal (GedaLabel  *label,
 
   gtk_widget_show (menuitem);
 
-  geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
+  geda_menu_append (menu, menuitem);
 }
 
 static void
