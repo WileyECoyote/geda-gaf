@@ -6861,7 +6861,12 @@ void geda_label_select_region (GedaLabel *label, int start_offset, int end_offse
   }
 }
 
-/* Begin Widget Versions */
+/**
+ * \defgroup GedaLabelWidgets GedaLabel Public Widget Functions
+ * @{
+ *
+ * \par Begin Widget Versions
+ */
 
 /*!
  * \brief Get the Text Alignment of a GedaLabel Widget
@@ -7180,5 +7185,7 @@ void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
 }
 
 #undef PangoFontDescr
+
+/** @} end group GedaLabelWidgets */
 /** @} end group GedaLabelFunctions */
 /** @} end group GedaLabel */

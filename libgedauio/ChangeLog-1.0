@@ -5,7 +5,8 @@
 
     * src/widgets/geda_label.c: Revert to conventional function wrapping,
       replace geda_menu_shell_append with geda_menu_append macro. Add
-      Doxygen group GedaLabelFunctions to group public functions.
+      Doxygen group GedaLabelFunctions and subgroup GedaLabelWidgets to
+      group public functions.
 
 2018-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
