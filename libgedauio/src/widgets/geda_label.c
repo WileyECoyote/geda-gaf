@@ -5500,7 +5500,11 @@ static void geda_label_activate_current_link (GedaLabel *label)
   }
 }
 
-/* Begin Public Accessors */
+/**
+ * \defgroup GedaLabelFunctions GedaLabel Public Functions
+ * @{
+ * \par Begin Public Accessors
+ */
 
 /*!
  * \brief Get the GedaLabel Text Alignment
@@ -7176,4 +7180,5 @@ void geda_label_widget_set_width_chars (GtkWidget *widget, int n_chars)
 }
 
 #undef PangoFontDescr
+/** @} end group GedaLabelFunctions */
 /** @} end group GedaLabel */
