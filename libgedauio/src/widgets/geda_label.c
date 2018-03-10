@@ -7119,8 +7119,6 @@ void geda_label_widget_set_use_markup (GtkWidget *widget, bool setting)
 /*! \brief Widget Convenience Versions of label get_use_markup */
 bool geda_label_widget_get_use_markup (GtkWidget *widget)
 {
-  g_return_val_if_fail (GEDA_IS_LABEL(widget), FALSE);
-
   return geda_label_get_use_markup ((GedaLabel*)widget);
 }
 
