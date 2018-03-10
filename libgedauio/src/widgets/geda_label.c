@@ -5448,8 +5448,7 @@ geda_label_activate_link (GedaLabel *label, const char *uri)
   return TRUE;
 }
 
-static void
-geda_label_emit_activate_link (GedaLabel *label, GedaLabelLink *link)
+static void geda_label_emit_activate_link (GedaLabel *label, GedaLabelLink *link)
 {
   GedaLabelData *priv = label->priv;
   bool handled;
@@ -5514,8 +5513,7 @@ static void geda_label_activate_current_link (GedaLabel *label)
  *
  * \sa geda_label_set_alignment
  */
-void
-geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
+void geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5533,8 +5531,7 @@ geda_label_get_alignment (GedaLabel *label, float *xalign, float *yalign)
  *
  * \sa geda_label_get_alignment
  */
-void
-geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
+void geda_label_set_alignment (GedaLabel *label, float xalign, float yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5574,8 +5571,7 @@ double geda_label_get_angle  (GedaLabel *label)
  * \param [in] label   The GedaLabel object
  * \param [in] angle   The label angle
  */
-void
-geda_label_set_angle (GedaLabel *label, double angle)
+void geda_label_set_angle (GedaLabel *label, double angle)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5636,8 +5632,7 @@ PangoAttrList *geda_label_get_attributes (GedaLabel *label)
  * \param [in] label  The GedaLabel object
  * \param [in] attrs  PangoAttrList structure
  */
-void
-geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
+void geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5675,8 +5670,7 @@ geda_label_set_attributes (GedaLabel *label, PangoAttrList *attrs)
  * \returns the currently active URI. The string is owned by GTK+ and must
  *          not be freed or modified.
  */
-const char *
-geda_label_get_current_uri (GedaLabel *label)
+const char *geda_label_get_current_uri (GedaLabel *label)
 {
   if (GEDA_IS_LABEL(label)) {
 
@@ -5700,8 +5694,7 @@ geda_label_get_current_uri (GedaLabel *label)
  *
  * \returns Offset of text index within the label text
  */
-int
-geda_label_get_cursor_position (GedaLabel *label)
+int geda_label_get_cursor_position (GedaLabel *label)
 {
   if (GEDA_IS_LABEL(label)) {
 
@@ -5832,8 +5825,7 @@ void geda_label_set_justify (GedaLabel *label, GtkJustification jtype)
  * \returns the text of the label widget. This string is owned
  *          by the widget and must not be modified or freed.
  */
-const char*
-geda_label_get_label (GedaLabel *label)
+const char *geda_label_get_label (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
@@ -5853,8 +5845,7 @@ geda_label_get_label (GedaLabel *label)
  * \param [in] label  The GedaLabel object
  * \param [in] str    New text to set for the label
  */
-void
-geda_label_set_label (GedaLabel *label, const char *str)
+void geda_label_set_label (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5906,8 +5897,7 @@ PangoLayout *geda_label_get_layout (GedaLabel *label)
  * \param [out] x     location to store X offset of layout, or %NULL
  * \param [out] y     location to store Y offset of layout, or %NULL
  */
-void
-geda_label_get_layout_offsets (GedaLabel *label, int *x, int *y)
+void geda_label_get_layout_offsets (GedaLabel *label, int *x, int *y)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5952,8 +5942,7 @@ bool geda_label_get_line_wrap (GedaLabel *label)
  *  \param [in] label  The GedaLabel object
  *  \param [in] wrap   The desired setting
  */
-void
-geda_label_set_line_wrap (GedaLabel *label, bool wrap)
+void geda_label_set_line_wrap (GedaLabel *label, bool wrap)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -5982,8 +5971,7 @@ geda_label_set_line_wrap (GedaLabel *label, bool wrap)
  *
  * \sa geda_label_set_line_wrap_mode
  */
-PangoWrapMode
-geda_label_get_line_wrap_mode (GedaLabel *label)
+PangoWrapMode geda_label_get_line_wrap_mode (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
 
@@ -6002,8 +5990,7 @@ geda_label_get_line_wrap_mode (GedaLabel *label)
  *
  * \sa geda_label_set_line_wrap
  */
-void
-geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
+void geda_label_set_line_wrap_mode (GedaLabel *label, PangoWrapMode wrap_mode)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -6078,8 +6065,7 @@ void geda_label_set_markup (GedaLabel *label, const char *str)
  *  \param [in] label  The GedaLabel object
  *  \param [in] str    The a markup string
  */
-void
-geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
+void geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -6151,8 +6137,7 @@ void geda_label_set_max_width_chars (GedaLabel *label, int n_chars)
  *
  * \returns mnemonic character or 0xFF.
  */
-char
-geda_label_get_mnemonic_char (GedaLabel *label)
+char geda_label_get_mnemonic_char (GedaLabel *label)
 {
   if (GEDA_IS_LABEL(label)) {
 
@@ -6177,8 +6162,7 @@ geda_label_get_mnemonic_char (GedaLabel *label)
  * \param [in] label The GedaLabel object
  * \param [in] str   Pointer to a string
  */
-void
-geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
+void geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
   g_return_if_fail (str != NULL);
@@ -6205,8 +6189,7 @@ geda_label_set_mnemonic_text (GedaLabel *label, const char *str)
  *
  * \returns GDK keyval usable for accelerators
  */
-unsigned int
-geda_label_get_mnemonic_keyval (GedaLabel *label)
+unsigned int geda_label_get_mnemonic_keyval (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), GDK_KEY_VoidSymbol);
 
@@ -6226,8 +6209,7 @@ geda_label_get_mnemonic_keyval (GedaLabel *label)
  *
  * \returns mnemonic character or 0xFF (GDK_KEY_VoidSymbol).
  */
-char
-geda_label_get_mnemonic_lower (GedaLabel *label)
+char geda_label_get_mnemonic_lower (GedaLabel *label)
 {
   return (char)geda_label_get_mnemonic_keyval(label);
 }
@@ -6243,8 +6225,7 @@ geda_label_get_mnemonic_lower (GedaLabel *label)
  *
  * \sa geda_label_set_mnemonics_visible_recursive
  */
-bool
-geda_label_get_mnemonic_visible (GedaLabel *label)
+bool geda_label_get_mnemonic_visible (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
 
@@ -6261,8 +6242,7 @@ geda_label_get_mnemonic_visible (GedaLabel *label)
  *
  * \sa geda_label_set_mnemonics_visible_recursive
  */
-void
-geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
+void geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -6283,9 +6263,8 @@ geda_label_set_mnemonic_visible (GedaLabel *label, bool state)
  * \internal
  * Called by geda_menu_shell_update_mnemonics()
  */
-void
-geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
-                                            bool       mnemonics_visible)
+void geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
+                                                 bool       mnemonics_visible)
 {
   if (GEDA_IS_LABEL(widget)) {
     mnemonics_visible_apply (widget, mnemonics_visible);
@@ -6310,8 +6289,7 @@ geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
  * \returns Target of the label's mnemonic, or %NULL if none has been set
  *          and the default algorithm will be used.
  */
-GtkWidget *
-geda_label_get_mnemonic_widget (GedaLabel *label)
+GtkWidget *geda_label_get_mnemonic_widget (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), NULL);
 
@@ -6338,8 +6316,7 @@ geda_label_get_mnemonic_widget (GedaLabel *label)
  *  \param [in] label    The GedaLabel object
  *  \param [in] widget   Target GtkWidget
  */
-void
-geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
+void geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 {
   GedaLabelData *priv;
 
@@ -6482,8 +6459,7 @@ void geda_label_set_selectable (GedaLabel *label, bool setting)
  *
  * \returns Offset of the label text selection
  */
-int
-geda_label_get_selection_bound (GedaLabel *label)
+int geda_label_get_selection_bound (GedaLabel *label)
 {
   if (GEDA_IS_LABEL(label)) {
 
@@ -6511,8 +6487,7 @@ geda_label_get_selection_bound (GedaLabel *label)
  *
  * \retval %TRUE if selection is non-empty
  */
-bool
-geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
+bool geda_label_get_selection_bounds (GedaLabel  *label, int *start, int *end)
 {
   SelectionInfo *info;
 
@@ -6597,9 +6572,8 @@ bool geda_label_get_single_line_mode  (GedaLabel *label)
  * \param [in] label              The GedaLabel object
  * \param [in] single_line_mode   Desired setting
  */
-void
-geda_label_set_single_line_mode (GedaLabel *label,
-                                 bool single_line_mode)
+void geda_label_set_single_line_mode (GedaLabel *label,
+                                           bool  single_line_mode)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -6630,8 +6604,7 @@ geda_label_set_single_line_mode (GedaLabel *label,
  * \param [in] label  The GedaLabel object
  * \param [in] str    The text to be set
  */
-void
-geda_label_set_text (GedaLabel *label, const char *str)
+void geda_label_set_text (GedaLabel *label, const char *str)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -6675,8 +6648,7 @@ bool geda_label_get_track_visited_links (GedaLabel *label)
  * \param [in] label        The GedaLabel object
  * \param [in] track_links  %TRUE to track visited links
  */
-void
-geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
+void geda_label_set_track_visited_links (GedaLabel *label, bool track_links)
 {
   if (GEDA_IS_LABEL(label)) {
 
@@ -6867,8 +6839,7 @@ void geda_label_report_instances (void)
  * \param [in] end_offset   The end offset (in characters not bytes)
  *
  */
-void
-geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
+void geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
 {
   g_return_if_fail (GEDA_IS_LABEL(label));
 
@@ -6893,14 +6864,13 @@ geda_label_select_region (GedaLabel *label, int start_offset, int end_offset)
  * \par Function Description
  *  Retrieves the text alignment property of the #GedaLabel widget.
  *
- * \param [in] widget  The GedaLabel widget
+ * \param [in]  widget The GedaLabel widget
  * \param [out] xalign Pointer to float to store the horizontal alignment
  * \param [out] yalign Pointer to float to store the vertical alignment
  *
  * \sa geda_label_get_alignment
  */
-void
-geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign)
+void geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(widget));
 
@@ -6918,8 +6888,7 @@ geda_label_widget_get_alignment (GtkWidget *widget, float *xalign, float *yalign
  *
  * \sa geda_label_set_alignment
  */
-void
-geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
+void geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yalign)
 {
   g_return_if_fail (GEDA_IS_LABEL(widget));
 
@@ -6958,8 +6927,7 @@ void geda_label_widget_set_angle (GtkWidget *widget, double angle)
  *
  * \sa geda_label_get_ellipsize
  */
-PangoEllipsizeMode
-geda_label_widget_get_ellipsize (GtkWidget *widget)
+PangoEllipsizeMode geda_label_widget_get_ellipsize (GtkWidget *widget)
 {
   return geda_label_get_ellipsize ((GedaLabel*) widget);
 }
@@ -6975,8 +6943,7 @@ geda_label_widget_get_ellipsize (GtkWidget *widget)
  *
  * \sa geda_label_set_ellipsize
  */
-void
-geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
+void geda_label_widget_set_ellipsize (GtkWidget *widget, PangoEllipsizeMode mode)
 {
   geda_label_set_ellipsize ((GedaLabel*)widget, mode);
 }
@@ -7031,8 +6998,7 @@ void geda_label_widget_set_justify (GtkWidget *widget, GtkJustification jtype)
  *
  * \sa geda_label_get_label
  */
-const char*
-geda_label_widget_get_label (GtkWidget *label)
+const char *geda_label_widget_get_label (GtkWidget *label)
 {
   return geda_label_get_label((GedaLabel*)label);
 }
@@ -7047,8 +7013,7 @@ geda_label_widget_get_label (GtkWidget *label)
  *
  * \sa geda_label_get_label
  */
-void
-geda_label_widget_set_label (GtkWidget *label, const char *str)
+void geda_label_widget_set_label (GtkWidget *label, const char *str)
 {
   return geda_label_set_label ((GedaLabel*)label, str);
 }
@@ -7131,8 +7096,7 @@ const char *geda_label_widget_get_text (GtkWidget *widget)
  *
  * \sa geda_label_set_text
  */
-void
-geda_label_widget_set_text (GtkWidget *widget, const char *str)
+void geda_label_widget_set_text (GtkWidget *widget, const char *str)
 {
   geda_label_set_text ((GedaLabel*)widget,str);
 }
