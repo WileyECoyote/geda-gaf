@@ -1,3 +1,8 @@
+2018-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_place.c: Eliminate G_List pointer in geda_struct_place_
+      get_place_list.
+
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Revise outputs to use the full name of functions.
@@ -1403,7 +1408,7 @@
     * include/libgeda/geda_keyfile.h: Resolve size_t arguments to keyfile
       function => unsigned int.
 
-    * src/utility/u_program.c: Wrap memvtable with connditional to not define if
+    * src/utility/u_program.c: Wrap memvtable with conditional to not define if
       glib >= 2.44.
 
 2016-12-29 Wiley E. Hill <wileyhill@gmail.com>

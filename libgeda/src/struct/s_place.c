@@ -68,20 +68,15 @@ void geda_struct_place_free_place_list(GedaToplevel *toplevel)
  */
 GList *geda_struct_place_get_place_list(GedaToplevel *toplevel)
 {
-  GList *list;
-
   Page *page = geda_toplevel_get_current_page (toplevel);
 
   if (page) {
 
-    list = page->place_list;
+    return (page->place_list);
 
   }
-  else {
-    list = NULL;
-  }
 
-  return list;
+  return NULL;
 }
 
 /*! \brief Set Place List
