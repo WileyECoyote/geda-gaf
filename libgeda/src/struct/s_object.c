@@ -31,8 +31,7 @@
  *
  * \returns the newly created GedaObject.
  */
-GedaObject *
-geda_struct_object_new (int type, char const *name)
+GedaObject *geda_struct_object_new (int type, char const *name)
 {
   return geda_object_new(type, name);
 }
@@ -50,8 +49,7 @@ geda_struct_object_new (int type, char const *name)
  *
  * \return nothing.
  */
-void
-geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
+void geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
 
   /* if the object is on a page then add the child */
   Page *page = geda_object_get_page(parent);
@@ -77,8 +75,7 @@ geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
  * conn_list since there is no point in making the call if no connections exist.
  *
  */
-void
-geda_struct_object_release(GedaObject *o_current)
+void geda_struct_object_release(GedaObject *o_current)
 {
   if (GEDA_IS_OBJECT(o_current)) {
 
@@ -110,8 +107,7 @@ geda_struct_object_release(GedaObject *o_current)
  * \par Function Description
  *  Deletes everything including the GList
  */
-void
-geda_struct_object_release_objects(GList *list)
+void geda_struct_object_release_objects(GList *list)
 {
   GList *ptr = g_list_last(list);
 
@@ -134,8 +130,7 @@ geda_struct_object_release_objects(GList *list)
  *  Updates the CHANGED flag of the page associated with \a object
  *  if the object is attached to a page.
  */
-void
-geda_struct_object_set_page_changed (const GedaObject *object)
+void geda_struct_object_set_page_changed (const GedaObject *object)
 {
   Page *page = geda_object_get_page (object);
   geda_page_set_changed (page, TRUE);        /* possibly set CHANGED flag */
