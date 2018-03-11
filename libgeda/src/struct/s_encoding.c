@@ -81,11 +81,10 @@ static unsigned char s_encoding_Base64_rank[256] = {
  *  \param [in]  strict   Insert new lines as required by RFC 2045.
  *  \return Caller owned buffer containing base64 representation.
  */
-char*
-geda_struct_encoding_base64_encode (char         *src,
-                                    unsigned int  srclen,
-                                    unsigned int *dstlenp,
-                                    _Bool         strict)
+char *geda_struct_encoding_base64_encode (char         *src,
+                                          unsigned int  srclen,
+                                          unsigned int *dstlenp,
+                                          _Bool         strict)
 {
   char         *dst;
   unsigned int  dstpos;
@@ -195,10 +194,9 @@ geda_struct_encoding_base64_encode (char         *src,
  *          The integer pointed to by <B>dstlenp</B> is set to the length
  *          of that buffer.
  */
-char*
-geda_struct_encoding_base64_decode (char         *src,
-                                    unsigned int  srclen,
-                                    unsigned int *dstlenp)
+char *geda_struct_encoding_base64_decode (char         *src,
+                                          unsigned int  srclen,
+                                          unsigned int *dstlenp)
 {
   char *dst;
   char  res;
