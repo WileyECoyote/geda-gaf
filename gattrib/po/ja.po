@@ -47,11 +47,10 @@ msgstr "ファイルが見つかりませんでした"
 msgid "Exported schematic to"
 msgstr "回路図のエクスポート先"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "ファイルが見つかりませんでした"
+msgstr "ファイルからジオメトリをロードできませんでした"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
