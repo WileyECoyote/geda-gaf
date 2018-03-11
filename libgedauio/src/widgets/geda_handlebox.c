@@ -2009,7 +2009,7 @@ GtkPositionType geda_handle_box_get_snap_edge (GedaHandleBox *handlebox)
  *
  * \param [in] handlebox    The #GedaHandleBox object
  *
- * \returns the toolbar widget or NULL if handlebox is not a GedaHandleBox.
+ * \returns pointer to toolbar widget or NULL if handlebox is not a GedaHandleBox.
  */
 GtkToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
 {
