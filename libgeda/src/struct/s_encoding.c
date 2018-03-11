@@ -68,18 +68,19 @@ static unsigned char s_encoding_Base64_rank[256] = {
   255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255, /* 0xf0-0xff */
 };
 
-/*! \brief Convert a buffer from binary to base64 representation.
- *  \par Function Description
+/*!
+ * \brief Convert a buffer from binary to base64 representation.
+ * \par Function Description
  *  Convert a buffer from binary to base64 representation.  Set
- *  <B>strict</B> to TRUE to insert a newline every 72th character.  This is
- *  required by RFC 2045, but some applications don't require this.
+ *  <B>strict</B> to TRUE to insert a newline every 72th character.
+ *  This is  *  required by RFC 2045, but some applications do not
+ *  require this.
  *
- *  \param [in]  src      Source buffer.
- *  \param [in]  srclen   Length of source buffer.
- *  \param [out] dstlenp  Length of buffer returned
- *                        (including the terminating \\0).
- *  \param [in]  strict   Insert new lines as required by RFC 2045.
- *  \return Caller owned buffer containing base64 representation.
+ * \param [in]  src      Source buffer.
+ * \param [in]  srclen   Length of source buffer.
+ * \param [out] dstlenp  Length of buffer returned (including terminating \\0).
+ * \param [in]  strict   Insert new lines as required by RFC 2045.
+ * \return Caller owned buffer containing base64 representation.
  */
 char *geda_struct_encoding_base64_encode (char         *src,
                                           unsigned int  srclen,
@@ -180,19 +181,20 @@ char *geda_struct_encoding_base64_encode (char         *src,
   return dst;
 }
 
-/*! \brief Convert a buffer from base64 to binary representation.
- *  \par Function Description
- *  Convert a buffer from base64 to binary representation.  This
- *  function is liberal in what it will accept.  It ignores non-base64
- *  symbols.
+/*!
+ * \brief Convert a buffer from base64 to binary representation.
+ * \par Function Description
+ *  Convert a buffer from base64 to binary representation. This
+ *  function is liberal in what it will accept, it ignores non
+ *  base64 symbols.
  *
- *  \param [in]  src      Source buffer.
- *  \param [in]  srclen   Length of the source buffer.
- *  \param [out] dstlenp  Pointer to length of the destination buffer
+ * \param [in]  src      Source buffer.
+ * \param [in]  srclen   Length of the source buffer.
+ * \param [out] dstlenp  Pointer to length of the destination buffer
  *
- *  \return Caller-owned buffer with binary representation.
- *          The integer pointed to by <B>dstlenp</B> is set to the length
- *          of that buffer.
+ * \return Caller-owned buffer with binary representation.
+ *         The integer pointed to by <B>dstlenp</B> is set to the length
+ *         of that buffer.
  */
 char *geda_struct_encoding_base64_decode (char         *src,
                                           unsigned int  srclen,
