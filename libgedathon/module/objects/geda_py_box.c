@@ -125,6 +125,7 @@ Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
 
   return 0;
 }
+
 static int
 PyGedaBoxObject_print(PyGedaBoxObject *box, FILE *file, int flags)
 {
@@ -210,8 +211,11 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
 
   for (index = 0; Box_members[index].name; index++){
+
     member = &Box_members[index];
+
     str = member->name;
+
     if (!strcmp(str, name)) {
       old_value = (int*)((char *)obj + member->offset);
       break;
@@ -244,14 +248,20 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
       return -1;
     }
+
 #else
 
     new_value = long_val;
+
 #endif
+
     /* No need to do anything if new value equals the old value */
     if ( new_value != *old_value) {
-      *old_value = new_value;
+
+     *old_value = new_value;
+
       py_geda_object->dirty = 1;
+
       if(py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
@@ -331,6 +341,7 @@ initBox(PyObject *module)
   Py_INCREF(&PyGedaBoxObjectType);
   PyModule_AddObject(box_module, "Box", (PyObject *)&PyGedaBoxObjectType);
 }
+
 PyTypeObject *PyGedaBoxClass(void)
 {
   return &PyGedaBoxObjectType;
