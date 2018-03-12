@@ -192,6 +192,8 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     return -1;
   }
 
+  str = NULL;
+
   for (index = 0; Arc_members[index].name; index++){
     member = &Arc_members[index];
     str = member->name;

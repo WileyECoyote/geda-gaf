@@ -1,3 +1,8 @@
+2018-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_arc.c: Initialize string pointer to NULL in
+      Arc_set_int before loop.
+
 2017-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Utilize geda_net_set_netname setter to set the
