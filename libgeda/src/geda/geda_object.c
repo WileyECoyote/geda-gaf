@@ -60,7 +60,7 @@ enum {
 
 static GObjectClass *geda_object_parent_class = NULL;
 
-/* hold list of pointers to GedaObject instances */
+/*! Holds list of pointers to GedaObject instances */
 static GHashTable *object_hash_table = NULL;
 
 /*! Global integer for GedaObject Indentification */
@@ -695,7 +695,7 @@ bool is_a_geda_object (const void *object)
 /*!
  * \brief Increment the GedaObject Reference Count
  * \par Function Description
- *  Increases the GedaObject's reference count by one
+ *  Increases the GedaObject's reference count by one.
  *
  * \param [in,out] object Pointer to a GedaObject.
  *
@@ -712,7 +712,7 @@ GedaObject *geda_object_ref(GedaObject *object)
 /*!
  * \brief Decrement the GedaObject Reference Count
  * \par Function Description
- *  decreases the GedaObject's reference count;
+ *  Decreases the GedaObject's reference count.
  *
  * \param [in] object  Pointer to a GedaObject.
  *
@@ -751,7 +751,7 @@ void geda_object_weakref_notify (GedaObject *object)
  *
  * \sa object_weak_unref
  *
- * \param [in,out] object     GedaObject  to weak-reference.
+ * \param [in,out] object     GedaObject to weak-reference.
  * \param [in] notify_func    Weak reference notify function.
  * \param [in] user_data      Data to be passed to \a notify_func.
  */
@@ -790,8 +790,8 @@ void geda_object_weak_unref (GedaObject *object, WeakNotifyFunc notify_func, voi
  * \brief Add a weak pointer to a GedaObject.
  * \par Function Description
  *  Adds the weak pointer at \a weak_pointer_loc to \a object. The
- *  value of \a weak_pointer_loc will be set to NULL when \a object is
- *  destroyed.
+ *  value of \a weak_pointer_loc will be set to NULL when \a object
+ *  is destroyed.
  *
  * \sa object_remove_weak_ptr
  *
