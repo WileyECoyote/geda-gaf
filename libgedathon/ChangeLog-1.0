@@ -1,3 +1,8 @@
+2018-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_arc.c: Reduce the scope of py_geda_object and
+      member variables in Arc_set_int.
+
 2018-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_arc.c: Initialize string pointer to NULL in
