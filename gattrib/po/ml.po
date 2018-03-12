@@ -45,11 +45,10 @@ msgstr "ഫയൽ കണ്ടെത്താനായില്ല"
 msgid "Exported schematic to"
 msgstr "എക്സ്പോർട്ട് ചെയ്ത സ്കീമെയ്റ്റിലേക്ക്"
 
-# Could not find file
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "ഫയൽ കണ്ടെത്താനായില്ല"
+msgstr "ഫയലിൽ നിന്നും ജ്യാമിതീയമായി ലോഡുചെയ്യാൻ കഴിഞ്ഞില്ല"
 
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
