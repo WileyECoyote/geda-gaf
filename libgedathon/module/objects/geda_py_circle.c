@@ -207,8 +207,11 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   }
 
   for (index = 0; Circle_members[index].name; index++){
+
     member = &Circle_members[index];
+
     str = member->name;
+
     if (!strcmp(str, name)) {
       old_value = (int*)((char *)obj + member->offset);
       break;
@@ -241,14 +244,20 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
       return -1;
     }
+
 #else
 
     new_value = long_val;
+
 #endif
+
     /* No need to do anything if new value equals the old value */
     if ( new_value != *old_value) {
-      *old_value = new_value;
+
+     *old_value = new_value;
+
       py_geda_object->dirty = 1;
+
       if(py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
@@ -335,6 +344,7 @@ initCircle(PyObject *module)
   Py_INCREF(&PyGedaCircleObjectType);
   PyModule_AddObject(circle_module, "Circle", (PyObject *)&PyGedaCircleObjectType);
 }
+
 PyTypeObject *PyGedaCircleClass(void)
 {
   return &PyGedaCircleObjectType;
