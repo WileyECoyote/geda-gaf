@@ -582,9 +582,8 @@ msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_handlebox.c:1672
-#, fuzzy
 msgid "Handle Size"
-msgstr "Set Size"
+msgstr "Handle Size"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid "Size of the drag handle in pixels."
