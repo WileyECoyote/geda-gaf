@@ -2,6 +2,8 @@
 
     * po/de.po: Update German translations.
 
+    * po/el.po: Update Greek translations.
+
 2018-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add Doxygen subgroup GedaHandleBoxWidgets
