@@ -2117,21 +2117,21 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *menu_data)
  */
 static void x_menu_recent_files_create_empty(void)
 {
-   GKeyFile   *keyfile;
-   char       *data;
-   char       *file;
-   const char *path;
-   const char *const tmp[] = { NULL };
+   GedaKeyFile *keyfile;
+   char        *data;
+   char        *file;
+   const char  *path;
+   const char  *const tmp[] = { NULL };
 
    path    = geda_user_config_path ();
    file    = g_build_filename(path, RECENT_FILES_STORE, NULL);
-   keyfile = g_key_file_new();
+   keyfile = geda_keyfile_new();
 
-   g_key_file_set_string_list(keyfile, "Recent files", "Files", tmp, 0);
+   geda_keyfile_set_string_list(keyfile, "Recent files", "Files", tmp, 0);
 
-   data = g_key_file_to_data(keyfile, NULL, NULL);
+   data = geda_keyfile_to_data(keyfile, NULL, NULL);
 
-   g_key_file_free(keyfile);
+   geda_keyfile_free(keyfile);
    g_file_set_contents(file, data, -1, NULL);
 
    GEDA_FREE(data);
@@ -2435,15 +2435,15 @@ void x_menu_recent_files_save(void *user_data)
      p = g_list_next(p);
    }
 
-   GKeyFile *keyfile = g_key_file_new();
+   GedaKeyFile *keyfile = geda_keyfile_new();
 
-   g_key_file_set_string_list(keyfile, "Recent files", "Files", (const char**)files, num);
-   data = g_key_file_to_data(keyfile, NULL, NULL);
+   geda_keyfile_set_string_list(keyfile, "Recent files", "Files", (const char**)files, num);
+   data = geda_keyfile_to_data(keyfile, NULL, NULL);
    g_file_set_contents(file, data, -1, NULL);
 
    GEDA_FREE(data);
    GEDA_FREE(file);
-   g_key_file_free(keyfile);
+   geda_keyfile_free(keyfile);
 }
 
 /*! \brief Load the recent file list using data from RECENT_FILES_STORE.
@@ -2453,10 +2453,10 @@ void x_menu_recent_files_save(void *user_data)
  */
 void x_menu_recent_files_load()
 {
-   GKeyFile *keyfile;
-   char     *file;
+   GedaKeyFile *keyfile;
+   char *file;
 
-   keyfile = g_key_file_new();
+   keyfile = geda_keyfile_new();
    file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
 
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
@@ -2464,15 +2464,15 @@ void x_menu_recent_files_load()
      x_menu_recent_files_create_empty();
    }
 
-   if(!g_key_file_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL)) {
+   if(!geda_keyfile_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL)) {
       /* error opening key file, create an empty one and try again */
       x_menu_recent_files_create_empty();
-      if(!g_key_file_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL))
+      if(!geda_keyfile_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL))
          return;
    }
 
    size_t len;
-   char **list = g_key_file_get_string_list(keyfile, "Recent files", "Files",
+   char **list = geda_keyfile_get_string_list(keyfile, "Recent files", "Files",
                                             &len, NULL);
 
    if(list == NULL) {
@@ -2489,7 +2489,7 @@ void x_menu_recent_files_load()
 
    GEDA_FREE(list);
    GEDA_FREE(file);
-   g_key_file_free(keyfile);
+   geda_keyfile_free(keyfile);
 }
 
 /*! \brief Get the Most Recent Filename
