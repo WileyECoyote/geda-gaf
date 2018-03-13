@@ -196,9 +196,6 @@ static PyMemberDef Box_members[] = {
 
 static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 {
-  PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
-  PyMemberDef *member;
-
   char *name = PyString_AsString(key);
   char *str;
   int   index;
@@ -212,7 +209,7 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
   for (index = 0; Box_members[index].name; index++){
 
-    member = &Box_members[index];
+    PyMemberDef *member = &Box_members[index];
 
     str = member->name;
 
@@ -257,6 +254,8 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
     /* No need to do anything if new value equals the old value */
     if ( new_value != *old_value) {
+
+      PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
 
      *old_value = new_value;
 
