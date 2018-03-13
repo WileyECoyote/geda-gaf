@@ -6937,7 +6937,7 @@ void geda_combo_box_set_entry_text_column (GedaComboBox *combo_box, int text_col
  *
  * \returns current value of the add-tearoffs property.
  *
- * \sa geda_combo_widget_get_add_tearoffs
+ * \sa geda_combo_widget_set_add_tearoffs
  */
 bool geda_combo_widget_get_add_tearoffs (GtkWidget *combo_box) {
 
