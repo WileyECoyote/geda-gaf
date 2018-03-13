@@ -46,17 +46,16 @@ msgstr "Kan bestand niet vinden"
 msgid "Exported schematic to"
 msgstr ""
 
-# Could not load schematic
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Kon niet schematische laden"
+msgstr "Kan geometrie uit bestand niet laden"
 
-# Loading file
+# error creating file
 #: gattrib/src/gattrib_dialog.c:226
-#, fuzzy
+
 msgid "error creating file"
-msgstr "Laad bestand"
+msgstr "Fout bij het maken van een bestand"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
