@@ -1,5 +1,10 @@
 2018-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/objects/geda_py_circle.c: Reduce the scope of py_geda_object and
+      member variables in Circle_set_int.
+
+2018-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * module/objects/geda_py_box.c: Reduce the scope of py_geda_object and
       member variables in Box_set_int.
 
