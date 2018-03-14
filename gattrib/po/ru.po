@@ -46,17 +46,15 @@ msgstr "Не удалось найти файл"
 msgid "Exported schematic to"
 msgstr ""
 
-# Failed to load schematic
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Не удалось загрузить схему"
+msgstr "Не удалось загрузить геометрию из файла"
 
-# Download file
+# error creating file
 #: gattrib/src/gattrib_dialog.c:226
-#, fuzzy
 msgid "error creating file"
-msgstr "Загрузка файла"
+msgstr "файл с созданием ошибки"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
