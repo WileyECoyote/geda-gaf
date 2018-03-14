@@ -413,9 +413,10 @@ msgstr ""
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
+# Show style
 #: libgedauio/src/widgets/geda_font_button.c:818
 msgid "Show style"
-msgstr ""
+msgstr "הצג סגנון"
 
 #: libgedauio/src/widgets/geda_font_button.c:819
 msgid "Whether the selected font style is shown in the label"
@@ -583,19 +584,20 @@ msgstr ""
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
+# Handle Size
 #: libgedauio/src/widgets/geda_handlebox.c:1672
-#, fuzzy
 msgid "Handle Size"
-msgstr "גודל מחוון"
+msgstr "גודל ידית"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid "Size of the drag handle in pixels."
 msgstr ""
 
+# Image widget
 #: libgedauio/src/widgets/geda_image_menu_item.c:414
 #: libgedauio/src/widgets/geda_menu_button.c:1232
 msgid "Image widget"
-msgstr ""
+msgstr "רכיב widget של תמונות"
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:415
 msgid "Child widget to appear next to the menu text"
