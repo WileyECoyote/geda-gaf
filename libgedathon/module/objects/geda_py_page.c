@@ -40,8 +40,7 @@ static PyObject *geda_module;
 
 /* ------------------------- PyGedaPageObject Destructor ------------------------- */
 
-static void
-Page_dealloc(PyGedaPageObject* self)
+static void Page_dealloc(PyGedaPageObject *self)
 {
   /* should we call MethodFunctions[CLOSE_METHOD].func? */
   Py_XDECREF(self->filename);
@@ -50,8 +49,7 @@ Page_dealloc(PyGedaPageObject* self)
 
 /* ------------------------- PyGedaPageObject Constructor ------------------------ */
 
-static PyObject *
-Page_new(PyTypeObject *type, PyObject *args)
+static PyObject *Page_new(PyTypeObject *type, PyObject *args)
 {
   PyGedaPageObject *self;
 
@@ -69,8 +67,7 @@ Page_new(PyTypeObject *type, PyObject *args)
 
 /* ------------------------- PyGedaPageObject Initializer ------------------------ */
 
-static int
-Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
+static int Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_filename = NULL;
 
@@ -94,8 +91,7 @@ static PyMemberDef Page_members[] = {
 
 /* ------------------------------ Begin Methods ---------------------------- */
 
-static PyObject *
-Page_filename(PyGedaPageObject* self)
+static PyObject *Page_filename(PyGedaPageObject* self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
@@ -172,21 +168,18 @@ static PyMethodDef Page_methods[] = {
 
 /* -------------------------- PyGedaPageObject GetSeters ------------------------- */
 
-static PyObject *
-Page_getbounds(PyGedaPageObject *self, void *closure)
+static PyObject *Page_getbounds(PyGedaPageObject *self, void *closure)
 {
   return PyObject_CallMethod(geda_module, "get_bounds", "O", self);
 }
 
-static PyObject *
-Page_getfilename(PyGedaPageObject *self, void *closure)
+static PyObject *Page_getfilename(PyGedaPageObject *self, void *closure)
 {
     Py_INCREF(self->filename);
     return self->filename;
 }
 
-static int
-Page_setfilename(PyGedaPageObject *self, PyObject *value, void *closure)
+static int Page_setfilename(PyGedaPageObject *self, PyObject *value, void *closure)
 {
   PyObject *py_status;
   long result;
@@ -270,9 +263,7 @@ static PyTypeObject PyGedaPageObjectType = {
 #define PyMODINIT_FUNC void
 #endif
 
-
-PyMODINIT_FUNC
-initPage(PyObject *module)
+PyMODINIT_FUNC initPage(PyObject *module)
 {
   geda_module = module;
 
@@ -292,6 +283,7 @@ PyTypeObject *PyGedaPageClass(void)
 {
   return &PyGedaPageObjectType;
 }
+
 /*
 PyGedaPageObject *NewPyGedaPageObject(void)
 {
