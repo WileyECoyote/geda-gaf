@@ -1720,6 +1720,7 @@ static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class
 /**
  * \defgroup GedaHandleBoxFunctions Handle Box Public Functions
  * @{
+ *  \par Begin Public Accessors
  */
 
 /*!
