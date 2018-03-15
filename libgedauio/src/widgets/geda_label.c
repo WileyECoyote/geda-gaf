@@ -6402,8 +6402,11 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 bool geda_label_get_selectable (GedaLabel *label)
 {
   SelectionInfo *info;
+
   g_return_val_if_fail (GEDA_IS_LABEL(label), FALSE);
+
   info = label->priv->select_info;
+
   return info && info->selectable;
 }
 
