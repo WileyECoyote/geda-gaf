@@ -44,14 +44,15 @@ msgstr "Det gick inte att hitta filen"
 msgid "Exported schematic to"
 msgstr "Exporterad schematisk till"
 
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Det gick inte att hitta filen"
+msgstr "Kunde inte ladda geometri från fil"
 
+# error creating file
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
-msgstr ""
+msgstr "fel att skapa fil"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
