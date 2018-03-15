@@ -1,3 +1,7 @@
+2018-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc_object.c: Add Doxygen group "geda-arc-object-proc".
+
 2018-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_place.c: Eliminate G_List pointer in geda_struct_place_

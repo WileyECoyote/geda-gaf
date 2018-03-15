@@ -22,6 +22,11 @@
  *  \brief functions for the arc object
  */
 
+/** \defgroup geda-arc-object-proc GedaArc Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaArc Objects
+ */
+
 #include "../../../config.h"
 
 #include <stdio.h>
@@ -2007,3 +2012,5 @@ bool geda_arc_object_within_sweep(GedaObject *object, int x, int y)
   }
   return FALSE;
 }
+
+/** @} endgroup geda-arc-object-proc */
