@@ -84,6 +84,7 @@ Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
   return (PyObject *)self;
 }
+
 static int
 Net_init(PyGedaNetObject *self, PyObject *args, PyObject *kwds)
 {
@@ -181,8 +182,11 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   old_value = &index;
 
   for (index = 0; Net_members[index].name; index++){
+
     member = &Net_members[index];
+
     str = member->name;
+
     if (!strcmp(str, name)) {
       old_value = (int*)((char *)obj + member->offset);
       break;
@@ -220,14 +224,18 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
       return -1;
     }
+
 #else
 
     new_value = long_val;
 #endif
     /* No need to do anything if new value equals the old value */
     if ( new_value != *old_value) {
-      *old_value = new_value;
+
+     *old_value = new_value;
+
       py_geda_object->dirty = 1;
+
       if(py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
@@ -266,10 +274,11 @@ Net_set_netname(PyGedaNetObject *self, PyObject *value, void *closure)
 
   Py_DECREF(self->net_name);
   Py_INCREF(value);
-  self->net_name = value;
 
+  self->net_name = value;
   self->dirty_name = 1;
   self->object.dirty = 1;
+
   if(self->object.pid >= 0)
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
 
@@ -347,6 +356,7 @@ initNet(PyObject *module)
   Py_INCREF(&PyGedaNetObjectType);
   PyModule_AddObject(net_module, "Net", (PyObject *)&PyGedaNetObjectType);
 }
+
 PyTypeObject *PyGedaNetClass(void)
 {
   return &PyGedaNetObjectType;
