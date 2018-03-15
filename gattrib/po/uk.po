@@ -419,10 +419,10 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
+# Attribute
 #: gattrib/src/x_find.c:277
-#, fuzzy
 msgid "Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Атрибут"
 
 #: gattrib/src/x_find.c:314
 msgid "Designator"
@@ -460,35 +460,35 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+# Add new Attribute
 #: gattrib/src/x_menus.c:375
-#, fuzzy
 msgid "_Add new Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Додати новий атрибут"
 
+# Delete Attribute
 #: gattrib/src/x_menus.c:376
-#, fuzzy
 msgid "D_elete Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Видалити атрибут"
 
+# Promote Attribute
 #: gattrib/src/x_menus.c:377
-#, fuzzy
 msgid "_Promote Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Пропагувати атрибут"
 
+# Attach the selected attribute
 #: gattrib/src/x_menus.c:377 gattrib/src/x_toolbars.c:47
-#, fuzzy
 msgid "Attach the selected attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Прикріпити виділений атрибут"
 
+# Demote Attribute
 #: gattrib/src/x_menus.c:378
-#, fuzzy
 msgid "_Demote Attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Атрибут зниження"
 
+# Detach the selected attribute => Disconnect selected attribute
 #: gattrib/src/x_menus.c:378 gattrib/src/x_toolbars.c:48
-#, fuzzy
 msgid "Detach the selected attribute"
-msgstr "gEDA Attribute Editor"
+msgstr "Від'єднати вибраний атрибут"
 
 #: gattrib/src/x_menus.c:380
 msgid "Find Value"
