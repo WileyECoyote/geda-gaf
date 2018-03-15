@@ -43,8 +43,7 @@ static char PyGedaBoxObject_doc[] = PyDoc_STR("Geda Box: upper_x, upper_y, lower
 
 /* ------------------------- PyGedaBoxObject Constructor ------------------------- */
 
-static PyObject *
-Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaBoxObject *self;
   struct { int r; int g; int b; int a; }
@@ -90,8 +89,7 @@ Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 /* ------------------------- PyGedaBoxObject Initializer ------------------------- */
 
-static int
-Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
+static int Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -126,8 +124,7 @@ Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-static int
-PyGedaBoxObject_print(PyGedaBoxObject *box, FILE *file, int flags)
+static int PyGedaBoxObject_print(PyGedaBoxObject *box, FILE *file, int flags)
 {
   const char *name;
 
@@ -321,8 +318,7 @@ static PyTypeObject PyGedaBoxObjectType = {
     (newfunc)Box_new,             /* tp_new */
 };
 
-PyMODINIT_FUNC
-initBox(PyObject *module)
+PyMODINIT_FUNC initBox(PyObject *module)
 {
   geda_module = module;
 
