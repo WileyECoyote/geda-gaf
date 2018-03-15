@@ -43,8 +43,7 @@ static char PyGedaArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_ang
 
 /* ------------------------- PyGedaArcObject Constructor ------------------------- */
 
-static PyObject *
-Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaArcObject *self;
   struct { int r; int g; int b; int a; }
@@ -82,8 +81,7 @@ Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 }
 
 /* ------------------------- PyGedaArcObject Initializer ------------------------- */
-static int
-Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
+static int Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -118,8 +116,7 @@ Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-static int
-PyGedaArcObject_print(PyGedaArcObject *arc, FILE *file, int flags)
+static int PyGedaArcObject_print(PyGedaArcObject *arc, FILE *file, int flags)
 {
   const char *name;
   int  radius, x, y, start_angle, arc_sweep;
@@ -306,8 +303,7 @@ static PyTypeObject PyGedaArcObjectType = {
     (newfunc)Arc_new,             /* tp_new */
 };
 
-PyMODINIT_FUNC
-initArc(PyObject *module)
+PyMODINIT_FUNC initArc(PyObject *module)
 {
   geda_module = module;
 
