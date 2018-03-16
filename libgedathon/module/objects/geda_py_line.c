@@ -43,8 +43,7 @@ static char PyGedaLineObject_doc[] = PyDoc_STR("Geda Line: x1, y1, x2, y2 [, col
 
 /* ------------------------- PyGedaLineObject Constructor ------------------------ */
 
-static PyObject *
-Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaLineObject *self;
   struct { int r; int g; int b; int a; }
@@ -83,8 +82,7 @@ Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 /* ------------------------- PyGedaLineObject Initializer ------------------------ */
 
-static int
-Line_init(PyGedaLineObject *self, PyObject *args, PyObject *kwds)
+static int Line_init(PyGedaLineObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_name = NULL;
   PyObject *py_base_params;
@@ -115,8 +113,7 @@ Line_init(PyGedaLineObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-static int
-PyGedaLineObject_print(PyGedaLineObject *line, FILE *file, int flags)
+static int PyGedaLineObject_print(PyGedaLineObject *line, FILE *file, int flags)
 {
   const char *name;
   int   x1, x2, y1, y2;
@@ -308,8 +305,7 @@ static PyTypeObject PyGedaLineObjectType = {
     (newfunc)Line_new,               /* tp_new */
 };
 
-PyMODINIT_FUNC
-initLine(PyObject *module)
+PyMODINIT_FUNC initLine(PyObject *module)
 {
   geda_module = module;
 
