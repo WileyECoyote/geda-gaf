@@ -43,14 +43,15 @@ msgstr "Dosya bulunamadı"
 msgid "Exported schematic to"
 msgstr "Şunlara gönderilen şema:"
 
+# Could not load geometry from file
 #: gattrib/src/gattrib_dialog.c:219
-#, fuzzy
 msgid "Could not load geometry from file"
-msgstr "Dosya bulunamadı"
+msgstr "Geometri dosyadan yüklenemedi"
 
+# error creating file
 #: gattrib/src/gattrib_dialog.c:226
 msgid "error creating file"
-msgstr ""
+msgstr "dosya oluştururken hata oluştu"
 
 #: gattrib/src/g_rc.c:67
 msgid "This is gEDA/gattrib version"
