@@ -1,3 +1,7 @@
+2018-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Add Doxygen group "geda-attrib-object-proc".
+
 2018-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Add Doxygen group "geda-arc-object-proc".

@@ -40,6 +40,11 @@
  *  and in o_select when selecting objects, select the attributes
  */
 
+/** \defgroup geda-attrib-object-proc Attribute Object Procedures
+ * @{
+ * \brief Procedures for Operations with Attribute Objects
+ */
+
 #include "../../../config.h"
 
 #include <stdio.h>
@@ -1182,3 +1187,5 @@ void geda_attrib_object_thaw_hooks (GedaObject *object)
     geda_object_error(__func__, object, GEDA_OBJECT_ALL);
   }
 }
+
+/** @} endgroup geda-attrib-object-proc */
