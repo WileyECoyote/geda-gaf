@@ -229,14 +229,20 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
                       "Python int too large to convert to C int");
       return -1;
     }
+
 #else
 
     new_value = long_val;
+
 #endif
+
     /* No need to do anything if new value equals the old value */
     if ( new_value != *old_value) {
-      *old_value = new_value;
+
+     *old_value = new_value;
+
       py_geda_object->dirty = 1;
+
       if(py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
@@ -345,6 +351,7 @@ initPicture(PyObject *module)
   Py_INCREF(&PyGedaPictureObjectType);
   PyModule_AddObject(picture_module, "Picture", (PyObject *)&PyGedaPictureObjectType);
 }
+
 PyTypeObject *PyGedaPictureClass(void)
 {
   return &PyGedaPictureObjectType;
