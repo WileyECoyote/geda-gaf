@@ -2,6 +2,8 @@
 
     * src/object/o_line.c: Add Doxygen group "geda-line-object-proc".
 
+    * src/object/o_list.c: Add Doxygen file tag.
+
     * src/object/o_net_object.c: Update function wrapping and add Doxygen
       group "geda-line-object-proc".
 

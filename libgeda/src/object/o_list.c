@@ -18,6 +18,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+/*! \file o_list.c
+ *  \brief utility functions for GedaList
+ *
+ *  GedaList is a List object wrapper for GLists. The GedaListclass
+ *  provides advanced methods for manipulation of GLists, including
+ *  Gobject signals.
+ */
+
 #include "../../../config.h"
 
 #include <stdio.h>
