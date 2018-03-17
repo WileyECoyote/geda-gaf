@@ -2,6 +2,8 @@
 
     * src/object/o_line.c: Add Doxygen group "geda-line-object-proc".
 
+    * src/object/o_net_object.c: Update function wrapping.
+
 2018-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add Doxygen group "geda-attrib-object-proc".

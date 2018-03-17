@@ -57,10 +57,9 @@ geda_net_object_error(const char *func, const void *object)
  * \note The first net \a object gets the attributes of the second net
  *       \a del_object if the two nets are merged together.
  */
-static void
-geda_net_object_consolidate_lowlevel (GedaObject *object,
-                                      GedaObject *del_object,
-                                      int         orient)
+static void geda_net_object_consolidate_lowlevel (GedaObject *object,
+                                                  GedaObject *del_object,
+                                                  int         orient)
 {
   int    temp1, temp2;
   int    final1, final2;
@@ -147,8 +146,7 @@ geda_net_object_consolidate_lowlevel (GedaObject *object,
  *
  * \return TRUE if there's no midpoint connection, else return FALSE
  */
-static int
-geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
+static int geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
 {
   GList *c_current = object->conn_list;
 
@@ -163,9 +161,11 @@ geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
           conn->y == y &&
           conn->type == CONN_MIDPOINT)
       {
+
 #if DEBUG
         printf("Found one! %s\n", conn->other_object->name);
 #endif
+
         return(FALSE);
       }
     }
@@ -185,8 +185,7 @@ geda_net_object_consolidate_nomidpoint (GedaObject *object, int x, int y)
  *
  * \return 0 if no consolidation was possible, -1 otherwise
  */
-static int
-geda_net_object_consolidate_segments (GedaObject *object)
+static int geda_net_object_consolidate_segments (GedaObject *object)
 {
   GList *c_current;
   Page  *page;
@@ -275,8 +274,7 @@ geda_net_object_consolidate_segments (GedaObject *object)
  *  \param toplevel  The GedaToplevel object.
  *  \param page      The Page to consolidate nets in.
  */
-void
-geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
+void geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
 {
   const GList *iter;
   int status = 0;
@@ -313,8 +311,7 @@ geda_net_object_consolidate(GedaToplevel *toplevel, Page *page)
  *
  * \return a new net object
  */
-GedaObject *
-geda_net_object_copy( GedaObject *o_current)
+GedaObject *geda_net_object_copy( GedaObject *o_current)
 {
   if (GEDA_IS_NET(o_current)) {
 
@@ -346,8 +343,7 @@ geda_net_object_copy( GedaObject *o_current)
  * \param [in] object The line
  * \return The x coordinate for the first endpoint
  */
-int
-geda_net_object_get_x1 (const GedaObject *object)
+int geda_net_object_get_x1 (const GedaObject *object)
 {
   if (GEDA_IS_NET(object)) {
     return object->line->x[0];
@@ -388,8 +384,7 @@ geda_net_object_get_x2 (const GedaObject *object)
  *
  * \return The y coordinate for the first endpoint
  */
-int
-geda_net_object_get_y1 (const GedaObject *object)
+int geda_net_object_get_y1 (const GedaObject *object)
 {
   if (GEDA_IS_NET(object)) {
     return object->line->y[0];
@@ -409,8 +404,7 @@ geda_net_object_get_y1 (const GedaObject *object)
  *
  * \return The y coordinate for the second endpoint
  */
-int
-geda_net_object_get_y2 (const GedaObject *object)
+int geda_net_object_get_y2 (const GedaObject *object)
 {
   if (GEDA_IS_NET(object)) {
     return object->line->y[1];
@@ -430,8 +424,7 @@ geda_net_object_get_y2 (const GedaObject *object)
  *
  * \return TRUE if successfully determined the position, FALSE otherwise
  */
-bool
-geda_net_object_get_position (GedaObject *object, int *x, int *y)
+bool geda_net_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_NET(object)) {
 
@@ -455,8 +448,7 @@ geda_net_object_get_position (GedaObject *object, int *x, int *y)
  * \param [in] o_current   The GedaObject to check connectivity of
  * \return TRUE if net is fully connected, FALSE otherwise
  */
-bool
-geda_net_object_is_fully_connected (GedaObject *o_current)
+bool geda_net_object_is_fully_connected (GedaObject *o_current)
 {
   if (GEDA_IS_NET(o_current)) {
 
@@ -479,8 +471,7 @@ geda_net_object_is_fully_connected (GedaObject *o_current)
  * \param [in]     cx      x-coord of the mirror position
  * \param [in]     cy      y-coord of the mirror position.
  */
-void
-geda_net_object_mirror(GedaObject *object, int cx, int cy)
+void geda_net_object_mirror(GedaObject *object, int cx, int cy)
 {
   if (GEDA_IS_NET(object)) {
 
@@ -511,8 +502,7 @@ geda_net_object_mirror(GedaObject *object, int cx, int cy)
  * \param y          new y-coord of the net point
  * \param whichone   net point to modify
  */
-void
-geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
+void geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   if (GEDA_IS_NET(object)) {
 
@@ -541,8 +531,7 @@ geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
  * \param [in]     y2          y-coord of the second point
  * \return A new net Object
  */
-GedaObject *
-geda_net_object_new(int color, int x1, int y1, int x2, int y2)
+GedaObject *geda_net_object_new(int color, int x1, int y1, int x2, int y2)
 {
   GedaObject *new_obj;
 
@@ -569,8 +558,7 @@ geda_net_object_new(int color, int x1, int y1, int x2, int y2)
  *
  * \return The orientation: HORIZONTAL, VERTICAL or NEITHER
  */
-int
-geda_net_object_orientation(GedaObject *object)
+int geda_net_object_orientation(GedaObject *object)
 {
   if (GEDA_IS_LINE(object)) {
 
@@ -600,9 +588,8 @@ geda_net_object_orientation(GedaObject *object)
  * \param [in] origin_x     x-coord of the postscript origin
  * \param [in] origin_y     y-coord of the postscript origin
  */
-void
-geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
-                      GedaObject *o_current, int origin_x, int origin_y)
+void geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
+                           GedaObject   *o_current, int origin_x, int origin_y)
 {
   int cap_style;
   int net_width;
@@ -639,8 +626,7 @@ geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
  *
  * \note only steps of 90 degrees are allowed for the \a angle
  */
-void
-geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
+void geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
 {
   if (GEDA_IS_NET(object)) {
 
@@ -685,11 +671,10 @@ geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
  *
  * \return The object list, or NULL on error.
  */
-GedaObject *
-geda_net_object_read (const char buf[],
-                      unsigned int release_ver,
-                      unsigned int fileformat_ver,
-                      GError **err)
+GedaObject *geda_net_object_read (const char   buf[],
+                                  unsigned int release_ver,
+                                  unsigned int fileformat_ver,
+                                  GError **err)
 {
   GedaObject *new_obj;
   char type;
@@ -747,8 +732,7 @@ geda_net_object_read (const char buf[],
  *
  * \param [in] o_current   The NET GedaObject to check connectivity of
  */
-void
-geda_net_object_refresh_conn_cache(GedaObject *o_current)
+void geda_net_object_refresh_conn_cache(GedaObject *o_current)
 {
   int             num_conns = 0;
   GHashTable     *visited;
@@ -867,8 +851,7 @@ geda_net_object_refresh_conn_cache(GedaObject *o_current)
  * \param [in,out] object The line
  * \param [in] x The new x coordinate for the first endpoint
  */
-void
-geda_net_object_set_x1 (GedaObject *object, int x)
+void geda_net_object_set_x1 (GedaObject *object, int x)
 {
   if (GEDA_IS_NET(object)) {
     object->line->x[0] = x;
@@ -909,8 +892,7 @@ geda_net_object_set_x2 (GedaObject *object, int x)
  * \param [in,out] object The line
  * \param [in] y The new y coordinate for the first endpoint
  */
-void
-geda_net_object_set_y1 (GedaObject *object, int y)
+void geda_net_object_set_y1 (GedaObject *object, int y)
 {
   if (GEDA_IS_NET(object)) {
     object->line->y[0] = y;
@@ -930,8 +912,7 @@ geda_net_object_set_y1 (GedaObject *object, int y)
  * \param [in,out] object The line
  * \param [in] y The new y coordinate for the second endpoint
  */
-void
-geda_net_object_set_y2 (GedaObject *object, int y)
+void geda_net_object_set_y2 (GedaObject *object, int y)
 {
   if (GEDA_IS_NET(object)) {
     object->line->y[1] = y;
@@ -953,8 +934,7 @@ geda_net_object_set_y2 (GedaObject *object, int y)
  *
  * \return the string representation of the net Object
  */
-char *
-geda_net_object_to_buffer(GedaObject *object)
+char *geda_net_object_to_buffer(GedaObject *object)
 {
   if (GEDA_IS_NET(object)) {
 
@@ -984,8 +964,7 @@ geda_net_object_to_buffer(GedaObject *object)
  * \param [in] dx           The x-distance to move the object
  * \param [in] dy           The y-distance to move the object.
  */
-void
-geda_net_object_translate(GedaObject *object, int dx, int dy)
+void geda_net_object_translate(GedaObject *object, int dx, int dy)
 {
   if (GEDA_IS_NET(object)) {
     /* Update world coords */
