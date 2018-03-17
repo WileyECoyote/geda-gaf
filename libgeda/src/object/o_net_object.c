@@ -27,7 +27,12 @@
 #include <geda_debug.h>
 
 /*! \file o_net_object.c
- *  \brief functions for the net object
+ *  \brief Functions for the net object
+ */
+
+/** \defgroup geda-net-object-proc GedaNet Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaNet Objects
  */
 
 static void
@@ -982,3 +987,5 @@ void geda_net_object_translate(GedaObject *object, int dx, int dy)
     geda_net_object_error(__func__, object);
   }
 }
+
+/** @} endgroup geda-net-object-proc */
