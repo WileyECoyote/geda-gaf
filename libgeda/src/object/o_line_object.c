@@ -20,7 +20,7 @@
  */
 
 /*! \file o_line_object.c
- *  \brief functions for the line object
+ *  \brief Functions for the line object
  */
 
 /** \defgroup geda-line-object-proc GedaLine Object Procedures

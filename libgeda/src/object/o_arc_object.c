@@ -19,7 +19,7 @@
  */
 
 /*! \file o_arc_object.c
- *  \brief functions for the arc object
+ *  \brief Functions for the arc object
  */
 
 /** \defgroup geda-arc-object-proc GedaArc Object Procedures
