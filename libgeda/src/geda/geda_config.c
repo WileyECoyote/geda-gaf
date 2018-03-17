@@ -155,7 +155,7 @@ static void eda_config_set_property (GObject *object, unsigned int property_id,
       priv->parent_handler_id =
         g_signal_connect_object (parent,
                                  "config-changed",
-                                 (GCallback) parent_config_changed_handler,
+                                 G_CALLBACK (parent_config_changed_handler),
                                  config,
                                  G_CONNECT_SWAPPED);
     }
