@@ -1,4 +1,8 @@
-2018-03-03 Wiley E. Hill <wileyhill@gmail.com>
+2018-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_line.c: Add Doxygen group "geda-line-object-proc".
+
+2018-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add Doxygen group "geda-attrib-object-proc".
 

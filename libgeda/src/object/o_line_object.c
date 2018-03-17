@@ -23,6 +23,11 @@
  *  \brief functions for the line object
  */
 
+/** \defgroup geda-line-object-proc GedaLine Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaLine Objects
+ */
+
 #include "../../../config.h"
 
 #include <stdio.h>
@@ -229,6 +234,7 @@ bool geda_line_object_get_intersection(GedaObject *object1,
         point->y = slope2 * point->x + b21 + 0.5; /* solve for y2(1) at x */
 
 #endif
+
       }
 
       intersect = TRUE;
@@ -1955,3 +1961,5 @@ void geda_line_object_translate( GedaObject *object, int dx, int dy)
   /* Update bounding line */
   object->w_bounds_valid_for = NULL;
 }
+
+/** @} endgroup geda-line-object-proc */
