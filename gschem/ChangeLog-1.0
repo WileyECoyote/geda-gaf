@@ -1,5 +1,7 @@
 2018-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_move.c: Declare cl_current const in o_move_check_endpoint.
+
     * src/object/o_net.c: Declare cl_current2 const in o_net_add_busrippers.
 
 2018-03-13 Wiley E. Hill <wileyhill@gmail.com>

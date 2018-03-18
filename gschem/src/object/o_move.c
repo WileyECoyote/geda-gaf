@@ -532,7 +532,7 @@ int o_move_return_whichone(GedaObject *object, int x, int y)
 static void o_move_check_endpoint(GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GList        *cl_current;
+  const GList  *cl_current;
 
   for (cl_current = geda_object_get_conn_list(object); cl_current; NEXT(cl_current))
   {
