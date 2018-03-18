@@ -793,6 +793,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
     if (GEDA_IS_BUS(ukn_object)) {
 
+      const GList *cl_current2;
+
       GedaBus  *bus_object  = (GedaBus*)ukn_object;
       GedaLine *line_object = (GedaLine*)bus_object;
 
@@ -800,7 +802,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       int net_orientation = geda_net_object_orientation(net_obj);
 
       /* find the CONN structure which is associated with this object */
-      GList *cl_current2 = net_obj->conn_list;
+      cl_current2 = geda_object_get_conn_list(net_obj);
       done = FALSE;
 
       while (cl_current2 != NULL && !done) {
