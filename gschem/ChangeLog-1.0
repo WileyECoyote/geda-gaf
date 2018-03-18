@@ -2,7 +2,8 @@
 
     * src/object/o_move.c: Declare cl_current const in o_move_check_endpoint.
 
-    * src/object/o_net.c: Declare cl_current2 const in o_net_add_busrippers.
+    * src/object/o_net.c: Declare cl_current2 const in o_net_add_busrippers
+      and remove variable Done, just break out of inner while.
 
 2018-03-13 Wiley E. Hill <wileyhill@gmail.com>
 

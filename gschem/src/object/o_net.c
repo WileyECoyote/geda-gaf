@@ -753,7 +753,6 @@ int o_net_add_busrippers(GschemToplevel *w_current,
   double  distance1, distance2;
   double  length;
   int     color;
-  int     done;
   int     otherone;
   int     ripper_count = 0;
   int     sign;
@@ -803,9 +802,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
 
       /* find the CONN structure which is associated with this object */
       cl_current2 = geda_object_get_conn_list(net_obj);
-      done = FALSE;
 
-      while (cl_current2 != NULL && !done) {
+      while (cl_current2 != NULL) {
 
         CONN *tmp_conn = (CONN*) cl_current2->data;
 
@@ -814,7 +812,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
         {
 
           found_conn = tmp_conn;
-          done = TRUE;
+          break;
         }
 
         cl_current2 = cl_current2->next;
