@@ -5,6 +5,8 @@
     * emechanic/switch/switch_spdt-2.sym: Reduce the radius of the circles used
       to depict contacts, looked gaudy.
 
+    * emechanic/switch/switch_spdt-3.sym: Update license attributes.
+
 2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/LM75-1.sym: Update attribute locations and visibility.
