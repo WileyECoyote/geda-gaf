@@ -1,5 +1,7 @@
 2018-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * emechanic/relay/relay-2.sym: Update refdes REL -> RL.
+
     * emechanic/switch/switch_spdt-2.sym: Reduce the radius of the circles used
       to depict contacts, looked gaudy.
 
