@@ -95,7 +95,7 @@ L 350 400 300 400 3 0 0 0 -1 -1
 T 300 700 8 8 1 1 0 1 1
 description=OMRON G5V-1
 T 300 800 8 10 1 1 0 0 1
-refdes=K?
+refdes=RL?
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1

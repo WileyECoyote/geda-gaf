@@ -4,7 +4,7 @@ device=OMRON_G2R-24-DC5
 T 100 1600 5 10 1 1 0 0 1
 description=OMRON G5V-1
 T 100 1000 5 10 1 1 0 0 1
-refdes=K?
+refdes=RL?
 V 275 800 25 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 0 800 200 800 1 0 0
 {

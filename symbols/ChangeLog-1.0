@@ -2,6 +2,15 @@
 
     * emechanic/relay/relay-2.sym: Update refdes REL -> RL.
 
+    * emechanic/relay: Update refdes K -> RL:
+
+            * emechanic/relay/Meder_DIPxx-1C90-51D_reed_relay-1.sym
+            * emechanic/relay/Meder_DIPxx-1C90-51D_reed_relay-2.sym
+            * emechanic/relay/Meder_SILxx-1A72-71D_reed_relay-1.sym
+            * emechanic/relay/Meder_SILxx-1A72-71D_reed_relay-2.sym
+            * emechanic/relay/OMRON_G2R-24-DC5_relay_dpdt-1.sym
+            * emechanic/relay/OMRON_G2R-24-DC5_relay_spdt-1.sym
+
     * emechanic/relay/relay-spst-1.sym: Add new symbol for simple single-pole
       single-throw normally open relay.
 
