@@ -11,6 +11,9 @@
             * emechanic/relay/OMRON_G2R-24-DC5_relay_dpdt-1.sym
             * emechanic/relay/OMRON_G2R-24-DC5_relay_spdt-1.sym
 
+    * emechanic/relay/relay-dpst-1.sym: Add new symbol for simple douple-pole
+      single-throw normally open relay.
+
     * emechanic/relay/relay-spst-1.sym: Add new symbol for simple single-pole
       single-throw normally open relay.
 
