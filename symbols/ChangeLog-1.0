@@ -14,6 +14,9 @@
     * emechanic/relay/relay-dpst-1.sym: Add new symbol for simple douple-pole
       single-throw normally open relay.
 
+    * emechanic/relay/relay-dpst-2.sym: Add new symbol for simple douple-pole
+      single-throw normally closed relay.
+
     * emechanic/relay/relay-spst-1.sym: Add new symbol for simple single-pole
       single-throw normally open relay.
 
