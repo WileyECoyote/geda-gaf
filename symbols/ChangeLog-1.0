@@ -2,6 +2,9 @@
 
     * emechanic/relay/relay-2.sym: Update refdes REL -> RL.
 
+    * emechanic/relay/relay-spst-1.sym: Add new symbol for simple single-pole
+      single-throw normally open relay.
+
     * emechanic/switch/switch_spdt-1.sym: Update description attribute.
 
     * emechanic/switch/switch_spdt-2.sym: Reduce the radius of the circles used
