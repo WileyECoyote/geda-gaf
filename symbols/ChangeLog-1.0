@@ -5,6 +5,9 @@
     * emechanic/relay/relay-spst-1.sym: Add new symbol for simple single-pole
       single-throw normally open relay.
 
+    * emechanic/relay/relay-spst-2.sym: Add new symbol for simple single-pole
+      single-throw normally closed relay.
+
     * emechanic/switch/switch_spdt-1.sym: Update description attribute.
 
     * emechanic/switch/switch_spdt-2.sym: Reduce the radius of the circles used
