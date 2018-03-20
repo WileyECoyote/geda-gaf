@@ -1,3 +1,8 @@
+2018-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_net.c: Remove unnecessary initialization of magnetic_reach
+      in o_net_find_magnetic.
+
 2018-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Declare cl_current const in o_move_check_endpoint.

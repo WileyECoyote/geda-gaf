@@ -96,7 +96,7 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
   int x1, x2, y1, y2, min_x, min_y, w_magnetic_reach;
   double min_dist, min_best, dist1, dist2;
   double weight, min_weight;
-  int magnetic_reach = 0;
+  int    magnetic_reach;
   GedaObject *o_current;
   GedaObject *o_magnetic = NULL;
   GList *objectlists, *iter1, *iter2;
