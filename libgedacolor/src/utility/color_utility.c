@@ -159,8 +159,7 @@ long u_color_dist(COLOR *c1, COLOR *c2)
     return Yred2 * r * r + Ygre2 * g * g + Yblu2 * b * b;
 }
 
-char *
-geda_color_utility_lookup_name(COLOR *c1, GError **err)
+char *geda_color_utility_lookup_name(COLOR *c1, GError **err)
 {
   GArray *color_table = geda_color_get_standard_names();
   int     index;

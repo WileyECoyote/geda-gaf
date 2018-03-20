@@ -43,8 +43,7 @@
 extern COLOR display_colors[MAX_COLORS];
 extern COLOR outline_colors[MAX_COLORS];
 
-char*
-geda_color_get_color_name(int index, GArray *cmap, GError **err)
+char *geda_color_get_color_name(int index, GArray *cmap, GError **err)
 {
   int limit;
 
