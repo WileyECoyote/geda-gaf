@@ -512,7 +512,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
 #if DEBUG
       printf("primary:\n");
-      geda_struct_conn_print(new_net->conn_list);
+      geda_struct_conn_print(geda_object_get_conn_list(new_net));
 #endif
 
       /* Go off and search for valid connection on this newly created net */
@@ -546,7 +546,7 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
       o_net_add_busrippers (w_current, new_net, prev_conn_objects);
       g_list_free (prev_conn_objects);
 #if DEBUG
-      geda_struct_conn_print(new_net->conn_list);
+      geda_struct_conn_print(geda_object_get_conn_list(new_net));
 #endif
   }
 
