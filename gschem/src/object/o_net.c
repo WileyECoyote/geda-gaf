@@ -123,6 +123,8 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
     for (iter2 = (GList*) iter1->data; iter2 != NULL; NEXT(iter2)) {
 
       int left, top, right, bottom;
+      int o_type;
+
       o_current = (GedaObject*) iter2->data;
 
       if (!geda_object_get_bounds(o_current, &left, &top, &right, &bottom) ||
@@ -131,8 +133,10 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
         continue; /* skip invisible objects */
       }
 
-      if (o_current->type == OBJ_PIN)
-      {
+      o_type = geda_get_object_type(o_current);
+
+      if (o_type == OBJ_PIN) {
+
         min_x = o_current->line->x[o_current->pin->whichend];
         min_y = o_current->line->y[o_current->pin->whichend];
 
@@ -145,8 +149,8 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
 
         weight = min_dist / MAGNETIC_PIN_WEIGHT;
       }
-      else if (o_current->type == OBJ_NET || o_current->type == OBJ_BUS)
-      {
+      else if (o_type == OBJ_NET || o_type == OBJ_BUS) {
+
         /* we have 3 possible points to connect:
          *   2 endpoints and 1 midpoint point */
         x1 = o_current->line->x[0];
@@ -198,7 +202,7 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
           }
         }
 
-        if (o_current->type == OBJ_BUS)
+        if (o_type == OBJ_BUS)
           weight = min_dist / MAGNETIC_BUS_WEIGHT;
         else /* OBJ_NET */
           weight = min_dist / MAGNETIC_NET_WEIGHT;
@@ -220,7 +224,8 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
 
   /* check whether we found an object and if it's close enough */
   if (o_magnetic != NULL) {
-    switch (o_magnetic->type) {
+
+    switch (geda_get_object_type(o_magnetic)) {
       case (OBJ_PIN): magnetic_reach = MAGNETIC_PIN_REACH; break;
       case (OBJ_NET): magnetic_reach = MAGNETIC_NET_REACH; break;
       case (OBJ_BUS): magnetic_reach = MAGNETIC_BUS_REACH; break;

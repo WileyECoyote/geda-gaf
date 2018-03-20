@@ -1,7 +1,8 @@
 2018-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_net.c: Remove unnecessary initialization of magnetic_reach
-      in o_net_find_magnetic.
+    * src/object/o_net.c: Revise o_net_find_magnetic to utilize accessors
+      geda_get_object_type; add ancillary o_type, and remove unnecessary
+      initialization of magnetic_reach.
 
 2018-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
