@@ -202,10 +202,12 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
           }
         }
 
-        if (o_type == OBJ_BUS)
+        if (o_type == OBJ_BUS) {
           weight = min_dist / MAGNETIC_BUS_WEIGHT;
-        else /* OBJ_NET */
+        }
+        else { /* OBJ_NET */
           weight = min_dist / MAGNETIC_NET_WEIGHT;
+        }
       }
       else { /* neither pin nor net or bus */
         continue;
