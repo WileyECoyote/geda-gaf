@@ -452,8 +452,9 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
   o_net_invalidate_rubber (w_current);
 
-  if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1)
+  if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
     o_net_finish_magnetic(w_current);
+  }
 
   w_current->rubber_visible = FALSE;
 
