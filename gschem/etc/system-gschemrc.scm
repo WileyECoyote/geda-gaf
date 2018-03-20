@@ -290,8 +290,8 @@
 ; Set 2 Major: Green
 ;(mesh-grid-major-color 22084 3125 63070)
 ;
-; Set 3 Major: Yellow
-(mesh-grid-major-color 46956 4943 42960)
+; Set 3 Major: Magenta 3
+(mesh-grid-major-color 52585 0 52585)
 
 ;END ------------------------> Grid Setup <-------------------------
 

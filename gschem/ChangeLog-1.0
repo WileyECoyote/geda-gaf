@@ -1,5 +1,10 @@
 2018-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Change mesh-grid-major-color to Magenta 3 for
+      better contrast, particularly helpful at high zoom levels.
+
+    * etc/user-gschemrc.scm: Change mesh-grid-major-color to Magenta 3.
+
     * src/object/o_net.c: Revise o_net_find_magnetic to utilize accessors
       geda_get_object_type; add ancillary o_type, and remove unnecessary
       initialization of magnetic_reach. Revise debug output to utilize
