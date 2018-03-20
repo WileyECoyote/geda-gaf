@@ -2600,8 +2600,8 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
   if (!ThisDialog) {
 
-    GtkWidget *label = NULL;
-    GtkWidget *vbox;
+    GtkWidget *label;
+    GtkBox    *vbox;
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Hide Text"),
                             w_current->main_window,
@@ -2620,13 +2620,13 @@ void x_dialog_hide_text(GschemToplevel * w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GEDA_RESPONSE_ACCEPT);
 
-    vbox = GTK_DIALOG(ThisDialog)->vbox;
+    vbox = (GtkBox*)GTK_DIALOG(ThisDialog)->vbox;
 
     label = geda_aligned_label_new(_("Hide text starting with:"), 0, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
+    gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
 
     textentry = gtk_entry_new_with_max_length(HIDE_DIALOG_MAX_ENTRY);
-    gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
+    gtk_box_pack_start(vbox, textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 

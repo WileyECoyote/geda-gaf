@@ -5,6 +5,8 @@
       initialization of magnetic_reach. Revise debug output to utilize
       geda_object_get_conn_list.
 
+    * src/x/x_dialog.c: Change vbox in x_dialog_hide_text to type GtkBox.
+
 2018-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Declare cl_current const in o_move_check_endpoint.
