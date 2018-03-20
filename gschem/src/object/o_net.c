@@ -93,15 +93,17 @@ static void o_net_continue(GschemToplevel *w_current, int w_x, int w_y)
 static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  int x1, x2, y1, y2, min_x, min_y, w_magnetic_reach;
+  GedaObject   *o_current;
+  GedaObject   *o_magnetic;
+  GList        *objectlists, *iter1, *iter2;
+
+  int    x1, x2, y1, y2, min_x, min_y, w_magnetic_reach;
   double min_dist, min_best, dist1, dist2;
   double weight, min_weight;
   int    magnetic_reach;
-  GedaObject *o_current;
-  GedaObject *o_magnetic = NULL;
-  GList *objectlists, *iter1, *iter2;
 
-  min_best = min_x = min_y = 0;
+  o_magnetic = NULL;
+  min_best   = min_x = min_y = 0;
   min_weight = 0;
 
   /* max distance of all the different reaches */
@@ -215,7 +217,7 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
 
       if (o_magnetic == NULL || weight < min_weight) {
 
-        min_best = min_dist;
+        min_best   = min_dist;
         min_weight = weight;
         o_magnetic = o_current;
         w_current->magnetic_wx = min_x;
@@ -232,6 +234,7 @@ static void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
       case (OBJ_NET): magnetic_reach = MAGNETIC_NET_REACH; break;
       case (OBJ_BUS): magnetic_reach = MAGNETIC_BUS_REACH; break;
     }
+
     if (min_best > WORLDabs (w_current, magnetic_reach)) {
       w_current->magnetic_wx = -1;
       w_current->magnetic_wy = -1;
@@ -532,10 +535,10 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
 
       /* Add secondary net */
       new_net = geda_net_object_new(color,
-                          w_current->second_wx, w_current->second_wy,
-                          w_current->third_wx, w_current->third_wy);
+                                    w_current->second_wx, w_current->second_wy,
+                                    w_current->third_wx, w_current->third_wy);
 
-      new_net->line_options->line_width =  geda_object_style_get_net_width(toplevel);
+      new_net->line_options->line_width = geda_object_style_get_net_width(toplevel);
       geda_struct_page_append_object (toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
@@ -545,9 +548,11 @@ static void o_net_end(GschemToplevel *w_current, int w_x, int w_y)
       prev_conn_objects = geda_struct_conn_return_others (NULL, new_net);
       o_net_add_busrippers (w_current, new_net, prev_conn_objects);
       g_list_free (prev_conn_objects);
+
 #if DEBUG
       geda_struct_conn_print(geda_object_get_conn_list(new_net));
 #endif
+
   }
 
   /* Call add-objects-hook */
