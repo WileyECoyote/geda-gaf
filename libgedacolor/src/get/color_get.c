@@ -164,8 +164,10 @@ GArray *geda_color_get_outline_map(void)
 GArray *geda_color_get_print_map(void)
 {
   GArray *color_map;
+
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, print_colors, MAX_COLORS);
+
   return color_map;
 }
 
@@ -193,7 +195,8 @@ char *geda_color_get_print_color (int color)
 
   if ((c.a == 0) || !c.enabled) {
     return NULL;
-  } else {
+  }
+  else {
     return geda_sprintf ("%.3f %.3f %.3f",
                             (double) c.r/255.0,
                             (double) c.g/255.0,
