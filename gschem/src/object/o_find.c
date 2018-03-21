@@ -80,7 +80,8 @@ static void o_find_disposition_object (GschemToplevel *w_current,
 {
   if (mode == SELECTION_REPLACE) {
 
-    if (object->type == OBJ_NET && w_current->net_selection_mode) {
+    if (geda_get_object_type(object) == OBJ_NET &&
+        w_current->net_selection_mode) {
       o_select_connected_nets (w_current, object);
     }
     else {
