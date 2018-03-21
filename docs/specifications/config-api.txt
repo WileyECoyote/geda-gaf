@@ -46,8 +46,8 @@ of both libgeda and applications based on it.  The API is designed for
 not only saving and loading static configuration data to and from
 permanent storage, but also to allow on-line event-driven updates to
 the configuration state.  The API is designed to be equally usable
-from C code and from Scheme extensions.  It is heavily inspired by the
-``GKeyFile`` API from GLib, with a few changes and enhancements
+from C code and from Scheme extensions.  It is heavily inspired by
+the GKeyFile API from GLib, with a few changes and enhancements
 [GLIB]_.
 
 Error Handling
