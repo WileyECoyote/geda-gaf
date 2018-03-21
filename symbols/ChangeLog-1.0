@@ -1,3 +1,8 @@
+2018-03-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols/geda-clib.scm: Change the text displayed for the zener52 symbols;
+      "Zener Diodes" -> "Zeners 52 Series".
+
 2018-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay/relay-2.sym: Update refdes REL -> RL.
