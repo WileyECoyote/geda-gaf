@@ -1561,7 +1561,7 @@ COMMAND (do_move)
       o_move_start (w_current, CMD_X(do_move), CMD_Y(do_move));
     }
     else {
-      w_current->event_state   = MOVEMODE;
+      w_current->event_state = MOVEMODE;
       i_status_action_stop(w_current);
       x_toolbars_update (w_current);
       i_status_show_msg(w_current, "Move from point");
