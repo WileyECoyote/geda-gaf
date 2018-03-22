@@ -638,7 +638,7 @@ i_event_paster_released(GtkWidget      *widget,
  * \brief Cancel Action Event Handler
  * \par Function Description
  *  Terminates the Action Event Handler and sets the
- *  event state to SELECT mode, invaliding all.
+ *  event state to SELECT mode, invalidate all.
  *
  * \sa i_event_stop_action_handler
  */
