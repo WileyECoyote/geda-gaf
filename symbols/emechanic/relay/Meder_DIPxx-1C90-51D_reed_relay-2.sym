@@ -79,7 +79,7 @@ description=Reed-Relay Meder DIPxx-1C90-51D
 T 100 1700 5 10 0 0 0 0 1
 numslots=0
 T 100 1900 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 100 2100 5 10 0 0 0 0 1
 use-license=unlimited
 T 100 2300 5 10 0 0 0 0 1

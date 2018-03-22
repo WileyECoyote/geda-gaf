@@ -6,6 +6,15 @@
             * emechanic/relay/LCC110_ssrelay_spdt-1.sym
             * emechanic/relay/MPDC-Relay.sym
 
+    * emechanic/relay: Update dist-license=GPLv2:
+
+            * relay/Meder_DIPxx-1C90-51D_reed_relay-1.sym
+            * relay/Meder_DIPxx-1C90-51D_reed_relay-2.sym
+            * relay/Meder_SILxx-1A72-71D_reed_relay-1.sym
+            * relay/Meder_SILxx-1A72-71D_reed_relay-2.sym
+            * relay/Relais_FP2_relay_dpdt-2.sym
+            * relay/Relais_T7CV5D_relay_spdt-2.sym
+
 2018-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/geda-clib.scm: Change the text displayed for the zener52 symbols;

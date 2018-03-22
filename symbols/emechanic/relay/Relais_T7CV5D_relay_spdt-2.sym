@@ -81,7 +81,7 @@ L 1100 900 800 1200 3 10 2 0 -1 -1
 L 1100 500 900 500 3 10 2 0 -1 -1
 L 900 500 900 700 3 10 2 0 -1 -1
 T 500 2700 5 8 0 0 0 0 1
-dist-license=GPL 3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 500 2500 5 8 0 0 0 0 1
 use-license=free, no restrictions
 T 600 100 9 10 0 0 0 0 1

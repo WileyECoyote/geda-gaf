@@ -120,7 +120,7 @@ symversion=1.0
 T 500 3100 5 8 0 0 0 0 1
 author=Kai-Martin Knaak kmk@lilalaser.de
 T 500 2900 5 8 0 0 0 0 1
-dist-license=GPL 3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 500 2700 5 8 0 0 0 0 1
 use-license=free, no restrictions
 T 500 3700 5 8 0 0 0 0 1

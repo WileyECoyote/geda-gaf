@@ -69,6 +69,6 @@ description=Reed-Relay_Meder_SILxx-1A72-71D
 T 0 1500 5 10 0 0 0 0 1
 numslots=0
 T 0 1700 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 0 1900 5 10 0 0 0 0 1
 use-license=unlimited
