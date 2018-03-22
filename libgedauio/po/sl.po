@@ -412,9 +412,10 @@ msgstr ""
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
+# Show style
 #: libgedauio/src/widgets/geda_font_button.c:818
 msgid "Show style"
-msgstr ""
+msgstr "Pokaži slog"
 
 #: libgedauio/src/widgets/geda_font_button.c:819
 msgid "Whether the selected font style is shown in the label"
@@ -581,10 +582,10 @@ msgstr ""
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
+# Handle Size
 #: libgedauio/src/widgets/geda_handlebox.c:1672
-#, fuzzy
 msgid "Handle Size"
-msgstr "kazalec Velikost"
+msgstr "Velikost ročaja"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid "Size of the drag handle in pixels."
