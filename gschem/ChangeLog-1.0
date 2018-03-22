@@ -1,6 +1,7 @@
 2018-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_edit.c: Reformat Doxygen blocks.
+    * src/object/o_edit.c: Reformat Doxygen blocks. Reduce scope of the return
+      value variable in o_edit_find_text.
 
 2018-03-21 Wiley E. Hill <wileyhill@gmail.com>
 

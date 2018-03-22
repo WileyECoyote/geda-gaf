@@ -872,7 +872,6 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
   GedaToplevel *toplevel = w_current->toplevel;
   int   count            = 0;
   int   page_control     = 0;
-  int   rv;
   int   text_screen_height;
 
   const GList *iter;
@@ -973,6 +972,9 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
           if (child_page != NULL) {
 
+            GList *children;
+            int rv;
+
             x_window_setup_page(w_current, child_page, w_current->world_left,
                                                        w_current->world_right,
                                                        w_current->world_top,
@@ -984,7 +986,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                                 (ChangeNotifyFunc) o_invalidate_object,
                                 (ChangeNotifyFunc) o_invalidate_object, w_current);
 
-            GList *children = geda_struct_page_get_objects (child_page);
+            children = geda_struct_page_get_objects (child_page);
 
             i_zoom_world_extents(w_current, children, I_PAN_DONT_REDRAW);
 
