@@ -236,8 +236,7 @@ void o_move_end(GschemToplevel *w_current)
 
       if (GEDA_IS_COMPLEX(object)) {
 
-        /* this next block of code is from */
-        /* o_complex_world_translate_world */
+        /* From geda_complex_object_translate */
         object->complex->x = object->complex->x + diff_x;
         object->complex->y = object->complex->y + diff_y;
 
