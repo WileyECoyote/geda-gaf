@@ -3,6 +3,9 @@
     * src/object/o_edit.c: Reformat Doxygen blocks. Reduce scope of the return
       value variable in o_edit_find_text.
 
+     * gschem/src/x/x_menus.c: Include geda_dialog_controls.h and utilize
+       GTK_CALLBACK_TOGGLED macro.
+
 2018-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_find.c: Use geda_get_object_type in o_find_disposition_

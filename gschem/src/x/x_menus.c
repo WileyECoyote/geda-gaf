@@ -32,6 +32,7 @@
 #include "../../include/x_menus.h"
 #include "../../include/i_actions.h"
 
+#include <geda/geda_dialog_controls.h>
 #include <geda/geda_stat.h>
 #include <geda_widgets.h>
 
@@ -474,9 +475,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     radio_data->w_current = w_current;
     radio_data->widget    = (GedaCheckMenuItem*)radio_button;
 
-    radio_data->handler   = g_signal_connect(radio_button, "toggled",
-                                             G_CALLBACK(func),
-                                             w_current);
+    radio_data->handler   = GTK_CALLBACK_TOGGLED(radio_button, func, w_current);
 
     w_current->toolbar_mode_grp = g_slist_append (w_current->toolbar_mode_grp,
                                                   radio_data);
@@ -930,15 +929,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     geda_menu_shell_prepend(menu_shell, menu_item);
 
-    g_signal_connect(vw_dots_radio, "toggled",
-                                     G_CALLBACK(x_menu_grid_dots_mode),
-                                     w_current);
-    g_signal_connect(vw_mesh_radio, "toggled",
-                                     G_CALLBACK(x_menu_grid_mesh_mode),
-                                     w_current);
-    g_signal_connect(vw_none_radio, "toggled",
-                                     G_CALLBACK(x_menu_grid_none_mode),
-                                     w_current);
+    GTK_CALLBACK_TOGGLED(vw_dots_radio, x_menu_grid_dots_mode, w_current);
+    GTK_CALLBACK_TOGGLED(vw_mesh_radio, x_menu_grid_mesh_mode, w_current);
+    GTK_CALLBACK_TOGGLED(vw_none_radio, x_menu_grid_none_mode, w_current);
+
     gtk_widget_show_all(menu_item);
 
     if (w_current->toolbars == TRUE) {
@@ -1016,9 +1010,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       gtk_widget_set_tooltip_text(tb_tips_toggle, _("Toggle visibility of tooltips on toolbars"));
 
-      g_signal_connect (tb_tips_toggle, "toggled",
-                        G_CALLBACK(x_window_toolbar_tips_toggle),
-                        w_current);
+      GTK_CALLBACK_TOGGLED (tb_tips_toggle, x_window_toolbar_tips_toggle, w_current);
 
       tb_separator  = geda_menu_item_new();
       geda_container_add(toggle_menu, tb_separator);
@@ -1080,33 +1072,15 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       geda_menu_shell_prepend(menu_shell, menu_item);
 
-      g_signal_connect (stdbar_toggle, "toggled",
-                        G_CALLBACK(x_window_standard_toolbar_toggle),
-                        w_current);
-      g_signal_connect (selbar_toggle, "toggled",
-                        G_CALLBACK(x_window_select_toolbar_toggle),
-                        w_current);
-      g_signal_connect (pagebar_toggle, "toggled",
-                        G_CALLBACK(x_window_page_toolbar_toggle),
-                        w_current);
-      g_signal_connect (addbar_toggle, "toggled",
-                        G_CALLBACK(x_window_add_toolbar_toggle),
-                        w_current);
-      g_signal_connect (zoombar_toggle, "toggled",
-                        G_CALLBACK(x_window_zoom_toolbar_toggle),
-                        w_current);
-      g_signal_connect (symbar_toggle, "toggled",
-                        G_CALLBACK(x_window_symbol_toolbar_toggle),
-                        w_current);
-      g_signal_connect (editbar_toggle, "toggled",
-                        G_CALLBACK(x_window_edit_toolbar_toggle),
-                        w_current);
-      g_signal_connect (attribar_toggle, "toggled",
-                        G_CALLBACK(x_window_attribute_toolbar_toggle),
-                        w_current);
-      g_signal_connect (gridbar_toggle, "toggled",
-                        G_CALLBACK(x_window_gridsnap_toolbar_toggle),
-                        w_current);
+      GTK_CALLBACK_TOGGLED (stdbar_toggle,   x_window_standard_toolbar_toggle,  w_current);
+      GTK_CALLBACK_TOGGLED (selbar_toggle,   x_window_select_toolbar_toggle,    w_current);
+      GTK_CALLBACK_TOGGLED (pagebar_toggle,  x_window_page_toolbar_toggle,      w_current);
+      GTK_CALLBACK_TOGGLED (addbar_toggle,   x_window_add_toolbar_toggle,       w_current);
+      GTK_CALLBACK_TOGGLED (zoombar_toggle,  x_window_zoom_toolbar_toggle,      w_current);
+      GTK_CALLBACK_TOGGLED (symbar_toggle,   x_window_symbol_toolbar_toggle,    w_current);
+      GTK_CALLBACK_TOGGLED (editbar_toggle,  x_window_edit_toolbar_toggle,      w_current);
+      GTK_CALLBACK_TOGGLED (attribar_toggle, x_window_attribute_toolbar_toggle, w_current);
+      GTK_CALLBACK_TOGGLED (gridbar_toggle,  x_window_gridsnap_toolbar_toggle,  w_current);
 
       gtk_widget_show_all(menu_item);
     }
@@ -1150,13 +1124,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     geda_menu_shell_prepend(menu_shell, menu_item);
 
-    g_signal_connect (menu_icons_toggle, "toggled",
-                      G_CALLBACK(x_menu_toggle_icons),
-                      MENU_ITEMS_LIST);
-
-    g_signal_connect (menu_tips_toggle, "toggled",
-                      G_CALLBACK(x_menu_toggle_main_tips),
-                      w_current);
+    GTK_CALLBACK_TOGGLED (menu_icons_toggle, x_menu_toggle_icons, MENU_ITEMS_LIST);
+    GTK_CALLBACK_TOGGLED (menu_tips_toggle, x_menu_toggle_main_tips, w_current);
 
     gtk_widget_show_all(menu_item);
   }
@@ -1419,19 +1388,17 @@ int x_menu_setup_popup (GschemToplevel *w_current)
     char *poptips_path = OPT_POPTIPS_MENU_PATH;
 
     menu_item = GEDA_OBJECT_GET_DATA (menu, popcons_path);
+
     if (GEDA_IS_MENU_ITEM(menu_item)) {
 
-      g_signal_connect (menu_item, "toggled",
-                        G_CALLBACK(x_menu_toggle_icons),
-                        POPUP_ITEMS_LIST);
+      GTK_CALLBACK_TOGGLED (menu_item, x_menu_toggle_icons, POPUP_ITEMS_LIST);
     }
 
     menu_item = GEDA_OBJECT_GET_DATA (menu, poptips_path);
+
     if (GEDA_IS_MENU_ITEM(menu_item)) {
 
-      g_signal_connect (menu_item, "toggled",
-                        G_CALLBACK(x_menu_toggle_tips),
-                        POPUP_ITEMS_LIST);
+      GTK_CALLBACK_TOGGLED (menu_item, x_menu_toggle_tips, POPUP_ITEMS_LIST);
     }
   }
 
@@ -2219,8 +2186,7 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   popup_item = geda_check_menu_item_new_with_mnemonic (_("_Show path"));
   geda_check_menu_item_set_active((GedaCheckMenuItem*)popup_item, show_recent_path);
 
-  g_signal_connect (popup_item, "toggled",
-                    G_CALLBACK(x_menu_toggle_recent_path), menu_data);
+  GTK_CALLBACK_TOGGLED (popup_item, x_menu_toggle_recent_path, menu_data);
 
   geda_menu_append (menu, popup_item);
 
