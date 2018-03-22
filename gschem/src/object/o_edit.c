@@ -41,10 +41,11 @@
  *  \par This group contains routines for basic editing operations.
  */
 
-/*! \brief Add a Title-Block symbol to a Page
- *  \par Function Description
- *   This function attempts to insert the symbol for the given title-block
- *   into the schematic.
+/*!
+ * \brief Add a Title-Block symbol to a Page
+ * \par Function Description
+ *  This function attempts to insert the symbol for the given title-block
+ *  into the schematic.
  */
 bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *tblock)
 {
@@ -180,8 +181,9 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
   }
 }
 
-/*! \brief Lock Selected Objects
- *  \par Function Description
+/*!
+ * \brief Lock Selected Objects
+ * \par Function Description
  *  Locks an object by setting the selectable property to FALSE. The color
  *  is also set to the locked_color. This locks the entire selected list
  *  including components, but does NOT change the color of primatives of
@@ -221,12 +223,13 @@ void o_edit_lock_selection (GschemToplevel *w_current)
   i_status_update_sensitivities(w_current);
 }
 
-/*! \brief Unlock current selection
- *  \par Function Description
- *   Sets each object in the "selection" selectable, if the object
- *   selectable is set, then restores the objects color from the
- *   locked color property otherwise the color is restored to the
- *   value returned from geda_object_color_get_default().
+/*!
+ * \brief Unlock current selection
+ * \par Function Description
+ *  Sets each object in the "selection" selectable, if the object
+ *  selectable is set, then restores the objects color from the
+ *  locked color property otherwise the color is restored to the
+ *  value returned from geda_object_color_get_default().
  *
  * \note this cannot be called recursively
  */
@@ -256,8 +259,9 @@ void o_edit_unlock_selection(GschemToplevel *w_current)
 /*!
  * \brief Mirror list of objects
  * \par Function Description
- * Wrapper for libgeda::geda_object_list_mirror, performs gschem tasks to ensure
- * members of \a list are redrawn, run hooks and calls undo state.
+ *  Wrapper for libgeda::geda_object_list_mirror, performs gschem
+ *  tasks to ensure members of \a list are redrawn, run hooks and
+ *  calls undo state.
  */
 void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
 {
@@ -300,8 +304,9 @@ void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GL
  *      3. o_edit_offset_world    called by x_event_button_pressed
 */
 
-/*! \brief Offset selected objects Hot mode
- *  \par Function Description
+/*!
+ * \brief Offset selected objects Hot mode
+ * \par Function Description
  *  Create a copy of selected objects at the pointer position and offset
  *  the pointer cursor the same amount.
  */
@@ -345,8 +350,9 @@ void o_edit_offset_hot(GschemToplevel *w_current, int x, int y, GList *list)
   i_status_action_stop(w_current);
 }
 
-/*! \brief Determine where to Offset a list of objects
- *  \par Function Description
+/*!
+ * \brief Determine where to Offset a list of objects
+ * \par Function Description
  *  Sets toplevel coordinates if x,y is outside the bounds of the
  *  list of objects, first_w[x,y] is set to the lower left bounds.
  *  The second_w[x,y] varibles are set based on the relationship
@@ -421,11 +427,11 @@ o_edit_set_offset(GschemToplevel *w_current, GList *list, int x, int y)
   }
 
   return valid;
-
 }
 
-/*! \brief Offset selected objects a Preset Distance
- *  \par Function Description
+/*!
+ * \brief Offset selected objects a Preset Distance
+ * \par Function Description
  *  Places a copy of selected objects at a preset offset in the direction
  *  of the pointer position. The new objects replaces the old objects as
  *  the selection if the SHIFT key is down when then list is placed.
@@ -468,8 +474,9 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
 
 /** @} endgroup Edit-Offset */
 
-/*! \brief Rotate all objects in list.
- *  \par Function Description
+/*!
+ * \brief Rotate all objects in list.
+ * \par Function Description
  *  Given an object <B>list</B>, and the center of rotation
  *  (<B>centerx</B>,<B>centery</B>, this function traverses all the selection
  *  list, rotating each object through angle <B>angle</B>.
@@ -485,7 +492,7 @@ void o_edit_offset_world(GschemToplevel *w_current, int x, int y, GList *list)
  *  \param [in] list       The list of objects to rotate.
  */
 void o_edit_rotate_world(GschemToplevel *w_current,
-                           int centerx, int centery, int angle, GList *list)
+                         int centerx, int centery, int angle, GList *list)
 {
   /* Is okay if user hits rotate and has nothing selected */
   if (list == NULL) {
@@ -571,15 +578,16 @@ static void log_visibility (int set_hidden, int set_visible)
   }
 }
 
-/*! \brief Reveal Complexes Inheritied Attributes attached to
- *  \par Function Description
- *   This function causes hidden text for inherited attributes to be redrawn,
- *   This is accomplished by setting the object visibility to 2, which results
- *   in geda_object_get_is_visible returning true to the renderer, but is not saved when
- *   the schematic is saved. The function returns a list object that were set
- *   to be displayed, which does not include objects set to invisible, since
- *   these would not be redrawn. Instead, when text.object.visibility is set to
- *   0, the area is redrawn immediately by calling o_invalidate_force.
+/*!
+ * \brief Reveal Complexes Inheritied Attributes attached to
+ * \par Function Description
+ *  This function causes hidden text for inherited attributes to be redrawn,
+ *  This is accomplished by setting the object visibility to 2, which results
+ *  in geda_object_get_is_visible returning true to the renderer, but is not saved when
+ *  the schematic is saved. The function returns a list object that were set
+ *  to be displayed, which does not include objects set to invisible, since
+ *  these would not be redrawn. Instead, when text.object.visibility is set to
+ *  0, the area is redrawn immediately by calling o_invalidate_force.
  */
 static GList*
 o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
@@ -635,15 +643,16 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
   return redraw;
 }
 
-/*! \brief Reveal Hidden Attributes attached to Complexes
- *  \par Function Description
- *   This function causes hidden text for invisible attributes to be redrawn,
- *   This is accomplished by setting the object visibility to 2, which results
- *   in geda_object_get_is_visible returning true to the renderer, but is not saved when
- *   the schematic is saved. The function returns a list of objects that were
- *   set to be displayed, which does not include objects set to invisible, since
- *   these would not be redrawn. Instead, when text.object.visibility is set to
- *   INVISIBLE, the area is redrawn immediately by calling o_invalidate_force.
+/*!
+ * \brief Reveal Hidden Attributes attached to Complexes
+ * \par Function Description
+ *  This function causes hidden text for invisible attributes to be redrawn,
+ *  This is accomplished by setting the object visibility to 2, which results
+ *  in geda_object_get_is_visible returning true to the renderer, but is not saved when
+ *  the schematic is saved. The function returns a list of objects that were
+ *  set to be displayed, which does not include objects set to invisible, since
+ *  these would not be redrawn. Instead, when text.object.visibility is set to
+ *  INVISIBLE, the area is redrawn immediately by calling o_invalidate_force.
  */
 static GList*
 o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
@@ -726,14 +735,15 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
   return redraw;
 }
 
-/*! \brief Toggle Visibility of Hidden Attributes
- *  \par Function Description
+/*!
+ * \brief Toggle Visibility of Hidden Attributes
+ * \par Function Description
  *  The function causes the object visibility property of all
  *  attribute text objects in the given list to be modified,
  *  based on the current visibility and the inherited flag.
  *  This a wrapper for o_edit_show_hidden_attrib.
  *
- *  \sa o_edit_show_hidden_attrib
+ * \sa o_edit_show_hidden_attrib
  */
 bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inherited)
 {
@@ -771,20 +781,20 @@ bool o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
   return result;
 }
 
-/*! \brief Toggle Visibility of Hidden Netname Attribute
- *  \par Function Description
+/*!
+ * \brief Toggle Visibility of Hidden Netname Attribute
+ * \par Function Description
  *  The function modifies the object visibilty property of all
  *  netname attribute text objects in the given list, searching
  *  each complex for a netname attribute. If the visibility is
  *  <b>INVISIBLE</b> the value is set to 2 and vise-versa. If the text
  *  is VISIBLE the attribute is not modified.
  *
- *  \sa o_edit_show_hidden_attrib
+ * \sa o_edit_show_hidden_attrib
  *
- *  \param w_current  Pointer to GschemToplevel object
- *  \param o_list     Pointer to a GList of object to check for
- *                    netname attributes
- *
+ * \param w_current  Pointer to GschemToplevel object
+ * \param o_list     Pointer to a GList of object to check for
+ *                   netname attributes
  */
 void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 {
@@ -855,7 +865,6 @@ int skiplast;
  *  \par Function Description
  *
  *  \todo Only descends into the first source schematic
- *
  */
 int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                       const char     *stext,       int flags, int skip)
@@ -1007,8 +1016,9 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 }
 
 
-/*! \brief Hide Specified Text
- *  \par Function Description
+/*!
+ * \brief Hide Specified Text
+ * \par Function Description
  *  Searches string component of Text Objects and calls for
  *  geda_set_object_visibility string matching the given text.
  */
@@ -1040,8 +1050,9 @@ void o_edit_hide_specific_text (GschemToplevel *w_current,
   o_invalidate_all (w_current);
 }
 
-/*! \brief Show Specified Text
- *  \par Function Description
+/*!
+ * \brief Show Specified Text
+ * \par Function Description
  *  Searches string component of Text Objects and calls for
  *  geda_set_object_visibility string matching the given text.
  */
@@ -1073,8 +1084,8 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-/*! \brief Snap Selection to current Grid Snap Size
- *
+/*!
+ * \brief Snap Selection to current Grid Snap Size
  * \par Function Description
  *  Checks the position of each object in the \a list and translates
  *  objects found to be off the current grid snap.
@@ -1117,13 +1128,14 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
   }
 }
 
-/*! \brief Update a component
- *  \par Function Description
- * Updates \a o_current to the latest version of the symbol available
- * in the symbol library, while preserving any attributes set in the
- * current schematic. On success, returns the new Object which
- * replaces \a o_current on the page; \a o_current is deleted. On
- * failure, returns NULL, and \a o_current is left unchanged.
+/*!
+ * \brief Update a component
+ * \par Function Description
+ *  Updates \a o_current to the latest version of the symbol available
+ *  in the symbol library, while preserving any attributes set in the
+ *  current schematic. On success, returns the new Object which
+ *  replaces \a o_current on the page; \a o_current is deleted. On
+ *  failure, returns NULL, and \a o_current is left unchanged.
  *
  * \param [in]     w_current The GschemToplevel object.
  * \param [in,out] o_current The Object to be updated.
@@ -1131,16 +1143,16 @@ void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
  * \return the new Object that replaces \a o_current.
  *
  * \note This function retains attribute positions. If an attribute
- * position was what changed between symbols versions and the user
- * desires to update the positions of attributes then the user can
- * use "Attributes/Reset Position" after updating the component.
+ *  position was what changed between symbols versions and the user
+ *  desires to update the positions of attributes then the user can
+ *  use "Attributes/Reset Position" after updating the component.
  *
  * \todo Consider launching a dialog to call this routine and pass
  *       list of attribute names the user wants restored, the dialog
  *       could also have a check button to restore positions.
  */
-GedaObject *
-o_edit_update_component (GschemToplevel *w_current, GedaObject *o_current)
+GedaObject *o_edit_update_component (GschemToplevel *w_current,
+                                     GedaObject     *o_current)
 {
   GedaToplevel *toplevel;
   GedaObject   *o_new;
