@@ -1,3 +1,11 @@
+2018-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/relay: Update refdes U -> RL:
+
+            * emechanic/relay/LCB110_ssrelay_spst-1.sym
+            * emechanic/relay/LCC110_ssrelay_spdt-1.sym
+            * emechanic/relay/MPDC-Relay.sym
+
 2018-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/geda-clib.scm: Change the text displayed for the zener52 symbols;

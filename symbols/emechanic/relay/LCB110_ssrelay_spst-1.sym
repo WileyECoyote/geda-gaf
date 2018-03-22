@@ -97,7 +97,7 @@ pintype=pas
 T 300 0 9 10 1 0 0 0 1
 LCB110
 T 300 1750 8 10 1 1 0 0 1
-refdes=U?
+refdes=RL?
 T 300 1700 9 10 0 0 0 0 1
 numslots=0
 T 300 1700 9 10 0 0 0 0 1

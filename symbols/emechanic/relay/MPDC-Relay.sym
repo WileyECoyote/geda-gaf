@@ -47,7 +47,7 @@ pintype=pas
 T 300 1000 9 10 1 0 0 0 1
 MPDC Relay
 T 1795 1000 8 10 1 1 0 0 1
-refdes=U?
+refdes=RL?
 T 295 1400 8 10 0 1 0 0 1
 device=Relay
 T 295 1600 8 10 0 1 0 0 1
