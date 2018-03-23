@@ -261,24 +261,31 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
     case PROP_ACTIVATES_DEFAULT:
       g_value_set_boolean (value, entry->activates_default);
       break;
+
     case PROP_ATTRIBUTES:
       g_value_set_boxed (value, entry->priv->attrs);
       break;
+
     case PROP_AUTO_COMPLETION:
       g_value_set_boolean (value, have_auto_complete ? entry->auto_complete : FALSE);
       break;
+
     case PROP_CASE_SENSITIVE:
       g_value_set_boolean(value, geda_entry_completion_get_case(entry));
       break;
+
     case PROP_INPUT_CASE:
       g_value_set_int (value, geda_entry_get_input_case(entry));
       break;
+
     case PROP_MAX_HISTORY:
       g_value_set_int (value, entry->max_history);
       break;
+
     case PROP_VALIDATE:
       g_value_set_enum (value, geda_entry_get_valid_input(entry));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -307,24 +314,31 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
     case PROP_ACTIVATES_DEFAULT:
       geda_entry_set_activates_default (entry, g_value_get_boolean (value));
       break;
+
     case PROP_ATTRIBUTES:
       geda_entry_set_attributes (entry, g_value_get_boxed (value));
       break;
+
     case PROP_AUTO_COMPLETION:
       entry->auto_complete = have_auto_complete ? g_value_get_boolean (value) : FALSE;
       break;
+
     case PROP_CASE_SENSITIVE:
       geda_entry_completion_set_case(entry, g_value_get_boolean (value));
       break;
+
     case PROP_INPUT_CASE:
       geda_entry_set_input_case(entry, g_value_get_int (value));
       break;
+
     case PROP_MAX_HISTORY:
       entry->max_history = g_value_get_int (value);
       break;
+
     case PROP_VALIDATE:
       geda_entry_set_valid_input(entry, g_value_get_int (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
