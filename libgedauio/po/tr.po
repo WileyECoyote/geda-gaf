@@ -21,7 +21,7 @@ msgstr ""
 #: libgedauio/src/dialogs/geda_file_chooser.c:460
 #: libgedauio/src/dialogs/geda_image_chooser.c:1028
 msgid "Set or retrieve index of the filter combo"
-msgstr ""
+msgstr "Filtre taranması dizinini ayarlama veya geri alma"
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:461
 #: libgedauio/src/dialogs/geda_image_chooser.c:1029
@@ -61,45 +61,52 @@ msgstr "Dosya Seç"
 #: libgedauio/src/dialogs/geda_file_chooser.c:659
 #: libgedauio/src/dialogs/geda_image_chooser.c:1190
 msgid "OOPS"
-msgstr ""
+msgstr "ayy"
 
+# Cancel
 #: libgedauio/src/dialogs/geda_file_chooser.c:665
 #: libgedauio/src/dialogs/geda_image_chooser.c:1195
 msgid "_Cancel"
-msgstr ""
+msgstr "İptal etmek"
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:599
 #: libgedauio/src/dialogs/geda_image_chooser.c:783
 msgid "Preview"
 msgstr "Önizleme"
 
+# Active to enable the preview pane
 #: libgedauio/src/dialogs/geda_image_chooser.c:785
 msgid "Active to enable the preview pane"
-msgstr ""
+msgstr "Önizleme bölmesini etkinleştirmek için etkin"
 
+# Accelerator Closure
 #: libgedauio/src/widgets/geda_accel_label.c:605
 msgid "Accelerator Closure"
-msgstr ""
+msgstr "Hızlandırıcı Kapanışı"
 
 #: libgedauio/src/widgets/geda_accel_label.c:606
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
+# Accelerator Widget
 #: libgedauio/src/widgets/geda_accel_label.c:612
 msgid "Accelerator Widget"
-msgstr ""
+msgstr "Hızlandırıcı Widget'ı"
 
+# The widget to be monitored for accelerator changes
 #: libgedauio/src/widgets/geda_accel_label.c:613
 msgid "The widget to be monitored for accelerator changes"
-msgstr ""
+msgstr "Hızlandırıcı değişiklikleri için izlenecek widget"
 
+# Accelerator String
 #: libgedauio/src/widgets/geda_accel_label.c:619
 msgid "Accelerator String"
-msgstr ""
+msgstr "Hızlandırıcı Dizesi"
 
+# The accelerator string to be displayed
 #: libgedauio/src/widgets/geda_accel_label.c:620
 msgid "The accelerator string to be displayed"
-msgstr ""
+msgstr "Görüntülenecek hızlandırıcı dizesi"
 
 #: libgedauio/src/widgets/geda_action.c:268
 msgid "multikey-accelerator"
@@ -413,28 +420,29 @@ msgstr ""
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
+# Show style
 #: libgedauio/src/widgets/geda_font_button.c:818
-#, fuzzy
 msgid "Show style"
-msgstr "Kısayollar"
+msgstr "Stili göster"
 
 #: libgedauio/src/widgets/geda_font_button.c:819
 msgid "Whether the selected font style is shown in the label"
 msgstr ""
 
+# Show size
 #: libgedauio/src/widgets/geda_font_button.c:831
-#, fuzzy
 msgid "Show size"
-msgstr "Gizlileri Göster"
+msgstr "Boyutunu göster"
 
 #: libgedauio/src/widgets/geda_font_button.c:832
 msgid "Whether selected font size is shown in the label"
 msgstr ""
 
+# Set Size
 #: libgedauio/src/widgets/geda_font_button.c:842
 #: libgedauio/src/widgets/geda_font_dialog.c:1541
 msgid "Set Size"
-msgstr ""
+msgstr "boyutu ayarla"
 
 #: libgedauio/src/widgets/geda_font_button.c:843
 #: libgedauio/src/widgets/geda_font_dialog.c:1542
@@ -585,10 +593,10 @@ msgstr ""
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
+# Handle Size
 #: libgedauio/src/widgets/geda_handlebox.c:1672
-#, fuzzy
 msgid "Handle Size"
-msgstr "Gösterge Boyutu"
+msgstr "Kulp Boyut"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid "Size of the drag handle in pixels."
@@ -612,10 +620,10 @@ msgstr ""
 msgid "Whether to use the label text to create a stock menu item"
 msgstr ""
 
+# Show image
 #: libgedauio/src/widgets/geda_image_menu_item.c:443
-#, fuzzy
 msgid "Show image"
-msgstr "Gizlileri Göster"
+msgstr "Resmi göster"
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:444
 msgid "Whether the image will always be shown"
