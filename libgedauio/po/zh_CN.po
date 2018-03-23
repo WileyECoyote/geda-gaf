@@ -412,29 +412,29 @@ msgstr ""
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
+# Show style
 #: libgedauio/src/widgets/geda_font_button.c:818
-#, fuzzy
 msgid "Show style"
-msgstr "显示数值"
+msgstr "显示样式"
 
 #: libgedauio/src/widgets/geda_font_button.c:819
 msgid "Whether the selected font style is shown in the label"
 msgstr ""
 
+# Show size
 #: libgedauio/src/widgets/geda_font_button.c:831
-#, fuzzy
 msgid "Show size"
-msgstr "显示名称"
+msgstr "显示大小"
 
 #: libgedauio/src/widgets/geda_font_button.c:832
 msgid "Whether selected font size is shown in the label"
 msgstr ""
 
+# Set Size
 #: libgedauio/src/widgets/geda_font_button.c:842
 #: libgedauio/src/widgets/geda_font_dialog.c:1541
-#, fuzzy
 msgid "Set Size"
-msgstr "文本..."
+msgstr "设置大小"
 
 #: libgedauio/src/widgets/geda_font_button.c:843
 #: libgedauio/src/widgets/geda_font_dialog.c:1542
@@ -585,19 +585,20 @@ msgstr ""
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
+# Handle Size
 #: libgedauio/src/widgets/geda_handlebox.c:1672
-#, fuzzy
 msgid "Handle Size"
-msgstr "文本..."
+msgstr "手柄尺寸"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid "Size of the drag handle in pixels."
 msgstr ""
 
+# Image widget
 #: libgedauio/src/widgets/geda_image_menu_item.c:414
 #: libgedauio/src/widgets/geda_menu_button.c:1232
 msgid "Image widget"
-msgstr ""
+msgstr "图像小部件"
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:415
 msgid "Child widget to appear next to the menu text"
@@ -612,10 +613,10 @@ msgstr ""
 msgid "Whether to use the label text to create a stock menu item"
 msgstr ""
 
+# Show image
 #: libgedauio/src/widgets/geda_image_menu_item.c:443
-#, fuzzy
 msgid "Show image"
-msgstr "显示名称"
+msgstr "显示图像"
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:444
 msgid "Whether the image will always be shown"
