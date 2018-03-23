@@ -122,7 +122,7 @@ author=Kai-Martin Knaak kmk@lilalaser.de
 T 500 2900 5 8 0 0 0 0 1
 dist-license=GPLv2
 T 500 2700 5 8 0 0 0 0 1
-use-license=free, no restrictions
+use-license=unlimited
 T 500 3700 5 8 0 0 0 0 1
 comment=AXICOM FP2, FRT5
 T 600 100 9 10 0 0 0 0 1
