@@ -393,10 +393,10 @@ static void geda_entry_real_activate (GedaEntry *entry)
  * \par Function Description
  *  Over-rides widget_class->drag_begin.
  */
-static void
-geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
+static void geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
+
   if (geda_entry->enable_drag_n_drop) {
     printf ("TODO: %s\n", __func__);
   }
@@ -409,14 +409,14 @@ geda_entry_drag_begin (GtkWidget *widget, GdkDragContext *context)
  *  the default behavior of GtkEntry, Drag & Drop is not implemented
  *  for GedaEntry widgets.
  */
-static bool
-geda_entry_drag_drop (GtkWidget      *widget,
-                      GdkDragContext *context,
-                      int             x,
-                      int             y,
-                      unsigned int    time)
+static bool geda_entry_drag_drop (GtkWidget      *widget,
+                                  GdkDragContext *context,
+                                  int             x,
+                                  int             y,
+                                  unsigned int    time)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
+
   if (geda_entry->enable_drag_n_drop) {
     printf ("TODO: %s\n", __func__);
   }
@@ -433,10 +433,10 @@ geda_entry_drag_drop (GtkWidget      *widget,
  *  with the prior Drag & Drop operation, may set cursor back to normal
  *  if was changed.
  */
-static void
-geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
+static void geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
+
   if (geda_entry->enable_drag_n_drop) {
     printf ("TODO: %s\n", __func__);
   }
@@ -450,12 +450,12 @@ geda_entry_drag_end (GtkWidget *widget, GdkDragContext *context)
  *  not implemented for GedaEntry widgets. Called when the drag
  *  leaves the destination.
  */
-static void
-geda_entry_drag_leave (GtkWidget      *widget,
-                       GdkDragContext *context,
-                       unsigned int    time)
+static void geda_entry_drag_leave (GtkWidget      *widget,
+                GdkDragContext *context,
+                                   unsigned int    time)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
+
   if (geda_entry->enable_drag_n_drop) {
     printf ("TODO: %s\n", __func__);
   }
@@ -470,14 +470,14 @@ geda_entry_drag_leave (GtkWidget      *widget,
  *  implemented for GedaEntry widgets. Called when the drag is over
  *  the destination.
  */
-static bool
-geda_entry_drag_motion (GtkWidget       *widget,
-                        GdkDragContext  *context,
-                        int              x,
-                        int              y,
-                        unsigned int     time)
+static bool geda_entry_drag_motion (GtkWidget       *widget,
+                                    GdkDragContext  *context,
+                                    int              x,
+                                    int              y,
+                                    unsigned int     time)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
+
   if (geda_entry->enable_drag_n_drop) {
     printf ("TODO: %s\n", __func__);
   }
@@ -489,14 +489,14 @@ geda_entry_drag_motion (GtkWidget       *widget,
  * \par Function Description
  *  Over-rides widget_class->drag_data_get.
  */
-static void
-geda_entry_drag_data_get (GtkWidget        *widget,
-                          GdkDragContext   *context,
-                          GtkSelectionData *selection_data,
-                          unsigned int      info,
-                          unsigned int      time)
+static void geda_entry_drag_data_get (GtkWidget        *widget,
+                                      GdkDragContext   *context,
+                                      GtkSelectionData *selection_data,
+                                      unsigned int      info,
+                                      unsigned int      time)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
+
   if (geda_entry->enable_drag_n_drop) {
     printf ("TODO: %s\n", __func__);
   }
@@ -507,8 +507,7 @@ geda_entry_drag_data_get (GtkWidget        *widget,
  * \par Function Description
  *  Over-rides widget_class->drag_data_delete.
  */
-static void
-geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
+static void geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
 
@@ -522,14 +521,13 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
  * \par Function Description
  *  Over-rides widget_class->drag_data_received.
  */
-static void
-geda_entry_drag_data_received (GtkWidget        *widget,
-                               GdkDragContext   *context,
-                               int              x,
-                               int              y,
-                               GtkSelectionData *selection_data,
-                               unsigned int     info,
-                               unsigned int     time)
+static void geda_entry_drag_data_received (GtkWidget        *widget,
+                                           GdkDragContext   *context,
+                                           int              x,
+                                           int              y,
+                                           GtkSelectionData *selection_data,
+                                           unsigned int     info,
+                                           unsigned int     time)
 {
   GedaEntry *geda_entry = (GedaEntry*)widget;
   if (geda_entry->enable_drag_n_drop) {
