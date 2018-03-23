@@ -380,7 +380,9 @@ static void geda_entry_real_activate (GedaEntry *entry)
 
         if (widget != default_widget &&
           !(widget == focus_widget && (!default_widget || !gtk_widget_get_sensitive (default_widget))))
+        {
           gtk_window_activate_default (window);
+        }
       }
     }
   }
