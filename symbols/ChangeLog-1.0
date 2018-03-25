@@ -3,6 +3,9 @@
     * symbols/geda-clib.scm: Add group Standard/Zeners 53 Series for
       standard 5 Watt zeners types.
 
+    * zener53/zener_12_1N5349B.sym: Add symbol for standard 12 Volt 5 Watt
+      zeners diode.
+
 2018-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/relay: Update refdes U -> RL:
