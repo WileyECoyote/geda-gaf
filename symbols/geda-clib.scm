@@ -110,6 +110,7 @@
                      ("diode/led"               "Standard/LED")
                      ("diode/zener"             "Standard/Zener-generic")
                      ("diode/zener52"           "Standard/Zeners 52 Series")
+                     ("diode/zener53"           "Standard/Zeners 53 Series")
                      ("diode/segments"          "Standard/Segments")
 
                   ("linear" "Standard/Linear")
