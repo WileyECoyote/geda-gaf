@@ -4,6 +4,7 @@
       geda_page_freeze_notify. Update function documentation for:
 
           * geda_page_freeze_notify
+          * geda_page_thaw_notify
 
     * src/object/o_list.c: Add Doxygen group "geda-list-object-proc".
 

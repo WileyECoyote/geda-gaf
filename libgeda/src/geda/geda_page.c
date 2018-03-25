@@ -540,10 +540,12 @@ void geda_page_freeze_notify(Page *page)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Reduce the Freeze Notification Count
+ * \par Function Description
+ *  Causes the freeze count to be reduced by one.
  *
+ * \sa geda_notify_list_thaw
  */
 void geda_page_thaw_notify(Page *page)
 {
