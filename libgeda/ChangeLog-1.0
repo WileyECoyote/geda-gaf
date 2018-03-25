@@ -1,5 +1,8 @@
 2018-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_page.c: Rename function geda_page_feeze_notify ->
+      geda_page_freeze_notify.
+
     * src/utility/u_string.c: Revise geda_utility_string_get_valid_utf8 to
       eliminate use of GString.
 

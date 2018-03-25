@@ -530,7 +530,7 @@ void geda_page_remove_weak_ptr(Page *page, void *weak_pointer_loc)
  *  \par Function Description
  *
  */
-void geda_page_feeze_notify(Page *page)
+void geda_page_freeze_notify(Page *page)
 {
   if (GEDA_IS_PAGE(page)) {
     geda_notify_list_freeze(page->change_notify_funcs);

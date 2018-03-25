@@ -146,7 +146,7 @@ void         geda_page_weak_ref          (Page *page, WeakNotifyFunc notify_func
 void         geda_page_weak_unref        (Page *page, WeakNotifyFunc notify_func, void *user_data);
 void         geda_page_add_weak_ptr      (Page *page, void *weak_pointer_loc);
 void         geda_page_remove_weak_ptr   (Page *page, void *weak_pointer_loc);
-void         geda_page_feeze_notify      (Page *page);
+void         geda_page_freeze_notify      (Page *page);
 void         geda_page_thaw_notify       (Page *page);
 
 Page        *geda_page_open              (const char *filename);
