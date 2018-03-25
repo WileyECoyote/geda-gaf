@@ -11,7 +11,8 @@
 
     * src/object/o_list.c: Add Doxygen group "geda-list-object-proc".
 
-    * src/scheme/scheme_smob.c: Update function wrapping.
+    * src/scheme/scheme_smob.c: Reformat Doxygen blocks and update function
+      wrapping.
 
     * src/utility/u_string.c: Revise geda_utility_string_get_valid_utf8 to
       eliminate use of GString.
