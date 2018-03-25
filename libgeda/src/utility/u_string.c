@@ -126,10 +126,10 @@ char *geda_utility_string_get_valid_utf8 (const char *instr)
 {
   if (instr != NULL) {
 
-    GString    *string;
     const char *remainder;
     const char *invalid;
           char *outstr;
+          char *string;
 
     int remaining_bytes;
 
@@ -146,12 +146,26 @@ char *geda_utility_string_get_valid_utf8 (const char *instr)
 
       valid_bytes = invalid - remainder;
 
-      if (string == NULL)
-        string = g_string_sized_new (remaining_bytes);
+      if (string == NULL) {
+        string =  malloc(remaining_bytes + valid_bytes + 7);
+      }
+      else {
 
-      g_string_append_len (string, remainder, valid_bytes);
+          char *buffer;
+
+          size_t len = strlen(string) + valid_bytes + 6;
+
+          buffer = (char*)realloc(string, len);
+
+          if (!buffer)
+            break;
+
+          string = buffer;
+          strncat(string, remainder, len);
+      }
+
       /* append U+FFFD REPLACEMENT CHARACTER */
-      g_string_append (string, "\357\277\275");
+      strcat(string, "\357\277\275");
 
       remaining_bytes -= valid_bytes + 1;
       remainder = invalid + 1;
@@ -161,17 +175,17 @@ char *geda_utility_string_get_valid_utf8 (const char *instr)
       outstr = geda_utility_string_strdup (instr);
     }
     else {
-      g_string_append (string, remainder);
 
-      g_assert (g_utf8_validate (string->str, -1, NULL));
+      outstr = geda_utility_string_concat(string, remainder, NULL);
 
-      outstr = g_string_free (string, FALSE);
+      free (string);
     }
 
     return outstr;
   }
   return NULL;
 }
+
 
 /*! U0603
  * \brief itoa() for c
