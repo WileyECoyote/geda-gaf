@@ -3,7 +3,8 @@
     * src/geda/geda_notify.c: Update geda_notify_list_thaw documentation.
 
     * src/geda/geda_page.c: Rename function geda_page_feeze_notify ->
-      geda_page_freeze_notify. Update function documentation for:
+      geda_page_freeze_notify. Reformat Doxygen blocks and update function
+      documentation for:
 
           * geda_page_freeze_notify
           * geda_page_thaw_notify

@@ -448,13 +448,13 @@ void geda_page_weakref_notify (Page *page)
   }
 }
 
-/*! \brief Add a weak reference watcher to a Page Object
+/*!
+ * \brief Add a weak reference watcher to a Page Object
+ * \par Function Description
  *
- *  \par Function Description
- *
- *   Adds the weak reference callback \a notify_func to \a Page.
- * When \a Page is destroyed, the \a notify_func will be called
- * with two arguments: the \a Page, and the \a user_data.
+ *  Adds the weak reference callback \a notify_func to \a Page.
+ *  When \a Page is destroyed, the \a notify_func will be called
+ *  with two arguments: the \a Page, and the \a user_data.
  *
  * \note This function is for legacy purposes; since Page is
  *       now a GObject, just use g_object_weak_ref instead!
@@ -472,9 +472,10 @@ void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data
   }
 }
 
-/*! \brief Remove a weak reference watcher from a Page.
+/*!
+ * \brief Remove a weak reference watcher from a Page.
  * \par Function Description
- * Removes the weak reference callback \a notify_func from \a Page.
+ *  Removes the weak reference callback \a notify_func from \a Page.
  *
  * \sa page_weak_ref()
  *
@@ -491,11 +492,12 @@ void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_da
   }
 }
 
-/*! \brief Add a weak pointer to a Page.
+/*!
+ * \brief Add a weak pointer to a Page.
  * \par Function Description
- * Adds the weak pointer at \a weak_pointer_loc to \a page. The
- * value of \a weak_pointer_loc will be set to NULL when \a page is
- * destroyed.
+ *  Adds the weak pointer at \a weak_pointer_loc to \a page. The
+ *  value of \a weak_pointer_loc will be set to NULL when \a page is
+ *  destroyed.
  *
  * \sa page_remove_weak_ptr
  *
@@ -509,9 +511,10 @@ void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
   }
 }
 
-/*! \brief Remove a weak pointer from an Page.
+/*!
+ * \brief Remove a weak pointer from an Page.
  * \par Function Description
- * Removes the weak pointer at \a weak_pointer_loc from \a page.
+ *  Removes the weak pointer at \a weak_pointer_loc from \a page.
  *
  * \sa page_add_weak_ptr()
  *
@@ -554,9 +557,10 @@ void geda_page_thaw_notify(Page *page)
   }
 }
 
-/*! \brief Rename a Page.
+/*!
+ * \brief Rename a Page
  * \par Function Description
- * Replace the filename string in \a page with \a newname.
+ *  Replace the filename string in \a page with \a newname.
  *
  * \param [in,out] page     A valid Page object.
  * \param [in]     newname  New string name for page filename.
