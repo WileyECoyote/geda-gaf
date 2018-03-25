@@ -228,9 +228,11 @@ void geda_notify_list_freeze (GedaNotifyList *list)
 /*!
  * \brief Thaw Notification for a GedaNotifyList
  * \par Function Description
- *  This function add a hook to each new page
+ *  This is a low level function that allows decrementing the
+ *  freeze notification count but does not perform notifications
+ *  even if the count went to zero as a result of the call.
  *
- * \sa geda_notify_list_freeze
+ * \sa geda_notify_list_freeze geda_object_notify_emit_change
  *
  * \param list #GedaNotifyList to thaw notifications for.
  */

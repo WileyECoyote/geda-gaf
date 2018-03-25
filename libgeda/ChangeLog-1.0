@@ -1,5 +1,7 @@
 2018-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_notify.c: Update geda_notify_list_thaw documentation.
+
     * src/geda/geda_page.c: Rename function geda_page_feeze_notify ->
       geda_page_freeze_notify. Update function documentation for:
 
