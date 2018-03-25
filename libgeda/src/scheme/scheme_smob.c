@@ -71,8 +71,7 @@ scm_t_bits geda_smob_tag;
  * \par Function Description
  * Clears a gEDA smob's pointer when the target object is destroyed.
  */
-static void
-smob_weakref_notify (void *target, void *smob) {
+static void smob_weakref_notify (void *target, void *smob) {
   SCM s = (SCM) smob;
   SCM_SET_SMOB_DATA (s, NULL);
 }
@@ -84,8 +83,7 @@ smob_weakref_notify (void *target, void *smob) {
  *
  * \see edascm_from_object().
  */
-static void
-smob_weakref2_notify (void *target, void *smob) {
+static void smob_weakref2_notify (void *target, void *smob) {
   SCM s = (SCM) smob;
   SCM_SET_SMOB_DATA_2 (s, NULL);
 }
@@ -96,8 +94,7 @@ smob_weakref2_notify (void *target, void *smob) {
  *
  * Used internally to Guile.
  */
-static size_t
-smob_free (SCM smob)
+static size_t smob_free (SCM smob)
 {
   void *obj;
   GedaToplevel* toplevel;
@@ -184,8 +181,7 @@ smob_free (SCM smob)
  *
  * Used internally to Guile.
  */
-static int
-smob_print (SCM smob, SCM port, scm_print_state *pstate)
+static int smob_print (SCM smob, SCM port, scm_print_state *pstate)
 {
   scm_puts ("#<geda-", port);
 
@@ -239,8 +235,7 @@ smob_print (SCM smob, SCM port, scm_print_state *pstate)
  *
  * Used internally to Guile.
  */
-static SCM
-smob_equalp (SCM obj1, SCM obj2)
+static SCM smob_equalp (SCM obj1, SCM obj2)
 {
   EDASCM_ASSERT_SMOB_VALID (obj1);
   EDASCM_ASSERT_SMOB_VALID (obj2);
@@ -262,8 +257,7 @@ smob_equalp (SCM obj1, SCM obj2)
  * \param toplevel #GedaToplevel to create a smob for.
  * \return a smob representing \a toplevel.
  */
-SCM
-edascm_from_toplevel (GedaToplevel *toplevel)
+SCM edascm_from_toplevel (GedaToplevel *toplevel)
 {
   SCM smob;
 
@@ -289,8 +283,7 @@ edascm_from_toplevel (GedaToplevel *toplevel)
  *
  * \return a smob representing \a page.
  */
-SCM
-edascm_from_page (Page *page)
+SCM edascm_from_page (Page *page)
 {
   SCM smob;
 
@@ -311,8 +304,7 @@ edascm_from_page (Page *page)
  * \param [in] smob Guile value to retrieve #Page from.
  * \return the #Page represented by \a smob.
  */
-Page *
-edascm_to_page (SCM smob)
+Page *edascm_to_page (SCM smob)
 {
 
 #ifndef NDEBUG
@@ -347,8 +339,7 @@ edascm_to_page (SCM smob)
  * \param object #GedaObject to create a smob for.
  * \return a smob representing \a object.
  */
-SCM
-edascm_from_object (GedaObject *object)
+SCM edascm_from_object (GedaObject *object)
 {
   SCM smob;
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
@@ -371,8 +362,7 @@ edascm_from_object (GedaObject *object)
  * \param [in] smob Guile value to retrieve #GedaObject from.
  * \return the #GedaObject represented by \a smob.
  */
-GedaObject *
-edascm_to_object (SCM smob)
+GedaObject *edascm_to_object (SCM smob)
 {
 
 #ifndef NDEBUG
@@ -392,8 +382,7 @@ edascm_to_object (SCM smob)
  * \param cfg Configuration context to create a smob for.
  * \return a smob representing \a cfg.
  */
-SCM
-edascm_from_config (EdaConfig *cfg)
+SCM edascm_from_config (EdaConfig *cfg)
 {
   SCM smob;
   SCM_NEWSMOB (smob, geda_smob_tag, cfg);
@@ -409,8 +398,7 @@ edascm_from_config (EdaConfig *cfg)
  * \param [in] smob Guile value to retrieve #EdaConfig from.
  * \return the #EdaConfig represented by \a smob.
  */
-EdaConfig *
-edascm_to_config (SCM smob)
+EdaConfig *edascm_to_config (SCM smob)
 {
 
 #ifndef NDEBUG
@@ -432,8 +420,7 @@ edascm_to_config (SCM smob)
  *
  * \return non-zero iff \a smob is a #GedaObject instance.
  */
-int
-edascm_is_object (SCM smob)
+int edascm_is_object (SCM smob)
 {
   return EDASCM_OBJECTP (smob);
 }
@@ -448,8 +435,7 @@ edascm_is_object (SCM smob)
  *
  * \return non-zero iff \a smob is a #Page instance.
  */
-int
-edascm_is_page (SCM smob)
+int edascm_is_page (SCM smob)
 {
   return EDASCM_PAGEP (smob);
 }
@@ -463,8 +449,7 @@ edascm_is_page (SCM smob)
  * \param [in] smob Guile value to test.
  * \return non-zero iff \a smob is an #EdaConfig instance.
  */
-int
-edascm_is_config (SCM smob)
+int edascm_is_config (SCM smob)
 {
   return EDASCM_CONFIGP (smob);
 }
@@ -479,8 +464,7 @@ edascm_is_config (SCM smob)
  *                      permission.
  * \param [in]     gc    If non-zero, permit garbage collection.
  */
-void
-edascm_c_set_gc (SCM smob, int gc)
+void edascm_c_set_gc (SCM smob, int gc)
 {
 
   EDASCM_ASSERT_SMOB_VALID (smob);
@@ -591,8 +575,7 @@ EDA_SCM_DEFINE (smob_config_p, "%config?", 1, 0, 0,
  * Defines procedures in the (geda core smob) module. The module can
  * be accessed using (use-modules (geda core smob)).
  */
-static void
-init_module_geda_core_smob (void *nothing)
+static void init_module_geda_core_smob (void *nothing)
 {
   /* Register the functions. */
   #include "scheme_smob.x"
@@ -612,8 +595,7 @@ init_module_geda_core_smob (void *nothing)
  * be represented by that smob. Should only be called by
  * edascm_init().
  */
-void
-edascm_init_smob (void)
+void edascm_init_smob (void)
 {
   /* Register gEDA smob type */
   geda_smob_tag = scm_make_smob_type ("geda", 0);
