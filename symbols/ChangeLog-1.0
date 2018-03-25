@@ -5,6 +5,8 @@
 
     * irf/150EBU02-1.sym: Add symbol; 200 Volt 150 Amp diode.
 
+    * irf/150EBU04-1.sym: Add symbol; 400 Volt 150 Amp diode.
+
     * zener53/zener_12_1N5349B.sym: Add symbol for standard 12 Volt 5 Watt
       zeners diode.
 
