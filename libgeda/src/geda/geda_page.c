@@ -525,10 +525,13 @@ void geda_page_remove_weak_ptr(Page *page, void *weak_pointer_loc)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Suspends Page Change Notifications
+ * \par Function Description
+ *  This function suspend notifications until the freeze count is
+ *  reduced to zero.
  *
+ * \sa geda_notify_list_freeze
  */
 void geda_page_freeze_notify(Page *page)
 {
