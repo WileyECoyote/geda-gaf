@@ -1,3 +1,8 @@
+2018-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Replace gtk_container_forall with
+      geda_container_forall macro.
+
 2018-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/tr.po: Update Turkish translations.

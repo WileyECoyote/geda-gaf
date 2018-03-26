@@ -6274,9 +6274,9 @@ void geda_label_set_mnemonics_visible_recursive (GtkWidget *widget,
     mnemonics_visible_apply (widget, mnemonics_visible);
   }
   else if (GTK_IS_CONTAINER (widget)) {
-    gtk_container_forall (GTK_CONTAINER (widget),
-                          label_mnemonics_visible_traverse_container,
-                          (void*)(long) (mnemonics_visible));
+    geda_container_forall (widget,
+                           label_mnemonics_visible_traverse_container,
+                           (void*)(long) (mnemonics_visible));
   }
 }
 
