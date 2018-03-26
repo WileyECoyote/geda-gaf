@@ -2598,8 +2598,8 @@ label_shortcut_setting_traverse_container (GtkWidget *widget, void *data)
     label_shortcut_setting_apply ((GedaLabel*)widget);
   }
   else if (GTK_IS_CONTAINER (widget)) {
-    gtk_container_forall ((GtkContainer*)widget,
-                          label_shortcut_setting_traverse_container, data);
+    geda_container_forall (widget,
+                           label_shortcut_setting_traverse_container, data);
   }
 }
 
