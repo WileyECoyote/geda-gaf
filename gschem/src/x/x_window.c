@@ -1096,7 +1096,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
         geda_log_q ("%s \"%s\"\n", page->CHANGED ? log_msg1 : log_msg2, page->filename);
       }
 
-      geda_page_feeze_notify(page); /* don't bother with thawing */
+      geda_page_freeze_notify(page); /* don't bother with thawing */
 
       /* remove page from toplevel list of page and free */
       geda_struct_page_delete (toplevel, page, TRUE);
