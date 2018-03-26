@@ -52,8 +52,7 @@ extern int iconify_main_window;
  *  calls various lower level functions to actually create sub-components
  *  of the graphical interface.
  */
-void
-x_window_setup (GschemToplevel *w_current)
+void x_window_setup (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -112,8 +111,7 @@ x_window_setup (GschemToplevel *w_current)
  *  with the GdKWindow'ed Drawing Area for later use by low level
  *  drawing routines, but not libgedacairo.
  */
-bool
-x_window_setup_context(GschemToplevel *w_current)
+bool x_window_setup_context(GschemToplevel *w_current)
 {
   const char *log_msg = _("Could not allocate a graphics context");
 
@@ -191,8 +189,7 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
  *        related to the Window are saved here. We can not save this data in
  *        an at_exit because w_current was destroyed by x_window_close()!
  */
-void
-x_window_save_settings(GschemToplevel *w_current)
+void x_window_save_settings(GschemToplevel *w_current)
 {
   EdaConfig  *cfg;
   const char *win_group     = WINDOW_CONFIG_GROUP;
@@ -307,13 +304,12 @@ x_window_save_settings(GschemToplevel *w_current)
  *
  * \param [in] w_current  Gschem toplevel object.
  */
-void
-x_window_restore_settings(GschemToplevel *w_current)
+void x_window_restore_settings(GschemToplevel *w_current)
 {
   geda_log_v(_("Retrieving main Window settings.\n"));
 
   gschem_main_window_update(MainWidget);
- 
+
   /* Restore Cursor/Pointer setting */
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
   i_window_set_cursor(w_current, pointer_id);
@@ -357,8 +353,7 @@ x_window_invoke_macro (GtkWidget *widget, int response, GschemToplevel *w_curren
  *  high-level containers, calling auxiliary functions to populate
  *  the containers with the menus and toolbars.
  */
-void
-x_window_create_main(GschemToplevel *w_current)
+void x_window_create_main(GschemToplevel *w_current)
 {
   GtkPolicyType policy;
 
@@ -552,8 +547,7 @@ x_window_create_main(GschemToplevel *w_current)
  *  This function close any currently open editing dialog boxes
  *  This includes the edit preference dialog.
  */
-void
-x_window_close_edit_dialogs(GschemToplevel *w_current)
+void x_window_close_edit_dialogs(GschemToplevel *w_current)
 {
   /* close all the dialog boxes */
 
@@ -597,8 +591,7 @@ x_window_close_edit_dialogs(GschemToplevel *w_current)
  *  This function closes all currently open dialog windows.
  *  This called in preperation for program shutdown.
  */
-void
-x_window_close_all_dialogs(GschemToplevel *w_current)
+void x_window_close_all_dialogs(GschemToplevel *w_current)
 {
   x_window_close_edit_dialogs(w_current);
 
@@ -618,8 +611,7 @@ x_window_close_all_dialogs(GschemToplevel *w_current)
  * \par Function Description
  *  Close the current window, in effect the GUI.
  */
-void
-x_window_close(GschemToplevel *w_current)
+void x_window_close(GschemToplevel *w_current)
 {
   bool last_window = FALSE;
 
@@ -697,8 +689,7 @@ x_window_close(GschemToplevel *w_current)
  *  open a new window is not enabled by default so normally there
  *  is only one window.
  */
-void
-x_window_close_all(GschemToplevel *w_current)
+void x_window_close_all(GschemToplevel *w_current)
 {
   GList *iter;
 
@@ -769,8 +760,7 @@ void x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
  *       uses local buffer and glibc when we do not want to deal with freeing.
  *
  */
-Page*
-x_window_open_page(GschemToplevel *w_current, const char *filename)
+Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page *old_current, *page;
@@ -1030,8 +1020,7 @@ x_window_open_page(GschemToplevel *w_current, const char *filename)
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to close.
  */
-void
-x_window_close_page (GschemToplevel *w_current, Page *page)
+void x_window_close_page (GschemToplevel *w_current, Page *page)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -1147,8 +1136,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
  *  \param [in] filename  The name of the file in which to save page.
  *  \returns 1 on success, 0 otherwise.
  */
-int
-x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
+int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   const char   *log_msg;
@@ -1219,8 +1207,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to become current page.
  */
-void
-x_window_set_current_page (GschemToplevel *w_current, Page *page)
+void x_window_set_current_page (GschemToplevel *w_current, Page *page)
 {
   if (gschem_toplevel_set_current_page (w_current, page)) {
     o_redraw_cleanstates (w_current);
@@ -1243,8 +1230,7 @@ x_window_set_current_page (GschemToplevel *w_current, Page *page)
  *  laptops with limited display area. The scroll-bars can be hidden but
  *  remain active so that the mouse wheel remains functional.
  */
-void
-x_window_set_scroll_visibility(GschemToplevel *w_current)
+void x_window_set_scroll_visibility(GschemToplevel *w_current)
 {
   if (w_current->scrollbars == TRUE ) {
 
@@ -1274,9 +1260,8 @@ x_window_set_scroll_visibility(GschemToplevel *w_current)
  *  \param [in]     ymin       The minimum y coordinate for the page.
  *  \param [in]     ymax       The maximum y coordinate for the page.
  */
-void
-x_window_setup_page(GschemToplevel *w_current, Page *page,
-                    int xmin, int xmax, int ymin, int ymax)
+void x_window_setup_page(GschemToplevel *w_current, Page *page,
+                         int xmin, int xmax, int ymin, int ymax)
 {
   double f_width, f_height;
   double f_left, f_right;
@@ -1318,8 +1303,7 @@ x_window_setup_page(GschemToplevel *w_current, Page *page,
  *
  *  \param [in] w_current GschemToplevel structure
  */
-void
-x_window_update_title(GschemToplevel *w_current)
+void x_window_update_title(GschemToplevel *w_current)
 {
 
   Page *current_page = gschem_toplevel_get_current_page(w_current);
@@ -1397,8 +1381,7 @@ x_window_update_title(GschemToplevel *w_current)
  *  Note the function actually toggle visibility of the handlebox
  *  containing the toolbar.
  */
-void
-x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->add_handlebox);
@@ -1413,8 +1396,7 @@ x_window_add_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  *  Note: the function actually toggles visibility of the handlebox
  *  containing the toolbar.
  */
-void
-x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->attribute_handlebox);
@@ -1429,8 +1411,7 @@ x_window_attribute_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note: the function actually toggles visibility of the handlebox
  * containing the toolbar.
  */
-void
-x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->grid_snap_handlebox);
@@ -1445,8 +1426,7 @@ x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void
-x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->edit_handlebox);
@@ -1461,8 +1441,7 @@ x_window_edit_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void
-x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->page_handlebox);
@@ -1477,8 +1456,7 @@ x_window_page_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void
-x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->standard_handlebox);
@@ -1493,8 +1471,7 @@ x_window_standard_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void
-x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->select_handlebox);
@@ -1509,8 +1486,7 @@ x_window_select_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar.
  */
-void
-x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->symbol_handlebox);
@@ -1525,8 +1501,7 @@ x_window_symbol_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar
  */
-void
-x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(GEDA_CHECK_MENU_ITEM(widget)))
     gtk_widget_show(w_current->zoom_handlebox);
@@ -1541,8 +1516,7 @@ x_window_zoom_toolbar_toggle(GtkWidget *widget, GschemToplevel *w_current)
  * Note the function actually toggle visibility of the handlebox
  * containing the toolbar
  */
-void
-x_window_toolbar_tips_toggle(GtkWidget *widget, GschemToplevel *w_current)
+void x_window_toolbar_tips_toggle(GtkWidget *widget, GschemToplevel *w_current)
 {
   bool state;
 
