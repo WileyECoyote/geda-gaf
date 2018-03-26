@@ -1285,7 +1285,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   menu             = geda_menu_new ();
   POPUP_ITEMS_LIST = NULL;
   save_nest        = NULL;
-  POPUP_MAIN_HASH = g_hash_table_new_full (g_str_hash, (GEqualFunc) strhashcmp,
+  POPUP_MAIN_HASH  = g_hash_table_new_full (g_str_hash, (GEqualFunc) strhashcmp,
                                             NULL, NULL);
 
   /* Retrieve settings for user preferences */
