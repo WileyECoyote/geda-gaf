@@ -1,3 +1,7 @@
+2018-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Update function name geda_page_freeze_notify.
+
 2018-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Reformat Doxygen blocks. Reduce scope of the return

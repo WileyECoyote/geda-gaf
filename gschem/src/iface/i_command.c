@@ -2929,7 +2929,7 @@ COMMAND (do_page_revert_all)
         CMD_INTEGER(do_page_revert_all) = index;
       }
 
-      geda_page_feeze_notify(page); /* don't bother with thawing */
+      geda_page_freeze_notify(page); /* don't bother with thawing */
 
       /* remove the page from toplevel list of page and free */
       geda_struct_page_delete (toplevel, page, FALSE);
