@@ -3,6 +3,10 @@
     * symbols/geda-clib.scm: Add group Standard/Zeners 53 Series for
       standard 5 Watt zeners types.
 
+    * passive/protection/poly-surge-1.sym: Update dist-license=GPLv2.
+
+    * passive/protection/poly-surge-2.sym: Update dist-license=GPLv2.
+
     * irf/150EBU02-1.sym: Add symbol; 200 Volt 150 Amp diode.
 
     * irf/150EBU04-1.sym: Add symbol; 400 Volt 150 Amp diode.
