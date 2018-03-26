@@ -3,6 +3,9 @@
     * symbols/geda-clib.scm: Add group Standard/Zeners 53 Series for
       standard 5 Watt zeners types.
 
+    * emechanic/switch/switch_spdt-1.sym: Add symbol; double pole, single
+      throw switch.
+
     * emechanic/switch/switch_sp4t-1.sym: Add symbol; four pole, single
       throw switch.
 
