@@ -503,27 +503,33 @@ static void geda_font_button_set_property (GObject *object, unsigned int propert
       geda_font_button_set_use_font (font_button,
                                      g_value_get_boolean (value));
       break;
+
     case PROP_FONT_SIZE:
       geda_font_button_set_size (font_button,
                                  g_value_get_int (value));
       break;
+
     case PROP_USE_SIZE:
       geda_font_button_set_use_size (font_button,
                                      g_value_get_boolean (value));
       break;
+
     case PROP_PREVIEW_TEXT:
       geda_font_button_set_preview_text (font_button,
                                          g_value_get_string (value));
       break;
 
+
     case PROP_SHOW_PREVIEW_ENTRY:
       geda_font_button_set_show_preview (font_button,
                                          g_value_get_boolean (value));
       break;
+
     case PROP_SHOW_STYLE:
       geda_font_button_set_show_style (font_button,
                                        g_value_get_boolean (value));
       break;
+
     case PROP_SHOW_SIZE:
       geda_font_button_set_show_size (font_button,
                                       g_value_get_boolean (value));
@@ -558,31 +564,40 @@ static void geda_font_button_get_property (GObject *object, unsigned int propert
     case PROP_TITLE:
       g_value_set_string (value, geda_font_button_get_title (font_button));
       break;
+
     case PROP_FONT:
     case PROP_FONT_NAME:
       g_value_set_string (value, geda_font_button_get_font_name (font_button));
       break;
+
     case PROP_USE_FONT:
       g_value_set_boolean (value, geda_font_button_get_use_font (font_button));
       break;
+
     case PROP_FONT_SIZE:
       g_value_set_int (value, geda_font_button_get_size (font_button));
       break;
+
     case PROP_USE_SIZE:
       g_value_set_boolean (value, geda_font_button_get_use_size (font_button));
       break;
+
     case PROP_PREVIEW_TEXT:
       g_value_set_string (value, geda_font_button_get_preview_text (font_button));
       break;
+
     case PROP_SHOW_PREVIEW_ENTRY:
       g_value_set_boolean (value, geda_font_button_get_show_preview (font_button));
       break;
+
     case PROP_SHOW_STYLE:
       g_value_set_boolean (value, geda_font_button_get_show_style (font_button));
       break;
+
     case PROP_SHOW_SIZE:
       g_value_set_boolean (value, geda_font_button_get_show_size (font_button));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property, pspec);
       break;
