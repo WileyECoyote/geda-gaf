@@ -2108,8 +2108,6 @@ COMMAND (do_deselect_all)
   o_redraw_cleanstates (w_current);
   o_select_unselect_all (w_current);
 
-  i_status_set_state (w_current, SELECT);
-  i_status_action_stop(w_current);
   i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_deselect_all);
 }
