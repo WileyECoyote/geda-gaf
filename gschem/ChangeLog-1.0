@@ -2,7 +2,8 @@
 
     * src/iface/i_command.c: Update function name geda_page_freeze_notify.
 
-    * src/x/x_window.c: Update function name geda_page_freeze_notify.
+    * src/x/x_window.c: Update function name geda_page_freeze_notify, replace
+      gtk_adjustment_new with geda_adjustment_new macro.
 
 2018-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
