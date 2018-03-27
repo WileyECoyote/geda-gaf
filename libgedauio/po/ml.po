@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-02-17 23:30-0600\n"
+"POT-Creation-Date: 2018-03-26 23:49-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:460
 #: libgedauio/src/dialogs/geda_image_chooser.c:1028
-msgid "Set or retrieve index of the filter combo"
+msgid "filter index"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:461
 #: libgedauio/src/dialogs/geda_image_chooser.c:1029
-msgid "IDE_FILTER"
+msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_file_chooser.c:644
@@ -102,7 +102,7 @@ msgid "The accelerator string to be displayed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_action.c:268
-msgid "multikey-accelerator"
+msgid "multikey accelerator"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_action.c:269
@@ -110,7 +110,7 @@ msgid "A string with characters in positions key characters"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_action.c:276
-msgid "icon-identification"
+msgid "icon identification"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_action.c:277
@@ -303,152 +303,152 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:632
+#: libgedauio/src/widgets/geda_entry.c:646
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:633
+#: libgedauio/src/widgets/geda_entry.c:647
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:640
+#: libgedauio/src/widgets/geda_entry.c:654
 #: libgedauio/src/widgets/geda_label.c:1384
 msgid "Attributes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:641
+#: libgedauio/src/widgets/geda_entry.c:655
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:648
+#: libgedauio/src/widgets/geda_entry.c:662
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:649
+#: libgedauio/src/widgets/geda_entry.c:663
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:656
+#: libgedauio/src/widgets/geda_entry.c:670
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:657
+#: libgedauio/src/widgets/geda_entry.c:671
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:664
+#: libgedauio/src/widgets/geda_entry.c:678
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:665
+#: libgedauio/src/widgets/geda_entry.c:679
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:674
+#: libgedauio/src/widgets/geda_entry.c:688
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:675
+#: libgedauio/src/widgets/geda_entry.c:689
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:684
+#: libgedauio/src/widgets/geda_entry.c:698
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:685
+#: libgedauio/src/widgets/geda_entry.c:699
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1316
+#: libgedauio/src/widgets/geda_entry.c:1327
 #, fuzzy
 msgid "Auto Complete"
 msgstr "സാധനത്തിലെ മാറ്റങ്ങള്‍ നടപ്പില്‍ വരുത്തുക"
 
-#: libgedauio/src/widgets/geda_entry.c:1324
+#: libgedauio/src/widgets/geda_entry.c:1335
 msgid "On"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1329
+#: libgedauio/src/widgets/geda_entry.c:1340
 msgid "Off"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:770
+#: libgedauio/src/widgets/geda_font_button.c:772
 #: libgedauio/src/widgets/geda_font_dialog.c:1506
 msgid "Title"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:771
+#: libgedauio/src/widgets/geda_font_button.c:773
 #: libgedauio/src/widgets/geda_font_dialog.c:1507
 msgid "The title of the font selection dialog"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:772
+#: libgedauio/src/widgets/geda_font_button.c:774
 #: libgedauio/src/widgets/geda_font_dialog.c:1508
 msgid "Pick a Font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:781
+#: libgedauio/src/widgets/geda_font_button.c:783
 #: libgedauio/src/widgets/geda_font_dialog.c:1530
 msgid "Font name"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:782
+#: libgedauio/src/widgets/geda_font_button.c:784
 msgid "The name of the selected font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:793
+#: libgedauio/src/widgets/geda_font_button.c:795
 msgid "Use font in label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:794
+#: libgedauio/src/widgets/geda_font_button.c:796
 msgid "Whether the label is drawn in the selected font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:805
+#: libgedauio/src/widgets/geda_font_button.c:807
 msgid "Use size in label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:806
+#: libgedauio/src/widgets/geda_font_button.c:808
 msgid "Whether the label is drawn with the selected font size"
 msgstr ""
 
 # Show style
-#: libgedauio/src/widgets/geda_font_button.c:818
+#: libgedauio/src/widgets/geda_font_button.c:820
 msgid "Show style"
 msgstr "ശൈലി കാണിക്കുക"
 
-#: libgedauio/src/widgets/geda_font_button.c:819
+#: libgedauio/src/widgets/geda_font_button.c:821
 msgid "Whether the selected font style is shown in the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:831
+#: libgedauio/src/widgets/geda_font_button.c:833
 msgid "Show size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:832
+#: libgedauio/src/widgets/geda_font_button.c:834
 msgid "Whether selected font size is shown in the label"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:842
+#: libgedauio/src/widgets/geda_font_button.c:844
 #: libgedauio/src/widgets/geda_font_dialog.c:1541
 msgid "Set Size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:843
+#: libgedauio/src/widgets/geda_font_button.c:845
 #: libgedauio/src/widgets/geda_font_dialog.c:1542
 msgid "Set point size of the font"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:898
+#: libgedauio/src/widgets/geda_font_button.c:900
 msgid "Open font selection dialog"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:942
+#: libgedauio/src/widgets/geda_font_button.c:944
 msgid "Font button"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_font_button.c:1572
+#: libgedauio/src/widgets/geda_font_button.c:1557
 #: libgedauio/src/widgets/geda_font_dialog.c:1514
 msgid "Font"
 msgstr ""
@@ -788,11 +788,11 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5347
+#: libgedauio/src/widgets/geda_label.c:5346
 msgid "_Open Link"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_label.c:5359
+#: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
 msgstr ""
 
