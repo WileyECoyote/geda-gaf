@@ -1,3 +1,7 @@
+2018-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
 2018-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Replace gtk_container_forall with
