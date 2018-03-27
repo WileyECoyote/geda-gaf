@@ -1979,7 +1979,7 @@ multiattrib_dispose (GObject *object)
 static void
 multiattrib_finalize (GObject *object)
 {
-  Multiattrib *ThisDialog = MULTIATTRIB(object);
+  Multiattrib  *ThisDialog = MULTIATTRIB(object);
 
   /* Clear the existing list of attributes */
   disconnect_object_list (ThisDialog);
