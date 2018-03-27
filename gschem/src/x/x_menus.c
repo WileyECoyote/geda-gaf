@@ -1355,7 +1355,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
       g_object_set (menu_item, "show-image", show_pop_icons, NULL);
 
       /* Connect things up so that the actions get run */
-      g_signal_connect (G_OBJECT (menu_item), "activate",
+      g_signal_connect (menu_item, "activate",
                         (void*) item.func,
                         (void*)(long)item.action_id);
 

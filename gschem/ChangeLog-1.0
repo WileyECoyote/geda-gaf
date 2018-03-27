@@ -2,6 +2,8 @@
 
     * src/x/x_multiattrib.c: Remove unneeded GObject cast in multiattrib_init.
 
+    * src/x/x_menu.c: Remove unneeded GObject cast in x_menu_setup_popup.
+
 2018-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Update function name geda_page_freeze_notify.
