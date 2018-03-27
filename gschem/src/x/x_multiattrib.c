@@ -2096,7 +2096,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   int i;
 
   /* dialog initialization */
-  g_object_set (G_OBJECT (ThisDialog), /* GtkContainer */
+  g_object_set (ThisDialog, /* GtkContainer */
                 /* GtkWindow */
                 "title",           _("Edit Attributes"),
                 "default-width",   320,
