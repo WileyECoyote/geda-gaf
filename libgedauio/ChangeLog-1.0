@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2018-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Replace gtk_container_forall with
