@@ -105,9 +105,8 @@ static char *geda_dialog_get_input(const char *title,
     gtk_window_set_default(GTK_WINDOW(dialog), ok_butt);
     geda_entry_set_activates_default(GEDA_ENTRY(entry), TRUE);
 
-    switch (gtk_dialog_run(dialog))
-    {
-    case 0:
+    switch (gtk_dialog_run(dialog)) {
+
         text = NULL;
         break;
 

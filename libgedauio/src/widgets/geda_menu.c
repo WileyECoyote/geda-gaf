@@ -677,8 +677,7 @@ get_arrows_sensitive_area (GedaMenu     *menu,
 
   gdk_window_get_position (window, &win_x, &win_y);
 
-  switch (arrow_placement)
-  {
+  switch (arrow_placement) {
     case GTK_ARROWS_BOTH:
       if (upper) {
         upper->x = win_x;

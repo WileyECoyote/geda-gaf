@@ -559,8 +559,8 @@ static void geda_font_button_get_property (GObject *object, unsigned int propert
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (object);
 
-  switch (property)
-    {
+  switch (property) {
+
     case PROP_TITLE:
       g_value_set_string (value, geda_font_button_get_title (font_button));
       break;

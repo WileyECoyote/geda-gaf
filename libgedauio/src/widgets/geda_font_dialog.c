@@ -997,8 +997,7 @@ geda_font_dialog_set_property (GObject *object, unsigned int prop_id,
 {
   GedaFontDialog *dialog = (GedaFontDialog*)object;
 
-  switch (prop_id)
-  {
+  switch (prop_id) {
     case PROP_TITLE:
       gtk_window_set_title (GTK_WINDOW (dialog), g_value_get_string (value));
       break;
