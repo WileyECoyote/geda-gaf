@@ -2090,10 +2090,15 @@ void geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType typ
   geda_handle_box_set_shadow_type ((GedaHandleBox*)handlebox, type);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaHandleBox Widget Shrink on Detach property
+ * \par Function Description
+ *  Widget version of geda_handle_box_set_shrink_on_detach.
  *
+ * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] shrink    Whether the handle should shrink or not.
+ *
+ * \see geda_handle_box_set_shrink_on_detach
  */
 void geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
 {

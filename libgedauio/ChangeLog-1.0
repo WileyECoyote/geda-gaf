@@ -5,6 +5,7 @@
     * src/widgets/geda_handlebox.c: Update function documentation for:
 
           * geda_handle_widget_set_shadow_type
+          * geda_handle_widget_set_shrink_on_detach
 
 2018-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
