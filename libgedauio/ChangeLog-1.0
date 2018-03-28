@@ -1,5 +1,7 @@
 2018-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/de.po: Update German translations.
+
     * src/widgets/geda_action.c: Remove hyphenations from string specs.
 
     * src/widgets/geda_handlebox.c: Update function documentation for:
