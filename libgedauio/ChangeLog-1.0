@@ -8,6 +8,10 @@
 
     * src/widgets/geda_action.c: Remove hyphenations from string specs.
 
+    * src/dialogs/geda_input_dialog.c: Replace gtk_entry_set_text and
+      gtk_entry_get_text with geda_entry_widget_set_text and geda_entry_
+      widget_get_text in geda_dialog_get_input.
+
     * src/widgets/geda_handlebox.c: Update function documentation for:
 
           * geda_handle_widget_set_shadow_type

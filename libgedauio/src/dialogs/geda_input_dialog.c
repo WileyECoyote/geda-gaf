@@ -95,7 +95,7 @@ static char *geda_dialog_get_input(const char *title,
     geda_container_add(content_area, entry);
 
     if (str) {
-      gtk_entry_set_text((GtkEntry*)entry, str);
+      geda_entry_widget_set_text(entry, str);
     }
 
     gtk_widget_show(GTK_WIDGET(dialog));
@@ -111,7 +111,7 @@ static char *geda_dialog_get_input(const char *title,
         break;
 
     case 1:
-        text = geda_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+        text = geda_strdup(geda_entry_widget_get_text(entry));
         break;
 
     default:
