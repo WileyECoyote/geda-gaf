@@ -2075,10 +2075,15 @@ void geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
   geda_handle_box_set_handle_position ((GedaHandleBox*)handlebox, position);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaHandleBox Widget Shadow Type
+ * \par Function Description
+ *  Widget version of geda_handle_box_set_shadow_type.
  *
+ * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] type       Enumerated ShadowType
+ *
+ * \see geda_handle_box_set_shadow_type
  */
 void geda_handle_widget_set_shadow_type (GtkWidget *handlebox, GtkShadowType type)
 {
