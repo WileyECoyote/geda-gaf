@@ -4,6 +4,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/es.po: Update Spanish translations.
+
     * src/widgets/geda_action.c: Remove hyphenations from string specs.
 
     * src/widgets/geda_handlebox.c: Update function documentation for:
