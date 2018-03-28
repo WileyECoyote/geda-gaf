@@ -265,7 +265,7 @@ geda_action_class_init(void *class, void *class_data)
   geda_action_parent_class        = g_type_class_peek_parent (class);
 
   params = g_param_spec_string ("multikey-accel",
-                              _("multikey-accelerator"),
+                              _("multikey accelerator"),
                               _("A string with characters in positions key characters"),
                                  NULL,
                                (G_PARAM_READWRITE));
@@ -273,7 +273,7 @@ geda_action_class_init(void *class, void *class_data)
   g_object_class_install_property( object_class, PROP_MULTIKEY_ACCEL, params);
 
   params = g_param_spec_string ("icon-id",
-                              _("icon-identification"),
+                              _("icon identification"),
                               _("String name of the icon image"),
                                  NULL,
                                (G_PARAM_READWRITE));
