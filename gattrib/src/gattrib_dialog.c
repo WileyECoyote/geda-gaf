@@ -424,15 +424,15 @@ static void gattrib_dialog_class_init(void *klass, void *class_data)
   g_object_class_install_property (
     gobject_class, PROP_SETTINGS_NAME,
     g_param_spec_string ("settings-name",
-                         "",
-                         "",
+                         "settings name",
+                         "The name of the setting",
                          NULL,
                          G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
   g_object_class_install_property (
     gobject_class, PROP_GATTRIB_GedaToplevel,
     g_param_spec_pointer ("gattrib-toplevel",
-                          "",
-                          "",
+                          "gattrib toplevel",
+                          "gattrib toplevel structure",
                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 }
 
