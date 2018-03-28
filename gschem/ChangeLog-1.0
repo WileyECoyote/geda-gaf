@@ -1,6 +1,7 @@
 2018-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Remove unneeded GObject cast in multiattrib_init.
+      Replace geda_menu_shell_append with macro in multiattrib_popup_menu.
 
     * src/x/x_menu.c: Remove unneeded GObject cast in x_menu_setup_popup.
 

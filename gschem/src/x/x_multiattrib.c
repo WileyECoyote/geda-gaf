@@ -1751,7 +1751,7 @@ static void multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *even
       menuitem = geda_menu_item_new_with_label (_(tmp->label));
       g_signal_connect (menuitem, "activate", tmp->callback, ThisDialog);
     }
-    geda_menu_shell_append (GEDA_MENU_SHELL (menu), menuitem);
+    geda_menu_append (menu, menuitem);
   }
   gtk_widget_show_all (menu);
 
