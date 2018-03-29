@@ -2105,10 +2105,17 @@ void geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
   geda_handle_box_set_shrink_on_detach ((GedaHandleBox*)handlebox, shrink);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaHandleBox Widget Snap Edge
+ * \par Function Description
+ * The snap edge is the edge of the detached child that must be aligned with
+ * the corresponding edge of the "ghost" left behind when the child was detached
+ * to reattach the torn-off window.
  *
+ * \param [in] handlebox The #GedaHandleBox widget
+ * \param [in] edge      Enumerated GtkPositionType
+ *
+ * \see geda_handle_box_set_snap_edge
  */
 void geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edge)
 {

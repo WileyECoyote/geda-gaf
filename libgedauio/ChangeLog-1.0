@@ -1,3 +1,9 @@
+2018-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Update function documentation for:
+
+          * geda_handle_widget_set_snap_edge
+
 2018-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
