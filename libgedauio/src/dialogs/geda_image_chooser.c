@@ -1025,8 +1025,8 @@ geda_image_chooser_class_init (void *class, void *data)
   geda_image_chooser_parent_class = g_type_class_peek_parent (class);
 
   params = g_param_spec_int ("filter-index",
-                           _("Set or retrieve index of the filter combo"), /* nick name */
-                           _("IDE_FILTER"),     /* hint / blurb */
+                           _("filter index"), /* nick name */
+                           _("Set or retrieve index of the filter combo"), /* hint / blurb */
                               FILTER_PNG,       /* Min value */
                               FILTER_IMAGES,    /* Max value */
                               FILTER_IMAGES,    /* default_value */
