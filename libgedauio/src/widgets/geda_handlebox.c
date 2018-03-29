@@ -2122,10 +2122,15 @@ void geda_handle_widget_set_snap_edge (GtkWidget *handlebox, GtkPositionType edg
   geda_handle_box_set_snap_edge ((GedaHandleBox*)handlebox, edge);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaHandleBox Widget Toolbar
+ * \par Function Description
+ *  Widget version of geda_handle_box_set_snap_edge.
  *
+ * \param [in] handlebox The #GedaHandleBox widget
+ * \param [in] toolbar   Toolbar object to be put in the handlebox
+ *
+ * \see geda_handle_box_set_snap_edge
  */
 void geda_handle_widget_set_toolbar (GtkWidget *handlebox, GtkWidget *toolbar)
 {
