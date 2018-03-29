@@ -107,14 +107,15 @@ static char *geda_dialog_get_input(const char *title,
 
     switch (gtk_dialog_run(dialog)) {
 
+      case 0:
         text = NULL;
         break;
 
-    case 1:
+      case 1:
         text = geda_strdup(geda_entry_widget_get_text(entry));
         break;
 
-    default:
+      default:
         break;
     }
 
