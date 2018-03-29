@@ -1,3 +1,8 @@
+2018-03-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_print.c: Add nick name and blurb strings for the
+      "filename", "command", "papersize", and "Orientation" property specs.
+
 2018-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_multiattrib.c: Remove unneeded GObject cast in multiattrib_init.

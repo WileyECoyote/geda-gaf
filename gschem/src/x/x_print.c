@@ -434,32 +434,44 @@ print_dialog_class_init (PrintDialogClass * class)
 
   g_object_class_install_property (gobject_class, PROP_FILENAME,
                                    g_param_spec_string ("filename",
-                                                        "", "", "",
+                                                        "Filename",
+                                                        "The filename to be printed",
+                                                        "",
                                                         G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_COMMAND,
                                    g_param_spec_string ("command",
-                                                        "", "", "lpr",
+                                                        "Print command",
+                                                        "The command-line print command",
+                                                        "lpr",
                                                         G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_PAPERSIZE,
                                    g_param_spec_int ("papersize",
-                                                     "", "", 0, G_MAXINT, 0,
+                                                     "Paper size",
+                                                     "papersize",
+                                                     0, G_MAXINT, 0,
                                                      G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_ORIENTATION,
                                    g_param_spec_int ("orientation",
-                                                     "", "", 0, G_MAXINT, 0,
+                                                     "Orientation",
+                                                     "The page orientation",
+                                                     0, G_MAXINT, 0,
                                                      G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_TYPE,
                                    g_param_spec_int ("type",
-                                                     "", "", 0, G_MAXINT, 0,
+                                                     "type",
+                                                     "type",
+                                                     0, G_MAXINT, 0,
                                                      G_PARAM_READWRITE));
 
   g_object_class_install_property (gobject_class, PROP_USEFILE,
                                    g_param_spec_boolean ("usefile",
-                                                         "", "", FALSE,
+                                                         "usefile",
+                                                         "usefile",
+                                                         FALSE,
                                                          G_PARAM_READWRITE));
 }
 
