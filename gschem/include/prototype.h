@@ -611,6 +611,7 @@ bool       o_place_start                     (GschemToplevel *w_current, int x, 
 /* o_redraw.c */
 int        o_redraw_cleanstates              (GschemToplevel *w_current);
 void       o_redraw_rectangle                (GschemToplevel *w_current, GdkRectangle *rectangle);
+void       o_redraw_list                     (GschemToplevel *w_current, GList *list);
 
 /* o_select.c */
 void       o_select_object                   (GschemToplevel *w_current, GedaObject *o_current, int type, int count);

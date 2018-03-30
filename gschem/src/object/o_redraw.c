@@ -397,3 +397,18 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   g_array_free (render_outline_color_map, TRUE);
 
 }
+
+void o_redraw_list (GschemToplevel *w_current, GList *list)
+{
+  int left, top, bottom, right;
+
+  if (geda_object_get_bounds_list (list, &left,  &top, &right, &bottom)) {
+
+    GdkRectangle rect;
+
+    WORLDtoSCREEN (w_current, left,  top,    &rect.x, &rect.y);
+    WORLDtoSCREEN (w_current, right, bottom, &rect.width, &rect.height);
+
+    o_redraw_rectangle (w_current, &rect);
+  }
+}
