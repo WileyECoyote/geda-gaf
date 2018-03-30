@@ -2,6 +2,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/fr.po: Update French translations.
+
 2018-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update nick name and blurb;
