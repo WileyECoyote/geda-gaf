@@ -213,8 +213,7 @@ get_property (GObject *object, unsigned int param_id, GValue *value, GParamSpec 
  * \param [in]  class       The GschemMacroWidgetClass to be initialized
  * \param [in]  class_data  (unused)
  */
-static void
-gschem_macro_widget_class_init (void *class, void *class_data)
+static void gschem_macro_widget_class_init (void *class, void *class_data)
 {
   GObjectClass   *gobject_class = (GObjectClass*)class;
   GtkWidgetClass *widget_class  = (GtkWidgetClass*)class;
@@ -250,8 +249,7 @@ gschem_macro_widget_class_init (void *class, void *class_data)
  * \param [in] widget This GschemMacroWidget
  * \return The entry
  */
-GtkWidget*
-gschem_macro_widget_get_entry (GtkWidget *widget)
+GtkWidget *gschem_macro_widget_get_entry (GtkWidget *widget)
 {
   GtkWidget *ret_val = NULL;
 
@@ -275,8 +273,7 @@ gschem_macro_widget_get_entry (GtkWidget *widget)
  * \param [in] widget This GschemMacroWidget
  * \return The label text
  */
-const char*
-gschem_macro_widget_get_label_text (GtkWidget *widget)
+const char *gschem_macro_widget_get_label_text (GtkWidget *widget)
 {
   const char *ret_val = NULL;
 
@@ -301,8 +298,7 @@ gschem_macro_widget_get_label_text (GtkWidget *widget)
  * \param [in] widget This GschemMacroWidget
  * \return The macro string
  */
-const char*
-gschem_macro_widget_get_macro_string (GtkWidget *widget)
+const char *gschem_macro_widget_get_macro_string (GtkWidget *widget)
 {
   const char *ret_val = NULL;
 
@@ -327,8 +323,7 @@ gschem_macro_widget_get_macro_string (GtkWidget *widget)
  * \param [in,out] instance The GschemMacroWidget being initialized.
  * \param [in]     class  The class of the type the instance is created for.
  */
-static void
-gschem_macro_widget_instance_init(GTypeInstance *instance, void *class)
+static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *class)
 {
   GschemMacroWidget *widget;
 
@@ -421,8 +416,7 @@ bool is_a_gschem_macro_widget (GschemMacroWidget *widget)
   return FALSE;
 }
 
-GtkWidget*
-gschem_macro_widget_new(void)
+GtkWidget *gschem_macro_widget_new(void)
 {
   return g_object_new (GSCHEM_TYPE_MACRO_WIDGET, NULL);
 }
@@ -433,8 +427,7 @@ gschem_macro_widget_new(void)
  * \param [in,out] widget This GschemMacroWidget
  * \param [in]     text   The label text
  */
-void
-gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
+void gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
 {
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -451,15 +444,13 @@ gschem_macro_widget_set_label_text (GtkWidget *widget, const char *text)
   }
 }
 
-
 /*!
  * \brief Set the macro string
  * \par Function Description
  * \param [in,out] widget This GschemMacroWidget
  * \param [in]     str    The macro string
  */
-void
-gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
+void gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
 {
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -476,13 +467,11 @@ gschem_macro_widget_set_macro_string (GtkWidget *widget, const char *str)
   }
 }
 
-
 /*!
  * \brief Update the sensitivity of the evaluate button
  * \par Function Description
  */
-static void
-notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widget)
+static void notify_entry_text (GtkWidget *entry, GParamSpec *pspec, GschemMacroWidget *widget)
 {
   g_return_if_fail (widget != NULL);
 
