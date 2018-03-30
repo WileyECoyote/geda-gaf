@@ -338,10 +338,9 @@ int geda_notify_list_in_list (GedaNotifyList *list, void *func)
  */
 void geda_notify_list_remove (GedaNotifyList *list, void *item)
 {
-  if (g_list_find (list->glist, item) == NULL)
-    return;
-
-  list->glist = g_list_remove (list->glist, item);
+  if (g_list_find (list->glist, item)) {
+    list->glist = g_list_remove (list->glist, item);
+  }
 }
 
 /*!

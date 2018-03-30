@@ -1,3 +1,8 @@
+2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_notify.c: Revise geda_notify_list_remove to check for
+      success rather than failure.
+
 2018-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_notify.c: Update geda_notify_list_thaw documentation.
