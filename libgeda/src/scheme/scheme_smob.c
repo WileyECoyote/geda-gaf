@@ -99,8 +99,8 @@ static void smob_weakref2_notify (void *target, void *smob) {
  */
 static size_t smob_free (SCM smob)
 {
+  GedaToplevel*toplevel;
   void *obj;
-  GedaToplevel* toplevel;
 
   /* If the weak reference has already been cleared, do nothing */
   if (!EDASCM_SMOB_VALIDP(smob)) return 0;
