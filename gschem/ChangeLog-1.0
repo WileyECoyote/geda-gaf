@@ -5,6 +5,8 @@
 
     * src/base/gschem_macro_widget.c: Adjust function wrap.
 
+    * src/gschem_preview.c: Adjust function wrap.
+
 2018-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_print.c: Add nick name and blurb strings for the

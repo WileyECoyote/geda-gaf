@@ -73,8 +73,7 @@ static void preview_instance_init (GTypeInstance  *instance,
 
 /*! \brief get the filename for the current page
  */
-static char*
-preview_get_filename (GschemPreview *preview)
+static char *preview_get_filename (GschemPreview *preview)
 {
  Page *page = preview->preview_window->toplevel->page_current;
 
@@ -96,8 +95,7 @@ preview_get_filename (GschemPreview *preview)
  *
  *  \param [in] preview_window  A GschemToplevel object.
  */
-static void
-preview_invalidate (GschemToplevel *preview_window)
+static void preview_invalidate (GschemToplevel *preview_window)
 {
   if (preview_window && GDK_IS_WINDOW(preview_window->window))
     gdk_window_invalidate_rect (preview_window->window, NULL, FALSE);
@@ -113,8 +111,7 @@ preview_invalidate (GschemToplevel *preview_window)
  *  \param [in] widget    The preview widget.
  *  \param [in] user_data Unused user data.
  */
-static void
-preview_callback_realize (GtkWidget *widget, void *user_data)
+static void preview_callback_realize (GtkWidget *widget, void *user_data)
 {
   GtkAllocation  *allocation;
   GschemPreview  *preview;
@@ -167,10 +164,9 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
  *
  *  \returns FALSE to propagate the event further.
  */
-static bool
-preview_callback_expose (GtkWidget      *widget,
-                         GdkEventExpose *event,
-                         void           *user_data)
+static bool preview_callback_expose (GtkWidget      *widget,
+                                     GdkEventExpose *event,
+                                     void           *user_data)
 {
   GschemPreview  *preview;
   GschemToplevel *preview_window;
@@ -204,10 +200,9 @@ preview_callback_expose (GtkWidget      *widget,
  *
  *  \returns FALSE to propagate the event further.
  */
-static bool
-preview_callback_button_press (GtkWidget      *widget,
-                               GdkEventButton *event,
-                               void           *user_data)
+static bool preview_callback_button_press (GtkWidget      *widget,
+                                           GdkEventButton *event,
+                                           void           *user_data)
 {
   GschemPreview  *preview;
   GschemToplevel *preview_window;
@@ -332,10 +327,9 @@ preview_update (GschemPreview *preview)
 
 }
 
-static bool
-preview_event_configure (GtkWidget         *widget,
-                         GdkEventConfigure *event,
-                         void              *user_data)
+static bool preview_event_configure (GtkWidget         *widget,
+                                     GdkEventConfigure *event,
+                                     void              *user_data)
 {
   bool retval;
   GschemToplevel *preview_window = GSCHEM_PREVIEW(widget)->preview_window;
@@ -345,10 +339,9 @@ preview_event_configure (GtkWidget         *widget,
 }
 
 
-static bool
-preview_event_scroll (GtkWidget *widget,
-                      GdkEventScroll *event,
-                      GschemToplevel *w_current)
+static bool preview_event_scroll (GtkWidget *widget,
+                                  GdkEventScroll *event,
+                                  GschemToplevel *w_current)
 {
   if (!GSCHEM_PREVIEW(widget)->active) {
     return TRUE;
@@ -356,8 +349,7 @@ preview_event_scroll (GtkWidget *widget,
   return x_event_scroll(widget, event, GSCHEM_PREVIEW(widget)->preview_window);
 }
 
-static void
-preview_set_xy (GschemPreview *preview, int x, int y)
+static void preview_set_xy (GschemPreview *preview, int x, int y)
 {
   GschemToplevel *preview_window = preview->preview_window;
 
@@ -372,8 +364,7 @@ preview_set_xy (GschemPreview *preview, int x, int y)
                           NULL);
 }
 
-static void
-preview_resize (GschemPreview *preview, bool large)
+static void preview_resize (GschemPreview *preview, bool large)
 {
   int x;
   int y;
@@ -390,9 +381,8 @@ preview_resize (GschemPreview *preview, bool large)
   preview_set_xy (preview, x, y);
 }
 
-static void
-preview_set_property (GObject *object, unsigned int property_id,
-                      const GValue *value, GParamSpec *pspec)
+static void preview_set_property (GObject *object, unsigned int property_id,
+                                  const GValue *value, GParamSpec *pspec)
 {
   GschemPreview  *preview        = GSCHEM_PREVIEW (object);
   GschemToplevel *preview_window = preview->preview_window;
@@ -436,11 +426,10 @@ preview_set_property (GObject *object, unsigned int property_id,
   }
 }
 
-static void
-preview_get_property (GObject     *object,
-                      unsigned int property_id,
-                      GValue      *value,
-                      GParamSpec  *pspec)
+static void preview_get_property (GObject     *object,
+                                  unsigned int property_id,
+                                  GValue      *value,
+                                  GParamSpec  *pspec)
 {
   GschemPreview *preview = GSCHEM_PREVIEW (object);
 
@@ -467,8 +456,7 @@ preview_get_property (GObject     *object,
  *
  * \param [in] self The preview widget.
  */
-static void
-preview_dispose  (GObject *self)
+static void preview_dispose  (GObject *self)
 {
   GschemPreview  *preview = GSCHEM_PREVIEW (self);
   GschemToplevel *preview_window = preview->preview_window;
@@ -487,8 +475,7 @@ preview_dispose  (GObject *self)
   }
 }
 
-static void
-preview_finalize (GObject *self)
+static void preview_finalize (GObject *self)
 {
   GschemPreview  *preview        = GSCHEM_PREVIEW (self);
   GschemToplevel *preview_window = preview->preview_window;
@@ -651,8 +638,7 @@ static void preview_instance_init(GTypeInstance *instance, void *class)
  *
  * \returns the Type identifier associated with PreviewClass.
  */
-GedaType
-gschem_preview_get_type (void)
+GedaType gschem_preview_get_type (void)
 {
   static volatile GedaType preview_type = 0;
 
@@ -690,8 +676,7 @@ gschem_preview_get_type (void)
  *  to gschem preview type.
  * \return TRUE if \a preview is a valid GschemPreview
  */
-bool
-is_a_gschem_preview (GschemPreview *preview)
+bool is_a_gschem_preview (GschemPreview *preview)
 {
   if (G_IS_OBJECT(preview)) {
     return (gschem_preview_get_type() == preview->instance_type);
