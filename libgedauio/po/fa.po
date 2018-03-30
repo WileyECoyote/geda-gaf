@@ -367,10 +367,10 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Auto Complete
 #: libgedauio/src/widgets/geda_entry.c:1327
-#, fuzzy
 msgid "Auto Complete"
-msgstr "Update Component"
+msgstr "خودکار کامل"
 
 #: libgedauio/src/widgets/geda_entry.c:1335
 msgid "On"
@@ -689,27 +689,28 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "Line"
+msgstr "بسته بندی خط"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
 msgid "Line wrap mode"
-msgstr ""
+msgstr "حالت بسته بندی خط"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1442
-#, fuzzy
 msgid "Selectable"
-msgstr "Select Mode"
+msgstr "انتخابی"
 
 #: libgedauio/src/widgets/geda_label.c:1443
 msgid "Whether the label text can be selected with the mouse"
@@ -739,10 +740,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Select Mode"
+msgstr "انتخاب محدود است"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
@@ -897,11 +898,10 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
-# Widget size
+# Font Size
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
-msgstr "اندازه ویجت"
+msgstr "اندازه فونت"
 
 #: libgedauio/src/widgets/geda_toolbar.c:163
 msgid "Set point size of the font for child widgets"
