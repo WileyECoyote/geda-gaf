@@ -3113,7 +3113,6 @@ compselect_geometry_restore (GschemDialog *dialog,
 static void
 compselect_settings_restore (Compselect *Dialog)
 {
-
   EdaConfig *cfg      = eda_config_get_user_context ();
 
   Dialog->style_flag  = eda_config_get_integer (cfg, IDS_COMP_SELECT, "style", NULL);
@@ -3121,7 +3120,6 @@ compselect_settings_restore (Compselect *Dialog)
   Dialog->subgroups   = eda_config_get_boolean (cfg, IDS_COMP_SELECT, "subgroups", NULL);
   Dialog->show_tips   = eda_config_get_boolean (cfg, IDS_COMP_SELECT, "showtips", NULL);
   Dialog->do_sort     = eda_config_get_boolean (cfg, IDS_COMP_SELECT, "sort", NULL);
-
 }
 
 #undef MASK
@@ -3557,6 +3555,7 @@ compselect_get_property (GObject     *object,
                      geda_option_menu_get_menu(compselect->behavior_menu));
         g_value_set_enum (value, (int)(long)GEDA_OBJECT_GET_DATA (menuitem, "behaviors"));
         break;
+
       case PROP_HIDDEN:
         g_value_set_boolean (value, compselect->hidden);
         break;
@@ -3595,6 +3594,7 @@ compselect_set_property (GObject      *object,
       geda_option_menu_set_history(compselect->behavior_menu,
                                    g_value_get_enum (value));
       break;
+
     case PROP_HIDDEN:
       compselect->hidden = g_value_get_boolean (value);
       if (compselect->hidden)
@@ -3602,6 +3602,7 @@ compselect_set_property (GObject      *object,
       else
         gtk_window_present ((GtkWindow*)compselect);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, epid, pspec);
   }
