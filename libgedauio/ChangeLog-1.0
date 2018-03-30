@@ -1,3 +1,8 @@
+2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda_file_chooser.c: Update nick name and blurb: remove
+      hyphen from "filter index".
+
 2018-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Update function documentation for:
