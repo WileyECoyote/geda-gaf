@@ -91,7 +91,7 @@ static char *geda_dialog_get_input(const char *title,
     }
 
     entry = geda_entry_new_visible ();
-    geda_entry_set_valid_input(GEDA_ENTRY(entry), type);
+    geda_entry_set_valid_input((GedaEntry*)entry, type);
     geda_container_add(content_area, entry);
 
     if (str) {
@@ -103,7 +103,7 @@ static char *geda_dialog_get_input(const char *title,
     gtk_window_set_focus(GTK_WINDOW(dialog), entry);
     gtk_widget_set_can_default(ok_butt,TRUE);
     gtk_window_set_default(GTK_WINDOW(dialog), ok_butt);
-    geda_entry_set_activates_default(GEDA_ENTRY(entry), TRUE);
+    geda_entry_set_activates_default((GedaEntry*)entry, TRUE);
 
     switch (gtk_dialog_run(dialog)) {
 
