@@ -2425,6 +2425,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 
     default:
       BUG_IMSG ("unhandled case for signal <%d>", response);
+      close = TRUE;
   }
 
   if (close) {
