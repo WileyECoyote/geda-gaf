@@ -2373,6 +2373,11 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       /* Retrieve the text string from the Entry widget */
       string = GetEntryText( textentry );
 
+      /* Check if new search string */
+      if (strcmp(string, text_buffer)) {
+        start_find = TRUE;
+      }
+
       /* Save the string in the shared buffer */
       set_text_buffer(string);
 

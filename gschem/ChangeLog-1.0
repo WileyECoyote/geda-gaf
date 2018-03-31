@@ -1,7 +1,9 @@
 2018-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Revise x_dialog_find_text_response to utilize
-      accessor geda_toplevel_get_current_page.
+      accessor geda_toplevel_get_current_page, add conditional to check
+      if the user changed the text in the dialog and set the start_find
+      flag when the search string does not match what is in text_buffer.
 
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
