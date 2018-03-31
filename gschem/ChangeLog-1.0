@@ -1,3 +1,8 @@
+2018-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Revise x_dialog_find_text_response to utilize
+      accessor geda_toplevel_get_current_page.
+
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_dialog.c: Add nick name and blurb strings for the

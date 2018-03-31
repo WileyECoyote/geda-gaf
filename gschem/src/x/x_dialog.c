@@ -2347,7 +2347,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
   int         start_find;
 
   if (remember_page == NULL) {
-    remember_page = w_current->toplevel->page_current;
+    remember_page = geda_toplevel_get_current_page(toplevel);
     start_find = TRUE;
   }
   else {
@@ -2378,9 +2378,10 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       /* Save the string in the shared buffer */
       set_text_buffer(string);
 
-      if (remember_page != toplevel->page_current) {
+      if (remember_page != geda_toplevel_get_current_page(toplevel)) {
         geda_struct_page_goto(remember_page);
       }
+
       done = o_edit_find_text (w_current,
                                geda_struct_page_get_objects (remember_page),
                                string,
@@ -2392,10 +2393,15 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
         close = TRUE;
       }
       else {
+
+        Page *current_page;
+
+        current_page = geda_toplevel_get_current_page(toplevel);
+
         if (forget_page == NULL) {
-          forget_page = Current_Page;
+          forget_page = current_page;
         }
-        if (Current_Page == remember_page) {
+        if (current_page == remember_page) {
 
           GtkWidget  *checkascent;
 
