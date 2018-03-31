@@ -2321,7 +2321,6 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
 /** @} end group Line-Type-Dialog */
 
 
-
 /** \defgroup Find-Text-Dialog Find Text Editing-Dialogs
  *  @{ \memberof Editing-Dialogs
  */
@@ -2336,12 +2335,11 @@ Page *forget_page;
 void x_dialog_find_text_response(GtkWidget *Dialog, int response,
                                  GschemToplevel *w_current)
 {
-  GedaToplevel   *toplevel  = w_current->toplevel;
-
-  GtkWidget  *textentry;
-  GtkWidget  *checkdescend;
-  GtkWidget  *checkhidden;
-  const char *string;
+  GedaToplevel    *toplevel = w_current->toplevel;
+  GtkToggleButton *checkdescend;
+  GtkToggleButton *checkhidden;
+  GtkWidget       *textentry;
+  const char      *string;
   int done=0, close=0;
   unsigned    search_flags;
   int         start_find;
@@ -2401,21 +2399,25 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
         if (forget_page == NULL) {
           forget_page = current_page;
         }
+
         if (current_page == remember_page) {
 
           GtkWidget  *checkascent;
 
           checkascent = GEDA_OBJECT_GET_DATA(Dialog, "checkascent");
+
           if (GetToggleState(checkascent)) {
             x_window_close_page (w_current, forget_page);
           }
         }
       }
       break;
+
     case GEDA_RESPONSE_REJECT:
     case GEDA_RESPONSE_DELETE_EVENT:
       close = TRUE;
       break;
+
     default:
       BUG_IMSG ("unhandled case for signal <%d>", response);
   }
