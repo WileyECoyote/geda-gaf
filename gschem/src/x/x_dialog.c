@@ -2434,14 +2434,15 @@ static void x_dialog_find_text_on_descend (GtkWidget *check_butt, GtkWidget *cb)
   gtk_widget_set_sensitive(cb, state);
 }
 
-/*! \brief Create the text find dialog
- *  \par Function Description
+/*!
+ * \brief Create the text find dialog
+ * \par Function Description
  *  This function creates the text find dialog.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  *
- *  \note remember_page is also used as a flag to indicate the search
- *  should start from the beginning, as opose to continue searching.
+ * \note remember_page is also used as a flag to indicate the search
+ *  should start from the beginning, as oppose to continue searching.
  */
 void x_dialog_find_text(GschemToplevel *w_current)
 {
