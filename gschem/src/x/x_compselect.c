@@ -2873,7 +2873,7 @@ compselect_create_filter_area (Compselect *compselect)
 static GedaMenu *
 compselect_create_styles_menu (Compselect *ThisDialog)
 {
-  GedaMenu   *menu;
+  GedaMenu  *menu;
   GtkWidget *menuitem;
   GSList    *widget_list;
   int        i;
@@ -3002,15 +3002,15 @@ compselect_geometry_save (GschemDialog *dialog,
   GSCHEM_DIALOG_CLASS (compselect_parent_class)->
   geometry_save (dialog, cfg, group_name);
 
- /* get position of the horizontal divider between the panes */
+  /* get position of the horizontal divider between the panes */
   tmp_int = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->hpaned));
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "hpaned", tmp_int);
 
- /* get position of the verticla divider between the panes */
+  /* get position of the verticla divider between the panes */
   tmp_int = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->vpaned));
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "vpaned", tmp_int);
 
- /* save the active workbook tab */
+  /* save the active workbook tab */
   tmp_int = gtk_notebook_get_current_page (COMPSELECT (dialog)->notebook);
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "source-tab", tmp_int);
 
@@ -3026,7 +3026,7 @@ compselect_geometry_save (GschemDialog *dialog,
   tmp_bool =COMPSELECT (dialog)->do_sort;
   eda_config_set_boolean (cfg, IDS_COMP_SELECT, "sort", tmp_bool);
 
- /* Save the user current style mask */
+  /* Save the user current style mask */
   flags  = COMPSELECT (dialog)->style_flag;
   eda_config_set_integer (cfg, IDS_COMP_SELECT, "style", flags);
 }
@@ -3157,8 +3157,8 @@ compselect_style_set (GtkWidget *widget, GtkStyle *previous)
 static GtkWidget*
 compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mode)
 {
-  GtkWidget *action_hbox  = NULL;
-  GtkWidget *optionmenu   = NULL;
+  GtkWidget *action_hbox = NULL;
+  GtkWidget *optionmenu  = NULL;
 
   GedaMenuButton *stylemenu = NULL;
 
@@ -3188,7 +3188,7 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
 
     ThisDialog->style_menu = stylemenu;
 
-   /* Add the combobox to the horizontal action box */
+    /* Add the combobox to the horizontal action box */
     PACK_BOX(action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
 
   }
@@ -3205,17 +3205,17 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
     geda_option_menu_set_menu((GedaOptionMenu*)optionmenu,
                                compselect_create_behaviors_menu());
 
-     g_signal_connect (optionmenu, "changed",
-                       G_CALLBACK (compselect_callback_behavior_changed),
-                       ThisDialog);
+    g_signal_connect (optionmenu, "changed",
+                      G_CALLBACK (compselect_callback_behavior_changed),
+                      ThisDialog);
 
-     gtk_widget_show_all (optionmenu);
+    gtk_widget_show_all (optionmenu);
 
-     SetWidgetSize(optionmenu, 165, DIALOG_BUTTON_VSIZE);
+    SetWidgetSize(optionmenu, 165, DIALOG_BUTTON_VSIZE);
 
-     ThisDialog->behavior_menu = ((GedaOptionMenu*)optionmenu);
+    ThisDialog->behavior_menu = ((GedaOptionMenu*)optionmenu);
 
-     /* Add the combobox to the horizontal action box */
+    /* Add the combobox to the horizontal action box */
     PACK_BOX(action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
 
   }
