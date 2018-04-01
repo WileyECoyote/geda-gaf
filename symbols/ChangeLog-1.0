@@ -1,5 +1,8 @@
 2018-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/full-bridge/bridge-3.sym: Add symbol; full wave rectifier bridge
+      with alternate pin-out.
+
     * diode/zener53/zener_3.3_1N5333B.sym: Add symbol for 3.3 Volt 5 Watt
       zeners diode.
 
