@@ -6,6 +6,8 @@
     * diode/zener53/zener_3.3_1N5333B.sym: Add symbol for 3.3 Volt 5 Watt
       zeners diode.
 
+    * transistor/npn-thru/*.sym Update dist-license=GPLv2, use-license=unlimited.
+
     * xilinx/XC2S50-5PQ208C.sym: Add description attribute, update footprint
       attribute.
 
