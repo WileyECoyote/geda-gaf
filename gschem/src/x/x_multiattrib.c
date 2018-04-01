@@ -2327,11 +2327,11 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     1, 2, 1, 2, GTK_EXPAND | GTK_FILL, 0, 6, 3);
 
   /*   - the visible status */
-  button = GTK_WIDGET (g_object_new (GTK_TYPE_CHECK_BUTTON,
-                                     /* GtkButton */
-                                     "label", _("Visible"),
-                                     "active", TRUE,
-                                     NULL));
+  button = g_object_new (GTK_TYPE_CHECK_BUTTON,
+                         /* GtkButton */
+                         "label", _("Visible"),
+                         "active", TRUE,
+                         NULL);
 
   ThisDialog->button_visible = GTK_CHECK_BUTTON (button);
   SetWidgetTip( button, _("Enable or disable attribute visibility"));
@@ -2339,7 +2339,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     0, 1, 2, 3, GTK_FILL, 0, 3, 0);
 
   /*   - the visibility type */
-  optionm = GTK_WIDGET (g_object_new (GEDA_TYPE_OPTION_MENU, NULL));
+  optionm = g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
   multiattrib_init_visible_types (GEDA_OPTION_MENU (optionm));
   ThisDialog->optionmenu_shownv = GEDA_OPTION_MENU (optionm);
 
