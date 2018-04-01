@@ -2948,6 +2948,7 @@ compselect_create_behaviors_menu (void)
 {
   GtkWidget *menu;
   GSList    *group;
+  int        i;
 
   struct behaviors {
     char *str;
@@ -2956,8 +2957,6 @@ compselect_create_behaviors_menu (void)
                 { N_("Embed"),      COMPSELECT_BEHAVIOR_EMBED },
                 { N_("Include"),    COMPSELECT_BEHAVIOR_INCLUDE }
               };
-
-  int i;
 
   menu  = geda_menu_new ();
   group = NULL;
