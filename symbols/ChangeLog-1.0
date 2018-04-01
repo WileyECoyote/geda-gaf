@@ -6,6 +6,9 @@
     * diode/zener53/zener_3.3_1N5333B.sym: Add symbol for 3.3 Volt 5 Watt
       zeners diode.
 
+    * xilinx/XC2S50-5PQ208C.sym: Add description attribute, update footprint
+      attribute.
+
     * xilinx/XC95108-PC84.sym: Add description attribute, revise attribute
       locations.
 
