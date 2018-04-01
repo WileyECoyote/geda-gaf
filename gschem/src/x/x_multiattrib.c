@@ -2085,10 +2085,10 @@ static void multiattrib_show_inherited_toggled (GtkWidget   *widget,
 static void multiattrib_init(Multiattrib *ThisDialog)
 {
   GtkWidget *frame, *label, *scrolled_win, *treeview;
-  GtkWidget *table, *textview, *combo, *optionm, *button;
+  GtkWidget *table, *textview, *combo, *button;
   GtkWidget *attrib_vbox;
   GtkWidget *ShowInheritedSwitch=NULL;
-
+  GedaOptionMenu    *optionm;
   GtkTreeModel      *store;
   GtkTreeSelection  *selection;
   GtkStyle          *style;
@@ -2340,10 +2340,10 @@ static void multiattrib_init(Multiattrib *ThisDialog)
 
   /*   - the visibility type */
   optionm = g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
-  multiattrib_init_visible_types (GEDA_OPTION_MENU (optionm));
-  ThisDialog->optionmenu_shownv = GEDA_OPTION_MENU (optionm);
+  multiattrib_init_visible_types (optionm);
+  ThisDialog->optionmenu_shownv = optionm;
 
-  gtk_table_attach (GTK_TABLE (table), optionm,
+  gtk_table_attach (GTK_TABLE (table), (GtkWidget*)optionm,
                     1, 2, 2, 3, GTK_EXPAND | GTK_FILL, 0, 6, 3);
   gtk_widget_show_all (table);
 

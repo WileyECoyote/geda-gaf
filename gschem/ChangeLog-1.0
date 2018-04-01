@@ -6,7 +6,8 @@
       flag when the search string does not match what is in text_buffer
       and set the close flag in the unhandled case.
 
-    * src/x/x_multiattrib.c: Remove Widget cast from g_object_new.
+    * src/x/x_multiattrib.c: Change optionm from GtkWidget to type
+      type GedaOptionMenu and remove Widget cast from g_object_new.
 
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
