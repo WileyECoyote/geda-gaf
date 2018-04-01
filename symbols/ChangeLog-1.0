@@ -12,6 +12,9 @@
     * xilinx/XC2S50-5PQ208I.sym: Add description attribute, update footprint
       attribute.
 
+    * xilinx/XC2S50-6PQ208C.sym: Add description attribute, update footprint
+      attribute.
+
     * xilinx/XC95108-PC84.sym: Add description attribute, revise attribute
       locations.
 
