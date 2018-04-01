@@ -8,6 +8,8 @@
 
     * transistor/npn-thru/*.sym Update dist-license=GPLv2, use-license=unlimited.
 
+    * transistor/pnp-thru/*.sym Update dist-license=GPLv2, use-license=unlimited.
+
     * xilinx/XC2S50-5PQ208C.sym: Add description attribute, update footprint
       attribute.
 
