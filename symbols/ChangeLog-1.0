@@ -1,5 +1,7 @@
 2018-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/AD8421-1.sym: Add symbol; instrumentation amplifier.
+
     * diode/full-bridge/bridge-3.sym: Add symbol; full wave rectifier bridge
       with alternate pin-out.
 
