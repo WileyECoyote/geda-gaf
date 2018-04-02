@@ -1,3 +1,7 @@
+2018-04-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gsymcheck.c: Replace g_message with geda_log in main_prog.
+
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

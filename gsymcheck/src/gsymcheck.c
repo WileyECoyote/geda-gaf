@@ -127,7 +127,7 @@ static void main_prog(void *closure, int argc, char *argv[])
       exit(2);
     }
     else {
-      g_message ("%s \"%s\"\n", _("Loaded file"), filename);
+      geda_log ("%s \"%s\"\n", _("Loaded file"), filename);
     }
     i++;
     GEDA_FREE (filename);
