@@ -1,3 +1,8 @@
+2018-04-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Remove unneeded GEDA_MENU cast from geda_menu_
+      append in create_linetype_menu.
+
 2018-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Revise x_dialog_find_text_response to utilize
