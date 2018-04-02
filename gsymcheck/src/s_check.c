@@ -1537,10 +1537,15 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if a Specific Attribute is Missing
+ * \par Function Description
+ *  Helper for s_check_missing_attributes to check for pinlabel
+ *  and pintype attributes.
  *
+ * \param [in]     object     The Object to be checked
+ * \param [in]     attribute  The attribute to search for.
+ * \param [in,out] s_current  Pointer to current s_symcheck data structure
  */
 static bool s_check_missing_attribute(GedaObject *object, const char *attribute, SYMCHECK *s_current)
 {
