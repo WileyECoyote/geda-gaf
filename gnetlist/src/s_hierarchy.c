@@ -500,10 +500,13 @@ void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
               GEDA_FREE(source_net_name); /* s_rename_add made a copy */
 
               if (!result && !quiet_mode) {
-                fprintf(stderr,
-                       "Missing I/O symbol with refdes [%s] inside schematic for symbol [%s]\n",
-                        pl_current->pin_label,
-                        nl_current->component_uref);
+
+                const char *msg1 = "Missing I/O symbol with refdes";
+                const char *msg2 = "inside schematic for symbol";
+
+                fprintf(stderr, "%s [%s] %s [%s]\n", msg1,
+                                pl_current->pin_label, msg2,
+                                nl_current->component_uref);
               }
             }
             pl_current = pl_current->next;
