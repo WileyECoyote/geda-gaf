@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2018 Ales Hvezda
+ * Copyright (C) 1998-2018 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ void verbose_done(void)
       printf("\n");
     }
 
-    printf("DONE\n");
+    printf("%s\n", _("DONE"));
 
     char_index = 0;
   }

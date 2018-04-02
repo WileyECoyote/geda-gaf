@@ -4,6 +4,8 @@
 
     * src/s_hierarchy.c: Wrap s_hierarchy_post_process message with gettext.
 
+    * src/s_misc.c: Wrap "Done" message with gettext.
+
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c Revise s_traverse_component and s_traverse_net to
