@@ -1585,10 +1585,20 @@ static bool s_check_missing_attribute(GedaObject *object, const char *attribute,
   return found;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check for Missing Attributes
+ * \par Function Description
+ *  Use s_check_missing_attribute to search for pinlabel and pintype
+ *  attributes. Reports an error if there are multiple footprint or
+ *  refdes attributes, issues a warning for each of the following
+ *  attributes when they are not found:
  *
+ *  <DL>
+ *    <DT>pinlabel</DT>
+ *    <DT>pintype</DT>
+ *    <DT>footprint</DT>
+ *    <DT>refdes</DT>
+ *  </DL>
  */
 void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 {

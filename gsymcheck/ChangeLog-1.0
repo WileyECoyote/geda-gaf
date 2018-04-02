@@ -6,6 +6,7 @@
 
           * s_check_pin_ongrid
           * s_check_missing_attribute
+          * s_check_missing_attributes
 
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
