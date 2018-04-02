@@ -1094,10 +1094,10 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check if Pins are on Grid
+ * \par Function Description
+ *  Check whether all pins are on 100 grid units.
  */
 static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
 {

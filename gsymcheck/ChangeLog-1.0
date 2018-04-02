@@ -2,6 +2,10 @@
 
     * src/gsymcheck.c: Replace g_message with geda_log in main_prog.
 
+    * src/s_check.c Update function documentation for:
+
+          * s_check_pin_ongrid
+
 2018-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
