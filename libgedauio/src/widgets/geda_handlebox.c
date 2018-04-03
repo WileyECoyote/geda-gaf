@@ -341,8 +341,7 @@ static GtkWidget *geda_handle_box_get_invisible (void)
 /* Helper for geda_handle_box_grab_event, removes the grab from
  * handlebox and disconnects the grab handler
  */
-static void
-geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
+static void geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
 {
   GtkWidget *invisible = geda_handle_box_get_invisible ();
 
@@ -690,8 +689,7 @@ static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 }
 
 /* container_class->remove */
-static void
-geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
+static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 {
   ((GtkContainerClass*)geda_handle_box_parent_class)->remove (container, widget);
   geda_handle_box_reattach ((GedaHandleBox*)container);
@@ -1191,8 +1189,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
 }
 
 /* widget_class->unrealize */
-static void
-geda_handle_box_unrealize (GtkWidget *widget)
+static void geda_handle_box_unrealize (GtkWidget *widget)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
