@@ -1,6 +1,8 @@
     * src/g_rc.c: Include gettext header and wrap g_rc_gnetlist_version
       message with gettext.
 
+    * src/s_misc.c: Include gettext header.
+
 2018-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_rc.c: Change gEDA/gaf to gEDA/gnetlist in version output.

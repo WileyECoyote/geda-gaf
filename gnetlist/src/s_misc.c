@@ -28,6 +28,7 @@
 #include "../../config.h"
 
 #include <gnetlist.h>
+#include <gettext.h>
 #include <geda_debug.h>
 
 static int char_index = 0;
