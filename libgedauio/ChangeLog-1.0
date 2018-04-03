@@ -9,6 +9,7 @@
     * src/widgets/geda_menu_bar.c: Update function documentation for:
 
           * geda_menu_bar_hide_mnemonics
+          * geda_menu_bar_show_mnemonics
 
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
