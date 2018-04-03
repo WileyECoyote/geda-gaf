@@ -6,6 +6,10 @@
       geda_combo_box_text_widget_append and geda_combo_box_text_widget_prepend
       to do the same.
 
+    * src/widgets/geda_menu_bar.c: Update function documentation for:
+
+          * geda_menu_bar_hide_mnemonics
+
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fa.po: Update Persian translations.

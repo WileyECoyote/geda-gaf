@@ -1858,13 +1858,12 @@ geda_menu_bar_set_label_mnemonic_visible (GedaMenuBar *menubar, bool state)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Hide Mnemonics on a GedaMenuBar
+ * \par Function Description
+ *  Hide the mnemonics on a GedaMenuBar.
  */
-void
-geda_menu_bar_hide_mnemonics (GedaMenuBar *menubar)
+void geda_menu_bar_hide_mnemonics (GedaMenuBar *menubar)
 {
    geda_menu_bar_set_label_mnemonic_visible (menubar, FALSE);
 }
