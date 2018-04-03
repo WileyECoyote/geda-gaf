@@ -3,7 +3,8 @@
     * src/widgets/geda_comboboxtext.c: Revise geda_combo_box_text_widget_insert
       to call geda_combo_box_text_real_insert directly instead of calling
       geda_combo_box_text_insert and update function documentation. Revise
-      geda_combo_box_text_widget_append to do the same.
+      geda_combo_box_text_widget_append and geda_combo_box_text_widget_prepend
+      to do the same.
 
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
