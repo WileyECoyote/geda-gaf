@@ -1,3 +1,8 @@
+2018-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Update function documentation for
+      geda_combo_box_text_widget_insert.
+
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fa.po: Update Persian translations.

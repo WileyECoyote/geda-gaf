@@ -1155,10 +1155,14 @@ void geda_combo_box_text_widget_append (GtkWidget *widget, const char *text)
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), -1, text);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Insert Text into a GedaComboBoxText widget
+ * \par Function Description
+ *  Widget version of geda_combo_box_text_insert.
  *
+ * \param [in] widget    A #GedaComboBoxText widget.
+ * \param [in] position  Zero based index of where to insert the text.
+ * \param [in] text      Pointer to the string to append.
  */
 void geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
                                         const char *text)
