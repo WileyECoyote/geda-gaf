@@ -1152,7 +1152,7 @@ int geda_combo_box_text_get_text_length (GedaComboBoxText *combo_box)
  */
 void geda_combo_box_text_widget_append (GtkWidget *widget, const char *text)
 {
-  geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), -1, text);
+  geda_combo_box_text_real_insert ((GedaComboBoxText*)widget, -1, text, NULL);
 }
 
 /*!
