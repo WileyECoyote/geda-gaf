@@ -23,6 +23,7 @@
 
 #include <gnetlist.h>
 #include "../include/i_vars.h"
+#include <gettext.h>
 #include <geda_debug.h>
 
 /*! \brief This function processes the RC version information
@@ -42,16 +43,15 @@ SCM g_rc_gnetlist_version(SCM scm_version)
               SCM_ARG1, "gnetlist-version");
 
   version = scm_to_utf8_string (scm_version);
+
   if (strcmp (version, PACKAGE_DATE_VERSION) != 0) {
-    fprintf(stderr,
-            "You are running gEDA/gnetlist version [%s%s.%s],\n",
-            PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
-            PACKAGE_DATE_VERSION);
-    fprintf(stderr,
-            "but you have a version [%s] gnetlistrc file:\n\"%s\"\n",
-            version, rc_filename);
-    fprintf(stderr,
-            "Please be sure that you have the latest rc file.\n");
+
+    fprintf(stderr, _(
+      "You are running gEDA/gnetlist version [%s%s.%s],\n"
+      "but you have a version [%s] gnetlistrc file:\n\"%s\"\n"
+      "Please be sure that you have the latest rc file.\n"),
+      PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION,
+      version, rc_filename);
     ret = SCM_BOOL_F;
   }
 
