@@ -336,15 +336,20 @@ void s_netlist_print(NETLIST *nl_current)
 
     if (nl_iter->nlid != -1) {
 
+      const char *_component = _("component");
+
       if (nl_iter->component_uref) {
-        printf("component %s \n", nl_iter->component_uref);
+        printf("%s %s \n", _component, nl_iter->component_uref);
       }
       else {
-        printf("component SPECIAL \n");
+        printf("%s %s \n", _component, _("SPECIAL"));
       }
 
       if (nl_iter->hierarchy_tag) {
-        printf("Hierarchy tag: %s\n", nl_iter->hierarchy_tag);
+
+        const char *msg = _("Hierarchy tag");
+
+        printf("%s: %s\n", msg, nl_iter->hierarchy_tag);
       }
 
       if (nl_iter->cpins) {
