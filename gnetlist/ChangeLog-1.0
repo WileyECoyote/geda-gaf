@@ -3,6 +3,7 @@
     * src/s_hierarchy.c: Update function documentation for:
 
           * s_hierarchy_return_baseuref
+          * s_hierarchy_post_process
 
     * src/s_netlist.c: Include gettext header and wrap messages with gettext:
 

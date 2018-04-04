@@ -341,7 +341,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
 
 /*! \brief Hierarchy Setup Rename Nets
  *  \par Function Description
- *   Searches \a head for \a uref after possibly  hierarchical prefixing
+ *   Searches \a head for \a uref after possibly hierarchical prefixing
  *   by s_hierarchy_create_uref and if the resulting composite is found
  *   s_rename_add is called to create a rename structure to replace what
  *   ever net_name is in the PIN list with \a new_name. All instances of
@@ -425,11 +425,15 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
   return (success); /* Maybe should be geda_list_length(removed); */
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
- *  \par Function Description
- *
- * called by s_netlist_post_process
+/*!
+ * \brief Hierarchy Post Process
+ * \par Function Description
+ *  Called by s_netlist_post_process to resolve hierarchy. Descends into
+ *  nets associated with composited sheets and searches for pin labels
+ *  with matching tags and utilizes s_hierarchy_setup_rename so that the
+ *  net associated with the pin will be renamed with the source net name.
+ *  After re-renaming, s_hierarchy_remove_compsite_all removes the child
+ *  nets from the net list.
  */
 void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
