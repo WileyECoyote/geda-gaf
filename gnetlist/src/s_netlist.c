@@ -292,7 +292,7 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
   verbose_done();
 
   if (verbose_mode) {
-    printf("- Renaming nets:\n");
+    printf("- %s:\n", _("Renaming nets"));
   }
 
   s_rename_all(pr_current, head);
@@ -300,7 +300,7 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
   verbose_done();
 
   if (verbose_mode) {
-    printf("- Resolving hierarchy:\n");
+    printf("- %s:\n", ("Resolving hierarchy"));
   }
 
   s_hierarchy_post_process(pr_current, head);
@@ -310,7 +310,7 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
   if (pr_current->hierarchy_uref_mangle == FALSE) {
 
     if (verbose_mode) {
-      printf("- Removing refdes mangling:\n");
+      printf("- %s:\n", _("Removing refdes mangling"));
     }
     s_hierarchy_remove_uref_mangling(pr_current, head);
   }
