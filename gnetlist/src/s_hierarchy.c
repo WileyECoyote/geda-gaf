@@ -601,7 +601,6 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current,
             geda_strconcat (hierarchy_tag,
                              pr_current->hierarchy_netname_separator,
                              basename, NULL);
-
             break;
 
           case (PREPEND):
@@ -609,7 +608,6 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current,
             geda_strconcat (basename,
                              pr_current->hierarchy_netname_separator,
                              hierarchy_tag, NULL);
-
             break;
         }
       }
@@ -684,7 +682,6 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current,
             geda_strconcat (basename,
                             pr_current->hierarchy_netattrib_separator,
                             hierarchy_tag, NULL);
-
             break;
         }
       }
@@ -817,10 +814,10 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
   if (uref == NULL) {
     return (NULL);
   }
+
 #if DEBUG
   printf("Got uref: _%s_\n", uref);
 #endif
-
 
   if (pr_current->hierarchy_uref_order == APPEND) {
 
@@ -864,7 +861,6 @@ int s_hierarchy_graphical_search (GedaObject* o_current, int count)
 
   graphical_attrib = geda_attrib_search_object_by_name (o_current,
                                                         "graphical", count);
-
   if (graphical_attrib) {
     char value = graphical_attrib[0];
     result = value != '0';
