@@ -234,8 +234,8 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
   nl_current = head;
 
   if (verbose_mode) {
-    printf("\n- Staring post processing\n");
-    printf("- Naming nets:\n");
+    printf("\n- %s\n", _("Staring post processing"));
+    printf("- %s:\n", _("Naming nets"));
   }
 
   /* this pass gives all nets a name, whether specified or
