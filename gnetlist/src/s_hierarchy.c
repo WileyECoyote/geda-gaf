@@ -845,6 +845,7 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
   printf("new uref return_value = %s\n\n\n", return_value);
 #endif
 
+  /* Return base refdes */
   return (return_value);
 }
 
