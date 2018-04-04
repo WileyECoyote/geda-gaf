@@ -44,10 +44,9 @@
  *   object for the sheet/page. s_traverse_hierarchy_sheet is then
  *   called to traverse page.
  */
-void
-s_hierarchy_traverse(GedaToplevel *pr_current,
-                     GedaObject   *o_current,
-                     NETLIST      *netlist)
+void s_hierarchy_traverse(GedaToplevel *pr_current,
+                          GedaObject   *o_current,
+                          NETLIST      *netlist)
 {
   char *attrib;
   int   page_control   =-1;
@@ -571,8 +570,9 @@ void s_hierarchy_remove_compsite_all(NETLIST *head, GedaList *removed)
  *  hierarchy_tag, otherwise a copy of \a basename is returned with
  *  out modification.
  */
-char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
-                                 char *hierarchy_tag)
+char *s_hierarchy_create_netname(GedaToplevel *pr_current,
+                                         char *basename,
+                                         char *hierarchy_tag)
 {
   char *return_value = NULL;
 
@@ -646,8 +646,9 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
  *  \a hierarchy_tag, otherwise a copy of \a basename is returned with
  *  out modification.
  */
-char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
-                                   char *hierarchy_tag)
+char *s_hierarchy_create_netattrib(GedaToplevel *pr_current,
+                                           char *basename,
+                                           char *hierarchy_tag)
 {
   char *return_value = NULL;
 
@@ -721,8 +722,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
  *  Example:
  *           Sheets_18/J4 18 -> J4 18
  */
-void
-s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
+void s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
