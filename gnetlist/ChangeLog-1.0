@@ -4,6 +4,9 @@
 
           * s_hierarchy_return_baseuref
 
+    * src/s_netlist.c: Include gettext header and wrap s_netlist_name_named_nets
+      messages with gettext.
+
 2018-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_rc.c: Include gettext header and wrap g_rc_gnetlist_version

@@ -27,6 +27,7 @@
 
 #include "../../config.h"
 #include <gnetlist.h>
+#include <gettext.h>
 #include <geda_debug.h>
 
 /* used by the extract functions below */
@@ -120,8 +121,8 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
   char     *net_name;
 
   if (verbose_mode) {
-    printf("\n- Staring post processing\n");
-    printf("- Naming nets of graphical objects:\n");
+    printf("\n- %s\n", _("Staring post processing"));
+    printf("- %s:\n", _("Naming nets of graphical objects"));
   }
 
   /* this pass gives all nets a name, whether specified or creates a */
