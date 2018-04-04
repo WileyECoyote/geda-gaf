@@ -792,10 +792,17 @@ void s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Hierarchy Get the Base reference
- *  \par Function Description
+/*!
+ * \brief Hierarchy Get the Base reference
+ * \par Function Description
+ *  Helper for s_hierarchy_remove_uref_mangling, returns the base
+ *  refdes with the hierarchy prefix or suffixes removed.
  *
+ *  Examples:
+ *
+ *  1. non-hierarchy:     _U1_        -> _U1_
+ *  2. hierarchy:         _S1/V1_     -> V1
+ *  3. nested hierarchy:  _S1/S1/R2_  -> R2
  */
 char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
 {
