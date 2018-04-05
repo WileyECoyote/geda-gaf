@@ -559,12 +559,9 @@ Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
-  if (toplevel->page_current) {
-    if (GEDA_IS_PAGE(toplevel->page_current)) {
-      return toplevel->page_current;
-    }
+  if (GEDA_IS_PAGE(toplevel->page_current)) {
+    return toplevel->page_current;
   }
-
   return NULL;
 }
 

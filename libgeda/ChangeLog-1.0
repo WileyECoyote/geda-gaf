@@ -2,7 +2,8 @@
 
     * src/geda/geda_toplevel.c: Add getter and setter for net_consolidate.
       Revise geda_toplevel_remove_page to unreference page after removing
-      instead of before.
+      instead of before. Remove checking for page_current pointer in
+      geda_toplevel_get_current_page, just check is a valid page.
 
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
