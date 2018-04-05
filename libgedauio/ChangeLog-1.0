@@ -1,3 +1,7 @@
+2018-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/fi.po: Update Finnish translations.
+
 2018-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_comboboxtext.c: Revise geda_combo_box_text_widget_insert

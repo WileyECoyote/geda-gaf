@@ -360,14 +360,15 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Auto Complete
 #: libgedauio/src/widgets/geda_entry.c:1327
-#, fuzzy
 msgid "Auto Complete"
-msgstr "Päivitä komponentti"
+msgstr "Automaattinen täydellinen"
 
+# On
 #: libgedauio/src/widgets/geda_entry.c:1335
 msgid "On"
-msgstr ""
+msgstr "Päälle"
 
 #: libgedauio/src/widgets/geda_entry.c:1340
 msgid "Off"
@@ -532,9 +533,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
 msgid "Preview text"
-msgstr ""
+msgstr "Esikatsele tekstiä"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -548,10 +550,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "Valintatila"
+msgstr "Valita"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
@@ -699,10 +701,10 @@ msgstr ""
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1442
-#, fuzzy
 msgid "Selectable"
-msgstr "Valintatila"
+msgstr "Valittavissa"
 
 #: libgedauio/src/widgets/geda_label.c:1443
 msgid "Whether the label text can be selected with the mouse"
@@ -732,10 +734,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Valintatila"
+msgstr "Valinta sidottu"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
@@ -857,9 +859,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
 msgid "Default Outside Spacing"
-msgstr ""
+msgstr "Oletuksena ulkopuolella välilyönti"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
@@ -867,18 +870,20 @@ msgid ""
 "the border"
 msgstr ""
 
+# Inner Border
 #: libgedauio/src/widgets/geda_menu_button.c:1281
 msgid "Inner Border"
-msgstr ""
+msgstr "Sisäraja"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1282
 msgid "Border between button edges and child."
 msgstr ""
 
+# Swatch Color
 #: libgedauio/src/widgets/geda_swatch_renderer.c:263
 #: libgedauio/src/widgets/geda_swatch_renderer.c:264
 msgid "Swatch Color"
-msgstr ""
+msgstr "Swatch-väri"
 
 #: libgedauio/src/widgets/geda_swatch_renderer.c:271
 #: libgedauio/src/widgets/geda_swatch_renderer.c:272
@@ -890,10 +895,10 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
+# Font Size
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
-msgstr "_Tekstin Koko"
+msgstr "Fonttikoko"
 
 #: libgedauio/src/widgets/geda_toolbar.c:163
 msgid "Set point size of the font for child widgets"
