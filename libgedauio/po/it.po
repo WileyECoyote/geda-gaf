@@ -364,15 +364,15 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Auto Complete
 #: libgedauio/src/widgets/geda_entry.c:1327
-#, fuzzy
 msgid "Auto Complete"
-msgstr "/Aggiungi Componente..."
+msgstr "Completo automatico"
 
+# On
 #: libgedauio/src/widgets/geda_entry.c:1335
-#, fuzzy
 msgid "On"
-msgstr "Apri"
+msgstr "Acceso"
 
 #: libgedauio/src/widgets/geda_entry.c:1340
 msgid "Off"
@@ -538,10 +538,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "Anteprima"
+msgstr "Anteprima del testo"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -555,8 +555,8 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
 msgstr "Seleziona"
 
@@ -710,10 +710,10 @@ msgstr "Modalità Linea"
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1442
-#, fuzzy
 msgid "Selectable"
-msgstr "Seleziona"
+msgstr "Selezionabile"
 
 #: libgedauio/src/widgets/geda_label.c:1443
 msgid "Whether the label text can be selected with the mouse"
@@ -743,10 +743,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Selezione"
+msgstr "Selezione vincolata"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
@@ -871,10 +871,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
-#, fuzzy
 msgid "Default Outside Spacing"
-msgstr "A_umenta spaziatura griglia"
+msgstr "Spaziatura predefinita predefinita"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
@@ -882,20 +882,20 @@ msgid ""
 "the border"
 msgstr ""
 
+# Inner Border
 #: libgedauio/src/widgets/geda_menu_button.c:1281
-#, fuzzy
 msgid "Inner Border"
-msgstr "Sequenza dei file"
+msgstr "Confine interno"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1282
 msgid "Border between button edges and child."
 msgstr ""
 
+# Swatch Color
 #: libgedauio/src/widgets/geda_swatch_renderer.c:263
 #: libgedauio/src/widgets/geda_swatch_renderer.c:264
-#, fuzzy
 msgid "Swatch Color"
-msgstr "Colore"
+msgstr "Colore del Campione"
 
 #: libgedauio/src/widgets/geda_swatch_renderer.c:271
 #: libgedauio/src/widgets/geda_swatch_renderer.c:272
@@ -907,10 +907,10 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
+# Font Size
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
-msgstr "Dimensione Testo"
+msgstr "Dimensione del font"
 
 #: libgedauio/src/widgets/geda_toolbar.c:163
 msgid "Set point size of the font for child widgets"
