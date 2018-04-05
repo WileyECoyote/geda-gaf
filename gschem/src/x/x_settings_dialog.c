@@ -2176,10 +2176,10 @@ bool load_settings_dialog (GschemToplevel *w_current)
 /* The Switches Alphabetically (31) */
 
   SetSwitch(AutoLoad, auto_load_last);
-  SetSwitch(AutoSave, toplevel->auto_save_interval);
+  SetSwitch(AutoSave, geda_toplevel_get_auto_save_interval(toplevel);
   SetSwitch(EnableUndo, w_current->undo_control);
   SetSwitch(ClassicWheel, w_current->scroll_wheel);
-  SetSwitch(ConsolidateNets, toplevel->net_consolidate);
+  SetSwitch(ConsolidateNets, geda_toplevel_get_net_consolidate(toplevel);
   SetSwitch(ContinuePlace, w_current->continue_component_place);
   SetSwitch(DelayScrolling, w_current->scrollbar_update);
   SetSwitch(DragMove, w_current->drag_can_move);
