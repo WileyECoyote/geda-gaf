@@ -1032,10 +1032,11 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
   g_list_free(found_numbers);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check Pin Type Attributes
+ * \par Function Description
+ *  Interates \a obj_list, checking all pins for valid pin type
+ *  attribute value.
  */
 static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 {
