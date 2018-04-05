@@ -1,6 +1,8 @@
 2018-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Add getter and setter for net_consolidate.
+      Revise geda_toplevel_remove_page to unreference page after removing
+      instead of before.
 
 2018-03-30 Wiley E. Hill <wileyhill@gmail.com>
 

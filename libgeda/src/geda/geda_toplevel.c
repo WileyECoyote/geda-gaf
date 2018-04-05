@@ -900,8 +900,8 @@ void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 
   if (GEDA_IS_PAGE(page)) {
     if (geda_list_is_in_list(toplevel->pages, page)) {
-      geda_page_unref (page);
       geda_list_remove (toplevel->pages, page);
+      geda_page_unref (page);
       /* Note toplevel->page_current maybe dead! */
     }
   }
