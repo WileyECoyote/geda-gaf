@@ -1043,7 +1043,7 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
   int   counter;
   bool  done;
   char *pintype;
-  char *message;
+
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
@@ -1059,6 +1059,8 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
         pintype = geda_attrib_search_object_by_name (o_current, "pintype", counter);
 
         if (pintype != NULL) {
+
+          char *message;
 
           message = geda_sprintf(_("Found pintype=%s attribute\n"), pintype);
           ADD_INFO_MESSAGE(message);
