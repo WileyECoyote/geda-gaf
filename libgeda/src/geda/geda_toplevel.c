@@ -603,6 +603,22 @@ int geda_toplevel_get_make_backups (GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Get the Consolidate Net setting
+ * \par Function Description
+ *  This function returns the current value of net_consolidate
+ *  in \a toplevel.
+ *
+ * \param [in] toplevel GedaToplevel object
+ */
+int geda_toplevel_get_net_consolidate (GedaToplevel *toplevel)
+{
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
+    return toplevel->net_consolidate;
+  }
+  return FALSE;
+}
+
+/*!
  * \brief Get Page given the Page Id
  * \par Function Description
  *  This function returns a pointer the Page object with the given
@@ -991,6 +1007,13 @@ bool geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
   toplevel->make_backup_files = make_backups;
 
   return TRUE;
+}
+
+void geda_toplevel_set_net_consolidate (GedaToplevel *toplevel, int consolidate)
+{
+  g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
+  toplevel->net_consolidate = consolidate;
 }
 
 /*! \brief Set the font-renderer-specific bounds function.

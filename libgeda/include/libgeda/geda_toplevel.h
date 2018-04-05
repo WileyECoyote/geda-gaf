@@ -220,6 +220,7 @@ int           geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_current_page        (GedaToplevel *toplevel);
 int           geda_toplevel_get_file_open_flags     (GedaToplevel *toplevel);
 int           geda_toplevel_get_make_backups        (GedaToplevel *toplevel);
+int           geda_toplevel_get_net_consolidate     (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_by_id          (GedaToplevel *toplevel, int page_id);
 int           geda_toplevel_get_page_count          (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_down           (GedaToplevel *toplevel);
@@ -238,6 +239,7 @@ void          geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, voi
 bool          geda_toplevel_set_current_page        (GedaToplevel *toplevel, Page *page);
 int           geda_toplevel_set_file_open_flags     (GedaToplevel *toplevel, int open_flags);
 bool          geda_toplevel_set_make_backups        (GedaToplevel *toplevel, int make_backups);
+void          geda_toplevel_set_net_consolidate     (GedaToplevel *toplevel, int consolidate);
 void          geda_toplevel_set_rendered_bounds_func(GedaToplevel *toplevel,
                                                      RenderedBoundsFunc func, void *user_data);
 
