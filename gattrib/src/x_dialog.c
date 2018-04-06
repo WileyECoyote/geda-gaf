@@ -132,6 +132,7 @@ char *x_dialog_new_attrib()
     case GEDA_RESPONSE_OK:
       entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry) );
       break;
+
     case GEDA_RESPONSE_CANCEL:
     default:
       entry_text = NULL;
@@ -689,6 +690,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
    case SearchBackword:
    case WrapAround:
      break;
+
    default:
     geda_log ("%s: Unknown Switch ID: %d\n", __func__,response);
    }
@@ -862,6 +864,7 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   GEDA_OBJECT_SET_DATA (ThisDialog, ThisDialog,         DialogTitle);
   GEDA_OBJECT_SET_DATA (ThisDialog, MainDialogVBox,     "MainDialogVBox");
   GEDA_OBJECT_SET_DATA (ThisDialog, dialog_action_area, "dialog_action_area");
+
   GEDA_HOOKUP_OBJECT   (ThisDialog, CloseButt,          "CloseButt");
   GEDA_HOOKUP_OBJECT   (ThisDialog, ReplaceButt,        "ReplaceButt");
   GEDA_HOOKUP_OBJECT   (ThisDialog, ReplaceAllButt,     "ReplaceAllButt");
