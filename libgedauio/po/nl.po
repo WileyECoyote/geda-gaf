@@ -362,10 +362,10 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Auto Complete
 #: libgedauio/src/widgets/geda_entry.c:1327
-#, fuzzy
 msgid "Auto Complete"
-msgstr "/Plaats Component..."
+msgstr "autocomplete"
 
 #: libgedauio/src/widgets/geda_entry.c:1335
 #, fuzzy
@@ -553,10 +553,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "Selecteer"
+msgstr "kiezen"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
@@ -690,28 +690,28 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "Lijn"
+msgstr "Regelafbreking"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
-#, fuzzy
 msgid "Line wrap mode"
-msgstr "Lijn Mode"
+msgstr "Lijnomloopmodus"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1442
-#, fuzzy
 msgid "Selectable"
-msgstr "Selecteer"
+msgstr "Selecteerbaar"
 
 #: libgedauio/src/widgets/geda_label.c:1443
 msgid "Whether the label text can be selected with the mouse"
@@ -741,10 +741,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Selectie"
+msgstr "Selectie gebonden"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
@@ -880,20 +880,20 @@ msgid ""
 "the border"
 msgstr ""
 
+# Inner Border
 #: libgedauio/src/widgets/geda_menu_button.c:1281
-#, fuzzy
 msgid "Inner Border"
-msgstr "Bestand volgorde"
+msgstr "Binnenste rand"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1282
 msgid "Border between button edges and child."
 msgstr ""
 
+# Swatch Color
 #: libgedauio/src/widgets/geda_swatch_renderer.c:263
 #: libgedauio/src/widgets/geda_swatch_renderer.c:264
-#, fuzzy
 msgid "Swatch Color"
-msgstr "Kleur"
+msgstr "staal Kleur"
 
 #: libgedauio/src/widgets/geda_swatch_renderer.c:271
 #: libgedauio/src/widgets/geda_swatch_renderer.c:272
@@ -905,10 +905,10 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
+# Font Size
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
-msgstr "Tekst Hoogte"
+msgstr "Lettertypegrootte"
 
 #: libgedauio/src/widgets/geda_toolbar.c:163
 msgid "Set point size of the font for child widgets"
