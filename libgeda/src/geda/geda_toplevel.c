@@ -1047,6 +1047,16 @@ bool geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
   return TRUE;
 }
 
+/*!
+ * \brief Set whether to Consolidate Nets
+ * \par Function Description
+ *  Set the value of net_consolidate in \a toplevel to \a consolidate.
+ *  When net_consolidate is TRUE connected net segments will be combine
+ *  when it makes sense to do so.
+ *
+ * \param [in,out] toplevel    GedaToplevel object
+ * \param [in]     consolidate If True consolidations will be performed.
+ */
 void geda_toplevel_set_net_consolidate (GedaToplevel *toplevel, int consolidate)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
