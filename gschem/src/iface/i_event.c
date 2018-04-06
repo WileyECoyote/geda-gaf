@@ -642,16 +642,15 @@ i_event_paster_released(GtkWidget      *widget,
  *
  * \sa i_event_stop_action_handler
  */
-void
-i_event_cancel_action_handler(GschemToplevel *w_current)
+void i_event_cancel_action_handler(GschemToplevel *w_current)
 {
   GschemEvent *event = w_current->action_event;
 
   if (event->state) {
     i_event_end_action_handler(w_current);
-    i_status_set_state(w_current, SELECT);
     o_invalidate_all(w_current);
   }
+  i_status_set_state(w_current, SELECT);
 }
 
 /*!
