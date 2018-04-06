@@ -3,6 +3,12 @@
     * src/iface/i_event.c: Revise i_event_cancel_action_handler to un
       conditionally call i_status_set_state before exiting.
 
+    * src/x/x_settings_dialog.c: Utilize accessors in load_settings_dialog
+      for:
+
+          * image_color
+          * invert_images
+
 2018-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Utilize accessors in load_settings_dialog

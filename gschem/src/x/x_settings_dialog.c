@@ -2185,7 +2185,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSwitch(DragMove, w_current->drag_can_move);
   SetSwitch(DrawGrips, CairoRenderer->draw_grips);
   SetSwitch(EmbedComponents, w_current->embed_components);
-  SetSwitch(EnableColorImaging, toplevel->image_color);
+  SetSwitch(EnableColorImaging, geda_toplevel_get_image_color(toplevel));
   SetSwitch(EnableLog, logging);
 
   SetSwitch(EnforceHierarchy, w_current->enforce_hierarchy);
@@ -2200,7 +2200,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSwitch(FriendlyOutlineMap, rc_options.display_outline_color_map);
 
   SetSwitch(InitConsoleWindow, console_window);
-  SetSwitch(InvertImages, toplevel->invert_images);
+  SetSwitch(InvertImages, geda_toplevel_get_invert_images(toplevel));
   SetSwitch(MagneticNets, w_current->magnetic_net_mode);
   SetSwitch(NetDirection, w_current->net_direction_mode);
   SetSwitch(NotifyEvents, w_current->raise_dialog_boxes);
