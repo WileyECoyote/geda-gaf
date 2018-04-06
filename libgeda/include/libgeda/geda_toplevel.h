@@ -219,6 +219,8 @@ void          geda_toplevel_add_page                (GedaToplevel *toplevel, Pag
 int           geda_toplevel_get_auto_save_interval  (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_current_page        (GedaToplevel *toplevel);
 int           geda_toplevel_get_file_open_flags     (GedaToplevel *toplevel);
+int           geda_toplevel_get_image_color         (GedaToplevel *toplevel);
+int           geda_toplevel_get_invert_images       (GedaToplevel *toplevel);
 int           geda_toplevel_get_make_backups        (GedaToplevel *toplevel);
 int           geda_toplevel_get_net_consolidate     (GedaToplevel *toplevel);
 Page         *geda_toplevel_get_page_by_id          (GedaToplevel *toplevel, int page_id);

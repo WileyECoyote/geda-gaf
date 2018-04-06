@@ -584,6 +584,47 @@ int geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
 }
 
 /*!
+ * \brief Get the Print with Color Toplevel Setting
+ * \par Function Description
+ *  This function returns the current value of image_color
+ *  in \a toplevel. The image_color variable indicates the
+ *  user preference to enable color when redendering while
+ *  printing.
+ *
+ * \param [in] toplevel GedaToplevel object
+ *
+ * \returns current value of image_color.
+ */
+int geda_toplevel_get_image_color (GedaToplevel *toplevel)
+{
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
+    return toplevel->image_color;
+  }
+  return FALSE;
+}
+
+/*!
+ * \brief Get the Print Inverted Images Toplevel Setting
+ * \par Function Description
+ *  This function returns the current value of invert_images
+ *  in \a toplevel. The invert_images variable indicates the
+ *  user preference to invert images when redendering while
+ *  printing. Ttypically, this setting would only apply when
+ *  image_color is FALSE, i.e. when printing black-and-white.
+ *
+ * \param [in] toplevel GedaToplevel object
+ *
+ * \returns current value of invert_images.
+ */
+int geda_toplevel_get_invert_images (GedaToplevel *toplevel)
+{
+  if (GEDA_IS_TOPLEVEL(toplevel)) {
+    return toplevel->image_color;
+  }
+  return FALSE;
+}
+
+/*!
  * \brief Get the make backups setting
  * \par Function Description
  *  This function returns the current value of make_backup_files
