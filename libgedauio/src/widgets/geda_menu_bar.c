@@ -135,8 +135,7 @@ static void *geda_menu_bar_parent_class = NULL;
 
 static GHashTable *menu_bar_hash = NULL;
 
-static void
-change_accel (GedaMenuBar *menubar)
+static void change_accel (GedaMenuBar *menubar)
 {
   GedaMenuBarPrivate *priv;
   GtkSettings *settings;
@@ -163,10 +162,9 @@ change_accel (GedaMenuBar *menubar)
 }
 
 /* Callback used when a GtkSettings value changes */
-static void
-settings_notify_cb (GObject     *object,
-                    GParamSpec  *pspec,
-                    GedaMenuBar *menubar)
+static void settings_notify_cb (GObject     *object,
+                                GParamSpec  *pspec,
+                                GedaMenuBar *menubar)
 {
   const char *name;
 
@@ -178,8 +176,7 @@ settings_notify_cb (GObject     *object,
   }
 }
 
-static void
-connect_settings_signal(GedaMenuBar *menubar)
+static void connect_settings_signal(GedaMenuBar *menubar)
 {
   GedaMenuBarPrivate *priv = menubar->priv;
 
@@ -226,8 +223,7 @@ remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
  * geda_menu_bar_expose
  * geda_menu_bar_draw
  */
-static GtkShadowType
-get_shadow_type (GedaMenuBar *menubar)
+static GtkShadowType get_shadow_type (GedaMenuBar *menubar)
 {
   GtkShadowType shadow_type = GTK_SHADOW_OUT;
 
@@ -853,8 +849,7 @@ geda_menu_bar_preferred_height_for_width (GtkWidget *widget,
 }
 
 /*! \internal Gtk3 widget_class->draw */
-static int
-geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
+static int geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
 {
   GtkStyleContext *context;
   int border;
@@ -980,8 +975,7 @@ static void geda_menu_bar_finalize (GObject *object)
  * \param [in]  class      GedaMenuShell class we are initializing
  * \param [in]  class_data GedaMenuShell structure associated with the class
  */
-static void
-geda_menu_bar_class_init (void *class, void *class_data)
+static void geda_menu_bar_class_init (void *class, void *class_data)
 {
   GObjectClass       *object_class;
   GtkWidgetClass     *widget_class;
@@ -1175,8 +1169,7 @@ geda_menu_bar_instance_init (GTypeInstance *instance, void *class)
  *
  * \returns GedaType identifier associated with GedaMenuBar.
  */
-GedaType
-geda_menu_bar_get_type (void)
+GedaType geda_menu_bar_get_type (void)
 {
   static volatile GedaType geda_menu_bar_type = 0;
 
@@ -1229,19 +1222,16 @@ bool is_a_geda_menu_bar (GedaMenuBar *menu_bar)
  *
  * \returns new menu bar, as a GtkWidget
  */
-GtkWidget*
-geda_menu_bar_new (void)
+GtkWidget *geda_menu_bar_new (void)
 {
   return g_object_new (GEDA_TYPE_MENU_BAR, NULL);
 }
 
-static GList*
-get_menu_bars (GtkWindow *window) {
+static GList *get_menu_bars (GtkWindow *window) {
   return g_object_get_data (G_OBJECT (window), menu_bar_list_key);
 }
 
-static void
-set_menu_bars (GtkWindow *window, GList *menubars) {
+static void set_menu_bars (GtkWindow *window, GList *menubars) {
   g_object_set_data (G_OBJECT (window), menu_bar_list_key, menubars);
 }
 
@@ -1341,8 +1331,7 @@ static void add_to_window (GtkWindow *window, GedaMenuBar *menubar)
   set_menu_bars (window, g_list_append (menubars, menubar));
 }
 
-static void
-remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
+static void remove_from_window (GtkWindow *window, GedaMenuBar *menubar)
 {
   GList *menubars = get_menu_bars (window);
 
@@ -1420,8 +1409,7 @@ geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
  * that the key press was not relevant to bindings nor children
  * of that shell.
  */
-static bool
-geda_menu_bar_key_press (GtkWidget *widget, GdkEventKey *event)
+static bool geda_menu_bar_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   GedaMenuShell *menu_shell;
 
@@ -1556,8 +1544,7 @@ geda_menu_bar_hierarchy_changed (GtkWidget *widget, GtkWidget *old_toplevel)
  * \param[in] menubar Pointer #GedaMenuBar object
  * \param[in] dir     Direction in which to cycle the focus
  */
-void
-geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
+void geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
 {
   GtkWidget    *toplevel    = gtk_widget_get_toplevel (GTK_WIDGET(menubar));
   GedaMenuItem *to_activate = NULL;
@@ -1596,8 +1583,7 @@ geda_menu_bar_cycle_focus (GedaMenuBar *menubar, GtkDirectionType  dir)
   }
 }
 
-static int
-geda_menu_bar_get_popup_delay (GedaMenuShell *menu_shell)
+static int geda_menu_bar_get_popup_delay (GedaMenuShell *menu_shell)
 {
   return MENU_BAR_POPUP_DELAY;
 }
@@ -1694,8 +1680,7 @@ geda_menu_bar_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
  *
  * \sa geda_menu_bar_set_pack_direction
  */
-PackDirection
-geda_menu_bar_get_pack_direction (GedaMenuBar *menubar)
+PackDirection geda_menu_bar_get_pack_direction (GedaMenuBar *menubar)
 {
   g_return_val_if_fail (GEDA_IS_MENU_BAR(menubar), PACK_DIRECTION_LTR);
 
@@ -1712,9 +1697,8 @@ geda_menu_bar_get_pack_direction (GedaMenuBar *menubar)
  *
  * \sa geda_menu_bar_get_pack_direction
  */
-void
-geda_menu_bar_set_pack_direction (GedaMenuBar   *menubar,
-                                  PackDirection  pack_dir)
+void geda_menu_bar_set_pack_direction (GedaMenuBar   *menubar,
+                                       PackDirection  pack_dir)
 {
   GedaMenuBarPrivate *priv;
   GList *list;
@@ -1749,8 +1733,7 @@ geda_menu_bar_set_pack_direction (GedaMenuBar   *menubar,
  *
  * \sa geda_menu_bar_set_child_pack_direction
  */
-PackDirection
-geda_menu_bar_get_child_pack_direction (GedaMenuBar *menubar)
+PackDirection geda_menu_bar_get_child_pack_direction (GedaMenuBar *menubar)
 {
   g_return_val_if_fail (GEDA_IS_MENU_BAR(menubar), PACK_DIRECTION_LTR);
 
@@ -1767,9 +1750,8 @@ geda_menu_bar_get_child_pack_direction (GedaMenuBar *menubar)
  *
  * \sa geda_menu_bar_set_pack_direction
  */
-void
-geda_menu_bar_set_child_pack_direction (GedaMenuBar   *menubar,
-                                        PackDirection  child_pack_dir)
+void geda_menu_bar_set_child_pack_direction (GedaMenuBar  *menubar,
+                                             PackDirection child_pack_dir)
 {
   GedaMenuBarPrivate *priv;
   GList *list;
@@ -1801,8 +1783,7 @@ geda_menu_bar_set_child_pack_direction (GedaMenuBar   *menubar,
  *
  * \returns list of mapped GedaMenuBar objects
  */
-GList*
-geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
+GList *geda_menu_bar_get_viewable_menu_bars (GtkWindow *window)
 {
   GList *menu_bars;
   GList *viewable_menu_bars = NULL;
