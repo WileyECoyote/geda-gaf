@@ -1704,8 +1704,7 @@ static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
 
     if (o_current->type == OBJ_NET) {
 
-      message =
-      geda_strdup (_("Found a net inside a symbol\n"));
+      message = geda_strdup (_("Found a net inside a symbol\n"));
       ADD_ERROR_MESSAGE(message);
       s_current->found_net++;
     }
