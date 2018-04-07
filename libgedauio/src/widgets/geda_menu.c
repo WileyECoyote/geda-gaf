@@ -4897,7 +4897,6 @@ void geda_menu_set_title (GedaMenu *menu, const char *title)
 GtkWidget *geda_menu_get_toplevel (GedaMenu *menu)
 {
   GtkWidget *attach;
-  GtkWidget *toplevel;
 
   attach = geda_menu_get_attach_widget (GEDA_MENU (menu));
 
@@ -4909,6 +4908,8 @@ GtkWidget *geda_menu_get_toplevel (GedaMenu *menu)
     return geda_menu_get_toplevel ((GedaMenu*)attach);
   }
   else if (GTK_IS_WIDGET (attach)) {
+
+    GtkWidget *toplevel;
 
     toplevel = gtk_widget_get_toplevel (attach);
 

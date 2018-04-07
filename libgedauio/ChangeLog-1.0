@@ -3,6 +3,9 @@
     * src/widgets/geda_label.c: Replace gtk_container_forall with
       geda_container_forall macro.
 
+    * src/widgets/geda_menu.c: Reduce scope of toplevel variable in
+      geda_menu_get_toplevel,
+
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ml.po: Updated Malayalam translations.
