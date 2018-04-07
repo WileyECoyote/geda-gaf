@@ -736,8 +736,8 @@ void s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 
     if (nl_current->component_uref) {
       verbose_print("u");
-      new_uref =
-      s_hierarchy_return_baseuref(pr_current, nl_current->component_uref);
+      new_uref = s_hierarchy_return_baseuref(pr_current,
+                                             nl_current->component_uref);
       GEDA_FREE(nl_current->component_uref);
       nl_current->component_uref = new_uref;
     }
