@@ -1696,11 +1696,11 @@ void s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  char *message;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
     GedaObject *o_current = iter->data;
+    char *message;
 
     if (o_current->type == OBJ_NET) {
 

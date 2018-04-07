@@ -6,6 +6,7 @@
           * s_check_pin_ongrid
           * s_check_oldpin
           * s_check_oldslot
+          * s_check_nets_buses
 
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
