@@ -1419,7 +1419,6 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  char        *message;
 
   int found_old      = FALSE;
   int number_counter = 0;
@@ -1469,7 +1468,11 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 
         /* 2 matches -> number found after pin and only numbers after = sign */
         if (found_old == 2) {
+
+          char *message;
+
           message = geda_sprintf (_("Found old pin#=# attribute: %s\n"), string);
+
           ADD_ERROR_MESSAGE(message);
           s_current->found_oldpin_attrib += found_old;
         }
@@ -1486,7 +1489,6 @@ static void s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  char *message;
   int   found_old      = FALSE;
   int   number_counter = 0;
 
@@ -1532,8 +1534,12 @@ static void s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
 
         /* 2 matches -> number found after slot and only numbers after = */
         if (found_old == 2) {
+
           const char *msg = _("Found old slot#=# attribute");
+          char *message;
+
           message = geda_sprintf ("%s: %s\n", msg, string);
+
           ADD_ERROR_MESSAGE(message);
           s_current->found_oldslot_attrib += found_old;
         }

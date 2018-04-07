@@ -1,9 +1,11 @@
 2018-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/s_check.c: Reduce scope of loop variables in:
+    * src/s_check.c: Reduce scope of variables in:
 
           * s_check_pintype
           * s_check_pin_ongrid
+          * s_check_oldpin
+          * s_check_oldslot
 
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
