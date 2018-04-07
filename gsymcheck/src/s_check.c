@@ -1105,15 +1105,16 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
  */
 static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
 {
-  int x1, x2, y1, y2;
   const GList *iter;
-  char *message;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
     GedaObject *o_current = iter->data;
+    char       *message;
 
     if (o_current->type == OBJ_PIN) {
+
+      int x1, x2, y1, y2;
 
       x1 = o_current->line->x[0];
       y1 = o_current->line->y[0];
