@@ -1,3 +1,7 @@
+2018-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Reduce scope of loop variables in s_check_pintype.
+
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Reduce scope of loop variables in s_check_pintype.

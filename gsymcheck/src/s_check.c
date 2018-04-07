@@ -1041,14 +1041,15 @@ static void s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
 static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  int   counter;
-  bool  done;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
     GedaObject *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
+
+      int   counter;
+      bool  done;
 
       counter = 0;
       done    = FALSE;
