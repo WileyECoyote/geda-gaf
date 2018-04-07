@@ -1,3 +1,8 @@
+2018-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Replace gtk_container_forall with
+      geda_container_forall macro.
+
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ml.po: Updated Malayalam translations.

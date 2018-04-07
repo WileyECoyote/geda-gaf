@@ -2615,8 +2615,8 @@ label_shortcut_setting_changed (GtkSettings *settings)
     GtkWidget *widget = iter->data;
 
     if (gtk_widget_get_settings (widget) == settings) {
-        gtk_container_forall ((GtkContainer*)widget,
-                              label_shortcut_setting_traverse_container, NULL);
+        geda_container_forall (widget,
+                               label_shortcut_setting_traverse_container, NULL);
     }
   }
 
@@ -2657,9 +2657,9 @@ label_mnemonics_visible_changed (GtkWindow  *window,
 
   g_object_get (window, "mnemonics-visible", &mnemonics_visible, NULL);
 
-  gtk_container_forall ((GtkContainer*)window,
-                        label_mnemonics_visible_traverse_container,
-                        (void*)(long) (mnemonics_visible));
+  geda_container_forall (window,
+                         label_mnemonics_visible_traverse_container,
+                         (void*)(long) (mnemonics_visible));
 }
 
 static void
