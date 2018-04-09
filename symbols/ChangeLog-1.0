@@ -10,8 +10,10 @@
             * diode/schottky/1N5822-3.sym
             * diode/schottky/1N5822-4.sym
 
-    * diode/zener53/zener_3.6_1N5334B.sym: Add symbol; 3.6 Volt 5 Watt
-      zener diode.
+    * diode/zener53/: Add symbol; 5 Watt zener diodes:
+
+            * zener_3.6_1N5334B-1.sym
+            * zener_3.9_1N5335B-1.sym
 
     * opto/MOC3020-1.sym: Add symbol; Optoisolator, triac driver output.
 
