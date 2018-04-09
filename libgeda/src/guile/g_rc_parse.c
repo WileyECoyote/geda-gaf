@@ -85,7 +85,7 @@ static int vstbl_get_val(const vstbl_entry *table, int index)
  *  \brief Lookup SCM RC string in table and set associated value
  *  \par Function Description
  *  Searches for the string from \a scmmode in \a table and sets
- *  \a mode_var to the cooresponding index where the string was
+ *  \a mode_var to the corresponding index where the string was
  *  found if the string is found.
  *
  * \param scmmode    Scheme variable containing the string to search for.
