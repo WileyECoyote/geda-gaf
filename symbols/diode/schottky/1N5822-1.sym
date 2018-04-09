@@ -1,0 +1,45 @@
+v 20151230 2
+T 300 1300 5 10 0 1 0 0 1
+device=1N5822
+T 300 900 8 10 1 1 0 0 1
+refdes=D?
+L 300 400 300 0 3 0 2 0 -1 -1
+L 300 400 600 200 3 0 2 0 -1 -1
+A 650 400 50 0 180 3 0 0 0 -1 -1
+A 550 0 50 180 180 3 0 0 0 -1 -1
+L 600 200 300 0 3 0 2 0 -1 -1
+L 600 400 600 0 3 0 0 0 -1 -1
+P 0 200 300 200 1 0 0
+{
+T 200 50 5 8 0 1 0 0 1
+pinseq=1
+T 25 275 5 8 0 1 0 0 1
+pinnumber=2
+T 50 25 9 10 0 1 0 0 1
+pinlabel=A
+T 125 250 5 6 0 1 0 0 1
+pintype=pas
+}
+P 900 200 600 200 1 0 0
+{
+T 650 50 5 8 0 1 0 0 1
+pinseq=2
+T 825 275 5 8 0 1 0 0 1
+pinnumber=1
+T 750 25 9 10 0 1 0 0 1
+pinlabel=C
+T 650 250 5 6 0 1 0 0 1
+pintype=pas
+}
+T 300 500 9 10 0 1 0 0 1
+footprint=DO-204AD
+T 300 1100 9 10 0 0 0 0 1
+symversion=0.5
+T 1600 1100 5 10 0 0 0 0 1
+numslots=0
+T 300 700 5 10 1 1 0 0 1
+value=1N5822
+T 300 1500 5 10 0 1 0 0 1
+description=diode,schottky,40V,3A,Vf=0.52Volts
+T 300 1700 5 10 0 1 0 0 1
+documentation=http://wikipedia.org/wiki/Schottky_diode
