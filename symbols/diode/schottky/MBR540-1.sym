@@ -48,7 +48,7 @@ description=Diode,Schottky,40V,0.5A
 T 1600 1000 5 10 0 0 0 0 1
 numslots=0
 T 200 1800 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 200 1600 5 10 0 0 0 0 1
 use-license=unlimited
 T 200 1000 9 10 0 0 0 0 1

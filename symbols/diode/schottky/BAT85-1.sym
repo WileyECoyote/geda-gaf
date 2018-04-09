@@ -40,9 +40,9 @@ A 650 50 50 180 180 3 25 0 0 -1 -1
 T 300 2200 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 300 2000 5 10 0 0 0 0 1
-dist-license=GPL3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 300 1800 5 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
 T 300 1000 5 10 0 1 0 0 1
 description=diode,schottky,30V,200mA,Vf=0.50V@30mA
 T 300 1600 5 10 0 1 0 0 1

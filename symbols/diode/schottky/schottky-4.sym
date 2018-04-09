@@ -52,4 +52,4 @@ documentation=http://en.wikipedia.org/wiki/Schottky_diode
 T 300 1500 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 1700 5 10 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2

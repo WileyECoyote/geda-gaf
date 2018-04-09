@@ -18,6 +18,8 @@
             * diode/schottky/1N5822-3.sym
             * diode/schottky/1N5822-4.sym
 
+    * diode/schottky/: Update dist-license=GPLv2.
+
     * diode/zener53/: Add symbol; 5 Watt zener diodes:
 
             * zener_3.6_1N5334B-1.sym
@@ -36,9 +38,9 @@
     * diode/zener53/zener_3.3_1N5333B.sym: Add symbol for 3.3 Volt 5 Watt
       zeners diode.
 
-    * transistor/npn-thru/*.sym Update dist-license=GPLv2, use-license=unlimited.
+    * transistor/npn-thru/*.sym: Update dist-license=GPLv2, use-license=unlimited.
 
-    * transistor/pnp-thru/*.sym Update dist-license=GPLv2, use-license=unlimited.
+    * transistor/pnp-thru/*.sym: Update dist-license=GPLv2, use-license=unlimited.
 
     * xilinx/XC2S50-5PQ208C.sym: Add description attribute, update footprint
       attribute.
