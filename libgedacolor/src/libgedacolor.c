@@ -101,11 +101,16 @@ int libgedacolor_init(int *argc, char **argv)
   return TRUE;
 }
 
+/*! \brief Loads and Executes a color map scheme
+ *  \par Function Description
+ *       This function is a wrapper to load a specified color map
+ *       scheme by geda_color_x11_load_scheme. The \a scheme must
+ *       exist or an error will be generated.
+ */
 int geda_color_load_display_scheme (char *scheme)
 {
   return geda_color_x11_load_scheme(scheme);
 }
-
 
 /*! \brief Loads and executes a color map scheme
  *  \par Function Description
