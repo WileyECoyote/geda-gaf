@@ -3,8 +3,12 @@
     * analogdevices/AD5318-1.sym: Add symbol; 10 Bit DAC, 2.5 V to 5.5V
       Octal Output.
 
-    * diode/schottky/: Add symbols; Schottky, 40V 3A:
+    * diode/schottky/: Add symbols; Schottky, 3A:
 
+            * diode/schottky/1N5820-1.sym
+            * diode/schottky/1N5820-2.sym
+            * diode/schottky/1N5820-3.sym
+            * diode/schottky/1N5820-4.sym
             * diode/schottky/1N5822-1.sym
             * diode/schottky/1N5822-2.sym
             * diode/schottky/1N5822-3.sym
