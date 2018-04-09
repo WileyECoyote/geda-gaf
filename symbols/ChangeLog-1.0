@@ -3,6 +3,9 @@
     * analogdevices/AD5318-1.sym: Add symbol; 10 Bit DAC, 2.5 V to 5.5V
       Octal Output.
 
+    * diode/zener53/zener_3.6_1N5334B.sym: Add symbol; 3.6 Volt 5 Watt
+      zener diode.
+
 2018-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD8421-1.sym: Add symbol; instrumentation amplifier.
