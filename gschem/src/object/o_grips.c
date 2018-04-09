@@ -1209,7 +1209,7 @@ o_grips_end_box(GschemToplevel *w_current, GedaObject *o_current)
 
 /*! \brief End process of modifying path object with a grip point
  *  \par Function Description
- *   This function just call the cooresponding handler in the o_path
+ *   This function just call the corresponding handler in the o_path
  *   module.
  *
  *  \param [in] w_current  The GschemToplevel object.
