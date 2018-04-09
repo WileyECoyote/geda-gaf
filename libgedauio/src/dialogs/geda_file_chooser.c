@@ -349,6 +349,7 @@ geda_file_chooser_geometry_restore (GedaFileChooser *chooser, char *group_name)
   height = eda_config_get_integer (cfg, group_name, "height", NULL);
 
   gtk_window_move (window, x, y);
+
   /* No need to call for a resize with a zero value */
   if ( width != 0 && height != 0) {
     gtk_window_resize (window, width, height);
