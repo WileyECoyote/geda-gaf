@@ -148,6 +148,12 @@ int geda_color_load_print_scheme(char *scheme) {
   return result;
 }
 
+/*! \brief Loads and Executes a color map scheme
+ *  \par Function Description
+ *       This function release resource dynamically allocated to the
+ *       library. Libgedacolor API should not be accessed once this
+ *       function has been called.
+ */
 void libgedacolor_release(void)
 {
   geda_color_struct_release_resources();
