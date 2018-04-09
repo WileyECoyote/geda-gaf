@@ -1,3 +1,8 @@
+2018-04-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/color_struct.c: Rename 0xB0, 0x30, 0x60, "rich maroon", which
+      is X11 "maroon".
+
 2018-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Revise rule for html so as to strip the groff "Creator"
