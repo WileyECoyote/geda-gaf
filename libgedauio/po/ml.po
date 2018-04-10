@@ -149,17 +149,19 @@ msgstr ""
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:1996
 msgid "ComboBox model"
-msgstr ""
+msgstr "കോംബോബോക്സ് മോഡൽ"
 
 #: libgedauio/src/widgets/geda_combobox.c:1997
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
 msgid "Wrap width"
-msgstr ""
+msgstr "വീതി വീതി"
 
 #: libgedauio/src/widgets/geda_combobox.c:2012
 msgid "Wrap width for laying out the items in a grid"
@@ -658,9 +660,10 @@ msgid ""
 "accelerator key"
 msgstr ""
 
+# Justification
 #: libgedauio/src/widgets/geda_label.c:1404
 msgid "Justification"
-msgstr ""
+msgstr "നീതീകരണം"
 
 #: libgedauio/src/widgets/geda_label.c:1405
 msgid ""
@@ -756,17 +759,19 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
 msgid "Single-Line Mode"
-msgstr ""
+msgstr "സിംഗിൾ-ലൈൻ മോഡ്"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
+# Angle
 #: libgedauio/src/widgets/geda_label.c:1555
 msgid "Angle"
-msgstr ""
+msgstr "കോൺ"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -788,9 +793,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
+# Open Link
 #: libgedauio/src/widgets/geda_label.c:5346
 msgid "_Open Link"
-msgstr ""
+msgstr "ലിങ്ക് തുറക്കുക"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
@@ -855,9 +861,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
 msgid "Default Outside Spacing"
-msgstr ""
+msgstr "സ്പെയ്സിംഗ് പുറത്ത് സ്ഥിരസ്ഥിതി"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
