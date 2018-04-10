@@ -300,7 +300,7 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
   verbose_done();
 
   if (verbose_mode) {
-    printf("- %s:\n", ("Resolving hierarchy"));
+    printf("- %s:\n", _("Resolving hierarchy"));
   }
 
   s_hierarchy_post_process(pr_current, head);
