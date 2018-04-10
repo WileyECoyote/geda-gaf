@@ -387,13 +387,13 @@ NETLIST *s_netlist_return_head(NETLIST *tail)
   return (ret_struct);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- * hack rename this to be s_return_tail
- * update object_tail or any list of that matter
+/*!
+ * \brief Get End of Netlist
+ * \par Function Description
+ *  Indexes to the end of \a head and returns the last
+ *  record in the list.
  */
-NETLIST *s_netlist_return_tail(NETLIST * head)
+NETLIST *s_netlist_return_tail(NETLIST *head)
 {
   NETLIST *nl_current = NULL;
   NETLIST *ret_struct = NULL;
