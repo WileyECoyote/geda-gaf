@@ -1,3 +1,9 @@
+2018-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Update function documentation for:
+
+          * s_check_slotdef
+
 2018-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Reduce scope of variables in:

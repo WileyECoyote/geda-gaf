@@ -1146,10 +1146,10 @@ static void s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Check Slot Definition
+ * \par Function Description
+ *  Check for slotdef attribute on all pins if numslots exists.
  */
 static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 {
