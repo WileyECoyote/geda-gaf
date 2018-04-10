@@ -2360,12 +2360,12 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   geda_container_add(frame, table);
 
   /* pack the frame in the dialog */
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), frame, FALSE, TRUE, 5);
+  gtk_box_pack_start (GTK_BOX (((GtkDialog*)ThisDialog)->vbox), frame, FALSE, TRUE, 5);
 
   gtk_widget_show_all (frame);
 
   /* now add the close button to the action area */
-  gtk_dialog_add_button (GTK_DIALOG (ThisDialog),
+  gtk_dialog_add_button ((GtkDialog*)ThisDialog,
                          GTK_STOCK_CLOSE, GEDA_RESPONSE_CLOSE);
 
 }

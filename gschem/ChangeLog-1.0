@@ -1,3 +1,8 @@
+2018-04-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_multiattrib.c: Remove dynamic cast to GtkDialog in
+      multiattrib_init.
+
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Revise i_event_cancel_action_handler to un
