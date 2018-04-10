@@ -150,19 +150,19 @@ msgstr ""
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:1996
-#, fuzzy
 msgid "ComboBox model"
-msgstr "Tryb prostokątów"
+msgstr "Model ComboBox"
 
 #: libgedauio/src/widgets/geda_combobox.c:1997
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
-#, fuzzy
 msgid "Wrap width"
-msgstr "Szerokość:"
+msgstr "Szerokość zawijania"
 
 #: libgedauio/src/widgets/geda_combobox.c:2012
 msgid "Wrap width for laying out the items in a grid"
@@ -669,10 +669,10 @@ msgid ""
 "accelerator key"
 msgstr ""
 
+# Justification
 #: libgedauio/src/widgets/geda_label.c:1404
-#, fuzzy
 msgid "Justification"
-msgstr "Lokalizacja docelowa"
+msgstr "Usprawiedliwienie"
 
 #: libgedauio/src/widgets/geda_label.c:1405
 msgid ""
@@ -769,18 +769,17 @@ msgid "The desired width of the label, in characters"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:1539
-#, fuzzy
 msgid "Single-Line Mode"
-msgstr "Tryb linii"
+msgstr "tryb pojedynczej liniii"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
+# Angle
 #: libgedauio/src/widgets/geda_label.c:1555
-#, fuzzy
 msgid "Angle"
-msgstr "Kąt linii 1:"
+msgstr "Kąt"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -802,10 +801,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
+# Open Link
 #: libgedauio/src/widgets/geda_label.c:5346
-#, fuzzy
 msgid "_Open Link"
-msgstr "Otwórz plik..."
+msgstr "Otwórz link"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
@@ -870,10 +869,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
-#, fuzzy
 msgid "Default Outside Spacing"
-msgstr "Z_mniejsz siatkę przyciągania"
+msgstr "Standaard"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
