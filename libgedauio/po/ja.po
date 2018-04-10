@@ -149,18 +149,19 @@ msgstr ""
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:1996
-#, fuzzy
 msgid "ComboBox model"
-msgstr "ボックスモード"
+msgstr "コンボボックスモデル"
 
 #: libgedauio/src/widgets/geda_combobox.c:1997
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
 msgid "Wrap width"
-msgstr ""
+msgstr "ラップ幅"
 
 #: libgedauio/src/widgets/geda_combobox.c:2012
 msgid "Wrap width for laying out the items in a grid"
@@ -763,18 +764,19 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
-#, fuzzy
 msgid "Single-Line Mode"
-msgstr "線モード"
+msgstr "シングルラインモード"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
+# Angle
 #: libgedauio/src/widgets/geda_label.c:1555
 msgid "Angle"
-msgstr ""
+msgstr "角度"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -796,10 +798,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
+# Open Link
 #: libgedauio/src/widgets/geda_label.c:5346
-#, fuzzy
 msgid "_Open Link"
-msgstr "ファイルを開く..."
+msgstr "リンクを開く"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
