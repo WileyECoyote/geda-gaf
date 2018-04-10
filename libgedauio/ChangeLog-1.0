@@ -4,6 +4,8 @@
 
     * po/ml.po: Updated Malayalam translations.
 
+    * po/nl.po: Update Dutch translations.
+
 2018-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Replace gtk_container_forall with

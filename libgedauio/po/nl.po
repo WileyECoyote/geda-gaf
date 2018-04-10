@@ -149,19 +149,19 @@ msgstr ""
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:1996
-#, fuzzy
 msgid "ComboBox model"
-msgstr "Rechthoek Mode"
+msgstr "ComboBox-model"
 
 #: libgedauio/src/widgets/geda_combobox.c:1997
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
-#, fuzzy
 msgid "Wrap width"
-msgstr "Breedte:"
+msgstr "Breedte van de omslag"
 
 #: libgedauio/src/widgets/geda_combobox.c:2012
 msgid "Wrap width for laying out the items in a grid"
@@ -668,10 +668,10 @@ msgid ""
 "accelerator key"
 msgstr ""
 
+# Justification -> Text Alignment
 #: libgedauio/src/widgets/geda_label.c:1404
-#, fuzzy
 msgid "Justification"
-msgstr "Bestemming"
+msgstr "Tekstuitlijning"
 
 #: libgedauio/src/widgets/geda_label.c:1405
 msgid ""
@@ -767,19 +767,19 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
-#, fuzzy
 msgid "Single-Line Mode"
-msgstr "Lijn Mode"
+msgstr "eenregelige modus"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
+# Angle
 #: libgedauio/src/widgets/geda_label.c:1555
-#, fuzzy
 msgid "Angle"
-msgstr "Hoek 1:"
+msgstr "Hoek"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -801,10 +801,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
+# Open Link
 #: libgedauio/src/widgets/geda_label.c:5346
-#, fuzzy
 msgid "_Open Link"
-msgstr "Open bestand..."
+msgstr "_Open Link"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
@@ -869,10 +869,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing -> Standard External Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
-#, fuzzy
 msgid "Default Outside Spacing"
-msgstr "Omhoog schalen Raster A_fstand"
+msgstr "Standaard externe spatiëring"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
