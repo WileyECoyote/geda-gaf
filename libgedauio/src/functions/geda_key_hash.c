@@ -31,6 +31,16 @@
 #include "../../include/geda_key_hash.h"
 #include "../../include/geda_keyboard.h"
 
+/**
+ * \brief GedaKeyHash - Sets of mnemonics with cycling
+ * \par
+ *  A GedaKeyHash is a key hash object for doing key binding
+ *  resolution.
+ *
+ * \defgroup GedaKeyHash Geda Key Hash
+ * @{
+ */
+
 typedef struct _GedaKeyHashEntry GedaKeyHashEntry;
 
 struct _GedaKeyHashEntry
@@ -583,3 +593,5 @@ geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
 
   return results;
 }
+
+/** @} end group GedaKeyHash */

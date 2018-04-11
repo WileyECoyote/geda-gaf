@@ -8,6 +8,8 @@
 
     * po/tr.po: Update Turkish translations.
 
+    * src/functions/geda_key_hash.c: Add Doxygen group GedaKeyHash.
+
 2018-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ja.po: Update Japanese translations.
