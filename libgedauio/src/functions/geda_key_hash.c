@@ -137,8 +137,7 @@ key_hash_keys_changed (GdkKeymap *keymap, GedaKeyHash *key_hash)
  *
  * \return newly created object. Free with geda_key_hash_free().
  */
-GedaKeyHash *
-geda_key_hash_new (GdkKeymap *keymap, GDestroyNotify  item_destroy_notify)
+GedaKeyHash *geda_key_hash_new (GdkKeymap *keymap, GDestroyNotify  item_destroy_notify)
 {
   GedaKeyHash *key_hash = g_malloc (sizeof(GedaKeyHash));
 
@@ -180,8 +179,7 @@ key_hash_free_entry_foreach (void *value, void *data)
  *
  * \param [in] key_hash a #GedaKeyHash
  */
-void
-geda_key_hash_free (GedaKeyHash *key_hash)
+void geda_key_hash_free (GedaKeyHash *key_hash)
 {
   g_signal_handlers_disconnect_by_func (key_hash->keymap,
                                         key_hash_keys_changed,
@@ -210,11 +208,10 @@ geda_key_hash_free (GedaKeyHash *key_hash)
  * \param[in] modifiers  modifiers for this binding
  * \param[in] value      value to insert in the key hash
  */
-void
-geda_key_hash_add_entry (GedaKeyHash     *key_hash,
-                         unsigned int     keyval,
-                         GdkModifierType  modifiers,
-                         void            *value)
+void geda_key_hash_add_entry (GedaKeyHash     *key_hash,
+                              unsigned int     keyval,
+                              GdkModifierType  modifiers,
+                              void            *value)
 {
   GedaKeyHashEntry *entry =  g_malloc (sizeof(GedaKeyHashEntry));
 
@@ -239,8 +236,7 @@ geda_key_hash_add_entry (GedaKeyHash     *key_hash,
  * \param[in] key_hash  a #GedaKeyHash
  * \param[in] value     value to be removed from hash
  */
-void
-geda_key_hash_remove_entry (GedaKeyHash *key_hash, void *value)
+void geda_key_hash_remove_entry (GedaKeyHash *key_hash, void *value)
 {
   GList *entry_node = g_hash_table_lookup (key_hash->reverse_hash, value);
 
@@ -281,8 +277,7 @@ geda_key_hash_remove_entry (GedaKeyHash *key_hash, void *value)
   }
 }
 
-static int
-lookup_result_compare (const void *a, const void *b)
+static int lookup_result_compare (const void *a, const void *b)
 {
   const GedaKeyHashEntry *entry_a = a;
   const GedaKeyHashEntry *entry_b = b;
@@ -316,14 +311,12 @@ lookup_result_compare (const void *a, const void *b)
 /* Sort a list of results so that matches with less modifiers come
  * before matches with more modifiers
  */
-static GSList *
-sort_lookup_results (GSList *slist)
+static GSList *sort_lookup_results (GSList *slist)
 {
   return g_slist_sort (slist, lookup_result_compare);
 }
 
-static int
-lookup_result_compare_by_keyval (const void *a, const void *b)
+static int lookup_result_compare_by_keyval (const void *a, const void *b)
 {
   const GedaKeyHashEntry *entry_a = a;
   const GedaKeyHashEntry *entry_b = b;
@@ -336,16 +329,14 @@ lookup_result_compare_by_keyval (const void *a, const void *b)
     return 0;
 }
 
-static GSList *
-sort_lookup_results_by_keyval (GSList *slist)
+static GSList *sort_lookup_results_by_keyval (GSList *slist)
 {
   return g_slist_sort (slist, lookup_result_compare_by_keyval);
 }
 
 /* Return true if keyval is defined in keyboard group
  */
-static bool
-keyval_in_group (GdkKeymap  *keymap, unsigned int keyval, int group)
+static bool keyval_in_group (GdkKeymap  *keymap, unsigned int keyval, int group)
 {
   GedaKeyHashEntry entry;
   int i;
@@ -389,12 +380,11 @@ keyval_in_group (GdkKeymap  *keymap, unsigned int keyval, int group)
  *
  * \returns A GSList of matching entries.
  */
-GSList *
-geda_key_hash_lookup (GedaKeyHash     *key_hash,
-                      uint16           hardware_keycode,
-                      GdkModifierType  state,
-                      GdkModifierType  mask,
-                      int              group)
+GSList *geda_key_hash_lookup (GedaKeyHash     *key_hash,
+                              uint16           hardware_keycode,
+                              GdkModifierType  state,
+                              GdkModifierType  mask,
+                              int              group)
 {
   GHashTable *keycode_hash = key_hash_get_keycode_hash (key_hash);
   GSList *keys = g_hash_table_lookup (keycode_hash, (void*)(DWORD) ((DWORD)hardware_keycode));
@@ -550,10 +540,9 @@ geda_key_hash_lookup (GedaKeyHash     *key_hash,
  *
  * \returns A GSList of all matching entries.
  */
-GSList *
-geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
-                             unsigned int    keyval,
-                             GdkModifierType modifiers)
+GSList *geda_key_hash_lookup_keyval (GedaKeyHash    *key_hash,
+                                     unsigned int    keyval,
+                                     GdkModifierType modifiers)
 {
   GdkKeymapKey *keys;
   GSList       *results = NULL;
