@@ -690,27 +690,28 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "Satır"
+msgstr "Çizgi sarma"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
 msgid "Line wrap mode"
-msgstr ""
+msgstr "Çizgi sarma modu"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1442
-#, fuzzy
 msgid "Selectable"
-msgstr "Seçim Kipi"
+msgstr "Seçilebilir"
 
 #: libgedauio/src/widgets/geda_label.c:1443
 msgid "Whether the label text can be selected with the mouse"
@@ -740,10 +741,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Seçim Kipi"
+msgstr "Seçim Bound"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
@@ -766,17 +767,19 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
 msgid "Single-Line Mode"
-msgstr ""
+msgstr "Tek Hat Modu"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
+# Angle
 #: libgedauio/src/widgets/geda_label.c:1555
 msgid "Angle"
-msgstr ""
+msgstr "Açı"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -798,9 +801,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
+# Open Link
 #: libgedauio/src/widgets/geda_label.c:5346
 msgid "_Open Link"
-msgstr ""
+msgstr "Linki aç"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
@@ -865,9 +869,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
 msgid "Default Outside Spacing"
-msgstr ""
+msgstr "Varsayılan Dış Alan Aralığı"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
