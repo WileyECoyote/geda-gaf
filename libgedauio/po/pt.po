@@ -691,28 +691,28 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "Linha"
+msgstr "Envoltório de linha"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
-#, fuzzy
 msgid "Line wrap mode"
-msgstr "Modo de Linha"
+msgstr "Modo de quebra de linha"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
 msgstr ""
 
+# Selectable
 #: libgedauio/src/widgets/geda_label.c:1442
-#, fuzzy
 msgid "Selectable"
-msgstr "Seleccionar"
+msgstr "Selecionável"
 
 #: libgedauio/src/widgets/geda_label.c:1443
 msgid "Whether the label text can be selected with the mouse"
@@ -742,10 +742,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Selecção"
+msgstr "Seleção vinculada"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
@@ -768,19 +768,19 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
-#, fuzzy
 msgid "Single-Line Mode"
-msgstr "Modo de Linha"
+msgstr "Modo de linha única"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
+# Angle
 #: libgedauio/src/widgets/geda_label.c:1555
-#, fuzzy
 msgid "Angle"
-msgstr "Ângulo 1:"
+msgstr "Ângulo"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -802,10 +802,10 @@ msgstr ""
 msgid "Whether visited links should be tracked"
 msgstr ""
 
+# Open Link
 #: libgedauio/src/widgets/geda_label.c:5346
-#, fuzzy
 msgid "_Open Link"
-msgstr "Abrir ficheiro..."
+msgstr "Link aberto"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
@@ -870,10 +870,10 @@ msgstr ""
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
+# Default Outside Spacing
 #: libgedauio/src/widgets/geda_menu_button.c:1270
-#, fuzzy
 msgid "Default Outside Spacing"
-msgstr "_Aumentar Espaçamento da Grelha"
+msgstr "Espaçamento Externo Padrão"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1271
 msgid ""
