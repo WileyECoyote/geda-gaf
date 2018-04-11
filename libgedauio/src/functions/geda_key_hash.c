@@ -519,8 +519,10 @@ GSList *geda_key_hash_lookup (GedaKeyHash     *key_hash,
   }
 
   results = sort_lookup_results (results);
-  for (l = results; l; l = l->next)
+
+  for (l = results; l; l = l->next) {
     l->data = ((GedaKeyHashEntry *)l->data)->value;
+  }
 
   return results;
 }
