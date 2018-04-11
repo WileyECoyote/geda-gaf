@@ -122,11 +122,10 @@ static GdkPixbuf *off_pixbuf = NULL;
 static GdkPixbuf *on_pixbuf  = NULL;
 static int        pix_buff_ref_count;
 
-static void
-geda_bulb_set_property (GObject      *object,
-                        unsigned int  prop_id,
-                        const GValue *value,
-                        GParamSpec   *pspec)
+static void geda_bulb_set_property (GObject      *object,
+                                    unsigned int  prop_id,
+                                    const GValue *value,
+                                    GParamSpec   *pspec)
 {
   GtkWidget *widget;
 
@@ -159,11 +158,10 @@ geda_bulb_set_property (GObject      *object,
   }
 }
 
-static void
-geda_bulb_get_property (GObject       *object,
-                        unsigned int   prop_id,
-                        GValue        *value,
-                        GParamSpec    *pspec)
+static void geda_bulb_get_property (GObject       *object,
+                                    unsigned int   prop_id,
+                                    GValue        *value,
+                                    GParamSpec    *pspec)
 {
   if (prop_id == PROP_SHOW_BUTT) {
 
@@ -175,8 +173,7 @@ geda_bulb_get_property (GObject       *object,
   }
 }
 
-static void
-geda_bulb_finalize (GObject *object)
+static void geda_bulb_finalize (GObject *object)
 {
   GtkWidget *old_group_singleton;
   GedaBulb  *bulb                = (GedaBulb*)object;
@@ -239,8 +236,7 @@ geda_bulb_finalize (GObject *object)
   ((GObjectClass*)geda_bulb_parent_class)->finalize (object);
 }
 
-static void
-get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, int *y)
+static void get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, int *y)
 {
   GtkAllocation *allocation;
 
@@ -252,8 +248,7 @@ get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, int *y)
   gtk_widget_translate_coordinates (widget, reference, *x, *y, x, y);
 }
 
-static int
-left_right_compare (const void * a, const void * b, void *data)
+static int left_right_compare (const void * a, const void * b, void *data)
 {
   int x1, y1, x2, y2;
 
@@ -268,8 +263,7 @@ left_right_compare (const void * a, const void * b, void *data)
   }
 }
 
-static int
-up_down_compare (const void *a, const void * b, void *data)
+static int up_down_compare (const void *a, const void * b, void *data)
 {
   int x1, y1, x2, y2;
 
@@ -284,8 +278,7 @@ up_down_compare (const void *a, const void * b, void *data)
   }
 }
 
-static bool
-geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
+static bool geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 {
   GedaBulb *bulb = (GedaBulb*)widget;
   bool      result;
@@ -412,8 +405,7 @@ geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
   return result;
 }
 
-static void
-button_set_depressed (GtkButton *button, bool depressed)
+static void button_set_depressed (GtkButton *button, bool depressed)
 {
   GtkWidget *widget = (GtkWidget*)button;
 
@@ -672,8 +664,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
  * \param [in]  class       GedaBulb class we are initializing
  * \param [in]  class_data  GedaBulb structure associated with the class
  */
-static void
-geda_bulb_class_init(void *class, void *class_data)
+static void geda_bulb_class_init(void *class, void *class_data)
 {
   GedaBulbClass       *bulb_class;
   GObjectClass        *object_class;
@@ -779,8 +770,7 @@ geda_bulb_class_init(void *class, void *class_data)
  * \param [in] instance  A GedaBulb data structure
  * \param [in] class     A GedaBulbClass Object
  */
-static void
-geda_bulb_instance_init (GTypeInstance *instance, void *class)
+static void geda_bulb_instance_init (GTypeInstance *instance, void *class)
 {
   GedaBulb  *bulb   = (GedaBulb*)instance;
   GtkButton *button = (GtkButton*)bulb;
@@ -875,8 +865,7 @@ GedaType geda_bulb_get_type (void)
  *
  * \return TRUE if \a bulb is a valid GedaBulb
  */
-bool
-is_a_geda_bulb (GedaBulb *bulb)
+bool is_a_geda_bulb (GedaBulb *bulb)
 {
   if ((bulb != NULL) && (bulb_hash_table != NULL)) {
     return g_hash_table_lookup(bulb_hash_table, bulb) ? TRUE : FALSE;
@@ -900,8 +889,7 @@ is_a_geda_bulb (GedaBulb *bulb)
  *
  * \return a new #GedaBulb
  */
-GtkWidget*
-geda_bulb_new (GSList *group)
+GtkWidget *geda_bulb_new (GSList *group)
 {
   GtkWidget *bulb;
 
@@ -924,8 +912,7 @@ geda_bulb_new (GSList *group)
  *
  * \return a new #GedaBulb with the visible property set TRUE
  */
-GtkWidget*
-geda_bulb_new_visible (GSList *group)
+GtkWidget *geda_bulb_new_visible (GSList *group)
 {
   GtkWidget *bulb;
 
@@ -952,9 +939,8 @@ geda_bulb_new_visible (GSList *group)
  *
  * \return a new #GedaBulb
  */
-GtkWidget*
-geda_bulb_new_with_label (GSList     *group,
-                          const char *label)
+GtkWidget *geda_bulb_new_with_label (GSList     *group,
+                                     const char *label)
 {
   GtkWidget *bulb;
 
@@ -984,9 +970,8 @@ geda_bulb_new_with_label (GSList     *group,
  *
  * \return a new labeled #GedaBulb with the visible property set TRUE
  */
-GtkWidget*
-geda_bulb_new_visible_with_label (GSList     *group,
-                                  const char *label)
+GtkWidget *geda_bulb_new_visible_with_label (GSList     *group,
+                                             const char *label)
 {
   GtkWidget *bulb;
 
@@ -1010,9 +995,8 @@ geda_bulb_new_visible_with_label (GSList     *group,
  *
  * \return a new labeled #GedaBulb
  */
-GtkWidget*
-geda_bulb_new_with_mnemonic (GSList      *group,
-                             const char *label)
+GtkWidget *geda_bulb_new_with_mnemonic (GSList     *group,
+                                        const char *label)
 {
   GtkWidget *bulb;
 
@@ -1040,9 +1024,8 @@ geda_bulb_new_with_mnemonic (GSList      *group,
  *
  * \return a new labeled #GedaBulb with the visible property set TRUE
  */
-GtkWidget*
-geda_bulb_new_visible_with_mnemonic (GSList     *group,
-                                     const char *label)
+GtkWidget *geda_bulb_new_visible_with_mnemonic (GSList     *group,
+                                                const char *label)
 {
   GtkWidget *bulb;
 
@@ -1070,8 +1053,7 @@ geda_bulb_new_visible_with_mnemonic (GSList     *group,
  *
  * \return a new #GedaBulb with the visible property set to \a visible
  */
-GtkWidget*
-geda_bulb_new_from_widget (GtkWidget *group_member, bool visible)
+GtkWidget *geda_bulb_new_from_widget (GtkWidget *group_member, bool visible)
 {
   GSList    *group_list = NULL;
   GtkWidget *bulb;
@@ -1097,10 +1079,9 @@ geda_bulb_new_from_widget (GtkWidget *group_member, bool visible)
  *
  * \return a new labeled #GedaBulb with the visible property set TRUE
  */
-GtkWidget*
-geda_bulb_new_with_label_from_widget (GtkWidget  *group_member,
-                                      const char *label,
-                                      bool        visible)
+GtkWidget *geda_bulb_new_with_label_from_widget (GtkWidget  *group_member,
+                                                 const char *label,
+                                                 bool        visible)
 {
   GSList    *group_list = NULL;
   GtkWidget *bulb;
@@ -1127,10 +1108,9 @@ geda_bulb_new_with_label_from_widget (GtkWidget  *group_member,
  *
  * \return a new labeled #GedaBulb with property \a visible
  */
-GtkWidget*
-geda_bulb_new_with_mnemonic_from_widget (GtkWidget  *group_member,
-                                         const char *label,
-                                         bool        visible)
+GtkWidget *geda_bulb_new_with_mnemonic_from_widget (GtkWidget  *group_member,
+                                                    const char *label,
+                                                    bool        visible)
 {
   GSList    *group_list = NULL;
   GtkWidget *bulb;
@@ -1161,8 +1141,7 @@ geda_bulb_new_with_mnemonic_from_widget (GtkWidget  *group_member,
  *
  * \return single-linked list of group members containing \a bulb
  */
-GSList*
-geda_bulb_get_group (GtkWidget *bulb)
+GSList *geda_bulb_get_group (GtkWidget *bulb)
 {
   g_return_val_if_fail (GEDA_IS_BULB (bulb), NULL);
 
@@ -1181,8 +1160,7 @@ geda_bulb_get_group (GtkWidget *bulb)
  * \param [in] widget The #GedaBulb is group is to be set
  * \param [in] group  The bulb group \a bulb is to join
  */
-void
-geda_bulb_set_group (GtkWidget *widget, GSList *group)
+void geda_bulb_set_group (GtkWidget *widget, GSList *group)
 {
 
   GtkWidget *old_group_singleton = NULL;
@@ -1281,8 +1259,7 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
  *        last_button = bulb;
  *   }
  */
-void
-geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
+void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
 {
   g_return_if_fail (GEDA_IS_BULB (bulb));
   g_return_if_fail (group_source == NULL || GEDA_IS_BULB (group_source));
@@ -1407,8 +1384,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
  * \param [in] group_list  The bulb group to be set
  * \param [in] which_bulb  Index of bulb in group to set active
  */
-void
-geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
+void geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
 {
   int length;
   int target;
@@ -1450,8 +1426,7 @@ geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
  *
  * \returns whether to show the button.
  */
-bool
-geda_bulb_get_show_button (GtkWidget *widget)
+bool geda_bulb_get_show_button (GtkWidget *widget)
 {
   GedaBulb  *bulb;
 
@@ -1471,8 +1446,7 @@ geda_bulb_get_show_button (GtkWidget *widget)
  * \param [in] widget        Pointer to a #GedaBulb object.
  * \param [in] show_button   Desired setting.
  */
-void
-geda_bulb_set_show_button (GtkWidget *widget, bool show_button)
+void geda_bulb_set_show_button (GtkWidget *widget, bool show_button)
 {
   GedaBulb  *bulb;
 
