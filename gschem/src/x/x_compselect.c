@@ -2729,8 +2729,7 @@ compselect_create_attributes_treeview (Compselect *compselect)
 /*!
  *\brief Creates the filter area on the Component Select Dialog
  */
-static GtkWidget *
-compselect_create_filter_area (Compselect *compselect)
+static GtkWidget *compselect_create_filter_area (Compselect *compselect)
 {
   GtkWidget *label, *hbox,  *entry;
   GtkWidget *collapse_butt, *expand_butt;
@@ -3690,8 +3689,7 @@ compselect_class_init (void *class, void *class_data)
  * \param [in] instance  A Compselect data structure
  * \param [in] class     A CompselectClass Object
  */
-static void
-compselect_instance_init(GTypeInstance *instance, void *class)
+static void compselect_instance_init(GTypeInstance *instance, void *class)
 {
   Compselect *dialog;
 
@@ -3748,8 +3746,7 @@ GedaType compselect_get_type (void)
  *  to compselect dialog type.
  * \return TRUE if \a view is a valid Compselect
  */
-bool
-is_a_compselect (Compselect *dialog)
+bool is_a_compselect (Compselect *dialog)
 {
   if (G_IS_OBJECT(dialog)) {
     return (compselect_get_type() == dialog->instance_type);
