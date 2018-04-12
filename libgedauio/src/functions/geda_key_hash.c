@@ -418,10 +418,12 @@ GSList *geda_key_hash_lookup (GedaKeyHash     *key_hash,
   gdk_keymap_map_virtual_modifiers (key_hash->keymap, &mask);
   gdk_keymap_add_virtual_modifiers (key_hash->keymap, &state);
 
-  GTK_NOTE (KEYBINDINGS,
-            g_message ("Looking up keycode = %u, modifiers = 0x%04x,\n"
+#ifdef DEBUG
+
+  fprintf(stderr, "Looking up keycode = %u, modifiers = 0x%04x,\n"
             "    keyval = %u, group = %d, level = %d, consumed_modifiers = 0x%04x",
-            hardware_keycode, state, keyval, effective_group, level, consumed_modifiers));
+            hardware_keycode, state, keyval, effective_group, level, consumed_modifiers);
+#endif
 
   if (keys) {
 
@@ -452,9 +454,12 @@ GSList *geda_key_hash_lookup (GedaKeyHash     *key_hash,
           (entry->modifiers & TOGGLE_GROUP_MOD_MASK)))
 
         {
-          GTK_NOTE (KEYBINDINGS,
-                    g_message ("  found exact match, keyval = %u, modifiers = 0x%04x",
-                               entry->keyval, entry->modifiers));
+
+#ifdef DEBUG
+
+  fprintf(stderr, "  found exact match, keyval = %u, modifiers = 0x%04x",
+                             entry->keyval, entry->modifiers);
+#endif
 
           if (!have_exact) {
             g_slist_free (results);
