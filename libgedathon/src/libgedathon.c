@@ -343,7 +343,7 @@ get_bus_object_data(GedaObject *object)
   if (!bus_name)
     bus_name = "";
 
-  data = Py_BuildValue("siiiiiiiisii",  name, type, pid, sid, lock,
+  data = Py_BuildValue("siiiiiiiisii", name, type, pid, sid, lock,
                        x1, y1, x2, y2, bus_name, direction, line_width);
 
   return data;
