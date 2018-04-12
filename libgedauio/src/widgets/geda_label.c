@@ -6367,7 +6367,6 @@ void geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
  */
 void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 {
-
   g_return_if_fail (GEDA_IS_LABEL(label));
 
   label->priv->pattern_set = FALSE;
