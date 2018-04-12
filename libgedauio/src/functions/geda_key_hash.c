@@ -49,8 +49,7 @@ struct _GedaKeyHashEntry
   GdkModifierType modifiers;
   void  *value;
 
-  /* Set as a side effect of generating key_hash->keycode_hash
-   */
+  /* Set as a side effect of generating key_hash->keycode_hash */
   GdkKeymapKey *keys;
   int n_keys;
 };
