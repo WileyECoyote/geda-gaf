@@ -1034,8 +1034,9 @@ GtkWidget *geda_bulb_new_visible_with_mnemonic (GSList     *group,
                        "use-underline", TRUE,
                        NULL);
 
-  if (group)
+  if (group) {
     geda_bulb_set_group (bulb, group);
+  }
 
   g_object_set (bulb, "visible", TRUE, NULL);
 
