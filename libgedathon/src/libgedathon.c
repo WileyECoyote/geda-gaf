@@ -785,17 +785,17 @@ get_text_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Translate Color Objects
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This is a temporary function translate PyPyGedaColorObject to Libgeda color
- *   index.
+/*!
+ * \brief Translate Color Objects
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This is a temporary function to translate PyPyGedaColorObject
+ *  to Libgeda color index.
  *
- *  \param [in] py_color      PyObject Color object
- *  \param [in] default_color Integer the default color index
+ * \param [in] py_color      PyObject Color object
+ * \param [in] default_color Integer the default color index
  *
- *  \return [out] integer A Color index
- *
+ * \return [out] integer A Color index
  */
 static int translate_color(PyObject *py_color, int default_color)
 {
