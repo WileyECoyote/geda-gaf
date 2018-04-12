@@ -1,3 +1,8 @@
+2018-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * /diode/zener53/zener_36_1N5365B.sym: Add symbol for 36 Volt 5 Watt
+      zener diode.
+
 2018-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/zener_39_1N5366B.sym: Add symbol for 39 Volt 5 Watt
