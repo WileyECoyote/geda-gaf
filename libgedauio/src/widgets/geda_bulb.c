@@ -1416,7 +1416,6 @@ void geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
 }
 /** @} endgroup GedaBulb-Groups */
 
-
 /*!
  * \brief GedaBulb Get Show Button during Mouse-Over events
  * \par Function Description
@@ -1458,7 +1457,6 @@ void geda_bulb_set_show_button (GtkWidget *widget, bool show_button)
   bulb->show_butt = (show_button != FALSE);
 }
 
-
 /*!
  * \brief Set sensitivity of a Group of GedaBulbs
  * \par Function Description
@@ -1478,4 +1476,5 @@ void geda_bulb_set_group_sensitive (GSList *group, bool sensitive)
     }
   }
 }
+
 /** @} end group GedaBulb */
