@@ -482,9 +482,13 @@ GSList *geda_key_hash_lookup (GedaKeyHash     *key_hash,
               (!group_mod_is_accel_mod ||
               entry->keys[i].group == effective_group))
             {
-              GTK_NOTE (KEYBINDINGS,
-                        g_message ("  found group = %d, level = %d",
-                                   entry->keys[i].group, entry->keys[i].level));
+
+#ifdef DEBUG
+
+  fprintf(stderr, "  found group = %d, level = %d",
+                     entry->keys[i].group, entry->keys[i].level);
+#endif
+
               results = g_slist_prepend (results, entry);
               break;
             }
