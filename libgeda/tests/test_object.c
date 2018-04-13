@@ -378,6 +378,15 @@ check_accessors ()
 {
   int result = 0;
 
+    /* === Function: geda_object_get_attached === */
+    /* === Function: geda_object_get_attached_to === */
+    /* === Function: geda_object_get_color === */
+    /* === Function: geda_object_get_conn_list === */
+    /* === Function: geda_object_get_page === */
+
+    /* === Function: geda_object_set_color === */
+    /* === Function: geda_object_set_selectable === */
+
   return result;
 }
 
@@ -385,6 +394,8 @@ int
 check_properties (void)
 {
   int result = 0;
+
+    /* === Function: geda_object_bounds === */
 
   return result;
 }
