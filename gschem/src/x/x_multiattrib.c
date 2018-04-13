@@ -2611,9 +2611,6 @@ multiattrib_populate_liststore (Multiattrib *ThisDialog, GList *model_rows)
                         COLUMN_IDENTICAL_SHOW_VALUE, model_row->identical_show_value,
                         COLUMN_ATTRIBUTE_GEDALIST,   model_row->attribute_gedalist,
                         -1);
-
-    /* Drop our ref on the GedaList so it is freed when the model is done with it */
-    /* GEDA_UNREF (model_row->attribute_gedalist); */
   }
 }
 
