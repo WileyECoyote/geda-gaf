@@ -331,24 +331,30 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
 static void log_message (Console *console, const char *message, const char *style)
 {
   GtkTextBuffer *buffer;
-  GtkTextIter iter;
-  GtkTextMark *mark;
+  GtkTextMark   *mark;
+  GtkTextIter    iter;
 
   g_return_if_fail (IS_CONSOLE (console));
 
   buffer = gtk_text_view_get_buffer (console->textview);
+
   gtk_text_buffer_get_end_iter (buffer, &iter);
+
   /* Apply the "plain" tag before the level-specific tag in order to
-   * reset the formatting */
+   * reset the formatting
+   */
 
   if (g_utf8_validate (message, -1, NULL)) {
     gtk_text_buffer_insert_with_tags_by_name (buffer, &iter, message, -1,
                                               "plain", style, NULL);
   }
   else {
+
     /* If UTF-8 wasn't valid (due to a system locale encoded filename or
      * other string being included by mistake), log a warning, and print
-     * the original message to stderr, where it may be partly intelligible */
+     * the original message to stderr, where it may be partly intelligible
+     */
+
     gtk_text_buffer_insert_with_tags_by_name (buffer, &iter,
       _("** Invalid UTF-8 in log message. See stderr or gschem.log.\n"),
                                               -1, "plain", style, NULL);
