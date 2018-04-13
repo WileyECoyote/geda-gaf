@@ -1,5 +1,8 @@
 2018-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_console.c: Remove redundant console_dialog validation in
+      x_log_message.
+
     * src/x/x_dialog.c: Remove unneeded cast from g_object_new in
       x_dialog_find_text.
 
