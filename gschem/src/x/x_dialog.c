@@ -2525,9 +2525,9 @@ void x_dialog_find_text(GschemToplevel *w_current)
     checkdescend = gtk_check_button_new_with_label(_("Descend into hierarchy"));
     gtk_box_pack_start(GTK_BOX(vbox), checkdescend, TRUE, TRUE, 2);
 
-    alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
-                                          "left-padding",  25,
-                                          NULL));
+    alignment = g_object_new (GTK_TYPE_ALIGNMENT,
+                              "left-padding",  25,
+                              NULL);
     gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
 
     checkascent = gtk_check_button_new_with_label(_("Close on ascent"));
