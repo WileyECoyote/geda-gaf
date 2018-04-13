@@ -110,9 +110,10 @@ msgstr ""
 msgid "A string with characters in positions key characters"
 msgstr ""
 
+# icon identification
 #: libgedauio/src/widgets/geda_action.c:276
 msgid "icon identification"
-msgstr ""
+msgstr "identificação de ícone"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -150,19 +151,19 @@ msgstr ""
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:1996
-#, fuzzy
 msgid "ComboBox model"
-msgstr "Modo de Caixa"
+msgstr "Modelo caixa de combinação"
 
 #: libgedauio/src/widgets/geda_combobox.c:1997
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
-#, fuzzy
 msgid "Wrap width"
-msgstr "Largura:"
+msgstr "Largura do envoltório"
 
 #: libgedauio/src/widgets/geda_combobox.c:2012
 msgid "Wrap width for laying out the items in a grid"
@@ -363,25 +364,25 @@ msgstr ""
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
+# Auto Complete
 #: libgedauio/src/widgets/geda_entry.c:1327
-#, fuzzy
 msgid "Auto Complete"
-msgstr "/Inserir Componente..."
+msgstr "autocompletar"
 
+# On
 #: libgedauio/src/widgets/geda_entry.c:1335
-#, fuzzy
 msgid "On"
-msgstr "Abrir"
+msgstr "Em"
 
 #: libgedauio/src/widgets/geda_entry.c:1340
 msgid "Off"
 msgstr ""
 
+# Title
 #: libgedauio/src/widgets/geda_font_button.c:772
 #: libgedauio/src/widgets/geda_font_dialog.c:1506
-#, fuzzy
 msgid "Title"
-msgstr "semnome"
+msgstr "Título"
 
 #: libgedauio/src/widgets/geda_font_button.c:773
 #: libgedauio/src/widgets/geda_font_dialog.c:1507
@@ -881,20 +882,20 @@ msgid ""
 "the border"
 msgstr ""
 
+# Inner Border
 #: libgedauio/src/widgets/geda_menu_button.c:1281
-#, fuzzy
 msgid "Inner Border"
-msgstr "Ordem dos arquivos"
+msgstr "Borda Interna"
 
 #: libgedauio/src/widgets/geda_menu_button.c:1282
 msgid "Border between button edges and child."
 msgstr ""
 
+# Swatch Color
 #: libgedauio/src/widgets/geda_swatch_renderer.c:263
 #: libgedauio/src/widgets/geda_swatch_renderer.c:264
-#, fuzzy
 msgid "Swatch Color"
-msgstr "Cor"
+msgstr "Cor de Amostra"
 
 #: libgedauio/src/widgets/geda_swatch_renderer.c:271
 #: libgedauio/src/widgets/geda_swatch_renderer.c:272
@@ -906,10 +907,10 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
+# Font Size
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
-msgstr "Tamanho do Texto"
+msgstr "Tamanho da fonte"
 
 #: libgedauio/src/widgets/geda_toolbar.c:163
 msgid "Set point size of the font for child widgets"
