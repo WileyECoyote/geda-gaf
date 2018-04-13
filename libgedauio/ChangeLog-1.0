@@ -4,6 +4,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/ru.po: Update Russian translations.
+
 2018-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_key_hash.c: Remove GTK_NOTE macro from
