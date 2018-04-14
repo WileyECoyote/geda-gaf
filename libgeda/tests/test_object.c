@@ -379,10 +379,6 @@ check_accessors ()
   int result = 0;
 
   GedaObject *object0, *object1, *object2;
-    /* === Function: geda_object_get_attached_to === */
-    /* === Function: geda_object_get_color === */
-    /* === Function: geda_object_get_conn_list === */
-    /* === Function: geda_object_get_page === */
 
   object1 = geda_complex_new();
   object2 = geda_text_new();
@@ -427,8 +423,32 @@ check_accessors ()
     }
   }
 
-    /* === Function: geda_object_set_color === */
-    /* === Function: geda_object_set_selectable === */
+  /* === Function: geda_object_get_attached_to === */
+
+  /* Check that the Text object parent is object1 */
+  object0 = geda_object_get_attached_to(object2);
+
+  if (!object0) {
+    fprintf(stderr, "Failed: get_attached_to %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    if (object0 != object1) {
+      fprintf(stderr, "Failed: get_attached_to %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+  }
+
+  /* === Function: geda_object_get_color === */
+  /* === Function: geda_object_get_conn_list === */
+  /* === Function: geda_object_get_page === */
+
+  /* === Function: geda_object_set_color === */
+  /* === Function: geda_object_set_selectable === */
+
+  geda_object_unref(object1);
+  geda_object_unref(object2);
 
   return result;
 }
@@ -437,6 +457,8 @@ int
 check_properties (void)
 {
   int result = 0;
+
+  /* -------------------------- GedaArc ------------------------- */
 
     /* === Function: geda_object_bounds === */
 
