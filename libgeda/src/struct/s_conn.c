@@ -123,10 +123,12 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
 
   c_current = other_object->conn_list;
 
+  /* Loop over list of connections in other_object */
   while (c_current != NULL) {
 
     CONN *conn = (CONN*)c_current->data;
 
+    /* Compare if this is the connect to be removed */
     if (conn->other_object == to_remove) {
       other_object->conn_list =
       g_list_remove(other_object->conn_list, conn);
@@ -137,11 +139,7 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
              conn->x, conn->y);
 #endif
 
-      /* Do not write modify c_current like this, since this will cause */
-      /* very nasty data corruption and upset glib's memory slice */
-      /* allocator. */
-      /* c_current->data = NULL;   Do not comment in */
-
+      /* Release the CONN structure */
       GEDA_FREE(conn);
 
 #if 0 /* this does not work right */
