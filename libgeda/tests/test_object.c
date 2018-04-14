@@ -408,6 +408,25 @@ check_accessors ()
     result++;
   }
 
+  /* Attach the Text object to the Complex */
+  geda_attrib_object_attach (object1, object2, TRUE);
+
+  /* === Function: geda_object_get_attached Reprise === */
+
+  list = geda_object_get_attached(object1);
+
+  if (!list) {
+    fprintf(stderr, "Failed: get_attached %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    if (list->data != object2) {
+      fprintf(stderr, "Failed: get_attached %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+  }
+
     /* === Function: geda_object_set_color === */
     /* === Function: geda_object_set_selectable === */
 
