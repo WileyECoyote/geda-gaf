@@ -378,11 +378,25 @@ check_accessors ()
 {
   int result = 0;
 
-    /* === Function: geda_object_get_attached === */
+  GedaObject *object0, *object1, *object2;
     /* === Function: geda_object_get_attached_to === */
     /* === Function: geda_object_get_color === */
     /* === Function: geda_object_get_conn_list === */
     /* === Function: geda_object_get_page === */
+
+  object1 = geda_complex_new();
+  object2 = geda_text_new();
+
+  /* === Function: geda_object_get_attached === */
+
+  const GList *list;
+
+  list = geda_object_get_attached(object1);
+
+  if (list) {
+    fprintf(stderr, "Failed: get_attached %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
 
     /* === Function: geda_object_set_color === */
     /* === Function: geda_object_set_selectable === */
