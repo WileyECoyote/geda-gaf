@@ -105,12 +105,13 @@ int geda_struct_conn_uniq(GList * conn_list, CONN * input_conn)
 }
 
 /*!
- * \brief remove a object from the connection list of another object
+ * \brief Remove a object from the connection list of another object
  * \par Function Description
- *  This function removes the Object <b>to_remove</b> from the connection
- *  <b>other_object</b> list of objects.
+ *  This function removes the connection associated with the object
+ *  <b>to_remove</b> from the connection list in <b>other_object</b>
+ *  list of objects.
  *
- * \param other_object Object from which to_remove Object needs to be removed
+ * \param other_object Object from which to_remove Object is to be removed
  * \param to_remove    Object to remove
  *
  * \return TRUE if a connection has been deleted, FALSE otherwise
