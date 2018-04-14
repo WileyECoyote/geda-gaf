@@ -25,6 +25,7 @@
  */
 
 #include <libgeda.h>
+#include <geda_colors.h>
 
 #define TOBJECT "GedaObject"
 
@@ -441,6 +442,16 @@ check_accessors ()
   }
 
   /* === Function: geda_object_get_color === */
+
+  int color;
+
+  color = geda_object_get_color(object2);
+
+  if (color != ATTRIBUTE_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   /* === Function: geda_object_get_conn_list === */
   /* === Function: geda_object_get_page === */
 

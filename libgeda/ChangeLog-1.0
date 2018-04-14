@@ -1,9 +1,10 @@
 2018-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_object.c: Add checks for:
+    * tests/test_object.c: Include geda_colors.h, add checks for:
 
           * geda_object_get_attached
           * geda_object_get_attached_to
+          * geda_object_get_color
 
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
