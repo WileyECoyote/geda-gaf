@@ -3,6 +3,7 @@
     * tests/test_object.c: Add checks for:
 
           * geda_object_get_attached
+          * geda_object_get_attached_to
 
 2018-04-06 Wiley E. Hill <wileyhill@gmail.com>
 

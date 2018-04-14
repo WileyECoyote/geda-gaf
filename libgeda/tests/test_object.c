@@ -398,6 +398,16 @@ check_accessors ()
     result++;
   }
 
+  /* === Function: geda_object_get_attached_to === */
+
+  /* Check that the Text object has no parent */
+  object0 = geda_object_get_attached_to(object2);
+
+  if (object0) {
+    fprintf(stderr, "Failed: get_attached_to %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
     /* === Function: geda_object_set_color === */
     /* === Function: geda_object_set_selectable === */
 
