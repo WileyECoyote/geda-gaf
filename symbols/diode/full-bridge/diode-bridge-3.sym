@@ -1,14 +1,10 @@
 v 20150823 2
 T 1100 1550 5 10 0 0 0 0 1
-device=DIODE_BRIDGE
-T 1100 1350 8 10 0 0 0 0 1
-footprint=RB15
+device=DIODE-BRIDGE
 T 1200 1200 8 10 1 1 0 4 1
 refdes=U?
 T 1100 1750 5 10 0 0 0 0 1
 description=Full wave rectifier bridge
-T 1150 300 5 10 0 0 0 0 1
-numslots=0
 L 200 700 375 875 3 10 0 0 -1 -1
 L 275 975 475 775 3 10 0 0 -1 -1
 L 475 775 525 1025 3 10 0 0 -1 -1
@@ -77,9 +73,13 @@ pinnumber=2
 T 600 0 5 8 0 1 0 0 1
 pinseq=2
 }
+T 1100 1350 8 10 0 0 0 0 1
+footprint=RB15
+T 1150 300 5 10 0 0 0 0 1
+numslots=0
 T 1100 2350 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 1100 2150 5 10 0 0 0 0 1
-dist-license=GPL3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 1100 1950 5 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited

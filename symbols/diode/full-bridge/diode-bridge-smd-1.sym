@@ -1,8 +1,10 @@
 v 20100214 2
 T 400 1100 5 10 0 0 0 0 1
-device=DIODE_BRIDGE
-T 400 900 8 10 0 0 0 0 1
-footprint=DF_S
+device=DIODE-BRIDGE
+T 500 700 8 10 1 1 0 4 1
+refdes=U?
+T 400 1300 5 10 0 0 0 0 1
+description=Diode bridge
 P 0 500 300 500 1 0 0
 {
 T 200 500 5 8 0 1 0 0 1
@@ -47,16 +49,14 @@ pinlabel=+
 T 1000 500 5 8 0 1 0 0 1
 pintype=out
 }
-T 500 700 8 10 1 1 0 4 1
-refdes=U?
 B 300 0 400 600 3 10 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 400 1300 5 10 0 0 0 0 1
-description=Diode bridge
+T 400 900 8 10 0 0 0 0 1
+footprint=DF_S
 T 400 1500 5 10 0 0 0 0 1
 numslots=0
 T 400 2100 5 10 0 0 0 0 1
 author=Amand Tihon amand.tihon@alrj.org
 T 400 1900 5 10 0 0 0 0 1
-dist-license=GPL3, http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 400 1700 5 10 0 0 0 0 1
-use-license=unrestricted
+use-license=unlimited
