@@ -146,7 +146,7 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
 #if 0 /* this does not work right */
       if (other_object->type == OBJ_BUS &&
         other_object->conn_list == NULL) {
-        other_object->bus_ripper_direction = 0;
+          other_object->bus->bus_ripper_direction = 0;
         }
 #endif
         geda_struct_conn_emit_conns_changed (other_object);

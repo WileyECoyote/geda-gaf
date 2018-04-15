@@ -1,6 +1,7 @@
 2018-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/struct/s_conn.c: Edit and add comments in geda_struct_conn_remove_other.
+    * src/struct/s_conn.c: Edit and add comments in geda_struct_conn_remove_other,
+      and update bus_ripper_direction member.
 
     * tests/test_object.c: Include geda_colors.h, add checks for:
 
