@@ -20,10 +20,16 @@
 
     * opto/HCPL-0701-1.sym: Add symbol; single-channel optocoupler.
 
+    * xilinx/XC2S30-*.sym: Add description attribute, revise attribute
+      locations:
+
+            * xilinx/XC2S30-5PQ208C.sym
+            * xilinx/XC2S30-5PQ208I.sym
+            * xilinx/XC2S30-6PQ208C.sym
 
 2018-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * /diode/zener53/zener_36_1N5365B.sym: Add symbol for 36 Volt 5 Watt
+    * diode/zener53/zener_36_1N5365B.sym: Add symbol for 36 Volt 5 Watt
       zener diode.
 
 2018-04-10 Wiley E. Hill <wileyhill@gmail.com>
