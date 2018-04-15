@@ -131,8 +131,8 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
 
     /* Compare if this is the connect to be removed */
     if (conn->other_object == to_remove) {
-      other_object->conn_list =
-      g_list_remove(other_object->conn_list, conn);
+
+      other_object->conn_list = g_list_remove(other_object->conn_list, conn);
 
 #if DEBUG_CONNS
       printf("Found other_object in remove_other\n");
