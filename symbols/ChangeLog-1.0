@@ -12,6 +12,8 @@
             * diode/zener53/zener_5.1_1N5338B.sym (5.1 Volt)
             * diode/zener53/zener_5.6_1N5339B.sym (5.6 Volt)
 
+    * linear/telephone/HT9170B-1.sym: Add symbol; DTMF detector 18 pin.
+
 
 2018-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
