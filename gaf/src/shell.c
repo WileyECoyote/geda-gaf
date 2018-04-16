@@ -81,8 +81,7 @@ SCM_SYMBOL (sym_set_x,             "set!");
 SCM_SYMBOL (sym_top_repl,          "top-repl");
 SCM_SYMBOL (sym_use_modules,       "use-modules");
 
-static void
-cmd_shell_impl (void *data, int argc, char **argv)
+static void cmd_shell_impl (void *data, int argc, char **argv)
 {
 
   GedaToplevel *toplevel;
@@ -204,8 +203,7 @@ cmd_shell_impl (void *data, int argc, char **argv)
   exit (status);
 }
 
-int
-cmd_shell (int argc, char **argv)
+int cmd_shell (int argc, char **argv)
 {
   scm_boot_guile (argc, argv, cmd_shell_impl, NULL); /* Doesn't return */
   return 0;
