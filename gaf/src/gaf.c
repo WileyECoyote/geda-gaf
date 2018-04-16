@@ -63,8 +63,7 @@ static struct internal_command commands[] =
   };
 
 /* Print help info and exit */
-static void
-usage (void)
+static void usage (void)
 {
   printf (_("Usage: gaf [OPTION...] COMMAND [ARGS ...]\n\n"
             "gEDA/gaf command-line utility.\n\n"
@@ -96,8 +95,7 @@ version (void)
   exit (0);
 }
 
-int
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
   int c;
   char *cmd = NULL;
