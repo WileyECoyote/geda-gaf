@@ -1,6 +1,7 @@
-2018-04-15 Wiley E. Hill <wileyhill@gmail.com>
+2018-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/config.c: Clear the gerror before exiting in cmd_config_impl.
+    * src/config.c: Revise cmd_config_impl to suppress prefixing "ERROR:"
+      when the group is not found and clear the gerror before exiting.
 
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 

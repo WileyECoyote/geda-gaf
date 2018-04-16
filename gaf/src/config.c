@@ -189,7 +189,13 @@ static void cmd_config_impl (void *data, int argc, char **argv)
 
     if (value == NULL) {
 
-      fprintf (stderr, _("ERROR: %s.\n"), err->message);
+      if (g_error_matches (err, EDA_CONFIG_ERROR, EDA_CONFIG_ERROR_GROUP_NOT_FOUND))
+      {
+        fprintf (stderr, "%s.\n", err->message);
+      }
+      else {
+        fprintf (stderr, _("ERROR: %s.\n"), err->message);
+      }
 
       g_clear_error (&err);
 
