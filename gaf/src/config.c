@@ -69,8 +69,7 @@ config_usage (void)
 #define see_help_msg _("\nRun `gaf config --help' for more information.\n")
 #define multi_store_msg _("ERROR: You may only specify a single configuration store.\n")
 
-static void
-cmd_config_impl (void *data, int argc, char **argv)
+static void cmd_config_impl (void *data, int argc, char **argv)
 {
   EdaConfig  *cfg;
   EdaConfig  *parent;
@@ -218,8 +217,7 @@ cmd_config_impl (void *data, int argc, char **argv)
 }
 
 /*! \brief Main function for "gaf config" */
-int
-cmd_config (int argc, char **argv)
+int cmd_config (int argc, char **argv)
 {
   scm_boot_guile (argc, argv, cmd_config_impl, NULL); /* Does not return */
   return 0;
