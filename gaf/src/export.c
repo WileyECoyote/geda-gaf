@@ -154,8 +154,7 @@ static struct ExportSettings settings = {
 #define see_help_msg _("\nRun `gaf export --help' for more information.\n")
 
 /*! \brief The Real Main export function call by Guile */
-static void
-cmd_export_impl (void *data, int argc, char **argv)
+static void cmd_export_impl (void *data, int argc, char **argv)
 {
   GError *err;
   GArray *color_map;
@@ -333,8 +332,7 @@ cmd_export_impl (void *data, int argc, char **argv)
 }
 
 /*! \brief Main function for "gaf export" */
-int
-cmd_export (int argc, char **argv)
+int cmd_export (int argc, char **argv)
 {
  scm_boot_guile (argc, argv, cmd_export_impl, NULL); /* Does not return */
  return 0;
@@ -389,8 +387,8 @@ export_cairo_check_error (cairo_status_t status)
  * matrix needed to fit the drawing into the page is returned in mtx.
  * Takes into account all of the margin/orientation/paper settings,
  * and the size of the drawing itself. */
-static void
-export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
+static void export_layout_page (Page *page, cairo_rectangle_t *extents,
+                                            cairo_matrix_t    *mtx)
 {
   cairo_rectangle_t drawable;
   int x_min, y_min, x_max, y_max, w_width, w_height;
@@ -500,8 +498,7 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 }
 
 /* Actually draws a page.  If page is NULL, uses the first open page. */
-static void
-export_draw_page (Page *page)
+static void export_draw_page (Page *page)
 {
   if (page == NULL) {
 
@@ -542,8 +539,7 @@ export_draw_page (Page *page)
   }
 }
 
-static void
-export_png (void)
+static void export_png (void)
 {
   cairo_surface_t  *surface;
   cairo_t          *cr;
@@ -594,8 +590,7 @@ export_png (void)
 }
 
 /* Worker function used by both export_ps and export_eps */
-static void
-export_postscript (bool is_eps)
+static void export_postscript (bool is_eps)
 {
   cairo_surface_t  *surface;
   cairo_rectangle_t extents;
@@ -628,20 +623,17 @@ export_postscript (bool is_eps)
   cairo_destroy (cr);
 }
 
-static void
-export_ps (void)
+static void export_ps (void)
 {
   export_postscript (FALSE);
 }
 
-static void
-export_eps (void)
+static void export_eps (void)
 {
   export_postscript (TRUE);
 }
 
-static void
-export_pdf (void)
+static void export_pdf (void)
 {
   cairo_surface_t *surface;
   cairo_rectangle_t extents;
@@ -672,8 +664,7 @@ export_pdf (void)
   cairo_destroy (cr);
 }
 
-static void
-export_draw_svg_page (cairo_t *cr)
+static void export_draw_svg_page (cairo_t *cr)
 {
   const GList *pages;
   const GList *contents;
@@ -729,8 +720,7 @@ export_draw_svg_page (cairo_t *cr)
   }
 }
 
-static void
-export_svg ()
+static void export_svg ()
 {
   cairo_surface_t *surface;
   cairo_rectangle_t extents;
@@ -774,8 +764,7 @@ export_svg ()
  * unit name (in, cm, mm, pc, px, or pt, same as CSS).  If no unit is
  * specified, assumes that the unit is pt.  This is used for the
  * --margins, --size and --scale command-line options. */
-static double
-export_parse_dist (const char *dist)
+static double export_parse_dist (const char *dist)
 {
   double base, mult;
   char *unit;
@@ -804,8 +793,7 @@ export_parse_dist (const char *dist)
 }
 
 /* Parse the --align command line option. */
-static bool
-export_parse_align (const char *align)
+static bool export_parse_align (const char *align)
 {
   int n;
   char **args;
@@ -836,8 +824,7 @@ export_parse_align (const char *align)
 
 /* Parse the --layout command line option and the export.layout config
  * file setting. */
-static bool
-export_parse_layout (const char *layout)
+static bool export_parse_layout (const char *layout)
 {
   if (!layout || layout[0] == 0 || strncmp (layout, "auto", 4) == 0) {
     settings.layout = ORIENTATION_AUTO;
@@ -859,8 +846,7 @@ export_parse_layout (const char *layout)
  * or compiled-in defaults. Otherwise, expects a list of 1-4 distance
  * specs; see export_parse_dist().  Rules if <4 distances are
  * specified are as for 'margin' property in CSS. */
-static bool
-export_parse_margins (const char *margins)
+static bool export_parse_margins (const char *margins)
 {
   int n;
   char **dists;
@@ -915,8 +901,7 @@ export_parse_margins (const char *margins)
 }
 
 /* Parse the --paper option.  Clears any size setting. */
-static bool
-export_parse_paper (const char *paper)
+static bool export_parse_paper (const char *paper)
 {
   GtkPaperSize *paper_size = gtk_paper_size_new (paper);
 
@@ -939,8 +924,7 @@ export_parse_paper (const char *paper)
 
 /* Parse the --size option, which must either be "auto" (i.e. obtain
  * size from drawing) or a list of two distances (width/height). */
-static bool
-export_parse_size (const char *size)
+static bool export_parse_size (const char *size)
 {
   int n;
   char **dists;
@@ -975,8 +959,7 @@ export_parse_size (const char *size)
 
 /* Parse the --scale option. The value should be a distance
  * corresponding to 100 points in gschem (1 default grid spacing). */
-static bool
-export_parse_scale (const char *scale)
+static bool export_parse_scale (const char *scale)
 {
   double d = export_parse_dist (scale);
 
@@ -990,8 +973,7 @@ export_parse_scale (const char *scale)
 }
 
 /* Initialise settings from config store. */
-static void
-export_config (void)
+static void export_config (void)
 {
   GError    *err;
   EdaConfig *cfg = eda_config_get_context_for_file (NULL);
@@ -1094,8 +1076,7 @@ static struct option export_long_options[] = {
   {NULL, 0, NULL, 0},
 };
 
-static void
-export_usage (void)
+static void export_usage (void)
 {
   printf (_("Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -1124,8 +1105,7 @@ export_usage (void)
 
 /* Helper function for checking that a command-line option value can
  * be successfully converted to UTF-8. */
-static inline char*
-export_command_line__utf8_check (char *str, char *arg)
+static inline char *export_command_line__utf8_check (char *str, char *arg)
 {
   if (str != NULL) {
 
@@ -1149,8 +1129,7 @@ export_command_line__utf8_check (char *str, char *arg)
   return NULL;
 }
 
-static void
-export_command_line (int argc, char * const *argv)
+static void export_command_line (int argc, char * const *argv)
 {
   int   c;
   char *str;
