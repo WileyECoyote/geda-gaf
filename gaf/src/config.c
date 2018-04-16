@@ -188,7 +188,11 @@ static void cmd_config_impl (void *data, int argc, char **argv)
     char *value = eda_config_get_string (cfg, group, key, &err);
 
     if (value == NULL) {
+
       fprintf (stderr, _("ERROR: %s.\n"), err->message);
+
+      g_clear_error (&err);
+
       exit (1);
     }
 
