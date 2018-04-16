@@ -221,7 +221,7 @@ static void cmd_config_impl (void *data, int argc, char **argv)
     exit (0);
   }
 
-  fprintf (stderr, "%s: internal error\n", __func__);
+  fprintf (stderr, "%s: %s\n", __func__, _("internal error"));
 
   exit (1);
 }

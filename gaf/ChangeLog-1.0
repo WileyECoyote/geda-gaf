@@ -2,6 +2,7 @@
 
     * src/config.c: Revise cmd_config_impl to suppress prefixing "ERROR:"
       when the group is not found and clear the gerror before exiting.
+      Wrap "internal error" with gettext.
 
 2017-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
