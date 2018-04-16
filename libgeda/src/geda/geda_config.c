@@ -846,6 +846,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
   if (cwd != NULL) {
     g_free(cwd);
   }
+
   return config;
 }
 
@@ -942,6 +943,18 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
     }
     else {
       fprintf(stderr, _("Error loading configuration, file name is undefined\n"));
+    }
+  }
+  else if (strstr(filename, LOCAL_CONFIG_FILE_ALT)) {
+
+    if(error != NULL) {
+
+      g_set_error(error, EDA_ERROR, errno, "%s '%s'", _("ignoring file"), filename);
+    }
+    else {
+
+      fprintf(stderr, "%s %s, %s\n", _("Not loading configuration"),
+              filename, strerror(errno));
     }
   }
   else {
