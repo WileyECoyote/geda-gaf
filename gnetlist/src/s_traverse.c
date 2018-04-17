@@ -47,8 +47,7 @@ static GHashTable *visit_table;
  *  \par Function Description
  *   Trivial function used when clearing#visit_table.
  */
-static
-bool returns_true (void * key, void * value, void * user_data)
+static bool returns_true (void * key, void * value, void * user_data)
 {
   return TRUE;
 }
@@ -58,8 +57,7 @@ bool returns_true (void * key, void * value, void * user_data)
  *  \par Function Description
  *  Retrieve the current visit count for a particular Object.
  */
-static
-inline int is_visited(GedaObject *obj)
+static inline int is_visited(GedaObject *obj)
 {
   void *val;
   void *orig_key;
@@ -187,8 +185,7 @@ void s_traverse_process(GedaToplevel *pr_current)
  * \param [in] pr_current  Current GedaToplevel structure; toplevel,
  * \param [in] obj_list    List of all object on This sheet
  */
-void
-s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
+void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 {
 
 #if PERFORMANCE
@@ -333,8 +330,7 @@ s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
  *  \param [in] pr_current Current GedaToplevel structure; toplevel,
  *  \param [in] netlist      List of all object on This sheet
  */
-void
-s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
+void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 {
   GError      *err;
   EdaConfig   *cfg;
