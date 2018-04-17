@@ -1254,8 +1254,7 @@ void eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
  *
  * \return TRUE if \a cfg is trusted.
  */
-bool
-eda_config_is_trusted (EdaConfig *cfg)
+bool eda_config_is_trusted (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   return cfg->priv->trusted;
@@ -1293,8 +1292,7 @@ void eda_config_set_trusted (EdaConfig *cfg, bool trusted)
  *
  * \return first trusted ancestor of \a cfg, or NULL.
  */
-EdaConfig *
-eda_config_get_trusted_context (EdaConfig *cfg)
+EdaConfig *eda_config_get_trusted_context (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
