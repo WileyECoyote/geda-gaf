@@ -158,7 +158,8 @@ static void cmd_config_impl (void *data, int argc, char **argv)
     GError *err = NULL;
 
     if (eda_config_is_loaded (parent) ||
-        eda_config_get_filename (parent) == NULL) continue;
+        eda_config_get_filename (parent) == NULL)
+      continue;
 
     if (!eda_config_load (parent, &err)) {
       if (!g_error_matches (err, EDA_ERROR, ENOENT)) {
