@@ -145,7 +145,7 @@ int main (int argc, char **argv)
   /* The next argument should be a command */
   if (optind == argc) {
     fprintf (stderr,
-             _("ERROR: You must specify a command to run.\n"
+             _("No command specified, nothing to do.\n"
                "\n"
                "Run `gaf --help' for more information.\n"));
     exit (1);
@@ -161,6 +161,7 @@ int main (int argc, char **argv)
       break;
     }
   }
+
   if (cmd_func == NULL) {
     fprintf (stderr,
              _("ERROR: Unrecognised command `%s'.\n"
