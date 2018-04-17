@@ -121,56 +121,56 @@ static void eda_config_set_property (GObject *object, unsigned int property_id,
 
   switch (property_id) {
 
-  case PROP_CONFIG_FILE:
-    if (priv->filename != NULL) {
-      GEDA_FREE (priv->filename);
-    }
-    priv->filename = g_value_dup_string (value);
-    break;
-
-  case PROP_CONFIG_PARENT:
-    /* Check if new parent is a child context of config (loops are not
-     * permitted). */
-    parent = g_value_get_object (value);
-    if (parent != NULL) {
-      g_return_if_fail (EDA_IS_CONFIG (parent));
-      g_return_if_fail (!eda_config_is_descendent (parent, config));
-    }
-
-    if (priv->parent != NULL) {
-      /* Disconnect parent signal handler, if still connected. */
-      if (g_signal_handler_is_connected (priv->parent,
-                                         priv->parent_handler_id)) {
-        g_signal_handler_disconnect (priv->parent,
-                                     priv->parent_handler_id);
+    case PROP_CONFIG_FILE:
+      if (priv->filename != NULL) {
+        GEDA_FREE (priv->filename);
       }
-      eda_config_unref (priv->parent);
-      priv->parent_handler_id = 0;
-    }
-    if (parent != NULL) {
+      priv->filename = g_value_dup_string (value);
+      break;
 
-      config->priv->parent = eda_config_ref (parent);
+    case PROP_CONFIG_PARENT:
+      /* Check if new parent is a child context of config (loops are not
+       * permitted). */
+      parent = g_value_get_object (value);
+      if (parent != NULL) {
+        g_return_if_fail (EDA_IS_CONFIG (parent));
+        g_return_if_fail (!eda_config_is_descendent (parent, config));
+      }
 
-      /* Connect signal handler to new parent. */
-      priv->parent_handler_id =
+      if (priv->parent != NULL) {
+        /* Disconnect parent signal handler, if still connected. */
+        if (g_signal_handler_is_connected (priv->parent,
+          priv->parent_handler_id)) {
+          g_signal_handler_disconnect (priv->parent,
+                                       priv->parent_handler_id);
+          }
+          eda_config_unref (priv->parent);
+        priv->parent_handler_id = 0;
+      }
+      if (parent != NULL) {
+
+        config->priv->parent = eda_config_ref (parent);
+
+        /* Connect signal handler to new parent. */
+        priv->parent_handler_id =
         g_signal_connect_object (parent,
                                  "config-changed",
                                  G_CALLBACK (parent_config_changed_handler),
                                  config,
                                  G_CONNECT_SWAPPED);
-    }
-    else {
-      config->priv->parent = NULL;
-    }
-    break;
+      }
+      else {
+        config->priv->parent = NULL;
+      }
+      break;
 
-  case PROP_CONFIG_TRUSTED:
-    config->priv->trusted = g_value_get_boolean (value);
-    break;
+    case PROP_CONFIG_TRUSTED:
+      config->priv->trusted = g_value_get_boolean (value);
+      break;
 
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
   }
 }
 
@@ -180,18 +180,18 @@ static void eda_config_get_property (GObject *object, unsigned int property_id,
 {
   EdaConfig *config = EDA_CONFIG (object);
   switch (property_id) {
-  case PROP_CONFIG_FILE:
-    g_value_set_string (value, config->priv->filename);
-    break;
-  case PROP_CONFIG_PARENT:
-    g_value_set_object (value, config->priv->parent);
-    break;
-  case PROP_CONFIG_TRUSTED:
-    g_value_set_boolean (value, config->priv->trusted);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;
+    case PROP_CONFIG_FILE:
+      g_value_set_string (value, config->priv->filename);
+      break;
+    case PROP_CONFIG_PARENT:
+      g_value_set_object (value, config->priv->parent);
+      break;
+    case PROP_CONFIG_TRUSTED:
+      g_value_set_boolean (value, config->priv->trusted);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
   }
 }
 
@@ -313,9 +313,9 @@ static void eda_config_class_init(void *class, void *class_data)
 /*! Initialise EdaConfig instance. */
 static void eda_config_instance_init(GTypeInstance *instance, void *class)
 {
-  EdaConfig *config     = (EdaConfig*)instance;
+  EdaConfig *config = (EdaConfig*)instance;
 
-  config->priv          = GEDA_MEM_ALLOC0(sizeof(EdaConfigData));
+  config->priv      = GEDA_MEM_ALLOC0(sizeof(EdaConfigData));
 
   config->priv->parent            = NULL;
   config->priv->keyfile           = geda_keyfile_new ();
