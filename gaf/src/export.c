@@ -442,16 +442,16 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
 
     /* Select orientation */
     switch (settings.layout) {
-    case ORIENTATION_LANDSCAPE:
-      landscape = TRUE;
-      break;
-    case ORIENTATION_PORTRAIT:
-      landscape = FALSE;
-      break;
-    case ORIENTATION_AUTO:
-    default:
-      landscape = (w_width > w_height);
-      break;
+      case ORIENTATION_LANDSCAPE:
+        landscape = TRUE;
+        break;
+      case ORIENTATION_PORTRAIT:
+        landscape = FALSE;
+        break;
+      case ORIENTATION_AUTO:
+      default:
+        landscape = (w_width > w_height);
+        break;
     }
 
     p_width = gtk_paper_size_get_width (settings.paper, GTK_UNIT_POINTS);
