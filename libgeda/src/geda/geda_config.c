@@ -410,18 +410,23 @@ static void propagate_key_file_error (GError *src, GError **dest)
           case G_KEY_FILE_ERROR_UNKNOWN_ENCODING:
             code = EDA_CONFIG_ERROR_UNKNOWN_ENCODING;
             break;
+
           case G_KEY_FILE_ERROR_PARSE:
             code = EDA_CONFIG_ERROR_PARSE;
             break;
+
           case G_KEY_FILE_ERROR_KEY_NOT_FOUND:
             code = EDA_CONFIG_ERROR_KEY_NOT_FOUND;
             break;
+
           case G_KEY_FILE_ERROR_GROUP_NOT_FOUND:
             code = EDA_CONFIG_ERROR_GROUP_NOT_FOUND;
             break;
+
           case G_KEY_FILE_ERROR_INVALID_VALUE:
             code = EDA_CONFIG_ERROR_INVALID_VALUE;
             break;
+
           case G_KEY_FILE_ERROR_NOT_FOUND:
           default:
             BUG_IMSG("unhandled case <%d>", (*dest)->code);
@@ -1146,7 +1151,6 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
         const char *err_msg = _("Error saving configuration, bad path in");
         fprintf(stderr, "%s %s\n", err_msg, filename);
       }
-
     }
     GEDA_FREE(scratch);
   }
@@ -1293,7 +1297,9 @@ EdaConfig *
 eda_config_get_trusted_context (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
+
   EdaConfig *iter = cfg;
+
   while (iter != NULL) {
     if (eda_config_is_trusted (iter)) return iter;
     iter = eda_config_get_parent (iter);
