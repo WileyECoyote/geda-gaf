@@ -192,8 +192,7 @@ void geda_color_x11_set_state (int color, int state)
  *  This function frees colors in the X11 colormap along with
  *  \b black and \b white.
  */
-void
-geda_color_x11_free (void)
+void geda_color_x11_free (void)
 {
   if (x_colormap) {
 
@@ -219,8 +218,7 @@ geda_color_x11_free (void)
  *
  *  Initializes color maps to default values.
  */
-void
-geda_color_x11_init (void)
+void geda_color_x11_init (void)
 {
   int i;
 
@@ -277,8 +275,7 @@ int geda_color_x11_load_scheme(char *scheme) {
  *  \par Function Documentation
  *  Releases resources allocated by geda_color_x11_init.
  */
-void
-geda_color_x11_release_resources (void)
+void geda_color_x11_release_resources (void)
 {
   int i;
 
