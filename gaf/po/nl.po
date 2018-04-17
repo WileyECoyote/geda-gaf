@@ -76,10 +76,10 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/src/gaf.c:150
-#, c-format
+#: gaf/src/gaf.c:148
+#, fuzzy, c-format
 msgid ""
-"ERROR: You must specify a command to run.\n"
+"No command specified, nothing to do.\n"
 "\n"
 "Run `gaf --help' for more information.\n"
 msgstr ""
