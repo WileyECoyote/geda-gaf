@@ -1343,10 +1343,10 @@ static char **hash_table_keys_array (GHashTable *table, unsigned int *length)
  * \brief Return a list of a configuration context's available groups.
  * \par Function Description
  *  Returns a list of the all groups available in \a cfg and its parent
- *  contexts.  The value returned by eda_config_get_groups() is a
- *  newly-allocated NULL-terminated array of strings.  Use g_strfreev()
- *  to free it.  The \a length argument is an optional return location
- *  for the number of groups returned.
+ *  contexts. The value returned by eda_config_get_groups() is a newly
+ *  allocated NULL-terminated array of strings.  Use g_strfreev() to
+ *  free it. The \a length argument is an optional return location for
+ *  the number of groups returned.
  *
  * \see eda_config_has_group().
  *
