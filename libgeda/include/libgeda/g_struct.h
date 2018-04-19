@@ -168,17 +168,23 @@ struct st_complex {
  * The connection system in s_conn.c uses this struct
  */
 struct st_conn {
+
   /*! \brief The "other" object connected to this one */
   GedaObject *other_object;
+
   /*! \brief type of connection. Always in reference to how the "other"
     object is connected to the current one */
   int type;
+
   /*! \brief x coord of the connection position */
   int x;
+
   /*! \brief y coord of the connection position */
   int y;
+
   /*! \brief which endpoint of the current object caused this connection */
   int whichone;
+
   /*! \brief which endpoint of the "other" object caused this connection */
   int other_whichone;
 };
