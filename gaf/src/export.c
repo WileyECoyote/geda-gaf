@@ -183,7 +183,7 @@ static void cmd_export_impl (void *data, int argc, char **argv)
   /* Default to light, users can change using rc file */
   geda_color_load_print_scheme(LIGHT_PRINT_MAP); /* call for load */
 
-  /* Now load rc files, if necessary */
+  /* Load rc files unless user inhibited */
   if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
     g_rc_parse ("gaf export", NULL, NULL);
   }
