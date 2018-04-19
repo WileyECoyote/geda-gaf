@@ -464,6 +464,31 @@ check_accessors ()
     result++;
   }
 
+  object0 = geda_complex_new();
+
+  list = g_list_append(NULL, object0);
+
+  object1->conn_list = (GList*)list;
+
+  if (!geda_object_get_conn_list(object1)) {
+    fprintf(stderr, "Failed: get_conn_list %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    const GList *conn_list;
+
+    conn_list = geda_object_get_conn_list(object1);
+
+    if (conn_list != list) {
+      fprintf(stderr, "Failed: get_conn_list %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+  }
+
+  g_list_free((GList*)list);
+  object1->conn_list = NULL;
+
   /* === Function: geda_object_get_page === */
 
   /* === Function: geda_object_set_color === */
