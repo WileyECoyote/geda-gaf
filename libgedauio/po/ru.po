@@ -473,9 +473,8 @@ msgid "Select the style to apply to the font"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1173
-#, fuzzy
 msgid "Current font size"
-msgstr "Текущая страница"
+msgstr "Текущий размер шрифта"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
@@ -543,11 +542,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
-# Можно "Предварительный просмотр", но занимает много места на экране
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "Предпросмотр"
+msgstr "Предварительный текст"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -561,10 +559,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "Выделение"
+msgstr "Выбрать"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
