@@ -143,13 +143,14 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
       /* Release the CONN structure */
       GEDA_FREE(conn);
 
-#if 0 /* this does not work right */
-      if (other_object->type == OBJ_BUS &&
-        other_object->conn_list == NULL) {
+      /* If type BUS and no other connections then reset ripper direction */
+      if (other_object->type == OBJ_BUS) {
+        if (!g_list_length(other_object->conn_list)) {
           other_object->bus->bus_ripper_direction = 0;
         }
-#endif
-        geda_struct_conn_emit_conns_changed (other_object);
+      }
+
+      geda_struct_conn_emit_conns_changed (other_object);
 
       return (TRUE);
     }
