@@ -139,8 +139,9 @@ static void cmd_config_impl (void *data, int argc, char **argv)
    * configuration. */
   if (cfg == NULL) {
 
-    if (project_store_path == NULL)
+    if (project_store_path == NULL) {
       project_store_path = ".";
+    }
 
     cfg = eda_config_get_context_for_path (project_store_path);
   }
