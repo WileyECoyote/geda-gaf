@@ -453,6 +453,17 @@ check_accessors ()
   }
 
   /* === Function: geda_object_get_conn_list === */
+
+  if (geda_object_get_conn_list(NULL)) {
+    fprintf(stderr, "Failed: get_conn_list %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  if (geda_object_get_conn_list(object1)) {
+    fprintf(stderr, "Failed: get_conn_list %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   /* === Function: geda_object_get_page === */
 
   /* === Function: geda_object_set_color === */
