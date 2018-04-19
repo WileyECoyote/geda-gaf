@@ -459,9 +459,10 @@ msgstr ""
 msgid "Select the style to apply to the font"
 msgstr ""
 
+# Current font size
 #: libgedauio/src/widgets/geda_font_dialog.c:1173
 msgid "Current font size"
-msgstr ""
+msgstr "Тренутна величина фонта"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
@@ -528,9 +529,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
 msgid "Preview text"
-msgstr ""
+msgstr "Превиев тект"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -544,9 +546,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
 msgid "_Select"
-msgstr ""
+msgstr "Изаберите"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
@@ -867,10 +870,11 @@ msgstr ""
 msgid "Border between button edges and child."
 msgstr ""
 
+# Swatch Color
 #: libgedauio/src/widgets/geda_swatch_renderer.c:263
 #: libgedauio/src/widgets/geda_swatch_renderer.c:264
 msgid "Swatch Color"
-msgstr ""
+msgstr "Сватцх Цолор"
 
 #: libgedauio/src/widgets/geda_swatch_renderer.c:271
 #: libgedauio/src/widgets/geda_swatch_renderer.c:272
@@ -882,8 +886,8 @@ msgstr ""
 msgid "Multikey Accelerator"
 msgstr ""
 
+# Font Size
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
 msgstr "индикатор Величина"
 
