@@ -32,12 +32,12 @@
 
 #include <libgeda/libgeda.h>
 
-#define config_short_options "hp::su"
+#define config_short_options "hp:su"
 
 static struct option config_long_options[] =
   {
     {"help",    0, NULL, 'h'},
-    {"project", 2, NULL, 'p'},
+    {"project", 1, NULL, 'p'},
     {"system",  0, NULL, 's'},
     {"user",    0, NULL, 'u'},
   };
