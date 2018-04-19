@@ -110,10 +110,10 @@ msgstr ""
 msgid "A string with characters in positions key characters"
 msgstr ""
 
+# icon identification
 #: libgedauio/src/widgets/geda_action.c:276
-#, fuzzy
 msgid "icon identification"
-msgstr "الوجهة"
+msgstr "تعريف الرمز"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -467,10 +467,10 @@ msgstr ""
 msgid "Select the style to apply to the font"
 msgstr ""
 
+# Current font size
 #: libgedauio/src/widgets/geda_font_dialog.c:1173
-#, fuzzy
 msgid "Current font size"
-msgstr "الصفحة الحالية"
+msgstr "حجم الخط الحالي"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
@@ -501,6 +501,7 @@ msgstr ""
 msgid "Face"
 msgstr ""
 
+# Preview
 #: libgedauio/src/widgets/geda_font_dialog.c:1360
 msgid "_Preview:"
 msgstr "معاينة:"
@@ -537,10 +538,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "معاينة"
+msgstr "معاينة النص"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -554,10 +555,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "انتق"
+msgstr "تحديد"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
@@ -782,9 +783,10 @@ msgstr ""
 msgid "Angle"
 msgstr "زاوية"
 
+# Angle of rotation of the label
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
-msgstr ""
+msgstr "زاوية دوران التسمية"
 
 #: libgedauio/src/widgets/geda_label.c:1576
 msgid "Maximum Width In Characters"
