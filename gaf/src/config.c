@@ -55,7 +55,7 @@ config_usage (void)
   "  -h, --help     display usage information and exit\n"
   "\n"
   "If GROUP and KEY are specified, retrieves the value of that\n"
-  "configuration parameter.  If a VALUE was specified, sets the value of\n"
+  "configuration parameter. If a VALUE was specified, sets the value of\n"
   "the parameter.  The -p, -u and -s options can be used to select the\n"
   "configuration store affected (by default, the project configuration\n"
   "store for the current directory). If no GROUP and KEY were provided,\n"
