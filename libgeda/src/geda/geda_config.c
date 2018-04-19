@@ -111,13 +111,54 @@ static void eda_config_unref (EdaConfig *cfg)
   }
 }
 
+static void config_set_parent(EdaConfig *config, const GValue *value)
+{
+  EdaConfig     *parent;
+  EdaConfigData *priv = config->priv;
+
+  /* Check if new parent is a child context of config
+   * (loops are not permitted). */
+  parent = g_value_get_object (value);
+  if (parent != NULL) {
+    g_return_if_fail (EDA_IS_CONFIG (parent));
+    g_return_if_fail (!eda_config_is_descendent (parent, config));
+  }
+
+  if (priv->parent != NULL) {
+
+    /* Disconnect parent signal handler, if still connected. */
+    if (g_signal_handler_is_connected (priv->parent,
+      priv->parent_handler_id)) {
+      g_signal_handler_disconnect (priv->parent,
+                                   priv->parent_handler_id);
+      }
+      eda_config_unref (priv->parent);
+    priv->parent_handler_id = 0;
+  }
+
+  if (parent != NULL) {
+
+    config->priv->parent = eda_config_ref (parent);
+
+    /* Connect signal handler to new parent. */
+    priv->parent_handler_id =
+    g_signal_connect_object (parent,
+                             "config-changed",
+                             G_CALLBACK (parent_config_changed_handler),
+                             config,
+                             G_CONNECT_SWAPPED);
+  }
+  else {
+    config->priv->parent = NULL;
+  }
+}
+
 /*! Set a property of an EdaConfig instance. */
 static void eda_config_set_property (GObject *object, unsigned int property_id,
                                      const GValue *value, GParamSpec *pspec)
 {
   EdaConfig     *config = EDA_CONFIG (object);
-  EdaConfig     *parent;
-  EdaConfigData *priv = config->priv;
+  EdaConfigData *priv   = config->priv;
 
   switch (property_id) {
 
@@ -129,39 +170,7 @@ static void eda_config_set_property (GObject *object, unsigned int property_id,
       break;
 
     case PROP_CONFIG_PARENT:
-      /* Check if new parent is a child context of config (loops are not
-       * permitted). */
-      parent = g_value_get_object (value);
-      if (parent != NULL) {
-        g_return_if_fail (EDA_IS_CONFIG (parent));
-        g_return_if_fail (!eda_config_is_descendent (parent, config));
-      }
-
-      if (priv->parent != NULL) {
-        /* Disconnect parent signal handler, if still connected. */
-        if (g_signal_handler_is_connected (priv->parent,
-          priv->parent_handler_id)) {
-          g_signal_handler_disconnect (priv->parent,
-                                       priv->parent_handler_id);
-          }
-          eda_config_unref (priv->parent);
-        priv->parent_handler_id = 0;
-      }
-      if (parent != NULL) {
-
-        config->priv->parent = eda_config_ref (parent);
-
-        /* Connect signal handler to new parent. */
-        priv->parent_handler_id =
-        g_signal_connect_object (parent,
-                                 "config-changed",
-                                 G_CALLBACK (parent_config_changed_handler),
-                                 config,
-                                 G_CONNECT_SWAPPED);
-      }
-      else {
-        config->priv->parent = NULL;
-      }
+      config_set_parent (config, value);
       break;
 
     case PROP_CONFIG_TRUSTED:

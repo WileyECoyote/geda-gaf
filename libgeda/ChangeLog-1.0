@@ -1,5 +1,12 @@
 2018-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_config.c: Factor out PROP_CONFIG_PARENT to help
+      function config_set_parent.
+
+    * src/struct/s_conn.c: Reinstate resetting of the ripper direction
+      when removing connections and no other connections exist to a
+      Bus object.
+
     * tests/test_object.c: Add checks for geda_object_get_conn_list.
 
 2018-04-16 Wiley E. Hill <wileyhill@gmail.com>
