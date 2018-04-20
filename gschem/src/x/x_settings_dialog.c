@@ -2326,8 +2326,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
  * functions. The macros somewhat obsures base coding but is much more
  * manageable then 100K+ lines of gtk_xxx's and does not depend on Glade.
  */
-GtkWidget*
-create_settings_dialog (GschemToplevel *w_current)
+GtkWidget *create_settings_dialog (GschemToplevel *w_current)
 {
   EdaConfig  *cfg;
   const char *group;
