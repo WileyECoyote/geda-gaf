@@ -89,7 +89,7 @@ static ToolBarInfo ActiveToolBar;
 /*!
  * \note #1: These numerators are used to access the structure of strings
  *           ToolbarStrings, i.e. if an item is added to one then an item
- *           must be added to the cooresponding position in the other.
+ *           must be added to the corresponding position in the other.
  *
  * \note #2: etb_none is a dummy member used in the add mode radio group.
  *           The group is a collection of radio button and when we don't
