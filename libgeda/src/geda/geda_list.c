@@ -209,7 +209,9 @@ void geda_list_add(GedaList *list, void *item)
 void geda_list_add_glist(GedaList *list, GList *items)
 {
   GList *glist_copy = g_list_copy(items);
+
   list->glist = g_list_concat(list->glist, glist_copy);
+
   g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 
@@ -460,6 +462,6 @@ void geda_list_remove_all(GedaList *list)
  */
 void geda_list_unref (GedaList *list)
 {
-    g_object_unref(list);
+  g_object_unref(list);
 }
 /** @} endgroup geda-list-object */
