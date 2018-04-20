@@ -1449,6 +1449,8 @@ bool eda_config_has_group (EdaConfig *cfg, const char *group)
  * \param group   Group to get key list for.
  * \param length  Return location for number of keys, or NULL.
  * \param error   Return location for error information.
+ *
+ * \returns NULL-terminated array of strings
  */
 char **eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned *length,
                             GError **error)
