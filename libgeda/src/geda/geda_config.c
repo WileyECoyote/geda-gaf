@@ -1341,8 +1341,9 @@ static char **hash_table_keys_array (GHashTable *table, unsigned int *length)
 
   g_hash_table_destroy (table);
 
-  if (length != NULL)
+  if (length != NULL) {
     *length = len;
+  }
 
   return result;
 }
