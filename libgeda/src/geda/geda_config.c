@@ -1384,13 +1384,15 @@ char **eda_config_get_groups (EdaConfig *cfg, unsigned *length)
     unsigned int len;
     int    i;
 
-    char **local_groups = geda_keyfile_get_groups (curr->priv->keyfile, &len);
+    char **groups = geda_keyfile_get_groups (curr->priv->keyfile, &len);
 
     for (i = 0; i < len; i++) {
-      g_hash_table_insert (group_table, local_groups[i], NULL);
+      g_hash_table_insert (group_table, groups[i], NULL);
     }
-    GEDA_FREE (local_groups);
-    /* Keys are now owned by hashtable, do not need to use g_strfreev */
+
+    GEDA_FREE (groups);
+
+    /* Keys strings are now owned by hashtable, do not use g_strfreev */
 
     curr = eda_config_get_parent (curr);
   }
