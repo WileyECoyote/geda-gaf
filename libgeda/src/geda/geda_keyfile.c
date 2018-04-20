@@ -870,7 +870,8 @@ void geda_keyfile_unref (GedaKeyFile *key_file)
   }
 }
 
-/* If GEDA_KEYFILE_KEEP_TRANSLATIONS is not set, only returns
+/*! \internal Returns true if locale is translatable.
+ * If GEDA_KEYFILE_KEEP_TRANSLATIONS is not set, only returns
  * true for locales that match those in g_get_language_names().
  */
 static bool geda_keyfile_locale_is_interesting (GedaKeyFile *key_file,
