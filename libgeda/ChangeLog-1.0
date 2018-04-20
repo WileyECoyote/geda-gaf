@@ -3,6 +3,9 @@
     * src/geda/geda_config.c: Wrap blurbs for parent and trusted properties
       with gettext. Rename local_groups -> groups in eda_config_get_groups.
 
+    * src/geda/geda_list.c: Add function documentation for geda_list_add_
+      glist_unique.
+
 2018-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Factor out PROP_CONFIG_PARENT to help

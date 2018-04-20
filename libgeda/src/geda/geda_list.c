@@ -213,6 +213,15 @@ void geda_list_add_glist(GedaList *list, GList *items)
   g_signal_emit(list, geda_list_signals[ CHANGED ], 0);
 }
 
+/*!
+ * \brief Adds glist of items if not already a member of GedaList
+ * \par Function Description
+ *  Adds all items in \a items to the GedaList that are not
+ *  not already a member of \a list.
+ *
+ * \param [in] list  Pointer to the GedaList
+ * \param [in] items GList of items to add to the GedaList.
+ */
 void geda_list_add_glist_unique (GedaList *list, GList *items)
 {
   GList *one_list = NULL;
