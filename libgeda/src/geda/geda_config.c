@@ -291,16 +291,16 @@ static void eda_config_class_init(void *class, void *class_data)
   g_object_class_install_property (object_class, PROP_CONFIG_FILE, pspec);
 
   pspec = g_param_spec_object ("parent",
-                               "Configuration context parent",
-                               "Set parent configuration context for EdaConfig",
+                             _("Configuration context parent"),
+                             _("Set parent configuration context for EdaConfig"),
                                EDA_TYPE_CONFIG,
                                G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
 
   g_object_class_install_property (object_class, PROP_CONFIG_PARENT, pspec);
 
   pspec = g_param_spec_boolean ("trusted",
-                                "Whether context is trusted",
-                                "Set whether configuration context is trusted config source.",
+                              _("Whether context is trusted"),
+                              _("Set whether configuration context is trusted config source."),
                                 FALSE /* default value */,
                                 G_PARAM_CONSTRUCT | G_PARAM_READWRITE);
 
