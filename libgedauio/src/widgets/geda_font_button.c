@@ -182,20 +182,6 @@ clear_font_data (GedaFontButton *font_button)
   font_button->priv->size_text = NULL;
 }
 
-/*
-static void
-clear_font_filter_data (GedaFontButton *font_button)
-{
-  GedaFontButtonData *priv = font_button->priv;
-
-  if (priv->font_filter_data_destroy)
-    priv->font_filter_data_destroy (priv->font_filter_data);
-  priv->font_filter = NULL;
-  priv->font_filter_data = NULL;
-  priv->font_filter_data_destroy = NULL;
-}
-*/
-
 /*!
  * \brief Font Button Label Use Font
  * \par Function Description

@@ -1,5 +1,8 @@
 2018-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_font_button.c: Remove unused, and commented out
+      function clear_font_filter_data.
+
     * src/widgets/geda_entry.c: Eliminate GtkEntry variable in geda_entry_
       history_down because this was cast to GtkEditable - so just cast the
       GedaEntry. Revise conditional in function geda_entry_tab_complete
