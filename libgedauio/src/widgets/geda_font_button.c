@@ -238,8 +238,7 @@ static void geda_font_button_label_set_font (GedaFontButton *font_button)
  */
 static void geda_font_button_label_set_text (GedaFontButton *font_button)
 {
-  GedaFontButtonData *data;
-  data = font_button->priv;
+  GedaFontButtonData *data = font_button->priv;
 
   /* Check for label_text and re-create if needed */
   if (!data->label_text) {
