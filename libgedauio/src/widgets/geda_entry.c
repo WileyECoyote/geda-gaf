@@ -1123,8 +1123,9 @@ static bool geda_entry_tab_complete (GedaEntry *entry)
     strcpy (s_ptr, options->data);
 
   }
-  else
+  else {
     strcpy (s_ptr, match);
+  }
 
   geda_entry_set_text (entry, buffer);
   gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
