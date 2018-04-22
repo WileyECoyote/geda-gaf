@@ -2251,15 +2251,17 @@ GtkWidget *geda_entry_new (void)
  */
 GtkWidget *geda_entry_new_history_complete (GList **history, GList **complete)
 {
-  if ((int)(long)history == -1)
+  if ((int)(long)history == -1) {
     have_history = FALSE;
+  }
   else {
     history_list_arg = history;
     have_history = TRUE;
   }
 
-  if ((int)(long)complete == -1)
+  if ((int)(long)complete == -1) {
     have_auto_complete = FALSE;
+  }
   else {
     if (complete) {
       old_complete_list = complete;
