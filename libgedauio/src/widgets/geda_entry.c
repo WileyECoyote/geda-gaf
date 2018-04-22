@@ -962,11 +962,11 @@ static void geda_entry_history_up (GedaEntry *entry)
 /*!
  * \brief Go Forward in history
  * \par Function Description
- *  Call when the arrow-down key is press. This function increments the
- *  history index and replaces the text in the entry with the text at
- *  the resulting index in the history list if such and index exist. If
- *  the history is at end of the list then the entry text is set to an
- *  empty line.
+ *  Called when the arrow-down key is press. This function increments
+ *  the history index and replaces the text in the entry with the text
+ *  at the resulting index in the history list if such and index exist.
+ *  If the history is at end of the list then the entry text is set to
+ *  an empty line.
  */
 static void geda_entry_history_down (GedaEntry *entry)
 {
