@@ -1116,21 +1116,21 @@ static bool geda_entry_tab_complete (GedaEntry *entry)
 
   options = geda_completion_complete (entry->priv->command_completion, s_ptr, &match);
 
-  if (g_list_length (options) == 0)                    /* if no matches */
-    return exit (TRUE);
+  if (g_list_length (options)) {                 /* if there is a match */
 
-  if (g_list_length (options) == 1) {                       /* one match */
-    strcpy (s_ptr, options->data);
+    if (g_list_length (options) == 1) {                    /* one match */
+      strcpy (s_ptr, options->data);
 
+    }
+    else {
+      strcpy (s_ptr, match);
+    }
+
+    geda_entry_set_text (entry, buffer);
+    gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
+
+    g_free (match);
   }
-  else {
-    strcpy (s_ptr, match);
-  }
-
-  geda_entry_set_text (entry, buffer);
-  gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
-
-  g_free (match);
 
   /* Don't free buffer! */;
   return exit (TRUE);
