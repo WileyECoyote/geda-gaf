@@ -2284,8 +2284,11 @@ GtkWidget *geda_entry_new_history_complete (GList **history, GList **complete)
 GtkWidget *geda_entry_new_visible (void)
 {
   GtkWidget *entry;
+
   entry = geda_entry_new ();
+
   g_object_set (entry, "visible", TRUE, NULL);
+
   return entry;
 }
 
@@ -2304,8 +2307,11 @@ GtkWidget *geda_entry_new_visible (void)
 GtkWidget *geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 {
   GtkWidget *entry;
+
   entry = geda_entry_new_with_buffer (buffer);
+
   g_object_set (entry, "visible", TRUE, NULL);
+
   return entry;
 }
 
@@ -2324,8 +2330,11 @@ GtkWidget *geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 GtkWidget *geda_entry_new_visible_completion (GList **complete)
 {
   GtkWidget *entry;
+
   entry = geda_entry_new_with_completion (complete);
+
   g_object_set (entry, "visible", TRUE, NULL);
+
   return entry;
 }
 
@@ -2344,8 +2353,11 @@ GtkWidget *geda_entry_new_visible_completion (GList **complete)
 GtkWidget *geda_entry_new_visible_history (GList **history)
 {
   GtkWidget *entry;
+
   entry = geda_entry_new_with_history (history);
+
   g_object_set (entry, "visible", TRUE, NULL);
+
   return entry;
 }
 
@@ -2373,6 +2385,7 @@ GtkWidget *geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
   else {
     real_buffer = gtk_entry_buffer_new (NULL, -1);
   }
+
   return g_object_new (GEDA_TYPE_ENTRY, "buffer", real_buffer, NULL);
 }
 
