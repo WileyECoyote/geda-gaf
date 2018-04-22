@@ -970,8 +970,6 @@ static void geda_entry_history_up (GedaEntry *entry)
  */
 static void geda_entry_history_down (GedaEntry *entry)
 {
-  GtkEntry *gtk_entry = GTK_ENTRY (entry);
-
   if (entry->history_index < (entry->max_history - 1)) {
 
     GedaEntryPriv *priv = entry->priv;
@@ -987,7 +985,7 @@ static void geda_entry_history_down (GedaEntry *entry)
         ++entry->history_index;
         new_line = g_list_nth_data(priv->history_list, entry->history_index);
         geda_entry_set_text (entry, new_line);
-        gtk_editable_set_position (GTK_EDITABLE (gtk_entry), -1);
+        gtk_editable_set_position (GTK_EDITABLE (entry), -1);
       }
       else { /* There is no more data so set blank line */
         geda_entry_set_text (entry, "");
