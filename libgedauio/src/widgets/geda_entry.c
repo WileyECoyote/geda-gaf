@@ -1208,32 +1208,40 @@ static void geda_entry_validate_input (GtkEntry    *entry,
       case ACCEPT_ALL_ASCII:
          valid = TRUE;
          break;
+
       case ACCEPT_ALPHANUMERIC:
          if (isalnum(text[i]) || ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)))
            valid = TRUE;
          break;
+
       case ACCEPT_NUMERIC:
          if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
            valid = TRUE;
          break;
+
       case ACCEPT_COORDINATE:
          if ((text[i] == ASCII_COMMA) || (text[i] == ASCII_LEFT_PARENTHESIS) || (text[i] == ASCII_RIGHT_PARENTHESIS))
            valid = TRUE;
+
       case ACCEPT_NUMBER:
          if (isdigit(text[i]))
            valid = TRUE;
          break;
+
       case ACCEPT_INTEGER:
          if (isdigit(text[i]) || (text[i] == ASCII_MINUS))
            valid = TRUE;
          break;
+
       case ACCEPT_REAL:
          if (isdigit(text[i]) || (text[i] == ASCII_MINUS) || (text[i] == ASCII_PERIOD))
            valid = TRUE;
          break;
+
       default:
          valid = TRUE;
     }
+
     if (!valid)
       continue;
 
