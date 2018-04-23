@@ -1,3 +1,7 @@
+2018-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * analogdevices/AD7789-1.sym: Fix over-bar.
+
 2018-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/full-bridge/: Update dist-license=GPLv2.
