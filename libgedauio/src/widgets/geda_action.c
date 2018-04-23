@@ -194,13 +194,13 @@ geda_action_get_property (GObject *object, unsigned int property_id,
 static void
 geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
-  GedaAction *geda_action = (GedaAction*)action;
-
   /* Override the type of label widget used with the menu item */
   if (GEDA_IS_MENU_ITEM (proxy)) {
 
-    GtkWidget *label;
+    GedaAction *geda_action;
+    GtkWidget  *label;
 
+    geda_action = (GedaAction*)action;
     label = ((GtkBin*)proxy)->child;
 
     /* Ensure label is a GedaAccelLabel */

@@ -8,6 +8,9 @@
 
     * po/fr.po: Update French translations.
 
+    * src/widgets/geda_action.c: Reduce scope of GedaAction in geda_action_
+      connect_proxy.
+
 2018-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Remove unused, and commented out
