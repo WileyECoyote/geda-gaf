@@ -110,9 +110,8 @@ msgid "A string with characters in positions key characters"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_action.c:276
-#, fuzzy
 msgid "icon identification"
-msgstr "Justification"
+msgstr "icon identification"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -883,9 +882,8 @@ msgid "Multikey Accelerator"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_toolbar.c:162
-#, fuzzy
 msgid "Font Size"
-msgstr "Set Size"
+msgstr "Font Size"
 
 #: libgedauio/src/widgets/geda_toolbar.c:163
 msgid "Set point size of the font for child widgets"
