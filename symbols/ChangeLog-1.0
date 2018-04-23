@@ -7,6 +7,10 @@
 
     * analogdevices/AD8677-2.sym: Add symbol; SOT-5 version of AD8677.
 
+    * diode/zener53/: Add symbol for 5 Watt zener diode.
+
+            * diode/zener53/zener_6.0_1N5340B.sym (6.0 Volt)
+
     * ti/ADS1110-0.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
       Delta-Sigma, I2C address 1001 000.
 
