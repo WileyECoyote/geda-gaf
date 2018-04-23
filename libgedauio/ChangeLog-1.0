@@ -6,6 +6,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/fr.po: Update French translations.
+
 2018-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_button.c: Remove unused, and commented out
