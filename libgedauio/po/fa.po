@@ -553,10 +553,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "Select Mode"
+msgstr "انتخاب کنید"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
