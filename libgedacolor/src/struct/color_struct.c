@@ -278,10 +278,8 @@ static void geda_color_struct_map_defaults (COLOR *map)
   }
 }
 
-
 /*! \brief Initializes the color system for the application.
  *  \par Function Documentation
- *
  *  Initializes color maps to default values.
  */
 void geda_color_struct_init(void)
