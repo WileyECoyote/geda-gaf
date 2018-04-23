@@ -104,16 +104,16 @@ msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
 
 #: gnetlist/src/g_rc.c:50
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "You are running gEDA/gnetlist version [%s%s.%s],\n"
 "but you have a version [%s] gnetlistrc file:\n"
 "\"%s\"\n"
 "Please be sure that you have the latest rc file.\n"
 msgstr ""
-"U heeft gEDA/gaf versie [%s%s.%s],\n"
+"U heeft gEDA/gnetlist versie [%s%s.%s],\n"
 "maar U heeft een versie [%s] gnetlistrc bestand:\n"
-"[%s]\n"
+"\"%s\"\n"
 "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
 
 #: gnetlist/src/parsecmd.c:73
@@ -247,12 +247,10 @@ msgstr "Ga de bron doorkruisen"
 msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
+# DONE
 #: gnetlist/src/s_misc.c:70
-#, fuzzy
 msgid "DONE"
-msgstr ""
-"\n"
-"GEDAAN\n"
+msgstr "GEDAAN"
 
 # is reserved for internal use
 #: gnetlist/src/s_netattrib.c:79
