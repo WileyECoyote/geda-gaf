@@ -1,0 +1,82 @@
+v 20140728 2
+T 1050 950 8 10 1 1 0 0 1
+refdes=U?
+T 1050 800 5 10 1 1 0 0 1
+device=AD8677
+T 1025 650 5 10 0 1 0 0 1
+footprint=SOT23-5
+T 25 1500 5 10 0 0 0 0 1
+numslots=0
+T 25 1350 5 10 0 0 0 0 1
+description=operational amplifier, 130 uV Maximum Offset Voltage
+T 25 1200 5 10 0 0 0 0 1
+documentation=http://www.analog.com/media/en/technical-documentation/data-sheets/AD8677.pdf
+L 200 850 200 150 3 0 0 0 -1 -1
+L 200 850 900 500 3 0 0 0 -1 -1
+L 900 500 200 150 3 0 0 0 -1 -1
+L 300 750 300 650 3 0 0 0 -1 -1
+L 250 700 350 700 3 0 0 0 -1 -1
+L 250 300 350 300 3 0 0 0 -1 -1
+P 0 300 200 300 1 0 0
+{
+T 75 325 5 8 1 1 0 0 1
+pinnumber=4
+T 100 175 5 8 0 1 0 0 1
+pinseq=2
+T 225 350 9 8 0 1 0 0 1
+pinlabel=in-
+T -25 275 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 700 200 700 1 0 0
+{
+T 75 725 5 8 1 1 0 0 1
+pinnumber=3
+T 100 575 5 8 0 1 0 0 1
+pinseq=1
+T 225 500 9 8 0 1 0 0 1
+pinlabel=in+
+T -25 675 5 8 0 1 0 2 1
+pintype=in
+}
+P 500 300 500 100 1 0 1
+{
+T 450 125 5 8 1 1 0 6 1
+pinnumber=2
+T 550 225 5 8 0 1 0 0 1
+pinseq=4
+T 425 300 9 8 0 1 0 3 1
+pinlabel=V-
+T 550 200 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 900 500 1100 500 1 0 1
+{
+T 925 525 5 8 1 1 0 0 1
+pinnumber=1
+T 1000 525 5 8 0 1 0 0 1
+pinseq=5
+T 1050 450 9 8 0 1 0 8 1
+pinlabel=out
+T 1050 450 5 8 0 1 0 8 1
+pintype=out
+}
+P 500 700 500 900 1 0 1
+{
+T 525 725 5 8 1 1 0 0 1
+pinnumber=5
+T 375 800 5 8 0 1 0 0 1
+pinseq=3
+T 500 650 9 8 0 1 0 5 1
+pinlabel=V+
+T 550 875 5 8 0 1 0 0 1
+pintype=pwr
+}
+T 25 2100 8 10 0 0 0 0 1
+author=AutoTron
+T 25 1950 8 10 0 0 0 0 1
+symversion=0.1
+T 25 1800 8 10 0 0 0 0 1
+dist-license=GPLv2
+T 25 1650 8 10 0 0 0 0 1
+use-license=unlimited

@@ -5,6 +5,8 @@
     * analogdevices/AD8677-1.sym: Add symbol; operational amplifier with
       130 uV Maximum Offset Voltage in SOIC8 package.
 
+    * analogdevices/AD8677-2.sym: Add symbol; SOT-5 version of AD8677.
+
 2018-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/full-bridge/: Update dist-license=GPLv2.
