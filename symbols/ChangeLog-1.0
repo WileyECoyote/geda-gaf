@@ -13,6 +13,9 @@
     * ti/ADS1110-1.sym: Replace symbol; Analog-To-Digital Converter, 16-Bit
       Delta-Sigma, I2C address 1001 001.
 
+    * ti/ADS1110-2.sym: Replace symbol; Analog-To-Digital Converter, 16-Bit
+      Delta-Sigma, I2C address 1001 010.
+
 2018-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/full-bridge/: Update dist-license=GPLv2.
