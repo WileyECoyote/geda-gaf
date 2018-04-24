@@ -343,6 +343,9 @@ static void scroll_to_selection (GtkTreeView *tree_view)
   }
 }
 
+/*! \internal This is called when the list is mapped. Here we
+ *   scroll to the current font if necessary.
+ */
 static void geda_font_dialog_scroll_to_selection (GedaFontDialog *dialog)
 {
   /* Try to scroll the font family list to the selected item */
@@ -353,8 +356,7 @@ static void geda_font_dialog_scroll_to_selection (GedaFontDialog *dialog)
 
   /* Try to scroll the font family list to the selected item */
   scroll_to_selection (GTK_TREE_VIEW (dialog->size_list));
-/* This is called when the list is mapped. Here we scroll to the current
-   font if necessary. */
+
 }
 
 static void callback_scroll_on_map (GtkWidget *widget, void * data)
