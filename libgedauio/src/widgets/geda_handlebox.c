@@ -1428,7 +1428,7 @@ static void geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_sty
   change_handle_size(handlebox);
 }
 
-/* gobject_class->get_property */
+/*! \internal gobject_class->get_property */
 static void geda_handle_box_get_property (GObject      *object,
                                           unsigned int  prop_id,
                                           GValue       *value,
@@ -1470,6 +1470,7 @@ static void geda_handle_box_get_property (GObject      *object,
   }
 }
 
+/*! \internal gobject_class->set_property */
 static void geda_handle_box_set_property (GObject      *object,
                                           unsigned int  prop_id,
                                           const GValue *value,
@@ -1507,6 +1508,7 @@ static void geda_handle_box_set_property (GObject      *object,
   }
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_handle_box_finalize (GObject *object)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)object;

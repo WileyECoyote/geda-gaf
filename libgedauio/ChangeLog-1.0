@@ -1,7 +1,9 @@
 2018-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Convert plain text to internal Doxygen
-      documentation.
+      documentation, add internal Doxygen comments.
+
+    * src/widgets/geda_handlebox.c: Add internal Doxygen comments.
 
 2018-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
