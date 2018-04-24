@@ -642,8 +642,9 @@ geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
       }
     }
 
-    if (old_desc)
+    if (old_desc) {
       pango_font_description_free (old_desc);
+    }
     else {
       gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &match_row);
       match_face = faces[0];
@@ -728,8 +729,9 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
 
   new_family_name = pango_font_description_get_family (new_desc);
 
-  if (!new_family_name)
+  if (!new_family_name) {
     return FALSE;
+  }
 
   valid_family = FALSE;
 
@@ -757,8 +759,9 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
     return FALSE;
   }
 
-  if (pfamily)
+  if (pfamily) {
     *pfamily = new_family;
+  }
   else {
     g_object_unref (new_family);
   }
@@ -794,14 +797,16 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
     }
   }
 
-  if (!new_face)
+  if (!new_face) {
     new_face = fallback_face;
+  }
   else if (fallback_face) {
     g_object_unref (fallback_face);
   }
 
-  if (pface)
+  if (pface) {
     *pface = new_face;
+  }
   else if (new_face) {
     g_object_unref (new_face);
   }
