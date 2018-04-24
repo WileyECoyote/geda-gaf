@@ -88,8 +88,7 @@ static void *geda_font_dialog_parent_class = NULL;
 
 static GHashTable *font_dialog_hash = NULL;
 
-static PangoFontDescription*
-geda_font_dialog_get_font_description (GedaFontDialog *dialog)
+static PangoFontDescription *geda_font_dialog_get_font_description (GedaFontDialog *dialog)
 {
   if ( !dialog->font_desc) {
     if (dialog->face) {
@@ -139,8 +138,7 @@ geda_font_dialog_change_entry_map (GedaFontDialog *dialog, GtkWidget *widget)
  *  to shrink the preview if the font size was decreased, but that made it
  *  awkward if the user wanted to resize the window themself.
 */
-static void
-geda_font_dialog_update_preview (GedaFontDialog *dialog)
+static void geda_font_dialog_update_preview (GedaFontDialog *dialog)
 {
   GtkRequisition old_requisition;
   GtkWidget     *preview_entry;
@@ -181,9 +179,8 @@ callback_update_preview (GtkWidget *entry, GedaFontDialog *dialog)
   GEDA_OBJECT_NOTIFY (dialog, "preview-text");
 }
 
-static void
-geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
-                                 PangoFontDescription *new_desc)
+static void geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
+                                             PangoFontDescription *new_desc)
 {
   PangoFontMask mask;
   PangoFontDescription *curr_desc;
@@ -288,8 +285,7 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
   }
 }
 
-static void
-geda_font_dialog_ref_family (GedaFontDialog *dialog, PangoFontFamily *family)
+static void geda_font_dialog_ref_family (GedaFontDialog *dialog, PangoFontFamily *family)
 {
   if (family) {
 
@@ -302,8 +298,7 @@ geda_font_dialog_ref_family (GedaFontDialog *dialog, PangoFontFamily *family)
   dialog->family = family;
 }
 
-static void
-geda_font_dialog_ref_face (GedaFontDialog *dialog, PangoFontFace *face)
+static void geda_font_dialog_ref_face (GedaFontDialog *dialog, PangoFontFace *face)
 {
   if (face) {
 
@@ -317,8 +312,7 @@ geda_font_dialog_ref_face (GedaFontDialog *dialog, PangoFontFace *face)
   dialog->face = face;
 }
 
-static void
-geda_font_dialog_load_font (GedaFontDialog *dialog)
+static void geda_font_dialog_load_font (GedaFontDialog *dialog)
 {
   if (dialog->font) {
     gdk_font_unref (dialog->font);
@@ -331,14 +325,12 @@ geda_font_dialog_load_font (GedaFontDialog *dialog)
 
 }
 
-static void
-geda_font_dialog_font_changed (GtkWidget *entry, GedaFontDialog *dialog)
+static void geda_font_dialog_font_changed (GtkWidget *entry, GedaFontDialog *dialog)
 {
   geda_font_dialog_load_font(dialog);
 }
 
-static void
-scroll_to_selection (GtkTreeView *tree_view)
+static void scroll_to_selection (GtkTreeView *tree_view)
 {
   GtkTreeSelection *selection = gtk_tree_view_get_selection (tree_view);
   GtkTreeModel *model;
@@ -351,8 +343,7 @@ scroll_to_selection (GtkTreeView *tree_view)
   }
 }
 
-static void
-geda_font_dialog_scroll_to_selection (GedaFontDialog *dialog)
+static void geda_font_dialog_scroll_to_selection (GedaFontDialog *dialog)
 {
   /* Try to scroll the font family list to the selected item */
   scroll_to_selection (GTK_TREE_VIEW (dialog->family_list));
@@ -366,14 +357,12 @@ geda_font_dialog_scroll_to_selection (GedaFontDialog *dialog)
    font if necessary. */
 }
 
-static void
-callback_scroll_on_map (GtkWidget *widget, void * data)
+static void callback_scroll_on_map (GtkWidget *widget, void * data)
 {
   geda_font_dialog_scroll_to_selection (GEDA_FONT_DIALOG (data));
 }
 
-static void
-set_cursor_to_iter (GtkTreeView *view, GtkTreeIter *iter)
+static void set_cursor_to_iter (GtkTreeView *view, GtkTreeIter *iter)
 {
   GtkTreeModel *model;
   GtkTreePath  *path;
@@ -386,8 +375,7 @@ set_cursor_to_iter (GtkTreeView *view, GtkTreeIter *iter)
   gtk_tree_path_free (path);
 }
 
-static int
-cmp_families (const void *a, const void *b)
+static int cmp_families (const void *a, const void *b)
 {
   const char *a_name = pango_font_family_get_name (*(PangoFontFamily **)a);
   const char *b_name = pango_font_family_get_name (*(PangoFontFamily **)b);
@@ -395,8 +383,8 @@ cmp_families (const void *a, const void *b)
   return g_utf8_collate (a_name, b_name);
 }
 
-static int
-compare_font_descriptions (const PangoFontDescription *a, const PangoFontDescription *b)
+static int compare_font_descriptions (const PangoFontDescription *a,
+                                      const PangoFontDescription *b)
 {
   int val;
 
@@ -416,9 +404,8 @@ compare_font_descriptions (const PangoFontDescription *a, const PangoFontDescrip
   return val;
 }
 
-static bool
-font_description_style_equal (const PangoFontDescription *a,
-                              const PangoFontDescription *b)
+static bool font_description_style_equal (const PangoFontDescription *a,
+                                          const PangoFontDescription *b)
 {
   return (pango_font_description_get_weight (a) == pango_font_description_get_weight (b) &&
    pango_font_description_get_style (a) == pango_font_description_get_style (b) &&
@@ -667,8 +654,7 @@ geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
 }
 
 /* This is called when a style is selected in the list. */
-static void
-callback_select_style (GtkTreeSelection *selection, void * data)
+static void callback_select_style (GtkTreeSelection *selection, void *data)
 {
   GedaFontDialog *dialog;
   GtkTreeIter     iter;
@@ -816,8 +802,7 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
   return TRUE;
 }
 
-static void
-geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
+static void geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
 {
 
   PangoContext     *context;
@@ -874,8 +859,7 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
   g_free (families);
 }
 
-static void
-callback_select_family (GtkTreeSelection *selection, void * data)
+static void callback_select_family (GtkTreeSelection *selection, void * data)
 {
   GedaFontDialog *dialog;
   GtkTreeModel   *model;
@@ -918,8 +902,7 @@ callback_select_family (GtkTreeSelection *selection, void * data)
   }
 }
 
-static void
-geda_font_dialog_prime_list (GedaFontDialog *dialog)
+static void geda_font_dialog_prime_list (GedaFontDialog *dialog)
 {
   if (gtk_widget_has_screen (GTK_WIDGET (dialog))) {
 
@@ -932,9 +915,8 @@ geda_font_dialog_prime_list (GedaFontDialog *dialog)
   }
 }
 
-static void
-geda_font_dialog_screen_changed (GtkWidget *widget,
-                                 GdkScreen *previous_screen)
+static void geda_font_dialog_screen_changed (GtkWidget *widget,
+                                             GdkScreen *previous_screen)
 {
   if (GTK_WIDGET_CLASS (geda_font_dialog_parent_class)->screen_changed)
     GTK_WIDGET_CLASS (geda_font_dialog_parent_class)->screen_changed (widget, previous_screen);
@@ -948,8 +930,7 @@ geda_font_dialog_screen_changed (GtkWidget *widget,
   geda_font_dialog_prime_list (GEDA_FONT_DIALOG (widget));
 }
 
-static char*
-geda_font_dialog_get_font_name_internal (GedaFontDialog *dialog)
+static char *geda_font_dialog_get_font_name_internal (GedaFontDialog *dialog)
 {
   return pango_font_description_to_string (dialog->font_desc);
 }
@@ -1842,8 +1823,7 @@ GdkFont *geda_font_dialog_get_font (GedaFontDialog *dialog)
  *  description belongs to the dialog and should not be
  *  released.
  */
-PangoFontDescription*
-geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
+PangoFontDescription *geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), NULL);
 
@@ -1858,8 +1838,8 @@ geda_font_dialog_get_font_desc (GedaFontDialog *dialog)
  *
  * \see geda_font_dialog_take_font_desc
  */
-void
-geda_font_dialog_set_font_desc (GedaFontDialog *dialog, const PangoFontDescription *font_desc)
+void geda_font_dialog_set_font_desc (GedaFontDialog *dialog,
+                                     const PangoFontDescription *font_desc)
 {
   PangoFontDescription *new_desc;
 
@@ -1901,8 +1881,7 @@ char *geda_font_dialog_get_font_name (GedaFontDialog *dialog)
  *
  * \retval TRUE if the font was set, otherwise FALSE.
  */
-bool
-geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
+bool geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
   g_return_val_if_fail (fontname, FALSE);
@@ -1964,8 +1943,7 @@ int geda_font_dialog_get_font_size (GedaFontDialog *dialog)
  * \param dialog    Pointer to the dialog object.
  * \param new_size  The integer value of the new font size.
  */
-void
-geda_font_dialog_set_font_size (GedaFontDialog *dialog, int new_size)
+void geda_font_dialog_set_font_size (GedaFontDialog *dialog, int new_size)
 {
   g_return_if_fail (GEDA_IS_FONT_DIALOG (dialog));
 
@@ -1986,8 +1964,7 @@ geda_font_dialog_set_font_size (GedaFontDialog *dialog, int new_size)
  * \return text displayed in the preview area. The string is owned
  *         by the widget and should not be modified or freed.
  */
-const char*
-geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
+const char *geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), NULL);
 
@@ -2003,8 +1980,7 @@ geda_font_dialog_get_preview_text (GedaFontDialog *dialog)
  * \param [in] dialog The GedaFontDialog object
  * \param [in] text   Pointer to text to display in the preview area
  */
-bool
-geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
+bool geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
   g_return_val_if_fail (text != NULL, FALSE);
@@ -2023,8 +1999,7 @@ geda_font_dialog_set_preview_text (GedaFontDialog *dialog, const char *text)
  *
  * \returns the value of the show-preview setting.
  */
-bool
-geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
+bool geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
 {
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
 
@@ -2039,9 +2014,8 @@ geda_font_dialog_get_show_preview (GedaFontDialog *dialog)
  * \param [in] dialog        The GedaFontDialog object
  * \param [in] show_preview  whether to show the editable preview entry or not
  */
-void
-geda_font_dialog_set_show_preview (GedaFontDialog *dialog,
-                                   bool            show_preview)
+void geda_font_dialog_set_show_preview (GedaFontDialog *dialog,
+                                                  bool  show_preview)
 {
   g_return_if_fail (GEDA_IS_FONT_DIALOG (dialog));
 
