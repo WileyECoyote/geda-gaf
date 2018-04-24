@@ -127,7 +127,6 @@ geda_font_dialog_change_entry_map (GedaFontDialog *dialog, GtkWidget *widget)
 
   gtk_widget_queue_resize(widget);
   pango_font_description_free(desc);
-
 }
 
 /*!
@@ -436,6 +435,7 @@ faces_sort_func (const void *a, const void *b)
   g_signal_handler_block (selection, dialog->face_handler);
   g_signal_handler_unblock (selection, dialog->face_handler);
  * */
+
 static void
 geda_font_dialog_select_best_size (GedaFontDialog *dialog)
 {
@@ -446,6 +446,7 @@ geda_font_dialog_select_best_size (GedaFontDialog *dialog)
   bool              found;
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->size_list));
+
   g_signal_handler_block (selection, dialog->size_handler);
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->size_list));
@@ -640,6 +641,7 @@ geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
     }
 
     geda_font_dialog_ref_face (dialog, match_face);
+
     if (match_face) {
 
       const char *str;
@@ -2022,6 +2024,7 @@ void geda_font_dialog_set_show_preview (GedaFontDialog *dialog,
   g_return_if_fail (GEDA_IS_FONT_DIALOG (dialog));
 
   show_preview = show_preview != FALSE;
+
   dialog->show_preview = show_preview;
 
   g_object_set (dialog->preview_entry, "visible", show_preview, NULL);
