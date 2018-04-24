@@ -324,17 +324,22 @@ static void geda_font_button_update_font_data (GedaFontButton *font_button)
   data = font_button->priv;
 
   /* De-reference old objects */
-  if (font_button->font_face)
+  if (font_button->font_face) {
     g_object_unref (font_button->font_face);
+  }
 
   /* Update the font name */
-  if (data->font_name)
+  if (data->font_name) {
     g_free (data->font_name);
+  }
 
   data->font_name = pango_font_description_to_string (font_button->font_desc);
 
   /* Update the family */
-  if (data->family) g_free (data->family);
+  if (data->family) {
+    g_free (data->family);
+  }
+
   data->family = geda_strdup ( pango_font_description_get_family (font_button->font_desc));
 
   /* Get a list of all families */
@@ -379,22 +384,26 @@ static void geda_font_button_update_font_data (GedaFontButton *font_button)
         pango_font_description_free (tmp_desc);
         break;
       }
-      else
+      else {
         pango_font_description_free (tmp_desc);
+      }
   }
   g_free (faces);
 
-  if (pango_font_description_get_size_is_absolute (font_button->font_desc))
+  if (pango_font_description_get_size_is_absolute (font_button->font_desc)) {
     i = pango_font_description_get_size (font_button->font_desc);
-  else
+  }
+  else {
     i = pango_font_description_get_size (font_button->font_desc) / PANGO_SCALE;
+  }
 
   if ( i > MIN_FONT_SIZE - 1) {
     data->font_size = i;
   }
 
-  if (data->size_text != NULL)
+  if (data->size_text != NULL) {
     g_free(data->size_text);
+  }
 
   data->size_text = geda_font_button_get_ascii_size(font_button);
 }
