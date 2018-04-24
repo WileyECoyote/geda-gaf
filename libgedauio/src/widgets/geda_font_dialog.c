@@ -939,6 +939,7 @@ static char *geda_font_dialog_get_font_name_internal (GedaFontDialog *dialog)
   return pango_font_description_to_string (dialog->font_desc);
 }
 
+/*! \internal gobject_class->get_property */
 static void
 geda_font_dialog_get_property (GObject *object, unsigned int prop_id,
                                GValue  *value,  GParamSpec   *pspec)
@@ -981,6 +982,7 @@ geda_font_dialog_get_property (GObject *object, unsigned int prop_id,
   }
 }
 
+/*! \internal gobject_class->set_property */
 static void
 geda_font_dialog_set_property (GObject *object, unsigned int prop_id,
                                const GValue  *value,  GParamSpec  *pspec)
@@ -1425,6 +1427,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
                             G_CALLBACK (callback_update_preview), dialog);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_font_dialog_finalize (GObject *object)
 {
   GedaFontDialog *dialog;
