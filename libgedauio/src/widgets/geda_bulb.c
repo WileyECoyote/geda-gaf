@@ -173,6 +173,7 @@ static void geda_bulb_get_property (GObject       *object,
   }
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_bulb_finalize (GObject *object)
 {
   GtkWidget *old_group_singleton;
