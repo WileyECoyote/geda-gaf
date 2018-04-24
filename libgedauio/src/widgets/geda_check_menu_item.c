@@ -126,9 +126,8 @@ geda_check_menu_item_activate (GedaMenuItem *menu_item)
 }
 
 /* menu_item_class->toggle_size_request */
-static void
-geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
-                                          int          *requisition)
+static void geda_check_menu_item_toggle_size_request (GedaMenuItem *menu_item,
+                                                               int *requisition)
 {
   unsigned int toggle_spacing;
   unsigned int indicator_size;
@@ -380,8 +379,7 @@ static void geda_check_menu_item_class_init(void *class, void *class_data)
  * \param [in] instance  A GedaCheckMenuItem data structure
  * \param [in] class     A GedaCheckMenuItemClass Object
  */
-static void
-geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
+static void geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
   GedaCheckMenuItem *check_menu_item = (GedaCheckMenuItem*)instance;
 
@@ -395,11 +393,10 @@ geda_check_menu_item_instance_init(GTypeInstance *instance, void *class)
   check_menu_item->always_show_toggle = TRUE;
 }
 
-static void
-geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
+static void geda_check_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
 {
-  parent_activatable_iface = g_type_interface_peek_parent (iface);
-  iface->update = geda_check_menu_item_update;
+  parent_activatable_iface      = g_type_interface_peek_parent (iface);
+  iface->update                 = geda_check_menu_item_update;
   iface->sync_action_properties = geda_check_menu_item_sync_action_properties;
 }
 
@@ -468,10 +465,9 @@ bool is_a_geda_check_menu_item (GedaCheckMenuItem *check_menu_item)
   return FALSE;
 }
 
-static void
-geda_check_menu_item_update (GtkActivatable *activatable,
-                             GtkAction      *action,
-                             const char     *property_name)
+static void geda_check_menu_item_update (GtkActivatable *activatable,
+                                         GtkAction      *action,
+                                         const char     *property_name)
 {
   GedaCheckMenuItem *check_menu_item;
 
@@ -504,9 +500,8 @@ geda_check_menu_item_update (GtkActivatable *activatable,
 }
 
 /* TODO GtkAction->GedaAction (maybe) */
-static void
-geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
-                                             GtkAction      *action)
+static void geda_check_menu_item_sync_action_properties (GtkActivatable *activatable,
+                                                         GtkAction      *action)
 {
   GedaCheckMenuItem *check_menu_item;
 
