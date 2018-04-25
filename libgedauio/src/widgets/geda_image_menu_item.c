@@ -266,7 +266,6 @@ static void geda_image_menu_item_activatable_init (GtkActivatableIface  *iface)
 }
 
 /*! \brief GedaImageMenuItem GObject property setter function
- *
  *  \par Function Description
  *  Setter function for GedaImageMenuItem's GObject properties
  *
@@ -304,7 +303,7 @@ static void geda_image_menu_item_set_property (GObject      *object,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property, pspec);
       break;
-    }
+  }
 }
 
 /*! \brief GedaImageMenuItem GObject property getter function
@@ -346,7 +345,6 @@ static void geda_image_menu_item_get_property (GObject      *object,
 }
 
 /*! \brief GedaImageMenuItem Object finalize handler
- *
  *  \par Function Description
  *  Just before the GtkImageMenuItem GObject is finalized, free our
  *  allocated data, and then chain up to the parent handler.
@@ -458,7 +456,6 @@ static void geda_image_menu_item_class_init (void *class, void *class_data)
                                  G_PARAM_WRITABLE);
 
   g_object_class_install_property (gobject_class,  PROP_ACCEL_GROUP, params);
-
 }
 
 /*!
@@ -580,7 +577,6 @@ static void geda_image_menu_item_map (GtkWidget *widget)
     else {
       gtk_widget_hide (image_menu_item->image);
     }
-
   }
 }
 
