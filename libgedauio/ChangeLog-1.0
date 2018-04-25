@@ -1,5 +1,8 @@
 2018-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_check_menu_item.c: Reduce the scope of state_type and
+      shadow_type in geda_real_check_menu_item_draw_indicator.
+
     * src/widgets/geda_menu_item.c: Reorganize module to eliminate separate
       conditional directives to compile geda_menu_item_destroy.
 

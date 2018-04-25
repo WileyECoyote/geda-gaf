@@ -145,9 +145,7 @@ static void
 geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                                           GdkRectangle      *area)
 {
-  GtkWidget     *widget;
-  GtkStateType   state_type;
-  GtkShadowType  shadow_type;
+  GtkWidget *widget;
 
   widget = (GtkWidget*)check_menu_item;
 
@@ -190,6 +188,9 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
         check_menu_item->always_show_toggle ||
        (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT))
     {
+
+      GtkStateType  state_type;
+      GtkShadowType shadow_type;
 
       if (gtk_widget_is_sensitive (widget)) {
         state_type = gtk_widget_get_state (widget);
