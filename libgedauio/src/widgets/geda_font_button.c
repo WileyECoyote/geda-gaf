@@ -328,18 +328,20 @@ static void geda_font_button_update_font_data (GedaFontButton *font_button)
     g_object_unref (font_button->font_face);
   }
 
-  /* Update the font name */
+  /* Release the font name */
   if (data->font_name) {
     g_free (data->font_name);
   }
 
+  /* Update the font name member */
   data->font_name = pango_font_description_to_string (font_button->font_desc);
 
-  /* Update the family */
+  /* Release the family */
   if (data->family) {
     g_free (data->family);
   }
 
+  /* Update the family member */
   data->family = geda_strdup ( pango_font_description_get_family (font_button->font_desc));
 
   /* Get a list of all families */
