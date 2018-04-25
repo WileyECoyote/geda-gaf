@@ -358,9 +358,20 @@ static void geda_menu_item_actionable_interface_init (GtkActionableInterface *if
   iface->get_action_target_value = geda_menu_item_get_action_target_value;
 }
 
-#endif
+static void geda_menu_item_destroy (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = (GedaMenuItem*)widget;
 
-#if GTK_MAJOR_VERSION < 3
+  child = geda_get_child_widget ((GtkBin*)menu_item);
+
+  if (GEDA_IS_LABEL(child)) {
+    geda_container_remove (menu_item, child);
+  }
+
+  ((GtkWidgetClass*)geda_menu_item_parent_class)->destroy (widget);
+}
+
+#else
 
 static void geda_menu_item_destroy (GtkObject *object)
 {
@@ -374,21 +385,6 @@ static void geda_menu_item_destroy (GtkObject *object)
   }
 
   ((GtkObjectClass*)geda_menu_item_parent_class)->destroy (object);
-}
-
-#else
-
-static void geda_menu_item_destroy (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item = (GedaMenuItem*)widget;
-
-  child = geda_get_child_widget ((GtkBin*)menu_item);
-
-  if (GEDA_IS_LABEL(child)) {
-    geda_container_remove (menu_item, child);
-  }
-
-  ((GtkWidgetClass*)geda_menu_item_parent_class)->destroy (widget);
 }
 
 #endif
