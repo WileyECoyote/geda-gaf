@@ -191,10 +191,12 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
        (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT))
     {
 
-      if (gtk_widget_is_sensitive (widget))
+      if (gtk_widget_is_sensitive (widget)) {
         state_type = gtk_widget_get_state (widget);
-      else
+      }
+      else {
         state_type = GTK_STATE_INSENSITIVE;
+      }
 
       if (check_menu_item->inconsistent)
         shadow_type = GTK_SHADOW_ETCHED_IN;
