@@ -360,20 +360,6 @@ static void geda_menu_item_actionable_interface_init (GtkActionableInterface *if
 
 #endif
 
-static void geda_menu_item_do_set_right_justified (GedaMenuItem *menu_item,
-                                                   bool          right_justified)
-{
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  right_justified = right_justified != FALSE;
-
-  if (priv->right_justify != right_justified) {
-
-    priv->right_justify = right_justified;
-    gtk_widget_queue_resize ((GtkWidget*)menu_item);
-  }
-}
-
 #if GTK_MAJOR_VERSION < 3
 
 static void geda_menu_item_destroy (GtkObject *object)
@@ -406,6 +392,20 @@ static void geda_menu_item_destroy (GtkWidget *widget)
 }
 
 #endif
+
+static void geda_menu_item_do_set_right_justified (GedaMenuItem *menu_item,
+                                                   bool          right_justified)
+{
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  right_justified = right_justified != FALSE;
+
+  if (priv->right_justify != right_justified) {
+
+    priv->right_justify = right_justified;
+    gtk_widget_queue_resize ((GtkWidget*)menu_item);
+  }
+}
 
 /* GObject Over-rides*/
 
