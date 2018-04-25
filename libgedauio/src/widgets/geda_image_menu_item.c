@@ -567,6 +567,7 @@ static void geda_image_menu_item_map (GtkWidget *widget)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)widget;
 
+  /* Chain-up first */
   ((GtkWidgetClass*)geda_image_menu_item_parent_class)->map (widget);
 
   if (image_menu_item->image) {
