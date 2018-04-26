@@ -369,7 +369,7 @@ static void set_cursor_to_iter (GtkTreeView *view, GtkTreeIter *iter)
   GtkTreePath  *path;
 
   model = gtk_tree_view_get_model (view);
-  path = gtk_tree_model_get_path (model, iter);
+  path  = gtk_tree_model_get_path (model, iter);
 
   gtk_tree_view_set_cursor (view, path, NULL, FALSE);
 
@@ -565,8 +565,8 @@ static void callback_select_size (GtkTreeSelection *selection, void * data)
 static void
 geda_font_dialog_select_best_style (GedaFontDialog *dialog, bool use_first)
 {
-  GtkTreeIter       iter;
-  GtkTreeModel     *model;
+  GtkTreeModel *model;
+  GtkTreeIter   iter;
 
   model = gtk_tree_view_get_model (GTK_TREE_VIEW (dialog->style_list));
 
