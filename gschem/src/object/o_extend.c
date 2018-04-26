@@ -371,10 +371,11 @@ o_extend_get_closest_end(GedaObject *projectile, GedaObject *boundary)
   double dist1;
   double dist2;
 
-  dist1     = geda_object_get_shortest_distance(boundary, projectile->line->x[0],
-                                      projectile->line->y[0]);
-  dist2     = geda_object_get_shortest_distance(boundary, projectile->line->x[1],
-                                      projectile->line->y[1]);
+  dist1 = geda_object_get_shortest_distance(boundary, projectile->line->x[0],
+                                            projectile->line->y[0]);
+  dist2 = geda_object_get_shortest_distance(boundary, projectile->line->x[1],
+                                            projectile->line->y[1]);
+
   return dist1 < dist2 ? 0 : 1;
 }
 
@@ -1763,9 +1764,9 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
           int hits = 0;
 
           for (iter = projectiles; iter; iter = iter->next) {
-           GedaObject *projectile = iter->data;
+            GedaObject *projectile = iter->data;
             for (iter2 = bounders; iter2; iter2 = iter2->next) {
-             GedaObject *boundary = iter2->data;
+              GedaObject *boundary = iter2->data;
               int  which_end = o_extend_get_closest_end(projectile, boundary);
               char direction = o_extend_get_direction(projectile, which_end);
               if (boundary != projectile) { /* Skip the object were checking */
