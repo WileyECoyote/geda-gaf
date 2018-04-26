@@ -357,8 +357,7 @@ static void geda_font_button_update_font_data (GedaFontButton *font_button)
 
     const char *name = pango_font_family_get_name (families[i]);
 
-    if (!g_ascii_strcasecmp (name, data->family))
-    {
+    if (!g_ascii_strcasecmp (name, data->family)) {
       pango_font_family_list_faces (families[i], &faces, &n_faces);
       break;
     }
