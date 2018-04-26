@@ -2180,6 +2180,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
     w_current->second_wx     = x;
     w_current->second_wy     = y;
 
+    /* Check if only one potential target */
     if (count == 1) {
 
       GedaObject *projectile;
