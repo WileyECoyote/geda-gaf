@@ -1,3 +1,9 @@
+2018-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Update function documentation for:
+
+          * geda_menu_set_parent_item
+
 2018-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Reduce the scope of state_type and

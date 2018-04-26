@@ -4934,10 +4934,10 @@ GtkWidget *geda_menu_get_parent_item (GedaMenu *menu)
   return menu->parent_menu_item;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Set the GedaMenu parent menu item
+ * \par Function Description
+ *  Set the parent menu item of the GedaMenu object.
  */
 void geda_menu_set_parent_item (GedaMenu *menu, GtkWidget *parent)
 {
