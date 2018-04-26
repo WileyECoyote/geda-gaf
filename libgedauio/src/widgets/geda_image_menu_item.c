@@ -265,15 +265,17 @@ static void geda_image_menu_item_activatable_init (GtkActivatableIface  *iface)
   iface->sync_action_properties = geda_image_menu_item_sync_action;
 }
 
-/*! \brief GedaImageMenuItem GObject property setter function
- *  \par Function Description
- *  Setter function for GedaImageMenuItem's GObject properties
+/*!
+ * \brief GedaImageMenuItem GObject property setter function
+ * \par Function Description
+ *  gobject_class->finalize virtual over-ride setter function for
+ *  GedaImageMenuItem's GObject properties.
  *
- *  \param [in]  object    The GObject whose properties we are setting
- *  \param [in]  property  The numeric id. under which the property was
- *                         registered with g_object_class_install_property()
- *  \param [in]  value     The GValue the property is being set from
- *  \param [in]  pspec     A GParamSpec describing the property being set
+ * \param [in]  object    The Object whose properties we are setting
+ * \param [in]  property  The numeric id. under which the property was
+ *                        registered with g_object_class_install_property()
+ * \param [in]  value     The GValue the property is being set from
+ * \param [in]  pspec     A GParamSpec describing the property being set
  */
 static void geda_image_menu_item_set_property (GObject      *object,
                                                unsigned int  property,
@@ -306,16 +308,17 @@ static void geda_image_menu_item_set_property (GObject      *object,
   }
 }
 
-/*! \brief GedaImageMenuItem GObject property getter function
+/*!
+ * \brief GedaImageMenuItem GObject property getter function
+ * \par Function Description
+ *  gobject_class->finalize virtual over-ride getter function for
+ *  GedaImageMenuItem's properties.
  *
- *  \par Function Description
- *  Getter function for GedaImageMenuItem's GObject properties.
- *
- *  \param [in]  object    The GObject whose properties we are getting
- *  \param [in]  property  The numeric id. under which the property was
- *                         registered with g_object_class_install_property()
- *  \param [out] value     The GValue in which to return the value of the property
- *  \param [in]  pspec     A GParamSpec describing the property being got
+ * \param [in]  object    The Object whose properties we are getting
+ * \param [in]  property  The numeric id. under which the property was
+ *                        registered with g_object_class_install_property()
+ * \param [out] value     The GValue in which to return the value of the property
+ * \param [in]  pspec     A GParamSpec describing the property being got
  */
 static void geda_image_menu_item_get_property (GObject      *object,
                                                unsigned int  property,
@@ -344,12 +347,14 @@ static void geda_image_menu_item_get_property (GObject      *object,
   }
 }
 
-/*! \brief GedaImageMenuItem Object finalize handler
- *  \par Function Description
- *  Just before the GtkImageMenuItem GObject is finalized, free our
- *  allocated data, and then chain up to the parent handler.
+/*!
+ * \brief GedaImageMenuItem Object finalize handler
+ * \par Function Description
+ *  gobject_class->finalize virtual over-ride called just before the
+ *  GedaImageMenuItem GObject is finalized, free our allocated data,
+ *  and then chain up to the parent handler.
  *
- *  \param [in] object The GObject being finalized.
+ * \param [in] object The GObject being finalized.
  */
 static void geda_image_menu_item_finalize (GObject *object)
 {
