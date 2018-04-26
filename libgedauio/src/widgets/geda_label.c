@@ -5031,6 +5031,7 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
           new_pos = !end_is_left ? info->selection_end : info->selection_anchor;
         break;
       }
+
       case GTK_MOVEMENT_LOGICAL_POSITIONS:
       case GTK_MOVEMENT_WORDS:
         if (count < 0)
@@ -5038,11 +5039,13 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
         else
           new_pos = MAX (info->selection_end, info->selection_anchor);
         break;
+
       case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
       case GTK_MOVEMENT_PARAGRAPH_ENDS:
       case GTK_MOVEMENT_BUFFER_ENDS:
         new_pos = count < 0 ? 0 : (label->text) ? strlen (label->text) : 0;
         break;
+
       case GTK_MOVEMENT_DISPLAY_LINES:
       case GTK_MOVEMENT_PARAGRAPHS:
       case GTK_MOVEMENT_PAGES:
@@ -5085,6 +5088,7 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
           }
         }
         break;
+
       case GTK_MOVEMENT_WORDS:
         while (count > 0) {
           new_pos = geda_label_move_forward_word (label, new_pos);
@@ -5097,6 +5101,7 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
         if (new_pos == old_pos)
           gtk_widget_error_bell ((GtkWidget*)label);
         break;
+
       case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
       case GTK_MOVEMENT_PARAGRAPH_ENDS:
       case GTK_MOVEMENT_BUFFER_ENDS:
@@ -5105,6 +5110,7 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
         if (new_pos == old_pos)
           gtk_widget_error_bell ((GtkWidget*)label);
         break;
+
       case GTK_MOVEMENT_DISPLAY_LINES:
       case GTK_MOVEMENT_PARAGRAPHS:
       case GTK_MOVEMENT_PAGES:
