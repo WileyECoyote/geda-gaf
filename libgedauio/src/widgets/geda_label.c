@@ -4363,8 +4363,7 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
   return drawable;
 }
 
-static void
-drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
+static void drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void *data)
 {
   GedaLabel     *label  = (GedaLabel*)widget;
   GedaLabelData *priv   = label->priv;
@@ -4541,8 +4540,7 @@ static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
 }
 
 /*! \internal  widget_class->grab_focus */
-static bool
-geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
+static bool geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 {
   GedaLabel *label = (GedaLabel*)widget;
 
@@ -4559,8 +4557,7 @@ geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
   return FALSE;
 }
 
-static void
-geda_label_destroy_window (GedaLabel *label)
+static void geda_label_destroy_window (GedaLabel *label)
 {
   if (label->priv->select_info == NULL) {
     BUG_MSG ("select_info = NULL");
@@ -4587,8 +4584,7 @@ geda_label_destroy_window (GedaLabel *label)
  *             geda_label_ensure_select_info
                geda_label_realize
  */
-static void
-geda_label_create_window (GedaLabel *label)
+static void geda_label_create_window (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
 
@@ -4638,8 +4634,7 @@ geda_label_create_window (GedaLabel *label)
   }
 }
 
-static bool
-geda_label_ensure_select_info (GedaLabel *label)
+static bool geda_label_ensure_select_info (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
 
@@ -4666,8 +4661,7 @@ geda_label_ensure_select_info (GedaLabel *label)
   return ( priv->select_info ? TRUE : FALSE );
 }
 
-static void
-geda_label_clear_select_info (GedaLabel *label)
+static void geda_label_clear_select_info (GedaLabel *label)
 {
   if (label->priv->select_info != NULL) {
 
@@ -4682,9 +4676,8 @@ geda_label_clear_select_info (GedaLabel *label)
   }
 }
 
-static void
-geda_label_set_selection_text (GedaLabel *label,
-                               GtkSelectionData *selection_data)
+static void geda_label_set_selection_text (GedaLabel *label,
+                                           GtkSelectionData *selection_data)
 {
   SelectionInfo *info = label->priv->select_info;
 
@@ -4711,27 +4704,24 @@ geda_label_set_selection_text (GedaLabel *label,
   }
 }
 
-static void
-geda_label_drag_data_get (GtkWidget        *widget,
-                          GdkDragContext   *context,
-                          GtkSelectionData *selection_data,
-                          unsigned int      info,
-                          unsigned int      time)
+static void geda_label_drag_data_get (GtkWidget        *widget,
+                                      GdkDragContext   *context,
+                                      GtkSelectionData *selection_data,
+                                      unsigned int      info,
+                                      unsigned int      time)
 {
   geda_label_set_selection_text (GEDA_LABEL (widget), selection_data);
 }
 
-static void
-get_text_callback (GtkClipboard     *clipboard,
-                   GtkSelectionData *selection_data,
-                   unsigned int      info,
-                   void             *user_data_or_owner)
+static void get_text_callback (GtkClipboard     *clipboard,
+                               GtkSelectionData *selection_data,
+                               unsigned int      info,
+                               void             *user_data_or_owner)
 {
   geda_label_set_selection_text (GEDA_LABEL(user_data_or_owner), selection_data);
 }
 
-static void
-clear_text_callback (GtkClipboard *clipboard, void *user_data_or_owner)
+static void clear_text_callback (GtkClipboard *clipboard, void *user_data_or_owner)
 {
   GedaLabel     *label;
   SelectionInfo *info;
@@ -4821,8 +4811,7 @@ static void geda_label_select_region_index (GedaLabel *label,
  * end of the selection we should go to when the user hits the left or
  * right arrow key.
  */
-static void
-get_better_cursor (GedaLabel *label, int index, int *x, int *y)
+static void get_better_cursor (GedaLabel *label, int index, int *x, int *y)
 {
   GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display ((GtkWidget*)label));
   PangoDirection keymap_direction = gdk_keymap_get_direction (keymap);
@@ -4853,8 +4842,7 @@ get_better_cursor (GedaLabel *label, int index, int *x, int *y)
   }
 }
 
-static int
-geda_label_move_logically (GedaLabel *label, int start, int count)
+static int geda_label_move_logically (GedaLabel *label, int start, int count)
 {
   int offset = g_utf8_pointer_to_offset (label->text, label->text + start);
 
@@ -4892,8 +4880,7 @@ geda_label_move_logically (GedaLabel *label, int start, int count)
   return g_utf8_offset_to_pointer (label->text, offset) - label->text;
 }
 
-static int
-geda_label_move_visually (GedaLabel *label, int start, int count)
+static int geda_label_move_visually (GedaLabel *label, int start, int count)
 {
   int  index;
   bool split_cursor;
@@ -4949,8 +4936,7 @@ geda_label_move_visually (GedaLabel *label, int start, int count)
   return index;
 }
 
-static int
-geda_label_move_forward_word (GedaLabel *label, int start)
+static int geda_label_move_forward_word (GedaLabel *label, int start)
 {
   int new_pos = g_utf8_pointer_to_offset (label->text,
                                           label->text + start);
@@ -5007,9 +4993,8 @@ static int geda_label_move_backward_word (GedaLabel *label, int start)
   return g_utf8_offset_to_pointer (label->text, new_pos) - label->text;
 }
 
-static void
-geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
-                        int        count, bool extend_selection)
+static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
+                                    int        count, bool extend_selection)
 {
   SelectionInfo *info;
 
@@ -5208,8 +5193,7 @@ static void append_action_signal (GedaLabel  *label,
   geda_menu_append (menu, menuitem);
 }
 
-static void
-popup_menu_detach (GtkWidget *attach_widget, GedaMenu *menu)
+static void popup_menu_detach (GtkWidget *attach_widget, GedaMenu *menu)
 {
   GedaLabel     *label = GEDA_LABEL (attach_widget);
   GedaLabelData *priv  = label->priv;
@@ -5254,8 +5238,7 @@ popup_position_func (GedaMenu *menu, int *x, int *y, bool *push_in, void *data)
  *   1) open_link_activate_cb
  *   2) geda_label_get_current_uri
  */
-static GedaLabelLink *
-geda_label_get_current_link (GedaLabel *label)
+static GedaLabelLink *geda_label_get_current_link (GedaLabel *label)
 {
   SelectionInfo *info = label->priv->select_info;
   GedaLabelLink *link;
@@ -5271,8 +5254,7 @@ geda_label_get_current_link (GedaLabel *label)
   return link;
 }
 
-static void
-open_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
+static void open_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 {
   GedaLabelLink *link;
 
@@ -5283,8 +5265,7 @@ open_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
   }
 }
 
-static void
-copy_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
+static void copy_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
 {
   const char *uri = geda_label_get_current_uri (label);
 
@@ -5297,16 +5278,14 @@ copy_link_activate_cb (GedaMenuItem *menu_item, GedaLabel *label)
   }
 }
 
-static bool
-geda_label_popup_menu (GtkWidget *widget)
+static bool geda_label_popup_menu (GtkWidget *widget)
 {
   geda_label_do_popup (GEDA_LABEL (widget), NULL);
 
   return TRUE;
 }
 
-static void
-geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
+static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
 {
   SelectionInfo *info = label->priv->select_info;
   GtkWidget     *menuitem;
@@ -5402,8 +5381,7 @@ geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
   }
 }
 
-static void
-geda_label_clear_links (GedaLabel *label)
+static void geda_label_clear_links (GedaLabel *label)
 {
   SelectionInfo *info = label->priv->select_info;
 
@@ -5416,8 +5394,7 @@ geda_label_clear_links (GedaLabel *label)
   }
 }
 
-static bool
-geda_label_activate_link (GedaLabel *label, const char *uri)
+static bool geda_label_activate_link (GedaLabel *label, const char *uri)
 {
   GError *error  = NULL;
   bool    result;
