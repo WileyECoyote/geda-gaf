@@ -1908,14 +1908,22 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
  *
  *  \returns True if the operation succeeded, otherwise false
  */
-bool o_extend_object (GedaObject *projectile, GedaObject *bounder)
+bool o_extend_object (GschemToplevel *w_current,
+                      GedaObject     *projectile,
+                      GedaObject     *bounder)
 {
   GedaPoint point;
   char direction;
   int  result;
   int  which_end;
+  int  x;
+  int  y;
 
-  which_end = o_extend_get_closest_end(projectile, bounder);
+  x = w_current->second_wx;
+  y = w_current->second_wy;
+
+  //which_end = o_extend_get_closest_end(projectile, bounder);
+  which_end = geda_line_object_get_closest_endpoint(projectile, x, y);
 
   direction = o_extend_get_direction(projectile, which_end);
 
@@ -1950,7 +1958,7 @@ int o_extend_object_list (GschemToplevel *w_current,
 
     GedaObject *projectile = iter->data;
 
-    if (o_extend_object(projectile, bounder)) {
+    if (o_extend_object(w_current, projectile, bounder)) {
       o_invalidate_object(w_current, projectile);
       status++;
     }
@@ -2181,7 +2189,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
         if (o_extend_is_valid_bounder (object_list->data)) {
           bounder = object_list->data;
-          if(o_extend_object(projectile, bounder)) {
+          if(o_extend_object(w_current, projectile, bounder)) {
             o_invalidate_object(w_current, projectile);
             status = 3;  /* bit 1 to save state, bit 2 to stay in mode */
           }
@@ -2193,7 +2201,7 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
         if (o_extend_is_valid_projectile (object_list->data)) {
           projectile = object_list->data;
-          status = o_extend_object(projectile, bounder);
+          status = o_extend_object(w_current, projectile, bounder);
           if (status) {
             o_invalidate_object(w_current, projectile);
           }
@@ -2277,7 +2285,7 @@ bool o_extend_selection (GschemToplevel *w_current, int count)
 
       if (o_extend_is_valid_projectile(projectile)) {
         /* returns TRUE is something modified */
-        status = o_extend_object(projectile, bounder);
+        status = o_extend_object(w_current, projectile, bounder);
         if (status) {
           o_invalidate_object(w_current, projectile);
         }

@@ -1,3 +1,13 @@
+2018-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_extend.c: Revise o_extend_object to require a
+      pointer to w_current in order to pass second_wx and second_wy
+      locations to geda_line_object_get_closest_endpoint instead of
+      using o_extend_get_closest_end, which may no be the end the user
+      wants. This allows which_end to be determine by which end the
+      user pointed closer too rather than which end of the projectile
+      is closest.
+
 2018-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Remove redundant console_dialog validation in
