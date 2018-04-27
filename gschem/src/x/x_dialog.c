@@ -2407,7 +2407,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 
         if (current_page == remember_page) {
 
-          GtkWidget  *checkascent;
+          GtkWidget *checkascent;
 
           checkascent = GEDA_OBJECT_GET_DATA(Dialog, "checkascent");
 
