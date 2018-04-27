@@ -5602,8 +5602,7 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
           priv->upper_arrow_state == GTK_STATE_INSENSITIVE)
       {
         /* At the upper border, possibly remove timeout */
-        if (menu->scroll_step < 0)
-        {
+        if (menu->scroll_step < 0) {
           geda_menu_stop_scrolling (menu);
           gtk_widget_queue_draw (widget);
         }
