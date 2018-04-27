@@ -1068,25 +1068,25 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
   GtkStockItem stock_item;
 
   /* Silent return for the constructor */
-  if (!accel_group)
-    return;
+  if (accel_group) {
 
-  g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
-  g_return_if_fail (GTK_IS_ACCEL_GROUP (accel_group));
+    g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
+    g_return_if_fail (GTK_IS_ACCEL_GROUP (accel_group));
 
-  if (image_menu_item->use_stock &&
-      image_menu_item->label &&
-      gtk_stock_lookup (image_menu_item->label, &stock_item))
-  {
-    if (stock_item.keyval){
-      gtk_widget_add_accelerator ((GtkWidget*)image_menu_item,
-                                  "activate",
-                                  accel_group,
-                                  stock_item.keyval,
-                                  stock_item.modifier,
-                                  GTK_ACCEL_VISIBLE);
+    if (image_menu_item->use_stock &&
+        image_menu_item->label &&
+        gtk_stock_lookup (image_menu_item->label, &stock_item))
+    {
+      if (stock_item.keyval){
+        gtk_widget_add_accelerator ((GtkWidget*)image_menu_item,
+                                    "activate",
+                                    accel_group,
+                                    stock_item.keyval,
+                                    stock_item.modifier,
+                                    GTK_ACCEL_VISIBLE);
 
-      GEDA_OBJECT_NOTIFY (image_menu_item, "accel-group");
+        GEDA_OBJECT_NOTIFY (image_menu_item, "accel-group");
+      }
     }
   }
 }
