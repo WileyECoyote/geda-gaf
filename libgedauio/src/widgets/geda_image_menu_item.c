@@ -472,8 +472,7 @@ static void geda_image_menu_item_class_init (void *class, void *class_data)
  * \param [in] instance The GedaImageMenuItem structure being initialized,
  * \param [in] g_class  The GedaImageMenuItem class we are initializing.
  */
-static void
-geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
+static void geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)instance;
 
