@@ -530,7 +530,7 @@ static void geda_check_menu_item_sync_action_properties (GtkActivatable *activat
 
       draw_as_radio = gtk_toggle_action_get_draw_as_radio ((GtkToggleAction*)action);
 
-      geda_check_menu_item_set_draw_as_radio (check_menu_item,  draw_as_radio);
+      geda_check_menu_item_set_draw_as_radio (check_menu_item, draw_as_radio);
     }
   }
 }
