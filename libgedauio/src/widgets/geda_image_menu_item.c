@@ -1015,10 +1015,12 @@ void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
       image_menu_item->show_image  = always_show;
 
     if (image_menu_item->image) {
-      if (show_image (image_menu_item))
+      if (show_image (image_menu_item)) {
         gtk_widget_show (image_menu_item->image);
-      else
+      }
+      else {
         gtk_widget_hide (image_menu_item->image);
+      }
     }
 
     GEDA_OBJECT_NOTIFY (image_menu_item, "show-image");
