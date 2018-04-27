@@ -1136,7 +1136,7 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
  * \par Function Description
  *  This function is called after a button press event and one
  *  object had been previously selected to response to either
- *  EXTEND or ENDEXTEND events.
+ *  BREAK or ENDBREAK events.
  */
 int o_break_end (GschemToplevel *w_current, int x, int y)
 {
