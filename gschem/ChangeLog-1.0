@@ -1,3 +1,8 @@
+2018-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Remove canceling the action handler in
+      do_add_line and stop event handling if not a hot action.
+
 2018-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_extend.c: Revise o_extend_object to require a
