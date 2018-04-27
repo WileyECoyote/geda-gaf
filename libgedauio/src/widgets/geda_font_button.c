@@ -465,10 +465,10 @@ static void geda_font_button_update_from_name (GedaFontButton *font_button)
 
 }
 
-/*!
- * \brief GschemFontbuton GObject property setter function
+/*! gobject_class->set_property
+ * \brief GedaFontButton GObject property setter function
  * \par Function Description
- *  Setter function for GschemFontbuton GObject properties,
+ *  Setter function for GedaFontButton GObject properties,
  *  "settings-name" and "toplevel".
  *
  * \param [in]  object    The GObject whose properties we are setting
@@ -536,10 +536,10 @@ static void geda_font_button_set_property (GObject *object, unsigned int propert
   }
 }
 
-/*!
- * \brief GschemFontbuton GObject property getter function
+/*! gobject_class->get_property
+ * \brief GedaFontButton GObject property getter function
  * \par Function Description
- *  Getter function for GschemFontbuton's GObject properties,
+ *  Getter function for GedaFontButton's GObject properties,
  *  "settings-name" and "toplevel".
  *
  * \param [in]  object    The GObject whose properties we are getting
