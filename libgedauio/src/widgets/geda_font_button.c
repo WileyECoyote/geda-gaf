@@ -603,6 +603,7 @@ static void geda_font_button_get_property (GObject *object, unsigned int propert
 static void dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
 {
   GedaFontButton *font_button;
+
   font_button = GEDA_FONT_BUTTON (data);
 
   gtk_widget_hide (font_button->priv->font_dialog);
@@ -638,6 +639,7 @@ static void dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
 static void dialog_cancel_clicked (GtkWidget *widget, void * data)
 {
   GedaFontButton *font_button;
+
   font_button = GEDA_FONT_BUTTON (data);
 
   gtk_widget_hide (font_button->priv->font_dialog);
@@ -646,6 +648,7 @@ static void dialog_cancel_clicked (GtkWidget *widget, void * data)
 static void dialog_destroy (GtkWidget *widget, void * data)
 {
   GedaFontButton *font_button;
+
   font_button = GEDA_FONT_BUTTON (data);
 
   /* Dialog will get destroyed so reference is not valid now */
