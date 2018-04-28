@@ -4806,42 +4806,6 @@ static void geda_label_select_region_index (GedaLabel *label,
   }
 }
 
-/* Compute the X position for an offset that corresponds to the "more important
- * cursor position for that offset. We use this when trying to guess to which
- * end of the selection we should go to when the user hits the left or
- * right arrow key.
- */
-static void get_better_cursor (GedaLabel *label, int index, int *x, int *y)
-{
-  GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display ((GtkWidget*)label));
-  PangoDirection keymap_direction = gdk_keymap_get_direction (keymap);
-  PangoDirection cursor_direction = get_cursor_direction (label);
-  bool split_cursor;
-  PangoRectangle strong_pos, weak_pos;
-
-  g_object_get (gtk_widget_get_settings ((GtkWidget*)label),
-                "gtk-split-cursor", &split_cursor, NULL);
-
-  geda_label_ensure_layout (label);
-
-  pango_layout_get_cursor_pos (label->layout, index, &strong_pos, &weak_pos);
-
-  if (split_cursor) {
-    *x = strong_pos.x / PANGO_SCALE;
-    *y = strong_pos.y / PANGO_SCALE;
-  }
-  else {
-    if (keymap_direction == cursor_direction) {
-      *x = strong_pos.x / PANGO_SCALE;
-      *y = strong_pos.y / PANGO_SCALE;
-    }
-    else {
-      *x = weak_pos.x / PANGO_SCALE;
-      *y = weak_pos.y / PANGO_SCALE;
-    }
-  }
-}
-
 static int geda_label_move_logically (GedaLabel *label, int start, int count)
 {
   int offset = g_utf8_pointer_to_offset (label->text, label->text + start);
@@ -4991,6 +4955,42 @@ static int geda_label_move_backward_word (GedaLabel *label, int start)
   }
 
   return g_utf8_offset_to_pointer (label->text, new_pos) - label->text;
+}
+
+/* Compute the X position for an offset that corresponds to the "more important
+ * cursor position for that offset. We use this when trying to guess to which
+ * end of the selection we should go to when the user hits the left or
+ * right arrow key.
+ */
+static void get_better_cursor (GedaLabel *label, int index, int *x, int *y)
+{
+  GdkKeymap *keymap = gdk_keymap_get_for_display (gtk_widget_get_display ((GtkWidget*)label));
+  PangoDirection keymap_direction = gdk_keymap_get_direction (keymap);
+  PangoDirection cursor_direction = get_cursor_direction (label);
+  bool split_cursor;
+  PangoRectangle strong_pos, weak_pos;
+
+  g_object_get (gtk_widget_get_settings ((GtkWidget*)label),
+                "gtk-split-cursor", &split_cursor, NULL);
+
+  geda_label_ensure_layout (label);
+
+  pango_layout_get_cursor_pos (label->layout, index, &strong_pos, &weak_pos);
+
+  if (split_cursor) {
+    *x = strong_pos.x / PANGO_SCALE;
+    *y = strong_pos.y / PANGO_SCALE;
+  }
+  else {
+    if (keymap_direction == cursor_direction) {
+      *x = strong_pos.x / PANGO_SCALE;
+      *y = strong_pos.y / PANGO_SCALE;
+    }
+    else {
+      *x = weak_pos.x / PANGO_SCALE;
+      *y = weak_pos.y / PANGO_SCALE;
+    }
+  }
 }
 
 static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
