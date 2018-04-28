@@ -1073,11 +1073,7 @@ static bool geda_menu_real_can_activate_accel (GtkWidget   *widget,
     return gtk_widget_is_sensitive (widget);
 }
 
-static bool check_threshold (GtkWidget *widget,
-                             int        start_x,
-                             int        start_y,
-                             int        x,
-                             int        y)
+static bool check_threshold (int start_x, int start_y, int x, int y)
 {
 
 /*! \todo something about this mess! */
@@ -1109,10 +1105,10 @@ static bool definitely_within_item (GtkWidget *widget, int x, int y)
 
 #endif
 
-  return check_threshold (widget, 0, 0, x, y) &&
-         check_threshold (widget, w - 1, 0, x, y) &&
-         check_threshold (widget, w - 1, h - 1, x, y) &&
-         check_threshold (widget, 0, h - 1, x, y);
+  return check_threshold (0, 0, x, y) &&
+         check_threshold (w - 1, 0, x, y) &&
+         check_threshold (w - 1, h - 1, x, y) &&
+         check_threshold (0, h - 1, x, y);
 }
 
 /* widget_class->enter_notify_event */

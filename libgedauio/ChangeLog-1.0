@@ -5,7 +5,8 @@
       label_move_cursor, add missing braces. Convert plain text to
       internal Doxygen documentation for get_better_cursor.
 
-    * src/widgets/geda_menu.c: Update function line wrapping.
+    * src/widgets/geda_menu.c: Remove the unused GtkWidget argument
+      to check_threshold. Update function line wrapping.
 
     * src/widgets/geda_radio_menu_item.c: Add GParamSpec variable for
       the "group" property and update function line wrapping.
