@@ -6,7 +6,7 @@
       internal Doxygen documentation for get_better_cursor.
 
     * src/widgets/geda_radio_menu_item.c: Add GParamSpec variable for
-      the "group" property.
+      the "group" property and update function line wrapping.
 
 2018-04-27 Wiley E. Hill <wileyhill@gmail.com>
 

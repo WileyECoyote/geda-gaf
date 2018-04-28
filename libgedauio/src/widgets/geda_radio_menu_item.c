@@ -68,8 +68,7 @@ static void *geda_radio_menu_item_parent_class = NULL;
 static GHashTable *radio_menu_hash = NULL;
 
 /* menu_item_class->activate */
-static void
-geda_radio_menu_item_activate (GedaMenuItem *menu_item)
+static void geda_radio_menu_item_activate (GedaMenuItem *menu_item)
 {
   GedaRadioMenuItem *radio_menu_item = GEDA_RADIO_MENU_ITEM (menu_item);
   GedaCheckMenuItem *check_menu_item = GEDA_CHECK_MENU_ITEM (menu_item);
@@ -135,11 +134,10 @@ geda_radio_menu_item_activate (GedaMenuItem *menu_item)
   gtk_widget_queue_draw (GTK_WIDGET (radio_menu_item));
 }
 
-static void
-geda_radio_menu_item_set_property (GObject      *object,
-                                   unsigned int  prop_id,
-                                   const GValue *value,
-                                   GParamSpec   *pspec)
+static void geda_radio_menu_item_set_property (GObject      *object,
+                                               unsigned int  prop_id,
+                                               const GValue *value,
+                                               GParamSpec   *pspec)
 {
   GedaRadioMenuItem *radio_menu_item;
 
@@ -162,11 +160,10 @@ geda_radio_menu_item_set_property (GObject      *object,
     }
 }
 
-static void
-geda_radio_menu_item_get_property (GObject      *object,
-                                   unsigned int  prop_id,
-                                   GValue       *value,
-                                   GParamSpec   *pspec)
+static void geda_radio_menu_item_get_property (GObject      *object,
+                                               unsigned int  prop_id,
+                                               GValue       *value,
+                                               GParamSpec   *pspec)
 {
   switch (prop_id) {
 
@@ -176,8 +173,7 @@ geda_radio_menu_item_get_property (GObject      *object,
   }
 }
 
-static void
-geda_radio_menu_item_destroy (GtkObject *object)
+static void geda_radio_menu_item_destroy (GtkObject *object)
 {
   GedaRadioMenuItem *radio_menu_item     = GEDA_RADIO_MENU_ITEM (object);
   GtkWidget         *old_group_singleton = NULL;
@@ -216,8 +212,7 @@ geda_radio_menu_item_destroy (GtkObject *object)
   GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
 }
 
-static void
-geda_radio_menu_item_finalize (GObject *object)
+static void geda_radio_menu_item_finalize (GObject *object)
 {
   //GedaRadioMenuItem *radio_menu_item = GEDA_RADIO_MENU_ITEM (object);
 
@@ -241,8 +236,7 @@ geda_radio_menu_item_finalize (GObject *object)
  * \param [in]  class       GedaRadioMenuItemClass class being initializes
  * \param [in]  class_data  GedaRadioMenuItem structure associated with the class
  */
-static void
-geda_radio_menu_item_class_init(void *class, void *class_data)
+static void geda_radio_menu_item_class_init(void *class, void *class_data)
 {
   GObjectClass      *gobject_class;
   GtkObjectClass    *object_class;
@@ -302,8 +296,7 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
  * \param [in] instance  A GedaRadioMenuItem data structure
  * \param [in] class     A GedaRadioMenuItem Object
  */
-static void
-geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
+static void geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
 {
   GedaRadioMenuItem *radio_menu_item = (GedaRadioMenuItem*)instance;
 
@@ -329,8 +322,7 @@ geda_radio_menu_item_instance_init(GTypeInstance *instance, void *class)
  *
  *  \return GedaType identifier associated with GedaRadioMenuItem.
  */
-GedaType
-geda_radio_menu_item_get_type (void)
+GedaType geda_radio_menu_item_get_type (void)
 {
   static volatile GedaType geda_radio_menu_item_type = 0;
 
@@ -368,8 +360,7 @@ geda_radio_menu_item_get_type (void)
  *
  * \return TRUE if \a radio_menu_item is a valid GedaRadioMenuItem
  */
-bool
-is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
+bool is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
 {
   if ((radio_menu_item != NULL) && (radio_menu_hash != NULL)) {
     return g_hash_table_lookup(radio_menu_hash, radio_menu_item) ? TRUE : FALSE;
@@ -387,8 +378,7 @@ is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
  *
  * \returns The new #GedaRadioMenuItem
  */
-GtkWidget*
-geda_radio_menu_item_new (GSList *group)
+GtkWidget *geda_radio_menu_item_new (GSList *group)
 {
   GedaRadioMenuItem *radio_menu_item;
 
@@ -408,8 +398,7 @@ geda_radio_menu_item_new (GSList *group)
  *
  * \returns The new #GedaRadioMenuItem
  */
-GtkWidget *
-geda_radio_menu_item_new_from_widget (GtkWidget *group)
+GtkWidget *geda_radio_menu_item_new_from_widget (GtkWidget *group)
 {
   GSList *list = NULL;
 
@@ -430,8 +419,7 @@ geda_radio_menu_item_new_from_widget (GtkWidget *group)
  *
  * \returns A new #GedaRadioMenuItem
  */
-GtkWidget*
-geda_radio_menu_item_new_with_label (GSList *group, const char *label)
+GtkWidget *geda_radio_menu_item_new_with_label (GSList *group, const char *label)
 {
   GtkWidget *radio_menu_item;
   GtkWidget *accel_label;
@@ -460,8 +448,7 @@ geda_radio_menu_item_new_with_label (GSList *group, const char *label)
  *
  * \returns a new #GedaRadioMenuItem
  */
-GtkWidget*
-geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
+GtkWidget *geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
 {
   GtkWidget *radio_menu_item;
   GtkWidget *accel_label;
@@ -494,9 +481,8 @@ geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *label)
  *
  * \returns The new #GedaRadioMenuItem
  */
-GtkWidget *
-geda_radio_menu_item_new_with_mnemonic_from_widget (GtkWidget  *group,
-                                                    const char *label)
+GtkWidget *geda_radio_menu_item_new_with_mnemonic_from_widget (GtkWidget  *group,
+                                                               const char *label)
 {
   GSList *list = NULL;
 
@@ -520,9 +506,8 @@ geda_radio_menu_item_new_with_mnemonic_from_widget (GtkWidget  *group,
  *
  * \returns The new #GedaRadioMenuItem
  */
-GtkWidget *
-geda_radio_menu_item_new_with_label_from_widget (GtkWidget  *group,
-                                                 const char *label)
+GtkWidget *geda_radio_menu_item_new_with_label_from_widget (GtkWidget  *group,
+                                                            const char *label)
 {
   GSList *list = NULL;
 
@@ -546,8 +531,7 @@ geda_radio_menu_item_new_with_label_from_widget (GtkWidget  *group,
  *
  * \returns the group of \a radio_menu_item
  */
-GSList*
-geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
+GSList *geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
 {
   g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item), NULL);
 
@@ -562,9 +546,8 @@ geda_radio_menu_item_get_group (GedaRadioMenuItem *radio_menu_item)
  * \param[in]     radio_menu_item The GedaRadioMenuItem
  * \param[in,out] group           The group
  */
-void
-geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
-                                GSList            *group)
+void geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
+                                     GSList            *group)
 {
   GtkWidget *old_group_singleton = NULL;
   GtkWidget *new_group_singleton = NULL;
