@@ -247,6 +247,7 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
   GObjectClass      *gobject_class;
   GtkObjectClass    *object_class;
   GedaMenuItemClass *menu_item_class;
+  GParamSpec        *params;
 
   gobject_class   = G_OBJECT_CLASS (class);
   object_class    = GTK_OBJECT_CLASS (class);
@@ -260,13 +261,13 @@ geda_radio_menu_item_class_init(void *class, void *class_data)
    * property GedaRadioMenuItem::group
    * The radio menu item whose group this widget belongs to.
    */
-  g_object_class_install_property (gobject_class,
-                                   PROP_GROUP,
-                                   g_param_spec_object ("group",
-                                                      _("Group"),
-                                                      _("The radio menu item whose group this widget belongs to."),
-                                   GEDA_TYPE_RADIO_MENU_ITEM,
-                                   G_PARAM_WRITABLE));
+  params = g_param_spec_object ("group",
+                              _("Group"),
+                              _("The radio menu item whose group this widget belongs to."),
+                                 GEDA_TYPE_RADIO_MENU_ITEM,
+                                 G_PARAM_WRITABLE);
+
+  g_object_class_install_property (gobject_class, PROP_GROUP, params);
 
   object_class->destroy = geda_radio_menu_item_destroy;
 

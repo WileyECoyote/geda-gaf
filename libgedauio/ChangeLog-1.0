@@ -5,6 +5,9 @@
       label_move_cursor, add missing braces. Convert plain text to
       internal Doxygen documentation for get_better_cursor.
 
+    * src/widgets/geda_radio_menu_item.c: Add GParamSpec variable for
+      the "group" property.
+
 2018-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Revise conditional to remove
