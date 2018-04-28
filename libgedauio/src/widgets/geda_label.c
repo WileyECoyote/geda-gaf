@@ -4993,6 +4993,17 @@ static void get_better_cursor (GedaLabel *label, int index, int *x, int *y)
   }
 }
 
+static bool movement_visual (GedaLabel *label, SelectionInfo *info)
+{
+  int  end_x, end_y;
+  int  anchor_x, anchor_y;
+
+  get_better_cursor (label, info->selection_end, &end_x, &end_y);
+  get_better_cursor (label, info->selection_anchor, &anchor_x, &anchor_y);
+
+  return (end_y < anchor_y) || (end_y == anchor_y && end_x < anchor_x);
+}
+
 static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
                                     int        count, bool extend_selection)
 {
@@ -5016,14 +5027,7 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
 
       case GTK_MOVEMENT_VISUAL_POSITIONS:
       {
-        int  end_x, end_y;
-        int  anchor_x, anchor_y;
-        bool end_is_left;
-
-        get_better_cursor (label, info->selection_end, &end_x, &end_y);
-        get_better_cursor (label, info->selection_anchor, &anchor_x, &anchor_y);
-
-        end_is_left = (end_y < anchor_y) || (end_y == anchor_y && end_x < anchor_x);
+        bool end_is_left = movement_visual(label, info);
 
         if (count < 0)
           new_pos = end_is_left ? info->selection_end : info->selection_anchor;
