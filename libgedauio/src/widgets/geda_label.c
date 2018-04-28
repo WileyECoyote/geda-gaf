@@ -4957,10 +4957,11 @@ static int geda_label_move_backward_word (GedaLabel *label, int start)
   return g_utf8_offset_to_pointer (label->text, new_pos) - label->text;
 }
 
-/* Compute the X position for an offset that corresponds to the "more important
- * cursor position for that offset. We use this when trying to guess to which
- * end of the selection we should go to when the user hits the left or
- * right arrow key.
+/*! \internal
+ *  Computes the X position for an offset that corresponds to
+ *  the "more important cursor position for that offset. This is used
+ *  when trying to guess which end of the selection the cursor should
+ *  go to when the user hits a left or right arrow key.
  */
 static void get_better_cursor (GedaLabel *label, int index, int *x, int *y)
 {
