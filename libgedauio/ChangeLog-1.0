@@ -2,8 +2,8 @@
 
     * src/widgets/geda_label.c: Reorganize get_better_cursor and add
       movement_visual for case GTK_MOVEMENT_VISUAL_POSITIONS in geda_
-      label_move_cursor. Convert plain text to internal Doxygen
-      documentation.
+      label_move_cursor, add missing braces. Convert plain text to
+      internal Doxygen documentation for get_better_cursor.
 
 2018-04-27 Wiley E. Hill <wileyhill@gmail.com>
 

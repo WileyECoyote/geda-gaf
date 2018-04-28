@@ -5082,10 +5082,11 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
 
               GtkWidget *toplevel = gtk_widget_get_toplevel ((GtkWidget*)label);
 
-              if (toplevel)
+              if (toplevel) {
                 gtk_widget_child_focus (toplevel,
                                         count > 0 ?
                                         GTK_DIR_RIGHT : GTK_DIR_LEFT);
+              }
             }
           }
           else {
@@ -5103,8 +5104,9 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
           new_pos = geda_label_move_backward_word (label, new_pos);
           count++;
         }
-        if (new_pos == old_pos)
+        if (new_pos == old_pos) {
           gtk_widget_error_bell ((GtkWidget*)label);
+        }
         break;
 
       case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
@@ -5112,8 +5114,9 @@ static void geda_label_move_cursor (GedaLabel *label, GtkMovementStep step,
       case GTK_MOVEMENT_BUFFER_ENDS:
         /* FIXME: Can do better here */
         new_pos = count < 0 ? 0 : strlen (label->text);
-        if (new_pos == old_pos)
+        if (new_pos == old_pos) {
           gtk_widget_error_bell ((GtkWidget*)label);
+        }
         break;
 
       case GTK_MOVEMENT_DISPLAY_LINES:
