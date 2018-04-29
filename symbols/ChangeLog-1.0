@@ -1,5 +1,8 @@
 2018-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * resistor/flame-proof_1W-*.sym: Update footprint attributes to an
+      existence footprint.
+
     * transistor/pnp-bjt/pnp-*.sym: Update dist-license and use-license
       attributes, resequenced attributes.
 
