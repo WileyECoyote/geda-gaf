@@ -3,6 +3,7 @@
     * resistor/: Update footprint attributes to an existence footprint
       for typical axial resistor:
 
+            * flame-proof_250mW*.sym (ACY-400)
             * flame-proof_500mW*.sym (ACY-600)
             * flame-proof_1W*.sym    (ACY-800)
             * metal-film_500mW*.sym  (ACY-600)
