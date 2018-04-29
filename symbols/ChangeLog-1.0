@@ -6,6 +6,7 @@
             * flame-proof_250mW*.sym (ACY-400)
             * flame-proof_500mW*.sym (ACY-600)
             * flame-proof_1W*.sym    (ACY-800)
+            * metal-film_250mW*.sym  (ACY-400)
             * metal-film_500mW*.sym  (ACY-600)
             * metal-film_1W*.sym     (ACY-800)
 
