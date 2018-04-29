@@ -1,10 +1,11 @@
 2018-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * resistor/: Update footprint attributes to an existence footprint
-      for typical 1 Watt axial resistor, ACY-800:
+      for typical axial resistor:
 
-            * flame-proof_1W*.sym
-            * metal-film_1W*.sym
+            * flame-proof_500mW*.sym (ACY-600)
+            * flame-proof_1W*.sym    (ACY-800)
+            * metal-film_1W*.sym     (ACY-800)
 
     * transistor/pnp-bjt/pnp-*.sym: Update dist-license and use-license
       attributes, resequenced attributes.
