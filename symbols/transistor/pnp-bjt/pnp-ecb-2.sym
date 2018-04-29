@@ -1,16 +1,9 @@
 v 20140729 3
-T 0 2300 5 10 0 0 0 0 1
-author=AutoTron
-T 0 2150 5 10 0 0 0 0 1
-dist-license=GPL3
-T 0 2000 5 10 0 0 0 0 1
-use-license=unrestricted
-T 0 1850 5 10 0 0 0 0 1
-symversion=1.0
-T 0 1700 5 10 0 0 0 0 1
-description=PNP Transistor
-T 0 1550 9 10 0 0 0 0 1
-numslots=0
+V 500 501 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+L 600 200 400 400 3 0 0 0 -1 -1
+L 600 800 400 600 3 0 0 0 -1 -1
+L 400 700 400 300 3 12 0 0 -1 -1
+L 400 500 184 500 3 0 0 0 -1 -1
 P 600 200 600 0 1 0 1
 {
 T 500 50 5 6 0 1 0 0 1
@@ -44,13 +37,14 @@ pinlabel=b
 T 0 500 5 6 0 1 0 0 1
 pintype=in
 }
-V 500 501 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
+M 425,375
+L 500,350
+L 450,300
+L 425,375
+z
 T 900 700 8 10 1 1 0 0 1
 device=PNP_TRANSISTOR
-L 600 200 400 400 3 0 0 0 -1 -1
-L 600 800 400 600 3 0 0 0 -1 -1
-L 400 700 400 300 3 12 0 0 -1 -1
-L 400 500 184 500 3 0 0 0 -1 -1
 T 900 500 8 10 1 1 0 0 1
 refdes=Q?
 T 900 300 9 10 0 1 0 0 1
@@ -59,11 +53,17 @@ T 900 100 9 10 0 1 0 0 1
 footprint=unknown
 T 0 1400 5 10 0 0 0 0 1
 footprints=TO-92
+T 0 1700 5 10 0 0 0 0 1
+description=PNP Transistor
+T 0 1550 9 10 0 0 0 0 1
+numslots=0
 T 0 1250 5 10 0 0 0 0 1
 spice-type=BJT PNP
-H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
-M 425,375
-L 500,350
-L 450,300
-L 425,375
-z
+T 0 1850 5 10 0 0 0 0 1
+symversion=1.0
+T 0 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 0 2150 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 0 2000 5 10 0 0 0 0 1
+use-license=unlimited

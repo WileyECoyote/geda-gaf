@@ -1,3 +1,8 @@
+2018-04-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pnp-bjt/pnp-*.sym: Update dist-license and use-license
+      attributes, resequenced attributes.
+
 2018-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD7789-1.sym: Fix over-bar.
