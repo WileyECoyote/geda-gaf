@@ -5,6 +5,7 @@
 
             * flame-proof_500mW*.sym (ACY-600)
             * flame-proof_1W*.sym    (ACY-800)
+            * metal-film_500mW*.sym  (ACY-600)
             * metal-film_1W*.sym     (ACY-800)
 
     * transistor/pnp-bjt/pnp-*.sym: Update dist-license and use-license

@@ -43,7 +43,7 @@ device=RESISTOR
 T 0 650 5 8 0 1 0 0 1
 description=RESISTOR,500mW,MF
 T 0 800 5 8 0 0 0 0 1
-footprint=RES_600mil
+footprint=ACY-600
 T 0 950 5 8 0 0 0 0 1
 numslots=0
 T 0 1100 5 8 0 0 0 0 1

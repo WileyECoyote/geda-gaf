@@ -49,7 +49,7 @@ T 800 250 5 8 0 1 0 2 1
 mechtype=lead
 }
 T 0 1000 5 8 0 1 0 0 1
-footprint=RES_600mil
+footprint=ACY-600
 T 200 500 5 10 1 1 0 0 1
 refdes=R?
 T 50 0 5 10 1 1 0 0 1
