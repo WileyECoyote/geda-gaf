@@ -10,6 +10,7 @@
             * metal-film_250mW*.sym  (ACY-400)
             * metal-film_500mW*.sym  (ACY-600)
             * metal-film_1W*.sym     (ACY-800)
+            * metal-film_2W*.sym     (ACY-1000)
 
     * transistor/pnp-bjt/pnp-*.sym: Update dist-license and use-license
       attributes, resequenced attributes.
