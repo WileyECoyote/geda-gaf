@@ -1019,9 +1019,11 @@ void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
   g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
   if (image_menu_item->show_image != always_show) {
-      image_menu_item->show_image  = always_show;
+
+    image_menu_item->show_image  = always_show;
 
     if (image_menu_item->image) {
+
       if (show_image (image_menu_item)) {
         gtk_widget_show (image_menu_item->image);
       }
