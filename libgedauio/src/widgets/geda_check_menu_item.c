@@ -473,6 +473,7 @@ static void geda_check_menu_item_update (GtkActivatable *activatable,
                                          const char     *property_name)
 {
   GedaCheckMenuItem *check_menu_item;
+  bool use_appearance;
 
   check_menu_item = (GedaCheckMenuItem*)activatable;
 
@@ -489,7 +490,9 @@ static void geda_check_menu_item_update (GtkActivatable *activatable,
     gtk_action_unblock_activate (action);
   }
 
-  if (gtk_activatable_get_use_action_appearance (activatable)) {
+  g_object_get (activatable, "use-action-appearance", &use_appearance, NULL);
+
+  if (use_appearance) {
 
     if (strcmp (property_name, "draw-as-radio") == 0) {
 

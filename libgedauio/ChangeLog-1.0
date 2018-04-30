@@ -1,5 +1,10 @@
 2018-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_check_menu_item.c Revise geda_check_menu_item_update
+      to use g_object_get instead of gtk_activatable_get_use_action_appearance
+      to retrieve the "use-action-appearance" property since that all that
+      the Gtk function does.
+
     * src/widgets/geda_image_menu_item.c: Add internal Doxygen comments
       on virtual over-rides.
 
