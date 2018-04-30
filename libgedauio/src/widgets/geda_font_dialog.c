@@ -434,7 +434,7 @@ faces_sort_func (const void *a, const void *b)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->style_list));
   g_signal_handler_block (selection, dialog->face_handler);
   g_signal_handler_unblock (selection, dialog->face_handler);
- * */
+ */
 
 static void
 geda_font_dialog_select_best_size (GedaFontDialog *dialog)
