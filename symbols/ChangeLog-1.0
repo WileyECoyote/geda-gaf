@@ -2,6 +2,9 @@
 
     * passive/lamp/neon-lamp-1.sym: Hide pin number attributes.
 
+    * transistor/other/passtrans.sym: Revise attributes locations and
+      visibility.
+
 2018-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * resistor/: Update footprint attributes to an existence footprint
