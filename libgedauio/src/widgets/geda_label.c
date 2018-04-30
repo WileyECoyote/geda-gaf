@@ -1497,8 +1497,7 @@ geda_label_class_init  (void *class, void *class_data)
    * geda_label_set_width_chars().
    *
    */
-  params = g_param_spec_enum ("ellipsize",
-                            _("Ellipsize"),
+  params = g_param_spec_enum ("ellipsize", _("Ellipsize"),
                             _("The preferred place to break the string, if an ellipsis is needed"),
                                PANGO_TYPE_ELLIPSIZE_MODE,
                                PANGO_ELLIPSIZE_NONE,
