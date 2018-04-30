@@ -3462,17 +3462,13 @@ COMMAND (do_add_box)
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  if (w_current->action_event->state) {
-    i_event_cancel_action_handler(w_current);
-  }
-
   i_status_set_state(w_current, BOXMODE);
 
   if HOT_ACTION (do_add_box) {
     o_box_start (w_current, CMD_X(do_add_box), CMD_Y(do_add_box));
   }
   else {
-    i_status_action_stop(w_current);
+    i_event_end_action_handler(w_current);
   }
 
   EXIT_COMMAND(do_add_box);

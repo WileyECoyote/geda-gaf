@@ -1,3 +1,8 @@
+2018-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Remove canceling the action handler in
+      do_add_box and stop event handling if not a hot action.
+
 2018-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove canceling the action handler in
