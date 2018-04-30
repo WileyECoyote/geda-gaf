@@ -1,3 +1,7 @@
+2018-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/lamp/neon-lamp-1.sym: Hide pin number attributes.
+
 2018-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * resistor/: Update footprint attributes to an existence footprint
