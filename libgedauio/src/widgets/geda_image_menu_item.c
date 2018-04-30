@@ -180,6 +180,7 @@ static void activatable_update_icon_name (GedaImageMenuItem *image_menu_item,
   }
 }
 
+/*! \internal iface->sync_action_properties */
 static void geda_image_menu_item_sync_action (GtkActivatable *activatable,
                                               GtkAction      *action)
 {
@@ -233,6 +234,7 @@ static void geda_image_menu_item_sync_action (GtkActivatable *activatable,
                                        gtk_action_get_always_show_image (action));
 }
 
+/*! \internal iface->update */
 static void geda_image_menu_item_update (GtkActivatable *activatable,
                                          GtkAction      *action,
                                          const char     *property_name)
@@ -585,6 +587,7 @@ static void geda_image_menu_item_map (GtkWidget *widget)
   }
 }
 
+/*! \internal GtkObjectClass->destroy */
 static void geda_image_menu_item_destroy (GtkObject *object)
 {
   GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)object;
@@ -602,6 +605,7 @@ static void geda_image_menu_item_destroy (GtkObject *object)
   ((GtkObjectClass*)geda_image_menu_item_parent_class)->destroy (object);
 }
 
+/*! \internal menu_item_class->toggle_size_request */
 static void geda_image_menu_item_toggle_size_request (GedaMenuItem *menu_item,
                                                                int *requisition)
 {
@@ -677,7 +681,7 @@ static void geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item
     set_label ((GedaMenuItem*)image_menu_item, resolved_label);
 }
 
-/* menu_item_class->set_label */
+/*! \internal menu_item_class->set_label */
 static void geda_image_menu_item_set_label (GedaMenuItem *menu_item,
                                               const char *label)
 {
@@ -694,12 +698,13 @@ static void geda_image_menu_item_set_label (GedaMenuItem *menu_item,
   }
 }
 
-/* menu_item_class->get_label */
+/*! \internal menu_item_class->get_label */
 static const char *geda_image_menu_item_get_label (GedaMenuItem *menu_item)
 {
   return ((GedaImageMenuItem*)menu_item)->label;
 }
 
+/*! \internal widget_class->size_request */
 static void geda_image_menu_item_size_request (GtkWidget      *widget,
                                                GtkRequisition *requisition)
 {
@@ -752,6 +757,7 @@ static void geda_image_menu_item_size_request (GtkWidget      *widget,
    */
 }
 
+/*! \internal widget_class->size_allocate */
 static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
                                                 GtkAllocation *allocated)
 {
@@ -847,6 +853,7 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
   }
 }
 
+/*! GtkContainerClass->forall virtual over-ride */
 static void geda_image_menu_item_forall (GtkContainer *container,
                                          bool          include_internals,
                                          GtkCallback   callback,
@@ -1170,6 +1177,7 @@ GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
 /*! \brief Remove the image object attached to the menu item
  *  \ingroup GedaImageMenuItem
  *  \par Function Description
+ *  GtkContainerClass->remove virtual over-ride
  */
 static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
 {

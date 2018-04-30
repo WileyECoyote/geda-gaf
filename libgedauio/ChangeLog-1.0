@@ -1,5 +1,8 @@
 2018-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: Add internal Doxygen comments
+      on virtual over-rides.
+
     * src/widgets/geda_menu.c: Simplify definitely_within_item and
       comment-out check_threshold, reduce THRESHOLD from 8 to 6.
 
