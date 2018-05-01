@@ -109,9 +109,10 @@ msgstr ""
 msgid "A string with characters in positions key characters"
 msgstr ""
 
+# icon identification
 #: libgedauio/src/widgets/geda_action.c:276
 msgid "icon identification"
-msgstr ""
+msgstr "アイコンの識別"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -687,19 +688,19 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "線"
+msgstr "ラインラップ"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
-#, fuzzy
 msgid "Line wrap mode"
-msgstr "線モード"
+msgstr "ラインラップモード"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
