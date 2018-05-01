@@ -2,6 +2,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2018-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c Revise geda_check_menu_item_update
