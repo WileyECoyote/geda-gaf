@@ -3524,14 +3524,21 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
+ *  Returns TRUE if the menu item is selectable. A menu item
+ *  is selectable if the item has a child and the item is not
+ *  a separator item and must be sensitive and visible. This
+ *  function is called when a mnemonic is pressed to verify
+ *  that the item whose mnemonic was pressed was selectable.
  *
- */
-/* callers:
- * geda_menu_shell_activate_mnemonic
- * geda_menu_bar_key_press
+ * \note This function is not applicable to menu navigation
+ *       using the mouse.
+ *
+ * \internal Callers:
+ * geda_menu_shell_activate_mnemonic (mnemonic pressed in menu)
+ * geda_menu_bar_key_press           (mnemonic pressed on a menu bar)
  */
 bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
