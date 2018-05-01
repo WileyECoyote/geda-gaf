@@ -110,10 +110,10 @@ msgstr ""
 msgid "A string with characters in positions key characters"
 msgstr ""
 
+# icon identification
 #: libgedauio/src/widgets/geda_action.c:276
-#, fuzzy
 msgid "icon identification"
-msgstr "Destinazione"
+msgstr "identificazione dell'icona"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -692,19 +692,19 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "Linea"
+msgstr "Involucro della linea"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
-#, fuzzy
 msgid "Line wrap mode"
-msgstr "Modalità Linea"
+msgstr "Modalità Linea wrap"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
@@ -769,19 +769,18 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
-#, fuzzy
 msgid "Single-Line Mode"
-msgstr "Modalità Linea"
+msgstr "Modalità a linea singola"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:1555
-#, fuzzy
 msgid "Angle"
-msgstr "Angolo 1:"
+msgstr "Angolo"
 
 #: libgedauio/src/widgets/geda_label.c:1556
 msgid "Angle of rotation of the label"
@@ -804,9 +803,8 @@ msgid "Whether visited links should be tracked"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:5346
-#, fuzzy
 msgid "_Open Link"
-msgstr "Apri file..."
+msgstr "Link aperto"
 
 #: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
