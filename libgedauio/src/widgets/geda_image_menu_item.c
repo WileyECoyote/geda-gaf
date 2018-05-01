@@ -777,6 +777,7 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
 
   image_menu_item = (GedaImageMenuItem*)widget;
 
+  /* Chain-up early */
   ((GtkWidgetClass*)geda_image_menu_item_parent_class)->size_allocate (widget, allocated);
 
   if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image))
