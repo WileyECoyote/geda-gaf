@@ -657,6 +657,7 @@ static void dialog_destroy (GtkWidget *widget, void * data)
 
 /* End dialog callbacks */
 
+/*! \internal button_class->clicked */
 static void geda_font_button_clicked (GtkButton *button)
 {
   GedaFontButton     *font_button;
@@ -701,6 +702,7 @@ static void geda_font_button_clicked (GtkButton *button)
   gtk_window_present (GTK_WINDOW (priv->font_dialog));
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_font_button_finalize (GObject *object)
 {
   GedaFontButton *font_button;
