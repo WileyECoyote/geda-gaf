@@ -2299,6 +2299,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   g_signal_connect (textview, "key_press_event",
                     G_CALLBACK (multiattrib_callback_value_key_pressed),
                     ThisDialog);
+
   g_signal_connect (textview, "grab-focus",
                     G_CALLBACK (multiattrib_callback_value_grab_focus),
                     ThisDialog);
