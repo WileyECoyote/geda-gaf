@@ -2710,9 +2710,9 @@ update_dialog_title (Multiattrib *ThisDialog, const char *complex_title_name)
     al = 0;
   }
 
-  len   = strlen(title_string) + sl + pl + nl + bl + al;
+  len = strlen(title_string) + sl + pl + nl + bl + al;
 
-  title = malloc(len + 1); /* Add 1 for Terminator */
+  title = malloc(len + 1);  /* Add 1 for Terminator */
 
   strcpy (title, title_string);
 
