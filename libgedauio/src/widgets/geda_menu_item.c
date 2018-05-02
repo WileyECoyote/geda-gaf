@@ -3587,6 +3587,8 @@ bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
  */
 unsigned short geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
 {
+  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), 0);
+
   return menu_item->priv->toggle_size;
 }
 

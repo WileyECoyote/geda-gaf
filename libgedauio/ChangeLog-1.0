@@ -17,7 +17,7 @@
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_is_selectable
       to check for valid menu item instead of a NULL pointer in the first
-      conditional.
+      conditional. Validate menu_item in geda_menu_item_get_toggle_size.
 
 2018-05-01 Wiley E. Hill <wileyhill@gmail.com>
 
