@@ -337,9 +337,8 @@ geda_menu_shell_get_item (GtkWidget *menu_shell, GdkEventButton *event)
 }
 
 /*! \internal called by geda_menu_shell_key_press */
-static bool
-geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
-                                   GdkEventKey   *event)
+static bool geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
+                                               GdkEventKey   *event)
 {
   bool result = FALSE;
 
@@ -385,9 +384,8 @@ geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
 /* GedaMenuShell Virtual */
 
 /* menu_shell_class->activate_current */
-static void
-geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
-                                       bool           force_hide)
+static void geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
+                                                   bool           force_hide)
 {
   GedaMenuItem *active_item = GEDA_MENU_ITEM(menu_shell->active_menu_item);
 
@@ -416,9 +414,8 @@ static void geda_real_menu_shell_cancel (GedaMenuShell *menu_shell)
   g_signal_emit (menu_shell, menu_shell_signals[SELECTION_DONE], 0);
 }
 
-static void
-geda_real_menu_shell_cycle_focus (GedaMenuShell   *menu_shell,
-                                  GtkDirectionType dir)
+static void geda_real_menu_shell_cycle_focus (GedaMenuShell   *menu_shell,
+                                              GtkDirectionType dir)
 {
   while (menu_shell && !GEDA_IS_MENU_BAR (menu_shell)) {
 
@@ -436,8 +433,7 @@ geda_real_menu_shell_cycle_focus (GedaMenuShell   *menu_shell,
 }
 
 /* menu_shell_class->deactivate */
-static void
-geda_real_menu_shell_deactivate (GedaMenuShell *menu_shell)
+static void geda_real_menu_shell_deactivate (GedaMenuShell *menu_shell)
 {
   if (menu_shell->active) {
 
@@ -483,8 +479,7 @@ static void geda_menu_shell_real_insert (GedaMenuShell *menu_shell,
 }
 
 /* Distance should be +/- 1 */
-static void
-geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
+static void geda_menu_shell_move_selected (GedaMenuShell *menu_shell, int distance)
 {
   bool handled = FALSE;
 
@@ -1144,8 +1139,7 @@ static bool geda_menu_shell_grab_broken (GtkWidget *widget, GdkEventGrabBroken *
 }
 
 /* widget_class->key_press_event */
-static int
-geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
+static int geda_menu_shell_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   GedaMenuShell *menu_shell;
   GedaMenuShell *parent_shell;
