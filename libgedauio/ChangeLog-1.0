@@ -6,6 +6,11 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * src/widgets/geda_check_menu_item.c Revise geda_check_menu_item_sync_
+      action_properties to use g_object_get instead of gtk_activatable_get_
+      use_action_appearance to retrieve the "use-action-appearance" property
+      since that all that the Gtk function does.
+
     * src/widgets/geda_image_menu_item.c: Reduce the scope of GtkStockItem
       in geda_image_menu_item_set_accel_group.
 

@@ -518,6 +518,7 @@ static void geda_check_menu_item_sync_action_properties (GtkActivatable *activat
   if (GTK_IS_TOGGLE_ACTION (action)) {
 
     bool active;
+    bool use_appearance;
 
     active = gtk_toggle_action_get_active ((GtkToggleAction*)action);
 
@@ -527,7 +528,9 @@ static void geda_check_menu_item_sync_action_properties (GtkActivatable *activat
 
     gtk_action_unblock_activate (action);
 
-    if (gtk_activatable_get_use_action_appearance (activatable)) {
+    g_object_get (activatable, "use-action-appearance", &use_appearance, NULL);
+
+    if (use_appearance) {
 
       bool draw_as_radio;
 
