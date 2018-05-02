@@ -1075,10 +1075,11 @@ bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
 void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
                                            GtkAccelGroup     *accel_group)
 {
-  GtkStockItem stock_item;
 
   /* Silent return for the constructor */
   if (accel_group) {
+
+    GtkStockItem stock_item;
 
     g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
     g_return_if_fail (GTK_IS_ACCEL_GROUP (accel_group));

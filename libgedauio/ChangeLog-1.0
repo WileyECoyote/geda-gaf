@@ -1,3 +1,8 @@
+2018-05-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Reduce the scope of GtkStockItem
+      in geda_image_menu_item_set_accel_group.
+
 2018-05-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/he.po: Update Hebrew translations.
