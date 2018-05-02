@@ -12,7 +12,8 @@
       since that all that the Gtk function does.
 
     * src/widgets/geda_image_menu_item.c: Reduce the scope of GtkStockItem
-      in geda_image_menu_item_set_accel_group.
+      in geda_image_menu_item_set_accel_group and unconditionally validate
+      image_menu_item.
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_is_selectable
       to check for valid menu item instead of a NULL pointer in the first
