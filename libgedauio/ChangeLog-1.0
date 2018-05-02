@@ -4,6 +4,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/nl.po: Update Dutch translations.
+
     * src/widgets/geda_image_menu_item.c: Reduce the scope of GtkStockItem
       in geda_image_menu_item_set_accel_group.
 
