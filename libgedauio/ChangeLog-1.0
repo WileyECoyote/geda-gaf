@@ -1,5 +1,7 @@
 2018-05-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/hu.po: Update Hungarian translations.
+
     * src/widgets/geda_image_menu_item.c: Reduce the scope of GtkStockItem
       in geda_image_menu_item_set_accel_group.
 

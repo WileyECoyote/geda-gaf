@@ -109,10 +109,10 @@ msgstr ""
 msgid "A string with characters in positions key characters"
 msgstr ""
 
+# icon identification
 #: libgedauio/src/widgets/geda_action.c:276
-#, fuzzy
 msgid "icon identification"
-msgstr "Cél"
+msgstr "ikonazonosítás"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -150,19 +150,19 @@ msgstr ""
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
+# ComboBox model
 #: libgedauio/src/widgets/geda_combobox.c:1996
-#, fuzzy
 msgid "ComboBox model"
-msgstr "Téglalap üzemmód"
+msgstr "Kombinált-Box modell"
 
 #: libgedauio/src/widgets/geda_combobox.c:1997
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
-#, fuzzy
 msgid "Wrap width"
-msgstr "Vastagság:"
+msgstr "beburkol szélesség"
 
 #: libgedauio/src/widgets/geda_combobox.c:2012
 msgid "Wrap width for laying out the items in a grid"
@@ -364,18 +364,18 @@ msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_entry.c:1327
-#, fuzzy
 msgid "Auto Complete"
-msgstr "/Alkatrész hozzáadása"
+msgstr "Automatikus befejezése"
 
+# On
 #: libgedauio/src/widgets/geda_entry.c:1335
-#, fuzzy
 msgid "On"
-msgstr "Megnyitás"
+msgstr "Be"
 
+# Off
 #: libgedauio/src/widgets/geda_entry.c:1340
 msgid "Off"
-msgstr ""
+msgstr "Ki"
 
 #: libgedauio/src/widgets/geda_font_button.c:772
 #: libgedauio/src/widgets/geda_font_dialog.c:1506
@@ -467,10 +467,10 @@ msgstr ""
 msgid "Select the style to apply to the font"
 msgstr ""
 
+# Current font size
 #: libgedauio/src/widgets/geda_font_dialog.c:1173
-#, fuzzy
 msgid "Current font size"
-msgstr "Jelenlegi oldal"
+msgstr "jelenlegi betűméret"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
@@ -537,10 +537,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "Előnézet"
+msgstr "A szöveg előnézete"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -554,10 +554,10 @@ msgstr ""
 msgid "Whether the preview text entry is displayed"
 msgstr ""
 
+# Select
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "Kiválasztás"
+msgstr "választ"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
@@ -742,10 +742,10 @@ msgstr ""
 msgid "The current position of the insertion cursor in chars"
 msgstr ""
 
+# Selection Bound
 #: libgedauio/src/widgets/geda_label.c:1475
-#, fuzzy
 msgid "Selection Bound"
-msgstr "Kiválasztás mód"
+msgstr "Kiválasztás kötött"
 
 #: libgedauio/src/widgets/geda_label.c:1476
 msgid ""
