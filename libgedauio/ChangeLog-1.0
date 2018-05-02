@@ -3,6 +3,10 @@
     * src/widgets/geda_image_menu_item.c: Reduce the scope of GtkStockItem
       in geda_image_menu_item_set_accel_group.
 
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_is_selectable
+      to check for valid menu item instead of a NULL pointer in the first
+      conditional.
+
 2018-05-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/he.po: Update Hebrew translations.

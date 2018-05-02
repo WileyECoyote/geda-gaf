@@ -3542,12 +3542,12 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
  */
 bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
-  if (menu_item != NULL) {
-    if ((!geda_get_child_widget (menu_item) &&
-          G_OBJECT_TYPE (menu_item) == GEDA_TYPE_MENU_ITEM) ||
-          GEDA_IS_MENU_SEPERATOR (menu_item)                ||
-         !gtk_widget_is_sensitive ((GtkWidget*)menu_item)   ||
-         !gtk_widget_get_visible ((GtkWidget*)menu_item))
+  if (is_a_geda_menu_item(menu_item)) {
+
+    if (!geda_get_child_widget (menu_item)               ||
+         GEDA_IS_MENU_SEPERATOR (menu_item)              ||
+        !gtk_widget_is_sensitive ((GtkWidget*)menu_item) ||
+        !gtk_widget_get_visible ((GtkWidget*)menu_item))
       return FALSE;
 
     return TRUE;
