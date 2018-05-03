@@ -243,7 +243,7 @@ geda_menu_arrow_get_relief (GedaMenuButton *button)
  *  label. This text is also used to select the stock item if
  *  geda_menu_button_set_use_stock() is used.
  *
- * This will also clear any previously set labels.
+ *  This will also clear any previously set labels.
  */
 void geda_menu_button_set_label (GedaMenuButton *button, const char *label)
 {
@@ -372,10 +372,10 @@ bool geda_menu_button_get_focus_on_click (GedaMenuButton *button)
  * Sets the alignment of the child. This property has no effect unless
  * the child is a GtkMisc or a GtkAligment.
  *
- * \param [in] button: a GedaMenuButton
- * \param [in] xalign: the horizontal position of the child, 0.0 is left aligned,
+ * \param [in] button  a GedaMenuButton
+ * \param [in] xalign  the horizontal position of the child, 0.0 is left aligned,
  *                     1.0 is right aligned
- * \param [in] yalign: the vertical position of the child, 0.0 is top aligned,
+ * \param [in] yalign  the vertical position of the child, 0.0 is top aligned,
  *                     1.0 is bottom aligned
  */
 void
@@ -414,9 +414,9 @@ geda_menu_button_get_alignment (GedaMenuButton *button,
  * \brief Sets the Image of the GedaMenuButton
  * \par Function Description
  * Set the image of button to the given widget. Note that
- * it depends on the GtkSettings:gtk-button-images setting whether the
- * image will be displayed or not, you don't have to call
- * gtk_widget_show() on image yourself.
+ * it depends on the GtkSettings:gtk-button-images setting whether
+ * the image will be displayed or not, it is not necessary to call
+ * gtk_widget_show() on image separately.
  *
  * \param [in] button The GedaMenuButton
  * \param [in] image  a widget to set as the image for the button
@@ -430,9 +430,9 @@ void geda_menu_button_set_image (GedaMenuButton *button, GtkWidget *image)
 /*!
  * \brief Gets the GedaMenuButton Image object
  * \par Function Description
- * Gets the widget that is currenty set as the image of button.
- * This may have been explicitly set by gtk_button_set_image()
- * or constructed by gtk_button_new_from_stock().
+ *  Gets the widget that is currenty set as the image of button.
+ *  This may have been explicitly set by gtk_button_set_image()
+ *  or constructed by gtk_button_new_from_stock().
  *
  * \param [in] button The GedaMenuButton
  *
@@ -447,9 +447,8 @@ GtkWidget *geda_menu_button_get_image (GedaMenuButton *button)
 /*!
  * \brief Sets the Image Position in a GedaMenuButton
  * \par Function Description
- *
- * Sets the position of the image relative to the text
- * inside the button.
+ *  Sets the position of the image relative to the text
+ *  inside the button.
  */
 void geda_menu_button_set_image_position (GedaMenuButton *button, GtkPositionType position)
 {
