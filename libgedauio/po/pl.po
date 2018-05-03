@@ -109,10 +109,10 @@ msgstr ""
 msgid "A string with characters in positions key characters"
 msgstr ""
 
+# icon identification
 #: libgedauio/src/widgets/geda_action.c:276
-#, fuzzy
 msgid "icon identification"
-msgstr "Lokalizacja docelowa"
+msgstr "identyfikacja ikony"
 
 #: libgedauio/src/widgets/geda_action.c:277
 msgid "String name of the icon image"
@@ -369,9 +369,8 @@ msgid "Auto Complete"
 msgstr "Autouzupełnienie"
 
 #: libgedauio/src/widgets/geda_entry.c:1335
-#, fuzzy
 msgid "On"
-msgstr "Otwórz"
+msgstr "On"
 
 #: libgedauio/src/widgets/geda_entry.c:1340
 msgid "Off"
@@ -467,10 +466,10 @@ msgstr ""
 msgid "Select the style to apply to the font"
 msgstr ""
 
+# Current font size
 #: libgedauio/src/widgets/geda_font_dialog.c:1173
-#, fuzzy
 msgid "Current font size"
-msgstr "Bieżącej stronie"
+msgstr "Aktualny rozmiar czcionki"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
@@ -537,10 +536,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "Podgląd"
+msgstr "Podgląd tekstu"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
