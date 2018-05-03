@@ -2752,7 +2752,7 @@ static void free_row_record (void *data_record)
 
   g_free(model_row->name);
   g_free(model_row->value);
-  /*geda_list_remove_all(model_row->attribute_gedalist); */
+
   GEDA_UNREF (model_row->attribute_gedalist);
   model_row->attribute_gedalist = NULL;
   g_free(model_row);
