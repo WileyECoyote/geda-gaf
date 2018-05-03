@@ -274,8 +274,8 @@ const char *geda_menu_button_get_label (GedaMenuButton *button)
  *  If true, an underline in the text of the button label indicates
  *  the next character should be used for the mnemonic accelerator key.
  *
- * \param [in] button a GedaMenuButton
- * \param [in] use_underline: %TRUE if underlines in the text indicate mnemonics
+ * \param [in] button        a GedaMenuButton
+ * \param [in] use_underline TRUE if underlines in the text indicate mnemonics
  */
 void
 geda_menu_button_set_use_underline (GedaMenuButton *button, bool use_underline)
@@ -305,7 +305,7 @@ geda_menu_button_get_use_underline (GedaMenuButton *button)
 /*!
  * \brief Set a GedaMenuButton to use stock item set by label text
  * \par Function Description
- * If %TRUE, the label set on the button is used as a stock id to
+ * If TRUE, the label set on the button is used as a stock id to
  * select the stock item for the button.
  */
 void geda_menu_button_set_use_stock (GedaMenuButton *button, bool use_stock)
@@ -319,9 +319,9 @@ void geda_menu_button_set_use_stock (GedaMenuButton *button, bool use_stock)
  * \par Function Description
  *   Returns whether the button label is a stock item.
  *
- * \param [in] button: a GedaMenuButton
+ * \param [in] button a GedaMenuButton
  *
- * \retval %TRUE if the button label is used to select a stock item
+ * \retval TRUE if the button label is used to select a stock item
  *         instead of being used directly as the label text.
  */
 bool geda_menu_button_get_use_stock (GedaMenuButton *button)
@@ -333,13 +333,13 @@ bool geda_menu_button_get_use_stock (GedaMenuButton *button)
 /*!
  * \brief Sets whether the GedaMenuButton primary  button  will grap focus
  * \par Function Description
- * Sets whether the button will grab focus when it is clicked with the mouse.
- * Making mouse clicks not grab focus is useful in places like toolbars where
- * you don't want the keyboard focus removed from the main area of the
- * application.
+ *  Sets whether the button will grab focus when it is clicked with the mouse.
+ *  Making mouse clicks not grab focus is useful in places like toolbars where
+ *  you don't want the keyboard focus removed from the main area of the
+ *  application.
  *
- * \param [in] button: a GedaMenuButton
- * \param [in] focus_on_click: %TRUE if widget should grab focus
+ * \param [in] button         a GedaMenuButton
+ * \param [in] focus_on_click %TRUE if widget should grab focus
  */
 void
 geda_menu_button_set_focus_on_click (GedaMenuButton *button, bool focus_on_click)
@@ -349,14 +349,16 @@ geda_menu_button_set_focus_on_click (GedaMenuButton *button, bool focus_on_click
                                  focus_on_click);
 }
 
-/*! \brief Returns whether a GedaMenuButton grabs focus.
- *  \par Function Description
- *   This function returns whether the main button grabs focus when
- * the button is clicked with the mouse.
- * See gtk_button_set_focus_on_click().
+/*!
+ * \brief Returns whether a GedaMenuButton grabs focus.
+ * \par Function Description
+ *  This function returns whether the main button grabs focus when
+ *  the button is clicked with the mouse.
  *
- * \retval %TRUE if the button grabs focus when it is clicked
- *                with the mouse.
+ * \sa gtk_button_set_focus_on_click().
+ *
+ * \retval TRUE  if the button grabs focus when it is clicked
+ *               with the mouse.
  */
 bool geda_menu_button_get_focus_on_click (GedaMenuButton *button)
 {
