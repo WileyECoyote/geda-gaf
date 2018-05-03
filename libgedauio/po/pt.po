@@ -159,8 +159,8 @@ msgstr "Modelo caixa de combinação"
 msgid "The model for the combo box"
 msgstr ""
 
+# Wrap width
 #: libgedauio/src/widgets/geda_combobox.c:2011
-#, fuzzy
 msgid "Wrap width"
 msgstr "Largura do envoltório"
 
@@ -468,10 +468,10 @@ msgstr ""
 msgid "Select the style to apply to the font"
 msgstr ""
 
+# Current font size
 #: libgedauio/src/widgets/geda_font_dialog.c:1173
-#, fuzzy
 msgid "Current font size"
-msgstr "Página actual"
+msgstr "Tamanho da fonte atual"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1174
 msgid "Select the desired font size"
@@ -538,10 +538,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "Pré-visualizar"
+msgstr "Visualizar texto"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -556,9 +556,8 @@ msgid "Whether the preview text entry is displayed"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1669
-#, fuzzy
 msgid "_Select"
-msgstr "Seleccionar"
+msgstr "Selecione"
 
 #: libgedauio/src/widgets/geda_handlebox.c:1558
 #: libgedauio/src/widgets/geda_handlebox.c:1567
@@ -670,10 +669,10 @@ msgid ""
 "accelerator key"
 msgstr ""
 
+# Justification
 #: libgedauio/src/widgets/geda_label.c:1404
-#, fuzzy
 msgid "Justification"
-msgstr "Destino"
+msgstr "Justificação"
 
 #: libgedauio/src/widgets/geda_label.c:1405
 msgid ""
