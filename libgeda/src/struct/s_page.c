@@ -559,6 +559,8 @@ const char *geda_struct_page_get_file_extension (Page *page)
  * \param page Pointer to a Geda Page object
  *
  * \returns Pointer to selection GedaList of the page
+ *
+ * \sa geda_page_get_selection_list
  */
 SELECTION *geda_struct_page_get_selection (Page *page)
 {
