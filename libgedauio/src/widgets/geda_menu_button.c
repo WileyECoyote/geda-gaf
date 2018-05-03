@@ -392,10 +392,10 @@ geda_menu_button_set_alignment (GedaMenuButton *button,
  * \par Function Description
  *  Gets the alignment of the child in the button.
  *
- * \param [in] button:  button: a GedaMenuButton
+ * \param [in]  button  a GedaMenuButton
  *
- * \param [out] xalign: return location for horizontal alignment
- * \param [out] yalign: return location for vertical alignment
+ * \param [out] xalign  return location for horizontal alignment
+ * \param [out] yalign  return location for vertical alignment
  *
  */
 void
