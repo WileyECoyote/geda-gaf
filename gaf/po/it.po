@@ -77,13 +77,13 @@ msgstr ""
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
 #: gaf/src/gaf.c:148
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No command specified, nothing to do.\n"
 "\n"
 "Run `gaf --help' for more information.\n"
 msgstr ""
-"ERRORE: è necessario specificare un comando da eseguire.\n"
+"Nessun comando specificato, niente da fare.\n"
 "\n"
 "Eseguire \"gaf --help\" per ulteriori informazioni.\n"
 
