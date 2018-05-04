@@ -77,13 +77,13 @@ msgstr ""
 "Voer `gaf --help' uit voor meer informatie.\n"
 
 #: gaf/src/gaf.c:148
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No command specified, nothing to do.\n"
 "\n"
 "Run `gaf --help' for more information.\n"
 msgstr ""
-"FOUT: U moet een opdracht specificeren om te starten.\n"
+"Geen opdracht opgegeven, niets te doen.\n"
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
