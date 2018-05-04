@@ -82,13 +82,13 @@ msgstr ""
 "Подробности см. в выводе команды «gaf --help».\n"
 
 #: gaf/src/gaf.c:148
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "No command specified, nothing to do.\n"
 "\n"
 "Run `gaf --help' for more information.\n"
 msgstr ""
-"ОШИБКА: укажите команду для выполнения.\n"
+"Никакой команды не указано, ничего не делать.\n"
 "\n"
 "Подробности см. в выводе команды «gaf --help».\n"
 
