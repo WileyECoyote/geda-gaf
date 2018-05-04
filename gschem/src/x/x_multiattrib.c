@@ -2334,7 +2334,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                          "active", TRUE,
                          NULL);
 
-  ThisDialog->button_visible = GTK_CHECK_BUTTON (button);
+  ThisDialog->button_visible = (GtkCheckButton*)button;
   SetWidgetTip( button, _("Enable or disable attribute visibility"));
   gtk_table_attach (GTK_TABLE (table), button,
                     0, 1, 2, 3, GTK_FILL, 0, 3, 0);
