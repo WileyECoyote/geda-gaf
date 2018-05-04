@@ -1,3 +1,9 @@
+2018-05-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/zener53/: Add symbols for 5 Watt zener diode.
+
+            * diode/zener53/zener_6.8_1N5342B.sym (6.8 Volt)
+
 2018-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/lamp/neon-lamp-1.sym: Hide pin number attributes.
