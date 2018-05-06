@@ -1,5 +1,8 @@
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * cypress/CY74FCT2573-1.sym: Add symbol; 8-bit D-type latch with
+      tristate outputs
+
     * passive/varistor/varistor-1.sym: Move newer version to the varistor
       directory replacing older version and add alternate versions:
 
