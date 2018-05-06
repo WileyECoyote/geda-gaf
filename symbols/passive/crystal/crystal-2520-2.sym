@@ -41,14 +41,10 @@ numslots=0
 T 200 1700 5 10 0 0 0 0 1
 description=Crystal,16MHz,±30PPM,±20PPM,SMD
 T 200 700 8 10 1 1 0 0 1
-value=12MHz
-T 200 1900 5 10 0 1 0 0 1
-comment=PN=XRCHH16M000F3P01R0
-T 200 500 9 10 1 0 0 0 1
-2520
+value=16MHz
 T 200 2700 5 10 0 0 0 0 1
 author=AutoTron
 T 200 2300 5 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 200 2500 5 10 0 0 0 0 1
 use-license=unlimited

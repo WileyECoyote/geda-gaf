@@ -1,7 +1,10 @@
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * passive/crystal/crystal-2520-1.sym: Remove comment, revise value
-      and update dist-license attributes.
+    * passive/crystal/: Remove comment, revise value and update dist-
+      license attributes.
+
+            * passive/crystal/crystal-2520-1.sym
+            * passive/crystal/crystal-2520-2.sym
 
 2018-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
