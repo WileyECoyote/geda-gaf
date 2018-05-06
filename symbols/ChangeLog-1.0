@@ -1,12 +1,14 @@
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/varistor/varistor-1.sym: Move newer version to the varistor
-      directory replacing older version and add alternate version:
+      directory replacing older version and add alternate versions:
 
             * passive/varistor/varistor-2.sym (smaller body)
             * passive/varistor/varistor-3.sym (shorter pins)
 
     * ti/micro/TM4C1292NCPDT-1.sym: Update GND and VDD pintype attributes.
+
+    * ti/SN74LVC8T245-1.sym: Add symbol; 8-Bit Bus Transceiver.
 
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
