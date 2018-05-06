@@ -318,9 +318,12 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
   verbose_done();
 }
 
-/*! \brief Print Net List
- *  \par Function Description
- *   Prints the net-list pointed to by \a nl_current
+/*!
+ * \brief Print Net List
+ * \par Function Description
+ *  Prints the net-list pointed to by \a nl_current. This is used
+ *  as a wrapper for s_cpinlist_print->s_net_print during verbose
+ *  mode.
  */
 void s_netlist_print(NETLIST *nl_current)
 {
