@@ -132,12 +132,8 @@ int s_net_find(NET *net_head, NET *node)
  *  \par Function Description
  *
  */
-void s_net_print(NET * ptr)
+void s_net_print(NET *n_current)
 {
-  NET *n_current = NULL;
-
-  n_current = ptr;
-
   if (n_current == NULL) {
     return;
   }
