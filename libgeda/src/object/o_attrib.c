@@ -149,7 +149,7 @@ void geda_attrib_object_append_changed_hook (Page              *page,
  *
  * \param [out] object     The object that attribute is to be attached to.
  * \param [in]  attrib     The attribute to be added.
- * \param [in]  set_color  Whether or not we should set the new attribute's color.
+ * \param [in]  set_color  Whether or not the new attribute's color should be set.
  */
 void geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_color)
 {
