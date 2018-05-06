@@ -1648,6 +1648,7 @@ char o_extend_get_direction(GedaObject *object, int which_end)
       direction = 'l';
     }
   }
+
   return direction;
 }
 
