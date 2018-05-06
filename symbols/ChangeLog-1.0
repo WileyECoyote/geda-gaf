@@ -1,5 +1,8 @@
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * passive/varistor/varistor-1.sym: Move newer version to the varistor
+      directory replacing older version.
+
     * ti/micro/TM4C1292NCPDT-1.sym: Update GND and VDD pintype attributes.
 
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
