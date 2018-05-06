@@ -4,6 +4,7 @@
       directory replacing older version and add alternate version:
 
             * passive/varistor/varistor-2.sym (smaller body)
+            * passive/varistor/varistor-3.sym (shorter pins)
 
     * ti/micro/TM4C1292NCPDT-1.sym: Update GND and VDD pintype attributes.
 
