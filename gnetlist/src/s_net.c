@@ -134,10 +134,6 @@ int s_net_find(NET *net_head, NET *node)
  */
 void s_net_print(NET *n_current)
 {
-  if (n_current == NULL) {
-    return;
-  }
-
   while (n_current != NULL) {
 
     if (n_current->nid != -1) {

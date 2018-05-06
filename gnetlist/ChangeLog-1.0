@@ -1,8 +1,10 @@
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Revise s_net_print; remove unnecessary initialization of
-      unneeded ancillary and just use n_current, is only changing the stack
-      version, does not change the caller's pointer.
+      unneeded ancillary and just use n_current as the argument because this
+      is only changing the version on the stack version, the caller's pointer
+      is not changed.Remove unneeded conditional to check if n_current is non
+      NULL because the while will not iterate.
 
 2018-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
