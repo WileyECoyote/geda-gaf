@@ -6,6 +6,8 @@
             * passive/crystal/crystal-2520-1.sym
             * passive/crystal/crystal-2520-2.sym
 
+    * passive/resistor/varistor-1.sym: Update footprint attribute.
+
 2018-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega32U4-AU-1.sym: Update footprint attribute; TQFP-44-10.
