@@ -4,7 +4,7 @@
       unneeded ancillary and just use n_current as the argument because this
       is only changing the version on the stack version, the caller's pointer
       is not changed.Remove unneeded conditional to check if n_current is non
-      NULL because the while will not iterate.
+      NULL because the while will not iterate, update function documentation.
 
 2018-04-23 Wiley E. Hill <wileyhill@gmail.com>
 

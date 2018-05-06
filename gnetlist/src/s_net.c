@@ -127,10 +127,12 @@ int s_net_find(NET *net_head, NET *node)
   return (FALSE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Write a Net Record to standard out
+ * \par Function Description
+ *  Write the name and the id of the objects connected in the
+ *  given net to standard-out.This is used if during verbose
+ *  mode.
  */
 void s_net_print(NET *n_current)
 {
