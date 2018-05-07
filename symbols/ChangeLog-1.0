@@ -9,6 +9,9 @@
             * passive/varistor/varistor-2.sym (smaller body)
             * passive/varistor/varistor-3.sym (shorter pins)
 
+    * ti/ADS1110-0.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
+      Delta-Sigma, I2C address 1001 100.
+
     * ti/micro/TM4C1292NCPDT-1.sym: Update GND and VDD pintype attributes.
 
     * ti/SN74LVC8T245-1.sym: Add symbol; 8-Bit Bus Transceiver.
