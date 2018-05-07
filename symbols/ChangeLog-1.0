@@ -6,6 +6,7 @@
 
             * logic/74F/74FCT163373-1.sym
             * logic/74F/74FCT163373-2.sym (alternate with GND & VCC net)
+            * logic/74F/74FCT163373-3.sym (alternate with GND net)
 
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
