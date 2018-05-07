@@ -3,6 +3,8 @@
     * cypress/CY74FCT2573-1.sym: Add symbol; 8-bit D-type latch with
       tristate outputs
 
+    * microchip/memory/25LC256-1.sym: Add symbol; 256K SPI EEPROM, SO8.
+
     * passive/varistor/varistor-1.sym: Move newer version to the varistor
       directory replacing older version and add alternate versions:
 
