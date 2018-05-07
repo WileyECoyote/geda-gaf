@@ -11,6 +11,8 @@
     * ti/ADS1110-5.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
       Delta-Sigma, I2C address 1001 101.
 
+    * ti/ldo/TPS73533DRV-2.sym: Add symbol with alternate pin layout.
+
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header10-2-2.sym: Change draw order so pins are
