@@ -136,6 +136,7 @@
                      ("logic/74"                "74-series logic")
                      ("logic/74A"               "74A-series logic")
                      ("logic/74H"               "74H-series logic")
+                     ("logic/74F"               "74F-series logic")
                      ("logic/74L"               "74L-series logic")
                      ("logic/4000"              "4000-series logic")
                      ("logic/SN"                "SN-series Ti logic")

@@ -1,3 +1,7 @@
+2018-05-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm: Create 74F-series logic group.
+
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header10-2-2.sym: Change draw order so pins are
