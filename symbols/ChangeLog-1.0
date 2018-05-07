@@ -1,5 +1,8 @@
 2018-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * connector/header/header10-2-2.sym: Change draw order so pins are
+      drawn last, reposition attributes.
+
     * cypress/CY74FCT2573-1.sym: Add symbol; 8-bit D-type latch with
       tristate outputs
 
