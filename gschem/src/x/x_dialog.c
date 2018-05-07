@@ -2330,7 +2330,8 @@ Page *forget_page;
 
 /*! \brief response function for the find text dialog
  *  \par Function Description
- *  This function searches the schematic for the user input string.
+ *  This function calls o_edit_find_text to search schematics for
+ *  the user input string.
  */
 void x_dialog_find_text_response(GtkWidget *Dialog, int response,
                                  GschemToplevel *w_current)
