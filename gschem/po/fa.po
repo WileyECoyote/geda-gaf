@@ -1667,19 +1667,19 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# Deselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "حالت از حالت انتخاب خارج"
+msgstr "حالت امن"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
-msgstr ""
+msgstr "ناشناخته"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
