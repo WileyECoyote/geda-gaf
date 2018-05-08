@@ -105,9 +105,13 @@ void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *list)
   }
 }
 
-/*! \brief Netlister: Print list of Pins
- *  \par Function Description
- *  Used by s_netlist_print().
+/*!
+ * \brief Netlister: Print list of Pins
+ * \par Function Description
+ *  Used by s_netlist_print() during verbose mode to iterate the
+ *  pin list and write out pin information, followed by a call to
+ *  s_net_print to output net list information for each pin in
+ *  in the list pointed to by \a ptr.
  */
 void s_cpinlist_print(CPINLIST *ptr)
 {

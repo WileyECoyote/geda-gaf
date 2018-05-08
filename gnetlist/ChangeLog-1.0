@@ -2,7 +2,8 @@
 
     * src/s_cpinlist.c: Revise s_cpinlist_print; remove unneeded conditional
       to check if n_current is non NULL because the while will not iterate
-      and remove unnecessary initialization of pl_current.
+      and remove unnecessary initialization of pl_current, update function
+      documentation.
 
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
