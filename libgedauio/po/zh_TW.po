@@ -531,10 +531,10 @@ msgstr ""
 msgid "The string that represents this font"
 msgstr ""
 
+# Preview text
 #: libgedauio/src/widgets/geda_font_dialog.c:1552
-#, fuzzy
 msgid "Preview text"
-msgstr "預覽"
+msgstr "預覽文字"
 
 #: libgedauio/src/widgets/geda_font_dialog.c:1553
 msgid "The text to display in order to demonstrate the selected font"
@@ -684,19 +684,19 @@ msgid ""
 "to underline"
 msgstr ""
 
+# Line wrap
 #: libgedauio/src/widgets/geda_label.c:1419
-#, fuzzy
 msgid "Line wrap"
-msgstr "直線"
+msgstr "換行"
 
 #: libgedauio/src/widgets/geda_label.c:1420
 msgid "If set, wrap lines if the text becomes too wide"
 msgstr ""
 
+# Line wrap mode
 #: libgedauio/src/widgets/geda_label.c:1434
-#, fuzzy
 msgid "Line wrap mode"
-msgstr "直線模式"
+msgstr "換行模式"
 
 #: libgedauio/src/widgets/geda_label.c:1435
 msgid "If wrap is set, controls how line wrapping is done"
@@ -761,10 +761,10 @@ msgstr ""
 msgid "The desired width of the label, in characters"
 msgstr ""
 
+# Single-Line Mode
 #: libgedauio/src/widgets/geda_label.c:1539
-#, fuzzy
 msgid "Single-Line Mode"
-msgstr "直線模式"
+msgstr "單線模式"
 
 #: libgedauio/src/widgets/geda_label.c:1540
 msgid "Whether the label is in single-line mode"
