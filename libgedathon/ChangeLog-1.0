@@ -1,3 +1,7 @@
+2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/es.po: Update Spanish translations.
+
 2018-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_circle.c: Reduce the scope of py_geda_object and

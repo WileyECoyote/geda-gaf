@@ -45,8 +45,8 @@ msgstr "Obtener o establecer el s√≠mbolo predeterminado para resistencias\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obtener o establecer el s√≠mbolo predeterminado de titleblock\n"
 
+# Close all files and shutdown Libgedathon
 #: libgedathon/include/geda_module.h:53
-#, fuzzy
 msgid "Close all files and shutdown Libgedathon.\n"
 msgstr "Cierre todos los archivos y cierre Libgedathon.\n"
 
@@ -68,7 +68,7 @@ msgstr "Obtener puntero a la p·gina activa.\n"
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page.\n"
-msgstr ""
+msgstr "Establecer la p·gina activa.\n"
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved.\n"
@@ -76,27 +76,27 @@ msgstr ""
 
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory.\n"
-msgstr ""
+msgstr "Establecer la p·gina activa y cambia el directorio actual.\n"
 
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page.\n"
-msgstr ""
+msgstr "Abra una p·gina.\n"
 
 #: libgedathon/include/geda_module.h:65
 msgid "Close page.\n"
-msgstr ""
+msgstr "Cerrar p·gina.\n"
 
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page.\n"
-msgstr ""
+msgstr "Crea una nueva p·gina vacÌa.\n"
 
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename.\n"
-msgstr ""
+msgstr "Cambiar el nombre de una p·gina cambia el nombre del archivo.\n"
 
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage\n"
-msgstr ""
+msgstr "Guarde la p·gina escribiendo en el almacenamiento.\n"
 
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name\n"
