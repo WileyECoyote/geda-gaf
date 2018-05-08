@@ -1,7 +1,8 @@
 2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_cpinlist.c: Revise s_cpinlist_print; remove unneeded conditional
-      to check if n_current is non NULL because the while will not iterate.
+      to check if n_current is non NULL because the while will not iterate
+      and remove unnecessary initialization of pl_current.
 
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
 

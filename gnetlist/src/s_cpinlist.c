@@ -111,7 +111,7 @@ void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *list)
  */
 void s_cpinlist_print(CPINLIST *ptr)
 {
-  CPINLIST *pl_current = NULL;
+  CPINLIST *pl_current;
 
   pl_current = ptr;
 
