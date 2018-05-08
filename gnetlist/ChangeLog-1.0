@@ -1,9 +1,14 @@
+2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_cpinlist.c: Revise s_cpinlist_print; remove unneeded conditional
+      to check if n_current is non NULL because the while will not iterate.
+
 2018-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Revise s_net_print; remove unnecessary initialization of
       unneeded ancillary and just use n_current as the argument because this
       is only changing the version on the stack version, the caller's pointer
-      is not changed.Remove unneeded conditional to check if n_current is non
+      is not changed. Remove unneeded conditional to check if n_current is non
       NULL because the while will not iterate, update function documentation.
 
 2018-04-23 Wiley E. Hill <wileyhill@gmail.com>

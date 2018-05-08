@@ -115,10 +115,6 @@ void s_cpinlist_print(CPINLIST *ptr)
 
   pl_current = ptr;
 
-  if (pl_current == NULL) {
-    return;
-  }
-
   while (pl_current != NULL) {
 
     if (pl_current->plid != -1) {
