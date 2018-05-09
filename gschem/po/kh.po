@@ -1750,16 +1750,14 @@ msgstr ""
 "chabphdaem kar kab chheu tinnony & karkamnt rochneasampnth brapnth kongsaul\n"
 
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "daoh chreusa rbieb"
+msgstr "sovotthephap rbieb"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
 msgstr "min skal"
 
@@ -2338,19 +2336,22 @@ msgstr "banhchhob krahvek kammovithi bangheanh adabtr..."
 
 #: gschem/src/x/x_draw.cpp:487
 msgid "Done, renderer is down"
-msgstr "thveu ruoch ,brapnth bangheanh chea kar thleakchoh"
+msgstr "thveu ruoch, brapnth bangheanh chea kar thleakchoh"
 
+# X pitch distence is less than extents
 #: gschem/src/x/x_edit_array.c:486
 msgid "X pitch distence is less than extents\n"
-msgstr ""
+msgstr "pheap khosaknea nei tilean X mean techtuoch nasa\n"
 
+# Y pitch distence is less than extents
 #: gschem/src/x/x_edit_array.c:487
 msgid "Y pitch distence is less than extents\n"
-msgstr ""
+msgstr "chamnouch Y mean chamngeay tech cheang kamrit\n"
 
+# X and Y pitch distence are less than extents
 #: gschem/src/x/x_edit_array.c:507
 msgid "X and Y pitch distence are less than extents\n"
-msgstr ""
+msgstr "pheap khosaknea rveang tilean X ning Y tech cheang tomham\n"
 
 #: gschem/src/x/x_edit_array.c:526
 msgid "Components may overlay, Continue?"

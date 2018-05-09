@@ -2,6 +2,8 @@
 
     * po/ja.po: Update Japanese translations.
 
+    * po/kh.po: Update Khmer translations.
+
     * src/x/x_edit_array.c: Reduce scope of string const.
 
 2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
