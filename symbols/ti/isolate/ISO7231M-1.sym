@@ -197,22 +197,14 @@ T 400 4600 5 10 0 0 0 0 1
 device=ISO7231M
 T 2600 3600 9 10 1 1 0 6 1
 footprint=SOIC16W
-T 400 5200 5 10 0 0 0 0 1
-author=AutoTron
 T 400 4200 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/iso7231m/
 T 400 4400 5 10 0 1 0 0 1
 description=Three Channel Digital Isolators,2.5kV,150Mbps
 T 400 4000 5 10 0 0 0 0 1
 numslots=0
-T 400 4800 5 10 0 0 0 0 1
-dist-license=GPLv2
-T 400 5000 5 10 0 0 0 0 1
-use-license=unlimited
-T 1000 200 5 8 0 0 0 0 1
-symversion=0.1
-T 2600 3800 9 10 1 0 0 6 1
-ISO7231M
+T 2600 3800 9 10 1 1 0 6 1
+value=ISO7231M
 L 800 2400 1000 2400 3 0 0 0 100 100
 L 1000 2300 1000 2500 3 0 2 0 -1 -1
 L 1000 2300 1200 2400 3 0 2 0 -1 -1
@@ -244,3 +236,11 @@ L 1000 1600 925 1600 3 0 0 0 100 100
 L 1700 1600 1550 1600 3 0 0 0 100 100
 L 1200 1600 1350 1600 3 0 0 0 100 100
 L 2000 2250 2000 800 4 0 0 0 100 100
+T 400 5200 5 10 0 0 0 0 1
+author=AutoTron
+T 400 4800 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 5000 5 10 0 0 0 0 1
+use-license=unlimited
+T 1000 200 5 8 0 0 0 0 1
+symversion=0.2

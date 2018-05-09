@@ -1,3 +1,11 @@
+2018-05-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/isolate/: Convert plain text to value and reorganize
+      attributes:
+
+            * ti/isolate/ISO7231C-1.sym
+            * ti/isolate/ISO7231M-1.sym
+
 2018-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Create 74F-series logic group.
