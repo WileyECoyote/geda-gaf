@@ -483,8 +483,8 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 
     if (col_count > 1 || row_count > 1) {
 
-      const char *x_msg = _("X pitch distence is less than extents\n");
-      const char *y_msg = _("Y pitch distence is less than extents\n");
+      const char *x_msg = _("X pitch distance is less than extents\n");
+      const char *y_msg = _("Y pitch distance is less than extents\n");
 
 
 
@@ -504,7 +504,7 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
           int abs_y_pitch = abs(y_pitch);
 
           if ((abs_x_pitch < x_size) && (abs_y_pitch < y_size)) {
-            mess = _("X and Y pitch distence are less than extents\n");
+            mess = _("X and Y pitch distance are less than extents\n");
           }
           else if (abs_x_pitch < x_size) {
             mess = x_msg;
