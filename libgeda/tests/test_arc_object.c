@@ -1253,7 +1253,7 @@ query_nearest_Q24_90 (GedaObject *object)
 
 /* Is somewhat of a kludge; get distance to a random point (px,py)
  * then gets the nearest point on the arc and compares D(px,py) to
- * the distence from (px,py) to the (nx,ny). If the rounded integer
+ * the distance from (px,py) to the (nx,ny). If the rounded integer
  * differ by less than 1 then result is considered correct. This
  * assume previously tested geda_arc_object_get_nearest_point passed.
  */
