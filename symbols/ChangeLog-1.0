@@ -5,6 +5,9 @@
 
             * ti/isolate/ISO7231C-1.sym
             * ti/isolate/ISO7231M-1.sym
+            * ti/isolate/ISO7240C-1.sym
+            * ti/isolate/ISO7240CF-1.sym
+            * ti/isolate/ISO7240M-1.sym
 
 2018-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
