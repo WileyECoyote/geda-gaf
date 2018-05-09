@@ -483,15 +483,13 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 
     if (col_count > 1 || row_count > 1) {
 
-      const char *x_msg = _("X pitch distance is less than extents\n");
-      const char *y_msg = _("Y pitch distance is less than extents\n");
-
-
-
       int x_pitch = atoi(GetEntryText( dialog_data->col_off_entry ));
       int y_pitch = atoi(GetEntryText( dialog_data->row_off_entry ));
 
       if (x_pitch || y_pitch) {
+
+        const char *x_msg = _("X pitch distance is less than extents\n");
+        const char *y_msg = _("Y pitch distance is less than extents\n");
 
         const char *mess = NULL;
 
