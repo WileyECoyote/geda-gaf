@@ -665,7 +665,7 @@ msgid "Offset Mode"
 msgstr "ネットモード"
 
 #: gschem/src/iface/i_command.c:1695
-msgid "Specify offset distance:"
+msgid "Specify offset distence:"
 msgstr ""
 
 #: gschem/src/iface/i_command.c:2284
@@ -1673,18 +1673,20 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "選択モード"
+msgstr "セーフモード"
 
+# multitasking mode
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "マルチタスクモード"
 
+# unknown
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
-msgstr ""
+msgstr "未知の"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -2239,17 +2241,20 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
+# X pitch distence is less than extents
 #: gschem/src/x/x_edit_array.c:486
 msgid "X pitch distence is less than extents\n"
-msgstr ""
+msgstr "Xピッチのディストーションがエクステントより小さい\n"
 
+# Y pitch distence is less than extents
 #: gschem/src/x/x_edit_array.c:487
 msgid "Y pitch distence is less than extents\n"
-msgstr ""
+msgstr "Yピッチ距離がエクステントより小さい\n"
 
+# X and Y pitch distence are less than extents
 #: gschem/src/x/x_edit_array.c:507
 msgid "X and Y pitch distence are less than extents\n"
-msgstr ""
+msgstr "XとYピッチのディスタンスはエクステントより小さい\n"
 
 #: gschem/src/x/x_edit_array.c:526
 msgid "Components may overlay, Continue?"

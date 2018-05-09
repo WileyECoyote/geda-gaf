@@ -1,5 +1,7 @@
 2018-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/ja.po: Update Japanese translations.
+
     * src/x/x_edit_array.c: Reduce scope of string const.
 
 2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
