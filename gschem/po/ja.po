@@ -2147,14 +2147,17 @@ msgstr ""
 msgid "Auto Zoom Extents"
 msgstr "回路全体の表示"
 
+# Hotkeys
 #: gschem/src/x/x_dialog.c:3229
 msgid "Hotkeys"
-msgstr ""
+msgstr "ホットキー"
 
+# Icon
 #: gschem/src/x/x_dialog.c:3316
 msgid "Icon"
-msgstr ""
+msgstr "アイコン"
 
+# Action
 #: gschem/src/x/x_dialog.c:3330
 msgid "Action"
 msgstr "アクション"
@@ -2163,13 +2166,15 @@ msgstr "アクション"
 msgid "Keystroke(s)"
 msgstr ""
 
+# Command
 #: gschem/src/x/x_dialog.c:3350
 msgid "Command"
 msgstr "部品(_C)"
 
+# Major symbol changes detected
 #: gschem/src/x/x_dialog.c:3587
 msgid "Major symbol changes detected."
-msgstr ""
+msgstr "主要なシンボルの変化."
 
 #: gschem/src/x/x_dialog.c:3614
 msgid ""
@@ -2177,22 +2182,29 @@ msgid ""
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
+"下記のシンボルに変更が生じました.\n"
+"\n"
+"これらのシンボルのそれぞれを必ず確認してください."
 
+# Symbol
 #: gschem/src/x/x_dialog.c:3655
 msgid "Symbol"
-msgstr ""
+msgstr "シンボル"
 
+# Dismiss this dialog
 #: gschem/src/x/x_dialog.c:3701
 msgid "Dismiss this dialog"
-msgstr ""
+msgstr "このダイアログを閉じる"
 
+# Input attribute is invalid
 #: gschem/src/x/x_dialog.c:3743
 msgid "Input attribute is invalid"
 msgstr "入力属性が無効です"
 
+# Please correct in order to continue
 #: gschem/src/x/x_dialog.c:3744
 msgid "Please correct in order to continue"
-msgstr ""
+msgstr "続行するには修正してください"
 
 #: gschem/src/x/x_dialog.c:3745
 msgid ""
@@ -2241,21 +2253,18 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-# X pitch distence is less than extents
+# X pitch distance is less than extents
 #: gschem/src/x/x_edit_array.c:491
-#, fuzzy
 msgid "X pitch distance is less than extents\n"
 msgstr "Xピッチのディストーションがエクステントより小さい\n"
 
-# Y pitch distence is less than extents
+# Y pitch distance is less than extents
 #: gschem/src/x/x_edit_array.c:492
-#, fuzzy
 msgid "Y pitch distance is less than extents\n"
 msgstr "Yピッチ距離がエクステントより小さい\n"
 
-# X and Y pitch distence are less than extents
+# X and Y pitch distance are less than extents
 #: gschem/src/x/x_edit_array.c:505
-#, fuzzy
 msgid "X and Y pitch distance are less than extents\n"
 msgstr "XとYピッチのディスタンスはエクステントより小さい\n"
 
