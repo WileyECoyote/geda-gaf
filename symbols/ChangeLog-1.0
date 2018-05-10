@@ -1,3 +1,7 @@
+2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * atmel/ATMega32U4-AU-2.sym: Add symbol with alternate pin layout.
+
 2018-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/isolate/: Convert plain text to value and reorganize
@@ -8,6 +12,8 @@
             * ti/isolate/ISO7240C-1.sym
             * ti/isolate/ISO7240CF-1.sym
             * ti/isolate/ISO7240M-1.sym
+            * ti/isolate/ISO7241C-1.sym
+            * ti/isolate/ISO7241M-1.sym
 
 2018-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
