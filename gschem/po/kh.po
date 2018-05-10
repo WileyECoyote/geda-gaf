@@ -2338,50 +2338,55 @@ msgstr "banhchhob krahvek kammovithi bangheanh adabtr..."
 msgid "Done, renderer is down"
 msgstr "thveu ruoch, brapnth bangheanh chea kar thleakchoh"
 
-# X pitch distence is less than extents
+# X pitch distance is less than extents
 #: gschem/src/x/x_edit_array.c:491
-#, fuzzy
 msgid "X pitch distance is less than extents\n"
 msgstr "pheap khosaknea nei tilean X mean techtuoch nasa\n"
 
-# Y pitch distence is less than extents
+# Y pitch distance is less than extents
 #: gschem/src/x/x_edit_array.c:492
-#, fuzzy
 msgid "Y pitch distance is less than extents\n"
 msgstr "chamnouch Y mean chamngeay tech cheang kamrit\n"
 
-# X and Y pitch distence are less than extents
+# X and Y pitch distance are less than extents
 #: gschem/src/x/x_edit_array.c:505
-#, fuzzy
 msgid "X and Y pitch distance are less than extents\n"
 msgstr "pheap khosaknea rveang tilean X ning Y tech cheang tomham\n"
 
+# Components may overlay, Continue
 #: gschem/src/x/x_edit_array.c:524
 msgid "Components may overlay, Continue?"
-msgstr ""
+msgstr "sameasapheak ach krob pi leu bant?"
 
+# Create Array: Error
 #: gschem/src/x/x_edit_array.c:537 gschem/src/x/x_edit_array.c:542
 #: gschem/src/x/x_edit_array.c:547
 msgid "Create Array:Error"
-msgstr ""
+msgstr "bangkeut a re:  kamhos"
 
 #: gschem/src/x/x_edit_array.c:538
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
+"ohvaset chuordek ning chuorochhor\n"
+"min ach chea saun"
 
 #: gschem/src/x/x_edit_array.c:543
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
+"reab chuor ryy chuorochhor\n"
+"trauvte thomcheang 1"
 
 #: gschem/src/x/x_edit_array.c:548
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
+"teang chuor ning chuorochhor\n"
+"min ach chea saun"
 
 #: gschem/src/x/x_edit_array.c:863 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
