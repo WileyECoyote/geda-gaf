@@ -1329,7 +1329,7 @@
 ;; (define default-titleblock "title-B.sym")
 ;; Change "title-B.sym" to the name of your preferred titleblock!
 ;
-;; If you don't want a titleblock to be added automatically, then add one of
+;; If you do not want a titleblock to be added automatically, then add one of
 ;; the following lines to your gschemrc file (without the semicolon).
 ;; There are several ways, so just choose one;
 ;;   (define default-titleblock "")
