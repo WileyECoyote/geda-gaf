@@ -527,7 +527,7 @@ pinnumber=48
 T 1800 9350 5 8 0 1 0 2 1
 pinseq=48
 T 1650 9400 9 8 1 1 0 6 1
-pinlabel=\_LE1\_
+pinlabel=LE1
 T 1650 9375 5 8 0 1 0 8 1
 pintype=in
 }
