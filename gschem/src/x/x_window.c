@@ -552,37 +552,36 @@ void x_window_close_edit_dialogs(GschemToplevel *w_current)
   /* close all the dialog boxes */
 
   if (w_current->sowindow)
-  gtk_widget_destroy(w_current->sowindow);
+    gtk_widget_destroy(w_current->sowindow);
 
   if (w_current->cswindow)
-  gtk_widget_destroy(w_current->cswindow);
+    gtk_widget_destroy(w_current->cswindow);
 
   if (w_current->tiwindow)
-  gtk_widget_destroy(w_current->tiwindow);
+    gtk_widget_destroy(w_current->tiwindow);
 
   if (w_current->tewindow)
-  gtk_widget_destroy(w_current->tewindow);
+    gtk_widget_destroy(w_current->tewindow);
 
   if (w_current->aawindow)
-  gtk_widget_destroy(w_current->aawindow);
+    gtk_widget_destroy(w_current->aawindow);
 
   x_multiattrib_close (w_current);
 
   if (w_current->aewindow)
-  gtk_widget_destroy(w_current->aewindow);
+    gtk_widget_destroy(w_current->aewindow);
 
   if (w_current->trwindow)
-  gtk_widget_destroy(w_current->trwindow);
+    gtk_widget_destroy(w_current->trwindow);
 
   if (w_current->tswindow)
-  gtk_widget_destroy(w_current->tswindow);
+    gtk_widget_destroy(w_current->tswindow);
 
   if (w_current->clwindow)
-  gtk_widget_destroy(w_current->clwindow);
+    gtk_widget_destroy(w_current->clwindow);
 
   if (w_current->sewindow)
-  gtk_widget_destroy(w_current->sewindow);
-
+    gtk_widget_destroy(w_current->sewindow);
 }
 
 /*!
