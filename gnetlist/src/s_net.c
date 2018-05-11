@@ -204,6 +204,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
 
     if (pinnum) {
 
+      /* Prefixes pinnumber with "__netattrib_power_pin " */
       string = s_netattrib_pinnum_get_connected_string (pinnum);
       //s_netattrib_check_connected_string (string);
     }
