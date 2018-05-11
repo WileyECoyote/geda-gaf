@@ -63,6 +63,7 @@ const char *s_netattrib_connected_string_get_pinnum (const char *str)
     return NULL;
   }
 
+  /* Return pointer advanced to the position of the numeric portion */
   return str + prefix_len;
 }
 
