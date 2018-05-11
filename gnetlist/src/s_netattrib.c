@@ -424,7 +424,9 @@ char *s_netattrib_return_netname(GedaToplevel *pr_current,
 
   pin_num = s_netattrib_connected_string_get_pinnum (pinnumber);
 
-  if (pin_num == NULL) return NULL;
+  if (pin_num == NULL) {
+    return NULL;
+  }
 
   /* use hierarchy tag here to make this net unique */
   tmp_netname = s_netattrib_net_search(o_pin->parent_object, pin_num);
