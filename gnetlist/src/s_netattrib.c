@@ -406,13 +406,16 @@ char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
   return return_value;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Get net-name associated with an Object's pin
- *  \par Function Description
- *
+/*!
+ * \brief Get net-name associated with an Object's pin
+ * \par Function Description
+ *  Returns the netname associated with \a pinnumber of the
+ *  object that \a o_pin belongs too.
  */
-char *s_netattrib_return_netname(GedaToplevel *pr_current,GedaObject *o_pin,
-                                 char *pinnumber, char *hierarchy_tag)
+char *s_netattrib_return_netname(GedaToplevel *pr_current,
+                                   GedaObject *o_pin,
+                                         char *pinnumber,
+                                         char *hierarchy_tag)
 {
   const char *pin_num;
         char *netname;

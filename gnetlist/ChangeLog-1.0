@@ -1,7 +1,7 @@
 2018-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Rename temp_netname -> tmp_netname in function
-      s_netattrib_return_netname.
+      s_netattrib_return_netname and update function documentation.
 
 2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
