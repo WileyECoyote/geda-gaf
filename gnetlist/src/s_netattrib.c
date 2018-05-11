@@ -416,19 +416,18 @@ char *s_netattrib_return_netname(GedaToplevel *pr_current,GedaObject *o_pin,
 {
   const char *pin_num;
         char *netname;
-        char *temp_netname;
+        char *tmp_netname;
 
   pin_num = s_netattrib_connected_string_get_pinnum (pinnumber);
 
   if (pin_num == NULL) return NULL;
 
   /* use hierarchy tag here to make this net unique */
-  temp_netname = s_netattrib_net_search(o_pin->parent_object, pin_num);
+  tmp_netname = s_netattrib_net_search(o_pin->parent_object, pin_num);
 
-  netname =
-  s_hierarchy_create_netattrib(pr_current, temp_netname, hierarchy_tag);
+  netname = s_hierarchy_create_netattrib(pr_current, tmp_netname, hierarchy_tag);
 
-  GEDA_FREE (temp_netname);
+  GEDA_FREE (tmp_netname);
 
 #if DEBUG
   printf("netname: %s\n", netname);
