@@ -1756,20 +1756,19 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# Deselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Hef de selectie mode"
+msgstr "veilige modus"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
-msgstr "Onbekend"
+msgstr "onbekend"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -2320,9 +2319,10 @@ msgstr "Niet konden vinden symbool"
 msgid "in library, try refreshing"
 msgstr "In bibliotheek, probeer verfrissende"
 
+# not in library, opening as page
 #: gschem/src/x/x_dnd.c:443
 msgid "not in library, opening as page"
-msgstr ""
+msgstr "niet in bibliotheek, openen als pagina"
 
 #: gschem/src/x/x_dnd.c:444 gschem/src/x/x_multiattrib.c:2644
 msgid "symbol"
@@ -2330,39 +2330,42 @@ msgstr "symbool"
 
 #: gschem/src/x/x_dnd.c:591
 msgid "<b>Invalid Data.</b>"
-msgstr ""
+msgstr "<b>Onjuiste data.</b>"
 
 #: gschem/src/x/x_draw.cpp:463
 msgid "Initializing: Graphics Renderer Adaptor...."
-msgstr ""
+msgstr "Initialiseren: grafische weergeveradapter...."
 
+# done
 #: gschem/src/x/x_draw.cpp:479
 msgid "done"
-msgstr ""
+msgstr "gedaan"
 
 #: gschem/src/x/x_draw.cpp:485
 msgid "Shutting down: Graphics Renderer Adaptor..."
 msgstr "Afsluiten: Grafische Renderer-adapter..."
 
+# Done, renderer is down
 #: gschem/src/x/x_draw.cpp:487
 msgid "Done, renderer is down"
-msgstr ""
+msgstr "Klaar, de renderer staat uit"
 
 #: gschem/src/x/x_edit_array.c:491
 msgid "X pitch distance is less than extents\n"
-msgstr ""
+msgstr "X-steekafstand is minder dan de omvang\n"
 
 #: gschem/src/x/x_edit_array.c:492
 msgid "Y pitch distance is less than extents\n"
-msgstr ""
+msgstr "Y-steekafstand is minder dan de omvang\n"
 
 #: gschem/src/x/x_edit_array.c:505
 msgid "X and Y pitch distance are less than extents\n"
-msgstr ""
+msgstr "X en Y-steekafstand zijn minder dan de omvang\n"
 
+# Components may overlay, Continue?
 #: gschem/src/x/x_edit_array.c:524
 msgid "Components may overlay, Continue?"
-msgstr ""
+msgstr "Componenten kunnen overlappen, doorgaan?"
 
 # Create Array: Error
 #: gschem/src/x/x_edit_array.c:537 gschem/src/x/x_edit_array.c:542
