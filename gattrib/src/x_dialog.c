@@ -248,7 +248,7 @@ int x_dialog_file_not_saved()
   tmp = _("Save the changes before closing?");
   str = geda_strconcat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
 
-  tmp = _("If you don't save, all your changes will be permanently lost.");
+  tmp = _("If you do not save, all your changes will be permanently lost.");
   str = geda_strconcat (str, "\n\n", tmp, NULL);
 
   dialog = (GtkDialog*)gtk_message_dialog_new ((GtkWindow*)main_window,
