@@ -1667,27 +1667,30 @@ msgstr "未保存的页面"
 msgid "selected pages"
 msgstr "选定页面"
 
+# destroying history
 #: gschem/src/x/x_console.c:140
 msgid "destroying history\n"
-msgstr ""
+msgstr "破坏历史\n"
 
+# Initializing Log & Console Systems configuration settings
 #: gschem/src/x/x_console.c:155
 msgid "Initializing Log & Console Systems configuration settings\n"
-msgstr ""
+msgstr "初始化日志和控制台系统配置设置\n"
 
-# Deselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "取消选择模式"
+msgstr "安全模式"
 
+# multitasking mode
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "多任务模式"
 
+# unknown
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
-msgstr ""
+msgstr "未知"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
