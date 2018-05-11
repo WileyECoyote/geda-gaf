@@ -1731,19 +1731,19 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "tryb odznaczyć"
+msgstr "tryb bezpieczeństwa"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
-msgstr "Nieznane"
+msgstr "nieznany"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -2311,39 +2311,46 @@ msgstr "symbole"
 
 #: gschem/src/x/x_dnd.c:591
 msgid "<b>Invalid Data.</b>"
-msgstr ""
+msgstr "<b>Nieprawidłowe dane.</b>"
 
+# Initializing: Graphics Renderer Adaptor
 #: gschem/src/x/x_draw.cpp:463
 msgid "Initializing: Graphics Renderer Adaptor...."
-msgstr ""
+msgstr "Inicjalizacja: Adapter Renderer graficzny..."
 
 #: gschem/src/x/x_draw.cpp:479
 msgid "done"
-msgstr ""
+msgstr "Gotowe"
 
+# Shutting down: Graphics Renderer Adaptor
 #: gschem/src/x/x_draw.cpp:485
 msgid "Shutting down: Graphics Renderer Adaptor..."
-msgstr ""
+msgstr "Zamykanie: Adapter Renderer grafiki..."
 
+# Done, renderer is down
 #: gschem/src/x/x_draw.cpp:487
 msgid "Done, renderer is down"
-msgstr ""
+msgstr "Gotowe, renderowanie jest wyłączone"
 
+# X pitch distance is less than extents
 #: gschem/src/x/x_edit_array.c:491
 msgid "X pitch distance is less than extents\n"
-msgstr ""
+msgstr "Odległość pitch X jest mniejsza niż zakres\n"
 
+# Y pitch distance is less than extents
 #: gschem/src/x/x_edit_array.c:492
 msgid "Y pitch distance is less than extents\n"
-msgstr ""
+msgstr "Dystans Y jest mniejszy niż zakres\n"
 
+# X and Y pitch distance are less than extents
 #: gschem/src/x/x_edit_array.c:505
 msgid "X and Y pitch distance are less than extents\n"
-msgstr ""
+msgstr "Odległość podziałowa X i Y jest mniejsza niż zakres\n"
 
+# Components may overlay, Continue
 #: gschem/src/x/x_edit_array.c:524
 msgid "Components may overlay, Continue?"
-msgstr ""
+msgstr "Komponenty mogą nakładać się, kontynuować?"
 
 # Create Array: Error
 #: gschem/src/x/x_edit_array.c:537 gschem/src/x/x_edit_array.c:542
