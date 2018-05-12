@@ -36,10 +36,11 @@
 /*! \def DELIMITERS used by search and extract functions below */
 #define DELIMITERS ",; "
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get Connect String Prefixed to Pin Number
+ * \par Function Description
+ *  Returns an new string allocation with \a pinnum prefixed with
+ *  "__netattrib_power_pin ".
  */
 char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
 {

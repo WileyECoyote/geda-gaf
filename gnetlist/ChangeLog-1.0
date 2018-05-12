@@ -3,7 +3,8 @@
     * src/s_netattrib.c: Redo s_netattrib_extract_netname with version that
       only allocates the required amount of memory. Replace both For loops
       in s_netattrib_handle with While loops and replace GEDA_FREE macro with
-      g_free. Reformat DOxygen blocks.
+      g_free. Reformat DOxygen blocks and update function documentation for
+      s_netattrib_pinnum_get_connected_string
 
     * src/s_netlist.c: Remove unnecessary initialization of nl_iter in function
       s_netlist_print.
