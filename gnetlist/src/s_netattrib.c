@@ -46,8 +46,9 @@ char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
   return geda_sprintf (PIN_NET_PREFIX "%s", pinnum);
 }
 
-/*! \brief Get the Pin Number of connected Net Attribute string
- *  \par Function Description
+/*!
+ * \brief Get the Pin Number of connected Net Attribute string
+ * \par Function Description
  *  This function returns the pin number as a string of a connected
  *  net attribute. If \a str does not begin with the PIN_NET_PREFIX
  *  NULL is returned:
@@ -81,10 +82,11 @@ void s_netattrib_check_connected_string (const char *str)
            exit (1);
 }
 
-/*! \brief Get the Net Name from a Net Attribute
- *  \par Function Description
- *   Replaces the colon in a copy of the netname with a NULL,
- *   truncating the pin number portion of the string.
+/*!
+ * \brief Get the Net Name from a Net Attribute
+ * \par Function Description
+ *  Replaces the colon in a copy of the netname with a NULL,
+ *  truncating the pin number portion of the string.
  *
  *  example:
  *            SCI_RX:1 returns SCI_RX
@@ -128,19 +130,20 @@ char *s_netattrib_extract_netname(char *value)
   return (return_value);
 }
 
-/*! \brief Create pins for Net Attributes
- *  \par Function Description
+/*!
+ * \brief Create pins for Net Attributes
+ * \par Function Description
  *  Symbols with net attributes, for example, net=VCC:14, normally do not
  *  have an actual pin defined. This routine creates these virtual pins
  *  after checking that a real pin does not exist. If a pin is defined
  *  then a notice is issued and the existing pin information replaced
  *  using the net name found in the net attribute.
  *
- *  \param [in]     pr_current    Current GedaToplevel structure; toplevel,
- *  \param [in]     o_current     Complex, presumably with a least one pin
- *  \param [in,out] netlist       The net list
- *  \param [in]     value         Is value of net attribute, like GND:4
- *  \param [in]     hierarchy_tag refdes of symbol with source or NULL
+ * \param [in]     pr_current    Current GedaToplevel structure; toplevel,
+ * \param [in]     o_current     Complex, presumably with a least one pin
+ * \param [in,out] netlist       The net list
+ * \param [in]     value         Is value of net attribute, like GND:4
+ * \param [in]     hierarchy_tag refdes of symbol with source or NULL
  *
  * \note 1 The hierarchy_tag is the string before renaming occurs, and the
  *         tag may be replaced later, for eample here tag could be S1 and
@@ -252,8 +255,9 @@ s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
   GEDA_FREE(net_name);
 }
 
-/*! \brief Process Net Attributes
- *  \par Function Description
+/*!
+ * \brief Process Net Attributes
+ * \par Function Description
  *  Searches \a o_current for inherited and attached net
  *  attributes and calls s_netattrib_create_pins for each
  *  attribute that is found.
@@ -298,17 +302,18 @@ s_netattrib_handle (GedaToplevel *pr_current,GedaObject *o_current,
   }
 }
 
-/*! \brief Search Net Attributes given a Pin Number and return Net Name
- *  \par Function Description
+/*!
+ * \brief Search Net Attributes given a Pin Number and return Net Name
+ * \par Function Description
  *  An object can have multiple net= attributes, either attached or
  *  floating. This function searches complex object types for the
  *  net=netname:x attribute with an x==wanted_pin, and if found
  *  returns the net-name portion of the attribute as extracted by
  *  s_netattrib_extract_netname function.
  *
- *  \sa s_netattrib_extract_netname
+ * \sa s_netattrib_extract_netname s_netattrib_return_netname
  *
-  * \note caller should GEDA_FREE returned string
+ * \note The returned string should GEDA_FREE
  */
 char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
 {
