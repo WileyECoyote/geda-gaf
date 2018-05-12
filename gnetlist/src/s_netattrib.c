@@ -266,33 +266,35 @@ s_netattrib_handle (GedaToplevel *pr_current,GedaObject *o_current,
   int   counter;
 
   /* Look inside the component */
-  for (counter = 0; ;) {
+  counter = 0;
 
-    value = geda_attrib_search_inherited_by_name (o_current, "net", counter);
-    if (value == NULL)
-      break;
+  value = geda_attrib_search_inherited_by_name (o_current, "net", counter);
+
+  while (value) {
+
+    s_netattrib_create_pins (pr_current, o_current, netlist, value, hierarchy_tag);
+
+    g_free (value);
 
     counter++;
 
-    s_netattrib_create_pins (pr_current, o_current,
-                             netlist, value, hierarchy_tag);
-    GEDA_FREE (value);
-
+    value = geda_attrib_search_inherited_by_name (o_current, "net", counter);
   }
 
   /* Look outside the component */
-  for (counter = 0; ;) {
+  counter = 0;
 
-    value = geda_attrib_search_attached_by_name (o_current, "net", counter);
+  value = geda_attrib_search_attached_by_name (o_current, "net", counter);
 
-    if (value == NULL)
-      break;
+  while (value) {
+
+    s_netattrib_create_pins (pr_current, o_current, netlist, value, hierarchy_tag);
+
+    g_free (value);
 
     counter++;
 
-    s_netattrib_create_pins (pr_current, o_current,
-                             netlist, value, hierarchy_tag);
-    GEDA_FREE (value);
+    value = geda_attrib_search_attached_by_name (o_current, "net", counter);
   }
 }
 
