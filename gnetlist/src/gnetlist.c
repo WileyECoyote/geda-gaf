@@ -42,8 +42,9 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-/*! \brief Quite gnetlist
- *  \par Function Description
+/*!
+ * \brief Quite gnetlist
+ * \par Function Description
  *  This function is called before exiting gnetlist and serves
  *  to release various resources allocated by the program.
  */
@@ -74,31 +75,29 @@ void gnetlist_quit(void)
 
 }
 
-void
-gnetlist_show_error(const char *msg1, const char *msg2, const char *msg3)
+void gnetlist_show_error(const char *msg1, const char *msg2, const char *msg3)
 {
   const char *_ERROR = _("ERROR");
   fprintf (stderr, "%s: %s [%s]: %s\n", _ERROR, msg1, msg2, msg3);
 }
 
-void
-gnetlist_show_strerror(const char *msg1, const char *msg2)
+void gnetlist_show_strerror(const char *msg1, const char *msg2)
 {
   gnetlist_show_error (msg1, msg2, strerror (errno));
 }
 
 
-/*! \brief Print a list of available backends.
- *  \par Function Description
- * Prints a list of available gnetlist backends by searching for files
- * in each of the directories in the current Guile %load-path.  A file
- * is considered to be a gnetlist backend if its basename begins with
- * "gnet-" and ends with ".scm".
+/*!
+ * \brief Print a list of available backends.
+ * \par Function Description
+ *  Prints a list of available gnetlist backends by searching for files
+ *  in each of the directories in the current Guile %load-path.  A file
+ *  is considered to be a gnetlist backend if its basename begins with
+ *  "gnet-" and ends with ".scm".
  *
  * \param pr_current  Current #GedaToplevel structure.
  */
-void
-gnetlist_backends (GedaToplevel *pr_current)
+void gnetlist_backends (GedaToplevel *pr_current)
 {
   SCM s_load_path;
   GList *backend_names = NULL, *iter = NULL;
@@ -167,8 +166,9 @@ gnetlist_backends (GedaToplevel *pr_current)
   scm_remember_upto_here_1 (s_load_path);
 }
 
-/*! \brief Main Scheme(GUILE) program function.
- *  \par Function Description
+/*!
+ * \brief Main Scheme(GUILE) program function.
+ * \par Function Description
  *  This function is the main program called from scm_boot_guile.
  *  The function initializes languages, libgeda, all libraries and
  *  registers function used by back-ends and then attempts to load
@@ -496,8 +496,9 @@ void main_prog(void *closure, int argc, char *argv[])
   GEDA_FREE(output_filename);
 }
 
-/*! \brief Main executable entrance point.
- *  \par Function Description
+/*!
+ * \brief Main executable entrance point.
+ * \par Function Description
  *  This is the main function for gnetlist. The function sets up the Scheme
  *  (GUILE) environment and passes control to via scm_boot_guile to the
  *  #main_prog function.
