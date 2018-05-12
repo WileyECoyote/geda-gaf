@@ -1,8 +1,12 @@
 2018-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Redo s_netattrib_extract_netname with version that
-      only allocates the require memory. Replace For loops in s_netattrib_handle
-      with While loops and replace GEDA_FREE macro with g_free.
+      only allocates the required amount of memory. Replace both For loops
+      in s_netattrib_handle with While loops and replace GEDA_FREE macro with
+      g_free.
+
+    * src/s_netlist.c: Remove unnecessary initialization of nl_iter in function
+      s_netlist_print.
 
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 

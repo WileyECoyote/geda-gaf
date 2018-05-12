@@ -327,7 +327,7 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
  */
 void s_netlist_print(NETLIST *nl_current)
 {
-  NETLIST *nl_iter = NULL;
+  NETLIST *nl_iter;
 
   nl_iter = nl_current;
 
