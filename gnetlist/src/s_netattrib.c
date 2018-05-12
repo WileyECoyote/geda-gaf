@@ -101,27 +101,31 @@ void s_netattrib_check_connected_string (const char *str)
 char *s_netattrib_extract_netname(char *value)
 {
   char *return_value;
-  int i = 1;
+  int len;
 
-  /* a bit larger than needed ... */
-  return_value = geda_utility_string_strdup (value);
+  len = geda_utility_string_stristr (value, ":");
 
-  while (value[i] != ':' && value[i] != '\0') {
-    return_value[i] = value[i];
-    i++;
-  }
+  if (len > 0) {
 
-  if (value[i] != ':') {
-    fprintf(stderr, _("Found malformed net attribute\n"));
-    GEDA_FREE(return_value);
-    return_value = geda_utility_string_strdup ("unknown");
+    int i;
+
+    /* Allocate space, len is zero based */
+    return_value = malloc (len);
+
+    /* Copy characters before the colon */
+    for (i = 0; i < len; i++) {
+      return_value[i] = value[i];
+    }
+
+    /* Terminate the new string */
+    return_value[len] = '\0';
   }
   else {
-    return_value[i] = '\0'; /* Replace colon with NULL */
+    fprintf(stderr, _("Found malformed net attribute\n"));
+    return_value = geda_utility_string_strdup ("unknown");
   }
 
   return (return_value);
-
 }
 
 /*! \brief Create pins for Net Attributes

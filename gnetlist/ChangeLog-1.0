@@ -1,3 +1,8 @@
+2018-05-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netattrib.c: Redo s_netattrib_extract_netname with version that
+      only allocates the require memory.
+
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Rename temp_netname -> tmp_netname in function
