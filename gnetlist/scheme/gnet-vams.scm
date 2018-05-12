@@ -611,7 +611,7 @@
                             (display package)
                             (display " : ENTITY ")
 
-                            ;; writes entity name, which should instanciated
+                            ;; writes entity name, which should instantiate
                             (display (get-device package))
 
                             ;; write the architecture of an entity in brackets after
