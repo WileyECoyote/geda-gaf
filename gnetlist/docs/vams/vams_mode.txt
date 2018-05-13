@@ -116,15 +116,15 @@ CONTENT:
 
    We only support component instantiation statements, like the one shown
    above, because we generate simple VHDL-AMS netlists. The label of
-   an instance is defined from the uref of the instanciated component.
+   an instance is defined from the uref of the instantiated component.
    Be careful, this label must be unique,it is not checked anywhere. The
    entity variable is not the same as the entity-identifier, it is the
    value of the device attribute which on its part identifies the
    precompiled ENTITY of this special component.
-   Similar is the architecture variable belonging to the instanciated
+   Similar is the architecture variable belonging to the instantiated
    components ARCHITECTURE (note: one ENTITY can have more ARCHITECTURES),
-   hence we are getting it from the component attribute ARCHITECTURE
-   (newly introduced).
+   hence we are getting it from the component attribute newly introduced
+   ARCHITECTURE.
 
    All generics of the generic-list are component parameters, which
    are different from its default values (set in its ENTITY
@@ -168,8 +168,7 @@ CONTENT:
    that vams creates an ENTITY declaration of a component (save to
    <component-device>.vhdl). If there no component selected (empty
    top-attribs list) then it will be created an toplevel ENTITY of the
-   current schematic (save to
-   <value-of-toplevel-attribute-entity>.vhdl).
+   current schematic (save to <value-of-toplevel-attribute-entity>.vhdl).
 
 
      LIBRARY <library-identifier>{,<library-identifier>};
@@ -231,10 +230,10 @@ CONTENT:
    1.3. AUTOMATING gnetlist CALLS
 
    Because it is very arduous to type the whole gnetlist command,
-   which all its parameters, per hand into the terminal, we are
-   implement an automatisation of this process in gEDA gschem. This
-   makes it possible to create a VHDL-AMS ARCHITECTURE or ENTITY
-   whitout any commandline actions. The only thing you must do, is to
+   which all its parameters, per hand into the terminal, we have
+   implemented an automatisation of this process in gEDA gschem.
+   This makes it possible to create a VHDL-AMS ARCHITECTURE or ENTITY
+   without any commandline actions. The only thing you must do, is to
    use one of the following hotkeys:
 
 	    <g e> for generating an ENTITY
@@ -328,7 +327,7 @@ CONTENT:
 
    2.1.1.3 HELPFULLY SETTING IN THE gEDA gschem ENVIRONMENT
 
-   This settings are not absolutly necessary, but they makes work
+   This settings are not absolutly necessary, but they make work
    easier.
 
 	- set in .gEDA/gschemrc or wherever you want, but place it
