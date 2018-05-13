@@ -9,6 +9,8 @@
     * src/s_netlist.c: Remove unnecessary initialization of nl_iter in function
       s_netlist_print.
 
+    * src/vams_misc.c: Reformat DOxygen blocks, update spelling.
+
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Rename temp_netname -> tmp_netname in function
