@@ -6,7 +6,10 @@
       to define hotkeys for "generate-entity" and "generate-netlist", add comments
       comment-out setting keywords which would already be set by default.
 
-    * scheme/gnet-vams.scm: Replace string-prefix=? with string-prefix?.
+    * scheme/gnet-vams.scm: Replace string-prefix=? with string-prefix?, revise
+      vams:generate-generic-list and vams:get-urefto assign the string value of
+      the symbol and update the starting substring position, seems to work
+      better.
 
 2018-05-12 Wiley E. Hill <wileyhill@gmail.com>
 

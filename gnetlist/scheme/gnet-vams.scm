@@ -989,25 +989,27 @@
 (define vams:generate-generic-list
   (lambda (ls)
     (if (null? ls)
-        '()
-        (append
-             (list
-              (if (string-index (car ls) #\=)
-                  (list
-                   (substring (car ls) 0 (string-rindex (car ls) #\= 0))
-                   (substring (car ls) (+ (string-rindex (car ls) #\= 0)
-           (if (not (or (string-prefix? "refdes=" (car ls))
-                        (string-prefix? "source=" (car ls))
-                        (string-prefix? "architecture=" (car ls))))
+       '()
+        (let ((refdes (symbol->string (car ls))))
+          (append
+           (if (not (or (string-prefix? "refdes=" refdes)
+                        (string-prefix? "source=" refdes)
+                        (string-prefix? "architecture=" refdes)))
+               (list
+                (if (string-index refdes #\=)
+                    (list
+                     (substring refdes 0 (string-rindex refdes #\= 0))
+                     (substring refdes (+ (string-rindex refdes #\= 0)
                                           (if (equal? (string-ref
-                                                       (car ls)
-                                                       (1+ (string-rindex (car ls) #\= 0)))
+                                                       refdes
+                                                       (1+ (string-rindex refdes #\= 0)))
                                                        #\?)
-                                              2 1))
-                              (string-length (car ls))))
-                  (car ls)))
-             '())
-         (vams:generate-generic-list (cdr ls))))))
+                                            2 1))
+                                (string-length refdes)))
+                    refdes))
+               '())
+           (vams:generate-generic-list (cdr ls)))
+        ))))
 
 
 
@@ -1040,9 +1042,8 @@
       (if (null? liste)
           '()
           (if (string-prefix? "refdes=" (symbol->string (car liste)))
-              (begin
-                (append (substring (car liste) 5
-                                   (string-length (car liste)))))
+              (let ((refdes (symbol->string (car liste))))
+                (append (substring refdes 8 (string-length refdes))))
               (vams:get-uref (cdr liste)))))))
 
 
