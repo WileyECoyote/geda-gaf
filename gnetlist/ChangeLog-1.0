@@ -1,3 +1,7 @@
+2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-vams.scm: Replace string-prefix=? with string-prefix?.
+
 2018-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netattrib.c: Redo s_netattrib_extract_netname with version that

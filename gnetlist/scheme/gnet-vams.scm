@@ -991,14 +991,14 @@
     (if (null? ls)
         '()
         (append
-         (if (not (or (string-prefix=? "refdes=" (car ls))
-                      (string-prefix=? "source=" (car ls))
-                      (string-prefix=? "architecture=" (car ls))))
              (list
               (if (string-index (car ls) #\=)
                   (list
                    (substring (car ls) 0 (string-rindex (car ls) #\= 0))
                    (substring (car ls) (+ (string-rindex (car ls) #\= 0)
+           (if (not (or (string-prefix? "refdes=" (car ls))
+                        (string-prefix? "source=" (car ls))
+                        (string-prefix? "architecture=" (car ls))))
                                           (if (equal? (string-ref
                                                        (car ls)
                                                        (1+ (string-rindex (car ls) #\= 0)))
@@ -1039,7 +1039,7 @@
     (begin
       (if (null? liste)
           '()
-          (if (string-prefix=? "refdes=" (symbol->string (car liste)))
+          (if (string-prefix? "refdes=" (symbol->string (car liste)))
               (begin
                 (append (substring (car liste) 5
                                    (string-length (car liste)))))
