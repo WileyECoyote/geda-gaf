@@ -122,7 +122,7 @@
 (define which-source-file
   (lambda (top-attribs)
     (if (not (null? top-attribs))
-	(if (string-prefix=? "source=" (car top-attribs))
+	(if (string-prefix? "source=" (car top-attribs))
 	    (begin
 	      (append (substring (car top-attribs) 7
 				 (string-length (car top-attribs)))))
