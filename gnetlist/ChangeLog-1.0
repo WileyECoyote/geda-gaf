@@ -1,5 +1,11 @@
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/vams/vams_mode.txt: Update spelling/grammar, somewhat.
+
+    * examples/vams/gschemrc: Scrap define global-keymap and just use map-keys
+      to define hotkeys for "generate-entity" and "generate-netlist", add comments
+      comment-out setting keywords which would already be set by default.
+
     * scheme/gnet-vams.scm: Replace string-prefix=? with string-prefix?.
 
 2018-05-12 Wiley E. Hill <wileyhill@gmail.com>
