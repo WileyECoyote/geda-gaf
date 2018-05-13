@@ -12,7 +12,7 @@ gsym-attribute \- gEDA-gaf Symbol File Attribute Manipulator Utility
 Sets or retrieve the value of a Text attribute in a symbol file
 
 .SH QUICK
-.B usage: [-h] | [Options] [-a] attibute -i <inputfile> [[-o] <outputfile> ]
+.B usage: [-h] | [Options] [-a] attribute -i <inputfile> [[-o] <outputfile> ]
 
 ex. 1) Set the footprint in all symbol files in the current directory to SO8:
 
@@ -45,7 +45,7 @@ Optional font size.
 .SH DIRECTIVES
 .IP "-f, --force"
 When the force option is specified existing file matching the output name will be over-written, without any warning.
-.IP "-a, --attibute"
+.IP "-a, --attribute"
 The Attribute to be queried or set.
 .IP "-d, --hidden"
 When creating an attribute, set the visibility flag to invisible. If the -l option is used and a matching attribute

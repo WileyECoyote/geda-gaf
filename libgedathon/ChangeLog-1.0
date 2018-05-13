@@ -1,3 +1,7 @@
+2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gsym-attribute.1.in: Fix spelling/typo; attibute->attribute;
+
 2018-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/es.po: Update Spanish translations.
