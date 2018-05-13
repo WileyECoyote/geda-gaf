@@ -15,7 +15,7 @@ CONTENT:
    1. Functionality
       1. ARCHITECTURE generation
       2. ENTITY generation
-      3. automatisate gnetlist calls
+      3. AUTOMATING gnetlist calls
 
    2. Implementation
       1. the vams mode of gEDA gnetlist
@@ -228,7 +228,7 @@ CONTENT:
 
    ===================================================================
 
-   1.3. AUTOMATISATING gnetlist CALLS
+   1.3. AUTOMATING gnetlist CALLS
 
    Because it is very arduous to type the whole gnetlist command,
    which all its parameters, per hand into the terminal, we are
