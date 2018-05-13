@@ -186,7 +186,7 @@ DONE	Fix the color scheme and make it flexable.
 OKAY	Figure out if you want the net draw/add action to end when you draw
 	a zero length net (configureable?) 
 
-DONE	Check and see what we are doing with invisible attibutes, if we are
+DONE	Check and see what we are doing with invisible attributes, if we are
 	rendering them or not (to speed things up), fixed by NOT creating
 	the attribute (or text)
 
