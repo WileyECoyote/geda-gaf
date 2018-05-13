@@ -39,7 +39,7 @@
 			 ".vhdl")))
 
       ;;generating the complex gnetlist command
-      (display (getenv 'PWD))
+      (display (getenv "PWD"))
       (set! command "gnetlist")
       (set! command (string-append command " -o " vhdl-path "/" target-file))
       (set! command (string-append command " -g vams " source-file))

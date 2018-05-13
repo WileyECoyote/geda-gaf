@@ -1,6 +1,8 @@
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/generate_netlist.scm: Replace string-prefix=? with string-prefix?.
+      Revise generate-netlist to pass a string to getenv instead of a string
+      symbol.
 
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
