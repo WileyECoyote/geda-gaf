@@ -63,7 +63,7 @@
            ;; search all ports of a schematic. for entity generation only.
            (port-list  (vams:generate-port-list (vams:get-uref top-attribs)))
 
-           ;; search all generic of a schematic. for entity generatin only.
+           ;; search all generic of a schematic. for entity generation only.
            (generic-list (vams:generate-generic-list top-attribs)))
 
 
