@@ -322,7 +322,7 @@ int add_attributes = 0;    /* keep track of whether we are adding attributes */
                      /* to some previous object */
 int pin_attributes = 0;    /* when true, we are adding attributes to a pin */
 int net_attributes = 0;    /* when true, we are adding atrributes to a net */
-int complex_attributes = 0;/* when true, we are adding attibutes to a complex*/
+int complex_attributes = 0;/* when true, we are adding attributes to a complex*/
 int pin_count      = 0;    /* to keep track of the number of pins */
 int reading_net    = 0;    /* used to keep track of when we are reading a net*/
 int segment_count  = 0;    /* the number of net segments read for a net */
@@ -2021,7 +2021,7 @@ reset_attributes(void)
                    /* to some previous object */
   pin_attributes = 0;    /* when true, we are adding attributes to a pin */
   net_attributes = 0;    /* when true, we are adding atrributes to a net */
-  complex_attributes = 0;/* when true, we are addint attibutes to a complex */
+  complex_attributes = 0;/* when true, we are addint attributes to a complex */
 }
 
 /* read a string possibly containing continuation characters
