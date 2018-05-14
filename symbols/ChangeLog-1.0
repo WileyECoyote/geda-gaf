@@ -8,6 +8,9 @@
     * fairchild/BAT54C-2.sym: Add symbol; dual Schottky diode with
       alternate style.
 
+    * lineartech/LT4412-1.sym: Add symbol; kind of high side or-ing
+      FET controller.
+
 2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega32U4-AU-2.sym: Add symbol with alternate pin layout.
