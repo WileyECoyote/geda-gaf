@@ -36,9 +36,9 @@
 
 ;;;   Write structural VAMS representation of the schematic
 
-;;;   absolutly toplevel function of gEDA gnelist vams mode.
-;;;   its evaluate things like output-file, generate-mode, top-attribs
-;;;   and starts the major subroutines.
+;;;   Absolute toplevel function of gEDA gnelist vams mode. This
+;;;   routine evaluates things like output-file, generate-mode,
+;;;   top-attribs and starts the major subroutines.
 
 (define vams
   (lambda (output-filename)
