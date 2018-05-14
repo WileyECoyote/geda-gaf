@@ -654,7 +654,7 @@ function reset_attributes() {
                          # to some previous object
   pin_attributes = 0;    # when true, we are adding attributes to a pin
   net_attributes = 0;    # when true, we are adding atrributes to a net
-  complex_attributes = 0; # when true, we are addint attibutes to a complex
+  complex_attributes = 0; # when true, we are addint attributes to a complex
   pin_count      = 0;    # to keep track of the number of pins
 
 }
