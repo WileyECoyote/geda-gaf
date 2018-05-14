@@ -1,3 +1,7 @@
+2018-05-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/header/header4-2.sym: Add double row header symbol.
+
 2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega32U4-AU-2.sym: Add symbol with alternate pin layout.
