@@ -5,6 +5,9 @@
     * fairchild/BAT54C-1.sym: Add symbol; dual Schottky diode with
       common cathode.
 
+    * fairchild/BAT54C-2.sym: Add symbol; dual Schottky diode with
+      alternate style.
+
 2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega32U4-AU-2.sym: Add symbol with alternate pin layout.
