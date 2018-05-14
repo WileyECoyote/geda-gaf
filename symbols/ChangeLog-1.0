@@ -13,6 +13,8 @@
 
     * lineartech/LT4412-2.sym: Add symbol with alternate pin layout.
 
+    * ti/micro/TM4C1230C3PM-1.sym: Tiva C Series Microcontroller.
+
 2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/ATMega32U4-AU-2.sym: Add symbol with alternate pin layout.
