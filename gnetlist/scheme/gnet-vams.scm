@@ -130,7 +130,7 @@
                  (vams:write-primary-unit (get-device (vams:get-uref top-attribs))
                                           port-list
                                           generic-list)
-                 (vams:write-primary-unit  entity port-list generic-list))
+                 (vams:write-primary-unit entity port-list generic-list))
 
              (close-output-port (current-output-port)))))))
 
