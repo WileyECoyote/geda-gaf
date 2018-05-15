@@ -7,22 +7,22 @@ L 1000 200 700 0 3 0 0 0 -1 -1
 L 1000 400 1000 0 3 0 0 0 -1 -1
 P 400 200 600 200 1 0 0
 {
-T 200 450 5 3 0 0 0 0 1
+T 300 450 5 3 0 0 0 0 1
 pinnumber=ANODE
-T 200 450 5 3 0 0 0 0 1
-pinseq=1
 T 300 400 5 3 0 0 0 0 1
+pinseq=1
+T 300 350 5 3 0 0 0 0 1
 port_object=terminal
 T 300 300 5 3 0 0 0 0 1
 port_type=electrical
 }
 P 1300 200 1100 200 1 0 0
 {
-T 1100 450 5 3 0 0 0 0 1
-pinnumber=KATHODE
-T 1100 450 5 3 0 0 0 0 1
-pinseq=2
 T 1200 400 5 3 0 0 0 0 1
+pinnumber=KATHODE
+T 1200 250 5 3 0 0 0 0 1
+pinseq=2
+T 1200 350 5 3 0 0 0 0 1
 port_object=terminal
 T 1200 300 5 3 0 0 0 0 1
 port_type=electrical
