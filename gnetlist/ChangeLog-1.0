@@ -2,6 +2,9 @@
 
     * examples/vams/sch/simple_trans.sch: Adjust attribute positions.
 
+    * examples/vams/sch/transitest.sch: Adjust attribute positions, promote
+      BJT1 device attribute.
+
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/vams/vams_mode.txt: Update spelling/grammar, somewhat.
