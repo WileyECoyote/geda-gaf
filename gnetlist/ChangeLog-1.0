@@ -5,7 +5,8 @@
     * examples/vams/sch/transitest.sch: Adjust attribute positions.
 
     * examples/vams/sym/BJT_transistor_simple.sym: Adjust attribute positions,
-      change refdes; BJT_TRA -> BJT?.
+      change refdes; BJT_TRA -> BJT?, add pinlabel attributes for the base
+      emitter and collector.
 
     * examples/vams/sym/gnd_node.sym: Adjust attribute positions.
 

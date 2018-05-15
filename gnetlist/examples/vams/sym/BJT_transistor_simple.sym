@@ -11,6 +11,8 @@ T 450 700 5 3 0 0 0 0 1
 port_type=electrical
 T 450 750 5 3 0 0 0 0 1
 port_object=terminal
+T 450 850 5 3 0 0 0 0 1
+pinlabel=base
 }
 P 1200 1100 1200 900 1 0 0
 {
@@ -22,6 +24,8 @@ T 1300 1000 5 3 0 0 0 0 1
 port_type=electrical
 T 1300 1050 5 3 0 0 0 0 1
 port_object=terminal
+T 1300 1150 5 3 0 0 0 0 1
+pinlabel=collector
 }
 P 1200 300 1200 100 1 0 1
 {
@@ -33,6 +37,8 @@ T 1300 200 5 3 0 0 0 0 1
 pinseq=3
 T 1300 100 5 3 0 0 0 0 1
 port_object=terminal
+T 1300 0 5 3 0 0 0 0 1
+pinlabel=emitter
 }
 L 900 750 1200 900 3 0 0 0 -1 -1
 L 900 450 1200 300 3 0 0 0 -1 -1
