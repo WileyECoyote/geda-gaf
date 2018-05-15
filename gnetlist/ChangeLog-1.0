@@ -2,8 +2,10 @@
 
     * examples/vams/sch/simple_trans.sch: Adjust attribute positions.
 
-    * examples/vams/sch/transitest.sch: Adjust attribute positions, promote
-      BJT1 device attribute.
+    * examples/vams/sch/transitest.sch: Adjust attribute positions.
+
+    * examples/vams/sym/BJT_transistor_simple.sym: Adjust attribute positions,
+      change refdes; BJT_TRA -> BJT?.
 
     * examples/vams/sym/gnd_node.sym: Adjust attribute positions.
 
