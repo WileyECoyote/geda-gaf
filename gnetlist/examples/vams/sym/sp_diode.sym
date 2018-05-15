@@ -15,6 +15,8 @@ T 300 350 5 3 0 0 0 0 1
 port_object=terminal
 T 300 300 5 3 0 0 0 0 1
 port_type=electrical
+T 300 500 5 3 0 0 0 0 1
+pinlabel=anode
 }
 P 1300 200 1100 200 1 0 0
 {
@@ -26,6 +28,8 @@ T 1200 350 5 3 0 0 0 0 1
 port_object=terminal
 T 1200 300 5 3 0 0 0 0 1
 port_type=electrical
+T 1200 450 5 3 0 0 0 0 1
+pinlabel=kathode
 }
 L 1100 200 1000 200 3 0 0 0 -1 -1
 L 700 200 600 200 3 0 0 0 -1 -1

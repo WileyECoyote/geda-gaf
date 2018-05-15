@@ -10,7 +10,8 @@
 
     * examples/vams/sym/gnd_node.sym: Adjust attribute positions.
 
-    * examples/vams/sym/sp_diode.sym: Adjust attribute positions.
+    * examples/vams/sym/sp_diode.sym: Adjust attribute positions, add pinlabel
+      attributes for the anode and kathode.
 
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
