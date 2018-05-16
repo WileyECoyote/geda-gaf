@@ -2,6 +2,9 @@
 
     * examples/vams/sym/resistor.sym: Adjust attribute positions.
 
+    * src/s_netlist.c: Remove unneeded conditional to check if nl_iter is
+      non NULL in s_netlist_print
+
 2018-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/vams/sch/simple_trans.sch: Adjust attribute positions.

@@ -331,10 +331,6 @@ void s_netlist_print(NETLIST *nl_current)
 
   nl_iter = nl_current;
 
-  if (nl_iter == NULL) {
-    return;
-  }
-
   while (nl_iter != NULL) {
 
     if (nl_iter->nlid != -1) {
