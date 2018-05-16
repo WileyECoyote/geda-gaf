@@ -459,8 +459,3 @@ msgstr ""
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""
 "Обнаружено возможно бесконечное число подключений для вывода/соединения\n"
-
-#~ msgid "WARNING: Found label=%s. label= is deprecated, please use netname=\n"
-#~ msgstr ""
-#~ "ПРЕДУПРЕЖДЕНИЕ: Найден атрибут «label=%s». Использовать «label» не "
-#~ "рекомендуется, вместо него следует использовать «netname».\n"
