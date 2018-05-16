@@ -503,10 +503,12 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
       unnamed_counter = &unnamed_net_counter;
       unnamed_string = pr_current->unnamed_netname;
       break;
+
     case PIN_BUS_NODE:
       unnamed_counter = &unnamed_bus_counter;
       unnamed_string = pr_current->unnamed_busname;
       break;
+
     default:
       fprintf (stderr, "%s: unhandled case node type %i\n", __func__, node_type);
       return NULL;
