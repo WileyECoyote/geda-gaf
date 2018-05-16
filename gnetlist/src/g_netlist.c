@@ -585,9 +585,11 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 
     if (nl_current->component_uref) {
       if (strcmp(nl_current->component_uref, uref) == 0) {
-        char *value =
-        geda_attrib_search_object_by_name (nl_current->object_ptr,
-                                           wanted_attrib, 0);
+
+        char *value;
+
+        value = geda_attrib_search_object_by_name (nl_current->object_ptr,
+                                                   wanted_attrib, 0);
 
         ret = scm_cons (value ? scm_from_utf8_string (value) : SCM_BOOL_F, ret);
 
