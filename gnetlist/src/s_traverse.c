@@ -166,7 +166,7 @@ void s_traverse_process(GedaToplevel *pr_current)
   s_netlist_name_named_nets (pr_current, netlist_head, graphical_netlist_head);
 
   if (verbose_mode) {
-    printf (_("\nInternal netlist representation:\n\n"));
+    printf ("\n%s:\n\n", _("Internal netlist representation:"));
     s_netlist_print (netlist_head);
   }
 

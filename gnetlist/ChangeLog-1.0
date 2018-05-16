@@ -8,6 +8,9 @@
     * src/s_netlist.c: Remove unneeded conditional to check if nl_iter is
       non NULL in s_netlist_print
 
+    * gnetlist/src/s_traverse.c: Revise message string s_traverse_process
+      to avoid unnecessary formatting characters in translation string.
+
 2018-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/vams/sch/simple_trans.sch: Adjust attribute positions.
