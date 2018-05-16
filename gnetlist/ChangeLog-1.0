@@ -1,3 +1,7 @@
+2018-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples/vams/sym/resistor.sym: Adjust attribute positions.
+
 2018-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/vams/sch/simple_trans.sch: Adjust attribute positions.
