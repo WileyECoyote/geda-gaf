@@ -1,5 +1,7 @@
 2018-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples/vams/commonrc: Remove use-module ice-9.
+
     * examples/vams/sym/resistor.sym: Adjust attribute positions.
 
     * gnetlist/src/s_net.c: Replace g_critical with fprintf for unhandled
