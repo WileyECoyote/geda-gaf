@@ -508,7 +508,7 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
       unnamed_string = pr_current->unnamed_busname;
       break;
     default:
-      g_critical (_("s_net_name: incorrect node type %i\n"), node_type);
+      fprintf (stderr, "%s: unhandled case node type %i\n", __func__, node_type);
       return NULL;
   }
 

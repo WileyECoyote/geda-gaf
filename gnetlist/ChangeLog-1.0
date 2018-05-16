@@ -2,6 +2,9 @@
 
     * examples/vams/sym/resistor.sym: Adjust attribute positions.
 
+    * gnetlist/src/s_net.c: Replace g_critical with fprintf for unhandled
+      case in s_net_name.
+
     * src/s_netlist.c: Remove unneeded conditional to check if nl_iter is
       non NULL in s_netlist_print
 
