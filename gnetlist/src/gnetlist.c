@@ -364,8 +364,8 @@ void main_prog(void *closure, int argc, char *argv[])
     s_traverse_process (pr_current);
 
     /* Change back to the directory where we started AGAIN. This is done
-     * because the call to geda_struct_page_goto in s_hierarchy_traverse could have
-     * changed the current working directory. */
+     * because the call to geda_struct_page_goto in s_hierarchy_traverse
+     * could have changed the current working directory. */
     if (chdir (cwd)) {
       /* Error occured with chdir */
       gnetlist_show_strerror(_("System could not change to directory"), cwd);
