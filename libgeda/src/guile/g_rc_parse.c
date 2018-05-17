@@ -534,10 +534,11 @@ void g_rc_parse_gafrc_handler (const char *dummy,
 void g_rc_parse_rcname_handler (const char *rcname,
                                 ConfigParseErrorFunc handler, void *user_data)
 {
-  GError *err = NULL;
-
   /* Application-specific rcname. */
   if (rcname != NULL) {
+
+    GError *err = NULL;
+
     g_rc_parse_system (rcname, &err);       HANDLER_DISPATCH;
     g_rc_parse_user   (rcname, &err);       HANDLER_DISPATCH;
     g_rc_parse_local  (rcname, NULL, &err); HANDLER_DISPATCH;
@@ -560,13 +561,12 @@ void g_rc_parse_rcname_handler (const char *rcname,
 void g_rc_parse_rcfile_handler (const char *rcfile,
                                 ConfigParseErrorFunc handler, void *user_data)
 {
-  GError *err = NULL;
-
   /* Finally, optional additional RC file.  Specifically use the current
    * working directory's configuration context here, no matter where the
    * rc file is located on disk. */
   if (rcfile != NULL) {
 
+    GError *err = NULL;
     EdaConfig *cwd_cfg = eda_config_get_context_for_file (NULL);
 
     g_rc_parse_file (rcfile, cwd_cfg, &err); HANDLER_DISPATCH;

@@ -5,6 +5,11 @@
       NULL or g_path_is_absolute returns FALSE, which would happen if the
       path is only a file name.
 
+    * src/guile/g_rc_parse.c: Reduce the scope of GError in functions:
+
+          * g_rc_parse_rcname_handler
+          * g_rc_parse_rcfile_handler
+
 2018-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Wrap blurbs for parent and trusted properties
