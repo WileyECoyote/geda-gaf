@@ -1025,7 +1025,7 @@
             (for-each (lambda (pin)
                         (append! port-list
                                  (list (list pin
-                                             (get-attribute-by-pinnnumber uref pin "port_object")
+                                             (get-attribute-by-pinnumber uref pin "port_object")
                                              (get-attribute-by-pinnumber uref pin "port_type")
                                              (get-attribute-by-pinnumber uref pin "port_mode")))))
                       (get-pins uref))

@@ -7,7 +7,8 @@
       and relocate loading of generate_netlist.scm.
 
     * scheme/gnet-vams.scm: Update the starting sub-string position for
-      the refdes value in vams:get-uref, again.
+      the refdes value in vams:get-uref, again. Fix bizzar pinnnumber in
+      vams:generate-port-list.
 
 2018-05-17 Roland Lutz <rlutz@hedmen.org>
 
