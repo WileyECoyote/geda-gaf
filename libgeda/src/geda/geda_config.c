@@ -790,8 +790,11 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
 #endif
 
-    cwd = NULL;
+    if (!ptr) {
+      ptr = geda_strdup(path);
+    }
 
+    cwd = NULL;
   }
   else {
     ptr = cwd = getcwd(0,0);

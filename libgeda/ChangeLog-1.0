@@ -1,3 +1,10 @@
+2018-05-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Revise eda_config_get_context_for_file to
+      conditionally set the ptr to a copy of the path when realpath returns
+      NULL or g_path_is_absolute returns FALSE, which would happen if the
+      path is only a file name.
+
 2018-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Wrap blurbs for parent and trusted properties
