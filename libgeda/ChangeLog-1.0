@@ -3,7 +3,12 @@
     * src/geda/geda_config.c: Revise eda_config_get_context_for_file to
       conditionally set the ptr to a copy of the path when realpath returns
       NULL or g_path_is_absolute returns FALSE, which would happen if the
-      path is only a file name.
+      path is only a file name and when the path is not pointing to a
+      directory, look for the file in the current and parent directories,
+      and this allows eda_config_get_context_for_file to find configuration
+      files other than geda-conf, specifically rc files. This seems only
+      to extent the functionality and does not appear to interfere with
+      the current functionality.
 
     * src/guile/g_rc_parse.c: Reduce the scope of GError in functions:
 

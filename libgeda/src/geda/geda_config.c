@@ -802,18 +802,33 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
   if (ptr != NULL) {
 
+    char *cfg_name;
     char *file;
     char *root;
 
     /* Find the project root, and the corresponding configuration filename. */
     if (!g_file_test (ptr, G_FILE_TEST_IS_DIR)) {
+      cfg_name = basename(ptr);
       ptr = dirname (ptr);                        /* strip the filename */
+    }
+    else {
+      cfg_name = NULL;
     }
 
     /* traverse path looking for figs */
-    root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE);
+    if (cfg_name) {
 
-    file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE, NULL);
+      if (!cwd) {
+        cwd = getcwd(0,0);
+      }
+
+      root = eda_config_find_project_root (cwd, cfg_name);
+      file = g_build_filename(root, DIR_SEPARATOR_S, cfg_name, NULL);
+    }
+    else {
+      root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE);
+      file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE, NULL);
+    }
 
     /* If there is already a context available for this file, return that.
      * Otherwise, create a new context and record it in the global state. */
@@ -821,14 +836,16 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
     if (config == NULL) {
 
-      /* Before creating a new fig, check for alternate (old) rc file */
-      g_free (root);
-      g_free (file);
+      if (!g_file_test(file, G_FILE_TEST_EXISTS)) {
 
-      /* traverse path looking for figs */
-      root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE_ALT);
+        /* Before creating a new fig, check for alternate (old) rc file */
+        g_free (root);
+        g_free (file);
 
-      file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE_ALT, NULL);
+        /* traverse path looking for figs */
+        root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE_ALT);
+        file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE_ALT, NULL);
+      }
 
       config = g_hash_table_lookup (local_contexts, file);
 
