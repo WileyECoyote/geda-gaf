@@ -1043,7 +1043,7 @@
           '()
           (if (string-prefix? "refdes=" (symbol->string (car liste)))
               (let ((refdes (symbol->string (car liste))))
-                (append (substring refdes 8 (string-length refdes))))
+                (append (substring refdes 7 (string-length refdes))))
               (vams:get-uref (cdr liste)))))))
 
 

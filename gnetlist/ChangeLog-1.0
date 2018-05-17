@@ -6,6 +6,9 @@
     * examples/vams/gschemrc: Cleanup file; remove reference to ice-9
       and relocate loading of generate_netlist.scm.
 
+    * scheme/gnet-vams.scm: Update the starting sub-string position for
+      the refdes value in vams:get-uref, again.
+
 2018-05-17 Roland Lutz <rlutz@hedmen.org>
 
     * gnet-switcap.scm: WEH: Modified per commit to Master branch by
@@ -51,7 +54,7 @@
       comment-out setting keywords which would already be set by default.
 
     * scheme/gnet-vams.scm: Replace string-prefix=? with string-prefix?, revise
-      vams:generate-generic-list and vams:get-urefto assign the string value of
+      vams:generate-generic-list and vams:get-uref to assign the string value of
       the symbol and update the starting substring position, seems to work
       better.
 
