@@ -1,3 +1,9 @@
+2018-05-17 Roland Lutz <rlutz@hedmen.org>
+
+    * gnet-switcap.scm: WEH: Modified per commit to Master branch by
+      Roland Lutz, commit d54fbc43a89b7ff1e349855380a53cdefaa8d055:
+      gnetlist: Fix `switcap' backend.
+
 2018-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/vams/commonrc: Remove use-module ice-9.
