@@ -3,6 +3,9 @@
     * examples/vams/gnetlistrc: Cleanup file; remove reference to ice-9
       and unnecessary loading of gnet-vams.scm.
 
+    * examples/vams/gschemrc: Cleanup file; remove reference to ice-9
+      and relocate loading of generate_netlist.scm.
+
 2018-05-17 Roland Lutz <rlutz@hedmen.org>
 
     * gnet-switcap.scm: WEH: Modified per commit to Master branch by

@@ -1,26 +1,21 @@
 (load "./commonrc")
-
-;;(define-module (ice-9 ls) :use-module (ice-9 common-list)
-;;			  :use-module (ice-9 string-fun))
+(load (string-append examples-path "/../../../gschem/scheme/generate_netlist.scm"))
 
 (use-modules (gschem keymap))
 
 (map-keys "G E" "generate-entity")
 (map-keys "G N" "generate-netlist")
 
-
-;(attribute-promotion "enabled")  ;; Default in system-gafrc is "enabled"
-(promote-invisible "enabled")     ;; Default is disabled
-;(keep-invisible "enabled")       ;; Default in system-gafrc is "enabled"
-(enforce-hierarchy "disabled")    ;; Normally enabled
+(attribute-promotion "enabled")     ;; Default in system-gafrc is "enabled"
+(promote-invisible "enabled")       ;; Default is disable
+(keep-invisible "enabled")          ;; Default in system-gafrc is "enabled"
+(enforce-hierarchy "disabled")      ;; Normally enabled
 
 (attribute-name "port_object")
 (attribute-name "port_type")
 (attribute-name "port_mode")
 (attribute-name "entity")
 (attribute-name "architecture")
-
-(load (string-append examples-path "/../../../gschem/scheme/generate_netlist.scm"))
 
 (define vhdl-path (string-append examples-path "/vhdl/new-vhdl"))
 
