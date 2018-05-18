@@ -274,7 +274,7 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
  *  hierarchy_uref_separator, with the order determined by the
  *  toplevel variable hierarchy_uref_order, provided both arguments
  *  are supplied, if \a hierarchy_tag is NULL a copy of \a basename
- *  is returned, if \a basename is NULL, the NULL is returned.
+ *  is returned, if \a basename is NULL, then NULL is returned.
  *
  *  \param [in] pr_current    GedaToplevel toplevel structure;
  *  \param [in] basename      Is the value of refdes=,
