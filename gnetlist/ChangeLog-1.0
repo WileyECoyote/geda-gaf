@@ -1,5 +1,8 @@
 2018-05-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples/vams/vhdl/new-vhdl/bjt_transistor_simple_top.vhdl: Update
+      file with output from actual working system.
+
     * src/gnetlist.c: Pass "gnetlistrc" as third argument to g_rc_parse
       when rc_filename is not set, the command-line current does not
       support setting rc_filename.
