@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-04-23 01:47-0500\n"
+"POT-Creation-Date: 2018-05-18 04:04-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -28,11 +28,11 @@ msgstr "get-nets: недопустимое позиционное обознач
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: gnetlist/src/gnetlist.c:124
+#: gnetlist/src/gnetlist.c:123
 msgid "Can not open directory"
 msgstr "Не удалось открыть каталог"
 
-#: gnetlist/src/gnetlist.c:160
+#: gnetlist/src/gnetlist.c:159
 msgid "List of available backends"
 msgstr "Список доступных драйверов"
 
@@ -258,22 +258,22 @@ msgstr "ОШИБКА: Не удалось загрузить подсхему «
 msgid "DONE"
 msgstr ""
 
-#: gnetlist/src/s_netattrib.c:79
+#: gnetlist/src/s_netattrib.c:82
 #, c-format
 msgid "ERROR: `%s' is reserved for internal use.\n"
 msgstr "ОШИБКА: префикс «%s» зарезервирован для внутреннего использования.\n"
 
-#: gnetlist/src/s_netattrib.c:114
+#: gnetlist/src/s_netattrib.c:127
 #, c-format
 msgid "Found malformed net attribute\n"
 msgstr "Обнаружен атрибут соединения в недопустимом формате\n"
 
-#: gnetlist/src/s_netattrib.c:188
+#: gnetlist/src/s_netattrib.c:197
 #, c-format
 msgid "Found a cpinlist head with a netname! [%s]\n"
 msgstr "Найдено начало списка выводов компонента с именем соединения! «%s»\n"
 
-#: gnetlist/src/s_netattrib.c:333 gnetlist/src/s_netattrib.c:376
+#: gnetlist/src/s_netattrib.c:346 gnetlist/src/s_netattrib.c:389
 #, c-format
 msgid ""
 "Got an invalid net= attrib [net=%s]\n"
@@ -282,22 +282,17 @@ msgstr ""
 "Недопустимый атрибут «net» («net=%s»)\n"
 "В атрибуте «net» отсутствует символ «:»\n"
 
-#: gnetlist/src/s_net.c:226
+#: gnetlist/src/s_net.c:221
 #, c-format
 msgid "Missing Attributes (refdes and pin number)\n"
 msgstr "Отсутствуют атрибуты «refdes» и «pinnumber»\n"
 
-#: gnetlist/src/s_net.c:355 gnetlist/src/s_net.c:395
+#: gnetlist/src/s_net.c:350 gnetlist/src/s_net.c:390
 #, c-format
 msgid "Found duplicate net name, renaming [%s] to [%s]\n"
 msgstr "Обнаружено ещё одно имя для соединения «%s», переименование в «%s»\n"
 
-#: gnetlist/src/s_net.c:517
-#, c-format
-msgid "s_net_name: incorrect node type %i\n"
-msgstr "s_net_name: неверный тип соединения «%i»\n"
-
-#: gnetlist/src/s_net.c:541
+#: gnetlist/src/s_net.c:538
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
@@ -326,15 +321,15 @@ msgstr ""
 msgid "Removing refdes mangling"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:339
+#: gnetlist/src/s_netlist.c:338
 msgid "component"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:345
+#: gnetlist/src/s_netlist.c:344
 msgid "SPECIAL"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:350
+#: gnetlist/src/s_netlist.c:349
 msgid "Hierarchy tag"
 msgstr ""
 
@@ -415,47 +410,48 @@ msgid "U : Found a connected_to refdes which needs to be demangle\n"
 msgstr ""
 
 #: gnetlist/src/s_traverse.c:169
-#, c-format
-msgid ""
-"\n"
-"Internal netlist representation:\n"
-"\n"
+msgid "Internal netlist representation:"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:215
-#, c-format
-msgid "- Starting internal netlist creation\n"
+#: gnetlist/src/s_traverse.c:202
+msgid "Starting internal netlist creation"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:227 gnetlist/src/s_traverse.c:370
+#: gnetlist/src/s_traverse.c:214 gnetlist/src/s_traverse.c:357
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "ПРЕДУПРЕЖДЕНИЕ: Найден временный/отсутствующий компонент, может быть нет "
 "файла символа для"
 
-#: gnetlist/src/s_traverse.c:290
+#: gnetlist/src/s_traverse.c:277
 msgid "Did not find refdes or any special attributes on component!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:445
+#: gnetlist/src/s_traverse.c:432
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:559
+#: gnetlist/src/s_traverse.c:546
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:611
-#, c-format
-msgid "%s=%s. %s=\n"
+#: gnetlist/src/s_traverse.c:595
+msgid "WARNING: Found label"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:673
+#: gnetlist/src/s_traverse.c:596
+msgid "label= is deprecated, please use netname"
+msgstr ""
+
+#: gnetlist/src/s_traverse.c:660
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""
 "Обнаружено возможно бесконечное число подключений для вывода/соединения\n"
+
+#~ msgid "s_net_name: incorrect node type %i\n"
+#~ msgstr "s_net_name: неверный тип соединения «%i»\n"
