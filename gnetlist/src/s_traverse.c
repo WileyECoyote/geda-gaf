@@ -152,7 +152,7 @@ void s_traverse_process(GedaToplevel *pr_current)
 
     p_current = (Page *)iter->data;
 
-    /* only traverse pages which are toplevel, ie not underneath */
+    /* Only traverse pages which are toplevel, ie not underneath */
     if (p_current->page_control == 0) {
       pr_current->page_current = p_current;
       s_traverse_sheet (pr_current, geda_struct_page_get_objects (p_current));
