@@ -193,22 +193,10 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
   START_GEDA_PERFORMANCE
 #endif
 
-  EdaConfig   *cfg;
-  GError      *err;
   const GList *iter;
   char        *net_name;
   char        *value;
   char        *temp_uref;
-  bool         is_hierarchy;
-
-  err          = NULL;
-  cfg          = eda_config_get_context_for_file (NULL);
-  is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
-
-  if (err != NULL) {
-    is_hierarchy = TRUE;
-    g_clear_error (&err);
-  }
 
   if (verbose_mode) {
     printf(_("- Starting internal netlist creation\n"));
@@ -311,7 +299,7 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
       s_netattrib_handle (pr_current, o_current, netlist, NULL);
 
       /* Conditionally traverse any underlying schematics */
-      if (is_hierarchy) {
+      if (pr_current->hierarchy_traversal) {
         s_hierarchy_traverse (pr_current, o_current, netlist);
       }
     }

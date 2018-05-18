@@ -4,6 +4,10 @@
       when rc_filename is not set, the command-line current does not
       support setting rc_filename.
 
+    * src/s_traverse.c: Revise s_traverse_sheet to not get the NULL file
+      context to obtain the configuration setting of "traverse-hierarchy"
+      and use value of top-level hierarchy_traversal instead.
+
 2018-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples/vams/gnetlistrc: Cleanup file; remove reference to ice-9
