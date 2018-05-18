@@ -592,10 +592,10 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
       if (temp) { /* Accept the attribute here but issue notice */
 
-        const char *msg1 = "WARNING: Found label";
-        const char *msg2 = "label= is deprecated, please use netname";
+        const char *msg1 = _("WARNING: Found label");
+        const char *msg2 = _("label= is deprecated, please use netname");
 
-        printf(_("%s=%s. %s=\n"), msg1, temp, msg2);
+        printf("%s=%s. %s=\n", msg1, temp, msg2);
 
         new_net->net_name = s_hierarchy_create_netname (pr_current, temp,
                                                         hierarchy_tag);
