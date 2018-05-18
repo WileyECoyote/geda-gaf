@@ -230,7 +230,7 @@ void main_prog(void *closure, int argc, char *argv[])
    * are loaded. */
   scm_eval (pre_rc_list, scm_current_module ());
 
-  g_rc_parse (argv[0], "gnetlistrc", rc_filename);
+  g_rc_parse (argv[0], "gnetlistrc", rc_filename ? rc_filename : "gnetlistrc");
 
   /* create log file right away */
   /* WEH: even if logging is not enabled */
