@@ -199,7 +199,7 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
   char        *temp_uref;
 
   if (verbose_mode) {
-    printf(_("- Starting internal netlist creation\n"));
+    printf("- %s\n", _("Starting internal netlist creation"));
   }
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {

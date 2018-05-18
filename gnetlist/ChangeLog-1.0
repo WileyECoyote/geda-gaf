@@ -12,7 +12,8 @@
 
     * src/s_traverse.c: Revise s_traverse_sheet to not get the NULL file
       context to obtain the configuration setting of "traverse-hierarchy"
-      and use value of top-level hierarchy_traversal instead.
+      and use value of top-level hierarchy_traversal instead. Remove hyphen
+      and formatting characters from translatable string.
 
 2018-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
