@@ -278,7 +278,7 @@ bool geda_utility_string_isalnum (const char *str)
  * \param [in] str1 is the string to be search
  * \param [in] str2 is the string to search for
  *
- * \retval char* to the first occurance of str2 in str2 or
+ * \retval char* to the first occurance of str2 in str1 or
  *               NULL if str2 is not contained in str1.
  *
  * \sa geda_utility_string_stristr
