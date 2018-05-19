@@ -2,6 +2,8 @@
 
     * src/geda/geda_config.c: Revise eda_config_get_context_for_file to not
       set ptr to a copy of path if path ends in a directory separator.
+      Revise eda_config_load to not ignore gafrc because it was explicitly
+      requested to load the file.
 
 2018-05-17 Wiley E. Hill <wileyhill@gmail.com>
 

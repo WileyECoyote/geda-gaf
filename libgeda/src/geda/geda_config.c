@@ -986,7 +986,7 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
       fprintf(stderr, _("Error loading configuration, file name is undefined\n"));
     }
   }
-  else if (strstr(filename, LOCAL_CONFIG_FILE_ALT)) {
+  /*else if (strstr(filename, LOCAL_CONFIG_FILE_ALT)) {
 
     if(error != NULL) {
 
@@ -997,7 +997,7 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
       fprintf(stderr, "%s %s, %s\n", _("Not loading configuration"),
               filename, strerror(errno));
     }
-  }
+  }*/
   else {
 
     int key_file_flags = G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS;
