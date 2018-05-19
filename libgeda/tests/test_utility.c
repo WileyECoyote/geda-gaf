@@ -1303,13 +1303,13 @@ int test_strings (void)
   /* === Function 16: geda_utility_string_stristr === */
 
   value = geda_stristr(NULL, "dog");
-  if (!value < 0) {                       /* NULL input */
+  if (value) {                            /* NULL input */
     fprintf(stderr, "FAILED: (U061600A) geda_stristr <%d>\n", value);
     result++;
   }
 
   value = geda_stristr("fox", NULL);
-  if (!value < 0) {                       /* NULL input */
+  if (value) {                            /* NULL input */
     fprintf(stderr, "FAILED: (U061600B) geda_stristr <%d>\n", value);
     result++;
   }
@@ -1321,7 +1321,7 @@ int test_strings (void)
   }
 
   value = geda_stristr(str_120, "Dog");
-  if (!value < 0) {                       /* Dog not in str_120 */
+  if (value) {                            /* Dog not in str_120 */
     fprintf(stderr, "FAILED: (U061602) geda_stristr <%d>\n", value);
     result++;
   }
