@@ -1,7 +1,7 @@
 2018-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_utility.c: Revise conditionals geda_stristr checks because
-      not operator was apllied to the left side.
+    * tests/test_utility.c: Revise conditionals in checks for geda_stristr
+      because the not operator was only apllied to the left side.
 
     * src/geda/geda_config.c: Revise eda_config_get_context_for_file to not
       set ptr to a copy of path if path ends in a directory separator.

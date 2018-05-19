@@ -1391,16 +1391,16 @@ int test_strings (void)
     result++;
   }
 
-  errno = 0; /* Reset*/
+  errno = 0; /* Reset */
 
- /* equal, same length, index more than string okay*/
+ /* equal, same length, index more than string okay */
   value = geda_strncmpi(str1, str1, 99);  /* equal */
   if (value != 0) {
     fprintf(stderr, "FAILED: (U061801) geda_strncmpi <%d>\n", value);
     result++;
   }
 
-  /* equal, not same length, index more than string not okay*/
+  /* equal, not same length, index more than string not okay */
   value = geda_strncmpi(str1, str4, 99);  /* not equal */
   if (value != 1) {
     fprintf(stderr, "FAILED: (U061802) geda_strncmpi <%d>\n", value);
