@@ -791,7 +791,14 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 #endif
 
     if (!ptr) {
-      ptr = geda_strdup(path);
+
+      /* Get the last character in path */
+      char last = path[strlen(path) - 1];
+
+      /* Check if last char is NOT a directory seperator */
+      if (last != DIR_SEPARATOR_S[0]) {
+        ptr = geda_strdup(path);
+      }
     }
 
     cwd = NULL;
