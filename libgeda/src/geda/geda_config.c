@@ -815,7 +815,9 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
     /* Find the project root, and the corresponding configuration filename. */
     if (!g_file_test (ptr, G_FILE_TEST_IS_DIR)) {
+
       cfg_name = basename(ptr);
+
       ptr = dirname (ptr);                        /* strip the filename */
     }
     else {
