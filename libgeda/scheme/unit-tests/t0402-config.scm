@@ -110,7 +110,7 @@
 
   (assert-thrown 'system-error (config-save! (default-config-context)))
   ;; FIXME test writing a file without permissions to write it.
-  )
+)
 
 (begin-config-test 'config-parent
   (let ((a (path-config-context *testdirA*))
