@@ -6,6 +6,9 @@
     * linear/temperature/TMP101-1.sym: Add symbol; serial temperature
       sensor and monitor.
 
+    * micro/PIC/PIC30F5011-1.sym: Add symbol; general purpose 16-bit
+      digital signal controller.
+
 2018-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header4-2.sym: Add double row header symbol.
