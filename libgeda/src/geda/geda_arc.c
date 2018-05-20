@@ -1239,11 +1239,13 @@ bool geda_arc_within_sweep(const GedaArc *arc, int x, int y)
 {
   if (is_a_geda_arc(arc)) {
 
-    double a0;
-    double a1;
-    double angle;
-    double dx;
-    double dy;
+    /* gcc 5.3.1 20160413 32bit yields incorrect values from
+     * rounding unless angle is declared volatile */
+    volatile double a0;
+    volatile double a1;
+    volatile double angle;
+    volatile double dx;
+    volatile double dy;
 
     dx = ((double) x) - ((double) arc->x);
     dy = ((double) y) - ((double) arc->y);

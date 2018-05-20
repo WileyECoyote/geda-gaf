@@ -4,6 +4,10 @@
       because the not operator was only apllied to the left side. Add
       function test_string_strsize to check geda_utility_string_strsize.
 
+    * src/geda/geda_arc.c: Declare doubles volatile in geda_arc_within_sweep;
+      gcc 5.3.1 20160413 32bit yields incorrect values from rounding and
+      resulted in test SA0AS90F consistently failing.
+
     * src/geda/geda_config.c: Revise eda_config_get_context_for_file to not
       set ptr to a copy of path if path ends in a directory separator.
       Revise eda_config_load to not ignore gafrc because it was explicitly
