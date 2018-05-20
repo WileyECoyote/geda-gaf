@@ -1,5 +1,8 @@
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/g_rc.c: Revise g_rc_gsymcheck_version to obtain and report the
+      actual name of the rc file with the wrong version.
+
     * tests/output/pintypes.output: Regen output because of the pin numbers
       were added to error message "unknown pintype" 2018-03-04.
 
