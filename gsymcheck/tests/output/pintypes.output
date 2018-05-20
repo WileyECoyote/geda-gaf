@@ -1,7 +1,7 @@
 Error: Found multiple pintype=pas attributes
 Error: Found multiple pintype=out attributes
-Error: Unknown pintype=i attribute
-Error: Unknown pintype=iox attribute
-Error: Unknown pintype=abc attribute
+Error: Unknown pintype=i attribute, check pin number <11>
+Error: Unknown pintype=iox attribute, check pin number <12>
+Error: Unknown pintype=abc attribute, check pin number <13>
 No warnings detected
 5 errors found

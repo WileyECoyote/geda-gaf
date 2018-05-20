@@ -1,3 +1,8 @@
+2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/output/pintypes.output: Regen output because of the pin numbers
+      were added to error message "unknown pintype" 2018-03-04.
+
 2018-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Update function documentation for:
