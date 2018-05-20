@@ -37,7 +37,12 @@ $0 --regen new_test spice-sdb
 EOF
 }
 
-debug=no
+# Check if DEBUG set in environment
+if test ${DEBUG} ; then
+  debug=yes
+else
+  debug=no
+fi
 
 while test -n "$1"
 do
