@@ -647,6 +647,19 @@ int test_refdes (void)
  * \brief Group 6 src/utility/u_string.c geda_utility_string_
  */
 
+static int test_string_strsize (const char *format, ...)
+{
+  int size;
+
+  va_list args;
+
+  va_start (args, format);
+  size = geda_strsize(format, args);
+  va_end (args);
+
+  return size;
+}
+
 int test_strings (void)
 {
   int count;
@@ -1303,13 +1316,13 @@ int test_strings (void)
   /* === Function 16: geda_utility_string_stristr === */
 
   value = geda_stristr(NULL, "dog");
-  if (value) {                            /* NULL input */
+  if (value >= 0) {                            /* NULL input */
     fprintf(stderr, "FAILED: (U061600A) geda_stristr <%d>\n", value);
     result++;
   }
 
   value = geda_stristr("fox", NULL);
-  if (value) {                            /* NULL input */
+  if (value >= 0) {                            /* NULL input */
     fprintf(stderr, "FAILED: (U061600B) geda_stristr <%d>\n", value);
     result++;
   }
@@ -1321,7 +1334,7 @@ int test_strings (void)
   }
 
   value = geda_stristr(str_120, "Dog");
-  if (value) {                            /* Dog not in str_120 */
+  if (value >= 0) {                            /* Dog not in str_120 */
     fprintf(stderr, "FAILED: (U061602) geda_stristr <%d>\n", value);
     result++;
   }
@@ -1481,7 +1494,29 @@ int test_strings (void)
     fprintf(stderr, "FAILED: (U061903B) geda_strndup returned NULL\n");
     result++;
   }
+
   /* === Function 20: geda_utility_string_strsize === */
+
+  count = test_string_strsize (NULL, str_120);
+
+  if (count >= 0) {
+    fprintf(stderr, "FAILED: (U062000A) geda_strstr_rep <%d>\n", count);
+    result++;
+  }
+
+  count = test_string_strsize ("", str_120);
+
+  if (count != 0) {
+    fprintf(stderr, "FAILED: (U062000B) geda_strstr_rep <%d>\n", count);
+    result++;
+  }
+
+  count = test_string_strsize ("%s %s", str_120, str_121);
+
+  if (count != (strlen(str_120) + strlen(str_121) + 1)) {
+    fprintf(stderr, "FAILED: (U062001) geda_strstr_rep <%d>\n", count);
+    result++;
+  }
 
     /* See function geda_utility_string_sprintf */
 
