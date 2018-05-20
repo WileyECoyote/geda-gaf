@@ -42,20 +42,46 @@ SCM g_rc_gnetlist_version(SCM scm_version)
   SCM_ASSERT (scm_is_string (scm_version), scm_version,
               SCM_ARG1, "gnetlist-version");
 
+  scm_dynwind_begin (0);
   version = scm_to_utf8_string (scm_version);
+  scm_dynwind_free (version);
 
   if (strcmp (version, PACKAGE_DATE_VERSION) != 0) {
 
-    fprintf(stderr, _(
-      "You are running gEDA/gnetlist version [%s%s.%s],\n"
-      "but you have a version [%s] gnetlistrc file:\n\"%s\"\n"
-      "Please be sure that you have the latest rc file.\n"),
-      PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION,
-      version, rc_filename);
+    SCM rc_filename;
+    char *sourcefile;
+
+    sourcefile  = NULL;
+    rc_filename = g_rc_parse_rc_filename ();
+
+    if (rc_filename == SCM_BOOL_F) {
+      rc_filename = scm_from_utf8_string ("unknown");
+    }
+
+    sourcefile  = scm_to_utf8_string (rc_filename);
+
+    scm_dynwind_free (sourcefile);
+
+    const char *running = _("This is gEDA/gnetlist version");
+    const char *have    = _("but you have a version");
+    const char *please  = _("Please be sure that you have the latest rc file");
+
+    fprintf(stderr, "%s [%s%s.%s],\n", running, PREPEND_VERSION_STRING,
+                                                PACKAGE_DOTTED_VERSION,
+                                                PACKAGE_DATE_VERSION);
+
+    fprintf(stderr, "%s [%s] gnetlistrc %s \"%s\"\n",
+                    have, version, _("file"), sourcefile);
+
+    fprintf(stderr, "%s.\n", please);
+
     ret = SCM_BOOL_F;
   }
+  else {
+    ret = SCM_BOOL_T;
+  }
 
-  free (version);
+  scm_dynwind_end();
   return ret;
 }
 

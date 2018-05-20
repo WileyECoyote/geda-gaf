@@ -1,5 +1,8 @@
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gnetlist/src/g_rc.c: Revise g_rc_gnetlist_version to obtain and
+      report the actual name of the rc file with the wrong version.
+
     * tests/common/run_backend_tests.sh: Preset debug to "yes" if DEBUG
       is set in the environment so as to allow developers to enable
       debugging either by passing as option or setting via environment.
