@@ -3,6 +3,9 @@
     * linear/temperature/TMP100-1.sym: Add symbol; serial temperature
       sensor and monitor.
 
+    * linear/temperature/TMP101-1.sym: Add symbol; serial temperature
+      sensor and monitor.
+
 2018-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header4-2.sym: Add double row header symbol.
