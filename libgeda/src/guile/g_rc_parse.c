@@ -458,7 +458,7 @@ static void g_rc_parse__process_error (GError **err, const char *pname)
  * \par Function Description
  * Calls g_rc_parse_handler() with the default error handler. If any
  * error other than ENOENT occurs while loading or running a Scheme
- * initialization file, prints an informative message and terminate
+ * initialization file, prints an informative message and terminates
  * the session.
  *
  * \bug libgeda shouldn't call exit() - this function calls
