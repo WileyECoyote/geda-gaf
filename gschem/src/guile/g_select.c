@@ -42,8 +42,7 @@ SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,
             (SCM page_s), "Get a list of a page's selected objects")
 {
   /* Ensure that the argument is a page smob */
-  SCM_ASSERT (edascm_is_page (page_s), page_s,
-              SCM_ARG1, s_page_selection);
+  SCM_ASSERT (edascm_is_page (page_s), page_s, SCM_ARG1, s_page_selection);
 
   Page *page = edascm_to_page (page_s);
   GList *iter;
