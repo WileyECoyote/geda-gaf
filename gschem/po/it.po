@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-10 00:49-0500\n"
+"POT-Creation-Date: 2018-05-18 04:07-0500\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -597,8 +597,8 @@ msgstr ""
 msgid "Invalid zoom factor"
 msgstr "fattore di zoom non valido"
 
-#: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
-#: gschem/src/guile/g_select.c:155
+#: gschem/src/guile/g_select.c:89 gschem/src/guile/g_select.c:125
+#: gschem/src/guile/g_select.c:160
 msgid "Object ~A is not directly included in a page."
 msgstr "L'oggetto ~A non è direttamente incluso in una pagina."
 
@@ -854,7 +854,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr "Impossibile aprire il fil di sessione"
 
-#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:953
+#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:952
 msgid "is not accessible"
 msgstr ""
 
@@ -948,8 +948,8 @@ msgstr "Salva come"
 msgid "with"
 msgstr "con"
 
-#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1177
-#: gschem/src/x/x_window.c:1180
+#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1176
+#: gschem/src/x/x_window.c:1179
 msgid "Saved"
 msgstr "Salvato"
 
@@ -1678,7 +1678,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:539
-msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
 # Close without saving
@@ -2270,8 +2270,9 @@ msgid "<b>Invalid Data.</b>"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:463
-msgid "Initializing: Graphics Renderer Adaptor...."
-msgstr ""
+#, fuzzy
+msgid "Initializing: Graphics Renderer Adaptor..."
+msgstr "L'inizializzazione icona di fabbrica\n"
 
 #: gschem/src/x/x_draw.cpp:479
 msgid "done"
@@ -4123,51 +4124,51 @@ msgstr "Ripeti/Niente"
 msgid "Pick"
 msgstr "Prendi"
 
-#: gschem/src/x/x_toolbars.c:337
+#: gschem/src/x/x_toolbars.c:338
 msgid "image file not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:413
+#: gschem/src/x/x_toolbars.c:416
 msgid "Toolbar icon not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:546
+#: gschem/src/x/x_toolbars.c:549
 msgid "Creating new Toolbar configuration\n"
 msgstr "La creazione di nuova configurazione Toolbar\n"
 
-#: gschem/src/x/x_toolbars.c:554
+#: gschem/src/x/x_toolbars.c:557
 msgid "Saving Toolbar settings..."
 msgstr "Salvataggio delle impostazioni della barra degli strumenti..."
 
-#: gschem/src/x/x_toolbars.c:573
+#: gschem/src/x/x_toolbars.c:576
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:580
+#: gschem/src/x/x_toolbars.c:583
 msgid "Could not save Toolbar configuration to"
 msgstr "Impossibile salvare la configurazione barra degli strumenti per"
 
-#: gschem/src/x/x_toolbars.c:677
+#: gschem/src/x/x_toolbars.c:680
 msgid "Error, Toolbar configuration key file"
 msgstr "Errore, file di chiave di configurazione Toolbar"
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:688
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:713
+#: gschem/src/x/x_toolbars.c:716
 msgid "Toolbar configuration restored from"
 msgstr "la configurazione della barra degli strumenti restaurato"
 
-#: gschem/src/x/x_toolbars.c:718
+#: gschem/src/x/x_toolbars.c:721
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Attenzione, errore ripristino della configurazione di toolbar"
 
-#: gschem/src/x/x_toolbars.c:724
+#: gschem/src/x/x_toolbars.c:727
 msgid "Warning, toolbar configuration file access error"
 msgstr "Attenzione, errore di accesso file di configurazione toolbar"
 
-#: gschem/src/x/x_toolbars.c:746
+#: gschem/src/x/x_toolbars.c:749
 msgid "Toolbar configuration not found"
 msgstr "la configurazione della barra degli strumenti non trovato"
 
@@ -4196,58 +4197,58 @@ msgstr "SSalvataggio delle impostazioni principali della finestra.\n"
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:621 gschem/src/x/x_window.c:1045
+#: gschem/src/x/x_window.c:620 gschem/src/x/x_window.c:1044
 msgid "Aborting action\n"
 msgstr "Interruzione azione\n"
 
-#: gschem/src/x/x_window.c:627
+#: gschem/src/x/x_window.c:626
 msgid "Close Window canceled\n"
 msgstr "Chiudi finestra annullato\n"
 
-#: gschem/src/x/x_window.c:711
+#: gschem/src/x/x_window.c:710
 msgid "Loading file"
 msgstr "Caricamento di file"
 
-#: gschem/src/x/x_window.c:858
+#: gschem/src/x/x_window.c:857
 msgid "New file"
 msgstr "Nuovo file"
 
-#: gschem/src/x/x_window.c:901
+#: gschem/src/x/x_window.c:900
 msgid "Failed to load file"
 msgstr "Fallito il caricamento del disegno"
 
 # Creating new file
-#: gschem/src/x/x_window.c:931
+#: gschem/src/x/x_window.c:930
 msgid "Creating new file"
 msgstr "Creazione nuovo file"
 
-#: gschem/src/x/x_window.c:944
+#: gschem/src/x/x_window.c:943
 msgid "Path"
 msgstr "Aggiungi percorso"
 
-#: gschem/src/x/x_window.c:947
+#: gschem/src/x/x_window.c:946
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1093
+#: gschem/src/x/x_window.c:1092
 msgid "Discarding page"
 msgstr "Annulla pagina"
 
-#: gschem/src/x/x_window.c:1094
+#: gschem/src/x/x_window.c:1093
 msgid "Closing"
 msgstr "Chiudi pagina"
 
-#: gschem/src/x/x_window.c:1158
+#: gschem/src/x/x_window.c:1157
 msgid "Could NOT save page"
 msgstr "Impossibile salvare la pagina"
 
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1159
 msgid "Error while trying to save"
 msgstr "Errore durante il salvataggio"
 
-#: gschem/src/x/x_window.c:1174
+#: gschem/src/x/x_window.c:1173
 msgid "Saved as"
 msgstr "Salva come"
 

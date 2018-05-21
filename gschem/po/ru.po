@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-10 00:49-0500\n"
+"POT-Creation-Date: 2018-05-18 04:07-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -611,8 +611,8 @@ msgstr "Неверный коэффициент масштабирования"
 # Данная ошибка возникает, например, в случае попытки отдельного выделения
 # объекта, не являющегося самостоятельной частью страницы, а входящего в
 # состав какого-то символа, то есть включенного в страницу косвенно.
-#: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
-#: gschem/src/guile/g_select.c:155
+#: gschem/src/guile/g_select.c:89 gschem/src/guile/g_select.c:125
+#: gschem/src/guile/g_select.c:160
 msgid "Object ~A is not directly included in a page."
 msgstr "Объект ~A непосредственно в данных страницы не содержится."
 
@@ -886,7 +886,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr "Не удалось открыть файл сеанса"
 
-#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:953
+#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:952
 msgid "is not accessible"
 msgstr ""
 
@@ -993,8 +993,8 @@ msgstr "Дата создания сеанса"
 msgid "with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1177
-#: gschem/src/x/x_window.c:1180
+#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1176
+#: gschem/src/x/x_window.c:1179
 msgid "Saved"
 msgstr "Файл сохранён"
 
@@ -1777,7 +1777,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:539
-msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
 # Close without saving
@@ -2392,7 +2392,7 @@ msgid "<b>Invalid Data.</b>"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:463
-msgid "Initializing: Graphics Renderer Adaptor...."
+msgid "Initializing: Graphics Renderer Adaptor..."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:479
@@ -4362,60 +4362,60 @@ msgid "Pick"
 msgstr "Выбор"
 
 # image file not found
-#: gschem/src/x/x_toolbars.c:337
+#: gschem/src/x/x_toolbars.c:338
 msgid "image file not found"
 msgstr "Файл изображения не найдены"
 
 # Toolbar icon not found
-#: gschem/src/x/x_toolbars.c:413
+#: gschem/src/x/x_toolbars.c:416
 msgid "Toolbar icon not found"
 msgstr "Значок на панели инструментов не найден"
 
 # Creating new Toolbar configuration
-#: gschem/src/x/x_toolbars.c:546
+#: gschem/src/x/x_toolbars.c:549
 msgid "Creating new Toolbar configuration\n"
 msgstr "Создание новой конфигурации на панели инструментов\n"
 
 # Saving Toolbar settings
-#: gschem/src/x/x_toolbars.c:554
+#: gschem/src/x/x_toolbars.c:557
 msgid "Saving Toolbar settings..."
 msgstr "Сохранение параметров панели инструментов..."
 
 # data saved to
-#: gschem/src/x/x_toolbars.c:573
+#: gschem/src/x/x_toolbars.c:576
 msgid "data saved to"
 msgstr "Данные сохраняются в"
 
 # Could not save Toolbar configuration to
-#: gschem/src/x/x_toolbars.c:580
+#: gschem/src/x/x_toolbars.c:583
 msgid "Could not save Toolbar configuration to"
 msgstr "Не удалось сохранить конфигурацию панели инструментов для"
 
 # Error, Toolbar configuration key file
-#: gschem/src/x/x_toolbars.c:677
+#: gschem/src/x/x_toolbars.c:680
 msgid "Error, Toolbar configuration key file"
 msgstr "Ошибка конфигурации на панели инструментов файл ключа"
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:688
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
 # Toolbar configuration restored from
-#: gschem/src/x/x_toolbars.c:713
+#: gschem/src/x/x_toolbars.c:716
 msgid "Toolbar configuration restored from"
 msgstr "Конфигурация Панели инструментов восстановить из"
 
-#: gschem/src/x/x_toolbars.c:718
+#: gschem/src/x/x_toolbars.c:721
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Не удалось загрузить файлы настроек gschem"
 
 # Warning, Toolbar configuration file access error
-#: gschem/src/x/x_toolbars.c:724
+#: gschem/src/x/x_toolbars.c:727
 msgid "Warning, toolbar configuration file access error"
 msgstr "Не удалось загрузить файлы настроек gschem"
 
 # Toolbar configuration not found
-#: gschem/src/x/x_toolbars.c:746
+#: gschem/src/x/x_toolbars.c:749
 msgid "Toolbar configuration not found"
 msgstr "Панель инструментов конфигурации не найден"
 
@@ -4449,66 +4449,66 @@ msgstr "Сохранение настроек главного окна.\n"
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:621 gschem/src/x/x_window.c:1045
+#: gschem/src/x/x_window.c:620 gschem/src/x/x_window.c:1044
 msgid "Aborting action\n"
 msgstr ""
 
 # Close Window canceled
-#: gschem/src/x/x_window.c:627
+#: gschem/src/x/x_window.c:626
 msgid "Close Window canceled\n"
 msgstr "Закрыть окно отменено\n"
 
 # Loading file
-#: gschem/src/x/x_window.c:711
+#: gschem/src/x/x_window.c:710
 msgid "Loading file"
 msgstr "Загрузка файл"
 
 # New file
-#: gschem/src/x/x_window.c:858
+#: gschem/src/x/x_window.c:857
 msgid "New file"
 msgstr "Новый файл"
 
-#: gschem/src/x/x_window.c:901
+#: gschem/src/x/x_window.c:900
 msgid "Failed to load file"
 msgstr "Не удалось загрузить файл"
 
 # Creating new file
-#: gschem/src/x/x_window.c:931
+#: gschem/src/x/x_window.c:930
 msgid "Creating new file"
 msgstr "Создание нового файла"
 
 # Path => polygon
-#: gschem/src/x/x_window.c:944
+#: gschem/src/x/x_window.c:943
 msgid "Path"
 msgstr "многоугольник"
 
-#: gschem/src/x/x_window.c:947
+#: gschem/src/x/x_window.c:946
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
 
 # Closes without saving the changes
-#: gschem/src/x/x_window.c:1093
+#: gschem/src/x/x_window.c:1092
 msgid "Discarding page"
 msgstr "Закрытие без сохранения изменений"
 
 # Closing
-#: gschem/src/x/x_window.c:1094
+#: gschem/src/x/x_window.c:1093
 msgid "Closing"
 msgstr "закрытие"
 
 # Could not save page
-#: gschem/src/x/x_window.c:1158
+#: gschem/src/x/x_window.c:1157
 msgid "Could NOT save page"
 msgstr "Не удалось сохранить страницу"
 
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1159
 msgid "Error while trying to save"
 msgstr "Ошибка при попытке сохранения"
 
 # Saved as
-#: gschem/src/x/x_window.c:1174
+#: gschem/src/x/x_window.c:1173
 msgid "Saved as"
 msgstr "Сохранено как"
 

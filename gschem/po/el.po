@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-10 00:49-0500\n"
+"POT-Creation-Date: 2018-05-18 04:07-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -541,8 +541,8 @@ msgstr ""
 msgid "Invalid zoom factor"
 msgstr "Μη έγκυρη συντελεστή ζουμ"
 
-#: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
-#: gschem/src/guile/g_select.c:155
+#: gschem/src/guile/g_select.c:89 gschem/src/guile/g_select.c:125
+#: gschem/src/guile/g_select.c:160
 msgid "Object ~A is not directly included in a page."
 msgstr "Το αντικείμενο ~A δεν περιλαμβάνεται άμεσα σε μια σελίδα."
 
@@ -795,7 +795,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr "Δεν θα μπορούσε να ανοίξει το αρχείο συνόδου"
 
-#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:953
+#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:952
 msgid "is not accessible"
 msgstr ""
 
@@ -889,8 +889,8 @@ msgstr "Τρέχον παράθυρο"
 msgid "with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1177
-#: gschem/src/x/x_window.c:1180
+#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1176
+#: gschem/src/x/x_window.c:1179
 msgid "Saved"
 msgstr "Αποθηκεύτηκε"
 
@@ -1617,7 +1617,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:539
-msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
 # Close without saving
@@ -2208,7 +2208,7 @@ msgid "<b>Invalid Data.</b>"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:463
-msgid "Initializing: Graphics Renderer Adaptor...."
+msgid "Initializing: Graphics Renderer Adaptor..."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:479
@@ -4062,51 +4062,51 @@ msgstr "Επανάληψη/κανένα"
 msgid "Pick"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:337
+#: gschem/src/x/x_toolbars.c:338
 msgid "image file not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:413
+#: gschem/src/x/x_toolbars.c:416
 msgid "Toolbar icon not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:546
+#: gschem/src/x/x_toolbars.c:549
 msgid "Creating new Toolbar configuration\n"
 msgstr "Δημιουργία νέων ρυθμίσεων Toolbar\n"
 
-#: gschem/src/x/x_toolbars.c:554
+#: gschem/src/x/x_toolbars.c:557
 msgid "Saving Toolbar settings..."
 msgstr "Αποθήκευση ρυθμίσεων Toolbar..."
 
-#: gschem/src/x/x_toolbars.c:573
+#: gschem/src/x/x_toolbars.c:576
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:580
+#: gschem/src/x/x_toolbars.c:583
 msgid "Could not save Toolbar configuration to"
 msgstr "Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων Toolbar για να"
 
-#: gschem/src/x/x_toolbars.c:677
+#: gschem/src/x/x_toolbars.c:680
 msgid "Error, Toolbar configuration key file"
 msgstr "Σφάλμα, το Toolbar διαμόρφωση βασικό αρχείο"
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:688
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:713
+#: gschem/src/x/x_toolbars.c:716
 msgid "Toolbar configuration restored from"
 msgstr "Toolbar διαμόρφωση αποκατασταθεί από"
 
-#: gschem/src/x/x_toolbars.c:718
+#: gschem/src/x/x_toolbars.c:721
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Προειδοποίηση, Σφάλμα Επαναφορά ρυθμίσεων toolbar"
 
-#: gschem/src/x/x_toolbars.c:724
+#: gschem/src/x/x_toolbars.c:727
 msgid "Warning, toolbar configuration file access error"
 msgstr "Προειδοποίηση, Σφάλμα πρόσβασης toolbar αρχείο ρυθμίσεων"
 
-#: gschem/src/x/x_toolbars.c:746
+#: gschem/src/x/x_toolbars.c:749
 msgid "Toolbar configuration not found"
 msgstr "διαμόρφωση της γραμμής εργαλείων δεν βρέθηκε"
 
@@ -4136,38 +4136,38 @@ msgstr "Αποθηκεύστε τις κύριες ρυθμίσεις παραθ
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:621 gschem/src/x/x_window.c:1045
+#: gschem/src/x/x_window.c:620 gschem/src/x/x_window.c:1044
 msgid "Aborting action\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:627
+#: gschem/src/x/x_window.c:626
 msgid "Close Window canceled\n"
 msgstr "Κλείσιμο παραθύρου ακυρώθηκε\n"
 
-#: gschem/src/x/x_window.c:711
+#: gschem/src/x/x_window.c:710
 msgid "Loading file"
 msgstr "φόρτωση του αρχείου"
 
-#: gschem/src/x/x_window.c:858
+#: gschem/src/x/x_window.c:857
 msgid "New file"
 msgstr "Νέο αρχείο"
 
-#: gschem/src/x/x_window.c:901
+#: gschem/src/x/x_window.c:900
 msgid "Failed to load file"
 msgstr "Απέτυχε η φόρτωση του αρχείου"
 
 # Create a new file
-#: gschem/src/x/x_window.c:931
+#: gschem/src/x/x_window.c:930
 msgid "Creating new file"
 msgstr "Δημιουργία νέου αρχείου"
 
 # Path to
-#: gschem/src/x/x_window.c:944
+#: gschem/src/x/x_window.c:943
 msgid "Path"
 msgstr "διαδρομή προς"
 
 # did not exist\n successfully created
-#: gschem/src/x/x_window.c:947
+#: gschem/src/x/x_window.c:946
 msgid ""
 "did not exist\n"
 "successfully created"
@@ -4176,24 +4176,24 @@ msgstr ""
 "δημιουργήθηκε με επιτυχία"
 
 # purging page
-#: gschem/src/x/x_window.c:1093
+#: gschem/src/x/x_window.c:1092
 msgid "Discarding page"
 msgstr "σελίδα καθαρισμού"
 
 # Close page
-#: gschem/src/x/x_window.c:1094
+#: gschem/src/x/x_window.c:1093
 msgid "Closing"
 msgstr "Κλείσιμο σελίδας"
 
-#: gschem/src/x/x_window.c:1158
+#: gschem/src/x/x_window.c:1157
 msgid "Could NOT save page"
 msgstr "Δεν ήταν δυνατή η αποθήκευση της σελίδας"
 
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1159
 msgid "Error while trying to save"
 msgstr "Σφάλμα κατά την προσπάθεια αποθήκευσης"
 
-#: gschem/src/x/x_window.c:1174
+#: gschem/src/x/x_window.c:1173
 msgid "Saved as"
 msgstr "Αποθήκευση όλων"
 

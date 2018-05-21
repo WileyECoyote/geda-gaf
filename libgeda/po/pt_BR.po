@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-02-17 23:30-0600\n"
+"POT-Creation-Date: 2018-05-18 04:07-0500\n"
 "PO-Revision-Date: 2012-01-27 14:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -478,61 +478,89 @@ msgstr ""
 msgid "Line end cap is not used by circles"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:277
+#: libgeda/src/geda/geda_config.c:286
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:278
+#: libgeda/src/geda/geda_config.c:287
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:941 libgeda/src/geda/geda_config.c:1058
+#: libgeda/src/geda/geda_config.c:294
+msgid "Configuration context parent"
+msgstr ""
+
+#: libgeda/src/geda/geda_config.c:295
+msgid "Set parent configuration context for EdaConfig"
+msgstr ""
+
+#: libgeda/src/geda/geda_config.c:302
+msgid "Whether context is trusted"
+msgstr ""
+
+#: libgeda/src/geda/geda_config.c:303
+msgid "Set whether configuration context is trusted config source."
+msgstr ""
+
+#: libgeda/src/geda/geda_config.c:976 libgeda/src/geda/geda_config.c:1105
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:944
+#: libgeda/src/geda/geda_config.c:979
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1003 libgeda/src/guile/g_rc_parse.c:284
+# in file
+#: libgeda/src/geda/geda_config.c:986
+#, fuzzy
+msgid "ignoring file"
+msgstr "no arquivo"
+
+# Error loading configuration
+#: libgeda/src/geda/geda_config.c:990
+#, fuzzy
+msgid "Not loading configuration"
+msgstr "Erro ao carregar a configuração"
+
+#: libgeda/src/geda/geda_config.c:1050 libgeda/src/guile/g_rc_parse.c:285
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1006
+#: libgeda/src/geda/geda_config.c:1053
 msgid "Error loading configuration"
 msgstr "Erro ao carregar a configuração"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1061
+#: libgeda/src/geda/geda_config.c:1108
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "Erro ao salvar o nome do arquivo de configuração; é indefinido\n"
 
-#: libgeda/src/geda/geda_config.c:1086 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1133 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "arquivo"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1122
+#: libgeda/src/geda/geda_config.c:1169
 msgid "Error saving configuration to"
 msgstr "Erro ao salvar a configuração"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1129
+#: libgeda/src/geda/geda_config.c:1176
 msgid "bad path in file"
 msgstr "Caminho inválido no arquivo"
 
-#: libgeda/src/geda/geda_config.c:1133
+#: libgeda/src/geda/geda_config.c:1180
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1462 libgeda/src/geda/geda_config.c:1526
+#: libgeda/src/geda/geda_config.c:1513 libgeda/src/geda/geda_config.c:1577
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1540
+#: libgeda/src/geda/geda_config.c:1591
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -554,110 +582,110 @@ msgstr ""
 msgid "Not a regular file"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:934
+#: libgeda/src/geda/geda_keyfile.c:935
 #, c-format
 msgid ""
 "Key file contains line '%s' which is not a key-value pair, group, or comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:993
+#: libgeda/src/geda/geda_keyfile.c:994
 msgid "Invalid group name"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1034
+#: libgeda/src/geda/geda_keyfile.c:1035
 msgid "Key file does not start with a group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1060
+#: libgeda/src/geda/geda_keyfile.c:1061
 msgid "Invalid key name"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1087
+#: libgeda/src/geda/geda_keyfile.c:1088
 msgid "Key file contains unsupported encoding"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1331 libgeda/src/geda/geda_keyfile.c:1548
-#: libgeda/src/geda/geda_keyfile.c:3029 libgeda/src/geda/geda_keyfile.c:3099
-#: libgeda/src/geda/geda_keyfile.c:3223 libgeda/src/geda/geda_keyfile.c:3446
-#: libgeda/src/geda/geda_keyfile.c:3619 libgeda/src/geda/geda_keyfile.c:3804
-#: libgeda/src/geda/geda_keyfile.c:3869
+#: libgeda/src/geda/geda_keyfile.c:1332 libgeda/src/geda/geda_keyfile.c:1549
+#: libgeda/src/geda/geda_keyfile.c:3030 libgeda/src/geda/geda_keyfile.c:3100
+#: libgeda/src/geda/geda_keyfile.c:3224 libgeda/src/geda/geda_keyfile.c:3447
+#: libgeda/src/geda/geda_keyfile.c:3620 libgeda/src/geda/geda_keyfile.c:3805
+#: libgeda/src/geda/geda_keyfile.c:3870
 msgid "Key file does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1528
+#: libgeda/src/geda/geda_keyfile.c:1529
 msgid "ERROR: pointer to key file is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1531
+#: libgeda/src/geda/geda_keyfile.c:1532
 msgid "ERROR: pointer to group name is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1534
+#: libgeda/src/geda/geda_keyfile.c:1535
 msgid "ERROR: pointer to key is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1561
+#: libgeda/src/geda/geda_keyfile.c:1562
 msgid "Key file does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1678 libgeda/src/geda/geda_keyfile.c:1816
+#: libgeda/src/geda/geda_keyfile.c:1679 libgeda/src/geda/geda_keyfile.c:1817
 #, c-format
 msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1700 libgeda/src/geda/geda_keyfile.c:1838
-#: libgeda/src/geda/geda_keyfile.c:2272
+#: libgeda/src/geda/geda_keyfile.c:1701 libgeda/src/geda/geda_keyfile.c:1839
+#: libgeda/src/geda/geda_keyfile.c:2273
 #, c-format
 msgid ""
 "Key file contains key '%s' which has a value that cannot be interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2494 libgeda/src/geda/geda_keyfile.c:2859
+#: libgeda/src/geda/geda_keyfile.c:2495 libgeda/src/geda/geda_keyfile.c:2860
 #, c-format
 msgid ""
 "Key file contains key '%s' in group '%s' which has a value that cannot be "
 "interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2571 libgeda/src/geda/geda_keyfile.c:2647
+#: libgeda/src/geda/geda_keyfile.c:2572 libgeda/src/geda/geda_keyfile.c:2648
 #, c-format
 msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3044 libgeda/src/geda/geda_keyfile.c:3238
-#: libgeda/src/geda/geda_keyfile.c:3881
+#: libgeda/src/geda/geda_keyfile.c:3045 libgeda/src/geda/geda_keyfile.c:3239
+#: libgeda/src/geda/geda_keyfile.c:3882
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3426
+#: libgeda/src/geda/geda_keyfile.c:3427
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4099
+#: libgeda/src/geda/geda_keyfile.c:4100
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4121
+#: libgeda/src/geda/geda_keyfile.c:4122
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4260
+#: libgeda/src/geda/geda_keyfile.c:4261
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4275
+#: libgeda/src/geda/geda_keyfile.c:4276
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4307
+#: libgeda/src/geda/geda_keyfile.c:4308
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4331
+#: libgeda/src/geda/geda_keyfile.c:4332
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -694,75 +722,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:520
+#: libgeda/src/geda/geda_object.c:538
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:521
+#: libgeda/src/geda/geda_object.c:539
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:530
+#: libgeda/src/geda/geda_object.c:548
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:531
+#: libgeda/src/geda/geda_object.c:549
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:538
+#: libgeda/src/geda/geda_object.c:556
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:539
+#: libgeda/src/geda/geda_object.c:557
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:545
+#: libgeda/src/geda/geda_object.c:563
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:546
+#: libgeda/src/geda/geda_object.c:564
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:551
+#: libgeda/src/geda/geda_object.c:569
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:552
+#: libgeda/src/geda/geda_object.c:570
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:558
+#: libgeda/src/geda/geda_object.c:576
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:559
+#: libgeda/src/geda/geda_object.c:577
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:565
+#: libgeda/src/geda/geda_object.c:583
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:566
+#: libgeda/src/geda/geda_object.c:584
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:573
+#: libgeda/src/geda/geda_object.c:591
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:574
+#: libgeda/src/geda/geda_object.c:592
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:582
+#: libgeda/src/geda/geda_object.c:600
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:583
+#: libgeda/src/geda/geda_object.c:601
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -953,39 +981,39 @@ msgstr ""
 msgid "invalid path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:114
+#: libgeda/src/guile/g_rc_parse.c:115
 msgid "invalid value"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:163
+#: libgeda/src/guile/g_rc_parse.c:164
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:233
+#: libgeda/src/guile/g_rc_parse.c:234
 msgid "Failed to load configuration from"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:269
+#: libgeda/src/guile/g_rc_parse.c:270
 msgid "Loaded RC file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:273
+#: libgeda/src/guile/g_rc_parse.c:274
 msgid "Error encounted processing RC file"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:290
+#: libgeda/src/guile/g_rc_parse.c:291
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:425
+#: libgeda/src/guile/g_rc_parse.c:426
 msgid "ERROR"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:431
+#: libgeda/src/guile/g_rc_parse.c:432
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:450
+#: libgeda/src/guile/g_rc_parse.c:451
 msgid "The log may contain more information."
 msgstr ""
 
@@ -1035,73 +1063,73 @@ msgstr ""
 msgid "On or about line"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1420
-#: libgeda/src/object/o_arc_object.c:1435
+#: libgeda/src/object/o_arc_object.c:1425
+#: libgeda/src/object/o_arc_object.c:1440
 msgid "Failed to parse arc object"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1442
+#: libgeda/src/object/o_arc_object.c:1447
 msgid "Found arc with negative radius"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1447
+#: libgeda/src/object/o_arc_object.c:1452
 #: libgeda/src/object/o_circle_object.c:1347
 msgid "Setting radius to"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1450
+#: libgeda/src/object/o_arc_object.c:1455
 msgid "Found an arc with radius zero"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1454
+#: libgeda/src/object/o_arc_object.c:1459
 #: libgeda/src/object/o_circle_object.c:1354
 msgid "Setting zero radius to 1000\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1459
+#: libgeda/src/object/o_arc_object.c:1464
 #: libgeda/src/object/o_box_object.c:1581
 #: libgeda/src/object/o_bus_object.c:604
 #: libgeda/src/object/o_circle_object.c:1359
-#: libgeda/src/object/o_line_object.c:1555
-#: libgeda/src/object/o_net_object.c:718
+#: libgeda/src/object/o_line_object.c:1561
+#: libgeda/src/object/o_net_object.c:708
 #: libgeda/src/object/o_path_object.c:570
 #: libgeda/src/object/o_pin_object.c:191
 #: libgeda/src/object/o_text_object.c:784
 msgid "Found an invalid color"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1463
+#: libgeda/src/object/o_arc_object.c:1468
 #: libgeda/src/object/o_box_object.c:1585
 #: libgeda/src/object/o_bus_object.c:608
 #: libgeda/src/object/o_circle_object.c:1363
-#: libgeda/src/object/o_line_object.c:1559
-#: libgeda/src/object/o_net_object.c:722
+#: libgeda/src/object/o_line_object.c:1565
+#: libgeda/src/object/o_net_object.c:712
 #: libgeda/src/object/o_path_object.c:574
 #: libgeda/src/object/o_pin_object.c:195
 #: libgeda/src/object/o_text_object.c:788
 msgid "Setting color to default color\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:161
+#: libgeda/src/object/o_attrib.c:166
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:166
+#: libgeda/src/object/o_attrib.c:171
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:171
+#: libgeda/src/object/o_attrib.c:176
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:716
+#: libgeda/src/object/o_attrib.c:721
 msgid "tried to attach a non-text object as an attribute"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:725
+#: libgeda/src/object/o_attrib.c:730
 msgid "unexpected end-of-file in attribute list"
 msgstr ""
 
@@ -1156,116 +1184,116 @@ msgstr "Descobriu um círculo com um raio negativo"
 msgid "Found a circle with radius zero"
 msgstr "Encontrado um círculo com o raio zero"
 
-#: libgeda/src/object/o_complex_object.c:141
+#: libgeda/src/object/o_complex_object.c:146
 msgid "instantiated"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:142
+#: libgeda/src/object/o_complex_object.c:147
 msgid "library"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:143
+#: libgeda/src/object/o_complex_object.c:148
 msgid "check"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:154
+#: libgeda/src/object/o_complex_object.c:159
 msgid "Instantiated symbol"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:156
+#: libgeda/src/object/o_complex_object.c:161
 msgid "is"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:157
+#: libgeda/src/object/o_complex_object.c:162
 msgid "than the version in library"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:165
+#: libgeda/src/object/o_complex_object.c:170
 msgid "WARNING: Symbol version"
 msgstr "Aviso: versão do símbolo"
 
-#: libgeda/src/object/o_complex_object.c:166
+#: libgeda/src/object/o_complex_object.c:171
 msgid "on refdes"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:194
+#: libgeda/src/object/o_complex_object.c:199
 msgid "unknown file"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:222
-#: libgeda/src/object/o_complex_object.c:246
+#: libgeda/src/object/o_complex_object.c:227
+#: libgeda/src/object/o_complex_object.c:251
 msgid "parse error"
 msgstr ""
 
 # Could not parse symbol file
-#: libgeda/src/object/o_complex_object.c:224
+#: libgeda/src/object/o_complex_object.c:229
 msgid "Could not parse symbol file"
 msgstr "Não foi possível analisar o arquivo de símbolo"
 
 # Could not parse attached
-#: libgeda/src/object/o_complex_object.c:247
+#: libgeda/src/object/o_complex_object.c:252
 msgid "Could not parse attached"
 msgstr "Não foi possível analisar anexado"
 
-#: libgeda/src/object/o_complex_object.c:268
-#: libgeda/src/object/o_complex_object.c:337
+#: libgeda/src/object/o_complex_object.c:273
+#: libgeda/src/object/o_complex_object.c:342
 msgid "oddity"
 msgstr "oddity"
 
 # attached to instantiated symbol, but version not found inside symbol file
-#: libgeda/src/object/o_complex_object.c:270
+#: libgeda/src/object/o_complex_object.c:275
 msgid ""
 "attached to instantiated symbol, but version not found inside symbol file"
 msgstr ""
 "anexado ao símbolo instanciado, mas a versão não encontrada dentro do "
 "arquivo de símbolo"
 
-#: libgeda/src/object/o_complex_object.c:287
+#: libgeda/src/object/o_complex_object.c:292
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:288
+#: libgeda/src/object/o_complex_object.c:293
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:312
+#: libgeda/src/object/o_complex_object.c:317
 msgid "MAJOR VERSION CHANGE"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:330
+#: libgeda/src/object/o_complex_object.c:335
 msgid "Minor version change"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:338
+#: libgeda/src/object/o_complex_object.c:343
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:383
+#: libgeda/src/object/o_complex_object.c:388
 msgid "Component not found"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1147
+#: libgeda/src/object/o_complex_object.c:1154
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1152
+#: libgeda/src/object/o_complex_object.c:1159
 msgid "Found a component with an invalid rotation"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1156
+#: libgeda/src/object/o_complex_object.c:1163
 #: libgeda/src/object/o_picture_object.c:1483
 msgid "Setting angle to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1161
+#: libgeda/src/object/o_complex_object.c:1168
 msgid "Found a component with an invalid mirror flag"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1165
+#: libgeda/src/object/o_complex_object.c:1172
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1180
+#: libgeda/src/object/o_complex_object.c:1187
 msgid "Invalid complex object"
 msgstr ""
 
@@ -1286,20 +1314,20 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1515
-#: libgeda/src/object/o_line_object.c:1535
+#: libgeda/src/object/o_line_object.c:1521
+#: libgeda/src/object/o_line_object.c:1541
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1548
+#: libgeda/src/object/o_line_object.c:1554
 msgid "Found a line with zero length"
 msgstr ""
 
-#: libgeda/src/object/o_net_object.c:701
+#: libgeda/src/object/o_net_object.c:691
 msgid "Failed to parse net object"
 msgstr ""
 
-#: libgeda/src/object/o_net_object.c:706
+#: libgeda/src/object/o_net_object.c:696
 msgid "Found a net with zero length"
 msgstr ""
 
@@ -1777,7 +1805,7 @@ msgstr ""
 msgid "More than one component found with name [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:86 libgeda/src/struct/s_hierarchy.c:264
+#: libgeda/src/struct/s_hierarchy.c:86 libgeda/src/struct/s_hierarchy.c:263
 msgid "Schematic not found in source library."
 msgstr ""
 
@@ -1785,7 +1813,7 @@ msgstr ""
 msgid "Hierarchy contains a circular dependency."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:216
+#: libgeda/src/struct/s_hierarchy.c:214
 msgid "There are no schematics above the current one!\n"
 msgstr ""
 

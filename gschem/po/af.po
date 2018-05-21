@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-10 00:49-0500\n"
+"POT-Creation-Date: 2018-05-18 04:07-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -601,8 +601,8 @@ msgstr "Ongeldige tipe opdrag, nagaan scrollpan-stappe inskrywing in RC lêer\n"
 msgid "Invalid zoom factor"
 msgstr "Ongeldige zoemmaat faktor"
 
-#: gschem/src/guile/g_select.c:84 gschem/src/guile/g_select.c:120
-#: gschem/src/guile/g_select.c:155
+#: gschem/src/guile/g_select.c:89 gschem/src/guile/g_select.c:125
+#: gschem/src/guile/g_select.c:160
 msgid "Object ~A is not directly included in a page."
 msgstr "Objekte ~A is nie direk in 'n bladsy."
 
@@ -854,7 +854,7 @@ msgstr "Sluit al gekanselleer\n"
 msgid "Could not open the session file"
 msgstr "Kon die sessie lêer nie oopmaak"
 
-#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:953
+#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:952
 msgid "is not accessible"
 msgstr "is nie toeganklik"
 
@@ -948,8 +948,8 @@ msgstr "Huidige Venster"
 msgid "with"
 msgstr "met"
 
-#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1177
-#: gschem/src/x/x_window.c:1180
+#: gschem/src/iface/i_sessions.c:1120 gschem/src/x/x_window.c:1176
+#: gschem/src/x/x_window.c:1179
 msgid "Saved"
 msgstr "Bewaar"
 
@@ -1680,7 +1680,7 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:539
-msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
 # Close without saving
@@ -2269,7 +2269,7 @@ msgid "<b>Invalid Data.</b>"
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:463
-msgid "Initializing: Graphics Renderer Adaptor...."
+msgid "Initializing: Graphics Renderer Adaptor..."
 msgstr ""
 
 #: gschem/src/x/x_draw.cpp:479
@@ -4118,51 +4118,51 @@ msgstr "Herhaal/geen"
 msgid "Pick"
 msgstr "Kies"
 
-#: gschem/src/x/x_toolbars.c:337
+#: gschem/src/x/x_toolbars.c:338
 msgid "image file not found"
 msgstr "beeld-lêer nie gevind"
 
-#: gschem/src/x/x_toolbars.c:413
+#: gschem/src/x/x_toolbars.c:416
 msgid "Toolbar icon not found"
 msgstr "nutsbalk icon nie gevind"
 
-#: gschem/src/x/x_toolbars.c:546
+#: gschem/src/x/x_toolbars.c:549
 msgid "Creating new Toolbar configuration\n"
 msgstr "Die skep van 'n nuwe nutsbalkopstelling\n"
 
-#: gschem/src/x/x_toolbars.c:554
+#: gschem/src/x/x_toolbars.c:557
 msgid "Saving Toolbar settings..."
 msgstr "spaar nutsbalkopstelling..."
 
-#: gschem/src/x/x_toolbars.c:573
+#: gschem/src/x/x_toolbars.c:576
 msgid "data saved to"
 msgstr "data gestoor"
 
-#: gschem/src/x/x_toolbars.c:580
+#: gschem/src/x/x_toolbars.c:583
 msgid "Could not save Toolbar configuration to"
 msgstr "Kan nutsbalkopstelling as om"
 
-#: gschem/src/x/x_toolbars.c:677
+#: gschem/src/x/x_toolbars.c:680
 msgid "Error, Toolbar configuration key file"
 msgstr "Fout, nutsbalkopstelling sleutel lêer"
 
-#: gschem/src/x/x_toolbars.c:685
+#: gschem/src/x/x_toolbars.c:688
 msgid "Retrieving toolbar geometry\n"
 msgstr "Herwinning nutsbalk meetkunde\n"
 
-#: gschem/src/x/x_toolbars.c:713
+#: gschem/src/x/x_toolbars.c:716
 msgid "Toolbar configuration restored from"
 msgstr "Nutsbalkopstelling herstel van"
 
-#: gschem/src/x/x_toolbars.c:718
+#: gschem/src/x/x_toolbars.c:721
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Waarskuwing, fout herstel nutsbalkopstelling"
 
-#: gschem/src/x/x_toolbars.c:724
+#: gschem/src/x/x_toolbars.c:727
 msgid "Warning, toolbar configuration file access error"
 msgstr "Waarskuwing, nutsbalk konfigurasielêer toegang fout"
 
-#: gschem/src/x/x_toolbars.c:746
+#: gschem/src/x/x_toolbars.c:749
 msgid "Toolbar configuration not found"
 msgstr "Toolbar opset wat nie gevind"
 
@@ -4190,35 +4190,35 @@ msgstr "Spaar hoof venster instellings.\n"
 msgid "Retrieving main Window settings.\n"
 msgstr "Herwinning hoof venster instellings.\n"
 
-#: gschem/src/x/x_window.c:621 gschem/src/x/x_window.c:1045
+#: gschem/src/x/x_window.c:620 gschem/src/x/x_window.c:1044
 msgid "Aborting action\n"
 msgstr "Staak aksie\n"
 
-#: gschem/src/x/x_window.c:627
+#: gschem/src/x/x_window.c:626
 msgid "Close Window canceled\n"
 msgstr "Sluit Venster\n"
 
-#: gschem/src/x/x_window.c:711
+#: gschem/src/x/x_window.c:710
 msgid "Loading file"
 msgstr "Laai lêer"
 
-#: gschem/src/x/x_window.c:858
+#: gschem/src/x/x_window.c:857
 msgid "New file"
 msgstr "Nuwe lêer"
 
-#: gschem/src/x/x_window.c:901
+#: gschem/src/x/x_window.c:900
 msgid "Failed to load file"
 msgstr "Kon nie afbeelding laai nie"
 
-#: gschem/src/x/x_window.c:931
+#: gschem/src/x/x_window.c:930
 msgid "Creating new file"
 msgstr "Skep 'n nuwe leë lêer"
 
-#: gschem/src/x/x_window.c:944
+#: gschem/src/x/x_window.c:943
 msgid "Path"
 msgstr "Voeg Net By"
 
-#: gschem/src/x/x_window.c:947
+#: gschem/src/x/x_window.c:946
 msgid ""
 "did not exist\n"
 "successfully created"
@@ -4226,23 +4226,23 @@ msgstr ""
 "nie bestaan\n"
 "suksesvol geskep"
 
-#: gschem/src/x/x_window.c:1093
+#: gschem/src/x/x_window.c:1092
 msgid "Discarding page"
 msgstr "wegdoen stroombaandiagram"
 
-#: gschem/src/x/x_window.c:1094
+#: gschem/src/x/x_window.c:1093
 msgid "Closing"
 msgstr "Sluit Bladsy"
 
-#: gschem/src/x/x_window.c:1158
+#: gschem/src/x/x_window.c:1157
 msgid "Could NOT save page"
 msgstr "Kon nie bladsy red"
 
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1159
 msgid "Error while trying to save"
 msgstr "Fout gedurende poging om te bewaar"
 
-#: gschem/src/x/x_window.c:1174
+#: gschem/src/x/x_window.c:1173
 msgid "Saved as"
 msgstr "Bewaar Alles"
 
