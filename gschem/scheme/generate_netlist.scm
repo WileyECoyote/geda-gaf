@@ -111,7 +111,7 @@
       (for-each (lambda (element)
 		  (set! string (string-append string element " ")))
 		list)
-      (set! string (string-append string ")"))
+      (set! string (string-append (string-trim-right string) ")"))
       (append string))))
 
 

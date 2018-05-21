@@ -1,3 +1,8 @@
+2018-05-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/generate_netlist.scm: Revise list2string to trim the last space
+      from the string.
+
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/generate_netlist.scm: Replace string-prefix=? with string-prefix?.
