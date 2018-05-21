@@ -1,3 +1,7 @@
+2018-05-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/Makefile.am: Clean the geda subdirectory.
+
 2018-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_wrap.h: Cast the third argument to g_object_set_data

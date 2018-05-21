@@ -35,7 +35,7 @@ EXTRA_DIST      = $(noinst_HEADERS)
 
 distcheck:
 
-MOSTLYCLEANFILES        = *~
-CLEANFILES              = *~
-DISTCLEANFILES          = *~
-MAINTAINERCLEANFILES    = *~ Makefile.in ChangeLog
+MOSTLYCLEANFILES        = *~ geda/*~
+CLEANFILES              = *~ geda/*~
+DISTCLEANFILES          = *~ geda/*~
+MAINTAINERCLEANFILES    = *~ geda/*~ Makefile.in ChangeLog
