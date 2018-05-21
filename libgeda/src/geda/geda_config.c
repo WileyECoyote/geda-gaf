@@ -746,8 +746,6 @@ static bool strhashcmp (const void *a, const void *b) {
  * Multiple calls to eda_config_get_context_for_file() with the same
  * \a path will return the same configuration context.
  *
- * \see eda_config_get_context_for_path().
- *
  * \param [in] path Path to search for configuration from.
  *
  * \return a local #EdaConfig configuration context for \a path.
@@ -897,21 +895,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
  * \public \memberof EdaConfig
  * \brief Return a local configuration context.
  * \par Function Description
- * Looks for a configuration file named "geda.conf".  If \a path is
- * not a directory, it is truncated and then a file named "geda.conf"
- * is looked for in that directory.  If none is found, the parent
- * directory is checked, and so on until a configuration file is found
- * or the root directory is reached.  If no configuration file was
- * found, the returned context will be associated with a "geda.conf"
- * in the same directory as \a path.
- *
- * \warning Do not assume that the configuration file associated with
- *          the context returned by eda_config_get_context_for_path()
- *          is located in the directory specified by \a path.
- *
- * By default, the parent context of the returned #EdaConfig will be
- * the user context. Multiple calls to eda_config_get_context_for_path
- * with the same \a path will return the same configuration context.
+ * Looks for a configuration files in the \a path.
  *
  * \see eda_config_get_context_for_file().
  *
