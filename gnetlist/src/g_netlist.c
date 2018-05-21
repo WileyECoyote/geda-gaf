@@ -584,6 +584,7 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
   while (nl_current != NULL) {
 
     if (nl_current->component_uref) {
+
       if (strcmp(nl_current->component_uref, uref) == 0) {
 
         char *value;
