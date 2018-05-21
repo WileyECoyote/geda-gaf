@@ -9,6 +9,8 @@
     * micro/PIC/PIC30F5011-1.sym: Add symbol; general purpose 16-bit
       digital signal controller.
 
+    * microchip/memory/25LC256-1.sym: Add symbol; alternate pin-out.
+
 2018-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/header/header4-2.sym: Add double row header symbol.
