@@ -19,14 +19,14 @@ gsym-attribute -- A gEDA-gaf Symbol File Attribute Manipulator Utility
                   to set or retrieve the value of a Text attribute in a
                   symbol file
 
-Usage: gsym-attribute [Options] [-a] attibute -i <inputfile> [[-o] <outputfile> ]
+Usage: gsym-attribute [Options] [-a] attribute -i <inputfile> [[-o] <outputfile> ]
 """
 
 Help =\
 """
 Options:
 
-  -a, --attibute -- The Attribute to be queried or set
+  -a, --attribute -- The Attribute to be queried or set
   -u, --value    -- Optional new value for the attribute
   -f, --force    -- When the force option is specified existing file matching
                     the output name will be over-written, without any warning.
@@ -143,7 +143,7 @@ class ProgramParameters:
         try:
             long_opt = ["force",
                         "help",
-                        "attibute=",
+                        "attribute=",
                         "color=",
                         "hidden",
                         "input=",
@@ -170,7 +170,7 @@ class ProgramParameters:
                 print Help
                 sys.exit(0)
 
-            if Option in ('-a', '--attibute'):
+            if Option in ('-a', '--attribute'):
                 self.AttributeName       = Value
 
             if Option in ('-c', '--color'):
