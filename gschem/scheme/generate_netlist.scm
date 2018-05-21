@@ -83,7 +83,6 @@
 				   (- (string-length source-file) 4))
 			".vhdl")))
 
-
      ;; put the whole gnetlist command together
      (set! guile-comm
 	   (string-append guile-comm "\"(define top-attribs " "'"
