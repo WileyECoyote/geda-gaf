@@ -44,12 +44,18 @@ SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,
   /* Ensure that the argument is a page smob */
   SCM_ASSERT (edascm_is_page (page_s), page_s, SCM_ARG1, s_page_selection);
 
-  Page *page = edascm_to_page (page_s);
   GList *iter;
-  SCM result = SCM_EOL;
-  for (iter = geda_list_get_glist (page->selection_list);
-       iter != NULL; iter = g_list_next (iter)) {
-    result = scm_cons (edascm_from_object ((GedaObject*) iter->data), result);
+  Page  *page;
+  SCM    result;
+
+  page   = edascm_to_page (page_s);
+  result = SCM_EOL;
+
+  iter = geda_page_get_selection (page);
+
+  while (iter) {
+    result = scm_cons (edascm_from_object ((GedaObject*)iter->data), result);
+    iter = g_list_next (iter);
   }
 
   return result;

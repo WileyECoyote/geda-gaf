@@ -3,6 +3,8 @@
     * scheme/generate_netlist.scm: Revise list2string to trim the last space
       from the string.
 
+    * src/guile/g_select.c: Replace For loop with While loop in page_selection.
+
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/generate_netlist.scm: Replace string-prefix=? with string-prefix?.
