@@ -6,6 +6,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/nl.po: Update Dutch translations.
+
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Revise message in x_dialog_file_not_saved to
