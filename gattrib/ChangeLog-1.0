@@ -8,6 +8,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations
+
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Revise message in x_dialog_file_not_saved to
