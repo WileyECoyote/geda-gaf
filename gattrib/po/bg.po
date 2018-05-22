@@ -473,35 +473,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Добавяне на нов Умение"
+msgstr "Добавяне на атрибут"
 
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Изтриване Умение"
+msgstr "Въведете атрибут"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Атрибут"
+msgstr "Скриване на атрибута"
 
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Изтриване Умение"
+msgstr "Откриване на атрибута"
 
+# Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "Изтриване Умение"
+msgstr "Изтрий атрибута"
 
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Изтриване Умение"
+msgstr "Изчистване на данните за атрибутите"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"
