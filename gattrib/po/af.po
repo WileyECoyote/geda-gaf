@@ -463,35 +463,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "gEDA kenmerk"
+msgstr "Voeg Attribuut by"
 
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "kenmerk"
+msgstr "Voeg Attribuut in"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "kenmerk"
+msgstr "Versteek eienskap"
 
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "kenmerk"
+msgstr "onthul Attribuut"
 
+# Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "gEDA kenmerk"
+msgstr "Vee eienskap uit"
 
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Wys Kenmerk Toolbar"
+msgstr "Duidelike kenmerkdata"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"
