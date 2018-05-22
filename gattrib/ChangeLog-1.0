@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/ar.po: Update Arabic translations.
+
 2018-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Revise message in x_dialog_file_not_saved to
