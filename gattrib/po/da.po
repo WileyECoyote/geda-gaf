@@ -442,39 +442,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Tilføj ny Attribut"
+msgstr "Tilføj Attribut"
 
-# Promote Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Slet Attribut"
+msgstr "Indsæt attribut"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "attribut"
+msgstr "Skjul attribut"
 
-# Promote Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Slet Attribut"
+msgstr "afsløre egenskab"
 
-# Promote Attribute
+# Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "Slet Attribut"
 
-# Promote Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Slet Attribut"
+msgstr "Klare attributdata"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"
