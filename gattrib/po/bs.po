@@ -460,40 +460,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Dodajte novi atribut"
+msgstr "Dodaj atribut"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Izbriši atribut"
+msgstr "Ubaci atribut"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Atribut"
+msgstr "Sakrij Aatribut"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Izbriši atribut"
+msgstr "Otkriti atribut"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "Izbriši atribut"
+msgstr "Obrišite atribut"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Izbriši atribut"
+msgstr "Obriši podatke o atributima"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"
