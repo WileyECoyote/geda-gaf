@@ -476,11 +476,11 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
   {
    GedaObject *o_current = iter->data;
 
-    /* Ignore objects which aren't net pins */
+    /* Ignore objects which are not net pins */
     if (o_current->type != OBJ_PIN)
       continue;
 
-    /* and apparently we dont't bus type pins */
+    /* and apparently we do not handle bus type pins */
     if (o_current->pin->node_type != PIN_NET_NODE)
       continue;
 
