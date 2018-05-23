@@ -56,17 +56,17 @@ CONTENT:
 
    If generate-mode=1 (default) gnetlist creates a netlist as an
    VHDL-AMS ARCHITECTURE of the current schematic. Otherwise
-   (generate-mode=2), it creates an VHDL-AMS ENTITY declaration of the
-   selected component (this task needs information from gEDA gschem,
-   see below).
+   (generate-mode=2), it creates an VHDL-AMS ENTITY declaration of
+   the selected component (this task needs information from gEDA
+   gschem, see below).
 
    Now follows a stepwise description of the program run in both
    submodes.
 
-   We presuppose that the reader is familiar with the structure of gEDA
-   gnetlist usage (otherwise try gnetlist -help) and that the reader
-   has seen an VHDL-AMS ARCHITECTURE with its belonging ENTITY. If
-   you have not then the following description may seems  little
+   We presuppose that the reader is familiar with the structure of
+   gEDA gnetlist usage (otherwise try gnetlist -help) and that the
+   reader has seen an VHDL-AMS ARCHITECTURE with belonging ENTITY.
+   If you have not then the following description may seems little
    strange to you. Maybe the syntax files (syntax_entity.txt,
    syntax_architeture.txt) can help you further.
 
@@ -74,40 +74,35 @@ CONTENT:
 
    1.1. ARCHITECTURE GENERATION
 
-
    We suppose generate-mode is equal to 1, from this it follows that
    vams creates a netlist as an ARCHITECTURE (saved to
    <value-of-toplevel-attribute-entity>_arc.<output-fileextension>).
-
 
      ARCHITECTURE <architecture-identifier> OF <entity-identifier> IS
 
    The architecture-identifier we are getting from the toplevel
    attribute architecture, which we have introduced. If it is not
-   defined, we are setting architecture-identifier default
-   (default_architecture).  The same have we doing with the
-   entity-identifier (toplevel attribute entity, default_entity).
-
+   defined, default architecture-identifier (default_architecture)
+   is set. The same is done for entity-identifier (toplevel attribute
+   entity, default_entity).
 
      {<subnet-object> <subnet-name> : subnet-kind;}
 
    In the signal declaration part all subnets of the schematic will be
-   declarated. A subnet declaration consists of an net-object, a
-   net-name and a net-kind. All subnets are connected to various
-   components pins. If this pins have all the same port-object and the
-   same port-kind it is ok, but if one of them different, the net is
-   faulty, and will be not declarated. Moreover, if the subnet-object
-   a quantity, then it will be checked, whether the subnet consists
-   exactly one output pin (port-mode), else the subnet is faulty too.
-   The three net attributes (object, kind, mode) we are getting from
-   the pin attribs, port_kind, port_object and port_mode (which we
-   have introduced newly) of a component pin.
-
+   declarated. A subnet declaration consists of an net-object, a net-
+   name and a net-kind. All subnets are connected to various components
+   pins. If these pins all have the same port-object and the same port
+   kind it is ok, but if one of them different, the net is faulty, and
+   will be not declarated. Moreover, if the subnet-object a quantity,
+   then it will be checked, whether the subnet consists exactly one
+   output pin (port-mode), else the subnet is faulty too. The three
+   net attributes (object, kind, and mode) are determined from the
+   pin attributes, port_kind, port_object and port_mode, which we have
+   newly introduced, of a component pin.
 
      BEGIN
 
-   Ok. it's only marks the start of the architecture body.
-
+   Marks the start of the architecture body.
 
      {<label> : ENTITY <entity> [(<architecture>)]
 	    [GENERIC MAP (<set generic> => <generic-value>
@@ -115,61 +110,59 @@ CONTENT:
             PORT MAP ( <pin-name> => <subnet-name>{; <.. => ..>});}
 
    We only support component instantiation statements, like the one shown
-   above, because we generate simple VHDL-AMS netlists. The label of
-   an instance is defined from the uref of the instantiated component.
-   Be careful, this label must be unique,it is not checked anywhere. The
+   above, because we generate simple VHDL-AMS netlists. The label of an
+   instance is defined from the uref of the instantiated component. Be
+   careful, this label must be unique,it is not checked anywhere. The
    entity variable is not the same as the entity-identifier, it is the
    value of the device attribute which on its part identifies the
    precompiled ENTITY of this special component.
+
    Similar is the architecture variable belonging to the instantiated
    components ARCHITECTURE (note: one ENTITY can have more ARCHITECTURES),
    hence we are getting it from the component attribute newly introduced
    ARCHITECTURE.
 
    All generics of the generic-list are component parameters, which
-   are different from its default values (set in its ENTITY
-   declaration). How can we distinguish them?  All defined generics
-   are attached to the component and looks like :
+   are different from its default values, set in its ENTITY declaration.
+   How can we distinguish them?  All defined generics are attached to
+   the component and looks like:
 
 	   <attribute-name>=?<default-value> <- default, not in
 					        generic-list
 
    And if you want to change a parameter, you only must delete the
    ?-character and replace the default-value with your wanted value,
-   like this :
+   like this:
 
            <attribute-name>=<new-value> <- element of generic list
 
    In doing so, the new assigned value and its attribute-name will
-   appear in the GENERIC MAP (set-generic=attribute-name and
-   generic-value=new-value).
+   appear in the GENERIC MAP; set-generic=attribute-name and
+   generic-value=new-value.
 
    The PORT MAP consists of all pins of a component and which nets
    them connected to. The pin-name is getting from the pin# attribute
    of the pin and the subnet-name means the value of the label
    attribute of a net (mostly default named), which the pin is
-   connected to. If the pin directly wired to a PORT component (=
-   component, which device attribute =PORT), then we assign the uref
-   of this component to subnet-name.
-
+   connected to. If the pin is directly wired to a PORT component
+   (=component, with device attribute =PORT), then we assign the
+   uref of this component to subnet-name.
 
      END ARCHITECTURE <architecture-identifier>;
 
-   I think, this line needs no more explanation. The
-   architecture-identifier is the same like in the first line of
-   ARCHITECTURE declaration. Hence, the ARCHITECTURE part ends here.
+   I think, this line needs no more explanation. The architecture-
+   identifier is the same like in the first line of ARCHITECTURE
+   declaration. Hence, the ARCHITECTURE part ends here.
 
    ==================================================================
 
    1.2. ENTITY GENERATION
-
 
    Now, we suppose generate-mode is equal to 2, from this it follows
    that vams creates an ENTITY declaration of a component (save to
    <component-device>.vhdl). If there no component selected (empty
    top-attribs list) then it will be created an toplevel ENTITY of the
    current schematic (save to <value-of-toplevel-attribute-entity>.vhdl).
-
 
      LIBRARY <library-identifier>{,<library-identifier>};
      USE     <package-identidier>{,<package-identifier>};
@@ -181,7 +174,6 @@ CONTENT:
    hierachical netlist] of your schematic. a package contents
    predefined types, constants, ...).  We are searching for a better
    usability of this part.
-
 
      ENTITY <entity-identifier> IS
 	 [genric_clause]
@@ -199,7 +191,6 @@ CONTENT:
    which is defined in the automatic generated gnetlist command .. more
    about this, later).
 
-
      generic_clause :=
 	       GENERIC ( <generic-identifier> : REAL := <default-value>
 	                {;<generic-identifier> : REAL := <default-value>});
@@ -212,7 +203,6 @@ CONTENT:
    does not matter whether the value starts with a ?-character or not
    (?-character always will be deleted, if it exist in front of a
    value).
-
 
      port_clause :=
             PORT (<port-kind> <port-identifier> : [<port-mode>] <port-type>
@@ -231,10 +221,10 @@ CONTENT:
 
    Because it is very arduous to type the whole gnetlist command,
    which all its parameters, per hand into the terminal, we have
-   implemented an automatisation of this process in gEDA gschem.
-   This makes it possible to create a VHDL-AMS ARCHITECTURE or ENTITY
-   without any commandline actions. The only thing you must do, is to
-   use one of the following hotkeys:
+   implemented an automation of this process in gEDA gschem. This
+   makes it possible to create a VHDL-AMS ARCHITECTURE or ENTITY
+   without any commandline actions. The only thing you must do, is
+   to use one of the following hotkeys:
 
 	    <g e> for generating an ENTITY
 	    <g n> for genarating an ARCHITECTURE.
