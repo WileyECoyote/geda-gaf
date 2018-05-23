@@ -436,40 +436,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Προσθήκη νέου χαρακτηριστικού"
+msgstr "Προσθήκη χαρακτηριστικού"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Διαγραφή χαρακτηριστικού"
+msgstr "Εισαγωγή χαρακτηριστικού"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Χαρακτηριστικό"
+msgstr "Απόκρυψη χαρακτηριστικού"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Διαγραφή χαρακτηριστικού"
+msgstr "Απόκρυψη χαρακτηριστικού"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "Διαγραφή χαρακτηριστικού"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Διαγραφή χαρακτηριστικού"
+msgstr "Εκκαθάριση δεδομένων χαρακτηριστικών"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"
