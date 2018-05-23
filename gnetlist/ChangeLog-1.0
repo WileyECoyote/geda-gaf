@@ -3,6 +3,10 @@
     * docs/vams/vams_mode.txt: Clean up document; adjust line spacing and
       revise wording.
 
+    * src/s_traverse.c: Revise s_traverse_hierarchy_sheet to not get the
+      NULL file context to obtain the configuration setting of "traverse
+      -hierarchy" and use value of top-level hierarchy_traversal instead.
+
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/src/g_rc.c: Revise g_rc_gnetlist_version to obtain and

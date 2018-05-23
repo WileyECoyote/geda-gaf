@@ -320,23 +320,11 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
  */
 void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 {
-  GError      *err;
-  EdaConfig   *cfg;
   const GList *iter;
   char        *net_name;
   char        *value;
   char        *temp_uref;
   bool         is_graphical;
-  bool         is_hierarchy;
-
-  err          = NULL;
-  cfg          = eda_config_get_context_for_file (NULL);
-  is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
-
-  if (err != NULL) {
-    is_hierarchy = TRUE;
-    g_clear_error (&err);
-  }
 
   const GList *obj_list = geda_struct_page_get_objects (pr_current->page_current);
   char *hierarchy_tag = netlist->hierarchy_tag;
@@ -452,7 +440,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       s_netattrib_handle (pr_current, o_current, netlist, hierarchy_tag);
 
       /* Conditionally traverse any underlying schematics */
-      if (is_hierarchy) {
+      if (pr_current->hierarchy_traversal) {
         s_hierarchy_traverse (pr_current, o_current, netlist);
       }
     }
