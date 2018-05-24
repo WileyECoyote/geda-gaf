@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:07-0500\n"
+"POT-Creation-Date: 2018-05-23 09:01-0500\n"
 "PO-Revision-Date: 2015-01-12 10:15+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -19,18 +19,21 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: gsymcheck/src/g_rc.c:53
-#, c-format
-msgid ""
-"You are running gEDA/gsymcheck version [%s%s.%s],\n"
-"but you have a version [%s] gsymcheckrc file:\n"
-"\"%s\"\n"
-"Please be sure that you have the latest rc file.\n"
+#: gsymcheck/src/g_rc.c:70
+msgid "This is gEDA/gsymcheck version"
 msgstr ""
-"È in esecuzione gEDA/gaf versione [%s%s.%s],\n"
-"ma c'è la versione [%s] del file gsymcheckrc:\n"
-"\"%s\"\n"
-"Assicurarsi di usare l'ultima copia del file rc.\n"
+
+#: gsymcheck/src/g_rc.c:71
+msgid "but you have a version"
+msgstr ""
+
+#: gsymcheck/src/g_rc.c:72
+msgid "Please be sure that you have the latest rc file"
+msgstr ""
+
+#: gsymcheck/src/g_rc.c:79
+msgid "file"
+msgstr ""
 
 #: gsymcheck/src/gsymcheck.c:130
 msgid "Loaded file"
@@ -463,3 +466,14 @@ msgstr "Avvertimento"
 #: gsymcheck/src/s_symstruct.c:111
 msgid "Error"
 msgstr "Errore"
+
+#~ msgid ""
+#~ "You are running gEDA/gsymcheck version [%s%s.%s],\n"
+#~ "but you have a version [%s] gsymcheckrc file:\n"
+#~ "\"%s\"\n"
+#~ "Please be sure that you have the latest rc file.\n"
+#~ msgstr ""
+#~ "È in esecuzione gEDA/gaf versione [%s%s.%s],\n"
+#~ "ma c'è la versione [%s] del file gsymcheckrc:\n"
+#~ "\"%s\"\n"
+#~ "Assicurarsi di usare l'ultima copia del file rc.\n"
