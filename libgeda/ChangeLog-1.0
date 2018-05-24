@@ -1,3 +1,8 @@
+2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Update function documentation for eda_config_
+      get_context_for_file.
+
 2018-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_utility.c: Revise conditionals in checks for geda_stristr

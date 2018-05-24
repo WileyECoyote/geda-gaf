@@ -727,24 +727,26 @@ static bool strhashcmp (const void *a, const void *b) {
  * \public \memberof EdaConfig
  * \brief Return a local configuration context.
  * \par Function Description
- * Looks for a configuration file named "geda.conf".  If \a path is
- * not a directory, it is truncated and then a file named "geda.conf"
- * is looked for in that directory.  If none is found, the parent
- * directory is checked, and so on until a configuration file is found
- * or the root directory is reached.  If no configuration file was
- * found, the returned context will be associated with a "geda.conf"
- * in the same directory as \a path.  If \a path is NULL, the current
- * working directory is used.
+ * Looks for a configuration files. If \a path is not a directory,
+ * the basename is assumed to be the name of the configuration file
+ * to look for. If \a path is a directory then a file with the name
+ * "geda.conf" is looked for in that directory. If a configuration
+ * file is not found, the search continues in the parent directory
+ * until a configuration file is found or the root directory is
+ * reached. If no configuration file was found, the returned context
+ * will be associated with a configuration file in the same directory
+ * as \a path. If \a path is NULL, the current working directory is
+ * used.
  *
- * \warning Do not assume that the configuration file associated with
- * the context returned by eda_config_get_context_for_file() is
- * located in the directory specified by \a path.
+ * \warning Do not assume 0 the configuration file associated
+ * with the context returned by eda_config_get_context_for_file()
+ * is located in the directory specified by \a path.
  *
- * By default, the parent context of the returned #EdaConfig will be
- * the user context.
+ * By default, the parent context of the returned #EdaConfig will
+ * be the user context.
  *
- * Multiple calls to eda_config_get_context_for_file() with the same
- * \a path will return the same configuration context.
+ * Multiple calls to eda_config_get_context_for_file() with the
+ * same \a path will return the same configuration context.
  *
  * \param [in] path Path to search for configuration from.
  *
