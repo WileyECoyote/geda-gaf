@@ -3,6 +3,10 @@
     * src/geda/geda_config.c: Update function documentation for eda_config_
       get_context_for_file.
 
+    * tests/test_file.c: Reduce the path string for geda_file_path_sys_config
+      to "/libgeda" for distchecks because otherwise the version code is
+      tagged on the "geda-gaf" portion, and this is not unique for testing.
+
 2018-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_utility.c: Revise conditionals in checks for geda_stristr

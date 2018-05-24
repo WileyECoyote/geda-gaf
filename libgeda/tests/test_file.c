@@ -987,7 +987,7 @@ int test_path (void)
   }
   else {
 
-    if (!strstr(path, "geda-gaf/libgeda")) {
+    if (!strstr(path, "/libgeda")) {
       fprintf(stderr, "FAILED: (F030601B) geda_file_path_sys_config <%s>\n", path);
       result++;
     }
