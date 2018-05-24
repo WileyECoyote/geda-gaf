@@ -6,6 +6,8 @@
     * tests/test_file.c: Reduce the path string for geda_file_path_sys_config
       to "/libgeda" for distchecks because otherwise the version code is
       tagged on the "geda-gaf" portion, and this is not unique for testing.
+      Revise checks for geda_file_sys_cmp_mod_time to use a string for the
+      filename to accommodate VPATH builds.
 
 2018-05-19 Wiley E. Hill <wileyhill@gmail.com>
 

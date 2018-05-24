@@ -1124,27 +1124,37 @@ int test_sys (void)
 
   errno = 0;
 
-  if (stat (SYM_FILE, &stat_02) != 0) {
+  /* Check if VPATH builds */
+  if (src_dir) {
+    string = g_build_filename(src_dir, SYM_FILE, NULL);
+  }
+  else {
+    string = geda_strdup(SYM_FILE);
+  }
+
+  if (stat (string, &stat_02) != 0) {
 
     if (errno == ENOENT) {
       /* The file does not exist. */
-      fprintf(stderr, "FAILED: (F050202A) test file <%s> is missing\n", SYM_FILE);
+      fprintf(stderr, "FAILED: (F050202A) test file <%s> is missing\n", string);
       result++;
     }
     else {
-      fprintf(stderr, "FAILED: (F050202B) an error occured, file <%s>: %s\n", SYM_FILE, strerror(errno));
+      fprintf(stderr, "FAILED: (F050202B) an error occured, file <%s>: %s\n", string, strerror(errno));
       result++;
     }
   }
   else {
 
-    secs = geda_file_sys_cmp_mod_time(SYM_FILE, time(&now));
+    secs = geda_file_sys_cmp_mod_time(string, time(&now));
 
     if (secs != difftime (time(&now), stat_02.st_mtime)) {
       fprintf(stderr, "FAILED: (F050202C) geda_file_sys_cmp_mod_time secs <%d>\n", secs);
       result++;
     }
   }
+
+  GEDA_FREE(string);
 
   /* === Function 03: geda_file_sys_follow_symlinks === */
 
