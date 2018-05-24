@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:04-0500\n"
+"POT-Creation-Date: 2018-05-23 09:01-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -100,7 +100,7 @@ msgid "is not accessible"
 msgstr "Недоступен"
 
 # file
-#: gnetlist/src/gnetlist.c:418
+#: gnetlist/src/gnetlist.c:418 gnetlist/src/g_rc.c:74
 msgid "file"
 msgstr "файл"
 
@@ -114,13 +114,16 @@ msgstr "Не удалось создать"
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "Не задан ни драйвер для работы, ни интерактивный режим!\n"
 
-#: gnetlist/src/g_rc.c:50
-#, c-format
-msgid ""
-"You are running gEDA/gnetlist version [%s%s.%s],\n"
-"but you have a version [%s] gnetlistrc file:\n"
-"\"%s\"\n"
-"Please be sure that you have the latest rc file.\n"
+#: gnetlist/src/g_rc.c:65
+msgid "This is gEDA/gnetlist version"
+msgstr ""
+
+#: gnetlist/src/g_rc.c:66
+msgid "but you have a version"
+msgstr ""
+
+#: gnetlist/src/g_rc.c:67
+msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
 #: gnetlist/src/parsecmd.c:73
@@ -417,7 +420,7 @@ msgstr ""
 msgid "Starting internal netlist creation"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:214 gnetlist/src/s_traverse.c:357
+#: gnetlist/src/s_traverse.c:214 gnetlist/src/s_traverse.c:346
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "ПРЕДУПРЕЖДЕНИЕ: Найден временный/отсутствующий компонент, может быть нет "
@@ -429,25 +432,25 @@ msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:432
+#: gnetlist/src/s_traverse.c:421
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:546
+#: gnetlist/src/s_traverse.c:541
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:595
+#: gnetlist/src/s_traverse.c:590
 msgid "WARNING: Found label"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:596
+#: gnetlist/src/s_traverse.c:591
 msgid "label= is deprecated, please use netname"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:660
+#: gnetlist/src/s_traverse.c:655
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""
