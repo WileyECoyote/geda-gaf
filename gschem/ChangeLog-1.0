@@ -5,6 +5,9 @@
       line after the title-block, this would only be appropriate when creating
       new documents.
 
+    * src/guile/g_rc.c: Replace g_ascii_strcasecmp with strcmp in g_rc_gschem_
+      version, is only ascii digits.
+
 2018-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/generate_netlist.scm: Revise list2string to trim the last space
