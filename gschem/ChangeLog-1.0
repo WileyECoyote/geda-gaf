@@ -1,3 +1,10 @@
+2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem.c: Add sub-function get_file_name() in documents()
+      and revise function to check if a file name was passed on the command
+      line after the title-block, this would only be appropriate when creating
+      new documents.
+
 2018-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/generate_netlist.scm: Revise list2string to trim the last space

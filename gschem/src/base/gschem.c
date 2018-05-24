@@ -130,11 +130,41 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
   char *cwd           = NULL;
   char  tmpfilename[MAX_PATH];
 
+  char *get_file_name(int index) {
+
+    char *filename;
+
+    if (geda_file_get_is_path_absolute(argv[index])) {
+
+      /* Path is already absolute so no need to do any concat of cwd */
+      filename = geda_utility_string_strdup (argv[index]);
+    }
+    else {
+      filename = g_build_filename (cwd, argv[index], NULL);
+    }
+
+    return filename;
+  }
+
   cwd = g_get_current_dir();
 
-  if (comline_tblock) { /* If title-block was specified on command line */
+  /* Check if a title-block was specified on the command line */
+  if (comline_tblock) { 
 
-    Page *page = x_window_open_page(w_current, NULL);
+    char *fname;
+    Page *page;
+
+    fname = get_file_name(argv_index);
+
+    /* Check is user passed the filename after the titleblock,
+     * the directory would be the cwd from get_file_name which
+     * occurs when the user does not pass the file name */
+    if (fname && !g_file_test(fname, G_FILE_TEST_IS_DIR)) {
+      page = x_window_open_page (w_current, fname);
+    }
+    else {
+      page = x_window_open_page (w_current, NULL);
+    }
 
     if (o_edit_add_titleblock(w_current, page, comline_tblock)) {
 
@@ -142,7 +172,9 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
       ++page_loaded;
     }
-    GEDA_FREE(comline_tblock);
+
+    GEDA_FREE (fname);
+    GEDA_FREE (comline_tblock);
   }
   else {
 
@@ -161,14 +193,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
         continue;
       }
 
-      if (geda_file_get_is_path_absolute(argv[i])) {
-
-        /* Path is already absolute so no need to do any concat of cwd */
-        filename = geda_utility_string_strdup (argv[i]);
-      }
-      else {
-        filename = g_build_filename (cwd, argv[i], NULL);
-      }
+      filename = get_file_name(i);
 
       /* if filename is not valid, check if user left off extension */
       if (access(filename, F_OK ) == -1 ) {
