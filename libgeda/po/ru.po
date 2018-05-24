@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:07-0500\n"
+"POT-Creation-Date: 2018-05-23 09:01-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -537,65 +537,53 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:976 libgeda/src/geda/geda_config.c:1105
+#: libgeda/src/geda/geda_config.c:971 libgeda/src/geda/geda_config.c:1100
 msgid "Undefined configuration filename"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:979
+#: libgeda/src/geda/geda_config.c:974
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr "Ошибка при загрузке конфигурации; имя файла не определено\n"
 
-# in file
-#: libgeda/src/geda/geda_config.c:986
-#, fuzzy
-msgid "ignoring file"
-msgstr "в файле"
-
-# Error loading configuration
-#: libgeda/src/geda/geda_config.c:990
-#, fuzzy
-msgid "Not loading configuration"
-msgstr "Ошибка при загрузке конфигурации"
-
-#: libgeda/src/geda/geda_config.c:1050 libgeda/src/guile/g_rc_parse.c:285
+#: libgeda/src/geda/geda_config.c:1045 libgeda/src/guile/g_rc_parse.c:285
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1053
+#: libgeda/src/geda/geda_config.c:1048
 msgid "Error loading configuration"
 msgstr "Ошибка при загрузке конфигурации"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1108
+#: libgeda/src/geda/geda_config.c:1103
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "Ошибка при сохранении конфигурации, имя файла не определено\n"
 
-#: libgeda/src/geda/geda_config.c:1133 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1128 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "файл"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1169
+#: libgeda/src/geda/geda_config.c:1164
 msgid "Error saving configuration to"
 msgstr "произошла ошибка при попытке сохранить конфигурацию"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1176
+#: libgeda/src/geda/geda_config.c:1171
 msgid "bad path in file"
 msgstr "недействительный путь к файлу"
 
-#: libgeda/src/geda/geda_config.c:1180
+#: libgeda/src/geda/geda_config.c:1175
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1513 libgeda/src/geda/geda_config.c:1577
+#: libgeda/src/geda/geda_config.c:1508 libgeda/src/geda/geda_config.c:1572
 msgid "Configuration does not have group"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1591
+#: libgeda/src/geda/geda_config.c:1586
 msgid "Configuration does not have key"
 msgstr "В настройках не обнаружено ключа «%s»"
 
@@ -1948,6 +1936,16 @@ msgstr "Не удалось создать файл войти"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Объект ~A не является частью схемы"
+
+# in file
+#, fuzzy
+#~ msgid "ignoring file"
+#~ msgstr "в файле"
+
+# Error loading configuration
+#, fuzzy
+#~ msgid "Not loading configuration"
+#~ msgstr "Ошибка при загрузке конфигурации"
 
 # Эта функция пытается найти для указанного имени реальный файл (не являющийся
 # ссылкой).

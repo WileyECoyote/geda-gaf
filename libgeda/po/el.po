@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:07-0500\n"
+"POT-Creation-Date: 2018-05-23 09:01-0500\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -522,66 +522,54 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:976 libgeda/src/geda/geda_config.c:1105
+#: libgeda/src/geda/geda_config.c:971 libgeda/src/geda/geda_config.c:1100
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:979
+#: libgeda/src/geda/geda_config.c:974
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-# in file
-#: libgeda/src/geda/geda_config.c:986
-#, fuzzy
-msgid "ignoring file"
-msgstr "στο αρχείο"
-
-# Error loading configuration
-#: libgeda/src/geda/geda_config.c:990
-#, fuzzy
-msgid "Not loading configuration"
-msgstr "διαμόρφωση Σφάλμα κατά τη φόρτωση"
-
-#: libgeda/src/geda/geda_config.c:1050 libgeda/src/guile/g_rc_parse.c:285
+#: libgeda/src/geda/geda_config.c:1045 libgeda/src/guile/g_rc_parse.c:285
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1053
+#: libgeda/src/geda/geda_config.c:1048
 msgid "Error loading configuration"
 msgstr "διαμόρφωση Σφάλμα κατά τη φόρτωση"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1108
+#: libgeda/src/geda/geda_config.c:1103
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr ""
 "Σφάλμα κατά την αποθήκευση ρυθμίσεων? όνομα του αρχείου είναι απροσδιόριστο\n"
 
-#: libgeda/src/geda/geda_config.c:1133 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1128 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "αρχείο"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1169
+#: libgeda/src/geda/geda_config.c:1164
 msgid "Error saving configuration to"
 msgstr "Παρουσιάστηκε ένα σφάλμα κατά την απόπειρα αποθήκευσης διαμόρφωσης"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1176
+#: libgeda/src/geda/geda_config.c:1171
 msgid "bad path in file"
 msgstr "Bad διαδρομή προς το αρχείο"
 
-#: libgeda/src/geda/geda_config.c:1180
+#: libgeda/src/geda/geda_config.c:1175
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1513 libgeda/src/geda/geda_config.c:1577
+#: libgeda/src/geda/geda_config.c:1508 libgeda/src/geda/geda_config.c:1572
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1591
+#: libgeda/src/geda/geda_config.c:1586
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -1917,6 +1905,16 @@ msgstr "Could not create log file in"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Το αντικείμενο ~A δεν είναι μέρος καμίας σελίδας"
+
+# in file
+#, fuzzy
+#~ msgid "ignoring file"
+#~ msgstr "στο αρχείο"
+
+# Error loading configuration
+#, fuzzy
+#~ msgid "Not loading configuration"
+#~ msgstr "διαμόρφωση Σφάλμα κατά τη φόρτωση"
 
 #~ msgid "Cannot get real filename of"
 #~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:07-0500\n"
+"POT-Creation-Date: 2018-05-23 09:01-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -519,67 +519,55 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:976 libgeda/src/geda/geda_config.c:1105
+#: libgeda/src/geda/geda_config.c:971 libgeda/src/geda/geda_config.c:1100
 msgid "Undefined configuration filename"
 msgstr "Ongedefinieerde configuratie bestandsnaam"
 
 # Error loading configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:979
+#: libgeda/src/geda/geda_config.c:974
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr "Fout bij laden van configuratie; bestandsnaam is ongedefinieerd\n"
 
-# in file
-#: libgeda/src/geda/geda_config.c:986
-#, fuzzy
-msgid "ignoring file"
-msgstr "in bestand"
-
-# Failed to load configuration from
-#: libgeda/src/geda/geda_config.c:990
-#, fuzzy
-msgid "Not loading configuration"
-msgstr "Mislukt om de configuratie uit te laden"
-
-#: libgeda/src/geda/geda_config.c:1050 libgeda/src/guile/g_rc_parse.c:285
+#: libgeda/src/geda/geda_config.c:1045 libgeda/src/guile/g_rc_parse.c:285
 msgid "accessing file"
 msgstr ""
 
 # Failed to load configuration from
-#: libgeda/src/geda/geda_config.c:1053
+#: libgeda/src/geda/geda_config.c:1048
 msgid "Error loading configuration"
 msgstr "Mislukt om de configuratie uit te laden"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1108
+#: libgeda/src/geda/geda_config.c:1103
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr ""
 "Fout bij het opslaan van de configuratie; bestandsnaam is ongedefinieerd\n"
 
-#: libgeda/src/geda/geda_config.c:1133 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1128 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "bestand"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1169
+#: libgeda/src/geda/geda_config.c:1164
 msgid "Error saving configuration to"
 msgstr "Er is een fout opgetreden tijdens het opslaan van configuratie"
 
 # invalid file path specification
-#: libgeda/src/geda/geda_config.c:1176
+#: libgeda/src/geda/geda_config.c:1171
 msgid "bad path in file"
 msgstr "ongeldig pad specificatie"
 
-#: libgeda/src/geda/geda_config.c:1180
+#: libgeda/src/geda/geda_config.c:1175
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1513 libgeda/src/geda/geda_config.c:1577
+#: libgeda/src/geda/geda_config.c:1508 libgeda/src/geda/geda_config.c:1572
 msgid "Configuration does not have group"
 msgstr "Configuratie heeft geen groep"
 
-#: libgeda/src/geda/geda_config.c:1591
+#: libgeda/src/geda/geda_config.c:1586
 msgid "Configuration does not have key"
 msgstr "Configuratie heeft geen toets"
 
@@ -1913,6 +1901,16 @@ msgstr "Kon logbestand niet maken in"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Object ~A is geen deel van een pagina"
+
+# in file
+#, fuzzy
+#~ msgid "ignoring file"
+#~ msgstr "in bestand"
+
+# Failed to load configuration from
+#, fuzzy
+#~ msgid "Not loading configuration"
+#~ msgstr "Mislukt om de configuratie uit te laden"
 
 #~ msgid "Cannot get real filename of"
 #~ msgstr "Kan de werkelijke bestandsnaam van niet krijgen"

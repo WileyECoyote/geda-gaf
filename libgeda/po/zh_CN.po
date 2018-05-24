@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:07-0500\n"
+"POT-Creation-Date: 2018-05-23 09:01-0500\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: 冯超 <rainofchaos@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -503,65 +503,53 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:976 libgeda/src/geda/geda_config.c:1105
+#: libgeda/src/geda/geda_config.c:971 libgeda/src/geda/geda_config.c:1100
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:979
+#: libgeda/src/geda/geda_config.c:974
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-# in file
-#: libgeda/src/geda/geda_config.c:986
-#, fuzzy
-msgid "ignoring file"
-msgstr "在文件中"
-
-# Error loading configuration
-#: libgeda/src/geda/geda_config.c:990
-#, fuzzy
-msgid "Not loading configuration"
-msgstr "加载配置时出错"
-
-#: libgeda/src/geda/geda_config.c:1050 libgeda/src/guile/g_rc_parse.c:285
+#: libgeda/src/geda/geda_config.c:1045 libgeda/src/guile/g_rc_parse.c:285
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1053
+#: libgeda/src/geda/geda_config.c:1048
 msgid "Error loading configuration"
 msgstr "加载配置时出错"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1108
+#: libgeda/src/geda/geda_config.c:1103
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "保存配置时出错;文件名未定义\n"
 
-#: libgeda/src/geda/geda_config.c:1133 libgeda/src/object/o_save.c:415
+#: libgeda/src/geda/geda_config.c:1128 libgeda/src/object/o_save.c:415
 msgid "file"
 msgstr "文件"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1169
+#: libgeda/src/geda/geda_config.c:1164
 msgid "Error saving configuration to"
 msgstr "尝试将配置保存到时发生错误"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1176
+#: libgeda/src/geda/geda_config.c:1171
 msgid "bad path in file"
 msgstr "文件路径无效"
 
-#: libgeda/src/geda/geda_config.c:1180
+#: libgeda/src/geda/geda_config.c:1175
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1513 libgeda/src/geda/geda_config.c:1577
+#: libgeda/src/geda/geda_config.c:1508 libgeda/src/geda/geda_config.c:1572
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1591
+#: libgeda/src/geda/geda_config.c:1586
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -1884,6 +1872,16 @@ msgstr "无法在中创建日志文件"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
+
+# in file
+#, fuzzy
+#~ msgid "ignoring file"
+#~ msgstr "在文件中"
+
+# Error loading configuration
+#, fuzzy
+#~ msgid "Not loading configuration"
+#~ msgstr "加载配置时出错"
 
 # Unable to get status
 #~ msgid "Failed to stat"
