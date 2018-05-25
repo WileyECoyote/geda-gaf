@@ -565,14 +565,16 @@ void g_rc_parse_rcfile_handler (const char *rcfile,
 {
   /* Finally, optional additional RC file.  Specifically use the current
    * working directory's configuration context here, no matter where the
-   * rc file is located on disk. */
+   * rc file is located on disk. WEH: Revised to pass rcfile, maybe the
+   * context depends on whether the file specification includes the path
+   */
   if (rcfile != NULL) {
 
     GError *err = NULL;
-    EdaConfig *cwd_cfg = eda_config_get_context_for_file (NULL);
 
-    g_rc_parse_file (rcfile, cwd_cfg, &err); HANDLER_DISPATCH;
+    EdaConfig *cfg = eda_config_get_context_for_file (rcfile);
 
+    g_rc_parse_file (rcfile, cfg, &err); HANDLER_DISPATCH;
   }
 }
 #undef HANDLER_DISPATCH

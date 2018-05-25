@@ -2,7 +2,10 @@
 
     * src/guile/g_rc_parse.c: Revise HANDLER_DISPATCH macro to set err back
       to NULL if an error was cleared. Revise function documentation for
-      g_rc_parse_gafrc_handler.
+      g_rc_parse_gafrc_handler. Revise g_rc_parse_rcfile_handler to pass
+      the eda_config_get_context_for_file so that eda_config_get_context_
+      for_file will know not to look for "gafrc" when the rcfile is some
+      like "gnetlistrc".
 
 2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
