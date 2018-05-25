@@ -1,3 +1,7 @@
+2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Add function documentation for s_traverse_component.
+
 2018-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/vams/vams_mode.txt: Clean up document; adjust line spacing and

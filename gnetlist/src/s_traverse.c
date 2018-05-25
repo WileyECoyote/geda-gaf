@@ -449,10 +449,15 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
   verbose_done();
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Traverse Component looking for Connected Pins
+ * \par Function Description
+ *  Compliles a double linked list of st_cpinlist structures,
+ *  with one st_cpinlist allocation for each connected pin.
+ *  The returned record will be empty if the \a component has
+ *  no connected pins.
+ * 
+ * \returns a pointer to st_cpinlist structure
  */
 CPINLIST *s_traverse_component(GedaToplevel *pr_current,
                                GedaObject   *component,
