@@ -490,13 +490,15 @@ bool g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
 /*! \brief General RC file parsing function.
  * \par Function Description
  * Attempt to load system, user and local (current working directory)
- * configuration \a gafrc files. The second parameter is not used by
- * this function but serves a place holder to be consistence with the
- * other g_xxxx_parse_handler's; g_rc_parse_rcname_handler and
- * g_rc_parse_rcfile_handler.
+ * configuration \a gafrc files.
  *
- * If an error occurs, calls \a handler with the provided \a user_data
- * and a GError.
+ * \note The first parameter is not used by this function but serves as a
+ *  place holder to be consistence with the other g_xxxx_parse_handler's;
+ *  g_rc_parse_rcname_handler and g_rc_parse_rcfile_handler.
+ *
+ * \note The second parameter is used within the HANDLER_DISPATCH macro.
+ *  When an error occurs, the \a handler is called with a GError and the
+ *  provided \a user_data.
  *
  * \see g_rc_parse().
  *
@@ -545,12 +547,12 @@ void g_rc_parse_rcname_handler (const char *rcname,
   }
 }
 
-/*! \brief General RC file parsing function.
+/*!
+ * \brief General RC file parsing function.
  * \par Function Description
- * Attempt to load configuration file \a rcfile if \a rcfile is not NULL.
- *
- * If an error occurs, calls \a handler with the provided \a user_data
- * and a GError.
+ *  Attempts to load configuration \a rcfile if \a rcfile is not NULL.
+ *  If an error occurs, calls \a handler with the provided \a user_data
+ *  and a GError.
  *
  * \see g_rc_parse().
  *
@@ -614,12 +616,11 @@ void g_rc_parse_handler (const char *rcname,
 /*!
  * \brief Get the name of the RC filename being evaluated.
  * \par Function Description
- *
- * Creates a Guile stack object and extracts the top most frame from
- * the stack and gets the sourcefile name.
+ *  Creates a Guile stack object and extracts the top most frame from
+ *  the stack and gets the sourcefile name.
  *
  * \returns If the interpreter can resolve the filename, returns a
- * Scheme object with the full path to the RC file, otherwise FALSE
+ *  Scheme object with the full path to the RC file, otherwise FALSE
  */
 SCM g_rc_parse_rc_filename(void)
 {
