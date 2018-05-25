@@ -1,6 +1,7 @@
-2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
+2018-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/s_traverse.c: Add function documentation for s_traverse_component.
+    * src/s_traverse.c: Add function documentation for s_traverse_component,
+      and comments in source.
 
 2018-05-23 Wiley E. Hill <wileyhill@gmail.com>
 

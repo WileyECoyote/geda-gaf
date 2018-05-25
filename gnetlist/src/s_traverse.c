@@ -293,6 +293,7 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
         }
       }
 
+      /* Retrieve and store list of connected pins */
       netlist->cpins = s_traverse_component (pr_current, o_current, NULL);
 
       /* Deal with the net attribute */
@@ -433,6 +434,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
         }
       }
 
+      /* Retrieve and store list of connected pins */
       netlist->cpins =
         s_traverse_component (pr_current, o_current, hierarchy_tag);
 
