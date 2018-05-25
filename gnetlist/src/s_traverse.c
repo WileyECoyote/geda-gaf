@@ -257,7 +257,7 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
         GEDA_FREE(temp_uref);
       }
       else {
-          netlist->component_uref = NULL;
+        netlist->component_uref = NULL;
       }
 
       netlist->object_ptr = o_current;
@@ -434,7 +434,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       }
 
       netlist->cpins =
-      s_traverse_component (pr_current, o_current, hierarchy_tag);
+        s_traverse_component (pr_current, o_current, hierarchy_tag);
 
       /* here is where we deal with the net attribute */
       s_netattrib_handle (pr_current, o_current, netlist, hierarchy_tag);
