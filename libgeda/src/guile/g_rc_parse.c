@@ -532,7 +532,7 @@ void g_rc_parse_gafrc_handler (const char *dummy,
  *
  * \param rcname    Config file basename, or NULL.
  * \param handler   Handler function for config parse errors.
- * \param user_data Data to be passed to \a handler.
+ * \param user_data Data to be passed to \a handler (via macro).
  */
 void g_rc_parse_rcname_handler (const char *rcname,
                                 ConfigParseErrorFunc handler, void *user_data)
@@ -559,7 +559,7 @@ void g_rc_parse_rcname_handler (const char *rcname,
  *
  * \param rcfile    Specific config file path, or NULL.
  * \param handler   Handler function for config parse errors.
- * \param user_data Data to be passed to \a handler.
+ * \param user_data Data to be passed to \a handler (via macro).
  */
 void g_rc_parse_rcfile_handler (const char *rcfile,
                                 ConfigParseErrorFunc handler, void *user_data)
@@ -597,7 +597,7 @@ void g_rc_parse_rcfile_handler (const char *rcfile,
  * \param rcname    Config file basename, or NULL.
  * \param rcfile    Specific config file path, or NULL.
  * \param handler   Handler function for config parse errors.
- * \param user_data Data to be passed to \a handler.
+ * \param user_data Data to be passed to \a handler (via macro).
  */
 void g_rc_parse_handler (const char *rcname,
                          const char *rcfile, ConfigParseErrorFunc handler,
