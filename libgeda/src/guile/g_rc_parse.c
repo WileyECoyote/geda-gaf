@@ -517,7 +517,6 @@ void g_rc_parse_gafrc_handler (const char *dummy,
   g_rc_parse_system (NULL, &err);       HANDLER_DISPATCH;
   g_rc_parse_user   (NULL, &err);       HANDLER_DISPATCH;
   g_rc_parse_local  (NULL, NULL, &err); HANDLER_DISPATCH;
-
 }
 
 /*! \brief General RC file parsing function.
@@ -659,9 +658,11 @@ SCM g_rc_parse_rc_filename(void)
 SCM g_rc_parse_rc_config(void)
 {
   SCM cfg_s = scm_fluid_ref (scheme_rc_config_fluid);
+
   if (!scm_is_false (cfg_s)) return cfg_s;
 
   EdaConfig *cfg = eda_config_get_context_for_file (NULL);
+
   return edascm_from_config (cfg);
 }
 
