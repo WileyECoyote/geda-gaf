@@ -42,8 +42,9 @@ static SCM scheme_rc_config_fluid = SCM_UNDEFINED;
  */
 
 /**   \defgroup Libgeda-RC-Utilities Libgeda RC Utilities
- *  @{\par This group contains utility functions used by various dialogs
- *    \ingroup (Libgeda-RC-Handlers)
+ *  @{\ingroup (Libgeda-RC-Handlers)
+ *    \par
+ * This group contains utility functions used by various keyword handlers.
  */
 
 /*! \brief Helper to Return Index of string in Virtual String Table
