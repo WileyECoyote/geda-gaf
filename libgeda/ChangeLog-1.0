@@ -1,3 +1,8 @@
+2018-05-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc_parse.c: Revise HANDLER_DISPATCH macro to set err back
+      to NULL if an error was cleared.
+
 2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Update function documentation for eda_config_

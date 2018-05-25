@@ -484,8 +484,8 @@ bool g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
 #  error HANDLER_DISPATCH already defined
 #endif
 #define HANDLER_DISPATCH \
-  do { if (err == NULL) break;  handler (&err, user_data);        \
-       g_clear_error (&err); } while (0)
+  do { if (err == NULL) break;  handler (&err, user_data); \
+       g_clear_error (&err); err = NULL;} while (0)
 
 /*! \brief General RC file parsing function.
  * \par Function Description
