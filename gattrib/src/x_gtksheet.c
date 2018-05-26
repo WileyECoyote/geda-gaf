@@ -648,7 +648,7 @@ void x_gtksheet_reinititialize(PageDataSet *PageData)
  */
 void x_gtksheet_init(PageDataSet *PageData)
 {
-  char *SheetNames[]= { "Components",  "Nets", "Pins"};
+  char *SheetNames[]= { N_("Components"),  N_("Nets"), N_("Pins")};
 
   void CreateSheet(SheetId index, int nRow, int nCol) {
 
@@ -657,12 +657,12 @@ void x_gtksheet_init(PageDataSet *PageData)
     }
     else {
       if ((nRow > 0) && (nCol > 0)) {
-        sheets[index] = (GtkSheet *) gtk_sheet_new( nRow , nCol, _(SheetNames[index]));
+        sheets[index] = (GtkSheet*)gtk_sheet_new( nRow , nCol, SheetNames[index]);
       }
       else {
         fprintf(stderr, "ERROR: (%s) row count =[%d], col count=[%d]\n",
-                _(SheetNames[index]), nRow , nCol);
-        sheets[index] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[index]));
+                SheetNames[index], nRow , nCol);
+        sheets[index] = (GtkSheet*) gtk_sheet_new(1, 1, SheetNames[index]);
         gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
       }
     }
@@ -706,7 +706,7 @@ void x_gtksheet_init(PageDataSet *PageData)
       }
 
       /* Then add new, updated notebook page */
-      GtkWidget *label= gtk_label_new(_(SheetNames[i]));
+      GtkWidget *label= gtk_label_new(SheetNames[i]);
 
       gtk_notebook_insert_page_menu ((GtkNotebook*)notebook,
                                      (GtkWidget*)scrolled_windows[i],

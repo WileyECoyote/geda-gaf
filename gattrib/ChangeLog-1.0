@@ -1,3 +1,8 @@
+2018-05-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Wrap SheetNames member with gettext, remove wrap
+      SheetNames[index] in x_gtksheet_init.
+
 2018-05-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations
