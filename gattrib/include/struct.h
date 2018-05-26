@@ -57,6 +57,7 @@ typedef struct st_string_list STRING_LIST;
 typedef struct st_pin_list PIN_LIST;
 
 typedef struct st_search SearchRecord;
+typedef struct st_column_visible ColumnVisible;
 
 /* -------------------------------------------------------------------- */
 /*! \struct st_sheet_data
@@ -169,4 +170,10 @@ struct st_search {
   int  count;
   int  mode;
 };
+
+struct st_column_visible {
+  const char *name;    /*!< Column name string */
+  int visible;
+};
+
 #endif /* ifndef SHEET_DATA_STRUCT */

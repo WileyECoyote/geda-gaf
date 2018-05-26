@@ -1,5 +1,7 @@
 2018-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/struct.h: Add struct st_column_visible with type ColumnVisible.
+
     * src/gattrib.c: Relocate releasing of file_list under conditional so
       that geda_gslist_free_all is not called if file_list is not created.
 
