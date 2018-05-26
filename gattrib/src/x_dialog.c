@@ -143,6 +143,179 @@ char *x_dialog_new_attrib()
   return entry_text;
 }
 
+/***************** Start of Column Visibility dialog box *****************/
+
+enum {
+  COLUMN_VISIBLE,
+  COLUMN_NAME,
+  COLUMN_DATA,
+  NUM_COLUMNS
+};
+
+static void
+x_dialog_column_visibility_toggled (GtkCellRendererToggle *cell_renderer,
+                                    char                  *path,
+                                    void                  *store)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+
+  int  *ptr;
+  bool  visible;
+
+  model = GTK_TREE_MODEL (store);
+
+  /* Removed conditional but don't know why, can not find documentation
+   * supporting change so re-instating the conditional to "see what happens" */
+  if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
+    return;
+  }
+
+  gtk_tree_model_get (model, &iter,
+                      COLUMN_VISIBLE, &visible,
+                      COLUMN_DATA, &ptr,
+                      -1);
+
+  gtk_tree_store_set (GTK_TREE_STORE (store), &iter,
+                      COLUMN_VISIBLE, (visible != TRUE),
+                      -1);
+
+  /* Store the value in the data structure */
+  *ptr = (visible != TRUE);
+}
+
+bool x_dialog_column_visibility (GList *list)
+{
+  GtkWidget         *dialog;
+  GtkWidget         *scrolled_win;
+  GtkTreeModel      *store;
+  GtkCellRenderer   *renderer;
+  GtkTreeViewColumn *column;
+  GtkTreeView       *tree_view;
+
+  bool response;
+
+  dialog = gattrib_dialog_new_with_buttons(_("Column Visibility"),
+                                             NULL,
+                                             1,   /* Modal */
+                                             "column-visibility",
+                                             GTK_STOCK_CLOSE, GEDA_RESPONSE_REJECT,
+                                             GTK_STOCK_APPLY, GEDA_RESPONSE_APPLY,
+                                             NULL);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order (GTK_DIALOG(dialog),
+                                           GEDA_RESPONSE_APPLY,
+                                           GEDA_RESPONSE_REJECT,
+                                           -1);
+
+  gtk_window_position(GTK_WINDOW(dialog), GTK_WIN_POS_MOUSE);
+
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_APPLY);
+
+  /* create the model for the TreeView */
+  store = (GtkTreeModel*)gtk_tree_store_new (NUM_COLUMNS,
+                                             G_TYPE_BOOLEAN,  /* visibility */
+                                             G_TYPE_STRING,   /* column name */
+                                             G_TYPE_POINTER); /* pointer visibility */
+
+  /* create a scrolled window for the TreeView */
+  scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                               /* GtkContainer */
+                               "border-width",      DIALOG_BORDER_WIDTH,
+                               /* GtkScrolledWindow */
+                               "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                               "vscrollbar-policy", GTK_POLICY_ALWAYS,
+                               "shadow-type",       GTK_SHADOW_ETCHED_IN,
+                               NULL);
+
+  /* create the TreeView */
+  tree_view = g_object_new (GTK_TYPE_TREE_VIEW,
+                            /* GtkTreeView */
+                            "model",      store,
+                            "rules-hint", TRUE,
+                            NULL);
+
+  /* --------------------- first column: Visible  ---------------------- */
+
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
+                           /* GtkCellRendererToggle */
+                           "activatable", TRUE,
+                           NULL);
+
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         /* GtkTreeViewColumn */
+                         "title", _("Visible"),
+                         /*"min-width", COLUMN_VISIBLE_MIN_WIDTH,*/
+                         NULL);
+
+  gtk_tree_view_column_pack_start (column, renderer, FALSE);
+  gtk_tree_view_column_add_attribute (column, renderer, "active", COLUMN_VISIBLE);
+  gtk_tree_view_append_column (tree_view, column);
+
+  g_signal_connect (renderer, "toggled",
+                    G_CALLBACK (x_dialog_column_visibility_toggled),
+                    store);
+
+  /* --------------------- second column: title  ----------------------- */
+
+  renderer = g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
+                           /* GtkCellRendererText */
+                           "editable", FALSE,
+                           NULL);
+
+  column = g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                         /* GtkTreeViewColumn */
+                         "title",    _("Column"),
+                        /*"min-width", COLUMN_NAME_MIN_WIDTH,*/
+                         "sizing",    GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+                         "resizable", TRUE,
+                         NULL);
+
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_add_attribute (column, renderer, "text", COLUMN_NAME);
+  gtk_tree_view_append_column (tree_view, column);
+
+  /* ------------------------------------------------------------------- */
+
+  /* add the tree view to the scrolled window */
+  geda_container_add (scrolled_win, tree_view);
+
+  /* add the scrolled window to the dialog vbox */
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), scrolled_win, TRUE, TRUE, 0);
+
+  GtkTreeIter *parent = NULL;
+
+  while (list) {
+
+    ColumnVisible *cv;
+
+    cv  = list->data;
+
+    GtkTreeIter iter;
+
+    /* add the data to the store */
+    gtk_tree_store_append (GTK_TREE_STORE (store), &iter, parent);
+
+    gtk_tree_store_set (GTK_TREE_STORE (store), &iter,
+                        COLUMN_VISIBLE, cv->visible,
+                        COLUMN_NAME, cv->name,
+                        COLUMN_DATA, &cv->visible,
+                        -1);
+
+    list = list->next;
+  }
+
+  gtk_widget_show_all(dialog);
+
+  response = gtk_dialog_run((GtkDialog*)dialog);
+
+  gtk_widget_destroy(dialog);
+
+  return (response == GEDA_RESPONSE_APPLY);
+}
+
+/****************** End of Column Visibility dialog box ******************/
 
 /*! \brief Delete Attribute dialog
  *

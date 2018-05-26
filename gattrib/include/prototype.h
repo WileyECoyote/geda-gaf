@@ -199,6 +199,7 @@ void  i_window_vars_set(GedaToplevel *toplevel);
 void  generic_msg_dialog (const char *msg);
 bool  x_dialog_generic_confirm_dialog (const char *msg, int type);
 char *x_dialog_new_attrib();
+bool  x_dialog_column_visibility (GList *list);
 void  x_dialog_delete_attrib();
 void  x_dialog_missing_sym();
 int   x_dialog_file_not_saved();
