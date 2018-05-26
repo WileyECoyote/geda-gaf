@@ -536,22 +536,27 @@ GtkWidget *gattrib_dialog_new_empty (const char *title, GtkWindow *parent,
                          "gattrib-toplevel", pr_current,
                          NULL);
 
-  if (title)
+  if (title) {
     gtk_window_set_title (dialog, _(title));
+  }
 
-  if (parent)
+  if (parent) {
     gtk_window_set_transient_for (dialog, parent);
+  }
 
-  if (flags & GTK_DIALOG_MODAL)
+  if (flags & GTK_DIALOG_MODAL) {
     gtk_window_set_modal (dialog, TRUE);
+  }
 
-  if (flags & GTK_DIALOG_DESTROY_WITH_PARENT)
+  if (flags & GTK_DIALOG_DESTROY_WITH_PARENT) {
     gtk_window_set_destroy_with_parent (dialog, TRUE);
+  }
 
-  if (flags & GTK_DIALOG_NO_SEPARATOR)
+  if (flags & GTK_DIALOG_NO_SEPARATOR) {
     gtk_dialog_set_has_separator ((GtkDialog*)dialog, FALSE);
+  }
 
-    gtk_window_set_type_hint (dialog, GDK_WINDOW_TYPE_HINT_DIALOG);
+  gtk_window_set_type_hint (dialog, GDK_WINDOW_TYPE_HINT_DIALOG);
 
   return (GtkWidget*)dialog;
 }
