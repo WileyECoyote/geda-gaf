@@ -5,8 +5,14 @@
     * src/gattrib.c: Relocate releasing of file_list under conditional so
       that geda_gslist_free_all is not called if file_list is not created.
 
+    * src/x_dialog.c: Add new dialog for column visibility, the dialog displays
+      a list of all columns titles with an adjacent checkbox. Using the dialog
+      users can toggle the visibility state on any column.
+
     * src/x_gtksheet.c: Wrap SheetNames member with gettext, remove wrap
-      SheetNames[index] in x_gtksheet_init.
+      SheetNames[index] in x_gtksheet_init. Implement the column visibility
+      in x_gtksheet_reveal_columns. The dialog actually allow user to hide or
+      reveal columns.
 
 2018-05-23 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -102,15 +102,52 @@ void x_gtksheet_destroy_all() {
 
 void x_gtksheet_reveal_columns(GtkSheet *sheet) {
 
-  GtkSheetRange range = sheet->range;
+  //GtkSheetRange range = sheet->range;
+  ColumnVisible *cv;
+  GList *list = NULL;
+  GList *iter;
   int i;
 
+  for (i = 0; i < sheet->maxalloccol; i++) {
+
+    cv  = GEDA_MEM_ALLOC (sizeof(ColumnVisible));
+    cv->name = gtk_sheet_get_column_title(sheet, i);
+    cv->visible = gtk_sheet_column_visible(sheet, i);
+
+    list = g_list_append (list, cv);
+  }
+
+  if (x_dialog_column_visibility(list)) {
+
+    iter = list;
+    i = 0;
+
+    while (iter) {
+
+      bool visible;
+
+      cv  = iter->data;
+      visible =gtk_sheet_column_visible(sheet, i);
+
+      if (cv->visible != visible) {
+        gtk_sheet_column_set_visibility(sheet, i, cv->visible);
+      }
+
+      i++;
+      iter = iter->next;
+    }
+  }
+
+  geda_glist_free_all (list);
+
+/*
   for (i = range.col0; i <= range.coli; i++) {
 
     if (!gtk_sheet_column_visible(sheet, i)) {
       gtk_sheet_column_set_visibility(sheet, i, TRUE);
     }
   }
+*/
 }
 
 /*! \brief Callback Handler for Popup Mouse Context Menu
