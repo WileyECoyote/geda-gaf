@@ -326,7 +326,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
     gdk_threads_init();
     gdk_threads_enter ();
   }
-#endif
+
+#endif /* HAVE_GTHREAD */
 
 #if ENABLE_NLS
 
@@ -348,7 +349,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
 # endif
 
-#endif
+#endif  /* ENABLE_NLS */
 
   /* This is called before libgeda_init so g_get_prgname returns "gattrib" */
   gtk_init(&argc, &argv);
