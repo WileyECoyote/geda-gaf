@@ -1,5 +1,8 @@
 2018-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gattrib.c: Relocate releasing of file_list under conditional so
+      that geda_gslist_free_all is not called if file_list is not created.
+
     * src/x_gtksheet.c: Wrap SheetNames member with gettext, remove wrap
       SheetNames[index] in x_gtksheet_init.
 

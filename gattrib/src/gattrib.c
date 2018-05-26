@@ -417,6 +417,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
        geda_struct_page_delete (pr_current, pr_current->page_current, FALSE);
        x_window_blank_document(pr_current, sheet_head);
     }
+
+    geda_gslist_free_all(file_list);
   }
   else {
     x_window_blank_document(pr_current, sheet_head);
@@ -427,8 +429,6 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   /* -------------- Complete Remaining Windows Stuff ------------- */
   x_window_finalize_startup((GtkWindow*)main_window, sheet_head);
-
-  geda_gslist_free_all(file_list);
 
   if (export_mode) {
 
