@@ -508,6 +508,7 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
 
     if (text == NULL)
       break;
+
     response_id = va_arg (args, int);
   }
 }

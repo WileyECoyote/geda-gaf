@@ -155,6 +155,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
       case HideAttribute:
         gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
         break;
+
       case RevealAttribute:
         x_gtksheet_reveal_columns(sheet);
         break;
