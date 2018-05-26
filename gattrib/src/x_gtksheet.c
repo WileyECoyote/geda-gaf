@@ -357,16 +357,16 @@ bool change_entry(GtkWidget *widget,
   sheet = GTK_SHEET(widget);
   bool state = sheet->state;
 
-  if(*new_col == 0 && (col != 0 || state != GTK_STATE_NORMAL))
+  if (*new_col == 0 && (col != 0 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, gtk_combo_get_type());
 
-  if(*new_col == 1 && (col != 1 || state != GTK_STATE_NORMAL))
+  if (*new_col == 1 && (col != 1 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, GTK_TYPE_ENTRY);
 
-  if(*new_col == 2 && (col != 2 || state != GTK_STATE_NORMAL))
+  if (*new_col == 2 && (col != 2 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, GTK_TYPE_SPIN_BUTTON);
 
-  if(*new_col >= 3 && (col < 3 || state != GTK_STATE_NORMAL))
+  if (*new_col >= 3 && (col < 3 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, GTK_TYPE_CELL_EDITABLE);
 
   return TRUE;
@@ -568,7 +568,7 @@ static int activate_sheet_cell(GtkWidget *widget, int row, int column, void *dat
   sheet       = GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
-  if(GTK_SHEET(widget)->column[column]->title) {
+  if (GTK_SHEET(widget)->column[column]->title) {
     sprintf(cell,"  %s:%d  ",GTK_SHEET(widget)->column[column]->title, row);
   }
   else {
@@ -652,7 +652,7 @@ void x_gtksheet_init(PageDataSet *PageData)
 
   void CreateSheet(SheetId index, int nRow, int nCol) {
 
-    if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
+    if ((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
       fprintf(stderr, "ERROR: %s sheet already exist!\n", SheetNames[index]);
     }
     else {
@@ -667,7 +667,7 @@ void x_gtksheet_init(PageDataSet *PageData)
       }
     }
 
-    if(!GTK_IS_SHEET (sheets[index])) {
+    if (!GTK_IS_SHEET (sheets[index])) {
       fprintf(stderr, "ERROR: could not create %s sheet!\n", SheetNames[index]);
     }
   }
