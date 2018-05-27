@@ -193,7 +193,7 @@ void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData);
 
 /* ------------- i_vars.c ------------- */
 void  i_vars_set(GedaToplevel *toplevel);
-void  i_window_vars_set(GedaToplevel *toplevel);
+//void  i_window_vars_set(GedaToplevel *toplevel);
 
 /* ------------- x_dialog.c ------------- */
 void  generic_msg_dialog (const char *msg);
