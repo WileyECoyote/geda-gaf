@@ -3,6 +3,9 @@
     * onsemi/NLSV4T244-1.sym: Add symbol; dual-supply 4-Bit non-inverting
       level translator.
 
+    * ti/ADS1110-6.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
+      Delta-Sigma, I2C address 1001 110.
+
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/TMP100-1.sym: Add symbol; serial temperature
