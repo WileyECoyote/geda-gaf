@@ -6,6 +6,9 @@
     * ti/ADS1110-6.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
       Delta-Sigma, I2C address 1001 110.
 
+    * ti/ADS1110-7.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
+      Delta-Sigma, I2C address 1001 111.
+
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/TMP100-1.sym: Add symbol; serial temperature
