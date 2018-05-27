@@ -163,8 +163,7 @@ void x_gtksheet_reveal_columns(GtkSheet *sheet) {
  */
 static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
 {
-    GtkSheet *sheet;
-    sheet = x_gtksheet_get_current_sheet();
+    GtkSheet *sheet = x_gtksheet_get_current_sheet();
 
     int WhichItem = (int)(long)selection;
 
@@ -801,8 +800,7 @@ void x_gtksheet_init(PageDataSet *PageData)
  * \param count Number of row labels to add
  * \param list_head Top of the string list
  */
-void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
-                               STRING_LIST *list_head)
+void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_head)
 {
   STRING_LIST *string_list_item;
   GtkStyle    *style;
