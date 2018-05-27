@@ -1,3 +1,8 @@
+2018-05-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/NLSV4T244-1.sym: Add symbol; dual-supply 4-Bit non-inverting
+      level translator.
+
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/TMP100-1.sym: Add symbol; serial temperature
