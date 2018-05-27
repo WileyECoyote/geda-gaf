@@ -419,7 +419,7 @@ int x_dialog_file_not_saved()
   int result;
 
   tmp = _("Save the changes before closing?");
-  str = geda_strconcat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
+  str = geda_strconcat ("<big><b>", tmp, "</b></big>", NULL);
 
   tmp = _("If you do not save, all your changes will be permanently lost.");
   str = geda_strconcat (str, "\n\n", tmp, NULL);

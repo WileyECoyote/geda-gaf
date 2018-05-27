@@ -3,6 +3,9 @@
     * include/prototype.h: Remove/comment-out declaration for non-existence
       i_window_vars_set.
 
+    * src/x_dialog.c: Remove gettext wrapper from format strings in x_dialog_
+      file_not_saved.
+
     * src/x_gtksheet.c: Declare SetupCSheetHandlers static. Reformat Doxygen
       comment blocks.
 
