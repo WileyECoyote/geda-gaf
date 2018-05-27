@@ -9,6 +9,9 @@
     * ti/ADS1110-7.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
       Delta-Sigma, I2C address 1001 111.
 
+    * ti/micro/TM4C1231H6PM-1.sym: Add symbol; Tiva C Series Microcontroller,
+      LQFP-64.
+
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/TMP100-1.sym: Add symbol; serial temperature
@@ -37,7 +40,7 @@
 
     * lineartech/LT4412-2.sym: Add symbol with alternate pin layout.
 
-    * ti/micro/TM4C1230C3PM-1.sym: Tiva C Series Microcontroller.
+    * ti/micro/TM4C1230C3PM-1.sym: Add symbol; Tiva C Series Microcontroller.
 
 2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
