@@ -1,6 +1,7 @@
 2018-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x_gtksheet.c: Reformat Doxygen comment blocks.
+    * src/x_gtksheet.c: Declare SetupCSheetHandlers static. Reformat Doxygen
+      comment blocks.
 
 2018-05-26 Wiley E. Hill <wileyhill@gmail.com>
 

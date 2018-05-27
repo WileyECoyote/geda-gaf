@@ -514,7 +514,7 @@ static bool on_traverse(GtkWidget *widget,
  * \param [in] sheet is the active sheet widget
  * \param [in] PageData Pointer to data structure
  */
-void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
+static void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 {
   GObject *SheetObj;
   SheetObj = G_OBJECT(sheet);
