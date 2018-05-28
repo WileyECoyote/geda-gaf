@@ -271,7 +271,7 @@ bool g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       }
       else {
 
-        const char *process_err  = _("Error encounted processing RC file");
+        const char *process_err  = _("Error encountered processing RC file");
 
         /* Copy tmp_err into err, with a prefixed message. */
         g_propagate_prefixed_error (err, tmp_err, "%s %s: ", process_err, name_norm);
