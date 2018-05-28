@@ -39,10 +39,9 @@ GList *geda_utility_glist_clear(GList *list)
 {
   if (list != NULL ) {
 
-    g_list_foreach(list, (GFunc)g_free, NULL);
-
-    lambda (const char *data) {
-      list = g_list_remove( list, data);
+    lambda (char *data) {
+      list = g_list_remove (list, data);
+      g_free(data);
       return FALSE; /* return from lambda */
     }
     foreach (list);

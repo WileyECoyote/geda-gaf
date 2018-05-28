@@ -1,3 +1,8 @@
+2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_glist.c: Revise geda_utility_glist_clear to only loop
+      over the list once.
+
 2018-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc_parse.c: Revise HANDLER_DISPATCH macro to set err back
