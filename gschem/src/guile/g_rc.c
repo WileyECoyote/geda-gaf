@@ -1086,15 +1086,17 @@ SCM g_rc_attribute_name(SCM scm_path)
  */
 SCM g_rc_component_dialog_attributes(SCM stringlist)
 {
-  GList *list=NULL;
+  GList *list;
   int    length, i;
 
   SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
   length = scm_ilength(stringlist);
 
-  if (default_component_select_attrlist) {
-    /* If keyword is used multiple times, release the old list before recreating */
-    geda_glist_free_full(default_component_select_attrlist, g_free);
+  list = default_component_select_attrlist;
+
+  if (list) {
+    /* If keyword is used multiple times, clear the old list before */
+    geda_clear_glist(list);
   }
 
   scm_dynwind_begin(0);
