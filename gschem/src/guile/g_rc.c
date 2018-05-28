@@ -1098,7 +1098,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   }
 
   scm_dynwind_begin(0);
-  scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);
+  scm_dynwind_unwind_handler(geda_glist_free_all, (void*)&list, 0);
 
   /* convert the scm list into a GList */
   for (i=0; i < length; i++) {

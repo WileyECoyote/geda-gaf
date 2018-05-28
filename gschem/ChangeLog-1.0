@@ -1,3 +1,8 @@
+2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Replace geda_gslist_free_all with geda_glist_free_all
+      in g_rc_component_dialog_attributes for unwind_handler.
+
 2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Add sub-function get_file_name() in documents()
