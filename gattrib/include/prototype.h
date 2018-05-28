@@ -32,6 +32,7 @@ SCM g_quit(void);
 
 /* ------------- g_rc.c ------------- */
 SCM  g_rc_gattrib_version(SCM version);
+SCM  g_rc_hide_columns(SCM stringlist);
 SCM  g_rc_sort_components(SCM mode);
 SCM  g_rc_tearoff_menus(SCM mode);
 

@@ -892,6 +892,11 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     gtk_sheet_column_button_add_label(sheet, j, text);
     gtk_sheet_column_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
     gtk_sheet_set_column_title(sheet, j, text);
+
+    if (geda_utility_glist_find_string(hide_columns, text) > -1) {
+      gtk_sheet_column_set_visibility(sheet, j, FALSE);
+    }
+
     string_list_item = string_list_item->next;
   }
 }

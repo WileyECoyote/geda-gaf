@@ -83,6 +83,49 @@ SCM g_rc_gattrib_version(SCM scm_version)
   return ret;
 }
 
+/*! \brief This function processes the hide-columns RC entry.
+ *  \par Function Description
+ *  This function reads the string list from the hide-columns
+ *  configuration parameter and converts the list into a GList.
+ *  The GList is stored in the global default_hide_columns variable.
+ */
+SCM g_rc_hide_columns(SCM stringlist)
+{
+  GList *list=NULL;
+  int    length, i;
+
+  SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
+  length = scm_ilength(stringlist);
+
+  /* If the command is called multiple times, remove the old list before
+     recreating it */
+  geda_glist_free_full(default_hide_columns, g_free);
+
+  scm_dynwind_begin(0);
+  scm_dynwind_unwind_handler(geda_gslist_free_all, (void*)&list, 0);
+
+  /* convert the scm list into a GList */
+  for (i=0; i < length; i++) {
+
+    char  *attr;
+    char *str;
+    SCM elem = scm_list_ref(stringlist, scm_from_int(i));
+
+    SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
+
+    str = scm_to_utf8_string(elem);
+    attr = geda_strdup(str);
+    free(str);
+    list = g_list_prepend(list, attr);
+  }
+
+  scm_dynwind_end();
+
+  default_hide_columns = g_list_reverse(list);
+
+  return SCM_BOOL_T;
+
+}
 /*! \brief This function processes the sort-components RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

@@ -45,6 +45,8 @@ int default_paper_height = 85000;
 int default_sort_components = 0;
 int default_tearoff_menus   = 1;
 
+GList *default_hide_columns = NULL;
+
 /*------------------------------------------------------------------*/
 /*! \brief Initialise variables in the GedaToplevel
  *
@@ -61,5 +63,9 @@ void i_vars_set (GedaToplevel *toplevel)
 
   sort_components = default_sort_components;
 
-  tearoff_menus   = default_tearoff_menus;
+  tearoff_menus = default_tearoff_menus;
+
+  hide_columns = default_hide_columns;
+}
+
 }
