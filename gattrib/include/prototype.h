@@ -194,6 +194,7 @@ void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData);
 
 /* ------------- i_vars.c ------------- */
 void  i_vars_set(GedaToplevel *toplevel);
+void  i_vars_release_all(void);
 //void  i_window_vars_set(GedaToplevel *toplevel);
 
 /* ------------- x_dialog.c ------------- */

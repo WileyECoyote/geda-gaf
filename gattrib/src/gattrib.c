@@ -226,6 +226,8 @@ int gattrib_quit(int return_code)
 
   gattrib_save_user_config();
 
+  i_vars_release_all();
+
   /* Shutdown libgeda */
   libgeda_release();
 
