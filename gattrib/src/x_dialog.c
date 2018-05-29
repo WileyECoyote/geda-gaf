@@ -615,7 +615,7 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
   }
 
-  title = geda_strconcat(_("Find "), prompt, NULL);
+  title = geda_strconcat(_("Find"), " ", prompt, NULL);
 
   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (title,
                                                     (GtkWindow*)main_window,
@@ -646,7 +646,7 @@ char *x_dialog_get_search_text(const char *prompt)
 
     g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
-    real_prompt = geda_strconcat(_("Enter "), prompt, ":", NULL);
+    real_prompt = geda_strconcat(_("Enter"), " ", prompt, ":", NULL);
     label       = geda_aligned_label_new(real_prompt, 0, 0);
     gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
@@ -705,14 +705,14 @@ typedef enum {
 
 WidgetStringData DialogStrings[] = {
   /* 2 String for Edit Controls */
-        { "SearchTextCombo",       N_("  Search for:"),     N_("Enter or select the text to find")},
-        { "ReplaceTextCombo",      N_("Replace with:"),     N_("Enter or select the replacement text")},
+        { "SearchTextCombo",       N_("Search for:"),     N_("Enter or select the text to find")},
+        { "ReplaceTextCombo",      N_("Replace with:"),   N_("Enter or select the replacement text")},
 
   /* 4 Strings for Switch Controls */
-        { "IgnoreCaseSwitch",      N_("    Ignore Case"),   N_("Set search case sensitivity")},
-        { "WholeWordSwitch",       N_("  Match Words"),     N_("Limit Search hits to entire work")},
-        { "SearchBackwordSwitch",  N_("Search Backword"),   N_("Reverse search direction")},
-        { "WrapAroundSwitch",      N_("  Wrap Around"),     N_("Continue search from the beginning")},
+        { "IgnoreCaseSwitch",      N_("Ignore Case"),     N_("Set search case sensitivity")},
+        { "WholeWordSwitch",       N_("Match Words"),     N_("Limit Search hits to entire work")},
+        { "SearchBackwordSwitch",  N_("Search Backword"), N_("Reverse search direction")},
+        { "WrapAroundSwitch",      N_("Wrap Around"),     N_("Continue search from the beginning")},
         { NULL, NULL, NULL}
 };
 
