@@ -711,7 +711,7 @@ WidgetStringData DialogStrings[] = {
   /* 4 Strings for Switch Controls */
         { "IgnoreCaseSwitch",      N_("Ignore Case"),     N_("Set search case sensitivity")},
         { "WholeWordSwitch",       N_("Match Words"),     N_("Limit Search hits to entire work")},
-        { "SearchBackwordSwitch",  N_("Search Backword"), N_("Reverse search direction")},
+        { "SearchBackwordSwitch",  N_("Search Backward"), N_("Reverse search direction")},
         { "WrapAroundSwitch",      N_("Wrap Around"),     N_("Continue search from the beginning")},
         { NULL, NULL, NULL}
 };
