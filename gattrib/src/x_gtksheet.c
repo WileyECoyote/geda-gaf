@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------
  * Includes required to run graphical widgets.
  *------------------------------------------------------------------*/
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 #include <gtk/gtk.h>
 #include <gtksheet.h>

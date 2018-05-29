@@ -29,11 +29,11 @@
 
 #include "../../version.h"
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
+#include "../include/gattrib_dialog.h"
 #include <geda_container.h>
 #include <geda/geda_dialog_controls.h>
 #include <geda_widgets.h>
-#include <gattrib_dialog.h>
 #include <geda_dialogs.h>
 
 /***************** Start of generic message dialog box *******************/
@@ -62,6 +62,7 @@ void generic_msg_dialog (const char *msg)
 }
 
 /***************** End of generic message dialog box *********************/
+
 /***************** Start of generic confirm dialog box *******************/
 
 /*! \brief Generic Confirmation Dialog
@@ -90,6 +91,10 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 
   return (response == GEDA_RESPONSE_OK);
 }
+
+/***************** End of generic message dialog box *********************/
+
+/****************** Start of New Attribute dialog box ********************/
 
 /*! \brief Add new attribute dialog.
  * This asks for the name of the attrib column to insert
@@ -141,6 +146,8 @@ char *x_dialog_new_attrib()
   gtk_widget_destroy(widget);
   return entry_text;
 }
+
+/****************** End of New Attribute dialog box **********************/
 
 /***************** Start of Column Visibility dialog box *****************/
 
@@ -428,11 +435,13 @@ int x_dialog_file_not_saved()
                                                GTK_DIALOG_DESTROY_WITH_PARENT,
                                                GTK_MESSAGE_WARNING,
                                                GTK_BUTTONS_NONE, NULL);
+
   gtk_message_dialog_set_markup ((GtkMessageDialog*)dialog, str);
+
   gtk_dialog_add_buttons (dialog,
-                          _("Close without saving"), GEDA_RESPONSE_NO,
-                          GTK_STOCK_CANCEL,          GEDA_RESPONSE_CANCEL,
-                          GTK_STOCK_SAVE,            GEDA_RESPONSE_YES,
+                        _("Close without saving"), GEDA_RESPONSE_NO,
+                          GTK_STOCK_CANCEL,        GEDA_RESPONSE_CANCEL,
+                          GTK_STOCK_SAVE,          GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */

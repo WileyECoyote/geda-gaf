@@ -29,7 +29,7 @@
  *       structure to save carrying the dimensions around separately.
  */
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 /* ===================  Public Functions  ====================== */
 

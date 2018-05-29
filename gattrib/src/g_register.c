@@ -22,7 +22,7 @@
  * Functions to register Scheme functions
  */
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 /* ---------------------------------------------------------------------- */
 /*! \brief Register Scheme functions

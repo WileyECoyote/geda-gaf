@@ -4,6 +4,8 @@
 
     * etc/system-gattribrc.in: Add keyword list hide-columns.
 
+    * src/*.c: Use relative path to include/gattrib.h.
+
     * src/gattrib.c: Add call i_vars_release_all to in gattrib_quit.
 
     * src/g_rc.c: Add keyword handler g_rc_hide_columns to store the list of

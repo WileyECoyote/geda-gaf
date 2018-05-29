@@ -31,7 +31,7 @@
  * displaying the attribs.
  */
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 /*------------------------------------------------------------------*/
 /*!

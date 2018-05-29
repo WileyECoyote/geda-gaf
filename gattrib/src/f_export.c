@@ -24,7 +24,7 @@
  * At the moment, this is only component sheets.
  */
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 static inline void
 print_quote_if_comma(FILE *fp, char *text)

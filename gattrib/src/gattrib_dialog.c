@@ -19,8 +19,9 @@
  * 02110-1301 USA
  */
 
-#include <gattrib.h>
-#include <gattrib_dialog.h>
+#include "../include/gattrib.h"
+#include "../include/gattrib_dialog.h"
+
 #include <geda_uio_functions.h>
 #include <geda/geda_stat.h>
 

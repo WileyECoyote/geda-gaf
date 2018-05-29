@@ -26,8 +26,7 @@
 /*------------------------------------------------------------------
  * Gattrib specific includes.  Note that include order is important.
  *------------------------------------------------------------------*/
-#include <gattrib.h>
-
+#include "../include/gattrib.h"
 #include "../include/i_vars.h"
 
 /*------------------------------------------------------------------*/

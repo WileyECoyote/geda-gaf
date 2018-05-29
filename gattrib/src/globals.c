@@ -23,7 +23,7 @@
  * Global declarations
  */
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 /* command line arguments */
 int export_mode;  //!< Reflects the value of the command line flag
