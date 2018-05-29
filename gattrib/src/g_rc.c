@@ -29,7 +29,6 @@
 #include <gattrib.h>
 #include "../include/g_rc.h"
 #include "../include/i_vars.h"     /* This holds all the guile variable defs */
-#include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
 /*! \brief Test the version of gattrib and gEDA/gaf

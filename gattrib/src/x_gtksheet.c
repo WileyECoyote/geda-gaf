@@ -39,7 +39,6 @@
 
 #include <geda/geda_gui_funcs.h>
 #include <geda_widgets.h>
-#include <geda_debug.h>
 
 #define COLUMN_MIN_WIDTH 10
 

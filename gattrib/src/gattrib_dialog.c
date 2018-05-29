@@ -23,7 +23,6 @@
 #include <gattrib_dialog.h>
 #include <geda_uio_functions.h>
 #include <geda/geda_stat.h>
-#include <geda_debug.h>
 
 /*! \brief Create pixmap widget for dialogs boxes.
  *  \par Function Description

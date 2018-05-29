@@ -133,7 +133,6 @@
 
 #include <geda_keysyms.h>
 #include <libgedauio.h>
-#include <geda_debug.h>
 
 typedef struct {
   void (*func)(void*);

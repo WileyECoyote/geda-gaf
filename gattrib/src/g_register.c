@@ -23,7 +23,6 @@
  */
 
 #include <gattrib.h>
-#include <geda_debug.h>
 
 /* ---------------------------------------------------------------------- */
 /*! \brief Register Scheme functions

@@ -1,5 +1,7 @@
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gattrib.h: Include geda_debug.h.
+
     * etc/system-gattribrc.in: Add keyword list hide-columns.
 
     * src/gattrib.c: Add call i_vars_release_all to in gattrib_quit.

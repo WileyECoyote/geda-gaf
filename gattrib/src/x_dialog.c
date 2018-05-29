@@ -35,7 +35,6 @@
 #include <geda_widgets.h>
 #include <gattrib_dialog.h>
 #include <geda_dialogs.h>
-#include <geda_debug.h>
 
 /***************** Start of generic message dialog box *******************/
 

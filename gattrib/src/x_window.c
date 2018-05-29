@@ -34,7 +34,6 @@
 
 #include <geda_container.h>
 #include <geda_widgets.h>
-#include <geda_debug.h>
 
 /*------------------------------------------------------------------
  * Gattrib specific defines

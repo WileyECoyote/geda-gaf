@@ -30,8 +30,6 @@
 
 #include "../include/i_vars.h"
 
-#include <geda_debug.h>
-
 /*------------------------------------------------------------------*/
 /*
  * Define the vars used later

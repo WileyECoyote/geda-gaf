@@ -25,7 +25,6 @@
  */
 
 #include <gattrib.h>
-#include <geda_debug.h>
 
 static inline void
 print_quote_if_comma(FILE *fp, char *text)
