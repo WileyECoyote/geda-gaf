@@ -46,7 +46,7 @@ SCM g_rc_gattrib_version(SCM scm_version)
 
   version = scm_to_utf8_string (scm_version);
 
-  if (g_ascii_strcasecmp (version, PACKAGE_DATE_VERSION) != 0) {
+  if (strcmp (version, PACKAGE_DATE_VERSION) != 0) {
 
     SCM   rc_filename;
     char *sourcefile;
