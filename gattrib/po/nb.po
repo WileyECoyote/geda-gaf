@@ -228,7 +228,7 @@ msgstr ""
 
 #: gattrib/src/s_toplevel.c:278
 msgid "attribute"
-msgstr "egenskap"
+msgstr "attributt"
 
 #: gattrib/src/s_toplevel.c:491
 msgid "did not find the refdes in the master list\n"
@@ -446,35 +446,34 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "egenskap"
+msgstr "Legg til attributt"
 
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "egenskap"
+msgstr "Sett inn Attributt"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "egenskap"
+msgstr "Skjul attributt"
 
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "egenskap"
+msgstr "Avsløre Attributt"
 
+# Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "egenskap"
+msgstr "Slett attributten"
 
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "egenskap"
+msgstr "Klare attributdata"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"
