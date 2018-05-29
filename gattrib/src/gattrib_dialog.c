@@ -489,7 +489,7 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
                                                const char    *first_button_text,
                                                va_list        args)
 {
-  const char* text;
+  const char *text;
   int response_id;
 
   g_return_if_fail (GTK_IS_DIALOG (dialog));
