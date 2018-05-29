@@ -8,7 +8,8 @@
 
     * po/oc.po: Update Occitan translations.
 
-    * src/x_dialog.c: Remove extra space from dialog text.
+    * src/x_dialog.c: Remove extra space from dialog text, and replace geda_log
+      with fprintf for unlikely unhandled case messages.
 
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
 

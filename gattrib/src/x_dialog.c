@@ -786,7 +786,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     break;
 
   default:
-    geda_log ("%s unhandled case for signal: %d\n", __func__, response);
+    fprintf (stderr,"%s unhandled case for signal: %d\n", __func__, response);
   }
 
   Search->ReplaceAll = FALSE; /* This must be enabled by user each loop */
@@ -838,8 +838,9 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
        gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
     }
     break;
+
   default:
-    geda_log ("%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
+    fprintf (stderr,"%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
   }
 
   g_free(text);
@@ -873,7 +874,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
      break;
 
    default:
-    geda_log ("%s: Unknown Switch ID: %d\n", __func__,response);
+    fprintf (stderr,"%s: Unknown Switch ID: %d\n", __func__,response);
    }
 
    return;
