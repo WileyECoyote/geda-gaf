@@ -453,40 +453,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "_Apondre un nòu atribut"
+msgstr "Apond un atribut"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "eliminar Atribut"
+msgstr "Insereix Atribut"
 
+# # Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Atribut"
+msgstr "Amaga lo Atribut"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "eliminar Atribut"
+msgstr "Revèla lo Atribut"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "eliminar Atribut"
+msgstr "Suprimís lo atribut"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "eliminar Atribut"
+msgstr "Esborra las donadas de atributs"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"

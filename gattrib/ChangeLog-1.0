@@ -6,6 +6,8 @@
 
     * po/nb.po: Update Norwegian Bokmal translations.
 
+    * po/oc.po: Update Occitan translations.
+
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gattrib.h: Include geda_debug.h.
