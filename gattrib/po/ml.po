@@ -437,40 +437,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Add Attribute"
-msgstr "പുതിയ ആട്രിബ്യൂട്ട് ചേർക്കുക"
+msgstr "ആട്രിബ്യൂട്ട് ചേർക്കുക"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കുക"
+msgstr "ആട്രിബ്യൂട്ട് ചേർക്കുക"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "ആട്രിബ്യൂട്ട്"
+msgstr "ആട്രിബ്യൂട്ട് മറയ്ക്കുക"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കുക"
+msgstr "ആട്രിബ്യൂട്ട് വെളിപ്പെടുത്തുക"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കുക"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:59
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കുക"
+msgstr "ആട്രിബ്യൂട്ട് ഡാറ്റ മായ്ക്കുക"
 
 #: gattrib/src/x_menus.c:361
 msgid "_File"

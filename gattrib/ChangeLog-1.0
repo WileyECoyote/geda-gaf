@@ -2,6 +2,8 @@
 
     * po/en_GB.po: Update Great Britain.
 
+    * po/ml.po: Updated Malayalam translations.
+
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gattrib.h: Include geda_debug.h.
