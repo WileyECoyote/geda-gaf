@@ -1,3 +1,7 @@
+2018-05-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Remove unneeded GtkDialog cast in x_dialog_get_search_text.
+
 2018-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.

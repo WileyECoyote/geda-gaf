@@ -663,7 +663,7 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_grab_focus(textentry);
     gtk_widget_show_all((GtkWidget*)dialog);
 
-    response = gtk_dialog_run ((GtkDialog*)dialog);
+    response = gtk_dialog_run (dialog);
 
     if (response == GEDA_RESPONSE_ACCEPT) {
       text = geda_utility_string_strdup( GetEntryText(textentry) );
