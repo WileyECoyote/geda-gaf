@@ -1,3 +1,7 @@
+2018-05-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * amphenol/31-71043-1.sym: Clean symbol; reposition attributes.
+
 2018-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/NLSV4T244-1.sym: Add symbol; dual-supply 4-Bit non-inverting
