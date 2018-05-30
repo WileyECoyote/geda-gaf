@@ -7,6 +7,9 @@
       the InputText_hbox and SearchOptions1_hbox to compensate for the spaces
       removed from the dialog text.
 
+    * src/x_toolbars.c: Replace geda_log with fprintf for unlikely unhandled case
+      messages.
+
 2018-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.
