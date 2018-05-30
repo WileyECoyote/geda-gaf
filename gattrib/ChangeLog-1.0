@@ -8,7 +8,7 @@
       removed from the dialog text.
 
     * src/x_toolbars.c: Replace geda_log with fprintf for unlikely unhandled case
-      messages.
+      messages. Increase line spacing after breaks in switch cases.
 
 2018-05-29 Wiley E. Hill <wileyhill@gmail.com>
 

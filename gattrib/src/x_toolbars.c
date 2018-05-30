@@ -107,15 +107,19 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
     case find:
       x_find_attribute_value();
       break;
+
     case replace:
       x_find_replace_attrib_value();
       break;
+
     case attribute:
       x_find_attribute();
       break;
+
     case designator:
       x_find_refdes();
       break;
+
     default:
       fprintf (stderr, "%s: unknown button Id %d\n", __func__, button);
   }
@@ -140,27 +144,35 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
     case invisible:
       s_properties_set_invisible();
       break;
+
     case visible:
       s_properties_set_visible();
       break;
+
     case add:
       s_toplevel_add_new_attrib(-1);
       break;
+
     case promote:
       s_properties_promote_attribute();
       break;
+
     case demote:
       s_properties_demote_attribute();
       break;
+
     case name_only:
       s_properties_set_name_only();
       break;
+
     case value_only:
       s_properties_set_value_only();
       break;
+
     case name_value:
       s_properties_set_name_and_value();
       break;
+
     default:
       fprintf (stderr, "%s: unknown button Id %d\n", __func__, button);
   }
