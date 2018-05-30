@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-29 11:36-0500\n"
+"POT-Creation-Date: 2018-05-29 14:45-0500\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
@@ -342,7 +342,7 @@ msgstr ""
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:618 gattrib/src/x_dialog.c:1053
+#: gattrib/src/x_dialog.c:618 gattrib/src/x_dialog.c:1055
 #: gattrib/src/x_toolbars.c:38
 msgid "Find"
 msgstr ""
@@ -384,7 +384,7 @@ msgid "Limit Search hits to entire work"
 msgstr ""
 
 #: gattrib/src/x_dialog.c:714
-msgid "Search Backword"
+msgid "Search Backward"
 msgstr ""
 
 #: gattrib/src/x_dialog.c:714
@@ -399,27 +399,27 @@ msgstr ""
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1029
+#: gattrib/src/x_dialog.c:1031
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1031
+#: gattrib/src/x_dialog.c:1033
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1040
+#: gattrib/src/x_dialog.c:1042
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1042 gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_dialog.c:1044 gattrib/src/x_toolbars.c:39
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1051
+#: gattrib/src/x_dialog.c:1053
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1058
+#: gattrib/src/x_dialog.c:1060
 msgid "Find next"
 msgstr ""
 
