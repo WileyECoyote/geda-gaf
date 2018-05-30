@@ -3,6 +3,8 @@
     * po/nl.po: Update Dutch translations.
 
     * src/x_dialog.c: Remove unneeded GtkDialog cast in x_dialog_get_search_text.
+      Revise x_dialog_create_search_replace_dialog to add an alignment widget for
+      the InputText_hbox to compensate for the spaces removed from the dialog text.
 
 2018-05-29 Wiley E. Hill <wileyhill@gmail.com>
 

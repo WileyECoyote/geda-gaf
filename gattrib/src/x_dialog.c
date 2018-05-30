@@ -953,7 +953,9 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   GtkDialog *ThisDialog;
   GtkWidget *MainDialogVBox;
 
+  GtkWidget *alignment;
   GtkWidget *dialog_action_area;
+  GtkWidget *hbox;
   GtkWidget *CloseButt;
 
   GtkTooltips *tooltips;
@@ -973,8 +975,19 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   MainDialogVBox = ThisDialog->vbox;
   gtk_widget_show (MainDialogVBox);
 
-  HSECTION (MainDialogVBox, InputText);   /* Row 1 */
-    GEDA_NEW_TEXT_ENTRY_COMBO (InputText_hbox, SearchText, 306, 24);
+  /* Create an alignment widget to shift the Search text right */
+  alignment = gtk_alignment_new (1, 0, 1, 1);
+  gtk_box_pack_start (GTK_BOX (MainDialogVBox), alignment, FALSE, TRUE, 0);
+  gtk_widget_show (alignment);
+
+  g_object_set (alignment, "left-padding", 25, NULL);
+
+  hbox = gtk_hbox_new(FALSE, 1);
+  gtk_widget_show (hbox);
+  geda_container_add (alignment, hbox);
+
+  HSECTION (hbox, InputText);   /* Row 1 */
+  GEDA_NEW_TEXT_ENTRY_COMBO (InputText_hbox, SearchText, 306, 24);
 
   HSECTION (MainDialogVBox, NewText);   /*  Row 2 */
     GEDA_NEW_TEXT_ENTRY_COMBO (NewText_hbox, ReplaceText, 306, 24);
