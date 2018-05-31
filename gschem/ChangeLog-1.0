@@ -1,3 +1,9 @@
+2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_multiattrib.c: Set focus chain, aka TAB order in multiattrib_init
+      because I am tired of tabbing from the add attribute combo entry and the
+      cursor not going to the value entry field.
+
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise g_rc_component_dialog_attributes to clear and
