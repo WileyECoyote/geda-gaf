@@ -1,3 +1,8 @@
+2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * titleblock/title-bordered-A0.sym: Add description attribute and revise
+      attribute locations.
+
 2018-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * amphenol/31-71043-1.sym: Clean symbol; reposition attributes.
