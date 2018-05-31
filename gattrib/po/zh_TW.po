@@ -433,41 +433,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "添加新屬性"
+msgstr "添加屬性"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "刪除屬性"
+msgstr "插入屬性"
 
-# Attribute
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "屬性"
+msgstr "隱藏屬性"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "刪除屬性"
+msgstr "顯示屬性"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "刪除屬性"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "刪除屬性"
+msgstr "清除屬性數據"
 
 #: gattrib/src/x_gtksheet.c:687
 msgid "Components"
