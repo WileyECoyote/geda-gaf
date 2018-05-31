@@ -538,9 +538,11 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
     i_status_update_grid_info (w_current);
     o_invalidate_all (w_current);
     break;
+
   case GEDA_RESPONSE_REJECT:
   case GEDA_RESPONSE_DELETE_EVENT:
     break;
+
   default:
     BUG_IMSG ("unhandled case for signal <%d>", response);
   }
@@ -903,9 +905,11 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
     case GEDA_RESPONSE_DELETE_EVENT:
       gtk_widget_destroy(Dialog);
       break;
+
     case GEDA_RESPONSE_ACCEPT:
       x_dialog_edit_arc_angle_apply(Dialog, w_current);
       break;
+
     default:
       BUG_IMSG ("unhandled case for signal <%d>", response);
   }
