@@ -1,5 +1,7 @@
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/nl.po: Update Dutch translations.
+
     * include/libgeda/geda_config.h: Add EdaConfigError member documentation.
 
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
