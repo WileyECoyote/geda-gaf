@@ -1,3 +1,7 @@
+2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_config.h: Add EdaConfigError member documentation.
+
 2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_glist.c: Revise geda_utility_glist_clear to only loop

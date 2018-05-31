@@ -115,13 +115,26 @@
 /*! Domain for errors relating to EdaConfig operations. */
 #define EDA_CONFIG_ERROR eda_config_error_quark ()
 
-/*! Error numbers for errors relating to EdaConfig operations. */
+/*! Error numbers for errors relating to EdaConfig operations.
+ * \see (top_srcdir)/docs/specifications/config-api.txt
+ */
 typedef enum {
+
+  /*! Text being parsed was in an unknown encoding */
   EDA_CONFIG_ERROR_UNKNOWN_ENCODING,
+
+  /*! Configuration data was ill-formed. */
   EDA_CONFIG_ERROR_PARSE,
+
+  /*! Requested configuration key was not found. */
   EDA_CONFIG_ERROR_KEY_NOT_FOUND,
+
+  /*! Requested configuration group was not found. */
   EDA_CONFIG_ERROR_GROUP_NOT_FOUND,
+
+  /*! Configuration value could not be parsed into the requested format. */
   EDA_CONFIG_ERROR_INVALID_VALUE,
+
 } EdaConfigError;
 
 GQuark eda_config_error_quark (void);
