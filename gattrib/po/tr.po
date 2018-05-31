@@ -435,41 +435,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Yeni Özellik Ekle"
+msgstr "Öznitelik ekle"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Özniteliği Sil"
+msgstr "Özellik Ekle"
 
-# Attribute
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "nitelik"
+msgstr "Özniteliği Gizle"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Özniteliği Sil"
+msgstr "Özelliği Göster"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "Özniteliği Sil"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Özniteliği Sil"
+msgstr "Öznitelik Verilerini Temizle"
 
 #: gattrib/src/x_gtksheet.c:687
 msgid "Components"
