@@ -250,9 +250,8 @@ msgstr ""
 msgid "Column Visibility"
 msgstr ""
 
-# visible
+# Visible
 #: gattrib/src/x_dialog.c:254
-#, fuzzy
 msgid "Visible"
 msgstr "قابل رویت"
 
@@ -445,41 +444,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "اضافه کردن ویژگی جدید"
+msgstr "اضافه کردن ویژگی"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "حذف ویژگی"
+msgstr "مشخصه را وارد کنید"
 
-# Attribute
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "صفت"
+msgstr "خصوصیات را پنهان کنید"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "حذف ویژگی"
+msgstr "مشخص کردن مشخصه"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "حذف ویژگی"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "حذف ویژگی"
+msgstr "پاک کردن داده های مشخصه"
 
 #: gattrib/src/x_gtksheet.c:687
 msgid "Components"
