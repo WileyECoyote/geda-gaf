@@ -6,6 +6,9 @@
 
     * po/ru.po: Update Russian translations.
 
+    * src/scheme/scheme_page.c: Revise page_from_string to remove format
+      characters from translation string.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
