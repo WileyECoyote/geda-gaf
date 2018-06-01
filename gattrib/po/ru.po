@@ -126,17 +126,19 @@ msgstr "ЗАВЕРШЕНО"
 msgid "failed to find attribute"
 msgstr "не удалось найти атрибут"
 
+# Exiting...
 #: gattrib/src/s_object.c:216
 msgid "Exiting..."
-msgstr ""
+msgstr "Выход..."
 
 #: gattrib/src/s_rename.c:106
 msgid "Increase MAX_SETS in"
 msgstr "Увеличение MAX_SETS в"
 
+# Source
 #: gattrib/src/s_rename.c:125
 msgid "Source"
-msgstr ""
+msgstr "Источник"
 
 #: gattrib/src/s_rename.c:129
 msgid "Destination"
@@ -191,30 +193,34 @@ msgstr "попытка добавления к списку со значени�
 msgid "attempted to remove item from an empty list\n"
 msgstr "попытка удаления элемента из пустого списка\n"
 
+# could not delete item
 #: gattrib/src/s_string_list.c:283
 msgid "could not delete item"
-msgstr ""
+msgstr "не удалось удалить элемент"
 
+# Component Error looking for row reference
 #: gattrib/src/s_table.c:354 gattrib/src/s_table.c:417
 msgid "Component Error looking for row ref"
-msgstr ""
+msgstr "Ошибка компонента поиска ссылки на строку"
 
+# Component Error looking for column
 #: gattrib/src/s_table.c:358 gattrib/src/s_table.c:422
 msgid "Component Error looking for column"
-msgstr ""
+msgstr "Ошибка компонента для столбца"
 
 # Creating a pin-table
 #: gattrib/src/s_table.c:573
 msgid "Creating pin table"
 msgstr "Создание пин-таблицы"
 
+# Pin Error looking for row reference
 #: gattrib/src/s_table.c:636
 msgid "Pin Error looking for row ref"
-msgstr ""
+msgstr "Ошибка вывода в поисках ссылки на строку"
 
 #: gattrib/src/s_table.c:641
 msgid "Pin Error looking for column"
-msgstr ""
+msgstr "Ошибка вывода столбца"
 
 # Are you sure you want to remove this attribute
 #: gattrib/src/s_toplevel.c:273
@@ -255,17 +261,20 @@ msgstr "Добавление нового атрибута"
 msgid "Enter new attribute name"
 msgstr "Введите новое имя атрибута"
 
+# Column Visibility
 #: gattrib/src/x_dialog.c:204
 msgid "Column Visibility"
-msgstr ""
+msgstr "Видимость столбцов"
 
+# Visible
 #: gattrib/src/x_dialog.c:254
 msgid "Visible"
-msgstr ""
+msgstr "видимый"
 
+# Column
 #: gattrib/src/x_dialog.c:275
 msgid "Column"
-msgstr ""
+msgstr "Cтолбца"
 
 #: gattrib/src/x_dialog.c:358
 msgid "Are you sure you want to delete this attribute?"
@@ -303,9 +312,8 @@ msgid "Save the changes before closing?"
 msgstr "Сохранить изменения перед закрытием?"
 
 #: gattrib/src/x_dialog.c:430
-#, fuzzy
 msgid "If you do not save, all your changes will be permanently lost."
-msgstr "Если их не сохранить, все изменения будут безвозвратно утрачены."
+msgstr "Если вы не сохраните, все ваши изменения будут окончательно потеряны."
 
 #: gattrib/src/x_dialog.c:442
 msgid "Close without saving"
