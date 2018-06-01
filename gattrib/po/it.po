@@ -242,9 +242,8 @@ msgstr ""
 
 # visible
 #: gattrib/src/x_dialog.c:254
-#, fuzzy
 msgid "Visible"
-msgstr "visibile"
+msgstr "Visibile"
 
 #: gattrib/src/x_dialog.c:275
 msgid "Column"
@@ -434,40 +433,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Aggiungi nuovo attributo"
+msgstr "Aggiungi attributo"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Elimina attributo"
+msgstr "Inserisci attributo"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Attributo"
+msgstr "Nascondi attributo"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Elimina attributo"
+msgstr "Reveal Attribute"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "Elimina attributo"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Elimina attributo"
+msgstr "Cancella dati attributo"
 
 #: gattrib/src/x_gtksheet.c:687
 msgid "Components"
