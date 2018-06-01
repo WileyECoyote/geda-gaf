@@ -520,10 +520,10 @@ msgstr "Не определено имя файла настроек"
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
+# Configuration context parent
 #: libgeda/src/geda/geda_config.c:294
-#, fuzzy
 msgid "Configuration context parent"
-msgstr "В настройках не обнаружено ключа «%s»"
+msgstr "родительский контекст конфигурации"
 
 #: libgeda/src/geda/geda_config.c:295
 msgid "Set parent configuration context for EdaConfig"
@@ -1762,7 +1762,7 @@ msgstr ""
 
 #: libgeda/src/struct/s_clib.c:440
 msgid "Uncaught signal"
-msgstr ""
+msgstr "Сигнал нечистоты"
 
 #: libgeda/src/struct/s_clib.c:444
 msgid "Error output was"
@@ -1781,12 +1781,12 @@ msgstr "Библиотека с именем «%s» уже имеется. Ис�
 # Duplicate symbol
 #: libgeda/src/struct/s_clib.c:672
 msgid "Duplicate symbol"
-msgstr ""
+msgstr "Повторяющийся символ"
 
 # file location
 #: libgeda/src/struct/s_clib.c:673
 msgid "location"
-msgstr ""
+msgstr "расположение файла"
 
 # Failed to open
 #: libgeda/src/struct/s_clib.c:683
@@ -1873,7 +1873,7 @@ msgstr "Не удалось перейти к подсхеме"
 
 #: libgeda/src/struct/s_page.c:256
 msgid "Disabling auto save timer, no toplevel"
-msgstr ""
+msgstr "Отключение автоматического сохранения таймера, без переполнения"
 
 #: libgeda/src/struct/s_page.c:732 libgeda/src/struct/s_page.c:775
 msgid "Saved"
@@ -1936,207 +1936,3 @@ msgstr "Не удалось создать файл войти"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Объект ~A не является частью схемы"
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "в файле"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "Ошибка при загрузке конфигурации"
-
-# Эта функция пытается найти для указанного имени реальный файл (не являющийся
-# ссылкой).
-#~ msgid "Cannot get real filename of"
-#~ msgstr "Не удалось определить имя реального файла для"
-
-# File not found
-#~ msgid "Cannot find file"
-#~ msgstr "Файл не найден"
-
-# Эта функция пытается найти для указанного имени реальный файл (не являющийся
-# ссылкой).
-#~ msgid "Can not get the real filename of"
-#~ msgstr "Не удалось определить имя реального файла для"
-
-#~ msgid "Failed to load image from file [%s]: %s\n"
-#~ msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
-
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "Не удалось сохранить файл: %s"
-
-#~ msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
-#~ msgstr "Не удалось найти атрибут «slotdef=#:#,#,#...»\n"
-
-#~ msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
-#~ msgstr ""
-#~ "Не удалось найти атрибут «slotdef=#:#,#,#...» в допустимом формате\n"
-
-#~ msgid "Failed to stat"
-#~ msgstr "Ошибка чтения статуса"
-
-#~ msgid "%s: object %p has unknown type '%c'\n"
-#~ msgstr "o_save_objects: объект %p неизвестного типа «%c»\n"
-
-#~ msgid "Failed to open [%s]: %s\n"
-#~ msgstr "Не удалось открыть каталог «%s»: %s\n"
-
-#~ msgid "Library command failed [%s]: %s\n"
-#~ msgstr "Ошибка при выполнении команды над библиотекой «%s»: %s\n"
-
-#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
-#~ msgstr "Сбой команды создания библиотеки «%s»: необработанный сигнал %i.\n"
-
-#~ msgid "Failed to open file '%s': fdopen() failed: %s"
-#~ msgstr "Не удалось загрузить изображение из файла «%s»: %s\n"
-
-# Под file здесь имеется в виду символ. Последняя переменная -- позиционное
-# обозначение. Думаю, не стоит это специально отмечать.
-#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
-#~ msgstr ""
-#~ "\tИЗМЕНЕНИЕ СТАРШЕГО НОМЕРА ВЕРСИИ\t(версия символа %.3f, версия "
-#~ "экземпляра %.3f, %s)!\n"
-
-#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
-#~ msgstr ""
-#~ "\tИзменение младшего номера версии\t(версия символа %.3f, версия "
-#~ "экземпляра %.3f)\n"
-
-#~ msgid ""
-#~ "Read garbage line <%d> in [%s] :\n"
-#~ ">>\n"
-#~ "%s<<\n"
-#~ msgstr ""
-#~ "Некорректные данные в «%s»:\n"
-#~ ">>\n"
-#~ "%s<<\n"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "%s: %d.\n"
-#~ msgstr "%s: %s"
-
-#~ msgid "Error: %s %s\n"
-#~ msgstr "Файл «%s» не найден: %s"
-
-# Эта функция пытается найти для указанного имени реальный файл (не являющийся
-# ссылкой).
-#~ msgid "%s: Can't get real filename of %s."
-#~ msgstr "Не удалось определить имя реального файла для %s: %s"
-
-#~ msgid "Error reading file '%s': %s"
-#~ msgstr "Файл «%s» не найден: %s"
-
-# Эта функция пытается найти для указанного имени реальный файл (не являющийся
-# ссылкой).
-#~ msgid "Can't get the real filename of %s: %s"
-#~ msgstr "Не удалось определить имя реального файла для %s: %s"
-
-#~ msgid "Found a zero length line"
-#~ msgstr "Линия нулевой длины «%c %d %d %d %d %d»\n"
-
-#~ msgid "Found a zero width/height picture"
-#~ msgstr "Изображение нулевой ширины или высоты «%c %d %d %d %d»\n"
-
-#~ msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
-#~ msgstr "Дуга с нулевым радиусом «%c %d, %d, %d, %d, %d, %d»\n"
-
-#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr ""
-#~ "Неподдерживаемое значение поля «alignment» в определении текстового "
-#~ "объекта  «%c %d %d %d %d %d %d %d %d»\n"
-
-#~ msgid "Configuration does not have group '%s'\n"
-#~ msgstr "В настройках не обнаружено группы «%s»"
-
-#~ msgid "Unexpected end-of-file when reading path"
-#~ msgstr "Неожиданный конец файла при обработке контура"
-
-#~ msgid "Color map entry must be a two-element list"
-#~ msgstr "Запись в таблице цветов должна быть двухэлементным списком"
-
-#~ msgid "Index in color map entry must be an integer"
-#~ msgstr "Индекс записи в таблице цветов должен быть целым числом"
-
-#~ msgid "Value in color map entry must be #f or a string"
-#~ msgstr "Значение записи в таблице цветов должно быть «#f» или строкой"
-
-#~ msgid "Error loading %s, %s\n"
-#~ msgstr "Файл «%s» не найден: %s"
-
-#~ msgid "Found an image with no filename."
-#~ msgstr "Обнаружено изображение без имени файла"
-
-#~ msgid "Picture %p has invalid angle %i\n"
-#~ msgstr "Недопустимое значение угла поворота изображения «%p»: %i\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version parse error on refdes %s:\n"
-#~ "\tCould not parse symbol file symversion=%s\n"
-#~ msgstr ""
-#~ "ВНИМАНИЕ: ошибка при анализе версии символа с поз. обозначением %s:\n"
-#~ "\tНекорректный атрибут «symversion=%s» в файле символа\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version parse error on refdes %s:\n"
-#~ "\tCould not parse symbol file symversion=\n"
-#~ msgstr ""
-#~ "ВНИМАНИЕ: ошибка при анализе версии символа с поз. обозначением %s:\n"
-#~ "\tНекорректный атрибут «symversion» в файле символа\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version mismatch on refdes %s (%s):\n"
-#~ "\tSymbol in library is newer than instantiated symbol\n"
-#~ msgstr ""
-#~ "ВНИМАНИЕ: неподходящая версия для символа с поз. обозначением %s (%s):\n"
-#~ "\tСимвол в библиотеке новее экземпляра в схеме\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version oddity on refdes %s:\n"
-#~ "\tInstantiated symbol is newer than symbol in library\n"
-#~ msgstr ""
-#~ "ВНИМАНИЕ: некорректное задание версии для символа с поз. обозначением "
-#~ "%s:\n"
-#~ "\tЭкземпляр в схеме новее символа в библиотеке\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Run gschem and correct the situation.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Запустите gschem и устраните проблему.\n"
-#~ "\n"
-
-#~ msgid "Failed to restore permissions on '%s': %s\n"
-#~ msgstr "Не удалось восстановить права для «%s»: %s\n"
-
-#~ msgid "Failed to restore ownership on '%s': %s\n"
-#~ msgstr "Не удалось восстановить владельца для «%s»: %s\n"
-
-#~ msgid "Invalid mode [%s] passed to %s\n"
-#~ msgstr "%2$s: недопустимый режим «%1$s»\n"
-
-#~ msgid "Failed to load RC file [%s]: "
-#~ msgstr "Не удалось загрузить файл настроек «%s»: "
-
-#~ msgid "Invalid path [%s] passed to component-library\n"
-#~ msgstr "component-library: недопустимый путь «%s»\n"
-
-#~ msgid "Invalid path [%s] passed to bitmap-directory\n"
-#~ msgstr "bitmap-directory: недопустимый путь «%s»\n"
-
-#~ msgid ""
-#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
-#~ "Use a list of strings instead\n"
-#~ msgstr ""
-#~ "ВНИМАНИЕ: для «always-promote-attributes» не рекомендуется использовать "
-#~ "строку. Следует использовать список строк\n"
-
-#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr ""
-#~ "Неподдерживаемое значение угла поворота в определении текстового объекта "
-#~ "«%c %d %d %d %d %d %d %d %d»\n"
