@@ -1714,11 +1714,11 @@ msgstr ""
 
 #: libgeda/src/scheme/scheme_page.c:343
 msgid "Object ~A is attached to a complex or different page"
-msgstr ""
+msgstr "Objeto ~A é anexado a uma página complexa ou diferente"
 
 #: libgeda/src/struct/s_clib.c:440
 msgid "Uncaught signal"
-msgstr ""
+msgstr "Sinal não detectado"
 
 #: libgeda/src/struct/s_clib.c:444
 msgid "Error output was"
@@ -1812,11 +1812,11 @@ msgstr "Mais de um componente encontrado com o nome [%s]\n"
 
 #: libgeda/src/struct/s_hierarchy.c:86 libgeda/src/struct/s_hierarchy.c:263
 msgid "Schematic not found in source library."
-msgstr ""
+msgstr "Esquema não encontrado na biblioteca de fontes"
 
 #: libgeda/src/struct/s_hierarchy.c:112
 msgid "Hierarchy contains a circular dependency."
-msgstr ""
+msgstr "Hierarquia contém uma dependência circular"
 
 #: libgeda/src/struct/s_hierarchy.c:214
 msgid "There are no schematics above the current one!\n"
@@ -1829,7 +1829,7 @@ msgstr "Falha ao descer hierarquia em"
 
 #: libgeda/src/struct/s_page.c:256
 msgid "Disabling auto save timer, no toplevel"
-msgstr ""
+msgstr "Desativando o timer de salvamento automático, sem nível superior"
 
 #: libgeda/src/struct/s_page.c:732 libgeda/src/struct/s_page.c:775
 msgid "Saved"
@@ -1866,7 +1866,7 @@ msgstr "O atributo"
 
 #: libgeda/src/struct/s_slot.c:251
 msgid "component missing pinseq= attribute\n"
-msgstr ""
+msgstr "componente ausente pinseq = atributo\n"
 
 # Could not write message to log file
 #: libgeda/src/utility/u_log.c:124
@@ -1892,118 +1892,3 @@ msgstr "Não foi possível criar o ficheiro de log em"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Objeto ~A não é parte de uma página"
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "no ficheiro"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "Erro ao carregar a configuração"
-
-#~ msgid "Cannot get real filename of"
-#~ msgstr "Não foi possível obter o nome de ficheiro verdadeiro de"
-
-#~ msgid "Cannot find file"
-#~ msgstr "Não é possível encontrar o ficheiro"
-
-#~ msgid "Can not get the real filename of"
-#~ msgstr "Não foi possível obter o nome de ficheiro verdadeiro de"
-
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr ""
-#~ "Não foi possível definir o ficheiro de salvaguarda [%s] apenas como "
-#~ "leitura\n"
-
-#~ msgid "%s: object %p has unknown type '%c'\n"
-#~ msgstr "o_save_objects: objecto %p tem tipo desconhecido '%c'\n"
-
-#~ msgid "Failed to open [%s]: %s\n"
-#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
-
-#~ msgid "Library command failed [%s]: %s\n"
-#~ msgstr "Comando de biblioteca falhou [%s]: %s\n"
-
-#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
-#~ msgstr "Comando de biblioteca falhou [%s]: Sinal não alcançado %i.\n"
-
-#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
-#~ msgstr ""
-#~ "\tALTERAÇÃO DE VERSÃO IMPORTANTE (ficheiro %.3f, instanciado %.3f, %s)!\n"
-
-#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
-#~ msgstr "\tAlteração de versão menor (ficheiro %.3f, instanciado %.3f)\n"
-
-#~ msgid "Color map entry must be a two-element list"
-#~ msgstr "Entrada do mapa de cor  tem de ser uma lista de dois elementos"
-
-#~ msgid "Index in color map entry must be an integer"
-#~ msgstr "Índice no na entrada do mapa de cor tem de ser um inteiro"
-
-#~ msgid "Value in color map entry must be #f or a string"
-#~ msgstr ""
-#~ "Valor na entrada do mapa de cor tem de ser #f ou uma faixa de caracteres"
-
-#~ msgid "Error loading %s, %s\n"
-#~ msgstr "Não é possível encontrar o ficheiro %s: %s"
-
-#~ msgid ""
-#~ "WARNING: Symbol version parse error on refdes %s:\n"
-#~ "\tCould not parse symbol file symversion=%s\n"
-#~ msgstr ""
-#~ "AVISO: Erro na procura da versão do símbolo em refdes %s:\n"
-#~ "\tNão foi possível verificar ficheiro de símbolo symversion=%s\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version parse error on refdes %s:\n"
-#~ "\tCould not parse symbol file symversion=\n"
-#~ msgstr ""
-#~ "AVISO: Erro na procura da versão do símbolo em refdes %s:\n"
-#~ "\tNão foi possível verificar ficheiro de símbolo symversion=\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version mismatch on refdes %s (%s):\n"
-#~ "\tSymbol in library is newer than instantiated symbol\n"
-#~ msgstr ""
-#~ "AVISO: Versão de símbolo não coincidente em refdes %s (%s):\n"
-#~ "\tSimbolo na biblioteca é mais recente que o símbolo instanciado\n"
-
-#~ msgid ""
-#~ "WARNING: Symbol version oddity on refdes %s:\n"
-#~ "\tInstantiated symbol is newer than symbol in library\n"
-#~ msgstr ""
-#~ "AVISO: Versão de símbolo estranha em refdes %s:\n"
-#~ "\tSimbolo instanciado é mais recente que o símbolo na biblioteca\n"
-
-#~ msgid "Invalid space specified, setting to default=%d\n"
-#~ msgstr "Especificado espaço inválido, definindo para 100\n"
-
-#~ msgid "Invalid length specified, setting to default=%d\n"
-#~ msgstr "Especificado comprimento inválido, definindo para 100\n"
-
-#~ msgid "Invalid space specified, setting to  default=%d\n"
-#~ msgstr "Especificado espaço inválido, definindo para 100\n"
-
-#~ msgid "Failed to restore permissions on '%s': %s\n"
-#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
-
-#~ msgid "Failed to restore ownership on '%s': %s\n"
-#~ msgstr "Falha ao abrir directoria [%s]: %s\n"
-
-#~ msgid ""
-#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
-#~ "Use a list of strings instead\n"
-#~ msgstr ""
-#~ "AVISO: usar uma faixa para 'always-promote-attributes' esta ultrapassado. "
-#~ "Use uma lista de faixas em seu lugar\n"
-
-#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
-#~ msgstr "ERRO em s_hierarchy_traverse: esquema não encontrado: %s\n"
-
-#~ msgid "Found [%s]\n"
-#~ msgstr "Encontrado [%s]\n"
-
-#~ msgid "Could not find [%s] in any SourceLibrary\n"
-#~ msgstr "Não foi possível encontrar [%s] em nenhuma biblioteca fonte\n"
