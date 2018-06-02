@@ -1,7 +1,9 @@
 2018-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_utility.c: Add subfunction load_list and test for
-      geda_clear_glist.
+    * tests/test_utility.c: Add subfunction load_list and test for:
+
+          * geda_utility_glist_clear
+          * geda_utility_glist_find_string
 
 2018-06-01 Wiley E. Hill <wileyhill@gmail.com>
 

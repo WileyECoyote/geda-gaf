@@ -175,7 +175,7 @@ int test_glist (void)
 
   dlist = geda_clear_glist(NULL);
   if (dlist) {
-    fprintf(stderr, "FAILED: (U020100) geda_clear_glist <%p>\n", dlist);
+    fprintf(stderr, "FAILED: (U020100) geda_utility_glist_clear <%p>\n", dlist);
     result++;
   }
 
@@ -198,6 +198,18 @@ int test_glist (void)
     fprintf(stderr, "FAILED: (U020200) geda_glist_find_string %d\n", value);
     result++;
   }
+
+  dlist = load_list();
+
+  value = geda_glist_find_string(dlist, "");
+
+  if (value != -1) {
+    fprintf(stderr, "FAILED: (U020201) geda_utility_glist_find_string <%d>\n", value);
+    result++;
+  }
+
+  g_list_free(dlist);
+  dlist = NULL;
 
   /* === Function 03: geda_utility_glist_free_all === */
   geda_glist_free_all(NULL);
