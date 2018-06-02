@@ -168,9 +168,6 @@ int test_glist (void)
 
   result = 0;
 
-  /* Create a string table to load into list, will need to copy
-   * strings for free all */
-
   /* === Function 01: geda_utility_glist_clear === */
 
   dlist = geda_clear_glist(NULL);
@@ -193,6 +190,7 @@ int test_glist (void)
   dlist = NULL;
 
   /* === Function 02: geda_utility_glist_find_string === */
+
   value = geda_glist_find_string(NULL, NULL) ;
   if (value != -2) {
     fprintf(stderr, "FAILED: (U020200) geda_glist_find_string %d\n", value);
@@ -212,24 +210,29 @@ int test_glist (void)
   dlist = NULL;
 
   /* === Function 03: geda_utility_glist_free_all === */
+
   geda_glist_free_all(NULL);
 
   /* === Function 04: geda_utility_glist_free_full === */
+
   geda_glist_free_full(NULL, free);
 
   /* === Function 05: geda_utility_gslist_str_inlist === */
+
   if (geda_glist_str_inlist(NULL, NULL)) {
     fprintf(stderr, "FAILED: (U020500) geda_glist_str_inlist NULL\n");
     result++;
   }
 
   /* === Function 06: geda_utility_glist_stri_inlist === */
+
   if (geda_glist_stri_inlist(NULL, NULL)) {
     fprintf(stderr, "FAILED: (U020600) geda_glist_stri_inlist NULL\n");
     result++;
   }
 
   /* === Function 07: geda_utility_gslist_clear === */
+
   slist = geda_clear_gslist(NULL);
   if (slist) {
     fprintf(stderr, "FAILED: (U020700) geda_clear_gslist <%p>\n", slist);
@@ -237,6 +240,7 @@ int test_glist (void)
   }
 
   /* === Function 08: geda_utility_gslist_find_string === */
+
   value = geda_gslist_find_string(NULL, NULL) ;
   if (value != -2) {
     fprintf(stderr, "FAILED: (U020800) geda_gslist_find_string %d\n", value);
@@ -244,18 +248,22 @@ int test_glist (void)
   }
 
   /* === Function 09: geda_gslist_free_all    geda_utility_gslist_free_all === */
+
   geda_gslist_free_all(NULL);
 
   /* === Function 11: geda_gslist_free_full   geda_utility_gslist_free_full === */
+
   geda_gslist_free_full(NULL, free);
 
   /* === Function 12: geda_utility_gslist_str_inlist === */
+
   if (geda_gslist_str_inlist(NULL, NULL)) {
     fprintf(stderr, "FAILED: (U021100) geda_gslist_str_inlist NULL\n");
     result++;
   }
 
   /* === Function 13: geda_utility_gslist_stri_inlist === */
+
   if (geda_gslist_stri_inlist(NULL, NULL)) {
     fprintf(stderr, "FAILED: (U021200) geda_gslist_stri_inlist NULL\n");
     result++;
