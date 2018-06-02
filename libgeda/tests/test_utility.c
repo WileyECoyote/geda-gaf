@@ -256,10 +256,42 @@ int test_glist (void)
 
   dlist = NULL;
 
-  /* === Function 05: geda_utility_gslist_str_inlist === */
+  /* === Function 05: geda_utility_glist_str_inlist === */
 
   if (geda_glist_str_inlist(NULL, NULL)) {
-    fprintf(stderr, "FAILED: (U020500) geda_glist_str_inlist NULL\n");
+    fprintf(stderr, "FAILED: (U020500A) geda_utility_glist_str_inlist NULL\n");
+    result++;
+  }
+
+  dlist = load_list();
+
+  if (geda_glist_str_inlist(dlist, NULL)) {
+    fprintf(stderr, "FAILED: (U020500B) geda_utility_glist_str_inlist NULL\n");
+    result++;
+  }
+
+  if (geda_glist_str_inlist(dlist, "")) {
+    fprintf(stderr, "FAILED: (U020501) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_str_inlist(dlist, "Megalodon")) {
+    fprintf(stderr, "FAILED: (U020502) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_str_inlist(dlist, "Orthacanthus")) {
+    fprintf(stderr, "FAILED: (U020503) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_str_inlist(dlist, "Heterodontus")) {
+    fprintf(stderr, "FAILED: (U020504) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (geda_glist_str_inlist(dlist, "Chimaeras")) {
+    fprintf(stderr, "FAILED: (U020505) geda_utility_glist_str_inlist\n");
     result++;
   }
 
