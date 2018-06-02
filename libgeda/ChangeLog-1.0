@@ -1,5 +1,8 @@
 2018-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_glist.c: Revise geda_utility_glist_stri_inlist to check
+      for NULL string argument.
+
     * tests/test_utility.c: Add subfunction load_list and test for:
 
           * geda_utility_glist_clear

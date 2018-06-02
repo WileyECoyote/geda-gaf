@@ -158,16 +158,21 @@ bool geda_utility_glist_str_inlist(GList *list, const char *string)
  */
 bool geda_utility_glist_stri_inlist(GList *list, const char *string)
 {
-  bool   answer = FALSE;
-  GList *iter;
+  bool answer = FALSE;
 
-  for (iter = list; iter; iter = iter->next){
+  if (string) {
 
-    if (!geda_utility_string_stricmp(iter->data, string)) {
-      answer = TRUE;
-      break;
+    GList *iter;
+
+    for (iter = list; iter; iter = iter->next){
+
+      if (!geda_utility_string_stricmp(iter->data, string)) {
+        answer = TRUE;
+        break;
+      }
     }
   }
+
   return answer;
 }
 
