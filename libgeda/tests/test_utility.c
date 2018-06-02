@@ -298,7 +298,37 @@ int test_glist (void)
   /* === Function 06: geda_utility_glist_stri_inlist === */
 
   if (geda_glist_stri_inlist(NULL, NULL)) {
-    fprintf(stderr, "FAILED: (U020600) geda_glist_stri_inlist NULL\n");
+    fprintf(stderr, "FAILED: (U020600A) geda_utility_glist_stri_inlist NULL\n");
+    result++;
+  }
+
+  if (geda_glist_stri_inlist(dlist, NULL)) {
+    fprintf(stderr, "FAILED: (U020600B) geda_utility_glist_stri_inlist NULL\n");
+    result++;
+  }
+
+  if (geda_glist_stri_inlist(dlist, "")) {
+    fprintf(stderr, "FAILED: (U020601) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_stri_inlist(dlist, "Megalodon")) {
+    fprintf(stderr, "FAILED: (U020602) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_stri_inlist(dlist, "cladoselache")) {
+    fprintf(stderr, "FAILED: (U020603) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_stri_inlist(dlist, "XENACANTHUS")) {
+    fprintf(stderr, "FAILED: (U020604) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (geda_glist_stri_inlist(dlist, "Chimaeras")) {
+    fprintf(stderr, "FAILED: (U020605) geda_utility_glist_stri_inlist\n");
     result++;
   }
 
