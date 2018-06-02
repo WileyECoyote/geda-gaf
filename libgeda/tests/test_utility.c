@@ -153,7 +153,7 @@ int test_glist (void)
     static char *Chondrichthyes[] = {
                                      "Cladoselache",
                                      "Heterodontus",
-                                     "Megalodon"
+                                     "Megalodon",
                                      "Orthacanthus",
                                      "Xenacanthus",
                                      NULL};
@@ -193,7 +193,7 @@ int test_glist (void)
 
   value = geda_glist_find_string(NULL, NULL) ;
   if (value != -2) {
-    fprintf(stderr, "FAILED: (U020200) geda_glist_find_string %d\n", value);
+    fprintf(stderr, "FAILED: (U020200) geda_utility_glist_find_string %d\n", value);
     result++;
   }
 
@@ -203,6 +203,13 @@ int test_glist (void)
 
   if (value != -1) {
     fprintf(stderr, "FAILED: (U020201) geda_utility_glist_find_string <%d>\n", value);
+    result++;
+  }
+
+  value = geda_glist_find_string(dlist, "Megalodon");
+
+  if (value != 2) {
+    fprintf(stderr, "FAILED: (U020202) geda_utility_glist_find_string <%d>\n", value);
     result++;
   }
 
