@@ -141,6 +141,7 @@ int test_glist (void)
 {
   GList  *dlist;
   GSList *slist;
+  int     count;
   int     result;
   int     value;
 
@@ -148,7 +149,6 @@ int test_glist (void)
 
     GList *Sharks;
     uint8_t i;
-
 
     static char *Chondrichthyes[] = {
                                      "Cladoselache",
@@ -166,6 +166,11 @@ int test_glist (void)
     return Sharks;
   }
 
+  void Releaser (void *string) {
+    g_free(string);
+    count++;
+  }
+
   result = 0;
 
   /* === Function 01: geda_utility_glist_clear === */
@@ -180,9 +185,9 @@ int test_glist (void)
 
   dlist = geda_clear_glist(dlist);
 
-  value = g_list_length(dlist);
-  if (value) {
-    fprintf(stderr, "FAILED: (U020101) geda_clear_glist <%d>\n", value);
+  count = g_list_length(dlist);
+  if (count) {
+    fprintf(stderr, "FAILED: (U020101) geda_utility_glist_clear <%d>\n", count);
     result++;
   }
 
@@ -213,16 +218,43 @@ int test_glist (void)
     result++;
   }
 
-  g_list_free(dlist);
-  dlist = NULL;
+  value = geda_glist_find_string(dlist, "Chimaeras");
+
+  if (value != -1) {
+    fprintf(stderr, "FAILED: (U020203) geda_utility_glist_find_string <%d>\n", value);
+    result++;
+  }
 
   /* === Function 03: geda_utility_glist_free_all === */
 
   geda_glist_free_all(NULL);
 
+  geda_glist_free_all(dlist);
+
+  dlist = NULL;
+
   /* === Function 04: geda_utility_glist_free_full === */
 
-  geda_glist_free_full(NULL, free);
+  count = 0;
+
+  geda_glist_free_full(NULL, Releaser);
+
+  if (count) {
+    fprintf(stderr, "FAILED: (U020400) geda_utility_glist_free_full <%d>\n", count);
+    result++;
+    count = 0;
+  }
+
+  dlist = load_list();
+
+  geda_glist_free_full(dlist, Releaser);
+
+  if (count != 5) {
+    fprintf(stderr, "FAILED: (U020401) geda_utility_glist_free_full <%d>\n", count);
+    result++;
+  }
+
+  dlist = NULL;
 
   /* === Function 05: geda_utility_gslist_str_inlist === */
 

@@ -4,6 +4,7 @@
 
           * geda_utility_glist_clear
           * geda_utility_glist_find_string
+          * geda_utility_glist_free_full
 
 2018-06-01 Wiley E. Hill <wileyhill@gmail.com>
 
