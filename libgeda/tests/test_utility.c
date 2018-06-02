@@ -144,18 +144,53 @@ int test_glist (void)
   int     result;
   int     value;
 
+  GList *load_list (void) {
+
+    GList *Sharks;
+    uint8_t i;
+
+
+    static char *Chondrichthyes[] = {
+                                     "Cladoselache",
+                                     "Heterodontus",
+                                     "Megalodon"
+                                     "Orthacanthus",
+                                     "Xenacanthus",
+                                     NULL};
+    Sharks = NULL;
+
+    for (i = 0; Chondrichthyes[i] != NULL; i++) {
+      Sharks = g_list_append(Sharks, geda_strdup(Chondrichthyes[i]));
+    }
+
+    return Sharks;
+  }
+
   result = 0;
 
   /* Create a string table to load into list, will need to copy
    * strings for free all */
 
   /* === Function 01: geda_utility_glist_clear === */
-  dlist = NULL;
+
   dlist = geda_clear_glist(NULL);
   if (dlist) {
     fprintf(stderr, "FAILED: (U020100) geda_clear_glist <%p>\n", dlist);
     result++;
   }
+
+  dlist = load_list();
+
+  dlist = geda_clear_glist(dlist);
+
+  value = g_list_length(dlist);
+  if (value) {
+    fprintf(stderr, "FAILED: (U020101) geda_clear_glist <%d>\n", value);
+    result++;
+  }
+
+  g_list_free(dlist);
+  dlist = NULL;
 
   /* === Function 02: geda_utility_glist_find_string === */
   value = geda_glist_find_string(NULL, NULL) ;

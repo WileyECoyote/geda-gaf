@@ -1,3 +1,8 @@
+2018-06-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_utility.c: Add subfunction load_list and test for
+      geda_clear_glist.
+
 2018-06-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
