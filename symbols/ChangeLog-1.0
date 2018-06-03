@@ -8,6 +8,9 @@
 
     * mitsubishi/logic/M5L8282P-1.sym: Rename symbol with dash one.
 
+    * ti/battery/BQ34Z100-1.sym: Add symbol; Wide Range Fuel Gauge with Impedance
+      Tracking.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
