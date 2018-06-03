@@ -4,6 +4,8 @@
 
     * mitsubishi/M81737FP-1.sym: Add symbol; Dual High Side Driver, 600 VOLT.
 
+    * mitsubishi/M81738FP-1.sym: Add symbol; Half Bridge Driver, 1200 VOLT.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
