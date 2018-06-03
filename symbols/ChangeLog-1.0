@@ -1,3 +1,7 @@
+2018-06-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/MIC5891-1.sym: Add symbol; 8 bit serial input high-side driver.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
