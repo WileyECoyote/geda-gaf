@@ -6,6 +6,8 @@
 
     * mitsubishi/M81738FP-1.sym: Add symbol; Half Bridge Driver, 1200 VOLT.
 
+    * mitsubishi/logic/M5L8282P-1.sym: Rename symbol with dash one.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
