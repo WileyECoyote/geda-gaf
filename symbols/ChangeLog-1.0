@@ -14,11 +14,16 @@
     * titleblock: Add description attribute and revise attribute locations:
 
             * titleblock/title-B-nameOnEdge.sym
+            * titleblock/title-bordered-A.sym
             * titleblock/title-bordered-A0.sym
             * titleblock/title-bordered-A1.sym
             * titleblock/title-bordered-A2.sym
             * titleblock/title-bordered-A3.sym
             * titleblock/title-bordered-A4.sym
+            * titleblock/title-bordered-B.sym
+            * titleblock/title-bordered-C.sym
+            * titleblock/title-bordered-D.sym
+            * titleblock/title-bordered-E.sym
 
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
