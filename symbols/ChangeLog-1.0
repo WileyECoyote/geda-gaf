@@ -11,6 +11,10 @@
     * ti/battery/BQ34Z100-1.sym: Add symbol; Wide Range Fuel Gauge with Impedance
       Tracking.
 
+    * titleblock: Add description attribute and revise attribute locations:
+
+            * titleblock/title-B-nameOnEdge.sym
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
