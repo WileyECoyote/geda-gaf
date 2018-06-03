@@ -25,6 +25,8 @@
             * titleblock/title-bordered-D.sym
             * titleblock/title-bordered-E.sym
 
+    * transistor/other/ULN2003A-1.sym: Add symbol; 7 bit darlington driver.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
