@@ -2,6 +2,8 @@
 
     * microchip/MIC5891-1.sym: Add symbol; 8 bit serial input high-side driver.
 
+    * mitsubishi/M81737FP-1.sym: Add symbol; Dual High Side Driver, 600 VOLT.
+
 2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * titleblock/title-bordered-A0.sym: Add description attribute and revise
