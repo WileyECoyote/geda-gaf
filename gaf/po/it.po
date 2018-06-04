@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-18 04:07-0500\n"
+"POT-Creation-Date: 2018-06-03 19:01-0500\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gaf/src/gaf.c:68
+#: gaf/src/gaf.c:70
 #, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
@@ -50,7 +50,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/gaf.c:88
+#: gaf/src/gaf.c:89
 #, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
@@ -67,36 +67,17 @@ msgstr ""
 "nella distribuzione di gEDA.\n"
 "NON C'È ALCUNA GARANZIA, nei limiti della legislazione vigente.\n"
 
-#: gaf/src/gaf.c:136
-#, c-format
-msgid ""
-"\n"
-"Run `gaf --help' for more information.\n"
-msgstr ""
-"\n"
-"Eseguire \"gaf --help\" per ulteriori informazioni.\n"
+#: gaf/src/gaf.c:101
+msgid "Run `gaf --help' for more information"
+msgstr "Eseguire \"gaf --help\" per ulteriori informazioni"
 
-#: gaf/src/gaf.c:148
-#, c-format
-msgid ""
-"No command specified, nothing to do.\n"
-"\n"
-"Run `gaf --help' for more information.\n"
-msgstr ""
-"Nessun comando specificato, niente da fare.\n"
-"\n"
-"Eseguire \"gaf --help\" per ulteriori informazioni.\n"
+#: gaf/src/gaf.c:160
+msgid "No command specified, nothing to do"
+msgstr "Nessun comando specificato, niente da fare"
 
-#: gaf/src/gaf.c:167
-#, c-format
-msgid ""
-"ERROR: Unrecognised command `%s'.\n"
-"\n"
-"Run `gaf --help' for more information.\n"
-msgstr ""
-"ERRORE: comando non riconosciuto \"%s\".\n"
-"\n"
-"Eseguire \"gaf --help\" per ulteriori informazioni.\n"
+#: gaf/src/gaf.c:177
+msgid "ERROR: Unrecognised command"
+msgstr "ERRORE: comando non riconosciuto"
 
 #: gaf/src/config.c:48
 #, c-format
@@ -130,10 +111,14 @@ msgstr ""
 "  -h, --help     mostra le informazioni d'uso ed esce\n"
 "\n"
 "Se vengono specificati GROUP e KEY, ne recupera il valore\n"
-"parametro di configurazione. Se è stato specificato VALUE, imposta il valore di\n"
-"il parametro. Le opzioni -p, -u e -s possono essere utilizzate per selezionare il\n"
-"archivio di configurazione interessato (per impostazione predefinita, la configurazione del progetto\n"
-"memorizzare per la directory corrente). Se non sono stati forniti GROUP e KEY,\n"
+"parametro di configurazione. Se è stato specificato VALUE, imposta il valore "
+"di\n"
+"il parametro. Le opzioni -p, -u e -s possono essere utilizzate per "
+"selezionare il\n"
+"archivio di configurazione interessato (per impostazione predefinita, la "
+"configurazione del progetto\n"
+"memorizzare per la directory corrente). Se non sono stati forniti GROUP e "
+"KEY,\n"
 "restituisce il nome file dell'archivio di configurazione selezionato.\n"
 "\n"
 "Segnalare eventuali difetti a %s.\n"
@@ -325,3 +310,12 @@ msgid ""
 msgstr ""
 "\n"
 "Eseguire `gaf shell --help' per ulteriori informazioni.\n"
+
+#~ msgid ""
+#~ "ERROR: Unrecognised command `%s'.\n"
+#~ "\n"
+#~ "Run `gaf --help' for more information.\n"
+#~ msgstr ""
+#~ "ERRORE: comando non riconosciuto \"%s\".\n"
+#~ "\n"
+#~ "Eseguire \"gaf --help\" per ulteriori informazioni.\n"

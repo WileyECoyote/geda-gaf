@@ -1,5 +1,7 @@
 2018-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/it.po: Update Italian translations.
+
     * gaf/src/gaf.c: Add function gaf_show_run_help and factor error message
       output to reduce format specifiers in translations.
 
