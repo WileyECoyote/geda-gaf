@@ -1,3 +1,7 @@
+2018-06-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgeda.c: Revise GEDALOGS environment error message.
+
 2018-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_glist.c: Revise geda_utility_glist_stri_inlist to check
