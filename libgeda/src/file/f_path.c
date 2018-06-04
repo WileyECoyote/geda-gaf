@@ -96,21 +96,22 @@ static char *user_config_path = NULL;
  */
 static int f_create_dir(const char *path, mode_t mode)
 {
-    struct stat stat_buf;
-    int         status = NO_ERROR;
+  struct stat stat_buf;
+  int         status = NO_ERROR;
 
-    if (stat(path, &stat_buf) != 0) {
+  if (stat(path, &stat_buf) != 0) {
 
-        /* Directory does not exist. EEXIST for race condition */
-        if (MKDIR(path, mode) != 0 && errno != EEXIST)
-            status = -1;
+    /* Directory does not exist. EEXIST for race condition */
+    if (MKDIR(path, mode) != 0 && errno != EEXIST) {
+      status = -1;
     }
-    else if (!S_ISDIR(stat_buf.st_mode)) {
-        errno = ENOTDIR;
-        status = -1;
-    }
+  }
+  else if (!S_ISDIR(stat_buf.st_mode)) {
+    errno = ENOTDIR;
+    status = -1;
+  }
 
-    return (status);
+  return (status);
 }
 
 /*! F0301
