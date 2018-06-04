@@ -39,6 +39,8 @@
 #include "../include/gettext.h"
 #include "../include/builtins.h"
 
+#include <libgeda/libgeda.h>         /* for geda_sprintf */
+
 #define short_options "+hnV"
 
 static struct option long_options[] =
@@ -95,6 +97,18 @@ version (void)
   exit (0);
 }
 
+static void gaf_show_run_help (const char *msg)
+{
+  const char *help_msg = _("Run `gaf --help' for more information");
+
+  if (msg) {
+    fprintf (stderr, "\n%s.\n\n%s.\n\n", msg, help_msg);
+  }
+  else {
+    fprintf (stderr, "\n%s.\n\n", help_msg);
+  }
+}
+
 int main (int argc, char **argv)
 {
   int c;
@@ -133,7 +147,7 @@ int main (int argc, char **argv)
 
     case '?':
       /* getopt_long already printed an error message */
-      fprintf (stderr, _("\nRun `gaf --help' for more information.\n"));
+      gaf_show_run_help (NULL);
       exit (1);
       break;
 
@@ -144,10 +158,7 @@ int main (int argc, char **argv)
 
   /* The next argument should be a command */
   if (optind == argc) {
-    fprintf (stderr,
-             _("No command specified, nothing to do.\n"
-               "\n"
-               "Run `gaf --help' for more information.\n"));
+    gaf_show_run_help (_("No command specified, nothing to do"));
     exit (1);
   }
 
@@ -163,11 +174,15 @@ int main (int argc, char **argv)
   }
 
   if (cmd_func == NULL) {
-    fprintf (stderr,
-             _("ERROR: Unrecognised command `%s'.\n"
-               "\n"
-               "Run `gaf --help' for more information.\n"),
-             cmd);
+
+    const char *msg = _("ERROR: Unrecognised command");
+          char *str;
+
+    str = geda_sprintf ("%s <%s>", msg, cmd);
+
+    gaf_show_run_help (str);
+
+    free(str);
     exit (1);
   }
 
