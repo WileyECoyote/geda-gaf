@@ -83,17 +83,16 @@ static void usage (void)
 }
 
 /* Print version info and exit */
-static void
-version (void)
+static void version (void)
 {
 
   printf(_("gEDA/gaf %s (%s) (g%.7s)\n"
-  "Copyright (C) 1998-2017 gEDA developers\n"
-  "This is free software, and you are welcome to redistribute it under\n"
-  "certain conditions. For details, see the file `COPYING', which is\n"
-  "included in the gEDA distribution.\n"
-  "There is NO WARRANTY, to the extent permitted by law.\n"),
-         PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
+           "Copyright (C) 1998-2017 gEDA developers\n"
+           "This is free software, and you are welcome to redistribute it under\n"
+           "certain conditions. For details, see the file `COPYING', which is\n"
+           "included in the gEDA distribution.\n"
+           "There is NO WARRANTY, to the extent permitted by law.\n"),
+           PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
   exit (0);
 }
 
