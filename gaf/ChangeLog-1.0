@@ -2,6 +2,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/nl.po: Update Dutch translations.
+
     * gaf/src/gaf.c: Add function gaf_show_run_help and factor error message
       output to reduce format specifiers in translations.
 
