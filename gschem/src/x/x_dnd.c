@@ -291,6 +291,7 @@ x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
   const char *string;
   const char *name;
         char *netname;
+        char *properties;
 
   name    = x_dnd_string_data_name(object->name);
   netname = geda_attrib_search_object_by_name(object, "netname", 0);
@@ -298,11 +299,16 @@ x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
   if (netname == NULL)
       netname = geda_sprintf("%s","NONE,");
 
-  string = geda_sprintf ("%s, sequence id=%d, netname=%s color=%d",
+  properties = x_dnd_string_data_line_properties (object->line);
+
+  string = geda_sprintf ("%s, sequence id=%d, netname=%s color=%d, %s",
                              name, object->sid, netname,
-                             object->color);
+                             object->color, properties);
+
+
 
   if (netname != NULL) GEDA_FREE(netname);
+  GEDA_FREE(properties);
   return string;
 }
 

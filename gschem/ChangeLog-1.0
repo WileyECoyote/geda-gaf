@@ -1,3 +1,9 @@
+2018-06-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschem/src/x/x_dnd.c: Call x_dnd_string_data_line_properties and append
+      the returned string in x_dnd_send_string_signal so that the start and end
+      point is included in dropped text string for buses, nets, and pins.
+
 2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Add sub-function get_file_name() in documents()
