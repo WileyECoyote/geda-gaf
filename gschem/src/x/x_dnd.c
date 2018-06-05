@@ -171,28 +171,59 @@ x_dnd_send_string_nil (GschemToplevel *w_current, GedaObject *object)
   return (DND_NIL);
 }
 
+static char*
+x_dnd_get_object_attributes (GedaObject *object)
+{
+  const GList *attributes;
+  char *string;
+
+  attributes = geda_object_get_attached (object);
+
+  string = geda_strdup("");
+
+  while (attributes) {
+
+    const char *text;
+
+    text = geda_text_object_get_string(attributes->data);
+
+    if (text) {
+      string = geda_strconcat (string, " ", text, NULL);
+    }
+
+    NEXT(attributes);
+  }
+  return string;
+}
+
 static const char*
 x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
 {
   const char *string_1;
-  const char *string_2;
+  const char *string_3;
+        char *string_2;
 
   switch (object->type) {
     case OBJ_COMPLEX:
       string_1 = geda_complex_object_get_filename(object);
-      string_2 = "";
+      string_2 = x_dnd_get_object_attributes(object);
       break;
+
     case OBJ_PICTURE:
       string_1 = DND_FILE_LEADER;
-      string_2 = geda_picture_object_get_filename(object);
+      string_2 = geda_strdup(geda_picture_object_get_filename(object));
       break;
+
     default:
       string_1 = "Error:";
-      string_2 = "unidentified complex object";
+      string_2 = geda_strdup("unidentified complex object");
   }
 
-  return geda_strconcat (string_1, string_2, NULL);
+  string_3 = geda_strconcat (string_1, string_2, NULL);
 
+  GEDA_FREE(string_2);
+
+  return string_3;
 }
 
 /******************* Shape Catagory Data Helpers *******************/
