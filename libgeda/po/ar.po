@@ -1895,39 +1895,3 @@ msgstr "لا يمكن إنشاء ملف سجل في"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
-# In the file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "في ملف"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "التكوين خطأ في تحميل‏‬‬"
-
-#~ msgid "Cannot get real filename of"
-#~ msgstr "‏يتعذر الحصول على الاسم الحقيقي للملف"
-
-# Cannot find file
-#~ msgid "Cannot find file"
-#~ msgstr "يتعذّر العثور على الملف‬"
-
-#~ msgid "Can not get the real filename of"
-#~ msgstr "يتعذر الحصول على الاسم الحقيقي للملف"
-
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "تعذّر وضع الملف الاحتياطي [‎%s‬]: %s\n"
-
-# Failure to state
-#~ msgid "Failed to stat"
-#~ msgstr "فشل إلى الحالة"
-
-#~ msgid "%s: object %p has unknown type '%c'\n"
-#~ msgstr "%s: يملك الكائن %p نوعا مجهولا '%c'\n"
-
-#~ msgid "Library command failed [%s]: %s\n"
-#~ msgstr "فشل أمر المكتبة [%s]: %s\n"
-
-#~ msgid "Library command failed [%s]: Uncaught signal %i.\n"
-#~ msgstr "فشل أمر المكتبة [%s]: إشارة لم تمسك %i.\n"
