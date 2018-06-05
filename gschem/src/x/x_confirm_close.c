@@ -536,7 +536,7 @@ confirm_close_dialog_constructor (GedaType type,
   }
 
   /* secondary label */
-  cstr = _("If you don't save, all your changes will be permanently lost.");
+  cstr = _("If you do not save, all your changes will be permanently lost.");
   label = g_object_new (GTK_TYPE_LABEL,
                         /* GtkMisc */
                         "xalign",     0.0,

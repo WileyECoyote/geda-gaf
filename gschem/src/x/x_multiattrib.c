@@ -2369,6 +2369,16 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gtk_dialog_add_button ((GtkDialog*)ThisDialog,
                          GTK_STOCK_CLOSE, GEDA_RESPONSE_CLOSE);
 
+  GList *focus_chain = NULL;
+  focus_chain = g_list_append (focus_chain, ThisDialog->treeview);
+  focus_chain = g_list_append (focus_chain, ThisDialog->ShowInheritedSwitch);
+  focus_chain = g_list_append (focus_chain, combo);
+  focus_chain = g_list_append (focus_chain, scrolled_win);
+  focus_chain = g_list_append (focus_chain, ThisDialog->button_visible);
+  focus_chain = g_list_append (focus_chain, optionm);
+  focus_chain = g_list_append (focus_chain, button);
+  geda_container_set_focus_chain (table, focus_chain);
+  g_list_free (focus_chain);
 }
 
 /*! \brief GObject property setter function

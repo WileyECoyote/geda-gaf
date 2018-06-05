@@ -39,10 +39,9 @@ GList *geda_utility_glist_clear(GList *list)
 {
   if (list != NULL ) {
 
-    g_list_foreach(list, (GFunc)g_free, NULL);
-
-    lambda (const char *data) {
-      list = g_list_remove( list, data);
+    lambda (char *data) {
+      list = g_list_remove (list, data);
+      g_free(data);
       return FALSE; /* return from lambda */
     }
     foreach (list);
@@ -159,16 +158,21 @@ bool geda_utility_glist_str_inlist(GList *list, const char *string)
  */
 bool geda_utility_glist_stri_inlist(GList *list, const char *string)
 {
-  bool   answer = FALSE;
-  GList *iter;
+  bool answer = FALSE;
 
-  for (iter = list; iter; iter = iter->next){
+  if (string) {
 
-    if (!geda_utility_string_stricmp(iter->data, string)) {
-      answer = TRUE;
-      break;
+    GList *iter;
+
+    for (iter = list; iter; iter = iter->next){
+
+      if (!geda_utility_string_stricmp(iter->data, string)) {
+        answer = TRUE;
+        break;
+      }
     }
   }
+
   return answer;
 }
 

@@ -27,14 +27,13 @@
  * GtkSheet pointers are in a different file.
  */
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
 
 #include <gtk/gtk.h>
 #include <gtksheet.h>
 
 #include <geda_container.h>
 #include <geda_widgets.h>
-#include <geda_debug.h>
 
 /*------------------------------------------------------------------
  * Gattrib specific defines

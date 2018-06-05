@@ -19,11 +19,11 @@
  * 02110-1301 USA
  */
 
-#include <gattrib.h>
-#include <gattrib_dialog.h>
+#include "../include/gattrib.h"
+#include "../include/gattrib_dialog.h"
+
 #include <geda_uio_functions.h>
 #include <geda/geda_stat.h>
-#include <geda_debug.h>
 
 /*! \brief Create pixmap widget for dialogs boxes.
  *  \par Function Description
@@ -489,7 +489,7 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
                                                const char    *first_button_text,
                                                va_list        args)
 {
-  const char* text;
+  const char *text;
   int response_id;
 
   g_return_if_fail (GTK_IS_DIALOG (dialog));

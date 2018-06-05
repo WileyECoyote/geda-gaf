@@ -132,8 +132,9 @@ extern int verbose_mode;         /*!< command line switch verbose settings */
 extern int quiet_mode;           /*!< command line switch quiet settings */
 
 /* rc variables */
-extern int sort_components;
-extern int tearoff_menus;
+extern GList *hide_columns;
+extern int    sort_components;
+extern int    tearoff_menus;
 
 typedef enum { Black, Red, Blue,
                Green, Orange, Purple,

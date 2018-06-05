@@ -172,11 +172,17 @@ EDA_SCM_DEFINE (page_from_string, "%string->page", 2, 0, 0,
 
   if (err) {
 
-      SCM error_message = scm_from_utf8_string (err->message);
+    const char *parse_error = _("Parse error");
 
-      g_error_free(err);
-      scm_error (edascm_string_format_sym, scheme_page_from_string,
-               _("Parse error: ~s"), scm_list_1 (error_message), SCM_EOL);
+    char *msg = geda_sprintf ("%s: ~s", parse_error, err->message);
+
+    SCM error_message = scm_from_utf8_string (err->message);
+
+    g_error_free(err);
+    scm_error (edascm_string_format_sym, scheme_page_from_string,
+               msg, scm_list_1 (error_message), SCM_EOL);
+
+    GEDA_FREE(msg);
   }
 
   geda_struct_page_append_list (page, objects);

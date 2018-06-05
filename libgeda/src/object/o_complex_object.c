@@ -632,7 +632,9 @@ GList *geda_complex_object_get_prim_objs (GedaObject *object)
  *
  * \returns Linked list of Objects to promote.
  */
-GList *geda_complex_object_get_promotable (GedaToplevel *toplevel, GedaObject *object, int detach)
+GList *geda_complex_object_get_promotable (GedaToplevel *toplevel,
+                                           GedaObject   *object,
+                                           int           detach)
 {
   if (GEDA_IS_COMPLEX(object)) {
 

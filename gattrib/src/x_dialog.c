@@ -29,13 +29,12 @@
 
 #include "../../version.h"
 
-#include <gattrib.h>
+#include "../include/gattrib.h"
+#include "../include/gattrib_dialog.h"
 #include <geda_container.h>
 #include <geda/geda_dialog_controls.h>
 #include <geda_widgets.h>
-#include <gattrib_dialog.h>
 #include <geda_dialogs.h>
-#include <geda_debug.h>
 
 /***************** Start of generic message dialog box *******************/
 
@@ -63,6 +62,7 @@ void generic_msg_dialog (const char *msg)
 }
 
 /***************** End of generic message dialog box *********************/
+
 /***************** Start of generic confirm dialog box *******************/
 
 /*! \brief Generic Confirmation Dialog
@@ -91,6 +91,10 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 
   return (response == GEDA_RESPONSE_OK);
 }
+
+/***************** End of generic message dialog box *********************/
+
+/****************** Start of New Attribute dialog box ********************/
 
 /*! \brief Add new attribute dialog.
  * This asks for the name of the attrib column to insert
@@ -142,6 +146,8 @@ char *x_dialog_new_attrib()
   gtk_widget_destroy(widget);
   return entry_text;
 }
+
+/****************** End of New Attribute dialog box **********************/
 
 /***************** Start of Column Visibility dialog box *****************/
 
@@ -419,7 +425,7 @@ int x_dialog_file_not_saved()
   int result;
 
   tmp = _("Save the changes before closing?");
-  str = geda_strconcat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
+  str = geda_strconcat ("<big><b>", tmp, "</b></big>", NULL);
 
   tmp = _("If you do not save, all your changes will be permanently lost.");
   str = geda_strconcat (str, "\n\n", tmp, NULL);
@@ -429,11 +435,13 @@ int x_dialog_file_not_saved()
                                                GTK_DIALOG_DESTROY_WITH_PARENT,
                                                GTK_MESSAGE_WARNING,
                                                GTK_BUTTONS_NONE, NULL);
+
   gtk_message_dialog_set_markup ((GtkMessageDialog*)dialog, str);
+
   gtk_dialog_add_buttons (dialog,
-                          _("Close without saving"), GEDA_RESPONSE_NO,
-                          GTK_STOCK_CANCEL,          GEDA_RESPONSE_CANCEL,
-                          GTK_STOCK_SAVE,            GEDA_RESPONSE_YES,
+                        _("Close without saving"), GEDA_RESPONSE_NO,
+                          GTK_STOCK_CANCEL,        GEDA_RESPONSE_CANCEL,
+                          GTK_STOCK_SAVE,          GEDA_RESPONSE_YES,
                           NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
@@ -607,7 +615,7 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
   }
 
-  title = geda_strconcat(_("Find "), prompt, NULL);
+  title = geda_strconcat(_("Find"), " ", prompt, NULL);
 
   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (title,
                                                     (GtkWindow*)main_window,
@@ -638,7 +646,7 @@ char *x_dialog_get_search_text(const char *prompt)
 
     g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
-    real_prompt = geda_strconcat(_("Enter "), prompt, ":", NULL);
+    real_prompt = geda_strconcat(_("Enter"), " ", prompt, ":", NULL);
     label       = geda_aligned_label_new(real_prompt, 0, 0);
     gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
@@ -655,7 +663,7 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_widget_grab_focus(textentry);
     gtk_widget_show_all((GtkWidget*)dialog);
 
-    response = gtk_dialog_run ((GtkDialog*)dialog);
+    response = gtk_dialog_run (dialog);
 
     if (response == GEDA_RESPONSE_ACCEPT) {
       text = geda_utility_string_strdup( GetEntryText(textentry) );
@@ -697,14 +705,14 @@ typedef enum {
 
 WidgetStringData DialogStrings[] = {
   /* 2 String for Edit Controls */
-        { "SearchTextCombo",       N_("  Search for:"),     N_("Enter or select the text to find")},
-        { "ReplaceTextCombo",      N_("Replace with:"),     N_("Enter or select the replacement text")},
+        { "SearchTextCombo",       N_("Search for:"),     N_("Enter or select the text to find")},
+        { "ReplaceTextCombo",      N_("Replace with:"),   N_("Enter or select the replacement text")},
 
   /* 4 Strings for Switch Controls */
-        { "IgnoreCaseSwitch",      N_("    Ignore Case"),   N_("Set search case sensitivity")},
-        { "WholeWordSwitch",       N_("  Match Words"),     N_("Limit Search hits to entire work")},
-        { "SearchBackwordSwitch",  N_("Search Backword"),   N_("Reverse search direction")},
-        { "WrapAroundSwitch",      N_("  Wrap Around"),     N_("Continue search from the beginning")},
+        { "IgnoreCaseSwitch",      N_("Ignore Case"),     N_("Set search case sensitivity")},
+        { "WholeWordSwitch",       N_("Match Words"),     N_("Limit Search hits to entire work")},
+        { "SearchBackwordSwitch",  N_("Search Backward"), N_("Reverse search direction")},
+        { "WrapAroundSwitch",      N_("Wrap Around"),     N_("Continue search from the beginning")},
         { NULL, NULL, NULL}
 };
 
@@ -778,7 +786,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     break;
 
   default:
-    geda_log ("%s unhandled case for signal: %d\n", __func__, response);
+    fprintf (stderr,"%s unhandled case for signal: %d\n", __func__, response);
   }
 
   Search->ReplaceAll = FALSE; /* This must be enabled by user each loop */
@@ -830,8 +838,9 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
        gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
     }
     break;
+
   default:
-    geda_log ("%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
+    fprintf (stderr,"%s Warning: unknown Id: %d\n", __func__, WhichComboBox);
   }
 
   g_free(text);
@@ -865,7 +874,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
      break;
 
    default:
-    geda_log ("%s: Unknown Switch ID: %d\n", __func__,response);
+    fprintf (stderr,"%s: Unknown Switch ID: %d\n", __func__,response);
    }
 
    return;
@@ -944,7 +953,9 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   GtkDialog *ThisDialog;
   GtkWidget *MainDialogVBox;
 
+  GtkWidget *alignment;
   GtkWidget *dialog_action_area;
+  GtkWidget *hbox;
   GtkWidget *CloseButt;
 
   GtkTooltips *tooltips;
@@ -964,8 +975,19 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   MainDialogVBox = ThisDialog->vbox;
   gtk_widget_show (MainDialogVBox);
 
-  HSECTION (MainDialogVBox, InputText);   /* Row 1 */
-    GEDA_NEW_TEXT_ENTRY_COMBO (InputText_hbox, SearchText, 306, 24);
+  /* Create an alignment widget to shift the Search text right */
+  alignment = gtk_alignment_new (1, 0, 1, 1);
+  gtk_box_pack_start (GTK_BOX (MainDialogVBox), alignment, FALSE, TRUE, 0);
+  gtk_widget_show (alignment);
+
+  g_object_set (alignment, "left-padding", 25, NULL);
+
+  hbox = gtk_hbox_new(FALSE, 1);
+  gtk_widget_show (hbox);
+  geda_container_add (alignment, hbox);
+
+  HSECTION (hbox, InputText);   /* Row 1 */
+  GEDA_NEW_TEXT_ENTRY_COMBO (InputText_hbox, SearchText, 306, 24);
 
   HSECTION (MainDialogVBox, NewText);   /*  Row 2 */
     GEDA_NEW_TEXT_ENTRY_COMBO (NewText_hbox, ReplaceText, 306, 24);
@@ -980,11 +1002,23 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
     geda_combo_box_text_set_activate_default((GedaComboBoxText*)SearchTextCombo, 1);
   }
 
-  HXYP_SEPERATOR (MainDialogVBox, Grp3, 10);
+  HXYP_SEPERATOR (MainDialogVBox, Grp3, 5);
 
-  HSECTION (MainDialogVBox, SearchOptions1);   /*  Row 3 */
+  /* Create an alignment widget to shiftSearchOptions row 1 right */
+  alignment = gtk_alignment_new (1, 0, 1, 1);
+  gtk_box_pack_start (GTK_BOX (MainDialogVBox), alignment, FALSE, TRUE, 0);
+  gtk_widget_show (alignment);
+
+  g_object_set (alignment, "left-padding", 55, NULL);
+
+  hbox = gtk_hbox_new(FALSE, 1);
+  gtk_widget_show (hbox);
+  geda_container_add (alignment, hbox);
+
+  HSECTION (hbox, SearchOptions1);   /*  Row 3 */
     GTK_SWITCH(SearchOptions1_hbox, IgnoreCase, 0, TRUE);
     GTK_SWITCH(SearchOptions1_hbox, WholeWord, 0, TRUE);
+
   HSECTION (MainDialogVBox, SearchOptions2);   /*  Row 4 */
     GTK_SWITCH(SearchOptions2_hbox, SearchBackword, 0, FALSE);
     GTK_SWITCH(SearchOptions2_hbox, WrapAround, 0, TRUE);

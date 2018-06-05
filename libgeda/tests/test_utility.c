@@ -141,48 +141,199 @@ int test_glist (void)
 {
   GList  *dlist;
   GSList *slist;
+  int     count;
   int     result;
   int     value;
 
+  GList *load_list (void) {
+
+    GList *Sharks;
+    uint8_t i;
+
+    static char *Chondrichthyes[] = {
+                                     "Cladoselache",
+                                     "Heterodontus",
+                                     "Megalodon",
+                                     "Orthacanthus",
+                                     "Xenacanthus",
+                                     NULL};
+    Sharks = NULL;
+
+    for (i = 0; Chondrichthyes[i] != NULL; i++) {
+      Sharks = g_list_append(Sharks, geda_strdup(Chondrichthyes[i]));
+    }
+
+    return Sharks;
+  }
+
+  void Releaser (void *string) {
+    g_free(string);
+    count++;
+  }
+
   result = 0;
 
-  /* Create a string table to load into list, will need to copy
-   * strings for free all */
-
   /* === Function 01: geda_utility_glist_clear === */
-  dlist = NULL;
+
   dlist = geda_clear_glist(NULL);
   if (dlist) {
-    fprintf(stderr, "FAILED: (U020100) geda_clear_glist <%p>\n", dlist);
+    fprintf(stderr, "FAILED: (U020100) geda_utility_glist_clear <%p>\n", dlist);
     result++;
   }
 
+  dlist = load_list();
+
+  dlist = geda_clear_glist(dlist);
+
+  count = g_list_length(dlist);
+  if (count) {
+    fprintf(stderr, "FAILED: (U020101) geda_utility_glist_clear <%d>\n", count);
+    result++;
+  }
+
+  g_list_free(dlist);
+  dlist = NULL;
+
   /* === Function 02: geda_utility_glist_find_string === */
+
   value = geda_glist_find_string(NULL, NULL) ;
   if (value != -2) {
-    fprintf(stderr, "FAILED: (U020200) geda_glist_find_string %d\n", value);
+    fprintf(stderr, "FAILED: (U020200) geda_utility_glist_find_string %d\n", value);
+    result++;
+  }
+
+  dlist = load_list();
+
+  value = geda_glist_find_string(dlist, "");
+
+  if (value != -1) {
+    fprintf(stderr, "FAILED: (U020201) geda_utility_glist_find_string <%d>\n", value);
+    result++;
+  }
+
+  value = geda_glist_find_string(dlist, "Megalodon");
+
+  if (value != 2) {
+    fprintf(stderr, "FAILED: (U020202) geda_utility_glist_find_string <%d>\n", value);
+    result++;
+  }
+
+  value = geda_glist_find_string(dlist, "Chimaeras");
+
+  if (value != -1) {
+    fprintf(stderr, "FAILED: (U020203) geda_utility_glist_find_string <%d>\n", value);
     result++;
   }
 
   /* === Function 03: geda_utility_glist_free_all === */
+
   geda_glist_free_all(NULL);
 
-  /* === Function 04: geda_utility_glist_free_full === */
-  geda_glist_free_full(NULL, free);
+  geda_glist_free_all(dlist);
 
-  /* === Function 05: geda_utility_gslist_str_inlist === */
+  dlist = NULL;
+
+  /* === Function 04: geda_utility_glist_free_full === */
+
+  count = 0;
+
+  geda_glist_free_full(NULL, Releaser);
+
+  if (count) {
+    fprintf(stderr, "FAILED: (U020400) geda_utility_glist_free_full <%d>\n", count);
+    result++;
+    count = 0;
+  }
+
+  dlist = load_list();
+
+  geda_glist_free_full(dlist, Releaser);
+
+  if (count != 5) {
+    fprintf(stderr, "FAILED: (U020401) geda_utility_glist_free_full <%d>\n", count);
+    result++;
+  }
+
+  dlist = NULL;
+
+  /* === Function 05: geda_utility_glist_str_inlist === */
+
   if (geda_glist_str_inlist(NULL, NULL)) {
-    fprintf(stderr, "FAILED: (U020500) geda_glist_str_inlist NULL\n");
+    fprintf(stderr, "FAILED: (U020500A) geda_utility_glist_str_inlist NULL\n");
+    result++;
+  }
+
+  dlist = load_list();
+
+  if (geda_glist_str_inlist(dlist, NULL)) {
+    fprintf(stderr, "FAILED: (U020500B) geda_utility_glist_str_inlist NULL\n");
+    result++;
+  }
+
+  if (geda_glist_str_inlist(dlist, "")) {
+    fprintf(stderr, "FAILED: (U020501) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_str_inlist(dlist, "Megalodon")) {
+    fprintf(stderr, "FAILED: (U020502) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_str_inlist(dlist, "Orthacanthus")) {
+    fprintf(stderr, "FAILED: (U020503) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_str_inlist(dlist, "Heterodontus")) {
+    fprintf(stderr, "FAILED: (U020504) geda_utility_glist_str_inlist\n");
+    result++;
+  }
+
+  if (geda_glist_str_inlist(dlist, "Chimaeras")) {
+    fprintf(stderr, "FAILED: (U020505) geda_utility_glist_str_inlist\n");
     result++;
   }
 
   /* === Function 06: geda_utility_glist_stri_inlist === */
+
   if (geda_glist_stri_inlist(NULL, NULL)) {
-    fprintf(stderr, "FAILED: (U020600) geda_glist_stri_inlist NULL\n");
+    fprintf(stderr, "FAILED: (U020600A) geda_utility_glist_stri_inlist NULL\n");
+    result++;
+  }
+
+  if (geda_glist_stri_inlist(dlist, NULL)) {
+    fprintf(stderr, "FAILED: (U020600B) geda_utility_glist_stri_inlist NULL\n");
+    result++;
+  }
+
+  if (geda_glist_stri_inlist(dlist, "")) {
+    fprintf(stderr, "FAILED: (U020601) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_stri_inlist(dlist, "Megalodon")) {
+    fprintf(stderr, "FAILED: (U020602) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_stri_inlist(dlist, "cladoselache")) {
+    fprintf(stderr, "FAILED: (U020603) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (!geda_glist_stri_inlist(dlist, "XENACANTHUS")) {
+    fprintf(stderr, "FAILED: (U020604) geda_utility_glist_stri_inlist\n");
+    result++;
+  }
+
+  if (geda_glist_stri_inlist(dlist, "Chimaeras")) {
+    fprintf(stderr, "FAILED: (U020605) geda_utility_glist_stri_inlist\n");
     result++;
   }
 
   /* === Function 07: geda_utility_gslist_clear === */
+
   slist = geda_clear_gslist(NULL);
   if (slist) {
     fprintf(stderr, "FAILED: (U020700) geda_clear_gslist <%p>\n", slist);
@@ -190,6 +341,7 @@ int test_glist (void)
   }
 
   /* === Function 08: geda_utility_gslist_find_string === */
+
   value = geda_gslist_find_string(NULL, NULL) ;
   if (value != -2) {
     fprintf(stderr, "FAILED: (U020800) geda_gslist_find_string %d\n", value);
@@ -197,18 +349,22 @@ int test_glist (void)
   }
 
   /* === Function 09: geda_gslist_free_all    geda_utility_gslist_free_all === */
+
   geda_gslist_free_all(NULL);
 
   /* === Function 11: geda_gslist_free_full   geda_utility_gslist_free_full === */
+
   geda_gslist_free_full(NULL, free);
 
   /* === Function 12: geda_utility_gslist_str_inlist === */
+
   if (geda_gslist_str_inlist(NULL, NULL)) {
     fprintf(stderr, "FAILED: (U021100) geda_gslist_str_inlist NULL\n");
     result++;
   }
 
   /* === Function 13: geda_utility_gslist_stri_inlist === */
+
   if (geda_gslist_stri_inlist(NULL, NULL)) {
     fprintf(stderr, "FAILED: (U021200) geda_gslist_stri_inlist NULL\n");
     result++;

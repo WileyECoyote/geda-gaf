@@ -1,3 +1,55 @@
+2018-06-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/MIC5891-1.sym: Add symbol; 8 bit serial input high-side driver.
+
+    * mitsubishi/M81737FP-1.sym: Add symbol; Dual High Side Driver, 600 VOLT.
+
+    * mitsubishi/M81738FP-1.sym: Add symbol; Half Bridge Driver, 1200 VOLT.
+
+    * mitsubishi/logic/M5L8282P-1.sym: Rename symbol with dash one.
+
+    * ti/battery/BQ34Z100-1.sym: Add symbol; Wide Range Fuel Gauge with Impedance
+      Tracking.
+
+    * titleblock: Add description attribute and revise attribute locations:
+
+            * titleblock/title-B-nameOnEdge.sym
+            * titleblock/title-bordered-A.sym
+            * titleblock/title-bordered-A0.sym
+            * titleblock/title-bordered-A1.sym
+            * titleblock/title-bordered-A2.sym
+            * titleblock/title-bordered-A3.sym
+            * titleblock/title-bordered-A4.sym
+            * titleblock/title-bordered-B.sym
+            * titleblock/title-bordered-C.sym
+            * titleblock/title-bordered-D.sym
+            * titleblock/title-bordered-E.sym
+
+    * transistor/other/ULN2003A-1.sym: Add symbol; 7 bit darlington driver.
+
+2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * titleblock/title-bordered-A0.sym: Add description attribute and revise
+      attribute locations.
+
+2018-05-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * amphenol/31-71043-1.sym: Clean symbol; reposition attributes.
+
+2018-05-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/NLSV4T244-1.sym: Add symbol; dual-supply 4-Bit non-inverting
+      level translator.
+
+    * ti/ADS1110-6.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
+      Delta-Sigma, I2C address 1001 110.
+
+    * ti/ADS1110-7.sym: Add symbol; Analog-To-Digital Converter, 16-Bit
+      Delta-Sigma, I2C address 1001 111.
+
+    * ti/micro/TM4C1231H6PM-1.sym: Add symbol; Tiva C Series Microcontroller,
+      LQFP-64.
+
 2018-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/TMP100-1.sym: Add symbol; serial temperature
@@ -26,7 +78,7 @@
 
     * lineartech/LT4412-2.sym: Add symbol with alternate pin layout.
 
-    * ti/micro/TM4C1230C3PM-1.sym: Tiva C Series Microcontroller.
+    * ti/micro/TM4C1230C3PM-1.sym: Add symbol; Tiva C Series Microcontroller.
 
 2018-05-10 Wiley E. Hill <wileyhill@gmail.com>
 

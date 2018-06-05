@@ -30,8 +30,7 @@
  * native to gEDA.
  */
 
-#include <gattrib.h>
-#include <geda_debug.h>
+#include "../include/gattrib.h"
 
 /* ===================  Public Functions  ====================== */
 /*------------------------------------------------------------------*/

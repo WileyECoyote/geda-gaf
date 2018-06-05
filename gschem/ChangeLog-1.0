@@ -6,6 +6,19 @@
       function x_dnd_get_object_attributes and call in x_dnd_send_string_object
       to include attached attributes in dropped complexes.
 
+2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_multiattrib.c: Set focus chain, aka TAB order in multiattrib_init
+      because I am tired of tabbing from the add attribute combo entry and the
+      cursor not going to the value entry field.
+
+2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Revise g_rc_component_dialog_attributes to clear and
+      reuse the existing attribute, which will create a new list of the list
+      do not already exist. Replace geda_gslist_free_all with geda_glist_free
+      _all in  for unwind_handler.
+
 2018-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Add sub-function get_file_name() in documents()

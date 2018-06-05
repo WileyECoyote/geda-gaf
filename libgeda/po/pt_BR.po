@@ -1699,19 +1699,19 @@ msgstr ""
 
 #: libgeda/src/scheme/scheme_page.c:343
 msgid "Object ~A is attached to a complex or different page"
-msgstr ""
+msgstr "Objeto ~A é anexado a uma página complexa ou diferente"
 
 #: libgeda/src/struct/s_clib.c:440
 msgid "Uncaught signal"
-msgstr ""
+msgstr "Sinal não detectado"
 
 #: libgeda/src/struct/s_clib.c:444
 msgid "Error output was"
-msgstr ""
+msgstr "Erro de saida foi"
 
 #: libgeda/src/struct/s_clib.c:456
 msgid "Library command failed"
-msgstr ""
+msgstr "Comando de biblioteca falhou"
 
 # Library name [%s] already in use. Using
 #: libgeda/src/struct/s_clib.c:540
@@ -1786,24 +1786,24 @@ msgstr "a partir da fonte"
 #: libgeda/src/struct/s_clib.c:1519
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
-msgstr ""
+msgstr "Componente [%s] não foi encontrado na biblioteca de componentes\n"
 
 #: libgeda/src/struct/s_clib.c:1526
 #, c-format
 msgid "More than one component found with name [%s]\n"
-msgstr ""
+msgstr "Mais de um componente encontrado com o nome [%s]\n"
 
 #: libgeda/src/struct/s_hierarchy.c:86 libgeda/src/struct/s_hierarchy.c:263
 msgid "Schematic not found in source library."
-msgstr ""
+msgstr "Esquema não encontrado na biblioteca de fontes"
 
 #: libgeda/src/struct/s_hierarchy.c:112
 msgid "Hierarchy contains a circular dependency."
-msgstr ""
+msgstr "Hierarquia contém uma dependência circular"
 
 #: libgeda/src/struct/s_hierarchy.c:214
 msgid "There are no schematics above the current one!\n"
-msgstr ""
+msgstr "Não há esquemas acima do atual!\n"
 
 # Failed to descend hierarchy into
 #: libgeda/src/struct/s_hierarchy.c:376
@@ -1812,15 +1812,15 @@ msgstr "Falha ao descer a hierarquia em"
 
 #: libgeda/src/struct/s_page.c:256
 msgid "Disabling auto save timer, no toplevel"
-msgstr ""
+msgstr "Desativando o timer de salvamento automático, sem nível superior"
 
 #: libgeda/src/struct/s_page.c:732 libgeda/src/struct/s_page.c:775
 msgid "Saved"
-msgstr ""
+msgstr "Salvou"
 
 #: libgeda/src/struct/s_page.c:738 libgeda/src/struct/s_page.c:782
 msgid "Could NOT save"
-msgstr ""
+msgstr "Não foi possível salvar"
 
 # Did not find
 #: libgeda/src/struct/s_slot.c:181
@@ -1849,7 +1849,7 @@ msgstr "atributos"
 
 #: libgeda/src/struct/s_slot.c:251
 msgid "component missing pinseq= attribute\n"
-msgstr ""
+msgstr "componente ausente pinseq = atributos\n"
 
 # Could not write message to log file
 #: libgeda/src/utility/u_log.c:124
@@ -1875,13 +1875,3 @@ msgstr "Não foi possível criar o arquivo de log em"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Objeto ~A não faz parte de uma página"
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "no arquivo"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "Erro ao carregar a configuração"

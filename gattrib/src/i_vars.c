@@ -26,11 +26,8 @@
 /*------------------------------------------------------------------
  * Gattrib specific includes.  Note that include order is important.
  *------------------------------------------------------------------*/
-#include <gattrib.h>
-
+#include "../include/gattrib.h"
 #include "../include/i_vars.h"
-
-#include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
 /*
@@ -44,6 +41,8 @@ int default_paper_height = 85000;
 
 int default_sort_components = 0;
 int default_tearoff_menus   = 1;
+
+GList *default_hide_columns = NULL;
 
 /*------------------------------------------------------------------*/
 /*! \brief Initialise variables in the GedaToplevel
@@ -61,5 +60,17 @@ void i_vars_set (GedaToplevel *toplevel)
 
   sort_components = default_sort_components;
 
-  tearoff_menus   = default_tearoff_menus;
+  tearoff_menus = default_tearoff_menus;
+
+  hide_columns = default_hide_columns;
+}
+
+/*! \brief Release Resources in i_vars
+ *  \par Function Description
+ *
+ */
+void i_vars_release_all(void)
+{
+  geda_glist_free_all(default_hide_columns);
+  default_hide_columns = NULL;
 }

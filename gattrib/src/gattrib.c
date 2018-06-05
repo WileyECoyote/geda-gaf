@@ -133,7 +133,6 @@
 
 #include <geda_keysyms.h>
 #include <libgedauio.h>
-#include <geda_debug.h>
 
 typedef struct {
   void (*func)(void*);
@@ -225,6 +224,8 @@ int gattrib_quit(int return_code)
   x_window_release_all();
 
   gattrib_save_user_config();
+
+  i_vars_release_all();
 
   /* Shutdown libgeda */
   libgeda_release();

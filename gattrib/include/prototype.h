@@ -32,6 +32,7 @@ SCM g_quit(void);
 
 /* ------------- g_rc.c ------------- */
 SCM  g_rc_gattrib_version(SCM version);
+SCM  g_rc_hide_columns(SCM stringlist);
 SCM  g_rc_sort_components(SCM mode);
 SCM  g_rc_tearoff_menus(SCM mode);
 
@@ -193,6 +194,7 @@ void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData);
 
 /* ------------- i_vars.c ------------- */
 void  i_vars_set(GedaToplevel *toplevel);
+void  i_vars_release_all(void);
 //void  i_window_vars_set(GedaToplevel *toplevel);
 
 /* ------------- x_dialog.c ------------- */

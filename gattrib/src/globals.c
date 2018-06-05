@@ -23,8 +23,7 @@
  * Global declarations
  */
 
-#include <gattrib.h>
-#include <geda_debug.h>
+#include "../include/gattrib.h"
 
 /* command line arguments */
 int export_mode;  //!< Reflects the value of the command line flag
@@ -32,8 +31,9 @@ int verbose_mode; //!< Reflects the value of the command line flag
 int quiet_mode;   //!< Reflects the value of the command line flag
 
 /* rc variables */
-int sort_components;
-int tearoff_menus;
+GList *hide_columns;
+int    sort_components;
+int    tearoff_menus;
 
 /*!
  * these are required by libgeda

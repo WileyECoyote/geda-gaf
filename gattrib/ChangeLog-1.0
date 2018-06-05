@@ -1,7 +1,82 @@
+2018-06-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/es.po: Update Spanish translations.
+
+    * po/fa.po: Update Persian translations.
+
+    * po/fr.po: Update French translations.
+
+    * po/it.po: Update Italian translations.
+
+    * po/ru.po: Update Russian translations.
+
+2018-05-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/tr.po: Update Turkish translations.
+
+    * po/uk.po: Update Ukrainian translations.
+
+    * po/zh_CN.po: Update Chinese simplified translations.
+
+    * po/zh_TW.po: Update Chinese traditional translations.
+
+2018-05-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/nl.po: Update Dutch translations.
+
+    * src/x_dialog.c: Remove unneeded GtkDialog cast in x_dialog_get_search_text.
+      Revise x_dialog_create_search_replace_dialog to add an alignment widget for
+      the InputText_hbox and SearchOptions1_hbox to compensate for the spaces
+      removed from the dialog text.
+
+    * src/x_toolbars.c: Replace geda_log with fprintf for unlikely unhandled case
+      messages. Increase line spacing after breaks in switch cases.
+
+2018-05-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/en_GB.po: Update Great Britain.
+
+    * po/ml.po: Updated Malayalam translations.
+
+    * po/nb.po: Update Norwegian Bokmal translations.
+
+    * po/oc.po: Update Occitan translations.
+
+    * src/x_dialog.c: Remove extra space from dialog text, and replace geda_log
+      with fprintf for unlikely unhandled case messages.
+
+2018-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gattrib.h: Include geda_debug.h.
+
+    * etc/system-gattribrc.in: Add keyword list hide-columns.
+
+    * src/*.c: Use relative path to include/gattrib.h.
+
+    * src/gattrib.c: Add call i_vars_release_all to in gattrib_quit.
+
+    * src/g_rc.c: Add keyword handler g_rc_hide_columns to store the list of
+      column titles. Replace g_ascii_strcasecmp with strcmp.
+
+    * src/g_register.c: Register keyword handler g_rc_hide_columns.
+
+    * src/globals.c: Add global GList pointer hide_columns.
+
+    * src/i_vars.c: Add global GList pointer default_hide_columns and set
+      hide_columns to the default_hide_columns in i_vars_set. Add function
+      i_vars_release_all to release default_hide_columns at exit.
+
+    * src/x_gtksheet.c: Modify x_gtksheet_add_col_labels to check if the title
+      being added is a member of hide_columns and set the visibility to off
+      if the title found in the list.
+
 2018-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Remove/comment-out declaration for non-existence
       i_window_vars_set.
+
+    * src/x_dialog.c: Remove gettext wrapper from format strings in x_dialog_
+      file_not_saved.
 
     * src/x_gtksheet.c: Declare SetupCSheetHandlers static. Reformat Doxygen
       comment blocks.

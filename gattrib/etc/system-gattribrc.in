@@ -23,6 +23,15 @@
 (define gedadata (getenv "GEDADATA"))
 (define gedadatarc (getenv "GEDADATARC"))
 
+; hide-columns stringlist
+;
+; Sets the list of columns to be hidden. Column titles in this list
+; will be hidden by default. Users can turn on and off columns using
+; the Reveal Attributes dialog.
+;
+(hide-columns '("author" "dist-license" "use-license" "comment"
+                "symversion" "slotdef" "spice-type"))
+
 ; sort-components string
 ;
 ; If this is enabled, then components will be sorted in

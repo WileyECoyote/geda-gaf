@@ -39,6 +39,8 @@
 #include "../include/gettext.h"
 #include "../include/builtins.h"
 
+#include <libgeda/libgeda.h>         /* for geda_sprintf */
+
 #define short_options "+hnV"
 
 static struct option long_options[] =
@@ -81,35 +83,49 @@ static void usage (void)
 }
 
 /* Print version info and exit */
-static void
-version (void)
+static void version (void)
 {
 
   printf(_("gEDA/gaf %s (%s) (g%.7s)\n"
-  "Copyright (C) 1998-2017 gEDA developers\n"
-  "This is free software, and you are welcome to redistribute it under\n"
-  "certain conditions. For details, see the file `COPYING', which is\n"
-  "included in the gEDA distribution.\n"
-  "There is NO WARRANTY, to the extent permitted by law.\n"),
-         PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
+           "Copyright (C) 1998-2017 gEDA developers\n"
+           "This is free software, and you are welcome to redistribute it under\n"
+           "certain conditions. For details, see the file `COPYING', which is\n"
+           "included in the gEDA distribution.\n"
+           "There is NO WARRANTY, to the extent permitted by law.\n"),
+           PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
   exit (0);
+}
+
+static void gaf_show_run_help (const char *msg)
+{
+  const char *help_msg = _("Run `gaf --help' for more information");
+
+  if (msg) {
+    fprintf (stderr, "\n%s.\n\n%s.\n\n", msg, help_msg);
+  }
+  else {
+    fprintf (stderr, "\n%s.\n\n", help_msg);
+  }
 }
 
 int main (int argc, char **argv)
 {
-  int c;
-  char *cmd = NULL;
-  int cmd_argc = 0;
-  char **cmd_argv = NULL;
+  int    c;
+  char  *cmd;
+  int    cmd_argc;
+  char **cmd_argv;
+
   int (*cmd_func)(int, char **) = NULL;
 
-  /* Set up gettext */
+  /* Possibly set up gettext */
 #if ENABLE_NLS
+
   setlocale (LC_ALL, "");
   setlocale (LC_NUMERIC, "C");
   bindtextdomain ("geda-gaf", LOCALEDIR);
   textdomain ("geda-gaf");
   bind_textdomain_codeset ("geda-gaf", "UTF-8");
+
 #endif
 
   while (-1 != (c = getopt_long (argc, argv, short_options,
@@ -133,7 +149,7 @@ int main (int argc, char **argv)
 
     case '?':
       /* getopt_long already printed an error message */
-      fprintf (stderr, _("\nRun `gaf --help' for more information.\n"));
+      gaf_show_run_help (NULL);
       exit (1);
       break;
 
@@ -144,10 +160,7 @@ int main (int argc, char **argv)
 
   /* The next argument should be a command */
   if (optind == argc) {
-    fprintf (stderr,
-             _("No command specified, nothing to do.\n"
-               "\n"
-               "Run `gaf --help' for more information.\n"));
+    gaf_show_run_help (_("No command specified, nothing to do"));
     exit (1);
   }
 
@@ -163,11 +176,15 @@ int main (int argc, char **argv)
   }
 
   if (cmd_func == NULL) {
-    fprintf (stderr,
-             _("ERROR: Unrecognised command `%s'.\n"
-               "\n"
-               "Run `gaf --help' for more information.\n"),
-             cmd);
+
+    const char *msg = _("ERROR: Unrecognised command");
+          char *str;
+
+    str = geda_sprintf ("%s <%s>", msg, cmd);
+
+    gaf_show_run_help (str);
+
+    free(str);
     exit (1);
   }
 
