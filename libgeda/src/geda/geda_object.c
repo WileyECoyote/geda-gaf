@@ -284,30 +284,39 @@ static void geda_object_get_property (GObject *gobject, unsigned int property_id
       g_value_set_schar (value, object->type);
 #endif
       break;
+
     case OBJECT_ID:
       g_value_set_int (value, object->sid);
       break;
+
     case OBJECT_NAME:
       g_value_set_string (value, object->name);
       break;
+
     case OBJECT_PARENT:
       g_value_set_pointer (value, object->parent_object);
       break;
+
     case OBJECT_SELECTABLE:
       g_value_set_boolean (value, object->selectable);
       break;
+
     case OBJECT_NO_REDRAW:
       g_value_set_boolean (value, object->dont_redraw);
       break;
+
     case OBJECT_SELECTED:
       g_value_set_boolean (value, object->selected);
       break;
+
     case OBJECT_SHOW_NAME_VALUE:
       g_value_set_int (value, object->show_name_value);
       break;
+
     case OBJECT_VISIBLE:
       g_value_set_int (value, object->visibility);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, property_id, pspec);
       break;
@@ -342,28 +351,36 @@ static void geda_object_set_property (GObject *gobject, unsigned int property_id
 #endif
 
       break;
+
     case OBJECT_NAME:
       name = g_value_get_string (value); //
       object->name = geda_sprintf("%s.%d", name, object->sid);
       break;
+
     case OBJECT_PARENT:
       object->parent_object = g_value_get_pointer  (value);
       break;
+
     case OBJECT_SELECTABLE:
       object->selectable = g_value_get_boolean (value);
       break;
+
     case OBJECT_NO_REDRAW:
       object->dont_redraw = g_value_get_boolean (value);
       break;
+
     case OBJECT_SELECTED:
       object->selected = g_value_get_boolean (value);
       break;
+
     case OBJECT_SHOW_NAME_VALUE:
       object->show_name_value = g_value_get_int (value);
       break;
+
     case OBJECT_VISIBLE:
       object->visibility = g_value_get_int (value);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, property_id, pspec);
       break;
