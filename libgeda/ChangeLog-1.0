@@ -2,6 +2,8 @@
 
     * src/object/o_notify.c: Add Doxygen group "geda-notify-object-proc".
 
+    * src/object/o_object.c: Add Doxygen group "geda-object-proc".
+
 2018-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgeda.c: Revise GEDALOGS environment error message.

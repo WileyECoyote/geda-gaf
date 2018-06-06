@@ -53,6 +53,11 @@
 
 #include <geda_diagnostics.h>
 
+/** \defgroup geda-object-proc GedaObject Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaObject Objects
+ */
+
 /*
  * Private function called by geda_xxx_object_read functions if the
  * input buffer contains and errors. If verbose is enable the entire
@@ -753,3 +758,5 @@ void geda_object_update (GedaObject *object)
   geda_struct_conn_update_object (object);
 
 }
+
+/** @} endgroup geda-object-proc */
