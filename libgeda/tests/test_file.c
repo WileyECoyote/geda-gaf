@@ -380,7 +380,7 @@ int test_get (void)
 
   const char *expected_0101 = "./#" LINK2SOMEWHERE "#";
 
-  /* LINK2SOMEWHERE is SYM_FILE with the data/ prefix */
+  /* LINK2SOMEWHERE is SYM_FILE without  the data/ prefix */
   string = geda_get_autosave_name(LINK2SOMEWHERE);
 
   if (!string) {
