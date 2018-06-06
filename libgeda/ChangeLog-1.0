@@ -4,6 +4,8 @@
 
     * src/object/o_object.c: Add Doxygen group "geda-object-proc".
 
+    * tests/test_color_object.c: Add new tests module for o_color.c.
+
 2018-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgeda.c: Revise GEDALOGS environment error message.

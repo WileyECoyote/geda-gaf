@@ -16,6 +16,7 @@ test_circle
 test_circle_object
 test_complex
 test_complex_object
+test_color_object
 test_file
 test_keyfile
 test_line
