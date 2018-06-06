@@ -58,7 +58,7 @@
  * \brief Procedures for Operations with #GedaObject Objects
  */
 
-/*
+/*! \internal
  * Private function called by geda_xxx_object_read functions if the
  * input buffer contains and errors. If verbose is enable the entire
  * buffer and the passed message are written to the warning log and
