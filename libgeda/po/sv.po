@@ -1874,19 +1874,3 @@ msgstr "Det gick inte att skapa loggfilen i"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Object ~A är inte en del av en sida"
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "i fil"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "Fel vid inläsning av konfiguration"
-
-#~ msgid "Cannot get real filename of"
-#~ msgstr "Kan inte hitta filen"
-
-#~ msgid "Cannot find file"
-#~ msgstr "Kan inte hitta filen"
