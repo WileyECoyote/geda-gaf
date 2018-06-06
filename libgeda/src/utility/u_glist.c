@@ -122,7 +122,7 @@ void geda_utility_glist_free_full (GList *list, GDestroyNotify free_func)
  *  that geda_utility_glist_find_string returns the index, which
  *  could be index zero.
  *
- * \param [in] list*  GList containing strings to be search
+ * \param [in] list   GList containing strings to be search
  * \param [in] string pointer the string to search for
  *
  * \retval TRUE if string is in the GLIST data, otherwise FALSE.
