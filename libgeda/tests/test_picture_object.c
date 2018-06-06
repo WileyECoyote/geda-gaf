@@ -36,8 +36,8 @@
 /*! \file test_picture_object.c
  *  \brief Tests for o_picture_object.c module
  *  \par
- *  This module provides basic unit tests for functions in the geda_net_object_
- *  module.
+ *  This module provides basic unit tests for functions in the
+ *  o_picture_object module.
  */
 
 #define TOBJECT "GedaPicture"
