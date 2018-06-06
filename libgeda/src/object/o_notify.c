@@ -33,6 +33,11 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup geda-notify-object-proc GedaNotifyList Object Procedures
+ * @{
+ * \brief Procedures to support operations with #GedaNotifyList Objects
+ */
+
 /*!
  * \brief Lookup a change notification handlers for a Geda Page Object
  * \par Function Description
@@ -245,3 +250,5 @@ void geda_object_notify_emit_change (GedaObject *object)
     }
   }
 }
+
+/** @} endgroup geda-notify-object-proc */
