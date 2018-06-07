@@ -1056,7 +1056,7 @@ check_return_attribs (GedaToplevel *toplevel)
     result++;
   }
 
-  /* First member is the first floating attibute */
+  /* First member is the first floating attribute */
   GedaObject *attrib4R = list->data;
 
   if (!attrib4R) {
@@ -1068,7 +1068,7 @@ check_return_attribs (GedaToplevel *toplevel)
     result++;
   }
 
-  /* Forth member is the first attached attibute */
+  /* Forth member is the first attached attribute */
   GedaObject *attrib1R = g_list_nth_data(list, 3);
 
   if (!attrib1R) {
