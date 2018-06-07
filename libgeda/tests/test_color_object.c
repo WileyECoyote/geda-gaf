@@ -25,8 +25,10 @@
  */
 
 #include <libgeda.h>
-#include <prototype_priv.h>
-#include <version.h>
+
+#include <o_types.h>
+#include <geda_colors.h>
+
 #include "test-suite.h"
 
 /*! \file test_color_object.c
@@ -60,6 +62,90 @@
 int check_color_get_default (void)
 {
   int result = 0;
+  int index;
+
+  index = geda_object_color_get_default (OBJ_LINE);
+
+  if (index != DEFAULT_LINE_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010101) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_PATH);
+
+  if (index != DEFAULT_PATH_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010102) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_BOX);
+
+  if (index != DEFAULT_BOX_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010103) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_PICTURE);
+
+  if (index != DEFAULT_PICTURE_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010104) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_CIRCLE);
+
+  if (index != DEFAULT_CIRCLE_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010105) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_NET);
+
+  if (index != DEFAULT_NET_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010106) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_BUS);
+
+  if (index != DEFAULT_BUS_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010107) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_COMPLEX);
+
+  if (index != DEFAULT_COMPLEX_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010108) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_TEXT);
+
+  if (index != DEFAULT_TEXT_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010109) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_PIN);
+
+  if (index != DEFAULT_PIN_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010110) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_ARC);
+
+  if (index != DEFAULT_ARC_COLOR_INDEX) {
+    fprintf(stderr, "FAILED: (F010111) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
+
+  index = geda_object_color_get_default(OBJ_PLACEHOLDER);
+  if (index != -1) {
+    fprintf(stderr, "FAILED: (F010112) geda_object_color_get_default <%d>\n", index);
+    result++;
+  }
 
   return result;
 }
