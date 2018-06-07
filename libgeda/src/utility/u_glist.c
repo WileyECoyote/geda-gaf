@@ -71,6 +71,7 @@ int geda_utility_glist_find_string(GList *list, const char *str)
     int found = index = 0;
 
     for (iter = list; iter != NULL; iter = iter->next) {
+
       if (iter->data && geda_utility_string_strequal(iter->data, str)) {
         found = 1;
         break;
