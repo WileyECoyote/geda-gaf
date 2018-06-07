@@ -1,3 +1,8 @@
+2018-06-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_color.c: Update function documentation for
+      geda_object_color_get_default.
+
 2018-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_notify.c: Add Doxygen group "geda-notify-object-proc".

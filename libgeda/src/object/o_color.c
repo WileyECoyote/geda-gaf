@@ -30,12 +30,13 @@
 
 #include <geda_debug.h>
 
-/*! \brief Get the Default Color Index for a GedaObject
- *  \par Function Description
- *
+/*!
+ * \brief Get the Default Color Index for a GedaObject
+ * \par Function Description
+ *  Returns the default color index for the given enity \a type.
+ *  or -1 if type is invalid.
  */
-int
-geda_object_color_get_default (char type)
+int geda_object_color_get_default (char type)
 {
   struct default_color_index_t {
     char type;
