@@ -59,9 +59,11 @@ geda_object_color_get_default (char type)
 
   struct default_color_index_t *table;
 
-  for (table = default_color_data; table->type != '\0'; table++)
-    if( table->type == type)
+  for (table = default_color_data; table->type != '\0'; table++) {
+    if( table->type == type) {
       return table->index;
+    }
+  }
 
   return table->index;
 }
