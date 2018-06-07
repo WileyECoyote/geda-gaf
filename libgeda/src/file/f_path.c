@@ -126,10 +126,10 @@ static int f_create_dir(const char *path, mode_t mode)
  * \copyright (C) JLSS 1990-2012
  *
  * \param path Pointer to string path to be created
- * \param mode valid mode_t integer permission attribute
+ * \param mode valid mode_t integer permission attributes
  *
  * \retval NO_ERROR on success or -1 if and error was encountered,
- *         if \a path is NULL then NO_ERROR is returned.
+ *         if \a path is NULL then EINVAL is returned.
  *
  * \remark WEH Tweeked for libgeda
  */
