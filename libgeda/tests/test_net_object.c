@@ -33,7 +33,7 @@
 /*! \file test_net_object.c
  *  \brief Tests for o_net_object.c module
  *  \par
- *  This module provides basic unit tests for functions in the geda_net_object_
+ *  This module provides basic unit tests for functions in the geda_net_object
  *  module.
  */
 
