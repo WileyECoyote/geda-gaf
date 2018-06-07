@@ -489,6 +489,9 @@ check_accessors ()
   g_list_free((GList*)list);
   object1->conn_list = NULL;
 
+  /* === Function: geda_object_get_locked_color === */
+  /* === Function: geda_object_set_locked_color === */
+
   /* === Function: geda_object_get_page === */
 
   /* === Function: geda_object_set_color === */
