@@ -1,5 +1,7 @@
 2018-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_file.h: Add geda_ckmod macro.
+
     * src/libgeda.c: Change mode_t argument geda_file_path_create; from
       777 to 764 in libgeda_init and add msg constant for error message
       wrapped with gettext.

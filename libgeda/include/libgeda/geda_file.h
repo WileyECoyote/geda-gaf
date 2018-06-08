@@ -75,6 +75,7 @@
 
 /* f_sys.c */
 #define geda_copy_file            geda_file_copy
+#define geda_ckmod                geda_file_sys_ckmod
 #define geda_cmp_file_mod_time    geda_file_sys_cmp_mod_time
 #define geda_follow_symlinks      geda_file_sys_follow_symlinks
 #define geda_normalize_filename   geda_file_sys_normalize_name
