@@ -8,6 +8,11 @@
       attributes of a file or path, oddly did not find in library, maybe
       did not look hard enough.
 
+    * src/utility/u_log.c: Revise geda_utility_log_init to check for the
+      existence of default_log_directory before attempting to create and
+      if the directory exist verify permissions are sufficient to read and
+      write before proposing default_log_directory as dir_path.
+
 2018-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_color.c: Update function documentation for

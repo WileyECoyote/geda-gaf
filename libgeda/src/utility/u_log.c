@@ -254,7 +254,27 @@ void geda_utility_log_init (const char *prefix)
    * filename with a matching prefix & date. */
 
   if (default_log_directory) {
-    dir_path = default_log_directory;
+
+    if (g_file_test(default_log_directory, G_FILE_TEST_IS_DIR)) {
+
+      int status;
+
+      status = geda_file_sys_ckmod(default_log_directory, 0600);
+
+      if (status == NO_ERROR) {
+
+        dir_path = default_log_directory;
+      }
+    }
+    else if (geda_create_path (default_log_directory, 0764) != 0) {
+
+      const char *msg = _("Could not create log directory");
+
+      fprintf(stderr, "%s %s: %s\n", msg, default_log_directory, strerror (errno));
+    }
+    else {
+      dir_path = default_log_directory;
+    }
   }
   else {
 
