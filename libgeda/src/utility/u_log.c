@@ -251,8 +251,9 @@ void geda_utility_log_init (const char *prefix)
 
   /* Find/create the directory where we are going to put the logs. Then
    * iterate over files in the directory finding the "biggest" existing
-   * filename with a matching prefix & date. */
-
+   * filename with a matching prefix & date. It is okay to use the logging
+   * functions from here, because  there is already a default handler.
+   */
   if (default_log_directory) {
 
     if (g_file_test(default_log_directory, G_FILE_TEST_IS_DIR)) {
@@ -286,8 +287,6 @@ void geda_utility_log_init (const char *prefix)
 
   /* Try to create the directory. */
   if (geda_create_path (dir_path, 0777 /*octal*/ ) != 0) {
-    /* It is okay to use the logging functions from here, because
-     * there is already a default handler. */
     const char *msg = _("Could not create log directory");
     fprintf(stderr, "%s %s: %s\n", msg, dir_path, strerror (errno));
   }
