@@ -330,9 +330,10 @@ void geda_utility_log_init (const char *prefix)
 
       char *filename;
 
-      filename = geda_sprintf ("%s%s%s%i.log", dir_path,
-                                   DIR_SEPARATOR_S, full_prefix,
-      ++last_exist_logn);
+      filename = geda_sprintf ("%s%s%s%i.log", dir_path, DIR_SEPARATOR_S,
+                                               full_prefix,
+                                             ++last_exist_logn);
+
       logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);
 
       GEDA_FREE (filename);
