@@ -194,6 +194,44 @@ int geda_file_copy(const char *source, const char *target)
   return status; /* Success! */
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+int geda_file_sys_ckmod(const char *path, mode_t mode)
+{
+  int status;
+
+  struct stat stat_buf;
+
+  if (stat(path, &stat_buf) == 0) {
+
+    unsigned int p_user,  m_user;
+    unsigned int p_group, m_group;
+    unsigned int p_other, m_other;
+
+    status = NO_ERROR;
+
+    p_user  = (stat_buf.st_mode & S_IRWXU) >> 6;
+    p_group = (stat_buf.st_mode & S_IRWXG) >> 3;
+    p_other =  stat_buf.st_mode & S_IRWXO;
+
+    m_user  = (mode & S_IRWXU) >> 6;
+    m_group = (mode & S_IRWXG) >> 3;
+    m_other =  mode & S_IRWXO;
+
+    if (p_user < m_user || p_group < m_group || p_other < m_other) {
+      errno = EPERM;
+      status = -1;
+    }
+  }
+  else {
+    status = -1;
+  }
+  return status;
+}
+
 /*!
  * \brief Compare file modification time to a given time
  * \par Function Description

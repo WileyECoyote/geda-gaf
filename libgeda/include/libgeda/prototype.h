@@ -42,6 +42,7 @@ extern "C" {
 
 /* f_sys.c */
           int    geda_file_copy                  (const char *source, const char *target);
+          int    geda_file_sys_ckmod             (const char *pathname, mode_t mode);
           int    geda_file_sys_cmp_mod_time      (const char *filename, time_t ref_time);
          char   *geda_file_sys_follow_symlinks   (const char *filename, GError **error);
          char   *geda_file_sys_normalize_name    (const char *filename, GError **error);

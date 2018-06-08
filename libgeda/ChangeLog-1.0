@@ -4,6 +4,10 @@
       777 to 764 in libgeda_init and add msg constant for error message
       wrapped with gettext.
 
+    * src/file/f_sys.c: Add function geda_file_sys_ckmod to check permissions
+      attributes of a file or path, oddly did not find in library, maybe
+      did not look hard enough.
+
 2018-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_color.c: Update function documentation for
