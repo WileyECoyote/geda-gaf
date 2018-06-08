@@ -19,6 +19,8 @@
       to continue normally if user specified and invalid directory in
       either an RC or using the environment.
 
+    * tests/test_file.c: Update test identifiers.
+
 2018-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_color.c: Update function documentation for
