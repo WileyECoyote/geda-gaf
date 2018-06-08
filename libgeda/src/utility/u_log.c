@@ -277,20 +277,40 @@ void geda_utility_log_init (const char *prefix)
       dir_path = default_log_directory;
     }
   }
-  else {
+
+  /* Check if need to fallback */
+  if (!dir_path) {
 
     const char *user_dir;
+    int status;
 
     user_dir = geda_user_config_path();
     dir_path = g_build_filename(user_dir, "logs", NULL);
+
+    if (g_file_test(dir_path, G_FILE_TEST_IS_DIR)) {
+
+      status = geda_file_sys_ckmod(dir_path, 0600);
+
+    }
+    else if (geda_create_path (dir_path, 0764) != 0) {
+
+      const char *msg = _("Could not create log directory");
+
+      status = errno;
+
+      fprintf(stderr, "%s %s: %s\n", msg, dir_path, strerror (errno));
+    }
+    else {
+
+      status = NO_ERROR;
+    }
+
+    if (status != NO_ERROR) {
+      GEDA_FREE (dir_path);
+    }
   }
 
-  /* Try to create the directory. */
-  if (geda_create_path (dir_path, 0777 /*octal*/ ) != 0) {
-    const char *msg = _("Could not create log directory");
-    fprintf(stderr, "%s %s: %s\n", msg, dir_path, strerror (errno));
-  }
-  else {
+  if (dir_path) {
 
     GError *err;
     GSList *iter;

@@ -11,7 +11,11 @@
     * src/utility/u_log.c: Revise geda_utility_log_init to check for the
       existence of default_log_directory before attempting to create and
       if the directory exist verify permissions are sufficient to read and
-      write before proposing default_log_directory as dir_path.
+      write before proposing default_log_directory as dir_path. Revise
+      conditionals to fall-back to normal geda_user_config_path when the
+      default_log_directory is unset. This allow the logging operations
+      to continue normally if user specified and invalid directory in
+      either an RC or using the environment.
 
 2018-06-07 Wiley E. Hill <wileyhill@gmail.com>
 
