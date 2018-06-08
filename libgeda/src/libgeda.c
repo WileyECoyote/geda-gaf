@@ -130,8 +130,11 @@ void libgeda_init(int argc, char **argv)
       default_log_directory = path;
     }
     else {
-      fprintf (stderr, "Check GEDALOGS environment target [%s], %s\n",
-               path, strerror (errno));
+
+      const char *msg = _("Check GEDALOGS environment target");
+
+      fprintf (stderr, "%s [%s], %s\n", msg, path, strerror (errno));
+
       GEDA_FREE(path);
     }
   }
