@@ -123,8 +123,10 @@ void libgeda_init(int argc, char **argv)
   env_path = getenv ("GEDALOGS");
 
   if (env_path != NULL) {
+
     char *path = geda_sprintf ("%s", env_path);
-    if (geda_create_path (path, 0777 /*octal*/ ) == NO_ERROR) {
+
+    if (geda_create_path (path, 0764 /*octal*/ ) == NO_ERROR) {
       default_log_directory = path;
     }
     else {
