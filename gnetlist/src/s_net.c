@@ -293,7 +293,9 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 
   while (n_current != NULL) {
 
-    if (n_current->net_name) {
+    char *net_name = n_current->net_name;
+
+    if (net_name != NULL) {
 
       if (name == NULL) {
 
@@ -302,15 +304,14 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
          * the strings each pointer must be unique, otherwise, only the
          * first encounter will is renamed as s_rename_all_lowlevel will
          * not find the other instances */
-        name = geda_utility_string_strdup (n_current->net_name);
+        name = geda_utility_string_strdup (net_name);
 
       }
-      else if (strcmp(name, n_current->net_name) != 0) {
+      else if (strcmp(name, net_name) != 0) {
 
 #if DEBUG
         fprintf(stderr, "Found a net with two names!\n");
-        fprintf(stderr, "Net called: [%s] and [%s]\n",
-                name, n_current->net_name);
+        fprintf(stderr, "Net called: [%s] and [%s]\n", name, net_name);
 #endif
 
         /* only rename if this net name has priority  AND, we are
@@ -323,35 +324,34 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           if (n_current->net_name_has_priority) {
 
 #if DEBUG
-            fprintf(stderr, "Net is now called: [%s]\n", n_current->net_name);
+            fprintf(stderr, "Net is now called: [%s]\n", net_name);
 
             /* this show how to rename nets */
-            printf("\nRENAME all nets: %s -> %s\n", name, n_current->net_name);
+            printf("\nRENAME all nets: %s -> %s\n", name, net_name);
 #endif
-            s_rename_add(name, n_current->net_name);
+            s_rename_add(name, net_name);
             GEDA_FREE(name);
-            name = geda_utility_string_strdup (n_current->net_name);
+            name = geda_utility_string_strdup (net_name);
 
           }
           else {
 
 #if DEBUG
             printf
-            ("\nFound a net name called [%s], but it doesn't have priority\n",
-             n_current->net_name);
+            ("\nFound a net name called [%s], but it doesn't have priority\n", net_name);
 #endif
 
             /* Do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
-            if (!s_rename_search (name, n_current->net_name, TRUE)) {
+            if (!s_rename_search (name, net_name, TRUE)) {
 
               if (!quiet_mode) {
                 const char *msg = _("Found duplicate net name, renaming [%s] to [%s]\n");
-                fprintf(stderr, msg, name, n_current->net_name);
+                fprintf(stderr, msg, name, net_name);
               }
-              s_rename_add(name, n_current->net_name);
+              s_rename_add(name, net_name);
               GEDA_FREE(name);
-              name = geda_utility_string_strdup (n_current->net_name); /* See note above */
+              name = geda_utility_string_strdup (net_name); /* See note above */
             }
           }
 
@@ -368,30 +368,28 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           if (n_current->net_name_has_priority) {
 
 #if DEBUG /* this shows how to rename nets */
-            printf("\nRENAME all nets: %s -> %s (priority)\n",
-                   n_current->net_name, name);
+            printf("\nRENAME all nets: %s -> %s (priority)\n", net_name, name);
 #endif
 
-            s_rename_add(n_current->net_name, name);
+            s_rename_add(net_name, name);
 
           }
           else {
 
 #if DEBUG /* this shows how to rename nets */
-            printf ("\nRENAME all nets: %s -> %s (not priority)\n", name,
-                     n_current->net_name);
+            printf ("\nRENAME all nets: %s -> %s (not priority)\n", name, net_name);
 #endif
             /* do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
-            if (!s_rename_search (name, n_current->net_name, TRUE)) {
+            if (!s_rename_search (name, net_name, TRUE)) {
               if (!quiet_mode) {
                 fprintf(stderr,
                       _("Found duplicate net name, renaming [%s] to [%s]\n"),
-                        name, n_current->net_name);
+                        name, net_name);
               }
-              s_rename_add(name, n_current->net_name);
+              s_rename_add(name, net_name);
               GEDA_FREE(name);
-              name = geda_utility_string_strdup (n_current->net_name); /* See note above */
+              name = geda_utility_string_strdup (net_name); /* See note above */
             }
           }
 

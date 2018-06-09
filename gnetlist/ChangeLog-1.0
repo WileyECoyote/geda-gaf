@@ -1,5 +1,7 @@
 2018-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_net.c: Add local pointer to reference net_name in s_net_name_search.
+
     * src/s_netattrib.c: Rename len -> pos, in s_netattrib_extract_netname
       increase allocation by 1 byte to accommodate the terminator.
 
