@@ -1,7 +1,9 @@
 2018-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Replace g_build_filename with geda_strconcat
-      in eda_config_get_context_for_file.
+      in eda_config_get_context_for_file and simplify by eliminating the
+      second conditional traversing for the project root, just traverse in
+      the first condition that check if the path was or was not a dir.
 
 2018-06-08 Wiley E. Hill <wileyhill@gmail.com>
 

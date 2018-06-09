@@ -809,30 +809,25 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
   if (ptr != NULL) {
 
-    char *cfg_name;
     char *file;
     char *root;
 
-    /* Find the project root, and the corresponding configuration filename. */
+    /* Find the project root, and the corresponding configuration
+     * filename, then traverse path looking for figs */
     if (!g_file_test (ptr, G_FILE_TEST_IS_DIR)) {
 
-      cfg_name = basename(ptr);
-
-      ptr = dirname (ptr);                        /* strip the filename */
-    }
-    else {
-      cfg_name = NULL;
-    }
-
-    /* traverse path looking for figs */
-    if (cfg_name) {
+      char *cfg_name;
 
       if (!cwd) {
         cwd = getcwd(0,0);
       }
 
-      root = eda_config_find_project_root (cwd, cfg_name);
-      file = geda_strconcat(root, DIR_SEPARATOR_S, cfg_name, NULL);
+      cfg_name = geda_strdup(basename(ptr));
+      root     = eda_config_find_project_root (cwd, cfg_name);
+      file     = geda_strconcat(root, DIR_SEPARATOR_S, cfg_name, NULL);
+      ptr      = dirname (ptr);                        /* strip the filename */
+
+      g_free(cfg_name);
     }
     else {
       root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE);
