@@ -141,28 +141,41 @@ int geda_file_path_create(const char *path, mode_t mode)
 
   if (path) {
 
-    char *copypath;
-    char *pp;
-    char *sp;
+    /* Check if dir already exist */
+    if (g_file_test(path, G_FILE_TEST_IS_DIR)) {
 
-    copypath = geda_strdup(path);
-    pp       = copypath;
+      status = geda_file_sys_ckmod (path, mode);
 
-    while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
+    }
+    else {
 
-      if (sp != pp) {
+      char *copypath;
+      char *pp;
+      char *sp;
 
-        /* Neither root nor double slash in path */
-        *sp = '\0';
-        status = f_create_dir(copypath, mode);
-        *sp = '/';
+      copypath = geda_strdup(path);
+      pp       = copypath;
+
+      while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
+
+        if (sp != pp) {
+
+          /* Neither root nor double slash in path */
+          *sp = '\0';
+           status = f_create_dir(copypath, mode);
+          *sp = '/';
+        }
+        pp = sp + 1;
       }
-      pp = sp + 1;
+
+      if (status == NO_ERROR) {
+
+        status = f_create_dir(path, mode);
+
+      }
+
+      GEDA_FREE(copypath);
     }
-    if (status == NO_ERROR) {
-      status = f_create_dir(path, mode);
-    }
-    GEDA_FREE(copypath);
   }
   else {
     errno = status = EINVAL;

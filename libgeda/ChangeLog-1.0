@@ -5,6 +5,10 @@
       second conditional traversing for the project root, just traverse in
       the first condition that check if the path was or was not a dir.
 
+    * src/file/f_path.c: Revise geda_file_path_create to check if the target
+      directory already exist and if so return the result of comparing the
+      permissions.
+
 2018-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_file.h: Add geda_ckmod macro.
