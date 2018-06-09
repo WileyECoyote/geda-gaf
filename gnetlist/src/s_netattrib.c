@@ -104,24 +104,24 @@ void s_netattrib_check_connected_string (const char *str)
 char *s_netattrib_extract_netname(char *value)
 {
   char *return_value;
-  int len;
+  int pos;
 
-  len = geda_utility_string_stristr (value, ":");
+  pos = geda_utility_string_stristr (value, ":");
 
-  if (len > 0) {
+  if (pos > 0) {
 
     int i;
 
-    /* Allocate space, len is zero based */
-    return_value = malloc (len);
+    /* Allocate space, pos is zero based + terminator */
+    return_value = malloc (pos + 1);
 
     /* Copy characters before the colon */
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < pos; i++) {
       return_value[i] = value[i];
     }
 
     /* Terminate the new string */
-    return_value[len] = '\0';
+    return_value[pos] = '\0';
   }
   else {
     fprintf(stderr, _("Found malformed net attribute\n"));

@@ -1,3 +1,8 @@
+2018-06-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netattrib.c: Rename len -> pos, in s_netattrib_extract_netname
+      increase allocation by 1 byte to accommodate the terminator.
+
 2018-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c: Add function documentation for s_traverse_component,
