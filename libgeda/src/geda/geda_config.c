@@ -832,11 +832,11 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
       }
 
       root = eda_config_find_project_root (cwd, cfg_name);
-      file = g_build_filename(root, DIR_SEPARATOR_S, cfg_name, NULL);
+      file = geda_strconcat(root, DIR_SEPARATOR_S, cfg_name, NULL);
     }
     else {
       root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE);
-      file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE, NULL);
+      file = geda_strconcat(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE, NULL);
     }
 
     /* If there is already a context available for this file, return that.
@@ -853,7 +853,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
         /* traverse path looking for figs */
         root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE_ALT);
-        file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE_ALT, NULL);
+        file = geda_strconcat(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE_ALT, NULL);
       }
 
       config = g_hash_table_lookup (local_contexts, file);
