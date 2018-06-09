@@ -60,7 +60,7 @@ geda_struct_slot_search_slot (GedaObject *object, GedaObject **found)
   GedaObject *attrib;
   char       *value = NULL;
 
-  attributes = geda_attrib_return_attribs (object);
+  attributes = geda_attrib_object_return_attribs (object);
   attrib     = geda_find_attrib_by_name (attributes, "slot", 0);
   g_list_free (attributes);
 
@@ -235,7 +235,7 @@ geda_struct_slot_update_object (GedaObject *object)
 
       /* Now rename pinnumber= attrib on this part with value found */
       /* in slotdef attribute  */
-      attributes = geda_attrib_return_attribs (o_pin_object);
+      attributes = geda_attrib_object_return_attribs (o_pin_object);
       o_pinnum_attrib = geda_find_attrib_by_name (attributes, "pinnumber", 0);
       g_list_free (attributes);
 

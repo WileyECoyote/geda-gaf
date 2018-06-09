@@ -969,7 +969,7 @@ char *geda_attrib_object_search_object_by_name (const GedaObject *object,
     char  *result;
     GList *attributes;
 
-    attributes = geda_attrib_return_attribs (object);
+    attributes = geda_attrib_object_return_attribs (object);
     result     = geda_attrib_object_search_attrib_list_by_name (attributes,
                                                                 name, index);
     g_list_free (attributes);
