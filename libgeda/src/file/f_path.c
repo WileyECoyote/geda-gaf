@@ -128,8 +128,9 @@ static int f_create_dir(const char *path, mode_t mode)
  * \param path Pointer to string path to be created
  * \param mode valid mode_t integer permission attributes
  *
- * \retval NO_ERROR on success or -1 if and error was encountered,
- *         if \a path is NULL then EINVAL is returned.
+ * \retval NO_ERROR on success or -1 if an error was encountered or
+ *         the path already exist with permissions less than \a mode,
+ *         or EINVAL if \a path is NULL.
  *
  * \remark WEH Tweeked for libgeda
  */
