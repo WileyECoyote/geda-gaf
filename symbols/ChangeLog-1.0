@@ -9,6 +9,7 @@
 
             * thyristor/triac-1.sym
             * thyristor/triac-2.sym
+            * thyristor/triac-3.sym
 
     * ti/TLC3704-1.sym: Update symbol file name TS3704 -> TLC3704.
 
