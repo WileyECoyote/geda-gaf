@@ -760,12 +760,11 @@ void geda_attrib_object_remove(GList **list, GedaObject *remove)
   }
 }
 
-/*! O0316
- * \brief Get all attached attributes of the specified GedaObject
+/*!
+ * \internal Get all attached attributes of the GedaObject
  * \par Function Description
  *  This function returns all attributes of the specified object.
  *  The returned GList should be freed using the g_list_free().
- *
  *  This function aggregates the attached and inherited attributes
  *  belonging to a given GedaObject. (inherited attributes are those
  *  which live as toplevel un-attached attributes inside in a
@@ -775,48 +774,69 @@ void geda_attrib_object_remove(GList **list, GedaObject *remove)
  *
  * \return A GList of attributes belonging to the passed object.
  */
-GList *geda_attrib_object_return_attribs (const GedaObject *object)
+static GList *geda_attrib_object_real_return_attribs (const GedaObject *object)
 {
   GList *attribs = NULL;
+  GList *a_iter;
 
+  /* Directly attached attributes */
+  for (a_iter = object->attribs; a_iter != NULL; a_iter = a_iter->next)
+  {
+    GedaObject *attribute = a_iter->data;
+
+    if (attribute != NULL) {
+
+      if (attribute->type != OBJ_TEXT)
+        continue;
+
+      /* Don't add invalid attributes to the list */
+      if (!geda_attrib_object_get_name_value (attribute, NULL, NULL))
+        continue;
+
+      attribs = g_list_prepend (attribs, attribute);
+    }
+  }
+
+  attribs = g_list_reverse (attribs);
+
+  /* Inherited attributes (inside complex objects) */
+  if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
+  {
+    GList *inherited_attribs;
+
+    inherited_attribs = geda_list_find_floating (object->complex->prim_objs);
+
+    attribs = g_list_concat (attribs, inherited_attribs);
+  }
+
+  return attribs;
+}
+
+/*! O0316
+ * \brief Get all attached attributes of the specified GedaObject
+ * \par Function Description
+ *  This function is a wrapper for geda_attrib_object_real_return_attribs
+ *  for external intrfaces, internal functions having previously validated
+ *  the \a object should call geda_attrib_object_real_return_attribs
+ *  directly.
+ *
+ * \param [in] object GedaObject whos attributes are to be to returned.
+ *
+ * \return A GList of attributes belonging to the passed object.
+ */
+GList *geda_attrib_object_return_attribs (const GedaObject *object)
+{
   if (GEDA_IS_OBJECT(object)) {
 
-    GList  *a_iter;
+    return geda_attrib_object_real_return_attribs (object);
 
-    /* Directly attached attributes */
-    for (a_iter = object->attribs; a_iter != NULL; a_iter = a_iter->next)
-    {
-      GedaObject *attribute;
-
-      if ((attribute = a_iter->data) != NULL) {
-
-        if (attribute->type != OBJ_TEXT)
-          continue;
-
-        /* Don't add invalid attributes to the list */
-        if (!geda_attrib_object_get_name_value (attribute, NULL, NULL))
-          continue;
-
-        attribs = g_list_prepend (attribs, attribute);
-      }
-    }
-
-    attribs = g_list_reverse (attribs);
-
-    /* Inherited attributes (inside complex objects) */
-    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
-    {
-      GList *inherited_attribs;
-
-      inherited_attribs = geda_list_find_floating (object->complex->prim_objs);
-
-      attribs = g_list_concat (attribs, inherited_attribs);
-    }
   }
   else {
+
     geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+
   }
-  return attribs;
+  return NULL;
 }
 
 /*!
@@ -969,7 +989,7 @@ char *geda_attrib_object_search_object_by_name (const GedaObject *object,
     char  *result;
     GList *attributes;
 
-    attributes = geda_attrib_object_return_attribs (object);
+    attributes = geda_attrib_object_real_return_attribs (object);
     result     = geda_attrib_object_search_attrib_list_by_name (attributes,
                                                                 name, index);
     g_list_free (attributes);
@@ -1011,7 +1031,7 @@ GList *geda_attrib_object_search_object_string (const GedaObject *object,
     GList *iter;
 
     butes = NULL;
-    list  = geda_attrib_return_attribs (object);
+    list  = geda_attrib_object_real_return_attribs (object);
 
     for (iter = list; iter != NULL; iter = iter->next) {
 

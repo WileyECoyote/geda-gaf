@@ -9,6 +9,10 @@
       directory already exist and if so return the result of comparing the
       permissions, update function documentation.
 
+    * src/object/o_attrib.c: Add geda_attrib_object_real_return_attribs to
+      allow geda_attrib_object_search_object_by_name and geda_attrib_object_
+      search_object_string to bypass validating the object.
+
 2018-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_file.h: Add geda_ckmod macro.
