@@ -5,6 +5,10 @@
             * diode/zener53/zener_8.2_1N5344B.sym (8.2 Volt)
             * diode/zener53/zener_7.5_1N5345B.sym (8.7 Volt)
 
+    * thyristor/triac-1.sym: Add description attribute:
+
+            * thyristor/triac-1.sym
+
     * ti/TLC3704-1.sym: Update symbol file name TS3704 -> TLC3704.
 
     * ti/TPS7613x-1.sym: Update symbol file name TPS613x -> TPS7613x.
