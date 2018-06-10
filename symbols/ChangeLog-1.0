@@ -3,6 +3,7 @@
     * diode/zener53/: Add symbols for 5 Watt zener diode.
 
             * diode/zener53/zener_8.2_1N5344B.sym (8.2 Volt)
+            * diode/zener53/zener_7.5_1N5345B.sym (8.7 Volt)
 
 2018-06-03 Wiley E. Hill <wileyhill@gmail.com>
 
