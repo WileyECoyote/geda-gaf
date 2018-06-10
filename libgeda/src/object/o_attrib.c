@@ -790,7 +790,7 @@ static GList *geda_attrib_object_real_return_attribs (const GedaObject *object)
         continue;
 
       /* Don't add invalid attributes to the list */
-      if (!geda_attrib_object_get_name_value (attribute, NULL, NULL))
+      if (!geda_attrib_object_string_get_name_value (attribute->text->string, NULL, NULL))
         continue;
 
       attribs = g_list_prepend (attribs, attribute);

@@ -11,7 +11,10 @@
 
     * src/object/o_attrib.c: Add geda_attrib_object_real_return_attribs to
       allow geda_attrib_object_search_object_by_name and geda_attrib_object_
-      search_object_string to bypass validating the object.
+      search_object_string to bypass validating the object and call geda_
+      attrib_object_string_get_name_value directly in geda_attrib_object_
+      real_return_attribs rather than calling geda_attrib_object_get_name_
+      value.
 
 2018-06-08 Wiley E. Hill <wileyhill@gmail.com>
 
