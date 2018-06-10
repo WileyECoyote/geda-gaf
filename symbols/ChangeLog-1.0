@@ -7,6 +7,8 @@
 
     * ti/TLC3704-1.sym: Update symbol file name TS3704 -> TLC3704.
 
+    * ti/TPS7613x-1.sym: Update symbol file name TPS613x -> TPS7613x.
+
 2018-06-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/MIC5891-1.sym: Add symbol; 8 bit serial input high-side driver.
