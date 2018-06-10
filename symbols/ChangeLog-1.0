@@ -16,6 +16,9 @@
 
     * ti/TPS7613x-1.sym: Update symbol file name TPS613x -> TPS7613x.
 
+    * ti/micro/TM4C123GH6PM-1.sym: Add symbol; Tiva C Series Microcontroller,
+      LQFP-64, USB.
+
 2018-06-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/MIC5891-1.sym: Add symbol; 8 bit serial input high-side driver.
