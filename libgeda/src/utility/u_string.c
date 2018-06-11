@@ -120,7 +120,7 @@ char *geda_utility_string_concat (const char *string1, ...)
  * \par Function Description
  *  Returns a new allocated utf8 encoding string containing valid
  *  chars from the array pointed to by \a instr. Chars following
- *  an invalid chars are omitted.
+ *  an invalid char are omitted.
  */
 char *geda_utility_string_get_valid_utf8 (const char *instr)
 {
@@ -647,6 +647,7 @@ char *geda_utility_string_strdup (const char *str)
     return NULL;
 
   size_t len = 1 + strlen(str);
+
   char  *ptr = (char*)GEDA_MEM_ALLOC(len);
 
   return ptr ? (char*)memcpy(ptr, str, len) : NULL;
