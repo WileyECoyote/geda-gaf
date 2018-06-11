@@ -155,7 +155,6 @@ GedaObject *geda_object_list_find_attrib_by_name (const GList *list,
     GedaObject *attribute = iter->data;
 
     char *found_name;
-    g_return_val_if_fail (attribute->type == OBJ_TEXT, NULL);
 
     if (!geda_attrib_object_get_name_value (attribute, &found_name, NULL))
       continue;

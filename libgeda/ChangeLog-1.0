@@ -4,6 +4,9 @@
       geda_attrib_string_get_name_value in geda_attrib_object_search_attrib_
       list_by_name since attribute was validated by _list_find_attrib_by_name.
 
+    * src/object/o_list.c: Remove g_return_val_if_fail attribute is not a
+      text object.
+
 2018-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Replace g_build_filename with geda_strconcat
