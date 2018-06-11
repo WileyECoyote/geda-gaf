@@ -321,6 +321,9 @@ sub usage {
 	usage();
     }
 
+    if (defined $adjust_file && substr($adjust_file, 0, 1) ne "/") {
+      $adjust_file = "./" . $adjust_file;
+    }
 
     if ($file_in !~ '^-$') {
 	open(FILE_IN, $file_in) || die ("Can't open input file $file_in: $!");

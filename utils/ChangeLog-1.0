@@ -1,3 +1,9 @@
+2018-06-11 Roland Lutz <rlutz@hedmen.org>
+
+    * gnet-switcap.scm: WEH: Modified per commit to Master branch by
+      Roland Lutz, commit 9b3bf135f2ceb372e3f04c6a70ca8e68bb92112f:
+      Fix `gxyrs' utility. (03/05/17)
+
 2018-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Revise message outputs in add_elements; add
