@@ -11,7 +11,10 @@
       list_by_name since attribute was validated by _list_find_attrib_by_name.
 
     * src/object/o_list.c: Remove g_return_val_if_fail attribute is not a
-      text object.
+      text object from geda_object_list_find_attrib_by_name and revise
+      to not call function geda_attrib_object_get_name_value,retrieve
+      and check the attribute string directly to avoid the temporary
+      allocation and subsequent release.
 
 2018-06-09 Wiley E. Hill <wileyhill@gmail.com>
 

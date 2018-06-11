@@ -146,28 +146,36 @@ GedaObject *geda_object_list_find_attrib_by_name (const GList *list,
                                                   const char  *name,
                                                         int    count)
 {
-  const GList *iter;
+  if (name) {
 
-  int   internal_counter = 0;
+    const GList *iter;
 
-  for (iter = list; iter != NULL; iter = iter->next) {
+    int counter;
+    int length;
 
-    GedaObject *attribute = iter->data;
+    counter = 0;
+    length  = strlen(name);
 
-    char *found_name;
+    for (iter = list; iter != NULL; iter = iter->next) {
 
-    if (!geda_attrib_object_get_name_value (attribute, &found_name, NULL))
-      continue;
+      GedaObject *attribute = iter->data;
 
-    if (strcmp (name, found_name) == 0) {
-      if (internal_counter == count) {
-        GEDA_FREE (found_name);
-        return attribute;
+      if (geda_object_get_is_valid_attribute(attribute)) {
+
+        const char *string = attribute->text->string;
+
+        if (strncmp (string, name, length) == 0) {
+
+          if (string[length] == '=') {
+
+            if (counter == count) {
+              return attribute;
+            }
+            counter++;
+          }
+        }
       }
-      internal_counter++;
     }
-
-    GEDA_FREE (found_name);
   }
 
   return NULL;
