@@ -840,7 +840,7 @@ GList *geda_attrib_object_return_attribs (const GedaObject *object)
 }
 
 /*!
- * \brief Search attribute list by name.
+ * \brief Search attribute list by name
  * \internal
  *  Search for attribute by name.
  *
@@ -869,7 +869,8 @@ static char *geda_attrib_object_search_attrib_list_by_name (const GList *list,
   attrib = geda_object_list_find_attrib_by_name (list, name, counter);
 
   if (attrib != NULL) {
-    geda_attrib_object_get_name_value (attrib, NULL, &value);
+    /* Attribute was validated by _list_find_attrib_by_name */
+    geda_attrib_string_get_name_value (attrib->text->string, NULL, &value);
   }
 
   return value;
@@ -896,6 +897,7 @@ char *geda_attrib_object_search_attached_by_name (const GedaObject *object,
                                                         int         index)
 {
   if (GEDA_IS_OBJECT(object)) {
+
     return geda_attrib_object_search_attrib_list_by_name (object->attribs,
                                                           name, index);
   }
