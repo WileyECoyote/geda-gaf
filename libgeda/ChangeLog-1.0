@@ -1,5 +1,7 @@
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * po/ar.po: Update Arabic translations.
+
     * src/object/o_attrib.c: Replace geda_attrib_object_get_name_value with
       geda_attrib_string_get_name_value in geda_attrib_object_search_attrib_
       list_by_name since attribute was validated by _list_find_attrib_by_name.
