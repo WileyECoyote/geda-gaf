@@ -4,6 +4,8 @@
 
     * po/ca.po: Update Catalan translations.
 
+    * po/da.po: Update Danish translations.
+
     * src/object/o_attrib.c: Replace geda_attrib_object_get_name_value with
       geda_attrib_string_get_name_value in geda_attrib_object_search_attrib_
       list_by_name since attribute was validated by _list_find_attrib_by_name.
