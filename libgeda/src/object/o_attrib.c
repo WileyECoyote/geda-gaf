@@ -297,8 +297,8 @@ void geda_attrib_object_detach_all(GedaObject *object)
  * \par Function Description
  *  Search for attribute by name.
  *
- * \param [in] object   GedaObject whose attributes are to searched.
- * \param [in] name     Character string with attribute name to search for.
+ * \param [in] object GedaObject whose attributes are to searched.
+ * \param [in] name   Character string with attribute name to search for.
  *
  * \return The n'th attribute object in the given list with the given name.
  */
@@ -375,7 +375,9 @@ bool geda_attrib_object_is_attached_to (const GedaObject *attrib, const GedaObje
     if (attrib->attached_to == object)
       return TRUE;
   }
+
   geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);
+
   return FALSE;
 }
 
@@ -395,7 +397,9 @@ int geda_attrib_object_is_inherited (const GedaObject *attrib)
 
     return (attrib->attached_to == NULL && attrib->parent_object != NULL);
   }
+
   geda_object_error(__func__, attrib, GEDA_OBJECT_ALL);
+
   return FALSE;
 }
 
@@ -553,7 +557,9 @@ GedaObject *geda_attrib_object_new_attached(GedaObject *parent,
     g_ascii_strncasecmp (text, "slot=", 5) == 0) {
     geda_struct_slot_update_object (parent);
   }
+
   GEDA_FREE(text);
+
   return new_obj;
 }
 
@@ -962,7 +968,9 @@ char *geda_attrib_object_search_inherited_by_name (const GedaObject *object,
   return geda_attrib_search_floating_by_name (object->complex->prim_objs,
                                               name, index);
   }
+
   geda_object_error(__func__, object, GEDA_OBJECT_COMPLEX);
+
   return NULL;
 }
 
@@ -998,7 +1006,9 @@ char *geda_attrib_object_search_object_by_name (const GedaObject *object,
 
     return result;
   }
+
   geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+
   return NULL;
 }
 
@@ -1058,7 +1068,9 @@ GList *geda_attrib_object_search_object_string (const GedaObject *object,
 
     return g_list_reverse(butes);
   }
+
   geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+
   return NULL;
 }
 
