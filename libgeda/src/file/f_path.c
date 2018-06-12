@@ -63,6 +63,8 @@ static char *user_config_path = NULL;
 
 #if defined (HAVE_MKDIR) || defined (HAVE__MKDIR)
 
+  /*! @cond MKDIR */
+
   #if MKDIR_TAKES_ONE_ARG
 
     /* MinGW32, mkdir under MinGW only takes one argument */
@@ -78,6 +80,8 @@ static char *user_config_path = NULL;
     #endif
 
   #endif
+
+  /*! @endcond */
 
 /*!
  * \brief Make a Directory

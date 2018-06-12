@@ -3,6 +3,9 @@
     * src/geda/geda_toplevel.c: Rename geda_toplevel_set_bounds ->
       geda_toplevel_set_text_bounds.
 
+    * src/file/f_path.c: Utilize \cond and \endcond to exclude MKDIR macro
+      from Doxygen output.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
