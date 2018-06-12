@@ -455,6 +455,8 @@ static GedaObject *o_complex_create_placeholder(GedaToplevel *toplevel,
  *  This function returns the bounding box of the complex <B>object</B>.
  *
  * \param [in]  object   The complex object.
+ *
+ * \see geda_object_get_bounds_list
  */
 int geda_complex_object_get_bounds(GedaObject *object)
 {
@@ -1014,8 +1016,8 @@ GedaObject *geda_complex_object_new_embedded(int x,
 
   complex->prim_objs = NULL;
 
-  /* don't have to translate/rotate/mirror here at all since the */
-  /* object is in place */
+  /* Don't have to translate/rotate/mirror here at all since
+   * the object is in place */
   return new_obj;
 }
 
@@ -1045,8 +1047,8 @@ GList *geda_complex_object_promote_attribs (GedaToplevel *toplevel,
   promotable = geda_complex_object_get_promotable (toplevel, object, FALSE);
 
   /* Run through the attributes deciding if we want to keep them (in
-   * which case we copy them and make them invisible) or if we want to
-   * remove them. */
+   * which case we copy them and make them invisible) or if we want
+   * to remove them. */
   if (toplevel->keep_invisible) {
 
     for (iter = promotable; iter != NULL; iter = iter->next) {
