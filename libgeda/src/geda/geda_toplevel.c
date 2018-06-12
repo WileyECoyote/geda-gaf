@@ -365,10 +365,8 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
  *
  * \param [in]  toplevel   Pointer to GedaToplevel Object
  * \param [out] o_current  Object for which the bound is to be determined.
- *
- * \todo should be geda_toplevel_set_text_bounds?
  */
-bool geda_toplevel_set_bounds(GedaToplevel *toplevel, GedaObject *o_current)
+bool geda_toplevel_set_text_bounds(GedaToplevel *toplevel, GedaObject *o_current)
 {
   int result = 0;
 

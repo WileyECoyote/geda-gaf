@@ -399,7 +399,7 @@ static GedaObject *o_complex_create_placeholder(GedaToplevel *toplevel,
   /* figure out where to put the hazard triangle, we could only be here during
    * a read failure, there is no page so we can not use normal bounds routines
    * instead we will try ...*/
-  geda_toplevel_set_bounds (toplevel, new_prim_obj);
+  geda_toplevel_set_text_bounds (toplevel, new_prim_obj);
 
   x_offset = (right - left) / 4;
   y_offset = bottom - top + 100;  /* 100 is just an additional offset */

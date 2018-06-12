@@ -1,3 +1,8 @@
+2018-06-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Rename geda_toplevel_set_bounds ->
+      geda_toplevel_set_text_bounds.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

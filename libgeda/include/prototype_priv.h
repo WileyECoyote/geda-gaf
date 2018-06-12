@@ -71,7 +71,7 @@ GedaToplevel  *geda_page_get_toplevel        (Page *page);
 
 /* geda_toplevel.c */
 void     geda_toplevel_append_new_hook       (NewToplevelFunc func, void *data);
-bool     geda_toplevel_set_bounds            (GedaToplevel *toplevel, GedaObject *o_current);
+bool     geda_toplevel_set_text_bounds       (GedaToplevel *toplevel, GedaObject *o_current);
 void     geda_toplevel_unref                 (GedaToplevel *toplevel);
 
 /* m_transform.c */
