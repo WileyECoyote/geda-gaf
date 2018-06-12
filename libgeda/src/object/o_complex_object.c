@@ -460,8 +460,8 @@ int geda_complex_object_get_bounds(GedaObject *object)
 {
   if (GEDA_IS_COMPLEX(object)) {
     return geda_object_get_bounds_list (object->complex->prim_objs,
-                              &object->left, &object->top,
-                              &object->right, &object->bottom);
+                                        &object->left, &object->top,
+                                        &object->right, &object->bottom);
   }
   geda_complex_object_error(__func__, object);
   return FALSE;
@@ -594,7 +594,9 @@ bool geda_complex_object_get_position (GedaObject *object, int *x, int *y)
     *y = object->complex->y;
     return TRUE;
   }
+
   geda_complex_object_error(__func__, object);
+
   return FALSE;
 }
 
@@ -613,6 +615,7 @@ GList *geda_complex_object_get_prim_objs (GedaObject *object)
     geda_complex_object_error(__func__, object);
     return NULL;
   }
+
   return object->complex->prim_objs;
 }
 
@@ -674,6 +677,7 @@ GList *geda_complex_object_get_promotable (GedaToplevel *toplevel,
   else {
     geda_complex_object_error(__func__, object);
   }
+
   return FALSE;
 }
 
@@ -718,6 +722,7 @@ GedaObject *geda_complex_object_find_pin_by_attribute (GedaObject *object, char 
   else {
     geda_complex_object_error(__func__, object);
   }
+
   return NULL;
 }
 
@@ -793,6 +798,7 @@ static int o_complex_is_eligible_attribute (GedaToplevel *toplevel, GedaObject *
   else {
     BUG_MSG("Invalid pointer to Toplevel");
   }
+
   return answer;
 }
 
@@ -810,7 +816,9 @@ int geda_complex_object_is_embedded(GedaObject *object)
   if (GEDA_IS_COMPLEX(object)) {
     return object->complex->is_embedded;
   }
+
   geda_complex_object_error(__func__, object);
+
   return 0;
 }
 
@@ -1323,7 +1331,9 @@ char *geda_complex_object_to_buffer(GedaObject *object)
 
     return(buf);
   }
+
   geda_complex_object_error(__func__, object);
+
   return NULL;
 }
 
