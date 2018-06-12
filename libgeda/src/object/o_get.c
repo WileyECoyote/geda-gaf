@@ -155,9 +155,7 @@ int geda_object_get_bounds_list(const GList *list, int *left, int *top, int *rig
  *  its line end. See #LINE_END for information on valid line
  *  end values.
  *
- *  \param [in]     end        Line end value of the object
- *
- *  TODO: Change this function to use it also in gschem_cairo.c
+ *  \param [in] end  Line end value of the object
  */
 int geda_object_get_capstyle (LINE_END end)
 {
@@ -212,7 +210,7 @@ bool geda_object_get_fill_options(GedaObject       *object,
 }
 
 /*!
- * \brief
+ * \brief Get if Linear Object has Slope
  * \par Function Description
  *  Returns TRUE if \a object is derived from a GedaLine
  *  and has differing x coordinates, otherwise FALSE.
@@ -383,9 +381,10 @@ bool geda_object_get_is_visible (const GedaObject *object)
 /*!
  * \brief Get line end using capstyle value
  * \par Function Description
- *  This function gets the object's line end value based on capstyle value
- *  used for Postscript printing.
- *  See also information on 'output-capstyle' gschem configuration option.
+ *  This function gets the object's line end value based on capstyle
+ *  value used for Postscript printing.
+ *
+ * \sa geda_object_get_capstyle
  *
  * \param [in] capstyle
  */
