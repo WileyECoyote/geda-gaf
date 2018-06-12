@@ -1426,9 +1426,11 @@ GList *geda_struct_clib_search (const char *pattern, const CLibSearchMode mode)
     case CLIB_GLOB: /* keytype = g */
       key = geda_sprintf("g%s", pattern);
       break;
+
     case CLIB_EXACT: /* keytype = s */
       key = geda_sprintf("s%s", pattern);
       break;
+
     default:
       BUG_IMSG ("Bad search mode %i\n", mode);
       return NULL;
