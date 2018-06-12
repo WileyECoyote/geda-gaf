@@ -95,10 +95,26 @@ static void geda_object_error(const char *func, const void *object, IDE_OBJECT_T
   geda_error_object_argument(__FILE__, func, object, type);
 }
 
+/*!
+ * \internal Add an attribute to a list.
+ * \par Function Description
+ *  Add an attribute to an existing attribute list.
+ *
+ * \param [in]  object The GedaObject that item is being added to.
+ * \param [in]  item   The attribute that is to be added to object.
+ */
+static void geda_attrib_object_real_add(GedaObject *object, GedaObject *item)
+{
+  /* Add link from item to attrib listing */
+  item->attached_to = object;
+  object->attribs   = g_list_append (object->attribs, item);
+  geda_attrib_object_emit_changed (object);
+}
+
 /*! O0301
  * \brief Add an attribute to an existing attribute list.
  * \par Function Description
- *  Add an attribute to an existing attribute list.
+ *  Front-end to validate arguments for geda_attrib_object_real_add.
  *
  * \param [in]  object The GedaObject that item is being added to.
  * \param [in]  item   The attribute that is to be added to object.
@@ -106,16 +122,13 @@ static void geda_object_error(const char *func, const void *object, IDE_OBJECT_T
 void geda_attrib_object_add(GedaObject *object, GedaObject *item)
 {
   if (!GEDA_IS_OBJECT(object)) {
-    geda_object_error(__func__, object, GEDA_OBJECT_ALL);
+    geda_object_error (__func__, object, GEDA_OBJECT_ALL);
   }
   else if (!GEDA_IS_OBJECT(item)) {
-    geda_object_error(__func__, item, GEDA_OBJECT_ALL);
+    geda_object_error (__func__, item, GEDA_OBJECT_ALL);
   }
   else {
-    /* Add link from item to attrib listing */
-    item->attached_to = object;
-    object->attribs   = g_list_append (object->attribs, item);
-    geda_attrib_object_emit_changed (object);
+    geda_attrib_object_real_add (object, item);
   }
 }
 
@@ -178,7 +191,7 @@ void geda_attrib_object_attach (GedaObject *object, GedaObject *attrib, int set_
       return;
     }
 
-    geda_attrib_object_add (object, attrib);
+    geda_attrib_object_real_add (object, attrib);
 
     /* Only gets set if object is on a page */
     geda_struct_object_set_page_changed (object);

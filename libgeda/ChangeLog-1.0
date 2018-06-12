@@ -1,10 +1,12 @@
-2018-06-11 Wiley E. Hill <wileyhill@gmail.com>
+2018-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Rename geda_toplevel_set_bounds ->
       geda_toplevel_set_text_bounds.
 
     * src/file/f_path.c: Utilize \cond and \endcond to exclude MKDIR macro
       from Doxygen output.
+
+    * src/object/o_attrib.c: Add static function geda_attrib_object_real_add.
 
     * src/object/o_path_object.c: Add Doxygen group geda-path-object-proc.
 
