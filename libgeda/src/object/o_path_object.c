@@ -28,6 +28,11 @@
 
 #include <geda_debug.h>
 
+/** \defgroup geda-path-object-proc GedaPath Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaPath Objects
+ */
+
 typedef void (*DRAW_FUNC) (GedaToplevel *toplevel, FILE *fp, GedaPath *path,
                            int line_width, int length, int space,
                            int origin_x, int origin_y);
@@ -1394,3 +1399,5 @@ double geda_path_object_shortest_distance (GedaObject *object, int x, int y, int
   geda_path_object_error(__func__, object);
   return (G_MAXDOUBLE);
 }
+
+/** @} endgroup geda-path-object-proc */

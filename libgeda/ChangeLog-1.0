@@ -6,6 +6,8 @@
     * src/file/f_path.c: Utilize \cond and \endcond to exclude MKDIR macro
       from Doxygen output.
 
+    * src/object/o_path_object.c: Add Doxygen group geda-path-object-proc.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
