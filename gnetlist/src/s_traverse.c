@@ -544,10 +544,17 @@ static int connection_type (GedaObject *object)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Traverse Nets
+ * \par Function Description
+ *  Creates a new NET record in \a nets.
  *
+ * \param [in] pr_current     Current GedaToplevel structure; toplevel,
+ * \param [in] nets           PIN netlist to which the new records are appended
+ * \param [in] starting       True if toplevel, otherwise in recursion
+ * \param [in] object         Object whos pins are to be interogated
+ * \param [in] hierarchy_tag  The hierarchy (source) prefix or suffix
+ * \param [in] type           The PIN_NODE type of interest
  */
 NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
                      GedaObject *object, char *hierarchy_tag, int type)

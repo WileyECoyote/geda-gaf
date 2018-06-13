@@ -3,6 +3,7 @@
     * src/s_traverse.c: Update function documentation for:
 
           * connection_type
+          * s_traverse_net
 
 2018-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
