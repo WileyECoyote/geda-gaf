@@ -6,6 +6,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * src/object/o_picture_object.c: Add Doxygen group geda-picture-object-proc.
+
 2018-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Rename geda_toplevel_set_bounds ->

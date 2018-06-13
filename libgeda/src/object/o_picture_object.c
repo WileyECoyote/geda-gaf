@@ -33,6 +33,12 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgeda_priv.h>
 
+
+/** \defgroup geda-picture-object-proc GedaPicture Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaPicture Objects
+ */
+
 /*!
  * \brief Create a copy of a picture
  * \par Function Description
@@ -1979,3 +1985,5 @@ bool geda_picture_object_unembed (GedaObject *object)
   }
   return result;
 }
+
+/** @} endgroup geda-picture-proc */
