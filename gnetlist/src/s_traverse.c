@@ -526,10 +526,11 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
   return (cpinlist_head);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the Connection Type based on the Object Type
+ * \par Function Description
+ *  Helper for s_traverse_net to return the type of node
+ *  associated with \a object.
  */
 static int connection_type (GedaObject *object)
 {
