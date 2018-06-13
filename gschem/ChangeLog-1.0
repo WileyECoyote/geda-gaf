@@ -1,3 +1,8 @@
+2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Revise conditional in do_add_attribute and call
+      i_event_end_action_handler using i_event_cancel_action_handler.
+
 2018-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/src/x/x_dnd.c: Call x_dnd_string_data_line_properties and append

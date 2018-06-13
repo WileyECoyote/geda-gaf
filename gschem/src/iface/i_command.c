@@ -3355,9 +3355,8 @@ COMMAND (do_add_attribute)
       w_current->first_wx = CMD_X(do_add_attribute);
       w_current->first_wy = CMD_Y(do_add_attribute);
     }
-
-    if (w_current->action_event->state) {
-      i_event_cancel_action_handler(w_current);
+    else {
+      i_event_end_action_handler(w_current);
     }
 
     x_attrib_add_dialog(w_current, o_current);
