@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-23 09:01-0500\n"
+"POT-Creation-Date: 2018-06-07 23:03-0500\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -151,17 +151,20 @@ msgstr "μπορεί να δημιουργήσει αρχείο αντιγράφ
 msgid "Could NOT save file"
 msgstr "Δεν ήταν δυνατή η αποθήκευση του αρχείου"
 
+# Invalid path
 #: libgeda/src/file/f_get.c:168
 msgid "Invalid path"
-msgstr ""
+msgstr "Μη έγκυρη διαδρομή"
 
+# Could not allocate
 #: libgeda/src/file/f_get.c:230 libgeda/src/file/f_get.c:305
 msgid "Could not allocate"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η εκχώρηση"
 
+# bytes to read file
 #: libgeda/src/file/f_get.c:231 libgeda/src/file/f_get.c:306
 msgid "bytes to read file"
-msgstr ""
+msgstr "byte για να διαβάσετε το αρχείο"
 
 # Error reading file
 #: libgeda/src/file/f_get.c:242
@@ -190,27 +193,27 @@ msgstr ""
 
 #: libgeda/src/file/f_get.c:421
 msgid "fstat failure"
-msgstr ""
+msgstr "fstat αποτυχία"
 
 #: libgeda/src/file/f_get.c:441
 msgid "fdopen failure"
-msgstr ""
+msgstr "fdopen αποτυχία"
 
 #: libgeda/src/file/f_get.c:463
 msgid "ERROR: pointer to filename is NULL"
-msgstr ""
+msgstr "ΣΦΑΛΜΑ: ο δείκτης στο όνομα αρχείου είναι NULL"
 
 #: libgeda/src/file/f_get.c:466
 msgid "ERROR: pointer to a buffer is NULL"
-msgstr ""
+msgstr "ERROR: ο δείκτης σε ένα buffer είναι NULL"
 
 #: libgeda/src/file/f_get.c:506
 msgid "System error reading the current directory"
-msgstr ""
+msgstr "Σφάλμα συστήματος που διαβάζει τον τρέχοντα κατάλογο"
 
 #: libgeda/src/file/f_get.c:571
 msgid "ERROR: pointer to path is NULL"
-msgstr ""
+msgstr "Σφάλμα: ο δείκτης στη διαδρομή είναι NULL"
 
 # error accessing
 #: libgeda/src/file/f_get.c:618
@@ -731,75 +734,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:538
+#: libgeda/src/geda/geda_object.c:555
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:539
+#: libgeda/src/geda/geda_object.c:556
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:548
+#: libgeda/src/geda/geda_object.c:565
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:549
+#: libgeda/src/geda/geda_object.c:566
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:556
+#: libgeda/src/geda/geda_object.c:573
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:557
+#: libgeda/src/geda/geda_object.c:574
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:563
+#: libgeda/src/geda/geda_object.c:580
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:564
+#: libgeda/src/geda/geda_object.c:581
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:569
+#: libgeda/src/geda/geda_object.c:586
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:570
+#: libgeda/src/geda/geda_object.c:587
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:576
+#: libgeda/src/geda/geda_object.c:593
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:577
+#: libgeda/src/geda/geda_object.c:594
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:583
+#: libgeda/src/geda/geda_object.c:600
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:584
+#: libgeda/src/geda/geda_object.c:601
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:591
+#: libgeda/src/geda/geda_object.c:608
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:592
+#: libgeda/src/geda/geda_object.c:609
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:600
+#: libgeda/src/geda/geda_object.c:617
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:601
+#: libgeda/src/geda/geda_object.c:618
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1007,9 +1010,11 @@ msgstr ""
 msgid "Loaded RC file"
 msgstr ""
 
+# Error encountered processing RC file
 #: libgeda/src/guile/g_rc_parse.c:274
-msgid "Error encounted processing RC file"
-msgstr ""
+
+msgid "Error encountered processing RC file"
+msgstr "Σφάλμα αντιμετώπισης επεξεργασίας αρχείου RC"
 
 #: libgeda/src/guile/g_rc_parse.c:291
 msgid "Error accessing configuration"
@@ -1028,38 +1033,38 @@ msgid "The log may contain more information."
 msgstr "Η καταγραφή μπορεί να περιέχει περισσότερες πληροφορίες."
 
 # in file
-#: libgeda/src/object/o_object.c:120 libgeda/src/object/o_object.c:417
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
 msgid "in file"
 msgstr "στο αρχείο"
 
-#: libgeda/src/object/o_object.c:131
+#: libgeda/src/object/o_object.c:136
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:138
+#: libgeda/src/object/o_object.c:143
 msgid "Schematic data is not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:144
+#: libgeda/src/object/o_object.c:149
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
 # Read unexpected attach symbol start marker on line
-#: libgeda/src/object/o_object.c:297
+#: libgeda/src/object/o_object.c:302
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Διαβάστε απροσδόκητη αποδίδουν δείκτη έναρξη σύμβολο στη γραμμή"
 
 # Read unexpected embedded symbol start marker on line
-#: libgeda/src/object/o_object.c:317 libgeda/src/object/o_object.c:322
+#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Διαβάστε απροσδόκητη ενσωματωμένο δείκτη έναρξη σύμβολο στη γραμμή"
 
 # Read unexpected embedded symbol end marker on line
-#: libgeda/src/object/o_object.c:358
+#: libgeda/src/object/o_object.c:363
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Διαβάστε απροσδόκητη ενσωματωμένο τέλος σύμβολο δείκτη στη γραμμή"
 
-#: libgeda/src/object/o_object.c:394
+#: libgeda/src/object/o_object.c:399
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
@@ -1067,11 +1072,11 @@ msgstr ""
 "Ανάγνωση παλιάς μορφής αρχείου sym/sch!\n"
 "Παρακαλούμε εκτελέστε το g[sym|sch]update σε"
 
-#: libgeda/src/object/o_object.c:412 libgeda/src/object/o_object.c:416
+#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
 msgid "Read garbage near line"
 msgstr "έγκυρα δεδομένα εντοπιστεί κοντά στη γραμμή"
 
-#: libgeda/src/object/o_object.c:454
+#: libgeda/src/object/o_object.c:459
 msgid "On or about line"
 msgstr ""
 
@@ -1608,12 +1613,12 @@ msgid "Object ~A is attached to a page"
 msgstr "Το αντικείμενο ~A είναι συνδεδεμένο με μια σελίδα"
 
 #: libgeda/src/scheme/scheme_complex.c:362
-#: libgeda/src/scheme/scheme_page.c:350
+#: libgeda/src/scheme/scheme_page.c:356
 msgid "Object ~A is attached as an attribute"
 msgstr "Το αντικείμενο ~A είναι συνδεδεμένο ως γνώρισμα"
 
 #: libgeda/src/scheme/scheme_complex.c:369
-#: libgeda/src/scheme/scheme_page.c:357
+#: libgeda/src/scheme/scheme_page.c:363
 msgid "Object ~A has attributes"
 msgstr "Το αντικείμενο ~A έχει γνωρίσματα"
 
@@ -1722,11 +1727,11 @@ msgstr ""
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Μη έγκυρη γωνία εικόνας ~A. Πρέπει να είναι 0, 90, 180, ή 270 μοίρες"
 
-#: libgeda/src/scheme/scheme_page.c:179
-msgid "Parse error: ~s"
+#: libgeda/src/scheme/scheme_page.c:175
+msgid "Parse error"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:343
+#: libgeda/src/scheme/scheme_page.c:349
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
@@ -1887,17 +1892,17 @@ msgid "Could not write message to log file\n"
 msgstr "Δεν μπόρεσα να γράψω το μήνυμα στο αρχείο καταγραφής\n"
 
 # Could not create log directory
-#: libgeda/src/utility/u_log.c:271
+#: libgeda/src/utility/u_log.c:272 libgeda/src/utility/u_log.c:297
 msgid "Could not create log directory"
 msgstr "Δεν ήταν δυνατή η δημιουργία καταλόγου καταγραφής"
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:340
+#: libgeda/src/utility/u_log.c:380
 msgid "Could not create unique log filename in"
 msgstr "δεν μπόρεσε να δημιουργήσει το μοναδικό όνομα αρχείου καταγραφής στο"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:344
+#: libgeda/src/utility/u_log.c:384
 msgid "Could not create log file in"
 msgstr "Could not create log file in"
 
@@ -1905,132 +1910,3 @@ msgstr "Could not create log file in"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Το αντικείμενο ~A δεν είναι μέρος καμίας σελίδας"
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "στο αρχείο"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "διαμόρφωση Σφάλμα κατά τη φόρτωση"
-
-#~ msgid "Cannot get real filename of"
-#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του"
-
-#~ msgid "Cannot find file"
-#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
-
-#~ msgid "Can not get the real filename of"
-#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του"
-
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
-
-#~ msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
-#~ msgstr "Δε βρέθηκε γνώρισμα slotdef=#:#,#,#...\n"
-
-#~ msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
-#~ msgstr "Δε βρέθηκε κατάλληλο γνώρισμα slotdef=#:#,#,#...\n"
-
-#~ msgid "%s: object %p has unknown type '%c'\n"
-#~ msgstr "o_save_objects: το αντικείμενο %p έχει άγνωστο τύπο '%c'\n"
-
-#~ msgid "Failed to open [%s]: %s\n"
-#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
-
-#~ msgid "Library command failed [%s]: %s\n"
-#~ msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]: %s\n"
-
-#~ msgid "Failed to open file '%s': fdopen() failed: %s"
-#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
-
-#~ msgid ""
-#~ "Read garbage line <%d> in [%s] :\n"
-#~ ">>\n"
-#~ "%s<<\n"
-#~ msgstr ""
-#~ "Ανάγνωση σκουπιδιών σε [%s] :\n"
-#~ ">>\n"
-#~ "%s<<\n"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "%s: %d.\n"
-#~ msgstr "%s: %s"
-
-#~ msgid "Error: %s %s\n"
-#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
-
-#~ msgid "%s: Can't get real filename of %s."
-#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
-
-#~ msgid "Error reading file '%s': %s"
-#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
-
-#~ msgid "Can't get the real filename of %s: %s"
-#~ msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
-
-#~ msgid "Found a zero width/height picture"
-#~ msgstr "Βρέθηκε εικόνα με μηδενικό πλάτος/ύψος [ %c %d %d %d %d ]\n"
-
-#~ msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
-#~ msgstr "Βρέθηκε στοιχείο με μη έγκυρη περιστροφή [ %c %d %d %d %d %d %s ]\n"
-
-#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr ""
-#~ "Βρέθηκε μία μη υποστηριζόμενη στοίχιση κειμένου [ %c %d %d %d %d %d %d %d "
-#~ "%d ]\n"
-
-#~ msgid "Error loading %s, %s\n"
-#~ msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
-
-#~ msgid "Picture %p has invalid angle %i\n"
-#~ msgstr "Η εικόνα %p έχει μη έγκυρη γωνία %i\n"
-
-#~ msgid "Invalid space specified, setting to default=%d\n"
-#~ msgstr "Καθορίστηκε μη έγκυρο διάστημα, ορισμός σε 100\n"
-
-#~ msgid "Invalid length specified, setting to default=%d\n"
-#~ msgstr "Καθορίστηκε μη έγκυρο μήκος, ορισμός σε 100\n"
-
-#~ msgid "Invalid space specified, setting to  default=%d\n"
-#~ msgstr "Καθορίστηκε μη έγκυρο διάστημα, ορισμός σε 100\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Run gschem and correct the situation.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Εκτελέστε το gschem και διορθώστε την κατάσταση.\n"
-#~ "\n"
-
-#~ msgid "Failed to restore permissions on '%s': %s\n"
-#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
-
-#~ msgid "Failed to restore ownership on '%s': %s\n"
-#~ msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
-
-#~ msgid "Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr ""
-#~ "Βρέθηκε μία μη υποστηριζόμενη γωνία κειμένου [ %c %d %d %d %d %d %d %d "
-#~ "%d ]\n"
-
-#~ msgid ""
-#~ "hierarchy loop detected while visiting page:\n"
-#~ "  \"%s\"\n"
-#~ msgstr ""
-#~ "βρέθηκε βρόγχος ιεραρχίας κατά την επίσκεψη στην ιστοσελίδα:\n"
-#~ "  \"%s\"\n"
-
-#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
-#~ msgstr "ΣΦΑΛΜΑ στο s_hierarchy_traverse: το σχεδιάγραμμα δε βρέθηκε: %s\n"
-
-#~ msgid "Found [%s]\n"
-#~ msgstr "Βρέθηκε [%s]\n"
-
-#~ msgid "Could not find [%s] in any SourceLibrary\n"
-#~ msgstr "Αδυναμία εύρεσης [%s] σε κανένα SourceLibrary\n"
