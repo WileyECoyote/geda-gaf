@@ -4,6 +4,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/es.po: Update Spanish translations.
+
 2018-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Rename geda_toplevel_set_bounds ->
