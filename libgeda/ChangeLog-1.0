@@ -1,3 +1,7 @@
+2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/de.po: Update German translations.
+
 2018-06-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Rename geda_toplevel_set_bounds ->

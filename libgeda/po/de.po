@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-23 09:01-0500\n"
+"POT-Creation-Date: 2018-06-07 23:03-0500\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -48,9 +48,10 @@ msgstr "gEDA Schaltplansymbol"
 msgid "Failed to get file statistics"
 msgstr "Dateistatistiken konnten nicht abgerufen werden"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:177
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Fehler: Ungültiges Seitenobjekt"
 
 # ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:217
@@ -97,7 +98,7 @@ msgstr ""
 msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
-msgstr ""
+msgstr "Führen Sie die Anwendung aus, um diese Situation zu beheben, oder löschen Sie die Sicherungsdatei manuell."
 
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"
@@ -125,7 +126,7 @@ msgstr "Kann die Backupdatei nicht löschen"
 #: libgeda/src/file/f_file.c:472
 #, c-format
 msgid "File [%s] is read-only"
-msgstr ""
+msgstr "Die Datei [%s] ist schreibgeschützt"
 
 # Could not set previous backup file
 #: libgeda/src/file/f_file.c:528
@@ -134,7 +135,7 @@ msgstr "Die vorherige Sicherungsdatei konnte nicht gesetzt werden"
 
 #: libgeda/src/file/f_file.c:529
 msgid "read-write"
-msgstr ""
+msgstr "lesen Schreiben"
 
 #: libgeda/src/file/f_file.c:540
 msgid "Cannot create backup file"
@@ -146,15 +147,17 @@ msgstr "ACHTUNG: Konnte Datei nicht speichern"
 
 #: libgeda/src/file/f_get.c:168
 msgid "Invalid path"
-msgstr ""
+msgstr "Ungültigen Pfad"
 
+# Could not allocate
 #: libgeda/src/file/f_get.c:230 libgeda/src/file/f_get.c:305
 msgid "Could not allocate"
-msgstr ""
+msgstr "Konnte nicht zugeordnet werden"
 
+# bytes to read file
 #: libgeda/src/file/f_get.c:231 libgeda/src/file/f_get.c:306
 msgid "bytes to read file"
-msgstr ""
+msgstr "bytes zum Lesen der Datei"
 
 # Error reading file
 #: libgeda/src/file/f_get.c:242
@@ -183,27 +186,27 @@ msgstr "Fehler beim Abrufen von Attributen der Datei"
 
 #: libgeda/src/file/f_get.c:421
 msgid "fstat failure"
-msgstr ""
+msgstr "fstat Fehler"
 
 #: libgeda/src/file/f_get.c:441
 msgid "fdopen failure"
-msgstr ""
+msgstr "fdopen Fehler"
 
 #: libgeda/src/file/f_get.c:463
 msgid "ERROR: pointer to filename is NULL"
-msgstr ""
+msgstr "FEHLER: Zeiger auf Dateiname ist NULL"
 
 #: libgeda/src/file/f_get.c:466
 msgid "ERROR: pointer to a buffer is NULL"
-msgstr ""
+msgstr "FEHLER: Zeiger auf einen Puffer ist NULL"
 
 #: libgeda/src/file/f_get.c:506
 msgid "System error reading the current directory"
-msgstr ""
+msgstr "Systemfehler beim Lesen des aktuellen Verzeichnisses"
 
 #: libgeda/src/file/f_get.c:571
 msgid "ERROR: pointer to path is NULL"
-msgstr ""
+msgstr "FEHLER: Zeiger auf Pfad ist NULL"
 
 # error accessing
 #: libgeda/src/file/f_get.c:618
@@ -723,75 +726,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:538
+#: libgeda/src/geda/geda_object.c:555
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:539
+#: libgeda/src/geda/geda_object.c:556
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:548
+#: libgeda/src/geda/geda_object.c:565
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:549
+#: libgeda/src/geda/geda_object.c:566
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:556
+#: libgeda/src/geda/geda_object.c:573
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:557
+#: libgeda/src/geda/geda_object.c:574
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:563
+#: libgeda/src/geda/geda_object.c:580
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:564
+#: libgeda/src/geda/geda_object.c:581
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:569
+#: libgeda/src/geda/geda_object.c:586
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:570
+#: libgeda/src/geda/geda_object.c:587
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:576
+#: libgeda/src/geda/geda_object.c:593
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:577
+#: libgeda/src/geda/geda_object.c:594
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:583
+#: libgeda/src/geda/geda_object.c:600
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:584
+#: libgeda/src/geda/geda_object.c:601
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:591
+#: libgeda/src/geda/geda_object.c:608
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:592
+#: libgeda/src/geda/geda_object.c:609
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:600
+#: libgeda/src/geda/geda_object.c:617
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:601
+#: libgeda/src/geda/geda_object.c:618
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -997,9 +1000,10 @@ msgstr ""
 msgid "Loaded RC file"
 msgstr ""
 
+# Error encountered processing RC file
 #: libgeda/src/guile/g_rc_parse.c:274
-msgid "Error encounted processing RC file"
-msgstr ""
+msgid "Error encountered processing RC file"
+msgstr "Fehler beim Verarbeiten der RC-Datei"
 
 #: libgeda/src/guile/g_rc_parse.c:291
 msgid "Error accessing configuration"
@@ -1018,38 +1022,38 @@ msgid "The log may contain more information."
 msgstr ""
 
 # in file
-#: libgeda/src/object/o_object.c:120 libgeda/src/object/o_object.c:417
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
 msgid "in file"
 msgstr "in Datei"
 
-#: libgeda/src/object/o_object.c:131
+#: libgeda/src/object/o_object.c:136
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:138
+#: libgeda/src/object/o_object.c:143
 msgid "Schematic data is not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:144
+#: libgeda/src/object/o_object.c:149
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
 # Read unexpected attach symbol start marker on line
-#: libgeda/src/object/o_object.c:297
+#: libgeda/src/object/o_object.c:302
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Unerwartete Anhängersymbol-Startmarkierung auf Zeile lesen"
 
 # Read unexpected embedded symbol start marker on line
-#: libgeda/src/object/o_object.c:317 libgeda/src/object/o_object.c:322
+#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Unerwartete eingebettete Symbol-Startmarkierung auf Zeile lesen"
 
 # Read unexpected embedded symbol end marker on line
-#: libgeda/src/object/o_object.c:358
+#: libgeda/src/object/o_object.c:363
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Unerwartete eingebettete Symbol-Endmarkierung auf Linie lesen"
 
-#: libgeda/src/object/o_object.c:394
+#: libgeda/src/object/o_object.c:399
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
@@ -1058,11 +1062,11 @@ msgstr ""
 "Bitte aktualisiere die Datei mit g[sym|sch]update"
 
 # invalid data detected near line
-#: libgeda/src/object/o_object.c:412 libgeda/src/object/o_object.c:416
+#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
 msgid "Read garbage near line"
 msgstr "Ungültige Daten in der Nähe der Leitung gefunden"
 
-#: libgeda/src/object/o_object.c:454
+#: libgeda/src/object/o_object.c:459
 msgid "On or about line"
 msgstr ""
 
@@ -1601,12 +1605,12 @@ msgid "Object ~A is attached to a page"
 msgstr ""
 
 #: libgeda/src/scheme/scheme_complex.c:362
-#: libgeda/src/scheme/scheme_page.c:350
+#: libgeda/src/scheme/scheme_page.c:356
 msgid "Object ~A is attached as an attribute"
 msgstr "Es wurde versucht eine Attribut anzubringen, welches kein Text ist!"
 
 #: libgeda/src/scheme/scheme_complex.c:369
-#: libgeda/src/scheme/scheme_page.c:357
+#: libgeda/src/scheme/scheme_page.c:363
 msgid "Object ~A has attributes"
 msgstr ""
 
@@ -1714,11 +1718,11 @@ msgstr ""
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:179
-msgid "Parse error: ~s"
+#: libgeda/src/scheme/scheme_page.c:175
+msgid "Parse error"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:343
+#: libgeda/src/scheme/scheme_page.c:349
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
@@ -1879,17 +1883,17 @@ msgstr "pinseq= Attribut fehlt.\n"
 msgid "Could not write message to log file\n"
 msgstr "Nachricht konnte nicht in die Protokolldatei geschrieben werden\n"
 
-#: libgeda/src/utility/u_log.c:271
+#: libgeda/src/utility/u_log.c:272 libgeda/src/utility/u_log.c:297
 msgid "Could not create log directory"
 msgstr "Konnte Backupdatei nicht speichern"
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:340
+#: libgeda/src/utility/u_log.c:380
 msgid "Could not create unique log filename in"
 msgstr "Kunne ikke skabe unikke log filnavn i"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:344
+#: libgeda/src/utility/u_log.c:384
 msgid "Could not create log file in"
 msgstr "Kunne ikke oprette logfil i"
 
@@ -1897,16 +1901,6 @@ msgstr "Kunne ikke oprette logfil i"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "in Datei"
-
-# Error loading configuration
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "Fehler beim Laden der Konfiguration"
 
 #~ msgid "Cannot find file"
 #~ msgstr "Konnte Datei nicht finden %s: %s"
