@@ -517,9 +517,12 @@ SCM g_get_pins_nets(SCM scm_uref)
 
         for (pl_current = nl_current->cpins; pl_current != NULL;
              pl_current = pl_current->next) {
+
           /* is there a valid pin number and a valid name ? */
           if (pl_current->pin_number) {
+
             if (pl_current->net_name) {
+
               /* yes, add it to the list */
               pin = pl_current->pin_number;
               net_name = pl_current->net_name;
