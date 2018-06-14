@@ -1,3 +1,8 @@
+2018-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_file_chooser.c: Update function documentation for
+      function geda_file_chooser_set_extra_widget.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise definitely_within_item to eliminate

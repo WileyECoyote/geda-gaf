@@ -1020,10 +1020,27 @@ geda_file_chooser_get_extra_widget(GtkWidget *hideous)
   return extra;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Add extra widgets to an File Chooser Dialog
+ * \par Function Description
+ * Add extra widgets to a file chooser to provide options not present
+ * in the default design.  For example, to add a toggle button to give
+ * users the option to open a file in read-only mode.
  *
+ * example:
+ * \code
+ *   GtkWidget *toggle;
+ *
+ *   ...
+ *
+ *   toggle = gtk_check_button_new_with_label ("Open file read-only");
+ *   gtk_widget_show (toggle);
+ *   gtk_file_chooser_set_extra_widget (file_chooser, toggle);
+ * \endcode
+ *
+ * A container such as a #GtkBox can be used to set more than one extra
+ * widget in the file chooser, set the container as the whole extra
+ * widget.
  */
 void
 geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
