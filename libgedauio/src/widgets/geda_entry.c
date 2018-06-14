@@ -1036,9 +1036,11 @@ static bool geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *da
         handled = geda_entry_tab_complete (entry);
       }
       break;
+
     default:
       break;
   }
+
   return handled;
 }
 
