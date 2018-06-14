@@ -4666,7 +4666,7 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         }
 
         menu->tearoff_hbox = gtk_hbox_new (FALSE, FALSE);
-        gtk_container_add ((GtkContainer*)menu->tearoff_window, menu->tearoff_hbox);
+        geda_container_add (menu->tearoff_window, menu->tearoff_hbox);
 
         window = geda_get_widget_window(menu);
 

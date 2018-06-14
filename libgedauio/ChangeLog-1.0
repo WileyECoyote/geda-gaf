@@ -13,6 +13,8 @@
 
     * src/widgets/geda_entry.c: Replace geda_container_add with geda_container_add.
 
+    * src/widgets/geda_menu.c: Replace geda_container_add with geda_container_add.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise definitely_within_item to eliminate
