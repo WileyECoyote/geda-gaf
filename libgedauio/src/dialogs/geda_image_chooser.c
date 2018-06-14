@@ -1564,10 +1564,30 @@ geda_image_chooser_get_extra_widget(GtkWidget *chooser)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Set Extra widgets to an Image Chooser Dialog
+ * \par Function Description
+ * Sets extra widget of an image chooser to provide options not present
+ * in the default design.  For example, to add a toggle button to give
+ * users the option to open a image in black-and-white mode.
  *
+ * example:
+ * \code
+ *   GtkWidget *toggle;
+ *
+ *   ...
+ *
+ *   toggle = gtk_check_button_new_with_label ("Open image B&W");
+ *   gtk_widget_show (toggle);
+ *   gtk_file_chooser_set_extra_widget (image_chooser, toggle);
+ * \endcode
+ *
+ * A container such as a #GtkBox can be used to set more than one extra
+ * widget in the image chooser, set the container as the whole extra
+ * widget.
+ *
+ * \note The default extra widget of an image chooser is the hbox
+ *       containing the enable preview check button.
  */
 void
 geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
