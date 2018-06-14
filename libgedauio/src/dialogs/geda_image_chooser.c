@@ -1546,12 +1546,12 @@ geda_image_chooser_prepend_extra (GtkWidget *dialog, GtkWidget *child)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the extra widget of an Image Chooser Dialog
+ * \par Function Description
+ *  Normally the extra widget of a GedaImageChooser is the hbox
+ *  containing the enable preview check button.
  */
-/* The extra widget is the hbox containing the enable preview check button */
 GtkWidget*
 geda_image_chooser_get_extra_widget(GtkWidget *chooser)
 {
