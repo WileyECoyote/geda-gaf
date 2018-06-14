@@ -286,13 +286,14 @@ geda_file_chooser_get_property (GObject *object, unsigned int  property_id,
 
   switch (property_id) {
 
-	  case PROP_FILTER_INDEX:
+    case PROP_FILTER_INDEX:
       g_value_set_int (value, chooser->filter_index);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
-    }
+  }
 }
 
 /*! \brief GObject property setter for a GedaFileChooser Object
