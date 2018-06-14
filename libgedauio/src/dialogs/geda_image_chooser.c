@@ -1480,10 +1480,11 @@ geda_image_chooser_set_current_name (GtkWidget *widget, const char *name)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
+/*!
+ * \brief Append Extra widget to an Image Chooser Dialog
+ *  Appends an extra \a child widget to an image chooser dialog.
  *
+ * \sa geda_image_chooser_set_extra_widget geda_image_chooser_prepend_extra
  */
 void
 geda_image_chooser_append_extra (GtkWidget *dialog, GtkWidget *child)
