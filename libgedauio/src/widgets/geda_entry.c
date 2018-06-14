@@ -1337,17 +1337,17 @@ static void geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, void *da
     submenu = gtk_menu_new ();
     gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
 
-    gtk_container_add (GTK_CONTAINER (menu), item);
+    geda_container_add (menu, item);
 
     item = gtk_menu_item_new_with_label (_("On"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (1));
     g_object_set_data (G_OBJECT(item), "eda-entry", entry);
-    gtk_container_add (GTK_CONTAINER (submenu), item);
+    geda_container_add (submenu, item);
 
     item = gtk_menu_item_new_with_label (_("Off"));
     g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), (void*)(long) (2));
     g_object_set_data (G_OBJECT(item), "eda-entry", entry);
-    gtk_container_add (GTK_CONTAINER (submenu), item);
+    geda_container_add (submenu, item);
 
     gtk_widget_show_all (submenu);
   }
