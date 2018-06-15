@@ -3,6 +3,9 @@
     * src\file\f_get.c: Add missing braces and fix indentation in function
       geda_file_get_dir_list_files.
 
+    * src\object\o_line_object.c: Add missing braces and fix indentation in
+      function geda_line_object_print.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
