@@ -568,11 +568,20 @@ const char *geda_file_path_user_config (void) {
 
     if (homedir == NULL) {
 
+#if defined OS_WIN32
+
+      homedir = (char*)g_get_home_dir();
+
+#else
+
       struct passwd *pw = getpwuid(getuid());
 
       if (pw) {
         homedir = pw->pw_dir;
       }
+
+#endif
+
     }
 
 #endif

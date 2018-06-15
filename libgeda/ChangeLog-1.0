@@ -3,6 +3,10 @@
     * src\file\f_get.c: Add missing braces and fix indentation in function
       geda_file_get_dir_list_files.
 
+    * src\file\f_path.c: Revise *geda_file_path_user_config to check if OS_WIN32
+      is defined when homedir is NULL and use g_get_home_dir instead of getuid
+      and getpwuid if OS_WIN32 is set.
+
     * src\object\o_line_object.c: Add missing braces and fix indentation in
       function geda_line_object_print.
 
