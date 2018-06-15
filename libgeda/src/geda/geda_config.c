@@ -42,6 +42,7 @@
 #include <libgen.h>
 
 #include <libgeda_priv.h>
+#include <geda/geda_stat.h>
 #include <geda_debug.h>
 
 enum _EdaConfigPropertyId {

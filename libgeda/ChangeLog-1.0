@@ -7,6 +7,8 @@
       is defined when homedir is NULL and use g_get_home_dir instead of getuid
       and getpwuid if OS_WIN32 is set.
 
+    * src\geda\geda_config.c: Include geda_stat.h header.
+
     * src\guile\g_rc_parse.c: Revise g_rc_parse_local to use getcwd as an
       alternative when HAVE_REALPATH is not set.
 
