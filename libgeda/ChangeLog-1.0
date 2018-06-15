@@ -7,6 +7,8 @@
       is defined when homedir is NULL and use g_get_home_dir instead of getuid
       and getpwuid if OS_WIN32 is set.
 
+    * src\file\f_sys.c: Include geda_stat.h for MINGW32 builds.
+
     * src\geda\geda_config.c: Include geda_stat.h header.
 
     * src\guile\g_rc_parse.c: Revise g_rc_parse_local to use getcwd as an
@@ -16,7 +18,7 @@
       function geda_line_object_print.
 
     * src\object\o_save.c: Include geda_stat.h header for extended checks
-      and flag definitions for __MINGW32__ builds.
+      and flag definitions for MINGW32 builds.
 
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
