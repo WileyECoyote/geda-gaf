@@ -15,6 +15,9 @@
     * src\object\o_line_object.c: Add missing braces and fix indentation in
       function geda_line_object_print.
 
+    * src\object\o_save.c: Include geda_stat.h header for extended checks
+      and flag definitions for __MINGW32__ builds.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.

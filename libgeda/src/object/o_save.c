@@ -32,6 +32,7 @@
 #endif
 
 #include <libgeda_priv.h>
+#include <geda/geda_stat.h>
 
 #define IO_BUFFER_SLICE_SIZE 2048
 
