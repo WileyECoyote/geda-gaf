@@ -402,12 +402,23 @@ bool g_rc_parse_local (const char *rcname, const char *path, GError **err)
     }
   }
   else {
+
     /* Default to cwd */
+
+#if HAVE_REALPATH
+
     dir = realpath (".", &buffer[0]);
+
+#else
+
+    dir = getcwd (0,0);
+
+#endif
+
     while (*dir != '\0') ++dir;
   }
 
-  cfg = eda_config_get_context_for_path(&buffer[0]);
+  cfg = eda_config_get_context_for_path (&buffer[0]);
 
   *dir++ = DIR_SEPARATOR;
   *dir = '\0';

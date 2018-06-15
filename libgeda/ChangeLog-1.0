@@ -7,6 +7,9 @@
       is defined when homedir is NULL and use g_get_home_dir instead of getuid
       and getpwuid if OS_WIN32 is set.
 
+    * src\guile\g_rc_parse.c: Revise g_rc_parse_local to use getcwd as an
+      alternative when HAVE_REALPATH is not set.
+
     * src\object\o_line_object.c: Add missing braces and fix indentation in
       function geda_line_object_print.
 
