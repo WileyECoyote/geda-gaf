@@ -1,6 +1,10 @@
+2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-std-checks.m4: Add check existence of function popen.
+
 2017-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * m4/geda-libgedathon.m4: Add section for LIBGEDATHON_GETTEXT_DOMAIN.
+    * geda-libgedathon.m4: Add section for LIBGEDATHON_GETTEXT_DOMAIN.
 
 2017-11-17 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -120,6 +120,8 @@ m4_define([AX_GEDA_FSC],
 
   AC_CHECK_FUNCS([getlogin])            # used in f_print.c
 
+  AC_CHECK_FUNCS([popen])                # used in f_print.c
+
   AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK # used by f_basic.c
 
   AC_CHECK_FUNCS([realpath])            # used by geda_config.c (and libtool)
