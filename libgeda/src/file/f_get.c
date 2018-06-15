@@ -581,10 +581,11 @@ GSList *geda_file_get_dir_list_files(char *path, char *filter, GError **err)
 
     real_filter = filter;
 
-    if (real_filter && *real_filter == 0x2E )
+    if (real_filter && *real_filter == 0x2E ) {
       real_filter++; /* skip over Period  */
+    }
 
-      dirp = opendir (path);
+    dirp = opendir (path);
 
     if (dirp != NULL) {
 

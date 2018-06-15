@@ -1,3 +1,8 @@
+2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\file\f_get.c: Add missing braces and fix indentation in function
+      geda_file_get_dir_list_files.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
