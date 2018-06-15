@@ -74,4 +74,44 @@
 #    define S_ISSOCK(m)   ((m & 0170000) == 0140000)      /* socket */
 
 #  endif
-#endif
+
+/* Even given the above, there is still a chance things did not get defined,
+ * such as the case when __MINGW32__ is defined because stat.h exist but does
+ * not define some of these:
+ */
+
+/* Group */
+#  ifndef S_IRWXG
+#    define S_IRWXG       0000070           /* RWX mask for group */
+#  endif
+
+#  ifndef S_IRGRP
+#    define S_IRGRP       0000040           /* R for group */
+#  endif
+
+#  ifndef S_IWGRP
+#    define S_IWGRP       0000020           /* W for group */
+#  endif
+
+#  ifndef S_IXGRP
+#    define S_IXGRP       0000010           /* X for group */
+#  endif
+
+/* Other */
+#  ifndef S_IRWXO
+#    define S_IRWXO       0000007           /* RWX mask for other */
+#  endif
+
+#  ifndef S_IROTH
+#    define S_IROTH       0000004           /* R for other */
+#  endif
+
+#  ifndef S_IWOTH
+#    define S_IWOTH       0000002           /* W for other */
+#  endif
+
+#  ifndef S_IXOTH
+#    define S_IXOTH       0000001           /* X for other */
+#  endif
+
+#endif /* ifndef __GEDA_STAT__ */

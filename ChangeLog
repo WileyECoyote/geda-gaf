@@ -1,3 +1,9 @@
+2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_stat.h: Manually check for definition if indiviual
+      flags and set when not defined because some flags are  not defined in
+      __MINGW32__ version of stat.h.
+
 2018-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/Makefile.am: Clean the geda subdirectory.
