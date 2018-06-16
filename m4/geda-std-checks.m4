@@ -174,6 +174,9 @@ m4_define([AX_GEDA_MISC],
   dnl Used in gschem/x/x_misc.c
   AC_HEADER_SYS_WAIT
 
+  dnl Used by libgeda\src\utility\u_log.c
+  AC_CHECK_HEADERS([syslog.h])
+
   dnl Used by utils/src/gmk_sym.c & libgeda/src/o_basic.c
   AC_CHECK_HEADERS([sys/time.h])
 

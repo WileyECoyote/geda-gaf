@@ -1,3 +1,8 @@
+2018-06-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-std-checks.m4: Check for existence of syslog.h, which is not present
+      on MinGW systems.
+
 2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-std-checks.m4: Add check existence of function popen.
