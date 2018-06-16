@@ -30,6 +30,8 @@
  * \brief
  */
 
+#include "../../../config.h" /* for geda_types.h */
+
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
