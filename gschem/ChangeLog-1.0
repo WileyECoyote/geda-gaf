@@ -4,6 +4,8 @@
 
     * src\base\gschem_event.c: Include config.h.
 
+    * src\iface\i_sessions.c: Fix BUG; Remove stray semi-colon.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise conditional in do_add_attribute and call

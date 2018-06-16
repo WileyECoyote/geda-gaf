@@ -862,7 +862,8 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 
     /* Do this BEFORE we delete name! */
     if (w_current->session_name != NULL) {
-      if (strcmp(w_current->session_name, name) == 0 ); {
+
+      if (strcmp(w_current->session_name, name) == 0 ) {
         /* If the current session was deleted, update the toplevel */
         w_current->session_name = NULL;
       }
