@@ -125,6 +125,7 @@
 #endif
 
 #include <dirent.h>
+#include <libgen.h>
 
 #include <libgeda_priv.h>
 #include <libgeda/g_struct.h>

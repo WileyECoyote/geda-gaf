@@ -1,6 +1,6 @@
 2018-06-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/struct/s_slib.c: Remove include glib.h.
+    * src/struct/s_slib.c: Remove include glib.h and include libgen.h.
 
 2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
