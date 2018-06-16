@@ -1,3 +1,7 @@
+2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\base\gschem.c: Conditionaly include Xlib.h.
+
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise conditional in do_add_attribute and call
