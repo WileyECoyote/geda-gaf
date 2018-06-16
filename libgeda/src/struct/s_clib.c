@@ -918,9 +918,9 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     return NULL;
   }
 
-  pbuff = memset(&buffer[0], '\0', MAX_FILE);
+  pbuff = memset (&buffer[0], '\0', MAX_FILE);
 
-  strcpy(pbuff, directory );
+  strcpy (pbuff, directory);
 
   category = NULL;
   group    = NULL;
@@ -942,15 +942,15 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
   /* get 3rd level dir */
   ptr_dir3 = basename (pbuff);
 
-  if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
+  if ( strcmp(SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
     group = geda_strdup(ptr_dir2);
   }
   else {
-    if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
+    if ( strcmp(SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
       group = geda_strdup(ptr_dir1);
     }
     else {
-      if (strcmp( SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
+      if ( strcmp(SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
          if (name != NULL )  {
            group = geda_strdup(basename(name));
          }
