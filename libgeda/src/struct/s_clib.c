@@ -943,7 +943,7 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
   ptr_dir3 = basename (pbuff);
 
   if ( strcmp(SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
-    group = geda_strdup(ptr_dir2);
+    group = geda_strdup (ptr_dir2);
   }
   else {
     if ( strcmp(SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
@@ -952,14 +952,14 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     else {
       if ( strcmp(SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
          if (name != NULL )  {
-           group = geda_strdup(basename(name));
+           group = geda_file_get_basename_dup (name);
          }
          else {
-           group = geda_strdup( ptr_dir2 );
+           group = geda_strdup ( ptr_dir2 );
          }
       }
       else {
-        group = geda_strdup( ptr_dir2 );
+        group = geda_strdup ( ptr_dir2 );
       }
     }
   }
