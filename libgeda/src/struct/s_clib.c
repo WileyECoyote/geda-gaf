@@ -928,14 +928,14 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
   /* get 1st level dir */
   ptr_dir1 = basename (pbuff);
 
-  /* change the last slash to NULLL */
+  /* change the last slash to NULL */
   ptr = ptr_dir1 - 1;
  *ptr = '\0';
 
   /* get 2nd level dir */
   ptr_dir2 = basename (pbuff);
 
-  /* change the last slash to NULLL */
+  /* change the last slash to NULL */
   ptr = ptr_dir2 - 1;
  *ptr = '\0';
 
