@@ -115,8 +115,6 @@
 
 #include <geda/geda_sdefines.h>  /* Explicitly include for doxygen, not preprocessor */
 
-#include <glib.h>
-
 #ifdef HAVE_SYS_WAIT_H
 #include <sys/wait.h>
 #else
