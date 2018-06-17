@@ -12,6 +12,9 @@
     * transistor/basic/npn-diff-1.sym: Add symbol; Generic NPN differential
       pair, common emitter.
 
+    * transistor/basic/pnp-diff-1.sym: Add symbol; Generic PNP differential
+      pair, common emitter.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/: Add symbols for 5 Watt zener diode.
