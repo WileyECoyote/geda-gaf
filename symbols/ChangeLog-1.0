@@ -21,6 +21,9 @@
     * transistor/npn-thru/2N4401_npn_60V_0.625W_TO-92-?.sym: Add symbols;
       General purpose 60V NPN transistor.
 
+    * transistor/pnp-thru/2N4402_pnp_60V_0.625W_TO-92-?.sym: Add symbols;
+      General purpose 60V PNP transistor.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/: Add symbols for 5 Watt zener diode.
