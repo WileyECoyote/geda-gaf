@@ -4,6 +4,9 @@
 
             * diode/zener53/zener_9.1_1N5346B.sym (9.1 Volt)
 
+    * st/STM32L452CC-1.sym: Add symbol; Microcontroller, 32-bit MCU+FPU ARM,
+      Cortex-M4.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/: Add symbols for 5 Watt zener diode.
