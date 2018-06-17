@@ -7,6 +7,8 @@
     * st/STM32L452CC-1.sym: Add symbol; Microcontroller, 32-bit MCU+FPU ARM,
       Cortex-M4.
 
+    * st/STM32L452CC-2.sym: Add symbol with alternate pin lay-out.
+
 2018-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/: Add symbols for 5 Watt zener diode.
