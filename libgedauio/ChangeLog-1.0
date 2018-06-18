@@ -2,6 +2,8 @@
 
     * src\functions\geda_mnemonic_hash.c: include config.h.
 
+    * src\functions\geda_threads.c: include config.h.
+
 2018-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update function documentation for
