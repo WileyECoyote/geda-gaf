@@ -22,6 +22,11 @@
  * with modifications, March 2016.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
+
 #include <glib.h>
 #include <geda/geda.h>
 #include <gtk/gtk.h>
