@@ -39,6 +39,7 @@
 #include <libgeda/libgeda.h>
 #include <geda/geda_standard.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_entry.h"
 #include "../../include/geda_image_menu_item.h"
 #include "../../include/geda_keysyms.h"

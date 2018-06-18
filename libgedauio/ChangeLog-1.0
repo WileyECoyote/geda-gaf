@@ -7,6 +7,8 @@
     * src\widgets\geda_combobox.c: Add ancillary occupied in geda_combo_box_
       relayout_item.
 
+    * src\widgets\geda_entry.c: Include geda_container.h.
+
 2018-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update function documentation for
