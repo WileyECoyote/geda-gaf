@@ -3676,26 +3676,30 @@ static void geda_combo_box_relayout_item (GedaComboBox *combo_box,
       gtk_tree_model_get (priv->model, iter, priv->col_column, &cols, -1);
     }
 
-    if (priv->row_column != -1)
+    if (priv->row_column != -1) {
       gtk_tree_model_get (priv->model, iter, priv->row_column, &rows, -1);
+    }
 
-      while (1) {
+    while (1) {
 
-        if (current_col + cols > priv->wrap_width) {
+      bool occupied;
+
+      if (current_col + cols > priv->wrap_width) {
 
           current_col = 0;
           current_row++;
-        }
-
-        if (!menu_occupied (GEDA_MENU (menu),
-          current_col,
-          current_col + cols,
-          current_row,
-          current_row + rows))
-          break;
-
-        current_col++;
       }
+
+      occupied = menu_occupied (GEDA_MENU (menu), current_col,
+                                                  current_col + cols,
+                                                  current_row,
+                                                  current_row + rows);
+      if (!occupied) {
+          break;
+      }
+
+      current_col++;
+    }
   }
 
   /* set attach props */
