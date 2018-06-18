@@ -12,6 +12,8 @@
     * src\widgets\geda_menu.c: Increase the scope of height, so that is
       visible when HAVE_GDK_WINDOW_GET_WIDTH in geda_menu_set_tearoff_state.
 
+    * src\widgets\geda_menu_button.c: Remove unused GtkBorder constants.
+
 2018-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update function documentation for

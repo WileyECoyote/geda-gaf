@@ -85,10 +85,6 @@ struct _GedaMenuButtonData
   GtkAction   *action;
 };
 
-static const GtkBorder default_default_border         = { 1, 1, 1, 1 };
-static const GtkBorder default_default_outside_border = { 0, 0, 0, 0 };
-static const GtkBorder default_inner_border           = { 1, 1, 1, 1 };
-
 static void geda_menu_button_dispose (GObject *object);
 static void geda_menu_button_destroy (GtkObject *object);
 
