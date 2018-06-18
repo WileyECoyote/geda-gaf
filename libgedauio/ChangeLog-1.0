@@ -1,5 +1,8 @@
 2018-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include\geda_gtk_compat.h: Do not define gtk_window_group_get_current_grab
+      if __MINGW32__ is defined.
+
     * src\functions\geda_mnemonic_hash.c: include config.h.
 
     * src\functions\geda_threads.c: include config.h.

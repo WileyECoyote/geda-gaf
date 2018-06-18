@@ -92,6 +92,7 @@
 #if GTK_MAJOR_VERSION < 3
 
 #ifndef HAVE_GTK_WINDOW_GROUP_GET_CURRENT_GRAB
+#  ifndef __MINGW32__
 
 static inline GtkWidget *
 gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
@@ -101,6 +102,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
   return GTK_WIDGET(window_group->grabs->data);
 }
 
+#  endif
 #endif
 
 #if !GTK_CHECK_VERSION(2,20,0)
