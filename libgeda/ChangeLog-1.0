@@ -1,8 +1,10 @@
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\geda\geda_config.c: Revise eda_config_find_project_root to check for
+    * src/geda/geda_config.c: Revise eda_config_find_project_root to check for
       root as "x:\" on OS_WIN32_NATIVE or MINGW32 platforms, and break out of
       the while loop when root is detected.
+
+    * tests/test_parsecmd.h: Include libgen.h for "basename" in function usage.
 
 2018-06-16 Wiley E. Hill <wileyhill@gmail.com>
 

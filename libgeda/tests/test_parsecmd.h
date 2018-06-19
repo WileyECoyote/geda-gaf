@@ -31,6 +31,8 @@
 #include <getopt.h>
 #endif
 
+#include <libgen.h>
+
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
 extern int   optind;
