@@ -1,3 +1,8 @@
+2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\widgets\geda_entry.c: Replace printf with fprintf for DnD todo
+      messages.
+
 2018-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include\geda_gtk_compat.h: Do not define gtk_window_group_get_current_grab
