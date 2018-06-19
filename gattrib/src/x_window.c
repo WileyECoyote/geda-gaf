@@ -94,7 +94,7 @@ void x_window_clipboard_handler(int do_what)
   GtkWidget *widget = gtk_window_get_focus(main_window);
 
   switch (do_what ) {
-    case cut:
+    case tb_cut:
       if (GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget)) {
         g_signal_emit_by_name(widget, "copy-clipboard", NULL); /* just copy */
       }
@@ -104,7 +104,7 @@ void x_window_clipboard_handler(int do_what)
       x_window_update_title(pr_current, sheet_head);
       break;
 
-    case copy:
+    case tb_copy:
       if ((GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
         || GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
       {
@@ -112,7 +112,7 @@ void x_window_clipboard_handler(int do_what)
       }
       break;
 
-    case paste:
+    case tb_paste:
       if (GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "paste-clipboard", NULL);
       }

@@ -209,7 +209,7 @@ void x_menu_edit_delete_attrib()
  */
 static void menu_edit_cut()
 {
-  x_window_clipboard_handler(cut);
+  x_window_clipboard_handler(tb_cut);
 }
 
 /*!
@@ -220,7 +220,7 @@ static void menu_edit_cut()
  */
 static void menu_edit_copy()
 {
-  x_window_clipboard_handler(copy);
+  x_window_clipboard_handler(tb_copy);
 }
 
 /*!
@@ -231,7 +231,7 @@ static void menu_edit_copy()
  */
 static void menu_edit_paste()
 {
-  x_window_clipboard_handler(paste);
+  x_window_clipboard_handler(tb_paste);
 }
 
 /* Handlers for Help menu */

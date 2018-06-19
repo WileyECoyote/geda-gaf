@@ -1,3 +1,8 @@
+2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include\globals.h: Prefix enumerated members of IDS_Toolbar
+      with "tb_" to avert conflict with external headers.
+
 2018-06-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/es.po: Update Spanish translations.
@@ -161,7 +166,7 @@
 
     * po/ml.po: Updated Malayalam translations.
 
-    * po/nb.po: Update Norwegian Bokmål translations.
+    * po/nb.po: Update Norwegian Bokmï¿½l translations.
 
 2018-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -332,7 +337,7 @@
 
     * po/ja.po: Update Japanese translations
 
-    * po/nb.po: Update Norwegian Bokmål translations.
+    * po/nb.po: Update Norwegian Bokmï¿½l translations.
 
     * po/oc.po: Update Occitan translations.
 
@@ -633,7 +638,7 @@
 
     * po/ja.po: Update Japanese translations
 
-    * po/nb.po: Update Norwegian Bokmål translations.
+    * po/nb.po: Update Norwegian Bokmï¿½l translations.
 
     * po/oc.po: Update Occitan translations.
 
