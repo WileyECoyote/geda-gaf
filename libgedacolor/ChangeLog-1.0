@@ -8,6 +8,8 @@
     * src\libgedacolor.c: Call geda_file_path_free to release resources in
       the geda_file_path module before exiting libgedacolor_release.
 
+    * tests\test_color.c: Include config.h.
+
 2018-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/color_struct.c: Rename 0xB0, 0x30, 0x60, "rich maroon", which

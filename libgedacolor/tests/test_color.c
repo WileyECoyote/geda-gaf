@@ -1,3 +1,6 @@
+
+#include <config.h>
+
 #include <glib.h>
 #include <gdk/gdk.h>
 
