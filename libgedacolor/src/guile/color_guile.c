@@ -58,18 +58,19 @@ bool geda_color_guile_load_scheme (const char *inputfile)
 {
   int result = FALSE;
 
-  if (inputfile && (access (inputfile, R_OK)) == 0) {
+  if (inputfile && g_file_test(inputfile, G_FILE_TEST_EXISTS)) {
 
     GError *err = NULL;
 
     result = g_evaluate_scheme_file (inputfile, &err);
 
-    if(err != NULL) {
+    if (err != NULL) {
       const char *err_load = _("Error loading");
       u_log_message("%s %s, %s\n", err_load, inputfile, strerror(errno));
       g_clear_error (&err);
     }
   }
+
   return result;
 }
 

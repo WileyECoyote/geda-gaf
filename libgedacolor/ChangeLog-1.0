@@ -1,3 +1,10 @@
+2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\guile\color_guile.c: Replace access with g_file_test in function
+      geda_color_guile_load_scheme because access does not work when directory
+      seperators are mixed in the file path, i.e. forward slashes mixed with
+      backslashes.
+
 2018-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/color_struct.c: Rename 0xB0, 0x30, 0x60, "rich maroon", which
