@@ -487,7 +487,17 @@ char *eda_config_find_project_root (const char *path, const char *filename)
         found = 1;
         break;
       }
+
       dir = dirname (dir);
+
+#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+
+      if (strlen(dir) == 3 && dir[1] == ':') {
+        break;
+      }
+
+#endif
+
   }
   geda_free(filespec);
 
