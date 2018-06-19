@@ -1,3 +1,8 @@
+2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\guile\g_keys.c: Add conditional directives to support glib version less
+      2.32, without g_hash_table_contains utilizing subfunction is_in_hash_table.
+
 2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\base\gschem.c: Conditionaly include Xlib.h.

@@ -703,9 +703,30 @@ GHashTable *g_keys_to_new_hash_table (void)
     keys = scm_to_utf8_string (s_keys);
     scm_dynwind_free (keys);
 
-    if (!g_hash_table_contains(key_hash, binding)) {
-      g_hash_table_insert(key_hash, geda_strdup(binding), geda_strdup(keys));
+#if ((GLIB_MAJOR_VERSION >= 2 ) && (GLIB_MINOR_VERSION < 32 ))
+
+    bool exist = FALSE;
+
+    void is_in_hash_table(void *key, void *value, void *data) {
+
+       if (value == binding) {
+          exist = TRUE;
+       }
     }
+
+    g_hash_table_foreach (key_hash, is_in_hash_table, NULL);
+
+    if (!exist) {
+      g_hash_table_insert (key_hash, geda_strdup(binding), geda_strdup(keys));
+    }
+
+#else
+
+    if (!g_hash_table_contains(key_hash, binding)) {
+      g_hash_table_insert (key_hash, geda_strdup(binding), geda_strdup(keys));
+    }
+
+#endif
 
     scm_dynwind_end ();
   }
