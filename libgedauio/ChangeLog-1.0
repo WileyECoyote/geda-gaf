@@ -1,26 +1,30 @@
+2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_accumulate.c: include config.h.
+
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\widgets\geda_entry.c: Replace printf with fprintf for DnD todo
+    * src/widgets/geda_entry.c: Replace printf with fprintf for DnD todo
       messages.
 
 2018-06-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include\geda_gtk_compat.h: Do not define gtk_window_group_get_current_grab
+    * include/geda_gtk_compat.h: Do not define gtk_window_group_get_current_grab
       if __MINGW32__ is defined.
 
-    * src\functions\geda_mnemonic_hash.c: include config.h.
+    * src/functions/geda_mnemonic_hash.c: include config.h.
 
-    * src\functions\geda_threads.c: include config.h.
+    * src/functions/geda_threads.c: include config.h.
 
-    * src\widgets\geda_combobox.c: Add ancillary occupied in geda_combo_box_
+    * src/widgets/geda_combobox.c: Add ancillary occupied in geda_combo_box_
       relayout_item.
 
-    * src\widgets\geda_entry.c: Include geda_container.h.
+    * src/widgets/geda_entry.c: Include geda_container.h.
 
-    * src\widgets\geda_menu.c: Increase the scope of height, so that is
+    * src/widgets/geda_menu.c: Increase the scope of height, so that is
       visible when HAVE_GDK_WINDOW_GET_WIDTH in geda_menu_set_tearoff_state.
 
-    * src\widgets\geda_menu_button.c: Remove unused GtkBorder constants.
+    * src/widgets/geda_menu_button.c: Remove unused GtkBorder constants.
 
 2018-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
