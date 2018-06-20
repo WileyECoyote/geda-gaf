@@ -1,15 +1,20 @@
+2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Add function gnu_get_libc_version when gnu/libc-version.h
+      is not present, and return "unknown" for now, to support the AboutDialog.
+
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\guile\g_keys.c: Add conditional directives to support glib version less
+    * src/guile/g_keys.c: Add conditional directives to support glib version less
       2.32, without g_hash_table_contains utilizing subfunction is_in_hash_table.
 
 2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\base\gschem.c: Conditionaly include Xlib.h.
+    * src/base/gschem.c: Conditionaly include Xlib.h.
 
-    * src\base\gschem_event.c: Include config.h.
+    * src/base/gschem_event.c: Include config.h.
 
-    * src\iface\i_sessions.c: Fix BUG; Remove stray semi-colon.
+    * src/iface/i_sessions.c: Fix BUG; Remove stray semi-colon.
 
 2018-06-13 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -419,7 +419,16 @@ static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data
    x_show_uri(link);
 }
 
-#include <gnu/libc-version.h>
+#if HAVE_GNU_LIBC_VERSION_H
+# include <gnu/libc-version.h>
+#else
+
+const char *gnu_get_libc_version(void)
+{
+   return "unknown";
+}
+
+#endif
 
 /*! \brief Create the about dialog and show it
  *  \par Function Description
