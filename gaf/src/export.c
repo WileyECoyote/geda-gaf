@@ -1057,10 +1057,9 @@ static void export_config (void)
   }
 }
 
-#define export_short_options "a:cd:f:F:hl:m:o:p:s:k:"
+#define export_short_options "a:cd:f:F:hl:m:no:p:s:k:"
 
 static struct option export_long_options[] = {
-  {"no-color", 0, NULL, 2},
   {"align",    1, NULL, 'a'},
   {"color",    0, NULL, 'c'},
   {"dpi",      1, NULL, 'd'},
@@ -1069,6 +1068,7 @@ static struct option export_long_options[] = {
   {"help",     0, NULL, 'h'},
   {"layout",   1, NULL, 'l'},
   {"margins",  1, NULL, 'm'},
+  {"no-color", 0, NULL, 'n'},
   {"output",   1, NULL, 'o'},
   {"paper",    1, NULL, 'p'},
   {"size",     1, NULL, 's'},
@@ -1094,7 +1094,7 @@ static void export_usage (void)
 "                           set alignment of drawing within page\n"
 "  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
 "  -c, --color              enable color output\n"
-"  --no-color               disable color output\n"
+"  -n, --no-color           disable color output\n"
 "  -F, --font=NAME          set font family for printing text\n"
 "  -h, --help               display usage information and exit\n"
 "\n"
@@ -1143,10 +1143,6 @@ static void export_command_line (int argc, char * const *argv)
        * dealt with by getopt_long(). */
       break;
 
-    case 2: /* --no-color */
-      settings.color = FALSE;
-      break;
-
     case 'a':
       str = export_command_line__utf8_check (optarg, "-a,--align");
       if (!export_parse_align (str)) {
@@ -1183,6 +1179,10 @@ static void export_command_line (int argc, char * const *argv)
 
     case 'h':
       export_usage ();
+      break;
+
+    case 'n': /* --no-color */
+      settings.color = FALSE;
       break;
 
     case 'k':

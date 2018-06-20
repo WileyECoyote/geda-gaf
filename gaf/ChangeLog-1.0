@@ -1,3 +1,7 @@
+2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/export.c: Add short option for no-color.
+
 2018-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ru.po: Update Russian translations.
