@@ -174,6 +174,9 @@ m4_define([AX_GEDA_MISC],
   dnl Used in gschem/x/x_misc.c
   AC_HEADER_SYS_WAIT
 
+  dnl Used by gschem/src/x_dialog.c::about_dialog
+  AC_CHECK_HEADERS([gnu/libc-version.h])
+
   dnl Used by libgeda\src\utility\u_log.c
   AC_CHECK_HEADERS([syslog.h])
 
