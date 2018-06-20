@@ -31,10 +31,12 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+#ifdef HAVE_X11
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <cairo-xlib.h>
 #include <gdk/gdkx.h>
+#endif
 
 /** \defgroup grid-module Grid Module
  *  @{\brief This group contains functions for Grid systems

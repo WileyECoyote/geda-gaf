@@ -3,6 +3,9 @@
     * src/x/x_dialog.c: Add function gnu_get_libc_version when gnu/libc-version.h
       is not present, and return "unknown" for now, to support the AboutDialog.
 
+    * src/x/x_grid.c: Wrap inclusion of X11 specific headers in conditional directives
+      and only include if HAVE_X11. Currently these headers are not used.
+
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_keys.c: Add conditional directives to support glib version less
