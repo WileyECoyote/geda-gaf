@@ -140,7 +140,7 @@ static bool i_basic_show_uri (const char *uri)
 
 #if defined (OS_WIN32) && !defined (OS_CYGWIN)
 
-  return i_basic_show_uri__win32 (uri, error);
+  return i_basic_show_uri__win32 (uri, &error);
 
 #elif defined (SHOW_URI_GIO)
 
