@@ -690,6 +690,8 @@ char *x_dialog_get_search_text(const char *prompt)
 //#define Radio_Responder radio_responder
 #define Switch_Responder search_replace_switch_responder
 
+#undef ReplaceText  /* Defined in mingw\include\windows.h */
+
 typedef enum {
 /* 2 Combo Controls  */
   SearchText,

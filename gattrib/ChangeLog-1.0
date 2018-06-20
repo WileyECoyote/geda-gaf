@@ -2,6 +2,9 @@
 
     * src/i_basic.c: Fix reference to pointer in function i_basic_show_uri.
 
+    * src/x_dialog.c: Unconditionally undefine ReplaceText, which could be
+      defined on Windows machines in mingw\include\windows.h.
+
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/globals.h: Prefix enumerated members of IDS_Toolbar
