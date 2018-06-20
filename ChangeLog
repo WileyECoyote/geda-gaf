@@ -1,3 +1,7 @@
+2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .gitignore: Add exe extension to globally ignore Windows executables.
+
 2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_stat.h: Manually check for definition if indiviual

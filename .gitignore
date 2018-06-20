@@ -21,6 +21,7 @@ INSTALL
 autoscan.log
 configure.scan
 *.bak
+*.exe
 *.log
 *.swp
 *-swp
