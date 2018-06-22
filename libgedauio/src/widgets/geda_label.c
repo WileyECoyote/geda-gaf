@@ -987,7 +987,13 @@ static void geda_label_dispose (GObject *object)
   }
 
   if (label->priv->font_map) {
+
+#ifndef __MINGW32__
+
     g_object_unref (label->priv->font_map);
+
+#endif
+
     label->priv->font_map = NULL;
   }
 

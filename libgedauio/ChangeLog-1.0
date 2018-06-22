@@ -8,6 +8,9 @@
     * src/widgets/geda_entry.c: Revise geda_entry_finalize to not call
       pango_cairo_font_map_set_default when __MINGW32__ is defined.
 
+    * src/widgets/geda_label.c: Revise geda_label_dispose to not unreference
+      font_map when __MINGW32__ is defined.
+
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
