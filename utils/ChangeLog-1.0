@@ -1,5 +1,7 @@
 2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/common.h: Include config.h header.
+
     * gsch2pcb/gsch2pcb.c: Remove semicolon after For loop in function
       update_element_descriptions.
 

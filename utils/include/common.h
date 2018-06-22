@@ -25,6 +25,8 @@
  *  Date Contributed: July, 25, 2014
  */
 
+ #include "../../config.h"
+
 #define WITHOUT_GDK_PIX_BUFFER 1
 
 #include <libgeda/libgeda.h>
