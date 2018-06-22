@@ -375,7 +375,11 @@ static void print_text(GedaToplevel *current, cairo_t *cairo, GedaObject *object
 
     pango_cairo_context_set_resolution(context, 1600.0);
 
+#ifndef __MINGW32__
+
     pango_cairo_font_map_set_default (NULL);
+
+#endif
 
     PangoLayout *layout = pango_layout_new(context);
 
