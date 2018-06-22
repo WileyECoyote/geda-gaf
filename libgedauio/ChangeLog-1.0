@@ -23,6 +23,8 @@
     * tests\test_menu_separator.c: Check if the widget is gobject before sinking
       and dereferencing the seperator, or else failure under MinGW.
 
+    * tests\test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
+      nothing on Windows machines.
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -5657,4 +5659,3 @@
         where none exist in GTK2. Libgedauio is linked against GTK2 and is intended
         to provide "gtk" like resources to geda-gaf any application without
         depreciating the entire free world.
-geda_label_ensure_layout
