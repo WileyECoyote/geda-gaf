@@ -158,8 +158,23 @@ check_properties (void)
 
       font2 = gdk_font_from_description (font_desc);
 
+#ifndef __MINGW32__
+
       if (!gdk_font_equal(font, font2)) {
+
+#else
+
+      int id1, id2;
+
+      id1 = gdk_font_id (font);
+      id2 = gdk_font_id (font2);
+
+      if (id1 != id2) {
+
+#endif
+
         fprintf(stderr, "FAILED: line <%d> get \"font-desc\" property <%s>\n", __LINE__, TWIDGET);
+
         result++;
       }
 

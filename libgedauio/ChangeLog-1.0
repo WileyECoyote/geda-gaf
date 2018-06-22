@@ -13,6 +13,13 @@
 
     * tests/test_accumulate.c: include config.h.
 
+    * tests/test_font_dialog.c: Revise the check for the "font-desc" property to
+      compare the font ids when __MINGW32__ is defined instead of using gdk_font_equal.
+      According to https://developer.gnome.org/gdk2/stable/gdk2-Fonts.html single
+      fonts compare equal if they have the same X font ID, which is not correect and
+      the operation does not currently work correctly for fontsets. And apparently
+      does not work correctly for __MINGW32__, since comparing the id's works.
+
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
