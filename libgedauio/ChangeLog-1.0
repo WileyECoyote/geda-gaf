@@ -5,6 +5,9 @@
           * src/functions/geda_keyboard.c
           * src/functions/geda_marshal.c
 
+    * src/widgets/geda_entry.c: Revise geda_entry_finalize to not call
+      pango_cairo_font_map_set_default when __MINGW32__ is defined.
+
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 

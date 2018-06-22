@@ -232,7 +232,13 @@ static void geda_entry_finalize (GObject *object)
   }
 
   if (entry->priv->font_map) {
+
+#ifndef __MINGW32__
+
     pango_cairo_font_map_set_default (NULL);
+
+#endif
+
     entry->priv->font_map = NULL;
   }
 
@@ -587,6 +593,7 @@ static void geda_entry_unrealize (GtkWidget *widget)
 
   if (entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
+
   }
 
   ((GtkWidgetClass*)geda_entry_parent_class)->unrealize (widget);
