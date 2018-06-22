@@ -30,6 +30,8 @@
  * Adapted for gEDA by Wiley Edward Hill <wileyhill AT gmail.com>
  */
 
+#include "../../config.h"
+
 #include <string.h>
 
 #include <gtk/gtk.h>

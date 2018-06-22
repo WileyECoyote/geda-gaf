@@ -1,6 +1,10 @@
+2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/prop-editor.c: Include config.h
+
 2018-06-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/functions: include config.h in:
+    * src/functions: Include config.h in:
 
           * src/functions/geda_keyboard.c
           * src/functions/geda_marshal.c
@@ -11,7 +15,7 @@
     * src/widgets/geda_label.c: Revise geda_label_dispose to not unreference
       font_map when __MINGW32__ is defined.
 
-    * tests/test_accumulate.c: include config.h.
+    * tests/test_accumulate.c: Include config.h.
 
     * tests/test_font_dialog.c: Revise the check for the "font-desc" property to
       compare the font ids when __MINGW32__ is defined instead of using gdk_font_equal.
@@ -28,7 +32,7 @@
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/functions/geda_accumulate.c: include config.h.
+    * src/functions/geda_accumulate.c: Include config.h.
 
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -40,9 +44,9 @@
     * include/geda_gtk_compat.h: Do not define gtk_window_group_get_current_grab
       if __MINGW32__ is defined.
 
-    * src/functions/geda_mnemonic_hash.c: include config.h.
+    * src/functions/geda_mnemonic_hash.c: Include config.h.
 
-    * src/functions/geda_threads.c: include config.h.
+    * src/functions/geda_threads.c: Include config.h.
 
     * src/widgets/geda_combobox.c: Add ancillary occupied in geda_combo_box_
       relayout_item.
