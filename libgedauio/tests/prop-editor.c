@@ -1296,12 +1296,14 @@ create_prop_editor (GObject *object, GType type)
   }
 
   win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  if (GTK_IS_WIDGET (object))
+
+  if (GTK_IS_WIDGET (object)) {
     gtk_window_set_screen (GTK_WINDOW (win),
                            gtk_widget_get_screen (GTK_WIDGET (object)));
+  }
 
-    /* hold a weak ref to the object we're editing */
-    g_object_set_data_full (G_OBJECT (object), "prop-editor-win", win, model_destroy);
+  /* hold a weak ref to the object we're editing */
+  g_object_set_data_full (G_OBJECT (object), "prop-editor-win", win, model_destroy);
   g_object_set_data_full (G_OBJECT (win), "model-object", object, window_destroy);
 
   if (type == 0) {
