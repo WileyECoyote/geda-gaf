@@ -1,4 +1,8 @@
 
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
 #include <geda/geda.h>
 #include <gdk/gdkkeys.h>
 #include "../../include/geda_keyboard.h"
