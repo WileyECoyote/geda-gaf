@@ -5,8 +5,11 @@
     * gsch2pcb/gsch2pcb.c: Remove semicolon after For loop in function
       update_element_descriptions.
 
-    * gsch2pdf\gsch2pdf.c: Revise print_text to not call function
+    * gsch2pdf/gsch2pdf.c: Revise print_text to not call function
       pango_cairo_font_map_set_default when __MINGW32__ is defined.
+
+    * gsch2pdf/parsecmd.c: Remove inclusion of config.h and libgeda.h
+      directly since both are included from common.h.
 
 2018-06-11 Roland Lutz <rlutz@hedmen.org>
 

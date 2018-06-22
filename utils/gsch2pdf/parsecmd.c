@@ -23,13 +23,9 @@
  * MA 02111-1301 USA
  */
 
-#include "../../config.h"
-
-
-#define WITHOUT_GDK_PIX_BUFFER 1
-#include <libgeda/libgeda.h>
-#include "../../version.h"
 #include "../include/common.h"
+
+#include "../../version.h"
 
 #define OPTIONS "hquvV"
 
