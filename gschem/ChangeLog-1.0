@@ -1,3 +1,7 @@
+2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\guile\g_keys.c: Include i_actions.h and x_window.h before gschem.h.
+
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Add function gnu_get_libc_version when gnu/libc-version.h

@@ -24,10 +24,13 @@
  * 02110-1301 USA <http://www.gnu.org/licenses/>.
  */
 
-#include <gschem.h>
-#include <libguile.h>             /* for doxygen */
 #include <i_actions.h>
 #include <x_window.h>
+
+#include <gschem.h>
+
+#include <libguile.h>             /* for doxygen */
+
 #include <geda_debug.h>
 
 #include <geda_keysyms.h>
