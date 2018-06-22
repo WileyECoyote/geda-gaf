@@ -1894,8 +1894,11 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
     set_toggler(AUTO_PAN_TOGGLE, (w_current->auto_pan > 0));
   }
   else {
-   if(toggle_id < number_of_togglers)
-     toggler_data = (ToggleMenuData*) g_slist_nth_data (TOGGLERS_LIST, toggle_id);
+
+    if (toggle_id < number_of_togglers) {
+      toggler_data = (ToggleMenuData*) g_slist_nth_data (TOGGLERS_LIST, toggle_id);
+    }
+
      x_menu_set_toggler(toggler_data, state);
   }
   return;
