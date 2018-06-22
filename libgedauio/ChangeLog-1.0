@@ -11,6 +11,8 @@
     * src/widgets/geda_label.c: Revise geda_label_dispose to not unreference
       font_map when __MINGW32__ is defined.
 
+    * tests/test_accumulate.c: include config.h.
+
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 

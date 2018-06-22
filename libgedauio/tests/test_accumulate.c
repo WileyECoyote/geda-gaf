@@ -27,6 +27,8 @@
  * Contributing Author: Wiley Edward Hill
  */
 
+#include "../../config.h"
+
 #include <geda/geda.h>
 #include <geda_accumulate.h>
 
