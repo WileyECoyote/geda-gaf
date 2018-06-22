@@ -3,6 +3,11 @@ gsch2pcb Changelog
 1.14.0
 ---------
 
+2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Remove semicolon after For loop in function
+      update_element_descriptions.
+
 2018-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Add missing braces on verbose conditionals,

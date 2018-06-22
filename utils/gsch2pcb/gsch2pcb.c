@@ -1150,7 +1150,7 @@ static void update_element_descriptions (char *pcb_file, char *bak)
 
   while ((fgets (buf, sizeof(buf), f_in)) != NULL) {
 
-    for (s = buf; *s == ' ' || *s == '\t'; ++s); {
+    for (s = buf; *s == ' ' || *s == '\t'; ++s) {
 
       PcbElement *el_exists;
 
