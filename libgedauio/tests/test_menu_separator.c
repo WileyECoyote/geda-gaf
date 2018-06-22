@@ -129,8 +129,10 @@ int check_construction (void)
       result++;
     }
 
-    g_object_ref_sink(widget); /* Sink reference to menu_seperator */
-    g_object_unref(widget);    /* Does not destroy widget */
+    if (G_IS_OBJECT(widget)) {
+      g_object_ref_sink(widget); /* Sink reference to menu_seperator */
+      g_object_unref(widget);    /* Does not destroy widget */
+    }
   }
 
   return result;

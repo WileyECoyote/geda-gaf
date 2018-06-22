@@ -20,6 +20,9 @@
       the operation does not currently work correctly for fontsets. And apparently
       does not work correctly for __MINGW32__, since comparing the id's works.
 
+    * tests\test_menu_separator.c: Check if the widget is gobject before sinking
+      and dereferencing the seperator, or else failure under MinGW.
+
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
