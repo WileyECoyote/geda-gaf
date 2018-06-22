@@ -103,11 +103,13 @@ static void create_m4_override_file ()
     return;
   }
 
-  if (m4_pcbdir)
+  if (m4_pcbdir) {
     fprintf (f, "(define gsch2pcb:pcb-m4-dir \"%s\")\n", m4_pcbdir);
+  }
 
-  if (m4_files)
+  if (m4_files) {
     fprintf (f, "(define gsch2pcb:m4-files \"%s\")\n", m4_files);
+  }
 
   fprintf (f, "(define gsch2pcb:use-m4 %s)\n", use_m4 == TRUE ? "#t" : "#f");
 
