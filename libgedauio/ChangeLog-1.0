@@ -3,6 +3,8 @@
     * src/functions: include config.h in:
 
           * src/functions/geda_keyboard.c
+          * src/functions/geda_marshal.c
+
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 

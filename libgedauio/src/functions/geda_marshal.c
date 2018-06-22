@@ -1,3 +1,7 @@
+#ifdef HAVE_CONFIG_H
+#include "../../../config.h"
+#endif
+
 #include <geda/geda.h>
 #include <glib.h>
 #include <glib-object.h>
