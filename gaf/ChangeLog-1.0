@@ -1,3 +1,8 @@
+2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/shell.c: Seperate scheme global strings required for readline and
+      only includein compilation if MINGW32 is not defined.
+
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/export.c: Add short option for no-color.

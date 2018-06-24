@@ -68,18 +68,24 @@ PACKAGE_BUGREPORT);
 }
 
 /* Some symbols we need */
-SCM_SYMBOL (sym_activate_readline, "activate-readline");
 SCM_SYMBOL (sym_begin,             "begin");
 SCM_SYMBOL (sym_cons,              "cons");
 SCM_SYMBOL (sym_eval_string,       "eval-string");
-SCM_SYMBOL (sym_ice_9,             "ice-9");
 SCM_SYMBOL (sym_load,              "load");
 SCM_SYMBOL (sym_load_path,         "%load-path");
 SCM_SYMBOL (sym_quit,              "quit");
-SCM_SYMBOL (sym_readline,          "readline");
 SCM_SYMBOL (sym_set_x,             "set!");
+
+/* readline is not yet supported for MinGW builds */
+#ifndef __MINGW32__
+
+SCM_SYMBOL (sym_activate_readline, "activate-readline");
+SCM_SYMBOL (sym_ice_9,             "ice-9");
+SCM_SYMBOL (sym_readline,          "readline");
 SCM_SYMBOL (sym_top_repl,          "top-repl");
 SCM_SYMBOL (sym_use_modules,       "use-modules");
+
+#endif /* __MINGW32__ */
 
 static void cmd_shell_impl (void *data, int argc, char **argv)
 {
