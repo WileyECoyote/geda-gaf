@@ -6,7 +6,7 @@
           * src/globals.c
 
     * src/gsymcheck.c: Revise main_prog to include the filename in the error
-      output message.
+      output message and also write the error to the geda_log.
 
     * src/i_vars.c: Use relative path to include config.h.
 
