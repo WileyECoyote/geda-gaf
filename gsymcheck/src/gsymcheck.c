@@ -122,7 +122,7 @@ static void main_prog(void *closure, int argc, char *argv[])
       geda_struct_page_delete_list(pr_current);
       gsymcheck_quit();
       log_destiny = STDOUT_TTY;
-      fprintf(stderr, "%s\n", err->message);
+      fprintf(stderr, "%s <%s>\n", err->message, filename);
       g_error_free (err);
       exit(2);
     }

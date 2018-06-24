@@ -2,6 +2,9 @@
 
     * src/g_rc.c: Include config.h required by libgeda headers.
 
+    * src/gsymcheck.c: Revise main_prog to include the filename in the error
+      output message.
+
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_vars.c: Include config.h required by libgeda headers.
