@@ -53,6 +53,7 @@ SCM buffer_ ## name ## number(SCM rest)             \
   GEDA_FREE (status_msg_str);                          \
   return SCM_BOOL_T;                                \
 }
+
 #define DEFINE_BUFFER_MENU_FUNC(name, number)       \
 SCM buffer_ ## name ## number ##_menu(SCM rest)     \
 {                                                   \
@@ -63,6 +64,7 @@ SCM buffer_ ## name ## number ##_menu(SCM rest)     \
   GEDA_FREE (status_msg_str);                          \
   return SCM_BOOL_T;                                \
 }
+
 #define DEFINE_BUFFER_FUNCS(name, number)           \
         DEFINE_BUFFER_KEY_FUNC(name, number)        \
         DEFINE_BUFFER_MENU_FUNC(name, number)
