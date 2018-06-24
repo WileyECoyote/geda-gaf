@@ -1,11 +1,14 @@
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/g_rc.c: Include config.h required by libgeda headers.
+    * src/: Include config.h required by libgeda headers in:
+
+          * src/g_rc.c
+          * src/globals.c
 
     * src/gsymcheck.c: Revise main_prog to include the filename in the error
       output message.
 
-    * src\i_vars.c: Use relative path to include config.h.
+    * src/i_vars.c: Use relative path to include config.h.
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 

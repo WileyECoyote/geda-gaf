@@ -24,6 +24,8 @@
  * MA 02111-1301 USA
  */
 
+#include "../../config.h"
+
 #ifndef LIBGEDA_H
 #include <geda/geda.h>
 #endif
