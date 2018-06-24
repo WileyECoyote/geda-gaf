@@ -1,3 +1,8 @@
+2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include\geda\geda_types.h: Revise conditional directive to define DWORD
+      if DWORD is not defined instead of if not OS_WIN32.
+
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * .gitignore: Add exe extension to globally ignore Windows executables.

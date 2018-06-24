@@ -47,7 +47,7 @@ typedef enum { FALSE, TRUE } Boolean;
 
 #endif
 
-#ifndef OS_WIN32
+#ifndef DWORD
 typedef unsigned long DWORD;
 #endif
 
