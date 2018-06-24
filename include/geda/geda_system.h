@@ -28,7 +28,7 @@
  * @{\par This group contains system related defines
  *   \ingroup (geda-globals)
  */
-#if defined(__linux__) || defined(UNIX) || defined(__MINGW32__)
+#if defined(__linux__) || defined(UNIX)
 
 #define DIR_SEPARATOR 0x2F
 #define DIR_SEPARATOR_S "/"
@@ -36,7 +36,7 @@
 #define SEARCHPATH_SEPARATOR ':'
 #define SEARCHPATH_SEPARATOR_S ":"
 
-#elif defined(OS_WIN32_NATIVE) || defined(_WIN32)
+#elif defined(OS_WIN32_NATIVE) || defined(_WIN32) || defined(__MINGW32__)
 
 /* On Win32, the directory separator is the backslash, and the search path
  * separator is the semicolon. Note that also the (forward) slash works as
