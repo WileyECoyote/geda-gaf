@@ -3,6 +3,8 @@
     * src/geda/geda_config.c: Un-replace geda_strconcat with g_build_filename in
       eda_config_get_context_for_file, that were changed on 06/09.
 
+    * src\guile\g_rc_parse.c: Revise g_rc_parse_local to make a copy of getcwd.
+
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext_priv.h: Do not define libintl_bindtextdomain on MinGw

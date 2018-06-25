@@ -411,7 +411,11 @@ bool g_rc_parse_local (const char *rcname, const char *path, GError **err)
 
 #else
 
-    dir = getcwd (0,0);
+    char *cwd;
+
+    cwd = getcwd (0,0);
+    dir = strcpy (&buffer[0], cwd);
+    free(cwd);
 
 #endif
 
