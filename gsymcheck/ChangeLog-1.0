@@ -2,6 +2,9 @@
 
     * src/globals.c: Remove conditional inclusion of libgeda.h
 
+    * src/gsymcheck.c: Revise while loop in main_prog to set the exit
+      code and break out of file loop instead of calling exit().
+
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Include config.h required by libgeda headers in:

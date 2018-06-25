@@ -76,6 +76,8 @@ static void main_prog(void *closure, int argc, char *argv[])
   fprintf(stderr, "This is the MINGW32 port.\n");
 #endif
 
+  exit_status = 0;
+
   argv_index = parse_commandline(argc, argv);
   cwd        = g_get_current_dir();
 
@@ -119,13 +121,11 @@ static void main_prog(void *closure, int argc, char *argv[])
 
       /* Not being able to load a file is apparently a fatal error */
       geda_log ("%s <%s>\n", err->message, filename);
-      GEDA_FREE(cwd);
-      geda_struct_page_delete_list(pr_current);
-      gsymcheck_quit();
       log_destiny = STDOUT_TTY;
       fprintf(stderr, "%s <%s>\n", err->message, filename);
       g_error_free (err);
-      exit(2);
+      exit_status = 2;
+      break;
     }
     else {
       geda_log ("%s \"%s\"\n", _("Loaded file"), filename);
@@ -147,10 +147,13 @@ static void main_prog(void *closure, int argc, char *argv[])
   geda_struct_page_print_all(pr_current);
 #endif
 
-  exit_status = s_check_all(pr_current);
+  if (!exit_status) {
 
-  if (!exit_status  && !quiet_mode && !verbose_mode) {
-    u_log_message("\n");
+    exit_status = s_check_all(pr_current);
+
+    if (!exit_status  && !quiet_mode && !verbose_mode) {
+      u_log_message("\n");
+    }
   }
 
   geda_struct_page_delete_list(pr_current);
