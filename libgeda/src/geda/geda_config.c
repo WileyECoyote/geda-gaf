@@ -835,14 +835,14 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
       cfg_name = geda_strdup(basename(ptr));
       root     = eda_config_find_project_root (cwd, cfg_name);
-      file     = geda_strconcat(root, DIR_SEPARATOR_S, cfg_name, NULL);
+      file     = g_build_filename(root, cfg_name, NULL);
       ptr      = dirname (ptr);                        /* strip the filename */
 
       g_free(cfg_name);
     }
     else {
       root = eda_config_find_project_root (ptr, LOCAL_CONFIG_FILE);
-      file = geda_strconcat(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE, NULL);
+      file = g_build_filename(root, LOCAL_CONFIG_FILE, NULL);
     }
 
     /* If there is already a context available for this file, return that.
