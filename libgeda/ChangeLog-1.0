@@ -10,6 +10,9 @@
 
     * tests: Include config.h in all tests modules.
 
+    * tests\test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
+      nothing on Windows machines.
+
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext_priv.h: Do not define libintl_bindtextdomain on MinGw
