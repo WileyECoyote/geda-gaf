@@ -277,7 +277,7 @@ typedef enum {
         ZoomGain,
 
 /* Text for Switch Controls */
-        AutoLoad,
+        AutoLoadLast,
         AutoSave,
         ClassicWheel,
         ConsolidateNets,

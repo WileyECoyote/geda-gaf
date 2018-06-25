@@ -1,3 +1,8 @@
+2018-06-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include\x_settings.h: Rename enumeration AutoLoad -> AutoLoadLast to
+      avoid conflict with foreign header.
+
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\Makefile.am: Remove AM_CFLAGS from snarf_cpp_opts, since gschem_CFLAGS

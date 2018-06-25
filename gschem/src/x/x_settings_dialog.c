@@ -346,7 +346,7 @@ static GtkWidget *UndoBufferSizeSpin;
 static GtkWidget *ZoomGainSpin;
 
 /* The Switches */
-static GtkWidget *AutoLoadSwitch=NULL;
+static GtkWidget *AutoLoadLastSwitch=NULL;
 static GtkWidget *AutoSaveSwitch=NULL;
 static GtkWidget *ClassicWheelSwitch=NULL;
 static GtkWidget *ConsolidateNetsSwitch=NULL;
@@ -1946,7 +1946,7 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
    switch ( response ) {
-   case AutoLoad:
+   case AutoLoadLast:
      break;
 
    case AutoSave:
@@ -2175,7 +2175,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
 /* The Switches Alphabetically (31) */
 
-  SetSwitch(AutoLoad, auto_load_last);
+  SetSwitch(AutoLoadLast, auto_load_last);
   SetSwitch(AutoSave, geda_toplevel_get_auto_save_interval(toplevel));
   SetSwitch(EnableUndo, w_current->undo_control);
   SetSwitch(ClassicWheel, w_current->scroll_wheel);
@@ -2360,7 +2360,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
            GTK_SWITCH (AutoOptionsRow1_hbox, AutoSave, 48, TRUE)
            GTK_NUMERIC_SPIN (AutoOptionsRow1_hbox, AutoSaveInterval, 38, 180, 60, 3600)
        HSECTION (GeneralAutoOptions_vbox, AutoOptionsRow2)    /* Grp 1 Row 2 */
-           GTK_SWITCH(AutoOptionsRow2_hbox, AutoLoad, 7, TRUE);
+           GTK_SWITCH(AutoOptionsRow2_hbox, AutoLoadLast, 7, TRUE);
            GTK_TEXT_ENTRY(AutoOptionsRow2_hbox, UntitledName, 30, DEFAULT_UNTITLED_NAME)
      VPSECTION (GeneralPrefTab_vbox, GeneralOptions, 0)  /* GT Grp 2 General Options */
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow1)     /* Grp 2 Row 1 */
@@ -2815,7 +2815,7 @@ void GatherSettings(GschemToplevel *w_current) {
   g_free(tmpstr);
 
 /* The Switches Alphabetically (31) */
-             auto_load_last             = GET_SWITCH_STATE (AutoLoadSwitch);
+             auto_load_last             = GET_SWITCH_STATE (AutoLoadLastSwitch);
   w_current->bus_ripper_rotation        = GET_SWITCH_STATE (RipperRotationSwitch);
   w_current->bus_ripper_type            = GET_SWITCH_STATE (RipperTypeSwitch);
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);
