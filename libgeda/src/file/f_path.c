@@ -161,14 +161,14 @@ int geda_file_path_create(const char *path, mode_t mode)
       copypath = geda_strdup(path);
       pp       = copypath;
 
-      while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0) {
+      while (status == NO_ERROR && (sp = strchr(pp, DIR_SEPARATOR)) != 0) {
 
         if (sp != pp) {
 
           /* Neither root nor double slash in path */
           *sp = '\0';
            status = f_create_dir(copypath, mode);
-          *sp = '/';
+          *sp = DIR_SEPARATOR;
         }
         pp = sp + 1;
       }

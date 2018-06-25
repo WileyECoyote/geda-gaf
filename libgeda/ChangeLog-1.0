@@ -6,6 +6,8 @@
     * src/file/f_get.c: Replace geda_strconcat with g_build_filename in
       geda_file_get_data_filespec.
 
+    * src/file/f_path.c: Replace in-line constants with DIR_SEPARATOR macro.
+
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_config.c: Revise eda_config_find_project_root to check for
