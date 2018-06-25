@@ -1,6 +1,9 @@
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include\geda\geda_types.h: Revise conditional directive to define DWORD
+    * include/geda/geda_system.h: Revise conditional directives for directory
+      seperators; use backslashes instead of forward slashes when MINGW32 defined.
+
+    * include/geda/geda_types.h: Revise conditional directive to define DWORD
       if DWORD is not defined instead of if not OS_WIN32.
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
