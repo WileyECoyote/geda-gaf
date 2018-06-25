@@ -230,33 +230,45 @@ void geda_file_path_free (void) {
  *
  * \returns directory components of \a filepath.
  */
-char *geda_file_path_get_dirname (const char *filepath)
+char *geda_file_path_get_dirname (const char *filespec)
 {
   register char *path;
 
-  if (filepath == NULL) {
+  if (filespec == NULL) {
     path = NULL;
   }
-  else if (g_file_test (filepath, G_FILE_TEST_IS_DIR)) {
-    path = geda_strdup(filepath);
+  else if (g_file_test (filespec, G_FILE_TEST_IS_DIR)) {
+    path = geda_strdup(filespec);
   }
   else {
 
+    char *filepath;
     unsigned int  len;
 
-    path = strrchr (filepath, G_DIR_SEPARATOR);
+    filepath = geda_strdup(filespec);
 
 #if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 
     const char *ptr;
 
-    ptr = strrchr (filepath, '/');
+   /* Replace any forward slashes with DIR_SEPARATOR */
+    if (strrchr (filepath, '/')) {
 
-    if (path == NULL || (ptr != NULL && ptr > path)) {
-      path = geda_strdup(ptr);
+      int i;
+
+      len = strlen(filepath);
+      ptr = strrchr (filepath, '/');
+
+      for (i = 0; i < len; i++) {
+        if (filepath[i] == '/') {
+          filepath[i] = DIR_SEPARATOR;
+        }
+      }
     }
 
 #endif
+
+    path = strrchr (filepath, DIR_SEPARATOR);
 
     if (!path) {
 
@@ -278,6 +290,7 @@ char *geda_file_path_get_dirname (const char *filepath)
 
 #endif
 
+      GEDA_FREE(filepath);
       return geda_strdup (root_path);
     }
 

@@ -1,6 +1,7 @@
 2018-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/file/f_path.c: Remove register keyword in geda_file_path_get_dirname.
+    * src/file/f_path.c: Remove register keyword in geda_file_path_get_dirname
+      and replace forward slashes with DIR_SEPARATOR on MinGW 32 platforms.
 
     * src/geda/geda_config.c: Un-replace geda_strconcat with g_build_filename in
       eda_config_get_context_for_file, that were changed on 06/09.
