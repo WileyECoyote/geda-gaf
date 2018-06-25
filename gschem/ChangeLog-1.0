@@ -5,6 +5,8 @@
     * include/x_settings.h: Rename enumeration AutoLoad -> AutoLoadLast to
       avoid conflict with foreign header.
 
+    * src/x/x_misc.c: Pass the address of error in x_show_uri when OS_WIN32.
+
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove AM_CFLAGS from snarf_cpp_opts, since gschem_CFLAGS

@@ -122,7 +122,7 @@ x_show_uri (const char *uri)
 
 #if defined (OS_WIN32) && !defined (OS_CYGWIN)
 
-  if (!show_uri__win32 (uri, error)) {
+  if (!show_uri__win32 (uri, &error)) {
     if (verbose_mode) {
       const char *log_msg = _("Failed to open");
       u_log_message("%s <%s>, %s\n", log_msg, uri, error->message);
