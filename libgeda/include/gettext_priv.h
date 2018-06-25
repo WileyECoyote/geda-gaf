@@ -65,8 +65,14 @@
 
 #endif
 
+/* MinGw can have a circuilar dependency issue where by the toplevel gettext
+ * header reference a macro defined in the host gettext header and the macro
+ * would call this macro, so block on MinGw32.
+ */
+#ifndef __MINGW32__
 #if !defined(libintl_bindtextdomain)
 # define libintl_bindtextdomain bindtextdomain
+#endif
 #endif
 
 /* A pseudo function call that serves as a marker for the automated
