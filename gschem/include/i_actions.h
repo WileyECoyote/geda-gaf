@@ -54,6 +54,11 @@
  *   strings should be chosen carefully.
  *
  */
+
+ #if defined(OS_WIN32_NATIVE) || defined(_WIN32) || defined(__MINGW32__)
+ #  undef FILE_OPEN /* ..\include\windef.h: */
+ #endif
+
 #define QUOTE_SYMBOL(symbol) #symbol
 #define ACTION(...) QUOTE_SYMBOL(__VA_ARGS__)
 
