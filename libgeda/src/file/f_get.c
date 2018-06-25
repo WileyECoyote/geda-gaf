@@ -494,12 +494,10 @@ char *geda_file_get_data_filespec (const char *filename)
 
           char *cwd;
     const char *directory;
-    const char *seperator;
 
     /* initialize variables */
     cwd       = getcwd(0,0);
     filespec  = NULL;
-    seperator = DIR_SEPARATOR_S;
 
     /* Look for file in current directory */
     if (!cwd) {
@@ -507,7 +505,7 @@ char *geda_file_get_data_filespec (const char *filename)
     }
     else {
 
-      filespec = geda_strconcat (cwd, seperator, filename, NULL);
+      filespec = g_build_filename (cwd, filename, NULL);
       free (cwd);
 
       if ((access (filespec, R_OK)) != 0) {
@@ -520,7 +518,7 @@ char *geda_file_get_data_filespec (const char *filename)
     if (!filespec) {
 
       directory = geda_user_config_path();
-      filespec  = geda_strconcat (directory, seperator, filename, NULL);
+      filespec  = g_build_filename (directory, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */
@@ -532,7 +530,7 @@ char *geda_file_get_data_filespec (const char *filename)
     if (!filespec) {
 
       directory = geda_sys_data_path();
-      filespec  = geda_strconcat (directory, seperator, filename, NULL);
+      filespec  = g_build_filename (directory, filename, NULL);
 
       if ((access (filespec, R_OK)) != 0) {
         /* Does not point to accessible file, release string */
