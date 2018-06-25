@@ -24,6 +24,8 @@
  *  Date Contributed: February, 6th, 2016
  */
 
+#include "../../config.h"
+
 #include <glib.h>
 #include <libgeda.h>
 

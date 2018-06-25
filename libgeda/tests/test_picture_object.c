@@ -24,6 +24,8 @@
  *  Date Contributed: June, 28th, 2016
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 #include <prototype_priv.h>
 #include <version.h>

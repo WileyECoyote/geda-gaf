@@ -24,6 +24,8 @@
  *  Date Contributed: February, 1st, 2016
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 
 #include "test-suite.h"

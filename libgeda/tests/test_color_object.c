@@ -24,6 +24,8 @@
  *  Date Contributed: June, 06th, 2018
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 
 #include <o_types.h>

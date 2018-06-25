@@ -24,6 +24,8 @@
  *  Date Contributed: January, 30th, 2016
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 #include <geda_colors.h>
 

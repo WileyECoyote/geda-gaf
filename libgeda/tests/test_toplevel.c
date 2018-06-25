@@ -24,6 +24,8 @@
  *  Date Contributed: December, 1st, 2016
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 
 #define TOBJECT "GedaToplevel"

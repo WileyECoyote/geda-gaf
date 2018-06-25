@@ -23,6 +23,7 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: April, 27th, 2016
  */
+#include "../../config.h"
 
 #include <libgeda.h>
 #include <prototype_priv.h>

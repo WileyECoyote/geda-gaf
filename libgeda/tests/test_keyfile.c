@@ -24,6 +24,8 @@
  *  Date Contributed: December, 4th, 2016
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 
 #include "test_parsecmd.h"

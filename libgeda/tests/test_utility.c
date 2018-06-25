@@ -24,6 +24,8 @@
  *  Date Contributed: April, 1st, 2016
  */
 
+#include "../../config.h"
+
 #include <libgeda.h>
 #include <stdlib.h>
 #include <errno.h>
