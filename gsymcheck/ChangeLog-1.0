@@ -1,3 +1,7 @@
+2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/globals.c: Remove conditional inclusion of libgeda.h
+
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Include config.h required by libgeda headers in:

@@ -26,9 +26,7 @@
 
 #include "../../config.h"
 
-#ifndef LIBGEDA_H
 #include <geda/geda.h>
-#endif
 
 char *rc_filename = 0L;
 
