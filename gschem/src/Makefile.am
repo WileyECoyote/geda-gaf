@@ -16,7 +16,7 @@ INC_LIBCOLOR = -I$(top_srcdir)/libgedacolor/include
 INC_LIBDRAW  = -I$(top_srcdir)/libgedadraw/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA) \
-		$(INC_LIBCAIRO) $(INC_LIBCOLOR) $(INC_LIBDRAW)
+		        $(INC_LIBCAIRO) $(INC_LIBCOLOR) $(INC_LIBDRAW)
 
 bin_PROGRAMS  = gschem
 
@@ -69,7 +69,8 @@ LIBTOOL          = @LIBTOOL@ --silent
 
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
-snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
+
+snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(gschem_CFLAGS) \
 				   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
 
 .c.x:

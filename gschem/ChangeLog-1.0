@@ -1,3 +1,8 @@
+2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\Makefile.am: Remove AM_CFLAGS from snarf_cpp_opts, since gschem_CFLAGS
+      already includes AM_CFLAGS.
+
 2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\guile\g_keys.c: Include i_actions.h and x_window.h before gschem.h.
