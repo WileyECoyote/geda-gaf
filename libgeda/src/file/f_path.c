@@ -242,7 +242,7 @@ char *geda_file_path_get_dirname (const char *filepath)
   }
   else {
 
-    register unsigned int  len;
+    unsigned int  len;
 
     path = strrchr (filepath, G_DIR_SEPARATOR);
 
