@@ -5,6 +5,9 @@
     * src/gsymcheck.c: Revise while loop in main_prog to set the exit
       code and break out of file loop instead of calling exit().
 
+    * tests/runtest.sh: Add --strip-trailing-cr option to diff to allow
+      testing on host platforms using CR/LF pairs, i.e. MinGW.
+
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Include config.h required by libgeda headers in:

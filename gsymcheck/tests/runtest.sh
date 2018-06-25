@@ -35,7 +35,10 @@ cat ${tmpfile} | \
 	grep -v '^$' > ${new}
 rm -f ${tmpfile}
 
-diff "${ref}" "${new}"
+# The reference output should not have CR/LF pairs but the generated
+# test output can on some platforms, we could remove then or pass the
+# --strip-trailing-cr option to diff, like this...
+diff --strip-trailing-cr "${ref}" "${new}"
 status=$?
 
 test ${DEBUG} || rm -rf $rundir
