@@ -1,3 +1,7 @@
+2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Remove stray semicolon in show_handler.
+
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_basic.c: Fix reference to pointer in function i_basic_show_uri.

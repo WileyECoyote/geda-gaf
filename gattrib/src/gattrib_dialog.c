@@ -249,7 +249,7 @@ static void show_handler (GtkWidget *widget)
 
     setup_keyfile ();
 
-    if ( GEDA_IS_KEYFILE(dialog_geometry) ); {
+    if ( GEDA_IS_KEYFILE(dialog_geometry) ) {
 
       if (geda_keyfile_has_group (dialog_geometry, group_name)) {
         g_signal_emit (dialog, gattrib_dialog_signals[ GEOMETRY_RESTORE ], 0,
