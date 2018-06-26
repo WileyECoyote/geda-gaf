@@ -350,7 +350,9 @@ char *geda_file_path_get_dirname (const char *filespec)
     path = GEDA_MEM_ALLOC (len + 1);
     memmove (path, filepath, len);
     path[len] = 0;
+    GEDA_FREE(filepath);
   }
+
   return path;
 }
 

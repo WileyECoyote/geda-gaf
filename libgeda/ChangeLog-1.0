@@ -1,5 +1,7 @@
 2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_path.c: Free filepath string in geda_file_path_get_dirname.
+
     * tests/test_file.c: Wrap checks using symlink with conditional and do not
       compile on MinGW32 platforms because MinGw does not have symlink.
 
