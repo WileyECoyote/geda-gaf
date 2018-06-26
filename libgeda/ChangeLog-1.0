@@ -3,7 +3,8 @@
     * src/file/f_path.c: Free filepath string in geda_file_path_get_dirname.
 
     * tests/test_file.c: Wrap checks using symlink with conditional and do not
-      compile on MinGW32 platforms because MinGw does not have symlink.
+      compile on MinGW32 platforms because MinGw does not have symlink. Add
+      conditional directives for realpath in setup_environment.
 
     * tests/test_utility.c: Wrap checks for test_string_strsize with a NULL
       argument with conditional and do not check on MinGW32 platforms because

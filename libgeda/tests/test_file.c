@@ -1551,7 +1551,15 @@ void setup_environment(void)
 
   path = g_build_filename(test_dir, "../..", NULL);
 
+#if HAVE_REALPATH
+
   top_dir = realpath(path, NULL);
+
+#else
+
+  top_dir = g_build_filename(src_dir, "../..", NULL);
+
+#endif
 
   setenv ("GEDADATA", top_dir, TRUE);
 
