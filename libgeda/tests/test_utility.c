@@ -1729,7 +1729,7 @@ int test_strings (void)
     }
   }
 
-  /* === Function 212: geda_utility_string_strsubst === */
+  /* === Function 22: geda_utility_string_strsubst === */
 
   char str_22[32] = {"The quick Brown fox\0"};
 
