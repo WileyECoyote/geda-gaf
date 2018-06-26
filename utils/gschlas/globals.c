@@ -28,6 +28,7 @@
  * MA 02110-1301 USA
  */
 
+#include "../../config.h"
 #include <geda/geda.h>
 
 /* command line arguments */
