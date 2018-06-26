@@ -1468,10 +1468,16 @@ file_links_4_test(bool create)
   geda_remove_file(filename);
 
   if (create) {
+
+#ifndef __MINGW32__
+
     if (symlink(LINK2NOWHERE, filename)) {
       fprintf(stderr, "%s unexpected failure: <%s> %s\n", __func__, filename, strerror(errno));
       exit (1);
     }
+
+#endif
+
   }
   g_free(filename);
 
@@ -1480,10 +1486,16 @@ file_links_4_test(bool create)
   geda_remove_file(filename);
 
   if (create) {
+
+#ifndef __MINGW32__
+
     if (symlink(LINK2SOMEWHERE, filename)) {
       fprintf(stderr, "%s unexpected failure: <%s> %s\n", __func__, filename, strerror(errno));
       exit (1);
     }
+
+#endif
+
   }
   g_free(filename);
 

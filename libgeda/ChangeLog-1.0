@@ -1,3 +1,8 @@
+2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Wrap checks using symlink with conditional and do not
+      compile on MinGW32 platforms be MinGw does not have symlink.
+
 2018-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Remove register keyword in geda_file_path_get_dirname
