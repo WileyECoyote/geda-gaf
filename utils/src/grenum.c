@@ -209,7 +209,7 @@ int main(int argc, char *argv[])
                 default:
                   if ((flags&GAP_DETECTED)==GAP_DETECTED) {
                     for (i=refdes_db[c].value+1; seek_value(c, infile, i, refdes_db)!=VALUE_NOT_FOUND; ++i);
-                         refdes.value=refdes_db[c].value=i;
+                    refdes.value=refdes_db[c].value=i;
                   }
                   else {
                     refdes.value=++refdes_db[c].value; /* renumber */
@@ -226,8 +226,10 @@ int main(int argc, char *argv[])
       }
 
       { /* Finally, write the refdes line to the output file */
-      if (fputs(buff,outfile)==-1)
-        perror("grenum: could not write to tmp file");
+        if (fputs(buff,outfile)==-1) {
+          perror("grenum: could not write to tmp file");
+        }
+
         fclose(infile);
         fclose(outfile);
         return FILE_OP_ERROR;
