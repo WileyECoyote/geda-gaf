@@ -899,7 +899,8 @@ main(int argc, char **argv)
   parse_header(fd1,fd2);
 
   while(parse_block(fd1,fd2));
-          fprintf(stderr,"\n Normal End\n");
+
+  fprintf(stderr,"\n Normal End\n");
 
   return(0);
 }
