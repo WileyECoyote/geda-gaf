@@ -1655,12 +1655,17 @@ int test_strings (void)
 
   /* === Function 20: geda_utility_string_strsize === */
 
+/* The vsnprintf on MinGW32 platforms does catch a NULL argument */
+#ifndef __MINGW32__
+
   count = test_string_strsize (NULL, str_120);
 
   if (count >= 0) {
     fprintf(stderr, "FAILED: (U062000A) geda_strstr_rep <%d>\n", count);
     result++;
   }
+
+#endif
 
   count = test_string_strsize ("", str_120);
 

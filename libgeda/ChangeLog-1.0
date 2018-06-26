@@ -1,7 +1,11 @@
 2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_file.c: Wrap checks using symlink with conditional and do not
-      compile on MinGW32 platforms be MinGw does not have symlink.
+      compile on MinGW32 platforms because MinGw does not have symlink.
+
+    * tests/test_utility.c: Wrap checks for test_string_strsize with a NULL
+      argument with conditional and do not check on MinGW32 platforms because
+      the vsnprintf on MinGW32 platforms does catch a NULL argument.
 
 2018-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
