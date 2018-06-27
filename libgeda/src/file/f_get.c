@@ -106,7 +106,34 @@ char *geda_file_get_autosave_filename (const char *filename)
 const char *geda_file_get_basename(const char *path)
 {
   if (path) {
-    const char *base = strrchr(path, DIR_SEPARATOR);
+
+    const char *base;
+
+#if defined (OS_WIN32_NATIVE)
+
+    int i, len;
+
+    base = NULL;
+    len  = strlen(path);
+
+    for (i = len; i > 0; i--) {
+
+      if (path[i] == '/') {
+        base = &path[i];
+        break;
+      }
+      else if (path[i] == DIR_SEPARATOR) {
+        base = &path[i];
+        break;
+      }
+    }
+
+#else
+
+    base = strrchr(path, DIR_SEPARATOR);
+
+#endif
+
     return base ? base + 1 : path;
   }
   return NULL;

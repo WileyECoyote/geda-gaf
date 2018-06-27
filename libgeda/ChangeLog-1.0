@@ -1,5 +1,9 @@
 2018-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_path.c: Revise geda_file_get_basename to compile in code for
+      Win32 host to check for either type of directory seperator when reverse
+      searching the path specifier.
+
     * src/file/f_sys.c: Utilize geda_utility_string_strstr_rep in geda_file_copy
       to replace forward slashes with backslashes on Win32 host.
 
