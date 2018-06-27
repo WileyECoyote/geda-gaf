@@ -530,7 +530,14 @@ int test_get (void)
 
   if (geda_get_file_contents(filename_05, &buffer_05, &n_byte, NULL)) {
 
-    if (n_byte != 13) {
+/* Account for the extra CR in the Win32 file */
+#if defined (OS_WIN32_NATIVE)
+#define BYTE_COUNT_05 14
+#else
+#define BYTE_COUNT_05 13
+#endif
+
+    if (n_byte != BYTE_COUNT_05) {
       fprintf(stderr, "FAILED: (F020501A) n_byte <%zu>\n", n_byte);
       result++;
     }

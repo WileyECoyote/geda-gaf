@@ -11,7 +11,9 @@
 
     * tests\test_file.c: Check the result of geda_file_copy used for creating the
       suedo backups and report on negative results. Redefine expected_0101 and
-      expected_0102 using DIR_SEPARATOR_S instead of forward slashes.
+      expected_0102 using DIR_SEPARATOR_S instead of forward slashes. REvise check
+      for geda_get_file_contents to use a platform specific byte count, to account
+      for the CR on Win32 host.
 
 2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
