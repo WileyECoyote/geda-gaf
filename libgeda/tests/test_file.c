@@ -608,10 +608,19 @@ int test_get (void)
     result++;
   }
   else {
-    if (!strstr(filename_06, "/config.h")) {
+    if (!strstr(filename_06, "config.h")) {
       fprintf(stderr, "FAILED: (F020602B) geda_get_data_spec %s\n", filename_06);
       result++;
     }
+    else {
+      /* Above check allowed for the path seperate per platform, the real
+       * requirement is that filename_06 points to the file */
+      if (!g_file_test (filename_06, G_FILE_TEST_EXISTS)) {
+        fprintf(stderr, "FAILED: (F020602C) geda_get_data_spec %s\n", filename_06);
+        result++;
+      }
+    }
+
     free(filename_06);
   }
 

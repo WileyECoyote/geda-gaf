@@ -13,7 +13,8 @@
       suedo backups and report on negative results. Redefine expected_0101 and
       expected_0102 using DIR_SEPARATOR_S instead of forward slashes. REvise check
       for geda_get_file_contents to use a platform specific byte count, to account
-      for the CR on Win32 host.
+      for the CR on Win32 host. Remove forward slash from "libgeda"  in F020602B,
+      and add F020602C to verify the path of "config.h" was valid.
 
 2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
