@@ -159,7 +159,14 @@ int geda_file_path_create(const char *path, mode_t mode)
       char *sp;
 
       copypath = geda_strdup(path);
-      pp       = copypath;
+
+#if defined (OS_WIN32_NATIVE)
+
+       geda_utility_string_strstr_rep (copypath, "/", DIR_SEPARATOR_S);
+
+#endif
+
+      pp  = copypath;
 
       while (status == NO_ERROR && (sp = strchr(pp, DIR_SEPARATOR)) != 0) {
 
@@ -175,7 +182,7 @@ int geda_file_path_create(const char *path, mode_t mode)
 
       if (status == NO_ERROR) {
 
-        status = f_create_dir(path, mode);
+        status = f_create_dir(copypath, mode);
 
       }
 
@@ -324,6 +331,7 @@ char *geda_file_path_get_dirname (const char *filespec)
       while (*ptr && !G_IS_DIR_SEPARATOR (*ptr)) ptr++;
 
       if (ptr == path + 1) {
+
         len = (unsigned int) strlen (filepath) + 1;
         path = GEDA_MEM_ALLOC (len + 1);
         strcpy (path, filepath);
