@@ -382,7 +382,7 @@ int test_get (void)
 
   /* === Function 01:  geda_file_get_autosave_filename === */
 
-  const char *expected_0101 = "./#" LINK2SOMEWHERE "#";
+  const char *expected_0101 = "." DIR_SEPARATOR_S "#" LINK2SOMEWHERE "#";
 
   /* LINK2SOMEWHERE is SYM_FILE without  the data/ prefix */
   string = geda_get_autosave_name(LINK2SOMEWHERE);
@@ -399,7 +399,7 @@ int test_get (void)
     free (string);
   }
 
-  const char *expected_0102 = "nowhere/tests/data/#no_file.sch#";
+  const char *expected_0102 = "nowhere" DIR_SEPARATOR_S "tests" DIR_SEPARATOR_S "data" DIR_SEPARATOR_S "#no_file.sch#";
 
   string = geda_get_autosave_name(LINK2NOWHERE);
 
