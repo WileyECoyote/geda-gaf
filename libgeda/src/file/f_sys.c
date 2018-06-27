@@ -111,11 +111,11 @@ int geda_file_copy(const char *source, const char *target)
   status = errno = 0;
   buffer = malloc(DISK_BUFFER_SIZE);
 
-  if(!buffer) {
+  if (!buffer) {
     geda_utility_log_system(_("%s: Memory Allocation Error!\n"), __func__);
     status = -1;
   }
-  else if(access(source, R_OK) != 0) { /* Check to see if input is readable */
+  else if (access(source, R_OK) != 0) { /* Check to see if input is readable */
     u_log_message(log_3SQ2, err_file, source, strerror(errno));
     free(buffer);
     status = -1;
@@ -143,7 +143,21 @@ int geda_file_copy(const char *source, const char *target)
 
 #endif
 
+#if defined (OS_WIN32_NATIVE)
+
+       char *new_target = geda_strdup (target);
+
+       geda_utility_string_strstr_rep (new_target, "/", DIR_SEPARATOR_S);
+
+       output = open (target, O_WRONLY | O_CREAT | O_EXCL, 0666);
+
+       GEDA_FREE (new_target);
+
+#else
+
       output = open(target, O_WRONLY | O_CREAT | O_EXCL, 0666);
+
+#endif
 
       if (output < 0) {
         status  = errno;

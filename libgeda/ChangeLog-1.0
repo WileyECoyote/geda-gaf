@@ -1,3 +1,8 @@
+2018-06-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_sys.c: Utilize geda_utility_string_strstr_rep in geda_file_copy
+      to replace forward slashes with backslashes on Win32 host.
+
 2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Free filepath string in geda_file_path_get_dirname.
