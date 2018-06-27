@@ -143,11 +143,15 @@ int test_file (void)
 
   char *auto_fname = geda_file_get_autosave_filename (source);
 
-  geda_file_copy(source, auto_fname);
-
-  if (!geda_file_has_active_autosave(source, &err)) {
-    fprintf(stderr, "FAILED: (F010202) file_has_autosave %s\n", auto_fname);
+  if (geda_file_copy(source, auto_fname)) {
+    fprintf(stderr, "FAILED: (F010202A) error copying file <%s>\n", auto_fname);
     result++;
+  }
+  else {
+    if (!geda_file_has_active_autosave(source, &err)) {
+      fprintf(stderr, "FAILED: (F010202B) file_has_autosave <%s>\n", auto_fname);
+      result++;
+    }
   }
 
   /* === Function 03: geda_file_open === */
