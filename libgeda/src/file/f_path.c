@@ -101,7 +101,7 @@ static char *user_config_path = NULL;
 static int f_create_dir(const char *path, mode_t mode)
 {
   struct stat stat_buf;
-  int         status = NO_ERROR;
+  int status = NO_ERROR;
 
   if (stat(path, &stat_buf) != 0) {
 
