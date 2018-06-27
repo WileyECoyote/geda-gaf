@@ -807,7 +807,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
       char last = path[strlen(path) - 1];
 
       /* Check if last char is NOT a directory seperator */
-      if (last != DIR_SEPARATOR_S[0]) {
+      if (!IS_DIR_SEPARATOR(last)) {
         ptr = geda_strdup(path);
       }
     }
