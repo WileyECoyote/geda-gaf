@@ -232,7 +232,11 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   cairo_set_matrix (w_current->cr, &render_mtx);
 
+#if WITH_LIBGEDADRAW
+
   x_draw_set_surface (w_current);
+
+#endif
 
   /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action && (w_current->event_state == MOVEMODE ||
@@ -245,7 +249,17 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
     if (!(o_current->dont_redraw || o_current->selected)) {
         geda_object_style_set_line_width(w_current->toplevel, o_current);
+
+#ifdef WITH_LIBGEDADRAW
+
         x_draw_object(w_current, o_current);
+
+#else
+
+        eda_renderer_draw (CairoRenderer, o_current);
+
+#endif
+
     }
   }
 
@@ -274,7 +288,16 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
         geda_object_style_set_line_width(w_current->toplevel, o_current);
 
+#ifdef WITH_LIBGEDADRAW
+
         x_draw_object(w_current, o_current);
+
+#else
+
+        eda_renderer_draw (CairoRenderer, o_current);
+
+#endif
+
         eda_renderer_draw_cues (renderer, o_current);
 
         if (CairoRenderer->draw_grips ) {

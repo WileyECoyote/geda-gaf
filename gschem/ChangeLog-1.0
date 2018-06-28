@@ -1,3 +1,8 @@
+2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_draw.cpp: Add directives to conditionally enable calls to
+      libgedadraw if WITH_LIBGEDADRAW is defined, which it's not.
+
 2018-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_actions.h: Undefine "FILE_OPEN" on Windows host builds.

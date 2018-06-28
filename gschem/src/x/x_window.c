@@ -87,7 +87,11 @@ void x_window_setup (GschemToplevel *w_current)
   /* Update allocation of canvas after restoring window geometry */
   i_window_set_viewport_size (w_current);
 
+#ifdef WITH_LIBGEDADRAW
+
   x_draw_initialize(w_current);
+
+#endif
 
   /* Load recent files list before calling x_menu_attach_recent_submenu */
   x_menu_recent_files_load();

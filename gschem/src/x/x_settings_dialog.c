@@ -1522,7 +1522,16 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
     char    strBuffer[256];
 
 
+#ifdef WITH_LIBGEDADRAW
+
     fonts = x_draw_get_font_list(NULL);
+
+#else
+
+    fonts = NULL;
+
+#endif
+
 
     if (fonts) {
 
@@ -1635,7 +1644,17 @@ void setup_font_name_combo(GschemToplevel *w_current, char *cur_font) {
     char *reduced;
 
     index   = 0;
+
+#ifdef WITH_LIBGEDADRAW
+
     reduced = x_draw_strip_font_provider(cur_font);
+
+#else
+
+    reduced = NULL;
+
+#endif
+
 
     if (reduced) {
 
@@ -2808,9 +2827,14 @@ void GatherSettings(GschemToplevel *w_current) {
   if (w_current->render_adaptor == CAIRO_ADAPTOR) {
     eda_renderer_set_font_name(CairoRenderer, tmpstr);
   }
+
+#ifdef WITH_LIBGEDADRAW
+
   else {
     x_draw_set_font (tmpstr, GET_SPIN_IVALUE (TextSizeSpin));
   }
+
+#endif
 
   g_free(tmpstr);
 

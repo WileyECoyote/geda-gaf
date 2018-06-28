@@ -88,7 +88,16 @@ int o_text_get_rendered_bounds (void *user_data, GedaObject *o_current,
     }
     else {
 
+
+#ifdef WITH_LIBGEDADRAW
+
       result =  x_draw_set_text_bounds(o_current);
+
+#else
+
+      result =  FALSE;
+
+#endif
 
       if (result) {
         *min_x = o_current->left;

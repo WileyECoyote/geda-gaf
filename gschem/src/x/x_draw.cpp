@@ -464,17 +464,25 @@ x_draw_initialize(GschemToplevel *w_current)
 
   font_string   = eda_config_get_string (cfg, group, "default-font-name", NULL);
 
+#ifdef WITH_LIBGEDADRAW
+
   font_name     = x_draw_strip_font_provider(font_string);
 
   RenderAdaptor = new EdaX11Render(font_name, w_current->text_size);
 
   RenderAdaptor->geda_draw_set_surface(w_current->cr, 5.5);
 
+  gschem_atexit(x_draw_shutdown, NULL);
+
+#else
+
+  RenderAdaptor =NULL;
+
+#endif
+
   GEDA_FREE(font_name);
 
   GEDA_FREE(font_string);
-
-  gschem_atexit(x_draw_shutdown, NULL);
 
   v_log_message("%s\n", _("done"));
 }
@@ -483,6 +491,12 @@ extern "C" void
 x_draw_shutdown(void *user_data)
 {
   v_log_message(_("Shutting down: Graphics Renderer Adaptor..."));
+
+#ifdef WITH_LIBGEDADRAW
+
   delete RenderAdaptor;
+
+#endif
+
   v_log_message("%s\n", _("Done, renderer is down"));
 }
