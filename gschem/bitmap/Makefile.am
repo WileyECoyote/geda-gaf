@@ -1,5 +1,5 @@
 
-bitmapdatadir = $(GEDADATADIR)/bitmap
+bitmapdatadir = $(GEDADATADIR)/bitmaps
 
 bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem_alignment_bottomcenter.png                      \

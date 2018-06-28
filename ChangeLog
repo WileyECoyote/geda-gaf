@@ -1,3 +1,8 @@
+2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/Makefile.am: Change the install target to "bitmaps" with an 's'
+      since this is where we look for them.
+
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_system.h: Revise conditional directives for directory

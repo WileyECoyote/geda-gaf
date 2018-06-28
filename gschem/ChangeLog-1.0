@@ -1,5 +1,7 @@
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmap/Makefile.am: Change the install target to "bitmaps" with an 's'.
+
     * src/x/x_draw.cpp: Add directives to conditionally enable calls to
       libgedadraw if WITH_LIBGEDADRAW is defined, which it's not.
 

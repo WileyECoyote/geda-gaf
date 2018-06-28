@@ -1,7 +1,7 @@
 
 # can use ls | tr '\n' '\n' >listing.txt
 
-GEDA_BITMAPS      = $(GEDADATADIR)/bitmap
+GEDA_BITMAPS      = $(GEDADATADIR)/bitmaps
 bitmapdatadir     = $(GEDA_BITMAPS)
 bitmapdata_16dir  = $(GEDA_BITMAPS)/16x16
 bitmapdata_22dir  = $(GEDA_BITMAPS)/22x22
