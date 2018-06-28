@@ -1,3 +1,7 @@
+2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-host.m4: Add AM_CONDITIONAL for each build potential platform.
+
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-std-checks.m4: Add check for existence of gnu/libc-version.h, which

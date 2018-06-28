@@ -37,6 +37,7 @@ AC_DEFUN([AX_HOST],
       ;;
     *-*-mingw*)
       OS_WIN32_NATIVE=yes
+      OS_MINGW32=yes
       AC_DEFINE([OS_WIN32_NATIVE], [1],
                 [Define to 1 if on native Windows.])
       ;;
@@ -77,4 +78,9 @@ AC_DEFUN([AX_HOST],
     AC_DEFINE([OS_CARBON], [1],
               [Define to 1 if on Mac OS X Carbon.])])
   AC_MSG_RESULT([$OS_CARBON])
+
+  AM_CONDITIONAL([OS_IS_LINUX], test "X$OS_LINUX" = "Xyes")
+  AM_CONDITIONAL([OS_IS_CARBON], test "X$OS_CARBON" = "Xyes")
+  AM_CONDITIONAL([OS_IS_CYGWIN], test "X$OS_CYGWIN" = "Xyes")
+  AM_CONDITIONAL([OS_IS_MINGW],  test "X$OS_MINGW32" = "Xyes")
 ])
