@@ -79,7 +79,7 @@ usage(char *cmd)
 static void
 parse_commandline(int argc, char *argv[])
 {
-  int     ch;
+  int ch;
 
 #ifdef HAVE_GETOPT_LONG
   while ((ch = getopt_long (argc, argv, GETOPT_OPTIONS, long_options, NULL)) != -1)

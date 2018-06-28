@@ -968,7 +968,7 @@ char *geda_utility_string_strstr_rep(char *original, const char *old, const char
   if ((temp = (char*)malloc(sizeof(char)*(strlen(original)+1))) == NULL)
     return(NULL);
 
-  while(strstr(original, old)) {
+  while (strstr(original, old)) {
     char *str = original;
     do_replace(str, old, new);
   }
