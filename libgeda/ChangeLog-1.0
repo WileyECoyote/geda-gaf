@@ -1,3 +1,8 @@
+2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_get.c: Use real function name geda_file_path_sys_data instead
+      of geda_sys_data_path macro.
+
 2018-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Revise geda_file_get_basename to compile in code for
@@ -43,7 +48,7 @@
 
     * tests: Include config.h in all tests modules.
 
-    * tests\test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
+    * tests/test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
       nothing on Windows machines.
 
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
