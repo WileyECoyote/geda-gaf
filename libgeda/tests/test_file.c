@@ -658,12 +658,18 @@ int test_get (void)
 
   if (!vpath_build) {
 
+#if defined (OS_WIN32_NATIVE)
+#define FILE_COUNT_07 5
+#else
+#define FILE_COUNT_07 7
+#endif
+
     files = geda_get_dir_list(TEST_FILE_PATH, NULL, NULL);
 
     int num_file_07 = g_slist_length(files);
 
     /* current, parent, files and tmp test links = 7 */
-    if (num_file_07 != 7) {
+    if (num_file_07 != FILE_COUNT_07) {
       fprintf(stderr, "FAILED: (F020701) geda_get_dir_list <%d>\n", num_file_07);
       result++;
     }
