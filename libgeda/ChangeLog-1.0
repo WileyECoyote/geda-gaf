@@ -1,6 +1,10 @@
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/file/f_get.c: Use real function name geda_file_path_sys_data instead
+   * scheme/geda/core/gettext.scm.in: Redefine gettext function public, for
+     some undocumented reason, this regressed 10-20-18 as part of a general
+     "bulk" update.
+
+   * src/file/f_get.c: Use real function name geda_file_path_sys_data instead
       of geda_sys_data_path macro.
 
    * tests/test_file.c: Conditionally define FILE_COUNT_07 for checking
