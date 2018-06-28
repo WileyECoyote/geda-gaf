@@ -47,7 +47,7 @@ AC_DEFUN([AX_WINDOWS_FLAGS],
   fi
 
   if test "$OS_WIN32_NATIVE" = "yes"; then
-    MINGW_GUI_LDFLAGS=-mwindows
+    MINGW_GUI_LDFLAGS="-mconsole -mwindows"
     MINGW_CFLAGS="-mms-bitfields"
   fi
 
