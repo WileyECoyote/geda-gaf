@@ -935,8 +935,15 @@ int test_path (void)
   {
     { "",                        "."   },
     { "./here",                  "."   },
+
+#if defined (OS_WIN32_NATIVE)
+    { "./here/there",            ".\\here"  },
+    { "./here/there/everywhere", ".\\here\\there" },
+#else
     { "./here/there",            "./here"  },
     { "./here/there/everywhere", "./here/there" },
+#endif
+
   };
 
   int count;

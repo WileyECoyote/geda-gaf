@@ -4,7 +4,8 @@
       of geda_sys_data_path macro.
 
    * tests/test_file.c: Conditionally define FILE_COUNT_07 for checking
-     geda_get_dir_list on Win32 platforms.
+     geda_get_dir_list on Win32 platforms and strings in F03_str structure,
+     with backslashes, for geda_file_path_get_dirname.
 
 2018-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
