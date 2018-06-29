@@ -1,7 +1,9 @@
 2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
-   * src/guile/g_evaluate.c: Use real function name geda_file_path_get_dirname instead
-      of geda_get_dirname macro.
+   * src/guile/g_evaluate.c: Use real function name geda_file_path_get_dirname
+     instead of geda_get_dirname macro. Revise g_evaluate_scheme_file to utilize
+     geda_utility_string_strstr_rep to replace forward slashes with platform
+     seperator for Win32 builds.
 
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 

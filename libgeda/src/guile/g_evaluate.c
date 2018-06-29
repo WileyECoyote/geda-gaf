@@ -321,9 +321,23 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
 
     char *file_directory;
 
-    data.stack    = SCM_BOOL_F;
+#if defined (OS_WIN32_NATIVE)
+
+    char *file_name;
+
+    file_name = geda_strdup (filename);
+    geda_utility_string_strstr_rep (file_name, "/", DIR_SEPARATOR_S);
+    data.filename = scm_from_utf8_string (file_name);
+    GEDA_FREE(file_name);
+
+#else
+
     data.filename = scm_from_utf8_string (filename);
-    data.err      = NULL;
+
+#endif
+
+    data.stack = SCM_BOOL_F;
+    data.err   = NULL;
 
     /* Before we load the file, first cd into file's directory. */
     file_directory = geda_file_path_get_dirname (filename);
