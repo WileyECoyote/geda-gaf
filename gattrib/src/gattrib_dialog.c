@@ -42,7 +42,7 @@ create_pixmap (const char *filename)
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
                                       GTK_ICON_SIZE_INVALID);
 
-  pathname = g_build_filename (geda_sys_data_path (), "bitmap", filename, NULL);
+  pathname = g_build_filename (geda_sys_data_path (), "bitmaps", filename, NULL);
 
   if (!pathname) {
 
