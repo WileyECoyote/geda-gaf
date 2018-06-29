@@ -510,7 +510,7 @@ static bool geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
 
   if (fstat (fd, &stat_buf) < 0) {
 
-    g_set_error_literal (error, EDA_ERROR, errno,strerror (errno));
+    g_set_error_literal (error, EDA_ERROR, errno, strerror (errno));
     return FALSE;
   }
 
