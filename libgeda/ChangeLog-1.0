@@ -1,3 +1,8 @@
+2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
+
+   * src/guile/g_evaluate.c: Use real function name geda_file_path_get_dirname instead
+      of geda_get_dirname macro.
+
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
    * scheme/geda/core/gettext.scm.in: Redefine gettext function public, for
