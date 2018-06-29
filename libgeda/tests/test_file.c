@@ -1020,8 +1020,14 @@ int test_path (void)
   }
   else {
 
-    if (!strstr(path, "/libgeda")) {
+    /* The following check is intentionally laxed to allow for different directory
+     * seperators, the else if clause will verify the existence */
+    if (!strstr(path, "libgeda")) {
       fprintf(stderr, "FAILED: (F030601B) geda_file_path_sys_config <%s>\n", path);
+      result++;
+    }
+    else if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
+      fprintf(stderr, "FAILED: (F030601C) geda_file_path_sys_config <%s>\n", path);
       result++;
     }
   }

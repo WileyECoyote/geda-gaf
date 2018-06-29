@@ -7,6 +7,9 @@
      rather than propagating to NULL, which reports the error without the name
      of the file.
 
+   * tests/test_file.c: Remove forward slash from "libgeda"  in F030601B,
+     and add F030601C to verify the path of libgeda is valid.
+
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
    * scheme/geda/core/gettext.scm.in: Redefine gettext function public, for
