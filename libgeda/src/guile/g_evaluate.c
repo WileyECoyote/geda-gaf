@@ -381,7 +381,12 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
           result = TRUE;
         }
         else { /* otherwise propagate the error */
-          g_propagate_error (err, data.err);
+          if (err) {
+            g_propagate_error (err, data.err);
+          }
+          else {
+            fprintf(stderr, "Error processing %s: %s\n", filename, data.err->message);
+          }
         }
 
         if (saved_cwd) {
