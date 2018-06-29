@@ -1124,12 +1124,10 @@ int test_geda_file_copy ()
 
 int test_sys (void)
 {
-  GError *err;
   char   *string;
   int     result;
 
   result = errno = 0;
-  err = NULL;
 
   /* This is only needed for distcheck VPATH builds */
   const char *src_dir = getenv ("srcdir");
@@ -1196,6 +1194,11 @@ int test_sys (void)
   GEDA_FREE(string);
 
   /* === Function 03: geda_file_sys_follow_symlinks === */
+
+  /* MinGW does not have symlinks */
+#ifndef __MINGW32__
+
+  GError *err = NULL;
 
   string = geda_follow_symlinks(NULL, &err);
   if (string) {
@@ -1280,6 +1283,8 @@ int test_sys (void)
     GEDA_FREE(target); /* string returned from g_build_filename */
     GEDA_FREE(string); /* string returned from geda_follow_symlinks */
   }
+
+#endif /* __MINGW32__ was not defined */
 
   /* === Function 04: geda_file_sys_normalize_name === */
 

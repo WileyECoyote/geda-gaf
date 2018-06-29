@@ -8,7 +8,9 @@
      of the file.
 
    * tests/test_file.c: Remove forward slash from "libgeda"  in F030601B,
-     and add F030601C to verify the path of libgeda is valid.
+     and add F030601C to verify the path of libgeda is valid. Skip checks
+     geda_file_sys_follow_symlinks on MinGW platforms because MinGW does
+     not have symlinks, a copy is made instead.
 
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
