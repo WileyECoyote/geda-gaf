@@ -2862,8 +2862,9 @@ geda_keyfile_get_double  (GedaKeyFile *key_file,
                    key, group_name);
                    g_error_free (key_file_error);
     }
-    else
+    else {
       g_propagate_error (error, key_file_error);
+    }
   }
 
   return double_value;
