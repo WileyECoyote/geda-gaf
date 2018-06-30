@@ -1,3 +1,11 @@
+2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Change the description passed to
+      gtk_paint_box in geda_handle_box_paint; "handlebox_bin" -> "box"
+      because the Gtk bundle for MinGW paint_box() which will attempt
+      to call gtk_handle_box_ routines in an dispicable attempt to get
+      the shawdow type.
+
 2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/prop-editor.c: Include config.h

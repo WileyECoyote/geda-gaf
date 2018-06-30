@@ -956,7 +956,7 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
   gtk_paint_box (widget->style, handlebox->bin_window,
                  gtk_widget_get_state (widget),
                  handlebox->shadow_type,
-                 &event->area, widget, "handlebox_bin",
+                 &event->area, widget, "box",
                  0, 0, -1, -1);
 
   /* Draw the Handle for the handlebox, currently, the handle is
