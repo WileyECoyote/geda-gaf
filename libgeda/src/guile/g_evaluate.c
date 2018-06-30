@@ -287,10 +287,13 @@ g_evaluate_scheme_file__pre_handler (struct g_evaluate_scheme_file_data_t *data,
  *  \returns Evaluation results or SCM_BOOL_F if exception caught.
  */
 SCM g_evaluate_c_string_protected (const char *str) {
+
   SCM s_str;
+
   g_return_val_if_fail ((str != NULL), SCM_BOOL_F);
 
   s_str = scm_from_utf8_string (str);
+
   return g_evaluate_scm_string_protected (s_str);
 }
 
