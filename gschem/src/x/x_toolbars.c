@@ -765,7 +765,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
 }
 
 /*!
- * \brief Finialize Toolbar Initialization
+ * \brief Finalize Toolbar Initialization
  * \par Function Description
  * This function completes the final configuration of the toolbar setup
  * based on settings establish during gschem boot-up. The function also
@@ -778,7 +778,7 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
  * \param [in] w_current pointer to top-level data structure
  */
 void
-x_toolbars_finialize (GschemToplevel *w_current) {
+x_toolbars_finalize (GschemToplevel *w_current) {
 
   ToolBarWidgets *bar_widgets;
 
@@ -1601,6 +1601,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   SET_TOOLBAR_WC (w_current->edit_handlebox, w_current);
 
   x_toolbars_add_closer (w_current, w_current->edit_handlebox, Edit_Toolbar);
+
   TheToolBars = g_slist_append (TheToolBars, Edit_Toolbar);
 }
 

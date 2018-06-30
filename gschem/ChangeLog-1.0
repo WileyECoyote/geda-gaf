@@ -3,7 +3,8 @@
     * src/x/x_toolbars.c: Revise x_toolbars_restore_state to deal with empty
       handleboxes, which could be hboxes and report when empty. Revise
       x_toolbars_init_left to not call geda_handle_xx routines when the
-      handleboxes are could be hboxes.
+      handleboxes are could be hboxes. Rename function x_toolbars_finialize
+      x_toolbars_finalize.
 
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 

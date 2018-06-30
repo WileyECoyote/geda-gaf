@@ -929,7 +929,7 @@ int        x_stroke_translate_and_execute   (GschemToplevel *w_current);
 /* x_toolbars.c */
 void       x_toolbars_save_state            (GschemToplevel *w_current);
 void       x_toolbars_restore_state         (GschemToplevel *w_current);
-void       x_toolbars_finialize             (GschemToplevel *w_current);
+void       x_toolbars_finalize              (GschemToplevel *w_current);
 void       x_toolbars_free_window           (GschemToplevel *w_current);
 void       x_toolbars_init_window           (GschemToplevel *w_current);
 void       x_toolbars_init_top              (GschemToplevel *w_current, GtkWidget *parent_container);

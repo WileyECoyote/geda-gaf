@@ -533,7 +533,7 @@ void x_window_create_main(GschemToplevel *w_current)
 
   if (w_current->toolbars) {
     /* Hide the little red x's in the toolbars */
-    x_toolbars_finialize(w_current);
+    x_toolbars_finalize(w_current);
   }
 
   /*! Set visibility of the scroll-bars based on user settings */
