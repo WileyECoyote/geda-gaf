@@ -24,7 +24,7 @@
 (use-modules (geda deprecated))
 
 ;; The directory containing various bitmaps (e.g. icons)
-(bitmap-directory (build-path geda-data-path "bitmap"))
+(bitmap-directory (build-path geda-data-path "bitmaps"))
 
 ; scheme-directory dir
 ;
