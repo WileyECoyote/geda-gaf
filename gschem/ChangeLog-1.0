@@ -1,3 +1,8 @@
+2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_toolbars.c: Revise x_toolbars_restore_state to deal with empty
+      handleboxes, which could be hboxes and report when empty.
+
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmap/Makefile.am: Change the install target to "bitmaps" with an 's'.

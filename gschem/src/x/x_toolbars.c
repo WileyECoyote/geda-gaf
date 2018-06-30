@@ -658,15 +658,25 @@ x_toolbars_restore_state(GschemToplevel *w_current) {
           toolbar = geda_get_child_widget (handlebox);
         }
         else {
+
           GList *list;
           list    = geda_container_get_children (handlebox);
-          toolbar = list->data;
-          g_list_free(list);
+
+          if (list) {
+            toolbar = list->data;
+            g_list_free(list);
+          }
+          else {
+            fprintf(stderr, "%s: bar id <%d> group <%s> is empty\n", __func__, bar_id, group_name);
+            toolbar = NULL;
+          }
         }
 
-        /* Set the toolbar style and tooltips properties */
-        geda_toolbar_widget_set_style(toolbar, style);
-        geda_toolbar_widget_set_tooltips(toolbar, tooltips);
+        if (toolbar) {
+           /* Set the toolbar style and tooltips properties */
+           geda_toolbar_widget_set_style(toolbar, style);
+           geda_toolbar_widget_set_tooltips(toolbar, tooltips);
+        }
       }
       else {
         /* The bar was off, i.e. is not visible*/
