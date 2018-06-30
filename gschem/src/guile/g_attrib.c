@@ -77,7 +77,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
   SCM_ASSERT ((edascm_is_page (target_s) ||
                edascm_is_object (target_s) ||
                scm_is_false (target_s)),
-              target_s, SCM_ARG1, s_add_attrib_x);
+               target_s, SCM_ARG1, s_add_attrib_x);
   SCM_ASSERT (scm_is_string (name_s), name_s, SCM_ARG2, s_add_attrib_x);
   SCM_ASSERT (scm_is_string (value_s), value_s, SCM_ARG3, s_add_attrib_x);
   SCM_ASSERT (scm_is_symbol (show_s), show_s, SCM_ARG5, s_add_attrib_x);
