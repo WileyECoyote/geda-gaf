@@ -197,7 +197,7 @@ gschem_window_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
 /*! \brief GtkWidget show signal handler
  *  \par Function Description
- *  Before the Dialog widget is shown, restore previously saved
+ *  Before the Window widget is shown, restore previously saved
  *  position and size. Order is import here; RESTORE_POSITION is
  *  emitted after the would-be size has been applied if the auto
  *  restore property is set otherwise Gtk might bound the window
