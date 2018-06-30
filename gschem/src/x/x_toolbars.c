@@ -1520,8 +1520,10 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   geda_set_container_border_width (Symbol_Toolbar, 0);
 
-  geda_handle_widget_set_toolbar(w_current->symbol_handlebox, Symbol_Toolbar);
-  geda_handle_widget_set_handle_position(w_current->symbol_handlebox, GTK_POS_TOP);
+  if (w_current->handleboxes) {
+    geda_handle_widget_set_toolbar(w_current->symbol_handlebox, Symbol_Toolbar);
+    geda_handle_widget_set_handle_position(w_current->symbol_handlebox, GTK_POS_TOP);
+  }
 
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_edit_prop);
   GSCHEM_TOOLBAR_BUTTON (Symbol, etb_translate);
@@ -1551,8 +1553,10 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   geda_set_container_border_width (Edit_Toolbar, 0);
 
-  geda_handle_widget_set_toolbar(w_current->edit_handlebox, Edit_Toolbar);
-  geda_handle_widget_set_handle_position(w_current->edit_handlebox, GTK_POS_TOP);
+  if (w_current->handleboxes) {
+    geda_handle_widget_set_toolbar(w_current->edit_handlebox, Edit_Toolbar);
+    geda_handle_widget_set_handle_position(w_current->edit_handlebox, GTK_POS_TOP);
+  }
 
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_edit_copy);
   GSCHEM_TOOLBAR_BUTTON (Edit, etb_multi_copy);
