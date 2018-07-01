@@ -7,7 +7,7 @@
      they are not path seperators.
 
    * tests/test_file.c: Add conditional directives to skip F050501A on Win32
-     host and add F050501C for geda_file_sys_normalize_name.
+     host and add F050501C and F050502C for geda_file_sys_normalize_name.
 
 2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
 

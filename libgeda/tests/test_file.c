@@ -1336,7 +1336,11 @@ int test_sys (void)
     free(string);
 
     string = geda_normalize_filename("../tests/../src", NULL);
+
     if (string) {
+
+#ifndef OS_WIN32_NATIVE
+
       if (strncmp(string, "/", 1)) {
         fprintf(stderr, "FAILED: (F050502A) geda_file_sys_normalize_name <%s>\n", string);
         result++;
@@ -1351,6 +1355,19 @@ int test_sys (void)
           result++;
         }
       }
+
+#else
+
+      const char *expected_dir = DIR_SEPARATOR_S "libgeda" DIR_SEPARATOR_S "src";
+
+      if (!strstr(string, expected_dir)) {
+        fprintf(stderr, "FAILED: (F050502C) geda_file_sys_normalize_name <%s>\n", string);
+        result++;
+        string = NULL;
+      }
+
+#endif
+
       free(string);
     }
     else {
