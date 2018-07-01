@@ -1,8 +1,9 @@
-2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
+2018-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/: Add symbols for 5 Watt zener diode.
 
             * diode/zener53/zener_10_1N5347B.sym (10 Volt)
+            * diode/zener53/zener_11_1N5348B.sym (11 Volt)
 
 2018-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
