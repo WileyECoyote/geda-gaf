@@ -268,6 +268,7 @@ void x_console_open (GschemToplevel *w_current)
     if ( auto_place_mode ) {
       gtk_widget_set_uposition (console_dialog, 10, 10);
     }
+
     gtk_widget_show (console_dialog);
   }
   else {
@@ -276,7 +277,6 @@ void x_console_open (GschemToplevel *w_current)
     else
       BUG_MSG("Object is not a console\n");
   }
-
 }
 
 /*!
