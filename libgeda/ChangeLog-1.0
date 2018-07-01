@@ -1,3 +1,11 @@
+2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+   * src/struct/s_clib.c: Revise geda_struct_clib_add_directory to look for
+     forward slashes instead of DIR_SEPARATOR because these separators are
+     not platform dependent and are normally specified in geda-clib.scm to
+     delineate the category and the text to display for the category, i.e.
+     they are not path seperators.
+
 2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
    * etc/system-gafrc: Update bitmap-directory name.
@@ -5,7 +13,7 @@
    * src/guile/g_evaluate.c: Use real function name geda_file_path_get_dirname
      instead of geda_get_dirname macro. Revise g_evaluate_scheme_file to utilize
      geda_utility_string_strstr_rep to replace forward slashes with platform
-     seperator for Win32 builds and report the error when without an err pointer
+     separator for Win32 builds and report the error when without an err pointer
      rather than propagating to NULL, which reports the error without the name
      of the file.
 
@@ -30,10 +38,10 @@
 2018-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Revise geda_file_get_basename to compile in code for
-      Win32 host to check for either type of directory seperator when reverse
+      Win32 host to check for either type of directory separator when reverse
       searching the path specifier. Revise geda_file_path_create to utilize
       geda_utility_string_strstr_rep to replace forward slashes with platform
-      seperator for Win32 builds.
+      separator for Win32 builds.
 
     * src/file/f_sys.c: Utilize geda_utility_string_strstr_rep in geda_file_copy
       to replace forward slashes with backslashes on Win32 host.

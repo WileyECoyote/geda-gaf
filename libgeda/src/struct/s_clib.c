@@ -972,15 +972,16 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     count = 0;
 
     for( str = name; *str != '\0'; str++) {
-      if (*str == DIR_SEPARATOR) ++count;
+      if (*str == '/') ++count;
     }
+
     switch ( count ) {
       case 0:
         tmpstr   = geda_strdup (name);
         break;
       case 1:
       default:
-        str      = strstr(name, DIR_SEPARATOR_S);
+        str      = strstr(name, "/");
         category = geda_utility_string_strndup (name, str - name);
         tmpstr   = geda_strdup (str + 1);
         break;
