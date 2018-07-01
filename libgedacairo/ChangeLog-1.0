@@ -1,3 +1,8 @@
+2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Remove WINDOWS_LIBTOOL_FLAGS from AM_LDFLAGS since
+      this is already passed to LIBTOOL directly.
+
 2017-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Validate renderer in eda_renderer_get_font_name,
