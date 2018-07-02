@@ -1,3 +1,8 @@
+2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Avoid calls gdk_threads_init() on MinGW platforms (like
+      the plague), reportedly a flaw in older Glibs result in Gdk locking up.
+
 2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src\gattrib_dialog.c: Update bitmaps subdirectory name in create_pixmap.

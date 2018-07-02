@@ -323,11 +323,14 @@ void gattrib_main(void *closure, int argc, char *argv[])
   g_thread_init (NULL);
 #endif
 
+#ifndef OS_WIN32_NATIVE
+
   if (g_thread_supported ()) {
     gdk_threads_init();
     gdk_threads_enter ();
   }
 
+#endif /* ! OS_WIN32_NATIVE*/
 #endif /* HAVE_GTHREAD */
 
 #if ENABLE_NLS
