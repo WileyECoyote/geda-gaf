@@ -1,3 +1,9 @@
+2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+   * src/geda/geda_config.c: Revise *eda_config_get_user_context to strip
+     the file extension from prgname so confiles do not show up with names
+     like gschem.exe-user.conf.
+
 2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
    * src/struct/s_clib.c: Revise geda_struct_clib_add_directory to look for

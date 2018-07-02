@@ -698,6 +698,26 @@ EdaConfig *eda_config_get_user_context (void)
     app_name = DEFAULT_CONTEXT;
   }
 
+#if defined (OS_WIN32_NATIVE)
+
+  /* Strip the file extension from prgname */
+
+  char buffer[36];
+
+  if (strstr(app_name, ".exe")) {
+
+    char *ptr;
+
+    app_name = strncpy(&buffer[0], app_name, 35);
+
+    ptr = strstr(app_name, ".exe");
+
+    *ptr = '\0';
+  }
+
+#endif
+
+
   if (g_once_init_enter (&initialized)) {
 
     char *filename = NULL;
