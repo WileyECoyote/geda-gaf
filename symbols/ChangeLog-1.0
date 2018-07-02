@@ -1,5 +1,8 @@
 2018-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/ADuM120x-2.sym: Add description attribute, adjust
+      attribute locations.
+
     * diode/zener53/: Add symbols for 5 Watt zener diode.
 
             * diode/zener53/zener_10_1N5347B.sym (10 Volt)
