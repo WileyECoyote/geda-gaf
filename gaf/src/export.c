@@ -24,7 +24,9 @@
 #endif
 #include <version.h>
 
-#include <getopt.h>
+//#include <getopt.h>
+#include <gaf_getopt.h>
+
 #include <math.h>
 #include <errno.h>
 
@@ -252,11 +254,11 @@ static void cmd_export_impl (void *data, int argc, char **argv)
   }
 
   /* Load schematic files */
-  while (optind < argc) {
+  while (gaf_optind < argc) {
 
     Page *page;
 
-    tmp = argv[optind++];
+    tmp = argv[gaf_optind++];
 
     page = geda_struct_page_new (toplevel, tmp);
 
@@ -1059,7 +1061,7 @@ static void export_config (void)
 
 #define export_short_options "a:cd:f:F:hl:m:no:p:s:k:"
 
-static struct option export_long_options[] = {
+static struct gaf_option export_long_options[] = {
   {"align",    1, NULL, 'a'},
   {"color",    0, NULL, 'c'},
   {"dpi",      1, NULL, 'd'},
@@ -1135,8 +1137,8 @@ static void export_command_line (int argc, char * const *argv)
   char *str;
 
   /* Parse command-line arguments */
-  while ((c = getopt_long (argc, argv, export_short_options,
-                           export_long_options, NULL)) != -1) {
+  while ((c = gaf_getopt_long (argc, argv, export_short_options,
+                               export_long_options, NULL)) != -1) {
     switch (c) {
     case 0:
       /* This is a long-form-only flag option, and has already been
@@ -1144,9 +1146,9 @@ static void export_command_line (int argc, char * const *argv)
       break;
 
     case 'a':
-      str = export_command_line__utf8_check (optarg, "-a,--align");
+      str = export_command_line__utf8_check (gaf_optarg, "-a,--align");
       if (!export_parse_align (str)) {
-        fprintf (stderr, bad_arg_msg, optarg, "-a,--align");
+        fprintf (stderr, bad_arg_msg, gaf_optarg, "-a,--align");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
@@ -1158,9 +1160,9 @@ static void export_command_line (int argc, char * const *argv)
       break;
 
     case 'd':
-      settings.dpi = strtod (optarg, NULL);
+      settings.dpi = strtod (gaf_optarg, NULL);
       if (settings.dpi <= 0) {
-        fprintf (stderr, bad_arg_msg, optarg, "-d,--dpi");
+        fprintf (stderr, bad_arg_msg, gaf_optarg, "-d,--dpi");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
@@ -1168,11 +1170,11 @@ static void export_command_line (int argc, char * const *argv)
 
     case 'f':
       GEDA_FREE (settings.format);
-      settings.format = export_command_line__utf8_check (optarg, "-f,--format");
+      settings.format = export_command_line__utf8_check (gaf_optarg, "-f,--format");
       break;
 
     case 'F':
-      str = export_command_line__utf8_check (optarg, "-F,--font");
+      str = export_command_line__utf8_check (gaf_optarg, "-F,--font");
       GEDA_FREE (settings.font);
       settings.font = str;
       break;
@@ -1186,9 +1188,9 @@ static void export_command_line (int argc, char * const *argv)
       break;
 
     case 'k':
-      str = export_command_line__utf8_check (optarg, "-k,--scale");
+      str = export_command_line__utf8_check (gaf_optarg, "-k,--scale");
       if (!export_parse_scale (str)) {
-        fprintf (stderr, bad_arg_msg, optarg, "-k,--scale");
+        fprintf (stderr, bad_arg_msg, gaf_optarg, "-k,--scale");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
@@ -1202,18 +1204,18 @@ static void export_command_line (int argc, char * const *argv)
       break;
 
     case 'l':
-      if (!export_parse_layout (optarg)) {
+      if (!export_parse_layout (gaf_optarg)) {
         fprintf (stderr, bad_arg_msg,
-                 optarg, "-l,--layout");
+                 gaf_optarg, "-l,--layout");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
       break;
 
     case 'm':
-      str = export_command_line__utf8_check (optarg, "-m,--margins");
+      str = export_command_line__utf8_check (gaf_optarg, "-m,--margins");
       if (!export_parse_margins (str)) {
-        fprintf (stderr, bad_arg_msg, optarg, "-m,--margins");
+        fprintf (stderr, bad_arg_msg, gaf_optarg, "-m,--margins");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
@@ -1221,13 +1223,13 @@ static void export_command_line (int argc, char * const *argv)
       break;
 
     case 'o':
-      settings.outfile = optarg;
+      settings.outfile = gaf_optarg;
       break;
 
     case 'p':
-      str = export_command_line__utf8_check (optarg, "-p,--paper");
+      str = export_command_line__utf8_check (gaf_optarg, "-p,--paper");
       if (!export_parse_paper (str)) {
-        fprintf (stderr, bad_arg_msg, optarg, "-p,--paper");
+        fprintf (stderr, bad_arg_msg, gaf_optarg, "-p,--paper");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
@@ -1235,9 +1237,9 @@ static void export_command_line (int argc, char * const *argv)
       break;
 
     case 's':
-      str = export_command_line__utf8_check (optarg, "-s,--size");
+      str = export_command_line__utf8_check (gaf_optarg, "-s,--size");
       if (!export_parse_size (str)) {
-        fprintf (stderr, bad_arg_msg, optarg, "-s,--size");
+        fprintf (stderr, bad_arg_msg, gaf_optarg, "-s,--size");
         fprintf (stderr, see_help_msg);
         exit (1);
       }
@@ -1255,20 +1257,22 @@ static void export_command_line (int argc, char * const *argv)
       fprintf (stderr, see_help_msg);
       exit (1);
       break;
+
     default:
       BUG_IMSG("Bad Option", c);
     }
   }
 
   /* Check that some schematic files to print were provided */
-  if (argc <= optind) {
+  if (argc <= gaf_optind) {
     fprintf (stderr,
              _("ERROR: You must specify at least one input filename.\n"));
     fprintf (stderr, see_help_msg);
     exit (1);
   }
-  settings.infilec = argc - optind;
-  settings.infilev = &argv[optind];
+
+  settings.infilec = argc - gaf_optind;
+  settings.infilev = &argv[gaf_optind];
 
   if (settings.outfile == NULL) {
     fprintf (stderr,

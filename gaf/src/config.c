@@ -25,7 +25,7 @@
 
 #include <version.h>
 
-#include <getopt.h>     /* This module requires getopt.h */
+#include <gaf_getopt.h>
 
 /* Gettext translation */
 #include "../include/gettext.h"
@@ -34,7 +34,7 @@
 
 #define config_short_options "hp:su"
 
-static struct option config_long_options[] =
+static struct gaf_option config_long_options[] =
   {
     {"help",    0, NULL, 'h'},
     {"project", 1, NULL, 'p'},
@@ -84,8 +84,8 @@ static void cmd_config_impl (void *data, int argc, char **argv)
   libgeda_init (argc, argv);
 
   /* Parse command-line arguments */
-  while ((c = getopt_long (argc, argv, config_short_options,
-                           config_long_options, NULL)) != -1) {
+  while ((c = gaf_getopt_long (argc, argv, config_short_options,
+                               config_long_options, NULL)) != -1) {
     switch (c) {
 
     case 0:
@@ -99,7 +99,7 @@ static void cmd_config_impl (void *data, int argc, char **argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      project_store_path = (optarg == NULL) ? "." : optarg;
+      project_store_path = (gaf_optarg == NULL) ? "." : gaf_optarg;
       break;
 
     case 's':
@@ -148,7 +148,7 @@ static void cmd_config_impl (void *data, int argc, char **argv)
 
   /* If no further arguments were specified, output the configuration
    * file location. */
-  if (argc == optind) {
+  if (argc == gaf_optind) {
     printf ("%s\n", eda_config_get_filename (cfg));
     exit (0);
   }
@@ -173,18 +173,18 @@ static void cmd_config_impl (void *data, int argc, char **argv)
   }
 
   /* Otherwise, we must have group and key */
-  if (argc - optind < 2) {
+  if (argc - gaf_optind < 2) {
     fprintf (stderr,
              _("ERROR: You must specify both configuration group and key.\n"));
     fprintf (stderr, see_help_msg);
     exit (1);
   }
 
-  group = argv[optind++];
-  key   = argv[optind++];
+  group = argv[gaf_optind++];
+  key   = argv[gaf_optind++];
 
   /* If no value was specified, output the parameter value. */
-  if (argc == optind) {
+  if (argc == gaf_optind) {
 
     GError *err = NULL;
     char *value = eda_config_get_string (cfg, group, key, &err);
@@ -210,10 +210,10 @@ static void cmd_config_impl (void *data, int argc, char **argv)
 
   /* If a value was specified, set the value and save the
    * configuration. */
-  if (argc - optind > 0) {
+  if (argc - gaf_optind > 0) {
 
     GError     *err   = NULL;
-    const char *value = argv[optind++];
+    const char *value = argv[gaf_optind++];
 
     eda_config_set_string (cfg, group, key, value);
     if (!eda_config_save (cfg, &err)) {

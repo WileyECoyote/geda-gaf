@@ -24,7 +24,7 @@
 #endif
 #include <version.h>
 
-#include <getopt.h>
+#include <gaf_getopt.h>
 
 /* Gettext translation */
 #include "../include/gettext.h"
@@ -34,7 +34,7 @@
 
 #define shell_short_options "e:hl:p:s:"
 
-static struct option shell_long_options[] =
+static struct gaf_option shell_long_options[] =
   {
     {"eval",   1, NULL, 'e'},
     {"help",   0, NULL, 'h'},
@@ -100,8 +100,8 @@ static void cmd_shell_impl (void *data, int argc, char **argv)
 #include "shell.x"
 
   /* Parse command-line arguments */
-  while ((c = getopt_long (argc, argv, shell_short_options,
-                           shell_long_options, NULL)) != -1)
+  while ((c = gaf_getopt_long (argc, argv, shell_short_options,
+                               shell_long_options, NULL)) != -1)
   {
     switch (c) {
       case 0:
@@ -114,14 +114,14 @@ static void cmd_shell_impl (void *data, int argc, char **argv)
       case 'e':
         interactive = 0;
         run_lst = scm_cons (scm_list_2 (sym_eval_string,
-                                        scm_from_locale_string (optarg)),
+                                        scm_from_locale_string (gaf_optarg)),
                             run_lst);
         break;
       case 's':
         interactive = 0;
       case 'l':
         run_lst = scm_cons (scm_list_2 (sym_load,
-                                        scm_from_locale_string (optarg)),
+                                        scm_from_locale_string (gaf_optarg)),
                             run_lst);
         break;
       case 'p':
@@ -129,7 +129,7 @@ static void cmd_shell_impl (void *data, int argc, char **argv)
         path_lst = scm_cons (scm_list_3 (sym_set_x,
                                          sym_load_path,
                                          scm_list_3 (sym_cons,
-                                                     scm_from_locale_string (optarg),
+                                                     scm_from_locale_string (gaf_optarg),
                                                      sym_load_path)),
                              path_lst);
         continue;
@@ -144,7 +144,7 @@ static void cmd_shell_impl (void *data, int argc, char **argv)
   }
 
   /* Set program arguments visible from Guile */
-  scm_set_program_arguments (argc - optind, argv + optind, "gaf shell");
+  scm_set_program_arguments (argc - gaf_optind, argv + gaf_optind, "gaf shell");
 
   /* First run the setup list */
   if (path_lst != SCM_EOL) {

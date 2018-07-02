@@ -4,6 +4,12 @@
       gaf submodules because, although gaf_getopt works correctly on
       Linux host,  getopt under MinGW/MSYS is braindamaged.
 
+    * src: Implement gaf_getopt in:
+
+        src/config.c
+        src/export.c
+        src/shell.c
+
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/shell.c: Seperate scheme global strings required for readline and
