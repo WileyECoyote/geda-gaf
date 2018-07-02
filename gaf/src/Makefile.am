@@ -18,6 +18,7 @@ BUILT_SOURCES = shell.x
 EXTRA_DIST    = $(BUILT_SOURCES)
 
 gaf_SOURCES   = gaf.c \
+				gaf_getopt.c \
 				config.c \
 				export.c \
 				shell.c

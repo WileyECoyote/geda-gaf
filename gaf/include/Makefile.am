@@ -4,6 +4,7 @@
 
 noinst_HEADERS = \
 		builtins.h \
+		gaf_getopt.h \
 		gettext.h
 
 MOSTLYCLEANFILES     = *~

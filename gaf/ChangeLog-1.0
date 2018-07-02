@@ -1,3 +1,9 @@
+2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gaf_getopt.c: Add new new source module to parse getlong option for
+      gaf submodules because, although gaf_getopt works correctly on
+      Linux host,  getopt under MinGW/MSYS is braindamaged.
+
 2018-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/shell.c: Seperate scheme global strings required for readline and
