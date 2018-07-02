@@ -56,6 +56,8 @@ void x_window_setup (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
+  v_log_message(_("Restoring user settings\n"));
+
   /* immediately setup user params */
   i_vars_set(w_current);
 
