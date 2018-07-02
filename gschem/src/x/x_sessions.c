@@ -463,12 +463,12 @@ static GtkWidget *create_action_area (GschemDialog *ThisDialog,
                     G_CALLBACK (on_close_butt_clicked),
                     ThisDialog);
 
-  /* Set the alternative button order (ok, cancel, help) for other systems */
+  /* Set the alternative button order (ok, cancel, help) for other systems
   gtk_dialog_set_alternative_button_order((GtkDialog*)ThisDialog,
                                           GEDA_RESPONSE_ACCEPT,
                                           GEDA_RESPONSE_REJECT,
                                           -1);
-
+ */
   GEDA_HOOKUP_OBJECT(ThisDialog, open_butt,  "open-butt");
   GEDA_HOOKUP_OBJECT(ThisDialog, close_butt, "close-butt");
 
