@@ -383,8 +383,6 @@ i_vars_recall_user_settings(GschemToplevel *w_current)
   const char   *group;
   const char   *key;
 
-  v_log_message(_("Restoring user settings\n"));
-
   if (comline_font) { /* If font-family was specified on command line */
     eda_renderer_set_font_name(CairoRenderer, comline_font);
   }
