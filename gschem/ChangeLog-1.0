@@ -1,3 +1,9 @@
+2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_threads.c:: Avoid calls gdk_threads_init() on MinGW platforms
+      (like the plague), reportedly a flaw in older Glibs result in Gdk locking
+      up whenever an attempt is made to moved or resize the main window.
+
 2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Revise x_toolbars_restore_state to deal with empty

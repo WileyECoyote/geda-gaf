@@ -80,6 +80,11 @@ void gschem_threads_leave (void)
   }
 }
 
+/* Fix freeze when threaded on windows; both 32 and 64 bit as soon as
+ * window is altered (moved or resized) the application is locked.
+ * This would happen */
+#ifndef OS_WIN32_NATIVE
+
 static void
 gschem_threads_impl_lock (void)
 {
@@ -140,6 +145,15 @@ bool gschem_threads_init (void)
   }
   return result;
 }
+
+#else
+
+bool gschem_threads_init (void)
+{
+  return FALSE;
+}
+
+#endif
 
 /*! \brief Initialize Thread Support
  *  \par Function Description
