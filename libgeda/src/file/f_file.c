@@ -405,9 +405,8 @@ void geda_file_remove_backup (const char *filename)
       char *backup_filename = geda_file_get_autosave_filename (real_filename);
 
       /* Delete the backup file */
-      if ((g_file_test(backup_filename, G_FILE_TEST_EXISTS)) &&
-         (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)))
-      {
+      if (g_file_test(backup_filename, G_FILE_TEST_IS_REGULAR)) {
+
         if (unlink(backup_filename) != 0) {
           const char *log_msg = _("Unable to delete backup file");
           geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
