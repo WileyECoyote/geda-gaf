@@ -3,6 +3,12 @@
     * analogdevices/ADuM120x-2.sym: Add description attribute, adjust
       attribute locations.
 
+    * analogdevices/ADuM120x-1.sym: Remove pins and comment attributes,
+      adjust attribute locations.
+
+            * analogdevices/ADuM1200-1.sym
+            * analogdevices/ADuM1201-1.sym
+
     * diode/zener53/: Add symbols for 5 Watt zener diode.
 
             * diode/zener53/zener_10_1N5347B.sym (10 Volt)
