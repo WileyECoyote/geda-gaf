@@ -302,6 +302,51 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "scrollbars-visible", w_current->scrollbars_visible);
 }
 
+/*! \brief GschemMainWindow "geometry_restore" class method handler
+ *  \par Function Description
+ *  Restore main window's last size.
+ *
+ *  \param [in] main_window  The #GschemMainWindow to restore geometry.
+ */
+static bool x_window_idle_thread_restore_geometry (void *main_window)
+{
+  EdaConfig  *cfg;
+  GError     *err;
+  const char *group;
+
+  int  width, height;
+
+  cfg      = eda_config_get_user_context();
+  err      = NULL;
+  group    = WINDOW_CONFIG_GROUP;
+
+  width  = eda_config_get_integer (cfg, group, "window-width", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    width = DEFAULT_WINDOW_WIDTH;
+  }
+
+  height = eda_config_get_integer (cfg, group, "window-height", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  /* If, for any reason, we pass a zero value to gtk_window_resize an error
+   * will be generated. We double check these as fail safe because the above
+   * conditionals only set default values if an error occurred retrieving
+   * settings, so...*/
+  if (width == 0) {
+    width = DEFAULT_WINDOW_WIDTH;
+  }
+  if (height == 0) {
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  gschem_main_window_set_size((GtkWidget*)main_window, width, height);
+
+  return FALSE;
+}
 /*!
  * \brief Restore Window Geometry and Cursor
  * \par Function Description
@@ -323,6 +368,8 @@ void x_window_restore_settings(GschemToplevel *w_current)
   if (!iconify_main_window) {
     gtk_window_deiconify (MainWindow);
   }
+
+  g_idle_add (x_window_idle_thread_restore_geometry, MainWindow);
 }
 
 /*!

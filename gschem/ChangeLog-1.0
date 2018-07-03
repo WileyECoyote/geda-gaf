@@ -19,10 +19,14 @@
     * src/x/x_dialog.c: Revise about_dialog to remove the exe extention from
       gschem.exe in the dialog text.
 
+    * src/x/x_window.c: Add x_window_idle_thread_restore_geometry and have
+      glib call when idle, after Gtk is done ignoring window sizing. On some
+      systems this has already been resolved but on Win32 the main window
+      does not get resized without using this "work around".
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_threads.c:: Avoid calls gdk_threads_init() on MinGW platforms
+    * src/iface/i_threads.c: Avoid calls gdk_threads_init() on MinGW platforms
       (like the plague), reportedly a flaw in older Glibs result in Gdk locking
       up whenever an attempt is made to moved or resize the main window.
 
