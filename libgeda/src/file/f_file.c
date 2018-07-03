@@ -407,6 +407,14 @@ void geda_file_remove_backup (const char *filename)
       /* Delete the backup file */
       if (g_file_test(backup_filename, G_FILE_TEST_IS_REGULAR)) {
 
+#if defined (OS_WIN32_NATIVE)
+
+        if (chmod(backup_filename, 666)) {
+          fprintf (stderr, "%s: %s: %s\n", __func__, backup_filename, strerror (errno));
+        }
+
+#endif
+
         if (unlink(backup_filename) != 0) {
           const char *log_msg = _("Unable to delete backup file");
           geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
