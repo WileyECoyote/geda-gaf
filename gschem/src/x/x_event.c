@@ -525,6 +525,7 @@ bool x_event_configure (GtkWidget         *widget,
   {
     /* the size of the drawing area has not changed */
     /* nothing to do here */
+
     return FALSE;
   }
 
@@ -582,6 +583,7 @@ bool x_event_configure (GtkWidget         *widget,
     o_invalidate_all (w_current);
     x_scrollbars_update (w_current);
   }
+
   return FALSE;
 }
 

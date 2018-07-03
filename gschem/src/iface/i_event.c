@@ -206,10 +206,8 @@ i_event_leave(GtkWidget *widget, GdkEventCrossing *event,
  *  Main window. Lastly, x_dnd_setup_event_handlers is called to setup
  *  Drag-and-Drop events for the drawing area.
  */
-void
-i_event_setup_handlers (GschemToplevel *w_current)
+void i_event_setup_handlers (GschemToplevel *w_current)
 {
-
   struct event_reg_t *tmp;
 
   /* is the configure event type missing here? hack */
