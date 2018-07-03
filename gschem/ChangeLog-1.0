@@ -5,6 +5,10 @@
           * bitmap/gschem_app.png
           * bitmap/gschem_console.png
 
+    * etc/system-gschemrc.scm: Change default undo and redo icons because these
+      gtk-stock icons are not avliable under MinGW, use supplied bitmaps "geda-undo"
+      and "geda-redo" by default.
+
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 

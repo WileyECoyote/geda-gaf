@@ -1837,10 +1837,10 @@
 (map-icon "geda-close-all"             "file-close-all")
 (map-icon "gtk-quit"                   "file-quit")
 
-;;(map-icon "geda-undo"                  "edit-undo")
-;;(map-icon "geda-redo"                  "edit-redo")
-(map-icon "edit-undo"                  "edit-undo")
-(map-icon "edit-redo"                  "edit-redo")
+(map-icon "geda-undo"                  "edit-undo")
+(map-icon "geda-redo"                  "edit-redo")
+;;(map-icon "edit-undo"                  "edit-undo")
+;;(map-icon "edit-redo"                  "edit-redo")
 
 (map-icon "gtk-cut"                    "clipboard-cut")
 (map-icon "gtk-copy"                   "clipboard-copy")
