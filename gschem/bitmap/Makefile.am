@@ -2,6 +2,7 @@
 bitmapdatadir = $(GEDADATADIR)/bitmaps
 
 bitmapdata_DATA = gschem_about_logo.png                          \
+		  gschem_app.png                                         \
 		  gschem_alignment_bottomcenter.png                      \
 		  gschem_alignment_middleleft.png                        \
 		  gschem_alignment_topright.png                          \

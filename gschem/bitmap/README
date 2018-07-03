@@ -9,6 +9,8 @@ README for bitmaps
 This file describes where the various bitmaps came from and their license.
 AVH = Ales V. Hvezda (ahvezda@geda.seul.org)
 
+gschem_app.png               Copy of geda-gschem-48, Created by Peter Clifton, GPL
+
 gschem_bus.xpm               Created by AVH, GPL
 gschem_comp_24x24.xpm        Created by AVH, GPL
 gschem_comp_26x26.xpm        Created by AVH, GPL (Resized by wileyhill@gmail.com)
