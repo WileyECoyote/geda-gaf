@@ -485,7 +485,21 @@ gschem_main_window_class_init (void *class, void *class_data)
 static void
 gschem_main_window_instance_init (GTypeInstance *instance, void *class)
 {
- /* GschemMainWindow *window = (GschemMainWindow*)class */
+  /* GschemMainWindow *window = (GschemMainWindow*)instance; */
+  GdkPixbuf *icon;
+  GError    *error;
+  char      *filename;
+
+  error    = NULL;
+  filename = geda_file_get_bitmap_filespec ("gschem_app.png");
+  icon     = gdk_pixbuf_new_from_file (filename, &error);
+
+  if (!error) {
+    gtk_window_set_icon ((GtkWindow*)instance, icon);
+  }
+  else if (verbose_mode) {
+    fprintf(stderr, "%s is missing\n", filename);
+  }
 }
 
 /*!

@@ -9,6 +9,10 @@
       gtk-stock icons are not avliable under MinGW, use supplied bitmaps "geda-undo"
       and "geda-redo" by default.
 
+    * src/base/gschem_main_window.c: Revise gschem_main_window_instance_init;
+      to assign an icon for the main window. This seems to happen already on
+      Linux but not on Win32.
+
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
