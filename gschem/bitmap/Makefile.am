@@ -20,6 +20,7 @@ bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem-comp.png                                        \
 		  gschem_comp_24x24.xpm                                  \
 		  gschem_comp_26x26.xpm                                  \
+		  gschem-console.png                                     \
 		  gschem_copy.xpm gschem_move.xpm gschem_delete.xpm      \
 		  gschem_edit.xpm                                        \
 		  gschem_filltype_filled.png gschem_filltype_hollow.png  \
