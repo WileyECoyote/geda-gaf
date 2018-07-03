@@ -506,6 +506,25 @@ void about_dialog (GschemToplevel *w_current)
 
 #endif
 
+/* Strip ".exe" from the program name on Win32 platforms */
+#if defined (OS_WIN32_NATIVE)
+
+  const char *app_name = g_get_prgname();
+        char *name;
+        char *ptr;
+
+  name = geda_strdup(app_name);
+
+  ptr = strstr(name, ".exe");
+
+ *ptr = '\0';
+
+  gtk_about_dialog_set_program_name ((GtkAboutDialog*)Dialog, name);
+
+  GEDA_FREE(name);
+
+#endif
+
   gtk_dialog_run(GTK_DIALOG(Dialog));
   gtk_widget_destroy(Dialog);
 
