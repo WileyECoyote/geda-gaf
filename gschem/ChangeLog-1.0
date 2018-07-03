@@ -13,6 +13,9 @@
       to assign an icon for the main window. This seems to happen already on
       Linux but not on Win32.
 
+    * src/x/x_console.c: Add function x_console_set_icon and call before exiting
+      console_instance_init to set an icon for the console dialog window.
+
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
