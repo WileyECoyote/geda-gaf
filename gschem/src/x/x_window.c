@@ -313,47 +313,17 @@ void x_window_save_settings(GschemToplevel *w_current)
  *  restore the main window's last size and position even though this has already
  *  been requested but Gtk failed to complete the task.
  *
- *  \param [in] main_window  The #GschemMainWindow to restore geometry.
+ * \param [in] toplevel  The #GschemToplevel to restore geometry.
  */
-static bool x_window_idle_thread_restore_geometry (void *main_window)
+static bool x_window_idle_thread_restore_geometry (void *toplevel)
 {
-  EdaConfig  *cfg;
-  GError     *err;
-  const char *group;
+  GschemToplevel *w_current = (GschemToplevel*)toplevel;
 
-  int  width, height;
-
-  cfg      = eda_config_get_user_context();
-  err      = NULL;
-  group    = WINDOW_CONFIG_GROUP;
-
-  width  = eda_config_get_integer (cfg, group, "window-width", &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    width = DEFAULT_WINDOW_WIDTH;
-  }
-
-  height = eda_config_get_integer (cfg, group, "window-height", &err);
-  if (err != NULL) {
-    g_clear_error (&err);
-    height = DEFAULT_WINDOW_HEIGHT;
-  }
-
-  /* If, for any reason, we pass a zero value to gtk_window_resize an error
-   * will be generated. We double check these as fail safe because the above
-   * conditionals only set default values if an error occurred retrieving
-   * settings, so...*/
-  if (width == 0) {
-    width = DEFAULT_WINDOW_WIDTH;
-  }
-  if (height == 0) {
-    height = DEFAULT_WINDOW_HEIGHT;
-  }
-
-  gschem_main_window_set_size((GtkWidget*)main_window, width, height);
+  g_signal_emit_by_name(w_current->main_window, "geometry-restore", w_current->window);
 
   return FALSE;
 }
+
 /*!
  * \brief Restore Window Geometry and Cursor
  * \par Function Description
@@ -376,7 +346,7 @@ void x_window_restore_settings(GschemToplevel *w_current)
     gtk_window_deiconify (MainWindow);
   }
 
-  g_idle_add (x_window_idle_thread_restore_geometry, MainWindow);
+  g_idle_add (x_window_idle_thread_restore_geometry, w_current);
 }
 
 /*!

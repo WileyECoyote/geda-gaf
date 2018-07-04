@@ -9,6 +9,11 @@
     * src/x/x_compselect.c: Remove unused Compselect argument from function
       compselect_get_tree_sources.
 
+    * src/x/x_window.c: Redo  x_window_idle_thread_restore_geometry; change
+      argument to GschemToplevel and emit "geometry-restore" on the main
+      window so that the code in gschem_main_window_geometry_restore in
+      not repeated.
+
 2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmap: Add bitmaps for icons:
