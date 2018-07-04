@@ -398,7 +398,7 @@ void geda_file_remove_backup (const char *filename)
 
     if (real_filename == NULL) {
       const char *log_msg = _("Cannot get the real filename of");
-      geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
+      geda_log ("%s: %s.\n", log_msg, filename);
     }
     else {
 
@@ -410,14 +410,14 @@ void geda_file_remove_backup (const char *filename)
 #if defined (OS_WIN32_NATIVE)
 
         if (chmod(backup_filename, 666)) {
-          fprintf (stderr, "%s: %s: %s\n", __func__, backup_filename, strerror (errno));
+          fprintf (stderr, "%s: %s %s\n", __func__, backup_filename, strerror (errno));
         }
 
 #endif
 
         if (unlink(backup_filename) != 0) {
           const char *log_msg = _("Unable to delete backup file");
-          geda_log ("%s: %s %s.\n", __func__, log_msg, filename);
+          geda_log ("%s %s.\n", log_msg, filename);
         }
       }
 

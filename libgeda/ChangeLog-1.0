@@ -1,5 +1,9 @@
 2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_file.c: Remove __func__ from log messages.
+
+2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_file.c: Revise geda_file_remove_backup to chmod the backup
       file under Win32 before attempting to remove becasue of "permission
       denied" errors.
