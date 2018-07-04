@@ -6,6 +6,9 @@
       any other window, which could be the console dialog, then switched back
       to the main window.
 
+    * src/x/x_compselect.c: Remove unused Compselect argument from function
+      compselect_get_tree_sources.
+
 2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmap: Add bitmaps for icons:

@@ -1437,9 +1437,7 @@ compselect_create_inuse_tree_model (Compselect *compselect)
  * \returns [out] Ptr to Glist of selected sources matching the category.
  */
 GList *
-compselect_get_tree_sources(GschemToplevel *w_current,
-                            Compselect     *compselect,
-                            DialogTabs      data_set)
+compselect_get_tree_sources(GschemToplevel *w_current, DialogTabs data_set)
 {
   GList *all_sources;
   GList *selected_sources;
@@ -1533,7 +1531,7 @@ compselect_filter_check_style(Compselect *compselect, const char *sym_name)
  *  but this implementation only looks for 1 slash.
  */
 static GtkTreeModel *
-compselect_create_lib_tree_model (Compselect *compselect, DialogTabs  data_set)
+compselect_create_lib_tree_model (Compselect *compselect, DialogTabs data_set)
 {
   GschemToplevel  *w_current;
   GtkTreeModel    *model;
@@ -1561,7 +1559,7 @@ compselect_create_lib_tree_model (Compselect *compselect, DialogTabs  data_set)
                                              G_TYPE_STRING);
 
   /* populate component store */
-  sources = compselect_get_tree_sources (w_current, compselect, data_set);
+  sources = compselect_get_tree_sources (w_current, data_set);
 
   group_names = w_current->toplevel->component_groups;
 
@@ -2580,7 +2578,7 @@ compselect_create_treeview_box (Compselect   *compselect,
 
   geda_set_container_border_width(view_vbox, DIALOG_BORDER_WIDTH);
 
-  model  = compselect_create_lib_tree_model (compselect, data_set);
+  model = compselect_create_lib_tree_model (compselect, data_set);
 
   scrolled_win = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
                                /* GtkContainer */
