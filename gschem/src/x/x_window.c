@@ -302,9 +302,16 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "scrollbars-visible", w_current->scrollbars_visible);
 }
 
-/*! \brief GschemMainWindow "geometry_restore" class method handler
- *  \par Function Description
- *  Restore main window's last size.
+/*!
+ * \brief Re-restore Window Geometry and Position
+ * \par Function Description
+ *  Do to a flaw in the design of Gtk, see documentation gschem_main_window_update,
+ *  Gtk ignores request to set the size and position of GtkWindows and subsequently
+ *  set the size based on erroneous calculations, including text on tool bar, with
+ *  out having updated whether the text is shown or the font that will actually be
+ *  used if the text is shown. This routine is called in an idle thread in order to
+ *  restore the main window's last size and position even though this has already
+ *  been requested but Gtk failed to complete the task.
  *
  *  \param [in] main_window  The #GschemMainWindow to restore geometry.
  */
