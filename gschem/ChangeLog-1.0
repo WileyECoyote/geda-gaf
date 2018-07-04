@@ -12,7 +12,8 @@
     * src/x/x_window.c: Redo  x_window_idle_thread_restore_geometry; change
       argument to GschemToplevel and emit "geometry-restore" on the main
       window so that the code in gschem_main_window_geometry_restore in
-      not repeated.
+      not repeated and also emit "restore-position" on the main window
+      since Gtk fails to get this task done the first time.
 
 2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
 

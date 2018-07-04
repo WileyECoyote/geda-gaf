@@ -321,6 +321,8 @@ static bool x_window_idle_thread_restore_geometry (void *toplevel)
 
   g_signal_emit_by_name(w_current->main_window, "geometry-restore", w_current->window);
 
+  g_signal_emit_by_name(w_current->main_window, "restore-position", w_current->window);
+
   return FALSE;
 }
 
