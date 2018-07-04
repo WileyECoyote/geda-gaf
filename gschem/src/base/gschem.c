@@ -454,6 +454,9 @@ static void gschem( int argc, char *argv[])
 
   /* if there were any symbols which had major changes, show error dialog */
   x_dialog_symbol_changed(w_current);
+
+  /* Get scroll events on MinGW */
+  gdk_window_focus(w_current->window, GDK_CURRENT_TIME);
 }
 
 /*! \brief Main Scheme(GUILE) program function.

@@ -1,5 +1,13 @@
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem.c: Call gdk_window_focus after the construction of the
+      gui in gschem(). This fixes an oddity on Win32 machines where the main
+      window does not receive "scroll_event" until focus is switched away to
+      any other window, which could be the console dialog, then switched back
+      to the main window.
+
+2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * bitmap: Add bitmaps for icons:
 
           * bitmap/gschem_app.png
