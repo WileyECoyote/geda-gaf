@@ -1,4 +1,8 @@
-2018-07-03 Wiley E. Hill <wileyhill@gmail.com>
+2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Add GIO_LIBS to LDFLAGS so that when AC fails to locate
+      gdk_pixbuf_loader_write in GDK_PIXBUF_LIBS we fall back to using
+      g_memory_input_stream_new_from_data in geda_picture_object_set_from_buffer.
 
     * src/file/f_file.c: Remove __func__ from log messages.
 

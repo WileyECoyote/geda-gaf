@@ -55,7 +55,7 @@ libgeda_la_CFLAGS    = $(AM_CFLAGS)   $(GUILE_CFLAGS) $(GCC_CFLAGS)   \
 
 libgeda_la_LDFLAGS   = $(WINDOWS_LIBTOOL_FLAGS) -version-info $(LIBGEDA_SHLIB_VERSION) \
 					   $(MINGW_LDFLAGS) $(GUILE_LIBS) \
-					   $(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
+					   $(GLIB_LIBS) $(GIO_LIBS) $(GDK_PIXBUF_LIBS)
 
 if LOCAL_LIBINTL
 

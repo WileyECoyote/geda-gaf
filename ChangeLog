@@ -1,6 +1,10 @@
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add file to preprocess; utils/gschemdoc/gschemdoc.sh.in.
+      Add gio-2.0 as dependency, this is needed for builds under MinGW when
+      AC_CHECK_FUNCS fails to locate the function gdk_pixbuf_loader_write in
+      GDK_PIXBUF_LIBS. The code in o_picture_object.c builds around this by
+      resorting to g_memory_input_stream_new_from_data.
 
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
