@@ -1,3 +1,8 @@
+2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to libgedauio_la_LDFLAGS to
+      ensure it is passed before in librarys or objects.
+
 2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Change the description passed to

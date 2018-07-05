@@ -19,10 +19,10 @@ LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedauio\"
 GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-				$(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+							   $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS                   = -version-info $(LIBGEDAUIO_SHLIB_VERSION) $(GLIB_LIBS) $(GTK_LIBS) \
-				$(WINDOWS_LIBTOOL_FLAGS)  $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+							   $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedauio.la
 
@@ -39,7 +39,7 @@ libgedauio_la_CFLAGS         = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
 
 libgedauio_la_CPPFLAGS       = -DLOCALEDIR=\"$(localedir)\"
 
-libgedauio_la_LDFLAGS        = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
+libgedauio_la_LDFLAGS        = $(DEBUGGING) $(WINDOWS_LIBTOOL_FLAGS) $(LDFLAGS) $(AM_LDFLAGS)
 
 libgedauio_la_DEPENDENCIES   = $(top_builddir)/libgeda/src/libgeda.la
 
