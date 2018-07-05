@@ -1,3 +1,10 @@
+2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-gtk.m4: Replace GDK_CFLAGS and GDK_LIBS with GDK_PIXBUF_CFLAGS and
+      GDK_PIXBUF_LIBS in a vane effort to locate the gdk_pixbuf_loader_write
+      in gtk/lib/libgdk_pixbuf-2.0.dll.a, which is present but not found in
+      gtk+-bundle_2.24.10-20120208_win32. Another bocked Gtk job.
+
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-host.m4: Add AM_CONDITIONAL for each build potential platform.
