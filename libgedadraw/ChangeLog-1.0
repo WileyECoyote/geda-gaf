@@ -1,10 +1,14 @@
+2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_win32.hpp: Add X11'less header to compile under Win32.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
 
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\Makefile.am: Reinstate subdir-objects to shut-up automake 1.15.
+    * src/Makefile.am: Reinstate subdir-objects to shut-up automake 1.15.
 
 2016-10-27 Wiley E. Hill <wileyhill@gmail.com>
 

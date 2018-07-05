@@ -56,6 +56,10 @@
 
 #define BEZIER_STEP 0.0025
 
-#include "geda_x11.hpp"
+#ifdef HAVE_X11
+#  include "geda_x11.hpp"
+#else
+#  include "geda_win32.hpp"
+#endif
 
 #endif /* __GEDA_DRAW_H__ */
