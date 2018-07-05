@@ -56,7 +56,7 @@ gschem_CPPFLAGS  = $(GEDA_INCLUDES) $(AM_CXXFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS)
 
 gschem_LDFLAGS   = $(GLIB_LIBS)     $(GTK_LIBS)      $(LIBSTROKE_LDFLAGS) \
 				   $(GTHREAD_LIBS)  $(GUILE_LIBS)    $(MINGW_GUI_LDFLAGS) \
-				   $(X11_LIBS)      $(DEBUGGING)
+				   $(X11_LIBS)      $(DEBUGGING)     -lssp
 
 gschem_LDADD     = $(top_builddir)/libgedadraw/src/libgedadraw.la \
 				   $(top_builddir)/libgedauio/src/libgedauio.la \

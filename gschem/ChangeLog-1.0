@@ -1,3 +1,7 @@
+2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Append -lssp to make sure that libssp gets linked.
+
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Call gdk_window_focus after the construction of the
