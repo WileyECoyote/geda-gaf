@@ -2,6 +2,8 @@
 
     * include/geda_win32.hpp: Add X11'less header to compile under Win32.
 
+    * src/Makefile.am: Remove AM_CFLAGS and libgedadraw_la_CFLAGS, it don't happen.
+
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to LIBTOOL flags.
