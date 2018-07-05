@@ -15,11 +15,13 @@ LOG_DOMAIN                   = -DG_LOG_DOMAIN=\"libgedadraw\"
 
 GEDA_INCLUDES                = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 
-AM_CPPFLAGS                  = $(DEBUGGING) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
+AM_CPPFLAGS                  = $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
 	                           $(GDK_CFLAGS)   $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
-AM_LDFLAGS                   = $(DEBUGGING) $(WINDOWS_LIBTOOL_FLAGS) -version-info $(LIBGEDADRAW_SHLIB_VERSION) \
-								$(GLIB_LIBS) $(X11_LIBS) $(CAIRO_LIBS) $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+MINGW_LDFLAGS                = --enable-runtime-pseudo-reloc
+
+AM_LDFLAGS                   = $(WINDOWS_LIBTOOL_FLAGS) -version-info $(LIBGEDADRAW_SHLIB_VERSION) \
+							   $(GLIB_LIBS) $(X11_LIBS) $(CAIRO_LIBS) $(GDK_PIXBUF_LIBS) $(MINGW_LDFLAGS)
 
 lib_LTLIBRARIES              = libgedadraw.la
 
