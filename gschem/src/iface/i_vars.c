@@ -218,9 +218,8 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
  *  \param var    Pointer to GdkColor structure whose values are to be set
  *  \param index  index of default color used if key does not exist.
  */
-void
-i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
-                          GdkColor  *var, int index)
+void i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
+                               GdkColor  *var, int index)
 {
   GError   *err = NULL;
   GdkColor *color;
@@ -248,10 +247,9 @@ i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
 /* Retrieves a boolean from key file in specified group */
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
-bool
-i_var_restore_group_boolean(EdaConfig *cfg, const const char *group,
-                                            const char *key,
-                                            int *var, int def_val)
+bool i_var_restore_group_boolean(EdaConfig *cfg, const const char *group,
+                                                 const char *key,
+                                                 int *var, int def_val)
 {
   GError *err = NULL;
   bool tmp_bool;
@@ -293,8 +291,7 @@ bool i_var_restore_group_double (EdaConfig *cfg, const char *group, const char *
 }
 
 /* Retrieves integer from key file in specified group */
-bool
-i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, int *var, int def_val)
+bool i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, int *var, int def_val)
 {
   GError *err = NULL;
   int tmp_int;
@@ -314,55 +311,48 @@ i_var_restore_group_integer(EdaConfig *cfg, const char *group, const char *key, 
 }
 
 /* Retrieve a boolean from key file in global group */
-void
-i_var_restore_global_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
+void i_var_restore_global_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
 {
   const char *group = IVAR_CONFIG_GROUP;
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
 /* Retrieve a double from key file in global group */
-void
-i_var_restore_global_double(EdaConfig *cfg, const char *key, double *var, double def_val)
+void i_var_restore_global_double(EdaConfig *cfg, const char *key, double *var, double def_val)
 {
   const char *group = IVAR_CONFIG_GROUP;
   i_var_restore_group_double (cfg, group, key, var, def_val);
 }
 
 /* Retrieve integer from key file in global group */
-void
-i_var_restore_global_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
+void i_var_restore_global_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
 {
   const char *group = IVAR_CONFIG_GROUP;
   i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
 /* Retrieve a color from key file in global group */
-void
-i_var_restore_global_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
+void i_var_restore_global_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
 {
   i_var_restore_group_color(cfg, IVAR_CONFIG_GROUP, key, var, index);
 }
 
 /* Retrieve boolean from key file in global group */
-void
-i_var_restore_window_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
+void i_var_restore_window_boolean(EdaConfig *cfg, const char *key, int *var, bool def_val)
 {
   const char *group = WINDOW_CONFIG_GROUP;
   i_var_restore_group_boolean (cfg, group, key, var, def_val);
 }
 
 /* Retrieve integer from key file in Window group */
-void
-i_var_restore_window_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
+void i_var_restore_window_integer(EdaConfig *cfg, const char *key, int *var, int def_val)
 {
   const char *group = WINDOW_CONFIG_GROUP;
   i_var_restore_group_integer (cfg, group, key, var, def_val);
 }
 
 /* Retrieve a color from key file in Window group */
-void
-i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
+void i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int index)
 {
   i_var_restore_group_color(cfg, WINDOW_CONFIG_GROUP, key, var, index);
 }
@@ -379,8 +369,7 @@ i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, int i
  *  entries of the settings being initialize. Therfore the log is written to
  *  before calling in x_window_setup.
  */
-static void
-i_vars_recall_user_settings(GschemToplevel *w_current)
+static void i_vars_recall_user_settings(GschemToplevel *w_current)
 {
   EdaConfig    *cfg      = eda_config_get_user_context ();
   GedaToplevel *toplevel = w_current->toplevel;
