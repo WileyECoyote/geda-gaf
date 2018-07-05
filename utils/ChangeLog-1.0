@@ -1,3 +1,9 @@
+2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/gschemdoc/gschemdoc.sh.in: Add raw input file and let build
+      system substitute the docdir rather than using sed because the
+      backslashes in  docdir on Win32 builds confuses sed.
+
 2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/common.h: Include config.h header.

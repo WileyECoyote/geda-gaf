@@ -395,12 +395,14 @@ AC_CONFIG_FILES([Makefile
                  utils/gsch2pcb/Makefile
                  utils/gsch2pdf/Makefile
                  utils/gschemdoc/Makefile
+                 utils/gschemdoc/gschemdoc.sh
+
                  utils/gschlas/Makefile
                  utils/gxyrs/Makefile
                  utils/etc/Makefile
                  utils/etc/system-gschlasrc
-                 utils/scripts/Makefile
 
+                 utils/scripts/Makefile
                  utils/scripts/garchive.py
                  utils/scripts/geda-install.sh
                  utils/scripts/geda-install-bin.sh

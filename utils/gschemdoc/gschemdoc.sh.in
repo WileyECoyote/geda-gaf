@@ -32,8 +32,8 @@ CANDIDATE_LOCATE="slocate locate"
 
 #
 # Information about the gEDA installation
-#
-DOCDIR="/usr/share/doc/geda-gaf"
+#"/usr/share/doc/geda-gaf"
+DOCDIR=@prefix@/share/doc/geda-gaf
 
 # For OS X, since Linux has 'open' with different semantics
 if [ "`uname -s`" = "Darwin" ]; then
