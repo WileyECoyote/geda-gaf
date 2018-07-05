@@ -1,0 +1,3 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+libgedadraw_la_SOURCES +=       win32/geda_win32.cpp

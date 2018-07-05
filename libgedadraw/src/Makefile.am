@@ -25,8 +25,15 @@ lib_LTLIBRARIES              = libgedadraw.la
 
 libgedadraw_la_SOURCES       =
 
+if OS_IS_LINUX
 include x11/Makefile_insert
+endif
 
+if OS_IS_MINGW
+include win32/Makefile_insert
+else
+	@echo 'MINGW is not the OS'
+endif
 
 libgedadraw_la_CPPFLAGS      = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CPPFLAGS)
 

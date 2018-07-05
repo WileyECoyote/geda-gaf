@@ -3,6 +3,10 @@
     * include/geda_win32.hpp: Add X11'less header to compile under Win32.
 
     * src/Makefile.am: Remove AM_CFLAGS and libgedadraw_la_CFLAGS, it don't happen.
+      Conditionally include source file based on host platform.
+
+    * src/win32/geda_win32.cpp: Add new module to compile under Win32, does
+      not work yet bbut allow libgedadraw to compile and install under MinGW.
 
 2016-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
