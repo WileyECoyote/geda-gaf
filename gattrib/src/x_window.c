@@ -312,7 +312,7 @@ void x_window_init()
   menu_bar = x_menu_create_menu(main_window);
   gtk_box_pack_start((GtkBox*)main_vbox, menu_bar, FALSE, TRUE, 0);
 
-   /* -----  Initialize the Toolbar Module ----- */
+  /* -----  Initialize the Toolbar Module ----- */
   x_toolbars_init(main_vbox);
 
   edit_box = gtk_hbox_new(FALSE, 1);
