@@ -885,7 +885,8 @@ const CLibSource *geda_struct_clib_get_source_by_name (const char *name)
  *  Adds a directory containing symbol files to the library. Only files
  *  ending with <b>#SYMBOL_FILE_DOT_SUFFIX</b> are considered to be symbol
  *  files. A \a name may be specified for the source; if \a name is \b NULL,
- *  the basename of the directory as returned by geda_file_get_basename_dup() is used.
+ *  the basename of the directory as returned by geda_file_get_basename_dup
+ *  is used.
  *
  *  \param directory The path of the directory to add.
  *  \param name      A descriptive name for the directory.
