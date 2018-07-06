@@ -317,6 +317,7 @@ gschem_main_window_geometry_restore (GtkWidget *main_window)
 #if DEBUG_MAIN_WINDOW
   fprintf(stderr, "%s width=%d, height=%d\n", __func__, width, height);
 #endif
+
 }
 
 /*! \brief GschemMainWindow "geometry_save" class method handler
