@@ -1,3 +1,9 @@
+2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_save.c: Change comparison in geda_object_save_objects to greater
+      than or equal, because if equal then another byte for the terminator is still
+      required.
+
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Add GIO_LIBS to LDFLAGS so that when AC fails to locate

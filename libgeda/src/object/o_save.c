@@ -197,7 +197,7 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
     len      = strlen(str);
     new_size = acc_size + len;
 
-    if (new_size > allocated) {
+    if (new_size >= allocated) {
 
       char *buffer;
 
