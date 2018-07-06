@@ -1,3 +1,7 @@
+2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Revert 9d1a5eb889ee4427cfae34a233987c7b89a9b516.
+
 2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Remove WINDOWS_LIBTOOL_FLAGS from AM_LDFLAGS since
