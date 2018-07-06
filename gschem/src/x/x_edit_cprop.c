@@ -1133,11 +1133,12 @@ static void x_dialog_edit_properties_action_area (GtkWidget     *ThisDialog,
   gtk_box_pack_end (GTK_BOX (butt_hbox), close_butt, FALSE, FALSE,
                     DIALOG_H_SPACING);
 
-  /* Set the alternative button order (ok, cancel, help) for other systems */
+  /* Set the alternative button order (ok, cancel, help) for other systems
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
                                           GEDA_RESPONSE_ACCEPT,
                                           GEDA_RESPONSE_CLOSE,
                                           -1);
+ */
 
   gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_ACCEPT);
   gtk_widget_grab_default (apply_butt);

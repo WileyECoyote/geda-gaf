@@ -1,3 +1,8 @@
+2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Forget calling gtk_dialog_set_alternative_button_order
+      bacause the action area has been replaced.
+
 2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Append -lssp to make sure that libssp gets linked.
