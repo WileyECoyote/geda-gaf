@@ -303,6 +303,24 @@ void x_window_save_settings(GschemToplevel *w_current)
 }
 
 /*!
+ * \brief Zoom Extents in an Idle Thread
+ * \par Function Description
+ *  This function is called once, after initialization is complete, and
+ *  hopefully, after Gtk has finally restored the geometry of the main
+ *  window.
+ *
+ * \param [in] toplevel  The #GschemToplevel to restore geometry.
+ */
+static bool x_window_idle_thread_zoom_extents (void *toplevel)
+{
+  GschemToplevel *w_current = (GschemToplevel*)toplevel;
+
+  i_zoom_world_extents (w_current, NULL, 0);
+
+  return FALSE;
+}
+
+/*!
  * \brief Re-restore Window Geometry and Position
  * \par Function Description
  *  Do to a flaw in the design of Gtk, see documentation gschem_main_window_update,
@@ -322,6 +340,8 @@ static bool x_window_idle_thread_restore_geometry (void *toplevel)
   g_signal_emit_by_name(w_current->main_window, "geometry-restore", w_current->window);
 
   g_signal_emit_by_name(w_current->main_window, "restore-position", w_current->window);
+
+  g_idle_add (x_window_idle_thread_zoom_extents, w_current);
 
   return FALSE;
 }

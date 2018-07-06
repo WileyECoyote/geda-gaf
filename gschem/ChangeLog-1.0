@@ -6,6 +6,9 @@
     * src/x/x_edit_pin.c: Forget calling gtk_dialog_set_alternative_button_order
       bacause the action area has been replaced.
 
+    * src/x/x_window.c: Add x_window_idle_thread_zoom_extents and call from
+      gschem_main_window_geometry_restore.
+
 2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Append -lssp to make sure that libssp gets linked.
@@ -21,7 +24,7 @@
     * src/x/x_compselect.c: Remove unused Compselect argument from function
       compselect_get_tree_sources.
 
-    * src/x/x_window.c: Redo  x_window_idle_thread_restore_geometry; change
+    * src/x/x_window.c: Redo x_window_idle_thread_restore_geometry; change
       argument to GschemToplevel and emit "geometry-restore" on the main
       window so that the code in gschem_main_window_geometry_restore in
       not repeated and also emit "restore-position" on the main window
