@@ -46,6 +46,7 @@
 #  define WIN32_LEAN_AND_MEAN
 #  include <windows.h> /* for GetFullPathName */
 #endif
+
 #include <libgeda_priv.h>
 #include <geda/geda_stat.h>
 

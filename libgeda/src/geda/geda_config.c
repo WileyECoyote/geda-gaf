@@ -509,6 +509,7 @@ char *eda_config_find_project_root (const char *path, const char *filename)
     geda_free(root_path); /* This version was modified by dirname() */
     proj_root = geda_get_dirname (path);
   }
+
   return proj_root;
 }
 
