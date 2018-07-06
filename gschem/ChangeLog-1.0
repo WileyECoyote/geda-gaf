@@ -3,6 +3,9 @@
     * src/x/x_edit_cprop.c: Forget calling gtk_dialog_set_alternative_button_order
       bacause the action area has been replaced.
 
+    * src/x/x_edit_pin.c: Forget calling gtk_dialog_set_alternative_button_order
+      bacause the action area has been replaced.
+
 2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Append -lssp to make sure that libssp gets linked.
@@ -58,7 +61,7 @@
 
     * src/iface/i_vars.c: Remove logging restoring setting; see source comments.
 
-    * src/x/x_sessions.c: Forget calliing gtk_dialog_set_alternative_button_order
+    * src/x/x_sessions.c: Forget calling gtk_dialog_set_alternative_button_order
       bacause the action area has been replaced, among other things.
 
     * src/x/x_window.c: Add write message to log prior to calling i_vars_set for
