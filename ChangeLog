@@ -1,3 +1,9 @@
+2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include\geda\geda_dialog_controls.h: Add conditional directive to use
+      Monospace font for the default on Win32, because these typically would
+      not have Liberation Mono, and this seems to work well.
+
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add file to preprocess; utils/gschemdoc/gschemdoc.sh.in.
