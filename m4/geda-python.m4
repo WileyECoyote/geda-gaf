@@ -76,7 +76,7 @@ AC_DEFUN([AX_CHECK_PYTHON_HEADERS],
 
   dnl check if the headers exist:
   save_CPPFLAGS="$CPPFLAGS"
-  CPPFLAGS="$CPPFLAGS $PYTHON_IFLAGS"
+  CPPFLAGS="$PYTHON_IFLAGS"
   AC_TRY_CPP([#include <Python.h>],dnl
   [AC_MSG_RESULT(found)
     $1],dnl

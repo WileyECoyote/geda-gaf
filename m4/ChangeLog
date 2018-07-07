@@ -1,7 +1,8 @@
 2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * m4/geda-python.m4: Require AX_HOST and conditionaly set PYTHON_MODDIR and
-      PYTHON_IFLAGS based on host platform.
+      PYTHON_IFLAGS based on host platform and remove CPPFLAGS when checking for
+      the header.
 
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
