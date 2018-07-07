@@ -7,6 +7,7 @@ libgedathoninclude_HEADERS =   gettext.h         \
 				geda_capsule.h    \
 				geda_module.h     \
 				geda_py_color.h   \
+				geda_py_compat.h  \
 				geda_py_docs.h    \
 				geda_py_object.h  \
 				geda_py_page.h    \

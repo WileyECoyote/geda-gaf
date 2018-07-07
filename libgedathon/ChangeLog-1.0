@@ -1,3 +1,11 @@
+2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_py_compat.h: Add a compatability layer for windows
+      python header. The poorly designed python header includes multible
+      instances of pyconfig.h, which redfines several config.h flags.
+      This header does the reverse; preserving our configuration and
+      undefining the conflicting python configured flags.
+
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsym-attribute.1.in: Fix spelling/typo; attibute->attribute;
