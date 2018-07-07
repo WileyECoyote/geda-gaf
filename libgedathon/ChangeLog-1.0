@@ -8,6 +8,7 @@
 
     * src/libgedathon.c: Include config.h and include geda_py_compat.h
       instead of Python.h because we need to know if ENABLE_NLS is set.
+      Include geda_stat.h for file attributes in PyGeda_declare_local_sym.
 
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 

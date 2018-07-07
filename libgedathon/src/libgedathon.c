@@ -44,6 +44,8 @@
 #define WITHOUT_GUILE 1
 #include <libgeda/libgeda.h>
 #include <libgedacolor.h>
+#include <geda/geda_stat.h>
+
 
 //#include <pygobject.h>
 #include "../include/gettext.h"
