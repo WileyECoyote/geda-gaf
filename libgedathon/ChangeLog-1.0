@@ -6,6 +6,9 @@
       This header does the reverse; preserving our configuration and
       undefining the conflicting python configured flags.
 
+    * src/libgedathon.c: Include config.h and include geda_py_compat.h
+      instead of Python.h because we need to know if ENABLE_NLS is set.
+
 2018-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsym-attribute.1.in: Fix spelling/typo; attibute->attribute;

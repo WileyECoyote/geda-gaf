@@ -31,7 +31,9 @@
  * Page Level Properties and Operations
  */
 
-#include <Python.h>
+#include <config.h>
+
+#include <geda_py_compat.h>
 
 #include <libgen.h>        /* dirname */
 #include <dirent.h>
