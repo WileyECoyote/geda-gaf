@@ -1,5 +1,5 @@
 # geda-python.m4                                      -*-Autoconf-*-
-# serial 1.3
+# serial 1.4
 
 dnl gEDA Prebuild Checks and Setup Options for Python
 dnl
@@ -25,11 +25,18 @@ dnl **************************************************
 
 AC_DEFUN([AX_PYTHON_MOD_PATH],
 [
+  AC_REQUIRE([AX_HOST])dnl
+
   AC_MSG_CHECKING(getting the path to python)
 
   py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
   py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
-  PYTHON_MODDIR="${py_prefix}/local/lib/python${PYTHON_VERSION}/site-packages"
+
+  if test "$OS_WIN32" = "yes"; then
+    PYTHON_MODDIR="${py_prefix}/Lib/site-packages"
+  else
+    PYTHON_MODDIR="${py_prefix}/local/lib/python${PYTHON_VERSION}/site-packages"
+  fi
 
   AC_SUBST([PYTHON_MODDIR])
   []dnl
@@ -44,15 +51,26 @@ dnl function also defines PYTHON_IFLAGS
 AC_DEFUN([AX_CHECK_PYTHON_HEADERS],
 [
   AC_REQUIRE([AM_PATH_PYTHON])
+  AC_REQUIRE([AX_HOST])dnl
+
   AC_MSG_CHECKING(for python development headers)
 
   dnl deduce PYTHON_IFLAGS
   py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
   py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
-  PYTHON_IFLAGS="-I${py_prefix}/include/python${PYTHON_VERSION}"
+
+  if test "$OS_WIN32" = "yes"; then
+    PYTHON_IFLAGS="-I${py_prefix}/include"
+  else
+    PYTHON_IFLAGS="-I${py_prefix}/include/python${PYTHON_VERSION}"
+  fi
 
   if test "$py_prefix" != "$py_exec_prefix"; then
-    PYTHON_IFLAGS="$PYTHON_IFLAGS -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
+    if test "$OS_WIN32" = "yes"; then
+      PYTHON_IFLAGS="$PYTHON_IFLAGS -I${py_exec_prefix}/include"
+    else
+      PYTHON_IFLAGS="$PYTHON_IFLAGS -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
+    fi
   fi
   AC_SUBST(PYTHON_IFLAGS)
 

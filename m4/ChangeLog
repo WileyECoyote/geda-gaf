@@ -1,3 +1,8 @@
+2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * m4/geda-python.m4: Require AX_HOST and conditionaly set PYTHON_MODDIR and
+      PYTHON_IFLAGS based on host platform.
+
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-gtk.m4: Replace GDK_CFLAGS and GDK_LIBS with GDK_PIXBUF_CFLAGS and
