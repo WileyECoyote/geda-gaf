@@ -16,6 +16,8 @@ INC_LOCAL                = -I$(srcdir)/../include
 INC_LIBGEDA              = -I$(top_srcdir)/libgeda/include
 INC_LIBCOLOR             = -I$(top_srcdir)/libgedacolor/include
 
+LOCALE_DIR               = -DLOCALEDIR=\"$(localedir)\"
+
 LOG_DOMAIN               = -DG_LOG_DOMAIN=\"libgedathon\"
 
 GEDA_INCLUDES            = $(LOG_DOMAIN) $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
@@ -34,7 +36,7 @@ lib_LTLIBRARIES          = libgedathon.la
 
 libgedathon_la_SOURCES   = update_objects.c geda_capsule.c libgedathon.c
 
-libgedathon_la_CFLAGS    = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS) $(PY_INCLUDES)
+libgedathon_la_CFLAGS    = $(DEBUGGING) $(LOCALE_DIR) $(GEDA_INCLUDES) $(AM_CFLAGS) $(PY_INCLUDES)
 
 #libgedathon_la_CPPFLAGS  = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 
