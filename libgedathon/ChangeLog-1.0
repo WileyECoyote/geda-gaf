@@ -6,6 +6,8 @@
       This header does the reverse; preserving our configuration and
       undefining the conflicting python configured flags.
 
+    * module/geda.c: Include geda_py_compat.h instead of Python.h.
+
     * src/libgedathon.c: Include config.h and include geda_py_compat.h
       instead of Python.h because we need to know if ENABLE_NLS is set.
       Include geda_stat.h for file attributes in PyGeda_declare_local_sym

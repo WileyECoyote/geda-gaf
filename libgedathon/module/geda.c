@@ -27,7 +27,9 @@
  */
 
 #include <config.h>
-#include <Python.h>
+
+#include <geda_py_compat.h>
+
 #include <structmember.h>
 
 #include <dlfcn.h>
