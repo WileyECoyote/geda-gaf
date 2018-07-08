@@ -1,7 +1,10 @@
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-python.m4: Remove setting py_exec_prefix in AX_PYTHON_MOD_PATH because
-      the result is unused.
+    * geda-python.m4: Remove setting py_exec_prefix in AX_PYTHON_MOD_PATH
+      because the result is not used. Revise AX_CHECK_PYTHON_HEADERS to
+      conditionally set py_prefix and py_exec_prefix so the backslashes
+      can be replaced with forward slashes, otherwise parentheses are
+      required in the Makefile.am to keep sh from eating the seperators.
 
 2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
 

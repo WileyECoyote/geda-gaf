@@ -29,11 +29,11 @@ AC_DEFUN([AX_PYTHON_MOD_PATH],
 
   AC_MSG_CHECKING(getting the path to python)
 
-  py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
-
   if test "$OS_WIN32" = "yes"; then
+    py_prefix=`$PYTHON -c "import os, sys; print sys.prefix.replace(os.sep,'/')"`
     PYTHON_MODDIR="${py_prefix}/Lib/site-packages"
   else
+    py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
     PYTHON_MODDIR="${py_prefix}/local/lib/python${PYTHON_VERSION}/site-packages"
   fi
 
@@ -55,12 +55,14 @@ AC_DEFUN([AX_CHECK_PYTHON_HEADERS],
   AC_MSG_CHECKING(for python development headers)
 
   dnl deduce PYTHON_IFLAGS
-  py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
-  py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
 
   if test "$OS_WIN32" = "yes"; then
+    py_prefix=`$PYTHON -c "import os, sys; print sys.prefix.replace(os.sep,'/')"`
+    py_exec_prefix=`$PYTHON -c "import os, sys; print sys.exec_prefix.replace(os.sep,'/')"`
     PYTHON_IFLAGS="-I${py_prefix}/include"
   else
+    py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
+    py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
     PYTHON_IFLAGS="-I${py_prefix}/include/python${PYTHON_VERSION}"
   fi
 
