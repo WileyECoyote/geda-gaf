@@ -54,11 +54,12 @@ static PyObject *ThisModule;
 static PyObject *GedaError;
 static char     *libgedapath;
 
-#ifdef OS_WIN32_NATIVE
-static HMODULE libgedathon
+#ifdef OS_WIN32
+static HMODULE libgedathon;
 #else
 static void *libgedathon;
 #endif
+
 static char *LIB_LOCATION_ERROR = "error";
 
 /* Note: LIBGEDATHON_PATH was defined during compilation
