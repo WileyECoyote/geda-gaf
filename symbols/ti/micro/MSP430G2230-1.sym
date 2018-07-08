@@ -1,0 +1,106 @@
+v 20171112 2
+T 400 2200 8 10 1 1 0 0 1
+refdes=U?
+T 400 2400 5 10 0 0 0 0 1
+device=MSP430G2230
+T 400 2600 5 10 0 1 0 0 1
+description=Microcontroller, mixed signal, SPI, SOIC8
+P 100 1500 400 1500 1 0 0
+{
+T 300 1550 5 8 1 1 0 6 1
+pinnumber=1
+T 300 1450 5 8 0 1 0 8 1
+pinseq=1
+T 450 1500 9 8 1 1 0 0 1
+pinlabel=DVCC
+T 450 1475 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 1100 400 1100 1 0 0
+{
+T 300 1150 5 8 1 1 0 6 1
+pinnumber=2
+T 300 1050 5 8 0 1 0 8 1
+pinseq=2
+T 450 1100 9 8 1 1 0 0 1
+pinlabel=P1.2/TA0.1/A2
+T 450 1075 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 700 400 700 1 0 0
+{
+T 300 750 5 8 1 1 0 6 1
+pinnumber=3
+T 300 650 5 8 0 1 0 8 1
+pinseq=3
+T 450 700 9 8 1 1 0 0 1
+pinlabel=P1.5/TA0.0/A5/SCLK
+T 450 675 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 300 400 300 1 0 0
+{
+T 300 350 5 8 1 1 0 6 1
+pinnumber=4
+T 300 250 5 8 0 1 0 8 1
+pinseq=4
+T 450 300 9 8 1 1 0 0 1
+pinlabel=P1.6/TA0.1/A6/SDO/SCL
+T 450 275 5 8 0 1 0 2 1
+pintype=io
+}
+P 3600 300 3300 300 1 0 0
+{
+T 3400 350 5 8 1 1 0 0 1
+pinnumber=5
+T 3400 250 5 8 0 1 0 2 1
+pinseq=5
+T 3250 300 9 8 1 1 0 6 1
+pinlabel=P1.7/A7/SDI/SDA
+T 3250 275 5 8 0 1 0 8 1
+pintype=io
+}
+P 3300 700 3600 700 1 0 1
+{
+T 3400 750 5 8 1 1 0 0 1
+pinnumber=6
+T 3400 650 5 8 0 1 0 2 1
+pinseq=6
+T 3250 700 9 8 1 1 0 6 1
+pinlabel=\_RST\_/NMI/SBWTDIO
+T 3250 675 5 8 0 1 0 8 1
+pintype=io
+}
+P 3300 1100 3600 1100 1 0 1
+{
+T 3400 1150 5 8 1 1 0 0 1
+pinnumber=7
+T 3400 1050 5 8 0 1 0 2 1
+pinseq=7
+T 3250 1100 9 8 1 1 0 6 1
+pinlabel=TEST/SBWTCK
+T 3250 1075 5 8 0 1 0 8 1
+pintype=io
+}
+P 3300 1500 3600 1500 1 0 1
+{
+T 3400 1550 5 8 1 1 0 0 1
+pinnumber=8
+T 3400 1450 5 8 0 1 0 2 1
+pinseq=8
+T 3250 1500 9 8 1 1 0 6 1
+pinlabel=DVSS
+T 3250 1475 5 8 0 1 0 8 1
+pintype=pwr
+}
+B 400 100 2900 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 3000 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/msp430g2230-ep.pdf
+T 400 2000 9 10 1 1 0 0 1
+value=MSP430G2230
+T 400 1800 5 10 1 1 0 0 1
+footprint=SOIC-8
+T 400 2800 5 10 0 0 0 0 1
+numslots=0
+T 400 3200 5 10 0 0 0 0 1
+author=AutoTron
