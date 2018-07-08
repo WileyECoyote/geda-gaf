@@ -5,6 +5,8 @@
     * ti/micro/MSP430G2230-1.sym: Add symbol; Microcontroller, mixed signal, with
       SPI, SOIC8.
 
+    * ti/switchreg/TPS62150-1.sym: Add symbol; Buck regulator, 17V 1A.
+
 2018-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADuM120x-2.sym: Add description attribute, adjust

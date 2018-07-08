@@ -1,0 +1,211 @@
+v 20171112 2
+T 2900 4500 8 10 1 1 0 6 1
+refdes=U?
+T 400 5100 5 10 0 0 0 0 1
+device=TPS62150
+T 400 4900 5 10 0 1 0 0 1
+description=Buck Converter, 17V, 1A
+B 400 100 2500 4300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 2900 4100 3200 4100 1 0 1
+{
+T 3050 4150 5 8 1 1 0 0 1
+pinnumber=1
+T 3050 4150 5 8 0 1 0 0 1
+pinseq=1
+T 2850 4100 9 10 1 1 0 6 1
+pinlabel=SW
+T 2850 4050 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2900 3700 3200 3700 1 0 1
+{
+T 3050 3750 5 8 1 1 0 0 1
+pinnumber=2
+T 3050 3750 5 8 0 1 0 0 1
+pinseq=2
+T 2850 3700 9 10 1 1 0 6 1
+pinlabel=SW
+T 2850 3650 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2900 3300 3200 3300 1 0 1
+{
+T 3050 3350 5 8 1 1 0 0 1
+pinnumber=3
+T 3050 3350 5 8 0 1 0 0 1
+pinseq=3
+T 2850 3300 9 10 1 1 0 6 1
+pinlabel=SW
+T 2850 3250 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2900 2500 3200 2500 1 0 1
+{
+T 3050 2550 5 8 1 1 0 0 1
+pinnumber=4
+T 3050 2550 5 8 0 1 0 0 1
+pinseq=4
+T 2850 2500 9 10 1 1 0 6 1
+pinlabel=PG
+T 2850 2450 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2900 2100 3200 2100 1 0 1
+{
+T 3050 2150 5 8 1 1 0 0 1
+pinnumber=5
+T 3050 2150 5 8 0 1 0 0 1
+pinseq=5
+T 2850 2100 9 10 1 1 0 6 1
+pinlabel=FB
+T 2850 2050 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2900 1600 3200 1600 1 0 1
+{
+T 3050 1650 5 8 1 1 0 0 1
+pinnumber=6
+T 3050 1650 5 8 0 1 0 0 1
+pinseq=6
+T 2850 1600 9 10 1 1 0 6 1
+pinlabel=AGND
+T 2850 1550 5 8 0 1 0 8 1
+pintype=pas
+}
+P 400 400 100 400 1 0 1
+{
+T 300 450 5 8 1 1 0 6 1
+pinnumber=7
+T 300 450 5 8 0 1 0 6 1
+pinseq=7
+T 450 400 9 10 1 1 0 0 1
+pinlabel=FSW
+T 450 350 5 8 0 1 0 2 1
+pintype=pas
+}
+P 400 900 100 900 1 0 1
+{
+T 300 950 5 8 1 1 0 6 1
+pinnumber=8
+T 300 950 5 8 0 1 0 6 1
+pinseq=8
+T 450 900 9 10 1 1 0 0 1
+pinlabel=DEF
+T 450 850 5 8 0 1 0 2 1
+pintype=in
+}
+P 400 2100 100 2100 1 0 1
+{
+T 300 2150 5 8 1 1 0 6 1
+pinnumber=9
+T 300 2150 5 8 0 1 0 6 1
+pinseq=9
+T 450 2100 9 10 1 1 0 0 1
+pinlabel=SS/TR
+T 450 2050 5 8 0 1 0 2 1
+pintype=pas
+}
+P 400 3300 100 3300 1 0 1
+{
+T 300 3350 5 8 1 1 0 6 1
+pinnumber=10
+T 300 3350 5 8 0 1 0 6 1
+pinseq=10
+T 450 3300 9 10 1 1 0 0 1
+pinlabel=AVIN
+T 450 3250 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 400 4100 100 4100 1 0 1
+{
+T 300 4150 5 8 1 1 0 6 1
+pinnumber=11
+T 300 4150 5 8 0 1 0 6 1
+pinseq=11
+T 450 4100 9 10 1 1 0 0 1
+pinlabel=PVIN
+T 450 4050 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 400 3700 100 3700 1 0 1
+{
+T 300 3750 5 8 1 1 0 6 1
+pinnumber=12
+T 300 3750 5 8 0 1 0 6 1
+pinseq=12
+T 450 3700 9 10 1 1 0 0 1
+pinlabel=PVIN
+T 450 3650 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 400 2700 100 2700 1 0 1
+{
+T 250 2750 5 8 1 1 0 6 1
+pinnumber=13
+T 250 2750 5 8 0 1 0 6 1
+pinseq=13
+T 450 2700 9 10 1 1 0 0 1
+pinlabel=EN
+T 450 2650 5 8 0 1 0 2 1
+pintype=in
+}
+P 2900 2900 3200 2900 1 0 1
+{
+T 3050 2950 5 8 1 1 0 0 1
+pinnumber=14
+T 3050 2950 5 8 0 1 0 0 1
+pinseq=14
+T 2850 2900 9 10 1 1 0 6 1
+pinlabel=VOS
+T 2850 2850 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2900 1200 3200 1200 1 0 1
+{
+T 3050 1250 5 8 1 1 0 0 1
+pinnumber=15
+T 3050 1250 5 8 0 1 0 0 1
+pinseq=15
+T 2850 1200 9 10 1 1 0 6 1
+pinlabel=PGND
+T 2850 1150 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2900 800 3200 800 1 0 1
+{
+T 3050 850 5 8 1 1 0 0 1
+pinnumber=16
+T 3050 850 5 8 0 1 0 0 1
+pinseq=16
+T 2850 800 9 10 1 1 0 6 1
+pinlabel=PGND
+T 2850 750 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2900 400 3200 400 1 0 1
+{
+T 3050 450 5 8 1 1 0 0 1
+pinnumber=17
+T 3050 450 5 8 0 1 0 0 1
+pinseq=17
+T 2850 400 9 10 1 1 0 6 1
+pinlabel=EP
+T 2850 350 5 8 0 1 0 8 1
+pintype=pwr
+}
+T 400 5500 5 10 0 1 0 0 1
+documentation=http://www.ti.com/product/LMX2594/technicaldocuments
+T 400 5300 5 10 0 0 0 0 1
+symversion=0.1
+T 400 4500 5 10 1 1 0 0 1
+value=TPS62150
+T 400 4700 9 10 0 1 0 0 1
+footprint=VQFN16
+T 1900 5100 5 10 0 0 0 0 1
+numslots=0
+T 400 6100 5 10 0 0 0 0 1
+author=AutoTron
+T 400 5900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 5700 5 10 0 0 0 0 1
+use-license=unlimited
