@@ -1,3 +1,8 @@
+2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/Makefile.am Remove "-ldl" from PY_LIBFLAGS because
+      this is Linux specific; this arguments is now added via M4.
+
 2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_py_compat.h: Add a compatability layer for windows

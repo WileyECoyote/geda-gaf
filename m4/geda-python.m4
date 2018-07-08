@@ -197,6 +197,7 @@ AC_DEFUN([AX_CHECK_PYTHON],
     AC_MSG_RESULT($with_python)
 
     if test "X$with_python" = Xyes; then
+
         if test -z "$PYTHON"; then
             AC_PATH_PROG(PYTHON, python)
         fi
@@ -211,6 +212,8 @@ AC_DEFUN([AX_CHECK_PYTHON],
             echo "test for python ldflags"
             if test "X$have_python" = Xyes; then
 
+                AC_REQUIRE([AX_HOST])dnl
+
                 dnl copied from the Redland RDF bindings, http://librdf.org/
                 if test `uname` = Darwin; then
                     PYTHON_LDFLAGS="-Wl,-F. -bundle"
@@ -221,10 +224,16 @@ AC_DEFUN([AX_CHECK_PYTHON],
                         PYTHON_LIBS="-lpython$PYTHON_VERSION"
                     fi
                 else
+                    if test "$OS_WIN32" = "yes"; then
+                        PYTHON_LDFLAGS="-shared -Bsymbolic-functions"
+                    else
+                        PYTHON_LDFLAGS="-shared -Bsymbolic-functions -ldl"
+                    fi
+
                     PYTHON_LIBS="-lpython$PYTHON_VERSION"
-                    dnl #-pthread
-                    PYTHON_LDFLAGS="-shared -Bsymbolic-functions"
+
                 fi
+
                 PYTHON_CFLAGS="-Wstrict-prototypes -pthread -fno-strict-aliasing -fwrapv -fPIC"
                 AC_SUBST(PYTHON_LDFLAGS)
                 AC_SUBST([PYTHON_LIBS])

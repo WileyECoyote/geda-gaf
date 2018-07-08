@@ -4,7 +4,9 @@
       because the result is not used. Revise AX_CHECK_PYTHON_HEADERS to
       conditionally set py_prefix and py_exec_prefix so the backslashes
       can be replaced with forward slashes, otherwise parentheses are
-      required in the Makefile.am to keep sh from eating the seperators.
+      required in the Makefile.am to keep sh from eating the seperators
+      and conditionally set PYTHON_LDFLAGS in AX_CHECK_PYTHON to append
+      -ldl on the no Win32 flags.
 
 2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
 

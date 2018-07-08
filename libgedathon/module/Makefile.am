@@ -21,7 +21,7 @@ moduledir            = $(PYTHON_MODDIR)/geda
 
 module_PYTHON        = __init__.py
 
-PY_LIBFLAGS          = $(PYTHON_LDFLAGS) -ldl -module -avoid-version -export-symbols-regex initgeda
+PY_LIBFLAGS          = $(PYTHON_LDFLAGS) -module -avoid-version -export-symbols-regex initgeda
 
 AM_CFLAGS            = $(DEBUGGING) $(GEDA_INCLUDES) $(GDK_PIXBUF_CFLAGS)
 
