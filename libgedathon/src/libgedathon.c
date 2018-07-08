@@ -46,6 +46,11 @@
 #include <libgedacolor.h>
 #include <geda/geda_stat.h>
 
+#if ENABLE_NLS
+#  ifdef HAVE_LOCALE_H
+#    include <locale.h>
+#  endif
+#endif
 
 //#include <pygobject.h>
 #include "../include/gettext.h"
