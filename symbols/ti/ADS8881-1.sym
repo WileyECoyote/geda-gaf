@@ -4,7 +4,7 @@ refdes=U?
 T 400 2800 5 10 0 0 0 0 1
 device=ADS8881
 T 400 3000 5 10 0 1 0 0 1
-description=ADC,Differential-Input SAR,18-Bit,1-MSPS,Serial,
+description=ADC, Differential-Input SAR, 18-Bit,1-MSPS, Serial
 P 100 1900 400 1900 1 0 0
 {
 T 300 1950 5 8 1 1 0 6 1
