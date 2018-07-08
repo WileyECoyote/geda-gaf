@@ -1,6 +1,11 @@
+2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-python.m4: Remove setting py_exec_prefix in AX_PYTHON_MOD_PATH because
+      the result is unused.
+
 2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * m4/geda-python.m4: Require AX_HOST and conditionaly set PYTHON_MODDIR and
+    * geda-python.m4: Require AX_HOST and conditionaly set PYTHON_MODDIR and
       PYTHON_IFLAGS based on host platform and remove CPPFLAGS when checking for
       the header.
 

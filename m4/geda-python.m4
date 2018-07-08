@@ -30,7 +30,6 @@ AC_DEFUN([AX_PYTHON_MOD_PATH],
   AC_MSG_CHECKING(getting the path to python)
 
   py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
-  py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
 
   if test "$OS_WIN32" = "yes"; then
     PYTHON_MODDIR="${py_prefix}/Lib/site-packages"
