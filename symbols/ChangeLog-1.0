@@ -1,5 +1,9 @@
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * diode/zener53:
+
+            * diode/zener53/zener_13_1N5350B.sym (13 Volt)
+
     * ti/micro/MSP430G2210-1.sym: Add symbol; Microcontroller, mixed signal, SOIC8.
 
     * ti/micro/MSP430G2230-1.sym: Add symbol; Microcontroller, mixed signal, with
