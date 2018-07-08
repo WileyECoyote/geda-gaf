@@ -1,3 +1,7 @@
+2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/micro/MSP430G2210-1.sym: Add symbol; Microcontroller, mixed signal, SOIC8.
+
 2018-07-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADuM120x-2.sym: Add description attribute, adjust
