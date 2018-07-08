@@ -3,6 +3,7 @@
     * diode/zener53:
 
             * diode/zener53/zener_13_1N5350B.sym (13 Volt)
+            * diode/zener53/zener_14_1N5351B.sym (14 Volt)
 
     * ti/micro/MSP430G2210-1.sym: Add symbol; Microcontroller, mixed signal, SOIC8.
 
