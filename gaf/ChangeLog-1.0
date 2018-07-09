@@ -1,3 +1,7 @@
+2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gaf_getopt.c: Clean up module; do not include <windows.h>.
+
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gaf_getopt.c: Add new new source module to parse getlong option for

@@ -25,7 +25,8 @@
 #include <string.h>
 #include <stdarg.h>
 #include <stdio.h>
-#include <windows.h>
+
+//#include <windows.h>
 
 #include "gaf_getopt.h"
 
