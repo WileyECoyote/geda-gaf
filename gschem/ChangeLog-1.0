@@ -3,6 +3,10 @@
     * src/Makefile.am: Replace -lssp with $(STACK_PROTECTOR) to conditionally
       include libssp only on MinGW platforms.
 
+    * src/base/gschem.c: Revise the Auto Load section to not attempt to auto
+      load the file if the file is not accessible, otherwise an empty file
+      is load having the same name as the "missing" last loaded file.
+
 2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Forget calling gtk_dialog_set_alternative_button_order

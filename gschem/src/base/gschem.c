@@ -198,7 +198,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       filename = get_file_name(i);
 
       /* if filename is not valid, check if user left off extension */
-      if (access(filename, F_OK ) == -1 ) {
+      if (access(filename, F_OK ) == -1) {
 
         /* See if user left off our file suffixes */
         const char *ext = geda_file_get_filename_ext(filename);
@@ -287,10 +287,21 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
       load_last = auto_load_last && !override_autoload;
 
       /* Check and do Auto Load if file recordered */
-      if ((load_last) && (x_menu_recent_files_last() != NULL)) {
-         /* maybe Log what we are doing */
-        geda_log_q("%s: ...%s\n", _("Auto Load"), x_menu_recent_files_last());
-        x_window_open_page(w_current, x_menu_recent_files_last());
+      if (load_last) {
+
+        const char *last_file = x_menu_recent_files_last();
+
+        if (last_file && !access(last_file, F_OK )) {
+
+          /* maybe Log what we are doing */
+          geda_log_q("%s: ...%s\n", _("Auto Load"), x_menu_recent_files_last());
+          x_window_open_page(w_current, x_menu_recent_files_last());
+        }
+        else {
+
+          /* No page has been loaded, start with blank page */
+          x_window_open_page( w_current, NULL );
+        }
       }
       else {
 
