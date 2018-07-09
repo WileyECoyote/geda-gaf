@@ -2,6 +2,8 @@
 
     * src/gaf_getopt.c: Clean up module; do not include <windows.h>, and
       get rid of __progname, we know what the name of the program is; "gaf".
+      Adjust indentation and add some missing braces because Kate does not
+      always auto align properly when only one clause has braces.
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
