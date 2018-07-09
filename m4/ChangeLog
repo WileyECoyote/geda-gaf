@@ -1,3 +1,9 @@
+2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-windows.m4: Add STACK_PROTECTOR to include libssp (for gschem)
+      when linking on MinGW platforms otherwise we encounter an undefined
+      reference to __stack_chk_guard.
+
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-python.m4: Remove setting py_exec_prefix in AX_PYTHON_MOD_PATH

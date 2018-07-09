@@ -1,5 +1,5 @@
 # geda-windows.m4                                           -*-Autoconf-*-
-# serial 1.2
+# serial 1.3
 
 dnl Check Windows-specific flags
 dnl Copyright (C) 2009-2013  Cesar Strauss <cestrauss@gmail.com>
@@ -32,6 +32,10 @@ dnl This increases compatibility with the MSVC compiler.
 dnl
 dnl On MinGW, pass -mwindows when linking GUI-only applications.
 dnl This avoids opening a text console when running from a shortcut.
+dnl
+dnl On MinGW, pass -lssp when linking cpp modules.
+dnl This avoids undefined reference to __stack_chk_guard on MinGW.
+dnl
 dnl WEH:
 dnl  m4_ifdef([AC_DEPLIBS_CHECK_METHOD], [m4_undefine([AC_DEPLIBS_CHECK_METHOD])])
 dnl  m4_defun([AC_DEPLIBS_CHECK_METHOD],[])
@@ -49,10 +53,14 @@ AC_DEFUN([AX_WINDOWS_FLAGS],
   if test "$OS_WIN32_NATIVE" = "yes"; then
     MINGW_GUI_LDFLAGS="-mconsole -mwindows"
     MINGW_CFLAGS="-mms-bitfields"
+    STACK_PROTECTOR ="-lssp"
   fi
 
-  AC_SUBST(WINDOWS_LIBTOOL_FLAGS)
-  AC_SUBST(MINGW_GUI_LDFLAGS)
   AC_SUBST(MINGW_CFLAGS)
+  AC_SUBST(MINGW_GUI_LDFLAGS)
+
+  AC_SUBST(STACK_PROTECTOR)
+  AC_SUBST(WINDOWS_LIBTOOL_FLAGS)
+
   []dnl
 ])dnl AX_WINDOWS_FLAGS

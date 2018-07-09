@@ -1,3 +1,8 @@
+2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Replace -lssp with $(STACK_PROTECTOR) to conditionally
+      include libssp only on MinGW platforms.
+
 2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Forget calling gtk_dialog_set_alternative_button_order
