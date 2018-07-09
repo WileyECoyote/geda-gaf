@@ -616,7 +616,7 @@ void snap_size_dialog (GschemToplevel *w_current)
     gtk_window_set_position(GTK_WINDOW(Dialog), GTK_WIN_POS_MOUSE);
 
     g_signal_connect (Dialog, "response",
-                     G_CALLBACK (snap_size_dialog_response),
+                      G_CALLBACK (snap_size_dialog_response),
                       NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
                                     GEDA_RESPONSE_ACCEPT);
