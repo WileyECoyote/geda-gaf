@@ -53,12 +53,6 @@ static char EMSG[] = "";
 #define	EMSG		""
 #endif
 
-#ifndef __CYGWIN__
-#define __progname __argv[0]
-#else
-extern char __declspec(dllimport) *__progname;
-#endif
-
 enum    		/* permitted values for its `has_arg' field...	*/
 {
   no_argument = 0,      	/* option never takes an argument	*/
@@ -84,10 +78,9 @@ static const char noarg[] = "option doesn't take an argument -- %.*s";
 static const char illoptchar[] = "unknown option -- %c";
 static const char illoptstring[] = "unknown option -- %s";
 
-static void
-_vwarnx(const char *fmt,va_list ap)
+static void _vwarnx(const char *fmt,va_list ap)
 {
-  (void)fprintf(stderr,"%s: ",__progname);
+  (void)fprintf(stderr,"gaf: ");
 
   if (fmt != NULL) {
     (void)vfprintf(stderr,fmt,ap);

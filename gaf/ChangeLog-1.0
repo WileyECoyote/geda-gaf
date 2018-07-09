@@ -1,6 +1,7 @@
 2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gaf_getopt.c: Clean up module; do not include <windows.h>.
+    * src/gaf_getopt.c: Clean up module; do not include <windows.h>, and
+      get rid of __progname, we know what the name of the program is; "gaf".
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
