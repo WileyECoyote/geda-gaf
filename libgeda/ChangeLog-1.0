@@ -1,7 +1,7 @@
 2018-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Revise geda_object_save_objects; pass IO_BUFFER_SLICE_SIZE
-      to GEDA_MEM_ALLOC macro.
+      to GEDA_MEM_ALLOC macro; add conditionals to check that memory was allocated.
 
 2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
 

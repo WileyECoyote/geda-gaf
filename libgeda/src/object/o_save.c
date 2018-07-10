@@ -216,8 +216,9 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
       /* Request increase allocation */
       buffer = (char*)realloc(acc, allocated);
 
-      if (!buffer)
+      if (!buffer) {
         return;
+      }
 
       /* Update pointer is case block was relocated */
       acc = buffer;
@@ -230,6 +231,10 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
     acc_size = new_size;
 
     return;
+  }
+
+  if (!acc) {
+    return NULL;
   }
 
   acc[0] = '\0';
@@ -265,8 +270,10 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
 
             string_append("[\n");
             out = geda_object_save_objects(o_current->complex->prim_objs, FALSE);
-            string_append (out);
-            GEDA_FREE(out);
+            if (out) {
+              string_append (out);
+              GEDA_FREE(out);
+            }
             string_append("]\n");
           }
           break;
@@ -332,9 +339,10 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
 
         string_append ("{\n");
         out = geda_object_save_objects (o_current->attribs, TRUE);
-        string_append (out);
-        GEDA_FREE(out);
-
+        if (out) {
+          string_append (out);
+          GEDA_FREE(out);
+        }
         string_append ("}\n");
       }
     }
