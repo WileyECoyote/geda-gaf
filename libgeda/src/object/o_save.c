@@ -185,8 +185,8 @@ geda_object_save_objects (const GList *object_list, bool save_attribs)
 {
   const  GList *iter;
   char  *out;
+  char  *acc           = GEDA_MEM_ALLOC(IO_BUFFER_SLICE_SIZE);
   int    allocated     = IO_BUFFER_SLICE_SIZE;
-  char  *acc           = GEDA_MEM_ALLOC(allocated);
   int    acc_size      = 0;
   bool   already_wrote = FALSE;
 
