@@ -40,7 +40,7 @@ geda_la_CFLAGS       = $(GCC_CFLAGS) $(AM_CFLAGS) $(GLIB_CFLAGS)
 
 geda_la_CPPFLAGS     = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 
-geda_la_LDFLAGS      = $(AM_LDFLAGS) $(PY_LIBFLAGS) $(GLIB_LIBS) $(LDFLAGS) $(PYTHON_LIBS)
+geda_la_LDFLAGS      = $(PY_LIBFLAGS) $(AM_LDFLAGS) $(GLIB_LIBS) $(LDFLAGS) $(PYTHON_LIBS)
 
 geda_la_LIBADD       = $(LIB_OBJECTS)/libobjects.la
 
