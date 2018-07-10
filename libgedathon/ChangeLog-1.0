@@ -1,3 +1,8 @@
+2018-07-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Add local version of scandir as scan_dir with alphasort
+      because scandir does not appear to be readily available under MinGw.
+
 2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gettext.h: Remove define gettext_noop and libintl_bindtextdomain.

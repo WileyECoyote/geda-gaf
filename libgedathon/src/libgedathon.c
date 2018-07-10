@@ -823,6 +823,80 @@ static int translate_color(PyObject *py_color, int default_color)
   return result;
 }
 
+int alphasort (const struct dirent **a, const struct dirent **b)
+{
+  return strcoll ((*a)->d_name, (*b)->d_name);
+}
+
+typedef int (*filter_fp)(const char *path, const struct dirent *, void *);
+
+int scan_dir(const char *dirname, struct dirent ***namelist,  filter_fp filter, void *baton)
+{
+    DIR *dirp = NULL;
+    struct dirent **names = NULL;
+    struct dirent *entry, *d;
+    int names_len = 32;
+    int results_len = 0;
+
+    dirp = opendir(dirname);
+    if (dirp == NULL) {
+        goto fail;
+    }
+
+    names = malloc(sizeof(struct dirent *) * names_len);
+    if (names == NULL) {
+        goto fail;
+    }
+
+    while ((entry = readdir(dirp)) != NULL) {
+
+       if (filter) {
+         if ((*filter)(dirname, entry, baton) == FALSE) {
+            continue;
+         }
+       }
+
+        if (results_len >= names_len) {
+            struct dirent **tmp_names = names;
+            names_len *= 2;
+            names = realloc(names, sizeof(struct dirent *) * names_len);
+            if (names == NULL) {
+                free(tmp_names);
+                goto fail;
+            }
+        }
+
+        d = malloc(sizeof(struct dirent));
+
+        if (d == NULL) {
+            goto fail;
+        }
+
+        memcpy(d, entry, sizeof(struct dirent));
+
+        names[results_len] = d;
+        results_len++;
+    }
+
+    closedir(dirp);
+    *namelist = names;
+    return results_len;
+
+fail:
+    if (dirp) {
+        closedir(dirp);
+    }
+
+    if (names != NULL) {
+        int i;
+        for (i = 0; i < results_len; i++) {
+            free(names[i]);
+        }
+        free(names);
+    }
+    return -1;
+}
+
 /*! \brief Setup the Python API Symbol Library
  *  \ingroup Python_API_Library_Internal
  *  \par Function Description
@@ -838,7 +912,9 @@ static void setup_source_library (void)
 
   data_path = geda_strconcat(geda_sys_data_path(), DIR_SEPARATOR_S, "sym", NULL);
 
-  n = scandir(data_path, &namelist, NULL, alphasort);
+
+  n = scan_dir(data_path, &namelist, NULL, alphasort);
+
   if (n < 0)
     fprintf(stderr, "libgedathon <setup_source_library> bad geda_sys_data_path, %s\n",strerror (errno));
   else {
@@ -856,9 +932,9 @@ static void setup_source_library (void)
         name     = namelist[n]->d_name;
         fullpath = g_build_filename (data_path, name, NULL);
 
-        geda_struct_clib_add_directory(fullpath,name);
+        geda_struct_clib_add_directory (fullpath,name);
 
-        i = scandir(fullpath, &nestedlist, NULL, alphasort);
+        i = scan_dir (fullpath, &nestedlist, NULL, alphasort);
 
         if (i > 0) {
           while (i--) {
