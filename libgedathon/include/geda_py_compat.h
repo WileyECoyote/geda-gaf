@@ -24,21 +24,24 @@
 #ifdef OS_WIN32
 
 #if GEDA_HAVE_STRERROR
-#  ifndef HAVE_STRERROR
-#    define HAVE_STRERROR 1
+#  ifdef HAVE_STRERROR
+#    undef HAVE_STRERROR
 #  endif
+#  define HAVE_STRERROR 1
 #endif
 
 #if GEDA_HAVE_HYPOT
-#  ifndef HAVE_HYPOT
-#    define HAVE_HYPOT 1
+#  ifdef HAVE_HYPOT
+#    undef HAVE_HYPOT
 #  endif
+#  define HAVE_HYPOT 1
 #endif
 
 #if GEDA_HAVE_PUTENV
-#  ifndef HAVE_PUTENV
-#    define HAVE_PUTENV 1
+#  ifdef HAVE_PUTENV
+#    undef HAVE_PUTENV
 #  endif
+#  define HAVE_PUTENV 1
 #endif
 
 #endif /* OS_WIN32 */

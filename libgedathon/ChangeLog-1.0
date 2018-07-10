@@ -2,6 +2,10 @@
 
     * include\gettext.h: Remove define gettext_noop and libintl_bindtextdomain.
 
+    * include/geda_py_compat.h: Revise conditional to undefine the Python
+      version, which gcc preprocessor reports as incompete, presummably
+      defined with no value.
+
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/Makefile.am Remove "-ldl" from PY_LIBFLAGS because this
