@@ -26,7 +26,10 @@
  *  Date Contributed: November, 17, 2013
  */
 
-#include <Python.h>
+#include <config.h>
+
+#include <geda_py_compat.h>
+
 #include <structmember.h>
 
 #include <geda/geda.h>

@@ -1,10 +1,13 @@
 2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include\gettext.h: Remove define gettext_noop and libintl_bindtextdomain.
+    * include/gettext.h: Remove define gettext_noop and libintl_bindtextdomain.
 
     * include/geda_py_compat.h: Revise conditional to undefine the Python
       version, which gcc preprocessor reports as incompete, presummably
       defined with no value.
+
+    * module/objects/geda_py_line.c: Include config.h, and geda_py_compat.h
+      instead of Python.h.
 
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
