@@ -26,7 +26,7 @@ PY_LIBFLAGS          = $(PYMODULE_LDFLAGS) -module -avoid-version -export-symbol
 
 AM_CFLAGS            = $(DEBUGGING) $(GEDA_INCLUDES) $(GDK_PIXBUF_CFLAGS)
 
-AM_LDFLAGS           = $(DEBUGGING) -version-info $(LIBGEDATHON_SHLIB_VERSION)
+AM_LDFLAGS           = $(DEBUGGING) -version-info $(LIBGEDATHON_SHLIB_VERSION) $(WINDOWS_LIBTOOL_FLAGS)
 
 pyexecsave           = $(pyexecdir)
 
