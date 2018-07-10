@@ -1097,7 +1097,7 @@ METHOD(get_bounds)
  * \brief Get an Object from GedaCapsuleObject
  * \par Method Description
  *  This function provides a method to create PyPyGedaObjects from a GedaCapsule
- *  object but is not normally need directly. This method is used by other methods
+ *  object but is not normally called directly. This method is used by other methods
  *  to get an Python version of the object contained within a Geda capsule.
  *
  *  [in] PyObject capsule  The container object
