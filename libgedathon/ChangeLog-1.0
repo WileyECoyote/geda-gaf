@@ -1,7 +1,11 @@
+2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include\gettext.h: Remove define gettext_noop and libintl_bindtextdomain.
+
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/objects/Makefile.am Remove "-ldl" from PY_LIBFLAGS because
-      this is Linux specific; this arguments is now added via M4.
+    * module/Makefile.am Remove "-ldl" from PY_LIBFLAGS because this
+      is Linux specific; this arguments is now added via M4.
 
 2018-07-07 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -33,11 +33,6 @@
 #  include <libintl.h>
 #endif
 
-#ifdef gettext_noop
-#  define N_(String) gettext_noop (String)
-#else
-#  define N_(String) (String)
-#endif
 
 #else /* ENABLE_NLS is not set*/
 
@@ -69,10 +64,6 @@
 # define bindtextdomain(Domainname, Dirname) ((const char *) (Dirname))
 # define bind_textdomain_codeset(Domainname, Codeset) ((const char *) (Codeset))
 
-#endif
-
-#if !defined(libintl_bindtextdomain)
-# define libintl_bindtextdomain bindtextdomain
 #endif
 
 /* A pseudo function call that serves as a marker for the automated
