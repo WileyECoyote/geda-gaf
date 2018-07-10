@@ -981,7 +981,7 @@ static void setup_source_library (void)
  *  \param [in] user_table a API_FunctionTable to be loaded with the
  *                         addresses of API functions in this module.
  */
-void initialize( API_FunctionTable* user_table)
+void initialize( API_FunctionTable *user_table)
 {
   int i;
 
