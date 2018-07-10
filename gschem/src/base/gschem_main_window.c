@@ -305,7 +305,7 @@ gschem_main_window_geometry_restore (GtkWidget *main_window)
    * will be generated. We double check these as fail safe because the above
    * conditionals only set default values if an error occurred retrieving
    * settings, so...*/
-  if (width == 0 ) {
+  if (width == 0) {
     width = DEFAULT_WINDOW_WIDTH;
   }
   if (height == 0) {
