@@ -1,3 +1,9 @@
+2018-07-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-python.m4: Add module specific linker flags as PYMODULE_LDFLAGS
+      to change the library module extension to ".pyd" on Win32 host to
+      simplify loading; .dll require ctype, for loading, hassle.
+
 2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-windows.m4: Add STACK_PROTECTOR to include libssp (for gschem)

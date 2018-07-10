@@ -4,6 +4,7 @@
 #REF: (geda-python.m4).PYTHON_CFLAGS  = -Wstrict-prototypes -pthread -fno-strict-aliasing -fwrapv -fPIC
 #REF: (geda-python.m4).PYTHON_LDFLAGS = -shared -Bsymbolic-functions
 #REF: (geda-python.m4).PYTHON_LIBS    = -lpython$PYTHON_VERSION
+
 #DEBUGGING           = --debug --verbose
 
 LIB_OBJECTS          = objects
@@ -21,7 +22,7 @@ moduledir            = $(PYTHON_MODDIR)/geda
 
 module_PYTHON        = __init__.py
 
-PY_LIBFLAGS          = $(PYTHON_LDFLAGS) -module -avoid-version -export-symbols-regex initgeda
+PY_LIBFLAGS          = $(PYMODULE_LDFLAGS) -module -avoid-version -export-symbols-regex initgeda
 
 AM_CFLAGS            = $(DEBUGGING) $(GEDA_INCLUDES) $(GDK_PIXBUF_CFLAGS)
 

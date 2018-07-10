@@ -224,10 +224,13 @@ AC_DEFUN([AX_CHECK_PYTHON],
                         PYTHON_LIBS="-lpython$PYTHON_VERSION"
                     fi
                 else
+
+                    PYTHON_LDFLAGS="-shared -Bsymbolic-functions"
+
                     if test "$OS_WIN32" = "yes"; then
-                        PYTHON_LDFLAGS="-shared -Bsymbolic-functions"
+                        PYMODULE_LDFLAGS="$PYTHON_LDFLAGS -shrext \".pyd\"" # change extension for Win32
                     else
-                        PYTHON_LDFLAGS="-shared -Bsymbolic-functions -ldl"
+                        PYMODULE_LDFLAGS="$PYTHON_LDFLAGS -ldl"             # append libdl for Linux
                     fi
 
                     PYTHON_LIBS="-lpython$PYTHON_VERSION"
@@ -235,7 +238,9 @@ AC_DEFUN([AX_CHECK_PYTHON],
                 fi
 
                 PYTHON_CFLAGS="-Wstrict-prototypes -pthread -fno-strict-aliasing -fwrapv -fPIC"
+
                 AC_SUBST(PYTHON_LDFLAGS)
+                AC_SUBST(PYMODULE_LDFLAGS)
                 AC_SUBST([PYTHON_LIBS])
                 AC_SUBST([PYTHON_CFLAGS])
 
