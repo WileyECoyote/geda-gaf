@@ -108,6 +108,7 @@ static const char *suffix_installed_library(const char *ext)
       *ptr = '\0';
     }
   }
+
   return libgedapath;
 }
 
@@ -232,6 +233,7 @@ static int open_library (void)
     fprintf(stderr, "Error Could not load library:libgedathon\n");
     result = 0;
   }
+
   return result;
 }
 
@@ -292,6 +294,7 @@ initgeda(void)
 
   /* Register Object Types */
   PyModule_AddObject(ThisModule, "error", GedaError);
+
 }
 
 /*!

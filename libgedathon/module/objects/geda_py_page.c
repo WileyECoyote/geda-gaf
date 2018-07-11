@@ -25,6 +25,7 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 17, 2013
  */
+
 #include <Python.h>
 #include <structmember.h>
 

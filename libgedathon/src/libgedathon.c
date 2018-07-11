@@ -470,6 +470,7 @@ get_complex_object_data(GedaObject *object)
 #if DEBUG
   fprintf(stderr, "gcod exit: name=%s, pid=%d, sid=%d, at (%d,%d) basename=%s)\n", name, pid, sid, x, y, basename);
 #endif
+
   return data;
 }
 
@@ -2603,6 +2604,7 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
 #if DEBUG
   fprintf(stderr, "PyGeda_new_line: name=%s\n", object->name);
 #endif
+
   return get_line_object_data(object);
 }
 
@@ -2730,9 +2732,11 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
   else {
     return NULL;
   }
+
 #if DEBUG
   fprintf(stderr, "PyGeda_new_picture: name=%s, file=%s\n", object->name, filepath);
 #endif
+
   return get_picture_object_data(object);
 }
 
@@ -2819,6 +2823,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
   fprintf(stderr, "PyGeda_new_pin: name=%s, number=%s, elect_type=%d mech_type=%d, node_type=%d\n",
           object->name, object->pin->number, elect_type, mech_type, node_type);
 #endif
+
   return get_pin_object_data(object);
 }
 
@@ -2858,6 +2863,7 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
 #if DEBUG
   fprintf(stderr, "PyGeda_new_text: name=%s\n", object->name);
 #endif
+
   return get_text_object_data(object);
 }
 
@@ -2913,6 +2919,7 @@ PyGeda_new_attrib(const char *name, const char *value, int x, int y,
 #if DEBUG
   fprintf(stderr, "PyGeda_new_text: name=%s\n", object->name);
 #endif
+
   GEDA_FREE(text);
   return get_text_object_data(object);
 }
@@ -2969,9 +2976,13 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
       py_data = get_text_object_data(attrib);
     }
     else {
+
       GList *all_butes = geda_attrib_return_attribs(parent);
+
       attrib = geda_find_attrib_by_name (all_butes, name, 0);
+
       if (attrib){
+
 #if DEBUG
         if (attrib->page == NULL && page != NULL) {
           fprintf(stderr, "PyGeda_get_attrib: <%s> child of <%s><%s> was missing pointer to page, pid=%d\n",
@@ -2979,6 +2990,7 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
           attrib->page = page;
         }
 #endif
+
         py_data = get_text_object_data(attrib);
       }
     }
