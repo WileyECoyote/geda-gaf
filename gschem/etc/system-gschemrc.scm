@@ -2076,16 +2076,16 @@
         (,(N_ "_Revert")           page-revert          "gtk-revert-to-saved" ,(N_ "Discard changes and reload the current document"))
         (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload all open documents"))
 
-        ("SEPARATOR"               #f                   #f            #f)
+        ("SEPARATOR"               #f                   #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
         (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
         (,(N_ "Write p_df")        file-write-pdf            #f                    ,(N_ "Create PDF document"))
         (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "Export image"))
 
-        ("SEPARATOR"               #f                   #f            #f)
+        ("SEPARATOR"               #f                   #f)
         (,(N_ "E_xecute Script...")file-run-script      "gtk-execute"         ,(N_ "Execute a script file"))
 
-        ("SEPARATOR"               #f                   #f            #f)
+        ("SEPARATOR"               #f                   #f)
         (,(N_ "_Close")            file-close           "gtk-close"           ,(N_ "Close the current document"))
         (,(N_ "Close All")         file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
         (,(N_ "_Quit")             file-quit            "gtk-quit"            ,(N_ "Quit gschem and exit"))
@@ -2099,7 +2099,7 @@
      `( (,(N_ "_Undo")              edit-undo             #f                  ,(N_ "Undo the last action"))
         (,(N_ "_Redo")              edit-redo             #f                  ,(N_ "redo the last un-done action"))
 
-        ("SEPARATOR"               #f                     #f                 #f)
+        ("SEPARATOR"               #f                     #f)
         (,(N_ "Cu_t clipboard")     clipboard-cut          "gtk-cut"          ,(N_ "Cut the current selection to the system clipboard"))
         (,(N_ "_Copy clipboard")    clipboard-copy         "gtk-copy"         ,(N_ "Copy the current selection to the system clipboard"))
         (,(N_ "_Paste clipboard")   clipboard-paste        "gtk-paste"        ,(N_ "Paste the contents of the system clipboard"))
@@ -2114,12 +2114,12 @@
         (,(N_ "Rotate _90")         edit-rotate-left       #f                 ,(N_ "Rotate the current selection about a point"))
         (,(N_ "Snap to _grid")      edit-snap              "geda-snap"        ,(N_ "Snap selection to current grid"))
 
-        ("SEPARATOR"               #f                     #f                       #f)
+        ("SEPARATOR"               #f                     #f)
         (,(N_ "_Array")             edit-array            #f                  ,(N_ "Create and array of objects"))
         (,(N_ "_Break")             edit-break            #f                  ,(N_ "Break a linear object into separate objects"))
         (,(N_ "E_xtend")            edit-extend           #f                  ,(N_ "Project linear objects to other objects"))
 
-        ("SEPARATOR"               #f                     #f                       #f)
+        ("SEPARATOR"               #f                     #f)
         (,(N_ "_Edit...")           edit-attributes       #f                  ,(N_ "Edit Object Attributes"))
         (,(N_ "E_dit Text...")      edit-text              "gtk-edit"         ,(N_ "Open the Text Editor Dialog"))
         (,(N_ "Co_lor...")           edit-color           #f                  ,(N_ "Open the Color Editor Dialog"))
@@ -2155,7 +2155,7 @@
         (,(N_ "Paste from 4")       buffer-paste4          "gtk-paste"           ,(N_ "Insert contents of the forth auxiliary buffer"))
         (,(N_ "Paste from 5")       buffer-paste5          "gtk-paste"           ,(N_ "Insert contents of the fifth auxiliary buffer"))
 
-        ("SEPARATOR"               #f                     #f                       #f)
+        ("SEPARATOR"               #f                     #f)
         (,(N_ "Lock")               edit-lock              "geda-lock"        ,(N_ "Lock selected objects"))
         (,(N_ "Unlock")             edit-unlock            "geda-unlock"      ,(N_ "Unlock selected objects"))
       )
@@ -2203,7 +2203,7 @@
         (,(N_ "Zoom _Mag")           view-zoom-to-mag       #f               ,(N_ "Zoom to a specified level"))
         (,(N_ "Zoom _Selection")     view-zoom-selected     #f               ,(N_ "Zoom to selected objects"))
 
-        ("SEPARATOR"                #f                      #f               #f)
+        ("SEPARATOR"                #f                      #f)
         (,(N_ "D_ocumentation...")   view-documentation     #f               ,(N_ "View component documentation"))
         (,(N_ "Show/Hide Inv Text")  view-show-hidden       #f               ,(N_ "Toggle hidden text attributes"))
         (,(N_ "Show/Hide Net Names") view-show-nets         #f               ,(N_ "Toggle hidden net name attributes"))
