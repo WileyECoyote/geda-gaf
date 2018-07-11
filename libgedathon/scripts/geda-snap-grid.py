@@ -43,9 +43,9 @@ Options:
                       This option is not needed for directories with the name "sym", if
                       such a directory exist, the directory will be appended automatically.
 
-  -n, --no-path   --  By default, geda-snap-grid if a directory exist with the name
-                      "sym", then the  directory is appended to the libraries search path
-                      when processing schematic files, this option inhibits this behavior.
+  -n, --no-path   --  By default, if a directory exist with the name "sym", then the
+                      directory is appended to the libraries search path when processing
+                      schematic files, this option inhibits this behavior.
 
   -c, --sch       --  Only process schematic files, ignored if a file name or names are specified.
   -s  --sym       --  Only process symbol files, ignored if a file name or names are specified.
