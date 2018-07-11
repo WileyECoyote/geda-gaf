@@ -1,5 +1,8 @@
 2018-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/geda-snap-grid.1.in: General update; formating, grammar; verbose
+      content and HOMEPAGE.
+
     * scripts/geda-snap-grid.py: Update documentation for program arguments.
 
 2018-07-10 Wiley E. Hill <wileyhill@gmail.com>

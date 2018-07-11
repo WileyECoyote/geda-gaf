@@ -8,22 +8,21 @@ geda-snap-grid \- A gEDA-gaf Schematics and Symbol cleaning utility
 .RI  [ INFORMATION ] | [ OPTIONS ] [ DIRECTIVES ] [INPUT] [OUTPUT]
 
 .SH DESCRIPTION
-.B geda-snap-grid
-Round X-Y coordinates of attributes in schematic and symbol file to multibles
+Round X-Y coordinates of attributes in schematic and symbol files to multibles
 of 25 or a specified value.
 
 By default, geda-snap-grid operates on both schematic and symbol files
-unless the file names are specified on the command line, either with the
+unless file names are specified on the command line, either with the
 --input <inputfile> option or just listing the files. For both schematic
-and symbol files, the extension must be specified when the names of files
-are specified.
+and symbol files, the extension must be specified when files names are
+specified.
 
 .SH QUICK
 .B usage: [Options] -i <inputfile> [[-o] <outputfile> ] [list of files]
 
 Example: Snap all attribute coordinates values in all files in the current
-         directory and in all subdirectories to the nearest multiple of 50 and
-         report modified values:
+         directory and in all subdirectories to the nearest multiple of 50
+         and report modified values:
 
     geda-snap-grid.py --verbose -R -m 50
 
@@ -65,7 +64,7 @@ Only round Y coordinates, mutually exclusive with -x
 
 .SH DIRECTIVES
 .IP "-v, --verbose"
-Verbose mode.  Used in both archive and extract mode. Spews lots of info about what the prog is doing.
+Enable verbose mode. Displays additional information about what the program is doing.
 .IP "-R, --Recursive"
 Process all symbol files in the current and all subordinated directories.
 .IP "-a, --append <path>"
@@ -73,9 +72,9 @@ When processing schematic files this option can be used to specify addition dire
 be appended to the libraries search path. This option is not needed for directories with
 the name "sym", if such a directory exist, the directory will be appended automatically.
 .IP "-n, --no-path"
-By default, geda-snap-grid if a directory exist with the name "sym", then the directory
-is appended to the libraries search path when processing schematic files, this option inhibits
-that behavior. This option is provided for advanced users and should not normally be used.
+By default, if a directory exist with the name "sym", then the directory is appended to
+the library search path when processing schematic files, this option inhibits that behavior.
+This option is provided for advanced users and should not normally be used.
 .IP "-c, --sch"
 Directs geda-snap-grid to only process schematic files. This directive is ignored if a
 file name or names are specified on the command line.
@@ -89,7 +88,7 @@ Specifies the name of the output file. When the output file name is not specifie
 file will be over written
 
 .SH HOMEPAGE
-http://www.gpleda.org/
+http://www.geda-project.org/
 
 .SH BUGS
 You can report bugs at the Launchpad site of geda-snap-grid:
