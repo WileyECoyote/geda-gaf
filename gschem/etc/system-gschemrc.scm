@@ -2204,7 +2204,7 @@
         (,(N_ "Zoom _Selection")     view-zoom-selected     #f               ,(N_ "Zoom to selected objects"))
 
         ("SEPARATOR"                #f                      #f               #f)
-        (,(N_ "D_ocumentation...")   view-documentation     #f)
+        (,(N_ "D_ocumentation...")   view-documentation     #f               ,(N_ "View component documentation"))
         (,(N_ "Show/Hide Inv Text")  view-show-hidden       #f               ,(N_ "Toggle hidden text attributes"))
         (,(N_ "Show/Hide Net Names") view-show-nets         #f               ,(N_ "Toggle hidden net name attributes"))
 
@@ -2235,7 +2235,7 @@
         ("SEPARATOR"              #f                      #f)
         (,(N_ "_Close")            page-close              "gtk-close"            ,(N_ "Close the current page"))
         (,(N_ "_Revert")           page-revert             "gtk-revert-to-saved"  ,(N_ "Discard changes and reload the current documents"))
-        (,(N_ "D_iscard")          page-discard            "gtk-discard"       ,(N_ "Close the current page without saving"))
+        (,(N_ "D_iscard")          page-discard            "gtk-discard"          ,(N_ "Close the current page without saving"))
         (,(N_ "Prin_t")            page-print              "gtk-print"            ,(N_ "Print the current page"))
 
         ("SEPARATOR"              #f                       #f)
