@@ -15,6 +15,10 @@
       in main so that the program either loops over specified files or loops over
       found files.
 
+    * scripts/gsym-set-visibility.py: Eliminate foundfiles and revise conditionals
+      in main so that the program either loops over specified files or loops over
+      found files.
+
 2018-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/Makefile.am: Append WINDOWS_LIBTOOL_FLAGS to AM_LDFLAGS and

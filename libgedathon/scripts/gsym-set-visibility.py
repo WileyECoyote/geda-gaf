@@ -453,7 +453,6 @@ def RecursiveGlob(path, *exts):
 
 def main(argv):
 
-	foundfiles = False
 	foundOurSelf = False
 
 	Options = ProgramParameters()  #  Creates Options object for program varibles.
@@ -470,18 +469,19 @@ def main(argv):
 			files = glob.glob('*.sym')
 
 	if len(files) > 0:
-		foundfiles=True
 		for file in files:
 			InputFiles.append(file)
 
-	if foundOurSelf and len(InputFiles) == 0:
+	if len(InputFiles) == 0:
 		print 'No symbols found or specifed, try using --help'
-	elif not foundfiles :
-		if len(InputFiles) > 1:
-			for file in InputFiles:
-				if not os.path.isfile(file):
-					print "Bad file name or option: " + file
-					print Usage
+	elif not foundOurSelf :
+		for file in InputFiles:
+			if not os.path.isfile(file):
+				print "Bad file name or option: " + file
+				print Usage
+			else:
+				ProcessSymbol(Options, file)
+
 	else:
 		for symbol in InputFiles:
 			ProcessSymbol(Options, symbol)
