@@ -3,6 +3,12 @@
     * docs/geda-snap-grid.1.in: General update; formating, grammar; verbose
       content and HOMEPAGE.
 
+    * docs/: Update verbose argument description and HOMEPAGE in:
+
+            * docs/gsym-attribute.1.in
+            * docs/gsym-set-font-size.1.in
+            * docs/gsym-set-visibility.1.in
+
     * scripts/geda-snap-grid.py: Update documentation for program arguments.
 
 2018-07-10 Wiley E. Hill <wileyhill@gmail.com>
