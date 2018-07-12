@@ -4,7 +4,7 @@
       toggle and radio menu items. Rename functions x_menus_sensitivity and
       x_menus_popup_sensitivity without the 's'. Remove validating the menu
       bar returned from x_menu_get_main_menu in x_menu_sensitivity and the
-      main pop-menu in x_menu_popup_sensitivity.
+      main pop-menu in x_menu_popup_sensitivity. Update function documentation.
 
 2018-07-11 Wiley E. Hill <wileyhill@gmail.com>
 

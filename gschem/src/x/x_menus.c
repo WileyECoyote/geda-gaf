@@ -1516,7 +1516,6 @@ void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
  *  \par Function Description
  *  This function sets the sensitivity of the items in the right button
  *  popup.
- *
  */
 void x_menu_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
 {
@@ -1535,12 +1534,11 @@ void x_menu_popup_sensitivity (GschemToplevel *w_current, const char *name, int 
   }
 }
 
-
-/*! \brief Save the State of Main Menu Toggle Options
- *  \brief *  \par Function Description
- *  This function restrives and save the state of the non-toolbar toggle
- *  menu items (like rubber-mode) to the user's configuration file popup.
- *
+/*!
+ * \brief Save the State of Main Menu Toggle Options
+ * \par Function Description
+ *  This function retrieves and saves the state of the non-toolbar toggle
+ *  menu items (like rubber-mode) to the user's menu configuration file.
  */
 void x_menu_save_state(GschemToplevel *w_current)
 {
@@ -1551,7 +1549,7 @@ void x_menu_save_state(GschemToplevel *w_current)
   bool  state;
   int   errors = 0;
 
-  void save_menu_toggler_state(const char* key, const char* path) {
+  void save_menu_toggler_state(const char *key, const char *path) {
 
     GedaCheckMenuItem *toggler = GEDA_OBJECT_GET_DATA(menubar, path);
 
@@ -1659,12 +1657,13 @@ char *x_menu_get_buffer_menu (GschemToplevel *w_current)
   return menu_data->buffer_menu_name;
 }
 
-/*! \brief Set Menu Icon Visibility
- *  \par Function Description
- *   This function turns menu icons on or off for a given list of menu items
- * based on the state argument. The list is a glist of all main menu items or
- * all pop-menu items. This function is the only function that actually changes
- * the visiblity of non-toggle type menu items.
+/*!
+ * \brief Set Menu Icon Visibility
+ * \par Function Description
+ *  This function turns menu icons on or off for a given list of menu items
+ *  based on the state argument. The list is a glist of all main menu items or
+ *  all pop-menu items. This function is the only function that actually changes
+ *  the visiblity of non-toggle type menu items.
  */
 static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
 {
@@ -1694,13 +1693,14 @@ static void x_menu_lowlevel_set_icon_visibility (GSList* list, bool state)
   }
 }
 
-/*! \brief Set Menu Icon Visibility
- *  \par Function Description
- *   This function exist so the menu icons can be turned off after the
- * main menu is built. Setting "show-image", as was done in x_menu_setup_ui
- * works for gnome display managers but not with Mate, which seems to try
- * and enforce a global system-wide setting. Gschem's user settings takes
- * precedence, so this function is used as a work-around.
+/*!
+ * \brief Set Menu Icon Visibility
+ * \par Function Description
+ *  This function exist so the menu icons can be turned off after the
+ *  main menu is built. Setting "show-image", as was done in x_menu_setup_ui
+ *  works for gnome display managers but not with Mate, which seems to try
+ *  and enforce a global system-wide setting. Gschem's user settings takes
+ *  precedence, so this function is used as a work-around.
  */
 void x_menu_set_icon_visibility(GschemToplevel *w_current, bool state)
 {
@@ -1708,13 +1708,14 @@ void x_menu_set_icon_visibility(GschemToplevel *w_current, bool state)
   x_menu_lowlevel_set_icon_visibility(MENU_ITEMS_LIST, state);
 }
 
-/*! \brief Toggle Menu Icon Visibility
- *  \par Function Description
- *   Callback function calls x_menu_lowlevel_set_icon_visibility to turn
- * menu icon on or off based on the state of the toggle menu item pointer
- * pointed to by widget. This is a callback for the toggle menu icons
- * option so widget is a toggle item. The list is a glist of all menu
- * items or all pop-menu items.
+/*!
+ * \brief Toggle Menu Icon Visibility
+ * \par Function Description
+ *  Callback function calls x_menu_lowlevel_set_icon_visibility to turn
+ *  menu icon on or off based on the state of the toggle menu item pointer
+ *  pointed to by widget. This is a callback for the toggle menu icons
+ *  option so widget is a toggle item. The list is a glist of all menu
+ *  items or all pop-menu items.
  *
  * \sa x_menu_lowlevel_set_icon_visibility, x_menu_set_toolbar_toggle
  *
@@ -1765,6 +1766,14 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
   }
 }
 
+/*!
+ * \brief Callback to Toggle Visibility of Tooltips for All Main Menu Items
+ * \par Function Description
+ * Set visibility of tool tips for all menu items. Retrieves the menu data for
+ * the current window and passes the containing menu list to x_menu_toggle_tips
+ * to set the visibility of tooltips for non-toggle menu items and then  set
+   the visibility of tips for menu toggle items.;
+ */
 static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current)
 {
   GtkWidget *menubar;
@@ -1774,7 +1783,7 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  /* Set visibility of tip for all non-toggle main menu items */
+  /* Set visibility of tooltips for all non-toggle main menu items */
   x_menu_toggle_tips(widget, MENU_ITEMS_LIST);
 
   /* Get the state of the "Show menu tips" toggle widget */
