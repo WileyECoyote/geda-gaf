@@ -933,6 +933,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     GTK_CALLBACK_TOGGLED(vw_mesh_radio, x_menu_grid_mesh_mode, w_current);
     GTK_CALLBACK_TOGGLED(vw_none_radio, x_menu_grid_none_mode, w_current);
 
+    gtk_widget_set_has_tooltip (vw_dots_radio, show_menu_tips);
+    gtk_widget_set_has_tooltip (vw_mesh_radio, show_menu_tips);
+    gtk_widget_set_has_tooltip (vw_none_radio, show_menu_tips);
+
     gtk_widget_show_all(menu_item);
 
     if (w_current->toolbars == TRUE) {
@@ -995,6 +999,16 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(attribar_toggle,  _("Toggle visibility of the Attributes toolbar"));
       gtk_widget_set_tooltip_text(gridbar_toggle,   _("Toggle visibility of the Grid/Snap toolbar"));
 
+      gtk_widget_set_has_tooltip (stdbar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (selbar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (pagebar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (addbar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (zoombar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (symbar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (editbar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (attribar_toggle, show_menu_tips);
+      gtk_widget_set_has_tooltip (gridbar_toggle, show_menu_tips);
+
       GtkWidget *tb_separator  = geda_menu_item_new();
       geda_container_add(toggle_menu, tb_separator);
 
@@ -1009,6 +1023,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       geda_container_add(toggle_menu, tb_tips_toggle);
 
       gtk_widget_set_tooltip_text(tb_tips_toggle, _("Toggle visibility of tooltips on toolbars"));
+
+      gtk_widget_set_has_tooltip (tb_tips_toggle, show_menu_tips);
 
       GTK_CALLBACK_TOGGLED (tb_tips_toggle, x_window_toolbar_tips_toggle, w_current);
 
@@ -1070,6 +1086,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       gtk_widget_set_tooltip_text(tb_vert_bulb,  _("Display Icons and Text vertically on the toolbar"));
       gtk_widget_set_tooltip_text(tb_hori_bulb,  _("Display Icons and Text horizontally on the toolbar"));
 
+      gtk_widget_set_has_tooltip (tb_icons_bulb, show_menu_tips);
+      gtk_widget_set_has_tooltip (tb_text_bulb, show_menu_tips);
+      gtk_widget_set_has_tooltip (tb_vert_bulb, show_menu_tips);
+      gtk_widget_set_has_tooltip (tb_hori_bulb, show_menu_tips);
+
       geda_menu_shell_prepend(menu_shell, menu_item);
 
       GTK_CALLBACK_TOGGLED (stdbar_toggle,   x_window_standard_toolbar_toggle,  w_current);
@@ -1121,6 +1142,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_set_tooltip_text(menu_tips_toggle,  _("Toggle main menu tooltips"));
     gtk_widget_set_tooltip_text(menu_popcons_toggle, _("Toggle visibility of main context menu icons"));
     gtk_widget_set_tooltip_text(menu_poptips_toggle, _("Toggle main context menu tooltips"));
+
+    gtk_widget_set_has_tooltip (menu_icons_toggle, show_menu_tips);
+    gtk_widget_set_has_tooltip (menu_tips_toggle, show_menu_tips);
+    gtk_widget_set_has_tooltip (menu_popcons_toggle, show_menu_tips);
+    gtk_widget_set_has_tooltip (menu_poptips_toggle, show_menu_tips);
 
     geda_menu_shell_prepend(menu_shell, menu_item);
 
