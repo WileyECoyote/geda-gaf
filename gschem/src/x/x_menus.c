@@ -1903,7 +1903,6 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
  */
 void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
 {
-  int number_of_togglers;
   ToggleMenuData *toggler_data;
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
@@ -1913,8 +1912,6 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
       x_menu_set_toggler(toggler_data, value);
     }
   }
-
-  number_of_togglers = g_slist_length(TOGGLERS_LIST);
 
   if (toggle_id == RESET_TOGGLERS) {
     set_toggler(SNAP_TOGGLE,     (w_current->snap > 0));
@@ -1926,11 +1923,11 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
   }
   else {
 
-    if (toggle_id < number_of_togglers) {
+    if (toggle_id < g_slist_length(TOGGLERS_LIST)) {
       toggler_data = (ToggleMenuData*) g_slist_nth_data (TOGGLERS_LIST, toggle_id);
     }
 
-     x_menu_set_toggler(toggler_data, state);
+    x_menu_set_toggler(toggler_data, state);
   }
   return;
 }
