@@ -376,9 +376,9 @@ void i_status_update_grid_info(GschemToplevel *w_current)
 static void clipboard_usable_cb (int usable, void *userdata)
 {
   GschemToplevel *w_current = userdata;
-  x_menus_sensitivity (w_current, "_Edit/_Paste clipboard", usable);
+  x_menu_sensitivity (w_current, "_Edit/_Paste clipboard", usable);
   x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
-  x_menus_popup_sensitivity (w_current, "Paste Clipboard", usable);
+  x_menu_popup_sensitivity (w_current, "Paste Clipboard", usable);
 }
 
 /*! \brief Can anything selected be hatched for filled?
@@ -542,29 +542,29 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
   void set_sensitivity_for_complexes (bool state) {
 
-    x_menus_sensitivity(w_current, "_Page/Down _Schematic",   state);
-    x_menus_sensitivity(w_current, "_Page/Down S_ymbol",      state);
-    x_menus_sensitivity(w_current, "_Page/D_ocumentation...", state);
+    x_menu_sensitivity(w_current, "_Page/Down _Schematic",   state);
+    x_menu_sensitivity(w_current, "_Page/Down S_ymbol",      state);
+    x_menu_sensitivity(w_current, "_Page/D_ocumentation...", state);
 
-    x_menus_sensitivity(w_current, "_Edit/_Slot...",          state);
+    x_menu_sensitivity(w_current, "_Edit/_Slot...",          state);
 
-    x_menus_popup_sensitivity(w_current, "Down Schematic",    state);
-    x_menus_popup_sensitivity(w_current, "Down Symbol",       state);
-    /* x_menus_popup_sensitivity(w_current, "Up", state); */
+    x_menu_popup_sensitivity(w_current, "Down Schematic",    state);
+    x_menu_popup_sensitivity(w_current, "Down Symbol",       state);
+    /* x_menu_popup_sensitivity(w_current, "Up", state); */
 
-    x_menus_sensitivity(w_current, "_Tools/Update Component", state);
+    x_menu_sensitivity(w_current, "_Tools/Update Component", state);
   }
 
   void set_embedded_sensitivities (bool state) {
-    x_menus_sensitivity(w_current, "_Tools/Embed Component/Picture", state);
-    x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", state);
+    x_menu_sensitivity(w_current, "_Tools/Embed Component/Picture", state);
+    x_menu_sensitivity(w_current, "_Tools/Unembed Component/Picture", state);
   }
 
   void set_sensitivity_for_text (bool state) {
-    x_menus_sensitivity(w_current, "Attri_butes/Show _Value", state);
-    x_menus_sensitivity(w_current, "Attri_butes/Show _Name",  state);
-    x_menus_sensitivity(w_current, "Attri_butes/Show _Both",   state);
-    x_menus_sensitivity(w_current, "Attri_butes/_Toggle Visibility", state);
+    x_menu_sensitivity(w_current, "Attri_butes/Show _Value", state);
+    x_menu_sensitivity(w_current, "Attri_butes/Show _Name",  state);
+    x_menu_sensitivity(w_current, "Attri_butes/Show _Both",   state);
+    x_menu_sensitivity(w_current, "Attri_butes/_Toggle Visibility", state);
   }
 
   void set_sensitivity_for_buffers (bool state) {
@@ -594,45 +594,45 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
       menu_string[length]   = '\0';  /* terminate string */
 
       buffer = strcat(buffer, "Paste from 1");
-      x_menus_sensitivity(w_current, buffer, (object_buffer[1] != NULL));
+      x_menu_sensitivity(w_current, buffer, (object_buffer[1] != NULL));
       index = strlen(buffer) - 1; /* set index to where the number is */
       menu_string[index] = '2';
-      x_menus_sensitivity(w_current, buffer, (object_buffer[2] != NULL));
+      x_menu_sensitivity(w_current, buffer, (object_buffer[2] != NULL));
       menu_string[index] = '3';
-      x_menus_sensitivity(w_current, buffer, (object_buffer[3] != NULL));
+      x_menu_sensitivity(w_current, buffer, (object_buffer[3] != NULL));
       menu_string[index] = '4';
-      x_menus_sensitivity(w_current, buffer, (object_buffer[4] != NULL));
+      x_menu_sensitivity(w_current, buffer, (object_buffer[4] != NULL));
       menu_string[index] = '5';
-      x_menus_sensitivity(w_current, buffer, (object_buffer[5] != NULL));
+      x_menu_sensitivity(w_current, buffer, (object_buffer[5] != NULL));
 
       if (state != last_state) {
 
         menu_string[length] = '\0';
         buffer = strcat(buffer, "Copy into 1");
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         index = strlen(buffer) - 1; /* set index to where the number is */
         menu_string[index] = '2';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         menu_string[index] = '3';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         menu_string[index] = '4';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         menu_string[index] = '5';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
 
         /* Incrementing to the leave "C" */
         menu_string[length] = '\0';
         buffer = strcat(buffer, "Cut into 1");
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         index = strlen(buffer) - 1;
         menu_string[index] = '2';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         menu_string[index] = '3';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         menu_string[index] = '4';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
         menu_string[index] = '5';
-        x_menus_sensitivity(w_current, buffer, state);
+        x_menu_sensitivity(w_current, buffer, state);
 
         last_state = state;
       }
@@ -684,17 +684,17 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   }
 
   if ( mutil_pages ) {
-    x_menus_sensitivity(w_current, "_Page/_Up", TRUE);
-    x_menus_sensitivity(w_current, "_Page/_Down", TRUE);
-    x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
-    x_menus_sensitivity(w_current, "_Page/_Previous", TRUE);
+    x_menu_sensitivity(w_current, "_Page/_Up", TRUE);
+    x_menu_sensitivity(w_current, "_Page/_Down", TRUE);
+    x_menu_sensitivity(w_current, "_Page/_Next", TRUE);
+    x_menu_sensitivity(w_current, "_Page/_Previous", TRUE);
 
   }
   else {
-    x_menus_sensitivity(w_current, "_Page/_Up", FALSE);
-    x_menus_sensitivity(w_current, "_Page/_Down", FALSE);
-    x_menus_sensitivity(w_current, "_Page/_Next", FALSE);
-    x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
+    x_menu_sensitivity(w_current, "_Page/_Up", FALSE);
+    x_menu_sensitivity(w_current, "_Page/_Down", FALSE);
+    x_menu_sensitivity(w_current, "_Page/_Next", FALSE);
+    x_menu_sensitivity(w_current, "_Page/_Previous", FALSE);
   }
 
   if (any_object) {
@@ -715,21 +715,21 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
 
     if (complex_selected  || is_editing_symbol) {
-      x_menus_popup_sensitivity(w_current, "Component...",      TRUE);
-      x_menus_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
+      x_menu_popup_sensitivity(w_current, "Component...",      TRUE);
+      x_menu_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
     }
     else {
-      x_menus_popup_sensitivity(w_current, "Component...",      FALSE);
-      x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
+      x_menu_popup_sensitivity(w_current, "Component...",      FALSE);
+      x_menu_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
     if (pin_selected) {
-        x_menus_sensitivity(w_current, "_Edit/Edit Pi_n...", TRUE);
-        x_menus_popup_sensitivity(w_current, "Pin type...", TRUE);
+        x_menu_sensitivity(w_current, "_Edit/Edit Pi_n...", TRUE);
+        x_menu_popup_sensitivity(w_current, "Pin type...", TRUE);
     }
     else {
-        x_menus_sensitivity(w_current, "_Edit/Edit Pi_n...",  FALSE);
-        x_menus_popup_sensitivity(w_current,  "Pin type...", FALSE);
+        x_menu_sensitivity(w_current, "_Edit/Edit Pi_n...",  FALSE);
+        x_menu_popup_sensitivity(w_current,  "Pin type...", FALSE);
     }
 
     if (text_selected) {
@@ -739,49 +739,49 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
       set_sensitivity_for_text (FALSE);
     }
 
-    x_menus_sensitivity(w_current, "_Edit/Cu_t clipboard", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/_Copy clipboard", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/C_opy", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/_Multiple Copy", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Mo_ve", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Rotate _90", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/M_irror", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/_Edit...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/E_dit Text...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Co_lor...", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/Cu_t clipboard", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/_Copy clipboard", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/_Delete", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/C_opy", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/_Multiple Copy", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/Mo_ve", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/Rotate _90", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/M_irror", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/_Edit...", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/E_dit Text...", TRUE);
+    x_menu_sensitivity(w_current, "_Edit/Co_lor...", TRUE);
 
-    x_menus_sensitivity(w_current, "_Select/Lock", TRUE);
-    x_menus_sensitivity(w_current, "_Select/Unlock", TRUE);
+    x_menu_sensitivity(w_current, "_Select/Lock", TRUE);
+    x_menu_sensitivity(w_current, "_Select/Unlock", TRUE);
 
     if (can_edit_line) {
-      x_menus_sensitivity(w_current, "_Edit/Line _Width & Type...", TRUE);
+      x_menu_sensitivity(w_current, "_Edit/Line _Width & Type...", TRUE);
     }
     else {
-      x_menus_sensitivity(w_current, "_Edit/Line _Width & Type...", FALSE);
+      x_menu_sensitivity(w_current, "_Edit/Line _Width & Type...", FALSE);
     }
 
     if (can_hatch) {
-      x_menus_sensitivity(w_current, "_Edit/Fill T_ype...", TRUE);
+      x_menu_sensitivity(w_current, "_Edit/Fill T_ype...", TRUE);
     }
     else {
-      x_menus_sensitivity(w_current, "_Edit/Fill T_ype...", FALSE);
+      x_menu_sensitivity(w_current, "_Edit/Fill T_ype...", FALSE);
     }
 
     set_sensitivity_for_buffers(TRUE);
 
-    x_menus_popup_sensitivity(w_current, "Edit",          TRUE);
-    x_menus_popup_sensitivity(w_current, "Object...",     TRUE);
+    x_menu_popup_sensitivity(w_current, "Edit",          TRUE);
+    x_menu_popup_sensitivity(w_current, "Object...",     TRUE);
 
-    x_menus_popup_sensitivity(w_current, "Delete", TRUE);
-    x_menus_popup_sensitivity(w_current, "Copy",   TRUE);
-    x_menus_popup_sensitivity(w_current, "MCopy",  TRUE);
-    x_menus_popup_sensitivity(w_current, "Move",   TRUE);
-    x_menus_popup_sensitivity(w_current, "Mirror", TRUE);
-    x_menus_popup_sensitivity(w_current, "Rotate", TRUE);
+    x_menu_popup_sensitivity(w_current, "Delete", TRUE);
+    x_menu_popup_sensitivity(w_current, "Copy",   TRUE);
+    x_menu_popup_sensitivity(w_current, "MCopy",  TRUE);
+    x_menu_popup_sensitivity(w_current, "Move",   TRUE);
+    x_menu_popup_sensitivity(w_current, "Mirror", TRUE);
+    x_menu_popup_sensitivity(w_current, "Rotate", TRUE);
 
-    x_menus_popup_sensitivity(w_current, "Cut to Clipboard",  TRUE);
-    x_menus_popup_sensitivity(w_current, "Copy to Clipboard", TRUE);
+    x_menu_popup_sensitivity(w_current, "Cut to Clipboard",  TRUE);
+    x_menu_popup_sensitivity(w_current, "Copy to Clipboard", TRUE);
 
   }
   else { /* Nothing is selected, grey these out */
@@ -795,53 +795,53 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     if (! is_editing_symbol) {
       /* This is not handled in complex because of conditional */
-      x_menus_popup_sensitivity(w_current, "Component...",  FALSE);
-      x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
+      x_menu_popup_sensitivity(w_current, "Component...",  FALSE);
+      x_menu_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
-    x_menus_sensitivity(w_current, "_Edit/Cu_t clipboard", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/_Copy clipboard", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/_Delete", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/C_opy", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/_Multiple Copy", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Mo_ve", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Rotate _90", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/M_irror", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/_Edit...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/E_dit Text...", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Cu_t clipboard", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/_Copy clipboard", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/_Delete", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/C_opy", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/_Multiple Copy", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Mo_ve", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Rotate _90", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/M_irror", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/_Edit...", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/E_dit Text...", FALSE);
 
-    x_menus_sensitivity(w_current, "_Edit/Co_lor...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Edit Pi_n...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Line _Width & Type...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Fill T_ype...", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Co_lor...", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Edit Pi_n...", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Line _Width & Type...", FALSE);
+    x_menu_sensitivity(w_current, "_Edit/Fill T_ype...", FALSE);
 
-    x_menus_sensitivity(w_current, "_Select/Lock", FALSE);
-    x_menus_sensitivity(w_current, "_Select/Unlock", FALSE);
+    x_menu_sensitivity(w_current, "_Select/Lock", FALSE);
+    x_menu_sensitivity(w_current, "_Select/Unlock", FALSE);
 
-    x_menus_popup_sensitivity(w_current, "Edit",   FALSE);
-    x_menus_popup_sensitivity(w_current, "Delete", FALSE);
-    x_menus_popup_sensitivity(w_current, "Copy",   FALSE);
-    x_menus_popup_sensitivity(w_current, "MCopy",  FALSE);
-    x_menus_popup_sensitivity(w_current, "Move",   FALSE);
-    x_menus_popup_sensitivity(w_current, "Mirror", FALSE);
-    x_menus_popup_sensitivity(w_current, "Rotate", FALSE);
+    x_menu_popup_sensitivity(w_current, "Edit",   FALSE);
+    x_menu_popup_sensitivity(w_current, "Delete", FALSE);
+    x_menu_popup_sensitivity(w_current, "Copy",   FALSE);
+    x_menu_popup_sensitivity(w_current, "MCopy",  FALSE);
+    x_menu_popup_sensitivity(w_current, "Move",   FALSE);
+    x_menu_popup_sensitivity(w_current, "Mirror", FALSE);
+    x_menu_popup_sensitivity(w_current, "Rotate", FALSE);
 
-    x_menus_popup_sensitivity(w_current, "Cut to Clipboard",  FALSE);
-    x_menus_popup_sensitivity(w_current, "Copy to Clipboard", FALSE);
+    x_menu_popup_sensitivity(w_current, "Cut to Clipboard",  FALSE);
+    x_menu_popup_sensitivity(w_current, "Copy to Clipboard", FALSE);
   }
 
   if (any_object && text_selected) {
-    x_menus_sensitivity(w_current, "Attri_butes/_Attach", TRUE);
+    x_menu_sensitivity(w_current, "Attri_butes/_Attach", TRUE);
   }
   else {
-    x_menus_sensitivity(w_current, "Attri_butes/_Attach", FALSE);
+    x_menu_sensitivity(w_current, "Attri_butes/_Attach", FALSE);
   }
 
   if (complex_selected || text_selected) {
-    x_menus_sensitivity(w_current, "Attri_butes/_Detach", TRUE);
+    x_menu_sensitivity(w_current, "Attri_butes/_Detach", TRUE);
   }
   else {
-    x_menus_sensitivity(w_current, "Attri_butes/_Detach", FALSE);
+    x_menu_sensitivity(w_current, "Attri_butes/_Detach", FALSE);
   }
 
   /* Update sensitivities on the Toolbars */

@@ -1,7 +1,8 @@
 2018-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Set the initial state of tooltips visibility for the
-      toggle and radio menu items.
+      toggle and radio menu items. Rename functions x_menus_sensitivity and
+      x_menus_popup_sensitivity without the 's'.
 
 2018-07-11 Wiley E. Hill <wileyhill@gmail.com>
 

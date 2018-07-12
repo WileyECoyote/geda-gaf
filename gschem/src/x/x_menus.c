@@ -1475,7 +1475,7 @@ static int sensitivity_errors = 0;
  *  \par Function Description
  *  This function is called from i_basic to set the senitivity of menu items!
  */
-void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
+void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
   GtkWidget *menubar;
 
@@ -1521,8 +1521,7 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
  *  popup.
  *
  */
-void x_menus_popup_sensitivity (GschemToplevel *w_current,
-                                const char *name, int flag)
+void x_menu_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
 {
   MenuData *menu_data;
 
