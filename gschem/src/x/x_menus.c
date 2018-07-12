@@ -1483,33 +1483,30 @@ void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
     return;
   }
 
-  menubar = x_menu_get_main_menu(w_current);
+  menubar = x_menu_get_main_menu (w_current);
 
-  if (GEDA_IS_MENU_BAR(menubar)) {
+  GtkWidget *item = GEDA_OBJECT_GET_DATA (menubar, buf);
 
-    GtkWidget *item = GEDA_OBJECT_GET_DATA (menubar, buf);
+  if (item && GEDA_IS_MENU_ITEM(item)) {
+    gtk_widget_set_sensitive((GtkWidget*)item, flag);
+    /* item = pointer to menu widget -- do not free here */
+  }
+  else {
 
-    if (item && GEDA_IS_MENU_ITEM(item)) {
-      gtk_widget_set_sensitive((GtkWidget*)item, flag);
-      /* item = pointer to menu widget -- do not free here */
+    const char *log_msg = _("Tried to set the sensitivity on non-existent menu item");
+
+    if (verbose_mode) {
+      u_log_message("%s '%s'\n", log_msg, buf);
     }
     else {
-
-      const char *log_msg = _("Tried to set the sensitivity on non-existent menu item");
-
-      if (verbose_mode) {
-        u_log_message("%s '%s'\n", log_msg, buf);
+      if (sensitivity_errors < SENSITIVITY_ERROR_LIMIT) {
+        q_log_message("%s '%s',\n", log_msg, buf);
       }
-      else {
-        if (sensitivity_errors < SENSITIVITY_ERROR_LIMIT) {
-          q_log_message("%s '%s',\n", log_msg, buf);
-        }
-        sensitivity_errors++;
-        if (sensitivity_errors == SENSITIVITY_ERROR_LIMIT) {
-          const char *log_msg1 = _("Excessive errors");
-          const char *log_msg2 = _("disabling sensitivity warnings");
-          geda_log_q("%s <%d>, %s\n", log_msg1, sensitivity_errors, log_msg2);
-        }
+      sensitivity_errors++;
+      if (sensitivity_errors == SENSITIVITY_ERROR_LIMIT) {
+        const char *log_msg1 = _("Excessive errors");
+        const char *log_msg2 = _("disabling sensitivity warnings");
+        geda_log_q("%s <%d>, %s\n", log_msg1, sensitivity_errors, log_msg2);
       }
     }
   }
