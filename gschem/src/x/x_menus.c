@@ -1521,24 +1521,17 @@ void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 void x_menu_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
 {
   MenuData *menu_data;
+  GtkWidget *menu_item;
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  if (!GEDA_IS_MENU (POPUP_MAIN)) {
-    fprintf(stderr, "Popup menu widget does not exist!\n");
+  menu_item = (GtkWidget*)g_hash_table_lookup (POPUP_MAIN_HASH, name);
+
+  if (menu_item) {
+    gtk_widget_set_sensitive(menu_item, flag);
   }
   else {
-
-    GtkWidget *menu_item;
-
-    menu_item = (GtkWidget*)g_hash_table_lookup (POPUP_MAIN_HASH, name);
-
-    if (menu_item) {
-      gtk_widget_set_sensitive(menu_item, flag);
-    }
-    else {
-      fprintf(stderr, "%s popup item non-existent <%s>\n", __func__, name);
-    }
+    fprintf(stderr, "%s popup item non-existent <%s>\n", __func__, name);
   }
 }
 
