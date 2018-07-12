@@ -1473,7 +1473,7 @@ static int sensitivity_errors = 0;
 
 /*! \brief Set Sensitivity of Main Menu Item
  *  \par Function Description
- *  This function is called from i_basic to set the senitivity of menu items!
+ *  This function is called from i_status to set the senitivity of menu items!
  */
 void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
