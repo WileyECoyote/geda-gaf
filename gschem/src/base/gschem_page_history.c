@@ -134,8 +134,8 @@ gschem_page_history_free (GschemPageHistory *history)
  * \brief Get Page Back in History
  * \par Function Description
  *  Returns the page on top the pages-back history stack
- *  after removing the current page, which pushed to the
- *  list of pages forward.
+ *  after removing the current page, which is pushed to
+ *  the list of pages forward.
  *
  * \param [in] history GschemPageHistory object.
  *
