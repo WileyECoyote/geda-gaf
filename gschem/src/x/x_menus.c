@@ -1716,13 +1716,17 @@ static void x_menu_toggle_icons(GtkWidget *widget, GSList* list)
 }
 
 /*!
- * \brief Enable Disable Menu Tool Tips
+ * \brief Enable Disable Menu Tooltips
  * \par Function Description
  *  Callback function turns menu tips on or off based on the state of
  *  the toggle menu item pointed to by widget. This is a callback for
- *  the toggle tips menu option so widget is the toggle item. The list
- *  is a glist of all menu items or all pop-menu items.
+ *  the toggle tips menu option so widget is a toggle item. The list
+ *  is a glist of all main menu items or all pop-menu items depending
+ *  on whether widget is the menu or popup tooltips toggle item.
  *
+ * \note This is a callback for the popup tooltips toggle item and
+ *       a helper for x_menu_toggle_main_tips, which is a callback
+ *       for main menu tooltips toggle item.
  */
 static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
 {
@@ -1812,8 +1816,9 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
  *  temporily to prevent recursion with callbacks.
  */
 
-/*! \brief Set State of Menu Toggle Items - Low LeveL
- *  \par Function Description
+/*!
+ * \brief Set State of a Menu Toggle Item - Low LeveL
+ * \par Function Description
  *
  */
 static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
@@ -1857,18 +1862,20 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
   return;
 }
 
-/*! \brief Set State of Menu Toggle Items
- *
+/*!
+ * \brief Set State of Menu Toggle Item or Items
  * \par Function Description
- * This is a menu support function to "uncheck" menu toggle items. The function
- * can be used when the menu option was changed by some other means, for example
- * when options are turned off with "Hot-Keys".
+ * This is a menu support function to set the state of menu toggle items.
+ * The function is used when a menu option was changed by some other means,
+ * for example when options are turned off with "Hot-Keys". \a toggle_id
+ * can be RESET_TOGGLERS, resulting in all toggle items under the options
+ * menu item being set to \a state.
  *
  * \param w_current Gschem toplevel object
- * \param toggle_id is int index of the ToggleMenuData Glist item to set
- * \param state     is int value to set, either TRUE (check) or FALSE (uncheck).
+ * \param toggle_id is integer index of the ToggleMenuData Glist item to set
+ * \param state     is integer value to set, either TRUE (check) or FALSE (uncheck).
  *
- * \sa x_menu_set_toolbar_toggle
+ * \sa MenuToggleItem x_menu_set_toolbar_toggle
  */
 void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
 {
@@ -1904,12 +1911,13 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
   return;
 }
 
-/*! \brief Set State of Menu ToolBar Toggle Items
+/*!
+ * \brief Set State of Menu ToolBar Toggle Item
  * \par Function Description
- *  This is a menu support function to "uncheck" Toolbar Menu toggle items.
- *  The function can be used when the menu option was changed by some other
- *  means, for example when a floating toolbars is turned off with the "X"
- *  box.
+ *  This is a menu support function to set the state of an individual Toolbar
+ *  Menu toggle item. The function is called when the menu option was changed
+ *  by some other means, for example when a floating toolbars is turned off
+ *  with the "X" box.
  *
  * \param w_current Gschem toplevel object
  * \param toggle_id is int index of the IDS_Menu_Toggles item to set
@@ -1940,7 +1948,8 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   return;
 }
 
-/*! \brief Set State of ToolBar Tooltips Toggle Menu item
+/*!
+ * \brief Set State of ToolBar Tooltips Toggle Menu item
  * \par Function Description
  *  This function sets the active state of the "Display Tips" under the
  *  Toolbar submenu and has nothing to do with tooltip displayed in the
