@@ -26,7 +26,7 @@ Help =\
 """
 Options:
 
-  -R, --Recursive -- Process all symbol files in the current and all subordinated directories.
+  -r, --recursive -- Process all symbol files in the current and all subordinated directories.
   -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
                      Spews lots of info about what the program is doing.
 
@@ -35,7 +35,7 @@ Options:
   if these options are used the corresponding attributes will not be modified:
 
   -D, --device
-  -r, --refdes
+  -R, --refdes
   -A, --author
   -U, --numslots
   -E, --description
@@ -43,13 +43,13 @@ Options:
   -N, --net
   -M, --netname
   -V, --value
-  -P, --pinlabel
+  -L, --pinlabel
 
   The following list of attribute flags correspond to attributes set to 8 points by default,
   if these options are used the corresponding attributes will not be modified:
 
   -q, --pinseq
-  -i, --pinnumber
+  -p, --pinnumber
   -t, --pintype
 
   The following list of attributes are set to 10 points, and no option is provided to
@@ -62,7 +62,7 @@ Options:
 Example: Set the font size of all attributes to default values in all symbol files
          in the current directory and in all subdirectories:
 
-         gsym-set-font-size.py -R
+         gsym-set-font-size.py -r
 
 Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 2.
 
@@ -115,7 +115,7 @@ class ProgramParameters:
                 if arg in ('-v', '--verbose'):
                     self.VerboseMode = True
                     continue
-                if arg in ('-R', '--Recursive'):
+                if arg in ('-r', '--recursive'):
                     self.RecursiveMode = True
                     continue
 
@@ -123,7 +123,7 @@ class ProgramParameters:
                 if arg in ('-D', '--device'):
                     self.fix_device = False
                     continue
-                if arg in ('-r', '--refdes'):
+                if arg in ('-R', '--refdes'):
                     self.fix_refdes = False
                     continue
                 if arg in ('-A', '--author'):
@@ -147,7 +147,7 @@ class ProgramParameters:
                 if arg in ('-V', '--value'):
                     self.fix_value = False
                     continue
-                if arg in ('-P', '--pinlabel'):
+                if arg in ('-L', '--pinlabel'):
                     self.fix_pinlabel  = False
                     continue
 
@@ -156,7 +156,7 @@ class ProgramParameters:
                 if arg in ('-q', '--pinseq'):
                     self.fix_symversion = False
                     continue
-                if arg in ('-i', '--pinnumber'):
+                if arg in ('-p', '--pinnumber'):
                     self.fix_pinnumber = False
                     continue
                 if arg in ('-t', '--pintype'):
@@ -274,6 +274,7 @@ def AnalyzeText(Options, Text):
             if not modified:
                 modified = AlwaysSet10(Options, Text)
         modified = modified - 1
+
     return modified
 
 #---------------------------------------------------------------------------
@@ -296,7 +297,8 @@ def ProcessSymbol(Options, File):
     for capsule in objects:
         object = geda.get_object(capsule)          # Retrieve object from GedaCapsule
         if capsule.type == OBJ_TEXT:
-            if AnalyzeText(Options, object):
+            result = AnalyzeText(Options, object)
+            if result > 0:
                 modified = modified + 1
 
     if modified:

@@ -16,7 +16,7 @@ Sets the font size of Text attributes in a symbol file to default values unless 
 
 Example: Set the font size of all attributes to default values in all symbol files in the current directory and in all subdirectories:
 
-          gsym-set-font-size.py -R
+          gsym-set-font-size.py -r
 
 .SH INFORMATION
 Use of the following options displays information related to gsym-set-font-size
@@ -32,7 +32,7 @@ The following options can be used to modify the default behavior of gsym-set-fon
 The following list of attribute flags correspond to attributes set to 10 points by default, if these options are used the corresponding attributes will not be modified:
 
 .IP "-D, --device"
-.IP "-r, --refdes"
+.IP "-R, --refdes"
 .IP "-A, --author"
 .IP "-U, --numslots"
 .IP "-E, --description"
@@ -40,13 +40,13 @@ The following list of attribute flags correspond to attributes set to 10 points 
 .IP "-N, --net"
 .IP "-M, --netname"
 .IP "-V, --value"
-.IP "-P, --pinlabel"
+.IP "-L, --pinlabel"
 
 .TP
 The following list of attribute flags correspond to attributes set to 8 points by default, if these options are used the corresponding attributes will not be modified:
 
 .IP "-q, --pinseq"
-.IP "-i, --pinnumber"
+.IP "-p, --pinnumber"
 .IP "-t, --pintype"
 
 .TP
@@ -58,7 +58,7 @@ The following list of attributes are set to 10 points, and no option is provided
 .SH DIRECTIVES
 .IP "-v, --verbose"
 Enable verbose mode. Displays additional information about what the program is doing.
-.IP "-R, --Recursive"
+.IP "-r, --recursive"
 Process all symbol files in the current and all subordinated directories.
 .IP "-i, --input <input file>"
 Specify the name of the input sym file. Wild cards are accepted, the default is *.sym.

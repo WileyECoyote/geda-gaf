@@ -1,7 +1,14 @@
 2018-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * scripts/geda-snap-grid.py: Change recursive argument option to be lower case
+    * scripts/geda-snap-grid.py: Change recursive option arguments to be lower case
       "r" and "recursive".
+
+    * scripts\gsym-set-font-size.py: Revise options:
+
+            * lower case "r" -> recursive
+            * upper case "R" -> refdes
+            * upper case "L" -> pinlabel
+            * lower case "p" -> pinnumber
 
 2018-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
