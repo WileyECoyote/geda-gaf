@@ -1,3 +1,7 @@
+2018-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-libgedathon.m4: Require AX_HOST and conditionaly set installpath.
+
 2018-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-python.m4: Add module specific linker flags as PYMODULE_LDFLAGS

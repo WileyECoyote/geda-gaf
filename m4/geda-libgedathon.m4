@@ -24,6 +24,7 @@ dnl
 AC_DEFUN([AX_LIBGEDATHON],
 [
   AC_PREREQ([2.60])dnl
+  AC_REQUIRE([AX_HOST])dnl
 
   # First argument is the shared library version to use.
   AC_MSG_CHECKING([libgedathon shared library version])
@@ -32,9 +33,15 @@ AC_DEFUN([AX_LIBGEDATHON],
 
   # ATTENTION: Trailing spaces are intentional to reserve memory for
   #            the run-time file extension, either .so or .dll
-  installpath='/lib/libgedathon    '
+
+  if test "$OS_WIN32" = "yes"; then
+    installpath='/bin/libgedathon       ' # Path to libgedathon on Win32
+  else
+    installpath='/lib/libgedathon       ' # Path to libgedathon on Linux
+  fi
+
   AC_DEFINE_DIR([LIBGEDATHON_PATH], [exec_prefix$installpath],
-  [Define to $exec_prefix/lib/libgedathon plus spaces for extension.])
+  [Define to $installpath plus spaces for extension.])
 
   # Work out the gettext domain to use
   AC_MSG_CHECKING([libgedathon gettext domain])
