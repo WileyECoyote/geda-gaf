@@ -246,8 +246,10 @@ static int open_library (void)
 static void close_library (void)
 {
   do_shutdown(NULL, NULL);
-  if (closer.obj != NULL)
-    closer.func(libgedathon);
+
+  if (closer.obj != NULL) {
+    closer.func((void*)libgedathon);
+  }
 }
 
 static API_FunctionTable PyGeda_API[METHOD_COUNT];
@@ -265,8 +267,7 @@ static API_FunctionTable PyGeda_API[METHOD_COUNT];
  *  This function is the only function symbolically exported from the
  *  module.
  */
-PyMODINIT_FUNC
-initgeda(void)
+PyMODINIT_FUNC initgeda(void)
 {
   //static PyObject *module;
 
