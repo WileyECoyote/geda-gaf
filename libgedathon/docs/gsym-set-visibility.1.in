@@ -20,7 +20,7 @@ ex. 1) Set visibility of all attributes in two symbols to default values:
 
 ex. 2) Set the visibility of all attributes except the pin labels to default values in all symbol files in the current directory and in all subdirectories:
 
-    gsym-set-visibility.py -R -p
+    gsym-set-visibility.py -r -L
 
 .SH INFORMATION
 Use of the following options displays information related to gsym-set-visibility
@@ -35,9 +35,9 @@ The following options can be used to modify the default behavior of gsym-set-vis
 .TP
 The following list of attribute flags correspond to attributes turned ON by default, if these options are used the corresponding attributes will not be modified:
 
-.IP "-r, --refdes    (ON + SHOW-VALUE)"
-.IP "-i, --pinnumber (ON + SHOW-VALUE)"
-.IP "-p, --pinlabel  (ON + SHOW-VALUE)"
+.IP "-R, --refdes    (ON + SHOW-VALUE)"
+.IP "-p, --pinnumber (ON + SHOW-VALUE)"
+.IP "-L, --pinlabel  (ON + SHOW-VALUE)"
 
 .TP
 The following list of attribute flags correspond to attributes turned OFF by default, if these options are used the corresponding attributes will not be modified:
@@ -71,7 +71,7 @@ The following list of attributes are ALWAYS turned OFF, and no option is provide
 .SH DIRECTIVES
 .IP "-v, --verbose"
 Enable verbose mode. Displays additional information about what the program is doing.
-.IP "-R, --Recursive"
+.IP "-r, --recursive"
 Process all symbol files in the current and all subordinated directories.
 .IP "-i, --input <input file>"
 Specify the name of the input sym file. Wild cards are accepted, the default is *.sym.

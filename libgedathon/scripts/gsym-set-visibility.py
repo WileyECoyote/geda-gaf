@@ -26,7 +26,7 @@ Help =\
 """
 Options:
 
-  -R, --Recursive -- Process all symbol files in the current and all subordinated directories.
+  -r, --Recursive -- Process all symbol files in the current and all subordinated directories.
   -v, --verbose   -- Verbose mode.  Used in both archive and extract mode.
                      Spews lots of info about what the prog is doing.
 
@@ -34,9 +34,9 @@ Options:
   The following list of attribute flags correspond to attributes turned ON by default,
   if these options are used the corresponding attributes will not be modified:
 
-  -r, --refdes    ON + SHOW-VALUE
-  -i, --pinnumber ON + SHOW-VALUE
-  -p, --pinlabel  ON + SHOW-VALUE
+  -R, --refdes    ON + SHOW-VALUE
+  -p, --pinnumber ON + SHOW-VALUE
+  -L, --pinlabel  ON + SHOW-VALUE
 
   The following list of attribute flags correspond to attributes turned OFF by default,
   if these options are used the corresponding attributes will not be modified:
@@ -75,7 +75,7 @@ Example: Set visibility of all attributes in two symbols to default values:
 Example: Set the visibility of all attributes except the pin labels to default values
          in all symbol files in the current directory and in all subdirectories:
 
-    gsym-set-visibility.py -R -p
+    gsym-set-visibility.py -r -L
 
 Copyright (C) 2014-2015 by Wiley Edward Hill.  Released under GPL Version 2.
 
@@ -134,7 +134,7 @@ class ProgramParameters:
                 if arg in ('-v', '--verbose'):
                     self.VerboseMode = True
                     continue
-                if arg in ('-R', '--Recursive'):
+                if arg in ('-r', '--recursive'):
                     self.RecursiveMode = True
                     continue
 
@@ -142,13 +142,13 @@ class ProgramParameters:
                 if arg in ('-d', '--device'):
                     self.fix_device = False
                     continue
-                if arg in ('-r', '--refdes'):
+                if arg in ('-R', '--refdes'):
                     self.fix_refdes = False
                     continue
-                if arg in ('-i', '--pinnumber'):
+                if arg in ('-p', '--pinnumber'):
                     self.fix_pinnumber = False
                     continue
-                if arg in ('-p', '--pinlabel'):
+                if arg in ('-L', '--pinlabel'):
                     self.fix_pinlabel  = False
                     continue
 
