@@ -16,6 +16,8 @@ INC_LIBGEDA          = -I$(top_srcdir)/libgeda/include
 
 GEDA_INCLUDES        = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
+GEDATHON_VERSION     = -DLIBGEDATHON_VERSION=\"$(LIBGEDATHON_SHLIB_VERSION)\"
+
 SUFFIXES             = .py
 
 moduledir            = $(PYTHON_MODDIR)/geda
@@ -24,7 +26,7 @@ module_PYTHON        = __init__.py
 
 PY_LIBFLAGS          = $(PYMODULE_LDFLAGS) -module -avoid-version -export-symbols-regex initgeda
 
-AM_CFLAGS            = $(DEBUGGING) $(GEDA_INCLUDES) $(GDK_PIXBUF_CFLAGS)
+AM_CFLAGS            = $(DEBUGGING) $(GEDA_INCLUDES) $(GEDATHON_VERSION) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS           = $(DEBUGGING) -version-info $(LIBGEDATHON_SHLIB_VERSION) $(WINDOWS_LIBTOOL_FLAGS)
 

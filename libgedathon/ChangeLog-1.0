@@ -1,5 +1,8 @@
 2018-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/Makefile.am: Add GEDATHON_VERSION and pass LIBGEDATHON_SHLIB_VERSION
+      to builder.
+
     * module/geda.c: Revise suffix_installed_library to dynamically back-over
       the tail based on the len of the ext argument.
 
