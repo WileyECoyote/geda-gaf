@@ -100,10 +100,11 @@ static const char *suffix_installed_library(const char *ext)
   libgedapath = installed_library_path;
 
   if (ext != NULL) {
+    int len = strlen(ext) + 1;
     if (!strstr (installed_library_path, ext)) {
       ptr = installed_library_path;
       while ( *ptr != '\0') ptr++;
-      ptr = ptr - 4;
+      ptr = ptr - len;
       while ( *ext != '\0') *ptr++ = *ext++;
       *ptr = '\0';
     }

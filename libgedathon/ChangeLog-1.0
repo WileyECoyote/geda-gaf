@@ -1,5 +1,8 @@
 2018-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/geda.c: Revise suffix_installed_library to dynamically back-over
+      the tail based on the len of the ext argument.
+
     * module/objects/geda_py_page.c: Fix bug in Page_setfilename; return 0.
 
     * scripts/geda-snap-grid.py: Change recursive option arguments to be lower case
