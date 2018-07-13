@@ -207,7 +207,9 @@ static int Page_setfilename(PyGedaPageObject *self, PyObject *value, void *closu
       return -1;
   }
 
-  return self->modified = result;
+  self->modified = result;
+
+  return 0;
 }
 
 static PyGetSetDef Page_getseters[] = {
