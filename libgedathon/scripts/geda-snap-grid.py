@@ -35,7 +35,7 @@ Options:
 
   The following options can be used to modify the default behavior of geda-snap-grid
 
-  -R, --Recursive --  Process all files in the current and all subordinated directories.
+  -r, --recursive --  Process all files in the current and all subordinated directories.
   -v, --verbose   --  Verbose mode, spews lots of info about what the prog is doing.
 
   -a, --append <path> When processing schematic files this option can be used to specify
@@ -61,7 +61,7 @@ Example: Snap all attribute coordinates values in all files in the current
          directory and in all subdirectories to the nearest multiple of 50 and
          report modified values:
 
-    geda-snap-grid.py --verbose -R -m 50
+    geda-snap-grid.py --verbose -r -m 50
 
 Copyright (C) 2015 by Wiley Edward Hill. Released under GPL Version 2.
 
@@ -161,7 +161,7 @@ class ProgramParameters:
                     self.VerboseMode = True
                     continue
 
-                if arg in ('-R', '--Recursive'):
+                if arg in ('-r', '--recursive'):
                     self.RecursiveMode = True
                     continue
 

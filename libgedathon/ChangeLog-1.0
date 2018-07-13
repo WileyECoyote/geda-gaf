@@ -1,3 +1,8 @@
+2018-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/geda-snap-grid.py: Change recursive argument option to be lower case
+      "r" and "recursive".
+
 2018-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/geda-snap-grid.1.in: General update; formating, grammar; verbose
