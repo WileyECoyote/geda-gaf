@@ -465,7 +465,7 @@ char *geda_file_sys_normalize_name (const char *name, GError **error)
     /* The file system is case-preserving but case-insensitive,
      * canonicalize to lowercase, using the codepage associated
      * with the process locale.  */
-    CharLowerBuff (buf, len);
+    //CharLowerBuff (buf, len);
     result = g_strdup (buf);
   }
 
