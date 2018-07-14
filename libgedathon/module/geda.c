@@ -247,6 +247,11 @@ static int open_library (void)
     /* Attempt to load using LD_LIBRARY_PATH or system, unlikely to work */
     libgedathon = LoadLibrary("libgedathon.dll");
 
+    if (libgedathon == NULL) {
+      fprintf(stderr, "Maybe try appending PATH with path to geda runtime libraries; export $PATH:\"/c/path/bin\"\n");
+      fprintf(stderr, "If there was a message stating unable to find file \"ice-9/boot-9.scm\" in load path then\n");
+      fprintf(stderr, "try setting GUILE_LOAD_PATH=c:/path/to/guile/1.8\"\n");
+    }
   }
 
   /* Restore the original working directory */
