@@ -1,5 +1,5 @@
 # geda-automake-options.m4                           -*-Autoconf-*-
-# serial 1.0
+# serial 0.2
 
 dnl Conditionally set AutoMake Options Variable
 dnl
@@ -29,7 +29,7 @@ AC_DEFUN([AX_INIT_AUTOMAKE],
       GEDA_NEW_AM_OPTS="parallel-tests color-tests"
       GEDA_OLD_AM_OPTS="serial-tests"
 
-      am_version=$(automake --version | { read ver && echo ${ver#*) }; })
+      am_version=$(automake --version | { read ver && echo "${ver#*) }"; })
 
       case $am_version in
         1.1[1-9]*|[2-9]*) echo $GEDA_NEW_AM_OPTS ;;

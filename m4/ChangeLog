@@ -1,3 +1,8 @@
+2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-automake-options.m4: Wrap inner braces for version extraction to
+      suppress confusion when running aclocal.
+
 2018-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-libgedathon.m4: Require AX_HOST and conditionaly set installpath.
