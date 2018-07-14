@@ -666,6 +666,21 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
         int success = geda_open_file(current, page, argv[i], NULL);
 
         if (success && need_cairo_init) {
+          const char *filename;
+          char *fname;
+
+          filename = geda_page_get_filename(page);
+
+          fname = geda_get_basename_dup(filename);
+
+          if (verbose_mode) {
+            printf("processing: %s\n", filename);
+          }
+          else if (!quiet_mode) {
+            printf("processing: %s\n", page->filename);
+          }
+
+          geda_remove_extension(fname);
 
             surface =
               cairo_pdf_surface_create("output.pdf",
@@ -681,6 +696,7 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
         }
 
         if (success) {
+            GEDA_FREE (fname);
 
             print_page(current, cairo, page);
 

@@ -1,6 +1,8 @@
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gsch2pdf/gsch2pdf.c: Rename function main2 -> gsch2pdf.
+    * gsch2pdf/gsch2pdf.c: Rename function main2 -> gsch2pdf and revise
+      to write the file name if not quite mode, and the full name when
+      verbose mode.
 
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
