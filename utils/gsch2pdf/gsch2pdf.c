@@ -587,7 +587,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
     const GList *list;
     int wx_min, wy_min, wx_max, wy_max;
 
-    cairo_save(cairo);
+    //cairo_save(cairo);
 
     list = geda_struct_page_get_objects(page);
 
@@ -633,7 +633,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 
     g_array_free(junctions, TRUE);
 
-    cairo_restore(cairo);
+    //cairo_restore(cairo);
 }
 
 static void gsch2pdf(void *closure, int argc, char *argv[])
@@ -641,7 +641,6 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
     GedaToplevel    *current;
     cairo_surface_t *surface = NULL;
     cairo_t         *cairo = NULL;
-    bool             need_cairo_init = TRUE;
     int              argv_index, i;
 
     argv_index = parse_commandline(argc, argv);
@@ -665,7 +664,8 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
 
         int success = geda_open_file(current, page, argv[i], NULL);
 
-        if (success && need_cairo_init) {
+        if (success) {
+
           const char *filename;
           char *fname;
 
@@ -682,8 +682,9 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
 
           geda_remove_extension(fname);
 
-            surface =
-              cairo_pdf_surface_create("output.pdf",
+          strcat(fname, ".pdf");
+
+          surface = cairo_pdf_surface_create(fname,
                                        72.0 * print_settings_get_page_width(print_settings),
                                        72.0 * print_settings_get_page_height(print_settings)
                                       );
@@ -692,15 +693,13 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
 
             cairo_surface_destroy(surface);
 
-            need_cairo_init = FALSE;
-        }
-
-        if (success) {
             GEDA_FREE (fname);
 
             print_page(current, cairo, page);
 
             cairo_show_page(cairo);
+
+            cairo_destroy(cairo);
         }
 
         geda_struct_page_delete(current, page, FALSE);
@@ -709,8 +708,6 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
     geda_struct_page_delete_list(current);
 
     libgeda_release();
-
-    cairo_destroy(cairo);
 
     rc_config_set_print_settings(NULL);
 

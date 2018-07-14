@@ -2,7 +2,10 @@
 
     * gsch2pdf/gsch2pdf.c: Rename function main2 -> gsch2pdf and revise
       to write the file name if not quite mode, and the full name when
-      verbose mode.
+      verbose mode. Revamp the file loop and create an file using the
+      basename of the input file instead of "output.pdf" because only
+      the first pdf file was being generated. Now, output is produced
+      for each input file.
 
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
