@@ -1,7 +1,10 @@
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise Win32 version of find_library to append the dash
-      version to the name of the dll file.
+      version to the name of the dll file. Add helper get_lib_path and change
+      to the installed library path before calling LoadLibrary for libgedathon
+      or libgeda does not get found, ugly but works for now. This gets both
+      libraries loaded with one call to LoadLibrary.
 
 2018-07-13 Wiley E. Hill <wileyhill@gmail.com>
 

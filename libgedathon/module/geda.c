@@ -118,6 +118,30 @@ static const char *suffix_installed_library(const char *ext)
   return libgedapath;
 }
 
+#ifdef OS_WIN32_NATIVE
+
+char *get_lib_path(void)
+{
+  char *lib_dir;
+  int   i, len;
+
+  /* Allocate space to save the library string */
+  lib_dir = malloc(MAX_PATH);
+
+  len = strlen(installed_library_path);
+
+  strcpy (lib_dir, installed_library_path);
+
+  for (i = len - 1; i; i--) {
+    if (lib_dir[i] == '/' || lib_dir[i] == '\\') {
+      lib_dir[i] = '\0';
+      break;
+    }
+  }
+
+  return lib_dir;
+}
+
 /*!
  * \brief Find Libgedathon on a MS Windows system
  * \par Function Description
@@ -125,7 +149,6 @@ static const char *suffix_installed_library(const char *ext)
  *
  * \return [out] string file name of the library including the extension.
  */
-#ifdef OS_WIN32_NATIVE
 static const char *find_library(void) {
 
   char  suffix[16];
@@ -184,14 +207,51 @@ static int open_library (void)
 
 #ifdef OS_WIN32_NATIVE
 
-  /* Attempt to load using LD_LIBRARY_PATH or system */
-  libgedathon = LoadLibrary("libgedathon.dll");
+  /* libgeda is a dependency of libgedathon, obviously since libgedathon is an
+   * interface for libgeda, so libgeda needs to be "found" to load libgedathon
+   * This can be accomplished several different way;
+   *   1. Load libgeda directly with something like:
+   *           LoadLibrary(TEXT("c:/geda/bin/libgeda-52.dll"))
+   *   2. Modify the PATH evironment variable to include the directory containing
+   *      libgeda; $PATH:"/c/geda/bin", "c:\geda\bin" will not work.
+   *   3. Make the directory containing libgeda the current directory before
+   *      attempting to load libgedathon.
+   *
+   *  All three will work and all are a bit of hassle but the later seems the
+   *  easiest approach.
+   */
+
+  char *cwd;
+  char *dir_sav;
+  char *lib_dir;
+
+  /* Allocate space to save the current working directory */
+  cwd = malloc(MAX_PATH);
+
+  /* Save the current working directory */
+  dir_sav = getcwd(cwd, MAX_PATH - 1);
+
+  /* Retrieve the installed path */
+  lib_dir = get_lib_path();
+
+  /* Temporarily change working directory to installed location */
+  chdir(lib_dir);
+
+  free(lib_dir);
+
+  /* Attempt to load using installed location */
+  libgedathon = LoadLibrary(find_library());
 
   if (libgedathon == NULL) {
 
-    /* Attempt to load using installed location */
-    libgedathon = LoadLibrary(find_library());
+    /* Attempt to load using LD_LIBRARY_PATH or system, unlikely to work */
+    libgedathon = LoadLibrary("libgedathon.dll");
+
   }
+
+  /* Restore the original working directory */
+  chdir(dir_sav);
+  free(cwd);
 
   if (libgedathon != NULL) {
 
