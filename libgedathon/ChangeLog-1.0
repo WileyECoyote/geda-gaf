@@ -1,3 +1,8 @@
+2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise Win32 version of find_library to append the dash
+      version to the name of the dll file.
+
 2018-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/Makefile.am: Add GEDATHON_VERSION and pass LIBGEDATHON_SHLIB_VERSION

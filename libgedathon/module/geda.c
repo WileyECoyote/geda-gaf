@@ -128,13 +128,24 @@ static const char *suffix_installed_library(const char *ext)
 #ifdef OS_WIN32_NATIVE
 static const char *find_library(void) {
 
-  suffix_installed_library(".dll");
+  char  suffix[16];
+
+  memset(&suffix[0], 0, 16);
+
+  suffix[0] = '-';
+
+  strcat (&suffix[0], LIBGEDATHON_VERSION);
+
+  strcpy (strstr(&suffix[0], ":"), ".dll");
+
+  suffix_installed_library(&suffix[0]);
 
   if (libgedapath == NULL)
     libgedapath = LIB_LOCATION_ERROR;
 
   return libgedapath;
 }
+
 #endif
 
 /*!
