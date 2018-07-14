@@ -1,6 +1,10 @@
+2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pdf/gsch2pdf.c: Rename function main2 -> gsch2pdf.
+
 2018-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gschemdoc/gschemdoc.sh.in: Add raw input file and let build
+    * gschemdoc/gschemdoc.sh.in: Add raw input file and let build
       system substitute the docdir rather than using sed because the
       backslashes in  docdir on Win32 builds confuses sed.
 

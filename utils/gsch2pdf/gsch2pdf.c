@@ -636,7 +636,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
     cairo_restore(cairo);
 }
 
-static void main2(void *closure, int argc, char *argv[])
+static void gsch2pdf(void *closure, int argc, char *argv[])
 {
     GedaToplevel    *current;
     cairo_surface_t *surface = NULL;
@@ -714,7 +714,7 @@ int main(int argc, char *argv[])
 
 #endif
 
-    scm_boot_guile(argc, argv, main2, NULL);
+    scm_boot_guile(argc, argv, gsch2pdf, NULL);
 
     return EXIT_FAILURE;
 }
