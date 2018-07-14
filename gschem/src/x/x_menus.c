@@ -939,6 +939,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     gtk_widget_show_all(menu_item);
 
+    GRID_RADIO_LIST = geda_radio_menu_item_group(vw_none_radio);
+
     if (w_current->toolbars == TRUE) {
 
       /* Toolbar Options*/
@@ -1542,7 +1544,6 @@ void x_menu_popup_sensitivity (GschemToplevel *w_current, const char *name, int 
  */
 void x_menu_save_state(GschemToplevel *w_current)
 {
-
   GtkWidget *menubar;
   EdaConfig *cfg;
 
@@ -1776,7 +1777,7 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList *list)
  */
 static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current)
 {
-  GtkWidget *menubar;
+
   GtkWidget *menu_item;
   MenuData  *menu_data;
   int state;
@@ -1790,21 +1791,34 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
   state = geda_check_menu_item_get_active ((GedaCheckMenuItem*)widget);
 
   /* Set visibility of tips for option menu toggle items */
+  {
+    GtkWidget *menubar;
 
-  menubar = x_menu_get_main_menu(w_current);
+    menubar = x_menu_get_main_menu(w_current);
 
-  lambda (ToggleMenuData *toggler_data) {
+    lambda (ToggleMenuData *toggler_data) {
 
-    char *menu_path;
+      char *menu_path;
 
-    menu_path = toggler_data->menu_path;
-    menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
+      menu_path = toggler_data->menu_path;
+      menu_item = GEDA_OBJECT_GET_DATA (menubar, menu_path);
 
-    g_object_set (menu_item, "has-tooltip", state, NULL);
+      g_object_set (menu_item, "has-tooltip", state, NULL);
 
-    return FALSE;
+      return FALSE;
+    }
+    mapcar(TOGGLERS_LIST)
   }
-  mapcar(TOGGLERS_LIST)
+
+  {
+    lambda (ToggleMenuData *menu_radio_item) {
+
+      g_object_set (menu_radio_item, "has-tooltip", state, NULL);
+
+      return FALSE;
+    }
+    mapcar(GRID_RADIO_LIST)
+  }
 
   GtkWidget   *submenu;
   const GList *list, *iter;

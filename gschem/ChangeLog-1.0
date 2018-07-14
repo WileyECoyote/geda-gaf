@@ -1,3 +1,11 @@
+2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_menus.h: Add member grid_mode_grp to st_menu_data and define
+      shortcut GRID_RADIO_LIST.
+
+    * src/x/x_menus.c: Add grid radio items to grid_mode_grp. Revise x_menu_
+      toggle_main_tips to loop through the items and set tooltip visibilities.
+
 2018-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Set the initial state of tooltips visibility for the

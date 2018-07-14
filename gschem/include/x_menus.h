@@ -91,6 +91,7 @@
 #define POPUP_MAIN       menu_data->popup_main
 #define POPUP_PATH       menu_data->popup_path
 #define TOGGLERS_LIST    menu_data->menu_togglers
+#define GRID_RADIO_LIST  menu_data->grid_mode_grp
 
 /* Used to reference IDS_Popup_Actions in x_menus.c */
 typedef enum {
@@ -152,6 +153,7 @@ struct st_menu_data {
   GtkWidget  *menu_bar;           /* The Main menu widget, unique to the Window, aka ui_index */
   GSList     *menu_items;         /* Single Linked list of all non-toggle menu items */
   GSList     *menu_togglers;      /* Single Linked list of all togglable Main menu items */
+  GSList     *grid_mode_grp;      /* Single Linked list of grid mode Main menu radio items */
   GtkWidget  *popup_main;         /* The main "on-canvas" popup context menu widget */
   GSList     *popup_items;        /* Single Linked list of all non-toggle popup-menu items */
   GHashTable *popup_hash;         /* String table of Popup menu item names, used for sensitivity */
