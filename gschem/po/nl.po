@@ -5054,7 +5054,7 @@ msgstr "Schematisch neer"
 # Down Symbol
 #: gschem/etc/system-gschemrc.scm:2243
 msgid "Down S_ymbol"
-msgstr "Down symbool"
+msgstr "Naar s_ymbool"
 
 # Hierarchy Up
 #: gschem/etc/system-gschemrc.scm:2244

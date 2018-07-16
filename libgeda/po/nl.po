@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-23 09:01-0500\n"
+"POT-Creation-Date: 2018-06-07 23:03-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -730,75 +730,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:538
+#: libgeda/src/geda/geda_object.c:555
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:539
+#: libgeda/src/geda/geda_object.c:556
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:548
+#: libgeda/src/geda/geda_object.c:565
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:549
+#: libgeda/src/geda/geda_object.c:566
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:556
+#: libgeda/src/geda/geda_object.c:573
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:557
+#: libgeda/src/geda/geda_object.c:574
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:563
+#: libgeda/src/geda/geda_object.c:580
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:564
+#: libgeda/src/geda/geda_object.c:581
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:569
+#: libgeda/src/geda/geda_object.c:586
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:570
+#: libgeda/src/geda/geda_object.c:587
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:576
+#: libgeda/src/geda/geda_object.c:593
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:577
+#: libgeda/src/geda/geda_object.c:594
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:583
+#: libgeda/src/geda/geda_object.c:600
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:584
+#: libgeda/src/geda/geda_object.c:601
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:591
+#: libgeda/src/geda/geda_object.c:608
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:592
+#: libgeda/src/geda/geda_object.c:609
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:600
+#: libgeda/src/geda/geda_object.c:617
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:601
+#: libgeda/src/geda/geda_object.c:618
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -960,39 +960,41 @@ msgstr ""
 #: libgeda/src/guile/g_rc.c:739
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoekenning, controleer de invoer van dikke pinnen in het rc-bestand\n"
 
 #: libgeda/src/guile/g_rc.c:767
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoekenning, controleer de invoer van de dunne-busbreedte in het rc-bestand\n"
 
 #: libgeda/src/guile/g_rc.c:795
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoekenning, vink de invoer van de dunne lijn in het rc-bestand aan\n"
 
 #: libgeda/src/guile/g_rc.c:823
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoekenning, controleer de invoer van de dunne netto-breedte in het rc-bestand\n"
 
 #: libgeda/src/guile/g_rc.c:851
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
-msgstr ""
+msgstr "Ongeldige typetoekenning, controleer de invoer van dunne pinnen in het rc-bestand\n"
 
 #: libgeda/src/guile/g_rc.c:912
 msgid "always-promote-attribute: list element is not a string"
 msgstr "always-promote-attribute: lijst element is geen string"
 
+# invalid path
 #: libgeda/src/guile/g_rc.c:989 libgeda/src/guile/g_rc.c:1028
 msgid "invalid path"
-msgstr ""
+msgstr "ongeldig pad"
 
+# invalid value
 #: libgeda/src/guile/g_rc_parse.c:115
 msgid "invalid value"
-msgstr ""
+msgstr "ongeldige waarde"
 
 # We hebben deze al ingelezen.
 #: libgeda/src/guile/g_rc_parse.c:164
@@ -1009,14 +1011,15 @@ msgstr "Mislukt om de configuratie uit te laden"
 msgid "Loaded RC file"
 msgstr "RC bestand geladen"
 
-# Error encounted processing RC file
+# Error encountered processing RC file
 #: libgeda/src/guile/g_rc_parse.c:274
-msgid "Error encounted processing RC file"
-msgstr "Fout ondervonden verwerking RC bestand"
+msgid "Error encountered processing RC file"
+msgstr "Fout bij het verwerken van het RC-bestand"
 
+# Error accessing configuration
 #: libgeda/src/guile/g_rc_parse.c:291
 msgid "Error accessing configuration"
-msgstr ""
+msgstr "Fout bij het openen van de configuratie"
 
 #: libgeda/src/guile/g_rc_parse.c:426
 msgid "ERROR"
@@ -1032,46 +1035,46 @@ msgid "The log may contain more information."
 msgstr "FOUT: De log kan meer informatie bevatten."
 
 # in file
-#: libgeda/src/object/o_object.c:120 libgeda/src/object/o_object.c:417
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
 msgid "in file"
 msgstr "in bestand"
 
-#: libgeda/src/object/o_object.c:131
+#: libgeda/src/object/o_object.c:136
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:138
+#: libgeda/src/object/o_object.c:143
 msgid "Schematic data is not valid UTF-8"
 msgstr "Schema gegevens waren geen geldige UTF-8"
 
-#: libgeda/src/object/o_object.c:144
+#: libgeda/src/object/o_object.c:149
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:297
+#: libgeda/src/object/o_object.c:302
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Lees een onverwacht toegevoegd symbool start merkteken op de lijn in"
 
-#: libgeda/src/object/o_object.c:317 libgeda/src/object/o_object.c:322
+#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Lees een onverwacht ingesloten symbool start teken op de lijn"
 
-#: libgeda/src/object/o_object.c:358
+#: libgeda/src/object/o_object.c:363
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Lees een onverwacht ingesloten symbool einde teken op de lijn in"
 
-#: libgeda/src/object/o_object.c:394
+#: libgeda/src/object/o_object.c:399
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
 msgstr "Lees een oud formaat sym/sch bestand!Voer g[sym|sch]update uit op"
 
 # invalid data detected near line
-#: libgeda/src/object/o_object.c:412 libgeda/src/object/o_object.c:416
+#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
 msgid "Read garbage near line"
 msgstr "ongeldige gegevens ontdekt in de buurt van lijn"
 
-#: libgeda/src/object/o_object.c:454
+#: libgeda/src/object/o_object.c:459
 msgid "On or about line"
 msgstr ""
 
@@ -1606,12 +1609,12 @@ msgid "Object ~A is attached to a page"
 msgstr "Object ~A is bevestigd aan een pagina"
 
 #: libgeda/src/scheme/scheme_complex.c:362
-#: libgeda/src/scheme/scheme_page.c:350
+#: libgeda/src/scheme/scheme_page.c:356
 msgid "Object ~A is attached as an attribute"
 msgstr "Object ~A is bevestigd als een attribuut"
 
 #: libgeda/src/scheme/scheme_complex.c:369
-#: libgeda/src/scheme/scheme_page.c:357
+#: libgeda/src/scheme/scheme_page.c:363
 msgid "Object ~A has attributes"
 msgstr "Object ~A heeft attributen"
 
@@ -1719,11 +1722,12 @@ msgstr "Ongeldig pad element type ~A."
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ongeldige afbeelding hoek ~A. Moet 0, 90, 180, of 270 graden zijn"
 
-#: libgeda/src/scheme/scheme_page.c:179
-msgid "Parse error: ~s"
-msgstr "Ontleedfout: ~s"
+# Parse error
+#: libgeda/src/scheme/scheme_page.c:175
+msgid "Parse error"
+msgstr "Verwerkings fout"
 
-#: libgeda/src/scheme/scheme_page.c:343
+#: libgeda/src/scheme/scheme_page.c:349
 msgid "Object ~A is attached to a complex or different page"
 msgstr "Object ~A is bevestigd aan een complex of een andere pagina"
 
@@ -1883,17 +1887,17 @@ msgid "Could not write message to log file\n"
 msgstr "Kan niet schrijven naar logbestand\n"
 
 # Could not create log folder
-#: libgeda/src/utility/u_log.c:271
+#: libgeda/src/utility/u_log.c:272 libgeda/src/utility/u_log.c:297
 msgid "Could not create log directory"
 msgstr "Kon log map niet maken"
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:340
+#: libgeda/src/utility/u_log.c:380
 msgid "Could not create unique log filename in"
 msgstr "Kan geen unieke logbestandsnaam op"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:344
+#: libgeda/src/utility/u_log.c:384
 msgid "Could not create log file in"
 msgstr "Kon logbestand niet maken in"
 
@@ -1901,3 +1905,6 @@ msgstr "Kon logbestand niet maken in"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Object ~A is geen deel van een pagina"
+
+#~ msgid "Parse error: ~s"
+#~ msgstr "Ontleedfout: ~s"

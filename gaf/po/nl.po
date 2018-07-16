@@ -149,7 +149,7 @@ msgstr "FOUT: %s.\n"
 
 #: gaf/src/config.c:226
 msgid "internal error"
-msgstr ""
+msgstr "interne fout"
 
 #: gaf/src/export.c:153
 #, c-format
