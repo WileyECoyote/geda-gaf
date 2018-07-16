@@ -21,6 +21,7 @@
             * diode/zener53/zener_15_1N5352B.sym (15 Volt)
             * diode/zener53/zener_16_1N5353B.sym (16 Volt)
 
+    * ti/ADS1110-?.sym: Align pin number attributes.
 
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 

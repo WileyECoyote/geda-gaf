@@ -15,9 +15,9 @@ T 400 2550 5 10 0 1 0 0 1
 documentation=http://www.ti.com/lit/ds/symlink/ads1110.pdf
 P 100 700 400 700 1 0 0
 {
-T 300 750 5 8 1 1 0 6 1
+T 250 750 5 8 1 1 0 6 1
 pinnumber=1
-T 300 750 5 8 0 1 0 6 1
+T 250 750 5 8 0 1 0 6 1
 pinseq=1
 T 450 700 9 8 1 1 0 0 1
 pinlabel=VINP
@@ -26,9 +26,9 @@ pintype=in
 }
 P 1700 300 1400 300 1 0 0
 {
-T 1500 350 5 8 1 1 0 0 1
+T 1550 350 5 8 1 1 0 0 1
 pinnumber=2
-T 1500 350 5 8 0 1 0 0 1
+T 1550 350 5 8 0 1 0 0 1
 pinseq=2
 T 1350 300 9 8 1 1 0 6 1
 pinlabel=GND
@@ -48,9 +48,9 @@ pintype=clk
 }
 P 1700 1100 1400 1100 1 0 0
 {
-T 1500 1150 5 8 1 1 0 0 1
+T 1550 1150 5 8 1 1 0 0 1
 pinnumber=4
-T 1500 1150 5 8 0 1 0 0 1
+T 1550 1150 5 8 0 1 0 0 1
 pinseq=4
 T 1350 1100 9 8 1 1 0 6 1
 pinlabel=SDA
