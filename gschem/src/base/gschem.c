@@ -473,7 +473,7 @@ static void gschem( int argc, char *argv[])
 /*! \brief Main Scheme(GUILE) program function.
  *  \par Function Description
  *  This function is the main program called from scm_boot_guile.
- *  It handles initializing all libraries and gSchem variables
+ *  It handles initializing all libraries and gschem variables
  *  and passes control to the gtk main loop.
  */
 static void main_prog(void *closure, int argc, char *argv[])
