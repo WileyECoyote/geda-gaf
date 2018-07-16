@@ -209,7 +209,7 @@ AX_LIBGEDACAIRO([1:6:1])
 AX_LIBGEDACOLOR([0:4:0])
 
 # Set up libgedathon with the correct ld version number
-AX_LIBGEDATHON([0:7:0])
+AX_LIBGEDATHON([0:8:0])
 
 # Set up libgedauio with the correct ld version number
 AX_LIBGEDAUIO([0:15:0])
