@@ -16,6 +16,9 @@
             * connector/header/header2-1.sym
             * connector/header/header3-1.sym
 
+    * diode/zener53:
+
+            * diode/zener53/zener_15_1N5352B.sym (15 Volt)
 
 
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
