@@ -39,10 +39,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20171112])
+AX_GIT_VERSION([20180521])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20171112])
+AC_SUBST([CHANGELOG_BASE], [1.0-20180521])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
