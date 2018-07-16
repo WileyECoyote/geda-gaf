@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-23 09:01-0500\n"
+"POT-Creation-Date: 2018-06-07 23:03-0500\n"
 "PO-Revision-Date: 2010-02-06 22:11+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -47,9 +47,10 @@ msgstr "gEDA szimbólum"
 msgid "Failed to get file statistics"
 msgstr "Nem sikerült megszerezni a fájl statisztika"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:177
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Hiba: Érvénytelen oldal objektum"
 
 # ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:217
@@ -86,24 +87,27 @@ msgstr ""
 msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
-msgstr ""
+msgstr "Futtassa le az alkalmazást a helyzet kijavítására, vagy manuálisan törölje a biztonsági másolatot"
 
+# Memory allocation error
 #: libgeda/src/file/f_file.c:285
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "Memóriaelosztási hiba!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:312
 msgid "Loading backup file"
-msgstr ""
+msgstr "Tartalék fájl betöltése"
 
 #: libgeda/src/file/f_file.c:356
 msgid "ERROR: Could not restore current directory to"
 msgstr "HIBA: Nem sikerült visszaállítani az aktuális könyvtárban"
 
+# Cannot get the real filename of
 #: libgeda/src/file/f_file.c:400 libgeda/src/file/f_file.c:457
 #: libgeda/src/object/o_save.c:71
 msgid "Cannot get the real filename of"
-msgstr ""
+msgstr "Nem sikerült elérni a valódi fájlnevet"
 
 # Unable to delete backup file
 #: libgeda/src/file/f_file.c:412
@@ -120,9 +124,10 @@ msgstr "Csak olvasható file %s"
 msgid "Could not set previous backup file"
 msgstr "Nem sikerült beállítani a korábbi biztonsági mentés fájl"
 
+# read-write
 #: libgeda/src/file/f_file.c:529
 msgid "read-write"
-msgstr ""
+msgstr "ír olvas"
 
 #: libgeda/src/file/f_file.c:540
 msgid "Cannot create backup file"
@@ -133,17 +138,20 @@ msgstr "Nem lehet létrehozni biztonsági fájlt"
 msgid "Could NOT save file"
 msgstr "Nem tudtam elmenteni a fájlt"
 
+# Invalid path
 #: libgeda/src/file/f_get.c:168
 msgid "Invalid path"
-msgstr ""
+msgstr "Érvénytelen útvonal"
 
+# Could not allocate
 #: libgeda/src/file/f_get.c:230 libgeda/src/file/f_get.c:305
 msgid "Could not allocate"
-msgstr ""
+msgstr "Nem sikerült kiosztani"
 
+# bytes to read file
 #: libgeda/src/file/f_get.c:231 libgeda/src/file/f_get.c:306
 msgid "bytes to read file"
-msgstr ""
+msgstr "bájtok fájl olvasásához"
 
 # Error reading file
 #: libgeda/src/file/f_get.c:242
@@ -712,75 +720,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:538
+#: libgeda/src/geda/geda_object.c:555
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:539
+#: libgeda/src/geda/geda_object.c:556
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:548
+#: libgeda/src/geda/geda_object.c:565
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:549
+#: libgeda/src/geda/geda_object.c:566
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:556
+#: libgeda/src/geda/geda_object.c:573
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:557
+#: libgeda/src/geda/geda_object.c:574
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:563
+#: libgeda/src/geda/geda_object.c:580
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:564
+#: libgeda/src/geda/geda_object.c:581
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:569
+#: libgeda/src/geda/geda_object.c:586
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:570
+#: libgeda/src/geda/geda_object.c:587
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:576
+#: libgeda/src/geda/geda_object.c:593
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:577
+#: libgeda/src/geda/geda_object.c:594
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:583
+#: libgeda/src/geda/geda_object.c:600
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:584
+#: libgeda/src/geda/geda_object.c:601
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:591
+#: libgeda/src/geda/geda_object.c:608
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:592
+#: libgeda/src/geda/geda_object.c:609
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:600
+#: libgeda/src/geda/geda_object.c:617
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:601
+#: libgeda/src/geda/geda_object.c:618
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -986,9 +994,10 @@ msgstr ""
 msgid "Loaded RC file"
 msgstr ""
 
+#Error encountered processing RC file
 #: libgeda/src/guile/g_rc_parse.c:274
-msgid "Error encounted processing RC file"
-msgstr ""
+msgid "Error encountered processing RC file"
+msgstr "Hiba történt az RC fájl feldolgozása során"
 
 #: libgeda/src/guile/g_rc_parse.c:291
 msgid "Error accessing configuration"
@@ -1007,38 +1016,38 @@ msgid "The log may contain more information."
 msgstr ""
 
 # in file
-#: libgeda/src/object/o_object.c:120 libgeda/src/object/o_object.c:417
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
 msgid "in file"
 msgstr "fájlban"
 
-#: libgeda/src/object/o_object.c:131
+#: libgeda/src/object/o_object.c:136
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:138
+#: libgeda/src/object/o_object.c:143
 msgid "Schematic data is not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:144
+#: libgeda/src/object/o_object.c:149
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
 # Read unexpected attach symbol start marker on line
-#: libgeda/src/object/o_object.c:297
+#: libgeda/src/object/o_object.c:302
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Tovább váratlan csatolja szimbólum Start marker on line"
 
 # Read unexpected embedded symbol start marker on line
-#: libgeda/src/object/o_object.c:317 libgeda/src/object/o_object.c:322
+#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Olvassa váratlan beágyazott jel kezdetét jelölő vonal"
 
 # Read unexpected embedded symbol end marker on line
-#: libgeda/src/object/o_object.c:358
+#: libgeda/src/object/o_object.c:363
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Olvassa váratlan beágyazott szimbólum végjelölővel on line"
 
-#: libgeda/src/object/o_object.c:394
+#: libgeda/src/object/o_object.c:399
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
@@ -1047,11 +1056,11 @@ msgstr ""
 "g[sym|sch]update program segítségével!"
 
 # invalid data detected near line
-#: libgeda/src/object/o_object.c:412 libgeda/src/object/o_object.c:416
+#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
 msgid "Read garbage near line"
 msgstr "Szemét olvasása közel vonal"
 
-#: libgeda/src/object/o_object.c:454
+#: libgeda/src/object/o_object.c:459
 msgid "On or about line"
 msgstr ""
 
@@ -1583,12 +1592,12 @@ msgid "Object ~A is attached to a page"
 msgstr ""
 
 #: libgeda/src/scheme/scheme_complex.c:362
-#: libgeda/src/scheme/scheme_page.c:350
+#: libgeda/src/scheme/scheme_page.c:356
 msgid "Object ~A is attached as an attribute"
 msgstr ""
 
 #: libgeda/src/scheme/scheme_complex.c:369
-#: libgeda/src/scheme/scheme_page.c:357
+#: libgeda/src/scheme/scheme_page.c:363
 msgid "Object ~A has attributes"
 msgstr ""
 
@@ -1696,11 +1705,11 @@ msgstr ""
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:179
-msgid "Parse error: ~s"
+#: libgeda/src/scheme/scheme_page.c:175
+msgid "Parse error"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:343
+#: libgeda/src/scheme/scheme_page.c:349
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
@@ -1863,17 +1872,17 @@ msgid "Could not write message to log file\n"
 msgstr "Nem sikerült írni üzenetet a log fájlt\n"
 
 # Could not create log directory
-#: libgeda/src/utility/u_log.c:271
+#: libgeda/src/utility/u_log.c:272 libgeda/src/utility/u_log.c:297
 msgid "Could not create log directory"
 msgstr "Nem sikerült létrehozni a log könyvtárban"
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:340
+#: libgeda/src/utility/u_log.c:380
 msgid "Could not create unique log filename in"
 msgstr "Nem sikerült létrehozni egy egyedi bejelentkezési fájlnév"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:344
+#: libgeda/src/utility/u_log.c:384
 msgid "Could not create log file in"
 msgstr "Nem sikerült létrehozni a log fájlt"
 
@@ -1881,52 +1890,3 @@ msgstr "Nem sikerült létrehozni a log fájlt"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "fájlban"
-
-# an error occurred while attempting to save configuration to
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr "Egy hiba történt, hogy mentse konfiguráció"
-
-#~ msgid "Cannot get real filename of"
-#~ msgstr "Nem találom a fájlt"
-
-#~ msgid "Cannot find file"
-#~ msgstr "Nem találom a fájlt"
-
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "Nem tudtam elmenteni a fájlt: %s"
-
-#~ msgid ""
-#~ "Read garbage line <%d> in [%s] :\n"
-#~ ">>\n"
-#~ "%s<<\n"
-#~ msgstr ""
-#~ "Szemét olvasása a(z) [%s]-ban\n"
-#~ "<<\n"
-#~ "%s<<\n"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "%s: %d.\n"
-#~ msgstr "%s: %s"
-
-#~ msgid "Error: %s %s\n"
-#~ msgstr "Nem találom a fájlt %s: %s"
-
-#~ msgid "Error reading file '%s': %s"
-#~ msgstr "Nem találom a fájlt %s: %s"
-
-#~ msgid "Error loading %s, %s\n"
-#~ msgstr "Nem találom a fájlt %s: %s"
-
-#~ msgid "Could not read symbolic link information for %s"
-#~ msgstr "%s szimbolikus link adatai nem olvashatóak"
-
-#~ msgid "The file has too many symbolic links."
-#~ msgstr "A fájl túl sok szimbolikus linkkel rendelkezik."
