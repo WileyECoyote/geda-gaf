@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-23 09:01-0500\n"
+"POT-Creation-Date: 2018-06-07 23:03-0500\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -149,17 +149,20 @@ msgstr "Impossible de sauvegarder le fichier de sauvegarde"
 msgid "Could NOT save file"
 msgstr "Impossible de sauvegarder le fichier"
 
+# Invalid path
 #: libgeda/src/file/f_get.c:168
 msgid "Invalid path"
-msgstr ""
+msgstr "Chemin invalide"
 
+# Could not allocate
 #: libgeda/src/file/f_get.c:230 libgeda/src/file/f_get.c:305
 msgid "Could not allocate"
-msgstr ""
+msgstr "Impossible d'allouer"
 
+# bytes to read file
 #: libgeda/src/file/f_get.c:231 libgeda/src/file/f_get.c:306
 msgid "bytes to read file"
-msgstr ""
+msgstr "octets pour lire le fichier"
 
 # Error reading file
 #: libgeda/src/file/f_get.c:242
@@ -732,75 +735,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:538
+#: libgeda/src/geda/geda_object.c:555
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:539
+#: libgeda/src/geda/geda_object.c:556
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:548
+#: libgeda/src/geda/geda_object.c:565
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:549
+#: libgeda/src/geda/geda_object.c:566
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:556
+#: libgeda/src/geda/geda_object.c:573
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:557
+#: libgeda/src/geda/geda_object.c:574
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:563
+#: libgeda/src/geda/geda_object.c:580
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:564
+#: libgeda/src/geda/geda_object.c:581
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:569
+#: libgeda/src/geda/geda_object.c:586
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:570
+#: libgeda/src/geda/geda_object.c:587
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:576
+#: libgeda/src/geda/geda_object.c:593
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:577
+#: libgeda/src/geda/geda_object.c:594
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:583
+#: libgeda/src/geda/geda_object.c:600
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:584
+#: libgeda/src/geda/geda_object.c:601
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:591
+#: libgeda/src/geda/geda_object.c:608
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:592
+#: libgeda/src/geda/geda_object.c:609
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:600
+#: libgeda/src/geda/geda_object.c:617
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:601
+#: libgeda/src/geda/geda_object.c:618
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1005,9 +1008,10 @@ msgstr ""
 msgid "Loaded RC file"
 msgstr ""
 
+# Error encountered processing RC file
 #: libgeda/src/guile/g_rc_parse.c:274
-msgid "Error encounted processing RC file"
-msgstr ""
+msgid "Error encountered processing RC file"
+msgstr "Erreur de traitement du fichier RC"
 
 #: libgeda/src/guile/g_rc_parse.c:291
 msgid "Error accessing configuration"
@@ -1028,38 +1032,38 @@ msgid "The log may contain more information."
 msgstr "Le fichier journal contient plus d'information."
 
 # in file
-#: libgeda/src/object/o_object.c:120 libgeda/src/object/o_object.c:417
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
 msgid "in file"
 msgstr "dans le fichier"
 
-#: libgeda/src/object/o_object.c:131
+#: libgeda/src/object/o_object.c:136
 msgid "detected NULL pointer to buffer"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:138
+#: libgeda/src/object/o_object.c:143
 msgid "Schematic data is not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:144
+#: libgeda/src/object/o_object.c:149
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
 # Read unexpected attach symbol start marker on line
-#: libgeda/src/object/o_object.c:297
+#: libgeda/src/object/o_object.c:302
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Lecture inattendue du symbole de début de marquage sur la ligne"
 
 # Read unexpected embedded symbol start marker on line
-#: libgeda/src/object/o_object.c:317 libgeda/src/object/o_object.c:322
+#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Lecture inattendue du marqueur de début de symbole incorporé en ligne"
 
 # Read unexpected embedded symbol end marker on line
-#: libgeda/src/object/o_object.c:358
+#: libgeda/src/object/o_object.c:363
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Lire le marqueur de fin de symbole incorporé inattendu en ligne"
 
-#: libgeda/src/object/o_object.c:394
+#: libgeda/src/object/o_object.c:399
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
@@ -1067,11 +1071,11 @@ msgstr ""
 "Lecture d'un ancien format sym/sch!\n"
 "Veuillez lancer g[sym|sch]update sur"
 
-#: libgeda/src/object/o_object.c:412 libgeda/src/object/o_object.c:416
+#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
 msgid "Read garbage near line"
 msgstr "Données non valides détectées près de la ligne"
 
-#: libgeda/src/object/o_object.c:454
+#: libgeda/src/object/o_object.c:459
 msgid "On or about line"
 msgstr ""
 
@@ -1607,12 +1611,12 @@ msgid "Object ~A is attached to a page"
 msgstr ""
 
 #: libgeda/src/scheme/scheme_complex.c:362
-#: libgeda/src/scheme/scheme_page.c:350
+#: libgeda/src/scheme/scheme_page.c:356
 msgid "Object ~A is attached as an attribute"
 msgstr ""
 
 #: libgeda/src/scheme/scheme_complex.c:369
-#: libgeda/src/scheme/scheme_page.c:357
+#: libgeda/src/scheme/scheme_page.c:363
 msgid "Object ~A has attributes"
 msgstr ""
 
@@ -1720,11 +1724,11 @@ msgstr ""
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:179
-msgid "Parse error: ~s"
+#: libgeda/src/scheme/scheme_page.c:175
+msgid "Parse error"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_page.c:343
+#: libgeda/src/scheme/scheme_page.c:349
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
@@ -1887,17 +1891,17 @@ msgid "Could not write message to log file\n"
 msgstr "Impossible d'écrire le message dans le fichier journal\n"
 
 # Could not create log directory
-#: libgeda/src/utility/u_log.c:271
+#: libgeda/src/utility/u_log.c:272 libgeda/src/utility/u_log.c:297
 msgid "Could not create log directory"
 msgstr "Impossible de créer un répertoire de journaux"
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:340
+#: libgeda/src/utility/u_log.c:380
 msgid "Could not create unique log filename in"
 msgstr "Impossible de créer un nom de fichier journal unique dans"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:344
+#: libgeda/src/utility/u_log.c:384
 msgid "Could not create log file in"
 msgstr "Impossible de créer un fichier journal"
 
@@ -1905,155 +1909,3 @@ msgstr "Impossible de créer un fichier journal"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
-# in file
-#, fuzzy
-#~ msgid "ignoring file"
-#~ msgstr "dans le fichier"
-
-# an error occurred while attempting to save configuration to
-#, fuzzy
-#~ msgid "Not loading configuration"
-#~ msgstr ""
-#~ "Une erreur s'est produite lors de la tentative d'enregistrement de la "
-#~ "configuration"
-
-#~ msgid "Cannot get real filename of"
-#~ msgstr "Impossible d'obtenir le nom réel de"
-
-#~ msgid "Cannot find file"
-#~ msgstr "Impossible de trouver le fichier"
-
-#~ msgid "Can not get the real filename of"
-#~ msgstr "Impossible d'obtenir le nom réel de"
-
-#~ msgid "Could NOT save backup file [%s]: %s\n"
-#~ msgstr "Impossible de sauvegarder le fichier : %s"
-
-#~ msgid "Did not find slotdef=#:#,#,# attribute for slot <%d>\n"
-#~ msgstr "Impossible de trouver l'attribut slotdef=#:#,#,#...\n"
-
-#~ msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
-#~ msgstr "Impossible de trouver l'attribut slotdef=#:#,#,#... correct\n"
-
-#~ msgid "%s: object %p has unknown type '%c'\n"
-#~ msgstr "o_save_objects: l'objet %p a un type '%c' inconnu\n"
-
-#~ msgid "Library command failed [%s]: %s\n"
-#~ msgstr "Échec de la commande de bibliothèque [%s]: %s\n"
-
-#~ msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
-#~ msgstr ""
-#~ "\tCHANGEMENT MAJEUR DE VERSION (fichier %.3f, instantiation %.3f, %s)!\n"
-
-#~ msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
-#~ msgstr "\tChangement de version mineur (fichier %.3f, instantiation %.3f)\n"
-
-#~ msgid ""
-#~ "Read garbage line <%d> in [%s] :\n"
-#~ ">>\n"
-#~ "%s<<\n"
-#~ msgstr ""
-#~ "Lecture de la poubelle dans [%s] :\n"
-#~ ">>\n"
-#~ "%s<<\n"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "%s: %d.\n"
-#~ msgstr "%s: %s"
-
-#~ msgid "Error: %s %s\n"
-#~ msgstr "Impossible de trouver le fichier %s: %s"
-
-#~ msgid "%s: Can't get real filename of %s."
-#~ msgstr "Impossible d'obtenir le nom réel de %s : %s"
-
-#~ msgid "Error reading file '%s': %s"
-#~ msgstr "Impossible de trouver le fichier %s: %s"
-
-#~ msgid "Can't get the real filename of %s: %s"
-#~ msgstr "Impossible d'obtenir le nom réel de %s : %s"
-
-#~ msgid "Found a zero length line"
-#~ msgstr "Trouvé une ligne à longueur nulle [ %c %d %d %d %d %d ]\n"
-
-#~ msgid "Found a zero width/height picture"
-#~ msgstr "Trouvé une image à largeur/hauteur nulle [ %c %d %d %d %d ]\n"
-
-#~ msgid "Found arc with negative radius [ %c %d, %d, %d, %d, %d, %d ]\n"
-#~ msgstr "Trouvé un arc avec rayon nul [ %c %d, %d, %d, %d, %d, %d ]\n"
-
-#~ msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
-#~ msgstr ""
-#~ "Trouvé un alignement de texte non supporté [ %c %d %d %d %d %d %d %d "
-#~ "%d ]\n"
-
-#~ msgid "Color map entry must be a two-element list"
-#~ msgstr "L'entrée de la carte de couleurs doit être une liste à deux entrées"
-
-#~ msgid "Index in color map entry must be an integer"
-#~ msgstr "Le champ dans l'index de la carte couleur doit être un entier"
-
-#~ msgid "Value in color map entry must be #f or a string"
-#~ msgstr ""
-#~ "La valeur du champ dans la carte couleur doit être #f ou une chaîne de "
-#~ "caractères"
-
-#~ msgid "Error loading %s, %s\n"
-#~ msgstr "Impossible de trouver le fichier %s: %s"
-
-#~ msgid ""
-#~ "WARNING: Symbol version parse error on refdes %s:\n"
-#~ "\tCould not parse symbol file symversion=%s\n"
-#~ msgstr ""
-#~ "ATTENTION: erreur du traitement de la version du Symbole sur refdes %s:\n"
-#~ "\tImpossible de traiter la version du fichier de symbole symversion=%s\n"
-
-#~ msgid "Invalid space specified, setting to default=%d\n"
-#~ msgstr "Espace spécifié invalide, positionné à 100\n"
-
-#~ msgid "Invalid length specified, setting to default=%d\n"
-#~ msgstr "Longueur spécifiéé invalide, positionnée à 100\n"
-
-#~ msgid "Invalid space specified, setting to  default=%d\n"
-#~ msgstr "Espace spécifié invalide, positionné à 100\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "Run gschem and correct the situation.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Lancez gschem et corrigez le problème.\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "WARNING: using a string for 'always-promote-attributes' is deprecated. "
-#~ "Use a list of strings instead\n"
-#~ msgstr ""
-#~ "ATTENTION: l'utilisation d'une chaîne de caractères pour 'always-promote-"
-#~ "attributes' est dépassé. Utilisez plutôt une liste de chaînes.\n"
-
-#~ msgid "Parsed config from [%s]\n"
-#~ msgstr "Configuration interprétée à partir de [%s]\n"
-
-#~ msgid "Unable to parse config from [%s]: %s"
-#~ msgstr "Impossible d'interpréter la configuration à partir de [%s] : %s"
-
-#~ msgid ""
-#~ "hierarchy loop detected while visiting page:\n"
-#~ "  \"%s\"\n"
-#~ msgstr ""
-#~ "Boucle hiérarchique détectée lors de la visite de la page:\n"
-#~ "  \"%s\"\n"
-
-#~ msgid "ERROR in s_hierarchy_traverse: schematic not found: %s\n"
-#~ msgstr "ERREUR dans s_hierarchy_traverse: schéma non trouvé: %s\n"
-
-#~ msgid "Found [%s]\n"
-#~ msgstr "Trouvé [%s]\n"
-
-#~ msgid "Could not find [%s] in any SourceLibrary\n"
-#~ msgstr "Impossible de trouver [%s] dans aucune SourceLibrary\n"
