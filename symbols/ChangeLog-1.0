@@ -1,3 +1,8 @@
+2018-07-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * atmel/AT89S8252-24PI-1.sym: Rename symbol, update attributes,
+      was AT89S53-24PI-1.sym.
+
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53:

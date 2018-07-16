@@ -1,9 +1,13 @@
 v 20150101 2
-T 10 10 5 10 0 0 0 0 1
-author=AutoTron
+T 2336 6404 8 10 1 1 0 6 1
+refdes=U?
+T 400 6850 5 10 0 0 0 0 1
+device=AT89S8252-24PI
+T 400 7250 5 10 0 1 0 0 1
+description=8051 Microcontroller, 8-Bit 24MHz 8KB (8K x 8) FLASH 40-PDIP
+T 400 7050 9 10 0 0 0 0 1
+numslots=0
 B 400 100 1900 6250 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 448 6944 8 10 0 0 0 0 1
-device=AT89S8252-24PC
 P 400 6100 100 6100 1 0 1
 {
 T 300 6150 5 8 1 1 0 6 1
@@ -383,8 +387,6 @@ pinlabel=P3.7 (\_RD\_)
 T 450 1300 5 8 0 1 0 2 1
 pintype=io
 }
-T 2336 6404 8 10 1 1 0 6 1
-refdes=U?
 P 2300 1600 2600 1600 1 0 1
 {
 T 2400 1650 5 8 1 1 0 0 1
@@ -396,18 +398,6 @@ pinlabel=(A12) P2.4
 T 2250 1600 5 8 0 1 0 8 1
 pintype=io
 }
-T 450 7550 8 10 0 0 0 0 1
-net=VCC:40
-T 450 7750 8 10 0 0 0 0 1
-net=GND:20
-T 447 6748 8 10 0 0 0 0 1
-footprint=DIP40
-T 450 7350 8 10 0 0 0 0 1
-description=8-bit, 8051 compatible micro controller (Atmel)
-T 450 7150 8 10 0 0 0 0 1
-numslots=0
-T 386 6412 9 10 1 0 0 0 1
-AT89S53-24PI
 P 400 3700 100 3700 1 0 1
 {
 T 300 3750 5 8 1 1 0 6 1
@@ -463,3 +453,13 @@ pinlabel=\_EA\_ / VPP
 T 2250 3400 5 8 0 1 0 8 1
 pintype=io
 }
+T 400 7450 8 10 0 0 0 0 1
+net=VCC:40
+T 400 7650 8 10 0 0 0 0 1
+net=GND:20
+T 400 6650 9 10 0 1 0 0 1
+footprint=DIP40
+T 386 6412 9 10 1 1 0 0 1
+value=AT89S53-24PI
+T 400 7850 5 10 0 0 0 0 1
+author=AutoTron
