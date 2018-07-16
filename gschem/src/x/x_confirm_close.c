@@ -633,7 +633,7 @@ confirm_close_dialog_init (GTypeInstance *instance, void *g_class)
 {
   ConfirmCloseDialog *self = (ConfirmCloseDialog*)instance;
 
-  /* create model for treeview and populate */
+  /* create empty model for treeview */
   self->store_unsaved_pages = gtk_list_store_new (NUM_COLUMNS,
                                                   G_TYPE_BOOLEAN,  /* save? */
                                                   G_TYPE_POINTER); /* page */
