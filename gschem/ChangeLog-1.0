@@ -1,3 +1,8 @@
+2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_pagesel.c: Replace g_ascii_strcasecmp with strncmp in function
+      pagesel_create_popup_menu.
+
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Add member grid_mode_grp to st_menu_data and define

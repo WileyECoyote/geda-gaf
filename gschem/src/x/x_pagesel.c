@@ -610,7 +610,7 @@ pagesel_create_popup_menu (Pagesel *pagesel)
 
     GtkWidget *menuitem;
 
-    if (g_ascii_strcasecmp (tmp->label, "-") == 0) {
+    if (strncmp (tmp->label, "-", 1) == 0) {
       menuitem = geda_menu_separator_new ();
     }
     else {
