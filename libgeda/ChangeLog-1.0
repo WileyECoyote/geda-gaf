@@ -4,6 +4,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/it.po: Update Italian translations.
+
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_sys.c: Revise geda_file_sys_normalize_name to not call CharLowerBuff
