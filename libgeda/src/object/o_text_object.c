@@ -715,7 +715,7 @@ GedaObject *geda_text_object_read (const char *first_line, TextBuffer *tb,
 
   if (fileformat_ver >= 1) {
     if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d %d\n", &type, &x, &y,
-      &color, &size, &visibility, &show_name_value,&angle, &alignment, &num_lines) != 10)
+      &color, &size, &visibility, &show_name_value, &angle, &alignment, &num_lines) != 10)
     {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse text object"));
       return NULL;
