@@ -337,9 +337,10 @@ static bool x_window_idle_thread_restore_geometry (void *toplevel)
 {
   GschemToplevel *w_current = (GschemToplevel*)toplevel;
 
-  g_signal_emit_by_name(w_current->main_window, "geometry-restore", w_current->window);
-
-  g_signal_emit_by_name(w_current->main_window, "restore-position", w_current->window);
+  if (!auto_place_mode) {
+    g_signal_emit_by_name(w_current->main_window, "geometry-restore", w_current->window);
+    g_signal_emit_by_name(w_current->main_window, "restore-position", w_current->window);
+  }
 
   g_idle_add (x_window_idle_thread_zoom_extents, w_current);
 
@@ -358,7 +359,9 @@ void x_window_restore_settings(GschemToplevel *w_current)
 {
   geda_log_v(_("Retrieving main Window settings.\n"));
 
-  gschem_main_window_update(MainWidget);
+  if (!auto_place_mode) {
+    gschem_main_window_update(MainWidget);
+  }
 
   /* Restore Cursor/Pointer setting */
   int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
@@ -591,6 +594,7 @@ void x_window_create_main(GschemToplevel *w_current)
   w_current->window = DrawingArea->window;
 
   x_window_setup_context(w_current);
+
 }
 
 /*!

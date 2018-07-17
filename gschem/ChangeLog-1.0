@@ -3,6 +3,9 @@
     * src/base/gschem_main_window.c: Revise gschem_main_window_restore_position
       to verify the x and y are positive values.
 
+    * src/x/x_window.c: Revise module to not call routines to restore geometry
+      or position if auto_place_mode is set.
+
 2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_pagesel.c: Replace g_ascii_strcasecmp with strncmp in function
