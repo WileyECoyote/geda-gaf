@@ -1,3 +1,8 @@
+2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Revise gschem_main_window_restore_position
+      to verify the x and y are positive values.
+
 2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_pagesel.c: Replace g_ascii_strcasecmp with strncmp in function

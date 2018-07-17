@@ -259,6 +259,15 @@ gschem_main_window_restore_position (GtkWindow *main_window)
     gtk_window_set_position(main_window, GTK_WIN_POS_CENTER);
   }
   else {
+
+    /* Check that X-Y values are rational */
+    if (x < 0) {
+      x = 100;
+    }
+    if (y < 0) {
+      y = 30;
+    }
+
     gtk_window_move (main_window, x, y);
   }
 
