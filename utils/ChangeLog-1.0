@@ -1,3 +1,7 @@
+2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gmk_sym.c: General cleaning; adjust white spaces and line spacing.
+
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pdf/gsch2pdf.c: Rename function main2 -> gsch2pdf and revise
