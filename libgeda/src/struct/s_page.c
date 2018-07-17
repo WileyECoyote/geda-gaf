@@ -160,10 +160,14 @@ Page *geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
   page = geda_page_new();
 
   if (filename != NULL) {
+
     if (geda_file_get_is_path_absolute (filename)) {
+
       page->filename = geda_utility_string_strdup (filename);
+
     }
     else {
+
       char *pwd = getcwd(0,0);
       page->filename = g_build_filename (pwd, filename, NULL);
       free (pwd);
