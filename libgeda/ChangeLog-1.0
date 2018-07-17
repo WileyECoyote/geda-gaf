@@ -3,6 +3,10 @@
     * src/file/f_file.c: Add string error message to error message outputs in
       geda_file_remove_backup.
 
+    * src/geda/geda_config.c: Revise eda_config_get_context_for_file without realpath
+      check g_path_is_absolute AND that the file exist because nonexistent files
+      can have absolute file names.
+
 2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translation.

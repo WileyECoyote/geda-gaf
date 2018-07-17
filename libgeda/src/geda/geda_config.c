@@ -477,7 +477,7 @@ char *eda_config_find_project_root (const char *path, const char *filename)
 
   char *filespec = GEDA_MEM_ALLOC(MAX_PATH);
 
-  while (dir && strlen(dir) > 1){
+  while (dir && strlen(dir) > 1) {
 
       strcpy(filespec, dir);
       strcat(filespec, DIR_SEPARATOR_S);
@@ -813,7 +813,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
 #else
 
-    if (g_path_is_absolute(path)) {
+    if (g_path_is_absolute(path) && g_file_test (path, G_FILE_TEST_EXISTS)) {
       ptr = strncpy(&dir[0], path, PATH_MAX);
     }
     else {
