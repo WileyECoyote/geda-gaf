@@ -1,3 +1,8 @@
+2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_file.c: Add string error message to error message outputs in
+      geda_file_remove_backup.
+
 2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translation.
