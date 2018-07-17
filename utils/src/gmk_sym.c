@@ -98,20 +98,13 @@ PRE,1,dot,B,1
 #endif
 
 #include <geda/geda_standard.h>
+#include <geda_colors.h>
 
 #include <ctype.h>
 
 #include <geda_debug.h>
 
 /* TODO: gnetlist/utils/mk_verilog_syms.c */
-#define BLACK   0
-#define WHITE		1
-#define RED		  2
-#define GREEN		3
-#define BLUE		4
-#define YELLOW  5
-#define CYAN		6
-#define GREY		7
 
 #define MAX_FIELDS   10
 
@@ -302,27 +295,27 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char
     /* Added "0 1" to match the new file format for pins - Chris Ellec */
     printf("P %d %d %d %d %d 0 1\n", pos_x, pos_y,
            pos_x-pin_len*xdir, pos_y-pin_len*ydir,
-           WHITE);
+           PIN_COLOR);
     printf("{\n");
   }
   else if (shape == DOT_SHAPE) {
 
     printf("V %d %d 50 %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n",
-           pos_x - 50 * xdir, pos_y - 50 * ydir, CYAN);
+           pos_x - 50 * xdir, pos_y - 50 * ydir, LOGIC_BUBBLE_COLOR);
     printf("P %d %d %d %d %d 0 1\n", pos_x - 100 * xdir, pos_y - 100 * ydir,
            pos_x - pin_len * xdir, pos_y - pin_len * ydir,
-           WHITE);
+           PIN_COLOR);
     printf("{\n");
   }
   else if (shape == CLOCK_SHAPE) {
 
     printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x - 100 * ydir, pos_y - 100 * xdir,
-           pos_x + 100 * xdir, pos_y + 100 * ydir, GREEN);
+           pos_x + 100 * xdir, pos_y + 100 * ydir, GRAPHIC_COLOR);
     printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x + 100 * ydir, pos_y + 100 * xdir,
-           pos_x + 100 * xdir, pos_y + 100 * ydir, GREEN);
+           pos_x + 100 * xdir, pos_y + 100 * ydir, GRAPHIC_COLOR);
     printf("P %d %d %d %d %d 0 1\n", pos_x, pos_y,
            pos_x - pin_len * xdir, pos_y - pin_len * ydir,
-           WHITE);
+           PIN_COLOR);
     printf("{\n");
   }
   x = pos_x;
@@ -332,19 +325,19 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char
   /* output pinseq */
   switch (dir) {
     case L_SIDE:
-      printf("T %d %d %d %d 0 1 0 6\n", x - 50, y + 50, YELLOW, font_size);
+      printf("T %d %d %d %d 0 1 0 6\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case R_SIDE:
-      printf("T %d %d %d %d 0 1 0 0\n", x+50, y + 50, YELLOW, font_size);
+      printf("T %d %d %d %d 0 1 0 0\n", x+50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case B_SIDE:
-      printf("T %d %d %d %d 0 1 90 6\n", x - 50, y - 50, YELLOW, font_size);
+      printf("T %d %d %d %d 0 1 90 6\n", x - 50, y - 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case T_SIDE:
-      printf("T %d %d %d %d 0 1 90 0\n", x - 50, y + 50, YELLOW, font_size);
+      printf("T %d %d %d %d 0 1 90 0\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
   }
   printf("pinseq=%d\n",++net_pin);
@@ -352,19 +345,19 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char
   /* output pinnumber */
   switch (dir) {
     case L_SIDE:
-      printf("T %d %d %d %d 1 1 0 6\n", x - 50, y + 50, YELLOW, font_size);
+      printf("T %d %d %d %d 1 1 0 6\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case R_SIDE:
-      printf("T %d %d %d %d 1 1 0 0\n", x + 50, y + 50, YELLOW, font_size);
+      printf("T %d %d %d %d 1 1 0 0\n", x + 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case B_SIDE:
-      printf("T %d %d %d %d 1 1 90 6\n", x - 50, y - 50, YELLOW, font_size);
+      printf("T %d %d %d %d 1 1 90 6\n", x - 50, y - 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case T_SIDE:
-      printf("T %d %d %d %d 1 1 90 0\n", x - 50, y + 50, YELLOW, font_size);
+      printf("T %d %d %d %d 1 1 90 0\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
   }
   printf("pinnumber=%s\n", pin);
@@ -374,19 +367,19 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char
 
     switch (dir) {
       case L_SIDE:
-        printf("T %d %d %d %d 0 0 0 7\n", pos_x - 400, pos_y, YELLOW, font_size);
+        printf("T %d %d %d %d 0 0 0 7\n", pos_x - 400, pos_y, ATTRIBUTE_COLOR, font_size);
         break;
 
       case R_SIDE:
-        printf("T %d %d %d %d 0 0 0 1\n", pos_x + 400, pos_y, YELLOW, font_size);
+        printf("T %d %d %d %d 0 0 0 1\n", pos_x + 400, pos_y, ATTRIBUTE_COLOR, font_size);
         break;
 
       case B_SIDE:
-        printf("T %d %d %d %d 0 0 90 7\n", pos_x, pos_y - 400, YELLOW, font_size);
+        printf("T %d %d %d %d 0 0 90 7\n", pos_x, pos_y - 400, ATTRIBUTE_COLOR, font_size);
         break;
 
       case T_SIDE:
-        printf("T %d %d %d %d 0 0 90 1\n", pos_x, pos_y + 400, YELLOW, font_size);
+        printf("T %d %d %d %d 0 0 90 1\n", pos_x, pos_y + 400, ATTRIBUTE_COLOR, font_size);
         break;
     }
     printf("pintype=%s\n",type);
@@ -397,16 +390,16 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char
     switch (dir) {
 
       case L_SIDE:
-        printf("T %d %d %d %d 1 1 0 1\n", pos_x + 100, pos_y, GREEN, font_size);
+        printf("T %d %d %d %d 1 1 0 1\n", pos_x + 100, pos_y, TEXT_COLOR, font_size);
         break;
       case R_SIDE:
-        printf("T %d %d %d %d 1 1 0 7\n", pos_x - 100, pos_y, GREEN, font_size);
+        printf("T %d %d %d %d 1 1 0 7\n", pos_x - 100, pos_y, TEXT_COLOR, font_size);
         break;
       case B_SIDE:
-        printf("T %d %d %d %d 1 1 90 1\n", pos_x, pos_y + 100, GREEN, font_size);
+        printf("T %d %d %d %d 1 1 90 1\n", pos_x, pos_y + 100, TEXT_COLOR, font_size);
         break;
       case T_SIDE:
-        printf("T %d %d %d %d 1 1 90 7\n", pos_x, pos_y - 100, GREEN, font_size);
+        printf("T %d %d %d %d 1 1 90 7\n", pos_x, pos_y - 100, TEXT_COLOR, font_size);
         break;
     }
     printf("pinlabel=%s\n",name);
@@ -459,9 +452,9 @@ int make_box(int fldcnt, char *pFields[])
 
     strcpy (footprint, pFields[6]);
     pincount = atoi(pFields[7]);
-    printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 1100, YELLOW, font_size);
+    printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 1100, ATTRIBUTE_COLOR, font_size);
     printf("footprint=%s\n",footprint);
-    printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 1300, YELLOW, font_size);
+    printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 1300, ATTRIBUTE_COLOR, font_size);
     printf("pins=%d\n", pincount);
   }
   else {
@@ -471,23 +464,23 @@ int make_box(int fldcnt, char *pFields[])
 
      /* new file format: x y width height color width
      end type length space filling fillwidth angle1 pitch1 angle2 pitch2 */
-  printf("B %d %d %d %d %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n", pos_x, pos_y, BoxWidth, BoxHeight, GREEN);
-  printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 700, YELLOW, font_size);
+  printf("B %d %d %d %d %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n", pos_x, pos_y, BoxWidth, BoxHeight, GRAPHIC_COLOR);
+  printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 700, ATTRIBUTE_COLOR, font_size);
   printf("device=%s\n",device);
-  printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 900, YELLOW, font_size);
+  printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 900, ATTRIBUTE_COLOR, font_size);
   printf("class=%s\n",class);
-  printf("T %d %d %d %d 1 1 0 0\n", pos_x, pos_y + BoxHeight + 500, RED, font_size);
+  printf("T %d %d %d %d 1 1 0 0\n", pos_x, pos_y + BoxHeight + 500, DETACHED_ATTRIBUTE_COLOR, font_size);
   printf("refdes=%s\n",uref);
 
 #if 0
   /* Display pin locations */
   for (i = 0; i <= (BoxHeight/pin_spacing); i++)
-      cross(pos_x, pos_y + i * pin_spacing, BLUE);
+      cross(pos_x, pos_y + i * pin_spacing, NET_COLOR);
 
   for (i = 0; i <= (BoxWidth/pin_spacing); i++)
-      cross(pos_x + i * pin_spacing, pos_y, BLUE);
+      cross(pos_x + i * pin_spacing, pos_y, NET_COLOR);
 
-  cross(pin_0_x, pin_0_y, RED);
+  cross(pin_0_x, pin_0_y, DETACHED_ATTRIBUTE_COLOR);
 #endif
 
   if (strlen(name)) {
@@ -535,7 +528,7 @@ int make_box(int fldcnt, char *pFields[])
         pos_x = pin_0_x;
         pos_y = pin_0_y + 50;
      }
-     printf("T %d %d %d %d 1 0 0 0\n", pos_x, pos_y, GREEN, font_size);
+     printf("T %d %d %d %d 1 0 0 0\n", pos_x, pos_y, TEXT_COLOR, font_size);
      printf("%s\n", name);
   }
   return 0;

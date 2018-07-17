@@ -1,6 +1,8 @@
 2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gmk_sym.c: General cleaning; adjust white spaces and line spacing.
+      include geda_colors.h and remove local define color indexes, replace
+      color indexes with corresponding macros from from geda_colors.h.
 
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
