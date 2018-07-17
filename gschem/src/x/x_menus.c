@@ -1480,6 +1480,7 @@ static int sensitivity_errors = 0;
 void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
   GtkWidget *menubar;
+  GtkWidget *item;
 
   if (!buf) {
     return;
@@ -1487,7 +1488,7 @@ void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 
   menubar = x_menu_get_main_menu (w_current);
 
-  GtkWidget *item = GEDA_OBJECT_GET_DATA (menubar, buf);
+  item = GEDA_OBJECT_GET_DATA (menubar, buf);
 
   if (item && GEDA_IS_MENU_ITEM(item)) {
     gtk_widget_set_sensitive((GtkWidget*)item, flag);
