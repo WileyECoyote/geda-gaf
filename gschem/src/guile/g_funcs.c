@@ -389,7 +389,7 @@ SCM g_funcs_postscript(SCM scm_filename)
   success   = FALSE;
 
   if (output_filename) {
-    if (geda_file_print_file (toplevel, page, color_map, output_filename)) {
+    if (!geda_file_print_file (toplevel, page, color_map, output_filename)) {
       success = TRUE;
     }
   }
@@ -399,7 +399,7 @@ SCM g_funcs_postscript(SCM scm_filename)
 
     filename = scm_to_utf8_string(scm_filename);
 
-    if (geda_file_print_file (toplevel, page, color_map, filename)) {
+    if (!geda_file_print_file (toplevel, page, color_map, filename)) {
       success = TRUE;
     }
     free(filename);
@@ -436,7 +436,7 @@ SCM g_funcs_print(SCM scm_filename)
   success   = FALSE;
 
   if (output_filename) {
-    if (geda_file_print_file (toplevel, page, color_map, output_filename)) {
+    if (!geda_file_print_file (toplevel, page, color_map, output_filename)) {
       success = TRUE;
     }
   }
@@ -446,7 +446,7 @@ SCM g_funcs_print(SCM scm_filename)
 
     filename = scm_to_utf8_string(scm_filename);
 
-    if (geda_file_print_file (toplevel, page, color_map, filename)) {
+    if (!geda_file_print_file (toplevel, page, color_map, filename)) {
       success = TRUE;
     }
     free(filename);
