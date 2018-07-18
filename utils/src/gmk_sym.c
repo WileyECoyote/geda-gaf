@@ -474,13 +474,15 @@ int make_box(int fldcnt, char *pFields[])
 
   /* new file format: x y width height color width
      end type length space filling fillwidth angle1 pitch1 angle2 pitch2 */
-  printf("B %d %d %d %d %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n", pos_x, pos_y, BoxWidth, BoxHeight, GRAPHIC_COLOR);
-  printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 700, ATTRIBUTE_COLOR, font_size);
-  printf("device=%s\n",device);
-  printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 900, ATTRIBUTE_COLOR, font_size);
-  printf("class=%s\n",class);
-  printf("T %d %d %d %d 1 1 0 0\n", pos_x, pos_y + BoxHeight + 500, DETACHED_ATTRIBUTE_COLOR, font_size);
+
+  printf("T %d %d %d %d 1 1 0 0 1\n", pos_x, pos_y + BoxHeight + 500, DETACHED_ATTRIBUTE_COLOR, font_size);
   printf("refdes=%s\n",uref);
+  printf("T %d %d %d %d 0 0 0 0 1\n", pos_x, pos_y + BoxHeight + 700, ATTRIBUTE_COLOR, font_size);
+  printf("device=%s\n",device);
+  printf("T %d %d %d %d 0 0 0 0 1\n", pos_x, pos_y + BoxHeight + 900, ATTRIBUTE_COLOR, font_size);
+  printf("class=%s\n",class);
+
+  printf("B %d %d %d %d %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n", pos_x, pos_y, BoxWidth, BoxHeight, GRAPHIC_COLOR);
 
 #if 0
   /* Display pin locations */
