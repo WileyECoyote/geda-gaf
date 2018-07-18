@@ -185,10 +185,10 @@ int main(int argc, char **argv)
   }
 
   for(i = 0;i < MAX_FIELDS; i++) {
-    pFields[i]=NULL;
+    pFields[i] = NULL;
   }
 
-  stream=stdin;
+  stream = stdin;
 
   if (argc > 1) {
 
@@ -198,8 +198,8 @@ int main(int argc, char **argv)
       return -1;
     }
   }
-  line_nub=-1;
 
+  line_nub = -1;
   printf("v 20030525\n"); /* The v character is the version of the file */
 
   while (fgets(LineBuf, sizeof(LineBuf)-1, stream) != NULL) {
@@ -218,7 +218,7 @@ int main(int argc, char **argv)
         make_box (fldcnt, pFields);
       }
       else {
-        if (make_pin (fldcnt, pFields)< 0) {
+        if (make_pin (fldcnt, pFields) < 0) {
           fields_free (pFields);
           break;                /* error processing the pin, get out */
         }
@@ -235,7 +235,7 @@ int main(int argc, char **argv)
 int fields_free(char *pField[])
 {
   int i;
-  for (i = 0; (i < MAX_FIELDS) && (pField[i] != NULL) ; i++) {
+  for (i = 0; (i < MAX_FIELDS) && (pField[i] != NULL); i++) {
     free(pField[i]);
     pField[i] = NULL;
   }
@@ -246,20 +246,29 @@ int fields_free(char *pField[])
 /***************************************************/
 int line2fields(char *pBuf, int max_fields, char *pField[])
 {
-  char *p,temp[100];
+  char *p, temp[100];
   int fld_cnt=0;
 
  if ((p = strchr(pBuf,'\n')) != NULL)
      *p = 0;
+
  if ((p = strchr(pBuf,'\r')) != NULL)
      *p = 0;
+
  p = pBuf;
+
  do {
+
     pField[fld_cnt] = NULL;
+
     p = strLabel(p, temp); /* copy the tokens from the string to array */
+
     pField[fld_cnt] = (char *) malloc(strlen(temp) + 1);
+
     strcpy(pField[fld_cnt++], temp);
+
   }  while (*p != 0);
+
  return fld_cnt;
 }
 
@@ -267,16 +276,16 @@ int line2fields(char *pBuf, int max_fields, char *pField[])
 /***************************************************/
 void cross(int pos_x, int pos_y, int color)
 {
-   printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x+-50, pos_y, pos_x+50, pos_y,color);
-   printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x, pos_y + 50, pos_x, pos_y - 50,color);
+   printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x - 50, pos_y, pos_x + 50, pos_y, color);
+   printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x, pos_y + 50, pos_x, pos_y - 50, color);
 }
 
 /***************************************************/
 /***************************************************/
-void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char *type)
+void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, char *type)
 {
   int x, y;
-  int xdir=0, ydir=0,font_size=8;
+  int xdir=0, ydir=0, font_size=8;
 
   switch (dir) {
 
@@ -402,7 +411,7 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir,char *name, char
         printf("T %d %d %d %d 1 1 90 7\n", pos_x, pos_y - 100, TEXT_COLOR, font_size);
         break;
     }
-    printf("pinlabel=%s\n",name);
+    printf("pinlabel=%s\n", name);
   }
 
   printf("}\n");
@@ -462,7 +471,7 @@ int make_box(int fldcnt, char *pFields[])
     strcpy(uref, "U?");
   }
 
-     /* new file format: x y width height color width
+  /* new file format: x y width height color width
      end type length space filling fillwidth angle1 pitch1 angle2 pitch2 */
   printf("B %d %d %d %d %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n", pos_x, pos_y, BoxWidth, BoxHeight, GRAPHIC_COLOR);
   printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 700, ATTRIBUTE_COLOR, font_size);
@@ -552,11 +561,11 @@ int make_pin(int fldcnt, char *pFields[]) {
   strcpy(pin_name, pFields[0]);
   strcpy(pin, pFields[1]); 	      /* get pin number */
 
-  for (i = 0;i<pin_counter;i++) {
-     if (!strcmp(pin, pin_used[i])) {
-          fprintf (stderr, "\nFatal Error, pin %s is used more that once !\n\n", pin);
-          return -1;
-     }
+  for (i = 0; i < pin_counter; i++) {
+    if (!strcmp(pin, pin_used[i])) {
+      fprintf (stderr, "\nFatal Error, pin %s is used more that once !\n\n", pin);
+      return -1;
+    }
   }
 
   strncpy(pin_used[pin_counter++], pin, 5);    /* save the current pin, the first 5 char */
@@ -607,7 +616,7 @@ int make_pin(int fldcnt, char *pFields[]) {
     else if ( !strcasecmp(pFields[5], "pwr"))
         type = PINTYPE_PWR;
     else
-      fprintf( stderr, "WARNING: Invalid pin type attribute for pin %s: %s\n", pin_name, pFields[5] );
+      fprintf( stderr, "WARNING: Invalid pin type attribute for pin %s: %s\n", pin_name, pFields[5]);
   }
 
   pos_x = pin_spacing;
@@ -629,7 +638,7 @@ int make_pin(int fldcnt, char *pFields[]) {
      pos_y = pin_0_y;
   }
 
-  pin_add(pos_x, pos_y, pin,shape, side, pin_name, type);
+  pin_add(pos_x, pos_y, pin, shape, side, pin_name, type);
 
   return 0;
 }
@@ -680,7 +689,7 @@ void strtrail(char *wrk)
   if ((p = strchr(wrk,'\r')) != NULL)
     *p = 0;
 
-  while (isspace((int) *(wrk + strlen(wrk) - 1)))     /* Clear any trailing spaces */
+  while (isspace((int) * (wrk + strlen(wrk) - 1)))     /* Clear any trailing spaces */
     *(wrk + strlen(wrk) - 1) = 0;
 }
 
@@ -694,22 +703,20 @@ int line_chk(char *pBuf)
   if (pBuf == NULL)
     return -1;
 
-  if ((p = strchr(pBuf,'\n')) != NULL)
+  if ((p = strchr(pBuf, '\n')) != NULL)
     *p = 0;
 
-  if ((p = strchr(pBuf,'\r')) != NULL)
+  if ((p = strchr(pBuf, '\r')) != NULL)
     *p = 0;
 
-  while (isspace((int) *(pBuf + strlen(pBuf) - 1)))     /* Clear any trailing spaces */
+  while (isspace((int) * (pBuf + strlen(pBuf) - 1)))     /* Clear any trailing spaces */
     *(pBuf + strlen(pBuf) - 1) = 0;
 
   if (*pBuf == ';')
     return -1;
 
-  if (strchr(pBuf,',') == NULL)
+  if (strchr(pBuf, ',') == NULL)
     return -1;
 
   return 0;
 }
-
-
