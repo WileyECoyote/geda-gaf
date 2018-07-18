@@ -2,7 +2,7 @@
 
     * scheme/unit-tests/t0001-geda-conf-lib.scm: Revise "build-path" to compare string
       composed using the separator that libgeda would use, because libgeda does account
-      for the build platform.
+      for the build platform and check for platform specific separators.
 
 2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
 

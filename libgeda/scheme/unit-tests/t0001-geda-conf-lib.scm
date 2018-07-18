@@ -9,6 +9,10 @@
  (let* ((path1 (string-append "prefix" separator "suffix"))
         (path2 (string-append "path" separator "to" separator "a" separator "directory")))
 
+       (if (platform? 'win32-native)
+           (assert-equal separator "\\")
+           (assert-equal separator "/"))
+
        (assert-equal path1 (build-path "prefix" "suffix"))
        (assert-equal path2 (build-path "path" "to" "a" "directory"))))
 
