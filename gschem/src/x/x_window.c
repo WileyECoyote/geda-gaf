@@ -943,6 +943,11 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
 
         GError *err = NULL;
 
+        /* Do not check for backups is user is doing a command-line operation */
+        if (output_filename || iconify_main_window) {
+          geda_toplevel_set_file_open_flags(toplevel, F_OPEN_RC | F_OPEN_RESTORE_CWD);
+        }
+
         /* Problem: geda_open_file needs a pointer to a page so we have to create
          * a page struct without knowing the file can be read. If an error
          * occurs then we have to delete this page but geda_struct_page_delete is
