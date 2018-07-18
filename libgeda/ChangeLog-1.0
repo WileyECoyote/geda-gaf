@@ -1,3 +1,9 @@
+2018-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/unit-tests/t0001-geda-conf-lib.scm: Revise "build-path" to compare string
+      composed using the separator that libgeda would use, because libgeda does account
+      for the build platform.
+
 2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Add string error message to error message outputs in
