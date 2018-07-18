@@ -200,7 +200,8 @@ int main(int argc, char **argv)
   }
 
   line_nub = -1;
-  printf("v 20030525\n"); /* The v character is the version of the file */
+
+  printf("v 20130925 2\n"); /* The v character is the version of the file */
 
   while (fgets(LineBuf, sizeof(LineBuf)-1, stream) != NULL) {
 
@@ -334,19 +335,19 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, cha
   /* output pinseq */
   switch (dir) {
     case L_SIDE:
-      printf("T %d %d %d %d 0 1 0 6\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 0 1 0 6 1\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case R_SIDE:
-      printf("T %d %d %d %d 0 1 0 0\n", x+50, y + 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 0 1 0 0 1\n", x + 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case B_SIDE:
-      printf("T %d %d %d %d 0 1 90 6\n", x - 50, y - 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 0 1 90 6 1\n", x - 50, y - 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case T_SIDE:
-      printf("T %d %d %d %d 0 1 90 0\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 0 1 90 0 1\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
   }
   printf("pinseq=%d\n",++net_pin);
@@ -354,19 +355,19 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, cha
   /* output pinnumber */
   switch (dir) {
     case L_SIDE:
-      printf("T %d %d %d %d 1 1 0 6\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 1 1 0 6 1\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case R_SIDE:
-      printf("T %d %d %d %d 1 1 0 0\n", x + 50, y + 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 1 1 0 0 1\n", x + 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case B_SIDE:
-      printf("T %d %d %d %d 1 1 90 6\n", x - 50, y - 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 1 1 90 6 1\n", x - 50, y - 50, ATTRIBUTE_COLOR, font_size);
       break;
 
     case T_SIDE:
-      printf("T %d %d %d %d 1 1 90 0\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
+      printf("T %d %d %d %d 1 1 90 0 1\n", x - 50, y + 50, ATTRIBUTE_COLOR, font_size);
       break;
   }
   printf("pinnumber=%s\n", pin);
@@ -376,19 +377,19 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, cha
 
     switch (dir) {
       case L_SIDE:
-        printf("T %d %d %d %d 0 0 0 7\n", pos_x - 400, pos_y, ATTRIBUTE_COLOR, font_size);
+        printf("T %d %d %d %d 0 0 0 7 1\n", pos_x - 400, pos_y, ATTRIBUTE_COLOR, font_size);
         break;
 
       case R_SIDE:
-        printf("T %d %d %d %d 0 0 0 1\n", pos_x + 400, pos_y, ATTRIBUTE_COLOR, font_size);
+        printf("T %d %d %d %d 0 0 0 1 1\n", pos_x + 400, pos_y, ATTRIBUTE_COLOR, font_size);
         break;
 
       case B_SIDE:
-        printf("T %d %d %d %d 0 0 90 7\n", pos_x, pos_y - 400, ATTRIBUTE_COLOR, font_size);
+        printf("T %d %d %d %d 0 0 90 7 1\n", pos_x, pos_y - 400, ATTRIBUTE_COLOR, font_size);
         break;
 
       case T_SIDE:
-        printf("T %d %d %d %d 0 0 90 1\n", pos_x, pos_y + 400, ATTRIBUTE_COLOR, font_size);
+        printf("T %d %d %d %d 0 0 90 1 1\n", pos_x, pos_y + 400, ATTRIBUTE_COLOR, font_size);
         break;
     }
     printf("pintype=%s\n",type);
@@ -399,16 +400,16 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, cha
     switch (dir) {
 
       case L_SIDE:
-        printf("T %d %d %d %d 1 1 0 1\n", pos_x + 100, pos_y, TEXT_COLOR, font_size);
+        printf("T %d %d %d %d 1 1 0 1 1\n", pos_x + 100, pos_y, TEXT_COLOR, font_size);
         break;
       case R_SIDE:
-        printf("T %d %d %d %d 1 1 0 7\n", pos_x - 100, pos_y, TEXT_COLOR, font_size);
+        printf("T %d %d %d %d 1 1 0 7 1\n", pos_x - 100, pos_y, TEXT_COLOR, font_size);
         break;
       case B_SIDE:
-        printf("T %d %d %d %d 1 1 90 1\n", pos_x, pos_y + 100, TEXT_COLOR, font_size);
+        printf("T %d %d %d %d 1 1 90 1 1\n", pos_x, pos_y + 100, TEXT_COLOR, font_size);
         break;
       case T_SIDE:
-        printf("T %d %d %d %d 1 1 90 7\n", pos_x, pos_y - 100, TEXT_COLOR, font_size);
+        printf("T %d %d %d %d 1 1 90 7 1\n", pos_x, pos_y - 100, TEXT_COLOR, font_size);
         break;
     }
     printf("pinlabel=%s\n", name);
@@ -537,7 +538,7 @@ int make_box(int fldcnt, char *pFields[])
         pos_x = pin_0_x;
         pos_y = pin_0_y + 50;
      }
-     printf("T %d %d %d %d 1 0 0 0\n", pos_x, pos_y, TEXT_COLOR, font_size);
+     printf("T %d %d %d %d 1 0 0 0 1\n", pos_x, pos_y, TEXT_COLOR, font_size);
      printf("%s\n", name);
   }
   return 0;
