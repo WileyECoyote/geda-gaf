@@ -447,27 +447,39 @@ int make_box(int fldcnt, char *pFields[])
   BoxWidth  = pin_width * pin_spacing;
   BoxHeight = pin_height * pin_spacing;
 
-  if (fldcnt >= 8) {
+  if (fldcnt >= 6) {
 
     int  pincount;
     char footprint[100];
 
+    /* U is for ICs, J or CONN for IO. We assume no discretes */
     strcpy (uref, pFields[5]);
     strcat (uref, "?");
     if (uref[0]=='U' || uref[0]=='u')strcpy(class, "IC");
     if (uref[0]=='J' || uref[0]=='j')strcpy(class, "IO");
     if (uref[0]=='C' || uref[0]=='c')strcpy(class, "IO");
 
-    /* U is for ICs, J or CONN for IO. We assume no discretes */
+     printf("T %d %d %d %d 0 0 0 0 1\n", pos_x, pos_y + BoxHeight + 1100, ATTRIBUTE_COLOR, font_size);
 
-    strcpy (footprint, pFields[6]);
-    pincount = atoi(pFields[7]);
-    printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 1100, ATTRIBUTE_COLOR, font_size);
-    printf("footprint=%s\n",footprint);
-    printf("T %d %d %d %d 0 0 0 0\n", pos_x, pos_y + BoxHeight + 1300, ATTRIBUTE_COLOR, font_size);
-    printf("pins=%d\n", pincount);
+    if ( pFields[6]) {
+      strcpy (footprint, pFields[6]);
+      printf("footprint=%s\n", footprint);
+    }
+    else {
+      printf("footprint=unknown\n");
+    }
+
+    if ( pFields[7]) {
+      pincount = atoi(pFields[7]);
+      printf("T %d %d %d %d 0 0 0 0 1\n", pos_x, pos_y + BoxHeight + 1300, ATTRIBUTE_COLOR, font_size);
+      printf("pins=%d\n", pincount);
+    }
   }
   else {
+
+    printf("T %d %d %d %d 0 0 0 0 1\n", pos_x, pos_y + BoxHeight + 1100, ATTRIBUTE_COLOR, font_size);
+    printf("footprint=unknown\n");
+
     strcpy(class, "IC");
     strcpy(uref, "U?");
   }
