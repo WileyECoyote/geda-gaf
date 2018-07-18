@@ -151,7 +151,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
   cwd = g_get_current_dir();
 
   /* Check if a title-block was specified on the command line */
-  if (comline_tblock) { 
+  if (comline_tblock) {
 
     char *fname;
     Page *page;
@@ -253,7 +253,6 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
         GEDA_FREE (filename);
       }
     }
-    GEDA_FREE(cwd);
   }
 
   if (!page_loaded) { /* If no files have been loaded, then ... */
@@ -313,6 +312,10 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
 
   /* Update the window to show the current page */
   x_window_set_current_page( w_current, Current_Page);
+
+  /* No matter what happened above, restore the directory */
+  chdir(cwd);
+  GEDA_FREE(cwd);
 }
 
 static void gschem( int argc, char *argv[])
