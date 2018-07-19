@@ -532,8 +532,8 @@ void geda_file_print_set_type(GedaToplevel *toplevel, int type)
 int geda_file_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 {
   int origin_x, origin_y, bottom, right;
-  int margin_x=0, margin_y=0;
-  int dx=0, dy=0;
+  int margin_x = 0, margin_y = 0;
+  int dx = 0, dy = 0;
   float scale;
   int unicode_count;
 
@@ -562,8 +562,8 @@ int geda_file_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
       dy = bottom - origin_y;
 
       /* Add a 10% margin */
-      margin_x = dx/10;
-      margin_y = dy/10;
+      margin_x = dx / 10;
+      margin_y = dy / 10;
       dx = dx + margin_x;
       dy = dy + margin_y;
       break;
@@ -590,7 +590,7 @@ int geda_file_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
   landscape = ((toplevel->print_orientation == LANDSCAPE) ||
               ((toplevel->print_orientation == AUTOLAYOUT) && ( dx >= dy )));
 
-  if(toplevel->paper_width == 0) {
+  if (toplevel->paper_width == 0) {
     eps = 1;
     if (landscape) {
       toplevel->paper_width = dx;
