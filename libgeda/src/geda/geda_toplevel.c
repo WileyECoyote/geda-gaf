@@ -141,7 +141,7 @@ static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
   toplevel->print_color                    = FALSE;
   toplevel->print_color_background         = 0;
   toplevel->print_orientation              = 0;
-  toplevel->print_output_type              = 0;
+  toplevel->print_output_extents           = 0;
   toplevel->print_output_capstyle          = BUTT_CAP;
 
   toplevel->paper_width                    = 0;

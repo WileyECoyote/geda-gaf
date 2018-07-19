@@ -156,7 +156,7 @@ char   *default_print_command             = NULL;
 int     default_print_color               = FALSE;
 int     default_print_color_background    = OUTPUT_BACKGROUND_COLOR;
 int     default_print_orientation         = LANDSCAPE;
-int     default_print_output_type         = EXTENTS;
+int     default_print_output_extents      = EXTENTS;
 int     default_print_output_capstyle     = SQUARE_CAP;
 int     default_setpagedevice_orientation = FALSE;
 int     default_setpagedevice_pagesize    = FALSE;
@@ -703,7 +703,7 @@ void i_vars_set(GschemToplevel *w_current)
   toplevel->print_color                = default_print_color;
   toplevel->print_color_background     = default_print_color_background;
   toplevel->print_orientation          = default_print_orientation;
-  toplevel->print_output_type          = default_print_output_type;
+  toplevel->print_output_extents       = default_print_output_extents;
   toplevel->print_output_capstyle      = default_print_output_capstyle;
   toplevel->setpagedevice_orientation  = default_setpagedevice_orientation;
   toplevel->setpagedevice_pagesize     = default_setpagedevice_pagesize;

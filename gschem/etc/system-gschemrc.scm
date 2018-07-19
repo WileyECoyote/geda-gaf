@@ -928,17 +928,17 @@
 ;
 (print-command "lpr")
 
-; output-type string
+; output-extents string
 ;
 ; Controls what is actually printed
 ;       string is either "extents" or "extents no margins" or
 ;       "current window"
 ;
-(output-type "extents")
-;(output-type "extents no margins")
-;(output-type "current window")
-;;; (output-type "limits")  "limits" is considered deprecated and should
-;;;                         not be used.
+(output-extents "extents")
+;(output-extents "extents no margins")
+;(output-extents "current window")
+;;; (output-extents "limits")  "limits" is considered deprecated and should
+;;;                            not be used.
 
 ; output-orientation string
 ;

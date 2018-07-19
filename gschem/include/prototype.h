@@ -148,7 +148,7 @@ SCM   g_rc_snap_size                   (SCM size);
 SCM   g_rc_attribute_name              (SCM path);
 SCM   g_rc_paper_size                  (SCM width, SCM height);
 SCM   g_rc_paper_sizes                 (SCM papername, SCM scm_width, SCM scm_height);
-SCM   g_rc_output_type                 (SCM mode);
+SCM   g_rc_output_extents              (SCM mode);
 SCM   g_rc_output_orientation          (SCM mode);
 SCM   g_rc_image_color                 (SCM mode);
 SCM   g_rc_invert_images               (SCM mode);

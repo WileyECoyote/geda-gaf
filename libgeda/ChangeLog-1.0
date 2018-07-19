@@ -1,3 +1,7 @@
+2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Rename member print_output_type -> print_output_extents.
+
 2018-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/unit-tests/t0001-geda-conf-lib.scm: Revise "build-path" to compare string

@@ -126,7 +126,7 @@ struct _GedaToplevel {
   int print_orientation;
 
   /* either window or limits */
-  int print_output_type;
+  int print_output_extents;
 
   /* BUTT, ROUND, SQUARE caps */
   int print_output_capstyle;

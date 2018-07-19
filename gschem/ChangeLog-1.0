@@ -1,3 +1,11 @@
+2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Rename output-type -> output-extents.
+
+    * include/i_vars.h: Rename default_print_output_type -> default_print_output_extents.
+
+    * src/guile/g_rc.c: Rename g_rc_output_type -> g_rc_output_extents.
+
 2018-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem.c: Unconditionally restore the current working directory at

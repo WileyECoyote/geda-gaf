@@ -516,7 +516,7 @@ geda_file_print_file (GedaToplevel *toplevel, Page *page, GArray *color_map, con
  */
 void geda_file_print_set_type(GedaToplevel *toplevel, int type)
 {
-  toplevel->print_output_type = type;
+  toplevel->print_output_extents = type;
 }
 
 /*! \brief Print the current GedaToplevel object to a stream as a
@@ -556,7 +556,7 @@ int geda_file_print_stream(GedaToplevel *toplevel, Page *page, FILE *fp)
 
   /* Calculate scale factor that will make the image fit on the page */
 
-  switch (toplevel->print_output_type) {
+  switch (toplevel->print_output_extents) {
     case EXTENTS:
       dx = right  - origin_x;
       dy = bottom - origin_y;

@@ -89,7 +89,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
 
   { "paper-size",                2, 0, 0, g_rc_paper_size },
   { "paper-sizes",               3, 0, 0, g_rc_paper_sizes },
-  { "output-type",               1, 0, 0, g_rc_output_type },
+  { "output-extents",            1, 0, 0, g_rc_output_extents },
   { "output-orientation",        1, 0, 0, g_rc_output_orientation },
   { "output-color",              1, 0, 0, g_rc_output_color },
   { "output-capstyle",           1, 0, 0, g_rc_output_capstyle },

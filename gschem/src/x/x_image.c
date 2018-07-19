@@ -341,12 +341,12 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   h = toplevel->paper_height;
 
   orientation = toplevel->print_orientation;
-  type        = toplevel->print_output_type;
+  type        = toplevel->print_output_extents;
 
   toplevel->paper_width       = 0;
   toplevel->paper_height      = 0;
   toplevel->print_orientation = PORTRAIT;
-  toplevel->print_output_type = EXTENTS_NOMARGINS;
+  toplevel->print_output_extents = EXTENTS_NOMARGINS;
 
   color_map = geda_color_get_print_map();
   page      = geda_toplevel_get_current_page(toplevel);
@@ -366,7 +366,7 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   toplevel->paper_width  = w;
   toplevel->paper_height = h;
   toplevel->print_orientation = orientation;
-  toplevel->print_output_type = type;
+  toplevel->print_output_extents = type;
 }
 
 /*! \brief Initialize Image Module.

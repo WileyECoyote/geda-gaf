@@ -1710,14 +1710,14 @@ SCM g_rc_print_command(SCM scm_command)
 
 #undef FUNC_NAME
 
-/*! \brief Process output-type RC entry.
+/*! \brief Process output-extents RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the output-type RC entry.
- *  \todo this keyword needs a better name ...
+ *       processing configuration data for the output-extents RC entry.
+ *
  *  \todo keyword and default varible names mismatched!
  */
-SCM g_rc_output_type(SCM mode)
+SCM g_rc_output_extents(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
     {WINDOW,  "current window" },
@@ -1726,7 +1726,7 @@ SCM g_rc_output_type(SCM mode)
     {EXTENTS_NOMARGINS, "extents no margins" },
   };
 
-  RETURN_G_RC_MODE("output-type", default_print_output_type, mode_table);
+  RETURN_G_RC_MODE("output-extents", default_print_output_extents, mode_table);
 }
 
 /*! \brief Process output-orientation RC entry.

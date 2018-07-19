@@ -118,7 +118,7 @@ extern int default_paper_width;
 extern int default_paper_height;
 extern float default_postscript_font_scale;
 extern char *default_print_command;
-extern int default_print_output_type;
+extern int default_print_output_extents;
 extern int default_print_orientation;
 extern int default_print_color;
 extern int default_print_color_background;
