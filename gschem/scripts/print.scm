@@ -48,7 +48,10 @@
 ;; gafrc and other configuration files.
 ;(gschem-use-rc-values)
 
-; filename is specified on the command line
-(gschem-pdf "output.pdf")
+;; The gschem-output-type is determined from the filename specified on the
+;; command line. If no filename was specified then the type will be "pdf".
+(if (string=? (gschem-output-type) "ps")
+    (gschem-postscript "output.ps")
+    (gschem-pdf "output.pdf"))
 
 (gschem-exit)

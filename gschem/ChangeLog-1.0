@@ -8,7 +8,9 @@
       keyword.
 
     * scripts/print.scm: Revamp script; update instructions, add notes, add additional
-      keywords options.
+      keywords options, conditionally use gschem-postscript based on output-type so
+      either postscript or pdf can be produced based on the extension of output file
+      name that was supplied.
 
     * src/guile/g_funcs.c: Add API function g_funcs_output_type.
 
