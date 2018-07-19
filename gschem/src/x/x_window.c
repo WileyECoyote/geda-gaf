@@ -801,8 +801,8 @@ void x_window_reset_page_geometry(GschemToplevel *w_current, Page *page)
  *  to the new page. Otherwise it returns a pointer to the existing page.
  *
  *  If the filename passed is NULL, this function creates an empty, untitled
- *  page. The name of the untitled page is build from configuration data
- *  ('untitled-name') appended a counter for uniqueness.
+ *  page. The name of the untitled page is built from configuration data
+ *  by appending a unique counter  "untitled-name".
  *
  *  The opened page becomes the current page of <B>toplevel</B>.
  *
