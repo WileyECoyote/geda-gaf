@@ -185,6 +185,7 @@ static struct gsubr_t gschem_g_funcs[] = {
   { "gschem-jpeg-image",         1, 0, 0, g_funcs_jpeg_image },
   { "gschem-log",                1, 0, 0, g_funcs_log },
   { "gschem-msg",                1, 0, 0, g_funcs_msg },
+  { "gschem-output-type",        0, 0, 0, g_funcs_output_type },
   { "gschem-pdf",                1, 0, 0, g_funcs_pdf },
   { "gschem-png-image",          1, 0, 0, g_funcs_png_image },
   { "gschem-postscript",         1, 0, 0, g_funcs_postscript },

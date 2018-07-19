@@ -4,7 +4,11 @@
 
     * include/i_vars.h: Rename default_print_output_type -> default_print_output_extents.
 
+    * src/guile/g_funcs.c: Add API function g_funcs_output_type.
+
     * src/guile/g_rc.c: Rename g_rc_output_type -> g_rc_output_extents.
+
+    * src/guile/g_register.c: Register g_funcs_output_type as "gschem-output-type".
 
 2018-07-18 Wiley E. Hill <wileyhill@gmail.com>
 

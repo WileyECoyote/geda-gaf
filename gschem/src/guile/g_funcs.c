@@ -314,6 +314,34 @@ SCM g_funcs_msg(SCM scm_msg)
   return SCM_BOOL_T;
 }
 
+/*!
+ * \brief SCM API Returns the Output Type
+ * \par Function Description
+ *  Returns the extension of output_filename or "pdf" if output_filename
+ *  is not set.
+ */
+SCM g_funcs_output_type(void)
+{
+  SCM scm_return_value;
+  const char *return_value;
+
+  if (output_filename) {
+    return_value = geda_file_get_filename_ext (output_filename);
+  }
+  else {
+    return_value = NULL;
+  }
+
+  if (return_value) {
+    scm_return_value = scm_from_utf8_string (return_value);
+  }
+   else {
+    scm_return_value = scm_from_utf8_string ("pdf");
+  }
+
+  return (scm_return_value);
+}
+
 /*! \brief SCM API Export PDF Document
  *  \par Function Description
  *   Scheme API to export the current document as a PDF document.
