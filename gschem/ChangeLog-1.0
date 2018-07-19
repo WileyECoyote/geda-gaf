@@ -4,8 +4,11 @@
 
     * include/i_vars.h: Rename default_print_output_type -> default_print_output_extents.
 
-    * scripts/image.scm: Update instruction in header and add commented "invert-images"
+    * scripts/image.scm: Update instructions in header and add commented "invert-images"
       keyword.
+
+    * scripts/print.scm: Revamp script; update instructions, add notes, add additional
+      keywords options.
 
     * src/guile/g_funcs.c: Add API function g_funcs_output_type.
 
