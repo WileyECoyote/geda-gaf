@@ -1,3 +1,8 @@
+2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gmk_sym.c: Change defined pin type strings to lower case, as they
+      should be.
+
 2018-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gmk_sym.c: Update version output and include line count in text

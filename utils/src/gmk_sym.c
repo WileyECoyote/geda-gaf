@@ -117,16 +117,16 @@ PRE,1,dot,B,1
 #define DOT_SHAPE   1
 #define CLOCK_SHAPE 2
 
-#define PINTYPE_IN  "IN"
-#define PINTYPE_OUT "OUT"
-#define PINTYPE_IO  "IO"
-#define PINTYPE_OC  "OC"
-#define PINTYPE_OE  "OE"
-#define PINTYPE_PAS "PAS"
-#define PINTYPE_TP  "TP"
-#define PINTYPE_TRI "TRI"
-#define PINTYPE_CLK "CLK"
-#define PINTYPE_PWR "PWR"
+#define PINTYPE_IN  "in"
+#define PINTYPE_OUT "out"
+#define PINTYPE_IO  "io"
+#define PINTYPE_OC  "oc"
+#define PINTYPE_OE  "oe"
+#define PINTYPE_PAS "pas"
+#define PINTYPE_TP  "tp"
+#define PINTYPE_TRI "tri"
+#define PINTYPE_CLK "clk"
+#define PINTYPE_PWR "pwr"
 
 extern char *optarg;
 extern int optind,opterr,optopt;
