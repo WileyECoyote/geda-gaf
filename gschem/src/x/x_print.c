@@ -728,8 +728,8 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
                          NULL);
   gtk_widget_show_all (GTK_WIDGET (dialog));
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-                                  GEDA_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GEDA_RESPONSE_ACCEPT);
+
   gtk_window_set_transient_for(GTK_WINDOW(dialog), w_current->main_window);
 
   result = gtk_dialog_run (dialog);
