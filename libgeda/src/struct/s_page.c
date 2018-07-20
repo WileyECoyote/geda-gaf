@@ -169,7 +169,9 @@ Page *geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
     else {
 
       char *pwd = getcwd(0,0);
-      page->filename = g_build_filename (pwd, filename, NULL);
+
+      page->filename = geda_strconcat (pwd, DIR_SEPARATOR_S, filename, NULL);
+
       free (pwd);
     }
   }
