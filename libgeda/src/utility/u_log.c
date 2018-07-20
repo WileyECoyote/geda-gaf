@@ -570,7 +570,6 @@ void geda_utility_log_system(const char *format, ...)
   va_list args;
   char   *buffer;
   int     size;
-  int     options;
 
   va_start (args, format);
   size = geda_utility_string_strsize(format, args) + 1;
@@ -582,9 +581,7 @@ void geda_utility_log_system(const char *format, ...)
   vsnprintf (buffer, size, format, args);
   va_end (args);
 
-  options = LOG_CONS | LOG_PID | LOG_NDELAY;
-
-  openlog ("geda", options, LOG_INFO);
+  openlog ("geda", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_INFO);
 
   syslog (LOG_INFO, "%s", buffer);
 

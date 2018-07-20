@@ -1,3 +1,8 @@
+2018-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_log.c: Eliminate options ancillary variable and include log flags
+      as openlog function arguments in geda_utility_log_system.
+
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Rename member print_output_type -> print_output_extents.
