@@ -246,7 +246,7 @@ int main(int argc, char *argv[])
     outfile=fopen(strcat(&buff[0],".save"),"wb");
 
     if (outfile==NULL) {
-      perror("grenum: ould not create backup file");
+      perror("grenum: could not create backup file");
       fclose(infile);
       return FILE_OP_ERROR;
     }
