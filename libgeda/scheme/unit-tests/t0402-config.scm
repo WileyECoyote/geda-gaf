@@ -26,7 +26,8 @@
 )
 
 (define (config-test-teardown)
-  (system* "rm" "-rf" *testdir*))
+  (let* ((cmd (string-append "rm " "-rf " *testdir*)))
+      (system cmd)))
 
 (define-syntax begin-config-test
   (syntax-rules ()
@@ -296,6 +297,7 @@
     (config-load! a)
     (assert-equal a (set-config! a "foo" "bar" "wibble"))
     (assert-equal "wibble" (config-string a "foo" "bar"))
+
     (assert-equal '("wibble") (config-string-list a "foo" "bar"))
 
     (assert-equal a (set-config! a "foo" "bar" '("wib;ble" "wobble")))
