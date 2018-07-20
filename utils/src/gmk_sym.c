@@ -313,8 +313,7 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, cha
     printf("V %d %d 50 %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n",
            pos_x - 50 * xdir, pos_y - 50 * ydir, LOGIC_BUBBLE_COLOR);
     printf("P %d %d %d %d %d 0 1\n", pos_x - 100 * xdir, pos_y - 100 * ydir,
-           pos_x - pin_len * xdir, pos_y - pin_len * ydir,
-           PIN_COLOR);
+           pos_x - pin_len * xdir, pos_y - pin_len * ydir, PIN_COLOR);
     printf("{\n");
   }
   else if (shape == CLOCK_SHAPE) {
@@ -323,9 +322,9 @@ void pin_add(int pos_x, int pos_y,char *pin, int shape, int dir, char *name, cha
            pos_x + 100 * xdir, pos_y + 100 * ydir, GRAPHIC_COLOR);
     printf("L %d %d %d %d %d 0 0 0 -1 -1\n", pos_x + 100 * ydir, pos_y + 100 * xdir,
            pos_x + 100 * xdir, pos_y + 100 * ydir, GRAPHIC_COLOR);
+
     printf("P %d %d %d %d %d 0 1\n", pos_x, pos_y,
-           pos_x - pin_len * xdir, pos_y - pin_len * ydir,
-           PIN_COLOR);
+           pos_x - pin_len * xdir, pos_y - pin_len * ydir, PIN_COLOR);
     printf("{\n");
   }
   x = pos_x;
