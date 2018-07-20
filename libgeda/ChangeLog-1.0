@@ -1,5 +1,8 @@
 2018-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/scheme/scheme_config.c: Revise %set-config! to allocate an extra pointer for
+      the sentinel so that g_strfreev will know where to stop releasing memory.
+
     * src/utility/u_log.c: Eliminate options ancillary variable and include log flags
       as openlog function arguments in geda_utility_log_system.
 

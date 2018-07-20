@@ -1163,7 +1163,7 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
     if (scm_is_string (first_s)) {
 
-      char **value = GEDA_MEM_ALLOC0 (sizeof(char*) * len);
+      char **value = GEDA_MEM_ALLOC0 ((sizeof(char*) * len) + 1);
 
       scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev, value,
                                   SCM_F_WIND_EXPLICITLY);
