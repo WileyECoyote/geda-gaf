@@ -1,3 +1,7 @@
+2018-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/grenum.c: Replace perror with fprintf to stderr with strerror.
+
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gmk_sym.c: Change defined pin type strings to lower case, as they

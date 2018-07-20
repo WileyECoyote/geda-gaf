@@ -115,14 +115,14 @@ int main(int argc, char *argv[])
 
     /* Open file, use r+ for read only */
     if ((infile=fopen(infilename, "r")) == NULL) {
-      perror("grenum: unable to open input file");
+      fprintf(stderr, "grenum: unable to open input file, %s.\n", strerror(errno));
       return FILE_OP_ERROR;
     }
 
     strcpy(&outfilename[0],&infilename[0]);
 
     if ((outfile=fopen(strcat(&outfilename[0],".tmp"),"wb"))==NULL) {
-      perror("grenum: could not create tmp file");
+      fprintf(stderr, "grenum: could not create tmp file, %s.\n", strerror(errno));
       /* Close the file */
       fclose(infile);
       return FILE_OP_ERROR;
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
       switch(ret) {
         case NOT_REFDES_LINE:
           if (fputs(buff,outfile)==-1) {
-            perror("grenum: could not write to tmp file");
+            fprintf(stderr, "grenum: could not write to tmp file, %s.\n", strerror(errno));
             /* Close the files */
             fclose(infile);
             fclose(outfile);
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
 
       { /* Finally, write the refdes line to the output file */
         if (fputs(buff,outfile)==-1) {
-          perror("grenum: could not write to tmp file");
+          fprintf(stderr, "grenum: could not write to tmp file, %s.\n", strerror(errno));
         }
 
         fclose(infile);
@@ -246,7 +246,7 @@ int main(int argc, char *argv[])
     outfile=fopen(strcat(&buff[0],".save"),"wb");
 
     if (outfile==NULL) {
-      perror("grenum: could not create backup file");
+      fprintf(stderr, "grenum: could not create backup file, %s.\n", strerror(errno));
       fclose(infile);
       return FILE_OP_ERROR;
     }
@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
     while(fgets(&buff[0],BUFFSIZE,infile)!=NULL)  { /* Read one line. */
 
       if (fputs(&buff[0],outfile)==-1) {
-        perror("grenum: could not write to backup file");
+        fprintf(stderr, "grenum: could not write to backup file, %s.\n", strerror(errno));
         fclose(infile);
         fclose(outfile);
         return FILE_OP_ERROR;
