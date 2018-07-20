@@ -28,7 +28,9 @@
 #include <fcntl.h>
 #endif
 
+#ifdef HAVE_SYSLOG_H
 #include <syslog.h>
+#endif
 
 #include <libgeda_priv.h>
 
@@ -581,11 +583,19 @@ void geda_utility_log_system(const char *format, ...)
   vsnprintf (buffer, size, format, args);
   va_end (args);
 
+#ifdef HAVE_SYSLOG_H
+
   openlog ("geda", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_INFO);
 
   syslog (LOG_INFO, "%s", buffer);
 
   closelog ();
+
+#else /* Likely Win32 platform */
+
+  u_log_handler (NULL, G_LOG_LEVEL_INFO, buffer, NULL);
+
+#endif
 
   if (buffer) free(buffer);
 
