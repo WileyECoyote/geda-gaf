@@ -12,14 +12,17 @@ GEDA_INCLUDES    = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCOLOR)
 bin_PROGRAMS     = gmk_sym smash_megafile convert_sym sarlacc_schem olib \
 				   grenum
 
-AM_CFLAGS        = $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
+AM_CFLAGS        = -DLOCALEDIR=\"$(localedir)\" \
+				   $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
 				   $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
+
+LDADD                    = @LIBINTL@
 
 gmk_sym_SOURCES          = gmk_sym.c char_width.c
 grenum_SOURCES           = grenum.c grenum.h
 smash_megafile_SOURCES   = smash_megafile.c
 
-olib_CFLAGS              = -std=gnu99 $(GEDA_INCLUDES)
+olib_CFLAGS              = -std=gnu99 -DLOCALEDIR=\"$(localedir)\" $(GEDA_INCLUDES)
 olib_SOURCES             = olib.l geda_sym_format.h
 olib_LDFLAGS             = -lm
 
@@ -29,7 +32,7 @@ convert_sym_LDFLAGS      = -lm
 sarlacc_schem_SOURCES    = sarlacc_schem.c
 sarlacc_schem_CPPFLAGS   =
 sarlacc_schem_LDFLAGS    = $(GLIB_LIBS) $(GUILE_LIBS)
-sarlacc_schem_LDADD      = $(top_builddir)/libgeda/src/libgeda.la
+sarlacc_schem_LDADD      = $(top_builddir)/libgeda/src/libgeda.la $(LDADD)
 
 doxygen:
 # Change to the docs directory and 'make doxygen' for geda utilities
