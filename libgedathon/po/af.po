@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-02-18 00:05-0600\n"
+"POT-Creation-Date: 2018-07-21 18:28-0500\n"
 "PO-Revision-Date: 2017-12-13 02:30-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -53,7 +53,7 @@ msgstr "Kry of Stel die verstek titelblok simbool in\n"
 # Close all files and shutdown Libgedathon
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and shutdown Libgedathon.\n"
-msgstr "Sluit alle lêers en sluit Libgedathon.\n"
+msgstr "Sluit alle lÃªers en sluit Libgedathon.\n"
 
 # Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
@@ -63,7 +63,7 @@ msgstr "Voeg 'n gids by die biblioteek se soekpad.\n"
 # Creates a gafrc file in the current directory
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory.\n"
-msgstr "Skep 'n gafrc-lêer in die huidige gids.\n"
+msgstr "Skep 'n gafrc-lÃªer in die huidige gids.\n"
 
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages.\n"
@@ -102,12 +102,12 @@ msgstr "Sluit bladsy.\n"
 # Create a new empty page
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page.\n"
-msgstr "Skep 'n nuwe leë bladsy.\n"
+msgstr "Skep 'n nuwe leÃ« bladsy.\n"
 
 # Rename a page changes the filename
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename.\n"
-msgstr "Hernoem 'n bladsy verander die lêernaam.\n"
+msgstr "Hernoem 'n bladsy verander die lÃªernaam.\n"
 
 # Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
@@ -117,7 +117,7 @@ msgstr "Stoor die bladsy deur op te stoor\n"
 # Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name\n"
-msgstr "Stoor die bladsy met 'n nuwe lêernaam\n"
+msgstr "Stoor die bladsy met 'n nuwe lÃªernaam\n"
 
 # Save all opened pages to storage
 #: libgedathon/include/geda_module.h:70
@@ -145,7 +145,7 @@ msgid "Add an object to a page or another object.\n"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:78
-msgid "Add multible objects to a page or another object.\n"
+msgid "Add multiple objects to a page or another object.\n"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:79
@@ -157,7 +157,7 @@ msgid "Remove object from a page.\n"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:81
-msgid "Remove multible objects from a page.\n"
+msgid "Remove multiple objects from a page.\n"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:83
@@ -165,7 +165,7 @@ msgid "Delete an object from a page.\n"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multible object from a page.\n"
+msgid "Delete multiple object from a page.\n"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:88
