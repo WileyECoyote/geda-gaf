@@ -1,5 +1,8 @@
 2018-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples/gmk_sym/7474.txt: Include pintypes in an example, now that
+      the feature actually works, see commit 7838f96e2f68298.
+
     * src/grenum.c: Replace perror with fprintf to stderr with strerror.
 
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
