@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
@@ -69,49 +69,60 @@ msgstr "Skep 'n gafrc-lêer in die huidige gids.\n"
 msgid "Retrieve list of all pages.\n"
 msgstr "Haal lys van alle bladsye op.\n"
 
+# Get pointer to the active page
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page.\n"
-msgstr ""
+msgstr "Kry wyser na die aktiewe bladsy.\n"
 
+# Set the active page
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page.\n"
-msgstr ""
+msgstr "Stel die aktiewe bladsy.\n"
 
+# Returns True if page has been modified and not saved
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved.\n"
-msgstr ""
+msgstr "Wys waar as die bladsy verander en nie gestoor is nie.\n"
 
+# Set the active page, and changes current directory
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory.\n"
-msgstr ""
+msgstr "Stel die aktiewe bladsy en verander die huidige gids.\n"
 
+# Open a page
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page.\n"
-msgstr ""
+msgstr "Maak 'n bladsy oop.\n"
 
+# Close page
 #: libgedathon/include/geda_module.h:65
 msgid "Close page.\n"
-msgstr ""
+msgstr "Sluit bladsy.\n"
 
+# Create a new empty page
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page.\n"
-msgstr ""
+msgstr "Skep 'n nuwe leë bladsy.\n"
 
+# Rename a page changes the filename
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename.\n"
-msgstr ""
+msgstr "Hernoem 'n bladsy verander die lêernaam.\n"
 
+# Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage\n"
-msgstr ""
+msgstr "Stoor die bladsy deur op te stoor\n"
 
+# Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name\n"
-msgstr ""
+msgstr "Stoor die bladsy met 'n nuwe lêernaam\n"
 
+# Save all opened pages to storage
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage\n"
-msgstr ""
+msgstr "Stoor alle oop bladsye op stoorplek\n"
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."

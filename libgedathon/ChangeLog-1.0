@@ -1,3 +1,7 @@
+2018-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Change charset to UTF-8 and update translations.
+
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise Win32 version of find_library to append the dash
