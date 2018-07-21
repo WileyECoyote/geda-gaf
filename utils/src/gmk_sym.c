@@ -97,6 +97,12 @@ PRE,1,dot,B,1
 #include <config.h>
 #endif
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
+#include "../include/gettext.h"
+
 #include <geda/geda_standard.h>
 #include <geda_colors.h>
 
@@ -162,6 +168,17 @@ int pin_counter=0;
 /***************************************************/
 int main(int argc, char **argv)
 {
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
+
   FILE *stream;
   char *pFields[MAX_FIELDS];
   char  LineBuf[256];
@@ -178,7 +195,7 @@ int main(int argc, char **argv)
       break;
       case '?':
       case 'h':
-        fprintf(stderr, "usage: %s -dh?\n", argv[0]);
+        fprintf(stderr, "%s: %s -dh?\n", _("usage"), argv[0]);
         exit(0);
         break;
     }
