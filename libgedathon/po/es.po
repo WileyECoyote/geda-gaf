@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
@@ -72,7 +72,7 @@ msgstr "Establecer la página activa.\n"
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved.\n"
-msgstr ""
+msgstr "Devuelve True si la página ha sido modificada y no guardada.\n"
 
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory.\n"
@@ -100,59 +100,59 @@ msgstr "Guarde la página escribiendo en el almacenamiento.\n"
 
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name\n"
-msgstr ""
+msgstr "Guarde la página usando un nuevo nombre de archivo\n"
 
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage\n"
-msgstr ""
+msgstr "Guarde todas las páginas abiertas en el almacenamiento\n"
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Devuelve True es objeto es una GedaCapsule, de lo contrario es False."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object.\n"
-msgstr ""
+msgstr "Returns the rectangular boundaries of an object.\n"
 
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule.\n"
-msgstr ""
+msgstr "Recuperar un objeto de una GedaCapsule.\n"
 
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page.\n"
-msgstr ""
+msgstr "Recuperar todos los objetos que pertenecen a una página.\n"
 
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object.\n"
-msgstr ""
+msgstr "Agregar un objeto a una página u otro objeto.\n"
 
 #: libgedathon/include/geda_module.h:78
-msgid "Add multible objects to a page or another object.\n"
-msgstr ""
+msgid "Add multiple objects to a page or another object.\n"
+msgstr "Agregar objetos multiples a una página u otro objeto.\n"
 
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object\n"
-msgstr ""
+msgstr "Haga una copia un objeto.\n"
 
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page.\n"
-msgstr ""
+msgstr "Eliminar objeto de una página.\n"
 
 #: libgedathon/include/geda_module.h:81
-msgid "Remove multible objects from a page.\n"
-msgstr ""
+msgid "Remove multiple objects from a page.\n"
+msgstr "Eliminar objetos multiples de una página.\n"
 
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page.\n"
-msgstr ""
+msgstr "Eliminar un objeto de una página.\n"
 
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multible object from a page.\n"
-msgstr ""
+msgid "Delete multiple object from a page.\n"
+msgstr "Eliminar múltiples objetos de una página.\n"
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object.\n"
-msgstr ""
+msgstr "Create a new arc object.\n"
 
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object.\n"
