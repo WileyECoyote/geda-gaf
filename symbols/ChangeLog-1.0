@@ -1,3 +1,11 @@
+2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/generic: Add description attribute, update attribute
+      positions:
+
+            * generic/connector32-1.sym
+
+
 2018-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PI-1.sym: Rename symbol, update attributes,
