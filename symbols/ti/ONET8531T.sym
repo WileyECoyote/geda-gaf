@@ -1,0 +1,233 @@
+v 20150401 2
+P 2900 2800 2600 2800 1 0 0
+{
+T 2800 2850 5 8 1 1 0 0 1
+pinnumber=1
+T 2800 2850 5 8 0 1 0 0 1
+pinseq=1
+T 2550 2800 9 10 1 1 0 6 1
+pinlabel=OUT+
+T 2625 2750 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 4000 400 4000 1 0 0
+{
+T 250 4050 5 8 1 1 0 6 1
+pinnumber=2
+T 250 4050 5 8 0 1 0 6 1
+pinseq=2
+T 450 4000 9 10 1 1 0 0 1
+pinlabel=VCC_OUT
+T 375 3950 5 8 0 1 0 8 1
+pintype=out
+}
+P 100 3600 400 3600 1 0 0
+{
+T 250 3650 5 8 1 1 0 6 1
+pinnumber=3
+T 250 3650 5 8 0 1 0 6 1
+pinseq=3
+T 450 3600 9 10 1 1 0 0 1
+pinlabel=VCC_IN
+T 375 3550 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 100 3200 400 3200 1 0 0
+{
+T 250 3250 5 8 1 1 0 6 1
+pinnumber=4
+T 250 3250 5 8 0 1 0 6 1
+pinseq=4
+T 450 3200 9 10 1 1 0 0 1
+pinlabel=GND
+T 375 3150 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 100 2800 400 2800 1 0 0
+{
+T 250 2850 5 8 1 1 0 6 1
+pinnumber=5
+T 250 2850 5 8 0 1 0 6 1
+pinseq=5
+T 450 2800 9 10 1 1 0 0 1
+pinlabel=FILTER1
+T 375 2750 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 2400 400 2400 1 0 0
+{
+T 250 2450 5 8 1 1 0 6 1
+pinnumber=6
+T 250 2450 5 8 0 1 0 6 1
+pinseq=6
+T 450 2400 9 10 1 1 0 0 1
+pinlabel=IN
+T 375 2350 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 2000 400 2000 1 0 0
+{
+T 250 2050 5 8 1 1 0 6 1
+pinnumber=7
+T 250 2050 5 8 0 1 0 6 1
+pinseq=7
+T 450 2000 9 10 1 1 0 0 1
+pinlabel=FILTER1
+T 375 1950 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 1600 400 1600 1 0 0
+{
+T 250 1650 5 8 1 1 0 6 1
+pinnumber=8
+T 250 1650 5 8 0 1 0 6 1
+pinseq=8
+T 450 1600 9 10 1 1 0 0 1
+pinlabel=GND
+T 375 1550 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2900 4000 2600 4000 1 0 0
+{
+T 2750 4050 5 8 1 1 0 0 1
+pinnumber=9
+T 2750 4050 5 8 0 1 0 0 1
+pinseq=9
+T 2550 4000 9 10 1 1 0 6 1
+pinlabel=RSSI_IB
+T 2625 3950 5 8 0 1 0 2 1
+pintype=out
+}
+P 2900 3600 2600 3600 1 0 0
+{
+T 2700 3650 5 8 1 1 0 0 1
+pinnumber=10
+T 2700 3650 5 8 0 1 0 0 1
+pinseq=10
+T 2550 3600 9 10 1 1 0 6 1
+pinlabel=RSSI_EB
+T 2625 3550 5 8 0 1 0 2 1
+pintype=out
+}
+P 2900 3200 2600 3200 1 0 0
+{
+T 2700 3250 5 8 1 1 0 0 1
+pinnumber=11
+T 2700 3250 5 8 0 1 0 0 1
+pinseq=11
+T 2550 3200 9 10 1 1 0 6 1
+pinlabel=NC
+T 2625 3150 5 8 0 1 0 2 1
+pintype=pas
+}
+P 2900 2400 2600 2400 1 0 0
+{
+T 2700 2450 5 8 1 1 0 0 1
+pinnumber=12
+T 2700 2450 5 8 0 1 0 0 1
+pinseq=12
+T 2550 2400 9 10 1 1 0 6 1
+pinlabel=OUT-
+T 2625 2350 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 800 400 800 1 0 0
+{
+T 300 850 5 8 1 1 0 6 1
+pinnumber=13
+T 300 850 5 8 0 1 0 6 1
+pinseq=13
+T 450 800 9 10 1 1 0 0 1
+pinlabel=GND
+T 375 750 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 100 1200 400 1200 1 0 0
+{
+T 300 1250 5 8 1 1 0 6 1
+pinnumber=14
+T 300 1250 5 8 0 1 0 6 1
+pinseq=14
+T 450 1200 9 10 1 1 0 0 1
+pinlabel=GND
+T 375 1150 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 100 400 400 400 1 0 0
+{
+T 300 450 5 8 1 1 0 6 1
+pinnumber=15
+T 300 450 5 8 0 1 0 6 1
+pinseq=15
+T 450 400 9 10 1 1 0 0 1
+pinlabel=GND
+T 375 350 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2900 400 2600 400 1 0 0
+{
+T 2700 450 5 8 1 1 0 0 1
+pinnumber=16
+T 2700 450 5 8 0 1 0 0 1
+pinseq=16
+T 2550 400 9 10 1 1 0 6 1
+pinlabel=GND
+T 2625 350 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2900 800 2600 800 1 0 0
+{
+T 2700 850 5 8 1 1 0 0 1
+pinnumber=17
+T 2700 850 5 8 0 1 0 0 1
+pinseq=17
+T 2550 800 9 10 1 1 0 6 1
+pinlabel=GND
+T 2625 750 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2900 1200 2600 1200 1 0 0
+{
+T 2700 1250 5 8 1 1 0 0 1
+pinnumber=18
+T 2700 1250 5 8 0 1 0 0 1
+pinseq=18
+T 2550 1200 9 10 1 1 0 6 1
+pinlabel=GND
+T 2625 1150 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2900 1600 2600 1600 1 0 0
+{
+T 2700 1650 5 8 1 1 0 0 1
+pinnumber=19
+T 2700 1650 5 8 0 1 0 0 1
+pinseq=19
+T 2550 1600 9 10 1 1 0 6 1
+pinlabel=GND
+T 2625 1550 5 8 0 1 0 2 1
+pintype=pwr
+}
+B 400 100 2200 4200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 2600 4800 8 10 1 1 0 6 1
+refdes=U?
+T 400 5400 5 10 0 0 0 0 1
+device=ONET8531T.sym
+T 2600 4400 9 10 1 1 0 6 1
+footprint=ONET8531T
+T 400 5000 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/onet8531t.pdf
+T 400 5200 5 10 0 1 0 0 1
+description=Transimpedance Amplifier,11.3 Gbps, Limiting, With RSSI
+T 400 4800 5 10 0 0 0 0 1
+numslots=0
+T 2600 4600 9 10 1 1 0 6 1
+value=ONET8531T.sym
+T 400 6000 5 10 0 0 0 0 1
+author=AutoTron
+T 400 5600 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 5800 5 10 0 0 0 0 1
+use-license=unlimited
+T 1000 200 5 8 0 0 0 0 1
+symversion=0.1

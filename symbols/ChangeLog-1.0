@@ -16,6 +16,8 @@
 
             * diode/zener53/zener_17_1N5354B.sym (17 Volt)
 
+    * ti/ONET8531T.sym: Add symbol; 11.3 Gbps Limiting Transimpedance
+      Amplifier with RSSI.
 
 2018-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
