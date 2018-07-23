@@ -19,6 +19,8 @@
 
     * micro/W65C816S-1.sym: Add symbol; 16 bit Microprocessor.
 
+    * st/L3G4200D-2.sym: Rename symbol dash 2.
+
     * ti/ONET8531T.sym: Add symbol; 11.3 Gbps Limiting Transimpedance
       Amplifier with RSSI.
 
