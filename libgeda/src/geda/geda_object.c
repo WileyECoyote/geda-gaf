@@ -30,7 +30,7 @@
  *  \brief GedaObject Base Class for all Geda Object types
  */
 
-/** \defgroup geda-object GedaObject
+/** \defgroup geda-object GedaObject Base Class
  * @{
  * \brief Implmentation of #GedaObject Class
  * \par
