@@ -314,7 +314,7 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
   x_window_set_current_page( w_current, Current_Page);
 
   /* No matter what happened above, restore the directory */
-  chdir(cwd);
+  if (!chdir(cwd));
   GEDA_FREE(cwd);
 }
 

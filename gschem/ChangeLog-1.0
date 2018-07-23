@@ -3,6 +3,8 @@
     * src/Makefile.am: Implement STACK_PROTECTOR so that gschem is not linking
       against libssp on non-win32 builds.
 
+    * src/base/gschem.c: Check result from chdir to appease compiler.
+
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename output-type -> output-extents.
