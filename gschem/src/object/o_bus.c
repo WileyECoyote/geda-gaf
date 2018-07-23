@@ -52,7 +52,7 @@ void o_bus_draw_rubber (GschemToplevel *w_current)
                   w_current->first_wx,  w_current->first_wy,
                   w_current->second_wx, w_current->second_wy);
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, width, -1, -1);
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_ROUND, width, -1, -1);
 }
 
 /*! \brief finish a bus drawing action

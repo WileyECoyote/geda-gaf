@@ -5,6 +5,9 @@
 
     * src/base/gschem.c: Check result from chdir to appease compiler.
 
+    * src/object/o_bus.c: Revise o_bus_draw_rubber to pass END_ROUND instead of
+      END_NONE to eda_cairo_stroke.
+
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename output-type -> output-extents.
