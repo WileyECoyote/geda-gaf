@@ -15,6 +15,7 @@
     * diode/zener53:
 
             * diode/zener53/zener_17_1N5354B.sym (17 Volt)
+            * diode/zener53/zener_18_1N5355B.sym (18 Volt)
 
     * micro/W65C816S-1.sym: Add symbol; 16 bit Microprocessor.
 
