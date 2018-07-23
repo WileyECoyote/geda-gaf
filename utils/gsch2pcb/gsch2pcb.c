@@ -1474,7 +1474,7 @@ static int parse_config (char *config, char *arg)
   }
   else if (!strcmp (config, "output-name") || !strcmp (config, "o")) {
     if (sch_basename) {
-      fprintf (stderr, "Warning multible \"output-name\" options\n");
+      fprintf (stderr, "Warning multiple \"output-name\" options\n");
       GEDA_FREE(sch_basename);
     }
     sch_basename = geda_utility_string_strdup (arg);
