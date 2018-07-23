@@ -46,33 +46,38 @@ static int unnamed_pin_counter = 1;
  *
  *  \note \a ptr can be NULL.
  *
- *  \returns new node
+ *  \returns new node or NULL if an error occurred allocating memory
  */
 NET *s_net_add(NET *ptr)
 {
   NET *new_node;
 
-  new_node = (NET *) GEDA_MEM_ALLOC(sizeof(NET));
+  new_node = (NET*)GEDA_MEM_ALLOC(sizeof(NET));
 
-  /* setup node information */
-  new_node->net_name = NULL;
-  new_node->pin_label = NULL;
-  new_node->net_name_has_priority = FALSE;
-  new_node->nid = 0;
-  new_node->connected_to = NULL;
+  if (new_node) {
 
-  /* Setup link list stuff */
-  new_node->next = NULL;
+    /* setup node information */
+    new_node->net_name              = NULL;
+    new_node->pin_label             = NULL;
+    new_node->net_name_has_priority = FALSE;
+    new_node->nid                   = 0;
+    new_node->connected_to          = NULL;
 
-  if (ptr == NULL) {
-    new_node->prev = NULL;	/* setup previous link */
-    return (new_node);
+    /* Setup link list stuff */
+    new_node->next = NULL;
+
+    if (ptr == NULL) {
+      new_node->prev = NULL;        /* setup previous link */
+      return (new_node);
+    }
+    else {
+      new_node->prev = ptr;         /* setup previous link */
+      ptr->next = new_node;
+      return (ptr->next);
+    }
   }
-  else {
-    new_node->prev = ptr;	/* setup previous link */
-    ptr->next = new_node;
-    return (ptr->next);
-  }
+
+  return (NULL);
 }
 
 /*! \brief Release memory for a Net Record Structure
