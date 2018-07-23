@@ -13,7 +13,7 @@ test_jmp_buf point;
 
 #else
 
-sigaction  point;
+sigjmp_buf  point;
 
 static void handle_signal(int sig, siginfo_t *dont_care, void *dont_care_either)
 {

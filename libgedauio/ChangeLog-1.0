@@ -1,3 +1,7 @@
+2018-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test-suite.h: Fix broken sigjmp_buf point on Linux.
+
 2018-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Move WINDOWS_LIBTOOL_FLAGS to libgedauio_la_LDFLAGS to
