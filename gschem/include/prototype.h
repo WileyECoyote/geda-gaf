@@ -33,6 +33,7 @@ SCM   g_funcs_filesel        (SCM msg, SCM templ, SCM flags);
 SCM   g_funcs_jpeg_image     (SCM filename);
 SCM   g_funcs_log            (SCM msg);
 SCM   g_funcs_msg            (SCM msg);
+SCM   g_funcs_output_type    (void);
 SCM   g_funcs_pdf            (SCM filename);
 SCM   g_funcs_png_image      (SCM filename);
 SCM   g_funcs_postscript     (SCM filename);
