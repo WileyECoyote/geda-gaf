@@ -8,6 +8,11 @@
     * src/object/o_bus.c: Revise o_bus_draw_rubber to pass END_ROUND instead of
       END_NONE to eda_cairo_stroke.
 
+    * src/object/o_place.c: Revise o_place_end to create a abbreviated list to
+      pass to g_hook_run_object_list when w_current->include_complex is set so
+      that add-default-pin-attributes, if enabled, does not reset the pin labels
+      to "unknown". This fixes bug #1091071.
+
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * Rename output-type -> output-extents.
@@ -75,7 +80,7 @@
 2018-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add tooltip for view-documentation menu item
-      and remmove false argument for SEPARATOR tooltips.
+      and remove false argument for SEPARATOR tooltips.
 
 2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -171,7 +176,7 @@
     * bitmap/Makefile.am: Change the install target to "bitmaps" with an 's'.
 
     * src/x/x_draw.cpp: Add directives to conditionally enable calls to
-      libgedadraw if WITH_LIBGEDADRAW is defined, which it's not.
+      libgedadraw if WITH_LIBGEDADRAW is defined, which it is not.
 
 2018-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2444,7 +2449,7 @@
       geda_get_container_border_width macro.
 
     * src/iface/i_sessions.c: Remove unnecessary type-checking cast first
-      argument to geda_menu_append iin i_sessions_attach_submenu.
+      argument to geda_menu_append in i_sessions_attach_submenu.
 
     * src/x/x_edit_color.c: Remove unneeded cast from g_signal_connect and
       g_object_set.
@@ -2742,7 +2747,7 @@
       ->CONTROLKEY and draw PATH_LINETO instead of PATH_CURVETO when set.
 
     * src/x/x_sessions.c: Revise on_rename_butt_clicked to retrieve the
-      old session name before present the input dialog and fill-in the
+      old session name before presenting the input dialog and fill-in the
       old session name.
 
 2017-04-12 Wiley E. Hill <wileyhill@gmail.com>

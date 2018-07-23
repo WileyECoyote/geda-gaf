@@ -155,7 +155,31 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
     }
 
     if (id != INVALID_HOOK) {
-      g_hook_run_object_list (w_current, id, object_list);
+
+      /* Check if a complex is being included piecewise, in which case
+       * the add-default-pin-attributes maybe ran on each pin and this
+       * will reset pin labels to "unknown", see bug #1091071 */
+      if (w_current->include_complex) {
+
+        GList *hook_list = NULL;
+
+        /* Create a new list without pins */
+        for (iter = object_list; iter != NULL; NEXT(iter)) {
+
+          GedaObject *o_current = iter->data;
+
+          if (o_current->type != OBJ_PIN) {
+            hook_list = g_list_append(hook_list, o_current);
+          }
+        }
+
+        g_hook_run_object_list (w_current, id, hook_list);
+        g_list_free (hook_list);
+
+      }
+      else {
+        g_hook_run_object_list (w_current, id, object_list);
+      }
     }
 
     o_invalidate_list (w_current, connected_list);
