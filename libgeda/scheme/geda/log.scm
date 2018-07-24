@@ -19,13 +19,7 @@
 ;;
 
 (define-module (geda log)
-  #:use-module (geda core log)
-  #:use-module (geda core gettext)
-
-  #:use-module (geda os)
-  #:use-module (ice-9 format)
-  #:use-module (srfi srfi-1)
-  #:use-module (srfi srfi-26))
+  #:use-module (geda core log))
 
 ;; ================================================================
 ;; Logging messages
