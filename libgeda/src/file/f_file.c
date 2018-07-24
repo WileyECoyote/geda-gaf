@@ -32,6 +32,12 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup libgeda-file-functions Libgeda File Functions
+ *  @{ \par
+ *  This group contains basic functions to maintaining geda
+ *  schematic and symbol files.
+*/
+
 /*!
  * \brief Closes the schematic file
  * \par Function Description
@@ -602,3 +608,5 @@ bool geda_file_save(GedaToplevel *toplevel, Page *page, const char *filename, GE
 
   return success;
 }
+
+/** @} endgroup libgeda-file-functions */
