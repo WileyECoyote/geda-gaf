@@ -3544,10 +3544,10 @@ bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
 {
   if (is_a_geda_menu_item(menu_item)) {
 
-    if (!geda_get_child_widget (menu_item)               ||
-         GEDA_IS_MENU_SEPERATOR (menu_item)              ||
-        !gtk_widget_is_sensitive ((GtkWidget*)menu_item) ||
-        !gtk_widget_get_visible ((GtkWidget*)menu_item))
+    if ((!geda_get_child_widget (menu_item) &&
+          GEDA_IS_MENU_SEPERATOR (menu_item)) ||
+         !gtk_widget_is_sensitive ((GtkWidget*)menu_item) ||
+         !gtk_widget_get_visible ((GtkWidget*)menu_item))
       return FALSE;
 
     return TRUE;
@@ -3562,19 +3562,20 @@ bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
  */
 bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
-
   if (GEDA_IS_MENU_ITEM(widget)) {
 
-    if (!geda_get_child_widget (widget)   ||
-         GEDA_IS_MENU_SEPERATOR (widget)  ||
-        !gtk_widget_is_sensitive (widget) ||
-        !gtk_widget_get_visible (widget))
+    if ((!geda_get_child_widget (widget) &&
+          GEDA_IS_MENU_SEPERATOR (widget)) ||
+         !gtk_widget_is_sensitive (widget) ||
+         !gtk_widget_get_visible (widget))
       return FALSE;
 
     return TRUE;
   }
+
   return FALSE;
 }
+
 
 /*!
  * \brief Retrieve menu item Toggle Size

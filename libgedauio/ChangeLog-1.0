@@ -1,3 +1,7 @@
+2018-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Fix broken tearoffs not tearing.
+
 2018-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test-suite.h: Fix broken sigjmp_buf point on Linux.
@@ -70,7 +74,7 @@
 
     * src/widgets/geda_entry.c: Include geda_container.h.
 
-    * src/widgets/geda_menu.c: Increase the scope of height, so that is
+    * src/widgets/geda_menu.c: Increase the scope of height, so height is
       visible when HAVE_GDK_WINDOW_GET_WIDTH in geda_menu_set_tearoff_state.
 
     * src/widgets/geda_menu_button.c: Remove unused GtkBorder constants.
