@@ -3525,7 +3525,7 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 }
 
 /*!
- * \brief
+ * \brief Get if a GedaMenuItem is Selectable
  * \par Function Description
  *  Returns TRUE if the menu item is selectable. A menu item
  *  is selectable if the item has a child and the item is not
@@ -3555,10 +3555,12 @@ bool geda_menu_item_is_selectable (GedaMenuItem  *menu_item)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get if a GedaMenuItem Widget is Selectable
+ * \par Function Description
+ *  Returns TRUE if the menu item is selectable.
  *
+ * \see geda_menu_item_is_selectable
  */
 bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
 {
