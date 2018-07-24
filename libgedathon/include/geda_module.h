@@ -75,13 +75,13 @@ const char get_bounds_docs[]         = N_("Returns the rectangular boundaries of
 const char get_object_docs[]         = N_("Retrieve an object from a GedaCapsule.\n");
 const char get_objects_docs[]        = N_("Retrieve all objects belonging to a page.\n");
 const char add_object_docs[]         = N_("Add an object to a page or another object.\n");
-const char add_objects_docs[]        = N_("Add multible objects to a page or another object.\n");
+const char add_objects_docs[]        = N_("Add multiple objects to a page or another object.\n");
 const char copy_object_docs[]        = N_("Make a copy an object\n");
 const char remove_object_docs[]      = N_("Remove object from a page.\n");
-const char remove_objects_docs[]     = N_("Remove multible objects from a page.\n");
+const char remove_objects_docs[]     = N_("Remove multiple objects from a page.\n");
 
 const char delete_object_docs[]      = N_("Delete an object from a page.\n");
-const char delete_objects_docs[]     = N_("Delete multible object from a page.\n");
+const char delete_objects_docs[]     = N_("Delete multiple object from a page.\n");
 const char sync_object_docs[]        = N_("Remove object from a page.\n");
 
 /* Object Constructor */
