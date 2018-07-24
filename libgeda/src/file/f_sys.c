@@ -36,7 +36,7 @@
 # include <unistd.h>
 #endif
 
-#include <sys/param.h>      /* MAXPATHLEN */
+//#include <sys/param.h>      /* MAXPATHLEN */
 
 #ifdef HAVE_ERRNO_H
 # include <errno.h>
