@@ -50,9 +50,11 @@ void libgedauio_setup_locale(void)
 {
 
 #ifdef ENABLE_NLS
+
   /* Initialize gettext */
   bindtextdomain (LIBGEDAUIO_GETTEXT_DOMAIN, LOCALEDIR);
   bind_textdomain_codeset(LIBGEDAUIO_GETTEXT_DOMAIN, "UTF-8");
+
 #endif
 
 }
