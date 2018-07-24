@@ -3516,7 +3516,7 @@ static void geda_menu_item_ensure_label (GedaMenuItem *menu_item)
 
     gtk_misc_set_alignment ((GtkMisc*)accel_label, 0.0, 0.5);
 
-    gtk_container_add ((GtkContainer*)(menu_item), accel_label);
+    geda_container_add ((menu_item), accel_label);
 
     geda_accel_label_set_accel_widget ((GedaAccelLabel*)accel_label,
                                        (GtkWidget*)menu_item);
