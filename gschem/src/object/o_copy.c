@@ -75,7 +75,7 @@ void o_copy_end(GschemToplevel *w_current)
   i_event_stop_action_handler (w_current);
 }
 
-/*! \brief  Finalize Copy operation of a multible objects
+/*! \brief  Finalize Copy operation of a multiple objects
  *  \par Function Description
  *
  */
