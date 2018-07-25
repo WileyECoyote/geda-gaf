@@ -148,7 +148,7 @@ void s_traverse_process(GedaToplevel *pr_current)
 
   for (iter  = geda_list_get_glist (pr_current->pages);
        iter != NULL;
-       iter  = g_list_next( iter ) ) {
+       iter  = g_list_next (iter)) {
 
     p_current = (Page *)iter->data;
 
