@@ -134,6 +134,7 @@ typedef enum {
   pop_path_continue,
   pop_path_done,
   pop_path_end,
+  pop_path_undo,
   pop_path_cancel
 } pop_PathItem;
 

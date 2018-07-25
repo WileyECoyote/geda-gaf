@@ -157,6 +157,8 @@ static PopupEntry path_popup_items[] = {
 
   { N_("Continue"), x_menu_path_popup_execute,  pop_path_continue, 1, "geda-path",    N_("Resume input of the current path") },
   { N_("Cancel"),   x_menu_path_popup_execute,  pop_path_cancel,   1, "gtk-cancel",   N_("Cancel path mode") },
+  { N_("Undo"),     x_menu_path_popup_execute,  pop_path_undo,     1, "edit-undo",    N_("Undo the last path segment") },
+
   {NULL} /* sentinel */
 };
 
@@ -268,6 +270,10 @@ static void x_menu_path_popup_execute(GtkObject *widget, int action_id)
       o_path_close(w_current);
       /* Fall through */
     case pop_path_continue:
+      break;
+
+    case pop_path_undo:
+      o_path_undo(w_current);
       break;
 
     case pop_path_done:

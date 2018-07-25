@@ -4,6 +4,11 @@
       i_event_end_action_handler in the non-action else clause instead
       of using i_status_action_stop.
 
+    * src/object/o_path.c: Add function o_path_undo to remove the last section
+      of the temporary path under construction in the toplevel.
+
+    * src/x/x_menus.c: Add "Undo" option to the path context menu.
+
 2018-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Implement STACK_PROTECTOR so that gschem is not linking

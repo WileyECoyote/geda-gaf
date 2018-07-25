@@ -582,6 +582,7 @@ void       o_path_invalidate_rubber_grips    (GschemToplevel *w_current);
 void       o_path_motion                     (GschemToplevel *w_current, int w_x, int w_y);
 void       o_path_motion_grips               (GschemToplevel *w_current, int x, int y);
 void       o_path_start                      (GschemToplevel *w_current, int x, int y);
+void       o_path_undo                       (GschemToplevel *w_current);
 
 /* o_picture.c */
 void       o_picture_draw_rubber             (GschemToplevel *w_current);

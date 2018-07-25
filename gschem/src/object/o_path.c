@@ -695,3 +695,47 @@ o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 
   i_event_start_adder_handler(w_current, o_path_init, o_path_continue);
 }
+
+void o_path_undo (GschemToplevel *w_current)
+{
+  GedaPath *path;
+
+  if (w_current->temp_path == NULL || w_current->temp_path->sections == NULL) {
+    return;
+  }
+
+  path = w_current->temp_path;
+
+  if (path->num_sections > 1) {
+
+    PATH_SECTION *section;
+    int w_x, w_y;
+
+    path->num_sections--;
+
+    section = &path->sections[path->num_sections];
+
+    section->x1 = 0;
+    section->y1 = 0;
+    section->x2 = 0;
+    section->y2 = 0;
+    section->x3 = 0;
+    section->y3 = 0;
+
+    if (path->num_sections > 0) {
+      section = &path->sections[path->num_sections - 1];
+    }
+
+    w_x = section->x3;
+    w_y = section->y3;
+
+    w_current->first_wx  = w_x;
+    w_current->first_wy  = w_y;
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+    w_current->third_wx  = 0;
+    w_current->third_wy  = 0;
+
+    o_path_continue (w_current, w_x, w_y);
+  }
+}
