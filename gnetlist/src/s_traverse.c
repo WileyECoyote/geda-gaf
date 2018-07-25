@@ -678,6 +678,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
       if (!is_visited(next_object) && next_object != object) {
 
+        /* Recursively call ourself */
         nets = s_traverse_net (pr_current, nets, FALSE,
                                next_object, hierarchy_tag, type);
       }
