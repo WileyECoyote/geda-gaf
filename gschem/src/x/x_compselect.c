@@ -52,10 +52,10 @@
 /*! \def COMPSELECT_FILTER_INTERVAL
  *  \brief The time interval between request and actual filtering
  *
- *  This constant is the time-lag between user modifications in the
- *  filter entry and the actual evaluation of the filter which
- *  ultimately update the display. This helps reduce the frequency
- *  of evaluation of the filter as user types.
+ *  This constant is the time-lag between user modifications in
+ *  the filter entry and the actual evaluation of the filter which
+ *  ultimately updates the display. This helps reduce the frequency
+ *  of evaluation of the filter as the user types.
  *
  *  Unit is milliseconds.
  */
@@ -277,9 +277,9 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
 /*! \brief Opens a component selection dialog.
  *  \par Function Description
- *  This function creates the Component Chooser Dialog for  <B>toplevel</B>
- *  if the dialog does not already exist. In this latter case, it only
- *  raises the dialog.
+ *  This function creates the Component Chooser Dialog for <B>toplevel</B>
+ *  if the dialog does not already exist. In this latter case, This function
+ *  only raises the dialog.
  *
  *  \param [in] w_current  The GschemToplevel environment data.
  */
@@ -337,8 +337,8 @@ void x_compselect_open (GschemToplevel *w_current)
  *  @{
  *  \ingroup (Component-Dialog)
  *  \par
- *  Definition of the Component Select dialog Class. The Component Select
- *  Dialog Class is derived from #GschemDialogClass.
+ *  Definition of the Component Select dialog Class. The Component
+ *  Select Dialog Class is derived from #GschemDialogClass.
  */
 
 /*!
@@ -488,8 +488,8 @@ inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
  * \par Function Description
  *  This function returns TRUE if the integer stored in column LVC_ROW_TYPE
  *  at the given (row) \a iter is not zero. A zero in this columns indicates
- *  the row contains a source (folder or category) data, otherwise the row is
- *  for a symbol record.
+ *  the row contains a source (folder or category) data, otherwise the row
+ *  is for a symbol record.
  */
 static inline bool
 is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
@@ -513,8 +513,8 @@ is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
  *  selection selection view.
  *
  *  The top level of the model contains sources, and the next symbols.
- *  geda_struct_clib_source_get_name() or geda_struct_clib_symbol_get_name() as
- *  appropriate is called to get the text to display.
+ *  geda_struct_clib_source_get_name() or geda_struct_clib_symbol_get_name()
+ *  as appropriate is called to get the text to display.
  */
 static void
 lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
@@ -694,8 +694,8 @@ compselect_tree_open_rows (GtkTreeView *tree_view, bool expand_all)
  *  This function performs the same functionality as double-clicking on a
  *  closed parent row in a tree-view but is enacted from the right context
  *  menu. The function calls the compselect_tree_open_rows function above
- *  with a value of FALSE for the expand-all argument. The option is included
- *  on the right menu for the sake of completeness.
+ *  with a value of FALSE for the expand-all argument. This option is only
+ *  included on the right menu for the sake of completeness.
  *
  * \param [in] menu_widget  Un-used menu item widget on the pop-up menu
  * \param [in] tree_view    Pointer to the tree-view widget when popup activated
@@ -944,7 +944,7 @@ compselect_update_attributes_model (Compselect   *compselect,
 /*!
  * \brief Handles changes in the treeview selection.
  * \par Function Description
- *  This is the callback function that is called every time the user
+ *  This is the callback function called every time the user
  *  select a row in any component treeview of the dialog.
  *
  *  If the selection is not a selection of a component (a directory
@@ -1025,7 +1025,7 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
  *  the dialog based on the text in the search entry. The applying_filter
  *  variable is used here to prevent expanding when there is no text. This
  *  was added when the notebook sheets were added because the filtering is
- *  is applied to multible tree views on an as needed basis, aka, only when
+ *  is applied to multiple tree views on an as needed basis, aka, only when
  *  the user switches Tab's with text in the filter entry widget.
  *
  *  The function is called whenever a filter timeout occurs or when the
@@ -1065,7 +1065,7 @@ compselect_apply_filter_tree_view (Compselect *Dialog, GtkTreeView *view)
  *  entry widget and calls the preceeding function, compselect_apply_filter
  *  _tree_view, to apply the filter if there is text set in the entry. The
  *  function sets the boolean variable applying_filter, which is used to
- *  control if trees should be expand or not.
+ *  control if trees should be expanded or not.
  *
  * \note The timeout source that this callback is attached to is removed
  *       after the function executes, because the function return FALSE.
@@ -1104,10 +1104,10 @@ compselect_filter_timeout (void *data)
  * \brief Callback function for the changed signal of the filter entry.
  * \par Function Description
  *  This function monitors changes in the entry filter of the dialog.
- *
- *  It specifically manages the sensitivity of the clear button of the
- *  entry depending on its contents. It also requests an update of the
- *  component list by re-evaluating filter at every changes.
+ *  Specifically, this function manages the sensitivity of the clear
+ *  button of the entry depending on its contents and also requests
+ *  an update of the component list by re-evaluating filter at every
+ *  change.
  *
  * \param [in] editable  The filter text entry.
  * \param [in] user_data The component selection dialog.
