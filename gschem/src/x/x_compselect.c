@@ -2417,7 +2417,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   menuitem = geda_menu_item_new_with_label(_(popup_items[StylesMenu]));
 
   submenu = geda_menu_new ();
-  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), submenu);
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), submenu);
   geda_menu_append (menu, menuitem);
 
   index = 0;
@@ -2454,7 +2454,7 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   menuitem = geda_menu_item_new_with_mnemonic (_(popup_items[ShowToolTips]));
 
   submenu = geda_menu_new ();
-  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), submenu);
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), submenu);
   geda_menu_append (menu, menuitem);
 
   menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));

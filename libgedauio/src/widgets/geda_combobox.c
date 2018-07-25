@@ -2971,7 +2971,7 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
     if (!GTK_IS_CELL_VIEW (cell_view))
       continue;
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)item);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)item);
 
     if (submenu != NULL) {
       gtk_widget_set_sensitive (item, TRUE);
@@ -3545,7 +3545,7 @@ static void geda_combo_box_menu_fill_level (GedaComboBox *combo_box,
         submenu = geda_menu_new ();
         geda_menu_set_reserve_toggle_size (GEDA_MENU (submenu), FALSE);
         gtk_widget_show (submenu);
-        geda_menu_item_set_submenu (GEDA_MENU_ITEM (item), submenu);
+        geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (item), submenu);
 
         /* Ugly - since menus can only activate leafs, we have to
          * duplicate the item inside the submenu.
@@ -3960,7 +3960,7 @@ static void geda_combo_box_menu_item_activate (GtkWidget *item,
   path = gtk_cell_view_get_displayed_row ((GtkCellView*)cell_view);
 
   if (gtk_tree_model_get_iter (combo_box->priv->model, &iter, path)) {
-    if (geda_menu_item_get_submenu ((GedaMenuItem*)item) == NULL) {
+    if (geda_menu_item_get_submenu_widget ((GedaMenuItem*)item) == NULL) {
       geda_combo_box_set_active_iter (combo_box, &iter);
     }
   }
@@ -4202,7 +4202,7 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
 
     if (gtk_tree_path_is_ancestor (mpath, path)) {
 
-      submenu = geda_menu_item_get_submenu (menu_item);
+      submenu = geda_menu_item_get_submenu_widget (menu_item);
 
       if (submenu != NULL) {
         gtk_tree_path_free (mpath);
@@ -4248,7 +4248,7 @@ static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
       parent = find_menu_by_path (priv->popup_widget, ppath, FALSE);
       gtk_tree_path_free (ppath);
 
-      menu = geda_menu_item_get_submenu ((GedaMenuItem*)parent);
+      menu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)parent);
 
       if (!menu) {
 
@@ -4259,7 +4259,7 @@ static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
         geda_menu_set_reserve_toggle_size ((GedaMenu*)menu, FALSE);
         gtk_widget_show (menu);
 
-        geda_menu_item_set_submenu ((GedaMenuItem*)parent, menu);
+        geda_menu_item_set_submenu_widget ((GedaMenuItem*)parent, menu);
 
         /* Ugly - since menus can only activate leaves, we have to
          * duplicate the item inside the submenu.
@@ -4349,7 +4349,7 @@ static void geda_combo_box_menu_row_deleted (GtkTreeModel *model,
 
         parent = find_menu_by_path (priv->popup_widget,
                                     parent_path, FALSE);
-        geda_menu_item_set_submenu (GEDA_MENU_ITEM (parent), NULL);
+        geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (parent), NULL);
       }
     }
   }
@@ -4913,7 +4913,7 @@ static void pack_start_recurse (GtkWidget *menu, GtkCellRenderer *cell, bool exp
       gtk_cell_layout_pack_start (layout, cell, expand);
     }
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
     if (submenu != NULL) {
       pack_start_recurse (submenu, cell, expand);
@@ -4974,7 +4974,7 @@ static void pack_end_recurse (GtkWidget *menu, GtkCellRenderer *cell, bool expan
       gtk_cell_layout_pack_end (layout, cell, expand);
     }
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
     if (submenu != NULL) {
       pack_end_recurse (submenu, cell, expand);
@@ -5048,7 +5048,7 @@ static void clear_recurse (GtkWidget *menu)
       gtk_cell_layout_clear (layout);
     }
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
     if (submenu != NULL) {
       clear_recurse (submenu);
@@ -5113,7 +5113,7 @@ static void add_attribute_recurse (GtkWidget       *menu,
       gtk_cell_layout_add_attribute (layout, cell, attribute, column);
     }
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
     if (submenu != NULL) {
       add_attribute_recurse (submenu, cell, attribute, column);
@@ -5176,7 +5176,7 @@ static void combo_cell_data_func (GtkCellLayout   *cell_layout,
     }
 
     if (GEDA_IS_MENU_ITEM (parent) &&
-        geda_menu_item_get_submenu (GEDA_MENU_ITEM (parent)))
+        geda_menu_item_get_submenu_widget (GEDA_MENU_ITEM (parent)))
     {
       g_object_set (cell, "sensitive", TRUE, NULL);
     }
@@ -5206,7 +5206,7 @@ static void set_cell_data_func_recurse (GtkWidget       *menu,
                                           cell,
                                           combo_cell_data_func,
                                           info, NULL);
-      submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+      submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
       if (submenu != NULL) {
         set_cell_data_func_recurse (submenu, cell, info);
@@ -5277,7 +5277,7 @@ clear_attributes_recurse (GtkWidget *menu, GtkCellRenderer *cell)
       gtk_cell_layout_clear_attributes (layout, cell);
     }
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
     if (submenu != NULL) {
       clear_attributes_recurse (submenu, cell);
@@ -5343,7 +5343,7 @@ static void reorder_recurse (GtkWidget       *menu,
       gtk_cell_layout_reorder (layout, cell, position);
     }
 
-    submenu = geda_menu_item_get_submenu ((GedaMenuItem*)iter->data);
+    submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)iter->data);
 
     if (submenu != NULL)
       reorder_recurse (submenu, cell, position);

@@ -462,7 +462,7 @@ static void geda_menu_item_set_property (GObject      *object,
       break;
 
     case PROP_SUBMENU:
-      geda_menu_item_set_submenu (menu_item, g_value_get_object (value));
+      geda_menu_item_set_submenu_widget (menu_item, g_value_get_object (value));
       break;
 
     case PROP_ACCEL_PATH:
@@ -519,7 +519,7 @@ static void geda_menu_item_get_property (GObject     *object,
       break;
 
     case PROP_SUBMENU:
-      g_value_set_object (value, geda_menu_item_get_submenu (menu_item));
+      g_value_set_object (value, geda_menu_item_get_submenu_widget (menu_item));
       break;
 
     case PROP_ACCEL_PATH:
@@ -1037,7 +1037,7 @@ static void geda_menu_item_buildable_add_child (GtkBuildable *buildable,
                                                 const char   *type)
 {
   if (type && strcmp (type, "submenu") == 0) {
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM(buildable), (GtkWidget*)child);
+    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM(buildable), (GtkWidget*)child);
   }
   else {
     parent_buildable_iface->add_child (buildable, builder, child, type);
@@ -1160,7 +1160,7 @@ static void geda_menu_item_update (GtkActivatable *activatable,
   if (strcmp (property_name, "visible") == 0) {
 
     geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item,
-                                   geda_menu_is_empty (geda_menu_item_get_submenu (menu_item)));
+                                   geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
   }
   else if (strcmp (property_name, "sensitive") == 0) {
 
@@ -1202,7 +1202,7 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     return;
 
   geda_action_sync_menu_visible ((GedaAction*)action, widget,
-    geda_menu_is_empty (geda_menu_item_get_submenu (menu_item)));
+    geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
 
 
   gtk_widget_set_sensitive (widget, gtk_action_is_sensitive (action));
@@ -1296,7 +1296,7 @@ GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_set_submenu
+ * \brief geda_menu_item_set_submenu_widget
  * \par Function Description
  *  Sets or replaces the submenu of menu item, or removes it when a %NULL
  *  submenu is passed.
@@ -1304,7 +1304,7 @@ GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
  * \param [in] menu_item a #GedaMenuItem
  * \param [in] submenu   the submenu, or %NULL
  */
-void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
+void geda_menu_item_set_submenu_widget (GedaMenuItem *menu_item, GtkWidget *submenu)
 {
   GedaMenuItemPrivate *priv = menu_item->priv;
 
@@ -1340,16 +1340,16 @@ void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GtkWidget *submenu)
 }
 
 /*!
- * \brief geda_menu_item_get_submenu
+ * \brief geda_menu_item_get_submenu_widget
  * \par Function Description
  *  Gets the submenu underneath this menu item, if any.
- *  See geda_menu_item_set_submenu().
+ *  See geda_menu_item_set_submenu_widget().
  *
  * \param [in] menu_item Pointer to a #GedaMenuItem
  *
  * \returns submenu for this menu item, or %NULL if none
  */
-GtkWidget *geda_menu_item_get_submenu (GedaMenuItem *menu_item)
+GtkWidget *geda_menu_item_get_submenu_widget (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
 

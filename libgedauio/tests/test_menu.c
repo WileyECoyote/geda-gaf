@@ -133,7 +133,7 @@ check_accessors ()
   menu_bar  = main_window();
   menu_item = GEDA_MENU_ITEM(widget0);
 
-  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menu_item), menu);
   geda_menu_append (menu_bar, widget0);
 
   widget1    = geda_menu_item_new_with_mnemonic("_Cherry");
@@ -256,7 +256,7 @@ check_accessors ()
 
     submenu  = geda_menu_new ();
 
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM (tearoff_item), submenu);
+    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (tearoff_item), submenu);
     geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), tearoff_item);
 
     gtk_widget_show (tearoff_item);

@@ -627,8 +627,8 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
       gtk_widget_show_all(sessions_submenu);
 
-      geda_menu_item_set_submenu(GEDA_MENU_ITEM(sessions_menu_item),
-                                 sessions_submenu);
+      geda_menu_item_set_submenu_widget(GEDA_MENU_ITEM(sessions_menu_item),
+                                        sessions_submenu);
     }
   }
 }
@@ -666,7 +666,7 @@ static void update_sessions_menus(GschemToplevel *w_current)
          break;
       }
 
-      submenu = geda_menu_item_get_submenu (GEDA_MENU_ITEM(menu_item));
+      submenu = geda_menu_item_get_submenu_widget (GEDA_MENU_ITEM(menu_item));
 
       if (submenu != NULL) {
         gtk_widget_destroy(submenu);

@@ -121,7 +121,7 @@ check_accessors ()
   menu_item  = GEDA_MENU_ITEM(widget0);
   menu_shell = GEDA_MENU_SHELL (menu);
 
-  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu);
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menu_item), menu);
   geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget0);
 
   widget2    = geda_menu_item_new_with_mnemonic("_Cherry");

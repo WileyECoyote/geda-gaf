@@ -123,10 +123,10 @@ GtkWidget  *geda_menu_item_new_with_mnemonic     (const char    *label);
 
 GdkWindow  *geda_menu_item_get_event_window      (GedaMenuItem  *menu_item);
 
-void        geda_menu_item_set_submenu           (GedaMenuItem  *menu_item,
+void        geda_menu_item_set_submenu_widget    (GedaMenuItem  *menu_item,
                                                   GtkWidget     *submenu);
 
-GtkWidget  *geda_menu_item_get_submenu           (GedaMenuItem  *menu_item);
+GtkWidget  *geda_menu_item_get_submenu_widget    (GedaMenuItem  *menu_item);
 
 void        geda_menu_item_select                (GedaMenuItem  *menu_item);
 

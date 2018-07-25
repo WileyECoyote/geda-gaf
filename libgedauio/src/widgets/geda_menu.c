@@ -1480,7 +1480,7 @@ static bool geda_menu_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
 
       GtkWidget *submenu;
 
-      submenu = geda_menu_item_get_submenu (menu_item);
+      submenu = geda_menu_item_get_submenu_widget (menu_item);
 
       if (submenu &&
         geda_menu_item_get_submenu_placement(menu_item) == MENU_LEFT_RIGHT)
@@ -2788,7 +2788,7 @@ static void geda_menu_move_current (GedaMenuShell *menu_shell, MenuDirection dir
         GtkWidget *submenu;
 
         parent  = menu_shell->parent_menu_shell;
-        submenu = geda_menu_item_get_submenu(((GedaMenuItem*)menu_shell->active_menu_item));
+        submenu = geda_menu_item_get_submenu_widget(((GedaMenuItem*)menu_shell->active_menu_item));
 
         if (!submenu &&
            (!parent || g_list_length (((GedaMenuShell*)parent)->children) <= 1))
@@ -5079,7 +5079,7 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
   g_return_if_fail (event != NULL);
 
-  submenu = geda_menu_item_get_submenu(menu_item);
+  submenu = geda_menu_item_get_submenu_widget(menu_item);
 
   if (!submenu)
     return;

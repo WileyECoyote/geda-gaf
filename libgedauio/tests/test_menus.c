@@ -73,7 +73,7 @@ create_menu (int depth, bool tearoff)
       gtk_widget_set_sensitive (menuitem, FALSE);
     }
 
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), create_menu (depth - 1, TRUE));
+    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), create_menu (depth - 1, TRUE));
   }
 
   return menu;
@@ -152,21 +152,21 @@ main (int argc, char **argv)
     menu = create_menu (2, TRUE);
 
     menuitem = geda_menu_item_new_with_label ("test\nline2");
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), menu);
+    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), menu);
     geda_menu_shell_append (GEDA_MENU_SHELL (menubar), menuitem);
     gtk_widget_show (menuitem);
 
     menuitem = geda_menu_item_new_with_label ("dynamic");
 
     submenu = create_menu (3, TRUE);
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), submenu);
+    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), submenu);
     geda_menu_shell_append (GEDA_MENU_SHELL (menubar), menuitem);
     gtk_widget_show (menuitem);
 
     gdk_threads_add_timeout (250, change_item, submenu);
 
     menuitem = geda_menu_item_new_with_label ("bar");
-    geda_menu_item_set_submenu (GEDA_MENU_ITEM (menuitem), create_menu (4, TRUE));
+    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), create_menu (4, TRUE));
     geda_menu_item_set_right_justified (GEDA_MENU_ITEM (menuitem), TRUE);
     geda_menu_shell_append (GEDA_MENU_SHELL (menubar), menuitem);
     gtk_widget_show (menuitem);

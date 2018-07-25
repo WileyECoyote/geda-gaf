@@ -202,7 +202,7 @@ check_methods ()
   menu_item = GEDA_MENU_ITEM(widget00);
   menu1     = geda_menu_new ();
 
-  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu1);
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menu_item), menu1);
   geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar1), widget00);
   gtk_widget_set_can_focus (widget00, TRUE);
   gtk_widget_show (widget00);
@@ -239,7 +239,7 @@ check_methods ()
   menu_item = GEDA_MENU_ITEM(widget10);
   menu2     = geda_menu_new ();
 
-  geda_menu_item_set_submenu (GEDA_MENU_ITEM (menu_item), menu2);
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menu_item), menu2);
   geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar2), widget10);
   gtk_widget_set_can_focus (widget10, TRUE);
   gtk_widget_show (widget10);

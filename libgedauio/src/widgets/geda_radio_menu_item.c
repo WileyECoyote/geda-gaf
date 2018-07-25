@@ -79,7 +79,7 @@ static void geda_radio_menu_item_activate (GedaMenuItem *menu_item)
 
   action = gtk_activatable_get_related_action (GTK_ACTIVATABLE (menu_item));
 
-  if (action && geda_menu_item_get_submenu (menu_item) == NULL) {
+  if (action && geda_menu_item_get_submenu_widget (menu_item) == NULL) {
     gtk_action_activate (action);
   }
 

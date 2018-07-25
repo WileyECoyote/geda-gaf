@@ -844,7 +844,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       geda_container_add(MENU_BAR, root_menu);
     }
 
-    geda_menu_item_set_submenu ((GedaMenuItem*)root_menu, menu);
+    geda_menu_item_set_submenu_widget ((GedaMenuItem*)root_menu, menu);
 
     g_object_set (root_menu, "visible", TRUE, NULL);
 
@@ -865,7 +865,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu_item = geda_menu_item_new_with_label ("File");
     g_object_set (menu_item, "visible", TRUE, NULL);;
 
-    geda_menu_item_set_submenu ((GedaMenuItem*)menu_item, menu);
+    geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_File");
     geda_menu_bar_append ((GedaMenuBar*)MENU_BAR, menu_item);
   }
@@ -881,7 +881,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu_item = geda_menu_item_new_with_label (_("_View"));
     g_object_set (menu_item, "visible", TRUE, NULL);;
 
-    geda_menu_item_set_submenu ((GedaMenuItem*)menu_item, menu);
+    geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_View");
     geda_menu_bar_append ((GedaMenuBar*)MENU_BAR, menu_item);
   }
@@ -897,7 +897,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu_item   = geda_menu_item_new_with_mnemonic(_("_Grid"));
     toggle_menu = geda_menu_new();
 
-    geda_menu_item_set_submenu ((GedaMenuItem*)menu_item, toggle_menu);
+    geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, toggle_menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_GRID);
 
     GSList *grp = NULL;
@@ -953,7 +953,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       menu_item   = geda_menu_item_new_with_mnemonic(_("_Toolbars"));
       toggle_menu = geda_menu_new();
 
-      geda_menu_item_set_submenu ((GedaMenuItem*)menu_item, toggle_menu);
+      geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, toggle_menu);
       GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_TOOLBARS);
 
       GtkWidget *stdbar_toggle   = geda_check_menu_item_new_with_mnemonic (IDS_MENU_TB_STANDARD);
@@ -1118,7 +1118,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu_item   = geda_menu_item_new_with_mnemonic("_Menu");
     toggle_menu = geda_menu_new();
 
-    geda_menu_item_set_submenu ((GedaMenuItem*)menu_item, toggle_menu);
+    geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, toggle_menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, IDS_MENU_VIEW_MENU);
 
     GtkWidget *menu_icons_toggle   = geda_check_menu_item_new_with_mnemonic ("_Icons");
@@ -1346,7 +1346,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
         save_nest = menu;
         menu = geda_menu_new ();
 
-        geda_menu_item_set_submenu ((GedaMenuItem*)submenu, menu) ;
+        geda_menu_item_set_submenu_widget ((GedaMenuItem*)submenu, menu) ;
         g_object_set (menu, "visible", TRUE, NULL);
 
         g_hash_table_insert (POPUP_MAIN_HASH, (char*)item.name, submenu);
@@ -1832,7 +1832,7 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 
   /* Set visibility of tips for _View/_Menu toggle items */
   menu_item = GEDA_OBJECT_GET_DATA(MENU_BAR, IDS_MENU_VIEW_MENU);
-  submenu   = geda_menu_item_get_submenu ((GedaMenuItem*)menu_item);
+  submenu   = geda_menu_item_get_submenu_widget ((GedaMenuItem*)menu_item);
   list      = geda_menu_shell_get_children(GEDA_MENU_SHELL(submenu));
 
   for (iter = list; iter; iter=iter->next) {
@@ -1842,7 +1842,7 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 
   /* Set visibility of tips for _View/_Toolbars toggle items */
   menu_item = GEDA_OBJECT_GET_DATA(MENU_BAR, IDS_MENU_VIEW_TOOLBARS);
-  submenu   = geda_menu_item_get_submenu ((GedaMenuItem*)menu_item);
+  submenu   = geda_menu_item_get_submenu_widget ((GedaMenuItem*)menu_item);
   list      = geda_menu_shell_get_children(GEDA_MENU_SHELL(submenu));
 
   for (iter = list; iter; iter=iter->next) {
@@ -2074,7 +2074,7 @@ static void x_menu_update_recent_files(void)
      if (recent_menu_item == NULL)
        return;
 
-     submenu = geda_menu_item_get_submenu((GedaMenuItem*)recent_menu_item);
+     submenu = geda_menu_item_get_submenu_widget((GedaMenuItem*)recent_menu_item);
      gtk_widget_destroy(submenu);
 
      x_menu_attach_recent_submenu(w_current);
@@ -2379,7 +2379,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 
    gtk_widget_show_all(recent_submenu);
    g_object_set (recent_submenu, "visible", TRUE, NULL);
-   geda_menu_item_set_submenu((GedaMenuItem*)recent_menu_item, recent_submenu);
+   geda_menu_item_set_submenu_widget((GedaMenuItem*)recent_menu_item, recent_submenu);
 }
 
 /*! \brief Add a filename to the list of recent files.

@@ -1,3 +1,10 @@
+2018-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Rename functions:
+
+          * geda_menu_item_get_submenu -> geda_menu_item_get_submenu_widget
+          * geda_menu_item_set_submenu -> geda_menu_item_set_submenu_widget
+
 2018-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Fix broken tearoffs not tearing
@@ -47,10 +54,10 @@
       the operation does not currently work correctly for fontsets. And apparently
       does not work correctly for __MINGW32__, since comparing the id's works.
 
-    * tests\test_menu_separator.c: Check if the widget is gobject before sinking
+    * tests/test_menu_separator.c: Check if the widget is gobject before sinking
       and dereferencing the seperator, or else failure under MinGW.
 
-    * tests\test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
+    * tests/test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
       nothing on Windows machines.
 
 2018-06-20 Wiley E. Hill <wileyhill@gmail.com>

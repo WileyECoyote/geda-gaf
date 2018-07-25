@@ -365,7 +365,7 @@ static bool geda_menu_shell_activate_mnemonic (GedaMenuShell *menu_shell,
 
             GtkWidget *widget = (GtkWidget*)menu_item;
 
-            if (geda_menu_item_get_submenu(menu_item)) {
+            if (geda_menu_item_get_submenu_widget(menu_item)) {
               geda_menu_shell_select_item(menu_shell, widget);
             }
             else {
@@ -392,7 +392,7 @@ static void geda_real_menu_shell_activate_current (GedaMenuShell *menu_shell,
   if (active_item &&
       geda_menu_item_is_widget_selectable (menu_shell->active_menu_item))
   {
-    if (!geda_menu_item_get_submenu(active_item)) {
+    if (!geda_menu_item_get_submenu_widget(active_item)) {
       geda_menu_shell_activate_item (menu_shell,
                                      menu_shell->active_menu_item,
                                      force_hide);
@@ -503,7 +503,7 @@ static void geda_real_menu_shell_move_current (GedaMenuShell *menu_shell,
 
   if (menu_shell->active_menu_item) {
     active_menu_item = (GedaMenuItem*)menu_shell->active_menu_item;
-    submenu = geda_menu_item_get_submenu(active_menu_item);
+    submenu = geda_menu_item_get_submenu_widget(active_menu_item);
   }
   else {
     active_menu_item = NULL;
@@ -716,7 +716,7 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
   /* This allows the bizarre radio buttons-with-submenus-display-history
    * behavior
    */
-  if (geda_menu_item_get_submenu(active_menu_item)) {
+  if (geda_menu_item_get_submenu_widget(active_menu_item)) {
     gtk_widget_activate (menu_item);
   }
 }
@@ -851,7 +851,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
 
     GtkWidget *submenu;
 
-    submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
+    submenu = geda_menu_item_get_submenu_widget(GEDA_MENU_ITEM (menu_item));
 
     if (submenu && !gtk_widget_get_visible (submenu)) {
 
@@ -919,7 +919,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
 
         GtkWidget *submenu;
 
-        submenu = geda_menu_item_get_submenu((GedaMenuItem*)menu_item);
+        submenu = geda_menu_item_get_submenu_widget((GedaMenuItem*)menu_item);
 
         if (submenu == NULL) {
 
@@ -1067,7 +1067,7 @@ static int geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *ev
           geda_menu_shell_select_item (menu_shell, menu_item);
         }
 
-        submenu = geda_menu_item_get_submenu(GEDA_MENU_ITEM (menu_item));
+        submenu = geda_menu_item_get_submenu_widget(GEDA_MENU_ITEM (menu_item));
 
         /* If any mouse button is down, and there is a submenu
          * that is not yet visible, activate it. It's sufficient
@@ -1213,7 +1213,7 @@ static int geda_menu_shell_leave_notify (GtkWidget *widget, GdkEventCrossing *ev
       return TRUE;
     }
 
-    submenu = geda_menu_item_get_submenu((GedaMenuItem*)menu_item);
+    submenu = geda_menu_item_get_submenu_widget((GedaMenuItem*)menu_item);
 
     if ((menu_shell->active_menu_item == event_widget) && (submenu == NULL))
     {
@@ -2094,7 +2094,7 @@ static bool geda_menu_shell_select_submenu_first (GedaMenuShell *menu_shell)
 
   menu_item = (GedaMenuItem*)menu_shell->active_menu_item;
 
-  submenu   = geda_menu_item_get_submenu(menu_item);
+  submenu   = geda_menu_item_get_submenu_widget(menu_item);
 
   if (submenu) {
 
