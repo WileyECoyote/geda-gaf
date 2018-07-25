@@ -83,9 +83,9 @@ static inline int visit(GedaObject *obj)
   return (int)(long) (val);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Clear Visit Hash Table
+ * \par Function Description
  *  Reset all visit counts. Simply clears the hashtable completely.
  */
 static inline void
@@ -458,7 +458,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
  *  with one st_cpinlist allocation for each connected pin.
  *  The returned record will be empty if the \a component has
  *  no connected pins.
- * 
+ *
  * \returns a pointer to st_cpinlist structure
  */
 CPINLIST *s_traverse_component(GedaToplevel *pr_current,
