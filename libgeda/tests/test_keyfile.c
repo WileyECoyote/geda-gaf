@@ -1229,6 +1229,8 @@ int check_data (void)
         fprintf(stderr, "FAILED: (KF083402E) get_string_list <%s>\n", str);
         result++;
       }
+
+      g_strfreev(strings);
     }
 
     if (err) {
@@ -1422,7 +1424,6 @@ int check_data (void)
       fprintf(stderr, "FAILED: (KF084101B) get_double_list, no error\n");
       result++;
     }
-
 
     if (err) {
       g_error_free (err);

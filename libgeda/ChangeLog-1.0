@@ -3,6 +3,9 @@
     * src/scheme/scheme_attrib.c: Release the name value return from
       geda_attrib_object_get_name_value in attrib_parse.
 
+    * tests/test_keyfile.c: Release string arrays created in check_data
+      by geda_keyfile_get_string_list.
+
 2018-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/log.scm: Remove declaring unused modules.
