@@ -245,6 +245,8 @@ EDA_SCM_DEFINE (attrib_parse, "%parse-attrib", 1, 0, 0,
   if (geda_attrib_object_get_name_value (text, &name, &value)) {
     result = scm_cons (scm_from_utf8_string (name),
                        scm_from_utf8_string (value));
+    GEDA_FREE(name);
+    GEDA_FREE(value);
   }
   else {
     scm_error (attribute_format_sym, scheme_attrib_parse,
