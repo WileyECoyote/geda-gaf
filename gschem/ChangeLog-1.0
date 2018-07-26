@@ -1,5 +1,8 @@
 2018-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_main_window.c: Release filename in function
+      gschem_main_window_instance_init.
+
     * src/x/x_event.c: On button press, only call i_zoom_world_box_start if
       not already inside the action, fixes HOT zoom-box action.
 
