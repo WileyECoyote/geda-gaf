@@ -150,7 +150,9 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case (ZOOMBOX):
-          i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
+          if (!w_current->inside_action) {
+            i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
+          }
           break;
 
         case (MOVEMODE):

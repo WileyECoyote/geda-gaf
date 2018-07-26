@@ -1,3 +1,8 @@
+2018-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: On button press, only call i_zoom_world_box_start if
+      not already inside the action, fixes HOT zoom-box action.
+
 2018-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove conditional in do_add_pin and call
