@@ -34,7 +34,7 @@
 #ifndef __X_DIALOG_H__
 #define __X_DIALOG_H__
 
-#define LEAVE_ALONE -2  /* Used as a flag for multible selections */
+#define LEAVE_ALONE -2  /* Used as a flag for multiple selections */
 
 #include "../../include/geda/geda_dialog_controls.h"
 
