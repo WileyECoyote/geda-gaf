@@ -460,7 +460,7 @@ x_draw_initialize(GschemToplevel *w_current)
         char *font_string;
         char *font_name;
 
-  v_log_message(_("Initializing: Graphics Renderer Adaptor...."));
+  v_log_message(_("Initializing: Graphics Renderer Adaptor..."));
 
   font_string   = eda_config_get_string (cfg, group, "default-font-name", NULL);
 
