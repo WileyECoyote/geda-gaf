@@ -577,6 +577,7 @@ static void x_console_set_icon (Console *console)
   else if (verbose_mode) {
     fprintf(stderr, "%s is missing\n", filename);
   }
+  GEDA_FREE(filename);
 }
 
 /*!

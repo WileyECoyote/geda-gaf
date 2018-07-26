@@ -3,6 +3,8 @@
     * src/base/gschem_main_window.c: Release filename in function
       gschem_main_window_instance_init.
 
+    * src/x/x_console.c: Release filename in function x_console_set_icon.
+
     * src/x/x_event.c: On button press, only call i_zoom_world_box_start if
       not already inside the action, fixes HOT zoom-box action.
 
