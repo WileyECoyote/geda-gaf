@@ -2203,8 +2203,9 @@ COMMAND (do_zoom_extents)
   /* scroll bar stuff */
   i_zoom_world_extents (w_current, NULL, 0);
 
-  if (w_current->undo_panzoom)
+  if (w_current->undo_panzoom) {
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+  }
 
   EXIT_COMMAND(do_zoom_extents);
 }
@@ -2220,8 +2221,9 @@ COMMAND (do_zoom_in)
 
   i_zoom_world(w_current, ZOOM_IN_DIRECTIVE, CMD_WHO(do_zoom_in), 0);
 
-  if (w_current->undo_panzoom)
+  if (w_current->undo_panzoom) {
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+  }
 
   EXIT_COMMAND(do_zoom_in);
 }
@@ -2237,8 +2239,9 @@ COMMAND (do_zoom_out)
 
   i_zoom_world(w_current, ZOOM_OUT_DIRECTIVE, CMD_WHO(do_zoom_out), 0);
 
-  if (w_current->undo_panzoom)
+  if (w_current->undo_panzoom) {
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+  }
 
   EXIT_COMMAND(do_zoom_out);
 }
@@ -2254,8 +2257,10 @@ COMMAND (do_zoom_all)
 
   i_zoom_world(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, 0);
 
-  if (w_current->undo_panzoom)
+  if (w_current->undo_panzoom) {
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+  }
+
   EXIT_COMMAND(do_zoom_all);
 }
 
