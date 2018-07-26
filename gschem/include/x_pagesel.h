@@ -37,7 +37,7 @@
 #define COLUMN_NAME_MIN_WIDTH     235 /* Minimum width for filename column */
 #define COLUMN_CHANGED_MIN_WIDTH   35 /* Minimum width for Changed column */
 
-#define PAGESEL_MIN_HEIGHT        250
+#define PAGESEL_MIN_HEIGHT        335
 #define PAGESEL_ROWS_THRESHOLD      4
 
 #define TYPE_PAGESEL         (pagesel_get_type())
