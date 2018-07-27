@@ -52,7 +52,7 @@ Get the directory where gEDA documentation is stored."
      (lambda (dir)
        (let ((docdir
               (string-join (list (guess-prefix dir)
-                                 "share" "doc" "geda-gaf")
+                                 "share" "doc" "packages" "geda-gaf")
                            separator)))
          (and (false-if-exception
                (eq? 'directory (stat:type (stat docdir))))

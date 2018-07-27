@@ -1,3 +1,8 @@
+2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/gschemdoc.scm: Add "packages" to the list of directories
+      to search for documentation.
+
 2018-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_pagesel.h: Increase PAGESEL_MIN_HEIGHT by 85 pixels to 335.
