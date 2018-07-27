@@ -415,7 +415,7 @@ void f_print_objects (GedaToplevel *toplevel, FILE *fp, const GList *obj_list,
         break;
 
       default:
-        BUG_IMSG("unhandled case <%d>", o_current->type);
+        BUG_IMSG("unhandled case", o_current->type);
         break;
     }
     iter = g_list_next (iter);

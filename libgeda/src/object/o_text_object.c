@@ -518,7 +518,7 @@ void geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
         break;
 
     default:
-      BUG_IMSG("unhandled case <%d>", o_current->show_name_value);
+      BUG_IMSG("unhandled case", o_current->show_name_value);
 
     }
   }

@@ -106,6 +106,7 @@ int geda_object_get_bounds(GedaObject *o_current,
  * \param [out] top    pointer to the top coordinate of the object.
  * \param [out] right  pointer to the right coordinate of the object.
  * \param [out] bottom pointer to the bottom coordinate of the object.
+ *
  * \return If any bounds were found for the list of objects
  * \retval 0 No bounds were found
  * \retval 1 Bound was found
@@ -664,7 +665,7 @@ bool geda_object_get_position (GedaObject *object, int *x, int *y)
       case OBJ_PLACEHOLDER: func = geda_complex_object_get_position; break;
 
       default:
-        BUG_IMSG("object has bad type '%c'\n", object->type);
+        BUG_IMSG("object has bad type", object->type);
   }
 
   if (func != NULL) {

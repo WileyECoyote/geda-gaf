@@ -575,7 +575,7 @@ GedaObject *geda_object_copy (GedaObject *o_current)
       break;
 
     default:
-      BUG_IMSG("Bad object type '%c'", o_current->type);
+      BUG_IMSG("Bad object type", o_current->type);
       return NULL;
   }
 
@@ -639,7 +639,7 @@ void geda_object_mirror (GedaObject *object, int center_x, int center_y)
 
   }
   else {
-    BUG_IMSG("Bad object type '%c'", object->type);
+    BUG_IMSG("Bad object type", object->type);
   }
 }
 

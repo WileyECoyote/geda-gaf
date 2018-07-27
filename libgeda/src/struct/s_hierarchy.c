@@ -135,7 +135,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
     break;
 
     default:
-      BUG_IMSG("Invalid flag <%d>", flag);
+      BUG_IMSG("Invalid flag", flag);
       return NULL;
   }
 

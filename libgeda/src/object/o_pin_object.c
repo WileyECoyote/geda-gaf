@@ -608,11 +608,13 @@ void geda_pin_object_set_node_type (GedaObject *o_current, PIN_NODE node_type)
     case PIN_NET_NODE:
       o_current->pin->node_type = PIN_NET_NODE;
       break;
+
     case PIN_BUS_NODE:
       o_current->pin->node_type = PIN_BUS_NODE;
       break;
+
     default:
-      BUG_IMSG ("invalid pin node type! %i\n", node_type);
+      BUG_IMSG ("invalid pin node type", node_type);
       o_current->pin->node_type = PIN_NET_NODE;
   }
 }

@@ -879,7 +879,7 @@ void geda_object_set_locked_color (GedaObject *object, int index) {
       object->locked_color = index;
     }
     else {
-      BUG_IMSG("Refusing to set color index to value <%d>", index);
+      BUG_IMSG("Refusing to set color index to value", index);
     }
   }
 }

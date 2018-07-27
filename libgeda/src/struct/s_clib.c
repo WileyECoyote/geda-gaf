@@ -837,14 +837,17 @@ void geda_struct_clib_refresh (void)
       case CLIB_DIR:
         refresh_directory(source);
         break;
+
       case CLIB_CMD:
         refresh_command (source);
         break;
+
       case CLIB_SCM:
         refresh_scm (source);
         break;
+
       default:
-        BUG_IMSG("source has bad source type %i\n", source->type);
+        BUG_IMSG("source has bad source type", source->type);
         break;
     }
   }
@@ -1024,6 +1027,7 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
   fprintf(stderr, "%s \t name %s \t directory %s \t category %s \t group %s\n",__func__,
        source->name, source->directory, source->category, source->group);
 #endif
+
   return source;
 }
 
@@ -1357,7 +1361,7 @@ char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
       data = get_data_scm (symbol);
       break;
     default:
-       BUG_IMSG("source has bad source type %i\n", symbol->source->type);
+       BUG_IMSG("source has bad source type", symbol->source->type);
       return NULL;
     }
 
@@ -1433,7 +1437,7 @@ GList *geda_struct_clib_search (const char *pattern, const CLibSearchMode mode)
       break;
 
     default:
-      BUG_IMSG ("Bad search mode %i\n", mode);
+      BUG_IMSG ("Bad search mode", mode);
       return NULL;
   }
 
