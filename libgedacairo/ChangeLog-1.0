@@ -6,6 +6,10 @@
       and then use the negative value. This does result in better alignment
       to adjoining lines. Fixes BUG #1504277.
 
+    * src/edarenderer.c: Revise eda_renderer_draw_bus to pass END_ROUND
+      as the forth argument to eda_cairo_stroke instead of END_SQUARE;
+      this improves the appearance of busses.
+
 2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Revert 9d1a5eb889ee4427cfae34a233987c7b89a9b516.

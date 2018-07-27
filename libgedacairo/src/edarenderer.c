@@ -720,7 +720,7 @@ eda_renderer_draw_net (EdaRenderer *renderer, GedaObject *object)
 static void
 eda_renderer_draw_bus (EdaRenderer *renderer, GedaObject *object)
 {
-  GedaLine *line = GEDA_LINE(object);
+  GedaLine     *line = GEDA_LINE(object);
   LINE_OPTIONS *line_options = &line->line_options;
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
@@ -728,7 +728,7 @@ eda_renderer_draw_bus (EdaRenderer *renderer, GedaObject *object)
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    TYPE_SOLID, END_SQUARE,
+                    TYPE_SOLID, END_ROUND,
                     EDA_RENDERER_STROKE_WIDTH (renderer,
                                                line_options->line_width),
                     -1, -1);
