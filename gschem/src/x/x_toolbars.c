@@ -334,8 +334,11 @@ static GtkWidget *get_pixmap(GschemToplevel *w_current, const char *name)
   }
 
   if (wpixmap == NULL) {
+
     const char *log_msg = _("image file not found");
+
     geda_log_v("%s: %s \"%s\".\n", __func__, log_msg, name);
+
     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , TB_SMALL_ICON);
   }
   else {
@@ -510,7 +513,7 @@ x_toolbars_save_state(GschemToplevel *w_current)
     geda_keyfile_set_integer (key_file, group_name, "visible", visible);
 
     if (w_current->handleboxes) {
-      toolbar  = geda_get_child_widget (handlebox);
+      toolbar = geda_get_child_widget (handlebox);
     }
     else {
       GList *list;
