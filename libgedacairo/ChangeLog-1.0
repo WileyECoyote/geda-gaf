@@ -1,3 +1,11 @@
+2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Fix arc end points shifting at different zoom levels
+      by scaling s_radius as the Y argument to cairo_device_to_user_distance
+      since the s_radius was calculated using the difference in Y endpoints
+      and then use the negative value. This does result in better alignment
+      to adjoining lines. Fixes BUG #1504277.
+
 2018-07-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Revert 9d1a5eb889ee4427cfae34a233987c7b89a9b516.
