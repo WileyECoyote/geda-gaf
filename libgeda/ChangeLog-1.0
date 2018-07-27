@@ -1,3 +1,8 @@
+2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Close the dir that was open with g_dir_open in
+      g_rc_source_library_search.
+
 2018-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_attrib.c: Release the name value return from

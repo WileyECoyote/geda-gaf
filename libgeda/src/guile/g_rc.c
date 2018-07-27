@@ -379,7 +379,11 @@ SCM g_rc_source_library_search(SCM path)
     const char *bad_path = _("Invalid path passed to source-library-search");
 
     fprintf (stderr, "%s '%s'\n", bad_path, string);
+
+    g_dir_close(dir);
+
     GEDA_FREE(string);
+
     return SCM_BOOL_F;
   }
 
