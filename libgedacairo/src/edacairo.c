@@ -327,7 +327,7 @@ eda_cairo_center_box (cairo_t *cr, int flags,
  */
 static inline void
 do_arc (cairo_t *cr, double x, double y, double radius,
-        double start_angle, double arc_sweep)
+                     double start_angle, double arc_sweep)
 {
   cairo_new_sub_path (cr);
 
@@ -354,7 +354,7 @@ eda_cairo_arc (cairo_t *cr, int flags,
   int s_width;
   double x1, y1, x2, y2;
   double s_x, s_y, s_radius;
-  double offset, dummy = 0;
+  double offset;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
     do_arc (cr, x, y, radius, start_angle, arc_sweep);
@@ -372,8 +372,10 @@ eda_cairo_arc (cairo_t *cr, int flags,
   s_radius = (double)(y2 - y1) / 2.;
 
   cairo_device_to_user (cr, &s_x, &s_y);
-  cairo_device_to_user_distance (cr, &offset, &dummy);
-  cairo_device_to_user_distance (cr, &s_radius, &dummy);
+  cairo_device_to_user_distance (cr, &offset, &s_radius);
+  //cairo_device_to_user_distance (cr, &s_radius, &dummy);
+
+  s_radius = -1 * s_radius;
 
   do_arc (cr, s_x + offset, s_y + offset,
           s_radius, start_angle, arc_sweep);
