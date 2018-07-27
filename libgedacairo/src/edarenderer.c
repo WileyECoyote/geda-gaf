@@ -559,7 +559,7 @@ eda_renderer_default_draw (EdaRenderer *renderer, GedaObject *object)
       case OBJ_PICTURE:     draw_func = eda_renderer_draw_picture; break;
       case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
       default:
-        BUG_IMSG("unhandled case <%c>", object->type);
+        BUG_IMSG("unhandled case", object->type);
         return;
     }
 
