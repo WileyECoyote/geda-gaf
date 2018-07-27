@@ -352,14 +352,17 @@ void o_net_guess_direction(GschemToplevel *w_current, int wx, int wy)
         case OBJ_NET:
           current_rules = (int*) net_rules;
           break;
+
         case OBJ_PIN:
           current_rules = (int*) pin_rules;
           break;
+
         case OBJ_BUS:
           current_rules = (int*) bus_rules;
           break;
+
         default:
-          BUG_IMSG("unhandled case <%d>", o_current->type);
+          BUG_IMSG("unhandled case", o_current->type);
           return;
       }
 

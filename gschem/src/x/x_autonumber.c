@@ -1591,8 +1591,9 @@ static void autonumber_text_response(GtkWidget       *widget,
       gtk_widget_destroy(autotext->dialog);
       autotext->dialog = NULL;
       break;
+
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 }
 

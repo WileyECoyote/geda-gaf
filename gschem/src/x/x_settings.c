@@ -154,6 +154,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
       i_window_set_grid_type (w_current);
       generate_rc(w_current, "gschemrc");
       break;
+
     case GEDA_RESPONSE_OK:
       GatherSettings (w_current);
       i_window_set_grid_type (w_current);
@@ -161,8 +162,9 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
     case GEDA_RESPONSE_CANCEL:
       /* void */
       break;
+
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 
   if (w_current->save_ui_settings) {

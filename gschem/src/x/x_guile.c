@@ -345,7 +345,7 @@ static void x_dialog_guile_response(GtkWidget      *ThisDialog,
     break;
 
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 }
 

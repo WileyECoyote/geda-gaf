@@ -124,7 +124,7 @@ x_dialog_edit_color_response(GtkWidget *Dialog, int response,
     x_dialog_edit_color_apply(Dialog, w_current);
     break;
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 }
 

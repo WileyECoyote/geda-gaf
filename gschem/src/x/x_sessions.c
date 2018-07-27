@@ -334,10 +334,12 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
   case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy (Dialog);
     break;
+
   case GEDA_RESPONSE_ACCEPT:
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
   i_status_set_state (w_current, SELECT);

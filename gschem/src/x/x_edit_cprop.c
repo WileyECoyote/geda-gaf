@@ -525,7 +525,7 @@ static void x_dialog_edit_properties_response(GtkWidget     *Dialog,
     break;
 
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
   i_status_set_state (w_current, SELECT);

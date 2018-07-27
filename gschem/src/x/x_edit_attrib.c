@@ -290,7 +290,7 @@ attribute_edit_dialog_response(GtkWidget *widget, int response,
       break;
 
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 }
 

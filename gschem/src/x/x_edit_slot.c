@@ -78,7 +78,7 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
       break;
 
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 }
 

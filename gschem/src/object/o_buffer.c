@@ -76,7 +76,7 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
   GList *iter;
 
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
-    BUG_IMSG ("o_buffer_copy: Invalid buffer %i\n", buf_num);
+    BUG_IMSG ("Invalid buffer", buf_num);
   }
   else {
     selection_to_buffer (w_current, buf_num);
@@ -111,7 +111,7 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
 void o_buffer_cut(GschemToplevel *w_current, int buf_num)
 {
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
-    BUG_IMSG ("o_buffer_cut: Invalid buffer %i\n", buf_num);
+    BUG_IMSG ("Invalid buffer", buf_num);
   }
   else {
     selection_to_buffer (w_current, buf_num);

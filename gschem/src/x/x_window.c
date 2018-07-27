@@ -683,6 +683,7 @@ void x_window_close(GschemToplevel *w_current)
     /* user canceled the close */
     return;
   }
+
   x_clipboard_finish (w_current);
 
   /* stuff that has to be done before we free w_current */
@@ -1089,7 +1090,7 @@ void x_window_close_page (GschemToplevel *w_current, Page *page)
   if (page != NULL) {
 
     if (page->pid == -1) {
-      BUG_IMSG ("invalid page ID=<%d>", page->pid);
+      BUG_IMSG ("invalid page ID", page->pid);
     }
     else {
 

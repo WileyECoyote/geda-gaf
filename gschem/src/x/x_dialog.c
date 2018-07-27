@@ -572,7 +572,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
     break;
 
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
   /* clean up */
@@ -682,8 +682,9 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   case GEDA_RESPONSE_DELETE_EVENT:
     /* void */
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
   /* clean up */
@@ -939,7 +940,7 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
       break;
 
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 }
 
@@ -1440,8 +1441,9 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
     activate_anglepitch1_entries = TRUE;
     activate_anglepitch2_entries = TRUE;
     break;
+
   default:
-    BUG_IMSG ("unhandled case for <%d>", type);
+    BUG_IMSG ("unhandled case for", type);
   }
 
   gtk_widget_set_sensitive (fill_data->width_entry,  activate_width_entry);
@@ -1556,7 +1558,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
       break;
 
     default:
-      BUG_IMSG ("unhandled case for value <%d>", type);
+      BUG_IMSG ("unhandled case for value", type);
     }
 
     geda_set_object_fill_options (object, &fill_options);
@@ -1587,8 +1589,9 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_fill_type_ok(Dialog, fill_data);
     break;
+
   default:
-    BUG_IMSG ("unhandled case for value <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
   i_status_set_state (w_current, SELECT);
@@ -2116,18 +2119,21 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
       line_options.line_length = -1;
       line_options.line_space  = -1;
       break;
+
     case (TYPE_DOTTED):
       line_options.line_length = -1;
       if (line_options.line_space == -1) line_options.line_space = toplevel->default_line_space;
       break;
+
     case (TYPE_DASHED):
     case (TYPE_CENTER):
     case (TYPE_PHANTOM):
       if (line_options.line_length == -1) line_options.line_length = toplevel->default_line_length;
       if (line_options.line_space  == -1) line_options.line_space  = toplevel->default_line_space;
       break;
+
     default:
-      BUG_IMSG("unhandlered case for <%d>", type);
+      BUG_IMSG("unhandlered case for type", type);
     }
 
     geda_set_object_line_options (object, &line_options);
@@ -2155,11 +2161,13 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy (Dialog);
     GEDA_FREE (line_data);
     break;
+
   case GEDA_RESPONSE_ACCEPT:
     x_dialog_edit_line_type_ok(Dialog, line_data);
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
 
   }
 
@@ -2457,7 +2465,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       break;
 
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
       close = TRUE;
   }
 
@@ -2630,8 +2638,9 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);;
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 }
 
@@ -2739,8 +2748,9 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
   case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 }
 
@@ -2878,8 +2888,9 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
     i_status_set_state(w_current, SELECT);
     gtk_widget_destroy(Dialog);
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 }
 
@@ -3025,7 +3036,7 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
     break;
 
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
   i_status_set_state(w_current, SELECT);
@@ -3138,8 +3149,9 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
     cfg = eda_config_get_user_context ();
     eda_config_set_boolean (cfg, IVAR_CONFIG_GROUP, "hotkey-show-bind", show_bind);
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
   /* clean up */
   gtk_widget_destroy(Dialog);

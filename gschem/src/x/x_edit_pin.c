@@ -674,7 +674,7 @@ x_dialog_edit_pin_type_response(GtkWidget     *Dialog,
       break;
 
     default:
-      BUG_IMSG ("unhandled case for signal <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 
   i_status_set_state (w_current, SELECT);
@@ -749,6 +749,7 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
 
   return action_hbox;
 }
+
 /*! \brief Create the Pin Properties Editor Dialog
  *  \par Function Description
  *  This function creates the modaless Pin Properties Dialog, then

@@ -379,12 +379,14 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, GedaObject *object)
     x_dialog_edit_text_ok(w_current, object);
     i_status_set_state(w_current, SELECT);
     break;
+
   case GEDA_RESPONSE_REJECT:
   case GEDA_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
     break;
+
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 }
 

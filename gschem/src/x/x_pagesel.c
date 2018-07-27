@@ -207,7 +207,7 @@ x_pagesel_callback_response (GtkDialog *dialog, int response, void *data)
       pagesel_update (PAGESEL (dialog));
       break;
     default:
-      BUG_IMSG("unhandled case <%d>", response);
+      BUG_IMSG ("unhandled case", response);
   }
 }
 

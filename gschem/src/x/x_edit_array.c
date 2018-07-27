@@ -589,7 +589,7 @@ static void x_dialog_array_edit_response(GtkWidget  *dialog,
     gtk_widget_hide (GTK_WIDGET (dialog));
     break;
   default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    BUG_IMSG ("unhandled case", response);
   }
 
 }
