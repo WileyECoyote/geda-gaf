@@ -191,7 +191,7 @@ o_text_edit(GschemToplevel *w_current, GedaObject *o_current)
  *  If we changed something we recreate that object and undate UNDO.
  *
  * \param [in] w_current  Ptr to Window specific data structure
- * \param [in] string     Ptr to new char string  or NULL if multible selection
+ * \param [in] string     Ptr to new char string  or NULL if multiple selection
  * \param [in] text_align integer, The new text alignment
  * \param [in] text_color integer, The new text color
  * \param [in] text_size  integer, The new text size integer
