@@ -117,7 +117,11 @@ SCM g_rc_component_library(SCM path, SCM name)
 
   /* Check if path is valid */
   if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
-    fprintf(stderr, "Check library path [%s]\n", directory);
+
+    const char *msg = _("Check library path");
+
+    geda_log_w("%s [%s]\n", msg, directory);
+
     result = SCM_BOOL_F;
   }
   else {

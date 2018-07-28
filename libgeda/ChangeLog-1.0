@@ -6,6 +6,9 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * src/guile/g_rc.c: Write message output to log instead of stderr
+      in g_rc_component_library, and translate message string.
+
 2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Close the dir that was open with g_dir_open in
