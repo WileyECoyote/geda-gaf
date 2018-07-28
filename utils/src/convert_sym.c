@@ -40,6 +40,12 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
+#include "../../include/gettext.h"
+
 #include <ctype.h>
 #include <math.h>
 
@@ -342,17 +348,27 @@ int maxy = 0;
 void
 usage(char *cmd)
 {
-  fprintf(stderr,
+  fprintf(stderr, _(
         "Usage:\n\t%s <viewlogic_filename>\n"
         " Where:\n"
         "\t<viewlogic_filename> is the name of the file you\n"
-        "\t\t\t  want to convert to gEDA format\n", cmd);
+        "\t\t\t  want to convert to gEDA format\n"), cmd);
   exit(1);
 }
 
 int
 main(int argc, char **argv)
 {
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
 
   FILE *infile;
   char *infileName;

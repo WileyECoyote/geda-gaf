@@ -3,6 +3,9 @@
     * gsch2pcb/gsch2pcb.c: Translate some message strings, add ancillary char
       pointers to reduce format specifiers in in translatable strings.
 
+    * src/convert_sym.c: Include locale.h and gettext.h, setup i18n in main
+      and wrap usage with gettext.
+
     * src/grenum.c: Include locale.h and gettext.h, setup i18n in main.
 
     * src/olib.l: Include locale.h and gettext.h, setup i18n in main.
