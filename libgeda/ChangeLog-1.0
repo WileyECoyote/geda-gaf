@@ -4,6 +4,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
 2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Close the dir that was open with g_dir_open in
