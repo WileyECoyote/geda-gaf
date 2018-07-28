@@ -759,7 +759,7 @@ char *find_element (char *dir_path, char *element)
       }
 
       if (verbose > 1) {
-        printf ("%s\n", found ? "Yes" : "No");
+        printf ("%s\n", found ? _("Yes") : _("No"));
       }
     }
 
@@ -815,7 +815,7 @@ char *search_element_directories (PcbElement *el)
   }
 
   if (verbose > 1) {
-    printf ("\tSearching directories looking for file element: %s\n", elname);
+    printf ("\t%s: %s\n", _("Searching directories looking for file element"), elname);
   }
 
   for (list = element_directory_list; list; list = g_list_next (list)) {
@@ -823,14 +823,14 @@ char *search_element_directories (PcbElement *el)
     char *dir_path = list->data;
 
     if (verbose > 1) {
-      printf ("\tLooking in directory: \"%s\"\n", dir_path);
+      printf ("\t%s: \"%s\"\n", _("Looking in directory"), dir_path);
     }
 
     path = find_element (dir_path, elname);
 
     if (path) {
       if (verbose) {
-        printf ("\tFound: %s\n", path);
+        printf ("\t%s: %s\n", _("Found"), path);
       }
       break;
     }
@@ -878,7 +878,7 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
   args = g_strsplit (s + 1, ",", 12);
 
   if (!args[0] || !args[1] || !args[2]) {
-    fprintf (stderr, "Bad package line: %s\n", pkg_line);
+    fprintf (stderr, "%s: %s\n", _("Bad package line"), pkg_line);
     return NULL;
   }
 
@@ -939,27 +939,33 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
   }
 
   g_strfreev (args);
+  
+  /* Common Transalable strings */
+  const char *warn = _("WARNING");
+  const char *msg2 = _("so will not be in the layout");
 
   if (empty_footprint_name && !strcmp (el->description, empty_footprint_name)) {
     if (verbose) {
-      printf
-        ("%s: has the empty footprint attribute \"%s\" so won't be in the layout.\n",
-         el->refdes, el->description);
+      
+      const char *msg1 = _("has the empty footprint attribute");
+
+      printf ("%s: %s \"%s\" %s.\n", el->refdes, msg1, el->description, msg2);
     }
     n_empty += 1;
     el->omit_PKG = TRUE;
   }
   else if (!strcmp (el->description, "none")) {
-    fprintf (stderr,
-             "WARNING: %s has a footprint attribute \"%s\" so won't be in the layout.\n",
-             el->refdes, el->description);
+  
+    const char *msg1 = _("has a footprint attribute");
+
+    fprintf (stderr,  "%s: %s %s \"%s\" %s.\n", warn, el->refdes, msg1, el->description, msg2);
     n_none += 1;
     el->omit_PKG = TRUE;
   }
   else if (!strcmp (el->description, "unknown")) {
-    fprintf (stderr,
-             "WARNING: %s has no footprint attribute so won't be in the layout.\n",
-             el->refdes);
+    
+    const char *msg1 = _("has no footprint attribute");
+    fprintf (stderr, "%s: %s %s %s.\n", warn, el->refdes, msg1, msg2);
     n_unknown += 1;
     el->omit_PKG = TRUE;
   }

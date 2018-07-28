@@ -1,3 +1,8 @@
+2018-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Translate some message strings, add ancillary char
+      pointers to reduce format specifiers in in translatable strings.
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/src/Makefile.am: Prepend LOCALEDIR to CFLAGS and link all to
