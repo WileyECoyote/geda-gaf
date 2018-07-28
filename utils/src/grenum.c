@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 
   if (optind==argc) {
 
-    printf("grenum: no input file\n");
+    printf(_("grenum: no input file\n"));
     printhelp();
     return NO_INPUT_FILE;
   }
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
       return FILE_OP_ERROR;
     }
 
-    printf("grenum: processing file %s\n",&infilename[0]);
+    printf("grenum: %s %s.\n", _("processing file"), &infilename[0]);
 
     /* Read one line. */
     while((ret=get_refdes_from_file(infile, &refdes, buff))!=END_OF_FILE) {
@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
             break;
 
             case MAX_PREFIX_COUNT: /* Out of memory */
-              printf("grenum: out of memory. Too much refdes prefixes.\n");
+              printf(_("grenum: out of memory. Too many refdes prefixes"));
               /* Close the files */
               fclose(infile);
               fclose(outfile);
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
                   refdes_db[refdes.prefixes+1].prefix[0]='\0';
               break;
                 case MAX_PREFIX_COUNT:
-                  printf("grenum: out of memory. Too much refdes prefixes.\n");
+                  printf("grenum: %s.\n", _("out of memory. Too many refdes prefixes"));
                   fclose(infile); /* Close the files */
                   fclose(outfile);
                   return OUT_OF_MEMORY;
@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
               sprintf(buff, "refdes=%s%d\n", &refdes.prefix[0], refdes.value);
               break;
                 case REFDES_ERROR: /* e.g. awdf#$%WSf82f8 :-) No "=" signal in the refdes string. */
-                  printf("grenum: parse error\n");
+                  printf("grenum: %s\n", _("parse error"));
                   fclose(infile);
                   fclose(outfile);
                   return PARSE_ERROR;

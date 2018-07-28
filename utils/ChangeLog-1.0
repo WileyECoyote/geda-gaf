@@ -6,7 +6,8 @@
     * src/convert_sym.c: Include locale.h and gettext.h, setup i18n in main
       and wrap usage with gettext.
 
-    * src/grenum.c: Include locale.h and gettext.h, setup i18n in main.
+    * src/grenum.c: Include locale.h and gettext.h, setup i18n in main. Wrap
+      message strings with gettext.
 
     * src/olib.l: Include locale.h and gettext.h, setup i18n in main.
 
