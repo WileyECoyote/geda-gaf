@@ -25,6 +25,12 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
+#include "../../include/gettext.h"
+
 #include <geda/geda_standard.h>
 
 #include <version.h>
@@ -37,6 +43,17 @@
 
 int main(int argc, char *argv[])
 {
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
+
   char buff[BUFFSIZE], infilename[FILENAMESIZE], outfilename[FILENAMESIZE];
   unsigned char flags;
   int c, pages;
