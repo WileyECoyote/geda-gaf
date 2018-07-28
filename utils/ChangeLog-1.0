@@ -5,6 +5,8 @@
 
     * src/grenum.c: Include locale.h and gettext.h, setup i18n in main.
 
+    * src/olib.l: Include locale.h and gettext.h, setup i18n in main.
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/src/Makefile.am: Prepend LOCALEDIR to CFLAGS and link all to
