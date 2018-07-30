@@ -1,5 +1,8 @@
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Change variable len from type size_t to unsigned int
+      in x_menu_recent_files_save.
+
     * tests/runtest.sh: Update bitmap directory, now bitmaps.
 
     * tests/golden: Regenerate reference files because the changes made to

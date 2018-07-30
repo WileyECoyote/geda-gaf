@@ -2473,8 +2473,10 @@ void x_menu_recent_files_save(void *user_data)
  */
 void x_menu_recent_files_load()
 {
-   GedaKeyFile *keyfile;
-   char *file;
+   GedaKeyFile  *keyfile;
+   char         *file;
+   char        **list;
+   unsigned int  len;
 
    keyfile = geda_keyfile_new();
    file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
@@ -2491,9 +2493,7 @@ void x_menu_recent_files_load()
          return;
    }
 
-   size_t len;
-   char **list = geda_keyfile_get_string_list(keyfile, "Recent files", "Files",
-                                            &len, NULL);
+   list = geda_keyfile_get_string_list(keyfile, "Recent files", "Files", &len, NULL);
 
    if(list == NULL) {
       /* error reading key file, don't bother to correct;
@@ -2509,6 +2509,7 @@ void x_menu_recent_files_load()
 
    GEDA_FREE(list);
    GEDA_FREE(file);
+
    geda_keyfile_free(keyfile);
 }
 
