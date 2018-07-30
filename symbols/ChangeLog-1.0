@@ -23,6 +23,9 @@
     * st/L3G4200D-1.sym: Add symbol; Three-Axis Gyroscope, Digital,
       I2C/SPI,  2.4 to 3.6 Volt.
 
+    * st/L3G4200D-2.sym: Add value, update INT pintype attribute,
+      resequence pins.
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
