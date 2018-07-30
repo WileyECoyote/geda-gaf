@@ -18,7 +18,7 @@ BUILDDIR="."
 SRCDIR="."
 ERRDIR=mismatched
 
-#DEBUG=false
+#DEBUG=true
 REGENERATE=false
 #VERBOSE=true
 
@@ -78,9 +78,9 @@ show_help () {
 
   # Make all subdirectories under the gEDA directory
 
-  mkdir -m 0777 -p bitmap/24x24
-  mkdir -m 0777 -p bitmap/26x26
-  mkdir -m 0777 -p bitmap/28x28
+  mkdir -m 0777 -p bitmaps/24x24
+  mkdir -m 0777 -p bitmaps/26x26
+  mkdir -m 0777 -p bitmaps/28x28
   mkdir -m 0777 -p scheme/geda
   mkdir -m 0777 -p scheme/gschem
   mkdir -m 0777 -p gafrc.d
@@ -96,9 +96,9 @@ show_help () {
   # from gschem/do not get sorted into subdirectories
   if [ -d $SRCDIR/../../bitmaps ] ; then
      cd $SRCDIR/../../bitmaps
-     ln -s $PWD/*.png $GEDADATARC/bitmap/
-     ln -s $PWD/*.xpm $GEDADATARC/bitmap/
-     cd $GEDADATARC/bitmap/
+     ln -s $PWD/*.png $GEDADATARC/bitmaps/
+     ln -s $PWD/*.xpm $GEDADATARC/bitmaps/
+     cd $GEDADATARC/bitmaps/
      mv *24x24.* 24x24/
      mv *26x26.* 26x26/
      mv *28x28.* 28x28/
@@ -110,8 +110,8 @@ show_help () {
 
   if [ -d $SRCDIR/../bitmap ] ; then
      cd $SRCDIR/../bitmap
-     ln -s $PWD/*.png $GEDADATARC/bitmap/
-     ln -s $PWD/*.xpm $GEDADATARC/bitmap/
+     ln -s $PWD/*.png $GEDADATARC/bitmaps/
+     ln -s $PWD/*.xpm $GEDADATARC/bitmaps/
      cd $CWDSAVE
   else
     echo "Error: not in the right place, cannot find gschem bitmaps"
