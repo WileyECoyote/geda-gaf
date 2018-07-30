@@ -59,7 +59,6 @@ EOF
 
 # check_tool TOOLS PKG [URL]
 # --------------------------
-    echo yes >&2
 # Check that a build tool is present. TOOLS is a list of candidates to
 # search for in the path, and PKG is the package which provides the
 # tool. If URL is specified, recommend to the user that he get obtain

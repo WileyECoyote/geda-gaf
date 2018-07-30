@@ -1,3 +1,7 @@
+2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * autogen.sh: Remove apparent remnant debug output to stderr.
+
 2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump libgedathon version = 0.8, bump date version 20180521.
