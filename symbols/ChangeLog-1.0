@@ -16,6 +16,8 @@
 
             * diode/zener53/zener_19_1N5356B.sym
 
+    * micro/PIC/PIC12x2x: Rename symbols with UPPER case.
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
