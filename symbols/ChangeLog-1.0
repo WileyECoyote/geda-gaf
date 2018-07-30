@@ -20,6 +20,9 @@
 
     * micro/PIC/PIC18F14K22-1.sym: Add symbol; flash microcontroller.
 
+    * st/L3G4200D-1.sym: Add symbol; Three-Axis Gyroscope, Digital,
+      I2C/SPI,  2.4 to 3.6 Volt.
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
