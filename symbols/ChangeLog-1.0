@@ -6,6 +6,11 @@
             * generic/connector34-1.sym
             * generic/connector35-1.sym
 
+    * connector/header: Add description attribute, update attribute
+      color:
+
+            * connector/header/header6-1.sym
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
