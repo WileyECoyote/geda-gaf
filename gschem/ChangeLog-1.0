@@ -1,5 +1,7 @@
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Reduce scope of floater in o_attrib_reset_position.
+
     * src/x/x_menus.c: Change variable len from type size_t to unsigned int
       in x_menu_recent_files_save.
 
