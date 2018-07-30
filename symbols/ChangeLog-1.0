@@ -12,6 +12,10 @@
             * connector/header/header6-1.sym
             * connector/header/header8-1.sym
 
+    * diode/zener53: Add symbols for 5 Watt zener diodes:
+
+            * diode/zener53/zener_19_1N5356B.sym
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
@@ -26,7 +30,7 @@
             * connector/header/header4-1.sym
             * connector/header/header5-1.sym
 
-    * diode/zener53:
+    * diode/zener53: Add symbols for 5 Watt zener diodes:
 
             * diode/zener53/zener_17_1N5354B.sym (17 Volt)
             * diode/zener53/zener_18_1N5355B.sym (18 Volt)
@@ -56,7 +60,7 @@
             * connector/header/header2-1.sym
             * connector/header/header3-1.sym
 
-    * diode/zener53:
+    * diode/zener53: Add symbols for 5 Watt zener diodes:
 
             * diode/zener53/zener_15_1N5352B.sym (15 Volt)
             * diode/zener53/zener_16_1N5353B.sym (16 Volt)
@@ -65,7 +69,7 @@
 
 2018-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * diode/zener53:
+    * diode/zener53: Add symbols for 5 Watt zener diodes:
 
             * diode/zener53/zener_13_1N5350B.sym (13 Volt)
             * diode/zener53/zener_14_1N5351B.sym (14 Volt)
