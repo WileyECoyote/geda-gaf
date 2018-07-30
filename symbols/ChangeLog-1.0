@@ -18,6 +18,8 @@
 
     * micro/PIC/PIC12x2x: Rename symbols with UPPER case.
 
+    * micro/PIC/PIC18F14K22-1.sym: Add symbol; flash microcontroller.
+
 2018-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
