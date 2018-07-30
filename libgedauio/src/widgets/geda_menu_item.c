@@ -1296,20 +1296,15 @@ GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_set_submenu_widget
- * \par Function Description
- *  Sets or replaces the submenu of menu item, or removes it when a %NULL
- *  submenu is passed.
- *
- * \param [in] menu_item a #GedaMenuItem
-/*!
- * \brief geda_menu_item_set_submenu_widget
+ * \brief Set GedaMenuItem submenu Widget
  * \par Function Description
  *  Sets or replaces the submenu of menu item, or removes it when a %NULL
  *  submenu is passed.
  *
  * \param [in] menu_item a #GedaMenuItem
  * \param [in] submenu   the submenu, or %NULL
+ *
+ *
  */
 void geda_menu_item_set_submenu_widget (GedaMenuItem *menu_item, GtkWidget *submenu)
 {
