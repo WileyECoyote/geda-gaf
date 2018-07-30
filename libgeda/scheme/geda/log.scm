@@ -19,7 +19,10 @@
 ;;
 
 (define-module (geda log)
-  #:use-module (geda core log))
+  #:use-module (geda core log)
+  #:use-module (geda core gettext)
+
+  #:use-module (ice-9 format))
 
 ;; ================================================================
 ;; Logging messages
