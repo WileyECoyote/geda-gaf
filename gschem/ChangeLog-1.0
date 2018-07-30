@@ -2,6 +2,9 @@
 
     * tests/runtest.sh: Update bitmap directory, now bitmaps.
 
+    * tests/golden: Regenerate reference files because the changes made to
+      libgedacairo arc.
+
 2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschemdoc.scm: Add "packages" to the list of directories
