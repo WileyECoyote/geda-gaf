@@ -1,3 +1,9 @@
+2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise setting pointer to priv member
+      in geda_menu_item_set_submenu_widget until after the menu_item object
+      has been validated.
+
 2018-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Rename functions:
