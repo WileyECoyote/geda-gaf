@@ -14,6 +14,9 @@ check-am: update-gaf-tool
 # Unit test support.  The unit tests are run using a geda batch
 # program, with config loading disabled (-q) so that user config
 # already on the system can't interfere with the test process.
+#
+# Note that if GUILE_LOAD_PATH is required to be set in order for
+# geda to run properly, then this will also be true for these tests.
 
 # The new commanline tool uses --no-rcfiles
 #GAF_SHELL = $(top_builddir)/gaf/src/.libs/gaf --no-rcfiles shell
