@@ -978,7 +978,9 @@ EDA_SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
   for (i = 0; i < length; i++) {
     value_s = scm_cons (scm_from_utf8_string (value[i]), value_s);
   }
+
   scm_dynwind_end ();
+
   return scm_reverse_x (value_s, SCM_EOL);
 }
 
@@ -1136,20 +1138,29 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
   /* Figure out what value is */
   if (scm_is_string (value_s)) {
+
     char *value = scm_to_utf8_string (value_s);
+
     scm_dynwind_free (value);
+
     eda_config_set_string (cfg, group, key, value);
   }
   else if (scm_is_bool (value_s)) {
+
     bool value = scm_is_true (value_s);
+
     eda_config_set_boolean (cfg, group, key, value);
   }
   else if (scm_is_integer (value_s) && scm_is_true (scm_exact_p (value_s))) {
+
     int value = scm_to_int (value_s);
+
     eda_config_set_integer (cfg, group, key, value);
   }
   else if (scm_is_real (value_s)) {
+
     double value = scm_to_double (value_s);
+
     eda_config_set_double (cfg, group, key, value);
 
   }
@@ -1167,10 +1178,16 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
       scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev, value,
                                   SCM_F_WIND_EXPLICITLY);
+
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
-        char *tmp = scm_to_utf8_string (scm_car (curr_s));
-        value [i++] = geda_utility_string_strdup (tmp);
-        free (tmp);
+
+        char *str;
+
+        str = scm_to_utf8_string (scm_car (curr_s));
+
+        value [i++] = geda_utility_string_strdup (str);
+
+        free (str);
       }
 
       eda_config_set_string_list (cfg, group, key,
@@ -1220,7 +1237,6 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
     else {
       scm_wrong_type_arg (scheme_config_set_x, SCM_ARG4, value_s);
     }
-
   }
   else {
     scm_wrong_type_arg (scheme_config_set_x, SCM_ARG4, value_s);
@@ -1228,6 +1244,7 @@ EDA_SCM_DEFINE (config_set_x, "%set-config!", 4, 0, 0,
 
   scm_remember_upto_here_1 (value_s);
   scm_dynwind_end ();
+
   return cfg_s;
 }
 
@@ -1346,6 +1363,7 @@ EDA_SCM_DEFINE (config_remove_event_x, "%remove-config-event!", 2, 0, 0,
   if (found) {
     scm_gc_unprotect_object (proc_s);
   }
+
   return cfg_s;
 }
 
