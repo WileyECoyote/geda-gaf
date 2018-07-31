@@ -697,7 +697,8 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
 
   if (return_value) {
     scm_return_value = scm_from_utf8_string (return_value);
-  } else {
+  }
+  else {
     scm_return_value = scm_from_utf8_string ("unknown");
   }
 
