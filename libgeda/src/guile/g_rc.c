@@ -96,7 +96,7 @@ SCM g_rc_component_library(SCM path, SCM name)
 {
   char *directory;
   char *temp;
-  char *namestr = NULL;
+  char *namestr;
   SCM   result;
 
   SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "component-library");
@@ -105,6 +105,9 @@ SCM g_rc_component_library(SCM path, SCM name)
   if (name != SCM_UNDEFINED) {
     namestr = scm_to_utf8_string (name);
     scm_dynwind_free(namestr);
+  }
+  else {
+    namestr = NULL;
   }
 
   /* take care of any shell variables */
