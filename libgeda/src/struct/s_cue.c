@@ -52,7 +52,7 @@
  *
  */
 void geda_struct_cue_get_locations(const GList *objects, GArray *junctions,
-                                               GArray *unconnected)
+                                                         GArray *unconnected)
 {
   const GList    *iter;
         GedaPoint point;
@@ -236,7 +236,7 @@ static void s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
  *   and s_cue_postscript_junction.
  */
 static void s_cue_output_lowlevel(GedaToplevel *toplevel,
-                                  GedaObject       *object,
+                                  GedaObject   *object,
                                   int           whichone,
                                   FILE         *fp,
                                   int           output_type)
@@ -320,7 +320,7 @@ static void s_cue_output_lowlevel(GedaToplevel *toplevel,
  *   Wrapper for s_cue_postscript_junction.
  */
 static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
-                                            GedaObject       *object,
+                                            GedaObject   *object,
                                             FILE         *fp,
                                             int           output_type)
 {
@@ -368,9 +368,9 @@ static void s_cue_output_lowlevel_midpoints(GedaToplevel *toplevel,
  *  \param [in] type       The type of output being produced
  */
 void geda_struct_cue_output_single(GedaToplevel *toplevel,
-                         GedaObject       *object,
-                         FILE         *fp,
-                         int           type)
+                                   GedaObject   *object,
+                                   FILE         *fp,
+                                   int           type)
 {
   g_return_if_fail (object != NULL);
 
@@ -396,8 +396,7 @@ void geda_struct_cue_output_single(GedaToplevel *toplevel,
  *  \par Function Description
  *   Wrapper for geda_struct_cue_output_single and geda_struct_cue_output_all.
  */
-void
-geda_struct_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type)
+void geda_struct_cue_output_all (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type)
 {
   const GList *iter = obj_list;
 
