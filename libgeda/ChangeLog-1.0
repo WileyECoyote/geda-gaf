@@ -1,3 +1,8 @@
+2018-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_path.c Eliminate (i hope) extinct __MINGW32__ and _WIN32
+      symbols, replace G_OS_WIN32 with in source defined OS_WIN32.
+
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/log.scm: Partially revert commit; reinstate declaring

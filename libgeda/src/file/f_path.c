@@ -254,7 +254,7 @@ char *geda_file_path_get_dirname (const char *filespec)
 
     filepath = geda_strdup(filespec);
 
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+#if defined (OS_WIN32_NATIVE)
 
     const char *ptr;
 
@@ -284,7 +284,7 @@ char *geda_file_path_get_dirname (const char *filespec)
       root_path[0] = '.';
       root_path[1] = '\0';
 
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+#if defined (OS_WIN32_NATIVE)
 
       if (isalpha (filepath[0]) && filepath[1] == ':') {
 
@@ -303,7 +303,7 @@ char *geda_file_path_get_dirname (const char *filespec)
 
     while (path > filepath && G_IS_DIR_SEPARATOR (*path)) path--;
 
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
+#if defined (OS_WIN32_NATIVE)
 
     /* path points to the char before the last slash.
      *
@@ -400,7 +400,7 @@ static void *libgeda_module_handle (void)
   return (void*) hmodule;
 }
 
-#endif /* G_OS_WIN32 */
+#endif /* OS_WIN32 */
 
 /*!
  * \brief Get the directory with the gEDA system data.
@@ -433,7 +433,7 @@ const char *geda_file_path_sys_data (void) {
 
   if (sys_data_path == NULL) {
 
-# if defined (G_OS_WIN32)
+# if defined (OS_WIN32)
     /* On Windows, guess the path from the location of the libgeda DLL. */
     char *directory =
       g_win32_get_package_installation_directory_of_module (libgeda_module_handle ());
@@ -522,12 +522,12 @@ const char *geda_file_path_sys_config (void) {
   /* If GEDADATARC was not specified in the environment */
   if (sys_config_path == NULL) {
 
-#if defined (GEDA_USE_XDG) && defined(_WIN32)
+#if defined (GEDA_USE_XDG)
 
     const char * const *sys_dirs = g_get_system_config_dirs();
     sys_config_path = g_build_filename (sys_dirs[0], GEDA_CONFIG_DIR, NULL);
 
-#elif defined (GEDARCDIR) && !defined(_WIN32)
+#elif defined (GEDARCDIR) && !defined(OS_WIN32)
 
     /* If available, use the rc directory set during configure. */
     sys_config_path = geda_strdup(GEDARCDIR);
@@ -570,7 +570,7 @@ const char *geda_file_path_user_config (void) {
     const char *homedir;
     const char *configdir;
 
-#if defined (GEDA_USE_XDG) && defined(_WIN32)
+#if defined (GEDA_USE_XDG)
 
     configdir = GEDA_CONFIG_DIR;
     homedir   = g_get_user_config_dir();
