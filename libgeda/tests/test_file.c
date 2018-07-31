@@ -831,10 +831,21 @@ int test_get (void)
 
   cwd = getcwd(0,0);
 
-  if (!geda_is_path_absolute(cwd)) {                         /* absolute input */
+  if (!geda_is_path_absolute(cwd)) {                         /* absolute path */
     fprintf(stderr, "FAILED: (F021105) src path_absolute\n");
     result++;
   }
+
+  char *this_file_06;
+
+  this_file_06 = g_build_filename(cwd, __FILE__, NULL);
+
+  if (!geda_is_path_absolute(this_file_06)) {                /* absolute file */
+    fprintf(stderr, "FAILED: (F021106) src path_absolute\n");
+    result++;
+  }
+
+  free(this_file_06);
   free(cwd);
 
   return result;

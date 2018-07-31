@@ -6,6 +6,9 @@
     * src/struct/s_slib.c: Maintain pointer to list using an ancillary
       varible to iterate list in geda_struct_slib_print_dirs.
 
+    * tests/test_file.c: Check geda_file_get_is_path_absolute with a
+      reference to an absolute file.
+
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/log.scm: Partially revert commit; reinstate declaring
