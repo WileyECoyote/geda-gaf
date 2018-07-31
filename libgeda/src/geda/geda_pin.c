@@ -329,23 +329,23 @@ static void geda_pin_class_init(void *klass, void *class_data)
 
   params = g_param_spec_string ("sequence", _("Sequence"),
                               _("The pin sequence"),
-                              "",
-                              G_PARAM_READWRITE);
+                                "",
+                                G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_SEQUENCE, params);
 
   params = g_param_spec_string ("pin-type", _("Type"),
                               _("Either Mechanical or Electrical Properties of the pin"),
                                 "",
-                                G_PARAM_READWRITE);
+                                 G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_TYPE, params);
 
-  params = g_param_spec_int ("whichend", _("Whichend"),
-                              _("Which end of the pin gets connected"),
-                              -1,
-                               1,
-                              -1,
+  params = g_param_spec_int ("whichend", _("Which End"),
+                           _("Which end of the pin gets connected"),
+                             -1,
+                              1,
+                             -1,
                               G_PARAM_READWRITE);
 
   g_object_class_install_property (gobject_class, PROP_WHICHEND, params);
