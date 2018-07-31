@@ -262,13 +262,15 @@ void geda_struct_slib_print_dirs(void)
     }
     else {
 
-      while (files) {
+      GSList *iter = files;
 
-        char *file = files->data;
+      while (iter) {
+
+        char *file = iter->data;
 
         printf("file: %s\n", file);
 
-        files = files->next;
+        iter = iter->next;
       }
 
       geda_utility_gslist_free_full (files, g_free);
