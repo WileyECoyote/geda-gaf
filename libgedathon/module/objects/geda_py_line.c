@@ -26,7 +26,7 @@
  *  Date Contributed: November, 17, 2013
  */
 
-#include <config.h>
+#include <config.h>                       /* HAVE_HYPOT */
 
 #include <geda_py_compat.h>
 
