@@ -1,3 +1,7 @@
+2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * autogen.sh: Update patch file string variable needed_24.
+
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * autogen.sh: Remove apparent remnant debug output to stderr.

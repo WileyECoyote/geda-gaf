@@ -142,14 +142,14 @@ fix_asneeded() {
   if test -d $tooldir; then
     cd $tooldir
     if test -f $clunker ; then
-      if test -f $needed ; then
+      if test -f $needed_24 ; then
         patch -tp0 -N --dry-run --silent <$needed_24 > /dev/null 2>&1;
         if [ $? -eq 0 ]; then
           echo "patching $clunker, 2 of 2 patches applied"
           patch -stp0 < $needed_24 > /dev/null 2>&1 &
         fi
       else
-        echo "File needed to fix libtool as-needed, \"$needed\", seems to be missing"
+        echo "File needed to fix libtool as-needed, \"$needed_24\", seems to be missing"
       fi
     else
       echo "File \"$clunker\", seems to be missing from $tooldir/"
