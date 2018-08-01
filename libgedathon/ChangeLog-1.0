@@ -1,3 +1,7 @@
+2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gsym-set-font-size.py: Revise wording in Usage.
+
 2018-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Change charset to UTF-8 and update translations.

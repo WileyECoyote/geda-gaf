@@ -9,7 +9,7 @@ gsym-set-font-size \- gEDA-gaf Symbol File Utility
 
 .SH DESCRIPTION
 .B gsym-set-font-size
-Sets the font size of Text attributes in a symbol file to default values unless otherwise specified
+Sets the font size of Text attributes in a symbol file to default values or as otherwise specified
 
 .SH QUICK
 .B usage: [-h] | [Options] -i <inputfile> [[-o] <outputfile> ]
