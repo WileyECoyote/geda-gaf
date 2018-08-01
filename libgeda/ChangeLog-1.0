@@ -6,7 +6,8 @@
       something went wrong.
 
     * docs/libgeda.1.in: Extend the no warranty clause to include "not even
-      for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE".
+      for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
+      quotes around COPYING with double quotes for better portability.
 
 2018-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
