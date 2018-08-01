@@ -98,10 +98,10 @@ else
 	@! :
 endif
 
-MOSTLYCLEANFILES     = *.log *~
-CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log *~ $(dist_man_MANS)
-MAINTAINERCLEANFILES = *.log *~ $(dist_man_MANS) Makefile.in
+MOSTLYCLEANFILES     = *.log *.tmp *~
+CLEANFILES           = *.log *.tmp *~
+DISTCLEANFILES       = *.log *.tmp *~ $(dist_man_MANS)
+MAINTAINERCLEANFILES = *.log *.tmp *~ $(dist_man_MANS) Makefile.in
 
 distclean-local:
 	-rm -rf html latex
