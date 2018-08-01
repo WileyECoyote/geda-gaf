@@ -1,3 +1,9 @@
+2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_main_window.c: Revise gschem_main_window_geometry_restore
+      to reset either the height or width to the default if the retrieved value
+      from the settings is less than 100 pixels.
+
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Reduce scope of floater in o_attrib_reset_position.
