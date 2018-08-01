@@ -1,3 +1,9 @@
+2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Remove line continuation after sed removes hideous
+      groff branding so the next cp line is not fed to sed, then resuppress
+      output and redirect strderr from rm to null.
+
 2018-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Remove initializing namestr to NULL and set in

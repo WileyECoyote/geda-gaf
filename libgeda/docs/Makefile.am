@@ -80,8 +80,8 @@ dist_docsman_DATA=$(html_man_files)
 	@rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
 	cp -f $@.tmp $@ && \
-	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@)-man-1.html \
-	rm -f $@.tmp
+	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@)-man-1.html
+	@rm -f $@.tmp 2>/dev/null
 
 .1.tex: $(dist_man_MANS)
 	@rm -rf $@.tmp && \
