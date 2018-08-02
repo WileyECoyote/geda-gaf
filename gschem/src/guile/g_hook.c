@@ -384,7 +384,7 @@ g_hook_run_object(GschemToplevel *w_current, Hooker hook, GedaObject *object)
     IdleHookData *capsule;
 
     capsule              = g_hook_get_new_capsule(w_current, hook);
-    capsule->data.object = g_object_ref (G_OBJECT(object));
+    capsule->data.object = g_object_ref (object);
     capsule->type        = OBJECT_HOOK;
     capsule->source_id   = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
                                             g_hook_run_idle_callback,
@@ -410,7 +410,7 @@ void g_hook_run_page(GschemToplevel *w_current, Hooker hook, Page *page)
     IdleHookData *capsule;
 
     capsule             = g_hook_get_new_capsule(w_current, hook);
-    capsule->data.page  = g_object_ref (G_OBJECT(page));
+    capsule->data.page  = g_object_ref (page);
     capsule->type       = PAGE_HOOK;
     capsule->source_id  = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
                                            g_hook_run_idle_callback,
