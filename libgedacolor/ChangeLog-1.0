@@ -1,14 +1,20 @@
+2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacolor.1.in: Extend the no warranty clause to include "not even
+      for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
+      quotes around COPYING with double quotes for better portability.
+
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\guile\color_guile.c: Replace access with g_file_test in function
+    * src/guile/color_guile.c: Replace access with g_file_test in function
       geda_color_guile_load_scheme because access does not work when directory
       seperators are mixed in the file path, i.e. forward slashes mixed with
       backslashes.
 
-    * src\libgedacolor.c: Call geda_file_path_free to release resources in
+    * src/libgedacolor.c: Call geda_file_path_free to release resources in
       the geda_file_path module before exiting libgedacolor_release.
 
-    * tests\test_color.c: Include config.h.
+    * tests/test_color.c: Include config.h.
 
 2018-04-09 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -174,7 +180,7 @@
 
 2016-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\Makefile.am: Add subdir-objects to shut-up automake 1.15.
+    * src/Makefile.am: Add subdir-objects to shut-up automake 1.15.
 
 2016-05-24 Wiley E. Hill <wileyhill@gmail.com>
 
