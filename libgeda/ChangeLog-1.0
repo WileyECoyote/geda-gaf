@@ -2,6 +2,9 @@
 
     * docs/libgeda-man-1.html: Regenerate Doyxgen included html man page.
 
+    * include/prototype_priv.h: Remove duplicate "const" specifiers in
+      declaration of geda_line_object_read.
+
     * src/file/f_path.c: Remove second "const" from xx_ENV_STR array.
 
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
