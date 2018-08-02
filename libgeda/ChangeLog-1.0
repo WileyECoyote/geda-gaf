@@ -7,6 +7,10 @@
 
     * src/file/f_path.c: Remove second "const" from xx_ENV_STR array.
 
+    * src/geda/geda_config.c: Revise arguments to strhashcmp and explicitly
+      compare first char in conditionals and unset return value in else
+      clause.
+
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Remove line continuation after sed removes hideous
