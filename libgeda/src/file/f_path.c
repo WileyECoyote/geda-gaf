@@ -46,9 +46,9 @@
 #include <pwd.h>
 #endif
 
-static const char const DOC_ENV_STR[]    = "GEDADOC";
-static const char const DATA_ENV_STR[]   = "GEDADATA";
-static const char const RCDATA_ENV_STR[] = "GEDADATARC";
+static const char DOC_ENV_STR[]    = "GEDADOC";
+static const char DATA_ENV_STR[]   = "GEDADATA";
+static const char RCDATA_ENV_STR[] = "GEDADATARC";
 
 static char *sys_data_path    = NULL;
 static char *sys_doc_path     = NULL;

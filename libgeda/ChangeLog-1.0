@@ -2,6 +2,8 @@
 
     * docs/libgeda-man-1.html: Regenerate Doyxgen included html man page.
 
+    * src/file/f_path.c: Remove second "const" from xx_ENV_STR array.
+
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Remove line continuation after sed removes hideous
