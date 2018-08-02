@@ -1,3 +1,7 @@
+2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgeda-man-1.html: Regenerate Doyxgen included html man page.
+
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Remove line continuation after sed removes hideous
