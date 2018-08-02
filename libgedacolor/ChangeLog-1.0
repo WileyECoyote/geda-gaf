@@ -1,5 +1,10 @@
 2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/Makefile.am: Remove line continuation after sed removes hideous
+      groff branding so the next cp line is not fed to sed, then resuppress
+      output and redirect strderr from rm to null. Clean *.tmp files in case
+      something went wrong.
+
     * docs/libgedacolor.1.in: Extend the no warranty clause to include "not even
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
       quotes around COPYING with double quotes for better portability.
