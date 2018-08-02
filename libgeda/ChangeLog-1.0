@@ -11,6 +11,9 @@
       compare first char in conditionals and unset return value in else
       clause.
 
+    * src/geda/geda_object.c: Remove cast from g_object_ref argument in
+      geda_object_ref.
+
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Remove line continuation after sed removes hideous
