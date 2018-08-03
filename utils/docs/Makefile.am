@@ -82,18 +82,18 @@ dist_docsman_DATA=$(html_man_files)
 .1.html:
 	rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
-	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@).html \
-	rm -f $@.tmp
+	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@).html
+	@rm -f $@.tmp 2>/dev/null
 else
 .1.html:
 	@echo "No working groff available: cannot create $@"
 	@! :
 endif
 
-MOSTLYCLEANFILES     = *.log *~
-CLEANFILES           = *.log *~
-DISTCLEANFILES       = *.log *~ core FILE
-MAINTAINERCLEANFILES = *.log *~ Makefile.in $(html_man_files)
+MOSTLYCLEANFILES     = *.log *.tmp *~
+CLEANFILES           = *.log *.tmp *~
+DISTCLEANFILES       = *.log *.tmp *~ core FILE
+MAINTAINERCLEANFILES = *.log *.tmp *~ Makefile.in $(html_man_files)
 
 distclean-local:
 	-rm -rf html latex
