@@ -1271,12 +1271,17 @@ x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
  *  \ingroup (menu-module)
  */
 
-static bool strhashcmp (const void *a, const void *b)
-{
-  int answer = 0;
-  if (((char*)a != '\0') && ((char*)b != '\0')) {
-     answer = strcmp ((const char*) a, (const char*) b) == 0;
+static bool strhashcmp (const char *a, const char *b) {
+
+  int answer;
+
+  if ((a[0] != '\0') && (b[0] != '\0')) {
+     answer = strcmp (a, b) == 0;
   }
+  else {
+     answer = 0;
+  }
+
   return answer;
 }
 
