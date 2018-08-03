@@ -702,6 +702,10 @@ void x_window_close(GschemToplevel *w_current)
       x_settings_save_settings(w_current);
     }
 
+    if (geda_utility_log_get_log_time()) {
+      geda_log(_("Shutdown schematic editor\n"));
+    }
+
     /* close the log file */
     geda_utility_log_close ();
 
