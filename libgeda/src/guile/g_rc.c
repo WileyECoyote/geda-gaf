@@ -1034,16 +1034,19 @@ SCM g_rc_log_directory(SCM path)
   string = geda_utility_expand_env_variable (temp);
   free (temp);
 
-  /* invalid path? */
-  if (geda_create_path (string, 0777 /*octal*/ ) != NO_ERROR) {
-    fprintf (stderr, "%s \"%s\", %s\n", _("invalid path"), string, strerror (errno));
-    GEDA_FREE(string);
-    return SCM_BOOL_F;
+  if (!g_file_test(string, G_FILE_TEST_IS_DIR)) {
+
+    if (geda_create_path (string, 0777 /*octal*/ ) != NO_ERROR) {
+      fprintf (stderr, "%s \"%s\", %s\n", _("invalid path"), string, strerror (errno));
+      GEDA_FREE(string);
+      return SCM_BOOL_F;
+    }
   }
 
   if (default_log_directory) {
     geda_free (default_log_directory);
   }
+
   default_log_directory = string;
 
   return SCM_BOOL_T;
