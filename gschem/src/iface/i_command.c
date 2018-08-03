@@ -977,10 +977,10 @@ COMMAND (do_save_as) {
   char *old_name;
 
   /* Get ptr to the current page */
-  p_current  = gschem_toplevel_get_current_page(w_current);
+  p_current = gschem_toplevel_get_current_page(w_current);
 
  /* Make a copy of the page file name */
-  old_name   = geda_strdup(p_current->filename);
+  old_name = geda_strdup(p_current->filename);
 
   x_fileselect_save (w_current);
 
