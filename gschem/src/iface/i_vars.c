@@ -247,7 +247,7 @@ void i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *ke
 /* Retrieves a boolean from key file in specified group */
 /* Returns True if the value was restored from configuration or
  * False if \a def_val was assigned */
-bool i_var_restore_group_boolean(EdaConfig *cfg, const const char *group,
+bool i_var_restore_group_boolean(EdaConfig *cfg, const char *group,
                                                  const char *key,
                                                  int *var, int def_val)
 {

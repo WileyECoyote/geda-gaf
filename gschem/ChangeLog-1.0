@@ -3,6 +3,9 @@
     * include/x_menus.h: Make st_popup_menu_entry string members pointers to
       constants, not constants pointers.
 
+    * src/iface/i_vars.c: Remove redundant const specifier from definition of
+      i_var_restore_group_boolean.
+
 2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_hook.c: Remove cast from g_object_ref argument in functions
