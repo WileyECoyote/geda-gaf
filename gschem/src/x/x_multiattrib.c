@@ -56,7 +56,7 @@ static WidgetStringData DialogStrings[] = {
 
 static void multiattrib_update (Multiattrib *multiattrib);
 
-static const char const mae_object_list[]  = "object-list";
+static const char mae_object_list[]  = "object-list";
 
 static bool snv_shows_name (int snv)
 {

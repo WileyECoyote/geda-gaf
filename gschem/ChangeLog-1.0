@@ -9,6 +9,9 @@
     * src/x/x_menus.c:: Redo strhashcmp function; explicitly compare first
       char in conditionals and unset return value in else clause.
 
+    * src/x/x_multiattrib.c: Remove redundant const in decl specifier from
+      static mae_object_list.
+
     * src/x/x_window.c: Log shutdown in x_window_close if log-time is enabled.
 
 2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
