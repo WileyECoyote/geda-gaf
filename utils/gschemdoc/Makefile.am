@@ -2,7 +2,7 @@
 ##
 ## Process this file with automake to produce Makefile.in
 
-bin_SCRIPTS = gschemdoc
+bin_SCRIPTS = gschemdoc.sh
 
 EXTRA_DIST = 
 
