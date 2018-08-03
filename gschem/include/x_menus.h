@@ -183,12 +183,12 @@ struct st_menu_radio_data {
 };
 
 struct st_popup_menu_entry {
-  const char const *name;
+  const char *const name;
   void             *func;
   int               action_id;
   bool              use_stock;
-  const char const *icon;
-  const char const *tip;
+  const char *const icon;
+  const char *const tip;
 };
 
 #endif /* __GSCHEM_X_MENU_H__ */
