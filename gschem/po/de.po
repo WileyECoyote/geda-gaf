@@ -2135,7 +2135,7 @@ msgstr ""
 
 #: gschem/src/x/x_dialog.c:3057
 msgid "Auto Zoom Extents"
-msgstr "/Automatisch"
+msgstr "Automatisch"
 
 #: gschem/src/x/x_dialog.c:3229
 msgid "Hotkeys"
@@ -3196,11 +3196,11 @@ msgstr "Fügen Sie ein Symbol aus der Komponentenbibliothek ein"
 
 #: gschem/src/x/x_menus.c:96 gschem/etc/system-gschemrc.scm:2255
 msgid "Add bus"
-msgstr "/Bus einfügen"
+msgstr "Bus einfügen"
 
 #: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2257
 msgid "Add text"
-msgstr "/Text einfügen"
+msgstr "Text einfügen"
 
 #: gschem/src/x/x_menus.c:101
 msgid "Zoom"
@@ -3238,7 +3238,7 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:105 gschem/src/x/x_menus.c:156
 msgid "Extents"
-msgstr "/Automatisch"
+msgstr "Automatisch"
 
 #: gschem/src/x/x_menus.c:105 gschem/src/x/x_menus.c:156
 #: gschem/etc/system-gschemrc.scm:2200
@@ -4649,23 +4649,24 @@ msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2199
 msgid "Zoom _Box"
-msgstr "_Rechteck auswählen"
+msgstr "Rechteck auswählen"
 
 #: gschem/etc/system-gschemrc.scm:2200
 msgid "Zoom _Extents"
-msgstr "_Alles anzeigen"
+msgstr "Alles anzeigen"
 
 #: gschem/etc/system-gschemrc.scm:2201
 msgid "Zoom _In"
-msgstr "Ver_größern"
+msgstr "Vergrößern"
 
 #: gschem/etc/system-gschemrc.scm:2202
 msgid "Zoom _Out"
-msgstr "Ver_kleinern"
+msgstr "Verkleinern"
 
+# Zoom Magnification
 #: gschem/etc/system-gschemrc.scm:2203
 msgid "Zoom _Mag"
-msgstr "Ver_größern"
+msgstr "Zoomvergrößerung"
 
 #: gschem/etc/system-gschemrc.scm:2204
 msgid "Zoom _Selection"
@@ -4673,7 +4674,7 @@ msgstr "Auswahl"
 
 #: gschem/etc/system-gschemrc.scm:2207 gschem/etc/system-gschemrc.scm:2245
 msgid "D_ocumentation..."
-msgstr "_Dokumentation..."
+msgstr "D_okumentation..."
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
@@ -4813,11 +4814,11 @@ msgstr "Aktuelle Seite"
 
 #: gschem/etc/system-gschemrc.scm:2242
 msgid "Down _Schematic"
-msgstr "/Zum Schaltplan hinab"
+msgstr "Zum _Schaltplan hinab"
 
 #: gschem/etc/system-gschemrc.scm:2243
 msgid "Down S_ymbol"
-msgstr "/Zum Symbol hinab"
+msgstr "Zum S_ymbol hinab"
 
 #: gschem/etc/system-gschemrc.scm:2244
 msgid "_Hierarchy Up"
@@ -5440,15 +5441,15 @@ msgstr "Auswahl"
 
 #: gschem/scheme/gschem/builtins.scm:233
 msgid "Zoom Extents"
-msgstr "/Automatisch"
+msgstr "Automatisch"
 
 #: gschem/scheme/gschem/builtins.scm:236
 msgid "Zoom In"
-msgstr "/Vergrößern"
+msgstr "Vergrößern"
 
 #: gschem/scheme/gschem/builtins.scm:239
 msgid "Zoom Out"
-msgstr "/Verkleinern"
+msgstr "Verkleinern"
 
 #: gschem/scheme/gschem/builtins.scm:242
 msgid "Zoom All"
@@ -5460,7 +5461,7 @@ msgstr "Ver_größern"
 
 #: gschem/scheme/gschem/builtins.scm:248
 msgid "Documentation"
-msgstr "_Dokumentation..."
+msgstr "Dokumentation..."
 
 #: gschem/scheme/gschem/builtins.scm:251
 msgid "Show/Hide Invisible Text"
@@ -5476,11 +5477,11 @@ msgstr "Unsichtbaren Text anzeigen/verbergen"
 
 #: gschem/scheme/gschem/builtins.scm:260
 msgid "Dark Color Scheme"
-msgstr "_Dunkles Farbschema"
+msgstr "Dunkles Farbschema"
 
 #: gschem/scheme/gschem/builtins.scm:263
 msgid "Light Color Scheme"
-msgstr "_Helles Farbschema"
+msgstr "Helles Farbschema"
 
 #: gschem/scheme/gschem/builtins.scm:266
 msgid "Monochrome Color Scheme"
@@ -5502,21 +5503,24 @@ msgstr ""
 msgid "Draw Last"
 msgstr ""
 
+# First Page
 #: gschem/scheme/gschem/builtins.scm:290
 msgid "First Page"
-msgstr "_Vorherige"
+msgstr "Erste Seite"
 
+# Previous Page
 #: gschem/scheme/gschem/builtins.scm:293
 msgid "Previous Page"
-msgstr "_Vorherige"
+msgstr "Vorherige Seite"
 
 #: gschem/scheme/gschem/builtins.scm:296
 msgid "Next Page"
 msgstr "Neue Seite"
 
+# Page Up
 #: gschem/scheme/gschem/builtins.scm:299
 msgid "Page Up"
-msgstr "_Seite"
+msgstr "Seite nach oben"
 
 #: gschem/scheme/gschem/builtins.scm:302
 msgid "Page Down"
@@ -5526,9 +5530,10 @@ msgstr "Ausschnittmodus"
 msgid "Last Page"
 msgstr "Neue Seite"
 
+# Print Page
 #: gschem/scheme/gschem/builtins.scm:311
 msgid "Print Page"
-msgstr "_Vorherige"
+msgstr "Seite drucken"
 
 #: gschem/scheme/gschem/builtins.scm:314
 msgid "Revert Changes"
@@ -5540,11 +5545,12 @@ msgstr "Seite wirklich wiederherstellen?"
 
 #: gschem/scheme/gschem/builtins.scm:335
 msgid "Up Hierarchy"
-msgstr "Hie_rarchie"
+msgstr "Hierarchie"
 
+# Add Component
 #: gschem/scheme/gschem/builtins.scm:341
 msgid "Add Component"
-msgstr "/Bauteil hinzufügen..."
+msgstr "Bauteil hinzufügen"
 
 #: gschem/scheme/gschem/builtins.scm:344
 msgid "Add Net"
