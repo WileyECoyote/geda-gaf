@@ -1,3 +1,7 @@
+2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/en_GB.po: Update Great Britain.
+
 2018-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Revise g_rc_log_directory to skip calling
