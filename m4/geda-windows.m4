@@ -53,7 +53,7 @@ AC_DEFUN([AX_WINDOWS_FLAGS],
   if test "$OS_WIN32_NATIVE" = "yes"; then
     MINGW_GUI_LDFLAGS="-mconsole -mwindows"
     MINGW_CFLAGS="-mms-bitfields"
-    STACK_PROTECTOR ="-lssp"
+    STACK_PROTECTOR="-lssp"
   fi
 
   AC_SUBST(MINGW_CFLAGS)
