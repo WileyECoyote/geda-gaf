@@ -325,7 +325,7 @@ int GetStringDisplayLength(char *str,int font_size);
 int attach_pending = 0;    /* keep track of whether the last object */
                            /* read may have attachments pending. */
 int add_attributes = 0;    /* keep track of whether we are adding attributes */
-                     /* to some previous object */
+                           /* to some previous object */
 int pin_attributes = 0;    /* when true, we are adding attributes to a pin */
 int net_attributes = 0;    /* when true, we are adding atrributes to a net */
 int complex_attributes = 0;/* when true, we are adding attributes to a complex*/
@@ -337,8 +337,8 @@ int net_nodes_y[MAX_NODES];
 int scale          = 10;   /* scale factor for viewlogic-geda conversion */
 /* int symbol_mode    = 0; */
 int records_processed = 0; /* used to keep track of the number of viewlogic
-                      * records processed for diagnostics
-                      */
+                           * records processed for diagnostics
+                           */
 
 int minx = 0;              /* bounding box for symbol */
 int miny = 0;
@@ -496,7 +496,7 @@ convert_file(FILE *fp)
 
       case 'Q':
         fprintf(stderr,"Warning 'Q' record found and not handled at"
-              "record %d, contact maintainer\n",records_processed);
+                       "record %d, contact maintainer\n", records_processed);
         do_nop(fp);
         break;
 
@@ -520,7 +520,7 @@ convert_file(FILE *fp)
           }
         }
         fprintf(stderr,"Warning: Unrecognized record #%d:\n'%c%s'\n",
-              records_processed, c, buf);
+                records_processed, c, buf);
       }
       records_processed++;
     }
@@ -553,7 +553,7 @@ do_bounding_box(FILE *fp)
   if(fscanf(fp,"%d %d %d %d\n", &minx, &miny, &maxx, &maxy) != 4)
     {
       fprintf(stderr,"Error: Invalid bounding box record #%d in %s()\n",
-            records_processed, __func__);
+              records_processed, __func__);
       exit(1);
     }
 
@@ -595,12 +595,11 @@ do_unattached_attribute(FILE *fp)
   /* viewlogic unnatached attributes have this format:
    * U #X #Y #SIZE #ROTATION #origin #Visibility ATTR_TEXT
    */
-  if(fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
-          &viewvis) != 6)
+  if (fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
+             &viewvis) != 6)
     {
       fprintf(stderr,"Error: Invalid Unattached attribute record #%d "
-            "in %s()\n",
-            records_processed, __func__);
+                     "in %s()\n", records_processed, __func__);
       exit(1);
     }
 
@@ -802,7 +801,7 @@ do_attached_attribute(FILE *fp)
       else
       {
         fprintf(stderr,"Error: Invalid or unknown pin type \"%s\" for record "
-              "#%d in %s()\n", value, records_processed, __func__);
+                "#%d in %s()\n", value, records_processed, __func__);
         exit(1);
       }
 
@@ -897,7 +896,7 @@ do_text(FILE *fp)
           &origin) != 5)
     {
       fprintf(stderr,"Error: Invalid text record #%d in %s()\n",
-            records_processed, __func__);
+              records_processed, __func__);
       exit(1);
     }
 
@@ -941,7 +940,7 @@ do_line(FILE *fp)
   if (fscanf(fp,"%u",&pairs) != 1) {
 
       fprintf(stderr,"Error: Unable to read number of line pairs "
-            "for record #%d, in %s()\n",
+              "for record #%d, in %s()\n",
             records_processed, __func__);
       exit(1);
   }
@@ -999,10 +998,10 @@ do_pin(FILE *fp)
    */
 
   if(fscanf(fp,"%*d %d %d %d %d %*d %u %u\n",&x1, &y1, &x2, &y2,
-          &pindir, &pinsense) != 6)
+            &pindir, &pinsense) != 6)
     {
       fprintf(stderr,"Error:Invalid pin record #%d in %s()\n",
-            records_processed, __func__);
+              records_processed, __func__);
       exit(1);
     }
 
