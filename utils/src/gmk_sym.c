@@ -577,6 +577,7 @@ int make_box(int fldcnt, char *pFields[])
 /***************************************************/
 /***************************************************/
 int make_pin(int fldcnt, char *pFields[]) {
+
   int pos_x=0, pos_y=0,shape,side=0, i;
   char pin_name[40];
   char pin[40];
@@ -584,9 +585,9 @@ int make_pin(int fldcnt, char *pFields[]) {
   char *type;
 
   if (fldcnt < 5) {
-	fprintf (stderr, "\nError, not enough parameters on input line:%i instead of 5 !\n", fldcnt);
-	fprintf (stderr, "\nPlease fix the input file then try again.\n\n");
-	return -1;
+    fprintf (stderr, "\nError, not enough parameters on input line:%i instead of 5!\n", fldcnt);
+    fprintf (stderr, "\nPlease fix the input file then try again.\n\n");
+    return -1;
   }
 
   strcpy(pin_name, pFields[0]);
@@ -616,7 +617,7 @@ int make_pin(int fldcnt, char *pFields[]) {
   else if (!strcasecmp(pFields[3], "T"))
     side = T_SIDE;
   else {
-    fprintf (stderr, "\nError, %s not a valid position, should be l,t,b or r.\n", pFields[3]);
+    fprintf (stderr, "\nError, %s not a valid position, should be l, t, b or r.\n", pFields[3]);
     return -1;
   }
 
