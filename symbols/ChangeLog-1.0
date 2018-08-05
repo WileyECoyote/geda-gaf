@@ -1,3 +1,10 @@
+2018-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/generic: Add description attribute, update attribute
+      positions:
+
+            * generic/connector36-1.sym
+
 2018-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
