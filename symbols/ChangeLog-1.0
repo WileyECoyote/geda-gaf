@@ -19,6 +19,9 @@
     * cypress/CYW43362-1.sym: Add symbol: 802.11 b,g,n, Bluetooth 4.2
       with FM Radio.
 
+    * cypress/CYW43364-1.sym: Add symbol: 2.4 GHz WLAN 802.11 b,g,n
+      MAC,baseband,radio with power amplifier.
+
 
 2018-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
