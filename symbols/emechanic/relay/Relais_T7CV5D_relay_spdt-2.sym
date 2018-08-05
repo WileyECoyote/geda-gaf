@@ -15,35 +15,35 @@ pinlabel=X1
 }
 P 1100 1300 1400 1300 1 0 1
 {
-T 1250 1350 5 8 1 1 0 0 1
+T 1300 1350 5 8 1 1 0 0 1
 pinnumber=3
-T 1200 1400 5 10 0 1 0 6 1
+T 1400 1250 5 10 0 1 0 8 1
 pintype=pas
-T 1250 1350 5 8 0 1 0 0 1
+T 1200 1350 5 8 0 1 0 0 1
 pinseq=2
-T 950 1350 5 8 1 1 0 0 1
+T 1050 1350 9 8 1 1 0 6 1
 pinlabel=NC
 }
 P 1100 900 1400 900 1 0 1
 {
-T 1250 950 5 8 1 1 0 0 1
+T 1300 950 5 8 1 1 0 0 1
 pinnumber=4
-T 1200 700 5 10 0 1 0 6 1
+T 1400 850 5 10 0 1 0 8 1
 pintype=pas
-T 1250 950 5 8 0 1 0 0 1
+T 1200 950 5 8 0 1 0 0 1
 pinseq=3
-T 1050 750 5 8 1 1 0 0 1
+T 1050 800 9 8 1 1 0 6 1
 pinlabel=C
 }
 P 1100 500 1400 500 1 0 1
 {
-T 1250 550 5 8 1 1 0 0 1
+T 1300 550 5 8 1 1 0 0 1
 pinnumber=5
-T 1200 300 5 10 0 1 0 6 1
+T 1400 450 5 10 0 1 0 8 1
 pintype=pas
-T 1250 550 5 8 0 1 0 0 1
+T 1200 550 5 8 0 1 0 0 1
 pinseq=4
-T 850 350 5 8 1 1 0 0 1
+T 1050 350 9 8 1 1 0 6 1
 pinlabel=NO
 }
 P 200 0 200 300 1 0 0
@@ -57,32 +57,32 @@ pinseq=5
 T 150 150 5 8 0 1 0 8 1
 pinlabel=X2
 }
-B 0 200 1200 1400 3 10 2 0 -1 -1 0 -1 -1 -1 -1 -1
+B 0 200 1100 1400 3 10 2 0 -1 -1 0 -1 -1 -1 -1 -1
 L 500 300 500 1500 3 10 2 0 -1 -1
-T 500 3300 5 8 0 0 0 0 1
-device=T7CV5D-12
-T 500 3900 5 8 0 0 0 0 1
-description=generic single pole, double throw relay
-T 500 3700 5 8 0 0 0 0 1
+T 800 2450 5 8 0 0 0 0 1
+device=RELAY
+T 800 2250 5 8 0 1 0 0 1
+description=single pole, double throw relay
+T 800 2850 5 8 0 1 0 0 1
 documentation=http://catalog.tycoelectronics.com/TE/bin/TE.Connect?C=1&M=BYPN&TCPN=1462033-5&RQPN=D3002
-T 500 2900 5 8 0 0 0 0 1
+T 800 3450 5 8 0 0 0 0 1
 author=Kai-Martin Knaak, kmk@lilalaser.de
-T 500 3100 5 8 0 0 0 0 1
-symversion=1.0
-T 400 1700 8 10 1 1 0 0 1
+T 800 2650 5 8 0 0 0 0 1
+symversion=0.8
+T 800 1650 8 10 1 1 0 0 1
 refdes=RL?
-T 400 1900 8 10 1 1 0 0 1
-comment=Relais, T7CV5D xxx
-T 500 1700 8 8 0 1 0 0 1
+T 800 1850 5 10 1 1 0 0 1
+value=T7CV5D-12
+T 800 2050 8 8 0 1 0 0 1
 footprint=RELAY_T7CV5D
 L 1100 1300 900 1300 3 10 2 0 -1 -1
 L 900 1300 900 1100 3 10 2 0 -1 -1
 L 1100 900 800 1200 3 10 2 0 -1 -1
 L 1100 500 900 500 3 10 2 0 -1 -1
 L 900 500 900 700 3 10 2 0 -1 -1
-T 500 2700 5 8 0 0 0 0 1
+T 800 3250 5 8 0 0 0 0 1
 dist-license=GPLv2
-T 500 2500 5 8 0 0 0 0 1
+T 800 3050 5 8 0 0 0 0 1
 use-license=unlimited
-T 600 100 9 10 0 0 0 0 1
+T 550 50 9 10 0 0 0 0 1
 numslots=0
