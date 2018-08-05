@@ -315,7 +315,7 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
   const char *msg_change  = _("change");
   const char *msg_restore = _("restore");
 
-  const char *err_dir = _("<error> libgeda could not %s directory to %s:%s");
+  const char *err_dir = _("libgeda could not %s directory to %s:%s");
 
   if (filename == NULL) {
     result = FALSE;
