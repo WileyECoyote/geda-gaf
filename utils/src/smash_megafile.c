@@ -27,6 +27,12 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
+#include "../../include/gettext.h"
+
 #define WITHOUT_GUILE 1
 #define WITHOUT_GDK_PIX_BUFFER 1
 #include <libgeda/libgeda.h>
@@ -39,6 +45,17 @@
 
 int main(int argc, char **argv)
 {
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
+
   FILE *megafile;
   char name[127];
   char buffer[127];         /* buffer for megafile index entries */
