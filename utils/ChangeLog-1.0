@@ -1,3 +1,7 @@
+2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/sarlacc_schem.exe: Include locale.h and gettext.h, setup i18n in main.
+
 2018-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: : Remove line continuation after sed removes hideous

@@ -24,11 +24,16 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif
 
-#include <geda/geda_standard.h>
+#include "../../include/gettext.h"
+#include "../../include/geda/geda_standard.h"
 
 #include <fcntl.h>
 
@@ -105,13 +110,13 @@ unsigned read_block(int fd, char *block, int block_min_size,int block_max_size)
   size = CONV16(sizebuf,0);
 
   if (size < block_min_size) {
-    fprintf(stderr,"Segment too small; read %u size %u, min is %d\n",
+    fprintf(stderr, _("Segment too small; read %u size %u, min is %d\n"),
             result, size, block_min_size);
     exit(1);
   }
 
   if (size > block_max_size) {
-    fprintf(stderr,"Segment too large; read %u size %u, max is %d\n",
+    fprintf(stderr, _("Segment too large; read %u size %u, max is %d\n"),
             result, size, block_max_size);
     exit(1);
   }
@@ -135,7 +140,7 @@ unsigned read_string(char *dest, int dest_size, char *src)
   unsigned size = ((unsigned char*)src)[0];
 
   if (size+1 > dest_size) {
-    fprintf(stderr,"Text too large; size %u, max is %d\n", size, dest_size-1);
+    fprintf(stderr, _("Text too large; size %u, max is %d\n"), size, dest_size-1);
     exit(1);
   }
   strncpy(dest, src + 1, size);
@@ -148,19 +153,19 @@ void read_string_file(int fd,char *dest, int dest_size)
   unsigned char len;
 
   if (read(fd,&len,1) != 1) {
-    fprintf(stderr,"File truncated\n");
+    fprintf(stderr, _("File truncated\n"));
     exit(1);
   }
 
   if (len + 1 > dest_size) {
-    fprintf(stderr,"Text too large; size %d, max is %d\n",
+    fprintf(stderr, _("Text too large; size %d, max is %d\n"),
             len, dest_size-1);
     exit(1);
   }
 
   if (len > 0) {
     if (read(fd,dest,len) != len) {
-      fprintf(stderr,"File truncated\n");
+      fprintf(stderr, _("File truncated\n"));
       exit(1);
     }
   }
@@ -179,14 +184,14 @@ void parse_header(int fd1,int fd2)
 
   if (strncmp((char*)localbuf,"Schematic FILE",14)) {
 
-    fprintf(stderr,"\nFile is not an ORCAD 16 Bit Schematic\n");
+    fprintf(stderr, _("\nFile is not an ORCAD 16 Bit Schematic\n"));
     exit(1);
   }
 
   length = strlen(localbuf);
-  fprintf(stderr,"length: %d\n",length);
+  fprintf(stderr,"%s: %d\n", _("length"), length);
 
-  lseek(fd2,length+HDR_LEN,SEEK_SET);
+  lseek(fd2, length + HDR_LEN,SEEK_SET);
 }
 
 /* BAD more titleblock stuff */
@@ -199,15 +204,16 @@ void parse_titleblock(int fd)
 
   size = read_block(fd,localbuf,5,sizeof(localbuf));
 
-  if (!size)
-    fprintf(stderr,"\nTitleblock %d bytes\n",size);
+  if (!size) {
+    fprintf(stderr, _("\nTitleblock %d bytes\n"), size);
+  }
 
   sheet=CONV16(localbuf,0x00);
   total=CONV16(localbuf,0x02);
-  fprintf(stderr,"Sheet#%d of %d\n",sheet,total);
+  fprintf(stderr, "Sheet#%d of %d\n", sheet, total);
 
-  read_string(data,sizeof(data),localbuf+DATE);
-  fprintf(stderr,"%s\n",data);
+  read_string(data, sizeof(data), localbuf+DATE);
+  fprintf(stderr,"%s\n", data);
 
   switch(localbuf[4] & 0x0F)
   {
@@ -217,13 +223,13 @@ void parse_titleblock(int fd)
     case 3: pagesize = 'D'; ypos = 22*scale; break;
     case 4: pagesize = 'E'; ypos = 34*scale; break;
     default:
-      fprintf(stderr,"Unknown page Size, defaulting to A\n");
+      fprintf(stderr, _("Unknown page Size, defaulting to A\n"));
       pagesize = 'A'; ypos = 8*scale+scale/2;
     //exit(-1);
   }
 
   if (scale==100) {
-    fprintf(stdout,"C %d %d 0 0 0 title-%c.sym\n",CONVX(0),CONVY(ypos),pagesize);
+    fprintf(stdout,"C %d %d 0 0 0 title-%c.sym\n", CONVX(0), CONVY(ypos), pagesize);
   }
 }
 
@@ -344,7 +350,8 @@ void parse_component(int fd1,int fd2)
       default: /* 0 */
         if (mirror) {
           xgeda = xgeda + sarlacc_xsize + sarlacc_xoffset;
-        } else {
+        }
+        else {
           xgeda = xgeda - sarlacc_xoffset;
         }
         ygeda = ygeda - (sarlacc_ysize + sarlacc_yoffset);
@@ -354,14 +361,16 @@ void parse_component(int fd1,int fd2)
         if (mirror) {
           /* BAD untested */
           ygeda = ygeda + sarlacc_xoffset;
-        } else {
+        }
+        else {
           ygeda = ygeda - (sarlacc_xsize + sarlacc_xoffset);
         }
         break;
       case 180:
         if (mirror) {
           xgeda = xgeda - sarlacc_xoffset;
-        } else {
+        }
+        else {
           xgeda = xgeda + sarlacc_xsize + sarlacc_xoffset;
         }
         ygeda = ygeda + sarlacc_yoffset;
@@ -371,14 +380,15 @@ void parse_component(int fd1,int fd2)
         if (mirror) {
           /* BAD untested */
           ygeda = ygeda - (sarlacc_xsize + sarlacc_xoffset);
-        } else {
+        } 
+        else {
           ygeda = ygeda + sarlacc_xoffset;
         }
         break;
     }
   }
   else {
-    fprintf(stderr,"Could nit find symbol %s in file: %s\n"
+    fprintf(stderr,"Could not find symbol %s in file: %s\n"
     "Position on sheet will be uncertain\n", partname, full_filename);
   }
 
@@ -781,7 +791,7 @@ int parse_block(int fd1,int fd2)
 #ifdef HAVE_ERRNO_H
     fprintf(stderr, "Error: file truncated: %s\n", strerror (errno));
 #else
-    fprintf(stderr,"File truncated\n");
+    fprintf(stderr, "File truncated\n");
 #endif
     return (0);
   }
@@ -831,7 +841,7 @@ int parse_block(int fd1,int fd2)
         return 0;
         break;
       default:
-        fprintf(stderr,"\nUnknown Block Tag\n");
+        fprintf(stderr, "\n%s\n", ("Unknown Block Tag"));
         exit(-1);
         break;
     }
@@ -843,8 +853,19 @@ int parse_block(int fd1,int fd2)
 int
 main(int argc, char **argv)
 {
+
+#if ENABLE_NLS
+
+  setlocale(LC_ALL, "");
+  setlocale(LC_NUMERIC, "C");
+  bindtextdomain("geda-utils", LOCALEDIR);
+  textdomain("geda-utils");
+  bind_textdomain_codeset("geda-utils", "UTF-8");
+
+#endif
+
   int c;
-  int fd1,fd2;
+  int fd1, fd2;
 
   while ((c = getopt(argc, argv, "d:hs:v")) > 0) {
     switch (c) {
@@ -880,19 +901,19 @@ main(int argc, char **argv)
   }
 
   /* BAD update to latest file format.. */
-  fprintf(stdout,"v %s\n","@DATE_VERSION@");
+  fprintf(stdout, "v %s\n", "@DATE_VERSION@");
 
   fd1 = open(argv[optind],O_RDONLY);
 
   if (fd1 < 0) {
-    fprintf(stderr,"\nCould not open input file: %s\n",argv[optind]);
+    fprintf(stderr, "\nCould not open input file: %s\n", argv[optind]);
     exit(1);
   }
 
   fd2 = open(argv[optind],O_RDONLY);
 
   if (fd2 < 0) {
-    fprintf(stderr,"\n  Could not open input file part deux\n");
+    fprintf(stderr, "\n  Could not open input file part deux\n");
     exit(-1);
   }
 
@@ -904,7 +925,3 @@ main(int argc, char **argv)
 
   return(0);
 }
-
-
-
-
