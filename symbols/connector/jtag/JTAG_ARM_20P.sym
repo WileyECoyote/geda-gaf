@@ -221,7 +221,7 @@ T 2350 3125 5 10 0 1 0 8 1
 pintype=io
 }
 T 100 300 9 1 0 0 0 0 1
-device=ARMJTAGCONN
+device=JTAG_ARM_20P
 T 2350 3550 5 10 1 1 0 6 1
 refdes=J?
 T 100 400 9 1 0 0 0 0 1

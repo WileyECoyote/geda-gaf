@@ -12,6 +12,10 @@
             * connector/header/header10-1.sym
             * connector/header/header26-2-5.sym
 
+    * connector/jtag/JTAG_ARM_20P.sym: Rename symbol file with upper,
+      main because every character in the file should be upper case,
+      and update device attribute to match the file name.
+
 
 2018-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
