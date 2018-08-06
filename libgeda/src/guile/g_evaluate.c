@@ -312,11 +312,6 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
   struct g_evaluate_scheme_file_data_t data;
   bool   result;
 
-  const char *msg_change  = _("change");
-  const char *msg_restore = _("restore");
-
-  const char *err_dir = _("libgeda could not %s directory to %s:%s");
-
   if (filename == NULL) {
     result = FALSE;
   }
@@ -350,6 +345,8 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
     }
     else {
 
+      const char *err_dir = _("libgeda could not %s directory to %s:%s");
+
       char *saved_cwd;
       bool  dir_okay;
 
@@ -360,7 +357,11 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
       if (strcmp(saved_cwd, file_directory)) {
 
         if (chdir (file_directory)) { /* Error occurred with chdir */
+
+          const char *msg_change  = _("change");
+
           fprintf(stderr, err_dir, msg_change, file_directory, strerror (errno));
+
           dir_okay = FALSE;
         }
       }
@@ -393,7 +394,11 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
         }
 
         if (saved_cwd) {
+
           if (chdir (saved_cwd)) {
+
+            const char *msg_restore = _("restore");
+
             fprintf(stderr, err_dir, msg_restore, saved_cwd, strerror (errno));
           }
           geda_free(saved_cwd);
