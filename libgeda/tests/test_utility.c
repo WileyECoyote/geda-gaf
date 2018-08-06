@@ -840,15 +840,21 @@ int test_strings (void)
     result++;
   }
 
+  string = geda_strconcat(str1, NULL);
+  if (!string) {                           /* NULL input */
+    fprintf(stderr, "FAILED: (U060101) geda_strconcat <%s>\n", string);
+    result++;
+  }
+
   string = geda_strconcat(str1, " ", str2, " ",str2, NULL);
   if (strcmp(string, "Dog doo doo")) {    /* Dog in DOGBONE */
-    fprintf(stderr, "FAILED: (U060101) geda_strconcat <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060102) geda_strconcat <%s>\n", string);
     result++;
   }
 
   string = geda_strconcat(str1, str2, NULL);
   if (strcmp(string, "Dogdoo")) {         /* Dog in DOGBONE */
-    fprintf(stderr, "FAILED: (U060101) geda_strconcat <%s>\n", string);
+    fprintf(stderr, "FAILED: (U060103) geda_strconcat <%s>\n", string);
     result++;
   }
 

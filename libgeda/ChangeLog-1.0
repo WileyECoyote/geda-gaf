@@ -6,6 +6,9 @@
     * tests/test_complex_object.c: Setup new tests module for group O08,
       src/object/o_complex_object.c.
 
+    * tests/test_utility.c: Add check U060101 for geda_strconcat to check
+      passing a single string.
+
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.
