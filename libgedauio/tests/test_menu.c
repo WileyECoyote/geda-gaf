@@ -420,11 +420,12 @@ check_accessors ()
   return result;
 }
 
+static bool was_detached;
+
 static void
 popup_menu_detach (GtkWidget *menu_item, GedaMenu *menu)
 {
-  //GedaMenuItem *item = (GedaMenuItem*)menu_item;
-
+  was_detached = TRUE;
 }
 
 int
@@ -496,7 +497,15 @@ check_methods ()
 
   /* ---------------------------------------------------- */
 
+  was_detached = FALSE;
+
   gtk_widget_destroy(gtk_widget_get_toplevel(widget0));
+
+  if (!was_detached) {
+    fprintf(stderr, "FAILED: %s line <%d> menu_detach\n", TWIDGET, __LINE__);
+    result++;
+  }
+
   return result;
 }
 

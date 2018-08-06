@@ -12,6 +12,9 @@
       advertised, more importantly, the detacher function get calls regarless
       of which  method is used to attach the sub menu to the menu item.
 
+    * tests/test_menu.c: Check that popup_menu_detach is called when the
+      menu is destroyed.
+
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Revise setting pointer to priv member
