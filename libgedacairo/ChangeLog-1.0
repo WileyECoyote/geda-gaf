@@ -1,3 +1,10 @@
+2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Loose the offset term in eda_cairo_arc; the HINTS
+      seem to create more of error offset than providing and visible
+      enhancement, the greater the deiviation from the argument X-Y values
+      greater the visual error.
+
 2018-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Fix arc end points shifting at different zoom levels
