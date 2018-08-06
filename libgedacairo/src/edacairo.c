@@ -233,10 +233,13 @@ eda_cairo_box (cairo_t *cr, int flags, double line_width,
 
   cairo_device_to_user (cr, &s_x1, &s_y1);
   cairo_device_to_user (cr, &s_x2, &s_y2);
+
   cairo_move_to (cr, s_x2, s_y2);
+
   cairo_line_to (cr, s_x1, s_y2);
   cairo_line_to (cr, s_x1, s_y1);
   cairo_line_to (cr, s_x2, s_y1);
+
   cairo_close_path (cr);
 }
 
