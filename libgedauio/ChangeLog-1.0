@@ -1,3 +1,13 @@
+2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Add geda_menu_item_set_submenu that is
+      not widget-less version of geda_menu_item_set_submenu_widget. The later
+      calls geda_menu_attach_to_widget and geda_menu_item_set_submenu does
+      not because geda_menu_attach_to_widget calls geda_menu_item_set_submenu
+      which would result in an infinite loop. This allows both to work as
+      advertised, more importantly, the detacher function get calls regarless
+      of which  method is used to attach the sub menu to the menu item.
+
 2018-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Revise setting pointer to priv member

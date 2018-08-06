@@ -35,6 +35,7 @@
 #define __GEDA_MENU_ITEM_H__
 
 #include <gtk/gtkbin.h>
+#include "geda_menu.h"
 #include "geda_menu_enum.h"
 
 #define MENU_POPUP_TIME_KEY "menu-exact-popup-time"
@@ -123,6 +124,9 @@ GtkWidget  *geda_menu_item_new_with_mnemonic     (const char    *label);
 
 GdkWindow  *geda_menu_item_get_event_window      (GedaMenuItem  *menu_item);
 
+void        geda_menu_item_set_submenu           (GedaMenuItem  *menu_item,
+                                                  GedaMenu      *submenu);
+
 void        geda_menu_item_set_submenu_widget    (GedaMenuItem  *menu_item,
                                                   GtkWidget     *submenu);
 
@@ -171,6 +175,7 @@ void        geda_menu_item_set_label             (GedaMenuItem  *menu_item,
 const char   *geda_menu_item_get_label                (GedaMenuItem     *menu_item);
 
 GtkWidget    *geda_menu_item_get_label_widget         (GedaMenuItem     *menu_item);
+
 
 unsigned int  geda_menu_item_get_submenu_direction    (GedaMenuItem     *menu_item);
 

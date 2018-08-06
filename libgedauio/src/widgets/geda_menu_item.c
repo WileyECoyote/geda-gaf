@@ -1296,6 +1296,46 @@ GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 }
 
 /*!
+ * \brief Set GedaMenuItem submenu
+ * \par Function Description
+ *  Sets or replaces the submenu of menu item, or removes it when a %NULL
+ *  submenu is passed. This function does not call geda_menu_attach_to_widget.
+ *  geda_menu_attach_to_widget
+ *
+ * \param [in] menu_item a #GedaMenuItem
+ * \param [in] submenu   A GedaMenu menu, or %NULL
+ *
+ * \sa geda_menu_item_set_submenu_widget
+ */
+void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GedaMenu *submenu)
+{
+  GedaMenuItemPrivate *priv;
+
+  GtkWidget *menu_widget = (GtkWidget*)submenu;
+
+  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
+  g_return_if_fail (GEDA_IS_MENU(submenu));
+
+  priv = menu_item->priv;
+
+  if (priv->submenu != menu_widget) {
+
+    GtkWidget *widget = (GtkWidget*)menu_item;
+
+    if (priv->submenu) {
+      geda_menu_detach ((GedaMenu*)priv->submenu);
+    }
+
+    priv->submenu = menu_widget;
+
+    if (gtk_widget_get_parent (widget)) {
+      gtk_widget_queue_resize (widget);
+    }
+    GEDA_OBJECT_NOTIFY (menu_item, "submenu");
+  }
+}
+
+/*!
  * \brief Set GedaMenuItem submenu Widget
  * \par Function Description
  *  Sets or replaces the submenu of menu item, or removes it when a %NULL
@@ -1304,7 +1344,7 @@ GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
  * \param [in] menu_item a #GedaMenuItem
  * \param [in] submenu   the submenu, or %NULL
  *
- *
+ * \sa geda_menu_item_set_submenu
  */
 void geda_menu_item_set_submenu_widget (GedaMenuItem *menu_item, GtkWidget *submenu)
 {
