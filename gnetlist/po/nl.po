@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-05-23 09:01-0500\n"
+"POT-Creation-Date: 2018-08-05 19:42-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -276,17 +276,17 @@ msgstr ""
 "Kreeg een ongeldig= attrib [net=%s]\n"
 "Ontbrekend : in net= attrib\n"
 
-#: gnetlist/src/s_net.c:221
+#: gnetlist/src/s_net.c:226
 #, c-format
 msgid "Missing Attributes (refdes and pin number)\n"
 msgstr "Ontbrekende Attributen (refdes en pennummer)\n"
 
-#: gnetlist/src/s_net.c:350 gnetlist/src/s_net.c:390
+#: gnetlist/src/s_net.c:355 gnetlist/src/s_net.c:393
 #, c-format
 msgid "Found duplicate net name, renaming [%s] to [%s]\n"
 msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
 
-#: gnetlist/src/s_net.c:538
+#: gnetlist/src/s_net.c:541
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Verhoog aantal naamloze netten (s_net.c)\n"
@@ -349,95 +349,95 @@ msgid "This warning is okay if there multiple levels of hierarchy!\n"
 msgstr ""
 "Deze waarschuwing is in orde als er meerdere niveaus van de hiërarchie!\n"
 
-#: gnetlist/src/s_traverse.c:118
+#: gnetlist/src/s_traverse.c:120
 #, c-format
 msgid ""
 "Verbose mode legend\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:119
+#: gnetlist/src/s_traverse.c:121
 #, c-format
 msgid "n : Found net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:120
+#: gnetlist/src/s_traverse.c:122
 #, c-format
 msgid "C : Found component (starting to traverse component)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:121
+#: gnetlist/src/s_traverse.c:123
 #, c-format
 msgid "p : Found pin (starting to traverse or examine pin)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:122
+#: gnetlist/src/s_traverse.c:124
 #, c-format
 msgid "P : Found ending pin connection (end of this net)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:123
+#: gnetlist/src/s_traverse.c:125
 #, c-format
 msgid "R : Starting to rename a net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:124
+#: gnetlist/src/s_traverse.c:126
 #, c-format
 msgid "v : Found source attribute, traversing down\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:125
+#: gnetlist/src/s_traverse.c:127
 #, c-format
 msgid "^ : Finished underlying source, going back up\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:126
+#: gnetlist/src/s_traverse.c:128
 #, c-format
 msgid "u : Found a refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:127
+#: gnetlist/src/s_traverse.c:129
 #, c-format
 msgid "U : Found a connected_to refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:169
+#: gnetlist/src/s_traverse.c:171
 msgid "Internal netlist representation:"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:202
+#: gnetlist/src/s_traverse.c:204
 msgid "Starting internal netlist creation"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:214 gnetlist/src/s_traverse.c:346
+#: gnetlist/src/s_traverse.c:216 gnetlist/src/s_traverse.c:348
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "WAARSCHUWING: Vond een plaatshouder/ontbrekend component, mist U een symbool "
 "bestand?"
 
-#: gnetlist/src/s_traverse.c:277
+#: gnetlist/src/s_traverse.c:279
 msgid "Did not find refdes or any special attributes on component!"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!"
 
-#: gnetlist/src/s_traverse.c:421
+#: gnetlist/src/s_traverse.c:423
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!"
 
-#: gnetlist/src/s_traverse.c:541
+#: gnetlist/src/s_traverse.c:550
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:590
+#: gnetlist/src/s_traverse.c:606
 msgid "WARNING: Found label"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:591
+#: gnetlist/src/s_traverse.c:607
 msgid "label= is deprecated, please use netname"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:655
+#: gnetlist/src/s_traverse.c:671
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"

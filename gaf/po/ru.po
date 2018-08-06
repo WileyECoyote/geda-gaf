@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gaf_ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-06-03 19:01-0500\n"
+"POT-Creation-Date: 2018-08-05 19:42-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -76,11 +76,11 @@ msgstr ""
 msgid "Run `gaf --help' for more information"
 msgstr "Подробности см. в выводе команды «gaf --help»"
 
-#: gaf/src/gaf.c:160
+#: gaf/src/gaf.c:163
 msgid "No command specified, nothing to do"
 msgstr "Никакой команды не указано, ничего не делать"
 
-#: gaf/src/gaf.c:177
+#: gaf/src/gaf.c:180
 msgid "ERROR: Unrecognised command"
 msgstr "Ошибка: непризнанная команда"
 
@@ -154,12 +154,12 @@ msgstr "ОШИБКА: %s.\n"
 msgid "internal error"
 msgstr "внутренняя ошибка"
 
-#: gaf/src/export.c:153
+#: gaf/src/export.c:155
 #, c-format
 msgid "ERROR: Bad argument '%s' to %s option.\n"
 msgstr "ОШИБКА: Недопустимый аргумент «%s» для опции «%s».\n"
 
-#: gaf/src/export.c:154
+#: gaf/src/export.c:156
 msgid ""
 "\n"
 "Run `gaf export --help' for more information.\n"
@@ -167,42 +167,42 @@ msgstr ""
 "\n"
 "Подробности см. в выводе команды «gaf export --help».\n"
 
-#: gaf/src/export.c:211
+#: gaf/src/export.c:213
 #, c-format
 msgid "ERROR: Cannot infer output format from filename '%s'.\n"
 msgstr "ОШИБКА: не удалось определить формат выходного файла «%s».\n"
 
-#: gaf/src/export.c:232
+#: gaf/src/export.c:234
 #, c-format
 msgid "ERROR: Cannot find supported format for filename '%s'.\n"
 msgstr "ОШИБКА: не удалось найти поддерживаемый формат для файла «%s».\n"
 
-#: gaf/src/export.c:238
+#: gaf/src/export.c:240
 #, c-format
 msgid "ERROR: Unsupported output format '%s'.\n"
 msgstr "ОШИБКА: вывод в формате «%s» не поддерживается.\n"
 
-#: gaf/src/export.c:250
+#: gaf/src/export.c:252
 #, c-format
 msgid "ERROR: Selected output format does not support multipage output\n"
 msgstr ""
 "ОШИБКА: многостраничный вывод не поддерживается для выбранного выходного "
 "формата.\n"
 
-#: gaf/src/export.c:265
+#: gaf/src/export.c:267
 msgid "ERROR: Failed to load"
 msgstr "ОШИБКА: не удалось загрузить"
 
-#: gaf/src/export.c:271
+#: gaf/src/export.c:273
 msgid "ERROR: Failed to change directory to"
 msgstr "ОШИБКА: Не удалось изменить каталог на"
 
-#: gaf/src/export.c:379
+#: gaf/src/export.c:381
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: gaf/src/export.c:1081
-#, c-format
+#: gaf/src/export.c:1083
+#, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -220,7 +220,7 @@ msgid ""
 "                           set alignment of drawing within page\n"
 "  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
 "  -c, --color              enable color output\n"
-"  --no-color               disable color output\n"
+"  -n, --no-color           disable color output\n"
 "  -F, --font=NAME          set font family for printing text\n"
 "  -h, --help               display usage information and exit\n"
 "\n"
@@ -252,12 +252,12 @@ msgstr ""
 "\n"
 "Отчёты об ошибках отправляйте по адресу %s.\n"
 
-#: gaf/src/export.c:1266
+#: gaf/src/export.c:1269
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ОШИБКА: необходимо задать имя хотя бы одного входного файла.\n"
 
-#: gaf/src/export.c:1275
+#: gaf/src/export.c:1279
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ОШИБКА: необходимо задать имя выходного файла.\n"
@@ -302,7 +302,7 @@ msgstr ""
 "\n"
 "Отчёты об ошибках отправляйте по адресу %s.\n"
 
-#: gaf/src/shell.c:132
+#: gaf/src/shell.c:138
 #, c-format
 msgid ""
 "\n"

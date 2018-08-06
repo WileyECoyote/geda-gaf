@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-06-03 19:01-0500\n"
+"POT-Creation-Date: 2018-08-05 19:42-0500\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -71,11 +71,11 @@ msgstr ""
 msgid "Run `gaf --help' for more information"
 msgstr "Eseguire \"gaf --help\" per ulteriori informazioni"
 
-#: gaf/src/gaf.c:160
+#: gaf/src/gaf.c:163
 msgid "No command specified, nothing to do"
 msgstr "Nessun comando specificato, niente da fare"
 
-#: gaf/src/gaf.c:177
+#: gaf/src/gaf.c:180
 msgid "ERROR: Unrecognised command"
 msgstr "ERRORE: comando non riconosciuto"
 
@@ -154,14 +154,14 @@ msgstr "ERRORE: %s.\n"
 
 #: gaf/src/config.c:226
 msgid "internal error"
-msgstr ""
+msgstr "errore interno"
 
-#: gaf/src/export.c:153
+#: gaf/src/export.c:155
 #, c-format
 msgid "ERROR: Bad argument '%s' to %s option.\n"
 msgstr "ERRORE: argomento errato \"%s\" all'opzione %s.\n"
 
-#: gaf/src/export.c:154
+#: gaf/src/export.c:156
 msgid ""
 "\n"
 "Run `gaf export --help' for more information.\n"
@@ -169,44 +169,44 @@ msgstr ""
 "\n"
 "Eseguire `gaf export --help' per ulteriori informazioni.\n"
 
-#: gaf/src/export.c:211
+#: gaf/src/export.c:213
 #, c-format
 msgid "ERROR: Cannot infer output format from filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile ricavare il formato di uscita dal nome del file \"%s\".\n"
 
-#: gaf/src/export.c:232
+#: gaf/src/export.c:234
 #, c-format
 msgid "ERROR: Cannot find supported format for filename '%s'.\n"
 msgstr ""
 "ERRORE: impossibile trovare il formato supportato per il file di nome \"%s"
 "\".\n"
 
-#: gaf/src/export.c:238
+#: gaf/src/export.c:240
 #, c-format
 msgid "ERROR: Unsupported output format '%s'.\n"
 msgstr "ERRORE: formato di uscita \"%s\" non supportato.\n"
 
-#: gaf/src/export.c:250
+#: gaf/src/export.c:252
 #, c-format
 msgid "ERROR: Selected output format does not support multipage output\n"
 msgstr ""
 "ERRORE: il formato di uscita selezionato non supporta le pagine multiple\n"
 
-#: gaf/src/export.c:265
+#: gaf/src/export.c:267
 msgid "ERROR: Failed to load"
 msgstr "ERRORE: fallito il caricamento di"
 
-#: gaf/src/export.c:271
+#: gaf/src/export.c:273
 msgid "ERROR: Failed to change directory to"
 msgstr "ERRORE: fallito il cambiamento di cartella a"
 
-#: gaf/src/export.c:379
+#: gaf/src/export.c:381
 msgid "ERROR"
 msgstr "ERRORE"
 
-#: gaf/src/export.c:1081
-#, c-format
+#: gaf/src/export.c:1083
+#, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -224,7 +224,7 @@ msgid ""
 "                           set alignment of drawing within page\n"
 "  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
 "  -c, --color              enable color output\n"
-"  --no-color               disable color output\n"
+"  -n, --no-color           disable color output\n"
 "  -F, --font=NAME          set font family for printing text\n"
 "  -h, --help               display usage information and exit\n"
 "\n"
@@ -252,12 +252,12 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1266
+#: gaf/src/export.c:1269
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1275
+#: gaf/src/export.c:1279
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
@@ -302,7 +302,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/shell.c:132
+#: gaf/src/shell.c:138
 #, c-format
 msgid ""
 "\n"
