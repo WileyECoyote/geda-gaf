@@ -3,6 +3,9 @@
     * src/guile/g_evaluate.c: Reduce scope of translatable strings
       for error messages in g_evaluate_scheme_file.
 
+    * tests/test_complex_object.c: Setup new tests module for group O08,
+      src/object/o_complex_object.c.
+
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.
