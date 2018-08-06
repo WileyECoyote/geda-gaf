@@ -1,5 +1,9 @@
 2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu.c: Revise geda_menu_attach_to_widget to check
+      if the submenu is not menu being set before calling geda_menu_item_
+      set_submenu.
+
     * src/widgets/geda_menu_item.c: Add geda_menu_item_set_submenu that is
       not widget-less version of geda_menu_item_set_submenu_widget. The later
       calls geda_menu_attach_to_widget and geda_menu_item_set_submenu does

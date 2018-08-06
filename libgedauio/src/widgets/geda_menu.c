@@ -2363,7 +2363,6 @@ static void geda_menu_destroy (GtkObject *object)
   }
 
   ((GtkObjectClass*)geda_menu_parent_class)->destroy (object);
-
 }
 
 /* gobject_class->dispose */
@@ -3656,6 +3655,18 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
   }
 
   if (GEDA_IS_MENU_ITEM(attach_widget)) {
+
+    GedaMenuItem *menu_item;
+    GtkWidget    *submenu;
+
+    menu_item = (GedaMenuItem*)attach_widget;
+
+    submenu = geda_menu_item_get_submenu_widget (menu_item);
+
+    if (submenu != (GtkWidget*)menu) {
+      geda_menu_item_set_submenu(menu_item, menu);
+    }
+
     menu->parent_menu_item = attach_widget;
   }
 
@@ -3676,8 +3687,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
  *
  * \returns GtkWidget that the menu is attached to
  */
-GtkWidget*
-geda_menu_get_attach_widget (GedaMenu *menu)
+GtkWidget *geda_menu_get_attach_widget (GedaMenu *menu)
 {
   MenuAttachData *data;
 
@@ -3716,6 +3726,7 @@ void geda_menu_detach (GedaMenu *menu)
   g_signal_handlers_disconnect_by_func (data->attach_widget,
                                        (void*)attach_widget_screen_changed,
                                         menu);
+
   if (data->detacher) {
     data->detacher (data->attach_widget, menu);
   }
