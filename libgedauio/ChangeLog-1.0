@@ -1,5 +1,8 @@
 2018-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_setup_filters
+      for loop conditional to not directly compare to '\0'.
+
     * src/widgets/geda_label.c: Cast buildable to g_object in function
       geda_label_buildable_custom_tag_start os that the g_object_ref macro
       will return the correct type.
