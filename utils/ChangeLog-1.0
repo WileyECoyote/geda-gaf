@@ -1,3 +1,9 @@
+2018-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * utils/docs/garchive.1.in: Extend the no warranty clause to include "not even
+      for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
+      quotes around COPYING with double quotes for better portability.
+
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/sarlacc_schem.exe: Include locale.h and gettext.h, setup i18n in main.
