@@ -8,6 +8,8 @@
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
       quotes around COPYING with double quotes for better portability.
 
+    * utils/src/convert_sym.c: Add missing whitespaces.
+
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/sarlacc_schem.exe: Include locale.h and gettext.h, setup i18n in main.

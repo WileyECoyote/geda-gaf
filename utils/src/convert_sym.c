@@ -1791,14 +1791,17 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
   unsigned int i, done;
 
   /* make a copy of the attribute to work with */
-  strncpy(tmpName, name, MAX_TEXTLEN-1);
-  tmpName[MAX_TEXTLEN-1] = 0;   /* terminate in case strncpy doesnt */
+  strncpy(tmpName, name, MAX_TEXTLEN - 1);
+  tmpName[MAX_TEXTLEN - 1] = 0;   /* terminate in case strncpy doesnt */
+
   if (value == NULL) {
     tmpValue[0] = 0;   /* no value with ViewDraw attribute */
   }
   else {
-    strncpy(tmpValue, value, MAX_TEXTLEN-1);
-    tmpValue[MAX_TEXTLEN-1] = 0;   /* terminate in case strncpy doesnt */
+
+    strncpy(tmpValue, value, MAX_TEXTLEN - 1);
+    tmpValue[MAX_TEXTLEN - 1] = 0;   /* terminate in case strncpy doesnt */
+
   }
 
   /* look up attribute name in translation attribute list
@@ -1806,25 +1809,25 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
    */
   done = 0;
 
-  for(i=0; (i<nTranslations) && !done; i++) {
+  for(i=0; (i < nTranslations) && !done; i++) {
 
 #ifdef DEBUG
       printf("Comparing `%s' to `%s' in %s()\n",tmpName,
            translations[i].origName,__func__);
 #endif
 
-      if(strcmp(tmpName,translations[i].origName) == 0) {/* match? */
+      if (strcmp(tmpName, translations[i].origName) == 0) {/* match? */
 
         switch(translations[i].action) {
           case REPLACE_NAME:
-            strncpy(tmpName, translations[i].newName, MAX_TEXTLEN-1);
+            strncpy(tmpName, translations[i].newName, MAX_TEXTLEN - 1);
             done = 1;
             break;
 
           case KILL:
             fprintf(stderr,"Warning: Killing attribute `%s=%s' at (%d,%d)"
             " from record #%d\n",
-            tmpName, tmpValue,x,y,records_processed);
+            tmpName, tmpValue, x, y, records_processed);
             done = 1;
             return;
 
@@ -1832,13 +1835,13 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
             fprintf(stderr,"Warning: attribute name `%s=%s' at (%d,%d) "
             "at record #%d, found during conversion\n"
             "\tpassing it through unchanged\n",
-            tmpName,tmpValue,x,y,records_processed);
+            tmpName, tmpValue, x, y, records_processed);
             done = 1;
             break;
           default:
             fprintf(stderr,"Error: Unknown action code for attribute\n"
             "`%s=%s' at record #%d in %s()\n",
-                    tmpName,tmpValue,records_processed,__func__);
+                    tmpName, tmpValue, records_processed, __func__);
             exit(1);
         }
       }
@@ -1930,7 +1933,7 @@ line_object(int x1, int y1, int x2, int y2, unsigned int color,
 {
   printf("L %d %d %d %d %u %i %i %i %i %i\n", x1, y1, x2, y2, color,
          linestyle->line_width, linestyle->line_capstyle,
-         linestyle->line_dashstyle,linestyle->line_dashlength,
+         linestyle->line_dashstyle, linestyle->line_dashlength,
          linestyle->line_dashspace);
 }
 
@@ -1941,7 +1944,7 @@ circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
   printf("V %d %d %u %u %i %i %i %i %i %i %i %i %i %i %i\n",
          bx, by, radius, bcolor,
          linestyle->line_width, linestyle->line_capstyle,
-         linestyle->line_dashstyle,linestyle->line_dashlength,
+         linestyle->line_dashstyle, linestyle->line_dashlength,
          linestyle->line_dashspace,
          fillstyle->fill_type, fillstyle->fill_width,
          fillstyle->fill_angle1, fillstyle->fill_pitch1,
@@ -1963,7 +1966,7 @@ box_object(int x1, int y1, unsigned int width, unsigned int height,
   printf("B %d %d %u %u %u %i %i %i %i %i %i %i %i %i %i %i\n", x1, y1,
          width, height, color,
          linestyle->line_width, linestyle->line_capstyle,
-         linestyle->line_dashstyle,linestyle->line_dashlength,
+         linestyle->line_dashstyle, linestyle->line_dashlength,
          linestyle->line_dashspace,
          fillstyle->fill_type, fillstyle->fill_width,
          fillstyle->fill_angle1, fillstyle->fill_pitch1,
