@@ -669,7 +669,7 @@ do_attached_attribute(FILE *fp)
   unsigned int color, dummy, size, origin, viewvis;
   unsigned int visibility, show_name_value;
   unsigned int index;
-  char text[MAX_TEXTLEN],text2[MAX_TEXTLEN],*name,*value;
+  char text[MAX_TEXTLEN], text2[(MAX_TEXTLEN - 24)], *name, *value;
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
 
@@ -819,7 +819,7 @@ do_attached_attribute(FILE *fp)
     /* attach the pinseq and pinnumber attributes */
     if(text[0] == '#')
     {
-      strncpy(text2, text, MAX_TEXTLEN);
+      strncpy(text2, text, (MAX_TEXTLEN - 24));
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "pinseq=%d",pin_count);
 #else
@@ -1302,7 +1302,7 @@ do_label(FILE *fp)
   int x, y, angle, global, overbar;
   unsigned int color, size, origin, visibility, show_name_value;
   char text[MAX_TEXTLEN];
-  char text2[MAX_TEXTLEN];
+  char text2[(MAX_TEXTLEN - 32)];
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
 

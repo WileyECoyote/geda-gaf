@@ -8,7 +8,8 @@
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
       quotes around COPYING with double quotes for better portability.
 
-    * utils/src/convert_sym.c: Add missing whitespaces.
+    * utils/src/convert_sym.c: Add missing whitespaces. Adjust test array sizes to
+      help prevent overflow or truncations.
 
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
