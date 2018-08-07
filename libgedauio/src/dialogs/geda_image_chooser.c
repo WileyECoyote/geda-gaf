@@ -110,7 +110,7 @@ geda_image_chooser_setup_filters (GtkFileChooser *filechooser)
 
     gtk_file_filter_set_name(filter, data->name);
 
-    for (i = 0; data->pattern[i] != '\0'; i++) {
+    for (i = 0; data->pattern[i]; i++) {
       const char *ext = data->pattern[i];
       gtk_file_filter_add_pattern (filter, ext);
     }
