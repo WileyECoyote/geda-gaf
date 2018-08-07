@@ -1,3 +1,8 @@
+2018-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Remove duplicate "const" specifiers static
+      strings.
+
 2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_attach_to_widget to check

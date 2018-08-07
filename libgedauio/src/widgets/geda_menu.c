@@ -316,13 +316,13 @@ static bool  geda_menu_real_can_activate_accel      (GtkWidget     *widget,
 static void geda_menu_refresh_accel_paths           (GedaMenu      *menu,
                                                      bool           group_changed);
 
-static const char const attached_menus_key[]  = "attached-menus";
-static const char const attached_info_key[]   = "menu-child-attach-info-key";
-static const char const attached_data_key[]   = "menu-attach-data";
-static const char const explicit_screen_key[] = "menu-explicit-screen";
-static const char const transfer_window_key[] = "menu-transfer-window";
+static const char attached_menus_key[]  = "attached-menus";
+static const char attached_info_key[]   = "menu-child-attach-info-key";
+static const char attached_data_key[]   = "menu-attach-data";
+static const char explicit_screen_key[] = "menu-explicit-screen";
+static const char transfer_window_key[] = "menu-transfer-window";
 
-static const char const touchscreen_setting[] = "gtk-touchscreen-mode";
+static const char touchscreen_setting[] = "gtk-touchscreen-mode";
 
 static unsigned int menu_signals[LAST_SIGNAL] = { 0 };
 
