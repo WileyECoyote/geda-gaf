@@ -4,4 +4,5 @@ Makefile
 Makefile.in
 *.o
 *~
+*.trs
 test_color

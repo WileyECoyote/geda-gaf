@@ -4,7 +4,7 @@ Makefile
 Makefile.in
 *.o
 *~
-*.log
+*.trs
 test_arc
 test_arc_object
 test_attrib_object
