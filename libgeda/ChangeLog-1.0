@@ -1,3 +1,8 @@
+2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_string.c: Declare first argument to geda_utility_string_split
+      read-only.
+
 2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_evaluate.c: Reduce scope of translatable strings

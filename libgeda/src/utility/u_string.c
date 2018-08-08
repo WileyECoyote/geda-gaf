@@ -519,7 +519,7 @@ void geda_utility_string_sort_array( char *strings[], size_t strings_size) {
  *          NULL if \a string is NULL, or
  *          \a string if \a delimiter is zero.
  */
-char *geda_utility_string_split(char *string, char delimiter, int count)
+char *geda_utility_string_split(const char *string, char delimiter, int count)
 {
   if (string != NULL) {
 
