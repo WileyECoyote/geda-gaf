@@ -1,3 +1,8 @@
+2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_comboboxtext.c: Add cast to GObject for g_object_ref macro in
+      geda_combo_box_text_buildable_custom_tag_start to match the assignment type.
+
 2018-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_setup_filters
