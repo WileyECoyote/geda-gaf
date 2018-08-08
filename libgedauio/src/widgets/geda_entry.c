@@ -1529,7 +1529,7 @@ void geda_entry_set_attributes (GedaEntry *entry, PangoAttrList *attrs)
 
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
-  widget    = g_object_ref(entry);
+  widget    = g_object_ref(GTK_WIDGET(entry));
   old_attrs = entry->priv->attrs;
 
   if (attrs)
