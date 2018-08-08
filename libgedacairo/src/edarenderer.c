@@ -432,7 +432,7 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
       GEDA_UNREF (G_OBJECT (renderer->priv->pl));
       renderer->priv->pl = NULL;
     }
-    renderer->priv->pc = g_object_ref (G_OBJECT (new_pc));
+    renderer->priv->pc = g_object_ref (new_pc);
     renderer->priv->pc_from_cr = 0;
   }
 

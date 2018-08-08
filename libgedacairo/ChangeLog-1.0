@@ -1,3 +1,8 @@
+2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Remove cast to GObject for g_object_ref macro in
+      eda_renderer_update_contexts to match the assignment type.
+
 2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Loose the offset term in eda_cairo_arc; the HINTS
