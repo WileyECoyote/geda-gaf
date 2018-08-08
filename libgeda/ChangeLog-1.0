@@ -7,6 +7,10 @@
       clauses for checks U060201B, U060701B, and U060801B. These would all be
       fail conditions.
 
+      Add string str_111 and additionals checks for geda_utility_string_split
+      to varify leading whitespace are skipped and the terminator is properly
+      detected when the string only contains whitespaces.
+
 2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_evaluate.c: Reduce scope of translatable strings

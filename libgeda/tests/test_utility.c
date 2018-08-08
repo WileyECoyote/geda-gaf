@@ -1359,6 +1359,31 @@ int test_strings (void)
     result++;
   }
 
+  char *str_111 = "  Kansas=Capital=Topeka";
+
+  /* Verify leading whitespaces are skipped and not returned */
+  string = geda_strsplit(str_111, '=', 0);
+  if (string == NULL) {
+    fprintf(stderr, "FAILED: (U061101A) geda_strsplit\n");
+    result++;
+  }
+  else {
+
+    if (strcmp(string, "Kansas") != 0) {
+      fprintf(stderr, "FAILED: (U061105) geda_strsplit <%s>\n", string);
+      result++;
+    }
+
+    free(string);
+  }
+
+  /* Verify EOS is detected when only whitespaces */
+  string = geda_strsplit("   ", '=', 1);
+  if (string != NULL) {
+    fprintf(stderr, "FAILED: (U061106) geda_strsplit <%s>\n", string);
+    result++;
+  }
+
   /* === Function 12: geda_utility_string_sprintf  geda_sprintf === */
 
   char *str_120 = "The quick brown fox jumped\0";
