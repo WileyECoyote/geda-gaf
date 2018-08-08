@@ -3,6 +3,10 @@
     * src/utility/u_string.c: Declare first argument to geda_utility_string_split
       read-only.
 
+    * tests/test_utility.c: Eliminate passing of NULL string to strcmp in else
+      clauses for checks U060201B, U060701B, and U060801B. These would all be
+      fail conditions.
+
 2018-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_evaluate.c: Reduce scope of translatable strings

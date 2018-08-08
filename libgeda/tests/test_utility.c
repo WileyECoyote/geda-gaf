@@ -894,10 +894,8 @@ int test_strings (void)
       }
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure U02_str */
-        fprintf(stderr, "FAILED: (U060201B-%d) expected <%s> NULL\n",index, expected);
-        result++;
-      }
+      fprintf(stderr, "FAILED: (U060201B-%d) expected <%s> NULL\n",index, expected);
+      result++;
     }
   }
 
@@ -1192,10 +1190,8 @@ int test_strings (void)
       free (input);
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure U07_str */
-        fprintf(stderr, "FAILED: (U060701B-%d) expected <%s> NULL\n",index, expected);
-        result++;
-      }
+      fprintf(stderr, "FAILED: (U060701B-%d) expected <%s> NULL\n",index, expected);
+      result++;
     }
   }
 
@@ -1236,10 +1232,8 @@ int test_strings (void)
       free (input);
     }
     else {
-      if (strcmp(string, expected)) {      /* See structure U08_str */
-        fprintf(stderr, "FAILED: (U060801B-%d) expected <%s> NULL\n",index, expected);
-        result++;
-      }
+      fprintf(stderr, "FAILED: (U060801B-%d) expected <%s> NULL\n",index, expected);
+      result++;
     }
   }
 
