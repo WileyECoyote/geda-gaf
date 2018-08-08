@@ -53,7 +53,7 @@
  * #IMAGE_CHOOSER_ACTION_CREATE_FOLDER: Indicates create folder mode.
  * The file chooser will let the user name an existing or new folder.
  *
- * Describes whether a #GedaFileChooser is being used to open existing files
+ * Describes whether a #GedaImageChooser is being used to open existing files
  * or to save to a possibly new file.
  */
 typedef enum

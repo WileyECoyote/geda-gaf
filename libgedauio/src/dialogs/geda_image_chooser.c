@@ -562,7 +562,7 @@ On_adjust_button_release(GtkWidget *widget, GdkEventButton *event, void *user_da
 }
 /*! \brief Adds a Preview to the Image Chooser.
  *  \par Function Description
- *  This function adds a preview section to a <B>GedaFileChooser</B>.
+ *  This function adds a preview section to a <B>GedaImageChooser</B>.
  *
  *  The <B>Preview</B> object is inserted in a frame and alignment
  *  widget for accurate positionning.
