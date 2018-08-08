@@ -6,6 +6,9 @@
     * src/widgets/geda_entry.c: Add cast to GtkWidget for g_object_ref macro in
       geda_entry_set_attributes to match the assignment type.
 
+    * tests/test_font_dialog.c: Remove checking that gtk_widget_destroy destroyed
+      the dialog in check_construction.
+
 2018-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Revise geda_file_chooser_setup_filters

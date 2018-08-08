@@ -75,11 +75,6 @@ int check_construction (void)
 
   gtk_widget_destroy (widget);    /* Destroy the widget */
 
-  if (GEDA_IS_FONT_DIALOG(widget)) {
-    fprintf(stderr, "FAILED %s destruction\n", TWIDGET);
-    result++;
-  }
-
   widget = NULL;
 
   /* geda_font_dialog_new_with_title */
