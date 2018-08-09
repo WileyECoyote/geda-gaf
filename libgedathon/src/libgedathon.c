@@ -924,8 +924,8 @@ static void setup_source_library (void)
 
     while (n--) {
       if ((g_ascii_strcasecmp (namelist[n]->d_name, ".")  != 0) &&
-        (g_ascii_strcasecmp (namelist[n]->d_name, "..") != 0) &&
-        (namelist[n]->d_type == DT_DIR))
+          (g_ascii_strcasecmp (namelist[n]->d_name, "..") != 0) &&
+          (namelist[n]->d_type == DT_DIR))
       {
         const char *name;
               char *fullpath;
