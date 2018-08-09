@@ -1,3 +1,8 @@
+2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/path.c: Add new backend to write libgeda path information to
+      standard out.
+
 2018-07-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gaf_getopt.c: Clean up module; do not include <windows.h>, and

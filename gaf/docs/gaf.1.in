@@ -11,7 +11,7 @@ is part of the gEDA (GPL Electronic Design Automation) toolset.  It
 provides a number of small command-line utilities for working with
 schematic and symbol files, and is designed to be used for batch
 processing of designs created using the schematic editor
-\fBgschem\fR(1).  It currently has three built-in \fICOMMAND\fRs:
+\fBgschem\fR(1).  It currently has four built-in \fICOMMAND\fRs:
 
 .B gaf export
 is used to create SVG, PDF, PNG, PS and EPS files from schematic and
@@ -24,6 +24,9 @@ configuration stores.
 .B gaf shell
 provides a Scheme REPL for command-line batch processing of schematic
 data.
+
+.B gaf path
+Writes path strings. This can be useful in scripts requiring this information.
 
 .SH "GENERAL OPTIONS"
 .TP 8
@@ -180,6 +183,18 @@ Stop scanning arguments; run interactively.
 .PP
 The \fB-s\fR, \fB-c\fR and \fB--\fR switches stop argument processing
 and pass all the remaining arguments as the value of `(command-line)'.
+
+.SH "OBTAINING PATH INFORMATION"
+.B gaf path
+[\fIOPTION\fR] [\fIWHICH ONE\fR]]
+
+.B gaf path
+Allows scripts other than scheme to obtain the location of gEDA directories from libgeda.
+Scheme scripts have access to this information but it can be inconvenient for other scripting
+languages to access this information through scheme.
+.TP 8
+example:
+datapath=$(gaf path -d)
 
 .SH ENVIRONMENT
 .TP 8

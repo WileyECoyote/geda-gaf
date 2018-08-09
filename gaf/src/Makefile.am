@@ -21,7 +21,9 @@ gaf_SOURCES   = gaf.c \
 				gaf_getopt.c \
 				config.c \
 				export.c \
+				path.c \
 				shell.c
+
 
 AM_CFLAGS     = $(GEDA_INCLUDES) -I$(includedir)
 

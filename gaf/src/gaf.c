@@ -61,6 +61,7 @@ static struct internal_command commands[] =
     {"shell", cmd_shell},
     {"config", cmd_config},
     {"export", cmd_export},
+    {"path", cmd_path},
     {NULL, NULL},
   };
 
@@ -76,7 +77,8 @@ static void usage (void)
             "Commonly-used commands (type `gaf <cmd> --help' for usage):\n"
             "  shell             Scheme REPL for interactive gEDA data processing\n"
             "  config            Edit gEDA configuration\n"
-            "  export            Export gEDA files in various image formats.\n\n"
+            "  export            Export gEDA files in various image formats.\n"
+            "  path              Writes path strings to standard output port.\n\n"
             "Please report bugs to %s.\n"),
              PACKAGE_BUGREPORT);
   exit (0);
