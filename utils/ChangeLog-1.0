@@ -7,25 +7,28 @@
           * docs/gclean-symbol.1.in
           * docs/geda-install.1.in
 
-    * utils/scripts/schdiff.pl: Update gschem command-line options.
+    * gsch2pdf/gsch2pdf.c: Add fcount in gsch2pdf and skip outputting the
+      "processing filename" message if there was only one file to process.
+
+    * scripts/schdiff.pl: Update gschem command-line options.
 
 2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/docs/gcheck-library.1.in: Extend the no warranty clause to include "not
+    * docs/gcheck-library.1.in: Extend the no warranty clause to include "not
       even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
       quotes around COPYING with double quotes for better portability.
 
 2018-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/docs/convert_sym.1.in: Extend the no warranty clause to include "not even
+    * docs/convert_sym.1.in: Extend the no warranty clause to include "not even
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
       quotes around COPYING with double quotes for better portability.
 
-    * utils/docs/garchive.1.in: Extend the no warranty clause to include "not even
+    * docs/garchive.1.in: Extend the no warranty clause to include "not even
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
       quotes around COPYING with double quotes for better portability.
 
-    * utils/src/convert_sym.c: Add missing whitespaces. Adjust test array sizes to
+    * src/convert_sym.c: Add missing whitespaces. Adjust test array sizes to
       help prevent overflow or truncations.
 
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
@@ -279,7 +282,7 @@
 
     * po/LINGUAS: Add file (copied from gschem).
 
-    * utils/po/.gitignore: Add file (copied from gschem).
+    * po/.gitignore: Add file (copied from gschem).
 
     * po/Makevars: Add file (copied from gschem).
 
@@ -287,7 +290,7 @@
 
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/src/gmk_sym.c: Revised strLabel() to not initialize the value
+    * src/gmk_sym.c: Revised strLabel() to not initialize the value
       of pTemp until after validating that pTemp is not NULL;
 
 2016-09-14 Wiley E. Hill <wileyhill@gmail.com>
@@ -412,11 +415,11 @@
 
 2015-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/src/grenum.c: Reformat; change indentations.
+    * src/grenum.c: Reformat; change indentations.
 
 2015-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gschlas/gschlas.c: Reduce scope of integer i in main_prog and
+    * gschlas/gschlas.c: Reduce scope of integer i in main_prog and
       rename as index, i->index.
 
 2015-12-06 Wiley E. Hill <wileyhill@gmail.com>
@@ -536,7 +539,7 @@
 
 2015-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pcb/gsch2pcb.c: Revise function build_and_run_command to use
+    * gsch2pcb/gsch2pcb.c: Revise function build_and_run_command to use
       local scoping for variables; error, standard_output and standard_error,
       args and status. Eliminate unnecessary local scoping for variable i.
       Major modifications to function run_gnetlist to use local scoping and
@@ -581,11 +584,11 @@
 
 2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/gsch2pcb: Relocate gsch2pcb to it's own src folder.
+    * gsch2pcb/gsch2pcb: Relocate gsch2pcb to it's own src folder.
 
 2015-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/src/gsch2pcb.c:utils/gsch2pcb: fix bugs: see commit to master branch
+    * gsch2pcb/gsch2pcb: fix bugs: see commit to master branch
       2181abe63512c7b5ad2279ab4609878586d497a2 by Sergey Stepanov:
 
     * expand_dir(): Dereference of null pointer (loaded from variable 'dir')
@@ -597,7 +600,7 @@
     * gsch2pdf/main.c: Call libgeda_release instead of just s_clib_free and
       s_slib_free.
 
-    * utils/gschlas/gschlas.c: Call libgeda_release instead of just s_clib_free and
+    * gschlas/gschlas.c: Call libgeda_release instead of just s_clib_free and
       s_slib_free.
 
 2015-10-03 Wiley E. Hill <wileyhill@gmail.com>
@@ -612,7 +615,7 @@
 
 2015-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/include/utils.h: Rename globals.h->utils.h.
+    * include/utils.h: Rename globals.h->utils.h.
 
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -671,7 +674,7 @@
 
 2015-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * utils/src/gsch2pcb.c: Use explicit length as argument to strncmp.
+    * gsch2pcb/gsch2pcb.c: Use explicit length as argument to strncmp.
 
 2015-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -680,7 +683,7 @@
 
 2015-06-27 Vladimir Zhbanov <vzhbanov@gmail.com>
 
-    * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
+    * gsch2pcb/gsch2pcb.c: WEH: Modified per commit to Master branch by
       Vladimir Zhbanov See commit fd130bf9c522faa902e06232548c5ca7dd0bdf90;
       This patch fixes output of the m4 dir when the user calls gsch2pcb
       without args. Before now, the directory was not defined in such a
@@ -689,13 +692,13 @@
 
 2015-06-26 Vladimir Zhbanov <vzhbanov@gmail.com>
 
-    * utils/src/gsch2pcb.c: WEH: Modified per commit to Master branch by
+    * gsch2pcb/gsch2pcb.c: WEH: Modified per commit to Master branch by
       Vladimir Zhbanov See commit 317a042ab4ae3044018e1fa4f141245833ff95fa;
       gsch2pcb: Slightly shift down text to make m4-pcbdir more visible.
 
 2015-03-30 Vladimir Zhbanov <vzhbanov@gmail.com>
 
-    * utils/src/smash_megafile.c: WEH: Modified per commit to Master branch by
+    * src/smash_megafile.c: WEH: Modified per commit to Master branch by
       Vladimir See commit db9f9e73a56afd68708dd1f3635e4aabe810e7cb; add conditional
       directive to use windows form of mkdir if __MINGW32__ is defined.
 
@@ -755,7 +758,7 @@
 
 2014-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
-        * utils/ * / *.am: Appears auto-tools is handling dist_bin_SCRIPTS
+        * */*.am: Appears auto-tools is handling dist_bin_SCRIPTS
           improperly during parallel install, added manual over-ride for Perl suffix.
 
 2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
@@ -786,7 +789,7 @@
 
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
-        * */*: Update copyright.
+        * */*: Update copyrights.
 
 2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -811,7 +814,7 @@
 
 2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
-        * utils/src/convert_sym.c: In function convert_file, switch
+        * src/convert_sym.c: In function convert_file, switch
         default case, included 2nd if in 1st if, otherwise text_len
         was being used uninitialized.
 

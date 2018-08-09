@@ -641,7 +641,7 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
     GedaToplevel    *current;
     cairo_surface_t *surface = NULL;
     cairo_t         *cairo = NULL;
-    int              argv_index, i;
+    int              argv_index, i, fcount;
 
     argv_index = parse_commandline(argc, argv);
 
@@ -657,6 +657,8 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
 
     current = geda_toplevel_new();
     geda_iface_vars_set(current);
+
+    fcount = argc - argv_index;
 
     for (i = argv_index; i < argc; i++) {
 
@@ -676,7 +678,7 @@ static void gsch2pdf(void *closure, int argc, char *argv[])
           if (verbose_mode) {
             printf("processing: %s\n", filename);
           }
-          else if (!quiet_mode) {
+          else if (!quiet_mode && fcount > 1) {
             printf("processing: %s\n", page->filename);
           }
 
