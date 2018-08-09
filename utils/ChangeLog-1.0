@@ -1,3 +1,11 @@
+2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs: Extend the no warranty clause to include "not even for MERCHANTABILITY
+      or FITNESS FOR A PARTICULAR PURPOSE". Replace tick quotes around COPYING with
+      double quotes for better portability:
+
+          * docs/gclean-symbol.1.in
+
 2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/docs/gcheck-library.1.in: Extend the no warranty clause to include "not
