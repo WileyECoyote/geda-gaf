@@ -70,7 +70,7 @@ typedef enum
 #define GEDA_TYPE_IMAGE_CHOOSER            (geda_image_chooser_get_type ())
 #define GEDA_IMAGE_CHOOSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_IMAGE_CHOOSER, GedaImageChooser))
 #define GEDA_IMAGE_CHOOSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),   GEDA_TYPE_IMAGE_CHOOSER, GedaImageChooserClass))
-#define GEDA_IS_IMAGE_CHOOSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_IMAGE_CHOOSER))
+#define GEDA_IS_IMAGE_CHOOSER(obj)         (is_a_geda_image_chooser((GedaImageChooser*)(obj)))
 #define GEDA_IS_IMAGE_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_IMAGE_CHOOSER))
 #define GEDA_IMAGE_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_IMAGE_CHOOSER, GedaImageChooserClass))
 
@@ -115,7 +115,9 @@ extern "C" {
 #endif
 
 GedaType      geda_image_chooser_get_type        (void) GEDA_CONST;
-GtkWidget    *geda_image_chooser_new             (void             *parent,
+bool          is_a_geda_image_chooser            (GedaImageChooser  *chooser);
+
+GtkWidget    *geda_image_chooser_new             (void              *parent,
                                                   ImageChooserAction action);
 GtkWidget    *geda_image_chooser_dialog_new_full (const char        *title,
                                                   void              *parent,

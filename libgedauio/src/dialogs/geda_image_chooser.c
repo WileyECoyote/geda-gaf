@@ -73,6 +73,9 @@ static unsigned int chooser_signals[LAST_SIGNAL] = { 0 };
 
 static GtkFileChooserDialogClass *geda_image_chooser_parent_class = NULL;
 
+/* List of pointers to GedaImageChooser instances */
+static GList *list_of_choosers = NULL;
+
 static GtkEntry *chooser_entry;
 
 static GedaFileFilterDataDef filter_data[] = {
@@ -812,6 +815,13 @@ geda_image_chooser_constructor (GType                  type,
  */
 static void geda_image_chooser_finalize (GObject *object)
 {
+  list_of_choosers = g_list_remove(list_of_choosers, object);
+
+  if (!g_list_length(list_of_choosers)) {
+    g_list_free(list_of_choosers);
+    list_of_choosers = NULL;
+  }
+
   chooser_entry = NULL;
 
   (G_OBJECT_CLASS (geda_image_chooser_parent_class))->finalize (object);
@@ -1093,6 +1103,9 @@ geda_image_chooser_instance_init (GTypeInstance *instance, void *class)
   chooser_entry       = NULL;
   self->filter_button = NULL;
   self->previous_size = -1;
+
+  /* Append instance to list of valid GedaImageChooser objects */
+  list_of_choosers = g_list_append(list_of_choosers, instance);
 }
 
 /*! \brief Function to retrieve GedaImageChooser's Type identifier.
@@ -1224,6 +1237,22 @@ geda_image_chooser_new (void *parent, ImageChooserAction chooser_action)
   }
 
   return widget;
+}
+
+/*!
+ * \brief Check if an object is a GedaImageChooser
+ * \par Function Description
+ *  Determines if \a chooser is valid by verifying \a chooser
+ *  is included in the hash table of GedaImageChooser objects.
+ *
+ * \return TRUE if \a chooser is a valid GedaImageChooser
+ */
+bool is_a_geda_image_chooser (GedaImageChooser *chooser)
+{
+  if (chooser && list_of_choosers) {
+    return g_list_find(list_of_choosers, chooser) ? TRUE : FALSE;
+  }
+  return FALSE;
 }
 
 static GtkWidget *
