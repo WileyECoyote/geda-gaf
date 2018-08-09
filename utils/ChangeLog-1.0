@@ -5,6 +5,7 @@
       double quotes for better portability:
 
           * docs/gclean-symbol.1.in
+          * docs/geda-install.1.in
 
 2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
