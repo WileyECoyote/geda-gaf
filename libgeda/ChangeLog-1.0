@@ -1,3 +1,8 @@
+2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_complex.c: Add line number in output messages to discriminate
+      between test failures.
+
 2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_string.c: Declare first argument to geda_utility_string_split

@@ -255,16 +255,16 @@ check_accessors (void)
   geda_complex_set_filename(complex, TOBJECT);
 
   char *name = complex->filename;
-  if (!name && !strcmp(name,TOBJECT)) {
-    fprintf(stderr, "FAILED: geda_complex_set_filename %s != %s\n", name, TOBJECT);
+  if (!name || strcmp(name, TOBJECT)) {
+    fprintf(stderr, "FAILED: geda_complex_set_filename Line <%d> %s != %s\n", __LINE__, name, TOBJECT);
     result++;
   }
   else {
 
     name = geda_complex_get_filename(complex);
 
-    if (!name && !strcmp(name,TOBJECT)) {
-      fprintf(stderr, "FAILED: geda_complex_get_filename %s != %s\n", name, TOBJECT);
+    if (!name || strcmp(name,TOBJECT)) {
+      fprintf(stderr, "FAILED: geda_complex_set_filename Line <%d> %s != %s\n", __LINE__, name, TOBJECT);
       result++;
     }
 
@@ -272,13 +272,13 @@ check_accessors (void)
 
     name = complex->filename;
     if (name) {
-      fprintf(stderr, "FAILED: geda_complex_set_filename NULL <%p>\n", name);
+      fprintf(stderr, "FAILED: geda_complex_set_filename NULL Line <%d> <%p>\n", __LINE__, name);
       result++;
     }
 
     name = geda_complex_get_filename(complex);
     if (name) {
-      fprintf(stderr, "FAILED: geda_complex_get_filename NULL <%p>\n", name);
+      fprintf(stderr, "FAILED: geda_complex_get_filename NULL Line <%d> <%p>\n", __LINE__, name);
       result++;
     }
   }
