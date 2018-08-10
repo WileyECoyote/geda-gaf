@@ -378,6 +378,166 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
   return result;
 }
 
+/*!
+ * \brief Guile callback for Library Search for Symbols.
+ * \par Function Description
+ *  Callback function for the scheme "component-search-directory"
+ *  routine, which can be used in rc files to add a directory to
+ *  be searched for component libraries or symbols. The name string
+ *  is intented to be flexible so as to allow users to specify where
+ *  the symbols show up on the component select dialog in gschem, or
+ *  even leave off the argument. When symbols are in subdirectories
+ *  under \a path and the \a name is not given, the subdirectory will
+ *  appear on the Local TAB.
+ *
+ * examples:
+ *
+ *  1. (component-library-search "./symbols")
+ *
+ *  2. (define gedasymbols (build-path (getenv "HOME") "geda" "symbols"))
+ *     (component-library-search gedasymbols)
+ *
+ *  3. (component-library-search "c:/Projects/geda/symbols" "Simulation/homebrew")
+ *
+ *  \param [in] path  The directory to be searched for symbols
+ *  \param [in] name  Optional descriptive name for the component source.
+ */
+SCM g_rc_component_search_directory (SCM path, SCM name)
+{
+  char *directory;
+  char *temp;
+  char *namestr;
+  SCM   result;
+
+  SCM get_tab_catagory_name(const char *catagory) {
+
+    SCM s_tmp_name;
+
+    if (!namestr) {
+
+      namestr = geda_strconcat("Local/", catagory , NULL);
+      s_tmp_name = scm_from_utf8_string (namestr);
+      free(namestr);
+      namestr = NULL;
+    }
+    else {
+      char *tmp_str;
+      tmp_str = geda_strconcat(namestr, "/", catagory , NULL);
+      s_tmp_name = scm_from_utf8_string (tmp_str);
+      free(tmp_str);
+    }
+
+    return s_tmp_name;
+  }
+
+  SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "component-library-search");
+
+  scm_dynwind_begin (0);
+
+  if (name != SCM_UNDEFINED) {
+    namestr = scm_to_utf8_string (name);
+    scm_dynwind_free(namestr);
+  }
+  else {
+    namestr = NULL;
+  }
+
+  /* take care of any shell variables */
+  temp = scm_to_utf8_string (path);
+
+  directory = geda_utility_expand_env_variable (temp);
+  scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
+
+  free (temp);
+
+  temp = NULL;
+
+  /* Check if path is valid, does not accept "/c/" for "c:/" */
+  if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
+
+    const char *msg = _("Check library search path");
+
+    geda_log_w("%s [%s]\n", msg, directory);
+
+    result = SCM_BOOL_F;
+  }
+  else {
+
+    GError *err;
+    GSList *files;
+
+    err = NULL;
+
+    /* Returned list does not include paths */
+    files = geda_file_get_dir_list_files (directory, NULL, &err);
+
+    if (err) {
+      geda_log_w ("%s\n", err->message);
+      g_error_free(err);
+    }
+    else {
+
+      GSList *iter = files;
+      bool top_included = FALSE;
+
+      while (iter) {
+
+        char *file = iter->data;
+        char *fullpath;
+
+        if (!strcmp(file, ".") || !strcmp(file, "..")) {
+          iter = iter->next;
+          continue;
+        }
+
+        fullpath = g_build_filename (directory, file, NULL);
+
+        if (g_file_test (fullpath, G_FILE_TEST_IS_DIR)) {
+
+           SCM s_subdir = scm_from_utf8_string (fullpath);
+           SCM s_tmp_name;
+
+           s_tmp_name = get_tab_catagory_name(file);
+
+           g_rc_component_library(s_subdir, s_tmp_name);
+        }
+        else {
+
+          if (!top_included) {
+
+            const char *ext = geda_file_get_filename_ext(file);
+
+            if (ext && !strncmp(ext, "sym", 3)) {
+
+               SCM s_tmp_name;
+
+               const char *parent = geda_file_get_basename(directory);
+
+               s_tmp_name = get_tab_catagory_name(parent);
+
+               g_rc_component_library(path, s_tmp_name);
+
+               top_included = TRUE;
+            }
+          }
+        }
+
+        GEDA_FREE(fullpath);
+
+        /* Next directory or file in files */
+        iter = iter->next;
+      }
+
+      geda_utility_gslist_free_full (files, g_free);
+    }
+    result = SCM_BOOL_T;
+  }
+
+  scm_dynwind_end();
+
+  return result;
+}
+
 /*! \brief Handles the source-library SCM keyword.
  *  \par Function Description
  *   Sets a hokey path to search for schematics.

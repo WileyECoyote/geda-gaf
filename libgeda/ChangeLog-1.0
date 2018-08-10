@@ -5,10 +5,13 @@
 
     * src/guile/g_rc.c: Revise g_rc_component_library to better handle local
       relative paths with and without catagory names, short of using the TAB
-      names in gschem.
+      names in gschem. Add g_rc_component_search_directory as an alternative
+      to component-library-search, which is broken in guile on Win32 systems.
 
     * src/guile/g_rc_parse.c: Conditionaly use stricmp in g_rc_try_mark_read
       for Win32.
+
+    * src/guile/g_register.c: Register "component-search-directory".
 
     * src/struct/s_clib.c: Revise geda_struct_clib_add_directory to check if
       the directory is already a source before adding.

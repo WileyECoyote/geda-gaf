@@ -32,6 +32,7 @@ static struct gsubr_t rc_func_table[] = {
   { "component-library",          1, 1, 0, g_rc_component_library },
   { "component-library-command",  3, 0, 0, g_rc_component_library_command },
   { "component-library-funcs",    3, 0, 0, g_rc_component_library_funcs },
+  { "component-search-directory", 1, 1, 0, g_rc_component_search_directory },
   { "source-library",             1, 0, 0, g_rc_source_library },
   { "source-library-search",      1, 0, 0, g_rc_source_library_search },
 

@@ -13,6 +13,7 @@ SCM      g_rc_component_groups               (SCM stringlist);
 SCM      g_rc_component_library              (SCM path, SCM name);
 SCM      g_rc_component_library_command      (SCM listcmd, SCM getcmd, SCM name);
 SCM      g_rc_component_library_funcs        (SCM listfunc, SCM getfunc, SCM name);
+SCM      g_rc_component_search_directory     (SCM path, SCM name);
 
 SCM      g_rc_source_library                 (SCM path);
 SCM      g_rc_source_library_search          (SCM path);
