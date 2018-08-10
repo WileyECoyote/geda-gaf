@@ -751,7 +751,13 @@ static bool strhashcmp (const char *a, const char *b) {
   int answer;
 
   if ((a[0] != '\0') && (b[0] != '\0')) {
+
+#if defined (OS_WIN32)
+     answer = stricmp (a, b) == 0;
+#else
      answer = strcmp (a, b) == 0;
+#endif
+
   }
   else {
      answer = 0;
