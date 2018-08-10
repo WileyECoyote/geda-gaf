@@ -2,7 +2,9 @@
 
     * src/x/x_menus.c: Conditionaly use stricmp in x_menu_recent_files_add
       for Win32 builds because file names are not case senitive and can result
-      in duplicate recent meu items.
+      in duplicate recent meu items. Revise x_menu_recent_files_save and
+      x_menu_recent_files_load to log saving and restoring of the recent
+      menu item when verbose mode is set.
 
 2018-08-04 Wiley E. Hill <wileyhill@gmail.com>
 

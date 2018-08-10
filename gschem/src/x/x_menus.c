@@ -2478,6 +2478,13 @@ void x_menu_recent_files_save(void *user_data)
    data = geda_keyfile_to_data(keyfile, NULL, NULL);
    g_file_set_contents(file, data, -1, NULL);
 
+   if (verbose_mode) {
+
+      const char *log_msg = _("Recent menu items saved to");
+
+      geda_log("%s %s\n", log_msg, file);
+   }
+
    GEDA_FREE(data);
    GEDA_FREE(file);
    geda_keyfile_free(keyfile);
@@ -2522,6 +2529,13 @@ void x_menu_recent_files_load()
    while(len > 0) {
       len--;
       recent_files = g_list_prepend(recent_files, list[len]);
+   }
+
+   if (verbose_mode) {
+
+      const char *log_msg = _("Recent menu items restore from");
+
+      geda_log("%s %s\n", log_msg, file);
    }
 
    GEDA_FREE(list);
