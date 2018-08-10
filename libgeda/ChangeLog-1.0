@@ -3,6 +3,10 @@
     * geda/geda_config.c: Conditionaly use stricmp in strhashcmp for Win32
       builds because file names and paths are not case senitive.
 
+    * src/guile/g_rc.c: Revise g_rc_component_library to better handle local
+      relative paths with and without catagory names, short of using the TAB
+      names in gschem.
+
     * src/guile/g_rc_parse.c: Conditionaly use stricmp in g_rc_try_mark_read
       for Win32.
 

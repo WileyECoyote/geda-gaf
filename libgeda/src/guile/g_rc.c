@@ -170,15 +170,96 @@ SCM g_rc_component_library(SCM path, SCM name)
     }
     else {
 
+      /* The directory is not absolute, this is typically the case when
+       * a local directory is being added in a gafrc file such as:
+       *
+       *     (component-library "sym")         (namestr will be NULL)
+       *  or
+       *     (component-library "./sym")       (namestr will be NULL)
+       *
+       *  but could also be something like:
+       *
+       *     (component-library "sym" "Local")          ;(namestr will be "Local")
+       *     (component-library "sym" "Local/")         ;(namestr will be "Local/")
+       *     (component-library "sym" "Local/generic")  ;(namestr will be "Local/generic")
+       *     (component-library "sym" "/generic")       ;(namestr will be "/generic")
+       */
+
       char *cwd = g_get_current_dir ();
+      char *name_str;
       char *temp;
+
+      if (!namestr) {
+
+        /* Handle case 1 & 2 above; no namestr */
+
+        const char *dir_name;
+
+        dir_name = geda_file_get_basename (directory);
+
+        name_str = geda_strconcat ("Local/", dir_name, NULL);
+      }
+      else {
+
+        char *slash = strstr(namestr, "/");
+
+        if (!slash) {
+
+          /* Handle case 3 above; (maybe TAB, no catagory */
+
+          const char *dir_name;
+
+          dir_name = geda_file_get_basename (directory);
+
+          name_str = geda_strconcat (namestr, "/", dir_name, NULL);
+        }
+        else {
+
+          /* Handle case 4, 5 & 6 above; have namestr */
+
+          int i, len, pos;
+
+          len = strlen (namestr);
+          pos = 0;
+
+          for (i = 0; i < len; i++) {
+            if (namestr[i] == '/') {
+              pos = i;
+              break;
+            }
+          }
+
+          if (!pos) {
+
+            /* Case 6 above; catagory given as /catagory */
+
+            name_str = geda_strconcat ("Local", namestr, NULL);
+          }
+          else if (pos == len - 1) {
+
+            /* Case 4 above; trailing slash */
+
+            const char *dir_name;
+
+            dir_name = geda_file_get_basename (directory);
+            name_str = geda_strconcat (namestr, dir_name, NULL);
+          }
+          else {
+
+            /* Case 5 above; todo: Everything before the slash should be a TAB */
+
+            name_str = geda_strdup (namestr);
+
+          }
+        }
+      }
 
       switch (strlen(directory)) {
         case 1:
         case 2:
           /* Check if IS current directory */
           if (*directory == '.' && *directory + 1 == '/' ) {
-            geda_struct_clib_add_directory (cwd, namestr);
+            geda_struct_clib_add_directory (cwd, name_str);
             break;
           }
 
@@ -190,9 +271,9 @@ SCM g_rc_component_library(SCM path, SCM name)
           }
           else { /* Is above so normalize the path */
             temp = geda_file_sys_normalize_name(directory, NULL);
-            /*temp = g_build_filename (cwd, directory, NULL);*/
+            /* temp = g_build_filename (cwd, directory, NULL);*/
           }
-          geda_struct_clib_add_directory (temp, namestr);
+          geda_struct_clib_add_directory (temp, name_str);
           GEDA_FREE(temp);
           break;
       }
