@@ -2413,9 +2413,21 @@ void x_menu_recent_files_add(const char *filename)
 
    /* Check if the file is already in the list.  */
    while (p != NULL) {
+
+#if defined (OS_WIN32)
+
+     if (stricmp (save_fn, (char*) p->data) == 0) {
+       break;
+     }
+
+#else
+
      if (strcmp (save_fn, (char*) p->data) == 0) {
        break;
      }
+
+#endif
+
      p = g_list_next (p);
    }
 
