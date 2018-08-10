@@ -2498,12 +2498,12 @@ void x_menu_recent_files_load()
    keyfile = geda_keyfile_new();
    file = g_build_filename(geda_user_config_path(), RECENT_FILES_STORE, NULL);
 
-   if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
+   if (!g_file_test(file, G_FILE_TEST_EXISTS)) {
      geda_create_path(geda_user_config_path (), S_IRWXU | S_IRWXG);
      x_menu_recent_files_create_empty();
    }
 
-   if(!geda_keyfile_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL)) {
+   if (!geda_keyfile_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL)) {
       /* error opening key file, create an empty one and try again */
       x_menu_recent_files_create_empty();
       if(!geda_keyfile_load_from_file(keyfile, file, G_KEY_FILE_NONE, NULL))
@@ -2512,7 +2512,7 @@ void x_menu_recent_files_load()
 
    list = geda_keyfile_get_string_list(keyfile, "Recent files", "Files", &len, NULL);
 
-   if(list == NULL) {
+   if (list == NULL) {
       /* error reading key file, don't bother to correct;
        * just overwrite it with an empty one */
       x_menu_recent_files_create_empty();
