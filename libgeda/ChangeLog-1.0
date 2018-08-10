@@ -3,6 +3,9 @@
     * geda/geda_config.c: Conditionaly use stricmp in strhashcmp for Win32
       builds because file names and paths are not case senitive.
 
+    * src/guile/g_rc_parse.c: Conditionaly use stricmp in g_rc_try_mark_read
+      for Win32.
+
 2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_complex.c: Add line number in output messages to discriminate

@@ -158,7 +158,17 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
   }
 
   /* Test if marked read already */
+
+#if defined (OS_WIN32)
+
+  found = g_list_find_custom (cfg->RC_list, filename, (GCompareFunc) stricmp);
+
+#else
+
   found = g_list_find_custom (cfg->RC_list, filename, (GCompareFunc) strcmp);
+
+#endif
+
 
   if (found != NULL) {
     g_set_error (err, EDA_ERROR, EDA_ERROR_RC_TWICE, _("RC file already loaded"));
@@ -428,6 +438,7 @@ bool g_rc_parse_local (const char *rcname, const char *path, GError **err)
   *dir = '\0';
 
   rcfile = strcat (&buffer[0], rcname);
+
   status = g_rc_parse_file (rcfile, cfg, err);
 
   return status;
