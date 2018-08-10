@@ -922,6 +922,10 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     return NULL;
   }
 
+  if (geda_struct_clib_source_path_exist(directory)) {
+    return NULL;
+  }
+
   pbuff = memset (&buffer[0], '\0', MAX_FILE);
 
   strcpy (pbuff, directory);
@@ -995,7 +999,7 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     tmpstr = geda_file_get_basename_dup(directory);
   }
 
-  if( category == NULL) {
+  if (category == NULL) {
     category = geda_strdup("Standard");
   }
 
