@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-08-11 12:48-0500\n"
 "PO-Revision-Date: 2014-08-31 20:24+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gaf/src/gaf.c:70
+#: gaf/src/gaf.c:71
 #, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
@@ -33,6 +33,7 @@ msgid ""
 "  shell             Scheme REPL for interactive gEDA data processing\n"
 "  config            Edit gEDA configuration\n"
 "  export            Export gEDA files in various image formats.\n"
+"  path              Writes path strings to standard output port.\n"
 "\n"
 "Please report bugs to %s.\n"
 msgstr ""
@@ -47,10 +48,13 @@ msgstr ""
 "\n"
 "Algemeen gebruikte opdrachten (type `gaf <cmd> --help' voor gebruik):\n"
 "  shell          Scheme REPL voor interactieve gEDA gegevensverwerking\n"
+"  config         Bewerk de gEDA-configuratie\n"
+"  export         GEDA-bestanden exporteren in verschillende beeldformaten.\n"
+"  path           Schrijft padreeksen naar standaard uitvoerpoort.\n"
 "\n"
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
-#: gaf/src/gaf.c:89
+#: gaf/src/gaf.c:91
 #, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
@@ -67,15 +71,15 @@ msgstr ""
 "de gEDA distributie is bijgevoegd.\n"
 "Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
 
-#: gaf/src/gaf.c:101
+#: gaf/src/gaf.c:103
 msgid "Run `gaf --help' for more information"
 msgstr "Voer `gaf --help' uit voor meer informatie"
 
-#: gaf/src/gaf.c:163
+#: gaf/src/gaf.c:165
 msgid "No command specified, nothing to do"
 msgstr "Geen opdracht opgegeven, niets te doen"
 
-#: gaf/src/gaf.c:180
+#: gaf/src/gaf.c:182
 msgid "ERROR: Unrecognised command"
 msgstr "FOUT: niet-herkende opdracht"
 
