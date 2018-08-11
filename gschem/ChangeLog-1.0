@@ -4,6 +4,8 @@
 
     * po/sl.po: Update Slovenian translations
 
+    * po/sr.po: Update Serbian translations.
+
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Conditionaly use stricmp in x_menu_recent_files_add

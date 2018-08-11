@@ -1828,9 +1828,8 @@ msgstr ""
 
 # unselect mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "унселецт режим"
+msgstr "безбедни режим"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
@@ -4270,41 +4269,49 @@ msgstr ""
 msgid "data saved to"
 msgstr ""
 
+# Could not save Toolbar configuration to
 #: gschem/src/x/x_toolbars.c:583
 msgid "Could not save Toolbar configuration to"
-msgstr ""
+msgstr "Није могуће сачувати конфигурацију Тоолбар-а"
 
+# Error, Toolbar configuration key file
 #: gschem/src/x/x_toolbars.c:690
 msgid "Error, Toolbar configuration key file"
-msgstr ""
+msgstr "Грешка, фајл конфигурационог кључа Тоолбар-а"
 
+# Retrieving toolbar ge
 #: gschem/src/x/x_toolbars.c:698
 msgid "Retrieving toolbar geometry\n"
-msgstr ""
+msgstr "Преузимање геометрије алатне траке\n"
 
+# Toolbar configuration restored from
 #: gschem/src/x/x_toolbars.c:726
 msgid "Toolbar configuration restored from"
-msgstr ""
+msgstr "Конфигурација алатне траке је обновљена"
 
 #: gschem/src/x/x_toolbars.c:731
 msgid "Warning, error restoring toolbar configuration"
 msgstr "greška u analizi"
 
+# Warning, toolbar configuration file access error
 #: gschem/src/x/x_toolbars.c:737
 msgid "Warning, toolbar configuration file access error"
-msgstr ""
+msgstr "Упозорење, грешка у приступу конфигурационој датотеци алатне траке"
 
+# Toolbar configuration not found
 #: gschem/src/x/x_toolbars.c:759
 msgid "Toolbar configuration not found"
-msgstr ""
+msgstr "Конфигурација алатне траке није пронађена"
 
+# Restoring user settings
 #: gschem/src/x/x_window.c:59
 msgid "Restoring user settings\n"
-msgstr ""
+msgstr "Враћање корисничких подешавања\n"
 
+# Could not allocate a graphics context
 #: gschem/src/x/x_window.c:122
 msgid "Could not allocate a graphics context"
-msgstr ""
+msgstr "Не могу додијелити графички контекст"
 
 # there is no current window
 #: gschem/src/x/x_window.c:127
@@ -4313,32 +4320,37 @@ msgstr "нема струје прозора"
 
 #: gschem/src/x/x_window.c:136
 msgid "Could not create a Cairo context, is window drawable?\n"
-msgstr ""
+msgstr "Не могу да креирам контекст у Каиру, да ли је прозор могуће извлачити?\n"
 
+# window is not valid
 #: gschem/src/x/x_window.c:143
 msgid "window is not valid"
-msgstr ""
+msgstr "прозор није важећи"
 
+# Saving main window settings
 #: gschem/src/x/x_window.c:208
 msgid "Saving main window settings.\n"
-msgstr ""
+msgstr "Меморисање главних поставки прозора.\n"
 
+# Retrieving main Window settings
 #: gschem/src/x/x_window.c:360
 msgid "Retrieving main Window settings.\n"
-msgstr ""
+msgstr "Преузимање главних поставки прозора.\n"
 
+# Aborting action
 #: gschem/src/x/x_window.c:676 gschem/src/x/x_window.c:1110
 msgid "Aborting action\n"
-msgstr ""
+msgstr "Прекидање акције\n"
 
 # Close Window canceled
 #: gschem/src/x/x_window.c:682
 msgid "Close Window canceled\n"
 msgstr "Затвори прозор отказан\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
 msgid "Shutdown schematic editor\n"
-msgstr ""
+msgstr "Шематски едитор за искључивање\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
