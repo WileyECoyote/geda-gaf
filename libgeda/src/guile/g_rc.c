@@ -737,13 +737,13 @@ SCM g_rc_bus_style(SCM mode)
       val = scm_to_int (mode);
 
       if(val < STYLE_NONE || val > STYLE_THICK) {
-        fprintf (stderr, _("Bad value [%d], check bus-style entry in rc file\n"), val);
+        fprintf (stderr, _("Bad value [%d], check bus-style setting in configuration file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_BUS_STYLE);
         val = DEFAULT_BUS_STYLE;
       }
     }
     else {
-      fprintf (stderr, _("Invalid type assignment, check bus-style entry in rc file\n"));
+      fprintf (stderr, _("Invalid type assignment, check bus-style setting in configuration file\n"));
       fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_BUS_STYLE);
       val = DEFAULT_BUS_STYLE;
     }
@@ -781,13 +781,13 @@ SCM g_rc_line_style(SCM mode)
       val = scm_to_int (mode);
 
       if (val < STYLE_NONE || val > STYLE_THICK) {
-        fprintf (stderr, _("Bad value [%d], check line-style entry in rc file\n"), val);
+        fprintf (stderr, _("Bad value [%d], check line-style setting in configuration file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_LINE_STYLE);
         val = DEFAULT_LINE_STYLE;
       }
     }
     else {
-      fprintf (stderr, _("Invalid type assignment, check line-style entry in rc file\n"));
+      fprintf (stderr, _("Invalid type assignment, check line-style setting in configuration file\n"));
       fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_LINE_STYLE);
       val = DEFAULT_LINE_STYLE;
     }
@@ -825,13 +825,13 @@ SCM g_rc_net_style(SCM mode)
       val = scm_to_int (mode);
 
       if (val < STYLE_NONE || val > STYLE_THICK) {
-        fprintf (stderr, _("Bad value [%d], check net-style entry in rc file\n"), val);
+        fprintf (stderr, _("Bad value [%d], check net-style setting in configuration file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_NET_STYLE);
         val = DEFAULT_LINE_STYLE;
       }
     }
     else {
-      fprintf (stderr, _("Invalid type assignment, check net-style entry in rc file\n"));
+      fprintf (stderr, _("Invalid type assignment, check net-style setting in configuration file\n"));
       fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_NET_STYLE);
       val = DEFAULT_NET_STYLE;
     }
@@ -870,13 +870,13 @@ SCM g_rc_pin_style(SCM mode)
       val = scm_to_int (mode);
 
       if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
-        fprintf (stderr, _("Bad value [%d], check pin-style entry in rc file\n"), val);
+        fprintf (stderr, _("Bad value [%d], check pin-style setting in configuration file\n"), val);
         fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_PIN_STYLE);
         val = DEFAULT_LINE_STYLE;
       }
     }
     else {
-      fprintf (stderr, _("Invalid type assignment, check pin-style entry in rc file\n"));
+      fprintf (stderr, _("Invalid type assignment, check pin-style setting in configuration file\n"));
       fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_PIN_STYLE);
       val = DEFAULT_PIN_STYLE;
     }
@@ -904,7 +904,7 @@ SCM g_rc_thick_bus_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thick-bus-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thick-bus-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_BUS_WIDTH);
     val = DEFAULT_THICK_BUS_WIDTH;
   }
@@ -932,7 +932,7 @@ SCM g_rc_thick_line_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thick-line-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thick-line-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_LINE_WIDTH);
     val = DEFAULT_THICK_LINE_WIDTH;
   }
@@ -960,7 +960,7 @@ SCM g_rc_thick_net_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thick-net-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thick-net-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_NET_WIDTH);
     val = DEFAULT_THICK_NET_WIDTH;
   }
@@ -988,7 +988,7 @@ SCM g_rc_thick_pin_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thick-pin-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thick-pin-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_PIN_WIDTH);
     val = DEFAULT_THICK_PIN_WIDTH;
   }
@@ -1016,7 +1016,7 @@ SCM g_rc_thin_bus_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thin-bus-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thin-bus-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_BUS_WIDTH);
     val = DEFAULT_THIN_BUS_WIDTH;
   }
@@ -1044,7 +1044,7 @@ SCM g_rc_thin_line_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thin-line-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thin-line-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_LINE_WIDTH);
     val = DEFAULT_THIN_LINE_WIDTH;
   }
@@ -1072,7 +1072,7 @@ SCM g_rc_thin_net_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thin-net-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thin-net-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_NET_WIDTH);
     val = DEFAULT_THIN_NET_WIDTH;
   }
@@ -1100,7 +1100,7 @@ SCM g_rc_thin_pin_width (SCM width)
     }
   }
   else {
-    fprintf (stderr, _("Invalid type assignment, check thin-pin-width entry in rc file\n"));
+    fprintf (stderr, _("Invalid type assignment, check thin-pin-width setting in configuration file\n"));
     fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_PIN_WIDTH);
     val = DEFAULT_THIN_PIN_WIDTH;
   }
@@ -1161,7 +1161,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
       SCM_ASSERT(scm_is_string(scm_list_ref(attrlist, scm_from_int(i))),
                  scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
-               _("always-promote-attribute: list element is not a string"));
+               _("list element is not a string"));
       temp = scm_to_utf8_string (scm_list_ref (attrlist, scm_from_int (i)));
       attr = geda_utility_string_strdup(temp);
       list = g_list_prepend(list, attr);
