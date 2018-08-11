@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-08-11 12:48-0500\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gaf/src/gaf.c:70
-#, c-format
+#: gaf/src/gaf.c:71
+#, fuzzy, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
 "\n"
@@ -31,6 +31,7 @@ msgid ""
 "  shell             Scheme REPL for interactive gEDA data processing\n"
 "  config            Edit gEDA configuration\n"
 "  export            Export gEDA files in various image formats.\n"
+"  path              Writes path strings to standard output port.\n"
 "\n"
 "Please report bugs to %s.\n"
 msgstr ""
@@ -47,10 +48,11 @@ msgstr ""
 "  shell          REPL Scheme per elaborazione dati gEDA interattiva\n"
 "  config         modifica la configurazione di gEDA\n"
 "  export         esporta i file gEDA in vari formati immagine.\n"
+"  path           Writes path strings to standard output port.\n"
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/gaf.c:89
+#: gaf/src/gaf.c:91
 #, c-format
 msgid ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
@@ -67,15 +69,15 @@ msgstr ""
 "nella distribuzione di gEDA.\n"
 "NON C'È ALCUNA GARANZIA, nei limiti della legislazione vigente.\n"
 
-#: gaf/src/gaf.c:101
+#: gaf/src/gaf.c:103
 msgid "Run `gaf --help' for more information"
 msgstr "Eseguire \"gaf --help\" per ulteriori informazioni"
 
-#: gaf/src/gaf.c:163
+#: gaf/src/gaf.c:165
 msgid "No command specified, nothing to do"
 msgstr "Nessun comando specificato, niente da fare"
 
-#: gaf/src/gaf.c:180
+#: gaf/src/gaf.c:182
 msgid "ERROR: Unrecognised command"
 msgstr "ERRORE: comando non riconosciuto"
 
