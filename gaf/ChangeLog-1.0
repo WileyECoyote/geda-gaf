@@ -4,6 +4,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/ru.po: Update Russian translations.
+
 2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/path.c: Add new backend to write libgeda path information to
