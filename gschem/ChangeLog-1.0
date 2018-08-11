@@ -1,3 +1,7 @@
+2018-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/fa.po: Update Persian translations.
+
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Conditionaly use stricmp in x_menu_recent_files_add
