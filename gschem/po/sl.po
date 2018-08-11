@@ -143,9 +143,10 @@ msgstr "Obnova pozície hlavného okna.\n"
 msgid "Retrieving main window geometry.\n"
 msgstr "Obnova geometrie hlavného okna.\n"
 
+# Auto-Restore -> Automatic recovery
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Samodejno obnovitev"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:423
@@ -294,45 +295,54 @@ msgstr "Neznan znak znakov"
 msgid "--help for more information"
 msgstr ""
 
+# Run
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Zaženite"
 
+# Preview Buffer -> Preview cache
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Predpomnilnik za predogled"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:527 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
-msgstr ""
+msgstr "Ime datoteke"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "ime datoteke, ki jo želite predogledati"
 
+# Object List
 #: gschem/src/base/gschem_preview.c:535
 msgid "Object List"
-msgstr ""
+msgstr "Seznam objektov"
 
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Seznam predmetov, ki jih je treba predogledati"
 
+# Active
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Ali je pripomoček za predogled omogočen ali onemogočen"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "Velika velikost"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Ali naj bo pripomoček za predogled velik ali majhen"
 
 #: gschem/src/base/gschem_status_bar.c:582
 msgid "Coordinates Mode"
@@ -1710,11 +1720,10 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# unselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "unselect način"
+msgstr "varni način"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
@@ -4228,9 +4237,10 @@ msgstr ""
 msgid "Toolbar configuration not found"
 msgstr "Toolbar konfiguracija ni bilo mogoče najti"
 
+# Restoring user settings
 #: gschem/src/x/x_window.c:59
 msgid "Restoring user settings\n"
-msgstr ""
+msgstr "Obnavljanje uporabniških nastavitev\n"
 
 # a graphics context could not be allocated
 # graphics context was not granted
@@ -4272,10 +4282,10 @@ msgstr "preklic ukaza\n"
 msgid "Close Window canceled\n"
 msgstr "Zapri okno preklicana\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA Shematski Urejevalnik"
+msgstr "Shematski urednik za zaustavitev\n"
 
 # Retrieve files
 #: gschem/src/x/x_window.c:771
