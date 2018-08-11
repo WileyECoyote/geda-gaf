@@ -389,7 +389,10 @@ bool g_evaluate_scheme_file (const char *filename, GError **err)
             g_propagate_error (err, data.err);
           }
           else {
-            fprintf(stderr, "Error processing %s: %s\n", filename, data.err->message);
+
+            const char *err_msg = _("Error processing");
+
+            fprintf(stderr, "%s %s: %s\n", err_msg, filename, data.err->message);
           }
         }
 

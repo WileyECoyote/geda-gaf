@@ -1,3 +1,8 @@
+2018-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_evaluate.c: Translate message to console when pointer to
+      err not not provided to g_evaluate_scheme_file.
+
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda/geda_config.c: Conditionaly use stricmp in strhashcmp for Win32
