@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-08-11 12:46-0500\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -477,7 +477,7 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:482
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:532
 msgid "file"
 msgstr ""
 
@@ -591,7 +591,7 @@ msgstr "Alles gespeichert"
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1097 gschem/src/x/x_image.c:490
+#: gschem/src/iface/i_command.c:1097 gschem/src/x/x_image.c:540
 msgid "Write Image"
 msgstr "Bild exportieren"
 
@@ -3095,65 +3095,65 @@ msgstr ""
 msgid "Click to select the type of image to be created"
 msgstr ""
 
-#: gschem/src/x/x_image.c:213
+#: gschem/src/x/x_image.c:214
 msgid "Encapsulated Postscript"
 msgstr "Encapsulated Postscript"
 
-#: gschem/src/x/x_image.c:357
+#: gschem/src/x/x_image.c:407
 msgid "Error: Unable to write eps file"
 msgstr "Fehler: Die eps-Datei konnte nicht geschrieben werden"
 
-#: gschem/src/x/x_image.c:360 gschem/src/x/x_image.c:507
+#: gschem/src/x/x_image.c:410 gschem/src/x/x_image.c:557
 msgid "Wrote black and white image to"
 msgstr "Schrieb Schwarzweiss-Bild zu"
 
-#: gschem/src/x/x_image.c:466
+#: gschem/src/x/x_image.c:516
 msgid "Generated PDF file"
 msgstr "Generierte PDF-Datei"
 
-#: gschem/src/x/x_image.c:477
+#: gschem/src/x/x_image.c:527
 msgid "Unable to write"
 msgstr "Nicht schreiben können"
 
-#: gschem/src/x/x_image.c:478
+#: gschem/src/x/x_image.c:528
 msgid "An error occurred while saving image with type"
 msgstr "Beim Speichern des Bildes mit dem Typ ist ein Fehler aufgetreten"
 
 # to filename
-#: gschem/src/x/x_image.c:479
+#: gschem/src/x/x_image.c:529
 msgid "to filename"
 msgstr "zu dateiname"
 
 # Error Writing Imaging
-#: gschem/src/x/x_image.c:490
+#: gschem/src/x/x_image.c:540
 msgid "<b>Error Writing Imaging.</b>"
 msgstr "<b>Fehler beim Schreiben von Imaging.</b>"
 
-#: gschem/src/x/x_image.c:503
+#: gschem/src/x/x_image.c:553
 msgid "Wrote color image to"
 msgstr "Schrieb Farbabbildung"
 
-#: gschem/src/x/x_image.c:517
+#: gschem/src/x/x_image.c:567
 msgid "Unable to get pixbuf from gschem's window.\n"
 msgstr "konnte kein Bild vom gschem-Fenster bekommen.\n"
 
-#: gschem/src/x/x_image.c:670
+#: gschem/src/x/x_image.c:724
 msgid "Write image..."
 msgstr "Bild exportieren..."
 
-#: gschem/src/x/x_image.c:700
+#: gschem/src/x/x_image.c:754
 msgid "Width x Height"
 msgstr "Breite × Höhe"
 
-#: gschem/src/x/x_image.c:711
+#: gschem/src/x/x_image.c:765
 msgid "Image type"
 msgstr "Bildformat"
 
-#: gschem/src/x/x_image.c:775
+#: gschem/src/x/x_image.c:838
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
 
-#: gschem/src/x/x_image.c:778
+#: gschem/src/x/x_image.c:841
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
@@ -3663,6 +3663,14 @@ msgstr "_Beide anzeigen"
 
 #: gschem/src/x/x_menus.c:2373
 msgid "Clear"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:2483
+msgid "Recent menu items saved to"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:2536
+msgid "Recent menu items restore from"
 msgstr ""
 
 #: gschem/src/x/x_misc.c:73

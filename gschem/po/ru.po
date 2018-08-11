@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-08-11 12:46-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -548,7 +548,7 @@ msgstr "Но у Вас есть версия"
 msgid "Please be sure that you have the latest rc file"
 msgstr "Удостоверьтесь, что у вас последняя версия файла настроек"
 
-#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:482
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:532
 msgid "file"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgid "Error encountered, Save Failed"
 msgstr ""
 
 # Write Image
-#: gschem/src/iface/i_command.c:1097 gschem/src/x/x_image.c:490
+#: gschem/src/iface/i_command.c:1097 gschem/src/x/x_image.c:540
 msgid "Write Image"
 msgstr "Написат изображени"
 
@@ -3301,72 +3301,72 @@ msgstr ""
 msgid "Click to select the type of image to be created"
 msgstr ""
 
-#: gschem/src/x/x_image.c:213
+#: gschem/src/x/x_image.c:214
 msgid "Encapsulated Postscript"
 msgstr ""
 
 # Error: Unable to write eps file
-#: gschem/src/x/x_image.c:357
+#: gschem/src/x/x_image.c:407
 msgid "Error: Unable to write eps file"
 msgstr "Ошибка: Не удается записать файл в формате EPS"
 
 # Wrote black and white image to
-#: gschem/src/x/x_image.c:360 gschem/src/x/x_image.c:507
+#: gschem/src/x/x_image.c:410 gschem/src/x/x_image.c:557
 msgid "Wrote black and white image to"
 msgstr "Написал черного и белого изображения к"
 
 # Generated PDF file
-#: gschem/src/x/x_image.c:466
+#: gschem/src/x/x_image.c:516
 msgid "Generated PDF file"
 msgstr "Созданный файл PDF"
 
 # Unable to write
-#: gschem/src/x/x_image.c:477
+#: gschem/src/x/x_image.c:527
 msgid "Unable to write"
 msgstr "Не удается выполнить запись"
 
 # An error occured while saving image with type
-#: gschem/src/x/x_image.c:478
+#: gschem/src/x/x_image.c:528
 msgid "An error occurred while saving image with type"
 msgstr "Ошибка при сохранении изображения в зависимости от типа"
 
 # to filename
-#: gschem/src/x/x_image.c:479
+#: gschem/src/x/x_image.c:529
 msgid "to filename"
 msgstr "к имени файла"
 
 # Error when recording images.
-#: gschem/src/x/x_image.c:490
+#: gschem/src/x/x_image.c:540
 msgid "<b>Error Writing Imaging.</b>"
 msgstr "<b>Ошибка при записи изображений..</b>"
 
 # Wrote color image to
-#: gschem/src/x/x_image.c:503
+#: gschem/src/x/x_image.c:553
 msgid "Wrote color image to"
 msgstr "Написал цветное изображение"
 
-#: gschem/src/x/x_image.c:517
+#: gschem/src/x/x_image.c:567
 msgid "Unable to get pixbuf from gschem's window.\n"
 msgstr "не удалось получить растровую копию окна gschem.\n"
 
 # Write image
-#: gschem/src/x/x_image.c:670
+#: gschem/src/x/x_image.c:724
 msgid "Write image..."
 msgstr "Записать изображение..."
 
-#: gschem/src/x/x_image.c:700
+#: gschem/src/x/x_image.c:754
 msgid "Width x Height"
 msgstr "Ширина × высота"
 
-#: gschem/src/x/x_image.c:711
+#: gschem/src/x/x_image.c:765
 msgid "Image type"
 msgstr "Формат"
 
-#: gschem/src/x/x_image.c:775
+#: gschem/src/x/x_image.c:838
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr ""
 
-#: gschem/src/x/x_image.c:778
+#: gschem/src/x/x_image.c:841
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
@@ -3917,6 +3917,14 @@ msgstr "Показать путь к файлу"
 #: gschem/src/x/x_menus.c:2373
 msgid "Clear"
 msgstr "Убрать все"
+
+#: gschem/src/x/x_menus.c:2483
+msgid "Recent menu items saved to"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:2536
+msgid "Recent menu items restore from"
+msgstr ""
 
 #: gschem/src/x/x_misc.c:73
 msgid "The operating system is out of memory or resources."

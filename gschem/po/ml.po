@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-08-11 12:46-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -483,7 +483,7 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:482
+#: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:532
 msgid "file"
 msgstr ""
 
@@ -603,7 +603,7 @@ msgid "Error encountered, Save Failed"
 msgstr "നേരിട്ടു പിശക്, സംരക്ഷിക്കുക പരാജയപ്പെട്ടു"
 
 # Write Image
-#: gschem/src/iface/i_command.c:1097 gschem/src/x/x_image.c:490
+#: gschem/src/iface/i_command.c:1097 gschem/src/x/x_image.c:540
 msgid "Write Image"
 msgstr "ചിത്രം എഴുതുവാൻ"
 
@@ -3097,77 +3097,77 @@ msgid "Click to select the type of image to be created"
 msgstr "സൃഷ്ടിക്കുന്നതിനായി ഇമേജ് തരം തിരഞ്ഞെടുക്കുന്നതിന് ക്ലിക്കുചെയ്യുക"
 
 # Encapsulated Postscript
-#: gschem/src/x/x_image.c:213
+#: gschem/src/x/x_image.c:214
 msgid "Encapsulated Postscript"
 msgstr "എൻക്യാഷ് ചെയ്തു പോസ്റ്റ്സ്ക്രിപ്റ്റ്"
 
 # Error: Unable to write eps file
-#: gschem/src/x/x_image.c:357
+#: gschem/src/x/x_image.c:407
 msgid "Error: Unable to write eps file"
 msgstr "പിശക്: eps ഫയൽ എഴുതാനായില്ല"
 
 # Wrote black and white image to
-#: gschem/src/x/x_image.c:360 gschem/src/x/x_image.c:507
+#: gschem/src/x/x_image.c:410 gschem/src/x/x_image.c:557
 msgid "Wrote black and white image to"
 msgstr "കറുപ്പും വെളുപ്പും ചിത്രം എഴുതുക"
 
 # Generated PDF file
-#: gschem/src/x/x_image.c:466
+#: gschem/src/x/x_image.c:516
 msgid "Generated PDF file"
 msgstr "സൃഷ്ടിച്ച PDF ഫയൽ"
 
 # Unable to write
-#: gschem/src/x/x_image.c:477
+#: gschem/src/x/x_image.c:527
 msgid "Unable to write"
 msgstr "എഴുതാൻ കഴിയുന്നില്ല"
 
 # An error occurred while saving image with type
-#: gschem/src/x/x_image.c:478
+#: gschem/src/x/x_image.c:528
 msgid "An error occurred while saving image with type"
 msgstr "ഒരു ചിത്രം ഉപയോഗിച്ച് ഇമേജ് സംരക്ഷിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു"
 
 # to filename
-#: gschem/src/x/x_image.c:479
+#: gschem/src/x/x_image.c:529
 msgid "to filename"
 msgstr "ഫയലിന്റെ പേര്"
 
 # Error Writing Imaging
-#: gschem/src/x/x_image.c:490
+#: gschem/src/x/x_image.c:540
 msgid "<b>Error Writing Imaging.</b>"
 msgstr "<b>ഇമേജിംഗ് എഴുതുന്നതിൽ പിശക്.</b>"
 
 # Wrote color image to
-#: gschem/src/x/x_image.c:503
+#: gschem/src/x/x_image.c:553
 msgid "Wrote color image to"
 msgstr "വർണ്ണ ഇമേജ് എഴുതുക"
 
 # Unable to get pixbuf from gschem's window
-#: gschem/src/x/x_image.c:517
+#: gschem/src/x/x_image.c:567
 msgid "Unable to get pixbuf from gschem's window.\n"
 msgstr "Gschem ന്റെ ജാലകത്തിൽ നിന്നും pixBuf നേടാൻ കഴിയുന്നില്ല.\n"
 
 # Write image
-#: gschem/src/x/x_image.c:670
+#: gschem/src/x/x_image.c:724
 msgid "Write image..."
 msgstr "ചിത്രം എഴുതുക..."
 
 # Width x Height
-#: gschem/src/x/x_image.c:700
+#: gschem/src/x/x_image.c:754
 msgid "Width x Height"
 msgstr "വീതി x പൊക്കം"
 
 # Image type
-#: gschem/src/x/x_image.c:711
+#: gschem/src/x/x_image.c:765
 msgid "Image type"
 msgstr "ഇമേജ് തരം"
 
 # Enable to use the Print color map instead of the display color map
-#: gschem/src/x/x_image.c:775
+#: gschem/src/x/x_image.c:838
 msgid "Enable to use the Print color map instead of the display color map"
 msgstr "ഡിസ്പ്ലേ വർണ്ണ മാപ്പിനുള്ളതിനുപകരം പ്രിന്റ് വർക്ക് മാപ്പ് ഉപയോഗിക്കാൻ പ്രാപ്തമാക്കുക"
 
 # When enabled for reversed color images, only black and white will be reversed
-#: gschem/src/x/x_image.c:778
+#: gschem/src/x/x_image.c:841
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
@@ -3725,6 +3725,14 @@ msgstr ""
 
 #: gschem/src/x/x_menus.c:2373
 msgid "Clear"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:2483
+msgid "Recent menu items saved to"
+msgstr ""
+
+#: gschem/src/x/x_menus.c:2536
+msgid "Recent menu items restore from"
 msgstr ""
 
 #: gschem/src/x/x_misc.c:73

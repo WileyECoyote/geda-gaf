@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-08-11 12:48-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,62 +18,62 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:462
-#: libgedauio/src/dialogs/geda_image_chooser.c:1029
+#: libgedauio/src/dialogs/geda_file_chooser.c:463
+#: libgedauio/src/dialogs/geda_image_chooser.c:1039
 msgid "filter index"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:463
-#: libgedauio/src/dialogs/geda_image_chooser.c:1030
+#: libgedauio/src/dialogs/geda_file_chooser.c:464
+#: libgedauio/src/dialogs/geda_image_chooser.c:1040
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:646
-#: libgedauio/src/dialogs/geda_image_chooser.c:1176
+#: libgedauio/src/dialogs/geda_file_chooser.c:647
+#: libgedauio/src/dialogs/geda_image_chooser.c:1189
 msgid "_Open"
 msgstr "_Otwórz"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:647
-#: libgedauio/src/dialogs/geda_image_chooser.c:1177
+#: libgedauio/src/dialogs/geda_file_chooser.c:648
+#: libgedauio/src/dialogs/geda_image_chooser.c:1190
 msgid "Open..."
 msgstr "Otwórz..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:651
-#: libgedauio/src/dialogs/geda_image_chooser.c:1181
+#: libgedauio/src/dialogs/geda_file_chooser.c:652
+#: libgedauio/src/dialogs/geda_image_chooser.c:1194
 msgid "_Save"
 msgstr "Zapi_sz"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:652
-#: libgedauio/src/dialogs/geda_image_chooser.c:1182
+#: libgedauio/src/dialogs/geda_file_chooser.c:653
+#: libgedauio/src/dialogs/geda_image_chooser.c:1195
 msgid "Save As..."
 msgstr "Zapisz jako..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:656
-#: libgedauio/src/dialogs/geda_image_chooser.c:1186
+#: libgedauio/src/dialogs/geda_file_chooser.c:657
+#: libgedauio/src/dialogs/geda_image_chooser.c:1199
 msgid "_Select Folder..."
 msgstr "Wybierz katalog..."
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:657
-#: libgedauio/src/dialogs/geda_image_chooser.c:1187
+#: libgedauio/src/dialogs/geda_file_chooser.c:658
+#: libgedauio/src/dialogs/geda_image_chooser.c:1200
 msgid "Select Folder"
 msgstr "Wybierz katalog"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:661
-#: libgedauio/src/dialogs/geda_image_chooser.c:1191
+#: libgedauio/src/dialogs/geda_file_chooser.c:662
+#: libgedauio/src/dialogs/geda_image_chooser.c:1204
 msgid "OOPS"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:667
-#: libgedauio/src/dialogs/geda_image_chooser.c:1196
+#: libgedauio/src/dialogs/geda_file_chooser.c:668
+#: libgedauio/src/dialogs/geda_image_chooser.c:1209
 msgid "_Cancel"
 msgstr "Anuluj"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:599
-#: libgedauio/src/dialogs/geda_image_chooser.c:783
+#: libgedauio/src/dialogs/geda_image_chooser.c:602
+#: libgedauio/src/dialogs/geda_image_chooser.c:786
 msgid "Preview"
 msgstr "Podgląd"
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:785
+#: libgedauio/src/dialogs/geda_image_chooser.c:788
 msgid "Active to enable the preview pane"
 msgstr ""
 
@@ -306,73 +306,73 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:655
+#: libgedauio/src/widgets/geda_entry.c:657
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:656
+#: libgedauio/src/widgets/geda_entry.c:658
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:663
+#: libgedauio/src/widgets/geda_entry.c:665
 #: libgedauio/src/widgets/geda_label.c:1390
 msgid "Attributes"
 msgstr "Atrybuty"
 
-#: libgedauio/src/widgets/geda_entry.c:664
+#: libgedauio/src/widgets/geda_entry.c:666
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:671
+#: libgedauio/src/widgets/geda_entry.c:673
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:672
+#: libgedauio/src/widgets/geda_entry.c:674
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:679
+#: libgedauio/src/widgets/geda_entry.c:681
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:680
+#: libgedauio/src/widgets/geda_entry.c:682
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:687
+#: libgedauio/src/widgets/geda_entry.c:689
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:688
+#: libgedauio/src/widgets/geda_entry.c:690
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:697
+#: libgedauio/src/widgets/geda_entry.c:699
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:698
+#: libgedauio/src/widgets/geda_entry.c:700
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:707
+#: libgedauio/src/widgets/geda_entry.c:709
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:708
+#: libgedauio/src/widgets/geda_entry.c:710
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
 # Auto Complete
-#: libgedauio/src/widgets/geda_entry.c:1362
+#: libgedauio/src/widgets/geda_entry.c:1364
 msgid "Auto Complete"
 msgstr "Autouzupełnienie"
 
-#: libgedauio/src/widgets/geda_entry.c:1370
+#: libgedauio/src/widgets/geda_entry.c:1372
 msgid "On"
 msgstr "On"
 
-#: libgedauio/src/widgets/geda_entry.c:1375
+#: libgedauio/src/widgets/geda_entry.c:1377
 msgid "Off"
 msgstr ""
 
