@@ -9,6 +9,13 @@
     * cypress/CYW43455-1.sym: Add symbol; 802.11 ac 2x2 MAC,PHY, Radio,
       with USB and SDIO.
 
+    * cypress/src: Add ods documents used to generate some symbols:
+
+            * cypress/src/CYW4356.ods
+            * cypress/src/CYW43143.ods
+            * cypress/src/CYW43438.ods
+            * cypress/src/CYW43455.ods
+
 2018-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
