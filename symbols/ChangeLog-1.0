@@ -18,6 +18,9 @@
 
     * linear/regulator/LM117-1.sym: Add symbol; Adjustable voltage regulator.
 
+    * linear/regulator/LM317-1.sym: Add value, description, and documentation
+      attributes, update attributes locations.
+
 2018-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
