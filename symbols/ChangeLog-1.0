@@ -1,10 +1,13 @@
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * cypress/CYW43143-1.sym: Add symbol; IEEE 802.11 b,g,n MAC, PHY,
+    * cypress/CYW43143-1.sym: Add symbol; 802.11 b,g,n MAC, PHY,
       Radio, with USB and SDIO.
 
     * cypress/CYW43455-1.sym: Add symbol; 802.11 b,g,n, 5G, Bluetooth
       4.1, FM Receiver.
+
+    * cypress/CYW43455-1.sym: Add symbol; 802.11 ac 2x2 MAC,PHY, Radio,
+      with USB and SDIO.
 
 2018-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
