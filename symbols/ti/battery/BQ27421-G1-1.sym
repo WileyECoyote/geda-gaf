@@ -1,0 +1,119 @@
+v 20160507 2
+P 300 1100 0 1100 1 0 1
+{
+T 150 1150 5 8 1 1 0 6 1
+pinnumber=A1
+T 150 975 5 8 0 1 0 6 1
+pinseq=1
+T 350 1100 9 8 1 1 0 0 1
+pinlabel=GPOUT
+T 350 1075 5 8 0 1 0 2 1
+pintype=oc
+}
+P 0 1900 300 1900 1 0 0
+{
+T 150 1950 5 8 1 1 0 6 1
+pinnumber=A2
+T 150 1750 5 8 0 1 0 6 1
+pinseq=2
+T 350 1900 9 8 1 1 0 0 1
+pinlabel=SDA
+T 350 1875 5 8 0 1 0 2 1
+pintype=oc
+}
+P 300 1500 0 1500 1 0 1
+{
+T 170 1550 5 8 1 1 0 6 1
+pinnumber=A3
+T 170 1350 5 8 0 1 0 6 1
+pinseq=3
+T 350 1500 9 8 1 1 0 0 1
+pinlabel=SCL
+T 350 1475 5 8 0 1 0 2 1
+pintype=oc
+}
+P 300 700 0 700 1 0 1
+{
+T 170 750 5 8 1 1 0 6 1
+pinnumber=B1
+T 170 550 5 8 0 1 0 6 1
+pinseq=4
+T 350 700 9 8 1 1 0 0 1
+pinlabel=BIN
+T 350 675 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 300 0 300 1 0 1
+{
+T 170 350 5 8 1 1 0 6 1
+pinnumber=B2
+T 170 150 5 8 0 1 0 6 1
+pinseq=5
+T 350 300 9 8 1 1 0 0 1
+pinlabel=VSS
+T 350 275 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 1900 1900 2200 1900 1 0 1
+{
+T 2030 1950 5 8 1 1 0 0 1
+pinnumber=B3
+T 2030 1750 5 8 0 1 0 0 1
+pinseq=6
+T 1850 1900 9 8 1 1 0 6 1
+pinlabel=VDD
+T 1850 1875 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 1900 300 2200 300 1 0 1
+{
+T 2030 350 5 8 1 1 0 0 1
+pinnumber=C1
+T 2030 150 5 8 0 1 0 0 1
+pinseq=7
+T 1850 300 9 8 1 1 0 6 1
+pinlabel=VSS
+T 1850 275 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 1900 1500 2200 1500 1 0 1
+{
+T 2030 1550 5 8 1 1 0 0 1
+pinnumber=C2
+T 2030 1350 5 8 0 1 0 0 1
+pinseq=8
+T 1850 1500 9 8 1 1 0 6 1
+pinlabel=SRX
+T 1850 1475 5 8 0 1 0 8 1
+pintype=in
+}
+P 1900 1100 2200 1100 1 0 1
+{
+T 2030 1150 5 8 1 1 0 0 1
+pinnumber=C3
+T 2030 950 5 8 0 1 0 0 1
+pinseq=9
+T 1850 1100 9 8 1 1 0 6 1
+pinlabel=BAT
+T 1850 1075 5 8 0 1 0 8 1
+pintype=in
+}
+B 300 0 1600 2200 3 15 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 2300 8 10 1 1 0 0 1
+refdes=U?
+T 300 3300 5 10 0 0 0 0 1
+device=BQ27421-G1
+T 300 3100 9 10 0 0 0 0 1
+numslots=0
+T 300 2900 5 10 0 1 0 0 1
+description=Fuel Gauge, System-Side Impedance Track, internal resistor
+T 300 2700 9 10 0 1 0 0 1
+footprint=S-XBGA-N9
+T 300 2500 5 10 1 1 0 0 1
+value=BQ27421YZFR-G1A
+T 300 3500 5 10 1 1 0 0 1
+comment=LiCoO2, 4.2 V Max Charge
+T 600 100 5 8 0 0 0 0 1
+symversion=0.1
+T 300 3700 5 10 0 0 0 0 1
+author=AutoTron

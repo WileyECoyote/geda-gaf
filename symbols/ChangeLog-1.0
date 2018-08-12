@@ -31,6 +31,9 @@
             * linear/regulator/LM78L12-1.sym
             * linear/regulator/LM78L15-1.sym
 
+    * ti/battery/BQ27421-G1-1.sym: Add symbol; fuel gauge for system-side
+      impedance track, with internal sense resistor.
+
 2018-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
