@@ -16,6 +16,8 @@
             * cypress/src/CYW43438.ods
             * cypress/src/CYW43455.ods
 
+    * linear/regulator/LM117-1.sym: Add symbol; Adjustable voltage regulator.
+
 2018-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
