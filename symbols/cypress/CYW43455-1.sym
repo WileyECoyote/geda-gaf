@@ -1,0 +1,1562 @@
+v 20180521 2
+P 5800 27300 5500 27300 1 0 0
+{
+T 5600 27350 5 8 1 1 0 0 1
+pinnumber=E9
+T 5600 27250 5 8 0 1 0 2 1
+pinseq=52
+T 5450 27300 9 8 1 1 0 6 1
+pinlabel=AVDD_BBPLL
+T 5450 27300 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 100 20500 400 20500 1 0 0
+{
+T 300 20550 5 8 1 1 0 6 1
+pinnumber=L4
+T 300 20450 5 8 0 1 0 8 1
+pinseq=112
+T 450 20500 9 8 1 1 0 0 1
+pinlabel=BT_CLK_REQ
+T 450 20500 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 20100 400 20100 1 0 0
+{
+T 300 20150 5 8 1 1 0 6 1
+pinnumber=J7
+T 300 20050 5 8 0 1 0 8 1
+pinseq=93
+T 450 20100 9 8 1 1 0 0 1
+pinlabel=BT_GPIO_2
+T 450 20100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 19700 400 19700 1 0 0
+{
+T 300 19750 5 8 1 1 0 6 1
+pinnumber=H6
+T 300 19650 5 8 0 1 0 8 1
+pinseq=82
+T 450 19700 9 8 1 1 0 0 1
+pinlabel=BT_GPIO_3
+T 450 19700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 19300 400 19300 1 0 0
+{
+T 300 19350 5 8 1 1 0 6 1
+pinnumber=H5
+T 300 19250 5 8 0 1 0 8 1
+pinseq=81
+T 450 19300 9 8 1 1 0 0 1
+pinlabel=BT_GPIO_4
+T 450 19300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 18900 400 18900 1 0 0
+{
+T 300 18950 5 8 1 1 0 6 1
+pinnumber=K4
+T 300 18850 5 8 0 1 0 8 1
+pinseq=101
+T 450 18900 9 8 1 1 0 0 1
+pinlabel=BT_GPIO_5
+T 450 18900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 18500 400 18500 1 0 0
+{
+T 300 18550 5 8 1 1 0 6 1
+pinnumber=H2
+T 300 18450 5 8 0 1 0 8 1
+pinseq=78
+T 450 18500 9 8 1 1 0 0 1
+pinlabel=BT_I2S_DO
+T 450 18500 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 18100 400 18100 1 0 0
+{
+T 300 18150 5 8 1 1 0 6 1
+pinnumber=N5
+T 300 18050 5 8 0 1 0 8 1
+pinseq=135
+T 450 18100 9 8 1 1 0 0 1
+pinlabel=BT_IFVDD1P2
+T 450 18100 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 17700 400 17700 1 0 0
+{
+T 300 17750 5 8 1 1 0 6 1
+pinnumber=L7
+T 300 17650 5 8 0 1 0 8 1
+pinseq=115
+T 450 17700 9 8 1 1 0 0 1
+pinlabel=BT_LNAVDD1P2
+T 450 17700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 17300 400 17300 1 0 0
+{
+T 300 17350 5 8 1 1 0 6 1
+pinnumber=N6
+T 300 17250 5 8 0 1 0 8 1
+pinseq=136
+T 450 17300 9 8 1 1 0 0 1
+pinlabel=BT_PAVDD2P5
+T 450 17300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 16900 400 16900 1 0 0
+{
+T 300 16950 5 8 1 1 0 6 1
+pinnumber=H1
+T 300 16850 5 8 0 1 0 8 1
+pinseq=77
+T 450 16900 9 8 1 1 0 0 1
+pinlabel=BT_PCM_CLK
+T 450 16900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 16500 400 16500 1 0 0
+{
+T 300 16550 5 8 1 1 0 6 1
+pinnumber=G1
+T 300 16450 5 8 0 1 0 8 1
+pinseq=66
+T 450 16500 9 8 1 1 0 0 1
+pinlabel=BT_PCM_IN
+T 450 16500 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 16100 400 16100 1 0 0
+{
+T 300 16150 5 8 1 1 0 6 1
+pinnumber=H3
+T 300 16050 5 8 0 1 0 8 1
+pinseq=79
+T 450 16100 9 8 1 1 0 0 1
+pinlabel=BT_PCM_OUT
+T 450 16100 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 15700 400 15700 1 0 0
+{
+T 300 15750 5 8 1 1 0 6 1
+pinnumber=G3
+T 300 15650 5 8 0 1 0 8 1
+pinseq=68
+T 450 15700 9 8 1 1 0 0 1
+pinlabel=BT_PCM_SYNC
+T 450 15700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 15300 400 15300 1 0 0
+{
+T 300 15350 5 8 1 1 0 6 1
+pinnumber=M5
+T 300 15250 5 8 0 1 0 8 1
+pinseq=124
+T 450 15300 9 8 1 1 0 0 1
+pinlabel=BT_PLLVDD1P2
+T 450 15300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 14900 400 14900 1 0 0
+{
+T 300 14950 5 8 1 1 0 6 1
+pinnumber=N7
+T 300 14850 5 8 0 1 0 8 1
+pinseq=137
+T 450 14900 9 8 1 1 0 0 1
+pinlabel=BT_RF
+T 450 14900 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 14500 400 14500 1 0 0
+{
+T 300 14550 5 8 1 1 0 6 1
+pinnumber=J6
+T 300 14450 5 8 0 1 0 8 1
+pinseq=92
+T 450 14500 9 8 1 1 0 0 1
+pinlabel=BT_UART_CTS_N
+T 450 14500 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 14100 400 14100 1 0 0
+{
+T 300 14150 5 8 1 1 0 6 1
+pinnumber=K3
+T 300 14050 5 8 0 1 0 8 1
+pinseq=100
+T 450 14100 9 8 1 1 0 0 1
+pinlabel=BT_UART_RTS_N
+T 450 14100 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 13700 400 13700 1 0 0
+{
+T 300 13750 5 8 1 1 0 6 1
+pinnumber=K1
+T 300 13650 5 8 0 1 0 8 1
+pinseq=98
+T 450 13700 9 8 1 1 0 0 1
+pinlabel=BT_UART_RXD
+T 450 13700 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 13300 400 13300 1 0 0
+{
+T 300 13350 5 8 1 1 0 6 1
+pinnumber=K2
+T 300 13250 5 8 0 1 0 8 1
+pinseq=99
+T 450 13300 9 8 1 1 0 0 1
+pinlabel=BT_UART_TXD
+T 450 13300 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 12900 400 12900 1 0 0
+{
+T 300 12950 5 8 1 1 0 6 1
+pinnumber=F2
+T 300 12850 5 8 0 1 0 8 1
+pinseq=56
+T 450 12900 9 8 1 1 0 0 1
+pinlabel=BT_VDDC
+T 450 12900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 12500 400 12500 1 0 0
+{
+T 300 12550 5 8 1 1 0 6 1
+pinnumber=J4
+T 300 12450 5 8 0 1 0 8 1
+pinseq=90
+T 450 12500 9 8 1 1 0 0 1
+pinlabel=BT_VDDC
+T 450 12500 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 12100 400 12100 1 0 0
+{
+T 300 12150 5 8 1 1 0 6 1
+pinnumber=L1
+T 300 12050 5 8 0 1 0 8 1
+pinseq=109
+T 450 12100 9 8 1 1 0 0 1
+pinlabel=BT_VDDC
+T 450 12100 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 11700 400 11700 1 0 0
+{
+T 300 11750 5 8 1 1 0 6 1
+pinnumber=G4
+T 300 11650 5 8 0 1 0 8 1
+pinseq=69
+T 450 11700 9 8 1 1 0 0 1
+pinlabel=BT_VDDO
+T 450 11700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 5800 22900 5500 22900 1 0 0
+{
+T 5600 22950 5 8 1 1 0 0 1
+pinnumber=N1
+T 5600 22850 5 8 0 1 0 2 1
+pinseq=131
+T 5450 22900 9 8 1 1 0 6 1
+pinlabel=FM_AOUT1
+T 5450 22900 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 22500 5500 22500 1 0 0
+{
+T 5600 22550 5 8 1 1 0 0 1
+pinnumber=N2
+T 5600 22450 5 8 0 1 0 2 1
+pinseq=132
+T 5450 22500 9 8 1 1 0 6 1
+pinlabel=FM_AOUT2
+T 5450 22500 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 22100 5500 22100 1 0 0
+{
+T 5600 22150 5 8 1 1 0 0 1
+pinnumber=M2
+T 5600 22050 5 8 0 1 0 2 1
+pinseq=121
+T 5450 22100 9 8 1 1 0 6 1
+pinlabel=FM_PLLVDD1P2
+T 5450 22100 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 21700 5500 21700 1 0 0
+{
+T 5600 21750 5 8 1 1 0 0 1
+pinnumber=N4
+T 5600 21650 5 8 0 1 0 2 1
+pinseq=134
+T 5450 21700 9 8 1 1 0 6 1
+pinlabel=FM_RFIN
+T 5450 21700 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 21300 5500 21300 1 0 0
+{
+T 5600 21350 5 8 1 1 0 0 1
+pinnumber=N3
+T 5600 21250 5 8 0 1 0 2 1
+pinseq=133
+T 5450 21300 9 8 1 1 0 6 1
+pinlabel=FM_RFVDD1P2
+T 5450 21300 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 20100 5500 20100 1 0 0
+{
+T 5600 20150 5 8 1 1 0 0 1
+pinnumber=D3
+T 5600 20050 5 8 0 1 0 2 1
+pinseq=35
+T 5450 20100 9 8 1 1 0 6 1
+pinlabel=GPIO_1
+T 5450 20100 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 19700 5500 19700 1 0 0
+{
+T 5600 19750 5 8 1 1 0 0 1
+pinnumber=D4
+T 5600 19650 5 8 0 1 0 2 1
+pinseq=36
+T 5450 19700 9 8 1 1 0 6 1
+pinlabel=GPIO_2
+T 5450 19700 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 19300 5500 19300 1 0 0
+{
+T 5600 19350 5 8 1 1 0 0 1
+pinnumber=D2
+T 5600 19250 5 8 0 1 0 2 1
+pinseq=34
+T 5450 19300 9 8 1 1 0 6 1
+pinlabel=GPIO_3
+T 5450 19300 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 18900 5500 18900 1 0 0
+{
+T 5600 18950 5 8 1 1 0 0 1
+pinnumber=E4
+T 5600 18850 5 8 0 1 0 2 1
+pinseq=47
+T 5450 18900 9 8 1 1 0 6 1
+pinlabel=GPIO_4
+T 5450 18900 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 18500 5500 18500 1 0 0
+{
+T 5600 18550 5 8 1 1 0 0 1
+pinnumber=E3
+T 5600 18450 5 8 0 1 0 2 1
+pinseq=46
+T 5450 18500 9 8 1 1 0 6 1
+pinlabel=GPIO_5
+T 5450 18500 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 18100 5500 18100 1 0 0
+{
+T 5600 18150 5 8 1 1 0 0 1
+pinnumber=D1
+T 5600 18050 5 8 0 1 0 2 1
+pinseq=33
+T 5450 18100 9 8 1 1 0 6 1
+pinlabel=GPIO_6
+T 5450 18100 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 17700 5500 17700 1 0 0
+{
+T 5600 17750 5 8 1 1 0 0 1
+pinnumber=E1
+T 5600 17650 5 8 0 1 0 2 1
+pinseq=44
+T 5450 17700 9 8 1 1 0 6 1
+pinlabel=GPIO_7
+T 5450 17700 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 17300 5500 17300 1 0 0
+{
+T 5600 17350 5 8 1 1 0 0 1
+pinnumber=G5
+T 5600 17250 5 8 0 1 0 2 1
+pinseq=70
+T 5450 17300 9 8 1 1 0 6 1
+pinlabel=GPIO_8
+T 5450 17300 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 16900 5500 16900 1 0 0
+{
+T 5600 16950 5 8 1 1 0 0 1
+pinnumber=F4
+T 5600 16850 5 8 0 1 0 2 1
+pinseq=58
+T 5450 16900 9 8 1 1 0 6 1
+pinlabel=GPIO_9
+T 5450 16900 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 16500 5500 16500 1 0 0
+{
+T 5600 16550 5 8 1 1 0 0 1
+pinnumber=F3
+T 5600 16450 5 8 0 1 0 2 1
+pinseq=57
+T 5450 16500 9 8 1 1 0 6 1
+pinlabel=GPIO_10
+T 5450 16500 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 16100 5500 16100 1 0 0
+{
+T 5600 16150 5 8 1 1 0 0 1
+pinnumber=D11
+T 5600 16050 5 8 0 1 0 2 1
+pinseq=43
+T 5450 16100 9 8 1 1 0 6 1
+pinlabel=GPIO_13
+T 5450 16100 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 15700 5500 15700 1 0 0
+{
+T 5600 15750 5 8 1 1 0 0 1
+pinnumber=D10
+T 5600 15650 5 8 0 1 0 2 1
+pinseq=42
+T 5450 15700 9 8 1 1 0 6 1
+pinlabel=GPIO_14
+T 5450 15700 5 8 0 1 0 8 1
+pintype=in
+}
+P 5800 15300 5500 15300 1 0 0
+{
+T 5600 15350 5 8 1 1 0 0 1
+pinnumber=K7
+T 5600 15250 5 8 0 1 0 2 1
+pinseq=104
+T 5450 15300 9 8 1 1 0 6 1
+pinlabel=GPIO_15
+T 5450 15300 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 14900 5500 14900 1 0 0
+{
+T 5600 14950 5 8 1 1 0 0 1
+pinnumber=K6
+T 5600 14850 5 8 0 1 0 2 1
+pinseq=103
+T 5450 14900 9 8 1 1 0 6 1
+pinlabel=GPIO_16
+T 5450 14900 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 14500 5500 14500 1 0 0
+{
+T 5600 14550 5 8 1 1 0 0 1
+pinnumber=E5
+T 5600 14450 5 8 0 1 0 2 1
+pinseq=48
+T 5450 14500 9 8 1 1 0 6 1
+pinlabel=JTAG_SEL
+T 5450 14500 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 14100 5500 14100 1 0 0
+{
+T 5600 14150 5 8 1 1 0 0 1
+pinnumber=F1
+T 5600 14050 5 8 0 1 0 2 1
+pinseq=55
+T 5450 14100 9 8 1 1 0 6 1
+pinlabel=LPO_IN
+T 5450 14100 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 7300 5500 7300 1 0 0
+{
+T 5600 7350 5 8 1 1 0 0 1
+pinnumber=H4
+T 5600 7250 5 8 0 1 0 2 1
+pinseq=80
+T 5450 7300 9 8 1 1 0 6 1
+pinlabel=NC
+T 5450 7300 5 8 0 1 0 8 1
+pintype=pas
+}
+P 5800 6900 5500 6900 1 0 0
+{
+T 5600 6950 5 8 1 1 0 0 1
+pinnumber=D9
+T 5600 6850 5 8 0 1 0 2 1
+pinseq=41
+T 5450 6900 9 8 1 1 0 6 1
+pinlabel=NC1
+T 5450 6900 5 8 0 1 0 8 1
+pintype=pas
+}
+P 5800 6500 5500 6500 1 0 0
+{
+T 5600 6550 5 8 1 1 0 0 1
+pinnumber=E11
+T 5600 6450 5 8 0 1 0 2 1
+pinseq=54
+T 5450 6500 9 8 1 1 0 6 1
+pinlabel=NC2
+T 5450 6500 5 8 0 1 0 8 1
+pintype=pas
+}
+P 5800 6100 5500 6100 1 0 0
+{
+T 5600 6150 5 8 1 1 0 0 1
+pinnumber=E8
+T 5600 6050 5 8 0 1 0 2 1
+pinseq=51
+T 5450 6100 9 8 1 1 0 6 1
+pinlabel=NC3
+T 5450 6100 5 8 0 1 0 8 1
+pintype=pas
+}
+P 5800 13300 5500 13300 1 0 0
+{
+T 5600 13350 5 8 1 1 0 0 1
+pinnumber=C10
+T 5600 13250 5 8 0 1 0 2 1
+pinseq=31
+T 5450 13300 9 8 1 1 0 6 1
+pinlabel=PCIE_PLL_AVDD1P2
+T 5450 13300 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 12900 5500 12900 1 0 0
+{
+T 5600 12950 5 8 1 1 0 0 1
+pinnumber=C11
+T 5600 12850 5 8 0 1 0 2 1
+pinseq=32
+T 5450 12900 9 8 1 1 0 6 1
+pinlabel=PCIE_REFCLKN
+T 5450 12900 5 8 0 1 0 8 1
+pintype=in
+}
+P 5800 12500 5500 12500 1 0 0
+{
+T 5600 12550 5 8 1 1 0 0 1
+pinnumber=B9
+T 5600 12450 5 8 0 1 0 2 1
+pinseq=19
+T 5450 12500 9 8 1 1 0 6 1
+pinlabel=PCIE_RXTX_AVDD1P2
+T 5450 12500 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 12100 5500 12100 1 0 0
+{
+T 5600 12150 5 8 1 1 0 0 1
+pinnumber=D7
+T 5600 12050 5 8 0 1 0 2 1
+pinseq=39
+T 5450 12100 9 8 1 1 0 6 1
+pinlabel=PCI_PME_L
+T 5450 12100 5 8 0 1 0 8 1
+pintype=oc
+}
+P 5800 11700 5500 11700 1 0 0
+{
+T 5600 11750 5 8 1 1 0 0 1
+pinnumber=D8
+T 5600 11650 5 8 0 1 0 2 1
+pinseq=40
+T 5450 11700 9 8 1 1 0 6 1
+pinlabel=PERST_L
+T 5450 11700 5 8 0 1 0 8 1
+pintype=in
+}
+P 5800 11300 5500 11300 1 0 0
+{
+T 5600 11350 5 8 1 1 0 0 1
+pinnumber=F11
+T 5600 11250 5 8 0 1 0 2 1
+pinseq=65
+T 5450 11300 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_0
+T 5450 11300 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 10900 5500 10900 1 0 0
+{
+T 5600 10950 5 8 1 1 0 0 1
+pinnumber=F10
+T 5600 10850 5 8 0 1 0 2 1
+pinseq=64
+T 5450 10900 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_1
+T 5450 10900 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 10500 5500 10500 1 0 0
+{
+T 5600 10550 5 8 1 1 0 0 1
+pinnumber=G9
+T 5600 10450 5 8 0 1 0 2 1
+pinseq=74
+T 5450 10500 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_2
+T 5450 10500 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 10100 5500 10100 1 0 0
+{
+T 5600 10150 5 8 1 1 0 0 1
+pinnumber=G8
+T 5600 10050 5 8 0 1 0 2 1
+pinseq=73
+T 5450 10100 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_3
+T 5450 10100 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 9700 5500 9700 1 0 0
+{
+T 5600 9750 5 8 1 1 0 0 1
+pinnumber=F7
+T 5600 9650 5 8 0 1 0 2 1
+pinseq=61
+T 5450 9700 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_4
+T 5450 9700 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 9300 5500 9300 1 0 0
+{
+T 5600 9350 5 8 1 1 0 0 1
+pinnumber=G7
+T 5600 9250 5 8 0 1 0 2 1
+pinseq=72
+T 5450 9300 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_5
+T 5450 9300 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 8900 5500 8900 1 0 0
+{
+T 5600 8950 5 8 1 1 0 0 1
+pinnumber=G6
+T 5600 8850 5 8 0 1 0 2 1
+pinseq=71
+T 5450 8900 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_6
+T 5450 8900 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 8500 5500 8500 1 0 0
+{
+T 5600 8550 5 8 1 1 0 0 1
+pinnumber=F6
+T 5600 8450 5 8 0 1 0 2 1
+pinseq=60
+T 5450 8500 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_7
+T 5450 8500 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 8100 5500 8100 1 0 0
+{
+T 5600 8150 5 8 1 1 0 0 1
+pinnumber=E6
+T 5600 8050 5 8 0 1 0 2 1
+pinseq=49
+T 5450 8100 9 8 1 1 0 6 1
+pinlabel=RF_SW_CTRL_8
+T 5450 8100 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 30100 5500 30100 1 0 0
+{
+T 5600 30150 5 8 1 1 0 0 1
+pinnumber=C8
+T 5600 30050 5 8 0 1 0 2 1
+pinseq=29
+T 5450 30100 9 8 1 1 0 6 1
+pinlabel=VDDC
+T 5450 30100 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 29700 5500 29700 1 0 0
+{
+T 5600 29750 5 8 1 1 0 0 1
+pinnumber=E2
+T 5600 29650 5 8 0 1 0 2 1
+pinseq=45
+T 5450 29700 9 8 1 1 0 6 1
+pinlabel=VDDC
+T 5450 29700 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 29300 5500 29300 1 0 0
+{
+T 5600 29350 5 8 1 1 0 0 1
+pinnumber=F8
+T 5600 29250 5 8 0 1 0 2 1
+pinseq=62
+T 5450 29300 9 8 1 1 0 6 1
+pinlabel=VDDC
+T 5450 29300 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 28900 5500 28900 1 0 0
+{
+T 5600 28950 5 8 1 1 0 0 1
+pinnumber=J5
+T 5600 28850 5 8 0 1 0 2 1
+pinseq=91
+T 5450 28900 9 8 1 1 0 6 1
+pinlabel=VDDC
+T 5450 28900 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 28500 5500 28500 1 0 0
+{
+T 5600 28550 5 8 1 1 0 0 1
+pinnumber=D5
+T 5600 28450 5 8 0 1 0 2 1
+pinseq=37
+T 5450 28500 9 8 1 1 0 6 1
+pinlabel=VDDIO
+T 5450 28500 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 28100 5500 28100 1 0 0
+{
+T 5600 28150 5 8 1 1 0 0 1
+pinnumber=E7
+T 5600 28050 5 8 0 1 0 2 1
+pinseq=50
+T 5450 28100 9 8 1 1 0 6 1
+pinlabel=VDDIO_RF
+T 5450 28100 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 27700 5500 27700 1 0 0
+{
+T 5600 27750 5 8 1 1 0 0 1
+pinnumber=D6
+T 5600 27650 5 8 0 1 0 2 1
+pinseq=38
+T 5450 27700 9 8 1 1 0 6 1
+pinlabel=VDDIO_SD
+T 5450 27700 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 5300 5500 5300 1 0 0
+{
+T 5600 5350 5 8 1 1 0 0 1
+pinnumber=K10
+T 5600 5250 5 8 0 1 0 2 1
+pinseq=107
+T 5450 5300 9 8 1 1 0 6 1
+pinlabel=WRF_AFE_VDD1P35
+T 5450 5300 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 4900 5500 4900 1 0 0
+{
+T 5600 4950 5 8 1 1 0 0 1
+pinnumber=N9
+T 5600 4850 5 8 0 1 0 2 1
+pinseq=139
+T 5450 4900 9 8 1 1 0 6 1
+pinlabel=WRF_PAOUT_2G
+T 5450 4900 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 4500 5500 4500 1 0 0
+{
+T 5600 4550 5 8 1 1 0 0 1
+pinnumber=M11
+T 5600 4450 5 8 0 1 0 2 1
+pinseq=130
+T 5450 4500 9 8 1 1 0 6 1
+pinlabel=WRF_PAOUT_5G
+T 5450 4500 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 4100 5500 4100 1 0 0
+{
+T 5600 4150 5 8 1 1 0 0 1
+pinnumber=N11
+T 5600 4050 5 8 0 1 0 2 1
+pinseq=140
+T 5450 4100 9 8 1 1 0 6 1
+pinlabel=WRF_PA_VDD3P3
+T 5450 4100 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 3700 5500 3700 1 0 0
+{
+T 5600 3750 5 8 1 1 0 0 1
+pinnumber=J11
+T 5600 3650 5 8 0 1 0 2 1
+pinseq=97
+T 5450 3700 9 8 1 1 0 6 1
+pinlabel=WRF_PMU_VDD1P35
+T 5450 3700 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 3300 5500 3300 1 0 0
+{
+T 5600 3350 5 8 1 1 0 0 1
+pinnumber=J10
+T 5600 3250 5 8 0 1 0 2 1
+pinseq=96
+T 5450 3300 9 8 1 1 0 6 1
+pinlabel=WRF_SYNTH_VDD1P2
+T 5450 3300 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 2900 5500 2900 1 0 0
+{
+T 5600 2950 5 8 1 1 0 0 1
+pinnumber=H8
+T 5600 2850 5 8 0 1 0 2 1
+pinseq=83
+T 5450 2900 9 8 1 1 0 6 1
+pinlabel=WRF_SYNTH_VDD3P3
+T 5450 2900 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 2500 5500 2500 1 0 0
+{
+T 5600 2550 5 8 1 1 0 0 1
+pinnumber=M9
+T 5600 2450 5 8 0 1 0 2 1
+pinseq=128
+T 5450 2500 9 8 1 1 0 6 1
+pinlabel=WRF_TXMIX_VDD
+T 5450 2500 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 2100 5500 2100 1 0 0
+{
+T 5600 2150 5 8 1 1 0 0 1
+pinnumber=G10
+T 5600 2050 5 8 0 1 0 2 1
+pinseq=75
+T 5450 2100 9 8 1 1 0 6 1
+pinlabel=WRF_XTAL_GND1P2
+T 5450 2100 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 5800 1700 5500 1700 1 0 0
+{
+T 5600 1750 5 8 1 1 0 0 1
+pinnumber=H9
+T 5600 1650 5 8 0 1 0 2 1
+pinseq=84
+T 5450 1700 9 8 1 1 0 6 1
+pinlabel=WRF_XTAL_VDD1P2
+T 5450 1700 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 1300 5500 1300 1 0 0
+{
+T 5600 1350 5 8 1 1 0 0 1
+pinnumber=H10
+T 5600 1250 5 8 0 1 0 2 1
+pinseq=85
+T 5450 1300 9 8 1 1 0 6 1
+pinlabel=WRF_XTAL_VDD1P35
+T 5450 1300 5 8 0 1 0 8 1
+pintype=in
+}
+P 5800 900 5500 900 1 0 0
+{
+T 5600 950 5 8 1 1 0 0 1
+pinnumber=G11
+T 5600 850 5 8 0 1 0 2 1
+pinseq=76
+T 5450 900 9 8 1 1 0 6 1
+pinlabel=WRF_XTAL_XON
+T 5450 900 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 500 5500 500 1 0 0
+{
+T 5600 550 5 8 1 1 0 0 1
+pinnumber=H11
+T 5600 450 5 8 0 1 0 2 1
+pinseq=86
+T 5450 500 9 8 1 1 0 6 1
+pinlabel=WRF_XTAL_XOP
+T 5450 500 5 8 0 1 0 8 1
+pintype=io
+}
+P 100 2900 400 2900 1 0 0
+{
+T 300 2950 5 8 1 1 0 6 1
+pinnumber=E10
+T 300 2850 5 8 0 1 0 8 1
+pinseq=53
+T 450 2900 9 8 1 1 0 0 1
+pinlabel=AVSS_BBPLL
+T 450 2900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 11300 400 11300 1 0 0
+{
+T 300 11350 5 8 1 1 0 6 1
+pinnumber=M1
+T 300 11250 5 8 0 1 0 8 1
+pinseq=120
+T 450 11300 9 8 1 1 0 0 1
+pinlabel=BT_DEV_WAKE
+T 450 11300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10900 400 10900 1 0 0
+{
+T 300 10950 5 8 1 1 0 6 1
+pinnumber=L3
+T 300 10850 5 8 0 1 0 8 1
+pinseq=111
+T 450 10900 9 8 1 1 0 0 1
+pinlabel=BT_HOST_WAKE
+T 450 10900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10500 400 10500 1 0 0
+{
+T 300 10550 5 8 1 1 0 6 1
+pinnumber=J1
+T 300 10450 5 8 0 1 0 8 1
+pinseq=87
+T 450 10500 9 8 1 1 0 0 1
+pinlabel=BT_I2S_CLK
+T 450 10500 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 10100 400 10100 1 0 0
+{
+T 300 10150 5 8 1 1 0 6 1
+pinnumber=J2
+T 300 10050 5 8 0 1 0 8 1
+pinseq=88
+T 450 10100 9 8 1 1 0 0 1
+pinlabel=BT_I2S_DI
+T 450 10100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 9700 400 9700 1 0 0
+{
+T 300 9750 5 8 1 1 0 6 1
+pinnumber=J3
+T 300 9650 5 8 0 1 0 8 1
+pinseq=89
+T 450 9700 9 8 1 1 0 0 1
+pinlabel=BT_I2S_WS
+T 450 9700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 9300 400 9300 1 0 0
+{
+T 300 9350 5 8 1 1 0 6 1
+pinnumber=L6
+T 300 9250 5 8 0 1 0 8 1
+pinseq=114
+T 450 9300 9 8 1 1 0 0 1
+pinlabel=BT_IFVSS
+T 450 9300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 8900 400 8900 1 0 0
+{
+T 300 8950 5 8 1 1 0 6 1
+pinnumber=M7
+T 300 8850 5 8 0 1 0 8 1
+pinseq=126
+T 450 8900 9 8 1 1 0 0 1
+pinlabel=BT_LNAVSS
+T 450 8900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 8500 400 8500 1 0 0
+{
+T 300 8550 5 8 1 1 0 6 1
+pinnumber=M6
+T 300 8450 5 8 0 1 0 8 1
+pinseq=125
+T 450 8500 9 8 1 1 0 0 1
+pinlabel=BT_PAVSS
+T 450 8500 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 8100 400 8100 1 0 0
+{
+T 300 8150 5 8 1 1 0 6 1
+pinnumber=L5
+T 300 8050 5 8 0 1 0 8 1
+pinseq=113
+T 450 8100 9 8 1 1 0 0 1
+pinlabel=BT_PLLVSS
+T 450 8100 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 7700 400 7700 1 0 0
+{
+T 300 7750 5 8 1 1 0 6 1
+pinnumber=C3
+T 300 7650 5 8 0 1 0 8 1
+pinseq=24
+T 450 7700 9 8 1 1 0 0 1
+pinlabel=BT_REG_ON
+T 450 7700 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 30500 400 30500 1 0 0
+{
+T 300 30550 5 8 1 1 0 6 1
+pinnumber=M4
+T 300 30450 5 8 0 1 0 8 1
+pinseq=123
+T 450 30500 9 8 1 1 0 0 1
+pinlabel=FM_PLLVSS
+T 450 30500 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 30100 400 30100 1 0 0
+{
+T 300 30150 5 8 1 1 0 6 1
+pinnumber=M3
+T 300 30050 5 8 0 1 0 8 1
+pinseq=122
+T 450 30100 9 8 1 1 0 0 1
+pinlabel=FM_RFVSS
+T 450 30100 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 5800 20500 5500 20500 1 0 0
+{
+T 5600 20550 5 8 1 1 0 0 1
+pinnumber=C1
+T 5600 20450 5 8 0 1 0 2 1
+pinseq=22
+T 5450 20500 9 8 1 1 0 6 1
+pinlabel=GPIO_0
+T 5450 20500 5 8 0 1 0 8 1
+pintype=io
+}
+P 5800 26500 5500 26500 1 0 0
+{
+T 5600 26550 5 8 1 1 0 0 1
+pinnumber=A3
+T 5600 26450 5 8 0 1 0 2 1
+pinseq=3
+T 5450 26500 9 8 1 1 0 6 1
+pinlabel=LDO_VDD1P5
+T 5450 26500 5 8 0 1 0 8 1
+pintype=in
+}
+P 5800 26100 5500 26100 1 0 0
+{
+T 5600 26150 5 8 1 1 0 0 1
+pinnumber=A5
+T 5600 26050 5 8 0 1 0 2 1
+pinseq=5
+T 5450 26100 9 8 1 1 0 6 1
+pinlabel=LDO_VDDBAT5V
+T 5450 26100 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 29300 400 29300 1 0 0
+{
+T 300 29350 5 8 1 1 0 6 1
+pinnumber=B8
+T 300 29250 5 8 0 1 0 8 1
+pinseq=18
+T 450 29300 9 8 1 1 0 0 1
+pinlabel=PCIE_CLKREQ_L
+T 450 29300 5 8 0 1 0 2 1
+pintype=oc
+}
+P 100 28900 400 28900 1 0 0
+{
+T 300 28950 5 8 1 1 0 6 1
+pinnumber=A9
+T 300 28850 5 8 0 1 0 8 1
+pinseq=9
+T 450 28900 9 8 1 1 0 0 1
+pinlabel=PCIE_RDN
+T 450 28900 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 28500 400 28500 1 0 0
+{
+T 300 28550 5 8 1 1 0 6 1
+pinnumber=A8
+T 300 28450 5 8 0 1 0 8 1
+pinseq=8
+T 450 28500 9 8 1 1 0 0 1
+pinlabel=PCIE_RDP
+T 450 28500 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 28100 400 28100 1 0 0
+{
+T 300 28150 5 8 1 1 0 6 1
+pinnumber=B11
+T 300 28050 5 8 0 1 0 8 1
+pinseq=21
+T 450 28100 9 8 1 1 0 0 1
+pinlabel=PCIE_REFCLKP
+T 450 28100 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 27700 400 27700 1 0 0
+{
+T 300 27750 5 8 1 1 0 6 1
+pinnumber=A10
+T 300 27650 5 8 0 1 0 8 1
+pinseq=10
+T 450 27700 9 8 1 1 0 0 1
+pinlabel=PCIE_TDN
+T 450 27700 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 27300 400 27300 1 0 0
+{
+T 300 27350 5 8 1 1 0 6 1
+pinnumber=B10
+T 300 27250 5 8 0 1 0 8 1
+pinseq=20
+T 450 27300 9 8 1 1 0 0 1
+pinlabel=PCIE_TDP
+T 450 27300 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 26900 400 26900 1 0 0
+{
+T 300 26950 5 8 1 1 0 6 1
+pinnumber=C9
+T 300 26850 5 8 0 1 0 8 1
+pinseq=30
+T 450 26900 9 8 1 1 0 0 1
+pinlabel=PCIE_VSS
+T 450 26900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 26500 400 26500 1 0 0
+{
+T 300 26550 5 8 1 1 0 6 1
+pinnumber=C2
+T 300 26450 5 8 0 1 0 8 1
+pinseq=23
+T 450 26500 9 8 1 1 0 0 1
+pinlabel=PMU_AVSS
+T 450 26500 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 26100 400 26100 1 0 0
+{
+T 300 26150 5 8 1 1 0 6 1
+pinnumber=A7
+T 300 26050 5 8 0 1 0 8 1
+pinseq=7
+T 450 26100 9 8 1 1 0 0 1
+pinlabel=SDIO_CLK
+T 450 26100 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 25700 400 25700 1 0 0
+{
+T 300 25750 5 8 1 1 0 6 1
+pinnumber=C6
+T 300 25650 5 8 0 1 0 8 1
+pinseq=27
+T 450 25700 9 8 1 1 0 0 1
+pinlabel=SDIO_CMD
+T 450 25700 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 25300 400 25300 1 0 0
+{
+T 300 25350 5 8 1 1 0 6 1
+pinnumber=C7
+T 300 25250 5 8 0 1 0 8 1
+pinseq=28
+T 450 25300 9 8 1 1 0 0 1
+pinlabel=SDIO_DATA_0
+T 450 25300 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 24900 400 24900 1 0 0
+{
+T 300 24950 5 8 1 1 0 6 1
+pinnumber=B7
+T 300 24850 5 8 0 1 0 8 1
+pinseq=17
+T 450 24900 9 8 1 1 0 0 1
+pinlabel=SDIO_DATA_1
+T 450 24900 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 24500 400 24500 1 0 0
+{
+T 300 24550 5 8 1 1 0 6 1
+pinnumber=B6
+T 300 24450 5 8 0 1 0 8 1
+pinseq=16
+T 450 24500 9 8 1 1 0 0 1
+pinlabel=SDIO_DATA_2
+T 450 24500 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 24100 400 24100 1 0 0
+{
+T 300 24150 5 8 1 1 0 6 1
+pinnumber=A6
+T 300 24050 5 8 0 1 0 8 1
+pinseq=6
+T 450 24100 9 8 1 1 0 0 1
+pinlabel=SDIO_DATA_3
+T 450 24100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 23700 400 23700 1 0 0
+{
+T 300 23750 5 8 1 1 0 6 1
+pinnumber=A1
+T 300 23650 5 8 0 1 0 8 1
+pinseq=1
+T 450 23700 9 8 1 1 0 0 1
+pinlabel=SR_PVSS
+T 450 23700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 23300 400 23300 1 0 0
+{
+T 300 23350 5 8 1 1 0 6 1
+pinnumber=A2
+T 300 23250 5 8 0 1 0 8 1
+pinseq=2
+T 450 23300 9 8 1 1 0 0 1
+pinlabel=SR_VDDBAT5V
+T 450 23300 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 22900 400 22900 1 0 0
+{
+T 300 22950 5 8 1 1 0 6 1
+pinnumber=B1
+T 300 22850 5 8 0 1 0 8 1
+pinseq=11
+T 450 22900 9 8 1 1 0 0 1
+pinlabel=SR_VLX
+T 450 22900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 5800 25300 5500 25300 1 0 0
+{
+T 5600 25350 5 8 1 1 0 0 1
+pinnumber=A4
+T 5600 25250 5 8 0 1 0 2 1
+pinseq=4
+T 5450 25300 9 8 1 1 0 6 1
+pinlabel=VOUT_3P3
+T 5450 25300 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 24900 5500 24900 1 0 0
+{
+T 5600 24950 5 8 1 1 0 0 1
+pinnumber=B5
+T 5600 24850 5 8 0 1 0 2 1
+pinseq=15
+T 5450 24900 9 8 1 1 0 6 1
+pinlabel=VOUT_BTLDO2P5
+T 5450 24900 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 24500 5500 24500 1 0 0
+{
+T 5600 24550 5 8 1 1 0 0 1
+pinnumber=B3
+T 5600 24450 5 8 0 1 0 2 1
+pinseq=13
+T 5450 24500 9 8 1 1 0 6 1
+pinlabel=VOUT_CLDO
+T 5450 24500 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 24100 5500 24100 1 0 0
+{
+T 5600 24150 5 8 1 1 0 0 1
+pinnumber=B4
+T 5600 24050 5 8 0 1 0 2 1
+pinseq=14
+T 5450 24100 9 8 1 1 0 6 1
+pinlabel=VOUT_LNLDO
+T 5450 24100 5 8 0 1 0 8 1
+pintype=out
+}
+P 5800 23700 5500 23700 1 0 0
+{
+T 5600 23750 5 8 1 1 0 0 1
+pinnumber=B2
+T 5600 23650 5 8 0 1 0 2 1
+pinseq=12
+T 5450 23700 9 8 1 1 0 6 1
+pinlabel=VOUT_PCIELDO
+T 5450 23700 5 8 0 1 0 8 1
+pintype=io
+}
+P 100 2500 400 2500 1 0 0
+{
+T 300 2550 5 8 1 1 0 6 1
+pinnumber=C5
+T 300 2450 5 8 0 1 0 8 1
+pinseq=26
+T 450 2500 9 8 1 1 0 0 1
+pinlabel=VSSC
+T 450 2500 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 2100 400 2100 1 0 0
+{
+T 300 2150 5 8 1 1 0 6 1
+pinnumber=F5
+T 300 2050 5 8 0 1 0 8 1
+pinseq=59
+T 450 2100 9 8 1 1 0 0 1
+pinlabel=VSSC
+T 450 2100 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 1700 400 1700 1 0 0
+{
+T 300 1750 5 8 1 1 0 6 1
+pinnumber=F9
+T 300 1650 5 8 0 1 0 8 1
+pinseq=63
+T 450 1700 9 8 1 1 0 0 1
+pinlabel=VSSC
+T 450 1700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 1300 400 1300 1 0 0
+{
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=G2
+T 300 1250 5 8 0 1 0 8 1
+pinseq=67
+T 450 1300 9 8 1 1 0 0 1
+pinlabel=VSSC
+T 450 1300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 900 400 900 1 0 0
+{
+T 300 950 5 8 1 1 0 6 1
+pinnumber=K5
+T 300 850 5 8 0 1 0 8 1
+pinseq=102
+T 450 900 9 8 1 1 0 0 1
+pinlabel=VSSC
+T 450 900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 500 400 500 1 0 0
+{
+T 300 550 5 8 1 1 0 6 1
+pinnumber=L2
+T 300 450 5 8 0 1 0 8 1
+pinseq=110
+T 450 500 9 8 1 1 0 0 1
+pinlabel=VSSC
+T 450 500 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 22100 400 22100 1 0 0
+{
+T 300 22150 5 8 1 1 0 6 1
+pinnumber=C4
+T 300 22050 5 8 0 1 0 8 1
+pinseq=25
+T 450 22100 9 8 1 1 0 0 1
+pinlabel=WL_REG_ON
+T 450 22100 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 21700 400 21700 1 0 0
+{
+T 300 21750 5 8 1 1 0 6 1
+pinnumber=L9
+T 300 21650 5 8 0 1 0 8 1
+pinseq=117
+T 450 21700 9 8 1 1 0 0 1
+pinlabel=WRF_AFE_GND
+T 450 21700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 21300 400 21300 1 0 0
+{
+T 300 21350 5 8 1 1 0 6 1
+pinnumber=K8
+T 300 21250 5 8 0 1 0 8 1
+pinseq=105
+T 450 21300 9 8 1 1 0 0 1
+pinlabel=WRF_EXT_TSSIA
+T 450 21300 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3700 400 3700 1 0 0
+{
+T 300 3750 5 8 1 1 0 6 1
+pinnumber=L10
+T 300 3650 5 8 0 1 0 8 1
+pinseq=118
+T 450 3700 9 8 1 1 0 0 1
+pinlabel=WRF_GENERAL2_GND
+T 450 3700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 3300 400 3300 1 0 0
+{
+T 300 3350 5 8 1 1 0 6 1
+pinnumber=K9
+T 300 3250 5 8 0 1 0 8 1
+pinseq=106
+T 450 3300 9 8 1 1 0 0 1
+pinlabel=WRF_GENERAL_GND
+T 450 3300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 4100 400 4100 1 0 0
+{
+T 300 4150 5 8 1 1 0 6 1
+pinnumber=L8
+T 300 4050 5 8 0 1 0 8 1
+pinseq=116
+T 450 4100 9 8 1 1 0 0 1
+pinlabel=WRF_GPAIO_OUT
+T 450 4100 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 6900 400 6900 1 0 0
+{
+T 300 6950 5 8 1 1 0 6 1
+pinnumber=M10
+T 300 6850 5 8 0 1 0 8 1
+pinseq=129
+T 450 6900 9 8 1 1 0 0 1
+pinlabel=WRF_PA_GND3P3
+T 450 6900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 6500 400 6500 1 0 0
+{
+T 300 6550 5 8 1 1 0 6 1
+pinnumber=N8
+T 300 6450 5 8 0 1 0 8 1
+pinseq=138
+T 450 6500 9 8 1 1 0 0 1
+pinlabel=WRF_RFIN_2G
+T 450 6500 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 6100 400 6100 1 0 0
+{
+T 300 6150 5 8 1 1 0 6 1
+pinnumber=L11
+T 300 6050 5 8 0 1 0 8 1
+pinseq=119
+T 450 6100 9 8 1 1 0 0 1
+pinlabel=WRF_RFIN_5G
+T 450 6100 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 5700 400 5700 1 0 0
+{
+T 300 5750 5 8 1 1 0 6 1
+pinnumber=M8
+T 300 5650 5 8 0 1 0 8 1
+pinseq=127
+T 450 5700 9 8 1 1 0 0 1
+pinlabel=WRF_RX2G_GND
+T 450 5700 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 5300 400 5300 1 0 0
+{
+T 300 5350 5 8 1 1 0 6 1
+pinnumber=K11
+T 300 5250 5 8 0 1 0 8 1
+pinseq=108
+T 450 5300 9 8 1 1 0 0 1
+pinlabel=WRF_RX5G_GND
+T 450 5300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 4900 400 4900 1 0 0
+{
+T 300 4950 5 8 1 1 0 6 1
+pinnumber=J9
+T 300 4850 5 8 0 1 0 8 1
+pinseq=95
+T 450 4900 9 8 1 1 0 0 1
+pinlabel=WRF_SYNTH_GND
+T 450 4900 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 4500 400 4500 1 0 0
+{
+T 300 4550 5 8 1 1 0 6 1
+pinnumber=J8
+T 300 4450 5 8 0 1 0 8 1
+pinseq=94
+T 450 4500 9 8 1 1 0 0 1
+pinlabel=WRF_VCO_GND
+T 450 4500 5 8 0 1 0 2 1
+pintype=pwr
+}
+B 400 100 5100 30700 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 5500 30900 8 10 1 1 0 6 1
+refdes=U?
+T 400 31100 5 10 0 0 0 0 1
+device=CYW43455
+T 400 31500 5 10 0 0 0 0 1
+numslots=0
+T 400 31700 5 10 0 0 0 0 1
+documentation=http://www.cypress.com/file/358916/download
+T 400 31900 5 10 0 0 0 0 1
+description=802.11 b,g,n, 5G, Bluetooth 4.1, FM Receiver
+T 400 30900 9 10 1 1 0 0 1
+value=CYW43455
+T 400 31300 5 10 0 0 0 0 1
+footprint=BGA-CYW43455
+T 400 32500 5 10 0 0 0 0 1
+author=AutoTron
+T 400 32300 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 32100 5 10 0 0 0 0 1
+use-license=unlimited
