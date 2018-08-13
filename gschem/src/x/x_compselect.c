@@ -3473,6 +3473,7 @@ compselect_dispose (GObject *object)
 
   if (tree_view_popup_menu != NULL) {
     gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
+    g_object_ref_sink(tree_view_popup_menu);
     g_object_unref(tree_view_popup_menu);
     tree_view_popup_menu = NULL; /* Is static to the module */
   }
