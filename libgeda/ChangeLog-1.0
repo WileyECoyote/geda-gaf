@@ -1,5 +1,8 @@
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/test_object_list.c: Extend checks for geda_object_list_rotate
+      to include negative angles.
+
     * tests/test_utility.c: Revise default_log_handler to make a copy of the
       passed log string and fix conditionals for U031101B and U0306/1001B.
       Add checks for geda_utility_log_read.

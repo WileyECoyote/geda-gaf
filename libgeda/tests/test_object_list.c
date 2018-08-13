@@ -697,6 +697,27 @@ check_object_list_rotate (GedaToplevel *toplevel)
     result++;
   }
 
+  /* geda_object_list_rotate a complex with a negative angle */
+  geda_object_list_rotate(list, x1, y1, -90);
+
+  /* === object1->arc === */
+
+  angle = geda_arc_get_start_angle (object1->arc);
+
+  if (angle != 0) {
+    fprintf(stderr, "FAILED: (O120512) geda_object_list_rotate (%d)\n", angle);
+    result++;
+  }
+
+  /* === object5->complex === */
+
+  angle = geda_complex_get_angle(object5->complex);
+
+  if (angle != 0) {
+    fprintf(stderr, "FAILED: (O120516) geda_object_list_rotate (%d)\n", angle);
+    result++;
+  }
+
   g_object_unref (object1);
   g_object_unref (object2);
   g_object_unref (object3);
