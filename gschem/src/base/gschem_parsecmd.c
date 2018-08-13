@@ -299,9 +299,9 @@ int gschem_parse_commandline(int argc, char *argv[])
         }
 #endif
 
-        const char *err_info = _("--help for more information");
+        const char *err_info = _("help for more information");
 
-        fprintf (stderr, "\n%s %s %s.\n", _("Run"), argv[0], err_info);
+        fprintf (stderr, "\n%s %s --%s.\n", _("Run"), argv[0], err_info);
         exit (1);
       }
       break;

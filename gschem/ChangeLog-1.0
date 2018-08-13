@@ -1,7 +1,11 @@
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/golden: Regenerate arc reference file because the changes made
-      to libgedacairo arc.
+    * src/base/gschem_parsecmd.c: Revise the help, error message in
+      gschem_parse_commandline to eliminate the double hyphens from
+      the string to be translated.
+
+    * tests/golden: Regenerate arc reference file because the changes
+      made to libgedacairo arc.
 
 2018-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
