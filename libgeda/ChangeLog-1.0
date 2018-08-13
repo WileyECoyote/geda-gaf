@@ -1,3 +1,8 @@
+2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_utility.c: Revise default_log_handler to make a copy of the
+      passed log string and fix conditionals for U031101B and U0306/1001B.
+
 2018-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_evaluate.c: Translate message to console when pointer to
@@ -262,7 +267,7 @@
      rather than propagating to NULL, which reports the error without the name
      of the file.
 
-   * tests/test_file.c: Remove forward slash from "libgeda"  in F030601B,
+   * tests/test_file.c: Remove forward slash from "libgeda" in F030601B,
      and add F030601C to verify the path of libgeda is valid. Skip checks
      geda_file_sys_follow_symlinks on MinGW platforms because MinGW does
      not have symlinks, a copy is made instead.

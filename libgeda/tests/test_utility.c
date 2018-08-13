@@ -394,13 +394,13 @@ static void default_log_handler (const char    *log_domain,
     *len = 0;
 }
 
-const char *log_mess;
+char *log_mess;
 
 void test_log_message (const char     *log_domain,
                        GLogLevelFlags  log_level,
                        const char     *message)
 {
-  log_mess = message;
+  log_mess = g_strdup(message);
 }
 
 int test_log (void)
@@ -520,10 +520,11 @@ int test_log (void)
     result++;
   }
   else {
-    if (!strcmp(log_mess, "message 1")) {
+    if (strcmp(log_mess, "message 1")) {
       fprintf(stderr, "FAILED: (U031101B) log_set_update_func <%s>\n", log_mess);
       result++;
     }
+    GEDA_FREE(log_mess);
   }
 
   log_mess = NULL;
@@ -536,7 +537,7 @@ int test_log (void)
   if (log_mess) {
     fprintf(stderr, "FAILED: (U030601) log_quite\n");
     result++;
-    log_mess = NULL;
+    GEDA_FREE(log_mess);
   }
 
   /* === Function 10 geda_utility_log_set_quiet_mode === */
@@ -550,13 +551,15 @@ int test_log (void)
     result++;
   }
   else {
-    if (!strcmp(log_mess, "message q2")) {
-      fprintf(stderr, "FAILED: (U0306/1001B) set log quiet\n");
+    if (strcmp(log_mess, "message q2")) {
+      fprintf(stderr, "FAILED: (U0306/1001B) set log quiet <%s>\n", log_mess);
       result++;
     }
+    GEDA_FREE(log_mess);
   }
 
   log_mess = NULL;
+
   geda_set_verbose_mode(FALSE); /* Is already unset */
 
   /* === Function 14 geda_utility_log_verbose === */
@@ -566,10 +569,12 @@ int test_log (void)
   if (log_mess) {
     fprintf(stderr, "FAILED: (U031401) log_verbose\n");
     result++;
-    log_mess = NULL;
+    GEDA_FREE(log_mess);
   }
 
   /* === Function 10 geda_utility_log_set_verbose_mode === */
+
+  log_mess = NULL;
 
   geda_set_verbose_mode(TRUE);
 
@@ -580,10 +585,11 @@ int test_log (void)
     result++;
   }
   else {
-    if (!strcmp(log_mess, "message v2")) {
-      fprintf(stderr, "FAILED: (U0312/1401B) set log verbose\n");
+    if (strcmp(log_mess, "message v2")) {
+      fprintf(stderr, "FAILED: (U0312/1401B) set log verbose <%s>\n", log_mess);
       result++;
     }
+    GEDA_FREE(log_mess);
   }
 
   /* === Function 07: geda_read_log geda_utility_log_read === */
@@ -598,8 +604,9 @@ int test_log (void)
   geda_log ("message 2");
 
   if (log_mess) {
-    fprintf(stderr, "FAILED: (U030101) log close\n");
+    fprintf(stderr, "FAILED: (U030101) log close <%s>\n", log_mess);
     result++;
+    GEDA_FREE (log_mess);
   }
 
   return result;
