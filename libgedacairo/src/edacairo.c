@@ -354,9 +354,10 @@ eda_cairo_arc (cairo_t *cr, int flags,
                double width, double x, double y,
                double radius, double start_angle, double arc_sweep)
 {
+  int s_width;
   double x1, y1, x2, y2;
   double s_x, s_y, s_radius;
-  double dummy;
+  double offset;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
     do_arc (cr, x, y, radius, start_angle, arc_sweep);
@@ -366,16 +367,19 @@ eda_cairo_arc (cairo_t *cr, int flags,
   WORLDtoSCREEN (cr, x - radius, y + radius, &x1, &y1);
   WORLDtoSCREEN (cr, x + radius, y - radius, &x2, &y2);
 
+  s_width  = screen_width (cr, width);
+  offset   = ((s_width % 2) == 0) ? 0 : 0.5;
+
   s_x      = (double)(x1 + x2) / 2.0;
   s_y      = (double)(y1 + y2) / 2.0;
   s_radius = (double)(y2 - y1) / 2.0;
 
   cairo_device_to_user (cr, &s_x, &s_y);
-  cairo_device_to_user_distance (cr, &dummy, &s_radius);
+  cairo_device_to_user_distance (cr, &offset, &s_radius);
 
   s_radius = -1 * s_radius;
 
-  do_arc (cr, s_x, s_y, s_radius, start_angle, arc_sweep);
+  do_arc (cr, s_x + offset, s_y + offset, s_radius, start_angle, arc_sweep);
 }
 
 /*! \brief Render an Arc at center point using Cairo Graphic

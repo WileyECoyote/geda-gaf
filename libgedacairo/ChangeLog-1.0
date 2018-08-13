@@ -1,3 +1,10 @@
+2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Revert using offset to investigate gschem regression
+      test failures on some, but not all, test platforms. This phenomenon
+      was not observed with the "shifting" arcs, which passed regression
+      testing on all tests beds.
+
 2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Remove cast to GObject for g_object_ref macro in
