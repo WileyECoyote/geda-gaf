@@ -6,7 +6,8 @@
 
      * src/x/x_compselect.c: Replace g_ascii_strcasecmp with strcmp in
        compselect_callback_filter_entry_changed, to check for an empty
-       string.
+       string. Revise compselect_build_view_menu to actually put the
+       submenu items; "ON" and "Off", under the submenu, oops.
 
     * tests/golden: Regenerate arc reference file because the changes
       made to libgedacairo arc.

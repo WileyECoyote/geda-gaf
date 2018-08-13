@@ -2452,23 +2452,28 @@ compselect_build_view_menu(Compselect *compselect, GtkWidget *treeview)
   /* tooltip submenu */
   menuitem = geda_menu_item_new_with_mnemonic (_(popup_items[ShowToolTips]));
 
-  submenu = geda_menu_new ();
-  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), submenu);
   geda_menu_append (menu, menuitem);
 
+  submenu = geda_menu_new ();
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), submenu);
+
+  /* Create "On" menuitem and attach to the submenu */
   menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));
   gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOn]));
+  geda_menu_append (submenu, menuitem);
+
+  /* Create "Off" menuitem and attach to the submenu */
+  menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
+  gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOff]));
+  geda_menu_append (submenu, menuitem);
+
   g_signal_connect (menuitem, "activate",
                     G_CALLBACK (compselect_menu_tooltips_on),
                     compselect);
-  geda_menu_append (menu, menuitem);
 
-  menuitem = geda_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
-  gtk_widget_set_tooltip_text (menuitem, _(popup_tips[ToolTipsOff]));
   g_signal_connect (menuitem, "activate",
                     G_CALLBACK (compselect_menu_tooltips_off),
                     compselect);
-  geda_menu_append (menu, menuitem);
 
   gtk_widget_show_all (menu);
 
