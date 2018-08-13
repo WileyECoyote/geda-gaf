@@ -540,6 +540,25 @@ int test_log (void)
     GEDA_FREE(log_mess);
   }
 
+  /* === Function 07: geda_utility_log_read === */
+
+  char *contents;
+
+  /* read the content of the current log file */
+  contents = geda_read_log ();
+
+  if (!contents) {
+    fprintf(stderr, "FAILED: (U030701A) geda_read_log NULL\n");
+    result++;
+  }
+  else {
+    if (strcmp(contents, "message 1")) {
+      fprintf(stderr, "FAILED: (U030701B) geda_read_log <%s>\n", contents);
+      result++;
+    }
+    GEDA_FREE (contents);
+  }
+
   /* === Function 10 geda_utility_log_set_quiet_mode === */
 
   geda_set_quiet_mode(FALSE);
@@ -591,8 +610,6 @@ int test_log (void)
     }
     GEDA_FREE(log_mess);
   }
-
-  /* === Function 07: geda_read_log geda_utility_log_read === */
 
   /* === Function 13: geda_log_s geda_utility_log_system === */
 
