@@ -1073,8 +1073,7 @@ compselect_apply_filter_tree_view (Compselect *Dialog, GtkTreeView *view)
  * \param [in] data The component selection dialog.
  * \returns FALSE to remove the timeout.
  */
-static bool
-compselect_filter_timeout (void *data)
+static bool compselect_filter_timeout (void *data)
 {
   Compselect  *Dialog = COMPSELECT(data);
   GtkTreeView *view;
@@ -1126,7 +1125,7 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
 
   text = GetEntryText(compselect->entry_filter);
 
-  sensitive = (g_ascii_strcasecmp (text,"") != 0);
+  sensitive = text && (strcmp (text,"") != 0);
 
   if (gtk_widget_is_sensitive (button) != sensitive) {
     gtk_widget_set_sensitive (button, sensitive);

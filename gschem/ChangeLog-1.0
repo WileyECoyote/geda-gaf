@@ -4,6 +4,10 @@
       gschem_parse_commandline to eliminate the double hyphens from
       the string to be translated.
 
+     * src/x/x_compselect.c: Replace g_ascii_strcasecmp with strcmp in
+       compselect_callback_filter_entry_changed, to check for an empty
+       string.
+
     * tests/golden: Regenerate arc reference file because the changes
       made to libgedacairo arc.
 
