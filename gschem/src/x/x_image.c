@@ -317,6 +317,55 @@ x_image_update_dialog_filename(GedaComboBox     *type_Combo,
   }
 }
 
+static int
+x_image_update_type_Combo(GtkEntry *entry, GdkEvent *event, GedaComboBox *type_Combo)
+{
+  const char *text;
+
+  text = gtk_entry_get_text(entry);
+
+  if (text) {
+
+    const char *ext;
+    char *image_type_descr;
+    char *image_type;
+
+    ext = geda_get_extension(text);
+
+    image_type_descr = GetGedaComboActiveText (type_);
+    image_type = x_image_get_type_from_description(image_type_descr);
+
+    GEDA_FREE(image_type_descr);
+
+    if (ext && image_type) {
+
+      /* Compare extenstion to the current type in combo */
+      if (strcmp (ext, image_type)) {
+
+        bool found;
+        int i;
+
+        found = FALSE;
+
+        /* Look for ext in ImageTypeStrings */
+        for (i = 0; i < G_N_ELEMENTS (ImageTypeStrings); i++) {
+
+          if (geda_stricmp(ext, ImageTypeStrings[i]) == 0) {
+            geda_combo_box_set_active(type_Combo, i);
+            found = TRUE;
+          }
+        }
+
+        if (!found) {
+          geda_log("confirmation ext=%s\n", ext);
+        }
+      }
+    }
+  }
+
+  return FALSE;
+}
+
 /*! \brief Write eps image file.
  *  \par Function Description
  *  This function writes the encapsulated postscript file, using the
@@ -655,6 +704,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   GtkWidget *switch_vbox;
   GtkWidget *use_print;
   GtkWidget *invert_bw;
+  GtkEntry  *entry;
 
   char *path;
 
@@ -719,6 +769,15 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   g_signal_connect (type_Combo, "changed",
                     G_CALLBACK(x_image_update_dialog_filename),
                     w_current);
+
+  /* Connect to the filename entry focus-out-event editing so that
+   * we verify the user did not change the extension
+   */
+  entry = geda_image_chooser_get_entry(ThisDialog);
+
+  g_signal_connect_after (entry, "focus-out-event",
+                          G_CALLBACK(x_image_update_type_Combo),
+                          type_Combo);
 
   gtk_widget_show (type_Combo);
   gtk_widget_show (vbox2);

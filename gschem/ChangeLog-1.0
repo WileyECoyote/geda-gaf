@@ -2,6 +2,15 @@
 
     * src/iface/i_command.c: Fix enumeration in i_cmd_do_quit.
 
+    * src/x/x_image.c: Add function x_image_update_type_Combo as a
+      callback for the entry "focus-out-event" so that we can check
+      if the user change the file extension. Currently the user could
+      type "somename.png" with the type combo displaying "jpeg" and
+      a "jpeg" would be saved to the file. The callback detects the
+      change and updates the combo so that even if the user focused
+      out with the "save" button the combo is updated before the
+      operation is performed.
+
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_parsecmd.c: Revise the help, error message in
