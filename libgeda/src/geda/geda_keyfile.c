@@ -41,7 +41,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef G_OS_WIN32
+#if 0
 #include <io.h>
 
 #undef fstat
@@ -201,10 +201,12 @@ static int    find_file_in_data_dirs                  (const char            *fi
                                                        const char           **data_dirs,
                                                        char                 **output_file,
                                                        GError               **error);
-static bool   geda_keyfile_load_from_fd               (GedaKeyFile           *key_file,
-                                                       int                    fd,
-                                                       GedaKeyFileFlags       flags,
-                                                       GError               **error);
+
+//static bool   geda_keyfile_load_from_fd               (GedaKeyFile           *key_file,
+//                                                       int                    fd,
+//                                                       GedaKeyFileFlags       flags,
+//                                                       GError               **error);
+
 static GList *geda_keyfile_lookup_group_node          (GedaKeyFile           *key_file,
                                                        const char            *group_name);
 static GedaKeyFileGroup
@@ -498,6 +500,7 @@ static int find_file_in_data_dirs (const char   *file,
   return fd;
 }
 
+/*
 static bool geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
                                        int               fd,
                                        GedaKeyFileFlags  flags,
@@ -534,7 +537,7 @@ static bool geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
 
     bytes_read = read (fd, read_buf, 4096);
 
-    if (bytes_read == 0)  /* End of File */
+    if (bytes_read == 0)  // End of File
       break;
 
     if (bytes_read < 0) {
@@ -564,7 +567,7 @@ static bool geda_keyfile_load_from_fd (GedaKeyFile      *key_file,
 
   return TRUE;
 }
-
+*/
 /*!
  * \brief Load Key File from File
  * \par Function Description
