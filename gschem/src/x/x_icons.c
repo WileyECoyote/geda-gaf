@@ -139,15 +139,42 @@ const char *IDS_THEME_ICONS_22[] = {
   NULL
 };
 
+/*!
+ * \brief Check if Icon is in the Factory
+ * \par Function Description
+ *  Wrapper for gtk_icon_factory_lookup.
+ *
+ * \param [in] icon_id String name of the icon, like "gaf-pdf"
+ *
+ * \retval TRUE if the icon was found, otherwise FALSE.
+ */
 bool x_icons_factory_lookup (const char *icon_id)
 {
   if (icon_id) {
-    GtkIconSet *bs = gtk_icon_factory_lookup (gschem_factory,icon_id);
+
+    GtkIconSet *bs;
+
+    bs = gtk_icon_factory_lookup (gschem_factory, icon_id);
+
     return bs != NULL;
   }
+
   return FALSE;
 }
 
+/*!
+ * \brief Get Factory Icon Widget given Action string and Size
+ * \par Function Description
+ *  The \a action must be known to i_command_get_action_icon.
+ *  Attempts to retrieve the icon from the local factory, if
+ *  the icon is not found then checks if is a stock gtk icon.
+ *
+ *  example:
+ *
+ *  GtkWidget *icon;
+ *
+ *  icon = x_icons_get_factory_icon("add-circle", TB_SMALL_ICON);
+ */
 GtkWidget *x_icons_get_action_icon (const char *action, int size)
 {
   GtkWidget  *image;
@@ -180,7 +207,17 @@ GtkWidget *x_icons_get_action_icon (const char *action, int size)
   return image;
 }
 
-
+/*!
+ * \brief Get Factory Icon Widget given string Id and Size
+ * \par Function Description
+ *  Wrapper for gtk_icon_factory_lookup and gtk_image_new_from_icon_set.
+ *
+ *  example:
+ *
+ *  GtkWidget *icon;
+ *
+ *  icon = x_icons_get_factory_icon("geda-wave", TB_SMALL_ICON);
+ */
 GtkWidget *x_icons_get_factory_icon (const char *icon_id, int size)
 {
   GtkWidget  *image;
@@ -205,21 +242,22 @@ GtkWidget *x_icons_get_factory_icon (const char *icon_id, int size)
   return image;
 }
 
-/*! \brief Setup default icon for GTK windows
- *
- *  \par Function Description
+/*!
+ * \brief Setup default icon for GTK windows
+ * \par Function Description
  *  Sets the default window icon by name, to be found in the current
  *  icon theme path.
  *
- *  \note The default icon name is defined in sdefines.h as
- *        GSCHEM_THEME_ICON_NAME.
+ * \note The default icon name is defined in sdefines.h as
+ *       GSCHEM_THEME_ICON_NAME.
  */
 void x_icons_set_default_icon (const char* icon_name)
 {
   gtk_window_set_default_icon_name(icon_name);
 }
 
-/*! \brief Setup icon search paths.
+/*!
+ * \brief Setup icon search paths
  * \par Function Description
  * Add the icons installed by gschem to the search path for the
  * default icon theme, so that they can be automatically found
