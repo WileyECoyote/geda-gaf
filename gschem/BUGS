@@ -4,11 +4,22 @@ Bugs (no particular order):
 
     Vectors are not displayed if first coordinate has 0 for the X value
 
-	When copying components, the locked bit is not preserved.
+    tooltips for menu item can not be controlled with RC keyword
 
     Grips are not sized correctly.
 
+    exported symbols are translated back to normalicy
+
 Archived:
+
+FIXED Component dialog tree popup menu "show tooltips" are tweaked
+
+FIXED When copying components, the locked bit is not preserved.
+
+FIXED Toggle menu items always show tips until set
+
+FIXED When users change text in the Find Text dialog and click "find" or
+      hits ENTER, the dialog close instead of starting the search over.
 
 FIXED Tooltips menu items under the View/Menu and View/Toolbar submenus do
       not response to menu tooltip settings, as do other non-toggle menu items.
