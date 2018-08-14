@@ -11,7 +11,7 @@
       a "jpeg" would be saved to the file. The callback detects the
       change and updates the combo so that even if the user focused
       out with the "save" button the combo is updated before the
-      operation is performed.
+      operation is performed. Update/reformat function documentation.
 
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 

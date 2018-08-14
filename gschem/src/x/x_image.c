@@ -85,11 +85,12 @@ GtkWidget *ExtentsSwitch     = NULL;
 GtkWidget *EnableColorSwitch = NULL;
 GtkWidget *InvertImageSwitch = NULL;
 
-/*! \brief Create the options of the image size combobox
- *  \par Function Description
+/*!
+ * \brief Create the options of the image size combobox
+ * \par Function Description
  *  This function adds the options of the image size to the given combobox.
  *
- *  \note
+ * \note
  *  This function is only used in this file, there are other create_menus...
  */
 static GtkWidget *create_size_menu (void)
@@ -117,18 +118,18 @@ static GtkWidget *create_size_menu (void)
   return combo;
 }
 
-/*! \brief Create the options of the image type combobox
- *
- *  \par Function Description
+/*!
+ * \brief Create the options of the image type combobox
+ * \par Function Description
  *  This function adds the options of the image type to the given
  *  combobox.
  *
- *  \param default_type [in] the combobox to add the options to
+ * \param default_type [in] the combobox to add the options to
  *
- *  \return nothing
+ * \return nothing
  *
- *  \note This function is only used in this file, there are other
- *        create_menus...
+ * \note This function is only used in this file, there are other
+ *       create_menus...
  */
 static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
 {
@@ -187,22 +188,24 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
   geda_combo_box_text_widget_set_active(combo, default_index);
   g_object_set (combo, "visible", TRUE, NULL);
   gtk_widget_set_tooltip_text ( combo, _("Click to select the type of image to be created"));
+
   return combo;
 }
 
-/*! \brief File Image File Extension given Description
- *  \par Function Description
- *   Given a gdk-pixbuf image type description, it returns the type,
- *   aka, the file extension to use for the given image description.
- *   Returns the gdk-pixbuf image type, or extension, which has the
- *   given gdk-pixbuf description.
+/*!
+ * \brief File Image File Extension given Description
+ * \par Function Description
+ *  Given a gdk-pixbuf image type description, it returns the type,
+ *  aka, the file extension to use for the given image description.
+ *  Returns the gdk-pixbuf image type, or extension, which has the
+ *  given gdk-pixbuf description.
  *
- *  \param descr The gdk-pixbuf image type description.
+ * \param descr The gdk-pixbuf image type description.
  *
- *  \return The gdk-pixbuf type, or extension, of the image.
+ * \return The gdk-pixbuf type, or extension, of the image.
  *
- *  \note.1 The returned value must be freed with GEDA_FREE
- *  \note.2 This function is only used in this file.
+ * \note.1 The returned value must be freed with GEDA_FREE
+ * \note.2 This function is only used in this file.
  */
 static char *x_image_get_type_from_description(char *descr) {
 
@@ -247,18 +250,18 @@ static char *x_image_get_type_from_description(char *descr) {
   return ret_val;
 }
 
-/*! \brief Update the filename of a file dialog, when the image type has changed
- *  \par Function Description
+/*!
+ * \brief Update the filename of a file dialog, when the image type has changed
+ * \par Function Description
  *  Given a combobox inside a file chooser dialog, this function updates
  *  the filename displayed by the dialog, removing the current extension,
  *  and adding the extension of the image type selected.
  *
- *  \param[in] type_Combo A combobox inside a file chooser dialog, with
+ * \param[in] type_Combo A combobox inside a file chooser dialog, with
  *                        gdk-pixbuf image type descriptions.
- *  \param[in] w_current  the GschemToplevel structure.
+ * \param[in] w_current  the GschemToplevel structure.
  *
- *  \return nothing.
- *
+ * \return nothing.
  */
 static void
 x_image_update_dialog_filename(GedaComboBox     *type_Combo,
@@ -366,16 +369,17 @@ x_image_update_type_Combo(GtkEntry *entry, GdkEvent *event, GedaComboBox *type_C
   return FALSE;
 }
 
-/*! \brief Write eps image file.
- *  \par Function Description
+/*!
+ * \brief Write eps image file.
+ * \par Function Description
  *  This function writes the encapsulated postscript file, using the
  *  postscript print code from libgeda. Orientation is portrait and
  *  type is extents without margins.
  *
- *  \param w_current [in] the GschemToplevel structure.
- *  \param filename  [in] the image filename.
+ * \param w_current [in] the GschemToplevel structure.
+ * \param filename  [in] the image filename.
  *
- *  \return nothing
+ * \return nothing
  */
 static
 void x_image_write_eps(GschemToplevel *w_current, const char*filename)
@@ -418,8 +422,9 @@ void x_image_write_eps(GschemToplevel *w_current, const char*filename)
   toplevel->print_output_extents = type;
 }
 
-/*! \brief Initialize Image Module.
- *  \par Function Description
+/*!
+ * \brief Initialize Image Module.
+ * \par Function Description
  *  This function is used to set module level globals that are
  *  use to retain the user choices on a per session basis.
  *  The settings here are not considered important enough to
@@ -434,21 +439,22 @@ void x_image_init (void)
   widget_list     = NULL;
 }
 
-/*! \brief Write the Image file using specified options.
- *  \par Function Description
+/*!
+ * \brief Write the Image file using specified options.
+ * \par Function Description
  *  This function writes the image file, with the options set in
  *  the dialog by the user.
  *
- *  \param [in] w_current       A GschemToplevel object.
- *  \param [in] filename        the image filename.
- *  \param [in] desired_width   the image width chosen by the user.
- *  \param [in] desired_height  the image height chosen by the user.
- *  \param [in] filetype        image filetype.
- *  \param [in] extent          If true then all, else just display .
- *  \param [in] use_print_map   If true then use print color map.
- *  \param [in] invert_color_bw If true invert the image.
- *  \return nothing
+ * \param [in] w_current       A GschemToplevel object.
+ * \param [in] filename        the image filename.
+ * \param [in] desired_width   the image width chosen by the user.
+ * \param [in] desired_height  the image height chosen by the user.
+ * \param [in] filetype        image filetype.
+ * \param [in] extent          If true then all, else just display .
+ * \param [in] use_print_map   If true then use print color map.
+ * \param [in] invert_color_bw If true invert the image.
  *
+ * \return nothing
  */
 void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
     int desired_width, int desired_height, const char *filetype, ImageExtent extent,
@@ -586,12 +592,13 @@ void x_image_lowlevel(GschemToplevel *w_current, const char *filename,
  *          image dialog.
  */
 
-/*! \brief Toggle switch image & Set sensitivity of other Widgets
- *  \par Function Description: This function changes the images on
- *       EnableColorSwitch and set the sensitivity of all members
- *       of the attach glist, which is the Use Print Color (map)
- *       and Invert B&W only on Color widgets to the same state as
- *       this control.
+/*!
+ * \brief Toggle switch image & Set sensitivity of other Widgets
+ * \par Function Description
+ *  This function changes the images on EnableColorSwitch and sets
+ *  the sensitivity of all members of the attach glist, which is
+ *  the Use Print Color (map) and Invert B&W only on Color widgets
+ *  to the same state as this control.
  */
 static void x_image_enable_color (GtkWidget *widget,
                                   GList     *widget_list)
@@ -616,11 +623,12 @@ static void x_image_enable_color (GtkWidget *widget,
   return;
 }
 
-/*! \brief Toggle switch image & Set invert_bw sensitivity
-*   \par Function Description:
-* This function changes the images on InvertImageSwitch and
-* sets the sensitivity of the invert_bw Check button to the
-* same state of this control.
+/*!
+ * \brief Toggle switch image & Set invert_bw sensitivity
+ * \par Function Description
+ *  This function changes the images on InvertImageSwitch and
+ *  sets the sensitivity of the invert_bw Check button to the
+ *  same state of this control.
 */
 static void x_image_enable_color_bw_invert (GtkWidget *widget,
                                             GtkWidget *button)
@@ -646,21 +654,23 @@ static void x_image_enable_color_bw_invert (GtkWidget *widget,
   return;
 }
 
-/*! \brief Toggle switch images on the Write Image Dialog
- *  \par Function Description: This function changes the images of
- *       controls created with create_geda_switch to the opposite
- *       state, i.e. if ON use OFF image and if OFF use ON image.
- *       The functions handles callbacks for only two switches on
- *       this Dialog. This callback doesn't do anything other
- *       than toggle the image so it could be simplified to just
- *       TOGGLE_SWITCH(widget); but leaving stubbed for now for
- *       possible future innovations.
+/*!
+ * \brief Toggle switch images on the Write Image Dialog
+ * \par Function Description
+ *  This function changes the images of controls created with
+ *  create_geda_switch to the opposite state, i.e. if ON use
+ *  OFF image and if OFF use ON image. The functions handles
+ *  callbacks for three switches on this Dialog.This callback
+ *  does not do anything other than toggle the image so it
+ *  could be simplified to just TOGGLE_SWITCH(widget); but
+ *  leaving stubbed for now for possible future innovations.
  */
 static void switch_responder(GtkWidget *widget, ControlID *Control)
 {
-
   bool state = GET_SWITCH_STATE (widget);
-  GtkWidget* SwitchImage = get_geda_switch_image( state);
+
+  GtkWidget *SwitchImage = get_geda_switch_image( state);
+
   gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
   int WhichOne = (int)(long)Control;
@@ -678,16 +688,17 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
 
 /** @} END Group X-Image-Switch-Callback Functions */
 
-/*! \brief Display the image file selection dialog.
- *  \par Function Description
- *   Displays the image file selection dialog, allowing the user to
- * set several options, like image size and image type.
- * When the user hits "ok", the image is written to the file.
+/*!
+ * \brief Display the image file selection dialog.
+ * \par Function Description
+ *  Displays the image file selection dialog, allowing the user to
+ *  set several options, like image size and image type.
+ *  When the user hits "ok", the image is written to the file.
  *
- *  \param[in] w_current    the GschemToplevel structure.
- *  \param[in] default_type the default (last) image type created.
+ * \param[in] w_current    the GschemToplevel structure.
+ * \param[in] default_type the default (last) image type created.
  *
- *  \return nothing
+ * \return nothing
  */
 void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 {
@@ -903,6 +914,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     /* Retrieve the filename from the dialog */
     filename = geda_image_chooser_get_filename(ThisDialog);
 
+    /* Verify that the file extension matches the image type */
     /* Call low-level to do the work */
     x_image_lowlevel(w_current, filename, width, height, image_type,
                      last_extents, use_print_map, invert_color_bw);
@@ -921,12 +933,13 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   widget_list = NULL;
 }
 
-/*! \brief Convert Image to Grey Scale
- *  \par Function Description
- *  Replace color pixels with shades of grey and optionaly inverts the image
+/*!
+ * \brief Convert Image to Grey Scale
+ * \par Function Description
+ *  Replaces color pixels with shades of grey and optionaly inverts the image.
  *
- *  \param pixbuf Pointer to GdkPixbuf to be processed
- *  \param invert boolean, if true - do invert pixels
+ * \param pixbuf Pointer to GdkPixbuf to be processed
+ * \param invert boolean, if true - do invert pixels
  */
 static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf, bool invert)
 {
@@ -968,14 +981,16 @@ static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf, bool invert)
     }
   }
 }
-/*! \brief Invert Color Image
- *  \par Function Description
- *   This function inverts color image, sometime refered to as reversing
- *   the polarity of the image. Optionaly, only near Black and near White
- *   are reversed.
+
+/*!
+ * \brief Invert Color Image
+ * \par Function Description
+ *  This function inverts color image, sometime refered to as reversing
+ *  the polarity of the image. Optionaly, only near Black and near White
+ *  are reversed.
  *
- *  \param pixbuf  Pointer to GdkPixbuf to be processed
- *  \param bw_only boolean, if true - only invert the B&W pixels
+ * \param pixbuf  Pointer to GdkPixbuf to be processed
+ * \param bw_only boolean, if true - only invert the B&W pixels
  */
 static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
 {
@@ -1026,8 +1041,9 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
   }
 }
 
-/*! \brief Retreive Pixel Buffer for Imaging
- *  \par Function Description
+/*!
+ * \brief Retreive Pixel Buffer for Imaging
+ * \par Function Description
  *  The entire top-level is copied, including
  */
 GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
@@ -1049,10 +1065,14 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   toplevel      = geda_toplevel_new();
 
   if (!new_w_current || !toplevel) {
+
     char *errmsg = strerror(errno);
+
     fprintf(stderr, "%s: could not allocate memory resources: %s\n",__func__, errmsg);
+
     error_dialog("Could not allocate memory resources; %s, maybe you should try saving next",
                   errmsg);
+
     if (new_w_current)
       free (new_w_current);
     if (toplevel)
