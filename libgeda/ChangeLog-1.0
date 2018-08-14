@@ -4,6 +4,8 @@
       geda_file_get_contents and geda_keyfile_load_from_data instead of
       g_open and geda_keyfile_load_from_fd because geda_keyfile_load_from_fd
       uses fstat, which is not available on all platforms of interest.
+      Revise geda_keyfile_load_from_dirs to utilize geda_keyfile_load_from_file
+      instead of unportable geda_keyfile_load_from_fd.
 
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -671,8 +671,8 @@ bool geda_keyfile_load_from_data (GedaKeyFile       *key_file,
  * \par Function Description
  * This function looks for a key file named \a file in the paths
  * specified in \a search_dirs, loads the file into \a key_file and
- * returns the file's full path in \a full_path.  If the file could not
- * be loaded then an %error is set to either a GFileError or
+ * returns the file's full path in \a full_path. If the file could
+ * not be loaded then an %error is set to either a GFileError or
  * #GedaKeyFileError.
  *
  * \param [out] key_file    an empty #GedaKeyFile struct
@@ -721,8 +721,9 @@ bool geda_keyfile_load_from_dirs (GedaKeyFile       *key_file,
       break;
     }
 
-    found_file = geda_keyfile_load_from_fd (key_file, fd, flags,
-                                            &key_file_error);
+    found_file = geda_keyfile_load_from_file (key_file,
+                                              output_path, flags,
+                                              &key_file_error);
     close (fd);
 
     if (key_file_error) {
