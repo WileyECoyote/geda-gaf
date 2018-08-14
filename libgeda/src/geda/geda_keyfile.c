@@ -594,27 +594,21 @@ bool geda_keyfile_load_from_file (GedaKeyFile       *key_file,
   }
   else {
 
-    int  fd;
+    GError *key_file_error = NULL;
+    char   *buffer;
+    size_t length;
 
-    fd = g_open (file, O_RDONLY, 0);
+    if (geda_file_get_contents(file, &buffer, &length, &key_file_error)) {
 
-    if (fd == -1) {
-      g_set_error_literal (error, EDA_ERROR, errno, strerror (errno));
-      result = FALSE;
+      result = geda_keyfile_load_from_data (key_file,
+                                            buffer, length,
+                                            flags, error);
     }
     else {
-
-      GError *key_file_error = NULL;
-
-      geda_keyfile_load_from_fd (key_file, fd, flags, &key_file_error);
-      close (fd);
-
-      if (key_file_error) {
+      if (error) {
         g_propagate_error (error, key_file_error);
-        return FALSE;
       }
-
-      result = TRUE;
+      result = FALSE;
     }
   }
   return result;
@@ -636,7 +630,7 @@ bool geda_keyfile_load_from_file (GedaKeyFile       *key_file,
  */
 bool geda_keyfile_load_from_data (GedaKeyFile       *key_file,
                                   const char        *data,
-                                  unsigned int        length,
+                                  unsigned int       length,
                                   GedaKeyFileFlags   flags,
                                   GError           **error)
 {

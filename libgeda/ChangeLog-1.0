@@ -1,3 +1,10 @@
+2018-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c Revise geda_keyfile_load_from_file to utilize
+      geda_file_get_contents and geda_keyfile_load_from_data instead of
+      g_open and geda_keyfile_load_from_fd because geda_keyfile_load_from_fd
+      uses fstat, which is not available on all platforms of interest.
+
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_object_list.c: Extend checks for geda_object_list_rotate
