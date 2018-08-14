@@ -1,6 +1,8 @@
 2018-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Fix enumeration in i_cmd_do_quit.
+      Remove canceling the action handler in do_add_pin and stop
+      event handling if not a hot action.
 
     * src/x/x_image.c: Add function x_image_update_type_Combo as a
       callback for the entry "focus-out-event" so that we can check
