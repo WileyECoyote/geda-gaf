@@ -9,9 +9,9 @@ struct st_idle_hook_data {
   unsigned int    source_id;
   GschemToplevel *w_current;
 
-  union { GList  *list;
+  union { GList      *list;
           GedaObject *object;
-          Page   *page;
+          Page       *page;
         } data;
 
   char           *name;
