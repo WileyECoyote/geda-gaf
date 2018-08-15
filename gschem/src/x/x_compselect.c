@@ -71,12 +71,12 @@ typedef enum {
   LOCAL_TAB
 } DialogTabs;
 
-const char* IDS_COMPSELECT_TABS[] = {
+const char *IDS_COMPSELECT_TABS[] = {
   "In Use", "Std", "Manf", "Sim", "Local", /* Tab Name Strings*/
   NULL
 };
 
-const char* IDS_CATEGORIES[] = {
+const char *IDS_CATEGORIES[] = {
   "",
   "Standard", "Manufacturers", "Simulation", "Local", /* Tab Name Strings*/
   NULL
@@ -3469,7 +3469,7 @@ compselect_constructor (GType                  type,
 static void
 compselect_dispose (GObject *object)
 {
-  //Compselect *ThisDialog = COMPSELECT (object);
+  // Compselect *ThisDialog = COMPSELECT (object);
 
   if (tree_view_popup_menu != NULL) {
     gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
