@@ -443,7 +443,7 @@ void geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
         }
         else {
 
-          /* The deleted page was the first of multible page so
+          /* The deleted page was the first of multiple pages so
            * set the current page to the next valid page in the
            * list of pages */
           GList *iter;
