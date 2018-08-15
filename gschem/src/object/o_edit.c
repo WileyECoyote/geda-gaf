@@ -102,7 +102,7 @@ bool o_edit_add_titleblock (GschemToplevel *w_current, Page *page, const char *t
  * \todo This function is wrong, the functions accepts a list but
  *  calls func with first member of list, but does not check other
  *  members in the list, see geda_list_is_homogeneous_objects and
- *  the object argument to editors with multible objects of the same
+ *  the object argument to editors with multiple objects of the same
  *  type should be NULL.
  */
 void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
