@@ -4,6 +4,8 @@
 
     * src/geda/geda_keyfile.c: Release buffer in geda_keyfile_load_from_file.
 
+    * src/guile/g_rc.c: Release name_str in g_rc_component_library.
+
 2018-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_load_from_file to utilize

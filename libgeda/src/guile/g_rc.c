@@ -277,6 +277,7 @@ SCM g_rc_component_library(SCM path, SCM name)
           GEDA_FREE(temp);
           break;
       }
+      GEDA_FREE(name_str);
       GEDA_FREE(cwd);
     }
     result = SCM_BOOL_T;
