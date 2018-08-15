@@ -606,6 +606,7 @@ bool geda_keyfile_load_from_file (GedaKeyFile       *key_file,
       result = geda_keyfile_load_from_data (key_file,
                                             buffer, length,
                                             flags, error);
+      GEDA_FREE(buffer);
     }
     else {
       if (error) {
