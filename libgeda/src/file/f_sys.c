@@ -23,7 +23,7 @@
  *
 */
 /*! \file f_sys.c
- *  \brief utilility file functions
+ *  \brief file utilility functions
  */
 
 #include "../../../config.h"
@@ -50,10 +50,11 @@
 #include <libgeda_priv.h>
 #include <geda/geda_stat.h>
 
-/*! /comment: The functions in f_basic.c are mostly application
- *  specific so this file was created for basic non-application
- *  specific routines.
- */
+/** \defgroup libgeda-sys-file-utililities Libgeda File Utilities
+ *  @{ \par
+ *  Functions in f_file.c are mostly application specific so this
+ *  module was created for basic non-application specific routines.
+*/
 
 /*!
  * \brief Copy a file
@@ -550,3 +551,5 @@ bool geda_file_sys_remove_extension(char *filename) {
 
   return n;
 }
+
+/** @} endgroup libgeda-sys-file-utililities */
