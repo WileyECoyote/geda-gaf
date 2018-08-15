@@ -194,7 +194,9 @@ static char *get_data_scm (const CLibSymbol *symbol);
  */
 static void geda_struct_clib_flush_search_cache (void)
 {
-  g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
+  if (clib_search_cache) {
+    g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
+  }
 }
 
 /*! \brief Flush the symbol data cache.
@@ -205,13 +207,19 @@ static void geda_struct_clib_flush_search_cache (void)
  */
 static void geda_struct_clib_flush_symbol_cache (void)
 {
-  g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
+  if (clib_symbol_cache) {
+    g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
+  }
 }
 
 void geda_struct_clib_flush_cache (void)
 {
-  g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
-  g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
+  if (clib_search_cache) {
+    g_hash_table_remove_all (clib_search_cache);  /* Introduced in glib 2.12 */
+  }
+  if (clib_symbol_cache) {
+    g_hash_table_remove_all (clib_symbol_cache);  /* Introduced in glib 2.12 */
+  }
 }
 
 /*! \brief Initialise the component library.
@@ -999,7 +1007,7 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
     tmpstr = geda_file_get_basename_dup(directory);
   }
 
-  if (category == NULL) {
+  if ( category == NULL) {
     category = geda_strdup("Standard");
   }
 
