@@ -1638,7 +1638,7 @@ load_symbols: /* It Works! */
        * is being used to over-ride the switches and force a group to
        * always be on the treeview list */
       if (sym_count == 1) {
-        if (g_ascii_strcasecmp (sym_name, "placeholder.sym") == 0)
+        if (geda_strncmpi (sym_name, "placeholder.sym", 15) == 0)
           continue;
       }
 
