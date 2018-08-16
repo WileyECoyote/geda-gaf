@@ -1,3 +1,8 @@
+2018-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Revise on_mouse_button_press; cast widget to GtkSheet
+      because argument is already a widget.
+
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Avoid calls gdk_threads_init() on MinGW platforms (like
