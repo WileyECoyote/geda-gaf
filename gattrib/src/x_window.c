@@ -100,8 +100,8 @@ void x_window_clipboard_handler(int do_what)
       }
       else if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "cut-clipboard", NULL);
+        x_window_update_title(pr_current, sheet_head);
       }
-      x_window_update_title(pr_current, sheet_head);
       break;
 
     case tb_copy:
@@ -115,8 +115,8 @@ void x_window_clipboard_handler(int do_what)
     case tb_paste:
       if (GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "paste-clipboard", NULL);
+        x_window_update_title(pr_current, sheet_head);
       }
-      x_window_update_title(pr_current, sheet_head);
       break;
 
     default:

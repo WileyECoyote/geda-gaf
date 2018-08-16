@@ -15,7 +15,8 @@
 
     * src/x_window.c: Replace GEDA_IS_ENTRY with GTK_IS_ENTRY in function
       x_window_clipboard_handler because the entry is not a GedaEntry and
-      the conditional do not allow the signals to get emitted.
+      the conditional do not allow the signals to get emitted. Move calls
+      to x_window_update_title inside conditionals for cut and paste.
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
