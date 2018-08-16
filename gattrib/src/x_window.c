@@ -98,7 +98,7 @@ void x_window_clipboard_handler(int do_what)
       if (GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget)) {
         g_signal_emit_by_name(widget, "copy-clipboard", NULL); /* just copy */
       }
-      else if(GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
+      else if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "cut-clipboard", NULL);
       }
       x_window_update_title(pr_current, sheet_head);
@@ -106,14 +106,14 @@ void x_window_clipboard_handler(int do_what)
 
     case tb_copy:
       if ((GEDA_IS_LABEL(widget) && geda_label_widget_get_selectable(widget))
-        || GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
+        || GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
       {
         g_signal_emit_by_name(widget, "copy-clipboard", NULL);
       }
       break;
 
     case tb_paste:
-      if (GEDA_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
+      if (GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "paste-clipboard", NULL);
       }
       x_window_update_title(pr_current, sheet_head);
