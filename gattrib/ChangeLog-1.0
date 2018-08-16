@@ -4,8 +4,9 @@
       because argument is already a widget. Add bool handled to return a logical
       value based upon whether the routine actually handled the event. Check if
       the event was a middle mouse button press and emit "paste" on the entry
-      widget so that a middle-mouse click will paste into the cell.
-
+      widget so that a middle-mouse click will paste into the cell. Rename
+      second argument to clipboard_handler "event" instead of key; this is
+      consistence with other event callack back handlers.
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -14,7 +15,7 @@
 
 2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\gattrib_dialog.c: Update bitmaps subdirectory name in create_pixmap.
+    * src/gattrib_dialog.c: Update bitmaps subdirectory name in create_pixmap.
 
 2018-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -25,7 +26,7 @@
     * src/i_basic.c: Fix reference to pointer in function i_basic_show_uri.
 
     * src/x_dialog.c: Unconditionally undefine ReplaceText, which could be
-      defined on Windows machines in mingw\include\windows.h.
+      defined on Windows machines in mingw/include/windows.h.
 
 2018-06-19 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -300,8 +301,8 @@
 
     * src/s_properties.c: Remove redundant validations in functions:
 
-          * s_properties_set_range_visibility
-          * s_properties_set_show_name_value
+        * s_properties_set_range_visibility
+        * s_properties_set_show_name_value
 
 2017-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -477,8 +478,8 @@
     * src/s_rename.c: Reformat Doxygen comments, add Doxygen documentation
       blocks for functions:
 
-          * s_rename_next_set
-          * s_rename_all
+        * s_rename_next_set
+        * s_rename_all
 
     * src/s_sheet_data.c: Revise verbose message in s_sheet_data_add_master
       _pin_attrib_list_items to eliminate the trailing CR and use ellipses
@@ -1023,9 +1024,9 @@
 
     * src/gtksheet/gtksheetcolumn.c: Eliminate unnecessary inclusion of:
 
-          * gtk/gtksignal.h
-          * gtk/gtkpixmap.h
-          * pango/pango.h
+        * gtk/gtksignal.h
+        * gtk/gtkpixmap.h
+        * pango/pango.h
 
     * src/gattrib.c: Replace g_list_free with geda_glist_free_all to release
       search_history strings and the list.
@@ -1234,8 +1235,8 @@
 
     * include/gtksheet/gtksheettypebuiltins.h: Add declarations for
 
-          * gtk_sheet_entry_type_get_type
-          * gtk_sheet_vertical_justification_get_type
+        * gtk_sheet_entry_type_get_type
+        * gtk_sheet_vertical_justification_get_type
 
       located in gtksheettypebuiltins.c and referenced in other modules.
 
@@ -1297,18 +1298,18 @@
     * src/: Substitute geda_strdup for geda_utility_string_strdup and
       geda_strsplit for geda_utility_string_split in:
 
-          * src/s_object.c
-          * src/s_toplevel.c
+        * src/s_object.c
+        * src/s_toplevel.c
 
 2016-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/: Substitute geda_strconcat for geda_utility_string_concat in:
 
-          * src/s_attrib.c
-          * src/s_object.c
-          * src/s_sheet_data.c
-          * src/s_table.c
-          * src/x_dialog.c
+        * src/s_attrib.c
+        * src/s_object.c
+        * src/s_sheet_data.c
+        * src/s_table.c
+        * src/x_dialog.c
 
 2016-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1613,11 +1614,11 @@
 
     * src/: Reduce scope of variables in modules:
 
-            * src/s_rename.c
-            * src/s_table.c
-            * src/s_toplevel.c
-            * src/x_dialog.c
-            * src/x_find.c
+          * src/s_rename.c
+          * src/s_table.c
+          * src/s_toplevel.c
+          * src/x_dialog.c
+          * src/x_find.c
 
 2015-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1690,12 +1691,12 @@
 
     * etc/gattrib-menus.xml: Add help sub-menu items:
 
-        * "help-show-manual"
-        * "help-show-faq"
-        * "help-show-geda"
-        * "help-show-wiki"
-        * "help-show-attribs"
-        * "help-show-glossary"
+      * "help-show-manual"
+      * "help-show-faq"
+      * "help-show-geda"
+      * "help-show-wiki"
+      * "help-show-attribs"
+      * "help-show-glossary"
 
     * src/x_menus.c: Revise actions table to support new menu actions
       listed above, assign some stock gtk icons to other menu entries.
@@ -1704,9 +1705,9 @@
     * src/i_basic.c: Copied code from gschem to launch uri's, in this
       case local html file adding functions:
 
-        * i_basic_show_uri__win32
-        * i_basic_show_uri
-        * i_show_wiki_help
+      * i_basic_show_uri__win32
+      * i_basic_show_uri
+      * i_show_wiki_help
 
 2015-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1976,7 +1977,7 @@
 
 2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/gtksheet/gtksheetwidget.c: In function: gtk_sheet_get_property()
+      * src/gtksheet/gtksheetwidget.c: In function: gtk_sheet_get_property()
         changed variable <valarray> from GValueArray to GArray, replaced
         g_value_array_new with g_array_sized_new, g_value_array_append with
         g_array_append_vals, and g_value_array_free with g_array_unref because
@@ -1986,63 +1987,63 @@
 
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+      * src/Makefile.am: Change -I$(abs_top_builddir)/include to
         -I$(top_srcddir)/include. Don't know where i got abs_top_build.
         Does not work for distcheck or on Mint (and probably Ubuntu) with
         automake ver? autoconf v?
 
 2013-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/s_object.c: Changed return type for function s_object_attrib
+      * src/s_object.c: Changed return type for function s_object_attrib
         _add_attrib_in_object to bool and added missing return value in
         default case
 
 2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
-        * Code Cleanup & Documentation Updates:
+      * Code Cleanup & Documentation Updates:
 
       * src/x_window: Eliminated num_rows and num_cols variable in
           function x_window_add_items, these were unnecessary and did not
           appreciably improve readability.
           Added Callback function on_notebook_switch_page for notebook
 
-        * src/x_menu.c: Added new functions x_menus_set_sensitivities and
+      * src/x_menu.c: Added new functions x_menus_set_sensitivities and
           x_menu_get_collections to support enabling and disabling menu
           options based on the active notebook sheet.
 
-        * src/x_toolbars.c: Revised x_toolbars_init and added new function
+      * src/x_toolbars.c: Revised x_toolbars_init and added new function
           x_toolbar_set_sensitivities to support enabling and disabling
           toolbar buttons based on the active notebook sheet.
 
 2012-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/s_table.c: Major re-vamp, tables are now referecne as [X][Y].
+      * src/s_table.c: Major re-vamp, tables are now referecne as [X][Y].
         Revised functions s_table_new,s_table_destroy, s_table_create_attrib
         _pair, s_table_add_items_to_comp_table, s_table_gtksheet_to_table,
         Replaced function s_table_resize with s_table_add
         Added function s_table_remove_attribute
 
-        * src/x_menu.c: Completed implementation of delete attribute
+      * src/x_menu.c: Completed implementation of delete attribute
         functionality that was part of the previous commit but was disabled
         in the menus.
 
-        * src/s_toplevel.c: Eliminated s_sheet_data_gtksheet_to_sheetdata,
+      * src/s_toplevel.c: Eliminated s_sheet_data_gtksheet_to_sheetdata,
         this function just called s_table_gtksheet_to_all_tables so now
         s_toplevel_gtksheet_to_toplevel function calls s_table_gtksheet_to
         _all_tables directly.
 
-        * The revisions above fix gattrib's Y-X dilema: Accessing table data
+      * The revisions above fix gattrib's Y-X dilema: Accessing table data
         with X-Y may seem awkward since gtksheet is (backwards) Y-X, but now
         memory can be, and is, allocated and released on a per attribute
         basis, meaning attributes can be freely added or deleted. gattrib can
         not add or remove components so there is no need to manipulate memory
         in terms of rows (Ys).
 
-        * src/x_toolbars.c: Added demote to Attribute toolbar.
+      * src/x_toolbars.c: Added demote to Attribute toolbar.
 
 2012-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/gattrib.c: Revised/Rearranged mainline code so that gattrib
+      * src/gattrib.c: Revised/Rearranged mainline code so that gattrib
         could startup without a file. The auto-launching file open is what
         user saw first when starting from within GUI OS and that was okay
         but when there was an error in the data gattrib would abort execution,
@@ -2054,9 +2055,9 @@
         destroyed or present a blank sheet. This commit is devoted to resolving
         this dilemma.
 
-        * src/s_attrib.c: Performed code clean up in function s_attrib_get_refdes.
+      * src/s_attrib.c: Performed code clean up in function s_attrib_get_refdes.
 
-        * s_properties.c: Renamed file s_visibility to s_properties.c revised
+      * s_properties.c: Renamed file s_visibility to s_properties.c revised
         functions to consolidate code. Eliminated unnecessary header inclusions,
         added functions s_properties_get_current_table, s_properties_get_fgcolor
         _index, s_properties_get_visibility, s_properties_get_show_name_value,
@@ -2065,7 +2066,7 @@
         s_properties_set_cell_show_name. Added s_properties_promote_attribute
         s_properties_demote_attribute
 
-        * src/s_table.c: Renamed s_table_add_toplevel_xxxx_items_to_comp_table
+      * src/s_table.c: Renamed s_table_add_toplevel_xxxx_items_to_comp_table
         functions s_table_add_items_to_xxxx_table. Separated conditionals
         (row == -1) || (col == -1) so that the error messages would indicate
         which of the two is actually being reported as an error. Eliminated
@@ -2073,59 +2074,58 @@
         o_attrib_return_attribs so list would include inherited attributes.
         Added functionality for inherited attributes.
 
-        * src/x_fileselect: Fixed return value from x_fileselect_load_files.
+      * src/x_fileselect: Fixed return value from x_fileselect_load_files.
 
-        * src/x_gtksheet.c: Revised x_gtksheet_add_cell_item function to use
+      * src/x_gtksheet.c: Revised x_gtksheet_add_cell_item function to use
         the new s_properties_get_cell_fgcolor_index function.
 
-        * src/x_menu.c: Added view-inherited-attribs and visibility-visible.
-        Note that previously gattrib did not have capability turn on just the
-        invisibility flag. Added promote and demote.
+      * src/x_menu.c: Added view-inherited-attribs and visibility-visible.
+        Note that previously gattrib did not have the capability turn on
+        just the invisibility flag. Added promote and demote.
 
       * src/x_window: new function x_window_finalize_startup
 
 2012-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/gattrib_dialog.c: Add new compilation unit, this is mostly
+      * src/gattrib_dialog.c: Add new compilation unit, this is mostly
         a copy of the gschem version but tweeked for gattrib, i.e. no
         w_current. This is mainly so that Dialog positions could be
         and recalled. gattrib now creates and maintaines a
         retained a ~/gEDA/gattrib-dialog-geometry file.
 
-        * include/gattrib_dialog.h: Added header to support corresponding
+      * include/gattrib_dialog.h: Added header to support corresponding
         source file.
 
-        * src/g_strings.c: New file for generic string functions. These
+      * src/g_strings.c: New file for generic string functions. These
         are mostly strings function missing from glibc, maybe should be
         in libgeda but don't want to prefix with u_basic. These were
         developed as internal function to support Sear and Replace but
         are being move to a new file to reduce clutter and so that the
         algorithms can be used in overhaul of Find dialog.
 
-        * src/g_util.c New file for generic utility functions with two
+      * src/g_util.c New file for generic utility functions with two
         initial functions: g_list_str_inlist and g_list_stri_inlist. Did
         not find in library and these did not seem to fit in to any of
         the existing files (maybe g_strings.c but thinking other g_list
         oriented functions be required in the future).
 
-        * include/struct.h: Added new structure, st_search, to support
+      * include/struct.h: Added new structure, st_search, to support
         new Search and Replace functions.
 
-        * src/x_toolbars.c: Added new Attribute toolbar.
+      * src/x_toolbars.c: Added new Attribute toolbar.
 
-        * src/x_dialog.c: Added Search and Replace Dialog, eliminated
-        x_dialog_find_value (taht I jst added last week) and modified
-        Search and Replace Dialog for Find-Only-Mode.
-        Removed create_pixmap function since there is a version in the
-        gattrib_dialog.c src that is being added.
-        Implemented Search and Replace history.
+      * src/x_dialog.c: Added Search and Replace Dialog, eliminated
+        x_dialog_find_value (that I just added last week) and modified
+        Search and Replace Dialog for Find-Only-Mode. Removed create_pixmap
+        function since there is a version in the gattrib_dialog.c src that
+        is being added. Implemented Search and Replace history.
 
-        * src/x_gtksheet.c: Added functions x_gtksheet_range_copy
-        and x_gtksheet_set_max_range to facilitate manipulation
-        of range structures. Added gtk_sheet_set_clip_text(sheets[i], TRUE);
-        in x_gtksheet_init function. This keeps the text from running over
-        into adjacent cells. (Note: There seems to be some confusion
-        in GTKSheet regarding the terminology for "clip", in most context it
+      * src/x_gtksheet.c: Added functions x_gtksheet_range_copy and
+        x_gtksheet_set_max_range to facilitate manipulation of range
+        structures. Added gtk_sheet_set_clip_text(sheets[i], TRUE); in
+        x_gtksheet_init function. This keeps the text from running over
+        into adjacent cells. (Note: There seems to be some confusion in
+        GTKSheet regarding the terminology for "clip", in most context it
         is associated with "cut/copy/paste" as in clipboard. There is no
         documentation for the gtk_sheet_set_clip_text function but it has
         nothing to do with "clipboard", it sets a sheet-level property to
@@ -2146,10 +2146,9 @@
 
 2012-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
-      * src/x_window: Add function x_window_update_title and
-      implemented. The new function adds the filename to the
-      titlebar and prefixes an asterisk to indicate content
-      has changed.
+      * src/x_window: Add function x_window_update_title and implemented.
+        The new function adds the filename to the titlebar and prefixes
+        an asterisk to indicate content has changed.
 
       * src/x_find.c: Created new file to implement search
       features.
@@ -2157,10 +2156,10 @@
       * src/x_dialog: Added functions x_dialog_get_search_text,
         find_text_dialog_response, x_dialog_find_value
 
-        * src/x_menu.c: Enabled menu option for searching and
+      * src/x_menu.c: Enabled menu option for searching and
         replacing that were previously disabled/unimplemented.
 
-        * src/x_toolbars.c: Created new file for toolbar, moving
+      * src/x_toolbars.c: Created new file for toolbar, moving
         the recently add code for toolbars from w_window.c to this
         file.
 
@@ -2168,21 +2167,21 @@
 
 2012-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
-        * gattrib: Extension revisions throught-out code adding
+      * gattrib: Extension revisions throught-out code adding
         functionality for toolbars, menus. Major changes were as
         follows:
-        * src/x_gtksheet.c: Added local function CreateSheet for
+      * src/x_gtksheet.c: Added local function CreateSheet for
         x_gtksheet_init, added argument PageDataSet. Created new
         functions; x_gtksheet_reinititialize to resize the gtksheets
         after new file is loaded. Added signal handlers, starting
-        from code in testgtksheet.c and then functional parts were
+        from code in test gtksheet.c and then functional parts were
         revised for use with gattrib. Added auto column width adjustment
         upt to fix size limit defined by COLUMN_WIDTH_LIMIT, set to 200
         for now. This allows auto expansion during loading sheet, to
         a width of about 14 characters. This is done in the function
         x_gtksheet_add_cell_item.
 
-        * src/x_menu.c: New source file, relocated menu code from
+      * src/x_menu.c: New source file, relocated menu code from
         x_window.c and supplemented with new menu handlers. Added
         toolbar toggles and recent file open code (This was hard because
         even after 7 years there does not seem to be an example of
@@ -2195,11 +2194,11 @@
         use new function x_fileselect_load_file relocated common code
         to other functions for use by x_menu_file_open and menu_open_recent.
 
-        * src/gattrib: Add calls to functions with code relocated from
+      * src/gattrib: Add calls to functions with code relocated from
         x_fileselect_load_files rather than being executed in the loader,
         added calls to s_toplevel_init_data_set and x_gtksheet_init.
 
-        * src/s_sheet_data: Added function s_sheet_data_reset
+      * src/s_sheet_data: Added function s_sheet_data_reset
 
       * src/s_table.c: Relocated code from to x_fileselect_load_files
         x_fileselect_load_files function s_table_load_new_page so that
@@ -2217,12 +2216,12 @@
 
 2012-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/x_gtksheet.c: Replaced #defines with enumerated ColorId
+      * src/x_gtksheet.c: Replaced #defines with enumerated ColorId
         for function x_gtksheet_add_cell_item, and revised
         x_gtksheet_set_cell_fgcolor to allow limited autoresize
         functionality. Revised x_gtksheet_set_cell_fgcolor.
 
-        * include/globals.h: Added enumerated types ColorId and SheetId.
+      * include/globals.h: Added enumerated types ColorId and SheetId.
 
         *src/gtksheet: Setup subfolder for gtksheet source files and
         created a new makefile.am to generate a temporary gtksheet
@@ -2250,12 +2249,12 @@
         to check for slot_value=0, to stop s_attrib_get_refdes from
         appending a period on the end of unslotted components.
 
-        * src/x_fileselect.c: Added new function x_fileselect as a
+      * src/x_fileselect.c: Added new function x_fileselect as a
         generic GTK file chooser.
 
-        * src/x_window.c: Implemented "Save As" functinality.
+      * src/x_window.c: Implemented "Save As" functinality.
 
-        * src/s_table.c: Eliminated "we didn't find the row name"
+      * src/s_table.c: Eliminated "we didn't find the row name"
         message in function s_table_create_attrib_pair because the
         messgage was annoying. Added conditionals in functions:
         s_table_add_toplevel_pin_items_to_pin_table
@@ -2263,27 +2262,27 @@
         so components with refdes with type "none" and "pinlabel"
         would not be added to the tables.
 
-        * src/s_sheet_data: Added conditional check for components
+      * src/s_sheet_data: Added conditional check for components
         with refdes of type "none" and "pinlabel" in functions:
         s_sheet_data_add_master_comp_list_items
         s_sheet_data_add_master_pin_list_items
 
-        * src/x_dialog.c: Copied generic confirmation dialog from
+      * src/x_dialog.c: Copied generic confirmation dialog from
         gschem and added to gattrib.
 
-        * src/s_toplevel.c: Added s_toplevel_close function.
+      * src/s_toplevel.c: Added s_toplevel_close function.
         Added conditional check for components with refdes of type
         "none" and "pinlabel" in functional:
         s_toplevel_sheetdata_to_toplevel
 
 2012-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*.c: Consolidated Gattrib specific includes into a single
+      * src/*.c: Consolidated Gattrib specific includes into a single
         headers file: gattrib.h
 
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated version to 20070526 in prep for the next
+      * configure.ac: Updated version to 20070526 in prep for the next
         release.
 
 2007-04-28 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2379,7 +2378,7 @@
 
 2006-11-21 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Fixed libgeda detection/find error message when
+      * configure.ac: Fixed libgeda detection/find error message when
         the wrong libgeda version is found. (Bug reported by Karel Kulhavy;
         thanks)
 
@@ -2389,7 +2388,7 @@
 
 2006-10-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Bumped package version to 20061020.
+      * configure.ac: Bumped package version to 20061020.
 
 2006-09-30 Stuart Brorson <sdb {AT} cloud9 {DOT} net>
       * src/s_toplevel.c: Set CHANGED flag when deleting attrib
@@ -2417,7 +2416,7 @@
 
 2006-09-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated program version to 20060906.
+      * configure.ac: Updated program version to 20060906.
 
       * src/g_rc.c, src/gattrib.c src/x_dialog.c: Added CUSTOM_VERSION to
       all printfs/output/dialog boxes where VERSION is used so that it is
@@ -2425,22 +2424,22 @@
 
 2006-08-31 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated gtk+ tests to look for 2.4.x or greater.
+      * configure.ac: Updated gtk+ tests to look for 2.4.x or greater.
 
 2006-08-21   SDB <sdb@cloud9.net>
 
-        * include/prototype.h, src/s_table.c, src/s_toplevel.c: Fixed
+      * include/prototype.h, src/s_table.c, src/s_toplevel.c: Fixed
       bug in which adding a new attrib column would munge the
       visibility of existing attributes.
 
 2006-08-21 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * README: Updated the README a little to be ready for the next
+      * README: Updated the README a little to be ready for the next
         release.
 
 2006-08-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Bumped version number to 20060821 in prep for the
+      * configure.ac: Bumped version number to 20060821 in prep for the
         next gEDA/gaf release.
 
 2006-08-12  SDB <sdb@cloud9.net>
@@ -2461,11 +2460,11 @@
 
 2006-08-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * src/*.c: Applied Patch#1533798: Remove pre-GTK2 code from geda
+      * src/*.c: Applied Patch#1533798: Remove pre-GTK2 code from geda
         by Peter Brett.
 
 2006-07-31 SDB <sdb@cloud9.net>
-        * src/gtksheet_2_2.c: fixed bug in gtk_sheet_make_backing_pixmap.
+      * src/gtksheet_2_2.c: fixed bug in gtk_sheet_make_backing_pixmap.
 
 2006-07-25 Stuart Brorson <sdb@cloud9.net>
       * src/f_export.c, src/x_dialog.c and others:  Implemented
@@ -2497,14 +2496,14 @@
 
 2006-03-12 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * lib/system-gattribrc.in: Removed load for the system-gafrc file,
+      * lib/system-gattribrc.in: Removed load for the system-gafrc file,
         since it is loaded by libgeda first.
 
 2006-01-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Bumped package version to 20060123
+      * configure.ac: Bumped package version to 20060123
 
-        * README: Updated for the new year and release.
+      * README: Updated for the new year and release.
 
 2005-11-27 Carlos Nieves Onega <cnieves@iespana.es>
       * src/globals.c: Added setting of load_newer_backup_func to NULL.
@@ -2513,17 +2512,17 @@
 
 2005-09-27 18:45  Dan McMahill <danmc>
 
-        * src/: gtkitementry_2_2.c, gtksheet_2_2.c: remove various compiler
+      * src/: gtkitementry_2_2.c, gtksheet_2_2.c: remove various compiler
           warnings
 
 2005-08-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Bumped the package version to 20050820 which will be
+      * configure.ac: Bumped the package version to 20050820 which will be
         a real snapshot.
 
 2005-08-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated package version to 20050814.  This is a
+      * configure.ac: Updated package version to 20050814.  This is a
         temporary version and not a real release number.
 
 2005-07-13 Stuart Brorson <sdb@cloud9.net>
@@ -2553,12 +2552,12 @@
       * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error             message if gtk+ 2.2.x is not found.
 
 2005-03-11 12:30 Stuart Brorson <sdb@cloud9.net>
-        * src/gtksheet*.c:  Incorporated definitions of default_border*
+      * src/gtksheet*.c:  Incorporated definitions of default_border*
       as suggested by Carlos.  A couple other possible bugfixes also.
 
 2005-03-08 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Bumped version to 20050313
+      * configure.ac: Bumped version to 20050313
 
 2005-03-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -2690,13 +2689,13 @@
 
 2005-01-21 Stuart Brorson   <sdb@cloud9.net>
 
-        * src/s_toplevel.c, src/x_dialog.c: Fix bug where only one
+      * src/s_toplevel.c, src/x_dialog.c: Fix bug where only one
       page of design was searched for missing attribs.  Also updated
       missing_sym dialog box.
 
 2005-01-19 Stuart Brorson   <sdb@cloud9.net>
 
-        * src/(s_object.c, gattrib.c, s_toplevel.c,x_fileselect.c,
+      * src/(s_object.c, gattrib.c, s_toplevel.c,x_fileselect.c,
       x_dialog.c): Incorporated pop-up window which notifies
       user if a component is found with no sym file.
 
@@ -2719,11 +2718,11 @@
 
 2004-12-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated version to 20041228
+      * configure.ac: Updated version to 20041228
 
 2004-07-27  Stuart Brorson  <sdb@cloud9.net>
 
-        *  Ported code to GTK+-2.X.  Re-wrote Makefile.am & configure.ac.  Split
+      *  Ported code to GTK+-2.X.  Re-wrote Makefile.am & configure.ac.  Split
          gtksheet.c into two versions, one for GTK-1.2 and one for GTK-2.X.
          (Both copied from gtkextra.sf.net.)
 
@@ -2751,7 +2750,7 @@
 
 2004-03-11  Stuart Brorson  <sdb@cloud9.net>
 
-        *  Fixed bug in which a loop was terminating early, causing
+      *  Fixed bug in which a loop was terminating early, causing
          large portions of some designs to be not processed.
 
       *  Added code to catch a cond where a design with no components

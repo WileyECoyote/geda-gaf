@@ -342,24 +342,27 @@ static int on_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void 
  * \par Function Description
  *
  * \param [in] sheet  is the active sheet widget
- * \param [in] key    Keyboard Event record
+ * \param [in] event  Keyboard Event record
  */
-static int clipboard_handler(GtkSheet *sheet, GdkEventKey *key)
+static int clipboard_handler(GtkSheet *sheet, GdkEventKey *event)
 {
-    bool state = sheet->state;
+  bool state = sheet->state;
 
-    if (key->state & GDK_CONTROL_MASK || key->keyval==GDK_Control_L ||
-        key->keyval==GDK_Control_R)
+   if (event->state & GDK_CONTROL_MASK || event->keyval==GDK_Control_L ||
+       event->keyval==GDK_Control_R)
+   {
+    if ((event->keyval=='c' || event->keyval == 'C') && state != GTK_STATE_NORMAL)
     {
-        if ((key->keyval=='c' || key->keyval == 'C') && state != GTK_STATE_NORMAL)
-        {
-            if (gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
-            gtk_sheet_clip_range(sheet, &sheet->range);
-        }
+      if (gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
+      gtk_sheet_clip_range(sheet, &sheet->range);
+    }
 
-        if (key->keyval=='x' || key->keyval == 'X') {
-            gtk_sheet_unclip_range(sheet);
-        }
+    if (event->keyval=='x' || event->keyval == 'X') {
+      gtk_sheet_unclip_range(sheet);
+    }
+  }
+
+
     }
 
     return (FALSE);
