@@ -10,6 +10,9 @@
       x_gtksheet_button_pressed to the entry "button_press_event" and add
       clipboard_receive_entry_text to receive the event, hopefully it's text.
 
+    * src/x_menus.c Add ancillary exit function x_menu_quit to unreference
+      the menu bar before calling gattrib_really_quit.
+
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Avoid calls gdk_threads_init() on MinGW platforms (like

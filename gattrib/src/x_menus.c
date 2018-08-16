@@ -353,6 +353,20 @@ void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
 }
 
 /*!
+ * \brief Delete Event handler for the Main Window
+ * \par Function Description
+ * This function increases the reference on the menubar when the user
+ * exit to balance the reference count so that x_menu_release_all can
+ * unreference the menu_bar regardless of which method was used to
+ * terminate the program.
+ */
+static bool x_menu_quit(void)
+{
+  g_object_ref(menu_bar);
+  return gattrib_really_quit();
+}
+
+/*!
  * The Gtk action table
  */
 static const GtkActionEntry actions[] = {
@@ -364,7 +378,7 @@ static const GtkActionEntry actions[] = {
   { "file-save-as",         GTK_STOCK_SAVE_AS, N_("Save _As"),   "<Shift><Control>S", "", x_menu_file_save_as},
   { "file-export-csv",      GTK_STOCK_CONVERT, N_("Export CSV"), "",                  "", x_menu_file_export_csv},
   /* { "file-print",        GTK_STOCK_PRINT,   N_("Print"),      "<Control>P",        "", x_dialog_unimplemented_feature}, */
-  { "file-quit",            GTK_STOCK_QUIT,    N_("Quit"),       "<Control>Q",        "", G_CALLBACK(gattrib_really_quit)},
+  { "file-quit",            GTK_STOCK_QUIT,    N_("Quit"),       "<Control>Q",        "", G_CALLBACK(x_menu_quit)},
 
   /* Edit menu */
   { "edit", NULL, "_Edit"},
