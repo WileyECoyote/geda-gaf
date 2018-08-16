@@ -304,6 +304,7 @@ static int on_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void 
 {
     GdkModifierType mods;
     GtkSheet *sheet = GTK_SHEET(widget);
+    bool handled = FALSE;
 
     gdk_window_get_pointer (gtk_widget_get_window(widget), NULL, NULL, &mods);
 
@@ -321,9 +322,10 @@ static int on_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void 
       /* Display the menu we just created */
       geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
                       event->button, event->time);
+      handled = TRUE;
     }
 
-    return (FALSE);
+    return handled;
 }
 
 /*!

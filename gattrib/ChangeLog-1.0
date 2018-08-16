@@ -1,7 +1,9 @@
 2018-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Revise on_mouse_button_press; cast widget to GtkSheet
-      because argument is already a widget.
+      because argument is already a widget. Add bool handled to return a logical
+      value based upon whether the routine actually handled the event.
+
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
