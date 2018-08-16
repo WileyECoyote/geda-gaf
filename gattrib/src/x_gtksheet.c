@@ -204,7 +204,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
         break;
 
       default:
-          geda_log ("%s: unknown button ID: %d\n", __func__, WhichItem);
+        geda_log ("%s: unknown button ID: %d\n", __func__, WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup);
