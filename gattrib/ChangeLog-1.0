@@ -6,7 +6,9 @@
       the event was a middle mouse button press and emit "paste" on the entry
       widget so that a middle-mouse click will paste into the cell. Rename
       second argument to clipboard_handler "event" instead of key; this is
-      consistence with other event callack back handlers.
+      consistence with other event callback back handlers. Connect callback
+      x_gtksheet_button_pressed to the entry "button_press_event" and add
+      clipboard_receive_entry_text to receive the event, hopefully it's text.
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 

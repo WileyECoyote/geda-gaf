@@ -362,10 +362,41 @@ static int clipboard_handler(GtkSheet *sheet, GdkEventKey *event)
     }
   }
 
+  return (FALSE);
+}
 
+/*! \todo This callback should get pointers from the stack not global */
+static void clipboard_receive_entry_text(GtkClipboard *clipboard,
+                                           const char *text,
+                                                 void *data)
+{
+  if (text && strlen(text) > 0) {
+    gtk_entry_set_text((GtkEntry*)entry, text);
+    sheet_head->CHANGED = TRUE;
+    x_window_update_title(pr_current, sheet_head);
+  }
+}
+
+/*!
+ * \brief Callback on button pressed on the entry
+ * \par Function Description
+ *  This function is not used.
+ */
+static int
+x_gtksheet_button_pressed(GtkWidget *widget, GdkEventButton *event, void *nothing)
+{
+  if (event->button == 2) {
+
+
+    if (GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
+
+      GtkClipboard *clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+
+      gtk_clipboard_request_text (clip, clipboard_receive_entry_text, widget);
     }
+  }
 
-    return (FALSE);
+  return(0);
 }
 
 /*!
@@ -775,6 +806,7 @@ void x_gtksheet_init(PageDataSet *PageData)
         gtk_widget_show((GtkWidget*)sheets[i]);
         gtk_widget_show((GtkWidget*)scrolled_windows[i]);
       }
+
       gtk_widget_show(notebook);  /* show updated notebook  */
 
       g_signal_connect (sheets[i], "key_press_event",
@@ -791,6 +823,9 @@ void x_gtksheet_init(PageDataSet *PageData)
 
   /* The next 2 functions setup callbacks for the Entry widget in the would
    * be status bar */
+  g_signal_connect (entry, "button_press_event",
+                   (GtkSignalFunc) x_gtksheet_button_pressed, NULL);
+
   g_signal_connect(entry, "changed", (GtkSignalFunc)on_entry_changed, NULL);
 
   GedaEntryClass *entry_class = GEDA_ENTRY_GET_CLASS(entry);
