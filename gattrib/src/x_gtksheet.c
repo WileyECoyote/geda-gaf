@@ -324,6 +324,15 @@ static int on_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void 
                       event->button, event->time);
       handled = TRUE;
     }
+    else if (mods & GDK_BUTTON2_MASK) {
+
+      GtkWidget *entry = gtk_sheet_get_entry (sheet);
+
+      g_signal_emit_by_name(entry, "paste-clipboard", NULL);
+      sheet_head->CHANGED = TRUE;
+      x_window_update_title(pr_current, sheet_head);
+      handled = TRUE;
+    }
 
     return handled;
 }

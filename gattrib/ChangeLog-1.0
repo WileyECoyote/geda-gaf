@@ -2,7 +2,9 @@
 
     * src/x_gtksheet.c: Revise on_mouse_button_press; cast widget to GtkSheet
       because argument is already a widget. Add bool handled to return a logical
-      value based upon whether the routine actually handled the event.
+      value based upon whether the routine actually handled the event. Check if
+      the event was a middle mouse button press and emit "paste" on the entry
+      widget so that a middle-mouse click will paste into the cell.
 
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
