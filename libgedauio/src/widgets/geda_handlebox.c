@@ -1004,7 +1004,7 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
       break;
 
     default:
-      BUG_IMSG ("unhandler case <%d>", handle_position);
+      BUG_IMSG ("unhandler case", handle_position);
       break;
   }
 

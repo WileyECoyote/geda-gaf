@@ -1,10 +1,11 @@
 2018-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/dialogs/geda_image_chooser.c: Update BUG_IMSG in default case,
-      the macro does not require a format specifier.
+    * src: Update BUG_IMSG in default case; the macro does not require a
+      format specifier:
 
-    * src/functions/geda_widget.c: Update BUG_IMSG in default case, because
-      the macro does not require a format specifier.
+          * src/dialogs/geda_image_chooser.c
+          * src/functions/geda_widget.c
+          * src/widgets/geda_handlebox.c
 
 2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
