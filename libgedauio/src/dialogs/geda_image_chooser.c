@@ -406,7 +406,7 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
         break;
 
       default:
-        BUG_IMSG("menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
+        BUG_IMSG("unknown menu ID\n", WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup_menu);
