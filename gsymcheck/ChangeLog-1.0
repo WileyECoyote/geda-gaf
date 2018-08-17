@@ -1,5 +1,8 @@
 2018-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/g_rc.c: Replace g_ascii_strcasecmp with strcmp to compare the
+      PACKAGE_DATE_VERSION, it is either going to match or not.
+
     * src/s_check.c: Reduce scope of message variable in s_check_pin_ongrid.
 
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
