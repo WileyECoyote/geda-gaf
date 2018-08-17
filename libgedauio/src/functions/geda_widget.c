@@ -184,7 +184,7 @@ geda_widget_modify_color_component (GtkWidget      *widget,
         break;
 
       default:
-        BUG_IMSG ("unhandled case=%d", component);
+        BUG_IMSG ("unhandled case", component);
     }
 
     rc_style->color_flags[state] |= component;
