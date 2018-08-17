@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>Libgedacairo</title>
+
+</head>
+<body>
+
+<h1 align="center">Libgedacairo</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#CONFIGURATION">CONFIGURATION</a><br>
+<a href="#ENVIRONMENT">ENVIRONMENT</a><br>
+<a href="#USAGE">USAGE</a><br>
+<a href="#DOCUMENTATION">DOCUMENTATION</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Libgedacairo
+&minus; Cairo-based Schematic and Symbol Renderer
+Library</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The
+<b>Libgedacairo</b> library provides a renderer for
+schematics and symbols based on the Cairo vector graphics
+library and the Pango font library. Data for rendering is
+loaded using libgeda.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The library
+does *not* provide a rendering widget for programs, although
+<b>Libgedacairo</b> could be used to implement one. The
+library is intended for more general rendering usage, e.g.
+to screen, to printers, or to various image formats.</p>
+
+<h2>CONFIGURATION
+<a name="CONFIGURATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Library
+operations are controlled by programmatically setting
+properties of the EdaRenderer object, see below for more
+information. For details on setting up linkage see
+<b>libgedacairo</b>(3)</p>
+
+<h2>ENVIRONMENT
+<a name="ENVIRONMENT"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>Libgedacairo</b>
+does not recognize any environment variables. Operations are
+controlled by programmatically setting properties of the
+EdaRenderer object. The Cairo library does recognize a
+limited number of environment variables :</p>
+
+<p style="margin-left:22%;"><b>CAIRO_GL_COMPOSITOR <br>
+CAIRO_GALLIUM_LIBDIR <br>
+CAIRO_GALLIUM_FORCE</b></p>
+
+<p style="margin-left:11%; margin-top: 1em">See the Cairo
+library documentation for information on the use of these
+environment variables.</p>
+
+<h2>USAGE
+<a name="USAGE"></a>
+</h2>
+
+
+<p style="margin-left:22%; margin-top: 1em"><b>COORDINATE
+SYSTEMS</b> <br>
+An important concept to understand when using an EdaRenderer
+is the distinction between Cairo&rsquo;s &quot;device
+coordinates&quot; and &quot;user coordinates&quot;. (Yes, go
+and look it up now).</p>
+
+<p style="margin-left:22%; margin-top: 1em">Before calling
+any <b>Libgedacairo</b> drawing functions, the Cairo
+context&rsquo;s transformation matrix must be set so that
+user coordinates match coordinates on the schematic or
+symbol page. <b><br>
+EDARENDERER CLASS</b> <br>
+The EdaRenderer class is the main interface to the library.
+The EdaRenderer class uses information from libgeda OBJECT
+structures to draw various schematic elements, control
+grips, and cues.</p>
+
+<p style="margin-left:22%; margin-top: 1em">EdaRenderer is
+a GObject class, with several properties that control its
+behaviour:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;cairo-context&quot;
+[pointer] <br>
+The &rsquo;cairo_t&rsquo; drawing context which the renderer
+draws to.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;pango-context&quot;
+[pointer] <br>
+The state of the Pango string-to-glyph itemizer. The
+renderer <br>
+will automatically create one from the drawing context if
+not <br>
+explicitly set.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;font-name&quot;
+[string] <br>
+The font to use when drawing text. By default, this is
+&quot;Arial&quot;.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;color-map&quot;
+[pointer] <br>
+A GArray of libgeda &rsquo;COLOR&rsquo; structures which is
+used as the <br>
+color map for drawing. Note that the EdaRenderer does not
+make <br>
+a copy of this array, and doesn&rsquo;t free it when the
+EdaRenderer <br>
+is destroyed.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;override-color&quot;
+[int] Index of a colour to force all drawing to <br>
+take place with. This can be used e.g. when highlighting a
+set <br>
+of objects in a particular colour. If
+&quot;override-color&quot; is set <br>
+to -1, color override is disabled.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;grip-size&quot;
+[double] <br>
+Size to draw grips, in *user* coordinates.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;render-flags&quot;
+[EdaRendererFlags] <br>
+Flags that control various rendering options.</p>
+
+<p style="margin-left:22%; margin-top: 1em">A
+EdaRendererFlags value can include any of these flags:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">EDA_RENDERER_FLAG_HINTING
+<br>
+Enable line hinting. Set this flag when rendering to a
+screen <br>
+or raster image file, because it makes things look prettier.
+<br>
+EDA_RENDERER_FLAG_PICTURE_OUTLINE <br>
+Draw only the outlines of pictures, and not their contents.
+<br>
+EDA_RENDERER_FLAG_TEXT_HIDDEN <br>
+Draw text even if it is set to be invisible. <br>
+EDA_RENDERER_FLAG_TEXT_OUTLINE <br>
+Draw only the outlines of text objects. <br>
+EDA_RENDERER_FLAG_TEXT_ORIGIN <br>
+Draw small &quot;X&quot; markers indicating where text
+objects are <br>
+anchored.</p>
+
+<p style="margin-left:22%; margin-top: 1em">To actually
+draw shapes or objects, EdaRenderer has three methods:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">eda_renderer_draw()
+<br>
+This does basic drawing of an OBJECT.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">eda_renderer_draw_grips()
+<br>
+Draw grips at all of the control points of an OBJECT.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">eda_renderer_draw_cues()
+<br>
+Draw cues for an object (e.g. at the unconnected ends of
+pins and <br>
+nets, and at junctions in nets and buses).</p>
+
+<p style="margin-left:22%; margin-top: 1em">Sometimes, it
+is useful to obtain the rendered bounding box of an OBJECT
+(for example, a text OBJECT&rsquo;s bounding box is
+determined by the font).</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">eda_renderer_get_user_bounds()
+<br>
+Obtain the user bounds (which should be the same as world
+<br>
+bounds) for an OBJECT.</p>
+
+<p style="margin-left:22%; margin-top: 1em">These methods
+all can be overridden from subclasses.</p>
+
+<h2>DOCUMENTATION
+<a name="DOCUMENTATION"></a>
+</h2>
+
+
+<p style="margin-left:22%; margin-top: 1em"><b>SOURCE
+CODE</b> <br>
+The gEDA-gaf suite utilizes Doxygen for generating source
+documentation. By default this documentation is not
+generated and must be enabled via the configuration option
+--with-doxygen. When enabled, the documentation is then
+built in the source tree using &quot;make doxygen&quot; from
+the top of the source. To only generate source documentation
+for <b>Libgedacairo</b> use &quot;make doxygen&quot; from
+within the top libgeda directory. Note that the configure
+script can also set the configuration to allows generating
+the source documentation out of the source tree using the
+--with-doxygen-out option. For example using
+--with-doxygen-out=/tmp/geda-gaf will cause the resulting
+documentation to be generated in the
+&quot;/tmp/geda-gaf&quot; directory. The target directory
+will created if it does not already exist. It is not
+necessary to use both doxygen options, using
+--with-doxygen-out automatically enables --with-doxygen. The
+Doxygen configuration is set to produce both HTML and latex.
+Other formats are possible, see the Doxygen documentation
+for details.</p>
+
+<h2>AUTHORS
+<a name="AUTHORS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">See the
+&quot;AUTHORS&quot; file included with this program.</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 2018 gEDA Contributors. License GPLv2+: GNU GPL <br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>libgedacairo</b>(3),
+<b>libgeda</b>(1), <b>libgedathon</b>(1),
+<b>libgedauio</b>(1) <b>gnetlist</b>(1), <b>gschem</b>(1),
+<b>gsymcheck</b>(1)</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>http://wiki.geda-project.org/geda:documentation</i>.</p>
+<hr>
+</body>
+</html>

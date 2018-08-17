@@ -1,3 +1,10 @@
+2018-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Generate html and latex man pages.
+
+    * libgedacairo-man-1.html: Include generated file for systems without
+      the capability to generate the document.
+
 2018-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Revert using offset to investigate gschem regression

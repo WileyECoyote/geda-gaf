@@ -7,12 +7,12 @@ GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
 LOCAL_DOX   = libgedacairo.dox libgedacairo-main.txt
 
 LOCAL_HTML  = guide-libgedacairo.html include-libgedacairo.html \
-	      what-is-libgedacairo.html
+	      what-is-libgedacairo.html libgedacairo-man-1.html
 
 LOCAL_MAN   = libgedacairo.1.in
 
 LOCAL_TEX   = guide-libgedacairo.tex include-libgedacairo.tex \
-	      what-is-libgedacairo.tex
+	      what-is-libgedacairo.tex libgedacairo-man-1.tex
 
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
@@ -60,6 +60,39 @@ dist_man_MANS = libgedacairo.1
 	v="$(LIBGEDACAIRO_DOT_VERSION)-$(DATE_VERSION)" ; \
 	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
+
+
+if ENABLE_GROFF_HTML
+
+# Rules for converting man->html
+html_man_files = $(dist_man_MANS:%.1=%.html)
+text_man_files = $(dist_man_MANS:%.1=%.tex)
+
+docsmandir=$(docdir)/man
+
+dist_docsman_DATA=$(html_man_files)
+
+.1.html:
+	@rm -rf $@.tmp && \
+	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
+	cp -f $@.tmp $@ && \
+	sed '/\b\(Creator\|CreationDate\)\b/d' $@.tmp >$(basename $@)-man-1.html
+	@rm -f $@.tmp 2>/dev/null
+
+.1.tex: $(dist_man_MANS)
+	@rm -rf $@.tmp && \
+	LC_NUMERIC=C $(GROFF) -t -e -mandoc -Tascii $(dist_man_MANS) | col -bx > $@.tmp && \
+	mv -f $@.tmp $(basename $@)-man-1.tex
+else
+
+.1.html:
+	@echo "No working groff available: cannot create $@"
+	@! :
+
+.1.tex:
+	@echo "No working groff available: cannot create $@"
+	@! :
+endif
 
 MOSTLYCLEANFILES = 	*.log *~
 CLEANFILES = 		*.log *~ $(dist_man_MANS)
