@@ -1,3 +1,7 @@
+2018-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Reduce scope of message variable in s_check_pin_ongrid.
+
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/globals.c: Remove conditional inclusion of libgeda.h
