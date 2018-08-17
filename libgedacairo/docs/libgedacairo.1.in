@@ -57,7 +57,7 @@ between Cairo's "device coordinates" and "user coordinates". (Yes, go and look i
 .IP
 Before calling any
 .B Libgedacairo
-drawing functions, you must set up the Cairo context's transformation matrix so
+drawing functions, the Cairo context's transformation matrix must be set so
 that user coordinates match coordinates on the schematic or symbol page.
 .PP
 .TP 8
@@ -71,23 +71,29 @@ its behaviour:
 .IP
   "cairo-context"  [pointer]
       The `cairo_t' drawing context which the renderer draws to.
+.IP
   "pango-context"  [pointer]
       The state of the Pango string-to-glyph itemizer. The renderer
       will automatically create one from the drawing context if not
       explicitly set.
+.IP
   "font-name"  [string]
       The font to use when drawing text.  By default, this is "Arial".
+.IP
   "color-map"  [pointer]
       A GArray of libgeda `COLOR' structures which is used as the
       color map for drawing. Note that the EdaRenderer does not make
       a copy of this array, and doesn't free it when the EdaRenderer
       is destroyed.
+.IP
   "override-color"  [int] Index of a colour to force all drawing to
       take place with. This can be used e.g. when highlighting a set
       of objects in a particular colour.  If "override-color" is set
       to -1, color override is disabled.
+.IP
   "grip-size"  [double]
       Size to draw grips, in *user* coordinates.
+.IP
   "render-flags"  [EdaRendererFlags]
       Flags that control various rendering options.
 .IP

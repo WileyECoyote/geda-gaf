@@ -2,6 +2,9 @@
 
     * docs/Makefile.am: Generate html and latex man pages.
 
+    * docs/libgedacairo.1.in: Revise wording slightly, use .IP diretive to
+      fix indent and add lines between properties.
+
     * libgedacairo-man-1.html: Include generated file for systems without
       the capability to generate the document.
 
