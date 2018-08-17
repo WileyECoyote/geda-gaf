@@ -50,12 +50,12 @@ system for
 to run, it is not a requirement that gEDA applications initialize or even be
 running Guile.
 .B Libgeda
-does not initiate the loading "rc" files. Instead, when application request
-that a initialization file be processed
+does not initiate the loading of "rc" files. Instead, when applications request
+that an initialization file be processed
 .B Libgeda
 first checks for "system-gafrc" in either system configuration directories,
 i.e. "/etc/gEDA", "~/etc", or the root of the installation directory and
-precesses these files if they exist. Normally, only one such file is used
+processes the files if they exist. Normally, only one such file is used
 as a system level "master" configuration file. Following processing of the
 "system-gafrc" files
 .B Libgeda
@@ -66,11 +66,11 @@ discovering such a file. If discovered, the "gafrc" file is processed, which
 may over-ride configuration parameters established in preceding initialization
 files, and this allows users to customize
 .B Libgeda
-on a user and or on project bases. Local initialization files are "remembered"
+on a user and or on a project bases. Local initialization files are "remembered"
 so that when applications load other schematics or symbols in the same or
 subordinate directory structure the initialization files are not processed
 a second time for a given session. The application requested initialization
-files are then processed in a likewise manner, for example system-gschemrc.
+files, for example system-gschemrc, are then processed in a likewise manner.
 Initialization files for
 .B Libgeda
 should not reference application specific keywords or functions. Since the
