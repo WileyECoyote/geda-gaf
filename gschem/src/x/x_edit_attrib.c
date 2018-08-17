@@ -55,7 +55,7 @@ typedef enum
  * \brief Callback for Editing Text Properties
  * \par Function Description
  *  This function updates widgets on the attrib_edit dialog with the text
- *  properties of the passed object. If multible objects are selected the
+ *  properties of the passed object. If multiple objects are selected the
  *  text editing field is set to NULL.
  *
  * \param [in] w_current Pointer to a GschemToplevel object
