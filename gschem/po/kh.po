@@ -280,10 +280,10 @@ msgstr "min skal chomreus"
 msgid "Unknown option character"
 msgstr "chomreusa tuoaksaar min skal"
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--chuoy banthem"
+msgstr "chuoy samreab ptrmean banthem"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -2320,7 +2320,6 @@ msgid "<b>Invalid Data.</b>"
 msgstr "<b>tinnony min troemotrauv.</b>"
 
 #: gschem/src/x/x_draw.cpp:463
-#, fuzzy
 msgid "Initializing: Graphics Renderer Adaptor..."
 msgstr "chabphdaem : krahvek kammovithi bangheanh adabtr...."
 
@@ -3017,10 +3016,10 @@ msgstr "chreusa kounalokkhan tamrum atthabat"
 msgid "_Case:"
 msgstr ""
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Change the text case"
-msgstr "tomham atthabt thmei kar banhchoul:"
+msgstr "phlasa btau r karnei atthabat"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Color:"
@@ -3097,17 +3096,15 @@ msgstr "khangokraom sdam"
 msgid "Leave as is"
 msgstr ""
 
-# Upper left
+# Upper -> Capital letters
 #: gschem/src/x/x_edit_text.c:296
-#, fuzzy
 msgid "Upper"
-msgstr "khangochhveng khang"
+msgstr "aksaar​ thom"
 
-# Lower Left
+# Lower -> Lower case
 #: gschem/src/x/x_edit_text.c:299
-#, fuzzy
 msgid "Lower"
-msgstr "khangochhveng teab cheang"
+msgstr "aksaar​ tauch"
 
 #: gschem/src/x/x_edit_text.c:302
 msgid "Camel"
@@ -3133,11 +3130,10 @@ msgstr "veal banhchoul atthabat"
 msgid "Text alignment combobox"
 msgstr "chomreusa tamrum atthabat"
 
-# Text alignment options
+# Text case combobox -> Text case options
 #: gschem/src/x/x_edit_text.c:665
-#, fuzzy
 msgid "Text case combobox"
-msgstr "chomreusa tamrum atthabat"
+msgstr "chomreusa aksaar atthabat"
 
 #: gschem/src/x/x_edit_text.c:670
 msgid "Color options menu"
@@ -4407,10 +4403,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "loubchaol kar bet teangoasa\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA koumnour bampruonh kammovithi nipon"
+msgstr "bet kammovithi niponth koumnousateang\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4941,10 +4937,10 @@ msgstr ""
 msgid "D_ocumentation..."
 msgstr ""
 
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "sameasapheak del ban bangkob knong koumnour bampruonh"
+msgstr "meul eksar sameasapheak"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
