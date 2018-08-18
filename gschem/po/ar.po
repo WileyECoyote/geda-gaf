@@ -232,8 +232,8 @@ msgstr "خيار غير معروف"
 msgid "Unknown option character"
 msgstr "الخيار إلكتروني غير معروف"
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
 msgstr "مساعدة لمزيد من المعلومات"
 
@@ -1653,19 +1653,19 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "وضع الانتقاء"
+msgstr "الوضع الآمن"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
-msgstr "مجهول"
+msgstr "غير معروف"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -2892,10 +2892,10 @@ msgstr "حدد سمة محاذاة النص"
 msgid "_Case:"
 msgstr ""
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Change the text case"
-msgstr "أدخل حجم نص جديد:"
+msgstr "تغيير حالة النص"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Color:"
@@ -2963,15 +2963,15 @@ msgstr "اليمين السفلي"
 msgid "Leave as is"
 msgstr ""
 
+# Upper case
 #: gschem/src/x/x_edit_text.c:296
-#, fuzzy
 msgid "Upper"
-msgstr "اليسار العلوي"
+msgstr "الأحرف الكبيرة"
 
+# Lower case
 #: gschem/src/x/x_edit_text.c:299
-#, fuzzy
 msgid "Lower"
-msgstr "اليسار السفلي"
+msgstr "أحرف صغيرة"
 
 #: gschem/src/x/x_edit_text.c:302
 msgid "Camel"
@@ -2995,11 +2995,10 @@ msgstr "حقل إدخال النص"
 msgid "Text alignment combobox"
 msgstr "محاذاة النص منسدل"
 
-# Text alignment combobox
+# Text case combobox -> Text case options
 #: gschem/src/x/x_edit_text.c:665
-#, fuzzy
 msgid "Text case combobox"
-msgstr "محاذاة النص منسدل"
+msgstr "خيارات حالة النص"
 
 # Color options menu
 #: gschem/src/x/x_edit_text.c:670
@@ -3504,10 +3503,10 @@ msgstr ""
 msgid "Undo"
 msgstr "تراجع"
 
+# Undo the last path segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "تراجع عن العملية الأخيرة"
+msgstr "التراجع عن مقطع المسار الأخير"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4215,10 +4214,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "إغلاق ألغت\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "محرّر المخططات gEDA"
+msgstr "اغلاق محرر التخطيطي\n"
 
 # Loading file => جار تحميل الملف
 #: gschem/src/x/x_window.c:771
@@ -4737,10 +4736,10 @@ msgstr "منتقى"
 msgid "D_ocumentation..."
 msgstr "ت_وثيق..."
 
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "توثيق الم_كونات"
+msgstr "عرض وثائق المكون"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
