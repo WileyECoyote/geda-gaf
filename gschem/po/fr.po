@@ -265,9 +265,8 @@ msgid "Unknown option character"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help pour plus d'informations"
+msgstr "help pour plus d'informations"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1687,19 +1686,19 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Mode Sélection"
+msgstr "mode sécurisé"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
-msgstr "Inconnu"
+msgstr "inconnu"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -2250,9 +2249,8 @@ msgstr ""
 
 # Initializing icon factory
 #: gschem/src/x/x_draw.cpp:463
-#, fuzzy
 msgid "Initializing: Graphics Renderer Adaptor..."
-msgstr "Initialisation icône usine\n"
+msgstr "Initialisation: carte graphique de rendu..."
 
 #: gschem/src/x/x_draw.cpp:487
 msgid "done"
@@ -2921,10 +2919,10 @@ msgstr "Sélectionnez l'attribut d'alignement du texte"
 msgid "_Case:"
 msgstr ""
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Change the text case"
-msgstr "Entrez la nouvelle taille de texte :"
+msgstr "Changer la casse du texte"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Color:"
@@ -2992,15 +2990,15 @@ msgstr "En bas à droite"
 msgid "Leave as is"
 msgstr ""
 
+# Upper
 #: gschem/src/x/x_edit_text.c:296
-#, fuzzy
 msgid "Upper"
-msgstr "En haut à gauche"
+msgstr "Plus haut"
 
+# Lower
 #: gschem/src/x/x_edit_text.c:299
-#, fuzzy
 msgid "Lower"
-msgstr "En bas à gauche"
+msgstr "Inférieur"
 
 #: gschem/src/x/x_edit_text.c:302
 msgid "Camel"
@@ -3022,11 +3020,10 @@ msgstr "Champ de saisie du texte"
 # Text alignment combobox
 #: gschem/src/x/x_edit_text.c:661
 msgid "Text alignment combobox"
-msgstr "Combinaison d'alignement de texte"
+msgstr "Zone de texte combobox"
 
-# Text alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:665
-#, fuzzy
 msgid "Text case combobox"
 msgstr "Combinaison d'alignement de texte"
 
@@ -3545,10 +3542,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Défaire"
 
+# Undo the last path segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Défaire la dernière opération"
+msgstr "Annuler le dernier segment de chemin"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4254,9 +4251,8 @@ msgid "Close Window canceled\n"
 msgstr "_Fermer la fenêtre\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "Éditeur de schémas gEDA"
+msgstr "Éditeur de schéma d'arrêt\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4775,9 +4771,8 @@ msgid "D_ocumentation..."
 msgstr "D_ocumentation..."
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Documentation du composant"
+msgstr "Afficher la documentation du composant"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
