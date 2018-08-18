@@ -12,6 +12,8 @@
 
     * po/kh.po: Update Khmer translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2018-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Replace g_ascii_strcasecmp with geda_strncmpi

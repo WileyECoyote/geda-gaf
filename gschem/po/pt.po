@@ -291,11 +291,10 @@ msgstr "Opção desconhecida"
 msgid "Unknown option character"
 msgstr "Caractere de opção desconhecida"
 
-# # for more information
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help para mais informação"
+msgstr "help para mais informação"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1769,18 +1768,16 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# Deselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Deselect mode"
+msgstr "modo de segurança"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
 msgstr "Desconhecido"
 
@@ -3040,10 +3037,10 @@ msgstr "Selecione o atributo de alinhamento de texto"
 msgid "_Case:"
 msgstr ""
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Change the text case"
-msgstr "Introduza novo tamanho do texto:"
+msgstr "Alterar o caso do texto"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Color:"
@@ -3112,15 +3109,15 @@ msgstr "Inferior Direito"
 msgid "Leave as is"
 msgstr ""
 
+# Upper case
 #: gschem/src/x/x_edit_text.c:296
-#, fuzzy
 msgid "Upper"
-msgstr "Superior Esquerdo"
+msgstr "Maiúscula"
 
+# Lower case
 #: gschem/src/x/x_edit_text.c:299
-#, fuzzy
 msgid "Lower"
-msgstr "Inferior Esquerdo"
+msgstr "Minúscula"
 
 #: gschem/src/x/x_edit_text.c:302
 msgid "Camel"
@@ -3144,11 +3141,10 @@ msgstr "Campo de entrada de texto"
 msgid "Text alignment combobox"
 msgstr "Alinhamento de Texto combobox"
 
-# Text Alignment combobox
+# Text case combobox => Text case options
 #: gschem/src/x/x_edit_text.c:665
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Alinhamento de Texto combobox"
+msgstr "Opções de caso de texto"
 
 #: gschem/src/x/x_edit_text.c:670
 msgid "Color options menu"
@@ -3669,11 +3665,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Anular"
 
-# Undo the last operation
+# Undo the last path segment => Undo the last polygon segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Desfazer a ultima operação"
+msgstr "Undo the last polygon segment"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4421,10 +4416,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Fechar Janela cancelada\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA - Editor Esquemático"
+msgstr "Editor esquemático de desligamento\n"
 
 # Loading file
 #: gschem/src/x/x_window.c:771
@@ -4992,10 +4987,10 @@ msgstr "Zoom _Selecção"
 msgid "D_ocumentation..."
 msgstr "D_ocumentação..."
 
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Localizar a documentação do componente"
+msgstr "Visualizar documentação do componente"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
