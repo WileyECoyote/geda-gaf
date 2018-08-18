@@ -235,9 +235,8 @@ msgid "Unknown option character"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help für mehr Informationen"
+msgstr "help für mehr Informationen"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1654,17 +1653,17 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Auswahlmodus"
+msgstr "Sicherheitsmodus"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
 msgstr "Unbekannt"
 
@@ -2887,10 +2886,10 @@ msgstr "Wählen Sie das Textausrichtungsattribut aus"
 msgid "_Case:"
 msgstr ""
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Change the text case"
-msgstr "Neue Textgröße eingeben:"
+msgstr "Ändern Sie den Text"
 
 #: gschem/src/x/x_edit_text.c:68
 msgid "_Color:"
@@ -2959,15 +2958,15 @@ msgstr "Unten Rechts"
 msgid "Leave as is"
 msgstr ""
 
+# Upper case
 #: gschem/src/x/x_edit_text.c:296
-#, fuzzy
 msgid "Upper"
-msgstr "Oben Links"
+msgstr "Großbuchstaben"
 
+# Lower case
 #: gschem/src/x/x_edit_text.c:299
-#, fuzzy
 msgid "Lower"
-msgstr "Unten Links"
+msgstr "Kleinbuchstaben"
 
 #: gschem/src/x/x_edit_text.c:302
 msgid "Camel"
@@ -2989,10 +2988,10 @@ msgstr "Texteingabefeld"
 msgid "Text alignment combobox"
 msgstr "Textausrichtung combobox"
 
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:665
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Textausrichtung combobox"
+msgstr "Text Fall Combobox"
 
 #: gschem/src/x/x_edit_text.c:670
 msgid "Color options menu"
@@ -3496,10 +3495,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Rückgängig"
 
+# Undo the last path segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Letzte Aktion rückgängig machen"
+msgstr "Das letzte Pfadsegment rückgängig machen"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4203,10 +4202,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Fenster s_chließen\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA – Schaltplanbearbeitung"
+msgstr "Schaltplaneditor herunterfahren\n"
 
 # Loading file
 #: gschem/src/x/x_window.c:771
@@ -4731,10 +4730,10 @@ msgstr "Auswahl"
 msgid "D_ocumentation..."
 msgstr "D_okumentation..."
 
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Bauteil-D_okumentation"
+msgstr "Siehe Komponentendokumentation"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
