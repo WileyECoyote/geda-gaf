@@ -239,10 +239,10 @@ msgstr "'Αγνωστο"
 msgid "Unknown option character"
 msgstr ""
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help Για περισσότερες πληροφορίες"
+msgstr "help Για περισσότερες πληροφορίες"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1645,19 +1645,19 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Λειτουργία Επιλογής"
+msgstr "λειτουργία ασφαλείας"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
 msgstr ""
 
+# unknown
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
-msgstr "'Αγνωστο"
+msgstr "άγνωστος"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -2881,10 +2881,10 @@ msgstr "Επιλέξτε το χαρακτηριστικό ευθυγράμμι�
 msgid "_Case:"
 msgstr ""
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:67
-#, fuzzy
 msgid "Change the text case"
-msgstr "Εισάγετε το νέο μέγεθος κειμένου:"
+msgstr "Αλλάξτε την περίπτωση κειμένου"
 
 # Color
 #: gschem/src/x/x_edit_text.c:68
@@ -2954,15 +2954,15 @@ msgstr "Κάτω δεξιά"
 msgid "Leave as is"
 msgstr ""
 
+# Upper case -> Top letters
 #: gschem/src/x/x_edit_text.c:296
-#, fuzzy
 msgid "Upper"
-msgstr "Πάνω αριστερά"
+msgstr "Ανώτατα γράμματα"
 
+# Lower case
 #: gschem/src/x/x_edit_text.c:299
-#, fuzzy
 msgid "Lower"
-msgstr "Κάτω αριστερά"
+msgstr "Πεζά γράμματα"
 
 #: gschem/src/x/x_edit_text.c:302
 msgid "Camel"
@@ -2984,10 +2984,10 @@ msgstr "πεδίο εισαγωγής κειμένου"
 msgid "Text alignment combobox"
 msgstr "combobox στοίχιση του κειμένου"
 
+# Text case combobox -> Text case options
 #: gschem/src/x/x_edit_text.c:665
-#, fuzzy
 msgid "Text case combobox"
-msgstr "combobox στοίχιση του κειμένου"
+msgstr "Επιλογές κειμένου"
 
 #: gschem/src/x/x_edit_text.c:670
 msgid "Color options menu"
@@ -3489,10 +3489,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Αναίρεση"
 
+# Undo the last path segment -> Undo the last polygon segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Αναίρεση τελευταίας ενέργειας"
+msgstr "Αναίρεση του τελευταίου τμήματος πολυγώνου"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4194,10 +4194,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Κλείσιμο παραθύρου ακυρώθηκε\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "Επεξεργαστής Σχεδιαγραμμάτων gEDA"
+msgstr "Εκτέλεση σχηματικού επεξεργαστή τερματισμού\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4723,10 +4723,10 @@ msgstr "Επιλογή"
 msgid "D_ocumentation..."
 msgstr "_Τεκμηρίωση..."
 
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Τεκμηρίωση _στοιχείων"
+msgstr "Δείτε την τεκμηρίωση των στοιχείων"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
