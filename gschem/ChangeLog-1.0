@@ -8,6 +8,8 @@
 
     * po/fr_FR.po: Updated the French translation.
 
+    * po/it.po: Update Italian translations.
+
 2018-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_compselect.c: Replace g_ascii_strcasecmp with geda_strncmpi
