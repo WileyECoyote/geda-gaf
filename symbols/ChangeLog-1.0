@@ -12,6 +12,8 @@
             * connector/header/header32-2-5.sym
             * connector/header/header50-2-5.sym
 
+    * logic/4000/4520-1.sym: Fix slotdef=2:15,10,9,14,13,12,11.
+
     * murata/filter: Add symbols:
 
             * murata/filter/BLM15AG601SN1D.sym
