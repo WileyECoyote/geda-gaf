@@ -17,6 +17,9 @@
             * murata/filter/BLM15AG601SN1D.sym
             * murata/filter/BLM15PD600SN1D.sym
 
+    * philips/TDA8586Q-1.sym: Add symbol; Bridgeable 4 channel power
+      amplifier.
+
     * serial/FT2232H-3.sym: Rename dash 2 symbol as dash 3.
 
     * serial/FT2232H-2.sym: Add symbol with alternate pin layout with
