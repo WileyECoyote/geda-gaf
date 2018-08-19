@@ -12,6 +12,11 @@
             * connector/header/header32-2-5.sym
             * connector/header/header50-2-5.sym
 
+    * murata/filter: Add symbols:
+
+            * murata/filter/BLM15AG601SN1D.sym
+            * murata/filter/BLM15PD600SN1D.sym
+
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * cypress/CYW43143-1.sym: Add symbol; 802.11 b,g,n MAC, PHY,
