@@ -293,8 +293,8 @@ load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[]
         if (last_file && !access(last_file, F_OK )) {
 
           /* maybe Log what we are doing */
-          geda_log_q("%s: ...%s\n", _("Auto Load"), x_menu_recent_files_last());
-          x_window_open_page(w_current, x_menu_recent_files_last());
+          geda_log_q("%s: ...%s\n", _("Auto Load"), last_file);
+          x_window_open_page(w_current, last_file);
         }
         else {
 

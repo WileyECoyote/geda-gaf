@@ -2,6 +2,9 @@
 
     * include/x_print.h: Rename typecbox -> layoutcbox.
 
+    * src/base/gschem.c: Reuse last_file instead of calling function
+      x_menu_recent_files_last three times.
+
     * src/x/x_print.c: Rename PROP_TYPE -> PROP_LAYOUT,  rename function
       print_dialog_instance_init_type_combobox  print_dialog_instance_
       init_layout_combobox.
