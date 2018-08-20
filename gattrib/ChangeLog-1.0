@@ -1,3 +1,8 @@
+2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Add x_window_set_main_icon to assign an icon for the main
+      window. This seems to happen already on Linux but not on Win32.
+
 2018-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Revise on_mouse_button_press; cast widget to GtkSheet

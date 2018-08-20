@@ -439,6 +439,42 @@ void x_window_add_items(PageDataSet *PageData)
   }
 }
 
+/* Install the app icon for Windows platforms. The bitmap was installed
+ * to the themes directory, which for windows should be the prefix/geda
+ * /icons\hicolor\48x48\apps\geda-gattrib.png
+ */
+void x_window_set_main_icon()
+{
+
+#ifdef OS_WIN32
+
+  GdkPixbuf  *icon;
+  GError     *error;
+  const char *base;
+        char *filename;
+
+  error = NULL;
+  icon  = NULL;
+
+  base = geda_file_path_sys_data();
+
+  filename = g_build_filename (base, "../icons/hicolor/48x48/apps/geda-gattrib.png", NULL);
+
+  if (filename) {
+    icon = gdk_pixbuf_new_from_file (filename, &error);
+  }
+
+  if (icon) {
+    gtk_window_set_icon ((GtkWindow*)main_window, icon);
+  }
+  else if (verbose_mode) {
+    fprintf(stderr, "%s is missing\n", filename);
+  }
+
+#endif
+
+}
+
 /*!
  * \brief Complete startup initialization for Main Window
  * \par Function Description
@@ -449,6 +485,8 @@ void x_window_add_items(PageDataSet *PageData)
  */
 void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
 {
+
+  x_window_set_main_icon();
 
   /* -------------- update data in windows --------------- */
   x_window_add_items(PageData); /* This updates the top level stuff,and then
