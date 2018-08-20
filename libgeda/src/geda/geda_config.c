@@ -766,6 +766,36 @@ static bool strhashcmp (const char *a, const char *b) {
   return answer;
 }
 
+static EdaConfig *geda_config_hash_lookup (GHashTable *hash_table, char *file)
+{
+  EdaConfig *config;
+  EdaConfig *value;
+  GHashTableIter iter;
+  char *key;
+
+  config = NULL;
+
+  g_hash_table_iter_init (&iter, hash_table);
+
+  while (g_hash_table_iter_next (&iter, (void**) &key, (void**) &value)) {
+
+#if defined (OS_WIN32)
+    if (stricmp (file, key) == 0) {
+      config = value;
+      break;
+    }
+
+#else
+    if (strcmp (file, key) == 0) {
+      config = value;
+      break;
+    }
+#endif
+
+  }
+  return config;
+}
+
 /*!
  * \public \memberof EdaConfig
  * \brief Return a local configuration context.
@@ -879,7 +909,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
     /* If there is already a context available for this file, return that.
      * Otherwise, create a new context and record it in the global state. */
-    config = g_hash_table_lookup (local_contexts, file);
+    config = geda_config_hash_lookup (local_contexts, file);
 
     if (config == NULL) {
 
@@ -894,7 +924,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
         file = geda_strconcat(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE_ALT, NULL);
       }
 
-      config = g_hash_table_lookup (local_contexts, file);
+      config = geda_config_hash_lookup (local_contexts, file);
 
       if (config == NULL) {
 
@@ -905,6 +935,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
                                "parent", cfg,
                                "trusted", FALSE,
                                NULL);
+
         g_hash_table_insert (local_contexts, file, config);
       }
       else {

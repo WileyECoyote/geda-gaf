@@ -1,3 +1,10 @@
+2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_config.c: Add function *geda_config_hash_lookup and
+      replace g_hash_table_lookup in *eda_config_get_context_for_file
+      because g_hash_table_lookup is brain-dead on MinGW -- only calls
+      GEqualFunc once and with the wrong string.
+
 2018-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_sys.c: Add Doxygen group libgeda-sys-file-utililities.
