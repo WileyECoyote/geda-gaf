@@ -12,7 +12,7 @@ convert_sym \- convert a Viewlogic symbol/schematic to gEDA gschem format
 converts a Viewlogic symbol/schematic to gEDA
 .B gschem
 format. It accepts one argument, the name of the file to convert;
-converted output is sent to stdout.
+the converted output is sent to stdout.
 
 .SH AUTHOR
 Mike Jarabek
