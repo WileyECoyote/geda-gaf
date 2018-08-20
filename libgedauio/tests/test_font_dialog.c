@@ -194,6 +194,14 @@ check_properties (void)
       }
     }
 
+    /* Destroy the widget and recreate a new one becasue a new font description
+     * was set on the old widget */
+
+    g_object_ref_sink(widget); /* Sink reference to the widget */
+    g_object_unref(widget);    /* Destroy the widget */
+
+    widget = geda_font_dialog_new_with_font_name ("Sans");
+
     char *font_name;
 
     g_object_get(widget, "font-name", &font_name, NULL);
