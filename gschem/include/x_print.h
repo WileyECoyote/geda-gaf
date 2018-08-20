@@ -55,7 +55,7 @@ struct _PrintDialog
   GtkEntry       *fnfield,   *cmdfield;
   GtkRadioButton *fileradio, *cmdradio;
   GtkButton      *saveasbutton;
-  GedaComboBox   *orientcbox, *typecbox, *papercbox;
+  GedaComboBox   *orientcbox, *layoutcbox, *papercbox;
 };
 
 GedaType print_dialog_get_type (void) GEDA_CONST;

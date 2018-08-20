@@ -1,3 +1,11 @@
+2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/x_print.h: Rename typecbox -> layoutcbox.
+
+    * src/x/x_print.c: Rename PROP_TYPE -> PROP_LAYOUT,  rename function
+      print_dialog_instance_init_type_combobox  print_dialog_instance_
+      init_layout_combobox.
+
 2018-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

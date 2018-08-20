@@ -41,7 +41,7 @@ enum
   PROP_COMMAND,
   PROP_PAPERSIZE,
   PROP_ORIENTATION,
-  PROP_TYPE,
+  PROP_LAYOUT,
   PROP_USEFILE
   };
 
@@ -52,7 +52,7 @@ static void print_dialog_action_radio_toggled    (GtkWidget    *w,
 
 static void print_dialog_instance_init                    (PrintDialog  *dialog);
 static void print_dialog_instance_init_paper_combobox     (PrintDialog  *d);
-static void print_dialog_instance_init_type_combobox      (PrintDialog  *d);
+static void print_dialog_instance_init_layout_combobox    (PrintDialog  *d);
 static void print_dialog_instance_init_orient_combobox    (PrintDialog  *d);
 static void print_dialog_set_property            (GObject      *object,
                                                   unsigned int  property_id,
@@ -157,11 +157,11 @@ static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
 
 /*!
  *  \brief Create, initialize and populate a combobox for selecting
- *  the type of printout to produce.
+ *  the layout of the output to produce.
  *  \par Private function, should not be called by any code
  *  outside x_print.c
  */
-static void print_dialog_instance_init_type_combobox (PrintDialog * d)
+static void print_dialog_instance_init_layout_combobox (PrintDialog * d)
 {
   GtkListStore    *model;
   GtkTreeIter      iter;
@@ -193,7 +193,7 @@ static void print_dialog_instance_init_type_combobox (PrintDialog * d)
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combobox),
                                  renderer, "text", 0);
 
-  d->typecbox = GEDA_COMBO_BOX (combobox);
+  d->layoutcbox = GEDA_COMBO_BOX (combobox);
 }
 
 /*!
@@ -298,9 +298,9 @@ print_dialog_set_property (GObject *object,
                                             value);
       return;
 
-    case PROP_TYPE:
+    case PROP_LAYOUT:
       print_dialog_set_property_comboboxes (dialog,
-                                            dialog->typecbox,
+                                            dialog->layoutcbox,
                                             value);
       return;
 
@@ -380,9 +380,9 @@ static void print_dialog_get_property (GObject     *object,
                                             value);
       return;
 
-    case PROP_TYPE:
+    case PROP_LAYOUT:
       print_dialog_get_property_comboboxes (dialog,
-                                            dialog->typecbox,
+                                            dialog->layoutcbox,
                                             value);
       return;
 
@@ -460,10 +460,10 @@ print_dialog_class_init (PrintDialogClass * class)
                                                      0, G_MAXINT, 0,
                                                      G_PARAM_READWRITE));
 
-  g_object_class_install_property (gobject_class, PROP_TYPE,
-                                   g_param_spec_int ("type",
-                                                     "type",
-                                                     "type",
+  g_object_class_install_property (gobject_class, PROP_LAYOUT,
+                                   g_param_spec_int ("layout",
+                                                     "Layout",
+                                                     "Print area with or without margins",
                                                      0, G_MAXINT, 0,
                                                      G_PARAM_READWRITE));
 
@@ -523,14 +523,14 @@ static void print_dialog_instance_init (PrintDialog * dialog)
                     GTK_WIDGET (dialog->papercbox),
                     1, 2, 0, 1, GTK_FILL, 0, 0, 0);
 
-  label = geda_aligned_label_new (_("Type:"), 0, 0);
+  label = geda_aligned_label_new (_("Layout:"), 0, 0);
   gtk_table_attach (GTK_TABLE (settingstable),
                     label,
                     0, 1, 1, 2, GTK_EXPAND | GTK_FILL, GTK_EXPAND, 0, 0);
 
-  print_dialog_instance_init_type_combobox (dialog);
+  print_dialog_instance_init_layout_combobox (dialog);
   gtk_table_attach (GTK_TABLE (settingstable),
-                    GTK_WIDGET (dialog->typecbox),
+                    GTK_WIDGET (dialog->layoutcbox),
                     1, 2, 1, 2, GTK_FILL, 0, 0, 0);
 
   label = geda_aligned_label_new (_("Orientation:"), 0, 0);
