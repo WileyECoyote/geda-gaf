@@ -398,12 +398,13 @@ main(int argc, char **argv)
   infileName = argv[optind];
 
   infile=fopen(infileName,"r");
-  if(infile == NULL)
-    {
       fprintf(stderr,"Error: Unable to open file `%s' in %s()\n",
             infileName,__func__);
       return 1;
-    }
+
+  if (infile == NULL) {
+
+  }
 
   convert_file(infile);
 
@@ -520,7 +521,7 @@ convert_file(FILE *fp)
         /* nuke trailing CR, if there */
           text_len = strlen(buf);
 
-          if(buf[text_len-1] == '\n') {
+          if (buf[text_len-1] == '\n') {
               buf[text_len-1] = 0;
           }
         }
@@ -555,12 +556,11 @@ do_bounding_box(FILE *fp)
 #endif
 
   /* just fetch the values and store */
-  if(fscanf(fp,"%d %d %d %d\n", &minx, &miny, &maxx, &maxy) != 4)
-    {
+  if (fscanf(fp,"%d %d %d %d\n", &minx, &miny, &maxx, &maxy) != 4) {
       fprintf(stderr,"Error: Invalid bounding box record #%d in %s()\n",
               records_processed, __func__);
       exit(1);
-    }
+  }
 
   minx *= scale;
   miny *= scale;
@@ -683,7 +683,7 @@ do_attached_attribute(FILE *fp)
   /* attached attributes have the following format:
    *    A #X #Y #SIZE #ROTATION #ORIGIN #VISIBILITY ATTR_TEXT
    */
-  if(fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
+  if (fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
             &viewvis) != 6)
   {
     fprintf(stderr,"Error: Invalid attached attribute record #%d"
@@ -733,7 +733,7 @@ do_attached_attribute(FILE *fp)
   }
 
   begin_attach();
-  if(pin_attributes) /* are we adding to a pin ? */
+  if (pin_attributes) /* are we adding to a pin ? */
   {
     /* translate pintype attribute */
     if (strncmp(text, "PINTYPE=", 8) == 0)
@@ -822,7 +822,7 @@ do_attached_attribute(FILE *fp)
       return;
     }
     /* attach the pinseq and pinnumber attributes */
-    if(text[0] == '#')
+    if (text[0] == '#')
     {
       strncpy(text2, text, (MAX_TEXTLEN - 24));
 #ifdef HAVE_SNPRINTF
@@ -897,7 +897,7 @@ do_text(FILE *fp)
   /* viewlogic text have the following format:
    *  T #X #Y #SIZE #ROTATION #ORIGIN TEXT
    */
-  if(fscanf(fp,"%d %d %u %d %u",&x, &y, &size, &angle,
+  if (fscanf(fp,"%d %d %u %d %u",&x, &y, &size, &angle,
           &origin) != 5)
     {
       fprintf(stderr,"Error: Invalid text record #%d in %s()\n",
@@ -953,7 +953,7 @@ do_line(FILE *fp)
   /* scan in all the co-ordinate pairs and pop them into our array */
   for (i=0; i < pairs; i++) {
 
-      if(fscanf(fp,"%d %d", &x[i], &y[i]) != 2) {
+      if (fscanf(fp,"%d %d", &x[i], &y[i]) != 2) {
 
         fprintf(stderr,"Error: unable to read %dth coodinate pair "
                        "for record #%d, in %s()\n",
@@ -1002,7 +1002,7 @@ do_pin(FILE *fp)
    *  P #PININSTANCE #X1 #Y1 #X2 #Y2 # #PINDIRECTION #PINSENSE
    */
 
-  if(fscanf(fp,"%*d %d %d %d %d %*d %u %u\n",&x1, &y1, &x2, &y2,
+  if (fscanf(fp,"%*d %d %d %d %d %*d %u %u\n",&x1, &y1, &x2, &y2,
             &pindir, &pinsense) != 6)
     {
       fprintf(stderr,"Error:Invalid pin record #%d in %s()\n",
@@ -1100,7 +1100,7 @@ do_pin(FILE *fp)
   /* if this pin has to be of negative polarity, add a bitty bubble
    * and adjust the size of the pin
    */
-  if(pinsense == 1)
+  if (pinsense == 1)
   {
     x1 = bx1;
     y1 = by1;
@@ -1142,8 +1142,7 @@ do_box(FILE *fp)
    *  b #X1 #Y1 #X2 #Y2
    * geda view of a box has the corner, width and height
    */
-  if(fscanf(fp, "%d %d %d %d\n", &x1, &y1, &x2, &y2) != 4)
-    {
+  if (fscanf(fp, "%d %d %d %d\n", &x1, &y1, &x2, &y2) != 4) {
       fprintf(stderr, "Error: Invalid box record #%d in %s()\n",
             records_processed, __func__);
       exit(1);
@@ -1179,8 +1178,7 @@ do_circle(FILE *fp)
   /* a circle has the following format:
    *  c #x #y #radius
    */
-  if(fscanf(fp,"%d %d %u\n",&x, &y, &radius) != 3)
-    {
+  if (fscanf(fp,"%d %d %u\n",&x, &y, &radius) != 3) {
       fprintf(stderr,"Error: Invalid circle record #%d in %s()\n",
             records_processed, __func__);
       exit(1);
@@ -1219,7 +1217,7 @@ do_arc(FILE *fp)
    *   center, radius, start angle, stop angle.
    */
 
-  if(fscanf(fp,"%d %d %d %d %d %d\n",
+  if (fscanf(fp,"%d %d %d %d %d %d\n",
           &x1, &y1, &x2, &y2, &x3, &y3) != 6)
     {
       fprintf(stderr,"Error: Invalid arc record #%d, in %s()\n",
@@ -1247,7 +1245,7 @@ do_arc(FILE *fp)
   /* printf("Buffer: `%s'\n",buf);
    * printf("Values: x2p: %f, y2p: %f, x3p: %f, y3p: %f\n",x2p, y2p, x3p, y3p);
    */
-  if(fabs(x2p * y3p - y2p * x3p) < 0.00001)
+  if (fabs(x2p * y3p - y2p * x3p) < 0.00001)
     {
       /* some miscreant entered a degenerate arc, just output lines */
       line_object(x1,y1,x2,y2,color,&linestyle);
@@ -1280,7 +1278,7 @@ do_arc(FILE *fp)
 
   arc_sweep   = atan2(y3-yo, x3-xo) * to_rad;
 
-  if(start_angle > arc_sweep) {
+  if (start_angle > arc_sweep) {
 
       gstart = arc_sweep;
       sweep_angle = start_angle - arc_sweep;
@@ -1355,7 +1353,7 @@ do_label(FILE *fp)
   get_style(fp, &color, &linestyle, &fillstyle);
 
   /* if we are inside a pin definition, mangle the pin name */
-  if(net_attributes == 1)  { /* a netname on a net is its netname */
+  if (net_attributes == 1)  { /* a netname on a net is its netname */
 
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "netname=%s", text2);
@@ -1364,7 +1362,7 @@ do_label(FILE *fp)
 #endif
       show_name_value = 1;
   }
-  else if(complex_attributes == 1) {/* a label on a complex is its designator */
+  else if (complex_attributes == 1) {/* a label on a complex is its designator */
 
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "refdes=%s", text2);
@@ -1373,7 +1371,7 @@ do_label(FILE *fp)
 #endif
       show_name_value = 1;
   }
-  else if(pin_attributes == 1) { /* a label on a pin is it's pinname */
+  else if (pin_attributes == 1) { /* a label on a pin is it's pinname */
 
 #ifdef HAVE_SNPRINTF
       snprintf(text, MAX_TEXTLEN, "pinlabel=%s", text2);
@@ -1419,7 +1417,7 @@ do_net_node(FILE *fp)
    *  J #X #Y #SEGNUM  - Net segment
    */
 
-  if(segment_count > MAX_NODES) {
+  if (segment_count > MAX_NODES) {
 
       fprintf(stderr,"Error: too many nodes on a net at record #%d, "
             "in %s(), try increasing\n"
@@ -1428,7 +1426,7 @@ do_net_node(FILE *fp)
   }
 
   /* get the current info */
-  if(fscanf(fp,"%d %d %d\n",&x, &y, &type) < 2) {
+  if (fscanf(fp,"%d %d %d\n",&x, &y, &type) < 2) {
 
       fprintf(stderr,"Error: Invalid net node record #%d in %s()\n",
             records_processed, __func__);
@@ -1456,7 +1454,7 @@ do_net_segment(FILE *fp)
    *  S #N1 #N2            - Net connectivity, Node N1 is connected to N2
    */
 
-  if(fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
+  if (fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
 
       fprintf(stderr,"Error: Invalid net segment record #%d in %s()\n",
             records_processed, __func__);
@@ -1487,7 +1485,7 @@ do_net_segment_bus(FILE *fp)
    *  B #N1 #N2            - Net connectivity, Node N1 is bussed to N2
    */
 
-  if(fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
+  if (fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
 
       fprintf(stderr,"Error: Invalid bus segment record #%d in %s()\n",
             records_processed, __func__);
@@ -1534,7 +1532,7 @@ do_instance(FILE *fp)
 
   /* Instance doesn't necessarily have to have the LIB:NAME convention, so */
   /* read this in as a full string and parse later */
-  /* if(fscanf(fp,"%*d %[a-zA-Z0-9]:%[a-zA-Z0-9] %u %d %d %d %g %*s\n", */
+  /* if (fscanf(fp,"%*d %[a-zA-Z0-9]:%[a-zA-Z0-9] %u %d %d %d %g %*s\n", */
   result = fscanf(fp,"%*d %s %u %d %d %d %g %*s\n",
                   text, &extension, &x, &y, &orientation, &scale_factor);
   /* find library and symbol name */
@@ -1690,7 +1688,7 @@ text_object(int x, int y, unsigned int color, unsigned int size,
       y -= (size * scale) / 2;
     }
 
-  if( (origin == 1) || (origin == 4) || (origin == 7) )
+  if ( (origin == 1) || (origin == 4) || (origin == 7) )
     {
       y -= size * scale;
     }
@@ -1723,12 +1721,12 @@ text_object(int x, int y, unsigned int color, unsigned int size,
   /* if the origin is one of the middle ones
    * fix the x coordinate
    */
-  if( (origin == 4) || (origin == 5) || (origin == 6) ) {
+  if ( (origin == 4) || (origin == 5) || (origin == 6) ) {
 
       x -= textlen / 2;
   }
 
-  if( (origin == 7) || (origin == 8) || (origin == 9) ) {
+  if ( (origin == 7) || (origin == 8) || (origin == 9) ) {
 
       x -= textlen;
   }
@@ -1751,7 +1749,7 @@ text_object(int x, int y, unsigned int color, unsigned int size,
   /* currently angled/rotated text is not supported, print a
    * warning, and force the orientation
    */
-  if(angle != 0)
+  if (angle != 0)
     {
       angle = 0;
       fprintf(stderr,"Warning: Forcing text '%s' into standard alignment "
@@ -1764,12 +1762,12 @@ text_object(int x, int y, unsigned int color, unsigned int size,
   /* the below operation is not necessary */
 #if 0
   /* force text to start on a 10 unit boundary */
-  if((x % 10) < 5)
+  if ((x % 10) < 5)
     x = x - (x % 10);
   else
     x = x + (10 - (x % 10));
 
-  if((y % 10) < 5)
+  if ((y % 10) < 5)
     y = y - (y % 10);
   else
     y = y + (10 - (x % 10));
@@ -2013,7 +2011,7 @@ complex_object(int x, int y, unsigned int selectable,
 void
 begin_attach(void)
 {
-  if(attach_pending == 1)  /* begin an attachment if one is pending*/
+  if (attach_pending == 1)  /* begin an attachment if one is pending*/
     {
       printf("{\n");
       attach_pending = 0;
@@ -2033,7 +2031,7 @@ reset_attributes(void)
   /* if we are inside of some kind of attribute attachment
    * terminate it, but only if we output the begin_attach.
    */
-  if((add_attributes == 1) && (attach_pending == 0)) {
+  if ((add_attributes == 1) && (attach_pending == 0)) {
       end_attach();
   }
 
@@ -2110,9 +2108,9 @@ int get_style(FILE *fp, unsigned int *colour,
 
   c = getc(fp);
 
-  if(c == 'Q') { /* do we have a modifier? */
+  if (c == 'Q') { /* do we have a modifier? */
 
-      if(fscanf(fp,"%u %u %u\n", colour, &vdfillstyle, &vdlinestyle) != 3)
+      if (fscanf(fp,"%u %u %u\n", colour, &vdfillstyle, &vdlinestyle) != 3)
       {
         fprintf(stderr,"Error: Invalid modifier record #%d in %s()\n",
               records_processed, __func__);
@@ -2120,7 +2118,7 @@ int get_style(FILE *fp, unsigned int *colour,
       }
 
       /* re-map colour into a geda colour */
-      if(*colour > 15) {
+      if (*colour > 15) {
 
         fprintf(stderr,"Error: Invalid colour number %u in record #%d, "
               "in %s()\n",
@@ -2170,7 +2168,7 @@ strindex(char *s, char c)
   unsigned int i;
 
   for(p=s, i=0; *p; p++,i++) {
-    if(*p == c) {
+    if (*p == c) {
       return i;
     }
   }
@@ -2189,7 +2187,7 @@ strrindex(char *s, char c)
 
   loc = 0;
   for(p=s, i=0; *p; p++, i++) {
-    if(*p == c) {
+    if (*p == c) {
       loc = i;
     }
   }
