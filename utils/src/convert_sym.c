@@ -474,12 +474,15 @@ convert_file(FILE *fp)
       case 'N':
         do_net_start(fp);
         break;
+
       case 'J':
         do_net_node(fp);
         break;
+
       case 'S':
         do_net_segment(fp);
         break;
+
       case 'B':
         do_net_segment_bus(fp);
         break;
@@ -507,9 +510,11 @@ convert_file(FILE *fp)
       case 'X':  /* unconnected pin record */
         do_nop(fp);
         break;
+
       case '|':  /* some kind of timestamp */
         do_nop(fp);
         break;
+
       default: /* just read in the record and trash it */
         if (fgets(buf, MAX_TEXTLEN, fp) != NULL) {
         /* nuke trailing CR, if there */
