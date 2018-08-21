@@ -78,12 +78,12 @@ GNU&rsquo;s Guile. While it is required for Guile to be
 installed on the host system for <b>Libgeda</b> to run, it
 is not a requirement that gEDA applications initialize or
 even be running Guile. <b>Libgeda</b> does not initiate the
-loading &quot;rc&quot; files. Instead, when application
-request that a initialization file be processed
+loading of &quot;rc&quot; files. Instead, when applications
+request that an initialization file be processed
 <b>Libgeda</b> first checks for &quot;system-gafrc&quot; in
 either system configuration directories, i.e.
 &quot;/etc/gEDA&quot;, &quot;~/etc&quot;, or the root of the
-installation directory and precesses these files if they
+installation directory and processes the files if they
 exist. Normally, only one such file is used as a system
 level &quot;master&quot; configuration file. Following
 processing of the &quot;system-gafrc&quot; files
@@ -95,13 +95,13 @@ is reached without discovering such a file. If discovered,
 the &quot;gafrc&quot; file is processed, which may over-ride
 configuration parameters established in preceding
 initialization files, and this allows users to customize
-<b>Libgeda</b> on a user and or on project bases. Local
+<b>Libgeda</b> on a user and or on a project bases. Local
 initialization files are &quot;remembered&quot; so that when
 applications load other schematics or symbols in the same or
 subordinate directory structure the initialization files are
 not processed a second time for a given session. The
-application requested initialization files are then
-processed in a likewise manner, for example system-gschemrc.
+application requested initialization files, for example
+system-gschemrc, are then processed in a likewise manner.
 Initialization files for <b>Libgeda</b> should not reference
 application specific keywords or functions. Since the
 initialization files are really Scheme scripts the
