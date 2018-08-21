@@ -3,6 +3,10 @@
     * src/iface/i_command.c: Revise i_command_process to set i_command_process
       in the else clause to avoid setting twice, minor cleaning.
 
+    * object/o_complex.c: Revise o_complex_export to make a copy of the object
+      before saving so the component exports as a symbol instead of a schematic
+      with the symbol.
+
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_print.h: Rename typecbox -> layoutcbox.

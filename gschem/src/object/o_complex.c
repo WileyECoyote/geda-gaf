@@ -54,11 +54,13 @@ void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
 
-    char   *filename;
-    GError *err;
-    GList  *list;
+    GedaObject *o_new;
+    char       *filename;
+    GError     *err;
+    GList      *list;
 
-    list     = geda_complex_object_get_prim_objs(o_current);
+    o_new    = geda_complex_object_copy (o_current);
+    list     = geda_complex_object_get_prim_objs(o_new);
     filename = geda_file_chooser_get_filename (dialog);
 
     if (!geda_object_save (list, filename, &err)) {
@@ -67,6 +69,8 @@ void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
       g_clear_error (&err);
 
     }
+
+    geda_struct_object_release(o_new);
     GEDA_FREE (filename);
   }
 
