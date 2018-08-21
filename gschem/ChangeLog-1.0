@@ -8,6 +8,10 @@
       with the symbol. Revise o_complex_translate_all to only get the bounds if
       an offset was not given.
 
+    * src/x/x_settings_dialog.c: Revise GatherSettings to verify geda_combo_box_
+      get_active_text returned a string and conditionally set "default-font-name"
+      and the render_adaptor font if a pointer was returned.
+
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_print.h: Rename typecbox -> layoutcbox.

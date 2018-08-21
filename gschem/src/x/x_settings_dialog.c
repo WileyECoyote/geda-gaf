@@ -2822,21 +2822,24 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->anti_aliasing    = gtk_combo_box_get_active (GTK_COMBO_BOX (AntiAliasCombo));
 
   tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (FontNameCombo));
-  eda_config_set_string (cfg, group, "default-font-name", tmpstr);
 
-  if (w_current->render_adaptor == CAIRO_ADAPTOR) {
-    eda_renderer_set_font_name(CairoRenderer, tmpstr);
-  }
+  if (tmpstr) {
+    eda_config_set_string (cfg, group, "default-font-name", tmpstr);
+
+    if (w_current->render_adaptor == CAIRO_ADAPTOR) {
+      eda_renderer_set_font_name(CairoRenderer, tmpstr);
+    }
 
 #ifdef WITH_LIBGEDADRAW
 
-  else {
-    x_draw_set_font (tmpstr, GET_SPIN_IVALUE (TextSizeSpin));
-  }
+    else {
+      x_draw_set_font (tmpstr, GET_SPIN_IVALUE (TextSizeSpin));
+    }
 
 #endif
 
-  g_free(tmpstr);
+    g_free(tmpstr);
+  }
 
 /* The Switches Alphabetically (31) */
              auto_load_last             = GET_SWITCH_STATE (AutoLoadLastSwitch);
