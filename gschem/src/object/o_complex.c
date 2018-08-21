@@ -235,9 +235,6 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   GedaToplevel *toplevel = w_current->toplevel;
   const GList  *object_list;
 
-  int left, top, right, bottom;
-  int x, y;
-
   object_list = geda_struct_page_get_objects (toplevel->page_current);
 
   /* first zoom extents */
@@ -246,13 +243,17 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   }
   o_invalidate_all (w_current);
 
-  geda_object_get_bounds_list (object_list, &left,  &top, &right, &bottom);
-
-  /*! \todo do we want snap grid here? */
-  x = snap_grid (w_current, left);
-  y = snap_grid (w_current, top);
-
   if (offset == 0) {
+
+    int left, top, right, bottom;
+    int x, y;
+
+    geda_object_get_bounds_list (object_list, &left,  &top, &right, &bottom);
+
+    /*! \todo do we want snap grid here? */
+    x = snap_grid (w_current, left);
+    y = snap_grid (w_current, top);
+
     u_log_message("%s [%d %d]\n", _("Translating schematic"), -x, -y);
     geda_translate_list (object_list, -x, -y);
   }

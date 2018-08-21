@@ -5,7 +5,8 @@
 
     * object/o_complex.c: Revise o_complex_export to make a copy of the object
       before saving so the component exports as a symbol instead of a schematic
-      with the symbol.
+      with the symbol. Revise o_complex_translate_all to only get the bounds if
+      an offset was not given.
 
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
