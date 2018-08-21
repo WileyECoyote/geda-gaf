@@ -418,9 +418,9 @@ void i_command_process(GschemToplevel *w_current, const char *command,
       }
 
       /* Check and set pointer coordinates if task bit 3 is set */
-      if ( command_struc[i].aflag & XY_ActionMask) {
+      if (command_struc[i].aflag & XY_ActionMask) {
 
-        int wx, wy, check_magnet = FALSE;
+        int wx, wy, check_magnet;
 
         if (who != ID_ORIGIN_MOUSE) {
 
@@ -437,6 +437,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
             command_struc[i].point.y = 0;
             w_current->first_wx      = -1;
             w_current->first_wy      = -1;
+            check_magnet = FALSE;
           }
         }
         else { /* Must have been ID_ORIGIN_MOUSE*/
@@ -573,7 +574,7 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
                                BEGIN_COMMAND(efunc);
 
 #define EXIT_COMMAND(efunc) if (arg) { GEDA_FREE(arg); \
-                                      g_strfreev ( argv);} \
+                                       g_strfreev ( argv);} \
                             set_action_status(cmd_##efunc, 0)
 
 #define BEGIN_NO_ARGUMENT(efunc) GEDA_FREE(CMD_OPTIONS(efunc))
