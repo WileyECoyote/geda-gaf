@@ -1,3 +1,8 @@
+2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/geda-install-bin.1.in: Clarify usage with regards to the installed
+      location, fix typo.
+
 2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs: Extend the no warranty clause to include "not even for MERCHANTABILITY
