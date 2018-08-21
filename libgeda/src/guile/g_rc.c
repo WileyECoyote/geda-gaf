@@ -1278,11 +1278,18 @@ SCM g_rc_log_directory(SCM path)
 
   if (!g_file_test(string, G_FILE_TEST_IS_DIR)) {
 
-    if (geda_create_path (string, 0777 /*octal*/ ) != NO_ERROR) {
+    if (geda_create_path (string, 0764 /*octal*/ ) != NO_ERROR) {
       fprintf (stderr, "%s \"%s\", %s\n", _("invalid path"), string, strerror (errno));
       GEDA_FREE(string);
       return SCM_BOOL_F;
     }
+  }
+
+  temp = geda_file_sys_normalize_name(string, NULL);
+
+  if (temp) {
+    geda_free (string);
+    string = temp;
   }
 
   if (default_log_directory) {

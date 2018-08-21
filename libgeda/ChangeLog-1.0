@@ -1,7 +1,14 @@
+2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Revise g_rc_log_directory to normalize to path,
+      the fixes references to relative paths in parent gafrc files so
+      logs for a projects works as intended when subordinate schematic
+      pages are opened.
+
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_config.c: Add function *geda_config_hash_lookup and
-      replace g_hash_table_lookup in *eda_config_get_context_for_file
+    * src/geda/geda_config.c: Add function geda_config_hash_lookup and
+      replace g_hash_table_lookup in eda_config_get_context_for_file
       because g_hash_table_lookup is brain-dead on MinGW -- only calls
       GEqualFunc once and with the wrong string.
 
