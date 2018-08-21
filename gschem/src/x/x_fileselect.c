@@ -173,7 +173,7 @@ x_fileselect_save_filter_index (GtkWidget      *chooser,
 
 /*! \brief Opens a file chooser and selection of document to open.
  *  \par Function Description
- *  This function opens a file chooser dialog and restores the filter
+ *  This function opens a file chooser dialog and restores the users
  *  filter preference, and waits for the user to select at least one
  *  file to load. A single-linked list of selected files is returned
  *  or NULL to indicate the user is canceling the operation. If the
@@ -199,7 +199,7 @@ x_fileselect_list(GschemToplevel *w_current)
   geda_file_chooser_set_filter (dialog, w_current->chooser_filter);
 
   /* Conditionally add the file previewer */
-  if(w_current->file_preview == TRUE) {
+  if (w_current->file_preview == TRUE) {
     x_fileselect_add_preview (GEDA_FILE_CHOOSER (dialog));
   }
 
