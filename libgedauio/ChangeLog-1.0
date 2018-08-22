@@ -1,5 +1,9 @@
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_combobox.c: Add functions geda_combo_box_on_change
+      and geda_combo_box_on_view_changed as default signal handlers for
+      signals "changed" and "view-changed" respectively.
+
     * tests/test_font_dialog.c: Revise check_properties checks to destroy the widget
       and recreate after assigning a new font description.
 
