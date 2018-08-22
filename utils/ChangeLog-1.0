@@ -1,3 +1,9 @@
+2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gmake-caps-sym.1.in:  Extend the no warranty clause to include "not even
+      for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick quotes
+      around COPYING with double quotes for better portability:
+
 2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/geda-install-bin.1.in: Clarify usage with regards to the installed
