@@ -49,8 +49,8 @@ When the force option is specified existing file matching the output name will b
 The Attribute to be queried or set.
 .IP "-d, --hidden"
 When creating an attribute, set the visibility flag to invisible. If the -l option is used and a matching attribute
-is not found, a new attribute is automatically. By default the new attributes are visible, use this option to make
-create invisible attributes.
+is not found, a new attribute is automatically created. By default new attributes are visible, use this option to make
+the new attribute invisible.
 .IP "-q, --quite"
 Quite mode. Suppress normal processing messages.
 .IP "-v, --verbose"
