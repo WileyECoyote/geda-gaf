@@ -39,8 +39,8 @@ preset_options = {"wordswap":"yes",
                   "pinwidthvertical":"400",
                   "pinwidthhorizontal":"400"}
 official_attr = ["version", "name", "device", "refdes", "footprint", "numslots",
-                "slot", "slotdef","description", "comment", "author",
-                "documentation","value","dist-license", "use-license"]
+                 "slot", "slotdef","description", "comment", "author",
+                 "documentation","value","dist-license", "use-license"]
 single_attr_warning = ["device", "footprint", "author", "documentation",
                        "description", "numslots","dist-license", "use-license"]
 single_attr = ["slot"]
