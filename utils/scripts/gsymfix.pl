@@ -20,22 +20,23 @@ $Getopt::Long::autoabbrev=0;
 usage() if $Getopt::Long::error;
 usage() unless @ARGV;
 
-my $found_pinnumber_attr = 0;
-my $found_pinseq_attr    = 0;
-my $found_pintype_attr   = 0;
-my $found_pinlabel_attr  = 0;
-my $found_numslots_attr  = 0;
-my $found_device_attr    = 0;
-my $found_footprint_attr = 0;
-my $seqcnt               = 0;
-my $skip_line_out        = 0;
-my $file_line            = 0;
+my $found_pinnumber_attr   = 0;
+my $found_pinseq_attr      = 0;
+my $found_pintype_attr     = 0;
+my $found_pinlabel_attr    = 0;
+my $found_numslots_attr    = 0;
+my $found_device_attr      = 0;
+my $found_description_attr = 0;
+my $found_footprint_attr   = 0;
+my $seqcnt                 = 0;
+my $skip_line_out          = 0;
+my $file_line              = 0;
 
-my $st_scan              = 0;
-my $st_pin_start         = 1;
-my $st_pin_body          = 2;
+my $st_scan                = 0;
+my $st_pin_start           = 1;
+my $st_pin_body            = 2;
 
-my $state                = $st_scan;	# intial state machine state
+my $state                  = $st_scan;	# intial state machine state
 
 if($vverbose) { $verbose = 1; }
 
@@ -62,6 +63,9 @@ while ($line = <NETLIST>) {
     }
     elsif( $line =~ /^device=/) {
       $found_device_attr = 1;
+    }
+    elsif( $line =~ /^description=/) {
+      $found_description_attr = 1;
     }
     elsif( $line =~ /^footprint=/) {
       $found_footprint_attr = 1;
@@ -190,6 +194,11 @@ if( $found_device_attr == 0 ) {
   if($verbose){print "  Adding attr device=none\n";}
   print OUTNET "T 600 100 9 10 0 0 0 0 1\n";
   print OUTNET "device=none\n";
+}
+if( $found_description_attr == 0 ) {
+  if($verbose){print "  Adding attr description=unknown\n";}
+  print OUTNET "T 600 100 9 10 0 0 0 0 1\n";
+  print OUTNET "description=unknown\n";
 }
 if( $found_footprint_attr == 0 ) {
   if($verbose){print "  Adding attr footprint=unknown\n";}
