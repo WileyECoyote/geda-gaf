@@ -39,16 +39,16 @@ my $state                = $st_scan;	# intial state machine state
 
 if($vverbose) { $verbose = 1; }
 
-# make sure the input schematic exists and we can read it
+# make sure the input symbol exists and can be read
 my $fname=shift(@ARGV);
 print "\nProcessing symbol file $fname\n";
 open(NETLIST,"$fname") or die "Can't open $fname: $!\n";
 
-# open output netlist
+# open output symbol
 $outfname="$fname.fix";
 open(OUTNET,">$outfname") or die "Can't open $outfname: $!\n";
 
-# parse netlist
+# parse symbol
 while ($line = <NETLIST>) {
   $file_line++;
   #==========================
@@ -146,8 +146,8 @@ while ($line = <NETLIST>) {
       }
 
       if( $found_pinseq_attr == 0 ) {
-	    $seqcnt++;
-	    if($verbose) {
+        $seqcnt++;
+        if($verbose) {
           print "  Pin $pin_num: Adding attr pinseq=$seqcnt\n";
         }
         print OUTNET $pin_attr_line;
