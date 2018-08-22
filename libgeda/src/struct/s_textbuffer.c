@@ -40,14 +40,14 @@
  *  tb = geda_struct_textbuffer_free (tb);
  * \endcode
  */
-TextBuffer*
-geda_struct_textbuffer_free (TextBuffer *tb)
+TextBuffer *geda_struct_textbuffer_free (TextBuffer *tb)
 {
   if (tb == NULL) return NULL;
 
   GEDA_FREE (tb->line);
   tb->line = NULL;
   GEDA_FREE (tb);
+
   return NULL;
 }
 
@@ -59,8 +59,7 @@ geda_struct_textbuffer_free (TextBuffer *tb)
  *  return value is not accurate if geda_struct_textbuffer_seek
  *  has been called!
  */
-int
-geda_struct_textbuffer_get_line_count (TextBuffer *tb)
+int geda_struct_textbuffer_get_line_count (TextBuffer *tb)
 {
   if (tb == NULL) return 0;
   return tb->line_count;
@@ -80,8 +79,7 @@ geda_struct_textbuffer_get_line_count (TextBuffer *tb)
  *
  * \returns Pointer to a new TextBuffer struct.
  */
-TextBuffer*
-geda_struct_textbuffer_new (const char *data, const int size)
+TextBuffer *geda_struct_textbuffer_new (const char *data, const int size)
 {
   TextBuffer  *tb;
   unsigned int realsize;
@@ -101,6 +99,7 @@ geda_struct_textbuffer_new (const char *data, const int size)
   tb->line       = GEDA_MEM_ALLOC(tb->linesize);
   tb->offset     = 0;
   tb->line_count = 0;
+
   return tb;
 }
 
@@ -125,8 +124,7 @@ geda_struct_textbuffer_new (const char *data, const int size)
  *
  * \returns Character array, or NULL if no characters left.
  */
-const char*
-geda_struct_textbuffer_next (TextBuffer *tb, const int count)
+const char *geda_struct_textbuffer_next (TextBuffer *tb, const int count)
 {
   bool eol = FALSE;
 
@@ -180,6 +178,7 @@ geda_struct_textbuffer_next (TextBuffer *tb, const int count)
   tb->offset = src - tb->buffer;
 
   tb->line_count++;
+
   return tb->line;
 }
 
@@ -198,8 +197,7 @@ geda_struct_textbuffer_next (TextBuffer *tb, const int count)
  *
  * \returns     Character array, or NULL if no characters left.
  */
-const char*
-geda_struct_textbuffer_next_line (TextBuffer *tb)
+const char *geda_struct_textbuffer_next_line (TextBuffer *tb)
 {
   return geda_struct_textbuffer_next (tb, -1);
 }
@@ -214,8 +212,7 @@ geda_struct_textbuffer_next_line (TextBuffer *tb)
  * \param tb     A TextBuffer to seek within.
  * \param offset A new position within the buffer.
  */
-void
-geda_struct_textbuffer_seek (TextBuffer *tb, int offset)
+void geda_struct_textbuffer_seek (TextBuffer *tb, int offset)
 {
   if (tb) {
 
