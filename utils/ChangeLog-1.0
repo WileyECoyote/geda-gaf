@@ -2,7 +2,11 @@
 
     * docs/gmake-caps-sym.1.in:  Extend the no warranty clause to include "not even
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick quotes
-      around COPYING with double quotes for better portability:
+      around COPYING with double quotes for better portability.
+
+    * gsch2pdf/rc-config.c: Replace g_ascii_strcasecmp with geda_stricmp
+      in rc_config_junction_size_net.
+
 
 2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
 

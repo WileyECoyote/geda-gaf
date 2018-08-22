@@ -55,11 +55,13 @@ static SCM rc_config_output_orientation(SCM orientation)
 {
   char *orientation_string = scm_to_locale_string(orientation);
 
-  if (g_ascii_strcasecmp(orientation_string, "portrait") == 0) {
+  if (geda_stricmp(orientation_string, "portrait") == 0) {
     print_settings_set_print_orientation(settings, PRINT_ORIENTATION_PORTRAIT);
-  } else if (g_ascii_strcasecmp(orientation_string, "landscape") == 0) {
+  }
+  else if (geda_stricmp(orientation_string, "landscape") == 0) {
     print_settings_set_print_orientation(settings, PRINT_ORIENTATION_LANDSCAPE);
-  } else {
+  }
+  else {
     print_settings_set_print_orientation(settings, PRINT_ORIENTATION_OTHER);
   }
 
