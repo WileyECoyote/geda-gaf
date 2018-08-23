@@ -10,6 +10,8 @@
                                           gtk_widget_set_visible->
                                                                 gtk_widget_show
 
+      Replace gtk_box_pack_start with geda_container_add macro.
+
 2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Revise i_command_process to set i_command_process

@@ -812,7 +812,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   table = (GtkTable*)gtk_table_new (5, 3, FALSE);
   gtk_table_set_row_spacings (table, DIALOG_V_SPACING);
   gtk_table_set_col_spacings (table, DIALOG_H_SPACING);
-  gtk_box_pack_start(GTK_BOX (main_vbox), (GtkWidget*)table, FALSE, FALSE, 0);
+  geda_container_add         (main_vbox, table);
   g_object_set               (table, "visible", TRUE, NULL);
 
   type_label = GEDA_AVM_LABEL_NEW (_LABEL(PinNodeType), 0, 0);
