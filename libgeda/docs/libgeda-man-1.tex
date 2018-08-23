@@ -1,4 +1,4 @@
-Libgeda(1)                      52.0.0-20171112                     Libgeda(1)
+Libgeda(1)                      52.0.0-20180521                     Libgeda(1)
 
 
 
@@ -30,25 +30,25 @@ CONFIGURATION
        used  by  Libgeda  is GNU's Guile. While it is required for Guile to be
        installed on the host system for Libgeda to run, it is not  a  require-
        ment  that  gEDA  applications  initialize  or  even  be running Guile.
-       Libgeda does not initiate the loading "rc" files. Instead, when  appli-
-       cation  request  that  a initialization file be processed Libgeda first
-       checks for "system-gafrc" in either system  configuration  directories,
-       i.e.  "/etc/gEDA",  "~/etc",  or the root of the installation directory
-       and precesses these files if they exist. Normally, only one  such  file
-       is  used  as a system level "master" configuration file. Following pro-
-       cessing of the "system-gafrc" files Libgeda searches the current direc-
-       tory  for  local  "gafrc"  configurations  files.  The search continues
+       Libgeda does not initiate the loading  of  "rc"  files.  Instead,  when
+       applications  request  that an initialization file be processed Libgeda
+       first checks for "system-gafrc" in either system configuration directo-
+       ries, i.e. "/etc/gEDA", "~/etc", or the root of the installation direc-
+       tory and processes the files if they exist.  Normally,  only  one  such
+       file  is  used as a system level "master" configuration file. Following
+       processing of the "system-gafrc" files  Libgeda  searches  the  current
+       directory  for local "gafrc" configurations files. The search continues
        upward in the directory structure until either a  file  with  the  name
        "gafrc"  is found or the root of the drive is reached without discover-
        ing such a file. If discovered, the "gafrc" file  is  processed,  which
        may  over-ride  configuration  parameters established in preceding ini-
        tialization files, and this allows users to customize Libgeda on a user
-       and or on project bases. Local initialization files are "remembered" so
-       that when applications load other schematics or symbols in the same  or
-       subordinate  directory  structure the initialization files are not pro-
-       cessed a second time for a given  session.  The  application  requested
-       initialization files are then processed in a likewise manner, for exam-
-       ple system-gschemrc.  Initialization files for Libgeda should not  ref-
+       and  or on a project bases. Local initialization files are "remembered"
+       so that when applications load other schematics or symbols in the  same
+       or  subordinate  directory  structure  the initialization files are not
+       processed a second time for a given session. The application  requested
+       initialization  files,  for example system-gschemrc, are then processed
+       in a likewise manner.  Initialization files for Libgeda should not ref-
        erence  application  specific keywords or functions. Since the initial-
        ization files are really Scheme scripts the possibilities for  configu-
        ration customization is essentially unlimited. The basic "system-gafrc"
@@ -111,12 +111,13 @@ AUTHORS
        See the "AUTHORS" file included with this program.
 
 COPYRIGHT
-       Copyright (C) 2017 gEDA Contributors. License GPLv2+: GNU GPL
-       version 2 or later. Please see the `COPYING' file included with this
+       Copyright (C) 2018 gEDA Contributors. License GPLv2+: GNU GPL
+       version 2 or later. Please see the "COPYING" file included with this
        program for full details.
 
-       This is free software: you are free to change and redistribute it.
-       There is NO WARRANTY, to the extent permitted by law.
+       This is free software: you are free to change and redistribute it. There is NO
+       WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to
+       the extent permitted by law.
 
 SEE ALSO
        libgedacairo(1),  libgedathon(1), libgedauio(1) gnetlist(1), gschem(1),
@@ -126,4 +127,4 @@ SEE ALSO
 
 
 
-gEDA Project                   November 12, 2017                    Libgeda(1)
+gEDA Project                     May 21, 2018                       Libgeda(1)
