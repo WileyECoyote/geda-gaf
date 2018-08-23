@@ -10,7 +10,8 @@
                                           gtk_widget_set_visible->
                                                                 gtk_widget_show
 
-      Replace gtk_box_pack_start with geda_container_add macro.
+      Replace gtk_box_pack_start with geda_container_add macro. Remove unused
+      row in the lower table array.
 
 2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
