@@ -11,7 +11,8 @@
                                                                 gtk_widget_show
 
       Replace gtk_box_pack_start with geda_container_add macro. Remove unused
-      row in the lower table array.
+      row in the lower table array and add a horizontal separator between the
+      lower table in the action area to deliminate the action area.
 
 2018-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
