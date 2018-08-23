@@ -69,7 +69,7 @@ Type [or] to toggle this behaviour. That is, the “o” key followed by the “
 
 </div>
 <!-- EDIT6 SECTION "How do I move components without dragging a tail of connected nets?" [1583-1868] -->
-<h2 class="sectionedit7"><a name="how_do_i_change_the_size_of_the_text_on_a_symbol" id="how_do_i_change_the_size_of_the_text_on_a_symbol">How do I change the size of the text on a symbol?</a></h2>
+<h2 class="sectionedit7"><a name="how_do_i_change_the_size_of_the_text_on_a_symbol" id="how_do_i_change_the_size_of_the_text_on_a_symbol">How do I change the size of the text on a local symbol?</a></h2>
 <div class="level2">
 <ol>
 <li class="level1"><div class="li"> Select the symbol.</div>
@@ -102,7 +102,7 @@ More generally, you can use this procedure to edit anything on a symbol. (Substi
 <div class="level2">
 
 <p>
-Yes, overbars are possible. A backslash followed by an underscore will start an overlined section of text. A second backslash-underscore combo will return to normal text. Example: Double click on an attribute and type “\_this\_”.
+Yes, overbars are possible. A backslash followed by an underscore will start an overlined section of text. A second backslash-underscore combination will return to normal text. Example: Double click on an attribute and type “\_this\_”.
 </p>
 
 <p>
@@ -115,7 +115,7 @@ Note, on transfer to pcb, there will be no overline on the layout.The backslash 
 <div class="level2">
 
 <p>
-When a component is locked it cannot be selected with the middle mouse button; however it is selectable using a window select. To window select a component, click and hold the left mouse button and drag the mouse to create a rectangular region containing the component to be unlocked. Execute the command <strong><em>Edit</em></strong> <strong>→</strong> <strong><em>unLock</em></strong> to unlock the component.
+When a component is locked it cannot be selected with the left mouse button unless the ALT key is pressed; however it is selectable using a window select. To window select a component, click and hold the left mouse button and drag the mouse to create a rectangular region containing the component to be unlocked. Execute the command <strong><em>Edit</em></strong> <strong>→</strong> <strong><em>unLock</em></strong> to unlock the component.
 </p>
 
 </div>
@@ -136,7 +136,7 @@ Edit the system-gschemrc file or place the following into a gschemrc file (eithe
 <div class="level2">
 
 <p>
-A &#039;bus&#039; is purely decoration.  The netlister ignores it.  The netname= attribute does actual work of connecting points together–this is what gnetlist reads and transforms into your netlist.  It is not possible to connect to a discrete line or &#039;bit&#039; on a bus because, again, the bus is merely a graphical entity.
+A &#039;bus&#039; is purely decoration.  The netlister ignores it.  The netname= attribute does the actual work of connecting points together–this is what gnetlist reads and transforms into your netlist.  It is not possible to connect to a discrete line or &#039;bit&#039; on a bus because, again, the bus is merely a graphical entity.
 </p>
 
 <p>
@@ -152,7 +152,7 @@ Some users have found it helpful to organize their nets by incorporating a bus n
 By default you get:
 </p>
 <ul>
-<li class="level1"><div class="li"> Left mouse button is used for picking and drawing.</div>
+<li class="level1"><div class="li"> Left mouse button is used for selecting and drawing.</div>
 </li>
 <li class="level1"><div class="li"> Middle mouse button is either move object (just hold down the middle button over an object and move the mouse) or copy object (ALT key held down while holding down the middle button over object and move the mouse).</div>
 </li>
@@ -195,7 +195,7 @@ For more information on these options, please see the <code>${install_prefix}/sh
 <div class="level2">
 
 <p>
-Yes. Sub sheets are represented by special symbols on the top level schematic. You can find an example for a hierarchical design in the doc section of gschem (<code>geda-doc/examples/gTAG/gTAG.sch</code>). Currently, there is no way to automatically build a sub sheet symbol from an actual sub sheet. The sub sheet symbol has to be drawn manually. Any patches or external scripts that get the job done would be greatly appreciated.
+Yes. Sub sheets are represented by special symbols on the top level schematic. You can find an example of a hierarchical design in the doc section of gschem (<code>geda-doc/examples/gTAG/gTAG.sch</code>). Currently, there is no way to automatically build a sub sheet symbol from an actual sub sheet. The sub sheet symbol has to be drawn manually. Any patches or external scripts that get the job done would be greatly appreciated.
 </p>
 
 <p>
