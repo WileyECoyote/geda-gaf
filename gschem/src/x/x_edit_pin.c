@@ -807,7 +807,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
                                     w_current);
 
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
-  g_object_set (main_vbox, "visible", TRUE, NULL);
+  gtk_widget_show (main_vbox);
 
   table = (GtkTable*)gtk_table_new (5, 3, FALSE);
   gtk_table_set_row_spacings (table, DIALOG_V_SPACING);
@@ -834,33 +834,33 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   geda_option_widget_set_menu(optionmenu, create_menu_pin_type ());
   gtk_table_attach_defaults(table, optionmenu, 1,2,0,1);
   gtk_widget_set_tooltip_text(optionmenu, type_combo_tip);
-  g_object_set (optionmenu, "visible", TRUE, NULL);
+  gtk_widget_show (optionmenu);
 
   attributemenu = geda_option_menu_new ();
   geda_option_widget_set_menu(attributemenu, create_menu_pin_electricals());
 
   gtk_table_attach_defaults(table, attributemenu, 1,2,1,2);
   gtk_widget_set_tooltip_text(attributemenu,  attrib_combo_tip);
-  g_object_set (attributemenu, "visible", TRUE, NULL);
+  gtk_widget_show (attributemenu);
 
   number_entry = gtk_entry_new();
   gtk_entry_set_activates_default(GTK_ENTRY(number_entry), TRUE);
   gtk_table_attach_defaults(table, number_entry, 1,2,2,3);
   gtk_widget_set_tooltip_text(number_entry, num_entry_tip);
-  g_object_set (number_entry, "visible", TRUE, NULL);
+  gtk_widget_show (number_entry);
 
   sequence_spin = gtk_spin_button_new_with_range(1, 100000, 1);
   gtk_entry_set_activates_default(GTK_ENTRY(sequence_spin), TRUE);
   gtk_table_attach_defaults(table, sequence_spin, 1,2,3,4);
   gtk_widget_set_tooltip_text(sequence_spin, seq_spin_tip);
-  g_object_set (sequence_spin, "visible", TRUE, NULL);
+  gtk_widget_show (sequence_spin);
 
   label_entry = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(label_entry), TRUE);
   gtk_editable_select_region(GTK_EDITABLE(label_entry), 0, -1);
   gtk_table_attach_defaults(table, label_entry, 1,2,4,5);
   gtk_widget_set_tooltip_text(label_entry, label_entry_tip);
-  g_object_set (label_entry, "visible", TRUE, NULL);
+  gtk_widget_show (label_entry);
 
   HD_SEPERATOR (main_vbox, Options);
 
@@ -868,7 +868,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   alignment = gtk_alignment_new(0, 0, 1, 1);
   gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0, DIALOG_INDENTATION, 0);
   gtk_box_pack_start(GTK_BOX(main_vbox), alignment, FALSE, FALSE, 0);
-  g_object_set (alignment, "visible", TRUE, NULL);
+  gtk_widget_show (alignment);
 
   /* Create a second table for Switch controls */
   table = (GtkTable*)gtk_table_new (5, 5, FALSE);
