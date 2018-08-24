@@ -33,6 +33,7 @@
 
 /** \defgroup Component-Dialog Component Selection Dialog
  *  @{
+ *  \ingroup Standard-Dialogs
  *  \ingroup (Standard-Dialogs)
  *  \image html component_select_dialog.png
  *  \image latex component_select_dialog.png
