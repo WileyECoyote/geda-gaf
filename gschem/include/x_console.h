@@ -30,7 +30,7 @@
  */
 /** \defgroup Console-Dialog Console Dialog
  *    @{
- *    \ingroup (Standard-Dialogs)
+ *    \ingroup Standard-Dialogs
  *    \image html console_dialog.png
  *    \image latex console_dialog.png
  *    @} end group Logging-Handlers
