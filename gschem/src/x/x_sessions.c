@@ -42,7 +42,7 @@
  *  @{
  *  \ingroup (Gschem-Session-System Standard-Dialogs)
  *  \par This group contains core Routines for Sessions Dialogs.
- *   This group contains routines for 4 dialogs to support Geschem
+ *   This group contains routines for 4 dialogs to support Gschem
  *   Sessions, the Sessions dialogs are:
  *
  *              1. Manage Sessions
