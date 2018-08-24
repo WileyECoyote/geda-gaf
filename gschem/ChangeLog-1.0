@@ -10,6 +10,13 @@
           * dialogs/pin_dialog.png
           * dialogs/slot_dialog.png
 
+    * include/x_confirm_close.h: Add Doxygen group ConfirmCloseDialog in
+      the header, with links to images.
+
+    * src/x/x_confirm_close.c: Rename Doxygen group Confirm-Exit-Dialog
+      -> Confirm-Close-Dialog and nest inside the ConfirmCloseDialog
+      group.
+
 2018-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/pin_dialog.png: Update image with new layout.

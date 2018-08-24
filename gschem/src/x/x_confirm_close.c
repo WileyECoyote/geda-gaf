@@ -23,17 +23,21 @@
  */
 /*!
  * \file x_confirm_close.c
- * \brief Confirm-Exit-Dialog Class Definition and Implementatiom Module
+ * \brief Confirm-Close-Dialog Class Definition and Implementatiom Module
  */
 
 #include <gschem.h>
 
 #include <geda_debug.h>
 
-/** \defgroup Confirm-Exit-Dialog Confirm Exit Dialog
- *  @{ \memberof Systemic-Dialogs
- *  \image html confirm_close_dialog.png
- *  \image latex confirm_close_dialog.png "Confirm Close" width=14cm
+/** \defgroup Confirm-Close-Dialog Confirm Close Dialog Implementation
+ *  @{
+ *  \ingroup ConfirmCloseDialog Systemic-Dialogs
+ *  This group contains routines for the Confirm Close dialog. The
+ *  Component Select Dialog implements ConfirmCloseDialog Class and
+ *  is used to alert users of unsaved documents when closing documents
+ *  or exiting the program. Users are given the option to save the
+ *  pages.
 */
 
 #include <x_confirm_close.h>

@@ -29,6 +29,14 @@
  * \brief header for the Confirm Close Dialog
  */
 
+/** \defgroup ConfirmCloseDialog Confirm Close Dialog Class
+ *  @{
+ *  \ingroup Systemic-Dialogs
+ *  \image html confirm_close_dialog.png
+ *  \image latex confirm_close_dialog.png "Confirm Close" width=14cm
+ *  @} end group ConfirmCloseDialog
+ */
+
 /*! \class ConfirmCloseDialog x_confirm_close.h "x_confirm_close.h"
  *  \brief Confirm Close Dialog
  *  \par
