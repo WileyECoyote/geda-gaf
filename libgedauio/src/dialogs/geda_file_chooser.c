@@ -1040,7 +1040,7 @@ geda_file_chooser_get_extra_widget(GtkWidget *hideous)
  *   gtk_file_chooser_set_extra_widget (file_chooser, toggle);
  * \endcode
  *
- * A container such as a #GtkBox can be used to set more than one extra
+ * A container such as a GtkBox can be used to set more than one extra
  * widget in the file chooser, set the container as the whole extra
  * widget.
  */
