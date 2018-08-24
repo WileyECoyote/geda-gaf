@@ -126,7 +126,7 @@ GtkWidget  *geda_font_dialog_new_with_window    (const char     *title,
 
 GdkFont    *geda_font_dialog_get_font           (GedaFontDialog *dialog);
 bool        geda_font_dialog_set_font           (GedaFontDialog *dialog,
-                                                 GdkFont        *Font);
+                                                 GdkFont        *font);
 
 PFD        *geda_font_dialog_get_font_desc      (GedaFontDialog *dialog);
 void        geda_font_dialog_set_font_desc      (GedaFontDialog *dialog,
