@@ -62,7 +62,7 @@
 #define GSCHEM_TYPE_DIALOG           (gschem_dialog_get_type())
 #define GSCHEM_DIALOG(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_DIALOG, GschemDialog))
 #define GSCHEM_DIALOG_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass),  GSCHEM_TYPE_DIALOG, GschemDialogClass))
-#define GSCHEM_IS_DIALOG(obj)        (is_a_gschem_dialog(obj))
+#define GSCHEM_IS_DIALOG(obj)        (is_a_gschem_dialog((GschemDialog*)(obj)))
 #define GSCHEM_DIALOG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),  GSCHEM_TYPE_DIALOG, GschemDialogClass))
 
 typedef struct _GschemDialogClass GschemDialogClass;
