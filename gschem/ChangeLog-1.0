@@ -1,3 +1,15 @@
+2018-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gschem.dox: Add files to HTML_EXTRA_FILES and LATEX_EXTRA_FILES
+      tags:
+
+          * images/buffers.png
+          * dialogs/component_properties_dialog.png
+          * dialogs/error_dialog.png
+          * dialogs/load_backup.png
+          * dialogs/pin_dialog.png
+          * dialogs/slot_dialog.png
+
 2018-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/pin_dialog.png: Update image with new layout.
