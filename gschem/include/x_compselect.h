@@ -34,7 +34,6 @@
 /** \defgroup Component-Dialog Component Selection Dialog
  *  @{
  *  \ingroup Standard-Dialogs
- *  \ingroup (Standard-Dialogs)
  *  \image html component_select_dialog.png
  *  \image latex component_select_dialog.png
  *  @} end group Component-Dialog
@@ -82,7 +81,7 @@ GedaType compselect_behavior_get_type (void);
 #define TYPE_COMPSELECT           (compselect_get_type())
 #define COMPSELECT(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_COMPSELECT, Compselect))
 #define COMPSELECT_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_COMPSELECT, CompselectClass))
-#define IS_COMPSELECT(obj)        (is_a_compselect((Compselect*)obj))
+#define IS_COMPSELECT(obj)        (is_a_compselect((Compselect*)(obj)))
 #define COMPSELECT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_COMPSELECT, CompselectClass))
 
 typedef struct _CompselectClass CompselectClass;
