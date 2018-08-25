@@ -259,9 +259,8 @@ msgid "Unknown option character"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help for more information"
+msgstr "help for more information"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1114,9 +1113,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Translating schematic"
+msgstr "Translating objects"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
 msgid "Translating schematic"
@@ -1657,7 +1655,6 @@ msgid "multitasking mode"
 msgstr ""
 
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
 msgstr "Unknown"
 
@@ -2857,9 +2854,8 @@ msgid "_Case:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:78
-#, fuzzy
 msgid "Change the text case"
-msgstr "Enter new text size:"
+msgstr "Change the text size:"
 
 #: gschem/src/x/x_edit_text.c:79
 msgid "_Color:"
@@ -2926,14 +2922,12 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "Upper Left"
+msgstr "Upper"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "Lower Left"
+msgstr "Lower"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
@@ -2960,9 +2954,8 @@ msgid "Text alignment combobox"
 msgstr "Text alignment combobox"
 
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Text alignment combobox"
+msgstr "Text case combobox"
 
 #: gschem/src/x/x_edit_text.c:854
 msgid "Color options menu"
@@ -3457,9 +3450,8 @@ msgid "Undo"
 msgstr "Undo"
 
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Undo last operation"
+msgstr "Undo the last path segment"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4156,9 +4148,8 @@ msgid "Close Window canceled\n"
 msgstr "Close Window canceled\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA Schematic Editor"
+msgstr "Shutdown schematic Editor\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4677,9 +4668,8 @@ msgid "D_ocumentation..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Embed component in schematic"
+msgstr "View component documentation"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"

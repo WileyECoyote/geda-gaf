@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/en_GB.po: Update Great Britain.
+
 2018-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.dox: Add files to HTML_EXTRA_FILES and LATEX_EXTRA_FILES
