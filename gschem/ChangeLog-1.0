@@ -6,6 +6,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/nl.po: Update Dutch translations.
+
 2018-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.dox: Add files to HTML_EXTRA_FILES and LATEX_EXTRA_FILES

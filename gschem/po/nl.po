@@ -282,9 +282,8 @@ msgstr ""
 
 # Help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help voor meer informatie"
+msgstr "help voor meer informatie"
 
 # Carry out
 #: gschem/src/base/gschem_parsecmd.c:304
@@ -1193,9 +1192,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Vertaal schema"
+msgstr "Vertaal voorwerpen"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
 msgid "Translating schematic"
@@ -2335,9 +2333,8 @@ msgid "<b>Invalid Data.</b>"
 msgstr "<b>Onjuiste data.</b>"
 
 #: gschem/src/x/x_draw.cpp:463
-#, fuzzy
 msgid "Initializing: Graphics Renderer Adaptor..."
-msgstr "Initialiseren: grafische weergeveradapter...."
+msgstr "Initialiseren: grafische weergeveradapter..."
 
 # done
 #: gschem/src/x/x_draw.cpp:487
@@ -3014,9 +3011,8 @@ msgid "_Case:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:78
-#, fuzzy
 msgid "Change the text case"
-msgstr "Voer nieuwe tekstgrootte in:"
+msgstr "Verander de tekst geval"
 
 #: gschem/src/x/x_edit_text.c:79
 msgid "_Color:"
@@ -3085,24 +3081,21 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "Boven Links"
+msgstr "Boven"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "Onder Links"
+msgstr "Onder"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
 msgstr ""
 
-# Sequence
+# Sentence
 #: gschem/src/x/x_edit_text.c:319
-#, fuzzy
 msgid "Sentence"
-msgstr "Volgorde:"
+msgstr "Volzin"
 
 #: gschem/src/x/x_edit_text.c:678
 msgid "Edit Text Properties"
@@ -3121,11 +3114,10 @@ msgstr "Tekstinvoerveld"
 msgid "Text alignment combobox"
 msgstr "Tekstuitlijning combobox"
 
-# Text Alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Tekstuitlijning combobox"
+msgstr "Tekstvak combobox"
 
 #: gschem/src/x/x_edit_text.c:854
 msgid "Color options menu"
@@ -3669,11 +3661,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-# Undo the last action
+# Undo the last path segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Ontdoen de laatste actie"
+msgstr "Maak het laatste padsegment ongedaan"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4422,9 +4413,8 @@ msgid "Close Window canceled\n"
 msgstr "Venster sluiten geannuleerd\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA schema bewerking"
+msgstr "Afsluiten schematische editor\n"
 
 # Loading file
 #: gschem/src/x/x_window.c:771
@@ -4969,7 +4959,6 @@ msgstr "D_ocumentatie..."
 
 # Find component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
 msgstr "Zoek de component documentatie"
 
