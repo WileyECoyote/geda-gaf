@@ -229,9 +229,8 @@ msgid "Unknown option character"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help  további információért"
+msgstr "további információkért forduljon segítségé"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1095,13 +1094,12 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr "1 pont hiányzott x=%d, y=%d\n"
 
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Eltolás"
+msgstr "Objektumok fordítása"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
 msgid "Translating schematic"
-msgstr "Eltolás"
+msgstr "Eltolás vázlatos"
 
 #: gschem/src/object/o_delete.c:91
 #, c-format
@@ -1646,9 +1644,8 @@ msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Kiválasztás mód"
+msgstr "biztonságos mód"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
@@ -2872,9 +2869,8 @@ msgid "_Case:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:78
-#, fuzzy
 msgid "Change the text case"
-msgstr "Új betűméret:"
+msgstr "Módosítsa a szöveges esetet"
 
 #: gschem/src/x/x_edit_text.c:79
 msgid "_Color:"
@@ -2944,14 +2940,12 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "Bal felső"
+msgstr "Felső"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "Bal alsó"
+msgstr "Alsó"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
@@ -2979,11 +2973,10 @@ msgstr "Szöveg beviteli mező"
 msgid "Text alignment combobox"
 msgstr "Szöveg igazítása lehetőségek"
 
-# Text alignment combobox => Text alignment options
+# Text alignment combobox => Text case options
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Szöveg igazítása lehetőségek"
+msgstr "Szöveges esettanulmányok"
 
 #: gschem/src/x/x_edit_text.c:854
 msgid "Color options menu"
@@ -3486,10 +3479,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Visszavonás"
 
+# Undo the last path segment -> Undo the last segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Utolsó művelet visszavonása"
+msgstr "Törölje az utolsó szegmenst"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4188,10 +4181,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Ablak bezárása\n"
 
+# Shutdown schematic editor -> Shutting down schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA kapcsolásirajz-szerkesztő"
+msgstr "A vázlatos szerkesztő leállítása\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4714,9 +4707,8 @@ msgid "D_ocumentation..."
 msgstr "D_okumentáció..."
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Alkatrész dokumentáció"
+msgstr "Az összetevők dokumentációjának megtekintése"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
