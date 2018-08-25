@@ -277,9 +277,8 @@ msgid "Unknown option character"
 msgstr "Onbekende opsie karakter"
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "Kyk op die puntelys vir meer inligting"
+msgstr "help vir meer inligting"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1159,9 +1158,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr "Punt 1 gemis x=%d, y=%d\n"
 
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Verskuif stroombaandiagram"
+msgstr "Vertaal voorwerpe"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
 msgid "Translating schematic"
@@ -2934,12 +2932,12 @@ msgstr "Kies die kenmerk van teksbelyning"
 
 #: gschem/src/x/x_edit_text.c:78
 msgid "_Case:"
-msgstr ""
+msgstr "geval:"
 
+# Change the text case
 #: gschem/src/x/x_edit_text.c:78
-#, fuzzy
 msgid "Change the text case"
-msgstr "Gee nuwe teksgrootte aan:"
+msgstr "Verander die tekssaak"
 
 #: gschem/src/x/x_edit_text.c:79
 msgid "_Color:"
@@ -3008,23 +3006,20 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "Links Bo"
+msgstr "Boonste"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "Links Onder"
+msgstr "Onder"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:319
-#, fuzzy
 msgid "Sentence"
-msgstr "Volgorde:"
+msgstr "Vonnis"
 
 #: gschem/src/x/x_edit_text.c:678
 msgid "Edit Text Properties"
@@ -3046,9 +3041,8 @@ msgstr "Teks belyning comboboks"
 
 # Text alignment combobox
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Teks belyning comboboks"
+msgstr "Teks geval kamobox"
 
 # Color options menu
 #: gschem/src/x/x_edit_text.c:854
@@ -3555,9 +3549,8 @@ msgid "Undo"
 msgstr "Maak Ongedaan"
 
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Maak laaste handeling ongedaan"
+msgstr "Ontdoen die laaste polygoon segment"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4260,9 +4253,8 @@ msgid "Close Window canceled\n"
 msgstr "Sluit Venster\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA Stroombaandiagram Bewerker"
+msgstr "Afsluit skematiese redakteur\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4785,9 +4777,8 @@ msgid "D_ocumentation..."
 msgstr "Dokumentasie..."
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Komponentmodus"
+msgstr "Bekyk komponent dokumentasie"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
