@@ -238,11 +238,10 @@ msgstr "Nieznana opcja"
 msgid "Unknown option character"
 msgstr ""
 
-# for more information
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help po więcej informacji"
+msgstr "help po więcej informacji"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1165,11 +1164,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
-# Translating schematic
+# Translating objects
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Tłumaczenie schematu"
+msgstr "Tłumaczenie obiektów"
 
 # Translating schematic
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
@@ -2318,7 +2316,6 @@ msgstr "<b>Nieprawidłowe dane.</b>"
 
 # Initializing: Graphics Renderer Adaptor
 #: gschem/src/x/x_draw.cpp:463
-#, fuzzy
 msgid "Initializing: Graphics Renderer Adaptor..."
 msgstr "Inicjalizacja: Adapter Renderer graficzny..."
 
@@ -3030,9 +3027,8 @@ msgid "_Case:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:78
-#, fuzzy
 msgid "Change the text case"
-msgstr "Wprowadź nowy rozmiar czcionki:"
+msgstr "Zmień wielkość liter"
 
 #: gschem/src/x/x_edit_text.c:79
 msgid "_Color:"
@@ -3102,14 +3098,12 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "Na górze po lewej"
+msgstr "Górny"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "Na dole po lewej"
+msgstr "Dolny"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
@@ -3117,9 +3111,8 @@ msgstr ""
 
 # Sequence
 #: gschem/src/x/x_edit_text.c:319
-#, fuzzy
 msgid "Sentence"
-msgstr "Sekwencji:"
+msgstr "Zdanie"
 
 #: gschem/src/x/x_edit_text.c:678
 msgid "Edit Text Properties"
@@ -3139,11 +3132,10 @@ msgstr "pole wprowadzania tekstu"
 msgid "Text alignment combobox"
 msgstr "Tekst wyrównanie combobox"
 
-# Text Alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Tekst wyrównanie combobox"
+msgstr "Zestaw tekstowy combobox"
 
 # Color options menu
 #: gschem/src/x/x_edit_text.c:854
@@ -3693,9 +3685,8 @@ msgstr "Cofnij"
 
 # Undo the last operation
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Cofnij ostatnią operację"
+msgstr "Cofnij ostatni segment ścieżki"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4447,10 +4438,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Zamknięte okno zostało anulowane\n"
 
+# Shutdown schematic editor -> Shutting down schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA Edytor Schematów"
+msgstr "Shutdown schematic editor\n"
 
 # load file
 #: gschem/src/x/x_window.c:771
@@ -5013,11 +5004,10 @@ msgstr "Wybór powiększenia"
 msgid "D_ocumentation..."
 msgstr "Do_kumentacja..."
 
-# Find component documentation
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Znajdź dokumentację komponentu"
+msgstr "Zobacz dokumentację komponentu"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
