@@ -12,6 +12,9 @@
 
             * diode/zener53/zener_20_1N5357B.sym
 
+    * logic/74H/74HC74-1.sym: Add symbol; high speed CMOS version of
+      dual D-flip-flops with preset and clear.
+
     * philips/TDA8944J-1.sym: Add symbol; 4 Channel Power Amplifier,
       Bridgeable or single ended.
 
