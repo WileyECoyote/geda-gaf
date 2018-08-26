@@ -10,6 +10,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/ru.po: Update Russian translations.
+
 2018-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.dox: Add files to HTML_EXTRA_FILES and LATEX_EXTRA_FILES

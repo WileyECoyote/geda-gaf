@@ -286,9 +286,8 @@ msgstr "Неизвестный параметр"
 
 # --help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--help Для получения более подробной информации"
+msgstr "помощь для получения более подробной информации"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1224,9 +1223,8 @@ msgstr ""
 
 # Offset Diagrams
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Смещение схемы"
+msgstr "Перевод объектов"
 
 # Offset Diagrams
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
@@ -1811,11 +1809,10 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# Deselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Режим отмены выделения"
+msgstr "безопасный режим"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
@@ -1823,7 +1820,6 @@ msgstr ""
 
 # Имеется в виду цвет
 #: gschem/src/x/x_console.c:188
-#, fuzzy
 msgid "unknown"
 msgstr "Неизвестный"
 
@@ -3163,14 +3159,12 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "слева сверху"
+msgstr "сверху"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "слева снизу"
+msgstr "снизу"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
@@ -3198,11 +3192,10 @@ msgstr "Поле ввода текста"
 msgid "Text alignment combobox"
 msgstr "Выравнивание текста Поле со списком"
 
-# Text Alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Выравнивание текста Поле со списком"
+msgstr "Текстовое поле со списком"
 
 #: gschem/src/x/x_edit_text.c:854
 msgid "Color options menu"
@@ -3754,9 +3747,8 @@ msgstr "Отменить"
 
 # Undo the last action
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Отменить последнее действие"
+msgstr "Отменить последний сегмент пути"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4520,9 +4512,8 @@ msgid "Close Window canceled\n"
 msgstr "Закрыть окно отменено\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "Схемотехнический редактор gEDA"
+msgstr "Выключение схематичного редактора\n"
 
 # Loading file
 #: gschem/src/x/x_window.c:771
@@ -5079,11 +5070,10 @@ msgstr "Выделение"
 msgid "D_ocumentation..."
 msgstr "Д_окументация..."
 
-# Find component documentation
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "Найти документацию по компонентам"
+msgstr "Просмотр документации по компонентам"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
