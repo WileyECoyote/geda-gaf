@@ -15,6 +15,15 @@
     * philips/TDA8944J-1.sym: Add symbol; 4 Channel Power Amplifier,
       Bridgeable or single ended.
 
+    * st/L298_2.sym: Add value and documentation attributes, update
+      attribute sequence.
+
+    * st/L620x:
+
+            * st/L6201.sym
+            * st/L6202-1.sym
+            * st/L6203-1.sym
+
 2018-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
