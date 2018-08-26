@@ -1,0 +1,183 @@
+v 20160214 2
+P 2100 2300 1800 2300 1 0 0
+{
+T 2000 2350 5 8 1 1 0 6 1
+pinnumber=1
+T 2000 2150 5 8 0 1 0 6 1
+pinseq=1
+T 1750 2300 9 8 1 1 0 6 1
+pinlabel=OUT1
+T 1750 2250 5 8 1 1 0 8 1
+pintype=out
+}
+P 2100 1900 1800 1900 1 0 0
+{
+T 2000 1950 5 8 1 1 0 6 1
+pinnumber=2
+T 2000 1750 5 8 0 1 0 6 1
+pinseq=2
+T 1750 1900 9 8 1 1 0 6 1
+pinlabel=OUT2
+T 1750 1850 5 8 1 1 0 8 1
+pintype=out
+}
+P 2100 3100 1800 3100 1 0 0
+{
+T 2000 3150 5 8 1 1 0 6 1
+pinnumber=3
+T 2000 2950 5 8 0 1 0 6 1
+pinseq=3
+T 1750 3100 9 8 1 1 0 6 1
+pinlabel=VCC1
+T 1750 3050 5 8 1 1 0 8 1
+pintype=pwr
+}
+P 100 2700 400 2700 1 0 0
+{
+T 200 2750 5 8 1 1 0 0 1
+pinnumber=4
+T 200 2550 5 8 0 1 0 0 1
+pinseq=4
+T 450 2700 9 8 1 1 0 0 1
+pinlabel=IN1
+T 450 2650 5 8 1 1 0 2 1
+pintype=in
+}
+P 100 2300 400 2300 1 0 0
+{
+T 200 2350 5 8 1 1 0 0 1
+pinnumber=5
+T 200 2150 5 8 0 1 0 0 1
+pinseq=5
+T 450 2300 9 8 1 1 0 0 1
+pinlabel=in2
+T 450 2250 5 8 1 1 0 2 1
+pintype=in
+}
+P 100 1100 400 1100 1 0 0
+{
+T 200 1150 5 8 1 1 0 0 1
+pinnumber=6
+T 200 950 5 8 0 1 0 0 1
+pinseq=6
+T 450 1100 9 8 1 1 0 0 1
+pinlabel=SVR
+T 450 1050 5 8 1 1 0 2 1
+pintype=in
+}
+P 100 3100 400 3100 1 0 0
+{
+T 200 3150 5 8 1 1 0 0 1
+pinnumber=7
+T 200 2950 5 8 0 1 0 0 1
+pinseq=7
+T 450 3100 9 8 1 1 0 0 1
+pinlabel=STBY
+T 450 3050 5 8 1 1 0 2 1
+pintype=in
+}
+P 2100 300 1800 300 1 0 0
+{
+T 2000 350 5 8 1 1 0 6 1
+pinnumber=8
+T 2000 150 5 8 0 1 0 6 1
+pinseq=8
+T 1750 300 9 8 1 1 0 6 1
+pinlabel=PGND
+T 1750 250 5 8 1 1 0 8 1
+pintype=pwr
+}
+P 100 300 400 300 1 0 0
+{
+T 200 350 5 8 1 1 0 0 1
+pinnumber=9
+T 200 150 5 8 0 1 0 0 1
+pinseq=9
+T 450 300 9 8 1 1 0 0 1
+pinlabel=SGND
+T 450 250 5 8 1 1 0 2 1
+pintype=pwr
+}
+P 100 700 400 700 1 0 0
+{
+T 200 750 5 8 1 1 0 0 1
+pinnumber=10
+T 200 550 5 8 0 1 0 0 1
+pinseq=10
+T 450 700 9 8 1 1 0 0 1
+pinlabel=DIAG
+T 450 650 5 8 1 1 0 2 1
+pintype=pas
+}
+P 400 1500 100 1500 1 0 1
+{
+T 302 1566 5 8 1 1 0 6 1
+pinnumber=11
+T 302 1366 5 8 0 1 0 6 1
+pinseq=11
+T 450 1500 9 8 1 1 0 0 1
+pinlabel=IN4
+T 450 1450 5 8 1 1 0 2 1
+pintype=in
+}
+P 400 1900 100 1900 1 0 1
+{
+T 302 1966 5 8 1 1 0 6 1
+pinnumber=12
+T 302 1766 5 8 0 1 0 6 1
+pinseq=12
+T 450 1900 9 8 1 1 0 0 1
+pinlabel=IN3
+T 450 1850 5 8 1 1 0 2 1
+pintype=in
+}
+P 1800 2700 2100 2700 1 0 1
+{
+T 1898 2765 5 8 1 1 0 0 1
+pinnumber=13
+T 1898 2565 5 8 0 1 0 0 1
+pinseq=13
+T 1750 2700 9 8 1 1 0 6 1
+pinlabel=VCC
+T 1750 2650 5 8 1 1 0 8 1
+pintype=pwr
+}
+P 1800 1100 2100 1100 1 0 1
+{
+T 1898 1166 5 8 1 1 0 0 1
+pinnumber=14
+T 1898 966 5 8 0 1 0 0 1
+pinseq=14
+T 1750 1100 9 8 1 1 0 6 1
+pinlabel=OUT4
+T 1750 1050 5 8 1 1 0 8 1
+pintype=out
+}
+P 1800 1500 2100 1500 1 0 1
+{
+T 1898 1565 5 8 1 1 0 0 1
+pinnumber=15
+T 1898 1365 5 8 0 1 0 0 1
+pinseq=15
+T 1750 1500 9 8 1 1 0 6 1
+pinlabel=OUT3
+T 1750 1450 5 8 1 1 0 8 1
+pintype=out
+}
+B 400 100 1400 3200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 4200 5 10 0 1 0 0 1
+description=Power Amplifier, 4 Channel, BTL,SE
+T 400 3800 8 10 1 1 0 0 1
+refdes=U?
+T 400 4600 5 10 0 1 0 0 1
+documentation=http://www.st.com/resource/en/datasheet/tda7375v.pdf
+T 400 3400 9 10 1 1 0 0 1
+footprint=Multiwatt15
+T 400 4400 9 10 0 0 0 0 1
+numslots=0
+T 400 3600 5 10 1 1 0 0 1
+value=TDA7375V
+T 400 4000 5 10 0 0 0 0 1
+device=TDA7375V
+T 400 4800 5 10 0 0 0 0 1
+author=AutoTron

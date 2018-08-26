@@ -16,13 +16,16 @@
       dual D-flip-flops with preset and clear.
 
     * philips/TDA8944J-1.sym: Add symbol; 4 Channel Power Amplifier,
-      Bridgeable or single ended.
+      bridgeable or single ended.
 
     * philips/TDA9881-1.sym: Add symbol; PAL, NTSC,  FM sound IF PLL
       demodulator.
 
     * st/L298_2.sym: Add value and documentation attributes, update
       attribute sequence.
+
+    * st/TDA7375V-1.sym: Add symbol; Power Amplifier, 4 Channel, SE
+      or bridgeable.
 
 2018-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
