@@ -24,11 +24,13 @@ pinlabel=1
 T 250 50 5 8 0 1 0 0 1
 pintype=pas
 }
-T 300 550 5 10 0 1 0 0 1
+T 300 350 5 10 0 1 0 0 1
 device=JUMPER
 T 300 700 8 10 1 1 0 0 1
 refdes=J?
-T 300 350 8 10 0 1 0 0 1
+T 300 500 5 10 1 1 0 0 1
+description=Jumper block
+T 300 1000 8 10 0 1 0 0 1
 footprint=JUMPER-1
 T 300 200 5 10 0 0 0 0 1
 numslots=0

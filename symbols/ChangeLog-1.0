@@ -6,6 +6,8 @@
             * generic/connector40-1.sym
             * generic/connector41-1.sym
 
+    * connector/jumper/jumper-1p1p-1.sym: Add description attribute.
+
 2018-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
