@@ -1132,9 +1132,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "回路図の翻訳"
+msgstr "オブジェクトの翻訳"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
 msgid "Translating schematic"
@@ -2984,14 +2983,12 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "上 左"
+msgstr "上"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "下 左"
+msgstr "下"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
@@ -3019,11 +3016,10 @@ msgstr "テキスト入力フィールド"
 msgid "Text alignment combobox"
 msgstr "テキストアライメントコンボボックス"
 
-# Text alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "テキストアライメントコンボボックス"
+msgstr "テキストケースのコンボボックス"
 
 #: gschem/src/x/x_edit_text.c:854
 msgid "Color options menu"
@@ -3523,9 +3519,8 @@ msgid "Undo"
 msgstr "アンドゥ"
 
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "アンドゥ"
+msgstr "最後のパスセグメントを元に戻す"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4745,9 +4740,8 @@ msgid "D_ocumentation..."
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "部品モード"
+msgstr "コンポーネントのドキュメントを表示する"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
