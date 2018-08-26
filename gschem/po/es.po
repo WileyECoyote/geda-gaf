@@ -265,9 +265,8 @@ msgid "Unknown option character"
 msgstr "opción desconocida carta"
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "Verifique el registro para más información"
+msgstr "ayuda para más información"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1144,9 +1143,8 @@ msgstr ""
 
 # Translating schematic
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:296
-#, fuzzy
 msgid "Translating objects"
-msgstr "Esquema de traducción"
+msgstr "Traducir objetos"
 
 # Translating schematic
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:300
@@ -2930,9 +2928,8 @@ msgid "_Case:"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:78
-#, fuzzy
 msgid "Change the text case"
-msgstr "Introduzca nuevo tamaño de texto:"
+msgstr "Cambiar la caja de texto"
 
 #: gschem/src/x/x_edit_text.c:79
 msgid "_Color:"
@@ -3001,14 +2998,12 @@ msgid "Leave as is"
 msgstr ""
 
 #: gschem/src/x/x_edit_text.c:307
-#, fuzzy
 msgid "Upper"
-msgstr "Arriba a la izquierda"
+msgstr "Arriba"
 
 #: gschem/src/x/x_edit_text.c:311
-#, fuzzy
 msgid "Lower"
-msgstr "Abajo a la izquierda"
+msgstr "Abajo"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
@@ -3036,11 +3031,10 @@ msgstr "Campo de entrada de texto"
 msgid "Text alignment combobox"
 msgstr "Combinación de alineación de texto"
 
-# Text alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:849
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Combinación de alineación de texto"
+msgstr "Combobox de caja de texto"
 
 #: gschem/src/x/x_edit_text.c:854
 msgid "Color options menu"
@@ -3540,9 +3534,8 @@ msgid "Undo"
 msgstr "Deshacer"
 
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Deshacer última operación"
+msgstr "Deshace el último segmento de ruta"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2067
 msgid "Open an existing schematic or symbol file"
@@ -4252,9 +4245,8 @@ msgid "Close Window canceled\n"
 msgstr "_Cerrar ventana\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "Editor de esquemas gEDA"
+msgstr "Shutdown schematic editor\n"
 
 # Loading file
 #: gschem/src/x/x_window.c:771
@@ -4776,9 +4768,8 @@ msgid "D_ocumentation..."
 msgstr "D_ocumentación..."
 
 #: gschem/etc/system-gschemrc.scm:2207
-#, fuzzy
 msgid "View component documentation"
-msgstr "D_ocumentación del componente..."
+msgstr "Ver la documentación del componente"
 
 #: gschem/etc/system-gschemrc.scm:2208
 msgid "Show/Hide Inv Text"
