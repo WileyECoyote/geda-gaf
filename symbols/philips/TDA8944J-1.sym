@@ -192,7 +192,7 @@ description=Power Amplifier, 4 Channel, BTL,SE
 T 300 4500 8 10 1 1 0 0 1
 refdes=U?
 T 300 5300 5 10 0 1 0 0 1
-documentation=https://www.nxp.com/docs/en/data-sheet/TDA8944J.pdf
+documentation=http://www.nxp.com/docs/en/data-sheet/TDA8944J.pdf
 T 300 4100 9 10 1 1 0 0 1
 footprint=SOT243-1
 T 300 5100 9 10 0 0 0 0 1
