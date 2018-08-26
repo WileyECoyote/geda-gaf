@@ -8,6 +8,10 @@
 
     * connector/jumper/jumper-1p1p-1.sym: Add description attribute.
 
+    * diode/zener53: Add symbol for 5 Watt zener diode:
+
+            * diode/zener53/zener_20_1N5357B.sym
+
 2018-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
