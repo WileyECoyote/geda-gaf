@@ -120,7 +120,7 @@ typedef enum  { ExpandFolder,
                 ToolTipsOn,
                 ToolTipsOff
 
-}  IDS_CS_Popup_items; /* Enumerators to reference the string below: */
+} IDE_CS_Popup_items; /* Enumerators to reference the string below: */
 
 static char *popup_items[]={ N_("Open"),
                              N_("Open all"),

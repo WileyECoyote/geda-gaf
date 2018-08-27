@@ -8,7 +8,8 @@
       is set to NO in the Doxyfile.
 
     * src/x/x_compselect.c: Add Doxygen typedef tag for type
-      ControlID and add IDE_CS_ControlID.
+      ControlID and add IDE_CS_ControlID. Rename IDS_CS_Popup
+      _items -> IDE_CS_Popup_items.
 
     * src/x/x_dialog.c: Remove redundant cast to GtkBox in
       x_dialog_translate.
