@@ -1,4 +1,4 @@
-2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
+2018-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex.c: Eliminate first call to o_invalidate_all
       in o_complex_translate_all, does not seem to make sense to redraw
@@ -23,6 +23,8 @@
     * src/x/x_dialog.c: Remove redundant cast to GtkBox in
       x_dialog_translate. Revise Doxygen blocks, update grammar
       spelling.
+
+    * src/x/x_edit_text.c: Rename align_menu_model -> menu_model.
 
 2018-08-25 Wiley E. Hill <wileyhill@gmail.com>
 

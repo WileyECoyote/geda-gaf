@@ -413,16 +413,16 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
 
   if (!ThisDialog) {
 
-    AtkObject *atk_text_obj;
     AtkObject *atk_align_obj;
     AtkObject *atk_color_obj;
     AtkObject *atk_font_obj;
     AtkObject *atk_rotate_obj;
+    AtkObject *atk_text_obj;
 
-    GtkWidget *text_label;
-    GtkWidget *color_label;
-    GtkWidget *font_label;
     GtkWidget *align_label;
+    GtkWidget *color_label;
+    GtkWidget *text_label;
+    GtkWidget *font_label;
     GtkWidget *rotate_label;
     GtkWidget *label;
 
@@ -437,13 +437,13 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     GtkWidget *RotationSpin;
     GtkWidget *scrolled_window;
 
-    GtkListStore    *align_menu_model;
+    GtkListStore    *menu_model;
     GtkCellRenderer *cell;
 
     const char *font_name;
 
-    const char *text_entry_tip;
     const char *text_align_tip;
+    const char *text_entry_tip;
     const char *color_menu_tip;
     const char *font_button_tip;
     const char *rotation_tip;
@@ -521,14 +521,14 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     align_label = geda_aligned_mnemonic_label_new(_LABEL(TextAlign), 0, 0);
     gtk_table_attach(GTK_TABLE(table), align_label, 0,1,0,1, GTK_FILL,0,0,0);
 
-    align_menu_model = create_menu_alignment(w_current);
-    combobox = geda_combo_box_new_with_model(GTK_TREE_MODEL(align_menu_model));
+    menu_model = create_menu_alignment(w_current);
+    combobox = geda_combo_box_new_with_model(GTK_TREE_MODEL(menu_model));
     geda_combo_widget_set_wrap_width(combobox, 3);
     cell = gtk_cell_renderer_text_new();
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combobox), cell, TRUE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combobox),
                                    cell, "text", 0, NULL);
-    GEDA_UNREF (align_menu_model);
+    GEDA_UNREF (menu_model);
     gtk_table_attach_defaults(GTK_TABLE(table), combobox, 1,2,0,1);
     gtk_widget_set_tooltip_text (GTK_WIDGET(combobox), text_align_tip);
 
@@ -555,16 +555,16 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     g_object_set (font_button, "use-font", TRUE, "show-style", FALSE, NULL);
 
     gtk_table_attach (GTK_TABLE (table), font_button, 1, 2, 2, 3,
-                      (GtkAttachOptions) ( GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
+                     (GtkAttachOptions) ( GTK_FILL),
+                     (GtkAttachOptions) (0), 0, 0);
 
     /* Text Rotation Label */
     rotate_label=geda_aligned_mnemonic_label_new(_LABEL(Rotation), 0,0);
-    gtk_table_attach(GTK_TABLE(table), rotate_label, 0,1,3,4, GTK_FILL,0,0,0);
+    gtk_table_attach(GTK_TABLE(table), rotate_label, 0,1,4,5, GTK_FILL,0,0,0);
 
     GEDA_NUMERIC_SPIN(Rotation, 0, 0, 359);
     gtk_widget_set_tooltip_text (GTK_WIDGET(RotationSpin), rotation_tip);
-    gtk_table_attach (GTK_TABLE (table), RotationSpin, 1, 2, 3, 4,
+    gtk_table_attach (GTK_TABLE (table), RotationSpin, 1, 2, 4, 5,
                       (GtkAttachOptions) ( GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
 
@@ -575,43 +575,44 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                       G_CALLBACK (widget_value_modified),
                       NULL);
 
-    GEDA_HOOKUP_OBJECT(ThisDialog, textentry,   IDS_TEXT_EDIT);
     GEDA_HOOKUP_OBJECT(ThisDialog, combobox,    WIDGET(TextAlign));
     GEDA_HOOKUP_OBJECT(ThisDialog, optionmenu,  WIDGET(TextColor));
     GEDA_HOOKUP_OBJECT(ThisDialog, font_button, WIDGET(TextFont));
+    GEDA_HOOKUP_OBJECT(ThisDialog, textentry,   IDS_TEXT_EDIT);
 
     /** Set the relationships between the label and their Widgets **/
-    geda_label_set_mnemonic_widget (GEDA_LABEL (text_label), textentry);
     geda_label_set_mnemonic_widget (GEDA_LABEL (align_label), combobox);
     geda_label_set_mnemonic_widget (GEDA_LABEL (color_label), optionmenu);
     geda_label_set_mnemonic_widget (GEDA_LABEL (font_label), font_button);
     geda_label_set_mnemonic_widget (GEDA_LABEL (rotate_label), RotationSpin);
+    geda_label_set_mnemonic_widget (GEDA_LABEL (text_label), textentry);
 
-    atk_text_obj   = atk_widget_linked_label_new (text_label, textentry);
     atk_align_obj  = atk_widget_linked_label_new (align_label, combobox);
     atk_color_obj  = atk_widget_linked_label_new (color_label, optionmenu);
     atk_font_obj   = atk_widget_linked_label_new (font_label, font_button);
     atk_rotate_obj = atk_widget_linked_label_new (rotate_label, RotationSpin);
+    atk_text_obj   = atk_widget_linked_label_new (text_label, textentry);
 
-    if (atk_text_obj) {
-      atk_object_set_name        (atk_text_obj,    _("Text input field"));
-      atk_object_set_description (atk_text_obj,       text_entry_tip);
-    }
     if (atk_align_obj) {
-      atk_object_set_name        (atk_align_obj,   _("Text alignment combobox"));
-      atk_object_set_description (atk_align_obj,      text_align_tip);
+      atk_object_set_name        (atk_align_obj,  _("Text alignment combobox"));
+      atk_object_set_description (atk_align_obj,     text_align_tip);
+    }
     }
     if (atk_color_obj) {
-      atk_object_set_name        (atk_color_obj,   _("Color options menu"));
-      atk_object_set_description (atk_color_obj,      color_menu_tip);
+      atk_object_set_name        (atk_color_obj,  _("Color options menu"));
+      atk_object_set_description (atk_color_obj,     color_menu_tip);
     }
     if (atk_font_obj) {
-      atk_object_set_name        (atk_font_obj,    _("Font selector button"));
+      atk_object_set_name        (atk_font_obj,   _("Font selector button"));
       atk_object_set_description (atk_font_obj,       font_button_tip);
     }
     if (atk_rotate_obj) {
-      atk_object_set_name        (atk_rotate_obj,  _("Text Rotation Angle Spinner Entry"));
-      atk_object_set_description (atk_rotate_obj,     rotation_tip);
+      atk_object_set_name        (atk_rotate_obj, _("Text Rotation Angle Spinner Entry"));
+      atk_object_set_description (atk_rotate_obj,    rotation_tip);
+    }
+    if (atk_text_obj) {
+      atk_object_set_name        (atk_text_obj,   _("Text input field"));
+      atk_object_set_description (atk_text_obj,      text_entry_tip);
     }
 
     /* Set the OKAY button to be the default widget */
