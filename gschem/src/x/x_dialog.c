@@ -236,7 +236,7 @@ GtkWidget *x_dialog_get_bulb_image (bool WhichState)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ *  Helper for Obsolete x_dialog_bulb_group_set_active
  */
 void x_dialog_set_bulb_on( GtkWidget *widget) {
 
@@ -258,7 +258,7 @@ void x_dialog_set_bulb_on( GtkWidget *widget) {
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ * Helper for Obsolete x_dialog_bulb_group_set_active
  */
 void x_dialog_set_bulb_off( GtkWidget *widget) {
 
@@ -280,7 +280,7 @@ void x_dialog_set_bulb_off( GtkWidget *widget) {
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ * Obsolete, use libgedauio GedaBulb
  */
 void x_dialog_bulb_group_set_active(GSList *RadioGroupList, int value)
 {
@@ -1139,18 +1139,22 @@ void x_dialog_color_menu_view_changed (GedaComboBox *cbox,
   eda_config_set_integer (cfg, grp, key, value);
 }
 
-/*! \brief Create a ComboBox with the gschem colors.
- *  \par Function Description
- *  Creates a GtkComboBox with the color list and swatches showing
+/*!
+ * \brief Create a ComboBox with the gschem colors.
+ * \par Function Description
+ *  Creates a GedaComboBox with the color list and swatches showing
  *  each of the available colors.
  *
  *  The backing GtkTreeModel is a GtkListStore with two columns, the
  *  first holding the user-friendly name of the color, and the other
  *  the color map index.
  *
- *  \param [in] w_current    The current gschem context
- *  \param [in] color_index  Value of current color index
+ * \param [in] w_current    The current gschem context
+ * \param [in] color_index  Value of current color index
  *
+ * \internal Use on:
+ *                   EditColor Dialog
+ *                   EditText Dialog
  */
 GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 {
@@ -1499,7 +1503,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
     type = LEAVE_ALONE;
 
   /* convert the options to integers, if string is "*varies*"
-   * then there are multible object with different values and
+   * then there are multiple object with different values and
    * the current value for each object should not be changed.
    * To indicate this, we set such fields to LEAVE_ALONE */
   width  = g_ascii_strcasecmp (width_str,
@@ -1597,6 +1601,7 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
   i_status_set_state (w_current, SELECT);
 
 }
+
 /*! \brief Handle selection change event for x_dialog_edit_fill_type
  *  \par Function Description
  *  Updates the fill_type dialog widgets when the selection changes.
@@ -2085,7 +2090,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   }
 
   /* convert the options to integers, if string is "*varies*"
-   * then there are multible object with different values and
+   * then there are multiple object with different values and
    * the current value for each object should not be changed.
    * To indicate this, we set such fields to LEAVE_ALONE */
   width =  g_ascii_strcasecmp (width_str,
@@ -2338,6 +2343,7 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
   Dialog = w_current->ltwindow;
+
   if (!Dialog) {
 
     Dialog = x_dialog_line_type_create_dialog(w_current);
@@ -3706,7 +3712,7 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
  *  Called when a symbol in a drawing being loaded is an older version
  *  than the same symbol in the library, based on the symversion in the
  *  symbol definition, to creates a message dialog notifying the user of
- *  such. This function only setups the basic dialog, see the preceding
+ *  such. This function only sets up the basic dialog, see the preceding
  *  function xd_add_changed_symbol_list.
  *
  *  \param [in] w_current Pointer to a GschemToplevel object

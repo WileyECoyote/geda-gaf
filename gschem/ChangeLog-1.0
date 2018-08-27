@@ -21,7 +21,8 @@
       Coordinates-Drag-N-Drop-Destination.
 
     * src/x/x_dialog.c: Remove redundant cast to GtkBox in
-      x_dialog_translate.
+      x_dialog_translate. Revise Doxygen blocks, update grammar
+      spelling.
 
 2018-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
