@@ -1430,7 +1430,6 @@ compselect_create_inuse_tree_model (Compselect *compselect)
  *  library views but not the IN-USE Tab.
  *
  * \param [in] w_current  GschemToplevel environment data.
- * \param [in] compselect This dialog.
  * \param [in] data_set   Enumerator assocated with the TAB for the TreeView.
  *
  * \returns [out] Ptr to Glist of selected sources matching the category.
