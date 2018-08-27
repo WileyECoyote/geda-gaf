@@ -44,8 +44,15 @@
  *  \par
  *   This group contains routines for the coordinates dialog and handles
  *   Drag-N-Drop events on the coordinates world entry widget.
- *
  */
+
+/** \defgroup Coordinates-Drag-N-Drop-Destination Coordinates Dialog Drag-N-Drop
+ *  @{
+ *  \par
+ *   This sub-group contains routines to handle signals receivable by
+ *   the Coordinates-Dialog as the destination. The Coordinates-Dialog
+ *   is not a Drag-N-Drop Source.
+*/
 
 static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_NONE,
@@ -55,13 +62,6 @@ static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_UTF8_STRING,
     GSCHEM_TARGET_OBJECTS,
 };
-
-/** \defgroup Coordinates-Drag-N-Drop-Destination Coordinates Dialog Drag-N-Drop
- *  @{ \par
- *          This sub-group contains routines to handle signals receivable by
- *          the Coordinates-Dialog as the destination. The  Coordinates-Dialog
- *          is not a Drag-N-Drop Source.
-*/
 
 /*!
  * \brief When Drag Received from the Source

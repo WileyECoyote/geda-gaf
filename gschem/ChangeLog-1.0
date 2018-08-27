@@ -11,6 +11,9 @@
       ControlID and add IDE_CS_ControlID. Rename IDS_CS_Popup
       _items -> IDE_CS_Popup_items.
 
+    * src/x/x_coord.c: Include dnd_target_list in Doxygen group
+      Coordinates-Drag-N-Drop-Destination.
+
     * src/x/x_dialog.c: Remove redundant cast to GtkBox in
       x_dialog_translate.
 
