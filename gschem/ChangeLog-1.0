@@ -1,5 +1,15 @@
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Add Doxygen typedef tag for type
+      ControlID and add IDE_AN_ControlID so that Doxygen stops
+      errently combining with other ControlID enumerations.
+      Doxygen appears to give priority to the enumeration so
+      this is a work-around, as long as TYPEDEF_HIDES_STRUCT
+      is set to NO in the Doxyfile.
+
+    * src/x/x_compselect.c: Add Doxygen typedef tag for type
+      ControlID and add IDE_CS_ControlID.
+
     * src/x/x_dialog.c: Remove redundant cast to GtkBox in
       x_dialog_translate.
 

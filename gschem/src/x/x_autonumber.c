@@ -89,8 +89,8 @@ typedef enum {
   SCOPE_HIERARCHY
 } AutoNumberScope;
 
-/*! \brief Enumerate Control IDs. */
-typedef enum {
+/*! \typedef Enumerated Control IDs */
+typedef enum IDE_AN_ControlID {
   /* Combo Entry */
   ScopeText,
 
@@ -1610,8 +1610,12 @@ static void autonumber_text_response(GtkWidget       *widget,
  */
 static void switch_responder(GtkWidget *widget, ControlID *Control)
 {
+  GtkWidget *SwitchImage;
+
   bool state = GET_SWITCH_STATE (widget);
-  GtkWidget *SwitchImage = get_geda_switch_image (state);
+
+  SwitchImage = get_geda_switch_image (state);
+
   gtk_button_set_image((GtkButton*)widget, SwitchImage);
 
   int WhichOne = (int)(long)Control;

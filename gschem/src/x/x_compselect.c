@@ -82,8 +82,8 @@ const char *IDS_CATEGORIES[] = {
   NULL
 };
 
-/* Enumerate Control IDs */
-typedef enum {
+/*! \typedef Enumerated Control IDs */
+typedef enum IDE_CS_ControlID {
        FilterEntry,
        ClearButton,
        RefreshAllViews,
@@ -92,7 +92,7 @@ typedef enum {
        Continue,
        SortLibrary,
        ShowGroups,
-       SubGroups,
+       SubGroups
 } ControlID;
 
 static WidgetStringData DialogStrings[] = {
