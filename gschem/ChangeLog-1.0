@@ -1,5 +1,9 @@
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex.c: Eliminate first call to o_invalidate_all
+      in o_complex_translate_all, does not seem to make sense to redraw
+      everything right before moving every object on the page.
+
     * src/x/x_autonumber.c: Add Doxygen typedef tag for type
       ControlID and add IDE_AN_ControlID so that Doxygen stops
       errently combining with other ControlID enumerations.

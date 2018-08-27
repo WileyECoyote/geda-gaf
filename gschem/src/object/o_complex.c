@@ -241,7 +241,6 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   if (zoom_extents) {
     i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
   }
-  o_invalidate_all (w_current);
 
   if (offset == 0) {
 
