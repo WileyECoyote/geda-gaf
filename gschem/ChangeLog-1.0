@@ -1,3 +1,8 @@
+2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Remove redundant cast to GtkBox in
+      x_dialog_translate.
+
 2018-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

@@ -3094,7 +3094,7 @@ void x_dialog_translate (GschemToplevel *w_current)
 
     zoom_check_butt = gtk_check_button_new_with_mnemonic (_("Auto Zoom Extents"));
     g_object_set (zoom_check_butt, "visible", TRUE, NULL);
-    gtk_box_pack_start (GTK_BOX (GTK_BOX(vbox)), zoom_check_butt, FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX(vbox), zoom_check_butt, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text(zoom_check_butt, zoom_tip);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(zoom_check_butt), TRUE);
 
