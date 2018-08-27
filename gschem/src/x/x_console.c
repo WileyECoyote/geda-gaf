@@ -122,7 +122,7 @@ void v_log_message(const char *format, ...)
 
 /** \defgroup Console-Dialog-Implementation Console Dialog Implementation
  *    @{
- *  \ingroup (Console-Dialog Systemic-Dialogs)
+ *  \ingroup Console-Dialog Systemic-Dialogs
  */
 
 /*!
@@ -426,7 +426,7 @@ void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char
 
 /** \defgroup Console-Dialog-Class Console Dialog Class
  *  @{
- *  \ingroup (Console-Dialog)
+ *  \ingroup Console-Dialog
  *  \par
  *  Definition of the Console dialog Class. The Console Dialog Class is
  *  derived from #GschemDialogClass.

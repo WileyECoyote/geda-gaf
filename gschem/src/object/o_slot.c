@@ -28,7 +28,7 @@
 
 /** \defgroup Slot-Operations Slot Operations
  *  @{
- *  \ingroup (Editing-Operations)
+ *  \ingroup Editing-Operations
  *
  *  \par This group contains routines for manipulating Slot Attributes.
  */

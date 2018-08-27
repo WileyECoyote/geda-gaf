@@ -95,14 +95,15 @@
 
 /** \defgroup Settings-Auxillary-Module Settings Auxiliary Module
  *  @{
- *  \ingroup (Settings-Dialog)
- *  \par This module contains routines for the user's preference settings,
- *       primarily support functions for the preference Settings dialog.
- *       This module is reponsible for generating or regenerating user
- *       RC scripts/files that serve to establish program settings
- *       during startup as well as saving all settings restored by
- *       i_vars.c but not the settings restored by x_windows.c, which
- *       saves all settings that it restores.
+ *  \ingroup Settings-Dialog
+ *  \par
+ *   This module contains routines for the user's preference settings,
+ *   primarily support functions for the preference Settings dialog.
+ *   This module is reponsible for generating or regenerating user
+ *   RC scripts/files that serve to establish program settings
+ *   during startup as well as saving all settings restored by
+ *   i_vars.c but not the settings restored by x_windows.c, which
+ *   saves all settings that it restores.
  */
 
 #define RC_INPUT_BUFFER_SIZE 256
@@ -317,7 +318,7 @@ bool x_settings_set_scm_int(char *symbol_name, int value )
 
 /** \defgroup Settings-Dialog-Titleblock Auxillary Support for Titleblocks
  *  @{
- *  \ingroup (Settings-Auxillary-Module)
+ *  \ingroup Settings-Auxillary-Module
  *  \par Contains function to provide additional support for titleblock
  *       related items on the Settings Dialog
  */
@@ -426,7 +427,7 @@ bool get_titleblock_list(char **Buffer) {
 
 /** \defgroup Settings-Read-Write Settings Read Write RC File
  *  @{
- *  \ingroup (Settings-Auxillary-Module)
+ *  \ingroup Settings-Auxillary-Module
  *  \par Read and Write RC File
  */
 
@@ -634,7 +635,7 @@ static bool is_enabled(const char* ptr) {
 
 /** \defgroup Settings-Keyword-Handlers Settings Keyword Handlers
  *  @{
- *  \ingroup (Settings-Auxillary-Module)
+ *  \ingroup Settings-Auxillary-Module
  *  \par
  *  Read and Write RC File Keywords
  *

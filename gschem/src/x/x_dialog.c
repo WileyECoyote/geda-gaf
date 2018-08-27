@@ -47,12 +47,12 @@ const char *IDS_MESSEAGE_TITLES[] = {
 
 /**   \defgroup General-Dialog-Utilities General Dialog Utilities
  *  @{\par This group contains utility functions used by various dialogs
- *    \ingroup (Dialog-Utilities)
+ *    \ingroup Dialog-Utilities
  */
 
 /**   \defgroup Atk-Dialog-Utilities Atk Dialog Utilities
  *  @{\par This group contains utility functions used by various dialogs
- *    \ingroup (General-Dialog-Utilities)
+ *    \ingroup General-Dialog-Utilities
  */
 
 /*! \brief Create AtkObject widget and Link Label with Widget
@@ -149,7 +149,7 @@ GtkWidget *create_pixmap (const char *filename)
 
 /** \defgroup Dialog-Toggle-Switches Switch Manipulators for Dialogs
  *  @{
- *  \ingroup (Dialog-Utilities)
+ *  \ingroup Dialog-Utilities
  *  \par
  *       Contains function change the images for checkboxes, aka Switches for
  *       for the on and off state.
@@ -206,7 +206,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
 
 /** \defgroup Dialog-Radio-Bulbs Manipulator for Radio Controls on Dialogs
  *  @{
- *  \ingroup (Dialog-Utilities)
+ *  \ingroup Dialog-Utilities
  *  \par
  *  The Bulb widgets are nothing more than ordinary radio buttons with
  *  their indicators set to invisible. Both ON and the Off images are
@@ -329,7 +329,7 @@ void x_dialog_bulb_group_set_active(GSList *RadioGroupList, int value)
 
 /** \defgroup Text-View-Utilities Utility Functions for TextView Widgets
  *  @{
- *  \ingroup (Dialog-Utilities)
+ *  \ingroup Dialog-Utilities
  *  \brief Generic utility functions for textview widgets.
  */
 
@@ -541,7 +541,7 @@ void about_dialog (GschemToplevel *w_current)
 
 /** \defgroup Snap-Size-Dialog Snap Size Dialog
  *  @{
- *  \ingroup (Settings-Dialogs)
+ *  \ingroup Settings-Dialogs
 */
 
 /*! \brief response function for the snap size dialog
@@ -657,7 +657,7 @@ void snap_size_dialog (GschemToplevel *w_current)
 
 /** \defgroup Text-Size-Dialog Text Size Dialog
  *  @{
- *  \ingroup (Settings-Dialogs)
+ *  \ingroup Settings-Dialogs
 */
 
 /*! \brief response function for the text size dialog

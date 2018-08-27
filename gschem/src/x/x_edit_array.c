@@ -39,14 +39,14 @@
 
 /** \defgroup Array-Dialog Create Array Dialog
  *  @{
- *  \ingroup (Editing-Dialogs)
+ *  \ingroup Editing-Dialogs
  *  \image html array_dialog.png
  *  \image latex array_dialog.png
  *  @} endgroup Array-Dialogs
  *
  *  \defgroup Create-Array-Dialog Create Array Dialog Module
  *  @{
- *  \ingroup (Array-Dialog)
+ *  \ingroup Array-Dialog
  */
 
 static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,

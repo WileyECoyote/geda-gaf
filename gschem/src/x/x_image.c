@@ -41,7 +41,7 @@
 
 /** \defgroup Write-Image-Dialog Write-Image Dialog
  *  @{
- *  \ingroup (Standard-Dialogs)
+ *  \ingroup Standard-Dialogs
  *
  *  \par This group contains routines for the Write Image dialog.
  *

@@ -30,7 +30,7 @@
  */
 /** \defgroup Draw-Order-Operations Draw Order Operations
  *  @{
- *  \ingroup (Editing-Operations)
+ *  \ingroup Editing-Operations
  *  \par This group contains routines for Draw-Order operations
  *   the draw order is only the apparent change, this module only
  *   manipulated that object appear the the page list, and in

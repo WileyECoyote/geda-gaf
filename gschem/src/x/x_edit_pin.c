@@ -36,7 +36,7 @@
 
 /** \defgroup Edit-Pin-Dialog Edit Pin Properties Dialog
  *  @{
- *  \ingroup (Editing-Dialogs)
+ *  \ingroup Editing-Dialogs
  *  \par This group contains routines for the Edit Pin dialog.
  *  \image html pin_dialog.png
  *  \image latex pin_dialog.png

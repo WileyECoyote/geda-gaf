@@ -40,7 +40,7 @@
 
 /** \defgroup grid-module Grid Module
  *  @{\brief This group contains functions for Grid systems
- *    \ingroup (main-window)
+ *    \ingroup main-window
 */
 
 #define DOTS_POINTS_ARRAY_SIZE       8192

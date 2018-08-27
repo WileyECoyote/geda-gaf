@@ -77,7 +77,7 @@
 
 /** \defgroup toolbars-module Toolbars Module
  *  @{\brief This group contains functions to the toolbars
- *    \ingroup (main-window)
+ *    \ingroup main-window
  */
 
 static GSList    *ui_list = NULL;

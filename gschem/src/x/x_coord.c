@@ -39,7 +39,7 @@
 
 /** \defgroup Coordinates-Dialog Coordinates Dialog
  *  @{
- *  \ingroup (Systemic-Dialogs)
+ *  \ingroup Systemic-Dialogs
  *
  *  \par
  *   This group contains routines for the coordinates dialog and handles

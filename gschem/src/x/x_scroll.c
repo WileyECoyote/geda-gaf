@@ -33,7 +33,7 @@
 
 /** \defgroup scrollbars-module Scrollbars Module
  *  @{\brief This group contains functions to the scrollbars
- *    \ingroup (main-window)
+ *    \ingroup main-window
  */
 
 /*! \brief Set Horizontal Scroll Bar Range

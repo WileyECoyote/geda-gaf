@@ -37,7 +37,7 @@
 
 /** \defgroup Page-Select-Dialog Page Select Dialog
  *  @{
- *  \ingroup (Standard-Dialogs)
+ *  \ingroup Standard-Dialogs
  *  \image html page_man_dialog.png
  *  \image latex page_man_dialog.png
  */

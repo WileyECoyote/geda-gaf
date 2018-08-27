@@ -36,10 +36,10 @@
 
 /** \defgroup File-Dialogs File System Dialogs
  *  @{
- *  \ingroup (Standard-Dialogs)
+ *  \ingroup Standard-Dialogs
  *  \defgroup File-Select-Dialogs File Select Dialog
  *    @{
- *    \ingroup (File-Dialogs)
+ *    \ingroup File-Dialogs
  *    \image html fileselect_dialog.png
  *    \image latex fileselect_dialog.png
  */
@@ -355,7 +355,7 @@ x_fileselect_save (GschemToplevel *w_current)
 
 /** \defgroup Image-Select-Dialog Image Select Dialog
  *  @{
- *  \ingroup (File-Dialogs)
+ *  \ingroup File-Dialogs
  *  \image html image_chooser_dialog.png
  *  \image latex image_chooser_dialog.png
  */
@@ -445,7 +445,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
 
 /** \defgroup Load-Backup-Dialog Load Backup Dialog
  *  @{
- *  \ingroup (Systemic-Dialogs)
+ *  \ingroup Systemic-Dialogs
  */
 
 /*! \brief Load/Backup selection dialog.

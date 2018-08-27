@@ -36,7 +36,7 @@
 
 /** \defgroup Edit-Text-Dialog Edit Text Editing-Dialog Functions
  *  @{
- *  \ingroup (Editing-Dialogs)
+ *  \ingroup Editing-Dialogs
  *
  *  \par This group contains Routines for the Edit Text dialog.
  */

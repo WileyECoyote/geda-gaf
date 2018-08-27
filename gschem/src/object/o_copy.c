@@ -27,7 +27,7 @@
  */
 /** \defgroup Copy-Operations Copy-Operations
  *  @{
- *  \ingroup (Editing-Operations)
+ *  \ingroup Editing-Operations
  *
  *  \par This group contains routines for Copy Objects.
  */

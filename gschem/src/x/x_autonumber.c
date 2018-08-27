@@ -41,7 +41,7 @@
 
 /** \defgroup Auto-Number-Dialog Auto Number Dialog
  *  @{
- *  \ingroup (Standard-Dialogs Editing-Dialogs)
+ *  \ingroup Standard-Dialogs Editing-Dialogs
  *  \image html auto_number_dialog.png
  *  \image latex auto_number_dialog.png
  *  \par
@@ -53,7 +53,7 @@
  *
  *  \defgroup Auto-Number-Dialog-Module Auto Number Dialog Module
  *  @{
- *  \ingroup (Auto-Number-Dialog)
+ *  \ingroup Auto-Number-Dialog
  *  \par This group contains routines for the Auto Number dialog.
  */
 
@@ -235,7 +235,7 @@ static GtkWidget *ScopeOverwriteSwitch=NULL;
 
 /** \defgroup Auto-Number-Sorters Auto-Number-Sorters
  *  @{
- *  \ingroup (Auto-Number-Dialog)
+ *  \ingroup Auto-Number-Dialog
  */
 
 /* ******************* compare functions for g_list_sort, ****************** */

@@ -164,7 +164,7 @@
 
 /** \defgroup Preferences-Dialog Preferences Dialog
  *  @{
- *  \ingroup (Settings-Dialogs)
+ *  \ingroup Settings-Dialogs
  *
  *  \par This group contains routines for the Preferences dialog.
  *

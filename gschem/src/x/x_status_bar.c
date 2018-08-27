@@ -33,7 +33,7 @@
 
 /** \defgroup status-module Status Module
  *  @{\brief This group implements the #GschemStatusBar class
- *    \ingroup (main-window)
+ *    \ingroup main-window
 */
 
 /* ------------------ Callbacks for Mouse Button Options  ------------------ */

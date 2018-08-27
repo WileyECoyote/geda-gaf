@@ -42,7 +42,7 @@
 
 /**  \defgroup Component-Select-Dialog Component Select Dialog Implementation
  *  @{
- *  \ingroup (Component-Dialog Editing-Dialogs)
+ *  \ingroup Component-Dialog Editing-Dialogs
  *  \par
  *  This group contains routines for the Component Select dialog. The
  *  Component Select Dialog implements Component Select Dialog Class
@@ -335,7 +335,7 @@ void x_compselect_open (GschemToplevel *w_current)
 
 /** \defgroup Component-Dialog-Class Component Select Dialog Class
  *  @{
- *  \ingroup (Component-Dialog)
+ *  \ingroup Component-Dialog
  *  \par
  *  Definition of the Component Select dialog Class. The Component
  *  Select Dialog Class is derived from #GschemDialogClass.

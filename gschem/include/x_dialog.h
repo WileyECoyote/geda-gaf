@@ -167,7 +167,8 @@ struct st_pin_type_data {
 
 /** \defgroup Settings-Dialogs Settings Dialogs
  *  @{
- *  \ingroup (Standard-Dialogs)
+ *  \ingroup Standard-Dialogs
  *  @}
  */
+
 #endif /* __X_DIALOG_H__ */

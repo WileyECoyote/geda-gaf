@@ -36,7 +36,7 @@
 
 /** \defgroup Single-Attrib-Edit-Dialog Single-Attribute Editor Dialog
  *  @{
- *  \ingroup (Editing-Dialogs)
+ *  \ingroup Editing-Dialogs
  *
  *  \par This group contains routines for the Single-Attribute Editor dialog.
  *

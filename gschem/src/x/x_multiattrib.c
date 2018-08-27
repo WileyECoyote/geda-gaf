@@ -37,7 +37,7 @@
 
 /** \defgroup Multi-Attribute-Dialog Multi Attribute Dialog
  *  @{
- *  \ingroup (Editing-Dialogs)
+ *  \ingroup Editing-Dialogs
  *  \image html multiattrib_dialog.png
  *  \image latex multiattrib_dialog.png
  *  \par

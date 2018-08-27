@@ -41,7 +41,7 @@
 /** \defgroup Menu-Module Menu Module
  *  @{
  * \brief This group contains Menu related functions
- * \ingroup (main-window)
+ * \ingroup main-window
  */
 
 static void x_menu_main_popup_execute(GtkObject *widget, int action_id);
@@ -1175,7 +1175,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 /** \defgroup Path-Context-Menu Path Context Menu Functions
  *  @{
  *  \brief Contains functions to create and support the Path Popup Mouse Menu
- *  \ingroup (menu-module)
+ *  \ingroup menu-module
  */
 
 /*!
@@ -1268,7 +1268,7 @@ x_menu_display_path_popup (GschemToplevel *w_current, GdkEventButton *event)
 /** \defgroup Main-Context-Menu Main Context Popup Menu
  *  @{
  *  \brief Contains functions to create and support the Main Popup Mouse Menu
- *  \ingroup (menu-module)
+ *  \ingroup menu-module
  */
 
 static bool strhashcmp (const char *a, const char *b) {
@@ -1476,7 +1476,7 @@ x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
 
 /** \defgroup Main-Menu-Support Main Menu Support Functions
  *  @{
- * \ingroup (menu-module)
+ * \ingroup menu-module
  * \brief Functions to support the Main Menu
  * \par
  * Functions in this group, mostly callbacks, support the main menu.
@@ -1859,7 +1859,7 @@ static void x_menu_toggle_main_tips(GtkWidget *widget, GschemToplevel *w_current
 
 /** \defgroup menu-toggle-action Menu Toggle Action
  *  @{
- * \ingroup (main-menu-support)
+ * \ingroup main-menu-support
  * \brief Menu Toggle Action Support Functions
  * \par
  *  The Menu toggles buttons need the "activate" signal blocked
@@ -2034,7 +2034,7 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
 
 /** \defgroup recent-file-menu Recent Files Menu Functions
  *  @{
- *  \ingroup (menu-module)
+ *  \ingroup menu-module
  *  \par
  *  This is the old method, as oppose to the GTK Recent Chooser Manger
  *  version. This method seems to work better on Debian machines and

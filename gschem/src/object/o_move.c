@@ -27,7 +27,7 @@
  */
 /** \defgroup Move-Operations Move Operations
  *  @{
- *  \ingroup (Editing-Operations)
+ *  \ingroup Editing-Operations
  *
  *  \par This group contains routines for Moving Objects.
  */

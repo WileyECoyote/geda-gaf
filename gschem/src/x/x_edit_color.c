@@ -34,7 +34,7 @@
 
 /** \defgroup Edit-Color-Dialog Edit Color Dialog
  *  @{
- *  \ingroup (Editing-Dialogs)
+ *  \ingroup Editing-Dialogs
  *
  *  \par This group contains routines for the Edit Color dialog.
  */
