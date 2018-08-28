@@ -1,3 +1,8 @@
+2018-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_path.c: Update geda_file_path_get_dirname parameter
+      documentation.
+
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_textbuffer.c: Update function wrapping and line spacing.

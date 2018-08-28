@@ -228,14 +228,14 @@ void geda_file_path_free (void) {
 /*! F0303 alias geda_get_dirname
  * \brief Gets Directory Component of a File Name
  * \par Function Description
- *  Returns directory portion of \a filepath. If \a filepath is
- *  a directory a copy of \a filepath is returned. If \a filepath
+ *  Returns directory portion of \a filespec. If \a filespec is
+ *  a directory a copy of \a filespec is returned. If \a filespec
  *  has no directory components "." is returned. The returned
  *  string should be freed when no longer needed.
  *
- * \param [in] filepath The filepath to search.
+ * \param [in] filespec The file path to search.
  *
- * \returns directory components of \a filepath.
+ * \returns directory components of \a filespec.
  */
 char *geda_file_path_get_dirname (const char *filespec)
 {
