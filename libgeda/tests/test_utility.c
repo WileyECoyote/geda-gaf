@@ -1087,7 +1087,7 @@ int test_strings (void)
     }
   }
 
-  X06 = Y06 = 1;
+  X06 = Y06 = 2;
 
   value = geda_string_parse_xy("(0,0)", &X06, &Y06);
   if (!value) {                            /* NULL input */
@@ -1105,7 +1105,7 @@ int test_strings (void)
     }
   }
 
-  X06 = Y06 = 1;
+  X06 = Y06 = 3;
 
   value = geda_string_parse_xy("4500 380", &X06, &Y06);
   if (!value) {                           /* NULL input */
@@ -1123,7 +1123,7 @@ int test_strings (void)
     }
   }
 
-  X06 = Y06 = 1;
+  X06 = Y06 = 4;
 
   value = geda_string_parse_xy("2200", &X06, &Y06);
   if (!value) {                           /* No y input, x valid */
@@ -1141,7 +1141,7 @@ int test_strings (void)
     }
   }
 
-  X06 = Y06 = 1;
+  X06 = Y06 = 5;
 
   value = geda_string_parse_xy(",313", NULL, &Y06);
   if (!value) {                           /* NULL x io, y valid */
@@ -1155,20 +1155,29 @@ int test_strings (void)
     }
   }
 
-  X06 = Y06 = 1;
+  X06 = Y06 = 6;
 
   value = geda_string_parse_xy("", &X06, &Y06);
   if (value) {                            /* empty string */
-    fprintf(stderr, "FAILED: (U060605A) geda_string_parse_xy <%d>\n", value);
+    fprintf(stderr, "FAILED: (U060606A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
-    if (X06 != 1) {
-      fprintf(stderr, "FAILED: (U060605B) geda_string_parse_xy <%d>\n", X06);
+    if (X06 != 6) {
+      fprintf(stderr, "FAILED: (U060606B) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
-    if (Y06 != 1) {
-      fprintf(stderr, "FAILED: (U060605C) geda_string_parse_xy <%d>\n", Y06);
+    if (Y06 != 6) {
+      fprintf(stderr, "FAILED: (U060606C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+    result++;
+  }
+  else {
+      result++;
+    }
       result++;
     }
   }
