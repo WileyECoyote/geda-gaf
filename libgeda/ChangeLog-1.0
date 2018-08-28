@@ -17,7 +17,8 @@
 
     * tests/test_utility.c: Remove U060605B since X06 was passed to
       geda_string_parse_xy, update test I.D. for U060606, was U060605.
-
+      Add checks U060607 through U060613 to verify geda_string_parse_xy
+      handles negative values.
 
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 

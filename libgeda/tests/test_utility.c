@@ -1173,11 +1173,128 @@ int test_strings (void)
     }
   }
 
+  X06 = Y06 = 7; /* neg */
+
+  value = geda_string_parse_xy("-200", &X06, &Y06);
+  if (!value) {                           /* No y input, x valid */
+    fprintf(stderr, "FAILED: (U060607A) geda_string_parse_xy <%d>\n", value);
     result++;
   }
   else {
+    if (X06 != -200) {
+      fprintf(stderr, "FAILED: (U060607B) geda_string_parse_xy <%d>\n", X06);
       result++;
     }
+    if (Y06 != 0) {
+      fprintf(stderr, "FAILED: (U060607C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+  X06 = Y06 = 8; /* neg pos */
+
+  value = geda_string_parse_xy("-100,200", &X06, &Y06);
+  if (!value) {
+    fprintf(stderr, "FAILED: (U060608A) geda_string_parse_xy <%d>\n", value);
+    result++;
+  }
+  else {
+    if (X06 != -100) {
+      fprintf(stderr, "FAILED: (U060608B) geda_string_parse_xy <%d>\n", X06);
+      result++;
+    }
+    if (Y06 != 200) {
+      fprintf(stderr, "FAILED: (U060608C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+  X06 = Y06 = 9; /* pos neg */
+
+  value = geda_string_parse_xy("100,-200", &X06, &Y06);
+  if (!value) {
+    fprintf(stderr, "FAILED: (U060609A) geda_string_parse_xy <%d>\n", value);
+    result++;
+  }
+  else {
+    if (X06 != 100) {
+      fprintf(stderr, "FAILED: (U060609B) geda_string_parse_xy <%d>\n", X06);
+      result++;
+    }
+    if (Y06 != -200) {
+      fprintf(stderr, "FAILED: (U060609C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+  X06 = Y06 = 10; /* neg neg */
+
+  value = geda_string_parse_xy("-100,-200", &X06, &Y06);
+  if (!value) {
+    fprintf(stderr, "FAILED: (U060610A) geda_string_parse_xy <%d>\n", value);
+    result++;
+  }
+  else {
+    if (X06 != -100) {
+      fprintf(stderr, "FAILED: (U060610B) geda_string_parse_xy <%d>\n", X06);
+      result++;
+    }
+    if (Y06 != -200) {
+      fprintf(stderr, "FAILED: (U060610C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+  X06 = Y06 = 11; /* (neg pos) */
+
+  value = geda_string_parse_xy("(-100, 200)", &X06, &Y06);
+  if (!value) {
+    fprintf(stderr, "FAILED: (U060611A) geda_string_parse_xy <%d>\n", value);
+    result++;
+  }
+  else {
+    if (X06 != -100) {
+      fprintf(stderr, "FAILED: (U060611B) geda_string_parse_xy <%d>\n", X06);
+      result++;
+    }
+    if (Y06 != 200) {
+      fprintf(stderr, "FAILED: (U060611C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+  X06 = Y06 = 12; /* (pos neg) */
+
+  value = geda_string_parse_xy("(100,-200)", &X06, &Y06);
+  if (!value) {
+    fprintf(stderr, "FAILED: (U060612A) geda_string_parse_xy <%d>\n", value);
+    result++;
+  }
+  else {
+    if (X06 != 100) {
+      fprintf(stderr, "FAILED: (U060612B) geda_string_parse_xy <%d>\n", X06);
+      result++;
+    }
+    if (Y06 != -200) {
+      fprintf(stderr, "FAILED: (U060612C) geda_string_parse_xy <%d>\n", Y06);
+      result++;
+    }
+  }
+
+  X06 = Y06 = 13; /* (neg neg) */
+
+  value = geda_string_parse_xy("(-100,-200)", &X06, &Y06);
+  if (!value) {
+    fprintf(stderr, "FAILED: (U060613A) geda_string_parse_xy <%d>\n", value);
+    result++;
+  }
+  else {
+    if (X06 != -100) {
+      fprintf(stderr, "FAILED: (U060613B) geda_string_parse_xy <%d>\n", X06);
+      result++;
+    }
+    if (Y06 != -200) {
+      fprintf(stderr, "FAILED: (U060613C) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }
