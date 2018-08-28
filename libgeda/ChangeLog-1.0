@@ -10,7 +10,9 @@
     * src/struct/s_clib.c: Replace switch case with if else in function
       geda_struct_clib_add_directory.
 
-    * src/utility/u_string.c: Reformat/update Doxygen blocks.
+    * src/utility/u_string.c: Reformat/update Doxygen blocks. Revise
+      geda_utility_string_parse_xy to parse negative values.
+
 
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -337,11 +337,14 @@ const char *geda_utility_string_istr(const char *str1, const char *str2)
 int geda_utility_string_parse_xy(const char *string, int *x, int *y)
 {
   char *x_str, *y_str;
+  int   x_sig,  y_sig;
   int   icomma;
   int   valid;
 
   icomma = -1;
   valid  = FALSE;
+  x_sig  = 1;
+  y_sig  = 1;
   x_str  = NULL;
   y_str  = NULL;
 
@@ -370,6 +373,14 @@ int geda_utility_string_parse_xy(const char *string, int *x, int *y)
           }
         }
       }
+      else if (buffer[index] == ASCII_HYPHEN_MINUS) {
+        if (icomma < 0) {
+          x_sig = -1;
+        }
+        else {
+          y_sig = -1;
+        }
+      }
       else if (buffer[index] == ASCII_COMMA) {
         icomma = index;
       }
@@ -391,9 +402,9 @@ int geda_utility_string_parse_xy(const char *string, int *x, int *y)
         buffer[icomma] = '\0';
       }
       if (x)
-        *x = atoi(x_str);
+        *x = atoi(x_str) * x_sig;
       if (y)
-        *y = atoi(y_str);
+        *y = atoi(y_str) * y_sig;
       valid = 1;
     }
     free(buffer);
