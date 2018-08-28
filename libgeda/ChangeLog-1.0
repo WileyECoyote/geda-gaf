@@ -13,6 +13,8 @@
     * src/utility/u_string.c: Reformat/update Doxygen blocks. Revise
       geda_utility_string_parse_xy to parse negative values.
 
+    * tests/Makefile.am: Add test_complex_object to check_object.
+
 
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
