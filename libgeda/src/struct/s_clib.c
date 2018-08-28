@@ -991,16 +991,13 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
       if (*str == '/') ++count;
     }
 
-    switch ( count ) {
-      case 0:
-        tmpstr   = geda_strdup (name);
-        break;
-      case 1:
-      default:
-        str      = strstr(name, "/");
-        category = geda_utility_string_strndup (name, str - name);
-        tmpstr   = geda_strdup (str + 1);
-        break;
+    if (!count) {
+      tmpstr   = geda_strdup (name);
+    }
+    else {
+      str      = strstr(name, "/");
+      category = geda_utility_string_strndup (name, str - name);
+      tmpstr   = geda_strdup (str + 1);
     }
   }
   else {

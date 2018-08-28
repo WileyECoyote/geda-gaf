@@ -7,6 +7,9 @@
       Libgeda-RC-Handlers because these show up empty in the Doxygen
       output.
 
+    * src/struct/s_clib.c: Replace switch case with if else in function
+      geda_struct_clib_add_directory.
+
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_textbuffer.c: Update function wrapping and line spacing.
