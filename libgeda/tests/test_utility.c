@@ -1149,12 +1149,8 @@ int test_strings (void)
     result++;
   }
   else {
-    if (X06 != 1) {
-      fprintf(stderr, "FAILED: (U060605B) geda_string_parse_xy <%d>\n", X06);
-      result++;
-    }
     if (Y06 != 313) {
-      fprintf(stderr, "FAILED: (U060605C) geda_string_parse_xy <%d>\n", Y06);
+      fprintf(stderr, "FAILED: (U060605B) geda_string_parse_xy <%d>\n", Y06);
       result++;
     }
   }

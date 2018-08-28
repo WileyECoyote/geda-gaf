@@ -15,6 +15,9 @@
 
     * tests/Makefile.am: Add test_complex_object to check_object.
 
+    * tests/test_utility.c: Remove U060605B since X06 was passed to
+      geda_string_parse_xy.
+
 
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
