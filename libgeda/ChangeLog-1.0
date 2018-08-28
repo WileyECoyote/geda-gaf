@@ -10,6 +10,8 @@
     * src/struct/s_clib.c: Replace switch case with if else in function
       geda_struct_clib_add_directory.
 
+    * src/utility/u_string.c: Reformat/update Doxygen blocks.
+
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_textbuffer.c: Update function wrapping and line spacing.

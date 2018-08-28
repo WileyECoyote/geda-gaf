@@ -188,7 +188,7 @@ char *geda_utility_string_get_valid_utf8 (const char *instr)
 
 
 /*! U0603
- * \brief itoa() for c
+ * \brief itoa for c
  * \par Function Description
  *  Translate an integer to askii, like itoa cpp function
  *
@@ -267,7 +267,7 @@ bool geda_utility_string_isalnum (const char *str)
 }
 
 /*! U0605
- * \brief Find substring in string, ignore case.
+ * \brief Find substring in string, ignore case
  * \par Function Description
  *  Uses geda_utility_string_stricmp or geda_utility_string_strncmpi to
  *  locate a substring in a string. This is not normally found in standard
@@ -312,12 +312,12 @@ const char *geda_utility_string_istr(const char *str1, const char *str2)
 }
 
 /*! U0606
- * \brief Parse a c String for X and Y integer pair
+ * \brief Parse a c String for X and Y Integer Pair
  * \par Function Description
  *  Iterates over a string looking for askii digits, parenthesis are
  *  ignored. The first character digits are interrupted as the string for
  *  X unless a comma was previously encountered, in which case the string
- *  is interrupted as the Y. If is Y set and X has not been set then X is
+ *  is interrupted as the Y. If Y is set and X has not been set then X is
  *  presumed zero, and this allows input such as ",600" to mean (0,600).
  *  If only one value was interrupted and a comma had not be encountered,
  *  the Y is presumed to be zero. If the string contains two sets of valid
@@ -405,7 +405,7 @@ int geda_utility_string_parse_xy(const char *string, int *x, int *y)
 }
 
 /*! U0607
- * \brief Remove Last Line Feed and Carriage Return from string
+ * \brief Remove Last Line Feed and Carriage Return from a String
  * \par Function Description
  *  This function replaces trailing 0x0D and 0x0A, Carriage Return
  *  and Line feed characters respectively, with a NULL.
@@ -459,7 +459,7 @@ char *geda_utility_string_remove_nl(char *string)
 }
 
 /*! U0609
- * \brief return c pointer to SCM string.
+ * \brief Return c pointer to SCM string
  * \par Function Description
  *  String utility function to get a c pointer to a scm string.
  * \remarks  caller is responsible for freeing the pointer.
@@ -481,7 +481,7 @@ char *geda_utility_string_scm2c(SCM scm_str)
 }
 
 /*! U0610
- * \brief  Sort an array of Characters
+ * \brief Sort an array of Characters
  * \par Function Description
  *  sort array using qsort functions
  */
@@ -686,8 +686,8 @@ bool geda_utility_string_strequal(const char *str1, const char *str2)
  * \retval 0 if the strings are equivalent, or
  *         1 if the strings are NOT equivalent.
  *
- * \note This not the same as strcasecmp, strcasecmp returns an integer.
- *       geda_utility_string_stricmp returns a Boolean!
+ * \note This is not the same as strcasecmp, strcasecmp returns an
+ *       integer. geda_utility_string_stricmp returns a Boolean!
  */
 bool geda_utility_string_stricmp(const char *str1, const char *str2)
 {
@@ -809,7 +809,7 @@ char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
 }
 
 /*! U0618
- * \brief Compare n characters ignoring case.
+ * \brief Compare n characters ignoring case
  * \par Function Description
  *  Another garden varity string compare using toupper on both inputs.
  *  This is somthimes found in standard libraries but not always.
@@ -852,7 +852,7 @@ int geda_utility_string_strncmpi(const char *str1, const char *str2, int n)
 }
 
 /*! U0619
- * \brief  Duplicate a specified number of characters
+ * \brief Duplicate a specified number of characters
  * \par Function Description
  *  The newly allocated NULL terminated string.
  *
@@ -884,7 +884,7 @@ char *geda_utility_string_strndup(const char *str, int n)
 }
 
 /*! U0620
- * \brief  Get the formated size of a string
+ * \brief Get the formated size of a string
  * \par Function Description
  *  Returns the number of bytes needed to hold the string formed
  *  after substituting variable arguments into the format specifier.
@@ -977,7 +977,7 @@ char *geda_utility_string_strstr_rep(char *original, const char *old, const char
 }
 
 /*! U0621
- * \brief Replace substring in string.
+ * \brief Replace substring in a String
  * \par Function Description
  *  This function replaces the first occurrence of str1 with str2
  *  in the source. This version uses array indexes and dynamically
@@ -1054,7 +1054,7 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
 }
 
 /*! U0623
- * \brief  Get Word Count
+ * \brief Get Word Count
  * \par Function Description
  *  returns the number of spaces in a string plus one.
  */
