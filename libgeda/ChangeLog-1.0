@@ -3,6 +3,10 @@
     * src/file/f_path.c: Update geda_file_path_get_dirname parameter
       documentation.
 
+    * src/guile/g_rc_parse.c: Remove parentheses from Doxygen group
+      Libgeda-RC-Handlers because these show up empty in the Doxygen
+      output.
+
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_textbuffer.c: Update function wrapping and line spacing.
