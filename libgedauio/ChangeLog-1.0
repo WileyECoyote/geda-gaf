@@ -1,3 +1,7 @@
+2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Require libgedauio.dox to build Doxygen documenation.
+
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add functions geda_combo_box_on_change

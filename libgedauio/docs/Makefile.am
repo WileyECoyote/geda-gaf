@@ -20,7 +20,7 @@ all:
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
 # for the latex directory is skip the latex if the diretory does not exist.
-doxygen:
+doxygen: libgedauio.dox
 
 	@echo 'Creating doxygen documentation for libgedauio...'
 if ENABLE_DOXYGEN
