@@ -1,3 +1,8 @@
+2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Add Doxygen typedef tag for type
+      ControlID and add IDE_CP_ControlID.
+
 2018-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex.c: Eliminate first call to o_invalidate_all

@@ -65,7 +65,7 @@
 
 DECLARE_RADIO_TRIAD (RefDes, Std, Spice, Ieee);
 
-typedef enum {
+typedef enum IDE_CP_ControlID {
         RefDes,
         RefDesStd,
         RefDesSpice,
