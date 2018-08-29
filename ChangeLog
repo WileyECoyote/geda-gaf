@@ -1,3 +1,7 @@
+2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/svg/gschem_invert_select.svg: Use gEDA green and reduce bloat.
+
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * autogen.sh: Update patch file string variable needed_24.
