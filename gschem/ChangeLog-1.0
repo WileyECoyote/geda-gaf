@@ -1,5 +1,7 @@
 2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * bitmap/gschem-page-man.png: Add bitmap for Pagesel icon.
+
     * src/x/x_edit_cprop.c: Add Doxygen typedef tag for type
       ControlID and add IDE_CP_ControlID.
 

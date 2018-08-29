@@ -38,6 +38,7 @@ bitmapdata_DATA = gschem_about_logo.png                          \
 		  gschem-net.png                                         \
 		  gschem_net.xpm                                         \
 		  gschem_new.xpm gschem_open.xpm                         \
+		  gschem-page-man.png                                    \
 		  gschem-print-document.png                              \
 		  gschem-print-preview.png                               \
 		  gschem_save.xpm                                        \
