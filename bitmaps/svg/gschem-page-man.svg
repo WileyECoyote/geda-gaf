@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+   height="64"
+   width="64"
+   inkscape:export-filename="../../gschem/bitmap/gschem-page-man.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+ <g id="g4953" transform="translate(-161,-819)">
+  <path id="rect7352-7-9-6" d="m213.65 833.13v38.973h-37.74v7.0861h45.288v-46.059z" color="#bebebe" fill="#bebebe" stroke="#c17d11" stroke-miterlimit="2" stroke-width="7.6136"/>
+ </g>
+ <g id="layer12" transform="translate(-161,-819)">
+  <rect id="rect2993" x="162.77" y="820.52" width="47.261" height="47.856" rx="1.4746" ry="1.3866" fill="#fff" stroke-miterlimit="0" stroke-width="0"/>
+  <rect id="rect42942-5-3-1-4-0-0" transform="scale(-1,1)" x="-196.25" y="830.4" width="21" height="2.5088" rx="1.9687" ry=".47035" color="#bebebe" fill="#204a87"/>
+  <rect id="rect42942-5-3-1-4-0-0-4" transform="scale(-1,1)" x="-196.25" y="836.16" width="21" height="2.5088" rx="1.9687" ry=".47035" color="#bebebe" fill="#204a87"/>
+  <rect id="rect42942-5-3-1-4-0-0-8" transform="scale(-1,1)" x="-196.25" y="842.03" width="21" height="2.5088" rx="1.9687" ry=".47035" color="#bebebe" fill="#204a87"/>
+  <rect id="rect42942-5-3-1-4-0-0-5" transform="scale(-1,1)" x="-196.25" y="847.91" width="21" height="2.5088" rx="1.9687" ry=".47035" color="#bebebe" fill="#204a87"/>
+  <rect id="rect42942-5-3-1-4-0-0-1" transform="scale(-1,1)" x="-196.25" y="853.89" width="21" height="2.5088" rx="1.9687" ry=".47035" color="#bebebe" fill="#204a87"/>
+  <path id="rect2995" d="m164.02 820.52h44.838c0.77506 0 1.399 0.5913 1.399 1.3258v45.375c0 0.73448-0.62396 1.3258-1.399 1.3258h-44.838c-0.77505 0-1.399-0.59131-1.399-1.3258v-45.375c0-0.73449 0.62396-1.3258 1.399-1.3258z" fill="none" stroke="#008000" stroke-miterlimit="0" stroke-width="2"/>
+ </g>
+</svg>

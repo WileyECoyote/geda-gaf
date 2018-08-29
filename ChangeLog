@@ -2,6 +2,8 @@
 
     * bitmaps/svg/gschem_invert_select.svg: Use gEDA green and reduce bloat.
 
+    * bitmaps/svg/gschem-page-man.svg: : Add graphics for Pagesel icon.
+
 2018-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * autogen.sh: Update patch file string variable needed_24.
