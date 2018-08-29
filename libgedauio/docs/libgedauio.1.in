@@ -1,0 +1,157 @@
+'\" t
+.\"     Title: Libgedauio
+.\"    Author: Wiley Edward Hill, Jr
+.\"    Manual: Configuration and Environment
+.\"    Source: Libgedauio
+.\"  Language: English
+.\"
+.TH Libgedauio 1 "@DATE@" "gEDA Project" @VERSION@
+.LP
+.SH NAME
+.PP
+Libgedauio \- The GPL Electronic Design Automation User Interface Objects library
+.LP
+.SH DESCRIPTION
+.PP
+.B Libgedauio
+is a set of library routines used by applications to manipulate data
+for electronic schematics and symbols, primarily in the gEDA suite of
+applications.
+.B Libgedauio
+provides utility functions for creating, modifying, parsing and traversing
+gEDA data, handles all disk i/o operations for gEDA applications, as well
+as providing an API for Scheme based programs and routines for evaluation
+of Scheme expressions and files for gEDA applications.
+.B Libgedauio
+also provides a limited collection of other common routines like string
+manipulators, a configuration system, and math functions useful in gEDA
+applications. The purpose of the this manual page is to explains user
+oriented aspects of using
+.B Libgedauio
+, specifically, configuring the library and providing details on where to
+find documentation on other aspect of
+.B Libgedauio
+such as the Scheme API.
+.LP
+.SH CONFIGURATION
+.PP
+Library operations are controlled parameter variables and some of the key
+parameters are exposed so that installations can be customized. These key
+parameters are associated with "keywords" in text based files. The files
+are sometimes referred to as initialization or "rc" files and in the case
+of
+.B Libgedauio
+these files are really Scheme scripts that are either executed or sourced.
+The  particular dialect of Scheme used by
+.B Libgedauio
+is GNU's Guile. While it is required for Guile to be installed on the host
+system for
+.B Libgedauio
+to run, it is not a requirement that gEDA applications initialize or even be
+running Guile.
+.B Libgedauio
+does not initiate the loading "rc" files. Instead, when application request
+that a initialization file be processed
+.B Libgedauio
+first checks for "system-gafrc" in either system configuration directories,
+i.e. "/etc/gEDA", "~/etc", or the root of the installation directory and
+precesses these files if they exist. Normally, only one such file is used
+as a system level "master" configuration file. Following processing of the
+"system-gafrc" files
+.B Libgedauio
+searches the current directory for local "gafrc" configurations files. The
+search continues upward in the directory structure until either a file with
+the name "gafrc" is found or the root of the drive is reached without
+discovering such a file. If discovered, the "gafrc" file is processed, which
+may over-ride configuration parameters established in preceding initialization
+files, and this allows users to customize
+.B Libgedauio
+on a user and or on project bases. Local initialization files are "remembered"
+so that when applications load other schematics or symbols in the same or
+subordinate directory structure the initialization files are not processed
+a second time for a given session. The application requested initialization
+files are then processed in a likewise manner, for example system-gschemrc.
+Initialization files for
+.B Libgedauio
+should not reference application specific keywords or functions. Since the
+initialization files are really Scheme scripts the possibilities for
+configuration customization is essentially unlimited. The basic "system-gafrc"
+file installed with
+.B Libgedauio
+contains details on each keyword. For the most part, the capability to
+perform customization and modifications to parameters are provided for
+advanced users, allowing users to deal with complex installations and
+maximizes flexibility of the suite. For example, system administrators
+may want to change where logs files are written, while ordinary user may
+desire to disable automatic backups. Project managers might want to modify
+the list of promoted attributes for a particular project. Users should
+backup initialization files before making any modifications to the files.
+.LP
+.SH ENVIRONMENT
+.PP
+The following environment variables are recognized by
+.B Libgedauio
+:
+.LP
+.TP 8
+.SS GEDADATA
+Specifies the search directory for Scheme and bitmap files. The default is
+compilation dependent based on the location of the data directory and can
+be set using the -datarootdir configuration option. Normally the location
+is "prefix/share/gEDA" where "prefix" is the root of the installation build.
+The GEDADATA environment setting over-rides the default location.
+.LP
+.TP 8
+.SS GEDADATARC
+Specifies the search directory for rc files. The default is compilation
+dependent based on the location of the data directory and can be set using
+--with-rcdir configuration option. The default is the same as GEDADATA.
+Specifying a GEDADATARC environment setting over-rides the default location.
+.LP
+.TP 8
+.SS GEDALOGS
+Specifies the directory for log files. The default is compilation dependent
+based on the location of the user configuration files and can be controlled
+using --with-logdir configuration option. The GEDALOGS environment setting
+over-rides the default location.
+.LP
+.SH DOCUMENTATION
+.PP
+.TP 8
+.SS SOURCE CODE
+The gEDA-gaf suite utilizes Doxygen for generating source documentation. By
+default this documentation is not generated and must be enabled via the
+configuration option --with-doxygen. When enabled, the documentation is then
+built in the source tree using "make doxygen" from the top of the source. To
+only generate source documentation for
+.B Libgedauio
+use "make doxygen" from within the top libgeda directory. Note that the
+configure script can also set the configuration to allows generating the source
+documentation out of the source tree using the --with-doxygen-out option. For
+example using --with-doxygen-out=/tmp/geda-gaf will cause the resulting
+documentation to be generated in the "/tmp/geda-gaf" directory. The target
+directory will created if it does not already exist. It is not necessary to use
+both doxygen options, using --with-doxygen-out automatically enables --with-doxygen.
+The Doxygen configuration is set to produce both HTML and latex. Other formats
+are possible, see the Doxygen documentation for details.
+.LP
+.SH AUTHORS
+.PP
+See the "AUTHORS" file included with this program.
+.LP
+.SH COPYRIGHT
+.PP
+.nf
+Copyright \(co @YEAR@ gEDA Contributors. License GPLv2+: GNU GPL
+version 2 or later. Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.fi
+.SH SEE ALSO
+.PP
+\fBlibgedacairo\fR(1), \fBlibgedathon\fR(1), \fBlibgedauio\fR(1)
+\fBgnetlist\fR(1), \fBgschem\fR(1), \fBgsymcheck\fR(1)
+.LP
+\fIhttp://wiki.geda-project.org/geda:documentation\fP.

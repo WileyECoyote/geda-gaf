@@ -2,6 +2,8 @@
 
     * docs/Makefile.am: Require libgedauio.dox to build Doxygen documenation.
 
+    * docs/libgedauio.1.in: Add draft template for man page.
+
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add functions geda_combo_box_on_change
