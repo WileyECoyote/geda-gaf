@@ -1,3 +1,7 @@
+2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * m4/geda-libgedathon.m4: Add subst LIBGEDATHON_DOT_VERSION.
+
 2018-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-automake-options.m4: Wrap inner braces for version extraction to

@@ -1,5 +1,5 @@
 # geda-libgedathon.m4                                 -*-Autoconf-*-
-# serial 1
+# serial 1.2
 
 dnl libgedathon-specific setup
 dnl
@@ -51,6 +51,9 @@ AC_DEFUN([AX_LIBGEDATHON],
   AC_SUBST([LIBGEDATHON_GETTEXT_DOMAIN])
   AC_DEFINE_UNQUOTED([LIBGEDATHON_GETTEXT_DOMAIN], ["$LIBGEDATHON_GETTEXT_DOMAIN"],
     "Name of libgedathon's gettext domain.")
+
+  LIBGEDATHON_DOT_VERSION=`echo $LIBGEDATHON_SHLIB_VERSION | sed -e "y/:/./"`
+  AC_SUBST([LIBGEDATHON_DOT_VERSION])
 
   []dnl
 ])dnl
