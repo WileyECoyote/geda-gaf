@@ -1,5 +1,5 @@
 # geda-libgedauio.m4                                  -*-Autoconf-*-
-# serial 1.1
+# serial 1.2
 
 dnl libgedacairo-specific setup
 dnl Copyright (C) 2010-2014  Peter Brett <peter@peter-b.co.uk>
@@ -38,6 +38,9 @@ AC_DEFUN([AX_LIBGEDAUIO],
   AC_SUBST([LIBGEDAUIO_GETTEXT_DOMAIN])
   AC_DEFINE_UNQUOTED([LIBGEDAUIO_GETTEXT_DOMAIN], ["$LIBGEDAUIO_GETTEXT_DOMAIN"],
     "Name of libgedauio's gettext domain.")
+
+  LIBGEDAUIO_DOT_VERSION=`echo $LIBGEDAUIO_SHLIB_VERSION | sed -e "y/:/./"`
+  AC_SUBST([LIBGEDAUIO_DOT_VERSION])
 
   []dnl
 ])dnl
