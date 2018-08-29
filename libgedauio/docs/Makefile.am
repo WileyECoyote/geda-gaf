@@ -8,11 +8,13 @@ LOCAL_DOX   = libgedauio.dox libgedauio-main.txt
 
 LOCAL_HTML  = what-is-libgedauio.html
 
+LOCAL_MAN   = libgedauio.1.in
+
 LOCAL_TEX   = what-is-libgedauio.tex
 
-EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX)
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
-SUFFIXES    = .html .tex .pdf
+SUFFIXES    = .1.in .1 .html .tex .pdf
 
 all: 
 	@echo 'Type: make doxygen  to create doxygen documentation for libgedauio'
@@ -45,10 +47,20 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
+dist_man_MANS = libgedauio.1
+
+.1.in.1:
+	@printf "" ; \
+	d=`$(GUILE) -c '(setlocale LC_ALL "C") (display (strftime "%B %-d, %Y" \
+	    (car (strptime "%Y%m%d" (cadr (program-arguments))))))' $(DATE_VERSION)` ; \
+	v="$(LIBGEDAUIO_DOT_VERSION)-$(DATE_VERSION)" ; \
+	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
+	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
+
 MOSTLYCLEANFILES     = *.log *~ *.bak
-CLEANFILES           = *.log *~ *.bak
-DISTCLEANFILES       = *.log *~ *.bak
-MAINTAINERCLEANFILES = *.log *~ *.bak Makefile.in
+CLEANFILES           = *.log *~ *.bak $(dist_man_MANS)
+DISTCLEANFILES       = *.log *~ *.bak $(dist_man_MANS)
+MAINTAINERCLEANFILES = *.log *~ *.bak $(dist_man_MANS) Makefile.in
 
 distclean-local:
 	-rm -rf html latex

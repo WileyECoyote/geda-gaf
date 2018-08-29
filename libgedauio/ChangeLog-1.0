@@ -1,6 +1,7 @@
 2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/Makefile.am: Require libgedauio.dox to build Doxygen documenation.
+    * docs/Makefile.am: Require libgedauio.dox to build Doxygen documenation,
+      add rules for libgedauio.1.
 
     * docs/libgedauio.1.in: Add draft template for man page.
 
