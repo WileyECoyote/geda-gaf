@@ -691,6 +691,7 @@ void x_menu_release_all(void)
 
   gtk_window_remove_accel_group ((GtkWindow*)main_window, accel_group);
 
+  /* The group list is owned by ui_manager, do not release */
   groups = gtk_ui_manager_get_action_groups (menu_manager);
 
   while (groups) {
