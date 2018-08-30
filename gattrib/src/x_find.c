@@ -228,6 +228,10 @@ bool x_find_main_search(char *text, char *replacement) {
   return found;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_find_attribute_value(void)
 {
   GtkEntry   *entry;
