@@ -5,6 +5,9 @@ themedir           = $(xdgdatadir)/icons/$(theme)
 desktop_in_files   = geda-gattrib.desktop.in
 desktop_DATA       = $(desktop_in_files:.desktop.in=.desktop)
 
+registrydir=$(xdgdatadir)/application-registry
+registry_DATA=gattrib.applications
+
 app_icon   = geda-gattrib
 
 app_icon_files = \

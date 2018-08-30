@@ -2,6 +2,8 @@
 
     * ToDos: General clean-up and update.
 
+    * data/gattrib.applications: add application-registry file.
+
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Add x_window_set_main_icon to assign an icon for the main
