@@ -12,7 +12,8 @@
       pointer returned from gtk_editable_get_chars.
 
     * src/x_window.c: Set the page modified flag x_window_clipboard_handler
-      before updating the window title.
+      before updating the window title. Revise x_window_release_all to set
+      the name of the main window widget to NULL before exiting.
 
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
