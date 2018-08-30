@@ -421,14 +421,16 @@ int x_dialog_file_not_saved()
 {
   GtkDialog  *dialog;
   const char *tmp;
-  char *str;
+  char *str, *msg;
   int result;
 
   tmp = _("Save the changes before closing?");
   str = geda_strconcat ("<big><b>", tmp, "</b></big>", NULL);
 
   tmp = _("If you do not save, all your changes will be permanently lost.");
-  str = geda_strconcat (str, "\n\n", tmp, NULL);
+  msg = geda_strconcat (str, "\n\n", tmp, NULL);
+
+  geda_free(str);
 
   dialog = (GtkDialog*)gtk_message_dialog_new ((GtkWindow*)main_window,
                                                GTK_DIALOG_MODAL |
@@ -436,7 +438,9 @@ int x_dialog_file_not_saved()
                                                GTK_MESSAGE_WARNING,
                                                GTK_BUTTONS_NONE, NULL);
 
-  gtk_message_dialog_set_markup ((GtkMessageDialog*)dialog, str);
+  gtk_message_dialog_set_markup ((GtkMessageDialog*)dialog, msg);
+
+  geda_free(msg);
 
   gtk_dialog_add_buttons (dialog,
                         _("Close without saving"), GEDA_RESPONSE_NO,
