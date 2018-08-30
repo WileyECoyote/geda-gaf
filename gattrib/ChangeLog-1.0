@@ -1,4 +1,4 @@
-2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
+2018-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * ToDos: General clean-up and update.
 
@@ -10,6 +10,9 @@
 
     * src/x_find.c: Add Doxygen TODO for x_find_attribute_value and release the
       pointer returned from gtk_editable_get_chars.
+
+    * src/x_window.c: Set the page modified flag x_window_clipboard_handler
+      before updating the window title.
 
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 

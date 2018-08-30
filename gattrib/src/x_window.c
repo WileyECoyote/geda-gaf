@@ -82,12 +82,13 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
     gtk_window_set_title(main_window, "gattrib -- gEDA attribute editor");
 }
 
-/*! \brief Handle Cut, Copy, Paste for Menus and Toolbar
+/*!
+ * \brief Handle Cut, Copy, Paste for Menus and Toolbar
  * \par Function Description
- * This function is called from the menu and toolbar callbacks to
- * process Cut, Copy, Paste request.
+ *  This function is called from the menu and toolbar callbacks to
+ *  process Cut, Copy, Paste request.
  *
- *  \param [in] do_what Enumerated integer ID of operation to perform
+ * \param [in] do_what Enumerated integer ID of operation to perform
  */
 void x_window_clipboard_handler(int do_what)
 {
@@ -100,6 +101,7 @@ void x_window_clipboard_handler(int do_what)
       }
       else if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "cut-clipboard", NULL);
+        sheet_head->CHANGED = TRUE;
         x_window_update_title(pr_current, sheet_head);
       }
       break;
@@ -115,6 +117,7 @@ void x_window_clipboard_handler(int do_what)
     case tb_paste:
       if (GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget)) {
         g_signal_emit_by_name(widget, "paste-clipboard", NULL);
+        sheet_head->CHANGED = TRUE;
         x_window_update_title(pr_current, sheet_head);
       }
       break;
