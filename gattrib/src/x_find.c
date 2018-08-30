@@ -234,8 +234,8 @@ bool x_find_main_search(char *text, char *replacement) {
  */
 void x_find_attribute_value(void)
 {
-  GtkEntry   *entry;
-  const char *text;
+  GtkEntry *entry;
+      char *text;
 
   x_find_set_search_parameters();
 
@@ -256,6 +256,10 @@ void x_find_attribute_value(void)
   gtk_sheet_unselect_range(Search.sheet);
   Search.FindOnlyMode=TRUE;
   x_dialog_search_replace(&Search, text);
+
+  if (text) {
+    geda_free(text);
+  }
 }
 
 /*! \brief Start Search and Replace

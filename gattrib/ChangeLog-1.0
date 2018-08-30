@@ -8,7 +8,8 @@
       Add search_replace_dialog_destroy_widgets and call before destroying the
       dialog to unreference the tooltips object.
 
-    * src/x_find.c: Add Doxygen TODO for x_find_attribute_value.
+    * src/x_find.c: Add Doxygen TODO for x_find_attribute_value and release the
+      pointer returned from gtk_editable_get_chars.
 
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
