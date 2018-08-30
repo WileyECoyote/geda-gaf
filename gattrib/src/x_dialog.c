@@ -737,6 +737,14 @@ static GtkWidget *WholeWordSwitch=NULL;
 static GtkWidget *SearchBackwordSwitch=NULL;
 static GtkWidget *WrapAroundSwitch=NULL;
 
+static void search_replace_dialog_destroy_widgets(GtkWidget *self)
+{
+  GtkWidget *tooltips;
+
+  tooltips = GEDA_OBJECT_GET_DATA (self, "tooltips");
+  g_object_unref(tooltips);
+}
+
 /*! \brief Action Response function for the Search dialogs
  *  \par Function Description
  *  This function processes the "response" signals from the action
@@ -788,6 +796,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
 
   case GEDA_RESPONSE_DELETE_EVENT:
   case GEDA_RESPONSE_CANCEL:
+    search_replace_dialog_destroy_widgets(ThisDialog);
     gtk_widget_destroy(ThisDialog);
     break;
 

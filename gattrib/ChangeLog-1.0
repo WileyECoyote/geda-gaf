@@ -5,6 +5,8 @@
     * data/gattrib.applications: add application-registry file.
 
     * src/x_dialog.c: Release message string resources in x_dialog_file_not_saved.
+      Add search_replace_dialog_destroy_widgets and call before destroying the
+      dialog to unreference the tooltips object.
 
 2018-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
