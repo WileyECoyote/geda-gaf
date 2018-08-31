@@ -79,7 +79,7 @@ const char *IDS_GEDA_ICONS[] = {  /* Menu Icons Strings */
   "geda-calculate",     "geda-component",     "geda-copy",          "geda-demote",
   "geda-deslect",       "geda-design",        "geda-design1",       "geda-design2",
   "geda-design3",       "geda-design4",       "geda-display",       "geda-display-color",
-  "geda-draft",         "geda-film-roll",     "geda-find",          "geda-find-attribute"
+  "geda-draft",         "geda-film-roll",     "geda-find",          "geda-find-attribute",
   "geda-grid-dot",      "geda-grid-mesh",     "geda-icprint",       "geda-inbed",
   "geda-inspect-grn",   "geda-invisible",     "geda-lightning",     "geda-line",
   "geda-line-type",     "geda-lock",          "geda-net",           "geda-marker",
