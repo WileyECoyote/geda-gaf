@@ -853,7 +853,7 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
 
 /*! \brief Save Session Configuration Settings and Auto Session
  *  \par Function Description
- *  This function is call at shutdown to preserve the state of
+ *  This function is called at shutdown to preserve the state of
  *  the auto_sessions variable to the configuration system. The
  *  function first saves the current session if appropriate.
  *  The auto_sessions variable is restored by #i_sessions_init.
