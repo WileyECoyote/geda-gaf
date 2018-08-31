@@ -483,6 +483,18 @@ static void geda_object_instance_init(GTypeInstance *instance, void *g_class)
   g_list_foreach (new_object_hooks, call_new_object_hook, object);
 }
 
+static void geda_object_dispose(GObject *gobject)
+{
+  GedaObject *object = (GedaObject*)(gobject);
+
+  if (object->attribs) {
+    g_list_free(object->attribs);
+    object->attribs = NULL;
+  }
+
+  ((GObjectClass*)geda_object_parent_class)->dispose(gobject);
+}
+
 /*!
  * \brief Geda GedaObject Finalization Function
  * \par Function Description
@@ -546,6 +558,7 @@ static void geda_object_class_init(void *klass, void *class_data)
   class->finalize             = geda_object_finalize;
 
   gclass->finalize            = class->finalize;
+  gclass->dispose             = geda_object_dispose;
   gclass->set_property        = geda_object_set_property;
   gclass->get_property        = geda_object_get_property;
 

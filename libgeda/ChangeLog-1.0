@@ -1,3 +1,8 @@
+2018-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Over-ride dispose and release the list
+      of attributes, .i.e. object->attribs.
+
 2018-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_path.c: Update geda_file_path_get_dirname parameter
