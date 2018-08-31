@@ -1499,22 +1499,22 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
           geda_option_menu_get_menu (
             (GedaOptionMenu*)ScopeNumberMenu)), "scope_menu"));
 
-    /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
-    autotext->scope_skip = POINTER_TO_INT(
-      GEDA_OBJECT_GET_DATA (
-          geda_menu_widget_get_active (
-            geda_option_menu_get_menu (
-              (GedaOptionMenu*)ScopeSkipMenu)), "scope_menu"));
+  /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
+  autotext->scope_skip = POINTER_TO_INT(
+    GEDA_OBJECT_GET_DATA (
+        geda_menu_widget_get_active (
+          geda_option_menu_get_menu (
+            (GedaOptionMenu*)ScopeSkipMenu)), "scope_menu"));
 
-      autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
+  autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 
-      /* Sort order */
-      autotext->order = geda_combo_box_get_active((GedaComboBox*)SortOrderCombo);
+  /* Sort order */
+  autotext->order = geda_combo_box_get_active((GedaComboBox*)SortOrderCombo);
 
-      /* Options */
-      autotext->startnum  = GET_SPIN_IVALUE (StartNumberSpin);
-      autotext->removenum = GET_SWITCH_STATE (DoRemoveNumberSwitch);
-      autotext->slotting  = GET_SWITCH_STATE (DoSlottingSwitch);
+  /* Options */
+  autotext->startnum  = GET_SPIN_IVALUE (StartNumberSpin);
+  autotext->removenum = GET_SWITCH_STATE (DoRemoveNumberSwitch);
+  autotext->slotting  = GET_SWITCH_STATE (DoSlottingSwitch);
 }
 
 /*!
@@ -1635,7 +1635,6 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
 }
 
 /**************************** DIALOG SET-UP *****************************/
-/* ***** DIALOG SET-UP ***************************************************** */
 
 /*!
  * \brief Creates the Filter Option Bulbs on the Autonumber text dialog.
