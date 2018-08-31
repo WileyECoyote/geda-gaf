@@ -1657,7 +1657,7 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   gtk_misc_set_alignment ((GtkMisc*)widget, 0, 0.5);
 
-  widget = geda_bulb_new_visible_with_mnemonic(NULL, "History");
+   widget = geda_bulb_new_visible_with_mnemonic(NULL, "_History");
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
 
@@ -1665,12 +1665,12 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
 
   g_object_set (widget, "show-button", TRUE, NULL);
 
-  widget = geda_bulb_new_with_mnemonic_from_widget(widget, "Unset", 1);
+  widget = geda_bulb_new_with_mnemonic_from_widget(widget, "_Unset", 1);
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   g_signal_connect(widget, "clicked", G_CALLBACK(set_scope_filter_text_question), autotext);
 
-  widget = geda_bulb_new_with_mnemonic_from_widget(widget, "Wild", 1);
+  widget = geda_bulb_new_with_mnemonic_from_widget(widget, "_Wild", 1);
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   g_signal_connect(widget, "clicked", G_CALLBACK(set_scope_filter_text_wild), autotext);
