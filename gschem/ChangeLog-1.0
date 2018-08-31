@@ -1,6 +1,7 @@
 2018-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * x/x_autonumber.c: Add missing mnemonics filter options.
+    * x/x_autonumber.c: Add missing mnemonics filter options and
+      translate scope filter options.
 
     * src/x/x_icons.c: add missing comma after "geda-find-attribute".
 
