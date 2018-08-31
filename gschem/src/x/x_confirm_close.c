@@ -183,7 +183,9 @@ static char *get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
 
   gtk_tree_model_get (model, &iter, COLUMN_PAGE, &page, -1);
 
-  return geda_file_get_basename_dup (page->filename);
+  /* Do not unreference the Page */
+
+  return geda_file_get_basename_dup (page->filename);;
 }
 
 /*!
