@@ -3,7 +3,8 @@
     * x/x_autonumber.c: Add missing mnemonics filter options and
       translate scope filter options.
 
-    * src/x/x_icons.c: add missing comma after "geda-find-attribute".
+    * src/x/x_icons.c: add missing comma after "geda-find-attribute",
+      include "gschem-page-man" in IDS_GSCHEM_ICONS.
 
 2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
