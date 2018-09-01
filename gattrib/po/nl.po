@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-09-01 09:46-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -306,11 +306,11 @@ msgstr "Sla de wijzigingen op voor het afsluiten?"
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr "Als u niet opslaat, gaan al uw wijzigingen definitief verloren."
 
-#: gattrib/src/x_dialog.c:442
+#: gattrib/src/x_dialog.c:446
 msgid "Close without saving"
 msgstr "Afsluiten zonder opslaan"
 
-#: gattrib/src/x_dialog.c:495
+#: gattrib/src/x_dialog.c:499
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -334,15 +334,15 @@ msgstr ""
 "\n"
 "Of anders, hou je vast -- implementeer ik deze opties snel!\n"
 
-#: gattrib/src/x_dialog.c:503
+#: gattrib/src/x_dialog.c:507
 msgid "Unimplemented feature!"
 msgstr "Niet geïmplementeerde functie"
 
-#: gattrib/src/x_dialog.c:529
+#: gattrib/src/x_dialog.c:533
 msgid "Fatal error"
 msgstr "Fatale fout"
 
-#: gattrib/src/x_dialog.c:544
+#: gattrib/src/x_dialog.c:548
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -365,104 +365,104 @@ msgstr ""
 "met genereuze programmacodebijdragen van gschem, gnetlist, \n"
 "en gtkextra, en ook ondersteuning van de gEDA gemeenschap."
 
-#: gattrib/src/x_dialog.c:554
+#: gattrib/src/x_dialog.c:558
 msgid "About..."
 msgstr "Over..."
 
-#: gattrib/src/x_dialog.c:571 gattrib/src/x_menus.c:379
+#: gattrib/src/x_dialog.c:575 gattrib/src/x_menus.c:379
 msgid "Export CSV"
 msgstr "Exporteer CSV"
 
 # Find
-#: gattrib/src/x_dialog.c:618 gattrib/src/x_dialog.c:1065
+#: gattrib/src/x_dialog.c:622 gattrib/src/x_dialog.c:1078
 #: gattrib/src/x_toolbars.c:38
 msgid "Find"
 msgstr "Vind"
 
 # Enter
-#: gattrib/src/x_dialog.c:649
+#: gattrib/src/x_dialog.c:653
 msgid "Enter"
 msgstr "invoeren"
 
 # Search for
-#: gattrib/src/x_dialog.c:710
+#: gattrib/src/x_dialog.c:714
 msgid "Search for:"
 msgstr "Zoeken:"
 
 # Enter or select the text to find
-#: gattrib/src/x_dialog.c:710
+#: gattrib/src/x_dialog.c:714
 msgid "Enter or select the text to find"
 msgstr "Voer de gewenste tekst in of selecteer deze"
 
 # Replace with
-#: gattrib/src/x_dialog.c:711
+#: gattrib/src/x_dialog.c:715
 msgid "Replace with:"
 msgstr "Vervangen door:"
 
 # Enter or select the replacement text
-#: gattrib/src/x_dialog.c:711
+#: gattrib/src/x_dialog.c:715
 msgid "Enter or select the replacement text"
 msgstr "Voer de vervangende tekst in of selecteer deze"
 
 # Ignore Case
-#: gattrib/src/x_dialog.c:714
+#: gattrib/src/x_dialog.c:718
 msgid "Ignore Case"
 msgstr "Negeer zaak"
 
 # Set search case sensitivity
-#: gattrib/src/x_dialog.c:714
+#: gattrib/src/x_dialog.c:718
 msgid "Set search case sensitivity"
 msgstr "Stel hoofdlettergevoeligheid in"
 
 # Match Words
-#: gattrib/src/x_dialog.c:715
+#: gattrib/src/x_dialog.c:719
 msgid "Match Words"
 msgstr "overeenkomen met woorden"
 
 # Limit Search hits to entire work
-#: gattrib/src/x_dialog.c:715
+#: gattrib/src/x_dialog.c:719
 msgid "Limit Search hits to entire work"
 msgstr "Beperk hits tot volledig werk"
 
 # Search Backward
-#: gattrib/src/x_dialog.c:716
+#: gattrib/src/x_dialog.c:720
 msgid "Search Backward"
 msgstr "Zoek achteruit"
 
 # Reverse search direction
-#: gattrib/src/x_dialog.c:716
+#: gattrib/src/x_dialog.c:720
 msgid "Reverse search direction"
 msgstr "Omgekeerde zoekrichting"
 
-#: gattrib/src/x_dialog.c:717
+#: gattrib/src/x_dialog.c:721
 msgid "Wrap Around"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:717
+#: gattrib/src/x_dialog.c:721
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1041
+#: gattrib/src/x_dialog.c:1054
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1043
+#: gattrib/src/x_dialog.c:1056
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1052
+#: gattrib/src/x_dialog.c:1065
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1054 gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_dialog.c:1067 gattrib/src/x_toolbars.c:39
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1063
+#: gattrib/src/x_dialog.c:1076
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1070
+#: gattrib/src/x_dialog.c:1083
 msgid "Find next"
 msgstr ""
 
@@ -480,11 +480,11 @@ msgstr "Kon niet schematische laden"
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:277
+#: gattrib/src/x_find.c:285
 msgid "Attribute"
 msgstr "Attribuut"
 
-#: gattrib/src/x_find.c:314
+#: gattrib/src/x_find.c:322
 msgid "Designator"
 msgstr ""
 

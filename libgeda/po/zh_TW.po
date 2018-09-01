@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-11 12:48-0500\n"
+"POT-Creation-Date: 2018-09-01 09:46-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -504,178 +504,174 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1009 libgeda/src/geda/geda_config.c:1138
+#: libgeda/src/geda/geda_config.c:1040 libgeda/src/geda/geda_config.c:1169
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1012
+#: libgeda/src/geda/geda_config.c:1043
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1083 libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/geda/geda_config.c:1114 libgeda/src/guile/g_rc_parse.c:295
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1086
+#: libgeda/src/geda/geda_config.c:1117
 msgid "Error loading configuration"
 msgstr "加載配置時出錯"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1141
+#: libgeda/src/geda/geda_config.c:1172
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "保存配置時出錯;文件名未定義\n"
 
-#: libgeda/src/geda/geda_config.c:1166 libgeda/src/object/o_save.c:424
+#: libgeda/src/geda/geda_config.c:1197 libgeda/src/object/o_save.c:424
 msgid "file"
 msgstr "文件"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1202
+#: libgeda/src/geda/geda_config.c:1233
 msgid "Error saving configuration to"
 msgstr "嘗試將配置保存到時發生錯誤"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1209
+#: libgeda/src/geda/geda_config.c:1240
 msgid "bad path in file"
 msgstr "文件路徑無效"
 
-#: libgeda/src/geda/geda_config.c:1213
+#: libgeda/src/geda/geda_config.c:1244
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1546 libgeda/src/geda/geda_config.c:1610
+#: libgeda/src/geda/geda_config.c:1577 libgeda/src/geda/geda_config.c:1641
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1624
+#: libgeda/src/geda/geda_config.c:1655
 msgid "Configuration does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:302
+#: libgeda/src/geda/geda_keyfile.c:304
 #, c-format
 msgid "argument is NULL\n"
 msgstr ""
 
 # is not valid
-#: libgeda/src/geda/geda_keyfile.c:305
+#: libgeda/src/geda/geda_keyfile.c:307
 msgid "is not valid\n"
 msgstr "無效\n"
 
-#: libgeda/src/geda/geda_keyfile.c:489
+#: libgeda/src/geda/geda_keyfile.c:491
 msgid "Valid key file could not be found in search dirs"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:521
-msgid "Not a regular file"
-msgstr ""
-
-#: libgeda/src/geda/geda_keyfile.c:935
+#: libgeda/src/geda/geda_keyfile.c:934
 #, c-format
 msgid ""
 "Key file contains line '%s' which is not a key-value pair, group, or comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:994
+#: libgeda/src/geda/geda_keyfile.c:993
 msgid "Invalid group name"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1035
+#: libgeda/src/geda/geda_keyfile.c:1034
 msgid "Key file does not start with a group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1061
+#: libgeda/src/geda/geda_keyfile.c:1060
 msgid "Invalid key name"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1088
+#: libgeda/src/geda/geda_keyfile.c:1087
 msgid "Key file contains unsupported encoding"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1332 libgeda/src/geda/geda_keyfile.c:1549
-#: libgeda/src/geda/geda_keyfile.c:3031 libgeda/src/geda/geda_keyfile.c:3101
-#: libgeda/src/geda/geda_keyfile.c:3225 libgeda/src/geda/geda_keyfile.c:3448
-#: libgeda/src/geda/geda_keyfile.c:3621 libgeda/src/geda/geda_keyfile.c:3806
-#: libgeda/src/geda/geda_keyfile.c:3871
+#: libgeda/src/geda/geda_keyfile.c:1331 libgeda/src/geda/geda_keyfile.c:1548
+#: libgeda/src/geda/geda_keyfile.c:3030 libgeda/src/geda/geda_keyfile.c:3100
+#: libgeda/src/geda/geda_keyfile.c:3224 libgeda/src/geda/geda_keyfile.c:3447
+#: libgeda/src/geda/geda_keyfile.c:3620 libgeda/src/geda/geda_keyfile.c:3805
+#: libgeda/src/geda/geda_keyfile.c:3870
 msgid "Key file does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1529
+#: libgeda/src/geda/geda_keyfile.c:1528
 msgid "ERROR: pointer to key file is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1532
+#: libgeda/src/geda/geda_keyfile.c:1531
 msgid "ERROR: pointer to group name is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1535
+#: libgeda/src/geda/geda_keyfile.c:1534
 msgid "ERROR: pointer to key is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1562
+#: libgeda/src/geda/geda_keyfile.c:1561
 msgid "Key file does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1679 libgeda/src/geda/geda_keyfile.c:1817
+#: libgeda/src/geda/geda_keyfile.c:1678 libgeda/src/geda/geda_keyfile.c:1816
 #, c-format
 msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1701 libgeda/src/geda/geda_keyfile.c:1839
-#: libgeda/src/geda/geda_keyfile.c:2273
+#: libgeda/src/geda/geda_keyfile.c:1700 libgeda/src/geda/geda_keyfile.c:1838
+#: libgeda/src/geda/geda_keyfile.c:2272
 #, c-format
 msgid ""
 "Key file contains key '%s' which has a value that cannot be interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2495 libgeda/src/geda/geda_keyfile.c:2860
+#: libgeda/src/geda/geda_keyfile.c:2494 libgeda/src/geda/geda_keyfile.c:2859
 #, c-format
 msgid ""
 "Key file contains key '%s' in group '%s' which has a value that cannot be "
 "interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2572 libgeda/src/geda/geda_keyfile.c:2648
+#: libgeda/src/geda/geda_keyfile.c:2571 libgeda/src/geda/geda_keyfile.c:2647
 #, c-format
 msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3046 libgeda/src/geda/geda_keyfile.c:3240
-#: libgeda/src/geda/geda_keyfile.c:3883
+#: libgeda/src/geda/geda_keyfile.c:3045 libgeda/src/geda/geda_keyfile.c:3239
+#: libgeda/src/geda/geda_keyfile.c:3882
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3428
+#: libgeda/src/geda/geda_keyfile.c:3427
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4101
+#: libgeda/src/geda/geda_keyfile.c:4100
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4123
+#: libgeda/src/geda/geda_keyfile.c:4122
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4262
+#: libgeda/src/geda/geda_keyfile.c:4261
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4277
+#: libgeda/src/geda/geda_keyfile.c:4276
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4309
+#: libgeda/src/geda/geda_keyfile.c:4308
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4333
+#: libgeda/src/geda/geda_keyfile.c:4332
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -712,75 +708,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:555
+#: libgeda/src/geda/geda_object.c:568
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:556
+#: libgeda/src/geda/geda_object.c:569
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:565
+#: libgeda/src/geda/geda_object.c:578
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:566
+#: libgeda/src/geda/geda_object.c:579
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:573
+#: libgeda/src/geda/geda_object.c:586
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:574
+#: libgeda/src/geda/geda_object.c:587
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:580
+#: libgeda/src/geda/geda_object.c:593
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:581
+#: libgeda/src/geda/geda_object.c:594
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:586
+#: libgeda/src/geda/geda_object.c:599
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:587
+#: libgeda/src/geda/geda_object.c:600
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:593
+#: libgeda/src/geda/geda_object.c:606
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:594
+#: libgeda/src/geda/geda_object.c:607
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:600
+#: libgeda/src/geda/geda_object.c:613
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:601
+#: libgeda/src/geda/geda_object.c:614
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:608
+#: libgeda/src/geda/geda_object.c:621
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:609
+#: libgeda/src/geda/geda_object.c:622
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:617
+#: libgeda/src/geda/geda_object.c:630
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:618
+#: libgeda/src/geda/geda_object.c:631
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -875,136 +871,136 @@ msgstr "恢復"
 msgid "Check library path"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:458
+#: libgeda/src/guile/g_rc.c:459
 msgid "Check library search path"
 msgstr ""
 
 # Invalid path passed to source-library
-#: libgeda/src/guile/g_rc.c:566
+#: libgeda/src/guile/g_rc.c:567
 msgid "Invalid path passed to source-library"
 msgstr "傳遞到源庫的路徑無效 (source-library)"
 
 # Invalid path passed to source-library-search
-#: libgeda/src/guile/g_rc.c:617 libgeda/src/guile/g_rc.c:627
+#: libgeda/src/guile/g_rc.c:618 libgeda/src/guile/g_rc.c:628
 msgid "Invalid path passed to source-library-search"
 msgstr "傳遞到源庫搜索的路徑無效 (source-library-search)"
 
-#: libgeda/src/guile/g_rc.c:740
+#: libgeda/src/guile/g_rc.c:741
 #, c-format
 msgid "Bad value [%d], check bus-style setting in configuration file\n"
 msgstr ""
 
 # Continuing with default value
-#: libgeda/src/guile/g_rc.c:741 libgeda/src/guile/g_rc.c:747
-#: libgeda/src/guile/g_rc.c:785 libgeda/src/guile/g_rc.c:791
-#: libgeda/src/guile/g_rc.c:829 libgeda/src/guile/g_rc.c:835
-#: libgeda/src/guile/g_rc.c:874 libgeda/src/guile/g_rc.c:880
-#: libgeda/src/guile/g_rc.c:908 libgeda/src/guile/g_rc.c:936
-#: libgeda/src/guile/g_rc.c:964 libgeda/src/guile/g_rc.c:992
-#: libgeda/src/guile/g_rc.c:1020 libgeda/src/guile/g_rc.c:1048
-#: libgeda/src/guile/g_rc.c:1076 libgeda/src/guile/g_rc.c:1104
+#: libgeda/src/guile/g_rc.c:742 libgeda/src/guile/g_rc.c:748
+#: libgeda/src/guile/g_rc.c:786 libgeda/src/guile/g_rc.c:792
+#: libgeda/src/guile/g_rc.c:830 libgeda/src/guile/g_rc.c:836
+#: libgeda/src/guile/g_rc.c:875 libgeda/src/guile/g_rc.c:881
+#: libgeda/src/guile/g_rc.c:909 libgeda/src/guile/g_rc.c:937
+#: libgeda/src/guile/g_rc.c:965 libgeda/src/guile/g_rc.c:993
+#: libgeda/src/guile/g_rc.c:1021 libgeda/src/guile/g_rc.c:1049
+#: libgeda/src/guile/g_rc.c:1077 libgeda/src/guile/g_rc.c:1105
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr "繼續使用默認值=[%d]\n"
 
-#: libgeda/src/guile/g_rc.c:746
+#: libgeda/src/guile/g_rc.c:747
 #, c-format
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:784
+#: libgeda/src/guile/g_rc.c:785
 #, c-format
 msgid "Bad value [%d], check line-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:790
+#: libgeda/src/guile/g_rc.c:791
 #, c-format
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:828
+#: libgeda/src/guile/g_rc.c:829
 #, c-format
 msgid "Bad value [%d], check net-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:834
+#: libgeda/src/guile/g_rc.c:835
 #, c-format
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:873
+#: libgeda/src/guile/g_rc.c:874
 #, c-format
 msgid "Bad value [%d], check pin-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:879
+#: libgeda/src/guile/g_rc.c:880
 #, c-format
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:907
+#: libgeda/src/guile/g_rc.c:908
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-bus-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:935
+#: libgeda/src/guile/g_rc.c:936
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-line-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:963
+#: libgeda/src/guile/g_rc.c:964
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-net-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:991
+#: libgeda/src/guile/g_rc.c:992
 #, c-format
 msgid ""
 "Invalid type assignment, check thick-pin-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1019
+#: libgeda/src/guile/g_rc.c:1020
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1047
+#: libgeda/src/guile/g_rc.c:1048
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-line-width setting in configuration "
 "file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1075
+#: libgeda/src/guile/g_rc.c:1076
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1103
+#: libgeda/src/guile/g_rc.c:1104
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1164
+#: libgeda/src/guile/g_rc.c:1165
 msgid "list element is not a string"
 msgstr ""
 
 # invalid path
-#: libgeda/src/guile/g_rc.c:1241 libgeda/src/guile/g_rc.c:1281
+#: libgeda/src/guile/g_rc.c:1242 libgeda/src/guile/g_rc.c:1282
 msgid "invalid path"
 msgstr "路徑無效"
 
@@ -1792,46 +1788,46 @@ msgid "Non-string symbol name while scanning library"
 msgstr "而掃描庫時，方案返回的符號名稱不是字符串"
 
 # Unable to add library
-#: libgeda/src/struct/s_clib.c:1069 libgeda/src/struct/s_clib.c:1117
+#: libgeda/src/struct/s_clib.c:1066 libgeda/src/struct/s_clib.c:1114
 msgid "Cannot add library"
 msgstr "無法添加庫"
 
 # name not specified
-#: libgeda/src/struct/s_clib.c:1072 libgeda/src/struct/s_clib.c:1120
+#: libgeda/src/struct/s_clib.c:1069 libgeda/src/struct/s_clib.c:1117
 msgid "name not specified"
 msgstr "名稱未指定"
 
 # both 'list' and 'get' commands must be specified
-#: libgeda/src/struct/s_clib.c:1079
+#: libgeda/src/struct/s_clib.c:1076
 msgid "both 'list' and 'get' commands must be specified"
 msgstr "必須指定'list'和'get'命令"
 
 # The callback must be a closure
-#: libgeda/src/struct/s_clib.c:1129
+#: libgeda/src/struct/s_clib.c:1126
 msgid "callbacks must be closures"
 msgstr "回調必須是閉包"
 
 # Failed to load symbol from file
-#: libgeda/src/struct/s_clib.c:1254
+#: libgeda/src/struct/s_clib.c:1251
 msgid "Failed to load symbol from file"
 msgstr "無法從文件加載符號"
 
 # Failed to load symbol data
-#: libgeda/src/struct/s_clib.c:1315
+#: libgeda/src/struct/s_clib.c:1312
 msgid "Failed to load symbol data"
 msgstr "無法加載符號數據"
 
 # from source
-#: libgeda/src/struct/s_clib.c:1316
+#: libgeda/src/struct/s_clib.c:1313
 msgid "from source"
 msgstr "從源"
 
-#: libgeda/src/struct/s_clib.c:1538
+#: libgeda/src/struct/s_clib.c:1535
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1545
+#: libgeda/src/struct/s_clib.c:1542
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""
