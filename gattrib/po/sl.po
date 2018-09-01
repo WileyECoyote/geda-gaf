@@ -136,7 +136,7 @@ msgstr ""
 
 #: gattrib/src/s_rename.c:163
 #, c-format
-msgid ""
+msgid
 "WARNING: Trying to rename something twice:\n"
 "\t%s and %s\n"
 "are both a src and dest name\n"
@@ -439,40 +439,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
-# Add new Attribute
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Dodaj nov atribut"
+msgstr "Dodaj atribut"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Izbriši atribut"
+msgstr "Vstavi Atribut"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Atribut"
+msgstr "Skrij Atribut"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Izbriši atribut"
+msgstr "Odkrij Atribut"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "Izbriši atribut"
+msgstr "Izbriši Atribut"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Izbriši atribut"
+msgstr "Počisti podatke o atributih"
 
 #: gattrib/src/x_gtksheet.c:732
 msgid "Components"
