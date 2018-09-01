@@ -463,35 +463,35 @@ msgstr ""
 msgid "Toggle Visibility"
 msgstr ""
 
+# Add Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "属性"
+msgstr "属性を追加する"
 
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "属性"
+msgstr "属性を挿入する"
 
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "属性"
+msgstr "属性を隠す"
 
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "属性"
+msgstr "属性を明らかにする"
 
+# Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
-msgstr "属性"
+msgstr "属性の削除"
 
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "属性"
+msgstr "属性データのクリア"
 
 #: gattrib/src/x_gtksheet.c:732
 msgid "Components"
