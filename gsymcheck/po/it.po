@@ -21,19 +21,19 @@ msgstr ""
 
 #: gsymcheck/src/g_rc.c:71
 msgid "This is gEDA/gsymcheck version"
-msgstr ""
+msgstr "Questa è la versione gEDA/gsymcheck"
 
 #: gsymcheck/src/g_rc.c:72
 msgid "but you have a version"
-msgstr ""
+msgstr "ma tu hai una versione"
 
 #: gsymcheck/src/g_rc.c:73
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Si prega di essere sicuri di avere l'ultimo file rc"
 
 #: gsymcheck/src/g_rc.c:80
 msgid "file"
-msgstr ""
+msgstr "file"
 
 #: gsymcheck/src/gsymcheck.c:131
 msgid "Loaded file"
@@ -163,9 +163,9 @@ msgid "Found incorrectly attached attribute"
 msgstr "Trovato attributo allegato erroneamente"
 
 #: gsymcheck/src/s_check.c:436
-#, fuzzy, c-format
+#, c-format
 msgid "Found redundant %s= attribute: [%s=%s]\n"
-msgstr "Trovato attributo %s= proibito: [%s=%s]\n"
+msgstr "Trovato ridondante %s= attributo: [%s=%s]\n"
 
 #: gsymcheck/src/s_check.c:447
 msgid "Found a simple text object with only SHOW_NAME or SHOW_VALUE set"
@@ -471,14 +471,3 @@ msgstr "Avvertimento"
 #: gsymcheck/src/s_symstruct.c:111
 msgid "Error"
 msgstr "Errore"
-
-#~ msgid ""
-#~ "You are running gEDA/gsymcheck version [%s%s.%s],\n"
-#~ "but you have a version [%s] gsymcheckrc file:\n"
-#~ "\"%s\"\n"
-#~ "Please be sure that you have the latest rc file.\n"
-#~ msgstr ""
-#~ "È in esecuzione gEDA/gaf versione [%s%s.%s],\n"
-#~ "ma c'è la versione [%s] del file gsymcheckrc:\n"
-#~ "\"%s\"\n"
-#~ "Assicurarsi di usare l'ultima copia del file rc.\n"

@@ -20,19 +20,19 @@ msgstr ""
 
 #: gsymcheck/src/g_rc.c:71
 msgid "This is gEDA/gsymcheck version"
-msgstr ""
+msgstr "Dit is de gEDA/gsymcheck versie"
 
 #: gsymcheck/src/g_rc.c:72
 msgid "but you have a version"
-msgstr ""
+msgstr "maar je hebt een versie"
 
 #: gsymcheck/src/g_rc.c:73
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "Zorg ervoor dat je het nieuwste rc bestand hebt"
 
 #: gsymcheck/src/g_rc.c:80
 msgid "file"
-msgstr ""
+msgstr "bestand"
 
 # Loaded file
 #: gsymcheck/src/gsymcheck.c:131
@@ -163,9 +163,9 @@ msgid "Found incorrectly attached attribute"
 msgstr "Gevonden onjuist bevestigd attribuut"
 
 #: gsymcheck/src/s_check.c:436
-#, fuzzy, c-format
+#, c-format
 msgid "Found redundant %s= attribute: [%s=%s]\n"
-msgstr "Verboden %s= attribuut: [%s=%s] gevonden\n"
+msgstr "Gevonden overbodig %s= attribuut: [%s=%s]\n"
 
 #: gsymcheck/src/s_check.c:447
 msgid "Found a simple text object with only SHOW_NAME or SHOW_VALUE set"
@@ -476,14 +476,3 @@ msgstr "Waarschuwing"
 #: gsymcheck/src/s_symstruct.c:111
 msgid "Error"
 msgstr "Fout"
-
-#~ msgid ""
-#~ "You are running gEDA/gsymcheck version [%s%s.%s],\n"
-#~ "but you have a version [%s] gsymcheckrc file:\n"
-#~ "\"%s\"\n"
-#~ "Please be sure that you have the latest rc file.\n"
-#~ msgstr ""
-#~ "U heeft gEDA/gsymcheck versie [%s%s.%s],\n"
-#~ "maar U heeft een versie [%s] gsymcheckrc bestand:\n"
-#~ "\"%s\"\n"
-#~ "Wees alstublieft zeker dat U het laatste rc bestand heeft.\n"
