@@ -439,39 +439,33 @@ msgstr ""
 
 # Add new Attribute
 #: gattrib/src/x_gtksheet.c:53
-#, fuzzy
 msgid "Add Attribute"
-msgstr "Додај нови атрибут"
+msgstr "Додај Атрибут"
 
-# Delete Attribute
+# Insert Attribute
 #: gattrib/src/x_gtksheet.c:54
-#, fuzzy
 msgid "Insert Attribute"
-msgstr "Избриши атрибут"
+msgstr "Убаци Атрибут"
 
-# Attribute
+# Hide Attribute
 #: gattrib/src/x_gtksheet.c:55
-#, fuzzy
 msgid "Hide Attribute"
-msgstr "Атрибут"
+msgstr "Сакриј Aтрибут"
 
-# Delete Attribute
+# Reveal Attribute
 #: gattrib/src/x_gtksheet.c:56
-#, fuzzy
 msgid "Reveal Attribute"
-msgstr "Избриши атрибут"
+msgstr "Открити Атрибут"
 
 # Delete Attribute
 #: gattrib/src/x_gtksheet.c:57
-#, fuzzy
 msgid "Delete Attribute"
 msgstr "Избриши атрибут"
 
-# Delete Attribute
+# Clear Attribute Data
 #: gattrib/src/x_gtksheet.c:58
-#, fuzzy
 msgid "Clear Attribute Data"
-msgstr "Избриши атрибут"
+msgstr "Обриши податке о атрибутима"
 
 #: gattrib/src/x_gtksheet.c:732
 msgid "Components"
