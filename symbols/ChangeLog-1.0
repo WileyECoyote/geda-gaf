@@ -30,6 +30,12 @@
     * philips/TDA9886-1.sym: Add symbol; Demodulator for PAL, SECAM and
       NTSC, FM sound IF, PLL, with I2C.
 
+    * st/L620x: Clean symbols; update pin and attribute sequence.
+
+            * st/L6201.sym
+            * st/L6202-1.sym
+            * st/L6203-1.sym
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
