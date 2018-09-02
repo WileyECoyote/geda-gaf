@@ -9,6 +9,8 @@
             * linear/reference/LM369M-1.sym
             * linear/reference/LM369N-1.sym
 
+    * lineartech/LT1162-1.sym: Redo symbol, fix overbars, add value.
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
