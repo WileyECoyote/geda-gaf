@@ -15,6 +15,12 @@
 
     * lineartech/LTC2400-1.sym: Replace symbol.
 
+    * lineartech/ldo: Add 3 symbols; Low drop-out regulators:
+
+            * lineartech/ldo/LT1083-1.sym (7.5A)
+            * lineartech/ldo/LT1084-1.sym (5A)
+            * lineartech/ldo/LT1085-1.sym (3A)
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
