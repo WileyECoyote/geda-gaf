@@ -1,0 +1,53 @@
+v 20151230 2
+T 1100 2100 8 10 1 1 0 0 1
+refdes=U?
+T 1100 2300 5 10 0 0 0 0 1
+device=LM369
+T 1100 2500 5 10 0 1 0 0 1
+description=Precision Voltage Reference
+T 1100 2700 5 10 0 1 0 0 1
+documentation=www.elektronik-kompendium.de/public/schaerer/FILES/lm169.pdf
+P 1700 1000 1400 1000 1 0 0
+{
+T 1500 1050 5 10 1 1 0 0 1
+pinnumber=1
+T 1500 1050 5 10 0 1 0 0 1
+pinseq=1
+T 1345 995 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 1350 850 5 10 0 1 0 6 1
+pintype=pwr
+}
+P 700 1900 700 1600 1 0 0
+{
+T 650 1700 5 10 1 1 0 6 1
+pinnumber=2
+T 650 1700 5 10 0 1 0 6 1
+pinseq=2
+T 555 1550 9 10 1 1 180 6 1
+pinlabel=VIN
+T 750 1700 5 10 0 1 0 0 1
+pintype=pas
+}
+P 700 100 700 400 1 0 0
+{
+T 800 150 5 10 1 1 0 0 1
+pinnumber=3
+T 800 150 5 10 0 1 0 0 1
+pinseq=3
+T 550 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 650 200 5 10 0 1 0 6 1
+pintype=pas
+}
+B 0 400 1400 1200 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1100 1700 9 10 0 1 0 0 1
+footprint=TO-226
+T 1100 1900 9 10 1 1 0 0 1
+value=LM369DRC
+T 1100 3300 5 10 0 0 0 0 1
+author=AutoTron
+T 1100 2900 5 10 0 0 0 0 1
+use-license=unlimited
+T 1100 3100 5 10 0 0 0 0 1
+dist-license=GPLv2

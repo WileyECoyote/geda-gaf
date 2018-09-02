@@ -1,0 +1,64 @@
+v 20151230 2
+P 1100 1900 1100 1600 1 0 0
+{
+T 1050 1800 5 10 1 1 0 6 1
+pinnumber=2
+T 1050 1650 5 10 0 1 0 6 1
+pinseq=1
+T 955 1550 9 10 1 1 180 6 1
+pinlabel=VIN
+T 1150 1700 5 10 0 1 0 0 1
+pintype=pas
+}
+P 1100 100 1100 400 1 0 0
+{
+T 1200 100 5 10 1 1 0 0 1
+pinnumber=4
+T 1200 250 5 10 0 1 0 0 1
+pinseq=2
+T 950 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 1050 200 5 10 0 1 0 6 1
+pintype=pas
+}
+P 100 1000 400 1000 1 0 0
+{
+T 250 1050 5 10 1 1 0 6 1
+pinnumber=5
+T 250 850 5 10 0 1 0 6 1
+pinseq=3
+T 455 995 9 10 1 1 0 0 1
+pinlabel=TRIM
+T 450 850 5 10 0 1 0 0 1
+pintype=pwr
+}
+P 2100 1000 1800 1000 1 0 0
+{
+T 1950 1050 5 10 1 1 0 0 1
+pinnumber=6
+T 1950 850 5 10 0 1 0 0 1
+pinseq=4
+T 1745 995 9 10 1 1 0 6 1
+pinlabel=VOUT
+T 1750 850 5 10 0 1 0 6 1
+pintype=pwr
+}
+B 400 400 1400 1200 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1500 2100 8 10 1 1 0 0 1
+refdes=U?
+T 1500 2300 5 10 0 0 0 0 1
+device=LM369
+T 1500 2500 5 10 0 1 0 0 1
+description=Precision Voltage Reference
+T 1500 2700 5 10 0 1 0 0 1
+documentation=www.elektronik-kompendium.de/public/schaerer/FILES/lm169.pdf
+T 1500 1700 9 10 0 1 0 0 1
+footprint=SO8
+T 1500 1900 9 10 1 1 0 0 1
+value=LM369M
+T 1500 3300 5 10 0 0 0 0 1
+author=AutoTron
+T 1500 2900 5 10 0 0 0 0 1
+use-license=unlimited
+T 1500 3100 5 10 0 0 0 0 1
+dist-license=GPLv2

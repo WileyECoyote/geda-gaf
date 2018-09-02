@@ -1,3 +1,14 @@
+2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/reference: Add 6 symbols for precision voltage reference:
+
+            * linear/reference/LM169-1.sym
+            * linear/reference/LM169M-1.sym
+            * linear/reference/LM169N-1.sym
+            * linear/reference/LM369-1.sym
+            * linear/reference/LM369M-1.sym
+            * linear/reference/LM369N-1.sym
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
