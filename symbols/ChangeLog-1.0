@@ -27,6 +27,9 @@
     * philips/TDA9885-1.sym: Add symbol; Demodulator for PAL, NTSC, FM
       sound IF, PLL, with I2C.
 
+    * philips/TDA9886-1.sym: Add symbol; Demodulator for PAL, SECAM and
+      NTSC, FM sound IF, PLL, with I2C.
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
