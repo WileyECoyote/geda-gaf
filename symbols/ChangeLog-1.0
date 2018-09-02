@@ -21,6 +21,9 @@
             * lineartech/ldo/LT1084-1.sym (5A)
             * lineartech/ldo/LT1085-1.sym (3A)
 
+    * lineartech/switchreg/LT1375-2.sym: Fix color of pin labels, update
+      attribute positions.
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
