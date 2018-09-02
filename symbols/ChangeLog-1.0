@@ -11,6 +11,8 @@
 
     * lineartech/LT1162-1.sym: Redo symbol, fix overbars, add value.
 
+    * lineartech/LTC1799-1.sym: Replace symbol.
+
 2018-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/generic: Add description attribute, update attribute
