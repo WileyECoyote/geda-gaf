@@ -1,7 +1,13 @@
 2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Revise s_check_symbol_structure to allow text attributes
-      to be attached to text objects in symbol files, do not seem like a sin.
+      to be attached to text objects in symbol files, does not seem like a sin,
+      add string array redundant_attributes and check for redundant attributes:
+
+            * documentation
+            * symversion
+            * dist-license
+            * use-license
 
 2018-09-01 Wiley E. Hill <wileyhill@gmail.com>
 

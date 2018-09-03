@@ -357,8 +357,9 @@ static bool s_check_is_valid_directive(const char *string)
 static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
+        GList *found;
 
-  char *message;
+  char  *message;
   char **tokens;
 
   char *valid_pin_attributes[] = {"pinlabel", "pintype", "pinseq",
@@ -368,6 +369,10 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
   char *obsolete_attributes[]  = {"email", "label", "uref", NULL};
   char *forbidden_attributes[] = {"name",  "type", NULL};
   /* pin# ?, slot# ? */
+
+  char *redundant_attributes[] = {"documentation", "symversion",
+                                  "dist-license", "use-license", NULL};
+  found = NULL;
 
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
@@ -384,7 +389,13 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
         if (s_current->has_directive) {
 
           if (s_check_is_valid_directive(string)) {
+
             g_strfreev(tokens);
+
+            if (found) {
+              g_list_free(found);
+              found = NULL;
+            }
             continue;
           }
         }
@@ -421,7 +432,25 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
             ADD_ERROR_MESSAGE(message);
           }
         }
-      } else { /* object is not an attribute */
+
+        if (!found) {
+          found = g_list_prepend(NULL, tokens[0]);
+        }
+        else {
+
+          if (geda_glist_str_inlist(found, tokens[0])) {
+            if (s_check_list_has_item(redundant_attributes, tokens[0])) {
+              message = geda_sprintf (_("Found redundant %s= attribute: [%s=%s]\n"),
+              tokens[0], tokens[0], tokens[1]);
+              ADD_WARN_MESSAGE(message);
+            }
+          }
+          else {
+            found = g_list_prepend(found, tokens[0]);
+          }
+        }
+      }
+      else { /* object is not an attribute */
         if (o_current->show_name_value != SHOW_NAME_VALUE) {
           const char *msg = _("Found a simple text object with only SHOW_NAME or SHOW_VALUE set");
           message = geda_sprintf ("%s [%s]\n", msg, string);
@@ -430,6 +459,9 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
       }
       g_strfreev(tokens);
     }
+  }
+  if (found) {
+    g_list_free(found);
   }
 }
 
