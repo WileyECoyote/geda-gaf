@@ -359,8 +359,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
   const GList *iter;
         GList *found;
 
-  char  *message;
-  char **tokens;
+  char *message;
 
   char *valid_pin_attributes[] = {"pinlabel", "pintype", "pinseq",
                                   "pinnumber", "electtype", "mechtype",
@@ -380,75 +379,78 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
 
     if (o_current->type == OBJ_TEXT) {
 
+      char *name;
+      char *value;
+
       const char *string = geda_text_object_get_string(o_current);
 
-      tokens = g_strsplit(string,"=", 2);
+      geda_attrib_string_get_name_value(string, &name, &value);
 
-      if (tokens[0] != NULL && tokens[1] != NULL) {
+      if (name != NULL && value != NULL) {
 
         if (s_current->has_directive) {
 
           if (s_check_is_valid_directive(string)) {
 
-            g_strfreev(tokens);
+            GEDA_FREE(name);
+            GEDA_FREE(value);
 
             if (found) {
-              g_list_free(found);
+              geda_glist_free_all(found);
               found = NULL;
             }
             continue;
           }
         }
 
-        if (s_check_list_has_item(forbidden_attributes, tokens[0])) {
+        if (s_check_list_has_item(forbidden_attributes, name)) {
           message = geda_sprintf (_("Found forbidden %s= attribute: [%s=%s]\n"),
-                                     tokens[0], tokens[0], tokens[1]);
+                                     name, name, value);
           ADD_ERROR_MESSAGE(message);
         }
-        else if (s_check_list_has_item(obsolete_attributes, tokens[0])) {
+        else if (s_check_list_has_item(obsolete_attributes, name)) {
           message = geda_sprintf (_("Found obsolete %s= attribute: [%s=%s]\n"),
-                                     tokens[0], tokens[0], tokens[1]);
+                                     name, name, value);
           ADD_WARN_MESSAGE(message);
         }
-        else if (s_check_list_has_item(valid_pin_attributes, tokens[0])) {
+        else if (s_check_list_has_item(valid_pin_attributes, name)) {
           if (o_current->attached_to == NULL
             || o_current->attached_to->type != OBJ_PIN)
           {
             const char *msg = _("Found misplaced pin attribute");
-            message = geda_sprintf ("%s: [%s=%s]\n", msg, tokens[0], tokens[1]);
+            message = geda_sprintf ("%s: [%s=%s]\n", msg, name, value);
             ADD_ERROR_MESSAGE(message);
           }
         }
-        else if (!geda_glist_str_inlist(s_current->valid_attributes, tokens[0])) {
+        else if (!geda_glist_str_inlist(s_current->valid_attributes, name)) {
           message = geda_sprintf (_("Found unknown %s= attribute: [%s=%s]\n"),
-                                     tokens[0], tokens[0], tokens[1]);
+                                     name, name, value);
           ADD_WARN_MESSAGE(message);
         }
         else if (o_current->attached_to != NULL) {
           /* Allow attributes to be attached to text objects */
           if (!GEDA_IS_TEXT(o_current->attached_to)) {
             const char *msg = _("Found incorrectly attached attribute");
-            message = geda_sprintf ("%s: [%s=%s]\n", msg, tokens[0], tokens[1]);
+            message = geda_sprintf ("%s: [%s=%s]\n", msg, name, value);
             ADD_ERROR_MESSAGE(message);
           }
         }
 
         if (!found) {
-          found = g_list_prepend(NULL, tokens[0]);
+          found = g_list_prepend(NULL, geda_strdup(name));
         }
-        else {
-
-          if (geda_glist_str_inlist(found, tokens[0])) {
-            if (s_check_list_has_item(redundant_attributes, tokens[0])) {
+        else if (geda_glist_str_inlist(found, name)) {
+            if (s_check_list_has_item(redundant_attributes, name)) {
               message = geda_sprintf (_("Found redundant %s= attribute: [%s=%s]\n"),
-              tokens[0], tokens[0], tokens[1]);
+              name, name, value);
               ADD_WARN_MESSAGE(message);
             }
-          }
-          else {
-            found = g_list_prepend(found, tokens[0]);
-          }
         }
+        else {
+          found = g_list_prepend(found, geda_strdup(name));
+        }
+        GEDA_FREE(name);
+        GEDA_FREE(value);
       }
       else { /* object is not an attribute */
         if (o_current->show_name_value != SHOW_NAME_VALUE) {
@@ -457,11 +459,10 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
           ADD_WARN_MESSAGE(message);
         }
       }
-      g_strfreev(tokens);
     }
   }
   if (found) {
-    g_list_free(found);
+    geda_glist_free_all(found);
   }
 }
 

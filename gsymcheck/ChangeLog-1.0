@@ -9,6 +9,8 @@
             * dist-license
             * use-license
 
+      Replace g_strsplit with geda_attrib_string_get_name_value.
+
 2018-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
