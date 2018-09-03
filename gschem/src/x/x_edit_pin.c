@@ -74,7 +74,7 @@ static WidgetStringData DialogStrings[] = {
   {"pin-sequence",     N_("_Sequence:"),      N_("Set the sequence number")},
   {"pin-label",        N_("_Label:"),         N_("Enter pin name or description")},
 
-  {"SetPinNodeTypeSwitch", N_("      Type:"), N_("Enable to set all selected attributes to the prescribed type")},
+  {"SetPinNodeTypeSwitch", N_("Type:"),       N_("Enable to set all selected attributes to the prescribed type")},
   {"SetElectricalSwitch",  N_("Attributes:"), N_("Enable to set all selected attributes to the prescribed value")},
 
   {"AutoNumberSwitch",     N_("Number:"),     N_("Enable or disable renumbering pin numbers, Number will be the starting pin number")},
@@ -874,17 +874,54 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   geda_container_add         (alignment, table);
   g_object_set               (table, "visible", TRUE, NULL);
 
+  /* Set Label Row 1 */
+
   label = GEDA_AV_LABEL_NEW (_("Set"), 0, 0);
-  gtk_table_attach(table, label, 0,1,0,1, GTK_FILL,0,0,0);
+  gtk_table_attach(table, label, 0, 1, 0, 1, GTK_FILL, 0, 0, 0);
 
   label = GEDA_AV_LABEL_NEW (_("Auto"), 0, 0);
-  gtk_table_attach(table, label, 0,1,3,4, GTK_FILL,0,0,0);
+  gtk_table_attach(table, label, 0, 1, 2, 3, GTK_FILL, 0, 0, 0);
 
-  /* Create Toggle Switch widgets */
-  GSCHEM_SWITCH(table, SetPinNodeType, 1, 2, FALSE)
-  GSCHEM_SWITCH(table, SetElectrical,  2, 2, FALSE)
-  GSCHEM_SWITCH(table, AutoNumber,     1, 4, FALSE)
-  GSCHEM_SWITCH(table, AutoSequence,   2, 4, FALSE)
+  /* Create the toggle switch widgets; Note the macro GSCHEM_SWITCH
+   * is utilize to create the labels and switches in column 4, the
+   * the labels and switches in column 1 are attached separately
+   * to facilitate alignment of the switches in the table */
+
+  /* SetPinNodeType Switch Row 2 Column 1 */
+
+  GtkWidget *SwitchImage = NULL;
+  GtkWidget *switch_hbox;
+
+  switch_hbox = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show(switch_hbox);
+
+  label = GEDA_AVM_LABEL_NEW (_LABEL(SetPinNodeType), 0, 0);
+  geda_label_widget_set_justify (label, GTK_JUSTIFY_RIGHT);
+
+  gtk_table_attach(table, label, 1, 2, 1, 2, GTK_FILL, 0, 0, 0);
+
+  SetPinNodeTypeSwitch = create_geda_switch (switch_hbox, SetPinNodeTypeSwitch,  SwitchImage, FALSE);
+
+  gtk_table_attach(table, switch_hbox, 2, 3, 1, 2, GTK_SHRINK, 0, 0, 0);
+
+  /* SetElectrical Switch Row 2 Column 4 */
+  GSCHEM_SWITCH(table, SetElectrical,  4, 1, FALSE)
+
+  /* AutoNumber Switch Row 3 Column 1 */
+
+  switch_hbox = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show(switch_hbox);
+
+  label = GEDA_AVM_LABEL_NEW (_LABEL(AutoNumber), 0, 0);
+  geda_label_widget_set_justify (label, GTK_JUSTIFY_RIGHT);
+  gtk_table_attach(table, label, 1,2,3,4, GTK_SHRINK,0,0,0);
+
+  AutoNumberSwitch = create_geda_switch (switch_hbox, AutoNumberSwitch,  SwitchImage, FALSE);
+
+  gtk_table_attach(table, switch_hbox, 2, 3, 3, 4, GTK_SHRINK, 0, 0, 0);
+
+  /* AutoSequence Switch Row 3 Column 4 */
+  GSCHEM_SWITCH(table, AutoSequence,   4, 3, FALSE)
 
   /* Setup callback for Switch widget */
   GEDA_CALLBACK_SWITCH (SetPinNodeType,   xd_edit_pin_switch_toggled, ThisDialog)

@@ -1,3 +1,9 @@
+2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_pin.c: Remove alignment spaces from the "Type" label
+      and put the left side label and switches in separate cells to aid
+      in alignment of the widgets in the lower half of the dialog.
+
 2018-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_autonumber.c: Add missing mnemonics filter options and
