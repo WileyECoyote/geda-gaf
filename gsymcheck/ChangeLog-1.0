@@ -1,3 +1,8 @@
+2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Revise s_check_symbol_structure to allow text attributes
+      to be attached to text objects in symbol files, do not seem like a sin.
+
 2018-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

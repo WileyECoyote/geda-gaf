@@ -414,9 +414,12 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
           ADD_WARN_MESSAGE(message);
         }
         else if (o_current->attached_to != NULL) {
-          const char *msg = _("Found incorrectly attached attribute");
-          message = geda_sprintf ("%s: [%s=%s]\n", msg, tokens[0], tokens[1]);
-          ADD_ERROR_MESSAGE(message);
+          /* Allow attributes to be attached to text objects */
+          if (!GEDA_IS_TEXT(o_current->attached_to)) {
+            const char *msg = _("Found incorrectly attached attribute");
+            message = geda_sprintf ("%s: [%s=%s]\n", msg, tokens[0], tokens[1]);
+            ADD_ERROR_MESSAGE(message);
+          }
         }
       } else { /* object is not an attribute */
         if (o_current->show_name_value != SHOW_NAME_VALUE) {
