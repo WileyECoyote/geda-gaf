@@ -737,12 +737,9 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
                     DIALOG_H_SPACING);
 
 
-  /* Set the alternative button order (ok, cancel, help) for other systems
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GEDA_RESPONSE_ACCEPT,
-                                          GEDA_RESPONSE_REJECT,
-                                          -1);
-   */
+  /* Do not set alternative button order here because we
+   * replaced the action area */
+
   gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GEDA_RESPONSE_ACCEPT);
 
   GEDA_HOOKUP_OBJECT(ThisDialog, apply_butt, "apply-butt");
