@@ -4,6 +4,11 @@
       and put the left side label and switches in separate cells to aid
       in alignment of the widgets in the lower half of the dialog.
 
+    * src/x/x_edit_text.c: Extent functionality of the Edit Text Dialog;
+      add new feature to allow users to change the case of the text being
+      edit. User can change the case to Upper, Lower, Camel or Sentence
+      case by selecting the option from a drop menu combo.
+
 2018-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_autonumber.c: Add missing mnemonics filter options and

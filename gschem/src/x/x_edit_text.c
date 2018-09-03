@@ -27,6 +27,7 @@
  */
 
 #include <gdk/gdk.h>
+#include <ctype.h>
 
 #include "../../include/gschem.h"
 #include "../../include/x_dialog.h"
@@ -48,6 +49,7 @@ typedef enum {
 
 /* Combo Chooser */
   TextAlign,
+  TextCase,
   TextColor,
   TextFont,
   Rotation,
@@ -57,12 +59,23 @@ typedef enum {
 
 } ControlID;
 
+enum {
+
+  LeaveCase,
+  UpperCase,
+  LowerCase,
+  CamelCase,
+  SentenceCase
+
+};
+
 /*! \brief String Arrays for Dialog Contrls.
  *  { "Hook-Up-String", "Label", "Tooltip string"},
  */
 static WidgetStringData DialogStrings[] = {
   { "text_string", N_("Text Content"),  N_("Enter or edit the text string")},
   { "text_align",  N_("A_lignment:"),   N_("Select the text alignment attribute")},
+  { "text_case",   N_("_Case:"),        N_("Change the text case")},
   { "text_color",  N_("_Color:"),       N_("Select color attribute")},
   { "fontbutton",  N_("_Size:"),        N_("Open font selection dialog")},
   { "rotation",    N_("_Rotation:"),    N_("Set the text rotation angle")},
@@ -73,7 +86,7 @@ static WidgetStringData DialogStrings[] = {
  * \brief Callback for Edit Text Dialog selection
  * \par Function Description
  *  This function updates widgets on the text_edit dialog with the text
- *  properties of the passed object. If multible objects are selected
+ *  properties of the passed object. If multiple objects are selected
  *  the text editing field is set to NULL.
  */
 static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
@@ -204,6 +217,11 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
       }
     }
 
+    { /* Text Case */
+      widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(TextCase));
+      geda_combo_widget_set_active(widget, 0);
+    }
+
     { /* Text Rotation */
       widget = GEDA_OBJECT_GET_DATA (ThisDialog, WIDGET(Rotation));
 
@@ -264,6 +282,42 @@ static GtkListStore *create_menu_alignment (GschemToplevel *w_current)
   gtk_list_store_append(store, &iter);
   gtk_list_store_set(store, &iter, 0, _("Lower Right"), -1);
   gtk_list_store_set(store, &iter, 1, 6, -1);
+
+  return store;
+}
+
+/*!
+ * \brief Create alignment combo box list store for the text property dialog
+ * \par Function Description
+ *  This function creates a GtkListStore with nine different alignment
+ *  entries.
+ */
+static GtkListStore *create_menu_case (GschemToplevel *w_current)
+{
+  GtkListStore *store;
+  GtkTreeIter   iter;
+
+  store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
+
+  gtk_list_store_append(store, &iter);
+  gtk_list_store_set(store, &iter, 0, _("Leave as is"), -1);
+  gtk_list_store_set(store, &iter, 1, LeaveCase, -1);
+
+  gtk_list_store_append(store, &iter);
+  gtk_list_store_set(store, &iter, 0, _("Upper"), -1);
+  gtk_list_store_set(store, &iter, 1, UpperCase, -1);
+
+  gtk_list_store_append( store, &iter);
+  gtk_list_store_set(store, &iter, 0, _("Lower"), -1);
+  gtk_list_store_set(store, &iter, 1, LowerCase, -1);
+
+  gtk_list_store_append( store, &iter);
+  gtk_list_store_set(store, &iter, 0, _("Camel"), -1);
+  gtk_list_store_set(store, &iter, 1, CamelCase, -1);
+
+  gtk_list_store_append( store, &iter);
+  gtk_list_store_set(store, &iter, 0, _("Sentence"), -1);
+  gtk_list_store_set(store, &iter, 1, SentenceCase, -1);
 
   return store;
 }
@@ -361,6 +415,168 @@ void x_dialog_edit_text_ok(GschemToplevel *w_current, GedaObject *object)
   GEDA_FREE(string);
 }
 
+static char *edit_text_to_camel (char *string)
+{
+  char *new_str;
+
+  if (string) {
+
+    unsigned int i, start;
+    unsigned int len;
+
+    len = strlen (string);
+
+    if (len > 0) {
+
+      new_str = geda_malloc(len + 1);
+
+      start = 0;
+
+      /* Increment over any leading spaces or tabs */
+      while (string[start] == ' ' || string[start] == '\t') {
+        new_str[start] = string[start];
+        start++;
+      }
+
+      /* Make the first character Upper case */
+      new_str[start] = toupper(string[start]);
+
+      /* Loop over remaining characters and look for characters
+       * preceded by a space or a line feed and make them Upper
+       * case */
+      for (i = start + 1; i < len; i++) {
+
+        if (string[i - 1] == ' ' || string[i - 1] == '\n') {
+          new_str[i] = toupper(string[i]);
+        }
+        else {
+          new_str[i] = tolower(string[i]);
+        }
+      }
+      new_str[len] = '\0';
+    }
+    else {
+      new_str = NULL;
+    }
+  }
+  else {
+    new_str = NULL;
+  }
+
+  return new_str;
+}
+
+static char *edit_text_to_sentence(char *string)
+{
+  char *new_str;
+
+  if (string) {
+
+    unsigned int i, start;
+    unsigned int len;
+
+    len = strlen (string);
+
+    if (len > 0) {
+
+      new_str = geda_malloc(len + 1);
+
+      start = 0;
+
+      /* Increment over any leading spaces or tabs */
+      while (string[start] == ' ' || string[start] == '\t') {
+        new_str[start] = string[start];
+        start++;
+      }
+
+      /* Make the first character Upper case */
+      new_str[start] = toupper(string[start]);
+
+      /* If second character, make  second character lower case */
+      if (len > 1 && start < len) {
+        new_str[start + 1] = tolower(string[start + 1]);
+      }
+
+      /* Loop over remaining characters and look for characters
+       * preceded by a period followed by space or line feed and
+       * make such characters Upper case, else lower case */
+      for (i = start + 2; i < len; i++) {
+
+        if (string[i - 2] == '.' &&
+           (string[i - 1] == ' ' ||
+            string[i - 1] == '\n')) {
+
+          new_str[i] = toupper(string[i]);
+        }
+        else {
+          new_str[i] = tolower(string[i]);
+        }
+      }
+      new_str[len] = '\0';
+    }
+    else {
+      new_str = NULL;
+    }
+  }
+  else {
+    new_str = NULL;
+  }
+
+  return new_str;
+}
+
+static void
+x_dialog_edit_text_change_case (GedaComboBox *casebox, GtkWidget *ThisDialog)
+{
+  int text_case;
+
+  text_case = geda_combo_box_get_active(casebox);
+
+  if (text_case) {
+
+    GtkTextBuffer *textbuffer;
+    GtkTextIter    start, end;
+    GtkWidget     *widget;
+    char          *string;
+    char          *new_str;
+
+    widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
+
+    textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(widget));
+
+    if (!gtk_text_buffer_get_selection_bounds (textbuffer, &start, &end)) {
+      gtk_text_buffer_get_bounds (textbuffer, &start, &end);
+    }
+
+    string = gtk_text_iter_get_text (&start, &end);
+
+    switch (text_case) {
+      case UpperCase:
+        new_str = g_utf8_strup (string, -1);
+        break;
+
+      case(LowerCase):
+        new_str = g_utf8_strdown (string, -1);
+        break;
+
+      case CamelCase:
+        new_str = edit_text_to_camel(string);
+        break;
+
+      case SentenceCase:
+        new_str =  edit_text_to_sentence(string);
+        break;
+
+      default:
+        new_str = NULL;
+    }
+
+    if (new_str) {
+      gtk_text_buffer_set_text (textbuffer, new_str, -1);
+    }
+  }
+}
+
 /*!
  * \brief Response function for the text property dialog
  * \par Function Description
@@ -414,12 +630,14 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
   if (!ThisDialog) {
 
     AtkObject *atk_align_obj;
+    AtkObject *atk_case_obj;
     AtkObject *atk_color_obj;
     AtkObject *atk_font_obj;
     AtkObject *atk_rotate_obj;
     AtkObject *atk_text_obj;
 
     GtkWidget *align_label;
+    GtkWidget *case_label;
     GtkWidget *color_label;
     GtkWidget *text_label;
     GtkWidget *font_label;
@@ -430,6 +648,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     GtkWidget *vbox;
     GtkWidget *optionmenu;
     GtkWidget *combobox;
+    GtkWidget *casecombo;
     GtkWidget *viewport1;
     GtkWidget *textentry;
     GtkWidget *font_button;
@@ -443,6 +662,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     const char *font_name;
 
     const char *text_align_tip;
+    const char *text_case_tip;
     const char *text_entry_tip;
     const char *color_menu_tip;
     const char *font_button_tip;
@@ -450,6 +670,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
 
     text_entry_tip    = _TOOLTIP(TheText);
     text_align_tip    = _TOOLTIP(TextAlign);
+    text_case_tip     = _TOOLTIP(TextCase);
     color_menu_tip    = _TOOLTIP(TextColor);
     font_button_tip   = _TOOLTIP(TextFont);
     rotation_tip      = _TOOLTIP(Rotation);
@@ -512,7 +733,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, FALSE, 0);
 
     /* Create Table Widget and put inside the alignment widget */
-    table = gtk_table_new (4, 3, FALSE);
+    table = gtk_table_new (5, 3, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
     gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
     geda_container_add (alignment, table);
@@ -558,7 +779,22 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                      (GtkAttachOptions) ( GTK_FILL),
                      (GtkAttachOptions) (0), 0, 0);
 
-    /* Text Rotation Label */
+    /* Text Case Label  -- Table Row 4 */
+    case_label = geda_aligned_mnemonic_label_new(_LABEL(TextCase), 0, 0);
+    gtk_table_attach(GTK_TABLE(table), case_label, 0,1,3,4, GTK_FILL,0,0,0);
+
+    menu_model = create_menu_case(w_current);
+    casecombo = geda_combo_box_new_with_model(GTK_TREE_MODEL(menu_model));
+    geda_combo_widget_set_wrap_width(casecombo, 3);
+    cell = gtk_cell_renderer_text_new();
+    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(casecombo), cell, TRUE);
+    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(casecombo),
+                                   cell, "text", 0, NULL);
+    GEDA_UNREF (menu_model);
+    gtk_table_attach_defaults(GTK_TABLE(table), casecombo, 1,2,3,4);
+    gtk_widget_set_tooltip_text (GTK_WIDGET(casecombo), text_case_tip);
+
+    /* Text Rotation Label  -- Table Row 5 */
     rotate_label=geda_aligned_mnemonic_label_new(_LABEL(Rotation), 0,0);
     gtk_table_attach(GTK_TABLE(table), rotate_label, 0,1,4,5, GTK_FILL,0,0,0);
 
@@ -568,26 +804,34 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                       (GtkAttachOptions) ( GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
 
+    g_signal_connect (casecombo, "changed",
+                      G_CALLBACK (x_dialog_edit_text_change_case),
+                      ThisDialog);
+
     g_signal_connect (font_button, "font-set",
                       G_CALLBACK (widget_value_modified),
                       NULL);
+
     g_signal_connect (RotationSpin, "insert-text",
                       G_CALLBACK (widget_value_modified),
                       NULL);
 
     GEDA_HOOKUP_OBJECT(ThisDialog, combobox,    WIDGET(TextAlign));
+    GEDA_HOOKUP_OBJECT(ThisDialog, casecombo,   WIDGET(TextCase));
     GEDA_HOOKUP_OBJECT(ThisDialog, optionmenu,  WIDGET(TextColor));
     GEDA_HOOKUP_OBJECT(ThisDialog, font_button, WIDGET(TextFont));
     GEDA_HOOKUP_OBJECT(ThisDialog, textentry,   IDS_TEXT_EDIT);
 
     /** Set the relationships between the label and their Widgets **/
     geda_label_set_mnemonic_widget (GEDA_LABEL (align_label), combobox);
+    geda_label_set_mnemonic_widget (GEDA_LABEL (case_label), casecombo);
     geda_label_set_mnemonic_widget (GEDA_LABEL (color_label), optionmenu);
     geda_label_set_mnemonic_widget (GEDA_LABEL (font_label), font_button);
     geda_label_set_mnemonic_widget (GEDA_LABEL (rotate_label), RotationSpin);
     geda_label_set_mnemonic_widget (GEDA_LABEL (text_label), textentry);
 
     atk_align_obj  = atk_widget_linked_label_new (align_label, combobox);
+    atk_case_obj   = atk_widget_linked_label_new (case_label, casecombo);
     atk_color_obj  = atk_widget_linked_label_new (color_label, optionmenu);
     atk_font_obj   = atk_widget_linked_label_new (font_label, font_button);
     atk_rotate_obj = atk_widget_linked_label_new (rotate_label, RotationSpin);
@@ -596,6 +840,10 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     if (atk_align_obj) {
       atk_object_set_name        (atk_align_obj,  _("Text alignment combobox"));
       atk_object_set_description (atk_align_obj,     text_align_tip);
+    }
+    if (atk_case_obj) {
+      atk_object_set_name        (atk_case_obj,   _("Text case combobox"));
+      atk_object_set_description (atk_case_obj,      text_case_tip);
     }
     if (atk_color_obj) {
       atk_object_set_name        (atk_color_obj,  _("Color options menu"));
