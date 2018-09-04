@@ -1,4 +1,12 @@
-2018-08-02 Wiley E. Hill <wileyhill@gmail.com>
+2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/switchreg: Update pinseq and documentation:
+
+            * linear/reference/LT1073-1.sym
+            * linear/reference/LT1073-5.sym
+            * linear/reference/LT1073-12.sym
+
+2018-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/reference: Add 6 symbols for precision voltage reference:
 

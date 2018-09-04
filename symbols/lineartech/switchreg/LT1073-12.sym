@@ -67,7 +67,7 @@ pinnumber=6
 T 1550 250 9 8 1 1 0 6 1
 pinlabel=A0
 T 1700 150 5 10 0 1 0 0 1
-pinseq=6
+pinseq=8
 T 1550 225 5 8 0 1 0 8 1
 pintype=pas
 }
@@ -87,9 +87,9 @@ P 1600 1100 1900 1100 1 0 1
 T 1700 1150 5 10 1 1 0 0 1
 pinnumber=8
 T 1550 1050 9 8 1 1 0 6 1
-pinlabel=FB
+pinlabel=SENSE
 T 1700 950 5 10 0 1 0 0 1
-pinseq=8
+pinseq=6
 T 1550 1025 5 8 0 1 0 8 1
 pintype=pas
 }
@@ -101,6 +101,6 @@ value=LT1073CS8-12
 T 400 1800 9 10 1 1 0 0 1
 footprint=SO8
 T 400 3000 5 10 0 1 0 0 1
-documentation=http://cds.linear.com/docs/en/datasheet/1073fa.pdf
+documentation=www.analog.com/media/en/technical-documentation/data-sheets/1073fa.pdf
 T 400 3200 5 10 0 0 0 0 1
 author=AutoTron
