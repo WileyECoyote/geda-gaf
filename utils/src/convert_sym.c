@@ -397,13 +397,14 @@ main(int argc, char **argv)
   /* 'parse' arguments */
   infileName = argv[optind];
 
-  infile=fopen(infileName,"r");
-      fprintf(stderr,"Error: Unable to open file `%s' in %s()\n",
-            infileName,__func__);
-      return 1;
+  infile = fopen(infileName,"r");
 
   if (infile == NULL) {
 
+    const char *err_msg = _("Error: Unable to open file");
+
+    fprintf(stderr,"%s \"%s\"\n", err_msg, infileName);
+    return 1;
   }
 
   convert_file(infile);
@@ -499,9 +500,11 @@ convert_file(FILE *fp)
         break;
 
       case 'Q':
-        fprintf(stderr,"Warning 'Q' record found and not handled at"
-                       "record %d, contact maintainer\n", records_processed);
-        do_nop(fp);
+        {
+          const char *err_msg = _("Warning 'Q' record found and not handled at record");
+          fprintf(stderr,"%s %d\n", err_msg, records_processed);
+          do_nop(fp);
+        }
         break;
 
       case 'C':  /* connected pin record */
@@ -525,8 +528,10 @@ convert_file(FILE *fp)
               buf[text_len-1] = 0;
           }
         }
-        fprintf(stderr,"Warning: Unrecognized record #%d:\n'%c%s'\n",
-                records_processed, c, buf);
+        {
+          const char *err_msg = _("Warning: Unrecognized record");
+          fprintf(stderr,"%s #%d:\n'%c%s'\n", err_msg, records_processed, c, buf);
+        }
       }
       records_processed++;
     }
@@ -557,9 +562,9 @@ do_bounding_box(FILE *fp)
 
   /* just fetch the values and store */
   if (fscanf(fp,"%d %d %d %d\n", &minx, &miny, &maxx, &maxy) != 4) {
-      fprintf(stderr,"Error: Invalid bounding box record #%d in %s()\n",
-              records_processed, __func__);
-      exit(1);
+    const char *err_msg = _("Error: Invalid bounding box record");
+    fprintf(stderr,"%s #%d\n", err_msg, records_processed);
+    exit(1);
   }
 
   minx *= scale;
@@ -603,8 +608,8 @@ do_unattached_attribute(FILE *fp)
   if (fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
              &viewvis) != 6)
     {
-      fprintf(stderr,"Error: Invalid Unattached attribute record #%d "
-                     "in %s()\n", records_processed, __func__);
+      const char *err_msg = _("Error: Invalid Unattached attribute record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
     }
 
@@ -644,9 +649,11 @@ do_unattached_attribute(FILE *fp)
       break;
 
     default:
-      fprintf(stderr,"Error: Invalid visibility value %u in "
-                     "viewlogic file at record #%d in function %s()\n",
-                      viewvis, records_processed, __func__);
+    {
+      const char *err_msg = _("Error: Invalid visibility value");
+      const char *rec_msg = _("in viewlogic file at record");
+      fprintf(stderr,"%s %u %s #%d\n",  err_msg, viewvis, rec_msg, records_processed);
+    }
       return;
     }
 
@@ -686,8 +693,8 @@ do_attached_attribute(FILE *fp)
   if (fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
             &viewvis) != 6)
   {
-    fprintf(stderr,"Error: Invalid attached attribute record #%d"
-                   " in %s()\n", records_processed, __func__);
+    const char *err_msg = _("Error: Invalid attached attribute record");
+    fprintf(stderr,"%s #%d\n", err_msg, records_processed);
     exit(1);
   }
 
@@ -726,10 +733,12 @@ do_attached_attribute(FILE *fp)
       break;
 
     default:
-      fprintf(stderr,"Error: Invalid visibility value %u in "
-                     "viewlogic file at record #%d, in function %s()\n",
-                      viewvis, records_processed, __func__);
-      return;
+     {
+      const char *err_msg = _("Error: Invalid visibility value");
+      const char *rec_msg = _("in viewlogic file at record");
+      fprintf(stderr,"%s %u %s #%d\n", err_msg, viewvis, rec_msg, records_processed);
+     }
+     return;
   }
 
   begin_attach();
@@ -805,8 +814,9 @@ do_attached_attribute(FILE *fp)
       }
       else
       {
-        fprintf(stderr,"Error: Invalid or unknown pin type \"%s\" for record "
-                "#%d in %s()\n", value, records_processed, __func__);
+        const char *err_msg = _("Error: Invalid or unknown pin type");
+        const char *rec_msg = _("for record");
+        fprintf(stderr,"%s \"%s\" %s #%d\n", err_msg, value, rec_msg, records_processed);
         exit(1);
       }
 
@@ -900,8 +910,8 @@ do_text(FILE *fp)
   if (fscanf(fp,"%d %d %u %d %u",&x, &y, &size, &angle,
           &origin) != 5)
     {
-      fprintf(stderr,"Error: Invalid text record #%d in %s()\n",
-              records_processed, __func__);
+      const char *err_msg = _("Error: Invalid text record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
     }
 
@@ -943,10 +953,8 @@ do_line(FILE *fp)
    */
 
   if (fscanf(fp,"%u",&pairs) != 1) {
-
-      fprintf(stderr,"Error: Unable to read number of line pairs "
-              "for record #%d, in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Unable to read number of line pairs for record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
   }
 
@@ -954,10 +962,9 @@ do_line(FILE *fp)
   for (i=0; i < pairs; i++) {
 
       if (fscanf(fp,"%d %d", &x[i], &y[i]) != 2) {
-
-        fprintf(stderr,"Error: unable to read %dth coodinate pair "
-                       "for record #%d, in %s()\n",
-                        i + 1, records_processed, __func__);
+        const char *err_msg = _("Error: Unable to read");
+        const char *rec_msg = _("coodinate pair for record");
+        fprintf(stderr,"%s %dth %s #%d\n", err_msg, i + 1, rec_msg, records_processed);
         exit(1);
       }
 
@@ -1005,8 +1012,8 @@ do_pin(FILE *fp)
   if (fscanf(fp,"%*d %d %d %d %d %*d %u %u\n",&x1, &y1, &x2, &y2,
             &pindir, &pinsense) != 6)
     {
-      fprintf(stderr,"Error:Invalid pin record #%d in %s()\n",
-              records_processed, __func__);
+      const char *err_msg = _("Error:Invalid pin record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
     }
 
@@ -1091,9 +1098,11 @@ do_pin(FILE *fp)
       break;
     default:
       /* Invalid pin direction */
-      fprintf(stderr,"Error: Invalid pin direction %u in "
-                     "ViewLogic file at record #%d, in function %s()\n",
-                      pindir, records_processed, __func__);
+      {
+        const char *err_msg = _("Error: Invalid pin direction");
+        const char *rec_msg = _("in ViewLogic file at record");
+      fprintf(stderr,"%s %u %s #%d\n",  err_msg, pindir, rec_msg, records_processed);
+      }
       exit(1);
   }
 
@@ -1143,8 +1152,8 @@ do_box(FILE *fp)
    * geda view of a box has the corner, width and height
    */
   if (fscanf(fp, "%d %d %d %d\n", &x1, &y1, &x2, &y2) != 4) {
-      fprintf(stderr, "Error: Invalid box record #%d in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid box record");
+      fprintf(stderr, "%s #%d\n", err_msg, records_processed);
       exit(1);
     }
 
@@ -1179,8 +1188,8 @@ do_circle(FILE *fp)
    *  c #x #y #radius
    */
   if (fscanf(fp,"%d %d %u\n",&x, &y, &radius) != 3) {
-      fprintf(stderr,"Error: Invalid circle record #%d in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid circle record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
     }
 
@@ -1220,8 +1229,8 @@ do_arc(FILE *fp)
   if (fscanf(fp,"%d %d %d %d %d %d\n",
           &x1, &y1, &x2, &y2, &x3, &y3) != 6)
     {
-      fprintf(stderr,"Error: Invalid arc record #%d, in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid arc record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
     }
 
@@ -1318,8 +1327,8 @@ do_label(FILE *fp)
   if (fscanf(fp, "%d %d %u %d %u %d %u %d", &x, &y, &size, &angle, &origin,
              &global, &visibility, &overbar) != 8)
   {
-      fprintf(stderr,"Error: Invalid label record #%d in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid label record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
   }
 
@@ -1419,17 +1428,16 @@ do_net_node(FILE *fp)
 
   if (segment_count > MAX_NODES) {
 
-      fprintf(stderr,"Error: too many nodes on a net at record #%d, "
-            "in %s(), try increasing\n"
-            "\tMAX_NODES\n", records_processed, __func__);
+      const char *err_msg = _("Error: too many nodes on a net at record");
+
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1); /* this is fatal */
   }
 
   /* get the current info */
   if (fscanf(fp,"%d %d %d\n",&x, &y, &type) < 2) {
-
-      fprintf(stderr,"Error: Invalid net node record #%d in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid net node record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
   }
 
@@ -1455,9 +1463,8 @@ do_net_segment(FILE *fp)
    */
 
   if (fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
-
-      fprintf(stderr,"Error: Invalid net segment record #%d in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid net segment record");
+      fprintf(stderr,"%s #%d\n", err_msg,  records_processed);
       exit(1);
   }
 
@@ -1486,9 +1493,8 @@ do_net_segment_bus(FILE *fp)
    */
 
   if (fscanf(fp,"%u %u\n",&n1, &n2) != 2) {
-
-      fprintf(stderr,"Error: Invalid bus segment record #%d in %s()\n",
-            records_processed, __func__);
+      const char *err_msg = _("Error: Invalid bus segment record");
+      fprintf(stderr,"%s #%d\n", err_msg, records_processed);
       exit(1);
   }
 
@@ -1549,11 +1555,12 @@ do_instance(FILE *fp)
 
   /* Check for input errors */
   if (result < 6) {
-
-    fprintf(stderr,"Error: Invalid instance record #%d in %s()\n"
-            "lib:'%s', name:'%s'\n"
-            "extension:%u, x:%d, y:%d\n",
-            records_processed, __func__, lib,name,extension, x, y);
+   const char *err_msg = _("Error: Invalid instance record");
+   const char *err_lib = _("libray");
+   const char *err_nam = _("name");
+   const char *err_ext = _("extension");
+    fprintf(stderr,"%s #%d\n%s:'%s', %s:'%s'\n%s:%u, x:%d, y:%d\n",
+    err_msg, records_processed, err_lib, lib, err_nam, name, err_ext, extension, x, y);
     exit(1);
   }
 
@@ -1634,8 +1641,11 @@ set_orientation(int *angle, int *mirror, int orientation)
     *mirror = 1;
     break;
   default:
-    fprintf(stderr,"Error: Invalid orientation value %d at record %d\n",
-          orientation, records_processed);
+    {
+      const char *err_msg = _("Error: Invalid orientation value");
+      const char *rec_msg = _("at record");
+      fprintf(stderr,"%s %d %s %d\n", err_msg, orientation, rec_msg, records_processed);
+    }
   }
 }
 
@@ -1828,23 +1838,32 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
             break;
 
           case KILL:
-            fprintf(stderr,"Warning: Killing attribute `%s=%s' at (%d,%d)"
-            " from record #%d\n",
-            tmpName, tmpValue, x, y, records_processed);
+           {
+            const char *err_msg = _("Warning: Killing attribute");
+            const char *at_msg = _("at");
+            const char *rec_msg = _("from record");
+            fprintf(stderr,"%s `%s=%s' %s (%d,%d) %s #%d\n", err_msg, tmpName, tmpValue, at_msg, x, y, rec_msg, records_processed);
             done = 1;
-            return;
+           }
+           return;
 
           case WARN_USER:
-            fprintf(stderr,"Warning: attribute name `%s=%s' at (%d,%d) "
-            "at record #%d, found during conversion\n"
-            "\tpassing it through unchanged\n",
-            tmpName, tmpValue, x, y, records_processed);
+            {
+              const char *err_msg = _("Warning: attribute name");
+              const char *at_msg = _("at");
+              const char *rec_msg = _("at record");
+              const char *pas_msg = _("found during conversion\n\tpassing it through unchanged");
+              fprintf(stderr,"%s `%s=%s' %s (%d,%d) at record #%d, %s\n",
+                      err_msg, tmpName, tmpValue, at_msg, x, y, rec_msg, records_processed, pas_msg);
             done = 1;
+            }
             break;
           default:
-            fprintf(stderr,"Error: Unknown action code for attribute\n"
-            "`%s=%s' at record #%d in %s()\n",
-                    tmpName, tmpValue, records_processed, __func__);
+            {
+              const char *err_msg = _("Error: Unknown action code for attribute");
+              const char *rec_msg = _("at record");
+              fprintf(stderr,"%s\n`%s=%s' %s #%d in %s()\n", err_msg, tmpName, tmpValue, rec_msg, records_processed, __func__);
+            }
             exit(1);
         }
       }
@@ -2112,27 +2131,26 @@ int get_style(FILE *fp, unsigned int *colour,
 
       if (fscanf(fp,"%u %u %u\n", colour, &vdfillstyle, &vdlinestyle) != 3)
       {
-        fprintf(stderr,"Error: Invalid modifier record #%d in %s()\n",
-              records_processed, __func__);
+        const char *err_msg = _("Error: Invalid modifier record");
+        fprintf(stderr,"%s #%d\n", err_msg, records_processed);
         exit(1);
       }
 
       /* re-map colour into a geda colour */
       if (*colour > 15) {
-
-        fprintf(stderr,"Error: Invalid colour number %u in record #%d, "
-              "in %s()\n",
-              *colour,records_processed, __func__);
+        const char *err_msg = _("Error: Invalid colour number");
+        const char *rec_msg = _("Error: Invalid colour number");
+        fprintf(stderr,"%s %u %s #%d\n", err_msg, *colour, rec_msg, records_processed);
         exit(1);
       }
       *colour = colormap[*colour];
 
       /* re-map vdfillstyle to gEDA FillStyle */
       if (vdfillstyle > 25) {
-
-        fprintf(stderr,"Warning: Invalid fill style %u in record #%d, "
-                "in %s().  Assuming \"Hollow\" fill style.\n",
-                vdfillstyle,records_processed, __func__);
+        const char *err_msg = _("Warning: Invalid fill style");
+        const char *rec_msg = _("in record");
+        const char *ass_msg = _("Assuming \"Hollow\" fill style");
+        fprintf(stderr,"%s %u %s #%d.  %s.\n", err_msg,  vdfillstyle, rec_msg, records_processed, ass_msg);
         vdfillstyle = 0;
       }
 
@@ -2140,10 +2158,10 @@ int get_style(FILE *fp, unsigned int *colour,
 
       /* re-map vdlinestyle to gEDA LineStyle */
       if (vdlinestyle > 7) {
-
-        fprintf(stderr,"Warning: Invalid line style %u in record #%d, "
-                "in %s().  Assuming \"Solid\" line style.\n",
-                vdlinestyle,records_processed, __func__);
+        const char *err_msg = _("Warning: Invalid line style");
+        const char *rec_msg = _("in record");
+        const char *ass_msg = _("Assuming \"Solid\" line style");
+        fprintf(stderr,"%s %u %s #%d.  %s.\n", err_msg, vdlinestyle, rec_msg, records_processed, ass_msg);
         vdlinestyle = 0;
       }
       memcpy(linestyle, &linemap[vdlinestyle], sizeof(struct LineStyle));

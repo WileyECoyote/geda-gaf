@@ -1,3 +1,7 @@
+2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: Tranlate some output messages.
+
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gmake-caps-sym.1.in:  Extend the no warranty clause to include "not even
