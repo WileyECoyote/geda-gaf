@@ -713,6 +713,7 @@ void          x_dialog_coord_dialog         (GschemToplevel *w_current);
   /* Dialog-Utility functions */
 AtkObject    *atk_widget_linked_label_new           (GtkWidget *label, GtkWidget *linkto);
 GtkWidget    *create_pixmap                         (const char *filename);
+void          x_dialog_set_icon                     (GtkWidget *dialog, const char *icon_name);
 void          destroy_gschem_dialog                 (GtkWidget *widget, GtkWidget **window);
 GtkWidget    *x_dialog_get_bulb_image               (bool WhichState);
 void          x_dialog_set_bulb_on                  (GtkWidget *widget);

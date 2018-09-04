@@ -5,6 +5,8 @@
 
     * src/base/gschem_main_window.c: Clear gerror in gschem_main_window_instance_init.
 
+    * x/x_dialog.c: Add function x_dialog_set_icon.
+
 2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Remove alignment spaces from the "Type" label

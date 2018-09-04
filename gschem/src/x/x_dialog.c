@@ -145,6 +145,27 @@ GtkWidget *create_pixmap (const char *filename)
   return pixmap;
 }
 
+void x_dialog_set_icon (GtkWidget *dialog, const char *icon_name)
+{
+  /* GschemMainWindow *window = (GschemMainWindow*)instance; */
+  GdkPixbuf *icon;
+  GError    *error;
+  char      *filename;
+
+  error    = NULL;
+  filename = geda_file_get_bitmap_filespec (icon_name);
+  icon     = gdk_pixbuf_new_from_file (filename, &error);
+
+  if (!error) {
+    gtk_window_set_icon ((GtkWindow*)dialog, icon);
+  }
+  else if (verbose_mode) {
+    fprintf(stderr, "%s is missing\n", filename);
+    g_error_free(error);
+  }
+  GEDA_FREE(filename);
+}
+
 /** @} endgroup General-Dialog-Utilities */
 
 /** \defgroup Dialog-Toggle-Switches Switch Manipulators for Dialogs
