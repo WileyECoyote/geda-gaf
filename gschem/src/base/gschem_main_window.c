@@ -509,6 +509,7 @@ gschem_main_window_instance_init (GTypeInstance *instance, void *class)
   }
   else if (verbose_mode) {
     fprintf(stderr, "%s is missing\n", filename);
+    g_error_free(error);
   }
   GEDA_FREE(filename);
 }
