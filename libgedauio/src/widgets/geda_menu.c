@@ -995,23 +995,26 @@ static bool geda_menu_button_press (GtkWidget *widget, GdkEventButton *event)
     return FALSE;
   }
 
-  /* Don't pass down to menu shell for presses over scroll arrows
-   */
+  /* Don't pass down to menu shell for presses over scroll arrows */
   if (geda_menu_button_scroll ((GedaMenu*)widget, event))
     return TRUE;
 
   /*  Don't pass down to menu shell if a non-menuitem part of the menu
    *  was clicked. The check for the event_widget being a GedaMenuShell
    *  works because we have the pointer grabbed on menu_shell->window
-   *  with owner_events=TRUE, so all events that are either outside
-   *  the menu or on its border are delivered relative to
+   *  with owner_events=TRUE, so all events that are either outside the
+   *  menu or on its border are delivered relative to
    *  menu_shell->window.
    */
   if (GEDA_IS_MENU_SHELL (gtk_get_event_widget ((GdkEvent*)event)) &&
       pointer_in_menu_window (widget, event->x_root, event->y_root))
     return TRUE;
 
-  return ((GtkWidgetClass*)geda_menu_parent_class)->button_press_event (widget, event);
+  /* Do not chain to parent GedaMenuShell class or else geda_menu_shell_button_press
+   * get called twice, and worst; on Windows system the Menu will stay open/dropped down
+   * until we loose focus or user "clicks" the menu closed.
+   */
+  return FALSE;
 }
 
 /* widget_class->button_release_event */
