@@ -37,8 +37,8 @@ style "wide" {
 style "gschem"
 {
    #font_name = "FreeMono Bold 12"
-   #font_name = "DejaVu Sans 12"
-   font_name  = "Liberation Mono Bold 12"
+   font_name = "DejaVu Sans 12"
+   #font_name  = "Liberation Mono Bold 12"
 
    GedaBulb::indicator-size     = 26
    GedaBulb::indicator-spacing  = 2
@@ -98,15 +98,15 @@ style "range"
   GtkRange::trough-border 	 	    = 0
   GtkRange::trough-under-steppers    = 1
 
-  bg[NORMAL]   =  shade (1.12,@bg_color)#shade (1.085,@bg_color)
-  bg[ACTIVE]   =  @bg_color
-  bg[PRELIGHT] =  mix(0.95, shade (1.10,@bg_color), @selected_bg_color)
+  #bg[NORMAL]   =  shade (1.12,@bg_color)#shade (1.085,@bg_color)
+  #bg[ACTIVE]   =  @bg_color
+  #bg[PRELIGHT] =  mix(0.95, shade (1.10,@bg_color), @selected_bg_color)
 
   #Arrows
-  text[NORMAL]      =  shade (0.275,@selected_fg_color) #shade (0.925,@fg_color)
-  text[PRELIGHT]    =  @selected_fg_color
-  text[ACTIVE]      =  shade (0.10,@selected_fg_color)
-  text[INSENSITIVE] =  mix (0.80,shade (0.90,@bg_color),@fg_color)
+  #text[NORMAL]      =  shade (0.275,@selected_fg_color) #shade (0.925,@fg_color)
+  #text[PRELIGHT]    =  @selected_fg_color
+  #text[ACTIVE]      =  shade (0.10,@selected_fg_color)
+  #@text[INSENSITIVE] =  mix (0.80,shade (0.90,@bg_color),@fg_color)
 }
 
 style "scrollbar" {

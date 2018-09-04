@@ -1,3 +1,8 @@
+2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/gschem-gtkrc: Change default to proportional DejaVu Sans 10 and
+      comment out theme specific Range style setting.
+
 2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Remove alignment spaces from the "Type" label
