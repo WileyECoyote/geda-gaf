@@ -1,3 +1,7 @@
+2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_types.h: Comment out typedef __mode_t, this is a pain.
+
 2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/svg/gschem_invert_select.svg: Use gEDA green and reduce bloat.

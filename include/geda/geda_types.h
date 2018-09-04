@@ -85,9 +85,9 @@ typedef unsigned int GedaType;
 # define POINTER_TO_UINT(u) ((unsigned int)(void*)(u))
 #endif
 
-/* In older headers this does not happen, so fix here */
+/* In older headers this does not happen, so fix here
 #ifndef OS_WIN32_NATIVE
 typedef __mode_t mode_t;
-#endif
+#endif */
 
 /** @} endgroup geda-global-types */
