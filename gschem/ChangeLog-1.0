@@ -9,6 +9,8 @@
       edit. User can change the case to Upper, Lower, Camel or Sentence
       case by selecting the option from a drop menu combo.
 
+    * src/x/x_pagesel.c: Remove unnecessary cast in pagesel_instance_init.
+
 2018-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * x/x_autonumber.c: Add missing mnemonics filter options and
