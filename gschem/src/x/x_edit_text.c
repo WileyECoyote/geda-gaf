@@ -804,6 +804,8 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                       (GtkAttachOptions) ( GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
 
+    HD_SEPERATOR (vbox, ActionSeperator);
+
     g_signal_connect (casecombo, "changed",
                       G_CALLBACK (x_dialog_edit_text_change_case),
                       ThisDialog);

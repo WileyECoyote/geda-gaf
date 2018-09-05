@@ -12,6 +12,8 @@
       array_data as static, add separator ActionSeperator to delineate the action
       area.
 
+    * src/x/x_edit_text.c: Add separator ActionSeperator to delineate the action
+      area.
 
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -17450,7 +17452,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         selected, and gschem tried to open that garbage.
 
         * noweb/x_dialog.nw: Fixed add/edit attribute dialog box to not add
-        improper attributes
+        improper attributes.
 
         * noweb/x_dialog.nw, i_callbacks.nw: Added a bunch i_update_toolbar
         calls
