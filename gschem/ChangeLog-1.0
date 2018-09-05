@@ -9,7 +9,8 @@
 
     * src/x/x_edit_array.c: Remove calling gtk_dialog_set_alternative_button_order
       because the dialog implements a custom action area, declare function
-      array_data as static.
+      array_data as static, add separator ActionSeperator to delineate the action
+      area.
 
 
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>

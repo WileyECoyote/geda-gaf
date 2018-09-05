@@ -1044,6 +1044,8 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_widget_show (preview_area);
   gtk_box_pack_start (GTK_BOX (hbox), preview_area, TRUE, TRUE, 0);
 
+  HD_SEPERATOR (vbox, ActionSeperator);
+
   x_dialog_array_edit_set_focus_chain();
 
   /** Set the relationships between the label and their Widgets **/
