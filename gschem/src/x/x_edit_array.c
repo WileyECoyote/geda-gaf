@@ -573,21 +573,25 @@ static void x_dialog_array_edit_response(GtkWidget  *dialog,
     GEDA_FREE (dialog_data);
     i_status_set_state (w_current, SELECT);
     break;
+
   case GEDA_RESPONSE_ACCEPT:
     x_dialog_array_edit_ok(dialog, dialog_data);
     geda_struct_place_free_place_list(w_current->toplevel);
     i_status_set_state (w_current, SELECT);
     break;
+
   case GEDA_RESPONSE_SELECT:
     x_dialog_array_edit_enable_events(w_current, dialog_data);
     gtk_widget_hide (GTK_WIDGET (dialog));
     break;
+
   case GEDA_RESPONSE_GET_DIST:
     w_current->first_wx = w_current->second_wx = -0;
     w_current->first_wy = w_current->second_wy = -0;
     x_dialog_array_edit_enable_events(w_current, dialog_data);
     gtk_widget_hide (GTK_WIDGET (dialog));
     break;
+
   default:
     BUG_IMSG ("unhandled case", response);
   }
