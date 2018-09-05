@@ -8,7 +8,9 @@
       x_dialog_set_icon instead.
 
     * src/x/x_edit_array.c: Remove calling gtk_dialog_set_alternative_button_order
-      because the dialog implements a custom action area.
+      because the dialog implements a custom action area, declare function
+      array_data as static.
+
 
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 

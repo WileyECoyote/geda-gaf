@@ -778,7 +778,7 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   gtk_widget_grab_default (apply_butt);
 }
 
-array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
+static array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
 {
   array_data *dialog_data;
 
@@ -801,8 +801,7 @@ array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
  *
  *  \return GtkDialog pointer to a new Componenent Properties Dialog
  */
-static
-GtkWidget* x_dialog_array_edit_constructor (GschemToplevel *w_current)
+static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
 {
   AtkObject *atk_obj;
   GtkWidget *Dialog;
