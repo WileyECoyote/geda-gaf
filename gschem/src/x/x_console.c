@@ -561,25 +561,6 @@ const char *x_console_get_string() {
   return x_console_get_input_data();
 }
 
-static void x_console_set_icon (Console *console)
-{
-  GdkPixbuf *icon;
-  GError    *error;
-  char      *filename;
-
-  error    = NULL;
-  filename = geda_file_get_bitmap_filespec ("gschem-console.png");
-  icon     = gdk_pixbuf_new_from_file (filename, &error);
-
-  if (!error) {
-    gtk_window_set_icon ((GtkWindow*)console, icon);
-  }
-  else if (verbose_mode) {
-    fprintf(stderr, "%s is missing\n", filename);
-  }
-  GEDA_FREE(filename);
-}
-
 /*!
  * \brief Console class initialization function
  * \par Function Description
@@ -765,7 +746,7 @@ static void console_instance_init (GTypeInstance *instance, void *class)
   mark = gtk_text_buffer_get_insert (text_buffer);
   gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (text_view), mark, 0.0, TRUE, 0.0, 1.0);
 
-  x_console_set_icon (console);
+  x_dialog_set_icon(GTK_WIDGET(console), "gschem-console.png");
 
   gtk_widget_grab_focus(console_entry); /* Not the Close the Button */
 }

@@ -4,6 +4,9 @@
       gschem_main_window_instance_init so that the minimize/maximize buttons
       show up in the title bar on Win32 platform.
 
+    * src/x/x_console.c: Eliminate the new x_console_set_icon and utilize
+      x_dialog_set_icon instead.
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Change default to proportional DejaVu Sans 10 and
