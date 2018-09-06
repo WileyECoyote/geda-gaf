@@ -86,8 +86,7 @@ static void pagesel_auto_height       (Pagesel     *pagesel);
  *
  *  \param [in] w_current  The GschemToplevel object to open page manager for.
  */
-void
-x_pagesel_open (GschemToplevel *w_current)
+void x_pagesel_open (GschemToplevel *w_current)
 {
   if (w_current->pswindow == NULL) {
 
@@ -117,8 +116,7 @@ x_pagesel_open (GschemToplevel *w_current)
  *
  *  \param [in] w_current  The GschemToplevel object to close page manager for.
  */
-void
-x_pagesel_close (GschemToplevel *w_current)
+void x_pagesel_close (GschemToplevel *w_current)
 {
   /* Check if PageSelect dialog active */
   if (w_current->pswindow) {
@@ -141,8 +139,7 @@ x_pagesel_close (GschemToplevel *w_current)
  *
  *  \param [in] w_current  A GschemToplevel object.
  */
-static int
-x_pagesel_idle_update (GschemToplevel *w_current)
+static int x_pagesel_idle_update (GschemToplevel *w_current)
 {
   Pagesel *pagesel = PAGESEL(w_current->pswindow);
 
@@ -159,8 +156,7 @@ x_pagesel_idle_update (GschemToplevel *w_current)
  *
  *  \param [in] w_current  A GschemToplevel object.
  */
-void
-x_pagesel_update (GschemToplevel *w_current)
+void x_pagesel_update (GschemToplevel *w_current)
 {
   /* Check if PageSelect dialog active */
   if (w_current->pswindow) {
@@ -219,7 +215,7 @@ enum {
   NUM_COLUMNS
 };
 
-static void pagesel_class_init (void *class, void *class_data);
+static void pagesel_class_init    (void *class, void *class_data);
 static void pagesel_instance_init (GTypeInstance *instance, void *class);
 static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
 
@@ -229,8 +225,7 @@ static void pagesel_popup_menu    (Pagesel *pagesel, GdkEventButton *event);
  *  Helper for pagesel_auto_height to retrieve the heigth of the
  *  acion area, which is an hbox widget.
  */
-static void
-pagesel_get_action_height (Pagesel *pagesel)
+static void pagesel_get_action_height (Pagesel *pagesel)
 {
   GtkWidget    *action_hbox;
   GtkAllocation allocation;
@@ -255,8 +250,7 @@ pagesel_get_action_height (Pagesel *pagesel)
  *  by gtk_cell_renderer_get_size does not include the spacing
  *  between rows but is included in the row_height.
  */
-static void
-pagesel_get_row_height (Pagesel *pagesel)
+static void pagesel_get_row_height (Pagesel *pagesel)
 {
   GdkRectangle cell_area;
   int          x_offset;
@@ -287,8 +281,7 @@ pagesel_get_row_height (Pagesel *pagesel)
  *  function executes with auto_height enabled. Note this function
  *  is called by the callback for the AutoHeight toggle switch.
  */
-static void
-pagesel_auto_height(Pagesel *pagesel)
+static void pagesel_auto_height(Pagesel *pagesel)
 {
   GschemToplevel *w_current;
   GtkWidget      *toggle;
@@ -423,7 +416,7 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
  *  click" then the pagesel_popup_menu function is called to present
  *  a menu of options. If the event was a middle-mouse click then the
  *  main window is raised to the foreground and this is convenient for
- *  users usiing the Pagesel dialog to switch between pages while other
+ *  users using the Pagesel dialog to switch between pages while other
  *  application windows are present.
  */
 static bool
@@ -943,8 +936,7 @@ pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
  *  \par Function Description
  *   Save user preferences to the configuration system.
  */
-static void
-pagesel_finalize(GObject *object)
+static void pagesel_finalize(GObject *object)
 {
   Pagesel    *pagesel = PAGESEL(object);
   EdaConfig  *cfg     = eda_config_get_user_context();
@@ -986,8 +978,7 @@ pagesel_finalize(GObject *object)
  *
  *  \return the Type identifier associated with pagesel.
  */
-GedaType
-pagesel_get_type (void)
+GedaType pagesel_get_type (void)
 {
   static GedaType pagesel_type = 0;
 
@@ -1012,8 +1003,7 @@ pagesel_get_type (void)
   return pagesel_type;
 }
 
-bool
-is_a_pagesel (Pagesel *pagesel)
+bool is_a_pagesel (Pagesel *pagesel)
 {
   if (G_IS_OBJECT(pagesel)) {
     return (pagesel_get_type() == pagesel->instance_type);
@@ -1031,8 +1021,7 @@ is_a_pagesel (Pagesel *pagesel)
  *  \param [in]  class       Pagesel class we are initializing
  *  \param [in]  class_data  Pagesel structure associated with the class
  */
-static void
-pagesel_class_init (void *class, void *class_data)
+static void pagesel_class_init (void *class, void *class_data)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
@@ -1050,8 +1039,7 @@ pagesel_class_init (void *class, void *class_data)
  * \param [in] instance  A GedaAction data structure
  * \param [in] class     A GedaActionClass Object
  */
-static void
-pagesel_instance_init (GTypeInstance *instance, void *class)
+static void pagesel_instance_init (GTypeInstance *instance, void *class)
 {
   GtkWidget         *scrolled_win, *label;
   GtkTreeModel      *store;
