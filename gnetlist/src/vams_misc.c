@@ -31,7 +31,7 @@
 
 /*!
  * \brief VAMS get attribute list
- * \ingroup (gnetlist-SCM-API)
+ * \ingroup gnetlist-SCM-API
  * \par Function Description
  *  Returns a scheme list of attribute names from the list of attributes
  *  <b>attached</b> to \a object.
@@ -67,7 +67,7 @@ SCM vams_get_attribs_list (GedaObject *object)
 /*!
  * \brief vams get package attributes
  * \par Function Description
- * \ingroup (gnetlist-SCM-API)
+ * \ingroup gnetlist-SCM-API
  *  Retrieves a list of the names of attributes attached to the
  *  symbol given by \a scm_uref at schematic level.
  *

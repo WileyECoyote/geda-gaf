@@ -423,7 +423,7 @@ void s_rename_all(GedaToplevel *pr_current, NETLIST *netlist_head)
 
 /*! \brief Get Top-Level Attributes
  *  \par Function Description
- *  \ingroup (gnetlist-SCM-API)
+ *  \ingroup gnetlist-SCM-API
  *  When gnetlist expands a hierarchical subcircuit, gnetlist first assigns
  *  every net within the subcircuit a unique name based on the refdes of the
  *  subcircuit instance and, if present, the netname within the subcircuit.

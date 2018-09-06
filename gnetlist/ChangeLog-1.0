@@ -1,5 +1,11 @@
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src: Remove parentheses from Doxygen ingroup tags because these
+      show up empty in the Doxygen output:
+
+          * src/s_rename.c (gnetlist-SCM-API)
+          * src/vams_misc.c (gnetlist-SCM-API)
+
     * tests/runtest.sh: Update bitmaps directory name.
 
     * tests/: Update outputs for powersupply.sch due to the value=LM317
