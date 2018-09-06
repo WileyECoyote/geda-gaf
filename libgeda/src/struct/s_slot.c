@@ -115,9 +115,9 @@ geda_struct_slot_search_slotdef (GedaObject *object, int slotnumber)
  * \par Function Description
  *  Update pinnumber attributes in a graphic object. The interesting
  *  case is where the object is an instantiation of a slotted part.
- *  This means that geda_struct_slot_update_object iterates through all pins
- *  found on object and sets the pinnumber= attrib on each. This
- *  doesn't matter for non-slotted parts, but on slotted parts,
+ *  This means that geda_struct_slot_update_object iterates through
+ *  all pins found on object and sets the pinnumber= attrib on each.
+ *  This doesn't matter for non-slotted parts, but on slotted parts,
  *  this is what sets the pinnumber= attribute on slots 2, 3, 4....
  *
  * \param [in,out] object    The GedaObject to update.
@@ -174,7 +174,7 @@ geda_struct_slot_update_object (GedaObject *object)
 
   if (slotdef == NULL) {
 
-    if (slot_string) { /* possiable an error if there's a slot string */
+    if (slot_string) { /* possibly an error if there's a slot string */
 
       if (slot != 1) {
 
