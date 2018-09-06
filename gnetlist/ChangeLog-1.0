@@ -1,3 +1,7 @@
+2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/runtest.sh: Update bitmaps directory name.
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/bom_xref.sh.in: Error exit with code 1 instead of -1, which
