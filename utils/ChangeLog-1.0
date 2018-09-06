@@ -1,3 +1,8 @@
+2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gcheck-library.sh: Update gaf shell option "c" -> "e" to verify
+      geda-clib.scm can be loaded without errors.
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/convert_sym.c: Tranlate some output messages.

@@ -242,7 +242,7 @@ do_check_clib () {
 
     if [ -f "geda-clib.scm" ] ; then
       filename="$PWD/geda-clib.scm"
-      result=$($PROGRAM2 "shell" "-c" "(load \"$filename\")" &> /dev/null)
+      result=$($PROGRAM2 "shell" "-e" "(load \"$filename\")" &> /dev/null)
       if [ $? -ne 0 ] ; then
          echo "$filename contains Errors!"
          result=1;
