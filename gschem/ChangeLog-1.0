@@ -10,7 +10,9 @@
     * src/x/x_edit_array.c: Remove calling gtk_dialog_set_alternative_button_order
       because the dialog implements a custom action area, declare functions
       array_data x_dialog_array_edit_butt_released_deselect as static, add
-      separator ActionSeperator to delineate the action area.
+      separator ActionSeperator to delineate the action area. Adjust function
+      line wrap and add Doxygen template todo comment blocks, even on static
+      functions.
 
     * src/x/x_edit_text.c: Add separator ActionSeperator to delineate the action
       area.

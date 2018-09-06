@@ -49,6 +49,11 @@
  *  \ingroup Array-Dialog
  */
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
                                                    array_data     *dialog_data)
 {
@@ -63,6 +68,11 @@ static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
   i_status_action_stop(w_current);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void x_dialog_array_edit_enable_events(GschemToplevel *w_current,
                                               array_data     *dialog_data)
 {
@@ -78,6 +88,11 @@ static void x_dialog_array_edit_enable_events(GschemToplevel *w_current,
                                                w_current);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
                                                array_data     *dialog_data)
 {
@@ -135,6 +150,11 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
   }
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void post_response_row (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
@@ -158,6 +178,11 @@ static void post_response_row (GschemToplevel *w_current)
   dialog_data->post_responder = NULL;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void post_response_row_col (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
@@ -188,6 +213,11 @@ static void post_response_row_col (GschemToplevel *w_current)
   dialog_data->post_responder = NULL;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void post_response_col (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
@@ -216,6 +246,11 @@ static void post_response_col (GschemToplevel *w_current)
 
 /* ----------------------- Button Event Handlers ----------------------- */
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
                                                  GdkEventButton *event,
                                                  GschemToplevel *w_current)
@@ -248,6 +283,11 @@ static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
   return(0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
                                                   GdkEventButton *event,
                                                   GschemToplevel *w_current)
@@ -288,6 +328,11 @@ static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
   return(0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
                                                    GdkEventButton *event,
                                                    GschemToplevel *w_current)
@@ -310,6 +355,11 @@ static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
   return(0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
                                                     GdkEventButton *event,
                                                     GschemToplevel *w_current)
@@ -342,6 +392,11 @@ static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
   return(0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
                                                      GdkEventButton *event,
                                                      GschemToplevel *w_current)
@@ -365,6 +420,11 @@ static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
   return(0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
  static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
                                                        GdkEventButton *event,
                                                        GschemToplevel *w_current)
@@ -402,6 +462,10 @@ static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
   return(0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static int
 create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch)
 {
@@ -654,6 +718,10 @@ static void on_deselect_butt_clicked(GtkButton *button, void *user_data)
                          dialog_data);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static void x_dialog_array_edit_emit_get_dist (GschemToplevel *w_current,
                                                array_data     *dialog_data)
 {
@@ -665,6 +733,10 @@ static void x_dialog_array_edit_emit_get_dist (GschemToplevel *w_current,
                          dialog_data);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static void on_row_butt_clicked(GtkButton *button, void *user_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
@@ -680,6 +752,10 @@ static void on_row_butt_clicked(GtkButton *button, void *user_data)
 
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static void on_row_col_butt_clicked(GtkButton *button, void *user_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
@@ -694,6 +770,10 @@ static void on_row_col_butt_clicked(GtkButton *button, void *user_data)
   x_dialog_array_edit_emit_get_dist(w_current, dialog_data);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static void on_col_butt_clicked(GtkButton *button, void *user_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
@@ -708,6 +788,10 @@ static void on_col_butt_clicked(GtkButton *button, void *user_data)
   x_dialog_array_edit_emit_get_dist(w_current, dialog_data);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
                                              array_data *dialog_data)
 {
@@ -773,6 +857,10 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   gtk_widget_grab_default (apply_butt);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ */
 static array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
 {
   array_data *dialog_data;
