@@ -216,10 +216,9 @@ static void post_response_col (GschemToplevel *w_current)
 
 /* ----------------------- Button Event Handlers ----------------------- */
 
-static
-int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
-                                          GdkEventButton *event,
-                                          GschemToplevel *w_current)
+static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
+                                                 GdkEventButton *event,
+                                                 GschemToplevel *w_current)
 {
   if (event->button == 1) {
 
@@ -249,10 +248,9 @@ int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
   return(0);
 }
 
-static
-int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
-                                           GdkEventButton *event,
-                                           GschemToplevel *w_current)
+static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
+                                                  GdkEventButton *event,
+                                                  GschemToplevel *w_current)
 {
   GtkWidget    *dialog;
   array_data   *dialog_data;
@@ -290,10 +288,9 @@ int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
   return(0);
 }
 
-static
-int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
-                                            GdkEventButton *event,
-                                            GschemToplevel *w_current)
+static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
+                                                   GdkEventButton *event,
+                                                   GschemToplevel *w_current)
 {
   if (event->button == 1) {
 
@@ -313,10 +310,9 @@ int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
   return(0);
 }
 
-static
-int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
-                                             GdkEventButton *event,
-                                             GschemToplevel *w_current)
+static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
+                                                    GdkEventButton *event,
+                                                    GschemToplevel *w_current)
 {
   GtkWidget    *dialog;
   array_data   *dialog_data;
@@ -346,10 +342,9 @@ int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
   return(0);
 }
 
-static
-int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
-                                              GdkEventButton *event,
-                                              GschemToplevel *w_current)
+static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
+                                                     GdkEventButton *event,
+                                                     GschemToplevel *w_current)
 {
   if (event->button == 1) {
 
@@ -370,9 +365,9 @@ int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
   return(0);
 }
 
-int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
-                                               GdkEventButton *event,
-                                               GschemToplevel *w_current)
+ static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
+                                                       GdkEventButton *event,
+                                                       GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
