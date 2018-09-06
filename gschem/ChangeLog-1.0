@@ -1,6 +1,9 @@
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_pagesel.c: Update function line wrapping.
+    * src/x/x_pagesel.c: Update function line wrapping, set "has-separator"
+      because the action area is replace and the stock separator gets push
+      to the bottom of the dialog box, add new separator before the action
+      using HD_SEPERATOR macro.
 
 2018-09-05 Wiley E. Hill <wileyhill@gmail.com>
 

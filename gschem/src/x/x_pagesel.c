@@ -1079,7 +1079,7 @@ static void pagesel_instance_init (GTypeInstance *instance, void *class)
                 "window-position", GTK_WIN_POS_MOUSE,
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
                 /* GtkDialog */
-                "has-separator",   TRUE,
+                "has-separator",   FALSE, /* Action Area is Replaced */
                 NULL);
 
   /* create the model for the TreeView */
@@ -1227,6 +1227,8 @@ static void pagesel_instance_init (GTypeInstance *instance, void *class)
   /* Remove Gtk action area from the dialog and don't re-use it */
   action_hbox = Dialog->action_area;
   geda_container_remove(Dialog->vbox, action_hbox);
+
+  HD_SEPERATOR (Dialog->vbox, ActionSeperator);
 
   action_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (action_hbox, "visible", TRUE, NULL);
