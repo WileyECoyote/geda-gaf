@@ -41,7 +41,7 @@ i["U2","3"]+i["C2","1"]+i["C1","1"]+i["U1","3"]==0,
 i["T1","3"]+i["U1","2"]==0,
 i["T1","4"]+i["U1","1"]==0};
 modelEquations={
-lm317[value->u2]["U2"],
+lm317[value->LM317]["U2"],
 polarized_capacitor[value->1uf]["C4"],
 polarized_capacitor[value->22uF]["C3"],
 variable_resistor[value->5k]["R1"],

@@ -1,5 +1,5 @@
 * Spice netlister for gnetlist
-U2 eight ten eleven <No valid value attribute found>
+U2 eight ten eleven LM317
 C4 eleven nine 1uf
 C3 ten nine 22uF
 R1 nine nine ten 5k

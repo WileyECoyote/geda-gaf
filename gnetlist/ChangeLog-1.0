@@ -2,6 +2,9 @@
 
     * tests/runtest.sh: Update bitmaps directory name.
 
+    * tests/: Update outputs for powersupply.sch due to the value=LM317
+      attribute that was committed to the library.
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/bom_xref.sh.in: Error exit with code 1 instead of -1, which

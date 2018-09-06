@@ -11,5 +11,5 @@ R2	RESISTOR	220	0402	1
 S1	SWITCH	unknown	none	1
 T1	TRANSFORMER	unknown	none	1
 U1	DIODE-BRIDGE	unknown	unknown	1
-U2	LM317	unknown	TO-220	1
+U2	LM317	LM317	TO-220	1
 .END
