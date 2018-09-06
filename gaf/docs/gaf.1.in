@@ -168,9 +168,11 @@ with the gEDA Scheme API.
 \fB-e\fR , \fB--eval \fIEXPR\fR
 Evaluate the Scheme expression \fIEXPR\fR, and exit.
 .TP 8
+\fB-h\fR, \fB--help\fR
+Displays help information on options specific to the shell back-end.
+.TP 8
 \fB\-l\fR, \fB\--load \fIFILE\fR
 Evaluate Scheme source code from \fIFILE\fR.
-.TP 8
 .TP 8
 \fB\-p\fR, \fB\--path DIRECTORY\fR
 Prepend \fIDIRECTORY\fR to the list of directories to be searched for Scheme files.
@@ -181,7 +183,7 @@ Evaluate Scheme source code from \fIFILE\fR, and exit.
 Stop scanning arguments; run interactively.
 
 .PP
-The \fB-s\fR, \fB-c\fR and \fB--\fR switches stop argument processing
+The \fB-e\fR, \fB-s\fR and \fB--\fR switches stop argument processing
 and pass all the remaining arguments as the value of `(command-line)'.
 
 .SH "OBTAINING PATH INFORMATION"

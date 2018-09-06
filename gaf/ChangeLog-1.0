@@ -1,3 +1,7 @@
+2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gaf.1.in: Update argument options for shell backend.
+
 2018-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/it.po: Update Italian translations.
