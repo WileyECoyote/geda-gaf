@@ -30,7 +30,7 @@
  *
  *    \defgroup geda-global-macros Global General Purpose Macros
  *  @{\par This group contains general purpose Preprocessor Macros
- *    \ingroup (geda-globals)
+ *    \ingroup geda-globals
  */
 
 #ifndef lambda

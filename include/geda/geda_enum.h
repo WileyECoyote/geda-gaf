@@ -31,7 +31,7 @@
  *
  *   \defgroup geda-global-enumerators Global Enumerated Semi-Constants
  * @{\par This group contains enumerations used through-out the gEDA suite.
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 typedef enum

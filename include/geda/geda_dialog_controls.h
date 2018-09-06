@@ -90,7 +90,7 @@
  * \file geda_dialog_controls.h
  *   \defgroup geda-dialog-controls gEDA Dialog controls
  * @{\par This group contains Macros for controls used in Dialogs
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 /*! \def DialogFont Defines the default font used in gEDA dialogs */

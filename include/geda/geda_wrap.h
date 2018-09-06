@@ -34,7 +34,7 @@
  *   \defgroup geda-wrapper-macros Global Wrappper Macros
  * @{\par This group defines utility macros for wrapping functions
  *        in external libraries.
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 /* memory related */

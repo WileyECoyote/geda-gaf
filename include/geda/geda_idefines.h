@@ -26,7 +26,7 @@
  *
  *   \defgroup geda-global-integers Global Integer Constants
  * @{\par This group defines global integer constants
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 #ifndef MAX_FILE

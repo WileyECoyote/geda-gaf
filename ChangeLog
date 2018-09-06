@@ -1,3 +1,8 @@
+2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda: Remove parentheses from Doxygen geda-globals group
+      because these show up empty in the Doxygen output.
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_types.h: Comment out typedef __mode_t, this is a pain.

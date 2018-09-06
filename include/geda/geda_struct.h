@@ -30,7 +30,7 @@
  *
  *   \defgroup geda-global-structures Global Structure Constants
  * @{\par This group defines global structures constants
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 typedef struct _GedaRefDes GedaRefDes;

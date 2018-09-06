@@ -26,7 +26,7 @@
  *
  *   \defgroup geda-global-system Global System Defines
  * @{\par This group contains system related defines
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 #if defined(__linux__) || defined(UNIX)
 

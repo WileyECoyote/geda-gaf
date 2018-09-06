@@ -31,7 +31,7 @@
  *  \brief Global gEDA String Defines
  *
  *   \defgroup geda-global-strings Global String Constants
- * @{\ingroup (geda-globals)
+ * @{\ingroup geda-globals
  *   \par
  *    This group defines global string constants used in the gEDA suite.
  */

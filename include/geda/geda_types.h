@@ -26,7 +26,7 @@
  *
  *   \defgroup geda-global-types Global Type Definitions
  * @{\par This group contains global type definitions
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 #  include <stdint.h>

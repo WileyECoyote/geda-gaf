@@ -37,7 +37,7 @@
  *
  *   \defgroup geda-global-bitmaps Global Bitmap String Name
  * @{\par This group defines strings to reference global bitmap image
- *   \ingroup (geda-globals)
+ *   \ingroup geda-globals
  */
 
 /*! \internal Macro for quoting - Don't use this!*/
