@@ -1,6 +1,7 @@
 2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gmake/gmake-caps-sym.sh: Rename variable Capacitence -> Capacitance.
+    * gmake/gmake-caps-sym.sh: Rename variable Capacitence -> Capacitanc and
+      add missing vecho function.
 
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 

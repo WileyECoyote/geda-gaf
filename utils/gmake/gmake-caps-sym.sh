@@ -17,6 +17,15 @@ TemplateFile=""
 ParameterFile=""
 Prefix=4
 
+vecho()
+{
+   if [[ ! $1 = "" ]] ; then
+     if $VERBOSE ; then
+      echo $1
+     fi
+   fi
+}
+
 do_show_usage(){
    echo Usage:   `basename $0` '[-h, --help] | [--version] | template[.sym] parameters[.spm]'
 }
