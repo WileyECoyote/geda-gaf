@@ -1,4 +1,12 @@
-2018-09-7 Wiley E. Hill <wileyhill@gmail.com>
+2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x: Replace HD_SEPERATOR -> HD_ACTION_SEPARATOR for the create the
+      horizontal separator before the action area in:
+
+          * src/x/x_edit_array.c
+          * src/x/x_edit_pin.c
+          * src/x/x_edit_text.c
+          * src/x/x_pagesel.c
 
     * src/x/x_sessions.c: Set "has-separator" property FALSE for the Manage
       and Open Session dialog box. Update images file names for the Open

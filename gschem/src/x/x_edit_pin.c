@@ -985,7 +985,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
 
   GEDA_OBJECT_SET_DATA(ThisDialog, pin_data, IDS_PIN_EDIT);
 
-  HD_SEPERATOR (main_vbox, Actions);
+  HD_ACTION_SEPARATOR (main_vbox);
 
   action_area = create_action_area (GSCHEM_DIALOG(ThisDialog),
                                    (GtkWidget*) main_vbox);

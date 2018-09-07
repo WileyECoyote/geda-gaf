@@ -1,3 +1,7 @@
+2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Add Macro HD_ACTION_SEPARATOR.
+
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda: Remove parentheses from Doxygen geda-globals group

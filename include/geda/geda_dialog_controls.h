@@ -76,8 +76,11 @@
  * ------------------------------------------------------------------
  * WEH | 05/13/17 | Go back to gtk_widget_show instead of g_object_set.
  * ------------------------------------------------------------------
- * WEH | 02/27/27 | Replace gtk_container_add with geda_container_add macro.
+ * WEH | 02/27/17 | Replace gtk_container_add with geda_container_add macro.
  *                | Rename GTK_CALLBACK_ENABLER-> GTK_CALLBACK_TOGGLED.
+ * ------------------------------------------------------------------
+ * WEH | 09/07/18 | Add Macro HD_ACTION_SEPARATOR.
+ * ------------------------------------------------------------------
 */
 
 #pragma once
@@ -196,6 +199,7 @@ typedef struct
         gtk_box_pack_start (GTK_BOX (parent), dir##Separator##suffix, isexpandable, isfilled, 0); \
         gtk_widget_set_size_request (dir##Separator##suffix, xpad, ypad); \
 }
+
 #define H_SEPERATOR(parent, suffix) \
         SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, 0)
 
@@ -204,6 +208,9 @@ typedef struct
 
 #define HD_SEPERATOR(parent, suffix) \
         SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, DEFAULT_SEPERATOR_SPACING)
+
+#define HD_ACTION_SEPARATOR(parent) \
+        SEPERATOR (parent, Actions, h, FALSE, TRUE, 0, DIALOG_V_SPACING)
 
 #define HYP_SEPERATOR(parent, suffix, ypad) \
         SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, ypad)

@@ -1228,7 +1228,7 @@ static void pagesel_instance_init (GTypeInstance *instance, void *class)
   action_hbox = Dialog->action_area;
   geda_container_remove(Dialog->vbox, action_hbox);
 
-  HD_SEPERATOR (Dialog->vbox, ActionSeperator);
+  HD_ACTION_SEPARATOR (Dialog->vbox);
 
   action_hbox = gtk_hbox_new(FALSE, 0);
   g_object_set (action_hbox, "visible", TRUE, NULL);
