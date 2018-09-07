@@ -1017,7 +1017,7 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
     geda_combo_box_text_set_activate_default((GedaComboBoxText*)SearchTextCombo, 1);
   }
 
-  HXYP_SEPERATOR (MainDialogVBox, Grp3, 5);
+  HXYP_SEPARATOR (MainDialogVBox, Grp3, 5);
 
   /* Create an alignment widget to shiftSearchOptions row 1 right */
   alignment = gtk_alignment_new (1, 0, 1, 1);
@@ -1038,7 +1038,7 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
     GTK_SWITCH(SearchOptions2_hbox, SearchBackword, 0, FALSE);
     GTK_SWITCH(SearchOptions2_hbox, WrapAround, 0, TRUE);
 
-  HXYP_SEPERATOR (MainDialogVBox, Grp4, 10);
+  HXYP_SEPARATOR (MainDialogVBox, Grp4, 10);
 
   dialog_action_area = ThisDialog->action_area;
 

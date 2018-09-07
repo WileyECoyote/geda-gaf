@@ -192,7 +192,7 @@ typedef struct
         gtk_misc_set_padding (GTK_MISC (name), xpad, ypad);
 
 /* Section Division Related  */
-#define SEPERATOR(parent, suffix, dir, isexpandable, isfilled, xpad, ypad) { \
+#define SEPARATOR(parent, suffix, dir, isexpandable, isfilled, xpad, ypad) { \
         GtkWidget *dir##Separator##suffix; \
         dir##Separator##suffix = gtk_##dir##separator_new (); \
         gtk_widget_show(dir##Separator##suffix); \
@@ -200,47 +200,47 @@ typedef struct
         gtk_widget_set_size_request (dir##Separator##suffix, xpad, ypad); \
 }
 
-#define H_SEPERATOR(parent, suffix) \
-        SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, 0)
+#define H_SEPARATOR(parent, suffix) \
+        SEPARATOR (parent, suffix, h, FALSE, TRUE, 0, 0)
 
-#define HX_SEPERATOR(parent, suffix) \
-        SEPERATOR (parent, suffix, h, TRUE, TRUE, 0, 0)
+#define HX_SEPARATOR(parent, suffix) \
+        SEPARATOR (parent, suffix, h, TRUE, TRUE, 0, 0)
 
-#define HD_SEPERATOR(parent, suffix) \
-        SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, DEFAULT_SEPERATOR_SPACING)
+#define HD_SEPARATOR(parent, suffix) \
+        SEPARATOR (parent, suffix, h, FALSE, TRUE, 0, DEFAULT_SEPERATOR_SPACING)
 
 #define HD_ACTION_SEPARATOR(parent) \
-        SEPERATOR (parent, Actions, h, FALSE, TRUE, 0, DIALOG_V_SPACING)
+        SEPARATOR (parent, Actions, h, FALSE, TRUE, 0, DIALOG_V_SPACING)
 
-#define HYP_SEPERATOR(parent, suffix, ypad) \
-        SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, ypad)
+#define HYP_SEPARATOR(parent, suffix, ypad) \
+        SEPARATOR (parent, suffix, h, FALSE, TRUE, 0, ypad)
 
-#define HXXP_SEPERATOR(parent, suffix, xpad) \
-        SEPERATOR (parent, suffix, h, TRUE, TRUE, xpad, 0)
+#define HXXP_SEPARATOR(parent, suffix, xpad) \
+        SEPARATOR (parent, suffix, h, TRUE, TRUE, xpad, 0)
 
-#define HXYP_SEPERATOR(parent, suffix, ypad) \
-        SEPERATOR (parent, suffix, h, TRUE, TRUE, 0, ypad)
+#define HXYP_SEPARATOR(parent, suffix, ypad) \
+        SEPARATOR (parent, suffix, h, TRUE, TRUE, 0, ypad)
 
 #define V_SEPERATOR(parent, suffix) \
-        SEPERATOR (parent, suffix, h, FALSE, TRUE, 0, 0)
+        SEPARATOR (parent, suffix, h, FALSE, TRUE, 0, 0)
 
 #define VX_SEPERATOR(parent, suffix) \
-        SEPERATOR (parent, suffix, v, TRUE, TRUE, 0, 0)
+        SEPARATOR (parent, suffix, v, TRUE, TRUE, 0, 0)
 
 #define VD_SEPERATOR(parent, suffix) \
-        SEPERATOR (parent, suffix, v, FALSE, TRUE, DEFAULT_SEPERATOR_SPACING, 0)
+        SEPARATOR (parent, suffix, v, FALSE, TRUE, DEFAULT_SEPERATOR_SPACING, 0)
 
 #define VYP_SEPERATOR(parent, suffix, ypad) \
-        SEPERATOR (parent, suffix, v, FALSE, TRUE, 0, ypad)
+        SEPARATOR (parent, suffix, v, FALSE, TRUE, 0, ypad)
 
 #define VXP_SEPERATOR(parent, suffix, xpad) \
-        SEPERATOR (parent, suffix, v, FALSE, TRUE, xpad, 0)
+        SEPARATOR (parent, suffix, v, FALSE, TRUE, xpad, 0)
 
 #define VXYP_SEPERATOR(parent, suffix, ypad) \
-        SEPERATOR (parent, suffix, v, TRUE, TRUE, 0, ypad)
+        SEPARATOR (parent, suffix, v, TRUE, TRUE, 0, ypad)
 
 #define VXXP_SEPERATOR(parent, suffix, xpad) \
-        SEPERATOR (parent, suffix, v, TRUE, TRUE, xpad, 0)
+        SEPARATOR (parent, suffix, v, TRUE, TRUE, xpad, 0)
 
 /* Box Widgets */
 /* Note: Boxes do not have local braces and this allows for post macro modifiers */

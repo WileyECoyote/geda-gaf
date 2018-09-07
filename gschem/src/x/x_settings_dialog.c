@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2012-2015 Wiley Edward Hill <wileyhill@gmail.com>
- * Copyright (C) 2012-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2012-2018 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2018 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -80,6 +80,9 @@
  * WEH | 04/10/16 | Adjust Renderer, AntiAlias  ConsoleWindowType and
  *                | DotGridMode Combo width and padding.
  * ------------------------------------------------------------------
+ * WEH | 08/21/18 | verify geda_combo_box_get_active_text returned
+ *                | a pointer.
+ * ------------------------------------------------------------------
  *
  */
 
@@ -118,7 +121,7 @@
  *      (At this point the widget should be functioning but the
  *       value will not be saved to rc generated files.)
  *
- *    \note The setting should be save some where, some how. This
+ *    \note The setting should be saved some where, some how. This
  *          could be within a function such as dialog code or in
  *          generalized groups, see x_settings_save_settings and
  *          x_window_save_settings.
@@ -142,8 +145,8 @@
  *      a.) value changes when manually changed in the RC file.
  *      b.) values are properly written and formated correctly.
  *
- * \note: The main responder for the Settings dialog in not in this
- *        modules, see x_settings.c
+ * \note: The main responder for the Settings dialog is not in
+ *        this modules, see x_settings.c
 */
 
 #include <sys/types.h>
@@ -2385,7 +2388,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow1)     /* Grp 2 Row 1 */
            GTK_SWITCH(GeneralOptionsRow1_hbox, FilePreview, 18, TRUE);
            GEDA_NEW_TEXT_ENTRY_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 49);
-     HXYP_SEPERATOR (GeneralPrefTab_vbox, Grp3, 10);
+     HXYP_SEPARATOR (GeneralPrefTab_vbox, Grp3, 10);
      CSECTION_OPTIONS(GeneralPrefTab_vbox, Logging, -1, 10, H); /* GT Grp 3 Log Related */
        VSECTION (LoggingOptions_hbox, LogOptions);   /* Grp 3 Row 1 */
          GTK_SWITCH(LogOptions_vbox, EnableLog, 5, TRUE);
@@ -2394,7 +2397,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
          GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 10, Window, TTY, Both, Window);
-     HXYP_SEPERATOR (GeneralPrefTab_vbox, Grp4, 10);
+     HXYP_SEPARATOR (GeneralPrefTab_vbox, Grp4, 10);
      CSECTION_OPTIONS(GeneralPrefTab_vbox, Undo, 63, 5, H); /* was GT Grp 4 Undo Related */
        VSECTION (UndoOptions_hbox, UndoToggleOptions);
          GTK_SWITCH(UndoToggleOptions_vbox, EnableUndo, 0, TRUE);
@@ -2406,7 +2409,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_NONE)
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_DISK)
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_MEMORY)
-     HXYP_SEPERATOR (GeneralPrefTab_vbox, End, 10);
+     HXYP_SEPARATOR (GeneralPrefTab_vbox, End, 10);
    GTK_END_TAB(GeneralPref);
 
   } /*** END General TAB Contents ***/
@@ -2435,7 +2438,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        HSECTION (EditOptions_vbox, EditOptionsRow6)    /* Grp 1 Row 6 */
          GTK_SWITCH(EditOptionsRow6_hbox, NotifyEvents, 12, TRUE);
          GTK_SWITCH(EditOptionsRow6_hbox, ObjectClipping, 0, TRUE);
-     HYP_SEPERATOR (EditPrefTab_vbox, Grp2, 10);
+     HYP_SEPARATOR (EditPrefTab_vbox, Grp2, 10);
      CSECTION_OPTIONS(EditPrefTab_vbox, Nets, 20, DIALOG_V_SPACING, H); /*ET Grp 2 Edit Nets */
        VSECTION(NetsOptions_hbox, NetsGroup1) /* ET Grp 1 Net Selection Options */
          GTK_SWITCH(NetsGroup1_vbox, NetDirection, DEFAULT_WIDGET_SPACING, TRUE);
@@ -2480,7 +2483,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          gtk_widget_set_size_request (ThirdButtonCombo, 150, 31);
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
-     HXYP_SEPERATOR (PointerPrefTab_vbox, End, 10);
+     HXYP_SEPARATOR (PointerPrefTab_vbox, End, 10);
 
    GTK_END_TAB(PointerPref);
   } /*** END Pointer TAB Contents ***/
@@ -2491,7 +2494,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
      VSECTION (WindowPrefTab_vbox, DisplaySizeOptions) /* WT Row 1 Display Size */
        GTK_H_QUAD_BULB(DisplaySizeOptions_vbox, WindowSize, 10, W650H487, W900H650, W950H712, W1100H825, W950H712);
        GTK_H_BULB_TRIAD( DisplaySizeOptions_vbox, WorldSize, Small, Medium, Large, Medium);
-     HD_SEPERATOR (WindowPrefTab_vbox, Grp2);
+     HD_SEPARATOR (WindowPrefTab_vbox, Grp2);
        HPSECTION(WindowPrefTab_vbox, GridOptions, DIALOG_V_SPACING) /* WT Row 2 */
          GTK_V_BULB_TRIAD( GridOptions_hbox, GridMode, 0, None, Dots, Mesh, Mesh);
          VPSECTION(GridOptions_hbox, GridDotOptions, 50); /* WT Row 2 Grp 2 Dot Grid Options */
@@ -2499,7 +2502,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
            GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE);
            GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED);
            GTK_NUMERIC_SPIN (GridDotOptions_vbox, DotGridThreshold, DIALOG_V_SPACING, DEFAULT_GRID_DOT_SIZE, MIN_GRID_DOT_SIZE, MAX_GRID_DOT_THRESHOLD);
-     HD_SEPERATOR (WindowPrefTab_vbox, Grp3);
+     HD_SEPARATOR (WindowPrefTab_vbox, Grp3);
        HSECTION(WindowPrefTab_vbox, MeshGridSizeOptions) /* WT Row 3 */
          GTK_V_BULB_TRIAD (MeshGridSizeOptions_hbox, GridDotSize, 8, One, Two, Three, One);
          VPSECTION(MeshGridSizeOptions_hbox, GridMeshOptions, 50); /* WT Row 2 Grp 2 Dot Grid Options */
@@ -2507,7 +2510,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_NUMERIC_SPIN (GridMeshOptions_vbox, MeshGridWidth, 0, DEFAULT_MESH_LINE_WIDTH_FACTOR, MIN_MESH_LINE_WIDTH_FACTOR, MAX_MESH_LINE_WIDTH_FACTOR);
          GEDA_COLOR_BUTTON (GridMeshOptions_vbox, MeshMinorColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
          GEDA_COLOR_BUTTON (GridMeshOptions_vbox, MeshMajorColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
-     HD_SEPERATOR (WindowPrefTab_vbox, Grp4);
+     HD_SEPARATOR (WindowPrefTab_vbox, Grp4);
        GEDA_FRAME (WindowPrefTab_vbox, Scrolling, -1, 60, 0.05, 0.2, 10)
          GTK_SWITCH(Scrolling_hbox, ScrollBars,        DIALOG_H_SPACING + 10, TRUE);
          GTK_SWITCH(Scrolling_hbox, ScrollBarsVisible, DIALOG_H_SPACING + 10, TRUE);
@@ -2548,7 +2551,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
 
   { /*-------------------- Start Styles TAB Contents --------------------*/
    GTK_START_TAB (StylesPref);
-     HD_SEPERATOR (StylesPrefTab_vbox, Grp1);
+     HD_SEPARATOR (StylesPrefTab_vbox, Grp1);
      HSECTION(StylesPrefTab_vbox, StylesRow1); /* ST Grp 1 Bus and Net */
        GTK_V_BULB_TRIAD( StylesRow1_hbox, BusStyle, 5, None, Thin, Thick, Thin);
        VSECTION (StylesRow1_hbox, BusWidths)  /* ST Grp 1 Bus Spinners */
@@ -2559,7 +2562,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        VPSECTION (StylesRow1_hbox, NetWidths, DIALOG_V_SPACING)  /* ST Grp 1 Net Spinners */
          GTK_NUMERIC_SPIN (NetWidths_vbox, ThinNetWidth, DIALOG_V_SPACING +5, DEFAULT_THIN_NET_WIDTH, 0, 100);
          GTK_NUMERIC_SPIN (NetWidths_vbox, ThickNetWidth, DIALOG_V_SPACING +5, DEFAULT_THICK_NET_WIDTH, 0, 500);
-     HD_SEPERATOR (StylesPrefTab_vbox, Grp2);
+     HD_SEPARATOR (StylesPrefTab_vbox, Grp2);
      HSECTION(StylesPrefTab_vbox, StylesRow2); /* ST Grp 2 Lines and Pins */
        GTK_V_BULB_TRIAD( StylesRow2_hbox, LineStyle, 5, None, Thin, Thick, Thin);
        VSECTION (StylesRow2_hbox, LineWidths)  /* ST Grp 2 Lines Spinners */
@@ -2570,7 +2573,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        VPSECTION (StylesRow2_hbox, PinWidths, DIALOG_V_SPACING)  /* ST Grp 2 Pin Spinners */
          GTK_NUMERIC_SPIN (PinWidths_vbox, ThinPinWidth, DIALOG_V_SPACING +5, DEFAULT_THIN_PIN_WIDTH, 0, 100);
          GTK_NUMERIC_SPIN (PinWidths_vbox, ThickPinWidth, DIALOG_V_SPACING +5, DEFAULT_THICK_PIN_WIDTH, 0, 500);
-     HD_SEPERATOR (StylesPrefTab_vbox, Grp3);      /* Ripper Options */
+     HD_SEPARATOR (StylesPrefTab_vbox, Grp3);      /* Ripper Options */
        HSECTION(StylesPrefTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow3_hbox, RipperType, 30, FALSE);
          GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 0, 0);
@@ -2580,12 +2583,12 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        HSECTION(StylesPrefTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow4_hbox, RipperRotation, 19, FALSE);
          GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 31, 200, 0, 500);
-     HD_SEPERATOR (StylesPrefTab_vbox, Grp4);        /* Junction Options */
+     HD_SEPARATOR (StylesPrefTab_vbox, Grp4);        /* Junction Options */
        GEDA_FRAME (StylesPrefTab_vbox, Junctions, -1, 60, 0.05, 0.2, 10)
          GTK_NUMERIC_SPIN (Junctions_hbox, JunctionSize, 12, DEFAULT_JUNCTION_SIZE, MIN_JUNCTION_SIZE, MAX_JUNCTION_SIZE);
          GEDA_COLOR_BUTTON (Junctions_hbox, JunctionColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, DIALOG_H_SPACING)
          GEDA_COLOR_BUTTON (Junctions_hbox, NetEndpointColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, DIALOG_H_SPACING)
-     HD_SEPERATOR (StylesPrefTab_vbox, End);
+     HD_SEPARATOR (StylesPrefTab_vbox, End);
 
    GTK_END_TAB(StylesPref);
   } /*** END Styles TAB Contents ***/
@@ -2608,10 +2611,10 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
              GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, 2, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
              GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerThld, 2, DEFAULT_TEXT_MARKER_THLD/10.0, MIN_TEXT_MARKER_THLD/10.0, MAX_TEXT_MARKER_THLD/10.0);
              SetupSpinner(TextMarkerThldSpin, 1, 0.1, 1.0);
-     HD_SEPERATOR (TextPrefTab_vbox, Grp2);
+     HD_SEPARATOR (TextPrefTab_vbox, Grp2);
      HSECTION (TextPrefTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
        GTK_V_BULB_TRIAD(CapsStyleOptions_hbox, CapsStyle, DIALOG_H_SPACING, Lower, Upper, Both, Both);
-     HD_SEPERATOR (TextPrefTab_vbox, Grp3);
+     HD_SEPARATOR (TextPrefTab_vbox, Grp3);
      HSECTION (TextPrefTab_vbox, TextOptionsGrp3) /* TT Grp 3 Feedback */
        GTK_V_BULB_TRIAD(TextOptionsGrp3_hbox, TextFeedback, DIALOG_H_SPACING, Readable, Always, Default, Readable);
    GTK_END_TAB(TextPref);
@@ -2639,11 +2642,11 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_NEW_SCROLL_OUT (AttributeLists_hbox, SelectedAttributesWindow, 35, 190, -1, GTK_POLICY_AUTOMATIC)
          GTK_VIEW_TREE (SelectedAttributesWindow, SelectedAttributes, View2Data, gl, 180, -1)
            gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (SelectedAttributesView), FALSE);
-       HYP_SEPERATOR (AttributesPrefTab_vbox, Grp2, 5);
+       HYP_SEPARATOR (AttributesPrefTab_vbox, Grp2, 5);
        HSECTION(AttributesPrefTab_vbox,  AttributeOptions); /* Grp 2 but now Row 2 */
          GTK_NUMERIC_SPIN (AttributeOptions_hbox, AttributeOffset, 25, 50, 0, 300);
          GTK_NUMERIC_SPIN (AttributeOptions_hbox, AutoPlacementGrid, 25, 1, 0, 300);
-       HYP_SEPERATOR (AttributesPrefTab_vbox, End, 5);
+       HYP_SEPARATOR (AttributesPrefTab_vbox, End, 5);
    GTK_END_TAB(AttributesPref);
 
   } /*** END Attribute TAB Contents ***/
@@ -2655,7 +2658,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
        GTK_SWITCH(LibraryOptionsRow1_vbox, EnforceHierarchy, DIALOG_V_SPACING, FALSE);
        GTK_SWITCH(LibraryOptionsRow1_vbox, EmbedComponents, DIALOG_V_SPACING, FALSE);
        GTK_SWITCH(LibraryOptionsRow1_vbox, SortLibrary, DIALOG_V_SPACING, FALSE);
-     HXYP_SEPERATOR (LibraryPrefTab_vbox, End, 10);
+     HXYP_SEPARATOR (LibraryPrefTab_vbox, End, 10);
    GTK_END_TAB(LibraryPref);
   } /*** END Library TAB Contents ***/
 

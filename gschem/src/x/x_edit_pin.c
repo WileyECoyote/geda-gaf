@@ -859,7 +859,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   gtk_widget_set_tooltip_text(label_entry, label_entry_tip);
   gtk_widget_show (label_entry);
 
-  HD_SEPERATOR (main_vbox, Options);
+  HD_SEPARATOR (main_vbox, Options);
 
   /* Alignment Widget - Not Text Alignment property */
   alignment = gtk_alignment_new(0, 0, 1, 1);
