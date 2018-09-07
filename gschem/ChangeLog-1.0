@@ -1,7 +1,13 @@
 2018-09-7 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_sessions.c: Set "has-separator" property FALSE for the Manage
-      and Open Session dialog box.
+      and Open Session dialog box. Update images file names for the Open
+      manage_sessions_dialog.png -> open_sessions_dialog and add Doxygen
+      groups:
+
+          * Manage-Session-Dialog
+          * Open-Session-Dialog
+          * New-Session-Dialog
 
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 

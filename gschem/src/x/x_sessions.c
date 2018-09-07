@@ -314,16 +314,30 @@ static void manage_session_selection_changed (GtkTreeSelection *selection,
   }
 }
 
+
+/** \defgroup Manage-Session-Dialog Manage Session Dialog
+ *  @{
+ *  \ingroup Gschem-Session-Dialogs
+ *  \image html manage_sessions_dialog.png
+ *  \image latex manage_sessions_dialog.png
+ *  \par
+ *   This group contains Routines for the Manage Sessions Dialog.
+ *
+ *  \note The first two function are common to both the Manage Sessions
+ *        and Open Session dialogs.
+ */
+
 /*! \brief Response function for Session dialogs
+ *  \memberof Open-Session-Dialog
  *  \par Function Description
  *  This is a response function called when the used selects one
  *  of the action bottons, either CLOSE or APPLY. This function
  *  is shared by both the Manage Sessions and the Open Session
  *  dialogs.
  *
- *  \param [in]   Dialog    ptr to the dialog widget
- *  \param [in]   response  int signal indicating which button
- *  \param [in]   nothing   Not used
+ *  \param [in] Dialog    ptr to the dialog widget
+ *  \param [in] response  int signal indicating which button
+ *  \param [in] nothing   Not used
  */
 void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 {
@@ -347,10 +361,11 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 }
 
 /*! \brief Emit GEDA_RESPONSE_REJECT response signal
-  * \par Function Description
-  *  This function is common to both the Manage Sessions and the
-  *  Open Session dialogs.
-  */
+ *  \memberof Open-Session-Dialog
+ *  \par Function Description
+ *  This function is common to both the Manage Sessions and the
+ *  Open Session dialogs.
+ */
 static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (user_data, "response",
@@ -358,7 +373,7 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Session dialog "Display at Startup" check button Toggled.
+/*! \brief Manage Sessions dialog "Display at Startup" check button Toggled.
  *  \par Function Description
  *   Executes whenever the check-button changes state. The function
  *   passes the state to i_sessions_set_show_at_startup function to
@@ -374,7 +389,7 @@ static void callback_session_startup_toggled(GtkToggleButton *button,
 }
 
 
-/*! \brief Session Auto Update check button Toggled.
+/*! \brief Manage Sessions Auto Update check button Toggled.
  *  \par Function Description
  *   Executes whenever the check-button changes state. The function
  *   passes set the toplevel variable to the value of the state of
@@ -387,7 +402,7 @@ static void callback_session_auto_toggled (GtkToggleButton *button, void *data)
   w_current->auto_sessions =  gtk_toggle_button_get_active(button);
 }
 
-/*! \brief Creates Action Area for the  for Session dialogs.
+/*! \brief Creates Action Area for the  for Manage Sessions dialog.
  *  \par Function Description
  *  We create our own "Action Area", because; 1.) GTK's entire
  * concept of an action area is more of a hindrance then it is
@@ -477,7 +492,7 @@ static GtkWidget *create_action_area (GschemDialog *ThisDialog,
   return action_hbox;
 }
 
-/*! \brief Returns a Session treeview for Session dialogs.
+/*! \brief Returns a Session treeview for the  Manage Sessions dialog.
  *  \par Function Description
  *  This function adds a treeview and caption to display the content
  *  of the dialog model of pages with unsaved changes.
@@ -563,8 +578,6 @@ static GtkWidget *x_sessions_get_treeview (GtkWidget *Dialog)
 }
 
 /*! \brief Manage Sessions Dialog
- *  \image html manage_sessions_dialog.png
- *  \image latex manage_sessions_dialog.png
  *  \par Function Description
  *  Creates and displays the Manage Sessions Dialog.
  *
@@ -671,6 +684,21 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   gtk_widget_show (ThisDialog);
 }
 
+/** @} end group Manage-Session-Dialog */
+
+/** \defgroup Open-Session-Dialog Open Session Dialog
+ *  @{
+ *  \ingroup Gschem-Session-Dialogs
+ *  \todo image html open_sessions_dialog.png
+ *  \todo image latex open_sessions_dialog.png
+ *  \par
+ *   This group contains Routines for the Open Session Dialog.
+ *
+ *  \note x_sessions_response and on_close_butt_clicked in the
+ *        Manage Sessions dialog are also callbacks for the Open
+ *        Sessions dialog.
+ */
+
 /*! \brief Open Session Dialog Treeview button Press Event
  *  \par Function Description
  *  This function is called when the user clicks a mouse button while
@@ -745,9 +773,6 @@ static void open_session_selection_changed (GtkTreeSelection *selection,
  *  \sa x_sessions_open_dialog
  *
  *  \param w_current Pointer to GschemToplevel object
- *
- *  \image html manage_sessions_dialog.png
- *  \image latex manage_sessions_dialog.png
  */
 void x_sessions_open_dialog(GschemToplevel *w_current)
 {
@@ -804,6 +829,15 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
   gtk_widget_show (ThisDialog);
 }
 
+/** @} end group Open-Session-Dialog */
+
+/** \defgroup New-Session-Dialog New Session Dialog
+ *  @{
+ *  \ingroup Gschem-Session-Dialogs
+ *  \par
+ *   This group contains a single function for the New Session Dialog.
+ */
+
 /*! \brief Create a New Session Dialog
  *  \par Function Description
  *  Displays a simple dialog with a test entry field to accept
@@ -828,6 +862,15 @@ void x_sessions_new_dialog (GschemToplevel *w_current)
   }
 }
 
+/** @} end group New-Session-Dialog */
+
+/** \defgroup Save-As-Session-Dialog Save-As Session Dialog
+ *  @{
+ *  \ingroup Gschem-Session-Dialogs
+ *  \par
+ *   This group contains a single function for the Save-As Session Dialog.
+ */
+
 /*! \brief Save As Session Dialog
  *  \par Function Description
  *  Displays a simple dialog with a test entry field to accept
@@ -850,6 +893,8 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
     GEDA_FREE(name);
   }
 }
+
+/** @} end group Save-As-Session-Dialog */
 
 /*! \brief Save Session Configuration Settings and Auto Session
  *  \par Function Description
