@@ -336,7 +336,7 @@
 
         net-list        ;; end iteration & return net-list if ls is empty.
 
-        (let* ((package (car package-list))                  ;; otherwise process package. . .
+        (let* ((package (car package-list))         ;; otherwise process package. . .
                (net (car (get-nets package "1")))   ;; get the net attached to pin 1
               )
          ;; now iterate
@@ -627,18 +627,22 @@
 ;;  spice-anise:write-ic
 ;;  This writes out a valid ic or subcircuit line.
 ;;  The algorithm is as follows:
-;;  1.  Figure out what type of model goes with this part from
-;;      file-info-list.  If it isn't listed, look for a MODEL attribute.
-;;      If MODEL attribute is attached, write out SPICE card, and then
-;;      write out .MODEL on next line.
-;;      If no MODEL attribute is attached, just write out what little
-;;      we know.  Then return
-;;  2.  If the model-name is in the file-info-list, get the associated
-;;      file-type.  Compare it against the component's refdes.  If model-type
-;;      is .MODEL or .SUBCKT and refdes doesn't begin with a U or X
-;;      respectively, prepend the correct prefix to the refdes.
-;; 3.   Print out the rest of the line.
 ;;
+;;  1.  Figure out what type of model goes with this part from file-info-list.
+;;      If it is not listed, look for a MODEL attribute. If MODEL attribute is
+;;      attached, write out SPICE card, and then write out .MODEL on next line.
+;;      If no MODEL attribute is attached, just write out what little we know.
+;;      Then return
+;;
+;;  2.  If the model-name is in the file-info-list, get the associated file
+;;      type. Compare the file type against the component's refdes.  If model
+;;      type is .MODEL or .SUBCKT and refdes doesn't begin with a U or X
+;;      respectively, prepend the correct prefix to the refdes.
+;;
+;;  3.  Print out the rest of the line.
+;;
+;; Note: Unlike spice-sdb backend, this routine uses the value of the "device"
+;;       attribute and NOT the value of the "value" attribute. WEH 090618
 ;;----------------------------------------------------------------
 (define (spice-anise:write-ic package file-info-list)
 
@@ -646,7 +650,7 @@
     (let ((first-char (string (string-ref package 0)))  ;; extract first char of refdes
           (model-name (get-package-attribute package "model-name"))
           (model (get-package-attribute package "model"))
-          (value (get-package-attribute package "value"))
+          (device (get-package-attribute package "device"))
           (type  (get-package-attribute package "type"))
           (model-file (get-package-attribute package "file"))
           (list-item (list))
@@ -657,10 +661,10 @@
         ((string=? first-char "X") (debug-spew (string-append "Found subcircuit.  Refdes = " package "\n")))
       )
 
-    ;; First, if model-name is empty, we use value attribute instead.
-    ;; We do this by sticking the contents of "value" into "model-name".
+    ;; First, if model-name is empty, we use the value of the device attribute instead.
+    ;; We do this by sticking the contents of "device" into "model-name".
       (if (string=? model-name "unknown")
-          (set! model-name value))
+          (set! model-name device))
 
     ;; Now get item from file-info-list using model-name as key
       (set! list-item (spice-anise:get-file-info-list-item model-name file-info-list))
@@ -668,7 +672,7 @@
     ;; check to see if list-item is null.
       (if (null? list-item)
 
-    ;; list-item is null.  Evidently, we didn't discover any files holding this model.
+    ;; list-item is null. Evidently, we did not discover any files holding this model.
     ;; Instead we look for model attribute
           (if (not (string=? model "unknown"))
             (begin                                     ;; model attribute exists -- write out card and model.
@@ -696,7 +700,7 @@
                  (spice-anise:write-prefix package "U")  ;; this prepends an "U" to the refdes if needed, since we have a .model
                  (spice-anise:write-component-no-value package)
                  (display (string-append model-name "\n" ))
-                (debug-spew "We'll handle the file contents later . . .\n")
+                 (debug-spew (string-append "Deferring processing contents of " model-name "\n"))
                ))
 
               ;; ---- file holds a subcircuit ----
@@ -706,7 +710,7 @@
                  (spice-anise:write-prefix package "X")  ;; this prepends an "X" to the refdes if needed, since we have a .subckt
                  (spice-anise:write-component-no-value package)
                  (display (string-append model-name "\n" ))
-                 (debug-spew "We'll handle the file contents later . . .\n")
+                 (debug-spew (string-append "Deferring processing contents of " model-name "\n"))
                ))
            )  ;; close of inner cond
          )   ;; end of inner let
@@ -1542,7 +1546,8 @@
 ;;   This is the entry point.
 ;;   Hacked on 3.31.2003 to enable writing out .SUBCKT models -- SDB.
 ;;   Hacked again in Sept 2003 to enable more intelligent embedding of external
-;;       SPICE files into netlist -- SDB.
+;;   SPICE files into netlist -- SDB.
+;;
 ;;   The algorithm is as follows:
 ;;   1.  Figure out if there is a .SUBCKT block on the schematic,
 ;;       or if it is just a normal schematic.

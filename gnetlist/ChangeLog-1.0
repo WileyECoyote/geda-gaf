@@ -1,3 +1,10 @@
+2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-spice-anise.scm: Revise write-ic package routine to
+      use the value of the device attribute instead of the value of the
+      value attribute, adjust line spacing and indentations to improve
+      readability, change debug message "We'll handle later".
+
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src: Remove parentheses from Doxygen ingroup tags because these
