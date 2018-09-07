@@ -1,3 +1,7 @@
+2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gmake/gmake-caps-sym.sh: Rename variable Capacitence -> Capacitance.
+
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gcheck-library.sh: Update gaf shell option "c" -> "e" to verify

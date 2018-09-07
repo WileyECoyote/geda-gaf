@@ -26,14 +26,14 @@ do_process(){
    while read -u3 line
    do
       parameters=( $line )
-      Capacitence=${parameters[0]}
+      Capacitance=${parameters[0]}
       Voltage=${parameters[1]}
       PartNumber=${parameters[2]}
       FootPrint=${parameters[3]}
-      vecho "Read Capacitence=$Capacitence, Voltage=$Voltage, PartNumber=$PartNumber, FootPrint=$FootPrint"
-      if [ ! "${Capacitence:0:1}" = "#" ] && [ ! "$Capacitence" = "" ] ; then
-         OutputFile=$Prefix"_"$Capacitence"_"$Voltage"_"$PartNumber$Suxfix
-         Value=$Capacitence", "$Voltage
+      vecho "Read Capacitance=$Capacitance, Voltage=$Voltage, PartNumber=$PartNumber, FootPrint=$FootPrint"
+      if [ ! "${Capacitance:0:1}" = "#" ] && [ ! "$Capacitance" = "" ] ; then
+         OutputFile=$Prefix"_"$Capacitance"_"$Voltage"_"$PartNumber$Suxfix
+         Value=$Capacitance", "$Voltage
          cat $TemplateFile | sed -e s/"PART_NUMBER"/"$PartNumber"/g >$OutputFile.tp1
          cat $OutputFile.tp1 | sed -e s/"unknown"/"$FootPrint"/g >$OutputFile.tp2
          cat $OutputFile.tp2 | sed -e s/"CAPACITOR_VALUE"/"$Value"/g >$OutputFile
