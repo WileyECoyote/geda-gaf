@@ -605,16 +605,19 @@
 ;;  spice-sdb:write-ic
 ;;  This writes out a valid ic or subcircuit line.
 ;;  The algorithm is as follows:
+;;
 ;;  1.  Figure out what type of model goes with this part from
 ;;      file-info-list.  If it isn't listed, look for a MODEL attribute.
 ;;      If MODEL attribute is attached, write out SPICE card, and then
 ;;      write out .MODEL on next line.
 ;;      If no MODEL attribute is attached, just write out what little
 ;;      we know.  Then return
+;;
 ;;  2.  If the model-name is in the file-info-list, get the associated
-;;      file-type.  Compare it against the component's refdes.  If model-type
+;;      file-type.  Compare it against the component's refdes. If model-type
 ;;      is .MODEL or .SUBCKT and refdes doesn't begin with a U or X
 ;;      respectively, prepend the correct prefix to the refdes.
+;;
 ;; 3.   Print out the rest of the line.
 ;;
 ;;----------------------------------------------------------------
