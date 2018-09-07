@@ -1,3 +1,8 @@
+2018-09-7 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_sessions.c: Set "has-separator" property FALSE for the Manage
+      and Open Session dialog box.
+
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_pagesel.c: Update function line wrapping, set "has-separator"

@@ -603,7 +603,7 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
   g_object_set (ThisDialog,
                 "window-position", GTK_WIN_POS_NONE,
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
-                "has-separator",   TRUE,
+                "has-separator",   FALSE,
                 NULL);
 
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
@@ -766,7 +766,7 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
   g_object_set (ThisDialog,
                 "window-position", GTK_WIN_POS_NONE,
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
-                "has-separator",   TRUE,
+                "has-separator",   FALSE,
                 NULL);
 
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
