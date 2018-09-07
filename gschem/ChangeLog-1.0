@@ -8,6 +8,10 @@
           * src/x/x_edit_text.c
           * src/x/x_pagesel.c
 
+    * src/x/x_edit_text.c: Replace gtk_table_attach_defaults with gtk_table
+      _attach for the alignment combo and tweak widget spacing by utilizing
+      the DIALOG_V_SPACING constant.
+
     * src/x/x_sessions.c: Set "has-separator" property FALSE for the Manage
       and Open Session dialog box. Update images file names for the Open
       manage_sessions_dialog.png -> open_sessions_dialog and add Doxygen

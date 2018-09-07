@@ -750,7 +750,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combobox),
                                    cell, "text", 0, NULL);
     GEDA_UNREF (menu_model);
-    gtk_table_attach_defaults(GTK_TABLE(table), combobox, 1,2,0,1);
+    gtk_table_attach(GTK_TABLE(table), combobox, 1,2,0,1, GTK_FILL,0,0,DIALOG_V_SPACING);
     gtk_widget_set_tooltip_text (GTK_WIDGET(combobox), text_align_tip);
 
     /* Color Property Label -- Table Row 2 */
@@ -777,7 +777,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
 
     gtk_table_attach (GTK_TABLE (table), font_button, 1, 2, 2, 3,
                      (GtkAttachOptions) ( GTK_FILL),
-                     (GtkAttachOptions) (0), 0, 0);
+                     (GtkAttachOptions) (0), 0, DIALOG_V_SPACING);
 
     /* Text Case Label  -- Table Row 4 */
     case_label = geda_aligned_mnemonic_label_new(_LABEL(TextCase), 0, 0);
@@ -801,8 +801,8 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
     GEDA_NUMERIC_SPIN(Rotation, 0, 0, 359);
     gtk_widget_set_tooltip_text (GTK_WIDGET(RotationSpin), rotation_tip);
     gtk_table_attach (GTK_TABLE (table), RotationSpin, 1, 2, 4, 5,
-                      (GtkAttachOptions) ( GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
+                      (GtkAttachOptions) (GTK_FILL),
+                      (GtkAttachOptions) (0), 0, DIALOG_V_SPACING);
 
     HD_ACTION_SEPARATOR (vbox);
 
