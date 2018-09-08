@@ -874,11 +874,10 @@ msgstr ""
 msgid "change"
 msgstr ""
 
-# Error processing image
+# Error processing
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "Erreur lors du traitement de l'image"
+msgstr "Traitement des erreurs"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"
