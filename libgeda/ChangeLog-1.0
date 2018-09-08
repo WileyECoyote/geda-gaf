@@ -1,3 +1,9 @@
+2018-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/it.po: Update Italian translations.
+
+    * po/nl.po: Update Dutch translations.
+
 2018-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Over-ride dispose and release the list

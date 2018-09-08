@@ -871,11 +871,10 @@ msgstr ""
 msgid "change"
 msgstr ""
 
-# Error processing image
+# Error processing => error in handling
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "image fout bij afhandelen"
+msgstr "fout bij afhandelen"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"
@@ -918,12 +917,11 @@ msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:747
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van de dunne-busbreedte in "
-"het rc-bestand\n"
+"Ongeldige typetoewijzing, controleer busstijlinstelling in configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:785
 #, c-format
@@ -931,12 +929,11 @@ msgid "Bad value [%d], check line-style setting in configuration file\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:791
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, vink de invoer van de dunne lijn in het rc-bestand "
-"aan\n"
+"Ongeldige typetoekenning, controleer de instelling van de lijnstijl in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:829
 #, c-format
@@ -944,12 +941,11 @@ msgid "Bad value [%d], check net-style setting in configuration file\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:835
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van de dunne netto-breedte in "
-"het rc-bestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de net-style in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:874
 #, c-format
@@ -957,86 +953,71 @@ msgid "Bad value [%d], check pin-style setting in configuration file\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:880
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van dunne pinnen in het rc-"
-"bestand\n"
+"Ongeldige typetoekenning, controleer pin-style instelling in configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:908
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"Invalid type assignment, check thick-bus-width setting in configuration "
-"file\n"
+"Invalid type assignment, check thick-bus-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van de dunne-busbreedte in "
-"het rc-bestand\n"
+"Ongeldige typetoekenning, controleer de instelling van dikke-busbreedte in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:936
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"Invalid type assignment, check thick-line-width setting in configuration "
-"file\n"
+"Invalid type assignment, check thick-line-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, vink de invoer van de dunne lijn in het rc-bestand "
-"aan\n"
+"Ongeldige typetoekenning, controleer de instelling van de dikke-lijn-breedte in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:964
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"Invalid type assignment, check thick-net-width setting in configuration "
-"file\n"
+"Invalid type assignment, check thick-net-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van de dunne netto-breedte in "
-"het rc-bestand\n"
+"Ongeldige typetoekenning, controleer de instelling voor dik netto-breedte in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:992
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"Invalid type assignment, check thick-pin-width setting in configuration "
-"file\n"
+"Invalid type assignment, check thick-pin-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van dikke pinnen in het rc-"
-"bestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de dikke punaise in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1020
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van de dunne-busbreedte in "
-"het rc-bestand\n"
+"Ongeldige typetoekenning, controleer de thin-bus-breedte-instelling in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1048
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"Invalid type assignment, check thin-line-width setting in configuration "
-"file\n"
+"Invalid type assignment, check thin-line-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, vink de invoer van de dunne lijn in het rc-bestand "
-"aan\n"
+"Ongeldige typetoekenning, controleer de instelling van de dunne lijn in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1076
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van de dunne netto-breedte in "
-"het rc-bestand\n"
+"Ongeldige typetoekenning, controleer de instelling voor een dunne netbreedte in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1104
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de invoer van dunne pinnen in het rc-"
-"bestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de dunne punaise in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1165
-#, fuzzy
 msgid "list element is not a string"
-msgstr "always-promote-attribute: lijst element is geen string"
+msgstr "lijst element is geen string"
 
 # invalid path
 #: libgeda/src/guile/g_rc.c:1242 libgeda/src/guile/g_rc.c:1282
