@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-01 09:46-0500\n"
+"POT-Creation-Date: 2018-09-08 23:08-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -88,8 +88,9 @@ msgstr ""
 "\n"
 
 #: libgeda/src/file/f_file.c:272
+#, fuzzy
 msgid ""
-"Could not detemine which file is newer, so you should do this manually.\n"
+"Could not determine which file is newer, so you should do this manually.\n"
 msgstr "Не удалось определить новее ли он, решите это сами.\n"
 
 #: libgeda/src/file/f_file.c:273

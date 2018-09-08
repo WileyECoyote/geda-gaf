@@ -1,0 +1,654 @@
+# Danish translation for geda/utils.
+# Copyright (C) 2018 Wiley E. Hill <wileyhill@gmail.com>
+# Copyright (c) 2018 gEDA Developers
+# This file is distributed under the same license as the libgedathon package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gscgeda/utilshem\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2018-09-08 10:45-0500\n"
+"PO-Revision-Date: 2018-09-11 01:03+0000\n"
+"Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: utils/gsch2pcb/gsch2pcb.c:195
+msgid "Running command"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:237
+msgid "Failed to execute external program"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:328
+msgid "command failed"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:329
+msgid "not updated"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:762
+msgid "Yes"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:762
+msgid "No"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:818
+msgid "Searching directories looking for file element"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:826
+msgid "Looking in directory"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:833
+msgid "Found"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:881
+msgid "Bad package line"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:944
+msgid "WARNING"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:945
+msgid "so will not be in the layout"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:950
+msgid "has the empty footprint attribute"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:959
+msgid "has a footprint attribute"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:967
+msgid "has no footprint attribute"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1057
+msgid "No file element found"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1067
+msgid "added new file element for footprint"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1074
+msgid "cannot find PCB element for footprint"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1082
+#, c-format
+msgid "So device %s will not be in the layout.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1100
+msgid "added new m4 element for footprint"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1144
+#, c-format
+msgid "Could not find any elements to fix.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1167
+msgid "updating element Description"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1212
+msgid "Preserving PCB element not in the schematic"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1213
+msgid "element"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1259
+msgid "deleted element"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1274
+msgid "changed element"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1275
+msgid "value"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1395
+msgid "invalid schematics option"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1459
+msgid "Adding directory to file element directory list"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1511
+msgid "Reading project file"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1708
+msgid "bad or incomplete arg:"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1784
+msgid "Processing PCBLIBPATH="
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1793
+#, c-format
+msgid "Adding %s to the newlib search path\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1826
+#, c-format
+msgid "Failed to run gnetlist\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1836
+#, c-format
+msgid "No elements found, so nothing to do.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1852
+#, c-format
+msgid "Done processing. Work performed:\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1856
+msgid "is backed up as"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1861
+msgid "elements deleted from"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1866
+msgid "file elements and"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1867
+msgid "elements added to"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1872
+msgid "No elements to add, not creating"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1878
+msgid "not found elements added to"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1884
+msgid "components had no footprint attribute and are omitted"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1889
+msgid "components with footprint \"none\" omitted from"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1894
+msgid "components with empty footprint"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1895
+msgid "omitted from"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1901
+msgid "elements had a value change in"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1906
+msgid "elements fixed in"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1911 utils/gsch2pcb/gsch2pcb.c:1923
+msgid "elements could not be found"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1914 utils/gsch2pcb/gsch2pcb.c:1926
+msgid "is incomplete"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1935
+msgid "elements not in the schematic preserved in"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1945
+msgid "Next step"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1946
+msgid "Run pcb on your file"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1948
+msgid "You will find all your footprints in a bundle ready for you to place"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1949
+msgid "or disperse with \"Select -> Disperse all elements\" in PCB"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1950
+msgid "from within PCB, select \"File -> Load netlist file\" and select"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1951
+msgid "to load the netlist"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1952 utils/gsch2pcb/gsch2pcb.c:1963
+msgid "From within PCB, enter"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1954
+msgid "to propagate the pin names of all footprints to the layout"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1957
+msgid "From within PCB, select \"File -> Load layout data to paste buffer\""
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1958
+msgid "    and select"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1959
+#, c-format
+msgid "to load the new footprints into your existing layout.\n"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1960
+msgid "From within PCB, select \"File -> Load netlist file\" and select"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1961
+msgid "to load the updated netlist"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:1965
+msgid "to update the pin names of all footprints"
+msgstr ""
+
+#: utils/gsch2pdf/parsecmd.c:65
+#, c-format
+msgid ""
+"\n"
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"  -V, --version     Show version information.\n"
+"\n"
+"Generates a pdf file using the name \"output.pdf\". Each input file, "
+"filename1\n"
+"... filenameN, is converted to pdf format and printed as separate pages.\n"
+"\n"
+msgstr ""
+
+#: utils/gsch2pdf/parsecmd.c:89
+#, c-format
+msgid ""
+"gEDA/gsch2pdf %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+
+#: utils/gschlas/g_rc.c:73
+#, c-format
+msgid "You are running gEDA/gaf version [%s%s.%s],\n"
+msgstr ""
+
+#: utils/gschlas/g_rc.c:76
+#, c-format
+msgid ""
+"but you have a version [%s] gschlasrc file:\n"
+"[%s]\n"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:126
+msgid "Loaded file"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:135
+msgid "ERROR! You must specify at least one filename"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:165
+#, c-format
+msgid "Cannot specify both -e and -u at the same time\n"
+msgstr ""
+
+#: utils/gschlas/gschlas.c:168
+#, c-format
+msgid "Must specify whether to embed or unembed\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:59
+#, c-format
+msgid ""
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:60
+#, c-format
+msgid "  -e, --embed       Embed all components/pictures\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:61
+#, c-format
+msgid "  -u, --unembed     Unembed all components/pictures\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:62
+#, c-format
+msgid "  -q, --quiet       Enable quiet mode\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:63
+#, c-format
+msgid "  -v, --verbose     Enable verbose mode\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:64
+#, c-format
+msgid "  -V, --version     Show version information.\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:65
+#, c-format
+msgid "  -h, --help        This message\n"
+msgstr ""
+
+#: utils/gschlas/parsecmd.c:80
+#, c-format
+msgid ""
+"gEDA/gschlas %s (%s) (g%.7s)\n"
+"Copyright (C) 1998-2017 gEDA developers\n"
+"This is free software, and you are welcome to redistribute it under\n"
+"certain conditions. For details, see the file `COPYING', which is\n"
+"included in the gEDA distribution.\n"
+"There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+
+#: utils/src/convert_sym.c:350
+#, c-format
+msgid ""
+"Usage:\n"
+"\t%s <viewlogic_filename>\n"
+" Where:\n"
+"\t<viewlogic_filename> is the name of the file you\n"
+"\t\t\t  want to convert to gEDA format\n"
+msgstr ""
+
+#: utils/src/convert_sym.c:402
+msgid "Error: Unable to open file"
+msgstr ""
+
+#: utils/src/convert_sym.c:502
+msgid "Warning 'Q' record found and not handled at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:530
+msgid "Warning: Unrecognized record"
+msgstr ""
+
+#: utils/src/convert_sym.c:563
+msgid "Error: Invalid bounding box record"
+msgstr ""
+
+#: utils/src/convert_sym.c:609
+msgid "Error: Invalid Unattached attribute record"
+msgstr ""
+
+#: utils/src/convert_sym.c:651 utils/src/convert_sym.c:735
+msgid "Error: Invalid visibility value"
+msgstr ""
+
+#: utils/src/convert_sym.c:652 utils/src/convert_sym.c:736
+msgid "in viewlogic file at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:694
+msgid "Error: Invalid attached attribute record"
+msgstr ""
+
+#: utils/src/convert_sym.c:815
+msgid "Error: Invalid or unknown pin type"
+msgstr ""
+
+#: utils/src/convert_sym.c:816
+msgid "for record"
+msgstr ""
+
+#: utils/src/convert_sym.c:911
+msgid "Error: Invalid text record"
+msgstr ""
+
+#: utils/src/convert_sym.c:954
+msgid "Error: Unable to read number of line pairs for record"
+msgstr ""
+
+#: utils/src/convert_sym.c:963
+msgid "Error: Unable to read"
+msgstr ""
+
+#: utils/src/convert_sym.c:964
+msgid "coodinate pair for record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1013
+msgid "Error:Invalid pin record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1100
+msgid "Error: Invalid pin direction"
+msgstr ""
+
+#: utils/src/convert_sym.c:1101
+msgid "in ViewLogic file at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1153
+msgid "Error: Invalid box record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1189
+msgid "Error: Invalid circle record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1230
+msgid "Error: Invalid arc record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1328
+msgid "Error: Invalid label record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1429
+msgid "Error: too many nodes on a net at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1437
+msgid "Error: Invalid net node record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1464
+msgid "Error: Invalid net segment record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1494
+msgid "Error: Invalid bus segment record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1556
+msgid "Error: Invalid instance record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1557
+msgid "libray"
+msgstr ""
+
+#: utils/src/convert_sym.c:1558
+msgid "name"
+msgstr ""
+
+#: utils/src/convert_sym.c:1559
+msgid "extension"
+msgstr ""
+
+#: utils/src/convert_sym.c:1643
+msgid "Error: Invalid orientation value"
+msgstr ""
+
+#: utils/src/convert_sym.c:1644 utils/src/convert_sym.c:1852
+#: utils/src/convert_sym.c:1862
+msgid "at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1840
+msgid "Warning: Killing attribute"
+msgstr ""
+
+#: utils/src/convert_sym.c:1841 utils/src/convert_sym.c:1851
+msgid "at"
+msgstr ""
+
+#: utils/src/convert_sym.c:1842
+msgid "from record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1850
+msgid "Warning: attribute name"
+msgstr ""
+
+#: utils/src/convert_sym.c:1853
+msgid ""
+"found during conversion\n"
+"\tpassing it through unchanged"
+msgstr ""
+
+#: utils/src/convert_sym.c:1861
+msgid "Error: Unknown action code for attribute"
+msgstr ""
+
+#: utils/src/convert_sym.c:2132
+msgid "Error: Invalid modifier record"
+msgstr ""
+
+#: utils/src/convert_sym.c:2139 utils/src/convert_sym.c:2140
+msgid "Error: Invalid colour number"
+msgstr ""
+
+#: utils/src/convert_sym.c:2148
+msgid "Warning: Invalid fill style"
+msgstr ""
+
+#: utils/src/convert_sym.c:2149 utils/src/convert_sym.c:2160
+msgid "in record"
+msgstr ""
+
+#: utils/src/convert_sym.c:2150
+msgid "Assuming \"Hollow\" fill style"
+msgstr ""
+
+#: utils/src/convert_sym.c:2159
+msgid "Warning: Invalid line style"
+msgstr ""
+
+#: utils/src/convert_sym.c:2161
+msgid "Assuming \"Solid\" line style"
+msgstr ""
+
+#: utils/src/gmk_sym.c:198
+msgid "usage"
+msgstr ""
+
+#: utils/src/grenum.c:106
+#, c-format
+msgid "grenum: no input file\n"
+msgstr ""
+
+#: utils/src/grenum.c:148
+msgid "processing file"
+msgstr ""
+
+#: utils/src/grenum.c:181
+#, c-format
+msgid "grenum: out of memory. Too many refdes prefixes"
+msgstr ""
+
+#: utils/src/grenum.c:222
+msgid "out of memory. Too many refdes prefixes"
+msgstr ""
+
+#: utils/src/grenum.c:239
+msgid "parse error"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:113
+#, c-format
+msgid "Segment too small; read %u size %u, min is %d\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:119
+#, c-format
+msgid "Segment too large; read %u size %u, max is %d\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:143
+#, c-format
+msgid "Text too large; size %u, max is %d\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:156 utils/src/sarlacc_schem.c:168
+#, c-format
+msgid "File truncated\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:161
+#, c-format
+msgid "Text too large; size %d, max is %d\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:187
+#, c-format
+msgid ""
+"\n"
+"File is not an ORCAD 16 Bit Schematic\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:192
+msgid "length"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:208
+#, c-format
+msgid ""
+"\n"
+"Titleblock %d bytes\n"
+msgstr ""
+
+#: utils/src/sarlacc_schem.c:226
+#, c-format
+msgid "Unknown page Size, defaulting to A\n"
+msgstr ""

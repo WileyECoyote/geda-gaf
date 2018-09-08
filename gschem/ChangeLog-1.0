@@ -1,3 +1,8 @@
+2018-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/LINGUAS: Translate to Catalan, Danish, Swedish and Ukrainian
+      Languages.
+
 2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x: Replace HD_SEPERATOR -> HD_ACTION_SEPARATOR for the create the

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-01 09:46-0500\n"
+"POT-Creation-Date: 2018-09-08 23:08-0500\n"
 "PO-Revision-Date: 2012-01-27 14:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: libgeda/src/file/f_file.c:272
 msgid ""
-"Could not detemine which file is newer, so you should do this manually.\n"
+"Could not determine which file is newer, so you should do this manually.\n"
 msgstr ""
 
 #: libgeda/src/file/f_file.c:273
@@ -900,8 +900,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a configuração de estilo de barramento "
-"no arquivo de configuração\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de "
+"barramento no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:785
 #, c-format
@@ -913,8 +913,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a configuração de estilo de linha "
-"no arquivo de configuração\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de linha no "
+"arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:829
 #, c-format
@@ -926,8 +926,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a configuração de estilo de rede "
-" no arquivo de configuração\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de rede  no "
+"arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:874
 #, c-format
@@ -939,8 +939,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a configuração de estilo de pino "
-" no arquivo de configuração\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de pino  no "
+"arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:908
 #, c-format
@@ -983,16 +983,17 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a configuração de largura de barramento "
-"fino no arquivo de configuração\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de "
+"barramento fino no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1048
 #, c-format
 msgid ""
-"Invalid type assignment, check thin-line-width setting in configuration file\n"
+"Invalid type assignment, check thin-line-width setting in configuration "
+"file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a configuração de largura de linha fina "
-"no arquivo de configuração\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de linha "
+"fina no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1076
 #, c-format

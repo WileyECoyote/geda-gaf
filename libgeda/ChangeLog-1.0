@@ -32,6 +32,10 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/LINGUAS: Translate to Afrikaans, Bulgarian, Bosnian, Persian
+      (Farsi), Finnish, Hebrew, Japanese, Khmer, Malayalam and Slovenian
+      Languages.
+
 2018-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Over-ride dispose and release the list

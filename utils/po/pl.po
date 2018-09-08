@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-09-08 10:45-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -390,7 +390,7 @@ msgid ""
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
 
-#: utils/src/convert_sym.c:352
+#: utils/src/convert_sym.c:350
 #, c-format
 msgid ""
 "Usage:\n"
@@ -398,6 +398,185 @@ msgid ""
 " Where:\n"
 "\t<viewlogic_filename> is the name of the file you\n"
 "\t\t\t  want to convert to gEDA format\n"
+msgstr ""
+
+#: utils/src/convert_sym.c:402
+msgid "Error: Unable to open file"
+msgstr ""
+
+#: utils/src/convert_sym.c:502
+msgid "Warning 'Q' record found and not handled at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:530
+msgid "Warning: Unrecognized record"
+msgstr ""
+
+#: utils/src/convert_sym.c:563
+msgid "Error: Invalid bounding box record"
+msgstr ""
+
+#: utils/src/convert_sym.c:609
+msgid "Error: Invalid Unattached attribute record"
+msgstr ""
+
+#: utils/src/convert_sym.c:651 utils/src/convert_sym.c:735
+msgid "Error: Invalid visibility value"
+msgstr ""
+
+#: utils/src/convert_sym.c:652 utils/src/convert_sym.c:736
+msgid "in viewlogic file at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:694
+msgid "Error: Invalid attached attribute record"
+msgstr ""
+
+#: utils/src/convert_sym.c:815
+msgid "Error: Invalid or unknown pin type"
+msgstr ""
+
+#: utils/src/convert_sym.c:816
+msgid "for record"
+msgstr ""
+
+#: utils/src/convert_sym.c:911
+msgid "Error: Invalid text record"
+msgstr ""
+
+#: utils/src/convert_sym.c:954
+msgid "Error: Unable to read number of line pairs for record"
+msgstr ""
+
+#: utils/src/convert_sym.c:963
+msgid "Error: Unable to read"
+msgstr ""
+
+#: utils/src/convert_sym.c:964
+msgid "coodinate pair for record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1013
+msgid "Error:Invalid pin record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1100
+msgid "Error: Invalid pin direction"
+msgstr ""
+
+#: utils/src/convert_sym.c:1101
+msgid "in ViewLogic file at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1153
+msgid "Error: Invalid box record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1189
+msgid "Error: Invalid circle record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1230
+msgid "Error: Invalid arc record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1328
+msgid "Error: Invalid label record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1429
+msgid "Error: too many nodes on a net at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1437
+msgid "Error: Invalid net node record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1464
+msgid "Error: Invalid net segment record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1494
+msgid "Error: Invalid bus segment record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1556
+msgid "Error: Invalid instance record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1557
+msgid "libray"
+msgstr ""
+
+#: utils/src/convert_sym.c:1558
+msgid "name"
+msgstr ""
+
+#: utils/src/convert_sym.c:1559
+msgid "extension"
+msgstr ""
+
+#: utils/src/convert_sym.c:1643
+msgid "Error: Invalid orientation value"
+msgstr ""
+
+#: utils/src/convert_sym.c:1644 utils/src/convert_sym.c:1852
+#: utils/src/convert_sym.c:1862
+msgid "at record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1840
+msgid "Warning: Killing attribute"
+msgstr ""
+
+#: utils/src/convert_sym.c:1841 utils/src/convert_sym.c:1851
+msgid "at"
+msgstr ""
+
+#: utils/src/convert_sym.c:1842
+msgid "from record"
+msgstr ""
+
+#: utils/src/convert_sym.c:1850
+msgid "Warning: attribute name"
+msgstr ""
+
+#: utils/src/convert_sym.c:1853
+msgid ""
+"found during conversion\n"
+"\tpassing it through unchanged"
+msgstr ""
+
+#: utils/src/convert_sym.c:1861
+msgid "Error: Unknown action code for attribute"
+msgstr ""
+
+#: utils/src/convert_sym.c:2132
+msgid "Error: Invalid modifier record"
+msgstr ""
+
+#: utils/src/convert_sym.c:2139 utils/src/convert_sym.c:2140
+msgid "Error: Invalid colour number"
+msgstr ""
+
+#: utils/src/convert_sym.c:2148
+msgid "Warning: Invalid fill style"
+msgstr ""
+
+#: utils/src/convert_sym.c:2149 utils/src/convert_sym.c:2160
+msgid "in record"
+msgstr ""
+
+#: utils/src/convert_sym.c:2150
+msgid "Assuming \"Hollow\" fill style"
+msgstr ""
+
+#: utils/src/convert_sym.c:2159
+msgid "Warning: Invalid line style"
+msgstr ""
+
+#: utils/src/convert_sym.c:2161
+msgid "Assuming \"Solid\" line style"
 msgstr ""
 
 #: utils/src/gmk_sym.c:198

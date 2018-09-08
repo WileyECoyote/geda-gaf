@@ -1,13 +1,13 @@
-# Hungarian translation for geda
-# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# Hungarian translation for libgeda
+# Copyright (c) 2018 Wiley Edward Hill
+# Copyright (c) 2018 gEDA Developers
 # This file is distributed under the same license as the geda package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: geda\n"
+"Project-Id-Version: libgeda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-01 09:46-0500\n"
+"POT-Creation-Date: 2018-09-08 23:08-0500\n"
 "PO-Revision-Date: 2010-02-06 22:11+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -67,8 +67,9 @@ msgid ""
 msgstr ""
 
 #: libgeda/src/file/f_file.c:272
+#, fuzzy
 msgid ""
-"Could not detemine which file is newer, so you should do this manually.\n"
+"Could not determine which file is newer, so you should do this manually.\n"
 msgstr "Nem tudtam eldönteni, hogy ez újabb, ezért neked kell megcsinálnod \n"
 
 #: libgeda/src/file/f_file.c:273

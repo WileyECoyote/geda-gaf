@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-01 09:46-0500\n"
+"POT-Creation-Date: 2018-09-08 23:08-0500\n"
 "PO-Revision-Date: 2014-08-31 23:03+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -72,8 +72,9 @@ msgstr ""
 "\n"
 
 #: libgeda/src/file/f_file.c:272
+#, fuzzy
 msgid ""
-"Could not detemine which file is newer, so you should do this manually.\n"
+"Could not determine which file is newer, so you should do this manually.\n"
 msgstr "Ik kan niet raden of het nieuwer is, je moet het dus handmatig doen.\n"
 
 #: libgeda/src/file/f_file.c:273
@@ -921,7 +922,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoewijzing, controleer busstijlinstelling in configuratiebestand\n"
+"Ongeldige typetoewijzing, controleer busstijlinstelling in "
+"configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:785
 #, c-format
@@ -933,7 +935,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van de lijnstijl in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de lijnstijl in het "
+"configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:829
 #, c-format
@@ -945,7 +948,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van de net-style in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de net-style in het "
+"configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:874
 #, c-format
@@ -957,63 +961,77 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer pin-style instelling in configuratiebestand\n"
+"Ongeldige typetoekenning, controleer pin-style instelling in "
+"configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:908
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-bus-width setting in configuration file\n"
+"Invalid type assignment, check thick-bus-width setting in configuration "
+"file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van dikke-busbreedte in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van dikke-busbreedte in "
+"het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:936
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-line-width setting in configuration file\n"
+"Invalid type assignment, check thick-line-width setting in configuration "
+"file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van de dikke-lijn-breedte in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de dikke-lijn-breedte "
+"in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:964
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-net-width setting in configuration file\n"
+"Invalid type assignment, check thick-net-width setting in configuration "
+"file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling voor dik netto-breedte in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling voor dik netto-breedte in "
+"het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:992
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-pin-width setting in configuration file\n"
+"Invalid type assignment, check thick-pin-width setting in configuration "
+"file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van de dikke punaise in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de dikke punaise in "
+"het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1020
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de thin-bus-breedte-instelling in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de thin-bus-breedte-instelling in het "
+"configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1048
 #, c-format
 msgid ""
-"Invalid type assignment, check thin-line-width setting in configuration file\n"
+"Invalid type assignment, check thin-line-width setting in configuration "
+"file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van de dunne lijn in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de dunne lijn in het "
+"configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1076
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling voor een dunne netbreedte in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling voor een dunne netbreedte "
+"in het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1104
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
 msgstr ""
-"Ongeldige typetoekenning, controleer de instelling van de dunne punaise in het configuratiebestand\n"
+"Ongeldige typetoekenning, controleer de instelling van de dunne punaise in "
+"het configuratiebestand\n"
 
 #: libgeda/src/guile/g_rc.c:1165
 msgid "list element is not a string"

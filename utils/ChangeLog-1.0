@@ -1,3 +1,9 @@
+2018-09-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/LINGUAS: Translate to Afrikaans, Bulgarian, Bosnian, Persian
+      (Farsi), Finnish, Hebrew, Japanese, Khmer, Malayalam and Slovenian
+      Languages.
+
 2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * gmake/gmake-caps-sym.sh: Rename variable Capacitence -> Capacitanc and

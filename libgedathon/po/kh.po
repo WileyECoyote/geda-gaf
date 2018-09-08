@@ -1,0 +1,265 @@
+# Cambodia translation for libgedathon
+# Copyright (c) 2018 Wiley Edward Hill
+# Copyright (c) 2018 gEDA Developers
+# This file is distributed under the same license as the geda package.
+# Wiley Edward Hill <wileyhill@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libgedathon\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2018-07-21 18:28-0500\n"
+"PO-Revision-Date: 2015-07-29 00:24-0600\n"
+"Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: kh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Khmer\n"
+"X-Poedit-Country: CAMBODIA\n"
+
+#: libgedathon/include/functions.h:54
+msgid "Get or Set the default symbol for capacitors\n"
+msgstr ""
+
+#: libgedathon/include/functions.h:55
+msgid "Get or Set the default symbol for electrolytic capacitors\n"
+msgstr ""
+
+#: libgedathon/include/functions.h:56
+msgid "Get or Set the default symbol for inductor\n"
+msgstr ""
+
+#: libgedathon/include/functions.h:57
+msgid "Get or Set the default operational amplifier symbol\n"
+msgstr ""
+
+#: libgedathon/include/functions.h:58
+msgid "Get or Set the default symbol for resistors\n"
+msgstr ""
+
+#: libgedathon/include/functions.h:59
+msgid "Get or Set the default titleblock symbol\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:53
+msgid "Close all files and shutdown Libgedathon.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:55
+msgid "Append a folder to the library search path.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:56
+msgid "Creates a gafrc file in the current directory.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:59
+msgid "Retrieve list of all pages.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:60
+msgid "Get pointer to the active page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:61
+msgid "Set the active page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:62
+msgid "Returns True if page has been modified and not saved.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:63
+msgid "Set the active page, and changes current directory.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:64
+msgid "Open a page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:65
+msgid "Close page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:66
+msgid "Create a new empty page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:67
+msgid "Rename a page changes the filename.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:68
+msgid "Save the page by writing to storage\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:69
+msgid "Save the page using a new file name\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:70
+msgid "Save all opened pages to storage\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:73
+msgid "Returns True is object is a GedaCapsule, otherwise False."
+msgstr ""
+
+#: libgedathon/include/geda_module.h:74
+msgid "Returns the rectangular boundaries of an object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:75
+msgid "Retrieve an object from a GedaCapsule.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:76
+msgid "Retrieve all objects belonging to a page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:77
+msgid "Add an object to a page or another object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:78
+msgid "Add multiple objects to a page or another object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:79
+msgid "Make a copy an object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
+msgid "Remove object from a page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:81
+msgid "Remove multiple objects from a page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:83
+msgid "Delete an object from a page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:84
+msgid "Delete multiple object from a page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:88
+msgid "Create a new arc object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:89
+msgid "Create a new box object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:90
+msgid "Create a new bus object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:91
+msgid "Create a new circle object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:92
+msgid "Create a new complex object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:93
+msgid "Create a new line object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:94
+msgid "Create a new net object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:95
+msgid "Create a new path object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:96
+msgid "Create a new picture object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:97
+msgid "Create a new pin object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:98
+msgid "Create a new text object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:99
+msgid "Create a new attribute object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:102
+msgid "New object type syntax\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:103
+msgid "The object name\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:104
+msgid "Add an attribute object to this object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:105
+msgid "Copy the object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:106
+msgid "Rotate the object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:107
+msgid "Select this Object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:108
+msgid "UnSelect this Object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:117
+msgid "Returns the length of a linear object.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:120
+msgid "File Name of this Page.\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:123
+msgid "String describing a geometric element"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:126
+msgid "Retrieve a specific attribute Object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:127
+msgid "Retrieve list of associated attribute Objects\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:128
+msgid "Set the value of a specified attribute Object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:129
+msgid "Refresh Objects attributes\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:132
+msgid "Retrieve all objects connect to specific Object\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:133
+msgid "Retrieve list of points for junction for specified Objects\n"
+msgstr ""
+
+#: libgedathon/include/geda_module.h:134
+msgid "Retrieve list of points of unconnect nodes for specified Objects\n"
+msgstr ""

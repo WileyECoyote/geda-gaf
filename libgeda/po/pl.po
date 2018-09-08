@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-01 09:46-0500\n"
+"POT-Creation-Date: 2018-09-08 23:08-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -70,8 +70,9 @@ msgstr ""
 "\n"
 
 #: libgeda/src/file/f_file.c:272
+#, fuzzy
 msgid ""
-"Could not detemine which file is newer, so you should do this manually.\n"
+"Could not determine which file is newer, so you should do this manually.\n"
 msgstr ""
 "Nie można stwierdzić, czy kopia jest nowsza - musisz sprawdzić to ręcznie.\n"
 
@@ -910,7 +911,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie stylu magistrali w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie stylu magistrali w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:785
 #, c-format
@@ -922,7 +924,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie stylu linii w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie stylu linii w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:829
 #, c-format
@@ -934,7 +937,8 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
-"Niepoprawne przypisanie typu, sprawdź ustawienie stylu netto w pliku konfiguracyjnym\n"
+"Niepoprawne przypisanie typu, sprawdź ustawienie stylu netto w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:874
 #, c-format
@@ -946,63 +950,77 @@ msgstr ""
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie stylu pinezki w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie stylu pinezki w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:908
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-bus-width setting in configuration file\n"
+"Invalid type assignment, check thick-bus-width setting in configuration "
+"file\n"
 msgstr ""
-"Niepoprawne przypisanie typu, sprawdź ustawienie grubej szerokości w pliku konfiguracyjnym\n"
+"Niepoprawne przypisanie typu, sprawdź ustawienie grubej szerokości w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:936
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-line-width setting in configuration file\n"
+"Invalid type assignment, check thick-line-width setting in configuration "
+"file\n"
 msgstr ""
-"Invalid type assignment, check thick-line-width setting in configuration file\n"
+"Invalid type assignment, check thick-line-width setting in configuration "
+"file\n"
 
 #: libgeda/src/guile/g_rc.c:964
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-net-width setting in configuration file\n"
+"Invalid type assignment, check thick-net-width setting in configuration "
+"file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie grubej siatki w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie grubej siatki w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:992
 #, c-format
 msgid ""
-"Invalid type assignment, check thick-pin-width setting in configuration file\n"
+"Invalid type assignment, check thick-pin-width setting in configuration "
+"file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie grubych pinów w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie grubych pinów w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:1020
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie szerokości cienkich szyn w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie szerokości cienkich szyn "
+"w pliku konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:1048
 #, c-format
 msgid ""
-"Invalid type assignment, check thin-line-width setting in configuration file\n"
+"Invalid type assignment, check thin-line-width setting in configuration "
+"file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie cienkich linii w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie cienkich linii w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:1076
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie cienkiej siatki w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie cienkiej siatki w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:1104
 #, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
 msgstr ""
-"Nieprawidłowe przypisanie typu, sprawdź ustawienie cienkiej pinezki w pliku konfiguracyjnym\n"
+"Nieprawidłowe przypisanie typu, sprawdź ustawienie cienkiej pinezki w pliku "
+"konfiguracyjnym\n"
 
 #: libgeda/src/guile/g_rc.c:1165
 msgid "list element is not a string"
