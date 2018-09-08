@@ -849,11 +849,10 @@ msgstr ""
 msgid "change"
 msgstr ""
 
-# Error processing image
+# Error processing
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "Erro no processamento de imagem"
+msgstr "Erro ao processar"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"
@@ -897,12 +896,12 @@ msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:747
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check bus-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique entrada de largura de barramento fino "
-"no arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de barramento "
+"no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:785
 #, c-format
@@ -910,12 +909,12 @@ msgid "Bad value [%d], check line-style setting in configuration file\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:791
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check line-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada de largura de linha fina no "
-"arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de linha "
+"no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:829
 #, c-format
@@ -923,12 +922,12 @@ msgid "Bad value [%d], check net-style setting in configuration file\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:835
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check net-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada thin-net-width no arquivo "
-"rc\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de rede "
+" no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:874
 #, c-format
@@ -936,86 +935,84 @@ msgid "Bad value [%d], check pin-style setting in configuration file\n"
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:880
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check pin-style setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada de largura de pino fino no "
-"arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de estilo de pino "
+" no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:908
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thick-bus-width setting in configuration "
 "file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique entrada de largura de barramento fino "
-"no arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de "
+"barramento de espessura no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:936
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thick-line-width setting in configuration "
 "file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada de largura de linha fina no "
-"arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de "
+"barramento de espessura no arquivo de configuraçãoc\n"
 
 #: libgeda/src/guile/g_rc.c:964
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thick-net-width setting in configuration "
 "file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada thin-net-width no arquivo "
-"rc\n"
+"Designação de tipo inválido, verifique a configuração thick-net-width no "
+"arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:992
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thick-pin-width setting in configuration "
 "file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada de espessura de pinos no "
-"arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de espessura de pinos "
+"no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1020
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thin-bus-width setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique entrada de largura de barramento fino "
-"no arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de barramento "
+"fino no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1048
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"Invalid type assignment, check thin-line-width setting in configuration "
-"file\n"
+"Invalid type assignment, check thin-line-width setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada de largura de linha fina no "
-"arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de linha fina "
+"no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1076
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thin-net-width setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada thin-net-width no arquivo "
-"rc\n"
+"Designação de tipo inválida, verifique a configuração thin-net-width no "
+"arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1104
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid type assignment, check thin-pin-width setting in configuration file\n"
 msgstr ""
-"Atribuição de tipo inválido, verifique a entrada de largura de pino fino no "
-"arquivo rc\n"
+"Atribuição de tipo inválido, verifique a configuração de largura de pino "
+"fino no arquivo de configuração\n"
 
 #: libgeda/src/guile/g_rc.c:1165
-#, fuzzy
 msgid "list element is not a string"
-msgstr "always-promote-attribute: list element não é uma string"
+msgstr "list element não é uma string"
 
 # invalid path
 #: libgeda/src/guile/g_rc.c:1242 libgeda/src/guile/g_rc.c:1282
