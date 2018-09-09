@@ -20,6 +20,11 @@
             * lineartech/LT1010-1.sym
             * lineartech/LT1010-1.sym
 
+    * lineartech/opamps/LT1055-?.sym: Add symbols: J-FET Operational Amplifier:
+
+            * lineartech/opamps/LT1055-1.sym
+            * lineartech/opamps/LT1055-2.sym
+
     * panasonic/SEPC-electrolytic: Add symbols for SEPC series conductive polymer
       aluminum solid capacitors:
 

@@ -214,6 +214,7 @@
                   ("lattice"         "Manufacturers/Lattice Semiconductor")
                   ("lineartech"      "Manufacturers/Linear Technology")
                      ("lineartech/ldo"                 "Low-Dropout Regulators")
+                     ("lineartech/opamps"              "Manufacturers/Operational Amplifiers")
                      ("lineartech/switchreg"           "Manufacturers/Switching Regulators")
                   ("maxim"           "Manufacturers/Maxim")
                   ("microchip"       "Manufacturers/Microchip")
