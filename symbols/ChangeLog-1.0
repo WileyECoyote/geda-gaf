@@ -1,3 +1,7 @@
+2018-09-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm: Add "lineartech/ldo" under "Low-Dropout Regulators".
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg: Update pinseq and documentation:

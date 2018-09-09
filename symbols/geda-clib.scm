@@ -213,6 +213,7 @@
                   ("ixys"            "Manufacturers/IXYS")
                   ("lattice"         "Manufacturers/Lattice Semiconductor")
                   ("lineartech"      "Manufacturers/Linear Technology")
+                     ("lineartech/ldo"                 "Low-Dropout Regulators")
                      ("lineartech/switchreg"           "Manufacturers/Switching Regulators")
                   ("maxim"           "Manufacturers/Maxim")
                   ("microchip"       "Manufacturers/Microchip")
