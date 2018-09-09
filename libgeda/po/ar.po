@@ -47,9 +47,10 @@ msgstr "رمز مخطّط gEDA"
 msgid "Failed to get file statistics"
 msgstr "فشلت في الحصول على إحصاءات ملف"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:183
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "خطأ: كائن صفحة غير صالح"
 
 # ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:223
@@ -94,15 +95,17 @@ msgstr ""
 msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
-msgstr ""
+msgstr "قم بتشغيل التطبيق لتصحيح هذا الموقف أو حذف ملف النسخ الاحتياطي يدوياً."
 
+# Memory allocation error
 #: libgeda/src/file/f_file.c:291
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "خطأ في تخصيص الذاكرة!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:318
 msgid "Loading backup file"
-msgstr ""
+msgstr "تحميل ملف النسخ الاحتياطي"
 
 # ERROR: Could not restore current directory to
 #: libgeda/src/file/f_file.c:362
@@ -122,7 +125,7 @@ msgstr "غير قادرة على حذف الملف الاحتياطي"
 #: libgeda/src/file/f_file.c:485
 #, c-format
 msgid "File [%s] is read-only"
-msgstr ""
+msgstr "الملف [%s] للقراءة فقط"
 
 # Could not set previous backup file
 #: libgeda/src/file/f_file.c:541
@@ -131,12 +134,14 @@ msgstr "تعذّر وضع الملف الاحتياطي السابق للقرا�
 
 #: libgeda/src/file/f_file.c:542
 msgid "read-write"
-msgstr ""
+msgstr "قراءة و كتابة"
 
+# Cannot create backup file
 #: libgeda/src/file/f_file.c:553
 msgid "Cannot create backup file"
 msgstr "يتعذّر حفظ الملف الاحتياطي"
 
+# Could NOT save file
 #: libgeda/src/file/f_file.c:598
 msgid "Could NOT save file"
 msgstr "تعذّر حفظ"
@@ -862,11 +867,10 @@ msgstr ""
 msgid "change"
 msgstr ""
 
-# Image processing error
+# Error processing
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "صورة خطأ في معالجة‬"
+msgstr "معالجة الخطأ‬"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"

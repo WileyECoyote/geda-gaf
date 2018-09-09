@@ -850,9 +850,8 @@ msgid "change"
 msgstr ""
 
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "Error processing image"
+msgstr "Error processing"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"
