@@ -47,14 +47,16 @@ msgstr "Símbol d'esquema del gEDA"
 msgid "Failed to get file statistics"
 msgstr "No s'ha pogut obtenir les estadístiques d'arxius"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:183
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Error: objecte de pàgina no vàlid"
 
 #: libgeda/src/file/f_file.c:223
 msgid "ERROR: Could not change current directory to"
-msgstr ""
+msgstr "ERROR: No s'ha pogut canviar el directori actual a"
 
+# WARNING: Found an autosave backup file
 #: libgeda/src/file/f_file.c:271
 #, c-format
 msgid ""
@@ -63,10 +65,14 @@ msgid ""
 "\"%s\".\n"
 "\n"
 msgstr ""
+"\n"
+"ADVERTIMENT: s'ha trobat un fitxer de còpia de seguretat d'autosave:\n"
+"\"%s\".\n"
+"\n"
 
 #: libgeda/src/file/f_file.c:272
 msgid ""
-"Could not detemine which file is newer, so you should do this manually.\n"
+"Could not determine which file is newer, so you should do this manually.\n"
 msgstr ""
 
 #: libgeda/src/file/f_file.c:273
@@ -74,26 +80,34 @@ msgid ""
 "The backup copy is newer than the schematic, it seems you should load it "
 "instead of the original file.\n"
 msgstr ""
+"La còpia de seguretat és més nova que l'esquemàtica, sembla que heu de "
+"carregar-la en comptes del fitxer original.\n"
 
 #: libgeda/src/file/f_file.c:274
 msgid ""
 "This situation may have occured when an application crashed or was forced to "
 "exit abruptly.\n"
 msgstr ""
+"Aquesta situació podria haver ocorregut quan una aplicació es va estavellar "
+"o es va veure obligada a sortir bruscament.\n"
 
 #: libgeda/src/file/f_file.c:275
 msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
 msgstr ""
+"Executeu l'aplicació per corregir aquesta situació o suprimir manualment el "
+"fitxer de còpia de seguretat."
 
+# Memory allocation error
 #: libgeda/src/file/f_file.c:291
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "Error d'assignació de memòria!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:318
 msgid "Loading backup file"
-msgstr ""
+msgstr "Carregant el fitxer de còpia de seguretat"
 
 # ERROR: Could not restore current directory to
 #: libgeda/src/file/f_file.c:362
@@ -106,14 +120,15 @@ msgstr "Error: No es pot restaurar el directori actual per"
 msgid "Cannot get the real filename of"
 msgstr "No es pot obtenir el veritable nom de fitxer"
 
+# Unable to delete backup file
 #: libgeda/src/file/f_file.c:425
 msgid "Unable to delete backup file"
-msgstr ""
+msgstr "No es pot eliminar el fitxer de còpia de seguretat"
 
 #: libgeda/src/file/f_file.c:485
 #, c-format
 msgid "File [%s] is read-only"
-msgstr ""
+msgstr "Filen [%s] er skrivebeskyttet"
 
 # Could not set previous backup file
 #: libgeda/src/file/f_file.c:541
@@ -122,15 +137,17 @@ msgstr "No s'ha pogut establir l'arxiu de còpia de seguretat anterior"
 
 #: libgeda/src/file/f_file.c:542
 msgid "read-write"
-msgstr ""
+msgstr "llegir escriure"
 
+# Cannot create backup file
 #: libgeda/src/file/f_file.c:553
 msgid "Cannot create backup file"
-msgstr ""
+msgstr "No es pot crear un fitxer de còpia de seguretat"
 
+# Could NOT save file
 #: libgeda/src/file/f_file.c:598
 msgid "Could NOT save file"
-msgstr ""
+msgstr "No es pot desar el fitxer"
 
 #: libgeda/src/file/f_get.c:195
 msgid "Invalid path"
@@ -849,11 +866,10 @@ msgstr ""
 msgid "change"
 msgstr ""
 
-# Error processing image
+# Error processing
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "error de processament d'imatges"
+msgstr "Error de processament"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"
