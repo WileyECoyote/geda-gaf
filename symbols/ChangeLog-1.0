@@ -2,6 +2,17 @@
 
     * geda-clib.scm: Add "lineartech/ldo" under "Low-Dropout Regulators".
 
+    * diode/zener53: Add symbols for 5 Watt zener diode:
+
+            * diode/zener53/zener_22_1N5358B.sym
+            * diode/zener53/zener_24_1N5359B.sym
+            * diode/zener53/zener_25_1N5360B.sym
+            * diode/zener53/zener_27_1N5361B.sym
+            * diode/zener53/zener_28_1N5362B.sym
+            * diode/zener53/zener_30_1N5363B.sym
+            * diode/zener53/zener_33_1N5364B.sym
+            * diode/zener53/zener_36_1N5365B.sym
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg: Update pinseq and documentation:
