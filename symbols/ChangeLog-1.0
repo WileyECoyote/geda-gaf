@@ -32,6 +32,8 @@
             * lineartech/switchreg/LT1173-5.sym
             * lineartech/switchreg/LT1173-12.sym
 
+    * microchip/MCP23008-1.sym: Add symbol; 16-Bit I2C I/O Expander.
+
     * panasonic/SEPC-electrolytic: Add symbols for SEPC series conductive polymer
       aluminum solid capacitors:
 
