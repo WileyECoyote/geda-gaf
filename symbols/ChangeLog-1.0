@@ -34,6 +34,9 @@
 
     * microchip/MCP23008-1.sym: Add symbol; 16-Bit I2C I/O Expander.
 
+    * national/DS90C385A-1.sym: Add symbol; 24-Bit Display Link, 87.5MHz Programmable
+      LVDS Transmitter.
+
     * panasonic/SEPC-electrolytic: Add symbols for SEPC series conductive polymer
       aluminum solid capacitors:
 
