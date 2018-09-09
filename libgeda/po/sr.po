@@ -47,9 +47,10 @@ msgstr "гЕДА — симбол шеме"
 msgid "Failed to get file statistics"
 msgstr "Не могу да добију статистику датотека"
 
+# Error: Invalid page object
 #: libgeda/src/file/f_file.c:183
 msgid "Error: Invalid page object"
-msgstr ""
+msgstr "Грешка: Неважећи објект странице"
 
 # ERROR: Could not change current directory to
 #: libgeda/src/file/f_file.c:223
@@ -96,14 +97,18 @@ msgid ""
 "Run the application to correct this situation or manually delete the backup "
 "file."
 msgstr ""
+"Покрените апликацију да бисте исправили ову ситуацију или ручно избрисати "
+"резервну датотеку"
 
+# Memory allocation error
 #: libgeda/src/file/f_file.c:291
 msgid "Memory allocation error!"
-msgstr ""
+msgstr "Грешка при додели меморије!"
 
+# Loading backup file
 #: libgeda/src/file/f_file.c:318
 msgid "Loading backup file"
-msgstr ""
+msgstr "Учитај резервну датотеку"
 
 # ERROR: Could not restore current directory to
 #: libgeda/src/file/f_file.c:362
@@ -123,7 +128,7 @@ msgstr "Не могу да избришем датотеку резервног 
 #: libgeda/src/file/f_file.c:485
 #, c-format
 msgid "File [%s] is read-only"
-msgstr ""
+msgstr "Датотека [%s] је само за читање"
 
 # Could not set previous backup file
 #: libgeda/src/file/f_file.c:541
@@ -132,7 +137,7 @@ msgstr "ННије могуће поставити претходну резер
 
 #: libgeda/src/file/f_file.c:542
 msgid "read-write"
-msgstr ""
+msgstr "читати-писати"
 
 # Cannot create backup file
 #: libgeda/src/file/f_file.c:553
@@ -144,17 +149,20 @@ msgstr "Не може да креира резервну копију датот
 msgid "Could NOT save file"
 msgstr "Цоулд нот саве филе"
 
+# Invalid path
 #: libgeda/src/file/f_get.c:195
 msgid "Invalid path"
-msgstr ""
+msgstr "Неважећи пут"
 
+# Could not allocate
 #: libgeda/src/file/f_get.c:257 libgeda/src/file/f_get.c:332
 msgid "Could not allocate"
-msgstr ""
+msgstr "Није могуће издвојити"
 
+# bytes to read file
 #: libgeda/src/file/f_get.c:258 libgeda/src/file/f_get.c:333
 msgid "bytes to read file"
-msgstr ""
+msgstr "бајтова за читање датотеке"
 
 # Error reading file
 #: libgeda/src/file/f_get.c:269
@@ -863,11 +871,10 @@ msgstr ""
 msgid "change"
 msgstr ""
 
-# Error processing image
+# Error processing
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "обрада грешка слика"
+msgstr "Обрада грешака"
 
 #: libgeda/src/guile/g_evaluate.c:403
 msgid "restore"
@@ -1027,9 +1034,8 @@ msgstr ""
 
 # Error processing image
 #: libgeda/src/guile/g_rc_parse.c:284
-#, fuzzy
 msgid "Error encountered processing RC file"
-msgstr "обрада грешка слика"
+msgstr "Грешка наишла на обраду датотеке конфигурације"
 
 #: libgeda/src/guile/g_rc_parse.c:301
 msgid "Error accessing configuration"
@@ -1891,7 +1897,7 @@ msgstr "атрибут"
 
 #: libgeda/src/struct/s_slot.c:251
 msgid "component missing pinseq= attribute\n"
-msgstr ""
+msgstr "компонента недостаје пинсек= атрибут\n"
 
 # Could not write message to log file
 #: libgeda/src/utility/u_log.c:126

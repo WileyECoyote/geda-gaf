@@ -892,11 +892,10 @@ msgstr ""
 msgid "change"
 msgstr "изменение"
 
-# Error processing image
+# Error processing
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "Ошибка обработки изображения"
+msgstr "Обработка ошибок"
 
 # restore -> reestablish
 #: libgeda/src/guile/g_evaluate.c:403
@@ -1031,9 +1030,8 @@ msgid ""
 msgstr ""
 
 #: libgeda/src/guile/g_rc.c:1165
-#, fuzzy
 msgid "list element is not a string"
-msgstr "always-promote-attribute: элемент списка не является строкой"
+msgstr "элемент списка не является строкой"
 
 # invalid polygon
 #: libgeda/src/guile/g_rc.c:1242 libgeda/src/guile/g_rc.c:1282
