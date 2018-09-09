@@ -13,6 +13,49 @@
             * diode/zener53/zener_33_1N5364B.sym
             * diode/zener53/zener_36_1N5365B.sym
 
+    * panasonic/SEPC-electrolytic: Add symbols for SEPC series conductive polymer
+      aluminum solid capacitors:
+
+            * panasonic/SEPC-electrolytic/capacitor_100uF_2.5V_2SEPC100MZ.sym
+            * panasonic/SEPC-electrolytic/capacitor_100uF_16V_16SEPC100M.sym
+            * panasonic/SEPC-electrolytic/capacitor_100uF_16V_16SEPC100MW.sym
+            * panasonic/SEPC-electrolytic/capacitor_150uF_16V_16SEPC150MD.sym
+            * panasonic/SEPC-electrolytic/capacitor_180uF_16V_16SEPC180M.sym
+            * panasonic/SEPC-electrolytic/capacitor_180uF_16V_16SEPC180MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_220uF_6.3V_6SEPC220M.sym
+            * panasonic/SEPC-electrolytic/capacitor_220uF_16V_16SEPC220MD.sym
+            * panasonic/SEPC-electrolytic/capacitor_270uF_10V_10SEPC270MD.sym
+            * panasonic/SEPC-electrolytic/capacitor_270uF_16V_16SEPC270M.sym
+            * panasonic/SEPC-electrolytic/capacitor_270uF_16V_16SEPC270MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_330uF_2.5V_2SEPC330MZ.sym
+            * panasonic/SEPC-electrolytic/capacitor_390uF_2.5V_2SEPC390M.sym
+            * panasonic/SEPC-electrolytic/capacitor_470uF_2.5V_2SEPC470MZ.sym
+            * panasonic/SEPC-electrolytic/capacitor_470uF_6.3V_6SEPC470M.sym
+            * panasonic/SEPC-electrolytic/capacitor_470uF_6.3V_6SEPC470MW.sym
+            * panasonic/SEPC-electrolytic/capacitor_470uF_6.3V_6SEPC470MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_470uF_16V_16SEPC470M.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_2.5V_2SEPC560M.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_2.5V_2SEPC560MW.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_2.5V_2SEPC560MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_2.5V_2SEPC560MZ.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_4V_4SEPC560M.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_4V_4SEPC560MW.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_4V_4SEPC560MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_6.3V_6SEPC560MW.sym
+            * panasonic/SEPC-electrolytic/capacitor_560uF_6.3V_6SEPC560MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_680uF_4V_4SEPC680M.sym
+            * panasonic/SEPC-electrolytic/capacitor_680uF_6.3V_6SEPC680M.sym
+            * panasonic/SEPC-electrolytic/capacitor_820uF_2.5V_2R5SEPC820M.sym
+            * panasonic/SEPC-electrolytic/capacitor_820uF_2.5V_2SEPC820MD.sym
+            * panasonic/SEPC-electrolytic/capacitor_820uF_2.5V_2SEPC820MW.sym
+            * panasonic/SEPC-electrolytic/capacitor_820uF_2.5V_2SEPC820MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_820uF_2.5V_2SEPC820MY.sym
+            * panasonic/SEPC-electrolytic/capacitor_820uF_4V_4SEPC820M.sym
+            * panasonic/SEPC-electrolytic/capacitor_1000uF_2.5V_2SEPC1000MX.sym
+            * panasonic/SEPC-electrolytic/capacitor_1000uF_6.3V_6SEPC1000MD.sym
+            * panasonic/SEPC-electrolytic/capacitor_1500uF_6.3V_6SEPC1500M.sym
+            * panasonic/SEPC-electrolytic/capacitor_2700uF_2.5V_2SEPC2700M.sym
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg: Update pinseq and documentation:

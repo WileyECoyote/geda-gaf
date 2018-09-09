@@ -238,6 +238,7 @@
                   ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")
+                     ("panasonic/SEPC-electrolytic"    "Manufacturers/SEPC Series Capacitors")
                      ("panasonic/resistors"            "Manufacturers/Resistors")
                      ("panasonic/ERA2-resistors"       "Manufacturers/ERA2 Resistors")
                      ("panasonic/ERA3-resistors"       "Manufacturers/ERA3 Resistors")
