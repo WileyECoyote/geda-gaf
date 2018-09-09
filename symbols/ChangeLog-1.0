@@ -80,6 +80,8 @@
             * panasonic/SEPC-electrolytic/capacitor_1500uF_6.3V_6SEPC1500M.sym
             * panasonic/SEPC-electrolytic/capacitor_2700uF_2.5V_2SEPC2700M.sym
 
+    * ti/ADS1248-1.sym: Add symbol; 24-Bit ADC, 2-kSPS, programmable gain amplifier.
+
 2018-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/switchreg: Update pinseq and documentation:
