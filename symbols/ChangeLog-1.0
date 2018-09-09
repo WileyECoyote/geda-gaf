@@ -13,6 +13,13 @@
             * diode/zener53/zener_33_1N5364B.sym
             * diode/zener53/zener_36_1N5365B.sym
 
+    * lineartech/LT1010-?.sym: Add symbols: 20 MHz Bandwidth unity gain buffer
+      amplifier:
+
+            * lineartech/LT1010-1.sym
+            * lineartech/LT1010-1.sym
+            * lineartech/LT1010-1.sym
+
     * panasonic/SEPC-electrolytic: Add symbols for SEPC series conductive polymer
       aluminum solid capacitors:
 
