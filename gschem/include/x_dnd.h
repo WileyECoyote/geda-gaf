@@ -37,7 +37,11 @@
 #ifndef H_GSCHEM_DRAGnDROP_H
 #define H_GSCHEM_DRAGnDROP_H
 
+#ifdef OS_WIN32
+#define DND_FILE_LEADER "file:\x2F\x2f\x2f\0"
+#else
 #define DND_FILE_LEADER "file:\x2F\x2f\0"
+#endif
 
 #define DND_NIL "nil"
 
@@ -46,6 +50,7 @@ enum {
       DND_TARGET_TEXT,
       DND_TARGET_STRING,
       DND_TARGET_PLAIN_TEXT,
+      DND_TARGET_URI_LIST,
       DND_TARGET_UTF8_STRING,
       DND_TARGET_OBJECTS,
 };
@@ -67,6 +72,9 @@ typedef enum {
 
 #define GSCHEM_TARGET_TEXT_PLAIN \
         { "text/plain", 0, DND_TARGET_PLAIN_TEXT }
+
+#define GSCHEM_TARGET_URI_LIST \
+        { "text/uri-list", 0, DND_TARGET_URI_LIST }
 
 #define GSCHEM_TARGET_UTF8_STRING \
         { "UTF8_STRING", 0, DND_TARGET_UTF8_STRING }

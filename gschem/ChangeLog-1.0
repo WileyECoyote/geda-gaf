@@ -1,6 +1,10 @@
 2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_dnd.c: Update function documentation.
+    * include/x_dnd.h: Conditionally define DND_FILE_LEADER, enumerate
+      DND_TARGET_URI_LIST, define GSCHEM_TARGET_URI_LIST.
+
+    * src/x/x_dnd.c: Revise module to support type "text/uri-list" for
+      Win32 systems, update function documentation.
 
     * tests/TEST_FUNCS: Change the threshold for passing from 5 to 10.
 

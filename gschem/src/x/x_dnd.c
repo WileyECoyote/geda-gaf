@@ -91,6 +91,7 @@ static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_TEXT,
     GSCHEM_TARGET_STRING,
     GSCHEM_TARGET_TEXT_PLAIN,
+    GSCHEM_TARGET_URI_LIST,
     GSCHEM_TARGET_UTF8_STRING,
     GSCHEM_TARGET_OBJECTS,
 };
@@ -146,6 +147,12 @@ static const GschemDndDataDef dnd_data_defs[] =
   },
   {
     GSCHEM_TARGET_TEXT_PLAIN,
+    "geda-component",
+    x_dnd_send_string,
+    x_dnd_receive_string
+  },
+  {
+    GSCHEM_TARGET_URI_LIST,
     "geda-component",
     x_dnd_send_string,
     x_dnd_receive_string
@@ -541,12 +548,14 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
     }
 
     /* Index through full string and put filename in list */
-    for(index = 0; index < len; index++) {
+    for (index = 0; index < len; index++) {
 
-      int head;
+      int head, prefix;
+
+      prefix = strlen(leader) + index;
 
       /* Skip passed URL crap, i.e. "file://" */
-      for (head = 0; head < 8; head++) {
+      for (head = 0; head < prefix; head++) {
         if (buffer[head + index] != leader[head]) {break;}
       }
 
@@ -732,6 +741,7 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
       case DND_TARGET_TEXT:
       case DND_TARGET_STRING:
       case DND_TARGET_PLAIN_TEXT:
+      case DND_TARGET_URI_LIST:
       case DND_TARGET_UTF8_STRING:
         datadef = &dnd_data_defs[DND_TARGET_UTF8_STRING];
         dnd_success = (datadef->receive_data_func)(w_current, x, y, string, DROPPED_ON_CANVAS);
