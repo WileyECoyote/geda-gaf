@@ -74,11 +74,10 @@ bool geda_color_guile_load_scheme (const char *inputfile)
   return result;
 }
 
-/**   \defgroup Libgeda-RC-Color Libgeda RC Color
+/**   \defgroup Libgedacolor-RC-Color Libgedacolor RC Color
  *  @{\brief
  *     This group contains utility functions used when processing
  *     color map data in RC files.
- *    \ingroup (Libgeda-RC-Utilities)
  */
 
 /*!
@@ -206,7 +205,7 @@ fprintf(stderr, "%s %s=%d <%s>\n",__func__, key, i, rgba);
   scm_remember_upto_here_2 (wrong_type_arg_sym, proc_name);
 }
 
-/** @} endgroup Libgeda-RC-Color */
+/** @} endgroup Libgedacolor-RC-Color */
 
 /**   \defgroup Libgedacolor-RC-Handlers Libgedacolor RC Handlers
  *  @{\par

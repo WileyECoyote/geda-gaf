@@ -1,3 +1,8 @@
+2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/color_guile.c: Update Doxygen group Libgedacolor-RC-Color,
+      remove ingroup tag.
+
 2018-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Translate to Afrikaans, Bulgarian, Bosnian, Persian
