@@ -165,6 +165,7 @@ static const GschemDndDataDef dnd_data_defs[] =
 };
 
 /* Begin Data type Specific Sub-Handlers */
+
 static const char*
 x_dnd_send_string_nil (GschemToplevel *w_current, GedaObject *object)
 {
@@ -301,18 +302,23 @@ static const char *x_dnd_send_string_shape (GschemToplevel *w_current, GedaObjec
       case OBJ_ARC:
         properties = x_dnd_string_data_arc_properties(object->arc);
         break;
+
       case OBJ_CIRCLE:
         properties = x_dnd_string_data_circle_properties(object->circle);
         break;
+
       case OBJ_LINE:
         properties = x_dnd_string_data_line_properties(object->line);
         break;
+
       case OBJ_PATH:
         properties = x_dnd_string_data_path_properties(object->path);
         break;
+
       case OBJ_BOX:
         properties = x_dnd_string_data_box_properties(object->box);
         break;
+
       default:
         properties = geda_sprintf("%s", " object data error");
   }
