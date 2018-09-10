@@ -138,7 +138,7 @@ compare_image() {
     # now see if the image files are the same
     decho "${IM_COMPARE} ${COMPARE_OPTIONS} ${f1} ${f2}  null:"
     same=`${IM_COMPARE} ${COMPARE_OPTIONS} ${f1} ${f2}  null: 2>&1 | \
-          ${AWK} '{if($1 < 5){print "yes"} else {print "no"}}'`
+          ${AWK} '{if($1 < 10){print "yes"} else {print "no"}}'`
     decho "compare_image():  same = $same"
 
     if test "$same" != yes ; then

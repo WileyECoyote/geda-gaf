@@ -1,3 +1,7 @@
+2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/TEST_FUNCS: Change the threshold for passing from 5 to 10.
+
 2018-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Translate to Catalan, Danish, Swedish and Ukrainian
