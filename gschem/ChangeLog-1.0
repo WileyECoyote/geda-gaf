@@ -1,5 +1,7 @@
 2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dnd.c: Update function documentation.
+
     * tests/TEST_FUNCS: Change the threshold for passing from 5 to 10.
 
     * tests/golden: regenerate no so golden outputs.

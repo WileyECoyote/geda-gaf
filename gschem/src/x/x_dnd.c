@@ -171,8 +171,13 @@ x_dnd_send_string_nil (GschemToplevel *w_current, GedaObject *object)
   return (DND_NIL);
 }
 
-static char*
-x_dnd_get_object_attributes (GedaObject *object)
+/*!
+ * \brief Drag & Drop Send String Object Attributes
+ * \par Function Description
+ *  Helper for x_dnd_send_string_object. Retrieves all of the attributes
+ *  belonging to object and combine into one string, skip the symversion
+ */
+static char *x_dnd_get_object_attributes (GedaObject *object)
 {
   const GList *attributes;
   char *string;
@@ -196,6 +201,11 @@ x_dnd_get_object_attributes (GedaObject *object)
   return string;
 }
 
+/*!
+ * \brief Drag & Drop Handle Send Object
+ * \par Function Description
+ *  Handles sending an Object as a string.
+ */
 static const char*
 x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
 {
@@ -654,10 +664,9 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
 /*!
  * \brief When Drag Received from the Source
  * \par Function Description
- *  Called when the data has been received from the source. It should check
- *  the GtkSelectionData sent by the source, and do something with it. Finally
- *  it needs to finish the operation by calling gtk_drag_finish, which will emit
- *  the "data-delete" signal if told to.
+ *  Called when the data has been received from the source. Check GtkSelectionData
+ *  sent by the source, and handle the target. Finish by calling gtk_drag_finish,
+ *  which will emit the "data-delete" signal if told to.
  */
 static void
 x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
