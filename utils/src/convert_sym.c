@@ -319,8 +319,6 @@ void reset_attributes(void);
 /* externals */
 int GetStringDisplayLength(char *str,int font_size);
 
-
-
 /* globals */
 int attach_pending = 0;    /* keep track of whether the last object */
                            /* read may have attachments pending. */
@@ -1853,7 +1851,7 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
               const char *at_msg = _("at");
               const char *rec_msg = _("at record");
               const char *pas_msg = _("found during conversion\n\tpassing it through unchanged");
-              fprintf(stderr,"%s `%s=%s' %s (%d,%d) at record #%d, %s\n",
+              fprintf(stderr,"%s `%s=%s' %s (%d,%d) %s #%d, %s\n",
                       err_msg, tmpName, tmpValue, at_msg, x, y, rec_msg, records_processed, pas_msg);
             done = 1;
             }

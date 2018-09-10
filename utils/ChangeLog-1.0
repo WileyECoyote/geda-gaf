@@ -1,3 +1,7 @@
+2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/convert_sym.c: Fix format specification for case WARN_USER.
+
 2018-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Translate to Afrikaans, Bulgarian, Bosnian, Persian
