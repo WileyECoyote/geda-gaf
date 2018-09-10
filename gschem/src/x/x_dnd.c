@@ -201,7 +201,10 @@ static char *x_dnd_get_object_attributes (GedaObject *object)
     text = geda_text_object_get_string(attributes->data);
 
     if (text) {
-      string = geda_strconcat (string, " ", text, NULL);
+
+      if (strncmp(text, "symversion", 10)) {
+        string = geda_strconcat (string, " ", text, NULL);
+      }
     }
 
     NEXT(attributes);
