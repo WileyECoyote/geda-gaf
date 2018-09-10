@@ -1,3 +1,7 @@
+2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toolbar.c: Update File: geda_toolbar.c -> geda_seperator.c.
+
 2018-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Translate to Afrikaans, Bulgarian, Bosnian, Persian
@@ -1080,7 +1084,7 @@
 
           * geda_font_dialog_new_with_title
           * geda_font_dialog_get_font
-          * 
+          *
     * tests/test_handlebox.c: Relocate destroying widget in side conditional
       because it does not make sense to destroy an unknown object, or could
       potentially be NULL.
