@@ -431,7 +431,7 @@ static WidgetStringData DialogStrings[] = {
   { NULL, NULL, NULL},
 };
 
-/** \defgroup Help-About-Dialog Help About Dialog
+/** \defgroup About-Dialog About Dialog
  *  @{
 */
 
@@ -558,7 +558,7 @@ void about_dialog (GschemToplevel *w_current)
 
 /******************* End of help/about dialog box **********************/
 
-/** @} endgroup Help-About-Dialog */
+/** @} endgroup About-Dialog */
 
 /** \defgroup Snap-Size-Dialog Snap Size Dialog
  *  @{

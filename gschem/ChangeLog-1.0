@@ -1,3 +1,8 @@
+2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Rename Doxygen group "Help-About-Dialog" ->
+      "About-Dialog".
+
 2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_dnd.h: Conditionally define DND_FILE_LEADER, enumerate
