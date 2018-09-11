@@ -2,7 +2,7 @@
 
     * src/x/x_dialog.c: Rename Doxygen group "Help-About-Dialog" ->
       "About-Dialog", replace PACKAGE_GIT_COMMIT with PACKAGE_DATE_VERSION
-      in the dialog.
+      in the dialog. Add todo documentation blocks and minor updates.
 
 2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

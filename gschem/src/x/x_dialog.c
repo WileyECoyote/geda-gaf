@@ -145,6 +145,10 @@ GtkWidget *create_pixmap (const char *filename)
   return pixmap;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_dialog_set_icon (GtkWidget *dialog, const char *icon_name)
 {
   /* GschemMainWindow *window = (GschemMainWindow*)instance; */
@@ -435,6 +439,10 @@ static WidgetStringData DialogStrings[] = {
  *  @{
 */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data)
 {
    x_show_uri(link);
@@ -444,6 +452,10 @@ static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data
 # include <gnu/libc-version.h>
 #else
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 const char *gnu_get_libc_version(void)
 {
    return "unknown";
@@ -810,7 +822,11 @@ static void x_dialog_edit_fill_type_ok      (GtkWidget *w, fill_type_data *fd);
 /* string buffer used by dialogs: show_text, find_text and hide_text */
 static char text_buffer[256] = "refdes=R";
 
-/* Local function used in this module to load the text_buffer */
+/*!
+ * \brief Load the text_buffer
+ * \par Function Description
+ *  Local function used in this module to load the text_buffer
+ */
 static void set_text_buffer(const char *string)
 {
   if (string != NULL) {
@@ -1074,7 +1090,10 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
  *  @{
  */
 
-/*! \brief Given the color index, obtain a human readable name
+/*!
+ * \brief Given color index, obtain a human readable name
+ * \par Function Description
+ *  Returns the string associated with the given \a index.
  */
 static const char*
 x_dialog_get_color_name (int index)
@@ -1146,6 +1165,10 @@ color_menu_swatch_layout_data (GtkCellLayout   *layout,
   g_object_set (cell, "background-gdk", color, NULL);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_dialog_color_menu_view_changed (GedaComboBox *cbox,
                                        unsigned int  view,
                                        void         *data)
@@ -1663,6 +1686,10 @@ x_dialog_fill_type_update_selection (GschemToplevel *w_current,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
@@ -2243,6 +2270,10 @@ x_dialog_line_type_update_selection (GschemToplevel *w_current,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
@@ -2352,6 +2383,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
 
   return Dialog;
 }
+
 /*! \brief Creates the line type and width dialog
  *  \par Function Description
  *  This function creates and sets up a dialog for manipulating
@@ -3261,6 +3293,10 @@ static void hotkey_show_binding_toggled (GtkToggleButton *widget,
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static void
 hotkey_callback_close_clicked (GtkButton *CloseButt, void *user_data)
 {
@@ -3610,10 +3646,8 @@ void x_dialog_raise_all(GschemToplevel *w_current)
  *  to the message area of the Symbol Changed dialog. The function creates
  *  widgets as nessasary to present the listing.
  */
-
-static
-void xd_add_changed_symbol_list (GschemToplevel   *w_current,
-                                 GtkMessageDialog *dialog)
+static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
+                                        GtkMessageDialog *dialog)
 {
   GtkWidget *mess_area;
   GtkWidget *hbox, *vbox, *label;
