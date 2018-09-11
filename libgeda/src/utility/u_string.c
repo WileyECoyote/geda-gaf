@@ -315,11 +315,11 @@ const char *geda_utility_string_istr(const char *str1, const char *str2)
  * \brief Parse a c String for X and Y Integer Pair
  * \par Function Description
  *  Iterates over a string looking for askii digits, parenthesis are
- *  ignored. The first character digits are interrupted as the string for
+ *  ignored. The first character digits are interpreted as the string for
  *  X unless a comma was previously encountered, in which case the string
- *  is interrupted as the Y. If Y is set and X has not been set then X is
+ *  is interpreted as the Y. If Y is set and X has not been set then X is
  *  presumed zero, and this allows input such as ",600" to mean (0,600).
- *  If only one value was interrupted and a comma had not be encountered,
+ *  If only one value was interpreted and a comma had not be encountered,
  *  the Y is presumed to be zero. If the string contains two sets of valid
  *  digits, X and Y, then the comma may also be an ASKii SPACE character.
  *  If neither X nor Y is interpreted then False is returned. Either X or
@@ -526,9 +526,8 @@ void geda_utility_string_sort_array( char *strings[], size_t strings_size) {
  * \param [in] delimiter  optional delimiter
  * \param [in] count      which base 0 splits to return
  *
- * \returns pointer to allocated string[count], or
- *          NULL if \a string is NULL, or
- *          \a string if \a delimiter is zero.
+ * \returns pointer to allocated string[count], or NULL if \a string
+ *          is NULL, or \a string if \a delimiter is zero.
  */
 char *geda_utility_string_split(const char *string, char delimiter, int count)
 {
@@ -712,9 +711,9 @@ bool geda_utility_string_stricmp(const char *str1, const char *str2)
 /*! U0616
  * \brief Non case sensitive search for string in a string
  * \par Function Description
- * \retval  A non negative result is the position needle was found
- *  in haystack, a negative result means needle was not found OR one
- *  of the two inputs is NULL.
+ * \retval A non negative result is the position needle was found
+ *  in haystack, a negative result means needle was not found OR
+ *  one of the two inputs is NULL.
  */
 int geda_utility_string_stristr ( const char *haystack, const char *needle)
 {
