@@ -471,9 +471,8 @@ void about_dialog (GschemToplevel *w_current)
   GError     *error = NULL;
   GtkWidget  *Dialog;
 
-  version_string = geda_sprintf ("%s (g%.7s)",
-                                     PACKAGE_DOTTED_VERSION,
-                                     PACKAGE_GIT_COMMIT);
+  version_string = geda_sprintf ("%s (%s)", PACKAGE_DOTTED_VERSION,
+                                            PACKAGE_DATE_VERSION);
 
   logo_file =  geda_file_get_bitmap_filespec ("gschem_about_logo.png");
 
