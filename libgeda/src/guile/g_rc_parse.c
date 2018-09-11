@@ -161,7 +161,7 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
 
 #if defined (OS_WIN32)
 
-  found = g_list_find_custom (cfg->RC_list, filename, (GCompareFunc) stricmp);
+  found = g_list_find_custom (cfg->RC_list, filename, (GCompareFunc) geda_stricmp);
 
 #else
 

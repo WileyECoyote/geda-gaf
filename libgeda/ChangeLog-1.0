@@ -1,3 +1,9 @@
+2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc_parse.c: Revise g_rc_try_mark_read to use
+      geda_stricmp instead of stricmp for GCompareFunc, stricmp
+      not available on all platforms, namely MSYS2.
+
 2018-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
