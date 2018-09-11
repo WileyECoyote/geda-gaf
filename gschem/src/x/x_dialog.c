@@ -3089,7 +3089,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     zoom_tip  = _("Automatically zoom to the new extents after translation");
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Translate"),
-                            w_current->main_window,
+                                        w_current->main_window,
                                               GTK_DIALOG_MODAL,
                                       IDS_TRANSLATE, w_current,
                                               GTK_STOCK_CANCEL,
@@ -3098,7 +3098,7 @@ void x_dialog_translate (GschemToplevel *w_current)
                                            GEDA_RESPONSE_ACCEPT,
                                                          NULL);
 
-  /* Set the alternative button order (ok, cancel, help) for other systems */
+    /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
                                             GEDA_RESPONSE_ACCEPT,
                                             GEDA_RESPONSE_REJECT,
