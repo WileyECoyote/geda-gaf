@@ -1508,11 +1508,11 @@ GList *geda_pin_object_realize_attributes(GedaToplevel *toplevel, GedaObject *ob
 
 /*! \brief Update a GedaPin Object Property with Read Attribute GedaObject
  *  \par Function Description
- *  This function is called from geda_attrib_object_read after a text attribute
- *  has been read in for pin object. The functions passes the attribute
- *  oject to the GedaPin Object to set internal values.
+ *  This function is called from geda_attrib_object_read after a text
+ *  attribute has been read in for pin object. The functions passes the
+ *  attribute object to the GedaPin Object to set internal values.
  *
- *  \param [in] o_pin   The pin object for which the attribute was being added.
+ *  \param [in] o_pin   The pin object to which the attribute is being added.
  *  \param [in] o_text  The attribute object being attached to the pin
 
  *  \note The pin object is not likely associated with a page or even
