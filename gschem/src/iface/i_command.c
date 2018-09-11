@@ -358,6 +358,7 @@ bool i_command_is_valid(const char *command)
 {
   int i;
   bool result = FALSE;
+
   for (i = 1; i < COMMAND_COUNT; i++) {
     if (geda_strequal(command_struc[i].name, command)) {
       result = TRUE;
@@ -411,14 +412,14 @@ void i_command_process(GschemToplevel *w_current, const char *command,
       }
 
       /* Check the repeat last command action */
-      if ( i == CMD(do_repeat_last)) {
+      if (i == CMD(do_repeat_last)) {
         if ( !get_last_command())
           break;
         i = get_last_command(); /* Change action to the previous value */
       }
 
       /* Check and set pointer coordinates if task bit 3 is set */
-      if (command_struc[i].aflag & XY_ActionMask) {
+      if ( command_struc[i].aflag & XY_ActionMask) {
 
         int wx, wy, check_magnet;
 
@@ -1683,7 +1684,6 @@ COMMAND (do_offset)
         int y = CMD_Y(do_offset);
 
         o_edit_offset_hot(w_current, x, y, object_list);
-
       }
     }
     else {
