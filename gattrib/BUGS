@@ -1,2 +1,7 @@
-This file will soon be filled with bugs.  Right now I created it to
-enable "make dist".
+
+Bugs (no particular order):
+----------------------
+
+*  When columns are hidden, the column selection highlighting is still shown
+   with the width of the column that was hidden around the next column, with
+   a different width - how about unselect the all columns after hiding.
