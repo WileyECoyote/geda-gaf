@@ -2,6 +2,8 @@
 
     * src/iface/i_command.c: Remove parentheses from Doxygen group
       i_command_File_Actions because these show up empty in the output.
+      Remove conditional in do_add_arc and call i_event_end_action_handler
+      in the non-action else clause instead of using i_status_action_stop.
 
 2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
