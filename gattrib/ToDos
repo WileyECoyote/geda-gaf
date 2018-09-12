@@ -1,5 +1,10 @@
 Gattrib todos.
 
+Last updated 08.30.2018 -- WEH
+
+*  Column context menu, and maybe main menu, should have an option to auto set
+   the width of columns.
+
 Last updated 7.26.2006 -- SDB
 
 --------------------------------------------------------------------
@@ -41,8 +46,8 @@ already completed are marked with  #####.
 
 *  Add info about NETS and net attribs into NOTES.
 
-*  #####  Go over OBJECT struct data in NOTES -- is (ATTRIB
-   *attached_to) info correct?
+*  #####  Go over OBJECT struct data in NOTES -- is (ATTRIB attached_to)
+   info correct?
 
 *  ##### Implement sort of master lists.
 
@@ -86,15 +91,15 @@ already completed are marked with  #####.
    adjacent cells.  Maybe automatically size cell to fit text?  Problem is that
    "file" attributes can be very long.
 
-*  Per Ales, use the gtksheet stuff as a library instead of a bunch of source
-   files.  Is this necessary?  No.  I don't want to do this since a third-
-   party library can change, which makes support a PITA. WEH:Comment: Has
-   been converted to a library for linking but not third-party. (Maybe this
-   is at least a compromise, or maybe this is what Ales had mind, dunno,
-   still got source files, but segragated. 10/28/12.)
+*  ##### Per Ales, use the gtksheet stuff as a library instead of a bunch of
+   source files.  Is this necessary?  No.  I don't want to do this since a
+   third-party library can change, which makes support a PITA. WEH:Comment:
+   Has been converted to a library for linking but not third-party. (Maybe
+   this is at least a compromise, or maybe this is what Ales had in mind,
+   dunno, still got source files, but segragated. 10/28/12.)
 
-*  User should be able to set attrib visibility. How to implement & show?
-   WEH:Done 11/21/12.
+*  ##### User should be able to set attrib visibility. How to implement &
+   show? WEH:Done 11/21/12.
 
 *  #####  Incorporate ability to add attrib columns. WEH:Done 11/13/12.
 
@@ -108,7 +113,7 @@ already completed are marked with  #####.
 
 *  Change display of attrib text in each cell depending upon attrib
    visibility state.  Example:  Invisible = light grey.  Name only = red.
-   Value only = normal.  Name & value = bold face.
+   Value only = normal. Name & value = bold face.
 
 *  Make gattrib import csv. (WEH: Now that would be way cool, 10/28/12)
 
