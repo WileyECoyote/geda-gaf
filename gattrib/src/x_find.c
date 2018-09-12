@@ -228,9 +228,13 @@ bool x_find_main_search(char *text, char *replacement) {
   return found;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Launch Search Dialog with Selected Text
+ * \par Function Description
+ * This is a front-end that launches the search and replace
+ * dialog in "find only" mode. This function preloads the
+ * st_search struct with and any text that is currently
+ * selected in the entry.
  */
 void x_find_attribute_value(void)
 {

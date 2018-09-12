@@ -1,3 +1,8 @@
+2018-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_find.c: Update function documentation for
+      x_find_attribute_value.
+
 2018-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Translate to Finnish and Hebrew Languages.
