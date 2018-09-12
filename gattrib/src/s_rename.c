@@ -68,7 +68,7 @@ void s_rename_init(void)
 /*!
  * \brief Free all data referred to by the rename pairs
  * \par Function Description
- * Loops rename pairs and calls GEDA_FREE() on the non-NULL
+ * Loops rename pairs and calls geda_free() on the non-NULL
  * entries, then sets the entry to NULL.
  */
 void s_rename_destroy_all(void)
@@ -80,12 +80,12 @@ void s_rename_destroy_all(void)
     for (j = 0; j < MAX_RENAME; j++) {
 
       if (rename_pairs[i][j].src) {
-        g_free(rename_pairs[i][j].src);
+        geda_free(rename_pairs[i][j].src);
         rename_pairs[i][j].src = NULL;
       }
 
       if (rename_pairs[i][j].dest) {
-        g_free(rename_pairs[i][j].dest);
+        geda_free(rename_pairs[i][j].dest);
         rename_pairs[i][j].dest = NULL;
       }
     }
