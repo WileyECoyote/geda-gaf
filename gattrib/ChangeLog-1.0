@@ -1,5 +1,8 @@
 2018-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x_dialog.c: Update function documentation for
+      x_dialog_search_replace.
+
     * src/s_rename.c: Replace g_free with geda_free.
 
     * src/x_find.c: Update function documentation for

@@ -1096,9 +1096,15 @@ GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,
   return (GtkWidget*)ThisDialog;
 }
 
-/*! \brief Startup Search and Replace Dialog
- *  \par Function Description: This is the main function called by external
- *       to launch a new Search and Replace Dialog session.
+/*!
+ * \brief Startup Search and Replace Dialog
+ * \par Function Description
+ *  This is the main function called by either x_find_attribute_value
+ *  or x_find_replace_attrib_value to launch a new Search and Replace
+ *  Dialog session.
+ *
+ * \param Search Pointer to st_search search record structure
+ * \param text   String to search for or NULL.
  */
 void x_dialog_search_replace(SearchRecord *Search, const char *text)
 {
