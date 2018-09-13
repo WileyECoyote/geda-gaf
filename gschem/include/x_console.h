@@ -44,7 +44,7 @@ typedef enum {
 #define TYPE_CONSOLE         (console_get_type())
 #define CONSOLE(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj),   TYPE_CONSOLE, Console))
 #define CONSOLE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST    ((klass), TYPE_CONSOLE, ConsoleClass))
-#define IS_CONSOLE(obj)      (is_a_console((Console*)obj))
+#define IS_CONSOLE(obj)      (is_a_console((Console*)(obj)))
 
 typedef struct _ConsoleClass ConsoleClass;
 typedef struct _Console      Console;
