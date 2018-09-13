@@ -1,3 +1,8 @@
+2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/amplifiers/TDA2030-1.sym: Set documentation show value only,
+      update dist-license.
+
 2018-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add "lineartech/ldo" under "Low-Dropout Regulators".

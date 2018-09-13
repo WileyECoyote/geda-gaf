@@ -1,12 +1,12 @@
 v 20150101 2
-T 100 2000 5 10 0 0 0 0 1
+T 100 2000 5 10 0 1 0 0 1
 description=Power operational amplifier
-T 1100 700 9 8 0 1 0 0 1
+T 1000 1200 9 8 0 1 0 0 1
 footprint=PENTAWATTV
 T 100 2400 5 10 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
 T 100 1600 5 8 0 0 0 0 1
-dist-license=GPL 3, see http://www.gnu.org/licenses/gpl-3.0.txt
+dist-license=GPLv2
 T 100 1400 5 8 0 0 0 0 1
 use-license=free, no restrictions
 T 100 1800 5 8 0 0 0 0 1
@@ -76,5 +76,5 @@ L 200 1000 1100 500 3 10 0 0 -1 -1
 L 250 700 350 700 3 10 0 0 -1 -1
 L 300 750 300 650 3 10 0 0 -1 -1
 L 250 300 350 300 3 10 0 0 -1 -1
-T 100 2200 5 8 0 0 0 0 1
+T 100 2200 5 8 0 1 0 0 1
 documentation=http://www.st.com/stonline/products/literature/ds/1317.pdf
