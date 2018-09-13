@@ -2,6 +2,8 @@
 
     * include/i_command.h: Wrap is_a_console parameter in parentheses.
 
+    * src/x/x_edit_slot.c: Remove unnecessary cast to GtkWidget.
+
 2018-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove parentheses from Doxygen group

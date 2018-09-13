@@ -222,7 +222,7 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
 
     }
 
-    gtk_widget_set_sensitive (GTK_WIDGET(slotspin), max_slot > 1);
+    gtk_widget_set_sensitive (slotspin, max_slot > 1);
 
     gtk_entry_set_alignment ((GtkEntry*)slotspin, 1.0);
     gtk_entry_set_activates_default ((GtkEntry*)slotspin, TRUE);
