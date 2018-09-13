@@ -9,6 +9,13 @@
             * opto/MOC3022-1.sym
             * opto/MOC3023-1.sym
 
+    * ti/opamps: Resequence attributes:
+
+            * ti/opamps/LMV711-1.sym
+            * ti/opamps/LMV711-2.sym
+            * ti/opamps/LMV715-1.sym
+            * ti/opamps/LMV715-2.sym
+
 2018-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add "lineartech/ldo" under "Low-Dropout Regulators".
