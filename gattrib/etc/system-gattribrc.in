@@ -30,7 +30,9 @@
 ; the Reveal Attributes dialog.
 ;
 (hide-columns '("author" "dist-license" "use-license" "comment"
-                "symversion" "slotdef" "spice-type"))
+                "symversion" "slotdef" "spice-type"
+                "sheet-filename" "sheet-pagetot"
+                "sheet-title" "sheet-number"))
 
 ; sort-components string
 ;

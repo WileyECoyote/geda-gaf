@@ -1,5 +1,13 @@
 2018-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gattribrc.in: Add some strings found in title-blocks
+      to the list of default colmns to hide:
+
+          * sheet-filename
+          * sheet-pagetot
+          * sheet-title
+          * sheet-number
+
     * src/x_dialog.c: Update function documentation for
       x_dialog_search_replace.
 
