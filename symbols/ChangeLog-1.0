@@ -3,6 +3,12 @@
     * linear/amplifiers/TDA2030-1.sym: Set documentation show value only,
       update dist-license.
 
+    * opto/MOC302?-1.sym: Add symbols, generic optoisolators:
+
+            * opto/MOC3021-1.sym
+            * opto/MOC3022-1.sym
+            * opto/MOC3023-1.sym
+
 2018-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add "lineartech/ldo" under "Low-Dropout Regulators".
