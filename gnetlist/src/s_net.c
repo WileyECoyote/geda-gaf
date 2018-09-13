@@ -238,9 +238,9 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
  *  \par Function Description
  *
  * hack rename this to be s_return_head
- * update object_tail or any list of that matter
+ * update object_tail or any list for that matter
  */
-NET *s_net_return_head(NET * tail)
+NET *s_net_return_head(NET *tail)
 {
   NET *n_current = NULL;
   NET *ret_struct = NULL;
@@ -259,9 +259,9 @@ NET *s_net_return_head(NET * tail)
  *  \par Function Description
  *
  * hack rename this to be s_return_tail
- * update object_tail or any list of that matter
+ * update object_tail or any list for that matter
  */
-NET *s_net_return_tail(NET * head)
+NET *s_net_return_tail(NET *head)
 {
   NET *n_current = NULL;
   NET *ret_struct = NULL;
