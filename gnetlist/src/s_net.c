@@ -192,7 +192,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   temp_uref = geda_attrib_search_object_by_name (o_current->parent_object, "refdes", 0);
 
   if (temp_uref) {
-    if (geda_utility_string_stricmp(temp_uref,"none") == 0) {
+    if (geda_stricmp(temp_uref,"none") == 0) {
        GEDA_FREE(temp_uref);
     }
   }
