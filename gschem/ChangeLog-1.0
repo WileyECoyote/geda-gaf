@@ -5,7 +5,7 @@
       change the "page-manager" icon to "gschem-page-man", add middle-button
       "Popup" option.
 
-    * include/gschem_idefines.h: Add MOUSE_MIDDLE_POPUP.
+    * include/gschem_idefines.h: Add MOUSE_MIDDLE_POPUP and make the default.
 
     * include/gschem_sdefines.h: Define RC_STR_MID_MOUSEPOP.
 
