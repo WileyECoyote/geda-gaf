@@ -1,3 +1,12 @@
+2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/FOD420?-1.sym: Add symbols, onsemi (Faichild) optoisolators:
+
+            * opto/FOD420-1.sym
+            * opto/FOD4208-1.sym
+            * opto/FOD4216-1.sym
+            * opto/FOD4218-1.sym
+
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/amplifiers/TDA2030-1.sym: Set documentation show value only,
