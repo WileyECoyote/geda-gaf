@@ -77,6 +77,7 @@ struct _GschemStatusBarClass
     /* signals */
   void     (* middle_action)        (GschemStatusBar *widget);
   void     (* middle_pan)           (GschemStatusBar *widget);
+  void     (* middle_pop)           (GschemStatusBar *widget);
   void     (* middle_repeat)        (GschemStatusBar *widget);
 #ifdef HAVE_LIBSTROKE
   void     (* middle_stroke)        (GschemStatusBar *widget);

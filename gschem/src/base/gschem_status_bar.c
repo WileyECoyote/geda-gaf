@@ -57,6 +57,7 @@ enum
 enum {
   SET_MIDDLE_ACTION,
   SET_MIDDLE_MOUSEPAN,
+  SET_MIDDLE_POPUP,
   SET_MIDDLE_REPEAT,
 #ifdef HAVE_LIBSTROKE
   SET_MIDDLE_STROKE,
@@ -127,6 +128,7 @@ static StatusPopupEntry middle_popup_items[] = {
 #endif
   { N_( RC_STR_MID_REPEAT ),   SET_MIDDLE_REPEAT   },
   { N_( RC_STR_MID_MOUSEPAN ), SET_MIDDLE_MOUSEPAN },
+  { N_( RC_STR_MID_MOUSEPOP ), SET_MIDDLE_POPUP },
   {NULL} /* sentinel */
 };
 
@@ -704,6 +706,15 @@ static void gschem_status_bar_class_init (void *class, void *class_data)
                                                 G_SIGNAL_RUN_LAST,
                                                 G_STRUCT_OFFSET (GschemStatusBarClass,
                                                                  middle_pan),
+                                                NULL, NULL,
+                                                geda_marshal_VOID__VOID,
+                                                G_TYPE_NONE, 0);
+
+  signals[SET_MIDDLE_POPUP]   = g_signal_new ("set-middle-popup",
+                                                gschem_status_bar_get_type(),
+                                                G_SIGNAL_RUN_LAST,
+                                                G_STRUCT_OFFSET (GschemStatusBarClass,
+                                                                 middle_pop),
                                                 NULL, NULL,
                                                 geda_marshal_VOID__VOID,
                                                 G_TYPE_NONE, 0);

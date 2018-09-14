@@ -9,6 +9,15 @@
 
     * include/gschem_sdefines.h: Define RC_STR_MID_MOUSEPOP.
 
+    * include/gschem_status_bar.h: Add virtual member middle_pop.
+
+    * src/base/gschem_status_bar.c: Add signal "set-middle-popup".
+
+    * src/x/x_event.c: Handle case MOUSE_MIDDLE_POPUP for button press events.
+
+    * src/x/x_status_bar.c: Add function x_status_bar_set_middle_popup and
+      handle case MOUSE_MIDDLE_POPUP on the status bar.
+
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Wrap is_a_console parameter in parentheses.

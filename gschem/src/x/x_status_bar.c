@@ -86,6 +86,30 @@ x_status_bar_set_middle_pan(GtkWidget *status_bar, void *data)
   }
 }
 
+/*! \brief Popup clicked on Middle Mouse Options Popup Callback
+ *
+ *  \par Function Description
+ *   Called in response to "set-middle-popup" being emitted from the
+ *   status bar widget. Sets middle mouse button preference variable
+ *   to MOUSE_MIDDLE_POPUP and calls for update.
+ *
+ *  \param [in] status_bar Pointer to #GschemStatusBar widget, not used
+ *  \param [in] data       Pointer to GschemToplevel structure
+ */
+static void
+x_status_bar_set_middle_popup(GtkWidget *status_bar, void *data)
+{
+  GschemToplevel *w_current = data;
+
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    w_current->middle_button = MOUSE_MIDDLE_POPUP;
+    x_status_bar_update_middle_mouse(w_current, NULL);
+  }
+  else {
+    BUG_MSG("Invalid pointer to top-level structure");
+  }
+}
+
 /*! \brief Repeat clicked on Middle Mouse Options Popup Callback
  *
  *  \par Function Description
@@ -269,6 +293,11 @@ void x_status_bar_update_middle_mouse(GschemToplevel *w_current,
           previous_setting = MOUSE_MIDDLE_PAN;
           break;
 
+        case (MOUSE_MIDDLE_POPUP):
+          geda_label_widget_set_text(StatusBar->middle_label, _(RC_STR_MID_MOUSEPOP));
+          previous_setting = MOUSE_MIDDLE_POPUP;
+          break;
+
         default:
           geda_label_widget_set_text(StatusBar->middle_label, _("none"));
           break;
@@ -388,6 +417,9 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
                     w_current);
   g_signal_connect (status_bar, "set-middle-pan",
                     G_CALLBACK (x_status_bar_set_middle_pan),
+                    w_current);
+  g_signal_connect (status_bar, "set-middle-popup",
+                    G_CALLBACK (x_status_bar_set_middle_popup),
                     w_current);
   g_signal_connect (status_bar, "set-middle-repeat",
                     G_CALLBACK (x_status_bar_set_middle_repeat),

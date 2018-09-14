@@ -268,6 +268,11 @@ int x_event_button_pressed(GtkWidget      *widget,
           start_pan_y              = (int) event->y;
           throttle                 = 0;
           break;
+
+        case(MOUSE_MIDDLE_POPUP):
+          i_status_update_sensitivities(w_current);  /* update menus before popup  */
+          x_menu_display_main_popup(w_current, event);
+          break;
       }
     }
   }
@@ -456,6 +461,10 @@ bool x_event_button_released (GtkWidget      *widget,
           }
           break;
 
+        case(MOUSE_MIDDLE_POPUP):
+          break;
+
+          break;
         default:
           break;
       }
