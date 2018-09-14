@@ -1827,7 +1827,8 @@
 (map-icon "gtk-save-as"                "file-save-as")
 (map-icon "gtk-save"                   "file-save-all")
 (map-icon "gtk-save"                   "file-save-modified")
-(map-icon "gtk-print"                  "file-print")
+;(map-icon "gtk-print"                  "file-print")
+(map-icon "gschem-print-document"      "file-print")
 (map-icon "gaf-pdf"                    "file-write-pdf")
 (map-icon "geda-save-image"            "file-write-image")
 
@@ -1935,7 +1936,10 @@
 (map-icon "gtk-go-down"                "page-down")
 (map-icon "gtk-goto-last"              "page-last")
 (map-icon "gtk-new"                    "page-new")
-(map-icon "gtk-print"                  "page-print")
+
+(map-icon "gschem-print-document"      "page-print")
+;(map-icon "gtk-print"                  "page-print")
+
 (map-icon "gtk-revert-to-saved"        "page-revert")
 (map-icon "gtk-revert-to-saved"        "page-revert-all")
 (map-icon "gtk-close"                  "page-close")
@@ -2077,9 +2081,9 @@
         (,(N_ "Re_vert All")       page-revert-all      "gtk-revert-to-saved" ,(N_ "Discard changes and reload all open documents"))
 
         ("SEPARATOR"               #f                   #f)
-        (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
+        (,(N_ "_Print...")         file-print           #f                    ,(N_ "Print the current document"))
         (,(N_ "_Export")           #f                   "gtk-save-as"         ,(N_ "Export options"))
-        (,(N_ "Write p_df")        file-write-pdf            #f                    ,(N_ "Create PDF document"))
+        (,(N_ "Write p_df")        file-write-pdf       #f                    ,(N_ "Create PDF document"))
         (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "Export image"))
 
         ("SEPARATOR"               #f                   #f)
