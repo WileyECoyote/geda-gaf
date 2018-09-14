@@ -1,7 +1,8 @@
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Change the default icon for "file-print" to
-      "gschem-print-document" and leave "gtk-print" as an alternate.
+      "gschem-print-document" and leave "gtk-print" as an alternate, and
+      change the "page-manager" icon to "gschem-page-man".
 
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 

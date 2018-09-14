@@ -1928,7 +1928,9 @@
 ;(map-icon #f                          "view-light-colors")
 ;(map-icon #f                          "view-bw-colors")
 
-(map-icon "gtk-properties"             "page-manager")
+;(map-icon "gtk-properties"             "page-manager")
+(map-icon "gschem-page-man"               "page-manager")
+
 (map-icon "gtk-goto-first"             "page-first")
 (map-icon "gtk-go-back"                "page-prev")
 (map-icon "gtk-go-forward"             "page-next")
@@ -2227,7 +2229,7 @@
         (,(N_ "_Draw Order")       #f                      "gtk-index"            ,(N_ "Change order objects are drawn"))
         ("SEPARATOR"               #f                      #f)
 
-        (,(N_ "_Manager...")       page-manager            "gtk-properties"       ,(N_ "Open the Page Manager"))
+        (,(N_ "_Manager...")       page-manager            "gschem-pages"         ,(N_ "Open the Page Manager"))
         (,(N_ "_First")            page-first              "gtk-goto-first"       ,(N_ "Goto the first page"))
         (,(N_ "_Previous")         page-prev               "gtk-go-back"          ,(N_ "Switch to the previous page"))
         (,(N_ "_Next")             page-next               "gtk-go-forward"       ,(N_ "Switch to the next page"))
