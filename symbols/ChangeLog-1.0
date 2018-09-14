@@ -7,6 +7,15 @@
             * opto/FOD4216-1.sym
             * opto/FOD4218-1.sym
 
+    * opto/MOC302?-1.sym: Resequence objects so pin 6 is not drawn under
+      the line for the pin and change the line end caps to improve visual
+      appearance:
+
+            * opto/MOC3020-1.sym
+            * opto/MOC3021-1.sym
+            * opto/MOC3022-1.sym
+            * opto/MOC3023-1.sym
+
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/amplifiers/TDA2030-1.sym: Set documentation show value only,
