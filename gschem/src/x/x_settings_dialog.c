@@ -2477,6 +2477,7 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_REPEAT)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_ACTION)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPAN)
+         GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPOP)
        HSECTION (PointerOptions_vbox, PointerRow6)    /* Row 4 */
          GTK_SWITCH(PointerRow6_hbox, WarpCursor, 30, FALSE);
          GTK_NEW_COMBO (PointerRow6_hbox, ThirdButton,  150, 1);

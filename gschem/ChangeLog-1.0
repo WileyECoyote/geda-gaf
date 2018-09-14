@@ -18,6 +18,9 @@
     * src/x/x_status_bar.c: Add function x_status_bar_set_middle_popup and
       handle case MOUSE_MIDDLE_POPUP on the status bar.
 
+    * src/x/x_settings_dialog.c: Add RC_STR_MID_MOUSEPOP to the preference
+      dialog.
+
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_command.h: Wrap is_a_console parameter in parentheses.

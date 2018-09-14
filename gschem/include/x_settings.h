@@ -108,7 +108,7 @@ struct rc_7_strings_t
 #define RC_STYLES_STRINGS struct rc_7_strings_t string_table = {RC_STR_STYLE_NONE, RC_STR_STYLE_THIN, RC_STR_STYLE_THICK, NULL};
 
 #define RC_MIDDLE_MOUSE_STRINGS struct rc_7_strings_t string_table = {RC_STR_MID_STROKE, RC_STR_MID_REPEAT, \
-                                                                   RC_STR_MID_ACTION, RC_STR_MID_MOUSEPAN};
+                                                                   RC_STR_MID_ACTION, RC_STR_MID_MOUSEPAN, RC_STR_MID_MOUSEPOP};
 #define RC_3RD_BUTT_STRINGS struct rc_7_strings_t string_table = {RC_STR_3RD_POPUP, RC_STR_3RD_PAN, NULL, NULL};
 #define RC_SCROLL_STRINGS struct rc_7_strings_t string_table = {RC_STR_SCROLL_GTK, RC_STR_SCROLL_CLASSIC, NULL, NULL};
 
