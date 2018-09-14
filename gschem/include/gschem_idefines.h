@@ -238,6 +238,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define MOUSE_MIDDLE_ACTION     2
 #define MOUSE_MIDDLE_PAN        3
 #define DEFAULT_MOUSE_MIDDLE    MOUSE_MIDDLE_PAN
+#define MOUSE_MIDDLE_POPUP      4
 
 /* for auto-pan, unit is milliseconds */
 #define AUTO_PAN_INTERVAL       75

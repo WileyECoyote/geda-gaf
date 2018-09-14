@@ -1508,6 +1508,7 @@ SCM g_rc_middle_button(SCM mode)
     {MOUSE_MIDDLE_REPEAT, RC_STR_MID_REPEAT},
     {MOUSE_MIDDLE_ACTION, RC_STR_MID_ACTION},
     {MOUSE_MIDDLE_PAN,    RC_STR_MID_MOUSEPAN},
+    {MOUSE_MIDDLE_POPUP,  RC_STR_MID_MOUSEPOP},
   };
 
   RETURN_G_RC_MODE("middle-button", default_middle_button, mode_table);

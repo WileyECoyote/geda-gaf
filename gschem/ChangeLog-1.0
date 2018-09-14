@@ -2,7 +2,12 @@
 
     * etc/system-gschemrc.scm: Change the default icon for "file-print" to
       "gschem-print-document" and leave "gtk-print" as an alternate, and
-      change the "page-manager" icon to "gschem-page-man".
+      change the "page-manager" icon to "gschem-page-man", add middle-button
+      "Popup" option.
+
+    * include/gschem_idefines.h: Add MOUSE_MIDDLE_POPUP.
+
+    * include/gschem_sdefines.h: Define RC_STR_MID_MOUSEPOP.
 
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 

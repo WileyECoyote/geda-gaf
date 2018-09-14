@@ -770,12 +770,14 @@
 ;
 ; Controls if the middle mouse button draws strokes, repeats the last
 ; command, does an action (move and copy (holding down the ALT key)
-; are supported) on a single objects, or if it does the mouse panning.
+; are supported) on a single objects, does the mouse panning, or if
+; it displays a contect popup menu.
 ;
 ;(middle-button "Stroke")
 ;(middle-button "Repeat")
 ;(middle-button "Action")
 ;(middle-button "Pan")
+;(middle-button "Popup")
 
 ; mousepan-gain integer
 ;
@@ -1091,8 +1093,8 @@
 ; scrollbars-visible string
 ;
 ; Controls if the scrollbars are displayed (enabled) or not (disabled)
-; If scrollbars-visible is disabled, scrollbars will not be displade
-; scroll wheel on the pointer will still be functional.
+; If scrollbars-visible is disabled, scrollbars will not be displayed
+; but scroll wheel on the pointer will still be functional.
 ;
 ;(scrollbars-visible "enabled")
 ;(scrollbars-visible "disabled")

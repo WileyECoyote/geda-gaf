@@ -233,6 +233,7 @@
 #define RC_STR_MID_REPEAT      "Repeat"
 #define RC_STR_MID_ACTION      "Action"
 #define RC_STR_MID_MOUSEPAN    "Pan"
+#define RC_STR_MID_MOUSEPOP    "Popup"
 
 /* Third button Function */
 #define RC_STR_3RD_POPUP       "Popup"

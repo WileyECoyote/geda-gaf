@@ -760,6 +760,7 @@
 ;(middle-button "Repeat")
 ;(middle-button "Action")
 ;(middle-button "Pan")
+;(middle-button "Popup")
 
 ; mousepan-gain integer
 ;
