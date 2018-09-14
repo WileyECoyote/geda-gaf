@@ -1,3 +1,8 @@
+2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacairo.1.in: Revise wrap line wrapping, replace back ticks
+      with double qoutes or eliminate, revise phrasing.
+
 2018-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Generate html and latex man pages.

@@ -15,26 +15,28 @@ Libgedacairo \- Cairo-based Schematic and Symbol Renderer Library
 .PP
 The
 .B Libgedacairo
-library provides a renderer for schematics and symbols based on the Cairo vector
-graphics library and the Pango font library. Data for rendering is loaded using libgeda.
+library provides a renderer for schematics and symbols based on the Cairo
+vector graphics library and the Pango font library. Data for rendering is
+loaded using libgeda.
 
 The library does *not* provide a rendering widget for programs, although
 .B Libgedacairo
-could be used to implement one. The library is intended for more general rendering usage,
-e.g. to screen, to printers, or to various image formats.
+could be used to implement one. The library is intended for more general
+rendering usage, e.g. to screen, to printers, or to various image formats.
 .LP
 .SH CONFIGURATION
 .PP
-Library operations are controlled by programmatically setting properties of the EdaRenderer object,
-see below for more information. For details on setting up linkage see
+Library operations are controlled by programmatically setting properties
+of the EdaRenderer object, see below for more information. For details on
+setting up linkage see
 \fBlibgedacairo\fR(3)
 .LP
 .SH ENVIRONMENT
 .PP
 .B Libgedacairo
-does not recognize any environment variables. Operations are controlled by programmatically
-setting properties of the EdaRenderer object. The Cairo library does recognize a limited
-number of environment variables
+does not recognize any environment variables. Operations are controlled by
+programmatically setting properties of the EdaRenderer object. The Cairo
+library does recognize a limited number of environment variables
 :
 .LP
 .TP 8
@@ -46,7 +48,8 @@ number of environment variables
 .TP 8
 .SS CAIRO_GALLIUM_FORCE
 .LP
-See the Cairo library documentation for information on the use of these environment variables.
+See the Cairo library documentation for information on the use of these
+environment variables.
 .LP
 .SH USAGE
 .PP
@@ -62,15 +65,15 @@ that user coordinates match coordinates on the schematic or symbol page.
 .PP
 .TP 8
 .SS EDARENDERER CLASS
-The EdaRenderer class is the main interface to the library.  The EdaRenderer
+The EdaRenderer class is the main interface to the library. The EdaRenderer
 class uses information from libgeda OBJECT structures to draw various schematic
 elements, control grips, and cues.
 .IP
-EdaRenderer is a GObject class, with several properties that control
-its behaviour:
+An EdaRenderer is a GObject with the following properties that control
+behaviour:
 .IP
   "cairo-context"  [pointer]
-      The `cairo_t' drawing context which the renderer draws to.
+      The Cairo drawing context which the renderer draws to.
 .IP
   "pango-context"  [pointer]
       The state of the Pango string-to-glyph itemizer. The renderer
@@ -81,7 +84,7 @@ its behaviour:
       The font to use when drawing text.  By default, this is "Arial".
 .IP
   "color-map"  [pointer]
-      A GArray of libgeda `COLOR' structures which is used as the
+      A GArray of libgeda "COLOR" structures which is used as the
       color map for drawing. Note that the EdaRenderer does not make
       a copy of this array, and doesn't free it when the EdaRenderer
       is destroyed.
