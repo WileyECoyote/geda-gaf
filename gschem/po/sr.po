@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2018-09-08 10:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
-"Language-Team: Serbian <sr@li.org>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,39 +80,45 @@ msgstr "Nije uspela da obradi datoteke sa početnim"
 msgid "version"
 msgstr "верзија"
 
+# Sistem evidencije je onemogućen
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr "Sistem za snimanje je onemogućen\n"
+msgstr "Систем евиденције је онемогућен\n"
 
+# GREŠKA: Nije bilo moguće učitati ili procijeniti početnu skriptu
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr "GREŠKA: Failed to load ili procenu skripte.\n"
+msgstr "ГРЕШКА: Није било могуће учитати или процијенити почетну скрипту.\n"
 
+# Normalno prestanak
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr "Normalno prestanak\n"
+msgstr "Излазак из нормалног\n"
 
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
 msgstr "НИЈЕ УСПЕО:"
 
-# Parent Window
+# Parent Window Parent Vindov roditeljski прозор
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent Window"
-msgstr "roditeljski прозор"
+msgstr "Парент Виндов"
 
+# Roditelj prozor za ovom dijalogu
 #: gschem/src/base/gschem_dialog.c:565
 msgid "Parent window for this dialog"
-msgstr "Roditelj prozor za ovom dijalogu"
+msgstr "Родитељски прозор за овај дијалог"
 
+# Naslov
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Title"
-msgstr "Naslov"
+msgstr "Наслов"
 
+# Dijalog prozor naslov
 #: gschem/src/base/gschem_dialog.c:586
 msgid "Dialog window title"
-msgstr "Dijalog prozor naslov"
+msgstr "Дијалог наслова прозора"
 
 # Label Text
 #: gschem/src/base/gschem_macro_widget.c:232
@@ -279,14 +285,14 @@ msgstr "opcija zahteva argument"
 msgid "Unknown option"
 msgstr "nepoznata opcija"
 
+# Nepoznata opcija karakter
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr "Nepoznata opcija karakter"
+msgstr "Непознати знак опције"
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "pomoć za više informacija"
+msgstr "помоћ за више информација"
 
 # Perform
 #: gschem/src/base/gschem_parsecmd.c:304
@@ -1843,7 +1849,7 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# unselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
 msgid "safe mode"
 msgstr "безбедни режим"
@@ -3158,11 +3164,10 @@ msgstr ""
 msgid "Text alignment combobox"
 msgstr "Поравнање текста цомбобок"
 
-# Text Alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Поравнање текста цомбобок"
+msgstr "Тект цомбобок"
 
 #: gschem/src/x/x_edit_text.c:851
 msgid "Color options menu"
