@@ -3054,11 +3054,10 @@ msgstr "文本属性"
 msgid "Text alignment combobox"
 msgstr "文本对齐组合框"
 
-# Text alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "文本对齐组合框"
+msgstr "文本案例组合框"
 
 # Color options menu
 #: gschem/src/x/x_edit_text.c:851
@@ -3597,11 +3596,10 @@ msgstr ""
 msgid "Undo"
 msgstr "撤销"
 
-# Go to the last page
+# Undo the last polygon segment, Chèxiāo zuìhòu yīgè duōbiānxíng xiànduàn
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "转到最后一页"
+msgstr "撤消最后一个多边形线段"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2075
 msgid "Open an existing schematic or symbol file"
@@ -4341,16 +4339,15 @@ msgstr ""
 msgid "Aborting action\n"
 msgstr ""
 
-#  close window has been canceled
+# Close window has been canceled
 #: gschem/src/x/x_window.c:682
 msgid "Close Window canceled\n"
 msgstr "关闭窗口已被取消\n"
 
-# Down Schematic
+# Shutdown schematic editor, Guānbì yuánlǐ tú biānjí qì
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "下降原理图"
+msgstr "关闭原理图编辑器\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
@@ -4922,11 +4919,10 @@ msgstr "缩放选择"
 msgid "D_ocumentation..."
 msgstr "文档..."
 
-# Find component documentation
+# View component documentation, Chákàn zǔjiàn wéndàng
 #: gschem/etc/system-gschemrc.scm:2215
-#, fuzzy
 msgid "View component documentation"
-msgstr "查找组件文档"
+msgstr "查看组件文档"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Show/Hide Inv Text"
@@ -6054,66 +6050,80 @@ msgstr "隐藏网格"
 msgid "Cycle Grid Mode"
 msgstr "切换网格模式"
 
+# Increase Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:475
 msgid "Increase Grid Spacing"
-msgstr ""
+msgstr "增加网格间距"
 
+# Decrease Grid Spacing
 #: gschem/scheme/gschem/builtins.scm:478
 msgid "Decrease Grid Spacing"
-msgstr ""
+msgstr "减少网格间距"
 
+# Set Snap Spacing => Set the capture pitch, Shèzhì bǔzhuō jiānjù
 #: gschem/scheme/gschem/builtins.scm:481
 msgid "Set Snap Spacing"
-msgstr ""
+msgstr "设置捕捉间距"
 
+# Turn Snap off => Turn off capture mode, Guānbì bǔhuò móshì
 #: gschem/scheme/gschem/builtins.scm:484
 msgid "Turn Snap off"
-msgstr ""
+msgstr "关闭捕获模式"
 
+# Turn Snap on => Turn Capture-mode on, Dǎkāi bǔhuò móshì
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
-msgstr ""
+msgstr "打开捕获模式"
 
 # Cycle Snap Mode
 #: gschem/scheme/gschem/builtins.scm:490
 msgid "Cycle Snap Mode"
 msgstr "循环捕捉模式"
 
+# Toggle Net Rubber Band => Switch net rubber band, Qiēhuàn jìng xiàngpí jīn
 #: gschem/scheme/gschem/builtins.scm:493
 msgid "Toggle Net Rubber Band"
-msgstr ""
+msgstr "切换净橡皮筋"
 
+# Toggle Magnetic Nets
 #: gschem/scheme/gschem/builtins.scm:496
 msgid "Toggle Magnetic Nets"
-msgstr ""
+msgstr "切换磁网"
 
+# Enable/Disable Drag move
 #: gschem/scheme/gschem/builtins.scm:499
 msgid "Enable/Disable Drag move"
-msgstr ""
+msgstr "启用/禁用拖动移动"
 
+# Toggle Outline Drawing
 #: gschem/scheme/gschem/builtins.scm:502
 msgid "Toggle Outline Drawing"
-msgstr ""
+msgstr "切换轮廓图"
 
+# Enable/Disable Auto Panning
 #: gschem/scheme/gschem/builtins.scm:505
 msgid "Enable/Disable Auto Panning"
-msgstr ""
+msgstr "启用/禁用自动平移"
 
+# Set Default Text Size
 #: gschem/scheme/gschem/builtins.scm:508
 msgid "Set Default Text Size"
-msgstr ""
+msgstr "设置默认文本大小"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "打开首选项对话框"
 
+# gEDA Manuals
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "gEDA手册"
 
+# View the front page of the gEDA documentation in a browser
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "在浏览器中查看gEDA文档的首页."
 
 #: gschem/scheme/gschem/builtins.scm:522
 msgid "Show Hotkeys"
@@ -6123,50 +6133,60 @@ msgstr "显示热键"
 msgid "Component Documentation"
 msgstr "组件文档"
 
+# View documentation for selected component
+# Chákàn suǒ xuǎn zǔjiàn de wéndàng
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "查看所选组件的文档"
 
+# Could not show documentation for selected component
+# Wúfǎ xiǎnshì suǒ xuǎn zǔjiàn de wéndàng
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "无法显示所选组件的文档\n"
 
+# gschem User Guide, Gschem yònghù zhǐnán
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
-msgstr ""
+msgstr "gschem用户指南"
 
+# View the User Guide in a browser
+# Zài liúlǎn qì zhōng chákàn yònghù zhǐnán
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "在浏览器中查看用户指南."
 
+# Frequently Asked Questions, Jīngcháng wèn de wèntí
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr ""
+msgstr "经常问的问题"
 
+# Frequently Asked Questions about using gschem
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "有关使用gschem的常见问题解答."
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "在浏览器中查看gEDA wiki的首页."
 
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "Invalid text alignment ~A."
 
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
 msgstr "未找到文档"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embed symbol"
-msgstr ""
+msgstr "导出嵌入式符号"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embed picture"
@@ -6175,13 +6195,9 @@ msgstr "导出嵌入图片"
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
-msgstr ""
+msgstr "~S 不是有效的组合键."
 
 #: gschem/scheme/gschem/keymap.scm:156
 #, scheme-format
 msgid "~S is not a prefix key sequence."
-msgstr ""
-
-# Automatic Height
-#~ msgid "Auto Height"
-#~ msgstr "自动高度"
+msgstr "~S 不是前缀键序列."
