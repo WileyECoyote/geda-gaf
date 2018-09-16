@@ -3068,11 +3068,10 @@ msgstr "文本屬性"
 msgid "Text alignment combobox"
 msgstr "文本對齊組合框"
 
-# Text alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "文本對齊組合框"
+msgstr "文本案例組合框"
 
 # Color options menu
 #: gschem/src/x/x_edit_text.c:851
@@ -3615,11 +3614,10 @@ msgstr ""
 msgid "Undo"
 msgstr "復原"
 
-# Undo the last action
+# Undo the last polygon segment, Chèxiāo zuìhòu yīgè duōbiānxíng xiànduàn
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "撤消上一個操作"
+msgstr "撤消最後一個多邊形線段"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2075
 msgid "Open an existing schematic or symbol file"
@@ -4365,10 +4363,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "關閉窗口已取消\n"
 
+# Shutdown schematic editor, Guānbì yuánlǐ tú biānjí qì
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA 電路圖編輯器"
+msgstr "關閉原理圖編輯器\n"
 
 # The file is being loaded
 #: gschem/src/x/x_window.c:771
@@ -4941,11 +4939,10 @@ msgstr "縮放選擇"
 msgid "D_ocumentation..."
 msgstr ""
 
-# Find component documentation
+# View component documentation, Chákàn zǔjiàn wéndàng
 #: gschem/etc/system-gschemrc.scm:2215
-#, fuzzy
 msgid "View component documentation"
-msgstr "查找組件文檔"
+msgstr "查看組件文檔"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Show/Hide Inv Text"
@@ -6054,12 +6051,12 @@ msgstr "減小網格間距"
 msgid "Set Snap Spacing"
 msgstr "設置捕捉間距"
 
-# Turn Snap-mode off
+# Turn Snap off => Turn off capture mode, Guānbì bǔhuò móshì
 #: gschem/scheme/gschem/builtins.scm:484
 msgid "Turn Snap off"
 msgstr "關閉捕捉模式"
 
-# Turn Capture-mode on
+# Turn Snap on => Turn Capture-mode on, Dǎkāi bǔhuò móshì
 #: gschem/scheme/gschem/builtins.scm:487
 msgid "Turn Snap on"
 msgstr "打開捕獲模式"
@@ -6195,10 +6192,3 @@ msgstr "~S 不是有效的組合鍵."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 不是前綴密鑰序列."
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>增加屬性</b>"
-
-# Automatic Height
-#~ msgid "Auto Height"
-#~ msgstr "自動高度"
