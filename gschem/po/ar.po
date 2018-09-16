@@ -808,22 +808,26 @@ msgstr ""
 msgid "Session"
 msgstr "أظهر ال_اسم"
 
+# opening
 #: gschem/src/iface/i_sessions.c:347
 msgid "opening"
-msgstr ""
+msgstr "بداية"
 
+# of, min
 #: gschem/src/iface/i_sessions.c:348
 msgid "of"
-msgstr ""
+msgstr "من"
 
 #: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:938
 #: gschem/src/iface/i_sessions.c:1112
 msgid "documents"
 msgstr "ت_وثيق"
 
+# did not contain any accessible documents
+# la yahtawi ealaa 'ayi wathayiq ymkn alwusul 'iilayha
 #: gschem/src/iface/i_sessions.c:358
 msgid "did not contain any accessible documents"
-msgstr ""
+msgstr "لا يحتوي على أي وثائق يمكن الوصول إليها"
 
 #: gschem/src/iface/i_sessions.c:795
 msgid "Sessions"
@@ -837,13 +841,15 @@ msgstr "احفظ الكل"
 msgid "Failed to remove session"
 msgstr "عدم إزالة الدورة"
 
+# Could not remove session, la yumkin 'iizalat aljalsa
 #: gschem/src/iface/i_sessions.c:888
 msgid "<b>Could not remove session</b>"
-msgstr ""
+msgstr "<b>لا يمكن إزالة الجلسة</b>"
 
+# created with
 #: gschem/src/iface/i_sessions.c:937
 msgid "created with"
-msgstr ""
+msgstr "تم إنشاؤها باستخدام"
 
 #: gschem/src/iface/i_sessions.c:945
 msgid "An error occurred attempting to create session"
@@ -865,25 +871,28 @@ msgstr "احفظ الكل"
 msgid "Renaming session"
 msgstr "احفظ الكل"
 
+# to, 'iilaa
 #: gschem/src/iface/i_sessions.c:1049
 msgid "to"
-msgstr ""
+msgstr "إلى"
 
 #: gschem/src/iface/i_sessions.c:1073
 msgid "Failed to rename session"
 msgstr "فشل في إعادة تسمية جلسة"
 
+# la yumkin 'iieadat tasmiat aljalsa
 #: gschem/src/iface/i_sessions.c:1076
 msgid "<b>Could not rename session</b>"
-msgstr ""
+msgstr "<b>لا يمكن إعادة تسمية الجلسة</b>"
 
 #: gschem/src/iface/i_sessions.c:1110
 msgid "Created session"
 msgstr "النافذة الحالية"
 
+# with mae
 #: gschem/src/iface/i_sessions.c:1111
 msgid "with"
-msgstr ""
+msgstr "مع"
 
 #: gschem/src/iface/i_sessions.c:1121 gschem/src/x/x_window.c:1243
 #: gschem/src/x/x_window.c:1246
@@ -896,7 +905,7 @@ msgstr "النافذة الحالية"
 
 #: gschem/src/iface/i_sessions.c:1132
 msgid "An error occurred attempting to save session"
-msgstr "﻿حدث خطأ أثناء محاولة لإنقاذ جلسة"
+msgstr "حدث خطأ أثناء محاولة حفظ الجلسة"
 
 #: gschem/src/iface/i_sessions.c:1140
 msgid "Save session failed"
@@ -912,7 +921,7 @@ msgstr "مشاهدة جلسات عند بدء التشغيل معطل الآن\n
 
 #: gschem/src/iface/i_sessions.c:1304
 msgid "Session system initialized!\n"
-msgstr ""
+msgstr "تهيئة نظام الجلسة!\n"
 
 #: gschem/src/iface/i_status.c:130 gschem/etc/system-gschemrc.scm:2144
 msgid "Deselect Mode"
@@ -940,9 +949,10 @@ msgstr "انسخ إلى الحافظة"
 msgid "Rotate Mode"
 msgstr "وضع الإستدارة"
 
+# Side to offset, aljanib liltaewid?
 #: gschem/src/iface/i_status.c:145
 msgid "Side to offset?"
-msgstr ""
+msgstr "الجانب للتعويض؟"
 
 #: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
@@ -1041,9 +1051,10 @@ msgstr "إيقاف الجذب"
 msgid "Resnap Active"
 msgstr "تفعيل إعادة الجذب"
 
+# Initializing default configuration settings
 #: gschem/src/iface/i_vars.c:767
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "تهيئة إعدادات التكوين الافتراضية\n"
 
 #: gschem/src/iface/i_vars.c:808
 msgid "Failed to save user configuration to"
@@ -1056,7 +1067,7 @@ msgstr "إغلاق الصفحة\n"
 #: gschem/src/iface/i_window.c:168
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr ""
+msgstr "اجعل الصفحة <%s> نشطة.\n"
 
 #: gschem/src/iface/i_window.c:263
 msgid "Really revert page?"
@@ -1095,10 +1106,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating objects, tarjamat al'ashya'
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "سحب المخطط"
+msgstr "ترجمة الأشياء"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
