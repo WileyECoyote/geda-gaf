@@ -311,9 +311,8 @@ msgstr "Неизвестна опция характер"
 
 # help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "--дапамогу для атрымання дадатковай інфармацыі"
+msgstr "помощ за повече информация"
 
 # Run
 #: gschem/src/base/gschem_parsecmd.c:304
@@ -1733,24 +1732,26 @@ msgstr "избрани страници"
 
 #: gschem/src/x/x_console.c:140
 msgid "destroying history\n"
-msgstr ""
+msgstr "унищожавайки историята\n"
 
 #: gschem/src/x/x_console.c:155
 msgid "Initializing Log & Console Systems configuration settings\n"
-msgstr ""
+msgstr "Инициализиране на конфигурационните настройки на регистрационните и конзолните системи\n"
 
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Отмяна на избора на готовност"
+msgstr "безопасен режим"
 
+# multitasking mode
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "мултитаскинг режим"
 
+# unknown, obscure
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
-msgstr ""
+msgstr "неизвестен"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
@@ -3026,30 +3027,33 @@ msgstr ""
 msgid "Lower"
 msgstr ""
 
+# Camel
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
-msgstr ""
+msgstr "камила"
 
 #: gschem/src/x/x_edit_text.c:319
 msgid "Sentence"
-msgstr ""
+msgstr "изречение"
 
+# Edit Text Properties
 #: gschem/src/x/x_edit_text.c:678
 msgid "Edit Text Properties"
-msgstr ""
+msgstr "Редактиране на текстовите характеристики"
 
+# Text Properties
 #: gschem/src/x/x_edit_text.c:725
 msgid "Text Properties"
-msgstr ""
+msgstr "Свойства на текста"
 
 #: gschem/src/x/x_edit_text.c:843
 msgid "Text alignment combobox"
 msgstr "Текст ComboBox подравняване"
 
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Текст ComboBox подравняване"
+msgstr "Текстова кутия"
 
 # Color options menu
 #: gschem/src/x/x_edit_text.c:851
@@ -3554,10 +3558,10 @@ msgstr ""
 msgid "Undo"
 msgstr "Върни"
 
+# Undo the last path segment => Cancel the last segment of the path
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "отмените последното действие"
+msgstr "Отменете последния сегмент от пътя"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2075
 msgid "Open an existing schematic or symbol file"
@@ -4257,10 +4261,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Затвори прозореца отменен\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA Схематично Редактор"
+msgstr "Изключване на схематичен редактор\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
