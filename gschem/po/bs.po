@@ -65,55 +65,64 @@ msgstr "Nije moguće locirati datoteku za inicijalizaciju sheme"
 msgid "Read scheme initialization file"
 msgstr "Pročitaj datoteku inicijalizacije šeme"
 
+# Failed to read scheme initialization file
 #: gschem/src/base/gschem.c:398
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "Nije moguće čitati datoteku inicijalizacije sheme"
 
 #: gschem/src/base/gschem.c:422
 msgid "version"
 msgstr "verzija"
 
+# Logging system is disabled
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Sistem evidencije je onemogućen\n"
 
+# ERROR: Failed to load or evaluate startup script
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "Greška: Nije bilo moguće učitati ili procijeniti početnu skriptu.\n"
 
+# Exiting normal
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Izlazak iz normalnog\n"
 
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "Pali"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent Window"
 msgstr "roditelj prozor"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:565
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Roditeljski prozor za ovaj dijalog"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:586
 msgid "Dialog window title"
-msgstr ""
+msgstr "Dijalog naslov prozora"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "Tekst oznake"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Tekst koji će se prikazati za oznaku makroa"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
@@ -1121,16 +1130,15 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
-# Translating schematic
+# Translating objects
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "prijevodi shematski"
+msgstr "Prevođenje objekata"
 
 # Translating schematic
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
-msgstr "prijevodi shematski"
+msgstr "Prijevodi shematski"
 
 #: gschem/src/object/o_delete.c:91
 #, c-format
@@ -1673,23 +1681,23 @@ msgstr "nesuvane stranice"
 msgid "selected pages"
 msgstr "izabrane stranice"
 
+# destroying history
 #: gschem/src/x/x_console.c:140
 msgid "destroying history\n"
-msgstr ""
+msgstr "uništavajući istoriju\n"
 
 #: gschem/src/x/x_console.c:155
 msgid "Initializing Log & Console Systems configuration settings\n"
-msgstr ""
+msgstr "Inicijalizacija konfiguracijskih postavki dnevnika i konzole\n"
 
-# mode Unselecting
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "režim Deselektiranjem"
+msgstr "siguran način"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "režim multitaskinga"
 
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
@@ -3557,11 +3565,10 @@ msgstr ""
 msgid "Undo"
 msgstr "poništiti promjene"
 
-# Undo the last action
+# Undo the last path segmen
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "Poništiti posljednje akcije"
+msgstr "Otkažite posljednji odsječak put"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2075
 msgid "Open an existing schematic or symbol file"
@@ -4272,22 +4279,24 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "Zatvori prozor otkazan\n"
 
+# Shutdown schematic editor
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "Dolje Shematski"
+msgstr "Šematski editor za isključivanje\n"
 
+# Loading file
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
-msgstr ""
+msgstr "Učitavanje datoteke"
 
 #: gschem/src/x/x_window.c:919
 msgid "New file"
 msgstr "Novi Datoteka"
 
+# Failed to load file
 #: gschem/src/x/x_window.c:967
 msgid "Failed to load file"
-msgstr ""
+msgstr "Nije bilo moguće učitati datoteku"
 
 # Creating new file
 #: gschem/src/x/x_window.c:997
