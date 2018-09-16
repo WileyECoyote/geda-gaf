@@ -80,51 +80,61 @@ msgstr "ഇനിഷ്യലൈസേഷൻ scheme ഫയൽ വായിക്
 msgid "version"
 msgstr "പതിപ്പ്"
 
+# Logging system is disabled
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "ലോഗിംഗ് സിസ്റ്റം പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു\n"
 
+# Error: Failed to load or evaluate startup script.
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "പിശക്: സ്റ്റാർട്ടപ്പ് സ്ക്രിപ്റ്റ് ലോഡുചെയ്യുന്നതിനോ മൂല്യനിർണ്ണയമാക്കുന്നതിനോ പരാജയപ്പെട്ടു.\n"
 
+# Exiting normal
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Exiting normal\n"
 
+# FAILED
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "പരാജയപ്പെട്ടു:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent Window"
 msgstr "രക്ഷാകർതൃ വിൻഡോ"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:565
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "ഈ ഡയലോഗിനുള്ള പേരന്റ് ജാലകം"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Title"
-msgstr ""
+msgstr "ശീർഷകം"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:586
 msgid "Dialog window title"
-msgstr ""
+msgstr "ഡയലോഗ് വിൻഡോ ശീർഷകം"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "വാചകം ലേബൽ ചെയ്യുക"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "മാക്രോ ലേബലിനായി പ്രദർശിപ്പിക്കുന്നതിനുള്ള ടെക്സ്റ്റ്"
 
+# Macro
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "മാക്രോ:"
 
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
@@ -1665,23 +1675,24 @@ msgstr ""
 msgid "selected pages"
 msgstr "തിരഞ്ഞെടുത്ത പേജുകൾ"
 
+# destroying history
 #: gschem/src/x/x_console.c:140
 msgid "destroying history\n"
-msgstr ""
+msgstr "ചരിത്രം നശിപ്പിക്കുന്നു\n"
 
 #: gschem/src/x/x_console.c:155
 msgid "Initializing Log & Console Systems configuration settings\n"
-msgstr ""
+msgstr "ലോഗ്, കൺസോൾ സിസ്റ്റങ്ങളുടെ ക്രമീകരണ സജ്ജീകരണം ആരംഭിക്കുന്നു\n"
 
-# Change the selection mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "മോഡ് തിരഞ്ഞെടുത്തത് മാറ്റുക"
+msgstr "സുരക്ഷിത മോഡ്"
 
+# multitasking mode
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "മൾട്ടിടാസ്കിങ് മോഡ്"
 
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
@@ -2227,18 +2238,20 @@ msgstr ""
 msgid "<b>Invalid Data.</b>"
 msgstr ""
 
+# samārambhikkunnu: grāphiks ṟenḍaṟar aḍāpṟṟar ...
 #: gschem/src/x/x_draw.cpp:463
-#, fuzzy
 msgid "Initializing: Graphics Renderer Adaptor..."
-msgstr "ഐക്കൺ ഫാക്ടറി ആരംഭിക്കുന്നു\n"
+msgstr "സമാരംഭിക്കുന്നു: ഗ്രാഫിക്സ് റെൻഡറർ അഡാപ്റ്റർ ..."
 
+# done, ceytu
 #: gschem/src/x/x_draw.cpp:487
 msgid "done"
-msgstr ""
+msgstr "ചെയ്തു"
 
+# ṣaṭṭḍaṇ ceyyuka: grāphiks ṟenḍaṟar aḍāpṟṟar ...
 #: gschem/src/x/x_draw.cpp:493
 msgid "Shutting down: Graphics Renderer Adaptor..."
-msgstr ""
+msgstr "ഷട്ട്ഡൗൺ ചെയ്യുക: ഗ്രാഫിക്സ് റെൻഡറർ അഡാപ്റ്റർ ..."
 
 #: gschem/src/x/x_draw.cpp:501
 msgid "Done, renderer is down"
@@ -2975,32 +2988,35 @@ msgstr ""
 msgid "Lower"
 msgstr ""
 
+# Camel
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
-msgstr ""
+msgstr "ഒട്ടകം"
 
+# Sentence
 #: gschem/src/x/x_edit_text.c:319
 msgid "Sentence"
-msgstr ""
+msgstr "വാചകം"
 
+# Edit Text Properties
 #: gschem/src/x/x_edit_text.c:678
 msgid "Edit Text Properties"
-msgstr ""
+msgstr "ടെക്സ്റ്റ് ഗുണവിശേഷതകള് എഡിറ്റുചെയ്യുക"
 
+# Text Properties
 #: gschem/src/x/x_edit_text.c:725
 msgid "Text Properties"
-msgstr ""
+msgstr "ടെക്സ്റ്റ് ഗുണവിശേഷതകൾ"
 
 # Text Alignment Selector
 #: gschem/src/x/x_edit_text.c:843
 msgid "Text alignment combobox"
 msgstr "ടെക്സ്റ്റ് വിന്യാസം സെലക്ടർ"
 
-# Text Alignment Selector
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "ടെക്സ്റ്റ് വിന്യാസം സെലക്ടർ"
+msgstr "ടെക്സ്റ്റ് കേസ് കോംബോബോക്സ്"
 
 #: gschem/src/x/x_edit_text.c:851
 msgid "Color options menu"
@@ -4308,11 +4324,10 @@ msgstr ""
 msgid "Close Window canceled\n"
 msgstr "വിൻഡോ അടയ്ക്കുക റദ്ദാക്കി\n"
 
-# Shutting down icon factory
+# Shutdown schematic editor, skūṭṭaṇ eḍiṟṟar eḍiṟṟuceyyuka
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "ഐക്കൺ ഫാക്ടറി അവസാനിപ്പിക്കും\n"
+msgstr "സ്കൂട്ടൗൺ എഡിറ്റർ എഡിറ്റുചെയ്യുക\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"

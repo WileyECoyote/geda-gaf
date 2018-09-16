@@ -8,6 +8,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/ml.po: Updated Malayalam translations.
+
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Change the default icon for "file-print" to
