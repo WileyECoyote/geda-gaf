@@ -12,6 +12,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Change the default icon for "file-print" to

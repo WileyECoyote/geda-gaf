@@ -230,7 +230,7 @@ msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "help for more information"
-msgstr ""
+msgstr "Daha fazla bilgi için yardım"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1116,14 +1116,13 @@ msgstr ""
 
 # Translating schematic
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "Şema çevirme"
+msgstr "Çeviri nesneleri"
 
 # Translating schematic
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
-msgstr "Şema çevirme"
+msgstr "Çeviri şematik"
 
 #: gschem/src/object/o_delete.c:91
 #, c-format
@@ -1674,11 +1673,10 @@ msgstr ""
 msgid "Initializing Log & Console Systems configuration settings\n"
 msgstr ""
 
-# Deselect mode
+# safe mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Modun seçimini kaldır"
+msgstr "güvenli mod"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
@@ -3048,11 +3046,10 @@ msgstr ""
 msgid "Camel"
 msgstr ""
 
-# Sequence
+# Sentence
 #: gschem/src/x/x_edit_text.c:319
-#, fuzzy
 msgid "Sentence"
-msgstr "Sıra:"
+msgstr "cümle:"
 
 # Edit Text Properties
 #: gschem/src/x/x_edit_text.c:678
@@ -3068,11 +3065,10 @@ msgstr ""
 msgid "Text alignment combobox"
 msgstr "Metin hizalama combobox"
 
-# Text alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Metin hizalama combobox"
+msgstr "Metin açılan kutusu"
 
 #: gschem/src/x/x_edit_text.c:851
 msgid "Color options menu"
@@ -4314,9 +4310,8 @@ msgid "Close Window canceled\n"
 msgstr "Pencereyi Kapatıldı\n"
 
 #: gschem/src/x/x_window.c:706
-#, fuzzy
 msgid "Shutdown schematic editor\n"
-msgstr "gEDA Şematik Editörü"
+msgstr "Kapanış şematik editörü\n"
 
 #: gschem/src/x/x_window.c:771
 msgid "Loading file"
