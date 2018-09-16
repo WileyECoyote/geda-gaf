@@ -237,9 +237,8 @@ msgid "Unknown option character"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:302
-#, fuzzy
 msgid "help for more information"
-msgstr "tarkista loki lisätietoja"
+msgstr "apua lisätietoja"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
@@ -1639,53 +1638,53 @@ msgstr "valittuja sivuja"
 
 #: gschem/src/x/x_console.c:140
 msgid "destroying history\n"
-msgstr ""
+msgstr "tuhoamalla historiaa\n"
 
+# Initializing Log and Console Systems configuration settings
 #: gschem/src/x/x_console.c:155
 msgid "Initializing Log & Console Systems configuration settings\n"
-msgstr ""
+msgstr "Lokin ja konsolijärjestelmien asetusten määrittäminen\n"
 
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "Valintatila"
+msgstr "turva tila"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "monitoimityökalu"
 
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
-msgstr ""
+msgstr "tuntematon"
 
 #: gschem/src/x/x_console.c:199 gschem/src/x/x_console.c:202
 msgid "Command interface: engaged using"
-msgstr ""
+msgstr "Komentokäyttöliittymä: käytössä käyttäen"
 
 #: gschem/src/x/x_console.c:359
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
-msgstr ""
+msgstr "** Virheellinen UTF-8 lokiviestissä. Katso stderr tai gschem.log.\n"
 
 #: gschem/src/x/x_console.c:610
 msgid "gEDA Console"
-msgstr ""
+msgstr "gEDA konsoli"
 
 #: gschem/src/x/x_coord.c:149
 msgid "Drag & Drop"
-msgstr ""
+msgstr "Vedä ja pudota"
 
 #: gschem/src/x/x_coord.c:155 gschem/src/x/x_dnd.c:628
 msgid "An error occurred while receiving Drag & Drop data"
-msgstr ""
+msgstr "Vedon ja pudotuksen tietojen vastaanotossa tapahtui virhe"
 
 # Data error
 #: gschem/src/x/x_coord.c:156
 msgid "Data error"
-msgstr "data error"
+msgstr "Data-virhe"
 
 #: gschem/src/x/x_coord.c:161 gschem/src/x/x_dnd.c:630
 msgid "Drag & Drop failed"
-msgstr ""
+msgstr "Vedä ja pudota epäonnistui"
 
 #: gschem/src/x/x_coord.c:468
 msgid "Coordinates"
@@ -4687,10 +4686,10 @@ msgstr "_Lähennä"
 msgid "D_ocumentation..."
 msgstr "D_okumentaatio..."
 
+# View component documentation
 #: gschem/etc/system-gschemrc.scm:2215
-#, fuzzy
 msgid "View component documentation"
-msgstr "Komponentin D_okumentaatio..."
+msgstr "Katso komponenttidokumentaatio"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Show/Hide Inv Text"

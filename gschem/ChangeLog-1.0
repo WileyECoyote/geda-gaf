@@ -6,6 +6,8 @@
 
     * po/bs.po: Update Bosnian translations
 
+    * po/fi.po: Update Finnish translations.
+
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Change the default icon for "file-print" to
