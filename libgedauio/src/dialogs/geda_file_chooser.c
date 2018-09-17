@@ -780,10 +780,11 @@ GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
   return chooser_entry;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Entry Text from a GedaFileChooser Widget
+ * \par Function Description
+ *  Returns all text in the chooser's entry or NULL, returned
+ *  pointer should be freed when no longer need.
  */
 char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
 {

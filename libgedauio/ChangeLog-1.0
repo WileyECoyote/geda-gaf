@@ -1,5 +1,10 @@
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_file_chooser.c: Update function wrapping, update
+      function documentation:
+
+          * geda_file_chooser_get_entry_text
+
     * src/dialogs/geda_image_chooser.c: Replace GtkFileChooser in bug messages
       with GedaImageChooser, update function documentation:
 
