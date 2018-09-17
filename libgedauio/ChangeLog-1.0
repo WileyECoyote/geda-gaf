@@ -1,3 +1,9 @@
+2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Update function documentation:
+
+          * geda_option_menu_new
+
 2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_toolbar.c: Update File: geda_toolbar.c -> geda_seperator.c.
@@ -15,7 +21,7 @@
 
 2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/Makefile.am: Require libgedauio.dox to build Doxygen documenation,
+    * docs/Makefile.am: Require libgedauio.dox to build Doxygen documentation,
       add rules for libgedauio.1.
 
     * docs/libgedauio.1.in: Add draft template for man page.

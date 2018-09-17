@@ -1017,10 +1017,10 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
   return TRUE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Create a New GedaOptionMenu Object
+ * \par Function Description
+ *  Returns a new GEDA_TYPE_OPTION_MENU object.
  */
 GtkWidget *geda_option_menu_new (void)
 {
