@@ -37,6 +37,15 @@
             * transistor/nmosfet-e/2N6661_90V_1.5A_TO39-7.sym
             * transistor/nmosfet-e/2N6661_90V_1.5A_TO39-8.sym
 
+    * transistor/nnp-thru/BC337_npn_45V_0.625W_TO-92-?.sym
+
+            * transistor/npn-thru/BC337_npn_45V_0.625W_TO-92-1.sym
+            * transistor/npn-thru/BC337_npn_45V_0.625W_TO-92-2.sym
+            * transistor/npn-thru/BC337_npn_45V_0.625W_TO-92-3.sym
+            * transistor/npn-thru/BC337_npn_45V_0.625W_TO-92-4.sym
+            * transistor/npn-thru/BC337_npn_45V_0.625W_TO-92-5.sym
+            * transistor/npn-thru/BC337_npn_45V_0.625W_TO-92-6.sym
+
     * transistor/pnp-thru/BC327_pnp_45V_0.625W_TO-92-?.sym
 
             * transistor/pnp-thru/BC327_pnp_45V_0.625W_TO-92-1.sym
