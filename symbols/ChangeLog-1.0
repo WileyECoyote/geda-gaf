@@ -7,6 +7,13 @@
             * opto/MOC3032-1.sym
             * opto/MOC3033-1.sym
 
+    * opto/MOC304?-1.sym: Resequence objects so pin 6 is not drawn under
+      the line for the pin, update documentation link.
+
+            * opto/MOC3041-1.sym
+            * opto/MOC3042-1.sym
+            * opto/MOC3043-1.sym
+
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/FOD420?-1.sym: Add symbols, onsemi (Faichild) optoisolators:
