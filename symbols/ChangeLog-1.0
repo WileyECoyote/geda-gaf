@@ -9,6 +9,9 @@
             * lineartech/opamps/LF156A-1.sym
             * lineartech/opamps/L355-1.sym
             * lineartech/opamps/LF355A-1.sym
+            * lineartech/opamps/L356-1.sym
+            * lineartech/opamps/LF356A-1.sym
+
     * opto/MOC303?-1.sym: Add symbols, TRIAC optoisolators:
 
             * opto/MOC3030-1.sym
