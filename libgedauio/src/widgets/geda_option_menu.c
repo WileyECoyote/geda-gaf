@@ -1022,8 +1022,7 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
  *  \par Function Description
  *
  */
-GtkWidget*
-geda_option_menu_new (void)
+GtkWidget *geda_option_menu_new (void)
 {
   return g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
 }
@@ -1033,8 +1032,7 @@ geda_option_menu_new (void)
  *  \par Function Description
  *
  */
-GtkWidget*
-geda_option_menu_get_menu (GedaOptionMenu *option_menu)
+GtkWidget *geda_option_menu_get_menu (GedaOptionMenu *option_menu)
 {
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), NULL);
 
@@ -1049,8 +1047,7 @@ geda_option_menu_get_menu (GedaOptionMenu *option_menu)
  * \param [in] option_menu Pointer to GedaOptionMenu object
  * \param [in] menu        The menu to be attached
  */
-void
-geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
+void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
   g_return_if_fail (GEDA_IS_MENU (menu));
@@ -1092,8 +1089,7 @@ geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
  *
  * \returns Offset of text index within the label text
  */
-void
-geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
+void geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
@@ -1115,8 +1111,7 @@ geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
  * \param [in] option_menu Pointer to GedaOptionMenu object
  * \param [in] index       index of active menu item
  */
-void
-geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
+void geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (option_menu));
 
@@ -1143,8 +1138,7 @@ geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int index)
  *
  * \returns index of the selected menu item, or -1 if there are no menu items
  */
-int
-geda_option_menu_get_history (GedaOptionMenu *option_menu)
+int geda_option_menu_get_history (GedaOptionMenu *option_menu)
 {
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
@@ -1174,8 +1168,7 @@ geda_option_menu_get_history (GedaOptionMenu *option_menu)
  *  \par Function Description
  *
  */
-GtkWidget*
-geda_option_widget_get_menu (GtkWidget *option_menu)
+GtkWidget *geda_option_widget_get_menu (GtkWidget *option_menu)
 {
   return geda_option_menu_get_menu ((GedaOptionMenu*)option_menu);
 }
@@ -1188,8 +1181,7 @@ geda_option_widget_get_menu (GtkWidget *option_menu)
  * \param [in] option_menu Pointer to GedaOptionMenu object
  * \param [in] menu        The menu to be attached
  */
-void
-geda_option_widget_set_menu (GtkWidget *option_menu, GtkWidget *menu)
+void geda_option_widget_set_menu (GtkWidget *option_menu, GtkWidget *menu)
 {
   geda_option_menu_set_menu ((GedaOptionMenu*)option_menu, menu);
 }
@@ -1203,8 +1195,7 @@ geda_option_widget_set_menu (GtkWidget *option_menu, GtkWidget *menu)
  *
  * \returns Offset of text index within the label text
  */
-void
-geda_option_widget_remove_menu (GtkWidget *option_menu)
+void geda_option_widget_remove_menu (GtkWidget *option_menu)
 {
   geda_option_menu_remove_menu ((GedaOptionMenu*)option_menu);
 }
@@ -1219,8 +1210,7 @@ geda_option_widget_remove_menu (GtkWidget *option_menu)
  *
  * \returns index of the selected menu item, or -1 if there are no menu items
  */
-int
-geda_option_widget_get_history (GtkWidget *option_menu)
+int geda_option_widget_get_history (GtkWidget *option_menu)
 {
   return geda_option_menu_get_history ((GedaOptionMenu*)option_menu);
 }
@@ -1234,8 +1224,7 @@ geda_option_widget_get_history (GtkWidget *option_menu)
  * \param [in] option_menu Pointer to GedaOptionMenu object
  * \param [in] index       index of active menu item
  */
-void
-geda_option_widget_set_history (GtkWidget *option_menu, unsigned int index)
+void geda_option_widget_set_history (GtkWidget *option_menu, unsigned int index)
 {
   geda_option_menu_set_history ((GedaOptionMenu*)option_menu, index);
 }
