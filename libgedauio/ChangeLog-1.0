@@ -1,6 +1,7 @@
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/dialogs/geda_image_chooser.c: Update function documentation:
+    * src/dialogs/geda_image_chooser.c: Replace GtkFileChooser in bug messages
+      with GedaImageChooser, update function documentation:
 
           * geda_image_chooser_set_preview_active
 

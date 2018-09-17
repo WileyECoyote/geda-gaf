@@ -1360,7 +1360,7 @@ geda_image_chooser_get_entry_text(GtkWidget *widget)
     }
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
   return NULL;
 }
@@ -1384,7 +1384,7 @@ geda_image_chooser_get_filename(GtkWidget *widget)
     return gtk_file_chooser_get_filename((GtkFileChooser*)widget);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
   return NULL;
 }
@@ -1408,7 +1408,7 @@ geda_image_chooser_set_filename (GtkWidget *widget, const char *name)
     gtk_file_chooser_set_filename((GtkFileChooser*)widget, name);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
 }
 
@@ -1433,7 +1433,7 @@ geda_image_chooser_get_filenames(GtkWidget *widget)
     return gtk_file_chooser_get_filenames((GtkFileChooser*)widget);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
   return NULL;
 }
@@ -1457,7 +1457,7 @@ geda_image_chooser_get_current_folder(GtkWidget *widget)
     return gtk_file_chooser_get_current_folder((GtkFileChooser*)widget);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
   return NULL;
 }
@@ -1479,7 +1479,7 @@ geda_image_chooser_set_current_folder (GtkWidget *widget, const char *folder)
     gtk_file_chooser_set_current_folder((GtkFileChooser*)widget, folder);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
 }
 
@@ -1505,7 +1505,7 @@ geda_image_chooser_set_current_name (GtkWidget *widget, const char *name)
     gtk_file_chooser_set_current_name((GtkFileChooser*)widget, name);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
 }
 
@@ -1625,7 +1625,7 @@ geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
     gtk_file_chooser_set_extra_widget((GtkFileChooser*)hideous, extra);
   }
   else {
-    BUG_MSG ("Operative is not a GtkFileChooser");
+    BUG_MSG ("Operative is not a GedaImageChooser");
   }
 }
 
