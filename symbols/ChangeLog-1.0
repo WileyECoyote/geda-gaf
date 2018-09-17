@@ -1,5 +1,10 @@
 2018-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * lineartech/opamps/LF155?-1.sym: Add 2 symbols for JFET operational
+      amplifiers:
+
+            * lineartech/opamps/LF155-1.sym
+            * lineartech/opamps/LF155A-1.sym
     * opto/MOC303?-1.sym: Add symbols, TRIAC optoisolators:
 
             * opto/MOC3030-1.sym
