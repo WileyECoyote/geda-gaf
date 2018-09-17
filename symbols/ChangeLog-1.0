@@ -1,3 +1,12 @@
+2018-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/MOC303?-1.sym: Add symbols, TRIAC optoisolators:
+
+            * opto/MOC3030-1.sym
+            * opto/MOC3031-1.sym
+            * opto/MOC3032-1.sym
+            * opto/MOC3033-1.sym
+
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/FOD420?-1.sym: Add symbols, onsemi (Faichild) optoisolators:
