@@ -1027,10 +1027,12 @@ GtkWidget *geda_option_menu_new (void)
   return g_object_new (GEDA_TYPE_OPTION_MENU, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Menu from a GedaOptionMenu object
+ * \par Function Description
+ *  Accessor for GedaOptionMenu::menu.
  *
+ * \param [in] option_menu Pointer to GedaOptionMenu object
  */
 GtkWidget *geda_option_menu_get_menu (GedaOptionMenu *option_menu)
 {
