@@ -785,8 +785,7 @@ GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
  *  \par Function Description
  *
  */
-char*
-geda_file_chooser_get_entry_text(GtkWidget *despicable)
+char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
 {
   char *name;
 
@@ -815,8 +814,7 @@ geda_file_chooser_get_entry_text(GtkWidget *despicable)
  *  \par Function Description
  *
  */
-void
-geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
+void geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
 {
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
@@ -849,8 +847,7 @@ geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
  *
  * \returns filename string, which should be freed, or NULL.
  */
-char*
-geda_file_chooser_get_filename(GtkWidget *widget)
+char *geda_file_chooser_get_filename(GtkWidget *widget)
 {
   char *name;
 
@@ -877,8 +874,7 @@ geda_file_chooser_get_filename(GtkWidget *widget)
  * \param [in] widget  Pointer to a hideous GtkFileChooser widget
  * \param [in] name    Pointer to the filename to set as current
  */
-bool
-geda_file_chooser_set_filename (GtkWidget *widget, const char *name)
+bool geda_file_chooser_set_filename (GtkWidget *widget, const char *name)
 {
   int result;
 
@@ -913,8 +909,7 @@ geda_file_chooser_set_filename (GtkWidget *widget, const char *name)
  * \returns a GSList containing the filenames of all selected files and
  *          subfolders in the current folder.
  */
-GSList*
-geda_file_chooser_get_filenames(GtkWidget *widget)
+GSList *geda_file_chooser_get_filenames(GtkWidget *widget)
 {
   GSList *list;
 
@@ -940,8 +935,7 @@ geda_file_chooser_get_filenames(GtkWidget *widget)
  * \returns the full path of the current folder, or NULL if the current
  *          path cannot be represented as a local filename.
  */
-char*
-geda_file_chooser_get_current_folder(GtkWidget *widget)
+char *geda_file_chooser_get_current_folder(GtkWidget *widget)
 {
   char *folder;
 
@@ -965,8 +959,7 @@ geda_file_chooser_get_current_folder(GtkWidget *widget)
  * \param [in] widget  Pointer to a hideous GtkFileChooser widget
  * \param [in] folder  Pointer to the location to set as current
  */
-void
-geda_file_chooser_set_current_folder (GtkWidget *widget, const char *folder)
+void geda_file_chooser_set_current_folder (GtkWidget *widget, const char *folder)
 {
   if (GTK_IS_FILE_CHOOSER(widget)) {
     gtk_file_chooser_set_current_folder((GtkFileChooser*)widget, folder);
@@ -991,8 +984,7 @@ geda_file_chooser_set_current_folder (GtkWidget *widget, const char *folder)
  * \param [in] widget Pointer to a hideous GtkFileChooser widget
  * \param [in] name   Pointer to the name to set as current
  */
-void
-geda_file_chooser_set_current_name (GtkWidget *widget, const char *name)
+void geda_file_chooser_set_current_name (GtkWidget *widget, const char *name)
 {
   if (GTK_IS_FILE_CHOOSER(widget)) {
     gtk_file_chooser_set_current_name((GtkFileChooser*)widget, name);
@@ -1007,8 +999,7 @@ geda_file_chooser_set_current_name (GtkWidget *widget, const char *name)
  *  \par Function Description
  *
  */
-GtkWidget*
-geda_file_chooser_get_extra_widget(GtkWidget *hideous)
+GtkWidget *geda_file_chooser_get_extra_widget(GtkWidget *hideous)
 {
   GtkWidget *extra;
 
@@ -1044,8 +1035,7 @@ geda_file_chooser_get_extra_widget(GtkWidget *hideous)
  * widget in the file chooser, set the container as the whole extra
  * widget.
  */
-void
-geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
+void geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
 {
   if (GTK_IS_FILE_CHOOSER(hideous)) {
     gtk_file_chooser_set_extra_widget((GtkFileChooser*)hideous, extra);
