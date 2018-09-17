@@ -1629,10 +1629,12 @@ geda_image_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Programmatically Activate or Deactivate the Image Chooser Preview
+ * \par Function Description
+ *  Set the preview checkbon on the chooser dialog to the given \a state
+ *  and this will trigger callback chooser_preview_enabler, which sets
+ *  the "preview-widget-active" property.
  */
 void geda_image_chooser_set_preview_active (GtkWidget *widget, bool state)
 {

@@ -1,5 +1,9 @@
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/dialogs/geda_image_chooser.c: Update function documentation:
+
+          * geda_image_chooser_set_preview_active
+
     * src/widgets/geda_option_menu.c: Update function documentation:
 
           * geda_option_menu_new
