@@ -4,6 +4,7 @@
 
           * geda_option_menu_new
           * geda_option_menu_get_menu
+          * geda_option_widget_get_menu
 
 2018-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

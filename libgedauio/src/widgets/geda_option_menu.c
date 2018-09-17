@@ -1165,10 +1165,13 @@ int geda_option_menu_get_history (GedaOptionMenu *option_menu)
 
 /* Widget Argument */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Menu from a GedaOptionMenu Widget object
+ * \par Function Description
+ *  Wrapper for geda_option_widget_get_menu that accepts a pointer
+ *  to a GtkWidget.
  *
+ * \param [in] option_menu Pointer to GedaOptionMenu widget
  */
 GtkWidget *geda_option_widget_get_menu (GtkWidget *option_menu)
 {
@@ -1180,7 +1183,7 @@ GtkWidget *geda_option_widget_get_menu (GtkWidget *option_menu)
  * \par Function Description
  *  Attaches \a menu to \a option_menu.
  *
- * \param [in] option_menu Pointer to GedaOptionMenu object
+ * \param [in] option_menu Pointer to GedaOptionMenu widget
  * \param [in] menu        The menu to be attached
  */
 void geda_option_widget_set_menu (GtkWidget *option_menu, GtkWidget *menu)
