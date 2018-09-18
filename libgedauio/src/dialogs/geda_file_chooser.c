@@ -813,10 +813,11 @@ char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Programmatically Set Entry Text on GedaFileChooser
+ * \par Function Description
+ *  Sets the text in the entry of the #GedaFileChooser to \a text or
+ *  an empty string if \a text is NULL.
  */
 void geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
 {

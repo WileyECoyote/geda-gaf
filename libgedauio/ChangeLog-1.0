@@ -11,7 +11,8 @@
       geda_file_chooser_get_entry. Change second argument look_for_entry and
       geda_file_chooser_find_entry argument to type GedaFileChooser. Remove
       global static chooser_entry and reference new member entry. Eliminate
-      name variable in geda_file_chooser_get_entry_text.
+      name variable in geda_file_chooser_get_entry_tex and update function
+      documentation.
 
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
