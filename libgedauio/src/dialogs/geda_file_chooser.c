@@ -795,10 +795,6 @@ GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
  */
 char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
 {
-  char *name;
-
-  name = NULL;
-
   if (GTK_IS_FILE_CHOOSER(despicable)) {
 
     GtkEntry *entry = geda_file_chooser_get_entry(despicable);
@@ -806,7 +802,7 @@ char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
     if (GTK_IS_ENTRY(entry)) {
 
       if (gtk_entry_get_text_length (entry)) {
-        name = geda_strdup (gtk_entry_get_text(entry));
+        return geda_strdup (gtk_entry_get_text(entry));
       }
     }
   }
@@ -814,7 +810,7 @@ char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
     BUG_MSG ("Operative is not a GtkFileChooser");
   }
 
-  return name;
+  return NULL;
 }
 
 /*! \todo Finish function documentation!!!

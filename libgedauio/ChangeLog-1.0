@@ -10,7 +10,8 @@
       not just GtkFileChooser and validate argument is a GedaFileChooser in
       geda_file_chooser_get_entry. Change second argument look_for_entry and
       geda_file_chooser_find_entry argument to type GedaFileChooser. Remove
-      global static chooser_entry and reference new member entry.
+      global static chooser_entry and reference new member entry. Eliminate
+      name variable in geda_file_chooser_get_entry_text.
 
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
