@@ -1,5 +1,8 @@
 2018-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
+
+    * include/geda_toolbar.h: Wrap is_a_geda_toolbar parameter in parentheses.
+
     * src/dialogs/geda_file_chooser.c: Remove redundant setting of NULL in
       else clause of geda_file_chooser_get_entry_text. Revise geda_file_
       chooser_set_entry_textvalidate to validate argument is a GedaFileChooser

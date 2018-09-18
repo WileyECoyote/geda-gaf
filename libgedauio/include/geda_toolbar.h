@@ -32,7 +32,7 @@
 #define GEDA_TYPE_TOOLBAR            (geda_toolbar_get_type ())
 #define GEDA_TOOLBAR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TOOLBAR, GedaToolbar))
 #define GEDA_TOOLBAR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_TOOLBAR, GedaToolbarClass))
-#define GEDA_IS_TOOLBAR(obj)         (is_a_geda_toolbar((GedaToolbar*)obj))
+#define GEDA_IS_TOOLBAR(obj)         (is_a_geda_toolbar((GedaToolbar*)(obj)))
 #define GEDA_IS_TOOLBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_TOOLBAR))
 #define GEDA_TOOLBAR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_TOOLBAR, GedaToolbarClass))
 
