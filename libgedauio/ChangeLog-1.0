@@ -1,5 +1,6 @@
 2018-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_file_chooser.h: Add GedaFileChooser member entry;
 
     * include/geda_toolbar.h: Wrap is_a_geda_toolbar parameter in parentheses.
 
@@ -8,7 +9,8 @@
       chooser_set_entry_text validate to validate argument is a GedaFileChooser
       not just GtkFileChooser and validate argument is a GedaFileChooser in
       geda_file_chooser_get_entry. Change second argument look_for_entry and
-      geda_file_chooser_find_entry argument to type GedaFileChooser.
+      geda_file_chooser_find_entry argument to type GedaFileChooser. Remove
+      global static chooser_entry and reference new member entry.
 
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 

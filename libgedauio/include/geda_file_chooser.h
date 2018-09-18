@@ -72,6 +72,7 @@ typedef struct _GedaFileChooserClass   GedaFileChooserClass;
 struct _GedaFileChooser {
 
   GtkFileChooserDialog parent;
+  GtkEntry            *entry;          /* Private, use accessor */
   GtkWidget           *filter_button;
            int         filter_index;
   unsigned int         handler;

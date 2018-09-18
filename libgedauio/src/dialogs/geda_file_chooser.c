@@ -73,8 +73,6 @@ static GtkFileChooserDialogClass *geda_file_chooser_parent_class = NULL;
 /* List of pointers to GedaFileChooser instances */
 static GList *list_of_choosers = NULL;
 
-static GtkEntry *chooser_entry;
-
 static GedaFileFilterDataDef filter_data[] = {
     GEDA_FILTER_NONE,
     GEDA_FILTER_SCHEMATIC,
@@ -198,7 +196,7 @@ void geda_file_chooser_set_filter (GtkWidget *widget, int index)
 static void look_for_entry(GtkWidget *widget, GedaFileChooser *self)
 {
   if (GTK_IS_ENTRY(widget)) {
-    chooser_entry = (GtkEntry*)widget;
+    self->entry = (GtkEntry*)widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
      geda_container_forall (widget, look_for_entry, self);
@@ -208,7 +206,7 @@ static void look_for_entry(GtkWidget *widget, GedaFileChooser *self)
 static void
 geda_file_chooser_find_entry (GedaFileChooser *chooser)
 {
-  GList   *children, *iter;
+  GList *children, *iter;
 
   /* Get all objects inside the dialog */
   children = geda_container_get_children (chooser);
@@ -219,7 +217,7 @@ geda_file_chooser_find_entry (GedaFileChooser *chooser)
 
       geda_container_forall (iter->data, look_for_entry, chooser);
 
-      if (chooser_entry != NULL) {
+      if (chooser->entry != NULL) {
         break;
       }
     }
@@ -261,8 +259,6 @@ static void geda_file_chooser_finalize (GObject *object)
     g_list_free(list_of_choosers);
     list_of_choosers = NULL;
   }
-
-  chooser_entry = NULL;
 
   (G_OBJECT_CLASS (geda_file_chooser_parent_class))->finalize (object);
 }
@@ -542,7 +538,7 @@ geda_file_chooser_instance_init (GTypeInstance *instance, void *class)
 {
   GedaFileChooser *self = (GedaFileChooser*)instance;
 
-  chooser_entry       = NULL;
+  self->entry         = NULL;
   self->filter_button = NULL;
 
   /* Append instance to list of valid GedaFileChooser objects */
