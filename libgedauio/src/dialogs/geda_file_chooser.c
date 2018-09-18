@@ -774,10 +774,21 @@ geda_file_chooser_dialog_new_full (const char       *title,
  */
 GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
 {
-  if (chooser_entry == NULL) {
-    geda_file_chooser_find_entry (widget);
+  if (GEDA_IS_FILE_CHOOSER(widget)) {
+
+    GedaFileChooser *chooser = (GedaFileChooser*)widget;
+
+    if (chooser->entry == NULL) {
+      geda_file_chooser_find_entry (chooser);
+    }
+
+    return chooser->entry;
   }
-  return chooser_entry;
+  else {
+    BUG_MSG ("Operative is not a GedaFileChooser");
+  }
+
+  return NULL;
 }
 
 /*!
