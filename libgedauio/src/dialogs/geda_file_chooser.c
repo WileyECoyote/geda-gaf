@@ -805,8 +805,8 @@ char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
-    name = NULL;
   }
+
   return name;
 }
 
