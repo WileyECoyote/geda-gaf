@@ -7,7 +7,8 @@
       else clause of geda_file_chooser_get_entry_text. Revise geda_file_
       chooser_set_entry_text validate to validate argument is a GedaFileChooser
       not just GtkFileChooser and validate argument is a GedaFileChooser in
-      geda_file_chooser_get_entry.
+      geda_file_chooser_get_entry. Change second argument look_for_entry and
+      geda_file_chooser_find_entry argument to type GedaFileChooser.
 
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 

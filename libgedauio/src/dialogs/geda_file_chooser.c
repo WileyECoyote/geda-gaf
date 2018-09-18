@@ -195,7 +195,7 @@ void geda_file_chooser_set_filter (GtkWidget *widget, int index)
   }
 }
 
-static void look_for_entry(GtkWidget *widget, void *self)
+static void look_for_entry(GtkWidget *widget, GedaFileChooser *self)
 {
   if (GTK_IS_ENTRY(widget)) {
     chooser_entry = (GtkEntry*)widget;
@@ -206,7 +206,7 @@ static void look_for_entry(GtkWidget *widget, void *self)
 }
 
 static void
-geda_file_chooser_find_entry (GtkWidget *chooser)
+geda_file_chooser_find_entry (GedaFileChooser *chooser)
 {
   GList   *children, *iter;
 
