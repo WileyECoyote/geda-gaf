@@ -817,7 +817,7 @@ char *geda_file_chooser_get_entry_text(GtkWidget *despicable)
  */
 void geda_file_chooser_set_entry_text(GtkWidget *despicable, const char *text)
 {
-  if (GTK_IS_FILE_CHOOSER(despicable)) {
+  if (GEDA_IS_FILE_CHOOSER(despicable)) {
 
     GtkEntry *entry = geda_file_chooser_get_entry(despicable);
 

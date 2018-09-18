@@ -1,7 +1,9 @@
 2018-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Remove redundant setting of NULL in
-      else clause of geda_file_chooser_get_entry_text.
+      else clause of geda_file_chooser_get_entry_text. Revise geda_file_
+      chooser_set_entry_textvalidate to validate argument is a GedaFileChooser
+      not just GtkFileChooser.
 
 2018-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
