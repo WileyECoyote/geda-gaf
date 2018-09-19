@@ -6,6 +6,8 @@
     * src/file/f_file.c: Rename geda_file_open variable log_undetemine ->
       log_do_manual, fix spelling/typo in log_situation message.
 
+    * tests/test_complex_object.c: Check the file name check_construction.
+
 2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc_parse.c: Revise g_rc_try_mark_read to use

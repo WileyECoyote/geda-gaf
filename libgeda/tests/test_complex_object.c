@@ -120,8 +120,7 @@ void posttest(void)
   geda_struct_clib_free();
 }
 
-int
-check_construction (void)
+int check_construction (void)
 {
   int count;
   int result = 0;
@@ -134,6 +133,8 @@ check_construction (void)
 
     int x = geda_random_number ( 0, 115000);
     int y = geda_random_number ( 0,  75000);
+
+    /* === Function 10: geda_complex_object_new  === */
 
     GedaObject *object0 = geda_complex_object_new(NULL, x, y, 0, 0,
                                                   sym, sym_name, 1);
@@ -151,7 +152,19 @@ check_construction (void)
     }
     else {
 
+      GedaComplex *complex = object0->complex;
       int fail = 0;
+
+      if (!complex->filename) {
+       fprintf(stderr, "FAILED: (O081002A-%d) complex->filename is NULL\n", count);
+       fail++;
+      }
+      else {
+        if (strcmp(complex->filename, sym_name)) {
+          fprintf(stderr, "FAILED: (O081002B-%d) complex->filename <%s>\n", count, complex->filename);
+          fail++;
+        }
+      }
 
       if (fail) {
         result++;
@@ -161,6 +174,7 @@ check_construction (void)
     }
     g_object_unref (object0);
   }
+
   return result;
 }
 
