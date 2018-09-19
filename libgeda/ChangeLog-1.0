@@ -6,7 +6,8 @@
     * src/file/f_file.c: Rename geda_file_open variable log_undetemine ->
       log_do_manual, fix spelling/typo in log_situation message.
 
-    * tests/test_complex_object.c: Check the file name check_construction.
+    * tests/test_complex_object.c: Check the file name check_construction
+      arguments passed to geda_complex_object_new.
 
 2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -166,6 +166,32 @@ int check_construction (void)
         }
       }
 
+      if (complex->x != x) {
+       fprintf(stderr, "FAILED: (O081003-%d) complex->x <%d> != <%d>\n", count, complex->x, x);
+       fail++;
+      }
+
+      if (complex->y != y) {
+       fprintf(stderr, "FAILED: (O081004-%d) complex->y <%d> != <%d>\n", count, complex->y, y);
+       fail++;
+      }
+
+      if (complex->angle) {
+       fprintf(stderr, "FAILED: (O081005-%d) complex->angle <%d>\n", count, complex->angle);
+       fail++;
+      }
+
+      if (complex->mirror) {
+       fprintf(stderr, "FAILED: (O081006-%d) complex->mirror <%d>\n", count, complex->mirror);
+       fail++;
+      }
+
+      /* Base class member selectable is set by geda_complex_object_new */
+      if (object0->selectable - 1) {
+       fprintf(stderr, "FAILED: (O081007-%d) complex->selectable <%d>\n", count, object0->selectable);
+       fail++;
+      }
+
       if (fail) {
         result++;
         break;
