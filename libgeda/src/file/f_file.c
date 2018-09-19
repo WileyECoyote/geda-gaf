@@ -271,7 +271,7 @@ int geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GEr
       log_auto_back  = _("\nWARNING: Found an autosave backup file:\n\"%s\".\n\n");
       log_do_manual  = _("Could not determine which file is newer, so you should do this manually.\n");
       log_back_newer = _("The backup copy is newer than the schematic, it seems you should load it instead of the original file.\n");
-      log_situation  = _("This situation may have occured when an application crashed or was forced to exit abruptly.\n");
+      log_situation  = _("This situation may have occurred when an application crashed or was forced to exit abruptly.\n");
       err_corrective = _("Run the application to correct this situation or manually delete the backup file.");
 
       register unsigned int mem_needed = strlen(log_auto_back)

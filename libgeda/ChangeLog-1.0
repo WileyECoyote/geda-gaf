@@ -4,7 +4,7 @@
       parentheses.
 
     * src/file/f_file.c: Rename geda_file_open variable log_undetemine ->
-      log_do_manual.
+      log_do_manual, fix spelling/typo in log_situation message.
 
 2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
