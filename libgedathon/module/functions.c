@@ -716,7 +716,7 @@ FUNCTION(DefaultTitleblockSymbol)
  *
  *  [in] color       integer color property
  *
- * \return [out] PyGedaArcObject or Py_None if an error occured
+ * \return [out] PyGedaArcObject or Py_None if an error occurred
  *
  * \code
  *  example: AddArc(schematic, 2300, 2700, 500, 0, 90)
@@ -758,7 +758,7 @@ FUNCTION ( AddArc)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_arc);
   }
   else {
-    fprintf(stderr, "AddArc: An error occured, Arc object was not created\n");
+    fprintf(stderr, "AddArc: An error occurred, Arc object was not created\n");
     py_arc = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -794,7 +794,7 @@ FUNCTION ( AddArc)
  * [in] angle       integer text orientation property
  * [in] color       Object  color object
  *
- * \return [out] PyGedaTextObject or Py_None if an error occured
+ * \return [out] PyGedaTextObject or Py_None if an error occurred
  *
  * \code
  *  example 1: amp = AddComponent(circuit, "dual-opamp-py", "U1", 7700, 7300)
@@ -863,7 +863,7 @@ FUNCTION ( AddAttribute )
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_text);
   }
   else {
-    fprintf(stderr, "AddAttribute: An error occured, Text Attribute object was not created\n");
+    fprintf(stderr, "AddAttribute: An error occurred, Text Attribute object was not created\n");
     py_text = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -888,7 +888,7 @@ FUNCTION ( AddAttribute )
  *
  * [in] color       Object  color object
  *
- * \return [out] PyGedaBoxObject or Py_None if an error occured
+ * \return [out] PyGedaBoxObject or Py_None if an error occurred
  * \code
  *  example 1: AddBox(schematic, 7500, 2500, 14500, 9500)
  * \endcode
@@ -926,7 +926,7 @@ FUNCTION ( AddBox )
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_box);
   }
   else {
-    fprintf(stderr, "AddBox: An error occured, Box object was not created\n");
+    fprintf(stderr, "AddBox: An error occurred, Box object was not created\n");
     py_box = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -957,7 +957,7 @@ FUNCTION ( AddBox )
  *  [in] busname String  A name for the Bus object
  *  [in] color   Object  color object
  *
- * \return [out] PyGedaBusObject or Py_None if an error occured
+ * \return [out] PyGedaBusObject or Py_None if an error occurred
  * \code
  *  example 1: AddBus(phone, 3700, 3100, 3700, 4200, "LowAddress)
  * \endcode
@@ -996,7 +996,7 @@ FUNCTION(AddBus)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_bus);
   }
   else {
-    fprintf(stderr, "AddBus: An error occured, Bus object was not created\n");
+    fprintf(stderr, "AddBus: An error occurred, Bus object was not created\n");
     py_bus = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -1023,7 +1023,7 @@ FUNCTION(AddBus)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embeded into the schmatic
  *
- * \return [out] PyGedaComplexObject or Py_None if an error occured
+ * \return [out] PyGedaComplexObject or Py_None if an error occurred
  * \code
  *  example 1: AddComponent(schematic, "lm2902-1", "U1", 1000, 4000)
  * \endcode
@@ -1063,7 +1063,7 @@ FUNCTION(AddComponent)
        PyObject_CallMethod(geda_module, "set_attrib", "Ossi", py_component, "refdes", refdes, FALSE);
   }
   else {
-    fprintf(stderr, "AddComponent: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddComponent: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(py_symbol));
     py_component = Py_BuildValue("");
     PyErr_Clear();
@@ -1096,7 +1096,7 @@ FUNCTION(AddComponent)
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
  * \return [out] PyGedaComplexObject representing the capacitor or Py_None if
- *               an error occured.
+ *               an error occurred.
  * \code
  *  example 1: AddCapacitor(page,  6700, 8600, "20nF")
  * \endcode
@@ -1145,7 +1145,7 @@ FUNCTION(AddCapacitor)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddCapacitor: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddCapacitor: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(CapacitorSymbol));
     py_capacitor = Py_BuildValue("");
     PyErr_Clear();
@@ -1170,7 +1170,7 @@ FUNCTION(AddCapacitor)
  *
  *  [in] color       integer color property
  *
- * \return [out] PyGedaCircleObject or Py_None if an error occured
+ * \return [out] PyGedaCircleObject or Py_None if an error occurred
  *
  * \code
  *  example: circle1 = AddCircle(schematic, 1800, 3100, 500)
@@ -1210,7 +1210,7 @@ FUNCTION ( AddCircle )
      PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_circle);
   }
   else {
-    fprintf(stderr, "AddCircle: An error occured, Circle object was not created\n");
+    fprintf(stderr, "AddCircle: An error occurred, Circle object was not created\n");
     py_circle = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -1242,7 +1242,7 @@ FUNCTION ( AddCircle )
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
  * \return [out] PyGedaComplexObject representing the capacitor or Py_None if
- *               an error occured.
+ *               an error occurred.
  * \code
  *  example 1: AddElectrolytic(page,  6700, 8600, "20uF")
  * \endcode
@@ -1291,7 +1291,7 @@ FUNCTION(AddElectrolytic)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddElectrolytic: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddElectrolytic: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(ElectrolyticSymbol));
     py_electrolytic = Py_BuildValue("");
     PyErr_Clear();
@@ -1325,7 +1325,7 @@ FUNCTION(AddElectrolytic)
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
  * \return [out] PyGedaComplexObject representing the capacitor or Py_None if
- *               an error occured.
+ *               an error occurred.
  * \code
  *  example 1: AddInductor(page,  5000, 6500, "20mH")
  *  example 2: AddInductor(filter, 14000, 9800, "4.7uH")
@@ -1372,7 +1372,7 @@ FUNCTION(AddInductor)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddInductor: An error occured, inductor object was not created, symbol=%s\n",
+    fprintf(stderr, "AddInductor: An error occurred, inductor object was not created, symbol=%s\n",
             PyString_AsString(InductorSymbol));
     py_inductor = Py_BuildValue("");
     PyErr_Clear();
@@ -1399,7 +1399,7 @@ FUNCTION(AddInductor)
  *
  *  [in] color       integer color property
  *
- * \return [out] PyGedaCircleObject or Py_None if an error occured
+ * \return [out] PyGedaCircleObject or Py_None if an error occurred
  *
  * \code
  *  example 1: AddLine(schematic, 2600, 3100, 3700, 3100)
@@ -1435,7 +1435,7 @@ FUNCTION(AddLine)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_line);
   }
   else {
-    fprintf(stderr, "AddLine: An error occured, line object was not created\n");
+    fprintf(stderr, "AddLine: An error occurred, line object was not created\n");
     py_line = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -1463,7 +1463,7 @@ FUNCTION(AddLine)
  *  [in] netname String  A name for the Bus object
  *  [in] color   Object  color object
  *
- * \return [out] PyGedaNetObject or Py_None if an error occured
+ * \return [out] PyGedaNetObject or Py_None if an error occurred
  *
  * \code
  *  example 1: AddNet(circuit, 12400,  8800, 13900,  8800)
@@ -1501,7 +1501,7 @@ FUNCTION(AddNet)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_net);
   }
   else {
-    fprintf(stderr, "AddNet: An error occured, Net object was not created\n");
+    fprintf(stderr, "AddNet: An error occurred, Net object was not created\n");
     py_net = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -1535,7 +1535,7 @@ FUNCTION(AddNet)
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
  * \return [out] PyGedaComplexObject representing the OpAmp or Py_None if
- *               an error occured.
+ *               an error occurred.
  * \code
  *  example 1: AddOpAmp(page, 5000, 6500)
  *
@@ -1595,7 +1595,7 @@ FUNCTION(AddOpAmp)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddOpAmp: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddOpAmp: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(OpAmpSymbol));
     py_opamp = Py_BuildValue("");
     PyErr_Clear();
@@ -1619,7 +1619,7 @@ FUNCTION(AddOpAmp)
  *
  *  [in] color   Object  color object
  *
- * \return [out] PyGedaPathObject or Py_None if an error occured.
+ * \return [out] PyGedaPathObject or Py_None if an error occurred.
  *
  * \code
  *  example 1: path = AddPath(page, "M100,200 C100,100 250,100 250,200 S400,300 400,200")
@@ -1654,7 +1654,7 @@ FUNCTION(AddPath)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_path);
   }
   else {
-    fprintf(stderr, "AddPath: An error occured, path object was not created\n");
+    fprintf(stderr, "AddPath: An error occurred, path object was not created\n");
     py_path = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -1682,7 +1682,7 @@ FUNCTION(AddPath)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, image data will be embedded into the schematic
  *
- * \return [out] PyGedaPictureObject or Py_None if an error occured
+ * \return [out] PyGedaPictureObject or Py_None if an error occurred
  * \code
  *  example: AddPicture(page, "./pic/1377339524810.jpg", 8000, 3000, 14000, 9000)
  * \endcode
@@ -1734,7 +1734,7 @@ FUNCTION(AddPicture)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_picture);
   }
   else {
-    fprintf(stderr, "AddPicture: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddPicture: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(py_file));
     py_picture = Py_BuildValue("");
     PyErr_Clear();
@@ -1765,7 +1765,7 @@ FUNCTION(AddPicture)
  *  [in] mech_type    integer mechanical type attribute
  *  [in] node_type    integer node type property ( 0=normal, 1=bus type)
  *
- * \return [out] PyGedaPinObject or Py_None if an error occured
+ * \return [out] PyGedaPinObject or Py_None if an error occurred
  * \code
  *  example 1: AddPin(resistor, 0, 100, 100, 100)
  *
@@ -1874,7 +1874,7 @@ FUNCTION(AddPin)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_pin);
   }
   else {
-    fprintf(stderr, "AddPin: An error occured, pin object was not created\n");
+    fprintf(stderr, "AddPin: An error occurred, pin object was not created\n");
     py_pin = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -1907,7 +1907,7 @@ FUNCTION(AddPin)
  *  [in] embed       If true, symbol data will be embedded into the schematic
  *
  * \return [out] PyGedaComplexObject representing the Resistor or Py_None if
- *               an error occured.
+ *               an error occurred.
  * \code
  *  example 1: AddResistor(schematic, 4300,  7800, "560")
  *
@@ -1955,7 +1955,7 @@ FUNCTION(AddResistor)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddResistor: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddResistor: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(ResistorSymbol));
     py_resistor = Py_BuildValue("");
     PyErr_Clear();
@@ -1982,7 +1982,7 @@ FUNCTION(AddResistor)
  *  [in] mirror      If true the object will be mirrored
  *  [in] embed       If true, symbol data will be embeded into the schmatic
  *
- * \return [out] PyGedaComplexObject or Py_None if an error occured
+ * \return [out] PyGedaComplexObject or Py_None if an error occurred
  *
  * \code
  *  example 1: AddSource(lpbf, "12V-plus-1", 12800, 10300)
@@ -2022,7 +2022,7 @@ FUNCTION(AddSource)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_source);
   }
   else {
-    fprintf(stderr, "AddSource: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddSource: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(py_symbol));
     py_source = Py_BuildValue("");
     PyErr_Clear();
@@ -2054,7 +2054,7 @@ FUNCTION(AddSource)
  *  [in] angle       integer text orientation property
  *  [in] color       Object  color object
  *
- * \return [out] PyGedaTextObject or Py_None if an error occured
+ * \return [out] PyGedaTextObject or Py_None if an error occurred
  *
  * \code
  *  example 1: amp = AddComponent(circuit, "dual-opamp-py", "U1", 7700, 7300)
@@ -2114,7 +2114,7 @@ FUNCTION ( AddText )
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_text);
   }
   else {
-    fprintf(stderr, "AddText: An error occured, Text Attribute object was not created\n");
+    fprintf(stderr, "AddText: An error occurred, Text Attribute object was not created\n");
     py_text = Py_BuildValue("");
     PyErr_Clear();
   }
@@ -2139,7 +2139,7 @@ FUNCTION ( AddText )
  *  [in] lock        integer orientation property
  *
  * \return [out] PyGedaComplexObject representing the Titleblock or
- *               Py_None if an error occured.
+ *               Py_None if an error occurred.
  * \code
  *  example 1: AddOpAmp(page, 5000, 6500)
  *
@@ -2184,7 +2184,7 @@ FUNCTION(AddTitleblock)
     }
   }
   else {
-    fprintf(stderr, "AddTitleblock: An error occured, object was not created, symbol=%s\n",
+    fprintf(stderr, "AddTitleblock: An error occurred, object was not created, symbol=%s\n",
             PyString_AsString(TitleblockSymbol));
     py_titleblock = Py_BuildValue("");
     PyErr_Clear();

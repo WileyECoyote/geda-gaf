@@ -2003,7 +2003,7 @@ METHOD(new_complex)
     Py_DECREF(object_data);
   }
   else {
-    PyErr_Format(GedaError, "<new_complex>, An error occured, object was not created, name=%s\n", basename);
+    PyErr_Format(GedaError, "<new_complex>, An error occurred, object was not created, name=%s\n", basename);
     py_complex = NULL;
   }
 
@@ -2164,7 +2164,7 @@ METHOD(new_path)
     Py_DECREF(object_data);
   }
   else {
-    PyErr_Format(GedaError, "<new_path>, An error occured, object was not created, path=%s\n", path_string);
+    PyErr_Format(GedaError, "<new_path>, An error occurred, object was not created, path=%s\n", path_string);
     py_path = NULL;
   }
 
@@ -2231,7 +2231,7 @@ METHOD(new_picture)
     Py_DECREF(object_data);
   }
   else {
-    PyErr_Format(GedaError, "<new_picture>, An error occured, object was not created, filepath=%s\n", filepath);
+    PyErr_Format(GedaError, "<new_picture>, An error occurred, object was not created, filepath=%s\n", filepath);
     py_picture = NULL;
   }
 
@@ -2335,7 +2335,7 @@ METHOD(new_pin)
     Py_DECREF(object_data);
   }
   else {
-    PyErr_SetString(GedaError, "<new_pin>, An error occured, object was not created\n");
+    PyErr_SetString(GedaError, "<new_pin>, An error occurred, object was not created\n");
     py_pin = NULL;
   }
 
