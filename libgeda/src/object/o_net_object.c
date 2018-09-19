@@ -256,7 +256,7 @@ static int geda_net_object_consolidate_segments (GedaObject *object)
           }
 
           geda_struct_object_release (other_object);
-          object->w_bounds_valid_for = NULL;;
+          object->w_bounds_valid_for = NULL;
           geda_struct_tile_update_object(object);
           geda_struct_conn_update_linear_object(object);
           return(-1);
