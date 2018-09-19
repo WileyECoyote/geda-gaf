@@ -3,6 +3,9 @@
     * include/libgeda/geda_complex.h: Wrap is_a_geda_complex parameter in
       parentheses.
 
+    * src/file/f_file.c: Rename geda_file_open variable log_undetemine ->
+      log_do_manual.
+
 2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc_parse.c: Revise g_rc_try_mark_read to use
