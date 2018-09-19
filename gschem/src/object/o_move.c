@@ -697,7 +697,6 @@ void o_move_end_rubberband (GschemToplevel *w_current,
         continue;
       }
 
-      //object->w_bounds_valid_for = NULL;
       geda_struct_tile_update_object (object);
       geda_struct_conn_update_object (object);
      *objects = g_list_append (*objects, object);
