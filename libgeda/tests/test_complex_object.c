@@ -201,6 +201,40 @@ int check_construction (void)
     g_object_unref (object0);
   }
 
+  for (count = 0; count < 10; count++) {
+
+    int x = geda_random_number ( 0, 115000);
+    int y = geda_random_number ( 0,  75000);
+
+    /* === Function 11: geda_complex_object_new_embedded  === */
+
+    GedaObject *object1 = geda_complex_object_new_embedded(x, y, 0, 0,sym_name, 1);
+
+    if (!GEDA_IS_OBJECT(object1)) {
+      fprintf(stderr, "FAILED: (O081101A) New GedaObject Failed\n");
+      result++;
+      break;   /* terminate loop if fail */
+    }
+
+    if (!GEDA_IS_COMPLEX(object1->complex)) {
+      fprintf(stderr, "FAILED: (O081101B) sub-pointer not a %s\n", TOBJECT);
+      result++;
+      break;   /* terminate loop if fail */
+    }
+    else {
+
+      int fail = 0;
+
+
+      if (fail) {
+        result++;
+        break;
+      }
+    }
+    g_object_unref (object1);
+
+  }
+
   return result;
 }
 
