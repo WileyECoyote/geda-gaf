@@ -261,7 +261,7 @@ int check_construction (void)
 
     /* === Function 11: geda_complex_object_new_embedded  === */
 
-    GedaObject *object2 = geda_complex_object_new_embedded(x, y, 0, 0,sym_name, 1);
+    GedaObject *object2 = geda_complex_object_new_embedded(x, y, 180, 1,sym_name, 1);
 
     if (!GEDA_IS_OBJECT(object2)) {
       fprintf(stderr, "FAILED: (O081101A) New GedaObject Failed\n");
@@ -276,14 +276,52 @@ int check_construction (void)
     }
     else {
 
+      GedaComplex *complex = object2->complex;
       int fail = 0;
 
+      if (!complex->filename) {
+       fprintf(stderr, "FAILED: (O081102A-%d) complex->filename is NULL\n", count);
+       fail++;
+      }
+      else {
+        if (strcmp(complex->filename, sym_name)) {
+          fprintf(stderr, "FAILED: (O081102B-%d) complex->filename <%s>\n", count, complex->filename);
+          fail++;
+        }
+      }
+
+      if (complex->x != x) {
+       fprintf(stderr, "FAILED: (O081103-%d) complex->x <%d> != <%d>\n", count, complex->x, x);
+       fail++;
+      }
+
+      if (complex->y != y) {
+       fprintf(stderr, "FAILED: (O081104-%d) complex->y <%d> != <%d>\n", count, complex->y, y);
+       fail++;
+      }
+
+      if (complex->angle != 180) {
+       fprintf(stderr, "FAILED: (O081105-%d) complex->angle <%d>\n", count, complex->angle);
+       fail++;
+      }
+
+      if (!complex->mirror) {
+       fprintf(stderr, "FAILED: (O081106-%d) complex->mirror <%d>\n", count, complex->mirror);
+       fail++;
+      }
+
+      /* Base class member selectable is set by geda_complex_object_new */
+      if (object2->selectable - 1) {
+       fprintf(stderr, "FAILED: (O081107-%d) complex->selectable <%d>\n", count, object2->selectable);
+       fail++;
+      }
 
       if (fail) {
         result++;
         break;
       }
     }
+
     g_object_unref (object2);
 
   }
