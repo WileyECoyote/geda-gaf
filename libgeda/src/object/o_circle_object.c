@@ -557,9 +557,6 @@ geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
 
     /* recalc boundings and screen coords */
     object->w_bounds_valid_for = NULL;
-
-    /* recalculate the boundings */
-    object->w_bounds_valid_for = NULL;
   }
   else {
     geda_circle_object_error(__func__, object);
