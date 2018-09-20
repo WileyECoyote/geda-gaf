@@ -1546,8 +1546,7 @@ int check_data (void)
 
 /** @} endgroup test-geda-keyfile */
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int result = 0;
 

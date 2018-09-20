@@ -83,8 +83,7 @@
  *      O1322    geda_net_object_translate
  */
 
-int
-check_construction (void)
+int check_construction (void)
 {
   int count;
   int result = 0;
@@ -192,8 +191,7 @@ check_construction (void)
   return result;
 }
 
-int
-check_accessors (void)
+int check_accessors (void)
 {
   int count;
   int result = 0;
@@ -323,8 +321,7 @@ check_accessors (void)
   return result;
 }
 
-int
-check_serialization (void)
+int check_serialization (void)
 {
   int  count;
   int  converted;
@@ -445,8 +442,7 @@ check_serialization (void)
   return result;
 }
 
-int
-check_query(void)
+int check_query(void)
 {
   int result = 0;
 
@@ -491,8 +487,7 @@ check_query(void)
   return result;
 }
 
-int
-check_transformer(void)
+int check_transformer(void)
 {
   int result = 0;
   int count;
@@ -591,8 +586,7 @@ check_transformer(void)
 
 /** @} endgroup test-object-geda-net */
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int result = 0;
 

@@ -141,8 +141,7 @@ int test_net (void)
   return result;
 }
 
-int
-check_accessors ()
+int check_accessors ()
 {
   int count;
   int result = 0;
@@ -308,8 +307,7 @@ check_accessors ()
   return result;
 }
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int result = 0;
 

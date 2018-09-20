@@ -376,8 +376,7 @@ int check_object (void)
   return result;
 }
 
-int
-check_accessors ()
+int check_accessors ()
 {
   int result = 0;
 
@@ -505,8 +504,7 @@ check_accessors ()
   return result;
 }
 
-int
-check_properties (void)
+int check_properties (void)
 {
   int result = 0;
 
@@ -517,8 +515,7 @@ check_properties (void)
   return result;
 }
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int result = 0;
 
