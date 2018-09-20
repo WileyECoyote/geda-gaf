@@ -65,21 +65,21 @@
  *
  *  See tests/README for more details on the nomenclature for test identifiers.
  *
- *      O0801    geda_complex_object_copy
- *      O0802    geda_complex_object_check_symbol_version
- *      O0803    geda_complex_object_get_filename
- *      O0804    geda_complex_object_get_nearest_point
- *      O0805    geda_complex_object_get_pin_objs
- *      O0806    geda_complex_object_get_prim_objs
- *      O0807    geda_complex_object_find_pin_by_attribute
- *      O0808    geda_complex_object_is_embedded
- *      O0809    geda_complex_object_mirror
+ *      O0801     geda_complex_object_copy
+ *      O0802     geda_complex_object_check_symbol_version
+ *      O0803     geda_complex_object_get_filename
+ *      O0804     geda_complex_object_get_nearest_point
+ *      O0805     geda_complex_object_get_pin_objs
+ *      O0806     geda_complex_object_get_prim_objs
+ *      O0807     geda_complex_object_find_pin_by_attribute
+ *      O0808     geda_complex_object_is_embedded
+ *      O0809     geda_complex_object_mirror
  *      O0810    geda_complex_object_new
- *      O0811    geda_complex_object_new_embedded
- *      O0812    geda_complex_object_promote_attribs
- *      O0813    geda_complex_object_reset_refdes
- *      O0814    geda_complex_object_rotate
- *      O0815    geda_complex_object_translate
+ *      O0811     geda_complex_object_new_embedded
+ *      O0812     geda_complex_object_promote_attribs
+ *      O0813     geda_complex_object_reset_refdes
+ *      O0814     geda_complex_object_rotate
+ *      O0815     geda_complex_object_translate
  */
 
 /* Adds data as a symbol source directory */
@@ -201,6 +201,59 @@ int check_construction (void)
     g_object_unref (object0);
   }
 
+  /* Force creation of a placeholder object */
+
+  GedaObject *object1 = geda_complex_object_new(NULL, 1000, 2000, 90, 0,
+                                                sym, "", 0);
+
+  if (!GEDA_IS_OBJECT(object1)) {
+    fprintf(stderr, "FAILED: (O081008A) New GedaObject Failed\n");
+    result++;
+  }
+  else if (!GEDA_IS_COMPLEX(object1->complex)) {
+    fprintf(stderr, "FAILED: (O081008B) sub-pointer not a %s\n", TOBJECT);
+    result++;
+  }
+  else if (object1->type != OBJ_PLACEHOLDER) {
+    fprintf(stderr, "FAILED: (O081008C) type <%d> is not a placeholder\n", object1->type);
+    result++;
+  }
+  else {
+
+    GedaComplex *placeholder = object1->complex;
+
+    if (placeholder->x != 1000) {
+      fprintf(stderr, "FAILED: (O081009) placeholder->x <%d> != 1000\n", placeholder->x);
+      result++;
+    }
+
+    if (placeholder->y != 2000) {
+      fprintf(stderr, "FAILED: (O081010) placeholder->y <%d> != 2000\n", placeholder->y);
+      result++;
+    }
+
+    if (placeholder->angle != 90) {
+      fprintf(stderr, "FAILED: (O081011) placeholder->angle <%d>\n", placeholder->angle);
+      result++;
+    }
+
+    if (placeholder->mirror) {
+      fprintf(stderr, "FAILED: (O081012) placeholder->mirror <%d>\n", placeholder->mirror);
+      result++;
+    }
+
+    /* Place holder can be non-selectable */
+
+    if (object1->selectable) {
+      fprintf(stderr, "FAILED: (O081013) placeholder->selectable <%d>\n", object1->selectable);
+      result++;
+    }
+  }
+
+  if (G_IS_OBJECT(object1)) {
+    g_object_unref (object1);
+  }
+
   for (count = 0; count < 10; count++) {
 
     int x = geda_random_number ( 0, 115000);
@@ -208,15 +261,15 @@ int check_construction (void)
 
     /* === Function 11: geda_complex_object_new_embedded  === */
 
-    GedaObject *object1 = geda_complex_object_new_embedded(x, y, 0, 0,sym_name, 1);
+    GedaObject *object2 = geda_complex_object_new_embedded(x, y, 0, 0,sym_name, 1);
 
-    if (!GEDA_IS_OBJECT(object1)) {
+    if (!GEDA_IS_OBJECT(object2)) {
       fprintf(stderr, "FAILED: (O081101A) New GedaObject Failed\n");
       result++;
       break;   /* terminate loop if fail */
     }
 
-    if (!GEDA_IS_COMPLEX(object1->complex)) {
+    if (!GEDA_IS_COMPLEX(object2->complex)) {
       fprintf(stderr, "FAILED: (O081101B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
@@ -231,7 +284,7 @@ int check_construction (void)
         break;
       }
     }
-    g_object_unref (object1);
+    g_object_unref (object2);
 
   }
 

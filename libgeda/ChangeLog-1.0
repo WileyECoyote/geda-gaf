@@ -2,6 +2,10 @@
 
     * o_circle_object.c: Remove redundant setting w_bounds_valid_for to NULL;
 
+    * tests/test_complex_object.c: Extend checks for  geda_complex_object_new;
+      force creation of a placeholder object and insure parameters are set on
+      the object.
+
 2018-09-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_complex.h: Wrap is_a_geda_complex parameter in
