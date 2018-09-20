@@ -52,12 +52,13 @@ void geda_set_object_bounds_invalid(GedaObject *obj)
   } while ((obj = obj->parent_object) != NULL);
 }
 
-/*! \brief Change the color of an object
- *
- *  \par Function Description
- *  This function changes the object's color property to \a color if
- *  \a color is different from the current object color. If modified,
- *  the page change flag is set if the object is on a page.
+/*!
+ * \brief Change the color of an object
+ * \par Function Description
+ *  This function sets the color property of \a object to the color index
+ *  given by \a color if the value is different from the current object
+ *  color index. If modified, the page change flag is set if the object
+ *  is on a page.
  *
  *  \note For complex objects, this function is called recursively,
  *        since geda_object_list_set_color calls this function for each
@@ -82,21 +83,20 @@ void geda_set_object_color (GedaObject *object, int color)
     if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
       geda_object_list_set_color (object->complex->prim_objs, color);
     }
-
   }
   else {
     BUG_MSG ("object is not a GedaObject");
   }
 }
 
-/*! \brief Set #GedaObject's fill options.
- *  \par Function Description
+/*!
+ * \brief Set #GedaObject's fill options.
+ * \par Function Description
  *  This function allows an #GedaObject's fill options to be configured.
  *  See OBJECT_FILLING for information on valid fill types.
  *
  *  \param [in,out]  object         GedaObject to be updated.
  *  \param [in]      fill_options   OBJECT_FILLING type.
- *
  */
 void
 geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
@@ -137,8 +137,9 @@ geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
   }
 }
 
-/*! \brief Set an #GedaObject's line options.
- *  \par Function Description
+/*!
+ * \brief Set a #GedaObject's line options.
+ * \par Function Description
  *  This function allows a line's end, type, width, length and space to be set.
  *  See LINE_END and LINE_TYPE for information on valid
  *  object end and type values.

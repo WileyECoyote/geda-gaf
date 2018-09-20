@@ -2,6 +2,8 @@
 
     * o_circle_object.c: Remove redundant setting w_bounds_valid_for to NULL;
 
+    * src/object/o_set.c: Update function documentation, minor reformatting.
+
     * tests/test_complex_object.c: Extend checks for geda_complex_object_new;
       force creation of a placeholder object and insure parameters are set on
       the object, add checks geda_complex_object_new_embedded parameters were
