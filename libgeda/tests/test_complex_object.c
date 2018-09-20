@@ -75,7 +75,7 @@
  *      O0808     geda_complex_object_is_embedded
  *      O0809     geda_complex_object_mirror
  *      O0810    geda_complex_object_new
- *      O0811     geda_complex_object_new_embedded
+ *      O0811    geda_complex_object_new_embedded
  *      O0812     geda_complex_object_promote_attribs
  *      O0813     geda_complex_object_reset_refdes
  *      O0814     geda_complex_object_rotate
@@ -329,6 +329,54 @@ int check_construction (void)
   return result;
 }
 
+int check_accessors (void)
+{
+  int count;
+  int result = 0;
+
+  const CLibSymbol *sym = geda_struct_clib_get_symbol_by_name(SYMBOL);
+
+  const char *sym_name = geda_struct_clib_symbol_get_name (sym);
+
+  for (count = 0; count < 10; count++) {
+
+    int x = geda_random_number ( 0, 115000);
+    int y = geda_random_number ( 0,  75000);
+
+    GedaObject *object1 = geda_complex_object_new(NULL, x, y, 0, 0,
+                                                  sym, sym_name, 1);
+
+    if (!GEDA_IS_OBJECT(object1)) {
+      fprintf(stderr, "FAILED: (O081001C) New GedaObject Failed\n");
+      result++;
+      break;   /* terminate loop if fail */
+    }
+
+    if (!GEDA_IS_COMPLEX(object1->complex)) {
+      fprintf(stderr, "FAILED: (O081001D) sub-pointer not a %s\n", TOBJECT);
+      result++;
+      break;   /* terminate loop if fail */
+    }
+    else {
+
+      int fail = 0;
+
+      /* === Function 03: geda_complex_object_get_filename  === */
+      /* === Function 04: geda_complex_object_get_nearest_point  === */
+      /* === Function 05: geda_complex_object_get_pin_objs  === */
+      /* === Function 06: geda_complex_object_get_prim_objs  === */
+      /* === Function 08: geda_complex_object_is_embedded  === */
+
+      if (fail) {
+        result++;
+        break;
+      }
+    }
+    g_object_unref (object1);
+  }
+  return result;
+}
+
 /** @} endgroup test-object-geda-complex */
 
 int
@@ -354,6 +402,20 @@ main (int argc, char *argv[])
   else {
     fprintf(stderr, "Caught signal in constructors %s\n\n", __FILE__);
     return 1;
+  }
+
+  if (!result) {
+
+    if (setjmp(point) == 0) {
+      result = check_accessors();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking accessors in object/o_complex_object.c\n\n");
+      return 1;
+    }
+  }
+  else {
+    fprintf(stderr, "discontinuing checks for object/o_complex_object.c\n\n");
   }
 
   posttest();
