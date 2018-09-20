@@ -1188,7 +1188,7 @@ int test_sys (void)
       result++;
     }
     else {
-      fprintf(stderr, "FAILED: (F050302B) an error occured, file <%s>: %s\n", string, strerror(errno));
+      fprintf(stderr, "FAILED: (F050302B) an error occurred, file <%s>: %s\n", string, strerror(errno));
       result++;
     }
   }
