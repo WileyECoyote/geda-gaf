@@ -398,7 +398,7 @@ error:
  * \param [out] length   Size of the buffer if successful.
  * \param [out] err      Pointer to location of error record if not successful.
  *
- * \retval TRUE on success, FALSE if an error occured.
+ * \retval TRUE on success, FALSE if an error occurred.
  */
 bool geda_file_get_contents(const char  *filename,
                                   char **contents,
