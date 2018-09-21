@@ -463,7 +463,9 @@ bool geda_net_object_is_fully_connected (GedaObject *o_current)
 
     return o_current->net->net_num_connected > 1 ? TRUE : FALSE;
   }
+
   geda_net_object_error(__func__, o_current);
+
   return FALSE;
 }
 
@@ -578,6 +580,7 @@ int geda_net_object_orientation(GedaObject *object)
   else {
     geda_object_error(__func__, object, GEDA_OBJECT_LINE);
   }
+
   return(NEITHER);
 }
 
@@ -604,10 +607,16 @@ void geda_net_object_print(GedaToplevel *toplevel, FILE *fp,
   f_print_set_color(toplevel, fp, o_current->color);
 
   net_width = o_current->line_options->line_width;
-  if(net_width <= MIN_LINE_WIDTH_THRESHOLD)
-    net_width = geda_object_style_get_net_width(toplevel);   /* 1st try updating the style */
-  if (net_width < MIN_LINE_WIDTH_THRESHOLD) /* if STYLE_NONE */
+
+  /* 1st try updating the style */
+  if(net_width <= MIN_LINE_WIDTH_THRESHOLD) {
+    net_width = geda_object_style_get_net_width(toplevel);
+  }
+
+  /* if STYLE_NONE */
+  if (net_width < MIN_LINE_WIDTH_THRESHOLD)  {
     net_width = MIN_LINE_WIDTH_THRESHOLD;
+  }
 
   x1 = o_current->line->x[0] - origin_x,
   y1 = o_current->line->y[0] - origin_y;
