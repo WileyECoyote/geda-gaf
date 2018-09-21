@@ -648,23 +648,24 @@ void geda_net_object_rotate(GedaObject *object, int cx, int cy, int angle)
 
     g_return_if_fail(GEDA_IS_NET(object));
 
-    if (angle == 0)
-      return;
+    /* Do nothing if angle is zero */
+    if (angle) {
 
-    /* translate object to origin */
-    geda_net_object_translate(object, -cx, -cy);
+      /* translate object to origin */
+      geda_net_object_translate(object, -cx, -cy);
 
-    geda_math_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
+      geda_math_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
-    object->line->x[0] = newx;
-    object->line->y[0] = newy;
+      object->line->x[0] = newx;
+      object->line->y[0] = newy;
 
-    geda_math_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
+      geda_math_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
 
-    object->line->x[1] = newx;
-    object->line->y[1] = newy;
+      object->line->x[1] = newx;
+      object->line->y[1] = newy;
 
-    geda_net_object_translate(object, cx, cy);
+      geda_net_object_translate(object, cx, cy);
+    }
   }
   else {
     geda_net_object_error(__func__, object);
