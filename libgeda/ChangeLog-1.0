@@ -6,6 +6,8 @@
     * src/object/o_net_object.c: Revise geda_net_object_rotate to eliminate
       early return.
 
+    * tests/test_file.c: Add function list to test group 5 documentation.
+
 2018-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * o_circle_object.c: Remove redundant setting w_bounds_valid_for to NULL;
@@ -389,49 +391,49 @@
       and !G_FILE_TEST_IS_DIR to simplify checking for the existence of the backup
       file in geda_file_remove_backup.
 
-   * src/geda/geda_config.c: Revise *eda_config_get_user_context to strip
-     the file extension from prgname so confiles do not show up with names
-     like gschem.exe-user.conf.
+    * src/geda/geda_config.c: Revise *eda_config_get_user_context to strip
+      the file extension from prgname so confiles do not show up with names
+      like gschem.exe-user.conf.
 
 2018-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
-   * src/struct/s_clib.c: Revise geda_struct_clib_add_directory to look for
-     forward slashes instead of DIR_SEPARATOR because these separators are
-     not platform dependent and are normally specified in geda-clib.scm to
-     delineate the category and the text to display for the category, i.e.
-     they are not path seperators.
+    * src/struct/s_clib.c: Revise geda_struct_clib_add_directory to look for
+      forward slashes instead of DIR_SEPARATOR because these separators are
+      not platform dependent and are normally specified in geda-clib.scm to
+      delineate the category and the text to display for the category, i.e.
+      they are not path seperators.
 
-   * tests/test_file.c: Add conditional directives to skip F050501A on Win32
-     host and add F050501C and F050502C for geda_file_sys_normalize_name.
+    * tests/test_file.c: Add conditional directives to skip F050501A on Win32
+      host and add F050501C and F050502C for geda_file_sys_normalize_name.
 
 2018-06-29 Wiley E. Hill <wileyhill@gmail.com>
 
-   * etc/system-gafrc: Update bitmap-directory name.
+    * etc/system-gafrc: Update bitmap-directory name.
 
-   * src/guile/g_evaluate.c: Use real function name geda_file_path_get_dirname
-     instead of geda_get_dirname macro. Revise g_evaluate_scheme_file to utilize
-     geda_utility_string_strstr_rep to replace forward slashes with platform
-     separator for Win32 builds and report the error when without an err pointer
-     rather than propagating to NULL, which reports the error without the name
-     of the file.
+    * src/guile/g_evaluate.c: Use real function name geda_file_path_get_dirname
+      instead of geda_get_dirname macro. Revise g_evaluate_scheme_file to utilize
+      geda_utility_string_strstr_rep to replace forward slashes with platform
+      separator for Win32 builds and report the error when without an err pointer
+      rather than propagating to NULL, which reports the error without the name
+      of the file.
 
-   * tests/test_file.c: Remove forward slash from "libgeda" in F030601B,
-     and add F030601C to verify the path of libgeda is valid. Skip checks
-     geda_file_sys_follow_symlinks on MinGW platforms because MinGW does
-     not have symlinks, a copy is made instead.
+    * tests/test_file.c: Remove forward slash from "libgeda" in F030601B,
+      and add F030601C to verify the path of libgeda is valid. Skip checks
+      geda_file_sys_follow_symlinks on MinGW platforms because MinGW does
+      not have symlinks, a copy is made instead.
 
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
-   * scheme/geda/core/gettext.scm.in: Redefine gettext function public, for
-     some undocumented reason, this regressed 10-20-18 as part of a general
-     "bulk" update.
+    * scheme/geda/core/gettext.scm.in: Redefine gettext function public, for
+      some undocumented reason, this regressed 10-20-18 as part of a general
+      "bulk" update.
 
-   * src/file/f_get.c: Use real function name geda_file_path_sys_data instead
+    * src/file/f_get.c: Use real function name geda_file_path_sys_data instead
       of geda_sys_data_path macro.
 
-   * tests/test_file.c: Conditionally define FILE_COUNT_07 for checking
-     geda_get_dir_list on Win32 platforms and strings in F03_str structure,
-     with backslashes, for geda_file_path_get_dirname.
+    * tests/test_file.c: Conditionally define FILE_COUNT_07 for checking
+      geda_get_dir_list on Win32 platforms and strings in F03_str structure,
+      with backslashes, for geda_file_path_get_dirname.
 
 2018-06-27 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -598,8 +600,8 @@
 
     * src/utility/u_log.c: Revise geda_utility_log_init to check for the
       existence of default_log_directory before attempting to create and
-      if the directory exist verify permissions are sufficient to read and
-      write before proposing default_log_directory as dir_path. Revise
+      if the directory exist, verify permissions are sufficient to read
+      and write before proposing default_log_directory as dir_path. Revise
       conditionals to fall-back to normal geda_user_config_path when the
       default_log_directory is unset. This allow the logging operations
       to continue normally if user specified and invalid directory in
@@ -684,11 +686,11 @@
 2018-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_utility.c: Revise conditionals in checks for geda_stristr
-      because the not operator was only apllied to the left side. Add
+      because the not operator was only applied to the left side. Add
       function test_string_strsize to check geda_utility_string_strsize.
 
     * src/geda/geda_arc.c: Declare doubles volatile in geda_arc_within_sweep;
-      gcc 5.3.1 20160413 32bit yields incorrect values from rounding and
+      gcc 5.3.1 20160413 32 bit yields incorrect values from rounding and
       resulted in test SA0AS90F consistently failing.
 
     * src/geda/geda_config.c: Revise eda_config_get_context_for_file to not
@@ -811,7 +813,7 @@
 
 2018-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/struct/s_place.c: Eliminate G_List pointer in geda_struct_place_
+    * src/struct/s_place.c: Eliminate GList pointer in geda_struct_place_
       get_place_list.
 
 2018-03-02 Wiley E. Hill <wileyhill@gmail.com>
@@ -842,7 +844,7 @@
 
     * src/geda/geda_object.c: Add accessor geda_object_locked_color.
 
-    * tests/test_file.c: Fix not setting result when error are detected in
+    * tests/test_file.c: Fix not setting result when errors are detected in
       for geda_follow_symlinks in test_sys. Add checks for:
 
           * geda_file_sys_cmp_mod_time
@@ -973,8 +975,8 @@
           * geda_picture_set_angle
           * geda_picture_set_is_embedded
 
-    * src/object/o_embed.c: Utilize geda_complex_set_is_embedded to
-      set the is_embedded property.
+    * src/object/o_embed.c: Utilize geda_complex_set_is_embedded to set
+      the is_embedded property.
 
     * tests/test_file.c: Add check for geda_file_path_sys_doc.
 

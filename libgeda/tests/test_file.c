@@ -1090,6 +1090,16 @@ int test_print (void)
 /** \defgroup test-file-geda-sys Test GEDA f_sys Module
  * @{
  * \brief Group 5 src/file/f_sys.c geda_file_sys_
+ *
+ *  <DL>
+ *    <DT>Function 01 geda_file_copy</DT>
+ *    <DT>Function 02 geda_file_sys_ckmod</DT>
+ *    <DT>Function 03 geda_file_sys_cmp_mod_time</DT>
+ *    <DT>Function 04 geda_file_sys_follow_symlinks</DT>
+ *    <DT>Function 05 geda_file_sys_normalize_name</DT>
+ *    <DT>Function 06 geda_file_sys_remove</DT>
+ *    <DT>Function 07 geda_file_sys_remove_extension</DT>
+ *  </DL>
  */
 
 static int remove_file = 0;
