@@ -211,10 +211,20 @@ int geda_file_copy(const char *source, const char *target)
   return status; /* Success! */
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Check if File Permissions are At Least a Specified Mode
+ * \par Function Description
+ *  This function compares permission attributes of the file or
+ *  directory specified by \a path to the given attributes and
+ *  returns NO_ERROR if the permissions of path are less than or
+ *  equal to \a mode, otherwise FALSE is returned.
  *
+ * \param path Pointer to string of path to be interrogated
+ * \param mode mode_t  permission integer
+ *
+ * \code
+ *  example: int status = geda_file_sys_ckmod ("some/place, S_IRWXU | S_IRWXG);
+ * \endcode
  */
 int geda_file_sys_ckmod(const char *path, mode_t mode)
 {

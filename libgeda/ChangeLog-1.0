@@ -1,7 +1,7 @@
 2018-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_sys.c: Revise geda_file_sys_ckmod to set errno to 0 prior to
-      calling stat() to ensure errno is not set.
+      calling stat() to ensure errno is not set, update function documentation.
 
     * src/object/o_net_object.c: Revise geda_net_object_rotate to eliminate
       early return.
