@@ -3,6 +3,9 @@
     * src/base/gschem_macro_widget.c: Replace g_object_set "visible" with
       gtk_widget_show, see long entry 2018-08-23.
 
+    * src/iface/i_sessions.c: Rename "tmp" -> "item" and replace g_object_set
+      "visible" with gtk_widget_show.
+
 2018-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

@@ -604,7 +604,7 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
 
         SessionMenuData *menu_data;
         Session         *record;
-        GtkWidget       *tmp;
+        GtkWidget       *item;
 
         record    = &g_array_index(sessions, Session, index);
 
@@ -613,16 +613,16 @@ static void i_sessions_attach_submenu(GschemToplevel *w_current)
         menu_data->session   = record;
         menu_data->w_current = w_current;
 
-        tmp = geda_menu_item_new_with_label((char *)record->session_name);
+        item = geda_menu_item_new_with_label((char *)record->session_name);
 
-        g_object_set (tmp, "visible", TRUE, NULL);
+        gtk_widget_show (item);
 
-        g_signal_connect_data (tmp, "activate",
+        g_signal_connect_data (item, "activate",
                                G_CALLBACK (session_menu_item_clicked),
                                menu_data,
                                (GClosureNotify) session_free_menu_data,
                                0);
-        geda_menu_append(sessions_submenu, tmp);
+        geda_menu_append(sessions_submenu, item);
       }
 
       gtk_widget_show_all(sessions_submenu);
