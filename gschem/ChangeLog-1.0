@@ -1,3 +1,8 @@
+2018-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_macro_widget.c: Replace g_object_set "visible" with
+      gtk_widget_show, see long entry 2018-08-23.
+
 2018-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
@@ -401,7 +406,7 @@
 
     * src/x/x_console.c: Release filename in function x_console_set_icon.
 
-    * src/x/x_event.c: On button press, only call i_zoom_world_box_start if
+   ** src/x/x_event.c: On button press, only call i_zoom_world_box_start if
       not already inside the action, fixes HOT zoom-box action.
 
 2018-07-24 Wiley E. Hill <wileyhill@gmail.com>
@@ -558,7 +563,7 @@
     * src/x/x_console.c: Add function x_console_set_icon and call before exiting
       console_instance_init to set an icon for the console dialog window.
 
-    * src/x/x_dialog.c: Revise about_dialog to remove the exe extention from
+    * src/x/x_dialog.c: Revise about_dialog to remove the exe extension from
       gschem.exe in the dialog text.
 
     * src/x/x_window.c: Add x_window_idle_thread_restore_geometry and have
@@ -568,9 +573,9 @@
 
 2018-07-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_threads.c: Avoid calls gdk_threads_init() on MinGW platforms
+    * src/iface/i_threads.c: Avoid calling gdk_threads_init() on MinGW platforms
       (like the plague), reportedly a flaw in older Glibs result in Gdk locking
-      up whenever an attempt is made to moved or resize the main window.
+      up whenever an attempt is made to move or resize the main window.
 
     * src/iface/i_vars.c: Remove logging restoring setting; see source comments.
 
@@ -990,7 +995,7 @@
 
     * src/object/o_complex.c: Revise o_complex_export to use geda_complex_
       object_get_prim_objs to get the list of objects belonging to the
-      complex instead of just apended to complex to the list passed to
+      complex instead of just appending the complex to the list passed to
       geda_object_save.
 
 2018-02-16 Wiley E. Hill <wileyhill@gmail.com>

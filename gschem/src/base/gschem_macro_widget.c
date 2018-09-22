@@ -346,16 +346,16 @@ static void gschem_macro_widget_instance_init(GTypeInstance *instance, void *cla
   gtk_box_pack_start (GTK_BOX (content), widget->entry, TRUE, TRUE, 0);
 
   button_box = gtk_hbutton_box_new ();
-  g_object_set (button_box, "visible", TRUE, NULL);
+  gtk_widget_show (button_box);
   gtk_box_pack_start (GTK_BOX (content), button_box, FALSE, FALSE, 0);
 
   widget->evaluate_button = gtk_button_new_with_label (_("Evaluate"));
   gtk_widget_set_sensitive (widget->evaluate_button, FALSE);
-  g_object_set (widget->evaluate_button, "visible", TRUE, NULL);
+  gtk_widget_show (widget->evaluate_button);
   gtk_box_pack_start (GTK_BOX (button_box), widget->evaluate_button, FALSE, FALSE, 0);
 
   widget->cancel_button = gtk_button_new_from_stock (GTK_STOCK_CANCEL);
-  g_object_set (widget->cancel_button, "visible", TRUE, NULL);
+  gtk_widget_show (widget->cancel_button);
   gtk_box_pack_start (GTK_BOX (button_box), widget->cancel_button, FALSE, FALSE, 0);
 
   gtk_widget_set_no_show_all (action, TRUE);
