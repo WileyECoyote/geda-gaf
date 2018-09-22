@@ -6,7 +6,8 @@
     * src/object/o_net_object.c: Revise geda_net_object_rotate to eliminate
       early return.
 
-    * tests/test_file.c: Add function list to test group 5 documentation.
+    * tests/test_file.c: Add function list to test group 5 documentation and
+      update function ID numbers.
 
 2018-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
