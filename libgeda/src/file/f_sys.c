@@ -222,6 +222,8 @@ int geda_file_sys_ckmod(const char *path, mode_t mode)
 
   struct stat stat_buf;
 
+  errno = NO_ERROR;
+
   if (stat(path, &stat_buf) == 0) {
 
     unsigned int p_user,  m_user;
@@ -246,6 +248,7 @@ int geda_file_sys_ckmod(const char *path, mode_t mode)
   else {
     status = -1;
   }
+
   return status;
 }
 
