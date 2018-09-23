@@ -6126,16 +6126,15 @@ msgstr "Ongeldige tekst uitlijning ~A."
 msgid "No documentation found"
 msgstr "Geen documentatie gevonden"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Export Symbool"
+msgstr "Geïntegreerd symbool exporteren"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Export ingesloten afbeelding"
+msgstr "Ingesloten afbeelding exporteren"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format

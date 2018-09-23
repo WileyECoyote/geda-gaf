@@ -5888,15 +5888,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Simbool Af"
+msgstr "Uitvoer ingebed simbool"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Lê Komponent/Afbeelding In"
+msgstr "Uitvoer ingebedde prentjie"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
