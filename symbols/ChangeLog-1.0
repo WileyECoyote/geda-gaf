@@ -11,6 +11,8 @@
 
             * linear/opamps/LM224KN-1.sym
             * linear/opamps/LM224KN-2.sym
+            * linear/opamps/LM324KN-1.sym
+            * linear/opamps/LM324KN-2.sym
 
     * titleblock: Add description attribute, update attribute positions:
 
