@@ -6022,16 +6022,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-# Export Symbol
+# Export embedded symbol => Export embedded code
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "കയറ്റുമതി പ്രതീക"
+msgstr "ഉൾച്ചേർത്ത ചിഹ്നം എക്സ്പോർട്ടുചെയ്യുക"
 
+# Embedded image export
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "കൂടുതൽ ഉൾപ്പെടുത്തിയ ചിത്രം കയറ്റുമതി എന്തു"
+msgstr "ഉൾച്ചേർത്ത ഇമേജ് കയറ്റുമതി"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -6042,15 +6041,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Automatic Height
-#~ msgid "Auto Height"
-#~ msgstr "ഓട്ടോമാറ്റിക് ഉയരം"
-
-# Selection
-#~ msgid "<b>Selection</b>"
-#~ msgstr "തിരഞ്ഞെടുക്കൽ"
-
-# Array
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>ശ്രേണി</b>"

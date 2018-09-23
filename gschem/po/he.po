@@ -1667,9 +1667,8 @@ msgstr ""
 
 # Deselect mode
 #: gschem/src/x/x_console.c:186
-#, fuzzy
 msgid "safe mode"
-msgstr "בטל את הבחירה במצב"
+msgstr "מצב בטוח"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
@@ -3522,11 +3521,10 @@ msgstr ""
 msgid "Undo"
 msgstr "בטל את הפעולה האחרונה"
 
-# Undo the last action
+# Undo the last path segment => Undo the last polygon segment
 #: gschem/src/x/x_menus.c:160
-#, fuzzy
 msgid "Undo the last path segment"
-msgstr "בטל את הפעולה האחרונה"
+msgstr "בטל את קטע הפוליגון האחרון"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2075
 msgid "Open an existing schematic or symbol file"
@@ -4813,9 +4811,8 @@ msgstr ""
 
 # Component Documentation
 #: gschem/etc/system-gschemrc.scm:2215
-#, fuzzy
 msgid "View component documentation"
-msgstr "תיעוד רכיבים"
+msgstr "הצג תיעוד רכיבים"
 
 #: gschem/etc/system-gschemrc.scm:2216
 msgid "Show/Hide Inv Text"
@@ -5988,17 +5985,15 @@ msgstr "יישור טקסט לא חוקי ~A."
 msgid "No documentation found"
 msgstr "No documentation found"
 
-# Export embed symbol => Export embed icon
+# Export embedded symbol => Export embedded icon
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "ייצא סמל הטמעה"
+msgstr "ייצוא סמל מוטבע"
 
-# Export embed picture
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "לייצא תמונה להטביע"
+msgstr "ייצוא תמונה מוטמעת"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -6009,11 +6004,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Selection
-#~ msgid "<b>Selection</b>"
-#~ msgstr "בְּחִירָה"
-
-# Array
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>מַעֲרָך</b>"
