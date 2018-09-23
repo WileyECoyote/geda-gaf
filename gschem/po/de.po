@@ -1105,10 +1105,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating objects
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "Verschiebe Schaltplan"
+msgstr "Objekte übersetzen"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
@@ -1389,11 +1389,10 @@ msgstr "Dateireihenfolge"
 msgid "Filter:"
 msgstr "Filter:"
 
-# Restore
+# History
 #: gschem/src/x/x_autonumber.c:1660
-#, fuzzy
 msgid "_History"
-msgstr "Wiederherstellen"
+msgstr "Geschichte"
 
 #: gschem/src/x/x_autonumber.c:1668
 msgid "_Unset"
@@ -5861,15 +5860,15 @@ msgstr "Ungültige Ausrichtung: ~A."
 msgid "No documentation found"
 msgstr "Dokumentation konnte nicht gefunden werden"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "/Zum Symbol hinab"
+msgstr "Eingebettetes Symbol exportieren"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Bauteil/Bild einbetten"
+msgstr "Eingebettetes Bild exportieren"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format

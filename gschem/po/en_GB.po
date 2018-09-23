@@ -5771,7 +5771,7 @@ msgstr "No documentation found"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
 msgid "Export embedded symbol"
-msgstr ""
+msgstr "Export embedded symbol"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded picture"

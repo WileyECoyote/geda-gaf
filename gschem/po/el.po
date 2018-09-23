@@ -1099,10 +1099,10 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating objects
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "Μεταγραφική σχηματική"
+msgstr "Μεταφράζοντας αντικείμενα"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
@@ -5844,15 +5844,15 @@ msgstr "Μη έγκυρη στοίχιση κειμένου ~A."
 msgid "No documentation found"
 msgstr "Δε βρέθηκε τεκμηρίωση"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "/Κάτω σύμβολο"
+msgstr "Εξαγωγή του ενσωματωμένου συμβόλου"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Ενσωμάτωση στοιχείου/εικόνας"
+msgstr "Εξαγωγή ενσωματωμένης εικόνας"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
