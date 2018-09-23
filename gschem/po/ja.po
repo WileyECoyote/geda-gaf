@@ -5867,13 +5867,11 @@ msgstr "ドキュメントが見つかりません"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
 msgstr "埋め込みシンボルのエクスポート"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
 msgstr "埋め込み画像の書き出し"
 

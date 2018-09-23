@@ -5881,9 +5881,8 @@ msgid "Export embedded symbol"
 msgstr "Exportar símbolo insertado"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Incrustar componente/imagen"
+msgstr "Exportar imagen insertada"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format

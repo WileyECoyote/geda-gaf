@@ -1176,9 +1176,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr "ban khakkhan chamnoch 1, x=%d, y=%d\n"
 
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "koumnour bampruonh bakabre"
+msgstr "bakabre vottho"
 
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
@@ -3127,11 +3126,10 @@ msgstr "aksaar​ tauch"
 msgid "Camel"
 msgstr ""
 
-# Sequence
+# Sentence
 #: gschem/src/x/x_edit_text.c:319
-#, fuzzy
 msgid "Sentence"
-msgstr "lomdab:"
+msgstr "brayok"
 
 # Edit Text Properties
 #: gschem/src/x/x_edit_text.c:678
@@ -6079,15 +6077,16 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
+# Export embedded symbol
+# neachenh nimittasanhnhea del ban bangkob
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Chors Symbol"
+msgstr "neachenh roubtamnang"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "banthem roubpheap"
+msgstr "neachenh roub bangkob"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
