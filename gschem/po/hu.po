@@ -5813,15 +5813,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr "Nem találtam dokumentumot"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "/Szimbólum szerkesztése"
+msgstr "Beágyazott szimbólum exportálása"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Alkatrész/kép beágyazása"
+msgstr "Beágyazott kép exportálása"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format

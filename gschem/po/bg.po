@@ -5943,16 +5943,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "износ символ"
+msgstr "Експортиран вграден символ"
 
 #  Export embedded image
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Export вграждане картина"
+msgstr "Експортиране на вградено изображение"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
