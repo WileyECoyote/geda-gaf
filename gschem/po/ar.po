@@ -5872,15 +5872,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr "ت_وثيق"
 
+# Export embedded symbol => Export embedded code
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "/انزل إلى الرمز"
+msgstr "تصدير رمز مضمّن"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "ضمّن المكون/الصورة"
+msgstr "تصدير الصورة المدمجة"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format

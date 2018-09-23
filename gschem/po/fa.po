@@ -5892,16 +5892,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-# Export Symbol
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "صادرات نماد"
+msgstr "صادرات نماد تعبیه شده"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Embed Component/Picture"
+msgstr "صادرات تصویر جاسازی شده"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
