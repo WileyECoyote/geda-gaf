@@ -12,6 +12,10 @@
             * linear/opamps/LM224KN-1.sym
             * linear/opamps/LM224KN-2.sym
 
+    * titleblock: Add description attribute, update attribute positions:
+
+            * titleblock/title-A.sym
+
 2018-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/opamps/LF155?-1.sym: Add 2 symbols for JFET operational
