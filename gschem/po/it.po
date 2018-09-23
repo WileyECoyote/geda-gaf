@@ -1158,11 +1158,12 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating objects
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
-#, fuzzy
 msgid "Translating objects"
-msgstr "Spostamento schema"
+msgstr "Traduzione di oggetti"
 
+# Translating schematic
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
 msgstr "Spostamento schema"
@@ -5891,15 +5892,15 @@ msgstr "Allineamento testo non valido ~A."
 msgid "No documentation found"
 msgstr "Nessun documento trovato"
 
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Giu nel simbolo"
+msgstr "Esporta simbolo incorporato"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Componente/Immagine fissato/a"
+msgstr "Esporta immagine incorporata"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
