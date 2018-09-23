@@ -1182,13 +1182,15 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
+# Translating objects
 #: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
 msgid "Translating objects"
-msgstr ""
+msgstr "Prevajanje predmetov"
 
+# Translating schematic
 #: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
 msgid "Translating schematic"
-msgstr ""
+msgstr "Shematično prevajanje"
 
 #: gschem/src/object/o_delete.c:91
 #, c-format
@@ -3053,11 +3055,10 @@ msgstr ""
 msgid "Text alignment combobox"
 msgstr "Besedilo poravnavo kombinacijsko polje"
 
-# Text Alignment combobox
+# Text case combobox
 #: gschem/src/x/x_edit_text.c:847
-#, fuzzy
 msgid "Text case combobox"
-msgstr "Besedilo poravnavo kombinacijsko polje"
+msgstr "Kombinacija besedilnega primera"
 
 #: gschem/src/x/x_edit_text.c:851
 msgid "Color options menu"
@@ -6029,17 +6030,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-# export Symbol
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "izvoz Simbol"
+msgstr "Izvozi vdelani simbol"
 
-# export image
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "izvoz slike"
+msgstr "Izvozi vdelano sliko"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format

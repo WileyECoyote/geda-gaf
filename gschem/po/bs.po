@@ -6015,17 +6015,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-# export Symbol
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "izvoz Simbol"
+msgstr "Izvoz ugrađenog simbol"
 
-# export picture
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "izvoz slika"
+msgstr "Izvoz ugrađenog slike"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
