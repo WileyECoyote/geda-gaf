@@ -130,8 +130,7 @@ int check_box (void)
   return result;
 }
 
-int
-check_properties (void)
+int check_properties (void)
 {
   int result = 0;
 
@@ -316,8 +315,7 @@ check_properties (void)
   return result;
 }
 
-int
-check_accessors (void)
+int check_accessors (void)
 {
   int result = 0;
 
@@ -603,8 +601,7 @@ check_accessors (void)
   return result;
 }
 
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   int result = 0;
 

@@ -13,6 +13,10 @@
 
     * tests/test_arc_object.c: Update function wrap.
 
+    * tests/test_box.c: Update function wrap.
+
+    * tests/test_box_object.c: Update function wrap.
+
 2018-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_sys.c: Revise geda_file_sys_ckmod to set errno to 0 prior to
