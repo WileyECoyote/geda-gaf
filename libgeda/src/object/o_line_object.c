@@ -771,7 +771,7 @@ void geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 
   /* recalculate the bounding line */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!
@@ -1665,7 +1665,7 @@ geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
     object->line->y[1] = object->line->y[1] * y_scale;
 
     /* update boundingline */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_line_object_error(__func__, object);
@@ -1962,7 +1962,7 @@ void geda_line_object_translate( GedaObject *object, int dx, int dy)
   line->y[1] = line->y[1] + dy;
 
   /* Update bounding line */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /** @} endgroup geda-line-object-proc */

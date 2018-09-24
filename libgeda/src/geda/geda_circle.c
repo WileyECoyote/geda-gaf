@@ -87,6 +87,8 @@ int geda_circle_bounds(GedaObject *object)
   object->right  = object->circle->center_x + object->circle->radius + halfwidth;
   object->bottom = object->circle->center_y + object->circle->radius + halfwidth;
 
+  object->bounds_valid = TRUE;
+
   return TRUE;
 }
 

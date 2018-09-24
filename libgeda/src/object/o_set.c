@@ -48,7 +48,7 @@
 void geda_set_object_bounds_invalid(GedaObject *obj)
 {
   do {
-    obj->w_bounds_valid_for = NULL;
+    obj->bounds_valid = FALSE;
   } while ((obj = obj->parent_object) != NULL);
 }
 

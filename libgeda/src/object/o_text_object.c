@@ -870,7 +870,7 @@ void geda_text_object_recreate(GedaObject *o_current)
   geda_text_object_update_disp_string (o_current);
 
   if (!geda_object_bounds (o_current)) {
-    o_current->w_bounds_valid_for = NULL;
+    o_current->bounds_valid = FALSE;
   }
 
   geda_object_notify_emit_change (o_current);
@@ -1169,7 +1169,7 @@ void geda_text_object_translate(GedaObject *object, int dx, int dy)
   object->text->y = object->text->y + dy;
 
   /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!

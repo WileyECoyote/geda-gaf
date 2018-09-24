@@ -82,6 +82,8 @@ static int geda_line_bounds(GedaObject *object)
   object->top    = min( object->line->y[0], object->line->y[1] ) - expand;
   object->bottom = max( object->line->y[0], object->line->y[1] ) + expand;
 
+  object->bounds_valid = TRUE;
+
   return TRUE;
 }
 

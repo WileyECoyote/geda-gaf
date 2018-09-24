@@ -271,7 +271,7 @@ void geda_pin_object_translate(GedaObject *object, int dx, int dy)
   object->line->y[1] = object->line->y[1] + dy;
 
   /* Update bounding box */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 
   geda_struct_tile_update_object(object);
 }
@@ -372,7 +372,7 @@ void geda_pin_object_modify(GedaObject *object, int x, int y, int whichone)
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
 
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 
   geda_struct_tile_update_object(object);
 }

@@ -90,6 +90,8 @@ static int geda_box_bounds(GedaObject *object)
   object->right  = max(object->box->upper_x, object->box->lower_x) + halfwidth;
   object->bottom = max(object->box->upper_y, object->box->lower_y) + halfwidth;
 
+  object->bounds_valid = TRUE;
+
   return TRUE;
 }
 

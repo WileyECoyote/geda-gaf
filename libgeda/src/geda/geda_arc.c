@@ -146,6 +146,8 @@ static int geda_arc_bounds(GedaObject *object)
   object->right  = right  + halfwidth;
   object->bottom = bottom + halfwidth;
 
+  object->bounds_valid = TRUE;
+
   return TRUE;
 }
 

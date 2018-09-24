@@ -74,7 +74,7 @@ GedaObject *geda_box_object_copy(const GedaObject *o_source)
     geda_set_object_line_options(new_obj, &old_box->line_options);
     geda_set_object_fill_options(new_obj, &old_box->fill_options);
 
-    new_obj->w_bounds_valid_for = NULL;
+    new_obj->bounds_valid = FALSE;
 
     return new_obj;
   }
@@ -627,7 +627,7 @@ void geda_box_object_mirror(GedaObject *object, int center_x, int center_y)
     object->box->lower_y += center_y;
 
     /* recalc boundings and world coords */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_box_object_error(__func__, object);
@@ -704,7 +704,7 @@ void geda_box_object_modify(GedaObject *object, int x, int y, int whichone)
     }
 
     /* recalculate the world coords and the boundings */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_box_object_error(__func__, object);
@@ -735,7 +735,7 @@ void geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int
     object->box->upper_y = (y1 > y2) ? y1 : y2;
 
     /* recalculate the world coords and bounds */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_box_object_error(__func__, object);
@@ -1686,7 +1686,7 @@ void geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int 
     object->box->lower_y += center_y;
 
     /* recalc boundings and world coords */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_box_object_error(__func__, object);
@@ -2130,7 +2130,7 @@ void geda_box_object_translate(GedaObject *object, int dx, int dy)
     object->box->lower_y = object->box->lower_y + dy;
 
     /* recalc the screen coords and the bounding box */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_box_object_error(__func__, object);

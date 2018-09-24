@@ -118,6 +118,8 @@ static int geda_complex_bounds(GedaObject *object)
 
   }
 
+  object->bounds_valid = TRUE;
+
   return result;
 }
 

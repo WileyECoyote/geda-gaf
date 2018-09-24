@@ -420,7 +420,7 @@ geda_bus_object_modify(GedaObject *object, int x, int y, int whichone)
 
     geda_struct_tile_update_object(object);
 
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_bus_object_error(__func__, object);
@@ -816,7 +816,7 @@ geda_bus_object_translate(GedaObject *object, int dx, int dy)
     object->line->y[1] = object->line->y[1] + dy;
 
     /* Update bounding box */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
 
     geda_struct_tile_update_object(object);
   }

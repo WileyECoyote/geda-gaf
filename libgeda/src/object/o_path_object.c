@@ -506,7 +506,7 @@ GedaObject *geda_path_object_copy (const GedaObject *o_current)
     geda_set_object_fill_options (new_obj, &old_path->fill_options);
 
     /* calc the bounding box */
-    new_obj->w_bounds_valid_for = NULL;
+    new_obj->bounds_valid = FALSE;
 
     /* return the new tail of the object list */
     return new_obj;
@@ -746,7 +746,7 @@ void geda_path_object_modify (GedaObject *object, int x, int y, int whichone)
     }
 
     /* Update bounding box */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_path_object_error(__func__, object);
@@ -790,7 +790,7 @@ void geda_path_object_mirror (GedaObject *object, int center_x, int center_y)
       }
     }
 
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_path_object_error(__func__, object);
@@ -841,7 +841,7 @@ void geda_path_object_rotate (GedaObject *object, int center_x, int center_y, in
             break;
       }
     }
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_path_object_error(__func__, object);
@@ -887,7 +887,7 @@ void geda_path_object_translate (GedaObject *object, int dx, int dy)
     }
 
     /* Update bounding box */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_path_object_error(__func__, object);

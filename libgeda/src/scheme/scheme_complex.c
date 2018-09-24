@@ -302,7 +302,7 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
                                                 child);
     child->parent_object = parent;
 
-    parent->w_bounds_valid_for = NULL;
+    parent->bounds_valid = FALSE;
 
     /* We may need to update connections */
     geda_struct_tile_update_object (child);

@@ -102,7 +102,7 @@ GedaObject *geda_complex_object_copy(GedaObject *o_current)
     new_complex->pin_objs = pins;
 
     /* Recalculate bounds */
-    o_new->w_bounds_valid_for = NULL;
+    o_new->bounds_valid = FALSE;
 
     geda_struct_slot_update_object (o_new);
 
@@ -1434,7 +1434,7 @@ void geda_complex_object_translate(GedaObject *object, int dx, int dy)
 
     geda_object_list_translate (object->complex->prim_objs, dx, dy);
 
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_complex_object_error(__func__, object);

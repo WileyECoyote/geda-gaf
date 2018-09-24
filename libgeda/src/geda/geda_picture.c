@@ -66,6 +66,8 @@ static int geda_picture_bounds(GedaObject *object)
   object->right  = max(object->picture->upper_x, object->picture->lower_x);
   object->bottom = max(object->picture->upper_y, object->picture->lower_y);
 
+  object->bounds_valid = TRUE;
+
   return TRUE;
 }
 

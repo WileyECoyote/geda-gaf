@@ -1071,7 +1071,7 @@ void geda_picture_object_mirror(GedaObject *object, int center_x, int center_y)
   object->picture->lower_y += center_y;
 
   /* invalidate bounding coordinates */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!
@@ -1158,7 +1158,7 @@ void geda_picture_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 
   /* invalidate the boundary */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!
@@ -1184,7 +1184,7 @@ void geda_picture_object_modify_all (GedaObject *object, int x1, int y1, int x2,
   object->picture->upper_y = (y1 > y2) ? y1 : y2;
 
   /* invalidate the bounds */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!
@@ -1655,7 +1655,7 @@ void geda_picture_object_rotate(GedaObject *object, int x, int y, int angle)
   object->picture->lower_y += y;
 
   /* recalc boundings and screen coords */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!
@@ -1930,7 +1930,7 @@ void geda_picture_object_translate(GedaObject *object, int dx, int dy)
   object->picture->lower_y = object->picture->lower_y + dy;
 
   /* recalc the screen coords and the bounding picture */
-  object->w_bounds_valid_for = NULL;
+  object->bounds_valid = FALSE;
 }
 
 /*!

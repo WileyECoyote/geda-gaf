@@ -355,7 +355,7 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
             new_obj->complex->pin_objs = g_list_reverse (pins);
           }
 
-          new_obj->w_bounds_valid_for = NULL;
+          new_obj->bounds_valid = FALSE;
 
           embedded_level--;
         }

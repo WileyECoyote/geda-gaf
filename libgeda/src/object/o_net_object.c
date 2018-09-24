@@ -256,7 +256,7 @@ static int geda_net_object_consolidate_segments (GedaObject *object)
           }
 
           geda_struct_object_release (other_object);
-          object->w_bounds_valid_for = NULL;
+          object->bounds_valid = FALSE;
           geda_struct_tile_update_object(object);
           geda_struct_conn_update_linear_object(object);
           return(-1);
@@ -516,7 +516,7 @@ void geda_net_object_modify(GedaObject *object, int x, int y, int whichone)
     object->line->x[whichone] = x;
     object->line->y[whichone] = y;
 
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
 
     geda_struct_tile_update_object(object);
 
@@ -551,7 +551,7 @@ GedaObject *geda_net_object_new(int color, int x1, int y1, int x2, int y2)
   new_obj->line->x[1] = x2;
   new_obj->line->y[1] = y2;
 
-  new_obj->w_bounds_valid_for = NULL;
+  new_obj->bounds_valid = FALSE;
 
   return new_obj;
 }
@@ -989,7 +989,7 @@ void geda_net_object_translate(GedaObject *object, int dx, int dy)
     object->line->y[1] = object->line->y[1] + dy;
 
     /* Update bounding box */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
 
     geda_struct_tile_update_object(object);
   }

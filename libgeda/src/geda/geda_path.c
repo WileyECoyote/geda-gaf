@@ -128,6 +128,8 @@ geda_path_bounds (GedaObject *object)
     object->top    = top    - halfwidth;
     object->right  = right  + halfwidth;
     object->bottom = bottom + halfwidth;
+
+    object->bounds_valid = TRUE;
   }
   return found_bound;
 }

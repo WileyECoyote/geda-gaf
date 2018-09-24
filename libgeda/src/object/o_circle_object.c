@@ -556,7 +556,7 @@ geda_circle_object_mirror(GedaObject *object, int center_x, int center_y)
     object->circle->center_y += center_y;
 
     /* recalc boundings and screen coords */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -615,7 +615,7 @@ geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
     }
 
     /* recalculate the boundings */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1441,7 +1441,7 @@ geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int an
     object->circle->center_x += center_x;
     object->circle->center_y += center_y;
 
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1870,7 +1870,7 @@ geda_circle_object_translate(GedaObject *object, int dx, int dy)
     object->circle->center_y = object->circle->center_y + dy;
 
     /* recalc the screen coords and the bounding box */
-    object->w_bounds_valid_for = NULL;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_circle_object_error(__func__, object);

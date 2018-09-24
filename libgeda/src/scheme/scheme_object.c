@@ -303,7 +303,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
       for (list = obj_list; list != NULL; list = g_list_next(list)) {
         GedaObject *o_current = (GedaObject *) list->data;
-        o_current->w_bounds_valid_for = NULL;
+        o_current->bounds_valid = FALSE;
       }
 
       success = geda_object_get_bounds_list (obj_list, &left, &top, &right, &bottom);

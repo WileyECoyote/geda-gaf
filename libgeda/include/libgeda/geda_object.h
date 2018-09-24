@@ -76,7 +76,7 @@ struct _GedaObject {
   int     left;                        /* in world coords */
   int     right;
   int     bottom;
-  void   *w_bounds_valid_for;          /* Hack = GedaToplevel * */
+  bool    bounds_valid;                /* Flag set object bound is valid */
 
   GedaArc     *arc;
   GedaBox     *box;
