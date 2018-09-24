@@ -688,12 +688,59 @@ GedaObjectType geda_object_get_type (void)
  *
  * \return A pointer to the initialized object.
  */
-GedaObject *geda_object_new (int type, char const *name)
+GedaObject *geda_object_new (int type)
 {
-  GedaObject *object = g_object_new(GEDA_TYPE_OBJECT,
-                                    "type", type,
-                                    "name", name,
-                                    NULL);
+  GedaObject *object;
+
+  switch (type) {
+    case OBJ_ARC:
+      object = geda_arc_new();
+      break;
+
+    case OBJ_BOX:
+      object = geda_box_new();
+      break;
+
+    case OBJ_BUS:
+      object = geda_bus_new();
+      break;
+
+    case OBJ_CIRCLE:
+      object = geda_circle_new();
+      break;
+
+    case OBJ_COMPLEX:
+      object = geda_complex_new();
+      break;
+
+    case OBJ_LINE:
+      object = geda_line_new();
+      break;
+
+    case OBJ_NET:
+      object = geda_net_new();
+      break;
+
+    case OBJ_PATH:
+      object = geda_path_new();
+      break;
+
+    case OBJ_PICTURE:
+      object = geda_picture_new();
+      break;
+
+    case OBJ_PIN:
+      object = geda_pin_new();
+      break;
+
+    case OBJ_TEXT:
+      object = geda_text_new();
+      break;
+
+    default:
+      object = NULL;
+  }
+
   return object;
 }
 

@@ -33,7 +33,7 @@
  */
 GedaObject *geda_struct_object_new (int type, char const *name)
 {
-  return geda_object_new(type, name);
+  return geda_object_new(type);
 }
 
 /*!
