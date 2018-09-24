@@ -113,8 +113,7 @@
  *      O0250    geda_arc_object_within_sweep
  */
 
-int
-check_construction (void)
+int check_construction (void)
 {
   int count;
   int result = 0;
@@ -373,8 +372,7 @@ check_construction (void)
   return result;
 }
 
-int
-check_accessors (void)
+int check_accessors (void)
 {
   int count;
   int result = 0;
@@ -879,8 +877,7 @@ check_serialization (void)
   return result;
 }
 
-int
-query_nearest_Q13_90 (GedaObject *object)
+int query_nearest_Q13_90 (GedaObject *object)
 {
   int result = 0;
 
@@ -1066,8 +1063,7 @@ query_nearest_Q13_90 (GedaObject *object)
   return result;
 }
 
-int
-query_nearest_Q24_90 (GedaObject *object)
+int query_nearest_Q24_90 (GedaObject *object)
 {
   int result = 0;
 
@@ -1259,8 +1255,7 @@ query_nearest_Q24_90 (GedaObject *object)
  * differ by less than 1 then result is considered correct. This
  * assume previously tested geda_arc_object_get_nearest_point passed.
  */
-int
-query_nearest_shortest_distance (GedaObject *object)
+int query_nearest_shortest_distance (GedaObject *object)
 {
   int result = 0;
 
@@ -1302,8 +1297,7 @@ query_nearest_shortest_distance (GedaObject *object)
   return result;
 }
 
-int
-check_query (void)
+int check_query (void)
 {
   int result = 0;
   int dx, dy;
@@ -1403,8 +1397,7 @@ check_query (void)
   return result;
 }
 
-int
-check_transformer (void)
+int check_transformer (void)
 {
   int result = 0;
 
@@ -1541,6 +1534,7 @@ check_transformer (void)
     geda_arc_object_translate(object, tx, ty);
 
     geda_arc_object_get_position(object, &dx, &dy);
+
     if ((dx - 100) || (dy - 100)) {
       fprintf(stderr, "FAILED: (O024901) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
       result++;
