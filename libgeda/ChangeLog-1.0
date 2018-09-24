@@ -5,7 +5,7 @@
 
     * src/geda/geda_object.c: Eliminate second argument to geda_object_new
       and revamp function to utilize geda_*_new function based on the type
-      argument.
+      argument, update function documentation.
 
     * src/geda/geda_page.c: Reformat and update Doxygen comments.
 

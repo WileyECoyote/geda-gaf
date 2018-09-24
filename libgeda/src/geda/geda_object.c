@@ -681,12 +681,15 @@ GedaObjectType geda_object_get_type (void)
 /*!
  * \brief Create a new GedaObject.
  * \par Function Description
- *  Returns a pointer to a new GedaObject object.
+ *  GedaObject objects are generally not created directly, this function
+ *  creates an object of the type specified by \a type, which results in
+ *  the creation of a GedaObject base object. An alternative would be to
+ *  just call the "new" constructor of the desired type.
  *
  * \param [in] type      The object type; one of the OBJ_* constants.
  * \param [in] name      A prefix for the object's session-unique name.
  *
- * \return A pointer to the initialized object.
+ * \return A pointer to a new initialized object.
  */
 GedaObject *geda_object_new (int type)
 {
