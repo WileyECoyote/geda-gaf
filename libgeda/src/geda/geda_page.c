@@ -367,12 +367,12 @@ GedaPageType geda_page_get_type (void)
   return geda_page_type;
 }
 
-/*! \brief Returns a pointer to a new Page object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Page object.
+ * \par Function Description
  *  Returns a pointer to a new Page object.
  *
- *  \return pointer to the new Page object.
+ * \return pointer to the new Page object.
  */
 Page *geda_page_new (void)
 {
@@ -381,12 +381,12 @@ Page *geda_page_new (void)
   return page;
 }
 
-/*! \brief Returns a pointer to a new Page object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Page object.
+ * \par Function Description
  *  Returns a pointer to a new Page object.
  *
- *  \return pointer to the new Page object.
+ * \return pointer to the new Page object.
  */
 Page *geda_page_new_with_notify (void)
 {
@@ -397,12 +397,12 @@ Page *geda_page_new_with_notify (void)
   return page;
 }
 
-/*! \brief Return True if object is Geda PagePage.
- *
- *  \par Function Description
+/*!
+ * \brief Return True if object is Geda PagePage.
+ * \par Function Description
  *  Returns true if the argument is a Geda Page object.
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_page (const Page *page)
 {
@@ -430,15 +430,15 @@ void geda_page_unref(Page *page)
   }
 }
 
-/*! \brief Notify weak reference watchers that a structure is dead.
+/*!
+ * \brief Notify weak reference watchers that a structure is dead.
  * \par Function Description
- * For each entry in \a weak_refs, call notify function with the dead
- * pointer \a dead_ptr and the entry's specified user data, and free
- * \a weak_refs. Should be called during destruction of an structure
- * that allows weak references.
+ *  For each entry in \a weak_refs, call notify function with the dead
+ *  pointer \a dead_ptr and the entry's specified user data, and free
+ *  \a weak_refs. Should be called during destruction of an structure
+ *  that allows weak references.
  *
  * \param [in] page  Pointer to Page Object being destroyed.
- *
  */
 void geda_page_weakref_notify (Page *page)
 {
@@ -451,7 +451,6 @@ void geda_page_weakref_notify (Page *page)
 /*!
  * \brief Add a weak reference watcher to a Page Object
  * \par Function Description
- *
  *  Adds the weak reference callback \a notify_func to \a Page.
  *  When \a Page is destroyed, the \a notify_func will be called
  *  with two arguments: the \a Page, and the \a user_data.

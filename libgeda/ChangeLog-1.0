@@ -3,6 +3,8 @@
     * include/libgeda/geda_object.h: Change w_bounds_valid_for to type bool
       amd rename bounds_valid.
 
+    * src/geda/geda_page.c: Reformat and update Doxygen comments.
+
 2018-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_sys.c: Revise geda_file_sys_ckmod to set errno to 0 prior to
