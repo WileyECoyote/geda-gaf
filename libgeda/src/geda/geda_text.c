@@ -127,6 +127,8 @@ static int geda_text_bounds(GedaObject *o_current)
     o_current->top    = top;
     o_current->right  = right;
     o_current->bottom = bottom;
+
+    o_current->bounds_valid = TRUE;
   }
 
   return result;
