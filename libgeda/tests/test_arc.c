@@ -512,10 +512,10 @@ int check_arc (void)
   return result;
 }
 
-int
-check_accessors ()
+int check_accessors ()
 {
   int result = 0;
+
   GedaObject *object = geda_arc_new();
 
   if (!GEDA_IS_ARC(object->arc)) {
@@ -754,6 +754,12 @@ check_properties (void)
 
     fail = 0;
 
+    /* bounds_valid should not be set */
+    if (object->bounds_valid) {
+      fprintf(stderr, "%s bounds_valid Failed at line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+
     for (count = 0; count < 10; count++) {
 
       int a = geda_random_number (0, 359);
@@ -941,7 +947,7 @@ check_properties (void)
         fprintf(stderr, "\t   center x: %d\n", x);
         fprintf(stderr, "\t   center y: %d\n", y);
 
-        result = fail;
+        result += fail;
         break;
       }
     }
