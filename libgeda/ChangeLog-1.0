@@ -9,6 +9,8 @@
 
     * src/geda/geda_page.c: Reformat and update Doxygen comments.
 
+    * src/struct/s_object.c: Eliminate second argument to geda_struct_object_new.
+
     * tests/test_arc_object.c: Update function wrap.
 
 2018-09-21 Wiley E. Hill <wileyhill@gmail.com>
