@@ -340,6 +340,7 @@ static void geda_object_set_property (GObject *gobject, unsigned int property_id
 {
   GedaObject *object = GEDA_OBJECT(gobject);
   const char *name;
+
   switch (property_id)
   {
     case OBJECT_TYPE:
@@ -349,7 +350,6 @@ static void geda_object_set_property (GObject *gobject, unsigned int property_id
 #else
       object->type = g_value_get_schar (value);
 #endif
-
       break;
 
     case OBJECT_NAME:
