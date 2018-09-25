@@ -7,7 +7,8 @@
 
     * src/geda/geda_net.c: Fix incorrect class GedaPin -> GedaNet.
 
-    * src/geda/geda_text.c: Fix grammar in documentation.
+    * src/geda/geda_text.c: Fix grammar in documentation. Replace geda_xxx_new
+      with geda_object_new in check_object.
 
     * o_circle_object.c: Update function reference in documentation,
       geda_object_new -> geda_circle_new.

@@ -88,10 +88,9 @@ int check_object (void)
   GedaObject *object;
   unsigned    notified;
 
-
   /* -------------------------- GedaArc ------------------------- */
 
-  object = geda_arc_new();
+  object = geda_object_new (OBJ_ARC);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaArc is %s line <%d>\n", TOBJECT, __LINE__);
@@ -133,7 +132,7 @@ int check_object (void)
 
   /* -------------------------- GedaBox ------------------------- */
 
-  object = geda_box_new();
+  object = geda_object_new (OBJ_BOX);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaBox is %s line <%d>\n", TOBJECT, __LINE__);
@@ -166,7 +165,7 @@ int check_object (void)
 
   /* -------------------------- GedaBus ------------------------- */
 
-  object = geda_bus_new();
+  object = geda_object_new (OBJ_BUS);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaBus is %s line <%d>\n", TOBJECT, __LINE__);
@@ -201,7 +200,7 @@ int check_object (void)
 
   /* ------------------------- GedaCircle ----------------------- */
 
-  object = geda_circle_new();
+  object = geda_object_new (OBJ_CIRCLE);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaCircle is %s line <%d>\n", TOBJECT, __LINE__);
@@ -225,7 +224,7 @@ int check_object (void)
 
   /* ------------------------ GedaComplex ----------------------- */
 
-  object = geda_complex_new();
+  object = geda_object_new (OBJ_COMPLEX);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaComplex is %s line <%d>\n", TOBJECT, __LINE__);
@@ -249,7 +248,7 @@ int check_object (void)
 
   /* -------------------------- GedaLine ------------------------ */
 
-  object = geda_line_new();
+  object = geda_object_new (OBJ_LINE);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaLine is %s line <%d>\n", TOBJECT, __LINE__);
@@ -273,10 +272,10 @@ int check_object (void)
 
   /* -------------------------- GedaNet ------------------------- */
 
-  object = geda_net_new();
+  object = geda_object_new (OBJ_NET);
 
   if (!GEDA_IS_OBJECT(object)) {
-    fprintf(stderr, "Failed: GedaNet is %s line <%d>\n", TOBJECT, __LINE__);
+    fprintf(stderr, "Failed: GedaNet is a %s <%d>\n", TOBJECT, __LINE__);
     result++;
   }
   else if (!GEDA_IS_NET(object)) {
@@ -297,7 +296,7 @@ int check_object (void)
 
   /* ------------------------- GedaPath ------------------------- */
 
-  object = geda_path_new();
+  object = geda_object_new (OBJ_PATH);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaPath is %s line <%d>\n", TOBJECT, __LINE__);
@@ -321,7 +320,7 @@ int check_object (void)
 
   /* ------------------------ GedaPicture ----------------------- */
 
-  object = geda_picture_new();
+  object = geda_object_new (OBJ_PICTURE);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaPicture is %s line <%d>\n", TOBJECT, __LINE__);
@@ -345,7 +344,7 @@ int check_object (void)
 
   /* -------------------------- GedaPin ------------------------- */
 
-  object = geda_pin_new();
+  object = geda_object_new (OBJ_PIN);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaPin is %s line <%d>\n", TOBJECT, __LINE__);
@@ -369,7 +368,7 @@ int check_object (void)
 
   /* ------------------------- GedaText ------------------------- */
 
-  object = geda_text_new();
+  object = geda_object_new (OBJ_TEXT);
 
   if (!GEDA_IS_OBJECT(object)) {
     fprintf(stderr, "Failed: GedaText is %s line <%d>\n", TOBJECT, __LINE__);
