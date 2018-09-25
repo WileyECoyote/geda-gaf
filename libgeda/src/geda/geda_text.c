@@ -54,8 +54,8 @@ static GObjectClass *geda_text_parent_class = NULL;
 /*!
  * \brief Calculate and Return the Boundaries of a text object
  * \par Function Description
- *  This function attempts to calls the bounds functions to calculates
- *  the object boundaries of a text \a object.
+ *  This function attempts to call the bounds functions to calculate the
+ *  object boundaries of a text object.
  *
  *  The object's bounds function is checked first, if the object's bounds
  *  function is not set then the object's page and Toplevel are checked.
