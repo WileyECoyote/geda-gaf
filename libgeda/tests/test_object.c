@@ -35,7 +35,29 @@
  *  \brief Tests for geda_object.c module
  *  \par
  *  This module provides basic unit tests for construction and destruction
- *  of GedaObjects.
+ *  of the fundamental GedaObject class objects. The GedaObject class is the
+ *  base class for:
+ *
+ *  <DL>
+ *    <DT>GedaArc</DT>
+ *    <DT>GedaBox</DT>
+ *    <DT>GedaBus</DT>
+ *    <DT>GedaCircle</DT>
+ *    <DT>GedaComplex</DT>
+ *    <DT>GedaLine</DT>
+ *    <DT>GedaNet</DT>
+ *    <DT>GedaPath</DT>
+ *    <DT>GedaPicture</DT>
+ *    <DT>GedaPin</DT>
+ *    <DT>GedaText</DT>
+ *  </DL>
+ *
+ *  Testing is limited to low-level checks because the objects themselves
+ *  are fundamental objects that are implemented and manipulated with higher
+ *  level procedural modules which assign realistic properties to the objects.
+ *  Additionally, a test module exist for each of the above object types and
+ *  the tests within those module includes some checks of the base class. One
+ *  example of this is setting and retrieving the color index property.
  */
 
 void weak_notify_func(void *obj, void *user_data)
