@@ -35,7 +35,7 @@
  *  A GedaNet Object represent a conductor or wire, and is used to inter
  *  connect nodes. The GedaNet class is derived from the GedaLine class.
  *
- * \class GedaPin geda_net.h "include/libgeda/geda_net.h"
+ * \class GedaNet geda_net.h "include/libgeda/geda_net.h"
  * \implements geda-line
  * \implements geda-object
  */

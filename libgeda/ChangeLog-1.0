@@ -5,6 +5,8 @@
 
     * src/geda/geda_line.c: Update function documentation, minor reformatting.
 
+    * src/geda/geda_net.c: Fix incorrect class GedaPin -> GedaNet.
+
 2018-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Change w_bounds_valid_for to type bool
