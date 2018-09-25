@@ -9,6 +9,9 @@
 
     * src/geda/geda_text.c: Fix grammar in documentation.
 
+    * o_circle_object.c: Update function reference in documentation,
+      geda_object_new -> geda_circle_new.
+
 2018-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Change w_bounds_valid_for to type bool

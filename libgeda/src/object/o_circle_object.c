@@ -631,7 +631,7 @@ geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
  *  <B>radius</B>.
  *  The <B>color</B> corresponds to the color the box will be drawn with.
  *
- *  The <B>GedaObject</B> structure is allocated with the #geda_object_new()
+ *  The <B>GedaObject</B> structure is allocated with the #geda_circle_new()
  *  function. The structure describing the circle is allocated and initialized
  *  with the parameters given to the function.
  *
