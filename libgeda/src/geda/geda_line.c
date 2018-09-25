@@ -64,7 +64,11 @@ static GObjectClass *geda_line_parent_class = NULL;
 /*! \brief Calculate and return the boundaries of a Line object
  *
  *  \par Function Description
- *  This function calculates the object boudaries of a Line \a object.
+ *  This function calculates the object boudaries of a Line \a object
+ *  but does not account for the thickness of the line.
+ *
+ *  \note Bus, Net and Pin objects are derived from a GedaLine, so this
+ *        is also the bounds function for those object type.
  *
  *  \param [in]  object Pointer to Line object
  */
@@ -74,7 +78,7 @@ static int geda_line_bounds(GedaObject *object)
 
   g_return_val_if_fail(GEDA_IS_LINE(object), FALSE);
 
-  expand =  ceil (0.5 * G_SQRT2 * object->line_options->line_width);
+  expand = ceil (0.5 * G_SQRT2 * object->line_options->line_width);
 
   /* This isn't strictly correct, but a 1st order approximation */
   object->left   = min( object->line->x[0], object->line->x[1] ) - expand;

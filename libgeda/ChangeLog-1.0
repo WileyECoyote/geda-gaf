@@ -3,6 +3,8 @@
     * include/libgeda/geda_object.h: Add GEDA_WARN_UNUSED_RESULT directive
       to geda_object_new.
 
+    * src/geda/geda_line.c: Update function documentation, minor reformatting.
+
 2018-09-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Change w_bounds_valid_for to type bool
