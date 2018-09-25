@@ -133,7 +133,7 @@ extern "C" {
 GedaObjectType geda_object_get_type          (void) GEDA_CONST;
 bool           is_a_geda_object              (const void *object);
 
-GedaObject   *geda_object_new                (int type);
+GedaObject   *geda_object_new                (int type) GEDA_WARN_UNUSED_RESULT;
 GedaObject   *geda_object_ref                (GedaObject *object);
 void          geda_object_unref              (GedaObject *object);
 void          geda_object_weakref_notify     (GedaObject *object);
