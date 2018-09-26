@@ -971,4 +971,18 @@ void geda_object_set_locked_color (GedaObject *object, int index) {
   }
 }
 
+/*!
+ * \brief Set the Page a GedaObject is on
+ * \par Function Description
+ *  Set the page member property, this is a low-level function
+ *  that does not modify the page list.
+ *
+ * \sa geda_page_add_object.
+ */
+void geda_object_set_page (GedaObject *object, Page *page) {
+  if (is_a_geda_object(object)) {
+    object->page = GEDA_IS_PAGE(page) ? page : NULL;
+  }
+}
+
 /** @} endgroup geda-object */
