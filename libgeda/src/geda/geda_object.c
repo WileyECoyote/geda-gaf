@@ -914,6 +914,18 @@ void geda_object_remove_weak_ptr (GedaObject *object, void *weak_pointer_loc)
 }
 
 /*!
+ * \brief Set the Bounds Valid Property of a GedaObject
+ * \par Function Description
+ *  Sets the bounds_valid to value of \a valid argument if \a object
+ *  is valid.
+ */
+void geda_object_set_bounds_valid (GedaObject *object, int valid) {
+  if (is_a_geda_object(object)) {
+    object->bounds_valid = valid;
+  }
+}
+
+/*!
  * \brief Set the Color Index of a GedaObject
  * \par Function Description
  *  The actual color used to render the object is depends on the color-map
