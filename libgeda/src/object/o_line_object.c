@@ -784,7 +784,7 @@ void geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
  *  The <B>color</B> parameter corresponds to the color the line
  *  will be drawn with.
  *
- *  The #GedaObject structure is allocated with the #geda_object_new()
+ *  The #GedaObject structure is allocated with the #geda_line_new()
  *  function. The structure describing the line is allocated and
  *  initialized with the parameters given to the function.
  *

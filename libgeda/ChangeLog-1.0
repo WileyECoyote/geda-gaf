@@ -10,6 +10,9 @@
       g_return_if_fail must be in list and update code to actually remove
       the object from the list.
 
+    * src/object/o_line_object.c: Update function reference in documentation,
+      geda_object_new -> geda_line_new.
+
 2018-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Add GEDA_WARN_UNUSED_RESULT directive
