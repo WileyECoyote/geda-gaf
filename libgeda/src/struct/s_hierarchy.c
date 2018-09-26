@@ -231,7 +231,7 @@ Page *geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_pag
  *  \param [in]  filename
  *  \param [out] err
  *
- *  \return A pointer to the subpage or NULL if an error occured.
+ *  \return A pointer to the subpage or NULL if an error occurred.
  */
 Page *geda_struct_hierarchy_load_subpage (Page       *page,
                                           const char *filename,
