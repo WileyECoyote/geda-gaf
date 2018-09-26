@@ -6,6 +6,10 @@
           * geda_object_set_bounds_valid (more for completeness).
           * geda_object_set_page
 
+    * src/geda/geda_page.c: Revise geda_page_remove_object to remove the
+      g_return_if_fail must be in list and update code to actually remove
+      the object from the list.
+
 2018-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Add GEDA_WARN_UNUSED_RESULT directive

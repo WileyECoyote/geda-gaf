@@ -142,11 +142,12 @@ GedaObject *geda_page_get_object(Page *page, int sid)
  */
 void geda_page_remove_object(Page *page, GedaObject *object)
 {
-    g_return_if_fail(GEDA_IS_PAGE(page));
-    g_return_if_fail(GEDA_IS_OBJECT(object));
-    g_return_if_fail(g_list_find(page->_object_list, object) != NULL);
+  g_return_if_fail(GEDA_IS_PAGE(page));
+  g_return_if_fail(GEDA_IS_OBJECT(object));
 
-    //g_signal_emit(page, signals[REMOVE_OBJECT], 0, object);
+  if (g_list_find(page->_object_list, object)) {
+    g_list_remove(page->_object_list, object);
+  }
 }
 
 /*! \brief Remove all objects from a Page object
