@@ -1,3 +1,9 @@
+2018-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Add function:
+
+          * geda_object_get_bounds_valid
+
 2018-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Add GEDA_WARN_UNUSED_RESULT directive

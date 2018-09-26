@@ -177,6 +177,18 @@ GedaObject *geda_object_get_attached_to (const GedaObject *object)
 }
 
 /*!
+ * \brief Retrieve the Value of GedaObject Bounds Valid
+ * \par Function Description
+ *  Returns the value of the object->bounds_valid member.
+ */
+int geda_object_get_bounds_valid (const GedaObject *object) {
+  if (is_a_geda_object(object)) {
+    return object->bounds_valid;
+  }
+  return -0;
+}
+
+/*!
  * \brief Retrieve the Value of the GedaObject Color Index
  * \par Function Description
  *  Returns the value of the object->color member. The color index not

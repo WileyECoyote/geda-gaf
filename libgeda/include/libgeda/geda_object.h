@@ -145,6 +145,7 @@ void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_poi
 int           geda_object_bounds             (ConstObject *object);
 const GList  *geda_object_get_attached       (ConstObject *object);
 GedaObject   *geda_object_get_attached_to    (ConstObject *object);
+int           geda_object_get_bounds_valid   (ConstObject *object);
 int           geda_object_get_color          (ConstObject *object);
 const GList  *geda_object_get_conn_list      (ConstObject *object);
 int           geda_object_get_locked_color   (ConstObject *object);
