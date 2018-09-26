@@ -33,17 +33,17 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Mark an GedaObject's cached bounds as invalid
- *
- *  \par Function Description
+/*!
+ * \brief Mark an GedaObject's cached bounds as invalid
+ * \par Function Description
  *  Recursively marks the cached bounds of the given GedaObject and its
  *  parents as having been invalidated and in need of an update. They
  *  will be recalculated next time the GedaObject's bounds are requested
  *  (e.g. via geda_object_get_bounds() ).
  *
- *  \param [in] obj
+ * \param [in] obj
  *
- *  \todo Turn this into a macro?
+ * \todo Turn this into a macro?
  */
 void geda_set_object_bounds_invalid(GedaObject *obj)
 {
@@ -60,12 +60,12 @@ void geda_set_object_bounds_invalid(GedaObject *obj)
  *  color index. If modified, the page change flag is set if the object
  *  is on a page.
  *
- *  \note For complex objects, this function is called recursively,
- *        since geda_object_list_set_color calls this function for each
- *        child of the complex.
+ * \note For complex objects, this function is called recursively,
+ *       since geda_object_list_set_color calls this function for each
+ *       child of the complex.
  *
- *  \param [in] object    The GedaObject to change color.
- *  \param [in] color     The new color.
+ * \param [in] object    The GedaObject to change color.
+ * \param [in] color     The new color.
  */
 void geda_set_object_color (GedaObject *object, int color)
 {
@@ -95,11 +95,10 @@ void geda_set_object_color (GedaObject *object, int color)
  *  This function allows an #GedaObject's fill options to be configured.
  *  See OBJECT_FILLING for information on valid fill types.
  *
- *  \param [in,out]  object         GedaObject to be updated.
- *  \param [in]      fill_options   OBJECT_FILLING type.
+ * \param [in,out]  object         GedaObject to be updated.
+ * \param [in]      fill_options   OBJECT_FILLING type.
  */
-void
-geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
+void geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
 {
   g_return_if_fail(GEDA_IS_BOX    (object) ||
                    GEDA_IS_CIRCLE (object) ||
@@ -144,11 +143,11 @@ geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options)
  *  See LINE_END and LINE_TYPE for information on valid
  *  object end and type values.
  *
- *  \param [in,out] object       GedaObject to set line options on.
- *  \param [in]     line_options A option data structure.
+ * \param [in,out] object       GedaObject to set line options on.
+ * \param [in]     line_options A option data structure.
  *
- *  \todo Make space an unsigned int and check for a max value instead.
- *        If a max value is not required, then it would simplify the code.
+ * \todo Make space an unsigned int and check for a max value instead.
+ *       If a max value is not required, then it would simplify the code.
  */
 void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options)
 {
@@ -257,8 +256,7 @@ void geda_set_object_selected(GedaObject *object)
  * \param object     The #GedaObject structure to be modified
  * \param visibility Boolean desired state
  */
-void
-geda_set_object_visibility (GedaObject *object, int visibility)
+void geda_set_object_visibility (GedaObject *object, int visibility)
 {
   if(GEDA_IS_OBJECT(object)) {
     if (object->visibility != visibility) {

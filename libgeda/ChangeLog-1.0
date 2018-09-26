@@ -13,6 +13,9 @@
     * src/object/o_line_object.c: Update function reference in documentation,
       geda_object_new -> geda_line_new.
 
+    * src/object/o_set.c: Reformat Doxygen documentation and update function
+      wrapping.
+
 2018-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_object.h: Add GEDA_WARN_UNUSED_RESULT directive
