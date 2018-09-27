@@ -281,10 +281,16 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
   if (obj_list != NULL) {
 
     GedaObject *o_current;
+    GList      *iter;
     Page       *page;
 
     o_current = (GedaObject*)obj_list->data;
     page      = geda_object_get_page(o_current);
+
+    for (iter = obj_list; iter != NULL; iter = g_list_next(iter)) {
+      GedaObject *o_current = (GedaObject *) list->data;
+      o_current->bounds_valid = FALSE;
+    }
 
     if (page == NULL) {
 
@@ -296,14 +302,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
     }
     else {
 
-      GList *list;
-
       page->show_hidden_text = TRUE;
-
-      for (list = obj_list; list != NULL; list = g_list_next(list)) {
-        GedaObject *o_current = (GedaObject *) list->data;
-        o_current->bounds_valid = FALSE;
-      }
 
       success = geda_object_get_bounds_list (obj_list, &left, &top, &right, &bottom);
 

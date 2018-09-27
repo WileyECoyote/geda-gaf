@@ -4,7 +4,9 @@
       _object_list with returned address in geda_page_remove_object.
 
     * src/scheme/scheme_object.c: Revise object_bounds to conditionally set
-      success in the else clause.
+      success in the else clause and relocate iterating over object to unset
+      bounds_valid from the else to be fore the if page so that the bounds is
+      always invalidated before calling geda_object_get_bounds_list.
 
 2018-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
