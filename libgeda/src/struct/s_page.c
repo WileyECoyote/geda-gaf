@@ -895,7 +895,7 @@ void geda_struct_page_append_object (Page *page, GedaObject *object)
 
     if (GEDA_IS_OBJECT(object)) {
 
-      page->_object_list = g_list_append (page->_object_list, object);
+      geda_page_add_object(page, object);
       object_added (page, object);
     }
     else {
