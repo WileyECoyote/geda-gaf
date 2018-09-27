@@ -1,6 +1,7 @@
 2018-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_page.c Add vapor function geda_page_add_object.
+    * src/geda/geda_page.c: Add vapor function geda_page_add_object, update
+      _object_list with returned address in geda_page_remove_object.
 
 2018-09-26 Wiley E. Hill <wileyhill@gmail.com>
 

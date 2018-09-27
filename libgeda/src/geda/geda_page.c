@@ -154,7 +154,7 @@ void geda_page_remove_object(Page *page, GedaObject *object)
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (g_list_find(page->_object_list, object)) {
-    g_list_remove(page->_object_list, object);
+    page->_object_list = g_list_remove(page->_object_list, object);
   }
 }
 
