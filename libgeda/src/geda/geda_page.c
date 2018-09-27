@@ -98,6 +98,14 @@ void geda_page_append_new_hook (NewPageFunc func, void *data)
   new_page_hooks = g_list_append (new_page_hooks, new_hook);
 }
 
+void geda_page_add_object (Page *page, GedaObject *object)
+{
+  if (GEDA_IS_OBJECT(object)) {
+    page->_object_list = g_list_append (page->_object_list, object);
+    //GEDA_REF (object);
+  }
+}
+
 /*! \brief Search for an GedaObject given the sid.
  *  \par Function Description
  *  This functions returns the <b>GedaObject</b> that has the \a sid
