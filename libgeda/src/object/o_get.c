@@ -104,6 +104,7 @@ int geda_object_get_bounds(GedaObject *o_current,
   else {
     BUG_MSG("Oops, Not a GedaObject");
   }
+
   return result;
 }
 
@@ -372,6 +373,7 @@ bool geda_object_get_is_valid_attribute (GedaObject *object)
       }
     }
   }
+
   return result;
 }
 
@@ -446,6 +448,7 @@ bool geda_object_get_line_options(GedaObject *object,
   else {
     result = FALSE;
   }
+
   return result;
 }
 
