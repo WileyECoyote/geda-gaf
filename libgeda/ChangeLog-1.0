@@ -10,7 +10,8 @@
 
     * src/struct/s_page.c: Utilize geda_object_set_page in object_added,
       geda_page_add_object in geda_struct_page_append_object and geda_
-      struct_page_append_list.
+      struct_page_append_list, and geda_page_remove_object in geda_struct_
+      page_remove_object.
 
 2018-09-26 Wiley E. Hill <wileyhill@gmail.com>
 

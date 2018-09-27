@@ -956,7 +956,7 @@ void geda_struct_page_remove_object (Page *page, GedaObject *object)
 
       pre_object_removed (page, object);
 
-      page->_object_list = g_list_remove (page->_object_list, object);
+      geda_page_remove_object (page, object);
 
       geda_object_notify_emit_change (object);
 
