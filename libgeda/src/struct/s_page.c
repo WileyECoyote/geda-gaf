@@ -925,11 +925,11 @@ void geda_struct_page_append_list (Page *page, const GList *obj_list)
 
     const GList  *iter;
 
-    page->_object_list = geda_glist_concat(page->_object_list, obj_list);
-
     for (iter = obj_list; iter != NULL; iter = iter->next) {
 
       GedaObject *object = iter->data;
+
+      geda_page_add_object(page, object);
 
       object_added (page, object);
     }

@@ -8,8 +8,9 @@
       bounds_valid from the else to be fore the if page so that the bounds is
       always invalidated before calling geda_object_get_bounds_list.
 
-    * src/struct/s_page.c: Utilize geda_object_set_page in object_added, and
-      geda_page_add_object in geda_struct_page_append_object
+    * src/struct/s_page.c: Utilize geda_object_set_page in object_added,
+      geda_page_add_object in geda_struct_page_append_object and geda_
+      struct_page_append_list.
 
 2018-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
