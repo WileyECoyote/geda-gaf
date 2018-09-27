@@ -60,7 +60,7 @@ static void object_added (Page *page, GedaObject *object)
   }
 #endif
 
-  object->page = page;
+  geda_object_set_page(object, page);
 
   geda_object_notify_emit_pre_change (object);
 
