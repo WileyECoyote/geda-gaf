@@ -3,6 +3,9 @@
     * src/geda/geda_page.c: Add vapor function geda_page_add_object, update
       _object_list with returned address in geda_page_remove_object.
 
+    * src/scheme/scheme_object.c: Revise object_bounds to conditionally set
+      success in the else clause.
+
 2018-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Add functions:

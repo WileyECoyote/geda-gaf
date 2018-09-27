@@ -276,7 +276,6 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
   int left, top, right, bottom;
   int success;
 
-  success  = FALSE;
   obj_list = edascm_to_object_glist (rst_s, scheme_object_bounds);
 
   if (obj_list != NULL) {
@@ -310,6 +309,9 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
 
       page->show_hidden_text = FALSE;
     }
+  }
+  else {
+    success  = FALSE;
   }
 
   SCM result = SCM_BOOL_F;
