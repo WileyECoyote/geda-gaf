@@ -57,7 +57,7 @@ static bool x_event_idle_repeat_last (void *w_current)
  *  \par Function Description
  *   This function is called each time a mouse button is pressed. The
  *  routine checks which button triggered the event and whether a key
- *  -- SHIFT, CONTROL or ALT, was pressed when the press event occured.
+ *  -- SHIFT, CONTROL or ALT, was pressed when the press event occurred.
  *  The routine also check for a "double" click event, which GDK isolates
  *  for us. The approiate action is performed based on the current state
  *  of the program. Enumerated state are defined in the file x_states.h.
@@ -342,7 +342,7 @@ int x_event_button_pressed(GtkWidget      *widget,
  *  \par Function Description
  *   This function is called each time a mouse button is released. The
  *  routine checks which button triggered the event and whether a key
- *  -- SHIFT, CONTROL or ALT, was pressed when the release event occured
+ *  -- SHIFT, CONTROL or ALT, was pressed when the release event occurred
  *  and performs the approiate action based on the current state of the
  *  program. Enumerated state are defined in the file x_states.h.
  */
