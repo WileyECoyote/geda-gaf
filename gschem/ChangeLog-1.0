@@ -1,3 +1,9 @@
+2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_find.c: Add static function o_find_is_object_grip_hit
+      and call from o_find_selected_object, and this allows circle object
+      to be dragged from the center grip.
+
 2018-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

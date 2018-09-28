@@ -247,6 +247,33 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
   return found;
 }
 
+inline static bool o_find_is_object_grip_hit (GschemToplevel *w_current,
+                                              GedaObject     *object,
+                                              int wx, int wy)
+{
+  bool hit;
+  int owx, owy;
+
+  hit = FALSE;
+
+  if (geda_object_get_position(object, &owx, &owy)) {
+
+    int xmin, ymin, xmax, ymax;
+
+    register int half_size = gschem_toplevel_get_grips_half_size (w_current);
+
+    xmin = owx - half_size;
+    xmax = owx + half_size;
+
+    ymin = owy - half_size;
+    ymax = owy + half_size;
+
+    return geda_object_get_is_inside_region(xmin, ymin, xmax, ymax, wx, wy);
+  }
+
+  return hit;
+}
+
 /*!
  * \brief Find Selected Object at a given set of coordinates
  * \par Function Description
@@ -260,9 +287,13 @@ GedaObject *o_find_selected_object (GschemToplevel *w_current, int wx, int wy)
 
   for (iter = geda_list_get_glist (Current_Selection); iter; NEXT(iter)) {
 
-   GedaObject *o_current = iter->data;
+    GedaObject *o_current = iter->data;
 
     if (o_find_is_object_hit (w_current, o_current, wx, wy, w_slack)) {
+      return o_current;
+    }
+
+    if (o_find_is_object_grip_hit (w_current, o_current, wx, wy)) {
       return o_current;
     }
   }
