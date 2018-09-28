@@ -1212,11 +1212,11 @@ static void gschem_status_bar_instance_init (GTypeInstance *instance, void *g_cl
   gtk_widget_set_tooltip_text (bar->left_label, left_label_tip);
 
   separator = geda_vseparator_new ();
-  g_object_set (separator, "visible", TRUE, NULL);
+  gtk_widget_show (separator);
   gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   middle_event = gtk_event_box_new();
-  g_object_set (middle_event, "visible", TRUE, NULL);
+  gtk_widget_show (middle_event);
   gtk_box_pack_start (status_box, middle_event, FALSE, FALSE, 0);
 
   bar->middle_label = geda_aligned_visible_label_new (NULL, STATUS_XALIGN, STATUS_YALIGN);
@@ -1224,11 +1224,11 @@ static void gschem_status_bar_instance_init (GTypeInstance *instance, void *g_cl
   gtk_widget_set_tooltip_text (bar->middle_label, middle_label_tip);
 
   separator = geda_vseparator_new ();
-  g_object_set (separator, "visible", TRUE, NULL);
+  gtk_widget_show (separator);
   gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   third_event = gtk_event_box_new();
-  g_object_set (third_event, "visible", TRUE, NULL);
+  gtk_widget_show (third_event);
   gtk_box_pack_start (status_box, third_event, FALSE, FALSE, 0);
 
   bar->right_label = geda_aligned_visible_label_new (NULL, STATUS_XALIGN, STATUS_YALIGN);
@@ -1236,7 +1236,7 @@ static void gschem_status_bar_instance_init (GTypeInstance *instance, void *g_cl
   gtk_widget_set_tooltip_text (bar->right_label, right_label_tip);
 
   separator = geda_vseparator_new ();
-  g_object_set (separator, "visible", TRUE, NULL);
+  gtk_widget_show (separator);
   gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   bar->grid_label = geda_aligned_visible_label_new (NULL, STATUS_XALIGN, STATUS_YALIGN);
@@ -1244,11 +1244,11 @@ static void gschem_status_bar_instance_init (GTypeInstance *instance, void *g_cl
   gtk_widget_set_tooltip_text (bar->grid_label, grid_label_tip);
 
   separator = geda_vseparator_new ();
-  g_object_set (separator, "visible", TRUE, NULL);
+  gtk_widget_show (separator);
   gtk_box_pack_start (status_box, separator, FALSE, FALSE, 1);
 
   coord_event = gtk_event_box_new();
-  g_object_set (coord_event, "visible", TRUE, NULL);
+  gtk_widget_show (coord_event);
   gtk_box_pack_start (status_box, coord_event, FALSE, FALSE, 0);
 
   bar->coord_label = geda_aligned_visible_label_new (NULL, STATUS_XALIGN, STATUS_YALIGN);
@@ -1257,7 +1257,7 @@ static void gschem_status_bar_instance_init (GTypeInstance *instance, void *g_cl
   gtk_widget_set_tooltip_text (bar->coord_label, coord_label_tip);
 
   separator = geda_vseparator_new ();
-  g_object_set (separator, "visible", TRUE, NULL);
+  gtk_widget_show (separator);
   gtk_box_pack_start (status_box, separator, FALSE, FALSE, 0);
 
   bar->status_label = geda_aligned_visible_label_new (NULL, STATUS_XALIGN, STATUS_YALIGN);

@@ -1,5 +1,8 @@
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem_status_bar.c: Replace g_object_set to set "visible"
+      with more efficient gtk_widget_show.
+
     * src/object/o_find.c: Add static function o_find_is_object_grip_hit
       and call from o_find_selected_object, and this allows circle object
       to be dragged from the center grip.
