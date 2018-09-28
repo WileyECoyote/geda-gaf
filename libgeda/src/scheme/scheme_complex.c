@@ -113,7 +113,9 @@ EDA_SCM_DEFINE (complex_make_library, "%make-complex/library", 1, 0, 0,
 /*! \brief Set complex object parameters.
  * \par Function Description
  * Modifies the complex object \a complex_s by setting its parameters
- * to new values. The modifying is performed in the following sequence:
+ * to new values. The modifications are performed in the following
+ * sequence:
+ *
  * 1. Mirroring.
  * 2. Rotation.
  * 3. Translating to new position.
