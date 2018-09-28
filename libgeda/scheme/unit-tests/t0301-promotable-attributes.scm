@@ -1,4 +1,4 @@
-;; Test promotable-attributes function
+;; Test promotable-attribs function
 
 (use-modules (unit-test))
 (use-modules (geda page))
@@ -13,7 +13,7 @@
 ;; geda_iface_vars_set() from Scheme [1]. So instead, we just fail.
 ;;
 ;; [1] This is a good thing -- it shouldn't be necessary!
-(begin-test 'promotable-attributes
+(begin-test 'promotable-attribs
             (throw 'missing-unit-test "We can't test this at the moment"))
 
 (begin-test 'promote-attribs!
