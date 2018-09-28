@@ -482,7 +482,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
 
     frame = gtk_frame_new (_("Screen"));
     geda_container_add(vbox, frame);
-    g_object_set (frame, "visible", TRUE, NULL);
+    gtk_widget_show (frame);
 
     screen_entry = geda_entry_new_visible ();
     gtk_entry_set_has_frame (GTK_ENTRY(screen_entry), FALSE);
@@ -492,7 +492,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
 
     frame = gtk_frame_new (_("World"));
     geda_container_add(vbox, frame);
-    g_object_set (frame, "visible", TRUE, NULL);
+    gtk_widget_show (frame);
 
     world_entry = geda_entry_new_visible ();
     gtk_entry_set_has_frame (GTK_ENTRY(world_entry), FALSE);
