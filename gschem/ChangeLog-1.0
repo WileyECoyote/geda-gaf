@@ -7,6 +7,9 @@
       and call from o_find_selected_object, and this allows circle object
       to be dragged from the center grip.
 
+    * src/object/o_net.c: Utilize geda_object_set_bounds_valid to invalidate
+      net object bounds.
+
 2018-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

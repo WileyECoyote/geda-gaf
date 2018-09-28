@@ -896,7 +896,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           }
 
           net_obj->line->y[found_conn->whichone] -= ripper_size;
-          net_obj->bounds_valid = FALSE;
+          geda_object_set_bounds_valid(net_obj, FALSE);
+
           rippers[ripper_count].x[0] = net_obj->line->x[found_conn->whichone];
           rippers[ripper_count].y[0] = net_obj->line->y[found_conn->whichone];
 
@@ -935,7 +936,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           }
 
           net_obj->line->y[found_conn->whichone] += ripper_size;
-          net_obj->bounds_valid = FALSE;
+          geda_object_set_bounds_valid(net_obj, FALSE);
+
           rippers[ripper_count].x[0] = net_obj->line->x[found_conn->whichone];
           rippers[ripper_count].y[0] = net_obj->line->y[found_conn->whichone];
 
@@ -1004,7 +1006,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           }
 
           net_obj->line->x[found_conn->whichone] -= ripper_size;
-          net_obj->bounds_valid = FALSE;
+          geda_object_set_bounds_valid(net_obj, FALSE);
+
           rippers[ripper_count].x[0] = net_obj->line->x[found_conn->whichone];
           rippers[ripper_count].y[0] = net_obj->line->y[found_conn->whichone];
 
@@ -1042,7 +1045,8 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           }
 
           net_obj->line->x[found_conn->whichone] += ripper_size;
-          net_obj->bounds_valid = FALSE;
+          geda_object_set_bounds_valid(net_obj, FALSE);
+
           rippers[ripper_count].x[0] = net_obj->line->x[found_conn->whichone];
           rippers[ripper_count].y[0] = net_obj->line->y[found_conn->whichone];
           rippers[ripper_count].x[1] = net_obj->line->x[found_conn->whichone]
