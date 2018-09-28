@@ -751,7 +751,7 @@ void geda_box_object_modify_all (GedaObject *object, int x1, int y1, int x2, int
  *  its lower right corner - <B>x2</B>, <B>y2</B>.
  *  The <B>type</B> parameter must be equal to <B>OBJ_BOX</B>. The <B>color</B>
  *  corresponds to the color the box will be drawn with.
- *  The <B>GedaObject</B> structure is allocated with the #geda_object_new()
+ *  The <B>GedaObject</B> structure is allocated with the #geda_box_new()
  *  function. The structure describing the box is allocated and initialized
  *  with the parameters given to the function.
  *
