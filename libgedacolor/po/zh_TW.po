@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-08-05 19:42-0500\n"
+"POT-Creation-Date: 2018-09-29 00:04-0500\n"
 "PO-Revision-Date: 2017-12-11 12:11+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -30,24 +30,24 @@ msgstr "顏色索引超出範圍"
 msgid "Error loading"
 msgstr "錯誤加載"
 
-#: libgedacolor/src/guile/color_guile.c:141
+#: libgedacolor/src/guile/color_guile.c:140
 msgid "Color map entries must be a two-element list"
 msgstr "顏色條目應該是兩個元素的列表"
 
 # Key values in color map entry must be a string
-#: libgedacolor/src/guile/color_guile.c:150
+#: libgedacolor/src/guile/color_guile.c:149
 msgid "Key in color map entry must be a string"
 msgstr "顏色映射中的鍵值必須是字符串"
 
-#: libgedacolor/src/guile/color_guile.c:161
+#: libgedacolor/src/guile/color_guile.c:160
 msgid "Invalid key in color map"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:179
+#: libgedacolor/src/guile/color_guile.c:178
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
-#: libgedacolor/src/guile/color_guile.c:191
+#: libgedacolor/src/guile/color_guile.c:190
 msgid "Invalid color map value"
 msgstr ""
 

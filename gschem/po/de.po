@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-22 13:52-0500\n"
+"POT-Creation-Date: 2018-09-29 00:04-0500\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1164,7 +1164,7 @@ msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Achtung: Das Ende des Netzes befindet sich nicht auf dem Raster\n"
 
 # The busripper symbol was not found in any component library
-#: gschem/src/object/o_net.c:1107
+#: gschem/src/object/o_net.c:1111
 msgid "Bus ripper symbol was not found in any component library"
 msgstr "Das Busripper Symbol wurde in keiner Bauteilbibliothek gefunden"
 

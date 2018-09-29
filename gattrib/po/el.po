@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-01 09:46-0500\n"
+"POT-Creation-Date: 2018-09-29 00:04-0500\n"
 "PO-Revision-Date: 2012-09-01 18:26+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -425,11 +425,11 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:285
+#: gattrib/src/x_find.c:289
 msgid "Attribute"
 msgstr "Χαρακτηριστικό"
 
-#: gattrib/src/x_find.c:322
+#: gattrib/src/x_find.c:326
 msgid "Designator"
 msgstr ""
 

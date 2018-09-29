@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-22 13:52-0500\n"
+"POT-Creation-Date: 2018-09-29 00:04-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1284,7 +1284,7 @@ msgid "Warning: Ending net off grid coordinate\n"
 msgstr "Внимание: конечная точка соединения не совпадает с узлом сетки\n"
 
 # Bus ripper symbol was not found in any component library
-#: gschem/src/object/o_net.c:1107
+#: gschem/src/object/o_net.c:1111
 msgid "Bus ripper symbol was not found in any component library"
 msgstr "Шины символ рыхлителя не был найден в любой компонент библиотеки"
 
