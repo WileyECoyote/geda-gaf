@@ -1147,66 +1147,80 @@ msgstr "Страница је надокнадила?"
 msgid "Mirror Mode"
 msgstr "Миррор Моде"
 
+# Pan Mode
 #: gschem/src/iface/i_status.c:149
 msgid "Pan Mode"
-msgstr ""
+msgstr "Пан Режим"
 
+# Choose component
 #: gschem/src/iface/i_status.c:151
 msgid "Choose component"
-msgstr ""
+msgstr "Изаберите компоненту"
 
+# Magnetic Net Mode
 #: gschem/src/iface/i_status.c:154
 msgid "Magnetic Net Mode"
-msgstr ""
+msgstr "Магнетни мрежни режим"
 
+# Net Mode
 #: gschem/src/iface/i_status.c:156
 msgid "Net Mode"
-msgstr ""
+msgstr "Нет мод"
 
+# Pin Mode
 #: gschem/src/iface/i_status.c:158
 msgid "Pin Mode"
-msgstr ""
+msgstr "Пин мод"
 
+# Line Mode
 #: gschem/src/iface/i_status.c:160
 msgid "Line Mode"
-msgstr ""
+msgstr "Линијски режим"
 
+# Box Mode
 #: gschem/src/iface/i_status.c:162
 msgid "Box Mode"
-msgstr ""
+msgstr "Бок Моде"
 
+# Circle Mode
 #: gschem/src/iface/i_status.c:164
 msgid "Circle Mode"
-msgstr ""
+msgstr "Режим круга"
 
+# Text Mode
 #: gschem/src/iface/i_status.c:166
 msgid "Text Mode"
-msgstr ""
+msgstr "Тект Моде"
 
+# Arc Mode
 #: gschem/src/iface/i_status.c:168
 msgid "Arc Mode"
-msgstr ""
+msgstr "Арц Моде"
 
+# Path Mode => Polygon Mode
 #: gschem/src/iface/i_status.c:170
 msgid "Path Mode"
-msgstr ""
+msgstr "Полигон Моде"
 
+# Picture Mode
 #: gschem/src/iface/i_status.c:172
 msgid "Picture Mode"
-msgstr ""
+msgstr "Режим слике"
 
+# Bus Mode
 #: gschem/src/iface/i_status.c:174
 msgid "Bus Mode"
-msgstr ""
+msgstr "Бус Моде"
 
+# Move Mode
 #: gschem/src/iface/i_status.c:176 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
-msgstr ""
+msgstr "Мове Моде"
 
 #: gschem/src/iface/i_status.c:179
 #, c-format
 msgid "Paste %d Mode"
-msgstr ""
+msgstr "Залепи %d Моде"
 
 #: gschem/src/iface/i_status.c:182
 msgid "First point?"
@@ -6074,17 +6088,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-# Export Symbol
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Извоз Симбол"
+msgstr "Извоз уграђени симбол"
 
-# Export Picture
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Извоз Слика"
+msgstr "Извоз уграђене слике"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
