@@ -96,7 +96,7 @@ msgstr "خروج از حالت طبیعی\n"
 
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "נִכשָׁל:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:564
@@ -118,9 +118,10 @@ msgstr "عنوان"
 msgid "Dialog window title"
 msgstr "عنوان پنجره محاوره ای"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "متن برچسب"
 
 # Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:233
@@ -223,6 +224,38 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
+"Usage: %s [OPTION ...] [--] [FILE ...]\n"
+"\n"
+"طرح های GEDA یا نمادها را به صورت تعاملی ویرایش کنید. اگر یک یا چند FILE داشته باشید\n"
+"مشخص شده اند، آنها را برای ویرایش باز کنید در غیر این صورت، ایجاد یک جدید، خالی\n"
+"schematic.\n"
+"\n"
+"Options:\n"
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file <FILE>   Additional configuration file to load.\n"
+"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+"  -f, --font <NAME>          set font family name\n"
+"  -h, --help                 Help; this message.\n"
+"  -m, --safe-mode            Safe Mode.\n"
+"  -n, --no-auto              No auto load last document.\n"
+"  -o, --output <FILE>        Output filename (for printing and image "
+"output).\n"
+"  -p, --place                Automatically place the window.\n"
+"  -q, --quiet                Quiet mode.\n"
+"  -r, --run <FILE>           Scheme script to run at startup.\n"
+"  -s, --start <name>         Startup using the given session name.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+"  -v, --verbose              Verbose mode.\n"
+"  -V, --version              Show version information.\n"
+"  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Treat all remaining arguments as filenames.\n"
+"\n"
+"Report bugs at <https://bugs.launchpad.net/geda>\n"
+"gEDA homepage: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
 #, c-format
@@ -263,11 +296,12 @@ msgstr "شخصیت گزینه ناموجه"
 
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "help for more information"
-msgstr ""
+msgstr "برای اطلاعات بیشتر کمک کنید"
 
+# Run => type
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "قبیل"
 
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
