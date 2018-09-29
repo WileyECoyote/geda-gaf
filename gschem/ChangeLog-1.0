@@ -12,6 +12,8 @@
 
     * po/ml.po: Updated Malayalam translations.
 
+    * po/sl.po: Update Slovenian translations
+
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Replace g_object_set to set "visible"

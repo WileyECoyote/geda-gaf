@@ -291,9 +291,10 @@ msgstr "Neznana možnost"
 msgid "Unknown option character"
 msgstr "Neznan znak znakov"
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "help for more information"
-msgstr ""
+msgstr "pomoč za več informacij"
 
 # Run
 #: gschem/src/base/gschem_parsecmd.c:304
@@ -344,53 +345,65 @@ msgstr "Velika velikost"
 msgid "Whether the preview widget should be large or small"
 msgstr "Ali naj bo pripomoček za predogled velik ali majhen"
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
-msgstr ""
+msgstr "Način koordinate"
 
+# Sets the Format Mode used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Nastavi način oblikovanja, ki se uporablja za prikaz koordinat v vrstici stanja"
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr ""
+msgstr "Mrežni način"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Nastavi način omrežja, ki se prikaže v vrstici stanja"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Velikost mreže"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Nastavi velikost mreže, ki se prikaže v vrstici stanja"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "višina"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Nastavi višino statusne vrstice"
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "Besedilo leve gumbe"
 
+# Set the string for the Left Button Text
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Nastavite niz za besedilo leve gumbe"
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Middle Button Text"
 
+# Set the string for the Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Nastavite niz za besedilo srednjega gumba"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
