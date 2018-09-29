@@ -5897,51 +5897,60 @@ msgstr ""
 msgid "Show Hotkeys"
 msgstr ""
 
+# Component Documentation
 #: gschem/scheme/gschem/builtins.scm:526
 msgid "Component Documentation"
-msgstr ""
+msgstr "Компонентна документация"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Прегледайте документацията за избрания компонент"
 
 # Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
 msgstr "Не можа да покаже документи за избрания компонент\n"
 
+# User Guide
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
-msgstr ""
+msgstr "Упътване за употреба"
 
+# View the gschem User Guide in a browser
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Вижте ръководството за потребителя на gschem в браузър."
 
+# gschem FAQ
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr ""
+msgstr "gschem Често задавани въпроси"
 
+# Frequently Asked Questions about using gschem
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "Често задавани въпроси относно използването на gschem."
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
+# View the front page of the gEDA wiki in a browser
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "Преглеждайте първата страница на wiki gEDA в браузър."
 
+# Invalid text alignment
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "Невалидно подравняване на текста ~A."
 
+# No documentation found
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "Няма намерена документация"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
