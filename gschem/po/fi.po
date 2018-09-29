@@ -21,27 +21,31 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Varoitus: <%s> ei laajentunut\n"
 
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Komentorivivirhe: automaattisen kuormituksen poistaminen käytöstä viimeiseksi\n"
 
+# Assuming schematic file suffix for
 #: gschem/src/base/gschem.c:219
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Olettaen kaavamaisen tiedostoaineiston jäljillä"
 
+# Assuming symbol file suffix for
 #: gschem/src/base/gschem.c:233
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Olettaen kaavamaisen tiedostoaineiston jäljillä"
 
+# An error was encountered loading requested session
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "Ongelmana oli ladata pyydetty istunto"
 
+# Auto Load
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr ""
+msgstr "Automaattinen lataus"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -50,26 +54,34 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"GEDADATA-ympäristön muuttuja on asetettava!\n"
+"\n"
+"gschem ei löydä tiedostoja. Varmista GEDADATA\n"
+"ympäristömuuttuja osoittaa oikean sijainnin.\n"
 
+# Unable to locate scheme initialization file
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "Järjestelmän alustustiedostoa ei löytynyt"
 
+# Read scheme initialization file
 #: gschem/src/base/gschem.c:395
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Lue järjestelmän alustustiedosto"
 
+# Failed to read scheme initialization file
 #: gschem/src/base/gschem.c:398
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "Lue järjestelmän alustustiedosto"
 
 #: gschem/src/base/gschem.c:422
 msgid "version"
 msgstr "Tallenna _kaikki"
 
+# Logging system is disabled
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Kirjausjärjestelmä on poistettu käytöstä\n"
 
 #: gschem/src/base/gschem.c:460
 #, c-format
@@ -5793,10 +5805,10 @@ msgstr ""
 msgid "Export embedded symbol"
 msgstr ""
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Kuva..."
+msgstr "Vie upotettu kuva"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
