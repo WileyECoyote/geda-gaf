@@ -137,35 +137,36 @@ msgstr "മാക്രോ ലേബലിനായി പ്രദർശിപ�
 msgid "Macro:"
 msgstr "മാക്രോ:"
 
+# Macro String
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "മാക്രോ സ്ട്രിംഗ്"
 
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "വിലയിരുത്തൽ"
 
 #: gschem/src/base/gschem_main_window.c:243
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "പ്രധാന വിൻഡോ സ്ഥാനം വീണ്ടെടുക്കുന്നു.\n"
 
 #: gschem/src/base/gschem_main_window.c:299
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "പ്രധാന ജാലകം ജ്യാമിതി എടുക്കുന്നു.\n"
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "സ്വയം പുനഃസ്ഥാപിക്കുക"
 
 #: gschem/src/base/gschem_main_window.c:423
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "പ്രധാന ജാലക ജ്യാമിതി യാന്ത്രികമായി പുനഃസ്ഥാപിക്കുക"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "തിരശ്ചീന ക്രമീകരണം"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
@@ -175,12 +176,12 @@ msgstr "താള്"
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "പേജ് ജ്യാമിതി"
 
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "ലംബ അഡ്ജസ്റ്റ്മെന്റ്"
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, c-format
@@ -218,6 +219,38 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
+"ഉപയോഗം: %s [OPTION ...] [--] [FILE ...]\n"
+"\n"
+"Interactively edit gEDA schematics or symbols.  If one or more FILEs\n"
+"are specified, open them for editing; otherwise, create a new, empty\n"
+"schematic.\n"
+"\n"
+"Options:\n"
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file <FILE>   Additional configuration file to load.\n"
+"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+"  -f, --font <NAME>          set font family name\n"
+"  -h, --help                 Help; this message.\n"
+"  -m, --safe-mode            Safe Mode.\n"
+"  -n, --no-auto              No auto load last document.\n"
+"  -o, --output <FILE>        Output filename (for printing and image "
+"output).\n"
+"  -p, --place                Automatically place the window.\n"
+"  -q, --quiet                Quiet mode.\n"
+"  -r, --run <FILE>           Scheme script to run at startup.\n"
+"  -s, --start <name>         Startup using the given session name.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+"  -v, --verbose              Verbose mode.\n"
+"  -V, --version              Show version information.\n"
+"  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Treat all remaining arguments as filenames.\n"
+"\n"
+"Report bugs at <https://bugs.launchpad.net/geda>\n"
+"gEDA homepage: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
 #, c-format
@@ -232,32 +265,33 @@ msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "പിശക് പാർസിസിങ്"
 
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "പിശക്"
 
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "ഓപ്റ്റിന് ഒരു വാദം ആവശ്യമാണ്"
 
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
-msgstr ""
+msgstr "അജ്ഞാതമായ ഓപ്ഷൻ"
 
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr ""
+msgstr "അജ്ഞാത ഓപ്ഷൻ പ്രതീകം"
 
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "help for more information"
-msgstr ""
+msgstr "കൂടുതൽ വിവരങ്ങൾക്ക് സഹായം"
 
+# Run => type
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "ടൈപ്പ് ചെയ്യുക"
 
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
