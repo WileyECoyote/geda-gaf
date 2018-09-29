@@ -5970,50 +5970,59 @@ msgstr ""
 msgid "Show Hotkeys"
 msgstr "Pokaži Hotkeys"
 
+# Component Documentation
 #: gschem/scheme/gschem/builtins.scm:526
 msgid "Component Documentation"
-msgstr ""
+msgstr "Komponentna dokumentacija"
 
+# # View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Pogledajte dokumentaciju za izabranu komponentu"
 
+# Could not show documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "Nije moguće prikazati dokumentaciju za izabranu komponentu\n"
 
+# User Guide
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
-msgstr ""
+msgstr "Korisnički vodič"
 
+# View the gschem User Guide in a browser
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Pogledajte vodič za korisnike gschem u pregledaču."
 
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr ""
+msgstr "gschem FAQ"
 
+# Frequently Asked Questions about using gschem
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "Često postavljana pitanja o korišćenju gschem-a."
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
+# View the front page of the gEDA wiki in a browser
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "Pogledajte naslovnu stranicu gEDA wiki u pregledaču."
 
+# Invalid text alignment
 #: gschem/scheme/gschem/deprecated.scm:102
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "Nevažeće poravnanje teksta ~A."
 
+# No documentation found
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "Nije pronađena dokumentacija"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
