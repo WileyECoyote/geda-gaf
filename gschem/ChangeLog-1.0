@@ -8,6 +8,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Replace g_object_set to set "visible"
