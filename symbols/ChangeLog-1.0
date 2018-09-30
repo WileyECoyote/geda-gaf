@@ -11,6 +11,8 @@
             * diode/zener53/zener_47_1N5368B.sym
             * diode/zener53/zener_51_1N5369B.sym
 
+    * linear/regulator/LF33CDT-1.sym: Update device attribute.
+
 2018-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/phone/TRS-6_CONN-1.sym: Rename symbol file consistence
