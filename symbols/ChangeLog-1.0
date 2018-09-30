@@ -1,3 +1,11 @@
+2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/transil: Add symbols for new transil diode group:
+
+            * diode/transil/SMM4F5.0A-1.sym
+            * diode/transil/SMM4F6.0A-1.sym
+            * diode/transil/SMM4F6.5A-1.sym
+
 2018-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/phone/TRS-6_CONN-1.sym: Rename symbol file consistence
