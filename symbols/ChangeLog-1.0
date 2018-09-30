@@ -6,6 +6,11 @@
             * diode/transil/SMM4F6.0A-1.sym
             * diode/transil/SMM4F6.5A-1.sym
 
+    * diode/zener53: Add symbols for 5 Watt zener diode:
+
+            * diode/zener53/zener_47_1N5368B.sym
+            * diode/zener53/zener_51_1N5369B.sym
+
 2018-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/phone/TRS-6_CONN-1.sym: Rename symbol file consistence
