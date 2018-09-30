@@ -25,6 +25,9 @@
     * opto/MOC3040-1.sym: Add symbol; zero-Cross optoisolators triac driver
       output, 30mA.
 
+    * passive/protection/uclamp3304.sym: Update pintype attributes, increase
+      pin spacing, and add value attribute.
+
 2018-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/phone/TRS-6_CONN-1.sym: Rename symbol file consistence
