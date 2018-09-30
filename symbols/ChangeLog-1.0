@@ -16,6 +16,9 @@
     * linear/regulator/LM137-1.sym: Add symbol; adjustable 3-Terminal
       negative voltage regulator.
 
+    * linear/regulator/LM2941-1.sym: Update device and footprint attribute,
+      add value.
+
 2018-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/phone/TRS-6_CONN-1.sym: Rename symbol file consistence
