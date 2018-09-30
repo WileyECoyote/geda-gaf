@@ -28,6 +28,16 @@
     * passive/protection/uclamp3304.sym: Update pintype attributes, increase
       pin spacing, and add value attribute.
 
+    * transistor/npn-bjt/npn-bec-?.sym: Resequence attributes, update attribute
+      locations.
+
+            * transistor/npn-bjt/npn-bec-1.sym
+            * transistor/npn-bjt/npn-bec-2.sym
+            * transistor/npn-bjt/npn-bec-3.sym
+            * transistor/npn-bjt/npn-bec-4.sym
+            * transistor/npn-bjt/npn-bec-5.sym
+            * transistor/npn-bjt/npn-bec-6.sym
+
 2018-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/phone/TRS-6_CONN-1.sym: Rename symbol file consistence
