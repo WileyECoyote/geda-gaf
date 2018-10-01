@@ -545,6 +545,7 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_set_object_color                     (GedaObject *object, int color);
          void    geda_set_object_fill_options              (GedaObject *o_current, FILL_OPTIONS *fill_options);
          void    geda_set_object_line_options              (GedaObject *o_current, LINE_OPTIONS *line_options);
+         void    geda_set_object_list_invalid              (GList      *list);
          void    geda_set_object_selected                  (GedaObject *object);
          void    geda_set_object_visibility                (GedaObject *object, int visibility);
 

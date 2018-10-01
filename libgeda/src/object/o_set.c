@@ -225,6 +225,17 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
   }
 }
 
+void geda_set_object_list_invalid(GList *list)
+{
+  const GList *o_iter = list;
+
+  while (o_iter != NULL) {
+    GedaObject *o_current = o_iter->data;
+    geda_object_set_bounds_valid (o_current, FALSE);
+    o_iter = o_iter->next;
+  }
+}
+
 /*!
  * \brief Set object Select Flag
  * \par Function Description
