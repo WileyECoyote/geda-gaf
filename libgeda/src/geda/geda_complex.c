@@ -98,6 +98,7 @@ static int geda_complex_bounds(GedaObject *object)
 
     /* Check other objects with bounds and expand as necessary */
     while ( iter != NULL ) {
+
       sub_object   = (GedaObject*)iter->data;
       object_class = (GedaObjectClass*)G_OBJECT_GET_CLASS(sub_object);
 
