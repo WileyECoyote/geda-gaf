@@ -2,6 +2,9 @@
 
     * src/geda/geda_page.c: Remove validating object in geda_page_remove_object.
 
+    * src/object/o_get.c: Add debug code in geda_object_get_bounds to output
+      message if bounds was set valid but does not match if bound performed.
+
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Update function reference in documentation,
