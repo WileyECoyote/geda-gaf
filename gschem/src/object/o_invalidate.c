@@ -235,6 +235,9 @@ o_invalidate_list (GschemToplevel *w_current, GList *list)
 {
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
+
+  geda_set_object_list_invalid (list);
+
   if (geda_object_get_bounds_list (list, &left,  &top, &right, &bottom)) {
     WORLDtoSCREEN (w_current, left,  top,    &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
