@@ -9,6 +9,9 @@
 
     * src/scheme/scheme_closure.c: Update function wrapping.
 
+    * src/scheme/scheme_object.c: Eliminate o_current in object_bounds and
+      utilize geda_object_set_bounds_valid to unset bounds_valid.
+
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Update function reference in documentation,

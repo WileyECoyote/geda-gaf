@@ -288,8 +288,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
     page      = geda_object_get_page(o_current);
 
     for (iter = obj_list; iter != NULL; iter = g_list_next(iter)) {
-      GedaObject *o_current = (GedaObject *) list->data;
-      o_current->bounds_valid = FALSE;
+      geda_object_set_bounds_valid(iter->data, FALSE);
     }
 
     if (page == NULL) {
