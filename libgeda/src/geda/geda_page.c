@@ -135,23 +135,18 @@ GedaObject *geda_page_get_object(Page *page, int sid)
   return NULL;
 }
 
-/*! \brief Remove an object from a Page
- *
- *  \par Function Description
+/*!
+ * \brief Remove an object from a Page
+ * \par Function Description
  *  The function decreases the reference count of object. The object's page
- *   must be @page. Increase its reference count prior to calling this function
+ *  must be @page. Increase its reference count prior to calling this function
  *
- *   Emits the remove-object signal.
- *
- *  \sa eda_page_remove_object
- *
- *  \param [in] page    The Page from which all objects are to be removed.
- *  \param [in] object  The object to be removed.
+ * \param [in] page    The Page from which the object is to be removed.
+ * \param [in] object  The object to be removed.
  */
 void geda_page_remove_object(Page *page, GedaObject *object)
 {
   g_return_if_fail(GEDA_IS_PAGE(page));
-  g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (g_list_find(page->_object_list, object)) {
     page->_object_list = g_list_remove(page->_object_list, object);
