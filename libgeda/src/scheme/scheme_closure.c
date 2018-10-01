@@ -47,8 +47,7 @@ static SCM marshal_proc;
  *
  * \return the result returned by the closure.
  */
-static SCM
-edascm_closure_marshal (SCM args, SCM smob) {
+static SCM edascm_closure_marshal (SCM args, SCM smob) {
 
 #ifndef NDEBUG
   SCM_ASSERT (EDASCM_CLOSUREP (smob), smob, SCM_ARG2,
@@ -75,8 +74,7 @@ edascm_closure_marshal (SCM args, SCM smob) {
  *
  * \return a C closure smob.
  */
-static SCM
-edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
+static SCM edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
 {
  SCM smob;
  SCM_NEWSMOB2 (smob, geda_smob_tag, func, user_data);
@@ -111,8 +109,7 @@ edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
  *
  * \since 1.10.
  */
-SCM
-edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
+SCM edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
 {
   SCM smob;
   SCM expr;
@@ -136,8 +133,7 @@ edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
  * Creates some Scheme values used for creating and working with C
  * closures.  Should only be called by edascm_init().
  */
-void
-edascm_init_closure (void)
+void edascm_init_closure (void)
 {
   /* Register functions and symbols */
   #include "scheme_closure.x"

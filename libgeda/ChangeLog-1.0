@@ -7,6 +7,8 @@
 
     * src/object/o_set.c: Add function geda_set_object_list_invalid.
 
+    * src/scheme/scheme_closure.c: Update function wrapping.
+
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Update function reference in documentation,
