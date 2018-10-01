@@ -12,6 +12,10 @@
     * src/scheme/scheme_object.c: Eliminate o_current in object_bounds and
       utilize geda_object_set_bounds_valid to unset bounds_valid.
 
+    * src/struct/s_page.c: Call geda_object_bounds in object_added function
+      so that the bound is automatically updated when an object is placed on
+      a page.
+
 2018-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Update function reference in documentation,

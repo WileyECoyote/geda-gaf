@@ -62,6 +62,8 @@ static void object_added (Page *page, GedaObject *object)
 
   geda_object_set_page(object, page);
 
+  geda_object_bounds(object);
+
   geda_object_notify_emit_pre_change (object);
 
   /* Add object to tile system. */
@@ -896,6 +898,7 @@ void geda_struct_page_append_object (Page *page, GedaObject *object)
     if (GEDA_IS_OBJECT(object)) {
 
       geda_page_add_object(page, object);
+
       object_added (page, object);
     }
     else {
