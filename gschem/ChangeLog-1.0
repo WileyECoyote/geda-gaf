@@ -2,6 +2,7 @@
 
     * src/object/o_complex.c: Change o_complex_translate_all third
       argument from bool zoom extents flag to GList  *object_list.
+      Add function o_complex_translate_list.
 
     * src/x/x_dialog.c: Revise x_dialog_translate_response to call
       i_zoom_world_extents and pass an object_list to o_complex_

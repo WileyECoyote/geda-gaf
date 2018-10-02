@@ -217,6 +217,50 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
 }
 
 /*!
+ * \brief Translate List of Objects
+ * \par Function Description
+ *  Wrapper for geda_translate_list to translate all of the objects
+ *  in the list the given \a offset or relative to the lower left
+ *  corner of the bounds if offset is zero.
+ *  current page, whether selected or not \a offset distance in both
+ *  the x and y direction.
+ *
+ * \param [in] w_current  GschemToplevel structure
+ * \param [in] o_list     List if objects to be translated
+ * \param [in] x_offset   Integer distance to translate on X Axis
+ * \param [in] y_offset   Integer distance to translate on Y Axis
+ *
+ * \todo has nothing to do with complex objects
+ */
+void
+o_complex_translate_list(GschemToplevel *w_current, const GList *o_list,
+                         int x_offset, int y_offset)
+{
+  if (x_offset == 0 && y_offset == 0) {
+
+    int left, top, right, bottom;
+    int x, y;
+
+    geda_object_get_bounds_list (o_list, &left,  &top, &right, &bottom);
+
+    /*! \todo do we want snap grid here? */
+    x = snap_grid (w_current, left);
+    y = snap_grid (w_current, top);
+
+    u_log_message("%s (%d %d)\n", _("Translating objects"), -x, -y);
+    geda_translate_list (o_list, -x, -y);
+  }
+  else {
+    u_log_message("%s (%d %d)\n", _("Translating schematic"), x_offset, y_offset);
+    geda_translate_list (o_list, x_offset, y_offset);
+  }
+
+  o_invalidate_all (w_current);
+  o_undo_savestate(w_current, UNDO_ALL);
+  i_status_update_sensitivities(w_current);
+}
+
+/*!
  * \brief Translate All objects
  * \par Function Description
  *  Helper for the Translate Dialog to translate all objects on the
