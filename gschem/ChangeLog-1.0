@@ -8,6 +8,9 @@
       argument from bool zoom extents flag to GList  *object_list.
       Add function o_complex_translate_list.
 
+    * src/object/o_place.c: Reformat Doxygen comment blocks to eliminate
+      the blank line after the brief tag.
+
     * src/x/x_dialog.c: Revise x_dialog_translate_response to call
       i_zoom_world_extents and pass an object_list to o_complex_
       translate_all. Add x_dialog_translate_add_scope to create a

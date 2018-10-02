@@ -36,16 +36,17 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Start process to place objects
- *  \par Function Description
+/*!
+ * \brief Start process to place objects
+ * \par Function Description
  *  This function starts the process of interactively placing objects.
  *  The objects may be objects being copied or objects recieved from
  *  the clibboard or from drag-and-drop. Temporary outline maybe used
  *  during the process.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
 bool o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -196,9 +197,9 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
   }
 }
 
-/*! \brief Handle Erasing and Redrawing of rubber outlines for objects
- *
- *  \par Function Description
+/*!
+ * \brief Handle Erasing and Redrawing of rubber outlines for objects
+ * \par Function Description
  *  This function handles motion events for rubber outlines when placing
  *  objects.
  */
@@ -215,9 +216,9 @@ void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Invalidate bounding box or outline for Object placement
- *
- *  \par Function Description
+/*!
+ * \brief Invalidate bounding box or outline for Object placement
+ * \par Function Description
  *  This function invalidates the bounding box where objects would be
  *  drawn by o_place_draw_rubber()
  *
@@ -326,9 +327,9 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
   }
 }
 
-/*! \brief Draw a bounding box or outline for Object placement
- *
- *  \par Function Description
+/*!
+ * \brief Draw a bounding box or outline for Object placement
+ * \par Function Description
  *  This function draws either the Object in the place list
  *  or a rectangle around their bounding box, depending upon the
  *  currently selected w_current->action_feedback_mode. This takes the
@@ -423,14 +424,14 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
   cairo_restore (cr);
 }
 
-/*! \brief Mirror the objects being placed
- *
- *  \par Function Description
+/*!
+ * \brief Mirror the objects being placed
+ * \par Function Description
  *  This function erases the objects in the place list, mirrors
  *  them, runs %mirror-objects-hook, and redraws the objects after
  *  mirroring.
  *
- *  \param [in] w_current   The GschemToplevel object.
+ * \param [in] w_current   The GschemToplevel object.
  */
 void o_place_mirror (GschemToplevel *w_current)
 {
@@ -453,9 +454,9 @@ void o_place_mirror (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Rotate objects being placed
- *
- *  \par Function Description
+/*!
+ * \brief Rotate objects being placed
+ * \par Function Description
  *   Passes list of objects being placed to geda_rotate_list
  *   with and angle of 90.
  */
