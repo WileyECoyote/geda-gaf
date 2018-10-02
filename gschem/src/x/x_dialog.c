@@ -3245,10 +3245,10 @@ void x_dialog_translate (GschemToplevel *w_current)
                       G_CALLBACK (x_dialog_translate_response),
                       w_current);
 
+    gtk_widget_grab_focus(textentry);
     gtk_widget_show_all (ThisDialog);
     w_current->trwindow = ThisDialog;
   }
-
   else  { /* dialog already created */
     gtk_window_present(GTK_WINDOW(ThisDialog));
   }

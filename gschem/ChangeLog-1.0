@@ -9,7 +9,7 @@
       translate_all. Add x_dialog_translate_add_scope to create a
       new scope feature so that user can specify to only translate
       the selection, and add horizontal separators to the translate
-      dialog.
+      dialog and set the text entry to grab the focus
 
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
