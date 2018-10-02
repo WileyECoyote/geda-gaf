@@ -3219,6 +3219,8 @@ void x_dialog_translate (GschemToplevel *w_current)
     sbox = x_dialog_translate_add_scope (w_current, ThisDialog);
     geda_container_add (vbox, sbox);
 
+    HD_SEPARATOR (vbox, Options);
+
     label = geda_aligned_label_new(_("Offset to translate?\n(0 for origin)"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
 
@@ -3227,6 +3229,8 @@ void x_dialog_translate (GschemToplevel *w_current)
     EntrySelectAll(textentry);
     geda_entry_widget_set_activates_default(textentry, TRUE);
     gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
+
+    HD_SEPARATOR (vbox, Options);
 
     zoom_check_butt = gtk_check_button_new_with_mnemonic (_("Auto Zoom Extents"));
     g_object_set (zoom_check_butt, "visible", TRUE, NULL);

@@ -8,7 +8,8 @@
       i_zoom_world_extents and pass an object_list to o_complex_
       translate_all. Add x_dialog_translate_add_scope to create a
       new scope feature so that user can specify to only translate
-      the selection.
+      the selection, and add horizontal separators to the translate
+      dialog.
 
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
