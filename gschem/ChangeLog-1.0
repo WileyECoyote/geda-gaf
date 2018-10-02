@@ -6,7 +6,9 @@
 
     * src/x/x_dialog.c: Revise x_dialog_translate_response to call
       i_zoom_world_extents and pass an object_list to o_complex_
-      translate_all.
+      translate_all. Add x_dialog_translate_add_scope to create a
+      new scope feature so that user can specify to only translate
+      the selection.
 
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 

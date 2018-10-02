@@ -3084,13 +3084,14 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
 
     if (strlen(string) != 0) {
 
-      GedaToplevel    *toplevel;
-      const GList     *object_list;
       GtkToggleButton *zoom_check_butt;
-      bool             zoom_extents;
+      GSList          *scope;
+      bool             selected, zoom_extents;
+      int x, y;
 
-      toplevel        = w_current->toplevel;
-      object_list     = geda_struct_page_get_objects (toplevel->page_current);
+      scope           = GEDA_OBJECT_GET_DATA(Dialog, "Scope");
+      selected        = geda_bulb_group_get_active_index(scope);
+
       zoom_check_butt = GEDA_OBJECT_GET_DATA(Dialog, "zoom-check-butt");
       zoom_extents    = gtk_toggle_button_get_active(zoom_check_butt);
 
@@ -3099,7 +3100,27 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
         i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
       }
 
-      o_complex_translate_all(w_current, atoi(string), object_list);
+      if (geda_utility_string_parse_xy(string, &x, &y)) {
+
+        if (y == 0 && !selected) {
+          o_complex_translate_all(w_current, x, zoom_extents);
+        }
+        else {
+
+          const GList *object_list;
+
+          if (selected) {
+            object_list = geda_list_get_glist (Current_Selection);
+
+          }
+          else {
+            GedaToplevel *toplevel = w_current->toplevel;
+            object_list = geda_struct_page_get_objects (toplevel->page_current);
+          }
+
+          o_complex_translate_list(w_current, object_list, x, y);
+        }
+      }
 
       if (zoom_extents) {
         i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
@@ -3116,6 +3137,44 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
   gtk_widget_destroy(Dialog);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
+static inline
+GtkWidget *x_dialog_translate_add_scope (GschemToplevel *w_current,
+                                         GtkWidget      *Dialog)
+{
+  GtkWidget *alignment;
+  GtkWidget *container;
+  GtkWidget *widget;
+  GSList    *group;
+
+  container = gtk_hbox_new (FALSE, 0);
+
+  widget = geda_bulb_new_visible_with_mnemonic(NULL, "_All");
+  gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
+  geda_container_add (container, widget);
+
+  widget = geda_bulb_new_with_mnemonic_from_widget(widget, "Selected", 1);
+  gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
+  geda_container_add (container, widget);
+
+  group = geda_bulb_get_group(widget);
+
+  GEDA_OBJECT_SET_DATA(Dialog, group, "Scope");
+
+  geda_bulb_group_set_active_index(group, o_select_is_selection(w_current));
+
+  gtk_widget_show(container);
+
+  alignment = gtk_alignment_new(0.5, 0, 0, 1);
+
+  geda_container_add (alignment, container);
+
+  return alignment;
+}
+
 /*! \brief Create the translate dialog
  *  \par Function Description
  *  Create the dialog to translate symbols.
@@ -3129,6 +3188,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     GtkWidget *label;
     GtkWidget *textentry;
     GtkWidget *vbox;
+    GtkWidget *sbox;
     GtkWidget *zoom_check_butt;
 
     const char *zoom_tip;
@@ -3155,6 +3215,9 @@ void x_dialog_translate (GschemToplevel *w_current)
                                     GEDA_RESPONSE_ACCEPT);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
+
+    sbox = x_dialog_translate_add_scope (w_current, ThisDialog);
+    geda_container_add (vbox, sbox);
 
     label = geda_aligned_label_new(_("Offset to translate?\n(0 for origin)"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
