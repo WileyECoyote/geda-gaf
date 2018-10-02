@@ -39,14 +39,13 @@
  *  @{
  */
 
-/*! \brief Add object to Stretch "Semi-Select" List
- *
- *  \ingroup Stretch
- *  \par Function Description
+/*!
+ * \brief Add object to Stretch "Semi-Select" List
+ * \ingroup Stretch
+ * \par Function Description
  *  Used to pickup pins nets, and bus enpoints when parent objects
- * are moved. Adds \a object to \a list if \a object is not already
- * in \a list
- *
+ *  are moved. Adds \a object to \a list if \a object is not already
+ *  in \a list
  */
 static GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
 {
@@ -69,10 +68,10 @@ static GList *o_move_stretch_add (GList *list, GedaObject *object, int whichone)
 }
 
 
-/*! \brief Test if a STRETCH structure points at a given Object
- *
- *  \ingroup Stretch
- *  \par Function Description
+/*!
+ * \brief Test if a STRETCH structure points at a given Object
+ * \ingroup Stretch
+ * \par Function Description
  *  Compares if (STRETCH *)a->object == (GedaObject*)b
  *
  * \param [in] a  The STRETCH structure
@@ -85,10 +84,10 @@ static int find_object (const void *a, const void *b)
 }
 
 
-/*! \brief Remove object from Stretch "Semi-Select" List
- *  \ingroup Stretch
- *  \par Function Description
- *
+/*!
+ * \brief Remove object from Stretch "Semi-Select" List
+ * \ingroup Stretch
+ * \par Function Description
  */
 static GList *o_move_stretch_remove (GList *list, GedaObject *object)
 {
@@ -104,12 +103,11 @@ static GList *o_move_stretch_remove (GList *list, GedaObject *object)
 
 #if DEBUG_STRETCH
 
-/*! \brief Debug utility function for Stretch routines
- *
- *  \ingroup Stretch
- *  \par Function Description
- *   Prints name of members to the standard out.
- *
+/*!
+ * \brief Debug utility function for Stretch routines
+ * \ingroup Stretch
+ * \par Function Description
+ *  Prints name of members to the standard out.
  */
 static void o_move_stretch_print_all (GList *list)
 {
@@ -458,8 +456,7 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void
-o_move_draw_rubber (GschemToplevel *w_current, int drawing)
+void o_move_draw_rubber (GschemToplevel *w_current, int drawing)
 {
   GList *s_iter;
   int diff_x, diff_y;
