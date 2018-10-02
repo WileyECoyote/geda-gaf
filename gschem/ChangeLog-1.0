@@ -1,3 +1,12 @@
+2018-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex.c: Change o_complex_translate_all third
+      argument from bool zoom extents flag to GList  *object_list.
+
+    * src/x/x_dialog.c: Revise x_dialog_translate_response to call
+      i_zoom_world_extents and pass an object_list to o_complex_
+      translate_all.
+
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_invalidate.c: Call geda_set_object_list_invalid in

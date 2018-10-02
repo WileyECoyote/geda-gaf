@@ -3084,13 +3084,28 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
 
     if (strlen(string) != 0) {
 
+      GedaToplevel    *toplevel;
+      const GList     *object_list;
       GtkToggleButton *zoom_check_butt;
       bool             zoom_extents;
 
+      toplevel        = w_current->toplevel;
+      object_list     = geda_struct_page_get_objects (toplevel->page_current);
       zoom_check_butt = GEDA_OBJECT_GET_DATA(Dialog, "zoom-check-butt");
       zoom_extents    = gtk_toggle_button_get_active(zoom_check_butt);
-      o_complex_translate_all(w_current, atoi(string), zoom_extents);
+
+      /* first zoom extents */
+      if (zoom_extents) {
+        i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
+      }
+
+      o_complex_translate_all(w_current, atoi(string), object_list);
+
+      if (zoom_extents) {
+        i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
+      }
     }
+
     break;
 
   default:

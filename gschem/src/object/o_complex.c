@@ -230,18 +230,8 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
  * \todo has nothing to do with complex objects
  */
 void
-o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents)
+o_complex_translate_all(GschemToplevel *w_current, int offset, const GList  *object_list)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  const GList  *object_list;
-
-  object_list = geda_struct_page_get_objects (toplevel->page_current);
-
-  /* first zoom extents */
-  if (zoom_extents) {
-    i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
-  }
-
   if (offset == 0) {
 
     int left, top, right, bottom;
@@ -259,10 +249,6 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, bool zoom_extents
   else {
     u_log_message("%s [%d %d]\n", _("Translating schematic"), offset, offset);
     geda_translate_list (object_list, offset, offset);
-  }
-
-  if (zoom_extents) {
-    i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
   }
 
   /* The shift key would have to pressed before the dialog was opened */
