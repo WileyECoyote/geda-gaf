@@ -768,6 +768,11 @@ bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
   return status;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_move_real_start(w_current, w_x, w_y)) {
@@ -776,6 +781,11 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void o_move_start_drag(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (o_move_real_start(w_current, w_x, w_y)) {

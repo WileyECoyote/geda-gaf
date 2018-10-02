@@ -8,6 +8,8 @@
       argument from bool zoom extents flag to GList  *object_list.
       Add function o_complex_translate_list.
 
+    * src/object/o_move.c: Add todo documentation templates.
+
     * src/object/o_place.c: Reformat Doxygen comment blocks to eliminate
       the blank line after the brief tag.
 
