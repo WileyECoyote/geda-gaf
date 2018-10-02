@@ -1,5 +1,9 @@
 2018-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Remove conditional in do_add_circle and
+      call i_event_end_action_handler in the non-action else clause
+      instead of using i_status_action_stop.
+
     * src/object/o_complex.c: Change o_complex_translate_all third
       argument from bool zoom extents flag to GList  *object_list.
       Add function o_complex_translate_list.
