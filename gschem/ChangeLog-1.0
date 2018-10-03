@@ -5,6 +5,9 @@
 
     * src/x/x_dialog.c: Fix x_dialog_translate_response.
 
+    * src/x/x_multiattrib.c: Replace dynamic cast with static GtkTextView
+      cast in multiattrib_init.
+
 2018-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove conditional in do_add_circle and

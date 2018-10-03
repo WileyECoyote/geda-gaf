@@ -2321,7 +2321,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
 
   geda_container_add(scrolled_win, textview);
   SetWidgetTip( textview, _("Enter or type a value for the new attribute then press the Add button"));
-  ThisDialog->textview_value = GTK_TEXT_VIEW (textview);
+  ThisDialog->textview_value = (GtkTextView*) (textview);
   gtk_table_attach (GTK_TABLE (table), label,
                     0, 1, 1, 2, 0, 0, 0, 0);
   gtk_table_attach (GTK_TABLE (table), scrolled_win,
