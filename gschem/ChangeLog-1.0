@@ -5,6 +5,7 @@
 
     * src/object/o_move.c: Update function documentation:
 
+          * o_move_real_start
           * o_move_start
           * o_move_start_drag
 

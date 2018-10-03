@@ -701,10 +701,13 @@ void o_move_end_rubberband (GschemToplevel *w_current,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Start a Move Action
+ * \par Function Description
+ *  If objects are selected, prepares the toplevel for a move operation
+ *  and causes the selection to be add to the place list. Generates an
+ *  error if a stretch_list exist, subsequently canceling the current
+ *  state to abort any on-going actions.
  */
 static
 bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
