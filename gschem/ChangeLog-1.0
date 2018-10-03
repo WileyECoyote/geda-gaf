@@ -6,6 +6,7 @@
     * src/object/o_move.c: Update function documentation:
 
           * o_move_start
+          * o_move_start_drag
 
     * src/x/x_dialog.c: Fix x_dialog_translate_response.
 
