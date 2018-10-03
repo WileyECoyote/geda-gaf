@@ -518,7 +518,7 @@ o_grips_search_picture_world(GschemToplevel *w_current, GedaObject *o_current,
  *  the grip of the circle object <b>\a o_current</b>.
  *  It computes the area covered by each grip and check if (<b>x</b>,<b>y</b>)
  *  is in one of these areas.
- *  If the event occured in one of the grip, a pointer on the object is
+ *  If the event occurred in one of the grip, a pointer on the object is
  *  returned and <b>*whichone</b> is set to the identifier of the grip.
  *  If not, the function returns a %NULL pointer and <b>*whichone</b>
  *  is unchanged.
@@ -559,7 +559,7 @@ o_grips_search_circle_world(GschemToplevel *w_current, GedaObject *o_current,
  *  \a y is inside one of the grips of the #Line object <b>\a o_current</b>,
  *  by computing the area covered by each grip and then checks if (<b>x</b>,
  *  <b>y</b>) is in one of these regions.
- *  If the event occured in one of its grip, a pointer on the object is
+ *  If the event occurred in one of its grip, a pointer on the object is
  *  returned and <b>\a whichone</b> is set to the identifier of the grip. If
  *  not, the function returns %NULL pointer and <b>\a whichone</b> is unchanged.
  *
@@ -1022,11 +1022,11 @@ o_grips_start_line(GschemToplevel *w_current, GedaObject *o_current, int x, int 
 /*! \brief Start process of modifiying one grip.
  *  \par Function Description
  *  This function starts the process of modifying one grip of an object
- *  on the current sheet. The event occured at (<b>w_x</b>,<b>w_y</b>) in
+ *  on the current sheet. The event occurred at (<b>w_x</b>,<b>w_y</b>) in
  *  world unit. If this position is related to a grip of an object, the
  *  function prepares the modification of this grip thanks to the user input.
  *
- *  The function returns <b>FALSE</b> if an error occured or if no grip
+ *  The function returns <b>FALSE</b> if an error occurred or if no grip
  *  have been found under (<b>w_x</b>,<b>w_y</b>). It returns <b>TRUE</b> if a grip
  *  has been found and modification of the object has been started.
  *
