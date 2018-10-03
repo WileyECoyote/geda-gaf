@@ -765,10 +765,12 @@ bool o_move_real_start(GschemToplevel *w_current, int w_x, int w_y)
   return status;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Start Move Event
+ * \par Function Description
+ *  Called from event handlers to possiably initiate a move action.
+ *  If the action is to be performed the main button event handler
+ *  is replaced ith the paste event handler.
  */
 void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 {

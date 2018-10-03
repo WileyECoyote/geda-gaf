@@ -3,6 +3,10 @@
     * src/iface/i_status.c: Update i_status_update_action_state function
       documentation.
 
+    * src/object/o_move.c: Update function documentation:
+
+          * o_move_start
+
     * src/x/x_dialog.c: Fix x_dialog_translate_response.
 
     * src/x/x_multiattrib.c: Replace dynamic cast with static GtkTextView
