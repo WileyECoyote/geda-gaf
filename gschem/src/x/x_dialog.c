@@ -3085,7 +3085,8 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
     if (strlen(string) != 0) {
 
       GtkToggleButton *zoom_check_butt;
-      GSList          *scope;
+      const GList     *object_list;
+            GSList    *scope;
       bool             selected, zoom_extents;
       int x, y;
 
@@ -3095,6 +3096,15 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
       zoom_check_butt = GEDA_OBJECT_GET_DATA(Dialog, "zoom-check-butt");
       zoom_extents    = gtk_toggle_button_get_active(zoom_check_butt);
 
+      if (selected) {
+        object_list = geda_list_get_glist (Current_Selection);
+
+      }
+      else {
+        GedaToplevel *toplevel = w_current->toplevel;
+        object_list = geda_struct_page_get_objects (toplevel->page_current);
+      }
+
       /* first zoom extents */
       if (zoom_extents) {
         i_zoom_world_extents (w_current, object_list, I_PAN_DONT_REDRAW);
@@ -3103,20 +3113,9 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
       if (geda_utility_string_parse_xy(string, &x, &y)) {
 
         if (y == 0 && !selected) {
-          o_complex_translate_all(w_current, x, zoom_extents);
+          o_complex_translate_all(w_current, x, object_list);
         }
         else {
-
-          const GList *object_list;
-
-          if (selected) {
-            object_list = geda_list_get_glist (Current_Selection);
-
-          }
-          else {
-            GedaToplevel *toplevel = w_current->toplevel;
-            object_list = geda_struct_page_get_objects (toplevel->page_current);
-          }
 
           o_complex_translate_list(w_current, object_list, x, y);
         }
