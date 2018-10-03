@@ -278,9 +278,11 @@ i_status_idle_thread_update_action (GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \brief Schedule Set filename as gschem window title
- *  \par Function Description
- *  Spawn thread to update the status_bar
+/*!
+ * \brief Update Action State
+ * \par Function Description
+ *  Sets inside_action to state if not already set and initiates thread
+ *  to update the status bar color.
  *
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] state     Boolean value to set inside_action

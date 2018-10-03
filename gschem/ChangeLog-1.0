@@ -1,3 +1,8 @@
+2018-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Update i_status_update_action_state function
+      documentation.
+
 2018-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Remove conditional in do_add_circle and
