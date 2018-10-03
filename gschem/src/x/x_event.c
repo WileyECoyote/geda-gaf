@@ -935,10 +935,10 @@ bool x_event_motion (GtkWidget      *widget,
 
     case(DRAGMOVE):
     case(MOVEMODE):
-        if (w_current->inside_action) {
-          o_move_motion (w_current, w_x, w_y);
-        }
-        break;
+      if (w_current->inside_action) {
+        o_move_motion (w_current, w_x, w_y);
+      }
+      break;
   }
 
   return(0);
