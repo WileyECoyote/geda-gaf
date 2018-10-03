@@ -1758,7 +1758,7 @@ void gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
  *  action is active or not.
  *
  * \param [in] widget This GschemStatusBar
- * \param [in] index  The state to visualise
+ * \param [in] index  The state to visualize
  */
 void gschem_status_bar_set_status_text_color (GtkWidget *widget, int index)
 {
