@@ -12,6 +12,8 @@
     * src/object/o_find.c: Update o_find_is_object_grip_hit function
       documentation, add source comments/remark.
 
+    * src/object/o_move.c: Update o_move_zero_length function documentation.
+
 2018-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Update i_status_update_action_state function

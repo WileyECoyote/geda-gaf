@@ -637,10 +637,11 @@ void o_move_prep_rubberband(GschemToplevel *w_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief
+ * \par Function Description
+ *  Helper function for o_move_end_rubberband to check for a
+ *  zero length displacement.
  */
 static int o_move_zero_length(GedaObject *object)
 {
