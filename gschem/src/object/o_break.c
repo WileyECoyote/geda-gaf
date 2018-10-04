@@ -1132,7 +1132,8 @@ int o_break_start(GschemToplevel *w_current, int w_x, int w_y)
   return status;
 }
 
-/*!\brief Projection event Selection
+/*!
+ * \brief Projection event Selection
  * \par Function Description
  *  This function is called after a button press event and one
  *  object had been previously selected to response to either
