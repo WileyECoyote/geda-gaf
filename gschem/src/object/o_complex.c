@@ -30,12 +30,12 @@
 #include <geda_file_chooser.h>
 #include <geda_debug.h>
 
-/*! \brief Export Complex to symbol file
- *  \par Function Description
+/*!
+ * \brief Export Complex to symbol file
+ * \par Function Description
  *  This function is provided to allow user to export embedded complexes
  *  but is not restricted to an embedded object, though it may not make
  *  sense to export a symbol that already exist as a file.
- *
  */
 void o_complex_export(GschemToplevel *w_current, GedaObject *o_current)
 {
@@ -168,9 +168,9 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
   return (w_current->inside_action = success);
 }
 
-/*! \brief Start Placement of New Complex Object
- *
- *  \par Function Description
+/*!
+ * \brief Start Placement of New Complex Object
+ * \par Function Description
  *  Calls o_complex_prepare_place to create a new Complex object and sets
  *  event state and handler on success.
  */
@@ -182,13 +182,14 @@ void o_complex_start(GschemToplevel *w_current, const CLibSymbol *sym, int state
   }
 }
 
-/*! \brief Run the complex place list changed hook
- *  \par Function Description
+/*!
+ * \brief Run the complex place list changed hook
+ * \par Function Description
  *  The complex place list is usually used when placing new components
  *  in the schematic. This function should be called whenever that list
  *  is modified.
  *
- *  \param [in] w_current GschemToplevel structure.
+ * \param [in] w_current GschemToplevel structure.
  */
 void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
 
