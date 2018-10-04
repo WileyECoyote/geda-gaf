@@ -211,8 +211,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
  * \note see comment for o_select_visible_unlocked regarding
  *       geda_object_selection_add
  */
-void
-o_select_add_list(GschemToplevel *w_current, GList *list)
+void o_select_add_list(GschemToplevel *w_current, GList *list)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
   SELECTION    *selection = toplevel->page_current->selection_list;
@@ -237,8 +236,7 @@ o_select_add_list(GschemToplevel *w_current, GList *list)
  * \note see comment for o_select_visible_unlocked regarding
  *       geda_object_selection_add
  */
-void
-o_select_add_object(GschemToplevel *w_current, GedaObject *object)
+void o_select_add_object(GschemToplevel *w_current, GedaObject *object)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
   SELECTION    *selection = toplevel->page_current->selection_list;
@@ -269,8 +267,7 @@ o_select_add_object(GschemToplevel *w_current, GedaObject *object)
  * \param [in] wx        The unsnapped X coordinate.
  * \param [in] wy        The unsnapped Y coordinate.
  */
-void
-o_select_start (GschemToplevel *w_current, int wx, int wy)
+void o_select_start (GschemToplevel *w_current, int wx, int wy)
 {
   if (!o_grips_start(w_current, wx, wy)) {
     /* now go into normal SELECT */
@@ -297,8 +294,7 @@ o_select_start (GschemToplevel *w_current, int wx, int wy)
  * \param [in] wx        The world X coordinate.
  * \param [in] wy        The world Y coordinate.
  */
-void
-o_select_end (GschemToplevel *w_current, int wx, int wy)
+void o_select_end (GschemToplevel *w_current, int wx, int wy)
 {
   o_find_object(w_current, wx, wy, TRUE);
   i_status_action_stop(w_current);
@@ -321,8 +317,7 @@ o_select_end (GschemToplevel *w_current, int wx, int wy)
  * \param [in] wx        The world X coordinate.
  * \param [in] wy        The world Y coordinate.
  */
-bool
-o_select_motion (GschemToplevel *w_current, int wx, int wy)
+bool o_select_motion (GschemToplevel *w_current, int wx, int wy)
 {
   GedaObject *selected;
 
@@ -378,8 +373,7 @@ o_select_motion (GschemToplevel *w_current, int wx, int wy)
  *
  * \todo Reeks box-selection-threashold
  */
-int
-o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
+int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   int status;
   int dx, dy;
@@ -863,8 +857,7 @@ o_select_get_list_selected(GschemToplevel *w_current, char otype)
  *
  * \param w_current Pointer to a Gschem Toplevel object
  */
-GedaObject*
-o_select_return_first_object(GschemToplevel *w_current)
+GedaObject * o_select_return_first_object(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
@@ -952,8 +945,7 @@ o_select_release_butt(GtkWidget *widget, GdkEventButton *event,
  *
  * \sa i_event_stop_action_handler
  */
-void
-o_select_cancel_events(GschemToplevel *w_current)
+void o_select_cancel_events(GschemToplevel *w_current)
 {
   if (press_hid) {
     g_signal_handler_disconnect (w_current->drawing_area, press_hid);
@@ -979,8 +971,7 @@ o_select_cancel_events(GschemToplevel *w_current)
  *
  * \sa o_select_connect_selector
  */
-static void
-o_select_enable_events(GschemToplevel *w_current)
+static void o_select_enable_events(GschemToplevel *w_current)
 {
   i_event_block_buttons (w_current);
 
@@ -1007,8 +998,7 @@ o_select_enable_events(GschemToplevel *w_current)
  * \param [in] w_current  The GschemToplevel object.
  * \param [in] func       Current x coordinate of pointer in world units.
  */
-void
-o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
+void o_select_connect_selector (GschemToplevel *w_current, geda_predicator func)
 {
   o_select_cancel_events(w_current);
   o_select_enable_events(w_current);
