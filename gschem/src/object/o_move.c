@@ -654,9 +654,9 @@ static int o_move_zero_length(GedaObject *object)
   if (object->line->x[0] == object->line->x[1] &&
       object->line->y[0] == object->line->y[1]) {
     return TRUE;
-  } else {
-    return FALSE;
   }
+
+  return FALSE;
 }
 
 /*! \todo Finish function documentation!!!
