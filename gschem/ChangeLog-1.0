@@ -9,6 +9,9 @@
     * src/object/o_complex.c: Reformat Doxygen comment blocks to eliminate
       the blank line after the brief tag.
 
+    * src/object/o_find.c: Update o_find_is_object_grip_hit function
+      documentation, add source comments/remark.
+
 2018-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Update i_status_update_action_state function

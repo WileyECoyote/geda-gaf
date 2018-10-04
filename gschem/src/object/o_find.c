@@ -57,6 +57,8 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
                                         right + w_slack, bottom + w_slack,
                                         wx, wy))
     return FALSE;
+
+  /* Else */
   return (geda_object_get_shortest_distance_full (object, wx, wy, FALSE) < w_slack);
 }
 
@@ -133,6 +135,7 @@ GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
       }
     }
   }
+
   return object;
 }
 
@@ -244,9 +247,17 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
       }
     }
   }
+
   return found;
 }
 
+/*!
+ * \brief Determine if Coordinates within Object's Insertion Grip Region
+ * \par Function Description
+ *  Returns TRUE if the given coordinates are within the grip region
+ *  about the insertion point of the object.
+ *  Currently, this is only relavent to drag-moving circles.
+ */
 inline static bool o_find_is_object_grip_hit (GschemToplevel *w_current,
                                               GedaObject     *object,
                                               int wx, int wy)
