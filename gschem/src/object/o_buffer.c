@@ -98,15 +98,14 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
   }
 }
 
-/*! \brief Cut Selection to Buffer
- *
- *  \par Function Description
- *
+/*!
+ * \brief Cut Selection to Buffer
+ * \par Function Description
  *  This function calls selection_to_buffer to copy the current
  *  selection data to a buffer and then deleted the selected data.
  *
- *  \param w_current A pointer to a GSCHEM top level object
- *  \param buf_num   integer value of the buffer to use.
+ * \param w_current A pointer to a GSCHEM top level object
+ * \param buf_num   integer value of the buffer to use.
  */
 void o_buffer_cut(GschemToplevel *w_current, int buf_num)
 {
@@ -127,10 +126,9 @@ static void o_buffer_paste_end (GschemToplevel *w_current)
   i_event_stop_action_handler (w_current);
 }
 
-/*! \brief Paste Contents of Buffer into drawing
- *
- *  \par Function Description
- *
+/*!
+ * \brief Paste Contents of Buffer into drawing
+ * \par Function Description
  *  This function initiates the pasting of data by copying the buffer
  *  contents and updates the global state variable so the user can
  *  position/place the any objects that were in the buffer.
@@ -212,10 +210,9 @@ bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y)
   return result;
 }
 
-/*! \brief Initialize the Buffers
- *
- *  \par Function Description
- *
+/*!
+ * \brief Initialize the Buffers
+ * \par Function Description
  *  This function just set each member of our global array of buffer
  *  pointers to NULL.
  */
@@ -228,10 +225,9 @@ void o_buffer_init(void)
   }
 }
 
-/*! \brief Free All buffers
- *
- *  \par Function Description
- *
+/*!
+ * \brief Free All buffers
+ * \par Function Description
  *  This function iterates over each buffer and deletes any
  *  found by calling geda_struct_object_release_objects.
  */
