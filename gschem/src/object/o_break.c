@@ -204,9 +204,9 @@ static bool o_break_arc(GschemToplevel *w_current, GedaObject *object)
  * \returns TRUE if the task was completed, otherwise FALSE.
  *
  * \remark \a object Must be a GedaBox object and is not checked!
- */
-/*! \image html break_box.png
- *  \image latex break_box.png
+ *
+ * \image html break_box.png
+ * \image latex break_box.png
  */
 static bool o_break_box(GschemToplevel *w_current, GedaObject *object)
 {

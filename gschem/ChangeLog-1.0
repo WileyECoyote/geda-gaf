@@ -1,3 +1,8 @@
+2018-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_break.c: Combine Doxygen image tags with comment block
+      for o_break_arc.
+
 2018-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Update i_status_update_action_state function
