@@ -174,8 +174,7 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
  *  in i_command do_edit_text or o_edit directly so maybe this function
  *  is just adding an unnecessary stack push and pops.
  */
-void
-o_text_edit(GschemToplevel *w_current, GedaObject *o_current)
+void o_text_edit(GschemToplevel *w_current, GedaObject *o_current)
 {
   if (o_current->type == OBJ_TEXT) {
     x_dialog_edit_text(w_current, o_current);

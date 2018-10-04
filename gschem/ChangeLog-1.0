@@ -17,6 +17,7 @@
 
     * src/object/o_select.c: Update function line wrapping.
 
+    * src/object/o_text.c: Update function line wrapping.
 
 2018-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
