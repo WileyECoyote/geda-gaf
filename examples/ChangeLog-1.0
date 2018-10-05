@@ -1,3 +1,7 @@
+2018-10-05  Wiley E. Hill <wileyhill@gmail.com>
+
+    * TwoStageAmp/TwoStageAmp.sch: Shift diagram to center in titlebock.
+
 2017-10-xx  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sch/gTAG-jtagio.sch: Add comments as fake refdes to demonstrate
