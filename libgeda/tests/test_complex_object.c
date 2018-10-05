@@ -334,6 +334,12 @@ int check_accessors (void)
   int count;
   int result = 0;
 
+  /* === Function 08: geda_complex_object_is_embedded NULL === */
+  if (geda_complex_object_is_embedded (NULL)) {
+    fprintf(stderr, "FAILED: (O080800) object NULL\n");
+    result++;
+  }
+
   const CLibSymbol *sym = geda_struct_clib_get_symbol_by_name(SYMBOL);
 
   const char *sym_name = geda_struct_clib_symbol_get_name (sym);
@@ -366,6 +372,11 @@ int check_accessors (void)
       /* === Function 05: geda_complex_object_get_pin_objs  === */
       /* === Function 06: geda_complex_object_get_prim_objs  === */
       /* === Function 08: geda_complex_object_is_embedded  === */
+
+      if (geda_complex_object_is_embedded (object1)) {
+        fprintf(stderr, "FAILED: (O080801) is_embedded\n");
+        fail++;
+      }
 
       if (fail) {
         result++;

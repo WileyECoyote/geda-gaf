@@ -2,6 +2,8 @@
 
     * tests/test_box_object.c: Add checks for bounds_valid in check_query.
 
+    * tests/test_complex_object.c: Add checks for geda_complex_object_is_embedded.
+
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Remove validating object in geda_page_remove_object.
