@@ -519,19 +519,30 @@ int check_accessors ()
   /* === Function: geda_object_set_color === */
   /* === Function: geda_object_set_selectable === */
 
+  /* === Function: geda_object_get_bounds_valid === */
+  /* === Function: geda_object_set_bounds_valid === */
+
   geda_object_unref(object1);
   geda_object_unref(object2);
 
   return result;
 }
 
-int check_properties (void)
+int check_methods (void)
 {
   int result = 0;
 
-  /* -------------------------- GedaArc ------------------------- */
+  /* === Function: geda_object_bounds === */
 
-    /* === Function: geda_object_bounds === */
+  /* ------------------------- GedaArc -------------------------- */
+  /* ------------------------- GedaBox -------------------------- */
+  /* ------------------------- GedaBus -------------------------- */
+  /* ------------------------- GedaCircle ----------------------- */
+  /* ------------------------- GedaComplex ---------------------- */
+  /* ------------------------- GedaLine ------------------------- */
+  /* ------------------------- GedaNet -------------------------- */
+  /* ------------------------- GedaPicture ---------------------- */
+  /* ------------------------- GedaText ------------------------- */
 
   return result;
 }
@@ -547,9 +558,9 @@ int main (int argc, char *argv[])
 
   result  = check_object();
 
-  result += check_properties();
-
   result += check_accessors();
+
+  result += check_methods();
 
   if (result) {
     fprintf(stderr, "Check module geda_object.c");

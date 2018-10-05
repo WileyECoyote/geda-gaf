@@ -4,6 +4,9 @@
 
     * tests/test_complex_object.c: Add checks for geda_complex_object_is_embedded.
 
+    * tests/test_object.c: Rename check_properties -> check_methods and call
+      after check_accessors, add various "function" comment lines.
+
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Remove validating object in geda_page_remove_object.
