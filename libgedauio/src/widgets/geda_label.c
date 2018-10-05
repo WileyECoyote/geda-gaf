@@ -2292,7 +2292,7 @@ GtkWidget *geda_visible_label_new (const char *str)
 
   label = geda_label_new (str);
 
-  g_object_set (label, "visible", TRUE, NULL);
+  gtk_widget_show (label);
 
   return label;
 }
@@ -2313,7 +2313,7 @@ GtkWidget *geda_visible_bold_label_new (const char *str)
 
   label = geda_bold_label_new (str);
 
-  g_object_set (label, "visible", TRUE, NULL);
+  gtk_widget_show (label);
 
   return label;
 }
@@ -2334,7 +2334,7 @@ GtkWidget *geda_visible_mnemonic_label_new (const char *str)
 
   label = geda_mnemonic_label_new (str);
 
-  g_object_set (label, "visible", TRUE, NULL);
+  gtk_widget_show (label);
 
   return label;
 }
@@ -2410,7 +2410,7 @@ GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
 
   gtk_misc_set_alignment((GtkMisc*)label, x, y);
 
-  g_object_set (label, "visible", TRUE, NULL);
+  gtk_widget_show (label);
 
   return label;
 }
@@ -2436,7 +2436,7 @@ GtkWidget *geda_aligned_visible_bold_label_new (const char *str, float x, float 
 
   gtk_misc_set_alignment(GTK_MISC(label), x, y);
 
-  g_object_set (label, "visible", TRUE, NULL);
+  gtk_widget_show (label);
 
   return label;
 }
@@ -2484,7 +2484,7 @@ GtkWidget *geda_aligned_visible_mnemonic_label_new (const char *str,
 
   gtk_misc_set_alignment(GTK_MISC(label), x, y);
 
-  g_object_set (label, "visible", TRUE, NULL);
+  gtk_widget_show (label);
 
   return label;
 }
