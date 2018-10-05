@@ -1671,7 +1671,7 @@ int PyGeda_rename_page (int pid, const char *filename)
  *
  *  \param [in] pid  Integer, the page id of the page to be saved
  *
- *  \return [out] FALSE if no errors occured, otherwise True.
+ *  \return [out] FALSE if no errors occurred, otherwise True.
  */
 int
 PyGeda_save_page( int pid )
@@ -1724,7 +1724,7 @@ int PyGeda_save_page_as (int pid, const char *filename)
  *
  *  \param [in] py_page_list A PyList Object
  *
- *  \return [out] integer number of errors that occured.
+ *  \return [out] integer number of errors that occurred.
  */
 int PyGeda_save_all_pages( PyObject *py_page_list )
 {
@@ -2711,7 +2711,7 @@ PyObject *PyGeda_new_path (const char *path_string)
  *  \param [in] mirror   integer property whether to mirror the image
  *  \param [in] embed    integer property whether to embed the image data
  *
- *  \return [out] PyGedaPictureObject construction data or NULL if an error occured,
+ *  \return [out] PyGedaPictureObject construction data or NULL if an error occurred,
  *                such as the file did not exist or was not readable.
  */
 PyObject*
