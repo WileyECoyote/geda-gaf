@@ -2,6 +2,8 @@
 
     * TwoStageAmp/TwoStageAmp.sch: Shift diagram to center in titlebock.
 
+    * TwoStageAmp/tests/TwoStageAmp-geda.net: Update reference netlist.
+
 2017-10-xx  Wiley E. Hill <wileyhill@gmail.com>
 
     * gTAG/sch/gTAG-jtagio.sch: Add comments as fake refdes to demonstrate
