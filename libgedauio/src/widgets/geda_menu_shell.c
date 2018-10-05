@@ -947,8 +947,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
             (int64) popup_time->tv_sec * 1000 * 1000 -
             (int64) popup_time->tv_usec);
 
-            g_object_set_data ((GObject*)submenu,
-                               MENU_POPUP_TIME_KEY, NULL);
+            g_object_set_data ((GObject*)submenu, MENU_POPUP_TIME_KEY, NULL);
           }
 
           if (GEDA_IS_MENU(submenu)) {
