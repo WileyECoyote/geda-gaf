@@ -1,10 +1,12 @@
-v 20170423 2
+v 20180521 2
 C 1000 1000 0 0 0 title-B.sym
 {
-T 1900 2800 5 10 0 0 0 0 1
+T 1500 12600 5 10 0 1 0 0 1
 device=none
-T 1900 2800 5 10 0 0 0 0 1
+T 1500 12600 5 10 0 1 0 0 1
 footprint=none
+T 11800 2400 5 16 1 1 0 0 1
+description=DESCRIPTION
 }
 C 7700 7300 1 0 0 dual-opamp-py.sym
 {

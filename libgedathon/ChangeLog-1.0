@@ -1,3 +1,8 @@
+2018-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/lpfilter.sch: Update reference schematic because a description
+      attribute was added to the title-block symbol.
+
 2018-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/LINGUAS: Translate to Afrikaans, Bulgarian, Bosnian, Persian
