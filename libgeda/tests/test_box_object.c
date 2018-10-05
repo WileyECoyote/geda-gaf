@@ -717,6 +717,29 @@ int check_query(void)
     result++;
   }
 
+  /* _new(int color, int x1, int y1, int x2, int y2) */
+  GedaObject *object = geda_box_object_new(3, 100, 200, 300, 400);
+
+  /* bounds_valid should NOT be set */
+  if (object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O042202A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Virtual geda_box_bounds  === */
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "FAILED: (O042202B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* bounds_valid should be set */
+  if (!object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O042202C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  g_object_unref (object);
+
   for (count = 0; count < 3; count++) {
 
     int c   = geda_random_number ( 0, MAX_COLORS - 1);

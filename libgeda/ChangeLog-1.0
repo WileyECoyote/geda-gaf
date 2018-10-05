@@ -1,3 +1,7 @@
+2018-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_box_object.c: Add checks for bounds_valid in check_query.
+
 2018-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Remove validating object in geda_page_remove_object.
