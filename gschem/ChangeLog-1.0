@@ -1,3 +1,7 @@
+2018-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/fa.po: Update Persian translations.
+
 2018-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Combine Doxygen image tags with comment block

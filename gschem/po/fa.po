@@ -305,65 +305,79 @@ msgstr "برای اطلاعات بیشتر کمک کنید"
 msgid "Run"
 msgstr "قبیل"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
-msgstr ""
+msgstr "پیش نمایش بافر"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:527 gschem/src/x/x_pagesel.c:1133
 msgid "Filename"
-msgstr ""
+msgstr "نام فایل"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "نام فایل مورد نظر"
 
+# Object List
 #: gschem/src/base/gschem_preview.c:535
 msgid "Object List"
-msgstr "Select Mode"
+msgstr "لیست شی"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "فهرست اشیائی که باید پیش نمایش شوند"
 
+# Active
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
-msgstr "Select Mode"
+msgstr "دایر"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "آیا ویجت پیش نمایش فعال یا غیرفعال است یا خیر"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "سایز بزرگ"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "آیا ویجت پیش نمایش باید بزرگ یا کوچک باشد"
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
-msgstr "Rotate 90 Mode"
+msgstr "حالت مختصات"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "حالت فرمت مورد استفاده برای نمایش مختصات در نوار وضعیت را تعیین می کند"
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
 msgstr "حالت شبکه"
 
+# Sets the grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "حالت شبکه را برای نمایش در نوار وضعیت تنظیم می کند"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "اندازه شبکه"
 
+# Sets the grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "اندازه شبکه را برای نمایش در نوار وضعیت تنظیم می کند"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
