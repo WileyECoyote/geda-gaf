@@ -2,6 +2,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/fi.po: Update Finnish translations.
+
 2018-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Combine Doxygen image tags with comment block
