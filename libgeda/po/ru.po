@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-06 01:00-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1591,12 +1591,12 @@ msgid "because"
 msgstr "потому как"
 
 # Setting dash length to default
-#: libgeda/src/object/o_set.c:177
+#: libgeda/src/object/o_set.c:187
 msgid "Setting line length to default"
 msgstr "Установка длины тире по умолчанию"
 
 # Setting line space to default
-#: libgeda/src/object/o_set.c:190
+#: libgeda/src/object/o_set.c:200
 msgid "Setting line space to default"
 msgstr "Установка линии пространства по умолчанию"
 
@@ -1912,15 +1912,15 @@ msgstr "Для текущей схемы нет схемы, вышестояще
 msgid "Failed to descend hierarchy into"
 msgstr "Не удалось перейти к подсхеме"
 
-#: libgeda/src/struct/s_page.c:262
+#: libgeda/src/struct/s_page.c:264
 msgid "Disabling auto save timer, no toplevel"
 msgstr "Отключение автоматического сохранения таймера, без переполнения"
 
-#: libgeda/src/struct/s_page.c:738 libgeda/src/struct/s_page.c:781
+#: libgeda/src/struct/s_page.c:740 libgeda/src/struct/s_page.c:783
 msgid "Saved"
 msgstr "Файл сохранён"
 
-#: libgeda/src/struct/s_page.c:744 libgeda/src/struct/s_page.c:788
+#: libgeda/src/struct/s_page.c:746 libgeda/src/struct/s_page.c:790
 msgid "Could NOT save"
 msgstr "Не удалось сохранить"
 

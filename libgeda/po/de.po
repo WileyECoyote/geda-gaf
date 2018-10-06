@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-06 01:00-0500\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1557,12 +1557,12 @@ msgid "because"
 msgstr "weil"
 
 # Setting dash length to default
-#: libgeda/src/object/o_set.c:177
+#: libgeda/src/object/o_set.c:187
 msgid "Setting line length to default"
 msgstr "Festlegen der Bindestrichlänge auf Standardwert"
 
 # Setting line space to default
-#: libgeda/src/object/o_set.c:190
+#: libgeda/src/object/o_set.c:200
 msgid "Setting line space to default"
 msgstr "Zeilenraum auf Standard setzen"
 
@@ -1867,15 +1867,15 @@ msgstr "Über diesem Schaltplan gibt es keinen weiteren!\n"
 msgid "Failed to descend hierarchy into"
 msgstr "Die Hierarchie konnte nicht abgespeichert werden"
 
-#: libgeda/src/struct/s_page.c:262
+#: libgeda/src/struct/s_page.c:264
 msgid "Disabling auto save timer, no toplevel"
 msgstr ""
 
-#: libgeda/src/struct/s_page.c:738 libgeda/src/struct/s_page.c:781
+#: libgeda/src/struct/s_page.c:740 libgeda/src/struct/s_page.c:783
 msgid "Saved"
 msgstr "Gespeichert"
 
-#: libgeda/src/struct/s_page.c:744 libgeda/src/struct/s_page.c:788
+#: libgeda/src/struct/s_page.c:746 libgeda/src/struct/s_page.c:790
 msgid "Could NOT save"
 msgstr "ACHTUNG: Konnte Datei nicht speichern"
 

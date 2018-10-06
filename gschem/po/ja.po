@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-06 01:00-0500\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1130,11 +1130,11 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
-#: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
+#: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:291
 msgid "Translating objects"
 msgstr "オブジェクトの翻訳"
 
-#: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
+#: gschem/src/object/o_complex.c:255 gschem/src/object/o_complex.c:295
 msgid "Translating schematic"
 msgstr "回路図の翻訳"
 
@@ -1173,7 +1173,7 @@ msgstr ""
 msgid "Updating symbol"
 msgstr "コンポーネントの更新"
 
-#: gschem/src/object/o_move.c:521
+#: gschem/src/object/o_move.c:518
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1225,7 +1225,7 @@ msgstr ""
 msgid "Load failed"
 msgstr ""
 
-#: gschem/src/object/o_place.c:74
+#: gschem/src/object/o_place.c:75
 msgid "Buffer is empty, nothing to place\n"
 msgstr ""
 
@@ -2138,15 +2138,15 @@ msgstr ""
 "ウィンドウ内でクリックするとテキストを配置します.\n"
 "中ボタンで回転します."
 
-#: gschem/src/x/x_dialog.c:3191
+#: gschem/src/x/x_dialog.c:3200
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3193
+#: gschem/src/x/x_dialog.c:3202
 msgid "Translate"
 msgstr "転送"
 
-#: gschem/src/x/x_dialog.c:3219
+#: gschem/src/x/x_dialog.c:3228
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
@@ -2154,40 +2154,40 @@ msgstr ""
 "転送しますか?\n"
 "(0で原点)"
 
-#: gschem/src/x/x_dialog.c:3230
+#: gschem/src/x/x_dialog.c:3239
 msgid "Auto Zoom Extents"
 msgstr "回路全体の表示"
 
 # Hotkeys
-#: gschem/src/x/x_dialog.c:3407
+#: gschem/src/x/x_dialog.c:3416
 msgid "Hotkeys"
 msgstr "ホットキー"
 
 # Icon
-#: gschem/src/x/x_dialog.c:3494
+#: gschem/src/x/x_dialog.c:3503
 msgid "Icon"
 msgstr "アイコン"
 
 # Action
-#: gschem/src/x/x_dialog.c:3508
+#: gschem/src/x/x_dialog.c:3517
 msgid "Action"
 msgstr "アクション"
 
-#: gschem/src/x/x_dialog.c:3518
+#: gschem/src/x/x_dialog.c:3527
 msgid "Keystroke(s)"
 msgstr ""
 
 # Command
-#: gschem/src/x/x_dialog.c:3528
+#: gschem/src/x/x_dialog.c:3537
 msgid "Command"
 msgstr "部品(_C)"
 
 # Major symbol changes detected
-#: gschem/src/x/x_dialog.c:3763
+#: gschem/src/x/x_dialog.c:3772
 msgid "Major symbol changes detected."
 msgstr "主要なシンボルの変化."
 
-#: gschem/src/x/x_dialog.c:3790
+#: gschem/src/x/x_dialog.c:3799
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2198,33 +2198,33 @@ msgstr ""
 "これらのシンボルのそれぞれを必ず確認してください."
 
 # Symbol
-#: gschem/src/x/x_dialog.c:3831
+#: gschem/src/x/x_dialog.c:3840
 msgid "Symbol"
 msgstr "シンボル"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3877
+#: gschem/src/x/x_dialog.c:3886
 msgid "Dismiss this dialog"
 msgstr "このダイアログを閉じる"
 
 # Input attribute is invalid
-#: gschem/src/x/x_dialog.c:3919
+#: gschem/src/x/x_dialog.c:3928
 msgid "Input attribute is invalid"
 msgstr "入力属性が無効です"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3920
+#: gschem/src/x/x_dialog.c:3929
 msgid "Please correct in order to continue"
 msgstr "続行するには修正してください"
 
-#: gschem/src/x/x_dialog.c:3921
+#: gschem/src/x/x_dialog.c:3930
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3938
 msgid "Invalid Attribute"
 msgstr ""
 

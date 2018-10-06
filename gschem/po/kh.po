@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-06 01:00-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1175,11 +1175,11 @@ msgstr "ban khakkhan chamnoch 2, x=%d, y=%d\n"
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr "ban khakkhan chamnoch 1, x=%d, y=%d\n"
 
-#: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
+#: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:291
 msgid "Translating objects"
 msgstr "bakabre vottho"
 
-#: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
+#: gschem/src/object/o_complex.c:255 gschem/src/object/o_complex.c:295
 msgid "Translating schematic"
 msgstr "koumnour bampruonh bakabre"
 
@@ -1218,7 +1218,7 @@ msgstr "nowknong bannaly . thveu aoy teansamy ban breachy"
 msgid "Updating symbol"
 msgstr "nimittaroub kampoung thveu bachchobbannphap"
 
-#: gschem/src/object/o_move.c:521
+#: gschem/src/object/o_move.c:518
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 "min ach daohsray ban del chea chongobanhchob nei mchoul daembi phcheab\n"
@@ -1275,7 +1275,7 @@ msgstr "<b>breachy knong kar phtok eksar roubpheap</b>"
 msgid "Load failed"
 msgstr "breachy knong kar phtok"
 
-#: gschem/src/object/o_place.c:74
+#: gschem/src/object/o_place.c:75
 msgid "Buffer is empty, nothing to place\n"
 msgstr "sate b ntaoh asann ku tte kmeanoavei daembi dak\n"
 
@@ -2226,16 +2226,16 @@ msgstr ""
 "boutong k ntal daembi bangvil khn pel del kar dak."
 
 # Adjust the view to extents after transformation
-#: gschem/src/x/x_dialog.c:3191
+#: gschem/src/x/x_dialog.c:3200
 msgid "Automatically zoom to the new extents after translation"
 msgstr "lei tamrouv tidthpheap knong kamrit banteabpi kar phlasa btau r"
 
 # Translate
-#: gschem/src/x/x_dialog.c:3193
+#: gschem/src/x/x_dialog.c:3202
 msgid "Translate"
 msgstr "bakabre"
 
-#: gschem/src/x/x_dialog.c:3219
+#: gschem/src/x/x_dialog.c:3228
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
@@ -2244,35 +2244,35 @@ msgstr ""
 "(0 samreab braphp daem )"
 
 # Automatically adjust the zoom
-#: gschem/src/x/x_dialog.c:3230
+#: gschem/src/x/x_dialog.c:3239
 msgid "Auto Zoom Extents"
 msgstr "lei tamrouv daoy svyobravotte pongrik"
 
-#: gschem/src/x/x_dialog.c:3407
+#: gschem/src/x/x_dialog.c:3416
 msgid "Hotkeys"
 msgstr "kreabchoch chang"
 
-#: gschem/src/x/x_dialog.c:3494
+#: gschem/src/x/x_dialog.c:3503
 msgid "Icon"
 msgstr "roubtamnang"
 
-#: gschem/src/x/x_dialog.c:3508
+#: gschem/src/x/x_dialog.c:3517
 msgid "Action"
 msgstr "sakammopheap"
 
-#: gschem/src/x/x_dialog.c:3518
+#: gschem/src/x/x_dialog.c:3527
 msgid "Keystroke(s)"
 msgstr "sangkot kreabchoch (s ban)"
 
-#: gschem/src/x/x_dialog.c:3528
+#: gschem/src/x/x_dialog.c:3537
 msgid "Command"
 msgstr "peaky banhchea"
 
-#: gschem/src/x/x_dialog.c:3763
+#: gschem/src/x/x_dialog.c:3772
 msgid "Major symbol changes detected."
 msgstr "kar phlasa btaur chea nimittaroub saamkhan muoy del ban rk kheunh."
 
-#: gschem/src/x/x_dialog.c:3790
+#: gschem/src/x/x_dialog.c:3799
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2283,24 +2283,24 @@ msgstr ""
 "\n"
 "trauv brakd tha daembi phtiengophtat knea nei nimittasanhnhea teangnih."
 
-#: gschem/src/x/x_dialog.c:3831
+#: gschem/src/x/x_dialog.c:3840
 msgid "Symbol"
 msgstr "nimittasanhnhea"
 
-#: gschem/src/x/x_dialog.c:3877
+#: gschem/src/x/x_dialog.c:3886
 msgid "Dismiss this dialog"
 msgstr "teatchaol braab nih"
 
-#: gschem/src/x/x_dialog.c:3919
+#: gschem/src/x/x_dialog.c:3928
 msgid "Input attribute is invalid"
 msgstr "numslots chattouk batkhluon"
 
 # Please correct before continuing
-#: gschem/src/x/x_dialog.c:3920
+#: gschem/src/x/x_dialog.c:3929
 msgid "Please correct in order to continue"
 msgstr "saum ke moun pel ban"
 
-#: gschem/src/x/x_dialog.c:3921
+#: gschem/src/x/x_dialog.c:3930
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2310,7 +2310,7 @@ msgstr ""
 "chhmoh min ach banhchob daoy dakakhlea.\n"
 "tamlei del min ach chabphtaem cheamuoy chanloh."
 
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3938
 msgid "Invalid Attribute"
 msgstr "kounalokkhan min troemotrauv"
 

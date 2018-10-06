@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-06 01:00-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1222,12 +1222,12 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 # Offset Diagrams
-#: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
+#: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:291
 msgid "Translating objects"
 msgstr "Перевод объектов"
 
 # Offset Diagrams
-#: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
+#: gschem/src/object/o_complex.c:255 gschem/src/object/o_complex.c:295
 msgid "Translating schematic"
 msgstr "Смещение схемы"
 
@@ -1271,7 +1271,7 @@ msgstr "В библиотеке. Не удалось обновить"
 msgid "Updating symbol"
 msgstr "Символ обновитьбновления"
 
-#: gschem/src/object/o_move.c:521
+#: gschem/src/object/o_move.c:518
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1328,7 +1328,7 @@ msgstr "<b>Не удалось загрузить фотографию</b>"
 msgid "Load failed"
 msgstr ""
 
-#: gschem/src/object/o_place.c:74
+#: gschem/src/object/o_place.c:75
 msgid "Buffer is empty, nothing to place\n"
 msgstr ""
 
@@ -2294,49 +2294,49 @@ msgid ""
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3191
+#: gschem/src/x/x_dialog.c:3200
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3193
+#: gschem/src/x/x_dialog.c:3202
 msgid "Translate"
 msgstr "Сместить"
 
-#: gschem/src/x/x_dialog.c:3219
+#: gschem/src/x/x_dialog.c:3228
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3230
+#: gschem/src/x/x_dialog.c:3239
 msgid "Auto Zoom Extents"
 msgstr "Автозумирование Экстенты"
 
-#: gschem/src/x/x_dialog.c:3407
+#: gschem/src/x/x_dialog.c:3416
 msgid "Hotkeys"
 msgstr "Горячие клавиши"
 
-#: gschem/src/x/x_dialog.c:3494
+#: gschem/src/x/x_dialog.c:3503
 msgid "Icon"
 msgstr "Значок"
 
-#: gschem/src/x/x_dialog.c:3508
+#: gschem/src/x/x_dialog.c:3517
 msgid "Action"
 msgstr "Действие"
 
-#: gschem/src/x/x_dialog.c:3518
+#: gschem/src/x/x_dialog.c:3527
 msgid "Keystroke(s)"
 msgstr "Сочетание клавиш"
 
-#: gschem/src/x/x_dialog.c:3528
+#: gschem/src/x/x_dialog.c:3537
 msgid "Command"
 msgstr "команда"
 
-#: gschem/src/x/x_dialog.c:3763
+#: gschem/src/x/x_dialog.c:3772
 msgid "Major symbol changes detected."
 msgstr "Обнаружено значительное изменение символа."
 
-#: gschem/src/x/x_dialog.c:3790
+#: gschem/src/x/x_dialog.c:3799
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2346,26 +2346,26 @@ msgstr ""
 "\n"
 "Удостоверьтесь, что проверили каждый из них."
 
-#: gschem/src/x/x_dialog.c:3831
+#: gschem/src/x/x_dialog.c:3840
 msgid "Symbol"
 msgstr "Символ"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3877
+#: gschem/src/x/x_dialog.c:3886
 msgid "Dismiss this dialog"
 msgstr "Отклонить этот диалог"
 
 # Input attribute is invalid
-#: gschem/src/x/x_dialog.c:3919
+#: gschem/src/x/x_dialog.c:3928
 msgid "Input attribute is invalid"
 msgstr "Вход неверный атрибут"
 
 # Please correct to continue
-#: gschem/src/x/x_dialog.c:3920
+#: gschem/src/x/x_dialog.c:3929
 msgid "Please correct in order to continue"
 msgstr "Пожалуйста, исправьте, чтобы продолжить"
 
-#: gschem/src/x/x_dialog.c:3921
+#: gschem/src/x/x_dialog.c:3930
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2375,7 +2375,7 @@ msgstr ""
 "Имя не должно заканчиваться пробелом.\n"
 "Значение не должно начинаться с пробела."
 
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3938
 msgid "Invalid Attribute"
 msgstr "Недопустимый атрибут"
 

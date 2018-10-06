@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-06 01:00-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -1100,11 +1100,11 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 # Translating objects
-#: gschem/src/object/o_complex.c:250 gschem/src/object/o_complex.c:300
+#: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:291
 msgid "Translating objects"
 msgstr "Μεταφράζοντας αντικείμενα"
 
-#: gschem/src/object/o_complex.c:254 gschem/src/object/o_complex.c:304
+#: gschem/src/object/o_complex.c:255 gschem/src/object/o_complex.c:295
 msgid "Translating schematic"
 msgstr "Μεταγραφική σχηματική"
 
@@ -1144,7 +1144,7 @@ msgstr "στη βιβλιοθήκη. Ενημέρωση απέτυχε"
 msgid "Updating symbol"
 msgstr "σύμβολο ενημέρωση"
 
-#: gschem/src/object/o_move.c:521
+#: gschem/src/object/o_move.c:518
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1199,7 +1199,7 @@ msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
 msgid "Load failed"
 msgstr ""
 
-#: gschem/src/object/o_place.c:74
+#: gschem/src/object/o_place.c:75
 msgid "Buffer is empty, nothing to place\n"
 msgstr ""
 
@@ -2122,72 +2122,72 @@ msgstr ""
 "στο παράθυρο, κάντε κλικ για να τοποθετήσετε το κείμενο.\n"
 "Μεσαίο κουμπί για περιστροφή."
 
-#: gschem/src/x/x_dialog.c:3191
+#: gschem/src/x/x_dialog.c:3200
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3193
+#: gschem/src/x/x_dialog.c:3202
 msgid "Translate"
 msgstr "Μετάφραση"
 
-#: gschem/src/x/x_dialog.c:3219
+#: gschem/src/x/x_dialog.c:3228
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3230
+#: gschem/src/x/x_dialog.c:3239
 msgid "Auto Zoom Extents"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3407
+#: gschem/src/x/x_dialog.c:3416
 msgid "Hotkeys"
 msgstr "Γρήγορα Πλήκτρα"
 
-#: gschem/src/x/x_dialog.c:3494
+#: gschem/src/x/x_dialog.c:3503
 msgid "Icon"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3508
+#: gschem/src/x/x_dialog.c:3517
 msgid "Action"
 msgstr "Ενέργεια"
 
-#: gschem/src/x/x_dialog.c:3518
+#: gschem/src/x/x_dialog.c:3527
 msgid "Keystroke(s)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3528
+#: gschem/src/x/x_dialog.c:3537
 msgid "Command"
 msgstr "Εντολή:"
 
-#: gschem/src/x/x_dialog.c:3763
+#: gschem/src/x/x_dialog.c:3772
 msgid "Major symbol changes detected."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3790
+#: gschem/src/x/x_dialog.c:3799
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3831
+#: gschem/src/x/x_dialog.c:3840
 msgid "Symbol"
 msgstr "Σύμβολα"
 
-#: gschem/src/x/x_dialog.c:3877
+#: gschem/src/x/x_dialog.c:3886
 msgid "Dismiss this dialog"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3919
+#: gschem/src/x/x_dialog.c:3928
 msgid "Input attribute is invalid"
 msgstr "Επεξεργασία γνωρισμάτων"
 
-#: gschem/src/x/x_dialog.c:3920
+#: gschem/src/x/x_dialog.c:3929
 msgid "Please correct in order to continue"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3921
+#: gschem/src/x/x_dialog.c:3930
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2197,7 +2197,7 @@ msgstr ""
 "Το όνομα δεν μπορεί να τελειώνει με κενό.\n"
 "Η τιμή δεν μπορεί να ξεκινάει με κενό."
 
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3938
 msgid "Invalid Attribute"
 msgstr "Μη έγκυρο γνώρισμα"
 
