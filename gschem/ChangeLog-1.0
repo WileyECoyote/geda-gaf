@@ -4,6 +4,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2018-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Combine Doxygen image tags with comment block

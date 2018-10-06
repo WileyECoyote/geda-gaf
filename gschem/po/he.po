@@ -274,42 +274,50 @@ msgstr "לקבלת מידע נוסף"
 msgid "Run"
 msgstr "לְהַקְלִיד"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
-msgstr ""
+msgstr "מאגר תצוגה מקדימה"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:527 gschem/src/x/x_pagesel.c:1133
 msgid "Filename"
-msgstr ""
+msgstr "שם קובץ"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "שם הקובץ להיות בתצוגה מקדימה"
 
 # Object List
 #: gschem/src/base/gschem_preview.c:535
 msgid "Object List"
 msgstr "רשימת אובייקטים"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "רשימת אובייקטים לתצוגה מקדימה"
 
+# Active
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
 msgstr "פָּעִיל"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "האם הווידג'ט של התצוגה המקדימה מופעל או מושבת"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "מידה גדולה"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "אם יישומון התצוגה המקדימה צריך להיות גדול או קטן"
 
 # Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
@@ -318,24 +326,27 @@ msgstr "מצב קואורדינטות"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "קובע את מצב הצילום המשמש להצגת הקואורדינטות בשורת המצב"
 
-# network status
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
 msgstr "מצב רשת"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "מגדיר את מצב הרשת להצגת בשורת המצב"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "גודל רשת"
 
+# Sets the grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "קובע את גודל הרשת להצגה בשורת המצב"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
