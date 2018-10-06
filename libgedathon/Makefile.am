@@ -34,8 +34,8 @@ update-po:
 maintainer-clean-local:
 	-rm -rf po/*.sed po/*.header po/*.sin po/*.template po/Rules-quot
 
-MOSTLYCLEANFILES     = *.log core FILE *~
-CLEANFILES           = *.log core FILE *~
-DISTCLEANFILES       = *.log core FILE *~ geda.pc libgedathon.pc po/domain.mak
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in libgedathon.pc ChangeLog
+MOSTLYCLEANFILES     = *.log core FILE po/*~ *~
+CLEANFILES           = *.log core FILE po/*~ *~
+DISTCLEANFILES       = *.log core FILE po/*~ *~ geda.pc libgedathon.pc po/domain.mak
+MAINTAINERCLEANFILES = *.log core FILE po/*~ *~ Makefile.in libgedathon.pc ChangeLog
 

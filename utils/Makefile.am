@@ -35,7 +35,7 @@ update-po:
 maintainer-clean-local:
 	-rm -rf po/*.sed po/*.header po/*.sin po/*.template po/Rules-quot
 
-MOSTLYCLEANFILES     = *.log core FILE *~
-CLEANFILES           = *.log core FILE *~
-DISTCLEANFILES       = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in ChangeLog
+MOSTLYCLEANFILES     = *.log core FILE po/*~ *~
+CLEANFILES           = *.log core FILE po/*~ *~
+DISTCLEANFILES       = *.log core FILE po/*~ *~
+MAINTAINERCLEANFILES = *.log core FILE po/*~ *~ Makefile.in ChangeLog

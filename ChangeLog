@@ -1,3 +1,7 @@
+2018-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * */Makefile.am: Clean PO directories in parent make file.
+
 2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Add Macro HD_ACTION_SEPARATOR,

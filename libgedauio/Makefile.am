@@ -30,9 +30,9 @@ update-gmo:
 update-po:
 	$(MAKE) -C po update-po || exit 1;
 
-MOSTLYCLEANFILES     = *.log core FILE ./*~
-CLEANFILES           = *.log core FILE ./*~
-DISTCLEANFILES       = *.log core FILE ./*~ libgedauio.pc po/domain.mak
-MAINTAINERCLEANFILES = *.log core FILE ./*~ Makefile.in libgedauio.pc ChangeLog
+MOSTLYCLEANFILES     = *.log core FILE po/*~ *~
+CLEANFILES           = *.log core FILE po/*~ *~
+DISTCLEANFILES       = *.log core FILE po/*~ *~ libgedauio.pc po/domain.mak
+MAINTAINERCLEANFILES = *.log core FILE po/*~ *~ Makefile.in libgedauio.pc ChangeLog
 
 
