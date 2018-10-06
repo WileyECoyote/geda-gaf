@@ -298,7 +298,7 @@ msgstr "help para mais informação"
 
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Executar"
 
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
@@ -308,9 +308,10 @@ msgstr "Previsualizar Buffer"
 msgid "Filename"
 msgstr "Nome de ficheiro"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "nome do ficheiro a ser visualizado"
 
 # Object List
 #: gschem/src/base/gschem_preview.c:535
@@ -319,7 +320,7 @@ msgstr " Objeto Lista"
 
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Lista de objetos a serem visualizados"
 
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
@@ -327,15 +328,15 @@ msgstr "Ativo"
 
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Se o widget de visualização está ativado ou desativado"
 
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "Tamanho grande"
 
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Se o widget de visualização deve ser grande ou pequeno"
 
 # Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
@@ -344,7 +345,7 @@ msgstr "Modo Coordenadas"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Define o modo de formato usado para exibir coordenadas na barra de status"
 
 # Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
@@ -353,7 +354,7 @@ msgstr "Modo grade"
 
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Define o modo de grade para exibir na barra de status"
 
 # Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
@@ -362,7 +363,7 @@ msgstr "Tamanho Grade"
 
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Define o tamanho da grade para exibir na barra de status"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
@@ -370,7 +371,7 @@ msgstr "Altura"
 
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Define a altura da barra de status"
 
 # Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
@@ -379,7 +380,7 @@ msgstr "Texto do Botão Esquerdo"
 
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Definir a string para o texto do botão esquerdo"
 
 # Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
@@ -388,7 +389,7 @@ msgstr "Texto do Botão médio"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Definir a string para o texto do botão do meio"
 
 # Right Button Text
 #: gschem/src/base/gschem_status_bar.c:638
@@ -397,7 +398,7 @@ msgstr "Texto do Botão Direito"
 
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Definir a string para o texto do botão direito"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
@@ -1211,9 +1212,8 @@ msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:291
-#, fuzzy
 msgid "Translating objects"
-msgstr "A converter esquema"
+msgstr "Traduzindo objetos"
 
 #: gschem/src/object/o_complex.c:255 gschem/src/object/o_complex.c:295
 msgid "Translating schematic"
@@ -6232,12 +6232,10 @@ msgid "No documentation found"
 msgstr "Nenhuma documentação encontrada"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Incorporar o símbolo Exportar"
+msgstr "Exportar símbolo incorporado"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
 msgstr "Incorporar a imagem de exportação"
 
@@ -6250,23 +6248,3 @@ msgstr "~S não é uma combinação de chave válido."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S não é uma seqüência de chave de prefixo."
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Âmbito</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Adicionar Atributo</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Editar Atributo</b>"
-
-# Auto Height
-#~ msgid "Auto Height"
-#~ msgstr "Altura automática"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "Alternar Ligação _Magnética"
-
-# Toggle Snap On-Off
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "Ajuste a snap Lig/Des"
