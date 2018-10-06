@@ -6,6 +6,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/ml.po: Updated Malayalam translations.
+
 2018-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Combine Doxygen image tags with comment block

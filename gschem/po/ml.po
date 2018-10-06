@@ -293,65 +293,88 @@ msgstr "കൂടുതൽ വിവരങ്ങൾക്ക് സഹായം"
 msgid "Run"
 msgstr "ടൈപ്പ് ചെയ്യുക"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
-msgstr ""
+msgstr "ബഫർ പ്രിവ്യൂ ചെയ്യുക"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:527 gschem/src/x/x_pagesel.c:1133
 msgid "Filename"
-msgstr ""
+msgstr "ഫയലിന്റെ പേര്"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "പ്രിവ്യൂ ചെയ്യാനുള്ള ഫയലിന്റെ പേര്"
 
+# Object List
 #: gschem/src/base/gschem_preview.c:535
 msgid "Object List"
 msgstr "ഒബ്ജക്റ്റ് പട്ടിക"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "പ്രിവ്യൂ ചെയ്യേണ്ട വസ്തുക്കളുടെ ലിസ്റ്റ്"
 
+# Active
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
 msgstr "സജീവമായ"
 
+# Whether the preview widget is enabled or disabled
+# privyū viḍjeṟṟ pravarttana rahitamēā aprāptamēā āṇēā enn
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "പ്രിവ്യൂ വിഡ്ജെറ്റ് പ്രവർത്തന രഹിതമോ അപ്രാപ്തമോ ആണോ എന്ന്"
 
+# Large size
+# valut
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "വലുത്"
 
+# Whether the preview widget should be large or small
+# privyū vijaṟṟ valutēā ceṟutēā āyirikkaṇaṁ
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "പ്രിവ്യൂ വിജറ്റ് വലുതോ ചെറുതോ ആയിരിക്കണം"
 
+# Coordinates Mode
+# kēārḍinēṟṟar mēāḍ
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
 msgstr "കോർഡിനേറ്റുകൾ മോഡ്"
 
+# sṟṟāṟṟas bāṟil kēārḍinēṟṟukaḷ pradarśippikkān upayēāgikkunna phēārmāṟṟ mēāḍ sajjamākkunnu
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാറിൽ കോർഡിനേറ്റുകൾ പ്രദർശിപ്പിക്കാൻ ഉപയോഗിക്കുന്ന ഫോർമാറ്റ് മോഡ് സജ്ജമാക്കുന്നു"
 
+# Grid Mode
+# griḍ mēāḍ
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr ""
+msgstr "ഗ്രിഡ് മോഡ്"
 
+# Sets the Grid Mode to display on the status bar
+# sṟṟāṟṟas bāṟil pradarśippikkān griḍ mēāḍ sajjamākkunnu
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാറിൽ പ്രദർശിപ്പിക്കാൻ ഗ്രിഡ് മോഡ് സജ്ജമാക്കുന്നു"
 
+# Grid Size
+# griḍ valuppaṁ
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "ഗ്രിഡ് വലുപ്പം"
 
+# Sets the grid Size to display on the status bar
+# sṟṟāṟṟas bāṟil pradarśippikkān griḍ sais sajjamākkunnu
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാറിൽ പ്രദർശിപ്പിക്കാൻ ഗ്രിഡ് സൈസ് സജ്ജമാക്കുന്നു"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
