@@ -27,6 +27,12 @@
     * linear/regulator/LM431_TO92-1.sym: Add documentation and description
       attribute, resequence attributes, update attribute locations.
 
+    * linear/regulator/LP2985-[1,2].sym: Update device and dist-license attribute,
+      add value, bump symversion:
+
+            * linear/regulator/LP2985-1.sym
+            * linear/regulator/LP2985-2.sym
+
 
 2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
 

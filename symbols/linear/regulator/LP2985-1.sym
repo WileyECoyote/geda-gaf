@@ -1,20 +1,12 @@
 v 20150401 2
-T 1800 2050 8 10 1 1 0 6 1
+T 400 2250 8 10 1 1 0 0 1
 refdes=U?
-T 400 2250 5 10 0 1 0 0 1
-device=LP2985_33DBVR
-T 500 1850 9 10 0 0 0 0 1
-symversion=0.2
-T 400 2650 5 10 0 1 0 0 1
-description=Low-dropout voltage regulator
-T 400 2450 5 10 0 1 0 0 1
-footprint=SOT23-5
-T 400 2850 5 10 0 0 0 0 1
+T 400 2650 5 10 0 0 0 0 1
+device=LP2985
+T 400 3050 5 10 0 0 0 0 1
 numslots=0
-T 400 3050 5 10 0 1 0 0 1
-documentation=www.ti.com/lit/ds/symlink/lp2985-n.pdf
-T 400 2050 9 10 1 0 0 0 1
-LP2985
+T 400 2850 5 10 0 1 0 0 1
+description=Low-dropout voltage regulator
 B 400 400 1400 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 100 1600 400 1600 1 0 0
 {
@@ -71,9 +63,17 @@ pinlabel=OUT
 T 1750 1575 5 8 0 1 0 8 1
 pintype=pwr
 }
-T 400 3450 5 10 0 0 0 0 1
-dist-license=GPL3
-T 400 3250 5 10 0 0 0 0 1
-use-license=unlimited
+T 400 2050 9 10 1 1 0 0 1
+value=LP2985_33DBVR
+T 400 2450 5 10 0 1 0 0 1
+footprint=SOT23-5
+T 400 3250 5 10 0 1 0 0 1
+documentation=www.ti.com/lit/ds/symlink/lp2985-n.pdf
+T 500 1850 9 10 0 0 0 0 1
+symversion=0.3
 T 400 3650 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 3450 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 3850 5 10 0 0 0 0 1
 author=Autotron
