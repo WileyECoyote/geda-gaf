@@ -13,6 +13,11 @@
             * diode/transil/SMM4F8.5A-1.sym
             * diode/transil/SMM4F8.5A-2.sym
 
+    * diode/zener53: Add symbols for 5 Watt zener diode:
+
+            * diode/zener53/zener_56_1N5370B.sym
+            * diode/zener53/zener_56_1N5371B.sym
+
 2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add symbols for new transil diode group:
