@@ -141,16 +141,16 @@ typedef struct {
 
 static GList *exit_functions = NULL;
 
-/*! \brief Register a function to be called on program exit
- *
- *  \par Function Description
+/*!
+ * \brief Register a function to be called on program exit
+ * \par Function Description
  *  This function registers a function to be called on
  *  program exit. Multiple functions will be executed in
  *  the order they are registered.
  *
- *  \param [in] func  pointer to the function to be registered
- *  \param [in] data  an arbitrary argument provided to the function
- *                    when it is called
+ * \param [in] func  pointer to the function to be registered
+ * \param [in] data  an arbitrary argument provided to the function
+ *                   when it is called
  */
 void geda_atexit(geda_atexit_func func, void* data)
 {
@@ -274,8 +274,9 @@ bool gattrib_really_quit(void)
 
 /*------------------------------------------------------------------*/
 
-/*! \brief The "real" main for gattrib.
- *
+/*!
+ * \brief The "real" main for gattrib.
+ * \par Function Description
  * This is the main program body for gattrib. A pointer to this
  * function is passed to scm_boot_guile() at startup.
  *
@@ -461,9 +462,9 @@ void gattrib_main(void *closure, int argc, char *argv[])
   exit(0);
 }
 
-/*------------------------------------------------------------------*/
-/*! \brief Entry point to gattrib
- *
+/*!
+ * \brief Entry point to gattrib
+ * \par Function Description
  * This is just a wrapper which
  * invokes the guile stuff, and points to the real main program,
  * gattrib_main().  Note that I still need some vestigial
