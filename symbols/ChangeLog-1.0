@@ -18,6 +18,9 @@
             * diode/zener53/zener_56_1N5370B.sym
             * diode/zener53/zener_56_1N5371B.sym
 
+    * linear/regulator/LM123-1.sym: Rename regulator_123-2.sym, add description
+      and documentation attribute.
+
 2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add symbols for new transil diode group:
