@@ -45,8 +45,9 @@ int default_tearoff_menus   = 1;
 GList *default_hide_columns = NULL;
 
 /*------------------------------------------------------------------*/
-/*! \brief Initialise variables in the GedaToplevel
- *
+/*!
+ * \brief Initialise variables in the GedaToplevel
+ * \par Function Description
  * Initialize the variables in toplevel. In practice, this is only
  * the paper size for the sheet.
  * \param toplevel pointer to the GedaToplevel to set paper size in.
