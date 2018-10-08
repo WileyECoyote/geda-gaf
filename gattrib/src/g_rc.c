@@ -30,9 +30,9 @@
 #include "../include/g_rc.h"
 #include "../include/i_vars.h"     /* This holds all the guile variable defs */
 
-/*------------------------------------------------------------------*/
-/*! \brief Test the version of gattrib and gEDA/gaf
- *
+/*!
+ * \brief Test the version of gattrib and gEDA/gaf
+ * \par Function Description
  * \param scm_version Version being tested
  * \returns false if incorrect version, true if OK
  */
@@ -82,8 +82,9 @@ SCM g_rc_gattrib_version(SCM scm_version)
   return ret;
 }
 
-/*! \brief This function processes the hide-columns RC entry.
- *  \par Function Description
+/*!
+ * \brief This function processes the hide-columns RC entry.
+ * \par Function Description
  *  This function reads the string list from the hide-columns
  *  configuration parameter and converts the list into a GList.
  *  The GList is stored in the global default_hide_columns variable.
@@ -125,10 +126,12 @@ SCM g_rc_hide_columns(SCM stringlist)
   return SCM_BOOL_T;
 
 }
-/*! \brief This function processes the sort-components RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the sort-components RC entry.
+
+/*!
+ * \brief This function processes the sort-components RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the sort-components RC entry.
  */
 SCM g_rc_sort_components(SCM mode)
 {
@@ -141,8 +144,9 @@ SCM g_rc_sort_components(SCM mode)
             default_sort_components, mode_table);
 }
 
-/*! \brief This function processes the tearoff-menus RC entry.
- *  \par Function Description
+/*!
+ * \brief This function processes the tearoff-menus RC entry.
+ * \par Function Description
  *  C function processes configuration data for the tearoff-menus
  *  RC entry.
  */
