@@ -24,6 +24,10 @@
     * linear/regulator/LM431_SOT23-1.sym: Resequence attributes, update
       attribute locations.
 
+    * linear/regulator/LM431_TO92-1.sym: Add documentation and description
+      attribute, resequence attributes, update attribute locations.
+
+
 2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add symbols for new transil diode group:
