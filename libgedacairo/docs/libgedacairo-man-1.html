@@ -111,15 +111,14 @@ The EdaRenderer class uses information from libgeda OBJECT
 structures to draw various schematic elements, control
 grips, and cues.</p>
 
-<p style="margin-left:22%; margin-top: 1em">EdaRenderer is
-a GObject class, with several properties that control its
+<p style="margin-left:22%; margin-top: 1em">An EdaRenderer
+is a GObject with the following properties that control
 behaviour:</p>
 
 
 <p style="margin-left:22%; margin-top: 1em">&quot;cairo-context&quot;
 [pointer] <br>
-The &rsquo;cairo_t&rsquo; drawing context which the renderer
-draws to.</p>
+The Cairo drawing context which the renderer draws to.</p>
 
 
 <p style="margin-left:22%; margin-top: 1em">&quot;pango-context&quot;
@@ -139,7 +138,7 @@ The font to use when drawing text. By default, this is
 
 <p style="margin-left:22%; margin-top: 1em">&quot;color-map&quot;
 [pointer] <br>
-A GArray of libgeda &rsquo;COLOR&rsquo; structures which is
+A GArray of libgeda &quot;COLOR&quot; structures which is
 used as the <br>
 color map for drawing. Note that the EdaRenderer does not
 make <br>
