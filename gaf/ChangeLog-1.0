@@ -1,3 +1,9 @@
+2018-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/docs/gaf.1.in: Extend the no warranty clause to include "not even
+      for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick
+      quotes around COPYING with double quotes for better portability.
+
 2018-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gaf.1.in: Update argument options for shell backend.
