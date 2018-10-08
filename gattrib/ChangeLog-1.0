@@ -11,6 +11,9 @@
     * src/i_vars.c: Reformat Doxygen comment block, add par tags with
       Function Description.
 
+    * src/x_toolbars.c: Reformat Doxygen comment block, add par tags
+      with Function Description.
+
 2018-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gattribrc.in: Add some strings found in title-blocks

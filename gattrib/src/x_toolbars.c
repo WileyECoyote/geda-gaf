@@ -59,8 +59,10 @@ static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
   x_window_clipboard_handler(button);
   return;
 }
-/*! \brief Redirect Open, Save & Save As from Toolbar to Handler functions
- *  \par Function Description
+
+/*!
+ * \brief Redirect Open, Save & Save As from Toolbar to Handler functions
+ * \par Function Description
  * This is a Call-back function for the file related buttons on the standard
  * toolbar.
  *
@@ -90,14 +92,15 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
 
   return;
 }
-/*! \brief Callback Handler for  Search relates Toolbars buttons
- *
- *  \par Function Description
+
+/*!
+ * \brief Callback Handler for  Search relates Toolbars buttons
+ * \par Function Description
  * This function calls the approiate functions to process request
  * from search related buttons on the standard toolbar.
  *
- *  \param [in] widget is button widget
- *  \param [in] Control pointer to enumerated integer ID of the button
+ * \param [in] widget is button widget
+ * \param [in] Control pointer to enumerated integer ID of the button
  */
 static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 {
@@ -127,14 +130,14 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
   return;
 }
 
-/*! \brief Callback Handler for Visibility relates Toolbars buttons
- *
- *  \par Function Description
+/*!
+ * \brief Callback Handler for Visibility relates Toolbars buttons
+ * \par Function Description
  * This function calls the approiate functions to process request
  * from attribute toolbar buttons.
  *
- *  \param [in] widget is button widget
- *  \param [in] Control pointer to enumerated integer ID of the button
+ * \param [in] widget is button widget
+ * \param [in] Control pointer to enumerated integer ID of the button
  */
 static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
 {
@@ -180,12 +183,12 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
   return;
 }
 
-/*! \brief Initialize Toolbars
+/*!
+ * \brief Initialize Toolbars
+ * \par Function Description
+ *  This function creates the handlebox, toolbars and toolbar buttons.
  *
- *  \par Function Description
- * This function creates the handlebox, toolbars and toolbar buttons.
- *
- *  \param [in] parent_container is main vbox widget
+ * \param [in] parent_container is main vbox widget
  */
 void x_toolbars_init(GtkWidget *parent_container) {
 
@@ -277,11 +280,12 @@ void x_toolbars_init(GtkWidget *parent_container) {
   geda_atexit((geda_atexit_func)g_slist_free, ComponentToolbarButtons);
 }
 
-/*! \brief Set Senitivity of Toolbar Buttons.
- *  \par Function Description
- *       This function is called by on_notebook_switch_page when ever a TAB
- *       is selected, passing a gslist of toolbasr button widgets to be set
- *       to the specified sensitivity
+/*!
+ * \brief Set Senitivity of Toolbar Buttons.
+ * \par Function Description
+ *  This function is called by on_notebook_switch_page when ever a TAB
+ *  is selected, passing a gslist of toolbasr button widgets to be set
+ *  to the specified sensitivity
  */
 void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
 {
