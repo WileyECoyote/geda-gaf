@@ -6,6 +6,13 @@
             * diode/transil/SMM4F5.0A-2.sym
             * diode/transil/SMM4F6.0A-2.sym
 
+    * diode/transil: Add new symbols for transil diode group
+
+            * diode/transil/SMM4F6.5A-2.sym
+            * diode/transil/SMM4F6.5A-1.sym
+            * diode/transil/SMM4F8.5A-1.sym
+            * diode/transil/SMM4F8.5A-2.sym
+
 2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add symbols for new transil diode group:
