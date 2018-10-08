@@ -1,3 +1,7 @@
+2018-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/f_export.c: Reformat Doxygen comment block.
+
 2018-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gattribrc.in: Add some strings found in title-blocks

@@ -39,9 +39,10 @@ print_quote_if_comma(FILE *fp, char *text)
 }
 
 /* ===================  Public Functions  ====================== */
-/* ------------------------------------------------------------- */
-/* \brief Export components to CSV
- *
+
+/*!
+ * \brief Export components to CSV
+ * \par Function Description
  * This function is invoked when the user selects file ->
  * export from the pull-down menu. The function writes out a CSV
  * file of the design for external processing.
