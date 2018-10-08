@@ -39,6 +39,15 @@
             * transistor/npn-bjt/npn-bce-5.sym
             * transistor/npn-bjt/npn-bce-6.sym
 
+    * transistor/npn-bjt/npn-cbe-?.sym: Resequence attributes, update attribute
+      locations:
+
+            * transistor/npn-bjt/npn-cbe-1.sym
+            * transistor/npn-bjt/npn-cbe-2.sym
+            * transistor/npn-bjt/npn-cbe-3.sym
+            * transistor/npn-bjt/npn-cbe-4.sym
+            * transistor/npn-bjt/npn-cbe-5.sym
+            * transistor/npn-bjt/npn-cbe-6.sym
 
 2018-09-30 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -46,7 +55,6 @@
 
             * diode/transil/SMM4F5.0A-1.sym
             * diode/transil/SMM4F6.0A-1.sym
-            * diode/transil/SMM4F6.5A-1.sym
 
     * diode/zener53: Add symbols for 5 Watt zener diode:
 
@@ -71,7 +79,7 @@
       pin spacing, and add value attribute.
 
     * transistor/npn-bjt/npn-bec-?.sym: Resequence attributes, update attribute
-      locations.
+      locations:
 
             * transistor/npn-bjt/npn-bec-1.sym
             * transistor/npn-bjt/npn-bec-2.sym
