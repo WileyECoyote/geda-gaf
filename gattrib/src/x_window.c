@@ -40,25 +40,27 @@
  *------------------------------------------------------------------*/
 #define GATTRIB_THEME_ICON_NAME "geda-gattrib"
 
-/*! \brief Set application icon
+/*!
+ * \brief Set application icon
  * \par Function Description
- * This function sets the default window icon by name, to be found in
- * the current icon theme. The name used is defined by the directive
- * GATTRIB_THEME_ICON_NAME.
+ *  This function sets the default window icon by name, to be found in
+ *  the current icon theme. The name used is defined by the directive
+ *  GATTRIB_THEME_ICON_NAME.
  */
 static void x_window_set_default_icon( void )
 {
   gtk_window_set_default_icon_name(GATTRIB_THEME_ICON_NAME);
 }
 
-/*! \brief Set or Update the Window Title
+/*!
+ * \brief Set or Update the Window Title
  * \par Function Description
- * This function obtains the filename for the toplevel and set the
- * Title for the main window. If the PageData->CHANGED is set then
- * the title is prefixed with an asterisk.
+ *  This function obtains the filename for the toplevel and set the
+ *  Title for the main window. If the PageData->CHANGED is set then
+ *  the title is prefixed with an asterisk.
  *
- *  \param [in] toplevel pointer to toplevel (pr_current)
- *  \param [in] PageData pointer to Sheet_data structure
+ * \param [in] toplevel pointer to toplevel (pr_current)
+ * \param [in] PageData pointer to Sheet_data structure
  */
 void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
 {
@@ -127,12 +129,14 @@ void x_window_clipboard_handler(int do_what)
   }
 }
 
-/** @brief on_notebook_switch_page in X_Windows_Support_Functions */
-/*! \brief Callback on TAB change.
- *  \par Function Description
- *       This function is called when ever a TAB sheet is selected. This
- *       allows all sensitivities for menus and toolbars to be set on a
- *       per sheet basis.
+/** \brief on_notebook_switch_page in X_Windows_Support_Functions */
+
+/*!
+ * \brief Callback on TAB change.
+ * \par Function Description
+ *  This function is called when ever a TAB sheet is selected. This
+ *  allows all sensitivities for menus and toolbars to be set on a
+ *  per sheet basis.
  */
 static void
 on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
@@ -195,12 +199,13 @@ static void x_window_save_settings(void *data)
 #define DEFAULT_WINDOW_WIDTH  1000
 #define DEFAULT_WINDOW_HEIGHT 600
 
-/*! \brief Restore Window Geometry and Cursor
- *  \par Function Description
+/*!
+ * \brief Restore Window Geometry and Cursor
+ * \par Function Description
  *  This functions retrieves the given window size and position from the
  *  key file and sets the given window to the retrived values.
  *
- *  \param [in] window  Gattrib toplevel MainWindow.
+ * \param [in] window  Gattrib toplevel MainWindow.
  */
 void x_window_restore_settings(GtkWindow *window)
 {
@@ -265,11 +270,11 @@ void x_window_restore_settings(GtkWindow *window)
 /*!
  * \brief Delete Event handler for the Main Window
  * \par Function Description
- * When the File/Quit menu option is used to exit gattrib, an extra reference
- * is held on the menu_bar. This function increases the reference on the menu
- * bar when the main window receives a "delete_event" to balance the reference
- * count so that x_menu_release_all can unreference the menu_bar regardless of
- * which method was used to terminate the program.
+ *  When the File/Quit menu option is used to exit gattrib, an extra reference
+ *  is held on the menu_bar. This function increases the reference on the menu
+ *  bar when the main window receives a "delete_event" to balance the reference
+ *  count so that x_menu_release_all can unreference the menu_bar regardless of
+ *  which method was used to terminate the program.
  */
 static bool x_window_quit(void)
 {
@@ -277,14 +282,15 @@ static bool x_window_quit(void)
   return gattrib_really_quit();
 }
 
-/*! \brief Initializes the Main Window
+/*!
+ * \brief Initializes the Main Window
  * \par Function Description
- * This function creates and initializes the Main window, calling various
- * other function to add the primary window widgets like menus, toolbars,
- * the GTK notebook container, etc. Each widget is set visible here except
- * the main window itself, which is done later.
+ *  This function creates and initializes the Main window, calling various
+ *  other function to add the primary window widgets like menus, toolbars,
+ *  the GTK notebook container, etc. Each widget is set visible here except
+ *  the main window itself, which is done later.
  *
- *  \sa x_window_finalize_startup
+ * \sa x_window_finalize_startup
  */
 void x_window_init()
 {
@@ -350,10 +356,10 @@ void x_window_init()
 /*!
  * \brief Load Blank Document
  * \par Function Description
- *      This function is called in place of s_toplevel_init_data_set
- * when there is no file specified or there was an error while attempting
- * to load a file. This allows gattrib to startup without the initial
- * file-open dialog.
+ *  This function is called in place of s_toplevel_init_data_set
+ *  when there is no file specified or there was an error while attempting
+ *  to load a file. This allows gattrib to startup without the initial
+ *  file-open dialog.
  */
 void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 {
@@ -362,10 +368,11 @@ void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
   toplevel->page_current->filename = toplevel->untitled_name;
 }
 
-/*! \brief Add all items to the top level window
+/*!
+ * \brief Add all items to the top level window
  * \par Function Description
- * The function calls x_gktsheet_add_row_labels and x_gktsheet_add_col_labels
- * for each worksheet and then loads the cell values for each sheet.
+ *  The function calls x_gktsheet_add_row_labels and x_gktsheet_add_col_labels
+ *  for each worksheet and then loads the cell values for each sheet.
  */
 void x_window_add_items(PageDataSet *PageData)
 {

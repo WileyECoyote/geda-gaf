@@ -2,6 +2,8 @@
 
     * src/x_find.c: Update Doxygen comment blocks.
 
+    * src/x_window.c: Reformat Doxygen comment blocks.
+
 2018-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/f_export.c: Reformat Doxygen comment block.
