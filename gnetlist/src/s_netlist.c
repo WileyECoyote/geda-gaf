@@ -363,9 +363,12 @@ void s_netlist_print(NETLIST *nl_current)
   printf("\n");
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Net List Head
+ * \par Function Description
+ *  Returns the first NETLIST struct of which \a tail is member,
+ *  noting that \a tail need not be that actual tail of the list,
+ *  any member of the netlist will work.
  *
  * hack rename this to be s_return_head
  * update object_tail or any list of that matter
