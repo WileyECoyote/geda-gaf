@@ -417,9 +417,19 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Resolve Net Name
+ * \par Function Description
+ *  If the net names exist, as determined by s_net_name_search,
+ *  the existing net-name is returned, otherwise the node of each
+ *  pin in the pin list is interrogated using s_net_find and if a
+ *  match is found, s_net_name_search is called again to check if
+ *  a net name exist for the node of the pin.
+ *
+ *  If no net-name exist for the node, a unique unnamed netname
+ *  is created and assigned to node. For hierarchical schematics,
+ *  the unnamed net may include the hierarchy_tag depending on the
+ *  setting of hierarchy-netname-mangle.
  *
  *  \param [in] pr_current    GedaToplevel toplevel structure;
  *  \param [in] netlist_head  Pointer to first netlist record structure
