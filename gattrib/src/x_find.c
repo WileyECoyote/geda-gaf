@@ -31,8 +31,9 @@
 static char search_string[MAX_SEARCH_STRING+12];
 static SearchRecord Search;
 
-/*! \brief Notify Search Text Not Found Dialog
- *  \par
+/*!
+ * \brief Notify Search Text Not Found Dialog
+ * \par Function Description
  *  Common pre-search routine to save the range of the current
  * selection of the active worksheet and sets the search mode
  * flag to row, column or all based on the current state.
@@ -69,7 +70,9 @@ static void x_find_set_search_parameters()
 
 }
 
-/*! \brief Notify Search Text Not Found Dialog
+/*!
+ * \brief Notify Search Text Not Found Dialog
+ * \par Function Description
  * called by x_find_attribute and x_find_refdes when the search
  * text was not found
  */
@@ -266,8 +269,9 @@ void x_find_attribute_value(void)
   }
 }
 
-/*! \brief Start Search and Replace
- *  \par Function Description
+/*!
+ * \brief Start Search and Replace
+ * \par Function Description
  *  This is a callback for the menu and tool-bar to launch the bi-modal
  *  Search and Replace dialog in the search and replace mode.
  */
@@ -279,8 +283,9 @@ void x_find_replace_attrib_value()
   x_dialog_search_replace(&Search, NULL);
 }
 
-/*! \brief Find Reference Designator
- *  \par Function Description
+/*!
+ * \brief Find Reference Designator
+ * \par Function Description
  *  Opens x_dialog_get_search_text dialog for search string and
  *  searches column labels.
  */
@@ -316,8 +321,9 @@ void x_find_attribute()
   }
 }
 
-/*! \brief Find Reference Designator
- *  \par Function Description
+/*!
+ * \brief Find Reference Designator
+ * \par Function Description
  *  Opens x_dialog_get_search_text dialog for search string and
  *  searches row labels.
  */
