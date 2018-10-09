@@ -161,13 +161,42 @@ void s_net_print(NET *n_current)
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get Connected String for Pin
+ * \par Function Description
+ *  If the value of the pin's parent refdes is not "none", attempts
+ *  to create a string pair by prefixing the pin number with uref,
+ *  separated by a space, where uref may include the hierarchy tag.
+ *  If a refdes does not exist s_netattrib_pinnum_get_connected_string
+ *  is called to return the pin number prefixed with PIN_NET_PREFIX,
+ *  i.e. "__netattrib_power_pin".
+ *
+ *  Note:
+ *  1. Flat schematics do not have a hierarchy tag.
+ *  2. For hierarchical schematics, the refdes is the hierarchy tag for
+ *     pins belonging to the source, which may include a hierarchy tag
+ *     if the source is not on the top-level.
+ *  3. Strings returned with PIN_NET_PREFIX do not include hierarchy tags.
+ *
+ *  Examples of returned strings:
+ *
+ *  <DL>
+ *      <DT>Flat schematic or Components on top-level</DT>
+ *          <DD>"R3 2"</DD><BR>
+ *          <DD>"U1 8"</DD>
+ *      <DT>Hierarchical schematics</DT>
+ *          <DD>"S1 3"</DD><BR>
+ *          <DD>"S1/C1 1"</DD><BR>
+ *          <DD>"S1/S2/U5 4"</DD>
+ *      <DT> Pins without a uref</DT>
+ *          <DD>"__netattrib_power_pin 1"</DD>
+ *  </DL>
  *
  *  \param [in] pr_current    GedaToplevel toplevel structure;
  *  \param [in] object        Is a Pin object
  *  \param [in] hierarchy_tag hierarchy tag string
+ *
+ *  \sa s_traverse_net
  */
 char *s_net_return_connected_string(GedaToplevel *pr_current,
                                     GedaObject   *object,

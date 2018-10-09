@@ -3,6 +3,7 @@
     * src/s_net.c: Update function documentation for:
 
           * s_net_name
+          * s_net_return_connected_string
 
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
