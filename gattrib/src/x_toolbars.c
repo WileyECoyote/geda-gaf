@@ -295,7 +295,10 @@ void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
     }
     mapcar(ListToolBarItems);
 }
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_toolbar_release_all(void)
 {
   gtk_widget_destroy (Attribute_handlebox);

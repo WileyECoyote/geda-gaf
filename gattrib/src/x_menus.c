@@ -680,6 +680,10 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   return menubar; /* WEH: Does this really get saved? */
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_menu_release_all(void)
 {
   GtkAccelGroup *accel_group;
