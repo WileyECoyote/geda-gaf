@@ -55,10 +55,11 @@ static bool returns_true (void * key, void * value, void * user_data)
   return TRUE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *  Retrieve the current visit count for a particular Object.
+/*!
+ * \brief Get if Object has been Visited
+ * \par Function Description
+ *  Retrieve the current visit count for a particular Object,
+ *  which would be 0 if \a obj is not in the hash table.
  */
 static inline int is_visited(GedaObject *obj)
 {

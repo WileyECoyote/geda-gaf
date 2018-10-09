@@ -12,6 +12,7 @@
     * src/s_traverse.c: Update function documentation for:
 
           * returns_true
+          * is_visited
 
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
