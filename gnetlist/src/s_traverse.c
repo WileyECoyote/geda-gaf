@@ -42,10 +42,13 @@
  */
 static GHashTable *visit_table;
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *   Trivial function used when clearing#visit_table.
+/*!
+ * \brief Clear Hash Table Callback
+ * \par Function Description
+ *  Trivial function used when clearing #visit_table.
+ *  The function servers as a callback for g_hash_table_foreach_remove,
+ *  g_hash_table_foreach_remove removes the entry when this callback
+ *  returns TRUE.
  */
 static bool returns_true (void * key, void * value, void * user_data)
 {

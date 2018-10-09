@@ -9,6 +9,10 @@
 
           * s_netlist_return_head
 
+    * src/s_traverse.c: Update function documentation for:
+
+          * returns_true
+
 2018-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Minor cleaning; fix grammar in comment, remove extra
