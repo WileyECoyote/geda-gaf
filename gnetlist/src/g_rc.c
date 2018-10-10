@@ -89,7 +89,7 @@ SCM g_rc_gnetlist_version(SCM scm_version)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_net_naming_priority based on the string option
- *   in RC file for the net-naming-priority keyword.
+ *   in the RC file for the net-naming-priority keyword.
  */
 SCM g_rc_net_naming_priority(SCM mode)
 {
@@ -106,7 +106,7 @@ SCM g_rc_net_naming_priority(SCM mode)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_hierarchy_traversal based on the string option
- *   in RC file for the hierarchy-traversal keyword.
+ *   in the RC file for the hierarchy-traversal keyword.
  */
 SCM g_rc_hierarchy_traversal(SCM mode)
 {
@@ -123,7 +123,7 @@ SCM g_rc_hierarchy_traversal(SCM mode)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_hierarchy_uref_mangle based on the string option
- *   in RC file for the hierarchy-uref-mangle keyword.
+ *   in the RC file for the hierarchy-uref-mangle keyword.
  */
 SCM g_rc_hierarchy_uref_mangle(SCM mode)
 {
@@ -140,7 +140,7 @@ SCM g_rc_hierarchy_uref_mangle(SCM mode)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_hierarchy_netname_mangle based on the string
- *   option in RC file for the hierarchy-netname-mangle
+ *   option in the RC file for the hierarchy-netname-mangle
  *   keyword.
  */
 SCM g_rc_hierarchy_netname_mangle(SCM mode)
@@ -158,7 +158,7 @@ SCM g_rc_hierarchy_netname_mangle(SCM mode)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   g_rc_hierarchy_netattrib_mangle based on the string
- *   option in RC file for the hierarchy-netattrib-mangle
+ *   option in the RC file for the hierarchy-netattrib-mangle
  *   keyword.
  */
 SCM g_rc_hierarchy_netattrib_mangle(SCM mode)
@@ -230,14 +230,14 @@ SCM g_rc_hierarchy_uref_separator(SCM name)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_hierarchy_netattrib_order based on the string
- *   option in RC file for the hierarchy-netattrib-order
+ *   option in the RC file for the hierarchy-netattrib-order
  *   keyword.
  */
 SCM g_rc_hierarchy_netattrib_order(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
     {PREPEND, "prepend"},
-    {APPEND, "append"}
+    {APPEND,  "append"}
   };
 
   RETURN_G_RC_MODE("hierarchy-netattrib-order",
@@ -248,14 +248,14 @@ SCM g_rc_hierarchy_netattrib_order(SCM mode)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_hierarchy_netname_order based on the string
- *   option in RC file for the hierarchy-netname-order
+ *   option in the RC file for the hierarchy-netname-order
  *   keyword.
  */
 SCM g_rc_hierarchy_netname_order(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
     {PREPEND, "prepend"},
-    {APPEND, "append"}
+    {APPEND,  "append"}
   };
 
   RETURN_G_RC_MODE("hierarchy-netname-order",
@@ -266,14 +266,14 @@ SCM g_rc_hierarchy_netname_order(SCM mode)
  *  \par Function Description
  *   Indirectly returns value of configuration setting in
  *   default_hierarchy_uref_order based on the string
- *   option in RC file for the hierarchy-uref-order
+ *   option in the RC file for the hierarchy-uref-order
  *   keyword.
  */
 SCM g_rc_hierarchy_uref_order(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
     {PREPEND, "prepend"},
-    {APPEND, "append"}
+    {APPEND,  "append"}
   };
 
   RETURN_G_RC_MODE("hierarchy-uref-order",
