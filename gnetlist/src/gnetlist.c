@@ -252,7 +252,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   s_rename_init();
 
-  if(list_backends) {
+  if (list_backends) {
     gnetlist_backends(pr_current);
     exit (0);
   }
