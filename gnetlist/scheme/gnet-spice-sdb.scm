@@ -1554,7 +1554,7 @@
 ;; or if it is a regular schematic.
 ;;
     (set-current-output-port (output-port output-filename))
-    (let* ((schematic-type (spice-sdb:get-schematic-type netlist:packages))
+    (let* ((schematic-type (spice-sdb:get-schematic-type packages))
            (model-name (spice-sdb:get-subcircuit-modelname schematic-type))
            (file-info-list (list))
           )
@@ -1563,7 +1563,7 @@
 
       (if (not (string=? schematic-type "normal schematic"))
       ;; we have found a .SUBCKT type schematic.
-          (let* ((io-pin-packages (spice-sdb:get-spice-IO-pins netlist:packages (list) ))
+          (let* ((io-pin-packages (spice-sdb:get-spice-IO-pins packages (list) ))
                  (io-pin-packages-ordered (spice-sdb:sort-spice-IO-pins io-pin-packages))
                  (io-nets-list (spice-sdb:get-IO-nets io-pin-packages-ordered (list) ))
                 )
@@ -1595,7 +1595,7 @@
 ;; geda-dev which is the genesis of this section.
 ;;
       (debug-spew "\nMake first pass through design and create list of all model files referenced.\n")
-      (set! file-info-list (spice-sdb:create-file-info-list netlist:packages file-info-list))
+      (set! file-info-list (spice-sdb:create-file-info-list packages file-info-list))
       (debug-spew "Done creating file-info-list.\n\n")
 
 ;;  Moved this loop before the next one to get numparam to work with ngspice,
@@ -1614,8 +1614,8 @@
       (debug-spew "Make second pass through design and write out a SPICE card for each component found.\n")
       (display "*============== Begin SPICE netlist of main design ============\n")
       (if (spice-sdb:sort-refdes? (get-calling-flags))
-          (spice-sdb:write-netlist file-info-list (sort netlist:packages spice-sdb:packsort))  ;; sort on refdes
-          (spice-sdb:write-netlist file-info-list netlist:packages)                            ;; don't sort.
+          (spice-sdb:write-netlist file-info-list (sort packages spice-sdb:packsort))  ;; sort on refdes
+          (spice-sdb:write-netlist file-info-list packages)                            ;; don't sort.
       )
       (debug-spew "Done writing SPICE cards . . .\n\n")
 

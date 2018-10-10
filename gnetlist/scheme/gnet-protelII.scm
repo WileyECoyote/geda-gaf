@@ -317,7 +317,7 @@
 ;;
 (define protelII:nets
    (lambda ()
-      (let ((all-uniq-nets netlist:all-unique-nets))
+      (let ((all-uniq-nets all-unique-nets))
          (protelII:write-net all-uniq-nets))))
 
 ;;; Highest level function
@@ -327,7 +327,7 @@
   (set-current-output-port (output-port output-filename))
   (begin
     (protelII:write-top-header)
-    (protelII:components netlist:packages)
+    (protelII:components packages)
     (protelII:nets))
   (close-output-port (current-output-port)))
 

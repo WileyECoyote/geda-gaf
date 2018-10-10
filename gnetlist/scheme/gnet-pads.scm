@@ -114,21 +114,21 @@
 (define (pads output-filename)
   (set-current-output-port (output-port output-filename))
   ;; initialize the net-name aliasing
-  (netlist:build-net-aliases pads:map-net-names netlist:all-unique-nets)
+  (netlist:build-net-aliases pads:map-net-names all-unique-nets)
 
   ;; initialize the refdes aliasing
-  (netlist:build-refdes-aliases pads:map-refdes netlist:packages)
+  (netlist:build-refdes-aliases pads:map-refdes packages)
 
   ;; print out the header
   (display "!PADS-POWERPCB-V3.0-MILS!\r\n")
   (display "\r\n*PART*\r\n")
 
   ;; print out the parts
-  (pads:components netlist:packages)
+  (pads:components packages)
 
   ;; print out the net information
   (display "\r\n*NET*\r\n")
-  (pads:write-net netlist:all-unique-nets)
+  (pads:write-net all-unique-nets)
 
   ;; print out the footer
   (display "\r\n*END*\r\n")

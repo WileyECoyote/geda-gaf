@@ -446,7 +446,7 @@
     (display " IS\n")
     (vams:write-architecture-declarative-part)
     (display "BEGIN\n")
-    (vams:write-architecture-statement-part netlist:packages)
+    (vams:write-architecture-statement-part packages)
     (display "END ARCHITECTURE ")
     (display architecture)
     (display ";\n")))
@@ -929,9 +929,9 @@
 
 (define vams:all-necessary-nets
   (lambda ()
-    (vams:only-different-nets netlist:all-unique-nets
+    (vams:only-different-nets all-unique-nets
                               (vams:all-packages-nets
-                               (vams:all-ports-in-list netlist:packages)))))
+                               (vams:all-ports-in-list packages)))))
 
 
 
@@ -945,8 +945,8 @@
 
 (define vams:all-necessary-packages
   (lambda ()
-    (vams:only-different-nets netlist:packages
-                              (vams:all-ports-in-list netlist:packages))))
+    (vams:only-different-nets packages
+                              (vams:all-ports-in-list packages))))
 
 
 
@@ -957,10 +957,10 @@
 (define vams:port-test
   (lambda (pin)
     (if (member (cdr pin)
-                (vams:all-packages-nets (vams:all-ports-in-list netlist:packages)))
+                (vams:all-packages-nets (vams:all-ports-in-list packages)))
         (append (vams:which-port
                  pin
-                 (vams:all-ports-in-list netlist:packages)))
+                 (vams:all-ports-in-list packages)))
         (append (cdr pin)))))
 
 

@@ -154,13 +154,13 @@
         (display "# Created with gEDA/gnetlist\n\n")
 
         ;; Write out an initial "defaults" line if it exists
-        (cascade:write-defaults-top netlist:packages)
+        (cascade:write-defaults-top packages)
 
         ;; Write out the "source" line and keep track of what its
         ;; connected to.  If we couldn't find the source, then
         ;; exit out.
         (display "# Source definition\n")
-        (set! first_block (cascade:write-source netlist:packages))
+        (set! first_block (cascade:write-source packages))
         (if (null? first_block)
             (display "You must include a source element in your schematic!")
         )

@@ -42,9 +42,9 @@
 (define vhdl:get-top-port-list
   (lambda ()
     ;; construct list
-    (list (vhdl:get-matching-urefs "device" "IPAD"  netlist:packages)
-          (vhdl:get-matching-urefs "device" "OPAD"  netlist:packages)
-          (vhdl:get-matching-urefs "device" "IOPAD" netlist:packages))))
+    (list (vhdl:get-matching-urefs "device" "IPAD"  packages)
+          (vhdl:get-matching-urefs "device" "OPAD"  packages)
+          (vhdl:get-matching-urefs "device" "IOPAD" packages))))
 
 ;;; Get matching urefs
 (define vhdl:get-matching-urefs
@@ -305,7 +305,7 @@
                      (display device)
                      (newline)
                      (vhdl:write-port-clause (vhdl:get-device-port-list
-                                                (find-device netlist:packages device)))
+                                                (find-device packages device)))
                      (display "    END COMPONENT ")
                      (display ";")
                      (newline)
@@ -375,7 +375,7 @@
 
 (define unique-devices
   (lambda nil
-    (vhdl:get-unique-devices (map get-device netlist:packages))
+    (vhdl:get-unique-devices (map get-device packages))
 ))
 
 
@@ -406,7 +406,7 @@
          (newline)
        )
      )
-     netlist:all-unique-nets)
+     all-unique-nets)
   )
 )
 
@@ -773,7 +773,7 @@
     (display "BEGIN")
     (newline)
     ; architecture_statement_part
-    (vhdl:write-architecture-statement-part netlist:packages)
+    (vhdl:write-architecture-statement-part packages)
     (display "END netlist;")
     (newline)
   )

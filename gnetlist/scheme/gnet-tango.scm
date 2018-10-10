@@ -126,7 +126,7 @@
 ;; Top level function to write out nets associated with a particular component
 ;;
 (define (tango:nets)
-  (let ((all-uniq-nets netlist:all-unique-nets))
+  (let ((all-uniq-nets all-unique-nets))
      (tango:write-net all-uniq-nets)))
 
 ;;; Highest level function
@@ -135,7 +135,7 @@
 (define (tango output-filename)
   (set-current-output-port (output-port output-filename))
   (begin
-     (tango:components netlist:packages)
+     (tango:components packages)
      (tango:nets))
   (close-output-port (current-output-port)))
 

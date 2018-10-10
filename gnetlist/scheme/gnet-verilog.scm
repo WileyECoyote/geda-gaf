@@ -71,7 +71,7 @@
 ;; pair
 (define verilog:get-matching-nets
   (lambda (attribute value)
-    (map car (verilog:filter attribute value netlist:packages))))
+    (map car (verilog:filter attribute value packages))))
 
 ;; This function takes an attribute name, desired value, and a list of
 ;; packages.  For each of the packages, it looks up that attribute, and
@@ -437,7 +437,7 @@
            ))
          )
 
-        netlist:all-unique-nets)
+        all-unique-nets)
       the-nets)
     )
     verilog:get-nets
@@ -633,7 +633,7 @@
     (verilog:write-top-header)
     (verilog:write-wires)
     (verilog:write-continuous-assigns)
-    (verilog:components netlist:packages)
+    (verilog:components packages)
     (verilog:write-bottom-footer)
     )
   (close-output-port (current-output-port)))

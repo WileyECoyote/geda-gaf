@@ -24,8 +24,8 @@
 
 (define (osmond output-filename)
         (set-current-output-port (output-port output-filename))
-        (for-each osmond:part netlist:packages)
-        (for-each osmond:signal netlist:all-unique-nets))
+        (for-each osmond:part packages)
+        (for-each osmond:signal all-unique-nets))
 
 
 ; The first section of the file consists of a list of packages,

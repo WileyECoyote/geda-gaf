@@ -188,7 +188,7 @@
 
 (define (mathematica output-filename)
   (set-current-output-port (output-port output-filename))
-  (let ((nets netlist:all-unique-nets))
+  (let ((nets all-unique-nets))
      (mathematica:write-voltages nets)
      (display "nodeEquations={")
      (newline)
@@ -197,7 +197,7 @@
      (newline)
      (display "modelEquations={")
      (newline)
-     (mathematica:write-models netlist:packages #t)
+     (mathematica:write-models packages #t)
      (display "};")
      (newline)
      (display "variables={")

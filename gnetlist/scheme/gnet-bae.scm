@@ -119,7 +119,7 @@
 ;; Write the net part of the gEDA format
 ;;
 (define (bae:nets)
-  (let ((all-uniq-nets netlist:all-unique-nets))
+  (let ((all-uniq-nets all-unique-nets))
      (bae:write-net all-uniq-nets)))
 
 ;;; Highest level function
@@ -130,7 +130,7 @@
     (begin
       (bae:write-top-header)
       (bae:start-components)
-      (bae:components netlist:packages)
+      (bae:components packages)
       (bae:start-nets)
       (bae:nets)
       (bae:end-nets))

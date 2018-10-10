@@ -53,5 +53,5 @@
 
 (define (PCB output-filename)
   (set-current-output-port (output-port output-filename))
-  (PCB:write-net netlist:all-unique-nets)
+  (PCB:write-net all-unique-nets)
   (close-output-port (current-output-port)))

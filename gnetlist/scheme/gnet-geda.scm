@@ -174,7 +174,7 @@
 ;;
 (define geda:nets
    (lambda ()
-      (let ((all-uniq-nets netlist:all-unique-nets))
+      (let ((all-uniq-nets all-unique-nets))
          (geda:write-net all-uniq-nets))))
 
 ;;; Highest level function
@@ -185,10 +185,10 @@
   (begin
     (geda:write-top-header)
     (geda:start-components)
-    (geda:components netlist:packages)
+    (geda:components packages)
     (geda:end-components)
     (geda:start-renamed-nets)
-    (geda:renamed-nets netlist:get-renamed-nets)
+    (geda:renamed-nets get-renamed-nets)
     (geda:end-renamed-nets)
     (geda:start-nets)
     (geda:nets)

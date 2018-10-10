@@ -1,3 +1,9 @@
+2018-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnetlist-post.scm: Remove netlist: prefix added 2014-11-10.
+
+    * scheme/gnet*.scm: Revise all backends to use changes above.
+
 2018-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Update function documentation for:

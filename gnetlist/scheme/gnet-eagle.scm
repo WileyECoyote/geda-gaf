@@ -129,7 +129,7 @@
 (define (eagle output-filename)
   (set-current-output-port (output-port output-filename))
   ;; initialize the net-name aliasing
-  (netlist:build-net-aliases eagle:map-net-names netlist:all-unique-nets)
+  (netlist:build-net-aliases eagle:map-net-names all-unique-nets)
 
   ;; print out the header
 ;;(display "!EAGLE-POWERPCB-V3.0-MILS!\n")
@@ -138,11 +138,11 @@
   (display "   ;\n")
 
   ;; print out the parts
-  (eagle:components netlist:packages)
+  (eagle:components packages)
 
   ;; print out the net information
 ;;(display "\n*NET*\n")
-  (eagle:write-net netlist:all-unique-nets)
+  (eagle:write-net all-unique-nets)
 
   ;; print out the footer
 ;;(display "\n*END*\n")

@@ -103,7 +103,7 @@
   (display "# Pin name action command file\n")
 
   ;; write the components
-  (pcbpins:components netlist:packages 1)
+  (pcbpins:components packages 1)
 
   ;; close netlist
   (close-output-port (current-output-port)))

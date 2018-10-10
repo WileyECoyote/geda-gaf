@@ -96,7 +96,7 @@
 ;;
 (define liquidpcb:write-netlist
    (lambda ()
-      (let ((all-uniq-nets netlist:all-unique-nets))
+      (let ((all-uniq-nets all-unique-nets))
          (liquidpcb:write-net all-uniq-nets))))
 
 ;;

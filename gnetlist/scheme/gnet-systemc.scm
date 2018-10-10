@@ -67,7 +67,7 @@
 ;; pair
 (define systemc:get-matching-nets
   (lambda (attribute value)
-    (map car (systemc:filter attribute value netlist:packages))))
+    (map car (systemc:filter attribute value packages))))
 
 ;; This function takes an attribute name, desired value, and a list of
 ;; packages.  For each of the packages, it looks up that attribute, and
@@ -128,7 +128,7 @@
                             (display "#include \"")
                             (systemc:display-escaped-identifier (get-device package))
                             (display ".h\"\n")))))
-                ) netlist:packages
+                ) packages
       )
       (newline)
       (display "SC_MODULE (") (systemc:display-escaped-identifier module-name) (display ")\n{\n")
@@ -469,7 +469,7 @@
 ;;         (display  "systemc:get-nets(parsed)-> ")
          )
 
-        netlist:all-unique-nets)
+        all-unique-nets)
       the-nets)
     )
     systemc:get-nets
@@ -684,7 +684,7 @@
     (systemc:write-wires)
 ;;    (display "***** end write-wires ********")(newline)
     (systemc:write-continuous-assigns)
-    (systemc:components netlist:packages)
+    (systemc:components packages)
     (systemc:write-bottom-footer)
     )
   (close-output-port (current-output-port)))

@@ -174,8 +174,8 @@
 (define (spice output-filename)
   (set-current-output-port (output-port output-filename))
   (spice:write-top-header)
-  (spice:write-prologue netlist:packages)
-  (spice:write-netlist netlist:packages)
+  (spice:write-prologue packages)
+  (spice:write-netlist packages)
   (spice:write-bottom-footer)
   (close-output-port (current-output-port)))
 

@@ -54,9 +54,9 @@
 
 (define (drc output-filename)
   (set-current-output-port (output-port output-filename))
-  (drc:device-rules drc:attriblist netlist:packages)
-  (drc:net-rules netlist:all-unique-nets)
-  (drc:pin-rules netlist:packages)
+  (drc:device-rules drc:attriblist packages)
+  (drc:net-rules all-unique-nets)
+  (drc:pin-rules packages)
   (close-output-port (current-output-port)))
 
 

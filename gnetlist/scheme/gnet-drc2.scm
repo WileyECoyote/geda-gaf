@@ -372,7 +372,7 @@
                   (check-slots-loop (cdr slots_list))
                   ))))
         (check-slots-loop (gnetlist:get-slots uref))))
-    (for-each check-duplicated-slots-of-package netlist:packages)
+    (for-each check-duplicated-slots-of-package packages)
 ))
 
 
@@ -410,7 +410,7 @@
             (check-slots-loop 1 (get-unique-slots uref)))
         ))
 
-    (for-each check-unused-slots-of-package netlist:packages)
+    (for-each check-unused-slots-of-package packages)
     ))
 
 ;;
@@ -505,7 +505,7 @@
                   ))))))
 
 
-    (for-each check-slots-of-package netlist:packages)
+    (for-each check-slots-of-package packages)
     ))
 
 ;; Count the ocurrences of a given reference in the given list.
@@ -956,7 +956,7 @@
             (begin
               (display "Checking non-numbered parts...")
               (newline)
-              (drc2:check-non-numbered-items netlist:packages)
+              (drc2:check-non-numbered-items packages)
               (newline)))
 
         ;; Check for duplicated references
@@ -964,7 +964,7 @@
             (begin
               (display "Checking duplicated references...")
               (newline)
-              (drc2:check-duplicated-references netlist:packages)
+              (drc2:check-duplicated-references packages)
               (newline)))
 
         ;; Check for NoConnection nets with more than one pin connected.
@@ -972,7 +972,7 @@
             (begin
               (display "Checking NoConnection nets for connections...")
               (newline)
-              (drc2:check-connected-noconnects netlist:all-unique-nets)
+              (drc2:check-connected-noconnects all-unique-nets)
               (newline)))
 
         ;; Check nets with only one connection
@@ -980,7 +980,7 @@
             (begin
               (display "Checking nets with only one connection...")
               (newline)
-              (drc2:check-single-nets netlist:all-unique-nets)
+              (drc2:check-single-nets all-unique-nets)
               (newline)))
 
         ;; Check "unknown" pintypes
@@ -988,7 +988,7 @@
             (begin
               (display "Checking pins without the 'pintype' attribute...")
               (newline)
-              (drc2:report-unknown-pintypes netlist:all-unique-nets)
+              (drc2:report-unknown-pintypes all-unique-nets)
               (debug-spew "Completed 'pintype' attribute check, continuing\n")
               (newline)))
 
@@ -997,7 +997,7 @@
             (begin
               (display "Checking type of pins connected to a net...")
               (newline)
-              (drc2:check-pintypes-of-nets netlist:all-unique-nets)
+              (drc2:check-pintypes-of-nets all-unique-nets)
               (newline)))
 
         ;; Check unconnected pins
@@ -1005,8 +1005,8 @@
             (begin
               (display "Checking unconnected pins...")
               (newline)
-              (if (not (null? netlist:packages))
-                  (drc2:check-unconnected-pins netlist:packages (get-pins-nets (car netlist:packages))))
+              (if (not (null? packages))
+                  (drc2:check-unconnected-pins packages (get-pins-nets (car packages))))
               (newline)))
 
         ;; Check slots

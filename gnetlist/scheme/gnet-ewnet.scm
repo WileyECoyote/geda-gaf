@@ -275,13 +275,13 @@
     (message "---------------------------------\n\n")
 
     (set-current-output-port (output-port output-filename))
-    (let ((all-nets netlist:all-unique-nets))
+    (let ((all-nets all-unique-nets))
 
       ;; initialize the net-name aliasing
-      (netlist:build-net-aliases ewnet:map-net-names netlist:all-unique-nets)
+      (netlist:build-net-aliases ewnet:map-net-names all-unique-nets)
 
       ;; initialize the refdes aliasing
-      (netlist:build-refdes-aliases ewnet:map-refdes netlist:packages)
+      (netlist:build-refdes-aliases ewnet:map-refdes packages)
 
       ;; write the header
       (ewnet:write-header)
@@ -293,7 +293,7 @@
 
       ;; write the components
       (display "(components\n")
-      (ewnet:components netlist:packages)
+      (ewnet:components packages)
       (display ")\n")
 
       ;; write the board layers

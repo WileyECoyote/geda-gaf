@@ -481,20 +481,20 @@
   (set-current-output-port (output-port output-filename))
 
   ;; initialize the net-name aliasing
-  (netlist:build-net-aliases switcap:map-net-names netlist:all-unique-nets)
+  (netlist:build-net-aliases switcap:map-net-names all-unique-nets)
 
   ;; initialize the refdes aliasing
-  (netlist:build-refdes-aliases switcap:map-refdes netlist:packages)
+  (netlist:build-refdes-aliases switcap:map-refdes packages)
 
   (switcap:write-top-header)
-  (switcap:write-title-block netlist:packages)
+  (switcap:write-title-block packages)
   (display "TIMING;\n")
-  (switcap:write-timing-block netlist:packages)
+  (switcap:write-timing-block packages)
   (display "END;\n\n")
   (display "CIRCUIT;\n")
-  (switcap:write-netlist netlist:packages)
+  (switcap:write-netlist packages)
   (display "END;\n\n")
-  (switcap:write-analysis-block netlist:packages)
+  (switcap:write-analysis-block packages)
   (display "\n\n/* End of SWITCAP netlist */\n")
   (display "END;\n")
 

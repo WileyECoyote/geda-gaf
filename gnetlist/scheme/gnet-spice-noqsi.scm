@@ -35,10 +35,10 @@
 (define (spice-noqsi-main filename)
     (set-current-output-port(open-output-file filename))
     (write-header)
-    (for-each reserve-refdes netlist:packages)
-    (for-each collect-file netlist:packages)
+    (for-each reserve-refdes packages)
+    (for-each collect-file packages)
     (process-toplevel "spice-epilog")
-    (for-each process-part netlist:packages)
+    (for-each process-part packages)
     (process-toplevel "spice-prolog")
     (if subcircuit (format #t "~A\n" subcircuit))
     (for-each (lambda (f) (format #t ".INCLUDE ~A\n" f)) files)
@@ -385,7 +385,7 @@ This may indicate an erroneously duplicated refdes.\n"
     (filter
     	(lambda (p)
 	    (equal? "spice-IO"
-	        (get-package-attribute p "device"))) netlist:packages ))
+	        (get-package-attribute p "device"))) packages ))
 
 ;; get all net connections in pinseq order
 
@@ -455,7 +455,7 @@ This may indicate an erroneously duplicated refdes.\n"
 	    	(equal? "INPUT" device)
 		(equal? "OUTPUT" device)
 		(equal? "IO" device))))
-	netlist:packages))
+	packages))
 
 
 ;; get all net connections in lexical pinlabel order

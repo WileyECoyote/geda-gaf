@@ -62,7 +62,7 @@ filename)
              ;; Print the Header row
              (bom2:printlist (append (cons 'refdes attriblist) (list "qty")) #\:)
              (newline)
-             (bom2:printbom (bom2:components netlist:packages attriblist) 0)
+             (bom2:printbom (bom2:components packages attriblist) 0)
              ))
       (close-output-port (current-output-port)))))
 

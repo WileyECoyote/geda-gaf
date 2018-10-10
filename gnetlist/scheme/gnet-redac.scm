@@ -61,6 +61,6 @@
   (display ".REM CREATED BY gEDA GNETLIST\r\n")
   (display ".CON\r\n")
   (display ".COD 2\r\n\r\n")
-  (redac:write-net netlist:all-unique-nets)
+  (redac:write-net all-unique-nets)
   (display ".EOD\r\n")
   (close-output-port (current-output-port)))

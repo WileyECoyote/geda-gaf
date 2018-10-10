@@ -122,7 +122,7 @@
 (define gossip:signals
    (lambda ()
       (display "(signals ")
-      (display netlist:all-unique-nets)
+      (display all-unique-nets)
       (display ")\n")))
 
 (define gossip:write-block-header
@@ -137,8 +137,8 @@
   (set-current-output-port (output-port output-filename))
   (begin
      (gossip:write-top-header)
-     (gossip:get-libraries netlist:packages '())
+     (gossip:get-libraries packages '())
      (gossip:write-block-header)
      (gossip:signals)
-     (gossip:blocks netlist:packages netlist:all-unique-nets))
+     (gossip:blocks packages all-unique-nets))
   (close-output-port (current-output-port)))

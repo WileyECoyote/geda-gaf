@@ -94,9 +94,9 @@
 
   (display "*OrCAD\n*START\n")
 
-  (maxascii:components netlist:packages)
+  (maxascii:components packages)
 
-  (maxascii:write-net netlist:all-unique-nets)
+  (maxascii:write-net all-unique-nets)
   (display "\n*END\n")
 
   (close-output-port (current-output-port)))

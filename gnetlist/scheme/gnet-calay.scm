@@ -70,6 +70,6 @@
 
 (define (calay output-filename)
   (set-current-output-port (output-port output-filename))
-  (netlist:build-net-aliases calay:translate netlist:all-unique-nets)
-  (calay:write-net netlist:all-unique-nets)
+  (netlist:build-net-aliases calay:translate all-unique-nets)
+  (calay:write-net all-unique-nets)
   (close-output-port (current-output-port)))

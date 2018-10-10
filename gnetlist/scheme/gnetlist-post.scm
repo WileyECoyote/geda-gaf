@@ -24,23 +24,23 @@
 ;; get all packages for a particular schematic page could eventually
 ;; placeholder will be either the hierarchical level or something
 ;; of the sort
-(define netlist:packages
+(define packages
   (gnetlist:get-packages "placeholder"))
 
 ;; return a list of all unique the nets in the design
-(define netlist:all-unique-nets
+(define all-unique-nets
   (gnetlist:get-all-unique-nets "placeholder"))
 
 ;; return a list of all the nets in the design
 ;; Might return duplicates
-(define netlist:all-nets
+(define all-nets
   (gnetlist:get-all-nets "placeholder"))
 
 ;; not very useful, but amusing
-(define netlist:all-pins
-   (map gnetlist:get-pins netlist:packages))
+(define all-pins
+   (map gnetlist:get-pins packages))
 
-(define netlist:get-renamed-nets
+(define renamed-nets
   (gnetlist:get-renamed-nets "placeholder"))
 
 ;;
@@ -52,14 +52,14 @@
 ;; These will become hash tables which provide the mapping
 ;; from gEDA net name to netlist net name and from netlist
 ;; net name to gEDA net name.
-(define netlist:net-hash-forward (make-hash-table  (length netlist:all-nets)))
-(define netlist:net-hash-reverse (make-hash-table  (length netlist:all-nets)))
+(define netlist:net-hash-forward (make-hash-table  (length all-nets)))
+(define netlist:net-hash-reverse (make-hash-table  (length all-nets)))
 
 ;; These will become hash tables which provide the mapping
 ;; from gEDA refdes to netlist refdes and from netlist
 ;; refdes to gEDA refdes.
-(define netlist:refdes-hash-forward (make-hash-table  (length netlist:packages)))
-(define netlist:refdes-hash-reverse (make-hash-table  (length netlist:packages)))
+(define netlist:refdes-hash-forward (make-hash-table  (length packages)))
+(define netlist:refdes-hash-reverse (make-hash-table  (length packages)))
 
 ;; build the hash tables with the net name mappings and
 ;; while doing so, check for any shorts which are created

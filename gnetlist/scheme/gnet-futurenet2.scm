@@ -217,20 +217,20 @@
      (message "---------------------------------\n\n")
 
       (set-current-output-port (output-port output-filename))
-      (let ((all-nets netlist:all-unique-nets))
+      (let ((all-nets all-unique-nets))
 
         ;; initialize the net-name aliasing
-        (netlist:build-net-aliases futurenet2:map-net-names netlist:all-unique-nets)
+        (netlist:build-net-aliases futurenet2:map-net-names all-unique-nets)
 
         ;; initialize the refdes aliasing
-        (netlist:build-refdes-aliases futurenet2:map-refdes netlist:packages)
+        (netlist:build-refdes-aliases futurenet2:map-refdes packages)
 
         ;; write the header
         (display "PINLIST,2\n")
         (display "(DRAWING,GEDA.PIN,1-1\n")
 
         ;; write the components
-        (futurenet2:components netlist:packages 1)
+        (futurenet2:components packages 1)
         (display ")\n")
 
         ;; write the nets

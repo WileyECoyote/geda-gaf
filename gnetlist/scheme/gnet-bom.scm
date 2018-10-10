@@ -150,7 +150,7 @@ in ATTRIBLIST for components in LS not having an attribute \"nobom=1\""
          (with-output-to-port (output-port output-filename)
            (lambda ()
              (bom:printlist (cons "refdes" attriblist))
-             (bom:components netlist:packages attriblist))))))
+             (bom:components packages attriblist))))))
 
 ;;
 ;; Bill of Material backend written by Matt Ettus ends here
