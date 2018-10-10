@@ -218,21 +218,25 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   printf("found pinnum: %s\n", pinnum);
 #endif
 
+  /* Resolve the uref */
   temp_uref = geda_attrib_search_object_by_name (o_current->parent_object, "refdes", 0);
 
   if (temp_uref) {
     if (geda_stricmp(temp_uref,"none") == 0) {
-       GEDA_FREE(temp_uref);
+      GEDA_FREE(temp_uref);
+      uref = NULL;
+    }
+    else { /* apply the hierarchy name to the uref */
+      uref = s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
+      GEDA_FREE(temp_uref);
     }
   }
-
-  /* apply the hierarchy name to the uref */
-  uref = s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
-  GEDA_FREE(temp_uref);
+  else {
+    uref = NULL;
+  }
 
   if (uref && pinnum) {
     string = geda_sprintf("%s %s", uref, pinnum);
-
   }
   else {
 

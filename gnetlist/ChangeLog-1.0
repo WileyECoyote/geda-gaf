@@ -8,6 +8,9 @@
       that changes made by local rc files are applied to settings in the
       top-level.
 
+    * src/s_net.c: Revise s_net_return_connected_string to not call
+      s_hierarchy_create_uref if temp_uref if known to be NULL.
+
     * src/s_netattrib.c: Remove s_netattrib_check_connected_string, there
       is virtually no chance that someone will use "__netattrib_power_pin"
       as a reference designator in a flat schematic, and if they do...
