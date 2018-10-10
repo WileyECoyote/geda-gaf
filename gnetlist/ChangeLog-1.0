@@ -12,7 +12,8 @@
       is virtually no chance that someone will use "__netattrib_power_pin"
       as a reference designator in a flat schematic, and if they do...
 
-    * src/s_traverse.c: Substitute geda_strdup for geda_utility_string_strdup.
+    * src/s_traverse.c: Substitute geda_strdup for geda_utility_string_strdup,
+      reformat function documentation, update copyright.
 
 2018-10-09 Wiley E. Hill <wileyhill@gmail.com>
 

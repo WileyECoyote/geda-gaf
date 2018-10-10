@@ -5,8 +5,8 @@
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 1998-2015 Ales Hvezda
- * Copyright (C) 1998-2015 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2018 Ales Hvezda
+ * Copyright (C) 1998-2018 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,12 +73,13 @@ static inline int is_visited(GedaObject *obj)
   return exist ? (int)(long)(val) : 0;
 }
 
-/*! \brief Increment the current visit count
- *  \par Function Description
+/*!
+ * \brief Increment the current visit count
+ * \par Function Description
  *  Increment the current visit count for a particular Object.
  *
- *  \note g_hash_table_replace() adds the pointer to the table if
- *        the \a object is not found in the table.
+ *  \note g_hash_table_replace() will add the pointer to the table
+ *        if the \a object is not found in the table.
  */
 static inline int visit(GedaObject *obj)
 {
@@ -133,8 +134,9 @@ static void s_traverse_init(void)
   }
 }
 
-/*! \brief Traverse Netlist
- *  \par Function Description
+/*!
+ * \brief Traverse Netlist
+ * \par Function Description
  *  Loops through open documents and assimilate a netlist and
  *  a second list of graphical entities. Prints the net-list
  *  when verbose mode.
@@ -321,7 +323,7 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
  *   Called from s_hierarchy_traverse, possibly recursively.
  *
  *  \param [in] pr_current Current GedaToplevel structure; toplevel,
- *  \param [in] netlist      List of all object on This sheet
+ *  \param [in] netlist    List of all object on This sheet
  */
 void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
 {
