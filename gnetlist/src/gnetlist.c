@@ -249,7 +249,6 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* immediately setup configuration and user params */
   i_vars_init_gnetlist_defaults ();
-  i_vars_set (pr_current);
 
   s_rename_init();
 
@@ -320,6 +319,8 @@ void main_prog(void *closure, int argc, char *argv[])
     GEDA_FREE(output_filename);
     exit(1);
   }
+
+  i_vars_set (pr_current);
 
 #if DEBUG
   geda_struct_page_print_all(pr_current);

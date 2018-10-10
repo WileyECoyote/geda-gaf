@@ -4,6 +4,10 @@
 
     * scheme/gnet*.scm: Revise all backends to use changes above.
 
+    * src/gnetlist.c: Move call to i_vars_set after files are loaded so
+      that changes made by local rc files are applied to settings in the
+      top-level.
+
 2018-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Update function documentation for:
