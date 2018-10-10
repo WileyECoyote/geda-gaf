@@ -317,10 +317,27 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
   STOP_GEDA_PERFORMANCE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Traverse a Hierarchy Sheet
- *  \par Function Description
- *   Called from s_hierarchy_traverse, possibly recursively.
+/*!
+ * \brief Traverse Hierarchy Sheet
+ * \par Function Description
+ *  Called from s_hierarchy_traverse, possibly recursively.
+ *  hierarchy_tag is the refdes of the source symbols, which
+ *  can be combined using the hierarchy-uref-separator, such
+ *  as "S1/S2", for nested hierarchies. This function is not
+ *  called when net-listing flat schematics.
+ *
+ *  All objects on the sheet with a "graphical" attribute are
+ *  appended to graphical_netlist_head, components with refdes
+ *  value "none" are skipped, connected pins are stored to the
+ *  netlist->cpins for every non-graphical component with a
+ *  refdes value other than "none" and the component is appended
+ *  netlist->component_uref along with the hierarchy_tag, which
+ *  is either perpended or appended depending on the setting of
+ *  hierarchy-uref-order.
+ *
+ *  Additionally, s_hierarchy_traverse is called to traverse
+ *  any components with a "source" attribute, which could result
+ *  in this function being called recursively.
  *
  *  \param [in] pr_current Current GedaToplevel structure; toplevel,
  *  \param [in] netlist    List of all object on This sheet

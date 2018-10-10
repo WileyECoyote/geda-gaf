@@ -13,7 +13,8 @@
       as a reference designator in a flat schematic, and if they do...
 
     * src/s_traverse.c: Substitute geda_strdup for geda_utility_string_strdup,
-      reformat function documentation, update copyright.
+      reformat function documentation, update copyright, add documentation
+      for s_traverse_hierarchy_sheet.
 
 2018-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
