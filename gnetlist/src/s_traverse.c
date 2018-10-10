@@ -285,7 +285,7 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 
           fprintf(stderr, "%s <%s>, <%s>\n", msg, filename, net_name);
 
-          netlist->component_uref = geda_utility_string_strdup("U?");
+          netlist->component_uref = geda_strdup("U?");
         }
         else {
 
@@ -394,7 +394,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       else {
 
         if (hierarchy_tag) {
-          netlist->component_uref = geda_utility_string_strdup (hierarchy_tag);
+          netlist->component_uref = geda_strdup (hierarchy_tag);
         }
         else {
           netlist->component_uref = NULL;
@@ -402,7 +402,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
       }
 
       if (hierarchy_tag) {
-        netlist->hierarchy_tag = geda_utility_string_strdup (hierarchy_tag);
+        netlist->hierarchy_tag = geda_strdup (hierarchy_tag);
       }
 
       netlist->object_ptr = o_current;
@@ -425,7 +425,7 @@ void s_traverse_hierarchy_sheet (GedaToplevel *pr_current, NETLIST *netlist)
                 _("Could not find refdes on component or any special attributes!"),
                   filename, net_name);
 
-          netlist->component_uref = geda_utility_string_strdup("U?");
+          netlist->component_uref = geda_strdup("U?");
         }
         else {
 
