@@ -8,6 +8,10 @@
       that changes made by local rc files are applied to settings in the
       top-level.
 
+    * src/s_netattrib.c: Remove s_netattrib_check_connected_string, there
+      is virtually no chance that someone will use "__netattrib_power_pin"
+      as a reference designator in a flat schematic, and if they do...
+
 2018-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Update function documentation for:

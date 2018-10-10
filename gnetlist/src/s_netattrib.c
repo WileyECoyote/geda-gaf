@@ -69,20 +69,6 @@ const char *s_netattrib_connected_string_get_pinnum (const char *str)
   return str + prefix_len;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void s_netattrib_check_connected_string (const char *str)
-{
-  if (s_netattrib_connected_string_get_pinnum (str) == NULL) return;
-
-  fprintf (stderr,
-         _("ERROR: `%s' is reserved for internal use.\n"), PIN_NET_PREFIX);
-           exit (1);
-}
-
 /*!
  * \brief Get the Net Name from a Net Attribute
  * \par Function Description
