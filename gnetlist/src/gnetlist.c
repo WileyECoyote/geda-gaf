@@ -339,7 +339,7 @@ void main_prog(void *closure, int argc, char *argv[])
     s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
     GEDA_FREE (str);
 
-    /* If it couldn't be found, fail. */
+    /* If it could not be found, fail. */
     if (scm_is_false (s_backend_path)) {
 
       const char *msg1 = _("ERROR: Could not find backend");
