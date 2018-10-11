@@ -246,13 +246,14 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
 
     }
     else {
+
       if (hierarchy_tag) {
-        misc = s_hierarchy_create_uref(pr_current, "U?", hierarchy_tag);
+        misc = s_hierarchy_create_uref(pr_current, "UKN?", hierarchy_tag);
         string = geda_sprintf("%s ?", misc);
         GEDA_FREE(misc);
       }
       else {
-        string = geda_utility_string_strdup("U? ?");
+        string = geda_utility_string_strdup("UKN? ?");
       }
 
       fprintf(stderr, _("Missing Attributes (refdes and pin number)\n"));
@@ -307,14 +308,14 @@ NET *s_net_return_tail(NET *head)
   return (ret_struct);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Search for a Net Name
+ * \par Function Description
  *
- *  \param [in] pr_current   GedaToplevel toplevel structure;
- *  \param [in] net_head     Pointer to first netlist record structure
+ * \param [in] pr_current   GedaToplevel toplevel structure;
+ * \param [in] net_head     Pointer to first netlist record structure
  *
- *  \sa s_netlist_post_process s_net_name
+ * \sa s_netlist_post_process s_net_name
  */
 char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 {
@@ -325,6 +326,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 
   n_current = net_head;
 
+  /* This is wrong, the rc setting is being ignored */
   cfg = eda_config_get_context_for_file (NULL);
   naming_priority = eda_config_get_integer (cfg, "gnetlist", "net-naming-priority", NULL);
 
@@ -341,7 +343,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
          * the strings each pointer must be unique, otherwise, only the
          * first encounter will is renamed as s_rename_all_lowlevel will
          * not find the other instances */
-        name = geda_utility_string_strdup (net_name);
+        name = geda_strdup (net_name);
 
       }
       else if (strcmp(name, net_name) != 0) {
@@ -368,7 +370,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 #endif
             s_rename_add(name, net_name);
             GEDA_FREE(name);
-            name = geda_utility_string_strdup (net_name);
+            name = geda_strdup (net_name);
 
           }
           else {
@@ -388,20 +390,18 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
               }
               s_rename_add(name, net_name);
               GEDA_FREE(name);
-              name = geda_utility_string_strdup (net_name); /* See note above */
+              name = geda_strdup (net_name); /* See note above */
             }
           }
 
         }
-        else {	/* NETNAME_ATTRIBUTE */
+        else { /* NETNAME_ATTRIBUTE */
 
 #if DEBUG
           printf("\nNETNAME_ATTRIBUTE\n");
 #endif
 
-          /* here we want to rename the net */
-          /* that has priority to the label */
-          /* name */
+          /* rename the net that has priority to the label name */
           if (n_current->net_name_has_priority) {
 
 #if DEBUG /* this shows how to rename nets */
@@ -426,7 +426,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
               }
               s_rename_add(name, net_name);
               GEDA_FREE(name);
-              name = geda_utility_string_strdup (net_name); /* See note above */
+              name = geda_strdup (net_name); /* See note above */
             }
           }
 
@@ -441,12 +441,8 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
     n_current = n_current->next;
   }
 
-  if (name) {
-    return (name);
-  }
-  else {
-    return (NULL);
-  }
+  return name ? name : NULL;
+
 }
 
 /*!

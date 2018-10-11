@@ -9,7 +9,7 @@
 
     * src/s_net.c: Replace TAB characters with format specifiers in messages.
       Relocate GEDA_FREE marco in s_net_return_connected_string to the else
-      clause.
+      clause, change the "U" to "UKN" in the if no pinnumber clause.
 
 2018-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
