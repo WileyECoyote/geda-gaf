@@ -147,12 +147,12 @@ void s_net_print(NET *n_current)
 
 #if DEBUG
       if (n_current->net_name) {
-        printf("	%s [%d]\n", n_current->net_name, n_current->nid);
+        printf("\t%s [%d]\n", n_current->net_name, n_current->nid);
       }
 #endif
 
       if (n_current->connected_to) {
-        printf("		%s [%d]\n", n_current->connected_to, n_current->nid);
+        printf("\t\t%s [%d]\n", n_current->connected_to, n_current->nid);
       }
     }
 

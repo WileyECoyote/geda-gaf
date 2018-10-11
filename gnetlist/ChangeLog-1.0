@@ -7,6 +7,8 @@
       because scm_shell does not support cursor movement or command
       history, and generally sucks all-around.
 
+    * src/s_net.c: Replace TAB characters with format specifiers in messages.
+
 2018-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnetlist-post.scm: Remove netlist: prefix added 2014-11-10.
