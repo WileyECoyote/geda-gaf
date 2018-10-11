@@ -179,6 +179,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
 
         case 'i':
           interactive_mode = TRUE;
+          guile_proc = geda_strdup("shell");
           break;
 
         case 'q':

@@ -2,6 +2,11 @@
 
     * scheme/gnet-shell.scm: Add backend for interactive shell.
 
+    * src/parsecmd.c: Set guile_proc to "shell" for the "i" option so
+      users can just use the dash i option to specify the "shell" backend
+      because scm_shell does not support cursor movement or command
+      history, and generally sucks all-around.
+
 2018-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnetlist-post.scm: Remove netlist: prefix added 2014-11-10.
