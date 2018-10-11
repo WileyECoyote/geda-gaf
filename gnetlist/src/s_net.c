@@ -223,13 +223,12 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
 
   if (temp_uref) {
     if (geda_stricmp(temp_uref,"none") == 0) {
-      GEDA_FREE(temp_uref);
       uref = NULL;
     }
     else { /* apply the hierarchy name to the uref */
       uref = s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
-      GEDA_FREE(temp_uref);
     }
+    GEDA_FREE(temp_uref);
   }
   else {
     uref = NULL;

@@ -8,6 +8,8 @@
       history, and generally sucks all-around.
 
     * src/s_net.c: Replace TAB characters with format specifiers in messages.
+      Relocate GEDA_FREE marco in s_net_return_connected_string to the else
+      clause.
 
 2018-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
