@@ -476,7 +476,6 @@ void main_prog(void *closure, int argc, char *argv[])
     scm_c_eval_string (eval);
 
     GEDA_FREE (eval);
-    /* gh_eval_str_with_stack_saving_handler (input_str); */
   }
   else if (interactive_mode) {
     scm_c_eval_string ("(set-repl-prompt! \"gnetlist> \")");
