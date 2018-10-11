@@ -478,7 +478,6 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
   NETLIST  *nl_current;
   CPINLIST *pl_current;
 
-
   char *net_name;
   char *string            = NULL;
   char *temp;
