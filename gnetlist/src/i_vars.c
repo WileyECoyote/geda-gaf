@@ -54,10 +54,10 @@ char *default_unnamed_busname               = NULL;
  * \brief Set Variables from Defaults after reading RC
  * \par Function Description
  *  This function assigns default values for top-level variables. The default
- *  variables is declared extern in i_var.h so that the variables maybe set by
- *  RC handlers.
+ *  variables are declared extern in i_var.h so that the variables maybe set
+ *  by RC handlers.
  */
-void i_vars_set(GedaToplevel * pr_current)
+void i_vars_set(GedaToplevel *pr_current)
 {
   /* initialize the toplevels varibles */
   geda_iface_vars_set(pr_current);
