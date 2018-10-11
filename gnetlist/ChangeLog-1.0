@@ -1,3 +1,7 @@
+2018-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-shell.scm: Add backend for interactive shell.
+
 2018-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnetlist-post.scm: Remove netlist: prefix added 2014-11-10.

@@ -37,6 +37,7 @@ DIST_SCM   =	gnet-PCB.scm \
 		gnet-makedepend.scm \
 		gnet-maxascii.scm \
 		gnet-redac.scm \
+		gnet-shell.scm \
 		gnet-spice.scm \
 		gnet-spice-anise.scm \
 		gnet-spice-noqsi.scm \
