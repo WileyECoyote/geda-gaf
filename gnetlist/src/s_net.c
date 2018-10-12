@@ -266,12 +266,12 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   return (string);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- * hack rename this to be s_return_head
- * update object_tail or any list for that matter
+/*!
+ * \brief Retrieve the Network Head
+ * \par Function Description
+ *  Returns the first NET struct of which \a tail is member,
+ *  noting that \a tail need not be that actual tail of the
+ *  list, any member of the list will work.
  */
 NET *s_net_return_head(NET *tail)
 {
