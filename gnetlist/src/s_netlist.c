@@ -174,10 +174,14 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get Net Name given Net Identifier
+ * \par Function Description
+ *  Iterates over given netlist of components, and through the list
+ *  of individual pins on each member, looking for the net identifier.
  *
+ * \returns net-name record from the pin list with net with net_id
+ *          if found or NULL if net_id was not found.
  */
 char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
                                   NETLIST      *netlist_head,
@@ -189,9 +193,6 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
 
   nl_current = netlist_head;
 
-  /* walk through the list of components, and through the list
-   * of individual pins on each, looking for the net identifier
-   */
   while (nl_current != NULL) {
 
     pl_current = nl_current->cpins;
