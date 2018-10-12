@@ -9,8 +9,8 @@
 
     * src/s_netlist.c: Substitute geda_strdup for geda_utility_string_strdup,
       moved calls to verbose_done inside conditionals so that the redudant
-      conditionals are avoided when not verbose mode, update function
-      documentation for:
+      conditionals are avoided when not verbose mode, reformat Doxygen blocks
+      and update function documentation for:
 
           * s_netlist_netname_of_netid
 

@@ -33,13 +33,14 @@
 /* used by the extract functions below */
 #define DELIMITERS ",; "
 
-/*! \brief Add a NETLIST record to NETLIST List
- *  \par Function Description
- *   Allocates and initializes a NETLIST record structure. The record
- *   is appended to the NETLIST List pointed to by \a ptr by adding
- *   links to the previous record if \a ptr is not NULL. If \a ptr is
- *   NULL then the ->prev member is set to NULL to indicate this is
- *   the first record.
+/*!
+ * \brief Add a NETLIST record to NETLIST List
+ * \par Function Description
+ *  Allocates and initializes a NETLIST record structure. The record
+ *  is appended to the NETLIST List pointed to by \a ptr by adding
+ *  links to the previous record if \a ptr is not NULL. If \a ptr is
+ *  NULL then the ->prev member is set to NULL to indicate this is
+ *  the first record.
  *
  *  \returns new node
  */
@@ -71,15 +72,16 @@ NETLIST *s_netlist_add(NETLIST *ptr)
   }
 }
 
-/*! \brief Release memory for NETLIST Record Structures
- *  \par Function Description
- *   Iterates \a netlist and calls s_cpinlist_destroy_or_report for each
- *   found CPINLIST, frees internal strings for the component_uref and
- *   the and hierarchy_tag, and releases each NETLIST structure.
+/*!
+ * \brief Release memory for NETLIST Record Structures
+ * \par Function Description
+ *  Iterates \a netlist and calls s_cpinlist_destroy_or_report for each
+ *  found CPINLIST, frees internal strings for the component_uref and
+ *  the and hierarchy_tag, and releases each NETLIST structure.
  *
- *  \param [in]  netlist  Either the regular or the graphical net list.
- *  \param [out] strings  List to be appended with the pointers of all
- *                        net-names encountered (but not removed).
+ * \param [in]  netlist  Either the regular or the graphical net list.
+ * \param [out] strings  List to be appended with the pointers of all
+ *                       net-names encountered (but not removed).
  */
 void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *strings)
 {
@@ -222,10 +224,9 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
  *  \brief Post Traversal Processing to rename nets
  *  \par Function Description
  *
- *  \param [in] pr_current GedaToplevel structure; toplevel,
- *  \param [in] head       Pointer to Global netlist in globals.c
+ * \param [in] pr_current GedaToplevel structure; toplevel,
+ * \param [in] head       Pointer to Global netlist in globals.c
  *
- *   \sa s_traverse_start
  */
 void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
@@ -367,11 +368,7 @@ void s_netlist_print(NETLIST *nl_current)
  *  Returns the first NETLIST struct of which \a tail is member,
  *  noting that \a tail need not be that actual tail of the list,
  *  any member of the netlist will work.
- *
- * hack rename this to be s_return_head
- * update object_tail or any list of that matter
  */
-
 NETLIST *s_netlist_return_head(NETLIST *tail)
 {
   NETLIST *nl_current = NULL;
