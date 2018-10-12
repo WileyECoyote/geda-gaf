@@ -3,6 +3,8 @@
     * src/s_net.c: Update function documentation for:
 
           * s_net_return_head
+          * s_net_return_tail
+
 
 2018-10-11 Wiley E. Hill <wileyhill@gmail.com>
 

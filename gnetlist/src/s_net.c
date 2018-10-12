@@ -287,12 +287,11 @@ NET *s_net_return_head(NET *tail)
   return (ret_struct);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- * hack rename this to be s_return_tail
- * update object_tail or any list for that matter
+/*!
+ * \brief Get End of Net
+ * \par Function Description
+ *  Indexes to the end of \a head and returns the last
+ *  record in the list.
  */
 NET *s_net_return_tail(NET *head)
 {
