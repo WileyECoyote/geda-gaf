@@ -247,16 +247,24 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
     }
     else {
 
-      if (hierarchy_tag) {
-        misc = s_hierarchy_create_uref(pr_current, "UKN?", hierarchy_tag);
-        string = geda_sprintf("%s ?", misc);
-        GEDA_FREE(misc);
+      /* There was no pinnumber attribute set on the pin, use ? */
+
+      if (uref) {
+        string = geda_sprintf("%s ?", uref);
       }
       else {
-        string = geda_utility_string_strdup("UKN? ?");
+
+        if (hierarchy_tag) {
+          misc = s_hierarchy_create_uref(pr_current, "UKN?", hierarchy_tag);
+          string = geda_sprintf("%s ?", misc);
+          GEDA_FREE(misc);
+        }
+        else {
+          string = geda_strdup("UKN? ?");
+        }
       }
 
-      fprintf(stderr, _("Missing Attributes (refdes and pin number)\n"));
+      fprintf(stderr, "%s <%s>.\n", _("Missing pin number attribute"), string);
     }
   }
 
