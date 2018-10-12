@@ -7,6 +7,8 @@
           * s_net_return_head
           * s_net_return_tail
 
+    * src/s_netlist.c: Substitute geda_strdup for geda_utility_string_strdup.
+
 
 2018-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
