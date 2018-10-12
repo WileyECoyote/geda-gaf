@@ -288,17 +288,15 @@ void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
     nl_current = nl_current->next;
   }
 
-  verbose_done();
-
   if (verbose_mode) {
+    verbose_done();
     printf("- %s:\n", _("Renaming nets"));
   }
 
   s_rename_all(pr_current, head);
 
-  verbose_done();
-
   if (verbose_mode) {
+    verbose_done();
     printf("- %s:\n", _("Resolving hierarchy"));
   }
 
