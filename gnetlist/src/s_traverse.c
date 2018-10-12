@@ -557,7 +557,7 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
  */
 static int connection_type (GedaObject *object)
 {
-  switch (object->type) {
+  switch (geda_get_object_type(object)) {
     case OBJ_PIN:  return object->pin->node_type;
     case OBJ_NET:  return PIN_NET_NODE;
     case OBJ_BUS:  return PIN_BUS_NODE;
@@ -585,6 +585,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
         NET   *new_net;
         CONN  *c_current;
   const GList *cl_current;
+        int    o_type;
 
   visit (object);
 
@@ -595,13 +596,15 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
 
   new_net->nid = object->sid;
 
+  o_type = geda_get_object_type(object);
+
   /* pins are not allowed to have the netname attribute attached to them */
-  if (object->type != OBJ_PIN) {
+  if (o_type != OBJ_PIN) {
 
     char *temp = NULL;
 
     /* Ignore netname attributes on buses */
-    if (object->type == OBJ_NET) {
+    if (o_type == OBJ_NET) {
       temp = geda_attrib_search_object_by_name (object, "netname", 0);
     }
 
@@ -611,7 +614,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
                                                      hierarchy_tag);
       GEDA_FREE(temp);
     }
-    else if (object->type == OBJ_NET) { /* If net WITHOUT a "netname" */
+    else if (o_type == OBJ_NET) { /* If net WITHOUT a "netname" */
 
       /* search for the old label= attribute on nets */
       temp = geda_attrib_search_object_by_name (object, "label", 0);

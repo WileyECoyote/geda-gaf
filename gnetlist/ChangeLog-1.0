@@ -14,6 +14,9 @@
 
           * s_netlist_netname_of_netid
 
+    * src/s_traverse.c: Utilize geda_get_object_type instead of referencing
+      object->type directly.
+
 2018-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-shell.scm: Add backend for interactive shell.
