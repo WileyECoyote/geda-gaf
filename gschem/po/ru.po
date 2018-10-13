@@ -401,7 +401,7 @@ msgstr "Привязка"
 
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Устанавливает режим привязки для отображения в строке состояния"
 
 # Step
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
@@ -410,7 +410,7 @@ msgstr "Шаг"
 
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "Устанавливает режим размера для отображения в строке состояния"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665
@@ -419,7 +419,7 @@ msgstr "Текст состояния"
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Установите строку для текста в строке состояния"
 
 # Status State
 #: gschem/src/base/gschem_status_bar.c:672
@@ -429,39 +429,41 @@ msgstr "Состояние состояния"
 
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Высота строки состояния"
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Установите или получите высоту строки состояния"
 
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Отображение координат, щелчок правой кнопкой мыши для параметров формата"
 
 #: gschem/src/base/gschem_status_bar.c:1183
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Назначение кнопки левого указателя"
 
 #: gschem/src/base/gschem_status_bar.c:1184
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Назначение кнопки «Средний указатель», щелчок правой кнопкой мыши по параметрам"
 
 #: gschem/src/base/gschem_status_bar.c:1185
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Назначение правой кнопки указателя, правый щелчок для параметров"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1186
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Указывает текущую привязку, единицы сетки или состояние"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1187
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Указывает текущее состояние команды"
 
 #: gschem/src/base/gschem_status_bar.c:1188
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Строка состояния Gschem"
 
 #: gschem/src/base/gschem_status_bar.c:1867
 msgid "Grid"
@@ -495,9 +497,10 @@ msgstr "Недопустимое сочетание видимости имен�
 msgid "Processing"
 msgstr "Закрытие"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Пропуская"
 
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
@@ -6201,9 +6204,10 @@ msgstr ""
 msgid "Set Default Text Size"
 msgstr "Установить размер текста по умолчанию"
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "Открыть диалог предпочтений"
 
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
@@ -6262,16 +6266,15 @@ msgstr "Недопустимое выравнивание текста ~A."
 msgid "No documentation found"
 msgstr "Документация не найдена"
 
-# Export Symbol
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "Экспорт Символ"
+msgstr "Экспорт встроенного символа"
 
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Экспорт встраиваемой картинки"
+msgstr "Экспорт встроенного изображения"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -6282,29 +6285,3 @@ msgstr "Недопустимая комбинация клавиш ~S."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S не является префиксом клавишной последовательности."
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Ограничения</b>"
-
-# См. выше. Но тут слово "атрибут" необходимо. Иначе получается "добавить ... имя" или
-# "значение", а не "атрибут".
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Добавить атрибут</b>"
-
-# Надпись в редакторе атрибута. "Изменить атрибут" было бы излишне, так как
-# там далее идут поля "Имя" и "Значение". Т. е. "изменить ... имя"
-# представляется красивше, чем "изменить атрибут ... имя", т. к. и так известно
-# (из заголовка окна), что меняется атрибут.
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Изменить</b>"
-
-# Auto Height
-#~ msgid "Auto Height"
-#~ msgstr "Автоматическая высота"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "_Магнитное соединение вкл/откл"
-
-# Toggle snapping
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "Переключить _привязку"
