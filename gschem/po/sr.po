@@ -153,7 +153,7 @@ msgstr "Преузимање геометрије главног прозора.
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Аутоматски обнови"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:423
@@ -1224,64 +1224,76 @@ msgstr "Залепи %d Моде"
 
 #: gschem/src/iface/i_status.c:182
 msgid "First point?"
-msgstr ""
+msgstr "Прва тачка?"
 
 #: gschem/src/iface/i_status.c:184
 msgid "Second point?"
-msgstr ""
+msgstr "Друга ствар?"
 
+# Project Mode -> Extend Mode
 #: gschem/src/iface/i_status.c:186
 msgid "Project Mode"
-msgstr ""
+msgstr "Проширите режим"
 
+# Select Projectiles
 #: gschem/src/iface/i_status.c:188
 msgid "Select Projectiles"
-msgstr ""
+msgstr "Избор пројектила"
 
+# Select Object
 #: gschem/src/iface/i_status.c:190
 msgid "Select Object"
-msgstr ""
+msgstr "Изаберите објекат"
 
+# Show Hidden
 #: gschem/src/iface/i_status.c:237
 msgid "Show Hidden"
-msgstr ""
+msgstr "Схов Хидден"
 
+# Snap Off
 #: gschem/src/iface/i_status.c:240
 msgid "Snap Off"
-msgstr ""
+msgstr "Снап искључен"
 
+# Resnap Active
 #: gschem/src/iface/i_status.c:242
 msgid "Resnap Active"
-msgstr ""
+msgstr "Реснап Ацтиве"
 
+# Initializing default configuration settings
+# Iniciranje podrazumevanih konfiguracijskih postavki
 #: gschem/src/iface/i_vars.c:767
 msgid "Initializing default configuration settings\n"
-msgstr ""
+msgstr "Иницирање подразумеваних конфигурацијских поставки\n"
 
+# Failed to save user configuration to
+# Nije uspelo da sačuva korisničku konfiguraciju
 #: gschem/src/iface/i_vars.c:808
 msgid "Failed to save user configuration to"
-msgstr ""
+msgstr "Није успело да сачува корисничку конфигурацију"
 
+# Closing Page
+# Zatvaranje stranice
 #: gschem/src/iface/i_window.c:99
 msgid "Closing Page\n"
-msgstr ""
+msgstr "Closing Page\n"
 
 #: gschem/src/iface/i_window.c:168
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr ""
+msgstr "Поставите страницу <%s> активно.\n"
 
 #: gschem/src/iface/i_window.c:263
 msgid "Really revert page?"
-msgstr ""
+msgstr "Стварно поништити страницу?"
 
 #: gschem/src/iface/i_window.c:319
 msgid "An error occurred while processing request to revert"
-msgstr ""
+msgstr "Дошло је до грешке при обради захтева за повратак"
 
 #: gschem/src/iface/i_window.c:323
 msgid "<b>File error.</b>"
-msgstr ""
+msgstr "<b>Грешка датотеке.</b>"
 
 # Revert failed
 #: gschem/src/iface/i_window.c:323
@@ -1290,7 +1302,7 @@ msgstr "Врати фаилед"
 
 #: gschem/src/iface/i_window.c:330
 msgid "Error encountered during file operation"
-msgstr ""
+msgstr "Грешка у току операције датотеке"
 
 #: gschem/src/iface/i_window.c:331
 msgid "Recovery: undo last action\n"
