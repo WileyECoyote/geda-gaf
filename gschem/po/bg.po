@@ -432,38 +432,51 @@ msgstr "Задава режим Snap показан в лентата на съ�
 msgid "Snap Size"
 msgstr "Размер на приплъзване"
 
+# Zadava rezhima na razmera, koĭto da se pokazva v lentata na sŭstoyanieto
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "Задава режима на размера, който да се показва в лентата на състоянието"
 
+# Status Text
+# Tekst za sŭstoyanie
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "Текст за състояние"
 
+# Zadaĭte niza za teksta v lentata na sŭstoyanieto
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Задайте низа за текста в лентата на състоянието"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "Състояние на състоянието"
 
+# Status Bar Height
+# Visochina na lentata za sŭstoyanie
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Височина на лентата за състояние"
 
+# Set or get the height of the status bar
+# Zadaĭte ili izvedete visochinata na lentata na sŭstoyanieto
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Задайте или изведете височината на лентата на състоянието"
 
+# Coordinate display, right click for format options
+# Koordiniraĭte displeya, kliknete s desniya buton za izbor na format
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Координирайте дисплея, кликнете с десния бутон за избор на формат"
 
+# Left pointer button assignment
+# Prisvoyavane na butona na leviya buton
 #: gschem/src/base/gschem_status_bar.c:1183
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Присвояване на бутона на левия бутон"
 
 #: gschem/src/base/gschem_status_bar.c:1184
 msgid "Middle pointer button assignment, right click for options"
@@ -570,22 +583,22 @@ msgstr "досие"
 #: gschem/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "Невалидна стойност, увеличение на мащаба не може да бъде нула, проверете влизането в rc файл\n"
 
 #: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "Невалидно присвояване на типа, проверете запис за увеличаване на мащаба в rc файла\n"
 
 #: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1268
 #: gschem/src/guile/g_rc.c:1414 gschem/src/guile/g_rc.c:2007
 msgid "Continuing with default value"
-msgstr ""
+msgstr "Продължаване с стойността по подразбиране"
 
 #: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "Невалидно присвояване на тип, проверете влизането в регистрацията в rc файла\n"
 
 #: gschem/src/guile/g_rc.c:1262
 #, c-format
