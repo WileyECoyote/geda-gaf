@@ -409,85 +409,91 @@ msgstr "Nastavite niz za besedilo srednjega gumba"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "Besedilo desnega gumba"
 
+# Set the string for the Right Button Text
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Nastavite niz za desno tipko gumba"
 
+# Snap Mode -> Mapping mode
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
-msgstr ""
+msgstr "Kartiranje način"
 
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Nastavi način kartiranje, ki se prikaže v vrstici stanja"
 
+# Snap Size -> Mapping Size
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
 msgid "Snap Size"
-msgstr ""
+msgstr "Kartiranje Velikost"
 
+# Sets the Mapping Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "Nastavi velikost kartiranja, ki se prikaže v vrstici stanja"
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "Besedilo stanja"
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Niz vrstice za besedilo v vrstici stanja"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "Stanje države"
 
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Višina vrstice stanja"
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Nastavite ali prikličite višino statusne vrstice"
 
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Prikaz koordinata, z desnim gumbom kliknite možnosti za oblikovanje"
 
 #: gschem/src/base/gschem_status_bar.c:1183
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Določitev gumba kazalca"
 
 #: gschem/src/base/gschem_status_bar.c:1184
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Določitev gumba s sredinskim kazalcem, z desno miškino tipko kliknite možnosti"
 
 #: gschem/src/base/gschem_status_bar.c:1185
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Določitev gumba desnega kazalca, desni klik za možnosti"
 
 #: gschem/src/base/gschem_status_bar.c:1186
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Označuje trenutno zasnovo, omrežne enote ali stanje"
 
 #: gschem/src/base/gschem_status_bar.c:1187
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Označuje trenutno stanje ukaza"
 
 #: gschem/src/base/gschem_status_bar.c:1188
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Vrstica stanja Gschem"
 
 #: gschem/src/base/gschem_status_bar.c:1867
 msgid "Grid"
-msgstr ""
+msgstr "Mreža"
 
 #: gschem/src/base/gschem_status_bar.c:1873
 #: gschem/src/base/gschem_status_bar.c:1894
 msgid "OFF"
-msgstr ""
+msgstr "Izključeno"
 
 # Error
 #: gschem/src/base/gschem_status_bar.c:1886 gschem/src/object/o_picture.c:615
@@ -497,23 +503,26 @@ msgstr "Napaka"
 
 #: gschem/src/base/gschem_status_bar.c:1898
 msgid "NONE"
-msgstr ""
+msgstr "Nihče"
 
 #: gschem/src/guile/g_attrib.c:98
 msgid "Object ~A is not included in the current gschem page."
-msgstr ""
+msgstr "Objekt ~A ni vključen na trenutno stran gschem."
 
+# Invalid visibility of text name or value
 #: gschem/src/guile/g_attrib.c:118
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Neveljavna vidnost besedilnega imena ali vrednosti ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "Obravnavati"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Preskočite"
 
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
@@ -806,7 +815,7 @@ msgstr ""
 
 #: gschem/src/iface/i_command.c:4385
 msgid "Grid OFF\n"
-msgstr ""
+msgstr "Сетка выключена\n"
 
 #: gschem/src/iface/i_command.c:4386
 msgid "Dot grid activated\n"
