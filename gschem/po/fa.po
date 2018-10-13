@@ -381,64 +381,69 @@ msgstr "اندازه شبکه را برای نمایش در نوار وضعیت 
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "ارتفاع"
 
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "ارتفاع نوار وضعیت را تنظیم می کند"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "متن دکمه سمت چپ"
 
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "رشته ای برای متن دکمه سمت چپ را تنظیم کنید"
 
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "متنی متنی متنی"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "رشته متنی متنی متنی را تنظیم کنید"
 
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "دکمه راست متن"
 
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "رشته ای برای Text Button راست را تنظیم کنید"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
-msgstr "Copy Mode"
+msgstr "حالت ضربه محکم و ناگهانی"
 
+# Sets the snap mode to be shown on the status bar
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "تنظیم حالت ضربه محکم و ناگهانی را در نوار وضعیت نشان داده می شود"
 
+# Snap Size
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
 msgid "Snap Size"
-msgstr ""
+msgstr "اندازه ضربه محکم و ناگهانی"
 
+# Sets the Size Mode to shown on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+msgstr "حالت اندازه را برای نشان دادن در نوار وضعیت تنظیم می کند"
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "متن وضعیت"
 
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "رشته ای برای متن در نوار وضعیت تنظیم کنید"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "وضعیت وضعیت"
 
 # Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:686
