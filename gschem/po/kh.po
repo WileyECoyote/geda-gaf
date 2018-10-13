@@ -3124,7 +3124,7 @@ msgstr "aksaar​ tauch"
 
 #: gschem/src/x/x_edit_text.c:315
 msgid "Camel"
-msgstr ""
+msgstr "aud"
 
 # Sentence
 #: gschem/src/x/x_edit_text.c:319
@@ -3153,11 +3153,11 @@ msgstr "chomreusa aksaar atthabat"
 
 #: gschem/src/x/x_edit_text.c:851
 msgid "Color options menu"
-msgstr ""
+msgstr "meunouy chomreusa pnr"
 
 #: gschem/src/x/x_edit_text.c:855
 msgid "Font selector button"
-msgstr ""
+msgstr "boutong chreusa poumpoaksaar"
 
 # Text Rotation Angle Spinner Entry
 #: gschem/src/x/x_edit_text.c:859
@@ -3243,7 +3243,7 @@ msgstr "phlauv min troemotrauv"
 
 #: gschem/src/x/x_guile.c:312
 msgid "Refusing to remove path"
-msgstr ""
+msgstr "bdeseth min yk phlauv"
 
 # Version
 #: gschem/src/x/x_guile.c:464
@@ -3277,11 +3277,11 @@ msgstr "visaealpheap"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
-msgstr ""
+msgstr "bangkeut roubpheap pi athr k tha krongkar ryy tidthpheap del ban bangheanh bachchobban"
 
 #: gschem/src/x/x_image.c:68
 msgid "   Use Color"
-msgstr ""
+msgstr "brae pnr"
 
 # Enable or disable color imaging
 #: gschem/src/x/x_image.c:68
@@ -3690,11 +3690,11 @@ msgstr "baohbng rbieb phokaon"
 
 #: gschem/src/x/x_menus.c:160 gschem/scheme/gschem/builtins.scm:98
 msgid "Undo"
-msgstr ""
+msgstr "minothveuvinh"
 
 #: gschem/src/x/x_menus.c:160
 msgid "Undo the last path segment"
-msgstr ""
+msgstr "min thveu phnek phlauv chongokraoy"
 
 #: gschem/src/x/x_menus.c:501 gschem/etc/system-gschemrc.scm:2075
 msgid "Open an existing schematic or symbol file"
@@ -3914,11 +3914,11 @@ msgstr "Chomreah"
 
 #: gschem/src/x/x_menus.c:2483
 msgid "Recent menu items saved to"
-msgstr ""
+msgstr "ban roksaatouk theato meunouy thmei  tow"
 
 #: gschem/src/x/x_menus.c:2536
 msgid "Recent menu items restore from"
-msgstr ""
+msgstr "kar sdar theato meunouy thmei  pi"
 
 #: gschem/src/x/x_misc.c:73
 msgid "The operating system is out of memory or resources."
@@ -3931,47 +3931,47 @@ msgstr "ban breachy knong kar roksaatouk eksar teangoasa"
 
 #: gschem/src/x/x_misc.c:174
 msgid "falling back to"
-msgstr ""
+msgstr "thayokraoy tow"
 
 #: gschem/src/x/x_multiattrib.c:813 gschem/src/x/x_multiattrib.c:2833
 msgid "<various>"
-msgstr ""
+msgstr "<phsaeng>"
 
 #: gschem/src/x/x_multiattrib.c:935
 msgid "Attribute name must not be empty. Please set a name."
-msgstr ""
+msgstr "chhmoh kounalokkhan trauvte min tte.  saum kamnt chhmoh."
 
 #: gschem/src/x/x_multiattrib.c:937
 msgid "Multi-Attribute Editor"
-msgstr "..."
+msgstr "kammovithi niponth kounalokkhan chraen"
 
 #: gschem/src/x/x_multiattrib.c:1651
 msgid "Select an attribute to add"
-msgstr ""
+msgstr "chreusa kounalokkhan daembi banthem"
 
 #: gschem/src/x/x_multiattrib.c:1670
 msgid "Show Value only"
-msgstr ""
+msgstr "bangheanh tamlei tebonnaoh"
 
 #: gschem/src/x/x_multiattrib.c:1672
 msgid "Show Name only"
-msgstr ""
+msgstr "bangheanh te chhmoh"
 
 #: gschem/src/x/x_multiattrib.c:1676
 msgid "Select an attribute visibility option"
-msgstr ""
+msgstr "chreusa chomreusa pheap meulkheunh pheap chea mcheasa"
 
 #: gschem/src/x/x_multiattrib.c:1701
 msgid "Promote"
-msgstr ""
+msgstr "phsaapvophsaeay"
 
 #: gschem/src/x/x_multiattrib.c:1706
 msgid "Duplicate"
-msgstr ""
+msgstr "stuon"
 
 #: gschem/src/x/x_multiattrib.c:1708
 msgid "Copy to all"
-msgstr " 1"
+msgstr "chamlong tow teangoasa"
 
 #: gschem/src/x/x_multiattrib.c:2100 gschem/src/x/x_multiattrib.c:2630
 msgid "Edit Attributes"
