@@ -5977,34 +5977,37 @@ msgstr ""
 msgid "Set Default Text Size"
 msgstr ""
 
+# Open Preference Dialog
 #: gschem/scheme/gschem/builtins.scm:511
 msgid "Open Preference Dialog"
-msgstr ""
+msgstr "Tercih Aç İletişim Kutusu"
 
 #: gschem/scheme/gschem/builtins.scm:518
 msgid "gEDA Manuals"
-msgstr ""
+msgstr "gEDA El Kitapları"
 
 #: gschem/scheme/gschem/builtins.scm:519
 msgid "View the front page of the gEDA documentation in a browser."
-msgstr ""
+msgstr "Bir tarayıcıda gEDA belgelerinin ön sayfasını görüntüleme."
 
 # Show Shortcuts
 #: gschem/scheme/gschem/builtins.scm:522
 msgid "Show Hotkeys"
 msgstr "Göstermek Kısayollar"
 
+# Component Documentation
 #: gschem/scheme/gschem/builtins.scm:526
 msgid "Component Documentation"
-msgstr ""
+msgstr "Bileşen Belgeleri"
 
+# View documentation for selected component
 #: gschem/scheme/gschem/builtins.scm:528
 msgid "View documentation for selected component"
-msgstr ""
+msgstr "Seçilen bileşen için dokümanları görüntüle"
 
 #: gschem/scheme/gschem/builtins.scm:544
 msgid "Could not show documentation for selected component\n"
-msgstr ""
+msgstr "Seçilen bileşen için dokümantasyon gösterilemedi\n"
 
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
@@ -6012,19 +6015,19 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "gschem Kullanıcı Kılavuzu"
 
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr ""
+msgstr "gschem Sıkça Sorulan Sorular"
 
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "Gschem kullanımı hakkında Sıkça Sorulan Sorular."
 
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "gEDA wiki"
 
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
@@ -6039,17 +6042,15 @@ msgstr ""
 msgid "No documentation found"
 msgstr ""
 
-# Export Symbol
+# Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:57
-#, fuzzy
 msgid "Export embedded symbol"
-msgstr "İhracat Simgesi"
+msgstr "Gömülü sembolü dışa aktar"
 
-# Export embed picture
+# Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "Export embedded picture"
-msgstr "Resim gömme dışa aktar"
+msgstr "Gömülü resmi dışa aktar"
 
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
