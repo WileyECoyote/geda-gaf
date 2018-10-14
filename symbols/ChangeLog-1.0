@@ -1,3 +1,7 @@
+2018-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/zener53/zener_60_1N5371B.sym: Fix voltage in file name.
+
 2018-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add dash 2 symbols for transil diode group
