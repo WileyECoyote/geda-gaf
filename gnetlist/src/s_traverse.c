@@ -587,6 +587,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
   const GList *cl_current;
         int    o_type;
 
+  /* Add object to the visited hash table */
   visit (object);
 
   if (connection_type (object) != type)
