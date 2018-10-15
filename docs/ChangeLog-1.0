@@ -1,3 +1,8 @@
+2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/wiki/geda-gnetlist_scheme_primitives.html: Fix typo gnelist ->
+      gnetlist.
+
 2018-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * wiki/geda-faq-gschem.html: Update grammar, change middle mouse to
