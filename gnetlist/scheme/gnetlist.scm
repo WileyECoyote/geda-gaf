@@ -67,7 +67,7 @@
 ;; Yields a list of lists of command line flags and values. Each flag
 ;; must be known to the gnetlist front end. For example, the "--nomunge"
 ;; flag will yield ("nomunge_mode" #t).
-(define-public (get-calling-flags)
+(define-public (gnetlist:get-calling-flags)
   "Returns a list of `-O' arguments in the form:
 
   ((ARGUMENT #t) ...)"
@@ -110,11 +110,11 @@
 )
 
 (define-public help-flag?
-  (calling-flag? "help" (get-calling-flags))
+  (calling-flag? "help" (gnetlist:get-calling-flags))
 )
 
 (define-public version-flag?
-  (calling-flag? "version" (get-calling-flags))
+  (calling-flag? "version" (gnetlist:get-calling-flags))
 )
 
 ;;-------------  End of command line flag functions ----------------
@@ -166,7 +166,7 @@ values: ~A
 " refdes name values))
       value))))
 
-(define-public (get-package-attribute refdes name)
+(define-public (gnetlist:get-package-attribute refdes name)
   "Return the value associated with attribute NAME on package
 identified by REFDES.
 
@@ -203,7 +203,7 @@ of REFDES. As a result, slots may be repeated in the returned list."
     (gnetlist:get-all-package-attributes refdes "slot"))
    <))
 
-(define-public (get-unique-slots refdes)
+(define-public (gnetlist:get-unique-slots refdes)
   "Return a sorted list of unique slots used by package REFDES."
   (delete-duplicates! (gnetlist:get-slots refdes)))
 
@@ -388,7 +388,7 @@ of REFDES. As a result, slots may be repeated in the returned list."
 ;; define the default handler for get-uref
 ;;(define get-uref gnetlist:get-uref)
 
-(define-public (get-command-line)
+(define-public (gnetlist:get-command-line)
   "Return the command line used to invoke the program."
   (string-join (program-arguments)))
 
