@@ -1,7 +1,8 @@
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/wiki/geda-gnetlist_scheme_primitives.html: Fix typo gnelist ->
-      gnetlist.
+      gnetlist. Change refdes gnetlist:get-all-package-attributes example
+      from D1 to U1.
 
 2018-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
