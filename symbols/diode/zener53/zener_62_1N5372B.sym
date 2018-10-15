@@ -9,9 +9,9 @@ L 0 600 400 600 3 15 0 0 -1 -1
 L 400 600 400 700 3 15 2 0 -1 -1
 P 200 0 200 200 1 0 0
 {
-T 150 50 5 8 0 1 0 6 1
+T 150 75 5 8 0 1 0 6 1
 pinnumber=1
-T 150 50 5 8 0 1 0 6 1
+T 150 75 5 8 0 1 0 6 1
 pinseq=1
 T 300 50 5 8 0 1 0 0 1
 pinlabel=A
@@ -20,28 +20,28 @@ pintype=pas
 }
 P 200 700 200 900 1 0 1
 {
-T 150 775 5 8 0 1 0 6 1
+T 150 725 5 8 0 1 0 6 1
 pinnumber=2
-T 150 775 5 8 0 1 0 6 1
+T 150 725 5 8 0 1 0 6 1
 pinseq=2
 T 250 775 5 8 0 1 0 0 1
 pinlabel=C
-T 150 650 5 8 0 1 0 6 1
-pintype=pas
+T 250 650 5 8 0 1 0 0 1
+pintype=in
 }
 T 550 400 5 10 1 1 0 0 1
-device=1N5228B
+device=1N5372B
 T 550 800 8 10 1 1 0 0 1
 refdes=Z?
+T 550 200 8 10 0 1 0 0 1
+footprint=DO-204AF
+T 550 600 5 10 1 1 0 0 1
+value=62V
+T 543 -15 8 10 0 1 0 0 1
+description=ZENER DIODE,62V,5W
 T 550 1400 8 10 0 0 0 0 1
 author=AutoTron
 T 550 1200 8 10 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 550 1000 8 10 0 0 0 0 1
 use-license=unlimited
-T 550 200 8 10 0 1 0 0 1
-footprint=DO-35
-T 550 600 5 10 1 1 0 0 1
-value=3.9V
-T 593 -15 8 10 0 1 0 0 1
-description=ZENER DIODE,3.9V,1/2W
