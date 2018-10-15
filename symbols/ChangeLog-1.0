@@ -5,6 +5,10 @@
     * diode/zener53/zener_*_1N53??B.sym: Reverse pin number and resequence pin
       attributes.
 
+    * tube/:Add symbols for some additional vacuum tubes:
+
+          * tube/6AB8-1.sym
+
 2018-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add dash 2 symbols for transil diode group
