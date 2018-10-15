@@ -38,6 +38,8 @@ static int unnamed_pin_counter = 1;
 #define MAX_UNNAMED_NETS 99999999
 #define MAX_UNNAMED_PINS 99999999
 
+static int missing_pinnum = 0;
+
 /*! \brief Add a NET record to NET List
  *  \par Function Description
  *   Allocates and initializes a NET record structure. The record
@@ -260,7 +262,14 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
         }
       }
 
-      fprintf(stderr, "%s <%s>.\n", _("Missing pin number attribute"), string);
+      if (!missing_pinnum) {
+
+        const char *msg = _("Missing pin number attribute");
+
+        fprintf(stderr, "%s <%s>.\n", msg, string);
+
+        missing_pinnum = 1;
+      }
     }
   }
 

@@ -12,7 +12,9 @@
           * get-unique-slots
           * get-command-line
 
-    * src/s_net.c: Eliminate o_current; use object argument.
+    * src/s_net.c: Eliminate o_current; use object argument. Add static
+      missing_pinnum and only output one error message for missing pin
+      numbers.
 
 2018-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
