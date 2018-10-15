@@ -202,24 +202,20 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
                                     GedaObject   *object,
                                     char         *hierarchy_tag)
 {
-  GedaObject *o_current;
-
   char *pinnum    = NULL;
   char *uref      = NULL;
   char *temp_uref = NULL;
   char *string;
   char *misc;
 
-  o_current = object;
-
-  pinnum = geda_attrib_search_object_by_name (o_current, "pinnumber", 0);
+  pinnum = geda_attrib_search_object_by_name (object, "pinnumber", 0);
 
 #if DEBUG
   printf("found pinnum: %s\n", pinnum);
 #endif
 
   /* Resolve the uref */
-  temp_uref = geda_attrib_search_object_by_name (o_current->parent_object, "refdes", 0);
+  temp_uref = geda_attrib_search_object_by_name (object->parent_object, "refdes", 0);
 
   if (temp_uref) {
     if (geda_stricmp(temp_uref,"none") == 0) {

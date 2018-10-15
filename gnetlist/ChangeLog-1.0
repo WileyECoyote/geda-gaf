@@ -12,6 +12,8 @@
           * get-unique-slots
           * get-command-line
 
+    * src/s_net.c: Eliminate o_current; use object argument.
+
 2018-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Revise s_net_return_connected_string to account for the
