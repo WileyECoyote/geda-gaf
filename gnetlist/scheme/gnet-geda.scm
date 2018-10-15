@@ -188,7 +188,7 @@
     (geda:components packages)
     (geda:end-components)
     (geda:start-renamed-nets)
-    (geda:renamed-nets get-renamed-nets)
+    (geda:renamed-nets (get-renamed-nets ""))
     (geda:end-renamed-nets)
     (geda:start-nets)
     (geda:nets)

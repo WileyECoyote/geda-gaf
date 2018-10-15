@@ -1,3 +1,8 @@
+2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-geda.scm: Update geda:renamed-nets to pass the level
+      argument to get-renamed-nets, not sure what happened there.
+
 2018-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Revise s_net_return_connected_string to account for the
