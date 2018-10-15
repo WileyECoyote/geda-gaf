@@ -4,7 +4,8 @@
       argument to get-renamed-nets, not sure what happened there.
 
     * scheme/gnetlist.scm: Prefix functions with gnetlist: for consistency
-      with master branch, and documentation:
+      with master branch, and documentation, and add definitions without
+      the prefix:
 
           * get-calling-flags
           * get-package-attribute

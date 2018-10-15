@@ -411,3 +411,10 @@ of REFDES. As a result, slots may be repeated in the returned list."
 ;; Procedure to output messages to geda log
 (define-public (write-log message-string)
   (log! 'message message-string))
+
+;; Defined in this module
+(define-public get-calling-flags           gnetlist:get-calling-flags)
+(define-public get-command-line            gnetlist:get-command-line)
+(define-public get-package-attribute       gnetlist:get-package-attribute)
+(define-public get-unique-slots            gnetlist:get-unique-slots)
+
