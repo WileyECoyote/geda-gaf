@@ -2,6 +2,11 @@
 
     * CascodeAmp/CascodeAmp.sch: Shift diagram to center in titlebock.
 
+    * gTAG/sym/24C64-gt.sym: Redo symbol without net attribute, less gnetlist
+      yelps about "Found a cpinlist head with a netname!" and it seems the
+      examples should have clean output, without obscure messages about
+      "cpinlist" heads.
+
     * gTAG/sym/SN75240PW-gt.sym: Remove author, use-license, and dist-license
       attributes.
 
