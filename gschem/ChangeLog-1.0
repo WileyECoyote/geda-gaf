@@ -1,3 +1,8 @@
+2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/golden/bus_endpoint_to_net.png: Regenerate again, seems to pass
+      on every machine in the world except mine.
+
 2018-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
