@@ -581,7 +581,7 @@
       (newline)
 
      ;; Now write out any model which is pointed to by the part.
-        (cond
+      (cond
 
      ;; one line model and model name exist
          ( (not (or (string=? model "unknown") (string=? model-name "unknown")))
@@ -1296,6 +1296,7 @@
   (lambda (package file-info-list)
 
     (let ((first-char (string (string-ref package 0)) ))  ;; extract first char of refdes.
+
       (cond
        ((string=? first-char "A") (spice-anise:write-ic package file-info-list))
        ((string=? first-char "D") (spice-anise:write-diode package))
@@ -1626,7 +1627,6 @@
       (debug-spew "\nMake first pass through design and create list of all model files referenced.\n")
       (set! file-info-list (spice-anise:create-file-info-list packages file-info-list))
       (debug-spew "Done creating file-info-list.\n\n")
-
 
 ;;
 ;;  Moved this loop before the next one to get numparam to work with ngspice,
