@@ -1253,7 +1253,7 @@
              ;; one model and model name exist
            ( (not (or (string=? model "unknown") (string=? model-name "unknown")))
              (debug-spew (string-append "found model and model-name for " package "\n"))
-             (display (string-append ".MODEL " model-name " " type " (" model ")\n")) )
+             (display (string-append ".MODEL " model-name " " type " (" model ")\n")))
 
              ;; model file exists
            ( (not (or (string=? model-file "unknown") ))
