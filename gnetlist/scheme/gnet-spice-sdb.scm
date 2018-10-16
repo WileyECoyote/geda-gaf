@@ -532,7 +532,7 @@
         (spice-sdb:write-prefix package prefix)
       )
 
-   ;; Next we write out the refdes and nets.
+   ;; Next write out the refdes and nets.
       (spice-sdb:write-component-no-value package)
 
    ;; next look for "model-name" attribute.  Write it out if it exists.
