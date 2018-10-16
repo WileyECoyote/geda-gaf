@@ -88,12 +88,6 @@ pinlabel=A
 T 1150 1000 5 8 0 1 0 8 1
 pintype=io
 }
-T 200 3000 5 10 0 0 0 0 1
-author=AutoTron
-T 200 2800 5 10 0 0 0 0 1
-use-license=GPLv3
-T 200 2600 5 10 0 0 0 0 1
-dist-license=GPLv3 
 T 1200 2200 5 10 0 0 0 0 1
 symversion=0.1
 T 200 1400 8 10 1 1 0 0 1

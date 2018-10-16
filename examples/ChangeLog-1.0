@@ -2,6 +2,9 @@
 
     * CascodeAmp/CascodeAmp.sch: Shift diagram to center in titlebock.
 
+    * gTAG/sym/SN75240PW-gt.sym: Remove author, use-license, and dist-license
+      attributes.
+
 2018-10-05  Wiley E. Hill <wileyhill@gmail.com>
 
     * TwoStageAmp/TwoStageAmp.sch: Shift diagram to center in titlebock.
