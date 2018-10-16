@@ -1,3 +1,8 @@
+2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/defines.h: Redefine INIT_STR macro to use geda_free instead
+      of g_free and geda_strdup instead of g_strdup.
+
 2018-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_box_object.c: Add checks for bounds_valid in check_query.

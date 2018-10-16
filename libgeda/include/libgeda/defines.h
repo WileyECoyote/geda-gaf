@@ -68,8 +68,8 @@
 
 /*! \def INIT_STR(t, name, str) */
 #define INIT_STR(t, name, str) {                               \
-        if((t)->name) g_free((t)->name);                       \
-        (t)->name = g_strdup(((default_ ## name) != NULL) ?    \
+        if((t)->name) geda_free((t)->name);                    \
+        (t)->name = geda_strdup(((default_ ## name) != NULL) ? \
                               (default_ ## name) : (str));     \
 }
 
