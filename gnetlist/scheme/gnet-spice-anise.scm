@@ -561,7 +561,9 @@
    ;; otherwise look for "value" attribute.
       (if (not (string=? model-name "unknown"))
           (display (string-append model-name " " ))  ;; display model-name if known
-          (display (string-append value " ")))       ;; otherwise display value
+          (if (not (string=? model "unknown"))       ;; otherwise check if model
+              (display (string-append device " "))   ;; and use device as model
+              (display (string-append value " "))))  ;; otherwise display value
 
   ;; Next write out attributes if they exist
   ;; First attribute is area.  It is written as a simple string

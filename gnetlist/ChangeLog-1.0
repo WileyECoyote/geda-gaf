@@ -1,3 +1,9 @@
+2018-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-spice-anise.scm: Revise write-transistor-diode to write
+      out the "device" instead of the "value" if the model-name is unknown,
+      but only if the model is known, otherwise fall back to the value.
+
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-geda.scm: Update geda:renamed-nets to pass the level
