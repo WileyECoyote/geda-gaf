@@ -3,6 +3,9 @@
     * docs/Makefile.am: Add html and latex man pages as prerequisite to build
       Doxygen.
 
+    * docs/libgedacairo-man-1.tex: Include generated latex man page so that
+      individuals compiling from source are not required to have latex-live.
+
 2018-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedacairo.1.in: Revise wrap line wrapping, replace back ticks
