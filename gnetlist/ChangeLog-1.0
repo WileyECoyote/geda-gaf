@@ -1,5 +1,8 @@
 2018-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-anise.scm: Rename model -> model-name in create-
+      file-info-list because that's what it is.
+
     * src/s_netlist.c: Reduce the scope of net_name and pl_current in
       s_netlist_name_named_nets. Update function documentation for:
 

@@ -1432,15 +1432,15 @@
         file-info-list                          ;; end of packages processed.  Return file-info-list
         (let* ((package (car package-list))     ;; otherwise get next package (i.e. refdes)
                (device (string))
-               (model (string))
                (value (string))
                (model-file (string))
+               (model-name (string))
               )                                 ;; end of let* assignments
 
-          (set! device (get-device package) )
-          (set! model (get-package-attribute package "model-name") )
-          (set! value (get-package-attribute package "value") )
-          (set! model-file (get-package-attribute package "file") )
+          (set! device (get-device package))
+          (set! value (get-package-attribute package "value"))
+          (set! model-file (get-package-attribute package "file"))
+          (set! model-name (get-package-attribute package "model-name"))
 
           ;; Now run a series of checks to see if we should stick this file into the file-info-list
           ;; Check to see if "file" attribute is non-empty
@@ -1462,7 +1462,7 @@
               ;; file-type is OK.  Return file-info-list with new triplet attached.
                           (begin
                             (debug-spew (string-append "Inserting " model-file " into list of known model files.\n"))
-                            (set! file-info-list (append (list (list model model-file file-type)) file-info-list) )
+                            (set! file-info-list (append (list (list model-name model-file file-type)) file-info-list) )
                           )
 
               ;;  Otherwise, file type is not a model type.  Don't stick it in list.  Print debug spew if desired.
