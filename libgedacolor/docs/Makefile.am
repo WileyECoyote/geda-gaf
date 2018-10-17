@@ -92,6 +92,7 @@ else
 .1.html:
 	@echo "No working groff available: cannot create $@"
 	@! :
+
 .1.tex:
 	@echo "No working groff available: cannot create $@"
 	@! :
