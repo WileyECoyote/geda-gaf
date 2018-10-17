@@ -140,7 +140,7 @@ char *s_netattrib_extract_netname(char *value)
  *         node.
  */
 void
-s_netattrib_create_pins(GedaToplevel *pr_current,GedaObject *o_current,
+s_netattrib_create_pins(GedaToplevel *pr_current, GedaObject *o_current,
                         NETLIST *netlist, char *value, char *hierarchy_tag)
 {
   char *char_ptr;
