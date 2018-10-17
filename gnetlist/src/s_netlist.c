@@ -125,11 +125,8 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
                                      NETLIST *named_netlist,
                                      NETLIST *unnamed_netlist)
 {
-
-  NETLIST  *nl_current;
-  CPINLIST *pl_current;
-  NET      *n_current;
-  char     *net_name;
+  NETLIST *nl_current;
+  NET     *n_current;
 
   if (verbose_mode) {
     printf("\n- %s\n", _("Staring post processing"));
@@ -144,7 +141,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
 
     if (nl_current->cpins) {
 
-      pl_current = nl_current->cpins;
+      CPINLIST *pl_current = nl_current->cpins;
 
       while (pl_current != NULL) {
 
@@ -154,9 +151,11 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
 
         if (pl_current->plid != -1 && pl_current->nets) {
 
-          verbose_print("n");
-          net_name = NULL;
+          char *net_name;
 
+          verbose_print("n");
+
+          net_name  = NULL;
           n_current = pl_current->nets;
 
           while (n_current != NULL) {
@@ -171,6 +170,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
             }
             n_current = n_current->next;
           }
+
           if (net_name != NULL) {
             pl_current->net_name = geda_strdup(net_name);
           }
