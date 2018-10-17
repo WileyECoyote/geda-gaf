@@ -25,6 +25,9 @@ DOMAIN             = geda-gattrib
 @DESKTOP_I18N_LANGS_RULE@
 @DESKTOP_I18N_DESKTOP_RULE@
 
+EXTRA_DIST         = $(app_icon_files) $(desktop_in_files) \
+		     $(desktop_DATA) $(registry_DATA)
+
 install_icon_exec = \
 	$(ICON_THEME_INSTALLER) \
 	-t $(theme) \
@@ -51,4 +54,4 @@ endif
 
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
 DISTCLEANFILES       = $(desktop_DATA)
-EXTRA_DIST           = $(app_icon_files) $(desktop_in_files) $(desktop_DATA)
+

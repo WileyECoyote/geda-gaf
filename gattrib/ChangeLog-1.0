@@ -1,3 +1,7 @@
+2018-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * data/Makefile.am: Include registry_DATA in extra distribution.
+
 2018-10-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_find.c: Update Doxygen comment blocks.
