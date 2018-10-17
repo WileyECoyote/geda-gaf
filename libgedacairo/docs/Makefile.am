@@ -26,7 +26,7 @@ endif
 # When generating doxygen documentation we check for the existence of the
 # output directory and create if needed. After doxygen executes, we check
 # for the latex directory and skip latex if the diretory does not exist.
-doxygen: libgedacairo.dox;
+doxygen: libgedacairo.dox $(dist_docsman_DATA) $(text_man_files)
 
 	@echo 'Creating doxygen documentation for libgedacairo...'
 if ENABLE_DOXYGEN
@@ -72,7 +72,7 @@ docsmandir=$(docdir)/man
 
 dist_docsman_DATA=$(html_man_files)
 
-.1.html:
+.1.html: $(dist_man_MANS)
 	@rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
 	cp -f $@.tmp $@ && \
@@ -95,7 +95,7 @@ else
 endif
 
 MOSTLYCLEANFILES = 	*.log *~
-CLEANFILES = 		*.log *~ $(dist_man_MANS)
+CLEANFILES = 		*.log *~
 DISTCLEANFILES =        *.log *~ $(dist_man_MANS)
 MAINTAINERCLEANFILES = 	*.log *~ $(dist_man_MANS) Makefile.in
 
