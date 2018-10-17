@@ -107,14 +107,23 @@ void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *strings)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Assign Net list Names in the Graphical Netlist
+ * \par Function Description
+ *  Called by s_traverse_process, post processing, to update the graphical
+ *  netlist with net names already assigned. Iterate over each pin in the
+ *  \a unnamed_netlist, aka the graphical_netlist_head, and for each net
+ *  found, replaces every pl_current->nets->net_name with the pointer
+ *  returned by s_netlist_netname_of_netid, and when a net_name exist,
+ *  the pointer is also assigned to pl_current->net_name.
  *
+ * \param [in] pr_current       Current GedaToplevel structure; toplevel,
+ * \param [in] named_netlist    The List to search for net names; the netlist
+ * \param [in] unnamed_netlist  NetlList of all objects with a graphical tag
  */
 void s_netlist_name_named_nets (GedaToplevel *pr_current,
-                                NETLIST *named_netlist,
-                                NETLIST *unnamed_netlist)
+                                     NETLIST *named_netlist,
+                                     NETLIST *unnamed_netlist)
 {
 
   NETLIST  *nl_current;

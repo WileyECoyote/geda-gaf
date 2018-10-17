@@ -1,3 +1,9 @@
+2018-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_netlist.c: Update function documentation for:
+
+          * s_netlist_name_named_nets
+
 2018-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice-anise.scm: Revise write-transistor-diode to write
