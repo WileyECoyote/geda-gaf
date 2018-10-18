@@ -300,7 +300,7 @@ gsch2pcb backend configuration:
 
         (message "Using the m4 processor for pcb footprints\n")
         ;; packages is a list with the different refdes value
-        (gsch2pcb:write-value-footprints op netlist:packages)
+        (gsch2pcb:write-value-footprints op packages)
         (close-port op)
         (do ((line (read-line ip) (read-line ip)))
            ((eof-object? line))
@@ -310,6 +310,6 @@ gsch2pcb backend configuration:
       ;; don't use m4
       (begin
         (message "Skipping the m4 processor for pcb footprints\n")
-        (gsch2pcb:write-value-footprints (current-output-port) netlist:packages)))
+        (gsch2pcb:write-value-footprints (current-output-port) packages)))
 
   (gsch2pcb:write-bottom-footer)))

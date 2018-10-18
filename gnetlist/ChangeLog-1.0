@@ -1,5 +1,7 @@
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-gsch2pcb.scm.in: Update gnetlist:packages = packages.
+
     * tests/common/outputs/spice-sdb/*-output.net: Remove directories
       above geda-gaf from the reference files.
 
