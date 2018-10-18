@@ -7,7 +7,7 @@ if HAVE_PYTHON
 GEDATHON_DIR=libgedathon
 endif
 
-CLEAN_DIRS = M4/*~
+CLEAN_DIRS = m4/*~
 
 SUBDIRS = bitmaps include intl libgeda libgedacolor libgedacairo \
 		  libgedadraw libgedauio ${GEDATHON_DIR} gaf ${GATTRIB_DIR} \
