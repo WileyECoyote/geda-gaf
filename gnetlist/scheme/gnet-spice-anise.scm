@@ -1413,7 +1413,8 @@
           ( (string=? device "SUBCKT_NMOS")
               (spice-anise:write-subckt-nmos-transistor package))
           ( else
-              (spice-anise:write-default-component package file-info-list))
+              (spice-anise:write-default-component package file-info-list)
+          )
         ) ;; end of cond
         (spice-anise:write-netlist file-info-list (cdr ls))
          ))))
