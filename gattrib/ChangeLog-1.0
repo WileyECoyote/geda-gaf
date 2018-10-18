@@ -2,6 +2,8 @@
 
     * data/Makefile.am: Clean data subdirectory.
 
+    * Makefile.am: Clean po subdirectory and other stuff.
+
 2018-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Include registry_DATA in extra distribution.
