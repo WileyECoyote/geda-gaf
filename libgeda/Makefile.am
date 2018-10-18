@@ -34,7 +34,7 @@ update-gmo:
 update-po:
 	$(MAKE) -C po update-po || exit 1;
 
-MOSTLYCLEANFILES     = *.log core *~
-CLEANFILES           = *.log core *~
-DISTCLEANFILES       = *.log core *~ libgeda.pc po/domain.mak
-MAINTAINERCLEANFILES = *.log core *~ Makefile.in libgeda.pc ChangeLog
+MOSTLYCLEANFILES     = *.log core FILE po/*~ *~
+CLEANFILES           = *.log core FILE po/*~ *~
+DISTCLEANFILES       = *.log core FILE po/*~ *~ libgeda.pc po/domain.mak
+MAINTAINERCLEANFILES = *.log core FILE po/*~ *~ Makefile.in libgeda.pc ChangeLog
