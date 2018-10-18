@@ -52,8 +52,8 @@ if ENABLE_UPDATE_XDG_DATABASE
 endif
 	$(install_icon_exec) -u $(theme_icons)
 
-MOSTLYCLEANFILES     = *.log core FILE po/*~ *~
-CLEANFILES           = *.log core FILE po/*~ *~
-DISTCLEANFILES       = *.log core FILE po/*~ *~
-MAINTAINERCLEANFILES = *.log core FILE po/*~ *~ Makefile.in ChangeLog $(desktop_DATA)
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~
+MAINTAINERCLEANFILES = *.log *~ core FILE Makefile.in
+DISTCLEANFILES       = $(desktop_DATA)
 
