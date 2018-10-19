@@ -329,4 +329,3 @@ SCM g_rc_unnamed_busname(SCM name)
 }
 
 /*************************** GUILE end done *********************************/
-
