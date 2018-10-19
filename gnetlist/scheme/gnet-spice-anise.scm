@@ -541,7 +541,8 @@
   (lambda (package prefix type attrib-list)
 
     ;; First do local assignments
-    (let ((model-name (get-package-attribute package "model-name"))
+    (let ((device (get-package-attribute package "device"))
+          (model-name (get-package-attribute package "model-name"))
           (model (get-package-attribute package "model"))
           (value (get-package-attribute package "value"))
           (area (get-package-attribute package "area"))
@@ -589,9 +590,9 @@
            (display (string-append ".MODEL " model-name " " type " (" model ")\n")) )
 
      ;; one line model and component value exist
-         ( (not (or (string=? model "unknown") (string=? value "unknown")))
-           (debug-spew (string-append "found model and value for " package "\n"))
-           (display (string-append ".MODEL " model-name " " type " (" value ")\n")) )
+     ;    ( (not (or (string=? model "unknown") (string=? value "unknown")))
+     ;      (debug-spew (string-append "found model and value for " package "\n"))
+     ;      (display (string-append ".MODEL " model-name " " type " (" value ")\n")) )
 
      ;; model file and model name exist
          ( (not (or (string=? model-file "unknown") (string=? model-name "unknown")))
