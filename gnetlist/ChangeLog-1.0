@@ -3,6 +3,8 @@
     * scheme/gnet-spice-anise.scm: comment-out inconsistent illogical case
       in write-transistor-diode, to entire function appears to be junk.
 
+    * src/g_rc.c: Reformat Doxygen documentation, update copyright.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-gsch2pcb.scm.in: Update gnetlist:packages = packages.
