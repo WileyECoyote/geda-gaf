@@ -605,11 +605,10 @@
            (debug-spew "I'll deal with the file later . . .\n")
          )
 
-         )  ;; close of cond
-        )
+      )  ;; close of cond
+     )   ;; close let
     )
 )
-
 
 ;;----------------------------------------------------------------
 ;;  write diode
