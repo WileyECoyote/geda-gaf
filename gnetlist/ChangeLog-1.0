@@ -5,6 +5,8 @@
 
     * src/g_rc.c: Reformat Doxygen documentation, update copyright.
 
+    * src/gnetlist.c: Replace macro u_log_message with macro geda_log.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-gsch2pcb.scm.in: Update gnetlist:packages = packages.

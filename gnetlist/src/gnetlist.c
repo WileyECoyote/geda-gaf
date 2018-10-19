@@ -236,15 +236,15 @@ void main_prog(void *closure, int argc, char *argv[])
   /* WEH: even if logging is not enabled */
   geda_utility_log_init ("gnetlist");
 
-  u_log_message("%s %s%s.%s\n", "gEDA/gnetlist version",
-                                 PREPEND_VERSION_STRING,
-                                 PACKAGE_DOTTED_VERSION,
-                                 PACKAGE_DATE_VERSION);
-  u_log_message
+  geda_log("%s %s%s.%s\n", "gEDA/gnetlist version",
+                            PREPEND_VERSION_STRING,
+                            PACKAGE_DOTTED_VERSION,
+                            PACKAGE_DATE_VERSION);
+  geda_log
   (_("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n"));
-  u_log_message
+  geda_log
   (_("This is free software, and you are welcome to redistribute it under certain\n"));
-  u_log_message
+  geda_log
   (_("conditions; please see the COPYING file for more details.\n\n"));
 
   /* immediately setup configuration and user params */
@@ -288,7 +288,7 @@ void main_prog(void *closure, int argc, char *argv[])
     }
 
     if (!quiet_mode) {
-      u_log_message ("%s: \"%s\"\n", _("Loading schematic"), filename);
+      geda_log ("%s: \"%s\"\n", _("Loading schematic"), filename);
       fprintf (stderr,"%s: \"%s\"\n", _("Loading schematic"), filename);
     }
 
