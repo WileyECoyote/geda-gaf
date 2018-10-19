@@ -1,3 +1,8 @@
+2018-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/wiki/geda-gnetlist_scheme_primitives.html: Remove BUG note related
+      to version 1.9.1, the BUG is not present in the Rampage Edition.
+
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/wiki/geda-gnetlist_scheme_primitives.html: Fix typo gnelist ->
