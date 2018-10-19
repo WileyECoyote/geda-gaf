@@ -87,7 +87,7 @@ void s_hierarchy_traverse(GedaToplevel *pr_current,
     /* loop over all filenames */
     while (current_filename != NULL) {
 
-      u_log_message("%s \"%s\"\n", _("Commence traversing source"), current_filename);
+      geda_log("%s \"%s\"\n", _("Commence traversing source"), current_filename);
 
       /* guts here */
       /* guts for a single filename */
