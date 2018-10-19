@@ -179,7 +179,8 @@ s_netattrib_create_pins(GedaToplevel *pr_current, GedaObject *o_current,
         if (old_cpin->nets != NULL) {
 
           if (old_cpin->nets->net_name) {
-            if (!quiet_mode) {
+            /* What does "cpinlist head" really tell the user? */
+            if (verbose_mode) {
               fprintf(stderr, _("Found a cpinlist head with a netname! [%s]\n"),
               old_cpin->nets->net_name);
             }

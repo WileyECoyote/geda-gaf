@@ -9,6 +9,9 @@
 
     * src/s_hierarchy.c: Replace macro u_log_message with macro geda_log.
 
+    * src/s_netattrib.c: Change conditional to only output "cpinlist head"
+      message when verbose_mode.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-gsch2pcb.scm.in: Update gnetlist:packages = packages.
