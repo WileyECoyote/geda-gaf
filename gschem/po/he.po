@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -52,11 +52,10 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
-"יש להגדיר את משתנה הסביבה GEDADATA"
-"!\n\n"
+"יש להגדיר את משתנה הסביבה GEDADATA!\n"
+"\n"
 "gschem לא יכול לאתר כמה קבצי נתונים. ודא את GEDADATA\n"
-"משתנה הסביבה מצביע על המיקום הנכון"
-".\n"
+"משתנה הסביבה מצביע על המיקום הנכון.\n"
 
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
@@ -400,9 +399,11 @@ msgstr ""
 msgid "Snap Size"
 msgstr ""
 
+# Sets the grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
+msgstr "קובע את גודל הרשת להצגה בשורת המצב"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"

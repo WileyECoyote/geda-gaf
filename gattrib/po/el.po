@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2012-09-01 18:26+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Επεξεργαστής γνωρισμάτων gEDA"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Έλεγχος των γνωρισμάτων των στοιχείων με το gattrib"
 
-#: gattrib/src/f_export.c:80
+#: gattrib/src/f_export.c:81
 msgid "Could not open"
 msgstr ""
 
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr ""
 
-#: gattrib/src/gattrib.c:402
+#: gattrib/src/gattrib.c:403
 msgid "Could not find file"
 msgstr ""
 
-#: gattrib/src/gattrib.c:449
+#: gattrib/src/gattrib.c:450
 msgid "Exported schematic to"
 msgstr ""
 
@@ -421,15 +421,15 @@ msgstr ""
 msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:80
+#: gattrib/src/x_find.c:83
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:289
+#: gattrib/src/x_find.c:294
 msgid "Attribute"
 msgstr "Χαρακτηριστικό"
 
-#: gattrib/src/x_find.c:326
+#: gattrib/src/x_find.c:332
 msgid "Designator"
 msgstr ""
 
@@ -852,11 +852,11 @@ msgid "both"
 msgstr "και τα δυο"
 
 # Saving main window geometry and settings
-#: gattrib/src/x_window.c:185
+#: gattrib/src/x_window.c:189
 msgid "Saving main window geometry and settings.\n"
 msgstr "Αποθήκευση γεωμετρίας και ρυθμίσεων του κύριου παραθύρου.\n"
 
 # Retrieving main Window geometry and settings
-#: gattrib/src/x_window.c:214
+#: gattrib/src/x_window.c:219
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "Επαναφέρετε την αρχική γεωμετρία και τις ρυθμίσεις.\n"

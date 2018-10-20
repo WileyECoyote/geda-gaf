@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Sasan Jafarnejad <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -427,7 +427,8 @@ msgstr "اندازه ضربه محکم و ناگهانی"
 
 # Sets the Size Mode to shown on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
 msgstr "حالت اندازه را برای نشان دادن در نوار وضعیت تنظیم می کند"
 
 # Status Text

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -343,7 +343,8 @@ msgstr "Modo de Coordenadas"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr "Define o modo de formato usado para exibir coordenadas na barra de status"
+msgstr ""
+"Define o modo de formato usado para exibir coordenadas na barra de status"
 
 # Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
@@ -411,8 +412,9 @@ msgid "Snap Size"
 msgstr "Tamanho do Ajuste"
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
-msgstr ""
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
+msgstr "Define o tamanho da grade para exibir na barra de status"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665

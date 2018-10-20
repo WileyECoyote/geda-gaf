@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -406,7 +406,8 @@ msgid "Snap Size"
 msgstr "Snap Grootte"
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
 msgstr "Stel die grootte-modus word getoon op die statusbalk"
 
 #: gschem/src/base/gschem_status_bar.c:665

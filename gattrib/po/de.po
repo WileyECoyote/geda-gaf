@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2010-01-29 16:46+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -27,7 +27,7 @@ msgid "Manipulate component attributes with gattrib"
 msgstr "Editieren von Bauteilattributen mit gattrib"
 
 # Could not open
-#: gattrib/src/f_export.c:80
+#: gattrib/src/f_export.c:81
 msgid "Could not open"
 msgstr "Konnte nicht öffnen"
 
@@ -37,12 +37,12 @@ msgid "Failed to save user configuration to"
 msgstr "Die Benutzerkonfiguration konnte nicht gespeichert werden"
 
 # Could not find file
-#: gattrib/src/gattrib.c:402
+#: gattrib/src/gattrib.c:403
 msgid "Could not find file"
 msgstr "Konnte Datei nicht finden"
 
 # Exported schematic to
-#: gattrib/src/gattrib.c:449
+#: gattrib/src/gattrib.c:450
 msgid "Exported schematic to"
 msgstr "Ausgeführte Schemata zu"
 
@@ -426,15 +426,15 @@ msgstr ""
 msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:80
+#: gattrib/src/x_find.c:83
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:289
+#: gattrib/src/x_find.c:294
 msgid "Attribute"
 msgstr "Attribut"
 
-#: gattrib/src/x_find.c:326
+#: gattrib/src/x_find.c:332
 msgid "Designator"
 msgstr ""
 
@@ -854,11 +854,11 @@ msgid "both"
 msgstr "beide"
 
 # Saving main window geometry and settings
-#: gattrib/src/x_window.c:185
+#: gattrib/src/x_window.c:189
 msgid "Saving main window geometry and settings.\n"
 msgstr "Speichern der Hauptfenstergeometrie und -einstellungen.\n"
 
 # Retrieving main Window geometry and settings
-#: gattrib/src/x_window.c:214
+#: gattrib/src/x_window.c:219
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "Wiederherstellen der ursprünglichen Geometrie und Einstellungen.\n"

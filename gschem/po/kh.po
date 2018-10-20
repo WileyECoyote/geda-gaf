@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -396,7 +396,8 @@ msgid "Snap Size"
 msgstr "tomham khtasa"
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
 msgstr "kamnt rbieb tomham daembi bangheanh now leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:665
@@ -3277,7 +3278,9 @@ msgstr "visaealpheap"
 
 #: gschem/src/x/x_image.c:67
 msgid "Generate image from schematic Extents or the currently displayed view"
-msgstr "bangkeut roubpheap pi athr k tha krongkar ryy tidthpheap del ban bangheanh bachchobban"
+msgstr ""
+"bangkeut roubpheap pi athr k tha krongkar ryy tidthpheap del ban bangheanh "
+"bachchobban"
 
 #: gschem/src/x/x_image.c:68
 msgid "   Use Color"

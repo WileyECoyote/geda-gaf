@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -434,7 +434,8 @@ msgstr "Размер на приплъзване"
 
 # Zadava rezhima na razmera, koĭto da se pokazva v lentata na sŭstoyanieto
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
 msgstr "Задава режима на размера, който да се показва в лентата на състоянието"
 
 # Status Text
@@ -583,12 +584,16 @@ msgstr "досие"
 #: gschem/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr "Невалидна стойност, увеличение на мащаба не може да бъде нула, проверете влизането в rc файл\n"
+msgstr ""
+"Невалидна стойност, увеличение на мащаба не може да бъде нула, проверете "
+"влизането в rc файл\n"
 
 #: gschem/src/guile/g_rc.c:720
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr "Невалидно присвояване на типа, проверете запис за увеличаване на мащаба в rc файла\n"
+msgstr ""
+"Невалидно присвояване на типа, проверете запис за увеличаване на мащаба в rc "
+"файла\n"
 
 #: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1268
 #: gschem/src/guile/g_rc.c:1414 gschem/src/guile/g_rc.c:2007
@@ -598,7 +603,9 @@ msgstr "Продължаване с стойността по подразбир
 #: gschem/src/guile/g_rc.c:801
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr "Невалидно присвояване на тип, проверете влизането в регистрацията в rc файла\n"
+msgstr ""
+"Невалидно присвояване на тип, проверете влизането в регистрацията в rc "
+"файла\n"
 
 #: gschem/src/guile/g_rc.c:1262
 #, c-format

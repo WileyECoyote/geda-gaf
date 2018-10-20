@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-10-17 10:35-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -409,7 +409,8 @@ msgid "Snap Size"
 msgstr "Шаг"
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Mode to display on the status bar"
+#, fuzzy
+msgid "Sets the Size Size to display on the status bar"
 msgstr "Устанавливает режим размера для отображения в строке состояния"
 
 # Status Text
@@ -437,7 +438,8 @@ msgstr "Установите или получите высоту строки �
 
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
-msgstr "Отображение координат, щелчок правой кнопкой мыши для параметров формата"
+msgstr ""
+"Отображение координат, щелчок правой кнопкой мыши для параметров формата"
 
 #: gschem/src/base/gschem_status_bar.c:1183
 msgid "Left pointer button assignment"
@@ -445,7 +447,9 @@ msgstr "Назначение кнопки левого указателя"
 
 #: gschem/src/base/gschem_status_bar.c:1184
 msgid "Middle pointer button assignment, right click for options"
-msgstr "Назначение кнопки «Средний указатель», щелчок правой кнопкой мыши по параметрам"
+msgstr ""
+"Назначение кнопки «Средний указатель», щелчок правой кнопкой мыши по "
+"параметрам"
 
 #: gschem/src/base/gschem_status_bar.c:1185
 msgid "Right pointer button assignment, right click for options"
