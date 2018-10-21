@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -244,92 +244,109 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "Önizlenecek dosyanın adı"
 
 # Object List
 #: gschem/src/base/gschem_preview.c:535
 msgid "Object List"
 msgstr "Nesne Listesi"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Önizlenecek nesnelerin listesi"
 
 # Active
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
 msgstr "Aktif"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Önizleme widget'ının etkin olup olmadığı"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "Büyük boy"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Önizleme widget'ının büyük veya küçük olması gerekip gerekmediği"
 
 # Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
 msgstr "Koordinatlar Modu"
 
+# Sets the Format Mode used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Durum çubuğundaki koordinatları görüntülemek için kullanılan Biçim Modunu ayarlar."
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
 msgstr "Izgara Modu"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Durum çubuğunda görüntülenecek Izgara Modunu ayarlar"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Izgara boyutu"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Durum çubuğunda görüntülenecek Izgara Boyutunu ayarlar"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "yükseklik"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Durum çubuğunun yüksekliğini ayarlar"
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "Sol Düğme Metni"
 
+# Set the string for the Left Button Text
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Sol Düğme Metninin dizesini ayarlayın"
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Orta Düğme Metni"
 
+# Set the string for the Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Orta Düğme Metninin dizesini ayarlayın"
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "Sağ Düğme Metni"
 
+# Set the string for the Right Button Text
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Sağ Düğme Metninin dizesini ayarlayın"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
@@ -344,7 +361,7 @@ msgid "Snap Size"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Size to display on the status bar"
+msgid "Sets the Snap Size to display on the status bar"
 msgstr ""
 
 # Status Text
