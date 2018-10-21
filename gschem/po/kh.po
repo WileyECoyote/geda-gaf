@@ -1,6 +1,6 @@
 # Cambodia translation for geda
-# Copyright (c) 2016 Wiley Edward Hill
-# Copyright (c) 2016 gEDA Developers
+# Copyright (c) 2018 Wiley Edward Hill
+# Copyright (c) 2018 gEDA Developers
 # This file is distributed under the same license as the geda package.
 # Wiley Edward Hill <wileyhill@gmail.com>, 2016.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -396,9 +396,8 @@ msgid "Snap Size"
 msgstr "tomham khtasa"
 
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "kamnt rbieb tomham daembi bangheanh now leu rbar sthanphap"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "kamnt tomham khtasa daembi bangheanh now leu rbar sthanphap"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
@@ -1398,27 +1397,27 @@ msgstr "kamnt lekh chabphtaem samreab sken bachchobban"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "    Remove numbers:"
-msgstr ""
+msgstr "loub lekh:"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "Remove existing reference numbers"
-msgstr ""
+msgstr "loub lekh yong del mean"
 
 #: gschem/src/x/x_autonumber.c:123
 msgid "Automatic slotting:"
-msgstr ""
+msgstr "slotting  daoy svyobravotte:"
 
 #: gschem/src/x/x_autonumber.c:123
 msgid "Automatic slotting"
-msgstr ""
+msgstr "slotting  daoy svyobravotte"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Overwrite existing numbers:"
-msgstr ""
+msgstr "sarser cheanleu lekh del meanosrab:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Overwrite existing numbers"
-msgstr ""
+msgstr "sarser cheanleu lekh del meanosrab"
 
 #: gschem/src/x/x_autonumber.c:609
 msgid ""
@@ -1464,36 +1463,37 @@ msgstr "pi stam tow chhveng"
 
 #: gschem/src/x/x_autonumber.c:1164
 msgid "File order"
-msgstr "kolbamnng eksar"
+msgstr "Kolbamnng Eksar"
 
 # Filter
 #: gschem/src/x/x_autonumber.c:1655
 msgid "Filter:"
-msgstr "tamrong:"
+msgstr "Tamrong:"
 
 #: gschem/src/x/x_autonumber.c:1660
 msgid "_History"
-msgstr ""
+msgstr "Bravotte"
 
+# Unset => not set
 #: gschem/src/x/x_autonumber.c:1668
 msgid "_Unset"
-msgstr ""
+msgstr "minban kamnt"
 
 #: gschem/src/x/x_autonumber.c:1673
 msgid "_Wild"
-msgstr ""
+msgstr "Prei"
 
 #: gschem/src/x/x_autonumber.c:1696
 msgid "Selected objects"
-msgstr "vottho del ban chreus"
+msgstr "Vottho del ban chreus"
 
 #: gschem/src/x/x_autonumber.c:1697
 msgid "Current page"
-msgstr "tompr bachchobban"
+msgstr "Tompr bachchobban"
 
 #: gschem/src/x/x_autonumber.c:1698
 msgid "Whole hierarchy"
-msgstr "thananoukram teangmoul"
+msgstr "Thananoukram teangmoul"
 
 #: gschem/src/x/x_autonumber.c:1746
 msgid "Autonumber text"
@@ -1501,11 +1501,11 @@ msgstr "atthabt lekh svyobravotte"
 
 #: gschem/src/x/x_autonumber.c:1769
 msgid "Scope"
-msgstr ""
+msgstr "Visaealpheap"
 
 #: gschem/src/x/x_autonumber.c:1843
 msgid "Options"
-msgstr "chomreus"
+msgstr "Chomreus"
 
 #: gschem/src/x/x_clipboard.c:330
 msgid "Invalid schematic on clipboard"
@@ -1523,7 +1523,7 @@ msgstr "ben th kta r tambiet khtasa breachy"
 
 #: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2231
 msgid "Open"
-msgstr "..."
+msgstr "Baek"
 
 # Open all
 #: gschem/src/x/x_compselect.c:128
@@ -1536,7 +1536,7 @@ msgstr "bet"
 
 #: gschem/src/x/x_compselect.c:130
 msgid "Refresh"
-msgstr ""
+msgstr "thveu​ aoy​ srasa"
 
 # Rescan
 #: gschem/src/x/x_compselect.c:131 gschem/src/x/x_compselect.c:3170
@@ -1550,23 +1550,23 @@ msgstr "rochneabt"
 
 #: gschem/src/x/x_compselect.c:133
 msgid "Tooltips"
-msgstr ""
+msgstr "ptrmean chomnuoy"
 
 #: gschem/src/x/x_compselect.c:139
 msgid "Expand one level"
-msgstr ""
+msgstr "pongrik muoy kamrit"
 
 #: gschem/src/x/x_compselect.c:140
 msgid "Expand all sub-folders"
-msgstr ""
+msgstr "pongrik tht rng teangoasa"
 
 #: gschem/src/x/x_compselect.c:141
 msgid "Close this folder"
-msgstr ""
+msgstr "bet tht nih"
 
 #: gschem/src/x/x_compselect.c:142
 msgid "Refresh this view"
-msgstr ""
+msgstr "thveu aoy srasa tidthpheap nih"
 
 # Rescan the libraries
 #: gschem/src/x/x_compselect.c:143
@@ -1580,7 +1580,7 @@ msgstr "kamnt rochneabtm chomreus"
 
 #: gschem/src/x/x_compselect.c:145
 msgid "Tooltip settings"
-msgstr ""
+msgstr "karkamnt ptrmean chomnuoy"
 
 # Enable tooltips
 #: gschem/src/x/x_compselect.c:146
@@ -1716,26 +1716,28 @@ msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:335
 msgid "S_elect the schematics you want to save:"
-msgstr ""
+msgstr "chreusa krongkar del anak chng roksaatouk"
 
 #: gschem/src/x/x_confirm_close.c:508
 #, c-format
 msgid "Save the changes to schematic \"%s\" before closing?"
-msgstr ""
+msgstr "roksaatouk kar phlasa btau rtow schematic \"%s\" moun pel bet?"
 
 #: gschem/src/x/x_confirm_close.c:515
 #, c-format
 msgid ""
 "There are %d schematics with unsaved changes. Save changes before closing?"
 msgstr ""
+"Mean %d schematics  cheamuoy kar phlasa btau r minban roksaatouk. Roksaatouk "
+"kar phlasa btau r moun pel bet?"
 
 #: gschem/src/x/x_confirm_close.c:545
 msgid "If you do not save, all your changes will be permanently lost."
-msgstr ""
+msgstr "brasenbae anak min roksaatouk te real kar phlasa btau r robsa anak nung batbng cheaachentrai."
 
 #: gschem/src/x/x_confirm_close.c:562
 msgid "Close without saving"
-msgstr ""
+msgstr "bet daoy min roksaatouk"
 
 # unsaved page
 #: gschem/src/x/x_confirm_close.c:615
@@ -1769,7 +1771,7 @@ msgstr "sovotthephap rbieb"
 
 #: gschem/src/x/x_console.c:187
 msgid "multitasking mode"
-msgstr ""
+msgstr "rbieb kechchakar chraen"
 
 #: gschem/src/x/x_console.c:188
 msgid "unknown"
@@ -2404,12 +2406,12 @@ msgstr ""
 
 #: gschem/src/x/x_edit_array.c:945 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
-msgstr ""
+msgstr "bangkeut a re"
 
 #: gschem/src/x/x_edit_array.c:982 gschem/src/x/x_edit_array.c:1052
 #: gschem/src/x/x_edit_array.c:1085
 msgid "Count"
-msgstr ""
+msgstr "reab"
 
 # X Size
 #: gschem/src/x/x_edit_array.c:993
@@ -2434,7 +2436,7 @@ msgstr "a re"
 
 #: gschem/src/x/x_edit_array.c:1044
 msgid "Row"
-msgstr ""
+msgstr "chuordek"
 
 # Offset
 #: gschem/src/x/x_edit_array.c:1067 gschem/src/x/x_edit_array.c:1100
@@ -2443,7 +2445,7 @@ msgstr "ohvaset"
 
 #: gschem/src/x/x_edit_array.c:1077
 msgid "Column"
-msgstr ""
+msgstr "chuorochhor"
 
 #: gschem/src/x/x_edit_array.c:1110
 msgid "Y"
@@ -6100,29 +6102,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>visaealpheap</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>banthem kounalokkhan</b>"
-
-# Automatic Height
-#~ msgid "Auto Height"
-#~ msgstr "kamposa daoy svyobravotte"
-
-# Enable or disable Page Select dialog auto height
-#~ msgid "Enable or disable Page Select dialog auto height"
-#~ msgstr "baek ryy bet braab kamposa braab chreusareusa tompr"
-
-# Enable or disable displaying of paths in file names
-#~ msgid "Enable or disable displaying of paths in file names"
-#~ msgstr "Enable or disable displaying of paths in file names"
-
-# Selection
-#~ msgid "<b>Selection</b>"
-#~ msgstr "chomreus"
-
-# Array
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>a re</b>"
