@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -406,9 +406,8 @@ msgid "Snap Size"
 msgstr "Snap Grootte"
 
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "Stel die grootte-modus word getoon op die statusbalk"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "Stel die Snap Grootte in om op die statusbalk te vertoon"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
@@ -742,9 +741,10 @@ msgstr "Simbool is nie 'n ware lêer. Simbool kan nie gelaai word nie.\n"
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Daar is geen stroombaandiagram Bo die aktiewe bladsy!\n"
 
+# Object is attached to something
 #: gschem/src/iface/i_command.c:3374
 msgid "Object is attached to something\n"
-msgstr ""
+msgstr "Voorwerp is aan iets verbonde\n"
 
 #: gschem/src/iface/i_command.c:3780
 msgid "Attribute is already attached\n"
@@ -865,7 +865,7 @@ msgstr "Lêer"
 
 #: gschem/src/iface/i_sessions.c:335
 msgid "Warning relative file names detected in session"
-msgstr ""
+msgstr "Waarskuwing relatiewe lêername wat in sessie opgespoor is"
 
 #: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
 #: gschem/src/iface/i_sessions.c:936 gschem/src/x/x_sessions.c:230
@@ -1120,11 +1120,11 @@ msgstr "Sluit Bladsy\n"
 #: gschem/src/iface/i_window.c:168
 #, c-format
 msgid "Set page <%s> active.\n"
-msgstr ""
+msgstr "Stel bladsy <%s> aktief.\n"
 
 #: gschem/src/iface/i_window.c:263
 msgid "Really revert page?"
-msgstr ""
+msgstr "gaan regtig terug bladsy?"
 
 #: gschem/src/iface/i_window.c:319
 msgid "An error occurred while processing request to revert"
@@ -1170,8 +1170,8 @@ msgstr "Verskuif stroombaandiagram"
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Verwyder %u geslote voorwerpe?"
+msgstr[1] "Verwyder %u geslote voorwerpe?"
 
 #: gschem/src/object/o_edit.c:573
 msgid "attributes were hidden"
@@ -1195,7 +1195,7 @@ msgstr "Kon dit nie vind simbool"
 
 #: gschem/src/object/o_edit.c:1189 gschem/src/x/x_edit_cprop.c:390
 msgid "in library. Update failed"
-msgstr ""
+msgstr "in die biblioteek. Opdatering misluk"
 
 #: gschem/src/object/o_edit.c:1194
 msgid "Updating symbol"
@@ -1203,15 +1203,15 @@ msgstr "opdatering simbool"
 
 #: gschem/src/object/o_move.c:518
 msgid "Could not resolve which end of pin to connect\n"
-msgstr ""
+msgstr "Kon nie vasstel watter punt van die pen om te koppel nie\n"
 
 #: gschem/src/object/o_net.c:76
 msgid "Warning: Starting net off grid coordinate\n"
-msgstr ""
+msgstr "Waarskuwing: Begin net van rooster koördinaat\n"
 
 #: gschem/src/object/o_net.c:499
 msgid "Warning: Ending net off grid coordinate\n"
-msgstr ""
+msgstr "Waarskuwing: eindig net van rooster koördinaat\n"
 
 #: gschem/src/object/o_net.c:1111
 msgid "Bus ripper symbol was not found in any component library"
@@ -1223,7 +1223,7 @@ msgstr "Bewaar Alles"
 
 #: gschem/src/object/o_picture.c:360
 msgid "Update all selected Picture images"
-msgstr ""
+msgstr "Werk alle geselekteerde prente beelde op"
 
 #: gschem/src/object/o_picture.c:397
 msgid "Failed to replace picture"
@@ -1239,7 +1239,7 @@ msgstr ""
 
 #: gschem/src/object/o_picture.c:427
 msgid "When checked the image size will be exported"
-msgstr ""
+msgstr "As dit nagegaan word, sal die beeldgrootte uitgevoer word"
 
 #: gschem/src/object/o_picture.c:619
 msgid "An unknown error occurred"
