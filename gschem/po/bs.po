@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -306,68 +306,78 @@ msgstr ""
 msgid "Grid Mode"
 msgstr "koordinatna mreža mode"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Podešava mrežni režim za prikaz na statusnoj traci"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Veličina mreže"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Podešava veličinu mreže da se prikaže na statusnoj traci"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "visina"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Podešava visinu statusne trake"
 
+# # Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "Levi taster"
 
+# Set the string for the Left Button Text
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Podesite string za tekst lijeve tipke"
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Tekst srednjeg tastera"
 
+# Set the string for the Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Podesite string za tekst srednjeg tastera"
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "Tekst desnog tastera"
 
+# Set the string for the Right Button Text
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Podesite string za desni taster"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
-msgstr "Snap Mode"
+msgstr "Snopa Način"
 
 # Sets the Snap Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr "Postavlja Snap Mode za prikaz na statusnoj traci"
+msgstr "Postavlja Snap Način za prikaz na statusnoj traci"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
 msgid "Snap Size"
-msgstr ""
+msgstr "Snopa Veličinu"
 
-# Sets the Snap Mode to display on the status bar
+# Sets the Snap Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "Postavlja Snap Mode za prikaz na statusnoj traci"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "Podešava veličinu snopa za prikaz na statusnoj traci"
 
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
