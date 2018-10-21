@@ -10,6 +10,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/ru.po: Update Russian translations.
+
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/golden/bus_endpoint_to_net.png: Regenerate again, seems to pass
