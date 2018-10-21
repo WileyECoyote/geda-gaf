@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -257,114 +257,128 @@ msgstr ""
 msgid "Filename"
 msgstr "Nazwa pliku"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:528
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "nazwa pliku do podglądu"
 
 # Object List
 #: gschem/src/base/gschem_preview.c:535
 msgid "Object List"
 msgstr "lista obiektów"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:536
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Lista obiektów do podglądu"
 
 # Active
 #: gschem/src/base/gschem_preview.c:543
 msgid "Active"
 msgstr "Aktywny"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:544
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Czy widżet podglądu jest włączony czy wyłączony"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:551
 msgid "Large size"
-msgstr ""
+msgstr "Duży rozmiar"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:552
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Czy widżet podglądu powinien być duży czy mały"
 
 # Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
 msgstr "Tryb współrzędne"
 
+# Sets the Format Mode used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Ustawia tryb formatu używany do wyświetlania współrzędnych na pasku stanu"
 
 # Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
 msgstr "Tryb Siatka"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Ustawia tryb siatki do wyświetlania na pasku stanu"
 
 # Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
 msgstr "Wielkość kratownicy"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Ustawia rozmiar siatki do wyświetlania na pasku stanu"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
 msgstr "wysokość"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Ustawia wysokość paska stanu"
 
 # Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
 msgstr "Lewy przycisk Tekst"
 
+# Set the string for the Left Button Text
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Ustaw ciąg dla tekstu lewego przycisku"
 
 # Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
 msgstr "Środkowy przycisk Tekst"
 
+# Set the string for the Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Ustaw ciąg dla tekstu środkowego przycisku"
 
 # Right Button Text
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
 msgstr "Prawy przycisk Tekst"
 
+# Set the string for the Right Button Text"
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Ustaw ciąg dla tekstu prawego przycisku"
 
 # Snap Mode
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
 msgstr "Tryb Snap"
 
+# Sets the Snap Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Ustawia tryb przyciągania wyświetlany na pasku stanu"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
 msgid "Snap Size"
 msgstr "Odległość przyciągania"
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Size to display on the status bar"
-msgstr ""
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "Ustawia rozmiar przyciągania do wyświetlenia na pasku stanu"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665
