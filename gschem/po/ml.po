@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -392,69 +392,91 @@ msgstr "പൊക്കം"
 msgid "Sets the height of the status bar"
 msgstr "സ്റ്റാറ്റസ് ബാർ ഉയരം സെറ്റ് ചെയ്യുന്നു"
 
+# Left Button Text
+# iṭat baṭṭaṇ ṭeksṟṟ
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "ഇടത് ബട്ടൺ ടെക്സ്റ്റ്"
 
+# Set the string for the Left Button Text
+# iṭat baṭṭaṇ pāṭhattinuḷḷa sṭriṅg sajjamākkuka
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "ഇടത് ബട്ടൺ പാഠത്തിനുള്ള സ്ട്രിംഗ് സജ്ജമാക്കുക"
 
+# Middle Button Text
+# madhyattiluḷḷa baṭṭaṇ ṭeksṟṟ
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "മധ്യത്തിലുള്ള ബട്ടൺ ടെക്സ്റ്റ്"
 
+# Set the string for the Middle Button Text
+# śariyāya baṭṭaṇinuḷḷa ṭeksṟṟin sṭriṅg sajjamākkuka
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "ശരിയായ ബട്ടണിനുള്ള ടെക്സ്റ്റിന് സ്ട്രിംഗ് സജ്ജമാക്കുക"
 
+# Right Button Text
+# valat baṭṭaṇ ṭeksṟṟ
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "വലത് ബട്ടൺ ടെക്സ്റ്റ്"
 
+# Set the string for the Right Button Text
+# śariyāya baṭṭaṇinuḷḷa ṭeksṟṟin sṭriṅg sajjamākkuka
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "ശരിയായ ബട്ടണിനുള്ള ടെക്സ്റ്റിന് സ്ട്രിംഗ് സജ്ജമാക്കുക"
 
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
 msgstr "സ്നാപ്പ് മോഡ്"
 
+# Sets the Snap Mode to display on the status bar
+# sṟṟāṟṟas bāṟil pradarśippikkunnatin snāpp mēāḍ sajjamākkunnu
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാറിൽ പ്രദർശിപ്പിക്കുന്നതിന് സ്നാപ്പ് മോഡ് സജ്ജമാക്കുന്നു"
 
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
 msgid "Snap Size"
 msgstr ""
 
-# Sets the grid Size to display on the status bar
-# sṟṟāṟṟas bāṟil pradarśippikkān griḍ sais sajjamākkunnu
+# Sets the Snap Size to display on the status bar
+# sṟṟāṟṟas bāṟil pradarśippikkunnatin snāpp valuppatte sajjamākkunnu
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "സ്റ്റാറ്റസ് ബാറിൽ പ്രദർശിപ്പിക്കാൻ ഗ്രിഡ് സൈസ് സജ്ജമാക്കുന്നു"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "സ്റ്റാറ്റസ് ബാറിൽ പ്രദർശിപ്പിക്കുന്നതിന് സ്നാപ്പ് വലുപ്പത്തെ സജ്ജമാക്കുന്നു"
 
+# Status Text
+# sṟṟāṟṟas ṭeksṟṟ
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ടെക്സ്റ്റ്"
 
+# Set the string for the text on the Status Bar
+# sṟṟāṟṟas bāryile ṭeksṟṟināyuḷḷa sṭriṅg sajjamākkuka
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാർയിലെ ടെക്സ്റ്റിനായുള്ള സ്ട്രിംഗ് സജ്ജമാക്കുക"
 
+# Status State
+# sṟṟēṟṟa nila
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "സ്റ്റേറ്റ നില"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാർ ഉയരം"
 
+# Set or get the height of the status bar
+# sṟṟāṟṟas bāṟinṟe uyaraṁ seṟṟuceyyuka alleṅkil nēṭuka
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "സ്റ്റാറ്റസ് ബാറിന്റെ ഉയരം സെറ്റുചെയ്യുക അല്ലെങ്കിൽ നേടുക"
 
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
