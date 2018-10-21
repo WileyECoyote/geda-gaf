@@ -2,6 +2,8 @@
 
     * po/bs.po: Update Bosnian translations
 
+    * po/he.po: Update Hebrew translations.
+
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/golden/bus_endpoint_to_net.png: Regenerate again, seems to pass

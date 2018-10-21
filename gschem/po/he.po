@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -354,77 +354,91 @@ msgstr "גודל רשת"
 msgid "Sets the Grid Size to display on the status bar"
 msgstr "קובע את גודל הרשת להצגה בשורת המצב"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "גובה"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "מגדיר את גובה שורת המצב"
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "לחצן טקסט שמאלי"
 
+# Set the string for the Left Button Text
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "הגדר את המחרוזת לטקסט הלחצן השמאלי"
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "טקסט לחצן ביניים"
 
+# Set the string for the Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "הגדר את המחרוזת עבור טקסט לחצן העכבר"
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "טקסט של לחצן העכבר הימני"
 
+# Set the string for the Right Button Text
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "הגדר את המחרוזת עבור טקסט לחצן העכבר"
 
 # Snap Mode
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
 msgstr "הצמד מצב"
 
+# Sets the Snap Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "מגדיר את מצב הצמד להצגה בשורת המצב"
 
+# Snap Size
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:631
 msgid "Snap Size"
-msgstr ""
+msgstr "גודל הצמד"
 
-# Sets the grid Size to display on the status bar
+# Sets the Snap Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "קובע את גודל הרשת להצגה בשורת המצב"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "מגדיר את גודל הצמד להצגה בשורת המצב"
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "טקסט סטטוס"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "הגדר את המחרוזת עבור הטקסט בשורת המצב"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "מצב סטטוס"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "גובה שורת המצב"
 
+# Set or get the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "הגדר או קבל את גובה שורת המצב"
 
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
