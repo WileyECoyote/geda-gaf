@@ -1,7 +1,22 @@
 v 20150703 2
+T 300 1400 5 10 0 0 0 0 1
+device=LM7912
+T 1300 950 8 12 1 1 0 6 1
+refdes=U?
+T 300 1600 5 10 0 0 0 0 1
+numslots=0
 B 300 300 1000 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 1200 5 10 0 0 0 0 1
-device=7912
+P 800 0 800 300 1 0 0
+{
+T 750 50 5 8 1 1 0 6 1
+pinnumber=1
+T 850 50 5 8 0 1 0 0 1
+pinseq=2
+T 800 350 9 8 1 1 0 3 1
+pinlabel=GND
+T 850 200 5 8 0 1 0 0 1
+pintype=pwr
+}
 P 300 600 0 600 1 0 1
 {
 T 200 650 5 8 1 1 0 6 1
@@ -12,17 +27,6 @@ T 350 600 9 8 1 1 0 0 1
 pinlabel=IN
 T 350 550 5 8 0 1 0 2 1
 pintype=pas
-}
-P 800 0 800 300 1 0 0
-{
-T 850 150 5 8 1 1 0 0 1
-pinnumber=1
-T 850 100 5 8 0 1 0 2 1
-pinseq=2
-T 800 350 9 8 1 1 0 3 1
-pinlabel=GND
-T 800 500 5 8 0 1 0 3 1
-pintype=pwr
 }
 P 1300 600 1600 600 1 0 1
 {
@@ -35,17 +39,13 @@ pinlabel=OUT
 T 1250 550 5 8 0 1 0 8 1
 pintype=pas
 }
-T 1300 950 8 12 1 1 0 6 1
-refdes=U?
-T 300 1400 5 10 0 0 0 0 1
+T 300 950 9 12 1 1 0 0 1
+value=7912
+T 1350 100 9 10 0 1 0 0 1
 footprint=TO-220
-T 300 1800 5 10 0 1 0 0 1
-description=LM7912,Voltage Regulator,Fixed,Neg 12 Volt,TO-220
-T 300 1600 5 10 0 0 0 0 1
-numslots=0
-T 300 2200 5 10 0 0 0 0 1
+T 300 1200 5 10 0 1 0 0 1
+description=Voltage Regulator,Fixed,Neg 12 Volt,TO-220
+T 300 1800 9 10 0 0 0 0 1
 symversion=1.0
 T 300 2000 5 10 0 1 0 0 1
-documentation=http://www.ti.com.cn/cn/lit/ds/symlink/lm7912.pdf
-T 300 950 9 12 1 0 0 0 1
-7912
+documentation=http://www.ti.com/lit/ds/symlink/lm79.pdf
