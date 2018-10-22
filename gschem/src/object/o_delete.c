@@ -73,8 +73,7 @@ void o_delete_selected (GschemToplevel *w_current)
     unsigned int  locked_num = 0;
 
     while (iter) {
-      GedaObject *object = iter->data;
-      if (object->selectable == FALSE) {
+      if (geda_object_get_selectable(iter->data) == FALSE) {
         locked_num++;
       }
       iter = iter->next;
@@ -92,15 +91,17 @@ void o_delete_selected (GschemToplevel *w_current)
       switch (resp) {
         case GEDA_RESPONSE_YES: /* Remove all */
           break;
+
         case GEDA_RESPONSE_NO:  /* Remove non locked */
           for (iter = to_remove; iter != NULL; iter = iter->next) {
             GedaObject *object = iter->data;
-            if (object->selectable == TRUE)
+            if (geda_object_get_selectable(object) == TRUE)
               non_locked = g_list_append (non_locked, object);
           }
           g_list_free (to_remove);
           to_remove = non_locked;
           break;
+
         default: /* Cancel */
           g_list_free (to_remove);
           return;
@@ -110,7 +111,7 @@ void o_delete_selected (GschemToplevel *w_current)
     /* Remove objects from selection and page */
     for (iter = to_remove; iter != NULL; iter = iter->next) {
       GedaObject *object = iter->data;
-      geda_object_selection_remove   (selection, object);
+      geda_object_selection_remove (selection, object);
       geda_struct_page_remove_object (toplevel->page_current, object);
     }
 
