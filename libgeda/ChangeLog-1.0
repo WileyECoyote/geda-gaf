@@ -1,5 +1,8 @@
 2018-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_object.h: Declare geda_get_object_type static in the
+      header.
+
     * src/geda/geda_object.c: Add function geda_object_get_selectable.
 
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
