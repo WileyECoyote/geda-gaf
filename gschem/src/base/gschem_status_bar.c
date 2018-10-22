@@ -653,7 +653,7 @@ static void gschem_status_bar_class_init (void *class, void *class_data)
 
   pspec = g_param_spec_int ("snap-size",
                           _("Snap Size"),
-                          _("Sets the Size Size to display on the status bar"),
+                          _("Sets the Snap Size to display on the status bar"),
                             -MAX_SNAP_SIZE,
                              MAX_SNAP_SIZE,
                              MIN_SNAP_SIZE,
