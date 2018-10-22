@@ -1,19 +1,17 @@
+2018-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_delete.c: Utilize gschem_toplevel_get_geda_toplevel in
+      o_delete_selected.
+
 2018-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/bs.po: Update Bosnian translations
-
     * po/he.po: Update Hebrew translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/tr.po: Update Turkish translations.
 
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
