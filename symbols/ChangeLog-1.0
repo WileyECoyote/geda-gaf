@@ -21,8 +21,8 @@
     * linear/regulator/LM7912-1.sym: Resequence pin attributes, update description,
       and documentation attributes, add value attribute.
 
-    * linear/regulator/LM7912-2.sym: Resequence pin attributes,update description
-      and value attributes.
+    * linear/regulator/LM7912-2.sym: Resequence pin attributes, update description,
+      and documentation attributes, add value attribute.
 
     * linear/regulator/MCP170x-regulator.sym: Remove symbol.
 
