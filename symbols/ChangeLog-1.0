@@ -10,6 +10,8 @@
     * diode/zener52/zener_*_1N52??B.sym: Reverse pin numbers but keep pinseq,
       update dist-license.
 
+    * diode/zener53/zener_*_1N53??B.sym: Reverse pin numbers but keep pinseq.
+
 2018-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener52/zener_*_1N52??B.sym: Reverse pin number and resequence pin
