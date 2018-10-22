@@ -1258,7 +1258,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427

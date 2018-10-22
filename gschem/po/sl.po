@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -430,11 +430,10 @@ msgstr "Nastavi način kartiranje, ki se prikaže v vrstici stanja"
 msgid "Snap Size"
 msgstr "Kartiranje Velikost"
 
-# Sets the Mapping Size to display on the status bar
+# Sets the Snap Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "Nastavi velikost kartiranja, ki se prikaže v vrstici stanja"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "Nastavi velikost zaslona, ​​ki se prikaže v vrstici stanja"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665
@@ -1287,7 +1286,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427

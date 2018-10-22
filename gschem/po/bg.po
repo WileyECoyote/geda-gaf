@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -432,11 +432,10 @@ msgstr "Задава режим Snap показан в лентата на съ�
 msgid "Snap Size"
 msgstr "Размер на приплъзване"
 
-# Zadava rezhima na razmera, koĭto da se pokazva v lentata na sŭstoyanieto
+# Zadava razmera za otmetka, koĭto se pokazva v lentata na sŭstoyanieto
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "Задава режима на размера, който да се показва в лентата на състоянието"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "Задава размера за отметка, който се показва в лентата на състоянието"
 
 # Status Text
 # Tekst za sŭstoyanie
@@ -1277,7 +1276,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427

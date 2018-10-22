@@ -1234,7 +1234,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr "<b>Kon beeld te vervang</b>"
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427
@@ -4550,7 +4550,7 @@ msgstr "Bewerk Vultipe..."
 # Lyn breedte & Tipe
 #: gschem/etc/system-gschemrc.scm:2135
 msgid "Line _Width & Type..."
-msgstr "Lynwydte en tipe..."
+msgstr "Lyn_wydte en tipe..."
 
 #: gschem/etc/system-gschemrc.scm:2135
 msgid "Open the Line Editor Dialog"

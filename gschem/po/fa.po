@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Sasan Jafarnejad <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -425,11 +425,10 @@ msgstr "تنظیم حالت ضربه محکم و ناگهانی را در نوا
 msgid "Snap Size"
 msgstr "اندازه ضربه محکم و ناگهانی"
 
-# Sets the Size Mode to shown on the status bar
+# Sets the snap size to be shown on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
-msgid "Sets the Size Size to display on the status bar"
-msgstr "حالت اندازه را برای نشان دادن در نوار وضعیت تنظیم می کند"
+msgid "Sets the Snap Size to display on the status bar"
+msgstr "اندازه ضربه محکم و ناگهانی را برای نشان دادن در نوار وضعیت تنظیم می کند"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665
@@ -1264,7 +1263,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427

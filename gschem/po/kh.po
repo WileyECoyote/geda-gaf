@@ -1256,7 +1256,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr "<b>ban breachy knong kar chomnuosa roubpheap</b>"
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr "star tomham"
 
 #: gschem/src/object/o_picture.c:427

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-10-20 11:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -353,7 +353,7 @@ msgid "Snap Size"
 msgstr ""
 
 #: gschem/src/base/gschem_status_bar.c:656
-msgid "Sets the Size Size to display on the status bar"
+msgid "Sets the Snap Size to display on the status bar"
 msgstr ""
 
 # Status Text
@@ -1217,7 +1217,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr "<b>無法替換圖片</b>"
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427
