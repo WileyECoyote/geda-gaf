@@ -422,7 +422,7 @@ o_picture_export (GschemToplevel *w_current, GedaObject *o_current)
 
   geda_chooser_set_preview_widget_active(dialog, FALSE);
 
-  cb_aspect = gtk_check_button_new_with_label (_("Orginal size"));
+  cb_aspect = gtk_check_button_new_with_label (_("Original size"));
   gtk_widget_show (cb_aspect);
   gtk_widget_set_tooltip_text(cb_aspect, _("When checked the image size will be exported"));
   SetToggleState (cb_aspect, orgin_size);
