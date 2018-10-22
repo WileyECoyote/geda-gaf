@@ -64,15 +64,13 @@ void o_delete (GschemToplevel *w_current, GedaObject *object)
  */
 void o_delete_selected (GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel   = gschem_toplevel_get_geda_toplevel(w_current);
-  SELECTION    *selection  = toplevel->page_current->selection_list;
-
   if (o_select_is_selection (w_current)) {
 
-    unsigned int locked_num = 0;
-
-    GList *to_remove = g_list_copy (geda_list_get_glist (selection));
-    GList *iter      = to_remove;
+    GedaToplevel *toplevel   = gschem_toplevel_get_geda_toplevel(w_current);
+    SELECTION    *selection  = toplevel->page_current->selection_list;
+    GList        *to_remove  = g_list_copy (geda_list_get_glist (selection));
+    GList        *iter       = to_remove;
+    unsigned int  locked_num = 0;
 
     while (iter) {
       GedaObject *object = iter->data;

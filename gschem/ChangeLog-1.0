@@ -1,7 +1,8 @@
 2018-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_delete.c: Utilize gschem_toplevel_get_geda_toplevel in
-      o_delete_selected.
+      o_delete_selected and reduce the scope of the toplevel and selection
+      variables.
 
 2018-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
