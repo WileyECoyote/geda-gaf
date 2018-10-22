@@ -1445,7 +1445,7 @@ int test_strings (void)
   }
   else {
 
-    /* Orginal string should be returned because there is no space */
+    /* Original string should be returned because there is no space */
     if (strcmp(string, str_110) != 0) {
       fprintf(stderr, "FAILED: (U061100C) geda_strsplit <%s>\n", string);
       result++;
