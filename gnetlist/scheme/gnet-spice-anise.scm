@@ -1511,6 +1511,34 @@
     )  ;; end if (null? file-info-list . .
 ))  ;; end define spice-anise:in-file-info-list?
 
+(define spice-anise:write-embedded-models
+  (lambda (package-list)
+     (if (not (null? package-list))
+        (let* ((package    (car package-list))     ;; get next package (i.e. refdes)
+               (device     (get-device package))
+               (model      (get-package-attribute package "model"))
+               (model-name (get-package-attribute package "model-name"))
+              )
+
+          ;; Check to see if "model" attribute is non-empty
+          (if (not (string-ci=? model "unknown"))
+            (begin
+              (display "\n")
+              (if (not (string-ci=? model-name "unknown"))
+                (display (string-append ".MODEL " model-name " " model "\n"))
+                (display (string-append ".MODEL " device " " model "\n"))
+              )
+              (display "\n")
+            )
+          )  ;; end if (not( string-ci=? model-file
+
+          ;; iterate to the next package.
+          (spice-anise:write-embedded-models (cdr package-list))
+
+      )  ;; end let*
+   )     ;; end if (null? package-list . . .
+ )
+)
 
 ;;--------------------------------------------------------------
 ;; Write out spice netlist header
@@ -1615,6 +1643,7 @@
             (debug-spew "found normal type schematic")
             (display (string-append "* " (get-command-line) "\n"))
             (spice-anise:write-top-header)
+            (spice-anise:write-embedded-models packages)
           )
 
       ) ;; end of if (not (string=? . . . .

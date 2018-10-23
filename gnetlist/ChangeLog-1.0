@@ -1,3 +1,8 @@
+2018-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-spice-anise.scm: Add write-embedded-models routine to
+      include any models defined in the symbol using the model attribute.
+
 2018-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice-anise.scm: comment-out inconsistent illogical case
