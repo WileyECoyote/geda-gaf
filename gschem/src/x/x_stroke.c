@@ -49,8 +49,9 @@ typedef struct {
 static GArray *stroke_points = NULL;
 
 
-/*! \brief Initializes the stroke interface.
- *  \par Function Description
+/*!
+ * \brief Initializes the stroke interface.
+ * \par Function Description
  *  This is the initialization function for the stroke interface. It
  *  initializes the libstroke library and prepare an array of points
  *  for the mouse footprints.
@@ -68,8 +69,9 @@ x_stroke_init (void)
   stroke_points = g_array_new (FALSE, FALSE, sizeof(StrokePoint));
 }
 
-/*! \brief Frees memory of the stroke interface.
- *  \par Function Description
+/*!
+ * \brief Frees memory of the stroke interface.
+ * \par Function Description
  *  This function frees the memory used for the mouse footprint
  *  points. It terminates the use of the stroke interface.
  */
@@ -82,12 +84,13 @@ x_stroke_free (void)
   stroke_points = NULL;
 }
 
-/*! \brief Records a new point for the stroke.
- *  \par Function Description
+/*!
+ * \brief Records a new point for the stroke.
+ * \par Function Description
  *  This function adds the point (<B>x</B>,<B>y</B>) as a new point in
  *  the stroke.
  *
- * The footprint is updated and the new point is drawn on the drawing area.
+ *  The footprint is updated and the new point is drawn on the drawing area.
  *
  *  \param [in] w_current The GschemToplevel object.
  *  \param [in] x        The X coord of the new point.
@@ -113,11 +116,11 @@ x_stroke_record (GschemToplevel *w_current, int x, int y)
       gdk_draw_point (w_current->window, gc, x, y);
     }
   }
-
 }
 
-/*! \brief Evaluates the stroke.
- *  \par Function Description
+/*!
+ * \brief Evaluates the stroke.
+ * \par Function Description
  *  This function transforms the stroke input so far in an action.
  *
  *  It makes use of the guile procedure <B>eval-stroke</B> to evaluate
@@ -128,10 +131,10 @@ x_stroke_record (GschemToplevel *w_current, int x, int y)
  *  action. It returns 0 if libstroke failed to transform the stroke
  *  or there is no action attached to the stroke.
  *
- *  \param [in] w_current The GschemToplevel object.
- *  \returns 1 on success, 0 otherwise, or -1 if error.
+ * \param [in] w_current The GschemToplevel object.
+ * \returns 1 on success, 0 otherwise, or -1 if error.
  *
- *  \note WEH: Revised eval-stroke so as to return the action rather
+ * \note WEH: Revised eval-stroke so as to return the action rather
  *  than the stroke, we already knew what the stoke was because we
  *  passed it to eval-stroke. This new version evaluates the action
  *  rather than the stroke.

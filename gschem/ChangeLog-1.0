@@ -7,6 +7,8 @@
           * x_dialog_array_edit_constructor
           * x_dialog_array_edit
 
+    * src/x/x_stroke.c: Reformat Doxygen documentation/comment blocks.
+
 2018-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_delete.c: Utilize gschem_toplevel_get_geda_toplevel and
