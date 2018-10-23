@@ -955,10 +955,10 @@ void geda_object_set_color (GedaObject *object, int index) {
 /*!
  * \brief Set the Selectable Flag of a GedaObject
  * \par Function Description
- *  The selectable flag is sometimes referred to ask the "lock" flag but
- *  is really a NOT locked flag. When the selectable flag is set FALSE the
- *  object is NOT selectable, if the flag is not FALSE then the object can
- *  be selected.
+ *  The selectable flag is sometimes referred to as the "lock" flag but
+ *  really is a NOT locked flag. When the selectable flag is set FALSE
+ *  the object is NOT selectable, if the flag is not FALSE then an object
+ *  can be selected.
  */
 void geda_object_set_selectable (GedaObject *object, int state) {
   if (is_a_geda_object(object)) {
