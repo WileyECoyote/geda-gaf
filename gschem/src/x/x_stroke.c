@@ -169,12 +169,13 @@ x_stroke_translate_and_execute (GschemToplevel *w_current)
 
   /* resets length of array */
   stroke_points->len = 0;
-  SCM scm_str;
+
   int result = 0;
 
   /* try evaluating stroke */
   if (stroke_trans ((char*)&sequence)) {
 
+    SCM   scm_str;
     char *action;
     char *expr;
 
