@@ -857,9 +857,12 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   gtk_widget_grab_default (apply_butt);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Allocate and Initialize an Array Data structure
+ * \par Function Description
+ *  Helper function for the Create Array Dialog constructor
+ *  that simply allocates and returns a new array_data. The
+ *  array_data structure is defined in x_dialog.h.
  */
 static array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
 {
