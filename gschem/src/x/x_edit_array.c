@@ -1231,10 +1231,12 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   return Dialog;
 }
 
-/*! \brief Creates the Properties dialog
+/*! \brief Show the Create Array Dialog
  *  \par Function Description
- *  This function initiates creation of the Component Properties type dialog
- *  or raises the current dialog if called when the dialog is already open.
+ *  This function is called in response to the "edit-array" action to display
+ *  the Create Array dialog. The function raises the current dialog if called
+ *  when the dialog is already open or calls the constructor to create a new
+ *  dialog and then displays the dialog.
  */
 void x_dialog_array_edit(GschemToplevel *w_current)
 {
