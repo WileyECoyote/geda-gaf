@@ -879,13 +879,14 @@ static array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
   return dialog_data;
 }
 
-/*! \brief Component Properties Dialog Constructor
- *  \par Function Description
- *  Called to construct the Componenent Properties dialog box.
+/*!
+ * \brief Create Array Dialog Constructor
+ * \par Function Description
+ *  Called to construct the Create Array dialog box.
  *
- *  \param w_current pointer to GschemToplevel data structure
+ * \param w_current pointer to GschemToplevel data structure
  *
- *  \return GtkDialog pointer to a new Componenent Properties Dialog
+ * \return Pointer to a new  Array Dialog
  */
 static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
 {
