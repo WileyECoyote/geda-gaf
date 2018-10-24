@@ -297,14 +297,14 @@ void i_status_update_action_state(GschemToplevel *w_current, int state)
   }
 }
 
-/*! \brief Update Coordinate Display
- *  \par Function Description
+/*!
+ * \brief Update Coordinate Display
+ * \par Function Description
  *  Spawn thread to update the Grid and Snap Display
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] w_x       Current x coordinate of pointer in world units.
- *  \param [in] w_y       Current y coordinate of pointer in world units.
- *
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] w_x       Current x coordinate of pointer in world units.
+ * \param [in] w_y       Current y coordinate of pointer in world units.
  */
 void i_status_update_coordinates(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -326,12 +326,13 @@ void i_status_update_coordinates(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Idle Update the Grid and Snap Display on the gschem Status-Bar
- *  \par Function Description
+/*!
+ * \brief Idle Update the Grid and Snap Display on the gschem Status-Bar
+ * \par Function Description
  *  This function calls the appropriate interface to update the Grid/Snap
  *  label on the status bar.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 static bool
 i_status_idle_update_grid_info (GschemToplevel *w_current)
@@ -342,11 +343,12 @@ i_status_idle_update_grid_info (GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \brief Schedule Update Grid and Snap Display
- *  \par Function Description
+/*!
+ * \brief Schedule Update Grid and Snap Display
+ * \par Function Description
  *  Spawn thread to update the Grid and Snap Display
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void i_status_update_grid_info(GschemToplevel *w_current)
 {
@@ -383,8 +385,9 @@ static void clipboard_usable_cb (int usable, void *userdata)
   x_menu_popup_sensitivity (w_current, "Paste Clipboard", usable);
 }
 
-/*! \brief Can anything selected be hatched for filled?
- *  \par Function Description
+/*!
+ * \brief Can anything selected be hatched for filled?
+ * \par Function Description
  *  Update sensitivities helper function to determine
  *  if any selected objects can be hatched or filled.
  *
@@ -406,10 +409,11 @@ static bool hatchable_object_selected(GList *list)
   return FALSE;
 }
 
-/*! \brief Does anything selected have line-type properties?
- *  \par Function Description
- *   Update sensitivities helper function to determine
- *   if any selected objects have line-type properties.
+/*!
+ * \brief Does anything selected have line-type properties?
+ * \par Function Description
+ *  Update sensitivities helper function to determine
+ *  if any selected objects have line-type properties.
  *
  * \retval TRUE if any object in \a list has line-type properties,
  *         otherwise FALSE.
@@ -473,10 +477,11 @@ static bool selected_complex_object(GList *list)
   return FALSE;
 }
 
-/*! \brief Is at least one Picture object selected?
- *  \par Function Description
- *   Update sensitivities helper function to determine
- *   if any selected objects are Picture objects.
+/*!
+ * \brief Is at least one Picture object selected?
+ * \par Function Description
+ *  Update sensitivities helper function to determine
+ *  if any selected objects are Picture objects.
  *
  * \retval TRUE if \a list contains a Picture object, otherwise FALSE.
  */
@@ -494,10 +499,11 @@ static bool selected_at_least_one_pic_object(GList *list)
   return FALSE;
 }
 
-/*! \brief Is at least one Pin object selected?
- *  \par Function Description
- *   Update sensitivities helper function to determine
- *   if any selected objects are Pin objects.
+/*!
+ * \brief Is at least one Pin object selected?
+ * \par Function Description
+ *  Update sensitivities helper function to determine
+ *  if any selected objects are Pin objects.
  *
  * \retval TRUE if \a list contains a Pin object, otherwise FALSE.
  */
@@ -517,15 +523,16 @@ static bool selected_at_least_one_pin_object(GList *list)
 
 /** @} endgroup status-sensitivity-helpers */
 
-/*! \brief Idle Thread Update Sensitivity of relevant menu items
- *  \par Function Description
- *   Update sensitivity of relevant menu & toolbar items.
+/*!
+ * \brief Idle Thread Update Sensitivity of relevant menu items
+ * \par Function Description
+ *  Update sensitivity of relevant menu & toolbar items.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  *
- *  \warning The menu strings in the function reference menu path
- *           NOT the displayed menu text, therefore these strings
- *           should NOT be internationalized.
+ * \warning The menu strings in the function reference menu path
+ *          NOT the displayed menu text, therefore these strings
+ *          should NOT be internationalized.
  *
  * TODO: Fix this ludicrousness, maybe bit flags embedded in each
  *       object.
@@ -860,11 +867,12 @@ static bool i_status_idle_update_sensitivities(GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \brief Schedule Update Sensitivity of relevant menu items
- *  \par Function Description
+/*!
+ * \brief Schedule Update Sensitivity of relevant menu items
+ * \par Function Description
  *  Spawns idle thread to update the sensitivities of widgets.
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void i_status_update_sensitivities(GschemToplevel *w_current)
 {
@@ -882,11 +890,12 @@ i_status_idle_thread_update_title (GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \brief Schedule Set filename as gschem window title
- *  \par Function Description
+/*!
+ * \brief Schedule Set filename as gschem window title
+ * \par Function Description
  *  Spawn thread to update the window title
  *
- *  \param [in] w_current GschemToplevel structure
+ * \param [in] w_current GschemToplevel structure
  */
 void i_status_update_title(GschemToplevel *w_current)
 {

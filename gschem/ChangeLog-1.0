@@ -1,5 +1,7 @@
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_status.c: Reformat Doxygen documentation/comment blocks.
+
     * src/x/x_stroke.c: Update function wrapping.
 
 2018-10-23 Wiley E. Hill <wileyhill@gmail.com>
