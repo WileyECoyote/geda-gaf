@@ -862,9 +862,10 @@ Page *geda_struct_page_search_by_page_id (PageList *list, int pid)
  * \brief Set the font-renderer-specific bounds function.
  * \par Function Description
  *  Set the function to be used to calculate text bounds for #Text
- *  GedaObject associated with the page. This allow a per page object renderer
- *  function to be defined. If the function is not defined the renderer for
- *  the Toplevel will be used instead, if a Toplevel renderer is defined.
+ *  GedaObjects associated with the page. This allows a per page
+ *  renderer function to be defined. If the function is not defined
+ *  the renderer for the Toplevel will be used instead, provided a
+ *  Toplevel renderer is defined.
  *
  * \param [in] page      Page to associate the render text function.
  * \param [in] func      Function to use.
