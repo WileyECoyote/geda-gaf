@@ -595,14 +595,22 @@ GdkPixbuf *geda_picture_object_get_fallback_pixbuf (void)
     GError *error = NULL;
 
     pathname = geda_file_get_bitmap_filespec (filename);
-    pixbuf   = gdk_pixbuf_new_from_file (pathname, &error);
 
-    if (pixbuf == NULL) {
-      fprintf (stderr, err_msg, pathname, error->message);
-      g_error_free (error);
+    if (pathname && access(pathname, R_OK) == 0)  {
+
+      pixbuf   = gdk_pixbuf_new_from_file (pathname, &error);
+
+      if (pixbuf == NULL) {
+        fprintf (stderr, err_msg, pathname, error->message);
+        g_error_free (error);
+        failed = TRUE;
+      }
+      GEDA_FREE (pathname);
+    }
+    else {
+      fprintf(stderr, "Could not access \"%s\", %s\n", filename, strerror (errno));
       failed = TRUE;
     }
-    GEDA_FREE (pathname);
   }
 
   return failed ? NULL : g_object_ref (pixbuf);
