@@ -1,3 +1,10 @@
+2018-10-24  Wiley E. Hill <wileyhill@gmail.com>
+
+    * CascodeAmp/CascodeAmp.sch: Change the path to 2n5245_iv.png to be
+      relative. This was broke when libeda wrote the image filename with
+      an absolute path on 2018-10-16; will break the next time libeda
+      writes the file.
+
 2018-10-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * MSA-2643/MSA-2643.sch: Shift diagram to center in titlebock.
