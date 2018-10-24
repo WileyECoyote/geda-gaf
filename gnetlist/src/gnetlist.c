@@ -226,6 +226,8 @@ void main_prog(void *closure, int argc, char *argv[])
 
   edascm_dynwind_toplevel (pr_current);
 
+  geda_toplevel_set_file_open_flags(pr_current, F_OPEN_RC);
+
   /* Evaluate Scheme expressions that need to be run before rc files
    * are loaded. */
   scm_eval (pre_rc_list, scm_current_module ());
