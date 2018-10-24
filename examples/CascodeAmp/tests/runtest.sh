@@ -42,7 +42,17 @@
 #           in the test subdirectory. After regenerating verify that
 #           the generated BOM and NET results are correct.
 #
-VER=0.1.1
+# ************************ REVISION HISTORY ************************
+# Who |   When   | What (Why)
+# ------------------------------------------------------------------
+# WEH | 07/13/16 | Inital release, new example.
+# ------------------------------------------------------------------
+# WEH | 10/24/18 | Create link to bitmaps in GEDADATA (so libgeda
+#                | can locate the "geda_Warning.png" image when the
+#                | path to 2n5245_iv.png is absolute).
+# ------------------------------------------------------------------
+
+VER=0.1.2
 
 REGENERATE=false
 DISTVBUILD=false
@@ -194,7 +204,7 @@ do_setup_geda_environment ()
   export GEDADATA=$PWD
 
   # Make all subdirectories under the gEDA directory
-  mkdir -m 777 -p bitmap
+  #mkdir -m 777 -p bitmaps
   mkdir -m 777 -p scheme/geda/core
   mkdir -m 777 -p scheme/gnetlist
   mkdir -m 777 -p gafrc.d
@@ -202,6 +212,14 @@ do_setup_geda_environment ()
   test $VERBOSE && echo "GEDADATARC=$GEDADATARC"
 
   cd $CWDSAVE
+
+  # Make links to bitmaps files
+  if [ -d $SRCDIR/../../bitmaps ] ; then
+     ln -s $SRCDIR/../../bitmaps $GEDADATA/bitmaps  2>/dev/null
+  else
+    echo "Error: not in the right place, cannot find bitmaps directory"
+    exit 0
+  fi
 
   # Make links to rc files
   if [ -d $SRCDIR/../../gnetlist/etc ] ; then

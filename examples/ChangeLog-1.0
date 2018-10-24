@@ -5,6 +5,12 @@
       an absolute path on 2018-10-16; will break the next time libeda
       writes the file.
 
+    * CascodeAmp/tests/runtest.sh: Create a soft link to toplevel bitmaps
+      folder in the tempory GEDADATA directory so libgeda can locate the
+      "geda_Warning.png" image when the 2n5245_iv.png image is not found
+      because the libgeda wrote the path as absolute in the sch file.
+      Bump internal file version to 0.1.2.
+
 2018-10-17  Wiley E. Hill <wileyhill@gmail.com>
 
     * MSA-2643/MSA-2643.sch: Shift diagram to center in titlebock.
