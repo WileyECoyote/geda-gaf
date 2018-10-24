@@ -1,5 +1,9 @@
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_set.c: Revise geda_set_object_bounds_invalid to utilize
+      geda_object_set_bounds_valid because to former does not validate each
+      object and the latter does.
+
     * src/object/o_picture_object.c: Revise geda_picture_object_get_fallback_pixbuf
       to verify the image file can be read before passing the file spec to
       gdk_pixbuf_new_from_file, less we be seg faulted by wimpy libgdk-pixbuf.
