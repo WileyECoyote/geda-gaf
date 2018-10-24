@@ -8,6 +8,8 @@
       to verify the image file can be read before passing the file spec to
       gdk_pixbuf_new_from_file, less we be seg faulted by wimpy libgdk-pixbuf.
 
+    * src/struct/s_hierarchy.c: Replace macro geda_open_file with geda_file_open.
+
     * src/struct/s_page.c: Revise geda_struct_page_set_bounds_func documentation.
 
 2018-10-23 Wiley E. Hill <wileyhill@gmail.com>
