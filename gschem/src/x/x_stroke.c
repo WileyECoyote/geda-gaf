@@ -59,8 +59,7 @@ static GArray *stroke_points = NULL;
  *  This function has to be called only once at application
  *  initialization before any use of the stroke interface.
  */
-void
-x_stroke_init (void)
+void x_stroke_init (void)
 {
   g_return_if_fail (stroke_points == NULL);
 
@@ -75,8 +74,7 @@ x_stroke_init (void)
  *  This function frees the memory used for the mouse footprint
  *  points. It terminates the use of the stroke interface.
  */
-void
-x_stroke_free (void)
+void x_stroke_free (void)
 {
   g_return_if_fail (stroke_points != NULL);
 
@@ -96,8 +94,7 @@ x_stroke_free (void)
  *  \param [in] x        The X coord of the new point.
  *  \param [in] Y        The X coord of the new point.
  */
-void
-x_stroke_record (GschemToplevel *w_current, int x, int y)
+void x_stroke_record (GschemToplevel *w_current, int x, int y)
 {
   if (stroke_points != NULL) {
 
@@ -139,8 +136,7 @@ x_stroke_record (GschemToplevel *w_current, int x, int y)
  *  passed it to eval-stroke. This new version evaluates the action
  *  rather than the stroke.
  */
-int
-x_stroke_translate_and_execute (GschemToplevel *w_current)
+int x_stroke_translate_and_execute (GschemToplevel *w_current)
 {
   char sequence[STROKE_MAX_SEQUENCE];
   StrokePoint *point;
