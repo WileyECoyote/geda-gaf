@@ -70,15 +70,14 @@ inline traceback(void)  /* "static" means don't export the symbol... */
   free(strings);
 }
 
-/*! \brief Wrapper for Backtrace Utilitity
- *
- *  \par Function Description
+/*!
+ * \brief Wrapper for Backtrace Utilitity
+ * \par Function Description
  *  This is a utlitity function that calls the traceback function
- * to show the call sequence. The function servers as a as a built
- * in debugging tool that can be used by application* of library
- * functions after detecting an incorrect parameter as means to
- * locate errent routines.
- *
+ *  to show the call sequence. The function servers as a as a built
+ *  in debugging tool that can be used by applications of library
+ *  functions after detecting an incorrect parameter as a means to
+ *  locate errent routines.
  */
 void geda_utility_program_backtrace(void)
 {
@@ -160,9 +159,9 @@ void geda_utility_program_mem_free (void *ptr_mem)
   }
 }
 
-/*! \brief Setup GLib Memory Table
- *
- *  \par Function Description
+/*!
+ * \brief Setup GLib Memory Table
+ * \par Function Description
  *  This function provides a pre-set memory table to Glibc memory
  * functions in order to set \a GLIB to only use \a GLIBC memory
  * routines. This would normally be the default but GLIB does not
