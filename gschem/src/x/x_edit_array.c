@@ -864,7 +864,7 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
  *  that simply allocates and returns a new array_data. The
  *  array_data structure is defined in x_dialog.h.
  */
-static array_data *x_dialog_array_new_data_structure (GschemToplevel *w_current)
+static array_data *x_dialog_array_new_data_structure (void)
 {
   array_data *dialog_data;
 
@@ -951,7 +951,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
                                    IDS_ARRAY_EDIT, w_current);
 
-  dialog_data = x_dialog_array_new_data_structure(w_current);
+  dialog_data = x_dialog_array_new_data_structure();
 
   vbox = GTK_DIALOG(Dialog)->vbox;
 
