@@ -28,14 +28,15 @@
 #include <libgeda_priv.h>
 #include <libgedaguile_priv.h>
 
-/*! \brief Create a new complex object.
+/*!
+ * \brief Create a new complex object.
  * \par Function Description
- * Creates a new, empty complex object, with the given \a basename and
- * with all other parameters set to default values.  It is initially set
- * to be embedded.
+ *  Creates a new, empty complex object, with the given \a basename and
+ *  with all other parameters set to default values.  It is initially set
+ *  to be embedded.
  *
  * \note Scheme API: Implements the %make-complex procedure in the
- * (geda core complex) module.
+ *       (geda core complex) module.
  *
  * \return a newly-created complex object.
  */
@@ -57,20 +58,20 @@ EDA_SCM_DEFINE (complex_make, "%make-complex", 1, 0, 0,
   return result;
 }
 
-/*! \brief Instantiate a complex object from the component library.
+/*!
+ * \brief Instantiate a complex object from the component library.
  * \par Function Description
-
- * Searches the component library for a component with the given \a
- * basename.  If found, creates a new complex object by instantiating
- * that library component.  It is initially set to be unembedded.  If
- * no match is found for \a basename in the library, returns
- * SCM_BOOL_F.
+ *  Searches the component library for a component with the given \a
+ *  basename.  If found, creates a new complex object by instantiating
+ *  that library component.  It is initially set to be unembedded.  If
+ *  no match is found for \a basename in the library, returns
+ *  SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %make-complex/library procedure in
- * the (geda core complex) module.
+ *       the (geda core complex) module.
  *
- * param basename component name to search for in the component
- *                 library.
+ * param basename component name to search for in the component library.
+ *
  * \return a newly-created complex object.
  */
 EDA_SCM_DEFINE (complex_make_library, "%make-complex/library", 1, 0, 0,
@@ -110,18 +111,19 @@ EDA_SCM_DEFINE (complex_make_library, "%make-complex/library", 1, 0, 0,
   return result;
 }
 
-/*! \brief Set complex object parameters.
+/*!
+ * \brief Set complex object parameters.
  * \par Function Description
- * Modifies the complex object \a complex_s by setting its parameters
- * to new values. The modifications are performed in the following
- * sequence:
+ *  Modifies the complex object \a complex_s by setting its parameters
+ *  to new values. The modifications are performed in the following
+ *  sequence:
  *
- * 1. Mirroring.
- * 2. Rotation.
- * 3. Translating to new position.
+ *  1. Mirroring.
+ *  2. Rotation.
+ *  3. Translating to new position.
  *
  * \note Scheme API: Implements the %set-complex! procedure in the
- * (geda core complex) module.
+ *       (geda core complex) module.
  *
  * param complex_s the complex object to modify.
  * param x_s       the new x-coordinate of the complex object.
@@ -190,22 +192,24 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
   return complex_s;
 }
 
-/*! \brief Get complex object parameters.
+/*!
+ * \brief Get complex object parameters.
  * \par Function Description
- * Retrieves the parameters of a complex object. The return value is a
- * list of parameters:
+ *  Retrieves the parameters of a complex object. The return value is a
+ *  list of parameters:
  *
- * -# Basename
- * -# Base x-coordinate.
- * -# Base y-coordinate.
- * -# Rotation angle.
- * -# Whether object is mirrored.
- * -# Whether object is locked.
+ *  -# Basename
+ *  -# Base x-coordinate.
+ *  -# Base y-coordinate.
+ *  -# Rotation angle.
+ *  -# Whether object is mirrored.
+ *  -# Whether object is locked.
  *
  * \note Scheme API: Implements the %complex-info procedure in the
- * (geda core complex) module.
+ *       (geda core complex) module.
  *
  * param complex_s the complex object to inspect.
+ *
  * \return a list of complex object parameters.
  */
 EDA_SCM_DEFINE (complex_info, "%complex-info", 1, 0, 0,
@@ -225,14 +229,16 @@ EDA_SCM_DEFINE (complex_info, "%complex-info", 1, 0, 0,
                      SCM_UNDEFINED);
 }
 
-/*! \brief Get the contents of a complex object.
+/*!
+ * \brief Get the contents of a complex object.
  * \par Function Description
- * Retrieves a list of the primitive objects that make up a complex object.
+ *  Retrieves a list of the primitive objects that make up a complex object.
  *
  * \note Scheme API: Implements the %complex-contents procedure in the
- * (geda core complex) module.
+ *       (geda core complex) module.
  *
  * param complex_s a complex object.
+ *
  * \return a list of primitive objects.
  */
 EDA_SCM_DEFINE (complex_contents, "%complex-contents", 1, 0, 0,
@@ -246,18 +252,20 @@ EDA_SCM_DEFINE (complex_contents, "%complex-contents", 1, 0, 0,
   return edascm_from_object_glist (obj->complex->prim_objs);
 }
 
-/*! \brief Add a primitive object to a complex object.
+/*!
+ * \brief Add a primitive object to a complex object.
  * \par Function Description
- * Adds \a obj_s to \a complex_s.  If \a obj_s is already attached to
- * another complex object or to a #Page, or if \a obj_s is itself a
- * complex object, throws a Scheme error.  If \a obj_s is already
- * attached to \a complex_s, does nothing.
+ *  Adds \a obj_s to \a complex_s.  If \a obj_s is already attached to
+ *  another complex object or to a #Page, or if \a obj_s is itself a
+ *  complex object, throws a Scheme error.  If \a obj_s is already
+ *  attached to \a complex_s, does nothing.
  *
  * \note Scheme API: Implements the %complex-append! procedure of the
- * (geda core complex) module.
+ *       (geda core complex) module.
  *
  * param complex_s complex object to modify.
  * param obj_s     primitive object to add.
+ *
  * \return \a obj_s.
  */
 EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
@@ -318,17 +326,19 @@ EDA_SCM_DEFINE (complex_append_x, "%complex-append!", 2, 0, 0,
   return complex_s;
 }
 
-/*! \brief Remove a primitive object from a complex object.
+/*!
+ * \brief Remove a primitive object from a complex object.
  * \par Function Description
- * Removes \a obj_s from \a complex_s.  If \a obj_s is attached to a
- * #Page or to a complex object other than \a complex_s, throws a
- * Scheme error.  If \a obj_s is unattached, does nothing.
+ *  Removes \a obj_s from \a complex_s.  If \a obj_s is attached to
+ *  a #Page or to a complex object other than \a complex_s, throws a
+ *  Scheme error. If \a obj_s is unattached, does nothing.
  *
  * \note Scheme API: Implements the %complex-remove! procedure of the
  * (geda core complex) module.
  *
  * param complex_s complex object to modify.
  * param obj_s     primitive object to remove.
+ *
  * \return \a obj_s.
  */
 EDA_SCM_DEFINE (complex_remove_x, "%complex-remove!", 2, 0, 0,
