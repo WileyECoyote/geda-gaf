@@ -100,6 +100,10 @@ void geda_utility_program_backtrace(void)
 
 #endif
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void *geda_utility_program_mem_alloc (unsigned int amount)
 {
   void *ptr_mem;
@@ -130,6 +134,10 @@ void *geda_utility_program_mem_alloc (unsigned int amount)
   return ptr_mem;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void *geda_utility_program_mem_calloc (unsigned int amount)
 {
   void *ptr_mem;
@@ -142,6 +150,10 @@ void *geda_utility_program_mem_calloc (unsigned int amount)
   return NULL;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void geda_utility_program_mem_free (void *ptr_mem)
 {
   if (ptr_mem != NULL) {

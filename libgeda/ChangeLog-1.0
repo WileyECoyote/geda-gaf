@@ -1,6 +1,7 @@
 2018-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/utility/u_program.c: Update function wrapping and documentation.
+    * src/utility/u_program.c: Update function wrapping and documentation,
+      add todo Doxygen templates.
 
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
