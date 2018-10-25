@@ -86,6 +86,13 @@ void geda_utility_program_backtrace(void)
 
 #else
 
+/*!
+ * \brief Dummy Backtrace Function
+ * \par Function Description
+ *  Currently the backtrace utility function is only avliable for Linux
+ *  host, this function serves as an error stumb routine when the utility
+ *  is call on non-Linux host.
+ */
 void geda_utility_program_backtrace(void)
 {
   fprintf(stderr, "geda_utility_program_backtrace in only available for linux\n");
