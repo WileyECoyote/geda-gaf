@@ -82,9 +82,12 @@ GedaObject *geda_pin_object_copy(GedaObject *o_current)
     GedaPin    *new_pin;
 
     new_obj = geda_pin_object_new (o_current->color,
-                         o_current->line->x[0], o_current->line->y[0],
-                         o_current->line->x[1], o_current->line->y[1],
-                         o_current->pin->node_type, o_current->pin->whichend);
+                                   o_current->line->x[0],
+                                   o_current->line->y[0],
+                                   o_current->line->x[1],
+                                   o_current->line->y[1],
+                                   o_current->pin->node_type,
+                                   o_current->pin->whichend);
 
     new_pin = GEDA_PIN(new_obj);
 
