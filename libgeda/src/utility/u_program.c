@@ -80,24 +80,21 @@ inline traceback(void)  /* "static" means don't export the symbol... */
  * locate errent routines.
  *
  */
-void
-geda_utility_program_backtrace(void)
+void geda_utility_program_backtrace(void)
 {
   traceback();
 }
 
 #else
 
-void
-geda_utility_program_backtrace(void)
+void geda_utility_program_backtrace(void)
 {
   fprintf(stderr, "geda_utility_program_backtrace in only available for linux\n");
 }
 
 #endif
 
-void*
-geda_utility_program_mem_alloc (unsigned int amount)
+void *geda_utility_program_mem_alloc (unsigned int amount)
 {
   void *ptr_mem;
 
@@ -127,8 +124,7 @@ geda_utility_program_mem_alloc (unsigned int amount)
   return ptr_mem;
 }
 
-void*
-geda_utility_program_mem_calloc (unsigned int amount)
+void *geda_utility_program_mem_calloc (unsigned int amount)
 {
   void *ptr_mem;
 
@@ -140,8 +136,7 @@ geda_utility_program_mem_calloc (unsigned int amount)
   return NULL;
 }
 
-void
-geda_utility_program_mem_free (void *ptr_mem)
+void geda_utility_program_mem_free (void *ptr_mem)
 {
   if (ptr_mem != NULL) {
 
@@ -179,8 +174,7 @@ geda_utility_program_mem_free (void *ptr_mem)
  * and g_malloc, free and g_free can be freely mixed. Guile uses
  * GLIBC, and not GLIB.
  */
-void
-geda_utility_program_mem_set_vtable(void)
+void geda_utility_program_mem_set_vtable(void)
 {
 
 #if !GLIB_CHECK_VERSION(2, 44, 0)
@@ -206,8 +200,7 @@ geda_utility_program_mem_set_vtable(void)
  * malloc is being used, that's because the linker must respect
  * our version of ....
  */
-int
-g_mem_is_system_malloc (void)
+int g_mem_is_system_malloc (void)
 {
   return TRUE;
 }

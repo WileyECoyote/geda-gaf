@@ -1,3 +1,7 @@
+2018-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_program.c: Update function wrapping.
+
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_set.c: Revise geda_set_object_bounds_invalid to utilize
