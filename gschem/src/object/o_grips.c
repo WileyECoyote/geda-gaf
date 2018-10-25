@@ -103,6 +103,7 @@ o_grips_draw_rubber (GschemToplevel *w_current)
   }
 }
 
+#if 0
 /*!
  * \brief Get half the width and height of grip in screen units.
  * \par Function Description
@@ -137,6 +138,7 @@ o_grips_compute_drawn_size (GschemToplevel *w_current)
 
   return ret_size >> 1;
 }
+#endif
 
 /*!
  * \brief Check if pointer is inside the grip region.
