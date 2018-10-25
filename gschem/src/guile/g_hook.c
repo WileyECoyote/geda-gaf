@@ -297,11 +297,14 @@ static bool g_hook_run_idle_callback (void *data)
       case LIST_HOOK:
         g_hook_idle_run_object_list(w_current, hooker, capsule->data.list);
         break;
+
       case OBJECT_HOOK:
         g_hook_idle_run_object(w_current, hooker, capsule->data.object);
         break;
+
       case PAGE_HOOK:
         g_hook_idle_run_page(w_current, hooker, capsule->data.page);
+
       default:
         break;
     }
