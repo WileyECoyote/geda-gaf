@@ -135,6 +135,8 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
 
   scm_dynwind_end ();
 
+  o_undo_savestate_object(w_current, UNDO_ALL, result);
+
   return edascm_from_object (result);
 }
 

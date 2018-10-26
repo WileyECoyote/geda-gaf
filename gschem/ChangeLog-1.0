@@ -1,5 +1,8 @@
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_attrib.c: Revise add_attrib_x to save the page after adding
+      the new attribute using o_undo_savestate_object.
+
     * src/guile/g_hook.c: Change idle priorities from G_PRIORITY_DEFAULT_IDLE
       to G_PRIORITY_DEFAULT.
 
