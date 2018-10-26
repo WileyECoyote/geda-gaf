@@ -108,7 +108,7 @@ pre_object_removed (Page *page, GedaObject *object)
 
   }
   else {
-    BUG_MSG("GedaObject is not a GedaObject");
+    BUG_MSG("Object is not a GedaObject");
   }
 }
 
@@ -903,7 +903,7 @@ void geda_struct_page_append_object (Page *page, GedaObject *object)
       object_added (page, object);
     }
     else {
-      BUG_PMSG("GedaObject is not a GedaObject", object);
+      BUG_PMSG("Object is not a GedaObject", object);
     }
 
   }
@@ -1002,7 +1002,7 @@ void geda_struct_page_replace_object (Page *page, GedaObject *object1, GedaObjec
         object_added (page, object2);
       }
       else {
-        BUG_PMSG("GedaObject is not a GedaObject", object2);
+        BUG_PMSG("Object is not a GedaObject", object2);
       }
     }
   }

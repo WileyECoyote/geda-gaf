@@ -1,6 +1,10 @@
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Reword GedaObject BUG_MSG.
+
     * src/scheme/scheme_closure.c: Reformat Doxygen documentation.
+
+    * src/struct/s_page.c: Reword GedaObject BUG_MSG.
 
 2018-10-25 Wiley E. Hill <wileyhill@gmail.com>
 

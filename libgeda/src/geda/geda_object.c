@@ -867,7 +867,7 @@ void geda_object_weak_ref (GedaObject *object, WeakNotifyFunc notify_func, void 
     object->weak_refs = s_weakref_add (object->weak_refs, notify_func, user_data);
   }
   else {
-    BUG_MSG("GedaObject is not a GedaObject");
+    BUG_MSG("Object is not a GedaObject");
   }
 }
 
@@ -888,7 +888,7 @@ void geda_object_weak_unref (GedaObject *object, WeakNotifyFunc notify_func, voi
     object->weak_refs = s_weakref_remove (object->weak_refs, notify_func, user_data);
   }
   else {
-    BUG_MSG("GedaObject is not a GedaObject");
+    BUG_MSG("Object is not a GedaObject");
   }
 }
 
