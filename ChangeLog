@@ -1,5 +1,7 @@
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * configure.ac: Bump date version 20181017.
+
     * travis-after-failure.sh: Show the test-suite.log files in the examples.
 
 2018-10-06 Wiley E. Hill <wileyhill@gmail.com>
