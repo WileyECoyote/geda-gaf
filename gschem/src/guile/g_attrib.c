@@ -67,20 +67,22 @@ SCM_SYMBOL (object_state_sym, "object-state");
  * \param value_s   value for the new attribute.
  * \param visible_s visibility of the new attribute (true or false).
  * \param show_s    the attribute part visibility setting.
+ * \param color_s   color index for the new attribute.
  *
  * \return the newly created text object.
  */
-SCM_DEFINE (add_attrib_x, "%add-attrib!", 5, 0, 0,
-            (SCM target_s, SCM name_s, SCM value_s, SCM visible_s, SCM show_s),
+SCM_DEFINE (add_attrib_x, "%add-attrib!", 6, 0, 0,
+            (SCM target_s, SCM name_s, SCM value_s, SCM visible_s, SCM show_s, SCM color_s),
             "Add an attribute to an object, or floating")
 {
   SCM_ASSERT ((edascm_is_page (target_s) ||
                edascm_is_object (target_s) ||
                scm_is_false (target_s)),
                target_s, SCM_ARG1, s_add_attrib_x);
-  SCM_ASSERT (scm_is_string (name_s), name_s, SCM_ARG2, s_add_attrib_x);
-  SCM_ASSERT (scm_is_string (value_s), value_s, SCM_ARG3, s_add_attrib_x);
-  SCM_ASSERT (scm_is_symbol (show_s), show_s, SCM_ARG5, s_add_attrib_x);
+  SCM_ASSERT (scm_is_string  (name_s),  name_s,  SCM_ARG2, s_add_attrib_x);
+  SCM_ASSERT (scm_is_string  (value_s), value_s, SCM_ARG3, s_add_attrib_x);
+  SCM_ASSERT (scm_is_symbol  (show_s),  show_s,  SCM_ARG5, s_add_attrib_x);
+  SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, s_add_attrib_x);
 
   GschemToplevel *w_current = g_current_window ();
   GedaToplevel   *toplevel  = w_current->toplevel;

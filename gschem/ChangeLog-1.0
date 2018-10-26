@@ -1,7 +1,17 @@
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/guile/g_attrib.c: Revise add_attrib_x to save the page after adding
-      the new attribute using o_undo_savestate_object.
+    * etc/system-gschemrc.scm: Add color indexes in the default-pin-attributes
+      lists.
+
+    * etc/user-gschemrc.scm: Add the same color index values, as above,
+      in the default-pin-attributes lists.
+
+    * scheme/gschem/deprecated.scm: Revise add-attribute-to-object to pass
+      the color argument to add-attrib!.
+
+    * src/guile/g_attrib.c: Revise add_attrib_x to require a color argument
+      and call o_undo_savestate_object to save the page after adding the new
+      attribute.
 
     * src/guile/g_hook.c: Change idle priorities from G_PRIORITY_DEFAULT_IDLE
       to G_PRIORITY_DEFAULT.

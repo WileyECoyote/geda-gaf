@@ -1247,10 +1247,10 @@
 ;   - Show_list:  a list containing what to show, using
 ;                 elements like "name" or "value", or an empty list.
 (define default-pin-attributes
-       '(("pintype"   "pas" #f ())
-         ("pinlabel"  "unknown" #t ("value"))
-         ("pinnumber" "0"       #t ("value"))
-         ("pinseq"    "0"       #f ())))
+       '(("pintype"   "pas"     #f ()        5)
+         ("pinlabel"  "unknown" #t ("value") 9)
+         ("pinnumber" "0"       #t ("value") 5)
+         ("pinseq"    "0"       #f ()        5)))
 
 ; Convert a character into a string
 (define char2str

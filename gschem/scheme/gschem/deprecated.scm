@@ -44,7 +44,7 @@
 ;; both are assumed).
 ;;
 ;; See also add-attrib! in the (gschem attrib) module.
-(define-public (add-attribute-to-object object name value visible show)
+(define-public (add-attribute-to-object object name value visible show color)
   (add-attrib! object name value visible
                (let ((n (member "name" show))
                      (v (member "value" show)))
@@ -52,7 +52,8 @@
                   ((and n v) 'both)
                   (n 'name)
                   (v 'value)
-                  (else 'both))))) ;; Default
+                  (else 'both)))
+               color)) ;; Default
 
 ;; set-attribute-text-properties! attrib color size alignment
 ;;                                rotation x y
