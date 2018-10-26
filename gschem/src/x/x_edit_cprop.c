@@ -170,7 +170,7 @@ static bool x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
       else {
 
         char *newtext = geda_strconcat(key, "=", new_value, NULL);
-        o_attrib_add_attrib(w_current, newtext, VISIBLE, SHOW_NAME_VALUE, NULL);
+        o_attrib_add_attrib(w_current, newtext, VISIBLE, SHOW_NAME_VALUE, -1, NULL);
         GEDA_FREE (newtext);
         result = TRUE;
       }

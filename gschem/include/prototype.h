@@ -426,7 +426,7 @@ void       o_attrib_select_invisible         (GschemToplevel *w_current, SELECTI
 void       o_attrib_toggle_visibility        (GschemToplevel *w_current, GedaObject *object);
 void       o_attrib_toggle_show_name_value   (GschemToplevel *w_current, GedaObject *object, int new_show_name_value);
 OBJ       *o_attrib_add_attrib               (GschemToplevel *w_current, const char *text_string, int visibility,
-                                              int show_name_value, GedaObject *object);
+                                              int show_name_value, int color, GedaObject *object);
 bool       o_attrib_reset_position           (GschemToplevel *w_current, GedaObject *parent, GedaObject *attrib);
 
 /* o_box.c */

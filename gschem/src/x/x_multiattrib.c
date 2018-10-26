@@ -608,7 +608,7 @@ static void multiattrib_action_add_attribute(Multiattrib *ThisDialog,
 
       /* create a new attribute and link it */
       o_attrib_add_attrib (w_current, newtext,
-                           visible, show_name_value, object);
+                           visible, show_name_value, -1, object);
     }
   }
 
@@ -638,6 +638,7 @@ static void multiattrib_action_duplicate_attributes(Multiattrib *ThisDialog,
                          geda_text_object_get_string (o_attrib),
                          geda_object_get_is_visible (o_attrib),
                          o_attrib->show_name_value,
+                         o_attrib->color,
                          o_attrib->attached_to);
   }
 
@@ -673,6 +674,7 @@ static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
                            geda_text_object_get_string (o_attrib),
                            VISIBLE,
                            o_attrib->show_name_value,
+                           o_attrib->color,
                            o_attrib->attached_to);
     }
     else {
@@ -749,6 +751,7 @@ multiattrib_action_copy_attribute_to_all (Multiattrib *ThisDialog,
                            geda_text_object_get_string (attrib_to_copy),
                            visibility,
                            attrib_to_copy->show_name_value,
+                           attrib_to_copy->color,
                            object);
     }
   }
@@ -2092,7 +2095,6 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   GtkTreeModel      *store;
   GtkTreeSelection  *selection;
   GtkStyle          *style;
-
   int i;
 
   /* dialog initialization */

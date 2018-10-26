@@ -10,11 +10,24 @@
       the color argument to add-attrib!.
 
     * src/guile/g_attrib.c: Revise add_attrib_x to require a color argument
-      and call o_undo_savestate_object to save the page after adding the new
-      attribute.
+      and pass the argument to o_attrib_add_attrib. Call o_undo_savestate_object
+      to save the page after adding the new attribute.
 
     * src/guile/g_hook.c: Change idle priorities from G_PRIORITY_DEFAULT_IDLE
       to G_PRIORITY_DEFAULT.
+
+    * src/object/o_attrib.c: Add color argument to o_attrib_add_attrib and
+      revise to use the value if the value is positive, otherwise default
+      to using the default color index.
+
+    * src/x/x_edit_attrib.c: Revise attrib_edit_dialog_ok to pass TEXT_COLOR
+      to o_attrib_add_attrib if the attribute is a pin label, else pass -1.
+
+    * src/x/x_edit_cprop.c: Revise x_dialog_ep_check_update_attribs to pass
+      -1 to o_attrib_add_attrib.
+
+    * src/x/x_multiattrib.c: Update module to pass a color index to o_attrib_
+      add_attrib.
 
 2018-10-25 Wiley E. Hill <wileyhill@gmail.com>
 

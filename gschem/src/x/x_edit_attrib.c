@@ -220,21 +220,27 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   if (mode == SAE_ADD_MODE) {
 
     GedaObject *new = NULL;
+    int color;
 
     object = o_select_return_first_object(w_current);
 
-    new = o_attrib_add_attrib(w_current, newtext, vis, show, object);
+    if (strncmp(newtext, "pinlabel", 8) == 0){
+      color = TEXT_COLOR;
+    }
+    else {
+      color = -1;
+    }
 
-    if ( w_current->first_wx != -1 && w_current->first_wy != -1) {
+    new = o_attrib_add_attrib(w_current, newtext, vis, show, color, object);
+
+    if (w_current->first_wx != -1 && w_current->first_wy != -1) {
 
       o_invalidate_object (w_current, new);
+
       new->text->x = w_current->first_wx;
       new->text->y = w_current->first_wy;
-
-      if (strncmp(newtext, "pinlabel", 8) == 0){
-        new->color = TEXT_COLOR;
-      }
     }
+
     geda_text_object_recreate(new);
     o_undo_savestate(w_current, UNDO_ALL);
 

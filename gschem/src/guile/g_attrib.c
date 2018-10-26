@@ -133,7 +133,9 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 6, 0, 0,
   char *str = geda_sprintf ("%s=%s", name, value);
   scm_dynwind_unwind_handler (g_free, str, SCM_F_WIND_EXPLICITLY);
 
-  GedaObject *result = o_attrib_add_attrib (w_current, str, visibility, show, obj);
+  int color = scm_to_int (color_s);
+
+  GedaObject *result = o_attrib_add_attrib (w_current, str, visibility, show, color, obj);
 
   scm_dynwind_end ();
 

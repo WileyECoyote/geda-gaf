@@ -261,13 +261,13 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
                                 const char     *text_string,
                                 int             visibility,
                                 int             show_name_value,
+                                int             color,
                                 GedaObject     *parent)
 {
   Page *page;
   int world_x, world_y;
   int align;
   int angle;
-  int color;
   int left, right, top, bottom;
 
   GedaObject *new_obj;
@@ -286,7 +286,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
 
     int offset;
 
-    color = ATTRIBUTE_COLOR;
+    color = color < 0 ? ATTRIBUTE_COLOR : color;
 
     /* get coordinates of where to place the text object */
     switch(parent->type) {
@@ -363,7 +363,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
   }
   else {
 
-    color = DETACHED_ATTRIBUTE_COLOR;
+    color = color < 0 ? DETACHED_ATTRIBUTE_COLOR : color;
 
     geda_object_get_bounds_list (geda_struct_page_get_objects (page),
                              &left, &top, &right, &bottom);
@@ -371,7 +371,6 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
     /* this really is the lower left hand corner */
     world_x = left;
     world_y = top;
-
   }
 
   /* printf("%d %d\n", world_x, world_y); */
