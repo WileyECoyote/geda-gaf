@@ -1,3 +1,7 @@
+2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_closure.c: Reformat Doxygen documentation.
+
 2018-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_complex.c: Reformat Doxygen documentation.

@@ -33,8 +33,9 @@ SCM_SYMBOL (args_sym,   "args");
 
 static SCM marshal_proc;
 
-/*! \brief Unpack and call a C closure
- *
+/*!
+ * \brief Unpack and call a C closure
+ * \par Function Description
  * Unpack the C function pointer and user data pointer from a C
  * closure \a smob, and then make a function call of the form:
  *
@@ -62,7 +63,8 @@ static SCM edascm_closure_marshal (SCM args, SCM smob) {
   return func (args, user_data);
 }
 
-/*! \brief Get a smob from a C closure.
+/*!
+ * \brief Get a smob from a C closure.
  * \par Function Description
  * Create a new smob representing a C closure.
  *
@@ -82,7 +84,8 @@ static SCM edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
  return smob;
 }
 
-/*! \brief Make a C closure.
+/*!
+ * \brief Make a C closure.
  * \ingroup guile_c_iface
  * \par Function Description
  * Make and return a Scheme procedure that closes around the provided
