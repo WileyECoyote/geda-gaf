@@ -244,7 +244,7 @@ o_complex_translate_list(GschemToplevel *w_current, const GList *o_list,
 
     geda_object_get_bounds_list (o_list, &left,  &top, &right, &bottom);
 
-    /*! \todo do we want snap grid here? */
+    /* Snap the bounds to the grid */
     x = snap_grid (w_current, left);
     y = snap_grid (w_current, top);
 
@@ -284,7 +284,7 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, const GList  *obj
 
     geda_object_get_bounds_list (object_list, &left,  &top, &right, &bottom);
 
-    /*! Snap the bounds to the grid */
+    /* Snap the bounds to the grid */
     x = snap_grid (w_current, left);
     y = snap_grid (w_current, top);
 
