@@ -1,6 +1,10 @@
+2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * travis-after-failure.sh: Show the test-suite.log files in the examples.
+
 2018-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * */Makefile.am: Clean PO directories in parent make file.
+    * Makefile.am: Clean PO directories in parent make file.
 
 2018-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
