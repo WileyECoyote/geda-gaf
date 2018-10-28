@@ -88,11 +88,11 @@ msgstr "Kirjausjärjestelmä on poistettu käytöstä\n"
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "VIRHE: käynnistyskomentosarjan lataaminen tai arvioiminen epäonnistui.\n"
 
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Poistu normaalista\n"
 
 # FAILED:
 #: gschem/src/base/gschem.c:558
@@ -269,39 +269,47 @@ msgid ""
 "included in the gEDA distribution.\n"
 "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr ""
+"gEDA/gschem %s (%s) (g%.7s)\n"
+"tekijänoikeus (C) 1998-2017 gEDA kehittäjät\n"
+"Tämä on ilmainen ohjelmisto, ja voit jakaa sen alle\n"
+"tietyt ehdot. Katso lisätietoja kohdasta `KOPIOINTI ', joka on\n"
+"sisältyvät gEDA-jakeluun.\n"
+"Mitään takuuta ei ole lain sallimissa rajoissa.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "virhe jäsentämiseen"
+
 
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "VIRHE"
 
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "vaihtoehto vaatii argumentin"
 
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
-msgstr ""
+msgstr "Tuntematon vaihtoehto"
 
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr ""
+msgstr "Tuntematon vaihtoehto merkki"
 
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "help for more information"
 msgstr "apua lisätietoja"
 
+# Run
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
-msgstr ""
+msgstr "Suorita"
 
 #: gschem/src/base/gschem_preview.c:293
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Esikatselupuskuri"
 
 #: gschem/src/base/gschem_preview.c:527 gschem/src/x/x_pagesel.c:1133
 msgid "Filename"
