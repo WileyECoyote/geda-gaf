@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-20 11:24-0500\n"
+"POT-Creation-Date: 2018-10-24 09:40-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -36,7 +36,7 @@ msgstr "Не удалось открыть каталог"
 msgid "List of available backends"
 msgstr "Список доступных драйверов"
 
-#: gnetlist/src/gnetlist.c:244
+#: gnetlist/src/gnetlist.c:246
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
@@ -44,14 +44,14 @@ msgstr ""
 "GEDA/gnetlist поставляется с абсолютно БЕСПЛАТНОЙ ГАРАНТИЕЙ; См. КОПИРОВАНИЕ "
 "для более подробной информации.\n"
 
-#: gnetlist/src/gnetlist.c:246
+#: gnetlist/src/gnetlist.c:248
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 "Это бесплатное программное обеспечение, и вы можете перераспределить его при "
 "определенных\n"
 
-#: gnetlist/src/gnetlist.c:248
+#: gnetlist/src/gnetlist.c:250
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
@@ -59,57 +59,57 @@ msgstr ""
 "условия; Более подробную информацию см. В файле COPYING.\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:291 gnetlist/src/gnetlist.c:292
+#: gnetlist/src/gnetlist.c:293 gnetlist/src/gnetlist.c:294
 msgid "Loading schematic"
 msgstr "Загрузка схемы"
 
 # load failed
-#: gnetlist/src/gnetlist.c:298
+#: gnetlist/src/gnetlist.c:300
 msgid "load failed"
 msgstr "Ошибка загрузки"
 
 # System could not change to directory
-#: gnetlist/src/gnetlist.c:317 gnetlist/src/gnetlist.c:372
+#: gnetlist/src/gnetlist.c:319 gnetlist/src/gnetlist.c:374
 msgid "System could not change to directory"
 msgstr "Система не может быть изменена в каталог"
 
-#: gnetlist/src/gnetlist.c:345
+#: gnetlist/src/gnetlist.c:347
 msgid "ERROR: Could not find backend"
 msgstr "ОШИБКА: не удалось найти драйвер в пути загрузки"
 
-#: gnetlist/src/gnetlist.c:346
+#: gnetlist/src/gnetlist.c:348
 msgid "for a full list of available backends"
 msgstr "для полного списка доступных бэкэндов"
 
 # in load path
-#: gnetlist/src/gnetlist.c:348
+#: gnetlist/src/gnetlist.c:350
 msgid "in load path"
 msgstr "В пути загрузки"
 
-#: gnetlist/src/gnetlist.c:349
+#: gnetlist/src/gnetlist.c:351
 msgid "Run"
 msgstr "Выполнить"
 
-#: gnetlist/src/gnetlist.c:407 gnetlist/src/gnetlist.c:435
+#: gnetlist/src/gnetlist.c:409 gnetlist/src/gnetlist.c:437
 msgid "Path"
 msgstr "Путь к файлу"
 
 # is not accessible
-#: gnetlist/src/gnetlist.c:408 gnetlist/src/gnetlist.c:436
+#: gnetlist/src/gnetlist.c:410 gnetlist/src/gnetlist.c:438
 msgid "is not accessible"
 msgstr "Недоступен"
 
 # file
-#: gnetlist/src/gnetlist.c:419 gnetlist/src/g_rc.c:75
+#: gnetlist/src/gnetlist.c:421 gnetlist/src/g_rc.c:75
 msgid "file"
 msgstr "файл"
 
 # Could not create
-#: gnetlist/src/gnetlist.c:458
+#: gnetlist/src/gnetlist.c:460
 msgid "Could not create"
 msgstr "Не удалось создать"
 
-#: gnetlist/src/gnetlist.c:485
+#: gnetlist/src/gnetlist.c:487
 #, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "Не задан ни драйвер для работы, ни интерактивный режим!\n"
