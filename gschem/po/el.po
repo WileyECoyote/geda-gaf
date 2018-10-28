@@ -22,19 +22,19 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Προειδοποίηση: <%s> δεν επεκτάθηκε\n"
 
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Σφάλμα γραμμής εντολών: Απενεργοποίηση τελευταίου αυτόματου φορτίου\n"
 
 #: gschem/src/base/gschem.c:219
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Υποθέτοντας το σχηματικό επίθημα αρχείου για"
 
 #: gschem/src/base/gschem.c:233
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Υποθέτοντας την κατάληξη αρχείου συμβόλων για"
 
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
@@ -42,7 +42,7 @@ msgstr "Παρουσιάστηκε σφάλμα κατά τη φόρτωση ζ�
 
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr ""
+msgstr "Αυτόματη φόρτιση"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -59,11 +59,11 @@ msgstr ""
 
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "Δεν είναι δυνατό να εντοπιστεί το αρχείο αρχικοποίησης του συστήματος"
 
 #: gschem/src/base/gschem.c:395
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Διαβάστε το αρχείο αρχικοποίησης σχήματος"
 
 #: gschem/src/base/gschem.c:398
 msgid "Failed to read scheme initialization file"
@@ -75,7 +75,7 @@ msgstr "Αποθήκευση όλων"
 
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Το σύστημα καταγραφής είναι απενεργοποιημένο\n"
 
 #: gschem/src/base/gschem.c:460
 #, c-format
@@ -85,23 +85,24 @@ msgstr ""
 
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Έξοδος κανονικού\n"
 
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "ΑΠΕΤΥΧΕ:"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent Window"
 msgstr "Τρέχον παράθυρο"
 
+# Primary window for this dialog
 #: gschem/src/base/gschem_dialog.c:565
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Κύριο παράθυρο για αυτό το παράθυρο διαλόγου"
 
 #: gschem/src/base/gschem_dialog.c:585
 msgid "Title"
-msgstr ""
+msgstr "τίτλος"
 
 #: gschem/src/base/gschem_dialog.c:586
 msgid "Dialog window title"
