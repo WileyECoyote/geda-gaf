@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-20 11:32-0500\n"
+"POT-Creation-Date: 2018-10-26 12:06-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -25,28 +25,29 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Предупреждение: <%s> не расширяется\n"
 
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Ошибка командной строки: отключить автоматическую загрузку последней\n"
 
 #: gschem/src/base/gschem.c:219
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Предполагая суффикс суффикса файла для"
 
 #: gschem/src/base/gschem.c:233
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Предполагая суффикс файла символа для"
 
 # An error was encountered loading requested session
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
 msgstr "ОПроизошла ошибка при загрузке запрошенной сессии"
 
+# Auto Load
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr ""
+msgstr "Автонагрузка"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -80,7 +81,7 @@ msgstr "версия"
 
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Система регистрации отключена\n"
 
 # Error: Could not load or run the script when starting
 #: gschem/src/base/gschem.c:460
@@ -90,19 +91,20 @@ msgstr "ОШИБКА: не удалось загрузить или выполн
 
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Выход из нормального\n"
 
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "FAILED:"
 
 #: gschem/src/base/gschem_dialog.c:564
 msgid "Parent Window"
 msgstr "Родительское окно"
 
+# Primary window for this dialog
 #: gschem/src/base/gschem_dialog.c:565
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Основное окно для этого диалога"
 
 # Title
 #: gschem/src/base/gschem_dialog.c:585
@@ -260,9 +262,10 @@ msgstr ""
 "gEDA. Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся "
 "законодательством.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:244
 msgid "error parsing"
-msgstr ""
+msgstr "анализ ошибок"
 
 # ERROR
 #: gschem/src/base/gschem_parsecmd.c:280 gschem/src/x/x_rc.c:100
@@ -270,19 +273,20 @@ msgstr ""
 msgid "ERROR"
 msgstr "ОШИБКА"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "опция требует аргумента"
 
 # Имеется в виду цвет
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
 msgstr "Неизвестный параметр"
 
-# Unknown option
+# Unknown option character
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr "Неизвестный параметр"
+msgstr "Неизвестный символ опции"
 
 # --help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
@@ -349,7 +353,9 @@ msgstr "Координаты режим"
 # koordinat v stroke sostoyaniya
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr "Устанавливает режим форматирования, используемый для отображения координат в строке состояния"
+msgstr ""
+"Устанавливает режим форматирования, используемый для отображения координат в "
+"строке состояния"
 
 # Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
@@ -368,8 +374,8 @@ msgid "Grid Size"
 msgstr "Сетка:"
 
 # Sets the Grid Size to display on the status bar
-#: gschem/src/base/gschem_status_bar.c:605
 # Ustanavlivayet razmer setki dlya otobrazheniya v stroke sostoyaniya
+#: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
 msgstr "Устанавливает размер сетки для отображения в строке состояния"
 
@@ -507,11 +513,11 @@ msgstr "Ошибка"
 msgid "NONE"
 msgstr "НЕТ"
 
-#: gschem/src/guile/g_attrib.c:98
+#: gschem/src/guile/g_attrib.c:99
 msgid "Object ~A is not included in the current gschem page."
 msgstr "Объект ~A не принадлежит текущей странице."
 
-#: gschem/src/guile/g_attrib.c:118
+#: gschem/src/guile/g_attrib.c:119
 msgid "Invalid text name/value visibility ~A."
 msgstr "Недопустимое сочетание видимости имени/значения ~A."
 
@@ -1257,7 +1263,7 @@ msgstr "Перевод объектов"
 msgid "Translating schematic"
 msgstr "Смещение схемы"
 
-#: gschem/src/object/o_delete.c:91
+#: gschem/src/object/o_delete.c:88
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
@@ -1334,7 +1340,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr "<b>Не удалось заменить изображение</b>"
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427
@@ -1688,12 +1694,12 @@ msgid "Components"
 msgstr "Компоненты"
 
 #: gschem/src/x/x_compselect.c:2693 gschem/src/x/x_confirm_close.c:313
-#: gschem/src/x/x_multiattrib.c:2051 gschem/src/x/x_multiattrib.c:2057
+#: gschem/src/x/x_multiattrib.c:2054 gschem/src/x/x_multiattrib.c:2060
 msgid "Name"
 msgstr "Имя"
 
-#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2053
-#: gschem/src/x/x_multiattrib.c:2059
+#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2056
+#: gschem/src/x/x_multiattrib.c:2062
 msgid "Value"
 msgstr "Значение"
 
@@ -2035,7 +2041,7 @@ msgstr "Текст"
 msgid "Bus"
 msgstr "Шина"
 
-#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_edit_array.c:972
+#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_edit_array.c:976
 #: gschem/src/x/x_menus.c:107
 msgid "Selection"
 msgstr "Выделение"
@@ -2320,49 +2326,49 @@ msgid ""
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3200
+#: gschem/src/x/x_dialog.c:3199
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3202
+#: gschem/src/x/x_dialog.c:3201
 msgid "Translate"
 msgstr "Сместить"
 
-#: gschem/src/x/x_dialog.c:3228
+#: gschem/src/x/x_dialog.c:3227
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3239
+#: gschem/src/x/x_dialog.c:3238
 msgid "Auto Zoom Extents"
 msgstr "Автозумирование Экстенты"
 
-#: gschem/src/x/x_dialog.c:3416
+#: gschem/src/x/x_dialog.c:3415
 msgid "Hotkeys"
 msgstr "Горячие клавиши"
 
-#: gschem/src/x/x_dialog.c:3503
+#: gschem/src/x/x_dialog.c:3502
 msgid "Icon"
 msgstr "Значок"
 
-#: gschem/src/x/x_dialog.c:3517
+#: gschem/src/x/x_dialog.c:3516
 msgid "Action"
 msgstr "Действие"
 
-#: gschem/src/x/x_dialog.c:3527
+#: gschem/src/x/x_dialog.c:3526
 msgid "Keystroke(s)"
 msgstr "Сочетание клавиш"
 
-#: gschem/src/x/x_dialog.c:3537
+#: gschem/src/x/x_dialog.c:3536
 msgid "Command"
 msgstr "команда"
 
-#: gschem/src/x/x_dialog.c:3772
+#: gschem/src/x/x_dialog.c:3771
 msgid "Major symbol changes detected."
 msgstr "Обнаружено значительное изменение символа."
 
-#: gschem/src/x/x_dialog.c:3799
+#: gschem/src/x/x_dialog.c:3798
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2372,26 +2378,26 @@ msgstr ""
 "\n"
 "Удостоверьтесь, что проверили каждый из них."
 
-#: gschem/src/x/x_dialog.c:3840
+#: gschem/src/x/x_dialog.c:3839
 msgid "Symbol"
 msgstr "Символ"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3886
+#: gschem/src/x/x_dialog.c:3885
 msgid "Dismiss this dialog"
 msgstr "Отклонить этот диалог"
 
 # Input attribute is invalid
-#: gschem/src/x/x_dialog.c:3928
+#: gschem/src/x/x_dialog.c:3927
 msgid "Input attribute is invalid"
 msgstr "Вход неверный атрибут"
 
 # Please correct to continue
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3928
 msgid "Please correct in order to continue"
 msgstr "Пожалуйста, исправьте, чтобы продолжить"
 
-#: gschem/src/x/x_dialog.c:3930
+#: gschem/src/x/x_dialog.c:3929
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2401,7 +2407,7 @@ msgstr ""
 "Имя не должно заканчиваться пробелом.\n"
 "Значение не должно начинаться с пробела."
 
-#: gschem/src/x/x_dialog.c:3938
+#: gschem/src/x/x_dialog.c:3937
 msgid "Invalid Attribute"
 msgstr "Недопустимый атрибут"
 
@@ -2420,7 +2426,7 @@ msgid "not in library, opening as page"
 msgstr ""
 
 # symbol
-#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2653
+#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2656
 msgid "symbol"
 msgstr "Символ"
 
@@ -2483,89 +2489,89 @@ msgid ""
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:945 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:949 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr ""
 
 # Count
-#: gschem/src/x/x_edit_array.c:982 gschem/src/x/x_edit_array.c:1052
-#: gschem/src/x/x_edit_array.c:1085
+#: gschem/src/x/x_edit_array.c:986 gschem/src/x/x_edit_array.c:1056
+#: gschem/src/x/x_edit_array.c:1089
 msgid "Count"
 msgstr "подсчитывать"
 
 # X Size
-#: gschem/src/x/x_edit_array.c:993
+#: gschem/src/x/x_edit_array.c:997
 msgid "X Size"
 msgstr "Размер X"
 
 # Y Size
-#: gschem/src/x/x_edit_array.c:996
+#: gschem/src/x/x_edit_array.c:1000
 msgid "Y Size"
 msgstr "Y Размер"
 
-#: gschem/src/x/x_edit_array.c:1015 gschem/src/x/x_menus.c:88
+#: gschem/src/x/x_edit_array.c:1019 gschem/src/x/x_menus.c:88
 msgid "Select"
 msgstr "Выделение"
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1019
+#: gschem/src/x/x_edit_array.c:1023
 msgid "Deselect"
 msgstr "Отмените"
 
-#: gschem/src/x/x_edit_array.c:1035 gschem/src/x/x_menus.c:119
+#: gschem/src/x/x_edit_array.c:1039 gschem/src/x/x_menus.c:119
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1044
+#: gschem/src/x/x_edit_array.c:1048
 msgid "Row"
 msgstr ""
 
 # Offset
-#: gschem/src/x/x_edit_array.c:1067 gschem/src/x/x_edit_array.c:1100
+#: gschem/src/x/x_edit_array.c:1071 gschem/src/x/x_edit_array.c:1104
 msgid "Offset"
 msgstr "офсет"
 
-#: gschem/src/x/x_edit_array.c:1077
+#: gschem/src/x/x_edit_array.c:1081
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1110
+#: gschem/src/x/x_edit_array.c:1114
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1118
+#: gschem/src/x/x_edit_array.c:1122
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1122
+#: gschem/src/x/x_edit_array.c:1126
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1140
+#: gschem/src/x/x_edit_array.c:1144
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1147
+#: gschem/src/x/x_edit_array.c:1151
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1154
+#: gschem/src/x/x_edit_array.c:1158
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1161
+#: gschem/src/x/x_edit_array.c:1165
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1168
+#: gschem/src/x/x_edit_array.c:1172
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1175
+#: gschem/src/x/x_edit_array.c:1179
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1182
+#: gschem/src/x/x_edit_array.c:1186
 msgid "entry for array vertical pitch"
 msgstr ""
 
@@ -2576,95 +2582,95 @@ msgstr ""
 "Выбран недопустимый способ отображения, установка отображения имени и "
 "значения\n"
 
-#: gschem/src/x/x_edit_attrib.c:326
+#: gschem/src/x/x_edit_attrib.c:332
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
 # Show only the name of the attribute
-#: gschem/src/x/x_edit_attrib.c:327
+#: gschem/src/x/x_edit_attrib.c:333
 msgid "Show only the name of the attribute"
 msgstr "Показывать только имя атрибута"
 
 # Show only the value of the attribute
-#: gschem/src/x/x_edit_attrib.c:328
+#: gschem/src/x/x_edit_attrib.c:334
 msgid "Show only the value of the attribute"
 msgstr "Показывать только значение атрибута"
 
-#: gschem/src/x/x_edit_attrib.c:329
+#: gschem/src/x/x_edit_attrib.c:335
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:337
+#: gschem/src/x/x_edit_attrib.c:343
 msgid "Show Value Only"
 msgstr "Значение"
 
-#: gschem/src/x/x_edit_attrib.c:341
+#: gschem/src/x/x_edit_attrib.c:347
 msgid "Show Name Only"
 msgstr "Имя"
 
-#: gschem/src/x/x_edit_attrib.c:345 gschem/src/x/x_multiattrib.c:1668
+#: gschem/src/x/x_edit_attrib.c:351 gschem/src/x/x_multiattrib.c:1671
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Имя и значение"
 
-#: gschem/src/x/x_edit_attrib.c:410
+#: gschem/src/x/x_edit_attrib.c:416
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:411 gschem/src/x/x_multiattrib.c:2241
+#: gschem/src/x/x_edit_attrib.c:417 gschem/src/x/x_multiattrib.c:2244
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Добавить атрибут"
 
 # Edit Attribute
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:418
 msgid "Edit Attribute"
 msgstr "Изменить атрибут"
 
 # Select the name of the attribute to add
-#: gschem/src/x/x_edit_attrib.c:414
+#: gschem/src/x/x_edit_attrib.c:420
 msgid "Select the name of the attribute to add"
 msgstr "Выберите имя атрибута для добавления"
 
-#: gschem/src/x/x_edit_attrib.c:415
+#: gschem/src/x/x_edit_attrib.c:421
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:417
+#: gschem/src/x/x_edit_attrib.c:423
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:418
+#: gschem/src/x/x_edit_attrib.c:424
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:420
+#: gschem/src/x/x_edit_attrib.c:426
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:437
+#: gschem/src/x/x_edit_attrib.c:443
 msgid "Single Attribute Editor"
 msgstr "Редактор атрибута"
 
-#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2258
+#: gschem/src/x/x_edit_attrib.c:471 gschem/src/x/x_multiattrib.c:2261
 msgid "Name:"
 msgstr "Имя:"
 
-#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2277
+#: gschem/src/x/x_edit_attrib.c:488 gschem/src/x/x_multiattrib.c:2280
 msgid "Value:"
 msgstr "Значение:"
 
-#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2055
-#: gschem/src/x/x_multiattrib.c:2332
+#: gschem/src/x/x_edit_attrib.c:502 gschem/src/x/x_multiattrib.c:2058
+#: gschem/src/x/x_multiattrib.c:2335
 msgid "Visible"
 msgstr "Отображать"
 
-#: gschem/src/x/x_edit_attrib.c:525
+#: gschem/src/x/x_edit_attrib.c:531
 msgid "Attribute Name List"
 msgstr "Имя атрибута List"
 
 # Attribute Value Entry => Attribute record value
-#: gschem/src/x/x_edit_attrib.c:529
+#: gschem/src/x/x_edit_attrib.c:535
 msgid "Attribute Value Entry"
 msgstr "Атрибут Значение записи"
 
@@ -3602,7 +3608,7 @@ msgstr ""
 msgid "Project linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:122 gschem/src/x/x_multiattrib.c:1707
+#: gschem/src/x/x_menus.c:122 gschem/src/x/x_multiattrib.c:1710
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Удалить"
@@ -4013,102 +4019,102 @@ msgstr "Не удалось открыть"
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:813 gschem/src/x/x_multiattrib.c:2833
+#: gschem/src/x/x_multiattrib.c:816 gschem/src/x/x_multiattrib.c:2836
 msgid "<various>"
 msgstr "<различные>"
 
-#: gschem/src/x/x_multiattrib.c:935
+#: gschem/src/x/x_multiattrib.c:938
 msgid "Attribute name must not be empty. Please set a name."
 msgstr "Не допускается отсутствие имени у атрибута. Введите имя."
 
 # Attribute Editor
-#: gschem/src/x/x_multiattrib.c:937
+#: gschem/src/x/x_multiattrib.c:940
 msgid "Multi-Attribute Editor"
 msgstr "Редактор атрибута"
 
 # Select an attribute to add
-#: gschem/src/x/x_multiattrib.c:1651
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Select an attribute to add"
 msgstr "Выберите атрибут для добавления"
 
-#: gschem/src/x/x_multiattrib.c:1670
+#: gschem/src/x/x_multiattrib.c:1673
 msgid "Show Value only"
 msgstr "Значение"
 
-#: gschem/src/x/x_multiattrib.c:1672
+#: gschem/src/x/x_multiattrib.c:1675
 msgid "Show Name only"
 msgstr "Имя"
 
-#: gschem/src/x/x_multiattrib.c:1676
+#: gschem/src/x/x_multiattrib.c:1679
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1701
+#: gschem/src/x/x_multiattrib.c:1704
 msgid "Promote"
 msgstr "Вынести"
 
-#: gschem/src/x/x_multiattrib.c:1706
+#: gschem/src/x/x_multiattrib.c:1709
 msgid "Duplicate"
 msgstr "Дублировать"
 
-#: gschem/src/x/x_multiattrib.c:1708
+#: gschem/src/x/x_multiattrib.c:1711
 msgid "Copy to all"
 msgstr "Скопировать во все"
 
-#: gschem/src/x/x_multiattrib.c:2100 gschem/src/x/x_multiattrib.c:2630
+#: gschem/src/x/x_multiattrib.c:2103 gschem/src/x/x_multiattrib.c:2633
 msgid "Edit Attributes"
 msgstr "Правка атрибутов"
 
-#: gschem/src/x/x_multiattrib.c:2292
+#: gschem/src/x/x_multiattrib.c:2295
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2322
+#: gschem/src/x/x_multiattrib.c:2325
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2337
+#: gschem/src/x/x_multiattrib.c:2340
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2352
+#: gschem/src/x/x_multiattrib.c:2355
 msgid "Add new attribute to component"
 msgstr ""
 
 # symbols
-#: gschem/src/x/x_multiattrib.c:2649
+#: gschem/src/x/x_multiattrib.c:2652
 msgid "symbols"
 msgstr "символы"
 
-#: gschem/src/x/x_multiattrib.c:2664
+#: gschem/src/x/x_multiattrib.c:2667
 msgid "pins"
 msgstr "вывода"
 
-#: gschem/src/x/x_multiattrib.c:2668
+#: gschem/src/x/x_multiattrib.c:2671
 msgid "pin"
 msgstr "Вывод"
 
-#: gschem/src/x/x_multiattrib.c:2679
+#: gschem/src/x/x_multiattrib.c:2682
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2683
+#: gschem/src/x/x_multiattrib.c:2686
 msgid "net"
 msgstr "соединение"
 
-#: gschem/src/x/x_multiattrib.c:2694
+#: gschem/src/x/x_multiattrib.c:2697
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2698
+#: gschem/src/x/x_multiattrib.c:2701
 msgid "bus"
 msgstr "шина"
 
-#: gschem/src/x/x_multiattrib.c:2709
+#: gschem/src/x/x_multiattrib.c:2712
 msgid "attributes"
 msgstr "Атрибуты"
 
-#: gschem/src/x/x_multiattrib.c:2713
+#: gschem/src/x/x_multiattrib.c:2716
 msgid "attribute"
 msgstr "атрибут"
 
@@ -6280,7 +6286,7 @@ msgstr "gEDA wiki"
 msgid "View the front page of the gEDA wiki in a browser."
 msgstr "Открыть основную страницу gEDA wiki в браузере."
 
-#: gschem/scheme/gschem/deprecated.scm:102
+#: gschem/scheme/gschem/deprecated.scm:103
 #, scheme-format
 msgid "Invalid text alignment ~A."
 msgstr "Недопустимое выравнивание текста ~A."

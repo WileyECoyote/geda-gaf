@@ -14,6 +14,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/ru.po: Update Russian translations.
+
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add color indexes in the default-pin-attributes
