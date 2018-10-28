@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-20 11:32-0500\n"
+"POT-Creation-Date: 2018-10-26 12:06-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -233,22 +233,27 @@ msgstr "razgraničenje greške"
 msgid "ERROR"
 msgstr "GREŠKA"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:284
 msgid "option requires an argument"
-msgstr ""
+msgstr "opcija zahteva argument"
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:290
 msgid "Unknown option"
-msgstr ""
+msgstr "Nepoznata opcija"
 
+# Unknown option character
 #: gschem/src/base/gschem_parsecmd.c:296
 msgid "Unknown option character"
-msgstr ""
+msgstr "Nepoznati znak opcije"
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:302
 msgid "help for more information"
-msgstr ""
+msgstr "pomoć za više informacija"
 
+# Run => Start
 #: gschem/src/base/gschem_parsecmd.c:304
 msgid "Run"
 msgstr "Pokrenite"
@@ -383,9 +388,10 @@ msgstr "Podešava veličinu snopa za prikaz na statusnoj traci"
 msgid "Status Text"
 msgstr "Status Tekst"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Podesite string za tekst na statusnoj traci"
 
 # Status State
 #: gschem/src/base/gschem_status_bar.c:672
@@ -400,23 +406,24 @@ msgstr "Status Bar Visina"
 
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Podesite ili dobijete visinu statusne trake"
 
 #: gschem/src/base/gschem_status_bar.c:1182
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Prikaz koordinata, desni klik za opcije formatiranja"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1183
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Dodjela dugmeta pokazivača"
 
 #: gschem/src/base/gschem_status_bar.c:1184
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Dodjelu dugmeta na srednji pokazivač, desni klik za opcije"
 
 #: gschem/src/base/gschem_status_bar.c:1185
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Desni klik dugmeta, desni klik za opcije"
 
 #: gschem/src/base/gschem_status_bar.c:1186
 msgid "Indicates the current snap, grid units or state"
@@ -450,11 +457,11 @@ msgstr "greška"
 msgid "NONE"
 msgstr "NIŠTA"
 
-#: gschem/src/guile/g_attrib.c:98
+#: gschem/src/guile/g_attrib.c:99
 msgid "Object ~A is not included in the current gschem page."
 msgstr ""
 
-#: gschem/src/guile/g_attrib.c:118
+#: gschem/src/guile/g_attrib.c:119
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
@@ -1152,7 +1159,7 @@ msgstr "Prevođenje objekata"
 msgid "Translating schematic"
 msgstr "Prijevodi shematski"
 
-#: gschem/src/object/o_delete.c:91
+#: gschem/src/object/o_delete.c:88
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
@@ -1223,7 +1230,7 @@ msgid "<b>Failed to replace picture</b>"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:425
-msgid "Orginal size"
+msgid "Original size"
 msgstr ""
 
 #: gschem/src/object/o_picture.c:427
@@ -1551,12 +1558,12 @@ msgid "Components"
 msgstr ""
 
 #: gschem/src/x/x_compselect.c:2693 gschem/src/x/x_confirm_close.c:313
-#: gschem/src/x/x_multiattrib.c:2051 gschem/src/x/x_multiattrib.c:2057
+#: gschem/src/x/x_multiattrib.c:2054 gschem/src/x/x_multiattrib.c:2060
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2053
-#: gschem/src/x/x_multiattrib.c:2059
+#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2056
+#: gschem/src/x/x_multiattrib.c:2062
 msgid "Value"
 msgstr ""
 
@@ -1884,7 +1891,7 @@ msgid "Bus"
 msgstr "Sabirnica"
 
 # Selection
-#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_edit_array.c:972
+#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_edit_array.c:976
 #: gschem/src/x/x_menus.c:107
 msgid "Selection"
 msgstr "izbor"
@@ -2163,52 +2170,52 @@ msgid ""
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3200
+#: gschem/src/x/x_dialog.c:3199
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3202
+#: gschem/src/x/x_dialog.c:3201
 msgid "Translate"
 msgstr "Translacija"
 
-#: gschem/src/x/x_dialog.c:3228
+#: gschem/src/x/x_dialog.c:3227
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
 # Auto Zoom Extents
-#: gschem/src/x/x_dialog.c:3239
+#: gschem/src/x/x_dialog.c:3238
 msgid "Auto Zoom Extents"
 msgstr "Automatsko zumiranje Okvir"
 
-#: gschem/src/x/x_dialog.c:3416
+#: gschem/src/x/x_dialog.c:3415
 msgid "Hotkeys"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3503
+#: gschem/src/x/x_dialog.c:3502
 msgid "Icon"
 msgstr ""
 
 # Action
-#: gschem/src/x/x_dialog.c:3517
+#: gschem/src/x/x_dialog.c:3516
 msgid "Action"
 msgstr "Akcija"
 
-#: gschem/src/x/x_dialog.c:3527
+#: gschem/src/x/x_dialog.c:3526
 msgid "Keystroke(s)"
 msgstr ""
 
 # Command
-#: gschem/src/x/x_dialog.c:3537
+#: gschem/src/x/x_dialog.c:3536
 msgid "Command"
 msgstr "Naredba"
 
-#: gschem/src/x/x_dialog.c:3772
+#: gschem/src/x/x_dialog.c:3771
 msgid "Major symbol changes detected."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3799
+#: gschem/src/x/x_dialog.c:3798
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2216,31 +2223,31 @@ msgid ""
 msgstr ""
 
 # Symbol
-#: gschem/src/x/x_dialog.c:3840
+#: gschem/src/x/x_dialog.c:3839
 msgid "Symbol"
 msgstr "Simbol"
 
-#: gschem/src/x/x_dialog.c:3886
+#: gschem/src/x/x_dialog.c:3885
 msgid "Dismiss this dialog"
 msgstr ""
 
 # Input attribute is invalid
-#: gschem/src/x/x_dialog.c:3928
+#: gschem/src/x/x_dialog.c:3927
 msgid "Input attribute is invalid"
 msgstr "Ulazni atribut je nevažeća"
 
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3928
 msgid "Please correct in order to continue"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3930
+#: gschem/src/x/x_dialog.c:3929
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3938
+#: gschem/src/x/x_dialog.c:3937
 msgid "Invalid Attribute"
 msgstr ""
 
@@ -2256,7 +2263,7 @@ msgstr ""
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2653
+#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2656
 msgid "symbol"
 msgstr "simbol"
 
@@ -2321,86 +2328,86 @@ msgid ""
 msgstr ""
 
 # Create array
-#: gschem/src/x/x_edit_array.c:945 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:949 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr "stvoriti niz"
 
-#: gschem/src/x/x_edit_array.c:982 gschem/src/x/x_edit_array.c:1052
-#: gschem/src/x/x_edit_array.c:1085
+#: gschem/src/x/x_edit_array.c:986 gschem/src/x/x_edit_array.c:1056
+#: gschem/src/x/x_edit_array.c:1089
 msgid "Count"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:993
+#: gschem/src/x/x_edit_array.c:997
 msgid "X Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:996
+#: gschem/src/x/x_edit_array.c:1000
 msgid "Y Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1015 gschem/src/x/x_menus.c:88
+#: gschem/src/x/x_edit_array.c:1019 gschem/src/x/x_menus.c:88
 msgid "Select"
 msgstr ""
 
 # Deselect Mode
-#: gschem/src/x/x_edit_array.c:1019
+#: gschem/src/x/x_edit_array.c:1023
 msgid "Deselect"
 msgstr "poništiti izbor"
 
-#: gschem/src/x/x_edit_array.c:1035 gschem/src/x/x_menus.c:119
+#: gschem/src/x/x_edit_array.c:1039 gschem/src/x/x_menus.c:119
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1044
+#: gschem/src/x/x_edit_array.c:1048
 msgid "Row"
 msgstr ""
 
 # offset
-#: gschem/src/x/x_edit_array.c:1067 gschem/src/x/x_edit_array.c:1100
+#: gschem/src/x/x_edit_array.c:1071 gschem/src/x/x_edit_array.c:1104
 msgid "Offset"
 msgstr "Ofset"
 
-#: gschem/src/x/x_edit_array.c:1077
+#: gschem/src/x/x_edit_array.c:1081
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1110
+#: gschem/src/x/x_edit_array.c:1114
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1118
+#: gschem/src/x/x_edit_array.c:1122
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1122
+#: gschem/src/x/x_edit_array.c:1126
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1140
+#: gschem/src/x/x_edit_array.c:1144
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1147
+#: gschem/src/x/x_edit_array.c:1151
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1154
+#: gschem/src/x/x_edit_array.c:1158
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1161
+#: gschem/src/x/x_edit_array.c:1165
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1168
+#: gschem/src/x/x_edit_array.c:1172
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1175
+#: gschem/src/x/x_edit_array.c:1179
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1182
+#: gschem/src/x/x_edit_array.c:1186
 msgid "entry for array vertical pitch"
 msgstr ""
 
@@ -2409,92 +2416,92 @@ msgstr ""
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:326
+#: gschem/src/x/x_edit_attrib.c:332
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:327
+#: gschem/src/x/x_edit_attrib.c:333
 msgid "Show only the name of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:328
+#: gschem/src/x/x_edit_attrib.c:334
 msgid "Show only the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:329
+#: gschem/src/x/x_edit_attrib.c:335
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:337
+#: gschem/src/x/x_edit_attrib.c:343
 msgid "Show Value Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:341
+#: gschem/src/x/x_edit_attrib.c:347
 msgid "Show Name Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:345 gschem/src/x/x_multiattrib.c:1668
+#: gschem/src/x/x_edit_attrib.c:351 gschem/src/x/x_multiattrib.c:1671
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:410
+#: gschem/src/x/x_edit_attrib.c:416
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:411 gschem/src/x/x_multiattrib.c:2241
+#: gschem/src/x/x_edit_attrib.c:417 gschem/src/x/x_multiattrib.c:2244
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr ""
 
 # Edit Attribute
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:418
 msgid "Edit Attribute"
 msgstr "Izmeni atribut"
 
-#: gschem/src/x/x_edit_attrib.c:414
+#: gschem/src/x/x_edit_attrib.c:420
 msgid "Select the name of the attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:415
+#: gschem/src/x/x_edit_attrib.c:421
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:417
+#: gschem/src/x/x_edit_attrib.c:423
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:418
+#: gschem/src/x/x_edit_attrib.c:424
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:420
+#: gschem/src/x/x_edit_attrib.c:426
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:437
+#: gschem/src/x/x_edit_attrib.c:443
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2258
+#: gschem/src/x/x_edit_attrib.c:471 gschem/src/x/x_multiattrib.c:2261
 msgid "Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2277
+#: gschem/src/x/x_edit_attrib.c:488 gschem/src/x/x_multiattrib.c:2280
 msgid "Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2055
-#: gschem/src/x/x_multiattrib.c:2332
+#: gschem/src/x/x_edit_attrib.c:502 gschem/src/x/x_multiattrib.c:2058
+#: gschem/src/x/x_multiattrib.c:2335
 msgid "Visible"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:525
+#: gschem/src/x/x_edit_attrib.c:531
 msgid "Attribute Name List"
 msgstr ""
 
 # Attribute Value input field
-#: gschem/src/x/x_edit_attrib.c:529
+#: gschem/src/x/x_edit_attrib.c:535
 msgid "Attribute Value Entry"
 msgstr "Vrijednost atributa polje za unos"
 
@@ -3411,7 +3418,7 @@ msgstr "produžiti"
 msgid "Project linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:122 gschem/src/x/x_multiattrib.c:1707
+#: gschem/src/x/x_menus.c:122 gschem/src/x/x_multiattrib.c:1710
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Obriši"
@@ -3800,100 +3807,100 @@ msgstr ""
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:813 gschem/src/x/x_multiattrib.c:2833
+#: gschem/src/x/x_multiattrib.c:816 gschem/src/x/x_multiattrib.c:2836
 msgid "<various>"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:935
+#: gschem/src/x/x_multiattrib.c:938
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:937
+#: gschem/src/x/x_multiattrib.c:940
 msgid "Multi-Attribute Editor"
 msgstr "Multi-Atributi Urednik"
 
-#: gschem/src/x/x_multiattrib.c:1651
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Select an attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1670
+#: gschem/src/x/x_multiattrib.c:1673
 msgid "Show Value only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1672
+#: gschem/src/x/x_multiattrib.c:1675
 msgid "Show Name only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1676
+#: gschem/src/x/x_multiattrib.c:1679
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1701
+#: gschem/src/x/x_multiattrib.c:1704
 msgid "Promote"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1706
+#: gschem/src/x/x_multiattrib.c:1709
 msgid "Duplicate"
 msgstr ""
 
 # Copy to all
-#: gschem/src/x/x_multiattrib.c:1708
+#: gschem/src/x/x_multiattrib.c:1711
 msgid "Copy to all"
 msgstr "Kopiraj u svim"
 
-#: gschem/src/x/x_multiattrib.c:2100 gschem/src/x/x_multiattrib.c:2630
+#: gschem/src/x/x_multiattrib.c:2103 gschem/src/x/x_multiattrib.c:2633
 msgid "Edit Attributes"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2292
+#: gschem/src/x/x_multiattrib.c:2295
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2322
+#: gschem/src/x/x_multiattrib.c:2325
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2337
+#: gschem/src/x/x_multiattrib.c:2340
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2352
+#: gschem/src/x/x_multiattrib.c:2355
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2649
+#: gschem/src/x/x_multiattrib.c:2652
 msgid "symbols"
 msgstr "simboli"
 
-#: gschem/src/x/x_multiattrib.c:2664
+#: gschem/src/x/x_multiattrib.c:2667
 msgid "pins"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2668
+#: gschem/src/x/x_multiattrib.c:2671
 msgid "pin"
 msgstr "Pin"
 
-#: gschem/src/x/x_multiattrib.c:2679
+#: gschem/src/x/x_multiattrib.c:2682
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2683
+#: gschem/src/x/x_multiattrib.c:2686
 msgid "net"
 msgstr "mreža"
 
-#: gschem/src/x/x_multiattrib.c:2694
+#: gschem/src/x/x_multiattrib.c:2697
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2698
+#: gschem/src/x/x_multiattrib.c:2701
 msgid "bus"
 msgstr "Sabirnica"
 
-#: gschem/src/x/x_multiattrib.c:2709
+#: gschem/src/x/x_multiattrib.c:2712
 msgid "attributes"
 msgstr "atributi"
 
-#: gschem/src/x/x_multiattrib.c:2713
+#: gschem/src/x/x_multiattrib.c:2716
 msgid "attribute"
 msgstr "attribute"
 
@@ -6026,7 +6033,7 @@ msgid "View the front page of the gEDA wiki in a browser."
 msgstr "Pogledajte naslovnu stranicu gEDA wiki u pregledaču."
 
 # Invalid text alignment
-#: gschem/scheme/gschem/deprecated.scm:102
+#: gschem/scheme/gschem/deprecated.scm:103
 #, scheme-format
 msgid "Invalid text alignment ~A."
 msgstr "Nevažeće poravnanje teksta ~A."
