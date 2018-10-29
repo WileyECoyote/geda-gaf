@@ -5,6 +5,9 @@
             * diode/transil/SMM4F10A-1.sym
             * diode/transil/SMM4F10A-2.sym
 
+    * linear/regulator/LM7806-1.sym: Resequence pin attributes, add description,
+      documentation and value attributes.
+
 2018-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil/SMM4F*A-[1,2].sym: Reverse pin numbers and resequence pin
