@@ -1015,7 +1015,6 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
     unsigned int length;
     unsigned int size;
 
-
     length   = strlen (old_str);
     size     = strlen (source)- length + strlen (new_str) + 1;
     temp     = malloc (size);
@@ -1064,6 +1063,59 @@ char *geda_utility_string_strsubst(char *source, char *old_str, char *new_str)
 }
 
 /*! U0623
+ * \brief Remove Leading and Trailing Spaces and TAB's from a String
+ * \par Function Description
+ *  Returns the input string with any leading or trailing spaces or
+ *  removed.
+ */
+char *geda_utility_string_strtrim (const char *string)
+{
+  if (string) {
+
+    unsigned int len;
+
+    len = strlen(string);
+
+    if (len > 0) {
+
+      const char *start = string;
+      const char *end   = string + len - 1;
+
+      char *new_str;
+      int i;
+      /* Advance start to the first character */
+      while ((*start == SPACE    ||
+              *start == ASCII_HT ||
+              *start == ASCII_LF ||
+              *start == ASCII_CR ) &&
+              *start != ASCII_NUL) { ++start; }
+
+      /* Make end point to the last character */
+      while ((*end == SPACE || *end == ASCII_HT) && end > start) { --end; }
+
+      len = end - start + 1;
+
+      /* Add 1 for the terminator */
+      new_str = geda_malloc (len + 1);
+
+      /* Copy the string to the new allocation */
+      for(i = 0; i < len; i++) {
+        new_str[i] = start[i];
+      }
+
+      /* Add the terminator */
+      new_str[len] = '\0';
+
+      return new_str;
+    }
+    else {
+      return geda_strdup("");
+    }
+  }
+  return NULL;
+}
+
+/*! U0624
  * \brief Get Word Count
  * \par Function Description
  *  returns the number of spaces in a string plus one.
