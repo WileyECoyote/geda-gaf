@@ -134,8 +134,8 @@ bool geda_pin_object_get_position (GedaObject *object, int *x, int *y)
  *  If the pin object was read successfully, a new pin object is
  *  allocated and appended to the \a object_list.
  *
- *  \param [in] buf          a text buffer (usually a pin of a schematic file)
- *  \param [in] release_ver  The release number gEDA
+ *  \param [in] buf            a text buffer (usually a pin of a schematic file)
+ *  \param [in] release_ver    The release number gEDA
  *  \param [in] fileformat_ver a integer value of the file format
  *
  *  \param [out] err           A GError obejct
@@ -628,7 +628,7 @@ void geda_pin_object_set_node_type (GedaObject *o_current, PIN_NODE node_type)
  *
  *  \param [in]  object    GedaObject to read the properties
  *  \param [out] label     Ptr to Pin Label String.
- *  \param [out] number    The Pin Number associate with the object
+ *  \param [out] number    The Pin Number of the Pin object
  *  \param [out] sequence  The Pin Sequence Number
  *  \param [out] e_type    The Pin Electrical Attribute code
  *  \param [out] m_type    The Pin Mechanical Attribute code
