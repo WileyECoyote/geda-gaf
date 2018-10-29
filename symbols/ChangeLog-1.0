@@ -23,6 +23,8 @@
 
     * ti/opamps/LMV711-1.sym: Fix pins off grid.
 
+    * ti/opamps/LMV715-1.sym: Fix pins off grid.
+
 2018-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil/SMM4F*A-[1,2].sym: Reverse pin numbers and resequence pin
