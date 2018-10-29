@@ -99,6 +99,7 @@
 #define geda_strsize              geda_utility_string_strsize
 #define geda_strstr_rep           geda_utility_string_strstr_rep
 #define geda_strsubst             geda_utility_string_strsubst
+#define geda_strtrim              geda_utility_string_strtrim
 #define geda_word_count           geda_utility_string_word_count
 
 /* u_program.c */

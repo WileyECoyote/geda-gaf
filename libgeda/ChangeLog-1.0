@@ -1,5 +1,8 @@
 2018-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_utility.h: Add geda_strtrim macro for short
+      hand for geda_utility_string_strtrim.
+
     * src/object/o_pin_object.c: Adjust argument wrapping/indentations,
       reformat Doxygen documentation and add todo.
 
