@@ -10,6 +10,8 @@
 
     * linear/regulator/LP2985-2.sym: Reduce size of symbol.
 
+    * microchip/ldo/MCP1702-SOT23.sym: Add symbol; low drop out regulator, SOT23A.
+
 2018-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil/SMM4F*A-[1,2].sym: Reverse pin numbers and resequence pin
