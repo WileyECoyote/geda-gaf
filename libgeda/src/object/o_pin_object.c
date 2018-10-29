@@ -637,11 +637,11 @@ void geda_pin_object_set_node_type (GedaObject *o_current, PIN_NODE node_type)
  *  \return TRUE on succes, FALSE otherwise
  */
 bool geda_pin_object_get_attributes(GedaObject *object, const char **label,
-                                              const char **number,
-                                              int         *sequence,
-                                              PIN_ELECT   *e_type,
-                                              PIN_MECH    *m_type,
-                                              PIN_NODE    *n_type)
+                                                        const char **number,
+                                                        int         *sequence,
+                                                        PIN_ELECT   *e_type,
+                                                        PIN_MECH    *m_type,
+                                                        PIN_NODE    *n_type)
 {
   bool        result;
   char       *pinnumber_str = NULL;
@@ -736,11 +736,11 @@ bool geda_pin_object_get_attributes(GedaObject *object, const char **label,
 }
 
 void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
-                                              const char *number,
-                                              int         sequence,
-                                              PIN_ELECT   e_type,
-                                              PIN_MECH    m_type,
-                                              PIN_NODE    n_type)
+                                                        const char *number,
+                                                        int         sequence,
+                                                        PIN_ELECT   e_type,
+                                                        PIN_MECH    m_type,
+                                                        PIN_NODE    n_type)
 {
   if (object != NULL && object->type == OBJ_PIN) {
 
@@ -871,10 +871,11 @@ void geda_pin_object_set_attributes(GedaObject *object, const char *label_str,
  *  \sa geda_pin_object_create_mech_attrib
  */
 GedaObject *
-geda_pin_object_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                  const char *descr,
-                                                         int  x,
-                                                         int  y)
+geda_pin_object_create_elect_attrib(GedaToplevel *toplevel,
+                                      GedaObject *object,
+                                      const char *descr,
+                                             int  x,
+                                             int  y)
 {
   char *text;
   int   align = -1;
@@ -981,10 +982,11 @@ geda_pin_object_create_elect_attrib(GedaToplevel *toplevel, GedaObject *object,
  *  \sa geda_pin_object_create_number_attrib geda_pin_object_create_seq_attrib
  */
 GedaObject *
-geda_pin_object_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                  const char *label,
-                                                         int  x,
-                                                         int  y)
+geda_pin_object_create_label_attrib(GedaToplevel *toplevel,
+                                      GedaObject *object,
+                                      const char *label,
+                                             int  x,
+                                             int  y)
 {
   char *text;
   int   align = -1;
@@ -1104,10 +1106,11 @@ geda_pin_object_create_label_attrib(GedaToplevel *toplevel, GedaObject *object,
  *  \sa geda_pin_object_create_elect_attrib
  */
 GedaObject *
-geda_pin_object_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                 const char *descr,
-                                                        int  x,
-                                                        int  y)
+geda_pin_object_create_mech_attrib(GedaToplevel *toplevel,
+                                     GedaObject *object,
+                                     const char *descr,
+                                            int  x,
+                                            int  y)
 {
   GedaObject *new_bute;
   char   *text;
@@ -1211,10 +1214,11 @@ geda_pin_object_create_mech_attrib(GedaToplevel *toplevel, GedaObject *object,
  *
  *  \sa geda_pin_object_create_label_attrib geda_pin_object_create_seq_attrib
  */
-GedaObject* geda_pin_object_create_number_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                     const char   *number,
-                                                           int     x,
-                                                           int     y)
+GedaObject* geda_pin_object_create_number_attrib(GedaToplevel *toplevel,
+                                                   GedaObject *object,
+                                                   const char *number,
+                                                          int  x,
+                                                          int  y)
 {
   GedaObject     *new_bute;
   const char *str_num;
@@ -1346,10 +1350,11 @@ GedaObject* geda_pin_object_create_number_attrib(GedaToplevel *toplevel, GedaObj
  *
  *  \sa geda_pin_object_create_label_attrib geda_pin_object_create_number_attrib
  */
-GedaObject *geda_pin_object_create_seq_attrib(GedaToplevel *toplevel, GedaObject *object,
-                                                        int     sequence,
-                                                        int     x,
-                                                        int     y)
+GedaObject *geda_pin_object_create_seq_attrib(GedaToplevel *toplevel,
+                                                GedaObject *object,
+                                                       int  sequence,
+                                                       int  x,
+                                                       int  y)
 {
   GedaObject *new_bute;
   char   *text;

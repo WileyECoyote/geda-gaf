@@ -1,3 +1,7 @@
+2018-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_pin_object.c: Adjust argument wrapping/indentations.
+
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Reword GedaObject BUG_MSG.
