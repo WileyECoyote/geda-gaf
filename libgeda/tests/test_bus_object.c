@@ -508,6 +508,24 @@ check_query(void)
 
   GedaObject *object = geda_bus_object_new(c, x1, y1, x2, y2, d);
 
+  /* bounds_valid should NOT be set */
+  if (object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O051203A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Virtual geda_line_bounds  === */
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "FAILED: (O051203B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* bounds_valid should be set */
+  if (!object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O051203C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
   /* === Function 13: geda_bus_object_orientation  === */
 
   int value = geda_bus_object_orientation(NULL);
