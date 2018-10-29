@@ -210,13 +210,16 @@ void geda_utility_program_mem_set_vtable(void)
 
 }
 
-/* Virutal over-ride, because we set the vtable, glib incorrectly
- * reports that we are not using malloc, but we are. Setting the
- * vtable forces glib to use malloc even when glib would not other
- * wise do so. This slows down glib but not for us, when linked
- * against libgeda g_mem_is_system_malloc correctly reports that
- * malloc is being used, that's because the linker must respect
- * our version of ....
+/*!
+ * \brief Over-ride g_mem_is_system_malloc
+ * \par Function Description
+ *  Virtual over-ride, because we set the vtable, glib incorrectly
+ *  reports that we are not using malloc, but we are. Setting the
+ *  vtable forces glib to use malloc even when glib would not other
+ *  wise do so. This slows down glib but not for us, when linked
+ *  against libgeda g_mem_is_system_malloc correctly reports that
+ *  malloc is being used, that's because the linker must respect
+ *  our version of ...
  */
 int g_mem_is_system_malloc (void)
 {
