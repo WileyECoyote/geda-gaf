@@ -8,6 +8,8 @@
     * linear/regulator/LM7806-1.sym: Resequence pin attributes, add description,
       documentation and value attributes.
 
+    * linear/regulator/LP2985-2.sym: Reduce size of symbol.
+
 2018-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil/SMM4F*A-[1,2].sym: Reverse pin numbers and resequence pin
