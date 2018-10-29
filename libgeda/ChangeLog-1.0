@@ -1,6 +1,7 @@
 2018-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/object/o_pin_object.c: Adjust argument wrapping/indentations.
+    * src/object/o_pin_object.c: Adjust argument wrapping/indentations,
+      reformat Doxygen documentation and add todo.
 
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
