@@ -69,7 +69,20 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
   GedaObject *attrib = edascm_to_object (attrib_s);
 
   /* Check that attachment doesn't already exist */
-  if (attrib->attached_to == obj) return obj_s;
+  if (attrib->attached_to == obj) {
+
+    GList  *attached  = obj->attribs;
+
+    if (!g_list_find (attached, attrib)) {
+      geda_attrib_object_add(obj, attrib);
+    }
+    else {
+      if (obj->page && (attrib->page == NULL)) {
+        geda_page_add_object(obj->page, attrib);
+      }
+    }
+    return obj_s;
+  }
 
   /* Check that both are in the same page and/or complex object */
   if ((obj->parent_object != attrib->parent_object) ||
@@ -96,6 +109,7 @@ EDA_SCM_DEFINE (attrib_attach_x, "%attach-attrib!", 2, 0, 0,
   /* Carry out the attachment */
   geda_object_notify_emit_pre_change (attrib);
   geda_attrib_object_attach (obj, attrib, TRUE);
+
   geda_object_notify_emit_change (attrib);
 
   geda_struct_object_set_page_changed (obj);

@@ -3,6 +3,11 @@
     * src/object/o_pin_object.c: Adjust argument wrapping/indentations,
       reformat Doxygen documentation and add todo.
 
+    * src/scheme/scheme_attrib.c: Revise attrib_attach_x to verify that
+      the list of the parent also has a pointer to the attribute when
+      the attribute has a attached_to pointer, and set the pointer to
+      page if the parent has the pointer but the attribute does not.
+
     * src/utility/u_string.c: Add function geda_utility_string_strtrim.
 
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
