@@ -1935,17 +1935,58 @@ int test_strings (void)
     result++;
   }
 
-  /* === Function 23: geda_utility_string_word_count === */
+  /* === Function 23: geda_utility_string_strtrim === */
+
+  static const struct _TestData U23_str[] =
+  {
+    { "",                        "" },
+    { " metformin ",             "metformin" },
+    { "\nimmuno-ag ",            "immuno-ag" },
+    { " \t3-bromopyruvate\t",    "3-bromopyruvate" },
+    { "  Dichloroacetate ",      "Dichloroacetate" },
+    { "Asparagopsis taxiformis", "Asparagopsis taxiformis" },
+    { "     ",                   "" }
+  };
+
+  if (geda_strtrim (NULL)) {
+    fprintf(stderr, "FAILED: (U062300) geda_strtrim NULL\n");
+    result++;
+  };
+
+  count = sizeof(U23_str) / sizeof(struct _TestData);
+
+  for (index = 1; index < count; index++) {
+
+    char *expected = U23_str[index].expected;
+    char *input    = U23_str[index].input;
+    char *output;
+
+    output = geda_strtrim(input);
+
+    if (!output) {
+      fprintf(stderr, "FAILED: (U062301A-%d) geda_strtrim\n", index);
+      result++;
+    }
+    else {
+      if (strcmp(output, expected)) {      /* See structure U23_str */
+        fprintf(stderr, "FAILED: (U062301B-%d) geda_strtrim <%s>\n", index, output);
+        result++;
+      }
+      free(output);
+    }
+  }
+
+  /* === Function 24: geda_utility_string_word_count === */
 
   value = geda_word_count(NULL);   /* NULL input */
   if (value != -1) {
-    fprintf(stderr, "FAILED: (U062300) geda_word_count <%d> \n", value);
+    fprintf(stderr, "FAILED: (U062400) geda_word_count <%d> \n", value);
     result++;
   }
 
   value = geda_word_count(str_22);   /* reuse */
   if (value != 4) {
-    fprintf(stderr, "FAILED: (U062301) geda_word_count <%d> \n", value);
+    fprintf(stderr, "FAILED: (U062401) geda_word_count <%d> \n", value);
     result++;
   }
 

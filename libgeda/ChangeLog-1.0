@@ -18,6 +18,8 @@
 
     * tests/test_bus_object.c: Add checks for bounds_valid in check_query.
 
+    * tests/test_utility.c: Add checks for geda_utility_string_strtrim.
+
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Reword GedaObject BUG_MSG.
