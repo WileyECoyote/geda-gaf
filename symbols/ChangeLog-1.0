@@ -12,6 +12,8 @@
 
     * microchip/ldo/MCP1702-SOT23.sym: Add symbol; low drop out regulator, SOT23A.
 
+    * microchip/ldo/MCP1702-SOT89.sym: Add symbol; low drop out regulator, SOT89.
+
 2018-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil/SMM4F*A-[1,2].sym: Reverse pin numbers and resequence pin
