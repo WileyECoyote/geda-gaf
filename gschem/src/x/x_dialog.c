@@ -3920,7 +3920,7 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 
     GtkWidget *message_box;
 
-    const char *msg1 = _("Input attribute is invalid");
+    const char *msg1 = _("invalid attribute value");
     const char *msg2 = _("Please correct in order to continue");
     const char *msg3 = _("The name and value must be non-empty.\nThe name cannot end with a space.\nThe value cannot start with a space");
 
