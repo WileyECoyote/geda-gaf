@@ -539,6 +539,7 @@ x_dialog_edit_text_change_case (GedaComboBox *casebox, GtkWidget *ThisDialog)
     GtkWidget     *widget;
     char          *string;
     char          *new_str;
+    bool           selected;
 
     widget = GEDA_OBJECT_GET_DATA (ThisDialog, IDS_TEXT_EDIT);
 
@@ -546,6 +547,10 @@ x_dialog_edit_text_change_case (GedaComboBox *casebox, GtkWidget *ThisDialog)
 
     if (!gtk_text_buffer_get_selection_bounds (textbuffer, &start, &end)) {
       gtk_text_buffer_get_bounds (textbuffer, &start, &end);
+      selected = FALSE;
+    }
+    else {
+      selected = TRUE;
     }
 
     string = gtk_text_iter_get_text (&start, &end);
@@ -572,7 +577,20 @@ x_dialog_edit_text_change_case (GedaComboBox *casebox, GtkWidget *ThisDialog)
     }
 
     if (new_str) {
-      gtk_text_buffer_set_text (textbuffer, new_str, -1);
+      if (!selected) {
+        gtk_text_buffer_set_text (textbuffer, new_str, -1);
+      }
+      else {
+
+        GtkTextMark *mark;
+
+        gtk_text_buffer_delete_selection (textbuffer, FALSE, TRUE);
+
+        mark = gtk_text_buffer_get_selection_bound (textbuffer);
+
+        gtk_text_buffer_get_iter_at_mark (textbuffer, &start, mark);
+        gtk_text_buffer_insert (textbuffer, &start, new_str, -1);
+      }
     }
   }
 }

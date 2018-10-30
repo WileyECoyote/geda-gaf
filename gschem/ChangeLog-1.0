@@ -2,6 +2,9 @@
 
     * src/object/o_pin.c: Reformat Doxygen documentation.
 
+    * src/x/x_dialog.c: Revise invalid attribute message in function
+      x_dialog_validate_attribute.
+
     * src/x/x_edit_attrib.c: Revise attrib_edit_dialog_ok to clean both
       the name and value string using geda_strtrim prior to validating
       with x_dialog_validate_attribute, which should be unnecessary.
@@ -13,8 +16,8 @@
           * x_dialog_array_edit_butt_released_dist
           * x_dialog_array_edit_butt_pressed_select
 
-    * src/x/x_dialog.c: Revise invalid attribute message in function
-      x_dialog_validate_attribute.
+    * src/x/x_edit_text.c: Enhance x_dialog_edit_text_change_case to
+      only operate on selected text.
 
 2018-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -883,8 +886,8 @@
 
 2018-06-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_dnd.c: Call x_dnd_string_data_line_properties and append
-      the returned string in x_dnd_send_string_signal so that the start and end
+    * src/x/x_dnd.c: Call x_dnd_string_data_line_properties and append the
+      returned string in x_dnd_send_string_signal so that the start and end
       point is included in dropped text string for buses, nets, and pins. Add
       function x_dnd_get_object_attributes and call in x_dnd_send_string_object
       to include attached attributes in dropped complexes.
@@ -1062,8 +1065,8 @@
     * src/object/o_edit.c: Reformat Doxygen blocks. Reduce scope of the return
       value variable in o_edit_find_text.
 
-     * gschem/src/x/x_menus.c: Include geda_dialog_controls.h and utilize
-       GTK_CALLBACK_TOGGLED macro.
+    * src/x/x_menus.c: Include geda_dialog_controls.h and utilize
+      GTK_CALLBACK_TOGGLED macro.
 
 2018-03-21 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1800,9 +1803,9 @@
 
 2017-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_window.c: Revise x_window_open_page to return NULL
-      and not reset geometry, update or undo after failure to load a file.
-      Reformat documentation blocks.
+    * src/x/x_window.c: Revise x_window_open_page to return NULL and not
+      reset geometry, update or undo after failure to load a file. Reformat
+      documentation blocks.
 
 2017-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -2994,7 +2997,7 @@
 
     * src/x/x_print.c: Remove unnecessary cast from g_object_new.
 
-    * gschem/src/x/x_toolbars.c: Remove unnecessary cast from g_object_set.
+    * src/x/x_toolbars.c: Remove unnecessary cast from g_object_set.
 
 2017-05-25 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -3733,9 +3736,9 @@
       defined constants to ensure the strings in IDS_Menu_Toolbar_Toggles
       are the same as what is used in the paths.
 
-    * gschem/src/x/x_rc.c: Revise x_rc_parse_gschem_error to refrain from
-      augmenting the unbound_msg pointer until after checking the pointer
-      returned from geda_utility_string_istr was not NULL, duh.
+    * src/x/x_rc.c: Revise x_rc_parse_gschem_error to refrain from augmenting
+      the unbound_msg pointer until after checking the pointer returned from
+      geda_utility_string_istr was not NULL, duh.
 
     * src/x/x_toolbars.c: Remove "Select" from "Select All" and "Sel" from
       "Invert Sel" in order to further reduce the width buttons on the toolbar,
@@ -4627,9 +4630,9 @@
       add conditional call geda_label_get_report_instances for debugging
       memory resources issues.
 
-    * gschem/src/x/x_pagesel.c: Add function pagesel_create_popup_menu to
-      create the popup menu and store in pagesel structure so that the menu
-      can be reused until the pagesel object is destroyed.
+    * src/x/x_pagesel.c: Add function pagesel_create_popup_menu to create the
+      popup menu and store in pagesel structure so that the menu can be reused
+      until the pagesel object is destroyed.
 
 2016-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -4714,7 +4717,7 @@
     * src/guile/g_util.c: Revise s_show_uri; add SCM_ASSERT back, remove
       unneeded conditionals.
 
-    * gschem/src/iface/i_threads.c: Revise gschem_threads_init to call
+    * src/iface/i_threads.c: Revise gschem_threads_init to call
       gschem_threads_enter so that the the lock is set initially and this
       was detected by glib 2.48, rather rudely. Attempting to unlock a
       thread that is not locked is probably not sufficient cause for a
@@ -5120,7 +5123,7 @@
 
     * Program Enhancement: New feature - Export to XML format.
 
-    * gschem/gschem-export-menu.scm: Add routines and menu option to
+    * scheme/gschem/gschem-export-menu.scm: Add routines and menu option to
       run geda2xml from the file/export submenu.
 
     * src/x/x_icons.c: Add "geda-xml" to IDS_GEDA_ICONS table.
@@ -5299,7 +5302,7 @@
 
 2016-06-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_settings.c: fix incorrect enumerator in do_kw_define_in_rc;
+    * src/x/x_settings.c: fix incorrect enumerator in do_kw_define_in_rc;
       load_in_rc -> define_in_rc.
 
 2016-05-31 Wiley E. Hill <wileyhill@gmail.com>
@@ -5523,7 +5526,7 @@
 
 2016-05-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/src/x/x_dialog.c: Replace gtk_file_chooser_dialog_new with
+    * src/x/x_dialog.c: Replace gtk_file_chooser_dialog_new with
       geda_file_chooser_dialog_new_full in x_dialog_select_file.
 
 2016-05-12 Wiley E. Hill <wileyhill@gmail.com>
@@ -5573,7 +5576,7 @@
       Current_Page with gschem_toplevel_get_current_page in autonumber_get_used.
       Replace g_strndup with geda_strndup.
 
-    * gschem/src/x/x_event.c: Try gdk_display_get_event instead of gdk_get_event
+    * src/x/x_event.c: Try gdk_display_get_event instead of gdk_get_event
       in function x_event_motion.
 
 2016-05-04 Wiley E. Hill <wileyhill@gmail.com>
@@ -6474,7 +6477,7 @@
             * etc/system-gschemrc.scm
             * gschem/etc/user-gschemrc.scm
 
-    * gschem/include/gschem.h: Include libgedacolor.h.
+    * include/gschem.h: Include libgedacolor.h.
 
     * src/Makefile.am: Include headers and link with libgedacolor.
 
@@ -7330,8 +7333,8 @@
 
 2015-12-02  Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/gschem-tools-menu.scm: Add comment gitg as convenience option
-      for tools:gitclient.
+    * scheme/gschem/gschem-tools-menu.scm: Add comment gitg as convenience
+      option for tools:gitclient.
 
     * src/globals.c: Relocate global variable from parsecmd.c.
 
@@ -7952,9 +7955,9 @@
 
     * Documentation: Improve Platform Compatibility.
 
-    * gschem/docs/gschem.1.in: Revise syntax, preceding dashes for options
-      with backslash. Is archaic but technically more correct and more
-      portable. Replaced blank lines with .PP.
+    * docs/gschem.1.in: Revise syntax, preceding dashes for options with
+      backslash. Is archaic but technically more correct and more portable.
+      Replaced blank lines with .PP.
 
 2015-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -8168,7 +8171,7 @@
 
     * configure.ac: Add gschem/docs/dialogs/Makefile
 
-    * gschem/docs/dialogs/Makefile.am: New file, change static Makefile to automake
+    * docs/dialogs/Makefile.am: New file, change static Makefile to automake
 
 2015-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -12389,7 +12392,7 @@
 
 2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gschem/include/x_menus.h: Add GHashTable to st_menu_data structure.
+    * include/x_menus.h: Add GHashTable to st_menu_data structure.
 
     * src/x/x_menus.c: Use HashTable for popup menu items.
 
@@ -12944,13 +12947,12 @@
           library libgedauio.
 
         * src/i_pan_world.c: Rename to v_pan.c and relocated to new view subdirectory
+          Rename to v_zoom.c and relocated to new view subdirectory
 
-Rename to v_zoom.c and relocated to new view subdirectory
-
-        * src/a_zoom.c: parsecmd.c renamed  src/gschem/gschem_parsecmd.c and renamed
-          function parse_commandline to gschem_parse_commandline for consistency with
-          other compilation units, is not totally consistence but should be intuitive
-          enough.
+        * src/a_zoom.c: parsecmd.c renamed  src/gschem_parsecmd.c and renamed
+          function parse_commandline to gschem_parse_commandline for consistency
+          with other compilation units, is not totally consistence but should be
+          intuitive enough.
 
         * src/s_stretch.c: This file was eliminated, the code contents were originaly
           added to gschem to support implicit drag-moves, and each of the containing
@@ -14210,10 +14212,10 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2007-04-21 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * gschem/po/de_DE.po gschem/po/es_ES.po gschem/po/fr_FR.po
-        gschem/po/geda-gschem.pot gschem/po/it_IT.po gschem/po/ja_JP.po
-        gschem/po/nl_NL.po gschem/po/pt_BR.po gschem/po/ru.po: Updated
-        all po and pot files (via make dist) in prep for a release
-        (a few weeks from now).
+          gschem/po/geda-gschem.pot gschem/po/it_IT.po gschem/po/ja_JP.po
+          gschem/po/nl_NL.po gschem/po/pt_BR.po gschem/po/ru.po: Updated
+          all po and pot files (via make dist) in prep for a release
+          (a few weeks from now).
 
 2007-04-21 Peter Clifton <pcjc2@cam.ac.uk>
 
