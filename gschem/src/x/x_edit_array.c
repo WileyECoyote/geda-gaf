@@ -344,10 +344,18 @@ static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
   return(0);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Array Dialog Button Press Event Select Handler
+ * \par Function Description
+ *  Local event handler for button press events, this function is called
+ *  when the user presses a mouse button after the "Select" button was
+ *  activated. This function simply captures the coordinates where the
+ *  event occurred and does not need to handle any other event states
+ *  other than "SELECT".
  *
+ * \note If the user changes the selection by clicking on the canvas with
+ *       the dialog still raised, then the local event handler is not used
+ *       and the main event loop handles the "button_press_event" signal.
  */
 static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
                                                    GdkEventButton *event,
