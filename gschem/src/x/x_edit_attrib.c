@@ -168,11 +168,11 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   GtkWidget  *visbutton;
   GtkWidget  *show_options;
   GedaObject *object;
-  const char *value, *label;
+  char       *label;
   char       *newtext;
-  int vis, show;
+  char       *value;
 
-  int option_index;
+  int vis, show, option_index;
 
   ThisDialog = w_current->aewindow;
 
@@ -181,9 +181,12 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   visbutton    = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
   show_options = GEDA_OBJECT_GET_DATA (ThisDialog, "show_options");
 
-  value   = GetEntryText(value_entry);
-  label   = GetEntryText(name_entry);
+  value   = geda_strtrim (GetEntryText(value_entry));
+  label   = geda_strtrim (GetEntryText(name_entry));
   newtext = geda_strconcat (label, "=", value, NULL);
+
+  GEDA_FREE(label);
+  GEDA_FREE(value);
 
   if (!x_dialog_validate_attribute(GTK_WINDOW(ThisDialog), newtext))
   {

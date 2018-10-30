@@ -2,6 +2,10 @@
 
     * src/object/o_pin.c: Reformat Doxygen documentation.
 
+    * src/x/x_edit_attrib.c: Revise attrib_edit_dialog_ok to clean both
+      the name and value string using geda_strtrim prior to validating
+      with x_dialog_validate_attribute, which should be unnecessary.
+
     * src/x/x_edit_array.c: Reformat Doxygen documentation. Update
       function documentation for:
 
