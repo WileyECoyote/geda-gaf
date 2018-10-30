@@ -217,6 +217,7 @@ static void set_is_busy(int value)
     is_busy = value;
   g_mutex_unlock((GMutex*)&g_lock_is_busy);
 }
+
 static int get_is_busy()
 {
   int ret_val;
