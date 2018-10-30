@@ -6,6 +6,7 @@
       function documentation for:
 
           * x_dialog_ca_update_selection
+          * x_dialog_array_edit_butt_released_dist
 
     * src/x/x_dialog.c: Revise invalid attribute message in function
       x_dialog_validate_attribute.

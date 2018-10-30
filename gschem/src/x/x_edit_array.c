@@ -290,10 +290,19 @@ static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
   return(0);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Array Dialog Button Release Event Distence Handler
+ * \par Function Description
+ *  Local event handler for button release events, this function is
+ *  called after the user releases a mouse button when the dialog
+ *  was lowered using the "X", "Y" or "XY" buttons. If the button
+ *  was mouse button 1 and the relevant displacement is not zero
+ *  the local event handlers are disabled and Array Dialog is raised.
+ *  The virtual post_responder is called to process coordinates in
+ *  the top-level.
+ *  If the released button was the third button then the operation
+ *  is essentially canceled by disabling local handlers and raising
+ *  the Array Dialog without any further action.
  */
 static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
                                                   GdkEventButton *event,
