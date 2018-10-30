@@ -100,13 +100,14 @@ static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
   i_event_unblock_buttons (w_current);
 }
 
-/*! \brief Handle selection change event for x_dialog_array_edit
- *  \par Function Description
  *  Called when the selection changes. The functions call
  *  x_dialog_ep_component_change to update the data fields
+/*!
+ * \brief Handle selection change event for x_dialog_array_edit
+ * \par Function Description
  *
- *  \param w_current pointer to GschemToplevel context
- *  \param object    pointer to a selected Object.
+ * \param w_current pointer to GschemToplevel context
+ * \param object    pointer to a selected Object.
  */
 static void x_dialog_ca_update_selection (GschemToplevel *w_current,
                                           GedaObject     *object)
@@ -517,16 +518,16 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
   return changed;
 }
 
-/*! \brief Component Properties Dialog Apply Settings
- *  \par Function Description
+/*!
+ * \brief Component Properties Dialog Apply Settings
+ * \par Function Description
  *  This function applies the settings of the properties dialog to the
  *  selected objects or to the symbol page depending on whether object
  *  has a value. The function handles the case of exchanging the symbol
  *  and calls helper functions for attribute handling.
  *
- *  \param [in] dialog      Pointer to a Component Dialog instance.
- *  \param [in] dialog_data Pointer to a Component Dialog data structure
- *
+ * \param [in] dialog      Pointer to a Component Dialog instance.
+ * \param [in] dialog_data Pointer to a Component Dialog data structure
  */
 static void x_dialog_array_edit_ok(GtkWidget  *dialog,
                                    array_data *dialog_data)
@@ -611,8 +612,9 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
   }
 }
 
-/*! \brief Response Function for the Component Properties Dialog
- *  \par Function Description
+/*!
+ * \brief Response Function for the Component Properties Dialog
+ * \par Function Description
  *  This function handles the response to the Component Properties dialog.
  *  Either the is called to retrieve and process data in the dialog or
  *  the dialog session is terminated.
@@ -657,8 +659,9 @@ static void x_dialog_array_edit_response(GtkWidget  *dialog,
 
 }
 
-/*! \brief Emit GEDA_RESPONSE_CLOSE signal.
- *  \par Function Description
+/*!
+ * \brief Emit GEDA_RESPONSE_CLOSE signal.
+ * \par Function Description
  *  This function is called when the Close button on the Component
  *  Select dialog is pressed.
  */
@@ -669,8 +672,9 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.
- *  \par Function Description
+/*!
+ * \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ * \par Function Description
  *  This function is called when the Okay button on the Component
  *  Select dialog is pressed.
  */
@@ -681,10 +685,11 @@ static void on_apply_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.
- *  \par Function Description
- *  This function is called when the Okay button on the Component
- *  Select dialog is pressed.
+/*!
+ * \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ * \par Function Description
+ *  This function is called when the Select button on the Array Dialog
+ *  is pressed.
  */
 static void on_select_butt_clicked(GtkButton *button, void *user_data)
 {
@@ -1231,8 +1236,9 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   return Dialog;
 }
 
-/*! \brief Show the Create Array Dialog
- *  \par Function Description
+/*!
+ * \brief Show the Create Array Dialog
+ * \par Function Description
  *  This function is called in response to the "edit-array" action to display
  *  the Create Array dialog. The function raises the current dialog if called
  *  when the dialog is already open or calls the constructor to create a new
