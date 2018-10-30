@@ -28,10 +28,11 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief Draw Temporary Pin object
- *  \par Function Description
- *   Draws temporary Pin using selection color index using coordinates
- *   in the top level.
+/*!
+ * \brief Draw Temporary Pin object
+ * \par Function Description
+ *  Draws temporary Pin using selection color index using coordinates
+ *  in the top level.
  */
 void o_pin_draw_rubber (GschemToplevel *w_current)
 {
@@ -52,8 +53,9 @@ void o_pin_draw_rubber (GschemToplevel *w_current)
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, size, -1, -1);
 }
 
-/*! \brief End the input of a Pin.
- *  \par Function Description
+/*!
+ * \brief End the input of a Pin.
+ * \par Function Description
  *  Finalizes the input of the second point of a Pin. The (<B>x</B>,<B>y</B>)
  *  point is set to be the "other" end of the pin as the first point is the
  *  "connected" end.
@@ -61,9 +63,9 @@ void o_pin_draw_rubber (GschemToplevel *w_current)
  *  The temporary rubber is erased ; a new pin object is created and added
  *  initialized current sheet, which causes the final object to be drawn.
  *
- *  \param [in] w_current The GschemToplevel object
- *  \param [in] w_x       Current x coordinate of pointer in world units
- *  \param [in] w_y       Current y coordinate of pointer in world units
+ * \param [in] w_current The GschemToplevel object
+ * \param [in] w_x       Current x coordinate of pointer in world units
+ * \param [in] w_y       Current y coordinate of pointer in world units
  */
 static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -104,8 +106,9 @@ static void o_pin_end(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Handle Erasing and Redrawing of rubber lines for Pin objects
- *  \par Function Description
+/*!
+ * \brief Handle Erasing and Redrawing of rubber lines for Pin objects
+ * \par Function Description
  *  This function handles motion events for rubber pins when creating
  *  or editing a Pin object.
  */
@@ -136,8 +139,9 @@ void o_pin_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Initialize Variables to input new in Object.
- *  \par Function Description
+/*!
+ * \brief Initialize Variables to input new in Object.
+ * \par Function Description
  *  This function initialize variables to input a new Pin. Parameters
  *  for the pin are stored in variables in the <B>w_current</B> toplevel
  *  structure. <B>w_x</B> and <B>w_y</B> are current coordinates of the
@@ -155,10 +159,11 @@ static void o_pin_init(GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Invalidate Temporary drawing artifacts for Pin objects
- *  \par Function Description
- *   Retrieves coordinates from top-level and invalidate the bounding
- *   region of a Pin object.
+/*!
+ * \brief Invalidate Temporary drawing artifacts for Pin objects
+ * \par Function Description
+ *  Retrieves coordinates from top-level and invalidate the bounding
+ *  region of a Pin object.
  */
 void o_pin_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -181,14 +186,15 @@ void o_pin_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, min_x, min_y, max_x, max_y);
 }
 
-/*! \brief Start process to input a new line.
- *  \par Function Description
+/*!
+ * \brief Start process to input a new line.
+ * \par Function Description
  *  This function starts the process of interactively adding a line to
  *  the current sheet. A temporary line is drawn during the process.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
 {

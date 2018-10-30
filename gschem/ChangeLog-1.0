@@ -1,3 +1,7 @@
+2018-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_pin.c: Reformat Doxygen documentation.
+
 2018-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations
