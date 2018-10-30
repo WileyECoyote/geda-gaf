@@ -100,11 +100,17 @@ static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
   i_event_unblock_buttons (w_current);
 }
 
- *  Called when the selection changes. The functions call
- *  x_dialog_ep_component_change to update the data fields
 /*!
  * \brief Handle selection change event for x_dialog_array_edit
  * \par Function Description
+ *  Called when the selection changes, gets the bounds of the current
+ *  selection and updates the non-editable object count, and the x size
+ *  and y size entry fields.
+ *
+ * \note This function is called from the underlying base class, it does
+ *       not matter whether the user clicked on the "Select" button to
+ *       temporarily hide the dialog or simply clicked on the drawing
+ *       canvas with the dialog raised.
  *
  * \param w_current pointer to GschemToplevel context
  * \param object    pointer to a selected Object.

@@ -2,7 +2,10 @@
 
     * src/object/o_pin.c: Reformat Doxygen documentation.
 
-    * src/x/x_edit_array.c: Reformat Doxygen documentation.
+    * src/x/x_edit_array.c: Reformat Doxygen documentation. Update
+      function documentation for:
+
+          * x_dialog_ca_update_selection
 
     * src/x/x_dialog.c: Revise invalid attribute message in function
       x_dialog_validate_attribute.
