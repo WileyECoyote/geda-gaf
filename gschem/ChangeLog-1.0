@@ -3,6 +3,7 @@
     * src/x/x_dialog.c: Add horizontal separator before the action area in
 
           * x_dialog_edit_arc_angle
+          * x_dialog_fill_type_create_dialog
 
 2018-10-30 Wiley E. Hill <wileyhill@gmail.com>
 

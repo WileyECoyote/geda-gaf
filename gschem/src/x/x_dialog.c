@@ -1776,6 +1776,8 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), pitch2_entry, 1,2,5,6);
   SetWidgetTip(pitch2_entry, _("Spacing for the secondary filler lines"));
 
+  HD_ACTION_SEPARATOR (vbox);
+
   fill_data = (fill_type_data*) GEDA_MEM_ALLOC (sizeof(struct st_fill_type_data));
 
   /* populate the data structure */
