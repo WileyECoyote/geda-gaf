@@ -709,10 +709,15 @@ static void on_apply_butt_clicked(GtkButton *button, void *user_data)
 }
 
 /*!
- * \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ * \brief Array Dialog Select Button Callback
  * \par Function Description
- *  This function is called when the Select button on the Array Dialog
- *  is pressed.
+ *  Called when the Select button on the Array Dialog is activated,
+ *  sets corresponding virtual event handlers for button events and
+ *  the event state before emitting emits "response" signal with
+ *  the GEDA_RESPONSE_SELECT flag on the dialog.
+ *
+ *  The SELECT state lowers the dialog to allow the user to modify
+ *  the selection set without obstructing the canvas with the dialog.
  */
 static void on_select_butt_clicked(GtkButton *button, void *user_data)
 {
