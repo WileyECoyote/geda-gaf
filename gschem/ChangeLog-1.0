@@ -6,6 +6,10 @@
           * x_dialog_fill_type_create_dialog
           * x_dialog_line_type_create_dialog
 
+    * src/x/x_edit_array.c: Use GEDA_RESPONSE_CLOSE enumeration flag for
+      closing the array dialog instead of GEDA_RESPONSE_REJECT, it does
+      not matter what the stock button uses for a flag.
+
 2018-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin.c: Reformat Doxygen documentation.

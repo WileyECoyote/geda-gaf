@@ -649,7 +649,7 @@ static void x_dialog_array_edit_response(GtkWidget  *dialog,
   GschemToplevel *w_current = GSCHEM_DIALOG(dialog)->w_current;
 
   switch (response) {
-  case GEDA_RESPONSE_REJECT:
+  case GEDA_RESPONSE_CLOSE:
   case GEDA_RESPONSE_DELETE_EVENT:
     gtk_grab_remove (dialog);
     gtk_widget_destroy (dialog);
@@ -691,7 +691,7 @@ static void x_dialog_array_edit_response(GtkWidget  *dialog,
 static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data), "response",
-                           GEDA_RESPONSE_REJECT,
+                           GEDA_RESPONSE_CLOSE,
                            user_data);
 }
 
