@@ -210,7 +210,7 @@ typedef struct
         SEPARATOR (parent, suffix, h, FALSE, TRUE, 0, DEFAULT_SEPERATOR_SPACING)
 
 #define HD_ACTION_SEPARATOR(parent) \
-        SEPARATOR (parent, Actions, h, FALSE, TRUE, 0, DIALOG_V_SPACING)
+        SEPARATOR (parent, Actions, h, FALSE, TRUE, 0, DEFAULT_SEPERATOR_SPACING)
 
 #define HYP_SEPARATOR(parent, suffix, ypad) \
         SEPARATOR (parent, suffix, h, FALSE, TRUE, 0, ypad)

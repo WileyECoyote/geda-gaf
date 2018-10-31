@@ -1,3 +1,8 @@
+2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Revise HD_ACTION_SEPARATOR macro
+      to use DEFAULT_SEPERATOR_SPACING instead of DIALOG_V_SPACING.
+
 2018-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump date version 20181017.
