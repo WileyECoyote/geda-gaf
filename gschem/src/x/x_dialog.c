@@ -1060,6 +1060,8 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     gtk_table_attach_defaults(GTK_TABLE(table), spin_sweep, 1,2,2,3);
     SetWidgetTip(spin_sweep,  _("Sets the central angle of the arc."));
 
+    HD_ACTION_SEPARATOR (vbox);
+
     GEDA_HOOKUP_OBJECT(Dialog, radius,    "radius");
     GEDA_HOOKUP_OBJECT(Dialog, spin_start,"spin_start");
     GEDA_HOOKUP_OBJECT(Dialog, spin_sweep,"spin_sweep");

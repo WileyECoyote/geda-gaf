@@ -1,3 +1,9 @@
+2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Add horizontal separator before the action area in
+
+          * x_dialog_edit_arc_angle
+
 2018-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_pin.c: Reformat Doxygen documentation.
