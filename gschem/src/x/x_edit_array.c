@@ -326,14 +326,14 @@ static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
       valid = (w_current->second_wx != w_current->first_wx) &&
               (w_current->second_wy != w_current->first_wy);
     }
-    else { /* Must be post_responder == post_response_col*/
+    else { /* Must be post_responder == post_response_col */
       valid = (w_current->second_wx != w_current->first_wx);
     }
 
     if (valid) {
       x_dialog_array_edit_disable_events(w_current, dialog_data);
-
       gtk_window_present (GTK_WINDOW (dialog));
+
       dialog_data->post_responder(w_current);
     }
   }
