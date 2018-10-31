@@ -696,10 +696,10 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
 }
 
 /*!
- * \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ * \brief Array Dialog Apply Button Callback
  * \par Function Description
- *  This function is called when the Okay button on the Component
- *  Select dialog is pressed.
+ *  Called when the Apply button on the Array Dialog is activated,
+ *  emits "response" with the GEDA_RESPONSE_ACCEPT flag on the dialog.
  */
 static void on_apply_butt_clicked(GtkButton *button, void *user_data)
 {
