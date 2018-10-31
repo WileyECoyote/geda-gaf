@@ -2356,6 +2356,8 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), space_entry, 1,2,4,5);
   SetWidgetTip(space_entry, _("Set spacing between dashes in the line"));
 
+  HD_ACTION_SEPARATOR (vbox);
+
   line_data = (line_type_data*) GEDA_MEM_ALLOC (sizeof(struct st_line_type_data));
 
   /* populate the data structure */
