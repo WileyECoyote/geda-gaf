@@ -8,7 +8,10 @@
 
     * src/x/x_edit_array.c: Use GEDA_RESPONSE_CLOSE enumeration flag for
       closing the array dialog instead of GEDA_RESPONSE_REJECT, it does
-      not matter what the stock button uses for a flag.
+      not matter what the stock button uses for a flag. Update function
+      documentation for:
+
+          * on_close_butt_clicked
 
 2018-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
