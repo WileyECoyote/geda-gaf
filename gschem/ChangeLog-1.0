@@ -8,7 +8,9 @@
 
     * src/x/x_edit_array.c: Raise the main window in x_dialog_array_edit_
       emit_get_dist in case users activate another window while interacting
-      with the array dialog.
+      with the array dialog.. Update function documentation for:
+
+          * on_deselect_butt_clicked
 
 2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
 

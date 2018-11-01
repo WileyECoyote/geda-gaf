@@ -735,6 +735,17 @@ static void on_select_butt_clicked(GtkButton *button, void *user_data)
                          dialog_data);
 }
 
+/*!
+ * \brief Array Dialog Deselect Button Callback
+ * \par Function Description
+ *  Called when the Deselect button on the Array Dialog is activated,
+ *  sets corresponding virtual event handlers for button events and
+ *  the event state before emitting emits "response" signal with
+ *  the GEDA_RESPONSE_SELECT flag on the dialog.
+ *
+ *  The DESELECT state lowers the dialog to allow the user to modify
+ *  the selection set without obstructing the canvas with the dialog.
+ */
 static void on_deselect_butt_clicked(GtkButton *button, void *user_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(user_data)->w_current;
