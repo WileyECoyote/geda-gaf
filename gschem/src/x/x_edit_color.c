@@ -181,6 +181,8 @@ void x_dialog_edit_color (GschemToplevel *w_current)
     gtk_box_pack_start(GTK_BOX(vbox), optionmenu, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text(optionmenu, _("Select a color for the selected objects."));
 
+    HD_ACTION_SEPARATOR (vbox);
+
     GEDA_HOOKUP_OBJECT(Dialog, optionmenu, IDS_COLOR_EDIT);
 
     gtk_window_set_transient_for (GTK_WINDOW(Dialog), w_current->main_window);

@@ -13,6 +13,9 @@
           * on_deselect_butt_clicked
           * x_dialog_array_edit_emit_get_dist
 
+    * src/x/x_edit_color.c: Add horizontal separator before the action area
+      in x_dialog_edit_color.
+
 2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Add horizontal separator before the action area in
