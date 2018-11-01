@@ -93,6 +93,8 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
   GList      *attached_objects = NULL;
   GList      *iter             = list;
   GedaObject *target           = w_current->which_object;
+  int         already_attached = 0;
+  int         attached2target  = 0;
 
   while (iter != NULL) {
 
@@ -105,8 +107,42 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
         attached_objects = g_list_prepend (attached_objects, object);
       }
     }
+    else if (object != target && object->attached_to != target) {
+      already_attached++;
+    }
+    else if (object->attached_to == target) {
+      attached2target++;
+    }
 
     iter = iter->next;
+  }
+
+  if (already_attached) {
+
+    const char *msg1;
+    const char *msg2 = _("already attached to an object");
+
+    int count = g_list_length(list) - attached2target - 1;
+
+    if (already_attached == 1) {
+      if (count == 1) {
+        msg1 = _("Attribute is"); /* Only attempting to attach one attribute */
+      }
+      else {
+        msg1 = _("One attribute was");         /* One of multiple attributes */
+      }
+    }
+    else {
+      if (already_attached == count) {
+        msg1 = _("All of the attributes were");         /* All of attributes */
+      }
+      else {
+        /* Multible attributes were already attached, but not all */
+       msg1 = _("Some of the attributes were");
+      }
+    }
+
+    geda_log("%s %s\n", msg1, msg2);
   }
 
   if (attached_objects != NULL) {
