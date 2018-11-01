@@ -11,6 +11,7 @@
       with the array dialog.. Update function documentation for:
 
           * on_deselect_butt_clicked
+          * x_dialog_array_edit_emit_get_dist
 
 2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
 

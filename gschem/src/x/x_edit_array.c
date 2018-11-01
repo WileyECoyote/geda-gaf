@@ -762,9 +762,13 @@ static void on_deselect_butt_clicked(GtkButton *button, void *user_data)
                          dialog_data);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Emit GEDA_RESPONSE_GET_DIST on the Array Dialog
+ * \par Function Description
+ *  Called by "X", "Y" and "XY" button callbacks to setup the button
+ *  press and release handlers and ensure the main window in raised
+ *  before emitting the "response" signal on the dialog with the
+ *  GEDA_RESPONSE_GET_DIST flag.
  */
 static void x_dialog_array_edit_emit_get_dist (GschemToplevel *w_current,
                                                array_data     *dialog_data)
