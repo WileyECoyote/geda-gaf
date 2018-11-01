@@ -6,6 +6,10 @@
 
     * src/object/o_delete.c: Release message string in o_delete_selected.
 
+    * src/x/x_edit_array.c: Raise the main window in x_dialog_array_edit_
+      emit_get_dist in case users activate another window while interacting
+      with the array dialog.
+
 2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Add horizontal separator before the action area in

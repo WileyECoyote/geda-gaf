@@ -758,8 +758,11 @@ static void on_deselect_butt_clicked(GtkButton *button, void *user_data)
 static void x_dialog_array_edit_emit_get_dist (GschemToplevel *w_current,
                                                array_data     *dialog_data)
 {
-  dialog_data->press_butt     = x_dialog_array_edit_butt_pressed_dist;
-  dialog_data->release_butt   = x_dialog_array_edit_butt_released_dist;
+  /* Make sure the main window is in the foreground */
+  gtk_window_present(GTK_WINDOW(MainWidget));
+
+  dialog_data->press_butt   = x_dialog_array_edit_butt_pressed_dist;
+  dialog_data->release_butt = x_dialog_array_edit_butt_released_dist;
 
   g_signal_emit_by_name (GTK_DIALOG (w_current->cawindow), "response",
                          GEDA_RESPONSE_GET_DIST,
