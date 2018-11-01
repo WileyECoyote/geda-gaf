@@ -1649,8 +1649,8 @@ SCM g_rc_paper_size(SCM width, SCM height)
 /*! \brief Process paper-sizes RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the paper-sizes RC entry. Note this
- *       is plural from the previous entry.
+ *       processing configuration data for the paper-sizes RC entry.
+ *       Note this is plural from the previous entry.
  */
 SCM g_rc_paper_sizes(SCM scm_papername, SCM scm_width, SCM scm_height)
 #define FUNC_NAME "paper-sizes"
