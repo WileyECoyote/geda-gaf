@@ -371,9 +371,9 @@ static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
 
       SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
 
-      w_current->first_wx      = w_current->second_wx = x;
-      w_current->first_wy      = w_current->second_wy = y;
-      w_current->event_state   = STARTSELECT;
+      w_current->first_wx     = w_current->second_wx = x;
+      w_current->first_wy     = w_current->second_wy = y;
+      w_current->event_state  = STARTSELECT;
     }
   }
   return(0);
