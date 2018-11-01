@@ -4,6 +4,8 @@
       a log message, mainly to the console, of the number of attributes not
       attached because the attribute are already attached to another object.
 
+    * src/object/o_delete.c: Release message string in o_delete_selected.
+
 2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Add horizontal separator before the action area in

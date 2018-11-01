@@ -106,6 +106,7 @@ void o_delete_selected (GschemToplevel *w_current)
           g_list_free (to_remove);
           return;
       }
+      geda_free(msg);
     }
 
     /* Remove objects from selection and page */
