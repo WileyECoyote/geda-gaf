@@ -879,10 +879,8 @@ static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
   g_object_set (apply_butt, "visible", TRUE, "can-default", TRUE, NULL);
   g_object_set (close_butt, "visible", TRUE, NULL);
 
-  gtk_box_pack_end (butt_hbox, apply_butt, FALSE, FALSE,
-                    DIALOG_H_SPACING);
-  gtk_box_pack_end (butt_hbox, close_butt, FALSE, FALSE,
-                    DIALOG_H_SPACING);
+  gtk_box_pack_end (butt_hbox, apply_butt, FALSE, FALSE, DIALOG_H_SPACING);
+  gtk_box_pack_end (butt_hbox, close_butt, FALSE, FALSE, DIALOG_H_SPACING);
 
   /* Do not set alternative button order here because the action area was replaced */
 
