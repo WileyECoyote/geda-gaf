@@ -163,10 +163,10 @@ geda_menu_button_buildable_interface_init (GtkBuildableIface *iface)
 
 /* BEGIN ------+-------+------ Property Handlers ------+-------+-------+-----*/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Set GedaMenuButton Widget Style
+ * \par Function Description
+ *  Sets the widget style property for both the button and the arrow.
  */
 void
 geda_menu_button_set_style (GedaMenuButton *button, GtkStyle *new_style)

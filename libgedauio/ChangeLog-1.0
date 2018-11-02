@@ -1,6 +1,9 @@
 2018-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_button.c: Update file name in header.
+    * src/widgets/geda_menu_button.c: Update file name in header, update
+      function documentation for:
+
+          * geda_menu_button_set_style
 
 2018-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
