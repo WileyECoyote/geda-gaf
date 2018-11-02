@@ -219,9 +219,9 @@ geda_menu_arrow_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
 /*!
  * \brief Get the GedaMenuButton Arrow Relief Property
  * \par Function Description
- *  Retrieves the GtkReliefStyle used by the GedaMenuButton object.
+ *  Retrieves the GtkReliefStyle used by the GedaMenuButton arrow object.
  *
- * \return relief style setting
+ * \return arrow relief style setting
  */
 GtkReliefStyle
 geda_menu_arrow_get_relief (GedaMenuButton *button)
@@ -727,9 +727,9 @@ static void geda_menu_button_update_state (GedaMenuButton *button)
 /*!
  * \brief  GedaMenuButton Process the "clicked" Signal internally.
  * \par Function Description
- *   This function is called with the "clicked" is received
- *   from the button. The function check and executes the action
- *   if an action exist.
+ *  This function is called when the "clicked" signal is received
+ *  from the button. The function checks and executes the action
+ *  if an action exist.
  *
  *  TODO: Add action property handler?
  *
@@ -747,7 +747,7 @@ static void geda_menu_button_button_clicked (GedaMenuButton *button)
 /*!
  * \brief  GedaMenuButton Process the "pressed" Signal internally.
  * \par Function Description
- *  This function is called with the "pressed" signal is received
+ *  This function is called when the "pressed" signal is received
  *  from the button to update the visual appearance if the "down
  *  time" has expired.
  *
@@ -766,7 +766,7 @@ static void geda_menu_button_button_pressed (GedaMenuButton *button)
 /*!
  * \brief  GedaMenuButton Process the "released" Signal internally.
  * \par Function Description
- *  This function is called with the "released" signal is received
+ *  This function is called when the "released" signal is received
  *  from the button to generate the "clicked" signal and to update
  *  the visual appearance if the "down time" has expired.
  *
