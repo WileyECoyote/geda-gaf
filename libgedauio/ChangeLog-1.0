@@ -3,6 +3,10 @@
     * src/widgets/geda_entry.c: Replace g_object_set to set "visible"
       with more efficient gtk_widget_show, see log entry 2018-10-05.
 
+    * src/widgets/geda_menu.c: Update geda_menu_button_press again; chain up
+      to the parent menu shell if the menu is torn off, otherwise items on
+      torn menu do not get activated.
+
     * src/widgets/geda_menu_button.c: Update file name in header, update
       function documentation for:
 

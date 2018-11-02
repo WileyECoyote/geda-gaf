@@ -991,12 +991,16 @@ static bool geda_menu_button_scroll (GedaMenu *menu, GdkEventButton *event)
 /* widget_class->button_press_event */
 static bool geda_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 {
+  GedaMenu *menu;
+
   if (event->type != GDK_BUTTON_PRESS) {
     return FALSE;
   }
 
+  menu = (GedaMenu*)widget;
+
   /* Don't pass down to menu shell for presses over scroll arrows */
-  if (geda_menu_button_scroll ((GedaMenu*)widget, event))
+  if (geda_menu_button_scroll (menu, event))
     return TRUE;
 
   /*  Don't pass down to menu shell if a non-menuitem part of the menu
@@ -1011,10 +1015,14 @@ static bool geda_menu_button_press (GtkWidget *widget, GdkEventButton *event)
     return TRUE;
 
   /* Do not chain to parent GedaMenuShell class or else geda_menu_shell_button_press
-   * get called twice, and worst; on Windows system the Menu will stay open/dropped down
-   * until we loose focus or user "clicks" the menu closed.
+   * get called twice, and worst; on Windows system the Menu will stay open/dropped
+   * down until we loose focus or user "clicks" the menu closed.
    */
-  return FALSE;
+  if (!menu->torn_off)
+    return FALSE;
+
+  /* Menu torn so chain to parent GedaMenuShell class */
+  return ((GtkWidgetClass*)geda_menu_parent_class)->button_press_event (widget, event);
 }
 
 /* widget_class->button_release_event */
