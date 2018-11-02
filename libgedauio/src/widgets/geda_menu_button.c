@@ -196,10 +196,12 @@ geda_menu_button_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
   gtk_button_set_relief (GTK_BUTTON (button->priv->button), new_relief);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get GedaMenuButton Relief Property
+ * \par Function Description
+ *  Retrieves the GtkReliefStyle used by the GedaMenuButton object.
  *
+ * \return relief style setting
  */
 GtkReliefStyle
 geda_menu_button_get_relief (GedaMenuButton *button)
