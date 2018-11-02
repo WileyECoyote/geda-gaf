@@ -1,5 +1,8 @@
 2018-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_entry.c: Replace g_object_set to set "visible"
+      with more efficient gtk_widget_show, see log entry 2018-10-05.
+
     * src/widgets/geda_menu_button.c: Update file name in header, update
       function documentation for:
 

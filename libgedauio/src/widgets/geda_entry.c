@@ -2297,7 +2297,7 @@ GtkWidget *geda_entry_new_visible (void)
 
   entry = geda_entry_new ();
 
-  g_object_set (entry, "visible", TRUE, NULL);
+  gtk_widget_show (entry);
 
   return entry;
 }
@@ -2320,7 +2320,7 @@ GtkWidget *geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
 
   entry = geda_entry_new_with_buffer (buffer);
 
-  g_object_set (entry, "visible", TRUE, NULL);
+  gtk_widget_show (entry);
 
   return entry;
 }
