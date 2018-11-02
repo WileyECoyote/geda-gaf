@@ -151,7 +151,25 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
     x_multiattrib_update (w_current);
 
     g_hook_run_object_list (w_current, ATTACH_ATTRIBS_HOOK, attached_objects);
+
+    if (!quiet_mode) {
+
+      const char *msg1;
+            char *msg2;
+             int  count;
+
+      count = g_list_length(attached_objects);
+
+      msg1 = ngettext("Attached %d attribute", "Attached %d attributes", count);
+      msg2  = geda_sprintf(msg1, count);
+
+      geda_log("%s\n", msg2);
+
+      geda_free(msg2);
+    }
+
     g_list_free (attached_objects);
+
     o_undo_savestate(w_current, UNDO_ALL);
   }
 }
