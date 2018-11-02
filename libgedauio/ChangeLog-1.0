@@ -4,6 +4,7 @@
       function documentation for:
 
           * geda_menu_button_set_style
+          * geda_menu_button_set_relief
 
 2018-10-05 Wiley E. Hill <wileyhill@gmail.com>
 

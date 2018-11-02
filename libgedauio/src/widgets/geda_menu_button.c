@@ -177,10 +177,16 @@ geda_menu_button_set_style (GedaMenuButton *button, GtkStyle *new_style)
   gtk_widget_set_style( GTK_WIDGET (button->priv->arrow_button), new_style);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set GedaMenuButton Relief Property
+ * \par Function Description
+ *  Sets the relief of the button, \a new_relief should be one of:
  *
+ *  <DL>
+ *    <DT><B>GTK_RELIEF_NORMAL</B></DT>
+ *    <DT><B>GTK_RELIEF_HALF</B></DT>
+ *    <DT><B>GTK_RELIEF_NONE</B></DT>
+ *  </DL>
  */
 void
 geda_menu_button_set_relief (GedaMenuButton *button, GtkReliefStyle new_relief)
