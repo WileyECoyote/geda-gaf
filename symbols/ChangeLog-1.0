@@ -28,6 +28,12 @@
             * ti/opamps/LMC6082-1.sym
             * ti/opamps/LMC6082-2.sym
 
+    * ti/opamps/LMP7701MA: Add symbols for CMOS 2.5 MHz rail-to-rail opamp
+      in SOIC package:
+
+            * ti/opamps/LMP7701MA_SOIC8-1.sym
+            * ti/opamps/LMP7701MA_SOIC8-2.sym
+
 
 2018-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
