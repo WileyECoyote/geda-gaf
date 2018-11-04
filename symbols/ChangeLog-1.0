@@ -10,6 +10,9 @@
             * diode/zener53/zener_68_1N5373B.sym
             * diode/zener53/zener_75_1N5374B.sym
 
+    * linear/regulator/TC1015-1.sym: Fix simple text object with only
+      SHOW_NAME or SHOW_VALUE set; add value.
+
 
 2018-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
