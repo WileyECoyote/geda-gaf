@@ -34,6 +34,11 @@
             * ti/opamps/LMP7701MA_SOIC8-1.sym
             * ti/opamps/LMP7701MA_SOIC8-2.sym
 
+    * ti/opamps/LMP7701MF: Add symbols for CMOS 2.5 MHz rail-to-rail opamp
+      in SOT23 package:
+
+            * ti/opamps/LMP7701MF_SOT23-1.sym
+            * ti/opamps/LMP7701MF_SOT23-2.sym
 
 2018-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -53,7 +58,7 @@
 
     * microchip/ldo/MCP1702-TO92.sym: Add symbol; low drop out regulator, TO92.
 
-    * ti/opamps/LMC6001: add symbols for low urrent 1.3 MHz opamp in DIP8:
+    * ti/opamps/LMC6001: add symbols for CMOS 1.3 MHz opamp in DIP8:
 
             * ti/opamps/LMC6001-1.sym
             * ti/opamps/LMC6001-2.sym
