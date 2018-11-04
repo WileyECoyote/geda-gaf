@@ -20,6 +20,9 @@
             * linear/regulator/voltage-ref-1.sym
             * linear/regulator/voltage-ref-2.sym
 
+    * simulation/spice/aop-spice-1.sym: Clean symbol; set pin attribute
+      show value and reposition, add description.
+
 
 2018-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
