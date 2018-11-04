@@ -6,6 +6,8 @@
 
     * po/bs.po: Update Bosnian translations
 
+    * po/fa.po: Update Persian translations.
+
 2018-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Revise o_attrib_attach_list_2_object to log
