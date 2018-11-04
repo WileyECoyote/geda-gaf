@@ -1,8 +1,6 @@
 v 20130414 2
 L 500 450 900 450 3 0 0 0 -1 -1
 L 500 450 700 750 3 0 0 0 -1 -1
-T 0 1800 5 10 0 0 0 0 1
-footprint=~
 L 700 750 900 450 3 0 0 0 -1 -1
 L 550 750 850 750 3 0 0 0 -1 -1
 P 700 0 700 300 1 0 0
@@ -49,4 +47,6 @@ L 300 600 600 600 3 0 0 0 -1 -1
 T 0 1600 5 10 0 0 0 0 1
 description=Programmable voltage reference e.g. TL431
 T 0 2000 5 10 0 0 0 0 1
-device=VOLTAGE_REF
+device=VOLTAGE-REF
+T 0 1800 5 10 0 0 0 0 1
+footprint=unknown

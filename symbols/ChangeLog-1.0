@@ -13,6 +13,13 @@
     * linear/regulator/TC1015-1.sym: Fix simple text object with only
       SHOW_NAME or SHOW_VALUE set; add value.
 
+    * linear/regulator/voltage-ref-[1,2].sym: Change device attribute to use a
+      dash instead of an underscore so as to math the file name, change footprint
+      attribute to "unknown" instead of tilda:
+
+            * linear/regulator/voltage-ref-1.sym
+            * linear/regulator/voltage-ref-2.sym
+
 
 2018-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
