@@ -1052,7 +1052,7 @@
               (display " errors.")
               (newline))
             (begin
-              (display "No errors found. ")
+              (display "No errors found.")
               (newline)))
 
      (close-output-port (current-output-port))
