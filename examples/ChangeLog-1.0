@@ -3,6 +3,9 @@
     * MSA-2643/Q[1,2].sch: Shift diagrams to center in titlebock and update
       diode symversions.
 
+    * spice-subcircuit-??.sym: Rename symbol files without dash 1 to avoid
+      conflicts with library versions.
+
 2018-10-24  Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/CascodeAmp.sch: Change the path to 2n5245_iv.png to be
