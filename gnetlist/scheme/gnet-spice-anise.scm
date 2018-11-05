@@ -866,7 +866,6 @@
     (let ((attrib-list (list "area" "l" "w" "temp")))
             ;; write the attributes (if any) separately
       (spice:write-list-of-attributes package attrib-list)
-      (display " "))  ;; add additional space. . . .
 
     ;; finally output a new line
     (newline)

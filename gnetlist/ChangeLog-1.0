@@ -3,6 +3,9 @@
     * scheme/gnet-drc2.scm: Remove extra, trailing space after "No errors"
       message.
 
+    * scheme/gnet-spice-anise.scm: Remove trailing "add additional space"
+      in write-resistor.
+
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Set the file open flags after obtaining the new
