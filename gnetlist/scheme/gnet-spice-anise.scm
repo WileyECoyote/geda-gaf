@@ -439,10 +439,9 @@
             ) ; inner cond
           ) ; inner begin
          )
-
          (else
             (while (read-line model-file))
-          )
+         )
 
         ) ; outer cond
 
@@ -817,6 +816,7 @@
       (spice-anise:write-transistor-diode package "X" "NMOS" attrib-list))
   )
 )
+
 ;;------------------------------------------------------------
 ;;  write mesfet transistor
 ;;------------------------------------------------------------
