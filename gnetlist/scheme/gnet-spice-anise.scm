@@ -849,27 +849,25 @@
     ;; first write out refdes and attached nets
     (spice-anise:write-component-no-value package)
 
-    ;; next write out mandatory resistor value if it exists.
-    (let ((value (get-package-attribute package "value")))
-        (if (not (string=? value "unknown"))
+    ;; non-standard "area" attrib here per popular demand.
+    (let ((value (get-package-attribute package "value"))
+          (model-name (get-package-attribute package "model-name"))
+          (attrib-list (list "area" "l" "w" "temp")))
+
+         ;; next write out mandatory resistor value if it exists.
+         (if (not (string=? value "unknown"))
                 (display (string-append value " " )))
-    )
 
-    ;; next write our model name if it exists
-    (let ((model-name (get-package-attribute package "model-name")))
-        (if (not (string=? model-name "unknown"))
+         ;; next write our model name if it exists
+         (if (not (string=? model-name "unknown"))
                 (display (string-append model-name " " )))
-    )
 
-    ;; next create list of attributes which can be attached to a resistor.
-    ;; I include non-standard "area" attrib here per popular demand.
-    (let ((attrib-list (list "area" "l" "w" "temp")))
-            ;; write the attributes (if any) separately
-      (spice:write-list-of-attributes package attrib-list)
+         ;; write the list of attributes, if any, which can be
+         ;; attached to a resistor.
+         (spice:write-list-of-attributes package attrib-list))
 
-    ;; finally output a new line
+    ;; terminate the line that was just added
     (newline)
-
   )
 )
 

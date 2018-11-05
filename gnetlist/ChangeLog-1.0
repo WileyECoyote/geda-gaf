@@ -3,8 +3,8 @@
     * scheme/gnet-drc2.scm: Remove extra, trailing space after "No errors"
       message.
 
-    * scheme/gnet-spice-anise.scm: Remove trailing "add additional space"
-      in write-resistor.
+    * scheme/gnet-spice-anise.scm: Revise write-resistor to use a single
+      let and remove trailing "add additional space".
 
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
