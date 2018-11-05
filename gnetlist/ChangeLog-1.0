@@ -9,6 +9,8 @@
       be manually removed from either the netlist or the schematic in a
       special "simulation" version. If someone is to actually model a
       connector the device attribute should not be set to "CONNECTOR".
+      Issue warning in spice-anise-main when include_mode is used but the
+      file-info-list is empty.
 
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 

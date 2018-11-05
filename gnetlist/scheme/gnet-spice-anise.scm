@@ -1662,9 +1662,16 @@
 ;;  Change suggested by Dominique Michel; implemented in code on 6.12.2005.
 ;;
 ;;  Handle spice files
-      (debug-spew "Now process the items in model file list -- stick appropriate references to models in output SPICE file.\n")
-      (spice-anise:loop-through-files file-info-list)
-      (debug-spew "Done processing items in model file list.\n")
+      (if (not (null? file-info-list))
+        (begin
+          (debug-spew "Now process the items in model file list -- stick appropriate references to models in output SPICE file.\n")
+          (spice-anise:loop-through-files file-info-list)
+          (debug-spew "Done processing items in model file list.\n")
+        )
+        (if (member "include_mode" (get-backend-arguments))
+          (message (string-append "Warning: include_mode used but no files are to be included.\n"))
+        )
+      )
 
 ;;
 ;; Now write out netlist as before. But don't write file contents out.
