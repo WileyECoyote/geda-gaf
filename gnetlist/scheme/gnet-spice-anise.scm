@@ -1342,6 +1342,7 @@
 ;; done with debug stuff
 
         (cond
+          ( (string=? device "CONNECTOR"))            ;; ignore connector symbols.
           ( (string=? device "none"))                 ;; do nothing for graphical symbols.
           ( (string=? device "spice-subcircuit-LL"))  ;; do nothing for subcircuit declaration.
           ( (string=? device "spice-IO"))             ;; do nothing for SPICE IO pins.

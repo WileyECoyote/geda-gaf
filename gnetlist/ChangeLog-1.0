@@ -4,7 +4,11 @@
       message.
 
     * scheme/gnet-spice-anise.scm: Revise write-resistor to use a single
-      let and remove trailing "add additional space".
+      let and remove trailing "add additional space". Revise write-netlist
+      to skip packages with device=CONNECTOR. so that these do not have to
+      be manually removed from either the netlist or the schematic in a
+      special "simulation" version. If someone is to actually model a
+      connector the device attribute should not be set to "CONNECTOR".
 
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
