@@ -113,6 +113,12 @@
 ;;               spice-anise-help. Replace calling-flags with get-backend-arguments.
 ;;               Remove functions handle-spice-file and insert-text-file and redirected
 ;;               to common.spice:functions.
+;; 11.04.2018 -- Bugfix: Revised get-file-type to handle case where functions are defined
+;;               before .SUBCKT or .MODEL. Revise write-resistor to consolidate variable
+;;               assignments and remove trailing "add additional space". Add "CONNECTOR"
+;;               to list of devices to ignore in write-netlist. Issue warning when include
+;;               mode is used but the file-info-list is empty. WEH
+;;
 ;;**********************************************************************************
 ;;
 ;;  Organization of gnet-spice-anise.scm file:
@@ -427,6 +433,9 @@
           (begin
             (debug-spew "In get-file-type, first-char = .\n")  ;; DEBUG stuff
             (cond
+
+              ((string-ci=? (safe-string-head file-line 5) ".func")  ;; found .func, skip it.
+               (while (read-line model-file)) )
 
               ((string-ci=? (safe-string-head file-line 7) ".subckt")  ;; found .subckt as first line.
                ".SUBCKT" )
