@@ -453,7 +453,6 @@
          )
 
         ) ; outer cond
-
        ) ;; end of inner lets
       ) ;; end of outer let
     (begin
@@ -858,7 +857,7 @@
     ;; first write out refdes and attached nets
     (spice-anise:write-component-no-value package)
 
-    ;; non-standard "area" attrib here per popular demand.
+    ;; non-standard "area" attrib included here per popular demand.
     (let ((value (get-package-attribute package "value"))
           (model-name (get-package-attribute package "model-name"))
           (attrib-list (list "area" "l" "w" "temp")))
@@ -892,31 +891,30 @@
     ;; first write out refdes and attached nets
     (spice-anise:write-component-no-value package)
 
-    ;; next write capacitor value, if any.  Note that if the
-    ;; component value is not assigned nothing will be written out.
-    (let ((value (get-package-attribute package "value")))
+    ;; non-standard "area" attrib included here per request of Peter Kaiser.
+    (let ((value (get-package-attribute package "value"))
+          (model-name (get-package-attribute package "model-name"))
+          (attrib-list (list "area" "l" "w" "ic")))
+
+        ;; next write capacitor value, if any.  Note that if the
+        ;; component value is not assigned nothing will be written out.
         (if (not (string=? value "unknown"))
                 (display (string-append value " " )))
-    )
 
-    ;; next write capacitor model name, if any.  This is applicable to
-    ;; semiconductor caps used in chip design.
-    (let ((model-name (get-package-attribute package "model-name")))
+        ;; next write capacitor model name, if any.  This is applicable to
+        ;; semiconductor caps used in chip design.
         (if (not (string=? model-name "unknown"))
                 (display (string-append model-name " " )))
-    )
 
-    ;; Next write out attributes if they exist.  Use
-    ;; a list of attributes which can be attached to a capacitor.
-    ;; I include non-standard "area" attrib here per request of Peter Kaiser.
-    (let ((attrib-list (list "area" "l" "w" "ic")))
-      (spice:write-list-of-attributes package attrib-list)
-            ;; write the off attribute separately
-                (display " "))  ;; add additional space. . . .
+        ;; Next write out attributes if they exist, using the list of
+        ;; attributes that can be attached to a capacitor.
+        (spice:write-list-of-attributes package attrib-list))
 
+        ;; terminate the line that was just added
     (newline)
   )
 )
+
 
 
 ;;----------------------------------------------------------------------------
