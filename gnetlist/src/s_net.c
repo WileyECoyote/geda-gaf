@@ -416,7 +416,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           /* rename the net that has priority to the label name */
           if (n_current->net_name_has_priority) {
 
-#if DEBUG /* this shows how to rename nets */
+#if DEBUG
             printf("\nRENAME all nets: %s -> %s (priority)\n", net_name, name);
 #endif
 
@@ -425,7 +425,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           }
           else {
 
-#if DEBUG /* this shows how to rename nets */
+#if DEBUG
             printf ("\nRENAME all nets: %s -> %s (not priority)\n", name, net_name);
 #endif
             /* do the rename anyways, this might cause problems */
