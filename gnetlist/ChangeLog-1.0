@@ -1,5 +1,8 @@
 2018-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
+   ** docs/gnetlist.1.in: Fix grammar; add missing word -- one or "MORE"
+      electronic schematics, this is even on "Ubuntu's WEB site, ugh.
+
     * scheme/gnet-spice-anise.scm: Revise write-capacitor to use a single
       let and remove trailing "add additional space".
 

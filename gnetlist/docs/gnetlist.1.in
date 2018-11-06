@@ -10,7 +10,7 @@ gnetlist - gEDA/gaf Netlist Extraction and Generation
 
 \fBgnetlist\fR is a netlist extraction and generation tool, and is part
 of the gEDA (GPL Electronic Design Automation) toolset.  gnetlist accepts
-one or electronic schematics as input, and outputs a netlist.  A netlist
+one or more electronic schematics as input, and outputs a netlist. A netlist
 is a machine-interpretable description of the way that components in an
 electronic circuit are connected together, and is commonly used as the
 input to a PCB layout program such as \fBpcb\fR(1) or to a simulator such
