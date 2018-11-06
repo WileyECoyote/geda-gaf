@@ -10,6 +10,11 @@
     * scheme/gnet-spice-anise.scm: Revise write-capacitor to use a single
       let and remove trailing "add additional space".
 
+    * scheme/gnet-spice-sdb.scm: Revised get-file-type to handle case where
+      functions are defined before .SUBCKT or .MODEL like gnet-spice-anise,
+      this seems to work well, even with multible functions, update revision
+      history.
+
     * src/gnetlist.c: Declare main_prog as static.
 
     * src/s_net.c: Revise, update, add, and remove source comments.

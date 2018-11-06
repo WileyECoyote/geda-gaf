@@ -101,6 +101,8 @@
 ;;               to be used for netlisting NGspice device models. CC
 ;;  6.12.2011 -- Updated the Problematci name=? symbols to name=unknown and removed the
 ;;               FIXME check for them. This should be a step closer to place holder consistancy. CC
+;; 11.04.2018 -- Bugfix: Revised get-file-type to handle case where functions are defined
+;;               line before .SUBCKT or .MODEL. WEH
 ;;
 ;;**********************************************************************************
 ;;
@@ -376,6 +378,9 @@
           (begin
             (debug-spew "In get-file-type, first-char = .\n")  ;; DEBUG stuff
             (cond
+
+              ((string-ci=? (safe-string-head file-line 5) ".func")  ;; found .func, skip it.
+               (while (read-line model-file)) )
 
               ((string-ci=? (safe-string-head file-line 7) ".subckt")  ;; found .subckt as first line.
                ".SUBCKT" )
