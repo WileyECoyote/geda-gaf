@@ -84,12 +84,18 @@
   (lambda(packages)
     #t))
 
+;; Probably belongs in bom-common.scm
+(define (drc:no-bom-package? package)
+    (string=? "1" (get-package-attribute package "nobom")))
+
 (define drc:device-rules
   (lambda (attriblist packages)
     (if (not (null? packages))
-      (begin
-        (drc:has-attributes? attriblist (car packages))
-        (drc:device-rules attriblist (cdr packages))))))
+      (let ((package (car packages)))
+        (if (not (drc:no-bom-package? package))
+          (drc:has-attributes? attriblist package))
+        (drc:device-rules attriblist (cdr packages))
+      ))))
 
 (define drc:has-attributes?
   (lambda (attriblist uref)

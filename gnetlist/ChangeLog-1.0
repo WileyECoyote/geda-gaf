@@ -7,6 +7,10 @@
 
     * include/prototype.h: Remove prototype for main_prog.
 
+    * scheme/gnet-drc.scm: Add drc:no-bom-package, which probably belongs
+      in a bom-common.scm file and revise device-rules routine to not check
+      for attributes if the refdes has a "nobom" attribute set to 1.
+
     * scheme/gnet-spice-anise.scm: Revise write-capacitor to use a single
       let and remove trailing "add additional space".
 
