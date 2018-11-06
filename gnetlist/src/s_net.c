@@ -365,7 +365,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
         fprintf(stderr, "Net called: [%s] and [%s]\n", name, net_name);
 #endif
 
-        /* only rename if this net name has priority  AND, we are
+        /* only rename if this net name has priority AND we are
          * using net= attributes as the netnames which have priority */
         if (naming_priority == NETATTRIB_ATTRIBUTE) {
 
@@ -377,11 +377,14 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 #if DEBUG
             fprintf(stderr, "Net is now called: [%s]\n", net_name);
 
-            /* this show how to rename nets */
+            /* the net name in the record, which was set by one of the above
+             * routines that set the net_name_has_priority flag, gets priority */
             printf("\nRENAME all nets: %s -> %s\n", name, net_name);
 #endif
             s_rename_add(name, net_name);
             GEDA_FREE(name);
+
+            /* Set the net name in the record to be the target net name */
             name = geda_strdup (net_name);
 
           }
@@ -392,9 +395,10 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
             ("\nFound a net name called [%s], but it doesn't have priority\n", net_name);
 #endif
 
-            /* Do the rename anyways, this might cause problems */
-            /* this will rename net which have the same label= */
             if (!s_rename_search (name, net_name, TRUE)) {
+
+              /* Do the rename anyways, this might cause problems */
+              /* this will rename nets which have the same netname= */
 
               if (!quiet_mode) {
                 const char *msg = _("Found duplicate net name, renaming [%s] to [%s]\n");
@@ -405,7 +409,6 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
               name = geda_strdup (net_name); /* See note above */
             }
           }
-
         }
         else { /* NETNAME_ATTRIBUTE */
 
@@ -413,7 +416,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           printf("\nNETNAME_ATTRIBUTE\n");
 #endif
 
-          /* rename the net that has priority to the label name */
+          /* rename the net that has priority to the net_name name */
           if (n_current->net_name_has_priority) {
 
 #if DEBUG
