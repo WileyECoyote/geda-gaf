@@ -5,8 +5,12 @@
 
     * docs/gnetlist.5.in: Use consistent BOLD formating for gnetlistrc.
 
+    * include/prototype.h: Remove prototype for main_prog.
+
     * scheme/gnet-spice-anise.scm: Revise write-capacitor to use a single
       let and remove trailing "add additional space".
+
+    * src/gnetlist.c: Declare main_prog as static.
 
     * src/s_net.c: Revise, update, add, and remove source comments.
 

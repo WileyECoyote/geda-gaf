@@ -174,7 +174,7 @@ void gnetlist_backends (GedaToplevel *pr_current)
  *  registers function used by back-ends and then attempts to load
  *  and execute the back-end specified on the command line.
  */
-void main_prog(void *closure, int argc, char *argv[])
+static void main_prog(void *closure, int argc, char *argv[])
 {
   int   i;
   int   argv_index;
@@ -518,5 +518,6 @@ int main(int argc, char *argv[])
 #endif
 
   scm_boot_guile (argc, argv, main_prog, 0);
+
   return 0;
 }
