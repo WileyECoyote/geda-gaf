@@ -372,6 +372,8 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 #if DEBUG
           printf("\nNETATTRIB_ATTRIBUTE\n");
 #endif
+          /* net->net_name_has_priority initialized to FALSE in s_net_add
+           * Set to true by s_netattrib_create_pins or s_traverse_net */
           if (n_current->net_name_has_priority) {
 
 #if DEBUG

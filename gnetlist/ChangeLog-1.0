@@ -3,6 +3,8 @@
     * scheme/gnet-spice-anise.scm: Revise write-capacitor to use a single
       let and remove trailing "add additional space".
 
+    * src/s_net.c: Revise, update, add, and remove source comments.
+
 2018-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc2.scm: Remove extra, trailing space after "No errors"
