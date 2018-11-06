@@ -3,6 +3,8 @@
    ** docs/gnetlist.1.in: Fix grammar; add missing word -- one or "MORE"
       electronic schematics, this is even on "Ubuntu's WEB site, ugh.
 
+    * docs/gnetlist.5.in: Use consistent BOLD formating for gnetlistrc.
+
     * scheme/gnet-spice-anise.scm: Revise write-capacitor to use a single
       let and remove trailing "add additional space".
 

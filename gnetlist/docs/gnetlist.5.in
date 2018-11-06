@@ -10,11 +10,11 @@ gnetlistrc - gEDA/gaf Netlist Extraction and Generation Configuration file
 \fBsystem-gnetlistrc\fR configuration file is used to set system-wide
 defaults to be applied when running \fBgnetlist\fR.
 .PP
-Users may create an optional configuration file, gnetlistrc in their home
+Users may create an optional configuration file, \fBgnetlistrc\fR in their home
 configuration directory which will be used to override the system-wide defaults
 file. The location of configuration files can be specified using the GEDARCDIR
 environment variable but this will effect other gEDA/gaf applications.
-The file gnetlistrc in the current working directory is also used.
+The file \fBgnetlistrc\fR in the current working directory is also used.
 .PP
 Additional \fBgnetlistrc\fR files may be in the current working directory
 or a parent there of. The search for a local \fBgnetlistrc\fR terminates
