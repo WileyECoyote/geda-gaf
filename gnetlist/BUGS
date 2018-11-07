@@ -21,13 +21,15 @@ Bugs (no particular order):
 	- gnetlist doesn't handle order very well on some machines?
 	  non-linux only?
 
-	- gnetlist testing generates 1747 logs files on the host system, mostly
-	  warrenty disclaimers and "Loading schematic" ...
-
 	- gnetlist scm backends do not respect the quite flag
 
 Finished stuff:
 ---------------
+
+OKAY    testing generates 1747 logs files on the host system, mostly
+        warrenty disclaimers and "Loading schematic", now 1818 log files but
+        these are created in local subdirectory, which is removed following
+        the successful completion of the tests.
 
 FIXED   Memory leaks (lots right now) A LOT MORE now! (See log 2015-11-14)
 
