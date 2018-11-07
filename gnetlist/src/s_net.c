@@ -402,7 +402,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
               /* Do the rename anyways, this might cause problems */
               /* this will rename nets which have the same netname= */
 
-              if (!quiet_mode) {
+              if (verbose_mode) {
                 const char *msg = _("Found duplicate net name, renaming [%s] to [%s]\n");
                 fprintf(stderr, msg, name, net_name);
               }
@@ -436,7 +436,7 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
             /* do the rename anyways, this might cause problems */
             /* this will rename net which have the same label= */
             if (!s_rename_search (name, net_name, TRUE)) {
-              if (!quiet_mode) {
+              if (verbose_mode) {
                 fprintf(stderr,
                       _("Found duplicate net name, renaming [%s] to [%s]\n"),
                         name, net_name);

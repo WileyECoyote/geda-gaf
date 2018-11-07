@@ -1,3 +1,7 @@
+2018-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_net.c: Change "Found duplicate net" from !quiet to verbose.
+
 2018-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
    ** docs/gnetlist.1.in: Fix grammar; add missing word -- one or "MORE"
