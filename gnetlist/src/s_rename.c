@@ -32,11 +32,24 @@
   * 2016/06/02 WEH: Add s_rename_compare_strings, s_rename_have_rename_record
   *            and hash to eliminate creation of redundant rename records.
   */
+/*! \file s_rename.c
+ *  \brief Module to Manage Renaming of Net Nodes
+ */
 
 #include "../../config.h"
 #include <gnetlist.h>
 #include <gettext.h>
 #include <geda_debug.h>
+
+/** \defgroup gnetlist-rename Netlister Rename Module
+ * @{
+ * \brief Gnetlist Rename Net Name
+ * \par
+ *  This module implements routines to create and maintain records for the
+ *  renaming of net nodes as artifacts are interrogated by other modules.
+ *  After the entire schematic has been traversed, this module applies the
+ *  information in the records to perform the actual renaming.
+ */
 
 typedef struct {
     void *next;
@@ -463,3 +476,5 @@ SCM g_get_renamed_nets(SCM scm_level)
 
   return (outerlist);
 }
+
+/** @} endgroup gnetlist-rename */

@@ -5,7 +5,8 @@
 
     * src/s_net.c: Change "Found duplicate net" from !quiet to verbose.
 
-    * src/s_rename.c: Update function documentation.
+    * src/s_rename.c: Update function documentation and add Doxygen file
+      tag, add Doxygen group gnetlist-rename.
 
 2018-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
