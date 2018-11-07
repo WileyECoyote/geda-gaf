@@ -19,7 +19,7 @@ The file \fBgnetlistrc\fR in the current working directory is also used.
 Additional \fBgnetlistrc\fR files may be in the current working directory
 or a parent there of. The search for a local \fBgnetlistrc\fR terminates
 once a \fBgnetlistrc\fR file has been found or the root of the drive is
-reached. Configuration setting in the local \fBgnetlistrc\fR files override
+reached. Configuration settings in the local \fBgnetlistrc\fR files override
 those in both the system-wide defaults and the users home directory.
 .PP
 The \fBgnetlistrc\fR files are written in the Scheme programming language
