@@ -28,7 +28,9 @@
  */
 
 #define WITHOUT_GDK_PIX_BUFFER 1
+/*! \cond */
 #include <libgeda/libgeda.h>
+/*! \endcond */
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
