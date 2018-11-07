@@ -61,7 +61,7 @@ All frontends have the problem that you can not point to the net you&#039;d like
 <div class="level2">
 
 <p>
-Let&#039;s assume we only want to make tiny changes to gschem and libgeda so that we can at least set some probes and ran a simulation.
+Let&#039;s assume we only want to make tiny changes to gschem and libgeda so that we can at least set some probes and run a simulation.
 </p>
 
 </div>
@@ -71,13 +71,13 @@ Let&#039;s assume we only want to make tiny changes to gschem and libgeda so tha
 
 <p>
 <strong>Current probes</strong> can be ordinary dc voltage sources with 0V. The easy way to insert that probe would be a symbol with two pins like an normal ampere meter.
-If we&#039;d like to set a current probe to an end of a pin we need a netlister that detects that current probe and replaces it with our “ampere meter”.
+If we&#039;d like to set a current probe to the end of a pin we need a netlister that detects that current probe and replaces it with our “ampere meter”.
 If we use a voltage source as an ampere meter the netlister does not need to know the netnames inside the schematic. All 0V voltage sources with a special device name are current probes.
 </p>
 
 <p>
-<strong>Voltage probes</strong> may be current sources with 0A. The second pin of the current source is tied to GND with a net attribute. Thus again the netlister does not need to know the netnames as it can use that net that is connected with that special current sources.
-Like above a voltage source could be a special (graphical) symbol that is detected by a netlister.
+<strong>Voltage probes</strong> may be current sources with 0A. The second pin of the current source is tied to GND with a net attribute. Thus again the netlister does not need to know the netnames as it can use the net that is connected with the special current sources.
+Like above, a voltage source could be a special (graphical) symbol that is detected by the netlister backend.
 </p>
 
 </div>
@@ -86,7 +86,7 @@ Like above a voltage source could be a special (graphical) symbol that is detect
 <div class="level3">
 
 <p>
-Specifying the parameters of sources is not that easy. Currently they are stored inside the “value” attribute of the symbol.
+Specifying the parameters of sources is not that easy. Currently they are stored inside a “value” attribute of the symbol.
 e.g. “value=pulse 0 1 10n 10n 100n 1u 2u”. These settings needs to match the spice attributes “pulse(V1 V2 TD TR TF PW PER)”.
 </p>
 
