@@ -141,9 +141,10 @@ void s_rename_next_set(void)
 }
 
 /*!
- * \brief Debug routine to print a Rename records
+ * \brief Print a Rename records when Verbose Enabled
  * \par Function Description
- * \todo consider adding cl option to print remapped net names.
+ *  Called by s_rename_all to print remapped net names when
+ *  verbose is enabled.
  */
 void s_rename_print(void)
 {
@@ -425,9 +426,9 @@ void s_rename_all(GedaToplevel *pr_current, NETLIST *netlist_head)
 {
   RENAME *temp;
 
-#if DEBUG
-  s_rename_print();
-#endif
+  if (verbose_mode) {
+    s_rename_print();
+  }
 
   if (last_set) {
 

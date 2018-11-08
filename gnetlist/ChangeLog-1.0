@@ -1,14 +1,17 @@
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
-      attribute" if graphical.
+      attribute".
 
     * src/g_netlist.c: Eliminate loop control variable "done" and just break
-      out of the while loop.
+      out of the while loop in function g_get_attribute_by_pinnumber.
 
     * src/s_netlist.c: Add function s_netlist_find_object.
 
-    * src/s_rename.c: Add some source comments/notes.
+    * src/s_rename.c: Add some source comments/notes. Revise s_rename_all
+      to call s_rename_print if verbose mode because this can be useful
+      to users. Previously s_rename_print was called when compiled with
+      DEBUG, and not restricted to verbose mode.
 
 2018-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
