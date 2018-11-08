@@ -738,7 +738,6 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
   char *wanted_attrib;
   char *return_value = NULL;
   bool  return_pwr   = FALSE;
-  bool  done         = FALSE;
 
   SCM_ASSERT(scm_is_string (scm_uref),
              scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinnumber");
@@ -765,7 +764,7 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
   /* search for the first instance */
   /* through the entire list */
-  while (nl_current != NULL && !done) {
+  while (nl_current != NULL) {
 
     if (nl_current->component_uref) {
 
@@ -782,11 +781,10 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
                                                             wanted_attrib, 0);
 
           if (return_value) {
-
-            done = TRUE;
 #if DEBUG
             printf("GOT IT: %s\n", return_value);
 #endif
+            break;
           }
 
         }
@@ -804,6 +802,8 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
               printf("pintype 'pwr' for artificial pin '%s' of '%s'\n",
                      pin, uref);
 #endif
+              /* uref was found, but does not have pin, no need to continue */
+              break;
             }
           }
         }

@@ -3,6 +3,9 @@
     * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
       attribute" if graphical.
 
+    * src/g_netlist.c: Eliminate loop control variable "done" and just break
+      out of the while loop.
+
 2018-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gnetlist.dox: Set the EXTERNAL_GROUPS to NO, because this is
