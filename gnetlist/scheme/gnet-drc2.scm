@@ -921,7 +921,7 @@
 
   ;;WEH 2015-05/08 Got Stack Overflow errors from guile, defaults to 20000
   ;; added net line to increase to 200000 and errors went away, need to either
-  ;; update to new guile or fix funtion drc2:get-pintypes-of-net-connections
+  ;; update to new guile or fix function drc2:get-pintypes-of-net-connections
   ;; to use less stack space
   (debug-set! stack 200000)
 
