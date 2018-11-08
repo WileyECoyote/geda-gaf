@@ -107,6 +107,33 @@ void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *strings)
   }
 }
 
+GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
+{
+  if (netlist && uref) {
+
+    NETLIST    *nl_current;
+    GedaObject *object = NULL;
+
+    nl_current = netlist;
+
+    /* Loop through the net list */
+    while (nl_current != NULL) {
+
+      if (nl_current->component_uref) {
+
+        if (strcmp(nl_current->component_uref, uref) == 0) {
+          object = nl_current->object_ptr;
+          break;
+        }
+      }
+      nl_current = nl_current->next;
+    }
+    return object;
+  }
+
+  return NULL;
+}
+
 /*!
  * \brief Assign Net list Names in the Graphical Netlist
  * \par Function Description

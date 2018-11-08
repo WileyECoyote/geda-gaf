@@ -44,9 +44,10 @@ void gnetlist_quit(void);
 int  main(int argc, char *argv[]);
 
 /* i_vars.c */
-void i_vars_set(GedaToplevel *pr_current);
-void i_vars_init_gnetlist_defaults (void);
-void i_vars_free_strings (void);
+void i_vars_set                      (GedaToplevel *pr_current);
+void i_vars_init_gnetlist_defaults   (void);
+void i_vars_free_strings             (void);
+
 /* parsecmd.c */
 void    usage(char *cmd);
 int     parse_commandline(int argc, char *argv[], char **output_filename);
@@ -97,14 +98,15 @@ char *s_netattrib_net_search(GedaObject *o_current, const char *wanted_pin);
 char *s_netattrib_return_netname(GedaToplevel *pr_current,GedaObject *o_current, char *pinnumber, char *hierarchy_tag);
 
 /* s_netlist.c */
-NETLIST *s_netlist_add(NETLIST *netlist);
-void     s_netlist_destroy_or_report(NETLIST *netlist, GedaList *list);
-void     s_netlist_name_named_nets (GedaToplevel *pr_current, NETLIST *named_netlist, NETLIST *unnamed_netlist);
-char    *s_netlist_netname_of_netid (GedaToplevel *pr_current, NETLIST *netlist_head, int net_id);
-void     s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head);
-void     s_netlist_print(NETLIST *netlist);
-NETLIST *s_netlist_return_head(NETLIST *tail);
-NETLIST *s_netlist_return_tail(NETLIST *head);
+      NETLIST   *s_netlist_add                 (NETLIST *netlist);
+         void    s_netlist_destroy_or_report   (NETLIST *netlist, GedaList *list);
+   GedaObject   *s_netlist_find_object         (NETLIST *netlist, const char *uref);
+         void    s_netlist_name_named_nets     (GedaToplevel *pr_current, NETLIST *named_netlist, NETLIST *unnamed_netlist);
+         char   *s_netlist_netname_of_netid    (GedaToplevel *pr_current, NETLIST *netlist_head, int net_id);
+         void    s_netlist_post_process        (GedaToplevel *pr_current, NETLIST *head);
+         void    s_netlist_print               (NETLIST *netlist);
+      NETLIST   *s_netlist_return_head         (NETLIST *tail);
+      NETLIST   *s_netlist_return_tail         (NETLIST *head);
 
 /* s_rename.c */
 void s_rename_init(void);
