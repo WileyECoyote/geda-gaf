@@ -23,6 +23,9 @@ Bugs (no particular order):
 
 	- gnetlist scm backends do not respect the quite flag
 
+    - drc2 reports "Found pins without a 'pintype' attribute" if symbols has
+      a graphical attribute, even though the pin has a pintype.
+
 Finished stuff:
 ---------------
 

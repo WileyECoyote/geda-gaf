@@ -1,3 +1,8 @@
+2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
+      attribute" if graphical.
+
 2018-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gnetlist.dox: Set the EXTERNAL_GROUPS to NO, because this is
@@ -8,6 +13,11 @@
 
           * docs/what-is-gnetlist.html
           * docs/what-is-gnetlist.tex
+
+    * include/gnetlist.h: Wrap inclusion of libgeda.h with cond/endcond
+      tags because the resulting dependency graphs causes the right pane
+      in the html to be very wide and browsers zoom the page to a level
+      where other gnetlist details are too small.
 
     * src/s_net.c: Change "Found duplicate net" from !quiet to verbose.
 
