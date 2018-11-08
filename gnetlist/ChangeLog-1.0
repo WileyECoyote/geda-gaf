@@ -3,6 +3,9 @@
     * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
       attribute".
 
+    * scheme/gnet-spice-anise.scm: Remove trailing "add additional space"
+      in write-inductor.
+
     * src/g_netlist.c: Eliminate loop control variable "done" and just break
       out of the while loop in function g_get_attribute_by_pinnumber.
 

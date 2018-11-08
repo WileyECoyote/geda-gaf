@@ -940,9 +940,6 @@
     (let ((attrib-list (list "l" "w" "ic")))
       (spice:write-list-of-attributes package attrib-list)
 
-      ;; write the off attribute separately
-      (display " "))  ;; add additional space. . . .
-
     (newline)
   )
 )
