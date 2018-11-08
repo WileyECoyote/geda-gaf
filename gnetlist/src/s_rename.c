@@ -173,6 +173,7 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
 {
   RENAME *temp;
 
+  /* If last_set is unset, then there nothing to search, the answer is FALSE */
   if (last_set) {
 
     for (temp = last_set->first_rename; temp; temp = temp->next) {
@@ -249,6 +250,7 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
   /* Skip adding if strings are the same as previous strings */
   if (!s_rename_compare_strings(last_set->last_rename, src, dest)) {
 
+    /* Check if pair already exist in table */
     if (!s_rename_have_rename_record(src, dest)) {
 
       new_rename = GEDA_MEM_ALLOC(sizeof(RENAME));

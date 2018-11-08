@@ -8,6 +8,8 @@
 
     * src/s_netlist.c: Add function s_netlist_find_object.
 
+    * src/s_rename.c: Add some source comments/notes.
+
 2018-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gnetlist.dox: Set the EXTERNAL_GROUPS to NO, because this is
