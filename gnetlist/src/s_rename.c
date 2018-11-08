@@ -463,11 +463,13 @@ SCM g_get_renamed_nets(SCM scm_level)
   SCM pairlist  = SCM_EOL;
   SCM outerlist = SCM_EOL;
 
-  RENAME *temp_rename;
   SET    *temp_set;
 
   for (temp_set = first_set; temp_set; temp_set = temp_set->next_set)
   {
+
+    RENAME *temp_rename;
+
     for (temp_rename = temp_set->first_rename; temp_rename; temp_rename = temp_rename->next)
     {
       pairlist = scm_list_n (scm_from_utf8_string (temp_rename->src),

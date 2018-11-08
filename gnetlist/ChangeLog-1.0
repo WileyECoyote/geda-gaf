@@ -11,7 +11,8 @@
     * src/s_rename.c: Add some source comments/notes. Revise s_rename_all
       to call s_rename_print if verbose mode because this can be useful
       to users. Previously s_rename_print was called when compiled with
-      DEBUG, and not restricted to verbose mode.
+      DEBUG, and not restricted to verbose mode. Reduce scope of variable
+      temp_rename in g_get_renamed_nets.
 
 2018-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
