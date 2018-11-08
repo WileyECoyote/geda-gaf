@@ -185,7 +185,7 @@ void s_traverse_process(GedaToplevel *pr_current)
  * \par Function Description
  *  Called from s_traverse_process to traverse top-level sheets.
  *  If "traverse-hierarchy" is enabled s_hierarchy_traverse is
- *  called for each complex encounter, to potentially traverse
+ *  called for each complex encountered to potentially traverse
  *  underlying schematics.
  *
  * \param [in] pr_current  Current GedaToplevel structure; toplevel,
