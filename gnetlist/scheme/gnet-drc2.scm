@@ -553,30 +553,27 @@
       (let* ((netname (car all-nets))
         (directives (gnetlist:graphical-net-objs-attrib
                      netname "device=DRC_Directive" "value")))
-        (begin
-          ; Only check nets with a NoConnection directive
-          (if (member "NoConnection" directives)
+        ; Only check nets with a NoConnection directive
+        (if (member "NoConnection" directives)
+          (if ( > (length (gnetlist:get-all-connections netname)) '1)
             (begin
-              (if ( > (length (gnetlist:get-all-connections netname)) '1)
-                (begin
-                  (display (string-append "ERROR: Net '"
-                                  netname "' has connections, but "
-                                  "has the NoConnection DRC directive:"))
-                  (drc2:display-pins-of-type "all"
-                  (gnetlist:get-all-connections netname))
-                  (display ".")
-                  (newline)
-                  (set! errors_number (+ errors_number 1))
-                )
-              )
+              (display (string-append "ERROR: Net '"
+                              netname "' has connections, but "
+                              "has the NoConnection DRC directive:"))
+              (drc2:display-pins-of-type "all"
+              (gnetlist:get-all-connections netname))
+              (display ".")
+              (newline)
+              (set! errors_number (+ errors_number 1))
             )
           )
-          (drc2:check-connected-noconnects (cdr all-nets))
         )
+        (drc2:check-connected-noconnects (cdr all-nets))
       )
     )
   )
 )
+
 (define (drc2:printlist element)
     (for-each
      (lambda (netname)
@@ -838,13 +835,14 @@
                                 (display " is not driven.")
                                 (newline)
                                 ))
-                          )
-                      ))
-
-                )
+                      )
+              )))
               (drc2:check-pintypes-of-nets (cdr all-nets))
-  )))
-))
+            )
+          )
+      )
+  )
+)
 
 ;;
 ;; Check unconnected pins

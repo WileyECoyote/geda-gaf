@@ -1,6 +1,7 @@
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Update/fix grammar in comments/documentation.
+      Remove remnant debug progn blocks in check-connected-noconnects.
 
 
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
