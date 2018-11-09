@@ -205,10 +205,8 @@ static void main_prog(void *closure, int argc, char *argv[])
    * to allow spice netlisters of arbitrary name as long as they begin with
    * "spice".  For example, this spice netlister is valid: "spice-sdb".
    */
-  if (guile_proc) {
-    if (strncmp(guile_proc, "spice", 5) == 0) {
-      netlist_mode = SPICE;
-    }
+  if (guile_proc && !strncmp(guile_proc, "spice", 5)) {
+    netlist_mode = SPICE;
   }
 
   libgeda_init(argc, argv);
