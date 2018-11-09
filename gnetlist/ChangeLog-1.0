@@ -14,6 +14,11 @@
 
     * src/s_netlist.c: Update s_netlist_post_process function documentation.
 
+    * tests/common/outputs/spice-anise/powersupply-output.net: Update reference
+      file to remove trailing space and "CONN1 one five 0 <No valid value
+      attribute found>", which I am not sure why is even there in the first
+      place.
+
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
