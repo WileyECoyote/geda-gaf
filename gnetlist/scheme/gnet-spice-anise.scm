@@ -929,17 +929,16 @@
     (spice-anise:write-component-no-value package)
 
 
-    ;; next write inductor value, if any.  Note that if the
+    ;; next write inductor value, if any. Note that if the
     ;; component value is not assigned, then it will write "unknown"
-    (let ((value (get-package-attribute package "value")))
-                (display value)
+    (let ((value (get-package-attribute package "value"))
+          (attrib-list (list "l" "w" "ic")))
+
+         (display value)
+
+         ;; Append any inductor specific attributes attached the component
+         (spice:write-list-of-attributes package attrib-list)
     )
-
-
-    ;; create list of attributes which can be attached to a inductor
-    (let ((attrib-list (list "l" "w" "ic")))
-      (spice:write-list-of-attributes package attrib-list)
-
     (newline)
   )
 )
