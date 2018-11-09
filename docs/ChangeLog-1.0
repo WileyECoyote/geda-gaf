@@ -1,3 +1,8 @@
+2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/wiki/geda-faq-gnetlist.html: Add note regarding the dash
+      following the -o option for to drc2 output to stdout.
+
 2018-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/wiki/geda-gnetlist_scheme_primitives.html: Remove BUG note related
