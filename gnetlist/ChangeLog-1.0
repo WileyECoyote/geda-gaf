@@ -4,7 +4,8 @@
       Remove remnant debug progn blocks in check-connected-noconnects.
 
     * scheme/gnet-spice-anise.scm: Revise write-inductor to use a single
-      let.
+      let. Conditionally spew the "Using Anise" and schematic-type message
+      when not quiet_mode.
 
 
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>

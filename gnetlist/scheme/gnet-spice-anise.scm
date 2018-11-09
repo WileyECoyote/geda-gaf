@@ -1616,8 +1616,11 @@
            (model-name (spice-anise:get-subcircuit-modelname schematic-type))
            (file-info-list (list))
           )
-      (message (string-append "Using Anise SPICE backend -- Version " spice-anise-version "\n"))
-      (message (string-append "schematic-type = " schematic-type "\n"))
+      (if (not (< (get-verbosity) 0))
+        (begin
+          (message (string-append "Using Anise SPICE backend -- Version " spice-anise-version "\n"))
+          (message (string-append "schematic-type = " schematic-type "\n")))
+      )
 
       (if (not (string=? schematic-type "normal schematic"))
       ;; we have found a .SUBCKT type schematic.
