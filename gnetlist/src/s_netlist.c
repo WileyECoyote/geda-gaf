@@ -256,13 +256,15 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Post Traversal Processing to rename nets
- *  \par Function Description
+/*!
+ * \brief Post Traversal Processing to Rename Nets
+ * \par Function Description
+ *  Ensures all nets which have a uref have a name.
  *
  * \param [in] pr_current GedaToplevel structure; toplevel,
  * \param [in] head       Pointer to Global netlist in globals.c
  *
+ *  \sa s_traverse_process
  */
 void s_netlist_post_process(GedaToplevel *pr_current, NETLIST *head)
 {

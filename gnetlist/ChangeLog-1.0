@@ -10,6 +10,8 @@
     * src/s_net.c: Eliminate ancillary boolean "Found" in s_net_name.
       Update documentation for s_net_find.
 
+    * src/s_netlist.c: Update s_netlist_post_process function documentation.
+
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
