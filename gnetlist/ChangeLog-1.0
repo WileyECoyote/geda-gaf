@@ -1,3 +1,8 @@
+2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-drc.scm: Update/fix grammar in comments/documentation.
+
+
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'

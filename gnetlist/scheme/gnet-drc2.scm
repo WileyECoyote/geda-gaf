@@ -87,7 +87,7 @@
 ;; Configuration
 ;; -------------
 ;;
-;; Some test can be disabled defining by some variables. Following is a list
+;; Some test can be disabled by defining some variables. Following is a list
 ;; with a pair of check and variable. If the variable is defined, then that
 ;; check is not performed.
 ;;
@@ -123,7 +123,7 @@
 ;; (define action-unused-slots #\w)
 ;; (define case_insensitive 1)
 ;;
-;; The check for not driven nets only is performed when checking the type of the
+;; The check for not driven nets is only performed when checking the type of the
 ;; pins connected to each net.There is a list which specifies which type of pin
 ;; can drive a net. It's called pintype-can-drive.
 ;; It's a list, with 0 or 1 integer elements. The order is specified below and
@@ -134,13 +134,13 @@
 ;; Example:
 ;;   (define pintype-can-drive (list 0 0 1 1 1 1 1 1 1 0 1 0 ))
 ;;
-;; There are two checks configurable by a DRC connection matrix: check for
-;; unconnected pins and check for the type of pins connected to each net.
-;; Each element of the DRC matrix matches one connection between two pins
-;; (the "row" pin and the "column" pin). The order is specified below and
-;; is very important, since each position in the list matches one type of
-;; pin. The DRC matrix can be specified before running this backend. Other
-;; wise, the backend will use the default values.
+;; There are two checks that are configurable by a DRC connection matrix:
+;; checks for unconnected pins and check for the type of pins connected to
+;; each net. Each element of the DRC matrix matches one connection between
+;; two pins (the "row" pin and the "column" pin). The order is specified
+;; below and is very important, since each position in the list matches one
+;; type of pin. The DRC matrix can be specified before running this backend.
+;; Otherwise, the backend will use the default values.
 ;;
 ;; Example (default matrix):
 ;;
