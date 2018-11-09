@@ -7,6 +7,8 @@
       let. Conditionally spew the "Using Anise" and schematic-type message
       when not quiet_mode.
 
+    * src/s_net.c: Eliminate ancillary boolean "Found" in s_net_name.
+      Update documentation for s_net_find.
 
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -32,8 +34,7 @@
     * docs/gnetlist.dox: Set the EXTERNAL_GROUPS to NO, because this is
       way too much clutter in the output.
 
-    * gnetlist/docs/what-is-gnetlist: Update the gnetlist introduction
-      section:
+    * docs/what-is-gnetlist: Update the gnetlist introduction section:
 
           * docs/what-is-gnetlist.html
           * docs/what-is-gnetlist.tex

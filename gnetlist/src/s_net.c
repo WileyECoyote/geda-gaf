@@ -485,7 +485,6 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
                   NET *net_head, char *hierarchy_tag, int node_type)
 {
-
   NET      *n_start;
   NETLIST  *nl_current;
   CPINLIST *pl_current;
@@ -495,7 +494,6 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
   char *temp;
   char *unnamed_string;
   int  *unnamed_counter;
-  int   found             = 0;
 
   net_name = s_net_name_search(pr_current, net_head);
 
@@ -519,8 +517,7 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
         if (pl_current->nets) {
           n_start = pl_current->nets;
           if (n_start->next && net_head->next) {
-            found = s_net_find(n_start->next, net_head->next);
-            if (found) {
+            if (s_net_find(n_start->next, net_head->next)) {
               net_name = s_net_name_search(pr_current, n_start);
               if (net_name) {
                 return (net_name);
