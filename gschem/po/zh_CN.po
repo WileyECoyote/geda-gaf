@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-20 11:32-0500\n"
+"POT-Creation-Date: 2018-11-01 13:58-0500\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -22,27 +22,29 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "警告: <%s> 没有扩大\n"
 
+# Command-line error: disabling auto load last
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "命令行错误：最后禁用自动加载\n"
 
 #: gschem/src/base/gschem.c:219
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "假设原理图文件后缀为"
 
 #: gschem/src/base/gschem.c:233
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "假设符号文件后缀为"
 
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "加载请求的会话时遇到错误"
 
+# Auto Load => Automatically Load
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr ""
+msgstr "自动加载"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -51,6 +53,10 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"必須設置GEDADATA環境變量!\n"
+"\n"
+"gschem无法找到一些数据文件。请确保GEDADATA\n"
+"环境变量指向正确的位置.\n"
 
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
@@ -425,11 +431,11 @@ msgstr "错误"
 msgid "NONE"
 msgstr ""
 
-#: gschem/src/guile/g_attrib.c:98
+#: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current gschem page."
 msgstr ""
 
-#: gschem/src/guile/g_attrib.c:118
+#: gschem/src/guile/g_attrib.c:120
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
@@ -1114,6 +1120,38 @@ msgstr ""
 msgid "Recovery: undo last action\n"
 msgstr "恢复：撤消上次操作\n"
 
+#: gschem/src/object/o_attrib.c:123
+msgid "already attached to an object"
+msgstr ""
+
+# Attribute is
+#: gschem/src/object/o_attrib.c:129
+msgid "Attribute is"
+msgstr "属性是"
+
+# One attribute was
+#: gschem/src/object/o_attrib.c:132
+msgid "One attribute was"
+msgstr "一个属性是"
+
+# All of the attributes were
+#: gschem/src/object/o_attrib.c:137
+msgid "All of the attributes were"
+msgstr "所有的属性都是"
+
+# Some of the attributes were
+#: gschem/src/object/o_attrib.c:141
+msgid "Some of the attributes were"
+msgstr "一些属性是"
+
+# attached attributes
+#: gschem/src/object/o_attrib.c:164
+#, c-format
+msgid "attached %d attribute"
+msgid_plural "attached %d attributes"
+msgstr[0] "附加%d属性"
+msgstr[1] "附加%d个属性"
+
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
 #: gschem/src/object/o_break.c:843
 #, c-format
@@ -1134,7 +1172,7 @@ msgstr ""
 msgid "Translating schematic"
 msgstr ""
 
-#: gschem/src/object/o_delete.c:91
+#: gschem/src/object/o_delete.c:88
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
@@ -1537,16 +1575,16 @@ msgid "Components"
 msgstr ""
 
 #: gschem/src/x/x_compselect.c:2693 gschem/src/x/x_confirm_close.c:313
-#: gschem/src/x/x_multiattrib.c:2051 gschem/src/x/x_multiattrib.c:2057
+#: gschem/src/x/x_multiattrib.c:2054 gschem/src/x/x_multiattrib.c:2060
 msgid "Name"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2053
-#: gschem/src/x/x_multiattrib.c:2059
+#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2056
+#: gschem/src/x/x_multiattrib.c:2062
 msgid "Value"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2886 gschem/src/x/x_dialog.c:1859
+#: gschem/src/x/x_compselect.c:2886 gschem/src/x/x_dialog.c:1863
 msgid "None"
 msgstr ""
 
@@ -1827,421 +1865,421 @@ msgstr ""
 msgid "Sets the central angle of the arc."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1102
+#: gschem/src/x/x_dialog.c:1104
 msgid "Background"
 msgstr ""
 
 # Pin
-#: gschem/src/x/x_dialog.c:1103
+#: gschem/src/x/x_dialog.c:1105
 msgid "Pin"
 msgstr "销"
 
-#: gschem/src/x/x_dialog.c:1104
+#: gschem/src/x/x_dialog.c:1106
 msgid "Net endpoint"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1105
+#: gschem/src/x/x_dialog.c:1107
 msgid "Graphic"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1106 gschem/src/x/x_edit_pin.c:141
+#: gschem/src/x/x_dialog.c:1108 gschem/src/x/x_edit_pin.c:141
 #: gschem/src/x/x_menus.c:93
 msgid "Net"
 msgstr ""
 
 # Attribute
-#: gschem/src/x/x_dialog.c:1107
+#: gschem/src/x/x_dialog.c:1109
 msgid "Attribute"
 msgstr "属性"
 
-#: gschem/src/x/x_dialog.c:1108
+#: gschem/src/x/x_dialog.c:1110
 msgid "Logic bubble"
 msgstr ""
 
 # Grid point
-#: gschem/src/x/x_dialog.c:1109
+#: gschem/src/x/x_dialog.c:1111
 msgid "Grid point"
 msgstr "网格点"
 
 # Detached attribute => Separate attributes
-#: gschem/src/x/x_dialog.c:1110
+#: gschem/src/x/x_dialog.c:1112
 msgid "Detached attribute"
 msgstr "分离的属性"
 
 # Text
-#: gschem/src/x/x_dialog.c:1111 gschem/src/x/x_menus.c:97
+#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_menus.c:97
 msgid "Text"
 msgstr "文本"
 
-#: gschem/src/x/x_dialog.c:1112 gschem/src/x/x_edit_pin.c:142
+#: gschem/src/x/x_dialog.c:1114 gschem/src/x/x_edit_pin.c:142
 #: gschem/src/x/x_menus.c:96
 msgid "Bus"
 msgstr "总线"
 
 # Selection
-#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_edit_array.c:972
+#: gschem/src/x/x_dialog.c:1115 gschem/src/x/x_edit_array.c:1030
 #: gschem/src/x/x_menus.c:107
 msgid "Selection"
 msgstr "选择"
 
-#: gschem/src/x/x_dialog.c:1114
+#: gschem/src/x/x_dialog.c:1116
 msgid "Bounding box"
 msgstr ""
 
 # Zoom box
-#: gschem/src/x/x_dialog.c:1115
+#: gschem/src/x/x_dialog.c:1117
 msgid "Zoom box"
 msgstr "缩放框"
 
-#: gschem/src/x/x_dialog.c:1116
+#: gschem/src/x/x_dialog.c:1118
 msgid "Stroke"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1117 gschem/etc/system-gschemrc.scm:2167
+#: gschem/src/x/x_dialog.c:1119 gschem/etc/system-gschemrc.scm:2167
 #: gschem/scheme/gschem/builtins.scm:188
 msgid "Lock"
 msgstr "锁定"
 
-#: gschem/src/x/x_dialog.c:1118
+#: gschem/src/x/x_dialog.c:1120
 msgid "Output background"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1119
+#: gschem/src/x/x_dialog.c:1121
 msgid "Net junction"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1120
+#: gschem/src/x/x_dialog.c:1122
 msgid "Mesh grid major"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1121
+#: gschem/src/x/x_dialog.c:1123
 msgid "Mesh grid minor"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1122
+#: gschem/src/x/x_dialog.c:1124
 msgid "User Style 0"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1123
+#: gschem/src/x/x_dialog.c:1125
 msgid "User Style 1"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1124
+#: gschem/src/x/x_dialog.c:1126
 msgid "User Style 2"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1125
+#: gschem/src/x/x_dialog.c:1127
 msgid "User Style 3"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1126
+#: gschem/src/x/x_dialog.c:1128
 msgid "User Style 4"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1127
+#: gschem/src/x/x_dialog.c:1129
 msgid "User Style 5"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1128
+#: gschem/src/x/x_dialog.c:1130
 msgid "User Style 6"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1129
+#: gschem/src/x/x_dialog.c:1131
 msgid "User Style 7"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1130
+#: gschem/src/x/x_dialog.c:1132
 msgid "User Style 8"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1131
+#: gschem/src/x/x_dialog.c:1133
 msgid "User Style 9"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1135
+#: gschem/src/x/x_dialog.c:1137
 msgid "Unknown"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1289
+#: gschem/src/x/x_dialog.c:1291
 msgid "Hollow"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1290
+#: gschem/src/x/x_dialog.c:1292
 msgid "Filled"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1291
+#: gschem/src/x/x_dialog.c:1293
 msgid "Mesh"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1292
+#: gschem/src/x/x_dialog.c:1294
 msgid "Hatch"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1293 gschem/src/x/x_dialog.c:1404
-#: gschem/src/x/x_dialog.c:1413 gschem/src/x/x_dialog.c:1422
-#: gschem/src/x/x_dialog.c:1431 gschem/src/x/x_dialog.c:1440
-#: gschem/src/x/x_dialog.c:1553 gschem/src/x/x_dialog.c:1555
-#: gschem/src/x/x_dialog.c:1557 gschem/src/x/x_dialog.c:1559
-#: gschem/src/x/x_dialog.c:1561 gschem/src/x/x_dialog.c:1862
-#: gschem/src/x/x_dialog.c:1904 gschem/src/x/x_dialog.c:2016
-#: gschem/src/x/x_dialog.c:2025 gschem/src/x/x_dialog.c:2035
-#: gschem/src/x/x_dialog.c:2144 gschem/src/x/x_dialog.c:2146
-#: gschem/src/x/x_dialog.c:2148
+#: gschem/src/x/x_dialog.c:1295 gschem/src/x/x_dialog.c:1406
+#: gschem/src/x/x_dialog.c:1415 gschem/src/x/x_dialog.c:1424
+#: gschem/src/x/x_dialog.c:1433 gschem/src/x/x_dialog.c:1442
+#: gschem/src/x/x_dialog.c:1555 gschem/src/x/x_dialog.c:1557
+#: gschem/src/x/x_dialog.c:1559 gschem/src/x/x_dialog.c:1561
+#: gschem/src/x/x_dialog.c:1563 gschem/src/x/x_dialog.c:1866
+#: gschem/src/x/x_dialog.c:1908 gschem/src/x/x_dialog.c:2020
+#: gschem/src/x/x_dialog.c:2029 gschem/src/x/x_dialog.c:2039
+#: gschem/src/x/x_dialog.c:2148 gschem/src/x/x_dialog.c:2150
+#: gschem/src/x/x_dialog.c:2152
 msgid "*varies*"
 msgstr ""
 
 # Edit the fill type
-#: gschem/src/x/x_dialog.c:1707 gschem/scheme/gschem/builtins.scm:158
+#: gschem/src/x/x_dialog.c:1709 gschem/scheme/gschem/builtins.scm:158
 msgid "Edit Fill Type"
 msgstr "编辑填充类型"
 
 # Fill Type
-#: gschem/src/x/x_dialog.c:1729
+#: gschem/src/x/x_dialog.c:1731
 msgid "Fill Type:"
 msgstr "填充类型:"
 
 # Line width
-#: gschem/src/x/x_dialog.c:1732
+#: gschem/src/x/x_dialog.c:1734
 msgid "Line Width:"
 msgstr "行宽:"
 
-#: gschem/src/x/x_dialog.c:1735
+#: gschem/src/x/x_dialog.c:1737
 msgid "Angle 1:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1738
+#: gschem/src/x/x_dialog.c:1740
 msgid "Pitch 1:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1741
+#: gschem/src/x/x_dialog.c:1743
 msgid "Angle 2:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1744
+#: gschem/src/x/x_dialog.c:1746
 msgid "Pitch 2:"
 msgstr ""
 
 # Select fill pattern
-#: gschem/src/x/x_dialog.c:1750
+#: gschem/src/x/x_dialog.c:1752
 msgid "Select fill pattern"
 msgstr "选择填充模式"
 
-#: gschem/src/x/x_dialog.c:1755
+#: gschem/src/x/x_dialog.c:1757
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1760
+#: gschem/src/x/x_dialog.c:1762
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1765
+#: gschem/src/x/x_dialog.c:1767
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1770
+#: gschem/src/x/x_dialog.c:1772
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1775
+#: gschem/src/x/x_dialog.c:1777
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1860
+#: gschem/src/x/x_dialog.c:1864
 msgid "Square"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1861
+#: gschem/src/x/x_dialog.c:1865
 msgid "Round"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1899
+#: gschem/src/x/x_dialog.c:1903
 msgid "Solid"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1900
+#: gschem/src/x/x_dialog.c:1904
 msgid "Dotted"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1901
+#: gschem/src/x/x_dialog.c:1905
 msgid "Dashed"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1902
+#: gschem/src/x/x_dialog.c:1906
 msgid "Center"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1903
+#: gschem/src/x/x_dialog.c:1907
 msgid "Phantom"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2291 gschem/scheme/gschem/builtins.scm:155
+#: gschem/src/x/x_dialog.c:2295 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Line Width & Type"
 msgstr "编辑线宽和类型"
 
 # Line Type
-#: gschem/src/x/x_dialog.c:2314
+#: gschem/src/x/x_dialog.c:2318
 msgid "Line Type:"
 msgstr "线型:"
 
 # Line endpoint style
-#: gschem/src/x/x_dialog.c:2317
+#: gschem/src/x/x_dialog.c:2321
 msgid "End Type:"
 msgstr "线端点样式:"
 
-#: gschem/src/x/x_dialog.c:2320
+#: gschem/src/x/x_dialog.c:2324
 msgid "Width:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2323
+#: gschem/src/x/x_dialog.c:2327
 msgid "Dash Length:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2326
+#: gschem/src/x/x_dialog.c:2330
 msgid "Dash Space:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2341
+#: gschem/src/x/x_dialog.c:2345
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2347
+#: gschem/src/x/x_dialog.c:2351
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2353
+#: gschem/src/x/x_dialog.c:2357
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2593
+#: gschem/src/x/x_dialog.c:2599
 msgid "Find Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2612
+#: gschem/src/x/x_dialog.c:2618
 msgid "Text to find:"
 msgstr ""
 
 # Search hidden attributes
-#: gschem/src/x/x_dialog.c:2621
+#: gschem/src/x/x_dialog.c:2627
 msgid "Search hidden attributes"
 msgstr "搜索隐藏的属性"
 
-#: gschem/src/x/x_dialog.c:2624
+#: gschem/src/x/x_dialog.c:2630
 msgid "Descend into hierarchy"
 msgstr ""
 
 # Close on ascent
-#: gschem/src/x/x_dialog.c:2632
+#: gschem/src/x/x_dialog.c:2638
 msgid "Close on ascent"
 msgstr "关闭上升"
 
-#: gschem/src/x/x_dialog.c:2721
+#: gschem/src/x/x_dialog.c:2727
 msgid "Hide Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2740
+#: gschem/src/x/x_dialog.c:2746
 msgid "Hide text starting with:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2836
+#: gschem/src/x/x_dialog.c:2842
 msgid "Show Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2855
+#: gschem/src/x/x_dialog.c:2861
 msgid "Show text starting with:"
 msgstr ""
 
 # Text input
-#: gschem/src/x/x_dialog.c:2981
+#: gschem/src/x/x_dialog.c:2987
 msgid "Text Entry..."
 msgstr "文本输入..."
 
-#: gschem/src/x/x_dialog.c:3006
+#: gschem/src/x/x_dialog.c:3012
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3200
+#: gschem/src/x/x_dialog.c:3205
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3202
+#: gschem/src/x/x_dialog.c:3207
 msgid "Translate"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3228
+#: gschem/src/x/x_dialog.c:3233
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
 # Auto Zoom Extents => Automatic zoom range
-#: gschem/src/x/x_dialog.c:3239
+#: gschem/src/x/x_dialog.c:3244
 msgid "Auto Zoom Extents"
 msgstr "自动缩放范围"
 
 # Hotkeys
-#: gschem/src/x/x_dialog.c:3416
+#: gschem/src/x/x_dialog.c:3421
 msgid "Hotkeys"
 msgstr "热键"
 
 # Icon
-#: gschem/src/x/x_dialog.c:3503
+#: gschem/src/x/x_dialog.c:3508
 msgid "Icon"
 msgstr "图标"
 
 # Action
-#: gschem/src/x/x_dialog.c:3517
+#: gschem/src/x/x_dialog.c:3522
 msgid "Action"
 msgstr "行动"
 
-#: gschem/src/x/x_dialog.c:3527
+#: gschem/src/x/x_dialog.c:3532
 msgid "Keystroke(s)"
 msgstr ""
 
 # Command
-#: gschem/src/x/x_dialog.c:3537
+#: gschem/src/x/x_dialog.c:3542
 msgid "Command"
 msgstr "命令"
 
-#: gschem/src/x/x_dialog.c:3772
+#: gschem/src/x/x_dialog.c:3777
 msgid "Major symbol changes detected."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3799
+#: gschem/src/x/x_dialog.c:3804
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3840
+#: gschem/src/x/x_dialog.c:3845
 msgid "Symbol"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3886
+#: gschem/src/x/x_dialog.c:3891
 msgid "Dismiss this dialog"
 msgstr ""
 
-# Input attribute is invalid
-#: gschem/src/x/x_dialog.c:3928
-msgid "Input attribute is invalid"
-msgstr "输入属性无效"
+# invalid attribute value
+#: gschem/src/x/x_dialog.c:3933
+msgid "invalid attribute value"
+msgstr "无效的属性值"
 
-#: gschem/src/x/x_dialog.c:3929
+#: gschem/src/x/x_dialog.c:3934
 msgid "Please correct in order to continue"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3930
+#: gschem/src/x/x_dialog.c:3935
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3938
+#: gschem/src/x/x_dialog.c:3943
 msgid "Invalid Attribute"
 msgstr ""
 
@@ -2257,7 +2295,7 @@ msgstr ""
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2653
+#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2656
 msgid "symbol"
 msgstr ""
 
@@ -2281,222 +2319,222 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:550
+#: gschem/src/x/x_edit_array.c:579
 msgid "X pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:551
+#: gschem/src/x/x_edit_array.c:580
 msgid "Y pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:564
+#: gschem/src/x/x_edit_array.c:593
 msgid "X and Y pitch distance are less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:583
+#: gschem/src/x/x_edit_array.c:612
 msgid "Components may overlay, Continue?"
 msgstr ""
 
 # Create Array: Error
-#: gschem/src/x/x_edit_array.c:596 gschem/src/x/x_edit_array.c:601
-#: gschem/src/x/x_edit_array.c:606
+#: gschem/src/x/x_edit_array.c:625 gschem/src/x/x_edit_array.c:630
+#: gschem/src/x/x_edit_array.c:635
 msgid "Create Array:Error"
 msgstr "创建数组：错误"
 
-#: gschem/src/x/x_edit_array.c:597
+#: gschem/src/x/x_edit_array.c:626
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:602
+#: gschem/src/x/x_edit_array.c:631
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:607
+#: gschem/src/x/x_edit_array.c:636
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
 # Create Array
-#: gschem/src/x/x_edit_array.c:945 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1003 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr "创建弧"
 
-#: gschem/src/x/x_edit_array.c:982 gschem/src/x/x_edit_array.c:1052
-#: gschem/src/x/x_edit_array.c:1085
+#: gschem/src/x/x_edit_array.c:1040 gschem/src/x/x_edit_array.c:1110
+#: gschem/src/x/x_edit_array.c:1143
 msgid "Count"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:993
+#: gschem/src/x/x_edit_array.c:1051
 msgid "X Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:996
+#: gschem/src/x/x_edit_array.c:1054
 msgid "Y Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1015 gschem/src/x/x_menus.c:88
+#: gschem/src/x/x_edit_array.c:1073 gschem/src/x/x_menus.c:88
 msgid "Select"
 msgstr ""
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1019
+#: gschem/src/x/x_edit_array.c:1077
 msgid "Deselect"
 msgstr "取消"
 
-#: gschem/src/x/x_edit_array.c:1035 gschem/src/x/x_menus.c:119
+#: gschem/src/x/x_edit_array.c:1093 gschem/src/x/x_menus.c:119
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1044
+#: gschem/src/x/x_edit_array.c:1102
 msgid "Row"
 msgstr ""
 
 # Offset
-#: gschem/src/x/x_edit_array.c:1067 gschem/src/x/x_edit_array.c:1100
+#: gschem/src/x/x_edit_array.c:1125 gschem/src/x/x_edit_array.c:1158
 msgid "Offset"
 msgstr "抵消"
 
-#: gschem/src/x/x_edit_array.c:1077
+#: gschem/src/x/x_edit_array.c:1135
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1110
+#: gschem/src/x/x_edit_array.c:1168
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1118
+#: gschem/src/x/x_edit_array.c:1176
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1122
+#: gschem/src/x/x_edit_array.c:1180
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1140
+#: gschem/src/x/x_edit_array.c:1198
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1147
+#: gschem/src/x/x_edit_array.c:1205
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1154
+#: gschem/src/x/x_edit_array.c:1212
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1161
+#: gschem/src/x/x_edit_array.c:1219
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1168
+#: gschem/src/x/x_edit_array.c:1226
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1175
+#: gschem/src/x/x_edit_array.c:1233
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1182
+#: gschem/src/x/x_edit_array.c:1240
 msgid "entry for array vertical pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:215
+#: gschem/src/x/x_edit_attrib.c:218
 #, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:326
+#: gschem/src/x/x_edit_attrib.c:335
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:327
+#: gschem/src/x/x_edit_attrib.c:336
 msgid "Show only the name of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:328
+#: gschem/src/x/x_edit_attrib.c:337
 msgid "Show only the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:329
+#: gschem/src/x/x_edit_attrib.c:338
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:337
+#: gschem/src/x/x_edit_attrib.c:346
 msgid "Show Value Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:341
+#: gschem/src/x/x_edit_attrib.c:350
 msgid "Show Name Only"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:345 gschem/src/x/x_multiattrib.c:1668
+#: gschem/src/x/x_edit_attrib.c:354 gschem/src/x/x_multiattrib.c:1671
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:410
+#: gschem/src/x/x_edit_attrib.c:419
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:411 gschem/src/x/x_multiattrib.c:2241
+#: gschem/src/x/x_edit_attrib.c:420 gschem/src/x/x_multiattrib.c:2244
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr ""
 
 # Edit Attribute
-#: gschem/src/x/x_edit_attrib.c:412
+#: gschem/src/x/x_edit_attrib.c:421
 msgid "Edit Attribute"
 msgstr "编辑属性"
 
-#: gschem/src/x/x_edit_attrib.c:414
+#: gschem/src/x/x_edit_attrib.c:423
 msgid "Select the name of the attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:415
+#: gschem/src/x/x_edit_attrib.c:424
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:417
+#: gschem/src/x/x_edit_attrib.c:426
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:418
+#: gschem/src/x/x_edit_attrib.c:427
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:420
+#: gschem/src/x/x_edit_attrib.c:429
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:437
+#: gschem/src/x/x_edit_attrib.c:446
 msgid "Single Attribute Editor"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:465 gschem/src/x/x_multiattrib.c:2258
+#: gschem/src/x/x_edit_attrib.c:474 gschem/src/x/x_multiattrib.c:2261
 msgid "Name:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:482 gschem/src/x/x_multiattrib.c:2277
+#: gschem/src/x/x_edit_attrib.c:491 gschem/src/x/x_multiattrib.c:2280
 msgid "Value:"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2055
-#: gschem/src/x/x_multiattrib.c:2332
+#: gschem/src/x/x_edit_attrib.c:505 gschem/src/x/x_multiattrib.c:2058
+#: gschem/src/x/x_multiattrib.c:2335
 msgid "Visible"
 msgstr ""
 
 # Attribute Name List
-#: gschem/src/x/x_edit_attrib.c:525
+#: gschem/src/x/x_edit_attrib.c:534
 msgid "Attribute Name List"
 msgstr "属性名称列表"
 
 # Attribute Value Entry
-#: gschem/src/x/x_edit_attrib.c:529
+#: gschem/src/x/x_edit_attrib.c:538
 msgid "Attribute Value Entry"
 msgstr "属性值输入"
 
@@ -2930,7 +2968,7 @@ msgid "Set the active slot number"
 msgstr "设置活动插槽编号"
 
 # Text Content
-#: gschem/src/x/x_edit_text.c:76 gschem/src/x/x_edit_text.c:696
+#: gschem/src/x/x_edit_text.c:76 gschem/src/x/x_edit_text.c:714
 msgid "Text Content"
 msgstr "文本内容"
 
@@ -3040,41 +3078,41 @@ msgid "Sentence"
 msgstr ""
 
 # Edit Text Properties
-#: gschem/src/x/x_edit_text.c:678
+#: gschem/src/x/x_edit_text.c:696
 msgid "Edit Text Properties"
 msgstr "编辑文本属性"
 
 # Text Properties
-#: gschem/src/x/x_edit_text.c:725
+#: gschem/src/x/x_edit_text.c:743
 msgid "Text Properties"
 msgstr "文本属性"
 
 # Text alignment combobox
-#: gschem/src/x/x_edit_text.c:843
+#: gschem/src/x/x_edit_text.c:861
 msgid "Text alignment combobox"
 msgstr "文本对齐组合框"
 
 # Text case combobox
-#: gschem/src/x/x_edit_text.c:847
+#: gschem/src/x/x_edit_text.c:865
 msgid "Text case combobox"
 msgstr "文本案例组合框"
 
 # Color options menu
-#: gschem/src/x/x_edit_text.c:851
+#: gschem/src/x/x_edit_text.c:869
 msgid "Color options menu"
 msgstr "颜色选项菜单"
 
 # Font selector button
-#: gschem/src/x/x_edit_text.c:855
+#: gschem/src/x/x_edit_text.c:873
 msgid "Font selector button"
 msgstr "字体选择器按钮"
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:859
+#: gschem/src/x/x_edit_text.c:877
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "文本旋转角度的微调框控件"
 
-#: gschem/src/x/x_edit_text.c:863
+#: gschem/src/x/x_edit_text.c:881
 msgid "Text input field"
 msgstr ""
 
@@ -3429,7 +3467,7 @@ msgstr "延伸"
 msgid "Project linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:122 gschem/src/x/x_multiattrib.c:1707
+#: gschem/src/x/x_menus.c:122 gschem/src/x/x_multiattrib.c:1710
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "删除"
@@ -3821,106 +3859,106 @@ msgstr ""
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:813 gschem/src/x/x_multiattrib.c:2833
+#: gschem/src/x/x_multiattrib.c:816 gschem/src/x/x_multiattrib.c:2836
 msgid "<various>"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:935
+#: gschem/src/x/x_multiattrib.c:938
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 
 # Multi-attribute editor
-#: gschem/src/x/x_multiattrib.c:937
+#: gschem/src/x/x_multiattrib.c:940
 msgid "Multi-Attribute Editor"
 msgstr "多属性编辑器"
 
-#: gschem/src/x/x_multiattrib.c:1651
+#: gschem/src/x/x_multiattrib.c:1654
 msgid "Select an attribute to add"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1670
+#: gschem/src/x/x_multiattrib.c:1673
 msgid "Show Value only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1672
+#: gschem/src/x/x_multiattrib.c:1675
 msgid "Show Name only"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1676
+#: gschem/src/x/x_multiattrib.c:1679
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1701
+#: gschem/src/x/x_multiattrib.c:1704
 msgid "Promote"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1706
+#: gschem/src/x/x_multiattrib.c:1709
 msgid "Duplicate"
 msgstr ""
 
 # Copy to all
-#: gschem/src/x/x_multiattrib.c:1708
+#: gschem/src/x/x_multiattrib.c:1711
 msgid "Copy to all"
 msgstr "复制到所有"
 
-#: gschem/src/x/x_multiattrib.c:2100 gschem/src/x/x_multiattrib.c:2630
+#: gschem/src/x/x_multiattrib.c:2103 gschem/src/x/x_multiattrib.c:2633
 msgid "Edit Attributes"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2292
+#: gschem/src/x/x_multiattrib.c:2295
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2322
+#: gschem/src/x/x_multiattrib.c:2325
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2337
+#: gschem/src/x/x_multiattrib.c:2340
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2352
+#: gschem/src/x/x_multiattrib.c:2355
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2649
+#: gschem/src/x/x_multiattrib.c:2652
 msgid "symbols"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2664
+#: gschem/src/x/x_multiattrib.c:2667
 msgid "pins"
 msgstr ""
 
 # pin
-#: gschem/src/x/x_multiattrib.c:2668
+#: gschem/src/x/x_multiattrib.c:2671
 msgid "pin"
 msgstr "接触针"
 
-#: gschem/src/x/x_multiattrib.c:2679
+#: gschem/src/x/x_multiattrib.c:2682
 msgid "nets"
 msgstr ""
 
 # net
-#: gschem/src/x/x_multiattrib.c:2683
+#: gschem/src/x/x_multiattrib.c:2686
 msgid "net"
 msgstr "净"
 
-#: gschem/src/x/x_multiattrib.c:2694
+#: gschem/src/x/x_multiattrib.c:2697
 msgid "buses"
 msgstr ""
 
 # bus
-#: gschem/src/x/x_multiattrib.c:2698
+#: gschem/src/x/x_multiattrib.c:2701
 msgid "bus"
 msgstr "总线"
 
 # attributes
-#: gschem/src/x/x_multiattrib.c:2709
+#: gschem/src/x/x_multiattrib.c:2712
 msgid "attributes"
 msgstr "属性"
 
 # attribute
-#: gschem/src/x/x_multiattrib.c:2713
+#: gschem/src/x/x_multiattrib.c:2716
 msgid "attribute"
 msgstr "属性"
 
@@ -6174,7 +6212,7 @@ msgstr "gEDA wiki"
 msgid "View the front page of the gEDA wiki in a browser."
 msgstr "在浏览器中查看gEDA wiki的首页."
 
-#: gschem/scheme/gschem/deprecated.scm:102
+#: gschem/scheme/gschem/deprecated.scm:103
 #, scheme-format
 msgid "Invalid text alignment ~A."
 msgstr "Invalid text alignment ~A."
@@ -6202,3 +6240,7 @@ msgstr "~S 不是有效的组合键."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 不是前缀键序列."
+
+# Input attribute is invalid
+#~ msgid "Input attribute is invalid"
+#~ msgstr "输入属性无效"
