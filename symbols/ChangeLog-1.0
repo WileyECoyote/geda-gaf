@@ -2,6 +2,8 @@
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:
 
+    * io/output-[1,2,3].sym: Re-size smaller dash 1 output symbols:
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
