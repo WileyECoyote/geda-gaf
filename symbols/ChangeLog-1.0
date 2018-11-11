@@ -4,6 +4,14 @@
 
     * io/output-[1,2,3].sym: Re-size smaller dash 1 output symbols:
 
+    * io/inout-[1-7].sym: Add new io symbols matching the input and
+      output symbols:
+
+            * io/inout-1.sym
+            * io/inout-2.sym
+            * io/inout-3.sym
+            * io/inout-7.sym
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
