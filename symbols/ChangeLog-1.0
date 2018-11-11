@@ -16,6 +16,10 @@
 
     * io/output-7.sym: Add new dash 7 output symbol.
 
+    * passive/capacitor/capacitor-3.sym: Add new capacitor symbol intended
+      as a replacement for capacitor-1.sym, the dash 3 version is upright
+      instead of horizontal and has value=value? attribute.
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
