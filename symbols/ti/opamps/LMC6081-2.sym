@@ -67,7 +67,7 @@ refdes=U?
 T 0 1100 5 10 0 0 0 0 1
 numslots=0
 T 0 1250 5 10 0 0 0 0 1
-description=Operational Amplifier, Precision CMOS
+description=IC OPAMP CMOS GP 1.3MHZ RRO 8DIP
 T 0 1400 5 10 0 0 0 0 1
 documentation=http://www.ti.com/product/lmc6081
 T 0 1550 5 10 0 0 0 0 1

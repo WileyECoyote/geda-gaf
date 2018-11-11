@@ -38,6 +38,12 @@
             * source/chassis-gnd-1.sym
             * source/gnd-4.sym  (Change description=Earth Ground)
 
+    * ti/opamps/LMC6081-[1,2]: Replace descriptions attributes with something
+      less generic and more suitable for entry in BOM:
+
+            * ti/opamps/LMC6081-1.sym
+            * ti/opamps/LMC6081-2.sym
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
