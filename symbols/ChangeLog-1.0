@@ -20,6 +20,17 @@
       as a replacement for capacitor-1.sym, the dash 3 version is upright
       instead of horizontal and has value=value? attribute.
 
+    * passive/resistor/resistor-[1,2,3].sym: Change footprint attribute
+      values to "unknown", even though presetting the value to popular
+      sizes is convenient, it makes it easy to over-look setting correctly
+      if the preset value was not the intended size, add value=value?
+      attribute for convenience, since all resistor must have a value
+      attribute:
+
+            * resistor/resistor-1.sym
+            * resistor/resistor-2.sym
+            * resistor/resistor-3.sym
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:

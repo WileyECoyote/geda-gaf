@@ -1,7 +1,7 @@
 v 20151031 2
-T 200 500 5 10 0 1 0 0 1
+T 200 700 5 10 0 1 0 0 1
 device=RESISTOR
-T 200 900 5 10 0 1 0 0 1
+T 200 1100 5 10 0 1 0 0 1
 description=Resistor
 B 150 0 600 200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 900 100 700 100 1 0 0
@@ -26,11 +26,13 @@ pinlabel=2
 T 125 50 5 8 0 1 0 8 1
 pintype=pas
 }
-T 200 300 8 10 1 1 0 0 1
+T 200 500 8 10 1 1 0 0 1
 refdes=R?
-T 200 700 9 10 0 0 0 0 1
+T 200 900 9 10 0 0 0 0 1
 numslots=0
+T 200 300 5 10 1 1 0 0 1
+value=value?
 T 200 -200 9 10 0 1 0 0 1
-footprint=0603
-T 200 1100 5 10 0 0 0 0 1
+footprint=unknown
+T 200 1300 5 10 0 0 0 0 1
 author=AutoTron
