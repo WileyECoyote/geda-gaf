@@ -12,6 +12,8 @@
             * io/inout-3.sym
             * io/inout-7.sym
 
+    * io/input-7.sym: Add new dash 7 input symbol.
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
