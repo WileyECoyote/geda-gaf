@@ -31,6 +31,13 @@
             * resistor/resistor-2.sym
             * resistor/resistor-3.sym
 
+    * source: Revise ground symbols to improve appearance; draw lines before
+      pin, lower the lines to align with lower edge of the bottom of the pin,
+      eliminate extra lines:
+
+            * source/chassis-gnd-1.sym
+            * source/gnd-4.sym  (Change description=Earth Ground)
+
 2018-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
