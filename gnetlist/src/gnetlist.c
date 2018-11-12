@@ -201,14 +201,6 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   scm_set_program_arguments (argc, argv, NULL);
 
-  /* this is a kludge to make sure that spice mode gets set. Is Hacked by SDB
-   * to allow spice netlisters of arbitrary name as long as they begin with
-   * "spice".  For example, this spice netlister is valid: "spice-sdb".
-   */
-  if (guile_proc && !strncmp(guile_proc, "spice", 5)) {
-    netlist_mode = SPICE;
-  }
-
   libgeda_init(argc, argv);
 
 #if defined(__MINGW32__) && defined(DEBUG)
@@ -358,6 +350,14 @@ static void main_prog(void *closure, int argc, char *argv[])
 
     /* Evaluate second set of Scheme expressions. */
     scm_eval (post_backend_list, scm_current_module ());
+
+    /* this is a kludge to make sure that spice mode gets set. Is Hacked by SDB
+     * to allow spice netlisters of arbitrary name as long as they begin with
+     * "spice".  For example, this spice netlister is valid: "spice-sdb".
+     */
+    if (!strncmp(guile_proc, "spice", 5)) {
+      netlist_mode = SPICE;
+    }
   }
 
   if (g_slist_length(input_files) > 0) {

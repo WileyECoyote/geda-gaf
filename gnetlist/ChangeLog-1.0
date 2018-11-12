@@ -10,6 +10,11 @@
     * src/g_netlist.c: Revise g_get_attribute_by_pinnumber to check in the
       graphical netlist before resorting to returning "unknown".
 
+    * src/gnetlist.c: Move kludge for setting netlist_mode = SPICE to the
+      conditional for guile_proc to eliminate the superfluous check for
+      guile_proc. The netlist_mode only need be set before s_net_name is
+      called during traversal.
+
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Update/fix grammar in comments/documentation.
