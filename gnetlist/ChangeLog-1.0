@@ -18,6 +18,9 @@
     * tests/common/inputs/*.sch: Add footprint=0402 for all insistence of
       resistor-1.sym, since the library version has footprint=unknown.
 
+    * tests/common/inputs/TwoStageAmp.sch: Clean schematic; yea is only
+      for testing, but looked bad, should be some what orderly.
+
     * tests: Add footprint=0402 for all insistence of resistor-1.sym, tidy
       up schematics a bit:
 
