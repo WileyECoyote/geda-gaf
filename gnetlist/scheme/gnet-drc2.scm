@@ -371,7 +371,11 @@
                         (set! errors_number (+ errors_number 1))))
                   (check-slots-loop (cdr slots_list))
                   ))))
-        (check-slots-loop (gnetlist:get-slots uref))))
+        (let ((numslots (string->number (get-package-attribute uref "numslots"))))
+          (if (and numslots (> numslots 1))
+            (check-slots-loop (gnetlist:get-slots uref))
+        ))
+      ))
     (for-each check-duplicated-slots-of-package packages)
 ))
 

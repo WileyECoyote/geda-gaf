@@ -1,3 +1,8 @@
+2018-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-drc2.scm: Fix BUG in check-duplicated-slots; do not
+      check for duplicate slots on components that do not have slots.
+
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Update/fix grammar in comments/documentation.
