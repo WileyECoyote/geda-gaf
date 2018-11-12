@@ -35,12 +35,14 @@ BEGIN
  
   Rlp : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			value => 1meg)
 	PORT MAP (	1 => p,
 			2 => Vdd1);
  
   Rlm : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			value => 500k)
 	PORT MAP (	1 => m,
 			2 => GND);
@@ -59,12 +61,14 @@ BEGIN
  
   Rt : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			value => 1k)
 	PORT MAP (	1 => p,
 			2 => m);
  
   Rb : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 5.6k)
 	PORT MAP (	1 => GND,

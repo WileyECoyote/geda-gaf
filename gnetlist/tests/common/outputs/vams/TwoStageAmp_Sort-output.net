@@ -27,6 +27,7 @@ BEGIN
  
   R4 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 2.8K)
 	PORT MAP (	1 => GND,
@@ -34,6 +35,7 @@ BEGIN
  
   R3 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 28K)
 	PORT MAP (	1 => Vbase2,
@@ -41,6 +43,7 @@ BEGIN
  
   R8 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 1)
 	PORT MAP (	1 => Vcoll1,
@@ -56,6 +59,7 @@ BEGIN
  
   RE2 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 100)
 	PORT MAP (	1 => GND,
@@ -63,6 +67,7 @@ BEGIN
  
   RC1 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 3.3K)
 	PORT MAP (	1 => Vcoll1,
@@ -139,6 +144,7 @@ BEGIN
  
   RL : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 100K)
 	PORT MAP (	1 => GND,
@@ -146,6 +152,7 @@ BEGIN
  
   RC2 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 1K)
 	PORT MAP (	1 => VColl2,
@@ -153,6 +160,7 @@ BEGIN
  
   RE1 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 100)
 	PORT MAP (	1 => GND,
@@ -160,6 +168,7 @@ BEGIN
  
   R2 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 2K)
 	PORT MAP (	1 => GND,
@@ -167,6 +176,7 @@ BEGIN
  
   R1 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 28K)
 	PORT MAP (	1 => Vbase1,
@@ -174,6 +184,7 @@ BEGIN
  
   R5 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => RESISTOR, 
 			value => 10)
 	PORT MAP (	1 => Vin,

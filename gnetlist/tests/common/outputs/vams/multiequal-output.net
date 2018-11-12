@@ -15,6 +15,7 @@ BEGIN
  
   R1 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			value => 20)
 	PORT MAP (	1 => GND,
 			2 => unnamed_net1);

@@ -54,6 +54,7 @@ BEGIN
  
   R2 : ENTITY RESISTOR
 	GENERIC MAP (
+			footprint => 0402, 
 			value => 220)
 	PORT MAP (	1 => ten,
 			2 => eleven);

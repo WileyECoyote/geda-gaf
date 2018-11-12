@@ -25,6 +25,9 @@
       output; remove 1023 false reports of "duplicated slot 1 of uref C"
       and update the error count.
 
+    * tests/common/outputs/vams/.net: Update reference outputs to include
+      the 0402 footprints that were promoted in the input files.
+
     * tests: Add footprint=0402 for all insistence of resistor-1.sym, tidy
       up schematics a bit:
 
