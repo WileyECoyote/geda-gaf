@@ -7,6 +7,9 @@
       warning message about unsubstantiated use of include_mode when
       quite mode is set.
 
+    * src/g_netlist.c: Revise g_get_attribute_by_pinnumber to check in the
+      graphical netlist before resorting to returning "unknown".
+
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Update/fix grammar in comments/documentation.

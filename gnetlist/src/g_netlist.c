@@ -812,21 +812,49 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
     nl_current = nl_current->next;
   }
 
-  scm_dynwind_end ();
-
   if (return_value) {
     scm_return_value = scm_from_utf8_string (return_value);
     GEDA_FREE(return_value);
   }
   else {
+
     if (return_pwr) {
       scm_return_value = scm_from_utf8_string ("pwr");
     }
     else {
-      scm_return_value = scm_from_utf8_string ("unknown");
+
+      GedaObject *object;
+
+      object = s_netlist_find_object (graphical_netlist_head, uref);
+
+      if (object) {
+
+        pin_object =
+          geda_complex_object_find_pin_by_attribute (object, "pinnumber", pin);
+
+        if (pin_object) {
+
+          /* only look for the first occurance of wanted_attrib */
+          return_value = geda_attrib_search_object_by_name (pin_object,
+                                                            wanted_attrib, 0);
+
+          if (verbose_mode) {
+            const char *msg2 = _("retrieved from a graphical object");
+            fprintf (stderr, "%s %s \"%s\" %s %s.\n", _("Pin"), pin, wanted_attrib, msg2, uref);
+          }
+        }
+      }
+
+      if (!return_value) {
+        scm_return_value = scm_from_utf8_string ("unknown");
+      }
+      else {
+        scm_return_value = scm_from_utf8_string (return_value);
+        GEDA_FREE(return_value);
+      }
     }
   }
-
+  scm_dynwind_end ();
   return (scm_return_value);
 }
 
