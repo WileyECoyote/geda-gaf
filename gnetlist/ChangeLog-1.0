@@ -21,6 +21,10 @@
     * tests/common/inputs/TwoStageAmp.sch: Clean schematic; yea is only
       for testing, but looked bad, should be some what orderly.
 
+    * tests/common/outputs/drc2/stack-torture-output.net: Update reference
+      output; remove 1023 false reports of "duplicated slot 1 of uref C"
+      and update the error count.
+
     * tests: Add footprint=0402 for all insistence of resistor-1.sym, tidy
       up schematics a bit:
 
