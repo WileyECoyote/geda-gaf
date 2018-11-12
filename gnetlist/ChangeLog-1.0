@@ -28,6 +28,9 @@
     * tests/common/outputs/vams/.net: Update reference outputs to include
       the 0402 footprints that were promoted in the input files.
 
+    * tests/drc2/duplicated-refdes.drc2: Update reference output; remove
+      false "duplicated slot 1 of uref R1" report and update the error count.
+
     * tests: Add footprint=0402 for all insistence of resistor-1.sym, tidy
       up schematics a bit:
 
