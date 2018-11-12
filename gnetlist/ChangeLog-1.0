@@ -15,6 +15,15 @@
       guile_proc. The netlist_mode only need be set before s_net_name is
       called during traversal.
 
+    * tests/common/inputs/*.sch: Add footprint=0402 for all insistence of
+      resistor-1.sym, since the library version has footprint=unknown.
+
+    * tests: Add footprint=0402 for all insistence of resistor-1.sym, tidy
+      up schematics a bit:
+
+          * tests/multiequal.sch
+          * tests/powersupply.sch
+
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc.scm: Update/fix grammar in comments/documentation.
