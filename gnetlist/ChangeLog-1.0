@@ -4,6 +4,13 @@
       beginning of sentences, spaces will be automatically added later,
       if needed, to format the page.
 
+    * src/gnetlist.c: Relocate checking for and displaying backends in
+      the main line code before the log system is initialized, and in
+      particular, before the copyright/warranty notice is written the
+      log. Otherwise a needless log file is created containing only the
+      warranty and license information and all the user wanted to do is
+      to list the available backends.
+
     * utils/mk_verilog_syms.c: Add space after conditional and loops.
       Fix format specifiers -- use type integer not unsigned integer.
       Reduce the scope of pinx and piny in function MakeSymbol.

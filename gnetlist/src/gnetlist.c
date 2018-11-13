@@ -224,6 +224,11 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   g_rc_parse (argv[0], "gnetlistrc", rc_filename ? rc_filename : "gnetlistrc");
 
+  if (list_backends) {
+    gnetlist_backends(pr_current);
+    exit (0);
+  }
+
   /* create log file right away */
   /* WEH: even if logging is not enabled */
   geda_utility_log_init ("gnetlist");
@@ -243,11 +248,6 @@ static void main_prog(void *closure, int argc, char *argv[])
   i_vars_init_gnetlist_defaults ();
 
   s_rename_init();
-
-  if (list_backends) {
-    gnetlist_backends(pr_current);
-    exit (0);
-  }
 
   if (!output_filename) {
     /* was not specified so set default output filename */
