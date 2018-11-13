@@ -1,3 +1,8 @@
+2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/wiki/geda-faq-gnetlist.html: Edit section 3, DRC, to include the
+      drc backend, not just drc2.
+
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/wiki/geda-faq-gnetlist.html: Add note regarding the dash

@@ -99,16 +99,29 @@ The backend partslist3 assembles all parts with the same value in a single line,
 <div class="level2">
 
 <p>
-You can check your schematics using the drc2 gnetlist’s backend. It will check your schematics for some common errors, like duplicate references, unconnected pins, unused slots and more.
+You can check your schematics using one of gnetlist’s drc backends.
 </p>
 
 <p>
-Run the drc2 backend with the following command:
+Run the drc backend using the following syntax:
+</p>
+<pre class="code">gnetlist -g drc -o MyDesign.drc MyDesign.sch</pre>
+
+<p>
+This will check the schematic for missing attributes.
+</p>
+
+<p>
+Run the drc2 backend using the following syntax:
 </p>
 <pre class="code">gnetlist -g drc2 -o MyDesign.drc MyDesign.sch</pre>
 
 <p>
-With this command, the DRC output is written into the file “MyDesign.drc”. You can then view this file with a text editor and see the DRC warnings and errors.
+This will check your schematics for some common errors like duplicate references, unconnected pins, unused slots and more.
+</p>
+
+<p>
+With these commands, the DRC output is written into the file “MyDesign.drc”. You can then view this file with a text editor and see the warnings and errors.
 </p>
 
 </div>
