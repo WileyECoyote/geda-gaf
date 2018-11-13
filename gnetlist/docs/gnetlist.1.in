@@ -17,7 +17,7 @@ input to a PCB layout program such as \fBpcb\fR(1) or to a simulator such
 as \fBgnucap\fR(1).
 
 A normal \fBgnetlist\fR run is carried out in two steps.  First, the
-\fBgnetlist\fR frontend loads the specified human-readable schematic
+\fBgnetlist\fR front-end loads the specified human-readable schematic
 \fIFILE\fRs, and compiles them to an in-memory netlist description.
 Next, a `backend' is used to export the connection and component data
 to one of many supported netlist formats.
@@ -30,7 +30,7 @@ to one of many supported netlist formats.
 Quiet mode. Turns off all warnings/notes/messages.
 .TP 8
 \fB-v\fR, \fB--verbose\fR
-Verbose mode.  Output all diagnostic information.
+Verbose mode. Output all diagnostic information.
 .TP 8
 \fB-L\fR \fIDIRECTORY\fR
 Prepend \fIDIRECTORY\fR to the list of directories to be searched for
@@ -46,20 +46,20 @@ Pass an option string to the backend.
 Print a list of available netlist backends.
 .TP 8
 \fB-o\fR \fIFILE\fR
-Specify the filename for the generated netlist.  By default, output is
+Specify the filename for the generated netlist. By default, output is
 directed to `output.net'.
 .TP 8
 \fB-l\fR \fIFILE\fR
 Specify a Scheme file to be loaded before the backend is loaded or
-executed.  This option can be specified multiple times.
+executed. This option can be specified multiple times.
 .TP 8
 \fB-m\fR \fIFILE\fR
 Specify a Scheme file to be loaded between loading the backend and
-executing it.  This option can be specified multiple times.
+executing it. This option can be specified multiple times.
 .TP 8
 \fB-c\fR \fIEXPR\fR
 Specify a Scheme expression to be executed during \fBgnetlist\fR
-startup.  This option can be specified multiple times.
+startup. This option can be specified multiple times.
 .TP 8
 \fB-i\fR
 After the schematic files have been loaded and compiled, and after all
@@ -77,7 +77,7 @@ and \fBbackend\fR version information when used after the \fBbackend\fR has
 been specified.
 .TP 8
 \fB--\fR
-Treat all remaining arguments as schematic filenames.  Use this if you
+Treat all remaining arguments as schematic filenames. Use this if you
 have a schematic filename which begins with `-'.
 
 .SH BACKENDS
@@ -120,7 +120,7 @@ Gossip netlist format.
 .TP 8
 \fBgsch2pcb\fR
 Backend used for \fBpcb\fR(1) file layout generation by
-\fBgsch2pcb\fR(1).  It is not recommended to use this backend
+\fBgsch2pcb\fR(1). It is not recommended to use this backend
 directly.
 .TP 8
 \fBliquidpcb\fR
@@ -236,7 +236,7 @@ Scheme read-eval-print loop.
 .SH ENVIRONMENT
 .TP 8
 .B GEDADATA
-Specifies the search directory for Scheme and rc files.  The default
+Specifies the search directory for Scheme and rc files. The default
 is `${prefix}/share/gEDA'.
 .TP 8
 .B GEDADATARC
@@ -247,7 +247,7 @@ See the `AUTHORS' file included with this program.
 
 .SH COPYRIGHT
 .nf
-Copyright \(co 1999-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
+Copyright \(co 1999-@YEAR@ gEDA Contributors. License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this
 program for full details.
 .PP

@@ -1,5 +1,9 @@
 2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/gnetlist.1.in: Minor edits; remove superfluous spaces at the
+      beginning of sentences, spaces will be automatically added later,
+      if needed, to format the page.
+
     * utils/mk_verilog_syms.c: Add space after conditional and loops.
       Fix format specifiers -- use type integer not unsigned integer.
       Reduce the scope of pinx and piny in function MakeSymbol.
