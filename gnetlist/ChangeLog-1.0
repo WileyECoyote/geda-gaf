@@ -2,6 +2,7 @@
 
     * utils/mk_verilog_syms.c: Add space after conditional and loops.
       Fix format specifiers -- use type integer not unsigned integer.
+      Reduce the scope of pinx and piny in function MakeSymbol.
 
 2018-11-12 Wiley E. Hill <wileyhill@gmail.com>
 

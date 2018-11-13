@@ -166,8 +166,6 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   int firstx, firsty;     /* first end of first input pin */
   int totalHeight;
 
-  int pinx, piny;
-
   int bodyWidth  = 700;
   int bodyHeight = 600;
   unsigned int pinCount = 1;
@@ -242,6 +240,8 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
   /* do input pins */
   for (i = 0; i < pins; i++) {
+
+    int pinx, piny;
 
     /* calculate the position of the pin */
     pinx = firstx;
