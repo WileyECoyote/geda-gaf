@@ -11,6 +11,8 @@
       warranty and license information and all the user wanted to do is
       to list the available backends.
 
+    * src/s_net.c: Update documentation for s_net_find.
+
     * utils/mk_verilog_syms.c: Add space after conditional and loops.
       Fix format specifiers -- use type integer not unsigned integer.
       Reduce the scope of pinx and piny in function MakeSymbol.

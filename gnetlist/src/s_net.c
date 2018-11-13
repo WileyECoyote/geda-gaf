@@ -113,9 +113,13 @@ void s_net_destroy_or_report(NET *ptr, GedaList *list)
   }
 }
 
-/*! \brief Find a NET given the node Id
- *  \par Function Description
- *   Called by s_net_name
+/*!
+ * \brief Find a NET given the node Id
+ * \par Function Description
+ *  Called by s_net_name to iterate \a net_head looking for
+ *  a node id matching \a node.
+ *
+ * \retval TRUE if a match was found, otherwise FALSE
  */
 int s_net_find(NET *net_head, NET *node)
 {
@@ -194,11 +198,11 @@ void s_net_print(NET *n_current)
  *          <DD>"__netattrib_power_pin 1"</DD>
  *  </DL>
  *
- *  \param [in] pr_current    GedaToplevel toplevel structure;
- *  \param [in] object        Is a Pin object
- *  \param [in] hierarchy_tag hierarchy tag string
+ * \param [in] pr_current    GedaToplevel toplevel structure;
+ * \param [in] object        Is a Pin object
+ * \param [in] hierarchy_tag hierarchy tag string
  *
- *  \sa s_traverse_net
+ * \sa s_traverse_net
  */
 char *s_net_return_connected_string(GedaToplevel *pr_current,
                                     GedaObject   *object,
