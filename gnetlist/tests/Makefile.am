@@ -110,7 +110,13 @@ tests:
 	@rm -rf $(BUILDDIR)/devfiles $(BUILDDIR)/new_*
 	@rm -rf $(builddir)/logs $(builddir)/gnetlistrc
 
+clean-local: clean-local-check
+.PHONY: clean-local-check
+clean-local-check:
+	@rm -rf logs
+
 MOSTLYCLEANFILES     = new_* core *.log FILE *.ps *~
 CLEANFILES           = new_* core *.log FILE *.ps *~
 DISTCLEANFILES       = new_* core *.log FILE *.ps *~
 MAINTAINERCLEANFILES = new_* core *.log FILE *.ps *~ Makefile.in
+

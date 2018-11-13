@@ -17,6 +17,9 @@
       Fix format specifiers -- use type integer not unsigned integer.
       Reduce the scope of pinx and piny in function MakeSymbol.
 
+    * tests/Makefile.am: Add phony clean-local-check to remove the log
+      subdirectory generated when testing.
+
 2018-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc2.scm: Fix BUG in check-duplicated-slots; do not
