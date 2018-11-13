@@ -116,7 +116,8 @@ main(int argc, char **argv)
     for (j = 2; j < 10; j++) {      /* loop over number of pins */
 
       /* build file name */
-      sprintf(name, "sym/%s%u-%u.sym", generate[i].name, j, generate[i].suffix);
+      sprintf(name, "sym/%s%d-%u.sym", generate[i].name, j, generate[i].suffix);
+
       printf("Processing:%s\n",name);
 
       fp = fopen(name, "wb");
@@ -397,11 +398,11 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 
   /* output the line segments */
   /* for the top */
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %u %u\n",
           x, y+300, x, y+300+distanceNeeded, colour);
 
   /* for the bottom */
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %u %u\n",
           x, y-300, x, y-300-distanceNeeded, colour);
 
   return 0;
@@ -503,7 +504,7 @@ PinAttribute(FILE *fp, int x, int y, unsigned int n, char *value)
   }
 
   fprintf(fp, "{\n");
-  fprintf(fp, "T %d %d %u %u 0 0 0 0\n",x, y, YELLOW, 8);
+  fprintf(fp, "T %d %d %d %d 0 0 0 0\n",x, y, YELLOW, 8);
   fprintf(fp, "pin%u=%s\n",n, value);
   fprintf(fp, "}\n");
 

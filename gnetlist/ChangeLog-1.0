@@ -1,6 +1,7 @@
 2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/mk_verilog_syms.c: Add space after conditional and loops.
+      Fix format specifiers -- use type integer not unsigned integer.
 
 2018-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
