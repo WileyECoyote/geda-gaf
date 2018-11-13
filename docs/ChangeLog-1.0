@@ -1,22 +1,25 @@
 2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/wiki/geda-faq-gnetlist.html: Edit section 3, DRC, to include the
+    * wiki/geda-faq-gnetlist.html: Edit section 3, DRC, to include the
       drc backend, not just drc2.
+
+    * wiki/geda-faq-gnetlist.ru.html: Update section 3 to kind of match the
+      english version.
 
 2018-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/wiki/geda-faq-gnetlist.html: Add note regarding the dash
+    * wiki/geda-faq-gnetlist.html: Add note regarding the dash
       following the -o option for to drc2 output to stdout.
 
 2018-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/wiki/geda-gnetlist_scheme_primitives.html: Remove BUG note related
+    * wiki/geda-gnetlist_scheme_primitives.html: Remove BUG note related
       to version 1.9.1, the BUG is not present in the Rampage Edition. Update
       gnetlist:get-version to reflect what it really does.
 
 2018-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/wiki/geda-gnetlist_scheme_primitives.html: Fix typo gnelist ->
+    * wiki/geda-gnetlist_scheme_primitives.html: Fix typo gnelist ->
       gnetlist. Change refdes gnetlist:get-all-package-attributes example
       from D1 to U1, and gnetlist-version -> gnetlist:get-version.
 
