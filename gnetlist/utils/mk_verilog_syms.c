@@ -111,9 +111,9 @@ main(int argc, char **argv)
 
   status = 0;
 
-  for (i=0; i<nGenerate; i++) { /* loop over table entries */
+  for (i = 0; i < nGenerate; i++) { /* loop over table entries */
 
-    for (j=2; j<10; j++) {      /* loop over number of pins */
+    for (j = 2; j < 10; j++) {      /* loop over number of pins */
 
       /* build file name */
       sprintf(name, "sym/%s%u-%u.sym", generate[i].name, j, generate[i].suffix);
@@ -173,14 +173,14 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
   char pinName[20];       /* temp for pinnname */
 
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
     return 1;
   }
 
-  if(body == NULL) {
+  if (body == NULL) {
 
     fprintf(stderr, "Error: NULL body drawing function pointer passed "
     "to %s()\n",
@@ -189,7 +189,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   }
 
   /* do special pin spacing for 2 pins */
-  if(pins == 2)
+  if (pins == 2)
     PinSpacing = 400;
   else
     PinSpacing = 200;
@@ -197,7 +197,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
   /* first, compute locations needed */
   totalHeight = bodyHeight;
-  if(pins >= 3) /* do we need to add to the height ? */
+  if (pins >= 3) /* do we need to add to the height ? */
     totalHeight += (pins-3) * PinSpacing;
 
 
@@ -213,7 +213,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   /* draw the body */
   rc = (*body)(fp, bodyx, bodyy, pins, GREEN);
 
-  if(rc) {
+  if (rc) {
 
     fprintf(stderr, "Error: Body function failed in %s()\n", __func__);
     return 1;
@@ -222,7 +222,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   /* draw the pins and attach appropriate attributes */
   rc = Pin(fp, outputx, outputy, outputx+PinLength, outputy, outputBubbles);
 
-  if(rc) {
+  if (rc) {
 
     fprintf(stderr, "Error: Pin drawing function failed in %s() "
     "for output pin\n",
@@ -232,7 +232,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   /* attach pin attribute */
   rc = PinAttribute(fp, outputx, outputy, pinCount++, "OUT");
 
-  if(rc) {
+  if (rc) {
 
     fprintf(stderr, "Error: Pin Attribute function failed for output pin "
     "in %s()\n",__func__);
@@ -240,7 +240,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   }
 
   /* do input pins */
-  for(i=0; i<pins; i++) {
+  for (i = 0; i < pins; i++) {
 
     /* calculate the position of the pin */
     pinx = firstx;
@@ -248,7 +248,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
     /* output a pin */
     rc = Pin(fp, pinx, piny, pinx-PinLength, piny, inputBubbles);
 
-    if(rc) {
+    if (rc) {
 
       fprintf(stderr,"Error: Pin drawing function failed for pin %u "
       "in %s()\n",
@@ -258,7 +258,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
     /* output the attributes */
     sprintf(pinName,"IN%u",i);
     rc = PinAttribute(fp, pinx, piny, pinCount++, pinName);
-    if(rc) {
+    if (rc) {
 
       fprintf(stderr,"Error: Pin Attributes function failed for pin %u "
       "in %s()\n", i, __func__);
@@ -281,7 +281,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 int
 AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 {
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
@@ -310,7 +310,7 @@ AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
  */
 int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 {
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
@@ -342,7 +342,7 @@ int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 {
 
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
@@ -380,7 +380,7 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 {
   unsigned int distanceNeeded;
 
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
@@ -388,7 +388,7 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
   }
 
   /* only need to do work if the number of pins > 2 */
-  if(pins <= 3)
+  if (pins <= 3)
     return 0;
 
 
@@ -421,7 +421,7 @@ Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
   double x,y;              /* unit vector in direction of line */
   double denom;
 
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
@@ -488,14 +488,14 @@ Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
 int
 PinAttribute(FILE *fp, int x, int y, unsigned int n, char *value)
 {
-  if(fp == NULL) {
+  if (fp == NULL) {
 
     fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
             __func__);
     return 1;
   }
 
-  if(value == NULL) {
+  if (value == NULL) {
 
     fprintf(stderr, "Error: NULL value pointer passed to %s()\n",
             __func__);
