@@ -4,6 +4,9 @@
 
     * wiki/geda-faq-gnetlist.html: Fix spelling/typos.
 
+    * wiki/geda-vams_netlister_readme.html: fix spelling, attempt to fix broken
+      english/grammar.
+
 2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * wiki/geda-faq-gnetlist.html: Edit section 3, DRC, to include the

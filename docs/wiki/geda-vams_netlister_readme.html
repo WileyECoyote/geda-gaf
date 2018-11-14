@@ -35,7 +35,7 @@ CONTENT:
    1. functionality
       1. ARCHITECTURE generation   
       2. ENTITY generation
-      3. automatisate gnetlist calls
+      3. Automatize gnetlist calls
 
    2. implementation
       1. the vams mode of gEDA gnetlist
@@ -61,7 +61,7 @@ CONTENT:
    
 
    The purpose of our endevour, is that gEDA gnelist completly
-   supportted VHDL-AMS (VHDL Analog and Mixed-Signal) netlist
+   supported VHDL-AMS (VHDL Analog and Mixed-Signal) netlist
    generation. 
 
    The VHDL-AMS netlist support mode is called vams.
@@ -69,25 +69,25 @@ CONTENT:
 
    1. FUNCTIONALITY
 
-   gEDA gnetlist in vams mode allow it to generate a VHDL-AMS
-   ARCHITECTURE or an ENTIY declaration. Which of both tasks is
-   performed, dependends on the generate-mode variable. This variable
-   is defined in the gnetlist command or will be set default.
+   gEDA gnetlist in vams mode allows it to generate a VHDL-AMS
+   ARCHITECTURE or an ENTIY declaration. Which of these tasks is
+   performed dependends on the generate-mode variable. This variable
+   is defined in the gnetlist command or will be defaulted.
 
-   If generate-mode=1 (default) gnetlist creates a netlist as an
+   If generate-mode=1 (default) gnetlist creates a netlist as a
    VHDL-AMS ARCHITECTURE of the current schematic. Otherwise
    (generate-mode=2), it creates an VHDL-AMS ENTITY declaration of the
    selected component (this task needs information from gEDA gschem,
    see below).
 
-   Now follows a stepwise discription of the program run in both
+   Now follows a stepwise description of the program run in both
    submodes.
 
    We presuppose that you are familiar with the structure of gEDA
    gnetlist usage (otherwise try gnetlist -help) and that you have
-   ever seen an VHDL-AMS ARCHITECTURE with its belonging ENTITY. If
-   you does not then the following distription will be seems very
-   strange to you. Maybe the syntax files (syntax_entity.txt,
+   seen an VHDL-AMS ARCHITECTURE with its belonging ENTITY. If you
+   have not then the following description may seems very strange
+   to you. Maybe the syntax files (syntax_entity.txt,
    syntax_architeture.txt) can helps you further.
    
    ==================================================================
@@ -105,20 +105,20 @@ CONTENT:
    The architecture-identifier we are getting from the toplevel
    attribute architecture, which we have introduced. If it is not
    defined, we are setting architecture-identifier default
-   (default_architecture).  The same have we doing with the
+   (default_architecture), the same way we doing with the
    entity-identifier (toplevel attribute entity, default_entity).
 
 
      {&lt;subnet-object&gt; &lt;subnet-name&gt; : subnet-kind;}
   
-   In the signal declaration part all subnets of the schematic will be
-   declarated. A subnet declaration consists of an net-object, a
-   net-name and a net-kind. All subnets are connected to various
-   components pins. If this pins have all the same port-object and the
-   same port-kind it is ok, but if one of them different, the net is
-   faulty, and will be not declarated. Moreover, if the subnet-object
-   a quantity, then it will be checked, whether the subnet consists
-   exactly one output pin (port-mode), else the subnet is faulty too.
+   In the signal declaration part all subnets of the schematic must be
+   declared. A subnet declaration consists of an net-object, a net-name
+   and a net-kind. All subnets are connected to various components pins.
+   If this pins has all the same port-object and the same port-kind it
+   is ok, but if one of them different, then the net is faulty, and will
+   be not declared. Moreover, if the subnet-object a quantity, then it
+   will be checked, whether the subnet consists exactly one output pin
+   (port-mode), else the subnet is faulty too.
    The three net attributes (object, kind, mode) we are getting from
    the pin attribs, port_kind, port_object and port_mode (which we
    have introduced newly) of a component pin.
