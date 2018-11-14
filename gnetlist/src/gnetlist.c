@@ -247,8 +247,6 @@ static void main_prog(void *closure, int argc, char *argv[])
   /* immediately setup configuration and user params */
   i_vars_init_gnetlist_defaults ();
 
-  s_rename_init();
-
   if (!output_filename) {
     /* was not specified so set default output filename */
     output_filename = geda_utility_string_strdup("output.net");
@@ -360,6 +358,8 @@ static void main_prog(void *closure, int argc, char *argv[])
     }
   }
 
+  s_rename_init();
+
   if (g_slist_length(input_files) > 0) {
 
     s_traverse_process (pr_current);
@@ -458,7 +458,6 @@ static void main_prog(void *closure, int argc, char *argv[])
       gnetlist_show_strerror(_("Could not create"), output_filename);
       GEDA_FREE(output_filename);
       exit(2);
-
     }
   }
 
