@@ -4,6 +4,8 @@
       after opening the input and backend files, just in case an error is
       encountered.
 
+    * utils/mk_verilog_syms.c: Reduce scope of variables in function Pin.
+
 2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gnetlist.1.in: Minor edits; remove superfluous spaces at the

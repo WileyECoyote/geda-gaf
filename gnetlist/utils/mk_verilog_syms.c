@@ -411,16 +411,10 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 
 /* Draw a pin, optionally with a bubble
  */
-int
-Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
+int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
 {
-  int bx, by;              /* bubble x and y locations */
   int px1, py1, px2, py2;  /* pin x and y locations */
-  int dx, dy;
   int br = 50;             /* bubble radius */
-
-  double x,y;              /* unit vector in direction of line */
-  double denom;
 
   if (fp == NULL) {
 
@@ -431,6 +425,12 @@ Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
 
   /* figure where pin ends are */
   if (bubble) { /* if there is a bubble? */
+
+    int bx, by;              /* bubble x and y locations */
+    int dx, dy;
+
+    double denom;
+    double x,y;              /* unit vector in direction of line */
 
     /* compute a unit vector */
     dx = x2-x1;
@@ -447,7 +447,6 @@ Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
 #endif
 
     if (denom < 1e-6) {
-
       fprintf(stderr, "Error: Length of pin too small in %s()\n", __func__);
       return 1;
     }
