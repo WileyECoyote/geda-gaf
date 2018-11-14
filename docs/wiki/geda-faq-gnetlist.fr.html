@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -12,84 +12,334 @@
 <div class="dokuwiki export">
 
 <p>
-<em>Autres langues: <a href="geda-faq-gnetlist.html" class="wikilink1" title="geda-faq-gnetlist.html">English</a> <a href="geda-faq-gnetlist.ru.html" class="wikilink1" title="geda-faq-gnetlist.ru.html">Русский</a></em>
+<em>Les traductions de cette page sont également disponibles dans les langues suivantes:</em> <a href="geda-faq-gnetlist.html" class="wikilink1" title="geda-faq-gnetlist.html">English</a>, <a href="geda-faq-gnetlist.ru.html" class="wikilink1" title="geda-faq-gnetlist.ru.html">Русский</a>.
 </p>
 
-<h1 class="sectionedit1"><a name="problemes_avec_gnetlist_lors_de_l_installation_execution" id="problemes_avec_gnetlist_lors_de_l_installation_execution">Problèmes avec gnetlist lors de l&#039;installation/exécution</a></h1>
+<h1 class="sectionedit1"><a name="gnetlist" id="gnetlist">Gnetlist</a></h1>
 <div class="level1">
 
 </div>
-<!-- EDIT1 SECTION "Problèmes avec gnetlist lors de l'installation/exécution" [81-153] -->
-<h2 class="sectionedit2"><a name="la_bom_de_gnetlist_ne_fonctionne_pas_d_ou_vient_le_probleme" id="la_bom_de_gnetlist_ne_fonctionne_pas_d_ou_vient_le_probleme">la bom de gnetlist ne fonctionne pas. D&#039;où vient le problème?</a></h2>
-<div class="level2">
+<!-- EDIT1 SECTION "Gnetlist" [146-173] -->
+<h1 class="sectionedit2"><a name="bill_of_materials_bom_generation" id="bill_of_materials_bom_generation">Génération de nomenclature (BOM)</a></h1>
+<div class="level1">
 
 <p>
-Si, lorsque vous lancez gnetlist comme ceci:
+Il existe cinq backends différents pour gnetlist qui vous permettent d’exporter une nomenclature. Appelez-les avec -g et assurez-vous de donner le nom du fichier de sortie avec l'option -o:
 </p>
-<pre class="code">gnetlist -g bom filename.sch</pre>
+<pre class="code">   gnetlist -g partslist3 -o output.bom schématique.sch</pre>
 
 <p>
-gnetlist vous sort un message d&#039;erreur tel que:
+gnetlist descend dans les sous-feuilles et liste le contenu de ces schémas avec les parties du document supérieur.
 </p>
-<pre class="code">Loading schematic [filename.sch]
-ERROR: In procedure open-file:
-ERROR: No such file or directory: “attribs”</pre>
 
 <p>
-alors vous avez besoin de créer un fichier appelé «·attribs·» dans le répertoire courant qui contient les attributss que vous voulez dans le fichier de bom. Un exemple de ce fichier ressemblerait à:
-&lt;xterm&gt;refdes
-device
-value&lt;/xterm&gt;
+Les backends bom et bom2 nécessitent un accès en lecture à un fichier local appelé attribs. Ce fichier doit contenir le nom des attributs à lister dans une ligne séparée.. E.g:
+</p>
+<pre class="code">value
+footprint
+description</pre>
+
+<p>
+Chacun des backends liste et trie les pièces de différentes manières dans un fichier ascii. Choisissez celui que vous préférez:
 </p>
 
 </div>
-<!-- EDIT2 SECTION "la bom de gnetlist ne fonctionne pas. D'où vient le problème?" [154-734] -->
-<h2 class="sectionedit3"><a name="quelques_unes_des_commandes_de_gnetlist_debordent_la_pile_comment_je_resoud_ce_probleme" id="quelques_unes_des_commandes_de_gnetlist_debordent_la_pile_comment_je_resoud_ce_probleme">Quelques unes des commandes de gnetlist débordent la pile. Comment je résoud ce problème?</a></h2>
+
+<h4><a name="bom" id="bom">bom</a></h4>
+<div class="level4">
+
+<p>
+Le bom backend doit lire un fichier d'attributs (voir ci-dessus). La liste produite par ”-g bom” contiendra autant de lignes que de composants. Les colonnes sont séparées par des tabulations. Les lignes ne sont pas triées.
+</p>
+
+</div>
+
+<h4><a name="bom2" id="bom2">bom2</a></h4>
+<div class="level4">
+
+<p>
+Le moteur bom2 doit également lire un fichier attribs. Avec "-g bom2", les images de tous les composants ayant la même valeur seront rassemblés dans une seule ligne. Les colonnes sont séparées par des deux points. Des éléments différents dans la même colonne sont séparés par une virgule..
+</p>
+
+</div>
+
+<h4><a name="partslist1" id="partslist1">partslist1</a></h4>
+<div class="level4">
+
+<p>
+Une liste produite par le backend partlist1 donne une ligne pour chaque composant. Les lignes sont triées alphabétiquement par refdes. Les colonnes sont "refdes", "device", "value", "footprint" et "quantité". Comme chaque ligne ne contient qu'une seule partie, la quantité est toujours “1”.
+</p>
+
+</div>
+
+<h4><a name="partslist2" id="partslist2">partslist2</a></h4>
+<div class="level4">
+
+<p>
+Ce backend produit une sortie similaire à partslist1. Les lignes sont triées en fonction de la valeur de l'attribut device.
+</p>
+
+</div>
+
+<h4><a name="partslist3" id="partslist3">partslist3</a></h4>
+<div class="level4">
+
+<p>
+Le backlist partlist3 assemble toutes les pièces avec la même valeur dans une seule ligne, très semblable à bom2. Les lignes sont triées en fonction de la valeur de l'attribut device. La quatrième colonne indique le nombre de pièces dans une ligne. Les colonnes sont séparées par le caractère de tabulation, les éléments par l'espace.
+</p>
+
+</div>
+<!-- EDIT2 SECTION "Bill of Materials (BOM) Generation" [174-2102] -->
+<h1 class="sectionedit3"><a name="design_rule_check_drc" id="design_rule_check_drc">Vérification de la règle de conception (DRC)</a></h1>
+<div class="level1">
+
+</div>
+<!-- EDIT3 SECTION "Design Rule Check (DRC)" [2103-2140] -->
+<h2 class="sectionedit4"><a name="how_do_i_check_my_schematics" id="how_do_i_check_my_schematics">Comment vérifier mes schémas?</a></h2>
 <div class="level2">
 
 <p>
-Si vous avez un message tel que:
+Vous pouvez vérifier vos schémas en utilisant l’un des backends drc de gnetlist.
 </p>
-<pre class="code">ERROR: Stack overflow</pre>
 
 <p>
-lorsque vous faites passer des schémas de grande taille par une des commandes, ajoutez alors ce qui suit à <strong><code>~/.gEDA/gnetlistrc</code></strong> ou un <strong><code>gnetlistrc</code></strong> local (dans le répertoire de travail courant):
+Exécutez le backend drc en utilisant la syntaxe suivante:
+</p>
+<pre class="code">gnetlist -g drc -o MyDesign.drc MyDesign.sch</pre>
+
+<p>
+Cela va vérifier le schéma pour les attributs manquants.
+</p>
+
+<p>
+Exécutez le backend drc2 en utilisant la syntaxe suivante:
+</p>
+<pre class="code">gnetlist -g drc2 -o MyDesign.drc MyDesign.sch</pre>
+
+<p>
+Cela vérifiera dans vos schémas certaines erreurs courantes telles que les références en double, les broches non connectées, les logements inutilisés, etc..
+</p>
+
+<p>
+Avec ces commandes, la sortie DRC est écrite dans le fichier “MyDesign.drc”. Vous pouvez ensuite afficher ce fichier avec un éditeur de texte et voir les avertissements et les erreurs.
+</p>
+
+</div>
+<!-- EDIT4 SECTION "How do I check my schematics?" [2141-2645] -->
+<h2 class="sectionedit5"><a name="how_do_i_see_the_drc_output_in_the_screen_without_writing_to_a_file" id="how_do_i_see_the_drc_output_in_the_screen_without_writing_to_a_file">Comment voir la sortie DRC à l'écran, sans écrire dans un fichier?</a></h2>
+<div class="level2">
+
+<p>
+Exécutez le backend drc2 avec la commande suivante:
+</p>
+<pre class="code">gnetlist -g drc2 -o - MyDesign.sch</pre>
+
+<p>
+Notez le tiret suivant l'option -o. De cette façon, vous verrez la sortie DRC directement sur votre écran.
+</p>
+
+</div>
+<!-- EDIT5 SECTION "How do I see the DRC output in the screen, without writing to a file?" [2646-2889] -->
+<h2 class="sectionedit6"><a name="i_want_to_disable_some_of_the_schematic_drc_checks_how_can_i_do_it" id="i_want_to_disable_some_of_the_schematic_drc_checks_how_can_i_do_it">Je veux désactiver certains des contrôles DRC schématiques. Comment puis-je le faire?</a></h2>
+<div class="level2">
+
+<p>
+Le backend drc2 est hautement configurable. Vous devez placer des commandes spéciales dans un fichier et utiliser l'option “-l” de gnetlist avec celui-ci..
+</p>
+
+<p>
+Les commandes les plus courantes sont:
+</p>
+<ul>
+<li class="level1"><div class="li"> (define dont-check-non-numbered-parts 1) ;; Désactiver la vérification des pièces non numérotées</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-duplicated-references 1) ;; Désactiver la vérification des références en double</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-one-connection-nets 1) ;; Désactiver la vérification pour les réseaux avec une seule connexion.</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-pintypes-of-nets 1) ;; Désactiver la vérification de type</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-not-driven-nets 1) ;; Désactiver le contrôle de réseau conduit</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-unconnected-pins 1) ;; Désactiver la vérification des broches non connectées</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-duplicated-slots 1) ;; Désactiver la vérification des emplacements en double</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-unused-slots 1) ;; Désactiver la vérification des emplacements inutilisés</div>
+</li>
+<li class="level1"><div class="li"> (define dont-check-slots 1) ;; Désactiver la vérification du numéro d'emplacement</div>
+</li>
+<li class="level1"><div class="li"> (define action-unused-slots #\w) ;; Sortir un slots inutilisés en guise d'avertissement</div>
+</li>
+<li class="level1"><div class="li"> (define action-unused-slots #\e) ;; Générer une fente inutilisée sous forme d'erreur</div>
+</li>
+<li class="level1"><div class="li"> (define action-unused-slots #\c) ;; Un emplacement inutilisé est OK.</div>
+</li>
+<li class="level1"><div class="li"> (define case_insensitive 1) ;; Est-ce que tous les contrôles insensibles à la casse</div>
+</li>
+</ul>
+
+<p>
+Il existe quelques autres commandes avancées, pour modifier la matrice DRC et le type d’imprimante pouvant piloter un réseau. Voir le fichier «gnet-drc2.scm» avec un éditeur de texte. Au début il y a la documentation disponible.
+</p>
+
+<p>
+Copiez les lignes ci-dessus dans un fichier (par exemple, "drc_rules.txt"), une par ligne, et lancez le vérificateur drc:
+</p>
+<pre class="code">gnetlist -g drc2 -l drc_rules.txt -o MyDesign.drc MyDesign.sch</pre>
+
+<p>
+Avec cette commande, la sortie DRC est écrite dans le fichier. “MyDesign.drc”. Vous pouvez ensuite afficher ce fichier avec un éditeur de texte et voir les avertissements et les erreurs de la RDC.
+</p>
+
+</div>
+<!-- EDIT6 SECTION "I want to disable some of the schematic DRC checks. How can I do it?" [2890-4718] -->
+<h2 class="sectionedit7"><a name="can_i_include_the_drc_checking_into_a_makefile_and_stop_when_errors_or_warnings_are_found" id="can_i_include_the_drc_checking_into_a_makefile_and_stop_when_errors_or_warnings_are_found">Puis-je inclure la vérification DRC dans un Makefile et m'arrêter en cas d'erreur ou d'avertissement?</a></h2>
+<div class="level2">
+
+<p>
+Oui. Le backend drc2 retournera une erreur s'il y a des erreurs ou des avertissements, vous pouvez donc ajouter ce qui suit à votre Makefile:
+</p>
+<pre class="code">$(objects).drc : $(objects).sch
+          gnetlist -g drc2 $(objects).sch -o $(objects).drc</pre>
+
+<p>
+Si vous allez simuler votre conception, vous pouvez ajouter ce qui suit à votre Makefile:
+</p>
+<pre class="code">$(objects).cir : $(objects).sch $(objects).drc
+          grep -v ERROR $(objects).drc &gt;/dev/null 2&gt;&amp;1
+          gnetlist -g spice-sdb $(objects).sch  -o $(objects).cir</pre>
+
+<p>
+Sinon, veuillez utiliser l'exemple ci-dessus et l'adapter à votre propre flux de travail..
+</p>
+
+</div>
+<!-- EDIT7 SECTION "Can I include the DRC checking into a Makefile and stop when errors or warnings are found?" [4719-5396] -->
+<h2 class="sectionedit8"><a name="there_are_some_warnings_in_my_design_i_m_aware_of_can_i_ignore_the_warnings_in_the_return_value" id="there_are_some_warnings_in_my_design_i_m_aware_of_can_i_ignore_the_warnings_in_the_return_value">Je suis au courant de certains avertissements dans ma conception. Puis-je ignorer les avertissements dans la valeur de retour?</a></h2>
+<div class="level2">
+
+<p>
+Utilisez le “-O ignore-warnings-in-return-value” l'option:
+</p>
+<pre class="code">gnetlist -g drc2 -o - MyDesign.sch -O ignore-warnings-in-return-value</pre>
+
+<p>
+Faites cela avec prudence! Vous allez manquer tous les avertissements!
+</p>
+
+</div>
+<!-- EDIT8 SECTION "There are some warnings in my design I'm aware of. Can I ignore the warnings in the return value?" [5397-5707] -->
+<h1 class="sectionedit9"><a name="gnetlist_build_run-time_problems" id="gnetlist_build_run-time_problems">Problèmes de construction / exécution de Gnetlist</a></h1>
+<div class="level1">
+
+</div>
+<!-- EDIT9 SECTION "Gnetlist build/run-time problems" [5708-5755] -->
+<h2 class="sectionedit10"><a name="i_get_a_parenthesis_mismatch_error_when_running_gnetlist_what_s_up" id="i_get_a_parenthesis_mismatch_error_when_running_gnetlist_what_s_up">J'obtiens un &quot;décalage entre parenthèses&quot;. erreur lors de l'exécution de gnetlist. Quoi de neuf?</a></h2>
+<div class="level2">
+
+<p>
+À partir de Fedorea Core 6 et de SuSE 10.2, de nombreux utilisateurs ont signalé une erreur ressemblant à ceci:
+</p>
+<pre class="code">$gnetlist -g spice-sdb -o TwoStageAmp.cir TwoStageAmp.sch
+Ligne de commande passée = gnetlist -g spice-sdb -o TwoStageAmp.cir TwoStageAmp.sch
+gEDA/gnetlist version 20061020
+gEDA / gnetlist vient avec ABSOLUMENT AUCUNE GARANTIE; voir COPYING pour plus de détails.
+C’est un logiciel libre et vous pouvez le redistribuer sous certaines conditions.
+conditions; veuillez consulter le fichier COPYING pour plus de détails.
+
+N'oubliez pas de vérifier que votre schéma n'a pas d'erreur en utilisant le backend drc2.
+Vous pouvez le faire en exécutant gnetlist -g drc2 your_schematic.sch. -o drc_output.txt
+et voir le contenu du fichier drc_output.txt.
+
+Chargement du schéma [/home/nano/TwoStageAmp/TwoStageAmp.sch]
+Probablement incompatibilité parenthèse dans /usr/share/gEDA/scheme/gnet-spice-sdb.scm
+Dernière forme lue: (#@begin #&lt;unspecified&gt;)
+ERREUR: variable non liée: spice-sdb</pre>
+
+<p>
+Plusieurs serveurs gnetlist illustrent ce problème, y compris spice-sdb et drc2.
+</p>
+
+<p>
+C'est un bug dans guile-1.8.X.  Les développeurs de gEDA travaillent sur un correctif. En attendant, essayez de revenir en arrière avec votre version de guile à 1.6.7, qui est connu pour fonctionner parfaitement avec gEDA.
+</p>
+
+</div>
+<!-- EDIT10 SECTION "I get a parenthesis mismatch error when running gnetlist.  What's up?" [5756-7022] -->
+<h2 class="sectionedit11"><a name="the_gnetlist_bom_backend_does_not_work_what_is_wrong" id="the_gnetlist_bom_backend_does_not_work_what_is_wrong">Le backend de gnetlist ne fonctionne pas. Qu'est-ce qui ne va pas?</a></h2>
+<div class="level2">
+
+<p>
+Si lors de l'exécution de gnetlist comme ceci:
+</p>
+<pre class="code">gnetlist -g bom nom_de_fichier.sch</pre>
+
+<p>
+et gnetlist génère un message d'erreur comme:
+</p>
+<pre class="code">Loading schematic [nom_de_fichier.sch]
+ERREUR: En procédure open-file:
+ERREUR: Aucun fichier ou répertoire de ce type: “attribs”</pre>
+
+<p>
+vous devez ensuite créer un fichier appelé "attribs" dans le répertoire en cours, qui contient les attributs souhaités dans le fichier bom. Un exemple de ce fichier serait:
+</p>
+<pre class="code">device
+value</pre>
+
+<p>
+Pour plus d'informations sur la génération de nomenclature, voir <a href="#bill_of_materials_bom_generation" title="geda:faq-gnetlist &crarr;" class="wikilink1">susmentionné</a>.
+</p>
+
+</div>
+<!-- EDIT11 SECTION "The gnetlist bom backend does not work. What is wrong?" [7023-7631] -->
+<h2 class="sectionedit12"><a name="some_gnetlist_backends_overflow_the_stack_how_do_i_solve_this" id="some_gnetlist_backends_overflow_the_stack_how_do_i_solve_this">Certains serveurs gnetlist débordent de la pile. Comment résoudre ce problème?</a></h2>
+<div class="level2">
+
+<p>
+Si vous recevez un message d'erreur comme:
+</p>
+<pre class="code">ERREUR: débordement de pile</pre>
+
+<p>
+lors de l'exécution de certains schémas de taille plus grande via certains des backends, ajoutez ce qui suit à un <strong><code>~/.gEDA/gnetlistrc</code></strong> ou un local <strong><code>gnetlistrc</code></strong> (dans le répertoire de travail actuel):
 </p>
 <pre class="code">(debug-options (list &#039;stack 200000))
 (eval-options (list &#039;stack 200000))</pre>
 
 <p>
-Si cela ne fonctionne pas, éditez alors la commande appropriée (habituellement appelée: gnet-backend_name.scm) et insérez les lignes précédentes en haut de ce fichier. Les commandes gnetlist peuvent être trouvées dans <strong><code>${prefix}/share/gEDA/scheme</code></strong>. Envoyez aussi un courriel à geda-dev rappelant aux développeurs de corriger ceci. Rappelez-vous que vous devez être inscrits sur geda-dev avant d&#039;y envoyer des courriels.
+Si cela ne fonctionne pas, éditez le backend approprié (généralement nommé: gnet-backend_name.scm) et mettez les lignes ci-dessus en haut de ce fichier. Les backends de gnetlist peuvent être trouvés dans <strong><code>${prefix}/partager/gEDA/scheme</code></strong>. Envoyez également un e-mail à geda-user pour rappeler aux développeurs de résoudre ce problème. N'oubliez pas que vous devez vous abonner à geda-user avant de pouvoir poster sur la liste..
 </p>
 
 </div>
-<!-- EDIT3 SECTION "Quelques unes des commandes de gnetlist débordent la pile. Comment je résoud ce problème?" [735-1642] -->
-<h2 class="sectionedit4"><a name="gnetlist_a_cree_une_netlist_qui_duplique_les_broches" id="gnetlist_a_cree_une_netlist_qui_duplique_les_broches">gnetlist a créé une netlist qui duplique les broches!?</a></h2>
+<!-- EDIT12 SECTION "Some gnetlist backends overflow the stack. How do I solve this?" [7632-8427] -->
+<h2 class="sectionedit13"><a name="gnetlist_has_created_a_netlist_with_duplicate_pins" id="gnetlist_has_created_a_netlist_with_duplicate_pins">gnetlist a créé une netlist avec des broches dupliquées!</a></h2>
 <div class="level2">
 
 <p>
-Il y a eu au moins un rapport sur le message suivant venant de PCB après avoir chargé une netlist créée par gnetlist:
+Il y a eu au moins un rapport du message suivant provenant de PCB après le chargement d'une netlist créée par gnetlist:
 </p>
-<pre class="code">28: Error! Element R117 pin 2 appears multiple times in the netlist file.
-29: Error! Element C167 pin 2 appears multiple times in the netlist file.</pre>
+<pre class="code">28: Erreur! Élément R117 pin 2 apparaît plusieurs fois dans le fichier netlist.
+29: Erreur! L'élément C167, broche 2, apparaît plusieurs fois dans le fichier netlist.</pre>
 
 <p>
-Ce qui s&#039;est produit est que gnetlist (libgeda en fait) a créé deux nets au lieu d&#039;un seul. Ceci se produit lorsque vous dessinez deux nets l&#039;un sur l&#039;autre avec une broche connectant une intersection de deux nets se chevauchants. Notez que les nets chevauchés ne sont pas connectés ensemble. Un schéma pour la démonstration ressemble à ceci:
-</p>
-
-<p>
-<a href="media/geda/ambiguous1.png?id=geda%3Afaq-gnetlist.fr" class="media" title="geda:ambiguous1.png"><img src="media/geda/ambiguous1.png" class="media" alt="" /></a>
+Ce qui s’est passé, c’est que gnetlist (vraiment libgeda) a créé deux réseaux au lieu d’un. Cela se produit lorsque vous tracez deux filets qui se croisent et une broche se connectant à l'intersection des deux filets qui se croisent. Notez que les réseaux croisés ne sont pas connectés ensemble. Un schéma qui montre ceci ressemble à ceci:
 </p>
 
 <p>
-Les développeurs débattent pour savoir si c&#039;est un bogue ou non de gnetlist mais jusqu&#039;à maintenant, assurez-vous de vos connexions de nets, spécialement celles qui impliquent des broches connectant des milieu de nets, sont correctement dessinées. Vous avez ici la manière dont la connexion ci-dessus devrait être correctement dessinée pour que netlist fasse son travail proprement:
+<a href="media/geda/ambiguous1.png?id=geda%3Afaq-gnetlist" class="media" title="geda:ambiguous1.png"><img src="media/geda/ambiguous1.png" class="media" alt="" /></a>
 </p>
 
 <p>
-<a href="media/geda/ambiguous1_fixed.png?id=geda%3Afaq-gnetlist.fr" class="media" title="geda:ambiguous1_fixed.png"><img src="media/geda/ambiguous1_fixed.png" class="media" alt="" /></a>
+Les développeurs se demandent s’il s’agit ou non d’un bogue dans gnetlist, mais pour l’instant, assurez-vous que vos connexions Internet, en particulier celles impliquant des broches se connectant au milieu d’autres réseaux, sont explicitement dessinées. Voici comment la connexion ci-dessus doit être établie correctement pour netlist:
+</p>
+
+<p>
+<a href="media/geda/ambiguous1_fixed.png?id=geda%3Afaq-gnetlist" class="media" title="geda:ambiguous1_fixed.png"><img src="media/geda/ambiguous1_fixed.png" class="media" alt="" /></a>
 </p>
 
 </div>
-<!-- EDIT4 SECTION "gnetlist a créé une netlist qui duplique les broches!?" [1643-] --></div>
+<!-- EDIT13 SECTION "gnetlist has created a netlist with duplicate pins!?" [8428-] --></div>
 </body>
 </html>
