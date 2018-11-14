@@ -7,6 +7,8 @@
     * wiki/geda-vams_netlister_readme.html: fix spelling, attempt to fix broken
       english/grammar.
 
+    * wiki/libgeda3.html: Update dead reference link with something that works.
+
 2018-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * wiki/geda-faq-gnetlist.html: Edit section 3, DRC, to include the
