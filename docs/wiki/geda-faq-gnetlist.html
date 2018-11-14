@@ -33,7 +33,7 @@ gnetlist descends into sub sheets and list the contents of these schematics alon
 </p>
 
 <p>
-The backends bom and bom2 require read access to a local file called attribs. This file should contain the name of the attributes to be listed each in a seperate line. E.g:
+The backends bom and bom2 require read access to a local file called attribs. This file should contain the name of the attributes to be listed each in a separated line. E.g:
 </p>
 <pre class="code">value
 footprint
@@ -49,7 +49,7 @@ Each of the backends lists and sorts the parts in different ways in an ascii fil
 <div class="level4">
 
 <p>
-The bom backend needs to read an attribs file (see above). The list produced by ”-g bom” will contain as many lines as there are components. Columns are seperated by tab characters. Lines are not sorted.
+The bom backend needs to read an attribs file (see above). The list produced by ”-g bom” will contain as many lines as there are components. Columns are separated by tab characters. Lines are not sorted.
 </p>
 
 </div>
@@ -58,7 +58,7 @@ The bom backend needs to read an attribs file (see above). The list produced by 
 <div class="level4">
 
 <p>
-The bom2 backend also needs to read an attribs file. With ”-g bom2” the refdeses of all components with the same value will be collected into a single line. Columns are seperated by colons. Different items in the same column are seperated by a komma character.
+The bom2 backend also needs to read an attribs file. With ”-g bom2” the refdeses of all components with the same value will be collected into a single line. Columns are separated by colons. Different items in the same column are separated by a comma character.
 </p>
 
 </div>
@@ -85,7 +85,7 @@ This backend produces output similar to partslist1. Lines are sorted by the valu
 <div class="level4">
 
 <p>
-The backend partslist3 assembles all parts with the same value in a single line, very much like bom2. Lines are sorted by the value of the device attribute. The fourth column reports the number of parts in a line. Columns are seperated by the tab character, items by space.
+The backend partslist3 assembles all parts with the same value in a single line, very much like bom2. Lines are sorted by the value of the device attribute. The fourth column reports the number of parts in a line. Columns are separated by the tab character, items by space.
 </p>
 
 </div>
