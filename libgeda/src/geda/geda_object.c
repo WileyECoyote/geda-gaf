@@ -712,8 +712,7 @@ GedaObjectType geda_object_get_type (void)
  *  the creation of a GedaObject base object. An alternative would be to
  *  just call the "new" constructor of the desired type.
  *
- * \param [in] type      The object type; one of the OBJ_* constants.
- * \param [in] name      A prefix for the object's session-unique name.
+ * \param [in] type  The object type; one of the OBJ_* constants.
  *
  * \return A pointer to a new initialized object.
  */

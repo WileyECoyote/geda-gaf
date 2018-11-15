@@ -1,3 +1,8 @@
+2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Remove Doxygen name parameter from
+      geda_object_new.
+
 2018-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_utility.h: Add geda_strtrim macro for short
@@ -433,7 +438,7 @@
 2018-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Remove initializing namestr to NULL and set in
-      when name is not defined asa a string in scheme.
+      when name is not defined as a string in scheme.
 
     * src/file/f_path.c Eliminate (i hope) extinct __MINGW32__ and _WIN32
       symbols, replace G_OS_WIN32 with in source defined OS_WIN32.
@@ -495,37 +500,39 @@
 
 2018-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/scheme/scheme_config.c: Revise %set-config! to allocate an extra pointer for
-      the sentinel so that g_strfreev will know where to stop releasing memory.
+    * src/scheme/scheme_config.c: Revise set-config! to allocate an extra
+      pointer for the sentinel so that g_strfreev will know where to stop
+      releasing memory.
 
-    * scheme/unit-tests/t0402-config.scm: Replace system* with system in config-test-
-      teardown; apparently system* is not available on MinGW32.
+    * scheme/unit-tests/t0402-config.scm: Replace system* with system in config-
+      test-teardown; apparently system* is not available on MinGW32.
 
-    * src/struct/s_page.c: Go back to using geda_strconcat to build the filename instead
-      of using g_build_filename in geda_struct_page_new.
+    * src/struct/s_page.c: Go back to using geda_strconcat to build the filename
+      instead of using g_build_filename in geda_struct_page_new.
 
-    * src/utility/u_log.c: Eliminate options ancillary variable and include log flags
-      as openlog function arguments in geda_utility_log_system and redirect syslog to
-      regular log on platforms without syslog, i.e. Win32 builds.
+    * src/utility/u_log.c: Eliminate options ancillary variable and include log
+      flags as openlog function arguments in geda_utility_log_system and redirect
+      syslog to regular log on platforms without syslog, i.e. Win32 builds.
 
 2018-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_toplevel.c: Rename member print_output_type -> print_output_extents.
+    * src/geda/geda_toplevel.c: Rename member print_output_type -> print_output
+      _extents.
 
 2018-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * scheme/unit-tests/t0001-geda-conf-lib.scm: Revise "build-path" to compare string
-      composed using the separator that libgeda would use, because libgeda does account
-      for the build platform and check for platform specific separators.
+    * scheme/unit-tests/t0001-geda-conf-lib.scm: Revise "build-path" to compare
+      strings composed using the separator that libgeda would use, because libgeda
+      does account for the build platform and check for platform specific separators.
 
 2018-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Add string error message to error message outputs in
       geda_file_remove_backup.
 
-    * src/geda/geda_config.c: Revise eda_config_get_context_for_file without realpath
-      check g_path_is_absolute AND that the file exist because nonexistent files
-      can have absolute file names.
+    * src/geda/geda_config.c: Revise eda_config_get_context_for_file without
+      realpath check g_path_is_absolute AND that the file exist because non
+      existent files can have absolute file names.
 
 2018-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -656,15 +663,15 @@
     * src/file/f_path.c: Remove register keyword in geda_file_path_get_dirname
       and replace forward slashes with DIR_SEPARATOR on MinGW 32 platforms.
 
-    * src/geda/geda_config.c: Un-replace geda_strconcat with g_build_filename in
-      eda_config_get_context_for_file, that were changed on 06/09.
+    * src/geda/geda_config.c: Un-replace geda_strconcat with g_build_filename
+      in eda_config_get_context_for_file, that were changed on 06/09.
 
     * src/guile/g_rc_parse.c: Revise g_rc_parse_local to make a copy of getcwd.
 
     * tests: Include config.h in all tests modules.
 
-    * tests/test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that does
-      nothing on Windows machines.
+    * tests/test-suite.h: Kludge work-around for OS_WIN32_NATIVE systems that
+      does nothing on Windows machines.
 
 2018-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
