@@ -36,13 +36,14 @@ static unsigned int  gschem_dialog_signals[ LAST_SIGNAL ] = { 0 };
 
 static void *gschem_dialog_parent_class = NULL;
 
-/*! \brief GschemDialog "geometry_save" class method handler
- *  \par Function Description
+/*!
+ * \brief GschemDialog "geometry_save" class method handler
+ * \par Function Description
  *  Save the dialog's current position and size to the passed GedaKeyFile
  *
- *  \param [in] dialog     The GschemDialog to save the position and size of.
- *  \param [in] cfg        A Geda Configuration object.
- *  \param [in] group_name The group name in the key file to store the data under.
+ * \param [in] dialog     The GschemDialog to save the position and size of.
+ * \param [in] cfg        A Geda Configuration object.
+ * \param [in] group_name The group name in the key file to store the data under.
  */
 static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char *group_name)
 {
@@ -57,13 +58,14 @@ static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char *group_nam
   eda_config_set_integer (cfg, group_name, "height", height);
 }
 
-/*! \brief GschemDialog "geometry_restore" class method handler
- *  \par Function Description
+/*!
+ * \brief GschemDialog "geometry_restore" class method handler
+ * \par Function Description
  *  Restore dialog's last position and size from the passed GedaKeyFile
  *
- *  \param [in] dialog     The GschemDialog to restore the position and size of.
- *  \param [in] cfg        A Geda Configuration object.
- *  \param [in] group_name The group name in the key file to find the data under.
+ * \param [in] dialog     The GschemDialog to restore the position and size of.
+ * \param [in] cfg        A Geda Configuration object.
+ * \param [in] group_name The group name in the key file to find the data under.
  */
 static void
 geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char *group_name)
@@ -92,15 +94,16 @@ bool is_a_gschem_dialog (void *dialog)
 
 /* Begin Call Back Selection Handler */
 
-/*! \brief Update the editing dialog when the page's selection changes.
- *  \par Function Description
  *  When the page's selection changes this function identifies how
  *  many objects which can have attributes are currently selected. If
  *  this number is 1, the dialog is set to edit the attributes of the
  *  first selected object..
+/*!
+ * \brief GschemDialog On Selection Change Callback
+ * \par Function Description
  *
- *  \param [in] selection  The SELECTION object of page being edited.
- *  \param [in] user_data  The dialog.
+ * \param [in] selection  The SELECTION object of page being edited.
+ * \param [in] user_data  The dialog.
  */
 static void gd_callback_selection_changed (SELECTION *selection, void *user_data)
 {
@@ -126,9 +129,9 @@ static void gd_callback_selection_changed (SELECTION *selection, void *user_data
   }
 }
 
-/*! \brief Update the dialog when the current page's SELECTION object
- *         is destroyed
- *  \par Function Description
+/*!
+ * \brief Disconnect Dialog Seletion Tracked page's SELECTION is destroyed
+ * \par Function Description
  *  This handler is called when the g_object_weak_ref() on the
  *  SELECTION object we are watching expires. We reset the
  *  Dialog->selection pointer to NULL to avoid attempting to
@@ -138,9 +141,9 @@ static void gd_callback_selection_changed (SELECTION *selection, void *user_data
  *  Our signal handlers were automatically disconnected during the
  *  destruction process.
  *
- *  \param [in] data                  Pointer to a dialog
- *  \param [in] where_the_object_was  Pointer to where the object was
- *                                    just destroyed
+ * \param [in] data                  Pointer to a dialog
+ * \param [in] where_the_object_was  Pointer to where the object was
+ *                                   just destroyed
  */
 static void gd_callback_selection_finalized (void *data, GObject *where_the_object_was)
 {
@@ -154,13 +157,14 @@ static void gd_callback_selection_finalized (void *data, GObject *where_the_obje
   }
 }
 
-/*! \brief Add link between modeless dialog and current selection.
- *  \par Function Description
+/*!
+ * \brief Add link between modeless dialog and current selection.
+ * \par Function Description
  *  This function connects a handler to the "changed" signal of
- *  current selection to let the dialog watch it. It also adds a weak
- *  reference on the selection.
+ *  current selection to let the dialog watch it. It also adds a
+ *  weak reference on the selection.
  *
- *  \param [in] maybe  Pointer to a GschemDialog dialog.
+ * \param [in] maybe  Pointer to a GschemDialog dialog.
  */
 static void gd_connect_selection (void *maybe)
 {
@@ -187,13 +191,14 @@ static void gd_connect_selection (void *maybe)
   }
 }
 
-/*! \brief Remove the link between Dialog and selection.
- *  \par Function Description
+/*!
+ * \brief Remove the link between Dialog and selection.
+ * \par Function Description
  *  If the dialog is watching a selection, this function disconnects
  *  the "changed" signal and removes the weak reference that was
  *  previously added on it.
  *
- *  \param [in] Dialog  The Multiattrib dialog.
+ * \param [in] Dialog  The Multiattrib dialog.
  */
 static void gd_disconnect_selection (GschemDialog *Dialog) {
 
@@ -222,13 +227,13 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
   GEDA_OBJECT_SET_DATA (Dialog, NULL, DIALOG_SELECTION_TRACKER);
 }
 
-/*! \brief GtkWidget show signal handler
- *
- *  \par Function Description
+/*!
+ * \brief GtkWidget show signal handler
+ * \par Function Description
  *  Just before the Dialog widget is shown, call the hook
  *  to restore its previously saved position and size.
  *
- *  \param [in] widget  The GtkWidget being shown.
+ * \param [in] widget  The GtkWidget being shown.
  */
 static void show_handler (GtkWidget *widget)
 {
@@ -254,15 +259,15 @@ static void show_handler (GtkWidget *widget)
   ((GtkWidgetClass*)gschem_dialog_parent_class)->show (widget);
 }
 
-/*! \brief GtkWidget unmap signal handler
- *
- *  \par Function Description
+/*!
+ * \brief GtkWidget unmap signal handler
+ * \par Function Description
  *  Just before the dialog widget is unmapped, call the hook
  *  to save its current position and size.
  *
  *  This typically happens when you call gtk_widget_destroy().
  *
- *  \param [in] widget  The GtkWidget being unmapped.
+ * \param [in] widget  The GtkWidget being unmapped.
  */
 static void unmap_handler (GtkWidget *widget)
 {
@@ -285,15 +290,16 @@ static void unmap_handler (GtkWidget *widget)
   ((GtkWidgetClass*)gschem_dialog_parent_class)->unmap (widget);
 }
 
-/*! \brief Set w_current dialog pointer to NULL
- *  \par Function Description
+/*!
+ * \brief Set w_current dialog pointer to NULL
+ * \par Function Description
  *  This function automatically sets the toplevel entry for a
  *  GschemDialog to NULL when the dialog is destroyed. Note
  *  that if the dialog code set the toplevel entry to NULL
  *  this function has no effect.
  *
- *  \note This is an on-instance bases so only one of the if's
- *        can be true for a given child instance.
+ * \note This is an on-instance bases so only one of the if's
+ *       can be true for a given child instance.
  */
 static void set_gschem_dialog_null(void *dialog)
 {
@@ -367,13 +373,13 @@ static void set_gschem_dialog_null(void *dialog)
     }
 }
 
-/*! \brief GObject finalise handler
- *
- *  \par Function Description
+/*!
+ * \brief GObject Finalise Handler
+ * \par Function Description
  *  Just before the GschemDialog GObject is finalized, free our
  *  allocated data, and then chain up to the parent's finalize handler.
  *
- *  \param [in] object The GObject being finalized.
+ * \param [in] object The GObject being finalized.
  */
 static void gschem_dialog_finalize (GObject *object)
 {
@@ -393,17 +399,17 @@ static void gschem_dialog_finalize (GObject *object)
 
 /* End CallBack Selection Handler*/
 
-/*! \brief GObject property setter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property setter function
+ * \par Function Description
  *  Setter function for GschemDialog's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [in]  object       The GObject whose properties we are setting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
 gschem_dialog_set_property (GObject *object, unsigned int property_id,
@@ -449,17 +455,17 @@ gschem_dialog_set_property (GObject *object, unsigned int property_id,
   }
 }
 
-/*! \brief GObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property getter function
+ * \par Function Description
  *  Getter function for GschemDialog's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [in]  object       The GObject whose properties we are getting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void gschem_dialog_get_property (GObject *object, unsigned int property_id, GValue *value, GParamSpec *pspec)
 {
@@ -488,9 +494,9 @@ static void gschem_dialog_get_property (GObject *object, unsigned int property_i
 
 }
 
-/*! \brief Type class initializer for GschemDialog
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for GschemDialog
+ * \par Function Description
  *  Type class initializer for GschemDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
@@ -589,14 +595,14 @@ static void gschem_dialog_class_init (void *class, void *class_data)
 
 }
 
-/*! \brief GedaType instance initializer for a GschemDialog object
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for a GschemDialog object
+ * \par Function Description
  *  GedaType instance initializer for an Object, initializes a new empty
  *  Object by setting the head and tail markers to the GedaType value.
  *
- *  \param [in]  instance  The Object being initialising.
- *  \param [in]  g_class   The class of the type the instance is created for.
+ * \param [in]  instance  The Object being initialising.
+ * \param [in]  g_class   The class of the type the instance is created for.
  */
 static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -610,14 +616,15 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
   g_object_set (((GtkDialog*)dialog)->vbox, "spacing", DIALOG_V_SPACING, NULL);
 }
 
-/*! \brief Retrieve GschemDialog's Type identifier.
+/*!
+ * \brief Retrieve GschemDialog's Type identifier.
  *
- *  \par Function Description
+ * \par Function Description
  *  Function to retrieve GattribDialog's Type identifier. On first call,
  *  this registers the GattribDialog in the GedaType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
- *  \return GedaType identifier associated with GschemDialog.
+ * \return GedaType identifier associated with GschemDialog.
  */
 GedaType gschem_dialog_get_type (void)
 {
@@ -645,15 +652,16 @@ GedaType gschem_dialog_get_type (void)
   return gschem_dialog_type;
 }
 
-/*! \brief Add variable number of buttons to a GschemDialog
- *  \par Function Description
+/*!
+ * \brief Add variable number of buttons to a GschemDialog
+ * \par Function Description
  *  Internal function which adds buttons to a pre-existing GtkDialog.
  *  This function was modified from GTK+-2.4.14 gtkdialog.c to support
  *  gschem_dialog_new_with_buttons(...)
  *
- *  \param [in]  dialog             The GtkDialog buttons are being added to
- *  \param [in]  first_button_text  The text string for the first button
- *  \param [in]  args               The va_list containging the remaining button strings
+ * \param [in]  dialog             The GtkDialog buttons are being added to
+ * \param [in]  first_button_text  The text string for the first button
+ * \param [in]  args               The va_list containging the remaining button strings
  */
 static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
                                               const char *first_button_text,
@@ -679,10 +687,10 @@ static void gschem_dialog_add_buttons_valist (GtkDialog  *dialog,
   }
 }
 
-/*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
+/*!
+ * \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to support gschem_dialog_new_with_buttons(...)
- *
- *  \par Function Description
+ * \par Function Description
  *  Convenience function which creates a blank GschemDialog with various options.
  *
  *  \param [in]  title          The title text of the dialog
@@ -727,22 +735,23 @@ gschem_dialog_new_empty (const char      *title,
  }
 
 
-/*! \brief GTK function modified from GTK+-2.4.14 gtkdialog.c
+/*!
+ * \brief GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to provide a GschemDialog equivelant of the convenience function
  *  gtk_dialog_new_with_buttons(...)
  *
- *  \par Function Description
+ * \par Function Description
  *  Convenience function which creates a GschemDialog with buttons and options.
  *
- *  \param [in]  title              The title text of the dialog
- *  \param [in]  parent             The GtkWindow which will parent this dialog
- *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
- *  \param [in]  settings_name      The name gschem should use to store this dialog's settings
- *  \param [in]  w_current          The GschemToplevel object this dialog is associated with
- *  \param [in]  first_button_text  The text string for the first button
- *  \param [in]  ...                A variable number of arguments with the remaining button strings
+ * \param [in]  title              The title text of the dialog
+ * \param [in]  parent             The GtkWindow which will parent this dialog
+ * \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
+ * \param [in]  settings_name      The name gschem should use to store this dialog's settings
+ * \param [in]  w_current          The GschemToplevel object this dialog is associated with
+ * \param [in]  first_button_text  The text string for the first button
+ * \param [in]  ...                A variable number of arguments with the remaining button strings
  *
- *  \return  The GschemDialog created.
+ * \return  The GschemDialog created.
  */
 GtkWidget*
 gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,

@@ -1,41 +1,29 @@
+2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_dialog.c: Reformat Doxygen blocks.
+
 2018-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fr.po: Update French translations.
-
     * po/it.po: Update Italian translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2018-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bs.po: Update Bosnian translations
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/pl.po: Update Polish translations.
 
 2018-11-02 Wiley E. Hill <wileyhill@gmail.com>
