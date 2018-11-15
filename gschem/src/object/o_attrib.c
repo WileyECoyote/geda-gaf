@@ -100,20 +100,22 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
 
     GedaObject *object = iter->data;
 
-    if (object != NULL && object->attached_to == NULL && object != target) {
+    if (object != NULL && object != target) {
 
-      if (geda_object_get_is_valid_attribute(object)) {
-        geda_attrib_object_attach (target, object, TRUE);
-        attached_objects = g_list_prepend (attached_objects, object);
+      if (object->attached_to == NULL) {
+
+        if (geda_object_get_is_valid_attribute(object)) {
+          geda_attrib_object_attach (target, object, TRUE);
+          attached_objects = g_list_prepend (attached_objects, object);
+        }
+      }
+      else if (object->attached_to != target) {
+        already_attached++;
+      }
+      else if (object->attached_to == target) {
+        attached2target++;
       }
     }
-    else if (object != target && object->attached_to != target) {
-      already_attached++;
-    }
-    else if (object->attached_to == target) {
-      attached2target++;
-    }
-
     iter = iter->next;
   }
 

@@ -8,6 +8,9 @@
 
     * src/base/gschem_dialog.c: Reformat Doxygen blocks.
 
+    * src/object/o_attrib.c: Revise g_attrib_attach_list_2_object to not
+      reference object members when object is NULL.
+
 2018-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/el.po: Update Greek translations.
