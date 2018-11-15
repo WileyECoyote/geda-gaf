@@ -3,6 +3,9 @@
     * gschem-tools-menu.scm: Add quiet option flags to sdb-back-end and
       anise-back-end.
 
+    * scheme/gschem/gschemdoc.scm: Fix user-doc-dir; extract user-data-dir
+      from list.
+
     * src/base/gschem_dialog.c: Reformat Doxygen blocks.
 
 2018-11-10 Wiley E. Hill <wileyhill@gmail.com>

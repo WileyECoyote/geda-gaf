@@ -70,7 +70,7 @@ Get the directory where gEDA documentation is stored."
 
 Get the directory where per-user gEDA documentation is stored."
 
-  (string-join (list (user-data-dir)
+  (string-join (list (car (user-data-dir))
                      "doc" "geda-gaf")
                separator))
 
