@@ -829,6 +829,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
          int     geda_utility_string_strsize          (const char *format, va_list args);
          char   *geda_utility_string_strstr_rep       (char *original,   const char *old_str, const char *new_str);
          char   *geda_utility_string_strsubst         (char *source, char *old_str, char *new_str);
+         char   *geda_utility_string_strtrim          (const char *string);
          int     geda_utility_string_word_count       (char *str);
 
 /* u_program.c */
