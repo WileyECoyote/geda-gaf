@@ -22,14 +22,14 @@
 
 /*! \file s_page.c
  *  \brief The page system
- *
- *  libgeda can handle multiple schematic or symbol pages. libgeda keeps
- *  track of the currently opened pages with a managed _GedaList.
- *  The currently used page is refered with an extra pointer.
- *
- *  Each page carries a list of the objects that are on the page.
- *  The first and the last element are referenced by the head and tail
- *  pointers.
+ *  In Libgeda, a page is synonymous with an open document object.
+ *  Multiple schematic or symbol pages can be open at the same time.
+ *  The toplevel contains a managed GedaList of all currently opened
+ *  pages, aka documents. The toplevel also contains a pointer that
+ *  can be used to referred to an "active" page. In Libgeda this is
+ *  is called the current page. Each page object contains a list of
+ *  the objects that are on the page and other information relevant
+ *  to the specific page.
  *
  *  \image html s_page_overview.png
  *  \image latex s_page_overview.pdf "page overview" width=14cm
