@@ -152,8 +152,7 @@ GedaRefDes SpiceRefDes[] = {
  * \par Function Description
  *  Returns a pointer to IeeeRefDes.
  */
-const GedaRefDes*
-geda_utility_refdes_get_ieee(void)
+const GedaRefDes *geda_utility_refdes_get_ieee(void)
 {
   return IeeeRefDes;
 }
@@ -163,8 +162,7 @@ geda_utility_refdes_get_ieee(void)
  * \par Function Description
  *  Returns a pointer to SpiceRefDes.
  */
-const GedaRefDes*
-geda_utility_refdes_get_spice(void)
+const GedaRefDes *geda_utility_refdes_get_spice(void)
 {
   return SpiceRefDes;
 }
@@ -174,8 +172,7 @@ geda_utility_refdes_get_spice(void)
  * \par Function Description
  *  Returns a pointer to StdRefDes.
  */
-const GedaRefDes*
-geda_utility_refdes_get_standard(void)
+const GedaRefDes *geda_utility_refdes_get_standard(void)
 {
   return StdRefDes;
 }
