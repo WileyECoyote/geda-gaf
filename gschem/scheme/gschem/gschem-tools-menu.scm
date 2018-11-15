@@ -39,8 +39,8 @@
 
 ;; Define a spice back-end Options
 (define spice-back-end "spice")
-(define sdb-back-end   "spice-sdb -O sort_mode")
-(define anise-back-end "spice-anise -O include_mode -O sort_mode -O embed_mode")
+(define sdb-back-end   "spice-sdb -q -O sort_mode")
+(define anise-back-end "spice-anise -q -O include_mode -O sort_mode -O embed_mode")
 (define noqsi-back-end "spice-noqsi")
 
 ;; ======================== Utilities code  ========================
