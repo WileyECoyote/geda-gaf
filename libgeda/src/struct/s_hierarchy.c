@@ -293,8 +293,9 @@ Page *geda_struct_hierarchy_load_subpage (Page       *page,
   return subpage;
 }
 
-/*! \brief Find page hierarchy below a page.
- *  \par Function Description
+/*!
+ * \brief Find page hierarchy below a page.
+ * \par Function Description
  *  This function traverses the hierarchy tree of pages and returns a
  *  flat list of pages that are below \a p_current. There are two \a
  *  flags that can be used to control the way that the return value is
@@ -302,13 +303,12 @@ Page *geda_struct_hierarchy_load_subpage (Page       *page,
  *  duplicate pages, and <B>HIERARCHY_POSTORDER</B> traverses the
  *  hierarchy tree and returns a postorder list instead of preorder.
  *
- *  \param toplevel The GedaToplevel structure.
- *  \param p_current The Page to traverse hierarchy for.
- *  \param flags Flags controlling form of return value.
- *  \return A GList of Page pointers.
+ * \param toplevel The GedaToplevel structure.
+ * \param p_current The Page to traverse hierarchy for.
+ * \param flags Flags controlling form of return value.
+ * \return A GList of Page pointers.
  *
- *  \warning
- *  Caller must destroy returned GList with g_list_free().
+ * \warning Caller must destroy returned GList with g_list_free().
  */
 GList *geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel,
                                                      Page *p_current,
@@ -316,6 +316,7 @@ GList *geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel,
 {
 
   static GList *pages = NULL;
+  const  GList *object_list;
   const  GList *iter;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
@@ -338,15 +339,15 @@ GList *geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel,
     pages = g_list_append (pages, p_current);
   }
 
-  /* walk throught the page objects and search for underlaying schematics */
-  for (iter  = geda_struct_page_get_objects (p_current);
-       iter != NULL ;
-  iter  = g_list_next (iter)) {
+  object_list = geda_struct_page_get_objects (p_current);
 
-    GError *err;
-    Page   *child_page;
+  /* walk throught the page objects and search for underlaying schematics */
+  for (iter = object_list; iter != NULL ; iter = g_list_next (iter)) {
+
+    GError     *err;
+    Page       *child_page;
     GedaObject *o_current;
-    char   *filename;
+    char       *filename;
 
     o_current = (GedaObject*)iter->data;
 
