@@ -434,11 +434,11 @@ Page *geda_struct_hierarchy_find_prev_page (PageList *page_list, Page *current_p
   const GList *iter;
 
   iter = g_list_find (geda_list_get_glist (page_list), current_page);
-  for (iter = g_list_previous (iter);
-       iter != NULL;
-       iter = g_list_previous (iter)) {
 
-    Page *page = (Page *)iter->data;
+  for (iter = g_list_previous (iter); iter != NULL; iter = g_list_previous (iter)) {
+
+    Page *page = (Page*)iter->data;
+
     if (page->page_control == current_page->page_control) {
       return page;
     }
@@ -466,11 +466,10 @@ Page *geda_struct_hierarchy_find_next_page (PageList *page_list, Page *current_p
   const GList *iter;
 
   iter = g_list_find (geda_list_get_glist (page_list), current_page);
-  for (iter = g_list_next (iter);
-       iter != NULL;
-       iter = g_list_next (iter)) {
 
-    Page *page = (Page *)iter->data;
+  for (iter = g_list_next (iter); iter != NULL; iter = g_list_next (iter)) {
+
+    Page *page = (Page*)iter->data;
 
     if (page->page_control == current_page->page_control) {
       return page;
