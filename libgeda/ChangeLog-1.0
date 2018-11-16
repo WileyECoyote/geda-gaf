@@ -1,3 +1,7 @@
+2018-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_bus_object.c: Update function wrapping.
+
 2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Remove Doxygen name parameter from
