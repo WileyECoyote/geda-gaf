@@ -212,6 +212,8 @@ Page *geda_struct_hierarchy_down_symbol (GedaToplevel     *toplevel,
  */
 Page *geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_page)
 {
+  g_return_val_if_fail (GEDA_IS_PAGE(current_page), NULL);
+
   if (current_page->hierarchy_up < 0) {
     u_log_message(_("There are no schematics above the current one!\n"));
     return NULL;

@@ -2,7 +2,8 @@
 
     * src/object/o_bus_object.c: Update function wrapping.
 
-    * src/struct/s_hierarchy.c: Reformat Doxygen blocks.
+    * src/struct/s_hierarchy.c: Reformat Doxygen blocks. Add validation
+      for current_page in geda_struct_hierarchy_find_up_page.
 
 2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
