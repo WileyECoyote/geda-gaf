@@ -158,10 +158,11 @@ static struct BuiltinInfo builtins[] = {
   { NULL, 0, 0, 0, NULL }, // Custodian
 };
 
-/*! \brief Create the (gschem core builtins) Scheme module.
+/*!
+ * \brief Create the (gschem core builtins) Scheme module.
  * \par Function Description
- * Defines procedures in the (gschem core builtins) module. The module can
- * be accessed using (use-modules (gschem core builtins)).
+ *  Defines procedures in the (gschem core builtins) module. The module
+ *  can be accessed using (use-modules (gschem core builtins)).
  */
 static void
 init_module_gschem_core_builtins ()
@@ -196,13 +197,10 @@ init_module_gschem_core_builtins ()
 /*!
  * \brief Initialise gschem built-in actions.
  * \par Function Description
-
- * Registers the Scheme procedures used to access gschem's built-in
- * editing actions implemented in C.  Should only be called by
- * main_prog().
+ *  Registers the Scheme procedures used to access gschem's built-in
+ *  editing actions implemented in C. Should only be called by main_prog().
  */
-void
-g_init_builtins ()
+void g_init_builtins ()
 {
   /* Define the (gschem core builtins) module */
   scm_c_define_module ("gschem core builtins",
