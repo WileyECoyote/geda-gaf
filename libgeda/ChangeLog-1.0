@@ -4,7 +4,8 @@
 
     * src/struct/s_hierarchy.c: Reformat Doxygen blocks. Add validation
       for current_page in geda_struct_hierarchy_find_up_page, ancillary
-      object_list in geda_struct_hierarchy_traverse_pages.
+      object_list in geda_struct_hierarchy_traverse_pages. Update hokey
+      page_control in geda_struct_hierarchy_load_subpage.
 
 2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
 

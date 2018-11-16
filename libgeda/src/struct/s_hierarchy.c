@@ -285,6 +285,9 @@ Page *geda_struct_hierarchy_load_subpage (Page       *page,
         geda_struct_page_delete (page->toplevel, subpage, FALSE);
         subpage = NULL;
       }
+      else {
+        subpage->page_control = ++page_control_counter;
+      }
     }
 
     g_free (normalized);
