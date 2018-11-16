@@ -5,7 +5,13 @@
     * src/struct/s_hierarchy.c: Reformat Doxygen blocks. Add validation
       for current_page in geda_struct_hierarchy_find_up_page, ancillary
       object_list in geda_struct_hierarchy_traverse_pages. Update hokey
-      page_control in geda_struct_hierarchy_load_subpage.
+      page_control in geda_struct_hierarchy_load_subpage. Add function
+      get_parent_path_filespec to build the path of the subpage using
+      the path of the parent, change to that directory and return the
+      cwd directory if different from the parent path, add subfunction
+      exit_function in geda_struct_hierarchy_down_single and revise to
+      untilize the two new function, the exit_function restoring the
+      cwd if was return by get_parent_path_filespec.
 
 2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
 

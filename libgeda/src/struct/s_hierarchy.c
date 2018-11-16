@@ -28,6 +28,46 @@
 /*! \brief */
 static int page_control_counter=0;
 
+static char *get_parent_path_filespec (Page *parent, const char *filename, char **filespec)
+{
+  char *cwd;
+  char *fspec;
+  char *pfile;
+  char *ppath;
+
+  cwd   = g_get_current_dir ();
+  pfile = parent->filename;
+  ppath = geda_file_path_get_dirname(pfile);
+
+  if (strcmp (cwd, ppath) == 0) {
+    GEDA_FREE(cwd);
+  }
+
+  errno = 0;
+
+  fspec = g_build_filename(ppath, filename, NULL);
+
+  access(fspec, F_OK | R_OK);
+
+  if (errno) {
+    errno = 0;
+    GEDA_FREE (fspec);
+    *filespec = NULL;
+  }
+  else {
+    if(g_chdir(ppath)) {
+      *filespec = NULL;
+    }
+    else {
+      *filespec = fspec;
+    }
+  }
+
+  GEDA_FREE(ppath);
+
+  return cwd;
+}
+
 /*!
  * \brief Search and Load for Schematic Source Files
  * \par Function Description
@@ -60,99 +100,99 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
                                   Page *parent, int page_control, int flag,
                                   GError **err)
 {
-  char *string;
-  Page *found = NULL;
+  char *cwd;
+  char *string = NULL;
+  Page *found  = NULL;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
   g_return_val_if_fail ((filename != NULL), NULL);
   g_return_val_if_fail ((parent != NULL), NULL);
 
-  char *cwd = g_get_current_dir ();
+  cwd = get_parent_path_filespec (parent, filename, &string);
 
-  string = g_build_filename(cwd, filename, NULL);
-  GEDA_FREE (cwd);
-
-  errno = 0;
-  access(string, F_OK | R_OK);
-
-  if (errno) {
-    errno = 0;
+  Page *exit_function () {
     GEDA_FREE (string);
+    if (cwd) {
+      g_chdir(cwd);
+      GEDA_FREE (cwd);
+    }
+    return found;
+  }
+
+  if (!string) {
     string = geda_struct_slib_search_for_file(filename);
   }
 
-  if (string == NULL) {
+  if (!string) {
 
     g_set_error (err, EDA_ERROR, EDA_ERROR_NOLIB,
                  _("Schematic not found in source library."));
-    return NULL;
-  }
-
-  switch (flag) {
-    case HIERARCHY_NORMAL_LOAD:
-    {
-      char *filename = geda_file_sys_normalize_name (string, NULL);
-
-      found = geda_struct_page_search (toplevel, filename);
-      GEDA_FREE (filename);
-
-      if (found) {
-
-        Page *forbear;
-
-        /* check whether this page is in the parents list */
-        for (forbear = parent;
-             forbear != NULL && found->pid != forbear->pid && forbear->hierarchy_up >= 0;
-             forbear = geda_struct_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
-             {
-               ; /* void */
-             }
-             if (forbear != NULL && found->pid == forbear->pid) {
-
-               g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
-                            _("Hierarchy contains a circular dependency."));
-                            return NULL;  /* error signal */
-             }
-             geda_struct_page_goto (found);
-             if (page_control != 0) {
-               found->page_control = page_control;
-             }
-             found->hierarchy_up = parent->pid;
-             GEDA_FREE (string);
-             return found;
-      }
-
-      found = geda_struct_page_new_with_notify (toplevel, string);
-
-      geda_file_open (toplevel, found, found->filename, NULL);
-    }
-    break;
-
-    case HIERARCHY_FORCE_LOAD:
-    {
-      found = geda_struct_page_new_with_notify (toplevel, string);
-      geda_file_open (toplevel, found, found->filename, NULL);
-    }
-    break;
-
-    default:
-      BUG_IMSG("Invalid flag", flag);
-      return NULL;
-  }
-
-  if (page_control == 0) {
-    page_control_counter++;
-    found->page_control = page_control_counter;
   }
   else {
-    found->page_control = page_control;
+
+    switch (flag) {
+      case HIERARCHY_NORMAL_LOAD:
+      {
+        char *filename = geda_file_sys_normalize_name (string, NULL);
+
+        found = geda_struct_page_search (toplevel, filename);
+        GEDA_FREE (filename);
+
+        if (found) {
+
+          Page *forbear;
+
+          /* check whether this page is in the parents list */
+          for (forbear = parent;
+               forbear != NULL && found->pid != forbear->pid && forbear->hierarchy_up >= 0;
+               forbear = geda_struct_page_search_by_page_id (toplevel->pages, forbear->hierarchy_up))
+               {
+                 ; /* void */
+               }
+               if (forbear != NULL && found->pid == forbear->pid) {
+
+                 g_set_error (err, EDA_ERROR, EDA_ERROR_LOOP,
+                              _("Hierarchy contains a circular dependency."));
+                              return NULL;  /* error signal */
+               }
+               geda_struct_page_goto (found);
+               if (page_control != 0) {
+                 found->page_control = page_control;
+               }
+               found->hierarchy_up = parent->pid;
+               return exit_function();
+        }
+
+        found = geda_struct_page_new_with_notify (toplevel, string);
+
+        geda_file_open (toplevel, found, found->filename, NULL);
+      }
+      break;
+
+      case HIERARCHY_FORCE_LOAD:
+      {
+        found = geda_struct_page_new_with_notify (toplevel, string);
+        geda_file_open (toplevel, found, found->filename, NULL);
+      }
+      break;
+
+      default:
+        BUG_IMSG("Invalid flag", flag);
+        return exit_function();
+    }
+
+    if (page_control == 0) {
+      page_control_counter++;
+      found->page_control = page_control_counter;
+    }
+    else {
+      found->page_control = page_control;
+    }
+
+    found->hierarchy_up = parent->pid;
   }
 
-  found->hierarchy_up = parent->pid;
-
-  GEDA_FREE (string);
-
-  return found;
+  return exit_function();
 }
 
 /*! \todo Finish function documentation!!!
