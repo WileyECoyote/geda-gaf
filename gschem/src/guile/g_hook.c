@@ -65,10 +65,11 @@ static struct ghook_t gschem_hooks[] = {
   { NULL }
 };
 
-/*! \brief Gets a Scheme hook object by name.
+/*!
+ * \brief Gets a Scheme hook object by name.
  * \par Function Description
- * Returns the contents of variable with the given name in the (gschem
- * core hook).  Used for looking up hook objects.
+ *  Returns the contents of variable with the given name in the (gschem
+ *  core hook). Used for looking up hook objects.
  *
  * \param name name of hook to lookup.
  * \return value found in the (gschem core hook) module.
@@ -90,10 +91,11 @@ g_get_hook_by_name (const char *name)
   return g_evaluate_scm_protected (exp, SCM_UNDEFINED);
 }
 
-/*! \brief Runs a object hook with a single Object.
+/*!
+ * \brief Runs a object hook with a single Object.
  * \par Function Description
- * Runs a hook called \a name, which should expect a list of Object
- * smobs as its argument, with a single-element list containing only \a obj.
+ *  Runs a hook called \a name, which should expect a list of Object
+ *  smobs as its argument, with a single-element list containing only \a obj.
  *
  * \sa g_hook_run_object_list()
  *
@@ -121,10 +123,11 @@ g_hook_idle_run_object(GschemToplevel *w_current, const char *name, GedaObject *
   scm_remember_upto_here_1 (expr);
 }
 
-/*! \brief Runs a object hook for a list of objects.
+/*!
+ * \brief Runs a object hook for a list of objects.
  * \par Function Description
- * Runs a hook called \a name, which should expect a list of Object
- * smobs as its argument, with \a obj_lst as the argument list.
+ *  Runs a hook called \a name, which should expect a list of Object
+ *  smobs as its argument, with \a obj_lst as the argument list.
  *
  * \sa g_hook_run_object() g_hook_idle_run_object()
  *
@@ -168,10 +171,11 @@ g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
   scm_dynwind_end ();
 }
 
-/*! \brief Runs a page hook.
+/*!
+ * \brief Runs a page hook.
  * \par Function Description
- * Runs a hook called \a name, which should expect the single Page \a
- * page as its argument.
+ *  Runs a hook called \a name, which should expect the single Page \a
+ *  page as its argument.
  *
  * \param [in] w_current Gschem Toplevel object
  * \param [in] name      name of hook to run
@@ -192,9 +196,10 @@ g_hook_idle_run_page (GschemToplevel *w_current, const char *name, Page *page)
   scm_remember_upto_here_1 (expr);
 }
 
-/*! \brief Creates an EdascmHookProxy for a named hook.
- * Return a newly-created hook proxy object for the hook called \a
- * name.
+/*!
+ * \brief Creates an EdascmHookProxy for a named hook.
+ * \par Function Description
+ *  Return a newly-created hook proxy object for the hook called \a name.
  *
  * \param name  name of the hook for which to create a proxy.
  * \return      newly-created EdascmHookProxy instance.
@@ -227,14 +232,14 @@ static int get_is_busy()
   return ret_val;
 }
 
-/*! \brief Dispatch Idle Hook Notify Source is Destroyed
- *  \par Function Description
+/*!
+ * \brief Dispatch Idle Hook Notify Source is Destroyed
+ * \par Function Description
  *  Callback handler for notication that the main loop source
  *  g_hook_run_idle_callback has been destroyed; removes reference
  *  on incapsulated objects and releases the memory allocated by
  *  with g_hook_get_new_capsule */
-static void
-g_hook_run_idle_notify (void *data)
+static void g_hook_run_idle_notify (void *data)
 {
   IdleHookData *capsule = data;;
 
@@ -263,17 +268,18 @@ g_hook_run_idle_notify (void *data)
   GEDA_FREE(data);
 }
 
-/*! \brief Callback Dispatch Idle Hook
- *  \par Function Description
+/*!
+ * \brief Callback Dispatch Idle Hook
+ * \par Function Description
  *  This is a main-loop task instigated to run SCM hooks.
  *
- *  \warning Should never be called from outside the main context
- *           this should not be a problem, since the function is
- *           a callback.
+ * \warning Should never be called from outside the main context
+ *          this should not be a problem, since the function is
+ *          a callback.
  *
- *  \param [in] data  IdleHookData record for hook arguments
+ * \param [in] data  IdleHookData record for hook arguments
  *
- *  \returns False so source is destroyed automatically
+ * \returns False so source is destroyed automatically
  */
 static bool g_hook_run_idle_callback (void *data)
 {
@@ -314,10 +320,11 @@ static bool g_hook_run_idle_callback (void *data)
   return status;
 }
 
-/*! \brief Allocate and Load new Idle Hook Data structure
- *  \par Function Description
- *   Returns allocated st_idle_hook_data structure after setting
- *   top-level pointer and obtaining copy of name string.
+/*!
+ * \brief Allocate and Load new Idle Hook Data structure
+ * \par Function Description
+ *  Returns allocated st_idle_hook_data structure after setting
+ *  top-level pointer and obtaining copy of name string.
  */
 static inline IdleHookData*
 g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
@@ -331,8 +338,9 @@ g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
   return capsule;
 }
 
-/*! \brief Schedule Run Hook for Object List
- *  \par Function Description
+/*!
+ * \brief Schedule Run Hook for Object List
+ * \par Function Description
  *  Spawns idle thread to run object hooks. This is done, not because
  *  Guile is slow, but because these task need to be ran in the main
  *  loop and the callers could running as worker threads.
@@ -341,8 +349,7 @@ g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
  * \param [in] hook      Enumerated hook to run,
  * \param [in] list      List of Object smobs as hook argument.
  */
-void
-g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
+void g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
 {
   if (list) {
 
@@ -370,8 +377,9 @@ g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
   }
 }
 
-/*! \brief Schedule Run Object Hook
- *  \par Function Description
+/*!
+ * \brief Schedule Run Object Hook
+ * \par Function Description
  *  Spawns idle thread to run object hooks. This is done, not because
  *  Guile is slow, but because the task needs to be ran in the main
  *  context.
@@ -380,8 +388,7 @@ g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
  * \param [in] hook      Enumerated hook to run,
  * \param [in] object    Object argument for hook.
  */
-void
-g_hook_run_object(GschemToplevel *w_current, Hooker hook, GedaObject *object)
+void g_hook_run_object(GschemToplevel *w_current, Hooker hook, GedaObject *object)
 {
   if (object) {
 
@@ -397,8 +404,9 @@ g_hook_run_object(GschemToplevel *w_current, Hooker hook, GedaObject *object)
   }
 }
 
-/*! \brief Schedule Run Page Hooks
- *  \par Function Description
+/*!
+ * \brief Schedule Run Page Hooks
+ * \par Function Description
  *  Spawns idle thread to run page hooks. This is done, not because
  *  Guile is slow, but because the tasks needs to be ran in the main
  *  context.
@@ -423,12 +431,13 @@ void g_hook_run_page(GschemToplevel *w_current, Hooker hook, Page *page)
   }
 }
 
-/*! \brief Create the (gschem core hook) Scheme module.
+/*!
+ * \brief Create the (gschem core hook) Scheme module.
  * \par Function Description
- * Defines some hooks in the (gschem core hook) module. These hooks
- * allow Scheme callbacks to be triggered on certain gschem actions.
- * For a description of the arguments and behaviour of these hooks,
- * please see ../scheme/gschem/hook.scm.
+ *  Defines some hooks in the (gschem core hook) module. These hooks
+ *  allow Scheme callbacks to be triggered on certain gschem actions.
+ *  For a description of the arguments and behaviour of these hooks,
+ *  please see ../scheme/gschem/hook.scm.
  */
 static void
 init_module_gschem_core_hook ()
@@ -449,9 +458,8 @@ init_module_gschem_core_hook ()
 /*!
  * \brief Initialise the gschem hooks.
  * \par Function Description
-
- * Registers gschem's Guile hooks for various events.. Should only be
- * called by main_prog().
+ *  Registers gschem's Guile hooks for various events.. Should only be
+ *  called by main_prog().
  */
 void
 g_hook_init ()
