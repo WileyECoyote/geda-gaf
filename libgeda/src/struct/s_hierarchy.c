@@ -28,9 +28,10 @@
 /*! \brief */
 static int page_control_counter=0;
 
-/*! \brief Search for schematic associated source files and load them.
- *  \par Function Description
- *  This function searches the associated source file refered by the
+/*!
+ * \brief Search and Load for Schematic Source Files
+ * \par Function Description
+ *  This function searches the associated source file referred by the
  *  <B>filename</B> and loads it.  If the <B>flag</B> is set to
  *  <B>HIERARCHY_NORMAL_LOAD</B> and the page is already in the list of
  *  pages it will return the <B>pid</B> of that page.
@@ -38,23 +39,23 @@ static int page_control_counter=0;
  *  function will load the page again with a new page id. The second case
  *  is mainly used by gnetlist where pushed down schematics MUST be unique.
  *
- *  \param [in] toplevel      The GedaToplevel object.
- *  \param [in] filename      Schematic file name.
- *  \param [in] parent        The parent page of the schematic.
- *  \param [in] page_control
- *  \param [in] flag          sets whether to force load
- *  \param [in] err           Gerror object
+ * \param [in] toplevel      The GedaToplevel object.
+ * \param [in] filename      Schematic file name.
+ * \param [in] parent        The parent page of the schematic.
+ * \param [in] page_control
+ * \param [in] flag          sets whether to force load
+ * \param [in] err           Gerror object
  *
- *  \return The page loaded, or NULL if failed.
+ * \return The page loaded, or NULL if failed.
  *
- *  \note
+ * \internal
  *  This function finds the associated source file and loads the page
  *  but only works for schematic files though this is basically push
  *  flag can either be HIERARCHY_NORMAL_LOAD or HIERARCHY_FORCE_LOAD
  *  flag is mainly used by gnetlist where pushed down schematics MUST
  *  be unique
  */
-Page *
+Page*
 geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
                                   Page *parent, int page_control, int flag,
                                   GError **err)
@@ -150,6 +151,7 @@ geda_struct_hierarchy_down_single(GedaToplevel *toplevel, const char *filename,
   found->hierarchy_up = parent->pid;
 
   GEDA_FREE (string);
+
   return found;
 }
 
@@ -192,21 +194,21 @@ Page *geda_struct_hierarchy_down_symbol (GedaToplevel     *toplevel,
   return page;
 }
 
-/*! \brief Search for the parent page of a page in hierarchy.
- *
- *  \par Function Description
+/*!
+ * \brief Search for the parent page of a page in hierarchy.
+ * \par Function Description
  *  This function searches the parent page of page \a page in the
  *  hierarchy and checks all the pages in the list \a page_list.
  *  The function returns a pointer to the page if found, NULL
  *  otherwise.
  *
- *  \note
+ * \note
  *  The page \a current_page must be in the list \a page_list.
  *
- *  \param [in] page_list    The list of pages in which to search.
- *  \param [in] current_page The reference page for the search.
+ * \param [in] page_list    The list of pages in which to search.
+ * \param [in] current_page The reference page for the search.
  *
- *  \returns A pointer on the page found or NULL if not found.
+ * \returns A pointer on the page found or NULL if not found.
  */
 Page *geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_page)
 {
@@ -218,8 +220,9 @@ Page *geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_pag
   return geda_struct_page_search_by_page_id (page_list, current_page->hierarchy_up);
 }
 
-/*! \brief Load a hierarchical subpage
- *  \par Function Description
+/*!
+ * \brief Load a hierarchical subpage
+ * \par Function Description
  *  Implements geda_struct_hierarchy_down_single() without
  *  making the page the current page.
  *
@@ -227,11 +230,11 @@ Page *geda_struct_hierarchy_find_up_page (PageList *page_list, Page *current_pag
  *  - Does not change the current page
  *  - Does not modify the most recent "up" page
  *
- *  \param [in]  page
- *  \param [in]  filename
- *  \param [out] err
+ * \param [in]  page
+ * \param [in]  filename
+ * \param [out] err
  *
- *  \return A pointer to the subpage or NULL if an error occurred.
+ * \return A pointer to the subpage or NULL if an error occurred.
  */
 Page *geda_struct_hierarchy_load_subpage (Page       *page,
                                           const char *filename,
@@ -383,6 +386,7 @@ GList *geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel,
 
   /* postorder traversing */
   if (flags & HIERARCHY_POSTORDER) {
+
     /* check whether we already visited this page */
     if ((flags & HIERARCHY_NODUPS) &&
         (g_list_find (pages, p_current) != NULL))
@@ -404,27 +408,25 @@ GList *geda_struct_hierarchy_traverse_pages (GedaToplevel *toplevel,
  */
 int geda_struct_hierarchy_print_page (Page *p_current, void * data)
 {
-  printf("pagefilename: %s pageid: %d\n",
-         p_current->filename, p_current->pid);
+  printf("pagefilename: %s pageid: %d\n", p_current->filename, p_current->pid);
   return 0;
 }
 
-/*! \brief Search for a page preceding a given page in hierarchy.
- *  \par Function Description
+/*!
+ * \brief Search for a page preceding a given page in hierarchy.
+ * \par Function Description
  *  This function searches the previous sibling of page \a page in the
  *  hierarchy and checks all the pages preceding \a page in the list
  *  \a page_list.
  *
- *  The function returns a pointer on the page if found, NULL otherwise.
- *
- *  \note
+ * \note
  *  The page \a current_page must be in the list \a page_list.
  *
- *  \param [in] page_list    The list of pages in which to search.
- *  \param [in] current_page The reference page for the search.
+ * \param [in] page_list    The list of pages in which to search.
+ * \param [in] current_page The reference page for the search.
  *
- *  \returns A pointer on the page found or NULL if not found.
-  */
+ * \returns A pointer on the page found or NULL if not found.
+ */
 Page *geda_struct_hierarchy_find_prev_page (PageList *page_list, Page *current_page)
 {
   const GList *iter;
@@ -443,21 +445,19 @@ Page *geda_struct_hierarchy_find_prev_page (PageList *page_list, Page *current_p
   return NULL;
 }
 
-/*! \brief Search for a page following a given page in hierarchy.
- *  \par Function Description
+/*!
+ * \brief Search for a page following a given page in hierarchy.
+ * \par Function Description
  *  This function searches the next sibling of page \a page in the
  *  hierarchy and checks all the pages following \a page in the list
  *  \a page_list.
  *
- *  This function returns a pointer on the page if found, NULL otherwise.
+ * \note The page \a current_page must be in the list \a page_list.
  *
- *  \note
- *  The page \a current_page must be in the list \a page_list.
+ * \param [in] page_list    The list of pages in which to search.
+ * \param [in] current_page The reference page for the search.
  *
- *  \param [in] page_list    The list of pages in which to search.
- *  \param [in] current_page The reference page for the search.
- *
- *  \returns A pointer on the page found or NULL if not found.
+ * \returns A pointer to the page found or NULL if not found.
  */
 Page *geda_struct_hierarchy_find_next_page (PageList *page_list, Page *current_page)
 {
@@ -469,6 +469,7 @@ Page *geda_struct_hierarchy_find_next_page (PageList *page_list, Page *current_p
        iter = g_list_next (iter)) {
 
     Page *page = (Page *)iter->data;
+
     if (page->page_control == current_page->page_control) {
       return page;
     }

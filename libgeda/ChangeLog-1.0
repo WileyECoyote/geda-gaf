@@ -2,6 +2,8 @@
 
     * src/object/o_bus_object.c: Update function wrapping.
 
+    * src/struct/s_hierarchy.c: Reformat Doxygen blocks.
+
 2018-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Remove Doxygen name parameter from
