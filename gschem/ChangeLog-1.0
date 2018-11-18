@@ -8,6 +8,8 @@
 
     * po/fi.po: Add plural forms.
 
+    * po/nl.po: Update Dutch translations.
+
 2018-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_builtins.c: Reformat Doxygen blocks, .
