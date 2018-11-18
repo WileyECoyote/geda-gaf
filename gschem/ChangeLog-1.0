@@ -16,6 +16,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/sl.po: Update Slovenian translations
+
 2018-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_builtins.c: Reformat Doxygen blocks, .
@@ -4374,7 +4376,7 @@
 
 2017-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * po/en_GB.po: add plural forms.
+    * po/en_GB.po: Add plural forms.
 
     * po/pt.po: Update Portuguese translations.
 
