@@ -1191,37 +1191,32 @@ msgstr ""
 msgid "already attached to an object"
 msgstr ""
 
-# Attributes
+# Attribute is
 #: gschem/src/object/o_attrib.c:129
-#, fuzzy
 msgid "Attribute is"
-msgstr "Aтрибутите:"
+msgstr "Атрибутът е"
 
-# Attributes
+# One attribute was
 #: gschem/src/object/o_attrib.c:132
-#, fuzzy
 msgid "One attribute was"
-msgstr "Aтрибутите:"
+msgstr "Един атрибут беше"
 
-# Set the pin attributes => Specify the PIN attributes
+# All of the attributes were
 #: gschem/src/object/o_attrib.c:137
-#, fuzzy
 msgid "All of the attributes were"
-msgstr "Задайте атрибутите на ПИН"
+msgstr "Всички атрибути бяха"
 
-# Set the pin attributes => Specify the PIN attributes
+# Some of the attributes were
 #: gschem/src/object/o_attrib.c:141
-#, fuzzy
 msgid "Some of the attributes were"
-msgstr "Задайте атрибутите на ПИН"
+msgstr "Някои от атрибутите бяха"
 
-# Detached attribute => independent attribute
 #: gschem/src/object/o_attrib.c:164
-#, fuzzy, c-format
+#, c-format
 msgid "attached %d attribute"
 msgid_plural "attached %d attributes"
-msgstr[0] "Самостоятелна атрибут"
-msgstr[1] "Самостоятелна атрибут"
+msgstr[0] "прикрепен %d ​​атрибут"
+msgstr[1] "прикрепени %d атрибута"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
 #: gschem/src/object/o_break.c:843
