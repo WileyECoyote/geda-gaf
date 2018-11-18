@@ -414,9 +414,8 @@ msgid "Snap Size"
 msgstr "Tamanho da Grelha"
 
 #: gschem/src/base/gschem_status_bar.c:656
-#, fuzzy
 msgid "Sets the Snap Size to display on the status bar"
-msgstr "Define o tamanho da grade para exibir na barra de status"
+msgstr "Define o tamanho do snap para exibir na barra de status"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665
@@ -1206,34 +1205,31 @@ msgid "already attached to an object"
 msgstr ""
 
 #: gschem/src/object/o_attrib.c:129
-#, fuzzy
 msgid "Attribute is"
-msgstr "Atributos"
+msgstr "Atributo é"
 
+# One attribute was
 #: gschem/src/object/o_attrib.c:132
-#, fuzzy
 msgid "One attribute was"
-msgstr "atributos"
+msgstr "Um atributo foi"
 
-# hidden attributes were revealed
+# All of the attributes were
 #: gschem/src/object/o_attrib.c:137
-#, fuzzy
 msgid "All of the attributes were"
-msgstr "Os atributos ocultos foram revelados"
+msgstr "Todos os atributos foram"
 
-# Set the pin attributes
+# Some of the attributes were
 #: gschem/src/object/o_attrib.c:141
-#, fuzzy
 msgid "Some of the attributes were"
-msgstr "Defina os atributos dos pinos"
+msgstr "Alguns dos atributos foram"
 
 # Detached attribute
 #: gschem/src/object/o_attrib.c:164
-#, fuzzy, c-format
+#, c-format
 msgid "attached %d attribute"
 msgid_plural "attached %d attributes"
-msgstr[0] "Atributo separado"
-msgstr[1] "Atributo separado"
+msgstr[0] "atributo %d anexado"
+msgstr[1] "atributos %d anexados"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
 #: gschem/src/object/o_break.c:843
@@ -2353,10 +2349,10 @@ msgstr "Símbolo"
 msgid "Dismiss this dialog"
 msgstr ""
 
+# invalid attribute value
 #: gschem/src/x/x_dialog.c:3933
-#, fuzzy
 msgid "invalid attribute value"
-msgstr "Atributo Inválido"
+msgstr "valor de atributo inválido"
 
 #: gschem/src/x/x_dialog.c:3934
 msgid "Please correct in order to continue"
