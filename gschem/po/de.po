@@ -1098,33 +1098,32 @@ msgstr "Letzte Aktion rückgängig machen\n"
 msgid "already attached to an object"
 msgstr ""
 
+# Attribute is
 #: gschem/src/object/o_attrib.c:129
-#, fuzzy
 msgid "Attribute is"
-msgstr "Attribut"
+msgstr "Атрибутът е"
 
+# One attribute was
 #: gschem/src/object/o_attrib.c:132
-#, fuzzy
 msgid "One attribute was"
-msgstr "Attribut"
+msgstr "Ein Attribut war"
 
+# All of the attributes were
 #: gschem/src/object/o_attrib.c:137
-#, fuzzy
 msgid "All of the attributes were"
-msgstr "Geerbte Attribute anzeigen"
+msgstr "Alle Attribute waren"
 
-# Set the pin attributes
+# Some of the attributes were
 #: gschem/src/object/o_attrib.c:141
-#, fuzzy
 msgid "Some of the attributes were"
-msgstr "Legen Sie die Pin-Attribute fest"
+msgstr "Einige der Attribute waren"
 
 #: gschem/src/object/o_attrib.c:164
-#, fuzzy, c-format
+#, c-format
 msgid "attached %d attribute"
 msgid_plural "attached %d attributes"
-msgstr[0] "Attribut ablösen"
-msgstr[1] "Attribut ablösen"
+msgstr[0] "angefügtes %d Attribut"
+msgstr[1] "angefügt %d Attribute"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
 #: gschem/src/object/o_break.c:843
@@ -2223,10 +2222,10 @@ msgstr "Symbole"
 msgid "Dismiss this dialog"
 msgstr ""
 
+# invalid attribute value
 #: gschem/src/x/x_dialog.c:3933
-#, fuzzy
 msgid "invalid attribute value"
-msgstr "Fehlerhaftes Attribut"
+msgstr "invalid attribute value"
 
 #: gschem/src/x/x_dialog.c:3934
 msgid "Please correct in order to continue"
