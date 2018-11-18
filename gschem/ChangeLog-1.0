@@ -1,3 +1,7 @@
+2018-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/fi.po: Add plural forms.
+
 2018-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_builtins.c: Reformat Doxygen blocks, .
