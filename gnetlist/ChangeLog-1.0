@@ -1,7 +1,13 @@
 2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_net.c: Revise s_net_name_search to retrieve naming_priority
-      from the toplevel instead of eda_config_get_integer.
+      from the toplevel instead of eda_config_get_integer, revamp function
+      to loop through list of net twice, almost; first pass breaks out of
+      loop if a name with priority is found and rename records are only
+      created in the second pass. This is more efficient because old single
+      pass loop would add rename records and another record to rename the
+      first rename record that was added depending on where the net and
+      netname attributes occurred in the file.
 
 2018-11-14 Wiley E. Hill <wileyhill@gmail.com>
 

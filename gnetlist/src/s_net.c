@@ -336,10 +336,12 @@ NET *s_net_return_tail(NET *head)
 char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 {
   NET  *n_current;
+  NET  *n_found;
   char *name;
   int   naming_priority;
 
   n_current       = net_head;
+  n_found         = NULL;
   name            = NULL;
   naming_priority = pr_current->net_naming_priority;
 
@@ -351,22 +353,19 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 
       if (name == NULL) {
 
-        /* Note a copy is made here because s_netlist_post_process will
-         * assign to pin and nets and when s_rename_all_lowlevel frees
-         * the strings each pointer must be unique, otherwise, only the
-         * first encounter will is renamed as s_rename_all_lowlevel will
-         * not find the other instances */
-        name = geda_strdup (net_name);
+        name = n_current->net_name;
 
+        /* Save pointer to found record */
+        n_found = n_current;
       }
       else if (strcmp(name, net_name) != 0) {
 
 #if DEBUG
-        fprintf(stderr, "Found a net with two names!\n");
+        fprintf(stderr, "Found a node with two names!\n");
         fprintf(stderr, "Net called: [%s] and [%s]\n", name, net_name);
 #endif
 
-        /* only rename if this net name has priority AND we are
+        /* Only rename if this net name has priority AND we are
          * using net= attributes as the netnames which have priority */
         if (naming_priority == NETATTRIB_ATTRIBUTE) {
 
@@ -377,39 +376,23 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
            * Set to true by s_netattrib_create_pins or s_traverse_net */
           if (n_current->net_name_has_priority) {
 
-#if DEBUG
-            fprintf(stderr, "Net is now called: [%s]\n", net_name);
-
-            /* the net name in the record, which was set by one of the above
-             * routines that set the net_name_has_priority flag, gets priority */
-            printf("\nRENAME all nets: %s -> %s\n", name, net_name);
-#endif
-            s_rename_add(name, net_name);
-            GEDA_FREE(name);
-
             /* Set the net name in the record to be the target net name */
-            name = geda_strdup (net_name);
+            name = n_current->net_name;
 
+            /* Save pointer to found record */
+            n_found = n_current;
+
+            /* Name is Found, break out of loop*/
+            break;
           }
           else {
 
-#if DEBUG
-            printf
-            ("\nFound a net name called [%s], but it doesn't have priority\n", net_name);
-#endif
-
             if (!s_rename_search (name, net_name, TRUE)) {
 
-              /* Do the rename anyways, this might cause problems */
-              /* this will rename nets which have the same netname= */
+              name = n_current->net_name;
 
-              if (verbose_mode) {
-                const char *msg = _("Found duplicate net name, renaming [%s] to [%s]\n");
-                fprintf(stderr, msg, name, net_name);
-              }
-              s_rename_add(name, net_name);
-              GEDA_FREE(name);
-              name = geda_strdup (net_name); /* See note above */
+              /* Save pointer to found record */
+              n_found = n_current;
             }
           }
         }
@@ -419,44 +402,99 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           printf("\nNETNAME_ATTRIBUTE\n");
 #endif
 
-          /* rename the net that has priority to the net_name name */
           if (n_current->net_name_has_priority) {
 
 #if DEBUG
             printf("\nRENAME all nets: %s -> %s (priority)\n", net_name, name);
 #endif
-
-            s_rename_add(net_name, name);
-
+            /* Name has been determined, it is the current net name,
+             * so break out of loop */
+            break;
           }
           else {
 
-#if DEBUG
-            printf ("\nRENAME all nets: %s -> %s (not priority)\n", name, net_name);
-#endif
-            /* do the rename anyways, this might cause problems */
-            /* this will rename net which have the same label= */
+            /* rename the net that has priority to the net_name name */
             if (!s_rename_search (name, net_name, TRUE)) {
-              if (verbose_mode) {
-                fprintf(stderr,
-                      _("Found duplicate net name, renaming [%s] to [%s]\n"),
-                        name, net_name);
-              }
-              s_rename_add(name, net_name);
-              GEDA_FREE(name);
-              name = geda_strdup (net_name); /* See note above */
+
+              name = n_current->net_name;
+
+              /* Save pointer to found record */
+              n_found = n_current;
             }
           }
-
 #if DEBUG
           fprintf(stderr, "Net is now called: [%s]\n", name);
 #endif
-
         }
       }
     }
 
     n_current = n_current->next;
+  }
+
+#if DEBUG
+  printf("\n%s: priority=%d, name <%s>\n", __func__, naming_priority, name);
+#endif
+
+  /* If a name was found then reiterate the list and create rename records */
+  if (name != NULL) {
+
+    /* Note a copy is made here because s_netlist_post_process will
+     * assign to pin and nets and when s_rename_all_lowlevel frees
+     * the strings each pointer must be unique, otherwise, only the
+     * first encounter will is renamed as s_rename_all_lowlevel will
+     * not find the other instances */
+    name = geda_strdup (name);
+
+    /* start over, this time add rename records */
+    n_current = net_head;
+
+    for (n_current = net_head; n_current != NULL; n_current = n_current->next)
+    {
+      char *net_name;
+
+      if (n_current == n_found)
+        continue;
+
+      net_name = n_current->net_name;
+
+      if (net_name != NULL) {
+
+        if (strcmp(net_name, name) != 0) {
+
+          if (naming_priority == NETATTRIB_ATTRIBUTE) {
+
+            if (verbose_mode && n_found->net_name_has_priority) {
+              printf("\nNet attribute <%s> prioritized over netname <%s>\n", name, net_name);
+            }
+          }
+          else { /* NETNAME_ATTRIBUTE */
+
+            if (n_current->net_name_has_priority) {
+
+              if (verbose_mode) {
+                printf("\nNetname <%s> prioritized over net attribute <%s>\n", name, net_name);
+              }
+            }
+            else {
+              if (!quiet_mode) {
+                fprintf(stderr,
+                      _("\nFound Duplicate net names, renaming [%s] to [%s]\n"), name, net_name);
+              }
+            }
+          }
+
+          if (!s_rename_search (net_name, name, TRUE)) {
+
+            if (verbose_mode) {
+              const char *msg = _("Add rename record for [%s] to [%s]\n");
+              printf(msg, net_name, name);
+            }
+            s_rename_add(net_name, name);
+          }
+        }
+      }
+    }
   }
 
   return name ? name : NULL;
