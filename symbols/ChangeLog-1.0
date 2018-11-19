@@ -15,6 +15,9 @@
     * linear/special/smartmedia-1.sym: Change device attribute to CONNECTOR,
       update documentation link.
 
+    * passive/resistor/resistor-1b.sym: Change footprint attribute value
+      to "unknown", add value=value?, revise attribute description.
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:
