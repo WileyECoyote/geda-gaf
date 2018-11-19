@@ -1,5 +1,8 @@
 2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-drc2.scm: Add check for "OneConnection" in check-single-nets
+      and do not report "connected to only one pin" if the directive is found.
+
     * src/s_net.c: Revise s_net_name_search to retrieve naming_priority
       from the toplevel instead of eda_config_get_integer, revamp function
       to loop through list of net twice, almost; first pass breaks out of

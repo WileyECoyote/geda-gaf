@@ -611,18 +611,17 @@
                                                        netname "' has no connections."))
                                (newline)
                                (set! errors_number (+ errors_number 1))
-                               )
-                        )
+                        ))
                     (if (eq? (length (get-all-connections netname)) '1)
-                        (begin (display (string-append "ERROR: Net '"
+                        (if (not (member "OneConnection" directives))
+                           (begin (display (string-append "ERROR: Net '"
                                                        netname "' is connected to only one pin:"))
                                (drc2:display-pins-of-type "all" (get-all-connections netname))
                                (display ".")
                                (newline)
                                (set! errors_number (+ errors_number 1))
-                               )
-                        )
-                    ))
+                        )))
+                  ))
               (drc2:check-single-nets (cdr all-nets)))))
   ))
 
