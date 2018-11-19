@@ -28,6 +28,9 @@
             * source/gnd-2.sym
             * source/gnd-3.sym
 
+    * source/v-plus-1.sym: Add generic V+ symbol without an internal net
+      attribute.
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:
