@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-24 09:40-0500\n"
+"POT-Creation-Date: 2018-11-18 20:11-0600\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -22,6 +22,14 @@ msgstr ""
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "get-nets: недопустимое позиционное обозначение («%s») и вывод («%s»)\n"
+
+#: gnetlist/src/g_netlist.c:842
+msgid "retrieved from a graphical object"
+msgstr ""
+
+#: gnetlist/src/g_netlist.c:843
+msgid "Pin"
+msgstr ""
 
 # ERROR
 #: gnetlist/src/gnetlist.c:80
@@ -36,7 +44,7 @@ msgstr "Не удалось открыть каталог"
 msgid "List of available backends"
 msgstr "Список доступных драйверов"
 
-#: gnetlist/src/gnetlist.c:246
+#: gnetlist/src/gnetlist.c:241
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
@@ -44,14 +52,14 @@ msgstr ""
 "GEDA/gnetlist поставляется с абсолютно БЕСПЛАТНОЙ ГАРАНТИЕЙ; См. КОПИРОВАНИЕ "
 "для более подробной информации.\n"
 
-#: gnetlist/src/gnetlist.c:248
+#: gnetlist/src/gnetlist.c:243
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 "Это бесплатное программное обеспечение, и вы можете перераспределить его при "
 "определенных\n"
 
-#: gnetlist/src/gnetlist.c:250
+#: gnetlist/src/gnetlist.c:245
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
@@ -59,57 +67,57 @@ msgstr ""
 "условия; Более подробную информацию см. В файле COPYING.\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:293 gnetlist/src/gnetlist.c:294
+#: gnetlist/src/gnetlist.c:283 gnetlist/src/gnetlist.c:284
 msgid "Loading schematic"
 msgstr "Загрузка схемы"
 
 # load failed
-#: gnetlist/src/gnetlist.c:300
+#: gnetlist/src/gnetlist.c:290
 msgid "load failed"
 msgstr "Ошибка загрузки"
 
 # System could not change to directory
-#: gnetlist/src/gnetlist.c:319 gnetlist/src/gnetlist.c:374
+#: gnetlist/src/gnetlist.c:309 gnetlist/src/gnetlist.c:372
 msgid "System could not change to directory"
 msgstr "Система не может быть изменена в каталог"
 
-#: gnetlist/src/gnetlist.c:347
+#: gnetlist/src/gnetlist.c:335
 msgid "ERROR: Could not find backend"
 msgstr "ОШИБКА: не удалось найти драйвер в пути загрузки"
 
-#: gnetlist/src/gnetlist.c:348
+#: gnetlist/src/gnetlist.c:336
 msgid "for a full list of available backends"
 msgstr "для полного списка доступных бэкэндов"
 
 # in load path
-#: gnetlist/src/gnetlist.c:350
+#: gnetlist/src/gnetlist.c:338
 msgid "in load path"
 msgstr "В пути загрузки"
 
-#: gnetlist/src/gnetlist.c:351
+#: gnetlist/src/gnetlist.c:339
 msgid "Run"
 msgstr "Выполнить"
 
-#: gnetlist/src/gnetlist.c:409 gnetlist/src/gnetlist.c:437
+#: gnetlist/src/gnetlist.c:407 gnetlist/src/gnetlist.c:435
 msgid "Path"
 msgstr "Путь к файлу"
 
 # is not accessible
-#: gnetlist/src/gnetlist.c:410 gnetlist/src/gnetlist.c:438
+#: gnetlist/src/gnetlist.c:408 gnetlist/src/gnetlist.c:436
 msgid "is not accessible"
 msgstr "Недоступен"
 
 # file
-#: gnetlist/src/gnetlist.c:421 gnetlist/src/g_rc.c:75
+#: gnetlist/src/gnetlist.c:419 gnetlist/src/g_rc.c:75
 msgid "file"
 msgstr "файл"
 
 # Could not create
-#: gnetlist/src/gnetlist.c:460
+#: gnetlist/src/gnetlist.c:458
 msgid "Could not create"
 msgstr "Не удалось создать"
 
-#: gnetlist/src/gnetlist.c:487
+#: gnetlist/src/gnetlist.c:484
 #, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "Не задан ни драйвер для работы, ни интерактивный режим!\n"
@@ -280,62 +288,69 @@ msgstr ""
 "Недопустимый атрибут «net» («net=%s»)\n"
 "В атрибуте «net» отсутствует символ «:»\n"
 
-#: gnetlist/src/s_net.c:267
+#: gnetlist/src/s_net.c:270
 msgid "Missing pin number attribute"
 msgstr ""
 
-#: gnetlist/src/s_net.c:400 gnetlist/src/s_net.c:436
-#, c-format
-msgid "Found duplicate net name, renaming [%s] to [%s]\n"
+#: gnetlist/src/s_net.c:481
+#, fuzzy, c-format
+msgid ""
+"\n"
+"Found Duplicate net names, renaming [%s] to [%s]\n"
 msgstr "Обнаружено ещё одно имя для соединения «%s», переименование в «%s»\n"
 
-#: gnetlist/src/s_net.c:589
+#: gnetlist/src/s_net.c:489
+#, fuzzy, c-format
+msgid "Add rename record for [%s] to [%s]\n"
+msgstr "Обнаружено ещё одно имя для соединения «%s», переименование в «%s»\n"
+
+#: gnetlist/src/s_net.c:629
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
 
-#: gnetlist/src/s_netlist.c:132 gnetlist/src/s_netlist.c:250
+#: gnetlist/src/s_netlist.c:219 gnetlist/src/s_netlist.c:337
 msgid "Staring post processing"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:133
+#: gnetlist/src/s_netlist.c:220
 msgid "Naming nets of graphical objects"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:251
+#: gnetlist/src/s_netlist.c:338
 msgid "Naming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:306
+#: gnetlist/src/s_netlist.c:393
 msgid "Renaming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:313
+#: gnetlist/src/s_netlist.c:400
 msgid "Resolving hierarchy"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:323
+#: gnetlist/src/s_netlist.c:410
 msgid "Removing refdes mangling"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:348
+#: gnetlist/src/s_netlist.c:435
 msgid "component"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:354
+#: gnetlist/src/s_netlist.c:441
 msgid "SPECIAL"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:359
+#: gnetlist/src/s_netlist.c:446
 msgid "Hierarchy tag"
 msgstr ""
 
-#: gnetlist/src/s_rename.c:69
+#: gnetlist/src/s_rename.c:82
 #, c-format
 msgid "ERROR: Overwriting a valid rename list.\n"
 msgstr "ОШИБКА: Перезапись действующего списка переименований.\n"
 
-#: gnetlist/src/s_rename.c:173
+#: gnetlist/src/s_rename.c:192
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -346,7 +361,7 @@ msgstr ""
 "\t%s и %s\n"
 "оба являются именами источника и назначения\n"
 
-#: gnetlist/src/s_rename.c:176
+#: gnetlist/src/s_rename.c:195
 #, c-format
 msgid "This warning is okay if there multiple levels of hierarchy!\n"
 msgstr ""

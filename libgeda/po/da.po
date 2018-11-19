@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-06 01:00-0500\n"
+"POT-Creation-Date: 2018-11-18 20:10-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -725,75 +725,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:580
+#: libgeda/src/geda/geda_object.c:594
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:581
+#: libgeda/src/geda/geda_object.c:595
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:590
+#: libgeda/src/geda/geda_object.c:604
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:591
+#: libgeda/src/geda/geda_object.c:605
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:598
+#: libgeda/src/geda/geda_object.c:612
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:599
+#: libgeda/src/geda/geda_object.c:613
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:605
+#: libgeda/src/geda/geda_object.c:619
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:606
+#: libgeda/src/geda/geda_object.c:620
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:611
+#: libgeda/src/geda/geda_object.c:625
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:612
+#: libgeda/src/geda/geda_object.c:626
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:618
+#: libgeda/src/geda/geda_object.c:632
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:619
+#: libgeda/src/geda/geda_object.c:633
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:625
+#: libgeda/src/geda/geda_object.c:639
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:626
+#: libgeda/src/geda/geda_object.c:640
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:633
+#: libgeda/src/geda/geda_object.c:647
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:634
+#: libgeda/src/geda/geda_object.c:648
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:642
+#: libgeda/src/geda/geda_object.c:656
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:643
+#: libgeda/src/geda/geda_object.c:657
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1125,24 +1125,24 @@ msgstr ""
 
 #: libgeda/src/object/o_arc_object.c:1464
 #: libgeda/src/object/o_box_object.c:1581
-#: libgeda/src/object/o_bus_object.c:604
+#: libgeda/src/object/o_bus_object.c:584
 #: libgeda/src/object/o_circle_object.c:1356
 #: libgeda/src/object/o_line_object.c:1564
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:575
-#: libgeda/src/object/o_pin_object.c:191
+#: libgeda/src/object/o_pin_object.c:197
 #: libgeda/src/object/o_text_object.c:784
 msgid "Found an invalid color"
 msgstr ""
 
 #: libgeda/src/object/o_arc_object.c:1468
 #: libgeda/src/object/o_box_object.c:1585
-#: libgeda/src/object/o_bus_object.c:608
+#: libgeda/src/object/o_bus_object.c:588
 #: libgeda/src/object/o_circle_object.c:1360
 #: libgeda/src/object/o_line_object.c:1568
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:579
-#: libgeda/src/object/o_pin_object.c:195
+#: libgeda/src/object/o_pin_object.c:201
 #: libgeda/src/object/o_text_object.c:788
 msgid "Setting color to default color\n"
 msgstr ""
@@ -1179,26 +1179,26 @@ msgstr ""
 msgid "Found a box with zero width/height"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:517
+#: libgeda/src/object/o_bus_object.c:498
 #, c-format
 msgid "null in geda_bus_object_print\n"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:575 libgeda/src/object/o_bus_object.c:582
+#: libgeda/src/object/o_bus_object.c:555 libgeda/src/object/o_bus_object.c:562
 msgid "Failed to parse bus object"
 msgstr ""
 
 # Found a multi-conductor with zero length
-#: libgeda/src/object/o_bus_object.c:588
+#: libgeda/src/object/o_bus_object.c:568
 msgid "Found a bus with zero length"
 msgstr "Multi-leder opdaget med et nul-længde"
 
 # discovered invalid direction indication in a bus connection
-#: libgeda/src/object/o_bus_object.c:595
+#: libgeda/src/object/o_bus_object.c:575
 msgid "Found an invalid bus ripper direction"
 msgstr "Fundet ugyldig indikator multi-leder retning"
 
-#: libgeda/src/object/o_bus_object.c:599
+#: libgeda/src/object/o_bus_object.c:579
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr ""
 
@@ -1317,7 +1317,7 @@ msgid "Found a component with an invalid rotation"
 msgstr ""
 
 #: libgeda/src/object/o_complex_object.c:1173
-#: libgeda/src/object/o_picture_object.c:1489
+#: libgeda/src/object/o_picture_object.c:1498
 msgid "Setting angle to 0\n"
 msgstr ""
 
@@ -1400,124 +1400,124 @@ msgstr ""
 msgid "Failed to export"
 msgstr "Kan ikke eksportere"
 
-#: libgeda/src/object/o_picture_object.c:591
+#: libgeda/src/object/o_picture_object.c:592
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1252
+#: libgeda/src/object/o_picture_object.c:1261
 msgid "Invalid; picture has no height\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1253
+#: libgeda/src/object/o_picture_object.c:1262
 msgid "Setting aspect to 1.0\n"
 msgstr ""
 
 # Failed to load buffer image
-#: libgeda/src/object/o_picture_object.c:1268
+#: libgeda/src/object/o_picture_object.c:1277
 msgid "Failed to load buffer image"
 msgstr "Kunne ikke indlæse buffer billede"
 
 # Failed to load image from
-#: libgeda/src/object/o_picture_object.c:1285
+#: libgeda/src/object/o_picture_object.c:1294
 msgid "Failed to load image from"
 msgstr "Kunne ikke indlæse billede fra"
 
-#: libgeda/src/object/o_picture_object.c:1455
+#: libgeda/src/object/o_picture_object.c:1464
 msgid "Failed to parse picture definition"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1460
+#: libgeda/src/object/o_picture_object.c:1469
 msgid "Found a picture with zero width/height"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1467
+#: libgeda/src/object/o_picture_object.c:1476
 msgid "Found a picture with an invalid 'mirrored' parameter"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1471
+#: libgeda/src/object/o_picture_object.c:1480
 msgid "Setting mirrored to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1476
+#: libgeda/src/object/o_picture_object.c:1485
 msgid "Found a picture with an invalid 'embedded' parameter"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1480
+#: libgeda/src/object/o_picture_object.c:1489
 msgid "Setting embedded to 0\n"
 msgstr ""
 
 # Found an unsupported picture angle
-#: libgeda/src/object/o_picture_object.c:1485
+#: libgeda/src/object/o_picture_object.c:1494
 msgid "Found an unsupported picture angle"
 msgstr "Fundet en ikke-understøttet billede vinkel"
 
-#: libgeda/src/object/o_picture_object.c:1512
+#: libgeda/src/object/o_picture_object.c:1521
 msgid "Error"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1524
+#: libgeda/src/object/o_picture_object.c:1533
 msgid "Image filename is missing."
 msgstr ""
 
 # Unable to load the image from the embedded data
-#: libgeda/src/object/o_picture_object.c:1582
+#: libgeda/src/object/o_picture_object.c:1591
 msgid "Failed to load image from embedded data"
 msgstr "Kan ikke indlæse billedet fra den integrerede data"
 
-#: libgeda/src/object/o_picture_object.c:1583
+#: libgeda/src/object/o_picture_object.c:1592
 msgid "Base64 decoding failed."
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1584
+#: libgeda/src/object/o_picture_object.c:1593
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr ""
 
 # ERROR: unable to encode the picture
-#: libgeda/src/object/o_picture_object.c:1707
+#: libgeda/src/object/o_picture_object.c:1716
 msgid "ERROR: unable to encode the picture.\n"
 msgstr "FEJL: ude af stand til at kode billedet.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1787
+#: libgeda/src/object/o_picture_object.c:1796
 msgid "Error processing image"
 msgstr "Billedbehandling fejl"
 
 # Failed to load symbol from file
-#: libgeda/src/object/o_picture_object.c:1960
+#: libgeda/src/object/o_picture_object.c:1969
 msgid "Failed to load image from file"
 msgstr "Kunne ikke indlæse symbol fra fil"
 
-#: libgeda/src/object/o_picture_object.c:1962
+#: libgeda/src/object/o_picture_object.c:1971
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1971
+#: libgeda/src/object/o_picture_object.c:1980
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_pin_object.c:157 libgeda/src/object/o_pin_object.c:167
+#: libgeda/src/object/o_pin_object.c:163 libgeda/src/object/o_pin_object.c:173
 msgid "Failed to parse pin object"
 msgstr ""
 
 # Found a pin which did not have the whichend field set
-#: libgeda/src/object/o_pin_object.c:175
+#: libgeda/src/object/o_pin_object.c:181
 msgid "Found a pin which did not have the whichend field set"
 msgstr "Fundet en stift, der ikke havde den whichend felt sæt"
 
 # Verify and correct manually
-#: libgeda/src/object/o_pin_object.c:179
+#: libgeda/src/object/o_pin_object.c:185
 msgid "Verify and correct manually.\n"
 msgstr "Kontroller og rette manuelt.\n"
 
 # Found an invalid 'whichend' on a pin
-#: libgeda/src/object/o_pin_object.c:182
+#: libgeda/src/object/o_pin_object.c:188
 msgid "Found an invalid whichend on a pin"
 msgstr "Har du fundet en ugyldig 'whichend' værdi er tildelt en stift"
 
 # Reset to zero
-#: libgeda/src/object/o_pin_object.c:186
+#: libgeda/src/object/o_pin_object.c:192
 msgid "Setting to zero\n"
 msgstr "Indstilling til nul\n"
 
@@ -1550,12 +1550,12 @@ msgid "because"
 msgstr "fordi"
 
 # Setting dash length to default
-#: libgeda/src/object/o_set.c:187
+#: libgeda/src/object/o_set.c:177
 msgid "Setting line length to default"
 msgstr "Indstilling dash længde til standard"
 
 # Setting line space to default
-#: libgeda/src/object/o_set.c:200
+#: libgeda/src/object/o_set.c:190
 msgid "Setting line space to default"
 msgstr "Indstilling line plads til standard"
 
@@ -1590,49 +1590,50 @@ msgstr ""
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_attrib.c:80
+#: libgeda/src/scheme/scheme_attrib.c:93
 msgid "Objects ~A and ~A are not part of the same page and/or complex object"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_attrib.c:87 libgeda/src/scheme/scheme_attrib.c:92
+#: libgeda/src/scheme/scheme_attrib.c:100
+#: libgeda/src/scheme/scheme_attrib.c:105
 msgid "Object ~A is already attached as an attribute"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_attrib.c:142
+#: libgeda/src/scheme/scheme_attrib.c:156
 msgid "Object ~A is attribute of wrong object"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_attrib.c:253
+#: libgeda/src/scheme/scheme_attrib.c:267
 msgid "~A is not a valid attribute: invalid string '~A'."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:169
+#: libgeda/src/scheme/scheme_complex.c:171
 msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
 # Object ~A is already on a page
-#: libgeda/src/scheme/scheme_complex.c:282
+#: libgeda/src/scheme/scheme_complex.c:290
 msgid "Object ~A is already on a page"
 msgstr "Objekt ~A er allerede på en side"
 
-#: libgeda/src/scheme/scheme_complex.c:290 libgeda/src/scheme/scheme_page.c:64
+#: libgeda/src/scheme/scheme_complex.c:298 libgeda/src/scheme/scheme_page.c:64
 msgid "Object ~A is already attached to something"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:350
+#: libgeda/src/scheme/scheme_complex.c:360
 msgid "Object ~A is attached to a different complex"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:357
+#: libgeda/src/scheme/scheme_complex.c:367
 msgid "Object ~A is attached to a page"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:364
+#: libgeda/src/scheme/scheme_complex.c:374
 #: libgeda/src/scheme/scheme_page.c:356
 msgid "Object ~A is attached as an attribute"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:371
+#: libgeda/src/scheme/scheme_complex.c:381
 #: libgeda/src/scheme/scheme_page.c:363
 msgid "Object ~A has attributes"
 msgstr ""
@@ -1844,19 +1845,19 @@ msgstr ""
 msgid "More than one component found with name [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:86 libgeda/src/struct/s_hierarchy.c:263
+#: libgeda/src/struct/s_hierarchy.c:129 libgeda/src/struct/s_hierarchy.c:308
 msgid "Schematic not found in source library."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:112
+#: libgeda/src/struct/s_hierarchy.c:155
 msgid "Hierarchy contains a circular dependency."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:214
+#: libgeda/src/struct/s_hierarchy.c:258
 msgid "There are no schematics above the current one!\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:376
+#: libgeda/src/struct/s_hierarchy.c:425
 msgid "Failed to descend hierarchy into"
 msgstr ""
 
@@ -1906,17 +1907,17 @@ msgstr ""
 msgid "Could not write message to log file\n"
 msgstr "Kunne ikke skrive besked til logfil\n"
 
-#: libgeda/src/utility/u_log.c:274 libgeda/src/utility/u_log.c:299
+#: libgeda/src/utility/u_log.c:275 libgeda/src/utility/u_log.c:300
 msgid "Could not create log directory"
 msgstr ""
 
 # Could not create unique log filename in
-#: libgeda/src/utility/u_log.c:382
+#: libgeda/src/utility/u_log.c:383
 msgid "Could not create unique log filename in"
 msgstr "Kunne ikke skabe unikke log filnavn i"
 
 # Could not create log file in
-#: libgeda/src/utility/u_log.c:386
+#: libgeda/src/utility/u_log.c:387
 msgid "Could not create log file in"
 msgstr "Kunne ikke oprette logfil i"
 

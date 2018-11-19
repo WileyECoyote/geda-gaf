@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-01 13:58-0500\n"
+"POT-Creation-Date: 2018-11-18 20:11-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -93,19 +93,19 @@ msgstr "normale beëindiging\n"
 msgid "FAILED:"
 msgstr ""
 
-#: gschem/src/base/gschem_dialog.c:564
+#: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
 msgstr "Huidige Venster"
 
-#: gschem/src/base/gschem_dialog.c:565
+#: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
 msgstr "Ouer venster vir hierdie dialoog"
 
-#: gschem/src/base/gschem_dialog.c:585
+#: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
 msgstr "Titel"
 
-#: gschem/src/base/gschem_dialog.c:586
+#: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
 msgstr "Dialoog venster titel"
 
@@ -616,11 +616,11 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "gevind ongeldig gschem venster smob ~S"
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5142
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5145
 msgid "current value of"
 msgstr "huidige waarde van"
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5143
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5146
 msgid "is"
 msgstr "is"
 
@@ -636,7 +636,7 @@ msgstr "kan nie"
 msgid "while inside an action!\n"
 msgstr "terwyl in 'n aksie!\n"
 
-#: gschem/src/iface/i_command.c:772 gschem/src/iface/i_command.c:2800
+#: gschem/src/iface/i_command.c:772 gschem/src/iface/i_command.c:2801
 msgid "New page created"
 msgstr "Nuwe bladsy geskep"
 
@@ -705,64 +705,64 @@ msgid "Specify new zoom:"
 msgstr "Spesifiseer nuwe vergroting:"
 
 # error
-#: gschem/src/iface/i_command.c:2333
+#: gschem/src/iface/i_command.c:2334
 msgid "error"
 msgstr "fout"
 
-#: gschem/src/iface/i_command.c:2341
+#: gschem/src/iface/i_command.c:2342
 msgid "No component selected\n"
 msgstr "Geen komponent gekies\n"
 
-#: gschem/src/iface/i_command.c:2886
+#: gschem/src/iface/i_command.c:2887
 msgid "Confirm revert ALL documents"
 msgstr "Bevestig oplaai ALLE dokumente"
 
-#: gschem/src/iface/i_command.c:3068
+#: gschem/src/iface/i_command.c:3069
 msgid "Searching for source"
 msgstr "Soek vir bron"
 
-#: gschem/src/iface/i_command.c:3102
+#: gschem/src/iface/i_command.c:3104
 msgid "Failed to descend into"
 msgstr "Kon nie afbeelding laai nie"
 
-#: gschem/src/iface/i_command.c:3111
+#: gschem/src/iface/i_command.c:3113
 msgid "Hierarchy Error"
 msgstr "Hierargie"
 
-#: gschem/src/iface/i_command.c:3188
+#: gschem/src/iface/i_command.c:3190
 msgid "Searching for symbol"
 msgstr "Soek vir simbool"
 
-#: gschem/src/iface/i_command.c:3198
+#: gschem/src/iface/i_command.c:3200
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Simbool is nie 'n ware lêer. Simbool kan nie gelaai word nie.\n"
 
-#: gschem/src/iface/i_command.c:3245
+#: gschem/src/iface/i_command.c:3247
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Daar is geen stroombaandiagram Bo die aktiewe bladsy!\n"
 
 # Object is attached to something
-#: gschem/src/iface/i_command.c:3374
+#: gschem/src/iface/i_command.c:3377
 msgid "Object is attached to something\n"
 msgstr "Voorwerp is aan iets verbonde\n"
 
-#: gschem/src/iface/i_command.c:3780
+#: gschem/src/iface/i_command.c:3783
 msgid "Attribute is already attached\n"
 msgstr "Eienskappe is reeds aangeheg\n"
 
-#: gschem/src/iface/i_command.c:4179
+#: gschem/src/iface/i_command.c:4182
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "WAARSKUWING: Moenie vertaal met snap af!\n"
 
-#: gschem/src/iface/i_command.c:4180
+#: gschem/src/iface/i_command.c:4183
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "WAARSKUWING: Draai snap op en voort te gaan met vertaal.\n"
 
-#: gschem/src/iface/i_command.c:4186
+#: gschem/src/iface/i_command.c:4189
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "WAARSKUWING: Snap rooster grootte is nie gelyk aan 100!\n"
 
-#: gschem/src/iface/i_command.c:4187
+#: gschem/src/iface/i_command.c:4190
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -770,78 +770,78 @@ msgstr ""
 "WAARSKUWING: As jy die vertaling van 'n simbool aan die oorsprong, moet die "
 "grootte snap rooster opgestel word tot 100\n"
 
-#: gschem/src/iface/i_command.c:4385
+#: gschem/src/iface/i_command.c:4388
 msgid "Grid OFF\n"
 msgstr "Rooster AF\n"
 
-#: gschem/src/iface/i_command.c:4386
+#: gschem/src/iface/i_command.c:4389
 msgid "Dot grid activated\n"
 msgstr "Dot rooster geaktiveer\n"
 
-#: gschem/src/iface/i_command.c:4387
+#: gschem/src/iface/i_command.c:4390
 msgid "Mesh grid activated\n"
 msgstr "Mesh rooster geaktiveer\n"
 
-#: gschem/src/iface/i_command.c:4466
+#: gschem/src/iface/i_command.c:4469
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Snap AF (VERSIGTIG!)\n"
 
-#: gschem/src/iface/i_command.c:4471
+#: gschem/src/iface/i_command.c:4474
 msgid "Snap ON\n"
 msgstr "Snap Op\n"
 
-#: gschem/src/iface/i_command.c:4475
+#: gschem/src/iface/i_command.c:4478
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Snap terug na die rooster (VERSIGTIG!)\n"
 
-#: gschem/src/iface/i_command.c:4499
+#: gschem/src/iface/i_command.c:4502
 msgid "Rubber band mode is OFF\n"
 msgstr "Rekkie is AF\n"
 
-#: gschem/src/iface/i_command.c:4502
+#: gschem/src/iface/i_command.c:4505
 msgid "Rubber band mode is ON\n"
 msgstr "Rekkie is AAN\n"
 
-#: gschem/src/iface/i_command.c:4513
+#: gschem/src/iface/i_command.c:4516
 msgid "Magnetic net mode is ON\n"
 msgstr "Magnetiese netto modus is OP\n"
 
-#: gschem/src/iface/i_command.c:4516
+#: gschem/src/iface/i_command.c:4519
 msgid "Magnetic net mode is OFF\n"
 msgstr "Magnetiese netto modus is off\n"
 
-#: gschem/src/iface/i_command.c:4533 gschem/src/iface/i_command.c:4575
+#: gschem/src/iface/i_command.c:4536 gschem/src/iface/i_command.c:4578
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr "af"
 
-#: gschem/src/iface/i_command.c:4536 gschem/src/iface/i_command.c:4578
+#: gschem/src/iface/i_command.c:4539 gschem/src/iface/i_command.c:4581
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "op"
 
-#: gschem/src/iface/i_command.c:4538
+#: gschem/src/iface/i_command.c:4541
 msgid "Drag-Can-Move is now"
 msgstr "Sleep-Can-Move is nou"
 
-#: gschem/src/iface/i_command.c:4550
+#: gschem/src/iface/i_command.c:4553
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Handelingsterugvoermodus na SKETS gestel\n"
 
-#: gschem/src/iface/i_command.c:4554
+#: gschem/src/iface/i_command.c:4557
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Handelingsterugvoermodus na OMTREKREGHOEK\n"
 
-#: gschem/src/iface/i_command.c:4580
+#: gschem/src/iface/i_command.c:4583
 msgid "Auto-Pan is now"
 msgstr "Outomatiese pan is nou"
 
-#: gschem/src/iface/i_command.c:4632 gschem/src/iface/i_command.c:4661
-#: gschem/src/iface/i_command.c:4681 gschem/src/iface/i_command.c:4701
+#: gschem/src/iface/i_command.c:4635 gschem/src/iface/i_command.c:4664
+#: gschem/src/iface/i_command.c:4684 gschem/src/iface/i_command.c:4704
 msgid "Check path:"
 msgstr "Gaan pad:"
 
-#: gschem/src/iface/i_command.c:4801
+#: gschem/src/iface/i_command.c:4804
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(Lees net) width =%d, hoogte =%d\n"
@@ -929,7 +929,7 @@ msgstr "Bewaar Alles"
 msgid "Renaming session"
 msgstr "Bewaar Alles"
 
-#: gschem/src/iface/i_sessions.c:1049
+#: gschem/src/iface/i_sessions.c:1049 gschem/src/object/o_attrib.c:177
 msgid "to"
 msgstr "om"
 
@@ -1146,35 +1146,35 @@ msgstr "Fout tydens lêer operasie"
 msgid "Recovery: undo last action\n"
 msgstr "Maak laaste handeling ongedaan\n"
 
-#: gschem/src/object/o_attrib.c:123
+#: gschem/src/object/o_attrib.c:125
 msgid "already attached to an object"
 msgstr ""
 
 # Attribute is
-#: gschem/src/object/o_attrib.c:129
+#: gschem/src/object/o_attrib.c:131
 msgid "Attribute is"
 msgstr "Attribuut is"
 
 # One attribute was
-#: gschem/src/object/o_attrib.c:132
+#: gschem/src/object/o_attrib.c:134
 msgid "One attribute was"
 msgstr "Eén attribuut was"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:137
+#: gschem/src/object/o_attrib.c:139
 msgid "All of the attributes were"
 msgstr "Al die eienskappe was"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:141
+#: gschem/src/object/o_attrib.c:143
 msgid "Some of the attributes were"
 msgstr "Sommige van die eienskappe was"
 
 # attached 1 attribute, attached 2 attributes
-#: gschem/src/object/o_attrib.c:164
-#, c-format
-msgid "attached %d attribute"
-msgid_plural "attached %d attributes"
+#: gschem/src/object/o_attrib.c:165
+#, fuzzy, c-format
+msgid "Attached %d attribute"
+msgid_plural "Attached %d attributes"
 msgstr[0] "aangeheg %d eienskap"
 msgstr[1] "aangeheg %d eienskappe"
 

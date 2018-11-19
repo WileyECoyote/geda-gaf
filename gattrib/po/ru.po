@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-10-17 10:35-0500\n"
+"POT-Creation-Date: 2018-11-18 20:11-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -897,11 +897,11 @@ msgstr ""
 msgid "both"
 msgstr ""
 
-#: gattrib/src/x_window.c:189
+#: gattrib/src/x_window.c:202
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:219
+#: gattrib/src/x_window.c:232
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 

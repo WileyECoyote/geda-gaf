@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2018-11-18 20:10-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -208,7 +208,7 @@ msgid "Whether the combo box draws a frame around the child"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2127
-#: libgedauio/src/widgets/geda_menu_button.c:1176
+#: libgedauio/src/widgets/geda_menu_button.c:1190
 msgid "Focus on click"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgid "Size of the drag handle in pixels."
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:419
-#: libgedauio/src/widgets/geda_menu_button.c:1203
+#: libgedauio/src/widgets/geda_menu_button.c:1217
 msgid "Image widget"
 msgstr ""
 
@@ -604,7 +604,7 @@ msgid "Child widget to appear next to the menu text"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:432
-#: libgedauio/src/widgets/geda_menu_button.c:1168
+#: libgedauio/src/widgets/geda_menu_button.c:1182
 msgid "Use stock"
 msgstr ""
 
@@ -630,7 +630,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:1383
 #: libgedauio/src/widgets/geda_label.c:1763
-#: libgedauio/src/widgets/geda_menu_button.c:1160
+#: libgedauio/src/widgets/geda_menu_button.c:1174
 msgid "Label"
 msgstr ""
 
@@ -794,90 +794,90 @@ msgid "Whether visited links should be tracked"
 msgstr ""
 
 # Open Link
-#: libgedauio/src/widgets/geda_label.c:5344
+#: libgedauio/src/widgets/geda_label.c:5343
 msgid "_Open Link"
 msgstr "ലിങ്ക് തുറക്കുക"
 
-#: libgedauio/src/widgets/geda_label.c:5356
+#: libgedauio/src/widgets/geda_label.c:5355
 msgid "Copy _Link Address"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1153
+#: libgedauio/src/widgets/geda_menu_button.c:1167
 msgid "Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1154
+#: libgedauio/src/widgets/geda_menu_button.c:1168
 msgid "The drop-down menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1161
+#: libgedauio/src/widgets/geda_menu_button.c:1175
 msgid ""
 "Text of the label widget inside the button, if the button contains a label "
 "widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1169
+#: libgedauio/src/widgets/geda_menu_button.c:1183
 msgid ""
 "If set, the label is used to pick a stock item instead of being displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1177
+#: libgedauio/src/widgets/geda_menu_button.c:1191
 msgid "Whether the button grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1184
+#: libgedauio/src/widgets/geda_menu_button.c:1198
 msgid "Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1185
+#: libgedauio/src/widgets/geda_menu_button.c:1199
 msgid "The border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1193
+#: libgedauio/src/widgets/geda_menu_button.c:1207
 msgid "Arrow Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1194
+#: libgedauio/src/widgets/geda_menu_button.c:1208
 msgid "The arrow border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1204
+#: libgedauio/src/widgets/geda_menu_button.c:1218
 msgid "Child widget to appear next to the button text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1212
+#: libgedauio/src/widgets/geda_menu_button.c:1226
 msgid "Image position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1213
+#: libgedauio/src/widgets/geda_menu_button.c:1227
 msgid "The position of the image relative to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1227
+#: libgedauio/src/widgets/geda_menu_button.c:1241
 msgid "Default Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1228
+#: libgedauio/src/widgets/geda_menu_button.c:1242
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
 # Default Outside Spacing
-#: libgedauio/src/widgets/geda_menu_button.c:1241
+#: libgedauio/src/widgets/geda_menu_button.c:1255
 msgid "Default Outside Spacing"
 msgstr "സ്പെയ്സിംഗ് പുറത്ത് സ്ഥിരസ്ഥിതി"
 
-#: libgedauio/src/widgets/geda_menu_button.c:1242
+#: libgedauio/src/widgets/geda_menu_button.c:1256
 msgid ""
 "Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
 "the border"
 msgstr ""
 
 # Inner Border
-#: libgedauio/src/widgets/geda_menu_button.c:1252
+#: libgedauio/src/widgets/geda_menu_button.c:1266
 msgid "Inner Border"
 msgstr "ആന്തരിക അതിർത്തി"
 
-#: libgedauio/src/widgets/geda_menu_button.c:1253
+#: libgedauio/src/widgets/geda_menu_button.c:1267
 msgid "Border between button edges and child."
 msgstr ""
 
