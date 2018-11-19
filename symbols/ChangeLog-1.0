@@ -9,6 +9,9 @@
     * linear/special/MOS_6581-1.sym: Clean symbol; remove duplicate dead link
       fix over-bars, update device attribtue, add value.
 
+    * linear/special/TXS0102.sym: Update device, pin types and footprint,
+      add documentation link.
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:

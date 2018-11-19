@@ -33,7 +33,7 @@ pinnumber=1
 T 1800 700 5 8 0 1 0 0 1
 pinseq=3
 T 1545 545 5 8 0 1 0 0 1
-pintype=out
+pintype=io
 }
 P 600 1500 600 1200 1 0 0
 {
@@ -66,7 +66,7 @@ pinnumber=6
 T 0 500 5 8 0 1 0 0 1
 pinseq=6
 T 255 545 5 8 0 1 0 6 1
-pintype=io
+pintype=in
 }
 P 1200 1500 1200 1200 1 0 0
 {
@@ -88,13 +88,15 @@ pinnumber=8
 T 1800 900 5 8 0 1 0 0 1
 pinseq=8
 T 1645 945 5 8 0 1 0 0 1
-pintype=out
+pintype=io
 }
 T 1600 400 5 10 1 1 0 0 1
-device=LEVEL_TRANSLATOR
+device=TXS0102
 T 0 2300 8 10 0 0 0 0 1
-footprint=~
-T 195 2300 5 10 0 0 0 0 1
+footprint=SSOP8
+T 200 2300 5 10 1 0 0 0 1
 description=2-bit bi-directional level translator
 T 600 100 9 10 0 0 0 0 1
 numslots=0
+T 200 2450 5 10 1 0 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/txs0102.pdf
