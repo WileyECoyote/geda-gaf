@@ -3,6 +3,9 @@
     * linear/led_drivers/UAA170-1.sym: Relocate symbol from linear/special,
       add description attribute.
 
+    * linear/special/ICL7660-1.sym: Clean symbol, update pin types, add
+      description and documentation attributes.
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:
