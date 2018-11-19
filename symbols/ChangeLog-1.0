@@ -20,6 +20,14 @@
 
     * passive/rf/attenuator-1.sym: Clean symbol, add description.
 
+    * source: Revise ground symbols to improve appearance; draw lines before
+      pin, lower the lines to align with lower edge of the bottom of the pin,
+      eliminate extra lines:
+
+            * source/gnd-1.sym
+            * source/gnd-2.sym
+            * source/gnd-3.sym
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:

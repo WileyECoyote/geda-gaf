@@ -1,16 +1,7 @@
 v 20150401 2
-T 200 1250 8 10 0 0 0 0 1
-author=AutoTron
-T 200 1100 8 10 0 0 0 0 1
-dist-license=GPLv2
-T 200 950 8 10 0 0 0 0 1
-use-license=unlimited
-T 200 800 8 10 0 0 0 0 1
-numslots=0
-T 200 350 8 10 0 1 0 0 1
-footprint=none
-T 200 500 9 10 0 1 0 0 1
-description=signal ground node
+L 0 90 200 90 3 0 2 0 -1 -1
+L 100 -35 0 90 3 0 2 0 -1 -1
+L 200 90 100 -35 3 0 2 0 -1 -1
 P 100 100 100 300 1 0 1
 {
 T 8 161 5 4 0 1 0 0 1
@@ -22,12 +13,21 @@ pinlabel=SGND
 T 158 161 5 4 0 1 0 0 1
 pintype=pwr
 }
-L 0 100 200 100 3 0 0 0 -1 -1
-L 100 -25 0 100 3 0 0 0 100 100
-L 100 -25 200 100 3 0 0 0 100 100
-T 200 650 8 10 0 0 0 0 1
-net=SGND:1
 T 200 0 5 10 0 1 0 0 1
 device=GROUND_NODE
 T 200 350 8 10 0 1 0 0 1
 refdes=none
+T 200 500 9 10 0 1 0 0 1
+description=signal ground node
+T 200 350 8 10 0 1 0 0 1
+footprint=none
+T 200 800 8 10 0 0 0 0 1
+numslots=0
+T 200 650 8 10 0 0 0 0 1
+net=SGND:1
+T 200 1250 8 10 0 0 0 0 1
+author=AutoTron
+T 200 1100 8 10 0 0 0 0 1
+dist-license=GPLv2
+T 200 950 8 10 0 0 0 0 1
+use-license=unlimited
