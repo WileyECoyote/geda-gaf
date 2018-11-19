@@ -1,7 +1,7 @@
-v 20070626 1
+v 20070626 2
 B 300 200 1500 4400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 200 4900 5 10 0 0 0 0 1
-device=SmartMedia
+device=CONNECTOR
 P 300 4400 0 4400 1 0 1
 {
 T 200 4450 5 8 1 1 0 6 1
@@ -252,9 +252,9 @@ T 200 5300 5 10 0 0 0 0 1
 numslots=0
 T 200 5500 5 10 0 0 0 0 1
 symversion=1.1
-T 200 5700 5 10 0 0 0 0 1
+T 200 5700 5 10 0 1 0 0 1
 description=smart media connector
-T 200 5900 5 10 0 0 0 0 1
-documentation=http://www.iodata.com/catalogs/sm_1.pdf
+T 200 5900 5 10 0 1 0 0 1
+documentation=http://en.wikipedia.org/wiki/SmartMedia
 T 300 50 9 10 1 0 0 0 1
 SmartMedia

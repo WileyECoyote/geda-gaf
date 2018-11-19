@@ -12,6 +12,9 @@
     * linear/special/TXS0102.sym: Update device, pin types and footprint,
       add documentation link.
 
+    * linear/special/smartmedia-1.sym: Change device attribute to CONNECTOR,
+      update documentation link.
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:
