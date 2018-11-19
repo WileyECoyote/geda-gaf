@@ -335,16 +335,13 @@ NET *s_net_return_tail(NET *head)
  */
 char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
 {
-  NET       *n_current;
-  EdaConfig *cfg;
-  char      *name = NULL;
-  int        naming_priority;
+  NET  *n_current;
+  char *name;
+  int   naming_priority;
 
-  n_current = net_head;
-
-  /* This is wrong, the rc setting is being ignored */
-  cfg = eda_config_get_context_for_file (NULL);
-  naming_priority = eda_config_get_integer (cfg, "gnetlist", "net-naming-priority", NULL);
+  n_current       = net_head;
+  name            = NULL;
+  naming_priority = pr_current->net_naming_priority;
 
   while (n_current != NULL) {
 
