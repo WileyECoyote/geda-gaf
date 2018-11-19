@@ -1,3 +1,7 @@
+2018-11-19  Wiley E. Hill <wileyhill@gmail.com>
+
+    * CascodeAmp/CascodeAmp.sch: Add 0402 footprints to resistor-1 symbols.
+
 2018-11-05  Wiley E. Hill <wileyhill@gmail.com>
 
     * MSA-2643/Q[1,2].sch: Shift diagrams to center in titlebock and update
@@ -9,8 +13,8 @@
 2018-10-24  Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/CascodeAmp.sch: Change the path to 2n5245_iv.png to be
-      relative. This was broke when libeda wrote the image filename with
-      an absolute path on 2018-10-16; will break the next time libeda
+      relative. This was broke when libgeda wrote the image filename with
+      an absolute path on 2018-10-16; will break the next time libgeda
       writes the file.
 
     * CascodeAmp/tests/runtest.sh: Create a soft link to toplevel bitmaps
@@ -382,7 +386,7 @@
 
 2015-11-30  Wiley E. Hill <wileyhill@gmail.com>
 
-    * lightning_detector/bom: Update Terry's script: Change "uref" to
+    * lightning_detector/bom: Update Terry`s script: Change "uref" to
       "refdes" and corresponding char count=7.
 
     * lightning_detector/sym/2N4401.sym: Add pin type and label attributes.
