@@ -2,6 +2,8 @@
 
     * CascodeAmp/CascodeAmp.sch: Add 0402 footprints to resistor-1 symbols.
 
+    * MSA-2643/MSA-2643.sch: Add 0402 footprints to resistor-1 symbols.
+
 2018-11-05  Wiley E. Hill <wileyhill@gmail.com>
 
     * MSA-2643/Q[1,2].sch: Shift diagrams to center in titlebock and update
