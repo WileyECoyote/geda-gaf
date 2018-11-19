@@ -85,9 +85,8 @@ NET *s_net_add(NET *ptr)
 /*! \brief Release memory for a Net Record Structure
  *  \par Function Description
  *   Frees internal strings for the pin label and the connected_to
- *   and adds the pointer to net_name to \a list before releasing
- *   the NET structure for each NET in the linked list pointed to
- *   by \a ptr.
+ *   and adds the net_name pointer to \a list before releasing the
+ *   NET structure for each NET in the linked list pointed to by \a ptr.
  *
  *  \param [in]  ptr   Pointer to linked list of NET structures.
  *  \param [out] list  List to be appended with the pointers of
@@ -546,7 +545,7 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
 
   /* didn't find a name */
   /* go looking for another net which might have already been named */
-  /* ie you don't want to create a new unnamed net if the net has */
+  /* ie we do not want to create a new unnamed net if the net has */
   /* already been named */
   nl_current = netlist_head;
   while (nl_current != NULL) {

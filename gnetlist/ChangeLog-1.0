@@ -7,7 +7,7 @@
       created in the second pass. This is more efficient because old single
       pass loop would add rename records and another record to rename the
       first rename record that was added depending on where the net and
-      netname attributes occurred in the file.
+      netname attributes occurred in the file. Update source documentation.
 
 2018-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
