@@ -18,6 +18,8 @@
     * passive/resistor/resistor-1b.sym: Change footprint attribute value
       to "unknown", add value=value?, revise attribute description.
 
+    * passive/rf/attenuator-1.sym: Clean symbol, add description.
+
 2018-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * io/input-[1,2,3].sym: Re-size smaller dash 1 input symbols:
