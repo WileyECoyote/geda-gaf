@@ -1,4 +1,4 @@
-v 20180521 2
+v 20181017 2
 C 1000 1000 0 0 0 title-B.sym
 {
 T 1500 12600 5 10 0 1 0 0 1
@@ -256,31 +256,31 @@ device=VOLTAGE_SOURCE
 }
 C 9000 3700 1 0 0 gnd-1.sym
 {
-T 9200 4050 5 10 0 1 0 0 1
-footprint=none
 T 9200 3700 5 10 0 1 0 0 1
 device=GROUND_NODE
+T 9200 4050 5 10 0 1 0 0 1
+footprint=none
 }
 C 12100 3700 1 0 0 gnd-1.sym
 {
-T 12300 4050 5 10 0 1 0 0 1
-footprint=none
 T 12300 3700 5 10 0 1 0 0 1
 device=GROUND_NODE
+T 12300 4050 5 10 0 1 0 0 1
+footprint=none
 }
 C 7300 3700 1 0 0 gnd-1.sym
 {
-T 7500 4050 5 10 0 1 0 0 1
-footprint=none
 T 7500 3700 5 10 0 1 0 0 1
 device=GROUND_NODE
+T 7500 4050 5 10 0 1 0 0 1
+footprint=none
 }
 C 14400 8400 1 0 0 gnd-1.sym
 {
-T 14600 8750 5 10 0 1 0 0 1
-footprint=none
 T 14600 8400 5 10 0 1 0 0 1
 device=GROUND_NODE
+T 14600 8750 5 10 0 1 0 0 1
+footprint=none
 }
 C 2300 7800 1 0 0 in-1.sym
 {

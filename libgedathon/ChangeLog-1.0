@@ -1,3 +1,8 @@
+2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/lpfilter.sch: Update reference schematic because the ground
+      symbol footprint attribute appears after the device attribute.
+
 2018-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/lpfilter.sch: Update reference schematic because a description
