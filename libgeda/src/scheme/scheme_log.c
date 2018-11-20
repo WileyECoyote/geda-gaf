@@ -162,7 +162,13 @@ EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0,
                               SCM_F_WIND_EXPLICITLY);
 
   if (string) {
-    value_s = scm_from_utf8_string (string);
+
+    char *str;
+
+    str = geda_utility_string_get_valid_utf8 (string);
+    value_s = scm_from_utf8_string (str);
+
+    geda_free(str);
   }
   else {
     value_s = SCM_BOOL_F;

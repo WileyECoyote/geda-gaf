@@ -1,3 +1,9 @@
+2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/scheme/scheme_log.c: Revise log_read_x to utilize geda_utility_
+      string_get_valid_utf8 to ensure scm_from_utf8_string does not flake
+      out and randomly report bad encoding.
+
 2018-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_bus_object.c: Update function wrapping.
