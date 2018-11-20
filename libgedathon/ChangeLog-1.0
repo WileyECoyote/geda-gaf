@@ -1,3 +1,8 @@
+2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise suffix_installed_library to work with Linux;
+      appears broken since fix for Win32.
+
 2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/lpfilter.sch: Update reference schematic because the ground
