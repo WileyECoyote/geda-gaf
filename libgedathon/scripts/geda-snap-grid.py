@@ -269,7 +269,6 @@ def ProcessFile(Options, File):
         if Options.OutputFileName:
             OutputFileName = Options.OutputFileName
             gedafile.filename = Options.OutputFileName # Write the file to storage
-            print "Using " + OutputFileName + " for output file name"
         else:
             OutputFileName = gedafile.filename
 

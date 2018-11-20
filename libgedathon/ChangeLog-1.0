@@ -3,6 +3,9 @@
     * module/geda.c: Revise suffix_installed_library to work with Linux;
       appears broken since fix for Win32.
 
+    * scripts/geda-snap-grid.py: Remove apparent debug message of the
+      OutputFileName.
+
 2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/lpfilter.sch: Update reference schematic because the ground
