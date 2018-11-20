@@ -1689,6 +1689,9 @@ PyGeda_save_page( int pid )
       status++;
     }
   }
+  else {
+    status++;
+  }
   return status;
 }
 
