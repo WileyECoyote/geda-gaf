@@ -94,13 +94,13 @@ bool is_a_gschem_dialog (void *dialog)
 
 /* Begin Call Back Selection Handler */
 
- *  When the page's selection changes this function identifies how
- *  many objects which can have attributes are currently selected. If
- *  this number is 1, the dialog is set to edit the attributes of the
- *  first selected object..
 /*!
  * \brief GschemDialog On Selection Change Callback
  * \par Function Description
+ *  This function is called when the selection list of the current page
+ *  changes if the sibling dialog set the PROP_SELECTION_TRACKER property,
+ *  i.e. a callback function. This function calls that function passing
+ *  the top-level and the first member of the new selection, if any.
  *
  * \param [in] selection  The SELECTION object of page being edited.
  * \param [in] user_data  The dialog.
