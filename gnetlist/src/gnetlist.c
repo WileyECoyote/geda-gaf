@@ -262,6 +262,8 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   cwd = g_get_current_dir();
 
+  i_vars_set (pr_current);
+
   i = argv_index;
 
   while (argv[i] != NULL) {
@@ -309,8 +311,6 @@ static void main_prog(void *closure, int argc, char *argv[])
     GEDA_FREE(output_filename);
     exit(1);
   }
-
-  i_vars_set (pr_current);
 
 #if DEBUG
   geda_struct_page_print_all(pr_current);
