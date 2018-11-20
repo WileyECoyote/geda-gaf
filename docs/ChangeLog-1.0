@@ -1,3 +1,8 @@
+2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * wiki/geda-faq-gnetlist.html: Revise to avoid contraction with hard
+      coded 0x27 for the apostrophe.
+
 2018-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * wiki/geda-faq-gnetlist.fr.html: Replace file.
