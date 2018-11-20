@@ -9,7 +9,9 @@
     * src/libgedathon.c: Fix returning error in PyGeda_save_page when the
       page is not returned by geda_toplevel_get_page_by_id. PyGeda_save_page
       correctly returned an error if there was an error saving the page but
-      not if the page object was invalid.
+      not if the page object was invalid. Revise function PyGeda_get_objects
+      to return an empty list instead of an empty string when there are no
+      page objects.
 
 2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1903,8 +1903,8 @@ PyObject *PyGeda_get_object(PyObject *py_capsule)
  *  \param [in] pid  Integer, the page id of the page from which to get the sub-objects
  *  \param [in] sid  Integer, the PyGedaObject id of the Object from which to get the sub-objects
  *
- *  \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
- *                did not contain any objects.
+ *  \return [out] PyList list of GedaCapsule Objects or an empty list if the
+ *                source object did not contain any objects.
  */
 PyObject *PyGeda_get_objects( int pid, int sid )
 {
@@ -1934,8 +1934,9 @@ PyObject *PyGeda_get_objects( int pid, int sid )
     py_list = PyGeda_glist_2_pylist(list);
   }
   else {
-    py_list = Py_BuildValue("");
+    py_list = Py_BuildValue("()");
   }
+
   return py_list;
 }
 
