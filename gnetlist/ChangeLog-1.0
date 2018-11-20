@@ -2,6 +2,9 @@
 
     * src/gnetlist.c: Call i_vars_set in main_prog before loading documents.
 
+    * gnetlist/src/s_rename.c: Revise s_rename_print to start numbering with
+      one, not zero, and actually increment the index.
+
 2018-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-drc2.scm: Add check for "OneConnection" in check-single-nets

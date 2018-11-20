@@ -151,14 +151,14 @@ void s_rename_print(void)
   RENAME *temp_rename;
   SET    *temp_set;
 
-  int i;
+  int i = 1;
 
-  for (i = 0, temp_set = first_set; temp_set;
-              temp_set = temp_set->next_set, i++) {
+  for (temp_set = first_set; temp_set;
+       temp_set = temp_set->next_set) {
     for (temp_rename = temp_set->first_rename; temp_rename;
          temp_rename = temp_rename->next) {
-      printf("%d) Source: _%s_", i, temp_rename->src);
-      printf(" -> Dest: _%s_\n", temp_rename->dest);
+      printf("%d) Source: _%s_", i++, temp_rename->src);
+      printf(" -> Dest: _%s_\n",      temp_rename->dest);
     }
   }
 }
