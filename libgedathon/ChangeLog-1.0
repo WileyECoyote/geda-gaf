@@ -1,3 +1,8 @@
+2018-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgedathon/src/libgedathon.c: Update argument to geda_page_rename
+      in PyGeda_rename_page and PyGeda_save_page_as.
+
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Revise suffix_installed_library to work with Linux;

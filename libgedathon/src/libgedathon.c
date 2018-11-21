@@ -1658,7 +1658,7 @@ int PyGeda_rename_page (int pid, const char *filename)
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
-    status = geda_page_rename(page, filename);
+    status = geda_page_rename(page, filename, TRUE);
   }
   return status;
 }
@@ -1712,9 +1712,11 @@ int PyGeda_save_page_as (int pid, const char *filename)
   int     status = 0;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
+
   if (page && (GEDA_IS_PAGE(page))) {
-    status = geda_page_rename(page, filename);
+    status = geda_page_rename(page, filename, FALSE);
   }
+
   return status ? !PyGeda_save_page(pid) : 0;
 }
 
