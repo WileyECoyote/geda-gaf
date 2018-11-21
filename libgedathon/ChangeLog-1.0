@@ -2,6 +2,8 @@
 
     * docs/guide-libgedathon.[html,tex]: Minor grammatical revisions.
 
+    * module/objects/geda_py_page.c: Add read only member "modified".
+
     * src/libgedathon.c: Eliminate unnecessary initialization of page to
       NULL in PyGeda_rename_page and update argument to geda_page_rename
       in PyGeda_rename_page and PyGeda_save_page_as.

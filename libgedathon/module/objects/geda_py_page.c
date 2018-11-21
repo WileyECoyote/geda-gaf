@@ -87,6 +87,7 @@ static int Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
 
 static PyMemberDef Page_members[] = {
   {"pid",      T_INT,       offsetof(PyGedaPageObject, pid),      RO, "Page Identifier"},
+  {"modified", T_INT,       offsetof(PyGedaPageObject, modified), RO, "Page modified flag"},
   {NULL}  /* Sentinel */
 };
 
