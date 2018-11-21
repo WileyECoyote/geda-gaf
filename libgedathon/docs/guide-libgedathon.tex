@@ -32,7 +32,7 @@ pinlabel = geda.new\_attrib(``pinlabel'', ``2'', x, y1, INVISIBLE, SHOW\_VALUE, 
 
 geda.add\_object(pin, pinlabel)
 
-  which could have also been done using the Pin object's add method:
+  which could have also been accomplished using the Pin object's add method:
 
 pin.add(pinlabel)
 
@@ -52,7 +52,7 @@ DefaultCapacitorSymbol(``capacitor-py'')
 DefaultOpAmpSymbol(``dual-opamp-py'')
 
 
-  The default settings are not saved between sessions. These examples actually show the ``real'' default symbol name, but could name any valid symbol name. Typically a program would set the symbol name and then insert, or at least create, all symbols of that type before changing to a different symbol. To get the name of the current default symbol use the return value from the same function without an argument:
+  The default settings are not saved between sessions. These examples actually show the ``real'' default symbol name, but could name any valid symbol name. Typically a program would set the symbol name and then insert, or at least create, all symbols of that type before changing to a different symbol. To get the name of the current default symbol use the value returned from the same function without an argument:
 
 current\_titleblock = DefaultTitleblockSymbol()
 
@@ -71,7 +71,7 @@ tb = AddComponent(sheet1, titleblock, , 1000, 1000)
 AddComponent(sheet1, titleblock, , 1000, 1000)
 
 
-  In this case, since there is no reference to the object, the Python version of the object will be destroyed immediately, but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method was used, Libgedathon maintained a reference to the Python object but released the reference when the object was added to the Page, in the example above using geda.add\_object. The program could have saved a reference using the module method just as easily by referencing the object returned from geda.add\_object, aka tb=geda.add\_object. 
+  In this case, since there is no reference to the object, the Python version of the object will be destroyed immediately, but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method was used, Libgedathon maintained a reference to the Python object but released the reference when the object was added to the Page, in the example above using geda.add\_object. The program could have saved a reference using the module method just as easily by referencing the object returned from geda.add\_object, i.e. tb=geda.add\_object. 
 
 
   Note that in the previous examples for AddComponent, the third parameter, which is for the reference designator, was left blank. This is because titleblocks are not normally assigned designators but the positional syntax was used as oppose to using keywords. To illustrate the difference, the following example using mixed-mode syntax is equivalent to the preceding example:

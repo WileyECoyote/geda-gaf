@@ -41,7 +41,7 @@
   <br />
 	<dd><code>geda.add_object(pin, pinlabel)</code></dd>
   <p/>
-  which could have also been done using the Pin object's add method:
+  which could have also been accomplished using the Pin object's add method:
   <br />
    <dd><code>pin.add(pinlabel)</code></dd>
   <p/>
@@ -69,7 +69,7 @@
 	The default settings are not saved between sessions. The preceding examples actually show the "real" default symbol name,
 	but could name any valid symbol name. Typically a 	program would set the symbol name and then insert, or at least
 	create, all symbols of that type before changing	to a different	symbol. To get the name of the current default symbol use
-	the return value from the same function without an	argument:
+	the value returned from the same function without an	argument:
 	<br />
 	<dd><code>current_titleblock = DefaultTitleblockSymbol()</code></dd>
 	<p/>	
@@ -93,7 +93,7 @@
    but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method new_complex
    was used, Libgedathon maintained a reference to the Python object but released the reference when the object was added
    to the Page, in the example above using geda.add_object. Programs can save a reference using the module method
-   just as easily by referencing the object returned from geda.add_object, aka tb=geda.add_object.
+   just as easily by referencing the object returned from geda.add_object, i.e. tb=geda.add_object.
   <p/>
    Note that in the previous examples for AddComponent, the third parameter, which is for the reference designator, was
    left blank. This is because titleblocks are not normally assigned designators but positional syntax was used as
