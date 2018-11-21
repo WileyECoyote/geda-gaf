@@ -785,7 +785,7 @@ METHOD(is_page_modified)
  * \par Method Description
  *  This function provides a method to set a page object to be the
  *  Current Page Object. This method is similar to set_active_page but
- *  unlike set_active_page, this method this restore the current working
+ *  unlike set_active_page, this method restores the current working
  *  directory of the page.
  *
  * \sa set_active_page
@@ -830,7 +830,7 @@ METHOD(goto_page)
  * \brief Open an Existing Page
  * \par Method Description
  *  This function provides a method to open a existing schematic or symbol
- *  file. If file name is not provide a default name will be used, usually
+ *  file. If a file name is not provided a default name will be used, usually
  *  "untitled".
  *
  * \sa close_page
@@ -936,7 +936,7 @@ METHOD(close_page)
  *
  * \note 1. If the overwrite flag is not provided, an existing file might still
  *          be backed-up depending on the configuration variable "make_backup_files",
- *          which default to True. However, use of the overwrite flag will over-ride
+ *          which defaults to True. However, use of the overwrite flag will over-ride
  *          the configuration setting, so if the second argument evaluate to True
  *          then any existing files will be over-written without making a backup.
  *  example:
