@@ -1,3 +1,10 @@
+2018-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Update argument to geda_page_rename in
+      x_dialog_ep_revise_symbol_attribs, in this case the changed
+      flag is irrelavent since x_dialog_ep_revise_symbol_attribs
+      returns the result of whether the page was modified or not.
+
 2018-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
