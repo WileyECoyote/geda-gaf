@@ -108,6 +108,7 @@ static PyObject *Page_filename(PyGedaPageObject* self)
     return NULL;
 
   result = PyString_Format(format, args);
+
   Py_DECREF(args);
 
   return result;

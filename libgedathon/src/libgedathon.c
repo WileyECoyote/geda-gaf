@@ -1921,10 +1921,13 @@ PyObject *PyGeda_get_objects( int pid, int sid )
     list = geda_struct_page_get_objects (page);
   }
   else {
+
     object = geda_struct_page_get_object(page, sid);
+
     if (!object) {
       object = get_floating_object(sid);
     }
+
     if (object && GEDA_IS_COMPLEX(object)) {
       list = object->complex->prim_objs;
     }
@@ -1932,6 +1935,7 @@ PyObject *PyGeda_get_objects( int pid, int sid )
       list = NULL;
     }
   }
+
   if (list) {
     py_list = PyGeda_glist_2_pylist(list);
   }
@@ -3065,6 +3069,7 @@ PyObject *PyGeda_get_attribs(PyObject *py_object)
       };
     }
   }
+
   return output_list;
 }
 

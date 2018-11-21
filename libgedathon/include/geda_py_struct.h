@@ -64,6 +64,7 @@ struct st_py_color {
     unsigned char b;
     unsigned char a;
 };
+
 struct st_py_object {
 
     PyObject_HEAD
