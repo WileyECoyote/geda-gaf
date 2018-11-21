@@ -568,7 +568,7 @@ void geda_page_thaw_notify(Page *page)
  * \param [in,out] page     A valid Page object.
  * \param [in]     newname  New string name for page filename.
  */
-int geda_page_rename(Page *page, const char *newname)
+int geda_page_rename(Page *page, const char *newname, int changed)
 {
   bool result = FALSE;
 
@@ -577,7 +577,7 @@ int geda_page_rename(Page *page, const char *newname)
       GEDA_FREE(page->filename);
     }
     page->filename = geda_utility_string_strdup(newname);
-    page->CHANGED = TRUE;
+    page->CHANGED = changed;
     result = TRUE;
   }
   return result;

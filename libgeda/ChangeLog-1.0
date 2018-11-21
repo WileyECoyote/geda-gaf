@@ -1,3 +1,10 @@
+2018-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Modify geda_page_rename to require and int
+      page CHANGED flag so that applications can decide whether the
+      flag should be set or not. Previously the geda_page_rename set
+      the changed flag.
+
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_log.c: Revise log_read_x to utilize geda_utility_
@@ -1591,7 +1598,7 @@
     * src/geda/geda_keyfile.c: Revise function geda_keyfile_get_string_list
       so that the error argument is optional.
 
-    * tests/test_keyfile.c: Resequence id's for function geda_keyfile_get
+    * tests/test_keyfile.c: Resequence id`s for function geda_keyfile_get
       _locale_string to eliminate duplicate KF082203A and re-sequence
       identifiers retrievers with valid keys. Add checks for:
 
