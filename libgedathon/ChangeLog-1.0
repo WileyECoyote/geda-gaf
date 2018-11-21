@@ -2,7 +2,8 @@
 
     * docs/guide-libgedathon.[html,tex]: Minor grammatical revisions.
 
-    * src/libgedathon.c: Update argument to geda_page_rename
+    * src/libgedathon.c: Eliminate unnecessary initialization of page to
+      NULL in PyGeda_rename_page and update argument to geda_page_rename
       in PyGeda_rename_page and PyGeda_save_page_as.
 
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>

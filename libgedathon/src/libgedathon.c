@@ -1653,8 +1653,8 @@ PyObject *PyGeda_new_page( const char *filename, int over_write)
  */
 int PyGeda_rename_page (int pid, const char *filename)
 {
-  Page   *page   = NULL;
-  int     status = 0;
+  Page *page;
+  int   status = 0;
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
   if (page && (GEDA_IS_PAGE(page))) {
