@@ -1412,7 +1412,7 @@ PyObject *PyGeda_open_page( const char *filename )
   }
 
   /* Create an empty page with optional filename */
-  inline Page* empty_page( const char *name ) {
+  inline Page *empty_page( const char *name ) {
 
     char *fname;
 

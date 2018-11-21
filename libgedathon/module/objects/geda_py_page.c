@@ -92,7 +92,7 @@ static PyMemberDef Page_members[] = {
 
 /* ------------------------------ Begin Methods ---------------------------- */
 
-static PyObject *Page_filename(PyGedaPageObject* self)
+static PyObject *Page_filename(PyGedaPageObject *self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
