@@ -244,10 +244,12 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     /* no gotta, check with the base class,  */
     result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
+
   return result;
 }
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
+
 static PyObject *Net_get_netname(PyGedaNetObject *self, void *closure)
 {
   Py_INCREF(self->net_name);

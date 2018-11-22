@@ -81,6 +81,7 @@ static PyObject *Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 }
 
 /* ------------------------- PyGedaArcObject Initializer ------------------------- */
+
 static int Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
@@ -254,11 +255,11 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     /* no gotta, check with the base class,  */
     result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
+
   return result;
 }
 
 /* -------------------------- Begin Type Definition ------------------------ */
-
 
 static PyTypeObject PyGedaArcObjectType = {
     PyObject_HEAD_INIT(NULL)

@@ -152,6 +152,7 @@ static int Pin_init(PyGedaPinObject *self, PyObject *args, PyObject *kwds)
 
   /*! @note: Strings should NOT be dirty at this point! */
   self->object.dirty = 1;
+
   return 0;
 }
 
@@ -186,6 +187,7 @@ static int PyGedaPinObject_print(PyGedaPinObject *pin, FILE *file, int flags)
   if (fprintf(file, "<<%s> <%d %d %d %d> <label=%s> <number=%s> <pin-type=%s> <color=%d> <node-type=%d> <connect=%d>>",
               name, x1, y1, x2, y2, label, number, elect, color_code, node_type, whichend))
     ret_val = 0;
+
   return ret_val;
 }
 
@@ -289,6 +291,7 @@ static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     /* no gotta, check with the base class,  */
     result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
+
   return result;
 }
 
@@ -318,6 +321,7 @@ static int Pin_set_elect(PyGedaPinObject *self, PyObject *value, void *closure)
   self->electrical = value;
   self->dirty_electrical = 1;
   self->object.dirty = 1;
+
   return 0;
 }
 
@@ -345,8 +349,10 @@ static int Pin_set_mech(PyGedaPinObject *self, PyObject *value, void *closure)
   self->mechanical = value;
   self->dirty_mechanical = 1;
   self->object.dirty = 1;
+
   return 0;
 }
+
 static PyObject *Pin_get_label(PyGedaPinObject *self, void *closure)
 {
   Py_INCREF(self->label);
@@ -424,11 +430,13 @@ static PyObject *PyGedaPinObject_change(PyGedaPinObject* self)
   Py_INCREF(self->electrical);
   return self->electrical;
 }
+
 static PyObject *PyGedaPinObject_connect(PyGedaPinObject* self)
 {
   Py_INCREF(self->mechanical);
   return self->mechanical;
 }
+
 static PyObject *PyGedaPinObject_disconnect(PyGedaPinObject* self)
 {
   Py_INCREF(self->label);
@@ -505,6 +513,7 @@ PyMODINIT_FUNC initPin(PyObject *module)
   Py_INCREF(&PyGedaPinObjectType);
   PyModule_AddObject(pin_module, "Pin", (PyObject *)&PyGedaPinObjectType);
 }
+
 PyTypeObject *PyGedaPinClass(void)
 {
   return &PyGedaPinObjectType;

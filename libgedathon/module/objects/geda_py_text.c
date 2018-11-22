@@ -98,6 +98,7 @@ static void PyGedaTextObject_dealloc(PyGedaTextObject* self)
 }
 
 /* ------------------------- PyGedaTextObject Constructor ------------------------ */
+
 static PyObject *Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaTextObject *self;
@@ -119,7 +120,6 @@ static PyObject *Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->alignment = -1;
     self->angle     = -1;
 
-
  /* Generic Graphical Attributes Applicable to Textes */
     self->color.r         = default_color.r;
     self->color.g         = default_color.g;
@@ -130,13 +130,13 @@ static PyObject *Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->locked_color.g  = default_color.g;
     self->locked_color.b  = default_color.b;
     self->locked_color.a  = default_color.a;
-
   }
 
   return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaTextObject Initializer ------------------------ */
+
 static int Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
@@ -297,6 +297,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     /* no gotta, check with the base class,  */
     result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
+
   return result;
 }
 
@@ -436,8 +437,10 @@ static PyObject *PyGedaTextObject_value(PyGedaTextObject* self)
       out_str = PyString_FromString(ptr);
     }
   }
+
   return out_str;
 }
+
 static PyMethodDef Text_methods[] = {
   {"disp_string", (PyCFunction)PyGedaTextObject_disp_string, METH_NOARGS, "text_disp_string_docs"},
   {"name",        (PyCFunction)PyGedaTextObject_name,        METH_NOARGS, "text_name_docs"},
@@ -508,6 +511,7 @@ PyMODINIT_FUNC initText(PyObject *module)
   Py_INCREF(&PyGedaTextObjectType);
   PyModule_AddObject(text_module, "Text", (PyObject *)&PyGedaTextObjectType);
 }
+
 PyTypeObject *PyGedaTextClass(void)
 {
   return &PyGedaTextObjectType;

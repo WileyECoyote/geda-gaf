@@ -93,6 +93,7 @@ static int PyGedaObject_init(PyGedaObject *self, PyObject *args, PyObject *kwds)
 
   SWAP_PY_TMP_OBJECT(name)
   SWAP_PY_TMP_OBJECT(attributes)
+
   return 0;
 }
 
@@ -146,6 +147,7 @@ static int Object_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
   return result;
 }
+
 /* ------------------------------ Begin Methods ---------------------------- */
 
 static PyObject *PyGedaObject_name(PyGedaObject* self)
@@ -308,6 +310,7 @@ PyMODINIT_FUNC initPyGedaObject(PyObject *module)
   Py_INCREF(&PyGedaObjectType);
   PyModule_AddObject(object_module, "PyGedaObject", (PyObject *)&PyGedaObjectType);
 }
+
 PyTypeObject *PyGedaObjectClass(void)
 {
   return &PyGedaObjectType;

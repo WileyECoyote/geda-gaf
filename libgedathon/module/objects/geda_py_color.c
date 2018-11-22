@@ -145,6 +145,7 @@ static PyObject *rgb_set_alpha(PyObject *self, PyObject *args, PyObject *kwargs)
     }
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -187,6 +188,7 @@ static PyObject *rgb_subtract(PyObject *self, PyObject *args, PyObject *kwargs)
                      pyg_boxed_get(color, PyGedaColorObject));
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -206,6 +208,7 @@ static PyObject *rgb_multiply(PyObject *self, PyObject *args, PyObject *kwargs)
      gimp_rgb_multiply(pyg_boxed_get(self, PyGedaColorObject), factor);
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -242,6 +245,7 @@ static PyObject *rgb_clamp(PyObject *self)
     gimp_rgb_clamp(pyg_boxed_get(self, PyGedaColorObject));
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -256,6 +260,7 @@ static PyObject *rgb_gamma(PyObject *self, PyObject *args, PyObject *kwargs)
     gimp_rgb_gamma(pyg_boxed_get(self, PyGedaColorObject), gamma);
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -284,6 +289,7 @@ static PyObject *rgb_composite(PyObject *self, PyObject *args, PyObject *kwargs)
                      mode);
 
   Py_INCREF(Py_None);
+
   return Py_None;
 }
 
@@ -328,6 +334,7 @@ static PyObject *rgb_parse_hex(PyObject *self, PyObject *args, PyObject *kwargs)
     }
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -355,6 +362,7 @@ static PyObject *rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
     }
 
     Py_INCREF(Py_None);
+
     return Py_None;
 }
 
@@ -633,6 +641,7 @@ static PyObject *rgb_richcompare(PyObject *self, PyObject *other, int op)
      ret = Py_False;
 
     Py_INCREF(ret);
+
     return ret;
 }
 

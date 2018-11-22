@@ -252,6 +252,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     /* no gotta, check with the base class,  */
     result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
   }
+
   return result;
 }
 

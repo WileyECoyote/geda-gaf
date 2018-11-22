@@ -239,6 +239,7 @@ static int Bus_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 }
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
+
 static PyObject *
 Bus_get_busname(PyGedaBusObject *self, void *closure)
 {
@@ -340,6 +341,7 @@ PyMODINIT_FUNC initBus(PyObject *module)
   Py_INCREF(&PyGedaBusObjectType);
   PyModule_AddObject(bus_module, "Bus", (PyObject *)&PyGedaBusObjectType);
 }
+
 PyTypeObject *PyGedaBusClass(void)
 {
   return &PyGedaBusObjectType;

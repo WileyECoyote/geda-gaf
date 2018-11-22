@@ -346,6 +346,7 @@ PyMODINIT_FUNC initComplex(PyObject *module)
   Py_INCREF(&PyGedaComplexObjectType);
   PyModule_AddObject(complex_module, "Complex", (PyObject *)&PyGedaComplexObjectType);
 }
+
 PyTypeObject *PyGedaComplexClass(void)
 {
   return &PyGedaComplexObjectType;

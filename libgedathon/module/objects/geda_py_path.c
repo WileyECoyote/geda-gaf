@@ -170,6 +170,7 @@ static int PyGedaPathObject_print(PyGedaPathObject *path, FILE *file, int flags)
   fprintf(file, " <fill-type <type=%d <width=%d> <angle1=%d> <pitch1=%d> <angle2=%d>>> <pitch2=%d>>",
                    fill_type, fill_width, fill_angle1, fill_pitch1, fill_angle2, fill_pitch2);
   fprintf(file, " <path_string <%s>>", path_string);
+
   return 0;
 }
 
@@ -298,6 +299,7 @@ static PyMethodDef Path_methods[] = {
 
 /* -------------------------- PyGedaPathObject GetSeters ------------------------- */
 
+
 /* ------------------------ Begin Getters and Setters ---------------------- */
 static PyObject *Path_get_string(PyGedaPathObject *self, void *closure)
 {
@@ -334,6 +336,7 @@ static PyGetSetDef Path_getseters[] = {
   {"string", (getter)Path_get_string, (setter)Path_set_string, "path_string_docs", NULL},
   {NULL}  /* Sentinel */
 };
+
 /* -------------------------- Begin Type Definition ------------------------ */
 
 static PyTypeObject PyGedaPathObjectType = {
@@ -397,6 +400,7 @@ PyMODINIT_FUNC initPath(PyObject *module)
   Py_INCREF(&PyGedaPathObjectType);
   PyModule_AddObject(path_module, "Path", (PyObject *)&PyGedaPathObjectType);
 }
+
 PyTypeObject *PyGedaPathClass(void)
 {
   return &PyGedaPathObjectType;
