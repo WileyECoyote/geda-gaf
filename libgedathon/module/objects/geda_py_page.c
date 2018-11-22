@@ -39,7 +39,7 @@
 static PyObject *page_module;
 static PyObject *geda_module;
 
-/* ------------------------- PyGedaPageObject Destructor ------------------------- */
+/* ---------------------- PyGedaPageObject Destructor ---------------------- */
 
 static void Page_dealloc(PyGedaPageObject *self)
 {
@@ -48,7 +48,7 @@ static void Page_dealloc(PyGedaPageObject *self)
   self->ob_type->tp_free((PyObject*)self);
 }
 
-/* ------------------------- PyGedaPageObject Constructor ------------------------ */
+/* ---------------------- PyGedaPageObject Constructor --------------------- */
 
 static PyObject *Page_new(PyTypeObject *type, PyObject *args)
 {
@@ -66,7 +66,7 @@ static PyObject *Page_new(PyTypeObject *type, PyObject *args)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaPageObject Initializer ------------------------ */
+/* ---------------------- PyGedaPageObject Initializer --------------------- */
 
 static int Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
 {
@@ -83,7 +83,7 @@ static int Page_init(PyGedaPageObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-/* --------------------------- PyGedaPageObject Members -------------------------- */
+/* ------------------------ PyGedaPageObject Members ----------------------- */
 
 static PyMemberDef Page_members[] = {
   {"pid",      T_INT,       offsetof(PyGedaPageObject, pid),      RO, "Page Identifier"},
@@ -169,7 +169,7 @@ static PyMethodDef Page_methods[] = {
   {NULL}  /* Sentinel */
 };
 
-/* -------------------------- PyGedaPageObject GetSeters ------------------------- */
+/* ---------------------- PyGedaPageObject GetSetters ---------------------- */
 
 static PyObject *Page_getbounds(PyGedaPageObject *self, void *closure)
 {

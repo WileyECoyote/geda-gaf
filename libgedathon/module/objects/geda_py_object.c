@@ -38,7 +38,7 @@
 static PyObject *object_module;
 static PyObject *geda_module;
 
-/* ------------------------- PyGedaObject Destructor ------------------------- */
+/* ------------------------ PyGedaObject Destructor ------------------------ */
 
 static void PyGedaObject_dealloc(PyGedaObject *self)
 {
@@ -50,7 +50,7 @@ static void PyGedaObject_dealloc(PyGedaObject *self)
   self->ob_type->tp_free((PyObject*)self);
 }
 
-/* ------------------------- PyGedaObject Constructor ------------------------ */
+/* ------------------------ PyGedaObject Constructor ----------------------- */
 
 static PyObject *PyGedaObject_new(PyTypeObject *type, PyObject *args)
 {
@@ -77,7 +77,7 @@ static PyObject *PyGedaObject_new(PyTypeObject *type, PyObject *args)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaObject Initializer ------------------------ */
+/* ------------------------ PyGedaObject Initializer ----------------------- */
 
 static int PyGedaObject_init(PyGedaObject *self, PyObject *args, PyObject *kwds)
 {
@@ -102,7 +102,7 @@ PyObject *PyGedaObject_str(PyGedaObject *self)
   return self->name;
 }
 
-/* --------------------------- PyGedaObject Members -------------------------- */
+/* -------------------------- PyGedaObject Members ------------------------- */
 
 static PyMemberDef PyGedaObject_members[] = {
   {"pid",      T_INT,  offsetof(PyGedaObject, pid),       RO, "Page Container Identifier"},
@@ -148,7 +148,7 @@ static int Object_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   return result;
 }
 
-/* ------------------------------ Begin Methods ---------------------------- */
+/* ----------------------------- Begin Methods --------------------------- */
 
 static PyObject *PyGedaObject_name(PyGedaObject* self)
 {
@@ -227,7 +227,7 @@ static PyMethodDef PyGedaObject_methods[] = {
   {NULL, NULL, 0, NULL}
 };
 
-/* -------------------------- PyGedaPageObject GetSeters ------------------------- */
+/* ----------------------- PyGedaPageObject GetSeters ---------------------- */
 
 static PyObject *Geda_getbounds(PyGedaObject *self, void *closure)
 {

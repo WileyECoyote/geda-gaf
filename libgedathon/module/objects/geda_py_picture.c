@@ -41,7 +41,7 @@ static PyObject *geda_module;
 
 static char PyGedaPictureObject_doc[] = PyDoc_STR("Geda Picture: filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]]");
 
-/* ----------------------- PyGedaPictureObject Destructor ------------------------ */
+/* -------------------- PyGedaPictureObject Destructor --------------------- */
 
 static void PyGedaPictureObject_dealloc(PyGedaPictureObject *self)
 {
@@ -52,7 +52,7 @@ static void PyGedaPictureObject_dealloc(PyGedaPictureObject *self)
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ----------------------- PyGedaPictureObject Constructor ----------------------- */
+/* -------------------- PyGedaPictureObject Constructor -------------------- */
 
 static PyObject *Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -79,7 +79,7 @@ static PyObject *Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ----------------------- PyGedaPictureObject Initializer ----------------------- */
+/* --------------------- PyGedaPictureObject Initializer ------------------- */
 
 static int
 Picture_init(PyGedaPictureObject *self, PyObject *args, PyObject *kwds)

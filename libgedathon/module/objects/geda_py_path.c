@@ -41,7 +41,7 @@ static PyObject *geda_module;
 
 static char PyGedaPathObject_doc[] = PyDoc_STR("Geda Path: upper_x, upper_y, lower_x, lower_y [, color]");
 
-/* ------------------------- PyGedaPathObject Destructor ------------------------- */
+/* ---------------------- PyGedaPathObject Destructor ---------------------- */
 
 static void PyGedaPathObject_dealloc(PyGedaPathObject *self)
 {
@@ -50,7 +50,7 @@ static void PyGedaPathObject_dealloc(PyGedaPathObject *self)
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- PyGedaPathObject Constructor ------------------------ */
+/* ---------------------- PyGedaPathObject Constructor --------------------- */
 
 static PyObject *Path_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -90,7 +90,7 @@ static PyObject *Path_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaPathObject Initializer ------------------------ */
+/* ---------------------- PyGedaPathObject Initializer --------------------- */
 
 static int Path_init(PyGedaPathObject *self, PyObject *args, PyObject *kwds)
 {
@@ -174,7 +174,7 @@ static int PyGedaPathObject_print(PyGedaPathObject *path, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaPathObject Members -------------------------- */
+/* ------------------------ PyGedaPathObject Members ----------------------- */
 
 static PyMemberDef Path_members[] = {
  /* Hatching */
@@ -297,10 +297,10 @@ static PyMethodDef Path_methods[] = {
   {NULL, NULL, 0, NULL}
 };
 
-/* -------------------------- PyGedaPathObject GetSeters ------------------------- */
+/* ----------------------- PyGedaPathObject GetSeters ---------------------- */
 
+/* ----------------------- Begin Getters and Setters ----------------------- */
 
-/* ------------------------ Begin Getters and Setters ---------------------- */
 static PyObject *Path_get_string(PyGedaPathObject *self, void *closure)
 {
   Py_INCREF(self->path_string);

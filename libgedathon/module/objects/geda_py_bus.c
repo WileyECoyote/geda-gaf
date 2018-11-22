@@ -41,16 +41,17 @@ static PyObject *geda_module;
 
 static char PyGedaBusObject_doc[] = PyDoc_STR("Geda Bus: x1, y1, x2, y2 [, color]");
 
-/* ------------------------- PyGedaBusObject Destructor -------------------------- */
+/* ---------------------- PyGedaBusObject Destructor ----------------------- */
 
 static void PyGedaBusObject_dealloc(PyGedaBusObject *self)
 {
   Py_XDECREF(self->bus_name);
-  /* Don't dealloc self, the base class will do that */
+
+  /* Do not deallocate self, the base class will do that */
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- PyGedaBusObject Constructor ------------------------- */
+/* ---------------------- PyGedaBusObject Constructor ---------------------- */
 
 static PyObject *Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -87,7 +88,7 @@ static PyObject *Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaBusObject Initializer ------------------------- */
+/* ---------------------- PyGedaBusObject Initializer ---------------------- */
 
 static int Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
 {
@@ -150,7 +151,7 @@ static int PyGedaBusObject_print(PyGedaBusObject *bus, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaBusObject Members --------------------------- */
+/* ------------------------ PyGedaBusObject Members ------------------------ */
 
 static PyMemberDef Bus_members[] = {
   {"x1",     T_INT, offsetof(PyGedaBusObject, x[0]),     0, "Bus point 1 Abscissa"},

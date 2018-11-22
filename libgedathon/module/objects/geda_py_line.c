@@ -44,7 +44,7 @@ static PyObject *geda_module;
 
 static char PyGedaLineObject_doc[] = PyDoc_STR("Geda Line: x1, y1, x2, y2 [, color]");
 
-/* ------------------------- PyGedaLineObject Constructor ------------------------ */
+/* ---------------------- PyGedaLineObject Constructor --------------------- */
 
 static PyObject *Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -83,7 +83,7 @@ static PyObject *Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaLineObject Initializer ------------------------ */
+/* ---------------------- PyGedaLineObject Initializer --------------------- */
 
 static int Line_init(PyGedaLineObject *self, PyObject *args, PyObject *kwds)
 {
@@ -145,7 +145,7 @@ static int PyGedaLineObject_print(PyGedaLineObject *line, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaLineObject Members -------------------------- */
+/* ------------------------ PyGedaLineObject Members ----------------------- */
 
 static PyMemberDef Line_members[] = {
   {"x1",     T_INT, offsetof(PyGedaLineObject, x[0]),     0, "Line point 1 Abscissa"},

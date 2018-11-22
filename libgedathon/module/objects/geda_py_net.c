@@ -146,7 +146,7 @@ static int PyGedaNetObject_print(PyGedaNetObject *net, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaNetObject Members --------------------------- */
+/* ------------------------ PyGedaNetObject Members ------------------------ */
 
 static PyMemberDef Net_members[] = {
   {"nid",    T_INT, offsetof(PyGedaNetObject,  nid),   RO, "Geda Net Node Identifier"},

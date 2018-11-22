@@ -41,7 +41,7 @@ static PyObject *geda_module;
 
 static char PyGedaBoxObject_doc[] = PyDoc_STR("Geda Box: upper_x, upper_y, lower_x, lower_y [, color]");
 
-/* ------------------------- PyGedaBoxObject Constructor ------------------------- */
+/* ---------------------- PyGedaBoxObject Constructor ---------------------- */
 
 static PyObject *Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -87,7 +87,7 @@ static PyObject *Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaBoxObject Initializer ------------------------- */
+/* ---------------------- PyGedaBoxObject Initializer ---------------------- */
 
 static int Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
 {
@@ -166,7 +166,7 @@ static int PyGedaBoxObject_print(PyGedaBoxObject *box, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaBoxObject Members --------------------------- */
+/* ------------------------ PyGedaBoxObject Members ------------------------ */
 
 static PyMemberDef Box_members[] = {
   {"upper_x",     T_INT, offsetof(PyGedaBoxObject, upper_x),     0, "Box Upper Abscissa"},

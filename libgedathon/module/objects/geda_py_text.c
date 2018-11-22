@@ -44,7 +44,7 @@ static PyObject *geda_module;
 
 static char PyGedaTextObject_doc[] = PyDoc_STR("Geda Text: string, x, y, [, size [, align [, angle]]]");
 
-/* ------------------- Begin PyGedaTextObject Utility Functions ------------------ */
+/* ---------------- Begin PyGedaTextObject Utility Functions --------------- */
 
 static void update_disp_string (PyGedaTextObject *self)
 {
@@ -87,7 +87,7 @@ static void update_disp_string (PyGedaTextObject *self)
   SWAP_PY_TMP_OBJECT(disp_string);
 }
 
-/* ------------------------- PyGedaTextObject Destructor ------------------------- */
+/* ---------------------- PyGedaTextObject Destructor ---------------------- */
 
 static void PyGedaTextObject_dealloc(PyGedaTextObject* self)
 {
@@ -97,7 +97,7 @@ static void PyGedaTextObject_dealloc(PyGedaTextObject* self)
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- PyGedaTextObject Constructor ------------------------ */
+/* ---------------------- PyGedaTextObject Constructor --------------------- */
 
 static PyObject *Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -135,7 +135,7 @@ static PyObject *Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaTextObject Initializer ------------------------ */
+/* ---------------------- PyGedaTextObject Initializer --------------------- */
 
 static int Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
 {
@@ -206,7 +206,7 @@ static int PyGedaTextObject_print(PyGedaTextObject *text, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaTextObject Members -------------------------- */
+/* ------------------------ PyGedaTextObject Members ----------------------- */
 
 static PyMemberDef Text_members[] = {
   {"cid",         T_INT, offsetof(PyGedaTextObject, cid),      RO, "Text Complex Identifier"},

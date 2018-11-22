@@ -41,7 +41,7 @@ static PyObject *geda_module;
 
 static char PyGedaComplexObject_doc[] = PyDoc_STR("Geda Complex: x, y [, angle [, color]");
 
-/* ----------------------- PyGedaComplexObject Destructor ------------------------ */
+/* -------------------- PyGedaComplexObject Destructor --------------------- */
 
 static void PyGedaComplexObject_dealloc(PyGedaComplexObject* self)
 {
@@ -52,7 +52,7 @@ static void PyGedaComplexObject_dealloc(PyGedaComplexObject* self)
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ----------------------- PyGedaComplexObject Constructor ----------------------- */
+/* -------------------- PyGedaComplexObject Constructor -------------------- */
 
 static PyObject *Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -78,7 +78,7 @@ static PyObject *Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ----------------------- PyGedaComplexObject Initializer ----------------------- */
+/* -------------------- PyGedaComplexObject Initializer -------------------- */
 
 static int
 Complex_init(PyGedaComplexObject *self, PyObject *args, PyObject *kwds)
@@ -139,7 +139,7 @@ PyGedaComplexObject_print(PyGedaComplexObject *complex, FILE *file, int flags)
   return 0;
 }
 
-/* ------------------------- PyGedaComplexObject Members ------------------------- */
+/* ---------------------- PyGedaComplexObject Members ---------------------- */
 
 static PyMemberDef Complex_members[] = {
   {"x",        T_INT,  offsetof(PyGedaComplexObject, x),          0, "Abscissa of Complex object"},

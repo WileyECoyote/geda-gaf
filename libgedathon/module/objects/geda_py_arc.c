@@ -41,7 +41,7 @@ static PyObject *geda_module;
 
 static char PyGedaArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_angle, arc_sweep [, color]");
 
-/* ------------------------- PyGedaArcObject Constructor ------------------------- */
+/* ---------------------- PyGedaArcObject Constructor ---------------------- */
 
 static PyObject *Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -80,7 +80,7 @@ static PyObject *Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaArcObject Initializer ------------------------- */
+/* ---------------------- PyGedaArcObject Initializer ---------------------- */
 
 static int Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
 {
@@ -159,7 +159,7 @@ static int PyGedaArcObject_print(PyGedaArcObject *arc, FILE *file, int flags)
   return 0;
 }
 
-/* --------------------------- PyGedaArcObject Members --------------------------- */
+/* ------------------------ PyGedaArcObject Members ------------------------ */
 
 static PyMemberDef Arc_members[] = {
   {"x",           T_INT, offsetof(PyGedaArcObject, x),           0, "Arc Center Abscissa"},

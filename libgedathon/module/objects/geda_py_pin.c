@@ -42,7 +42,7 @@ static PyObject *geda_module;
 
 static char PyGedaPinObject_doc[] = PyDoc_STR("Geda Pin: x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]]");
 
-/* -------------------------- PyGedaPinObject Destructor ------------------------- */
+/* ----------------------- PyGedaPinObject Destructor ---------------------- */
 
 static void PyGedaPinObject_dealloc(PyGedaPinObject *self)
 {
@@ -53,7 +53,7 @@ static void PyGedaPinObject_dealloc(PyGedaPinObject *self)
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-/* ------------------------- PyGedaPinObject Constructor ------------------------- */
+/* ---------------------- PyGedaPinObject Constructor ---------------------- */
 
 static PyObject *Pin_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -104,7 +104,7 @@ static PyObject *Pin_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------- PyGedaPinObject Initializer ------------------------- */
+/* ---------------------- PyGedaPinObject Initializer ---------------------- */
 
 static int Pin_init(PyGedaPinObject *self, PyObject *args, PyObject *kwds)
 {
@@ -191,7 +191,7 @@ static int PyGedaPinObject_print(PyGedaPinObject *pin, FILE *file, int flags)
   return ret_val;
 }
 
-/* --------------------------- PyGedaPinObject Members --------------------------- */
+/* ------------------------ PyGedaPinObject Members ------------------------ */
 
 static PyMemberDef Pin_members[] = {
   {"cid",        T_INT, offsetof(PyGedaPinObject, cid),       RO, "Pin Complex Identifier"},

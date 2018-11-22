@@ -41,7 +41,7 @@ static PyObject *geda_module;
 
 static char PyGedaCircleObject_doc[] = PyDoc_STR("Geda Circle: x, y, radius [, color]");
 
-/* ------------------------ PyGedaCircleObject Constructor ----------------------- */
+/* --------------------- PyGedaCircleObject Constructor -------------------- */
 
 static PyObject *Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
@@ -86,7 +86,7 @@ static PyObject *Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-/* ------------------------ PyGedaCircleObject Initializer ----------------------- */
+/* --------------------- PyGedaCircleObject Initializer -------------------- */
 
 static int Circle_init(PyGedaCircleObject *self, PyObject *args, PyObject *kwds)
 {
@@ -164,7 +164,7 @@ PyGedaCircleObject_print(PyGedaCircleObject *circle, FILE *file, int flags)
   return 0;
 }
 
-/* -------------------------- PyGedaCircleObject Members ------------------------- */
+/* ----------------------- PyGedaCircleObject Members ---------------------- */
 
 static PyMemberDef Circle_members[] = {
   {"center_x",    T_INT, offsetof(PyGedaCircleObject, center_x),    0, "Circle centerpoint abscissa"},
