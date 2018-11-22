@@ -229,7 +229,7 @@ static int Line_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
       py_geda_object->dirty = 1;
 
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }

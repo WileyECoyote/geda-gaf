@@ -233,7 +233,7 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
       py_geda_object->dirty = 1;
 
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }
@@ -276,7 +276,7 @@ static int Net_set_netname(PyGedaNetObject *self, PyObject *value, void *closure
   self->dirty_name = 1;
   self->object.dirty = 1;
 
-  if(self->object.pid >= 0)
+  if (self->object.pid >= 0)
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
 
   return 0;

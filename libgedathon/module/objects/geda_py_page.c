@@ -144,8 +144,8 @@ static PyObject *go_add(PyObject *self, PyObject *args)
 {
   PyObject *object;
 
-  if(!PyArg_ParseTuple(args, "O!:geda.add_object",
-                       PyGedaObjectClass(), &object))
+  if (!PyArg_ParseTuple(args, "O!:geda.add_object",
+                        PyGedaObjectClass(), &object))
   {
     return NULL;
   }

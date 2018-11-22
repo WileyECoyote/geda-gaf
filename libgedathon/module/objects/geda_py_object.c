@@ -138,7 +138,7 @@ static int Object_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
     if (!strcmp(member->name, name)) {
       geda_object->dirty = 1;
-      if(geda_object->pid >= 0) {
+      if (geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "sync_object", "O", geda_object);
       }
       break;
@@ -176,9 +176,9 @@ static PyObject *go_add(PyObject *self, PyObject *args)
   PyObject *unknown;
   PyObject *bute;
 
-  if(!PyArg_ParseTuple(args, "O!O!:geda.add_object",
-                       PyGedaObjectClass(), &unknown,
-                       PyGedaTextClass(), &bute))
+  if (!PyArg_ParseTuple(args, "O!O!:geda.add_object",
+                        PyGedaObjectClass(), &unknown,
+                        PyGedaTextClass(), &bute))
   {
     return NULL;
   }

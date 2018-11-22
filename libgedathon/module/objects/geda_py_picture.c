@@ -241,7 +241,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
       py_geda_object->dirty = 1;
 
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }
@@ -280,7 +280,7 @@ static PyObject *PyGedaPictureObject_filename(PyGedaPictureObject* self)
 }
 
 static PyMethodDef Picture_methods[] = {
-  {"filename", (PyCFunction)PyGedaPictureObject_filename, METH_NOARGS,  "object_name_docs"},
+  {"filename", (PyCFunction)PyGedaPictureObject_filename, METH_NOARGS, "object_name_docs"},
   /* reload? */
   {NULL, NULL, 0, NULL}
 };

@@ -214,10 +214,10 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     new_value = long_val;
 #endif
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }
@@ -260,7 +260,8 @@ Complex_set_filename(PyGedaComplexObject *self, PyObject *value, void *closure)
 
   self->dirty_name = 1;
   self->object.dirty = 1;
-  if(self->object.pid >= 0)
+
+  if (self->object.pid >= 0)
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
 
   return 0;

@@ -253,7 +253,7 @@ static int Path_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     if ( new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }
@@ -326,7 +326,8 @@ static int Path_set_string(PyGedaPathObject *self, PyObject *value, void *closur
 
   self->dirty_string = 1;
   self->object.dirty = 1;
-  if(self->object.pid >= 0)
+
+  if (self->object.pid >= 0)
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
 
   return 0;

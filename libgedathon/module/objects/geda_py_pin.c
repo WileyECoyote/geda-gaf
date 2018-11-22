@@ -280,7 +280,7 @@ static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     if ( new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }
@@ -378,7 +378,8 @@ static int Pin_set_label(PyGedaPinObject *self, PyObject *value, void *closure)
 
   self->dirty_label = 1;
   self->object.dirty = 1;
-  if(self->object.pid >= 0)
+
+  if (self->object.pid >= 0)
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
 
   return 0;
@@ -409,7 +410,8 @@ static int Pin_set_number(PyGedaPinObject *self, PyObject *value, void *closure)
 
   self->dirty_number = 1;
   self->object.dirty = 1;
-  if(self->object.pid >= 0)
+
+  if (self->object.pid >= 0)
     PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
 
   return 0;

@@ -285,7 +285,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     if ( new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
-      if(py_geda_object->pid >= 0) {
+      if (py_geda_object->pid >= 0) {
         PyObject_CallMethod(geda_module, "refresh_attribs", "O", py_geda_object);
       }
     }
@@ -360,9 +360,11 @@ PyGedaTextObject_set_show(PyGedaTextObject *self, PyObject *value, void *closure
   new_show = long_val;
 
   if (new_show != self->show) {
+
     self->show = new_show;
     self->object.dirty = 1;
-    if(self->object.pid >= 0) {
+
+    if (self->object.pid >= 0) {
       self->dirty_text = 1;        /* cause disp_string needs updating */
       PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
     }
