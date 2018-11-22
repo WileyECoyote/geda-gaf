@@ -36,13 +36,13 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* net_module;
-static PyObject* geda_module;
+static PyObject *net_module;
+static PyObject *geda_module;
 
 static char PyGedaNetObject_doc[] = PyDoc_STR("Geda Net: x1, y1, x2, y2 [, net_name [, color]]");
 
 static void
-PyGedaNetObject_dealloc(PyGedaNetObject* self)
+PyGedaNetObject_dealloc(PyGedaNetObject *self)
 {
   Py_XDECREF(self->net_name);
   /* Don't dealloc self, the base class will do that */
@@ -82,7 +82,7 @@ Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_width      = 0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 static int

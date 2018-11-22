@@ -36,8 +36,8 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* box_module;
-static PyObject* geda_module;
+static PyObject *box_module;
+static PyObject *geda_module;
 
 static char PyGedaBoxObject_doc[] = PyDoc_STR("Geda Box: upper_x, upper_y, lower_x, lower_y [, color]");
 
@@ -84,7 +84,7 @@ static PyObject *Box_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_length     = 0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaBoxObject Initializer ------------------------- */

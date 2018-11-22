@@ -39,14 +39,14 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* text_module;
-static PyObject* geda_module;
+static PyObject *text_module;
+static PyObject *geda_module;
 
 static char PyGedaTextObject_doc[] = PyDoc_STR("Geda Text: string, x, y, [, size [, align [, angle]]]");
 
 /* ------------------- Begin PyGedaTextObject Utility Functions ------------------ */
 
-static void update_disp_string (PyGedaTextObject* self)
+static void update_disp_string (PyGedaTextObject *self)
 {
   PyObject *py_disp_string = NULL;
 
@@ -135,7 +135,7 @@ Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaTextObject Initializer ------------------------ */

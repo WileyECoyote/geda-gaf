@@ -42,19 +42,19 @@ enum {
 };
 
 static PyObject *self;
-static PyObject* geda_module;
+static PyObject *geda_module;
 
 static int C_REF = 1;
 static int L_REF = 1;
 static int R_REF = 1;
 static int U_REF = 1;
 
-static PyObject* CapacitorSymbol;
-static PyObject* ElectrolyticSymbol;
-static PyObject* InductorSymbol;
-static PyObject* OpAmpSymbol;
-static PyObject* ResistorSymbol;
-static PyObject* TitleblockSymbol;
+static PyObject *CapacitorSymbol;
+static PyObject *ElectrolyticSymbol;
+static PyObject *InductorSymbol;
+static PyObject *OpAmpSymbol;
+static PyObject *ResistorSymbol;
+static PyObject *TitleblockSymbol;
 
 #define FUNCTION(symbol, aflag ) [ e##symbol ] = \
  { ASSOCIATED_FUNCTION(symbol), aflag, symbol##_docs },

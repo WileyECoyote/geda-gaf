@@ -861,7 +861,7 @@ METHOD(open_page)
   }
 
   info = library.func(filename);
-  page = PyObject_CallObject((PyObject *) PyGedaPageClass(), info);
+  page = PyObject_CallObject((PyObject*) PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(open_page);
   return page;

@@ -36,8 +36,8 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* arc_module;
-static PyObject* geda_module;
+static PyObject *arc_module;
+static PyObject *geda_module;
 
 static char PyGedaArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_angle, arc_sweep [, color]");
 
@@ -77,7 +77,7 @@ static PyObject *Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_length     =  0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaArcObject Initializer ------------------------- */

@@ -63,7 +63,7 @@ static PyObject *Page_new(PyTypeObject *type, PyObject *args)
     self->pid = -1;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaPageObject Initializer ------------------------ */

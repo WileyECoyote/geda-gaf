@@ -36,8 +36,8 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* complex_module;
-static PyObject* geda_module;
+static PyObject *complex_module;
+static PyObject *geda_module;
 
 static char PyGedaComplexObject_doc[] = PyDoc_STR("Geda Complex: x, y [, angle [, color]");
 
@@ -77,7 +77,7 @@ Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ----------------------- PyGedaComplexObject Initializer ----------------------- */

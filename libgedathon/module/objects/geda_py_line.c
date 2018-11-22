@@ -39,8 +39,8 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* line_module;
-static PyObject* geda_module;
+static PyObject *line_module;
+static PyObject *geda_module;
 
 static char PyGedaLineObject_doc[] = PyDoc_STR("Geda Line: x1, y1, x2, y2 [, color]");
 
@@ -80,7 +80,7 @@ static PyObject *Line_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_length     = 0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaLineObject Initializer ------------------------ */
@@ -244,7 +244,7 @@ static int Line_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 }
 
 /* ------------------------------ Begin Methods ---------------------------- */
-static PyObject* Line_length(PyObject *self)
+static PyObject *Line_length(PyObject *self)
 {
   PyGedaLineObject *line = (PyGedaLineObject*)self;
   int result;

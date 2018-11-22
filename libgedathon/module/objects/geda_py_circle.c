@@ -36,8 +36,8 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* circle_module;
-static PyObject* geda_module;
+static PyObject *circle_module;
+static PyObject *geda_module;
 
 static char PyGedaCircleObject_doc[] = PyDoc_STR("Geda Circle: x, y, radius [, color]");
 
@@ -84,7 +84,7 @@ Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_length     = 0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------ PyGedaCircleObject Initializer ----------------------- */

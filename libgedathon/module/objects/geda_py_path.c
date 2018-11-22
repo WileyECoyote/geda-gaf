@@ -36,15 +36,15 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* path_module;
-static PyObject* geda_module;
+static PyObject *path_module;
+static PyObject *geda_module;
 
 static char PyGedaPathObject_doc[] = PyDoc_STR("Geda Path: upper_x, upper_y, lower_x, lower_y [, color]");
 
 /* ------------------------- PyGedaPathObject Destructor ------------------------- */
 
 static void
-PyGedaPathObject_dealloc(PyGedaPathObject* self)
+PyGedaPathObject_dealloc(PyGedaPathObject *self)
 {
   Py_XDECREF(self->sections);
   /* Don't dealloc self, the base class will do that */
@@ -89,7 +89,7 @@ Path_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaPathObject Initializer ------------------------ */

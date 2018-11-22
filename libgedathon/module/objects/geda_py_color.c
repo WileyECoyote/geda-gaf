@@ -38,7 +38,7 @@ PyGedaColorObject_new(const PyGedaColorObject *rgb)
 
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
   //  return pyg_boxed_new(GIMP_TYPE_RGB, (void *)rgb, TRUE, TRUE);
 }
 

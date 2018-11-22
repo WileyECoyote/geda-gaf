@@ -35,13 +35,13 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* object_module;
+static PyObject *object_module;
 static PyObject *geda_module;
 
 /* ------------------------- PyGedaObject Destructor ------------------------- */
 
 static void
-PyGedaObject_dealloc(PyGedaObject* self)
+PyGedaObject_dealloc(PyGedaObject *self)
 {
 #if DEBUG
   fprintf(stderr, "PyGedaObject_dealloc: %s, id=%d\n", PyString_AsString(self->name), self->sid);
@@ -58,7 +58,7 @@ PyGedaObject_new(PyTypeObject *type, PyObject *args)
 {
   PyGedaObject *self;
 
-  self = (PyGedaObject *)type->tp_alloc(type, 0);
+  self = (PyGedaObject*)type->tp_alloc(type, 0);
 
   if (self != NULL) {
 
@@ -76,7 +76,7 @@ PyGedaObject_new(PyTypeObject *type, PyObject *args)
     self->attributes = NULL; /* Text Attributes of the components */
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaObject Initializer ------------------------ */

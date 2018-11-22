@@ -36,15 +36,15 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* bus_module;
-static PyObject* geda_module;
+static PyObject *bus_module;
+static PyObject *geda_module;
 
 static char PyGedaBusObject_doc[] = PyDoc_STR("Geda Bus: x1, y1, x2, y2 [, color]");
 
 /* ------------------------- PyGedaBusObject Destructor -------------------------- */
 
 static void
-PyGedaBusObject_dealloc(PyGedaBusObject* self)
+PyGedaBusObject_dealloc(PyGedaBusObject *self)
 {
   Py_XDECREF(self->bus_name);
   /* Don't dealloc self, the base class will do that */
@@ -86,7 +86,7 @@ Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_width      = 0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaBusObject Initializer ------------------------- */

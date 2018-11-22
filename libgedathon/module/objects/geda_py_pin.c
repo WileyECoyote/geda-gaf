@@ -37,15 +37,15 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* pin_module;
-static PyObject* geda_module;
+static PyObject *pin_module;
+static PyObject *geda_module;
 
 static char PyGedaPinObject_doc[] = PyDoc_STR("Geda Pin: x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]]");
 
 /* -------------------------- PyGedaPinObject Destructor ------------------------- */
 
 static void
-PyGedaPinObject_dealloc(PyGedaPinObject* self)
+PyGedaPinObject_dealloc(PyGedaPinObject *self)
 {
   Py_XDECREF(self->electrical);
   Py_XDECREF(self->mechanical);
@@ -103,7 +103,7 @@ Pin_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->line_width      = 0;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ------------------------- PyGedaPinObject Initializer ------------------------- */

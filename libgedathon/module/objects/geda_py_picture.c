@@ -36,15 +36,15 @@
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
 
-static PyObject* picture_module;
-static PyObject* geda_module;
+static PyObject *picture_module;
+static PyObject *geda_module;
 
 static char PyGedaPictureObject_doc[] = PyDoc_STR("Geda Picture: filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]]");
 
 /* ----------------------- PyGedaPictureObject Destructor ------------------------ */
 
 static void
-PyGedaPictureObject_dealloc(PyGedaPictureObject* self)
+PyGedaPictureObject_dealloc(PyGedaPictureObject *self)
 {
   Py_XDECREF(self->filename);
   Py_XDECREF(self->pixel_buffer);
@@ -78,7 +78,7 @@ Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->lower_y      = 1;
   }
 
-  return (PyObject *)self;
+  return (PyObject*)self;
 }
 
 /* ----------------------- PyGedaPictureObject Initializer ----------------------- */
