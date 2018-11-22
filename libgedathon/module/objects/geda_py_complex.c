@@ -43,8 +43,7 @@ static char PyGedaComplexObject_doc[] = PyDoc_STR("Geda Complex: x, y [, angle [
 
 /* ----------------------- PyGedaComplexObject Destructor ------------------------ */
 
-static void
-PyGedaComplexObject_dealloc(PyGedaComplexObject* self)
+static void PyGedaComplexObject_dealloc(PyGedaComplexObject* self)
 {
   Py_XDECREF(self->filename);
   Py_XDECREF(self->pin_objs);
@@ -55,8 +54,7 @@ PyGedaComplexObject_dealloc(PyGedaComplexObject* self)
 
 /* ----------------------- PyGedaComplexObject Constructor ----------------------- */
 
-static PyObject *
-Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Complex_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaComplexObject *self;
 
@@ -236,8 +234,7 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
 
-static PyObject *
-Complex_get_filename(PyGedaComplexObject *self, void *closure)
+static PyObject *Complex_get_filename(PyGedaComplexObject *self, void *closure)
 {
   Py_INCREF(self->filename);
   return self->filename;
@@ -331,8 +328,7 @@ static PyTypeObject PyGedaComplexObjectType = {
     (newfunc)Complex_new,               /* tp_new */
 };
 
-PyMODINIT_FUNC
-initComplex(PyObject *module)
+PyMODINIT_FUNC initComplex(PyObject *module)
 {
   geda_module = module;
 

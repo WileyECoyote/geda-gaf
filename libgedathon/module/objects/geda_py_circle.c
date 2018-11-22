@@ -43,8 +43,7 @@ static char PyGedaCircleObject_doc[] = PyDoc_STR("Geda Circle: x, y, radius [, c
 
 /* ------------------------ PyGedaCircleObject Constructor ----------------------- */
 
-static PyObject *
-Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaCircleObject *self;
   struct { int r; int g; int b; int a; }
@@ -89,8 +88,7 @@ Circle_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 /* ------------------------ PyGedaCircleObject Initializer ----------------------- */
 
-static int
-Circle_init(PyGedaCircleObject *self, PyObject *args, PyObject *kwds)
+static int Circle_init(PyGedaCircleObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name = NULL;
@@ -324,8 +322,7 @@ static PyTypeObject PyGedaCircleObjectType = {
     (newfunc)Circle_new,           /* tp_new */
 };
 
-PyMODINIT_FUNC
-initCircle(PyObject *module)
+PyMODINIT_FUNC initCircle(PyObject *module)
 {
   geda_module = module;
 

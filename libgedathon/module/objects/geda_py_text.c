@@ -89,8 +89,7 @@ static void update_disp_string (PyGedaTextObject *self)
 
 /* ------------------------- PyGedaTextObject Destructor ------------------------- */
 
-static void
-PyGedaTextObject_dealloc(PyGedaTextObject* self)
+static void PyGedaTextObject_dealloc(PyGedaTextObject* self)
 {
   Py_XDECREF(self->string);
   Py_XDECREF(self->disp_string);
@@ -99,8 +98,7 @@ PyGedaTextObject_dealloc(PyGedaTextObject* self)
 }
 
 /* ------------------------- PyGedaTextObject Constructor ------------------------ */
-static PyObject *
-Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaTextObject *self;
   struct { int r; int g; int b; int a; }
@@ -139,8 +137,7 @@ Text_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 }
 
 /* ------------------------- PyGedaTextObject Initializer ------------------------ */
-static int
-Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
+static int Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name        = NULL;
@@ -178,8 +175,7 @@ Text_init(PyGedaTextObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-static int
-PyGedaTextObject_print(PyGedaTextObject *text, FILE *file, int flags)
+static int PyGedaTextObject_print(PyGedaTextObject *text, FILE *file, int flags)
 {
   const char *name;
   const char *string;
@@ -333,8 +329,7 @@ PyGedaTextObject_set_text(PyGedaTextObject *self, PyObject *value, void *closure
   return 0;
 }
 
-static PyObject *
-PyGedaTextObject_get_text(PyGedaTextObject *self, void *closure)
+static PyObject *PyGedaTextObject_get_text(PyGedaTextObject *self, void *closure)
 {
   Py_INCREF(self->string);
   return self->string;
@@ -378,8 +373,7 @@ PyGedaTextObject_set_show(PyGedaTextObject *self, PyObject *value, void *closure
   return 0;
 }
 
-static PyObject *
-PyGedaTextObject_get_show(PyGedaTextObject *self, void *closure)
+static PyObject *PyGedaTextObject_get_show(PyGedaTextObject *self, void *closure)
 {
   return Py_BuildValue("i", self->show);
 }
@@ -392,15 +386,13 @@ static PyGetSetDef Text_getseters[] = {
 
 /* ------------------------------ Begin Methods ---------------------------- */
 
-static PyObject *
-PyGedaTextObject_disp_string(PyGedaTextObject* self)
+static PyObject *PyGedaTextObject_disp_string(PyGedaTextObject* self)
 {
   Py_INCREF(self->disp_string);
   return self->disp_string;
 }
 
-static PyObject *
-PyGedaTextObject_name(PyGedaTextObject* self)
+static PyObject *PyGedaTextObject_name(PyGedaTextObject* self)
 {
   PyObject *out_str = NULL;
 
@@ -426,8 +418,7 @@ PyGedaTextObject_name(PyGedaTextObject* self)
   return out_str;
 }
 
-static PyObject *
-PyGedaTextObject_value(PyGedaTextObject* self)
+static PyObject *PyGedaTextObject_value(PyGedaTextObject* self)
 {
   PyObject *out_str = NULL;
 
@@ -499,8 +490,7 @@ static PyTypeObject PyGedaTextObjectType = {
     (newfunc)Text_new,              /* tp_new */
 };
 
-PyMODINIT_FUNC
-initText(PyObject *module)
+PyMODINIT_FUNC initText(PyObject *module)
 {
   geda_module = module;
 

@@ -43,8 +43,7 @@ static char PyGedaPictureObject_doc[] = PyDoc_STR("Geda Picture: filename, x1, y
 
 /* ----------------------- PyGedaPictureObject Destructor ------------------------ */
 
-static void
-PyGedaPictureObject_dealloc(PyGedaPictureObject *self)
+static void PyGedaPictureObject_dealloc(PyGedaPictureObject *self)
 {
   Py_XDECREF(self->filename);
   Py_XDECREF(self->pixel_buffer);
@@ -55,8 +54,7 @@ PyGedaPictureObject_dealloc(PyGedaPictureObject *self)
 
 /* ----------------------- PyGedaPictureObject Constructor ----------------------- */
 
-static PyObject *
-Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Picture_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaPictureObject *self;
 
@@ -259,8 +257,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
 /* ------------------------------ Begin Methods ---------------------------- */
 
-static PyObject *
-PyGedaPictureObject_filename(PyGedaPictureObject* self)
+static PyObject *PyGedaPictureObject_filename(PyGedaPictureObject* self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
@@ -332,8 +329,7 @@ static PyTypeObject PyGedaPictureObjectType = {
     (newfunc)Picture_new,              /* tp_new */
 };
 
-PyMODINIT_FUNC
-initPicture(PyObject *module)
+PyMODINIT_FUNC initPicture(PyObject *module)
 {
   geda_module = module;
 

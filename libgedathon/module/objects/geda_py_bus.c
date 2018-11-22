@@ -43,8 +43,7 @@ static char PyGedaBusObject_doc[] = PyDoc_STR("Geda Bus: x1, y1, x2, y2 [, color
 
 /* ------------------------- PyGedaBusObject Destructor -------------------------- */
 
-static void
-PyGedaBusObject_dealloc(PyGedaBusObject *self)
+static void PyGedaBusObject_dealloc(PyGedaBusObject *self)
 {
   Py_XDECREF(self->bus_name);
   /* Don't dealloc self, the base class will do that */
@@ -53,8 +52,7 @@ PyGedaBusObject_dealloc(PyGedaBusObject *self)
 
 /* ------------------------- PyGedaBusObject Constructor ------------------------- */
 
-static PyObject *
-Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaBusObject *self;
   struct { int r; int g; int b; int a; }
@@ -91,8 +89,7 @@ Bus_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 /* ------------------------- PyGedaBusObject Initializer ------------------------- */
 
-static int
-Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
+static int Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name      = NULL;
@@ -124,8 +121,7 @@ Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-static int
-PyGedaBusObject_print(PyGedaBusObject *bus, FILE *file, int flags)
+static int PyGedaBusObject_print(PyGedaBusObject *bus, FILE *file, int flags)
 {
   const char *name;
   const char *bus_name;
@@ -250,8 +246,7 @@ Bus_get_busname(PyGedaBusObject *self, void *closure)
   return self->bus_name;
 }
 
-static int
-Bus_set_busname(PyGedaBusObject *self, PyObject *value, void *closure)
+static int Bus_set_busname(PyGedaBusObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the bus name attribute");
@@ -327,8 +322,7 @@ static PyTypeObject PyGedaBusObjectType = {
     (newfunc)Bus_new,               /* tp_new */
 };
 
-PyMODINIT_FUNC
-initBus(PyObject *module)
+PyMODINIT_FUNC initBus(PyObject *module)
 {
   geda_module = module;
 

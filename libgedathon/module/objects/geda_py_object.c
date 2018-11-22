@@ -40,8 +40,7 @@ static PyObject *geda_module;
 
 /* ------------------------- PyGedaObject Destructor ------------------------- */
 
-static void
-PyGedaObject_dealloc(PyGedaObject *self)
+static void PyGedaObject_dealloc(PyGedaObject *self)
 {
 #if DEBUG
   fprintf(stderr, "PyGedaObject_dealloc: %s, id=%d\n", PyString_AsString(self->name), self->sid);
@@ -53,8 +52,7 @@ PyGedaObject_dealloc(PyGedaObject *self)
 
 /* ------------------------- PyGedaObject Constructor ------------------------ */
 
-static PyObject *
-PyGedaObject_new(PyTypeObject *type, PyObject *args)
+static PyObject *PyGedaObject_new(PyTypeObject *type, PyObject *args)
 {
   PyGedaObject *self;
 
@@ -81,8 +79,7 @@ PyGedaObject_new(PyTypeObject *type, PyObject *args)
 
 /* ------------------------- PyGedaObject Initializer ------------------------ */
 
-static int
-PyGedaObject_init(PyGedaObject *self, PyObject *args, PyObject *kwds)
+static int PyGedaObject_init(PyGedaObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_name = NULL;
   PyObject *py_attributes = NULL;
@@ -151,8 +148,7 @@ static int Object_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 }
 /* ------------------------------ Begin Methods ---------------------------- */
 
-static PyObject *
-PyGedaObject_name(PyGedaObject* self)
+static PyObject *PyGedaObject_name(PyGedaObject* self)
 {
   static PyObject *format = NULL;
   PyObject *args, *result;
@@ -231,8 +227,7 @@ static PyMethodDef PyGedaObject_methods[] = {
 
 /* -------------------------- PyGedaPageObject GetSeters ------------------------- */
 
-static PyObject *
-Geda_getbounds(PyGedaObject *self, void *closure)
+static PyObject *Geda_getbounds(PyGedaObject *self, void *closure)
 {
   return PyObject_CallMethod(geda_module, "get_bounds", "O", self);
 }
@@ -288,8 +283,7 @@ static PyTypeObject PyGedaObjectType = {
 #ifndef PyMODINIT_FUNC  /* declarations for DLL import/export */
 #define PyMODINIT_FUNC void
 #endif
-PyMODINIT_FUNC
-initPyGedaObject(PyObject *module)
+PyMODINIT_FUNC initPyGedaObject(PyObject *module)
 {
   geda_module = module;
   if ( PyType_Ready(&PyGedaObjectType) < 0)

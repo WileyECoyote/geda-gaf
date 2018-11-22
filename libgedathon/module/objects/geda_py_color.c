@@ -42,8 +42,7 @@ PyGedaColorObject_new(const PyGedaColorObject *rgb)
   //  return pyg_boxed_new(GIMP_TYPE_RGB, (void *)rgb, TRUE, TRUE);
 }
 
-static int
-rgb_init(PyGBoxed *self, PyObject *args, PyObject *kwargs)
+static int rgb_init(PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *r, *g, *b, *a = NULL;
     PyGedaColorObject rgb;
@@ -69,8 +68,7 @@ rgb_init(PyGBoxed *self, PyObject *args, PyObject *kwargs)
     return 0;
 }
 
-static PyObject *
-rgb_set(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_set(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *r = NULL, *g = NULL, *b = NULL, *a = NULL;
     PyGedaColorObject tmprgb, *rgb;
@@ -124,8 +122,7 @@ rgb_set(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_set_alpha(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_set_alpha(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *py_a;
     PyGedaColorObject *rgb;
@@ -151,8 +148,7 @@ rgb_set_alpha(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_add(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_add(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *color;
     bool with_alpha = FALSE;
@@ -173,8 +169,7 @@ rgb_add(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_subtract(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_subtract(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     PyObject *color;
     bool with_alpha = FALSE;
@@ -195,8 +190,7 @@ rgb_subtract(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_multiply(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_multiply(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     double factor;
     bool with_alpha = FALSE;
@@ -215,8 +209,7 @@ rgb_multiply(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_distance(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_distance(PyObject *self, PyObject *args, PyObject *kwargs)
 {
   PyObject *color;
   bool alpha = FALSE;
@@ -234,20 +227,17 @@ rgb_distance(PyObject *self, PyObject *args, PyObject *kwargs)
   return PyFloat_FromDouble(ret);
 }
 
-static PyObject *
-rgb_max(PyObject *self)
+static PyObject *rgb_max(PyObject *self)
 {
   return PyFloat_FromDouble(gimp_rgb_max(pyg_boxed_get(self, PyGedaColorObject)));
 }
 
-static PyObject *
-rgb_min(PyObject *self)
+static PyObject *rgb_min(PyObject *self)
 {
   return PyFloat_FromDouble(gimp_rgb_min(pyg_boxed_get(self, PyGedaColorObject)));
 }
 
-static PyObject *
-rgb_clamp(PyObject *self)
+static PyObject *rgb_clamp(PyObject *self)
 {
     gimp_rgb_clamp(pyg_boxed_get(self, PyGedaColorObject));
 
@@ -255,8 +245,7 @@ rgb_clamp(PyObject *self)
     return Py_None;
 }
 
-static PyObject *
-rgb_gamma(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_gamma(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     double gamma;
     static char *kwlist[] = { "gamma", NULL };
@@ -270,14 +259,12 @@ rgb_gamma(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_luminance(PyObject *self)
+static PyObject *rgb_luminance(PyObject *self)
 {
     return PyFloat_FromDouble(gimp_rgb_luminance(pyg_boxed_get(self, PyGedaColorObject)));
 }
 
-static PyObject *
-rgb_composite(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_composite(PyObject *self, PyObject *args, PyObject *kwargs)
 {
   PyObject *color;
   int mode = GIMP_RGB_COMPOSITE_NORMAL;
@@ -300,8 +287,7 @@ rgb_composite(PyObject *self, PyObject *args, PyObject *kwargs)
   return Py_None;
 }
 
-static PyObject *
-rgb_parse_name(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_parse_name(PyObject *self, PyObject *args, PyObject *kwargs)
 {
   char *name;
   int len;
@@ -323,8 +309,7 @@ rgb_parse_name(PyObject *self, PyObject *args, PyObject *kwargs)
   return Py_None;
 }
 
-static PyObject *
-rgb_parse_hex(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_parse_hex(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     char *hex;
     int len;
@@ -346,8 +331,7 @@ rgb_parse_hex(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-static PyObject *
-rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
+static PyObject *rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     char *css;
     int   len;
@@ -375,8 +359,7 @@ rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 /* __getstate__ isn't exposed */
-static PyObject *
-rgb_getstate(PyObject *self)
+static PyObject *rgb_getstate(PyObject *self)
 {
     PyGedaColorObject *rgb;
 
@@ -385,8 +368,7 @@ rgb_getstate(PyObject *self)
     return Py_BuildValue("dddd", rgb->r, rgb->g, rgb->b, rgb->a);
 }
 
-static PyObject *
-rgb_reduce(PyObject *self)
+static PyObject *rgb_reduce(PyObject *self)
 {
     return Py_BuildValue("ON", self->ob_type, rgb_getstate(self));
 }
@@ -455,14 +437,12 @@ static PyGetSetDef rgb_getsets[] = {
     { NULL,    (getter)0, (setter)0 },
 };
 
-static Py_ssize_t
-rgb_length(PyObject *self)
+static Py_ssize_t rgb_length(PyObject *self)
 {
     return 4;
 }
 
-static PyObject *
-rgb_getitem(PyObject *self, Py_ssize_t pos)
+static PyObject *rgb_getitem(PyObject *self, Py_ssize_t pos)
 {
     PyGedaColorObject *rgb;
     double val;
@@ -490,8 +470,7 @@ rgb_getitem(PyObject *self, Py_ssize_t pos)
     return PyInt_FromLong(ROUND(CLAMP(val, 0.0, 1.0) * 255.0));
 }
 
-static int
-rgb_setitem(PyObject *self, Py_ssize_t pos, PyObject *value)
+static int rgb_setitem(PyObject *self, Py_ssize_t pos, PyObject *value)
 {
     if (pos < 0)
         pos += 4;
@@ -512,8 +491,7 @@ rgb_setitem(PyObject *self, Py_ssize_t pos, PyObject *value)
     }
 }
 
-static PyObject *
-rgb_slice(PyObject *self, Py_ssize_t start, Py_ssize_t end)
+static PyObject *rgb_slice(PyObject *self, Py_ssize_t start, Py_ssize_t end)
 {
     PyTupleObject *ret;
     Py_ssize_t i;
@@ -546,8 +524,7 @@ static PySequenceMethods rgb_as_sequence = {
     (objobjproc)0,
 };
 
-static PyObject *
-rgb_subscript(PyObject *self, PyObject *item)
+static PyObject *rgb_subscript(PyObject *self, PyObject *item)
 {
   if (PyInt_Check(item)) {
     long i = PyInt_AS_LONG(item);
@@ -616,8 +593,7 @@ static PyMappingMethods rgb_as_mapping = {
     (objobjargproc)0
 };
 
-static long
-rgb_hash(PyObject *self)
+static long rgb_hash(PyObject *self)
 {
     long ret = -1;
 
@@ -630,8 +606,7 @@ rgb_hash(PyObject *self)
     return ret;
 }
 
-static PyObject *
-rgb_richcompare(PyObject *self, PyObject *other, int op)
+static PyObject *rgb_richcompare(PyObject *self, PyObject *other, int op)
 {
     PyGedaColorObject *c1, *c2;
     PyObject *ret;
@@ -661,8 +636,7 @@ rgb_richcompare(PyObject *self, PyObject *other, int op)
     return ret;
 }
 
-static PyObject *
-rgb_pretty_print(PyObject *self, bool inexact)
+static PyObject *rgb_pretty_print(PyObject *self, bool inexact)
 {
     PyGedaColorObject *rgb;
     PyObject *ret = NULL;
@@ -706,14 +680,12 @@ cleanup:
     return ret;
 }
 
-static PyObject *
-rgb_repr(PyObject *self)
+static PyObject *rgb_repr(PyObject *self)
 {
     return rgb_pretty_print(self, FALSE);
 }
 
-static PyObject *
-rgb_str(PyObject *self)
+static PyObject *rgb_str(PyObject *self)
 {
     return rgb_pretty_print(self, TRUE);
 }

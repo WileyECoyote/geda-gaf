@@ -49,8 +49,7 @@ PyGedaNetObject_dealloc(PyGedaNetObject *self)
   (PyGedaObjectClass())->tp_dealloc((PyObject*)self);
 }
 
-static PyObject *
-Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+static PyObject *Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
   PyGedaNetObject *self;
   struct { int r; int g; int b; int a; }
@@ -85,8 +84,7 @@ Net_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject*)self;
 }
 
-static int
-Net_init(PyGedaNetObject *self, PyObject *args, PyObject *kwds)
+static int Net_init(PyGedaNetObject *self, PyObject *args, PyObject *kwds)
 {
   PyObject *py_base_params;
   PyObject *py_name         = NULL;
@@ -119,8 +117,7 @@ Net_init(PyGedaNetObject *self, PyObject *args, PyObject *kwds)
   return 0;
 }
 
-static int
-PyGedaNetObject_print(PyGedaNetObject *net, FILE *file, int flags)
+static int PyGedaNetObject_print(PyGedaNetObject *net, FILE *file, int flags)
 {
   const char *name;
   const char *net_name;
@@ -251,15 +248,13 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 }
 
 /* ------------------------ Begin Getters and Setters ---------------------- */
-static PyObject *
-Net_get_netname(PyGedaNetObject *self, void *closure)
+static PyObject *Net_get_netname(PyGedaNetObject *self, void *closure)
 {
   Py_INCREF(self->net_name);
   return self->net_name;
 }
 
-static int
-Net_set_netname(PyGedaNetObject *self, PyObject *value, void *closure)
+static int Net_set_netname(PyGedaNetObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the bus name attribute");
@@ -337,8 +332,7 @@ static PyTypeObject PyGedaNetObjectType = {
     (newfunc)Net_new,               /* tp_new */
 };
 
-PyMODINIT_FUNC
-initNet(PyObject *module)
+PyMODINIT_FUNC initNet(PyObject *module)
 {
   geda_module = module;
 
