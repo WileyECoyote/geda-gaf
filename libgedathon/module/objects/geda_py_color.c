@@ -703,7 +703,7 @@ PyTypeObject PyPyGedaColorObject_Type = {
     PyObject_HEAD_INIT(NULL)
     0,                             /* ob_size */
     "geda.color",                  /* tp_name */
-    sizeof(PyGedaCircleObject),          /* tp_basicsize */
+    sizeof(PyGedaCircleObject),    /* tp_basicsize */
     0,                             /* tp_itemsize */
     (destructor)0,                 /* tp_dealloc */
     (printfunc)0,                  /* tp_print */
@@ -721,7 +721,7 @@ PyTypeObject PyPyGedaColorObject_Type = {
     (setattrofunc)0,               /* tp_setattro */
     (PyBufferProcs*)0,             /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT,            /* tp_flags */
-    NULL,                          /* Documentation string */
+    NULL,                          /*! \todo Documentation string */
     (traverseproc)0,               /* tp_traverse */
     (inquiry)0,                    /* tp_clear */
     (richcmpfunc)rgb_richcompare,  /* tp_richcompare */

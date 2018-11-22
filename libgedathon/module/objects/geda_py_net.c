@@ -295,7 +295,7 @@ static PyTypeObject PyGedaNetObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Net",                     /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaNetObject),              /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaNetObject),        /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
     (destructor)PyGedaNetObject_dealloc,  /* tp_dealloc*/
     (printfunc)PyGedaNetObject_print,     /* tp_print*/
@@ -314,7 +314,7 @@ static PyTypeObject PyGedaNetObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    PyGedaNetObject_doc,                  /* tp_doc */
+    PyGedaNetObject_doc,            /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */

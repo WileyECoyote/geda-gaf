@@ -267,9 +267,9 @@ static PyMethodDef Line_methods[] = {
 
 static PyTypeObject PyGedaLineObjectType = {
     PyObject_HEAD_INIT(NULL)
-    0,                              /*ob_size,        not used, historical artifact for backward compatibility */
+    0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Line",                    /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaLineObject),             /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaLineObject),       /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
     (destructor)0,                  /* tp_dealloc*/
     (printfunc)PyGedaLineObject_print,    /* tp_print*/
@@ -288,7 +288,7 @@ static PyTypeObject PyGedaLineObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    PyGedaLineObject_doc,                 /* tp_doc */
+    PyGedaLineObject_doc,           /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */
@@ -303,9 +303,9 @@ static PyTypeObject PyGedaLineObjectType = {
     0,                              /* tp_descr_get */
     0,                              /* tp_descr_set */
     0,                              /* tp_dictoffset */
-    (initproc)Line_init,             /* tp_init */
+    (initproc)Line_init,            /* tp_init */
     0,                              /* tp_alloc */
-    (newfunc)Line_new,               /* tp_new */
+    (newfunc)Line_new,              /* tp_new */
 };
 
 PyMODINIT_FUNC initLine(PyObject *module)

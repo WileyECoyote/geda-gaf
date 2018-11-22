@@ -243,8 +243,8 @@ static PyGetSetDef PyGedaObject_getseters[] = {
 static PyTypeObject PyGedaObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size, not used, historical artifact for backward compatibility */
-    "geda.PyGedaObject",              /* tp_name, default textual representation an object, used in some error messages*/
-    sizeof(PyGedaObject),             /* tp_basicsize, memory to allocate for this object */
+    "geda.PyGedaObject",            /* tp_name, default textual representation an object, used in some error messages*/
+    sizeof(PyGedaObject),           /* tp_basicsize, memory to allocate for this object */
     0,                              /* tp_itemsize */
     (destructor)PyGedaObject_dealloc, /* tp_dealloc */
     0,                              /* tp_print */
@@ -257,7 +257,7 @@ static PyTypeObject PyGedaObjectType = {
     0,                              /* tp_as_mapping */
     0,                              /* tp_hash */
     0,                              /* tp_call */
-    (reprfunc)PyGedaObject_str,       /* tp_str */
+    (reprfunc)PyGedaObject_str,     /* tp_str */
     0,                              /* tp_getattro */
     (setattrofunc)Object_set_int,   /* tp_setattro */
     0,                              /* tp_as_buffer */
@@ -269,17 +269,17 @@ static PyTypeObject PyGedaObjectType = {
     0,                              /* tp_weaklistoffset */
     0,                              /* tp_iter */
     0,                              /* tp_iternext */
-    PyGedaObject_methods,             /* tp_methods */
-    PyGedaObject_members,             /* tp_members */
-    PyGedaObject_getseters,           /* tp_getset */
+    PyGedaObject_methods,           /* tp_methods */
+    PyGedaObject_members,           /* tp_members */
+    PyGedaObject_getseters,         /* tp_getset */
     0,                              /* tp_base */
     0,                              /* tp_dict */
     0,                              /* tp_descr_get */
     0,                              /* tp_descr_set */
     0,                              /* tp_dictoffset */
-    (initproc)PyGedaObject_init,      /* tp_init */
+    (initproc)PyGedaObject_init,    /* tp_init */
     0,                              /* tp_alloc */
-    (newfunc)PyGedaObject_new,        /* tp_new */
+    (newfunc)PyGedaObject_new,      /* tp_new */
 };
 
 #ifndef PyMODINIT_FUNC  /* declarations for DLL import/export */

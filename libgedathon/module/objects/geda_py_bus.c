@@ -284,7 +284,7 @@ static PyTypeObject PyGedaBusObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Bus",                     /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaBusObject),              /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaBusObject),        /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize */
     (destructor)PyGedaBusObject_dealloc,  /* tp_dealloc */
     (printfunc)PyGedaBusObject_print,     /* tp_print */
@@ -303,7 +303,7 @@ static PyTypeObject PyGedaBusObjectType = {
     0,                              /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags */
-    PyGedaBusObject_doc,                  /* tp_doc */
+    PyGedaBusObject_doc,            /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */

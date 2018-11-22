@@ -343,7 +343,7 @@ static PyTypeObject PyGedaPathObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                                 /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Path",                       /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaPathObject),                /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaPathObject),          /* tp_basicsize,   memory to allocate for this object */
     0,                                 /* tp_itemsize*/
     (destructor)PyGedaPathObject_dealloc,    /* tp_dealloc*/
     (printfunc)PyGedaPathObject_print,       /* tp_print*/
@@ -362,7 +362,7 @@ static PyTypeObject PyGedaPathObjectType = {
     0,                                 /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,               /* tp_flags*/
-    PyGedaPathObject_doc,                    /* tp_doc */
+    PyGedaPathObject_doc,              /* tp_doc */
     0,                                 /* tp_traverse */
     0,                                 /* tp_clear */
     0,                                 /* tp_richcompare */

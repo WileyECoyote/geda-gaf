@@ -283,7 +283,7 @@ static PyTypeObject PyGedaCircleObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                             /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Circle",                 /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaCircleObject),          /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaCircleObject),    /* tp_basicsize,   memory to allocate for this object */
     0,                             /* tp_itemsize */
     (destructor)0,                 /* tp_dealloc */
     (printfunc)PyGedaCircleObject_print, /* tp_print */
@@ -302,7 +302,7 @@ static PyTypeObject PyGedaCircleObjectType = {
     0,                             /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,           /* tp_flags */
-    PyGedaCircleObject_doc,              /* tp_doc */
+    PyGedaCircleObject_doc,        /* tp_doc */
     0,                             /* tp_traverse */
     0,                             /* tp_clear */
     0,                             /* tp_richcompare */

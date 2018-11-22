@@ -454,7 +454,7 @@ static PyTypeObject PyGedaTextObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                              /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Text",                    /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaTextObject),             /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaTextObject),       /* tp_basicsize,   memory to allocate for this object */
     0,                              /* tp_itemsize*/
     (destructor)PyGedaTextObject_dealloc, /* tp_dealloc*/
     (printfunc)PyGedaTextObject_print,    /* tp_print*/
@@ -473,7 +473,7 @@ static PyTypeObject PyGedaTextObjectType = {
     0,                              /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,            /* tp_flags*/
-    PyGedaTextObject_doc,                 /* tp_doc */
+    PyGedaTextObject_doc,           /* tp_doc */
     0,                              /* tp_traverse */
     0,                              /* tp_clear */
     0,                              /* tp_richcompare */

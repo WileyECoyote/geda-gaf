@@ -291,7 +291,7 @@ static PyTypeObject PyGedaPictureObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                                 /* ob_size,       not used, historical artifact for backward compatibility */
     "geda.Picture",                    /* tp_name,       default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaPictureObject),             /* tp_basicsize,  memory to allocate for this object */
+    sizeof(PyGedaPictureObject),       /* tp_basicsize,  memory to allocate for this object */
     0,                                 /* tp_itemsize*/
     (destructor)PyGedaPictureObject_dealloc, /* tp_dealloc*/
     (printfunc)PyGedaPictureObject_print,    /* tp_print*/
@@ -310,7 +310,7 @@ static PyTypeObject PyGedaPictureObjectType = {
     0,                                 /* tp_as_buffer*/
     Py_TPFLAGS_DEFAULT |
     Py_TPFLAGS_BASETYPE,               /* tp_flags*/
-    PyGedaPictureObject_doc,                 /* tp_doc */
+    PyGedaPictureObject_doc,           /* tp_doc */
     0,                                 /* tp_traverse */
     0,                                 /* tp_clear */
     0,                                 /* tp_richcompare */

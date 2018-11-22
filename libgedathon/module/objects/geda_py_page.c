@@ -226,7 +226,7 @@ static PyTypeObject PyGedaPageObjectType = {
     PyObject_HEAD_INIT(NULL)
     0,                         /* ob_size,        not used, historical artifact for backward compatibility */
     "geda.Page",               /* tp_name,        default textual representation our objects, used in some error messages*/
-    sizeof(PyGedaPageObject),        /* tp_basicsize,   memory to allocate for this object */
+    sizeof(PyGedaPageObject),  /* tp_basicsize,   memory to allocate for this object */
     0,                         /* tp_itemsize*/
     (destructor)Page_dealloc,  /* tp_dealloc*/
     0,                         /* tp_print*/
