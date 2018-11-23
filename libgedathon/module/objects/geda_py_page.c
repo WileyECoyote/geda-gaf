@@ -187,7 +187,7 @@ static int Page_setfilename(PyGedaPageObject *self, PyObject *value, void *closu
   PyObject *py_status;
   long result;
 
-  /* TODO: “closure” check for invalid characters for a filename */
+  /* TODO: "closure" check for invalid characters for a filename */
   if (value == NULL) {
     PyErr_SetString(PyExc_TypeError, "Cannot delete the file name attribute");
     return -1;
