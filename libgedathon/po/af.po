@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-07-21 18:28-0500\n"
+"POT-Creation-Date: 2018-11-23 00:37-0600\n"
 "PO-Revision-Date: 2017-12-13 02:30-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -52,204 +52,204 @@ msgstr "Kry of Stel die verstek titelblok simbool in\n"
 
 # Close all files and shutdown Libgedathon
 #: libgedathon/include/geda_module.h:53
-msgid "Close all files and shutdown Libgedathon.\n"
-msgstr "Sluit alle lêers en sluit Libgedathon.\n"
+msgid "Close all files and shutdown Libgedathon."
+msgstr "Sluit alle lêers en sluit Libgedathon."
 
 # Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
-msgid "Append a folder to the library search path.\n"
-msgstr "Voeg 'n gids by die biblioteek se soekpad.\n"
+msgid "Append a folder to the library search path."
+msgstr "Voeg 'n gids by die biblioteek se soekpad."
 
 # Creates a gafrc file in the current directory
 #: libgedathon/include/geda_module.h:56
-msgid "Creates a gafrc file in the current directory.\n"
-msgstr "Skep 'n gafrc-lêer in die huidige gids.\n"
+msgid "Creates a gafrc file in the current directory."
+msgstr "Skep 'n gafrc-lêer in die huidige gids."
 
 #: libgedathon/include/geda_module.h:59
-msgid "Retrieve list of all pages.\n"
-msgstr "Haal lys van alle bladsye op.\n"
+msgid "Retrieve list of all pages."
+msgstr "Haal lys van alle bladsye op."
 
 # Get pointer to the active page
 #: libgedathon/include/geda_module.h:60
-msgid "Get pointer to the active page.\n"
-msgstr "Kry wyser na die aktiewe bladsy.\n"
+msgid "Get pointer to the active page."
+msgstr "Kry wyser na die aktiewe bladsy."
 
 # Set the active page
 #: libgedathon/include/geda_module.h:61
-msgid "Set the active page.\n"
-msgstr "Stel die aktiewe bladsy.\n"
+msgid "Set the active page."
+msgstr "Stel die aktiewe bladsy."
 
 # Returns True if page has been modified and not saved
 #: libgedathon/include/geda_module.h:62
-msgid "Returns True if page has been modified and not saved.\n"
-msgstr "Wys waar as die bladsy verander en nie gestoor is nie.\n"
+msgid "Returns True if page has been modified and not saved."
+msgstr "Wys waar as die bladsy verander en nie gestoor is nie."
 
 # Set the active page, and changes current directory
 #: libgedathon/include/geda_module.h:63
-msgid "Set the active page, and changes current directory.\n"
-msgstr "Stel die aktiewe bladsy en verander die huidige gids.\n"
+msgid "Set the active page, and changes current directory."
+msgstr "Stel die aktiewe bladsy en verander die huidige gids."
 
 # Open a page
 #: libgedathon/include/geda_module.h:64
-msgid "Open a page.\n"
-msgstr "Maak 'n bladsy oop.\n"
+msgid "Open a page."
+msgstr "Maak 'n bladsy oop."
 
 # Close page
 #: libgedathon/include/geda_module.h:65
-msgid "Close page.\n"
-msgstr "Sluit bladsy.\n"
+msgid "Close page."
+msgstr "Sluit bladsy."
 
 # Create a new empty page
 #: libgedathon/include/geda_module.h:66
-msgid "Create a new empty page.\n"
-msgstr "Skep 'n nuwe leë bladsy.\n"
+msgid "Create a new empty page."
+msgstr "Skep 'n nuwe leë bladsy."
 
 # Rename a page changes the filename
 #: libgedathon/include/geda_module.h:67
-msgid "Rename a page changes the filename.\n"
-msgstr "Hernoem 'n bladsy verander die lêernaam.\n"
+msgid "Rename a page changes the filename."
+msgstr "Hernoem 'n bladsy verander die lêernaam."
 
 # Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
-msgid "Save the page by writing to storage\n"
-msgstr "Stoor die bladsy deur op te stoor\n"
+msgid "Save the page by writing to storage."
+msgstr "Stoor die bladsy deur op te stoor"
 
 # Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
-msgid "Save the page using a new file name\n"
-msgstr "Stoor die bladsy met 'n nuwe lêernaam\n"
+msgid "Save the page using a new file name."
+msgstr "Stoor die bladsy met 'n nuwe lêernaam."
 
 # Save all opened pages to storage
 #: libgedathon/include/geda_module.h:70
-msgid "Save all opened pages to storage\n"
-msgstr "Stoor alle oop bladsye op stoorplek\n"
+msgid "Save all opened pages to storage."
+msgstr "Stoor alle oop bladsye op stoorplek."
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:74
-msgid "Returns the rectangular boundaries of an object.\n"
+msgid "Returns the rectangular boundaries of an object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:75
-msgid "Retrieve an object from a GedaCapsule.\n"
+msgid "Retrieve an object from a GedaCapsule."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:76
-msgid "Retrieve all objects belonging to a page.\n"
-msgstr ""
+msgid "Retrieve all objects belonging to a page."
+msgstr "Haal lys van alle bladsye op."
 
 #: libgedathon/include/geda_module.h:77
-msgid "Add an object to a page or another object.\n"
+msgid "Add an object to a page or another object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:78
-msgid "Add multiple objects to a page or another object.\n"
+msgid "Add multiple objects to a page or another object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:79
-msgid "Make a copy an object\n"
+msgid "Make a copy an object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
-msgid "Remove object from a page.\n"
+msgid "Remove object from a page."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:81
-msgid "Remove multiple objects from a page.\n"
+msgid "Remove multiple objects from a page."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:83
-msgid "Delete an object from a page.\n"
+msgid "Delete an object from a page."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page.\n"
+msgid "Delete multiple object from a page."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:88
-msgid "Create a new arc object.\n"
+msgid "Create a new arc object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:89
-msgid "Create a new box object.\n"
+msgid "Create a new box object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:90
-msgid "Create a new bus object.\n"
+msgid "Create a new bus object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:91
-msgid "Create a new circle object.\n"
+msgid "Create a new circle object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:92
-msgid "Create a new complex object.\n"
+msgid "Create a new complex object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:93
-msgid "Create a new line object.\n"
+msgid "Create a new line object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:94
-msgid "Create a new net object.\n"
+msgid "Create a new net object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:95
-msgid "Create a new path object.\n"
+msgid "Create a new path object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:96
-msgid "Create a new picture object.\n"
+msgid "Create a new picture object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:97
-msgid "Create a new pin object.\n"
+msgid "Create a new pin object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:98
-msgid "Create a new text object.\n"
+msgid "Create a new text object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:99
-msgid "Create a new attribute object.\n"
+msgid "Create a new attribute object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:102
-msgid "New object type syntax\n"
+msgid "New object type syntax"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:103
-msgid "The object name\n"
+msgid "The object name"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:104
-msgid "Add an attribute object to this object\n"
+msgid "Add an attribute object to this object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:105
-msgid "Copy the object\n"
+msgid "Copy the object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:106
-msgid "Rotate the object\n"
+msgid "Rotate the object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:107
-msgid "Select this Object\n"
+msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object\n"
+msgid "UnSelect this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:117
-msgid "Returns the length of a linear object.\n"
+msgid "Returns the length of a linear object."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:120
-msgid "File Name of this Page.\n"
+msgid "File Name of this Page."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:123
@@ -257,29 +257,29 @@ msgid "String describing a geometric element"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:126
-msgid "Retrieve a specific attribute Object\n"
+msgid "Retrieve a specific attribute Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:127
-msgid "Retrieve list of associated attribute Objects\n"
-msgstr ""
+msgid "Retrieve list of associated attribute Objects"
+msgstr "Haal lys van alle bladsye op."
 
 #: libgedathon/include/geda_module.h:128
-msgid "Set the value of a specified attribute Object\n"
+msgid "Set the value of a specified attribute Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:129
-msgid "Refresh Objects attributes\n"
+msgid "Refresh Objects attributes"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object\n"
+msgid "Retrieve all objects connect to specific Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:133
-msgid "Retrieve list of points for junction for specified Objects\n"
+msgid "Retrieve list of points for junction for specified Objects"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects\n"
+msgid "Retrieve list of points of unconnect nodes for specified Objects"
 msgstr ""
