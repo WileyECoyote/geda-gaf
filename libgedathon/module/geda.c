@@ -952,7 +952,7 @@ METHOD(new_page)
   PyObject   *info;
   PyObject   *page;
 
-  int   over_write = -1;
+  int over_write = -1;
 
   if (!PyArg_ParseTuple(args, "|si:geda.new_page", &filename, &over_write))
   {
