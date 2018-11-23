@@ -1006,7 +1006,21 @@ METHOD(rename_page)
 
   status = library.func(((PyGedaPageObject*)page)->pid, new_name);
 
+  /* If success then update the PyPage obejct */
+  if (status) {
+
+    Py_DECREF(((PyGedaPageObject*)page)->filename);
+
+    ((PyGedaPageObject*)page)->filename = PyString_FromString(new_name);
+
+  }
+  else {
+    const char *fail = "Error: rename_page failed";
+    PyErr_SetString(PyExc_StandardError, fail);
+  }
+
   ON_METHOD_EXIT(rename_page);
+
   if (status == 0) {
     Py_RETURN_FALSE;
   }
