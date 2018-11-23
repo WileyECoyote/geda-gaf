@@ -986,6 +986,7 @@ METHOD(new_page)
  *
  *  [in] PyPage page A GedaPage Object
  *  [in] name   String the new name property
+ *
  * \return [out] status True if success, otherwise False.
  */
 METHOD(rename_page)
@@ -1305,6 +1306,7 @@ METHOD(get_object)
  *          print("objects on page with ID={0}, filename={1}".format(schematic.pid,schematic.filename()))
  *          print objects # prints information for all object on a page
  * \endcode
+ *
  * \note 1. The GedaCapsules contained in the returned list indirectly references
  *          objects. Destroying the capsule does not destroy the objects referenced
  *          within. GedaCapsule are not derived from Python Capsules, but instead are
