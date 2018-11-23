@@ -1,3 +1,8 @@
+2018-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_module.h: Adjust docstring line endings; remove line
+      feed, add period where missing.
+
 2018-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Update the file name in python page if library returns
