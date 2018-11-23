@@ -12,6 +12,10 @@
       argument to rename_page method since the method will set the file
       name.
 
+    * src/libgedathon.c: Revise PyGeda_rename_page to check for an empty
+      filename string and prepend the directory of the old name to the
+      new name when the new name is not an absolute path.
+
 2018-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/guide-libgedathon.[html,tex]: Minor grammatical revisions.

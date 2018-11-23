@@ -1620,6 +1620,7 @@ PyObject *PyGeda_new_page( const char *filename, int over_write)
   char *fname = NULL;
 
   if (filename) {
+
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
       char *command;
@@ -1653,13 +1654,37 @@ PyObject *PyGeda_new_page( const char *filename, int over_write)
  */
 int PyGeda_rename_page (int pid, const char *filename)
 {
-  Page *page;
-  int   status = 0;
+  int status = 0;
 
-  page = geda_toplevel_get_page_by_id(toplevel, pid);
-  if (page && (GEDA_IS_PAGE(page))) {
-    status = geda_page_rename(page, filename, TRUE);
+  /* Check for empty string */
+  if (strlen(filename) > 0) {
+
+    Page *page;
+
+    page = geda_toplevel_get_page_by_id(toplevel, pid);
+
+    if (page && (GEDA_IS_PAGE(page))) {
+
+      if (geda_is_path_absolute (filename)) {
+        status = geda_page_rename(page, filename, TRUE);
+      }
+      else {
+
+        char *fname;
+        char *ppath;
+
+        ppath = geda_file_path_get_dirname(page->filename);
+
+        fname = geda_strconcat (ppath, DIR_SEPARATOR_S, filename, NULL);
+
+        status = geda_page_rename(page, fname, TRUE);
+
+        geda_free(fname);
+        geda_free (ppath);
+      }
+    }
   }
+
   return status;
 }
 
