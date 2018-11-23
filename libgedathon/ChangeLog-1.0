@@ -1,11 +1,16 @@
 2018-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/.c: Add whitespace before pointer, update function wrapping,
-      adjust line spacing, adjust indentation; align columns, space after
-      conditionals.
-
     * module/geda.c: Update the file name in python page if library returns
       success and set error string when the library returns failure.
+
+    * module/objects/.c: Add whitespace before pointer, update function
+      wrapping, adjust line spacing, adjust indentation; align columns,
+      add space after conditionals.
+
+    * module/objects/geda_py_page.c: Revise function Page_setfilename to
+      not reference count or set the filename and pass the value as the
+      argument to rename_page method since the method will set the file
+      name.
 
 2018-11-21 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -197,12 +197,12 @@ static int Page_setfilename(PyGedaPageObject *self, PyObject *value, void *closu
     PyErr_SetString(PyExc_TypeError, "The file name attribute value must be a string");
     return -1;
   }
-
+/*
   Py_DECREF(self->filename);
   Py_INCREF(value);
   self->filename = value;
-
-  py_status = PyObject_CallMethod(geda_module, "rename_page", "OO", self,self->filename);
+*/
+  py_status = PyObject_CallMethod(geda_module, "rename_page", "OO", self, value);
 
   result = PyInt_AsLong(py_status);
   if ((result == -1) && PyErr_Occurred()) {
