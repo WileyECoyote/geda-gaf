@@ -16,6 +16,8 @@
 
     * po/pt_BR.po: Add encoding utf-8 and update Brazilian Portuguese translations.
 
+    * po/.po: Add encoding utf-8, update contents.
+
 2018-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_module.h: Adjust docstring line endings; remove line

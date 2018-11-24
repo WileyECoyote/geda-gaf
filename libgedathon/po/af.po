@@ -1,7 +1,7 @@
 # Afrikaans translation for the gEDA libgedathon package.
 # Copyright (C) 2017 Wiley E. Hill <wileyhill@gmail.com>
 # This file is distributed under the same license as the libgedathon package.
-#
+# encoding: utf-8
 msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
@@ -32,8 +32,8 @@ msgstr "Kry of Stel die verstek simbool vir elektrolitiese kapasitors\n"
 
 # Get or Set the default symbol for inductor
 #: libgedathon/include/functions.h:56
-msgid "Get or Set the default symbol for inductor\n"
-msgstr "Kry of Stel die verstek simbool vir induktor\n"
+msgid "Get or Set the default symbol for inductors\n"
+msgstr "Kry of Stel die verstek simbool vir induktore\n"
 
 # Get or Set the default operational amplifier symbol
 #: libgedathon/include/functions.h:57
@@ -50,10 +50,10 @@ msgstr "Kry of Stel die verstek simbool vir weerstande\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Kry of Stel die verstek titelblok simbool in\n"
 
-# Close all files and shutdown Libgedathon
+# Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
-msgid "Close all files and shutdown Libgedathon."
-msgstr "Sluit alle lêers en sluit Libgedathon."
+msgid "Close all files and deinitialize the library."
+msgstr "Sluit al die lêers en deinitialiseer die biblioteek."
 
 # Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
