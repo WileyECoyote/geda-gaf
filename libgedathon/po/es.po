@@ -1,7 +1,7 @@
 # Spanish/Spain translation for the gEDA libgedathon package.
 # Copyright (C) 2017 Wiley E. Hill <wileyhill@gmail.com>
 # This file is distributed under the same license as the libgedathon package.
-#
+# encoding: utf-8
 msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
@@ -25,12 +25,11 @@ msgstr "Obtener o establecer el símbolo predeterminado para condensadores\n"
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr ""
-"Obtener o establecer el símbolo predeterminado para condensadores electrolÃ­"
-"ticos\n"
+"Obtenga o establezca el símbolo predeterminado para condensadores electrolíticos\n"
 
 #: libgedathon/include/functions.h:56
-msgid "Get or Set the default symbol for inductor\n"
-msgstr "Obtener o establecer el símbolo predeterminado para inductor\n"
+msgid "Get or Set the default symbol for inductors\n"
+msgstr "Obtener o establecer el símbolo por defecto para inductores\n"
 
 # Get or Set the default operational amplifier symbol
 #: libgedathon/include/functions.h:57
@@ -48,14 +47,14 @@ msgstr "Consigue o establece el símbolo por defecto para resistencias\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obtener o establecer el símbolo de bloqueo de título predeterminado\n"
 
-# Close all files and shutdown Libgedathon
+# Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
-msgid "Close all files and shutdown Libgedathon."
-msgstr "Cierre todos los archivos y cierre Libgedathon."
+msgid "Close all files and deinitialize the library."
+msgstr "Cerrar todos los archivos y desinicializar la biblioteca."
 
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr "Anexar una carpeta a la ruta de bÃºsqueda de la biblioteca."
+msgstr "Adjuntar una carpeta a la ruta de búsqueda de la biblioteca."
 
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."

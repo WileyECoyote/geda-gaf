@@ -2,6 +2,8 @@
 
     * po/ar.po: Add encoding utf-8 and update Arabic translations.
 
+    * po/es.po: Add encoding utf-8 and update Spanish translations.
+
 2018-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_module.h: Adjust docstring line endings; remove line
