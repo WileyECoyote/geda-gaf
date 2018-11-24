@@ -19,51 +19,50 @@ msgstr ""
 
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr "Obtenir ou dÃ©finir le symbole par dÃ©faut pour les condensateurs\n"
+msgstr "Obtenir ou définir le symbole par défaut pour les condensateurs\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr ""
-"Obtenir ou dÃ©finir le symbole par dÃ©faut pour les condensateurs "
-"Ã©lectrolytiques\n"
+"Obtenir ou définir le symbole par défaut pour les condensateurs électrolytiques\n"
 
 #: libgedathon/include/functions.h:56
-msgid "Get or Set the default symbol for inductor\n"
-msgstr "Obtenir ou dÃ©finir le symbole par dÃ©faut pour l'inducteur\n"
+msgid "Get or Set the default symbol for inductors\n"
+msgstr "Obtenir ou définir le symbole par défaut pour inducteurs\n"
 
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr ""
-"Obtenir ou dÃ©finir le symbole d'amplificateur opÃ©rationnel par dÃ©faut\n"
+"Obtenir ou définir le symbole d'amplificateur opérationnel par défaut\n"
 
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr "Obtenir ou dÃ©finir le symbole par dÃ©faut pour les rÃ©sistances\n"
+msgstr "Obtenir ou définir le symbole par défaut pour les résistances\n"
 
 # Get or Set the default titleblock symbol
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr "Obtenir ou dÃ©finir le symbole de titre par dÃ©faut\n"
+msgstr "Obtenir ou définir le symbole de cartouche par défaut\n"
 
-# Close all files and shutdown Libgedathon
+# Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
-msgid "Close all files and shutdown Libgedathon."
-msgstr "Fermez tous les fichiers et fermez Libgedathon."
+msgid "Close all files and deinitialize the library."
+msgstr "Cerrar todos los archivos y desinicializar la biblioteca."
 
 # Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr "Ajouter un dossier au chemin de recherche de la bibliothÃ¨que."
+msgstr "Ajouter un dossier au chemin de recherche de la bibliothèque."
 
 # Creates a gafrc file in the current directory
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr "CrÃ©e un fichier gafrc dans le rÃ©pertoire en cours."
+msgstr "Crée un fichier gafrc dans le répertoire en cours."
 
 # Retrieve list of all pages
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr "RÃ©cupÃ©rer la liste de toutes les pages."
+msgstr "Récupérer la liste de toutes les pages."
 
 # Get pointer to the active page
 #: libgedathon/include/geda_module.h:60
@@ -73,7 +72,7 @@ msgstr "Obtenir un pointeur vers la page active."
 # Set the active page
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr "DÃ©finir la page active."
+msgstr "Définir la page active."
 
 # Returns True if page has been modified and not saved
 #: libgedathon/include/geda_module.h:62
@@ -107,7 +106,7 @@ msgstr "Renommer une page change le nom du fichier."
 # Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr "Enregistrez la page en Ã©crivant dans le stockage."
+msgstr "Enregistrez la page en écrivant dans le stockage."
 
 # Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
@@ -132,12 +131,12 @@ msgstr "Renvoie les limites rectangulaires d'un objet."
 # Retrieve an object from a GedaCapsule
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr "RÃ©cupÃ©rer un objet d'une GedaCapsule."
+msgstr "Récupérer un objet d'une GedaCapsule."
 
 # Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr "RÃ©cupÃ©rer tous les objets appartenant Ã  une page."
+msgstr "Récupérer tous les objets appartenant à une page."
 
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
@@ -249,7 +248,7 @@ msgstr ""
 # Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr "Retourne la longueur d'un objet linÃ©aire"
+msgstr "Retourne la longueur d'un objet linéaire"
 
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
@@ -266,7 +265,7 @@ msgstr ""
 # Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr "RÃ©cupÃ©rer la liste des objets d'attributs associÃ©s"
+msgstr "Récupérer la liste des objets d'attributs associés"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
@@ -279,7 +278,7 @@ msgstr ""
 # Retrieve all objects connect to specific Object
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connect to specific Object"
-msgstr "RÃ©cupÃ©rer tous les objets connectÃ©s Ã  un objet spÃ©cifique"
+msgstr "Récupérer tous les objets connectés à un objet spécifique"
 
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
