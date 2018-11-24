@@ -2,7 +2,7 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the geda package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-#
+# encoding: utf-8
 msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
@@ -20,51 +20,54 @@ msgstr ""
 
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "نماد پیش فرض را برای خازن دریافت یا تنظیم کنید\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "نماد پیش فرض را برای خازن های الکترولیتی دریافت یا تنظیم کنید\n"
 
 #: libgedathon/include/functions.h:56
-msgid "Get or Set the default symbol for inductor\n"
-msgstr ""
+msgid "Get or Set the default symbol for inductors\n"
+msgstr "نماد پیش فرض را برای سلف ها دریافت یا تنظیم کنید\n"
 
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "نماد تقویت کننده عملیاتی پیش فرض را دریافت یا تنظیم کنید\n"
 
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "نماد پیش فرض برای مقاومت را دریافت یا تنظیم کنید\n"
 
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "نماد بلوک پیش فرض را دریافت یا تنظیم کنید\n"
 
+# Close all files and the library
 #: libgedathon/include/geda_module.h:53
-msgid "Close all files and shutdown Libgedathon."
-msgstr ""
+msgid "Close all files and deinitialize the library."
+msgstr "تمام فایل ها و کتابخانه را ببندید."
 
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "یک پوشه را به مسیر جستجوی کتابخانه اضافه کنید."
 
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "یک فایل gafrc را در دایرکتوری فعلی ایجاد می کند."
 
+# Retrieve list of all pages
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "لیست بازیابی تمام صفحات را بازیابی کنید."
 
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "اشاره گر به صفحه فعال را دریافت کنید."
 
+# Set the active page
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "صفحه فعال را تنظیم کنید."
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
