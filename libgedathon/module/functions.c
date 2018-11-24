@@ -732,7 +732,7 @@ FUNCTION(DefaultTitleblockSymbol)
  *  example: AddArc(schematic, 2300, 2700, 500, 0, 90)
  * \endcode
  */
-FUNCTION ( AddArc)
+FUNCTION (AddArc)
 {
   PyObject *py_page;
   PyObject *py_x;
@@ -811,7 +811,7 @@ FUNCTION ( AddArc)
  *              AddAttribute(amp, "slot", "2",  7650, 7250)
  * \endcode
  */
-FUNCTION ( AddAttribute )
+FUNCTION (AddAttribute)
 {
   PyObject *py_page;
   PyObject *py_name;
@@ -906,7 +906,7 @@ FUNCTION ( AddAttribute )
  *  example 2: AddBox(schematic, 800, 1500, 5200, 8625, Blue)
  * \endcode
  */
-FUNCTION ( AddBox )
+FUNCTION (AddBox)
 {
   PyObject *py_page;
   PyObject *py_lower_x;
@@ -1188,7 +1188,7 @@ FUNCTION(AddCapacitor)
  *           circle3 = circle2.copy(1000, -900)
  * \endcode
  */
-FUNCTION ( AddCircle )
+FUNCTION (AddCircle)
 {
   PyObject *py_page;
   PyObject *py_x;
@@ -2071,7 +2071,7 @@ FUNCTION(AddSource)
  *              AddAttribute(amp, "slot", "2",  7650, 7250)
  * \endcode
  */
-FUNCTION ( AddText )
+FUNCTION (AddText)
 {
   PyObject *py_page;
   PyObject *py_string;

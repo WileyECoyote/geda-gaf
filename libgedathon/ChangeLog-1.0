@@ -6,6 +6,7 @@
     * module/functions.c: Translate error message in AutoDesignate. Add
       static function set_default_symbol_error_string to compose a semi-
       translatable error message string for DefaultXXXSymbol functions.
+      Remove whitespaces from FUNCTION macro arguments for consistency.
 
 2018-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
