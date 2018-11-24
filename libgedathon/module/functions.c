@@ -389,6 +389,21 @@ FUNCTION(unknown)
  *  general poor performence in terms of speed.
  */
 
+/* Sets PyErr string for DefaultXXXSymbol functions and returns NULL */
+static PyObject *set_default_symbol_error_string(const char *sym)
+{
+  const char *_get = _("get");
+  const char *_set = _("or set");
+
+  PyObject *py_msg;
+
+  py_msg = PyString_FromFormat("%s: %s() %s: %s(name)", _get, sym, _set, sym);
+
+  PyErr_SetObject(PyExc_TypeError, py_msg);
+
+  return NULL;
+}
+
 /** \defgroup Python_API_Symbols_For_GedaFunctions Geda Python Module Symbol Functions
  *  @{
  */
@@ -421,8 +436,7 @@ FUNCTION(DefaultCapacitorSymbol)
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultCapacitorSymbol", &py_symbol))
   {
-    PyErr_SetString(PyExc_TypeError, "set: DefaultCapacitorSymbol(name) Or get: DefaultCapacitorSymbol()");
-    return NULL;
+    return set_default_symbol_error_string("DefaultCapacitorSymbol");
   }
   if (py_symbol) {
 
@@ -473,8 +487,7 @@ FUNCTION(DefaultElectrolyticSymbol)
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultElectrolyticSymbol", &py_symbol))
   {
-    PyErr_SetString(PyExc_TypeError, "set: DefaultElectrolyticSymbol(name) Or get: DefaultElectrolyticSymbol()");
-    return NULL;
+    return set_default_symbol_error_string("DefaultElectrolyticSymbol");
   }
 
   if (py_symbol) {
@@ -526,8 +539,7 @@ FUNCTION(DefaultInductorSymbol)
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultInductorSymbol", &py_symbol))
   {
-    PyErr_SetString(PyExc_TypeError, "set: DefaultInductorSymbol(name) Or get: DefaultInductorSymbol()");
-    return NULL;
+    return set_default_symbol_error_string("DefaultInductorSymbol");
   }
 
   if (py_symbol) {
@@ -576,8 +588,7 @@ FUNCTION(DefaultOpAmpSymbol)
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultOpAmpSymbol", &py_symbol))
   {
-    PyErr_SetString(PyExc_TypeError, "set: DefaultOpAmpSymbol(name) Or get: DefaultOpAmpSymbol()");
-    return NULL;
+    return set_default_symbol_error_string("DefaultOpAmpSymbol");
   }
 
   if (py_symbol) {
@@ -628,8 +639,7 @@ FUNCTION(DefaultResistorSymbol)
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultResistorSymbol", &py_symbol))
   {
-    PyErr_SetString(PyExc_TypeError, "set: DefaultResistorSymbol(name) Or get: DefaultResistorSymbol()");
-    return NULL;
+    return set_default_symbol_error_string("DefaultResistorSymbol");
   }
 
   if (py_symbol) {
@@ -673,8 +683,7 @@ FUNCTION(DefaultTitleblockSymbol)
 
   if (!PyArg_ParseTuple(args, "|S:geda.DefaultTitleblockSymbol", &py_symbol))
   {
-    PyErr_SetString(PyExc_TypeError, "set: DefaultTitleblockSymbol(name) Or get: DefaultTitleblockSymbol()");
-    return NULL;
+    return set_default_symbol_error_string("DefaultTitleblockSymbol");
   }
 
   if (py_symbol) {
