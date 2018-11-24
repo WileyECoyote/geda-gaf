@@ -10,6 +10,8 @@
 
     * po/ml.po: Add encoding utf-8 and updated Malayalam translations.
 
+    * po/nl.po: Add encoding utf-8 and update Dutch translations.
+
 2018-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_module.h: Adjust docstring line endings; remove line
