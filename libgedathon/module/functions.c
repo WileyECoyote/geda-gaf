@@ -389,6 +389,11 @@ FUNCTION(unknown)
  *  general poor performence in terms of speed.
  */
 
+
+/** \defgroup Python_API_Symbols_For_GedaFunctions Geda Python Module Symbol Functions
+ *  @{
+ */
+
 /* Sets PyErr string for DefaultXXXSymbol functions and returns NULL */
 static PyObject *set_default_symbol_error_string(const char *sym)
 {
@@ -404,9 +409,16 @@ static PyObject *set_default_symbol_error_string(const char *sym)
   return NULL;
 }
 
-/** \defgroup Python_API_Symbols_For_GedaFunctions Geda Python Module Symbol Functions
- *  @{
- */
+/* Outputs error message for Adder functions and clears PyErr */
+static void show_error_object_not_created(const char *AddFunc, const char *what)
+{
+  const char *msg1 = _("An error occurred");
+  const char *msg2 = _("object was not created");
+
+  fprintf(stderr, "%s: %s, %s %s\n", AddFunc, msg1, what, msg2);
+
+  PyErr_Clear();
+}
 
 /*!
  * \brief Get or Set the name of default Capacitor symbol
@@ -768,9 +780,8 @@ FUNCTION (AddArc)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_arc);
   }
   else {
-    fprintf(stderr, "AddArc: An error occurred, Arc object was not created\n");
+    show_error_object_not_created("AddArc", _("Arc"));
     py_arc = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_arc;
 }
@@ -873,9 +884,8 @@ FUNCTION (AddAttribute)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_text);
   }
   else {
-    fprintf(stderr, "AddAttribute: An error occurred, Text Attribute object was not created\n");
+    show_error_object_not_created("AddAttribute", _("Text Attribute"));
     py_text = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_text;
 }
@@ -936,9 +946,8 @@ FUNCTION (AddBox)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_box);
   }
   else {
-    fprintf(stderr, "AddBox: An error occurred, Box object was not created\n");
+    show_error_object_not_created("AddBox", _("Box"));
     py_box = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_box;
 }
@@ -1006,9 +1015,8 @@ FUNCTION(AddBus)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_bus);
   }
   else {
-    fprintf(stderr, "AddBus: An error occurred, Bus object was not created\n");
+    show_error_object_not_created("AddBus", _("Bus"));
     py_bus = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_bus;
 }
@@ -1073,10 +1081,8 @@ FUNCTION(AddComponent)
        PyObject_CallMethod(geda_module, "set_attrib", "Ossi", py_component, "refdes", refdes, FALSE);
   }
   else {
-    fprintf(stderr, "AddComponent: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(py_symbol));
+    show_error_object_not_created("AddComponent", PyString_AsString(py_symbol));
     py_component = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_component;
 }
@@ -1155,10 +1161,8 @@ FUNCTION(AddCapacitor)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddCapacitor: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(CapacitorSymbol));
+    show_error_object_not_created("AddCapacitor", PyString_AsString(CapacitorSymbol));
     py_capacitor = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_capacitor;
 }
@@ -1220,9 +1224,8 @@ FUNCTION (AddCircle)
      PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_circle);
   }
   else {
-    fprintf(stderr, "AddCircle: An error occurred, Circle object was not created\n");
+    show_error_object_not_created("AddCircle", _("Circle"));
     py_circle = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_circle;
 }
@@ -1301,10 +1304,8 @@ FUNCTION(AddElectrolytic)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddElectrolytic: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(ElectrolyticSymbol));
+    show_error_object_not_created("AddElectrolytic",PyString_AsString(ElectrolyticSymbol));
     py_electrolytic = Py_BuildValue("");
-    PyErr_Clear();
   }
 
   return py_electrolytic;
@@ -1382,10 +1383,8 @@ FUNCTION(AddInductor)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddInductor: An error occurred, inductor object was not created, symbol=%s\n",
-            PyString_AsString(InductorSymbol));
+    show_error_object_not_created("AddInductor", PyString_AsString(InductorSymbol));
     py_inductor = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_inductor;
 }
@@ -1445,9 +1444,8 @@ FUNCTION(AddLine)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_line);
   }
   else {
-    fprintf(stderr, "AddLine: An error occurred, line object was not created\n");
+    show_error_object_not_created("AddLine", _("line"));
     py_line = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_line;
 }
@@ -1511,9 +1509,8 @@ FUNCTION(AddNet)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_net);
   }
   else {
-    fprintf(stderr, "AddNet: An error occurred, Net object was not created\n");
+    show_error_object_not_created("AddNet", _("Net"));
     py_net = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_net;
 }
@@ -1605,10 +1602,8 @@ FUNCTION(AddOpAmp)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddOpAmp: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(OpAmpSymbol));
+    show_error_object_not_created("AddOpAmp", PyString_AsString(OpAmpSymbol));
     py_opamp = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_opamp;
 }
@@ -1664,9 +1659,8 @@ FUNCTION(AddPath)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_path);
   }
   else {
-    fprintf(stderr, "AddPath: An error occurred, path object was not created\n");
+    show_error_object_not_created("AddPath", _("path"));
     py_path = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_path;
 }
@@ -1744,10 +1738,8 @@ FUNCTION(AddPicture)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_picture);
   }
   else {
-    fprintf(stderr, "AddPicture: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(py_file));
+    show_error_object_not_created("AddPicture", PyString_AsString(py_file));
     py_picture = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_picture;
 }
@@ -1884,9 +1876,8 @@ FUNCTION(AddPin)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_pin);
   }
   else {
-    fprintf(stderr, "AddPin: An error occurred, pin object was not created\n");
+    show_error_object_not_created("AddPin", _("pin"));
     py_pin = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_pin;
 }
@@ -1965,10 +1956,8 @@ FUNCTION(AddResistor)
     g_free(refdes);
   }
   else {
-    fprintf(stderr, "AddResistor: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(ResistorSymbol));
+    show_error_object_not_created("AddResistor", PyString_AsString(ResistorSymbol));
     py_resistor = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_resistor;
 }
@@ -2032,10 +2021,8 @@ FUNCTION(AddSource)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_source);
   }
   else {
-    fprintf(stderr, "AddSource: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(py_symbol));
+    show_error_object_not_created("AddSource", PyString_AsString(py_symbol));
     py_source = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_source;
 }
@@ -2124,9 +2111,8 @@ FUNCTION (AddText)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_text);
   }
   else {
-    fprintf(stderr, "AddText: An error occurred, Text Attribute object was not created\n");
+    show_error_object_not_created("AddText", _("Text"));
     py_text = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_text;
 }
@@ -2194,10 +2180,8 @@ FUNCTION(AddTitleblock)
     }
   }
   else {
-    fprintf(stderr, "AddTitleblock: An error occurred, object was not created, symbol=%s\n",
-            PyString_AsString(TitleblockSymbol));
+    show_error_object_not_created("AddTitleblock", PyString_AsString(TitleblockSymbol));
     py_titleblock = Py_BuildValue("");
-    PyErr_Clear();
   }
   return py_titleblock;
 }
