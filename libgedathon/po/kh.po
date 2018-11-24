@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-23 00:37-0600\n"
+"POT-Creation-Date: 2018-11-24 01:31-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -262,4 +262,65 @@ msgstr ""
 
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnect nodes for specified Objects"
+msgstr ""
+
+#: libgedathon/module/functions.c:164
+#, c-format
+msgid "Type error, ignoring invalid optional parameter 5\n"
+msgstr ""
+
+#: libgedathon/module/functions.c:400
+msgid "get"
+msgstr ""
+
+#: libgedathon/module/functions.c:401
+msgid "or set"
+msgstr ""
+
+#: libgedathon/module/functions.c:415
+msgid "An error occurred"
+msgstr ""
+
+#: libgedathon/module/functions.c:416
+msgid "object was not created"
+msgstr ""
+
+#: libgedathon/module/functions.c:783
+msgid "Arc"
+msgstr ""
+
+#: libgedathon/module/functions.c:887
+msgid "Text Attribute"
+msgstr ""
+
+#: libgedathon/module/functions.c:949
+msgid "Box"
+msgstr ""
+
+#: libgedathon/module/functions.c:1018
+msgid "Bus"
+msgstr ""
+
+#: libgedathon/module/functions.c:1227
+msgid "Circle"
+msgstr ""
+
+#: libgedathon/module/functions.c:1447
+msgid "line"
+msgstr ""
+
+#: libgedathon/module/functions.c:1512
+msgid "Net"
+msgstr ""
+
+#: libgedathon/module/functions.c:1662
+msgid "path"
+msgstr ""
+
+#: libgedathon/module/functions.c:1879
+msgid "pin"
+msgstr ""
+
+#: libgedathon/module/functions.c:2114
+msgid "Text"
 msgstr ""
