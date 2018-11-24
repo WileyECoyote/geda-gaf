@@ -145,9 +145,9 @@ static char *AutoDesignate(AutoDesignator GetNextRef, PyObject *py_refdes)
       refdes = PyString_AsString(py_refdes);
       if (refdes) {
         number = atoi(refdes);
-        if (!number) {           /* then we shouldn't call GetNextRef yet */
+        if (!number) {            /* then we shouldn't call GetNextRef yet */
           char *ptr = refdes;
-          while (*ptr) {         /* try and index past non digits */
+          while (*ptr) {          /* try and index past non digits */
             if (isdigit(*ptr)) {  /* and stop if we find one */
               break;
             }
@@ -160,7 +160,8 @@ static char *AutoDesignate(AutoDesignator GetNextRef, PyObject *py_refdes)
       }
     }
     else {
-      fprintf(stderr, "Type error, ignoring invalid optional parameter 5\n");
+      /* py_refdes was the callers 5 argument */
+      fprintf(stderr, _("Type error, ignoring invalid optional parameter 5\n"));
     }
   }
 
