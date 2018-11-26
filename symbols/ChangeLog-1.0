@@ -8,7 +8,7 @@
 
     * linear/switchreg/LM2576*.sym: Add value, update attributes.
 
-    * linear/switchreg/UC184?-[1,2].sym: Add separate symbols and alternate
+    * linear/switchreg/UC?84?-[1,2].sym: Add separate symbols and alternate
       for UC184 series current-mode PWM Controllers:
 
             * linear/switchreg/UC1842-1.sym
@@ -19,10 +19,6 @@
             * linear/switchreg/UC1844-2.sym
             * linear/switchreg/UC1845-1.sym
             * linear/switchreg/UC1845-2.sym
-
-    * linear/switchreg/UC284?-[1,2].sym: Add separate symbols and alternate
-      for UC184 series current-mode PWM Controllers:
-
             * linear/switchreg/UC2842-1.sym
             * linear/switchreg/UC2842-2.sym
             * linear/switchreg/UC2843-1.sym
@@ -31,6 +27,15 @@
             * linear/switchreg/UC2844-2.sym
             * linear/switchreg/UC2845-1.sym
             * linear/switchreg/UC2845-2.sym
+            * linear/switchreg/UC3842-1.sym
+            * linear/switchreg/UC3842-2.sym
+            * linear/switchreg/UC3843-1.sym
+            * linear/switchreg/UC3843-2.sym
+            * linear/switchreg/UC3844-1.sym
+            * linear/switchreg/UC3844-2.sym
+            * linear/switchreg/UC3845-1.sym
+            * linear/switchreg/UC3845-2.sym
+
 
 2018-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
