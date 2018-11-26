@@ -4,6 +4,8 @@
 
     * linear/special/XR22-908-03.sym: Update device attribute.
 
+    * linear/switchreg/LM2574*.sym: Add value, update device attribute.
+
 2018-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/led_drivers/UAA170-1.sym: Relocate symbol from linear/special,

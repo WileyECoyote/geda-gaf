@@ -88,21 +88,23 @@ T 450 400 5 8 0 1 0 2 1
 pintype=pwr
 }
 B 400 100 1500 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1200 900 8 10 1 1 0 3 1
+T 1100 1300 8 10 1 1 0 3 1
 refdes=U?
 T 400 1700 5 10 1 1 0 0 1
-device=LM2574HV-5.5-P008E
-T 400 1900 5 10 1 1 0 0 1
-footprint=DIP8
-T 400 3100 5 10 0 0 0 0 1
-author=AutoTron
+device=LM2574HV
 T 400 2300 5 10 0 1 0 0 1
+value=LM2574HV-5.5-P008E
+T 400 1900 5 10 0 1 0 0 1
+footprint=DIP8
+T 400 3300 5 10 0 0 0 0 1
+author=AutoTron
+T 400 2500 5 10 0 1 0 0 1
 documentation=www.ti.com/lit/ds/symlink/lm2574.pdf
 T 400 2100 5 10 0 1 0 0 1
 description=Inverting Switching Regulator
-T 400 2500 5 10 0 0 0 0 1
-numslots=0
 T 400 2700 5 10 0 0 0 0 1
-dist-license=GPL3
+numslots=0
 T 400 2900 5 10 0 0 0 0 1
+dist-license=GPL3
+T 400 3100 5 10 0 0 0 0 1
 use-license=unlimited
