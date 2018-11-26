@@ -1,3 +1,7 @@
+2018-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/special/DAC08SM-1.sym: Rename with upper case.
+
 2018-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/led_drivers/UAA170-1.sym: Relocate symbol from linear/special,
