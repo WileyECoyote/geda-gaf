@@ -1164,7 +1164,7 @@ METHOD(get_bounds)
   int       pid;
   int       sid;
 
-  const char *syntax = "syntax: get_bounds(PyGedaPageObject | PyGedaObject )";
+  const char *syntax = "syntax: get_bounds(PyGedaPageObject | PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_bounds", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1324,7 +1324,7 @@ METHOD(get_objects)
   int       pid;
   int       sid;
 
-  const char *syntax = "syntax: get_objects(PyGedaPageObject | PyGedaObject )";
+  const char *syntax = "syntax: get_objects(PyGedaPageObject | PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_objects", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -1842,7 +1842,7 @@ METHOD(new_box)
   if(!PyArg_ParseTuple(args, "iiii|O:geda.new_box, Bad Arguments",
                        &lower_x, &lower_y, &upper_x, &upper_y, &py_color))
   {
-    const char *syntax = "syntax: new_box( lower_x, lower_y, upper_x, upper_y [, color])";
+    const char *syntax = "syntax: new_box(lower_x, lower_y, upper_x, upper_y [, color])";
 
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
@@ -2773,7 +2773,7 @@ METHOD(get_network)
   int       sid;
   int       filter = GEDA_FILTER_ALL;
 
-  const char *syntax = "syntax: get_network(PyGedaObject || GedaCapsuleObject [, filter] )";
+  const char *syntax = "syntax: get_network(PyGedaObject || GedaCapsuleObject [, filter])";
 
   if(!PyArg_ParseTuple(args, "O|i:geda.get_network", &unknown, &filter)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -2817,7 +2817,7 @@ METHOD(get_junctions)
   PyObject *py_output_list;
   PyObject *py_tmp;
 
-  const char *syntax = "syntax: get_junctions( PyList || PyGedaObject)";
+  const char *syntax = "syntax: get_junctions(PyList || PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_junctions", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
@@ -2892,7 +2892,7 @@ METHOD(get_unconnected)
   PyObject *py_output_list;
   PyObject *py_tmp;
 
-  const char *syntax = "syntax: get_unconnected( PyList || PyGedaObject)";
+  const char *syntax = "syntax: get_unconnected(PyList || PyGedaObject)";
 
   if(!PyArg_ParseTuple(args, "O:geda.get_unconnected:", &unknown)) {
     PyErr_SetString(PyExc_TypeError, syntax);
