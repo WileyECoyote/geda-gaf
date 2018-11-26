@@ -6,7 +6,9 @@
       in shutdown doc string.
 
     * module/functions.c: Rename first argument to show_error_object_not_created
-      AddFunc -> func_name.
+      AddFunc -> func_name and replace all of the strings passed to the
+      same function with references to the name string in the function
+      table using the FUNCTION_NAME macro.
 
     * src/libgedathon.c: Utilize PyGeda_rename_page in PyGeda_save_page_as,
       see log 2018-11-22.
