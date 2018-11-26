@@ -10,6 +10,17 @@
       same function with references to the name string in the function
       table using the FUNCTION_NAME macro.
 
+    * module/geda.c: Revise close_page method to use PyObject_CallMethod to
+      call do_save_page instead of calling directly because python does
+      handle the arguments correctly; even if the page object is repackaged
+      in a new tuple the save_page method encounters a syntax error while
+      parsing the tuple. This appears to be a python bug, though I am not
+      sure how it worked before. Also, ignore the status returned from the
+      library, which might be a new current page, or not, and fix the final
+      conditional to check the status, which should only be the result that
+      is returned from the call to do_save_page. This implies that closing
+      without saving never returns an error, and that kind of makes sense.
+
     * src/libgedathon.c: Utilize PyGeda_rename_page in PyGeda_save_page_as,
       see log 2018-11-22.
 

@@ -907,15 +907,15 @@ METHOD(close_page)
   }
 
   if (do_save) {
-    status = PyInt_AsLong(do_save_page(self, page));
+    status = PyInt_AsLong(PyObject_CallMethod(ThisModule, "save_page", "O", page));
   }
 
   if (status) {
-    status = library.func(((PyGedaPageObject*)page)->pid);
+    library.func(((PyGedaPageObject*)page)->pid);
   }
 
   ON_METHOD_EXIT(close_page);
-  if (status != 0) {
+  if (status == 0) {
     Py_RETURN_FALSE;
   }
   Py_RETURN_TRUE;
