@@ -1007,7 +1007,7 @@ METHOD(rename_page)
 
   status = library.func(((PyGedaPageObject*)page)->pid, new_name);
 
-  /* If success then update the PyPage obejct */
+  /* If success then update the PyGedaPage object */
   if (status) {
 
     Py_DECREF(((PyGedaPageObject*)page)->filename);
