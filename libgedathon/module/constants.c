@@ -133,5 +133,4 @@ initConstants(PyObject *module)
   main_dic = PyModule_GetDict(module);
   con_dic = PyModule_GetDict(self);
   PyDict_Merge(con_dic, main_dic, 1);
-
 }
