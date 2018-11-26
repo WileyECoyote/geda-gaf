@@ -2,6 +2,9 @@
 
     * include/functions.h: Make inductors plural in doc string.
 
+    * include/geda_module.h: Change the word "shutdown" to "deinitialize"
+      in shutdown doc string.
+
     * src/libgedathon.c: Utilize PyGeda_rename_page in PyGeda_save_page_as,
       see log 2018-11-22.
 
