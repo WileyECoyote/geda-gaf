@@ -55,7 +55,7 @@ pintype=out
 T 1650 600 9 10 1 1 0 6 1
 pinlabel=OUT
 }
-T 300 1700 5 10 0 1 0 0 1
+T 300 1700 5 10 0 0 0 0 1
 device=LM2576T
 T 300 2100 5 10 0 1 0 0 1
 description=Bucking Voltage Regulator
@@ -63,17 +63,17 @@ T 300 1500 5 10 0 1 0 0 1
 footprint=TO-220
 T 1400 1300 8 10 1 1 0 0 1
 refdes=U?
-T 300 2900 5 10 0 0 0 0 1
-author=Joseph Dalton jwdaltonATgmail.com
-T 300 2700 5 10 0 0 0 0 1
-dist-license=GPL
-T 300 2500 5 10 0 0 0 0 1
-use-license=unlimited
 T 1600 1900 5 10 0 0 0 0 1
 numslots=0
 T 300 2300 5 10 0 1 0 0 1
 documentation=www.ti.com/lit/ds/symlink/lm2576.pdf
 T 300 1300 9 10 1 1 0 0 1
-LM2576T
+value=LM2576T
 T 300 1900 5 10 0 0 0 0 1
 symversion=0.1
+T 300 2900 5 10 0 0 0 0 1
+author=Joseph Dalton jwdaltonATgmail.com
+T 300 2700 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 2500 5 10 0 0 0 0 1
+use-license=unlimited
