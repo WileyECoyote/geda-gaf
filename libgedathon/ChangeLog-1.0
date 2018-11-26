@@ -1,19 +1,17 @@
+2018-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Utilize PyGeda_rename_page in PyGeda_save_page_as,
+      see log 2018-11-22.
+
 2018-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Add encoding utf-8 and update Arabic translations.
-
     * po/es.po: Add encoding utf-8 and update Spanish translations.
-
     * po/fa.po: Add encoding utf-8 and update Persian translations.
-
     * po/fr.po: Add encoding utf-8 and update French translations.
-
     * po/ml.po: Add encoding utf-8 and updated Malayalam translations.
-
     * po/nl.po: Add encoding utf-8 and update Dutch translations.
-
     * po/pt.po: Add encoding utf-8 and update Portuguese translations.
-
     * po/pt_BR.po: Add encoding utf-8 and update Brazilian Portuguese translations.
 
     * po/.po: Add encoding utf-8, update contents.

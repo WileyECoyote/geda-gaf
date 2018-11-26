@@ -1733,14 +1733,9 @@ PyGeda_save_page( int pid )
  */
 int PyGeda_save_page_as (int pid, const char *filename)
 {
-  Page   *page   = NULL;
-  int     status = 0;
+  int status;
 
-  page = geda_toplevel_get_page_by_id(toplevel, pid);
-
-  if (page && (GEDA_IS_PAGE(page))) {
-    status = geda_page_rename(page, filename, FALSE);
-  }
+  status = PyGeda_rename_page (pid, filename);
 
   return status ? !PyGeda_save_page(pid) : 0;
 }
