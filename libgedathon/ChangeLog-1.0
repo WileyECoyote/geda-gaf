@@ -1,5 +1,7 @@
 2018-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/functions.h: Make inductors plural in doc string.
+
     * src/libgedathon.c: Utilize PyGeda_rename_page in PyGeda_save_page_as,
       see log 2018-11-22.
 

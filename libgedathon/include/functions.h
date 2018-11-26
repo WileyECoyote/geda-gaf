@@ -53,7 +53,7 @@ static PyObject *do_unknown(PyObject *self, PyObject *args, PyObject *kwds);
 
 const char DefaultCapacitorSymbol_docs[]    = N_("Get or Set the default symbol for capacitors\n");
 const char DefaultElectrolyticSymbol_docs[] = N_("Get or Set the default symbol for electrolytic capacitors\n");
-const char DefaultInductorSymbol_docs[]     = N_("Get or Set the default symbol for inductor\n");
+const char DefaultInductorSymbol_docs[]     = N_("Get or Set the default symbol for inductors\n");
 const char DefaultOpAmpSymbol_docs[]        = N_("Get or Set the default operational amplifier symbol\n");
 const char DefaultResistorSymbol_docs[]     = N_("Get or Set the default symbol for resistors\n");
 const char DefaultTitleblockSymbol_docs[]   = N_("Get or Set the default titleblock symbol\n");
