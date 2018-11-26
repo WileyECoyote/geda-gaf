@@ -410,12 +410,12 @@ static PyObject *set_default_symbol_error_string(const char *sym)
 }
 
 /* Outputs error message for Adder functions and clears PyErr */
-static void show_error_object_not_created(const char *AddFunc, const char *what)
+static void show_error_object_not_created(const char *func_name, const char *what)
 {
   const char *msg1 = _("An error occurred");
   const char *msg2 = _("object was not created");
 
-  fprintf(stderr, "%s: %s, %s %s\n", AddFunc, msg1, what, msg2);
+  fprintf(stderr, "%s: %s, %s %s\n", func_name, msg1, what, msg2);
 
   PyErr_Clear();
 }

@@ -5,6 +5,9 @@
     * include/geda_module.h: Change the word "shutdown" to "deinitialize"
       in shutdown doc string.
 
+    * module/functions.c: Rename first argument to show_error_object_not_created
+      AddFunc -> func_name.
+
     * src/libgedathon.c: Utilize PyGeda_rename_page in PyGeda_save_page_as,
       see log 2018-11-22.
 
