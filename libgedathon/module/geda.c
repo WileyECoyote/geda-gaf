@@ -1083,7 +1083,7 @@ METHOD(save_page_as)
   if(!PyArg_ParseTuple(args, "O!s:geda.save_page_as", PyGedaPageClass(),
                        &page, &new_name))
   {
-    const char *syntax = "syntax: save_page_as(PyGedaPageObject)";
+    const char *syntax = "syntax: save_page_as(PyGedaPageObject, string)";
 
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
