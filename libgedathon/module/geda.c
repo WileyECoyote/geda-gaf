@@ -1352,7 +1352,7 @@ METHOD(get_objects)
  * \brief Add an Object to an Object
  * \par Method Description
  *  This function provides a method to add an existing object to another object.
- *  The target a object can be a Page or another object.
+ *  The target object can be a Page or another object.
  *
  *  [in] PyObject parent The Geda object to receive the child
  *  [in] PyObject child The Geda object to be add to the parent
