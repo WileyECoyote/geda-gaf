@@ -2358,7 +2358,7 @@ int PyGeda_delete_objects( PyObject *objects )
   return status;
 }
 
-/*! \brief Synchronize a PyObject with PyGedaObject
+/*! \brief Synchronize GedaObject with a PyGedaObject
  *  \ingroup Python_API_Library
  *  \par Function Description
  *  This function the update the values of Library's Object the with
