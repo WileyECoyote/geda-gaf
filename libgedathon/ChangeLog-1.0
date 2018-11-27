@@ -10,6 +10,7 @@
       Update function documentation for:
 
             * append_symbol_path
+            * declare_local_sym
 
 2018-11-26 Wiley E. Hill <wileyhill@gmail.com>
 

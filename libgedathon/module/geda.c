@@ -570,11 +570,14 @@ METHOD(append_symbol_path)
  * \par Method Description
  *  This function provides a convenience method to create both a directory in
  *  the current working directory with the given name and to create a file with
- *  the name "gafrc" in the current directory. This will cause geda application
- *  to automatically add the sub-directory to the Symbol Library search path. If
- *  the directory name argument is not specified then the directory will be named
- *  "sym". The purpose of gafrc files is to dynamically modify configuration
- *  environments, in this case to allow custom symbols.
+ *  the name "gafrc" in the current directory containing instructions to search
+ *  the subdirectory for symbols. If the directory argument is not specified
+ *  then the directory will be named "sym". The purpose of gafrc files is to
+ *  dynamically modify configuration environments, in this case to allow custom
+ *  symbols, but other configuration keywords can also be set using the gafrc
+ *  files, see the document for LibGeda for more information.
+ *  If a gafrc file already is exist, the file will be parsed and amended to
+ *  include the the given directory in the search library path as required.
  *
  * \sa append_symbol_path
  *
@@ -594,9 +597,6 @@ METHOD(append_symbol_path)
  *          in the same directory. The new gafrc fill will contain a single line:
  *
  *          (component-library "./sym")
- *
- *          Other configuration items can also be set using the gafrc files, see
- *          the document for LibGeda for details on RC files.
  */
 METHOD(declare_local_sym)
 {
