@@ -627,6 +627,7 @@ METHOD(declare_local_sym)
   /* If status is not 1 there was an error */
   if (status != 1) {
     PyErr_SetString(PyExc_StandardError, strerror(status));
+    Py_RETURN_FALSE;
   }
 
   Py_RETURN_TRUE;
