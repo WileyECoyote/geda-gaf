@@ -1714,19 +1714,22 @@ METHOD(delete_objects)
 }
 
 /*!
- * \brief Delete a List of Objects
+ * \brief Synchronize GedaObject with a PyGedaObject
  * \par Method Description
- *  This function provides a method to delete a list objects
+ *  This is an internal function used by the PyGedaObject module
+ *  to update the actual GedaObject when PyGedaObject are modified
+ *  in python. that are not already committed to page, aka floating
+ *  objects. This allows the python objects to be modified before
+ *  the object is committed to a page.
  *
- *  [in] PyObject of type PyList container with PyPyGedaObjects
+ *  [in] PyObject of type PyPyGedaObject, checked by orginal receptor
  *
- * \return [out] status True if success otherwise False, False
- *               would only be returned if an object in the list
- *               did not exist.
+ * \return [out] status True if the object was updated or was not dirty,
+ *               Otherwise False.
  *
  *  example:
  * \code
- *          geda.delete_objects(Old_Objects)
+ *          geda.sync_object(ModifiedObject)
  * \endcode
  */
 METHOD(sync_object)

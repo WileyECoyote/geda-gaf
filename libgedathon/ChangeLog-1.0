@@ -11,6 +11,7 @@
 
             * append_symbol_path
             * declare_local_sym
+            * sync_object
 
 2018-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
