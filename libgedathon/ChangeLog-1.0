@@ -1,3 +1,13 @@
+2018-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise initgeda to call for translation of the doc strings
+      before calling Py_InitModule. Python does not appear to get the job done
+      and may even be complicating the matter because calling gettext directly
+      also does not work. Using the under-score macro does work, which actually
+      calls dgettext, and the domain was set in libgedathon by initialize().
+      Maybe this is the way it should be done but this is not documented in
+      Python.
+
 2018-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/functions.h: Make inductors plural in doc string.

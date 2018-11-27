@@ -352,7 +352,7 @@ static API_FunctionTable PyGeda_API[METHOD_COUNT];
  */
 PyMODINIT_FUNC initgeda(void)
 {
-  //static PyObject *module;
+  int i;
 
   GedaMethods[METHOD_COUNT].name  = NULL;
   GedaMethods[METHOD_COUNT].aflag = 0;
@@ -363,6 +363,11 @@ PyMODINIT_FUNC initgeda(void)
   atexit(close_library);
 
   initializer.func(PyGeda_API);
+
+  /* Remap docstrings in the table, note underscore macro MUST be used here */
+  for ( i = 1; i < METHOD_COUNT; i++) {
+   GedaMethods[i].docstring = _(GedaMethods[i].docstring);
+  }
 
   ThisModule = Py_InitModule("geda", (PyMethodDef*)GedaMethods);
   if (ThisModule == NULL)
