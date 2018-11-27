@@ -541,16 +541,8 @@ METHOD(shutdown)
  *
  *  example:
  * \code
- *          geda.append_symbol_path(p1sym/)  # create a "p1sym/" folder and local rc file
+ *          geda.append_symbol_path(p1sym/)  # Add "p1sym/" folder to library search path
  * \endcode
- *
- * \note 1. The gafrc files are only acknowledged when a schematic file is opened
- *          in the same directory. The new gafrc fill will contain a single line:
- *
- *          (component-library "./p1sym")
- *
- *          Other configuration items can also be set using the gafrc files, see
- *          the document for Libgeda for details on RC files.
  */
 METHOD(append_symbol_path)
 {

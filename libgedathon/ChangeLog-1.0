@@ -7,6 +7,9 @@
       calls dgettext, and the domain was set in libgedathon by initialize().
       Maybe this is the way it should be done but this is not documented in
       Python. Revise declare_local_sym to return FALSE when there is an error.
+      Update function documentation for:
+
+            * append_symbol_path
 
 2018-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
