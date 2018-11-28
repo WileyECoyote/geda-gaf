@@ -80,7 +80,7 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           visibility,
-                                          show_name_value,
+                                          show_name_value, -1,
                                           o_current);
   }
 
@@ -131,14 +131,22 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
   if (strlen(new_attrib_value) != 0) {
 
     char *name_value_pair;
+    int   color;
 
     name_value_pair = geda_strconcat(new_attrib_name, "=",
                                      new_attrib_value, NULL);
 
+    if (strncmp(new_attrib_name, "pinlabel", 8) == 0){
+      color = TEXT_COLOR;
+    }
+    else {
+      color = -1;
+    }
+
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
                                           INVISIBLE,
-                                          SHOW_NAME_VALUE,
+                                          SHOW_NAME_VALUE, color,
                                           o_current);
   }
 
@@ -281,10 +289,9 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Attach attribute to object.
- *
+/*!
+ * \brief Attach attribute to object.
  * \par Function Description
- *
  * Attach the name=value pair to the Object "object". This function was
  * re-used from gschem/src/o_attrib.c:o_attrib_add_attrib and hacked for
  * gattrib.
@@ -302,13 +309,13 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                       char         *text_string,
                                       int           visibility,
                                       int           show_name_value,
+                                      int           color,
                                       GedaObject   *parent)
 {
   Page *page;
   int world_x, world_y;
   int align;
   int angle;
-  int color;
   int left, right, top, bottom;
 
   GedaObject *new_obj;
@@ -325,7 +332,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   /* creating a toplevel or unattached attribute */
   if (parent) {
 
-    color = ATTRIBUTE_COLOR;
+    color = color < 0 ? ATTRIBUTE_COLOR : color;
 
     /* get coordinates of where to place the text object */
     switch(parent->type) {
@@ -401,7 +408,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
   }
   else {
 
-    color = DETACHED_ATTRIBUTE_COLOR;
+    color = color < 0 ? DETACHED_ATTRIBUTE_COLOR : color;
 
     geda_object_get_bounds_list (geda_struct_page_get_objects (page),
                              &left, &top, &right, &bottom);

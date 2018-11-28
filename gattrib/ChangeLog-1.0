@@ -13,6 +13,10 @@
     * src/s_attrib.c: Update grammar in documentation for function
       s_attrib_get_refdes, and reformat Doxygen blocks.
 
+    * src/s_object.c: Add color argument to s_object_attrib_add_attrib_in_object
+      as was done in gschem and revise s_object_add_pin_attrib_to_object to
+      default the attribute color to green when the attribute is a pin label.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Clean data subdirectory.

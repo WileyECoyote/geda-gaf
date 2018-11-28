@@ -73,6 +73,7 @@ void s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                            char         *text_string,
                                            int           visibility,
                                            int           show_name_value,
+                                           int           color,
                                            GedaObject   *object);
 
 void s_object_delete_text_object_in_object(GedaToplevel *toplevel, GedaObject *test_object);
