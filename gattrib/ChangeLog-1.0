@@ -7,6 +7,9 @@
       in the html to be very wide and browsers zoom the page to a level
       where other gattrib details are too small.
 
+    * include/globals.h: Decrease MAX_WINDOW_TITLE from 128 to 96, which
+      is still a really long path to show in the titlebar.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Clean data subdirectory.

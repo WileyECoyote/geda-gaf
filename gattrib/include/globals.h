@@ -98,7 +98,7 @@ char msg_buffer[256];
 /*------------------------------------------------------------------
  * GTKsheet includes: stuff for dealing with windows.
  *------------------------------------------------------------------*/
-#define MAX_WINDOW_TITLE 128
+#define MAX_WINDOW_TITLE 96
 #define DEFAULT_FONT_WIDTH 12
 #define DEFAULT_PRECISION 2
 #define DEFAULT_SPACE 8
