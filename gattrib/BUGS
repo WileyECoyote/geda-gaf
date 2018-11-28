@@ -2,6 +2,10 @@
 Bugs (no particular order):
 ----------------------
 
+*  top-src/docs/wiki/media/geda/faq_attrib.jpg is out-dated.
+
+*  top-src/docs/wiki/geda-gattrib_readme.html is out-dated.
+
 *  When columns are hidden, the column selection highlighting is still shown
    with the width of the column that was hidden around the next column, with
    a different width - how about unselect the all columns after hiding.
