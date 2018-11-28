@@ -64,11 +64,24 @@ static void x_window_set_default_icon( void )
  */
 void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
 {
-  char *filename = toplevel->page_current->filename;
+  const char *filename = toplevel->page_current->filename;
 
   if (filename != NULL) {
 
     char buffer[MAX_WINDOW_TITLE];
+
+    if (!toplevel->show_full_path) {
+      filename = geda_file_get_basename(filename);
+    }
+
+    while (strlen(filename) > MAX_WINDOW_TITLE - 13) {
+      if (strstr(filename, DIR_SEPARATOR_S)) {
+        filename = strstr(filename, DIR_SEPARATOR_S);
+      }
+      else {
+        filename = filename + 10;
+      }
+    }
 
     if (PageData->CHANGED) {
       strcpy (buffer, "*");

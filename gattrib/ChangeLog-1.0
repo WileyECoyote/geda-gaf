@@ -17,6 +17,12 @@
       as was done in gschem and revise s_object_add_pin_attrib_to_object to
       default the attribute color to green when the attribute is a pin label.
 
+    * src/x_window.c: Revise x_window_update_title to check the show_full_path
+      toplevel setting and use the base name when not set, truncate the file
+      name displayed in the titlebar, with or without the path, from the left,
+      in blocks off 10, until the string is less than standard titlebar text
+      + MAX_WINDOW_TITLE.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Clean data subdirectory.
