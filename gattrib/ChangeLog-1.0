@@ -10,6 +10,9 @@
     * include/globals.h: Decrease MAX_WINDOW_TITLE from 128 to 96, which
       is still a really long path to show in the titlebar.
 
+    * src/s_attrib.c: Update grammar in documentation for function
+      s_attrib_get_refdes, and reformat Doxygen blocks.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Clean data subdirectory.

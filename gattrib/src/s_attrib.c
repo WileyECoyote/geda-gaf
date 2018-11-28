@@ -29,8 +29,10 @@
 #include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
-/*! \brief Detect "name" in STRING_LIST
- *  \par Function Description
+
+/*!
+ * \brief Detect "name" in STRING_LIST
+ * \par Function Description
  *  This function is passed a STRING_LIST of name=value pairs, and a
  *  name.
  *
@@ -40,7 +42,6 @@
  * \returns 1 (TRUE) if the name is in the STRING_LIST, otherwise
  *          it returns 0 (FALSE).
  */
-
 int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 {
   STRING_LIST *local_list_item;
@@ -67,11 +68,13 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Locate the refdes associated with an object.
- *  \par Function Description
+
+/*!
+ * \brief Locate the refdes associated with an object.
+ * \par Function Description
  *  This function returns the string of refdes attribute attached to
- *  \a object for normal object. For slotted object the refdes string
- *  is returned in the form "refdes.slot", NULL if no refdes attribute
+ *  \a object for normal objects. For slotted objects the refdes string
+ *  is returned in the form "refdes.slot", or NULL if no refdes attribute
  *  exist.
  *
  * \param object Pointer to the object to search for.
