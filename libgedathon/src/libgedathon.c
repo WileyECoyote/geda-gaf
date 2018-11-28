@@ -1666,7 +1666,7 @@ int PyGeda_rename_page (int pid, const char *filename)
     if (page && (GEDA_IS_PAGE(page))) {
 
       if (geda_is_path_absolute (filename)) {
-        status = geda_page_rename(page, filename, TRUE);
+        status = geda_page_rename(page, filename);
       }
       else {
 
@@ -1677,7 +1677,7 @@ int PyGeda_rename_page (int pid, const char *filename)
 
         fname = geda_strconcat (ppath, DIR_SEPARATOR_S, filename, NULL);
 
-        status = geda_page_rename(page, fname, TRUE);
+        status = geda_page_rename(page, fname);
 
         geda_free(fname);
         geda_free (ppath);
