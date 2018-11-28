@@ -150,7 +150,7 @@ void         geda_page_freeze_notify     (Page *page);
 void         geda_page_thaw_notify       (Page *page);
 
 Page        *geda_page_open              (const char *filename);
-int          geda_page_rename            (Page *page, const char *filename, int changed);
+int          geda_page_rename            (Page *page, const char *filename);
 int          geda_page_save              (Page *page);
 void         geda_page_close             (Page *page);
 int          geda_page_copy              (Page *page);

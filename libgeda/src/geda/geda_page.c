@@ -563,12 +563,17 @@ void geda_page_thaw_notify(Page *page)
 /*!
  * \brief Rename a Page
  * \par Function Description
- *  Replace the filename string in \a page with \a newname.
+ *  Replaces the filename string in \a page with \a newname and sets
+ *  the page->CHANGED flag.
  *
  * \param [in,out] page     A valid Page object.
  * \param [in]     newname  New string name for page filename.
+ *
+ * \returns TRUE if the page was renamed, otherwise FALSE.
+ *
+ * \sa geda_page_set_filename
  */
-int geda_page_rename(Page *page, const char *newname, int changed)
+int geda_page_rename(Page *page, const char *newname)
 {
   bool result = FALSE;
 
@@ -577,7 +582,7 @@ int geda_page_rename(Page *page, const char *newname, int changed)
       GEDA_FREE(page->filename);
     }
     page->filename = geda_utility_string_strdup(newname);
-    page->CHANGED = changed;
+    page->CHANGED = TRUE;
     result = TRUE;
   }
   return result;
@@ -669,7 +674,7 @@ void geda_page_set_filename (Page *page, const char *filename)
     if (page->filename) {
       GEDA_FREE(page->filename);
     }
-    page->filename = geda_strdup(filename);
+    page->filename = geda_utility_string_strdup(filename);
   }
 }
 

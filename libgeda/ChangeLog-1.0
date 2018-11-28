@@ -1,3 +1,10 @@
+2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Revert 5589518953dfdc328dac11262a0b6be3c0aee3fe,
+      require page change flag when renaming. I forgot about geda_page_set_
+      filename, can just use that if don`t want to set page changed flag.
+      Add sa tag to Doxygen comments as reminder.
+
 2018-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Modify geda_page_rename to require and int
