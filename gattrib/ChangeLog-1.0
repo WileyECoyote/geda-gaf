@@ -2,6 +2,11 @@
 
     * BUGS: Update BUGS as reminder; some docs outdated.
 
+    * include/gattrib.h: Wrap inclusion of libgeda.h with cond/endcond
+      tags because the resulting dependency graphs causes the right pane
+      in the html to be very wide and browsers zoom the page to a level
+      where other gattrib details are too small.
+
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/Makefile.am: Clean data subdirectory.

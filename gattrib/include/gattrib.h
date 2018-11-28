@@ -27,8 +27,10 @@
 #include "../../config.h"
 #endif
 
+/*! \cond */
 #include <libgeda/libgeda.h>       /* geda library functions  */
 #include <geda_colors.h>           /* ATTRIBUTE_COLOR */
+/*! \endcond */
 
 #include "../include/struct.h"     /* typdef and struct declarations */
 #include "../include/globals.h"
