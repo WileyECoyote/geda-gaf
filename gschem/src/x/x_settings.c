@@ -209,6 +209,9 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
  */
 void x_configure_settings (GschemToplevel* w_current)
 {
+  EdaConfig *cfg;
+  int        last_tab;
+
   w_current->cpwindow = create_settings_dialog( w_current);
 
   gtk_window_set_destroy_with_parent (GTK_WINDOW(w_current->cpwindow), TRUE);
@@ -216,6 +219,13 @@ void x_configure_settings (GschemToplevel* w_current)
   gtk_window_set_position (GTK_WINDOW (w_current->cpwindow), GTK_WIN_POS_MOUSE);
 
   load_settings_dialog (w_current);
+
+  cfg      = eda_config_get_user_context();
+  last_tab = eda_config_get_integer (cfg, IVAR_CONFIG_GROUP, "pref-tab", NULL);
+  if (last_tab >= 0) {
+    GtkNotebook *notebook = GEDA_OBJECT_GET_DATA(w_current->cpwindow, "notebook");
+    gtk_notebook_set_current_page (notebook, last_tab);
+  }
 
   g_signal_connect (w_current->cpwindow, "response",
                     G_CALLBACK(configure_dialog_response), w_current);

@@ -2363,10 +2363,6 @@ bool load_settings_dialog (GschemToplevel *w_current)
  */
 GtkWidget *create_settings_dialog (GschemToplevel *w_current)
 {
-  EdaConfig  *cfg;
-  const char *group;
-  int         last_tab;
-
   GtkWidget *ThisDialog;
   GtkWidget *MainDialogVBox;
   GtkWidget *notebook;
@@ -2713,12 +2709,6 @@ GtkWidget *create_settings_dialog (GschemToplevel *w_current)
   g_signal_connect (notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
-
-  cfg      = eda_config_get_user_context();
-  group    = IVAR_CONFIG_GROUP;
-  last_tab = eda_config_get_integer (cfg, group, "pref-tab", NULL);
-  if (last_tab >= 0)
-    gtk_notebook_set_current_page ((GtkNotebook*)notebook, last_tab);
 
   return ThisDialog;
 }
