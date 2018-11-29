@@ -785,12 +785,13 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
  *
 */
 
-/*! \brief Preferences Dialog GetAttributeFilterMode
- *  \par Function Description: This is a Group 2 support function that
- *       returns the integer "setting" based on the state of the variable
- *       component_select_attrlist, which should not be confused with the
- *       state indicated in the dialog (after the user has changed/clicked
- *       the radio/bulb widgets)
+/*!
+ * \brief Preferences Dialog GetAttributeFilterMode
+ * \par Function Description:
+ * This is Group 2 support function returns the integer "setting" based
+ * on the state of the variable component_select_attrlist, which should
+ * not be confused with the state indicated in the dialog (after the user
+ * has changed/clicked the radio/bulb widgets)
  *
  *  \retval 0        = Filter All    // rc entry had an
  *          1        = No Filter     // rc entry had empty list
@@ -805,10 +806,11 @@ static int GetAttributeFilterMode(GschemToplevel *w_current) {
   return data == NULL ? 1 : (data[0] == ASCII_ASTERISK ? 0 : 2 );
 }
 
-/*! \brief Preferences Dialog Save List in the Filter Viewtree
- *  \par Function Description: This is a Group 2 support function that
- *       clears the current attribute "filter" list, creates a new list
- *       or modified the old list based on the Dialog settings
+/*!
+ * \brief Preferences Dialog Save List in the Filter Viewtree
+ * \par Function Description:
+ *  This is Group 2 support function saves the current attribute "filter"
+ *  list.
  */
 static int SaveAttributeFilterList(GschemToplevel *w_current) {
 
@@ -876,13 +878,14 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
   return index;
 }
 
-/*! \brief Preferences Dialog Save list of attributes in left Viewtree
- *  \par Function Description: This is a Group 2 support function that
- *       clears the current attribute list, gets the modified attribute
- *       list from the Treeview and stores the new list. The dialog does
- *       not have provisions to add or remove attributes from this list
- *       so the only modification is the order of the attributes in the
- *       list.
+/*!
+ * \brief Preferences Dialog Save list of attributes in left Viewtree
+ * \par Function Description:
+ *  This is a Group 2 support function to clear the current attribute
+ *  list, gets the modified attribute list from the Treeview and stores
+ *  the new list. The dialog does not have provisions to add or remove
+ *  attributes from this list so the only modification is the order of
+ *  the attributes in the list.
  */
 static int SavePotentialAttributes(GschemToplevel *w_current) {
 
@@ -910,10 +913,11 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
   return 0;
 }
 
-/*! \brief Preferences Dialog add_selected_attribute Helper
- *  \par Function Description: This is a Group 2 support function
- *       used to check is a given attribute is already in the filter
- *       Treeview.
+/*!
+ * \brief Preferences Dialog add_selected_attribute Helper
+ * \par Function Description:
+ *  This is a Group 2 support function to check if a given attribute
+ *  is already in the filter Treeview.
  *
  *  \param[in]  list  The Treeview list to look in
  *  \param[in]  str   String to look for
@@ -944,9 +948,11 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
   return !answer;
 }
 
-/*! \brief Preferences Dialog Move selected attribute up in the list
- *  \par Function Description: This is a Group 2 support function use to
- *       move an attribute up in the Potential (left) Treeview list.
+/*!
+ * \brief Preferences Dialog Move selected attribute up in the list
+ * \par Function Description:
+ *  This is a Group 2 support function to move an attribute up in the
+ *  Potential (left) Treeview list.
  */
 static void increment_selected_attribute( void ){
 
@@ -966,9 +972,11 @@ static void increment_selected_attribute( void ){
   }
 }
 
-/*! \brief Preferences Dialog Move selected attribute down in the list
- *  \par Function Description: This is a Group 2 support function use to
- *       move an attribute down in the Potential (left) Treeview list.
+/*!
+ * \brief Preferences Dialog Move selected attribute down in the list
+ * \par Function Description:
+ *  This is a Group 2 support function to move an attribute down in the
+ *  Potential (left) Treeview list.
 */
 static void decrement_selected_attribute( void ) {
 
@@ -988,12 +996,13 @@ static void decrement_selected_attribute( void ) {
   }
 }
 
-/*! \brief Preferences Dialog Add selected attribute up in the list
- *  \par Function Description: This is a Group 2 support function that
- *       adds the selected attribute from the left list to the right list
- *       but only if the attribute is not already in the list. The attribute
- *       is inserted at the current selected position, or appends to end of
- *       of the filter list if there is no selection.
+/*!
+ * \brief Preferences Dialog Add selected attribute up in the list
+ * \par Function Description:
+ *  This is a Group 2 support function to add the selected attribute from
+ *  the left list to the right list but only if the attribute is not already
+ *  in the list. The attribute is inserted at the current selected position,
+ *  or appends to end of the filter list if there is no selection.
  */
 static void add_selected_attribute( void ) {
 
@@ -1042,26 +1051,30 @@ static void add_selected_attribute( void ) {
   } /* endif there was an attribute selected in the left list */
 }
 
-/*! \brief Preferences Dialog remove_selected_attribute
- *  \par Function Description: This is a Group 2 support function that
- *       remove the selected attribute from the filter list.
+/*!
+ * \brief Preferences Dialog remove_selected_attribute
+ * \par Function Description:
+ *  This is a Group 2 support function to remove the selected attribute
+ *  from the filter list.
  */
-static void remove_selected_attribute( void ){
+static void remove_selected_attribute( void ) {
 
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GtkTreeIter iter;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(SelectedAttributesView));
+
   if (gtk_tree_selection_get_selected( selection, &model, &iter)) {
     gtk_list_store_remove (GTK_LIST_STORE (model),&iter);
-   }
+  }
 }
 
-/*! \brief Preferences Dialog clear_attributes
- *  \par Function Description: This is a Group 2 support function that
- *       clears all of the attributes from the right Treeview, aka the
- *       filter list.
+/*!
+ * \brief Preferences Dialog clear_attributes
+ * \par Function Description:
+ *  This is a Group 2 support function to clear all of the attributes
+ *  from the right Treeview, aka the filter list.
  */
 static void clear_attributes( void ){
 
@@ -1069,13 +1082,13 @@ static void clear_attributes( void ){
 
   store = GTK_LIST_STORE(gtk_tree_view_get_model (GTK_TREE_VIEW (SelectedAttributesView)));
   gtk_list_store_clear(store);
-
 }
 
-/*! \brief Preferences Dialog filter_list_set_default
- *  \par Function Description: This is a Group 2 support function that
- *       restores the filter list in the right Treeview using a pre-compiled
- *       string array.
+/*!
+ * \brief Preferences Dialog filter_list_set_default
+ * \par Function Description:
+ *  This is a Group 2 support function to restore the filter list in the
+ *  right Treeview using a pre-compiled string array.
  */
 static void filter_list_set_default( void )
 {
