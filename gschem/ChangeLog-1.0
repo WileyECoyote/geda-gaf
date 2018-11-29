@@ -9,6 +9,13 @@
     * include/x_settings_dialog.h: Remove equal character from use-license
       and dist-license in the DefaultFilterList.
 
+    * src/base/gschem_toplevel.c: Revise gschem_toplevel_finalize to not free
+      the default_component_select_attrlist, but free component_select_attrlist
+      when it is not the default_component_select_attrlist. The reason for this
+      is that the component_select_attrlist can be modified by the settings
+      dialog, but not the default_component_select_attrlist, which should be
+      released elsewhere.
+
     * src/x/x_settings.c: Relocate restoring tab from create_settings_dialog
       in x_settings_dialog.c to function x_configure_settings after the call
       to load_settings_dialog so that controls on the Attribute tab will be

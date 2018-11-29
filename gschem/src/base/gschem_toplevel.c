@@ -314,7 +314,10 @@ static void gschem_toplevel_finalize( GObject *object )
   }
 
   if (w_current->component_select_attrlist != NULL) {
-    geda_glist_free_full (default_component_select_attrlist, g_free);
+    if (w_current->component_select_attrlist !=
+        default_component_select_attrlist) {
+      geda_glist_free_full (w_current->component_select_attrlist, g_free);
+    }
     w_current->component_select_attrlist = NULL;
   }
 
