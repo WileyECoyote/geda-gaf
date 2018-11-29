@@ -2,6 +2,8 @@
 
     * src/x/x_settings_dialog.c Reformat Doxygen documentation.
 
+    * src/x/x_window.c: Reduce scope of cfg variables generate_untitled.
+
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Revert update argument to geda_page_rename.
