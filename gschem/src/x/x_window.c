@@ -1233,8 +1233,8 @@ int x_window_save_page (GschemToplevel *w_current, Page *page, const char *filen
     /* successfully saved page to file, update page... */
     /* change page name if necessary and prepare log message */
     if (g_ascii_strcasecmp (page->filename, filename) != 0) {
-      GEDA_FREE (page->filename);
-      page->filename = geda_strdup (filename);
+
+      geda_page_set_filename(page, filename);
 
       log_msg = _("Saved as");
     }

@@ -4,7 +4,9 @@
 
     * src/x/x_window.c: Reduce scope of cfg variables generate_untitled
       and eliminate unnecessary assignment of NULL to tmp_str, which is
-      already NULL.
+      already NULL. Revise x_window_save_page to utilize setter function
+      geda_page_set_filename to set the page filename instead of accessing
+      the filename member directly.
 
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
