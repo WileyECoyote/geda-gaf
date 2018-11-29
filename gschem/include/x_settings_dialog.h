@@ -301,7 +301,7 @@ const char* DefaultAttributeList[] = {
 const char* DefaultFilterList[] = {
 "device", "description", "footprint", "comment", "net", "model", "model-name",
 "file", "value", "numslots", "slotdef", "slot", "documentation", "symversion",
-"author", "use-license=", "dist-license=", NULL};
+"author", "use-license", "dist-license", NULL};
 
 const char* DefaultTitleBlockList[] = {
 "title-B.sym", "title-A4.sym", "cvstitle.sym", "cvstitleblock-1.sym",
