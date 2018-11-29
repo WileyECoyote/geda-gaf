@@ -16,6 +16,10 @@
       dialog, but not the default_component_select_attrlist, which should be
       released elsewhere.
 
+    * src/guile/g_rc.c: Fix BUG in g_rc_component_dialog_attributes; assign
+      list to the value returned from geda_clear_glist, less we be cursed if
+      component-dialog-attributes are set a second time.
+
     * src/x/x_settings.c: Relocate restoring tab from create_settings_dialog
       in x_settings_dialog.c to function x_configure_settings after the call
       to load_settings_dialog so that controls on the Attribute tab will be

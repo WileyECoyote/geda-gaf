@@ -1096,7 +1096,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
 
   if (list) {
     /* If keyword is used multiple times, clear the old list before */
-    geda_clear_glist(list);
+    list = geda_clear_glist (list);
   }
 
   scm_dynwind_begin(0);
