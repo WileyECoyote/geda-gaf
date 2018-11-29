@@ -876,11 +876,9 @@ Page *x_window_open_page(GschemToplevel *w_current, const char *filename)
       untitled = tmp_str;
     }
     else if (!toplevel->untitled_name) {
-      tmp_str  = NULL;
       untitled = _(DEFAULT_UNTITLED_NAME); /* Set to fall-back name */
     }
     else {
-      tmp_str  = NULL;
       untitled = toplevel->untitled_name;  /* Set to string from config */
     }
 

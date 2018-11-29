@@ -2,7 +2,9 @@
 
     * src/x/x_settings_dialog.c Reformat Doxygen documentation.
 
-    * src/x/x_window.c: Reduce scope of cfg variables generate_untitled.
+    * src/x/x_window.c: Reduce scope of cfg variables generate_untitled
+      and eliminate unnecessary assignment of NULL to tmp_str, which is
+      already NULL.
 
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
