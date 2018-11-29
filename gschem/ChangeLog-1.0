@@ -1,5 +1,11 @@
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Remove equal character from use-license
+      and dist-license in the component-dialog-attributes.
+
+    * etc/user-gschemrc.scm:: Remove equal character from use-license
+      and dist-license in the component-dialog-attributes.
+
     * src/x/x_settings.c: Relocate restoring tab from create_settings_dialog
       in x_settings_dialog.c to function x_configure_settings after the call
       to load_settings_dialog so that controls on the Attribute tab will be

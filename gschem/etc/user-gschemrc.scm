@@ -486,8 +486,8 @@
 (component-dialog-attributes '("device" "description" "footprint" "comment"
                                "net" "model" "model-name" "file" "value"
                                "numslots" "slotdef" "slot" "documentation"
-                               "symversion" "author" "use-license="
-                               "dist-license=" ))
+                               "symversion" "author" "use-license"
+                               "dist-license" ))
 ;(component-dialog-attributes '("*"))
 ;(component-dialog-attributes '())
 
