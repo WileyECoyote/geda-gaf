@@ -291,19 +291,19 @@ WidgetStringData DialogStrings[] = {
         { NULL, NULL, NULL},
 };
 
-const char* DefaultAttributeList[] = {
+const char *DefaultAttributeList[] = {
 "footprint", "value", "refdes", "source", "model-name", "model", "net",
 "device", "pinnumber", "pinseq", "pintype", "pinlabel", "numslots","slot",
 "slotdef", "graphical","description","documentation","symversion", "comment",
 "author", "dist-license","use-license","file", NULL
 };
 
-const char* DefaultFilterList[] = {
+const char *DefaultFilterList[] = {
 "device", "description", "footprint", "comment", "net", "model", "model-name",
 "file", "value", "numslots", "slotdef", "slot", "documentation", "symversion",
 "author", "use-license", "dist-license", NULL};
 
-const char* DefaultTitleBlockList[] = {
+const char *DefaultTitleBlockList[] = {
 "title-B.sym", "title-A4.sym", "cvstitle.sym", "cvstitleblock-1.sym",
 "title-A0.sym", "title-A1.sym", "title-A2.sym", "title-A3.sym", "title-A4.sym",
 "title-bordered-A.sym", "title-bordered-A0.sym", "title-bordered-A1.sym",
