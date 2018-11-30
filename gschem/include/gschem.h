@@ -4,11 +4,13 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+/*! \cond */
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
 #include <libgedacolor.h>
 #include <libgedauio.h>
+/*! \endcond */
 
 /* gschem headers */
 #include "gschem_bin.h"

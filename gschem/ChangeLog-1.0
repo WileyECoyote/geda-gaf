@@ -3,6 +3,9 @@
     * etc/Makefile.am: Remove system-gnetlistrc system-gsymbolrc from maintainer
       clean.
 
+    * include/gschem.h: Wrap inclusion of libgeda.h with cond/endcond tags to
+      exclude libgeda from dependency graphs.
+
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove equal character from use-license
