@@ -985,9 +985,9 @@ static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf, bool invert)
 /*!
  * \brief Invert Color Image
  * \par Function Description
- *  This function inverts color image, sometime refered to as reversing
- *  the polarity of the image. Optionaly, only near Black and near White
- *  are reversed.
+ *  This function inverts color images, this is sometimes referred to as
+ *  reversing the polarity of the image. Optionally, only near Black and
+ *  near White are reversed.
  *
  * \param pixbuf  Pointer to GdkPixbuf to be processed
  * \param bw_only boolean, if true - only invert the B&W pixels
