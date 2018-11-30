@@ -809,68 +809,99 @@ static int GetAttributeFilterMode(GschemToplevel *w_current) {
 /*!
  * \brief Preferences Dialog Save List in the Filter Viewtree
  * \par Function Description:
- *  This is Group 2 support function saves the current attribute "filter"
- *  list.
+ *  This is Group 2 support function called from GatherSettings to save
+ *  the current attribute "filter" list.
  */
 static int SaveAttributeFilterList(GschemToplevel *w_current) {
 
-  GtkTreeModel *store = NULL;
+  GtkTreeModel *store    = NULL;
+  GList        *new_list = NULL;
+  char         *str_new  = NULL;
+  int           index    = 0;
+  int           next     = 0;
+  int           list_len = 0;
+  bool          update   = FALSE;
+
   GtkTreeIter iter;
 
-  char *str_new   = NULL;
-  char *str_old   = NULL;
-  int index       = 0;
-  int list_length = 0;
-  int next        = 0;
+  list_len = View2Data ? g_list_length(View2Data) : 0;
 
   switch (gtk_radio_group_get_active(DialogListAttributesRadioGroup)) {
      case 0:   /* ALL */
-       g_list_free(View2Data);
-       View2Data = g_list_append(NULL, "*");
+       if (list_len == 1) {
+         char *c = View2Data->data;
+         if (c[0] != ASCII_ASTERISK) {
+           new_list = g_list_append(NULL, geda_strdup("*"));
+           update = TRUE;
+         }
+       }
+       else {
+         new_list = g_list_append(NULL, geda_strdup("*"));
+         update = TRUE;
+       }
        break;
+
      case 1:   /* NONE */
-       g_list_free(View2Data);
-       View2Data = NULL;
+       if (list_len != 0) {
+         update = TRUE;
+       }
        break;
+
      case 2:   /* LIST */
        store = gtk_tree_view_get_model (GTK_TREE_VIEW(SelectedAttributesView));
 
        /* Get the first iter in the list */
        next = gtk_tree_model_get_iter_first (store, &iter);
 
-       list_length = g_list_length(View2Data);
-
        while (next) {
 
          /* Walk through the list, reading each row. */
          gtk_tree_model_get (store, &iter, 0, &str_new, -1);
-
-         if (index < list_length) {
-            str_old = g_list_nth_data (View2Data, index);
-            if (!geda_strequal( str_old, str_new )) { /* update if they don't match */
-              View2Data = g_list_remove (View2Data, str_old);
-              View2Data = g_list_insert(View2Data, geda_strdup(str_new), index);
-              GEDA_FREE (str_old);
-            }
-         }
-         else {
-           View2Data = g_list_append (View2Data, geda_strdup(str_new));
-         }
-         GEDA_FREE(str_new);
+         new_list = g_list_append (new_list, str_new);
          next = gtk_tree_model_iter_next (store, &iter);
          index ++;
        }
-       /* We went thru the new list and index is still set, so if there
-          are any more members in the old list they need to be removed */
-       while (index < list_length) {
-         str_old = g_list_nth_data (View2Data, index);
-         View2Data = g_list_remove (View2Data, str_old);
-         GEDA_FREE (str_old);
-         index ++;
+
+       /* Update if the lists are not the same length */
+       if (new_list && g_list_length(new_list) != list_len) {
+         update = TRUE;
+       }
+       else if (!new_list) {
+         /* User, for whatever reason removed all items, is still valid */
+         update = TRUE;
+       }
+       else {
+
+         GList *iter1, *iter2;
+
+         iter1 = View2Data;
+         iter2 = new_list;
+
+         while (iter1) {
+           char *old_str, *new_str;
+           old_str = iter1->data;
+           new_str = iter2->data;
+           if (!strcmp(new_str, old_str)) {
+             update = TRUE;
+             break;
+           }
+           NEXT(iter1);
+           NEXT(iter2);
+         }
        }
        break;
+
      default:
        BUG_MSG("DialogListAttributesRadioGroup returned bad ID\n");
+  }
+
+  if (update) {
+
+    if (View2Data != default_component_select_attrlist) {
+      geda_glist_free_full (View2Data, g_free);
+    }
+
+    View2Data = new_list;
   }
 
   /* Don't GEDA_FREE (str_new) here because it's pointing

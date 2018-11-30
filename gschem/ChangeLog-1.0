@@ -17,6 +17,10 @@
       by calling geda_check_menu_item_get_active, replace geda_menu_item_select
       with geda_menu_item_activate_item.
 
+    * src/x/x_settings_dialog.c: Redo SaveAttributeFilterList to improve detection
+      of changes to the attribute list and release the old list only when the list
+      is not the default list, default_component_select_attrlist.
+
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove equal character from use-license
