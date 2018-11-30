@@ -20,11 +20,34 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
+/*! \file gschem_dialog.c
+ *  \brief GschemDialog Base Class for all Geda Object types
+ */
+
 #include <gschem.h>
 #include <gschem_dialog.h>
 #include <gschem_xdefines.h>
 #include <geda_marshal.h>
 #include <geda_debug.h>
+
+/** \defgroup Gschem-Dialog GschemDialog Base Class
+ * @{
+ * \brief #GschemDialog Class Implmentation
+ * \par
+ *  The GschemDialog base class provides the foundation for other
+ *  dialogs in gschem. The GschemDialog class is derived from the
+ *  GtkDialog class. In addition to providing a consistence style
+ *  GschemDialog handles the restoring and saving of the dialog
+ *  geometry and position for each sibling indenpendently. The base
+ *  class also provides a on-selection-change callback system for
+ *  when the page selection changes, including page changes so that
+ *  when the user switches between documents, all active clients
+ *  are automatically notified of the selection change. The base
+ *  class also sets the dialog pointer to NULL in the dialog top
+ *  level when the dialog is closed.
+ *
+ * \class GschemDialog gschem_dialog.h "include/gschem_dialog.h"
+ */
 
 enum {
   GEOMETRY_SAVE,
@@ -832,3 +855,5 @@ void gschem_dialog_set_title(GschemDialog *dialog, const char *title)
 {
   gtk_window_set_title ((GtkWindow*)dialog, title);
 }
+
+/** @} endgroup Gschem-Dialog */
