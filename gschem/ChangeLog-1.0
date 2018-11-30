@@ -12,6 +12,11 @@
     * src/base/gschem_dialog.c: Update function documentation, add file tag and
       Gschem-Dialog Doxygen group.
 
+    * src/x/x_menus.c: Revice function x_menu_recent_files_create_empty; make the
+      first argument what it really is, a GedaCheckMenuItem and set show_recent_path
+      by calling geda_check_menu_item_get_active, replace geda_menu_item_select
+      with geda_menu_item_activate_item.
+
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove equal character from use-license

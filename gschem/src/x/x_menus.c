@@ -2174,7 +2174,7 @@ static void x_menu_recent_files_create_empty(void)
  *  Toggles the state of show_recent_path, calls to update the menu and
  *  causes the recent file sub-menu to reappear with the opposite state.
  */
-static void x_menu_toggle_recent_path (GedaMenuItem *menuitem, void *user_data)
+static void x_menu_toggle_recent_path (GedaCheckMenuItem *menuitem, void *user_data)
 {
   RecentMenuData *data      = (RecentMenuData*)user_data;
   GschemToplevel *w_current = data->w_current;
@@ -2182,7 +2182,7 @@ static void x_menu_toggle_recent_path (GedaMenuItem *menuitem, void *user_data)
   GedaMenuItem *menu_item;
   MenuData     *menu_data;
 
-  show_recent_path = !show_recent_path;
+  show_recent_path = geda_check_menu_item_get_active (menuitem);
   x_menu_update_recent_files();
 
   /* Get pointer to the recent files submenu */
@@ -2190,7 +2190,7 @@ static void x_menu_toggle_recent_path (GedaMenuItem *menuitem, void *user_data)
   menu_item = GEDA_OBJECT_GET_DATA (MENU_BAR, "_File/Open Recen_t");
 
   /* Re-display the recent files submenu */
-  geda_menu_item_select(menu_item);
+  geda_menu_item_activate_item(menu_item);
 }
 
 /*! \brief Recent Files Menu Internal Populate Popup
