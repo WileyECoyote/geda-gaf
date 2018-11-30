@@ -9,6 +9,8 @@
     * gschem/include/x_compselect.h: Move CompselectResponseType so enumerations
       are altogether.
 
+    * src/base/gschem_dialog.c: Update function documentation.
+
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove equal character from use-license

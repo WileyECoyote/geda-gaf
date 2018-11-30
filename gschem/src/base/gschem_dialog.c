@@ -132,14 +132,18 @@ static void gd_callback_selection_changed (SELECTION *selection, void *user_data
 /*!
  * \brief Disconnect Dialog Seletion Tracked page's SELECTION is destroyed
  * \par Function Description
- *  This handler is called when the g_object_weak_ref() on the
- *  SELECTION object we are watching expires. We reset the
- *  Dialog->selection pointer to NULL to avoid attempting to
- *  access the destroyed object.
+ *  This handler is called when the g_object_weak_ref() on the SELECTION
+ *  object being watched expires. The Dialog->selection pointer is reset
+ *  to NULL to avoid attempting to access the destroyed object.
  *
- *  \note
- *  Our signal handlers were automatically disconnected during the
+ * \note 1
+ *  The signal handlers were automatically disconnected during the
  *  destruction process.
+ *
+ * \note 2
+ *  Since the GedaList in the SELECTION is reused and normally lives for
+ *  the life of the page, this function is only called when a Dialog is
+ *  is tracking the selection when the page is closed.
  *
  * \param [in] data                  Pointer to a dialog
  * \param [in] where_the_object_was  Pointer to where the object was
@@ -802,16 +806,14 @@ void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
   }
 }
 
-GList*
-gschem_dialog_get_selected(GschemDialog *dialog)
+GList *gschem_dialog_get_selected(GschemDialog *dialog)
 {
   if (GSCHEM_IS_DIALOG(dialog) && dialog->selection)
     return dialog->selection->glist;
   return NULL;
 }
 
-void
-gschem_dialog_set_selected (GschemDialog *dialog, SELECTION *selection)
+void gschem_dialog_set_selected (GschemDialog *dialog, SELECTION *selection)
 {
   if (GSCHEM_IS_DIALOG(dialog)) {
     gd_disconnect_selection (dialog);
