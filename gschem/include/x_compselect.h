@@ -71,6 +71,13 @@ typedef enum {
   COMPSELECT_STYLE_ALL  = 255
 } CompselectStyle;
 
+/* Response IDs for special dialog buttons */
+typedef enum {
+  COMPSELECT_RESPONSE_PLACE   = 1,
+  COMPSELECT_RESPONSE_HIDE    = 2,
+  COMPSELECT_RESPONSE_REFRESH = 3
+} CompselectResponseType;
+
 GedaType compselect_behavior_get_type (void);
 #define COMPSELECT_TYPE_BEHAVIOR  (compselect_behavior_get_type ())
 
@@ -139,12 +146,5 @@ struct _Compselect {
 
 GedaType compselect_get_type (void) GEDA_CONST;
 bool     is_a_compselect     (Compselect *dialog);
-
-/* Response IDs for special dialog buttons */
-typedef enum {
-  COMPSELECT_RESPONSE_PLACE   = 1,
-  COMPSELECT_RESPONSE_HIDE    = 2,
-  COMPSELECT_RESPONSE_REFRESH = 3
-} CompselectResponseType;
 
 #endif /* __X_COMPSELECT_H__ */

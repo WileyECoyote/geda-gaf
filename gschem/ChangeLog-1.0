@@ -6,6 +6,9 @@
     * include/gschem.h: Wrap inclusion of libgeda.h with cond/endcond tags to
       exclude libgeda from dependency graphs.
 
+    * gschem/include/x_compselect.h: Move CompselectResponseType so enumerations
+      are altogether.
+
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove equal character from use-license
