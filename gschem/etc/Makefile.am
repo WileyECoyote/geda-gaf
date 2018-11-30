@@ -36,5 +36,5 @@ EXTRA_DIST = system-gschemrc.scm user-gschemrc.scm gschem-gtkrc
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~
 DISTCLEANFILES       = *.log core FILE *~ system-gschemrc user-gschemrc
-MAINTAINERCLEANFILES = *.log core FILE *~ system-gschemrc user-gschemrc system-gnetlistrc system-gsymbolrc  Makefile.in
+MAINTAINERCLEANFILES = *.log core FILE *~ system-gschemrc user-gschemrc Makefile.in
 

@@ -1,3 +1,8 @@
+2018-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/Makefile.am: Remove system-gnetlistrc system-gsymbolrc from maintainer
+      clean.
+
 2018-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Remove equal character from use-license
