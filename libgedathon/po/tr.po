@@ -20,47 +20,55 @@ msgstr ""
 
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Kondansatörler için varsayılan sembolü al veya ayarla\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "Elektrolitik kapasitörler için varsayılan sembolü al veya ayarla\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "İndüktörler için varsayılan sembolü alın veya ayarlayın\n"
 
+# Get or Set the default operational amplifier symbol
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Varsayılan operasyonel amplifikatör sembolünü al veya ayarla\n"
 
+# Get or Set the default symbol for resistors
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Dirençler için varsayılan sembolü al veya ayarla\n"
 
+# Get or Set the default titleblock symbol
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Varsayılan başlık bloğu sembolünü al veya ayarla\n"
 
+# Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "Tüm dosyaları kapat ve kütüphaneyi başlat."
 
+# Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "Kütüphane arama yoluna bir klasör ekle."
 
+# Creates a gafrc file in the current directory
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "Geçerli dizinde bir gafrc dosyası oluşturur."
 
+# Retrieve list of all pages
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "Tüm sayfaların listesini al."
 
+# Get pointer to the active page
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "Etkin sayfaya işaretçi alın."
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
