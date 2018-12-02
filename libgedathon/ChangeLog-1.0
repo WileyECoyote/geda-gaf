@@ -2,6 +2,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/bs.po: Update Bosnian translations
+
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Remove CHANGED argument to geda_page_rename.
