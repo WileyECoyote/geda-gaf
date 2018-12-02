@@ -19,47 +19,55 @@ msgstr ""
 
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Pobierz lub Ustaw domyślny symbol dla kondensatorów\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "Szerezzen be vagy állítsa be az elektrolitikus kondenzátorok alapértelmezett szimbólumát\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "Szerezzen be vagy állítsa be az alapjel szimbólumát\n"
 
+# Get or Set the default operational amplifier symbol
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Get vagy Set az alapértelmezett műveleti erősítő szimbólum\n"
 
+# Get or Set the default symbol for resistors
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Szerezzen be vagy állítsa be az ellenállások alapértelmezett szimbólumát\n"
 
+# Get or Set the default titleblock symbol
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Szerezzen be vagy állítsa be az alapértelmezett címblokk szimbólumot\n"
 
+# Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "Zárjon be minden fájlt, és távolítsa el a könyvtárat."
 
+# Append a folder to the library search path
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "Fűzze hozzá egy mappát a könyvtár keresési útvonalához."
 
+# Creates a gafrc file in the current directory
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "Létrehoz egy gafrc fájlt az aktuális könyvtárban."
 
+# Retrieve list of all pages
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "Az összes oldal lekérése."
 
+# Get pointer to the active page
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "Mutasson mutatót az aktív oldalra."
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."

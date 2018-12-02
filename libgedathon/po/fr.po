@@ -77,7 +77,7 @@ msgstr "Définir la page active."
 # Returns True if page has been modified and not saved
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr "Renvoie True si la page a Ã©tÃ© modifiÃ©e et non enregistrÃ©e."
+msgstr "Renvoie True si la page a été modifiée et non enregistrée."
 
 # Set the active page, and changes current directory
 #: libgedathon/include/geda_module.h:63
