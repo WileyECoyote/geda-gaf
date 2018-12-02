@@ -12,6 +12,8 @@
 
     * po/ja.po: Update Japanese translations.
 
+    * po/pl.po: Update Polish translations.
+
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Remove CHANGED argument to geda_page_rename.
