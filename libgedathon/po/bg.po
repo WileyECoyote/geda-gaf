@@ -19,49 +19,68 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# Vzemete ili zadaĭte simvol po podrazbirane za kondenzatori
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Вземете или задайте символ по подразбиране за кондензатори\n"
 
+# Poluchete ili zadaĭte simvola po podrazbirane za elektrolitni kondenzatori
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "Получете или задайте символа по подразбиране за електролитни кондензатори\n"
 
+# Izteglete ili zadaĭte simvola po podrazbirane za induktori
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "Изтеглете или задайте символа по подразбиране за индуктори\n"
 
+# Get or Set the default operational amplifier symbol
+# Vzemete ili zadaĭte simvola po podrazbirane za operatsionen usilvatel
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Вземете или задайте символа по подразбиране за операционен усилвател\n"
 
+# Get or Set the default symbol for resistors
+# Poluchete ili zadaĭte simvol po podrazbirane za rezistori
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Получете или задайте символ по подразбиране за резистори\n"
 
+# Get or Set the default titleblock symbol
+# Vzemete ili zadaĭte simvola na osnovniya blok na zaglavieto
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Вземете или задайте символа на основния блок на заглавието\n"
 
+# Close all files and deinitialize the library
+# Zatvorete vsichki faĭlove i deinitsializiraĭte bibliotekata
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "Затворете всички файлове и деинициализирайте библиотеката."
 
+# Append a folder to the library search path
+# Dobavete papka kŭm pŭtya za tŭrsene v bibliotekata
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "Добавете папка към пътя за търсене в библиотеката."
 
+# Creates a gafrc file in the current directory
+# Sŭzdaĭte gafrc faĭl v tekushtata direktoriya
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "Създайте gafrc файл в текущата директория."
 
+# Retrieve list of all pages
+# Izvlichane na spisŭk s vsichki stranitsi
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "Извличане на списък с всички страници."
 
+# Get pointer to the active page
+# Poluchete pokazaletsa na aktivnata stranitsa
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "Получете показалеца на активната страница."
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
