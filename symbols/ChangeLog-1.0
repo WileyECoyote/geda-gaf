@@ -10,6 +10,10 @@
 
     * coaxial/RP-SMB-1.sym: Replace/redo symbol.
 
+    * linear/video/NE592: Remove dash from filenames:
+
+            * linear/video/NE592-1.sym
+            * linear/video/NE592-2.sym
 2018-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/DAC08SM-1.sym: Rename with upper case.
