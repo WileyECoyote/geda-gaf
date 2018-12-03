@@ -2,6 +2,8 @@
 
     * coaxial/BNC-1.sym: Replace/redo symbol.
 
+    * coaxial/MCX-1.sym: Replace/redo symbol.
+
 2018-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/DAC08SM-1.sym: Rename with upper case.
