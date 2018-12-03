@@ -19,6 +19,8 @@
 
    * logic/4000/40117-1.sym: Add description and value attributes.
 
+   * 4000/4014-3.sym: Add description and value attributes.
+
 2018-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/DAC08SM-1.sym: Rename with upper case.
