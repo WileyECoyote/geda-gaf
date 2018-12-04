@@ -1792,7 +1792,7 @@ GtkWidget *geda_handle_box_new (void)
 /*!
  * \brief Programmatically dock the child of a GedaHandleBox
  * \par Function Description
- *  Creates and returns a new GedaHandleBox instance
+ *  Reattaches the child widget to the GedaHandleBox
  */
 void geda_handle_box_dock (GedaHandleBox *handlebox)
 {
