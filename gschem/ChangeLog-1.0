@@ -5,6 +5,9 @@
     * src/object/o_attrib.c: Revise g_attrib_attach_list_2_object to attempt to
       include the refdes when logging promotions.
 
+    * src/iface/i_vars.c: Revise i_vars_freenames to release default_component_
+      select_attrlist.
+
 2018-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Remove system-gnetlistrc system-gsymbolrc from maintainer

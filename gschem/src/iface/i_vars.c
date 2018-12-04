@@ -655,7 +655,7 @@ void i_vars_set(GschemToplevel *w_current)
 
   i_set_rc (&toplevel->auto_save_interval, default_auto_save_interval);
 
-  i_set_rc (&w_current->chooser_filter,  default_chooser_filter);
+  i_set_rc (&w_current->chooser_filter, default_chooser_filter);
 
   w_current->component_select_attrlist = default_component_select_attrlist;
 
@@ -748,6 +748,7 @@ void i_vars_freenames()
   GEDA_FREE(comline_font);
   GEDA_FREE(default_print_command);
   GEDA_FREE(default_bus_ripper_symname);
+  geda_glist_free_full (default_component_select_attrlist, g_free);
 }
 
 /*! \brief Setup gschem default configuration.
