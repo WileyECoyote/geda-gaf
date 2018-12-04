@@ -3261,8 +3261,8 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
  * \par Function Description
  *  This is the main function for construction of the Compselect
  *  dialog box. Due to the expanse of this dialog, other previously
- *  defined function function a called to create portions. Those
- *  function above have "create-" in the function name.
+ *  defined functions are called to create portions. Those function
+ *  above have "create-" in the function name.
  *
  * \param [in] type                   The GedaType type
  * \param [in] n_construct_properties The number of inital parameters?
