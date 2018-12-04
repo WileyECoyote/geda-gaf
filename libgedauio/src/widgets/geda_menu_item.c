@@ -922,7 +922,7 @@ static void geda_menu_item_instance_init(GTypeInstance *instance, void *class)
 }
 
 /*!
- * \brief Retrieve GedaMenuItem's Type identifier.
+ * \brief Retrieve GedaMenuItem's Type identifier
  * \par Function Description
  *  Function to retrieve a #GedaMenuItem Type identifier. When
  *  first called, the function registers a #GedaMenuItem in the
@@ -1246,7 +1246,7 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
 /* ------------------------------------------------------- */
 
 /*!
- * \brief Creates a new GedaMenuItem.
+ * \brief Creates a new GedaMenuItem
  * \returns the newly created #GedaMenuItem
  */
 GtkWidget *geda_menu_item_new (void)
@@ -1445,7 +1445,7 @@ void geda_menu_item_set_submenu_placement (GedaMenuItem    *menu_item,
 }
 
 /*!
- * \brief geda_menu_item_select:
+ * \brief geda_menu_item_select
  * \par Function Description
  *  Emits the GedaMenuItem::select signal on the given item.
  *
@@ -1477,7 +1477,7 @@ void geda_menu_item_select (GedaMenuItem *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_deselect:
+ * \brief geda_menu_item_deselect
  * \par Function Description
  *  Emits the GedaMenuItem::deselect signal on the given item.
  *
@@ -1529,7 +1529,7 @@ void geda_menu_item_activate_item (GedaMenuItem *menu_item)
 }
 
 /*!
- * \brief geda_menu_item_toggle_size_request:
+ * \brief geda_menu_item_toggle_size_request
  * \par Function Description
  *  Emits the GedaMenuItem::toggle-size-request signal on the given item.
  *
