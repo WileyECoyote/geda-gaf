@@ -48,7 +48,7 @@
  * \par
  * A GedaHandleBox is a container object used to hold toolbars. GedaHandleBox
  * is a replacement for the GtkHandleBox because the GtkHandleBox is listed
- * as depreciated. A GedaHandleBox allows toolbars to float or be docked to
+ * as deprecated. A GedaHandleBox allows toolbars to float or be docked to
  * the edges of a window.
  *
  * \defgroup GedaHandleBox Handle Box
@@ -354,7 +354,7 @@ static void geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int tim
                                         handlebox);
 }
 
-/* Helped for geda_handle_box_grab_event */
+/* Helper for geda_handle_box_grab_event */
 static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
