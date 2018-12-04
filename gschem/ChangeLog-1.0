@@ -1,5 +1,8 @@
 2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex.c: Update o_complex_translate_all Doxygen function
+      parameters.
+
     * src/x/x_edit_array.c: Revise x_dialog_ca_update_selection to set the
       array count and size to zeros when there is no selection.
 

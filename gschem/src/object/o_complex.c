@@ -268,9 +268,9 @@ o_complex_translate_list(GschemToplevel *w_current, const GList *o_list,
  *  current page, whether selected or not \a offset distance in both
  *  the x and y direction.
  *
- * \param [in] w_current    GschemToplevel structure
- * \param [in] offset       Integer distance to translate all objects
- * \param [in] zoom_extents Zoom to the extents if True
+ * \param [in] w_current   GschemToplevel structure
+ * \param [in] offset      Integer distance to translate all objects
+ * \param [in] object_list List of objects to be translated
  *
  * \todo has nothing to do with complex objects
  */
