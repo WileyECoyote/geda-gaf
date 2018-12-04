@@ -1,5 +1,8 @@
 2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_array.c: Revise x_dialog_ca_update_selection to set the
+      array count and size to zeros when there is no selection.
+
     * src/x/x_sessions.c: Replace Doxygen \memberof tag with \ingroup.
 
 2018-12-03 Wiley E. Hill <wileyhill@gmail.com>

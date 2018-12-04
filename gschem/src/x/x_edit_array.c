@@ -155,6 +155,11 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
       dialog_data->wy = bottom > top ? top : bottom;
     }
   }
+  else {
+    gtk_entry_set_text ((GtkEntry*)dialog_data->cnt_sel_entry, "0");
+    gtk_entry_set_text ((GtkEntry*)dialog_data->x_size_entry, "0");
+    gtk_entry_set_text ((GtkEntry*)dialog_data->y_size_entry, "0");
+  }
 }
 
 /*! \todo Finish function documentation
