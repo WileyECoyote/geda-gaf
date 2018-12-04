@@ -1116,7 +1116,7 @@ GedaType gschem_status_bar_get_type (void)
  *  only string buffers but other data could be added. The buffers are used
  *  to create compound strings for status-bar text rather than using strdup
  *  or derivatives to constantly allocate and de-allocate trival amounts of
- *  ram. To facilitates usage, the status-bar object provides puplic pointers
+ *  ram. To facilitates usage, the status-bar object provides public pointers
  *  to these buffers. The pointers are defined as char * const, so the content
  *  can be changed but the pointers can not. Since the pointers point to
  *  dynamicaly allocated ram, we must initially write to the read only ram
