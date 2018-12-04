@@ -521,9 +521,9 @@
 ; Determines if the newly placed components are embedded in the schematic
 ; or if only the filename is specified and the component is searched for
 ; instead.  If it is enabled, then all new components will be embedded
-; othewise they are not embedded.  This can be controlled on the fly during
-; runtime with the "Embed Component" checkbox on the select component dialog
-; box
+; othewise they are not embedded.  This is normally controlled on the fly
+; during runtime with the "Embed Component" option on the select component
+; dialog box. Setting here
 ;
 ;(embed-components "enabled")
 ;(embed-components "disabled")
