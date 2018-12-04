@@ -1103,7 +1103,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   scm_dynwind_unwind_handler(geda_glist_free_all, (void*)&list, 0);
 
   /* convert the scm list into a GList */
-  for (i=0; i < length; i++) {
+  for (i = 0; i < length; i++) {
 
     char *attr;
     char *str;
@@ -1124,7 +1124,6 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   default_component_select_attrlist = g_list_reverse(list);
 
   return SCM_BOOL_T;
-
 }
 
 /*! \brief Process continue-component-place RC entry.
