@@ -53,11 +53,16 @@
 
 ; attribute-promotion string
 ;
-; This keyword controls if attribute promotion occurs when you instantiate a
-; component.  Attribute promotion basically means that any floating attribute
-; (unattached) which is inside a symbol gets "promoted" or attached to the
-; newly inserted component.  This only occurs when the component is
-; instantiated.
+; This keyword controls if attribute promotion occurs when you instantiate
+; a component. Attribute promotion basically means that floating attributes
+; (unattached) which are inside a symbol get "promoted" or attached to the
+; newly inserted component. This only occurs when the component is inserted,
+; i.e. if a promoted attribute is deleted after the symbol is instantiated,
+; and the schematics is written to disk, the attribute will not listed in
+; attributes of the complex in the file, and therefore will not be attached
+; to the symbol when the file is reloaded.
+;
+; See always-promote-attributes
 ;
 (attribute-promotion "enabled")
 ;(attribute-promotion "disabled")
@@ -87,9 +92,9 @@
 
 ; always-promote-attributes
 ;
-; Set the list of attributes that are always promoted regardless of
-; their visibility. The list should be a scm list of strings. The
-; space separated attribute names are deprecated.
+; Set the list of attributes that are always promoted regardless of their
+; visibility. The list should be a scm list of strings. The space separated
+; attribute names are deprecated.
 ;
 ;(always-promote-attributes "footprint device value model-name")
 (always-promote-attributes '("footprint" "device" "value" "model-name"))
