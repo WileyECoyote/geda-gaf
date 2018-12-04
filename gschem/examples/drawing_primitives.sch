@@ -153,7 +153,7 @@ with \_overbars\_ on
 a bunch of \_random\_
 words scattered in the
 \_text\_.
-C 1000 1000 0 0 0 title-B.sym
+C 500 500 0 0 0 title-B.sym
 T 8000 11600 9 10 1 0 0 0 1
 Circles
 V 9200 10700 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

@@ -1,3 +1,7 @@
+2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * examples: Revise titleblocks locations to align with content.
+
 2018-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Remove system-gnetlistrc system-gsymbolrc from maintainer
@@ -14037,7 +14041,7 @@
           widgets to be tracked on a per window basis. Added function x_toolbars_free_window
           to free the aforemention structure when a window is closed.
 
-          * src/widgets/geda_handlebox.c and associated header: This is an adaptation
+        * src/widgets/geda_handlebox.c and associated header: This is an adaptation
           of the gtkhandlebox in it`s entirety, not a derived sub-class. The reason
           for this is because gtk has declared gtkhandlebox depreciated (do to lack
           lack of functionality). The gnome docker is better but this would impose

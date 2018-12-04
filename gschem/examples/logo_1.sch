@@ -12,9 +12,9 @@ EDA
 }
 N 13000 16200 15500 16200 4
 {
-T 13300 16200 5 40 1 0 0 0 1
+T 13300 16400 5 40 1 0 0 0 1
 gEDA
 }
 T 8600 13800 9 30 1 0 0 0 1
 GPL Electronic Design Automation
-C 7500 10500 0 0 0 title-A.sym
+C 7000 10000 0 0 0 title-A.sym

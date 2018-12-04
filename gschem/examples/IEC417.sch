@@ -1,5 +1,5 @@
 v 20150315 2
-C 7100 6500 0 0 0 title-C.sym
+C 6600 6000 0 0 0 title-C.sym
 C 22300 22000 1 0 0 amp-var.sym
 T 22500 23000 9 10 1 0 0 0 1
 amp-var
