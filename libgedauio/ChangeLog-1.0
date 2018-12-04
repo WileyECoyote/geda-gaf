@@ -3,6 +3,8 @@
     * src/widgets/geda_menu_item.c: Remove trailing punctuations from Doxygen
       briefs.
 
+    * tests/test_file_chooser.c: Replace G_OS_WIN32 with our OS_WIN32.
+
 2018-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Replace g_object_set to set "visible"

@@ -53,7 +53,7 @@
  *  \brief Tests for geda_file_chooser.c module
  */
 
-#ifdef G_OS_WIN32
+#ifdef OS_WIN32
 #  include <io.h>
 #  define localtime_r(t,b) *(b) = *localtime (t)
 #  ifndef S_ISREG
