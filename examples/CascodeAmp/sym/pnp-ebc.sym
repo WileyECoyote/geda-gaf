@@ -1,12 +1,4 @@
 v 20151230 2
-T 900 2100 5 10 0 0 0 0 1
-author=AutoTron
-T 900 1900 5 10 0 0 0 0 1
-dist-license=GPL3
-T 900 1700 5 10 0 0 0 0 1
-use-license=unrestricted
-T 900 1300 5 10 0 0 0 0 1
-symversion=1.0
 T 900 1100 5 10 0 1 0 0 1
 description=PNP Transistor
 T 900 1500 9 10 0 0 0 0 1
@@ -65,3 +57,11 @@ L 500,350
 L 450,300
 L 425,375
 z
+T 900 2100 5 10 0 0 0 0 1
+author=AutoTron
+T 900 1900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 900 1700 5 10 0 0 0 0 1
+use-license=unrestricted
+T 900 1300 5 10 0 0 0 0 1
+symversion=1.0

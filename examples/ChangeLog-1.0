@@ -1,3 +1,7 @@
+2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * CascodeAmp/sym/.sym: Set dist-license=GPLv2.
+
 2018-11-19  Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/CascodeAmp.sch: Add 0402 footprints to resistor-1 symbols.
