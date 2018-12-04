@@ -526,6 +526,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
   case TextPref:
     break;
   case AttributesPref:
+    /* List controls are only enabled if the List radio is active */
     state = GET_SWITCH_STATE (DialogListAttributesListRadio);
     enable_attribute_list_controls (state);
     break;
@@ -793,9 +794,9 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
  * not be confused with the state indicated in the dialog (after the user
  * has changed/clicked the radio/bulb widgets)
  *
- *  \retval 0        = Filter All    // rc entry had an
- *          1        = No Filter     // rc entry had empty list
- *          2        = Filter List   // rc entry had and actual list
+ *  \retval 0        = Filter All    // rc entry had an asterisk
+ *          1        = No Filter     // rc entry was an empty list
+ *          2        = Filter List   // rc entry had an actual list
  */
 static int GetAttributeFilterMode(GschemToplevel *w_current) {
 
@@ -1978,6 +1979,7 @@ radio_responder(GtkWidget *widget,  int response, ControlID *Control)
       case WorldSizeLarge:
         x_dialog_set_bulb_off(WorldSizeSmallRadio); x_dialog_set_bulb_off(WorldSizeMediumRadio);
         break;
+  /* Attributes TAB */
       case DialogListAttributesAll:
         enable_attribute_list_controls(FALSE);
         x_dialog_set_bulb_off(DialogListAttributesNoneRadio); x_dialog_set_bulb_off(DialogListAttributesListRadio);
@@ -2337,7 +2339,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
       else
         rc_options.custom_world_size = 1;
 
-  SetBulbGroup ( WorldSize, rc_options.world_size);
+  SetBulbGroup (WorldSize, rc_options.world_size);
 
 /* Attributes TAB */
   SetBulbGroup(DialogListAttributes, GetAttributeFilterMode(w_current));

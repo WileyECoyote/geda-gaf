@@ -8,6 +8,9 @@
 
     * src/x/x_sessions.c: Replace Doxygen \memberof tag with \ingroup.
 
+    * src/x/x_settings_dialog.c: Add comments, update documentation for
+      load_tree_view_str.
+
 2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples: Revise titleblocks locations to align with content.
