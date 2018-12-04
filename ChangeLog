@@ -1,3 +1,8 @@
+2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Eliminate redundant setting of visible
+      property in GEDA_PACK_TOOLBOX macro.
+
 2018-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Revise HD_ACTION_SEPARATOR macro
@@ -78,8 +83,8 @@
 
 2018-06-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda/geda_stat.h: Manually check for definition if indiviual
-      flags and set when not defined because some flags are  not defined in
+    * include/geda/geda_stat.h: Manually check for definition of individual
+      flags and set when not defined because some flags are not defined in
       __MINGW32__ version of stat.h.
 
 2018-05-21 Wiley E. Hill <wileyhill@gmail.com>
@@ -978,7 +983,7 @@
 
       * configure.ac: Bumped version = 2.0.9.4. General cleaning through-
         out source tree. Replace fprintf, g_critical, and g_warnings with
-        BUG_xMSGs. See indiviual change logs. Also bump library versions
+        BUG_xMSGs. See individual change logs. Also bump library versions
         for libgeda = 50.9, libgedadraw = 0.2, libgedacairo = 1.4, and
         libgedathon, libgedauio = 0.4.
 

@@ -105,7 +105,6 @@ typedef struct
 
 #define GEDA_PACK_TOOLBOX( parent, bar) \
   gtk_box_pack_start (GTK_BOX (parent), bar, FALSE, FALSE, 0); \
-  g_object_set (bar, "visible", TRUE, NULL); \
   gtk_widget_show(bar);
 
 /* ------------------------- Entry Level -------------------------------- */
