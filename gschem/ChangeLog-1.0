@@ -1,3 +1,7 @@
+2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_sessions.c: Replace Doxygen \memberof tag with \ingroup.
+
 2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * examples: Revise titleblocks locations to align with content.

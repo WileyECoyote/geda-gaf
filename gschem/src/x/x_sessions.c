@@ -328,7 +328,7 @@ static void manage_session_selection_changed (GtkTreeSelection *selection,
  */
 
 /*! \brief Response function for Session dialogs
- *  \memberof Open-Session-Dialog
+ *  \ingroup Open-Session-Dialog
  *  \par Function Description
  *  This is a response function called when the used selects one
  *  of the action bottons, either CLOSE or APPLY. This function
@@ -361,7 +361,7 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 }
 
 /*! \brief Emit GEDA_RESPONSE_REJECT response signal
- *  \memberof Open-Session-Dialog
+ *  \ingroup Open-Session-Dialog
  *  \par Function Description
  *  This function is common to both the Manage Sessions and the
  *  Open Session dialogs.
