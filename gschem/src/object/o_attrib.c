@@ -165,7 +165,18 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
       msg1 = ngettext("Attached %d attribute", "Attached %d attributes", count);
       msg2  = geda_sprintf(msg1, count);
 
-      geda_log("%s\n", msg2);
+      char *uref;
+
+      /*------ Try to get the refdes -----*/
+      uref = geda_attrib_search_object_by_name (target, "refdes", 0);
+
+      if (!uref) {
+        geda_log("%s\n", msg2);
+      }
+      else {
+        geda_log("%s %s <%s>\n", msg2, _("to"), uref);
+        geda_free(uref);
+      }
 
       geda_free(msg2);
     }

@@ -2,6 +2,9 @@
 
     * examples: Revise titleblocks locations to align with content.
 
+    * src/object/o_attrib.c: Revise g_attrib_attach_list_2_object to attempt to
+      include the refdes when logging promotions.
+
 2018-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Remove system-gnetlistrc system-gsymbolrc from maintainer
