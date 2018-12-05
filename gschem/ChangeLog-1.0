@@ -1,3 +1,8 @@
+2018-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Revise x_event_motion to not call o_net_start_magnetic
+      unless magnetic_net_mode is set.
+
 2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex.c: Update o_complex_translate_all Doxygen function
