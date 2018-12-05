@@ -156,11 +156,10 @@ EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0,
 
   scm_dynwind_begin (0);
 
-  char *string = geda_utility_log_read (); //geda_strdup("lucky");
+  char *string = geda_utility_log_read ();
 
-  scm_dynwind_unwind_handler ((void (*)(void *)) g_free, string,
+  scm_dynwind_unwind_handler ((void (*)(void *)) geda_free, string,
                               SCM_F_WIND_EXPLICITLY);
-
   if (string) {
 
     char *str;
