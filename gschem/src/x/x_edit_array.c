@@ -454,9 +454,9 @@ static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
  *  \par Function Description
  *
  */
- static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
-                                                       GdkEventButton *event,
-                                                       GschemToplevel *w_current)
+static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
+                                                      GdkEventButton *event,
+                                                      GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
