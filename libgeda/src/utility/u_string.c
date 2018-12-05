@@ -121,6 +121,8 @@ char *geda_utility_string_concat (const char *string1, ...)
  *  Returns a new allocated utf8 encoding string containing valid
  *  chars from the array pointed to by \a instr. Chars following
  *  an invalid char are omitted.
+ *  This function provides the same functionality as g_utf8_make_valid
+ *  which is not avaliable until glib 2.52.
  */
 char *geda_utility_string_get_valid_utf8 (const char *instr)
 {
