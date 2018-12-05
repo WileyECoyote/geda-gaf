@@ -387,7 +387,7 @@ i_event_adder_pressed(GtkWidget *widget, GdkEventButton *event,
 
       switch (w_current->event_state) {
         case(NETMODE):
-           if (o_net_reset (w_current)) {
+          if (o_net_reset (w_current)) {
             erase_rubber();
             break;
           }
