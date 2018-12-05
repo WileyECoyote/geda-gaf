@@ -628,9 +628,9 @@ void o_net_motion (GschemToplevel *w_current, int w_x, int w_y)
      *    if we are using magnetic mode */
     ortho = !w_current->CONTROLKEY || w_current->magnetic_net_mode;
 
-    if (w_current->rubber_visible)
-
+    if (w_current->rubber_visible) {
       o_net_invalidate_rubber (w_current);
+    }
 
     if (w_current->magnetic_net_mode) {
 
