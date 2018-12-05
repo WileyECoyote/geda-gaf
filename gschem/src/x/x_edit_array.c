@@ -809,12 +809,15 @@ static void on_row_butt_clicked(GtkButton *button, void *user_data)
   w_current->event_state      = LINEMODE;
 
   x_dialog_array_edit_emit_get_dist(w_current, dialog_data);
-
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief  Edit Array XY Button Pressed
+ * \par Function Description
+ *  Callback for the XY button on the Edit Array Dialog. Sets the post
+ *  responder in the dialog data to post_response_row_col and initiates
+ *  a fictitious box mode to allow the user to draw a temporary box
+ *  representing the distance of the array X and Y offset.
  */
 static void on_row_col_butt_clicked(GtkButton *button, void *user_data)
 {
