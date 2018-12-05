@@ -833,9 +833,13 @@ static void on_row_col_butt_clicked(GtkButton *button, void *user_data)
   x_dialog_array_edit_emit_get_dist(w_current, dialog_data);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Edit Array X Button Pressed
+ * \par Function Description
+ *  Callback for the X button on the Edit Array Dialog. Sets the post
+ *  responder in the dialog data to post_response_col and initiates
+ *  a fictitious line mode to allow the user to draw a temporary line
+ *  representing the distance of the array X offset.
  */
 static void on_col_butt_clicked(GtkButton *button, void *user_data)
 {

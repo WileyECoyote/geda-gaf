@@ -5,6 +5,7 @@
 
           * on_row_butt_clicked
           * on_row_col_butt_clicked
+          * on_col_butt_clicked
 
     * src/x/x_event.c: Revise x_event_motion to not call o_net_start_magnetic
       unless magnetic_net_mode is set.
