@@ -36,6 +36,8 @@
 
 #include <geda/geda.h>
 
+#include "../include/geda_gtk_compat.h"
+
 #include "../include/geda_label.h"
 #include "../include/geda_menu.h"
 #include "../include/geda_menu_bar.h"
@@ -230,7 +232,7 @@ check_methods ()
   GtkWidget    *vbox;
 
   menu_bar2 = geda_menu_bar_new ();
-  vbox      = GTK_BIN(window)->child;
+  vbox      = geda_get_child_widget(window);
 
   gtk_box_pack_start (GTK_BOX (vbox), menu_bar2, FALSE, TRUE, 0);
   gtk_widget_show (menu_bar2);
