@@ -792,7 +792,6 @@ static void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
  */
 static void autonumber_remove_number(AUTONUMBER_TEXT *autotext, GedaObject *o_current)
 {
-  GedaObject *o_slot;
   char       *str;
 
   /* allocate memory for the search string*/
@@ -816,7 +815,9 @@ static void autonumber_remove_number(AUTONUMBER_TEXT *autotext, GedaObject *o_cu
     /* Does child->parent_object->child make sense? */
     if (o_parent != NULL) {
 
-      /* \remark geda_struct_slot_search_slot updates o_slot variable */
+      GedaObject *o_slot;
+
+      /* geda_struct_slot_search_slot updates o_slot variable */
       g_free (geda_struct_slot_search_slot (o_parent, &o_slot));
 
       /* Only attempt to remove non-inherited slot attributes */

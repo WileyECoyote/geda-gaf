@@ -1,3 +1,7 @@
+2018-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: Reduce scope of o_slot in autonumber_remove_number.
+
 2018-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Remove extra whitespace and update function
