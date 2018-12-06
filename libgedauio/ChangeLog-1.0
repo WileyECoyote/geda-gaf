@@ -8,6 +8,10 @@
       utilize geda_get_child_widget macro in geda_combo_box_forall to get
       the child label widget.
 
+    * src/widgets/geda_toggle_action.c: Include geda_gtk_compat.h and utilize
+      geda_get_child_widget macro in geda_toggle_action_connect_proxy to get
+      the child label widget.
+
 2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove trailing punctuations from Doxygen

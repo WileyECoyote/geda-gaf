@@ -43,6 +43,7 @@
 
 #include "../../include/geda_toggle_action.h"
 #include "../../include/geda_accel_label.h"
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/gettext.h"
 #include <geda_debug.h>
@@ -167,7 +168,7 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 
     GtkWidget *label;
 
-    label = ((GtkBin*)proxy)->child;
+    label = geda_get_child_widget(proxy);
 
     /* make sure label is a GedaAccelLabel */
     if (label && !GEDA_IS_ACCEL_LABEL(label)) {
