@@ -142,7 +142,7 @@ struct {
  *  \par Function Description
  *  This function destroys the configure_settings dialog. Depending
  *  on how the dialog was terminated, GatherSettings maybe call to
- *  retrieve values from widget and possiably generate or regenerate
+ *  retrieve values from widgets and possiably generate or regenerate
  *  the users RC file. Changes to certain variables require modules
  *  to be updated and these modules are called before exiting.
  */
