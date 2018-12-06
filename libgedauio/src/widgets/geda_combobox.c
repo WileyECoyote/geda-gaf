@@ -598,8 +598,9 @@ static void geda_combo_box_forall (GtkContainer *container,
                                     GtkCallback  callback,
                                            void *callback_data)
 {
-  GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBox     *combo_box = GEDA_COMBO_BOX (container);
+  GedaComboBoxData *priv      = combo_box->priv;
+  GtkWidget        *child;
 
   if (include_internals) {
     if (priv->button)
@@ -608,8 +609,10 @@ static void geda_combo_box_forall (GtkContainer *container,
       (* callback) (priv->cell_view_frame, callback_data);
   }
 
-  if (GTK_BIN (container)->child) {
-    (* callback) (GTK_BIN (container)->child, callback_data);
+  child = geda_get_child_widget(container);
+
+  if (child) {
+    (* callback) (child, callback_data);
   }
 }
 
