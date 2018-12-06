@@ -141,8 +141,9 @@ int option_menu_get_history (GedaOptionMenu *option_menu)
   active_widget = geda_menu_get_active (GEDA_MENU (option_menu->menu));
 
   if (active_widget) {
-    return g_list_index (GEDA_MENU_SHELL (option_menu->menu)->children,
-                         active_widget);
+    return g_list_index ((GList*)
+             geda_menu_shell_get_children(GEDA_MENU_SHELL(option_menu->menu)),
+                                          active_widget);
   }
   else {
     return -1;

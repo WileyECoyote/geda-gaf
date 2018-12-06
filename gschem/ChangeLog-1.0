@@ -2,6 +2,9 @@
 
     * src/x/x_autonumber.c: Reduce scope of o_slot in autonumber_remove_number.
 
+    * src/x/x_edit_attrib.c: Utilize accessor geda_menu_shell_get_children in
+      function option_menu_get_history to get the list children.
+
 2018-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Remove extra whitespace and update function
