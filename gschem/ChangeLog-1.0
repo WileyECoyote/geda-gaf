@@ -5,6 +5,9 @@
     * src/x/x_edit_attrib.c: Utilize accessor geda_menu_shell_get_children in
       function option_menu_get_history to get the list children.
 
+    * src/x/x_toolbars.c: Replace g_object_set "visible" with more efficient
+      gtk_widget_show, see log entry 2018-08-23.
+
 2018-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Remove extra whitespace and update function

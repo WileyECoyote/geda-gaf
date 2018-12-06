@@ -1119,7 +1119,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
     /* Create a Fixed Widget to hold the Close Buttton and add to the Toolbar */
     fixed = gtk_fixed_new();
     geda_container_add(ToolBar, fixed);
-    g_object_set (fixed, "visible", TRUE, NULL);
+    gtk_widget_show(fixed);
 
     /* Create the Close Button */
     CloseButton = gtk_button_new();
@@ -1306,7 +1306,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_redo);
   GSCHEM_TOOLBAR_BUTTON (Standard, etb_configure);
 
-  g_object_set (Standard_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Standard_Toolbar);
 
   SET_TOOLBAR_ID  (w_current->standard_handlebox, tb_Standard);
   SET_TOOLBAR_WC  (w_current->standard_handlebox, w_current);
@@ -1360,7 +1360,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST,   TB_BUTTON( etb_hierarchy_up  ));
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_view_document ));
 
-  g_object_set (Page_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Page_Toolbar);
 
   SET_TOOLBAR_ID       (w_current->page_handlebox, tb_Page);
   SET_TOOLBAR_WC       (w_current->page_handlebox, w_current);
@@ -1426,7 +1426,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(deselect));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(none));
 
-  g_object_set (Add_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Add_Toolbar);
 
   SET_TOOLBAR_ID       (w_current->add_handlebox, tb_Add);
   SET_TOOLBAR_WC       (w_current->add_handlebox, w_current);
@@ -1450,7 +1450,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Select, etb_select_all);
   GSCHEM_TOOLBAR_BUTTON (Select, etb_select_invert);
 
-  g_object_set (Select_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Select_Toolbar);
 
   SET_TOOLBAR_ID       (w_current->select_handlebox, tb_Select);
   SET_TOOLBAR_WC       (w_current->select_handlebox, w_current);
@@ -1475,7 +1475,7 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_out);
   GSCHEM_TOOLBAR_BUTTON (Zoom, etb_zoom_all);
 
-  g_object_set (Zoom_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Zoom_Toolbar);
 
   SET_TOOLBAR_ID       (w_current->zoom_handlebox, tb_Zoom);
   SET_TOOLBAR_WC       (w_current->zoom_handlebox, w_current);
@@ -1539,7 +1539,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
   ANY_OBJECT_LIST = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
 
-  g_object_set (Symbol_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Symbol_Toolbar);
 
   SET_TOOLBAR_ID  (w_current->symbol_handlebox, tb_Symbol);
   SET_TOOLBAR_WC  (w_current->symbol_handlebox, w_current);
@@ -1598,7 +1598,7 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST,  TB_BUTTON ( etb_edit_fill ));
   ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));
 
-  g_object_set (Edit_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Edit_Toolbar);
 
   SET_TOOLBAR_ID (w_current->edit_handlebox, tb_Edit);
   SET_TOOLBAR_WC (w_current->edit_handlebox, w_current);
@@ -1670,7 +1670,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_show_name  ));
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_show_both  ));
 
-  g_object_set (Attribute_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(Attribute_Toolbar);
 
   SET_TOOLBAR_ID       (w_current->attribute_handlebox, tb_Attribute);
   SET_TOOLBAR_WC       (w_current->attribute_handlebox, w_current);
@@ -1703,7 +1703,7 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   GSCHEM_TOOLBAR_BUTTON_FUNC(GripSnap, etb_snap_off, x_toolbars_snap_toggle);
   GSCHEM_TOOLBAR_BUTTON_FUNC(GripSnap, etb_snap_on, x_toolbars_snap_toggle);
 
-  g_object_set (GripSnap_Toolbar, "visible", TRUE, NULL);
+  gtk_widget_show(GripSnap_Toolbar);
 
   GEDA_OBJECT_SET_DATA(etb_snap_off_button, etb_snap_on_button,  "snap-widget");
   GEDA_OBJECT_SET_DATA(etb_snap_on_button,  etb_snap_off_button, "snap-widget");
