@@ -8,6 +8,9 @@
       utilize geda_get_child_widget macro in geda_combo_box_forall to get
       the child label widget.
 
+    * src/widgets/geda_handlebox.c: Fix BUG in geda_handle_box_motion; ensure
+      child orientation is set the same as the handlebox before re-parenting.
+
     * src/widgets/geda_toggle_action.c: Include geda_gtk_compat.h and utilize
       geda_get_child_widget macro in geda_toggle_action_connect_proxy to get
       the child label widget.
