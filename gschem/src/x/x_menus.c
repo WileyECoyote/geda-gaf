@@ -28,6 +28,8 @@
  * \brief Main Window Auxiliary Module for Menus, including Context
  */
 
+#include <ctype.h>         /* isdigit */
+
 #include "../../include/gschem.h"
 #include "../../include/x_menus.h"
 #include "../../include/i_actions.h"
@@ -414,6 +416,144 @@ x_menu_grid_none_mode(GedaCheckMenuItem *widget, GschemToplevel *w_current)
 {
   if (geda_check_menu_item_get_active(widget)) {
     x_menu_set_grid_mode(w_current, GRID_NONE);
+  }
+}
+
+/* Callback for "Clear" popup menu on "Paste from" menu items.
+ * Clears the buffer associated with the menu item and closes the menu.
+ *
+ * menuitem is the popup menu item, GedaMenuItem, that was clicked */
+static void clear_buffer_popup_clicked (GtkWidget *menuitem, void *user_data)
+{
+  GschemToplevel *w_current = (GschemToplevel*)user_data;
+  GtkWidget      *widget;
+  const char     *label;
+
+  widget = GEDA_OBJECT_GET_DATA(menuitem, "paste-menu-item");
+
+  label = geda_menu_item_get_label ((GedaMenuItem*)widget);
+
+  /* Extract the buffer # from the label */
+  char alpha = label[strlen(label) - 1];
+
+  if (isdigit(alpha)) {
+
+    GedaMenuShell *menu;
+
+    /* Clear the buffer, converting alpha to numeric */
+    o_buffer_clear(w_current, alpha - 48);
+
+    /* Deactivate the widget's parent menu */
+    menu = GEDA_MENU_SHELL(gtk_widget_get_parent(widget));
+    geda_menu_shell_cancel(menu);
+
+    /* Update menu item sensitivity */
+    gtk_widget_set_sensitive(widget, FALSE);
+  }
+
+  /* Destroy the popup menu */
+  gtk_widget_destroy(gtk_widget_get_parent(menuitem));
+}
+
+static bool on_paste_button_released (GtkWidget       *menuitem,
+                                      GdkEventButton  *event,
+                                      void            *w_current)
+{
+  bool ret_val;
+
+  if (event->button == 3) {
+
+    GtkWidget *menu;
+    GtkWidget *popup_item;
+
+    /* create a context menu */
+    menu = geda_menu_new();
+
+    popup_item = geda_menu_item_new_with_label (_("Clear"));
+
+    g_signal_connect(popup_item, "activate",
+                     G_CALLBACK(clear_buffer_popup_clicked),
+                     w_current);
+
+    GEDA_OBJECT_SET_DATA (popup_item, menuitem, "paste-menu-item");
+
+    geda_menu_append (menu, popup_item);
+
+    gtk_widget_show_all (menu);
+
+    /* make menu a popup menu */
+    geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
+                    (event != NULL) ? event->button : 0,
+                     gdk_event_get_time ((GdkEvent*)event));
+
+    ret_val = TRUE;
+  }
+  else {
+    ret_val = FALSE;
+  }
+
+  return ret_val;
+}
+
+static void x_menu_add_menu_popups(GschemToplevel *w_current, MenuData *menu_data)
+{
+  if (menu_data->buffer_menu_name) {
+
+    GedaMenuItem  *rootitem;
+    GedaMenuShell *menubar;
+    GedaMenuItem  *menuitem;
+    const GList   *children;
+
+    menubar  = GEDA_MENU_SHELL(MENU_BAR);
+    children = geda_menu_shell_get_children (menubar);
+    rootitem = NULL;
+
+    while (children) {
+
+      const char *label;
+
+      menuitem = children->data;
+
+      label = geda_menu_item_get_label (menuitem);
+
+      if (strcmp(label, menu_data->buffer_menu_name) == 0) {
+        rootitem = menuitem;
+        break;
+      }
+
+      children = children->next;
+    }
+
+    if (GEDA_IS_MENU_ITEM(rootitem)) {
+
+      GtkWidget *submenu;
+
+      submenu = geda_menu_item_get_submenu_widget (rootitem);
+
+      if (GEDA_IS_MENU_SHELL(submenu)) {
+
+        children = geda_menu_shell_get_children ((GedaMenuShell*)submenu);
+
+        while (children) {
+
+          menuitem = children->data;
+
+          if (!GEDA_IS_MENU_SEPERATOR (menuitem)) {
+
+            const char *label;
+
+            label = geda_menu_item_get_label (menuitem);
+
+            if (strstr(label, "Paste from")) {
+              g_signal_connect (menuitem, "button-release-event",
+                                G_CALLBACK (on_paste_button_released),
+                                w_current);
+            }
+          }
+          children = children->next;
+        }
+      }
+    }
   }
 }
 
@@ -1166,6 +1306,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   else {
     fprintf(stderr, "No Menu!\n");
   }
+
+  x_menu_add_menu_popups(w_current, menu_data);
 
   ui_list = g_slist_append(ui_list, menu_data);
   w_current->ui_index = g_slist_length(ui_list) -1;
