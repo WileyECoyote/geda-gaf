@@ -11,6 +11,10 @@
       allows user to create new documents in file managers by selecting  the
       template documents on the file manager`s right context menu.
 
+    * src/x/x_toolbars.c: Replace GtkBoxes with GedaDockBox containers so that
+      all handleboxes and toolboxes on the same side of the drawing area are
+      in the same container.
+
 2018-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Reduce scope of o_slot in autonumber_remove_number.

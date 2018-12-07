@@ -1264,14 +1264,15 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 #endif
 
   /* ---------------------- Create Top ToolBox ------------------ */
-  GtkWidget *toolbox_T1 = gtk_hbox_new (FALSE, 0);
-  GEDA_PACK_TOOLBOX (parent_container, toolbox_T1)
+  GtkWidget *toolbox_DT = geda_dock_box_new (GTK_ORIENTATION_HORIZONTAL);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_DT)
 
   /* --------- Create and Populate the Standard Toolbar -------- */
 
   /* Standard Toolbar*/
   w_current->standard_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_T1, w_current->standard_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DT, w_current->standard_handlebox, 0);
+  gtk_widget_show(w_current->standard_handlebox);
 
   /* toolbar will be horizontal, with both icons and text, and with
    * 5 pixel spaced between items and put it into our handlebox */
@@ -1321,7 +1322,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   /* ----------- Create and Populate the Page Toolbar ----------- */
 
   w_current->page_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_T1, w_current->page_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DT, w_current->page_handlebox, 0);
+  gtk_widget_show(w_current->page_handlebox);
 
   Page_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
@@ -1371,13 +1373,12 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 #endif
 
   /* Start Second Toolbar Row */
-  GtkWidget *toolbox_T2 = gtk_hbox_new (FALSE, 0);
-  GEDA_PACK_TOOLBOX (parent_container, toolbox_T2);
 
   /* --------- Create and Populate the Add Toolbar -------- */
 
   w_current->add_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_T2, w_current->add_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DT, w_current->add_handlebox, 1);
+  gtk_widget_show(w_current->add_handlebox);
 
   Add_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
@@ -1436,7 +1437,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   /* Select Toolbar*/
   w_current->select_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_T2, w_current->select_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DT, w_current->select_handlebox, 1);
+  gtk_widget_show(w_current->select_handlebox);
 
   /* toolbar will be horizontal, with both icons and text, and with
    * 5pxl spaces between items and put it into our handlebox */
@@ -1459,7 +1461,8 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   /* --------- Create and Populate the Zoom Toolbar -------- */
 
   w_current->zoom_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_T2, w_current->zoom_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DT, w_current->zoom_handlebox, 1);
+  gtk_widget_show(w_current->zoom_handlebox);
 
   Zoom_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
@@ -1511,13 +1514,14 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
 
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  GtkWidget *toolbox_L1 = gtk_hbox_new (FALSE, 0);
-  GEDA_PACK_TOOLBOX (parent_container, toolbox_L1);
+  GtkWidget *toolbox_DL = geda_dock_box_new (GTK_ORIENTATION_VERTICAL);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_DL);
 
   /* --------- Create and Populate the Symbol Toolbar -------- */
 
   w_current->symbol_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_L1, w_current->symbol_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DL, w_current->symbol_handlebox, 0);
+  gtk_widget_show(w_current->symbol_handlebox);
 
   Symbol_Toolbar = geda_toolbar_new (GTK_ORIENTATION_VERTICAL);
 
@@ -1550,7 +1554,8 @@ x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container)
   /* --------- Create and Populate the Edit Toolbar -------- */
 
   w_current->edit_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_L1, w_current->edit_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DL, w_current->edit_handlebox, 1);
+  gtk_widget_show(w_current->edit_handlebox);
 
   Edit_Toolbar = geda_toolbar_new (GTK_ORIENTATION_VERTICAL);
 
@@ -1630,13 +1635,14 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
   /* Start Bottom Toolbar Row */
-  GtkWidget *toolbox_B1 = gtk_hbox_new (FALSE, 0);
-  GEDA_PACK_TOOLBOX (parent_container, toolbox_B1);
+  GtkWidget *toolbox_DB = geda_dock_box_new (GTK_ORIENTATION_HORIZONTAL);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_DB);
 
   /* --------- Create and Populate the Attribute Toolbar -------- */
 
   w_current->attribute_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_B1,  w_current->attribute_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DB, w_current->attribute_handlebox, 0);
+  gtk_widget_show(w_current->attribute_handlebox);
 
   Attribute_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
@@ -1681,7 +1687,8 @@ x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_container)
   /* -------- Create and Populate the GridSnap Toolbar -------- */
 
   w_current->grid_snap_handlebox = x_toolbars_get_box_container(w_current);
-  GEDA_PACK_TOOLBOX (toolbox_B1, w_current->grid_snap_handlebox);
+  geda_dock_box_add((GedaDockBox*)toolbox_DB, w_current->grid_snap_handlebox, 0);
+  gtk_widget_show(w_current->grid_snap_handlebox);
 
   GripSnap_Toolbar = geda_toolbar_new (GTK_ORIENTATION_HORIZONTAL);
 
