@@ -1,3 +1,8 @@
+2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * m4/geda-directories.m4: Add AX_TEMPLATE_DIRS for GEDATEMPLATEDIR with
+      with-templatedir option to allow overrides.
+
 2018-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * m4/geda-libgedathon.m4: Add subst LIBGEDATHON_DOT_VERSION.
@@ -50,7 +55,7 @@
 
 2018-06-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * geda-host.m4: Add AM_CONDITIONAL for each build potential platform.
+    * geda-host.m4: Add AM_CONDITIONAL for each potential build platform.
 
     * geda-windows.m4: Add -mconsole option to MINGW_GUI_LDFLAGS so that gattrib
       and gschem can output to the console. Oddly the console programs output to

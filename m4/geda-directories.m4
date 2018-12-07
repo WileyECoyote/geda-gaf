@@ -26,8 +26,8 @@ dnl               will be loaded, really aren't.
 AC_PREFIX_DEFAULT(/)
 
 AC_ARG_WITH(docdir, AS_HELP_STRING([--with-docdir],[set path for documentation]),docdir="$withval",docdir="")
-AC_ARG_WITH(logdir,AS_HELP_STRING([--with-logdir],[set path for log files]),logdir="$withval",logdir="")
-
+AC_ARG_WITH(logdir, AS_HELP_STRING([--with-logdir],[set path for log files]),logdir="$withval",logdir="")
+AC_ARG_WITH(templatedir, AS_HELP_STRING([--with-templatedir],[set path for template documents]),templatedir="$withval",templatedir="")
 
 dnl##################################################################
 #                    ***  Systemic Paths   ***
@@ -198,6 +198,38 @@ m4_define([AX_RC_DIRS],
   []dnl
 ])dnl AX_RC_DIRS
 
+dnl##################################################################
+#                   ***  TEMPLATE Directory   ***
+dnl##################################################################
+m4_define([AX_TEMPLATE_DIRS],
+[
+  AC_PREREQ([2.60])dnl
+
+  AC_ARG_VAR([XDG_USER_DIR], [Path to xdg-user-dir templates directory])
+
+  # Check for xdg-user-dir
+  AC_CHECK_PROG([XDG_USER_DIR], [xdg-user-dir],
+                  [xdg-user-dir], [no])
+
+  # Check where to put template documents.
+
+  AC_MSG_CHECKING([where to put template documents])
+  if test "x$templatedir" = "x"; then
+     if test "X$XDG_USER_DIR" = "Xno"; then
+        templatedir="~/Templates"
+     else
+        templatedir=$($XDG_USER_DIR TEMPLATES)
+     fi
+     AC_DEFINE_DIR([GEDATEMPLATEDIR], [templatedir], [Templates directory])
+  else
+     GEDATEMPLATEDIR="$templatedir"
+     AC_DEFINE_UNQUOTED(GEDATEMPLATEDIR, "$templatedir")
+  fi
+  AC_MSG_RESULT([$GEDATEMPLATEDIR])
+
+  []dnl
+])dnl AX_TEMPLATE_DIRS
+
 dnl In order to comply with the GNU & Linux FHS guidelines program
 dnl directories should make the package name. These are "guideline"
 dnl not mandates and generally be followed, But rules are made too
@@ -224,6 +256,9 @@ AC_DEFUN([AX_GEDA_DIRS],
 # Where to install rc files.
   AX_RC_DIRS([$THIS_GEDA])
 
+# Where to install template documents?
+  AX_TEMPLATE_DIRS
+
   []dnl
 ])dnl AX_GEDA_DIRS
 
@@ -239,5 +274,5 @@ AC_DEFUN([AX_EXPAND_DIRS],
   AS_AC_EXPAND(EXPANDED_BINDIR,     "$bindir")
   AS_AC_EXPAND(EXPANDED_DATADIR,    "$GEDADATADIR")
   AS_AC_EXPAND(EXPANDED_DOCDIR,     "$GEDADOCDIR")
-
+  AS_AC_EXPAND(EXPANDED_TEMPLATEDIR,"$GEDATEMPLATEDIR")
 ])dnl AX_EXPAND_DIRS
