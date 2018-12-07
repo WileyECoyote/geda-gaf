@@ -5,7 +5,7 @@
 #           contains geda-gschem.desktop which needs geda-gschem.LINGUAS
 #
 SUBDIRS = bitmap docs examples include etc scheme scripts src \
-	  po data tests
+	  po data templates tests
 
 EXTRA_DIST = BUGS ChangeLog ChangeLog-1.0 icon-theme-installer
 

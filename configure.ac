@@ -332,6 +332,7 @@ AC_CONFIG_FILES([Makefile
                  gschem/src/object/Makefile
                  gschem/src/x/Makefile
                  gschem/src/Makefile
+                 gschem/templates/Makefile
                  gschem/tests/Makefile
                  gschem/scheme/Makefile
 

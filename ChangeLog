@@ -1,3 +1,7 @@
+2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Add gschem/templates/Makefile.
+
 2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_toolbars.h: Eliminate redundant setting of visible

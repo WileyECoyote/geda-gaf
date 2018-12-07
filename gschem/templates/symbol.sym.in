@@ -1,0 +1,11 @@
+v @DATE_VERSION@ 2
+T 0 900 5 10 0 0 0 0 1
+device=Device
+T 0 600 8 10 1 1 0 0 1
+refdes=?
+T 0 1100 8 10 0 0 0 0 1
+footprint=unknown
+T 0 1300 8 10 0 0 0 0 1
+numslots=0
+T 0 1500 8 10 0 0 0 0 1
+description=Description
