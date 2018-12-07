@@ -443,6 +443,7 @@ int        o_break_interrogate          (GschemToplevel *w_current, GList *objec
 
 /* o_buffer.c */
 void       o_buffer_copy                (GschemToplevel *w_current, int buf_num);
+void       o_buffer_clear               (GschemToplevel *w_current, int buf_num);
 void       o_buffer_cut                 (GschemToplevel *w_current, int buf_num);
 bool       o_buffer_paste_start         (GschemToplevel *w_current, int x, int y);
 void       o_buffer_init                (void);

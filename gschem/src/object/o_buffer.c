@@ -98,6 +98,19 @@ void o_buffer_copy(GschemToplevel *w_current, int buf_num)
   }
 }
 
+void o_buffer_clear(GschemToplevel *w_current, int buf_num)
+{
+  if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
+    BUG_IMSG ("Invalid buffer", buf_num);
+  }
+  else {
+
+    geda_struct_object_release_objects(object_buffer[buf_num]);
+
+    object_buffer[buf_num] = NULL;
+  }
+}
+
 /*!
  * \brief Cut Selection to Buffer
  * \par Function Description

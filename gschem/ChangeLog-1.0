@@ -1,5 +1,7 @@
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_buffer.c: Add function o_buffer_clear.
+
     * src/x/x_menus.c: Revise x_menu_setup_ui to add GedaMenuSeparator instead
       of GedaMenuItem without a label for menu separators.
 
