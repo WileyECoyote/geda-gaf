@@ -2641,15 +2641,19 @@ static void geda_real_menu_item_set_label (GedaMenuItem *menu_item, const char *
 
 static const char *geda_real_menu_item_get_label (GedaMenuItem *menu_item)
 {
-  GedaLabel *child;
+  if (!GEDA_IS_MENU_SEPERATOR (menu_item)) {
 
-  geda_menu_item_ensure_label (menu_item);
+    GedaLabel *child;
 
-  child = geda_get_child_widget (menu_item);
+    geda_menu_item_ensure_label (menu_item);
 
-  if (GEDA_IS_LABEL (child)) {
-    return geda_label_get_label (child);
+    child = geda_get_child_widget (menu_item);
+
+    if (GEDA_IS_LABEL (child)) {
+      return geda_label_get_label (child);
+    }
   }
+
   return NULL;
 }
 

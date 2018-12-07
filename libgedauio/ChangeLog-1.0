@@ -1,3 +1,8 @@
+2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise geda_real_menu_item_get_label to
+      return NULL if the item is a GedaMenuSeparator item.
+
 2018-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Include geda_gtk_compat.h and utilize
@@ -16,8 +21,7 @@
       the child label widget.
 
     * tests/test_menu_bar.c: Include geda_gtk_compat.h and utilize
-      geda_get_child_widget macro in check_methods to get the child label
-      widget.
+      geda_get_child_widget macro in check_methods to get the child widget.
 
 2018-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
