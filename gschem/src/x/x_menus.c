@@ -632,7 +632,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       scm_dynwind_free(raw_menu_item_name);
 
       if (strncmp(raw_menu_item_name, "SEPARATOR", 9) == 0) {
-        menu_item = geda_menu_item_new();
+        menu_item = geda_menu_separator_new();
       }
       else {
 

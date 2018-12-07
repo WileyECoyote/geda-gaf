@@ -1,3 +1,8 @@
+2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Revise x_menu_setup_ui to add GedaMenuSeparator instead
+      of GedaMenuItem without a label for menu separators.
+
 2018-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Reduce scope of o_slot in autonumber_remove_number.
