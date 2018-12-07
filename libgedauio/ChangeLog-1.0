@@ -1,5 +1,16 @@
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_dockbox.h: New header to define GedaDockBox, which is just
+      a GtkBox that is opposite the orientation the user requested.
+
+    * src/widgets/geda_dockbox.c: New module to implement GedaDockBox class.
+      The class creates GtkBoxes inside the parent box defined when the object
+      was created that are the orientation of the user requested and maintains
+      a list of the child boxes. The child boxes are created on demand when
+      the user adds objects to the GedaDockBox. Objects are added to the inner
+      child boxes based on the location argument to geda_dock_box_add or geda_
+      dock_widget_add.
+
     * src/widgets/geda_menu_item.c: Revise geda_real_menu_item_get_label to
       return NULL if the item is a GedaMenuSeparator item.
 

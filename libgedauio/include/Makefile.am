@@ -17,6 +17,7 @@ libgedauio_HEADERS = \
 			geda_comboboxtext.h       \
 			geda_completion.h         \
 			geda_container.h          \
+			geda_dockbox.h            \
 			geda_entry.h              \
 			geda_file_chooser.h       \
 			geda_font_button.h        \

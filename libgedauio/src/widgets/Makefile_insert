@@ -8,6 +8,7 @@ libgedauio_la_SOURCES += \
 			widgets/geda_combobox.c          \
 			widgets/geda_comboboxtext.c      \
 			widgets/geda_completion.c        \
+			widgets/geda_dockbox.c           \
 			widgets/geda_entry.c             \
 			widgets/geda_font_button.c       \
 			widgets/geda_font_dialog.c       \

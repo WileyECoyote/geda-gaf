@@ -35,6 +35,7 @@
 #include "geda_combobox.h"
 #include "geda_comboboxtext.h"
 #include "geda_completion.h"
+#include "geda_dockbox.h"
 #include "geda_entry.h"
 #include "geda_font_button.h"
 #include "geda_font_dialog.h"
