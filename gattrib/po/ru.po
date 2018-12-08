@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:11-0600\n"
+"POT-Creation-Date: 2018-12-07 14:50-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -122,12 +122,12 @@ msgid "DONE"
 msgstr "ЗАВЕРШЕНО"
 
 # could not find the attribute
-#: gattrib/src/s_object.c:215
+#: gattrib/src/s_object.c:223
 msgid "failed to find attribute"
 msgstr "не удалось найти атрибут"
 
 # Exiting...
-#: gattrib/src/s_object.c:216
+#: gattrib/src/s_object.c:224
 msgid "Exiting..."
 msgstr "Выход..."
 

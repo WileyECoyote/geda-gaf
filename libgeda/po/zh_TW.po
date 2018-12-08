@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:10-0600\n"
+"POT-Creation-Date: 2018-12-07 14:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1863,32 +1863,32 @@ msgid "Could NOT save"
 msgstr "無法儲存"
 
 # Unable to find
-#: libgeda/src/struct/s_slot.c:181
+#: libgeda/src/struct/s_slot.c:184
 msgid "Did not find"
 msgstr "找不到"
 
 # attribute for slot
-#: libgeda/src/struct/s_slot.c:182
+#: libgeda/src/struct/s_slot.c:185
 msgid "attribute for slot"
 msgstr "屬性"
 
 # Improper slotdef syntax: missing
-#: libgeda/src/struct/s_slot.c:193
+#: libgeda/src/struct/s_slot.c:196
 msgid "Improper slotdef syntax: missing"
 msgstr "不正確的slotdef語法：缺少"
 
 # Did not find proper
-#: libgeda/src/struct/s_slot.c:209
+#: libgeda/src/struct/s_slot.c:212
 msgid "Did not find proper"
 msgstr "沒有找到正確"
 
 # attribute
-#: libgeda/src/struct/s_slot.c:210
+#: libgeda/src/struct/s_slot.c:213
 msgid "attribute"
 msgstr ""
 
 # component missing pinseq= attribute
-#: libgeda/src/struct/s_slot.c:251
+#: libgeda/src/struct/s_slot.c:254
 msgid "component missing pinseq= attribute\n"
 msgstr "組件缺少pinseq =屬性\n"
 

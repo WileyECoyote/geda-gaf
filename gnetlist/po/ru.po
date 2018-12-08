@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:11-0600\n"
+"POT-Creation-Date: 2018-12-07 14:50-0600\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -350,7 +350,7 @@ msgstr ""
 msgid "ERROR: Overwriting a valid rename list.\n"
 msgstr "ОШИБКА: Перезапись действующего списка переименований.\n"
 
-#: gnetlist/src/s_rename.c:192
+#: gnetlist/src/s_rename.c:190
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -361,7 +361,7 @@ msgstr ""
 "\t%s и %s\n"
 "оба являются именами источника и назначения\n"
 
-#: gnetlist/src/s_rename.c:195
+#: gnetlist/src/s_rename.c:193
 #, c-format
 msgid "This warning is okay if there multiple levels of hierarchy!\n"
 msgstr ""

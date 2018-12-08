@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-24 01:31-0600\n"
+"POT-Creation-Date: 2018-12-07 14:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -25,7 +25,8 @@ msgstr "Pridobite ali nastavite privzeti simbol za kondenzatorje\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr "Pridobite ali nastavite privzeti simbol za elektrolitske kondenzatorje\n"
+msgstr ""
+"Pridobite ali nastavite privzeti simbol za elektrolitske kondenzatorje\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"

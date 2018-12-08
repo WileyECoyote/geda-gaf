@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:10-0600\n"
+"POT-Creation-Date: 2018-12-07 14:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -1899,31 +1899,31 @@ msgid "Could NOT save"
 msgstr "NÃO foi possível guardar"
 
 # Unable to find
-#: libgeda/src/struct/s_slot.c:181
+#: libgeda/src/struct/s_slot.c:184
 msgid "Did not find"
 msgstr "Não foi possível encontrar"
 
 # attribute for slot
-#: libgeda/src/struct/s_slot.c:182
+#: libgeda/src/struct/s_slot.c:185
 msgid "attribute for slot"
 msgstr "atributo de slot"
 
 # Incorrect syntax of slotdef: lack the character
-#: libgeda/src/struct/s_slot.c:193
+#: libgeda/src/struct/s_slot.c:196
 msgid "Improper slotdef syntax: missing"
 msgstr "Sintaxe incorreta de slotdef: falta o caractere"
 
 # Did not find proper
-#: libgeda/src/struct/s_slot.c:209
+#: libgeda/src/struct/s_slot.c:212
 msgid "Did not find proper"
 msgstr "Não encontrou bom"
 
 # attribute
-#: libgeda/src/struct/s_slot.c:210
+#: libgeda/src/struct/s_slot.c:213
 msgid "attribute"
 msgstr "O atributo"
 
-#: libgeda/src/struct/s_slot.c:251
+#: libgeda/src/struct/s_slot.c:254
 msgid "component missing pinseq= attribute\n"
 msgstr "componente ausente pinseq = atributo\n"
 

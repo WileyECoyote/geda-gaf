@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-24 01:31-0600\n"
+"POT-Creation-Date: 2018-12-07 14:48-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -23,7 +23,9 @@ msgstr "Holen Sie sich das Standard-Symbol für Kondensatoren\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr "Holen Sie sich oder setzen Sie das Standardsymbol für Elektrolytkondensatoren\n"
+msgstr ""
+"Holen Sie sich oder setzen Sie das Standardsymbol für "
+"Elektrolytkondensatoren\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
@@ -32,7 +34,8 @@ msgstr "Holen Sie sich das Standard-Symbol für Induktoren\n"
 # Get or Set the default operational amplifier symbol
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr "Holen Sie sich oder setzen Sie das Standard-Operationsverstärker-Symbol\n"
+msgstr ""
+"Holen Sie sich oder setzen Sie das Standard-Operationsverstärker-Symbol\n"
 
 # Get or Set the default symbol for resistors
 #: libgedathon/include/functions.h:58

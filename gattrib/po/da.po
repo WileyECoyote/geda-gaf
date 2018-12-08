@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:11-0600\n"
+"POT-Creation-Date: 2018-12-07 14:50-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -124,12 +124,12 @@ msgid "DONE"
 msgstr "FÆRDIG"
 
 # failed to find attribute
-#: gattrib/src/s_object.c:215
+#: gattrib/src/s_object.c:223
 msgid "failed to find attribute"
 msgstr "kunne ikke finde attributten"
 
 # Exiting
-#: gattrib/src/s_object.c:216
+#: gattrib/src/s_object.c:224
 msgid "Exiting..."
 msgstr "Afslutning..."
 

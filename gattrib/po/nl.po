@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:11-0600\n"
+"POT-Creation-Date: 2018-12-07 14:50-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -128,11 +128,11 @@ msgid "DONE"
 msgstr "GEDAAN"
 
 # unable to find attribute
-#: gattrib/src/s_object.c:215
+#: gattrib/src/s_object.c:223
 msgid "failed to find attribute"
 msgstr "niet staat om attributen te vinden"
 
-#: gattrib/src/s_object.c:216
+#: gattrib/src/s_object.c:224
 msgid "Exiting..."
 msgstr ""
 

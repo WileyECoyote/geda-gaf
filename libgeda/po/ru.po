@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:10-0600\n"
+"POT-Creation-Date: 2018-12-07 14:48-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1926,31 +1926,31 @@ msgid "Could NOT save"
 msgstr "Не удалось сохранить"
 
 # Unable to find
-#: libgeda/src/struct/s_slot.c:181
+#: libgeda/src/struct/s_slot.c:184
 msgid "Did not find"
 msgstr "Не нашла"
 
 # attribute for slot
-#: libgeda/src/struct/s_slot.c:182
+#: libgeda/src/struct/s_slot.c:185
 msgid "attribute for slot"
 msgstr "атрибут для слота"
 
 # Improper slotdef syntax: missing
-#: libgeda/src/struct/s_slot.c:193
+#: libgeda/src/struct/s_slot.c:196
 msgid "Improper slotdef syntax: missing"
 msgstr "Неверный синтаксис атрибута «slotdef»: отсутствует"
 
 # Did not find proper
-#: libgeda/src/struct/s_slot.c:209
+#: libgeda/src/struct/s_slot.c:212
 msgid "Did not find proper"
 msgstr "Не нашли надлежащего"
 
 # attribute
-#: libgeda/src/struct/s_slot.c:210
+#: libgeda/src/struct/s_slot.c:213
 msgid "attribute"
 msgstr "атрибут"
 
-#: libgeda/src/struct/s_slot.c:251
+#: libgeda/src/struct/s_slot.c:254
 msgid "component missing pinseq= attribute\n"
 msgstr "Отсутствует атрибут «pinseq» у вывода компонента\n"
 

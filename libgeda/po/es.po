@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-11-18 20:10-0600\n"
+"POT-Creation-Date: 2018-12-07 14:48-0600\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1902,31 +1902,31 @@ msgid "Could NOT save"
 msgstr "No se ha podido guardar"
 
 # Did not find
-#: libgeda/src/struct/s_slot.c:181
+#: libgeda/src/struct/s_slot.c:184
 msgid "Did not find"
 msgstr "No se ha encontrado"
 
 # attribute for slot
-#: libgeda/src/struct/s_slot.c:182
+#: libgeda/src/struct/s_slot.c:185
 msgid "attribute for slot"
 msgstr "atributo de la ranura"
 
 # Incorrect syntax of slotdef: lack the character
-#: libgeda/src/struct/s_slot.c:193
+#: libgeda/src/struct/s_slot.c:196
 msgid "Improper slotdef syntax: missing"
 msgstr "Sintaxis de slotdef incorrecta: falta el carácter"
 
 # Did not find proper
-#: libgeda/src/struct/s_slot.c:209
+#: libgeda/src/struct/s_slot.c:212
 msgid "Did not find proper"
 msgstr "No encontrar una buena"
 
 # attribute
-#: libgeda/src/struct/s_slot.c:210
+#: libgeda/src/struct/s_slot.c:213
 msgid "attribute"
 msgstr "Atributo"
 
-#: libgeda/src/struct/s_slot.c:251
+#: libgeda/src/struct/s_slot.c:254
 msgid "component missing pinseq= attribute\n"
 msgstr "El componente no tiene el atributo pinseq\n"
 
