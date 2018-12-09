@@ -3,6 +3,8 @@
     * linear/amplifiers/L165-1.sym: Clean symbols; adjust attribute locations,
       add value.
 
+    * logic/4000/4061-1.sym: Add description and value, update footprint.
+
 
 2018-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
