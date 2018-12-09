@@ -21,47 +21,47 @@ msgstr ""
 
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Få eller Ange standard symbol för kondensatorer\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "Få eller Ställ in standardsymbolen för elektrolytkondensatorer\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "Få eller Ange standard symbol för induktorer\n"
 
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Få eller Ange standard operationsförstärkarsymbol\n"
 
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Få eller Ange standard symbol för motstånd\n"
 
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Få eller Ange standard titelbladsymbol\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "Stäng alla filer och avaktivera biblioteket."
 
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "Lägg till en mapp till bibliotekets sökväg."
 
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "Skapar en gafrc-fil i den aktuella katalogen."
 
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "Hent liste over alle sider."
 
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "Hämta pekaren till den aktiva sidan."
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
