@@ -17,6 +17,8 @@
 
     * logic/4000/4580-1.sym: Add description and value, update footprint.
 
+    * logic/4000/4794b-3.sym: Clean symbol; Add description and value,
+      update device and footprint, reposition attributes.
 
 2018-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
