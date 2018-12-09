@@ -11,6 +11,8 @@
 
     * logic/4000/4075-1.sym: Add missing line segment, reposition attributes.
 
+    * logic/4000/4075-2.sym: Reposition attributes, remove duplicate pin 2.
+
 
 2018-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
