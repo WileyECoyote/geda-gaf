@@ -1,14 +1,10 @@
 v 20150101 2
-T 100 2000 5 10 0 0 0 0 1
-description=Power operational amplifier
-T 1100 700 9 8 0 1 0 0 1
-footprint=PENTAWATT
-T 100 1800 5 8 0 0 0 0 1
-symversion=1.0
-T 350 450 5 10 1 1 0 0 1
+T 1000 1000 5 10 1 1 0 0 1
 device=L165
-T 1000 850 8 10 1 1 0 0 1
+T 1000 800 8 10 1 1 0 0 1
 refdes=U?
+T 1000 1400 5 10 0 1 0 0 1
+description=Power operational amplifier
 P 0 700 200 700 1 0 0
 {
 T 50 750 5 8 1 1 0 6 1
@@ -44,9 +40,9 @@ pintype=pwr
 }
 P 1100 500 1300 500 1 0 1
 {
-T 1150 350 5 8 1 1 0 0 1
+T 1150 550 5 8 1 1 0 0 1
 pinnumber=4
-T 1150 550 5 8 0 1 0 0 1
+T 1150 350 5 8 0 1 0 0 1
 pinseq=5
 T 1250 350 5 8 0 1 0 0 1
 pintype=out
@@ -70,11 +66,15 @@ L 200 1000 1100 500 3 10 0 0 -1 -1
 L 250 700 350 700 3 10 0 0 -1 -1
 L 300 750 300 650 3 10 0 0 -1 -1
 L 250 300 350 300 3 10 0 0 -1 -1
-T 100 2200 5 8 0 0 0 0 1
+T 1000 1600 5 10 0 1 0 0 1
 documentation=http://www.st.com/stonline/products/literature/ds/1317.pdf
-T 100 2400 5 10 0 0 0 0 1
+T 1000 1200 9 10 0 1 0 0 1
+footprint=PENTAWATT
+T 1000 100 5 8 0 0 0 0 1
+symversion=1.0
+T 1000 2200 5 10 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
-T 100 1600 5 8 0 0 0 0 1
+T 1000 2000 5 10 0 0 0 0 1
 dist-license=GPLv2
-T 100 1400 5 8 0 0 0 0 1
+T 1000 1800 5 10 0 0 0 0 1
 use-license=unlimited
