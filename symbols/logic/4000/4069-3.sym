@@ -159,7 +159,7 @@ pintype=pwr
 }
 B 300 0 1400 2300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 2550 5 10 0 0 0 0 1
-device=4069UB
+device=4069
 T 1700 2400 8 10 1 1 0 6 1
 refdes=U?
 V 250 1700 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -167,10 +167,10 @@ V 1750 200 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 2750 5 10 0 0 0 0 1
 footprint=DIP14
 T 300 2950 5 10 0 0 0 0 1
-description=6 inverters
+description=CMOS, Hex Inverter
 T 300 3150 5 10 0 0 0 0 1
 numslots=0
 T 300 3350 5 10 0 0 0 0 1
 documentation=http://www.semiconductors.philips.com/acrobat/datasheets/HEF4069UB_CNV_3.pdf
-T 300 2340 9 10 1 0 0 0 1
-4069UB
+T 300 2340 9 10 1 1 0 0 1
+value=4069UB
