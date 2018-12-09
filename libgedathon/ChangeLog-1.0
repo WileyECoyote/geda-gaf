@@ -14,24 +14,18 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2018-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/sl.po: Update Slovenian translations
-
     * po/tr.po: Update Turkish translations.
 
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
