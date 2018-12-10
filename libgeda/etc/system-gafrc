@@ -58,9 +58,9 @@
 ; (unattached) which are inside a symbol get "promoted" or attached to the
 ; newly inserted component. This only occurs when the component is inserted,
 ; i.e. if a promoted attribute is deleted after the symbol is instantiated,
-; and the schematics is written to disk, the attribute will not listed in
-; attributes of the complex in the file, and therefore will not be attached
-; to the symbol when the file is reloaded.
+; and the schematics is written to disk, the attribute will not be listed
+; in the attributes of the complex in the file, and therefore will not be
+; attached to the symbol when the file is reloaded.
 ;
 ; See always-promote-attributes
 ;
