@@ -1235,7 +1235,7 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
       if (accel_path) {
         geda_accel_label_set_accel_widget ((GedaAccelLabel*)label, NULL);
         geda_accel_label_set_accel_closure ((GedaAccelLabel*)label,
-          gtk_action_get_accel_closure (action));
+        gtk_action_get_accel_closure (action));
       }
     }
 
