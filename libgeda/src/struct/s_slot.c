@@ -64,11 +64,14 @@ geda_struct_slot_search_slot (GedaObject *object, GedaObject **found)
   attrib     = geda_find_attrib_by_name (attributes, "slot", 0);
   g_list_free (attributes);
 
-  if (attrib != NULL)
+  if (attrib != NULL) {
     geda_attrib_object_get_name_value (attrib, NULL, &value);
+  }
 
-  if (found)
+  /* Set caller's pointer to attribute if caller supplied an address */
+  if (found) {
     *found = attrib;
+  }
 
   return value;
 }
