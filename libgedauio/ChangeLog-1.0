@@ -6,6 +6,10 @@
       invisible object for all GedaHandleBox objects, kind of amazing that
       it ever worked, removed function geda_handle_box_get_invisible.
 
+    * tests/test_menu_separator.c: Add function check_accessors to check that
+      the base class, GedaMeniItem, accessors, respond appropriately for menu
+      items separators.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_dockbox.h: New header to define GedaDockBox, which is just
