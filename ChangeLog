@@ -2,6 +2,8 @@
 
     * .kateconfig: Add local configuration file for Kate editor.
 
+    * configure.ac: Display the templates documents directory when configured.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add gschem/templates/Makefile.

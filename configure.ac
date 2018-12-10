@@ -305,6 +305,9 @@ AC_CONFIG_FILES([Makefile
                  libgedauio/docs/images/Makefile
                  libgedauio/docs/dialogs/Makefile
                  libgedauio/include/Makefile
+                 libgedauio/include/fileselector/Makefile
+                 libgedauio/src/dialogs/Makefile
+                 libgedauio/src/dialogs/fileselector/Makefile
                  libgedauio/src/Makefile
                  libgedauio/tests/Makefile
 
@@ -477,6 +480,7 @@ echo "
                             Data:     ${GEDADATADIR}		f_path_sys_data()
                     Documentaion:     ${GEDADOCDIR}     	f_path_sys_doc()
                        Log files:     ${GEDALOGDIR}
+              Template documents:     ${EXPANDED_TEMPLATEDIR}
 
               PCB data directory:     ${PCBDATADIR}
                 PCB M4 directory:     ${PCBM4DIR}
