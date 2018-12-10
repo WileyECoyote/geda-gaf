@@ -1,3 +1,7 @@
+2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .kateconfig: Add local configuration file for Kate editor.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add gschem/templates/Makefile.
