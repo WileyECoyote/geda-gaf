@@ -1,3 +1,11 @@
+2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add widget pointer for invisible in the
+      _GedaHandleBoxData and initialize to a new GtkInvisible in new gobject
+      class override geda_handle_box_constructed instead of using a static
+      invisible object for all GedaHandleBox objects, kind of amazing that
+      it ever worked, removed function geda_handle_box_get_invisible.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_dockbox.h: New header to define GedaDockBox, which is just
