@@ -3273,6 +3273,12 @@ static void geda_menu_class_init  (void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class, params);
 
+  /*!
+   * property "menu-popup-delay": GedaMenu::menu-popup-delay
+   * \brief
+   *  Controls the minimum time the pointer must stay over a menu
+   *  item before the submenu appear.
+   */
   params = g_param_spec_int ("menu-popup-delay",
                            _("Delay before submenus appear"),
                            _("Minimum time the pointer must stay over a menu item before the submenu appear"),
@@ -3283,6 +3289,12 @@ static void geda_menu_class_init  (void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class, params);
 
+  /*!
+   * property "menu-popdown-delay": GedaMenu::menu-popdown-delay
+   * \brief
+   *  Controls the time before hiding a submenu when the pointer
+   *  is moving towards the submenu.
+   */
   params = g_param_spec_int ("menu-popdown-delay",
                            _("Delay before hiding a submenu"),
                            _("The time before hiding a submenu when the pointer is moving towards the submenu"),
