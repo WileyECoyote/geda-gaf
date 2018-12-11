@@ -361,6 +361,7 @@ static void geda_menu_item_actionable_interface_init (GtkActionableInterface *if
 static void geda_menu_item_destroy (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = (GedaMenuItem*)widget;
+  GtkWidget    *child;
 
   child = geda_get_child_widget ((GtkBin*)menu_item);
 
