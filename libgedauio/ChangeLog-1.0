@@ -1,5 +1,8 @@
 2018-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_label.c: Relocate buried typedef for PangoParserData
+      and UriParserData to the top of the module following other typedefs.
+
     * src/widgets/geda_menu_item.c Update function documentation for
       geda_menu_item_get_event_window. Add missing declarartion of child
       in Gtk3 version of geda_menu_item_destroy and remove unneeded cast

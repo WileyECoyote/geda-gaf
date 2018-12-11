@@ -139,6 +139,20 @@ struct _SelectionInfo
   unsigned int link_clicked : 1;
 };
 
+typedef struct {
+  GtkBuilder    *builder;
+  GObject       *object;
+  PangoAttrList *attrs;
+} PangoParserData;
+
+typedef struct
+{
+  GedaLabel *label;
+  GList     *links;
+  GString   *new_str;
+  size_t     text_len;
+} UriParserData;
+
 enum {
   MOVE_CURSOR,
   COPY_CLIPBOARD,
@@ -1840,12 +1854,6 @@ is_a_geda_label (GedaLabel *label)
   return FALSE;
 }
 
-typedef struct {
-  GtkBuilder    *builder;
-  GObject       *object;
-  PangoAttrList *attrs;
-} PangoParserData;
-
 static PangoAttribute *
 attribute_from_text (GtkBuilder *builder, const char *name,
                      const char *value,   GError    **error)
@@ -2489,7 +2497,6 @@ GtkWidget *geda_aligned_visible_mnemonic_label_new (const char *str,
   return label;
 }
 
-
 static bool
 geda_label_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
@@ -2811,14 +2818,6 @@ static void geda_label_recalculate (GedaLabel *label)
   geda_label_clear_select_info (label);
   gtk_widget_queue_resize ((GtkWidget*)label);
 }
-
-typedef struct
-{
-  GedaLabel *label;
-  GList     *links;
-  GString   *new_str;
-  size_t     text_len;
-} UriParserData;
 
 static void
 start_element_handler (GMarkupParseContext *context,
