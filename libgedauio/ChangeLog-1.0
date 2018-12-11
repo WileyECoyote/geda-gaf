@@ -21,6 +21,13 @@
     * src/widgets/geda_toolbar.c: Remove stray semi-colon from geda_toolbar_
       setup_label.
 
+    * tests/test_menu_separator.c: Check response from GedaMeniItem
+      accessors:
+
+          * geda_menu_item_get_event_window
+          * geda_menu_item_get_submenu_widget
+          * geda_menu_item_get_accel_path
+
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add widget pointer for invisible in the

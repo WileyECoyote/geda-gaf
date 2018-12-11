@@ -163,6 +163,21 @@ int check_accessors(void)
       fprintf(stderr, "FAILED: line <%d> %s; widget selectable\n", __LINE__, TWIDGET);
       result++;
     }
+
+    if (geda_menu_item_get_event_window (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; event window\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    if (geda_menu_item_get_submenu_widget (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; submenu widget\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    if (geda_menu_item_get_accel_path (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; accel path\n", __LINE__, TWIDGET);
+      result++;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */
