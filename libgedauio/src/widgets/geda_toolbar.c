@@ -256,7 +256,6 @@ geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
       gtk_widget_queue_resize_no_redraw(widget);
       break;
     }
-    ;
   }
 
   g_list_free(children);

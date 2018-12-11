@@ -18,6 +18,9 @@
           * geda_menu_shell_get_keyboard_mode
           * geda_menu_shell_get_parent_shell
 
+    * src/widgets/geda_toolbar.c: Remove stray semi-colon from geda_toolbar_
+      setup_label.
+
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add widget pointer for invisible in the
