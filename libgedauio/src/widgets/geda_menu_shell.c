@@ -1825,10 +1825,11 @@ void geda_menu_shell_deselect (GedaMenuShell *menu_shell)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve List of GedaMenuShell Children
+ * \par Function Description
+ *  Returns a pointer to list of menu_shell.children, the list should
+ *  not be modified.
  */
 const GList *geda_menu_shell_get_children (GedaMenuShell *menu_shell)
 {
@@ -1836,10 +1837,15 @@ const GList *geda_menu_shell_get_children (GedaMenuShell *menu_shell)
   return menu_shell->children;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the GedaMenuShell Keyboard Mode
+ * \par Function Description
+ *  Returns the keyboard_mode member. The idea with keyboard mode is
+ *  that once the user start using the keyboard to navigate the menus,
+ *  the mnemonics are display until the menu navigation is over. To
+ *  that end, the keyboard mode is propagated upwards in the menu
+ *  hierarchy here.
+ *  Also see geda_menu_popup, where the mode is propagated downwards
  */
 bool geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
 {
@@ -1849,8 +1855,8 @@ bool geda_menu_shell_get_keyboard_mode (GedaMenuShell *menu_shell)
 /*!
  * \brief Retrieve GedaMenuShell Parent
  * \par Function Description
- * Gets the parent menu shell. The parent menu shell of a submenu
- * is the #GedaMenu or #GedaMenuBar from which it was opened up.
+ * Gets the parent menu shell. The parent menu shell of a submenu is
+ * the #GedaMenu or #GedaMenuBar from which the submenu was opened up.
  *
  * \param [in] menu_shell a #GedaMenuShell
  *

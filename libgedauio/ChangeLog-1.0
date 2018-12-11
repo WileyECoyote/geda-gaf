@@ -6,11 +6,17 @@
     * src/widgets/geda_menu.c: Add documentation for "menu-popup-delay" and
       "menu-popdown-delay" properties
 
-    * src/widgets/geda_menu_item.c Update function documentation for
+    * src/widgets/geda_menu_item.c: Update function documentation for
       geda_menu_item_get_event_window. Add missing declarartion of child
       in Gtk3 version of geda_menu_item_destroy and remove unneeded cast
       for geda_get_child_widget macro in both versions. Reorganize module
       a bit.
+
+    * src/widgets/geda_menu_shell.c: Update function documentation for:
+
+          * geda_menu_shell_get_children
+          * geda_menu_shell_get_keyboard_mode
+          * geda_menu_shell_get_parent_shell
 
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
