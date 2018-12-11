@@ -1289,6 +1289,13 @@ GtkWidget *geda_menu_item_new_with_mnemonic (const char *label)
                        NULL);
 }
 
+/*!
+ * \brief Retrieve GedaMenuItem Event Window
+ * \par Function Description
+ *  Returns the internal event_window of the menu item.
+ *
+ * \param [in] menu_item a #GedaMenuItem
+ */
 GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);

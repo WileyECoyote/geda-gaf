@@ -1,3 +1,8 @@
+2018-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c Update function documentation for
+      geda_menu_item_get_event_window.
+
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add widget pointer for invisible in the
