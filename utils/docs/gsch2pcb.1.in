@@ -10,7 +10,7 @@ creating and updating \fBpcb\fR(1) printed circuit board layouts based
 on a set of electronic schematics created with \fBgschem\fR(1).
 
 .PP
-Instead of specifying all options and input gEDA schematic \fIFILE\fRs
+Instead of specifying all options and schematic input \fIFILE\fRs
 on the command line, \fBgsch2pcb\fR can use a \fIPROJECT\fR file
 instead.
 
