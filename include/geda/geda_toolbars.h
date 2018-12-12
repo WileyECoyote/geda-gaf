@@ -103,6 +103,10 @@ typedef struct
      g_free(str); \
    }
 
+#define GEDA_PACK_DOCKBOX(parent, bar, where) \
+  geda_dock_box_add(parent, bar, where); \
+  gtk_widget_show(bar);
+
 #define GEDA_PACK_TOOLBOX( parent, bar) \
   gtk_box_pack_start (GTK_BOX (parent), bar, FALSE, FALSE, 0); \
   gtk_widget_show(bar);

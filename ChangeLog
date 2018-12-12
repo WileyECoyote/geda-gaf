@@ -1,3 +1,7 @@
+2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Add GEDA_PACK_DOCKBOX macro.
+
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * .kateconfig: Add local configuration file for Kate editor.
