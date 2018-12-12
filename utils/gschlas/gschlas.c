@@ -36,8 +36,9 @@
 
 #include "../include/common.h"
 
-/*! \brief Cleanup gschlas on exit.
- *  \par Function Description
+/*!
+ * \brief Cleanup gschlas on exit.
+ * \par Function Description
  *  This function is called at exit to call the necessary subroutines
  *  to release program resource.
  */
@@ -46,8 +47,9 @@ void gschlas_quit(void)
   libgeda_release();
 }
 
-/*! \brief The "real" main for gschlas.
- *
+/*!
+ * \brief The "real" main for gschlas.
+ * \par Function Description
  * This is the main program body for gschlas. A pointer to this
  * function is passed to scm_boot_guile() at startup.
  *
@@ -171,10 +173,11 @@ main_prog(void *closure, int argc, char *argv[])
   exit(0);
 }
 
-/*! \brief Entry point to gschlas
- *
- * This is just a wrapper which invokes the guile stuff, and
- * points to the real main program main_prog().
+/*!
+ * \brief Entry point to gschlas
+ * \par Function Description
+ *  This is just a wrapper which invokes the guile stuff, and points
+ *  to the real main program main_prog().
  *
  * \param argc Number of command line arguments
  * \param argv Command line arguments
