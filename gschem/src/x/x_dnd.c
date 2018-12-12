@@ -967,8 +967,9 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
       printf (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
 #endif
       char *buf = geda_object_save_buffer (object_buffer[DND_BUFFER]);
+
       gtk_selection_data_set (selection_data,
-                              gtk_selection_data_get_target(selection_data),
+                              (GdkAtom)target_type,
                               BITS_BYTE, /* 8-bit data (UTF-8) */
                               (unsigned char *) buf,
                               strlen(buf));

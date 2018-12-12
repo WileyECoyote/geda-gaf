@@ -1,3 +1,10 @@
+2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Revise x_dnd_drag_data_get to reuse the target_type that
+      was passed in as the second argument to gtk_selection_data_set instead
+      of calling gtk_selection_data_get_target since we already know what type
+      of data is being send.
+
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Revised clear_buffer_popup_clicked to not close the
