@@ -1,3 +1,7 @@
+2018-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Remove GTk3 debug code.
+
 2018-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_label.c: Relocate buried typedef for PangoParserData

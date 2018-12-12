@@ -2861,15 +2861,10 @@ void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
       priv->timer = gdk_threads_add_timeout (popup_delay,
                                              geda_menu_item_popup_timeout,
                                              menu_item);
-#if GTK_MAJOR_VERSION >= 3
-
-      g_source_set_name_by_id (priv->timer, "[gtk+] geda_menu_item_popup_timeout");
-
-#endif
 
       if (event &&
-        event->type != GDK_BUTTON_PRESS &&
-        event->type != GDK_ENTER_NOTIFY)
+          event->type != GDK_BUTTON_PRESS &&
+          event->type != GDK_ENTER_NOTIFY)
       {
         priv->timer_from_keypress = TRUE;
       }
