@@ -2,15 +2,22 @@
 Bugs (no particular order):
 ----------------------
 
+    Reset Attribute positions not redrawing correctly
+
     Vectors are not displayed if first coordinate has 0 for the X value
 
     tooltips for menu item can not be controlled with RC keyword
 
     Grips are not sized correctly.
 
-    exported symbols are translated back to normalicy
+    exported symbols are not translated back to normalicy
 
 Archived:
+
+FIXED Attributes tab of the Preference dialog Count of target list is
+      wrong if item is removed.
+
+FIXED tool menu gnetlist not working on Win32
 
 FIXED Component dialog tree popup menu "show tooltips" are tweaked
 
