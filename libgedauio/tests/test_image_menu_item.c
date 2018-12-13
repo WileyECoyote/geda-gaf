@@ -98,7 +98,7 @@ int check_construction (void)
 
   widget = NULL;
 
-  /* geda_image_menu_item_new_with_label */
+  /* geda_image_menu_item_new_with_mnemonic */
 
   widget = geda_image_menu_item_new_with_mnemonic ("<b>Walrus</b>");
 
@@ -112,7 +112,7 @@ int check_construction (void)
 
   widget = NULL;
 
-  /* geda_image_menu_item_new_with_label */
+  /* geda_image_menu_item_new_from_stock */
 
   widget = geda_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
 
