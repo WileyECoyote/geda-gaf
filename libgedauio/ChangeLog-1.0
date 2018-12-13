@@ -13,6 +13,11 @@
       get_event_window error message, add check for geda_menu_item_get_submenu_
       widget.
 
+    * tests/test_menu_separator.c: Check response from GedaMeniItem
+      accessors:
+
+          * geda_menu_item_get_mnemonic
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove GTk3 debug code.

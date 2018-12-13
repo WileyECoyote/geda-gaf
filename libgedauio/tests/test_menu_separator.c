@@ -178,6 +178,13 @@ int check_accessors(void)
       fprintf(stderr, "FAILED: line <%d> %s; accel path\n", __LINE__, TWIDGET);
       result++;
     }
+
+    char c = geda_menu_item_get_mnemonic(menu_item);
+
+    if (c != -1) {
+      fprintf(stderr, "FAILED: line <%d> %s; mnemonic <%c>\n", __LINE__, TWIDGET, c);
+      result++;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */
