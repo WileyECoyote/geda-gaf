@@ -6,6 +6,8 @@
     * src/widgets/geda_menu_item.c: Remove redundant validation in geda_real_
       menu_item_activate_item.
 
+    * src/widgets/geda_toolbar.c: Add documentation for "font-size" property.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove GTk3 debug code.

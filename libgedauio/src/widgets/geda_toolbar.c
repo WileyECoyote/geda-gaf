@@ -158,6 +158,11 @@ geda_toolbar_class_init(void *class, void *class_data)
 
   geda_toolbar_parent_class = g_type_class_peek_parent (class);
 
+  /*!
+   * property "font-size": GedaToolbar::font-size
+   * \brief
+   *  Controls the point size of the font for labels in child widgets.
+   */
   params = g_param_spec_int ("font-size",
                            _("Font Size"), /* nick name */
                            _("Set point size of the font for child widgets"), /* hint / blurb */
