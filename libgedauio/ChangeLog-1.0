@@ -9,6 +9,10 @@
     * src/widgets/geda_toolbar.c: Add documentation for "font-size" property
       and internal comments for geda_toolbar_setup_label.
 
+    * libgedauio/tests/test_menu_item.c: Update comment and geda_menu_item_
+      get_event_window error message, add check for geda_menu_item_get_submenu_
+      widget.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove GTk3 debug code.

@@ -158,10 +158,23 @@ check_accessors ()
     gtk_widget_show (widget);
     gtk_widget_show (menu);
 
+    /* geda_menu_item_get_event_window */
+
     event_window = geda_menu_item_get_event_window (menu_item);
 
     if (!GDK_IS_WINDOW(event_window)) {
-      fprintf(stderr, "FAILED: line <%d> event event_window %s\n", __LINE__, TWIDGET);
+      fprintf(stderr, "FAILED: line <%d> get event window %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    GtkWidget *sub_widget;
+
+    /* geda_menu_item_get_submenu_widget */
+
+    sub_widget = geda_menu_item_get_submenu_widget(menu_item);
+
+    if (sub_widget != menu) {
+      fprintf(stderr, "FAILED: line <%d> get submenu widget %s\n", __LINE__, TWIDGET);
       result++;
     }
 
