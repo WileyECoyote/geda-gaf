@@ -2629,8 +2629,6 @@ static void geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
   GtkWidget *parent;
   GtkWidget *widget;
 
-  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
-
   widget = (GtkWidget*)menu_item;
   parent = gtk_widget_get_parent (widget);
   priv   = menu_item->priv;
