@@ -1681,7 +1681,7 @@ void geda_menu_shell_activate (GedaMenuShell *menu_shell)
 }
 
 /*!
- * \brief Active a Meu Item
+ * \brief Active a Menu Item
  * \par Function Description
  *  Actives \a menu_item. If the parent shell has any other item
  *  active, the other item will be deactivated.
