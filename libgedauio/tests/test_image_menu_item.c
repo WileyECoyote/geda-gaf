@@ -178,6 +178,7 @@ check_accessors ()
       result++;
     }
 
+    /* The default is FALSE */
     if (geda_image_menu_item_get_use_stock(image_menu_item)) {
       fprintf(stderr, "FAILED: line <%d> get_use_stock %s\n", __LINE__, TWIDGET);
       result++;
