@@ -229,8 +229,10 @@ GedaType geda_toolbar_get_type (void)
   return geda_toolbar_type;
 }
 
-static void
-geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
+/* Looks for a label nested in widget and when found, sets the font
+ * size property of the widget to the same as GedaToolbar::font-size.
+ */
+static void geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
 {
   GtkWidget *box;
   GList     *children;
@@ -239,6 +241,7 @@ geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
   box      = gtk_bin_get_child (GTK_BIN(widget));
   children = geda_container_get_children (box);
 
+  /* Loop thru children and look for a label */
   for (iter = children; iter; iter = iter->next) {
 
     GtkWidget *child = iter->data;
