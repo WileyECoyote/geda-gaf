@@ -42,8 +42,6 @@
  *  (e.g. via geda_object_get_bounds() ).
  *
  * \param [in] obj
- *
- * \todo Turn this into a macro?
  */
 void geda_set_object_bounds_invalid(GedaObject *obj)
 {
@@ -168,6 +166,7 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
   /* do some error checking / correcting */
   switch (line_options->line_type) {
 
+    /* Check length, then fall-thru and check space */
     case(TYPE_DASHED):
     case(TYPE_CENTER):
     case(TYPE_PHANTOM):
@@ -193,7 +192,6 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
         else { /* Use current value */
           line_space = o_property->line_space;
         }
-
       }
 
       break;
