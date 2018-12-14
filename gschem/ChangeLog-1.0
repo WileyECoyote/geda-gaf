@@ -6,6 +6,9 @@
     * src/x/x_menus.c: Remove redundant g_object_set visible, presumably
       not removed when the call to gtk_widget_show_all was added.
 
+    * src/x/x_toolbars.c: Implement GEDA_PACK_DOCKBOX macro to put handlebox
+      containers in dockbox objects.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Revise x_dnd_drag_data_get to reuse the target_type that
