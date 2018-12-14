@@ -2529,7 +2529,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    }
 
    gtk_widget_show_all(recent_submenu);
-   g_object_set (recent_submenu, "visible", TRUE, NULL);
+
    geda_menu_item_set_submenu_widget((GedaMenuItem*)recent_menu_item, recent_submenu);
 }
 
