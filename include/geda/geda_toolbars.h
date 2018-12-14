@@ -104,7 +104,7 @@ typedef struct
    }
 
 #define GEDA_PACK_DOCKBOX(parent, bar, where) \
-  geda_dock_box_add(parent, bar, where); \
+  geda_dock_box_add((GedaDockBox*)parent, bar, where); \
   gtk_widget_show(bar);
 
 #define GEDA_PACK_TOOLBOX( parent, bar) \

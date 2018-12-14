@@ -3,6 +3,9 @@
     * bitmaps/geda-warning.png: Remove bitmap image, the image is not longer
       needed since the image is embedded in libgeda.
 
+    * include/geda/geda_toolbars.h: Add GedaDockBox cast in GEDA_PACK_DOCKBOX
+      macro.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_toolbars.h: Add GEDA_PACK_DOCKBOX macro.
