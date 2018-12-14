@@ -32,7 +32,7 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libgeda_priv.h>
-
+#include <warning_xpm.h>
 
 /** \defgroup geda-picture-object-proc GedaPicture Object Procedures
  * @{
@@ -584,36 +584,14 @@ double geda_picture_object_get_effective_ratio (GedaObject *object)
 GdkPixbuf *geda_picture_object_get_fallback_pixbuf (void)
 {
   static GdkPixbuf *pixbuf = NULL;
-  static bool       failed = FALSE;
 
-  if (pixbuf == NULL && !failed) {
+  if (pixbuf == NULL) {
 
-    const char *err_msg  = _("Failed to load fallback image %s: %s.\n");
-    const char *filename = "geda_warning.png";
+    pixbuf = gdk_pixbuf_new_from_xpm_data (warning_xpm);
 
-    char   *pathname;
-    GError *error = NULL;
-
-    pathname = geda_file_get_bitmap_filespec (filename);
-
-    if (pathname && access(pathname, R_OK) == 0)  {
-
-      pixbuf   = gdk_pixbuf_new_from_file (pathname, &error);
-
-      if (pixbuf == NULL) {
-        fprintf (stderr, err_msg, pathname, error->message);
-        g_error_free (error);
-        failed = TRUE;
-      }
-      GEDA_FREE (pathname);
-    }
-    else {
-      fprintf(stderr, "Could not access \"%s\", %s\n", filename, strerror (errno));
-      failed = TRUE;
-    }
   }
 
-  return failed ? NULL : g_object_ref (pixbuf);
+  return !pixbuf ? NULL : g_object_ref (pixbuf);
 }
 
 /*!

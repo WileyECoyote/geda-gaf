@@ -2,6 +2,10 @@
 
     * include/warning_xpm.h: Add xpm version geda_warning.png image.
 
+    * src/object/o_picture_object.c: Include warning_xpm.h and overhaul
+      geda_picture_object_get_fallback_pixbuf to have a GdkPixbuf created
+      from the xpm data, and use this for the fallback image.
+
 2018-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_log.c: Replace g_free with geda_free in log_read_x.
