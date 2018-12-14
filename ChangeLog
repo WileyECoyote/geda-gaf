@@ -1,3 +1,8 @@
+2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/geda-warning.png: Remove bitmap image, the image is not longer
+      needed since the image is embedded in libgeda.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_toolbars.h: Add GEDA_PACK_DOCKBOX macro.
