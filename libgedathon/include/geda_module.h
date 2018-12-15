@@ -105,7 +105,7 @@ const char add_attrib_docs[]         = N_("Add an attribute object to this objec
 const char object_copy_docs[]        = N_("Copy the object");
 const char rotate_object_docs[]      = N_("Rotate the object");
 const char select_object_docs[]      = N_("Select this Object");
-const char unselect_object_docs[]    = N_("UnSelect this Object");
+const char unselect_object_docs[]    = N_("Unselect this Object");
 
 const char clear_selection_docs[]    = ".";
 const char get_selection_docs[]      = ".";
