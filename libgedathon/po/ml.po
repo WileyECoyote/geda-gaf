@@ -71,16 +71,18 @@ msgstr "എല്ലാ പേജുകളുടെയും ലിസ്റ്�
 # sajīva pējilēkk pēāyinṟar nēṭuka
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr "Obter ponteiro para a página ativa."
+msgstr "സജീവ പേജിലേക്ക് പോയിന്റർ നേടുക."
 
 # Set the active page - sajīva pēj sajjamākkuka
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
 msgstr "സജീവ പേജ് സജ്ജമാക്കുക."
 
+# Returns True if page has been modified and not saved
+# pēj pariṣkariccāluṁ sanrakṣiccilleṅkil śariyuṁ nalkunnu
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "പേജ് പരിഷ്കരിച്ചാലും സംരക്ഷിച്ചില്ലെങ്കിൽ ശരിയും നൽകുന്നു."
 
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
@@ -231,7 +233,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:117
@@ -316,7 +318,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -324,11 +326,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

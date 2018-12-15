@@ -218,8 +218,8 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
-msgstr ""
+msgid "Unselect this Object"
+msgstr "Unselect this Object"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
@@ -303,21 +303,21 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
-msgstr ""
+msgid "Line"
+msgstr "line"
 
 #: libgedathon/module/functions.c:1512
 msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
-msgstr ""
+msgid "Path"
+msgstr "path"
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
-msgstr ""
+msgid "Pin"
+msgstr "pin"
 
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "Text"
