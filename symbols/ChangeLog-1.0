@@ -7,6 +7,12 @@
 
     * logic/4000/4723-1.sym: Add description and value, update footprint.
 
+    * logic/74H/74HC595-1.sym: Add missing overbars on reset, change refdes=U,
+      update devce and footprint attributes, add description and value, fix
+      attribute locations.
+
+    * logic/74H/74HC595-2.sym: Update attribute locations.
+
 2018-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/amplifiers/L165-1.sym: Clean symbols; adjust attribute locations,
