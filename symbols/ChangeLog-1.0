@@ -5,6 +5,8 @@
             * diode/zener53/zener_82_1N5375B.sym
             * diode/zener53/zener_87_1N5376B.sym
 
+    * logic/4000/4723-1.sym: Add description and value, update footprint.
+
 2018-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/amplifiers/L165-1.sym: Clean symbols; adjust attribute locations,
