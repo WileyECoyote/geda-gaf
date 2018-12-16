@@ -25,6 +25,9 @@
     * logic/74L/74LS32-3.sym: Update device, add value, and remove suggested
       library comment.
 
+    * logic/74L/74LS32-4.sym: Rename dash 3a to dash 4, update device value,
+      add value, and remove suggested library comment.
+
 2018-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/amplifiers/L165-1.sym: Clean symbols; adjust attribute locations,
