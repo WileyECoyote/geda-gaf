@@ -20,53 +20,77 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 "Колір записи повинен бути список з двох елементів\n"
 
+# Get or Set the default symbol for capacitors
+# Otrymaty abo vstanovyty symvol za umovchannyam dlya kondensatoriv
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Отримати або встановити символ за умовчанням для конденсаторів\n"
 
+# Get or Set the default symbol for electrolytic capacitors
+# Otrymaty abo vstanovyty symvol za zamovchuvannyam dlya elektrolitychnykh kondensatoriv
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "Отримати або встановити символ за замовчуванням для електролітичних конденсаторів\n"
 
+# Get or Set the default symbol for inductors
+# Otrymaty abo Vstanovyty symvol za zamovchuvannyam dlya induktoriv
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "Отримати або Встановити символ за замовчуванням для індукторів\n"
 
+# Get or Set the default operational amplifier symbol
+# Otrymaty abo vstanovyty symvol operatsiynoho pidsylyuvacha za zamovchuvannyam
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Отримати або встановити символ операційного підсилювача за замовчуванням\n"
 
+# Get or Set the default symbol for resistors
+# Otrymaty abo Vstanovyty symvol za zamovchuvannyam dlya rezystoriv
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Отримати або Встановити символ за замовчуванням для резисторів\n"
 
+# Get or Set the default titleblock symbol
+# Otrymaty abo vstanovyty symvol zaholovka za umovchannyam
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Отримати або встановити символ заголовка за умовчанням\n"
 
+# Close all files and deinitialize the library
+# Zakryyte vsi fayly ta deinitsializuyte biblioteku
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "Закрийте всі файли та деініціалізуйте бібліотеку."
 
+# Append a folder to the library search path
+# Dodayte papku do shlyakhu poshuku biblioteky
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "Додайте папку до шляху пошуку бібліотеки."
 
+# Creates a gafrc file in the current directory
+# Stvoryuye fayl gafrc u potochnomu katalozi
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "Створює файл gafrc у поточному каталозі."
 
+# Retrieve list of all pages
+# Otrymaty spysok vsikh storinok
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "Отримати список всіх сторінок."
 
+# Get pointer to the active page
+# Otrymaty pokazhchyk na aktyvnu storinku
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "Отримати покажчик на активну сторінку."
 
+# Set the active page
+# Vstanovyty aktyvnu storinku
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Встановити активну сторінку."
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
