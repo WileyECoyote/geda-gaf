@@ -46,7 +46,8 @@ noinst_HEADERS = \
 	i_vars_priv.h \
 	libgeda_priv.h \
 	prototype_priv.h \
-	libgedaguile_priv.h
+	libgedaguile_priv.h \
+	warning_xpm.h
 
 MOSTLYCLEANFILES     = *.log core FILE *~ libgeda/*~
 CLEANFILES           = *.log core FILE *~ libgeda/*~

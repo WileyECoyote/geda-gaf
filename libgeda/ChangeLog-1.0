@@ -1,5 +1,7 @@
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/Makefile.am: Add warning_xpm.h.
+
     * include/libgeda/prototype.h: Add WARN_UNUSED attribute:
 
           * geda_utility_glist_clear
