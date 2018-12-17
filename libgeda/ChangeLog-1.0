@@ -1,5 +1,10 @@
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/prototype.h: Add WARN_UNUSED attribute:
+
+          * geda_utility_glist_clear
+          * geda_utility_gslist_find_string
+
     * src/geda/geda_object.c: Add accessors:
 
           * geda_object_get_visibility
