@@ -994,6 +994,7 @@ void geda_text_object_set_angle (GedaObject *object, int angle)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->angle = angle;
+    object->bounds_valid = FALSE;
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");
@@ -1082,6 +1083,7 @@ void geda_text_object_set_x (GedaObject *object, int x)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->x = x;
+    object->bounds_valid = FALSE;
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");
@@ -1098,6 +1100,7 @@ void geda_text_object_set_y (GedaObject *object, int y)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->y = y;
+    object->bounds_valid = FALSE;
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");
