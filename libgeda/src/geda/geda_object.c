@@ -286,6 +286,20 @@ bool geda_object_get_selectable (ConstObject *object) {
 }
 
 /*!
+ * \brief Get the Selectable Flag from a GedaObject
+ * \par Function Description
+ *  Returns the visibility member of \a object.
+ *
+ * \sa geda_object_set_visibility
+ */
+int geda_object_get_visibility (ConstObject *object) {
+  if (is_a_geda_object(object)) {
+    return object->visibility;
+  }
+  return 0;
+}
+
+/*!
  * \brief GedaObject property getter function
  * \par Function Description
  *  Getter function for GedaObject's properties,

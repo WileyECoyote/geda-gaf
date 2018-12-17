@@ -151,6 +151,7 @@ const GList  *geda_object_get_conn_list      (ConstObject *object);
 int           geda_object_get_locked_color   (ConstObject *object);
 Page         *geda_object_get_page           (ConstObject *object);
 bool          geda_object_get_selectable     (ConstObject *object);
+int           geda_object_get_visibility     (ConstObject *object);
 
 void          geda_object_set_bounds_valid   (GedaObject *object, int valid);
 void          geda_object_set_color          (GedaObject *object, int color);

@@ -1,3 +1,9 @@
+2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_object.c: Add accessor:
+
+          * geda_object_get_visibility
+
 2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/warning_xpm.h: Add xpm version geda_warning.png image.
