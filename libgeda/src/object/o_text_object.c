@@ -971,10 +971,15 @@ void geda_text_object_set_alignment (GedaObject *object, int alignment)
   g_return_if_fail (object != NULL);
   g_return_if_fail (object->text != NULL);
   g_return_if_fail (object->type == OBJ_TEXT);
-  g_return_if_fail (alignment >= LOWER_LEFT);
-  g_return_if_fail (alignment <= UPPER_RIGHT);
 
-  object->text->alignment = alignment;
+  if (object->text->alignment != alignment) {
+
+    g_return_if_fail (alignment >= LOWER_LEFT);
+    g_return_if_fail (alignment <= UPPER_RIGHT);
+
+    object->text->alignment = alignment;
+    object->bounds_valid = FALSE;
+  }
 }
 
 /*!

@@ -12,6 +12,10 @@
           * geda_object_get_visibility
           * geda_object_set_visibility
 
+    * src/object/o_text_object.c: Revise geda_text_object_set_alignment
+      to only validate and set the alignment if alignment is different
+      from the current value and unset the bounds_valid if changed.
+
 2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/warning_xpm.h: Add xpm version geda_warning.png image.
