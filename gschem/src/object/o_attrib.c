@@ -515,16 +515,19 @@ bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
          )
       {
 
-        int save_visible = attrib->visibility;
+        int save_visible = geda_object_get_visibility(attrib);
 
-        attrib->visibility = INVISIBLE;
+        geda_object_set_visibility(attrib, INVISIBLE);
         o_invalidate_force (w_current, attrib); /* Erase from screen at old positon */
-        attribute->x = floater->x;
-        attribute->y = floater->y;
-        attribute->angle = floater->angle;
-        attribute->alignment = floater->alignment;
-        attrib->visibility = save_visible;
+
+        geda_text_object_set_x (attrib, floater->x);
+        geda_text_object_set_y (attrib, floater->y);
+        geda_text_object_set_angle (attrib, floater->angle);
+        geda_text_object_set_angle (attrib, floater->alignment);
+
+        geda_object_set_visibility(attrib, save_visible);
         o_invalidate_object (w_current, attrib);
+
         modified = TRUE;
       }
       else {
@@ -539,5 +542,6 @@ bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
   else {
     modified = FALSE;
   }
+
   return modified;
 }
