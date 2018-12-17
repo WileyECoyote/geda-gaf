@@ -158,6 +158,7 @@ void          geda_object_set_color          (GedaObject *object, int color);
 void          geda_object_set_selectable     (GedaObject *object, int state);
 void          geda_object_set_locked_color   (GedaObject *object, int color);
 void          geda_object_set_page           (GedaObject *object, Page *page);
+void          geda_object_set_visibility     (GedaObject *object, int visible);
 
 static inline
 int           geda_get_object_type           (GedaObject *object)

@@ -1,8 +1,9 @@
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/geda/geda_object.c: Add accessor:
+    * src/geda/geda_object.c: Add accessors:
 
           * geda_object_get_visibility
+          * geda_object_set_visibility
 
 2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1221,7 +1222,7 @@
     * src/geda/geda_complex.c: Add function documentation for
       geda_complex_set_is_embedded.
 
-    * src/geda/geda_picture.c: Add accessor:
+    * src/geda/geda_picture.c: Add accessors:
 
           * geda_picture_get_is_embedded
           * geda_picture_set_angle

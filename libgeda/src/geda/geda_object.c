@@ -1012,4 +1012,18 @@ void geda_object_set_page (GedaObject *object, Page *page) {
   }
 }
 
+/*!
+ * \brief Set the visibility property a GedaObject
+ * \par Function Description
+ *  Set the visibility member property, this is a low-level function
+ *  that does not check the visible argument.
+ *
+ * \sa geda_object_get_visibility
+ */
+void geda_object_set_visibility (GedaObject *object, int visible) {
+  if (is_a_geda_object(object)) {
+    object->visibility = visible;
+  }
+}
+
 /** @} endgroup geda-object */
