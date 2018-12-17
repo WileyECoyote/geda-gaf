@@ -14,7 +14,9 @@
 
     * src/object/o_text_object.c: Revise geda_text_object_set_alignment
       to only validate and set the alignment if alignment is different
-      from the current value and unset the bounds_valid if changed.
+      from the current value and unset the bounds_valid if changed. Fix
+      geda_text_object_set_size to size to MINIMUM_TEXT_SIZE when size
+      less than MINIMUM_TEXT_SIZE and unset the bounds_valid if changed.
 
 2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
 

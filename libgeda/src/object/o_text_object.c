@@ -1035,11 +1035,16 @@ geda_text_object_set_rendered_bounds_func (GedaObject         *object,
 void geda_text_object_set_size (GedaObject *object, int size)
 {
   if (GEDA_IS_TEXT(object)) {
-    if (size < MINIMUM_TEXT_SIZE) {
-      object->text->size = size;
-    }
-    else {
-      object->text->size = size;
+
+    if (object->text->size != size) {
+
+      if (size < MINIMUM_TEXT_SIZE) {
+        object->text->size = MINIMUM_TEXT_SIZE;
+      }
+      else {
+        object->text->size = size;
+      }
+      object->bounds_valid = FALSE;
     }
   }
   else {
