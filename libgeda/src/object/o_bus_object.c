@@ -651,6 +651,7 @@ void geda_bus_object_set_ripper_direction (GedaObject *object, int direction)
 {
   if (GEDA_IS_BUS(object)) {
     object->bus->bus_ripper_direction = direction;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_bus_object_error(__func__, object);
@@ -671,6 +672,7 @@ void geda_bus_object_set_x1 (GedaObject *object, int x)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->x[0] = x;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_bus_object_error(__func__, object);
@@ -691,6 +693,7 @@ void geda_bus_object_set_x2 (GedaObject *object, int x)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->x[1] = x;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_bus_object_error(__func__, object);
@@ -711,6 +714,7 @@ void geda_bus_object_set_y1 (GedaObject *object, int y)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->y[0] = y;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_bus_object_error(__func__, object);
@@ -731,6 +735,7 @@ void geda_bus_object_set_y2 (GedaObject *object, int y)
 {
   if (GEDA_IS_BUS(object)) {
     object->line->y[1] = y;
+    object->bounds_valid = FALSE;
   }
   else {
     geda_bus_object_error(__func__, object);
