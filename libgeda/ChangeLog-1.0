@@ -6,6 +6,9 @@
     * src/object/o_bus_object.c: Unset bounds_valid in setter, don`t bother
       checking if the value was changed.
 
+    * src/object/o_circle_object.c: Revise setters to conditionally set
+      value when not equal to the current value and unset bounds_valid.
+
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/Makefile.am: Add warning_xpm.h.
