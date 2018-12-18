@@ -14,6 +14,9 @@
 
     * tests/test_line_object.c: Add checks for bounds_valid in check_query.
 
+    * tests/test_object.c: Include errant color value in check for geda_
+      object_get_color.
+
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/Makefile.am: Add warning_xpm.h.

@@ -470,7 +470,7 @@ int check_accessors ()
   color = geda_object_get_color(object2);
 
   if (color != ATTRIBUTE_COLOR) {
-    fprintf(stderr, "Failed: get_color %s line <%d>\n", TOBJECT, __LINE__);
+    fprintf(stderr, "Failed: get_color %s line <%d> color <%d>\n", TOBJECT, __LINE__, color);
     result++;
   }
 
