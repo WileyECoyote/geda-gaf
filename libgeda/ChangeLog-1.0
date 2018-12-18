@@ -9,6 +9,9 @@
     * src/object/o_circle_object.c: Revise setters to conditionally set
       value when not equal to the current value and unset bounds_valid.
 
+    * tests/test_complex_object.c: Add basic check for geda_complex_object_
+      get_filename, add comment.
+
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/Makefile.am: Add warning_xpm.h.

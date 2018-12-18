@@ -368,6 +368,20 @@ int check_accessors (void)
       int fail = 0;
 
       /* === Function 03: geda_complex_object_get_filename  === */
+
+      const char *fname;
+
+      fname = geda_complex_object_get_filename (object1);
+
+      if (!fname) {
+        fprintf(stderr, "FAILED: (O080301A) get_filename Failed\n");
+        result++;
+      }
+      else if (strcmp(fname, sym_name)) {
+        fprintf(stderr, "FAILED: (O080301B) get_filename Failed <%s>\n", fname);
+        result++;
+      }
+
       /* === Function 04: geda_complex_object_get_nearest_point  === */
       /* === Function 05: geda_complex_object_get_pin_objs  === */
       /* === Function 06: geda_complex_object_get_prim_objs  === */
@@ -378,6 +392,7 @@ int check_accessors (void)
         fail++;
       }
 
+      /* terminate loop if there was a failure */
       if (fail) {
         result++;
         break;
