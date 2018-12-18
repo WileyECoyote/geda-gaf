@@ -512,6 +512,16 @@ int check_accessors ()
   object1->conn_list = NULL;
 
   /* === Function: geda_object_get_locked_color === */
+
+  int locked_color;
+
+  locked_color = geda_object_get_locked_color(object2);
+
+  if (locked_color != LOCK_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d> locked color=<%d>\n", TOBJECT, __LINE__, locked_color);
+    result++;
+  }
+
   /* === Function: geda_object_set_locked_color === */
 
   /* === Function: geda_object_get_page === */
