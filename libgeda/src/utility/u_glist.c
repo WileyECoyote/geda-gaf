@@ -46,6 +46,7 @@ GList *geda_utility_glist_clear(GList *list)
     }
     foreach (list);
   }
+
   return list;
 }
 
@@ -197,6 +198,7 @@ GSList *geda_utility_gslist_clear(GSList *list)
     }
     mapcar (list);
   }
+
   return list;
 }
 
@@ -239,8 +241,9 @@ int geda_utility_gslist_find_string(GSList *list, const char *str)
     }
   }
 
-  if (index == len)
+  if (index == len) {
     index = -1;     /* item was not in the list, so return -1 */
+  }
 
   return index;
 }
@@ -259,6 +262,7 @@ void geda_utility_gslist_free_all(void *list)
     if (iter->data)
       g_free(iter->data);
   }
+
   g_slist_free (list);
 }
 
@@ -301,6 +305,7 @@ bool geda_utility_gslist_str_inlist(GSList *list, const char *string)
       break;
     }
   }
+
   return answer;
 }
 
@@ -328,5 +333,6 @@ bool geda_utility_gslist_stri_inlist(GSList *list, const char *string)
       break;
     }
   }
+
   return answer;
 }
