@@ -524,6 +524,24 @@ int check_accessors ()
 
   /* === Function: geda_object_set_locked_color === */
 
+  geda_object_set_locked_color(object2, color);
+
+  locked_color = geda_object_get_locked_color(object2);
+
+  if (locked_color != ATTRIBUTE_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d> locked color <%d>\n", TOBJECT, __LINE__, locked_color);
+    result++;
+  }
+
+  geda_object_set_locked_color(object2, -1);
+
+  locked_color = geda_object_get_locked_color(object2);
+
+  if (locked_color != ATTRIBUTE_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d> locked color <%d>\n", TOBJECT, __LINE__, locked_color);
+    result++;
+  }
+
   /* === Function: geda_object_get_page === */
 
   /* === Function: geda_object_set_color === */
