@@ -841,6 +841,28 @@ check_query(void)
   int count;
   int result = 0;
 
+  GedaObject *object0 = geda_line_object_new(3, 500, 500, 500, 1000);
+
+  /* bounds_valid should NOT be set */
+  if (object0->bounds_valid) {
+    fprintf(stderr, "FAILED: (O112102A) %s bounds_valid %d\n", TOBJECT, object0->bounds_valid);
+    result++;
+  }
+
+  /* === Virtual geda_line_bounds  === */
+  if (!geda_object_bounds(object0)) {
+    fprintf(stderr, "FAILED: (O112102B) %s bounds_valid %d\n", TOBJECT, object0->bounds_valid);
+    result++;
+  }
+
+  /* bounds_valid should be set */
+  if (!object0->bounds_valid) {
+    fprintf(stderr, "FAILED: (O112102C) %s bounds_valid %d\n", TOBJECT, object0->bounds_valid);
+    result++;
+  }
+
+  g_object_unref (object0);
+
   for (count = 0; count < 3; count++) {
 
 #if USE_RANDOM_NUMBERS

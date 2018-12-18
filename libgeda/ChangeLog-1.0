@@ -12,6 +12,8 @@
     * tests/test_complex_object.c: Add basic check for geda_complex_object_
       get_filename, add comment.
 
+    * tests/test_line_object.c: Add checks for bounds_valid in check_query.
+
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/Makefile.am: Add warning_xpm.h.
