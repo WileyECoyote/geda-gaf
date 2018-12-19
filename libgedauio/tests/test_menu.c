@@ -110,6 +110,8 @@ static GtkWidget *main_window()
   gtk_widget_show (menubar);
   gtk_widget_show (top_Window);
 
+  gtk_window_resize ((GtkWindow*)top_Window, 250, 150);
+
   return menubar;
 }
 

@@ -3,6 +3,9 @@
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_get_accel_width to
       attempt to update accelerator_width if unset.
 
+    * tests/test_menu.c: Resize the main window so it is not just a blip on
+      the screen.
+
 2018-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Add static const str_use_stock for
