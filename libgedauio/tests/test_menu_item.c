@@ -196,6 +196,22 @@ check_accessors ()
       fprintf(stderr, "FAILED: line <%d> get accel path not set %s\n", __LINE__, TWIDGET);
       result++;
     }
+
+    /* geda_menu_item_set_accel_path */
+
+    geda_menu_item_set_accel_path(menu_item, "<favorite>/Pie");
+
+    accel_path = geda_menu_item_get_accel_path(menu_item);
+
+    if (!accel_path) {
+      fprintf(stderr, "FAILED: line <%d> set accel path %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else if (strcmp(accel_path, "<favorite>/Pie")) {
+      fprintf(stderr, "FAILED: line <%d> set accel path %s <%s>\n", __LINE__, TWIDGET, accel_path);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 

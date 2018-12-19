@@ -10,6 +10,7 @@
       group in main_window. Add checks for:
 
           * geda_menu_item_get_accel_path
+          * geda_menu_item_set_accel_path
 
 2018-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
