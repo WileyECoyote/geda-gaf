@@ -3537,7 +3537,22 @@ const char *geda_menu_item_get_accel_path (GedaMenuItem *menu_item)
 
 unsigned short geda_menu_item_get_accel_width (GedaMenuItem  *menu_item)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
+  GedaMenuItemPrivate *priv;
+
+  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), 0);
+
+  priv = menu_item->priv;
+
+  if (!priv->accelerator_width) {
+
+    unsigned int accel_width = 0;
+
+    geda_container_foreach (menu_item,
+                            geda_menu_item_accel_width_foreach,
+                            &accel_width);
+
+    priv->accelerator_width = accel_width;
+  }
 
   return menu_item->priv->accelerator_width;
 }
