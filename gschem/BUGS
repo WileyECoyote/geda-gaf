@@ -2,17 +2,19 @@
 Bugs (no particular order):
 ----------------------
 
-    Reset Attribute positions not redrawing correctly
-
     Vectors are not displayed if first coordinate has 0 for the X value
 
     tooltips for menu item can not be controlled with RC keyword
 
     Grips are not sized correctly.
 
+    directory bitmap -> bitmaps
+
     exported symbols are not translated back to normalicy
 
 Archived:
+
+FIXED Reset Attribute positions not redrawing correctly.
 
 FIXED Attributes tab of the Preference dialog Count of target list is
       wrong if item is removed.
