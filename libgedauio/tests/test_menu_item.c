@@ -109,6 +109,8 @@ int check_construction (void)
   return result;
 }
 
+static  GtkAccelGroup *accel_group;
+
 GtkWidget *main_window()
 {
   GtkWidget *vbox;
@@ -116,6 +118,10 @@ GtkWidget *main_window()
   GtkWidget *menubar;
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  /* Create a GtkAccelGroup and add it to the window. */
+  accel_group = gtk_accel_group_new();
+  gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), vbox);
@@ -126,6 +132,8 @@ GtkWidget *main_window()
 
   gtk_widget_show (menubar);
   gtk_widget_show (window);
+
+  gtk_window_resize (GTK_WINDOW (window), 250, 150);
 
   return menubar;
 }

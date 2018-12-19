@@ -6,6 +6,9 @@
     * tests/test_menu.c: Resize the main window so it is not just a blip on
       the screen.
 
+    * tests/test_menu_item.c: Resize the main window and add an accelerator
+      group in main_window.
+
 2018-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Add static const str_use_stock for
