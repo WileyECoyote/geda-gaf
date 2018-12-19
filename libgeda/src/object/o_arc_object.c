@@ -1690,7 +1690,7 @@ void geda_arc_object_set_fill_pitch1 (GedaObject *object, int pitch)
 {
   if (GEDA_IS_ARC(object)) {
     if (object->fill_options->fill_pitch1 != pitch) {
-      object->fill_options->fill_pitch1 = pitch;
+      object->fill_options->fill_pitch1 = pitch < 0 ? 0 : pitch;
       object->bounds_valid = FALSE;
     }
   }
@@ -1711,7 +1711,7 @@ void geda_arc_object_set_fill_pitch2 (GedaObject *object, int pitch)
 {
   if (GEDA_IS_ARC(object)) {
     if (object->fill_options->fill_pitch2 != pitch) {
-      object->fill_options->fill_pitch2 = pitch;
+      object->fill_options->fill_pitch2 = pitch < 0 ? 0 : pitch;
       object->bounds_valid = FALSE;
     }
   }
@@ -1776,7 +1776,7 @@ void geda_arc_object_set_line_length (GedaObject *object, int length)
 {
   if (GEDA_IS_ARC(object)) {
     if (object->line_options->line_length != length) {
-      object->line_options->line_length = length;
+      object->line_options->line_length = length > 0 ? length : 0;
       object->bounds_valid = FALSE;
     }
   }
@@ -1797,7 +1797,7 @@ void geda_arc_object_set_line_space (GedaObject *object, int space)
 {
   if (GEDA_IS_ARC(object)) {
     if (object->line_options->line_space != space) {
-      object->line_options->line_space = space;
+      object->line_options->line_space =  space > 0 ? space : 0;
       object->bounds_valid = FALSE;
     }
   }
@@ -1841,7 +1841,7 @@ void geda_arc_object_set_line_width (GedaObject *object, int width)
 {
   if (GEDA_IS_ARC(object)) {
     if (object->line_options->line_width != width) {
-      object->line_options->line_width = width;
+      object->line_options->line_width =  width > 0 ? width : 0;
       object->bounds_valid = FALSE;
     }
   }
