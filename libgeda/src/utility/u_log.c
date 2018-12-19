@@ -178,12 +178,13 @@ int geda_utility_log_get_log_time(void)
   return log_time;
 }
 
-/*! \brief Get active Quiet mode setting
- *  \par Function Description
+/*!
+ * \brief Get active Quiet mode setting
+ * \par Function Description
  *  Getter function for the static module integer quiet_mode.
  *
- *  \returns the current quiet_mode setting.
- *  \todo Add Scheme API
+ * \returns the current quiet_mode setting.
+ * \todo Add Scheme API
  */
 int geda_utility_log_get_quiet_mode(void)
 {
