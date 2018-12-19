@@ -7,7 +7,9 @@
       the screen.
 
     * tests/test_menu_item.c: Resize the main window and add an accelerator
-      group in main_window.
+      group in main_window. Add checks for:
+
+          * geda_menu_item_get_accel_path
 
 2018-12-13 Wiley E. Hill <wileyhill@gmail.com>
 

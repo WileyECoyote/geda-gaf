@@ -186,6 +186,16 @@ check_accessors ()
       result++;
     }
 
+    const char *accel_path;
+
+    /* geda_menu_item_get_accel_path */
+
+    accel_path = geda_menu_item_get_accel_path(menu_item);
+
+    if (apath) {
+      fprintf(stderr, "FAILED: line <%d> get accel path not set %s\n", __LINE__, TWIDGET);
+      result++;
+    }
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
