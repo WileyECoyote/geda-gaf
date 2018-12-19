@@ -8,6 +8,11 @@
           * line_options->line_space
           * line_options->line_width
 
+    * src/object/o_attrib.c: Unset bounds_valid in functions:
+
+          * geda_attrib_object_set_integer_value
+          * geda_attrib_object_set_value
+
 2018-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise setters to conditionally set value

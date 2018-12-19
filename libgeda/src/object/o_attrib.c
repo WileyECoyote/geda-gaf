@@ -1098,6 +1098,8 @@ GList *geda_attrib_object_search_object_string (const GedaObject *object,
  * \param [in] value    Integer value to be set.
  *
  * \sa geda_attrib_object_set_value
+ *
+ * \todo does not validate name_ptr || value
  */
 void geda_attrib_object_set_integer_value (GedaObject *attrib,
                                            const char *name_ptr,
@@ -1106,6 +1108,7 @@ void geda_attrib_object_set_integer_value (GedaObject *attrib,
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
     attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
+    attrib->bounds_valid = FALSE;
     geda_struct_object_set_page_changed (attrib);
     geda_attrib_object_emit_changed (attrib);
   }
@@ -1132,6 +1135,7 @@ void geda_attrib_object_set_value (GedaObject *attrib,
   if (GEDA_IS_TEXT(attrib)) {
     GEDA_FREE(attrib->text->string);
     attrib->text->string = geda_strconcat(name_ptr, "=", value_ptr, NULL);
+    attrib->bounds_valid = FALSE;
     geda_struct_object_set_page_changed (attrib);
     geda_attrib_object_emit_changed (attrib);
   }
