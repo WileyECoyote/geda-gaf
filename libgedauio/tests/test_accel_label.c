@@ -209,6 +209,22 @@ int check_accessors ()
       fprintf(stderr, "FAILED: line <%d> get_accel_string %s\n", __LINE__, TWIDGET);
       result++;
     }
+
+    /* geda_accel_label_set_accel_string */
+
+    geda_accel_label_set_accel_string(accel_label, multikey_accel);
+
+    accel_string = geda_accel_label_get_accel_string(accel_label);
+
+    if (!accel_string) {
+      fprintf(stderr, "FAILED: line <%d> set_accel_string NULL %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else if (strcmp(accel_string, "G A")) {
+      fprintf(stderr, "FAILED: line <%d> set_accel_string %s <%s>\n", __LINE__, TWIDGET, accel_string);
+      result++;
+    }
+
   }
 
   g_object_ref_sink(menu_item); /* menu_item is not attached to anything */
