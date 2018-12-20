@@ -225,6 +225,15 @@ int check_accessors ()
       result++;
     }
 
+    /* geda_accel_label_get_accel_width */
+    int accel_width;
+
+    accel_width = geda_accel_label_get_accel_width(accel_label);
+
+    if (!accel_width) {
+      fprintf(stderr, "FAILED: line <%d> get_accel_width %s\n", __LINE__, TWIDGET);
+      result++;
+    }
   }
 
   g_object_ref_sink(menu_item); /* menu_item is not attached to anything */
