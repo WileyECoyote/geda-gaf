@@ -2,7 +2,10 @@
 
     * src/widgets/geda_accel_label.c: Call geda_accel_label_set_accel_widget
       in geda_accel_label_set_property for case PROP_ACCEL_WIDGET, and allow
-      retrieval in geda_accel_label_set_property.
+      retrieval in geda_accel_label_set_property. Factor accel_string_width
+      code from geda_accel_label_size_request into new function geda_accel_
+      label_set_accel_string_width and call from both size_request handler
+      and geda_accel_label_get_accel_width.
 
 2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
 

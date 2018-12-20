@@ -275,9 +275,40 @@ static void geda_accel_label_finalize (GObject *object)
   ((GObjectClass*)geda_accel_label_parent_class)->finalize (object);
 }
 
+static void geda_accel_label_set_accel_string_width (GedaAccelLabel *accel_label)
+{
+  const char *accel_string;
+
+  accel_string = geda_accel_label_get_string (accel_label);
+
+  if (accel_string) {
+
+    PangoLayout *layout;
+    int width;
+
+    layout = gtk_widget_create_pango_layout ((GtkWidget*)accel_label, accel_string);
+
+    pango_layout_get_pixel_size (layout, &width, NULL);
+
+    g_object_unref (layout);
+
+    accel_label->accel_string_width = width;
+  }
+  else {
+    accel_label->accel_string_width = 0;
+  }
+
+#ifdef DEBUG
+  fprintf(stderr, "%s: <%p> with str<%s> has width %w\n", __func__,
+          accel_label, accel_string, accel_label->accel_string_width);
+#endif
+}
+
 unsigned int geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
 {
   g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), 0);
+
+  geda_accel_label_set_accel_string_width (accel_label);
 
   return (accel_label->accel_string_width +
          (accel_label->accel_string_width ? accel_label->accel_padding : 0));
@@ -285,21 +316,11 @@ unsigned int geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
 
 static void geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
-  GedaAccelLabel *accel_label;
-  PangoLayout    *layout;
-  const char     *accel_string;
-  int width;
+  GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (widget);
 
   ((GtkWidgetClass*)geda_accel_label_parent_class)->size_request (widget, requisition);
 
-  accel_label  = GEDA_ACCEL_LABEL (widget);
-  accel_string = geda_accel_label_get_string (accel_label);
-  layout       = gtk_widget_create_pango_layout (widget, accel_string);
-
-  pango_layout_get_pixel_size (layout, &width, NULL);
-  g_object_unref (layout);
-
-  accel_label->accel_string_width = width;
+  geda_accel_label_set_accel_string_width (accel_label);
 }
 
 static int get_first_baseline (PangoLayout *layout)
