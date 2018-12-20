@@ -208,6 +208,7 @@ static void geda_accel_label_set_property (GObject      *object,
       geda_accel_label_set_accel_closure (accel_label, g_value_get_boxed (value));
       break;
     case PROP_ACCEL_WIDGET:
+      geda_accel_label_set_accel_widget(accel_label, g_value_get_boxed (value));
       break;
 
     case PROP_ACCEL_STRING:
