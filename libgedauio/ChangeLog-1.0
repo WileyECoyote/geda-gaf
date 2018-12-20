@@ -7,6 +7,10 @@
       label_set_accel_string_width and call from both size_request handler
       and geda_accel_label_get_accel_width.
 
+    * tests/test_accel_label.c: Add function check_accessors with checks for:
+
+          * geda_accel_label_get_accel_widget
+
 2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_get_accel_width to

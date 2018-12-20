@@ -121,6 +121,58 @@ int check_construction (void)
   return result;
 }
 
+int check_accessors ()
+{
+  int result = 0;
+
+  const char *multikey_accel = "G_A";
+
+  GtkWidget    *label;
+  GtkWidget    *widget;
+  GedaMenuItem *menu_item;
+
+  widget = geda_menu_item_new_with_label("GedaMenuItem");
+
+  menu_item = GEDA_MENU_ITEM(widget);
+
+  label = geda_menu_item_get_label_widget(menu_item);
+
+  if (!GEDA_IS_LABEL(label)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+
+  if (!GEDA_IS_ACCEL_LABEL(label)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GedaAccelLabel *accel_label;
+    GtkWidget *accel_widget;
+
+    accel_label = (GedaAccelLabel*)label;
+
+    /* geda_accel_label_get_accel_widget */
+
+    accel_widget = geda_accel_label_get_accel_widget(accel_label);
+
+    if (!GEDA_IS_MENU_ITEM(accel_widget)) {
+      fprintf(stderr, "FAILED: line <%d> get_accel_widget %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else if (accel_widget != widget) {
+      fprintf(stderr, "FAILED: line <%d> get_accel_widget %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(menu_item); /* menu_item is not attached to anything */
+  g_object_unref(menu_item);    /* Destroy menu_item and widget */
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -142,7 +194,16 @@ main (int argc, char *argv[])
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
       result++;
     }
+    if (!result) {
 
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+    }
   }
   return result;
 }
