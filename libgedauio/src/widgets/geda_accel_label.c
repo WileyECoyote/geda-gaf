@@ -235,7 +235,7 @@ static void geda_accel_label_get_property (GObject      *object,
       break;
 
     case PROP_ACCEL_WIDGET:
-      g_value_set_object (value, NULL);
+      g_value_set_object (value, geda_accel_label_get_accel_widget(accel_label));
       break;
 
     case PROP_ACCEL_STRING:

@@ -1,7 +1,8 @@
 2018-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Call geda_accel_label_set_accel_widget
-      in geda_accel_label_set_property for case PROP_ACCEL_WIDGET.
+      in geda_accel_label_set_property for case PROP_ACCEL_WIDGET, and allow
+      retrieval in geda_accel_label_set_property.
 
 2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
