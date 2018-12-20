@@ -165,6 +165,38 @@ int check_accessors ()
       fprintf(stderr, "FAILED: line <%d> get_accel_widget %s\n", __LINE__, TWIDGET);
       result++;
     }
+
+    /* geda_accel_label_set_accel_widget */
+
+    GtkWidget *widget2;
+
+    widget2 = geda_menu_item_new_with_label("GedaMenuItem");
+
+    g_object_ref(accel_label);
+
+    gtk_container_remove (GTK_CONTAINER(widget), label);
+
+    geda_accel_label_set_accel_widget(accel_label, widget2);
+
+    accel_widget = geda_accel_label_get_accel_widget(accel_label);
+
+    if (!GEDA_IS_MENU_ITEM(accel_widget)) {
+      fprintf(stderr, "FAILED: line <%d> set_accel_widget %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else if (accel_widget != widget2) {
+      fprintf(stderr, "FAILED: line <%d> set_accel_widget %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else {
+
+      accel_widget = geda_accel_label_get_accel_widget(accel_label);
+
+      if (!GEDA_IS_MENU_ITEM(accel_widget)) {
+        fprintf(stderr, "FAILED: line <%d> set_accel_widget %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+    }
   }
 
   g_object_ref_sink(menu_item); /* menu_item is not attached to anything */

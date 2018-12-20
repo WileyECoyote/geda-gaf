@@ -10,6 +10,7 @@
     * tests/test_accel_label.c: Add function check_accessors with checks for:
 
           * geda_accel_label_get_accel_widget
+          * geda_accel_label_set_accel_widget
 
 2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
