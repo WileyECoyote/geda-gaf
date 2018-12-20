@@ -197,6 +197,18 @@ int check_accessors ()
         result++;
       }
     }
+
+    /* deferring geda_accel_label_get_accel_width, see below */
+
+    /* geda_accel_label_get_accel_string */
+    const char *accel_string;
+
+    accel_string = geda_accel_label_get_accel_string(accel_label);
+
+    if (accel_string) {
+      fprintf(stderr, "FAILED: line <%d> get_accel_string %s\n", __LINE__, TWIDGET);
+      result++;
+    }
   }
 
   g_object_ref_sink(menu_item); /* menu_item is not attached to anything */
