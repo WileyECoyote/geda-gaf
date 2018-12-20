@@ -35,10 +35,12 @@
 #include <gtk/gtk.h>
 
 #include <geda/geda.h>
+
 #include <geda_menu.h>
 #include <geda_menu_bar.h>
 #include <geda_menu_shell.h>
 #include <geda_menu_item.h>
+#include <geda_accel_label.h>
 
 #include "test-suite.h"
 
@@ -143,7 +145,7 @@ check_accessors ()
 {
   int result = 0;
 
-  GtkWidget *widget = geda_menu_item_new_with_mnemonic("_Cherry");
+  GtkWidget *widget = geda_menu_item_new_with_mnemonic("_Pie");
 
   if (!GEDA_IS_MENU_ITEM(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -152,7 +154,9 @@ check_accessors ()
   else {
 
     GtkWidget    *menu;
+    GtkWidget    *label;
     GtkWidget    *menu_bar;
+    GtkWidget    *widget01;
     GedaMenuItem *menu_item;
     GdkWindow    *event_window;
 
@@ -160,11 +164,21 @@ check_accessors ()
     menu_bar  = main_window();
     menu_item = GEDA_MENU_ITEM(widget);
 
-    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menu_item), menu);
     geda_menu_append (menu_bar, widget);
 
     gtk_widget_show (widget);
     gtk_widget_show (menu);
+
+    widget01 = geda_menu_item_new_with_label("_Cherry");
+    geda_menu_append (menu, widget01);
+
+    label = geda_menu_item_get_label_widget(GEDA_MENU_ITEM(widget01));
+
+    geda_accel_label_set_accel_string((GedaAccelLabel*)label, "C_P");
+
+    /* geda_menu_item_set_submenu_widget */
+
+    geda_menu_item_set_submenu_widget (menu_item, menu);
 
     /* geda_menu_item_get_event_window */
 
@@ -192,7 +206,7 @@ check_accessors ()
 
     accel_path = geda_menu_item_get_accel_path(menu_item);
 
-    if (apath) {
+    if (accel_path) {
       fprintf(stderr, "FAILED: line <%d> get accel path not set %s\n", __LINE__, TWIDGET);
       result++;
     }
