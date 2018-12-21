@@ -2,7 +2,14 @@
 Bugs (no particular order): 
 ----------------------
 
-Does not report duplicate descriptions
+
 
 Finished stuff:
 
+FIXED   gsymcheck allows netname attribute in symbols
+
+FIXED   Does not report duplicate descriptions
+
+FIXED   Does not report duplicate numslots
+
+FIXED   Does not warn multible dist-license (and other) attributes
