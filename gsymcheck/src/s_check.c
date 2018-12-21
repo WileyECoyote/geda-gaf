@@ -1203,6 +1203,7 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   /* example: pinlist[0] = 3,2,8,4,1 ; pinlist[1] = 5,6,8,4,7 */
   char **pinlist     = NULL;
   bool error_parsing = FALSE;
+  bool redundant     = FALSE;
 
   /* look for numslots to see if this symbol has slotting info */
   value = geda_attrib_search_floating_by_name (obj_list, "numslots", 0);
@@ -1212,13 +1213,24 @@ static void s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     return;
   }
 
-  s_current->numslots=atoi(value);
+  /* The numslots member was initialized to -1 to check for redundancy */
+  if (s_current->numslots != -1) {
+    redundant = TRUE;
+  }
+
+  s_current->numslots = atoi(value);
   sprintf(numslots_str, "%d", s_current->numslots);
   GEDA_FREE(value);
 
-  message = geda_sprintf (_("Found numslots=%s attribute\n"), numslots_str);
-
-  ADD_INFO_MESSAGE(message);
+  if (redundant) {
+    message = geda_sprintf (_("Found redundant numslots=%s attribute\n"),
+                               numslots_str);
+    ADD_WARN_MESSAGE(message);
+  }
+  else {
+    message = geda_sprintf (_("Found numslots=%s attribute\n"), numslots_str);
+    ADD_INFO_MESSAGE(message);
+  }
 
   if (s_current->numslots == 0) {
     message = geda_strdup (_("numslots set to zero, symbol does not have slots\n"));

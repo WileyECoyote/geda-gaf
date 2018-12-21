@@ -37,7 +37,7 @@
  *  \par Function Description
  *  This is called for every symbol that needs to be checked
  *
- *  \returns A new empty SYMCHECK structure
+ *  \returns A new initialized SYMCHECK structure
  */
 SYMCHECK *s_symstruct_init(void)
 {
@@ -47,6 +47,8 @@ SYMCHECK *s_symstruct_init(void)
 
   i_vars_set_valid_attributes (memset(s_symcheck, 0, sizeof(SYMCHECK)));
   i_vars_set_known_devices (s_symcheck);
+
+  s_symcheck->numslots = -1;
 
   return s_symcheck;
 }
@@ -164,6 +166,8 @@ void s_symstruct_reset(SYMCHECK *s_current)
 
     i_vars_set_known_devices (s_current);
     i_vars_set_valid_attributes(s_current);
+
+    s_current->numslots = -1;
   }
 }
 
