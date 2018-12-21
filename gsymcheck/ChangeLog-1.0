@@ -6,6 +6,9 @@
       in geda_file_open executing code that is not relevant to gsymcheck,
       add function documentation.
 
+    * src/s_check.c: Add "netname" to the list of forbidden_attributes in
+      s_check_symbol_structure.
+
 2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_check.c: Revise s_check_symbol_structure to allow text attributes

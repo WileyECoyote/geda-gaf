@@ -366,7 +366,7 @@ static void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current
                                   NULL};
 
   char *obsolete_attributes[]  = {"email", "label", "uref", NULL};
-  char *forbidden_attributes[] = {"name",  "type", NULL};
+  char *forbidden_attributes[] = {"name", "netname", "type", NULL};
   /* pin# ?, slot# ? */
 
   char *redundant_attributes[] = {"documentation", "symversion",
