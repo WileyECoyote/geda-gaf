@@ -3,7 +3,8 @@
     * src/i_vars.c: Call geda_toplevel_set_file_open_flags in i_vars_set
       because libgeda defaults with the check backup bit set and gsymcheck
       does not implement routines for backups, although harmless, this results
-      in geda_file_open executing code that is not relevant to gsymcheck.
+      in geda_file_open executing code that is not relevant to gsymcheck,
+      add function documentation.
 
 2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
