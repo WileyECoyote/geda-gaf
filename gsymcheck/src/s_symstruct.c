@@ -26,12 +26,7 @@
 
 #include <config.h>
 
-#include <libgeda/libgeda.h>
-
-#include "../include/struct.h"
-#include "../include/globals.h"
-#include "../include/prototype.h"
-#include "../include/gettext.h"
+#include "../include/gsymcheck.h"
 
 /*! \brief Create and initialize a new SYMCHECK structure
  *  \par Function Description

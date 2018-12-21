@@ -26,12 +26,7 @@
 
 #include <config.h>
 
-#include <libgeda/libgeda.h>
-
-#include "../include/struct.h"
-#include "../include/globals.h"
-#include "../include/prototype.h"
-#include "../include/gettext.h"
+#include "../include/gsymcheck.h"
 
 /* TODO: Seems like it would just be easier to use g_list length rather than keeping count */
 #define ADD_ERROR_MESSAGE(msg) s_current->error_messages = g_list_append(s_current->error_messages, msg); \

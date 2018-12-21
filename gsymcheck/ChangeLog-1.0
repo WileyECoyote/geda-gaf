@@ -1,5 +1,16 @@
 2018-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gsymcheck.h: Add header to include other headers, primarily to
+      wrap the inclusion of libgeda with cond\endcond tags so that generated
+      HTML documenation does not zoom wide to show all of the headers included
+      by libgeda.
+
+    * src/gsymcheck.c: Include new "gsymcheck.h" header and remove including
+      all of the headers included by gsymcheck.h.
+
+    * src/parsecmd.c: Include new "gsymcheck.h" header and remove including
+      all of the headers included by gsymcheck.h.
+
     * src/i_vars.c: Call geda_toplevel_set_file_open_flags in i_vars_set
       because libgeda defaults with the check backup bit set and gsymcheck
       does not implement routines for backups, although harmless, this results
@@ -7,11 +18,13 @@
       add function documentation.
 
     * src/s_check.c: Add "netname" to the list of forbidden_attributes in
-      s_check_symbol_structure.
+      s_check_symbol_structure. Update/revise inclusion of headers as per
+      above.
 
     * src/s_symstruct.c: Initialize numslots to -1 in both s_symstruct_init
       and s_symstruct_reset to aid checking for redundancy. Revise s_check_
-      slotdef to check for redudant numslots attributes.
+      slotdef to check for redudant numslots attributes. Update inclusion of
+      headers as per above.
 
 2018-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
