@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -86,47 +86,58 @@ msgstr "പേജ് പരിഷ്കരിച്ചാലും സംരക�
 
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "സജീവമായ പേജ് സജ്ജമാക്കുക, നിലവിലുള്ള ഡയറക്ടറി മാറ്റുന്നു."
 
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "ഒരു പേജ് തുറക്കുക."
 
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "പേജ് അടയ്ക്കുക."
 
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "ഒരു പുതിയ ശൂന്യ പേജ് സൃഷ്ടിക്കുക."
 
+# phayalinṟe pēr māṟṟunnatinṟe
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "ഫയലിന്റെ പേര് മാറ്റുന്നതിന്റെ പേരുമാറ്റുക."
 
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "സംഭരണത്തിലേക്ക് എഴുതുന്നതിലൂടെ പേജ് സംരക്ഷിക്കുക."
 
+# Save the page using a new file name
+# oru putiya phayal nāmaṁ upayēāgicc pēj
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "ഒരു പുതിയ ഫയൽ നാമം ഉപയോഗിച്ച് പേജ് സംരക്ഷിക്കുക."
 
+# Save all opened pages to storage
+# sambharicca ellā tuṟanna pējukaḷuṁ
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "സംഭരിച്ച എല്ലാ തുറന്ന പേജുകളും സംരക്ഷിക്കുക."
 
+# Returns True is object is a GedaCapsule, otherwise False
+# ādāyaṁ ennat vastuta gaddākr̥tiyāṇ, allāttat
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "ആദായം എന്നത് വസ്തുത ഗദ്ദാകൃതിയാണ്, അല്ലാത്തത് തെറ്റാണ്."
 
+# Returns the rectangular boundaries of an object
+# oru vastuvinṟe dīrghacaturaṁ atirukaḷ
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "ഒരു വസ്തുവിന്റെ ദീർഘചതുരം അതിരുകൾ നൽകുന്നു."
 
+# Retrieve an object from a GedaCapsule
+# gaddākappleyil ninn oru vastu vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "ഗദ്ദാകപ്പ്ലെയിൽ നിന്ന് ഒരു വസ്തു വീണ്ടെടുക്കുക"
 
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
