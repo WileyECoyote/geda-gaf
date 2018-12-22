@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -85,47 +85,57 @@ msgstr "Получете показалеца на активната стран
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Задайте активната страница."
 
+# Vrŭshta True, ako stranitsata e promenena i ne e zapazena
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "Връща True, ако страницата е променена и не е запазена."
 
+# Zadaĭte aktivnata stranitsa i promenete tekushtata direktoriya
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "Задайте активната страница и променете текущата директория."
 
+# Otvorete stranitsa
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "Отворете страница."
 
+# Затваряне на страницата
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "Затваряне на страницата."
 
+# Sŭzdaĭte nova prazna stranitsa
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "Създайте нова празна страница."
 
+# Preimenuvane na stranitsa promenya imeto na faĭla
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "Преименуване на страница променя името на файла."
 
+# Zapazete stranitsata, kato ya zapishete v khranilishteto
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "Запазете страницата, като я запишете в хранилището."
 
+# Zapazete stranitsata s novo ime na faĭl
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "Запазете страницата с ново име на файл."
 
+# Zapazete vsichki otvoreni stranitsi v khranilishteto
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "Запазете всички отворени страници в хранилището."
 
+# Vrŭshta True e obekt GedaCapsule, v protiven sluchaĭ False
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Връща True е обект GedaCapsule, в противен случай False."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
