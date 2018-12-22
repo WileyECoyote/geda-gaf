@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -72,47 +72,47 @@ msgstr "Etkin sayfaya işaretçi alın."
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Aktif sayfayı ayarla."
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "Sayfa değiştirilmiş ve kaydedilmemişse True değerini döndürür."
 
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "Etkin sayfayı ayarla ve geçerli dizini değiştir."
 
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "Bir sayfa aç."
 
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "Sayfayı kapat."
 
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "Yeni bir boş sayfa oluştur."
 
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "Nimeä sivu uudelleen nimeen."
 
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "Sayfayı depoya yazarak kaydedin."
 
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "Sayfayı yeni bir dosya adı kullanarak kaydedin."
 
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "Açık olan tüm sayfaları depoya kaydet."
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Döndürür Doğru, nesne bir GedaCapsule, aksi takdirde Yanlış."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
