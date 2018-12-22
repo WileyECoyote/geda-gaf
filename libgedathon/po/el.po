@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -94,7 +94,8 @@ msgstr "Ορίστε την ενεργή σελίδα."
 # Epistréfei True an i selída échei tropopoiitheí kai den échei apothikefteí
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr "Επιστρέφει True αν η σελίδα έχει τροποποιηθεί και δεν έχει αποθηκευτεί."
+msgstr ""
+"Επιστρέφει True αν η σελίδα έχει τροποποιηθεί και δεν έχει αποθηκευτεί."
 
 # Set the active page, and changes current directory
 # Oríste tin energí selída kai allázei ton tréchonta katálogo

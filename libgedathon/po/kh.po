@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -26,7 +26,8 @@ msgstr "ttuol ryy kamnt nimittasanhnhea lomneadaem samreab capacitors\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr "ttuol ryy kamnt nimittasanhnhea lomneadaem samreab capacitor electrolytic\n"
+msgstr ""
+"ttuol ryy kamnt nimittasanhnhea lomneadaem samreab capacitor electrolytic\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
@@ -314,11 +315,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "Lath"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "Lin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

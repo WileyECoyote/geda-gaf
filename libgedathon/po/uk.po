@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -30,7 +30,9 @@ msgstr "Отримати або встановити символ за умов�
 # Otrymaty abo vstanovyty symvol za zamovchuvannyam dlya elektrolitychnykh kondensatoriv
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr "Отримати або встановити символ за замовчуванням для електролітичних конденсаторів\n"
+msgstr ""
+"Отримати або встановити символ за замовчуванням для електролітичних "
+"конденсаторів\n"
 
 # Get or Set the default symbol for inductors
 # Otrymaty abo Vstanovyty symvol za zamovchuvannyam dlya induktoriv
@@ -42,7 +44,8 @@ msgstr "Отримати або Встановити символ за замо�
 # Otrymaty abo vstanovyty symvol operatsiynoho pidsylyuvacha za zamovchuvannyam
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr "Отримати або встановити символ операційного підсилювача за замовчуванням\n"
+msgstr ""
+"Отримати або встановити символ операційного підсилювача за замовчуванням\n"
 
 # Get or Set the default symbol for resistors
 # Otrymaty abo Vstanovyty symvol za zamovchuvannyam dlya rezystoriv

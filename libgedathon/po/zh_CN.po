@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -25,7 +25,7 @@ msgid "Get or Set the default symbol for capacitors\n"
 msgstr "获取或设置电容器的默认符号\n"
 
 # Get or Set the default symbol for electrolytic capacitors
-Huòqǔ huò shèzhì diànjiě diànróng de mòrèn fúhào
+# Huòqǔ huò shèzhì diànjiě diànróng de mòrèn fúhào
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr "获取或设置电解电容的默认符号\n"

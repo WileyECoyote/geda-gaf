@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:50-0600\n"
+"POT-Creation-Date: 2018-12-22 00:09-0600\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -808,13 +808,13 @@ msgid "Magnetic net mode is OFF\n"
 msgstr "Magnetyczny tryb siatki jest wyłączony\n"
 
 #: gschem/src/iface/i_command.c:4536 gschem/src/iface/i_command.c:4578
-#: gschem/src/x/x_compselect.c:135
+#: gschem/src/x/x_compselect.c:133
 msgid "Off"
 msgstr ""
 
 # On
 #: gschem/src/iface/i_command.c:4539 gschem/src/iface/i_command.c:4581
-#: gschem/src/x/x_compselect.c:134
+#: gschem/src/x/x_compselect.c:132
 msgid "On"
 msgstr "Na"
 
@@ -1568,190 +1568,190 @@ msgstr "Wystąpił błąd podczas wklejania danych ze schowka"
 msgid "Clipboard Insertion Failed"
 msgstr "Błąd podczas wklejania"
 
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2377
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2378
 msgid "Open"
 msgstr "Otwórz"
 
 # Open all
-#: gschem/src/x/x_compselect.c:128
+#: gschem/src/x/x_compselect.c:126
 msgid "Open all"
 msgstr "Otwórz wszystko"
 
-#: gschem/src/x/x_compselect.c:129 gschem/src/x/x_menus.c:152
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:152
 msgid "Close"
 msgstr "Zamknij"
 
-#: gschem/src/x/x_compselect.c:130
+#: gschem/src/x/x_compselect.c:128
 msgid "Refresh"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:131 gschem/src/x/x_compselect.c:3170
+#: gschem/src/x/x_compselect.c:129 gschem/src/x/x_compselect.c:3168
 msgid "Rescan"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:132
+#: gschem/src/x/x_compselect.c:130
 msgid "Styles"
 msgstr ""
 
 # Tooltips
-#: gschem/src/x/x_compselect.c:133
+#: gschem/src/x/x_compselect.c:131
 msgid "Tooltips"
 msgstr "Etykietki narzędzi"
 
-#: gschem/src/x/x_compselect.c:139
+#: gschem/src/x/x_compselect.c:137
 msgid "Expand one level"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:140
+#: gschem/src/x/x_compselect.c:138
 msgid "Expand all sub-folders"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:141
+#: gschem/src/x/x_compselect.c:139
 msgid "Close this folder"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:142
+#: gschem/src/x/x_compselect.c:140
 msgid "Refresh this view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:143
+#: gschem/src/x/x_compselect.c:141
 msgid "Rescan the libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:144
+#: gschem/src/x/x_compselect.c:142
 msgid "Set styles options"
 msgstr ""
 
 # Tooltip settings
-#: gschem/src/x/x_compselect.c:145
+#: gschem/src/x/x_compselect.c:143
 msgid "Tooltip settings"
 msgstr "Ustawienia etykiet narzędzi"
 
 # Enable tooltips
-#: gschem/src/x/x_compselect.c:146
+#: gschem/src/x/x_compselect.c:144
 msgid "Enable tooltips"
 msgstr "Włącz etykiety narzędzi"
 
-#: gschem/src/x/x_compselect.c:147
+#: gschem/src/x/x_compselect.c:145
 msgid "Disable tooltips"
 msgstr ""
 
 # Default - use references to the component
-#: gschem/src/x/x_compselect.c:1377
+#: gschem/src/x/x_compselect.c:1375
 msgid "Default is to reference the component"
 msgstr "Domyślnie - użyj odniesiena do składnik"
 
-#: gschem/src/x/x_compselect.c:1381
+#: gschem/src/x/x_compselect.c:1379
 msgid "Embed component in schematic"
 msgstr "Osadź element w pliku schematu"
 
-#: gschem/src/x/x_compselect.c:1385
+#: gschem/src/x/x_compselect.c:1383
 msgid "Include component as individual objects"
 msgstr "Wstaw element jako indywidualne obiekty składowe"
 
-#: gschem/src/x/x_compselect.c:2229 gschem/src/x/x_compselect.c:2615
+#: gschem/src/x/x_compselect.c:2227 gschem/src/x/x_compselect.c:2613
 msgid "Components"
 msgstr "Elementy"
 
-#: gschem/src/x/x_compselect.c:2693 gschem/src/x/x_confirm_close.c:313
+#: gschem/src/x/x_compselect.c:2691 gschem/src/x/x_confirm_close.c:313
 #: gschem/src/x/x_multiattrib.c:2054 gschem/src/x/x_multiattrib.c:2060
 msgid "Name"
 msgstr "Nazwa"
 
-#: gschem/src/x/x_compselect.c:2705 gschem/src/x/x_multiattrib.c:2056
+#: gschem/src/x/x_compselect.c:2703 gschem/src/x/x_multiattrib.c:2056
 #: gschem/src/x/x_multiattrib.c:2062
 msgid "Value"
 msgstr "Wartość"
 
-#: gschem/src/x/x_compselect.c:2886 gschem/src/x/x_dialog.c:1863
+#: gschem/src/x/x_compselect.c:2884 gschem/src/x/x_dialog.c:1863
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2887
+#: gschem/src/x/x_compselect.c:2885
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2888
+#: gschem/src/x/x_compselect.c:2886
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2889
+#: gschem/src/x/x_compselect.c:2887
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2890
+#: gschem/src/x/x_compselect.c:2888
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2891
+#: gschem/src/x/x_compselect.c:2889
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2892
+#: gschem/src/x/x_compselect.c:2890
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2893
+#: gschem/src/x/x_compselect.c:2891
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2894
+#: gschem/src/x/x_compselect.c:2892
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2895
+#: gschem/src/x/x_compselect.c:2893
 msgid "All"
 msgstr "Wszystko"
 
-#: gschem/src/x/x_compselect.c:2931
+#: gschem/src/x/x_compselect.c:2929
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2932
+#: gschem/src/x/x_compselect.c:2930
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2958
+#: gschem/src/x/x_compselect.c:2956
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2959
+#: gschem/src/x/x_compselect.c:2957
 msgid "Embed"
 msgstr "Osadź"
 
-#: gschem/src/x/x_compselect.c:2960
+#: gschem/src/x/x_compselect.c:2958
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3178
+#: gschem/src/x/x_compselect.c:3176
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3180
+#: gschem/src/x/x_compselect.c:3178
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3383 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3381 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Podgląd"
 
-#: gschem/src/x/x_compselect.c:3419
+#: gschem/src/x/x_compselect.c:3417
 msgid "Attributes"
 msgstr "Atrybuty"
 
-#: gschem/src/x/x_compselect.c:3659
+#: gschem/src/x/x_compselect.c:3657
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3660
+#: gschem/src/x/x_compselect.c:3658
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3671
+#: gschem/src/x/x_compselect.c:3669
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3672
+#: gschem/src/x/x_compselect.c:3670
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
@@ -3765,7 +3765,7 @@ msgstr "Cofnij"
 msgid "Undo the last path segment"
 msgstr "Cofnij ostatni segment ścieżki"
 
-#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2519
+#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2520
 msgid "Clear"
 msgstr ""
 
@@ -3957,20 +3957,20 @@ msgstr ""
 msgid "Could not open file"
 msgstr "Nie można otworzyć pliku"
 
-#: gschem/src/x/x_menus.c:2384
+#: gschem/src/x/x_menus.c:2385
 msgid "Remove"
 msgstr "Usunąć"
 
 # Show path
-#: gschem/src/x/x_menus.c:2391
+#: gschem/src/x/x_menus.c:2392
 msgid "_Show path"
 msgstr "Pokazuj ścieżka"
 
-#: gschem/src/x/x_menus.c:2629
+#: gschem/src/x/x_menus.c:2630
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2682
+#: gschem/src/x/x_menus.c:2683
 msgid "Recent menu items restore from"
 msgstr ""
 
