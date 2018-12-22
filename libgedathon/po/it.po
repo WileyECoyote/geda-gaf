@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -24,7 +24,8 @@ msgstr "Ottieni o imposta il simbolo predefinito per i condensatori\n"
 
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr "Ottieni o imposta il simbolo predefinito per i condensatori elettrolitici\n"
+msgstr ""
+"Ottieni o imposta il simbolo predefinito per i condensatori elettrolitici\n"
 
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
@@ -113,47 +114,47 @@ msgstr "Salva tutte le pagine aperte nello spazio di archiviazione."
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Restituisce Vero è l'oggetto è una GedaCapsule, altrimenti False."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Restituisce i limiti rettangolari di un oggetto."
 
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Retrieve an object from a GedaCapsule."
 
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Recupera tutti gli oggetti appartenenti a una pagina."
 
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Aggiungi un oggetto a una pagina o un altro oggetto."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Aggiungi più oggetti a una pagina oa un altro oggetto."
 
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Crea una copia di un oggetto."
 
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Rimuovi oggetto da una pagina."
 
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Rimuovi più oggetti da una pagina."
 
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Elimina un oggetto da una pagina."
 
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple object from a page."
-msgstr ""
+msgstr "Elimina più oggetti da una pagina."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
