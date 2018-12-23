@@ -1,0 +1,102 @@
+v 20141031 2
+T 1500 1600 5 10 1 1 0 0 1
+device=TXS0102
+T 1500 1450 8 10 1 1 0 0 1
+refdes=U?
+T 1500 2000 5 10 0 1 0 0 1
+description=2-bit bi-directional level translator
+B 300 300 1200 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 1800 500 1500 500 1 0 0
+{
+T 1650 550 5 8 1 1 0 0 1
+pinnumber=1
+T 1650 550 5 8 0 1 0 0 1
+pinseq=1
+T 1450 500 9 10 1 1 0 7 1
+pinlabel=B2
+T 1450 425 5 8 0 1 0 8 1
+pintype=io
+}
+P 900 0 900 300 1 0 0
+{
+T 850 50 5 8 1 1 0 6 1
+pinnumber=2
+T 850 50 5 8 0 1 0 6 1
+pinseq=2
+T 900 350 9 10 1 1 0 3 1
+pinlabel=GND
+T 950 250 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 600 1700 600 1400 1 0 0
+{
+T 550 1550 5 8 1 1 0 6 1
+pinnumber=3
+T 550 1550 5 8 0 1 0 6 1
+pinseq=3
+T 600 1350 9 10 1 1 0 5 1
+pinlabel=VccA
+T 650 1450 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 0 500 300 500 1 0 0
+{
+T 150 550 5 8 1 1 0 6 1
+pinnumber=4
+T 150 550 5 8 0 1 0 6 1
+pinseq=4
+T 350 500 9 10 1 1 0 1 1
+pinlabel=A2
+T 350 425 5 8 0 1 0 2 1
+pintype=io
+}
+P 0 800 300 800 1 0 0
+{
+T 150 850 5 8 1 1 0 6 1
+pinnumber=5
+T 150 850 5 8 0 1 0 6 1
+pinseq=5
+T 350 800 9 10 1 1 0 1 1
+pinlabel=A1
+T 350 725 5 8 0 1 0 2 1
+pintype=io
+}
+P 0 1100 300 1100 1 0 0
+{
+T 150 1150 5 8 1 1 0 6 1
+pinnumber=6
+T 150 1150 5 8 0 1 0 6 1
+pinseq=6
+T 350 1100 9 10 1 1 0 1 1
+pinlabel=OE
+T 350 1025 5 8 0 1 0 2 1
+pintype=in
+}
+P 1200 1700 1200 1400 1 0 0
+{
+T 1150 1550 5 8 1 1 0 6 1
+pinnumber=7
+T 1150 1550 5 8 0 1 0 6 1
+pinseq=7
+T 1200 1350 9 10 1 1 0 5 1
+pinlabel=VccB
+T 1250 1450 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 1800 800 1500 800 1 0 0
+{
+T 1650 850 5 8 1 1 0 0 1
+pinnumber=8
+T 1650 850 5 8 0 1 0 0 1
+pinseq=8
+T 1450 800 9 10 1 1 0 7 1
+pinlabel=B1
+T 1450 725 5 8 0 1 0 8 1
+pintype=io
+}
+T 1500 1800 9 10 0 1 0 0 1
+footprint=SSOP8
+T 1200 100 9 10 0 0 0 0 1
+numslots=0
+T 1500 2200 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/txs0102.pdf
