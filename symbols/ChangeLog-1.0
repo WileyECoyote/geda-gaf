@@ -4,6 +4,8 @@
 
     * SY89312V-1.sym: Add symbol; divide by 2 clock generator.
 
+    * ti/TRF7970A-1.sym: Add symbol; integrated 13.56-MHz RFID/NFC transceiver IC.
+
 2018-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * coaxial/BNC-1.sym: Replace/redo symbol.

@@ -1,0 +1,379 @@
+v 20180521 2
+P 100 5100 400 5100 1 0 0
+{
+T 250 5150 5 8 1 1 0 6 1
+pinnumber=1
+T 415 5100 9 10 1 1 0 0 1
+pinlabel=VDD_A
+T 250 5150 5 8 0 1 0 6 1
+pinseq=1
+T 450 5075 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 4800 400 4800 1 0 0
+{
+T 250 4850 5 8 1 1 0 6 1
+pinnumber=2
+T 415 4800 9 10 1 1 0 0 1
+pinlabel=VIN
+T 250 4850 5 8 0 1 0 6 1
+pinseq=2
+T 450 4775 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 4500 400 4500 1 0 0
+{
+T 250 4550 5 8 1 1 0 6 1
+pinnumber=3
+T 415 4500 9 10 1 1 0 0 1
+pinlabel=VDD_RF
+T 250 4550 5 8 0 1 0 6 1
+pinseq=3
+T 450 4475 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 4200 400 4200 1 0 0
+{
+T 250 4250 5 8 1 1 0 6 1
+pinnumber=4
+T 415 4200 9 10 1 1 0 0 1
+pinlabel=VDD_PA
+T 250 4250 5 8 0 1 0 6 1
+pinseq=4
+T 450 4175 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3900 400 3900 1 0 0
+{
+T 250 3950 5 8 1 1 0 6 1
+pinnumber=5
+T 415 3900 9 10 1 1 0 0 1
+pinlabel=TX_OUT
+T 250 3950 5 8 0 1 0 6 1
+pinseq=5
+T 450 3875 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 3600 400 3600 1 0 0
+{
+T 250 3650 5 8 1 1 0 6 1
+pinnumber=6
+T 415 3600 9 10 1 1 0 0 1
+pinlabel=VSS_PA
+T 250 3650 5 8 0 1 0 6 1
+pinseq=6
+T 450 3575 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 3300 400 3300 1 0 0
+{
+T 250 3350 5 8 1 1 0 6 1
+pinnumber=7
+T 415 3300 9 10 1 1 0 0 1
+pinlabel=VSS_RX
+T 250 3350 5 8 0 1 0 6 1
+pinseq=7
+T 450 3275 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 3000 400 3000 1 0 0
+{
+T 250 3050 5 8 1 1 0 6 1
+pinnumber=8
+T 415 3000 9 10 1 1 0 0 1
+pinlabel=RX_IN1
+T 250 3050 5 8 0 1 0 6 1
+pinseq=8
+T 450 2975 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 2700 400 2700 1 0 0
+{
+T 250 2750 5 8 1 1 0 6 1
+pinnumber=9
+T 415 2700 9 10 1 1 0 0 1
+pinlabel=RX_IN2
+T 250 2750 5 8 0 1 0 6 1
+pinseq=9
+T 450 2675 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 2400 400 2400 1 0 0
+{
+T 250 2450 5 8 1 1 0 6 1
+pinnumber=10
+T 415 2400 9 10 1 1 0 0 1
+pinlabel=VSS
+T 250 2450 5 8 0 1 0 6 1
+pinseq=10
+T 450 2375 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 2100 400 2100 1 0 0
+{
+T 250 2150 5 8 1 1 0 6 1
+pinnumber=11
+T 415 2100 9 10 1 1 0 0 1
+pinlabel=BAND_GAP
+T 250 2150 5 8 0 1 0 6 1
+pinseq=11
+T 450 2075 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 1800 400 1800 1 0 0
+{
+T 250 1850 5 8 1 1 0 6 1
+pinnumber=12
+T 415 1800 9 10 1 1 0 0 1
+pinlabel=ASK/OOK
+T 250 1850 5 8 0 1 0 6 1
+pinseq=12
+T 450 1775 5 8 0 1 0 2 1
+pintype=io
+}
+P 100 1500 400 1500 1 0 0
+{
+T 250 1550 5 8 1 1 0 6 1
+pinnumber=13
+T 415 1500 9 10 1 1 0 0 1
+pinlabel=IRQ
+T 250 1550 5 8 0 1 0 6 1
+pinseq=13
+T 450 1475 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 1200 400 1200 1 0 0
+{
+T 250 1250 5 8 1 1 0 6 1
+pinnumber=14
+T 415 1200 9 10 1 1 0 0 1
+pinlabel=MOD
+T 250 1250 5 8 0 1 0 6 1
+pinseq=14
+T 450 1175 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 900 400 900 1 0 0
+{
+T 250 950 5 8 1 1 0 6 1
+pinnumber=15
+T 415 900 9 10 1 1 0 0 1
+pinlabel=VSS_A
+T 250 950 5 8 0 1 0 6 1
+pinseq=15
+T 450 875 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 600 400 600 1 0 0
+{
+T 250 650 5 8 1 1 0 6 1
+pinnumber=16
+T 415 600 9 10 1 1 0 0 1
+pinlabel=VDD_I/O
+T 250 650 5 8 0 1 0 6 1
+pinseq=16
+T 450 575 5 8 0 1 0 2 1
+pintype=pas
+}
+P 2700 600 2400 600 1 0 0
+{
+T 2500 650 5 8 1 1 0 0 1
+pinnumber=17
+T 2350 600 9 10 1 1 0 6 1
+pinlabel=I/O_0
+T 2500 650 5 8 0 1 0 0 1
+pinseq=17
+T 2350 600 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 900 2400 900 1 0 0
+{
+T 2500 950 5 8 1 1 0 0 1
+pinnumber=18
+T 2350 900 9 10 1 1 0 6 1
+pinlabel=I/O_1
+T 2500 950 5 8 0 1 0 0 1
+pinseq=18
+T 2350 900 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 1200 2400 1200 1 0 0
+{
+T 2500 1250 5 8 1 1 0 0 1
+pinnumber=19
+T 2350 1200 9 10 1 1 0 6 1
+pinlabel=I/O_2
+T 2500 1250 5 8 0 1 0 0 1
+pinseq=19
+T 2350 1200 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 1500 2400 1500 1 0 0
+{
+T 2500 1550 5 8 1 1 0 0 1
+pinnumber=20
+T 2350 1500 9 10 1 1 0 6 1
+pinlabel=I/O_3
+T 2500 1550 5 8 0 1 0 0 1
+pinseq=20
+T 2350 1500 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 1800 2400 1800 1 0 0
+{
+T 2500 1850 5 8 1 1 0 0 1
+pinnumber=21
+T 2350 1800 9 10 1 1 0 6 1
+pinlabel=I/O_4
+T 2500 1850 5 8 0 1 0 0 1
+pinseq=21
+T 2350 1800 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 2100 2400 2100 1 0 0
+{
+T 2500 2150 5 8 1 1 0 0 1
+pinnumber=22
+T 2350 2100 9 10 1 1 0 6 1
+pinlabel=I/O_5
+T 2500 2150 5 8 0 1 0 0 1
+pinseq=22
+T 2350 2100 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 2400 2400 2400 1 0 0
+{
+T 2500 2450 5 8 1 1 0 0 1
+pinnumber=23
+T 2350 2400 9 10 1 1 0 6 1
+pinlabel=I/O_6
+T 2500 2450 5 8 0 1 0 0 1
+pinseq=23
+T 2350 2400 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 2700 2400 2700 1 0 0
+{
+T 2500 2750 5 8 1 1 0 0 1
+pinnumber=24
+T 2350 2700 9 10 1 1 0 6 1
+pinlabel=I/O_7
+T 2500 2750 5 8 0 1 0 0 1
+pinseq=24
+T 2350 2700 5 8 0 1 0 8 1
+pintype=io
+}
+P 2700 3000 2400 3000 1 0 0
+{
+T 2500 3050 5 8 1 1 0 0 1
+pinnumber=25
+T 2350 3000 9 10 1 1 0 6 1
+pinlabel=EN2
+T 2500 3050 5 8 0 1 0 0 1
+pinseq=25
+T 2350 3000 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 3300 2400 3300 1 0 0
+{
+T 2500 3350 5 8 1 1 0 0 1
+pinnumber=26
+T 2350 3300 9 10 1 1 0 6 1
+pinlabel=DATA_CLK
+T 2500 3350 5 8 0 1 0 0 1
+pinseq=26
+T 2350 3300 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 3600 2400 3600 1 0 0
+{
+T 2500 3650 5 8 1 1 0 0 1
+pinnumber=27
+T 2350 3600 9 10 1 1 0 6 1
+pinlabel=SYS_CLK
+T 2500 3650 5 8 0 1 0 0 1
+pinseq=27
+T 2350 3600 5 8 0 1 0 8 1
+pintype=out
+}
+P 2700 3900 2400 3900 1 0 0
+{
+T 2500 3950 5 8 1 1 0 0 1
+pinnumber=28
+T 2350 3900 9 10 1 1 0 6 1
+pinlabel=EN
+T 2500 3950 5 8 0 1 0 0 1
+pinseq=28
+T 2350 3900 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 4200 2400 4200 1 0 0
+{
+T 2500 4250 5 8 1 1 0 0 1
+pinnumber=29
+T 2350 4200 9 10 1 1 0 6 1
+pinlabel=VSS_D
+T 2500 4250 5 8 0 1 0 0 1
+pinseq=29
+T 2350 4175 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2700 4500 2400 4500 1 0 0
+{
+T 2500 4550 5 8 1 1 0 0 1
+pinnumber=30
+T 2350 4500 9 10 1 1 0 6 1
+pinlabel=OSC_OUT
+T 2500 4550 5 8 0 1 0 0 1
+pinseq=30
+T 2350 4475 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2700 4800 2400 4800 1 0 0
+{
+T 2500 4850 5 8 1 1 0 0 1
+pinnumber=31
+T 2350 4800 9 10 1 1 0 6 1
+pinlabel=OSC_IN
+T 2500 4850 5 8 0 1 0 0 1
+pinseq=31
+T 2350 4800 5 8 0 1 0 8 1
+pintype=in
+}
+P 2700 5100 2400 5100 1 0 0
+{
+T 2500 5150 5 8 1 1 0 0 1
+pinnumber=32
+T 2350 5100 9 10 1 1 0 6 1
+pinlabel=VDD_X
+T 2500 5150 5 8 0 1 0 0 1
+pinseq=32
+T 2350 5100 5 8 0 1 0 8 1
+pintype=out
+}
+P 1700 100 1700 400 1 0 0
+{
+T 1550 115 5 8 1 1 0 3 1
+pinnumber=33
+T 1785 500 9 10 1 1 0 7 1
+pinlabel=EPAD
+T 1550 115 1 8 0 1 0 3 1
+pinseq=33
+T 1850 315 5 8 0 1 0 3 1
+pintype=pas
+}
+T 2400 5350 8 10 1 1 0 6 1
+refdes=U?
+T 400 5750 5 10 0 0 0 0 1
+device=TRF7970A
+T 400 5950 3 10 0 0 0 0 1
+numslots=0
+T 400 5350 5 10 0 1 0 0 1
+value=TRF7970A
+T 400 5550 3 10 0 1 0 0 1
+footprint=RHB32_3P45X3P45
+T 400 6150 5 10 0 1 0 0 1
+description=Multi-Protocol Fully Integrated 13.56-MHz RFID/NFC Transceiver IC
+T 400 6350 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/gpn/TRF7970A
+B 400 400 2000 4900 3 0 0 0 100 100 0 0 45 50 135 50
