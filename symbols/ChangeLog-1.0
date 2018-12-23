@@ -1,3 +1,7 @@
+2018-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/MCP3021-1.sym: Add symbol; 10 BIT ADC with I2C.
+
 2018-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * coaxial/BNC-1.sym: Replace/redo symbol.
