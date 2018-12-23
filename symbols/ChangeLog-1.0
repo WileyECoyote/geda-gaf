@@ -6,6 +6,10 @@
 
     * ti/TRF7970A-1.sym: Add symbol; integrated 13.56-MHz RFID/NFC transceiver IC.
 
+    * ti/TXB0102-x: Add symbol; 2-bit auto direction level translator:
+
+            * ti/TXB0102-1.sym
+
 2018-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * coaxial/BNC-1.sym: Replace/redo symbol.
