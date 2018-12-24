@@ -7,6 +7,7 @@
             * ti/TXB0104-3.sym
             * ti/TXS0104-1.sym
             * ti/TXS0104-2.sym
+            * ti/TXS0104-3.sym
 
 2018-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -16,7 +17,7 @@
 
     * ti/TRF7970A-1.sym: Add symbol; integrated 13.56-MHz RFID/NFC transceiver IC.
 
-    * ti/TXB0102-x: Add symbol; 2-bit auto direction level translator:
+    * ti/TX?0102-?: Add symbol; 2-bit auto direction level translator:
 
             * ti/TXB0102-1.sym
             * ti/TXB0102-2.sym
