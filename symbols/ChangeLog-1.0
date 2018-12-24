@@ -1,3 +1,9 @@
+2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/TX?0104-?: Add symbol; 4-bit auto direction level translator:
+
+            * ti/TXB0104-1.sym
+
 2018-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * MCP3021-1.sym: Add symbol; 10 BIT ADC with I2C.
