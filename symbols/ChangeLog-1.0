@@ -16,6 +16,12 @@
             * ti/opamps/LMV931MG-N-1.sym
             * ti/opamps/LMV931MG-N-2.sym
 
+
+    * ti/opamps/OPA373-?.sym: Add symbols; 2.3V-5.5V CMOS RRIO operational amplifier.
+
+            * ti/opamps/OPA373-1.sym
+            * ti/opamps/OPA373-2.sym
+
 2018-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * MCP3021-1.sym: Add symbol; 10 BIT ADC with I2C.
