@@ -11,6 +11,11 @@
 
     * ti/battery/BQ34Z100G1-1.sym: Add symbol; multi-chemistry impedance track standalone fuel gauge.
 
+    * ti/opamps/LMV931MG-N-?.sym: Add symbols; 1.8 Volt RRIO operational amplifier.
+
+            * ti/opamps/LMV931MG-N-1.sym
+            * ti/opamps/LMV931MG-N-2.sym
+
 2018-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * MCP3021-1.sym: Add symbol; 10 BIT ADC with I2C.
