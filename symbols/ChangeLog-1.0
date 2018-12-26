@@ -8,6 +8,12 @@
             * exar/XR71211EHMTR-F.sym
             * exar/XR71211EHTR-F.sym
 
+    * exar: Add symbols for XR75100 40V Synchronous Step Down COT Controller:
+
+            * exar/XR75100EL-F.sym
+            * exar/XR75100ELMTR-F.sym
+            * exar/XR75100ELTR-F.sym
+
     * ti/opamps/OPA374-?.sym: Add symbols; 2.3V-5.5V CMOS RRIO operational amplifier.
 
             * ti/opamps/OPA374-1.sym
