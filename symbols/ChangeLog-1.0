@@ -17,6 +17,8 @@
 
     * ti/switchreg/TPS650250-1.sym: Add symbol; power management ic.
 
+    * transistor/pnp-thru/BC328_pnp_30V_0.625W_TO-92-[1-6].sym: Add 6 symbols; PNP Transistor.
+
 2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TX?0104-?: Add symbol; 4-bit auto direction level translator:
