@@ -15,6 +15,7 @@
 
     * ti/switchreg/TPS51217-1.sym: Add symbol; Synchronous Step-Down Controller.
 
+    * ti/switchreg/TPS650250-1.sym: Add symbol; power management ic.
 
 2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
