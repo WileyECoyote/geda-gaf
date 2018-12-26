@@ -8,6 +8,12 @@
             * exar/XR71211EHMTR-F.sym
             * exar/XR71211EHTR-F.sym
 
+    * ti/opamps/OPA374-?.sym: Add symbols; 2.3V-5.5V CMOS RRIO operational amplifier.
+
+            * ti/opamps/OPA374-1.sym
+            * ti/opamps/OPA374-2.sym
+
+
 2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TX?0104-?: Add symbol; 4-bit auto direction level translator:
