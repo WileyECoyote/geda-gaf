@@ -1,0 +1,143 @@
+v 20150401 2
+P 100 2200 400 2200 1 0 0
+{
+T 300 2250 5 8 1 1 0 6 1
+pinnumber=1
+T 300 2250 5 8 0 1 0 6 1
+pinseq=1
+T 450 2200 9 10 1 1 0 0 1
+pinlabel=PGOOD
+T 450 2175 5 8 0 1 0 2 1
+pintype=out
+}
+P 100 1800 400 1800 1 0 0
+{
+T 300 1850 5 8 1 1 0 6 1
+pinnumber=2
+T 300 1850 5 8 0 1 0 6 1
+pinseq=2
+T 450 1800 9 10 1 1 0 0 1
+pinlabel=TRIP
+T 450 1775 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1400 400 1400 1 0 0
+{
+T 300 1450 5 8 1 1 0 6 1
+pinnumber=3
+T 300 1450 5 8 0 1 0 6 1
+pinseq=3
+T 450 1400 9 10 1 1 0 0 1
+pinlabel=ENABLE
+T 450 1375 5 8 0 1 0 2 1
+pintype=oc
+}
+P 100 1000 400 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=4
+T 300 1050 5 8 0 1 0 6 1
+pinseq=4
+T 450 1000 9 10 1 1 0 0 1
+pinlabel=VFB
+T 450 975 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 600 400 600 1 0 0
+{
+T 300 650 5 8 1 1 0 6 1
+pinnumber=5
+T 300 650 5 8 0 1 0 6 1
+pinseq=5
+T 450 600 9 10 1 1 0 0 1
+pinlabel=TRAN
+T 450 575 5 8 0 1 0 2 1
+pintype=pas
+}
+P 2800 600 2500 600 1 0 0
+{
+T 2600 650 5 8 1 1 0 0 1
+pinnumber=6
+T 2600 650 5 8 0 1 0 0 1
+pinseq=6
+T 2450 600 9 10 1 1 0 6 1
+pinlabel=DRVL
+T 2450 575 5 8 0 1 0 8 1
+pintype=out
+}
+P 2800 1000 2500 1000 1 0 0
+{
+T 2600 1050 5 8 1 1 0 0 1
+pinnumber=7
+T 2600 1050 5 8 0 1 0 0 1
+pinseq=7
+T 2450 1000 9 10 1 1 0 6 1
+pinlabel=V5IN
+T 2450 975 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2800 1400 2500 1400 1 0 0
+{
+T 2600 1450 5 8 1 1 0 0 1
+pinnumber=8
+T 2600 1450 5 8 0 1 0 0 1
+pinseq=8
+T 2450 1400 9 10 1 1 0 6 1
+pinlabel=SW
+T 2450 1375 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2800 1800 2500 1800 1 0 0
+{
+T 2600 1850 5 8 1 1 0 0 1
+pinnumber=9
+T 2600 1850 5 8 0 1 0 0 1
+pinseq=9
+T 2450 1800 9 10 1 1 0 6 1
+pinlabel=DRVH
+T 2450 1775 5 8 0 1 0 8 1
+pintype=out
+}
+P 2800 2200 2500 2200 1 0 0
+{
+T 2600 2250 5 8 1 1 0 0 1
+pinnumber=10
+T 2600 2250 5 8 0 1 0 0 1
+pinseq=10
+T 2450 2200 9 10 1 1 0 6 1
+pinlabel=VBST
+T 2450 2175 5 8 0 1 0 8 1
+pintype=pas
+}
+P 1400 100 1400 400 1 0 0
+{
+T 1350 200 5 10 0 1 0 6 1
+pintype=pas
+T 1200 450 9 10 1 1 0 0 1
+pinlabel=GND
+T 1450 150 5 10 1 1 0 0 1
+pinnumber=11
+T 1450 150 5 10 0 1 0 0 1
+pinseq=11
+}
+B 400 400 2100 2000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 2700 9 10 1 1 0 0 1
+value=TPS51217
+T 400 2500 8 10 1 1 0 0 1
+refdes=U?
+T 400 3100 5 10 0 1 0 0 1
+device=TPS51217
+T 400 2900 5 10 0 1 0 0 1
+footprint=WSON-10
+T 400 3700 5 10 0 1 0 0 1
+documentation=www.ti.com/lit/ds/symlink/tps51217.pdf
+T 400 3300 5 10 0 1 0 0 1
+description=Synchronous Step-Down Controller
+T 400 3500 5 10 0 0 0 0 1
+numslots=0
+T 400 3900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 400 4100 5 10 0 0 0 0 1
+use-license=unlimited
+T 400 4300 5 10 0 0 0 0 1
+author=AutoTron

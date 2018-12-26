@@ -13,6 +13,8 @@
             * ti/opamps/OPA374-1.sym
             * ti/opamps/OPA374-2.sym
 
+    * ti/switchreg/TPS51217-1.sym: Add symbol; Synchronous Step-Down Controller.
+
 
 2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
