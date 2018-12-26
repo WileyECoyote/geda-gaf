@@ -207,6 +207,7 @@
                   ("dec"             "Manufacturers/DEC")
                   ("epson"           "Manufacturers/Epson")
                      ("epson/crystal"                  "Manufacturers/Crystals")
+                  ("exar"            "Manufacturers/Exar")
                   ("fairchild"       "Manufacturers/Fairchild Semiconductor")
                   ("idt"             "Manufacturers/IDT")
                   ("intel"           "Manufacturers/Intel")

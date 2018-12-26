@@ -1,3 +1,13 @@
+2018-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * geda-clib.scm: Add manufacturer Exar.
+
+    * exar: Add symbols for XR71211 Low Dropout Voltage Regulator:
+
+            * exar/XR71211EH-F.sym
+            * exar/XR71211EHMTR-F.sym
+            * exar/XR71211EHTR-F.sym
+
 2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * ti/TX?0104-?: Add symbol; 4-bit auto direction level translator:
