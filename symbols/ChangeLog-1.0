@@ -17,7 +17,9 @@
 
     * ti/switchreg/TPS650250-1.sym: Add symbol; power management ic.
 
-    * transistor/pnp-thru/BC328_pnp_30V_0.625W_TO-92-[1-6].sym: Add 6 symbols; PNP Transistor.
+    * transistor/npn-thru/BC338_npn_30V_0.625W_TO-92-[1-6].sym: Add 6 symbols; NPN transistor.
+
+    * transistor/pnp-thru/BC328_pnp_30V_0.625W_TO-92-[1-6].sym: Add 6 symbols; PNP transistor.
 
 2018-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
