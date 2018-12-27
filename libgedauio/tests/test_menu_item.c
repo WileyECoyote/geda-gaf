@@ -226,6 +226,15 @@ check_accessors ()
       result++;
     }
 
+    unsigned short width;
+
+    width = geda_menu_item_get_accel_width(GEDA_MENU_ITEM(widget01));
+
+    if (!width) {
+      fprintf(stderr, "FAILED: line <%d> get accel width %s, %u\n", __LINE__, TWIDGET, width);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
