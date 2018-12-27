@@ -23,6 +23,7 @@
 (define tools:editor "gedit")
 ;(define tools:editor "kwrite")
 ;(define tools:editor "xfwrite")
+;(define tools:editor "notepad")
 
 ;; Define your favorite git client here
 ;(define tools:gitclient "git-cola")
