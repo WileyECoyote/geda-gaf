@@ -1209,9 +1209,11 @@ static void geda_menu_item_accel_width_foreach (GtkWidget *widget, void *data)
     unsigned int w;
 
     w = geda_accel_label_get_accel_width ((GedaAccelLabel*)widget);
+
     *width = MAX (*width, w);
   }
   else if (GTK_IS_CONTAINER(widget)) {
+
     geda_container_foreach (widget,
                             geda_menu_item_accel_width_foreach,
                             data);
@@ -2062,6 +2064,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   geda_container_foreach (menu_item,
                           geda_menu_item_accel_width_foreach,
                          &accel_width);
+
   priv->accelerator_width = accel_width;
 }
 
