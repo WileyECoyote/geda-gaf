@@ -191,6 +191,10 @@ int check_accessors(void)
       result++;
     }
 
+    if (geda_menu_item_get_toggle_size (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; toggle size\n", __LINE__, TWIDGET);
+      result++;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */
