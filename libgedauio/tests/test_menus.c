@@ -61,6 +61,8 @@ create_menu (int depth, bool tearoff)
 
   for (i = 0, j = 1; i < 5; i++, j++) {
 
+    GtkWidget *sub_menu;
+
     sprintf (buf, "item %2d - %d", depth, j);
     menuitem = geda_radio_menu_item_new_with_label (group, buf);
     group    = geda_radio_menu_item_get_group (GEDA_RADIO_MENU_ITEM (menuitem));
@@ -73,7 +75,11 @@ create_menu (int depth, bool tearoff)
       gtk_widget_set_sensitive (menuitem, FALSE);
     }
 
-    geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), create_menu (depth - 1, TRUE));
+    sub_menu = create_menu (depth - 1, TRUE);
+
+    if (sub_menu) {
+      geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menuitem), sub_menu);
+    }
   }
 
   return menu;
