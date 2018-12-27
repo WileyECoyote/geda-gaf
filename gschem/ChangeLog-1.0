@@ -1,7 +1,8 @@
 2018-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Add "notepad" as option for Win32
-      users.
+      users and replace slash with separator-char to fix tools menu options
+      under Win32.
 
 2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
 

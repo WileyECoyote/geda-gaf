@@ -54,7 +54,7 @@
 
 (define (tools:ifname)
   (substring (tools:ifpath)
-    (+ (string-rindex (tools:ifpath) #\/) 1)))
+    (+ (string-rindex (tools:ifpath) separator-char) 1)))
 
 (define (tools:ifbase)
   (substring (tools:ifname) 0
