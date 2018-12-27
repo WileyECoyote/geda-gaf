@@ -185,6 +185,12 @@ int check_accessors(void)
       fprintf(stderr, "FAILED: line <%d> %s; mnemonic <%c>\n", __LINE__, TWIDGET, c);
       result++;
     }
+
+    if (geda_menu_item_get_right_justified (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; right justified\n", __LINE__, TWIDGET);
+      result++;
+    }
+
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */

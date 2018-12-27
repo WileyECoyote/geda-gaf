@@ -2,6 +2,11 @@
 
     * tests/test_menu_item.c: Add check for geda_menu_item_get_accel_width.
 
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_right_justified
+
 2018-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Call geda_accel_label_set_accel_widget
