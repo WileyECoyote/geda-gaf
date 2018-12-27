@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,49 +18,71 @@ msgstr ""
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+# Get or Set the default symbol for capacitors
+# Huòqǔ huò shèzhì diànróngqì de mòrèn fúhào
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "获取或设置电容器的默认符号\n"
 
+# Get or Set the default symbol for electrolytic capacitors
+# Huòqǔ huò shèzhì diànjiě diànróng de mòrèn fúhào
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
-msgstr ""
+msgstr "获取或设置电解电容的默认符号\n"
 
+# Get or Set the default symbol for inductors
+# Huòqǔ huò shèzhì diàngǎn de mòrèn fúhào
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "获取或设置电感的默认符号\n"
 
+# Get or Set the default operational amplifier symbol
+# Huòqǔ huò shèzhì mòrèn yùnsuàn fàngdàqì fúhào
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "获取或设置默认运算放大器符号\n"
 
+# Get or Set the default symbol for resistors
+# Huòqǔ huò shèzhì diànzǔ de mòrèn fúhào
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "获取或设置电阻的默认符号\n"
 
+# Get or Set the default title block symbol
+# Huòqǔ huò shèzhì mòrèn biāotí lán fúhào
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "获取或设置默认标题栏符号\n"
 
+# Close all files and deinitialize the library
+# Guānbì suǒyǒu wénjiàn bìng qǔxiāo chūshǐhuà kù
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "关闭所有文件并取消初始化库."
 
+# Append a folder to the library search path
+# Jiāng wénjiàn jiā fùjiā dào kù sōusuǒ lùjìng
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "将文件夹附加到库搜索路径."
 
+# Creates a gafrc file in the current directory
+# Zài dāngqián mùlù zhōng chuàngjiàn gafrc wénjiàn
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "在当前目录中创建gafrc文件."
 
+# Retrieve list of all pages
+# Jiǎnsuǒ suǒyǒu yèmiàn dì lièbiǎo
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "检索所有页面的列表."
 
+# Get pointer to the active page
+# Huòqǔ zhǐxiàng huódòng yèmiàn de zhǐzhē
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "获取指向活动页面的指针."
 
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
@@ -219,7 +241,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:117
@@ -304,7 +326,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -312,11 +334,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

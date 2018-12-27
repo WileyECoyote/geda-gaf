@@ -120,7 +120,7 @@ struct _Compselect {
 
   GtkNotebook    *notebook;
   GschemPreview  *preview;
-  GtkEntry       *entry_filter;
+  GedaEntry      *entry_filter;
   GtkButton      *button_clear;
   unsigned int    filter_timeout;
   bool            applying_filter;

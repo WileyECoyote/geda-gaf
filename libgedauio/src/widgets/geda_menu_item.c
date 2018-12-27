@@ -361,8 +361,9 @@ static void geda_menu_item_actionable_interface_init (GtkActionableInterface *if
 static void geda_menu_item_destroy (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = (GedaMenuItem*)widget;
+  GtkWidget    *child;
 
-  child = geda_get_child_widget ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL(child)) {
     geda_container_remove (menu_item, child);
@@ -378,7 +379,7 @@ static void geda_menu_item_destroy (GtkObject *object)
   GedaMenuItem *menu_item = (GedaMenuItem*)object;
   GtkWidget    *child;
 
-  child = geda_get_child_widget ((GtkBin*)menu_item);
+  child = geda_get_child_widget (menu_item);
 
   if (GEDA_IS_LABEL(child)) {
     geda_container_remove (menu_item, child);
@@ -561,6 +562,199 @@ static void geda_menu_item_get_property (GObject     *object,
   }
 }
 
+/* Widget Class Overrides */
+static bool geda_menu_item_enter (GtkWidget *widget, GdkEventCrossing *event)
+{
+  g_return_val_if_fail (event != NULL, FALSE);
+
+  return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent *) event);
+}
+
+static bool geda_menu_item_leave (GtkWidget *widget, GdkEventCrossing *event)
+{
+  g_return_val_if_fail (event != NULL, FALSE);
+
+  return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent*) event);
+}
+static void geda_menu_item_map (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = (GedaMenuItem*)widget;
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  ((GtkWidgetClass*)geda_menu_item_parent_class)->map (widget);
+
+  gdk_window_show (priv->event_window);
+}
+
+static void geda_menu_item_unmap (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = (GedaMenuItem*)widget;
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  gdk_window_hide (priv->event_window);
+
+  ((GtkWidgetClass*)geda_menu_item_parent_class)->unmap (widget);
+}
+
+
+static void geda_menu_item_hide_all (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  gtk_widget_hide (widget);
+
+  /* hide children including submenu */
+  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
+
+  if (priv->submenu) {
+    gtk_widget_hide_all (priv->submenu);
+  }
+}
+
+static void geda_menu_item_show_all (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+  /* show children including submenu */
+  if (priv->submenu) {
+    gtk_widget_show_all (priv->submenu);
+  }
+  geda_container_foreach (widget, gtk_widget_show_all, NULL);
+
+  gtk_widget_show (widget);
+}
+
+static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
+                                               unsigned int signal_id)
+{
+  GtkWidget *parent;
+
+  parent = gtk_widget_get_parent (widget);
+
+  /* Chain to the parent GedaMenu for further checks */
+  return (gtk_widget_is_sensitive (widget) &&
+          gtk_widget_get_visible (widget) &&
+          parent && gtk_widget_can_activate_accel (parent, signal_id));
+}
+
+/*! \internal widget_class->mnemonic_activate */
+static bool geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
+{
+  GtkWidget *parent = gtk_widget_get_parent (widget);
+
+  if (GEDA_IS_MENU_SHELL (parent)) {
+
+    geda_menu_shell_set_keyboard_mode ((GedaMenuShell*)parent, TRUE);
+
+    if (group_cycling && ((GedaMenuShell*)parent)->active) {
+
+      geda_menu_shell_select_item ((GedaMenuShell*)parent, widget);
+    }
+  }
+  else {
+    g_signal_emit (widget, menu_item_signals[ACTIVATE_ITEM], 0);
+  }
+
+  return TRUE;
+}
+
+/*! \internal widget_class->parent_set */
+static void geda_menu_item_parent_set (GtkWidget *widget,
+                                       GtkWidget *previous_parent)
+{
+  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
+  GedaMenu     *menu;
+  GtkWidget    *parent;
+
+  parent = gtk_widget_get_parent (widget);
+  menu   = GEDA_IS_MENU(parent) ? GEDA_MENU(parent) : NULL;
+
+  if (menu) {
+    geda_menu_item_refresh_accel_path (menu_item,
+                                       menu->accel_path,
+                                       menu->accel_group,
+                                       TRUE);
+  }
+
+  if (((GtkWidgetClass*)geda_menu_item_parent_class)->parent_set) {
+    ((GtkWidgetClass*)geda_menu_item_parent_class)->parent_set (widget, previous_parent);
+  }
+}
+
+/*! \internal widget_class->realize */
+static void
+geda_menu_item_realize (GtkWidget *widget)
+{
+  GedaMenuItem        *menu_item   = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv        = menu_item->priv;
+  GdkWindow           *window;
+  GtkAllocation        allocation;
+  GdkWindowAttr        attributes;
+  int                  attributes_mask;
+
+  gtk_widget_set_realized (widget, TRUE);
+
+  window = gtk_widget_get_parent_window (widget);
+
+  gtk_widget_set_window (widget, window);
+  g_object_ref (window);
+
+  gtk_widget_get_allocation (widget, &allocation);
+
+  attributes.x           = allocation.x;
+  attributes.y           = allocation.y;
+  attributes.width       = allocation.width;
+  attributes.height      = allocation.height;
+  attributes.window_type = GDK_WINDOW_CHILD;
+  attributes.wclass      = GDK_INPUT_ONLY;
+  attributes.event_mask  = (gtk_widget_get_events (widget) |
+                                     GDK_BUTTON_PRESS_MASK |
+                                     GDK_BUTTON_RELEASE_MASK |
+                                     GDK_ENTER_NOTIFY_MASK |
+                                     GDK_LEAVE_NOTIFY_MASK |
+                                     GDK_POINTER_MOTION_MASK);
+
+  attributes_mask = GDK_WA_X | GDK_WA_Y;
+
+  priv->event_window = gdk_window_new (window, &attributes, attributes_mask);
+
+#if GTK_MAJOR_VERSION < 3
+
+  gdk_window_set_user_data (priv->event_window, widget);
+  widget->style = gtk_style_attach (widget->style, widget->window);
+
+#else
+
+  gtk_widget_register_window (widget, priv->event_window);
+
+#endif
+
+}
+
+/*! \internal widget_class->unrealize */
+static void geda_menu_item_unrealize (GtkWidget *widget)
+{
+  GedaMenuItem *menu_item   = GEDA_MENU_ITEM(widget);
+  GedaMenuItemPrivate *priv = menu_item->priv;
+
+#if GTK_MAJOR_VERSION < 3
+
+  gdk_window_set_user_data (priv->event_window, NULL);
+
+#else
+
+  gtk_widget_unregister_window (widget, priv->event_window);
+
+#endif
+
+  gdk_window_destroy (priv->event_window);
+  priv->event_window = NULL;
+
+  ((GtkWidgetClass*)geda_menu_item_parent_class)->unrealize (widget);
+}
+
 /*!
  * \brief GedaMenuSeparator Class Initializer
  * \par Function Description
@@ -593,17 +787,17 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
 #endif
 
-  widget_class->realize            = geda_menu_item_realize;
-  widget_class->unrealize          = geda_menu_item_unrealize;
-  widget_class->map                = geda_menu_item_map;
-  widget_class->unmap              = geda_menu_item_unmap;
   widget_class->enter_notify_event = geda_menu_item_enter;
   widget_class->leave_notify_event = geda_menu_item_leave;
-  widget_class->show_all           = geda_menu_item_show_all;
+  widget_class->map                = geda_menu_item_map;
+  widget_class->unmap              = geda_menu_item_unmap;
   widget_class->hide_all           = geda_menu_item_hide_all;
+  widget_class->show_all           = geda_menu_item_show_all;
+  widget_class->can_activate_accel = geda_menu_item_can_activate_accel;
   widget_class->mnemonic_activate  = geda_menu_item_mnemonic_activate;
   widget_class->parent_set         = geda_menu_item_parent_set;
-  widget_class->can_activate_accel = geda_menu_item_can_activate_accel;
+  widget_class->realize            = geda_menu_item_realize;
+  widget_class->unrealize          = geda_menu_item_unrealize;
   widget_class->size_allocate      = geda_menu_item_size_allocate;
 
 #if GTK_MAJOR_VERSION < 3
@@ -1235,7 +1429,7 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
       if (accel_path) {
         geda_accel_label_set_accel_widget ((GedaAccelLabel*)label, NULL);
         geda_accel_label_set_accel_closure ((GedaAccelLabel*)label,
-          gtk_action_get_accel_closure (action));
+        gtk_action_get_accel_closure (action));
       }
     }
 
@@ -1289,6 +1483,13 @@ GtkWidget *geda_menu_item_new_with_mnemonic (const char *label)
                        NULL);
 }
 
+/*!
+ * \brief Retrieve GedaMenuItem Event Window
+ * \par Function Description
+ *  Returns the internal event_window of the menu item.
+ *
+ * \param [in] menu_item a #GedaMenuItem
+ */
 GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
@@ -1558,110 +1759,6 @@ void geda_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   g_signal_emit (menu_item, menu_item_signals[TOGGLE_SIZE_ALLOCATE], 0, allocation);
-}
-
-static void
-geda_menu_item_realize (GtkWidget *widget)
-{
-  GedaMenuItem        *menu_item   = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv        = menu_item->priv;
-  GdkWindow           *window;
-  GtkAllocation        allocation;
-  GdkWindowAttr        attributes;
-  int                  attributes_mask;
-
-  gtk_widget_set_realized (widget, TRUE);
-
-  window = gtk_widget_get_parent_window (widget);
-
-  gtk_widget_set_window (widget, window);
-  g_object_ref (window);
-
-  gtk_widget_get_allocation (widget, &allocation);
-
-  attributes.x           = allocation.x;
-  attributes.y           = allocation.y;
-  attributes.width       = allocation.width;
-  attributes.height      = allocation.height;
-  attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.wclass      = GDK_INPUT_ONLY;
-  attributes.event_mask  = (gtk_widget_get_events (widget) |
-                                     GDK_BUTTON_PRESS_MASK |
-                                     GDK_BUTTON_RELEASE_MASK |
-                                     GDK_ENTER_NOTIFY_MASK |
-                                     GDK_LEAVE_NOTIFY_MASK |
-                                     GDK_POINTER_MOTION_MASK);
-
-  attributes_mask = GDK_WA_X | GDK_WA_Y;
-
-  priv->event_window = gdk_window_new (window, &attributes, attributes_mask);
-
-#if GTK_MAJOR_VERSION < 3
-
-  gdk_window_set_user_data (priv->event_window, widget);
-  widget->style = gtk_style_attach (widget->style, widget->window);
-
-#else
-
-  gtk_widget_register_window (widget, priv->event_window);
-
-#endif
-
-}
-
-static void geda_menu_item_unrealize (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item   = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-#if GTK_MAJOR_VERSION < 3
-
-  gdk_window_set_user_data (priv->event_window, NULL);
-
-#else
-
-  gtk_widget_unregister_window (widget, priv->event_window);
-
-#endif
-
-  gdk_window_destroy (priv->event_window);
-  priv->event_window = NULL;
-
-  ((GtkWidgetClass*)geda_menu_item_parent_class)->unrealize (widget);
-}
-
-static void geda_menu_item_map (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item = (GedaMenuItem*)widget;
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  ((GtkWidgetClass*)geda_menu_item_parent_class)->map (widget);
-
-  gdk_window_show (priv->event_window);
-}
-
-static void geda_menu_item_unmap (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item = (GedaMenuItem*)widget;
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  gdk_window_hide (priv->event_window);
-
-  ((GtkWidgetClass*)geda_menu_item_parent_class)->unmap (widget);
-}
-
-static bool geda_menu_item_enter (GtkWidget *widget, GdkEventCrossing *event)
-{
-  g_return_val_if_fail (event != NULL, FALSE);
-
-  return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent *) event);
-}
-
-static bool geda_menu_item_leave (GtkWidget *widget, GdkEventCrossing *event)
-{
-  g_return_val_if_fail (event != NULL, FALSE);
-
-  return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent*) event);
 }
 
 /* Gtk3 Helper called by:
@@ -2532,8 +2629,6 @@ static void geda_real_menu_item_activate_item (GedaMenuItem *menu_item)
   GtkWidget *parent;
   GtkWidget *widget;
 
-  g_return_if_fail (GEDA_IS_MENU_ITEM (menu_item));
-
   widget = (GtkWidget*)menu_item;
   parent = gtk_widget_get_parent (widget);
   priv   = menu_item->priv;
@@ -2584,26 +2679,6 @@ static void geda_real_menu_item_deselect (GedaMenuItem *menu_item)
       gtk_widget_queue_draw ((GtkWidget*)menu->parent_menu_item);
     }
   }
-}
-
-static bool geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
-{
-  GtkWidget *parent = gtk_widget_get_parent (widget);
-
-  if (GEDA_IS_MENU_SHELL (parent)) {
-
-    geda_menu_shell_set_keyboard_mode ((GedaMenuShell*)parent, TRUE);
-
-    if (group_cycling && ((GedaMenuShell*)parent)->active) {
-
-      geda_menu_shell_select_item ((GedaMenuShell*)parent, widget);
-    }
-  }
-  else {
-    g_signal_emit (widget, menu_item_signals[ACTIVATE_ITEM], 0);
-  }
-
-  return TRUE;
 }
 
 /*! \internal menu_item_class->toggle_size_request */
@@ -2784,15 +2859,10 @@ void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
       priv->timer = gdk_threads_add_timeout (popup_delay,
                                              geda_menu_item_popup_timeout,
                                              menu_item);
-#if GTK_MAJOR_VERSION >= 3
-
-      g_source_set_name_by_id (priv->timer, "[gtk+] geda_menu_item_popup_timeout");
-
-#endif
 
       if (event &&
-        event->type != GDK_BUTTON_PRESS &&
-        event->type != GDK_ENTER_NOTIFY)
+          event->type != GDK_BUTTON_PRESS &&
+          event->type != GDK_ENTER_NOTIFY)
       {
         priv->timer_from_keypress = TRUE;
       }
@@ -3300,49 +3370,6 @@ bool geda_menu_item_get_right_justified (GedaMenuItem *menu_item)
   return menu_item->priv->right_justify;
 }
 
-
-static void geda_menu_item_show_all (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  /* show children including submenu */
-  if (priv->submenu) {
-    gtk_widget_show_all (priv->submenu);
-  }
-  geda_container_foreach (widget, gtk_widget_show_all, NULL);
-
-  gtk_widget_show (widget);
-}
-
-static void geda_menu_item_hide_all (GtkWidget *widget)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenuItemPrivate *priv = menu_item->priv;
-
-  gtk_widget_hide (widget);
-
-  /* hide children including submenu */
-  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
-
-  if (priv->submenu) {
-    gtk_widget_hide_all (priv->submenu);
-  }
-}
-
-static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
-                                               unsigned int signal_id)
-{
-  GtkWidget *parent;
-
-  parent = gtk_widget_get_parent (widget);
-
-  /* Chain to the parent GedaMenu for further checks */
-  return (gtk_widget_is_sensitive (widget) &&
-          gtk_widget_get_visible (widget) &&
-          parent && gtk_widget_can_activate_accel (parent, signal_id));
-}
-
 static void geda_menu_item_accel_name_foreach (GtkWidget *widget, void *data)
 {
   const char **path_p = data;
@@ -3490,29 +3517,6 @@ void geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
   }
 }
 
-/*! \internal widget_class->parent_set */
-static void geda_menu_item_parent_set (GtkWidget *widget,
-                                       GtkWidget *previous_parent)
-{
-  GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
-  GedaMenu     *menu;
-  GtkWidget    *parent;
-
-  parent = gtk_widget_get_parent (widget);
-  menu   = GEDA_IS_MENU(parent) ? GEDA_MENU(parent) : NULL;
-
-  if (menu) {
-    geda_menu_item_refresh_accel_path (menu_item,
-                                       menu->accel_path,
-                                       menu->accel_group,
-                                       TRUE);
-  }
-
-  if (((GtkWidgetClass*)geda_menu_item_parent_class)->parent_set) {
-    ((GtkWidgetClass*)geda_menu_item_parent_class)->parent_set (widget, previous_parent);
-  }
-}
-
 /*!
  * \brief geda_menu_item_get_accel_path
  * \par Function Description
@@ -3533,7 +3537,22 @@ const char *geda_menu_item_get_accel_path (GedaMenuItem *menu_item)
 
 unsigned short geda_menu_item_get_accel_width (GedaMenuItem  *menu_item)
 {
-  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), FALSE);
+  GedaMenuItemPrivate *priv;
+
+  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), 0);
+
+  priv = menu_item->priv;
+
+  if (!priv->accelerator_width) {
+
+    unsigned int accel_width = 0;
+
+    geda_container_foreach (menu_item,
+                            geda_menu_item_accel_width_foreach,
+                            &accel_width);
+
+    priv->accelerator_width = accel_width;
+  }
 
   return menu_item->priv->accelerator_width;
 }
@@ -3625,7 +3644,6 @@ bool geda_menu_item_is_widget_selectable (GtkWidget *widget)
 
   return FALSE;
 }
-
 
 /*!
  * \brief Retrieve menu item Toggle Size

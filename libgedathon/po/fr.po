@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -139,17 +139,20 @@ msgstr "Récupérer un objet d'une GedaCapsule."
 msgid "Retrieve all objects belonging to a page."
 msgstr "Récupérer tous les objets appartenant à une page."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Ajouter un objet à une page ou à un autre objet."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Ajouter plusieurs objets à une page ou à un autre objet."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Faire une copie d'un objet."
 
 # Retrieve an object from a GedaCapsule
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
@@ -166,9 +169,10 @@ msgstr "Supprimer plusieurs objets d'une page."
 msgid "Delete an object from a page."
 msgstr "Supprimer un objet d'une page."
 
+# Delete multiple object from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple object from a page."
-msgstr ""
+msgstr "Supprimer plusieurs objets d'une page."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
@@ -243,7 +247,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 # Returns the length of a linear object
@@ -331,7 +335,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -339,11 +343,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

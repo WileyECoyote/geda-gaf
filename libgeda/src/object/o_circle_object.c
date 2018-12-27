@@ -1462,7 +1462,10 @@ void
 geda_circle_object_set_center_x (GedaObject *object, int x)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->circle->center_x = x;
+    if (object->circle->center_x != x) {
+      object->circle->center_x = x;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1483,7 +1486,10 @@ void
 geda_circle_object_set_center_y (GedaObject *object, int y)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->circle->center_y = y;
+    if (object->circle->center_y != y) {
+      object->circle->center_y = y;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1503,9 +1509,12 @@ void
 geda_circle_object_set_end_cap (GedaObject *object, int line_end)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->line_options->line_end = line_end < END_NONE ? END_NONE :
-                                     line_end > END_VOID ? END_VOID :
-                                     line_end;
+    if (object->line_options->line_end != line_end) {
+      object->line_options->line_end = line_end < END_NONE ? END_NONE :
+                                       line_end > END_VOID ? END_VOID :
+                                       line_end;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1527,7 +1536,10 @@ void
 geda_circle_object_set_fill_angle1 (GedaObject *object, int angle)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->fill_options->fill_angle1 = angle;
+    if (object->fill_options->fill_angle1 != angle) {
+      object->fill_options->fill_angle1 = angle;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1549,7 +1561,10 @@ void
 geda_circle_object_set_fill_angle2 (GedaObject *object, int angle)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->fill_options->fill_angle2 = angle;
+    if (object->fill_options->fill_angle2 != angle) {
+      object->fill_options->fill_angle2 = angle;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1571,7 +1586,10 @@ void
 geda_circle_object_set_fill_pitch1 (GedaObject *object, int pitch)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->fill_options->fill_pitch1 = pitch < 0 ? 0 : pitch;
+    if (object->fill_options->fill_pitch1 != pitch) {
+      object->fill_options->fill_pitch1 = pitch < 0 ? 0 : pitch;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1593,7 +1611,10 @@ void
 geda_circle_object_set_fill_pitch2 (GedaObject *object, int pitch)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->fill_options->fill_pitch2 = pitch < 0 ? 0 : pitch;
+    if (object->fill_options->fill_pitch2 != pitch) {
+      object->fill_options->fill_pitch2 = pitch < 0 ? 0 : pitch;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1615,9 +1636,12 @@ void
 geda_circle_object_set_fill_type (GedaObject *object, int type)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->fill_options->fill_type = type < TYPE_SOLID ? TYPE_SOLID :
-                                      type > TYPE_ERASE ? TYPE_ERASE :
-                                      type;
+    if (object->fill_options->fill_type != type) {
+      object->fill_options->fill_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                        type > TYPE_ERASE ? TYPE_ERASE :
+                                        type;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1639,7 +1663,10 @@ void
 geda_circle_object_set_fill_width (GedaObject *object, int width)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->fill_options->fill_width = width < 0 ? 0 : width;
+    if (object->fill_options->fill_width != width) {
+      object->fill_options->fill_width = width < 0 ? 0 : width;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1665,7 +1692,10 @@ void
 geda_circle_object_set_line_length (GedaObject *object, int length)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->line_options->line_length = length > 0 ? length : 0;
+    if (object->line_options->line_length != length) {
+      object->line_options->line_length = length > 0 ? length : 0;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1691,7 +1721,10 @@ void
 geda_circle_object_set_line_space (GedaObject *object, int space)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->line_options->line_space = space > 0 ? space : 0;
+    if (object->line_options->line_space != space) {
+      object->line_options->line_space = space > 0 ? space : 0;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1713,9 +1746,12 @@ void
 geda_circle_object_set_line_type (GedaObject *object, int type)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->line_options->line_type = type < TYPE_SOLID ? TYPE_SOLID :
-                                      type > TYPE_ERASE ? TYPE_ERASE :
-                                      type;
+    if (object->line_options->line_type != type) {
+      object->line_options->line_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                        type > TYPE_ERASE ? TYPE_ERASE :
+                                        type;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1737,7 +1773,10 @@ void
 geda_circle_object_set_line_width (GedaObject *object, int width)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->line_options->line_width = width > 0 ? width : 0;
+    if (object->line_options->line_width != width) {
+      object->line_options->line_width = width > 0 ? width : 0;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);
@@ -1758,7 +1797,10 @@ void
 geda_circle_object_set_radius (GedaObject *object, int radius)
 {
   if (GEDA_IS_CIRCLE(object)) {
-    object->circle->radius = radius;
+    if (object->circle->radius != radius) {
+      object->circle->radius = radius;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_circle_object_error(__func__, object);

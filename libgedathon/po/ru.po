@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -16,53 +16,79 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# Get or Set the default symbol for capacitors
+# Poluchit' ili ustanovit' simvol po umolchaniyu dlya kondensatorov
 #: libgedathon/include/functions.h:54
 msgid "Get or Set the default symbol for capacitors\n"
-msgstr ""
+msgstr "Получить или установить символ по умолчанию для конденсаторов\n"
 
+# Get or Set the default symbol for electrolytic capacitors
+# Poluchit' ili ustanovit' simvol po umolchaniyu dlya elektroliticheskikh kondensatorov
 #: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr ""
+"Получить или установить символ по умолчанию для электролитических "
+"конденсаторов\n"
 
+# Get or Set the default symbol for inductors
+# Poluchit' ili ustanovit' simvol po umolchaniyu dlya induktorov
 #: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for inductors\n"
-msgstr ""
+msgstr "Получить или установить символ по умолчанию для индукторов\n"
 
+# Get or Set the default operational amplifier symbol
+# Poluchit' ili ustanovit' simvol operatsionnogo usilitelya po umolchaniyu
 #: libgedathon/include/functions.h:57
 msgid "Get or Set the default operational amplifier symbol\n"
-msgstr ""
+msgstr "Получить или установить символ операционного усилителя по умолчанию\n"
 
+# Get or Set the default symbol for resistors
+# Poluchit' ili ustanovit' simvol po umolchaniyu dlya rezistorov
 #: libgedathon/include/functions.h:58
 msgid "Get or Set the default symbol for resistors\n"
-msgstr ""
+msgstr "Получить или установить символ по умолчанию для резисторов\n"
 
+# Get or Set the default titleblock symbol
+# Poluchit' ili ustanovit' simvol zagolovka po umolchaniyu
 #: libgedathon/include/functions.h:59
 msgid "Get or Set the default titleblock symbol\n"
-msgstr ""
+msgstr "Получить или установить символ заголовка по умолчанию\n"
 
+# Close all files and deinitialize the library
+# Zakroyte vse fayly i deinitsializiruyte biblioteku
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr ""
+msgstr "Закройте все файлы и деинициализируйте библиотеку."
 
+# Append a folder to the library search path
+# Dobavit' papku v put' poiska biblioteki
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
-msgstr ""
+msgstr "Добавить папку в путь поиска библиотеки."
 
+# Creates a gafrc file in the current directory
+# Sozdayet fayl gafrc v tekushchem kataloge
 #: libgedathon/include/geda_module.h:56
 msgid "Creates a gafrc file in the current directory."
-msgstr ""
+msgstr "Создает файл gafrc в текущем каталоге."
 
+# Retrieve list of all pages
+# Poluchit' spisok vsekh stranits
 #: libgedathon/include/geda_module.h:59
 msgid "Retrieve list of all pages."
-msgstr ""
+msgstr "Получить список всех страниц."
 
+# Get pointer to the active page
+# Poluchit' ukazatel' na aktivnuyu stranitsu
 #: libgedathon/include/geda_module.h:60
 msgid "Get pointer to the active page."
-msgstr ""
+msgstr "Получить указатель на активную страницу."
 
+# Set the active page
+# Ustanovit' aktivnuyu stranitsu
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Установить активную страницу."
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
@@ -217,7 +243,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:117
@@ -302,7 +328,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -310,11 +336,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

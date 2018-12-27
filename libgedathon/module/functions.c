@@ -1444,7 +1444,7 @@ FUNCTION(AddLine)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_line);
   }
   else {
-    show_error_object_not_created(FUNCTION_NAME(AddLine), _("line"));
+    show_error_object_not_created(FUNCTION_NAME(AddLine), _("Line"));
     py_line = Py_BuildValue("");
   }
   return py_line;
@@ -1659,7 +1659,7 @@ FUNCTION(AddPath)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_path);
   }
   else {
-    show_error_object_not_created(FUNCTION_NAME(AddPath), _("path"));
+    show_error_object_not_created(FUNCTION_NAME(AddPath), _("Path"));
     py_path = Py_BuildValue("");
   }
   return py_path;
@@ -1876,7 +1876,7 @@ FUNCTION(AddPin)
     PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_pin);
   }
   else {
-    show_error_object_not_created(FUNCTION_NAME(AddPin), _("pin"));
+    show_error_object_not_created(FUNCTION_NAME(AddPin), _("Pin"));
     py_pin = Py_BuildValue("");
   }
   return py_pin;

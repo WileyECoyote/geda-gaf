@@ -783,8 +783,8 @@ x_dnd_drag_receive(GtkWidget *widget, GdkDragContext   *context, int x, int y,
  * \par Function Description
  *  Called when the drag leaves the destination.
  */
-static void x_dnd_drag_leave
-(GtkWidget *widget, GdkDragContext *context, unsigned int time, GschemToplevel *w_current)
+static void
+x_dnd_drag_leave (GtkWidget *widget, GdkDragContext *context, unsigned int time, GschemToplevel *w_current)
 {
   const char *name = gtk_widget_get_name (widget);
   printf ("\n<%s> %s: leaving\n", __func__, name);
@@ -832,8 +832,8 @@ drag_motion (GtkWidget *widget, GdkDragContext *context, int x, int y, unsigned 
  *
  * \return TRUE if the operation should continue, otherwise FALSE
  */
-static bool x_dnd_drag_drop
-(GtkWidget *widget, GdkDragContext *context, int x, int y, unsigned int time, GschemToplevel *w_current)
+static bool
+x_dnd_drag_drop (GtkWidget *widget, GdkDragContext *context, int x, int y, unsigned int time, GschemToplevel *w_current)
 {
   bool   is_valid_drop_site;
   GList *targets;
@@ -923,9 +923,12 @@ static bool x_dnd_drag_drop
  *  via X properties, is only capable of storing data in blocks of 8, 16, or
  *  32 bit units.
  */
-static void x_dnd_drag_data_get
-(GtkWidget *widget, GdkDragContext *context, GtkSelectionData *selection_data,
-                    unsigned int target_type, unsigned int time, GschemToplevel *w_current)
+static void
+x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
+                                        GtkSelectionData *selection_data,
+                                        unsigned int target_type,
+                                        unsigned int time,
+                                        GschemToplevel *w_current)
 {
   const GschemDndDataDef *datadef;
 
@@ -964,8 +967,9 @@ static void x_dnd_drag_data_get
       printf (" Sending %d objects.\n", g_list_length(object_buffer[DND_BUFFER]));
 #endif
       char *buf = geda_object_save_buffer (object_buffer[DND_BUFFER]);
+
       gtk_selection_data_set (selection_data,
-                              gtk_selection_data_get_target(selection_data),
+                              (GdkAtom)target_type,
                               BITS_BYTE, /* 8-bit data (UTF-8) */
                               (unsigned char *) buf,
                               strlen(buf));
@@ -986,9 +990,10 @@ static void x_dnd_drag_data_get
 }
 
 /* Emitted after "drag-data-received" is handled, and gtk_drag_finish is called
- * with the "delete" parameter set to TRUE (when DnD is GDK_ACTION_MOVE). */
-static void x_dnd_drag_delete
-(GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
+ * with the "delete" parameter set to TRUE (when DnD is GDK_ACTION_MOVE).
+ */
+static void
+x_dnd_drag_delete (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
 {
 #if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);

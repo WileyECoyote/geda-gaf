@@ -1,21 +1,62 @@
-2018-12-01 Wiley E. Hill <wileyhill@gmail.com>
+2018-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
 
-    * po/bs.po: Update Bosnian translations
+    * po/ca.po: Update Catalan translations.
+
+    * po/da.po: Update Danish translations.
 
     * po/de.po: Update German translations.
 
+    * po/es.po: Update Spanish translations.
+
+    * po/fa.po: Update Persian translations.
+
+    * po/fi.po: Update Finnish translations.
+
+    * po/fr.po: Update French translations.
+
+    * po/it.po: Update Italian translations.
+
+    * po/ml.po: Updated Malayalam translations.
+
+    * po/tr.po: Update Turkish translations.
+
+2018-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * po/el.po: Update Greek translations.
 
+    * po/en_GB: Update Great Britain.
+
+    * po/it.po: Update Italian translations.
+
+    * po/ru.po: Update Russian translations.
+
+    * po/sr.po: Update Serbian translations.
+
+    * po/uk.po: Update Ukrainian translations.
+
+2018-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ca.po: Update Catalan translations.
+    * po/da.po: Update Danish translations.
+    * po/fi.po: Update Finnish translations.
+    * po/it.po: Update Italian translations.
+    * po/kh.po: Update Khmer translations.
+    * po/sv.po: Update Swedish translations.
+    * po/zh_CN.po: Update Chinese simplified translations.
+    * po/zh_TW.po: Update Chinese traditional translations.
+
+2018-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/bg.po: Update Bulgarian translations.
+    * po/bs.po: Update Bosnian translations
+    * po/de.po: Update German translations.
+    * po/el.po: Update Greek translations.
     * po/hu.po: Update Hungarian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/sl.po: Update Slovenian translations
-
     * po/tr.po: Update Turkish translations.
 
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>

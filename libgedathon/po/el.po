@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -84,46 +84,66 @@ msgstr "Ανάκτηση λίστας όλων των σελίδων."
 msgid "Get pointer to the active page."
 msgstr "Βάλτε δείκτη στην ενεργή σελίδα."
 
+# Set the active page
+# Oríste tin energí selída
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Ορίστε την ενεργή σελίδα."
 
+# Returns True if page has been modified and not saved
+# Epistréfei True an i selída échei tropopoiitheí kai den échei apothikefteí
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
 msgstr ""
+"Επιστρέφει True αν η σελίδα έχει τροποποιηθεί και δεν έχει αποθηκευτεί."
 
 # Set the active page, and changes current directory
+# Oríste tin energí selída kai allázei ton tréchonta katálogo
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr "?????? ??? ?????? ?????? ??? ??????? ??? ???????? ????????."
+msgstr "Ορίστε την ενεργή σελίδα και αλλάζει τον τρέχοντα κατάλογο."
 
+# Open a page
+# Anoíxte mia selída
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "Ανοίξτε μια σελίδα."
 
+# Close page
+# Kleísimo selídas
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "Κλείσιμο σελίδας."
 
+# Create a new empty page
+# Dimiourgíste mia néa kení selída
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "Δημιουργήστε μια νέα κενή σελίδα."
 
+# Rename a page changes the filename
+# Metonomasía selídas allázei to ónoma archeíou
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "Μετονομασία σελίδας αλλάζει το όνομα αρχείου."
 
+# Save the page by writing to storage
+# Apothikéfste ti selída gráfontas sto chóro apothíkefsis
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "Αποθηκεύστε τη σελίδα γράφοντας στο χώρο αποθήκευσης."
 
+# Save the page using a new file name
+# Apothikéfste ti selída chrisimopoióntas éna néo ónoma archeíou
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "Αποθηκεύστε τη σελίδα χρησιμοποιώντας ένα νέο όνομα αρχείου."
 
+# Save all opened pages to storage
+# Apothikéfste óles tis anoichtés selídes stin apothíkefsi
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "Αποθηκεύστε όλες τις ανοιχτές σελίδες στην αποθήκευση."
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
@@ -242,7 +262,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:117
@@ -327,7 +347,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -335,11 +355,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

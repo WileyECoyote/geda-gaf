@@ -438,17 +438,21 @@ static void clear_buffer_popup_clicked (GtkWidget *menuitem, void *user_data)
 
   if (isdigit(alpha)) {
 
-    GedaMenuShell *menu;
-
     /* Clear the buffer, converting alpha to numeric */
     o_buffer_clear(w_current, alpha - 48);
 
-    /* Deactivate the widget's parent menu */
-    menu = GEDA_MENU_SHELL(gtk_widget_get_parent(widget));
-    geda_menu_shell_cancel(menu);
-
     /* Update menu item sensitivity */
     gtk_widget_set_sensitive(widget, FALSE);
+
+    if (!o_select_is_selection(w_current)) {
+
+      GedaMenuShell *menu;
+
+      /* Deactivate the widget's parent menu if nothing selected */
+      menu = GEDA_MENU_SHELL(gtk_widget_get_parent(widget));
+
+      geda_menu_shell_cancel(menu);
+    }
   }
 
   /* Destroy the popup menu */
@@ -2525,7 +2529,7 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    }
 
    gtk_widget_show_all(recent_submenu);
-   g_object_set (recent_submenu, "visible", TRUE, NULL);
+
    geda_menu_item_set_submenu_widget((GedaMenuItem*)recent_menu_item, recent_submenu);
 }
 

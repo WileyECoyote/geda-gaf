@@ -1,3 +1,103 @@
+2018-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Call geda_accel_label_set_accel_widget
+      in geda_accel_label_set_property for case PROP_ACCEL_WIDGET, and allow
+      retrieval in geda_accel_label_set_property. Factor accel_string_width
+      code from geda_accel_label_size_request into new function geda_accel_
+      label_set_accel_string_width and call from both size_request handler
+      and geda_accel_label_get_accel_width.
+
+    * tests/test_accel_label.c: Add function check_accessors with checks for:
+
+          * geda_accel_label_get_accel_widget
+          * geda_accel_label_set_accel_widget
+          * geda_accel_label_get_accel_string
+          * geda_accel_label_set_accel_string
+          * geda_accel_label_get_accel_width
+
+    * tests/test_menu_item.c: Include geda_accel_label.h and add a menu item
+      under the menu, and set the accelerator string for further testing.
+
+2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_get_accel_width to
+      attempt to update accelerator_width if unset.
+
+    * tests/test_menu.c: Resize the main window so it is not just a blip on
+      the screen.
+
+    * tests/test_menu_item.c: Resize the main window and add an accelerator
+      group in main_window. Add checks for:
+
+          * geda_menu_item_get_accel_path
+          * geda_menu_item_set_accel_path
+
+2018-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Add static const str_use_stock for
+      "use-stock".
+
+    * src/widgets/geda_menu_item.c: Remove redundant validation in geda_real_
+      menu_item_activate_item.
+
+    * src/widgets/geda_toolbar.c: Add documentation for "font-size" property
+      and internal comments for geda_toolbar_setup_label.
+
+    * libgedauio/tests/test_menu_item.c: Update comment and geda_menu_item_
+      get_event_window error message, add check for geda_menu_item_get_submenu_
+      widget.
+
+    * tests/test_menu_separator.c: Check response from GedaMeniItem
+      accessors:
+
+          * geda_menu_item_get_mnemonic
+
+2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Remove GTk3 debug code.
+
+2018-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Relocate buried typedef for PangoParserData
+      and UriParserData to the top of the module following other typedefs.
+
+    * src/widgets/geda_menu.c: Add documentation for "menu-popup-delay" and
+      "menu-popdown-delay" properties
+
+    * src/widgets/geda_menu_item.c: Update function documentation for
+      geda_menu_item_get_event_window. Add missing declarartion of child
+      in Gtk3 version of geda_menu_item_destroy and remove unneeded cast
+      for geda_get_child_widget macro in both versions. Reorganize module
+      a bit.
+
+    * src/widgets/geda_menu_shell.c: Update function documentation for:
+
+          * geda_menu_shell_get_children
+          * geda_menu_shell_get_keyboard_mode
+          * geda_menu_shell_get_parent_shell
+
+    * src/widgets/geda_toolbar.c: Remove stray semi-colon from geda_toolbar_
+      setup_label.
+
+    * tests/test_menu_separator.c: Check response from GedaMeniItem
+      accessors:
+
+          * geda_menu_item_get_event_window
+          * geda_menu_item_get_submenu_widget
+          * geda_menu_item_get_accel_path
+
+2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add widget pointer for invisible in the
+      _GedaHandleBoxData and initialize to a new GtkInvisible in new gobject
+      class override geda_handle_box_constructed instead of using a static
+      invisible object for all GedaHandleBox objects, kind of amazing that
+      it ever worked, removed function geda_handle_box_get_invisible.
+
+    * tests/test_menu_separator.c: Add function check_accessors to check that
+      the base class, GedaMeniItem, accessors, respond appropriately for menu
+      items separators.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_dockbox.h: New header to define GedaDockBox, which is just

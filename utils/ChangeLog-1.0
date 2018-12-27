@@ -1,3 +1,8 @@
+2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gschlas/gschlas.c: Add "Function Description" and clean up documentation
+      blocks.
+
 2018-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/convert_sym.c: Fix format specification for case WARN_USER.
@@ -24,7 +29,7 @@
 
 2018-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/gmake-caps-sym.1.in:  Extend the no warranty clause to include "not even
+    * docs/gmake-caps-sym.1.in: Extend the no warranty clause to include "not even
       for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE". Replace tick quotes
       around COPYING with double quotes for better portability.
 

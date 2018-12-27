@@ -470,7 +470,7 @@ int check_accessors ()
   color = geda_object_get_color(object2);
 
   if (color != ATTRIBUTE_COLOR) {
-    fprintf(stderr, "Failed: get_color %s line <%d>\n", TOBJECT, __LINE__);
+    fprintf(stderr, "Failed: get_color %s line <%d> color <%d>\n", TOBJECT, __LINE__, color);
     result++;
   }
 
@@ -512,7 +512,35 @@ int check_accessors ()
   object1->conn_list = NULL;
 
   /* === Function: geda_object_get_locked_color === */
+
+  int locked_color;
+
+  locked_color = geda_object_get_locked_color(object2);
+
+  if (locked_color != LOCK_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d> locked color=<%d>\n", TOBJECT, __LINE__, locked_color);
+    result++;
+  }
+
   /* === Function: geda_object_set_locked_color === */
+
+  geda_object_set_locked_color(object2, color);
+
+  locked_color = geda_object_get_locked_color(object2);
+
+  if (locked_color != ATTRIBUTE_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d> locked color <%d>\n", TOBJECT, __LINE__, locked_color);
+    result++;
+  }
+
+  geda_object_set_locked_color(object2, -1);
+
+  locked_color = geda_object_get_locked_color(object2);
+
+  if (locked_color != ATTRIBUTE_COLOR) {
+    fprintf(stderr, "Failed: get_color %s line <%d> locked color <%d>\n", TOBJECT, __LINE__, locked_color);
+    result++;
+  }
 
   /* === Function: geda_object_get_page === */
 

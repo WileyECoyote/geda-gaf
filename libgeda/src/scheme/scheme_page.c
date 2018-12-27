@@ -32,13 +32,14 @@
 
 SCM_SYMBOL (edascm_string_format_sym , "string-format");
 
-/*! \brief Add an object to a page.
+/*!
+ * \brief Add an object to a page.
  * \par Function Description
- * Adds \a obj_s to \a page_s.  If \a obj_s is already attached to a
- * #Page or to a complex #GedaObject, throws a Scheme error.
+ *  Adds \a obj_s to \a page_s.  If \a obj_s is already attached to a
+ *  #Page or to a complex #GedaObject, throws a Scheme error.
  *
  * \note Scheme API: Implements the %page-append! procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * \return \a page_s.
  */
@@ -75,15 +76,15 @@ EDA_SCM_DEFINE (page_append_x, "%page-append!", 2, 0, 0,
   return page_s;
 }
 
-/*! \brief Close a page
+/*!
+ * \brief Close a page
  * \par Function Description
-
- * Destroys the #Page structure \a page_s, freeing all of its
- * resources.  Attempting to use \a page_s after calling this function
- * will cause an error.
+ *  Destroys the #Page structure \a page_s, freeing all of its resources.
+ *  Attempting to use \a page_s after calling this function will cause an
+ *  error.
  *
  * \note Scheme API: Implements the %close-page procedure of the (geda
- * core page) module.
+ *       core page) module.
  *
  * param page_s The page to close.
  *
@@ -105,13 +106,14 @@ EDA_SCM_DEFINE (page_close_x, "%close-page!", 1, 0, 0,
   return SCM_UNDEFINED;
 }
 
-/*! \brief Get the page an object belongs to.
+/*!
+ * \brief Get the page an object belongs to.
  * \par Function Description
- * Returns a smob for the #Page that \a obj_s belongs to.  If \a obj_s
- * does not belong to a #Page, returns SCM_BOOL_F.
+ *  Returns a smob for the #Page that \a obj_s belongs to.  If \a obj_s
+ *  does not belong to a #Page, returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %object-page procedure in the
- * (geda core page) module.
+ *      (geda core page) module.
  *
  * param [in] obj_s an #GedaObject smob.
  *
@@ -132,14 +134,15 @@ EDA_SCM_DEFINE (page_from_object, "%object-page", 1, 0, 0,
   }
 }
 
-/*! \brief Create a page from a string representation.
+/*!
+ * \brief Create a page from a string representation.
  * \par Function Description
- * Returns a page with filename \a filename_s created by parsing \a
- * str_s. Throws an error if \a str_s contains invalid gEDA file
- * format syntax.
+ *  Returns a page with filename \a filename_s created by parsing \a
+ *  str_s. Throws an error if \a str_s contains invalid gEDA file
+ *  format syntax.
  *
  * \note Scheme API: Implements the %string->page procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * param filename_s Filename for new page.
  * param str_s      String to parse to create page.
@@ -190,13 +193,14 @@ EDA_SCM_DEFINE (page_from_string, "%string->page", 2, 0, 0,
   return edascm_from_page (page);
 }
 
-/*! \brief Get a list of objects in a page.
+/*!
+ * \brief Get a list of objects in a page.
  * \par Function Description
- * Retrieves the contents of a the #Page smob \a page_s as a Scheme
- * list of #GedaObject smobs.
+ *  Retrieves the contents of a the #Page smob \a page_s as a Scheme
+ *  list of #GedaObject smobs.
  *
  * \note Scheme API: Implements the %page-contents procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * \return a list of #GedaObject smobs.
  */
@@ -214,12 +218,13 @@ EDA_SCM_DEFINE (page_get_contents, "%page-contents", 1, 0, 0,
   return edascm_from_object_glist (geda_struct_page_get_objects (page));
 }
 
-/*! \brief Get the filename associated with a page.
+/*!
+ * \brief Get the filename associated with a page.
  * \par Function Description
- * Retrieves the filename associated with the #Page smob \a page_s.
+ *  Retrieves the filename associated with the #Page smob \a page_s.
  *
  * \note Scheme API: Implements the %page-filename procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * \return a Scheme string containing the page filename.
  */
@@ -236,12 +241,13 @@ EDA_SCM_DEFINE (page_get_filename, "%page-filename", 1, 0, 0,
   return scm_from_utf8_string (page->filename);
 }
 
-/*! \brief Get a of open pages.
+/*!
+ * \brief Get a of open pages.
  * \par Function Description
- * Retrieves a Scheme list of currently-opened pages.
+ *  Retrieves a Scheme list of currently-opened pages.
  *
  * \note Scheme API: Implements the %active-pages procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * \return a Scheme list of #Page smobs.
  */
@@ -263,13 +269,14 @@ EDA_SCM_DEFINE (page_get_opened, "%active-pages", 0, 0, 0, (),
   return rlst;
 }
 
-/*! \brief Check whether a page has been flagged as changed.
+/*!
+ * \brief Check whether a page has been flagged as changed.
  * \par Function Description
- * Returns SCM_BOOL_T if \a page_s has been flagged as having been
- * modified.
+ *  Returns SCM_BOOL_T if \a page_s has been flagged as having been
+ *  modified.
  *
  * \note Scheme API: Implements the %page-dirty? procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * param page_s page to inspect.
  *
@@ -287,14 +294,15 @@ EDA_SCM_DEFINE (page_is_dirty, "%page-dirty?", 1, 0, 0,
   return page->CHANGED ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
-/*! \brief Create a new page.
+/*!
+ * \brief Create a new page.
  * \par Function Description
- * Creates and initialises a new #Page object associated with the
- * filename \a filename_s. Note that this does not check that a file
- * exists with that name, or attempt to load any data from it.
+ *  Creates and initialises a new #Page object associated with the
+ *  filename \a filename_s. Note that this does not check that a file
+ *  exists with that name, or attempt to load any data from it.
  *
  * \note Scheme API: Implements the %new-page procedure of the (geda
- * core page) module.
+ *       core page) module.
  *
  * \return a newly-created #Page smob.
  */
@@ -317,14 +325,15 @@ EDA_SCM_DEFINE (page_new, "%new-page", 1, 0, 0,
   return edascm_from_page (page);
 }
 
-/*! \brief Remove an object from a page.
+/*!
+ * \brief Remove an object from a page.
  * \par Function Description
- * Removes \a obj_s from \a page_s.  If \a obj_s is attached to a
- * #Page other than \a page_s, or to a complex #GedaObject, throws a
- * Scheme error. If \a obj_s is not attached to a page, does nothing.
+ *  Removes \a obj_s from \a page_s.  If \a obj_s is attached to a
+ *  #Page other than \a page_s, or to a complex #GedaObject, throws a
+ *  Scheme error. If \a obj_s is not attached to a page, does nothing.
  *
  * \note Scheme API: Implements the %page-remove! procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * \return \a page_s.
  */
@@ -377,13 +386,14 @@ EDA_SCM_DEFINE (page_remove_x, "%page-remove!", 2, 0, 0,
   return page_s;
 }
 
-/*! \brief Set a page's changed flag.
+/*!
+ * \brief Set a page's changed flag.
  * \par Function Description
- * If \a flag_s is true, flag \a page_s as having been modified.
- * Otherwise, clears the change flag.
+ *  If \a flag_s is true, flag \a page_s as having been modified.
+ *  Otherwise, clears the change flag.
  *
  * \note Scheme API: Implements the %set-page-dirty! procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * param page_s page to modify.
  * param flag_s new flag setting.
@@ -401,12 +411,13 @@ EDA_SCM_DEFINE (page_set_dirty_x, "%set-page-dirty!", 2, 0, 0,
   return page_s;
 }
 
-/*! \brief Change the filename associated with a page.
+/*!
+ * \brief Change the filename associated with a page.
  * \par Function Description
- * Sets the filename associated with the #Page smob \a page_s.
+ *  Sets the filename associated with the #Page smob \a page_s.
  *
  * \note Scheme API: Implements the %set-page-filename! procedure of
- * the (geda core page) module.
+ *       the (geda core page) module.
  *
  * param page_s page to set filename for.
  * param filename_s new filename for \a page.
@@ -436,12 +447,13 @@ EDA_SCM_DEFINE (page_set_filename_x, "%set-page-filename!", 2, 0, 0,
   return page_s;
 }
 
-/*! \brief Create a string representation of a page.
+/*!
+ * \brief Create a string representation of a page.
  * \par Function Description
- * Returns a string representation of the contents of \a page_s.
+ *  Returns a string representation of the contents of \a page_s.
  *
  * \note Scheme API: Implements the %page->string procedure of the
- * (geda core page) module.
+ *       (geda core page) module.
  *
  * param page_s page to convert to a string.
  *
@@ -468,8 +480,8 @@ EDA_SCM_DEFINE (page_to_string, "%page->string", 1, 0, 0,
 /*!
  * \brief Create the (geda core page) Scheme module.
  * \par Function Description
- * Defines procedures in the (geda core page) module. The module can
- * be accessed using (use-modules (geda core page)).
+ *  Defines procedures in the (geda core page) module. The module can
+ *  be accessed using (use-modules (geda core page)).
  */
 static void
 init_module_geda_core_page (void *nothing)
@@ -498,8 +510,8 @@ init_module_geda_core_page (void *nothing)
 /*!
  * \brief Initialise the basic gEDA page manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with #Page
- * smobs. Should only be called by edascm_init().
+ *  Registers some Scheme procedures for working with #Page
+ *  smobs. Should only be called by edascm_init().
  */
 void
 edascm_init_page (void)

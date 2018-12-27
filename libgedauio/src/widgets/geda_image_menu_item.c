@@ -77,7 +77,7 @@ static void geda_image_menu_item_set_label            (GedaMenuItem      *menu_i
 static const char *geda_image_menu_item_get_label     (GedaMenuItem      *menu_item);
 
 static void geda_image_menu_item_forall               (GtkContainer     *container,
-                                                       bool	         include_internals,
+                                                       bool              include_internals,
                                                        GtkCallback       callback,
                                                        void *            callback_data);
 
@@ -114,6 +114,8 @@ struct _GedaImageMenuItemData
 {
   GtkAction *action;
 };
+
+static const char str_use_stock[]  = "use-stock";
 
 static GtkActivatableIface *parent_activatable_iface;
 
@@ -428,7 +430,7 @@ static void geda_image_menu_item_class_init (void *class, void *class_data)
    * If %TRUE, the label set in the menuitem is used as a
    * stock id to select the stock item for the item.
    */
-  params = g_param_spec_boolean ("use-stock",
+  params = g_param_spec_boolean (str_use_stock,
                                _("Use stock"),
                                _("Whether to use the label text to create a stock menu item"),
                                   FALSE,
@@ -953,7 +955,7 @@ GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
 {
   return g_object_new (GEDA_TYPE_IMAGE_MENU_ITEM,
                        "label", stock_id,
-                       "use-stock", TRUE,
+                       str_use_stock, TRUE,
                        "accel-group", accel_group,
                        NULL);
 }
@@ -979,7 +981,7 @@ void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
 
     geda_image_menu_item_recalculate (image_menu_item);
 
-    GEDA_OBJECT_NOTIFY (image_menu_item, "use-stock");
+    GEDA_OBJECT_NOTIFY (image_menu_item, str_use_stock);
   }
 }
 

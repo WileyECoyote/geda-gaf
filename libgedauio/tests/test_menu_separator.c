@@ -138,6 +138,61 @@ int check_construction (void)
   return result;
 }
 
+int check_accessors(void)
+{
+  int result = 0;
+
+  GedaMenuItem *menu_item;
+  GtkWidget    *widget;
+
+  widget    = geda_menu_separator_new();
+  menu_item = GEDA_MENU_ITEM(widget);
+
+  if (!menu_item) {
+    fprintf(stderr, "FAILED: line <%d> GEDA_MENU_ITEM %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    if (geda_menu_item_is_selectable (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; selectable\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    if (geda_menu_item_is_widget_selectable (widget)) {
+      fprintf(stderr, "FAILED: line <%d> %s; widget selectable\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    if (geda_menu_item_get_event_window (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; event window\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    if (geda_menu_item_get_submenu_widget (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; submenu widget\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    if (geda_menu_item_get_accel_path (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; accel path\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    char c = geda_menu_item_get_mnemonic(menu_item);
+
+    if (c != -1) {
+      fprintf(stderr, "FAILED: line <%d> %s; mnemonic <%c>\n", __LINE__, TWIDGET, c);
+      result++;
+    }
+  }
+
+  g_object_ref_sink(widget); /* Sink reference to menu_seperator */
+  g_object_unref(widget);    /* Does not destroy widget */
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -157,6 +212,17 @@ main (int argc, char *argv[])
     }
     else {
       fprintf(stderr, "Caught signal checking constructors in %s\n\n", MUT);
+    }
+
+    if (!result) {
+
+      if (setjmp(point) == 0) {
+        result = check_accessors();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
     }
   }
   return result;

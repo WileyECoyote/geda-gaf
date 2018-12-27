@@ -98,7 +98,7 @@ int check_construction (void)
 
   widget = NULL;
 
-  /* geda_image_menu_item_new_with_label */
+  /* geda_image_menu_item_new_with_mnemonic */
 
   widget = geda_image_menu_item_new_with_mnemonic ("<b>Walrus</b>");
 
@@ -112,7 +112,7 @@ int check_construction (void)
 
   widget = NULL;
 
-  /* geda_image_menu_item_new_with_label */
+  /* geda_image_menu_item_new_from_stock */
 
   widget = geda_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
 
@@ -178,6 +178,7 @@ check_accessors ()
       result++;
     }
 
+    /* The default is FALSE */
     if (geda_image_menu_item_get_use_stock(image_menu_item)) {
       fprintf(stderr, "FAILED: line <%d> get_use_stock %s\n", __LINE__, TWIDGET);
       result++;

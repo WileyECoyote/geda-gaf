@@ -1,3 +1,21 @@
+2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * bitmaps/geda-warning.png: Remove bitmap image, the image is not longer
+      needed since the image is embedded in libgeda.
+
+    * include/geda/geda_toolbars.h: Add GedaDockBox cast in GEDA_PACK_DOCKBOX
+      macro.
+
+2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Add GEDA_PACK_DOCKBOX macro.
+
+2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .kateconfig: Add local configuration file for Kate editor.
+
+    * configure.ac: Display the templates documents directory when configured.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Add gschem/templates/Makefile.

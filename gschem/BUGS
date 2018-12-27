@@ -8,9 +8,18 @@ Bugs (no particular order):
 
     Grips are not sized correctly.
 
-    exported symbols are translated back to normalicy
+    directory bitmap -> bitmaps
+
+    exported symbols are not translated back to normalicy
 
 Archived:
+
+FIXED Reset Attribute positions not redrawing correctly.
+
+FIXED Attributes tab of the Preference dialog Count of target list is
+      wrong if item is removed.
+
+FIXED tool menu gnetlist not working on Win32
 
 FIXED Component dialog tree popup menu "show tooltips" are tweaked
 

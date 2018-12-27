@@ -78,6 +78,7 @@
 
 struct _GedaHandleBoxData
 {
+  GtkWidget      *invisible;
   unsigned int settings_signal_id;
   int orig_x;
   int orig_y;
@@ -319,31 +320,12 @@ static int effective_handle_position (GedaHandleBox *handlebox)
   return handle_position;
 }
 
-/*! \internal Common helper
- *
- * Called by 1.) geda_handle_box_button_press
- *           2.) geda_handle_box_end_drag
- */
-static GtkWidget *geda_handle_box_get_invisible (void)
-{
-  static GtkWidget *handle_box_invisible = NULL;
-
-  if (!handle_box_invisible) {
-
-    handle_box_invisible = gtk_invisible_new ();
-
-    gtk_widget_show (handle_box_invisible);
-  }
-
-  return handle_box_invisible;
-}
-
 /* Helper for geda_handle_box_grab_event, removes the grab from
  * handlebox and disconnects the grab handler
  */
 static void geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
 {
-  GtkWidget *invisible = geda_handle_box_get_invisible ();
+  GtkWidget *invisible = handlebox->priv->invisible;
 
   handlebox->in_drag = FALSE;
 
@@ -758,7 +740,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       int width, height;
 
       priv   = handlebox->priv;
-      invisible = geda_handle_box_get_invisible ();
+      invisible = priv->invisible;
 
       gtk_invisible_set_screen ((GtkInvisible*)invisible,
                                 gtk_widget_get_screen (widget));
@@ -1509,6 +1491,17 @@ static void geda_handle_box_set_property (GObject      *object,
   }
 }
 
+/*! \internal gobject_class->constructed */
+static void
+geda_handle_box_constructed (GObject *object)
+{
+  GedaHandleBox     *handlebox = (GedaHandleBox*)object;
+  GedaHandleBoxData *priv = handlebox->priv;
+
+  priv->invisible = gtk_invisible_new ();
+  gtk_widget_show (priv->invisible);
+}
+
 /*! \internal gobject_class->finalize */
 static void geda_handle_box_finalize (GObject *object)
 {
@@ -1549,6 +1542,7 @@ static void geda_handle_box_class_init(void *g_class, void *class_data)
   widget_class    = (GtkWidgetClass*)class;
   container_class = (GtkContainerClass*)class;
 
+  object_class->constructed    = geda_handle_box_constructed;
   object_class->finalize       = geda_handle_box_finalize;
   object_class->get_property   = geda_handle_box_get_property;
   object_class->set_property   = geda_handle_box_set_property;

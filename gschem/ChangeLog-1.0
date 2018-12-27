@@ -1,9 +1,40 @@
+2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Revise o_attrib_reset_position to utilize
+      getters and setters to retrieve and update GedaObject properties.
+
+2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Replace GtkEntry with GedaEntry for the filter
+      entry widget.
+
+    * src/x/x_menus.c: Remove redundant g_object_set visible, presumably
+      not removed when the call to gtk_widget_show_all was added.
+
+    * src/x/x_toolbars.c: Implement GEDA_PACK_DOCKBOX macro to put handlebox
+      containers in dockbox objects.
+
+2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Revise x_dnd_drag_data_get to reuse the target_type that
+      was passed in as the second argument to gtk_selection_data_set instead
+      of calling gtk_selection_data_get_target since we already know what type
+      of data is being send.
+
+2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Revised clear_buffer_popup_clicked to not close the
+      menu when the "clear" popup option is clicked to clear a buffer from
+      the menu if anything is selected.
+
 2018-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_buffer.c: Add function o_buffer_clear.
 
     * src/x/x_menus.c: Revise x_menu_setup_ui to add GedaMenuSeparator instead
-      of GedaMenuItem without a label for menu separators.
+      of GedaMenuItem without a label for menu separators. Add x_menu_add_menu_
+      popups and supporting routines to attach a popup menu to each paste buffer
+      item to allow users to clear the buffer from the menu.
 
     * templates/Makefile.am: Add new subdirectory for template documents with
       a blank schematic.sch.in and minimal symbol.sym.in files and attempt to

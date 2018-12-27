@@ -1,3 +1,75 @@
+2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc_object.c: Revise setters to check values for
+
+          * fill_options->fill_pitch1
+          * fill_options->fill_pitch2
+          * line_options->line_length
+          * line_options->line_space
+          * line_options->line_width
+
+    * src/object/o_attrib.c: Unset bounds_valid in functions:
+
+          * geda_attrib_object_set_integer_value
+          * geda_attrib_object_set_value
+
+2018-12-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc_object.c: Revise setters to conditionally set value
+      when not equal to the current value and unset bounds_valid.
+
+    * src/object/o_bus_object.c: Unset bounds_valid in setter, don`t bother
+      checking if the value was changed.
+
+    * src/object/o_circle_object.c: Revise setters to conditionally set
+      value when not equal to the current value and unset bounds_valid.
+
+    * tests/test_complex_object.c: Add basic check for geda_complex_object_
+      get_filename, add comment.
+
+    * tests/test_line_object.c: Add checks for bounds_valid in check_query.
+
+    * tests/test_object.c: Include errant color value in check for geda_
+      object_get_color, add basic checks for:
+
+          * geda_object_get_locked_color
+          * geda_object_set_locked_color
+
+2018-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/Makefile.am: Add warning_xpm.h.
+
+    * include/libgeda/prototype.h: Add WARN_UNUSED attribute:
+
+          * geda_utility_glist_clear
+          * geda_utility_gslist_find_string
+
+    * src/geda/geda_object.c: Add accessors:
+
+          * geda_object_get_visibility
+          * geda_object_set_visibility
+
+    * src/object/o_text_object.c: Revise geda_text_object_set_alignment
+      to only validate and set the alignment if alignment is different
+      from the current value and unset the bounds_valid if changed. Fix
+      geda_text_object_set_size to size to MINIMUM_TEXT_SIZE when size
+      less than MINIMUM_TEXT_SIZE and unset the bounds_valid if changed.
+      Invalidate the bounds in functions:
+
+          * geda_text_object_set_angle
+          * geda_text_object_set_x
+          * geda_text_object_set_y
+
+2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/warning_xpm.h: Add xpm version geda_warning.png image.
+
+    * src/object/o_picture_object.c: Include warning_xpm.h and overhaul
+      geda_picture_object_get_fallback_pixbuf to have a GdkPixbuf created
+      from the xpm data, and use this for the fallback image.
+
+    * src/scheme/scheme_page.c: Reformat Doxygen documentation.
+
 2018-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/scheme/scheme_log.c: Replace g_free with geda_free in log_read_x.
@@ -1205,7 +1277,7 @@
     * src/geda/geda_complex.c: Add function documentation for
       geda_complex_set_is_embedded.
 
-    * src/geda/geda_picture.c: Add accessor:
+    * src/geda/geda_picture.c: Add accessors:
 
           * geda_picture_get_is_embedded
           * geda_picture_set_angle

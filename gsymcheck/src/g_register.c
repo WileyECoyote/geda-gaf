@@ -35,9 +35,6 @@
  *  \par Function Description
  *  Creates <B>subr</B> objects to make <B>g_rc_*</B> gsymcheck API functions
  *  visible to Scheme.
- *
- *  \todo Add valid-attributes, see "component-dialog-attributes" in
- *        gschem/etc/system-gschemrc.scm.
  */
 void g_register_funcs(void)
 {

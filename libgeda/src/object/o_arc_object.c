@@ -1560,7 +1560,10 @@ void geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int 
 void geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
 {
   if (GEDA_IS_ARC(object)) {
-    object->arc->arc_sweep = sweep;
+    if (object->arc->arc_sweep != sweep) {
+      object->arc->arc_sweep = sweep;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1579,7 +1582,10 @@ void
 geda_arc_object_set_center_x (GedaObject *object, int x)
 {
   if (GEDA_IS_ARC(object)) {
-    object->arc->x = x;
+    if (object->arc->x != x) {
+      object->arc->x = x;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1597,7 +1603,10 @@ geda_arc_object_set_center_x (GedaObject *object, int x)
 void geda_arc_object_set_center_y (GedaObject *object, int y)
 {
   if (GEDA_IS_ARC(object)) {
-    object->arc->y = y;
+    if (object->arc->y != y) {
+      object->arc->y = y;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1615,9 +1624,12 @@ void geda_arc_object_set_center_y (GedaObject *object, int y)
 void geda_arc_object_set_end_cap (GedaObject *object, int line_end)
 {
   if (GEDA_IS_ARC(object)) {
-    object->line_options->line_end = line_end < END_NONE ? END_NONE :
-                                     line_end > END_VOID ? END_VOID :
-                                     line_end;
+    if (object->line_options->line_end != line_end) {
+      object->line_options->line_end = line_end < END_NONE ? END_NONE :
+                                       line_end > END_VOID ? END_VOID :
+                                       line_end;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1635,7 +1647,10 @@ void geda_arc_object_set_end_cap (GedaObject *object, int line_end)
 void geda_arc_object_set_fill_angle1 (GedaObject *object, int angle)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_angle1 = angle;
+    if (object->fill_options->fill_angle1 != angle) {
+      object->fill_options->fill_angle1 = angle;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1653,7 +1668,10 @@ void geda_arc_object_set_fill_angle1 (GedaObject *object, int angle)
 void geda_arc_object_set_fill_angle2 (GedaObject *object, int angle)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_angle2 = angle;
+    if (object->fill_options->fill_angle2 != angle) {
+      object->fill_options->fill_angle2 = angle;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1671,7 +1689,10 @@ void geda_arc_object_set_fill_angle2 (GedaObject *object, int angle)
 void geda_arc_object_set_fill_pitch1 (GedaObject *object, int pitch)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_pitch1 = pitch;
+    if (object->fill_options->fill_pitch1 != pitch) {
+      object->fill_options->fill_pitch1 = pitch < 0 ? 0 : pitch;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1689,7 +1710,10 @@ void geda_arc_object_set_fill_pitch1 (GedaObject *object, int pitch)
 void geda_arc_object_set_fill_pitch2 (GedaObject *object, int pitch)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_pitch2 = pitch;
+    if (object->fill_options->fill_pitch2 != pitch) {
+      object->fill_options->fill_pitch2 = pitch < 0 ? 0 : pitch;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1707,9 +1731,12 @@ void geda_arc_object_set_fill_pitch2 (GedaObject *object, int pitch)
 void geda_arc_object_set_fill_type (GedaObject *object, int type)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_type = type < TYPE_SOLID ? TYPE_SOLID :
-                                      type > TYPE_ERASE ? TYPE_ERASE :
-                                      type;
+    if (object->fill_options->fill_type != type) {
+      object->fill_options->fill_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                        type > TYPE_ERASE ? TYPE_ERASE :
+                                        type;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1727,7 +1754,10 @@ void geda_arc_object_set_fill_type (GedaObject *object, int type)
 void geda_arc_object_set_fill_width (GedaObject *object, int width)
 {
   if (GEDA_IS_ARC(object)) {
-    object->fill_options->fill_width = width < 0 ? 0 : width;
+    if (object->fill_options->fill_width != width) {
+      object->fill_options->fill_width = width < 0 ? 0 : width;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1745,7 +1775,10 @@ void geda_arc_object_set_fill_width (GedaObject *object, int width)
 void geda_arc_object_set_line_length (GedaObject *object, int length)
 {
   if (GEDA_IS_ARC(object)) {
-    object->line_options->line_length = length;
+    if (object->line_options->line_length != length) {
+      object->line_options->line_length = length > 0 ? length : 0;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1763,7 +1796,10 @@ void geda_arc_object_set_line_length (GedaObject *object, int length)
 void geda_arc_object_set_line_space (GedaObject *object, int space)
 {
   if (GEDA_IS_ARC(object)) {
-    object->line_options->line_space = space;
+    if (object->line_options->line_space != space) {
+      object->line_options->line_space =  space > 0 ? space : 0;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1781,9 +1817,12 @@ void geda_arc_object_set_line_space (GedaObject *object, int space)
 void geda_arc_object_set_line_type (GedaObject *object, int type)
 {
   if (GEDA_IS_ARC(object)) {
-    object->line_options->line_type = type < TYPE_SOLID ? TYPE_SOLID :
-                                      type > TYPE_ERASE ? TYPE_ERASE :
-                                      type;
+    if (object->line_options->line_type != type) {
+      object->line_options->line_type = type < TYPE_SOLID ? TYPE_SOLID :
+                                        type > TYPE_ERASE ? TYPE_ERASE :
+                                        type;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1801,7 +1840,10 @@ void geda_arc_object_set_line_type (GedaObject *object, int type)
 void geda_arc_object_set_line_width (GedaObject *object, int width)
 {
   if (GEDA_IS_ARC(object)) {
-    object->line_options->line_width = width;
+    if (object->line_options->line_width != width) {
+      object->line_options->line_width =  width > 0 ? width : 0;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1819,7 +1861,10 @@ void geda_arc_object_set_line_width (GedaObject *object, int width)
 void geda_arc_object_set_radius (GedaObject *object, int radius)
 {
   if (GEDA_IS_ARC(object)) {
-    object->arc->radius = radius;
+    if (object->arc->radius != radius) {
+      object->arc->radius = radius;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);
@@ -1837,7 +1882,10 @@ void geda_arc_object_set_radius (GedaObject *object, int radius)
 void geda_arc_object_set_start_angle (GedaObject *object, int angle)
 {
   if (GEDA_IS_ARC(object)) {
-    object->arc->start_angle = angle;
+    if (object->arc->start_angle != angle) {
+      object->arc->start_angle = angle;
+      object->bounds_valid = FALSE;
+    }
   }
   else {
     geda_arc_object_error(__func__, object);

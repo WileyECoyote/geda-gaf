@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -71,55 +71,55 @@ msgstr "صفحه فعال را تنظیم کنید."
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "درست می شود اگر صفحه تغییر کرده و ذخیره نشده باشد."
 
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "صفحه فعال را تنظیم کنید و دایرکتوری فعلی را تغییر دهید."
 
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "یک صفحه باز کن."
 
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "صفحه بستن."
 
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "یک صفحه خالی جدید ایجاد کنید."
 
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "تغییر نام یک صفحه نام فایل را تغییر می دهد."
 
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "با نوشتن به ذخیره سازی، صفحه را ذخیره کنید."
 
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "صفحه را با استفاده از یک نام فایل جدید ذخیره کنید."
 
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "تمام صفحات باز شده را به ذخیره سازی ذخیره کنید."
 
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "بازده درست است شی است GedaCapsule، در غیر این صورت کاذب است."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "مرزهای مستطیلی یک شی را باز می گرداند."
 
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "یک شی از یک را بازیابی کنید GedaCapsule."
 
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "یک شی را به یک صفحه یا یک شی دیگری اضافه کنید."
 
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
@@ -222,7 +222,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:117
@@ -307,7 +307,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -315,11 +315,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

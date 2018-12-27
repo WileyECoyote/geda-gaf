@@ -2756,13 +2756,13 @@ static GtkWidget *compselect_create_filter_area (Compselect *compselect)
   PACK_BOX(hbox, label, FALSE, FALSE, 0);
 
   /* create the text entry for filter in components */
-  entry = g_object_new (GTK_TYPE_ENTRY, "text", "", NULL);
+  entry = geda_entry_new();
 
   /* Add the filter entry to the filter area */
   PACK_BOX(hbox, entry,TRUE, TRUE, 0);
 
   /* set filter entry of compselect */
-  compselect->entry_filter = GTK_ENTRY (entry);
+  compselect->entry_filter = (GedaEntry*)entry;
 
   /* and init the event source for component filter */
   compselect->filter_timeout = 0;

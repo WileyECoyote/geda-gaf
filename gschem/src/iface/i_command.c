@@ -3058,7 +3058,7 @@ COMMAND (do_down_schematic)
     char *current_filename = geda_strsplit(attrib, ',', pcount);
 
     /* loop over all filenames */
-    while(current_filename != NULL) {
+    while (current_filename != NULL) {
 
       GError *err = NULL;
 

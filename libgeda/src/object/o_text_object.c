@@ -971,10 +971,15 @@ void geda_text_object_set_alignment (GedaObject *object, int alignment)
   g_return_if_fail (object != NULL);
   g_return_if_fail (object->text != NULL);
   g_return_if_fail (object->type == OBJ_TEXT);
-  g_return_if_fail (alignment >= LOWER_LEFT);
-  g_return_if_fail (alignment <= UPPER_RIGHT);
 
-  object->text->alignment = alignment;
+  if (object->text->alignment != alignment) {
+
+    g_return_if_fail (alignment >= LOWER_LEFT);
+    g_return_if_fail (alignment <= UPPER_RIGHT);
+
+    object->text->alignment = alignment;
+    object->bounds_valid = FALSE;
+  }
 }
 
 /*!
@@ -989,6 +994,7 @@ void geda_text_object_set_angle (GedaObject *object, int angle)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->angle = angle;
+    object->bounds_valid = FALSE;
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");
@@ -1030,11 +1036,16 @@ geda_text_object_set_rendered_bounds_func (GedaObject         *object,
 void geda_text_object_set_size (GedaObject *object, int size)
 {
   if (GEDA_IS_TEXT(object)) {
-    if (size < MINIMUM_TEXT_SIZE) {
-      object->text->size = size;
-    }
-    else {
-      object->text->size = size;
+
+    if (object->text->size != size) {
+
+      if (size < MINIMUM_TEXT_SIZE) {
+        object->text->size = MINIMUM_TEXT_SIZE;
+      }
+      else {
+        object->text->size = size;
+      }
+      object->bounds_valid = FALSE;
     }
   }
   else {
@@ -1072,6 +1083,7 @@ void geda_text_object_set_x (GedaObject *object, int x)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->x = x;
+    object->bounds_valid = FALSE;
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");
@@ -1088,6 +1100,7 @@ void geda_text_object_set_y (GedaObject *object, int y)
 {
   if (GEDA_IS_TEXT(object)) {
     object->text->y = y;
+    object->bounds_valid = FALSE;
   }
   else {
     BUG_MSG("GEDA_IS TEXT failed");

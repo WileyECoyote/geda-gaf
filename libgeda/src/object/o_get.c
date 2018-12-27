@@ -392,6 +392,8 @@ bool geda_object_get_is_valid_attribute (GedaObject *object)
  * \param object   The GedaObject structure to be queried
  *
  * \return TRUE when VISIBLE, FALSE otherwise
+ *
+ * \sa geda_object_get_visibility
  */
 bool geda_object_get_is_visible (const GedaObject *object)
 {

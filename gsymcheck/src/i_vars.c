@@ -168,12 +168,19 @@ void i_vars_set_valid_attributes(SYMCHECK *s_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set gsymcheck Top Level Variables
+ * \par Function Description
+ *  Calls libgeda::geda_iface_vars_set to initialize the \a pr_current
+ *  members. gsymcheck does not use an application top-level like gschem,
+ *  per-se, but does use a SYMCHECK record which is initialized on a per
+ *  symbol basis by s_symstruct_init, to record and track statistics.
  *
+ * \sa i_vars_set_known_devices i_vars_set_valid_attributes
  */
 void i_vars_set(GedaToplevel *pr_current)
 {
   geda_iface_vars_set(pr_current);
+
+  geda_toplevel_set_file_open_flags(pr_current, F_OPEN_NONE);
 }

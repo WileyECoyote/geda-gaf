@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:48-0600\n"
+"POT-Creation-Date: 2018-12-22 00:07-0600\n"
 "PO-Revision-Date: 2017-12-13 02:37-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -169,51 +169,51 @@ msgstr "Eliminar múltiples objetos de una página."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr "Create a new arc object."
+msgstr "Crear un nuevo objeto de arco."
 
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr "Create a new box object."
+msgstr "Crear un nuevo objeto caja."
 
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr "Create a new bus object."
+msgstr "Crear un nuevo objeto de bus.."
 
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr "Create a new circle object."
+msgstr "Crear un nuevo objeto de círculo."
 
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr "Create a new complex object."
+msgstr "Crear un nuevo objeto complejo.."
 
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr "Create a new line object."
+msgstr "Crear un nuevo objeto de línea."
 
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr "Create a new net object."
+msgstr "Crear un nuevo objeto de red."
 
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr "Create a new path object."
+msgstr "Crear un nuevo objeto de ruta."
 
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr "Create a new picture object."
+msgstr "Crear un nuevo objeto de imagen."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr "Create a new pin object."
+msgstr "Crear un nuevo objeto pin."
 
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr "Create a new text object."
+msgstr "Crear un nuevo objeto de texto."
 
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr "Create a new attribute object."
+msgstr "Crear un nuevo objeto de atributo."
 
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
@@ -241,7 +241,7 @@ msgid "Select this Object"
 msgstr ""
 
 #: libgedathon/include/geda_module.h:108
-msgid "UnSelect this Object"
+msgid "Unselect this Object"
 msgstr ""
 
 # Returns the length of a linear object
@@ -329,7 +329,7 @@ msgid "Circle"
 msgstr ""
 
 #: libgedathon/module/functions.c:1447
-msgid "line"
+msgid "Line"
 msgstr ""
 
 #: libgedathon/module/functions.c:1512
@@ -337,11 +337,11 @@ msgid "Net"
 msgstr ""
 
 #: libgedathon/module/functions.c:1662
-msgid "path"
+msgid "Path"
 msgstr ""
 
 #: libgedathon/module/functions.c:1879
-msgid "pin"
+msgid "Pin"
 msgstr ""
 
 #: libgedathon/module/functions.c:2114

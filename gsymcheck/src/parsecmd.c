@@ -27,12 +27,7 @@
 #include <config.h>
 #include <version.h>
 
-#include <libgeda/libgeda.h>
-
-#include "../include/struct.h"
-#include "../include/globals.h"
-#include "../include/prototype.h"
-#include "../include/gettext.h"
+#include "../include/gsymcheck.h"
 
 #define OPTIONS "hquvV"
 

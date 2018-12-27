@@ -30,12 +30,7 @@
 #include <locale.h>
 #endif
 
-#include <libgeda/libgeda.h>
-
-#include "../include/struct.h"
-#include "../include/globals.h"
-#include "../include/prototype.h"
-#include "../include/gettext.h"
+#include "../include/gsymcheck.h"
 
 /*! \brief Cleanup gsymcheck on exit.
  *  \par Function Description
