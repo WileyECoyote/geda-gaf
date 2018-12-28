@@ -11,6 +11,7 @@
     * tests/test_menu_item.c: Add checks for:
 
           * geda_menu_item_get_mnemonic
+          * geda_menu_item_set_mnemonic
 
 2018-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
