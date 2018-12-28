@@ -17,6 +17,7 @@
       accessors:
 
           * geda_menu_item_get_from_menubar
+          * geda_menu_item_get_label
 
 2018-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
