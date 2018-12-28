@@ -3476,9 +3476,9 @@ void geda_menu_item_refresh_accel_path (GedaMenuItem  *menu_item,
  * Note that you do need to set an accelerator on the parent menu with
  * geda_menu_set_accel_group() for this to work.
  *
- * Note that \a accel_path string will be stored in a GQuark.
- * Therefore, if you pass a static string, you can save some memory
- * by interning it first with g_intern_static_string().
+ * \note \a accel_path string will be stored in a GQuark. Therefore,
+ *        if you pass a static string, you can save some memory by
+ *        interning it first with g_intern_static_string().
  *
  * \param [in] menu_item  a GedaMenuItem
  * \param [in] accel_path accelerator path, corresponding to this menu
@@ -3665,13 +3665,13 @@ unsigned short geda_menu_item_get_toggle_size (GedaMenuItem  *menu_item)
 }
 
 /*!
- * \brief Get menu item from menubar property
+ * \brief Get menu item from menubar member
  * \par Function Description
- *  Gets text on the \a menu_item from-menubar property.
+ *  Gets the \a menu_item from-menubar member.
  *
  * \param [in] menu_item a GedaMenuItem
  *
- * \retval TRUE is the parent of \a menu_item is MenuBar.
+ * \retval TRUE if the parent of \a menu_item is MenuBar.
  */
 bool geda_menu_item_get_from_menubar (GedaMenuItem *menu_item)
 {
