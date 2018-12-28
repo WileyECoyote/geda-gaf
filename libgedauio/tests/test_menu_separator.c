@@ -195,6 +195,12 @@ int check_accessors(void)
       fprintf(stderr, "FAILED: line <%d> %s; toggle size\n", __LINE__, TWIDGET);
       result++;
     }
+
+    if (geda_menu_item_get_from_menubar (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; from menubar\n", __LINE__, TWIDGET);
+      result++;
+    }
+
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */
