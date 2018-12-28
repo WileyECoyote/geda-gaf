@@ -235,6 +235,17 @@ check_accessors ()
       result++;
     }
 
+    /* geda_menu_item_get_mnemonic */
+
+    char mnemonic;
+
+    mnemonic = geda_menu_item_get_mnemonic(menu_item);
+
+    if (mnemonic != 'P') {
+      fprintf(stderr, "FAILED: line <%d> get mnemonic %s, %c\n", __LINE__, TWIDGET, mnemonic);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
