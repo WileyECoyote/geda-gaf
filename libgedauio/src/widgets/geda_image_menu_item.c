@@ -377,13 +377,14 @@ static void geda_image_menu_item_finalize (GObject *object)
   ((GObjectClass*)geda_image_menu_item_parent_class)->finalize (object);
 }
 
-/*! \brief Type class initializer for GedaImageMenuItem
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for GedaImageMenuItem
+ * \par Function Description
  *  Type class initializer for GedaImageMenuItem. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- *  param [in] class  The instance of GedaActionClass to be initialized
+ * \param [in] class      The instance of GedaActionClass to be initialized
+ * \param [in] class_data Not implemented
  */
 static void geda_image_menu_item_class_init (void *class, void *class_data)
 {
@@ -493,16 +494,16 @@ static void geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
   g_hash_table_replace (image_menu_item_hash, instance, instance);
 }
 
-/*! \brief Retrieve GedaImageMenuItem's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaImageMenuItem's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaImageMenuItem Type identifier. When
  *  first called, the function registers a #GedaImageMenuItem in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaImageMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaImageMenuItem.
+ * \return GedaType identifier associated with GedaImageMenuItem.
  */
 GedaType geda_image_menu_item_get_type (void)
 {
@@ -873,12 +874,13 @@ static void geda_image_menu_item_forall (GtkContainer *container,
 }
 
 
-/*! \brief Create a New GedaImageMenuItem Object
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * Creates a new #GedaImageMenuItem with an empty label.
+/*!
+ * \brief Create a New GedaImageMenuItem Object
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Creates a new #GedaImageMenuItem with an empty label.
  *
- * \returns: a new #GedaImageMenuItem.
+ * \returns a new #GedaImageMenuItem.
  *
  * \sa geda_image_menu_item_new_with_label geda_image_menu_item_new_with_mnemonic
  */
@@ -887,14 +889,15 @@ GtkWidget *geda_image_menu_item_new (void)
   return g_object_new (GEDA_TYPE_IMAGE_MENU_ITEM, NULL);
 }
 
-/*! \brief Create a New GedaImageMenuItem Object with a Plain Label
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * Creates a new #GedaImageMenuItem containing a label.
+/*!
+ * \brief Create a New GedaImageMenuItem Object with a Plain Label
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Creates a new #GedaImageMenuItem containing a label.
  *
  * \param [in] label: the text of the menu item.
  *
- * \returns: a new #GedaImageMenuItem.
+ * \returns a new #GedaImageMenuItem.
  *
  * \sa geda_image_menu_item_new_with_mnemonic
  *
@@ -907,17 +910,18 @@ GtkWidget *geda_image_menu_item_new_with_label (const char *label)
 }
 
 
-/*! \brief Create a New GedaImageMenuItem Object with a Mnemonic Label
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * Creates a new #GedaImageMenuItem containing a label and setting
- * use-underline proptery to TRUE, so an underscore in the label
- * indicates the mnemonic for the menu item.
+/*!
+ * \brief Create a New GedaImageMenuItem Object with a Mnemonic Label
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Creates a new #GedaImageMenuItem containing a label and setting
+ *  use-underline proptery to TRUE, so an underscore in the label
+ *  indicates the mnemonic for the menu item.
  *
- * \param [in] label: the text of the menu item, with an underscore
- *                    in front of the mnemonic character
+ * \param [in] label the text of the menu item, with an underscore
+ *                   in front of the mnemonic character
  *
- * \returns: a new #GedaImageMenuItem
+ * \returns a new #GedaImageMenuItem
  *
  * \sa geda_image_menu_item_new_with_label
  */
@@ -929,26 +933,25 @@ GtkWidget *geda_image_menu_item_new_with_mnemonic (const char *label)
                        NULL);
 }
 
-/*! \brief Create a New GedaImageMenuItem Object with a Stock Image
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
+/*!
+ * \brief Create a New GedaImageMenuItem Object with a Stock Image
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Creates a new #GedaImageMenuItem containing the image and text from a
+ *  stock item. Some stock ids have preprocessor macros like GTK_STOCK_OK
+ *  and GTK_STOCK_APPLY.
  *
- * Creates a new #GedaImageMenuItem containing the image and text from a
- * stock item. Some stock ids have preprocessor macros like GTK_STOCK_OK
- * and GTK_STOCK_APPLY.
+ *  If you want this menu item to have changeable accelerators, then pass in
+ *  %NULL for accel_group. Next call geda_menu_item_set_accel_path() with an
+ *  appropriate path for the menu item, use gtk_stock_lookup() to look up the
+ *  standard accelerator for the stock item, and if one is found, call
+ *  gtk_accel_map_add_entry() to register it.
  *
- * If you want this menu item to have changeable accelerators, then pass in
- * %NULL for accel_group. Next call geda_menu_item_set_accel_path() with an
- * appropriate path for the menu item, use gtk_stock_lookup() to look up the
- * standard accelerator for the stock item, and if one is found, call
- * gtk_accel_map_add_entry() to register it.
- *
- * \param [in] stock_id:    the name of the stock item.
- * \param [in] accel_group: the GtkAccelGroup to add the menu items
+ * \param [in] stock_id     the name of the stock item.
+ * \param [in] accel_group  the GtkAccelGroup to add the menu items
  *                          accelerator to, or %NULL.
  *
- * \returns: a new #GedaImageMenuItem.
- *
+ * \returns a new #GedaImageMenuItem.
  */
 GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
                                                 GtkAccelGroup *accel_group)
@@ -960,15 +963,15 @@ GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
                        NULL);
 }
 
-/*! \brief Set GedaImageMenuItem Use-Stock Property
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * If %TRUE, the label set in the menuitem is used as a
- * stock id to select the stock item for the item.
+/*!
+ * \brief Set GedaImageMenuItem Use-Stock Property
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  If %TRUE, the label set in the menuitem is used as a stock id to select
+ *  the stock item for the item.
  *
- * \param [in] image_menu_item: a #GedaImageMenuItem
- * \param [in] use_stock:       set value
- *
+ * \param [in] image_menu_item  a #GedaImageMenuItem
+ * \param [in] use_stock        set value
  */
 void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
                                                       bool  use_stock)
@@ -985,17 +988,17 @@ void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
   }
 }
 
-/*! \brief Get GedaImageMenuItem Use-Stock Property
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * Checks whether the label set in the menuitem is used as a
- * stock id to select the stock item for the item.
+/*!
+ * \brief Get GedaImageMenuItem Use-Stock Property
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Checks whether the label set in the menuitem is used as a stock id to
+ *  select the stock item for the item.
  *
- * Returns: %TRUE if the label set in the menuitem is used as a
- *     stock id to select the stock item for the item
+ * \returns %TRUE if the label set in the menuitem is used as a
+ *          stock id to select the stock item for the item
  *
  * \param [in] image_menu_item: a #GedaImageMenuItem
- *
  */
 bool geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
 {
@@ -1004,14 +1007,15 @@ bool geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
   return image_menu_item->use_stock;
 }
 
-/*! \brief Set GedaImageMenuItem Show-Image Property
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
- * setting and always show the image, if available.
+/*!
+ * \brief Set GedaImageMenuItem Show-Image Property
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
+ *  setting and always show the image, if available.
  *
- * Use this property if the menuitem would be useless or hard to use
- * without the image.
+ *  Use this property if the menuitem would be useless or hard to use
+ *  without the image.
  *
  * \param [in] image_menu_item  a #GedaImageMenuItem
  * \param [in] always_show      desired state
@@ -1039,11 +1043,12 @@ void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
   }
 }
 
-/*! \brief Get GedaImageMenuItem Show-Image Property
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
- * Returns whether the menu item will ignore the GtkSettings:
- * gtk-menu-images setting and always show the image, if available.
+/*!
+ * \brief Get GedaImageMenuItem Show-Image Property
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Returns whether the menu item will ignore the GtkSettings:
+ *  gtk-menu-images setting and always show the image, if available.
  *
  * \param [in] image_menu_item: a #GedaImageMenuItem
  *
@@ -1058,17 +1063,17 @@ bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
 }
 
 
-/*! \brief Add Accel group to a GedaImageMenuItem object
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
+/*!
+ * \brief Add Accel group to a GedaImageMenuItem object
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
+ *  Specify the accel_group to add the menu items accelerator to
+ *  (this only applies to stock items so a stock item must already
+ *  be set, make sure to call geda_image_menu_item_set_use_stock()
+ *  and geda_menu_item_set_label() with a valid stock item first).
  *
- * Specifies an accel_group to add the menu items accelerator to
- * (this only applies to stock items so a stock item must already
- * be set, make sure to call geda_image_menu_item_set_use_stock()
- * and geda_menu_item_set_label() with a valid stock item first).
- *
- * If you want this menu item to have changeable accelerators then
- * you shouldnt need this (see geda_image_menu_item_new_from_stock()).
+ *  If you want this menu item to have changeable accelerators then
+ *  you should not need this, see geda_image_menu_item_new_from_stock().
  *
  * \param [in] image_menu_item a #GedaImageMenuItem
  * \param [in] accel_group     the GtkAccelGroup
@@ -1160,9 +1165,10 @@ void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
   }
 }
 
-/*! \brief Get the image object associated with the menu item
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
+/*!
+ * \brief Get the image object associated with the menu item
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
  *
  * \param [in] image_menu_item a #GedaImageMenuItem
  *
@@ -1171,7 +1177,7 @@ void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
  *
  * \sa geda_image_menu_item_set_image().
  *
- * \return:the widget set as image of the GedaImageMenuItem
+ * \returns the widget set as image of the GedaImageMenuItem
  */
 GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
 {
@@ -1180,9 +1186,10 @@ GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
   return image_menu_item->image;
 }
 
-/*! \brief Remove the image object attached to the menu item
- *  \ingroup GedaImageMenuItem
- *  \par Function Description
+/*!
+ * \brief Remove the image object attached to the menu item
+ * \ingroup GedaImageMenuItem
+ * \par Function Description
  *  GtkContainerClass->remove virtual over-ride
  */
 static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
