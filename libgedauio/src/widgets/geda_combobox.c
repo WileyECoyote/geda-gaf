@@ -5675,7 +5675,7 @@ void geda_combo_box_set_active_iter (GedaComboBox *combobox, GtkTreeIter *iter)
  * \brief Get count of items in GedaComboBox Model
  * \par Function Description
  *  Returns the number of items in the GtkTreeModel acting as data
- *  source for \a combo_box. If the combo_box has not tree model
+ *  sources for \a combo_box. If the combo_box has no tree model
  *  then zero is returned.
  *
  * \param [in] combo_box A #GedaComboBox
