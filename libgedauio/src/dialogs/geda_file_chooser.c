@@ -999,10 +999,11 @@ void geda_file_chooser_set_current_name (GtkWidget *widget, const char *name)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief widget version of #geda_combo_box_get_count
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve Pointer to Extra GedaFileChooser Widget
+ * \par Function Description
+ *  Retrieves the application-supplied extra widget or NULL if
+ *  an extra widget is not present.
  */
 GtkWidget *geda_file_chooser_get_extra_widget(GtkWidget *hideous)
 {

@@ -1,3 +1,8 @@
+2018-12-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_file_chooser.c: Update function documentation for
+      geda_file_chooser_get_extra_widget.
+
 2018-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_menu_item.c: Add check for geda_menu_item_get_accel_width.
