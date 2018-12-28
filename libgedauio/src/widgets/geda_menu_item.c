@@ -3725,9 +3725,15 @@ GtkWidget *geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
 
-  geda_menu_item_ensure_label (menu_item);
+  if (!GEDA_IS_MENU_SEPERATOR (menu_item)) {
 
-  return geda_get_child_widget (menu_item);
+    geda_menu_item_ensure_label (menu_item);
+
+    return geda_get_child_widget (menu_item);
+  }
+
+  return NULL;
+
 }
 
 /*!
