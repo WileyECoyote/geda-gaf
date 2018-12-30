@@ -78,45 +78,55 @@ msgstr "מצביע על הדף הפעיל."
 msgid "Set the active page."
 msgstr "הגדר את הדף הפעיל."
 
+# Returns true if page has been modified and not saved
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "מחזירה אמת אם הדף השתנה ולא נשמר."
 
+# Set the active page, and changes current directory
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "הגדר את הדף הפעיל, ושנה את הספריה הנוכחית."
 
+# Open a page
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "פתח דף."
 
+# Close page
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "סגור את הדף."
 
+# Create a new empty page
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "צור דף ריק חדש."
 
+# Rename a page changes the filename
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "שינוי שם הדף משנה את שם הקובץ."
 
+# Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "שמור את הדף על ידי כתיבה לאחסון."
 
+# Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "שמור את הדף באמצעות שם קובץ חדש."
 
+# Save all opened pages to storage
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "שמור את כל הדפים שנפתחו לאחסון."
 
+# Returns true if object is a Geda container, otherwise false
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgid "Returns True if object is a GedaCapsule, otherwise False."
+msgstr "מחזירה נכון אם האובייקט הוא מיכל Geda, אחרת שקר."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
