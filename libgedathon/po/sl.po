@@ -72,49 +72,60 @@ msgstr "Prikličite seznam vseh strani."
 msgid "Get pointer to the active page."
 msgstr "Poiščite kazalec na aktivno stran."
 
+# Set the active page
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Nastavite aktivno stran."
 
+# Returns true if page has been modified and not saved
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "Vrne true, če je bila stran spremenjena in ni shranjena."
 
+# Set the active page, and changes current directory
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "Nastavite aktivno stran in spremenite trenutni imenik."
 
+# Open a page
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "Odprite stran."
 
+# Close page
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "Zapri stran."
 
+# Create a new empty page
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "Ustvarite novo prazno stran."
 
+# Rename a page changes the filename
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "Preimenovanje strani spremeni ime datoteke."
 
+# Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "Stran shranite tako, da jo napišete v pomnilnik."
 
+# Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "Stran shranite z novim imenom datoteke."
 
+# Save all opened pages to storage
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "Shranite vse odprte strani v pomnilnik."
 
+# Returns True if object is a Geda container, otherwise false
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
-msgstr ""
+msgid "Returns True if object is a GedaCapsule, otherwise False."
+msgstr "Vrne True, če je objekt zabojnik Geda, sicer lažen."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
