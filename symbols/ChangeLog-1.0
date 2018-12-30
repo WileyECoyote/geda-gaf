@@ -6,6 +6,8 @@
 
     * logic/ecl/MC100ELT23-2.sym: Add description and value, update footprint.
 
+    * logic/ecl/MC10E104-1.sym: Add description and value, update footprint.
+
 2018-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add manufacturer Exar.
