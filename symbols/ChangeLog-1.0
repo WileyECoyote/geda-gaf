@@ -1,3 +1,7 @@
+2018-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/ecl/MC100ELT21-1.sym: Add description and value, update footprint.
+
 2018-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * geda-clib.scm: Add manufacturer Exar.
