@@ -455,7 +455,7 @@ GedaType geda_check_menu_item_get_type (void)
 /*!
  * \brief Check if an object is a GedaCheckMenuItem
  * \par Function Description
- *  Determines if \a check_menu_item is valid by varifying \a check_menu_item
+ *  Determines if \a check_menu_item is valid by verifying \a check_menu_item
  *  is included in the hash table of GedaCheckMenuItem objects.
  *
  * \retval TRUE if \a check_menu_item is a valid GedaCheckMenuItem
