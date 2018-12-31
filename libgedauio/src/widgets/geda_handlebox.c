@@ -1155,7 +1155,16 @@ static void geda_handle_box_realize (GtkWidget *widget)
   /* Setting GDK_WINDOW_TYPE_HINT_TOOLBAR here results in the toolbar lowering
    * to the bottom window on the display with gtk+-2.0 == 2.24.30, but not with
    * 2.24.10 */
+
+#if GTK_CHECK_VERSION(2,24,30)
+
   gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_DOCK);
+
+#else
+
+  gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_DOCK |
+                                                     GDK_WINDOW_TYPE_HINT_TOOLBAR);
+#endif
 
   /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
   GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
