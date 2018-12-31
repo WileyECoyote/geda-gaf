@@ -1,5 +1,7 @@
 2018-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_accel_label.c: Reformat Doxygen block uniformly.
+
     * src/widgets/geda_handlebox.c: Conditionally compile with hinting
       GDK_WINDOW_TYPE_HINT_TOOLBAR if not Gtk+2.24.30; floating toolbars
       were stay raised to the top, above other app windows. Add ancillary

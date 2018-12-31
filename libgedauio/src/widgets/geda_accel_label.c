@@ -117,6 +117,7 @@ static void *geda_accel_label_parent_class = NULL;
 
 static GHashTable *accel_label_hash = NULL;
 
+
 bool geda_accel_label_refetch (GedaAccelLabel *accel_label)
 {
   bool enable_accels;
@@ -531,8 +532,9 @@ static void substitute_underscores (char *str)
       *p = ' ';
 }
 
-/*! \brief Get the Accelerator String from a GedaAccelLabel
- *  \par Function Description
+/*!
+ * \brief Get the Accelerator String from a GedaAccelLabel
+ * \par Function Description
  *  This function returns the accelerator string for the
  *  accelerator label.
  *
@@ -547,8 +549,9 @@ const char *geda_accel_label_get_accel_string (GedaAccelLabel *accel_label)
   return accel_label->accel_string;
 }
 
-/*! \brief Set Accelerator String for a GedaAccelLabel
- *  \par Function Description
+/*!
+ * \brief Set Accelerator String for a GedaAccelLabel
+ * \par Function Description
  *  This function Sets the accelerator string for this accelerator label.
  *
  * \param accel_label  A #GedaAccelLabel object
@@ -574,15 +577,15 @@ void geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
   GEDA_OBJECT_NOTIFY (accel_label, "accel-string");
 }
 
-/*! \brief GedaAccelLabel Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaAccelLabel Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaAccelLabel class we are initializing
- *  \param [in]  class_data  GedaAccelLabel structure associated with the class
+ * \param [in]  class       GedaAccelLabel class we are initializing
+ * \param [in]  class_data  GedaAccelLabel structure associated with the class
  */
 static void geda_accel_label_class_init(void *class, void *class_data)
 {
@@ -627,14 +630,14 @@ static void geda_accel_label_class_init(void *class, void *class_data)
                                                         G_PARAM_READWRITE));
 }
 
-/*! \brief Type instance initializer for GedaAccelLabel
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaAccelLabel
+ * \par Function Description
  *  Type instance initializer for GedaAccelLabel, initializes a new empty
  *  GedaAccelLabel object.
  *
- *  \param [in] instance The GedaAccelLabel structure being initialized,
- *  \param [in] g_class  The GedaAccelLabel class we are initializing.
+ * \param [in] instance The GedaAccelLabel structure being initialized,
+ * \param [in] g_class  The GedaAccelLabel class we are initializing.
  */
 static void geda_accel_label_instance_init (GTypeInstance *instance, void *g_class)
 {
@@ -650,15 +653,16 @@ static void geda_accel_label_instance_init (GTypeInstance *instance, void *g_cla
   g_hash_table_replace (accel_label_hash, instance, instance);
 }
 
-/*! \brief Function to retrieve GedaAccelLabel's Type identifier.
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaAccelLabel's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaAccelLabel Type identifier. When
  *  first called, the function registers a #GedaAccelLabel in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaAccelLabel and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaAccelLabel.
+ * \return GedaType identifier associated with GedaAccelLabel.
  */
 GedaType geda_accel_label_get_type (void)
 {
@@ -709,7 +713,7 @@ bool is_a_geda_accel_label (GedaAccelLabel *accel_label)
 /*!
  * \brief Create a New GedaAccelLabel.
  * \par Function Description
- * Creates a brand spanking new #GedaAccelLabel.
+ *  Creates a brand spanking new #GedaAccelLabel.
  *
  * \param [in] string The label string, Must be not NULL.
  *
@@ -729,10 +733,10 @@ GtkWidget *geda_accel_label_new (const char *string)
 }
 
 /*!
- * \brief Create a New GedaAccelLabel Closure.
+ * \brief Set the GedaAccelLabel Closure.
  * \par Function Description
- * Sets the closure to be monitored by this accelerator label. The closure
- * must be connected to an accelerator group; see gtk_accel_group_connect().
+ *  Sets the closure to be monitored by this accelerator label. The closure
+ *  must be connected to an accelerator group; see gtk_accel_group_connect().
  *
  * \param [in] accel_label   a GedaAccelLabel
  * \param [in] accel_closure the closure to monitor for accelerator changes.
@@ -777,7 +781,7 @@ void geda_accel_label_set_accel_closure (GedaAccelLabel *accel_label,
 /*!
  * \brief Retrieve the GedaAccelLabel widget
  * \par Function Description
- * Returns the widget monitored by the accelerator label.
+ *  Returns the widget monitored by the accelerator label.
  *
  * \param [in] accel_label  a GedaAccelLabel
  *
@@ -793,7 +797,7 @@ GtkWidget *geda_accel_label_get_accel_widget (GedaAccelLabel *accel_label)
 /*!
  * \brief Set the GedaAccelLabel widget
  * \par Function Description
- * Sets the widget to be monitored by this accelerator label.
+ *  Sets the widget to be monitored by this accelerator label.
  *
  * \param [in] accel_label  a GedaAccelLabel
  * \param [in] accel_widget the widget to be monitored.
