@@ -2,7 +2,8 @@
 
     * src/widgets/geda_handlebox.c: Conditionally compile with hinting
       GDK_WINDOW_TYPE_HINT_TOOLBAR if not Gtk+2.24.30; floating toolbars
-      were stay raised to the top, above other app windows.
+      were stay raised to the top, above other app windows. Add ancillary
+      pointer to priv in geda_handle_box_class_init.
 
 2018-12-28 Wiley E. Hill <wileyhill@gmail.com>
 

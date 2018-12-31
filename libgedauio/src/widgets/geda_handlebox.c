@@ -1695,11 +1695,12 @@ static void geda_handle_box_class_init(void *g_class, void *class_data)
  */
 static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class)
 {
-  GedaHandleBox *handlebox = (GedaHandleBox*)instance;
+  GedaHandleBox     *handlebox = (GedaHandleBox*)instance;
+  GedaHandleBoxData *priv;
 
   gtk_widget_set_has_window ((GtkWidget*)handlebox, TRUE);
 
-  handlebox->priv = g_malloc0 (sizeof(GedaHandleBoxData));
+  priv = g_malloc0 (sizeof(GedaHandleBoxData));
 
   handlebox->bin_window          = NULL;
   handlebox->float_window        = NULL;
@@ -1712,6 +1713,8 @@ static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class
   handlebox->shrink_on_detach    = TRUE;
   handlebox->snap_edge           = -1;
   handlebox->dock_orientation    = GTK_ORIENTATION_HORIZONTAL;
+
+  handlebox->priv = priv;
 
   if (!handlebox_hash) {
     handlebox_hash = g_hash_table_new (g_direct_hash, NULL);
