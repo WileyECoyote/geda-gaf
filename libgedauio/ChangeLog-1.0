@@ -12,6 +12,8 @@
           * geda-handle-box-wcvo
           * geda-handle-box-govo
 
+    * tests/test_menu_item.c: Use relative reference to headers.
+
 2018-12-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/dialogs/geda_file_chooser.c: Update function documentation for

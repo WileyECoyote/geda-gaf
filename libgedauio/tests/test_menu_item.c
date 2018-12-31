@@ -36,11 +36,11 @@
 
 #include <geda/geda.h>
 
-#include <geda_menu.h>
-#include <geda_menu_bar.h>
-#include <geda_menu_shell.h>
-#include <geda_menu_item.h>
-#include <geda_accel_label.h>
+#include <../include/geda_menu.h>
+#include <../include/geda_menu_bar.h>
+#include <../include/geda_menu_shell.h>
+#include <../include/geda_menu_item.h>
+#include <../include/geda_accel_label.h>
 
 #include "test-suite.h"
 
