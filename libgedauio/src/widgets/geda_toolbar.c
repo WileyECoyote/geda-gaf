@@ -274,7 +274,7 @@ static void geda_toolbar_setup_label(GtkWidget *widget, GedaToolbar *bar)
 /*!
  * \brief Check if an object is a GedaToolbar
  * \par Function Description
- *  Determines if \a toolbar is valid by varifying \a toolbar
+ *  Determines if \a toolbar is valid by verifying \a toolbar
  *  is included in the hash table of GedaToolbar objects.
  *
  * \return TRUE if \a toolbar is a valid GedaToolbar
