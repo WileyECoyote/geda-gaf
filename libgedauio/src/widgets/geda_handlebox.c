@@ -655,6 +655,10 @@ static void geda_handle_box_reattach (GedaHandleBox *handlebox)
   gtk_widget_queue_resize (widget);
 }
 
+/** \defgroup geda-handle-box-ccvo GedaHandleBox Container Class Virtual Overrides
+  * @{
+  */
+
 /* container_class->add */
 static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 {
@@ -677,6 +681,12 @@ static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
   ((GtkContainerClass*)geda_handle_box_parent_class)->remove (container, widget);
   geda_handle_box_reattach ((GedaHandleBox*)container);
 }
+
+/** @} geda-handle-box-ccvo */
+
+/** \defgroup geda-handle-box-wcvo GedaHandleBox Widget Class Virtual Overrides
+  * @{
+  */
 
 /* widget_class->button_press == callback for mouse button press event */
 static bool geda_handle_box_button_press (GtkWidget      *widget,
@@ -1420,6 +1430,12 @@ static void geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_sty
   change_handle_size(handlebox);
 }
 
+/** @} geda-handle-box-wcvo */
+
+/** \defgroup geda-handle-box-govo GedaHandleBox GObject Virtual Overrides
+  * @{
+  */
+
 /*! \internal gobject_class->get_property */
 static void geda_handle_box_get_property (GObject      *object,
                                           unsigned int  prop_id,
@@ -1527,6 +1543,8 @@ static void geda_handle_box_finalize (GObject *object)
 
   G_OBJECT_CLASS (geda_handle_box_parent_class)->finalize (object);
 }
+
+/** @} geda-handle-box-govo */
 
 /*!
  * \brief GedaHandleBoxClass Type Class Initializer
