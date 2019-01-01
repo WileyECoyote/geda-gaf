@@ -245,7 +245,6 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
 {
   GList      *a_iter;
   GedaObject *a_current;
-  GedaObject *attribute_object;
   char *old_attrib_text;
   char *old_attrib_name;
 
@@ -263,14 +262,13 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 
-        /* We've found the attrib.  Delete it and then return. */
+        /* The attribute has been found. Delete it and then return. */
 
 #ifdef DEBUG
         printf("%s: removing attrib with name = %s\n", __func__, old_attrib_name);
 #endif
 
-        attribute_object = a_current;
-        s_object_delete_text_object_in_object (toplevel, attribute_object);
+        s_object_delete_text_object_in_object (toplevel, a_current);
 
         GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
