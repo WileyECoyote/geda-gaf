@@ -88,8 +88,10 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*!
- * \todo This needs to be filled in.
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
  */
 void
 s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
@@ -229,9 +231,7 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
 /*------------------------------------------------------------------*/
 /*!
  * \brief Remove attribute from object
- *
  * \par Function Description
- *
  *  Remove an attribute from an object.
  *
  * \param toplevel        GedaToplevel structure
@@ -446,16 +446,15 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Delete text object
- *
- *  \par Function Description
- *
+/*!
+ * \brief Delete text object
+ * \par Function Description
  *  Delete the text object pointed to by text_object. This function
  *  was shamelessly stolen from gschem/src/o_delete.c and hacked
  *  for gattrib by SDB.
  *
- *  \param toplevel    GedaToplevel to be operated on
- *  \param text_object text object to be deleted
+ * \param toplevel    GedaToplevel to be operated on
+ * \param text_object text object to be deleted
  */
 void
 s_object_delete_text_object_in_object (GedaToplevel *toplevel,
@@ -466,9 +465,9 @@ s_object_delete_text_object_in_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Ensure object has a symbol file
- *
- *  \par Function Description
+/*!
+ * \brief Ensure object has a symbol file
+ * \par Function Description
  *  This verifies that the object has a non-null symbol file.
  *
  * \returns 0 = valid symbol file, 1 = no symbol file found.

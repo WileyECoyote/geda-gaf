@@ -3,7 +3,9 @@
     * src/i_basic.c: Reformat Doxygen documentation blocks.
 
     * src/s_object.c: Remove superfluous attribute_object variable in
-      s_object_release_attrib_in_object.
+      s_object_release_attrib_in_object and add todo template, reformat
+      Doxygen documentation blocks.
+
 
 2018-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
