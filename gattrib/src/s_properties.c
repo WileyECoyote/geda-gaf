@@ -243,11 +243,12 @@ static void s_properties_set_range_visibility(int visibility) {
 
 /* ---------------------------------------------------------------------- */
 
-/*! \brief Set Show Name Value of selected cells.
- *
- * This functions sets the show_name attrinbute of the selected cells
- * to the value passed.
- * This function is invoked from the menu handlers in this module.
+/*!
+ * \brief Set Show Name Value of selected cells.
+ * \par Function Description
+ *  This functions sets the show_name attrinbute of the selected cells
+ *  to the value passed. This function is invoked from the menu handlers
+ *  in this module.
  */
 static void s_properties_set_show_name_value(int value) {
 
@@ -297,17 +298,19 @@ static void s_properties_set_show_name_value(int value) {
 
 /* ------------------------ Menu and Toolbar Handler ------------------ */
 
-/*! \brief Set selection to INVISIBLE.
- *
- * This sets the selected cells to INVISIBLE.
+/*!
+ * \brief Set selection to INVISIBLE.
+ * \par Function Description
+ *  This sets the selected cells to INVISIBLE.
  */
 void s_properties_set_invisible() {
   s_properties_set_range_visibility(INVISIBLE);
 }
 
-/*! \brief Set selection to VISIBLE.
- *
- * This sets the selected cells to VISIBLE.
+/*!
+ * \brief Set selection to VISIBLE.
+ * \par Function Description
+ *  This sets the selected cells to VISIBLE.
  */
 void s_properties_set_visible() {
   s_properties_set_range_visibility(VISIBLE);
@@ -315,37 +318,41 @@ void s_properties_set_visible() {
 
 /* ------------------------- SHOW NAME ---------------------------- */
 
-/*! \brief Set selected Attributes display only the Name of the attribute.
- *
- * This func is invoked from the menu or the toolbar and sets selected
- * cells to Show Name.
+/*!
+ * \brief Set selected Attributes display only the Name of the attribute.
+ * \par Function Description
+ *  This func is invoked from the menu or the toolbar and sets selected
+ *  cells to Show Name.
  */
 void s_properties_set_name_only() {
   s_properties_set_show_name_value(SHOW_NAME);
 }
 
-/*! \brief Set selected Attributes display only the Value of the attribute.
- *
- * This func is invoked from the menu or the toolbar and sets selected
- * cells to Show Value.
+/*!
+ * \brief Set selected Attributes display only the Value of the attribute.
+ * \par Function Description
+ *  This func is invoked from the menu or the toolbar and sets selected
+ *  cells to Show Value.
  */
 void s_properties_set_value_only() {
   s_properties_set_show_name_value(SHOW_VALUE);
 }
 
-/*! \brief Set selected Attributes display the Name and Value of the attribute.
- *
- * This func is invoked from the menu or the toolbar and sets selected
- * cells to Show Name and Value.
+/*!
+ * \brief Set selected Attributes display the Name and Value of the attribute.
+ * \par Function Description
+ *  This func is invoked from the menu or the toolbar and sets selected
+ *  cells to Show Name and Value.
  */
 void s_properties_set_name_and_value() {
   s_properties_set_show_name_value(SHOW_NAME_VALUE);
 }
 
-/*! \brief Set selected Attributes display the Name and Value of the attribute.
- *
- * This func is invoked from the menu or the toolbar and sets selected
- * cells to Show Name and Value.
+/*!
+ * \brief Set selected Attributes display the Name and Value of the attribute.
+ * \par Function Description
+ *  This func is invoked from the menu or the toolbar and sets selected
+ *  cells to Show Name and Value.
  */
 void s_properties_promote_attribute() {
   int row, col;
@@ -366,7 +373,12 @@ void s_properties_promote_attribute() {
   s_properties_set_cell_fgcolor(sheet, row, col);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void s_properties_demote_attribute() {
+
   int row, col;
   int cur_page;
   GtkSheet *sheet;
