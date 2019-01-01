@@ -66,12 +66,13 @@ static void i_update_status(GedaToplevel *toplevel, const char *string)
 
 #if defined (OS_WIN32)
 
-/*! \brief Launch application to show URI on Windows.
+/*!
+ * \brief Launch application to show URI on Windows.
  * \par Function Description
- * On native Windows, the ShellExecute Windows API function provides a
- * reliable way to open a URI in a default application.
+ *  On native Windows, the ShellExecute Windows API function provides a
+ *  reliable way to open a URI in a default application.
  *
- * This function is called by i_basic_show_uri().
+ *  This function is called by i_basic_show_uri().
  *
  * \param uri    URI to launch viewer for.
  * \param error  Location to return error information.
@@ -125,10 +126,11 @@ static bool i_basic_show_uri__win32 (const char *uri, GError **error)
 }
 #endif /* OS_WIN32 */
 
-/*! \brief Launch default application for a URI.
+/*!
+ * \brief Launch default application for a URI.
  * \par Function Description
- * Launches the default application associated with \a uri on the host
- * platform.
+ *  Launches the default application associated with \a uri on the host
+ *  platform.
  *
  * \param uri  URI to launch viewer for.
  *
@@ -189,10 +191,11 @@ static bool i_basic_show_uri (const char *uri)
   return TRUE;
 }
 
-/*! \brief Launch default application for a URI.
+/*!
+ * \brief Launch default application for a URI.
  * \par Function Description
- * Launches the default application associated with \a html_file
- * on the host platform.
+ *  Launches the default application associated with \a html_file
+ *  on the host platform.
  *
  * \param html_file  HTML file to launch in viewer.
  *
