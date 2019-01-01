@@ -96,12 +96,12 @@ void s_visibility_set_invisible() {
 }
 
 /* ---------------------------------------------------------------------- */
-/*! \brief Set the visibility of the selected cells to NAME_ONLY.
- *
- * This sets the selected cells to NAME_ONLY.
- * This function is invoked from the menu, it assumes you have
- * selected a range of cells which are carried in the global
- * variable "sheet".
+/*!
+ * \brief Set the visibility of the selected cells to NAME_ONLY.
+ * \par Function Description
+ *  This sets the selected cells to NAME_ONLY. This function is
+ *  invoked from the menu, it assumes you have selected a range
+ *  of cells which are carried in the global variable "sheet".
  */
 void s_visibility_set_name_only() {
   int i, j;
@@ -157,12 +157,13 @@ void s_visibility_set_name_only() {
 }
 
 /* ---------------------------------------------------------------------- */
-/* \brief Set the selected cells' visibility to VALUE_ONLY
- *
- * s_visibility_set_value_only -- This sets the selected cells to VALUE_ONLY.
- * This fcn is invoked from the menu, it assumes you have
- * selected a range of cells which are carried in the global
- * variable "sheet".
+/*!
+ * \brief Set the selected cells' visibility to VALUE_ONLY
+ * \par Function Description
+ *  s_visibility_set_value_only -- This sets the selected cells to
+ *  VALUE_ONLY. * This fcn is invoked from the menu, it assumes you
+ *  have selected a range of cells which are carried in the global
+ *  variable "sheet".
  */
 void s_visibility_set_value_only() {
   int i, j;
@@ -219,14 +220,13 @@ void s_visibility_set_value_only() {
 }
 
 /* ---------------------------------------------------------------------- */
-/* \brief Set the visibility of the selected cells to NAME_AND_VALUE
- *
- * This sets the selected cells
- * to NAME_AND_VALUE
- * This fcn is invoked from the menu, it assumes you have
- * selected a range of cells which are carried in the global
- * variable "sheet".
- *
+
+/*!
+ * \brief Set the visibility of the selected cells to NAME_AND_VALUE
+ * \par Function Description
+ *  This sets the selected cells to NAME_AND_VALUE This fcn is invoked
+ *  from the menu, it assumes you have selected a range of cells which
+ *  are carried in the global variable "sheet".
  */
 void s_visibility_set_name_and_value(void)
 {
@@ -284,10 +284,12 @@ void s_visibility_set_name_and_value(void)
 /* ==================  Private functions  =================== */
 
 /* ---------------------------------------------------------------------- */
-/* \brief set the visibility of an individual cell
+/*!
+ * \brief set the visibility of an individual cell
+ * \par Function Description
+ *  Set the visibility of an individual cell
+ *  to "state".  The cell is identified by (row, col)
  *
- * Set the visibility of an individual cell
- * to "state".  The cell is identified by (row, col)
  * \param cur_page index of spreadsheet tab
  * \param row Row index of target cell
  * \param col Column index of target cell
@@ -329,6 +331,10 @@ void s_visibility_set_cell(int cur_page, int row, int col,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 bool s_visibility_get_cell(int cur_page, int row, int col)
 {
   TABLE **local_table = NULL;
