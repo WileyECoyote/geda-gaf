@@ -84,8 +84,9 @@ static void x_find_notify_not_found(char *text)
   x_dialog_generic_confirm_dialog (search_string, GTK_MESSAGE_INFO);
 }
 
-/*! \brief Search Sheet for text and optionally replace string
- *  \par Function Description
+/*!
+ * \brief Search Sheet for text and optionally replace string
+ * \par Function Description
  *  Performs search, either forward or backward over the active search
  *  range based on flags in SearchRecord.
  */

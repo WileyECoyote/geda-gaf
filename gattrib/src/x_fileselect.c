@@ -93,16 +93,17 @@ bool x_fileselect (char *filename)
   return result;
 }
 
-/*! \brief Open a single file.
- *
+/*!
+ * \brief Open a single file.
+ * \par Function Description
  *  The function attempts to read in a file to the toplevel and if
  *  successful preloads the the sheet data that is used for column
  *  and row titles. If retuns FALSE of s_toplevel_read_page is
- *  successful otherwaise TRUE.
+ *  successful otherwaise TRUE. Called by menu_open_recent().
  *
- *  \param [in] filename name of file to be opened
+ * \param [in] filename name of file to be opened
  *
- *  \retval FALSE if the file could not be opened, TRUE otherwise
+ * \retval FALSE if the file could not be opened, TRUE otherwise
  */
 /* TODO:move gtk_recent_manager_add_item from x_fileselect_open to here */
 bool x_fileselect_load_file (char *filename) {
@@ -167,13 +168,15 @@ bool x_fileselect_load_files (GSList *filenames)
   return ret_val;
 }
 
-/*! \brief Open file dialog
- *
- * This function opens a file chooser dialog and waits for the user
+/*!
+ * \brief Open file dialog
+ * \par Function Description
+ *  This function opens a file chooser dialog and waits for the user
  *  to select at least one file to load as toplevel's new pages.
+ *  Called from x_menu_file_open
  *
- *  \returns list of files to be opened, or NULL if the user canceled
- *           the dialog
+ * \returns list of files to be opened, or NULL if the user canceled
+ *          the dialog
  */
 GSList *x_fileselect_open (void)
 {
