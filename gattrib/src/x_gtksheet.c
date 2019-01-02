@@ -99,6 +99,10 @@ void x_gtksheet_destroy_all() {
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void x_gtksheet_reveal_columns(GtkSheet *sheet) {
 
   //GtkSheetRange range = sheet->range;

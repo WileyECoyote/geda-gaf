@@ -295,6 +295,7 @@ void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
     }
     mapcar(ListToolBarItems);
 }
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
