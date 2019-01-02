@@ -307,11 +307,11 @@ void x_find_attribute()
     found    = FALSE;
     count    = sheet->maxcol;
 
-    for( i = 0; i <= count; i++) {
+    for (i = 0; i <= count; i++) {
 
       if (strcmp(sheet->column[i]->title, text) == 0) {
         found = TRUE;
-        gtk_sheet_select_column(sheet,i);
+        gtk_sheet_select_column(sheet, i);
         break;
       }
     }
@@ -345,11 +345,11 @@ void x_find_refdes()
     found    = FALSE;
     count    = sheet->maxrow;
 
-    for( i = 0; i <= count; i++) {
+    for (i = 0; i <= count; i++) {
 
       if (strcmp(sheet->row[i].name, text) == 0) {
         found = TRUE;
-        gtk_sheet_select_row(sheet,i);
+        gtk_sheet_select_row(sheet, i);
         break;
       }
     }
