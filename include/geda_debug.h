@@ -29,6 +29,8 @@
 
 #define EMBED_BREAKPOINT  asm volatile ("int3;")
 
+#define OBJECT_NAME(p) G_IS_OBJECT(p) ? G_OBJECT_TYPE_NAME(p): "not a gobject"
+
 #define SET_DEBUG_DND_EVENTS  0
 #define SET_DEBUG_EVENTS      0
 #define SET_DEBUG_GRID        0

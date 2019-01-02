@@ -1,3 +1,7 @@
+2019-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_debug.h: Add debug macro OBJECT_NAME.
+
 2018-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * bitmaps/geda-warning.png: Remove bitmap image, the image is not longer
