@@ -121,10 +121,10 @@ msgstr "ഒരു പുതിയ ഫയൽ നാമം ഉപയോഗിച�
 msgid "Save all opened pages to storage."
 msgstr "സംഭരിച്ച എല്ലാ തുറന്ന പേജുകളും സംരക്ഷിക്കുക."
 
-# Returns True is object is a GedaCapsule, otherwise False
+# Returns True if object is a GedaCapsule, otherwise False
 # ādāyaṁ ennat vastuta gaddākr̥tiyāṇ, allāttat
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
+msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "ആദായം എന്നത് വസ്തുത ഗദ്ദാകൃതിയാണ്, അല്ലാത്തത് തെറ്റാണ്."
 
 # Returns the rectangular boundaries of an object

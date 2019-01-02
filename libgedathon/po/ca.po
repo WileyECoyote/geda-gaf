@@ -105,7 +105,7 @@ msgid "Save all opened pages to storage."
 msgstr "Deseu totes les pàgines obertes a l'emmagatzematge."
 
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
+msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Retorna True; l'objecte és un GedaCapsule, altrament False."
 
 #: libgedathon/include/geda_module.h:74

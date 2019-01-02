@@ -119,9 +119,9 @@ msgstr "Enregistrer la page en utilisant un nouveau nom de fichier"
 msgid "Save all opened pages to storage."
 msgstr "Enregistrer toutes les pages ouvertes au stockage."
 
-# Returns True is object is a GedaCapsule, otherwise False
+# Returns True if object is a GedaCapsule, otherwise False
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
+msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Retourne True est un objet GedaCapsule, sinon False."
 
 # Returns the rectangular boundaries of an object

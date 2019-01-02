@@ -115,7 +115,7 @@ msgid "Save all opened pages to storage."
 msgstr "Guardar todas las páginas abiertas en el almacenamiento."
 
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
+msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Devuelve True es objeto es una GedaCapsule, de lo contrario es False."
 
 # Returns the rectangular boundaries of an object

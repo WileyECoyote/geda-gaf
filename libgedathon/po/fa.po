@@ -106,7 +106,7 @@ msgid "Save all opened pages to storage."
 msgstr "تمام صفحات باز شده را به ذخیره سازی ذخیره کنید."
 
 #: libgedathon/include/geda_module.h:73
-msgid "Returns True is object is a GedaCapsule, otherwise False."
+msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "بازده درست است شی است GedaCapsule، در غیر این صورت کاذب است."
 
 #: libgedathon/include/geda_module.h:74
