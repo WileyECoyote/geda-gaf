@@ -103,7 +103,7 @@ char *s_attrib_get_refdes(GedaObject *object)
 
       slot_value = geda_struct_slot_search_slot (object, &slot_text_object);
 
-      if (slot_value != 0) {
+      if (slot_value != NULL) {
 
         char *suffixed;
 
