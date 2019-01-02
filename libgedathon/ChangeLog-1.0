@@ -1,21 +1,21 @@
+2019-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Add calls to PyErr_Clear when there is not an error,
+      before exiting functions to clear any previous errors because the
+      message strings linger and user can receive erroneous message not
+      related to the immediate error and sys.exc_clear does not appear
+      to work correctly, so that's two Python flaws.
+
 2018-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bs.po: Update Bosnian translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/sl.po: Update Slovenian translations
-
     * po/uk.po: Update Ukrainian translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2018-12-22 Wiley E. Hill <wileyhill@gmail.com>

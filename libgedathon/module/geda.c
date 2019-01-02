@@ -622,6 +622,7 @@ METHOD(declare_local_sym)
     Py_RETURN_FALSE;
   }
 
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -743,6 +744,7 @@ METHOD(set_active_page)
   if (!status) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -775,6 +777,7 @@ METHOD(is_page_modified)
   if (!page->modified) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -821,6 +824,7 @@ METHOD(goto_page)
   if (!status) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -862,6 +866,9 @@ METHOD(open_page)
   page = PyObject_CallObject((PyObject*) PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(open_page);
+  if (page) {
+      PyErr_Clear();
+  }
   return page;
 }
 
@@ -916,6 +923,7 @@ METHOD(close_page)
   if (status == 0) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -1023,6 +1031,7 @@ METHOD(rename_page)
   if (status == 0) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -1056,6 +1065,7 @@ METHOD(save_page)
   if (status != 0) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -1093,6 +1103,7 @@ METHOD(save_page_as)
   if (status == 0) {
     Py_RETURN_FALSE;
   }
+  PyErr_Clear();
   Py_RETURN_TRUE;
 }
 
@@ -1672,6 +1683,7 @@ METHOD(delete_object)
 
   if (status > 0)
     Py_DECREF(object);
+
   ON_METHOD_EXIT(delete_object);
   return Py_BuildValue("i", status);
 }
