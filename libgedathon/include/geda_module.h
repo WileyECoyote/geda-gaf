@@ -55,7 +55,7 @@ const char shutdown_docs[]           = N_("Close all files and deinitialize the 
 const char append_symbol_path_docs[] = N_("Append a folder to the library search path.");
 const char declare_local_sym_docs[]  = N_("Creates a gafrc file in the current directory.");
 
-/* Page Object operations/Methods */
+/* 20 Page Object operations/Methods */
 const char get_pages_docs[]          = N_("Retrieve list of all pages.");
 const char get_active_page_docs[]    = N_("Get pointer to the active page.");
 const char set_active_page_docs[]    = N_("Set the active page.");
@@ -69,8 +69,8 @@ const char save_page_docs[]          = N_("Save the page by writing to storage."
 const char save_page_as_docs[]       = N_("Save the page using a new file name.");
 const char save_all_pages_docs[]     = N_("Save all opened pages to storage.");
 
-/* Page Level Object operations/Methods */
-const char GedaCapsule_Type_docs[]   = N_("Returns True is object is a GedaCapsule, otherwise False.");
+/* 30 Page Level Object operations/Methods */
+const char GedaCapsule_Type_docs[]   = N_("Returns True if object is a GedaCapsule, otherwise False.");
 const char get_bounds_docs[]         = N_("Returns the rectangular boundaries of an object.");
 const char get_object_docs[]         = N_("Retrieve an object from a GedaCapsule.");
 const char get_objects_docs[]        = N_("Retrieve all objects belonging to a page.");
