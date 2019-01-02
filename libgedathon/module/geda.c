@@ -1022,7 +1022,7 @@ METHOD(rename_page)
 
   }
   else {
-    const char *fail = "Error: rename_page failed";
+    const char *fail = "Error: rename page failed";
     PyErr_SetString(PyExc_StandardError, fail);
   }
 
