@@ -39,7 +39,7 @@
  * \par Function Description
  *  This function opens a file chooser dialog and waits for the user to
  *  select a folder and enter a filename. The user can also select an
- *  existing filename or cancel.
+ *  existing filename or cancel. Called by x_menu_file_save_as().
  *
  * \param filename  char pointer to a buffer to receive the string.
  *
@@ -83,7 +83,7 @@ bool x_fileselect (char *filename)
     fname = geda_file_chooser_get_filename (dialog);
 
     strcpy(filename, fname);
-    GEDA_FREE(fname); /* GTK actually does this when dialog is destroyed */
+    GEDA_FREE(fname);
     result = TRUE;
   }
   else {
@@ -143,12 +143,13 @@ bool x_fileselect_load_file (char *filename) {
  * \brief Open all files specified in the list.
  * \par Function Description
  *  Open all files specified in the list. The caller is responsible for
- *  freeing the strings and the list itself.
+ *  freeing the strings and the list itself. Called by x_menu_file_open().
  *
  *  The function updates the user interface. At the end of the function,
  *  the toplevel's current page is set to the page of the last loaded page.
  *
  * \param [in] filenames list of files to be opened
+ *
  * \retval FALSE if any of the files could not be opened, TRUE otherwise
  */
 bool x_fileselect_load_files (GSList *filenames)
