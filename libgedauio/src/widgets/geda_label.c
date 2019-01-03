@@ -39,7 +39,7 @@
  *  upgrading Cairo, from libcairo2_1.12.2-3 to libcairo2-dbg_1.12.14-5,
  *  and associated dependencies, under Debian, Wheezy->Sid, the amount
  *  of memory reported as "definitely lost" doubled.) This version
- *  implements a work around.
+ *  attempts to implement a work around.
  * \par
  *  See geda_label_ensure_layout. Another suppression was not acceptable,
  *  couldn't let it go, so contrived this version ....
@@ -1706,14 +1706,14 @@ geda_label_class_init  (void *class, void *class_data)
                                 "activate-current-link", 0);
 }
 
-/*! \brief Type instance initializer for GedaLabel
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaLabel
+ * \par Function Description
  *  Type instance initializer for GedaLabel, initializes a new empty
  *  GedaLabel object.
  *
- *  \param [in] instance The GedaLabel structure being initialized,
- *  \param [in] g_class  The GedaLabel class we are initializing.
+ * \param [in] instance The GedaLabel structure being initialized,
+ * \param [in] g_class  The GedaLabel class we are initializing.
  */
 static void
 geda_label_instance_init(GTypeInstance *instance, void *g_class)
