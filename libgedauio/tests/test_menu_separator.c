@@ -211,6 +211,13 @@ int check_accessors(void)
       result++;
     }
 
+    int direct = geda_menu_item_get_submenu_direction (menu_item);
+
+    if (direct != GTK_DIRECTION_RIGHT) {
+      fprintf(stderr, "FAILED: line <%d> %s; submenu direction <%d>\n", __LINE__, TWIDGET, direct);
+      result++;
+    }
+
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */

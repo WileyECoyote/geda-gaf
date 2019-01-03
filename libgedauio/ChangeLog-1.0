@@ -17,6 +17,11 @@
     * src/widgets/geda_option_menu.c: Replace dynamic GtkWidget cast with
       static cast in geda_option_menu_instance_init.
 
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_submenu_direction
+
 2018-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Reformat Doxygen block uniformly.
