@@ -38,6 +38,7 @@
 #include "../../include/geda_container.h"
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_handlebox.h"
+#include "../../include/geda_invisible.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/gettext.h"
 
@@ -752,8 +753,8 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       priv   = handlebox->priv;
       invisible = priv->invisible;
 
-      gtk_invisible_set_screen ((GtkInvisible*)invisible,
-                                gtk_widget_get_screen (widget));
+      geda_invisible_set_screen ((GedaInvisible*)invisible,
+                                  gtk_widget_get_screen (widget));
       gdk_window_get_deskrelative_origin (handlebox->bin_window, &desk_x, &desk_y);
       gdk_window_get_origin (handlebox->bin_window, &root_x, &root_y);
 
@@ -1523,7 +1524,7 @@ geda_handle_box_constructed (GObject *object)
   GedaHandleBox     *handlebox = (GedaHandleBox*)object;
   GedaHandleBoxData *priv = handlebox->priv;
 
-  priv->invisible = gtk_invisible_new ();
+  priv->invisible = geda_invisible_new ();
   gtk_widget_show (priv->invisible);
 }
 

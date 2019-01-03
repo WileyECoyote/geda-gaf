@@ -12,6 +12,8 @@
       to replace GtkInvisible because, in realality, gtkdnd does not use a
       GtkInvisible, gtkdnd uses a GtkWindow for the ipc_widget.
 
+    * src/widgets/geda_handlebox.c: Replace GtkInvisible with GedaInvisible.
+
 2018-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Reformat Doxygen block uniformly.
