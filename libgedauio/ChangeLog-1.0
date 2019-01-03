@@ -14,6 +14,9 @@
 
     * src/widgets/geda_handlebox.c: Replace GtkInvisible with GedaInvisible.
 
+    * src/widgets/geda_option_menu.c: Replace dynamic GtkWidget cast with
+      static cast in geda_option_menu_instance_init.
+
 2018-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Reformat Doxygen block uniformly.

@@ -232,7 +232,7 @@ geda_option_menu_instance_init(GTypeInstance *instance, void *class)
   GtkWidget      *widget;
 
   option_menu = (GedaOptionMenu*)instance;
-  widget      = GTK_WIDGET (instance);
+  widget      = (GtkWidget*)instance;
 
   gtk_widget_set_can_focus (widget, TRUE);
   gtk_widget_set_can_default (widget, FALSE);
