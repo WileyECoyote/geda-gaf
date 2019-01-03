@@ -91,6 +91,10 @@ static void *geda_action_parent_class = NULL;
 
 static GHashTable *action_hash_table = NULL;
 
+/** \defgroup geda-action-govo GedaAction GObject Virtual Overrides
+  * @{
+  */
+
 /*! \brief GObject finalize handler
  *
  *  \par Function Description
@@ -192,6 +196,12 @@ geda_action_get_property (GObject *object, unsigned int property_id,
   }
 }
 
+/** @} geda-action-govo */
+
+/** \defgroup geda-action-pcvo GedaAction Parent Class Virtual Overrides
+  * @{
+  */
+
 static void
 geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
@@ -239,6 +249,8 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   /* Let the parent class do its work now we've fiddled with the label */
   ((GtkActionClass*)geda_action_parent_class)->connect_proxy (action, proxy);
 }
+
+/** @} geda-action-pcvo */
 
 /*! \brief GedaAction Type Class Initializer
  *

@@ -1,3 +1,11 @@
+2019-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_action.c: Add Doxygen subgroups to better organize
+      the code for virtual overrides:
+
+          * geda-action-govo
+          * geda-action-pcvo
+
 2018-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Reformat Doxygen block uniformly.
