@@ -138,7 +138,7 @@ geda_menu_separator_get_type (void)
 /*!
  * \brief Check if an object is a GedaMenuSeparator
  * \par Function Description
- *  Determines if \a separator is valid by varifying \a separator
+ *  Determines if \a separator is valid by verifying \a separator
  *  is included in the hash table of GedaMenuSeparator objects.
  *
  * \returns TRUE if \a separator is a valid GedaMenuSeparator
