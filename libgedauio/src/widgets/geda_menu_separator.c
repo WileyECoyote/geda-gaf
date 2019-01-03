@@ -93,16 +93,16 @@ geda_menu_separator_instance_init(GTypeInstance *instance, void *class)
   g_hash_table_replace (separator_hash_table, instance, instance);
 }
 
-/*! \brief Retrieve GedaMenuSeparator's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaMenuSeparator's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaMenuSeparator Type identifier. When
  *  first called, the function registers a #GedaMenuSeparator in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuSeparator and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaMenuSeparator.
+ * \return GedaType identifier associated with GedaMenuSeparator.
  */
 GedaType
 geda_menu_separator_get_type (void)
