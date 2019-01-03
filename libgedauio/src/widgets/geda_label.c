@@ -1515,7 +1515,6 @@ geda_label_class_init  (void *class, void *class_data)
    * the tab's GtkNotebook:tab-expand property is set to %TRUE. Other ways
    * to set a label's width are gtk_widget_set_size_request() and
    * geda_label_set_width_chars().
-   *
    */
   params = g_param_spec_enum ("ellipsize", _("Ellipsize"),
                             _("The preferred place to break the string, if an ellipsis is needed"),
@@ -1534,7 +1533,6 @@ geda_label_class_init  (void *class, void *class_data)
    * See the section on "text layout" for details of how #GedaLabel:width-chars
    * and #GedaLabel:max-width-chars determine the width of ellipsized and
    * wrapped labels.
-   *
    */
   params = g_param_spec_int ("width-chars", _("Width In Characters"),
                            _("The desired width of the label, in characters"),
@@ -1553,7 +1551,6 @@ geda_label_class_init  (void *class, void *class_data)
    * is always set to ascent + descent of the font. This can be an
    * advantage in situations where resizing the label because of text
    * changes would be distracting, e.g. in a statusbar.
-   *
    */
   params = g_param_spec_boolean ("single-line-mode", _("Single-Line Mode"),
                                _("Whether the label is in single-line mode"),
@@ -1569,7 +1566,6 @@ geda_label_class_init  (void *class, void *class_data)
    * in degrees, measured counterclockwise. An angle of 90 reads from
    * from bottom to top, an angle of 270, from top to bottom. Ignored
    * if the label is selectable, wrapped, or ellipsized.
-   *
    */
   params = g_param_spec_double ("angle", _("Angle"),
                               _("Angle of rotation of the label"),
@@ -1589,7 +1585,6 @@ geda_label_class_init  (void *class, void *class_data)
    * See the section on "text layout" for details of how #GedaLabel:width-chars
    * and #GedaLabel:max-width-chars determine the width of ellipsized and
    * wrapped labels.
-   *
    */
   params = g_param_spec_int ("max-width-chars",
                            _("Maximum Width In Characters"),
@@ -1607,7 +1602,6 @@ geda_label_class_init  (void *class, void *class_data)
    * Set this property to %TRUE to make the label track which links
    * have been clicked. It will then apply the visited-link-color
    * color, instead of link-color.
-   *
    */
   params = g_param_spec_boolean ("track-visited-links",
                                _("Track visited links"),
@@ -2422,7 +2416,6 @@ GtkWidget *geda_aligned_visible_label_new (const char *str, float x, float y)
 
   return label;
 }
-
 
 /*!
  * \brief Create a New Aligned Geda Label Object
