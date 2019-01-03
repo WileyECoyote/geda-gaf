@@ -14,6 +14,7 @@ libgedauio_la_SOURCES += \
 			widgets/geda_font_dialog.c       \
 			widgets/geda_handlebox.c         \
 			widgets/geda_image_menu_item.c   \
+			widgets/geda_invisible.c         \
 			widgets/geda_label.c             \
 			widgets/geda_menu.c              \
 			widgets/geda_menu_bar.c          \

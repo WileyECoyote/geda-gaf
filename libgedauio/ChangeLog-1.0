@@ -1,10 +1,16 @@
 2019-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_invisible.h: Add new module for GedaInvisible class.
+
     * src/widgets/geda_action.c: Add Doxygen subgroups to better organize
       the code for virtual overrides:
 
           * geda-action-govo
           * geda-action-pcvo
+
+    * src/widgets/geda_invisible.c: Add new module for GedaInvisible widgets
+      to replace GtkInvisible because, in realality, gtkdnd does not use a
+      GtkInvisible, gtkdnd uses a GtkWindow for the ipc_widget.
 
 2018-12-31 Wiley E. Hill <wileyhill@gmail.com>
 

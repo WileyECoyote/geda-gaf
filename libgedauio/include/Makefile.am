@@ -27,6 +27,7 @@ libgedauio_HEADERS = \
 			geda_image_chooser.h      \
 			geda_image_menu_item.h    \
 			geda_input_dialog.h       \
+			geda_invisible.h          \
 			geda_keyboard.h           \
 			geda_key_hash.h           \
 			geda_keysyms.h            \

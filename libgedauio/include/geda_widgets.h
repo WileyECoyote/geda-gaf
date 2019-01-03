@@ -41,6 +41,7 @@
 #include "geda_font_dialog.h"
 #include "geda_handlebox.h"
 #include "geda_image_menu_item.h"
+#include "geda_invisible.h"
 #include "geda_label.h"
 #include "geda_menu.h"
 #include "geda_menu_bar.h"
