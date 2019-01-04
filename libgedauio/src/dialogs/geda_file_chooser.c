@@ -858,7 +858,6 @@ char *geda_file_chooser_get_filename(GtkWidget *widget)
 
   if (GTK_IS_FILE_CHOOSER(widget)) {
     name = gtk_file_chooser_get_filename((GtkFileChooser*)widget);
-
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
