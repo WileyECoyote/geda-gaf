@@ -295,10 +295,11 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
  * gattrib.
  *
  * \param toplevel          GedaToplevel to operate on
- * \param text_string
- * \param visibility
- * \param show_name_value
- * \param parent
+ * \param text_string       The new attribute text
+ * \param visibility        Either VISIBLE or INVISIBLE
+ * \param show_name_value   SHOW_NAME_VALUE, SHOW_VALUE | SHOW_NAME
+ * \param color             Color index or -1 to use ATTRIBUTE_COLOR | DETACHED_ATTRIBUTE_COLOR
+ * \param parent            Parent object or NULL
  *
  * \returns TRUE if the attribute was added, else FALSE
  */

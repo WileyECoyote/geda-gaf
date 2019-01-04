@@ -1,5 +1,7 @@
 2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_object.c: Update Doxygen parameter documentation.
+
     * src/x_gtksheet.c: Revise x_gtksheet_button_pressed to not check if
       the entry widget is a GtkTextView, and return FALSE unless the event
       was a middle button, update the documentation.
