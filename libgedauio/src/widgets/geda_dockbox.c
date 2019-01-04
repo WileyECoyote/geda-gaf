@@ -239,3 +239,5 @@ void geda_dock_widget_add (GtkWidget *dockbox, GtkWidget *child, int location)
 
   gtk_box_pack_start (box, child, FALSE, FALSE, 0);
 }
+
+/** @} GedaDockBoxFunctions */

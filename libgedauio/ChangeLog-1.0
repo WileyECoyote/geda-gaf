@@ -2,6 +2,11 @@
 
     * src/widgets/geda_entry.c: Add function geda_entry_set_selected_text.
 
+        * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_submenu_placement
+
 2019-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_invisible.h: Add new module for GedaInvisible class.
