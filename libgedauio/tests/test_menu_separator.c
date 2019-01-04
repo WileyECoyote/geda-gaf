@@ -218,6 +218,11 @@ int check_accessors(void)
       result++;
     }
 
+    if (geda_menu_item_get_submenu_placement (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; get label\n", __LINE__, TWIDGET);
+      result++;
+    }
+
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */
