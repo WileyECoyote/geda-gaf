@@ -395,9 +395,11 @@ x_gtksheet_button_pressed(GtkWidget *widget, GdkEventButton *event, void *nothin
       GtkClipboard *clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
       gtk_clipboard_request_text (clip, clipboard_receive_entry_text, widget);
+
+      return TRUE;
   }
 
-  return(0);
+  return FALSE;
 }
 
 /*!

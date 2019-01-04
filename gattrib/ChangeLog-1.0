@@ -1,7 +1,8 @@
 2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Revise x_gtksheet_button_pressed to not check if
-      the entry widget is a GtkTextView and update the documentation.
+      the entry widget is a GtkTextView, and return FALSE unless the event
+      was a middle button, update the documentation.
 
 2019-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
