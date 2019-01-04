@@ -382,9 +382,10 @@ static void clipboard_receive_entry_text(GtkClipboard *clipboard,
 }
 
 /*!
- * \brief Callback on button pressed on the entry
+ * \brief Callback on button pressed in the entry
  * \par Function Description
- *  This function is not used.
+ *  Paste contents of the clip board into the entry of the event was
+ *  a button 2 press, obilterating the contents.
  */
 static int
 x_gtksheet_button_pressed(GtkWidget *widget, GdkEventButton *event, void *nothing)

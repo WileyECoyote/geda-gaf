@@ -1,3 +1,7 @@
+2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Update x_gtksheet_button_pressed documentation.
+
 2019-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_basic.c: Reformat Doxygen documentation blocks.
