@@ -723,7 +723,7 @@ void x_gtksheet_reinititialize(PageDataSet *PageData)
 
   /* -----  Pins  ----- */
   RedimensionSheet(sheets[Pins], PageData->pin_count, PageData->pin_attrib_count);
-  /*TODO: May repaint window here? */
+
 }
 
 /*!
