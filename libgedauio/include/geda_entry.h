@@ -203,6 +203,8 @@ GedaEntryAccept geda_entry_get_valid_input       (GedaEntry      *entry);
          void  geda_entry_select_region          (GedaEntry      *entry,
                                                   int             start,
                                                   int             end);
+         void  geda_entry_set_selected_text      (GedaEntry      *entry,
+                                                  const char     *text);
 
          void  geda_entry_modify_color           (GedaEntry      *entry,
                                                   GtkRcFlags      component,

@@ -1866,6 +1866,31 @@ void geda_entry_select_region (GedaEntry *entry, int start, int end)
   gtk_editable_select_region ((GtkEditable*)entry, start, end);
 }
 
+void geda_entry_set_selected_text (GedaEntry *entry, const char *text)
+{
+  GtkEditable *editable;
+  bool         selected;
+  int          start, end;
+
+  g_return_if_fail (GEDA_IS_ENTRY (entry));
+
+
+  editable = GTK_EDITABLE (entry);
+  selected = gtk_editable_get_selection_bounds (editable, &start, &end);
+
+  if (text) {
+    if (!selected) {
+      geda_entry_set_text (entry, text);
+    }
+    else {
+
+      gtk_editable_delete_text (editable, start, end);
+
+      gtk_editable_insert_text (editable, text, -1, &start);
+    }
+  }
+}
+
 /* --------------------- Widget Style Functions ----------------- */
 
 /** \defgroup GedaEntry-Style GedaEntry Style Functions
