@@ -81,49 +81,71 @@ msgstr "すべてのページのリストを取得する."
 msgid "Get pointer to the active page."
 msgstr "アクティブなページへのポインタを取得する."
 
+# Set the active page
+# Akutibupēji o settei suru
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "アクティブページを設定する."
 
+# Returns True if page has been modified and not saved
+# Pēji ga henkō sa rete ite hozon sa rete inai baai wa to~urū o kaeshimasu
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "ページが変更されていて保存されていない場合はTrueを返します."
 
+# Set the active page, and changes current directory
+# Akutibupēji o settei shi, genzai no direkutori o henkō shimasu
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "アクティブページを設定し、現在のディレクトリを変更します."
 
+# Open a page
+# Pēji o hiraku
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "ページを開く."
 
+# Close page
+# Pēji o tojiru
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "ページを閉じる."
 
+# Create a new empty page
+# Atarashī sora no pēji o sakusei suru
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "新しい空のページを作成する."
 
+# Rename a page changes the filename
+# Pēji-mei o henkō suruto fairu-mei ga kawarimasu
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "ページ名を変更するとファイル名が変わります."
 
+# Save the page by writing to storage
+# Sutorēji ni kakikonde pēji o hozon suru
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "ストレージに書き込んでページを保存する."
 
+# Save the page using a new file name
+# Atarashī fairu-mei o shiyō shite pēji o hozon shite kudasai
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "新しいファイル名を使用してページを保存してください."
 
+# Save all opened pages to storage
+# Aiteiru subete no pēji o sutorēji ni hozon suru
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "開いているすべてのページをストレージに保存する."
 
+# Returns true if object is a GedaCapsule, otherwise False
+# Obujekuto ga GedaCapsule no baai wa tsurū, soreigai no baai wa false o kaeshimasu
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "オブジェクトがGedaCapsuleの場合はtrue、それ以外の場合はfalseを返します。."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
