@@ -1,3 +1,7 @@
+2019-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
 2019-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Add calls to PyErr_Clear when there is not an error,
