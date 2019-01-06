@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:50-0600\n"
+"POT-Creation-Date: 2019-01-05 22:57-0600\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -66,15 +66,15 @@ msgstr ""
 msgid "file"
 msgstr ""
 
-#: gattrib/src/i_basic.c:105
+#: gattrib/src/i_basic.c:106
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
-#: gattrib/src/i_basic.c:156
+#: gattrib/src/i_basic.c:158
 msgid "failed to open"
 msgstr ""
 
-#: gattrib/src/i_basic.c:210
+#: gattrib/src/i_basic.c:213
 msgid "Check path"
 msgstr ""
 
@@ -114,11 +114,11 @@ msgstr ""
 msgid "DONE"
 msgstr ""
 
-#: gattrib/src/s_object.c:223
+#: gattrib/src/s_object.c:225
 msgid "failed to find attribute"
 msgstr ""
 
-#: gattrib/src/s_object.c:224
+#: gattrib/src/s_object.c:226
 msgid "Exiting..."
 msgstr ""
 
@@ -408,11 +408,11 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:113
+#: gattrib/src/x_fileselect.c:114
 msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:119
+#: gattrib/src/x_fileselect.c:120
 msgid "Could not load schematic"
 msgstr ""
 
@@ -421,11 +421,11 @@ msgid "not found!"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_find.c:294
+#: gattrib/src/x_find.c:295
 msgid "Attribute"
 msgstr "屬性"
 
-#: gattrib/src/x_find.c:332
+#: gattrib/src/x_find.c:333
 msgid "Designator"
 msgstr ""
 
@@ -463,15 +463,15 @@ msgstr "刪除屬性"
 msgid "Clear Attribute Data"
 msgstr "清除屬性數據"
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Pins"
 msgstr ""
 

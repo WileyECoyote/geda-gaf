@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:50-0600\n"
+"POT-Creation-Date: 2019-01-05 22:57-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -72,17 +72,17 @@ msgid "file"
 msgstr ""
 
 # The operating system is out of memory or resources
-#: gattrib/src/i_basic.c:105
+#: gattrib/src/i_basic.c:106
 msgid "The operating system is out of memory or resources."
 msgstr "سیستم عامل خارج از حافظه یا منابع است."
 
 # failed to open
-#: gattrib/src/i_basic.c:156
+#: gattrib/src/i_basic.c:158
 msgid "failed to open"
 msgstr "باز نشد"
 
 # Check path
-#: gattrib/src/i_basic.c:210
+#: gattrib/src/i_basic.c:213
 msgid "Check path"
 msgstr "مسیر را بررسی کنید"
 
@@ -124,12 +124,12 @@ msgid "DONE"
 msgstr "انجام شده"
 
 # failed to find attribute
-#: gattrib/src/s_object.c:223
+#: gattrib/src/s_object.c:225
 msgid "failed to find attribute"
 msgstr "موفق به پیدا کردن ویژگی"
 
 # Exiting
-#: gattrib/src/s_object.c:224
+#: gattrib/src/s_object.c:226
 msgid "Exiting..."
 msgstr "خروج..."
 
@@ -419,11 +419,11 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:113
+#: gattrib/src/x_fileselect.c:114
 msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:119
+#: gattrib/src/x_fileselect.c:120
 msgid "Could not load schematic"
 msgstr ""
 
@@ -432,11 +432,11 @@ msgid "not found!"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_find.c:294
+#: gattrib/src/x_find.c:295
 msgid "Attribute"
 msgstr "صفت"
 
-#: gattrib/src/x_find.c:332
+#: gattrib/src/x_find.c:333
 msgid "Designator"
 msgstr ""
 
@@ -474,15 +474,15 @@ msgstr "حذف ویژگی"
 msgid "Clear Attribute Data"
 msgstr "پاک کردن داده های مشخصه"
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Pins"
 msgstr ""
 

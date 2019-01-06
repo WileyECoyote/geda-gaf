@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-22 00:07-0600\n"
+"POT-Creation-Date: 2019-01-05 22:57-0600\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -145,7 +145,8 @@ msgstr "開いているすべてのページをストレージに保存する."
 # Obujekuto ga GedaCapsule no baai wa tsurū, soreigai no baai wa false o kaeshimasu
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr "オブジェクトがGedaCapsuleの場合はtrue、それ以外の場合はfalseを返します。."
+msgstr ""
+"オブジェクトがGedaCapsuleの場合はtrue、それ以外の場合はfalseを返します。."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."

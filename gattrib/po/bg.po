@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:50-0600\n"
+"POT-Creation-Date: 2019-01-05 22:57-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -73,17 +73,17 @@ msgid "file"
 msgstr "досие"
 
 # The operating system is out of memory or resources
-#: gattrib/src/i_basic.c:105
+#: gattrib/src/i_basic.c:106
 msgid "The operating system is out of memory or resources."
 msgstr "Операционната система е извън паметта или ресурси."
 
 # failed to open
-#: gattrib/src/i_basic.c:156
+#: gattrib/src/i_basic.c:158
 msgid "failed to open"
 msgstr "не се отвори"
 
 # Check path
-#: gattrib/src/i_basic.c:210
+#: gattrib/src/i_basic.c:213
 msgid "Check path"
 msgstr "Проверете пътя"
 
@@ -148,12 +148,12 @@ msgid "DONE"
 msgstr "СВЪРШЕН"
 
 # failed to find attribute
-#: gattrib/src/s_object.c:223
+#: gattrib/src/s_object.c:225
 msgid "failed to find attribute"
 msgstr "не успя да намери атрибут"
 
 # Exiting
-#: gattrib/src/s_object.c:224
+#: gattrib/src/s_object.c:226
 msgid "Exiting..."
 msgstr "Излизане..."
 
@@ -450,11 +450,11 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:113
+#: gattrib/src/x_fileselect.c:114
 msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:119
+#: gattrib/src/x_fileselect.c:120
 msgid "Could not load schematic"
 msgstr ""
 
@@ -462,11 +462,11 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:294
+#: gattrib/src/x_find.c:295
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: gattrib/src/x_find.c:332
+#: gattrib/src/x_find.c:333
 msgid "Designator"
 msgstr ""
 
@@ -504,15 +504,15 @@ msgstr "Изтрий атрибута"
 msgid "Clear Attribute Data"
 msgstr "Изчистване на данните за атрибутите"
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Pins"
 msgstr ""
 

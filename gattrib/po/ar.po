@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:50-0600\n"
+"POT-Creation-Date: 2019-01-05 22:57-0600\n"
 "PO-Revision-Date: 2010-02-08 18:58+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -70,17 +70,17 @@ msgid "file"
 msgstr "ملف"
 
 # The operating system is out of memory or resources
-#: gattrib/src/i_basic.c:105
+#: gattrib/src/i_basic.c:106
 msgid "The operating system is out of memory or resources."
 msgstr "نظام التشغيل خارج الذاكرة أو الموارد."
 
 # failed to open
-#: gattrib/src/i_basic.c:156
+#: gattrib/src/i_basic.c:158
 msgid "failed to open"
 msgstr "فشل في الفتح"
 
 # Check path
-#: gattrib/src/i_basic.c:210
+#: gattrib/src/i_basic.c:213
 msgid "Check path"
 msgstr "تحقق من المسار"
 
@@ -143,12 +143,12 @@ msgid "DONE"
 msgstr "فعله"
 
 # failed to find attribute
-#: gattrib/src/s_object.c:223
+#: gattrib/src/s_object.c:225
 msgid "failed to find attribute"
 msgstr "فشل في العثور على السمة"
 
 # Exiting
-#: gattrib/src/s_object.c:224
+#: gattrib/src/s_object.c:226
 msgid "Exiting..."
 msgstr "الخروج..."
 
@@ -443,11 +443,11 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:113
+#: gattrib/src/x_fileselect.c:114
 msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:119
+#: gattrib/src/x_fileselect.c:120
 msgid "Could not load schematic"
 msgstr ""
 
@@ -455,11 +455,11 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:294
+#: gattrib/src/x_find.c:295
 msgid "Attribute"
 msgstr "سمة النص"
 
-#: gattrib/src/x_find.c:332
+#: gattrib/src/x_find.c:333
 msgid "Designator"
 msgstr ""
 
@@ -497,15 +497,15 @@ msgstr "حذف السمة"
 msgid "Clear Attribute Data"
 msgstr "مسح بيانات السمة"
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:732
+#: gattrib/src/x_gtksheet.c:739
 msgid "Pins"
 msgstr ""
 
