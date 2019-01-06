@@ -70,49 +70,59 @@ msgstr "Pobierz listę wszystkich stron."
 msgid "Get pointer to the active page."
 msgstr "Pobierz wskaźnik do aktywnej strony."
 
+# Set the active page
 #: libgedathon/include/geda_module.h:61
 msgid "Set the active page."
-msgstr ""
+msgstr "Ustaw aktywną stronę."
 
 #: libgedathon/include/geda_module.h:62
 msgid "Returns True if page has been modified and not saved."
-msgstr ""
+msgstr "Zwraca wartość True, jeśli strona została zmodyfikowana i nie została zapisana."
 
+# Set the active page, and changes current directory
 #: libgedathon/include/geda_module.h:63
 msgid "Set the active page, and changes current directory."
-msgstr ""
+msgstr "Ustaw aktywną stronę i zmienia bieżący katalog."
 
+# Open a page
 #: libgedathon/include/geda_module.h:64
 msgid "Open a page."
-msgstr ""
+msgstr "Otwórz stronę."
 
+# Close page
 #: libgedathon/include/geda_module.h:65
 msgid "Close page."
-msgstr ""
+msgstr "Zamknij stronę."
 
+# Create a new empty page
 #: libgedathon/include/geda_module.h:66
 msgid "Create a new empty page."
-msgstr ""
+msgstr "Utwórz nową pustą stronę."
 
+# Rename a page changes the filename
 #: libgedathon/include/geda_module.h:67
 msgid "Rename a page changes the filename."
-msgstr ""
+msgstr "Zmień nazwę strony zmienia nazwę pliku."
 
+# Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr ""
+msgstr "Zapisz stronę, pisząc do magazynu."
 
+# Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr ""
+msgstr "Zapisz stronę, używając nowej nazwy pliku."
 
+# Save all opened pages to storage
 #: libgedathon/include/geda_module.h:70
 msgid "Save all opened pages to storage."
-msgstr ""
+msgstr "Zapisz wszystkie otwarte strony w pamięci."
 
+# Returns true if object is a GedaCapsule, otherwise False
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Zwraca wartość true, jeśli obiekt jest kontenerem Gedy, w przeciwnym wypadku false."
 
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
