@@ -144,7 +144,7 @@ msgstr "Сохраните страницу, используя новое им�
 msgid "Save all opened pages to storage."
 msgstr "Сохранить все открытые страницы в хранилище."
 
-# Returns True if object is a Geda container, otherwise False
+# Returns true if object is a Geda container, otherwise False
 # Vozvrashchayet True, yesli ob"yekt yavlyayetsya konteynerom Geda, inache false
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."

@@ -12,6 +12,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/sr.po: Update Serbian translations.
+
 2019-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Add calls to PyErr_Clear when there is not an error,
