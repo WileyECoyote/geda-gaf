@@ -11,6 +11,9 @@
     * emechanic/switch/switch_pushbutton-spdt-1.sym: Add description, update
       device and refdes prefix.
 
+    * linear/reference/TLV431_SOT23-1.sym: Relocate from regulator subdirectory
+      and update device attribute.
+
 2018-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/ecl/MC100ELT21-1.sym: Add description and value, update footprint.
