@@ -7,10 +7,10 @@ T 100 1275 5 8 1 1 0 0 1
 pinnumber=14
 T 150 1225 5 8 0 1 0 0 1
 pinseq=1
-T 150 1225 5 8 0 1 0 0 1
-pintype=io
 T 350 1025 5 10 0 1 0 0 1
 pinlabel=in1
+T 150 1225 5 8 0 1 0 0 1
+pintype=io
 }
 P 300 600 0 600 1 0 1
 {
@@ -18,10 +18,10 @@ T 150 675 5 8 1 1 0 0 1
 pinnumber=1
 T 150 625 5 8 0 1 0 0 1
 pinseq=2
-T 150 625 5 8 0 1 0 0 1
-pintype=io
 T 350 425 5 10 0 1 0 0 1
 pinlabel=in2
+T 150 625 5 8 0 1 0 0 1
+pintype=io
 }
 P 500 1800 500 1500 1 0 0
 {
@@ -29,10 +29,10 @@ T 300 1675 5 8 1 1 0 0 1
 pinnumber=12
 T 550 1575 5 8 0 1 0 0 1
 pinseq=3
-T 550 1575 5 8 0 1 0 0 1
-pintype=io
 T 300 1275 5 10 0 1 0 0 1
 pinlabel=G2A
+T 550 1575 5 8 0 1 0 0 1
+pintype=io
 }
 P 500 300 500 0 1 0 1
 {
@@ -40,18 +40,18 @@ T 525 150 5 8 1 1 0 0 1
 pinnumber=3
 T 525 150 5 8 0 1 0 0 1
 pinseq=4
-T 525 150 5 8 0 1 0 0 1
-pintype=io
 T 125 50 5 10 0 1 0 0 1
 pinlabel=G2B
+T 525 150 5 8 0 1 0 0 1
+pintype=io
 }
 L 400 1250 400 1150 3 15 0 0 -1 -1
 L 350 1200 450 1200 3 15 0 0 -1 -1
 L 350 600 450 600 3 15 0 0 -1 -1
 L 1700 900 300 200 3 15 0 0 -1 -1
-T 1450 1500 5 10 1 1 0 0 1
+T 1400 1700 5 10 1 1 0 0 1
 device=NE592
-T 1450 1650 8 10 1 1 0 0 1
+T 1400 1500 8 10 1 1 0 0 1
 refdes=U?
 P 700 1700 700 1400 1 0 0
 {
@@ -59,10 +59,10 @@ T 750 1475 5 8 1 1 0 0 1
 pinnumber=11
 T 750 1475 5 8 0 1 0 0 1
 pinseq=5
-T 750 1475 5 8 0 1 0 0 1
-pintype=io
 T 600 1125 5 10 0 1 0 0 1
 pinlabel=G1A
+T 750 1475 5 8 0 1 0 0 1
+pintype=io
 }
 P 1900 1100 1600 1100 1 0 0
 {
@@ -70,10 +70,10 @@ T 1700 1175 5 8 1 1 0 0 1
 pinnumber=8
 T 1650 1175 5 8 0 1 0 0 1
 pinseq=6
-T 1650 1175 5 8 0 1 0 0 1
-pintype=io
 T 1850 1175 5 10 0 1 0 0 1
 pinlabel=out1
+T 1650 1175 5 8 0 1 0 0 1
+pintype=io
 }
 P 1900 700 1600 700 1 0 0
 {
@@ -81,10 +81,10 @@ T 1700 575 5 8 1 1 0 0 1
 pinnumber=7
 T 1650 575 5 8 0 1 0 0 1
 pinseq=7
-T 1650 575 5 8 0 1 0 0 1
-pintype=io
 T 1800 525 5 10 0 1 0 0 1
 pinlabel=out2
+T 1650 575 5 8 0 1 0 0 1
+pintype=io
 }
 P 700 400 700 100 1 0 1
 {
@@ -92,10 +92,10 @@ T 725 250 5 8 1 1 0 0 1
 pinnumber=4
 T 725 250 5 8 0 1 0 0 1
 pinseq=8
-T 725 250 5 8 0 1 0 0 1
-pintype=io
 T 725 100 5 10 0 1 0 0 1
 pinlabel=G1B
+T 725 250 5 8 0 1 0 0 1
+pintype=io
 }
 P 1100 1500 1100 1200 1 0 0
 {
@@ -103,10 +103,10 @@ T 1150 1275 5 8 1 1 0 0 1
 pinnumber=10
 T 1150 1275 5 8 0 1 0 0 1
 pinseq=9
-T 1150 1275 5 8 0 1 0 0 1
-pintype=io
 T 900 1025 5 10 0 1 0 0 1
 pinlabel=Vcc
+T 1150 1275 5 8 0 1 0 0 1
+pintype=io
 }
 P 1100 600 1100 300 1 0 1
 {
@@ -114,14 +114,18 @@ T 1125 450 5 8 1 1 0 0 1
 pinnumber=5
 T 1125 450 5 8 0 1 0 0 1
 pinseq=10
-T 1125 450 5 8 0 1 0 0 1
-pintype=io
 T 1175 300 5 10 0 1 0 0 1
 pinlabel=Vee
+T 1125 450 5 8 0 1 0 0 1
+pintype=io
 }
-T 0 2100 8 10 0 0 0 0 1
-footprint=DIP14
-T 600 200 9 10 0 0 0 0 1
-numslots=0
 L 1400 1050 1600 1100 3 0 0 0 100 100
 L 1400 750 1600 700 3 0 0 0 100 100
+T 1400 2100 5 10 1 1 0 0 1
+description=video amplifier, monolithic, two-stage, differential
+T 1400 2500 5 10 1 1 0 0 1
+documentation=http://www.onsemi.com/PowerSolutions/product.do?id=NE592
+T 1400 1900 9 10 0 1 0 0 1
+footprint=DIP14
+T 1400 2300 9 10 0 0 0 0 1
+numslots=0

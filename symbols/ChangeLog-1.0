@@ -22,6 +22,8 @@
 
     * linear/video/NE592-1.sym: Add description and documentation.
 
+    * linear/video/NE592-2.sym: Add description and documentation.
+
 2018-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/ecl/MC100ELT21-1.sym: Add description and value, update footprint.
