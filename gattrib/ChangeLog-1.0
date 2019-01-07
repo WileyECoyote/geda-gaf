@@ -5,6 +5,8 @@
     * src/x_gtksheet.c: Replace function gtk_entry_set_text with
       geda_entry_set_selected_text in clipboard_receive_entry_text.
 
+    * src/x_toolbars.c: Update Doxygen function documentation.
+
 2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Update Doxygen parameter documentation.

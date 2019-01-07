@@ -284,7 +284,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
  * \brief Set Senitivity of Toolbar Buttons.
  * \par Function Description
  *  This function is called by on_notebook_switch_page when ever a TAB
- *  is selected, passing a gslist of toolbasr button widgets to be set
+ *  is selected, passing a gslist of toolbar button widgets to be set
  *  to the specified sensitivity
  */
 void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
@@ -296,9 +296,10 @@ void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
     mapcar(ListToolBarItems);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Replease Gattrib Toolbar Resources
+ * \par Function Description
+ *  Destroys the Attribute and the Sandard handleboxes.
  */
 void x_toolbar_release_all(void)
 {
