@@ -1652,7 +1652,7 @@ GedaType geda_menu_shell_get_type (void)
 /*!
  * \brief Check if an object is a GedaMenuShell
  * \par Function Description
- *  Determines if \a menu_shell is valid by varifying \a menu_shell
+ *  Determines if \a menu_shell is valid by verifying \a menu_shell
  *  is included in the hash table of GedaMenuShell objects.
  *
  * \return TRUE if \a menu_shell is a valid GedaMenuShell
