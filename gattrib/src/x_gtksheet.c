@@ -375,7 +375,9 @@ static void clipboard_receive_entry_text(GtkClipboard *clipboard,
                                                  void *data)
 {
   if (text && strlen(text) > 0) {
-    gtk_entry_set_text((GtkEntry*)entry, text);
+
+    GedaEntry *entry = data;
+    geda_entry_set_selected_text(entry, text);
     sheet_head->CHANGED = TRUE;
     x_window_update_title(pr_current, sheet_head);
   }
