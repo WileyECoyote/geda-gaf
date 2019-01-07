@@ -373,9 +373,13 @@ void s_properties_promote_attribute() {
   s_properties_set_cell_fgcolor(sheet, row, col);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Demote an Atttribute
+ * \par Function Description
+ *  Changes the properties of the attribute reference by
+ *  the cell in the local_table so that the attribute is
+ *  not directly attached to the complex for which it is
+ *  associated.
  */
 void s_properties_demote_attribute() {
 

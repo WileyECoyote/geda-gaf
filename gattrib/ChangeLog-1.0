@@ -1,3 +1,7 @@
+2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_properties.c: Update Doxygen function documentation.
+
 2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Update Doxygen parameter documentation.
