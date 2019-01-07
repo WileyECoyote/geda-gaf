@@ -393,7 +393,7 @@ geda_invisible_new (void)
  * \par Function Description
  *  Creates a new #GedaInvisible object for a specified screen.
  *
- * \param[in] screen A #GdkScreen for which the #GedaInvisible will be created.
+ * \param[in] screen A GdkScreen for which the #GedaInvisible will be created.
  *
  * \returns a new #GedaInvisible object.
  */
@@ -412,7 +412,7 @@ geda_invisible_new_for_screen (GdkScreen *screen)
  *  object will recieve event signals.
  *
  * \param[in] invisible Pointer to a #GedaInvisible
- * \param[in] screen    A #GdkScreen
+ * \param[in] screen    A GdkScreen
  */
 void
 geda_invisible_set_screen (GedaInvisible *invisible, GdkScreen *screen)
@@ -457,7 +457,7 @@ geda_invisible_set_screen (GedaInvisible *invisible, GdkScreen *screen)
  *
  * \param[in] invisible  Pointer to a #GedaInvisible
  *
- * \returns the #GdkScreen object associated with \a invisible
+ * \returns the GdkScreen object associated with \a invisible
  */
 GdkScreen *
 geda_invisible_get_screen (GedaInvisible *invisible)
