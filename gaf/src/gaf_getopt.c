@@ -26,9 +26,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-//#include <windows.h>
-
-#include "gaf_getopt.h"
+#include "../include/gaf_getopt.h"
 
 int     gaf_opterr = 1;        /* if error message should be printed */
 int     gaf_optind = 1;        /* index into parent argv vector, 1003.2 must be 1 before any call. */
