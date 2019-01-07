@@ -1,3 +1,7 @@
+2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * LCB110_ssrelay_spst-1.sym: Add description, resequence attributes.
+
 2018-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/ecl/MC100ELT21-1.sym: Add description and value, update footprint.
