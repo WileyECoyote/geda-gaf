@@ -170,7 +170,7 @@ int check_light_display_colors (void)
     char *name = geda_color_get_color_name(3, color_map, NULL);
 
     if (!name) {
-      fprintf(stderr, "%s: FAILED: geda_color_get_color_name <%s>\n", __func__, name);
+      fprintf(stderr, "%s: FAILED: geda_color_get_color_name NULL\n", __func__);
       result++;
     }
     else {
@@ -243,7 +243,7 @@ int check_bw_display_colors (void)
     char *name = geda_color_get_color_name(3, color_map, NULL);
 
     if (!name) {
-      fprintf(stderr, "%s: FAILED: geda_color_get_color_name <%s>\n", __func__, name);
+      fprintf(stderr, "%s: FAILED: geda_color_get_color_name NULL\n", __func__);
       result++;
     }
     else {

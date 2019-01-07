@@ -1,3 +1,8 @@
+2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_color.c: Revise checks for geda_color_get_color_name to
+      not include NULL name in message outputs.
+
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/color_guile.c: Update Doxygen group Libgedacolor-RC-Color,
