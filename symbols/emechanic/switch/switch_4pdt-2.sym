@@ -1,58 +1,54 @@
 v 20130214 2
-T 20 2710 8 10 0 0 0 0 1
-device=Quad_Two_Way_Switch (type 2)
+T 100 2800 5 10 0 0 0 0 1
+device=SWITCH
 T 520 810 8 10 1 1 0 0 1
-refdes=S?
-T 20 2460 8 10 0 0 0 0 1
+refdes=SW?
+T 100 1200 9 10 0 1 0 0 1
 footprint=CONNECTOR 2 6
-T 10 2960 8 10 0 0 0 0 1
-symversion=1.0
-T 20 2211 8 10 0 1 0 0 1
-author=David Griffith <davidgriffith@acm.org>
-T 20 2011 8 10 0 0 0 0 1
+T 100 2400 8 10 0 0 0 0 1
 slotdef=1:1,2,3
-T 20 1811 8 10 0 0 0 0 1
+T 100 2200 8 10 0 0 0 0 1
 slotdef=2:4,5,6
-T 20 1611 8 10 0 0 0 0 1
+T 100 2000 8 10 0 0 0 0 1
 slotdef=3:7,8,9
-T 20 1411 8 10 0 0 0 0 1
+T 100 1800 8 10 0 0 0 0 1
 slotdef=4:10,11,12
-T 20 1211 8 10 0 0 0 0 1
+T 100 1600 5 10 0 0 0 0 1
 numslots=4
-T 20 1011 8 10 0 0 0 0 1
+T 100 1000 8 10 0 0 0 0 1
 slot=1
 P 100 400 400 400 1 0 0
 {
-T 305 445 5 10 1 1 0 6 1
+T 255 445 5 10 1 1 0 6 1
 pinnumber=2
-T 0 200 5 10 0 0 0 0 1
+T 300 450 5 10 0 1 0 0 1
 pinseq=1
-T 100 0 5 10 0 0 0 0 1
-pintype=pas
 T 405 245 5 10 0 1 0 6 1
 pinlabel=com
+T 100 100 5 10 0 1 0 0 1
+pintype=pas
 }
 P 1200 600 900 600 1 0 0
 {
-T 1200 900 5 10 0 0 0 0 1
-pintype=pas
 T 995 645 5 10 1 1 0 0 1
 pinnumber=1
-T 1200 700 5 10 0 0 0 0 1
+T 1000 450 5 10 0 1 0 0 1
 pinseq=2
 T 595 645 5 10 1 1 0 0 1
 pinlabel=nc
+T 1100 450 5 10 0 1 0 0 1
+pintype=pas
 }
 P 1200 200 900 200 1 0 0
 {
-T 1400 0 5 10 0 0 0 0 1
-pintype=pas
 T 995 245 5 10 1 1 0 0 1
 pinnumber=3
-T 1400 200 5 10 0 0 0 0 1
+T 1000 50 5 10 0 1 0 0 1
 pinseq=3
 T 595 145 5 10 1 1 0 0 1
 pinlabel=no
+T 1100 50 5 10 0 1 0 0 1
+pintype=pas
 }
 V 851 600 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 V 851 201 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -60,3 +56,9 @@ L 400 400 800 600 3 0 0 0 -1 -1
 L 800 600 750 525 3 0 0 0 -1 -1
 L 800 600 700 600 3 0 0 0 -1 -1
 L 750 525 700 600 3 0 0 0 -1 -1
+T 100 1400 5 10 0 0 0 0 1
+description=Switch, 4PDT
+T 100 2600 8 10 0 0 0 0 1
+symversion=0.2
+T 100 3000 8 10 0 1 0 0 1
+author=David Griffith <davidgriffith@acm.org>
