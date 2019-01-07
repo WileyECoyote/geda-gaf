@@ -120,7 +120,7 @@ static int gcd(int a, int b)
 static void
 permute_args(int panonopt_start, int panonopt_end, int opt_end, char * const *nargv)
 {
-  int cstart, cyclelen, i, j, ncycle, nnonopts, nopts, pos;
+  int cyclelen, i, j, ncycle, nnonopts, nopts;
   char *swap;
 
   /* compute lengths of blocks and number and size of cycles */
@@ -130,6 +130,8 @@ permute_args(int panonopt_start, int panonopt_end, int opt_end, char * const *na
   cyclelen = (opt_end - panonopt_start) / ncycle;
 
   for (i = 0; i < ncycle; i++) {
+
+    int cstart, pos;
 
     cstart = panonopt_end+i;
     pos = cstart;

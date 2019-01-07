@@ -1,6 +1,7 @@
 2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gaf_getopt.c: Use relative reference to header.
+    * src/gaf_getopt.c: Use relative reference to header, reduce scope of
+      variables in permute_args..
 
 2018-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
