@@ -370,9 +370,9 @@ void x_window_init()
  * \brief Load Blank Document
  * \par Function Description
  *  This function is called in place of s_toplevel_init_data_set
- *  when there is no file specified or there was an error while attempting
- *  to load a file. This allows gattrib to startup without the initial
- *  file-open dialog.
+ *  when there is no file specified or there was an error while
+ *  attempting to load a file. This allows gattrib to startup
+ *  without the initial file-open dialog.
  */
 void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 {
@@ -384,8 +384,9 @@ void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 /*!
  * \brief Add all items to the top level window
  * \par Function Description
- *  The function calls x_gktsheet_add_row_labels and x_gktsheet_add_col_labels
- *  for each worksheet and then loads the cell values for each sheet.
+ *  The function calls x_gktsheet_add_row_labels and
+ *  x_gktsheet_add_col_labels for each worksheet and
+ *  then loads the cell values for each sheet.
  */
 void x_window_add_items(PageDataSet *PageData)
 {
@@ -501,10 +502,10 @@ void x_window_set_main_icon()
 /*!
  * \brief Complete startup initialization for Main Window
  * \par Function Description
- *   This function is called from the main-line after the GTKSheet is up.
- * The function calls the previous function, x_window_add_items to load
- * attribute values, then sets the main window position and displayed the
- * window and update the Titlebar.
+ *  This function is called from the main-line after the GTKSheet is up.
+ *  The function calls the previous function, x_window_add_items to load
+ *  attribute values, then sets the main window position and displayed
+ *  the window and update the title bar.
  */
 void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
 {
@@ -525,9 +526,9 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
 /*!
  * \brief View toogle Attribute toolbar
  * \par Function Description
- *      This function toggles the visibility of the Attribute tool-bar.
- * Note: The function actually toggles visibility of the handlebox
- *       containing the toolbar.
+ *  This function toggles the visibility of the Attribute toobar.
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar
  */
 void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
                                        GtkWindow       *main_window)
@@ -545,8 +546,8 @@ void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
  * \brief View toogle standard toolbar
  * \par Function Description
  *  This function toggles the visibility of the Standard toobar.
- * Note the function actually toggle visibility of the handlebox
- * containing the toolbar
+ *  Note the function actually toggle visibility of the handlebox
+ *  containing the toolbar
  */
 void x_window_standard_toolbar_toggle(GtkToggleAction *action,
                                       GtkWindow       *main_window)
@@ -563,9 +564,9 @@ void x_window_standard_toolbar_toggle(GtkToggleAction *action,
 /*!
  * \brief Toggle View between All and Attached Attributes
  * \par Function Description
- *      This function checks each column name and hides or unhides
- *  the column, depending on the action parameter, all columns that
- *  are not members of attached atribute list ->attached_attrib.
+ *  This function checks each column name and hides or unhides the
+ *  column, depending on the action parameter, all columns that are
+ *  not members of attached atribute list ->attached_attrib.
  */
 #define TOGGLE_ATTACH_X_OFFSET 100
 void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
@@ -587,9 +588,9 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 
       int num_ribs;
 
-      toggle     = TRUE;
-      col_name   = sheet->column[i]->title;
-      num_ribs   = sheet_head->attached_attrib_count;
+      toggle   = TRUE;
+      col_name = sheet->column[i]->title;
+      num_ribs = sheet_head->attached_attrib_count;
 
       for (row = 0; row < num_ribs; row++) {
 
