@@ -2,6 +2,8 @@
 
     * src/gaf.c: Add function documentation for main.
 
+    * src/gaf_getopt.c: Expand getopt_internal for getopt_internal.
+
 2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gaf_getopt.c: Use relative reference to header, reduce scope of

@@ -157,7 +157,12 @@ permute_args(int panonopt_start, int panonopt_end, int opt_end, char * const *na
 }
 
 /*! \internal Parse argc/argv argument vector.
- * Called by user level routines.
+ * Called by user level routines, this is a standard get options code
+ * that is included here for use by the gaf back-end routines because
+ * the getopt on MinGW/MSYS does not work correctly. Under MinGW back
+ * end routines are passed the entire command-line again, including
+ * options previously parsed by main. This does not occur with other
+ * platforms.
  */
 static int
 getopt_internal(int nargc, char * const *nargv, const char *options,
@@ -416,7 +421,7 @@ int gaf_getopt(int nargc, char * const *nargv, const char *options)
   return (getopt_internal(nargc, nargv, options, NULL, NULL, 0));
 }
 
-/*
+/*!
  * parse_long_options --
  *	Parse long options in argc/argv argument vector.
  * Returns -1 if short_too is set and the option does not match long_options.
