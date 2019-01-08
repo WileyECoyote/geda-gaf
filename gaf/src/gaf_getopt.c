@@ -435,148 +435,149 @@ parse_long_options(char * const *nargv, const char *options,
   int i, ambiguous, match;
 
 #define IDENTICAL_INTERPRETATION(_x, _y)                           \
-    (long_options[(_x)].has_arg == long_options[(_y)].has_arg &&   \
-    long_options[(_x)].flag == long_options[(_y)].flag &&          \
-    long_options[(_x)].val == long_options[(_y)].val)
+  (long_options[(_x)].has_arg == long_options[(_y)].has_arg &&   \
+  long_options[(_x)].flag == long_options[(_y)].flag &&          \
+  long_options[(_x)].val == long_options[(_y)].val)
 
-    current_argv = place;
-    match = -1;
-    ambiguous = 0;
+  current_argv = place;
+  match = -1;
+  ambiguous = 0;
 
-    gaf_optind++;
+  gaf_optind++;
 
-    if ((has_equal = strchr(current_argv, '=')) != NULL) {
-      /* argument found (--option=arg) */
-      current_argv_len = has_equal - current_argv;
-      has_equal++;
-    } else {
-      current_argv_len = strlen(current_argv);
+  if ((has_equal = strchr(current_argv, '=')) != NULL) {
+    /* argument found (--option=arg) */
+    current_argv_len = has_equal - current_argv;
+    has_equal++;
+  } else {
+    current_argv_len = strlen(current_argv);
+  }
+
+  for (i = 0; long_options[i].name; i++) {
+    /* find matching long option */
+    if (strncmp(current_argv, long_options[i].name, current_argv_len))
+      continue;
+
+    if (strlen(long_options[i].name) == current_argv_len) {
+      /* exact match */
+      match = i;
+      ambiguous = 0;
+      break;
     }
 
-    for (i = 0; long_options[i].name; i++) {
-      /* find matching long option */
-      if (strncmp(current_argv, long_options[i].name, current_argv_len))
-        continue;
+    /* If this is a known short option, don't allow
+     * a partial match of a single character.
+     */
+    if (short_too && current_argv_len == 1)
+      continue;
 
-      if (strlen(long_options[i].name) == current_argv_len) {
-        /* exact match */
-        match = i;
-        ambiguous = 0;
-        break;
+    if (match == -1) {	/* partial match */
+      match = i;
+    }
+    else if (!IDENTICAL_INTERPRETATION(i, match)) {
+      ambiguous = 1;
+    }
+  }
+
+  if (ambiguous) {
+
+    /* ambiguous abbreviation */
+    if (PRINT_ERROR) {
+      warnx(ambig, (int)current_argv_len, current_argv);
+    }
+
+    gaf_optopt = 0;
+    return (BADCH);
+  }
+
+  if (match != -1) {     /* option found */
+
+    if (long_options[match].has_arg == no_argument  && has_equal)
+    {
+      if (PRINT_ERROR) {
+        warnx(noarg, (int)current_argv_len, current_argv);
       }
-
-      /* If this is a known short option, don't allow
-       * a partial match of a single character.
+      /*
+       * XXX: GNU sets gaf_optopt to val regardless of flag
        */
-      if (short_too && current_argv_len == 1)
-        continue;
-
-      if (match == -1) {	/* partial match */
-        match = i;
+      if (long_options[match].flag == NULL) {
+        gaf_optopt = long_options[match].val;
       }
-      else if (!IDENTICAL_INTERPRETATION(i, match)) {
-        ambiguous = 1;
+      else {
+        gaf_optopt = 0;
+      }
+      return (BADARG);
+    }
+
+    if (long_options[match].has_arg == required_argument ||
+      long_options[match].has_arg == optional_argument)
+    {
+      if (has_equal) {
+        gaf_optarg = has_equal;
+      }
+      else if (long_options[match].has_arg == required_argument) {
+        /*  optional argument doesn't use next nargv */
+        gaf_optarg = nargv[gaf_optind++];
       }
     }
 
-    if (ambiguous) {
+    if ((long_options[match].has_arg == required_argument) &&
+      (gaf_optarg == NULL))
+    {
 
-      /* ambiguous abbreviation */
+      /*  Missing argument; leading ':' indicates no error
+       * should be generated.
+       */
       if (PRINT_ERROR) {
-        warnx(ambig, (int)current_argv_len, current_argv);
+        warnx(recargstring, current_argv);
       }
 
-      gaf_optopt = 0;
-      return (BADCH);
-    }
-
-    if (match != -1) {     /* option found */
-
-      if (long_options[match].has_arg == no_argument  && has_equal)
-      {
-        if (PRINT_ERROR) {
-          warnx(noarg, (int)current_argv_len, current_argv);
-        }
-        /*
-         * XXX: GNU sets gaf_optopt to val regardless of flag
-         */
-        if (long_options[match].flag == NULL) {
-          gaf_optopt = long_options[match].val;
-        }
-        else {
-          gaf_optopt = 0;
-        }
-        return (BADARG);
+      /* XXX: GNU sets gaf_optopt to val regardless of flag
+       */
+      if (long_options[match].flag == NULL) {
+        gaf_optopt = long_options[match].val;
       }
-      if (long_options[match].has_arg == required_argument ||
-          long_options[match].has_arg == optional_argument)
-      {
-        if (has_equal) {
-          gaf_optarg = has_equal;
-        }
-        else if (long_options[match].has_arg == required_argument) {
-          /*  optional argument doesn't use next nargv */
-          gaf_optarg = nargv[gaf_optind++];
-        }
+      else {
+        gaf_optopt = 0;
       }
 
-      if ((long_options[match].has_arg == required_argument) &&
-          (gaf_optarg == NULL))
-      {
-
-        /*  Missing argument; leading ':' indicates no error
-         * should be generated.
-         */
-        if (PRINT_ERROR) {
-          warnx(recargstring, current_argv);
-        }
-
-        /* XXX: GNU sets gaf_optopt to val regardless of flag
-         */
-        if (long_options[match].flag == NULL) {
-          gaf_optopt = long_options[match].val;
-        }
-        else {
-          gaf_optopt = 0;
-        }
-
-        --gaf_optind;
-        return (BADARG);
-      }
+      --gaf_optind;
+      return (BADARG);
     }
-    else {          /* unknown option */
+  }
+  else {          /* unknown option */
 
-      if (short_too) {
-        --gaf_optind;
-        return (-1);
-      }
-
-      if (PRINT_ERROR) {
-        warnx(illoptstring, current_argv);
-      }
-
-      gaf_optopt = 0;
-      return (BADCH);
+    if (short_too) {
+      --gaf_optind;
+      return (-1);
     }
 
-    if (idx) {
-      *idx = match;
+    if (PRINT_ERROR) {
+      warnx(illoptstring, current_argv);
     }
 
-    if (long_options[match].flag) {
-      *long_options[match].flag = long_options[match].val;
-      return (0);
-    }
-    else {
-      return (long_options[match].val);
-    }
+    gaf_optopt = 0;
+    return (BADCH);
+  }
+
+  if (idx) {
+    *idx = match;
+  }
+
+  if (long_options[match].flag) {
+    *long_options[match].flag = long_options[match].val;
+    return (0);
+  }
+  else {
+    return (long_options[match].val);
+  }
 
 #undef IDENTICAL_INTERPRETATION
 }
 
 /*
  * getopt_long --
- *	Parse argc/argv argument vector.
+ *  Parse argc/argv argument vector.
  */
 int gaf_getopt_long(int nargc, char * const *nargv, const char *options, const gaf_option *long_options, int *idx)
 {
