@@ -575,9 +575,10 @@ parse_long_options(char * const *nargv, const char *options,
 #undef IDENTICAL_INTERPRETATION
 }
 
-/*
- * getopt_long --
- *  Parse argc/argv argument vector.
+/*!
+ * \brief Custom Get long options
+ * \par Function Description
+ *  This is just a wrapper for getopt_internal
  */
 int gaf_getopt_long(int nargc, char * const *nargv, const char *options, const gaf_option *long_options, int *idx)
 {
