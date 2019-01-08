@@ -48,7 +48,7 @@ static struct gaf_option path_long_options[] =
     {"system",  0, NULL, 's'},
     {"user",    0, NULL, 'u'},
   };
-  
+
 static void path_usage (void)
 {
   printf (_("Usage: gaf path [OPTION] [which-path]\n"
@@ -69,17 +69,16 @@ static void path_usage (void)
   exit (0);
 }
 
-
 /*! \brief Main function for "gaf path" */
 int cmd_path (int argc, char **argv)
 {
   const char *str_out = NULL;
   int c;
 
-   /* Note the libgeda path module does not require the library to be
-    * initialized prior to usage.
+   /* Note that the libgeda path module does not require the library
+    * to be initialized prior to usage.
     */
-   
+
   /* Parse command-line arguments */
   while ((c = gaf_getopt_long (argc, argv, path_short_options,
                                path_long_options, NULL)) != -1) {
