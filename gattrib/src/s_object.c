@@ -88,7 +88,6 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -103,9 +102,9 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add a new attribute to an pin Object
- *
- *  \par Function Description
+/*!
+ * \brief Add a new attribute to an pin Object
+ * \par Function Description
  *
  *  This function adds a new attribute to o_current, when o_current is
  *  a pin using the following technique:
@@ -156,9 +155,9 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Replace attribute value in object
- *
- *  \par Function Description
+/*!
+ * \brief Replace attribute value in object
+ * \par Function Description
  *
  *  Find the instance of attrib_name on o_current, and replace the
  *  value with the new_attrib_value.
@@ -287,6 +286,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
+
 /*!
  * \brief Attach attribute to object.
  * \par Function Description
