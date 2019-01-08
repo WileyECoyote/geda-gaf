@@ -110,6 +110,13 @@ static void gaf_show_run_help (const char *msg)
   }
 }
 
+/*!
+ * \brief Main executable entrance point for the GAF application.
+ * \par Function Description
+ *  This is the main function for gaf. The function sets up I18N
+ *  environment, checks for general program options and the back
+ *  end to run, calling the back-end to return from the function.
+ */
 int main (int argc, char **argv)
 {
   int    c;

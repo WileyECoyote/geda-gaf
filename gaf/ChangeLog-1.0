@@ -1,3 +1,7 @@
+2019-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gaf.c: Add function documentation for main.
+
 2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gaf_getopt.c: Use relative reference to header, reduce scope of
@@ -41,7 +45,7 @@
 
     * src/gaf_getopt.c: Add new new source module to parse getlong option for
       gaf submodules because, although gaf_getopt works correctly on
-      Linux host,  getopt under MinGW/MSYS is braindamaged.
+      Linux host, getopt under MinGW/MSYS is braindamaged.
 
     * src: Implement gaf_getopt in:
 
