@@ -48,22 +48,22 @@ static void
 shell_usage (void)
 {
   printf (_("Usage: gaf shell [OPTION ...]\n"
-"\n"
-"Shell for interactive processing of gEDA data using Scheme.\n"
-"\n"
-"  -e, --eval <EXPR>   evaluate Scheme expression EXPR, and exit\n"
-"  -h, --help          display usage information and exit\n"
-"  -l, --load <FILE>   load Scheme source code from FILE\n"
-"  -p, --path <DIR>    add DIR to the front of the Guile load path\n"
-"  -s, --scheme <FILE> load Scheme source code from FILE, and exit\n"
-"  --                  stop scanning arguments; run interactively\n"
-"\n"
-"The switch -e and -s stop argument processing, and pass all\n"
-"remaining arguments as the value of (command-line).\n"
-"\n"
-"\n"
-"Please report bugs to %s.\n"),
-PACKAGE_BUGREPORT);
+  "\n"
+  "Shell for interactive processing of gEDA data using Scheme.\n"
+  "\n"
+  "  -e, --eval <EXPR>   evaluate Scheme expression EXPR, and exit\n"
+  "  -h, --help          display usage information and exit\n"
+  "  -l, --load <FILE>   load Scheme source code from FILE\n"
+  "  -p, --path <DIR>    add DIR to the front of the Guile load path\n"
+  "  -s, --scheme <FILE> load Scheme source code from FILE, and exit\n"
+  "  --                  stop scanning arguments; run interactively\n"
+  "\n"
+  "The switch -e and -s stop argument processing, and pass all\n"
+  "remaining arguments as the value of (command-line).\n"
+  "\n"
+  "\n"
+  "Please report bugs to %s.\n"),
+  PACKAGE_BUGREPORT);
   exit (0);
 }
 
