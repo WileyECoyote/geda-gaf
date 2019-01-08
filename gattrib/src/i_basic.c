@@ -29,9 +29,6 @@
  *------------------------------------------------------------------*/
 #include <gattrib.h>
 
-/* --- This is necessary for i_basic.c --- */
-//#include "../include/x_states.h"
-
 #include <geda_debug.h>
 
 /* ------------------------------------------------------------- *
@@ -164,7 +161,7 @@ static bool i_basic_show_uri (const char *uri)
     return result;
 
   if (verbose_mode) {
-    geda_log ("falling back to <%s>\n", SHOW_URI_COMMAND);
+    geda_log ("%s <%s>\n", _("falling back to"), SHOW_URI_COMMAND);
   }
 
 #endif

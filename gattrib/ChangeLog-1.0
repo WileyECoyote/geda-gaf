@@ -1,3 +1,7 @@
+2019-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/i_basic.c: Translate verbose fall-back message.
+
 2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_properties.c: Update Doxygen function documentation.
