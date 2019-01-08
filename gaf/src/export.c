@@ -24,7 +24,6 @@
 #endif
 #include <version.h>
 
-//#include <getopt.h>
 #include <gaf_getopt.h>
 
 #include <math.h>
