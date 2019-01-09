@@ -1441,7 +1441,7 @@ void gschem_status_bar_set_height (GtkWidget *widget, int height)
 void gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
-  geda_label_set_text ((GedaLabel *)(GSCHEM_STATUS_BAR(widget))->right_label, text);
+  geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->right_label, text);
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -1474,7 +1474,7 @@ void gschem_status_bar_set_left_button_text (GtkWidget *widget, const char *text
 void gschem_status_bar_set_middle_button_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
-  geda_label_set_text ((GedaLabel *)(GSCHEM_STATUS_BAR(widget))->right_label, text);
+  geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->right_label, text);
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
@@ -1729,7 +1729,7 @@ void gschem_status_bar_set_coordinates (GtkWidget *widget, int x0, int y0, int x
 void gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
 {
 #if defined (G_DISABLE_ASSERT)
-  geda_label_set_text ((GedaLabel *)(GSCHEM_STATUS_BAR(widget))->status_label, text);
+  geda_label_widget_set_text ((GSCHEM_STATUS_BAR(widget))->status_label, text);
 #else
   if (widget == NULL) {
     BUG_MSG("widget is NULL");
