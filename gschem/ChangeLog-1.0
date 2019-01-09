@@ -3,6 +3,8 @@
     * src/base/gschem_status_bar.c: Replace geda_label_set_text with
       geda_label_widget_set_text and remove cast.
 
+    * src/x/x_edit_text.c: Reduce scope of variables in edit_text_to_camel.
+
 2018-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Add "notepad" as option for Win32
