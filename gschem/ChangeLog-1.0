@@ -5,6 +5,9 @@
 
     * src/x/x_edit_text.c: Reduce scope of variables in edit_text_to_camel.
 
+    * src/x/x_menus.c: Remove on_paste_button_released conditional event
+      arguments; makes no sense since the next argument is event->button.
+
 2018-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/gschem-tools-menu.scm: Add "notepad" as option for Win32

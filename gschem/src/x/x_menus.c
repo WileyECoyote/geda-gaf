@@ -487,8 +487,7 @@ static bool on_paste_button_released (GtkWidget       *menuitem,
 
     /* make menu a popup menu */
     geda_menu_popup (GEDA_MENU (menu), NULL, NULL, NULL, NULL,
-                    (event != NULL) ? event->button : 0,
-                     gdk_event_get_time ((GdkEvent*)event));
+                     event->button, gdk_event_get_time ((GdkEvent*)event));
 
     ret_val = TRUE;
   }
