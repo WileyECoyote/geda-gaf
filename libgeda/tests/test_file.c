@@ -1003,8 +1003,6 @@ int test_path (void)
     }
   }
 
-  path = NULL;
-
   /* === Function 05: geda_file_path_sys_doc === */
 
   path = (char*) geda_sys_doc_path();

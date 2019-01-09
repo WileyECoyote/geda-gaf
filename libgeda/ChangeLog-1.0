@@ -1,3 +1,8 @@
+2019-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file.c: Remove unnecessary resetting of the path variable
+      to NULL in test_path function.
+
 2018-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc_object.c: Revise setters to check values for
@@ -11420,7 +11425,7 @@
 
 2000-08-21  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/o_text_basic.c: #if'ed 0 out o_text_translate (since it is
+        * src/o_text_basic.c: #if`ed 0 out o_text_translate (since it is
           unused)
 
         * include/struct.h: Put a complex pointer into the TEXT item
