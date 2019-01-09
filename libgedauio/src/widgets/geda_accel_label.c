@@ -721,13 +721,13 @@ bool is_a_geda_accel_label (GedaAccelLabel *accel_label)
  */
 GtkWidget *geda_accel_label_new (const char *string)
 {
-  GedaAccelLabel *accel_label;
+  GedaLabel *accel_label; /* GedaAccelLabel */
 
   g_return_val_if_fail (string != NULL, NULL);
 
   accel_label = g_object_new (GEDA_TYPE_ACCEL_LABEL, NULL);
 
-  geda_label_set_text (GEDA_LABEL(accel_label), string);
+  geda_label_set_text (accel_label, string);
 
   return GTK_WIDGET (accel_label);
 }

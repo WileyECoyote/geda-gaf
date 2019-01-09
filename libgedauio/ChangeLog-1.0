@@ -1,3 +1,8 @@
+2019-01-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Revise geda_accel_label_new to
+      eliminate cast by changing GedaAccelLabel to type GedaLabel.
+
 2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add function geda_entry_set_selected_text.
