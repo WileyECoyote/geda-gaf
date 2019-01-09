@@ -3073,6 +3073,7 @@ COMMAND (do_down_schematic)
 
       /* geda_struct_hierarchy_down_single() will not zoom the loaded page */
       if (child != NULL) {
+
         x_window_setup_page(w_current, child, w_current->world_left,
                                               w_current->world_right,
                                               w_current->world_top,
@@ -3248,6 +3249,7 @@ COMMAND (do_hierarchy_up)
     if (geda_page_get_changed(child) > 0) {
       answer = x_confirm_close_changed_page (w_current, child);
     }
+
     if (answer == TRUE) {
       x_window_close_page (w_current, child);
       x_window_set_current_page(w_current, up_page);
