@@ -702,6 +702,28 @@ check_query(void)
     result++;
   }
 
+  GedaObject *object = geda_circle_object_new (3, 100, 200, 300);
+
+  /* bounds_valid should NOT be set */
+  if (object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O061902A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Virtual geda_line_bounds  === */
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "FAILED: (O061902B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* bounds_valid should be set */
+  if (!object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O061902C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  g_object_unref (object);
+
   for (count = 0; count < 10; count++) {
 
     int c = geda_random_number (0, MAX_COLORS - 1);
