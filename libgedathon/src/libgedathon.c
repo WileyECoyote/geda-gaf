@@ -1063,10 +1063,10 @@ void PyGeda_shutdown(void)
 /*! \brief Append the Symbol Library Search Path
  *  \ingroup Python_API_Library
  *  \par Function Description
- *  This function check for the directory of the given path string
- *  and calls subdirectory to appended the directory to the library,
- *  all symbol files within the folder will be made available
- *  to the drawing.
+ *  This function checks for the directory of the given path string
+ *  and calls geda_struct_clib_add_directory to append the directory
+ *  to the library search path so that symbol files within the folder
+ *  will be made available to the drawing.
  *
  * \return [out] integer result
  */
