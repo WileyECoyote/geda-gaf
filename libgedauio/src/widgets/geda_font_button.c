@@ -258,10 +258,10 @@ static void geda_font_button_label_set_text (GedaFontButton *font_button)
   }
 
   /* Update the label on our button */
-  geda_label_set_text ( GEDA_LABEL(data->font_label), data->label_text);
+  geda_label_widget_set_text (data->font_label, data->label_text);
 
   if (data->show_size)  {
-    geda_label_set_text ( GEDA_LABEL(data->size_label), data->size_text);
+    geda_label_widget_set_text (data->size_label, data->size_text);
   }
 }
 

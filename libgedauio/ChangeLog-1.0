@@ -3,6 +3,10 @@
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_new to
       eliminate cast by changing GedaAccelLabel to type GedaLabel.
 
+    * src/widgets/geda_font_button.c: Replace geda_label_set_text with
+      geda_label_widget_set_text in ingeda_font_button_label_set_text
+      and remove cast.
+
 2019-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add function geda_entry_set_selected_text.
