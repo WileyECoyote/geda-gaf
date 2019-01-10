@@ -582,6 +582,28 @@ int check_accessors ()
   g_object_unref(toplevel);
 
   /* === Function: geda_object_set_color === */
+
+  /* low-level setter accepts any value */
+  geda_object_set_color (object0, -1);
+
+  color = geda_object_get_color(object0);
+
+  if (color + 1) {
+    fprintf(stderr, "Failed: set_color %s line <%d> color <%d>\n", TOBJECT, __LINE__, color);
+    result++;
+  }
+
+  geda_object_set_color (object0, 82);
+
+  color = geda_object_get_color(object0);
+
+  if (color != 82) {
+    fprintf(stderr, "Failed: set_color %s line <%d> color <%d>\n", TOBJECT, __LINE__, color);
+    result++;
+  }
+
+  geda_object_set_color (object0, ATTRIBUTE_COLOR);
+
   /* === Function: geda_object_set_selectable === */
 
   /* === Function: geda_object_get_bounds_valid === */

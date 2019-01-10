@@ -13,6 +13,7 @@
 
           * geda_object_get_page
           * geda_object_set_page
+          * geda_object_set_color
 
 2019-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
