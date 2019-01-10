@@ -567,7 +567,7 @@ bool geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, in
  *
  * \param [in] object A GedaComplex object
  *
- * \returns GList of pins belonging to the complex.
+ * \returns GList of pins belonging to the complex, do not free the list.
  */
 GList *geda_complex_object_get_pin_objs(GedaObject *object)
 {
@@ -928,7 +928,6 @@ GedaObject *geda_complex_object_new(GedaToplevel *toplevel,
                                                   &err);
 
     if (err) {
-
       g_error_free(err);
       /* If reading fails, change object to a placeholder type */
       new_obj->type = OBJ_PLACEHOLDER;
