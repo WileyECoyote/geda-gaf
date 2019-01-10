@@ -966,20 +966,6 @@ void geda_object_set_color (GedaObject *object, int index) {
 }
 
 /*!
- * \brief Set the Selectable Flag of a GedaObject
- * \par Function Description
- *  The selectable flag is sometimes referred to as the "lock" flag but
- *  really is a NOT locked flag. When the selectable flag is set FALSE
- *  the object is NOT selectable, if the flag is not FALSE then an object
- *  can be selected.
- */
-void geda_object_set_selectable (GedaObject *object, int state) {
-  if (is_a_geda_object(object)) {
-    object->selectable = state;
-  }
-}
-
-/*!
  * \brief Set the Locked Color Index of a GedaObject
  * \par Function Description
  *  The locked color can be used to store the index of the color of an enity
@@ -1009,6 +995,20 @@ void geda_object_set_locked_color (GedaObject *object, int index) {
 void geda_object_set_page (GedaObject *object, Page *page) {
   if (is_a_geda_object(object)) {
     object->page = GEDA_IS_PAGE(page) ? page : NULL;
+  }
+}
+
+/*!
+ * \brief Set the Selectable Flag of a GedaObject
+ * \par Function Description
+ *  The selectable flag is sometimes referred to as the "lock" flag but
+ *  really is a NOT locked flag. When the selectable flag is set FALSE
+ *  the object is NOT selectable, if the flag is not FALSE then an object
+ *  can be selected.
+ */
+void geda_object_set_selectable (GedaObject *object, int state) {
+  if (is_a_geda_object(object)) {
+    object->selectable = state;
   }
 }
 
