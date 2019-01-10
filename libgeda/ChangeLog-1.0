@@ -6,7 +6,8 @@
       argument.
 
     * tests/test_complex_object.c: Pass toplevel to geda_complex_object_new
-      in check_accessors.
+      in check_accessors, add stub to check check_get_nearest_point and check
+      for geda_complex_object_get_pin_objs.
 
 2019-01-09 Wiley E. Hill <wileyhill@gmail.com>
 

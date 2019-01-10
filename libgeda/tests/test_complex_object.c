@@ -329,6 +329,13 @@ int check_construction (void)
   return result;
 }
 
+int check_get_nearest_point(GedaObject *object)
+{
+  int result = 0;
+
+  return result;
+}
+
 int check_accessors (void)
 {
   int count;
@@ -385,7 +392,31 @@ int check_accessors (void)
       }
 
       /* === Function 04: geda_complex_object_get_nearest_point  === */
+
+      result += check_get_nearest_point (object1);
+
       /* === Function 05: geda_complex_object_get_pin_objs  === */
+
+      GList *p_list;
+      int    p_count;
+
+      p_list = geda_complex_object_get_pin_objs(object1);
+
+      if (!p_list) {
+        fprintf(stderr, "FAILED: (O080501A) get_pin_objs Failed <%p>\n", object1->complex->pin_objs);
+        result++;
+      }
+      else {
+
+        p_count = g_list_length(p_list);
+
+        /* The number of pins in ATMega32-DIP_test.sym */
+        if (p_count != 40) {
+          fprintf(stderr, "FAILED: (O080501B) get_pin_objs Failed <%d>\n", p_count);
+          result++;
+        }
+      }
+
       /* === Function 06: geda_complex_object_get_prim_objs  === */
       /* === Function 08: geda_complex_object_is_embedded  === */
 
