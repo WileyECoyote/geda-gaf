@@ -2,6 +2,9 @@
 
     * src/geda/geda_object.c: Reorganize geda_object_set_selectable.
 
+    * src/object/o_set.c: Revise geda_set_object_color to validate the color
+      argument.
+
 2019-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_circle_object.c: Add checks for bounds_valid in check_query.

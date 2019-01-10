@@ -71,17 +71,20 @@ void geda_set_object_color (GedaObject *object, int color)
 {
   if (GEDA_IS_OBJECT(object)) {
 
-    if (object->color != color) {
+    if (color < MAX_COLORS && color > -1) {
 
-      object->color = color;
+      if (object->color != color) {
 
-      if (object->page) {
-        object->page->CHANGED = TRUE;
+        object->color = color;
+
+        if (object->page) {
+          object->page->CHANGED = TRUE;
+        }
       }
-    }
 
-    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
-      geda_object_list_set_color (object->complex->prim_objs, color);
+      if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
+        geda_object_list_set_color (object->complex->prim_objs, color);
+      }
     }
   }
   else {
