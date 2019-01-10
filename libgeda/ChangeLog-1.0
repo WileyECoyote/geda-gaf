@@ -12,6 +12,7 @@
     * tests/test_object.c: Add checks for:
 
           * geda_object_get_page
+          * geda_object_set_page
 
 2019-01-09 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -542,12 +542,45 @@ int check_accessors ()
     result++;
   }
 
+  GedaToplevel *toplevel;
+  Page *page, *o_page;
+
+  toplevel = geda_toplevel_new ();
+
+  geda_toplevel_set_file_open_flags(toplevel, F_OPEN_RESTORE_CWD);
+  geda_toplevel_set_make_backups(toplevel, 0);
+
+  page = geda_struct_page_new (toplevel, NULL);
+
   /* === Function: geda_object_get_page === */
 
   if (geda_object_get_page(object0)) {
     fprintf(stderr, "Failed: get_page %s line <%d>\n", TOBJECT, __LINE__);
     result++;
   }
+
+  /* === Function: geda_object_set_page === */
+
+  /* This is a low-level setter so the page is not updated here */
+  geda_object_set_page(object0, page);
+
+  o_page = geda_object_get_page(object0);
+
+  if (o_page != page) {
+    fprintf(stderr, "Failed: set_page %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  geda_object_set_page(object0, NULL);
+
+  if (geda_object_get_page(object0)) {
+    fprintf(stderr, "Failed: set_page %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  /* This also destroys the page */
+  g_object_unref(toplevel);
+
   /* === Function: geda_object_set_color === */
   /* === Function: geda_object_set_selectable === */
 
