@@ -334,6 +334,8 @@ int check_accessors (void)
   int count;
   int result = 0;
 
+  GedaToplevel *toplevel = geda_toplevel_new ();
+
   /* === Function 08: geda_complex_object_is_embedded NULL === */
   if (geda_complex_object_is_embedded (NULL)) {
     fprintf(stderr, "FAILED: (O080800) object NULL\n");
@@ -349,7 +351,7 @@ int check_accessors (void)
     int x = geda_random_number ( 0, 115000);
     int y = geda_random_number ( 0,  75000);
 
-    GedaObject *object1 = geda_complex_object_new(NULL, x, y, 0, 0,
+    GedaObject *object1 = geda_complex_object_new(toplevel, x, y, 0, 0,
                                                   sym, sym_name, 1);
 
     if (!GEDA_IS_OBJECT(object1)) {
@@ -400,6 +402,9 @@ int check_accessors (void)
     }
     g_object_unref (object1);
   }
+
+  g_object_unref(toplevel);
+
   return result;
 }
 
