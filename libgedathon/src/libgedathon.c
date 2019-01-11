@@ -1425,7 +1425,7 @@ PyObject *PyGeda_open_page( const char *filename )
     return page;
   }
 
-  /* If filename string has length, NULL the pointer */
+  /* If filename string has no length, NULL the pointer */
   if (filename && !strlen(filename)) {
     filename = NULL;
   }
