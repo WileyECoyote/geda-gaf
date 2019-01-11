@@ -5,6 +5,9 @@
 
     * src/geda_capsule.c: Update function line wrapping.
 
+    * src/libgedathon.c: Revise PyGeda_open_page to append the cwd to the
+      page file when the argument filename is not absolute.
+
 2019-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
