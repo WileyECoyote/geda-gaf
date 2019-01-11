@@ -2040,14 +2040,18 @@ int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_obj
 
         /* Check if this object has attached attributes and add them too */
         if (parent->type == OBJ_COMPLEX) {
-            GList  *butes = parent->attribs;
-            while (butes != NULL) {
-              object = (GedaObject*)butes->data;
-              if (!object->page) {
-                geda_struct_page_append_object(page, object);
-              }
-              NEXT (butes);
-            }; /* wend*/
+
+          GList  *butes = parent->attribs;
+
+          while (butes != NULL) {
+
+            object = (GedaObject*)butes->data;
+
+            if (!object->page) {
+              geda_struct_page_append_object(page, object);
+            }
+            NEXT (butes);
+          }; /* wend*/
         }
 
         /* Check if this object has attributes from Python and add them too */
@@ -2095,6 +2099,7 @@ int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_obj
 
     /* If the pyparent is already on a page then add child */
     if (page && (GEDA_IS_PAGE(page))) {
+
       parent = geda_page_get_object(page, geda_pyparent->sid);
       object = retrieve_floating_object(sid);
 
@@ -2108,6 +2113,7 @@ int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_obj
       object = get_floating_object(geda_pyobject->sid);
 
       geda_pyparent->attributes = PyGeda_append_2_pylist(geda_pyparent->attributes, object);
+
       if (geda_pyparent->attributes == NULL) { /* sanity check */
         fprintf(stderr, "PyGeda_add_object: Error appending child object\n");
       }
@@ -2142,7 +2148,9 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
   count = (int) PyList_GET_SIZE(py_object_B);
 
   for (i = 0; i < count; i++) {
-     PyObject *geda_object = PyList_GET_ITEM(py_object_B, i);
+
+    PyObject *geda_object = PyList_GET_ITEM(py_object_B, i);
+
     status += PyGeda_add_object(PyPage, py_object_A, geda_object);
   }
   return status;
@@ -2189,16 +2197,25 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
   if (page && (GEDA_IS_PAGE(page))) {
+
     src_object = geda_struct_page_get_object(page, sid);
+
     if (src_object) {
+
       new_object = geda_object_copy(src_object);
+
       geda_struct_page_append_object(page, new_object);
+
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
+
           GedaObject *a_current = iter->data;
           GedaObject *a_new = geda_object_copy(a_current);
+
           geda_struct_page_append_object (page, a_new);
+
           dest_list = g_list_append(dest_list, a_new);
+
           geda_attrib_object_add(new_object, a_new);
         }
       }
@@ -2210,13 +2227,19 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     src_object = get_floating_object(sid);
 
     if (GEDA_IS_OBJECT(src_object)) {
+
       new_object = geda_object_copy(src_object);
+
       add_floating_object(new_object);
+
       if (src_object->attribs) {
         for (iter = src_object->attribs; iter != NULL; NEXT(iter)) {
+
           GedaObject *a_current = iter->data;
           GedaObject *a_new = geda_object_copy(a_current);
+
           dest_list = g_list_append(dest_list, a_new);
+
           add_floating_object(a_new);
           geda_attrib_object_add(new_object, a_new);
         }
@@ -2226,6 +2249,7 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   }
 
   if (dest_list) {
+
     if (dx != -1 && dy != -1) {
       geda_translate_list(dest_list, dx, dy);
     }
@@ -2321,13 +2345,17 @@ int PyGeda_delete_object( PyObject *py_object )
   int           status      = 0;
 
   if (pid >= 0 ) {
-    Page *page;
-    page   = geda_toplevel_get_page_by_id(toplevel, pid);
+
+    Page *page = geda_toplevel_get_page_by_id(toplevel, pid);
+
     if (GEDA_IS_PAGE(page)) {
+
       object = geda_page_get_object(page, sid);
+
       if (GEDA_IS_OBJECT(object)) {
-        const char *name;
-        name = PyString_AsString(geda_object->name);
+
+        const char *name = PyString_AsString(geda_object->name);
+
         if (strcmp(object->name, name) == 0) {
           geda_struct_page_remove_object(page, object);
         }
@@ -2832,6 +2860,7 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
   else {
     geda_pin_object_set_elect_type(object, etype);
   }
+
   if (object->pin->electrical == NULL) {
     geda_pin_set_electrical(object->pin, "unknown");
   }
