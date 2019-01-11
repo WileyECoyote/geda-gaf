@@ -1,19 +1,17 @@
+2019-01-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Reive save_page_as to update the page filename if the
+      library returns success.
+
 2019-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/sr.po: Update Serbian translations.
-
     * po/sv.po: Update Swedish translations.
 
 2019-01-02 Wiley E. Hill <wileyhill@gmail.com>

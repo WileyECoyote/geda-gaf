@@ -1099,6 +1099,19 @@ METHOD(save_page_as)
 
   status = library.func(((PyGedaPageObject*)page)->pid, new_name);
 
+  /* If success then update the PyGedaPage object */
+  if (status) {
+
+    Py_DECREF(((PyGedaPageObject*)page)->filename);
+
+    ((PyGedaPageObject*)page)->filename = PyString_FromString(new_name);
+
+  }
+  else {
+    const char *fail = "Error: save_page_as page failed";
+    PyErr_SetString(PyExc_StandardError, fail);
+  }
+
   ON_METHOD_EXIT(save_page_as);
   if (status == 0) {
     Py_RETURN_FALSE;
