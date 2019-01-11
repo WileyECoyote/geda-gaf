@@ -1,7 +1,7 @@
 2019-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Reive save_page_as to update the page filename if the
-      library returns success.
+      library returns success. Initialize page to NULL in save_page.
 
 2019-01-05 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1048,13 +1048,12 @@ METHOD(rename_page)
 METHOD(save_page)
 {
   TYPE_INT_INT(save_page);
-  PyObject *page;
+  PyObject *page=NULL;
   int       status;
 
-  if(!PyArg_ParseTuple(args, "O!:geda.save_page", PyGedaPageClass(), &page))
+  if (!PyArg_ParseTuple(args, "O!:geda.save_page", PyGedaPageClass(), &page))
   {
     const char *syntax = "syntax: save_page(PyGedaPageObject)";
-
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
