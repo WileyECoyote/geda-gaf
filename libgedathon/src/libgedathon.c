@@ -1844,7 +1844,7 @@ PyObject *PyGeda_get_bounds( int pid, int sid )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if ( sid < 0) {
+  if (sid < 0) {
 
     GList *list = geda_struct_page_get_objects(page);
 
@@ -1956,7 +1956,7 @@ PyObject *PyGeda_get_objects( int pid, int sid )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if ( sid < 0) {
+  if (sid < 0) {
     list = geda_struct_page_get_objects (page);
   }
   else {
@@ -2328,7 +2328,7 @@ int PyGeda_delete_object( PyObject *py_object )
       if (GEDA_IS_OBJECT(object)) {
         const char *name;
         name = PyString_AsString(geda_object->name);
-        if ( strcmp(object->name, name) == 0){
+        if (strcmp(object->name, name) == 0) {
           geda_struct_page_remove_object(page, object);
         }
       }
@@ -3290,7 +3290,7 @@ PyObject *PyGeda_get_network( int pid, int sid, int filter )
 
   page = geda_toplevel_get_page_by_id(toplevel, pid);
 
-  if ( sid >= 0) {
+  if (sid >= 0) {
 
     GedaObject *object = geda_struct_page_get_object(page, sid);
 
