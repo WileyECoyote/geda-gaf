@@ -2849,10 +2849,12 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
 
   object = geda_pin_object_new(PIN_COLOR, x1, y1, x2, y2, 0, conn2);
 
-  if (label)
+  if (label) {
     object->pin->label = geda_utility_string_strdup(label);
-  else
+  }
+  else {
     object->pin->label = geda_utility_string_strdup("unknown");
+  }
 
   if (etype < 0) {
     geda_pin_object_set_elect_type(object, PIN_ELECT_VOID);
@@ -2887,10 +2889,12 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
     }
   }
 
-  if (number)
+  if (number) {
     object->pin->number = geda_utility_string_strdup(number);
-  else
+  }
+  else {
     object->pin->number = geda_utility_string_strdup("");
+  }
 
   add_floating_object(object);
 

@@ -6,7 +6,8 @@
     * src/geda_capsule.c: Update function line wrapping.
 
     * src/libgedathon.c: Revise PyGeda_open_page to append the cwd to the
-      page file when the argument filename is not absolute.
+      page file when the argument filename is not absolute. Clean code;
+      adjust line spacing and indentations, add missing braces.
 
 2019-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
