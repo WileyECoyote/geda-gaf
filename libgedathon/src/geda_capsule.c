@@ -35,22 +35,19 @@
 #include <geda_py_struct.h>
 #include <geda_capsule.h>
 
-void*
-GedaCapsule_GetPointer(PyObject *obj)
+void *GedaCapsule_GetPointer(PyObject *obj)
 {
   GedaCapsule *capsule = (GedaCapsule *)obj;
   return capsule->object;
 }
 
-const char *
-GedaCapsule_GetName(PyObject *obj)
+const char *GedaCapsule_GetName(PyObject *obj)
 {
   GedaCapsule *capsule = (GedaCapsule *)obj;
   return capsule->name;
 }
 
-static PyObject *
-GedaCapsule_repr(PyObject * obj)
+static PyObject *GedaCapsule_repr(PyObject *obj)
 {
   GedaCapsule *capsule = (GedaCapsule *)obj;
   return PyString_FromString(capsule->name);
@@ -155,17 +152,18 @@ GedaCapsule_New(void *obj)
   capsule->object = object;
 
 #if DEBUG
+
   int size = GedaCapsuleType.tp_basicsize;
   fprintf(stderr, "GedaCapsule_New: capsule for <%s> capsule address=%p, size=%d, type=%d, ",
           object->name, capsule, size, capsule->type);
   fprintf(stderr, "gobject address=%p\n", object);
+
 #endif
 
   return (PyObject *)capsule;
 }
 
-PyMODINIT_FUNC
-initGedaCapsule(void)
+PyMODINIT_FUNC initGedaCapsule(void)
 {
   PyObject* capsule_module;
 

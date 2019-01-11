@@ -3,6 +3,8 @@
     * module/geda.c: Reive save_page_as to update the page filename if the
       library returns success. Initialize page to NULL in save_page.
 
+    * src/geda_capsule.c: Update function line wrapping.
+
 2019-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
