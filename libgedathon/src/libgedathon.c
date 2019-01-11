@@ -1078,7 +1078,7 @@ int PyGeda_append_symbol_path( const char *path )
   directory = geda_utility_expand_env_variable (path);
   result    = 0;
 
-  /* is invalid path? */
+  /* is valid path? */
   if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
 
     char *namestr = basename(directory);
@@ -1087,6 +1087,7 @@ int PyGeda_append_symbol_path( const char *path )
       result = geda_struct_clib_add_directory (directory, namestr) != NULL;
     }
     else {
+
       char *cwd = g_get_current_dir ();
       char *temp;
 
