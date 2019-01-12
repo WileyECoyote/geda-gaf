@@ -14,6 +14,8 @@
 
     * po/uk.po: Update Ukrainian translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2019-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Reive save_page_as to update the page filename if the
