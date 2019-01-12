@@ -150,45 +150,65 @@ msgstr "Сохранить все открытые страницы в хран�
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Возвращает True, если объект является контейнером Geda, иначе false."
 
+# Returns the rectangular boundaries of an object
+# Vozvrashchayet pryamougol'nyye granitsy ob"yekta
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Возвращает прямоугольные границы объекта."
 
+# Retrieve an object from a Geda container
+# Poluchit' ob"yekt iz konteynera Geda
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Получить объект из контейнера Geda."
 
+# Retrieve all objects belonging to a page
+# Poluchit' vse ob"yekty, prinadlezhashchiye stranitse
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Получить все объекты, принадлежащие странице."
 
+# Add an object to a page or another object
+# Dobavit' ob"yekt na stranitsu ili drugoy ob"yekt
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Добавить объект на страницу или другой объект."
 
+# Add multiple objects to a page or another object
+# Dobavit' neskol'ko ob"yektov na stranitsu ili drugoy ob"yekt
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Добавить несколько объектов на страницу или другой объект."
 
+# Make a copy an object
+# Sdelat' kopiyu ob"yekta
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Сделать копию объекта."
 
+# Remove object from a page
+# Udalit' ob"yekt so stranitsy
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Odstranite objekt s strani."
 
+# Remove multiple objects from a page
+# Udalit' neskol'ko ob"yektov so stranitsy
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Удалить несколько объектов со страницы."
 
+# Delete an object from a page
+# Udalit' ob"yekt so stranitsy
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Удалить объект со страницы."
 
+# Delete multiple objects from a page
+# Udalit' neskol'ko ob"yektov so stranitsy
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr ""
+msgid "Delete multiple objects from a page."
+msgstr "Удалить несколько объектов со страницы."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
