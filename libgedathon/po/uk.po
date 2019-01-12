@@ -150,50 +150,70 @@ msgid "Save all opened pages to storage."
 msgstr "Збережіть всі відкриті сторінки до сховища."
 
 # Returns True if object is a Geda container, otherwise False
-# Povertaye True, yakshcho ob'yekt ye konteynerom Geda, inakshe false
+# Povertaye Pravda, yakshcho ob'yekt ye konteynerom Geda, inakshe false
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr "Повертає True, якщо об'єкт є контейнером Geda, інакше false."
+msgstr "Повертає Правда, якщо об'єкт є контейнером Geda, інакше false."
 
+# Returns the rectangular boundaries of an object
+# Povertaye pryamokutni mezhi ob'yekta
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Повертає прямокутні межі об'єкта."
 
+# Retrieve an object from a Geda container
+# Otrymaty ob'yekt z konteynera Geda
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Отримати об'єкт з контейнера Geda."
 
+# Retrieve all objects belonging to a page
+# Otrymaty vsi ob'yekty, shcho nalezhatʹ storintsi
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Отримати всі об'єкти, що належать сторінці."
 
+# Add an object to a page or another object
+# Dodayte ob'yekt do storinky chy inshoho ob'yekta
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Додайте об'єкт до сторінки чи іншого об'єкта."
 
+# Add multiple objects to a page or another object
+# Dodavannya dekilʹkokh ob'yektiv na storinku abo inshyy ob'yekt
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Додавання декількох об'єктів на сторінку або інший об'єкт."
 
+# Make a copy an object
+# Zrobitʹ kopiyu ob'yekta
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Зробіть копію об'єкта."
 
+# Remove object from a page
+# Vydalyty ob'yekt zi storinky
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Видалити об'єкт зі сторінки."
 
+# Remove multiple objects from a page
+# Vydalyty kilʹka ob'yektiv zi storinky
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Видалити кілька об'єктів зі сторінки."
 
+# Delete an object from a page
+# Vydalyty ob'yekt zi storinky
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Видалити об'єкт зі сторінки."
 
+# Delete multiple objects from a page
+# Vydalyty kilʹka ob'yektiv zi storinky
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr ""
+msgid "Delete multiple objects from a page."
+msgstr "Видалити кілька об'єктів зі сторінки."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
