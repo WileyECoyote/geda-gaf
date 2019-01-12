@@ -150,45 +150,65 @@ msgstr "將所有打開的頁面保存到存儲."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "如果賓語是Geda容器，則返回真正，否則返回假."
 
+# Returns the rectangular boundaries of an object
+# Fǎnhuí duìxiàng de jǔxíng biānjiè
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "返回對象的矩形邊界."
 
+# Retrieve an object from a Geda container
+# Cóng Geda róngqì zhōng jiǎnsuǒ duìxiàng
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "從Geda容器中檢索對象."
 
+# Retrieve all objects belonging to a page
+# Jiǎnsuǒ shǔyú yèmiàn de suǒyǒu duìxiàng
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "檢索屬於頁面的所有對象."
 
+# Add an object to a page or another object
+# Jiāng duìxiàng tiānjiā dào yèmiàn huò qítā duìxiàng
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "將對象添加到頁面或其他對象."
 
+# Add multiple objects to a page or another object
+# Jiāng duō gè duìxiàng tiānjiā dào yèmiàn huò lìng yīgè duìxiàng
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "將多個對象添加到頁面或另一個對象."
 
+# Make a copy an object
+# Fùzhì yì gè duìxiàng
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "複製一個對象."
 
+# Remove object from a page
+# Cóng yèmiàn zhōng shānchú duìxiàng
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "從頁面中刪除對象."
 
+# Remove multiple objects from a page
+# Cóng yèmiàn zhōng shānchú duō gè duìxiàng
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "從頁面中刪除多個對象."
 
+# Delete an object from a page
+# Cóng yèmiàn zhōng shānchú duìxiàng
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "從頁面中刪除對象."
 
+# Delete multiple objects from a page
+# Cóng yèmiàn zhōng shānchú duō gè duìxiàng
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr ""
+msgid "Delete multiple objects from a page."
+msgstr "從頁面中刪除多個對象."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."

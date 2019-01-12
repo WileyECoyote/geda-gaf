@@ -16,9 +16,11 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2019-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * module/geda.c: Reive save_page_as to update the page filename if the
+    * module/geda.c: Revise save_page_as to update the page filename if the
       library returns success. Initialize page to NULL in save_page.
 
     * src/geda_capsule.c: Update function line wrapping.
