@@ -114,45 +114,55 @@ msgstr "Açık olan tüm sayfaları depoya kaydet."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Döndürür Doğru, nesne bir GedaCapsule, aksi takdirde Yanlış."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Bir nesnenin dikdörtgen sınırlarını döndürür."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Bir nesneyi bir Geda kabından alın."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Bir sayfaya ait tüm nesneleri al."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Sayfaya veya başka bir nesneye nesne ekleme."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Bir sayfaya veya başka bir nesneye birden çok nesne ekleme."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Bir nesneyi kopyalayın."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Sayfadan nesne kaldır."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Sayfadaki birden çok nesneyi kaldırma."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Sayfadan nesne silme."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr ""
+msgid "Delete multiple objects from a page."
+msgstr "Sayfadan birden çok nesne silin."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
