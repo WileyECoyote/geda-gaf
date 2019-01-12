@@ -1,3 +1,7 @@
+2019-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/pt.po: Update Portuguese translations.
+
 2019-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/geda.c: Reive save_page_as to update the page filename if the

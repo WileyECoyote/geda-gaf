@@ -114,45 +114,55 @@ msgstr "Salvar todas as páginas abertas no armazenamento."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Retorna true se o objeto for um contêiner Geda, caso contrário, false."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Retorna os limites retangulares de um objeto."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Recuperar um objeto de um contêiner Geda."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Recuperar todos os objetos pertencentes a uma página."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Adicione um objeto a uma página ou outro objeto."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Adicione vários objetos a uma página ou outro objeto."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Faça uma cópia de um objeto."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Remover objeto de uma página."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Remover vários objetos de uma página."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Excluir um objeto de uma página."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr ""
+msgid "Delete multiple objects from a page."
+msgstr "Excluir vários objetos de uma página."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
