@@ -151,45 +151,65 @@ msgstr "Сачувајте све отворене странице у скла�
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Враћа труе ако је објект Геда контејнер, иначе фалсе."
 
+# Returns the rectangular boundaries of an object
+# Vraća pravokutne granice objekta
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Враћа правокутне границе објекта."
 
+# Retrieve an object from a Geda container
+# Dohvatite predmet iz Geda kontejnera
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Poiščite predmet iz Geda posode."
 
+# Retrieve all objects belonging to a page
+# Dohvati sve objekte koji pripadaju stranici
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Дохвати све објекте који припадају страници."
 
+# Add an object to a page or another object
+# Dodajte objekat na stranicu ili drugi objekt
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Додајте објекат на страницу или други објект."
 
+# Add multiple objects to a page or another object
+# Dodajte više objekata stranici ili drugom objektu
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Додајте више објеката страници или другом објекту."
 
+# Make a copy an object
+# Napravite kopiju objekta
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Направите копију објекта."
 
+# Remove object from a page
+# Ukloni objekat sa stranice
 #: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Уклони објекат са странице."
 
+# Remove multiple objects from a page
+# Uklonite više objekata sa stranice
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Уклоните више објеката са странице."
 
+# Delete an object from a page
+# Izbrišite objekat sa stranice
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Избришите објекат са странице."
 
+# Delete multiple objects from a page
+# Izbrišite više objekata sa stranice
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr ""
+msgid "Delete multiple objects from a page."
+msgstr "Избришите више објеката са странице."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
