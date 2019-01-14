@@ -81,8 +81,8 @@ const char remove_object_docs[]      = N_("Remove object from a page.");
 const char remove_objects_docs[]     = N_("Remove multiple objects from a page.");
 
 const char delete_object_docs[]      = N_("Delete an object from a page.");
-const char delete_objects_docs[]     = N_("Delete multiple object from a page.");
-const char sync_object_docs[]        = N_("Remove object from a page.");
+const char delete_objects_docs[]     = N_("Delete multiple objects from a page.");
+const char sync_object_docs[]        = N_("Synchronize object with library.");
 
 /* Object Constructor */
 const char new_arc_docs[]            = N_("Create a new arc object.");
