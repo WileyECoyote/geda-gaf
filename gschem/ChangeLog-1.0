@@ -3,6 +3,9 @@
     * src/base/gschem_page_geometry.c: Update Doxygen documentation format;
       add "Function Description".
 
+    * src/base/gschem_page_view.c: Replace gdk_drawable_get_size in function
+      gschem_page_view_get_page_geometry based on HAVE_GDK_WINDOW_GET_WIDTH.
+
 2018-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Replace geda_label_set_text with
