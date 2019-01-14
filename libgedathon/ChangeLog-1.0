@@ -6,6 +6,8 @@
     * scripts/gsym-attribute.py: Revise the function ProcessSymbol to only
       output the value of the attribute, this seems more useful.
 
+    * module/geda.c: Revise documentation for refresh_attribs for clarification.
+
 2019-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
