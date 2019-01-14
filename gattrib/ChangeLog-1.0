@@ -1,3 +1,8 @@
+2019-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Replace gdk_window_get_size with
+      gdk_pixmap_get_size in gtk_sheet_make_backing_pixmap.
+
 2019-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_basic.c: Translate verbose fall-back message.
