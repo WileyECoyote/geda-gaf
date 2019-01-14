@@ -169,9 +169,9 @@ msgstr "Supprimer plusieurs objets d'une page."
 msgid "Delete an object from a page."
 msgstr "Supprimer un objet d'une page."
 
-# Delete multiple object from a page
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
+msgid "Delete multiple objects from a page."
 msgstr "Supprimer plusieurs objets d'une page."
 
 #: libgedathon/include/geda_module.h:88

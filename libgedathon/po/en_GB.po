@@ -142,8 +142,8 @@ msgid "Delete an object from a page."
 msgstr "Delete an object from a page."
 
 #: libgedathon/include/geda_module.h:84
-msgid "Delete multiple object from a page."
-msgstr "Delete multiple object from a page."
+msgid "Delete multiple objects from a page."
+msgstr "Delete multiple objects from a page."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
