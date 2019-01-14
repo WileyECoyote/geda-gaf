@@ -9,6 +9,10 @@
     * network/TS6121C-1.sym: Remove device=TRANSFORMER attribute, add description
       attribute.
 
+    * opto/4N25-1.sym: Clean symbol, add description attribute.
+
+    * opto/4N25-2.sym: Clean symbol; reposition attributes.
+
 2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * LCB110_ssrelay_spst-1.sym: Add description, resequence attributes.
