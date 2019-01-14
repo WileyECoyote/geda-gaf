@@ -44,10 +44,11 @@
 static void
 update_constants (GschemPageGeometry *geometry);
 
-/*! \brief Copy a page geometry
- *
- *  \param [in] geometry The page geometry to copy
- *  \return An dynamically allocated copy of the geometry
+/*!
+ * \brief Copy a page geometry
+ * \par Function Description
+ * \param [in] geometry The page geometry to copy
+ * \return An dynamically allocated copy of the geometry
  */
 GschemPageGeometry*
 gschem_page_geometry_copy (GschemPageGeometry *geometry)
@@ -55,9 +56,10 @@ gschem_page_geometry_copy (GschemPageGeometry *geometry)
   return (GschemPageGeometry*) g_memdup (geometry, sizeof(GschemPageGeometry));
 }
 
-/*! \brief Free a page geometry
- *
- *  \param [in] geometry The page geometry to free
+/*!
+ * \brief Free a page geometry
+ * \par Function Description
+ * \param [in] geometry The page geometry to free
  */
 void
 gschem_page_geometry_free (GschemPageGeometry *geometry)
@@ -65,10 +67,11 @@ gschem_page_geometry_free (GschemPageGeometry *geometry)
   GEDA_FREE (geometry);
 }
 
-/*! \brief Get the screen height in pixels.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The screen height in pixels.
+/*!
+ * \brief Get the screen height in pixels.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The screen height in pixels.
  */
 int
 gschem_page_geometry_get_screen_height (GschemPageGeometry *geometry)
@@ -78,10 +81,11 @@ gschem_page_geometry_get_screen_height (GschemPageGeometry *geometry)
   return geometry->screen_height;
 }
 
-/*! \brief Get the screen width in pixels.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The screen width in pixels.
+/*!
+ * \brief Get the screen width in pixels.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The screen width in pixels.
  */
 int
 gschem_page_geometry_get_screen_width (GschemPageGeometry *geometry)
@@ -91,9 +95,10 @@ gschem_page_geometry_get_screen_width (GschemPageGeometry *geometry)
   return geometry->screen_width;
 }
 
-/*! \brief Get/register the GschemPageGeometry type.
- *
- *  \return The GschemPageGeometry type.
+/*!
+ * \brief Get/register the GschemPageGeometry type.
+ * \par Function Description
+ * \return The GschemPageGeometry type.
  */
 GedaType
 gschem_page_geometry_get_type (void)
@@ -109,10 +114,11 @@ gschem_page_geometry_get_type (void)
   return type;
 }
 
-/*! \brief Get the bottom edge of the viewport in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The bottom edge of the viewport in world coordinates.
+/*!
+ * \brief Get the bottom edge of the viewport in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The bottom edge of the viewport in world coordinates.
  */
 int
 gschem_page_geometry_get_viewport_bottom (GschemPageGeometry *geometry)
@@ -122,10 +128,11 @@ gschem_page_geometry_get_viewport_bottom (GschemPageGeometry *geometry)
   return geometry->viewport_bottom;
 }
 
-/*! \brief Get the left edge of the viewport in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The left edge of the viewport in world coordinates.
+/*!
+ * \brief Get the left edge of the viewport in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The left edge of the viewport in world coordinates.
  */
 int
 gschem_page_geometry_get_viewport_left (GschemPageGeometry *geometry)
@@ -135,10 +142,11 @@ gschem_page_geometry_get_viewport_left (GschemPageGeometry *geometry)
   return geometry->viewport_left;
 }
 
-/*! \brief Get the right edge of the viewport in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The right edge of the viewport in world coordinates.
+/*!
+ * \brief Get the right edge of the viewport in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The right edge of the viewport in world coordinates.
  */
 int
 gschem_page_geometry_get_viewport_right (GschemPageGeometry *geometry)
@@ -148,10 +156,11 @@ gschem_page_geometry_get_viewport_right (GschemPageGeometry *geometry)
   return geometry->viewport_right;
 }
 
-/*! \brief Get the top edge of the viewport in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The top edge of the viewport in world coordinates.
+/*!
+ * \brief Get the top edge of the viewport in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The top edge of the viewport in world coordinates.
  */
 int
 gschem_page_geometry_get_viewport_top (GschemPageGeometry *geometry)
@@ -161,10 +170,11 @@ gschem_page_geometry_get_viewport_top (GschemPageGeometry *geometry)
   return geometry->viewport_top;
 }
 
-/*! \brief Get the top edge of the world in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The top edge of the world in world coordinates.
+/*!
+ * \brief Get the top edge of the world in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The top edge of the world in world coordinates.
  */
 int
 gschem_page_geometry_get_world_bottom (GschemPageGeometry *geometry)
@@ -174,10 +184,11 @@ gschem_page_geometry_get_world_bottom (GschemPageGeometry *geometry)
   return geometry->world_top;
 }
 
-/*! \brief Get the top edge of the world in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The top edge of the world in world coordinates.
+/*!
+ * \brief Get the top edge of the world in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The top edge of the world in world coordinates.
  */
 int
 gschem_page_geometry_get_world_left (GschemPageGeometry *geometry)
@@ -187,10 +198,11 @@ gschem_page_geometry_get_world_left (GschemPageGeometry *geometry)
   return geometry->world_top;
 }
 
-/*! \brief Get the top edge of the world in world coordinates.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The top edge of the world in world coordinates.
+/*!
+ * \brief Get the top edge of the world in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The top edge of the world in world coordinates.
  */
 int
 gschem_page_geometry_get_world_right (GschemPageGeometry *geometry)
@@ -200,10 +212,11 @@ gschem_page_geometry_get_world_right (GschemPageGeometry *geometry)
   return geometry->world_top;
 }
 
-/*! \brief Get the world to screen transformation matrix.
- *
- *  \param [in] geometry The GschemPageGeometry
- *  \return The world to screen transformation matrix.
+/*!
+ * \brief Get the world to screen transformation matrix.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
+ * \return The world to screen transformation matrix.
  */
 cairo_matrix_t*
 gschem_page_geometry_get_world_to_screen_matrix (GschemPageGeometry *geometry)
@@ -225,11 +238,12 @@ gschem_page_geometry_get_world_to_screen_matrix (GschemPageGeometry *geometry)
   return &(geometry->world_to_screen_matrix);
 }
 
-/*! \brief Get the top edge of the world in world coordinates.
+/*!
+ * \brief Get the top edge of the world in world coordinates.
+ * \par Function Description
+ * \param [in] geometry The GschemPageGeometry
  *
- *  \param [in] geometry The GschemPageGeometry
- *
- *  \return The top edge of the world in world coordinates.
+ * \return The top edge of the world in world coordinates.
  */
 int
 gschem_page_geometry_get_world_top (GschemPageGeometry *geometry)
@@ -239,13 +253,15 @@ gschem_page_geometry_get_world_top (GschemPageGeometry *geometry)
   return geometry->world_top;
 }
 
-/*! \brief Convert a x coordinate to mils.
- *  \par Function Description
+/*!
+ * \brief Convert a x coordinate to mils.
+ * \par Function Description
  *  Convert a x coordinate to mils.
  *
- *  \param [in] geometry   The GschemToplevel object
- *  \param [in] value      The x coordinate to convert
- *  \return The coordinate value in mils.
+ * \param [in] geometry   The GschemToplevel object
+ * \param [in] value      The x coordinate to convert
+ *
+ * \return The coordinate value in mils.
  */
 int
 gschem_page_geometry_mil_x (GschemPageGeometry *geometry, int value)
@@ -268,14 +284,15 @@ gschem_page_geometry_mil_x (GschemPageGeometry *geometry, int value)
   return(j);
 }
 
-/*! \brief Convert a y coordinate to mils
- *  \par Function Description
+/*!
+ * \brief Convert a y coordinate to mils
+ * \par Function Description
  *  Convert a y coordinate to mils
  *
- *  \param [in] geometry   The GschemToplevel object.
- *  \param [in] value      The y coordinate to convert.
+ * \param [in] geometry   The GschemToplevel object.
+ * \param [in] value      The y coordinate to convert.
  *
- *  \return The coordinate value in mils.
+ * \return The coordinate value in mils.
  */
 int
 gschem_page_geometry_mil_y(GschemPageGeometry *geometry, int value)
@@ -298,20 +315,21 @@ gschem_page_geometry_mil_y(GschemPageGeometry *geometry, int value)
   return(j);
 }
 
-/*! \brief Get page geometry for this view with way to many parameters
+/*!
+ * \brief Get page geometry for this view with way to many parameters
+ * \par Function Description
+ * \param [in] screen_width
+ * \param [in] screen_height
+ * \param [in] viewport_left
+ * \param [in] viewport_top
+ * \param [in] viewport_right
+ * \param [in] viewport_bottom
+ * \param [in] world_left
+ * \param [in] world_top
+ * \param [in] world_right
+ * \param [in] world_bottom
  *
- *  \param [in] screen_width
- *  \param [in] screen_height
- *  \param [in] viewport_left
- *  \param [in] viewport_top
- *  \param [in] viewport_right
- *  \param [in] viewport_bottom
- *  \param [in] world_left
- *  \param [in] world_top
- *  \param [in] world_right
- *  \param [in] world_bottom
- *
- *  \return The page for the view
+ * \return The page for the view
  */
 GschemPageGeometry*
 gschem_page_geometry_new_with_values (int screen_width,
@@ -343,13 +361,14 @@ gschem_page_geometry_new_with_values (int screen_width,
   return geometry;
 }
 
-/*! \brief Pan and zoom the viewport
- *
- *  \param [in,out] geometry
- *  \param [in]     world_cx
- *  \param [in]     world_cy
- *  \param [in]     relativ_zoom_factor
- *  \param [in]     flags
+/*!
+ * \brief Pan and zoom the viewport
+ * \par Function Description
+ * \param [in,out] geometry
+ * \param [in]     world_cx
+ * \param [in]     world_cy
+ * \param [in]     relativ_zoom_factor
+ * \param [in]     flags
  */
 void
 gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
@@ -407,7 +426,7 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
   /* calculate the new visible area; adding 0.5 to round */
   geometry->viewport_left   = world_cx - (double) geometry->screen_width / 2 / zoom_new + 0.5;
   geometry->viewport_right  = world_cx + (double) geometry->screen_width / 2 / zoom_new + 0.5;
-  geometry->viewport_top   = world_cy - (double) geometry->screen_height / 2 / zoom_new + 0.5;
+  geometry->viewport_top    = world_cy - (double) geometry->screen_height / 2 / zoom_new + 0.5;
   geometry->viewport_bottom = world_cy + (double) geometry->screen_height / 2 / zoom_new + 0.5;
 
   /* and put it back to the borders */
@@ -453,12 +472,13 @@ gschem_page_geometry_pan_general(GschemPageGeometry *geometry,
   }
 }
 
-/*! \brief Convert a x coordinate to pixels.
+/*!
+ * \brief Convert a x coordinate to pixels.
+ * \par Function Description
+ * \param [in] geometry The page geometry
+ * \param [in] value    The x coordinate in mils
  *
- *  \param [in] geometry The page geometry
- *  \param [in] value    The x coordinate in mils
- *
- *  \return The x coordinate in pixels
+ * \return The x coordinate in pixels
  */
 int
 gschem_page_geometry_pix_x (GschemPageGeometry *geometry, int value)
@@ -488,12 +508,13 @@ gschem_page_geometry_pix_x (GschemPageGeometry *geometry, int value)
   return(j);
 }
 
-/*! \brief Convert a y coordinate to pixels.
+/*!
+ * \brief Convert a y coordinate to pixels.
+ * \par Function Description
+ * \param [in] geometry The page geometry
+ * \param [in] value    The y coordinate in mils
  *
- *  \param [in] geometry The page geometry
- *  \param [in] value    The y coordinate in mils
- *
- *  \return The y coordinate in pixels
+ * \return The y coordinate in pixels
  */
 int
 gschem_page_geometry_pix_y (GschemPageGeometry *geometry, int value)
@@ -523,10 +544,11 @@ gschem_page_geometry_pix_y (GschemPageGeometry *geometry, int value)
   return(j);
 }
 
-/*! \brief Set the screen height in pixels
- *
- *  \param [in,out] geometry      The GschemPageGeometry
- *  \param [in]     screen_height The screen height in pixels.
+/*!
+ * \brief Set the screen height in pixels
+ * \par Function Description
+ * \param [in,out] geometry      The GschemPageGeometry
+ * \param [in]     screen_height The screen height in pixels.
  */
 void
 gschem_page_geometry_set_screen_height (GschemPageGeometry *geometry, int screen_height)
@@ -539,10 +561,11 @@ gschem_page_geometry_set_screen_height (GschemPageGeometry *geometry, int screen
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Set the screen width in pixels
- *
- *  \param [in,out] geometry     The GschemPageGeometry
- *  \param [in]     screen_width The screen width in pixels.
+/*!
+ * \brief Set the screen width in pixels
+ * \par Function Description
+ * \param [in,out] geometry     The GschemPageGeometry
+ * \param [in]     screen_width The screen width in pixels.
  */
 void
 gschem_page_geometry_set_screen_width (GschemPageGeometry *geometry, int screen_width)
@@ -555,17 +578,18 @@ gschem_page_geometry_set_screen_width (GschemPageGeometry *geometry, int screen_
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Get page geometry for this view
+/*!
+ * \brief Get page geometry for this view
+ * \par Function Description
+ * \param [in] geometry          A Gschem geometry Object
+ * \param [in] screen_width
+ * \param [in] screen_height
+ * \param [in] viewport_left
+ * \param [in] viewport_top
+ * \param [in] viewport_right
+ * \param [in] viewport_bottom
  *
- *  \param [in] geometry          A Gschem geometry Object
- *  \param [in] screen_width
- *  \param [in] screen_height
- *  \param [in] viewport_left
- *  \param [in] viewport_top
- *  \param [in] viewport_right
- *  \param [in] viewport_bottom
- *
- *  \return The page for the view
+ * \return The page for the view
  */
 void
 gschem_page_geometry_set_values (GschemPageGeometry *geometry,
@@ -594,10 +618,11 @@ gschem_page_geometry_set_values (GschemPageGeometry *geometry,
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Set the bottom edge of the viewport in world coordinates
- *
- *  \param [in,out] geometry The GschemPageGeometry
- *  \param [in] viewport_bottom The bottom edge of the viewport in world coordinates.
+/*!
+ * \brief Set the bottom edge of the viewport in world coordinates
+ * \par Function Description
+ * \param [in,out] geometry The GschemPageGeometry
+ * \param [in] viewport_bottom The bottom edge of the viewport in world coordinates.
  */
 void
 gschem_page_geometry_set_viewport_bottom (GschemPageGeometry *geometry, int viewport_bottom)
@@ -610,10 +635,11 @@ gschem_page_geometry_set_viewport_bottom (GschemPageGeometry *geometry, int view
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Set the left edge of the viewport in world coordinates
- *
- *  \param [in,out] geometry The GschemPageGeometry
- *  \param [in] viewport_left The left edge of the viewport in world coordinates.
+/*!
+ * \brief Set the left edge of the viewport in world coordinates
+ * \par Function Description
+ * \param [in,out] geometry The GschemPageGeometry
+ * \param [in] viewport_left The left edge of the viewport in world coordinates.
  */
 void
 gschem_page_geometry_set_viewport_left (GschemPageGeometry *geometry, int viewport_left)
@@ -626,10 +652,11 @@ gschem_page_geometry_set_viewport_left (GschemPageGeometry *geometry, int viewpo
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Set the right edge of the viewport in world coordinates
- *
- *  \param [in,out] geometry The GschemPageGeometry
- *  \param [in] viewport_right The right edge of the viewport in world coordinates.
+/*!
+ * \brief Set the right edge of the viewport in world coordinates
+ * \par Function Description
+ * \param [in,out] geometry The GschemPageGeometry
+ * \param [in] viewport_right The right edge of the viewport in world coordinates.
  */
 void
 gschem_page_geometry_set_viewport_right (GschemPageGeometry *geometry, int viewport_right)
@@ -642,10 +669,11 @@ gschem_page_geometry_set_viewport_right (GschemPageGeometry *geometry, int viewp
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Set the top edge of the viewport in world coordinates
- *
- *  \param [in,out] geometry The GschemPageGeometry
- *  \param [in] viewport_top The top edge of the viewport in world coordinates.
+/*!
+ * \brief Set the top edge of the viewport in world coordinates
+ * \par Function Description
+ * \param [in,out] geometry The GschemPageGeometry
+ * \param [in] viewport_top The top edge of the viewport in world coordinates.
  */
 void
 gschem_page_geometry_set_viewport_top (GschemPageGeometry *geometry, int viewport_top)
@@ -658,11 +686,12 @@ gschem_page_geometry_set_viewport_top (GschemPageGeometry *geometry, int viewpor
   geometry->world_to_screen_calculated = FALSE;
 }
 
-/*! \brief Zoom the viewport to the extents of the given objects
- *
- *  \param [in,out] geometry  This GschemPageGeometry
- *  \param [in]     list      The list of object to zoom extents
- *  \param [in]     pan_flags
+/*!
+ * \brief Zoom the viewport to the extents of the given objects
+ * \par Function Description
+ * \param [in,out] geometry  This GschemPageGeometry
+ * \param [in]     list      The list of object to zoom extents
+ * \param [in]     pan_flags
  */
 void
 gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *list, int pan_flags)
@@ -708,9 +737,10 @@ gschem_page_geometry_zoom_extents (GschemPageGeometry *geometry, const GList *li
                                     pan_flags);
 }
 
-/*! \brief Update the constants (coefficients) for calculations
- *
- *  \param [in,out] geometry The GschemPageGeometry
+/*!
+ * \brief Update the constants (coefficients) for calculations
+ * \par Function Description
+ * \param [in,out] geometry The GschemPageGeometry
  */
 static void
 update_constants (GschemPageGeometry *geometry)
