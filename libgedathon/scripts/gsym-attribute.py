@@ -182,7 +182,6 @@ class ProgramParameters:
             if Option in ('-i', '--input'):
                 self.InputFileName       = Value
 
-
             if Option in ('-l', '--value'):
                 self.AttributeValue      = Value
 
@@ -284,10 +283,12 @@ def ProcessSymbol(Options, File):
                 Attribute.string = string
                 modified = 1
         else:                          # Get print the current value
+            index = Attribute.string.find("=") + 1
+            value = Attribute.string[index:]
             if Options.VerboseMode:
-                print symbol.filename + '::' + Attribute.string
+                print symbol.filename + '::' + value
             else:
-                print Attribute.string
+                print value
 
     if Attribute and Options.AttributeSize:
         Attribute.size = Options.AttributeSize

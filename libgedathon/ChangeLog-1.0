@@ -3,6 +3,9 @@
     * include/geda_module.h: Fix grammar in delete_objects_docs and update
       sync_object_docs doc strings.
 
+    * scripts/gsym-attribute.py: Revise the function ProcessSymbol to only
+      output the value of the attribute, this seems more useful.
+
 2019-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
