@@ -316,3 +316,5 @@ T 3600 4500 9 10 1 1 0 0 1
 footprint=TSSOP28
 T 1500 3000 5 10 0 0 0 0 1
 numslots=0
+T 3600 5100 5 10 1 1 0 0 1
+description=Ethernet Controller, with SPI
