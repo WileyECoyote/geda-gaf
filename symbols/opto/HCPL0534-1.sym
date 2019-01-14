@@ -2,7 +2,7 @@ v 20160401 2
 T 800 400 8 10 1 1 0 0 1
 refdes=U?
 T 800 600 8 10 0 1 0 0 1
-device=HCPL-0534
+device=HCPL0534
 L 400 200 500 100 3 0 2 0 -1 -1
 L 400 0 500 100 3 0 2 0 -1 -1
 L 400 200 400 0 3 0 2 0 -1 -1
@@ -52,4 +52,4 @@ slot=1
 T 800 800 9 8 0 0 0 0 1
 symversion=0.1
 T 100 2000 5 10 0 1 0 0 1
-documentation=https://www.fairchildsemi.com/datasheets/HC/HCPL0534.pdf
+documentation=https://www.onsemi.com/pub/Collateral/HCPL0534-D.pdf
