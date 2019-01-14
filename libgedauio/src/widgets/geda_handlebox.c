@@ -487,7 +487,7 @@ static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
     width  = gdk_window_get_width (handlebox->float_window);
     height = gdk_window_get_height (handlebox->float_window);
 #else
-    gdk_window_get_size(handlebox->float_window, &width, &height);
+    gdk_drawable_get_size(handlebox->float_window, &width, &height);
 #endif
 
     new_x += handlebox->deskoff_x;
@@ -762,7 +762,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       width  = gdk_window_get_width (handlebox->bin_window);
       height = gdk_window_get_height (handlebox->bin_window);
 #else
-      gdk_window_get_size(handlebox->bin_window, &width, &height);
+      gdk_drawable_get_size(handlebox->bin_window, &width, &height);
 #endif
 
       priv->orig_x = event->x_root;
@@ -784,7 +784,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
         width  = gdk_window_get_width (widget->window);
         height = gdk_window_get_height (widget->window);
 #else
-        gdk_window_get_size(widget->window, &width, &height);
+        gdk_drawable_get_size(widget->window, &width, &height);
 #endif
 
         handlebox->attach_allocation.x      = root_x;
@@ -943,7 +943,7 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
   width  = gdk_window_get_width (handlebox->bin_window);
   height = gdk_window_get_height (handlebox->bin_window);
 #else
-  gdk_window_get_size(handlebox->bin_window, &width, &height);
+  gdk_drawable_get_size(handlebox->bin_window, &width, &height);
 #endif
 
   /* First draw the exterior box */
