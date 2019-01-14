@@ -1,3 +1,10 @@
+2019-01-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * build-tools/desktop-i18n: Cherry-picked from lepton-eda; commit
+      960fca124517e5b1ed86c3d520ee3f9b72b0269f by graahnul-grom; Fix
+      unportable sed command. -i (edit files in-place) switch is not
+      defined in POSIX; the syntax is different on various systems.
+
 2019-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_debug.h: Add debug macro OBJECT_NAME.
