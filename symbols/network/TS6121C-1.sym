@@ -1,5 +1,5 @@
 v 20150101 2
-T 200 3600 8 10 1 1 0 0 1
+T 200 3750 8 10 1 1 0 0 1
 refdes=T?
 A 500 3000 98 270 180 3 0 0 0 -1 -1
 A 500 2800 98 270 180 3 0 0 0 -1 -1
@@ -55,8 +55,6 @@ pinlabel=14
 T 2500 1750 5 8 0 1 0 0 1
 pintype=pas
 }
-T -2800 600 8 10 1 1 0 0 1
-device=TRANSFORMER 
 L 500 2500 200 2500 3 0 0 0 -1 -1
 P 200 2500 0 2500 1 0 1
 {
@@ -224,17 +222,17 @@ T 225 2950 9 10 1 0 0 0 1
 TX
 T 225 1350 9 10 1 0 0 0 1
 RX
-T 200 3400 5 10 1 1 0 0 1
+T 200 3350 5 10 1 1 0 0 1
 device=TS6121C
-T 50 3450 9 10 0 0 0 0 1
+T 200 3550 9 10 0 1 0 0 1
 footprint=SO16W
-T 50 3650 8 10 0 0 0 0 1
+T 200 3950 8 10 0 0 0 0 1
 numslots=0
-T 50 3850 8 10 0 0 0 0 1
-description=TS6121C ethernet trafo
-T 50 4440 8 10 0 0 0 0 1
+T 200 4150 8 10 0 0 0 0 1
+description=TS6121C ethernet Isolation Transfomrer
+T 200 4740 8 10 0 0 0 0 1
 author=Andreas Kemnade <andreas@kemnade.info>
-T 50 4240 8 10 0 0 0 0 1
+T 200 4340 8 10 0 0 0 0 1
 use-license=unlimited
-T 50 4040 8 10 0 0 0 0 1
+T 200 4540 8 10 0 0 0 0 1
 dist-license=GPLv2
