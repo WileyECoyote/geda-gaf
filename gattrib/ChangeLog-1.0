@@ -1,3 +1,10 @@
+2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Call gtk_sheet_unselect_range after hiding the
+      column in popup_activated because the window of the old range is
+      still shown, and there really should be a selection after hiding
+      the column.
+
 2019-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Replace gdk_window_get_size with
