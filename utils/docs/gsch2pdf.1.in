@@ -1,0 +1,41 @@
+.TH gsch2pdf 1 "@DATE@" "gEDA Project" @VERSION@
+.SH NAME
+gsch2pdf - Creates PDF documents from gEDA/gaf schematics
+.SH SYNOPSIS
+\fBgsch2pdf\fR [\fIOPTION\fR ...] {\fIFILE1\fR \fIFILE2\fR ... \fIFILEn\fR}
+.SH DESCRIPTION
+.PP
+\fBgsch2pdf\fR is a utility to generate files in Portable Document Format
+(PDF) from gEDA/gaf schematic input files. A separate PDF document is
+created for each input file listed after any options. Output files are
+named using the base name of the input file suffixed with the .pdf extension.
+
+.SH OPTIONS
+.TP 8
+\fB-q\fR, \fB--quiet\fR
+Suppress list of file name while processing multiple inputs\fR.
+.TP 8
+\fB-v\fR, \fB--verbose\fR
+Enable additional output information.
+.TP 8
+\fB-h\fR, \fB--help\fR
+Print a help message.
+.TP 8
+\fB-V\fR, \fB--version\fR
+Print \fBgsch2pdf\fR version information. Note that the \fBquiet\fR option
+can be used with the \fBversion\fR option to suppress extraneous information.
+
+.SH AUTHORS
+See the `AUTHORS' file included with this program.
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 1999-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+\fBgaf\fR(1)

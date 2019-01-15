@@ -1,3 +1,7 @@
+2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gsch2pdf.1.in: Add new man page for gsch2pdf.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c: Add "Function Description" and clean up documentation

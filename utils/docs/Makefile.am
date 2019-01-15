@@ -13,21 +13,22 @@ LOCAL_TEX   = what-is-utils.tex
 
 READ_MES    = README.gsch2pcb README.olib README.tragesym README.grenum
 
-EXTRA_DIST  = TODO.grenum why.grenum gsch2pcb.1.in grenum.1.in gxyrs.1.in \
-	      olib.1.in pads_backannotate.1.in pcb_backannotate.1.in \
-	      refdes_renum.1.in schdiff.1.in sw2asc.1.in tragesym.1.in \
-	      smash_megafile.1.in convert_sym.1.in garchive.1.in gmk_sym.1.in \
-	      gschlas.1.in gsymfix.1.in sarlacc_sym.1.in sarlacc_schem.1.in \
+EXTRA_DIST  = TODO.grenum why.grenum gsch2pcb.1.in gsch2pdf.1.in \
+	      grenum.1.in gxyrs.1.in  olib.1.in pads_backannotate.1.in \
+	      pcb_backannotate.1.in  refdes_renum.1.in schdiff.1.in sw2asc.1.in \
+	      tragesym.1.in smash_megafile.1.in convert_sym.1.in garchive.1.in \
+	      gmk_sym.1.in gschlas.1.in gsymfix.1.in sarlacc_sym.1.in sarlacc_schem.1.in \
 	      gnet_hier_verilog.1.in geda-install.1.in geda-install-bin.1.in \
 	      $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX) \
 	      $(READ_MES)
 
-dist_man_MANS = gsch2pcb.1 grenum.1 gxyrs.1 olib.1 pads_backannotate.1 \
-	pcb_backannotate.1 refdes_renum.1 schdiff.1 sw2asc.1 tragesym.1 \
-	smash_megafile.1 convert_sym.1 garchive.1 gmk_sym.1 gschlas.1 \
-	sarlacc_sym.1 sarlacc_schem.1 gclean-symbol.1 gsymfix.1 gfix-library.1 \
-        gcheck-library.1 gmake-transistors-sym.1 gmake-caps-sym.1 \
-        gnet_hier_verilog.1 geda-install.1 geda-install-bin.1
+dist_man_MANS = gsch2pcb.1 gsch2pdf.1 grenum.1 gxyrs.1 olib.1 \
+	        pads_backannotate.1 pcb_backannotate.1 refdes_renum.1 \
+	        schdiff.1 sw2asc.1 tragesym.1 smash_megafile.1 convert_sym.1 \
+	        garchive.1 gmk_sym.1 gschlas.1 sarlacc_sym.1 sarlacc_schem.1 \
+	        gclean-symbol.1 gsymfix.1 gfix-library.1 gcheck-library.1 \
+	        gmake-transistors-sym.1 gmake-caps-sym.1 gnet_hier_verilog.1 \
+	        geda-install.1 geda-install-bin.1
 
 docsreadmedir   = $(docdir)/readmes
 docsreadme_DATA = $(READ_MES)
