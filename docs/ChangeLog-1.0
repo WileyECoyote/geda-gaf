@@ -1,3 +1,8 @@
+2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/wiki/sitemap.html: Replace references to geda-spice_improvements.html
+      with geda-circuit_simulation_improvements.html
+
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * wiki/geda-faq-gnetlist.html: Revise to avoid contraction with hard
