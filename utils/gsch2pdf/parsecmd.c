@@ -69,8 +69,9 @@ usage(char *cmd)
     "  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
     "  -V, --version     Show version information.\n"
     "\n"
-    "Generates a pdf file using the name \"output.pdf\". Each input file, filename1\n"
-    "... filenameN, is converted to pdf format and printed as separate pages.\n"
+    "Generates a pdf file using the name base name of the input file.\n"
+    "Each input file, filename1... filenameN, is converted to pdf format\n"
+    "and printed as separate pages.\n"
     "\n"),
     cmd);
     exit(0);

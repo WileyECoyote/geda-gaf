@@ -2,6 +2,9 @@
 
     * docs/gsch2pdf.1.in: Add new man page for gsch2pdf.
 
+    * gsch2pdf/parsecmd.c: Update usage to indicate that the base name of
+      the input file is used to determine the name of the output file.
+
 2018-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschlas/gschlas.c: Add "Function Description" and clean up documentation
