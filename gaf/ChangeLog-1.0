@@ -1,3 +1,8 @@
+2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf/src/export.c: Remove g_assert and output a message about what
+      really occured, and then return from export_layout_page.
+
 2019-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gaf.c: Add function documentation for main.

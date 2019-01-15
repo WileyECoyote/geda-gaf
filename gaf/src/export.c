@@ -399,9 +399,17 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
   double slack[2];           /* Calculated alignment slack */
 
   if (page == NULL) {
-    const GList *pages = geda_list_get_glist (toplevel->pages);
-    g_assert (pages != NULL && pages->data != NULL);
-    page = (Page *) pages->data;
+
+    const GList *pages;
+
+    pages = geda_list_get_glist (toplevel->pages);
+
+    if (pages == NULL || pages->data == NULL) {
+      fprintf (stderr, _("ERROR: No document is available to export.\n"));
+      return;
+    }
+
+    page = (Page*) pages->data;
   }
 
   /* Set the margins. If none were provided by the user, get them
@@ -436,7 +444,8 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
     extents->width = settings.size[0];
     extents->height = settings.size[1];
 
-  } else if (settings.paper != NULL) {
+  }
+  else if (settings.paper != NULL) {
     /* get extents from paper */
 
     double p_width, p_height;
@@ -461,7 +470,8 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
     if (landscape) {
       extents->width = p_height;
       extents->height = p_width;
-    } else {
+    }
+    else {
       extents->width = p_width;
       extents->height = p_height;
     }
