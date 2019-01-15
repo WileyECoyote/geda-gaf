@@ -394,9 +394,9 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
   cairo_rectangle_t drawable;
   int x_min, y_min, x_max, y_max, w_width, w_height;
   bool landscape = FALSE;
-  double m[4]; /* Calculated margins */
-  double s; /* Calculated scale */
-  double slack[2]; /* Calculated alignment slack */
+  double m[4];               /* Calculated margins */
+  double s;                  /* Calculated scale */
+  double slack[2];           /* Calculated alignment slack */
 
   if (page == NULL) {
     const GList *pages = geda_list_get_glist (toplevel->pages);
