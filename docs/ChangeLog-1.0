@@ -3,6 +3,8 @@
     * docs/wiki/sitemap.html: Replace references to geda-spice_improvements.html
       with geda-circuit_simulation_improvements.html
 
+    * docs/wiki/geda-spice_improvements.html: Delete obsolete file.
+
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * wiki/geda-faq-gnetlist.html: Revise to avoid contraction with hard
