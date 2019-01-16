@@ -1,7 +1,7 @@
 #!/bin/sh
 # $Id$
 #
-# NOTE: built from gschemdoc.sh
+# NOTE: built from gschemdoc.sh.in
 #
 # Present as relevant of documentation as possible with regard to a component
 # The strategy is built into separate cases so they may be re-arranged easily
@@ -30,6 +30,12 @@ CANDIDATE_BROWSER="xdg-open galeon mozilla phoenix netscape netscape-navigator o
 CANDIDATE_PDFREADER="xdg-open xpdf acroread ggv gv"
 CANDIDATE_LOCATE="slocate locate"
 
+DOCUMENTATION=$1
+DEVICE=$2
+VALUE=$3
+SYMBOL=$4
+DIRECTORY=$5
+
 #
 # Information about the gEDA installation
 #"/usr/share/doc/geda-gaf"
@@ -44,7 +50,7 @@ fi
 #
 #  make symbol filename into something more akin to a device name
 #
-symbolbase=`echo "$4" | sed s/-[0-9]\\.sym//`
+symbolbase=`echo "$SYMBOL" | sed s/-[0-9]\\.sym//`
 
 #
 #  display pdf file using viewer if PDF viewer and file exists
@@ -201,15 +207,15 @@ b=`which cygpath 2>/dev/null` && cygpath=$b
 #  documentation case first
 #  NOTE: this is too crude..
 #
-if test "$1" = "-m"; then
+if test "$DOCUMENTATION" = "-m"; then
 	lookup_manual "gedadocs.html"
 fi
 
 #
 #  try to load a specific wiki path
 #
-if test "$1" = "-w"; then
-        lookup_wiki "$2"
+if test "$DOCUMENTATION" = "-w"; then
+        lookup_wiki "$DEVICE"
 fi
 
 #
@@ -217,9 +223,9 @@ fi
 #  if there is a file in the documentation directory, we
 #  will of course use that first and foremost
 #
-if test "$1" != "" && test -f "${DOCDIR}/$1" ; then
-	view_file_if_pdf "${DOCDIR}/$1"
-	view_file_browser "${DOCDIR}/$1"
+if test "$DOCUMENTATION" != "" && test -f "${DOCDIR}/$DOCUMENTATION" ; then
+	view_file_if_pdf "${DOCDIR}/$DOCUMENTATION"
+	view_file_browser "${DOCDIR}/$DOCUMENTATION"
 fi
 
 #
@@ -228,10 +234,10 @@ fi
 #
 if test "${browser}" != "no"; then
 	for s in http ftp file; do
-		if echo "$1" | grep -q "^$s:"; then
+		if echo "$DOCUMENTATION" | grep -q "^$s:"; then
 			echo "Found ${browser}"
-			echo "Using browser and URL: $1"
-			"${browser}" "$1"
+			echo "Using browser and URL: $DOCUMENTATION"
+			"${browser}" "$DOCUMENTATION"
 			exit
 		fi
 	done
@@ -242,8 +248,8 @@ fi
 #  if documentation is a filename, we'll invoke locate to see if we can
 #  find it locally
 #
-if test "$1" != "" && test "${locate}" != "no"; then
-	b=`${locate} -- "/$1"`
+if test "$DOCUMENTATION" != "" && test "${locate}" != "no"; then
+	b=`${locate} -- "/$DOCUMENTATION"`
 	if test `echo "$b" | wc -w` -ge 1; then
 		n="`echo "$b" | head -n1`"
 		view_file_if_pdf "$n"
@@ -255,17 +261,17 @@ fi
 #  iv.
 #  if there is a documentation at all, go look for it on the web
 #
-if test "$1" != ""; then
-	go_look_for "$1"
+if test "$DOCUMENTATION" != ""; then
+	go_look_for "$DOCUMENTATION"
 fi
 
 #
 #  v.
 #  if there is a device and a value, add .pdf or .PDF and look for local files
 #
-if test "$2" != "" && test "$3" != ""; then
+if test "$DEVICE" != "" && test "$VALUE" != ""; then
 	for s in .pdf .PDF; do
-		view_file_if_pdf "${DOCDIR}/$2-$3$s"
+		view_file_if_pdf "${DOCDIR}/$DEVICE-$VALUE$s"
 	done
 fi
 
@@ -273,9 +279,9 @@ fi
 #  vi.
 #  if there is a device, add .pdf or .PDF and look for local files
 #
-if test "$2" != ""; then
+if test "$DEVICE" != ""; then
 	for s in .pdf .PDF; do
-		view_file_if_pdf "${DOCDIR}/$2$s"
+		view_file_if_pdf "${DOCDIR}/$DEVICE$s"
 	done
 fi
 
@@ -283,24 +289,24 @@ fi
 #  vii.
 #  if there is a device and a value, go look for both on the web
 #
-if test "$2" != "" && test "$3" != ""; then
-	go_look_for "$2%20$3"
+if test "$DEVICE" != "" && test "$VALUE" != ""; then
+	go_look_for "$DEVICE%20$VALUE"
 fi
 
 #
 #  viii.
 #  if there is a device only, go look for it on the web
 #
-if test "$2" != ""; then
-	go_look_for "$2"
+if test "$DEVICE" != ""; then
+	go_look_for "$DEVICE"
 fi
 
 #
 #  ix.
 #  if there is a value only, go look for it on the web
 #
-if test "$3" != "" && test "${browser}" != "no" ; then
-	go_look_for "$3"
+if test "$VALUE" != "" && test "${browser}" != "no" ; then
+	go_look_for "$VALUE"
 fi
 
 #

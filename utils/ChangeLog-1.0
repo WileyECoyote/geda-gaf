@@ -5,6 +5,8 @@
     * gschemdoc/Makefile.am: Use SH_SCRIPTS  instead of bin_SCRIPTS to install
       the extensionless gschemdoc instead of gschemdoc.sh.
 
+    * gschemdoc/gschemdoc.sh.in: Substitute named variables for numeric arguments.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsch2pdf.1.in: Add new man page for gsch2pdf.
