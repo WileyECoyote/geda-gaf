@@ -1,0 +1,49 @@
+.TH gschemdoc 1 "@DATE@" "gEDA Project" @VERSION@
+.SH NAME
+gschemdoc - Present relevant documentation
+.SH SYNOPSIS
+\fBgschemdoc\fR [\fIOPTION\fR] \fIDOCUMENTATION\fR [\fIDEVICE\fR \fIVALUE\fR \fISYMBOL\fR \fIDIRECTORY\fR]
+or
+\fBgschemdoc\fR \fIOPTION\fR \fIPATH\fR
+
+.SH DESCRIPTION
+.PP
+\fBgschemdoc\fR is shell script that attempts to present relevant information
+or documentation with regard to a specifc component, manual, or URL. The order
+of arguments sets the presidence used by \fBgschemdoc\fR, with the first argument,
+\fIDOCUMENTATION\fR, having the highest priority.
+.PP
+The \fIDOCUMENTATION\fR argument can be a URL, either local or remote, or a PDF
+file. Without an option, the \fIGEDADOCDIR\fR directory is checked first, if a
+file is not found and a BROWSER is found then the \fIDOCUMENTATION\fR is passed
+to the browser. If the \fIDOCUMENTATION\fR argument is empty, the scripts checks
+for DEVICE-VALUE.pdf and then a DEVICE.pdf in the \fIGEDADOCDIR\fR directory,
+followed by browsing for "DEVICE VALUE" if a BROWSER was found and the \fIVALUE\fR
+argument is present, otherwise only browsing for "DEVICE". If a BROWSER was
+not found, then the scripts attempts to locate a pdf file in \fIGEDADOCDIR\fR
+directory with the base name of \fISYMBOL\fR.
+
+.SH OPTIONS
+.TP 8
+\fB-m\fR
+Display user's manual instead; Using this option loads "gedadocs.html" in a
+browser, all other arguments are ignored.
+.TP 8
+\fB-w\fR
+Display a wiki page. When this option is given, the script attempts to show
+the local wiki page for \fIDEVICE\fR.
+
+.SH AUTHORS
+See the `AUTHORS' file included with this program.
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 1999-@YEAR@ gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+\fBgaf\fR(1), \fBgschem\fR(1)

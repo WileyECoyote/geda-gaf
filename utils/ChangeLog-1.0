@@ -1,3 +1,7 @@
+2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/gschemdoc.1.in: Add new man page for gschemdoc.
+
 2018-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gsch2pdf.1.in: Add new man page for gsch2pdf.
