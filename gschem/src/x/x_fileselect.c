@@ -455,9 +455,6 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
  *  typically be call during start-up, before the main-loop is started.
  *  Therefore we must manually lock and unlock gtk-threads
  *
- *  \todo Make this a registered callback function with user data,
- *        as we'd rather be passed a GschemToplevel than a GedaToplevel.
- *
  *  \param [in] message   Message to display to user.
  *  \param [in] w_current The GedaToplevel object.
  *
