@@ -855,9 +855,11 @@ static void on_col_butt_clicked(GtkButton *button, void *user_data)
   x_dialog_array_edit_emit_get_dist(w_current, dialog_data);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Create Array Dialog Action Area
+ * \par Function Description
+ *  Replaces the action area in the Array Dialog. The action area
+ *  contains two button; close and apply.
  */
 static void x_dialog_array_edit_action_area (GtkWidget  *ThisDialog,
                                              array_data *dialog_data)

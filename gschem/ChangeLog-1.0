@@ -4,6 +4,10 @@
       the function is passed a GschemToplevel. Add Doxygen image tags for the
       Load-Backup-Dialog group.
 
+    * src/x/x_edit_array.c: Add function documentation for:
+
+          * x_dialog_array_edit_action_area
+
 2018-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_page_geometry.c: Update Doxygen documentation format;
