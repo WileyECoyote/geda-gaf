@@ -31,7 +31,7 @@ installer	 = geda-install \
 
 noinst_SCRIPTS	 = convert_sym.awk sw2asc.awk $(installer)
 
-#enble this for distcheck
+#enable this for distcheck
 distcheck:
 dist_bin_SCRIPTS = $(PERL_SCRIPTS) $(PY_SCRIPTS) $(SH_SCRIPTS) \
 		   $(noinst_SCRIPTS)
