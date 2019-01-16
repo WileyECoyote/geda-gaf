@@ -92,7 +92,8 @@ static void version (void)
       "This is free software, and you are welcome to redistribute it under\n"
       "certain conditions. For details, see the file `COPYING', which is\n"
       "included in the gEDA distribution.\n"
-      "There is NO WARRANTY, to the extent permitted by law.\n"),
+      "There is NO WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A\n"
+      "PARTICULAR PURPOSE, to the extent permitted by law.\n"),
       PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION, PACKAGE_GIT_COMMIT);
   else
     printf("%s\n", PACKAGE_DOTTED_VERSION);

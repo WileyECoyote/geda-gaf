@@ -2,6 +2,9 @@
 
     * docs/gschemdoc.1.in: Add new man page for gschemdoc.
 
+    * gsch2pdf/parsecmd.c: Update version output to include MERCHANTABILITY
+      clause.
+
     * gschemdoc/Makefile.am: Use SH_SCRIPTS  instead of bin_SCRIPTS to install
       the extensionless gschemdoc instead of gschemdoc.sh.
 
