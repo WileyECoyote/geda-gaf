@@ -1,8 +1,13 @@
 ## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ##
 ## Process this file with automake to produce Makefile.in
+SUFFIXES = .sh
 
-bin_SCRIPTS = gschemdoc.sh
+TARGET_DIR = $(bindir)
+
+SHdir	 =  $(TARGET_DIR)
+
+SH_SCRIPTS = gschemdoc
 
 EXTRA_DIST = 
 
