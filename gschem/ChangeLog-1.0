@@ -1,7 +1,8 @@
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_fileselect.c: Remove todo for x_fileselect_load_backup because
-      the function is passed a GschemToplevel.
+      the function is passed a GschemToplevel. Add Doxygen image tags for the
+      Load-Backup-Dialog group.
 
 2018-01-14 Wiley E. Hill <wileyhill@gmail.com>
 

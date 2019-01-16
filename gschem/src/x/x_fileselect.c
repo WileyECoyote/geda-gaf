@@ -446,6 +446,8 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
 /** \defgroup Load-Backup-Dialog Load Backup Dialog
  *  @{
  *  \ingroup Systemic-Dialogs
+ *  \image html load_backup.png
+ *  \image latex load_backup.png
  */
 
 /*! \brief Load/Backup selection dialog.
