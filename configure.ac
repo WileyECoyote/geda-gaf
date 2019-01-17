@@ -399,7 +399,6 @@ AC_CONFIG_FILES([Makefile
                  utils/gsch2pcb/Makefile
                  utils/gsch2pdf/Makefile
                  utils/gschemdoc/Makefile
-                 utils/gschemdoc/gschemdoc.sh
 
                  utils/gschlas/Makefile
                  utils/gxyrs/Makefile

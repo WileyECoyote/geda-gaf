@@ -1,7 +1,7 @@
 #!/bin/sh
 # $Id$
 #
-# NOTE: built from gschemdoc.sh.in
+# NOTE: built from gschemdoc.sh
 #
 # Present as relevant of documentation as possible with regard to a component
 # The strategy is built into separate cases so they may be re-arranged easily
@@ -38,8 +38,9 @@ DIRECTORY=$5
 
 #
 # Information about the gEDA installation
-#"/usr/share/doc/geda-gaf"
-DOCDIR=@prefix@/share/doc/geda-gaf
+# "/usr/share/doc/geda-gaf"
+#DOCDIR=@prefix@/share/doc/geda-gaf
+DOCDIR=$(gaf path -o)
 
 # For OS X, since Linux has 'open' with different semantics
 if [ "`uname -s`" = "Darwin" ]; then
@@ -264,6 +265,8 @@ fi
 if test "$DOCUMENTATION" != ""; then
 	go_look_for "$DOCUMENTATION"
 fi
+
+# Cannot get here unless DOCUMENTATION is blank, passed as ""
 
 #
 #  v.

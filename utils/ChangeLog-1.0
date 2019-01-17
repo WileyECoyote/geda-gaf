@@ -3,6 +3,11 @@
     * gsch2pdf/parsecmd.c: Break-off the translatable portion of the string for
       the version message, leave non-translatable portion with format specifiers.
 
+    * gschemdoc/gschemdoc.sh: Utilize gaf path to retrieve the path to documentation
+      instead of @prefix@.
+
+    * gschemdoc/gschemdoc.sh.in: Eliminate file.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschemdoc.1.in: Add new man page for gschemdoc.
