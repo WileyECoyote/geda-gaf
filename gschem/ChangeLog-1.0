@@ -1,3 +1,7 @@
+2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem/builtins.scm: Fix options-cycle-grid->options-cycle-snap.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_fileselect.c: Remove todo for x_fileselect_load_backup because

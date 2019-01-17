@@ -487,7 +487,7 @@
 (define-action-public (&options-snap-on #:label (_ "Turn Snap on"))
   (%options-snap-on))
 
-(define-action-public (&options-cycle-grid #:label (_ "Cycle Snap Mode"))
+(define-action-public (&options-cycle-snap #:label (_ "Cycle Snap Mode"))
   (%options-cycle-snap))
 
 (define-action-public (&options-rubberband #:label (_ "Toggle Net Rubber Band"))
