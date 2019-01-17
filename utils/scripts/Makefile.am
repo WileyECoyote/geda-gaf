@@ -45,7 +45,7 @@ dist_bin_SCRIPTS = $(PERL_SCRIPTS) $(PY_SCRIPTS) $(SH_SCRIPTS) \
 	done
 
 MOSTLYCLEANFILES     = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)
-CLEANFILES 	         = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)
+CLEANFILES 	     = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)
 DISTCLEANFILES	     = *.log      core FILE tmp *~ $(bin_SCRIPTS) $(installer)
 MAINTAINERCLEANFILES = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS) $(installer) Makefile.in
 
