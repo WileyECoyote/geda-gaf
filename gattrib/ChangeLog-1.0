@@ -1,3 +1,8 @@
+2019-01-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Replace g_free with geda_free in search_replace_
+      combo_responder.
+
 2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Call gtk_sheet_unselect_range after hiding the
