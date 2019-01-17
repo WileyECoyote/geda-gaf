@@ -8,6 +8,8 @@
 
     * gschemdoc/gschemdoc.sh.in: Eliminate file.
 
+    * gschlas/parsecmd.c: Breakup the version message as was done in gsch2pdf.
+
 2018-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschemdoc.1.in: Add new man page for gschemdoc.
