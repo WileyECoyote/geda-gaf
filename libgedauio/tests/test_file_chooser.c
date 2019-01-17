@@ -269,8 +269,6 @@ my_new_from_file_at_size (const char *filename,
 
     fclose (f);
 
-    g_assert (*error == NULL);
-
     if (!gdk_pixbuf_loader_close (loader, error)) {
         g_object_unref (loader);
         return NULL;
