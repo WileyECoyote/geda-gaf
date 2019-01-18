@@ -10,7 +10,8 @@
     * src/x/x_coord.c: Do not passing the pointer to the Drag&Drop buffer
       to geda_object_read_buffer, the pointer must always be NULL.
 
-    * src/x/x_dnd.c: Reduce the scope of the pointer to err.
+    * src/x/x_dnd.c: Reduce the scope of the pointer to err and pass NULL
+      to geda_object_read_buffer.
 
 2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
 

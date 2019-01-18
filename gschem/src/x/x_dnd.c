@@ -644,10 +644,8 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
     }
 
     /* Copy the objects to the Drag&Drop buffer */
-    object_buffer[DND_BUFFER] = geda_object_read_buffer (w_current->toplevel,
-                                                         object_buffer[DND_BUFFER],
-                                                         buffer,
-                                                         -1, "Drag & Drop", &err);
+    object_buffer[DND_BUFFER] = geda_object_read_buffer (w_current->toplevel, NULL,
+                                                         buffer, -1, "Drag & Drop", &err);
     if (err) {
 
       char *errmsg;
