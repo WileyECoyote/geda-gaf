@@ -102,9 +102,9 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
                                 const char   *buffer,   const int size,
                                 const char   *name,     GError  **err)
 {
-  GList  *object_list_save     = NULL;
-  GList  *new_attrs_list       = NULL;
-  GList  *new_object_list      = NULL;
+  GList *object_list_save      = NULL;
+  GList *new_attrs_list        = NULL;
+  GList *new_object_list       = NULL;
 
   unsigned int release_ver     = 0;
   unsigned int fileformat_ver  = 0;
@@ -180,6 +180,7 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         last_complex = NULL;  /* no longer need to check */
       }
     }
+
     switch (objtype) {
 
       case(OBJ_COMPLEX):
@@ -429,7 +430,7 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     }
 
     line = geda_struct_textbuffer_next_line(tb);
-  }
+  } /* Wend !EOF */
 
   /* Was the very last thing we read a complex and has it not been checked */
   /* yet?  This would happen if the complex is at the very end of the file  */
@@ -451,7 +452,7 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
 
   object_list = geda_glist_concat (object_list, new_object_list);
 
-  return(object_list);
+  return (object_list);
 
 error:
 
