@@ -95,7 +95,6 @@ void geda_struct_object_release(GedaObject *o_current)
 
     if (o_current->complex && o_current->complex->prim_objs) {
       geda_struct_object_release_objects (o_current->complex->prim_objs);
-      o_current->complex->prim_objs = NULL;
     }
 
     geda_object_unref(o_current);

@@ -5,6 +5,11 @@
     * src/geda/geda_complex.c: Revise geda_complex_finalize to only NULL
       pointers to list that are not already NULL.
 
+    * src/struct/s_object.c: Removed setting prim_objs to NULL after the
+      call to geda_struct_object_release_objects in geda_struct_object_
+      release_object because the list itself has not been released, which
+      will be done when the complex is destroyed.
+
 2019-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_object.c: Reorganize geda_object_set_selectable.
