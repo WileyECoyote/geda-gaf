@@ -631,18 +631,17 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
 bool
 x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buffer, int who)
 {
-  GError *err;
-  bool    result;
+  bool result;
 
   if (buffer) {
+
+    GError *err = NULL;
 
     /* Make sure the buffer is empty, if str maybe in deep dodo */
     if (object_buffer[DND_BUFFER] != NULL) {
       geda_struct_object_release_objects(object_buffer[DND_BUFFER]);
       object_buffer[DND_BUFFER] = NULL;
     }
-
-    err = NULL;
 
     /* Copy the objects to the Drag&Drop buffer */
     object_buffer[DND_BUFFER] = geda_object_read_buffer (w_current->toplevel,
