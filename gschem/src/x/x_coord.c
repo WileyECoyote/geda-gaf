@@ -99,7 +99,6 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
   if ((selection_data != NULL) &&
       (gtk_selection_data_get_length(selection_data) >= 0))
   {
-
     GtkWidget *Dialog;
     char      *buffer;
 
@@ -127,7 +126,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
       case DND_TARGET_PLAIN_TEXT:
       case DND_TARGET_UTF8_STRING:
 
-        buffer = (char *)gtk_selection_data_get_text(selection_data);
+        buffer = (char*)gtk_selection_data_get_text(selection_data);
 
         if (buffer) {
           /* don't free(buffer) here! leave pointer for our entry to sort */
@@ -143,10 +142,10 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
         buffer = (char*)gtk_selection_data_get_data(selection_data);
 
         /* Copy received objects to the Drag&Drop buffer */
-        object_buffer[DND_BUFFER] = geda_object_read_buffer (toplevel,
-                                                             object_buffer[DND_BUFFER],
-                                                             buffer,
-                                                             -1, _("Drag & Drop"), &err);
+        object_buffer[DND_BUFFER] = geda_object_read_buffer (toplevel, NULL,
+                                                             buffer, -1,
+                                                             _("Drag & Drop"),
+                                                             &err);
 
         /* Check for errors */
         if (err) {
