@@ -1,3 +1,9 @@
+2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_parsecmd.c: Add ancillary variable for translatable
+      string in order to remove non-translatable "gEDA/gschem" and format
+      specifiers from the string to be translated.
+
 2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/builtins.scm: Fix options-cycle-grid->options-cycle-snap.
