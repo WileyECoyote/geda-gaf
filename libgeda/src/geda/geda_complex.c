@@ -177,13 +177,13 @@ static void geda_complex_finalize(GObject *object)
 
   if (complex->pin_objs) {
     g_list_free (complex->pin_objs);
+    complex->pin_objs = NULL;
   }
-  complex->pin_objs = NULL;
 
   if (complex->prim_objs) {
     g_list_free (complex->prim_objs);
+    complex->prim_objs = NULL;
   }
-  complex->prim_objs = NULL;
 
   /* The object is no longer a GedaComplex */
   obj->complex = NULL;
