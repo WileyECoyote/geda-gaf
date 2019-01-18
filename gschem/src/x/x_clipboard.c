@@ -298,10 +298,9 @@ GList *x_clipboard_get (GschemToplevel *w_current)
   const unsigned char *buf;
   GError              *err;
 
-  o_list = NULL;
-  err    = NULL;
-  cb     = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  type   = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
+  err  = NULL;
+  cb   = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+  type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
 
   /* Try to get the contents of the clipboard */
   selection_data = gtk_clipboard_wait_for_contents (cb, type);
@@ -322,7 +321,7 @@ GList *x_clipboard_get (GschemToplevel *w_current)
 
   toplevel = w_current->toplevel;
 
-  o_list = geda_object_read_buffer (toplevel, o_list,
+  o_list = geda_object_read_buffer (toplevel, NULL,
                                    (char*)buf, -1, "Clipboard", &err);
 
   if (err) {

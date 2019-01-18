@@ -4,6 +4,9 @@
       string in order to remove non-translatable "gEDA/gschem" and format
       specifiers from the string to be translated.
 
+    * src/x/x_clipboard.c: Pass NULL to and eliminate initializing o_list
+      to NULL;
+
 2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem/builtins.scm: Fix options-cycle-grid->options-cycle-snap.
