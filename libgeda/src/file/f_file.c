@@ -337,6 +337,8 @@ int geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GEr
 
     geda_struct_page_append_list (page, objects);
 
+    g_list_free(objects);
+
     if (load_backup_file == 0) {
       /* If it's not the backup file */
       page->CHANGED = 0; /* added 4/7/98 */
