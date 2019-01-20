@@ -128,45 +128,55 @@ msgstr ""
 "Zwraca wartość true, jeśli obiekt jest kontenerem Gedy, w przeciwnym wypadku "
 "false."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Zwraca prostokątne granice obiektu."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Odzyskaj obiekt z kontenera Gedy."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Haal een object op uit een Geda-container."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Dodaj obiekt do strony lub innego obiektu."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Dodaj wiele obiektów do strony lub innego obiektu."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Utwórz kopię obiektu."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Usuń obiekt ze strony."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Usuń wiele obiektów ze strony."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Usuń obiekt ze strony."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Usuń wiele obiektów ze strony."
 
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
