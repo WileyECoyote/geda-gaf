@@ -106,45 +106,55 @@ msgstr "Tallenna kaikki avatut sivut tallennukseen."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Returns True on kohde on GedaCapsule, muuten False."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Palauttaa kohteen suorakulmaiset rajat."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Hae objekti Gedan säiliöstä."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Hae kaikki sivulle kuuluvat objektit."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Lisää objekti sivulle tai muulle esineelle."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Lisää useita kohteita objektiin tai muuhun kohteeseen."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Tee kopiosta objekti."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Poista objekti sivulta."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Poista useita objekteja sivulta."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Poista objekti sivulta."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "מחק אובייקטים מרובים מדף."
 
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."

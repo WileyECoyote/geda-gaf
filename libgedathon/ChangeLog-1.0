@@ -1,3 +1,7 @@
+2019-01-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/fi.po: Update Finnish translations.
+
 2019-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_module.h: Fix grammar in delete_objects_docs and update
