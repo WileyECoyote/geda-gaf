@@ -128,45 +128,55 @@ msgstr "שמור את כל הדפים שנפתחו לאחסון."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "מחזירה נכון אם האובייקט הוא מיכל Geda, אחרת שקר."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "מחזירה את הגבולות המלבניים של אובייקט."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "אחזר אובייקט ממכל Geda."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "אחזר את כל האובייקטים השייכים לדף."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "הוסף אובייקט לדף או לאובייקט אחר."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "הוסף אובייקטים מרובים לדף או לאובייקט אחר."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "צור עותק של אובייקט."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "הסרת אובייקט מדף."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "הסרת אובייקטים מרובים מדף."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "מחיקת אובייקט מדף."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "מחק אובייקטים מרובים מדף."
 
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
