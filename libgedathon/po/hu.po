@@ -127,45 +127,55 @@ msgstr "Mentse el az összes megnyitott oldalt a tároláshoz."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Igaz, ha az objektum Geda konténer, különben hamis."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Visszaad egy objektum téglalap alakú határait."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Visszaszerez egy objektumot egy Geda tartályból."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Visszaszerez egy objektumot egy Geda tartályból."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Objektum hozzáadása egy oldalhoz vagy egy másik objektumhoz."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Több objektum hozzáadása egy oldalhoz vagy egy másik objektumhoz."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Készítsen másolatot egy objektumról."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Objektum eltávolítása az oldalról."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Több oldal eltávolítása az oldalról."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Objektum törlése az oldalról."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Több objektum törlése az oldalról."
 
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
