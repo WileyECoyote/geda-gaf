@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-05 22:57-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -82,9 +82,9 @@ msgstr "Nastavite aktivno stran."
 msgid "Returns True if page has been modified and not saved."
 msgstr "Vrne true, če je bila stran spremenjena in ni shranjena."
 
-# Set the active page, and changes current directory
+# Set the active page and changes current directory
 #: libgedathon/include/geda_module.h:63
-msgid "Set the active page, and changes current directory."
+msgid "Set the active page and change the current directory."
 msgstr "Nastavite aktivno stran in spremenite trenutni imenik."
 
 # Open a page
@@ -158,7 +158,7 @@ msgid "Make a copy an object."
 msgstr "Naredite kopijo predmeta."
 
 # Remove object from a page
-#: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
+#: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
 msgstr "Odstranite objekt s strani."
 
@@ -176,6 +176,10 @@ msgstr "Izbrišite predmet s strani."
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
 msgstr "Izbrišite več predmetov s strani."
+
+#: libgedathon/include/geda_module.h:85
+msgid "Synchronize object with library."
+msgstr ""
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."

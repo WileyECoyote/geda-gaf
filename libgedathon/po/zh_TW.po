@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-05 22:57-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -96,11 +96,11 @@ msgstr "設置活動頁面."
 msgid "Returns True if page has been modified and not saved."
 msgstr "如果页面已被修改但未保存，则返回真正."
 
-# Set the active page, and changes current directory
-# Shèzhì huódòng yèmiàn, bìng gēnggǎi dāngqián mùlù
+# Set the active page and changes current directory
+# Shèzhì huódòng yèmiàn bìng gēnggǎi dāngqián mùlù
 #: libgedathon/include/geda_module.h:63
-msgid "Set the active page, and changes current directory."
-msgstr "設置活動頁面，並更改當前目錄."
+msgid "Set the active page and change the current directory."
+msgstr "設置活動頁面並更改當前目錄."
 
 # Open a page
 # Dǎkāi yīgè yèmiàn
@@ -188,7 +188,7 @@ msgstr "複製一個對象."
 
 # Remove object from a page
 # Cóng yèmiàn zhōng shānchú duìxiàng
-#: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
+#: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
 msgstr "從頁面中刪除對象."
 
@@ -209,6 +209,10 @@ msgstr "從頁面中刪除對象."
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
 msgstr "從頁面中刪除多個對象."
+
+#: libgedathon/include/geda_module.h:85
+msgid "Synchronize object with library."
+msgstr ""
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-22 00:07-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2017-12-13 02:30-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -95,37 +95,37 @@ msgstr ""
 msgid "Loading backup file"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:362
+#: libgeda/src/file/f_file.c:364
 msgid "ERROR: Could not restore current directory to"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:406 libgeda/src/file/f_file.c:470
+#: libgeda/src/file/f_file.c:408 libgeda/src/file/f_file.c:472
 #: libgeda/src/object/o_save.c:72
 msgid "Cannot get the real filename of"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:425
+#: libgeda/src/file/f_file.c:427
 msgid "Unable to delete backup file"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:485
+#: libgeda/src/file/f_file.c:487
 #, c-format
 msgid "File [%s] is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:541
+#: libgeda/src/file/f_file.c:543
 msgid "Could not set previous backup file"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:542
+#: libgeda/src/file/f_file.c:544
 msgid "read-write"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:553
+#: libgeda/src/file/f_file.c:555
 msgid "Cannot create backup file"
 msgstr ""
 
-#: libgeda/src/file/f_file.c:598
+#: libgeda/src/file/f_file.c:600
 msgid "Could NOT save file"
 msgstr ""
 
@@ -1014,7 +1014,7 @@ msgstr ""
 msgid "The log may contain more information."
 msgstr ""
 
-#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:423
 msgid "in file"
 msgstr ""
 
@@ -1030,29 +1030,29 @@ msgstr ""
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:302
+#: libgeda/src/object/o_object.c:303
 msgid "Read unexpected attach symbol start marker on line"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
+#: libgeda/src/object/o_object.c:323 libgeda/src/object/o_object.c:328
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:363
+#: libgeda/src/object/o_object.c:364
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:399
+#: libgeda/src/object/o_object.c:400
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
+#: libgeda/src/object/o_object.c:418 libgeda/src/object/o_object.c:422
 msgid "Read garbage near line"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:459
+#: libgeda/src/object/o_object.c:460
 msgid "On or about line"
 msgstr ""
 
@@ -1256,28 +1256,28 @@ msgstr ""
 msgid "Component not found"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1164
+#: libgeda/src/object/o_complex_object.c:1163
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1169
+#: libgeda/src/object/o_complex_object.c:1168
 msgid "Found a component with an invalid rotation"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1173
+#: libgeda/src/object/o_complex_object.c:1172
 #: libgeda/src/object/o_picture_object.c:1475
 msgid "Setting angle to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1178
+#: libgeda/src/object/o_complex_object.c:1177
 msgid "Found a component with an invalid mirror flag"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1182
+#: libgeda/src/object/o_complex_object.c:1181
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1197
+#: libgeda/src/object/o_complex_object.c:1196
 msgid "Invalid complex object"
 msgstr ""
 
@@ -1478,11 +1478,11 @@ msgstr ""
 msgid "because"
 msgstr ""
 
-#: libgeda/src/object/o_set.c:177
+#: libgeda/src/object/o_set.c:180
 msgid "Setting line length to default"
 msgstr ""
 
-#: libgeda/src/object/o_set.c:190
+#: libgeda/src/object/o_set.c:193
 msgid "Setting line space to default"
 msgstr ""
 

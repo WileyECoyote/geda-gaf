@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-05 22:57-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -72,17 +72,21 @@ msgid "file"
 msgstr "fajl"
 
 # The operating system is out of memory or resources
-#: gattrib/src/i_basic.c:106
+#: gattrib/src/i_basic.c:103
 msgid "The operating system is out of memory or resources."
 msgstr "Operativni sistem je van memorije ili resursa."
 
 # failed to open
-#: gattrib/src/i_basic.c:158
+#: gattrib/src/i_basic.c:155
 msgid "failed to open"
 msgstr "nije uspela da se otvori"
 
+#: gattrib/src/i_basic.c:164
+msgid "falling back to"
+msgstr ""
+
 # Check path
-#: gattrib/src/i_basic.c:213
+#: gattrib/src/i_basic.c:210
 msgid "Check path"
 msgstr "Proveri put"
 
@@ -140,12 +144,12 @@ msgid "DONE"
 msgstr "Gotovo"
 
 # failed to find attribute
-#: gattrib/src/s_object.c:225
+#: gattrib/src/s_object.c:224
 msgid "failed to find attribute"
 msgstr "не успя да намери атрибут"
 
 # Exiting
-#: gattrib/src/s_object.c:226
+#: gattrib/src/s_object.c:225
 msgid "Exiting..."
 msgstr "Izlazak..."
 
@@ -491,15 +495,15 @@ msgstr "Obrišite atribut"
 msgid "Clear Attribute Data"
 msgstr "Obriši podatke o atributima"
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Pins"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-22 00:07-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -114,41 +114,41 @@ msgid "Loading backup file"
 msgstr "Cargando el archivo de copia de seguridad"
 
 # ERROR: Could not restore current directory to
-#: libgeda/src/file/f_file.c:362
+#: libgeda/src/file/f_file.c:364
 msgid "ERROR: Could not restore current directory to"
 msgstr "ERROR: No se pudo restaurar el directorio actual para"
 
-#: libgeda/src/file/f_file.c:406 libgeda/src/file/f_file.c:470
+#: libgeda/src/file/f_file.c:408 libgeda/src/file/f_file.c:472
 #: libgeda/src/object/o_save.c:72
 msgid "Cannot get the real filename of"
 msgstr "No se puede obtener el nombre de fichero real de"
 
-#: libgeda/src/file/f_file.c:425
+#: libgeda/src/file/f_file.c:427
 msgid "Unable to delete backup file"
 msgstr "No se ha podido borrar el archivo de copia de seguridad"
 
-#: libgeda/src/file/f_file.c:485
+#: libgeda/src/file/f_file.c:487
 #, c-format
 msgid "File [%s] is read-only"
 msgstr "Fichero [%s] es de solo lectura"
 
 # Could not set previous backup file
-#: libgeda/src/file/f_file.c:541
+#: libgeda/src/file/f_file.c:543
 msgid "Could not set previous backup file"
 msgstr "No pudo establecer el archivo de copia de seguridad anterior"
 
 # read-write
-#: libgeda/src/file/f_file.c:542
+#: libgeda/src/file/f_file.c:544
 msgid "read-write"
 msgstr "Lectura y escritura"
 
 # cannot save the backup
-#: libgeda/src/file/f_file.c:553
+#: libgeda/src/file/f_file.c:555
 msgid "Cannot create backup file"
 msgstr "No se puede guardar la copia de seguridad"
 
 # Could NOT save file
-#: libgeda/src/file/f_file.c:598
+#: libgeda/src/file/f_file.c:600
 msgid "Could NOT save file"
 msgstr "No se pudo guardar el fichero"
 
@@ -1061,7 +1061,7 @@ msgid "The log may contain more information."
 msgstr "El log puede contener más información."
 
 # in file
-#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:423
 msgid "in file"
 msgstr "no el archivo"
 
@@ -1077,19 +1077,19 @@ msgstr ""
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:302
+#: libgeda/src/object/o_object.c:303
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Leer acople inesperado símbolo marcador inicial en línea"
 
-#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
+#: libgeda/src/object/o_object.c:323 libgeda/src/object/o_object.c:328
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "No se esperaba un marcador de comienzo de símbolo embebido en"
 
-#: libgeda/src/object/o_object.c:363
+#: libgeda/src/object/o_object.c:364
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "No se esperaba un marcador de final de símbolo embebido en"
 
-#: libgeda/src/object/o_object.c:399
+#: libgeda/src/object/o_object.c:400
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
@@ -1097,11 +1097,11 @@ msgstr ""
 "Leído un archivo de símbolo/esquema con un formato antiguo !\n"
 "Por favor ejecute: g[sym|sch]update en"
 
-#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
+#: libgeda/src/object/o_object.c:418 libgeda/src/object/o_object.c:422
 msgid "Read garbage near line"
 msgstr "Se ha encontrado un contenido no válido cerca de la línea"
 
-#: libgeda/src/object/o_object.c:459
+#: libgeda/src/object/o_object.c:460
 msgid "On or about line"
 msgstr ""
 
@@ -1315,28 +1315,28 @@ msgstr ""
 msgid "Component not found"
 msgstr "Componente no encontrado"
 
-#: libgeda/src/object/o_complex_object.c:1164
+#: libgeda/src/object/o_complex_object.c:1163
 msgid "Failed to parse complex object"
 msgstr "Falló el procesamiento de objeto complejo"
 
-#: libgeda/src/object/o_complex_object.c:1169
+#: libgeda/src/object/o_complex_object.c:1168
 msgid "Found a component with an invalid rotation"
 msgstr "Se ha encontrado un componente con un ángulo de rotación no válido"
 
-#: libgeda/src/object/o_complex_object.c:1173
+#: libgeda/src/object/o_complex_object.c:1172
 #: libgeda/src/object/o_picture_object.c:1475
 msgid "Setting angle to 0\n"
 msgstr "Cambiando el parámetro 'ángulo' a 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1178
+#: libgeda/src/object/o_complex_object.c:1177
 msgid "Found a component with an invalid mirror flag"
 msgstr "Se ha encontrado un componente con un atributo de simetría no válido"
 
-#: libgeda/src/object/o_complex_object.c:1182
+#: libgeda/src/object/o_complex_object.c:1181
 msgid "Setting mirror to 0\n"
 msgstr "Estableciendo espejo en 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1197
+#: libgeda/src/object/o_complex_object.c:1196
 msgid "Invalid complex object"
 msgstr "Objeto complejo no válido"
 
@@ -1555,12 +1555,12 @@ msgid "because"
 msgstr "porque"
 
 # Setting dash length to default
-#: libgeda/src/object/o_set.c:177
+#: libgeda/src/object/o_set.c:180
 msgid "Setting line length to default"
 msgstr "Ajuste la longitud predeterminada de dash"
 
 # Setting line space to default
-#: libgeda/src/object/o_set.c:190
+#: libgeda/src/object/o_set.c:193
 msgid "Setting line space to default"
 msgstr "El espacio de la línea de ajuste por defecto"
 

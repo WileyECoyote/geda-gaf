@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-05 22:57-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2010-01-29 16:49+0000\n"
 "Last-Translator: Carlos Nieves Ónega <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -69,15 +69,19 @@ msgstr "Asegúrese de tener el archivo rc más reciente"
 msgid "file"
 msgstr "archivo"
 
-#: gattrib/src/i_basic.c:106
+#: gattrib/src/i_basic.c:103
 msgid "The operating system is out of memory or resources."
 msgstr ""
 
-#: gattrib/src/i_basic.c:158
+#: gattrib/src/i_basic.c:155
 msgid "failed to open"
 msgstr ""
 
-#: gattrib/src/i_basic.c:213
+#: gattrib/src/i_basic.c:164
+msgid "falling back to"
+msgstr ""
+
+#: gattrib/src/i_basic.c:210
 msgid "Check path"
 msgstr ""
 
@@ -117,11 +121,11 @@ msgstr ""
 msgid "DONE"
 msgstr ""
 
-#: gattrib/src/s_object.c:225
+#: gattrib/src/s_object.c:224
 msgid "failed to find attribute"
 msgstr ""
 
-#: gattrib/src/s_object.c:226
+#: gattrib/src/s_object.c:225
 msgid "Exiting..."
 msgstr ""
 
@@ -464,15 +468,15 @@ msgstr "Eliminar atributo"
 msgid "Clear Attribute Data"
 msgstr "Borrar datos de atributos"
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Pins"
 msgstr ""
 

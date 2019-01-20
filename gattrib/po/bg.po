@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-05 22:57-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -73,17 +73,21 @@ msgid "file"
 msgstr "досие"
 
 # The operating system is out of memory or resources
-#: gattrib/src/i_basic.c:106
+#: gattrib/src/i_basic.c:103
 msgid "The operating system is out of memory or resources."
 msgstr "Операционната система е извън паметта или ресурси."
 
 # failed to open
-#: gattrib/src/i_basic.c:158
+#: gattrib/src/i_basic.c:155
 msgid "failed to open"
 msgstr "не се отвори"
 
+#: gattrib/src/i_basic.c:164
+msgid "falling back to"
+msgstr ""
+
 # Check path
-#: gattrib/src/i_basic.c:213
+#: gattrib/src/i_basic.c:210
 msgid "Check path"
 msgstr "Проверете пътя"
 
@@ -148,12 +152,12 @@ msgid "DONE"
 msgstr "СВЪРШЕН"
 
 # failed to find attribute
-#: gattrib/src/s_object.c:225
+#: gattrib/src/s_object.c:224
 msgid "failed to find attribute"
 msgstr "не успя да намери атрибут"
 
 # Exiting
-#: gattrib/src/s_object.c:226
+#: gattrib/src/s_object.c:225
 msgid "Exiting..."
 msgstr "Излизане..."
 
@@ -504,15 +508,15 @@ msgstr "Изтрий атрибута"
 msgid "Clear Attribute Data"
 msgstr "Изчистване на данните за атрибутите"
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:739
+#: gattrib/src/x_gtksheet.c:738
 msgid "Pins"
 msgstr ""
 

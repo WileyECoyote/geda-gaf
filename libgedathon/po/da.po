@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-05 22:57-0600\n"
+"POT-Creation-Date: 2019-01-19 20:50-0600\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -71,7 +71,7 @@ msgid "Returns True if page has been modified and not saved."
 msgstr "Returnerer True, hvis siden er blevet ændret og ikke gemt."
 
 #: libgedathon/include/geda_module.h:63
-msgid "Set the active page, and changes current directory."
+msgid "Set the active page and change the current directory."
 msgstr "Indstil den aktive side og ændrer den aktuelle mappe."
 
 #: libgedathon/include/geda_module.h:64
@@ -130,7 +130,7 @@ msgstr ""
 msgid "Make a copy an object."
 msgstr ""
 
-#: libgedathon/include/geda_module.h:80 libgedathon/include/geda_module.h:85
+#: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
 msgstr ""
 
@@ -144,6 +144,10 @@ msgstr ""
 
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
+msgstr ""
+
+#: libgedathon/include/geda_module.h:85
+msgid "Synchronize object with library."
 msgstr ""
 
 #: libgedathon/include/geda_module.h:88
