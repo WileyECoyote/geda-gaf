@@ -6,6 +6,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/ja.po: Update Japanese translations.
+
 2019-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_module.h: Fix grammar in delete_objects_docs and update

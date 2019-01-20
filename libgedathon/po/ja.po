@@ -148,45 +148,65 @@ msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr ""
 "オブジェクトがGedaCapsuleの場合はtrue、それ以外の場合はfalseを返します。."
 
+# Returns the rectangular boundaries of an object
+# Obujekuto no chōhōkei no kyōkai o kaeshimasu
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "オブジェクトの長方形の境界を返します."
 
+# Retrieve an object from a Geda container
+# Geda kontena kara obujekuto o shutoku suru
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Gedaコンテナからオブジェクトを取得する."
 
+# Retrieve all objects belonging to a page
+# Pēji ni zokusuru subete no obujekuto o shutoku shimasu
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "ページに属するすべてのオブジェクトを取得します."
 
+# Add an object to a page or another object
+# Obujekuto o pēji matawa hoka no obujekuto ni tsuika suru
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "オブジェクトをページまたは他のオブジェクトに追加する."
 
+# Add multiple objects to a page or another object
+# Pēji matawa betsu no obujekuto ni fukusū no obujekuto o tsuika suru
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "ページまたは別のオブジェクトに複数のオブジェクトを追加する."
 
+# Make a copy an object
+# Kopī o obujekutoni suru
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "コピーをオブジェクトにする."
 
+# Remove object from a page
+# Pēji kara obujekuto o sakujo suru
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "ページからオブジェクトを削除する."
 
+# Remove multiple objects from a page
+# Pēji kara fukusū no obujekuto o sakujo suru
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "ページから複数のオブジェクトを削除する."
 
+# Delete an object from a page
+# Pēji kara obujekuto o sakujo suru
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "ページからオブジェクトを削除する."
 
+# Delete multiple objects from a page
+# Pēji kara fukusū no obujekuto o sakujo suru
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "ページから複数のオブジェクトを削除する."
 
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
