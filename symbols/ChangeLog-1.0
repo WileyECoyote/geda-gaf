@@ -1,3 +1,9 @@
+2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * logic/74L/74LS74-2.sym: Remove over-bar from PRESET pin label.
+
+    * logic/74L/74LS74-3.sym: Remove over-bar from PRESET pin label.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/ENC28J60SP-1.sym: Add description attribute.

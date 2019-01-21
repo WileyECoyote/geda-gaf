@@ -51,7 +51,7 @@ pinnumber=4
 T 200 550 5 8 0 1 0 8 1
 pinseq=5
 T 350 600 9 8 1 1 0 0 1
-pinlabel=\_PRE\_
+pinlabel=PRE
 T 350 600 5 8 0 1 0 2 1
 pintype=in
 }
