@@ -245,6 +245,7 @@ static void geda_page_dispose(GObject *object)
       iter = g_list_next(iter);
     }
     g_list_free(page->major_changed_refdes);
+    page->major_changed_refdes = NULL;
   }
 
   /* Unreference change notification handlers */
