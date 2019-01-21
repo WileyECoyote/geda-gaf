@@ -17,6 +17,8 @@
 
     * panasonic/resistors/EXBA10P-1.sym: Update device attribute.
 
+    * passive/audio/piezo-1.sym: Fix attribute locations and update device attribute.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/ENC28J60SP-1.sym: Add description attribute.
