@@ -4,6 +4,8 @@
 
     * logic/74L/74LS74-3.sym: Remove over-bar from PRESET pin label.
 
+    * logic/SN/SN74S74-1.sym: Add symbol; dual D-flip-flops with preset and clear.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/ENC28J60SP-1.sym: Add description attribute.
