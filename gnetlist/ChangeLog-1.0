@@ -1,3 +1,7 @@
+2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/Makefile.am: Clean file; indent clean lines.
+
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Call i_vars_set in main_prog before loading documents.
@@ -111,7 +115,7 @@
 
 2018-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gnetlist/BUGS: Add bug: rc2 reports "Found pins without a 'pintype'
+    * gnetlist/BUGS: Add bug: drc2 reports "Found pins without a 'pintype'
       attribute".
 
     * scheme/gnet-spice-anise.scm: Remove trailing "add additional space"
@@ -192,7 +196,7 @@
 2018-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Set the file open flags after obtaining the new
-      to level because libgeda defaults with the check backup bit set
+      toplevel because libgeda defaults with the check backup bit set
       and gnetlist does not implement routines for backups, although
       harmless, this results in geda_file_open executing code that is
       not relevant to gnetlist.
