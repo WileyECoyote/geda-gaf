@@ -10,6 +10,8 @@
 
     * opto/photo-transistor-1.sym: Add description attribute.
 
+    * panasonic/resistors/EXBA10P-1.sym: Update device attribute.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/ENC28J60SP-1.sym: Add description attribute.
