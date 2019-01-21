@@ -640,6 +640,17 @@ void geda_page_set_changed (Page *page, int changed)
 }
 
 /*!
+ * \brief Retrieve List of RefDes with Major Changes
+ * \par Function Description
+ *  Returns the major_changed_refdes member or NULL if \a page
+ *  is not a valid Page object. The list itself could be NULL.
+ */
+GList *geda_page_get_changed_refdes (Page *page)
+{
+  return GEDA_IS_PAGE(page) ? page->major_changed_refdes : NULL;
+}
+
+/*!
  * \brief Get the filename property of the Page
  * \par Function Description
  *  Retrieves the filename member of the page object. The filename

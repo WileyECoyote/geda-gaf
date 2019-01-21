@@ -162,6 +162,8 @@ void         geda_page_remove_object     (Page *page, GedaObject *object);
 int          geda_page_get_changed       (Page *page) GEDA_WARN_UNUSED_RESULT;
 void         geda_page_set_changed       (Page *page, int changed);
 
+GList       *geda_page_get_changed_refdes(Page *page);
+
 const char  *geda_page_get_filename      (Page *page) WARN_UNUSED;
 char        *geda_page_get_filename_dup  (Page *page) WARN_UNUSED;
 void         geda_page_set_filename      (Page *page, const char  *filename);
