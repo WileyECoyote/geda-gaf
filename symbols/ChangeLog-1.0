@@ -6,6 +6,8 @@
 
     * logic/SN/SN74S74-1.sym: Add symbol; dual D-flip-flops with preset and clear.
 
+    * opto/photo-diode-1.sym: Add description attribute.
+
 2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/ENC28J60SP-1.sym: Add description attribute.
