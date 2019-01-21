@@ -2,6 +2,9 @@
 
     * etc/Makefile.am: Clean file; indent clean lines.
 
+    * include/globals.h: Remove define WITHOUT_GDK_PIX_BUFFER, which is already
+      defined in gnetlist.h.
+
 2018-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gnetlist.c: Call i_vars_set in main_prog before loading documents.

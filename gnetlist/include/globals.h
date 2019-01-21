@@ -23,9 +23,7 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  */
 
-#define WITHOUT_GDK_PIX_BUFFER 1
-
-extern char *rc_filename;
+extern char   *rc_filename;
 
 extern          int logfile_fd;
 extern volatile int logging;
