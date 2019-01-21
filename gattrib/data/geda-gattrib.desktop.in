@@ -6,5 +6,5 @@ _Comment=Manipulate component attributes with gattrib
 Type=Application
 Exec=gattrib %F
 Icon=geda-gattrib
-#MimeType=application/x-geda-schematic;application/x-geda-symbol;
+MimeType=application/x-geda-schematic
 Categories=Engineering;Electronics;

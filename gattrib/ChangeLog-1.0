@@ -4,6 +4,9 @@
       does not get done during distcheck since desktop-i18n without sed
       in-file, but does when sed -i was used.
 
+    * data/geda-gattrib.desktop.in: Remove association with x-geda-symbol,
+      gattrib does not handle symbol files.
+
 2019-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace g_free with geda_free in search_replace_
