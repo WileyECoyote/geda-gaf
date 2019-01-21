@@ -372,6 +372,21 @@ GedaPageType geda_page_get_type (void)
 }
 
 /*!
+ * \brief Return True if object is Geda PagePage.
+ * \par Function Description
+ *  Returns true if the argument is a Geda Page object.
+ *
+ * \return boolean.
+ */
+bool is_a_geda_page (const Page *page)
+{
+  if (page) {
+    return g_list_find(list_of_pages, page) ? TRUE : FALSE;
+  }
+  return FALSE;
+}
+
+/*!
  * \brief Returns a pointer to a new Page object.
  * \par Function Description
  *  Returns a pointer to a new Page object.
@@ -399,21 +414,6 @@ Page *geda_page_new_with_notify (void)
   page->change_notify_funcs = geda_notify_list_new();
 
   return page;
-}
-
-/*!
- * \brief Return True if object is Geda PagePage.
- * \par Function Description
- *  Returns true if the argument is a Geda Page object.
- *
- * \return boolean.
- */
-bool is_a_geda_page (const Page *page)
-{
-  if (page) {
-    return g_list_find(list_of_pages, page) ? TRUE : FALSE;
-  }
-  return FALSE;
 }
 
 /*!

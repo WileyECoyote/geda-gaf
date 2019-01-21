@@ -1,4 +1,9 @@
-2019-01-19 Wiley E. Hill <wileyhill@gmail.com>
+2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Move is_a_geda_page immediately after function
+      geda_page_get_type for consistency with other modules.
+
+2019-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/file/f_file.c: Release the list returned from geda_object_read.
 
