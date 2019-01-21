@@ -153,15 +153,15 @@ void geda_page_remove_object(Page *page, GedaObject *object)
   }
 }
 
-/*! \brief Remove all objects from a Page object
- *
- *  \par Function Description
+/*!
+ * \brief Remove all objects from a Page object
+ * \par Function Description
  *  The function derecments the reference for all objects on a Page and then
  *  sets the Page object list to NULL.
  *
- *  \sa eda_page_remove_object
+ * \sa eda_page_remove_object
  *
- *  \param [in]  page  The Page from which all objects are to be removed.
+ * \param [in]  page  The Page from which all objects are to be removed.
  */
 void geda_page_remove_all_objects(Page *page)
 {
@@ -181,15 +181,15 @@ void geda_page_remove_all_objects(Page *page)
     page->_object_list = NULL;
 }
 
-/*! \brief GedaType instance initializer for Page
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for Page
+ * \par Function Description
  *  GedaType instance initializer for Page, initializes a new empty
  *  Page object by setting pointers to NULL and numbers to zero,
  *  the page PID variable is set to the next page index.
  *
- *  \param [in] instance The Page being initialising.
- *  \param [in] class    The class the instance is created for.
+ * \param [in] instance The Page being initialising.
+ * \param [in] class    The class the instance is created for.
  */
 static void geda_page_instance_init( GTypeInstance *instance, void *class)
 {
@@ -226,10 +226,11 @@ static void geda_page_instance_init( GTypeInstance *instance, void *class)
   g_list_foreach (new_page_hooks, call_new_page_hook, page);
 }
 
-/*! \brief Geda Page Object Dispose Function
- *  \par Function Description
- *   This function removes all object from a page, de-references
- *   allocated objects and chain up to the parent's disposer.
+/*!
+ * \brief Geda Page Object Dispose Function
+ * \par Function Description
+ *  This function removes all object from a page, de-references
+ *  allocated objects and chain up to the parent's disposer.
  */
 static void geda_page_dispose(GObject *object)
 {
@@ -286,12 +287,13 @@ static void geda_page_dispose(GObject *object)
   G_OBJECT_CLASS(geda_page_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Page Object Finalization Function
- *  \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given Page data
- *   structure and then chain up to the parent's finalize
- *   handler.
+/*!
+ * \brief Geda Page Object Finalization Function
+ * \par Function Description
+ *  This function removes or releases all internal references
+ *  and releases the memory allocated to the given Page data
+ *  structure and then chain up to the parent's finalize
+ *  handler.
  */
 static void geda_page_finalize(GObject *object)
 {
@@ -311,14 +313,14 @@ static void geda_page_finalize(GObject *object)
   G_OBJECT_CLASS(geda_page_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for Page
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for Page
+ * \par Function Description
  *  GedaType class initializer for Page. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in,out] class       A PageClass GedaObject
- *  \param [in]     class_data  A Page data structure
+ * \param [in,out] class       A PageClass GedaObject
+ * \param [in]     class_data  A Page data structure
  */
 static void geda_page_class_init(void *class, void *class_data)
 {
@@ -331,16 +333,16 @@ static void geda_page_class_init(void *class, void *class_data)
   object_class->finalize     = geda_page_finalize;
 }
 
-/*! \brief Function to retrieve Page's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve Page's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #Page Type identifier. When first called,
  *  the function registers a #Page in the GedaPageType system to
  *  obtain an identifier that uniquely itentifies a Page and returns
  *  the unsigned integer value. The retained value is returned on all
  *  subsequent calls.
  *
- *  \return GedaPageType identifier associated with Page.
+ * \return GedaPageType identifier associated with Page.
  */
 GedaPageType geda_page_get_type (void)
 {

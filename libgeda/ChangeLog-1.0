@@ -3,7 +3,7 @@
     * src/geda/geda_page.c: Move is_a_geda_page immediately after function
       geda_page_get_type for consistency with other modules, set major_
       changed_refdes to NULL in dispose after releasing. Add getter function
-      geda_page_get_changed_refdes.
+      geda_page_get_changed_refdes and reformat documentation.
 
 2019-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
