@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-01-22 00:37-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1577,7 +1577,7 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2377
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2378
 msgid "Open"
 msgstr ""
 
@@ -2304,11 +2304,11 @@ msgstr ""
 msgid "Command"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3777
+#: gschem/src/x/x_dialog.c:3778
 msgid "Major symbol changes detected."
 msgstr "പ്രധാന ചിഹ്ന മാറ്റങ്ങൾ കണ്ടെത്തി."
 
-#: gschem/src/x/x_dialog.c:3804
+#: gschem/src/x/x_dialog.c:3805
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2319,33 +2319,33 @@ msgstr ""
 "ഈ ഒരോ ചിഹ്നങ്ങളും പരിശോധിച്ചുറപ്പുവരുത്തുക."
 
 # Symbol
-#: gschem/src/x/x_dialog.c:3845
+#: gschem/src/x/x_dialog.c:3847
 msgid "Symbol"
 msgstr "ചിഹ്നം"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3891
+#: gschem/src/x/x_dialog.c:3897
 msgid "Dismiss this dialog"
 msgstr "ഈ സംഭാഷണം നിരസിക്കുക"
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3933
+#: gschem/src/x/x_dialog.c:3938
 msgid "invalid attribute value"
 msgstr "ആട്രിബ്യൂട്ട് മൂല്യം അസാധുവാണ്"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3934
+#: gschem/src/x/x_dialog.c:3939
 msgid "Please correct in order to continue"
 msgstr "തുടരുന്നതിന് ദയവായി ശരിയാക്കുക"
 
-#: gschem/src/x/x_dialog.c:3935
+#: gschem/src/x/x_dialog.c:3940
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3943
+#: gschem/src/x/x_dialog.c:3948
 msgid "Invalid Attribute"
 msgstr ""
 
@@ -3728,7 +3728,7 @@ msgstr "തിരിച്ച് ചെയ്യുക"
 msgid "Undo the last path segment"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2519
+#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2520
 msgid "Clear"
 msgstr ""
 
@@ -3912,23 +3912,23 @@ msgstr ""
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2275
+#: gschem/src/x/x_menus.c:2276
 msgid "Could not open file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2384
+#: gschem/src/x/x_menus.c:2385
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2391
+#: gschem/src/x/x_menus.c:2392
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2629
+#: gschem/src/x/x_menus.c:2630
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2682
+#: gschem/src/x/x_menus.c:2683
 msgid "Recent menu items restore from"
 msgstr ""
 

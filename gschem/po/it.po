@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-01-22 00:37-0600\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1524,7 +1524,7 @@ msgstr "Si è verificato un errore durante l'inserimento dei dati negli appunti"
 msgid "Clipboard Insertion Failed"
 msgstr "Inserimento appunti fallito"
 
-#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2377
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2378
 msgid "Open"
 msgstr "Apri..."
 
@@ -2254,11 +2254,11 @@ msgstr "Tasto(i)"
 msgid "Command"
 msgstr "Componente"
 
-#: gschem/src/x/x_dialog.c:3777
+#: gschem/src/x/x_dialog.c:3778
 msgid "Major symbol changes detected."
 msgstr "Rilevati importanti cambiamenti sul simbolo."
 
-#: gschem/src/x/x_dialog.c:3804
+#: gschem/src/x/x_dialog.c:3805
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2268,24 +2268,24 @@ msgstr ""
 "\n"
 "Assicurarsi di verificare ogni simbolo."
 
-#: gschem/src/x/x_dialog.c:3845
+#: gschem/src/x/x_dialog.c:3847
 msgid "Symbol"
 msgstr "Simbolo"
 
-#: gschem/src/x/x_dialog.c:3891
+#: gschem/src/x/x_dialog.c:3897
 msgid "Dismiss this dialog"
 msgstr ""
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3933
+#: gschem/src/x/x_dialog.c:3938
 msgid "invalid attribute value"
 msgstr "valore di attributo non valido"
 
-#: gschem/src/x/x_dialog.c:3934
+#: gschem/src/x/x_dialog.c:3939
 msgid "Please correct in order to continue"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3935
+#: gschem/src/x/x_dialog.c:3940
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2295,7 +2295,7 @@ msgstr ""
 "Il nome non deve terminare con uno spazio.\n"
 "Il valore non deve iniziare con uno spazio."
 
-#: gschem/src/x/x_dialog.c:3943
+#: gschem/src/x/x_dialog.c:3948
 msgid "Invalid Attribute"
 msgstr "Attributo non valido"
 
@@ -3607,7 +3607,7 @@ msgstr "Annulla"
 msgid "Undo the last path segment"
 msgstr "Annulla l'ultimo segmento del percorso"
 
-#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2519
+#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2520
 msgid "Clear"
 msgstr ""
 
@@ -3791,23 +3791,23 @@ msgstr ""
 msgid "Error: did not find path"
 msgstr "Errore: non ha trovato il percorso"
 
-#: gschem/src/x/x_menus.c:2275
+#: gschem/src/x/x_menus.c:2276
 msgid "Could not open file"
 msgstr "Impossibile aprire il file"
 
-#: gschem/src/x/x_menus.c:2384
+#: gschem/src/x/x_menus.c:2385
 msgid "Remove"
 msgstr "Rimuovi numeri"
 
-#: gschem/src/x/x_menus.c:2391
+#: gschem/src/x/x_menus.c:2392
 msgid "_Show path"
 msgstr "Mostra _entrambi"
 
-#: gschem/src/x/x_menus.c:2629
+#: gschem/src/x/x_menus.c:2630
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2682
+#: gschem/src/x/x_menus.c:2683
 msgid "Recent menu items restore from"
 msgstr ""
 

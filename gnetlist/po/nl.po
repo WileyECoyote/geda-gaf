@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-07 14:50-0600\n"
+"POT-Creation-Date: 2019-01-22 00:37-0600\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -183,15 +183,15 @@ msgstr ""
 "gEDA/gaf huispagina: <http://www.geda-project.org/>\n"
 " PCB huispagina: <http://pcb.geda-project.org>\n"
 
-#: gnetlist/src/parsecmd.c:113
-#, c-format
+#: gnetlist/src/parsecmd.c:112
+#, fuzzy
 msgid ""
-"gEDA/gnetlist %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n"
+"included in the gEDA distribution. There is NO WARRANTY; not even \n"
+"for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
+"permitted by law.\n"
 msgstr ""
 "gEDA/gnetlist %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -200,15 +200,15 @@ msgstr ""
 "bijgesloten in de gEDA distributie.\n"
 "Er is GEEN GARANTIE, voor zover toegestaan door de wet.\n"
 
-#: gnetlist/src/parsecmd.c:129
+#: gnetlist/src/parsecmd.c:131
 msgid "Received an error; tag is"
 msgstr ""
 
-#: gnetlist/src/parsecmd.c:225
+#: gnetlist/src/parsecmd.c:227
 msgid "WARNING: output already specified"
 msgstr ""
 
-#: gnetlist/src/parsecmd.c:268
+#: gnetlist/src/parsecmd.c:270
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -217,7 +217,7 @@ msgstr ""
 "FOUT: -%c optie vereist een argument.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:272
+#: gnetlist/src/parsecmd.c:274
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -226,7 +226,7 @@ msgstr ""
 "FOUT: Onbekende optie -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:275
+#: gnetlist/src/parsecmd.c:277
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"
@@ -235,7 +235,7 @@ msgstr ""
 "FOUT: Onbekend optie karakter `\\x%x'.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:279
+#: gnetlist/src/parsecmd.c:281
 #, c-format
 msgid ""
 "\n"

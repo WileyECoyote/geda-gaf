@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-01-22 00:37-0600\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1566,7 +1566,7 @@ msgid "Clipboard Insertion Failed"
 msgstr "Klembord invoegen faalde"
 
 # Open
-#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2377
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2378
 msgid "Open"
 msgstr "Openen"
 
@@ -2312,11 +2312,11 @@ msgstr "Toetsaanslag(en)"
 msgid "Command"
 msgstr "Opdracht"
 
-#: gschem/src/x/x_dialog.c:3777
+#: gschem/src/x/x_dialog.c:3778
 msgid "Major symbol changes detected."
 msgstr "Grote symbool veranderingen gedetecteerd."
 
-#: gschem/src/x/x_dialog.c:3804
+#: gschem/src/x/x_dialog.c:3805
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2325,26 +2325,26 @@ msgstr ""
 "Er zijn in onderstaande symbolen veranderingen opgetreden.\n"
 "'nWees er zeker van elk van deze symbolen te verifiëren."
 
-#: gschem/src/x/x_dialog.c:3845
+#: gschem/src/x/x_dialog.c:3847
 msgid "Symbol"
 msgstr "Symbool"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3891
+#: gschem/src/x/x_dialog.c:3897
 msgid "Dismiss this dialog"
 msgstr "Sluit deze dialoog af"
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3933
+#: gschem/src/x/x_dialog.c:3938
 msgid "invalid attribute value"
 msgstr "ongeldige attribuutwaarde"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3934
+#: gschem/src/x/x_dialog.c:3939
 msgid "Please correct in order to continue"
 msgstr "Corrigeer alstublieft om door te gaan"
 
-#: gschem/src/x/x_dialog.c:3935
+#: gschem/src/x/x_dialog.c:3940
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2354,7 +2354,7 @@ msgstr ""
 "De naam mag niet eindigen met een spatie.\n"
 "De waarde mag niet met een spatie beginnen."
 
-#: gschem/src/x/x_dialog.c:3943
+#: gschem/src/x/x_dialog.c:3948
 msgid "Invalid Attribute"
 msgstr "Ongeldig Attribuut"
 
@@ -3715,7 +3715,7 @@ msgstr "Ongedaan maken"
 msgid "Undo the last path segment"
 msgstr "Maak het laatste padsegment ongedaan"
 
-#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2519
+#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2520
 msgid "Clear"
 msgstr ""
 
@@ -3902,25 +3902,25 @@ msgid "Error: did not find path"
 msgstr ""
 
 # Could not open file
-#: gschem/src/x/x_menus.c:2275
+#: gschem/src/x/x_menus.c:2276
 msgid "Could not open file"
 msgstr "Kon bestand niet openen"
 
 # Remove
-#: gschem/src/x/x_menus.c:2384
+#: gschem/src/x/x_menus.c:2385
 msgid "Remove"
 msgstr "Verwijder"
 
 # Show path
-#: gschem/src/x/x_menus.c:2391
+#: gschem/src/x/x_menus.c:2392
 msgid "_Show path"
 msgstr "Toon pad"
 
-#: gschem/src/x/x_menus.c:2629
+#: gschem/src/x/x_menus.c:2630
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2682
+#: gschem/src/x/x_menus.c:2683
 msgid "Recent menu items restore from"
 msgstr ""
 
