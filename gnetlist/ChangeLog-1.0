@@ -1,3 +1,9 @@
+2019-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Add ancillary variable for translatable string in order
+      to remove non-translatable "gEDA/gnetlist" and format specifiers from
+      the string to be translated.
+
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/Makefile.am: Clean file; indent clean lines.
