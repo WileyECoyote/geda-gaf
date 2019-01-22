@@ -10,7 +10,8 @@
       objects in the list, not the list.
 
     * src/struct/s_page.c: Remove redundant declaration of to pointer to
-      a Page in geda_struct_page_delete.
+      a Page in geda_struct_page_delete and release the _object_list before
+      setting to pointer to NULL in geda_struct_page_delete_objects.
 
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 

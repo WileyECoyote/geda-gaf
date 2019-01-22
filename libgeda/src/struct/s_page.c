@@ -1028,9 +1028,11 @@ void geda_struct_page_delete_objects (Page *page)
     for (iter = objects; iter != NULL; NEXT(iter)) {
       pre_object_removed (page, iter->data);
     }
-    page->_object_list = NULL;
 
     geda_struct_object_release_objects (objects);
+
+    g_list_free(page->_object_list);
+    page->_object_list = NULL;
   }
   else {
     BUG_PMSG("Invalid page pointer", page);
