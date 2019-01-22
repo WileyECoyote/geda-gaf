@@ -4,6 +4,11 @@
       the sake of completeness; should have already been freed in higher
       level procedures.
 
+    * src/struct/s_object.c: Revise geda_struct_object_release_objects to
+      not free the list because that is not what the function is suppose
+      to do based on the function name, the function should release the
+      objects in the list, not the list.
+
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Move is_a_geda_page immediately after function

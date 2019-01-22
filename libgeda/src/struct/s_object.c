@@ -118,8 +118,6 @@ void geda_struct_object_release_objects(GList *list)
 
     ptr = g_list_previous (ptr);
   }
-
-  g_list_free(list);
 }
 
 /*!
