@@ -9,6 +9,8 @@
       to do based on the function name, the function should release the
       objects in the list, not the list.
 
+    * src/struct/s_clib.c: Revise documentation; add code\endcode tags.
+
     * src/struct/s_page.c: Remove redundant declaration of to pointer to
       a Page in geda_struct_page_delete and release the _object_list before
       setting to pointer to NULL in geda_struct_page_delete_objects.

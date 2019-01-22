@@ -64,22 +64,22 @@
  *    -# Do not use whitespace, or any of the characters "<tt>/:!*?</tt>".
  *    -# Try to use unique names.
  *
- *  The component database may be queried using geda_struct_clib_search().  A
- *  null-terminated buffer containing symbol data (suitable for
+ *  The component database may be queried using geda_struct_clib_search().
+ *  A null-terminated buffer containing symbol data (suitable for
  *  loading using geda_object_read_buffer()) may be obtained using
- *  geda_struct_clib_symbol_get_data().  If an exact symbol name is known, the
- *  symbol data may be requested directly using
+ *  geda_struct_clib_symbol_get_data(). If an exact symbol name is known,
+ *  the symbol data may be requested directly using
  *  geda_struct_clib_symbol_get_data_by_name().
  *
  *
- *  \section libcmds Library Commands
+ * \section libcmds Library Commands
  *
  *  A program or set of programs can be used as a component source.
  *  The procedure used to add such a source from a gEDA rc file is:
  *
- *  <code>
+ * \code
  *  (component-library-command listcmd getcmd name)
- *  </code>
+ * \endcode
  *
  *  This is implemented by g_rc_component_library_command(), which is
  *  a wrapper for geda_struct_clib_add_command().
@@ -93,14 +93,14 @@
  *  non-zero exit status.  Anything it has output on stdout will be
  *  ignored, and any stderr output displayed to the user.
  *
- *  \section libscms Library Scheme Procedures
+ * \section libscms Library Scheme Procedures
  *
  *  A set of Scheme procedures can be used as a component source.  The
  *  procedure used to add such a source from a gEDA rc file is:
  *
- *  <code>
+ * \code
  *  (component-library-funcs listfunc getfunc name)
- *  </code>
+ * \endcode
  *
  *  This is implemented by g_rc_component_library_funcs(), which is a
  *  wrapper for geda_struct_clib_add_scm().
