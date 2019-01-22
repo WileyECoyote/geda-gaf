@@ -396,7 +396,7 @@ void geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
     /* then delete objects of page */
     geda_struct_page_delete_objects (page);
 
-    /* Free the objects in the place list. */
+    /* Release objects in the place list. */
     geda_struct_object_release_objects (page->place_list);
     page->place_list = NULL;
 
