@@ -73,7 +73,6 @@ void geda_struct_object_add_child(GedaObject *parent, GedaObject *child) {
  * object to else clause of if page member, because the connections would be removed
  * by pre_object_remove if the object was on a page, Also added check for NULL
  * conn_list since there is no point in making the call if no connections exist.
- *
  */
 void geda_struct_object_release(GedaObject *o_current)
 {
@@ -83,7 +82,7 @@ void geda_struct_object_release(GedaObject *o_current)
     if (GEDA_IS_PAGE(o_current->page)) {
       geda_struct_page_remove_object (o_current->page, o_current);
     }
-    else if ( o_current->conn_list != NULL ) {
+    else if (o_current->conn_list != NULL) {
       geda_struct_conn_remove_object (o_current);
     }
 
