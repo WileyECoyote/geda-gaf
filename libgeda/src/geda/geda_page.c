@@ -301,6 +301,11 @@ static void geda_page_finalize(GObject *object)
 
   list_of_pages = g_list_remove(list_of_pages, object);
 
+  if (page->_object_list) {
+    g_list_free(page->_object_list);
+    page->_object_list = NULL;
+  }
+
   if (!g_list_length(list_of_pages)) {
     g_list_free(list_of_pages);
     list_of_pages = NULL;

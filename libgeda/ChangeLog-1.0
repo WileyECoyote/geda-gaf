@@ -1,3 +1,9 @@
+2019-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.c: Free the _object_list in geda_page_finalize for
+      the sake of completeness; should have already been freed in higher
+      level procedures.
+
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Move is_a_geda_page immediately after function
