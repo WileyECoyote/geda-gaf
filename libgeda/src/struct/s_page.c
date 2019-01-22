@@ -454,7 +454,7 @@ void geda_struct_page_delete (GedaToplevel *toplevel, Page *page, int previous)
 
           while (iter) {
 
-            Page *page = iter->data;
+            page = iter->data;
 
             if (GEDA_IS_PAGE(page)) {
               geda_toplevel_set_current_page(toplevel, page);

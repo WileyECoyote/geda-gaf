@@ -9,6 +9,9 @@
       to do based on the function name, the function should release the
       objects in the list, not the list.
 
+    * src/struct/s_page.c: Remove redundant declaration of to pointer to
+      a Page in geda_struct_page_delete.
+
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Move is_a_geda_page immediately after function
