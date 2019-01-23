@@ -6,7 +6,7 @@
 
     * src/x/x_dialog.c: Revise utilize getters gschem_toplevel_get_current_page
       and geda_page_get_changed_refdes to retrieve the list of symbols with
-      major changes.
+      major changes and remove unnecessary initialization of list_store to NULL.
 
 2018-01-18 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -3740,7 +3740,7 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
   GtkWidget *hbox, *vbox, *label;
   GtkWidget *tree_view, *scroll;
 
-  GtkListStore      *list_store = NULL;
+  GtkListStore      *list_store;
   GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
 
