@@ -1,5 +1,7 @@
 2019-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * configure.ac: Bump date version 20190120.
+
     * build-tools/desktop-i18n: revert commit bc00bc46f1ad919a: sed && mv.
       There is something wrong with gattrib/po. The stamp-po file is not
       being uninstalled and when AND'ed the move does not happen, implying
