@@ -1,3 +1,11 @@
+2019-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * build-tools/desktop-i18n: revert commit bc00bc46f1ad919a: sed && mv.
+      There is something wrong with gattrib/po. The stamp-po file is not
+      being uninstalled and when AND'ed the move does not happen, implying
+      sed returned an error, which suggest the gattrib.po file did not
+      exist.
+
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * build-tools/desktop-i18n: Move mv to the same line as sed.
