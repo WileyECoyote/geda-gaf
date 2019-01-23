@@ -435,6 +435,17 @@ void gschem_toplevel_free(GschemToplevel *w_current)
   }
 }
 
+/*!
+ * \brief Release the Primary Selection in toplevel
+ * \par Function Description
+ *  The primary selection is a list of selected object utilized
+ *  by operations involving two selections set. This function
+ *  is called at the end of such operations to release the list.
+ *
+ * \param [in] w_current This gschem toplevel
+ *
+ * \return The libgeda toplevel
+ */
 void gschem_toplevel_free_primary (GschemToplevel *w_current)
 {
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
@@ -450,8 +461,7 @@ void gschem_toplevel_free_primary (GschemToplevel *w_current)
  *
  * \return The libgeda toplevel
  */
-Page*
-gschem_toplevel_get_current_page (GschemToplevel *w_current)
+Page *gschem_toplevel_get_current_page (GschemToplevel *w_current)
 {
   g_return_val_if_fail (w_current != NULL, NULL);
   g_return_val_if_fail (w_current->toplevel != NULL, NULL);
