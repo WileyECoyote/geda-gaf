@@ -762,6 +762,8 @@ static void gschem_status_bar_class_init (void *class, void *class_data)
 /*!
  * \brief Get the Status Bar grid mode
  * \par Function Description
+ *  This function returns the grid mode shown on the status bar.
+ *
  * \param [in] widget This GschemStatusBar
  *
  * \return The grid mode
@@ -793,6 +795,7 @@ int gschem_status_bar_get_grid_mode (GtkWidget *widget)
 /*!
  * \brief Get the Status Bar grid size
  * \par Function Description
+ *  This function returns the grid size shown on the status bar.
  *
  * \param [in] widget This GschemStatusBar
  *
@@ -824,6 +827,8 @@ int gschem_status_bar_get_grid_size (GtkWidget *widget)
 /*!
  * \brief Get the Height of the Status Bar
  * \par Function Description
+ *  This function returns the height of the status bar.
+ *
  * \param [in] widget This GschemStatusBar
  *
  * \return The height
@@ -854,6 +859,8 @@ int gschem_status_bar_get_height (GtkWidget *widget)
 /*!
  * \brief Get the Status Bar left button text
  * \par Function Description
+ *  This function returns the text of left button on the status bar.
+ *
  * \param [in] widget This GschemStatusBar
  *
  * \return The left button text
@@ -889,6 +896,8 @@ const char *gschem_status_bar_get_left_button_text (GtkWidget *widget)
 /*!
  * \brief Get the Status Bar middle button text
  * \par Function Description
+ *  This function returns the text of middle button on the status bar.
+ *
  * \param [in] widget This GschemStatusBar
  *
  * \return The middle button text
@@ -925,6 +934,8 @@ const char *gschem_status_bar_get_middle_button_text (GtkWidget *widget)
 /*!
  * \brief Get the Status Bar right button text
  * \par Function Description
+ *  This function returns the text of right button on the status bar.
+ *
  * \param [in] widget This GschemStatusBar
  *
  * \return The right button text
