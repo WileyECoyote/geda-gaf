@@ -82,9 +82,9 @@ static char *preview_get_filename (GschemPreview *preview)
  return page->filename;
 }
 
-/*! \brief Invalidate the Preview Drawing/Viewing area
- *
- *  \par Function Description
+/*!
+ * \brief Invalidate the Preview Drawing/Viewing area
+ * \par Function Description
  *  This function calls gdk_window_invalidate_rect() with a rect
  *  of NULL, causing the entire drawing area to be invalidated.
  *  The conditional check for the validity of the drawable is
@@ -101,15 +101,15 @@ static void preview_invalidate (GschemToplevel *preview_window)
     gdk_window_invalidate_rect (preview_window->window, NULL, FALSE);
 }
 
-/*! \brief Completes initialization of the widget after realization.
- *  \par Function Description
+/*!
+ * \brief Completes initialization of the widget after realization.
+ * \par Function Description
  *  This function terminates the initialization of preview's GschemToplevel
- *  and GedaToplevel environments after the widget has been realized.
+ *  and GedaToplevel environments after the widget has been realized and
+ *  creates a preview page in the GedaToplevel environment.
  *
- *  It creates a preview page in the GedaToplevel environment.
- *
- *  \param [in] widget    The preview widget.
- *  \param [in] user_data Unused user data.
+ * \param [in] widget    The preview widget.
+ * \param [in] user_data Unused user data.
  */
 static void preview_callback_realize (GtkWidget *widget, void *user_data)
 {
@@ -154,15 +154,16 @@ static void preview_callback_realize (GtkWidget *widget, void *user_data)
   preview_invalidate (preview_window);
 }
 
-/*! \brief Redraws the view when widget is exposed.
- *  \par Function Description
+/*!
+ * \brief Redraws the view when widget is exposed.
+ * \par Function Description
  *  Redraws the preview pixmap every time the widget is exposed.
  *
- *  \param [in] widget    The preview widget.
- *  \param [in] event     The event structure.
- *  \param [in] user_data Unused user data.
+ * \param [in] widget    The preview widget.
+ * \param [in] event     The event structure.
+ * \param [in] user_data Unused user data.
  *
- *  \returns FALSE to propagate the event further.
+ * \returns FALSE to propagate the event further.
  */
 static bool preview_callback_expose (GtkWidget      *widget,
                                      GdkEventExpose *event,
@@ -189,16 +190,17 @@ static bool preview_callback_expose (GtkWidget      *widget,
   return FALSE;
 }
 
-/*! \brief Handles the press on a mouse button.
- *  \par Function Description
+/*!
+ * \brief Handles the press on a mouse button.
+ * \par Function Description
  *  This function handles the user inputs. Three action are
  *  available: zoom in, pan and zoom out on preview display.
  *
- *  \param [in] widget    The preview widget.
- *  \param [in] event     The event structure.
- *  \param [in] user_data Unused user data.
+ * \param [in] widget    The preview widget.
+ * \param [in] event     The event structure.
+ * \param [in] user_data Unused user data.
  *
- *  \returns FALSE to propagate the event further.
+ * \returns FALSE to propagate the event further.
  */
 static bool preview_callback_button_press (GtkWidget      *widget,
                                            GdkEventButton *event,
@@ -240,11 +242,11 @@ static bool preview_callback_button_press (GtkWidget      *widget,
 /*!
  * \brief Updates the preview widget.
  * \par Function Description
- *  This function updates the preview: if the preview is active and a
- *  filename has been given, it opens the file and displays the contents.
- *  Otherwise the display will be a blank page.
+ *  This function updates the preview: if the preview is active
+ *  and a filename has been given, it opens the file and displays
+ *  the contents. Otherwise the display will be a blank page.
  *
- *  \param [in] preview The preview widget.
+ * \param [in] preview The preview widget.
  */
 static void
 preview_update (GschemPreview *preview)
