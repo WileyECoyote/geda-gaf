@@ -140,10 +140,11 @@ static void version (void)
   exit (0);
 }
 
-/*! \brief Parse gschem command-line options.
+/*!
+ * \brief Parse gschem command-line options.
  * \par Function Description
- * Parse command line options, displaying usage message or version
- * information as required.
+ *  Parse command line options, displaying usage message or version
+ *  information as required.
  *
  * \param argc Number of command-line arguments.
  * \param argv Array of command-line arguments.
