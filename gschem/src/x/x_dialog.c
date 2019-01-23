@@ -3746,6 +3746,7 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
 
   char  *tmp;
   GList *changed;
+  Page  *page;
 
   g_object_get ((GObject*)dialog, "message-area", &mess_area, NULL);
 
@@ -3815,7 +3816,8 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
   gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
 
   list_store = gtk_list_store_new (1, G_TYPE_STRING);
-  changed    = w_current->toplevel->page_current->major_changed_refdes;
+  page       = gschem_toplevel_get_current_page (w_current);
+  changed    = geda_page_get_changed_refdes (page);
 
   while (changed) {
 
