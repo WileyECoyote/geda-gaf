@@ -43,16 +43,17 @@
  *  @{
  */
 
-/*! \brief Interogate List for Change
- *  \ingroup Draw-Order-Internal
- *  \par Function Description
+/*!
+ * \brief Interogate List for Change
+ * \ingroup Draw-Order-Internal
+ * \par Function Description
  *  Compares each data item in list arguments and returns True is there
  *  is any difference.
  *
- *  \param [in] list1 Pointer to start of the first to compare,
- *  \param [in] list2 Pointer to start of the second to compare,
+ * \param [in] list1 Pointer to start of the first to compare,
+ * \param [in] list2 Pointer to start of the second to compare,
  *
- *  \returns True is the two lists differ, otherwise False.
+ * \returns True is the two lists differ, otherwise False.
  */
 static bool list_was_modified (GList *list1, GList *list2)
 {
@@ -73,16 +74,17 @@ static bool list_was_modified (GList *list1, GList *list2)
   return modified;
 }
 
-/*! \brief Temporarily remove all title-blocks and title-block attributes
- *  \ingroup Draw-Order-Internal
- *  \par Function Description
+/*!
+ * \brief Temporarily remove all title-blocks and title-block attributes
+ * \ingroup Draw-Order-Internal
+ * \par Function Description
  *  This function attempts to locate title blocks by searching for "title"
  *  in the name of Complex objects, if found the object and all associated
  *  children are removed from \a page_list and returned as a separate list.
  *
- *  \param [in,out] page_list List to search for title block objects,
+ * \param [in,out] page_list List to search for title block objects,
  *
- *  \returns List containing object of interest or NULL if none were found.
+ * \returns List containing object of interest or NULL if none were found.
  */
 static GList *remove_title_blocks(GList **page_list)
 {
@@ -129,16 +131,17 @@ static GList *remove_title_blocks(GList **page_list)
   return titles;
 }
 
-/*! \brief Add title-blocks and attributes back to page list
- *  \ingroup Draw-Order-Internal
- *  \par Function Description
+/*!
+ * \brief Add title-blocks and attributes back to page list
+ * \ingroup Draw-Order-Internal
+ * \par Function Description
  *  This function undoes what remove_title_blocks did, prepending the
  *  removed objects for title-blocks.
  *
- *  \param [in] page_list   List to recieve the title block objects,
- *  \param [in] titleblocks List returned from remove_title_blocks
+ * \param [in] page_list   List to recieve the title block objects,
+ * \param [in] titleblocks List returned from remove_title_blocks
  *
- *  \returns Composited List.
+ * \returns Composited List.
  */
 static GList *restore_title_blocks(GList *page_list, GList *titleblocks)
 {
@@ -158,16 +161,17 @@ static GList *restore_title_blocks(GList *page_list, GList *titleblocks)
 *  @{
 */
 
-/*! \brief Draw Objects after other Objects
- *  \ingroup Draw-Order-Public
- *  \par Function Description
+/*!
+ * \brief Draw Objects after other Objects
+ * \ingroup Draw-Order-Public
+ * \par Function Description
  *  This function operates on two selections, to first retrieved from
  *  primary_selection, the second is the current selection. Every member
  *  of the former is  removed from the page list and added back after the
  *  last member of the second list.
  *
- *  \param [in] w_current   Pointer to GschemToplevel structure.
- *  \todo unstable
+ * \param [in] w_current   Pointer to GschemToplevel structure.
+ * \todo unstable
  */
 void o_page_draw_after (GschemToplevel *w_current)
 {
@@ -246,15 +250,16 @@ void o_page_draw_after (GschemToplevel *w_current)
   gschem_toplevel_free_primary(w_current);
 }
 
-/*! \brief Draw Objects Before other Objects
- *  \ingroup Draw-Order-Public
- *  \par Function Description
+/*!
+ * \brief Draw Objects Before other Objects
+ * \ingroup Draw-Order-Public
+ * \par Function Description
  *  This function operates on two selections, to first retrieved from
  *  primary_selection, the second is the current selection. Every member
- *  of the former is  removed from the page list and added back before the
- *  first member of the second list.
+ *  of the former is removed from the page list and added back before
+ *  the first member of the second list.
  *
- *  \param [in] w_current   Pointer to GschemToplevel structure.
+ * \param [in] w_current   Pointer to GschemToplevel structure.
  */
 void o_page_draw_before (GschemToplevel *w_current)
 {
@@ -323,17 +328,18 @@ void o_page_draw_before (GschemToplevel *w_current)
   gschem_toplevel_free_primary(w_current);
 }
 
-/*! \brief Draw Objects First
- *  \ingroup Draw-Order-Public
- *  \par Function Description
+/*!
+ * \brief Draw Objects First
+ * \ingroup Draw-Order-Public
+ * \par Function Description
  *  This function operates on the object list. Every member is removed
  *  from the page list and added back to the front of the list after
  *  removing any titleblock objects. Title block objects are prepended
  *  back to the beginning, regardless of where they were found in the
  *  page list.
  *
- *  \param [in] w_current   Pointer to GschemToplevel structure.
- *  \param [in] object_list List of objects to be drawn first
+ * \param [in] w_current   Pointer to GschemToplevel structure.
+ * \param [in] object_list List of objects to be drawn first
  */
 void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
 {
@@ -368,16 +374,17 @@ void o_page_draw_first (GschemToplevel *w_current, GList *object_list)
   g_list_free(tblocks);
 }
 
-/*! \brief Draw Objects First
- *  \ingroup Draw-Order-Public
- *  \par Function Description
+/*!
+ * \brief Draw Objects First
+ * \ingroup Draw-Order-Public
+ * \par Function Description
  *  This function operates on the current selection, moving every member
  *  to the end of the end of the page list.
  *
- *  \param [in] w_current   Pointer to GschemToplevel structure.
- *  \param [in] object_list List of objects to be drawn last
+ * \param [in] w_current   Pointer to GschemToplevel structure.
+ * \param [in] object_list List of objects to be drawn last
  *
- *  \todo Check relocated objects for children.
+ * \todo Check relocated objects for children.
  */
 void o_page_draw_last (GschemToplevel *w_current, GList *object_list)
 {
