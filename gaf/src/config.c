@@ -42,8 +42,13 @@ static struct gaf_option config_long_options[] =
     {"user",    0, NULL, 'u'},
   };
 
-static void
-config_usage (void)
+/*!
+ * \brief Print brief gaf config usage information and exit.
+ * \par Function Description
+ *  Print brief help message describing gaf config usage & command-line
+ *  options.
+ */
+static void config_usage (void)
 {
   printf (_("Usage: gaf config [OPTION] [GROUP KEY [VALUE]]\n"
   "\n"
