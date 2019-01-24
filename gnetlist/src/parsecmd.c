@@ -58,10 +58,11 @@ struct option long_options[] =
   };
 #endif
 
-/*! \brief Print brief usage information and exit.
+/*!
+ * \brief Print brief usage information and exit.
  * \par Function Description
- * Print brief help message describing gnetlist usage & command-line
- * options.
+ *  Print brief help message describing gnetlist usage & command-line
+ *  options.
  *
  * \note Does exit program.
  *
@@ -100,10 +101,11 @@ void usage(char *cmd)
     cmd);
 }
 
-/*! \brief Print gnetlist version info and exit.
+/*!
+ * \brief Print gnetlist version info and exit.
  * \par Function Description
- * Print gEDA version, and copyright/warranty notices, and exit with
- * exit status 0.
+ *  Print gEDA version, and copyright/warranty notices, and exit with
+ *  exit status 0.
  */
 static void version (void)
 {
@@ -134,7 +136,8 @@ static SCM catch_handler (void *data, SCM tag, SCM throw_args)
   return SCM_BOOL_F;
 }
 
-/*! \brief Parse gnetlist command-line options.
+/*!
+ * \brief Parse gnetlist command-line options.
  * \par Function Description
  * Parse command line options, displaying usage message or version
  * information as required.
