@@ -521,13 +521,13 @@ static CLibSymbol *source_has_symbol (const CLibSource *source,
   return NULL;
 }
 
-/*! \brief Make sure a source name is unique.
- *  \par Function Description
- *  Checks if a source already exists with the given \a name.  If one
- *  does, appends a number to the source name.  If \a name is not
- *  already in use, returns it as is.  The return value is always a
- *  newly-allocated string, and should be freed.
- *  it.
+/*!
+ * \brief Make sure a source name is unique.
+ * \par Function Description
+ *  Checks if a source already exists with the given \a name. If a
+ *  source exist then appends a number to the source name. If \a name
+ *  is not already in use, returns \a name unmodified. The return value
+ *  is always a newly-allocated string, and should be freed.
  */
 static char *get_unique_source_name (const char *name)
 {

@@ -1,3 +1,7 @@
+2019-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_clib.c: Revise function documentation.
+
 2019-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Free the _object_list in geda_page_finalize for
