@@ -65,7 +65,12 @@ static struct internal_command commands[] =
     {NULL, NULL},
   };
 
-/* Print help info and exit */
+/*!
+ * \brief Print brief gaf usage information and exit.
+ * \par Function Description
+ *  Print brief help message describing gaf usage & command-line
+ *  options.
+ */
 static void usage (void)
 {
   printf (_("Usage: gaf [OPTION...] COMMAND [ARGS ...]\n\n"
