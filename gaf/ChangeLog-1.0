@@ -2,6 +2,8 @@
 
     * src/config.c: Add usage function documentation.
 
+    * gaf/src/export.c: Add usage function documentation and fix indentation.
+
 2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * gaf/src/export.c: Remove g_assert and output a message about what

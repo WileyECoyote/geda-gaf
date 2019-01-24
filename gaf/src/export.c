@@ -1087,30 +1087,36 @@ static struct gaf_option export_long_options[] = {
   {NULL, 0, NULL, 0},
 };
 
+/*!
+ * \brief Print brief gaf export usage information and exit.
+ * \par Function Description
+ *  Print brief help message describing gaf export usage & command-line
+ *  options.
+ */
 static void export_usage (void)
 {
   printf (_("Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
-"\n"
-"Export gEDA files in various image formats.\n"
-"\n"
-"  -f, --format=TYPE        output format (normally autodetected)\n"
-"  -o, --output=OUTPUT      output filename\n"
-"  -p, --paper=NAME         select paper size by name\n"
-"  -s, --size \"WIDTH;HEIGHT\"specify exact paper size\n"
-"  -k, --scale=FACTOR       specify output scale factor\n"
-"  -l, --layout=ORIENT      page orientation [auto, portrait or landscape]\n"
-"  -m, --margins=TOP;LEFT;BOTTOM;RIGHT\n"
-"                           set page margins\n"
-"  -a, --align=HALIGN;VALIGN\n"
-"                           set alignment of drawing within page\n"
-"  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
-"  -c, --color              enable color output\n"
-"  -n, --no-color           disable color output\n"
-"  -F, --font=NAME          set font family for printing text\n"
-"  -h, --help               display usage information and exit\n"
-"\n"
-"Please report bugs to %s.\n"),
-          PACKAGE_BUGREPORT);
+  "\n"
+  "Export gEDA files in various image formats.\n"
+  "\n"
+  "  -f, --format=TYPE        output format (normally autodetected)\n"
+  "  -o, --output=OUTPUT      output filename\n"
+  "  -p, --paper=NAME         select paper size by name\n"
+  "  -s, --size \"WIDTH;HEIGHT\"specify exact paper size\n"
+  "  -k, --scale=FACTOR       specify output scale factor\n"
+  "  -l, --layout=ORIENT      page orientation [auto, portrait or landscape]\n"
+  "  -m, --margins=TOP;LEFT;BOTTOM;RIGHT\n"
+  "                           set page margins\n"
+  "  -a, --align=HALIGN;VALIGN\n"
+  "                           set alignment of drawing within page\n"
+  "  -d, --dpi=DPI            pixels-per-inch for raster outputs\n"
+  "  -c, --color              enable color output\n"
+  "  -n, --no-color           disable color output\n"
+  "  -F, --font=NAME          set font family for printing text\n"
+  "  -h, --help               display usage information and exit\n"
+  "\n"
+  "Please report bugs to %s.\n"),
+  PACKAGE_BUGREPORT);
   exit (0);
 }
 
