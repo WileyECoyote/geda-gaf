@@ -105,8 +105,7 @@ void usage(char *cmd)
  * Print gEDA version, and copyright/warranty notices, and exit with
  * exit status 0.
  */
-static void
-version ()
+static void version (void)
 {
   if (!quiet_mode) {
     const char *string = _(
@@ -126,8 +125,7 @@ version ()
 }
 
 /* from guile (libguile/gh_init.c) */
-static SCM
-catch_handler (void *data, SCM tag, SCM throw_args)
+static SCM catch_handler (void *data, SCM tag, SCM throw_args)
 {
   fprintf (stderr, "\n%s:\n", _("Received an error; tag is"));
   scm_display (tag, scm_current_output_port ());

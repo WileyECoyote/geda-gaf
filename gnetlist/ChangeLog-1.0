@@ -1,3 +1,7 @@
+2019-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/parsecmd.c: Adjust function wrapping.
+
 2019-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Add ancillary variable for translatable string in order
