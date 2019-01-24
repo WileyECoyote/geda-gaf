@@ -4,7 +4,7 @@
 
     * gaf/src/export.c: Add usage function documentation and fix indentation.
 
-    * src/gaf.c: Add usage function documentation.
+    * src/gaf.c: Add usage function documentation and update warranty clause.
 
 2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
