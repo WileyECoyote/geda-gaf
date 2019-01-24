@@ -495,15 +495,17 @@ GList *geda_struct_clib_get_sources (const bool sorted)
   return list;
 }
 
-/*! \brief Find any symbols within a source with a given name.
- *  \par Function Description
- *  Iterates through the symbol list of the given source, checking if
- *  there is already a symbol with the given name.  If there is
+/*!
+ * \brief Find any symbols within a source with a given name.
+ * \par Function Description
+ *  Iterates through the symbol list of the given source, checking
+ *  if there is already a symbol with the given name.  If there is
  *  such a symbol, it is returned.
  *
- *  \param source The source to check.
- *  \param name The symbol name to look for.
- *  \return The matching symbol, or \b NULL if no match was found.
+ * \param source The source to check.
+ * \param name The symbol name to look for.
+ *
+ * \return The matching symbol, or \b NULL if no match was found.
  */
 static CLibSymbol *source_has_symbol (const CLibSource *source,
                                       const char *name)
@@ -549,17 +551,19 @@ static char *get_unique_source_name (const char *name)
 
   return newname;
 }
-/*! \brief Is Path a Symbol Library Source.
- *  \par Function Description
+
+/*!
+ * \brief Is Path a Symbol Library Source.
+ * \par Function Description
  *  Compares the string argument to each of the strings in the
  *  list of source name. If a match is found to the string then
  *  then the source is currently a source and the function
  *  returns TRUE, if a match is not found then FALSE is
  *  returned.
  *
- *  \param name The source name to look for in the source list.
+ * \param name The source name to look for in the source list.
  *
- *  \return [bool] TRUE is the source was found, otherwise FALSE.
+ * \return [bool] TRUE is the source was found, otherwise FALSE.
  */
 bool geda_struct_clib_source_name_exist (const char *name)
 {
@@ -579,16 +583,19 @@ bool geda_struct_clib_source_name_exist (const char *name)
 
   return result;
 }
-/*! \brief Is Path a Symbol Library Source.
- *  \par Function Description
+
+/*!
+ * \brief Is Path a Symbol Library Source.
+ * \par Function Description
  *  Compares the string argument to each of the strings in the
  *  list of sources directories designated. If a match is found
  *  to the string then the folder is currently a source folder
  *  and the function returns TRUE, if a match is not found then
  *  FALSE is returned.
  *
- *  \param path The path name to look for in the source list.
- *  \return [bool] TRUE is the path was found, otherwise FALSE.
+ * \param path The path name to look for in the source list.
+ *
+ * \return [bool] TRUE is the path was found, otherwise FALSE.
  */
 bool geda_struct_clib_source_path_exist (const char *path)
 {
@@ -608,12 +615,14 @@ bool geda_struct_clib_source_path_exist (const char *path)
 
   return result;
 }
-/*! \brief Rescan a directory for symbols.
- *  \par Function Description
+
+/*!
+ * \brief Rescan a directory for symbols.
+ * \par Function Description
  *  Rescans a directory for symbols.
  *
- *  \todo Does this need to do something more sane with subdirectories
- *  than just skipping them silently?
+ * \todo Does this need to do something more sane with subdirectories
+ *       than just skipping them silently?
  *
  *  Private function used only in s_clib.c.
  */
@@ -661,19 +670,20 @@ static void refresh_directory (CLibSource *source)
 
         suffix = geda_file_get_filename_ext(entry->d_name);
 
-        if (suffix && !geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX)) {
+        if (suffix &&
+           !geda_utility_string_stricmp (suffix, SYMBOL_FILE_SUFFIX)) {
 
           /* skip filenames that we already know about. */
           if (source_has_symbol (source, entry->d_name) == NULL) {
 
             CLibSymbol *symbol;
-          /* Create and add new symbol record */
-          symbol         = GEDA_MEM_ALLOC0 (sizeof(CLibSymbol));
-          symbol->source = source;
-          symbol->name   = geda_strdup(entry->d_name);
+            /* Create and add new symbol record */
+            symbol         = GEDA_MEM_ALLOC0 (sizeof(CLibSymbol));
+            symbol->source = source;
+            symbol->name   = geda_strdup(entry->d_name);
 
-          /* Prepend is faster, order does not matter. */
-          source->symbols = g_list_prepend (source->symbols, symbol);
+            /* Prepend is faster, order does not matter. */
+            source->symbols = g_list_prepend (source->symbols, symbol);
           }
           else {
             const char *msg1 = _("Duplicate symbol");
@@ -699,8 +709,9 @@ static void refresh_directory (CLibSource *source)
   geda_struct_clib_flush_cache();
 }
 
-/*! \brief Re-poll a library command for symbols.
- *  \par Function Description
+/*!
+ * \brief Re-poll a library command for symbols.
+ * \par Function Description
  *  Runs a library command, requesting a list of available symbols,
  *  and updates the source with the new list.
  *
@@ -764,8 +775,9 @@ static void refresh_command (CLibSource *source)
   geda_struct_clib_flush_cache();
 }
 
-/*! \brief Re-poll a scheme procedure for symbols.
- *  \par Function Description
+/*!
+ * \brief Re-poll a scheme procedure for symbols.
+ * \par Function Description
  *  Calls a Scheme procedure to obtain a list of available symbols,
  *  and updates the source with the new list
  *
@@ -827,10 +839,11 @@ static void refresh_scm (CLibSource *source)
   geda_struct_clib_flush_cache();
 }
 
-/*! \brief Rescan all available component libraries.
- *  \par Function Description
+/*!
+ * \brief Rescan all available component libraries.
+ * \par Function Description
  *  Resets the list of symbols available from each source, and
- *  repopulates it from scratch.  Useful e.g. for checking for new
+ *  repopulates it from scratch. Useful e.g. for checking for new
  *  symbols.
  */
 void geda_struct_clib_refresh (void)
@@ -861,14 +874,15 @@ void geda_struct_clib_refresh (void)
   }
 }
 
-/*! \brief Get a named component source.
- *  \par Function Description
+/*!
+ * \brief Get a named component source.
+ * \par Function Description
  *  Iterates through the known component sources, checking if there is
  *  a source with the given \a name.
  *
- *  \param name The source name to look for.
+ * \param name The source name to look for.
  *
- *  \return The matching source, or \b NULL if no match was found.
+ * \return The matching source, or \b NULL if no match was found.
  */
 const CLibSource *geda_struct_clib_get_source_by_name (const char *name)
 {
@@ -891,18 +905,19 @@ const CLibSource *geda_struct_clib_get_source_by_name (const char *name)
   return NULL;
 }
 
-/*! \brief Add a directory of symbol files to the library
- *  \par Function Description
+/*!
+ * \brief Add a directory of symbol files to the library
+ * \par Function Description
  *  Adds a directory containing symbol files to the library. Only files
  *  ending with <b>#SYMBOL_FILE_DOT_SUFFIX</b> are considered to be symbol
  *  files. A \a name may be specified for the source; if \a name is \b NULL,
  *  the basename of the directory as returned by geda_file_get_basename_dup
  *  is used.
  *
- *  \param directory The path of the directory to add.
- *  \param name      A descriptive name for the directory.
+ * \param directory The path of the directory to add.
+ * \param name      A descriptive name for the directory.
  *
- *  \return The #CLibSource associated with the directory.
+ * \return The #CLibSource associated with the directory.
  *
  *  name format options:
  *
@@ -1040,21 +1055,22 @@ const CLibSource *geda_struct_clib_add_directory (const char *directory,
   return source;
 }
 
-/*! \brief Add symbol-generating commands to the library
- *  \par Function Description
+/*!
+ * \brief Add symbol-generating commands to the library
+ * \par Function Description
  *  Adds a set of commands which can generate symbols to the
  *  library. \a list_cmd and \a get_cmd should be strings consisting
  *  of an executable name followed by any arguments required.
  *  Executables are resolved using the current PATH.  See page \ref
  *  libcmds for more information on library commands.
  *
- *  \param list_cmd The executable & arguments used to list available
- *                   symbols.
- *  \param get_cmd  The executable & arguments used to retrieve symbol
- *                   data.
- *  \param name      A descriptive name for the component source.
+ * \param list_cmd The executable & arguments used to list available
+ *                 symbols.
+ * \param get_cmd  The executable & arguments used to retrieve symbol
+ *                 data.
+ * \param name     A descriptive name for the component source.
  *
- *  \return The CLibSource associated with the component source.
+ * \return The CLibSource associated with the component source.
  */
 const CLibSource *geda_struct_clib_add_command (const char *list_cmd,
                                                 const char *get_cmd,
@@ -1092,19 +1108,20 @@ const CLibSource *geda_struct_clib_add_command (const char *list_cmd,
   return source;
 }
 
-/*! \brief Add symbol-generating Scheme procedures to the library.
- *  \par Function Description
+/*!
+ * \brief Add symbol-generating Scheme procedures to the library.
+ * \par Function Description
  *  Adds a source to the library based on Scheme procedures.  See page
  *  \ref libscms for more information. Two procedures are required: \a
  *  listfunc must return a Scheme list of symbol names, and \a getfunc
  *  must return a string containing symbol data when passed a symbol
  *  name.
  *
- *  \param listfunc A Scheme function returning a list of symbols.
- *  \param getfunc  A Scheme function returning symbol data.
- *  \param name     A descriptive name for the component source.
+ * \param listfunc Scheme function returning a list of symbols.
+ * \param getfunc  Scheme function returning symbol data.
+ * \param name     Descriptive name for the component source.
  *
- *  \return         The new CLibSource.
+ * \return         The new CLibSource.
  */
 const CLibSource *geda_struct_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
 {
@@ -1141,31 +1158,34 @@ const CLibSource *geda_struct_clib_add_scm (SCM listfunc, SCM getfunc, const cha
   return source;
 }
 
-/*! \brief Get the name of a source.
- *  \par Function Description
+/*!
+ * \brief Get the name of a source.
+ * \par Function Description
  *  Get the name of a source for use e.g. in displaying a GUI.
  *
- *  \param source Source to be examined.
+ * \param source Source to be examined.
  *
- *  \return Name of source.
-*/
+ * \return Name of source.
+ */
 const char *geda_struct_clib_source_get_name (const CLibSource *source)
 {
   if (source == NULL) return NULL;
   return source->name;
 }
 
-/*! \brief Get a list of symbols available from a given source.
- *  \par Function Description
+/*!
+ * \brief Get a list of symbols available from a given source.
+ * \par Function Description
  *  Get a \b GList containing all of the symbols available from \a
  *  source.
  *
- *  \warning The returned \b GList will not be consistent over a call to
- *  geda_struct_clib_refresh().  It should be freed when no longer needed.
+ * \warning The returned \b GList will not be consistent over a call to
+ *          geda_struct_clib_refresh and should be freed when no longer
+ *          needed.
  *
- *  \param source Source to be examined.
+ * \param source Source to be examined.
  *
- *  \return A \b GList of #CLibSymbol.
+ * \return A \b GList of #CLibSymbol.
  */
 GList *geda_struct_clib_source_get_symbols (const CLibSource *source)
 {
@@ -1173,14 +1193,15 @@ GList *geda_struct_clib_source_get_symbols (const CLibSource *source)
   return g_list_copy(source->symbols);
 }
 
-/*! \brief Get the name of a symbol.
- *  \par Function Description
- *  Get the name of a symbol.  The symbol name uniquely identifies it
- *  to libgeda.
+/*!
+ * \brief Get the name of a symbol.
+ * \par Function Description
+ *  Get the name of a symbol. The symbol name uniquely identifies the
+ *  symbol to libgeda.
  *
- *  \param symbol Symbol to be examined.
+ * \param symbol Symbol to be examined.
  *
- *  \return Name of symbol.
+ * \return Name of symbol.
 */
 const char *geda_struct_clib_symbol_get_name (const CLibSymbol *symbol)
 {
@@ -1188,16 +1209,17 @@ const char *geda_struct_clib_symbol_get_name (const CLibSymbol *symbol)
   return symbol->name;
 }
 
-/*! \brief Get a filename for editing a symbol.
- *  \par Function Description
+/*!
+ * \brief Get a filename for editing a symbol.
+ * \par Function Description
  *  Get the filename of the file a symbol was loaded from, if possible
  *  (e.g. to allow loading for user editing).
  *
- *  \remarks The returned string should be freed when no longer needed.
+ * \remarks The returned string should be freed when no longer needed.
  *
- *  \param symbol Symbol to be examined.
+ * \param symbol Symbol to be examined.
  *
- *  \return Filename of symbol.
+ * \return Filename of symbol.
  */
 char *geda_struct_clib_symbol_get_filename (const CLibSymbol *symbol)
 {
@@ -1208,30 +1230,32 @@ char *geda_struct_clib_symbol_get_filename (const CLibSymbol *symbol)
   return g_build_filename(symbol->source->directory, symbol->name, NULL);
 }
 
-/*! \brief Get the source to which a symbol belongs.
- *  \par Function Description
+/*!
+ * \brief Get the source to which a symbol belongs.
+ * \par Function Description
  *  Get the source which a symbol is associated.
  *
- *  \param symbol Symbol to be examined.
+ * \param symbol Symbol to be examined.
  *
- *  \return Source which owns symbol.
-*/
+ * \return Source which owns symbol.
+ */
 const CLibSource *geda_struct_clib_symbol_get_source (const CLibSymbol *symbol)
 {
   if (symbol == NULL) return NULL;
   return symbol->source;
 }
 
-/*! \brief Get symbol data from a directory source.
- *  \par Function Description
+/*!
+ * \brief Get symbol data from a directory source.
+ * \par Function Description
  *  Get symbol data from a directory data source.  The return value
  *  should be free()'d when no longer needed.
  *
  *  Private function used only in s_clib.c.
  *
- *  \param symbol Symbol to get data for.
+ * \param symbol Symbol to get data for.
  *
- *  \return Allocated buffer containing symbol data.
+ * \return Allocated buffer containing symbol data.
  */
 static char *get_data_directory (const CLibSymbol *symbol)
 {
@@ -1257,16 +1281,17 @@ static char *get_data_directory (const CLibSymbol *symbol)
   return data;
 }
 
-/*! \brief Get symbol data from a library command.
- *  \par Function Description
+/*!
+ * \brief Get symbol data from a library command.
+ * \par Function Description
  *  Get symbol data from a library command. The return value should
  *  be free()'d when no longer needed.
  *
  *  Private function used only in s_clib.c.
  *
- *  \param symbol Symbol to get data for.
+ * \param symbol Symbol to get data for.
  *
- *  \return Allocated buffer containing symbol data.
+ * \return Allocated buffer containing symbol data.
  */
 static char *get_data_command (const CLibSymbol *symbol)
 {
@@ -1285,16 +1310,17 @@ static char *get_data_command (const CLibSymbol *symbol)
   return result;
 }
 
-/*! \brief Get symbol data from a Scheme-based component source.
- *  \par Function Description
+/*!
+ * \brief Get symbol data from a Scheme-based component source.
+ * \par Function Description
  *  Get symbol data from a Scheme-based component source.  The return
  *  value should be free()'d when no longer needed.
  *
  *  Private function used only in s_clib.c.
  *
- *  \param symbol Symbol to get data for.
+ * \param symbol Symbol to get data for.
  *
- *  \return Allocated buffer containing symbol data.
+ * \return Allocated buffer containing symbol data.
  */
 static char *get_data_scm (const CLibSymbol *symbol)
 {
@@ -1325,17 +1351,18 @@ static char *get_data_scm (const CLibSymbol *symbol)
   return result;
 }
 
-/*! \brief Get symbol data.
- *  \par Function Description
+/*!
+ * \brief Get symbol data.
+ * \par Function Description
  *  Get the unparsed gEDA-format data corresponding to a symbol from
  *  the symbol's data source. The return value should be freed when
  *  no longer needed.
  *
  *  On failure, returns \b NULL (the error will be logged).
  *
- *  \param symbol Symbol to get data for.
+ * \param symbol Symbol to get data for.
  *
- *  \return Allocated buffer containing symbol data.
+ * \return Allocated buffer containing symbol data.
  */
 char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
 {
@@ -1358,8 +1385,8 @@ char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
   }
 
   /* If the symbol was not found in the cache, get it directly. */
-  switch (symbol->source->type)
-    {
+  switch (symbol->source->type) {
+
     case CLIB_DIR:
       data = get_data_directory (symbol);
       break;
@@ -1372,7 +1399,7 @@ char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
     default:
        BUG_IMSG("source has bad source type", symbol->source->type);
       return NULL;
-    }
+  }
 
   if (data == NULL) return NULL;
 
@@ -1398,9 +1425,9 @@ char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
   return data;
 }
 
-/*! \brief Find all symbols matching a pattern.
- *
- *  \par Function Description
+/*!
+ * \brief Find all symbols matching a pattern.
+ * \par Function Description
  *  Searches the library, returning all symbols whose
  *  names match \a pattern.
  *
@@ -1409,17 +1436,17 @@ char *geda_struct_clib_symbol_get_data (const CLibSymbol *symbol)
  *  where \a pattern is assumed to be a glob pattern (see the GLib
  *  documentation for details of the glob syntax applicable).
  *
- *  \warning The #CLibSymbol instances in the \b GList returned belong
+ * \warning The #CLibSymbol instances in the \b GList returned belong
  *  to the component library, and should be considered constants; they
  *  should not be manipulated or free()'d.  On the other hand, the \b
  *  GList returned must be freed with \b g_list_free() when no longer
  *  needed.  Note that the values returned will be invalidated by a
  *  call to geda_struct_clib_free() or geda_struct_clib_refresh().
  *
- *  \param pattern The pattern to match against.
- *  \param mode    The search mode to use.
+ * \param pattern The pattern to match against.
+ * \param mode    The search mode to use.
  *
- *  \return A \b GList of matching #CLibSymbol structures.
+ * \return A \b GList of matching #CLibSymbol structures.
  */
 GList *geda_struct_clib_search (const char *pattern, const CLibSearchMode mode)
 {
@@ -1502,9 +1529,10 @@ GList *geda_struct_clib_search (const char *pattern, const CLibSearchMode mode)
   return result;
 }
 
-/*! \brief Invalidate all cached data about a symbol.
+/*!
+ * \brief Invalidate all cached data about a symbol.
  * \par Function Description
- * Removes all cached symbol data for \a symbol.
+ *  Removes all cached symbol data for \a symbol.
  *
  * \param symbol Symbol to flush cached data for.
  */
@@ -1514,15 +1542,16 @@ geda_struct_clib_symbol_invalidate_data (const CLibSymbol *symbol)
   g_hash_table_remove (clib_symbol_cache, (void *) symbol);
 }
 
-/*! \brief Get symbol structure for a given symbol name.
- *  \par Function Description
+/*!
+ * \brief Get symbol structure for a given symbol name.
+ * \par Function Description
  *  Return the first symbol found with the given \a name.  If more
  *  than one matching symbol is found or no matches are found at all,
  *  emits a log message warning the user.
  *
- *  \param name The symbol name to match against.
+ * \param name The symbol name to match against.
  *
- *  \return The first matching symbol, or NULL if none found.
+ * \return The first matching symbol, or NULL if none found.
  */
 const CLibSymbol *geda_struct_clib_get_symbol_by_name (const char *name)
 {
@@ -1548,17 +1577,18 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name (const char *name)
   return symbol;
 }
 
-/*! \brief Get symbol data for a given symbol name.
- *  \par Function Description
+/*!
+ * \brief Get symbol data for a given symbol name.
+ * \par Function Description
  *  Return the data for the first symbol found with the given name.
  *  This is a helper function for the schematic load system, as it
  *  will always want to load symbols given only their name.
  *
  *  On failure, returns \b NULL (the error will be logged).
  *
- *  \param name The symbol name to match against.
+ * \param name The symbol name to match against.
  *
- *  \return Allocated buffer containing symbol data.
+ * \return Allocated buffer containing symbol data.
  */
 char *geda_struct_clib_symbol_get_data_by_name (const char *name)
 {
@@ -1569,25 +1599,25 @@ char *geda_struct_clib_symbol_get_data_by_name (const char *name)
   return geda_struct_clib_symbol_get_data (symbol);
 }
 
-/*! \brief Get a list of symbols used.
- *  \par Function Description
- *
+/*!
+ * \brief Get a list of symbols used.
+ * \par Function Description
  *  Scan a #GedaToplevel structure's object list looking for symbols, and
  *  return them in a list.
  *
- *  \warning The #CLibSymbol instances in the \b GList returned belong
+ * \warning The #CLibSymbol instances in the \b GList returned belong
  *  to the component library, and should be considered constants; they
  *  should not be manipulated or free'd.  On the other hand, the \b
  *  GList returned must be freed with \b g_list_free() when no longer
  *  needed.  Note that the values returned will be invalidated by a
  *  call to geda_struct_clib_free() or geda_struct_clib_refresh().
  *
- *  \bug Only includes components which are not embedded, but they
- *  should (probably) also appear in the list.
+ * \bug Only includes components which are not embedded, but they
+ *      should (probably) also appear in the list.
  *
- *  \param toplevel #GedaToplevel structure to scan.
+ * \param toplevel #GedaToplevel structure to scan.
  *
- *  \return GList of symbols.
+ * \return GList of symbols.
  */
 GList *geda_struct_clib_get_symbols (const GedaToplevel *toplevel)
 {
@@ -1602,7 +1632,6 @@ GList *geda_struct_clib_get_symbols (const GedaToplevel *toplevel)
 
   for (p_iter = geda_toplevel_get_pages(toplevel); p_iter != NULL; NEXT(p_iter))
   {
-
     Page *page = (Page*)p_iter->data;
 
     for (o_iter = geda_struct_page_get_objects (page); o_iter != NULL; NEXT(o_iter)) {
@@ -1628,15 +1657,18 @@ GList *geda_struct_clib_get_symbols (const GedaToplevel *toplevel)
        * name, and symbol pointers don't change while this function
        * is running (we hope).  Note that this creates a sorted list.*/
       for (iter = result; iter != NULL; NEXT(iter)) {
+
         if (iter->data == sym) {
           break; /* Already in list */
         }
+
         if (compare_symbol_name (iter->data, sym) > 0) {
           /* not in list yet, and gone past point where it should go */
           result = g_list_insert_before (result, iter, sym);
           break;
         }
       }
+
       if (iter == NULL) {
         /* not in list yet, and at end of list */
         result = g_list_append (result, sym);

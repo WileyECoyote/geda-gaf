@@ -1,6 +1,6 @@
 2019-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/struct/s_clib.c: Revise function documentation.
+    * src/struct/s_clib.c: Revise and reformat function documentation.
 
 2019-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
