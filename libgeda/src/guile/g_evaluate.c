@@ -136,7 +136,7 @@ static SCM protected_body_eval (void *data)
  *  difference that any errors or exceptions caused by the evaluated
  *  expression \a exp are caught and reported via the libgeda logging
  *  mechanism.  If an error occurs during evaluation, this function
- *  returns SCM_BOOL_F.  If \a module_or_state is undefined, uses the
+ *  returns SCM_BOOL_F. If \a module_or_state is undefined, uses the
  *  current interaction environment.
  *
  *  \param exp             Expression to evaluate
