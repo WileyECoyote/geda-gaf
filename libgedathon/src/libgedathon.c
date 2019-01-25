@@ -145,19 +145,20 @@ GedaObject *retrieve_floating_object (int sid)
   return NULL;
 }
 
-/*! \brief Append an Object to a PyList (of GedaCapules)
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function appends a GedaCapsule for the given PyGedaObject to an
- *   a PyList Object. If the first argument is NULL then a new PyList
- *   object is created and returned.
+/*!
+ * \brief Append an Object to a PyList (of GedaCapules)
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function appends a GedaCapsule for the given PyGedaObject to an
+ *  a PyList Object. If the first argument is NULL then a new PyList
+ *  object is created and returned.
  *
- *  \sa PyGeda_glist_2_pylist
+ * \sa PyGeda_glist_2_pylist
  *
- *  \param [in] pylist   Pointer PyList (of GedaCapsules)
- *  \param [in] object   Pointer to a Libgeda Object
+ * \param [in] pylist   Pointer PyList (of GedaCapsules)
+ * \param [in] object   Pointer to a Libgeda Object
  *
- *  \return [out] PyObject Pointer to PyList
+ * \return [out] PyObject Pointer to PyList
  */
 static PyObject*
 PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
@@ -181,20 +182,21 @@ PyGeda_append_2_pylist(PyObject *pylist, GedaObject *object) {
   return list;
 }
 
-/*! \brief Create a PyList of GedaCapules
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a new PyList object and adds a GedaCapsule
- *   for each PyGedaObject in the given glist. GedaCapsules are similar
- *   to a PyCapsule, but are not derived from PyCapsule_Type, in that
- *   they contain a pointer to something, in this case the pointer with
- *   in the given glist, i.e. pointers to Libgeda Objects.
+/*!
+ * \brief Create a PyList of GedaCapules
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a new PyList object and adds a GedaCapsule
+ *  for each PyGedaObject in the given glist. GedaCapsules are similar
+ *  to a PyCapsule, but are not derived from PyCapsule_Type, in that
+ *  they contain a pointer to something, in this case the pointer with
+ *  in the given glist, i.e. pointers to Libgeda Objects.
  *
- *  \sa PyGeda_append_2_pylist
+ * \sa PyGeda_append_2_pylist
  *
- *  \param [in] object_list Pointer to a GList of Libgeda Objects
+ * \param [in] object_list Pointer to a GList of Libgeda Objects
  *
- *  \return [out] PyObject  Pointer to new PyList
+ * \return [out] PyObject  Pointer to new PyList
  */
 static PyObject*
 PyGeda_glist_2_pylist(GList *object_list)
@@ -221,18 +223,19 @@ PyGeda_glist_2_pylist(GList *object_list)
   return objects;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaArcObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaBusObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaArcObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaBusObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaArcObject
+ * \param [in] object   Pointer to a Libgeda PyGedaArcObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_arc_object_data(GedaObject *object)
@@ -263,18 +266,19 @@ get_arc_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaBoxObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaBoxObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaBoxObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaBoxObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaBoxObject
+ * \param [in] object   Pointer to a Libgeda PyGedaBoxObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_box_object_data(GedaObject *object)
@@ -314,18 +318,19 @@ get_box_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaBusObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaBusObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaBusObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaBusObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaBusObject
+ * \param [in] object   Pointer to a Libgeda PyGedaBusObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_bus_object_data(GedaObject *object)
@@ -358,18 +363,19 @@ get_bus_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaCircleObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaCircleObject Initializer in order to create a
- *   Python object corresponding the libgeda object. These parameters
- *   MUST be in the correct order or the Python object will not be
- *   created correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaCircleObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaCircleObject Initializer in order to create a
+ *  Python object corresponding the libgeda object. These parameters
+ *  MUST be in the correct order or the Python object will not be
+ *  created correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaCircleObject
+ * \param [in] object   Pointer to a Libgeda PyGedaCircleObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_circle_object_data(GedaObject *object)
@@ -408,18 +414,19 @@ get_circle_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaComplexObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaComplexObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaComplexObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaComplexObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaComplexObject
+ * \param [in] object   Pointer to a Libgeda PyGedaComplexObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_complex_object_data(GedaObject *object)
@@ -474,18 +481,19 @@ get_complex_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaLineObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaLineObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaLineObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaLineObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaLineObject
+ * \param [in] object   Pointer to a Libgeda PyGedaLineObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_line_object_data(GedaObject *object)
@@ -515,18 +523,19 @@ get_line_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaNetObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaNetObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaNetObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaNetObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaNetObject
+ * \param [in] object   Pointer to a Libgeda PyGedaNetObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_net_object_data(GedaObject *object)
@@ -562,18 +571,19 @@ get_net_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaPathObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaPathObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaPathObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaPathObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaPathObject
+ * \param [in] object   Pointer to a Libgeda PyGedaPathObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_path_object_data(GedaObject *object)
@@ -630,18 +640,19 @@ get_path_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaPictureObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaPictureObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaPictureObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaPictureObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaPictureObject
+ * \param [in] object   Pointer to a Libgeda PyGedaPictureObject
  *
- *  \return [out] PyObject Pointer to parameter data object
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_picture_object_data(GedaObject *object)
@@ -679,19 +690,19 @@ get_picture_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaPinObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaPinObject Initializer in order to create a Python
- *   object corresponding the libgeda object. These parameters MUST
- *   be in the correct order or the Python object will not be created
- *   correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaPinObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaPinObject Initializer in order to create a Python
+ *  object corresponding the libgeda object. These parameters MUST
+ *  be in the correct order or the Python object will not be created
+ *  correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaPinObject
+ * \param [in] object   Pointer to a Libgeda PyGedaPinObject
  *
- *  \return [out] PyObject Pointer to parameter data object
- *
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_pin_object_data(GedaObject *object)
@@ -753,19 +764,19 @@ get_pin_object_data(GedaObject *object)
   return data;
 }
 
-/*! \brief Get a data object to create a Python Geda PyGedaTextObject
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This function creates a PyObject with the parameters used to
- *   pass to the PyGedaTextObject Initializer in order to create a
- *   Python object corresponding the libgeda object. These parameters
- *   MUST be in the correct order or the Python object will not be
- *   created correctly, if at all.
+/*!
+ * \brief Get a data object to create a Python Geda PyGedaTextObject
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This function creates a PyObject with the parameters used to
+ *  pass to the PyGedaTextObject Initializer in order to create a
+ *  Python object corresponding the libgeda object. These parameters
+ *  MUST be in the correct order or the Python object will not be
+ *  created correctly, if at all.
  *
- *  \param [in] object   Pointer to a Libgeda PyGedaTextObject
+ * \param [in] object   Pointer to a Libgeda PyGedaTextObject
  *
- *  \return [out] PyObject Pointer to parameter data object
- *
+ * \return [out] PyObject Pointer to parameter data object
  */
 static PyObject*
 get_text_object_data(GedaObject *object)
@@ -898,9 +909,10 @@ fail:
     return -1;
 }
 
-/*! \brief Setup the Python API Symbol Library
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
+/*!
+ * \brief Setup the Python API Symbol Library
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
  *  This function is called by the initializer to setup the s_clib module
  *  in Libgeda using the data path returned from geda_sys_data_path().
  */
@@ -969,9 +981,10 @@ static void setup_source_library (void)
 /* local macro used in the next function */
 #define apa_list toplevel->always_promote_attributes
 
-/*! \brief initialize the Pythong API Library System
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
+/*!
+ * \brief initialize the Pythong API Library System
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
  *  This function must be called after the library is opened in order to
  *  initialize memory within libgedathon and libgeda. This function creates
  *  a new toplevel Object and sets basic settings in the toplevel. The
@@ -979,8 +992,8 @@ static void setup_source_library (void)
  *  This function is the only function symbolically exported from the
  *  Library.
  *
- *  \param [in] user_table a API_FunctionTable to be loaded with the
- *                         addresses of API functions in this module.
+ * \param [in] user_table a API_FunctionTable to be loaded with the
+ *                        addresses of API functions in this module.
  */
 void initialize( API_FunctionTable *user_table)
 {
@@ -1032,9 +1045,10 @@ void initialize( API_FunctionTable *user_table)
  *  @{
  */
 
-/*! \brief Shutdown library API
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Shutdown library API
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function is called when the library is closed in order to
  *  clean close any opened files and release all dynamically allocated
  *  memory. All floating objects are destroyed and then libgeda is
@@ -1060,9 +1074,10 @@ void PyGeda_shutdown(void)
   return;
 }
 
-/*! \brief Append the Symbol Library Search Path
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Append the Symbol Library Search Path
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function checks for the directory of the given path string
  *  and calls geda_struct_clib_add_directory to append the directory
  *  to the library search path so that symbol files within the folder
@@ -1113,11 +1128,12 @@ static char *advance2char(const char *string)
   return (char*)ptr;
 }
 
-/*! \brief Declare Local Symbols
- *  \ingroup Python_API_Library_Internal
- *  \par Function Description
- *   This is a utility function to create a "gafrc" file in the given
- *   directory in order for a document to have locally defined symbols.
+/*!
+ * \brief Declare Local Symbols
+ * \ingroup Python_API_Library_Internal
+ * \par Function Description
+ *  This is a utility function to create a "gafrc" file in the given
+ *  directory in order for a document to have locally defined symbols.
  *
  * \param [in] directory The directory to be used in "gafrc" file
  *
@@ -1228,9 +1244,10 @@ int PyGeda_declare_local_sym( const char *directory )
   return result;
 }
 
-/*! \brief Gets a list of all currently opened pages
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Gets a list of all currently opened pages
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  Returns a list with the page info for each currently opened
  *  page, if there are no pages opened then the list will be an
  *  empty PyList;
@@ -1259,9 +1276,10 @@ PyObject *PyGeda_get_pages( void )
   return pages;
 }
 
-/*! \brief Gets the current page in the TopLevel
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Gets the current page in the TopLevel
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  Returns info for the current page in \a toplevel or NULL if there
  *  is no current page;
  *
@@ -1283,14 +1301,15 @@ PyObject *PyGeda_get_active_page( void )
   return page_info;
 }
 
-/*! \brief Set the current page in the TopLevel
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Set the current page in the TopLevel
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  Changes the current page in \a toplevel to the page \a page.
  *
- * \param [in] pid      Integer, The new current page
+ * \param [in] pid   Integer, The new current page
  *
- *  \returns True on success, otherwise FALSE
+ * \returns True on success, otherwise FALSE
  */
 int PyGeda_set_active_page( int pid )
 {
@@ -1299,17 +1318,18 @@ int PyGeda_set_active_page( int pid )
   return geda_struct_page_set_current (toplevel, page);
 }
 
-/*! \brief Get is Page Modified
- *  \ingroup Python_API_Library
- *  \par Function Description
- *   Retrieves page object assocated with \a pid and returns
- *   page->CHANGED;
+/*!
+ * \brief Get is Page Modified
+ * \ingroup Python_API_Library
+ * \par Function Description
+ *  Retrieves page object assocated with \a pid and returns
+ *  page->CHANGED;
  *
- *  \param [in] pid     Integer, ID of Page being queried
+ * \param [in] pid     Integer, ID of Page being queried
  *
- *  \returns True if page has been modifiied and not save, FALSE
- *           if the page has been saved, -1 if there was an error,
- *           such as an invalid page id.
+ * \returns True if page has been modifiied and not save, FALSE
+ *          if the page has been saved, -1 if there was an error,
+ *          such as an invalid page id.
  */
 int PyGeda_is_page_modified (int pid)
 {
@@ -1324,16 +1344,17 @@ int PyGeda_is_page_modified (int pid)
   return status;
 }
 
-/*! \brief Changes the current page in toplevel
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Changes the current page in toplevel
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  Calls LibGeda function geda_struct_page_goto to change the current
  *  page referenced by \a toplevel and changes the current working
  *  directory to the directory associated with the page.
  *
- *  \param [in] pid     Integer, The Page to go to
+ * \param [in] pid     Integer, The Page to go to
  *
- *  \returns True on success, otherwise FALSE
+ * \returns True on success, otherwise FALSE
  */
 int PyGeda_goto_page( int pid )
 {
@@ -1342,18 +1363,19 @@ int PyGeda_goto_page( int pid )
   return geda_struct_page_goto (page);
 }
 
-/*! \brief Open a Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Open a Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function attempts to create new PyGedaPageObject. The object
  *  represents the Page referenced by the given filename only if the
  *  file exist and is readable when attempting to open and existing file.
  *  If the filename does not exist then an empty page Object is created.
  *
- *  \param [in] filename String, the file name of the page to open
+ * \param [in] filename String, the file name of the page to open
  *
- *  \return [out] PyObject A composite Python object containing the filename
- *                and the assigned pid
+ * \return [out] PyObject A composite Python object containing the filename
+ *                        and the assigned pid
  */
 PyObject *PyGeda_open_page( const char *filename )
 {
@@ -1573,16 +1595,17 @@ PyObject *PyGeda_open_page( const char *filename )
   return page_info;
 }
 
-/*! \brief Close a Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Close a Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function calls the libgeda function geda_struct_page_delete to remove the
  *  page referenced by the ID argument from memory.
  *
- *  \param [in] pid  Integer, the page id of the page to close
+ * \param [in] pid  Integer, the page id of the page to close
  *
- *  \return [out] The pid of the assigned current page or -1 if there are
- *                no page opened after closing the argument page
+ * \return [out] The pid of the assigned current page or -1 if there are
+ *               no page opened after closing the argument page
  */
 int PyGeda_close_page(int pid)
 {
@@ -1621,18 +1644,19 @@ int PyGeda_close_page(int pid)
   return new_pid;
 }
 
-/*! \brief Start a New Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Start a New Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function calls the PyGeda_open_page after determining of a file
  *  current exist and if so, whether a back-up should made. If the optional
  *  over_write flag is FALSE then the setting of toplevel->make_backup_files
  *  will determine if any existing files should be backed up.
  *
- *  \param [in] filename String, file name or NULL = "untitled"
- *  \param [in] over_write  Integer, the page id of the page to be saved
+ * \param [in] filename String, file name or NULL = "untitled"
+ * \param [in] over_write  Integer, the page id of the page to be saved
  *
- *  \return [out] PyObject result of calling PyGeda_open_page.
+ * \return [out] PyObject result of calling PyGeda_open_page.
  */
 PyObject *PyGeda_new_page( const char *filename, int over_write)
 {
@@ -1660,16 +1684,17 @@ PyObject *PyGeda_new_page( const char *filename, int over_write)
   return PyGeda_open_page(fname);
 }
 
-/*! \brief Rename Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Rename Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function calls the libgeda object setter function to
  *  change the file name string.
  *
- *  \param [in] pid      Integer, the page id of the page to rename
- *  \param [in] filename String to set as the new file name
+ * \param [in] pid      Integer, the page id of the page to rename
+ * \param [in] filename String to set as the new file name
  *
- *  \return [out] True on success, otherwise FALSE
+ * \return [out] True on success, otherwise FALSE
  */
 int PyGeda_rename_page (int pid, const char *filename)
 {
@@ -1707,15 +1732,16 @@ int PyGeda_rename_page (int pid, const char *filename)
   return status;
 }
 
-/*! \brief Save Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Save Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function calls the libgeda function geda_save_file to save the
  *  page document referenced by the ID argument.
  *
- *  \param [in] pid  Integer, the page id of the page to be saved
+ * \param [in] pid  Integer, the page id of the page to be saved
  *
- *  \return [out] FALSE if no errors occurred, otherwise True.
+ * \return [out] FALSE if no errors occurred, otherwise True.
  */
 int
 PyGeda_save_page( int pid )
@@ -1739,16 +1765,17 @@ PyGeda_save_page( int pid )
   return status;
 }
 
-/*! \brief Save Page As new file Name
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Save Page As new file Name
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This is a convenience function that combines PyGeda_rename_page
  *  and PyGeda_save_page.
  *
- *  \param [in] pid      Integer page id of the page to save
- *  \param [in] filename String to set as the new file name
+ * \param [in] pid      Integer page id of the page to save
+ * \param [in] filename String to set as the new file name
  *
- *  \return [out] True on success, otherwise FALSE
+ * \return [out] True on success, otherwise FALSE
  */
 int PyGeda_save_page_as (int pid, const char *filename)
 {
@@ -1759,16 +1786,17 @@ int PyGeda_save_page_as (int pid, const char *filename)
   return status ? !PyGeda_save_page(pid) : 0;
 }
 
-/*! \brief Save All Pages
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Save All Pages
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function iterates through all Page objects in the argument list or all
  *  pages of the argument is NULL, and calls the libgeda function geda_save_file
  *  for each page document.
  *
- *  \param [in] py_page_list A PyList Object
+ * \param [in] py_page_list A PyList Object
  *
- *  \return [out] integer number of errors that occurred.
+ * \return [out] integer number of errors that occurred.
  */
 int PyGeda_save_all_pages( PyObject *py_page_list )
 {
@@ -1815,15 +1843,16 @@ int PyGeda_save_all_pages( PyObject *py_page_list )
   return status;
 }
 
-/*! \brief Check is Object is a GedaCapsuleObject
- *  \ingroup Python_API_Library
- *  \par Function Description
- *   This function returns True is the argument object is a
- *   GedaCapsule type, otherwise FALSE.
+/*!
+ * \brief Check is Object is a GedaCapsuleObject
+ * \ingroup Python_API_Library
+ * \par Function Description
+ *  This function returns True is the argument object is a
+ *  GedaCapsule type, otherwise FALSE.
  *
- *  \param [in] py_object    A PyObject to check
+ * \param [in] py_object  A PyObject to check
  *
- *  \return [out] True of object is GedaCapsuleObject.
+ * \return [out] True of object is GedaCapsuleObject.
  */
 int PyGeda_GedaCapsule_Type(PyObject *py_object)
 {
@@ -1879,15 +1908,16 @@ PyObject *PyGeda_get_bounds( int pid, int sid )
   return py_list;
 }
 
-/*! \brief Get an Object from GedaCapsuleObject
- *  \ingroup Python_API_Library
- *  \par Function Description
- *    This function returns the data to create a PyPyGedaObjects from an object
+/*!
+ * \brief Get an Object from GedaCapsuleObject
+ * \ingroup Python_API_Library
+ * \par Function Description
+ *  This function returns the data to create a PyPyGedaObjects from an object
  *  pointer to by the contents of the given GedaCapsule.
  *
- *  \param [in] py_capsule   The PyObject container object
+ * \param [in] py_capsule   The PyObject container object
  *
- *  \return [out] A PyGedaObject construction data.
+ * \return [out] A PyGedaObject construction data.
  */
 PyObject *PyGeda_get_object(PyObject *py_capsule)
 {
@@ -1929,9 +1959,10 @@ PyObject *PyGeda_get_object(PyObject *py_capsule)
   return NULL;
 }
 
-/*! \brief Get a List Objects from an Object
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Get a List Objects from an Object
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function returns a list of existing objects from another object. The
  *  source object can be a <p>Page</p> or a <p>PyGedaObject</p>. The returned
  *  list contains capsule items.  Encapsulation of objects is performed for
@@ -1941,11 +1972,11 @@ PyObject *PyGeda_get_object(PyObject *py_capsule)
  *  when the list was later dereferenced, similar delays would occur while
  *  Python was performing garbage collection.
  *
- *  \param [in] pid  Integer, the page id of the page from which to get the sub-objects
- *  \param [in] sid  Integer, the PyGedaObject id of the Object from which to get the sub-objects
+ * \param [in] pid  Integer, the page id of the page from which to get the sub-objects
+ * \param [in] sid  Integer, the PyGedaObject id of the Object from which to get the sub-objects
  *
- *  \return [out] PyList list of GedaCapsule Objects or an empty list if the
- *                source object did not contain any objects.
+ * \return [out] PyList list of GedaCapsule Objects or an empty list if the
+ *               source object did not contain any objects.
  */
 PyObject *PyGeda_get_objects( int pid, int sid )
 {
@@ -1985,20 +2016,20 @@ PyObject *PyGeda_get_objects( int pid, int sid )
   return py_list;
 }
 
-/*! \brief Add an Object to another Object
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Add an Object to another Object
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function add an object to another object. The target object can be a
  *  Page or another object. The arguments are positional.
  *
- *  \param [in] PyPage      The Pageobject or NULL if the object are being added
- *                          to py_object_A
- *  \param [in] py_object_A The Geda object to receive the child or NULL if object
- *                          is being added to page given by parameter 1.
- *  \param [in] py_object_B The PyGedaObject to be added
+ * \param [in] PyPage      The Pageobject or NULL if the object are being added
+ *                         to py_object_A
+ * \param [in] py_object_A The Geda object to receive the child or NULL if object
+ *                         is being added to page given by parameter 1.
+ * \param [in] py_object_B The PyGedaObject to be added
  *
- *  \return [out] status True if successful, otherwise False.
- *
+ * \return [out] status True if successful, otherwise False.
  */
 int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
@@ -2124,20 +2155,20 @@ int PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_obj
   return status;
 }
 
-/*! \brief Python API Library Add Objects to an Object
- *  \par Function Description
+/*!
+ * \brief Python API Library Add Objects to an Object
+ * \par Function Description
  *  This function provides a method to add a list of existing object to another
  *  object. The target object can be a Page or another object. The arguments are
  *  positional.
  *
- *  \param [in] PyPage       Pageobject or NULL if the object are being added to
- *                           py_object_A
- *  \param [in] py_object_A  The Geda object to receive the objects or NULL if the
- *                           are being added to page given by parameter 1.
- *  \param [in] py_object_B  PyList, the list of PyGedaObjects to be added
+ * \param [in] PyPage       Pageobject or NULL if the object are being added to
+ *                          py_object_A
+ * \param [in] py_object_A  The Geda object to receive the objects or NULL if the
+ *                          are being added to page given by parameter 1.
+ * \param [in] py_object_B  PyList, the list of PyGedaObjects to be added
  *
- *  \return [out] status True if successful, otherwise False.
- *
+ * \return [out] status True if successful, otherwise False.
  */
 int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_B )
 {
@@ -2156,28 +2187,29 @@ int PyGeda_add_objects( PyObject *PyPage, PyObject *py_object_A, PyObject *py_ob
   return status;
 }
 
-/*! \brief Copy an Object
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Copy an Object
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function copies an existing object. The Object does not have to be on
  *  a Page. The object argument must be a PyGedaObject, such as PyGedaComplexObject_type,
  *  not a GedaCapsule object.
  *
- *  \param [in] py_object PyObject, the PyGedaObject to be copied
+ * \param [in] py_object PyObject, the PyGedaObject to be copied
  *
- *  \param [in] dx  Integer X offset relative to the source object's location
- *  \param [in] dy  Integer Y offset relative to the source object's location
+ * \param [in] dx  Integer X offset relative to the source object's location
+ * \param [in] dy  Integer Y offset relative to the source object's location
  *
- *  \note 1. The target offset arguments are mutually optional, either both must be
- *           provided or neither. If offset arguments are not provided the copy will
- *           coincide with the original. If only one of the offsets is set to -1 then
- *           this value will be interprted as a coordinate.
+ * \note 1. The target offset arguments are mutually optional, either both must be
+ *          provided or neither. If offset arguments are not provided the copy will
+ *          coincide with the original. If only one of the offsets is set to -1 then
+ *          this value will be interprted as a coordinate.
  *
- *  \note 2. This is the only copy function in the Python_API_Library. The Pyobject
- *           types are derived from PyGedaObject, whose copy method utilizes the main
- *           geda.copy_object method which this calls this API function.
+ * \note 2. This is the only copy function in the Python_API_Library. The Pyobject
+ *          types are derived from PyGedaObject, whose copy method utilizes the main
+ *          geda.copy_object method which this calls this API function.
  *
- *  \return [out] GedaCapsule containing a reference to the new object.
+ * \return [out] GedaCapsule containing a reference to the new object.
  */
 PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
 {
@@ -2261,18 +2293,19 @@ PyObject *PyGeda_copy_object( PyObject *py_object, int dx, int dy )
   return Py_BuildValue("(O)", py_capsule);
 }
 
-/*! \brief Remove an Object from a Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Remove an Object from a Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function removes an existing object from the page which the object
  *  is associated. Removing an object does not destroy the object. The
  *  removed object is appended to the glist of floating_objects for future
  *  reference.
  *
- *  \param [in] py_object    The Geda PyObject to be removed
+ * \param [in] py_object    The Geda PyObject to be removed
  *
- *  \return [out] status True if successful otherwise False, False
- *                would only be returned if an object did not exist.
+ * \return [out] status True if successful otherwise False, False
+ *               would only be returned if an object did not exist.
  */
 int PyGeda_remove_object( PyObject *py_object )
 {
@@ -2298,18 +2331,19 @@ int PyGeda_remove_object( PyObject *py_object )
   return status;
 }
 
-/*! \brief Remove a PyList of Objects from a Page
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Remove a PyList of Objects from a Page
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function removes a list of existing objects from a page which the
  *  objects are associated. The objects in the list do not have to be the
  *  same page.
  *
- *  \param [in] pyobjects PyList Of Geda objects to be removed
+ * \param [in] pyobjects PyList Of Geda objects to be removed
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if the page conatining
- *                the object did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if the page conatining
+ *               the object did not exist.
  */
 int PyGeda_remove_objects( PyObject *pyobjects )
 {
@@ -2325,16 +2359,17 @@ int PyGeda_remove_objects( PyObject *pyobjects )
   return status;
 }
 
-/*! \brief Delete an Object
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Delete an Object
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function deletes the given Object
  *
- *  \param [in] py_object    The Geda PyObject to be deleted
+ * \param [in] py_object    The Geda PyObject to be deleted
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if the page conatining
- *                the object did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if the page conatining
+ *               the object did not exist.
  */
 int PyGeda_delete_object( PyObject *py_object )
 {
@@ -2379,17 +2414,18 @@ int PyGeda_delete_object( PyObject *py_object )
   return status;
 }
 
-/*! \brief Delete a List of Objects
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Delete a List of Objects
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function calls PyGeda_delete_object for each object in the
  *  supplied list of pyobjects
  *
- *  \param [in] objects PyObject of type PyList containing PyPyGedaObjects
+ * \param [in] objects PyObject of type PyList containing PyPyGedaObjects
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if an object in the list
- *                did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if an object in the list
+ *               did not exist.
  */
 int PyGeda_delete_objects( PyObject *objects )
 {
@@ -2405,17 +2441,18 @@ int PyGeda_delete_objects( PyObject *objects )
   return status;
 }
 
-/*! \brief Synchronize GedaObject with a PyGedaObject
- *  \ingroup Python_API_Library
- *  \par Function Description
+/*!
+ * \brief Synchronize GedaObject with a PyGedaObject
+ * \ingroup Python_API_Library
+ * \par Function Description
  *  This function the update the values of Library's Object the with
  *  the value from the given PyObject
  *
- *  \param [in] py_object    The Geda PyObject to be updated
+ * \param [in] py_object    The Geda PyObject to be updated
  *
- *  \return [out] status True if success otherwise False, False
- *                would only be returned if the page containing
- *                the object did not exist.
+ * \return [out] status True if success otherwise False, False
+ *               would only be returned if the page containing
+ *               the object did not exist.
  */
 int PyGeda_sync_object( PyObject *py_object )
 {
@@ -2453,20 +2490,21 @@ int PyGeda_sync_object( PyObject *py_object )
  *  @{
  */
 
-/*! \brief Python API Library Create a New Arc Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Arc Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function provides a Arc object and returns the construction
  *  data required to produce a Python version of the object.
  *
- *  \param [in] x           Integer center X location
- *  \param [in] y           Integer center Y location
- *  \param [in] radius      Integer radius of the arc sector
- *  \param [in] start_angle Integer start angle of the sector
- *  \param [in] arc_sweep   Integer ending angle of the sector
- *  \param [in] py_color    PyObject color
+ * \param [in] x           Integer center X location
+ * \param [in] y           Integer center Y location
+ * \param [in] radius      Integer radius of the arc sector
+ * \param [in] start_angle Integer start angle of the sector
+ * \param [in] arc_sweep   Integer ending angle of the sector
+ * \param [in] py_color    PyObject color
  *
- *  \return [out] PyGedaArcObject construction data.
+ * \return [out] PyGedaArcObject construction data.
  */
 PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sweep, PyObject *py_color)
 {
@@ -2484,19 +2522,20 @@ PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sw
   return get_arc_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Box Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Box Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function provides a Box object and returns the construction
  *  data required to produce a Python version of the object.
  *
- *  \param [in] lower_x  Integer lower X corner
- *  \param [in] lower_y  Integer lower Y corner
- *  \param [in] upper_x  Integer upper X corner
- *  \param [in] upper_y  Integer upper Y corner
- *  \param [in] py_color PyObject color
+ * \param [in] lower_x  Integer lower X corner
+ * \param [in] lower_y  Integer lower Y corner
+ * \param [in] upper_x  Integer upper X corner
+ * \param [in] upper_y  Integer upper Y corner
+ * \param [in] py_color PyObject color
  *
- *  \return [out] PyGedaBoxObject construction data.
+ * \return [out] PyGedaBoxObject construction data.
  */
 PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, PyObject *py_color)
 {
@@ -2516,9 +2555,10 @@ PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, Py
   return get_box_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Bus Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Bus Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function provides creates new Bus object and returns the object to
  *  get_net_object_data, so that the caller is returned the data to create a
  *  Python version of the object. If the busname argument is non-null then a
@@ -2526,14 +2566,14 @@ PyObject *PyGeda_new_box (int lower_x, int lower_y, int upper_x, int upper_y, Py
  *  by busname as the value. If the busname argument is NULL the object name
  *  is used as the netname attribute.
  *
- *  \param [in] busname  string bus_name attribute (can be NULL)
- *  \param [in] x1       integer from X location
- *  \param [in] y1       integer from Y location
- *  \param [in] x2       integer to X location
- *  \param [in] y2       integer to Y location
- *  \param [in] py_color PyObject color
+ * \param [in] busname  string bus_name attribute (can be NULL)
+ * \param [in] x1       integer from X location
+ * \param [in] y1       integer from Y location
+ * \param [in] x2       integer to X location
+ * \param [in] y2       integer to Y location
+ * \param [in] py_color PyObject color
  *
- *  \return [out] PyGedaBusObject construction data.
+ * \return [out] PyGedaBusObject construction data.
  */
 PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, PyObject *py_color)
 {
@@ -2563,20 +2603,20 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
   return get_bus_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Circle Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Circle Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function provides a new Circle object and returns data to
  *  create a Python version of the object.
  *
- *  \param [in] x         Integer center X location
- *  \param [in] y         Integer center Y location
- *  \param [in] radius    Integer to X location
+ * \param [in] x         Integer center X location
+ * \param [in] y         Integer center Y location
+ * \param [in] radius    Integer to X location
  *
- *  \param [in] py_color  PyObject a color object (not implemented yet)
+ * \param [in] py_color  PyObject a color object (not implemented yet)
  *
- *  \return [out] PyGedaCircleObject construction data.
- *
+ * \return [out] PyGedaCircleObject construction data.
  */
 PyObject *PyGeda_new_circle( int x, int y, int radius, PyObject *py_color )
 {
@@ -2593,23 +2633,23 @@ PyObject *PyGeda_new_circle( int x, int y, int radius, PyObject *py_color )
   return get_circle_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Complex Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Complex Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function creates new Complex object. The symbol must be known to
  *  the Library.
  *
- *  \param [in] filename String  The base file name of the symbol without the extension
- *  \param [in] x        Integer X insertion location
- *  \param [in] y        Integer Y insertion location
+ * \param [in] filename String  The base file name of the symbol without the extension
+ * \param [in] x        Integer X insertion location
+ * \param [in] y        Integer Y insertion location
+ * \param [in] angle    Integer orientation property
+ * \param [in] mirror   Integer property whether to mirror the symbol
+ * \param [in] embed    Integer property whether to embed the symbol data
  *
- *  \param [in] angle    Integer orientation property
- *  \param [in] mirror   Integer property whether to mirror the symbol
- *  \param [in] embed    Integer property whether to embed the symbol data
+ * \return [out] PyGedaComplexObject construction data.
  *
- *  \return [out] PyGedaComplexObject construction data.
- *
- *  \note  Optional agruments with a value of -1 will be assigned default values.
+ * \note  Optional agruments with a value of -1 will be assigned default values.
  */
 PyObject*
 PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, int embed)
@@ -2653,20 +2693,20 @@ PyGeda_new_complex(const char *filename, int x, int y, int angle, int mirror, in
   return get_complex_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Line Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Line Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function provides a new Line object and returns the data
  *  to create the Python version of the object.
  *
- *  \param [in] x1           Integer from X location
- *  \param [in] y1           Integer from Y location
- *  \param [in] x2           Integer to X location
- *  \param [in] y2           Integer to Y location
- *  \param [in] py_color     PyObject color
+ * \param [in] x1           Integer from X location
+ * \param [in] y1           Integer from Y location
+ * \param [in] x2           Integer to X location
+ * \param [in] y2           Integer to Y location
+ * \param [in] py_color     PyObject color
  *
- *  \return [out] PyGedaLineObject construction data.
- *
+ * \return [out] PyGedaLineObject construction data.
  */
 PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
 {
@@ -2685,23 +2725,24 @@ PyObject *PyGeda_new_line ( int x1, int y1, int x2, int y2, PyObject *py_color)
   return get_line_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Net Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Net Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function creates new Net object and returns the object via
  *  get_net_object_data, so that the caller is returned the data to create a
  *  Python version of the object. If the netname argument is non-null then a
  *  "netname" attribute is attached to the object using the string pointed to
  *  by netname as the value.
  *
- *  \param [in] netname      String, net_name attribute (can be NULL)
- *  \param [in] x1           Integer from X location
- *  \param [in] y1           Integer from Y location
- *  \param [in] x2           Integer to X location
- *  \param [in] y2           Integer to Y location
- *  \param [in] py_color     PyObject color
+ * \param [in] netname      String, net_name attribute (can be NULL)
+ * \param [in] x1           Integer from X location
+ * \param [in] y1           Integer from Y location
+ * \param [in] x2           Integer to X location
+ * \param [in] y2           Integer to Y location
+ * \param [in] py_color     PyObject color
  *
- *  \return [out] PyGedaNetObject construction data.
+ * \return [out] PyGedaNetObject construction data.
  */
 PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, PyObject *py_color)
 {
@@ -2738,16 +2779,17 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   return get_net_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Path Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Path Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function creates new Path Object given a path string and
  *  returns necessary data via the get_path_object_data() to create
  *  a Python version of the Object.
  *
- *  \param [in] path_string  String, the SVG path string
+ * \param [in] path_string  String, the SVG path string
  *
- *  \return [out] PyGedaPathObject construction data.
+ * \return [out] PyGedaPathObject construction data.
  */
 PyObject *PyGeda_new_path (const char *path_string)
 {
@@ -2769,27 +2811,28 @@ PyObject *PyGeda_new_path (const char *path_string)
   return get_path_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Picture Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Picture Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function create a new Pin Object and returns using get_picture
  *  _object_data function in provide construction data to create the a
  *  Python version of the object.
  *
- *  \param [in] filepath string  The file name of the image
- *  \param [in] x1       integer lower left X location
- *  \param [in] y1       integer lower left Y location
- *  \param [in] x2       integer top right X location
- *  \param [in] y2       integer top right Y location
+ * \param [in] filepath string  The file name of the image
+ * \param [in] x1       integer lower left X location
+ * \param [in] y1       integer lower left Y location
+ * \param [in] x2       integer top right X location
+ * \param [in] y2       integer top right Y location
  *
  *  optional: (will be assigned default values if < 0)
  *
- *  \param [in] angle    integer orientation property
- *  \param [in] mirror   integer property whether to mirror the image
- *  \param [in] embed    integer property whether to embed the image data
+ * \param [in] angle    integer orientation property
+ * \param [in] mirror   integer property whether to mirror the image
+ * \param [in] embed    integer property whether to embed the image data
  *
- *  \return [out] PyGedaPictureObject construction data or NULL if an error occurred,
- *                such as the file did not exist or was not readable.
+ * \return [out] PyGedaPictureObject construction data or NULL if an error occurred,
+ *               such as the file did not exist or was not readable.
  */
 PyObject*
 PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
@@ -2817,27 +2860,28 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
   return get_picture_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Pin Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Pin Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function create a new Pin Object and returns using get_pin_object
  *  _data function in provide construction data to create the a Python
  *  version of the object.
  *
- *  \param [in] label  string  pin label attribute
- *  \param [in] number   string  pin number attribute
- *  \param [in] x1     integer from X location
- *  \param [in] y1     integer from Y location
- *  \param [in] x2     integer to X location
- *  \param [in] y2     integer to Y location
+ * \param [in] label  string  pin label attribute
+ * \param [in] number   string  pin number attribute
+ * \param [in] x1     integer from X location
+ * \param [in] y1     integer from Y location
+ * \param [in] x2     integer to X location
+ * \param [in] y2     integer to Y location
  *
- *  \param [in] whichend integer Which gets connected (either 0 or 1)
+ * \param [in] whichend integer Which gets connected (either 0 or 1)
  *
- *  \param [in] etype    integer electrical type attribute (formally pin type)
- *  \param [in] mtype    integer mechanical type attribute
- *  \param [in] ntype    integer node type property ( 0=normal, 1=bus type)
+ * \param [in] etype    integer electrical type attribute (formally pin type)
+ * \param [in] mtype    integer mechanical type attribute
+ * \param [in] ntype    integer node type property ( 0=normal, 1=bus type)
  *
- *  \return [out] PyGedaPinObject construction data.
+ * \return [out] PyGedaPinObject construction data.
  */
 PyObject*
 PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, int y2,
@@ -2909,19 +2953,20 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
   return get_pin_object_data(object);
 }
 
-/*! \brief Python API Library Create a New Text Object
- *  \ingroup Python_API_Create_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Text Object
+ * \ingroup Python_API_Create_Functions
+ * \par Function Description
  *  This function provides a method to create a new Text Object.
  *
- *  \param [in] text         String for the name property
- *  \param [in] x            Integer X location
- *  \param [in] y            Integer Y location
+ * \param [in] text         String for the name property
+ * \param [in] x            Integer X location
+ * \param [in] y            Integer Y location
  *
- *  \param [in] size         Integer font size property
- *  \param [in] align        Integer alignment property
- *  \param [in] angle        Integer orientation property
- *  \param [in] py_color     PyObject color
+ * \param [in] size         Integer font size property
+ * \param [in] align        Integer alignment property
+ * \param [in] angle        Integer orientation property
+ * \param [in] py_color     PyObject color
  *
  *  \return [out] GedaPyGedaTextObject contruction data
  *
@@ -2955,26 +3000,27 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
  *  @{
  */
 
-/*! \brief Python API Library Create a New Attribute Text Object
- *  \ingroup Python_API_Attribute_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Create a New Attribute Text Object
+ * \ingroup Python_API_Attribute_Functions
+ * \par Function Description
  *  This function creates new attribute Object and returns the data to
  *  create a Python version of the Text Object.
  *
- *  \param [in] name         String for the name property
- *  \param [in] value        String for the Value property
- *  \param [in] x            Integer X location
- *  \param [in] y            Integer Y location
+ * \param [in] name         String for the name property
+ * \param [in] value        String for the Value property
+ * \param [in] x            Integer X location
+ * \param [in] y            Integer Y location
  *
- *  \param [in] visible      Boolean visibility property
- *  \param [in] show         Integer show-name-value property
- *  \param [in] align        Integer alignment property
- *  \param [in] angle        Integer orientation property
- *  \param [in] py_color     PyObject color
+ * optional: (will be assigned default values if < 0)
  *
- *  \return [out] GedaPyGedaTextObject contruction data
+ * \param [in] visible      Boolean visibility property
+ * \param [in] show         Integer show-name-value property
+ * \param [in] align        Integer alignment property
+ * \param [in] angle        Integer orientation property
+ * \param [in] py_color     PyObject color
  *
- *  \note  Optional agruments with a value of -1 will be assigned default values.
+ * \return [out] GedaPyGedaTextObject contruction data
  */
 PyObject*
 PyGeda_new_attrib(const char *name, const char *value, int x, int y,
@@ -3006,18 +3052,19 @@ PyGeda_new_attrib(const char *name, const char *value, int x, int y,
   return get_text_object_data(object);
 }
 
-/*! \brief Python API Library Get Single Attribute Object by Name
- *  \ingroup Python_API_Attribute_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Get Single Attribute Object by Name
+ * \ingroup Python_API_Attribute_Functions
+ * \par Function Description
  *  This function returns data for a single attribute associated with a given
  *  Gedaobject, when found. The returned data attribute may be attached or
  *  floating.
  *
- *  \param [in] py_object    PyGedaObject whose attribute is to be returned
- *  \param [in] name         string name of the attribute  to be returned
+ * \param [in] py_object    PyGedaObject whose attribute is to be returned
+ * \param [in] name         string name of the attribute  to be returned
  *
- *  \return [out] GedaPyGedaTextObject data if found or Py_None if an attribute was
- *                not found with the given name.
+ * \return [out] GedaPyGedaTextObject data if found or Py_None if an attribute was
+ *               not found with the given name.
  */
 PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
 {
@@ -3080,16 +3127,17 @@ PyObject *PyGeda_get_attrib(PyObject *py_object, const char *name)
   return py_data;
 }
 
-/*! \brief Python API Library Get Attribute Objects
- *  \ingroup Python_API_Attribute_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Get Attribute Objects
+ * \ingroup Python_API_Attribute_Functions
+ * \par Function Description
  *  This function provides a medthod to get all of the attributes attached to
  *  given Gedaobject and return a PyList data to contruct the attributes.
  *
- *  \param [in] py_object    PyGedaObject whose attributes are to be returned
+ * \param [in] py_object    PyGedaObject whose attributes are to be returned
  *
- *  \return [out] PyList of GedaPyGedaTextObject data for each attribute
- *                attached to Object.
+ * \return [out] PyList of GedaPyGedaTextObject data for each attribute
+ *               attached to Object.
  */
 PyObject *PyGeda_get_attribs(PyObject *py_object)
 {
@@ -3145,22 +3193,23 @@ PyObject *PyGeda_get_attribs(PyObject *py_object)
   return output_list;
 }
 
-/*! \brief Python API Library Set Attribute Objects Value
- *  \ingroup Python_API_Attribute_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Set Attribute Objects Value
+ * \ingroup Python_API_Attribute_Functions
+ * \par Function Description
  *  This function sets the value of an attribute given the name of the attribute
  *  OR the parent Object. If the Attribute being set is a floating type, then the
  *  attribute is promoted to the parent. If the Attribute does not exist, whether
  *  inherited or not, a new attribute is created and attached to the parent.
  *
- *  \param [in] py_complex PyObject Complex parent of the attribute
- *  \param [in] py_attrib  PyObject AttributeObject, aka PyGedaTextObject
- *  \param [in] name       string name of the attribute to be set (or created)
- *  \param [in] value      string value of the attribute
- *  \param [in] ret_obj    integer flag, if True, then return attribute data
+ * \param [in] py_complex PyObject Complex parent of the attribute
+ * \param [in] py_attrib  PyObject AttributeObject, aka PyGedaTextObject
+ * \param [in] name       string name of the attribute to be set (or created)
+ * \param [in] value      string value of the attribute
+ * \param [in] ret_obj    integer flag, if True, then return attribute data
  *
- *  \return GedaPyGedaTextObject construction data if the 4th argument is True,
- *          otherwise Py_None is returned.
+ * \return GedaPyGedaTextObject construction data if the 4th argument is True,
+ *         otherwise Py_None is returned.
  */
 PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
                             const char *name, const char *value, int ret_obj)
@@ -3226,15 +3275,16 @@ PyObject *PyGeda_set_attrib(PyObject *py_complex, PyObject *py_attrib,
   return py_data;
 }
 
-/*! \brief Python API Library Refresh PyPyGedaObject Attributes
- *  \ingroup Python_API_Attribute_Functions
- *  \par Function Description
+/*!
+ * \brief Python API Library Refresh PyPyGedaObject Attributes
+ * \ingroup Python_API_Attribute_Functions
+ * \par Function Description
  *  This updates attributes that were modified in Python scripts after a
- * complex object associates with the attributes was placed (on a page).
+ *  complex object associates with the attributes was placed (on a page).
  *
- *  \param [in] py_object PyObject Complex parent of attributes to be updated
+ * \param [in] py_object PyObject Complex parent of attributes to be updated
  *
- *  \return status True on success, False if an error occurs.
+ * \return status True on success, False if an error occurs.
  */
 int PyGeda_refresh_attribs(PyObject *py_object)
 {
@@ -3297,21 +3347,21 @@ static GedaList *get_connected(GedaObject* o_net)
   return network;
 }
 
-/*! \brief Python API Library Get Network
- *  \ingroup Python_API_Connections
- *  \par Function Description
+/*!
+ * \brief Python API Library Get Network
+ * \ingroup Python_API_Connections
+ * \par Function Description
  *  This function use the helper function interconnected to collect all
  *  geometrically connected "conductive" objects; Net, Buses and Pins,
  *  that are connected to the object with the \a sid on page \a pid.
  *
- *  \param [in] pid    Integer, the page id of the page to search
- *  \param [in] sid    Integer, the sequence id of Object whose connections are to found
- *  \param [in] filter Interer, filter to indicate the type of objects to be returned
+ * \param [in] pid    Integer, the page id of the page to search
+ * \param [in] sid    Integer, the sequence id of Object whose connections are to found
+ * \param [in] filter Interer, filter to indicate the type of objects to be returned
  *
- *  \return PyList of all objects connected to sid, inclusive of the object
- *          itself, unless excluded by the filter, inclusive of the object
- *          itself, unless excluded by the filter.
- *
+ * \return PyList of all objects connected to sid, inclusive of the object
+ *         itself, unless excluded by the filter, inclusive of the object
+ *         itself, unless excluded by the filter.
  */
 PyObject *PyGeda_get_network( int pid, int sid, int filter )
 {
@@ -3484,18 +3534,19 @@ static PyObject *get_cue_locations(PyObject *py_objects, int flag)
   return py_list;
 }
 
-/*! \brief Python API Library Get Coordinates of Junctions for Objects
- *  \ingroup Python_API_Connections
- *  \par Function Description
+/*!
+ * \brief Python API Library Get Coordinates of Junctions for Objects
+ * \ingroup Python_API_Connections
+ * \par Function Description
  *  This function provides an API to libgeda to obtain X-Y coordinates
  *  data of where junctions occur, normally where nets cross or meet.
  *  Junctions are used for illustion purposes.
  *
- *  \param [in] py_objects The object whose juctions are to be returned
+ * \param [in] py_objects The object whose juctions are to be returned
  *
- *  \return [out] PyList of order integer pairs representing points
- *                where a junction occurs or an empty list if none
- *                where found.
+ * \return [out] PyList of order integer pairs representing points
+ *               where a junction occurs or an empty list if none
+ *               where found.
  *  example:
  *
  *        junctions = geda.get_junctions(network)
@@ -3509,17 +3560,18 @@ PyObject  *PyGeda_get_junctions (PyObject *py_objects)
   return get_cue_locations(py_objects, 1);
 }
 
-/*! \brief Python API Library Get Coordinates of Unconnnected Objects
- *  \ingroup Python_API_Connections
- *  \par Function Description
+/*!
+ * \brief Python API Library Get Coordinates of Unconnnected Objects
+ * \ingroup Python_API_Connections
+ * \par Function Description
  *  This function provides an API to libgeda to obtain X-Y coordinates
  *  data of unconnected object, normally pins and nets.
  *
- *  \param [in] py_objects Must contain only PyGedaObjects to analyzed
+ * \param [in] py_objects Must contain only PyGedaObjects to analyzed
  *
- *  \return [out] PyList of order integer pairs representing points
- *                where objects are disconnected or an empty list if
- *                none where found.
+ * \return [out] PyList of order integer pairs representing points
+ *               where objects are disconnected or an empty list if
+ *               none where found.
  */
 PyObject *PyGeda_get_unconnected (PyObject *py_objects)
 {

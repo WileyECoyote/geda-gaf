@@ -1,19 +1,16 @@
+2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Reformat function documentation.
+
 2019-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fi.po: Update Finnish translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/sv.po: Update Swedish translations.
 
 2019-01-14 Wiley E. Hill <wileyhill@gmail.com>
