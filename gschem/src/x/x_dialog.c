@@ -3862,9 +3862,13 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
  */
 void x_dialog_symbol_changed(GschemToplevel *w_current)
 {
-  if (w_current->toplevel && Current_Page) {
+  Page *page_current;
 
-    if (w_current->toplevel->page_current->major_changed_refdes) {
+  page_current = gschem_toplevel_get_current_page (w_current);
+
+  if (page_current) {
+
+    if (geda_page_get_changed_refdes(page_current)) {
 
       GtkWidget *dialog;
       GtkWidget *close_butt;
