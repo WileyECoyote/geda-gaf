@@ -1,14 +1,20 @@
+2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/path.c: Add usage function documentation.
+
+    * src/shell.c: Add usage function documentation.
+
 2019-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/config.c: Add usage function documentation.
 
-    * gaf/src/export.c: Add usage function documentation and fix indentation.
+    * src/export.c: Add usage function documentation and fix indentation.
 
     * src/gaf.c: Add usage function documentation and update warranty clause.
 
 2019-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * gaf/src/export.c: Remove g_assert and output a message about what
+    * src/export.c: Remove g_assert and output a message about what
       really occured, and then return from export_layout_page.
 
 2019-01-08 Wiley E. Hill <wileyhill@gmail.com>

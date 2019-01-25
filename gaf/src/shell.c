@@ -44,8 +44,13 @@ static struct gaf_option shell_long_options[] =
     {NULL,     0, NULL, 0},
   };
 
-static void
-shell_usage (void)
+/*!
+ * \brief Print brief gaf shell usage information and exit.
+ * \par Function Description
+ *  Print brief help message describing gaf shell usage & command-line
+ *  options.
+ */
+static void shell_usage (void)
 {
   printf (_("Usage: gaf shell [OPTION ...]\n"
   "\n"
