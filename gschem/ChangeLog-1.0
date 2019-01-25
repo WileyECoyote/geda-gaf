@@ -5,7 +5,9 @@
       to retrieve the list of symbols with major changes.
 
     * src/x/x_menus.c: Revise x_menu_clear_recent_file_list to use iter
-      for the pointer to the list.
+      for the pointer to the list. Revise x_menu_recent_files_load to
+      reallocate string arrays to recent_files and use g_strfreev to
+      free the array of pointer returned from geda_keyfile_get_string_list.
 
 2018-01-23 Wiley E. Hill <wileyhill@gmail.com>
 

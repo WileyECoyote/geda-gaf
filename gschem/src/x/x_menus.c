@@ -2673,8 +2673,8 @@ void x_menu_recent_files_load()
    }
 
    while(len > 0) {
-      len--;
-      recent_files = g_list_prepend(recent_files, list[len]);
+     len--;
+     recent_files = g_list_prepend(recent_files, geda_strdup(list[len]));
    }
 
    if (verbose_mode) {
@@ -2684,7 +2684,7 @@ void x_menu_recent_files_load()
       geda_log("%s %s\n", log_msg, file);
    }
 
-   GEDA_FREE(list);
+   g_strfreev(list);
    GEDA_FREE(file);
 
    geda_keyfile_free(keyfile);
