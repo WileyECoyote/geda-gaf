@@ -1,6 +1,7 @@
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/libgedathon.c: Reformat function documentation.
+    * src/libgedathon.c: Revise PyGeda_get_network to return an empty list
+      instead of an empty string, and reformat function documentation.
 
 2019-01-19 Wiley E. Hill <wileyhill@gmail.com>
 

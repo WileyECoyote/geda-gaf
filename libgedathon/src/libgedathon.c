@@ -3443,7 +3443,7 @@ PyObject *PyGeda_get_network( int pid, int sid, int filter )
     GEDA_UNREF(network);
   }
   else {
-    py_list = Py_BuildValue("");
+    py_list = Py_BuildValue("()");
   }
 
   return py_list;
