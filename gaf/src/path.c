@@ -49,6 +49,12 @@ static struct gaf_option path_long_options[] =
     {"user",    0, NULL, 'u'},
   };
 
+/*!
+ * \brief Print brief gaf path usage information and exit.
+ * \par Function Description
+ *  Print brief help message describing gaf path usage & command-line
+ *  options.
+ */
 static void path_usage (void)
 {
   printf (_("Usage: gaf path [OPTION] [which-path]\n"
