@@ -2236,12 +2236,13 @@ static void x_menu_update_recent_files(void)
  */
 static void x_menu_clear_recent_file_list(void *data)
 {
-   GList *p;
+   GList *iter;
 
-   p = recent_files;
-   while(p) {
-      GEDA_FREE(p->data);
-      p = g_list_next(p);
+   iter = recent_files;
+
+   while (iter) {
+      GEDA_FREE(iter->data);
+      iter = g_list_next(iter);
    }
    g_list_free(recent_files);
    recent_files = NULL;

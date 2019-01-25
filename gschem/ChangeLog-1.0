@@ -4,6 +4,9 @@
       gschem_toplevel_get_current_page and geda_page_get_changed_refdes
       to retrieve the list of symbols with major changes.
 
+    * src/x/x_menus.c: Revise x_menu_clear_recent_file_list to use iter
+      for the pointer to the list.
+
 2018-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/base/gschem_status_bar.c: Add function documentation.
