@@ -21,6 +21,13 @@ static GHashTable *dockbox_hash = NULL;
 /*! \internal gobject_class->finalize */
 static void geda_dock_box_finalize (GObject *object)
 {
+  GedaDockBox *dockbox = (GedaDockBox*)object;
+
+  if (dockbox->docks) {
+    g_list_free(dockbox->docks);
+    dockbox->docks = NULL;
+  }
+
   if (g_hash_table_remove (dockbox_hash, object)) {
     if (!g_hash_table_size (dockbox_hash)) {
       g_hash_table_destroy (dockbox_hash);
