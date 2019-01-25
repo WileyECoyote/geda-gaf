@@ -223,6 +223,11 @@ int check_accessors(void)
       result++;
     }
 
+    if (geda_menu_item_get_use_underline (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; use underline\n", __LINE__, TWIDGET);
+      result++;
+    }
+
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */

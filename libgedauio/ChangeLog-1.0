@@ -1,3 +1,10 @@
+2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_use_underline
+
 2019-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_dockbox.c: Release the list of dockboxes when
