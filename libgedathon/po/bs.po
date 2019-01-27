@@ -126,21 +126,25 @@ msgstr "Sačuvajte sve otvorene stranice u skladište."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Vraća true ako je objekt Geda kontejner, inače false."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Vraća pravokutne granice objekta."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Dohvatite objekt iz Geda kontejnera"
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Dohvatite sve objekte koji pripadaju stranici."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Dodajte objekt na stranicu ili drugi objekt."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
