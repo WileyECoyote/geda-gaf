@@ -124,25 +124,30 @@ msgstr "Stoor die bladsy met 'n nuwe lêernaam."
 msgid "Save all opened pages to storage."
 msgstr "Stoor alle oop bladsye op stoorplek."
 
+# Returns true if object is a Geda container, otherwise false
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Wys waar as voorwerp 'n Geda-houer is, andersins vals."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Wys die reghoekige grense van 'n voorwerp."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Haal 'n voorwerp uit 'n Geda-houer."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
 msgstr "Haal lys van alle bladsye op."
 
+# Add an object to a page or another object.
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Voeg 'n voorwerp by 'n bladsy of 'n ander voorwerp."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
