@@ -121,9 +121,10 @@ msgstr "یک شی از یک را بازیابی کنید GedaCapsule."
 msgid "Retrieve all objects belonging to a page."
 msgstr "یک شی را به یک صفحه یا یک شی دیگری اضافه کنید."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "یک شی را به یک صفحه یا یک شی دیگر اضافه کنید."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."

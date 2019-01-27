@@ -16,6 +16,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/fa.po: Update Persian translations.
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_get_network to return an empty list
