@@ -108,21 +108,25 @@ msgstr "Deseu totes les pàgines obertes a l'emmagatzematge."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Retorna True; l'objecte és un GedaCapsule, altrament False."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Retorna els límits rectangulars d'un objecte."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Recupera tots els objectes que pertanyen a una pàgina."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Recupera tots els objectes que pertanyen a una pàgina"
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Afegiu un objecte a una pàgina o a un altre objecte."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
