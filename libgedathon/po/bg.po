@@ -137,21 +137,28 @@ msgstr "Запазете всички отворени страници в хр�
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Връща True е обект GedaCapsule, в противен случай False."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Връща правоъгълните граници на обект."
 
+# Retrieve an object from a Geda container
+# Vzemete obekt ot konteĭner na Geda
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Вземете обект от контейнер на Geda"
 
+# Retrieve all objects belonging to a page
+# Izvlichane na vsichki obekti, prinadlezhashti kŭm dadena stranitsa
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Извличане на всички обекти, принадлежащи към дадена страница."
 
+# Add an object to a page or another object
+# Dobavete obekt kŭm stranitsa ili drug obekt
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Добавете обект към страница или друг обект."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."

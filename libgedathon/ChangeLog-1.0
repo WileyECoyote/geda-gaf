@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_get_network to return an empty list
