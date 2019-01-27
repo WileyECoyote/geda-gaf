@@ -137,21 +137,28 @@ msgstr "احفظ جميع الصفحات المفتوحة للتخزين."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "إرجاع صحيح إذا كان الكائن عبارة عن حاوية Geda ، وإلا كاذب."
 
+# Returns the rectangular boundaries of an object
+# yarjie alhudud almustatilat lilkayin
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "يرجع الحدود المستطيلة للكائن."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "استرداد كائن من حاوية Geda."
 
+# Retrieve all objects belonging to a page
+# aistirdad kl alkayinat alty tantami 'iilaa safha
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "استرداد كل الكائنات التي تنتمي إلى صفحة."
 
+# Add an object to a page or another object.
+# 'iidafatan kayin 'iilaa safhat 'aw kayin akhar
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "إضافة كائن إلى صفحة أو كائن آخر."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
