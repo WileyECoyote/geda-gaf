@@ -106,21 +106,25 @@ msgstr "Gem alle åbne sider til lagerplads."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Returnerer True er objektet er en GedaCapsule, ellers False."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Returnerer de rektangulære grænser for et objekt."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Hent et objekt fra en Geda-beholder."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Hent alle objekter, der tilhører en side."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Tilføj et objekt på en side eller et andet objekt."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
