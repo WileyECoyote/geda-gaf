@@ -145,25 +145,34 @@ msgstr "Αποθηκεύστε τη σελίδα χρησιμοποιώντας 
 msgid "Save all opened pages to storage."
 msgstr "Αποθηκεύστε όλες τις ανοιχτές σελίδες στην αποθήκευση."
 
+# Epistréfei to true an to antikeímeno eínai docheío Geda, alliós eínai psevdés
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr ""
+msgstr "Επιστρέφει το true αν το αντικείμενο είναι δοχείο Geda, αλλιώς είναι ψευδές."
 
+# Returns the rectangular boundaries of an object
+# Epistréfei ta orthogónia ória enós antikeiménou
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Επιστρέφει τα ορθογώνια όρια ενός αντικειμένου."
 
+# Retrieve an object from a Geda container
+# Anáktisi enós antikeiménou apó éna docheío Geda
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Ανάκτηση ενός αντικειμένου από ένα δοχείο Geda."
 
+# Retrieve all objects belonging to a page
+# Anaktíste óla ta antikeímena pou aníkoun se mia selída
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Ανακτήστε όλα τα αντικείμενα που ανήκουν σε μια σελίδα"
 
+# Add an object to a page or another object.
+# Prosthéste éna antikeímeno se mia selída í állo antikeímeno
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Προσθέστε ένα αντικείμενο σε μια σελίδα ή άλλο αντικείμενο."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
