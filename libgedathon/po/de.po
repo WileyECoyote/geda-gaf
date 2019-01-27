@@ -116,21 +116,25 @@ msgstr "Speichern Sie alle geöffneten Seiten im Speicher."
 msgid "Returns True if object is a GedaCapsule, otherwise False."
 msgstr "Rückgabe True ist Objekt ist eine GedaCapsule."
 
+# Returns the rectangular boundaries of an object
 #: libgedathon/include/geda_module.h:74
 msgid "Returns the rectangular boundaries of an object."
-msgstr ""
+msgstr "Gibt die rechteckigen Grenzen eines Objekts zurück."
 
+# Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr ""
+msgstr "Rufen Sie ein Objekt aus einem Geda-Container ab."
 
+# Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "Rufen Sie alle zu einer Seite gehörenden Objekte ab."
 
+# Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "Fügen Sie ein Objekt zu einer Seite oder einem anderen Objekt hinzu."
 
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
