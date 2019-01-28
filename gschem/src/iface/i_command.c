@@ -4271,7 +4271,7 @@ COMMAND (do_update)
     GList *iter;
 
     /* Updating components modifies the selection. Therefore, create a
-     * new list of only the Complex Object from the current selection,
+     * new list of only the Complex objects from the current selection,
      * then iterate over that new list to perform the update. */
     selection = geda_list_get_glist (toplevel->page_current->selection_list);
     for (iter = selection; iter != NULL; NEXT(iter)) {
