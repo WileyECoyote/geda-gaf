@@ -29,7 +29,7 @@ T 700 200 5 8 0 1 0 8 1
 pintype=pas
 }
 T 200 900 5 10 0 1 0 0 1
-device=VARIABLE_CAPACITOR
+device=CAPACITOR
 T 200 500 8 10 1 1 0 0 1
 refdes=C?
 T 200 1300 5 10 0 1 0 0 1
