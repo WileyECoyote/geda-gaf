@@ -1,8 +1,10 @@
 v 20150401 2
 T 200 500 5 10 0 1 0 0 1
-device=MUTUAL
+device=INDUCTOR
 T 200 300 8 10 1 1 0 0 1
 refdes=L?
+T 200 500 5 10 0 1 0 0 1
+description=INDUCTOR
 P 900 100 800 100 1 0 0
 {
 T 850 150 5 8 1 1 0 0 1
@@ -40,7 +42,7 @@ V 778 221 13 6 0 0 0 -1 -1 1 -1 -1 1 -1 1
 T 500 300 8 10 1 1 0 0 1
 value=1H
 T 1000 300 9 10 0 1 0 0 1
-footprint=DRQ-127
+footprint=unknown
 T 200 1300 5 10 0 0 0 0 1
 numslots=2
 T 200 900 5 10 0 0 0 0 1
