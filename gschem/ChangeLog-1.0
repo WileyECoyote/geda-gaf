@@ -1,6 +1,8 @@
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Reduce the scope of object_list in do_snap.
+      Revise do_update to use getters gschem_toplevel_get_current_page
+      and geda_page_get_selection_list to retrieve the selection list.
 
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 

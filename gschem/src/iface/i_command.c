@@ -4264,8 +4264,7 @@ COMMAND (do_update)
 
   if (o_select_is_selection(w_current)) {
 
-    GedaToplevel *toplevel = w_current->toplevel;
-
+    Page  *p_current;
     GList *selection;
     GList *selected_components = NULL;
     GList *iter;
@@ -4273,7 +4272,8 @@ COMMAND (do_update)
     /* Updating components modifies the selection. Therefore, create a
      * new list of only the Complex objects from the current selection,
      * then iterate over that new list to perform the update. */
-    selection = geda_list_get_glist (toplevel->page_current->selection_list);
+    p_current = gschem_toplevel_get_current_page(w_current);
+    selection = geda_page_get_selection_list (p_current);
     for (iter = selection; iter != NULL; NEXT(iter)) {
       GedaObject *o_current = (GedaObject*) iter->data;
       if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
