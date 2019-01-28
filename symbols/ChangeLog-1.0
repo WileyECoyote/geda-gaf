@@ -13,6 +13,8 @@
             * passive/capacitor/capacitor-variable-1.sym
             * passive/capacitor/capacitor-variable-2.sym
 
+    * passive/electrolytic/capacitor-2.sym: Add footprint attribute.
+
 
 2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
