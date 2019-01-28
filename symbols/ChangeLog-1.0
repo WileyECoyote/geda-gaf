@@ -1,3 +1,9 @@
+2018-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/zener53: Add symbols for 5 Watt zener diodes:
+
+            * diode/zener53/zener_91_1N5377B.sym
+
 2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74L/74LS74-2.sym: Remove over-bar from PRESET pin label.
