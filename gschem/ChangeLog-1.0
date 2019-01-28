@@ -5,6 +5,8 @@
       and geda_page_get_selection_list to retrieve the selection list
       and replace first for loop with a while loop.
 
+    * src/object/o_edit.c: Add o_edit_set_selectable function documentation.
+
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Revise xd_add_changed_symbol_list to use getters

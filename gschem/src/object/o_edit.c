@@ -521,6 +521,20 @@ void o_edit_rotate_world(GschemToplevel *w_current,
   i_status_action_stop(w_current);
 }
 
+/*!
+ * \brief Gschem Set Object Selectable
+ * \par Function Description
+ *  This function sets the object selectability to the given
+ *  state and handles changing the color index of the object
+ *  by setting the color to LOCK_COLOR when locking or to
+ *  object->locked_color when unlocking.
+ *
+ * \param [in] w_current    The GschemToplevel object
+ * \param [in] object       The Object being modified
+ * \param [in] state        Whether to set object selectable or not
+ *
+ * \returns TRUE if the Object was hit, otherwise FALSE.
+ */
 void o_edit_set_selectable(GschemToplevel *w_current, GedaObject *object, bool state)
 {
   if (GEDA_IS_OBJECT(object)) {
