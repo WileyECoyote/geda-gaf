@@ -11,6 +11,9 @@
       to utilize geda_page_get_selection macro and revise o_select_unselect_all
       to utilize gschem_toplevel_get_current_page to retrieve the current page.
 
+    * src/object/o_slot.c: Rename page_current -> p_current in o_slot_end and
+      clean code, somewhat.
+
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Revise xd_add_changed_symbol_list to use getters

@@ -145,17 +145,18 @@ void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *strin
   }
   else {
 
-    Page *page_current;
+    Page       *p_current;
+    GedaObject *new_obj;
 
     /* Add the slot attribute since it does not exist */
-    GedaObject *new_obj = geda_text_object_new (ATTRIBUTE_COLOR,
-                                  object->complex->x, object->complex->y,
-                                  LOWER_LEFT, 0, /* zero is angle */
-                                  10, INVISIBLE, SHOW_NAME_VALUE, string);
+    new_obj = geda_text_object_new (ATTRIBUTE_COLOR,
+                                    object->complex->x, object->complex->y,
+                                    LOWER_LEFT, 0, /* zero is angle */
+                                    10, INVISIBLE, SHOW_NAME_VALUE, string);
 
-    page_current = geda_toplevel_get_current_page(w_current->toplevel);
+    p_current = geda_toplevel_get_current_page(w_current->toplevel);
 
-    geda_struct_page_append_object (page_current, new_obj);
+    geda_struct_page_append_object (p_current, new_obj);
 
     /* manually attach attribute */
     geda_attrib_object_attach (object, new_obj, FALSE);
