@@ -674,7 +674,7 @@ o_select_get_count(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
-  return !page ? 0 : g_list_length(page->selection_list->glist);
+  return !page ? 0 : g_list_length(geda_page_get_selection(page));
 }
 
 /*!
@@ -689,7 +689,7 @@ o_select_is_selection(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
-  return !page ? 0 : (page->selection_list->glist != FALSE);
+  return !page ? 0 : (geda_page_get_selection(page) != FALSE);
 }
 
 /*!

@@ -7,6 +7,9 @@
 
     * src/object/o_edit.c: Add o_edit_set_selectable function documentation.
 
+    * src/object/o_select.c: Revise o_select_get_count and o_select_is_selection
+      to utilize geda_page_get_selection macro.
+
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Revise xd_add_changed_symbol_list to use getters
