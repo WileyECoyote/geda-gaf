@@ -15,6 +15,10 @@
 
     * passive/electrolytic/capacitor-2.sym: Add footprint attribute.
 
+    * passive/inductor: Add description attribute and update footprint
+      attribute to unknown:
+
+            * passive/inductor/inductor-coupled-1.sym
 
 2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
