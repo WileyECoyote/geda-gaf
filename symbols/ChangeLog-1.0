@@ -5,6 +5,11 @@
             * diode/zener53/zener_91_1N5377B.sym
             * diode/zener53/zener_100_1N5378B.sym
 
+    * passive/capacitor: Change device attribute from VARIABLE_CAPACITOR to
+      CAPACITOR:
+
+            * passive/capacitor/capacitor-2x-gang-1.sym
+
 
 2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
