@@ -1816,12 +1816,14 @@ COMMAND (do_snap)
 {
   BEGIN_W_COMMAND(do_snap);
 
-  GList *object_list;
-
-  object_list = geda_list_get_glist (Current_Selection);
-
   if (o_select_is_selection(w_current)) {
+
+    GList *object_list;
+
+    object_list = geda_list_get_glist (Current_Selection);
+
     o_redraw_cleanstates(w_current);
+
     o_edit_snap (w_current, object_list);
   }
   else {
