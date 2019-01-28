@@ -4274,15 +4274,22 @@ COMMAND (do_update)
      * then iterate over that new list to perform the update. */
     p_current = gschem_toplevel_get_current_page(w_current);
     selection = geda_page_get_selection_list (p_current);
-    for (iter = selection; iter != NULL; NEXT(iter)) {
-      GedaObject *o_current = (GedaObject*) iter->data;
+
+    while (selection) {
+
+      GedaObject *o_current = (GedaObject*)selection->data;
+
       if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
         selected_components = g_list_prepend (selected_components, o_current);
       }
+
+      NEXT (selection);
     }
 
     for (iter = selected_components; iter != NULL; NEXT(iter)) {
-      GedaObject *o_current = (GedaObject*) iter->data;
+
+      GedaObject *o_current = (GedaObject*)iter->data;
+
       iter->data = o_edit_update_component (w_current, o_current);
     }
 

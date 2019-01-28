@@ -2,7 +2,8 @@
 
     * src/iface/i_command.c: Reduce the scope of object_list in do_snap.
       Revise do_update to use getters gschem_toplevel_get_current_page
-      and geda_page_get_selection_list to retrieve the selection list.
+      and geda_page_get_selection_list to retrieve the selection list
+      and replace first for loop with a while loop.
 
 2018-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
