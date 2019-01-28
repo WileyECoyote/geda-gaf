@@ -707,8 +707,11 @@ o_select_unselect_all(GschemToplevel *w_current)
 {
   if (o_select_is_selection(w_current)) {
 
-    GedaToplevel *toplevel  = w_current->toplevel;
-    SELECTION    *selection = toplevel->page_current->selection_list;
+    Page      *p_current;
+    SELECTION *selection;
+
+    p_current = gschem_toplevel_get_current_page(w_current);
+    selection = p_current->selection_list;
 
     if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
