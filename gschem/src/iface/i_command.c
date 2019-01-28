@@ -1810,7 +1810,7 @@ COMMAND (do_rotate_right)
  * \brief i_cmd_do_snap in i_command_Edit_Actions
  * \par Function Description
  *  Responses to edit-snap actions, simply by passing the list of
- *  currently selected objects to he o_edit_snap function.
+ *  currently selected objects to the function o_edit_snap.
  */
 COMMAND (do_snap)
 {
