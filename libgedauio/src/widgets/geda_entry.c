@@ -352,15 +352,16 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
     }
 }
 
-/*! \brief Entry Stop Activate Default signal Responder
- *  \par Function Description
+/*!
+ * \brief Entry Stop Activate Default signal Responder
+ * \par Function Description
  *  This function exist to stop GTK-2 from activating the
  *  the default widget when an "Enter" key is press. The
  *  GtkEntry gtk_entry_set_activates_default function does
  *  not work correclty, the default widget will eventually
  *  see the signal regardless of the setting.
  *
- *  \param [in] entry The GedaEntry object
+ * \param [in] entry The GedaEntry object
  */
 static void geda_entry_real_activate (GedaEntry *entry)
 {
@@ -1052,19 +1053,20 @@ static bool geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *da
   return handled;
 }
 
-/*! \brief GedaEntry Internal Compare n characters ignoring case.
- *  \par Function Description
+/*!
+ * \brief GedaEntry Internal Compare n characters ignoring case.
+ * \par Function Description
  *  Another garden varity string compare using toupper
  *  on both inputs. This is somthimes found in standard.
  *  libraries but not always.
  *
- *  \param [in] str1  is the string to be search
- *  \param [in] str2  is the string to search for
- *  \param [in] n     is the number of char to compare
+ * \param [in] str1  is the string to be search
+ * \param [in] str2  is the string to search for
+ * \param [in] n     is the number of char to compare
  *
- *  \retval 0 if the strings are equivalent, -1 if str2 if
- *            first mis-match is because str2 is greater, or 1 if the
- *            first mis-match is because str1 is greater.
+ * \retval 0 if the strings are equivalent, -1 if str2 if
+ *           first mis-match is because str2 is greater, or 1 if the
+ *           first mis-match is because str1 is greater.
  */
 static int geda_entry_strncmpi(char *str1, char *str2, int n)
 {

@@ -2,6 +2,8 @@
 
     * src/widgets/geda_dockbox.c: Add Doxygen group GedaDockBox.
 
+    * src/widgets/geda_entry.c: Update documentation format.
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_menu_separator.c: Check response from GedaMenuItem
