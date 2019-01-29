@@ -1874,7 +1874,6 @@ void geda_entry_set_selected_text (GedaEntry *entry, const char *text)
 
   g_return_if_fail (GEDA_IS_ENTRY (entry));
 
-
   editable = GTK_EDITABLE (entry);
   selected = gtk_editable_get_selection_bounds (editable, &start, &end);
 
