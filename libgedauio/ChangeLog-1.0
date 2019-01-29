@@ -4,6 +4,9 @@
 
     * src/widgets/geda_entry.c: Update documentation format.
 
+    * src/widgets/geda_menu.c: Explicitly shift right instead of dividing
+      by 2 in geda_menu_position.
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_menu_separator.c: Check response from GedaMenuItem

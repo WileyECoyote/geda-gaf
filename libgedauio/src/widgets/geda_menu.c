@@ -5242,8 +5242,8 @@ static void geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
      * + Xinerama together they'd probably want something
      * fancier; but that is likely to be vanishingly rare.
      */
-    x = MAX (0, (gdk_screen_get_width (screen) - requisition.width) / 2);
-    y = MAX (0, (gdk_screen_get_height (screen) - requisition.height) / 2);
+    x = MAX (0, (gdk_screen_get_width (screen) - requisition.width) >> 1); /* divide by 2 */
+    y = MAX (0, (gdk_screen_get_height (screen) - requisition.height) >> 1); /* divide by 2 */
   }
 
   private = menu->priv;
