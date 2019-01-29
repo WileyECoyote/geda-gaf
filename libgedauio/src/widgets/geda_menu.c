@@ -5957,4 +5957,4 @@ void geda_menu_widget_set_title (GtkWidget *menu, const char *title)
   geda_menu_set_title ((GedaMenu*)menu, title);
 }
 
-/** @} geda-menu */
+/** @} end group geda-menu */
