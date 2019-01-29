@@ -60,7 +60,7 @@
  * \par
  * A GedaComboBoxText is a complex variant of GtkButton use for selecting
  * fonts. The button label displays the font information, option using the
- * current font. When the user click the button the #GedaFontDialog is
+ * current font. When the user clicks the button the #GedaFontDialog is
  * displayed. The button is automatically updated when the #GedaFontDialog
  * closes.
  *
