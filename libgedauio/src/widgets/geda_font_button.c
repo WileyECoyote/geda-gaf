@@ -303,6 +303,7 @@ static bool font_description_style_equal (const PangoFontDescription *a,
           pango_font_description_get_variant (a) == pango_font_description_get_variant (b));
 
 }
+
 /*!
  * \brief Font Button Update Font Data
  * \par Function Description
@@ -462,7 +463,6 @@ static void geda_font_button_update_from_name (GedaFontButton *font_button)
   geda_font_button_update_font_data (font_button);
 
   GEDA_OBJECT_NOTIFY (font_button, "font-name");
-
 }
 
 /*! gobject_class->set_property
