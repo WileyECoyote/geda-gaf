@@ -5465,9 +5465,9 @@ static void geda_menu_stop_scrolling (GedaMenu *menu)
   geda_menu_remove_scroll_timeout (menu);
 
   if (!menu->priv->touchscreen_mode) {
-      menu->upper_arrow_prelight = FALSE;
-      menu->lower_arrow_prelight = FALSE;
-    }
+    menu->upper_arrow_prelight = FALSE;
+    menu->lower_arrow_prelight = FALSE;
+  }
 }
 
 static void geda_menu_scroll_to (GedaMenu *menu, int offset)
