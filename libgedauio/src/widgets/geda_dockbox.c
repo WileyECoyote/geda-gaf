@@ -13,6 +13,13 @@
 
 #include <geda_debug.h>
 
+/**
+ * \brief GedaDockBox - A Widget container to hold Handleboxes
+ * \par
+ * \defgroup GedaDockBox
+ * @{
+ */
+
 static void *geda_dock_box_parent_class = NULL;
 
 /* Table of pointers to GedaDockBox instances */
@@ -247,4 +254,5 @@ void geda_dock_widget_add (GtkWidget *dockbox, GtkWidget *child, int location)
   gtk_box_pack_start (box, child, FALSE, FALSE, 0);
 }
 
-/** @} GedaDockBoxFunctions */
+/** @} end group GedaDockBoxFunctions */
+/** @} end group GedaDockBox */

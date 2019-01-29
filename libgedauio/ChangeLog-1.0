@@ -1,3 +1,7 @@
+2019-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_dockbox.c: Add Doxygen group GedaDockBox.
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_menu_separator.c: Check response from GedaMenuItem
