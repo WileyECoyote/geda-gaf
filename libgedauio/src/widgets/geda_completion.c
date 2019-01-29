@@ -358,7 +358,6 @@ geda_completion_complete_utf8 (GedaCompletion  *comp,
  *          not be changed.
  *
  * \sa geda_completion_complete_utf8
- *
  */
 GList*
 geda_completion_complete (GedaCompletion *comp, const char *prefix, char **new_prefix)
