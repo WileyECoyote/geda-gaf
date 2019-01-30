@@ -147,15 +147,15 @@ geda_option_menu_item_finalize (GObject *object)
   ((GObjectClass*)geda_option_menu_parent_class)->finalize (object);
 }
 
-/*! \brief GedaOptionMenu Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaOptionMenu Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class      GedaOptionMenu class we are initializing
- *  \param [in]  class_data GedaOptionMenu structure associated with the class
+ * \param [in]  class      GedaOptionMenu class we are initializing
+ * \param [in]  class_data GedaOptionMenu structure associated with the class
  */
 static void
 geda_option_menu_class_init(void *class, void *class_data)
@@ -225,14 +225,14 @@ geda_option_menu_class_init(void *class, void *class_data)
   gtk_widget_class_install_style_property (widget_class, params);
 }
 
-/*! \brief Type instance initializer for GedaOptionMenu
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for GedaOptionMenu
+ * \par Function Description
  *  Type instance initializer for GedaOptionMenu, initializes a new empty
  *  GedaOptionMenu object.
  *
- *  \param [in] instance The GedaOptionMenu structure being initialized,
- *  \param [in] class    The GedaOptionMenu class being initializing.
+ * \param [in] instance The GedaOptionMenu structure being initialized,
+ * \param [in] class    The GedaOptionMenu class being initializing.
  */
 static void
 geda_option_menu_instance_init(GTypeInstance *instance, void *class)
@@ -259,16 +259,16 @@ geda_option_menu_instance_init(GTypeInstance *instance, void *class)
   g_hash_table_replace (option_menu_hash, instance, instance);
 }
 
-/*! \brief Retrieve GedaOptionMenu's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaOptionMenu's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaOptionMenu Type identifier. When
  *  first called, the function registers a #GedaOptionMenu in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaOptionMenu and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaOptionMenu.
+ * \return GedaType identifier associated with GedaOptionMenu.
  */
 GedaType geda_option_menu_get_type (void)
 {
