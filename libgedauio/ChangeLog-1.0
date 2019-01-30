@@ -2,6 +2,8 @@
 
     * src/widgets/geda_entry.c: Add Doxygen subgroup geda-entry-wcvo.
 
+    * src/widgets/geda_font_button.c: Add Doxygen enumeration tags.
+
 2019-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_dockbox.c: Add Doxygen group GedaDockBox.

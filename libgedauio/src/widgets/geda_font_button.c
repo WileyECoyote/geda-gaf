@@ -68,7 +68,7 @@
  * @{
  */
 
-/* Signals */
+/*! GedaFontButton Enumerated Signals */
 enum
 {
   FONT_SET,
@@ -76,6 +76,7 @@ enum
   LAST_SIGNAL
 };
 
+/*! GedaFontButton Enumerated Properties */
 enum
 {
   PROP_0,
