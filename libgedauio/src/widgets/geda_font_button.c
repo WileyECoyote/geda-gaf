@@ -860,7 +860,6 @@ static void geda_font_button_class_init(void *g_class, void *class_data)
    * Note that this signal is only emitted when the <b>user</b>
    * changes the font. If you need to react to programmatic font changes
    * as well, use the notify::font-name signal.
-   *
    */
   font_button_signals[FONT_SET] = g_signal_new ("font-set",
                                                 G_TYPE_FROM_CLASS (gobject_class),
