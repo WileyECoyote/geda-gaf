@@ -6,6 +6,8 @@
 
     * src/widgets/geda_font_dialog.c: Add Doxygen enumeration tags.
 
+    * src/widgets/geda_option_menu.c: Add Doxygen group GedaOptionMenu.
+
 2019-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_dockbox.c: Add Doxygen group GedaDockBox.

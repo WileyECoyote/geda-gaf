@@ -36,6 +36,15 @@
 
 #include "../../include/gettext.h"
 
+/**
+ * \brief GedaOptionMenu - A Buttton Menu Widget
+ * \par
+ *  A GedaOptionMenu is derived from GtkButton class.
+ *
+ * \defgroup GedaOptionMenu
+ * @{
+ */
+
 #define CHILD_LEFT_SPACING        4
 #define CHILD_RIGHT_SPACING       1
 #define CHILD_TOP_SPACING         1
@@ -1233,3 +1242,5 @@ void geda_option_widget_set_history (GtkWidget *option_menu, unsigned int index)
 {
   geda_option_menu_set_history ((GedaOptionMenu*)option_menu, index);
 }
+
+/** @} endgroup GedaOptionMenu */
