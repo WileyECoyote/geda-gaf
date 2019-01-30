@@ -543,7 +543,7 @@ static void geda_entry_drag_data_received (GtkWidget        *widget,
   }
 }
 
-/*!
+/*! widget_class->grab_focus
  * \brief GedaEntry Grab Focus
  * \par Function Description
  * Over-rides widget_class->grab_focus. GtkEntry's grab_focus selects
@@ -555,7 +555,7 @@ static void geda_entry_grab_focus (GtkWidget *widget)
   ((GtkWidgetClass*)geda_entry_parent_class)->grab_focus (widget);
 }
 
-/*!
+/*! widget_class->realize
  * \brief GedaEntry Realize
  * \par Function Description
  * Over-rides widget_class->realize, chains-up and then retrieves
@@ -582,7 +582,7 @@ static void geda_entry_realize (GtkWidget *widget)
   }
 }
 
-/*!
+/*! widget_class->unrealize
  * \brief Unrealize a GedaEntry
  * \par Function Description
  * Over-rides widget_class->unrealize to unreference the font_map
@@ -594,7 +594,6 @@ static void geda_entry_unrealize (GtkWidget *widget)
 
   if (entry->priv->font_map) {
     g_object_unref (entry->priv->font_map);
-
   }
 
   ((GtkWidgetClass*)geda_entry_parent_class)->unrealize (widget);
