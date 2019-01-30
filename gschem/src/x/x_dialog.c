@@ -208,7 +208,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
 {
   widget = gtk_check_button_new ();
   gtk_widget_show (widget);
-  gtk_box_pack_start (GTK_BOX (parent), widget, FALSE, FALSE, 0);
+  PACK_BOX (parent, widget, FALSE, FALSE, 0);
   gtk_widget_set_size_request (widget, -1, 30);
 
   /* turn off the indicator, ie box */
@@ -656,11 +656,11 @@ void snap_size_dialog (GschemToplevel *w_current)
     vbox = GTK_DIALOG(Dialog)->vbox;
 
     label = geda_aligned_label_new (_("Enter new snap grid spacing:"), 0, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
+    PACK_BOX(vbox, label, TRUE, TRUE, 0);
 
     snap_size = gtk_spin_button_new_with_range(MIN_SNAP_SIZE,MAX_SNAP_SIZE,5);
     gtk_editable_select_region( GTK_EDITABLE(snap_size), 0, -1);
-    gtk_box_pack_start(GTK_BOX(vbox), snap_size, FALSE, FALSE, 0);
+    PACK_BOX(vbox, snap_size, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(snap_size), TRUE);
     gtk_widget_grab_focus(snap_size);
 
@@ -768,12 +768,12 @@ void text_size_dialog (GschemToplevel *w_current)
     vbox = GTK_DIALOG(Dialog)->vbox;
 
     label = geda_aligned_label_new (_("Enter new text size:"), 0, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
+    PACK_BOX(vbox, label, TRUE, TRUE, 0);
 
     text_size = gtk_spin_button_new_with_range(MIN_TEXT_SIZE,
                                                MAX_TEXT_SIZE,2);
     gtk_editable_select_region( GTK_EDITABLE(text_size), 0, -1);
-    gtk_box_pack_start(GTK_BOX(vbox), text_size, FALSE, FALSE, 0);
+    PACK_BOX(vbox, text_size, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(text_size), TRUE);
     gtk_widget_grab_focus(text_size);
 
@@ -1029,7 +1029,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, GedaObject *arc_object)
     alignment = gtk_alignment_new(0,0,1,1);
     gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0,
                               0 /*DIALOG_INDENTATION */, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, FALSE, 0);
+    PACK_BOX(vbox, alignment, FALSE, FALSE, 0);
 
     table = gtk_table_new (2, 3, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
@@ -1726,7 +1726,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   table = gtk_table_new (6, 2, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
+  PACK_BOX(vbox, table, FALSE, FALSE, 0);
 
   label = geda_aligned_label_new (_("Fill Type:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
@@ -2313,7 +2313,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   table = gtk_table_new (5, 2, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
+  PACK_BOX(vbox, table, FALSE, FALSE, 0);
 
   label = geda_aligned_label_new (_("Line Type:"), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
@@ -2616,24 +2616,24 @@ void x_dialog_find_text(GschemToplevel *w_current)
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
     label = geda_aligned_label_new(_("Text to find:"), 0, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
+    PACK_BOX(vbox, label, TRUE, TRUE, 0);
 
     textentry = gtk_entry_new_with_max_length(FIND_DIALOG_MAX_ENTRY);
     gtk_editable_select_region(GTK_EDITABLE(textentry), 0, -1);
-    gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
+    PACK_BOX(vbox, textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 
     checkhidden = gtk_check_button_new_with_label(_("Search hidden attributes"));
-    gtk_box_pack_start(GTK_BOX(vbox), checkhidden, TRUE, TRUE, 2);
+    PACK_BOX(vbox, checkhidden, TRUE, TRUE, 2);
 
     checkdescend = gtk_check_button_new_with_label(_("Descend into hierarchy"));
-    gtk_box_pack_start(GTK_BOX(vbox), checkdescend, TRUE, TRUE, 2);
+    PACK_BOX(vbox, checkdescend, TRUE, TRUE, 2);
 
     alignment = g_object_new (GTK_TYPE_ALIGNMENT,
                               "left-padding",  25,
                               NULL);
-    gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
+    PACK_BOX(vbox, alignment, TRUE, TRUE, 0);
 
     checkascent = gtk_check_button_new_with_label(_("Close on ascent"));
     geda_container_add (alignment, checkascent);
@@ -2744,10 +2744,10 @@ void x_dialog_hide_text(GschemToplevel * w_current)
     vbox = (GtkBox*)GTK_DIALOG(ThisDialog)->vbox;
 
     label = geda_aligned_label_new(_("Hide text starting with:"), 0, 0);
-    gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
+    PACK_BOX(vbox, label, TRUE, TRUE, 0);
 
     textentry = gtk_entry_new_with_max_length(HIDE_DIALOG_MAX_ENTRY);
-    gtk_box_pack_start(vbox, textentry, FALSE, FALSE, 0);
+    PACK_BOX(vbox, textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 
@@ -2854,10 +2854,10 @@ void x_dialog_show_text(GschemToplevel * w_current)
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
     label = geda_aligned_label_new(_("Show text starting with:"), 0, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
+    PACK_BOX(vbox, label, TRUE, TRUE, 0);
 
     textentry = gtk_entry_new_with_max_length(SHOW_TEXT_DIALOG_MAX_ENTRY);
-    gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
+    PACK_BOX(vbox, textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
 
@@ -3008,7 +3008,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
                                       "move cursor into window, click to place text.\n"
                                       "Middle button to rotate while placing."), 0, 0);
 
-    gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
+    PACK_BOX(vbox, label, FALSE, FALSE, 0);
 
     viewport1 = gtk_viewport_new (NULL, NULL);
     gtk_widget_show (viewport1);
@@ -3018,7 +3018,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
                                    GTK_POLICY_AUTOMATIC,
                                    GTK_POLICY_AUTOMATIC);
     geda_container_add (viewport1, scrolled_window);
-    gtk_box_pack_start( GTK_BOX(vbox), viewport1, TRUE, TRUE, 0);
+    PACK_BOX(vbox, viewport1, TRUE, TRUE, 0);
 
     tientry = gtk_text_view_new();
     gtk_text_view_set_editable(GTK_TEXT_VIEW(tientry), TRUE);
@@ -3227,19 +3227,19 @@ void x_dialog_translate (GschemToplevel *w_current)
     HD_SEPARATOR (vbox, Options);
 
     label = geda_aligned_label_new(_("Offset to translate?\n(0 for origin)"), 0, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
+    PACK_BOX(vbox, label, TRUE, TRUE, 0);
 
     textentry = geda_entry_new_with_max_length (TRANSLATE_DIALOG_MAX_ENTRY);
     geda_entry_widget_set_text( textentry, "0" );
     EntrySelectAll(textentry);
     geda_entry_widget_set_activates_default(textentry, TRUE);
-    gtk_box_pack_start(GTK_BOX(vbox),textentry, FALSE, FALSE, 0);
+    PACK_BOX(vbox,textentry, FALSE, FALSE, 0);
 
     HD_SEPARATOR (vbox, Options);
 
     zoom_check_butt = gtk_check_button_new_with_mnemonic (_("Auto Zoom Extents"));
     g_object_set (zoom_check_butt, "visible", TRUE, NULL);
-    gtk_box_pack_start (GTK_BOX(vbox), zoom_check_butt, FALSE, FALSE, 0);
+    PACK_BOX (vbox, zoom_check_butt, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text(zoom_check_butt, zoom_tip);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(zoom_check_butt), TRUE);
 
@@ -3427,7 +3427,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 
     scrolled_win = gtk_scrolled_window_new (NULL, NULL);
-    gtk_box_pack_start (GTK_BOX (vbox), scrolled_win, TRUE, TRUE, 0);
+    PACK_BOX (vbox, scrolled_win, TRUE, TRUE, 0);
     g_object_set (scrolled_win, "visible", TRUE, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                     GTK_POLICY_AUTOMATIC,
@@ -3575,7 +3575,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       /* Create and add an option toggle switch */
       switch_vbox = gtk_vbox_new(FALSE, 0);
-      gtk_box_pack_start (GTK_BOX (action_hbox), switch_vbox, FALSE, FALSE, 0);
+      PACK_BOX (action_hbox, switch_vbox, FALSE, FALSE, 0);
 
       /* Setup the full-name option toggle switch */
       ShowBindingSwitch = NULL;
@@ -3759,7 +3759,7 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
                        "spacing", 12,
                        NULL);
 
-  gtk_box_pack_start (GTK_BOX (mess_area), hbox, TRUE, TRUE, 0);
+  PACK_BOX (mess_area, hbox, TRUE, TRUE, 0);
 
   /* This box contains the labels and list of changed symbols */
   vbox = g_object_new (GTK_TYPE_VBOX,
@@ -3768,7 +3768,7 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
                        "spacing", 12,
                        NULL);
 
-  gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+  PACK_BOX (hbox, vbox, FALSE, FALSE, 0);
 
     /* Primary label */
   tmp = geda_strconcat ("<big><b>", _("Major symbol changes detected."),
@@ -3813,7 +3813,7 @@ static void xd_add_changed_symbol_list (GschemToplevel   *w_current,
                          "shadow-type",       GTK_SHADOW_IN,
                          NULL);
 
-  gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
+  PACK_BOX (vbox, scroll, TRUE, TRUE, 0);
 
   list_store = gtk_list_store_new (1, G_TYPE_STRING);
   page       = gschem_toplevel_get_current_page (w_current);
