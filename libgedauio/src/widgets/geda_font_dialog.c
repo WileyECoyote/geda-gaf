@@ -52,6 +52,7 @@
  * @{
  */
 
+/*! GedaFontDialog Enumerated Properties */
 enum {
    PROP_0,
    PROP_TITLE,
@@ -63,22 +64,24 @@ enum {
    PROP_SHOW_PREVIEW
 };
 
+/*! GedaFontDialog Enumerated ListStore Family Columns */
 enum {
   FAMILY_COLUMN,
   FAMILY_NAME_COLUMN
 };
 
+/*! GedaFontDialog Enumerated ListStore Face Columns */
 enum {
   FACE_COLUMN,
   FACE_NAME_COLUMN
 };
 
+/*! GedaFontDialog Enumerated ListStore Size Columns */
 enum {
   SIZE_COLUMN
 };
 
-/* These are used as the standard font sizes, for the size list.
- */
+/* These are used as the standard font sizes, for the size list. */
 static const unsigned int font_sizes[] = {
   6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24, 26, 28,
   32, 36, 40, 48, 56, 64, 72, 96
@@ -1248,7 +1251,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (dialog->family_list));
   gtk_tree_selection_set_mode ( selection, GTK_SELECTION_BROWSE);
   dialog->family_handler = g_signal_connect (selection, "changed",
-                           G_CALLBACK ( callback_select_family ), dialog);
+                           G_CALLBACK (callback_select_family), dialog);
 
   gtk_table_attach (table, family_scroll, 0, 1, 1, 3,
                     GTK_EXPAND | GTK_FILL,
