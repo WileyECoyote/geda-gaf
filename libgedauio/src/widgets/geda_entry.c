@@ -396,6 +396,10 @@ static void geda_entry_real_activate (GedaEntry *entry)
   }
 }
 
+/** \defgroup geda-entry-wcvo GedaEntry Widget Class Virtual Overrides
+  * @{
+  */
+
 /*!
  * \brief Drag & Drop Callback when drag Begins
  * \par Function Description
@@ -598,6 +602,8 @@ static void geda_entry_unrealize (GtkWidget *widget)
 
   ((GtkWidgetClass*)geda_entry_parent_class)->unrealize (widget);
 }
+
+/** @} geda-entry-wcvo */
 
 /*!
  * \brief GedaEntry Type Class Initializer

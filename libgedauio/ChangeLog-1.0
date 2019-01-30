@@ -1,3 +1,7 @@
+2019-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Add Doxygen subgroup geda-entry-wcvo.
+
 2019-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_dockbox.c: Add Doxygen group GedaDockBox.
