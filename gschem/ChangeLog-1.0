@@ -4,6 +4,9 @@
       let Gtk check the objects, since Gtk is code is going to do it anyways
       and unlikely to fail.
 
+    * src/x/x_settings_dialog.c: Add code\endcode Doxygen tags and clean
+      function documentation.
+
 2018-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Reduce the scope of object_list in do_snap.

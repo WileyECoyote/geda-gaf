@@ -731,18 +731,22 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
     }
     foreach (list);
 }
-/*! \brief Load Tree View with string data from string array.
- *  \par Function Description
- *   This function passes each char *from an array of strings to
- *   the add_to_list function to store the item in the designated
- *   view.
+
+/*!
+ * \brief Load Tree View with string data from string array.
+ * \par Function Description
+ *  This function passes each char *from an array of strings to
+ *  the add_to_list function to store the item in the designated
+ *  view.
  *
+ * \code
  *      while (list[i]) { add_to_list(TreeView, list[i++]);}
+ * \endcode
  *
- *   The array of string can be NULL, in which case the strings are
- *   retieved using geda_struct_attrib_get. The only "list" passed to
- *   this function is the default list that is used when the config-
- *   uration data is missing.
+ *  The array of string can be NULL, in which case the strings are
+ *  retieved using geda_struct_attrib_get. The only "list" passed to
+ *  this function is the default list that is used when configuration
+ *  data is missing.
 */
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
 {
@@ -1119,8 +1123,8 @@ static void clear_attributes( void ){
 /*!
  * \brief Preferences Dialog filter_list_set_default
  * \par Function Description:
- *  This is a Group 2 support function to restore the filter list in the
- *  right Treeview using a pre-compiled string array.
+ *  This is a Group 2 support function to restore the filter list
+ *  in the right Treeview using a pre-compiled string array.
  */
 static void filter_list_set_default( void )
 {
