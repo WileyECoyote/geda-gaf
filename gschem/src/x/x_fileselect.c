@@ -308,11 +308,13 @@ x_fileselect_save (GschemToplevel *w_current)
 
         int index = geda_file_chooser_get_filter(dialog);
 
-        if (index == FILTER_SCHEMATIC)
+        if (index == FILTER_SCHEMATIC) {
           tmpname = geda_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
-        else
-          if (index == FILTER_SYMBOL)
+        }
+        else if (index == FILTER_SYMBOL) {
            tmpname = geda_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
+        }
+
         if (tmpname) {
           GEDA_FREE (filename);
           filename = tmpname;
