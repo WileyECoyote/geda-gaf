@@ -491,9 +491,12 @@ static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
   return(0);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Array Dialog Create Array of Objects
+ * \par Function Description
+ *  Helper function for x_dialog_array_edit_ok. This function actually
+ *  creates the array. Places copies of objects at locations specified
+ *  by the row, column, and pitch arguments.
  */
 static int
 create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch)
@@ -543,6 +546,7 @@ create_array (GtkWidget *dialog, int columns, int rows, int x_pitch, int y_pitch
   else {
     changed = FALSE;
   }
+
   return changed;
 }
 
@@ -581,8 +585,8 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
 
         const char *mess = NULL;
 
-        int x_size  = atoi(GetEntryText( dialog_data->x_size_entry ));
-        int y_size  = atoi(GetEntryText( dialog_data->y_size_entry ));
+        int x_size = atoi(GetEntryText( dialog_data->x_size_entry ));
+        int y_size = atoi(GetEntryText( dialog_data->y_size_entry ));
 
         if (x_pitch && y_pitch ) {             /* Both True */
 
