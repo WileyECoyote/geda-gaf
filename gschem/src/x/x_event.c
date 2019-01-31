@@ -347,6 +347,12 @@ int x_event_button_pressed(GtkWidget      *widget,
  *  -- SHIFT, CONTROL or ALT, was pressed when the release event occurred
  *  and performs the approiate action based on the current state of the
  *  program. Enumerated state are defined in the file x_states.h.
+ *
+ * \param [in] widget    The drawing area which received the signal.
+ * \param [in] event     The event structure of signal configure-event.
+ * \param [in] w_current The toplevel environment as user data.
+ *
+ * \returns FALSE to propagate the event further.
  */
 bool x_event_button_released (GtkWidget      *widget,
                               GdkEventButton *event,
