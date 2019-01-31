@@ -56,7 +56,7 @@
  */
 DEFINE_I_CALLBACK(view_pan_hotkey)
 {
-  if(w_current != NULL) {
+  if (w_current != NULL) {
 
     int wx, wy;
 
@@ -77,8 +77,9 @@ DEFINE_I_CALLBACK(view_pan_hotkey)
  */
 DEFINE_I_CALLBACK(view_pan_left)
 {
-  if(w_current != NULL)
+  if (w_current != NULL) {
     i_pan_world_mouse(w_current, w_current->keyboardpan_gain, 0);
+  }
 }
 
 /*! \brief Callback function that moves the viewport to the right.
@@ -87,9 +88,11 @@ DEFINE_I_CALLBACK(view_pan_left)
  */
 DEFINE_I_CALLBACK(view_pan_right)
 {
-  if(w_current != NULL)
-    i_pan_world_mouse(w_current, -w_current->keyboardpan_gain, 0);
+  if (w_current != NULL) {
     /* yes, that's a negative sign there */
+    i_pan_world_mouse(w_current, -w_current->keyboardpan_gain, 0);
+  }
+
 }
 
 /*! \brief Callback function that moves the viewport up.
@@ -98,8 +101,9 @@ DEFINE_I_CALLBACK(view_pan_right)
  */
 DEFINE_I_CALLBACK(view_pan_up)
 {
-  if(w_current != NULL)
+  if (w_current != NULL) {
     i_pan_world_mouse(w_current, 0, w_current->keyboardpan_gain);
+  }
 }
 
 /*! \brief Callback function that moves the viewport down.
@@ -108,9 +112,10 @@ DEFINE_I_CALLBACK(view_pan_up)
  */
 DEFINE_I_CALLBACK(view_pan_down)
 {
-  if(w_current != NULL)
-    i_pan_world_mouse(w_current, 0, -w_current->keyboardpan_gain);
+  if (w_current != NULL) {
     /* yes, that's a negative sign there */
+    i_pan_world_mouse(w_current, 0, -w_current->keyboardpan_gain);
+  }
 }
 
 /*! \brief Cancel Everthing
@@ -121,7 +126,6 @@ DEFINE_I_CALLBACK(view_pan_down)
  */
 DEFINE_I_CALLBACK(cancel)
 {
-
   switch (w_current->event_state) {
     case COMPMODE:
 
