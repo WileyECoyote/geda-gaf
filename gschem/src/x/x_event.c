@@ -53,9 +53,10 @@ static bool x_event_idle_repeat_last (void *w_current)
   return FALSE;
 }
 
-/*! \brief Button Press Event Handler
- *  \par Function Description
- *   This function is called each time a mouse button is pressed. The
+/*!
+ * \brief Button Press Event Handler
+ * \par Function Description
+ *  This function is called each time a mouse button is pressed. The
  *  routine checks which button triggered the event and whether a key
  *  -- SHIFT, CONTROL or ALT, was pressed when the press event occurred.
  *  The routine also check for a "double" click event, which GDK isolates
@@ -338,8 +339,9 @@ int x_event_button_pressed(GtkWidget      *widget,
   return(0);
 }
 
-/*! \brief Button Release Event Handler
- *  \par Function Description
+/*!
+ * \brief Button Release Event Handler
+ * \par Function Description
  *   This function is called each time a mouse button is released. The
  *  routine checks which button triggered the event and whether a key
  *  -- SHIFT, CONTROL or ALT, was pressed when the release event occurred
@@ -494,8 +496,9 @@ bool x_event_button_released (GtkWidget      *widget,
   return(FALSE);
 } /* End Function x_event_button_released*/
 
-/*! \brief Updates GSCHEM TOPLEVEL when drawing area is configured.
- *  \par Function Description
+/*!
+ * \brief Updates GSCHEM TOPLEVEL when drawing area is configured.
+ * \par Function Description
  *  This is the callback function connected to the configure event of
  *  the drawing area of the main window in order to update the size of
  *  the backingstore for the associated toplevel structure (creates a
@@ -506,11 +509,11 @@ bool x_event_button_released (GtkWidget      *widget,
  *  best fit the previously displayed area of the page in the new
  *  area. Otherwise the current zoom level is left unchanged.
  *
- *  \param [in] widget    The drawing area which received the signal.
- *  \param [in] event     The event structure of signal configure-event.
- *  \param [in] w_current The toplevel environment as user data.
+ * \param [in] widget    The drawing area which received the signal.
+ * \param [in] event     The event structure of signal configure-event.
+ * \param [in] w_current The toplevel environment as user data.
  *
- *  \returns FALSE to propagate the event further.
+ * \returns FALSE to propagate the event further.
  */
 bool x_event_configure (GtkWidget         *widget,
                         GdkEventConfigure *event,
@@ -598,8 +601,9 @@ bool x_event_configure (GtkWidget         *widget,
   return FALSE;
 }
 
-/*! \brief On event Expose
- *  \par Function Description
+/*!
+ * \brief On event Expose
+ * \par Function Description
  *  The expose event in Gtk is equivalent to the OnDraw in MS Windows,
  *  except it's not just a hook, we actually have do the drawing. We
  *  don't do in any drawing here, the function creates a temporary Cairo
@@ -671,9 +675,9 @@ void x_event_governor(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Get a snapped pointer position in world coordinates
- *
- *  \par Function Description
+/*!
+ * \brief Get a snapped pointer position in world coordinates
+ * \par Function Description
  *  Queries GTK for the mouse location in world coordinates,
  *  then snaps it to the grid.
  *
@@ -694,14 +698,16 @@ void x_event_get_snapped_pointer (GschemToplevel *w_current, int *wx, int *wy)
   *wy = snap_grid (w_current, unsnapped_wy);
 }
 
-/*! \brief Callback to handle key events in the drawing area.
- *  \par Function Description
- * GTK+ callback function (registered in x_window_setup_draw_events() ) which
- * handles key press and release events from the GTK+ system.
+/*!
+ * \brief Callback to handle key events in the drawing area.
+ * \par Function Description
+ *  GTK+ callback function (registered in x_window_setup_draw_events())
+ *  which handles key press and release events from the GTK+ system.
  *
  * \param [in] widget the widget that generated the event
  * \param [in] event the event itself
  * \param w_current the toplevel environment
+ *
  * \returns TRUE if the event has been handled.
  */
 bool x_event_key (GtkWidget      *widget,
@@ -788,13 +794,14 @@ bool x_event_key (GtkWidget      *widget,
   return retval;
 }
 
-/*! \brief Drawing Area Pointer Motion Callback Handler
- *  \par Function Description
+/*!
+ * \brief Drawing Area Pointer Motion Callback Handler
+ * \par Function Description
  *  This function is call by the underling window context event
  *  dispatcher when ever the mouse pointer position changes.
  *
- *  \remarks Motion events are not swapped like buttons, i.e. this
- *           is the only motion event handler!
+ * \remarks Motion events are not swapped like buttons, i.e. this
+ *          is the only motion event handler!
  */
 bool x_event_motion (GtkWidget      *widget,
                      GdkEventMotion *event,
@@ -947,10 +954,11 @@ bool x_event_motion (GtkWidget      *widget,
   return(0);
 }
 
-/*! \brief Callback for Window Scroll Events.
- *  \par Function Description
- * This function is called with the drawing window receives a scroll
- * event signal. Typically the signal originated from a pointing device.
+/*!
+ * \brief Callback for Window Scroll Events.
+ * \par Function Description
+ *  This function is called with the drawing window receives a scroll
+ *  event signal. Typically the signal originated from a pointing device.
  *
  * \note These signals do not originate from the scrollbars.
  *

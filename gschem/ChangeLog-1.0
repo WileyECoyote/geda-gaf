@@ -5,6 +5,8 @@
           * create_array
           * x_dialog_array_edit_butt_released_deselect
 
+    * src/x/x_event.c: Update documentation format.
+
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Replace gtk_box_pack_start GTK_BOX with PACK_BOX;
