@@ -3,6 +3,7 @@
     * src/x/x_edit_array.c: Add function documentation:
 
           * create_array
+          * x_dialog_array_edit_butt_released_deselect
 
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
 

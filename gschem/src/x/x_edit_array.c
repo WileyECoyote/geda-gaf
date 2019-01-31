@@ -449,10 +449,13 @@ static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
   return(0);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Local Deselect Button Release Event Handler
+ * \par Function Description
+ *  Button release callback for deselect mode. This is a simple
+ *  event handler to handle STARTDESELECT or end window selection
+ *  if the event was a left button. If the event was a right button
+ *  event, this routine simply terminates the operation.
  */
 static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
                                                       GdkEventButton *event,
@@ -472,6 +475,7 @@ static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
     SCREENtoWORLD (w_current, (int) event->x, (int) event->y, &x, &y);
 
     if (w_current->event_state == STARTDESELECT) {
+
       GedaObject *object = o_find_selected_object(w_current, x, y);
 
       if (object) {
@@ -485,6 +489,9 @@ static int x_dialog_array_edit_butt_released_deselect(GtkWidget      *widget,
     }
   }
   else if (event->button == 3) {
+
+    /* Right click so cancel the operation and re-display dialog */
+
     x_dialog_array_edit_disable_events(w_current, dialog_data);
     gtk_window_present (GTK_WINDOW (dialog));
   }
@@ -747,7 +754,7 @@ static void on_select_butt_clicked(GtkButton *button, void *user_data)
 /*!
  * \brief Array Dialog Deselect Button Callback
  * \par Function Description
- *  Called when the Deselect button on the Array Dialog is activated,
+ *  Called when the Deselect button on the Array Dialog is activated;
  *  sets corresponding virtual event handlers for button events and
  *  the event state before emitting emits "response" signal with
  *  the GEDA_RESPONSE_SELECT flag on the dialog.
