@@ -793,7 +793,7 @@ static void x_dialog_array_edit_emit_get_dist (GschemToplevel *w_current,
  * \brief Edit Array Y Button Pressed
  * \par Function Description
  *  Callback for the Y button on the Edit Array Dialog. Sets the post
- *  responder in the dialog data to post_response_col and initiates
+ *  responder in the dialog data to post_response_row and initiates
  *  a fictitious line mode to allow the user to draw a temporary line
  *  representing the distance of the array Y offset.
  */
