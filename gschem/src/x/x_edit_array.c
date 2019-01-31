@@ -421,10 +421,12 @@ static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
   return(0);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Local Deselect Button Press Event Handler
+ * \par Function Description
+ *  Button press callback for deselect mode. This is a simple
+ *  "mini" event handler to handle DESELECT, in which case
+ *  w_current.event_state is set to STARTDESELECT.
  */
 static int x_dialog_array_edit_butt_pressed_deselect(GtkWidget      *widget,
                                                      GdkEventButton *event,

@@ -3,6 +3,7 @@
     * src/x/x_edit_array.c: Add function documentation:
 
           * create_array
+          * x_dialog_array_edit_butt_pressed_deselect
           * x_dialog_array_edit_butt_released_deselect
 
     * src/x/x_event.c: Update documentation format.
