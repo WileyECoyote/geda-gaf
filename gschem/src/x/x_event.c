@@ -62,6 +62,12 @@ static bool x_event_idle_repeat_last (void *w_current)
  *  The routine also check for a "double" click event, which GDK isolates
  *  for us. The approiate action is performed based on the current state
  *  of the program. Enumerated state are defined in the file x_states.h.
+ *
+ * \param [in] widget    The drawing area which received the signal.
+ * \param [in] event     The GdkEventButton event structure.
+ * \param [in] w_current The toplevel environment as user data.
+ *
+ * \returns FALSE to propagate the event further.
  */
 int x_event_button_pressed(GtkWidget      *widget,
                            GdkEventButton *event,
@@ -349,7 +355,7 @@ int x_event_button_pressed(GtkWidget      *widget,
  *  program. Enumerated state are defined in the file x_states.h.
  *
  * \param [in] widget    The drawing area which received the signal.
- * \param [in] event     The event structure of signal configure-event.
+ * \param [in] event     The GdkEventButton event structure.
  * \param [in] w_current The toplevel environment as user data.
  *
  * \returns FALSE to propagate the event further.

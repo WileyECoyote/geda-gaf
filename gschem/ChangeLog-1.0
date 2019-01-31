@@ -9,6 +9,7 @@
     * src/x/x_event.c: Update documentation format, documentation parameters
       for:
 
+        * x_event_button_pressed
         * x_event_button_released
 
 2018-01-30 Wiley E. Hill <wileyhill@gmail.com>
