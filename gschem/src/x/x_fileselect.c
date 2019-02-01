@@ -304,6 +304,7 @@ x_fileselect_save (GschemToplevel *w_current)
     tmpname  = NULL;
 
     if (auto_ext && (filebase != NULL)) {
+
       if (!geda_file_get_filename_ext(filebase)) {
 
         int index = geda_file_chooser_get_filter(dialog);
@@ -341,6 +342,7 @@ x_fileselect_save (GschemToplevel *w_current)
                               }
                               gtk_widget_destroy (checkdialog);
     }
+
     /* try saving current page of toplevel to file filename */
     if (filename != NULL) {
       x_window_save_page (w_current,
@@ -350,6 +352,7 @@ x_fileselect_save (GschemToplevel *w_current)
     GEDA_FREE (filename);
     eda_config_set_boolean (cfg, "gschem", "auto-file-suffix", auto_ext);
   }
+
   gtk_widget_destroy (dialog);
 }
 
@@ -389,6 +392,7 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
                                    IMAGE_CHOOSER_ACTION_OPEN);
 
   g_object_set (dialog, "select-multiple", FALSE, NULL);
+
   /* "local-only", TRUE, */
 
   /* If a file name was provided then use the path from the file
@@ -402,11 +406,14 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
 
       errno = 0;
       access(filepath, R_OK);
+
       if (!errno) {
         geda_image_chooser_set_current_folder(dialog, filepath);;
       }
+
       GEDA_FREE(filepath);
     }
+
     geda_image_chooser_set_filename (dialog, geda_file_get_basename(filename));
   }
   else {
@@ -418,8 +425,11 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
       geda_image_chooser_set_current_folder (dialog, path);
     }
     else { /* start in current working directory, NOT in 'Recently Used' */
+
       char *cwd = g_get_current_dir ();
+
       geda_image_chooser_set_current_folder (dialog, cwd);
+
       GEDA_FREE (cwd);
     }
   }
@@ -427,9 +437,13 @@ x_fileselect_select_image(GschemToplevel *w_current, const char *filename)
   gtk_widget_show (dialog);
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
+
     outfile = geda_image_chooser_get_filename (dialog);
+
     if (outfile !=NULL) {
+
       char *file_path = geda_get_dirname(outfile);
+
       gschem_toplevel_set_last_image_path(w_current, file_path);
     }
   }
@@ -497,12 +511,15 @@ x_fileselect_load_backup(const char *message, GschemToplevel *w_current)
   gtk_widget_show (dialog);
 
   switch (gtk_dialog_run ((GtkDialog*)dialog)) {
+
     case GEDA_RESPONSE_YES:
      result = 1;
      break;
+
     case GEDA_RESPONSE_APPLY:
      result = 2; /* No and Delete backup*/
      break;
+
     default:
      result = 0; /* Aka No */
   }
