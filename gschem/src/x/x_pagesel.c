@@ -79,12 +79,13 @@ static void x_pagesel_callback_response (GtkDialog   *dialog,
                                          void        *log);
 static void pagesel_auto_height       (Pagesel     *pagesel);
 
-/*! \brief Open the page manager dialog.
- *  \par Function Description
+/*!
+ * \brief Open the page manager dialog.
+ * \par Function Description
  *  Opens the page manager dialog for <B>toplevel</B> if it is not already.
  *  In this last case, it raises the dialog.
  *
- *  \param [in] w_current  The GschemToplevel object to open page manager for.
+ * \param [in] w_current  The GschemToplevel object to open page manager for.
  */
 void x_pagesel_open (GschemToplevel *w_current)
 {
@@ -110,11 +111,12 @@ void x_pagesel_open (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Close the page manager dialog.
- *  \par Function Description
+/*!
+ * \brief Close the page manager dialog.
+ * \par Function Description
  *  Closes the page manager dialog associated with <B>toplevel</B>.
  *
- *  \param [in] w_current  The GschemToplevel object to close page manager for.
+ * \param [in] w_current  The GschemToplevel object to close page manager for.
  */
 void x_pagesel_close (GschemToplevel *w_current)
 {
@@ -131,13 +133,14 @@ void x_pagesel_close (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Idle Update Page Select Dialog
- *  \par Function Description
- *   Calls pagesel_update and then decrements reference on the Pagesel
- *   dialog that was added in x_pagesel_update to insure dialog was not
- *   destroyed whilst waiting for an idle state.
+/*!
+ * \brief Idle Update Page Select Dialog
+ * \par Function Description
+ *  Calls pagesel_update and then decrements reference on the Pagesel
+ *  dialog that was added in x_pagesel_update to insure dialog was not
+ *  destroyed whilst waiting for an idle state.
  *
- *  \param [in] w_current  A GschemToplevel object.
+ * \param [in] w_current  A GschemToplevel object.
  */
 static int x_pagesel_idle_update (GschemToplevel *w_current)
 {
@@ -150,11 +153,12 @@ static int x_pagesel_idle_update (GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \brief Update the Page Select Dialog.
- *  \par Function Description
+/*!
+ * \brief Update the Page Select Dialog.
+ * \par Function Description
  *  Spawns thread to call x_pagesel_idle_update when loop is idle.
  *
- *  \param [in] w_current  A GschemToplevel object.
+ * \param [in] w_current  A GschemToplevel object.
  */
 void x_pagesel_update (GschemToplevel *w_current)
 {
@@ -174,13 +178,15 @@ void x_pagesel_update (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Callback for page manager response.
- *  \par Function Description
+/*!
+ * \brief Callback for page manager response.
+ * \par Function Description
  *  Handles response <B>arg1</B> of the page manager dialog <B>dialog</B>.
  *
- *  \param [in] dialog   GtkDialog that issues callback.
- *  \param [in] response Response argument of page manager dialog.
- *  \param [in] data     Pointer to relevant GschemToplevel structure.
+ * \param [in] dialog   GtkDialog that issues callback.
+ *
+ * \param [in] response Response argument of page manager dialog.
+ * \param [in] data     Pointer to relevant GschemToplevel structure.
  */
 static void
 x_pagesel_callback_response (GtkDialog *dialog, int response, void *data)
@@ -269,8 +275,9 @@ static void pagesel_get_row_height (Pagesel *pagesel)
   pagesel->row_height = height + 2;
 }
 
-/*! \brief Page Manager Auto Resize Dialog Heigth
- *  \par Function Description
+/*!
+ * \brief Page Manager Auto Resize Dialog Heigth
+ * \par Function Description
  *  This function adjust the height of the Page Select Dialog based
  *  on the number of pages if auto_height is TRUE. When the dialog
  *  is manually sized to the miniumnm height the tree-view shows 3
@@ -374,8 +381,9 @@ static void pagesel_auto_height(Pagesel *pagesel)
   }
 }
 
-/*! \brief Page Manager Dialog Tree View Page Selected
- *  \par Function Description
+/*!
+ * \brief Page Manager Dialog Tree View Page Selected
+ * \par Function Description
  *  This function is called whenever a row is selected in the
  *  treeview. The page associated with the selected row is set
  *  to be the Current page. geda_tree_view_row_make_visible is
@@ -409,8 +417,9 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
   geda_tree_view_row_make_visible (pagesel->treeview, &iter, TRUE);
 }
 
-/*! \brief Page Manager Dialog Treeview button Press Event
- *  \par Function Description
+/*!
+ * \brief Page Manager Dialog Treeview button Press Event
+ * \par Function Description
  *  This function is called when the user clicks a mouse button when
  *  the pointer is over a treeview row. If the event was a "right-
  *  click" then the pagesel_popup_menu function is called to present
@@ -565,14 +574,14 @@ DEFINE_POPUP_CALLBACK (save_page,    ACTION(FILE_SAVE))
 DEFINE_POPUP_CALLBACK (close_page,   ACTION(PAGE_CLOSE))
 DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
 
-/*! \internal Creates the context pop-up menu displayed when the
- *   user right-clicks on the tree, which also actives the item
- *   (if not already active), and consequently the page (on the
- *   canvas). The pop-up widget is retained in pagesel->popup and
- *   re-used until the dialog is closed.
+/*!
+ * \internal Creates the context pop-up menu displayed when the
+ *  user right-clicks on the tree, which also actives the item
+ *  (if not already active), and consequently the page (on the
+ *  canvas). The pop-up widget is retained in pagesel->popup and
+ *  re-used until the dialog is closed.
  */
-static GtkWidget*
-pagesel_create_popup_menu (Pagesel *pagesel)
+static GtkWidget *pagesel_create_popup_menu (Pagesel *pagesel)
 {
   GtkWidget *menu;
 
@@ -619,15 +628,16 @@ pagesel_create_popup_menu (Pagesel *pagesel)
   return menu;
 }
 
-/*! \brief Popup context-sensitive menu.
- *  \par Function Description
+/*!
+ * \brief Popup context-sensitive menu.
+ * \par Function Description
  *  Pops up a context-sensitive menu.
  *
  *  <B>event</B> can be NULL if the popup is triggered by a key
  *  binding instead of a mouse click.
  *
- *  \param [in] pagesel  The Pagesel object.
- *  \param [in] event    Mouse click event info.
+ * \param [in] pagesel  The Pagesel object.
+ * \param [in] event    Mouse click event info.
  */
 static void
 pagesel_popup_menu (Pagesel *pagesel, GdkEventButton *event)
@@ -715,7 +725,6 @@ pagesel_treeview_set_cell_filename (GtkTreeViewColumn *tree_column,
     g_object_set (cell, "text", filename, NULL);
   }
 }
-
 
 /*!
  * \brief Show full file name toggle switch responder
@@ -932,9 +941,10 @@ pagesel_callback_query_tooltip(GtkWidget  *widget, int x, int y,
   return FALSE;
 }
 
-/*! \brief Geda Box Object Finalization Function
- *  \par Function Description
- *   Save user preferences to the configuration system.
+/*!
+ * \brief Geda Box Object Finalization Function
+ * \par Function Description
+ *  Save user preferences to the configuration system.
  */
 static void pagesel_finalize(GObject *object)
 {
@@ -969,14 +979,14 @@ static void pagesel_finalize(GObject *object)
   G_OBJECT_CLASS(pagesel_parent_class)->finalize(object);
 }
 
-/*! \brief Function to retrieve pagesel's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve pagesel's Type identifier.
+ * \par Function Description
  *  Function to retrieve pagesel's Type identifier. On the first call,
  *  this registers the pagesel in the GedaTypesystem.  Subsequently
  *  the functions returns the saved value from its first execution.
  *
- *  \return the Type identifier associated with pagesel.
+ * \return the Type identifier associated with pagesel.
  */
 GedaType pagesel_get_type (void)
 {
@@ -1011,15 +1021,15 @@ bool is_a_pagesel (Pagesel *pagesel)
   return FALSE;
 }
 
-/*! \brief Pagesel Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief Pagesel Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       Pagesel class we are initializing
- *  \param [in]  class_data  Pagesel structure associated with the class
+ * \param [in]  class       Pagesel class we are initializing
+ * \param [in]  class_data  Pagesel structure associated with the class
  */
 static void pagesel_class_init (void *class, void *class_data)
 {
@@ -1030,9 +1040,9 @@ static void pagesel_class_init (void *class, void *class_data)
   gobject_class->finalize     = pagesel_finalize;
 }
 
-/*! \brief Initialize new GedaAction data structure instance.
- *
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaAction data structure instance.
+ * \par Function Description
  *  This function is call after the GedaActionClass is created
  *  to initialize the data structure.
  *
@@ -1310,18 +1320,19 @@ static void pagesel_instance_init (GTypeInstance *instance, void *class)
   pagesel->action_height = 0;
 }
 
-/*! \brief Update tree model of <B>pagesel</B>'s treeview.
- *  \par Function Description
+/*!
+ * \brief Update tree model of <B>pagesel</B>'s treeview.
+ * \par Function Description
  *  Updates the tree model of <B>pagesel</B>\'s treeview.
  *
  *  Right now, each time it is called, it rebuilds all the model from the
  *  list of pages passed in.
  *  It is a recursive function to populate the tree store
  *
- *  \param [in] model   GtkTreeModel to update.
- *  \param [in] parent  GtkTreeIter pointer to tree root.
- *  \param [in] pages   PageList of pages for this toplevel.
- *  \param [in] page    The Page object to update tree model from.
+ * \param [in] model   GtkTreeModel to update.
+ * \param [in] parent  GtkTreeIter pointer to tree root.
+ * \param [in] pages   PageList of pages for this toplevel.
+ * \param [in] page    The Page object to update tree model from.
  */
 static void
 add_page(GtkTreeModel *model, GtkTreeIter *parent, PageList *pages, Page *page)
@@ -1351,11 +1362,11 @@ add_page(GtkTreeModel *model, GtkTreeIter *parent, PageList *pages, Page *page)
   }
 }
 
-/*! \internal
- *  \brief Select the current page in the Pagesel Dialog treeview
- *  \par Function Description
+/*!
+ * \internal
+ * \brief Select the current page in the Pagesel Dialog treeview
+ * \par Function Description
  *  Recursive function to select the current page in the treeview
- *
  */
 static void
 select_page(GtkTreeView *treeview, GtkTreeIter *parent, Page *page)
