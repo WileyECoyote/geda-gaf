@@ -70,14 +70,14 @@ static void remove_from_guile_path(const char *str)
   SCM s_load_path_var;
   SCM s_load_expr;
 
-  SCM sym_begin       = scm_from_utf8_symbol ("begin");
-  SCM sym_delv        = scm_from_utf8_symbol ("delv");
-  SCM sym_load_path   = scm_from_utf8_symbol ("%load-path");
-  SCM sym_set_x       = scm_from_utf8_symbol ("set!");
+  SCM sym_begin     = scm_from_utf8_symbol ("begin");
+  SCM sym_delv      = scm_from_utf8_symbol ("delv");
+  SCM sym_load_path = scm_from_utf8_symbol ("%load-path");
+  SCM sym_set_x     = scm_from_utf8_symbol ("set!");
 
-  s_load_path_var = scm_c_lookup ("%load-path");
-  s_load_path     = scm_variable_ref (s_load_path_var);
-  s_path_expr     = SCM_EOL;
+  s_load_path_var   = scm_c_lookup ("%load-path");
+  s_load_path       = scm_variable_ref (s_load_path_var);
+  s_path_expr       = SCM_EOL;
 
   int i;
   int  scm_search_len = (int) scm_ilength (s_load_path);
@@ -152,7 +152,6 @@ static void check_update_guile_path (GtkWidget *ThisDialog)
 
      found = FALSE;
      path  = path_list->data;
-
      next  = gtk_tree_model_get_iter_first (treemodel, &iter);
 
      /* Find Guile path in not in the tree */
@@ -266,6 +265,7 @@ static bool can_remove_path(const char *path)
   s_sys_path = scm_sys_library_dir ();
   sys_path   = scm_to_utf8_string (s_sys_path);
   can_remove = strstr (path, sys_path) == NULL;
+
   free(sys_path);
 
   if (can_remove) {
@@ -364,8 +364,9 @@ static GtkTreeModel *create_and_fill_model (GtkWidget *ThisDialog, SCM s_load_pa
   for (i = 0 ; i < scm_search_len; i++) {
 
     char *path;
-    SCM elem = scm_list_ref(s_load_path, scm_from_int(i));
+    SCM   elem;
 
+    elem = scm_list_ref(s_load_path, scm_from_int(i));
     path = scm_to_utf8_string(elem);
 
     /* Append a row and fill in the path */
@@ -462,9 +463,7 @@ void x_guile_dialog (GschemToplevel *w_current)
         char *title;
 
   version   = _("Version");
-
   guile_ver = scm_to_utf8_string(scm_version());
-
   title     = geda_sprintf("Guile (%s %s)", version, guile_ver, NULL);
 
   GEDA_FREE(guile_ver);
