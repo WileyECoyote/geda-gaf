@@ -201,18 +201,18 @@ struct autonumber_text_t {
 
   /*! \brief Variables used while autonumbering */
   char  *current_searchtext;
-  GList *used_numbers;         /* list of used numbers */
-  GList *free_slots;           /* list of FREE_SLOT objects */
-  GList *used_slots;           /* list of USED_SLOT objects */
-  int    root_page;            /* flag whether its the root page or not */
+  GList *used_numbers;         /*!< list of used numbers */
+  GList *free_slots;           /*!< list of FREE_SLOT objects */
+  GList *used_slots;           /*!< list of USED_SLOT objects */
+  int    root_page;            /*!< flag whether its the root page or not */
 };
 
 typedef struct autonumber_slot_t AUTONUMBER_SLOT;
 
 struct autonumber_slot_t {
-  char *symbolname;     /* or should we use the device name? (Werner) */
-  int number;           /* usually this is the refdes number */
-  int slotnr;           /* just the number of the free slot */
+  char *symbolname;     /*!< or should we use the device name? (Werner) */
+  int number;           /*!< usually this is the refdes number */
+  int slotnr;           /*!< just the number of the free slot */
 };
 
 /* The Combo Boxes */
