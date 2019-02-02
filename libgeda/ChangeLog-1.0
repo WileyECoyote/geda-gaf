@@ -1,3 +1,7 @@
+2019-02-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c: Replace g_open with standard open.
+
 2019-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_clib.c: Revise and reformat function documentation.

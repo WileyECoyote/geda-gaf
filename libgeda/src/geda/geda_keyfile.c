@@ -457,7 +457,7 @@ static int find_file_in_data_dirs (const char   *file,
 
       path = g_build_filename (data_dir, sub_dir, candidate_file, NULL);
 
-      fd = g_open (path, O_RDONLY, 0);
+      fd = open (path, O_RDONLY, 0);
 
       if (fd == -1) {
         GEDA_FREE (path);
