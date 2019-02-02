@@ -99,11 +99,11 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
 
   w_current->which_object = o_current;
 
-  switch(o_current->selected) {
+  switch (o_current->selected) {
 
     case(FALSE):               /* object not selected */
 
-      switch(SHIFTKEY) {       /* shift key pressed? */
+      switch (SHIFTKEY) {       /* shift key pressed? */
 
         case(TRUE):            /* shift key pressed  */
           /* just fall through  */
@@ -174,7 +174,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
   }                            /* End Switch object selected */
 
   /* do the attributes */
-  if ( TRUE == removing_obj) {
+  if (TRUE == removing_obj) {
 
     /* Remove the invisible attributes from the object list as well,
      * so they don't remain selected without the user knowing. */
@@ -190,7 +190,7 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
      * only select invisible attributes on objects. Otherwise attributes
      * will be "double selected", causing them to remain unselected if
      * using invert-selection (CONTROLKEY is pressed) */
-    if ( MULTIPLE == type ) {
+    if (MULTIPLE == type ) {
       o_attrib_select_invisible (w_current, selection, o_current);
     }
     else {
