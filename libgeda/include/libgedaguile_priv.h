@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2 tab-width: 4 -*- */
 /*
- * File: libgedaguile_priv
+ * File: libgedaguile_priv.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library - Scheme API
