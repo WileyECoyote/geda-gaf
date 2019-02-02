@@ -3122,7 +3122,6 @@ void x_dialog_translate_response(GtkWidget      *Dialog,
           o_complex_translate_all(w_current, x, object_list);
         }
         else {
-
           o_complex_translate_list(w_current, object_list, x, y);
         }
       }
@@ -3494,6 +3493,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       /* the tree view */
       treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+
       geda_container_add(scrolled_win, treeview);
       g_object_set (treeview, "visible", TRUE, NULL);
 
@@ -3554,7 +3554,6 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       g_signal_connect (ThisDialog, "response",
                         G_CALLBACK (x_dialog_hotkeys_response),
                         w_current);
-
 
       GtkWidget *ShowBindingSwitch  GEDA_UNUSED;
       GtkWidget *action_area;        /* GtkButtonBox to be removed */
@@ -3896,7 +3895,6 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
       gtk_widget_grab_focus(close_butt);
       gtk_dialog_run(GTK_DIALOG(dialog));
       gtk_widget_destroy (dialog);
-
     }
   }
   else {
