@@ -1,6 +1,7 @@
 2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_autonumber.c: Convert plain text to Doxygen documentation.
+    * src/x/x_autonumber.c: Convert plain text to Doxygen documentation and
+      clean/reformat documentation.
 
     * src/x/x_pagesel.c: Reformat documentation.
 

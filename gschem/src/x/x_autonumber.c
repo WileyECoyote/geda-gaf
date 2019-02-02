@@ -349,12 +349,13 @@ static int autonumber_sort_yx_rev(const void *a, const void *b) {
   return 0;
 }
 
-/*! \brief GCompareFunc function to sort text objects by there location
- *  \par Function Description
+/*!
+ * \brief GCompareFunc function to sort text objects by there location
+ * \par Function Description
  *  This Funcion takes two <B>GedaObject*</B> arguments and compares the
- *  location of the two text objects. The sort criteria is the combined x- and the
- *  y-location. The function sorts from top left to bottom right.
- *  The function is used as GCompareFunc by g_list_sort().
+ *  location of the two text objects. The sort criteria is the combined
+ *  x- and the y-locations. The function sorts from top left to bottom
+ *  right. The function is used as GCompareFunc by g_list_sort().
  */
 static int autonumber_sort_diagonal(const void *a, const void *b) {
   GedaObject *aa, *bb;
@@ -372,10 +373,10 @@ static int autonumber_sort_diagonal(const void *a, const void *b) {
  * \brief GCompareFunc function to acces <B>AUTONUMBER_SLOT</B> object in a GList
  * \par Function Description
  *  This Funcion takes two <B>AUTONUMBER_SLOT*</B> arguments and compares them.
- *  Sorting criteria is are the AUTONUMBER_SLOT members: first the symbolname, than
- *  the number and last the slotnr.
- *  If the number or the slotnr is set to zero it acts as a wildcard.
- *  The function is used as GCompareFunc by GList functions.
+ *  Sorting criteria is are the AUTONUMBER_SLOT members: first the symbolname,
+ *  than the number and last the slotnr. If the number or the slotnr is set to
+ *  zero it acts as a wildcard. The function is used as GCompareFunc by GList
+ *  functions.
  */
 static int freeslot_compare(const void *a, const void *b)
 {
@@ -1719,7 +1720,7 @@ GtkWidget *autonumber_create_scope_menu (GschemToplevel *w_current)
 }
 
 /*!
- * \brief Creates the autonumber text dialog.
+ * \brief Creates the autonumber text dialog
  * \par Function Description
  *   Constructor for the AutoNumber Dialog, the Dialog returned but is not
  *   shown.
