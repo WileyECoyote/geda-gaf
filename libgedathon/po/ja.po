@@ -208,45 +208,63 @@ msgstr "ページからオブジェクトを削除する."
 msgid "Delete multiple objects from a page."
 msgstr "ページから複数のオブジェクトを削除する."
 
+# Synchronize object with library
+# Obujekuto o raiburari to dōki suru
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "オブジェクトをライブラリと同期する."
 
+# Create a new arc object
+# Atarashī enko obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "新しい円弧オブジェクトを作成する."
 
+# Create a new box object
+# Atarashī bokkusu obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "新しいボックスオブジェクトを作成する."
 
+# Create a new bus object
+# Atarashī basu obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "新しいバスオブジェクトを作成する."
 
+# Create a new circle object
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Atarashī en obujekuto o sakusei suru."
 
+# Create a new complex object
+# Atarashī fukuzatsuna obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "新しい複雑なオブジェクトを作成する."
 
+# Create a new line object
+# Atarashī senbun obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "bangkeut vottho banteat thmei muoy."
 
+# Create a new net object
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "新しいネットオブジェクトを作成する."
 
+# Create a new path object
+# Atarashī netto obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "新しいネットオブジェクトを作成する."
 
+# Create a new picture object
+# Atarashī gazō obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "新しい画像オブジェクトを作成する."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
