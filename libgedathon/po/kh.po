@@ -172,45 +172,56 @@ msgstr "loub vottho pi tompr."
 msgid "Delete multiple objects from a page."
 msgstr "loub vottho chraen pi tompr muoy."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "thveu sam kal kammovottho cheamuoy bannaly."
 
+# Create a new arc object
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "bangkeut vottho thnou thmei."
 
+# Create a new box object
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "bangkeut vottho braab thmei."
 
+# Create a new bus object
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "bangkeut vottho lanokrong thmei muoy."
 
+# Create a new circle object
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "bangkeut vottho rongvong thmei."
 
+# Create a new complex object
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "bangkeut vottho smokosmanh thmei."
 
+# Create a new line object
+# Atarashī netto obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "bangkeut vottho banteat thmei muoy."
 
+# Create a new net object
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "bangkeut vottho sotth thmei muoy."
 
+# Create a new path object
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "bangkeut vottho phlauv thmei muoy."
 
+# Create a new picture object
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "bangkeut vottho roubpheap thmei."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
