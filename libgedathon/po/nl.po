@@ -171,45 +171,55 @@ msgstr "Verwijder een object van een pagina."
 msgid "Delete multiple objects from a page."
 msgstr "Verwijder meerdere objecten van een pagina."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Synchroniseer object met bibliotheek."
 
+# Create a new arc object
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Maak een nieuw boogobject."
 
+# Create a new box object
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Maak een nieuw box-object."
 
+# Create a new bus object
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Maak een nieuw busobject."
 
+# Create a new circle object
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Maak een nieuw cirkelobject."
 
+# Create a new complex object
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Maak een nieuw complex object."
 
+# Create a new line object
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Maak een nieuw lijnobject."
 
+# Create a new net object
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Maak een nieuw net-object."
 
+# Create a new path object
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Maak een nieuw padobject."
 
+# Create a new picture object
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Maak een nieuw beeldobject."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
