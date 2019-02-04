@@ -2,6 +2,9 @@
 
     * src/iface/i_command.c: Reduce MAX_THREADS_UNUSED from 3 to 2.
 
+    * src/iface/i_sessions.c: Implement string macros for geda_utility_string
+      functions.
+
 2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Convert plain text to Doxygen documentation and

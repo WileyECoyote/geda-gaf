@@ -243,17 +243,18 @@ static GSList *i_sessions_get_file_list(Session *record)
 
       if (read > 3 && *ptr != ASCII_NUMBER_SIGN) {
 
-        geda_utility_string_remove_last_nl(fname);
+        geda_remove_last_newline(fname);
 
         /* Could check file extension here */
-        if (access(fname, R_OK ) == 0) {
-          files = g_slist_append(files, geda_utility_string_strdup(fname));
+        if (access(fname, R_OK) == 0) {
+          files = g_slist_append(files, geda_strdup(fname));
         }
         else {
-          bad = g_slist_append(bad, geda_utility_string_strdup(fname));
+          bad = g_slist_append(bad, geda_strdup(fname));
         }
       }
     }
+
     free(fname);
     fclose(fp);
   }
