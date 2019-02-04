@@ -430,11 +430,11 @@ static int
 parse_long_options(char * const *nargv, const char *options,
                    const gaf_option *long_options, int *idx, int short_too)
 {
-  char *current_argv, *has_equal;
-  size_t current_argv_len;
+  char  *current_argv, *has_equal;
+  size_t unsigned int current_argv_len;
   int i, ambiguous, match;
 
-#define IDENTICAL_INTERPRETATION(_x, _y)                           \
+#define IDENTICAL_INTERPRETATION(_x, _y)                         \
   (long_options[(_x)].has_arg == long_options[(_y)].has_arg &&   \
   long_options[(_x)].flag == long_options[(_y)].flag &&          \
   long_options[(_x)].val == long_options[(_y)].val)
@@ -449,17 +449,19 @@ parse_long_options(char * const *nargv, const char *options,
     /* argument found (--option=arg) */
     current_argv_len = has_equal - current_argv;
     has_equal++;
-  } else {
+  }
+  else {
     current_argv_len = strlen(current_argv);
   }
 
   for (i = 0; long_options[i].name; i++) {
-    /* find matching long option */
+
+    /* Find matching long option */
     if (strncmp(current_argv, long_options[i].name, current_argv_len))
       continue;
 
+    /* Check for exact match */
     if (strlen(long_options[i].name) == current_argv_len) {
-      /* exact match */
       match = i;
       ambiguous = 0;
       break;
@@ -492,14 +494,14 @@ parse_long_options(char * const *nargv, const char *options,
 
   if (match != -1) {     /* option found */
 
-    if (long_options[match].has_arg == no_argument  && has_equal)
-    {
+    if (long_options[match].has_arg == no_argument  && has_equal) {
+
       if (PRINT_ERROR) {
         warnx(noarg, (int)current_argv_len, current_argv);
       }
-      /*
-       * XXX: GNU sets gaf_optopt to val regardless of flag
-       */
+
+      /* XXX: GNU sets gaf_optopt to val regardless of flag */
+
       if (long_options[match].flag == NULL) {
         gaf_optopt = long_options[match].val;
       }
