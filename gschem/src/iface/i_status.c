@@ -883,8 +883,8 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
 
 /** @} endgroup status-set-sensitivity */
 
-static bool
-i_status_idle_thread_update_title (GschemToplevel *w_current)
+/*! \internal Ran in idle thread to update the window title bar */
+static bool i_status_idle_thread_update_title (GschemToplevel *w_current)
 {
   x_window_update_title(w_current);
   return FALSE;
@@ -902,11 +902,6 @@ void i_status_update_title(GschemToplevel *w_current)
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
     gschem_threads_idle_add (i_status_idle_thread_update_title, w_current);
   }
-#if DEBUG_SENSITIVITY
-  else {
-    BUG_MSG("Bad pointer to top-level");
-  }
-#endif
 }
 
 /** @} endgroup Gschem-Status-System */

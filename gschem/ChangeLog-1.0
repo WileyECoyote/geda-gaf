@@ -5,6 +5,11 @@
     * src/iface/i_sessions.c: Implement string macros for geda_utility_string
       functions.
 
+    * src/iface/i_status.c: Remove debug code from i_status_update_title, add
+      inernal comment for i_status_idle_thread_update_title and newline at the
+      end of the file.
+
+
 2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Convert plain text to Doxygen documentation and
