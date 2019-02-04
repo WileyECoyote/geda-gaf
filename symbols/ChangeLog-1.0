@@ -19,6 +19,10 @@
             * passive/resistor/resistor-variable-1.sym
             * passive/resistor/resistor-variable-2.sym
 
+    * passive/resonator/resonator-4.sym: Update device, description and footprint
+      attributes.
+
+2019-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
 
@@ -41,7 +45,7 @@
             * passive/inductor/inductor-coupled-1.sym
             * passive/inductor/inductor-coupled-2.sym
 
-2018-01-20 Wiley E. Hill <wileyhill@gmail.com>
+2019-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * logic/74L/74LS74-2.sym: Remove over-bar from PRESET pin label.
 
@@ -66,7 +70,7 @@
 
     * passive/audio/speaker-2.sym: Fix attribute locations, add description attribute.
 
-2018-01-13 Wiley E. Hill <wileyhill@gmail.com>
+2019-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * network/ENC28J60SP-1.sym: Add description attribute.
 
@@ -90,7 +94,7 @@
     * opto/LTV-810-1.sym: Remove symbol; there appears to be no such device,
       possibly a typo.
 
-2018-01-06 Wiley E. Hill <wileyhill@gmail.com>
+2019-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * LCB110_ssrelay_spst-1.sym: Add description, resequence attributes.
 
