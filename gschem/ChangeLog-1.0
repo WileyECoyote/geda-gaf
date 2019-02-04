@@ -9,6 +9,7 @@
       inernal comment for i_status_idle_thread_update_title and newline at the
       end of the file.
 
+    * src/iface/i_vars.c: Reformat function documentation.
 
 2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
 

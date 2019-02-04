@@ -34,11 +34,11 @@
 
 #define DEFAULT_PRINT_COMMAND "lpr"
 
-/*! \brief Set Default Defaults
- *  \par  This section creates and assigns default values for top-level
+/*!
+ * \brief Set Default Defaults
+ * \par  This section creates and assigns default values for top-level
  *  "default" variables. Each of these is declare extern in i_var.h so
- *  that they maybe written to by when RC files are processed by libgeda
- *  or gschem.
+ *  that they maybe written to when RC files are processed.
  */
 /* Color Related */
 int     default_attribute_color           = ATTRIBUTE_COLOR;
@@ -205,18 +205,19 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
   return tmpstr;
 }
 
-/*! \brief Retrieve a color from config given a key and specified group
- *  \par
- *   Retrieve interger list from configuration with \a key in \a group and
- *   set members of \a var from the retrieved values, if the key does not
- *   exist then the values are set from the current display color map using
- *   the color \a index.
+/*!
+ * \brief Retrieve a color from config given a key and specified group
+ * \par
+ *  Retrieve interger list from configuration with \a key in \a group and
+ *  set members of \a var from the retrieved values, if the key does not
+ *  exist then the values are set from the current display color map using
+ *  the color \a index.
  *
- *  \param cfg    Pointer to EdaConfig Object
- *  \param group  String name of configuration group
- *  \param key    string name of record key to be retrieved
- *  \param var    Pointer to GdkColor structure whose values are to be set
- *  \param index  index of default color used if key does not exist.
+ * \param cfg    Pointer to EdaConfig Object
+ * \param group  String name of configuration group
+ * \param key    string name of record key to be retrieved
+ * \param var    Pointer to GdkColor structure whose values are to be set
+ * \param index  index of default color used if key does not exist.
  */
 void i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *key,
                                GdkColor  *var, int index)
@@ -357,8 +358,9 @@ void i_var_restore_window_color(EdaConfig *cfg, const char *key, GdkColor *var, 
   i_var_restore_group_color(cfg, WINDOW_CONFIG_GROUP, key, var, index);
 }
 
-/*! \internal Recall User Settings
- *  \par
+/*!
+ * \internal Recall User Settings
+ * \par
  *  This functions retrieves the values of configuration settings from the
  *  new configuration system and assigns the values to the corresponding top
  *  level variables. Note that this is done after the "old" system, so the
@@ -548,12 +550,12 @@ static void i_vars_recall_user_settings(GschemToplevel *w_current)
 }
 
 /*!
- *  \brief This functions sets the values of top-level interger variables.
- *  \par Function Description
- *       This functions assigns the current default values to the toplevel
- *       variables. The first time this occurs is in the main-line after
- *       rc initialization files have "executed", which may have changed
- *       the value of the defaults variables.
+ * \brief This functions sets the values of top-level interger variables.
+ * \par Function Description
+ *  This functions assigns the current default values to the toplevel
+ *  variables. The first time this occurs is in the main-line after
+ *  rc initialization files have "executed", which may have changed
+ *  the value of the defaults variables.
  *
  * Maintenance:
  *
@@ -738,10 +740,10 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->undo_preserve,   default_undo_preserve);
 }
 
-/*! \brief Free default names
- *  \par Function Description
+/*!
+ * \brief Free default names
+ * \par Function Description
  *  This function will free all of the default variables for gschem.
- *
  */
 void i_vars_freenames()
 {
@@ -751,8 +753,9 @@ void i_vars_freenames()
   geda_glist_free_full (default_component_select_attrlist, g_free);
 }
 
-/*! \brief Setup gschem default configuration.
- *  \par Function Description
+/*!
+ * \brief Setup gschem default configuration.
+ * \par Function Description
  *  Populate the default configuration context with compiled-in
  *  defaults.
  */
@@ -793,8 +796,9 @@ void i_vars_init(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Save user config on exit.
- *  \par Function Description
+/*!
+ * \brief Save user config on exit.
+ * \par Function Description
  *  When gschem exits, try to save the user configuration to disk.
  */
 void i_vars_atexit_save_user_config (void * user_data)
