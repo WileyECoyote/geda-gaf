@@ -3,6 +3,8 @@
     * inductor/inductor-dot-1.sym: Add description attribute and update footprint
       attribute to unknown.
 
+    * passive/lamp/glow-lamp-1.sym: Update device atttribute.
+
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
 
