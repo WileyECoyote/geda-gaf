@@ -14,9 +14,10 @@
 
     * passive/resistor/ntc-1.sym: Add description attribute and resequence attributes.
 
-    * passive/resistor/resistor-variable-?.sym: Update device attribute:
+    * passive/resistor/resistor-variable-?.sym: Update device attributes:
 
             * passive/resistor/resistor-variable-1.sym
+            * passive/resistor/resistor-variable-2.sym
 
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
