@@ -12,6 +12,8 @@
             * passive/protection/polysurge-1.sym
             * passive/protection/polysurge-2.sym
 
+    * passive/resistor/ntc-1.sym: Add description attribute and resequence attributes.
+
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
 
