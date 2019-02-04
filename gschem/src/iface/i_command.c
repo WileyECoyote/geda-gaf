@@ -47,7 +47,7 @@
 
 #define USE_POSIX
 #define MAX_THREADS              12
-#define MAX_THREADS_UNUSED        2
+#define MAX_THREADS_UNUSED        3
 #define MAX_THREADS_IDLE_TIME  1000   /* microseconds */
 #define WAIT_THREADS_IDLE_TIME    5
 #define TASK_WAIT_INTERVAL      100   /* microseconds */
