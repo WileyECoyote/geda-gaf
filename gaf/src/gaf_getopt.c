@@ -428,9 +428,18 @@ int gaf_getopt(int nargc, char * const *nargv, const char *options)
 }
 
 /*!
- * parse_long_options --
- *	Parse long options in argc/argv argument vector.
- * Returns -1 if short_too is set and the option does not match long_options.
+ * \brief Parse long options
+ * \par Function Description
+ *  Parse long options in argc/argv argument vector.
+ *
+ * \param [in] nargv         Pointer to an array of pointers to arguments
+ * \param [in] options       Pointer to short options specifications
+ * \param [in] long_options  Pointer to gaf_option structure
+ * \param [in] idx           Pointer to integer set to the index of the long
+ *                           option relative to long_options or NULL.
+ * \param [in] short_too     Integer flag could be short option
+ *
+ * \returns -1 if short_too is set and the option does not match long_options.
  */
 static int
 parse_long_options(char * const *nargv, const char *options,

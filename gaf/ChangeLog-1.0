@@ -3,6 +3,7 @@
     * gaf_getopt.c: Update function documentation:
 
         * gaf_getopt
+        * parse_long_options
 
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
