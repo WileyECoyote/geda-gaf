@@ -2,7 +2,7 @@ v 20140915 2
 L 350 500 50 500 3 0 0 0 -1 -1
 L 200 600 200 800 3 0 0 0 -1 -1
 L 200 400 200 200 3 0 0 0 -1 -1
-T 0 1350 5 10 0 1 0 0 1
+T 800 600 5 10 0 1 0 0 1
 device=POLYSURGE
 P 200 200 200 0 1 0 1
 {
@@ -42,17 +42,17 @@ L 100,700
 L 300,700
 L 200,500
 z
-T 800 100 5 10 0 0 0 0 1
+T 800 1800 5 10 0 0 0 0 1
 author=AutoTron
-T 800 300 5 10 0 0 0 0 1
+T 800 1200 5 10 0 1 0 0 1
 documentation=http://www.cooperindustries.com
-T 800 500 5 10 0 0 0 0 1
+T 800 800 5 10 0 1 0 0 1
 description=Low Capacitance ESD Suppressors
-T 800 700 5 10 0 0 0 0 1
+T 800 1000 5 10 0 0 0 0 1
 numslots=0
-T 800 900 5 10 0 0 0 0 1
+T 800 1400 5 10 0 0 0 0 1
 dist-license=GPLv2
-T 800 1100 5 10 0 0 0 0 1
+T 800 1600 5 10 0 0 0 0 1
 use-license=unlimited
 L 50 500 0 450 3 0 0 0 100 100
 L 350 500 400 550 3 0 0 0 100 100

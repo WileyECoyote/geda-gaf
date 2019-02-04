@@ -10,6 +10,7 @@
     * passive/protection/polysurge-?.sym: Rename symbol files without hyphen:
 
             * passive/protection/polysurge-1.sym
+            * passive/protection/polysurge-2.sym
 
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
