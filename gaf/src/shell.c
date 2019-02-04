@@ -214,6 +214,7 @@ static void cmd_shell_impl (void *data, int argc, char **argv)
   exit (status);
 }
 
+/*! \brief Main function for "gaf shell" */
 int cmd_shell (int argc, char **argv)
 {
   scm_boot_guile (argc, argv, cmd_shell_impl, NULL); /* Doesn't return */

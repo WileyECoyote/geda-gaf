@@ -5,6 +5,8 @@
         * gaf_getopt
         * parse_long_options
 
+    * gaf/src/shell.c: Add cmd_shell function documentation.
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/path.c: Add usage function documentation.
