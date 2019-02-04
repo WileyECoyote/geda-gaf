@@ -404,10 +404,16 @@ getopt_internal(int nargc, char * const *nargv, const char *options,
   return (optchar);
 }
 
-/*
- * getopt -- arse argc/argv argument vector.
+/*!
+ * \brief gaf get options
+ * \par Function Description
+ *  getopt -- arse argc/argv argument vector.
  *
  * [eventually this will replace the BSD getopt]
+ *
+ * \param [in] nargc    Integer count of command line arguments
+ * \param [in] nargv    Pointer to an array of pointers to arguments
+ * \param [in] options  Pointer to short options specifications
  */
 int gaf_getopt(int nargc, char * const *nargv, const char *options)
 {

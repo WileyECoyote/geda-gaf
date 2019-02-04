@@ -1,3 +1,9 @@
+2019-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gaf_getopt.c: Update function documentation:
+
+        * gaf_getopt
+
 2019-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/path.c: Add usage function documentation.
