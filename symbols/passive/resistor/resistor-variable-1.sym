@@ -1,6 +1,6 @@
 v 20150401 2
 T 800 800 5 10 0 1 0 0 1
-device=VARIABLE_RESISTOR
+device=RESISTOR
 T 800 400 8 10 1 1 0 0 1
 refdes=R?
 T 800 1000 9 10 0 0 0 0 1
@@ -8,7 +8,7 @@ numslots=0
 T 800 600 9 10 0 1 0 0 1
 footprint=unknown
 T 800 1200 8 10 0 1 0 0 1
-description=POT,??.0K OHM,THUMBWHEEL,CERM,ST
+description=POT,??K OHMS,THUMBWHEEL,CERM,ST
 L 500 200 448 301 3 0 2 0 -1 -1
 L 501 201 553 302 3 0 2 0 -1 -1
 L 600 200 500 0 3 0 2 0 -1 -1
