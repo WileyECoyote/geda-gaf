@@ -1,8 +1,10 @@
 v 20150401 2
-T 200 500 9 10 0 1 0 0 1
+T 200 900 5 10 0 0 0 0 1
 device=INDUCTOR
 T 200 300 8 10 1 1 0 0 1
 refdes=L?
+T 200 500 5 10 0 1 0 0 1
+description=INDUCTOR
 P 900 100 800 100 1 0 0
 {
 T 700 25 5 8 0 1 0 6 1
@@ -39,11 +41,11 @@ L 200 250 700 250 3 0 1 0 -1 -1
 V 778 221 13 6 0 0 0 -1 -1 1 -1 -1 1 -1 1
 T 500 300 8 10 1 1 0 0 1
 value=1H
-T 200 1100 5 10 0 0 0 0 1
-numslots=0
-T 200 900 5 10 0 1 0 0 1
-documentation=http://en.wikipedia.org/wiki/Inductor
-T 200 700 9 10 0 1 0 0 1
-footprint=1210
 T 200 1300 5 10 0 0 0 0 1
+numslots=0
+T 200 1100 5 10 0 1 0 0 1
+documentation=http://en.wikipedia.org/wiki/Inductor
+T 200 700 9 10 0 0 0 0 1
+footprint=unknown
+T 200 1500 5 10 0 0 0 0 1
 author=AutoTron

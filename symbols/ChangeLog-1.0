@@ -1,4 +1,8 @@
-2018-01-27 Wiley E. Hill <wileyhill@gmail.com>
+2019-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * inductor/inductor-dot-1.sym: Add description attribute and update footprint
+      attribute to unknown.
+
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
 
