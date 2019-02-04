@@ -5,6 +5,8 @@
 
     * passive/lamp/glow-lamp-1.sym: Update device atttribute.
 
+    * passive/protection/polyfuse-1.sym: Update device and footprint attributes.
+
 
     * diode/zener53: Add symbols for 5 Watt zener diodes:
 
