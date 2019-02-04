@@ -161,8 +161,8 @@ permute_args(int panonopt_start, int panonopt_end, int opt_end, char * const *na
  * that is included here for use by the gaf back-end routines because
  * the getopt on MinGW/MSYS does not work correctly. Under MinGW back
  * end routines are passed the entire command-line again, including
- * options previously parsed by main. This does not occur with other
- * platforms.
+ * options previously options parsed by main. This does not occur on
+ * other platforms.
  */
 static int
 getopt_internal(int nargc, char * const *nargv, const char *options,
