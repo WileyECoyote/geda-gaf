@@ -724,7 +724,6 @@ void x_gtksheet_reinititialize(PageDataSet *PageData)
 
   /* -----  Pins  ----- */
   RedimensionSheet(sheets[Pins], PageData->pin_count, PageData->pin_attrib_count);
-
 }
 
 /*!
@@ -968,7 +967,7 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
  * \param Color id Color to set text to
  */
 void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
-                                 ColorId Color )
+                                 ColorId Color)
 {
   GdkColormap *color_map;
   GtkSheetRange range;
@@ -1008,7 +1007,7 @@ void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
  * \param Color id Color to set text to
  */
 void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
-                                 ColorId Color )
+                                 ColorId Color)
 {
   GdkColormap *color_map;
   GtkSheetRange range;
@@ -1034,7 +1033,6 @@ void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
 
   /* set color */
   gtk_sheet_range_set_background(sheet, &range, &color_t);
-
 }
 
 /*------------------------------------------------------------------*/
