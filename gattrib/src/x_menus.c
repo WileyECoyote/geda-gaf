@@ -261,6 +261,7 @@ static void menu_help_attribs()
 {
   i_show_wiki_help (HELP_ATTRIBUTES_HTML);
 }
+
 static void menu_help_glossary()
 {
   i_show_wiki_help (HELP_GEDA_GLOSSARY_HTML);
@@ -693,9 +694,12 @@ GtkWidget *x_menu_create_menu(GtkWindow *main_window)
   return menubar; /* WEH: Does this really get saved? */
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Replease Gattrib Menu Resources
+ * \par Function Description
+ *  Destroys the accel_group, recent_manager, menu_manager and the
+ *  menu_bar after removing the accel_group and each action group
+ *  in the menu_manager.
  */
 void x_menu_release_all(void)
 {
