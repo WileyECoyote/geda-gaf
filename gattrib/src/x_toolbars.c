@@ -299,7 +299,7 @@ void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
 /*!
  * \brief Replease Gattrib Toolbar Resources
  * \par Function Description
- *  Destroys the Attribute and the Sandard handleboxes.
+ *  Destroys the Attribute and the Standard handleboxes.
  */
 void x_toolbar_release_all(void)
 {
