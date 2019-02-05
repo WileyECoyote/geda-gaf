@@ -603,7 +603,7 @@ void x_dialog_export_file()
 
 /*********** Start of get text dialog box *******/
 
-/*! \brief Create the text find dialog
+/*! \brief Create the Locate Attribute dialog
  *  \par Function Description
  *  This function creates the get text dialog and returns a pointer
  *  to the string or NULL is the user canceled.
