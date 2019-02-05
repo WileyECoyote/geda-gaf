@@ -73,7 +73,7 @@ void x_menu_file_save_as()
 
 /*!
  * \brief File Open menu
- *
+ * \par Function Description
  * File open menu.
  * -# close the current project and reinitialize structures
  * -# load the new project
@@ -122,7 +122,7 @@ void x_menu_file_open()
 
 /*!
  * \brief Menu Open Recent
- *
+ * \par Function Description
  * Menu Ppen Recent file.
  * -# close the current project and reinitialize structures
  * -# load the new project
@@ -155,7 +155,7 @@ static void menu_open_recent( char* filename)
 
 /*!
  * \brief File->Export CSV menu item
- *
+ * \par Function Description
  * Implement the File->Export CSV menu item
  */
 void x_menu_file_export_csv()
@@ -176,7 +176,7 @@ void x_menu_file_export_csv()
 
 /*!
  * \brief Edit->New attrib menu item
- *
+ * \par Function Description
  * Implement the New attrib menu item
  */
 void x_menu_edit_new_attrib()
@@ -186,7 +186,7 @@ void x_menu_edit_new_attrib()
 
 /*!
  * \brief Edit->Delete Attribute menu item
- *
+ * \par Function Description
  * Implements the Delete Attribute menu item
  *
  * \todo Implement the function that Implements Delete Attribute
@@ -203,6 +203,7 @@ void x_menu_edit_delete_attrib()
 
 /*!
  * \brief Edit->Cut Menu Responder
+ * \par Function Description
  *  menu edit-clipboard-cut action responder for menu item Edit/Cut,
  *  calls x_window_clipboard_handler passing cut enumeration from
  *  IDS_Toolbar.
@@ -214,6 +215,7 @@ static void menu_edit_cut()
 
 /*!
  * \brief Edit->Copy Menu Responder
+ * \par Function Description
  *  menu edit-clipboard-copy action responder for menu item Edit/Copy,
  *  calls x_window_clipboard_handler passing copy enumeration from
  *  IDS_Toolbar.
@@ -225,6 +227,7 @@ static void menu_edit_copy()
 
 /*!
  * \brief Edit->Paste Menu Responder
+ * \par Function Description
  *  menu edit-clipboard-paste action responder for menu item Edit/Paste,
  *  calls x_window_clipboard_handler passing paste enumeration from
  *  IDS_Toolbar.
@@ -274,6 +277,7 @@ static void toolbar_icons_only( void )
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_ICONS);
   gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_ICONS);
 }
+
 /*!
  * \brief View Toolbar Text
  * \par Function Description
@@ -284,6 +288,7 @@ static void toolbar_text_only( void )
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_TEXT);
   gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_TEXT);
 }
+
 /*!
  * \brief View Toolbar Icons & Text
  * \par Function Description
@@ -297,8 +302,9 @@ static void toolbar_display_both( void )
 
 /* ----------- Recent Files Menu Stuff ----------- */
 #define MAX_RECENT_FILES 10
-/*! \brief Callback for recent-chooser.
- *  \par Function Description
+/*!
+ * \brief Callback for recent-chooser.
+ * \par Function Description
  * This function is called if an element of recent-file-list
  * is selected.
  */
@@ -337,11 +343,12 @@ static void x_menu_disconnect_recent_submenu(void *recent_chooser)
   g_object_unref(recent_chooser);
 }
 
-/*! \brief Set Senitivity of Menu Items.
- *  \par Function Description
- *       This function is called by on_notebook_switch_page when ever a TAB
- *       is selected, passing a gslist of menu widget items to be set to the
- *       specified sensitivity
+/*!
+ * \brief Set Senitivity of Menu Items.
+ * \par Function Description
+ *  This function is called by on_notebook_switch_page when ever a TAB
+ *  is selected, passing a gslist of menu widget items to be set to the
+ *  specified sensitivity
  */
 void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
 {
@@ -439,8 +446,9 @@ static const GtkToggleActionEntry toggle_entries[] = {
   { "window-show_grid",       "", N_("Show _Grid"),  "", N_("Toggle grid visibility"), G_CALLBACK(x_window_grid_toggle), TRUE },
 };
 
-/*! \brief Create geda file filter
- *  \par Function Description
+/*!
+ * \brief Create geda file filter
+ * \par Function Description
  *  This function creates a new files and setups the mine type and extensions
  *  for the Open Recent sub-sytstem.
  */
@@ -457,8 +465,9 @@ GtkRecentFilter *x_menu_geda_filter() {
   return geda_filter;
 }
 
-/*! \brief Rename gtk_recent_chooser_menu_new_for_manager
- *  \par Function Description
+/*!
+ * \brief Rename gtk_recent_chooser_menu_new_for_manager
+ * \par Function Description
  *  The name of this GTK function is way too long, and the names chosen for
  *  data type don't help, so we rename here using something more reasonable.
  */
@@ -467,7 +476,8 @@ GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
   return (GtkRecentChooser*) rc;
 }
 
-/*! \internal This function is used to destroy the single menu item that was
+/*!
+ * \internal This function is used to destroy the single menu item that was
  * added under the "/ui/menubar/file/OpenRecent" sub-menu when the defective
  * gtk_ui_manager created the menu. The widget has a default accelerator and
  * label associated the item and these will not be destroy by Gtk because
@@ -482,8 +492,9 @@ destroy_defective_child(GtkWidget *menu_item, void *nothing)
   }
 }
 
-/*! \brief Fix the GTK 'Open Recent' Menu Option
- *  \par Function Description
+/*!
+ * \brief Fix the GTK 'Open Recent' Menu Option
+ * \par Function Description
  *  gtk_ui_manager deliberately setups up the Recent Menu, in the presents
  *  of a recent manager with chooser when XML menu data is used. The setup
  *  is a generic one without filters and ALL of the GTK functions intended
@@ -532,10 +543,11 @@ void x_menu_fix_gtk_recent_submenu(void) {
   return;
 }
 
-/*! \brief Attach a submenu with filenames to the 'Open Recent'
- *  \par Function Description
+/*!
+ * \brief Attach a submenu with filenames to the 'Open Recent'
+ * \par Function Description
  *  Called from x_window_init function to attach the Open Recent
- * option under the File menu.
+ *  option under the File menu.
  */
 GtkActionGroup *x_menu_create_recent_action_group(void) {
 
@@ -573,14 +585,15 @@ GtkActionGroup *x_menu_create_recent_action_group(void) {
   return recent_action_group;
 }
 
-/*! \brief Compile List of Menu Widgets.
- *  \par Function Description
- *       This function is called after the xml menu is constructed in
- *       x_menu_create_menu in order to collect a list of pointers to
- *       menu items. The list is used for convenience to later set
- *       sensitivities so the on_notebook_switch_page callback won't
- *       have to waste time looking up each widget when users switch
- *       between Sheets/Tabs.
+/*!
+ * \brief Compile List of Menu Widgets.
+ * \par Function Description
+ *  This function is called after the xml menu is constructed in
+ *  x_menu_create_menu in order to collect a list of pointers to
+ *  menu items. The list is used for convenience to later set
+ *  sensitivities so the on_notebook_switch_page callback won't
+ *  have to waste time looking up each widget when users switch
+ *  between Sheets/Tabs.
  */
 static void x_menu_get_collections (GtkUIManager *ui_man) {
 
