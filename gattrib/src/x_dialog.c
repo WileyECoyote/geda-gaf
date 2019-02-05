@@ -655,9 +655,8 @@ char *x_dialog_get_search_text(const char *prompt)
     gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
 
-    textentry = geda_entry_new();
+    textentry = geda_entry_new_with_max_length(32);
 
-    g_object_set (textentry, "max-length", 32, "visible", TRUE, NULL);
 
     gtk_editable_select_region((GtkEditable*)textentry, 0, -1);
     gtk_box_pack_start(vbox, textentry, FALSE, FALSE, 0);
