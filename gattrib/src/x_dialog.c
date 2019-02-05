@@ -651,7 +651,7 @@ char *x_dialog_get_search_text(const char *prompt)
     g_object_set (vbox, "spacing", DIALOG_V_SPACING + 5, NULL);
 
     real_prompt = geda_strconcat(_("Enter"), " ", prompt, ":", NULL);
-    label       = geda_aligned_label_new(real_prompt, 0, 0);
+    label       = geda_aligned_visible_label_new(real_prompt, 0, 0);
     gtk_box_pack_start(vbox, label, TRUE, TRUE, 0);
     GEDA_FREE(real_prompt);
 

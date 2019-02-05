@@ -1,6 +1,7 @@
 2019-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x_dialog.c: Replace geda_entry_new with geda_entry_new_with_max_length.
+    * src/x_dialog.c: Replace geda_entry_new with geda_entry_new_with_max_length
+      and geda_aligned_label_new with geda_aligned_visible_label_new.
 
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
