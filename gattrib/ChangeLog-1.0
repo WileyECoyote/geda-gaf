@@ -1,7 +1,9 @@
 2019-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace geda_entry_new with geda_entry_new_with_max_length
-      and geda_aligned_label_new with geda_aligned_visible_label_new.
+      and geda_aligned_label_new with geda_aligned_visible_label_new, explicitly
+      show the textentry and remove the gtk_widget_show_all since all widgets
+      have been set visible.
 
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
