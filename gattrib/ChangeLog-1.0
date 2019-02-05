@@ -5,6 +5,9 @@
       show the textentry and remove the gtk_widget_show_all since all widgets
       have been set visible.
 
+    * src/x_gtksheet.c: Remove else clauses in x_gtksheet_get_min_col and
+      x_gtksheet_get_max_col.
+
 2019-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Append po/stamp-po to distclean, for some reason this

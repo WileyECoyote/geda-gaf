@@ -1091,12 +1091,12 @@ bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
  *          no column is selected.
  */
 int x_gtksheet_get_min_col(GtkSheet *sheet) {
+
   if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
     return sheet->range.col0;
   }
-  else {
-    return -1;
-  }
+
+  return -1;
 }
 
 /*!
@@ -1110,11 +1110,12 @@ int x_gtksheet_get_min_col(GtkSheet *sheet) {
  *          no column is selected.
  */
 int x_gtksheet_get_max_col(GtkSheet *sheet) {
+
   if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
     return sheet->range.coli;
-  } else {
-    return -1;
   }
+
+  return -1;
 }
 
 /*!
