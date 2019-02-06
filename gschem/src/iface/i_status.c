@@ -40,15 +40,17 @@
  * in order to provides visual feedback to users.
  */
 
-/*! \brief Set new state, then show state field including some message
- *  \par Function Description
+/*!
+ * \brief Set new state, then show state field including some message
+ * \par Function Description
  *  Set new state, then show state field including some
  *  message.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] newstate The new state
- *  \param [in] message Message to be shown
- *   *EK* Egil Kvaleberg
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] newstate  The new state
+ * \param [in] message   Message to be shown
+ *
+ * *EK* Egil Kvaleberg
  */
 void i_status_set_state_msg(GschemToplevel *w_current,
                             enum            x_states newstate,
@@ -75,22 +77,25 @@ void i_status_set_state_msg(GschemToplevel *w_current,
 
 }
 
-/*! \brief Set new state, then show state field
- *  \par Function Description
+/*!
+ * \brief Set new state, then show state field
+ * \par Function Description
  *  Wrapper for i_status_set_state_msg, set new state without specifing
  *  and message string.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] newstate The new state
- *   *EK* Egil Kvaleberg
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] newstate  The new state
+ *
+ * *EK* Egil Kvaleberg
  */
 void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
 {
   i_status_set_state_msg (w_current, newstate, NULL);
 }
 
-/*! \brief Update status bar string
- *  \par Function Description
+/*!
+ * \brief Update status bar string
+ * \par Function Description
  *  This function updates the status bar widget with the new string.
  *
  *  \param [in] w_current GschemToplevel structure
@@ -109,15 +114,18 @@ static void i_status_update_status(GschemToplevel *w_current,
   }
 }
 
-/*! \brief Get string corresponding to the currently selected mode
- *  \par Function Description
+/*!
+ * \brief Get string corresponding to the currently selected mode
+ * \par Function Description
  *  Returns a string describing the currently
  *  selected mode.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \returns a string that will only last until the next time
- *   the function is called (which is probably just fine, really)
- *   *EK* Egil Kvaleberg
+ * \param [in] w_current GschemToplevel structure
+ *
+ * \returns a string that will only last until the next time the
+ *          function is called (which is probably just fine, really)
+ *
+ * *EK* Egil Kvaleberg
  */
 static const char *i_status_string(GschemToplevel *w_current)
 {
@@ -199,13 +207,14 @@ static const char *i_status_string(GschemToplevel *w_current)
   return ""; /* should not happen */
 }
 
-/*! \brief Display a Message in the Status Bar
- *  \par Function Description
+/*!
+ * \brief Display a Message in the Status Bar
+ * \par Function Description
  *  This function allows a message to be displayed in the status bar widget
  *  without alterations to the string.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] string The message string to be shown in the status bar
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] string The message string to be shown in the status bar
  */
 void i_status_show_msg(GschemToplevel *w_current, const char *string)
 {
@@ -214,13 +223,14 @@ void i_status_show_msg(GschemToplevel *w_current, const char *string)
   }
 }
 
-/*! \brief Show state field
- *  \par Function Description
+/*!
+ * \brief Show state field
+ * \par Function Description
  *  Show state field in the status bar, possibly with the addition
  *  of an extra message.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] message The string to be displayed
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] message The string to be displayed
  */
 void i_status_show_state(GschemToplevel *w_current, const char *message)
 {
@@ -284,8 +294,8 @@ i_status_idle_thread_update_action (GschemToplevel *w_current)
  *  Sets inside_action to state if not already set and initiates thread
  *  to update the status bar color.
  *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] state     Boolean value to set inside_action
+ * \param [in] w_current GschemToplevel structure
+ * \param [in] state     Boolean value to set inside_action
  */
 void i_status_update_action_state(GschemToplevel *w_current, int state)
 {
@@ -435,12 +445,13 @@ static bool linetype_object_selected(GList *list)
   return FALSE;
 }
 
-/*! \brief Is at least one Text object selected?
- *  \par Function Description
- *   Update sensitivities helper function to determine
- *   if any selected objects are Text objects.
+/*!
+ * \brief Is at least one Text object selected?
+ * \par Function Description
+ *  Update sensitivities helper function to determine
+ *  if any selected objects are Text objects.
  *
- *  \retval TRUE if \a list contains a text object, otherwise FALSE.
+ * \retval TRUE if \a list contains a text object, otherwise FALSE.
  */
 static bool selected_at_least_one_text_object(GList *list)
 {
@@ -456,10 +467,11 @@ static bool selected_at_least_one_text_object(GList *list)
   return FALSE;
 }
 
-/*! \brief Is at least one Complex object selected?
- *  \par Function Description
- *   Update sensitivities helper function to determine
- *   if any selected objects are Complex objects.
+/*!
+ * \brief Is at least one Complex object selected?
+ * \par Function Description
+ *  Update sensitivities helper function to determine if any
+ *  selected objects are Complex objects.
  *
  * \retval TRUE if \a list contains a Complex object, otherwise FALSE.
  */

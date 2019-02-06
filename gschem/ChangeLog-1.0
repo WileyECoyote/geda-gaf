@@ -1,4 +1,8 @@
-2018-02-04 Wiley E. Hill <wileyhill@gmail.com>
+2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Reformat function documentation.
+
+2019-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Reduce MAX_THREADS_UNUSED from 3 to 2.
 
@@ -11,7 +15,7 @@
 
     * src/iface/i_vars.c: Reformat function documentation.
 
-2018-02-01 Wiley E. Hill <wileyhill@gmail.com>
+2019-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Convert plain text to Doxygen documentation and
       clean/reformat documentation.
