@@ -3,6 +3,8 @@
     * src/widgets/geda_entry.c: Replace g_object_set to set "visible"
       with more efficient gtk_widget_show, see log entry 2018-10-05.
 
+    * src/widgets/geda_handlebox.c: Reformat function documentation.
+
 2019-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add Doxygen subgroup geda-entry-wcvo.

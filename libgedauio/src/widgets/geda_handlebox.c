@@ -1831,8 +1831,7 @@ void geda_handle_box_dock (GedaHandleBox *handlebox)
 /*!
  * \brief geda_handle_box_get_child_detached
  * \par Function Description
- *
- * Whether the handlebox's child is currently detached.
+ *  Returns whether the handlebox's child is currently detached.
  *
  * \param [in] handlebox    The #GedaHandleBox object
  *
@@ -1848,7 +1847,7 @@ bool geda_handle_box_get_child_detached (GedaHandleBox *handlebox)
 /*!
  * \brief Sets the Handle Position of a GedaHandleBox
  * \par Function Description
- * Sets the side of the handlebox where the handle is drawn.
+ *  Sets the side of the handlebox where the handle is drawn.
  *
  * \param [in] handlebox The #GedaHandleBox object
  * \param [in] position   Side of the handlebox where the handle should
@@ -1876,9 +1875,8 @@ void geda_handle_box_set_handle_position (GedaHandleBox   *handlebox,
 /*!
  * \brief geda_handle_box_get_handle_position
  * \par Function Description
- *
- * Gets the handle position of the handle box. See
- * geda_handle_box_set_handle_position().
+ *  Gets the handle position of the handle box. See
+ *  geda_handle_box_set_handle_position().
  *
  * \param [in] handlebox The #GedaHandleBox object
  *
@@ -1922,9 +1920,8 @@ void geda_handle_box_set_shadow_type (GedaHandleBox *handlebox, GtkShadowType ty
 /*!
  * \brief Get the Shadow Type of a GedaHandleBox
  * \par Function Description
- *
- * Gets the type of shadow drawn around the handle box. See
- * geda_handle_box_set_shadow_type().
+ *  Gets the type of shadow drawn around the handle box. See
+ *  geda_handle_box_set_shadow_type().
  *
  * \param [in] handlebox   The #GedaHandleBox object
  *
@@ -2051,9 +2048,9 @@ GtkToolbar *geda_handle_box_get_toolbar (GedaHandleBox *handlebox)
 /*!
  * \brief Set or Replace the Toolbar in a GedaHandleBox
  * \par Function Description
- * This function allows clients to change the toolbar that is contained
- * within the #GedaHandleBox. The clients should maintain a reference
- * to any previous toolbars if needed.
+ *  This function allows clients to change the toolbar that is contained
+ *  within the #GedaHandleBox. The clients should maintain a reference
+ *  to any previous toolbars if needed.
  *
  * \param [in] handlebox The #GedaHandleBox object
  * \param [in] toolbar   Toolbar object to be put in the handlebox
@@ -2133,9 +2130,9 @@ void geda_handle_widget_set_shrink_on_detach (GtkWidget *handlebox, bool shrink)
 /*!
  * \brief Set GedaHandleBox Widget Snap Edge
  * \par Function Description
- * The snap edge is the edge of the detached child that must be aligned with
- * the corresponding edge of the "ghost" left behind when the child was detached
- * to reattach the torn-off window.
+ *  The snap edge is the edge of the detached child that must be aligned
+ *  with the corresponding edge of the "ghost" left behind when the child
+ *  was detached to reattach the torn-off window.
  *
  * \param [in] handlebox The #GedaHandleBox widget
  * \param [in] edge      Enumerated GtkPositionType
