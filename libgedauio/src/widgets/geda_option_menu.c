@@ -126,14 +126,13 @@ static void *geda_option_menu_parent_class = NULL;
 
 static GHashTable *option_menu_hash = NULL;
 
-static GType
-geda_option_menu_child_type (GtkContainer *container)
+/*! \internal container_class->child_type */
+static GType geda_option_menu_child_type (GtkContainer *container)
 {
   return G_TYPE_NONE;
 }
 
-static void
-geda_option_menu_item_finalize (GObject *object)
+static void geda_option_menu_item_finalize (GObject *object)
 {
   //GedaOptionMenu *option_menu_item = GEDA_OPTION_MENU (object);
 
