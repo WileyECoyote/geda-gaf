@@ -2374,7 +2374,7 @@ GtkWidget *geda_entry_new_visible_completion (GList **complete)
 
   entry = geda_entry_new_with_completion (complete);
 
-  g_object_set (entry, "visible", TRUE, NULL);
+  gtk_widget_show (entry);
 
   return entry;
 }
@@ -2397,7 +2397,7 @@ GtkWidget *geda_entry_new_visible_history (GList **history)
 
   entry = geda_entry_new_with_history (history);
 
-  g_object_set (entry, "visible", TRUE, NULL);
+  gtk_widget_show (entry);
 
   return entry;
 }
