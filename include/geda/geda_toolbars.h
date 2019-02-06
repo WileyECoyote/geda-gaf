@@ -132,14 +132,14 @@ typedef struct
 #define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, ENUM, icon, button, func, data) \
         GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_ACTION(name)) \
-        g_object_set (button, "visible", TRUE, NULL); \
+        gtk_widget_show (button); \
 }
 
 /*! \brief 1st LeveL Intermediate ToolBar Macro with *w_current data */
 #define TOOLBAR_BUTTON_DATA( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, GEDA, icon, button, func, data) \
         GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_ACTION(name)) \
-        g_object_set (button, "visible", TRUE, NULL); \
+        gtk_widget_show (button); \
 }
 
 /* --------------------------- 2nd Level -------------------------------- */

@@ -1,3 +1,11 @@
+2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Replace g_object_set to set "visible"
+      with more efficient gtk_widget_show in macros:
+
+        * TOOLBAR_BUTTON
+        * TOOLBAR_BUTTON_DATA
+
 2019-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump date version 20190120.
