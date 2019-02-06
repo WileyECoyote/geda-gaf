@@ -65,9 +65,10 @@ void generic_msg_dialog (const char *msg)
 
 /***************** Start of generic confirm dialog box *******************/
 
-/*! \brief Generic Confirmation Dialog
- *  \par Function Description
- *       Display a basic dialog with okay/cancel buttons
+/*!
+ * \brief Generic Confirmation Dialog
+ * \par Function Description
+ *  Display a basic dialog with okay/cancel buttons
  *
  *  \param msg    pointer to message to be displayed
  *  \param type   The context type of the message
@@ -96,7 +97,9 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 
 /****************** Start of New Attribute dialog box ********************/
 
-/*! \brief Add new attribute dialog.
+/*!
+ * \brief Add new attribute dialog
+ * \par Function Description
  * This asks for the name of the attrib column to insert
  * and then inserts the column.
  */
@@ -323,10 +326,11 @@ bool x_dialog_column_visibility (GList *list)
 
 /****************** End of Column Visibility dialog box ******************/
 
-/*! \brief Delete Attribute dialog
- *
- * This function throws up the "Delete foo, are you sure?" dialog
- *         box.  It offers two buttons: "yes" and "cancel".
+/*!
+ * \brief Delete Attribute dialog
+ * \par Function Description
+ *  This function throws up the "Delete foo, are you sure?" dialog box.
+ *  The dialog offers two buttons: "yes" and "cancel".
  */
 void x_dialog_delete_attrib()
 {
@@ -373,11 +377,12 @@ void x_dialog_delete_attrib()
   gtk_widget_destroy(dialog);
 }
 
-/*! \brief Missing Symbol dialog
- *
- * This is the "missing symbol file found on object" dialog,
- * which offers users an opertunity to close the project without
- * saving because the schematic was read with a missing symbol.
+/*!
+ * \brief Missing Symbol dialog
+ * \par Function Description
+ *  This is the "missing symbol file found on object" dialog, which
+ *  offers users an opertunity to close the project without saving
+ *  because the schematic was read with a missing symbol.
  */
 void x_dialog_missing_sym()
 {
@@ -412,10 +417,11 @@ void x_dialog_missing_sym()
   gtk_widget_destroy((GtkWidget*)dialog);
 }
 
-/*! \brief File Not Saved dialog
- *
- * Displays a dialog notifing users that the content has changes and
- * provides an opportunity to save the file.
+/*!
+ * \brief File Not Saved dialog
+ * \par Function Description
+ *  Displays a dialog notifing users that the content has changes and
+ *  provides an opportunity to save the file.
  */
 int x_dialog_file_not_saved()
 {
@@ -462,10 +468,11 @@ int x_dialog_file_not_saved()
   return result;
 }
 
-/*! \brief Unsaved data dialog
- *
- * This is the "Unsaved data -- are you sure you want to quit?" dialog
- *         box which is thrown up before the user quits.
+/*!
+ * \brief Unsaved data dialog
+ * \par Function Description
+ *  This is the "Unsaved data -- are you sure you want to quit?" dialog
+ *  box which is thrown up before the user quits.
  */
 void x_dialog_unsaved_data()
 {
@@ -488,10 +495,11 @@ void x_dialog_unsaved_data()
   return;
 }
 
-/*! \brief Unimplemented feature dialog
- *
- * This function informs the user that he has chosen an unimplemented
- *         feature.  It presents only an "OK" button to leave.
+/*!
+ * \brief Unimplemented feature dialog
+ * \par Function Description
+ *  This function informs the user that he has chosen an unimplemented
+ *  feature. The dialog presents only an "OK" button to leave.
  */
 void x_dialog_unimplemented_feature()
 {
@@ -510,10 +518,11 @@ void x_dialog_unimplemented_feature()
   gtk_widget_destroy(dialog);
 }
 
-/*! \brief Fatal error dialog
- *
- * This function displays a dialog with the error string and
- * terminates the program.
+/*!
+ * \brief Fatal error dialog
+ * \par Function Description
+ *  This function displays a dialog with the error string and terminates
+ *  the program.
  *
  *  \param [in] string the error string
  *  \param [in] return_code the exit code
@@ -538,9 +547,10 @@ void x_dialog_fatal_error(char *string, int return_code)
   exit (return_code);
 }
 
-/*! \brief About gattrib dialog
- *
- * This dosplays the about dialog.
+/*!
+ * \brief About gattrib dialog
+ * \par Function Description
+ *  This dosplays the about dialog.
  */
 void x_dialog_about_dialog()
 {
@@ -561,10 +571,11 @@ void x_dialog_about_dialog()
   gtk_widget_destroy(dialog);
 }
 
-/*! \brief Export file dialog
- *
- * This asks for the filename for the CSV export file and then
- *         does the exporting.
+/*!
+ * \brief Export file dialog
+ * \par Function Description
+ *  This asks for the filename for the CSV export file and then
+ *  does the exporting.
  */
 void x_dialog_export_file()
 {
@@ -603,8 +614,9 @@ void x_dialog_export_file()
 
 /*********** Start of get text dialog box *******/
 
-/*! \brief Create the Locate Attribute dialog
- *  \par Function Description
+/*!
+ * \brief Create the Locate Attribute dialog
+ * \par Function Description
  *  This function creates the get text dialog and returns a pointer
  *  to the string or NULL is the user canceled.
  */
@@ -744,8 +756,9 @@ static void search_replace_dialog_destroy_widgets(GtkWidget *self)
   g_object_unref(tooltips);
 }
 
-/*! \brief Action Response function for the Search dialogs
- *  \par Function Description
+/*!
+ * \brief Action Response function for the Search dialogs
+ * \par Function Description
  *  This function processes the "response" signals from the action
  *  buttons in the Search dialogs.
  */
@@ -808,9 +821,10 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
 
 /* ------------------------ ComboBox Support Functions ----------------------*/
 
-/*! \brief Search Dialog Combo Responder
- *  \par Function Description: This callback function is used to set the
- *       sensitivity of other controls based on combo-box input.
+/*!
+ * \brief Search Dialog Combo Responder
+ * \par Function Description: This callback function is used to set the
+ *  sensitivity of other controls based on combo-box input.
  */
 static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
 {
@@ -864,12 +878,13 @@ static void search_replace_combo_responder(GtkWidget *widgetCombo, void *data)
 
 /* ------------------------- Switch Support Functions -----------------------*/
 
-/*! \brief Toggle Search Dialog Switch Images
- *  \par Function Description: This function changes the images of
- *       controls created with create_geda_switch to the opposite
- *       state, i.e. if ON use OFF image and if OFF use ON image.
- *       The functions enables or disables other widgets based on
- *       the state of the switch.
+/*!
+ * \brief Toggle Search Dialog Switch Images
+ * \par Function Description
+ *  This function changes images of controls created with create_geda_switch
+ *  to the opposite state, i.e. if ON use OFF image and if OFF use ON image.
+ *  The functions enables or disables other widgets based on the state of the
+ *  switch.
  */
 static void search_replace_switch_responder(GtkWidget *widget, int response, ControlID *Control)
 {
@@ -895,11 +910,13 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
 }
 
 /* ---------------- Search Dialog Initialization Functions ------------------*/
-/*! \brief Initialize Search Dialog Controls
- *  \par Function Description: This function sets the initial state of the
- *       Search Dialog. The toggle switches are set to the values in the
- *       Search Record structure. Controls for options and all but the
- *       Close button are disabled.
+
+/*!
+ * \brief Initialize Search Dialog Controls
+ * \par Function Description
+ *  This function sets the initial state of the Search Dialog. The toggle
+ *  switches are set to the values in the Search Record structure. Controls
+ *  for options and all but the Close button are disabled.
  */
 static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
                                          SearchRecord *Search,
@@ -948,17 +965,17 @@ static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
   }
 }
 
-/*! \brief Create Search Dialog Controls
- *  \par Function Description: This function creates the Search Dialog
- *  and all controls. The Dialog can be either a Search/Find or a Search
- *  and Replace Dialog depending on the second parameter, find_only_mode.
- *  If find_only_mode is TRUE, then the ReplaceTextCombo, Replace and
- *  Replace All button are not made visible, effectively creating a Find
- *  dialog without options to replace. All of the functionality remains
- *  but is not utilize. This make since because the Search And Replace
- *  Dialog can also be used as a Find Dialog (without actually replacing
- *  anything).
- *
+/*!
+ * \brief Create Search Dialog Controls
+ * \par Function Description
+ *  This function creates the Search Dialog and all controls. The Dialog
+ *  can be either a Search/Find or a Search and Replace Dialog depending
+ *  on the second parameter, find_only_mode. If find_only_mode is TRUE,
+ *  then the ReplaceTextCombo, Replace and Replace All button are not made
+ *  visible, effectively creating a Find dialog without options to replace.
+ *  All of the functionality remains but is not utilize. This make since
+ *  because the Search And Replace Dialog can also be used as a Find Dialog
+ *  (without actually replacing anything).
  */
 static
 GtkWidget *x_dialog_create_search_replace_dialog (GtkWindow *parent,

@@ -1,3 +1,8 @@
+2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Reformat function documentation; add missing \par tags with
+      "Function Description".
+
 2019-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replace geda_entry_new with geda_entry_new_with_max_length
