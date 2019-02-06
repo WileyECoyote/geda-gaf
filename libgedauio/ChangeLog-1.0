@@ -5,6 +5,8 @@
 
     * src/widgets/geda_handlebox.c: Reformat function documentation.
 
+    * src/widgets/geda_label.c: Reformat function documentation.
+
 2019-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Add Doxygen subgroup geda-entry-wcvo.
