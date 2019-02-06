@@ -1,3 +1,7 @@
+2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_rename.c: Reduce the scope of variables in s_rename_destroy_all.
+
 2019-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/parsecmd.c: Adjust function wrapping and reformat documentation.

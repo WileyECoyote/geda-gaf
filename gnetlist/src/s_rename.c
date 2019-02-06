@@ -92,11 +92,10 @@ void s_rename_init(void)
  */
 void s_rename_destroy_all(void)
 {
-  RENAME *temp;
-  void   *to_free;
-
   while (first_set) {
 
+    RENAME *temp;
+    void   *to_free;
     for (temp = first_set->first_rename; temp;) {
       GEDA_FREE(temp->src);
       GEDA_FREE(temp->dest);
