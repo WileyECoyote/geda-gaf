@@ -1,5 +1,7 @@
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/i_vars.c: Add i_vars_release_all function documentation.
+
     * src/x_dialog.c: Reformat function documentation; add missing \par tags with
       "Function Description".
 

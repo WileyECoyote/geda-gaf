@@ -66,9 +66,11 @@ void i_vars_set (GedaToplevel *toplevel)
   hide_columns = default_hide_columns;
 }
 
-/*! \brief Release Resources in i_vars
- *  \par Function Description
- *
+/*!
+ * \brief Release Resources in i_vars
+ * \par Function Description
+ *  Releases the list of default columns to be initially hidden and
+ *  the reference string allocations.
  */
 void i_vars_release_all(void)
 {
