@@ -33,9 +33,11 @@
 GList *default_known_devices = NULL;
 GList *default_valid_attributes = NULL;
 
-/*! \brief Release Resources in i_vars
- *  \par Function Description
- *
+/*!
+ * \brief Release Resources in i_vars
+ * \par Function Description
+ *  Releases resources associated with i_vars, specifically, release
+ *  lists and containing string allocations.
  */
 void i_vars_release_all(void)
 {

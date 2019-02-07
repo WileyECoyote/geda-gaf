@@ -1,3 +1,7 @@
+2019-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/i_vars.c: Update function documentation.
+
 2018-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gsymcheck.h: Add header to include other headers, primarily to
