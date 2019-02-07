@@ -53,11 +53,14 @@
  * WEH | 10/16/13 | Remove string for Schematic's and Symbols and relocated
  *                | to include/libgeda/defines.h.
  * ------------------------------------------------------------------
- * WEH | 08/30/14 | Added SESSIONS_CONFIG_GROUP
+ * WEH | 08/30/14 | Added SESSIONS_CONFIG_GROUP.
  * ------------------------------------------------------------------
- * WEH | 09/15/14 | Add strings for anti-aliasing rc setting
+ * WEH | 09/15/14 | Add strings for anti-aliasing rc setting.
  * ------------------------------------------------------------------
- * WEH | 06/27/15 | Added LOG_CONFIG_GROUP
+ * WEH | 06/27/15 | Added LOG_CONFIG_GROUP.
+ * ------------------------------------------------------------------
+ * WEH | 02/07/19 | Remove obsolete GSCHEM_EDA_STORE, DIALOG_CONFIG_STORE
+ *                | and WINDOW_GEOMETRY_STORE.
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -70,13 +73,8 @@
 
 #endif
 
-#define GSCHEM_EDA_STORE           "geda" /* "gschem" */
-
-/* Names of retention files for Saving Window Geometry */
-#define DIALOG_CONFIG_STORE        "gschem-dialog-user.conf"
-
+/* Name of retention file for Toolbar configuration data */
 #define TOOLBAR_CONFIG_STORE       "gschem-toolbar-user.conf"
-//#define WINDOW_GEOMETRY_STORE      "gschem-window"
 
 /* string name of configuration groups */
 #define IVAR_CONFIG_GROUP          "global"
