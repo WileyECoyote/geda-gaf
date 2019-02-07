@@ -155,7 +155,7 @@ static struct BuiltinInfo builtins[] = {
   { "%help-hotkeys",              0, 0, 0, g_keys_help_hotkeys },
   { "%cancel",                    0, 0, 0, h_keys_cancel },
 */
-  { NULL, 0, 0, 0, NULL }, // Custodian
+  { NULL, 0, 0, 0, NULL }, /* sentinel */
 };
 
 /*!
