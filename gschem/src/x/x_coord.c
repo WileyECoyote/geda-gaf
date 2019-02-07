@@ -218,7 +218,7 @@ bool x_dialog_coord_drag_motion (GtkWidget      *widget,
                                  unsigned int    time,
                                  GschemToplevel *w_current)
 {
-  // Fancy stuff here. This signal spams the console something horrible.
+  /* Fancy stuff here. This signal spams the console something horrible. */
   return  FALSE;
 }
 
