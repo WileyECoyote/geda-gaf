@@ -34,11 +34,3 @@ int quiet_mode;   //!< Reflects the value of the command line flag
 GList *hide_columns;
 int    sort_components;
 int    tearoff_menus;
-
-/*!
- * these are required by libgeda
- * I have made most of these NULL because they aren't needed
- * for gattrib -- no drawing is done.
- */
-void (*variable_set_func)() = i_vars_set;
-
