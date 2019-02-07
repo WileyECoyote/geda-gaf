@@ -550,7 +550,7 @@ void x_dialog_fatal_error(char *string, int return_code)
 /*!
  * \brief About gattrib dialog
  * \par Function Description
- *  This dosplays the about dialog.
+ *  This function displays the about dialog.
  */
 void x_dialog_about_dialog()
 {
