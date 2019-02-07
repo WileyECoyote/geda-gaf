@@ -1,3 +1,7 @@
+2019-02-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_extend.c: Remove unused function o_extend_is_list_valid_bounders.
+
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_status.c: Reformat function documentation.

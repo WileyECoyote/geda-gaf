@@ -83,34 +83,6 @@ static bool o_extend_is_valid_bounder (GedaObject *object)
   return anwser;
 }
 
-/*! \brief Checks if list of objects contain valid bounders
- *  \par Function Description
- *  Returns true if all members of \a list can be use as a
- *  boundary.
- */
-/*
-static bool o_extend_is_list_valid_bounders (GList *list)
-{
-  GList *iter = list;
-  int anwser;
-
-  if (iter) {
-    anwser  = TRUE;
-    while (iter) {
-      GedaObject *object = iter->data;
-      if (o_extend_is_valid_bounder(object)) {
-        anwser = FALSE;
-        break;
-      }
-      iter = iter->next;
-    }
-  }
-  else { // No list
-    anwser = FALSE;
-  }
-  return anwser;
-}
-*/
 /*! \brief Check if object is Projectable
  *  \par Function Description
  *  Projectiles are the three linear type objects; line, nets
