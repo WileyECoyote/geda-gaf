@@ -100,8 +100,8 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 /*!
  * \brief Add new attribute dialog
  * \par Function Description
- * This asks for the name of the attrib column to insert
- * and then inserts the column.
+ * This function displays a dialog box to prompt for the name of the
+ * attribute column to insert and then inserts the column.
  */
 char *x_dialog_new_attrib()
 {
