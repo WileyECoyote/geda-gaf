@@ -105,7 +105,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     bool match_size   = TRUE;
     bool match_angle  = TRUE;
 
-    GdkColor gray; //   { 0, 0x8888, 0x8888, 0x8888 };
+    GdkColor gray;                   /* { 0, 0x8888, 0x8888, 0x8888 } */
     gdk_color_parse("gray", &gray);
 
     ThisDialog = w_current->tewindow;
