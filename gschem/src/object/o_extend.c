@@ -110,35 +110,6 @@ static bool o_extend_is_valid_projectile (GedaObject *object)
   return anwser;
 }
 
-/*! \brief Check if list of objects contain valid bounders
- *  \par Function Description
- *  Returns true if all members of \a list can be use as a
- *  boundary.
- */
-/*
-static bool o_extend_is_list_valid_projectiles (GList *list)
-{
-  GList *iter = list;
-  int anwser;
-
-  if (iter) {
-    anwser  = TRUE;
-    while (iter) {
-      GedaObject *object = iter->data;
-      if (o_extend_is_valid_projectile(object)) {
-        anwser = FALSE;
-        break;
-      }
-      iter = iter->next;
-    }
-  }
-  else { // No list
-    anwser = FALSE;
-  }
-  return anwser;
-}
-*/
-
 /* -------------------------- List Compilers -------------------------- */
 
 /*! \brief Get list of valid bounders from list of objects
