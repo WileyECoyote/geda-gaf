@@ -5,6 +5,9 @@
 
     * src/object/o_extend.c: Remove unused function o_extend_is_list_valid_projectiles.
 
+    * src/x/x_edit_text.c: Utilize geda_toplevel_get_current_page to retrieve the
+      current page and replace Current_Selection with geda_page_get_selection.
+
 2019-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_extend.c: Remove unused function o_extend_is_list_valid_bounders.

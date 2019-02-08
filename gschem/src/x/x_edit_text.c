@@ -96,6 +96,7 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
 
     GtkWidget *ThisDialog;
     GtkWidget *widget;
+    Page      *p_current;
 
     char *string;
 
@@ -123,7 +124,8 @@ static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
     text_angle  = object->text->angle;
 
     GList *iter  = NULL;
-    iter         = geda_list_get_glist(Current_Selection);
+    p_current    = geda_toplevel_get_current_page(w_current->toplevel);
+    iter         = geda_page_get_selection(p_current);
     num_selected = g_list_length(iter);
 
     if (num_selected > 1) {
