@@ -91,7 +91,7 @@ void      geda_list_unref                   ( GedaList *list );
 /*void geda_list_remove_glist( GedaList *list, GList *items ); */ /* Undemanded as yet */
 void      geda_list_remove_all              ( GedaList *list );
 
-#define geda_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
+#define geda_list_get_glist(list) ((list->glist) ? ((GList*)(g_list_first (list->glist))) : NULL)
 #define geda_list_free_full(list) geda_utility_glist_free_full(list->glist, g_free); list->glist = NULL;
 #define geda_list_length(list) g_list_length(list->glist)
 
