@@ -1529,7 +1529,11 @@ COMMAND (do_mirror)
 
     if HOT_ACTION (do_mirror) {
 
-      GList *object_list = geda_list_get_glist (Current_Selection);
+      GList *object_list;
+      Page  *p_current;
+
+      p_current   = geda_toplevel_get_current_page(w_current->toplevel);
+      object_list = geda_page_get_selection(p_current);;
 
       if (object_list) {
         o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
