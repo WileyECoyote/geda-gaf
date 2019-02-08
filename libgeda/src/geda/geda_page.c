@@ -739,12 +739,11 @@ void geda_page_set_place_list (Page *page, GList *object_list)
 /*!
  * \brief Retrieve the Selection List
  * \par Function Description
- *  The Selection is GedaList of objects belonging to the page
- *  that have the "selected" flag set, which allow signals to
- *  be generated when the selection changes. This function
- *  return the underlining double linked GList held by the
- *  GedaList, which is generally more useful during editing
- *  operations.
+ *  The Selection is a GedaList of objects belonging to the page
+ *  that have the "selected" flag set, which allow signals to be
+ *  generated when the selection changes. This function returns
+ *  the underlining double linked GList held by the GedaList,
+ *  which is generally more useful during editing operations.
  */
 GList *geda_page_get_selection_list(Page *page)
 {
