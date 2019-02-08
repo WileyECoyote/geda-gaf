@@ -3468,8 +3468,6 @@ compselect_constructor (GType                  type,
 static void
 compselect_dispose (GObject *object)
 {
-  // Compselect *ThisDialog = COMPSELECT (object);
-
   if (tree_view_popup_menu != NULL) {
     gtk_widget_destroy(GTK_WIDGET(tree_view_popup_menu));
     g_object_ref_sink(tree_view_popup_menu);
