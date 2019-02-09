@@ -211,45 +211,64 @@ msgstr "Избришите објекат са странице."
 msgid "Delete multiple objects from a page."
 msgstr "Избришите више објеката са странице."
 
+# Synchronize object with library
+# Sincronizar objeto com biblioteca
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Синцронизар објето цом библиотеца."
 
+# Create a new arc object
+# Napravite novi objekat luka
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Направите нови објекат лука."
 
+# Napravite novi objekt okvira
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Направите нови објект оквира."
 
+# Create a new bus object ->Create a new cable object
+# Kreirajte novi kabl objekat
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Креирајте нови кабл објекат."
 
+# Create a new circle object
+# Napravite novi objekt kruga
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Направите нови објект круга."
 
+# Create a new complex object
+# Kreirajte novi kompleksni objekat
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Креирајте нови комплексни објекат."
 
+# Create a new line object
+# Napravite novi objekat linije
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Направите нови објекат линије."
 
+# Create a new net object
+# Kreirajte novi neto objekat
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Креирајте нови нето објекат."
 
+# Create a new path object
+# Kreirajte novi objekt putanje
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Креирајте нови објект путање."
 
+# Create a new picture object
+# Napravite novi objekat slike
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Направите нови објекат слике."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
