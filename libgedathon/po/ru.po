@@ -210,45 +210,65 @@ msgstr "Удалить объект со страницы."
 msgid "Delete multiple objects from a page."
 msgstr "Удалить несколько объектов со страницы."
 
+# Synchronize object with library
+# Sinkronizar objeto com biblioteca
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Синкронизар objeto com biblioteca."
 
+# Create a new arc object
+# Sozdat' novyy ob"yekt dugi
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Создать новый объект дуги."
 
+# Create a new box object
+# Sozdat' novyy ob"yekt korobki
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Создать новый объект коробки."
 
+# Create a new bus object
+# Sozdat' novyy ob"yekt shiny
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Создать новый объект шины."
 
+# Create a new circle object
+# Sozdat' novyy ob"yekt kruga
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Создать новый объект круга."
 
+# Create a new complex object
+# Sozdat' novyy slozhnyy ob"yekt
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Создать новый сложный объект."
 
+# Create a new line object
+# Sozdat' novyy ob"yekt linii
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Создать новый объект линии."
 
+# Create a new net object
+# Sozdat' novyy chistyy ob"yekt
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Skapa ett nytt nätobjekt."
 
+# Create a new path object
+# Sozdat' novyy ob"yekt puti
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Создать новый объект пути."
 
+# Create a new picture object
+# Sozdat' novyy ob"yekt izobrazheniya
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Создать новый объект изображения."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
