@@ -215,45 +215,63 @@ msgstr "Видалити об'єкт зі сторінки."
 msgid "Delete multiple objects from a page."
 msgstr "Видалити кілька об'єктів зі сторінки."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Синхронізувати об'єкт з бібліотекою."
 
+# Create a new arc object
+# Stvoritʹ novyy ob'yekt duhy
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Створіть новий об'єкт дуги."
 
+# Створіть новий об'єкт
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Stvoritʹ novyy ob'yekt."
 
+# Create a new bus object
+# Stvoritʹ novyy ob'yekt shyny
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Створіть новий об'єкт шини."
 
+# Create a new circle object
+# Stvoritʹ novyy ob'yekt kola
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Створіть новий об'єкт кола."
 
+# Create a new complex object
+# Stvoryty novyy skladnyy ob'yekt
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Створити новий складний об'єкт"
 
+# Create a new line object
+# Stvoritʹ novyy ob'yekt liniyi
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Створіть новий об'єкт лінії."
 
+# Create a new net object
+# Stvoritʹ novyy chystyy ob'yekt
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Створіть новий чистий об'єкт."
 
+# Create a new path object
+# Stvoritʹ novyy ob'yekt shlyakhu
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Створіть новий об'єкт шляху."
 
+# Create a new picture object
+# Stvoritʹ novyy ob'yekt zobrazhennya
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Створіть новий об'єкт зображення."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
