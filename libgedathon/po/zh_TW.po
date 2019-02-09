@@ -210,45 +210,65 @@ msgstr "從頁面中刪除對象."
 msgid "Delete multiple objects from a page."
 msgstr "從頁面中刪除多個對象."
 
+# Synchronize object with library
+# Jiāng duìxiàng yǔ kù tóngbù
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "將對象與庫同步."
 
+# Create a new arc object
+# 创建一个新的arc对象
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Chuàngjiàn yīgè xīn de arc duìxiàng."
 
+# Create a new box object
+# Chuàngjiàn yīgè xīn de kuāng duìxiàng
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "創建一個新的框對象."
 
+# Create a new bus object
+# Chuàngjiàn yīgè xīn de zǒngxiàn duìxiàng
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "創建一個新的總線對象."
 
+# Create a new circle object
+# Chuàngjiàn yīgè xīn de yuán xíng duìxiàng
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "創建一個新的圓形對象."
 
+# Create a new complex object
+# Chuàngjiàn yīgè xīn de fùzá duìxiàng
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "創建一個新的複雜對象."
 
+# Create a new line object
+# Chuàngjiàn yīgè xīn de xiàn duìxiàng
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "創建一個新的線對象."
 
+# Create a new net object
+# Chuàngjiàn yīgè xīn de wǎngluò duìxiàng
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "創建一個新的網絡對象."
 
+# Create a new path object
+# Chuàngjiàn yīgè xīn de lùjìng duìxiàng
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "創建一個新的路徑對象."
 
+# Create a new picture object
+# Chuàngjiàn yīgè xīn de túpiàn duìxiàng
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "創建一個新的圖片對象."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
