@@ -52,17 +52,17 @@ static int cur_set = 0;
  */
 void s_rename_init(void)
 {
-    int i, j;
+  int i, j;
 
-    for (i = 0; i < MAX_SETS; i++) {
+  for (i = 0; i < MAX_SETS; i++) {
 
-      for (j = 0; j < MAX_RENAME; j++) {
-        rename_pairs[i][j].src = NULL;
-        rename_pairs[i][j].dest = NULL;
-      }
+    for (j = 0; j < MAX_RENAME; j++) {
+      rename_pairs[i][j].src = NULL;
+      rename_pairs[i][j].dest = NULL;
     }
-    rename_counter = 0;
-    cur_set = 0;
+  }
+  rename_counter = 0;
+  cur_set = 0;
 }
 
 /*!
@@ -117,19 +117,19 @@ void s_rename_next_set(void)
  */
 void s_rename_print(void)
 {
-    int i, j;
+  int i, j;
 
-    for (i = 0; i < MAX_SETS; i++) {
-      for (j = 0; j < MAX_RENAME; j++) {
-        if (rename_pairs[i][j].src) {
-          printf("%d) %s: _%s_", i, _("Source"), rename_pairs[i][j].src);
-        }
+  for (i = 0; i < MAX_SETS; i++) {
+    for (j = 0; j < MAX_RENAME; j++) {
+      if (rename_pairs[i][j].src) {
+        printf("%d) %s: _%s_", i, _("Source"), rename_pairs[i][j].src);
+      }
 
-        if (rename_pairs[i][j].dest) {
-          printf(" -> %s: _%s_\n", _("Destination"), rename_pairs[i][j].dest);
-        }
+      if (rename_pairs[i][j].dest) {
+        printf(" -> %s: _%s_\n", _("Destination"), rename_pairs[i][j].dest);
       }
     }
+  }
 }
 
 /*!
