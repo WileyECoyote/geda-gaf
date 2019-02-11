@@ -1,3 +1,7 @@
+2019-02-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * moto/MC13175-1.sym: Relocate symbol, passive -> moto subdirectory.
+
 2019-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * inductor/inductor-dot-1.sym: Add description attribute and update footprint
