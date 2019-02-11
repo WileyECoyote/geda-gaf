@@ -1,4 +1,8 @@
-v 20040111 1
+v 20040111 2
+T 1000 900 8 10 1 1 180 0 1
+refdes=T?
+T 800 1500 8 10 0 0 0 0 1
+device=balun
 L 500 200 200 200 3 0 0 0 -1 -1
 A 600 200 100 0 180 3 0 0 0 -1 -1
 A 1200 200 100 0 180 3 0 0 0 -1 -1
@@ -26,10 +30,6 @@ pinlabel=B
 T 200 200 5 10 0 1 0 0 1
 pintype=pas
 }
-T 1000 900 8 10 1 1 180 0 1
-refdes=T?
-T 800 1500 8 10 0 0 0 0 1
-device=balun-trifilar
 A 800 200 100 0 180 3 0 0 0 -1 -1
 A 1000 200 100 0 180 3 0 0 0 -1 -1
 L 400 600 1600 600 3 0 0 2 100 100
@@ -62,10 +62,6 @@ T 1800 400 5 10 0 1 0 0 1
 pintype=pas
 }
 L 1500 400 1800 400 3 0 0 0 -1 -1
-T 800 1322 8 10 0 0 0 0 1
-numslots=0
-T 800 1122 8 10 0 0 0 0 1
-footprint=none
 L 500 0 200 0 3 0 0 0 -1 -1
 A 600 0 100 0 180 3 0 0 0 -1 -1
 A 1200 0 100 0 180 3 0 0 0 -1 -1
@@ -95,11 +91,15 @@ pintype=pas
 }
 A 800 0 100 0 180 3 0 0 0 -1 -1
 A 1000 0 100 0 180 3 0 0 0 -1 -1
-T 3600 0 8 10 0 0 0 0 1
-author=Wilbert Knol w.knolATniwa.co.nz
-T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 800 1322 8 10 0 0 0 0 1
+numslots=0
+T 800 1122 8 10 0 0 0 0 1
+footprint=none
+T 800 1900 8 10 0 0 0 0 1
+dist-license=GPLv2
+T 800 1700 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 200 8 10 0 0 0 0 1
-comment=Suggested library: rf
+T 800 2100 8 10 0 0 0 0 1
+author=Wilbert Knol w.knolATniwa.co.nz
+T 800 950 8 10 0 0 0 0 1
+description=balun trifilar
