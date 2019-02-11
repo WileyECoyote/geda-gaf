@@ -10,6 +10,9 @@
 
     * passive/rf/balun_trifilar.sym: Add description attribute, update device.
 
+    * passive/rf/coupler-1.sym: Add description attribute, update device and
+      pintype attributes.
+
 2019-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * inductor/inductor-dot-1.sym: Add description attribute and update footprint
