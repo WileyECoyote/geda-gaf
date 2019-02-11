@@ -477,20 +477,5 @@ int s_object_has_sym_file(GedaObject *object)
 
   filename = geda_complex_get_filename(object->complex);
 
-  if (filename != NULL) {
-
-#ifdef DEBUG
-    printf("%s: object has sym file = %s.\n", __func__, filename);
-#endif
-
-    return 0;
-  }
-  else {
-
-#ifdef DEBUG
-    printf("%s:, found object with no attached symbol file.\n", __func__);
-#endif
-
-    return 1;
-  }
+  return (filename != NULL) ? 0 : 1;
 }
