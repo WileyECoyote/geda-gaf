@@ -303,7 +303,7 @@ static void s_properties_set_show_name_value(int value) {
  * \par Function Description
  *  This sets the selected cells to INVISIBLE.
  */
-void s_properties_set_invisible() {
+void s_properties_set_invisible(void) {
   s_properties_set_range_visibility(INVISIBLE);
 }
 
@@ -312,7 +312,7 @@ void s_properties_set_invisible() {
  * \par Function Description
  *  This sets the selected cells to VISIBLE.
  */
-void s_properties_set_visible() {
+void s_properties_set_visible(void) {
   s_properties_set_range_visibility(VISIBLE);
 }
 
@@ -324,7 +324,7 @@ void s_properties_set_visible() {
  *  This func is invoked from the menu or the toolbar and sets selected
  *  cells to Show Name.
  */
-void s_properties_set_name_only() {
+void s_properties_set_name_only(void) {
   s_properties_set_show_name_value(SHOW_NAME);
 }
 
@@ -334,7 +334,7 @@ void s_properties_set_name_only() {
  *  This func is invoked from the menu or the toolbar and sets selected
  *  cells to Show Value.
  */
-void s_properties_set_value_only() {
+void s_properties_set_value_only(void) {
   s_properties_set_show_name_value(SHOW_VALUE);
 }
 
@@ -344,7 +344,7 @@ void s_properties_set_value_only() {
  *  This func is invoked from the menu or the toolbar and sets selected
  *  cells to Show Name and Value.
  */
-void s_properties_set_name_and_value() {
+void s_properties_set_name_and_value(void) {
   s_properties_set_show_name_value(SHOW_NAME_VALUE);
 }
 
@@ -354,7 +354,7 @@ void s_properties_set_name_and_value() {
  *  This func is invoked from the menu or the toolbar and sets selected
  *  cells to Show Name and Value.
  */
-void s_properties_promote_attribute() {
+void s_properties_promote_attribute(void) {
   int row, col;
   int cur_page;
   GtkSheet *sheet;
@@ -381,7 +381,7 @@ void s_properties_promote_attribute() {
  *  not directly attached to the complex for which it is
  *  associated.
  */
-void s_properties_demote_attribute() {
+void s_properties_demote_attribute(void) {
 
   int row, col;
   int cur_page;

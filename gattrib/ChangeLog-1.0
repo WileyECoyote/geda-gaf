@@ -4,6 +4,8 @@
 
     * src/s_object.c: Remove debug cruft, simplify s_object_has_sym_file.
 
+    * src/s_properties.c: Add type void specifiers.
+
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_vars.c: Add i_vars_release_all function documentation.
