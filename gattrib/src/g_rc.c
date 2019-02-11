@@ -124,7 +124,6 @@ SCM g_rc_hide_columns(SCM stringlist)
   default_hide_columns = g_list_reverse(list);
 
   return SCM_BOOL_T;
-
 }
 
 /*!
@@ -140,8 +139,7 @@ SCM g_rc_sort_components(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("sort-components",
-            default_sort_components, mode_table);
+  RETURN_G_RC_MODE("sort-components", default_sort_components, mode_table);
 }
 
 /*!
@@ -157,6 +155,5 @@ SCM g_rc_tearoff_menus(SCM mode)
     {FALSE, RC_STR_DISABLED},
   };
 
-  RETURN_G_RC_MODE("tearoff-menus",
-            default_tearoff_menus, mode_table);
+  RETURN_G_RC_MODE("tearoff-menus", default_tearoff_menus, mode_table);
 }
