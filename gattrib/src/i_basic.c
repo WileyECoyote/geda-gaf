@@ -31,26 +31,7 @@
 
 #include <geda_debug.h>
 
-/* ------------------------------------------------------------- *
- *
- * ------------------------------------------------------------- */
-#if 0 /* not used, but leaving it here in case we need it later */
-static void i_update_status(GedaToplevel *toplevel, const char *string)
-{
-  if (!toplevel->status_label) {
-    return;
-  }
 
-  if (string) {
-    /* NOTE: consider optimizing this if same label */
-    gtk_label_set(GTK_LABEL(toplevel->status_label), (char *) string);
-  }
-}
-#endif
-
-/* ------------------------------------------------------------- *
- *
- * ------------------------------------------------------------- */
 #ifdef OS_WIN32
 #  ifndef STRICT
 #    define STRICT
