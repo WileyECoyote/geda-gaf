@@ -50,12 +50,11 @@ GList *default_hide_columns = NULL;
  * \par Function Description
  * Initialize the variables in toplevel. In practice, this is only
  * the paper size for the sheet.
+ *
  * \param toplevel pointer to the GedaToplevel to set paper size in.
  */
 void i_vars_set (GedaToplevel *toplevel)
 {
-  //geda_iface_vars_set (toplevel);
-
   toplevel->paper_width = default_paper_width;
   toplevel->paper_height = default_paper_height;
 
