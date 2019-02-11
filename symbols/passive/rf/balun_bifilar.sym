@@ -1,4 +1,10 @@
-v 20040111 1
+v 20191020 2
+T 1100 600 8 10 1 1 180 0 1
+refdes=T?
+T 900 900 8 10 0 0 0 0 1
+device=balun_bifilar
+T 900 700 8 10 0 1 0 0 1
+description=bipolar balanced to unbalanced
 L 500 0 200 0 3 0 0 0 -1 -1
 A 600 0 100 0 180 3 0 0 0 -1 -1
 A 1200 0 100 0 180 3 0 0 0 -1 -1
@@ -26,13 +32,9 @@ pinlabel=B
 T 200 0 5 10 0 1 0 0 1
 pintype=pas
 }
-T 1100 700 8 10 1 1 180 0 1
-refdes=T?
-T 900 700 8 10 0 0 0 0 1
-device=balun_bifilar
 A 800 0 100 0 180 3 0 0 0 -1 -1
 A 1000 0 100 0 180 3 0 0 0 -1 -1
-L 400 450 1600 450 3 0 0 2 100 100
+L 400 450 1600 450 3 0 0 0 -1 -1
 A 600 200 100 0 180 3 0 0 0 -1 -1
 A 1200 200 100 0 180 3 0 0 0 -1 -1
 A 1400 200 100 0 180 3 0 0 0 -1 -1
@@ -62,15 +64,13 @@ T 1800 200 5 10 0 1 0 0 1
 pintype=pas
 }
 L 1500 200 1800 200 3 0 0 0 -1 -1
-T 900 922 8 10 0 0 0 0 1
-numslots=0
 T 900 1122 8 10 0 0 0 0 1
+numslots=0
+T 900 1322 8 10 0 0 0 0 1
 footprint=none
-T 3600 0 8 10 0 0 0 0 1
-author=Wilbert Knol w.knolATniwa.co.nz
-T 0 0 8 10 0 0 0 0 1
+T 900 1500 8 10 0 0 0 0 1
 dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
+T 900 1700 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 200 8 10 0 0 0 0 1
-comment=Suggested library: rf
+T 900 1900 8 10 0 0 0 0 1
+author=Wilbert Knol w.knolATniwa.co.nz

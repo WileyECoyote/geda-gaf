@@ -5,6 +5,9 @@
     * passive/rf/at-1xx.sym: Add description attribute, remove pins and class
       attributes, update attribute locations and visibilities.
 
+    * passive/rf/balun_bifilar.sym: Add description attribute, update device,
+      remove Suggested library.
+
 2019-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * inductor/inductor-dot-1.sym: Add description attribute and update footprint
