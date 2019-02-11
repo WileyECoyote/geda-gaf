@@ -227,13 +227,12 @@ void s_rename_add(char *src, char *dest)
     rename_pairs[cur_set][rename_counter].dest = geda_utility_string_strdup(dest);
     rename_counter++;
   }
+
   if (rename_counter == MAX_RENAME) {
     fprintf(stderr, "%s %s\n",
             _("Increase the number of rename_pairs (MAX_RENAME) in"),
             __func__);
-    return;
   }
-
 }
 
 static void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
@@ -266,7 +265,6 @@ static void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
     }
     nl_current = nl_current->next;
   }
-
 }
 
 /*!
