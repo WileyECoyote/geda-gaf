@@ -19,6 +19,8 @@
 
     * passive/rf/loop_antenna-1.sym: Add description attribute, update device.
 
+    * passive/rf/loop_antenna-2.sym: Add description attribute, update device.
+
 2019-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * inductor/inductor-dot-1.sym: Add description attribute and update footprint
