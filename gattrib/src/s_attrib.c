@@ -39,8 +39,7 @@
  * \param name_value_list pointer to STRING_LIST to search
  * \param name            string to search for
  *
- * \returns 1 (TRUE) if the name is in the STRING_LIST, otherwise
- *          it returns 0 (FALSE).
+ * \returns TRUE if the name is in the STRING_LIST, otherwise returns FALSE.
  */
 int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 {
