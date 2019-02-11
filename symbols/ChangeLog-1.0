@@ -2,6 +2,9 @@
 
     * moto/MC13175-1.sym: Relocate symbol, passive -> moto subdirectory.
 
+    * passive/rf/at-1xx.sym: Add description attribute, remove pins and class
+      attributes, update attribute locations and visibilities.
+
 2019-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * inductor/inductor-dot-1.sym: Add description attribute and update footprint
