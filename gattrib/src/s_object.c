@@ -418,8 +418,6 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 
   }
 
-  /* printf("%d %d\n", world_x, world_y); */
-
   /* first create text item */
   new_obj = geda_text_object_new(color, world_x, world_y,
                        align, angle,            /* zero is angle */
