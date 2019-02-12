@@ -168,7 +168,14 @@ void i_window_on_page_changed (GschemToplevel *w_current)
   g_hook_run_page (w_current, CHANGE_PAGE_HOOK, page);
 }
 
-/* Threaded from i_window_zoom_all_pages */
+/*!
+ * \brief
+ * \par Function Description
+ *  Threaded from i_window_zoom_all_pages to iterate over each loaded
+ *  document and zoom to the extents of the drawing.
+ *
+ * \param [in] w_current   The GschemToplevel object
+ */
 static bool i_window_idle_zoom_pages(GschemToplevel *w_current)
 {
   GList *iter = geda_toplevel_struct_get_pages(w_current->toplevel);
