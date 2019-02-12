@@ -41,9 +41,11 @@ int s_properties_get_fgcolor_index(int visibility, int show_name_value, int is_i
     case (SHOW_VALUE):
       fgcolor = Black;
       break;
+
     case (SHOW_NAME):
       fgcolor = Red;
       break;
+
     case (SHOW_NAME_VALUE):
       fgcolor = Blue;
       break;
@@ -68,15 +70,17 @@ static TABLE **s_properties_get_current_table() {
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
 
   switch (cur_page) {
-  case Components:
-    ptr_table = sheet_head->component_table;
-    break;
-  case Nets:
-    ptr_table = sheet_head->net_table;
-    break;
-  case Pins:
-    ptr_table = sheet_head->pin_table;
-    break;
+    case Components:
+      ptr_table = sheet_head->component_table;
+      break;
+
+    case Nets:
+      ptr_table = sheet_head->net_table;
+      break;
+
+    case Pins:
+      ptr_table = sheet_head->pin_table;
+      break;
   }
   return ptr_table;
 }
