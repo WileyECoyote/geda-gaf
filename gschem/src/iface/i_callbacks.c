@@ -190,67 +190,6 @@ DEFINE_I_CALLBACK(cancel)
   i_event_cancel_action_handler (w_current);
 }
 
-/** \defgroup help-menu Help Menu Callback Functions
- * @{
- */
-
-/*! \brief Help About Action Callback Responder API Function
- *  \par Function Description
- *  This is a callback function for the Help About API
- *  The function calls i_command to launch the Help About Dialog.
- */
-/*
-DEFINE_I_CALLBACK(help_show_manual)
-{
-  i_command_process(w_current, "help-show-manual", 0, NULL, ID_ORIGIN_SCM);
-}
-*/
-/*! \brief Help Hotkeys Action Callback Responder API Function
- *  \par Function Description
- *  This is a callback function for the Help Hotkeys API
- *  The function calls i_command to launch the Help Hotkeys Dialog.
- */
-/*
-DEFINE_I_CALLBACK(help_show_hotkeys)
-{
-  i_command_process(w_current, "help-show-hotkeys", 0, NULL, ID_ORIGIN_SCM);
-}
-*/
-/*! \brief Help About Action Callback Responder API Function
- *  \par Function Description
- *  This is a callback function for the Help About API
- *  The function calls i_command to launch the Help About Dialog.
- */
-/*
-DEFINE_I_CALLBACK(help_show_faq)
-{
-  i_command_process(w_current, "help-show-faq", 0, NULL, ID_ORIGIN_SCM);
-}
-*/
-/*! \brief Help About Action Callback Responder API Function
- *  \par Function Description
- *  This is a callback function for the Help About API
- *  The function calls i_command to launch the Help About Dialog.
- */
-/*
-DEFINE_I_CALLBACK(help_show_wiki)
-{
-  i_command_process(w_current, "help-show-wiki", 0, NULL, ID_ORIGIN_SCM);
-}
-*/
-/*! \brief Help About Action Callback Responder API Function
- *  \par Function Description
- *  This is a callback function for the Help About API
- *  The function calls i_command to launch the Help About Dialog.
- */
-/*
-DEFINE_I_CALLBACK(help_show_about)
-{
-  i_command_process(w_current, "help-show-about", 0, NULL, ID_ORIGIN_SCM);
-}
-*/
-/** @} end group help-menu */
-
 /*! \brief Close main window callback
  *  \par Function Description
  *  When invoked (via signal delete_event), closes the current window

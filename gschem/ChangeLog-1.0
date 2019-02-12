@@ -1,3 +1,8 @@
+2019-02-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_callbacks.c: Remove group help-menu and all associated
+      functions.
+
 2019-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Utilize geda_toplevel_get_current_page to retrieve
