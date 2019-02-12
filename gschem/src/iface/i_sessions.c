@@ -648,8 +648,8 @@ static void update_sessions_menus(GschemToplevel *w_current)
 {
    GList *iter;
 
-   for (iter = global_window_list; iter != NULL; iter = g_list_next (iter))
-   {
+   for (iter = global_window_list; iter != NULL; NEXT (iter)) {
+
       GtkWidget *menubar;
       GtkWidget *menu_item;
       GtkWidget *submenu;
