@@ -36,7 +36,6 @@
  *   updates the selection if the dialog is active.
  *
  *  \param [in] w_current  The GschemToplevel object
- *
  */
 static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
 {
@@ -116,7 +115,6 @@ void i_window_close_page (GschemToplevel *w_current)
  *  \param [out] wy        snapped/unsnapped world y coordinate
  *
  *  \return Returns TRUE if the pointer position is inside the drawing area.
- *
  */
 bool i_window_get_pointer_position (GschemToplevel *w_current,
                                     bool snapped, int *wx, int *wy)
@@ -240,17 +238,18 @@ void i_window_zoom_all_pages(GschemToplevel *w_current)
   gschem_threads_idle_add (i_window_idle_zoom_pages, w_current);
 }
 
-/*! \brief Revert Current Page back to File
- *  \par Function Description
- *   Attempts to reload the current page from dish into the current page
- *   by removing all of the object on the current page and reloading. If
- *   the file can not be reloaded the function resorts to using the undo
- *   system to restore the objects that were deleted.
+/*!
+ * \brief Revert Current Page back to File
+ * \par Function Description
+ *  Attempts to reload the current page from dish into the current page
+ *  by removing all of the object on the current page and reloading. If
+ *  the file can not be reloaded the function resorts to using the undo
+ *  system to restore the objects that were deleted.
  *
- *  \note 1. If the file is not modified, the user is not asked to confirm.
- *  \note 2. The page does not change position in the page list.
+ * \note 1. If the file is not modified, the user is not asked to confirm.
+ * \note 2. The page does not change position in the page list.
  *
- *  \param [in] w_current  The GschemToplevel object
+ * \param [in] w_current  The GschemToplevel object
  */
 void i_window_revert_page (GschemToplevel *w_current)
 {
@@ -433,13 +432,14 @@ void i_window_set_viewport_size(GschemToplevel *w_current)
   }
 }
 
-/*! \brief Interface for Toggling Visibility of Attributes
- *  \par Function Description
- *   Called by i_cmd_do_show_hidden and i_cmd_do_show_inherited to
- *   toggle visibility of attributes.
+/*!
+ * \brief Interface for Toggling Visibility of Attributes
+ * \par Function Description
+ *  Called by i_cmd_do_show_hidden and i_cmd_do_show_inherited to
+ *  toggle visibility of attributes.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] scope      Boolean flag, TRUE for inherited
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] scope      Boolean flag, TRUE for inherited
  */
 void i_window_show_attributes (GschemToplevel *w_current, int scope)
 {
