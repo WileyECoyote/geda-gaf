@@ -78,6 +78,12 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ *  \param [in] w_current   The GschemToplevel object
+ */
 void i_window_close_page (GschemToplevel *w_current)
 {
   bool  can_close;
@@ -228,6 +234,7 @@ static bool i_window_idle_zoom_pages(GschemToplevel *w_current)
 
     iter = iter->next;
   }
+
   return FALSE;
 }
 
@@ -346,9 +353,15 @@ void i_window_revert_page (GschemToplevel *w_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ *  \param [in] w_current  The GschemToplevel object
+ *  \param [in] cursor_id  Index of cursor
+ */
 void i_window_set_cursor(GschemToplevel *w_current, int cursor_id)
 {
-
   GdkWindow *draw_window;
 
   draw_window = gtk_widget_get_window(DrawingArea);
@@ -368,6 +381,12 @@ void i_window_set_cursor(GschemToplevel *w_current, int cursor_id)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ *  \param [in] w_current   The GschemToplevel object
+ */
 void i_window_set_grid_type (GschemToplevel *w_current)
 {
   x_grid_configure_variables (w_current);

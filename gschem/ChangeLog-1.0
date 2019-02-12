@@ -8,7 +8,7 @@
     * src/iface/i_vars.c: Add i_var_restore_group_boolean function documentation.
 
     * src/iface/i_window.c: Reformat function documentation, add documentation for
-      i_window_idle_zoom_pages.
+      i_window_idle_zoom_pages and todo Doxygen template blocks.
 
 2019-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
