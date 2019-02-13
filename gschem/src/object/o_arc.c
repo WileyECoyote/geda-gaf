@@ -29,8 +29,9 @@
 #include <math.h>
 #include <geda_debug.h>
 
-/*! \brief Draw arc from GschemToplevel object.
- *  \par Function Description
+/*!
+ * \brief Draw arc from GschemToplevel object.
+ * \par Function Description
  *  This function draws an arc from the variables in the GschemToplevel
  *  structure <B>*w_current</B>.
  *  The center of the arc is at (<B>w_current->first_wx</B>,
@@ -38,7 +39,7 @@
  *  and the start and end angle are given by <B>w_current->second_wx</B> and
  *  <B>w_current->second_wy</B>.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void o_arc_draw_rubber (GschemToplevel *w_current)
 {
@@ -69,8 +70,9 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);;
 }
 
-/*! \brief End the input of an arc.
- *  \par Function Description
+/*!
+ * \brief End the input of an arc.
+ * \par Function Description
  *  This function ends the input of the radius of the arc.
  *  The (<B>w_x</B>,<B>w_y</B>) point is taken as the other end of the radius segment.
  *  The distance between this point and the center is the radius of the arc.
@@ -82,9 +84,9 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
  *
  *  The two angles needs to be input to fully define the arc.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        (unused)
- *  \param [in] w_y        (unused)
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        (unused)
+ * \param [in] w_y        (unused)
  */
 static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -104,18 +106,19 @@ static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 
 }
 
-/*! \brief Ends the process of arc input.
- *  \par Function Description
+/*!
+ * \brief Ends the process of arc input.
+ * \par Function Description
  *  The #o_arc_end4() function ends the process of the input of an arc.
  *  <B>start_angle</B> and <B>arc_sweep</B> are the start and end angle of the
  *  arc in degrees. The partial internal representation of the arc, i.e.
  *  the center and the radius of the arc, are converted in world units.
  *  A new object is created and linked to the object list.
  *
- *  \param [in] w_current    The GschemToplevel object.
- *  \param [in] radius       Radius of the arc
- *  \param [in] start_angle  Start of angle in degrees.
- *  \param [in] arc_sweep    End of angle in degrees.
+ * \param [in] w_current    The GschemToplevel object.
+ * \param [in] radius       Radius of the arc
+ * \param [in] start_angle  Start of angle in degrees.
+ * \param [in] arc_sweep    End of angle in degrees.
  */
 void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_sweep)
 {
@@ -139,15 +142,16 @@ void o_arc_end4(GschemToplevel *w_current, int radius, int start_angle, int arc_
   w_current->distance =  0;
 }
 
-/*! \brief Initialize Variables to input a new Arc
- *  \par Function Description
+/*!
+ * \brief Initialize Variables to input a new Arc
+ * \par Function Description
  *  This function initializes variables to input a new Arc. Parameters for the
  *  Arc are stored in the <B>w_current</B> toplevel structure. <B>w_x</B> and
  *  <B>w_y</B> are current coordinates of the pointer in world coordinates.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] w_x        Current x coordinate of pointer in world
- *  \param [in] w_y        Current y coordinate of pointer in world
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] w_x        Current x coordinate of pointer in world
+ * \param [in] w_y        Current y coordinate of pointer in world
  */
 static void o_arc_init(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -165,10 +169,11 @@ static void o_arc_init(GschemToplevel *w_current, int w_x, int w_y)
   w_current->which_grip     = ARC_RADIUS;
 }
 
-/*! \brief Invalidate Temporary drawing artifacts for Arc objects
- *  \par Function Description
- *   Retrieves coordinates from top-level and invalidate the bounding
- *   region of a Arc object.
+/*!
+ * \brief Invalidate Temporary drawing artifacts for Arc objects
+ * \par Function Description
+ *  Retrieves coordinates from top-level and invalidate the bounding
+ *  region of a Arc object.
  */
 void o_arc_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -184,8 +189,9 @@ void o_arc_invalidate_rubber (GschemToplevel *w_current)
                                      cx + radius, cy + radius);
 }
 
-/*! \brief Draw an arc using one angle modification.
- *  \par Function Description
+/*!
+ * \brief Draw an arc using one angle modification.
+ * \par Function Description
  *  This function draws an arc according to its internal representation
  *  and allows the modification of one of its angle. The start or end
  *  angle of the arc is updated according to <B>whichone</B> with the angle
@@ -203,9 +209,9 @@ void o_arc_invalidate_rubber (GschemToplevel *w_current)
  *                  start and end angle respectively.
  *  </DL>
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  *
  *  <B>whichone</B> can have one of the following values:
  *  <DL>
@@ -270,8 +276,9 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Start process to input a new arc.
- *  \par Function Description
+/*!
+ * \brief Start process to input a new arc.
+ * \par Function Description
  *  This function starts the process to input a new arc. Parameters for
  *  this arc are put into/extracted from the <B>w_current</B> toplevel structure.
  *  <B>w_x</B> and <B>w_y</B> are current coordinates of the pointer in screen unit.
@@ -280,9 +287,9 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
  *  of the arc is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
  *  The radius of the arc is in <B>w_current->distance</B>.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void o_arc_start(GschemToplevel *w_current, int w_x, int w_y)
 {
