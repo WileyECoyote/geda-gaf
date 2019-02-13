@@ -2,6 +2,8 @@
 
     * src/object/o_arc.c: Reformat function documentation.
 
+    * src/object/o_attrib.c: Replace g_ascii_strncasecmp with geda_strncmpi.
+
 2019-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_callbacks.c: Remove group help-menu and all associated

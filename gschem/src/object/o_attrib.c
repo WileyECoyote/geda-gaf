@@ -460,7 +460,7 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
 
   /* handle slot= attribute, it's a special case */
   if (parent != NULL &&
-    g_ascii_strncasecmp (text_string, "slot=", 5) == 0) {
+      geda_strncmpi (text_string, "slot=", 5) == 0) {
     o_slot_end (w_current, parent, text_string);
   }
   else if (parent && parent->selected) {
