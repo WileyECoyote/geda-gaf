@@ -824,7 +824,7 @@ char *geda_utility_string_strisubst(char *source, char *old_str, char *new_str)
  * \brief Compare n characters ignoring case
  * \par Function Description
  *  Another garden varity string compare using toupper on both inputs.
- *  This is somthimes found in standard libraries but not always.
+ *  This is sometimes found in standard libraries but not always.
  *
  * \param [in] str1  is the string to be search
  * \param [in] str2  is the string to search for
