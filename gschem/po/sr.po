@@ -623,7 +623,7 @@ msgstr "додељен неважећи тип, цхецк снап-сизе у 
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
-"аутобус-Риппер-величина не може бити нула, проверите поставке у датотеци са "
+"кабл-Риппер-величина не може бити нула, проверите поставке у датотеци са "
 "почетним\n"
 
 # assigned an invalid type, check bus-ripper-size in initialization file
@@ -631,7 +631,7 @@ msgstr ""
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
-"додељен неважећи тип, провери аутобус-риппер-сизе у датотеци са почетним\n"
+"додељен неважећи тип, провери кабл-риппер-сизе у датотеци са почетним\n"
 
 # can scroll 0 steps, check value of scrollpane-steps in initialization file
 #: gschem/src/guile/g_rc.c:2000
