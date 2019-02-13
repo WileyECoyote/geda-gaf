@@ -55,12 +55,13 @@ void o_delete (GschemToplevel *w_current, GedaObject *object)
   geda_struct_object_release     (object);
 }
 
-/*! \brief Delete objects from the selection.
- *  \par Function Description
+/*!
+ * \brief Delete objects from the selection.
+ * \par Function Description
  *  This function deletes the objects selected on the current page of
  *  toplevel \a w_current.
  *
- *  \param [in] w_current The GschemToplevel object.
+ * \param [in] w_current The GschemToplevel object.
  */
 void o_delete_selected (GschemToplevel *w_current)
 {
