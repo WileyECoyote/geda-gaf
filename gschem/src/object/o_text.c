@@ -234,7 +234,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
             invalidated = TRUE;
             /* handle slot= attribute, it's a special case */
             if (object->attached_to != NULL &&
-              g_ascii_strncasecmp (string, "slot=", 5) == 0) {
+              geda_strncmpi (string, "slot=", 5) == 0) {
               o_slot_end (w_current, object->attached_to, string);
             }
           }
