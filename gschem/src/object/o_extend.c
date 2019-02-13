@@ -112,12 +112,13 @@ static bool o_extend_is_valid_projectile (GedaObject *object)
 
 /* -------------------------- List Compilers -------------------------- */
 
-/*! \brief Get list of valid bounders from list of objects
- *  \par Function Description
+/*!
+ * \brief Get list of valid bounders from list of objects
+ * \par Function Description
  *  Returns a new list containing pointers to object in \a list
  *  that are valid boundary objects.
  *
- *  \remark  Returned list must be freed
+ * \remark  Returned list must be freed
  */
 static GList *o_extend_get_valid_bounders (GList *list)
 {
@@ -136,12 +137,13 @@ static GList *o_extend_get_valid_bounders (GList *list)
   return bounders;
 }
 
-/*! \brief Get list of non-projectable bounders from list of objects
- *  \par Function Description
+/*!
+ * \brief Get list of non-projectable bounders from list of objects
+ * \par Function Description
  *  Returns a new list containing pointers to object in \a list
  *  that are valid boundary objects nut not lines, nets, or buses.
  *
- *  \remark  Returned list must be freed
+ * \remark  Returned list must be freed
  */
 static GList *o_extend_get_nonlinear (GList *list)
 {
@@ -168,12 +170,13 @@ static GList *o_extend_get_nonlinear (GList *list)
   return bounders;
 }
 
-/*! \brief Get list of valid Projectiles from list of objects
- *  \par Function Description
+/*!
+ * \brief Get list of valid Projectiles from list of objects
+ * \par Function Description
  *  Returns a new list containing pointer to object in \a list
  *  that are projectable objects, i.e. lines, nets, and buses.
  *
- *  \remark  Returned list must be freed
+ * \remark  Returned list must be freed
  */
 static GList *o_extend_get_projectiles (GedaObject *exclude, GList *list)
 {
@@ -194,12 +197,13 @@ static GList *o_extend_get_projectiles (GedaObject *exclude, GList *list)
 
 /* -------------------------- Determinators --------------------------- */
 
-/*! \brief Get bounder of two Linear objects
- *  \par Function Description
+/*!
+ * \brief Get bounder of two Linear objects
+ * \par Function Description
  *  Determines which of two objects is the bounder. The other object
  *  must be projectable to the selected object.
  *
- *  \returns bounder object or NULL if neither can not bound the other
+ * \returns bounder object or NULL if neither can not bound the other
  */
 static GedaObject *o_extend_get_bounder_of_two_linears (GedaObject *object1,
                                                         GedaObject *object2)
@@ -302,11 +306,12 @@ static GedaObject *o_extend_get_bounder_of_two_linears (GedaObject *object1,
   return bounder;
 }
 
-/*! \brief Get which end of a projectile is cloest to a bounder
- *  \par Function Description
+/*!
+ * \brief Get which end of a projectile is cloest to a bounder
+ * \par Function Description
  *  Determines which end point of \a projectile is closest to \a boundary.
  *
- *  \returns 0 or 1
+ * \returns 0 or 1
  */
 static int
 o_extend_get_closest_end(GedaObject *projectile, GedaObject *boundary)
@@ -331,14 +336,15 @@ o_extend_get_closest_end(GedaObject *projectile, GedaObject *boundary)
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #endif
 
-/*! \brief Determine if an Arc boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if an Arc boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect an Arc, \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be an Arc object and is not checked!
+ * \remark boundary Must be an Arc object and is not checked!
  */
 static bool o_extend_can_arc_bound(GedaObject *boundary,
                                    GedaObject *projectile,
@@ -566,16 +572,17 @@ static bool o_extend_can_arc_bound(GedaObject *boundary,
 #pragma GCC diagnostic pop
 #endif
 
-/*! \brief Determine if a GedaBox boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if a GedaBox boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect a Box. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be a GedaBox object and is not checked!
- *  \image html projections2.png
- *  \image latex projections2.png
+ * \remark boundary Must be a GedaBox object and is not checked!
+ * \image html projections2.png
+ * \image latex projections2.png
  */
 static bool o_extend_can_box_bound(GedaObject *boundary,
                                    GedaObject *projectile,
@@ -1027,14 +1034,15 @@ static bool o_extend_can_box_bound(GedaObject *boundary,
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #endif
 
-/*! \brief Determine if a Path boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if a Path boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect a Path. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be a Path object and is not checked!
+ * \remark boundary Must be a Path object and is not checked!
  */
 static bool o_extend_can_path_bound(GedaObject *boundary,
                                     GedaObject *projectile,
@@ -1123,14 +1131,15 @@ static bool o_extend_can_path_bound(GedaObject *boundary,
 #pragma GCC diagnostic pop
 #endif
 
-/*! \brief Determine if Linear boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if Linear boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect a Linear. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be a Linear object and is not checked!
+ * \remark boundary Must be a Linear object and is not checked!
  */
 static bool o_extend_can_linear_bound(GedaObject *boundary,
                                       GedaObject *projectile,
@@ -1228,14 +1237,15 @@ static bool o_extend_can_linear_bound(GedaObject *boundary,
   return answer;
 }
 
-/*! \brief Determine if a Circular boundary can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if a Circular boundary can bound a given Projectile
+ * \par Function Description
  *  Determines if \a projectile can intersect a Circle. \a point is set
  *  to the intersection if point exist and does not already intersect.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  *
- *  \remark boundary Must be a Circle object and is not checked!
+ * \remark boundary Must be a Circle object and is not checked!
  */
 static bool o_extend_can_circle_bound(GedaObject *boundary,
                                       GedaObject *projectile,
@@ -1468,14 +1478,15 @@ static bool o_extend_can_circle_bound(GedaObject *boundary,
   return answer;
 }
 
-/*! \brief Determine if an Object can bound a given Projectile
- *  \par Function Description
+/*!
+ * \brief Determine if an Object can bound a given Projectile
+ * \par Function Description
  *  Calls appropriate o_extend_can_xx function based on the type
  *  of object the boundary represents. The selected intersection
  *  will be determined by the handler and returned in \a point if
  *  point is not NULL.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  */
 static bool o_extend_can_bound(GedaObject *boundary,
                                GedaObject *projectile,
@@ -1505,13 +1516,14 @@ static bool o_extend_can_bound(GedaObject *boundary,
   return discriminator (boundary, projectile, which_end, direction, point);
 }
 
-/*! \brief Determine if Projectile can hit a given Target
- *  \par Function Description
+/*!
+ * \brief Determine if Projectile can hit a given Target
+ * \par Function Description
  *  This function is used as a wrapper for o_extend_can_bound when
  *  the distance is needed (to sort out which boundary to pick),
  *  rather than the actual point of intersection.
  *
- *  \returns TRUE or FALSE
+ * \returns TRUE or FALSE
  */
 static bool o_extend_can_hit_target(GedaObject *projectile,
                                     GedaObject *target,
@@ -1537,14 +1549,15 @@ static bool o_extend_can_hit_target(GedaObject *projectile,
 
 /* ---------------------------- Orientators --------------------------- */
 
-/*! \brief Get Orientation of Projectile
- *  \par Function Description
+/*!
+ * \brief Get Orientation of Projectile
+ * \par Function Description
  *  This function is used as a wrapper for o_extend_can_bound when
  *  the distance is needed (to sort out which boundary to pick),
  *  rather than the actual point of intersection. See documentation
  *  "projections.sch"
  *
- *  \returns char assignment designating the direction
+ * \returns char assignment designating the direction
  */
 char o_extend_get_direction(GedaObject *object, int which_end)
 {
@@ -1597,8 +1610,9 @@ char o_extend_get_direction(GedaObject *object, int which_end)
 
 /* -------------------------- Object Getters -------------------------- */
 
-/*! \brief Select Bounder from list of objects based on point and distance
- *  \par Function Description
+/*!
+ * \brief Select Bounder from list of objects based on point and distance
+ * \par Function Description
  *  Determine which object, if any, should be the bounder from a list of
  *  objects. For each potential bounder, all other members of \a list are
  *  considered as candidates as projectiles. If no \a point is specified,
@@ -1606,9 +1620,9 @@ char o_extend_get_direction(GedaObject *object, int which_end)
  *  bounder is choosen. If \a point is specified the closest object with
  *  a hit to the point is the bounder.
  *
- *  \returns The choosen object
+ * \returns The choosen object
  *
- *  \remark Note that all projectiles can also be bounders.
+ * \remark Note that all projectiles can also be bounders.
  */
 GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
 {
@@ -1845,13 +1859,14 @@ GedaObject *o_extend_get_bounder (GList *list, const GedaPoint *point)
 
 /* ------------------------ Projector Processor ----------------------- */
 
-/*! \brief Project Linear to Boundary
- *  \par Function Description
+/*!
+ * \brief Project Linear to Boundary
+ * \par Function Description
  *  Determine which end of the projectile is closest to the bounder
  *  and if o_extend_can_bound return TRUE, then change the previously
  *  selected point, the "which_end" to the returned coordinates.
  *
- *  \returns True if the operation succeeded, otherwise false
+ * \returns True if the operation succeeded, otherwise false
  */
 bool o_extend_object (GschemToplevel *w_current,
                       GedaObject     *projectile,
@@ -1914,13 +1929,14 @@ int o_extend_object_list (GschemToplevel *w_current,
 
 /* --------------------- Blind Projector Processor -------------------- */
 
-/*! \brief Extend Linear without a known target
- *  \par Function Description
+/*!
+ * \brief Extend Linear without a known target
+ * \par Function Description
  *  Determine which end of the \a projectile is to used based on second_wx,
  *  and second_wy.
  *
- *  \returns 0 if not valid, 2 if valid projectile but no hits and 3 if
- *           the operation succeeded.
+ * \returns 0 if not valid, 2 if valid projectile but no hits and 3 if
+ *          the operation succeeded.
  */
 int o_extend_blind (GschemToplevel *w_current, GedaObject *projectile)
 {
@@ -2024,20 +2040,21 @@ int o_extend_blind_list(GschemToplevel *w_current, GList *projectiles)
 
 /* ----------------------- Public Event Handlers ---------------------- */
 
-/*! \brief Start a Projection operation
- *  \par Function Description
+/*!
+ * \brief Start a Projection operation
+ * \par Function Description
  *  This function is called at the beginning of a extend operation to
  *  save x and y coordinates for the event and if an object can be hit
  *  an attempt is made to complete the operation, if a projection is
  *  not performed then the object is added to the current selection.
  *
- *  \returns 1. EXTEND if the found object is a bounder, or a the
- *              object is projectile but can not be projected
- *              (because the algorithms did not find a target).
- *           2. STARTEXTEND if object was projected by o_extend
- *              _blind.
- *           3. SELECT to terminate Project mode because nothing
- *              was changed and the selection was not valid.
+ * \returns 1. EXTEND if the found object is a bounder, or a the
+ *             object is projectile but can not be projected
+ *             (because the algorithms did not find a target).
+ *          2. STARTEXTEND if object was projected by o_extend
+ *             _blind.
+ *          3. SELECT to terminate Project mode because nothing
+ *             was changed and the selection was not valid.
  */
 int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -2099,8 +2116,9 @@ int o_extend_start(GschemToplevel *w_current, int w_x, int w_y)
   return status;
 }
 
-/*! \brief Projection event Selection
- *  \par Function Description
+/*!
+ * \brief Projection event Selection
+ * \par Function Description
  *  This function is called after a button press event and one
  *  object had been previously selected to response to either
  *  EXTEND or ENDEXTEND events.
@@ -2192,20 +2210,21 @@ int o_extend_end (GschemToplevel *w_current, int x, int y)
 
 /* ------------------------- Action Processor ------------------------- */
 
-/*! \brief Project Selected objects
- *  \par Function Description
- *   Called when multiple objects were selected when Project mode was
- *   initiated. Uses the object returned by o_extend_get_bounder as
- *   the boundary object and attempts to project all other objects to
- *   the boundary using o_extend_object if there was only one other
- *   object, or o_extend_object_list if ther were more than one other
- *   object selected. If the current selection does not contain a
- *   bounder, that is, a boundary for the other objects in the current
- *   selection then the state is indeterminate and the function returns
- *   true to indicate that o_extend_end needs to be called after the
- *   user selects another object.
+/*!
+ * \brief Project Selected objects
+ * \par Function Description
+ *  Called when multiple objects were selected when Project mode was
+ *  initiated. Uses the object returned by o_extend_get_bounder as
+ *  the boundary object and attempts to project all other objects to
+ *  the boundary using o_extend_object if there was only one other
+ *  object, or o_extend_object_list if ther were more than one other
+ *  object selected. If the current selection does not contain a
+ *  bounder, that is, a boundary for the other objects in the current
+ *  selection then the state is indeterminate and the function returns
+ *  true to indicate that o_extend_end needs to be called after the
+ *  user selects another object.
  *
- *   \returns TRUE if operation should continue, otherwise FALSE.
+ *  \returns TRUE if operation should continue, otherwise FALSE.
  */
 bool o_extend_selection (GschemToplevel *w_current, int count)
 {
@@ -2266,13 +2285,14 @@ bool o_extend_selection (GschemToplevel *w_current, int count)
   return status;
 }
 
-/*! \brief Project Hot
- *  \par Function Description
- *   Called to process one or more selected objects when Project mode was
- *   initiated using the keyboard or mouse. The direction each object is
- *   to be projected is based on cursor position relative to the objects,
- *   and need not be the same for each object. The closest boundary in the
- *   path of each projectile will be the target boundary.
+/*!
+ * \brief Project Hot
+ * \par Function Description
+ *  Called to process one or more selected objects when Project mode was
+ *  initiated using the keyboard or mouse. The direction each object is
+ *  to be projected is based on cursor position relative to the objects,
+ *  and need not be the same for each object. The closest boundary in the
+ *  path of each projectile will be the target boundary.
  */
 void o_extend_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
 {
@@ -2306,8 +2326,9 @@ void o_extend_hot (GschemToplevel *w_current, GList *object_list, int x, int y)
   }
 }
 
-/*! \brief Projection Mode Activated, Interrogate Selection
- *  \par Function Description
+/*!
+ * \brief Projection Mode Activated, Interrogate Selection
+ * \par Function Description
  *  This function is called at the beginning of a project operation
  *  to determine how to proceed based on the number and type of objects
  *  selected.
