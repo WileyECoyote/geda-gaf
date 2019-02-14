@@ -17,6 +17,10 @@
     * src/x/x_multiattrib.c: Update ma_column_set_data_show_value function
       documentation.
 
+    * src/x/x_window.c: Revise x_window_create_drawing_area to call setters
+      gtk_widget_show and gtk_widget_set_name instead of setting the g_object
+      properties.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.

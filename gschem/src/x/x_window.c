@@ -177,9 +177,10 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
   geda_container_add(window, DrawingArea);
   gtk_widget_set_can_focus(DrawingArea, TRUE);
   gtk_widget_grab_focus (DrawingArea);
+  gtk_widget_show (DrawingArea);
 
   unique_name = geda_sprintf("GschemDrawingArea:%i", prog_pid);
-  g_object_set (DrawingArea, "visible", TRUE, "name", unique_name, NULL);
+  gtk_widget_set_name(DrawingArea, unique_name);
   GEDA_FREE(unique_name);
 }
 
