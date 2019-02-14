@@ -14,6 +14,9 @@
 
     * src/x/x_fileselect.c: Utilize SetToggleState macro.
 
+    * src/x/x_multiattrib.c: Update ma_column_set_data_show_value function
+      documentation.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.
