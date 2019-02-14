@@ -2666,7 +2666,7 @@ void x_menu_recent_files_load()
    list = geda_keyfile_get_string_list(keyfile, "Recent files", "Files", &len, NULL);
 
    if (list == NULL) {
-      /* error reading key file, don't bother to correct;
+      /* There was an error reading key file, don't bother to correct;
        * just overwrite it with an empty one */
       x_menu_recent_files_create_empty();
       return;
