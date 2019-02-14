@@ -12,6 +12,8 @@
       if the event dispatcher does not return our pointer, we are already
       dead.
 
+    * src/x/x_fileselect.c: Utilize SetToggleState macro.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.

@@ -143,7 +143,7 @@ x_fileselect_add_preview (GedaFileChooser *filechooser)
 
   cb_size = gtk_check_button_new_with_label (_("Large"));
   gtk_widget_set_tooltip_text(cb_size, _("Enable to enlarge the preview"));
-  gtk_toggle_button_set_active ((GtkToggleButton*)cb_size, FALSE);
+  SetToggleState (cb_size, FALSE);
   g_object_set (cb_size, "visible", TRUE, NULL);
 
   gtk_box_pack_start (GTK_BOX(vbox), cb_size, FALSE, FALSE, 0);
@@ -287,8 +287,9 @@ x_fileselect_save (GschemToplevel *w_current)
   gtk_widget_show (cb_add_ext);
   gtk_box_pack_start (GTK_BOX(hbox), cb_add_ext, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(cb_add_ext, _("Automatically append the file extension"));
-  gtk_toggle_button_set_active ((GtkToggleButton*)cb_add_ext, auto_ext);
   geda_file_chooser_set_extra_widget (dialog, hbox);
+
+  SetToggleState (cb_add_ext, auto_ext);
 
   gtk_widget_show (dialog);
 
