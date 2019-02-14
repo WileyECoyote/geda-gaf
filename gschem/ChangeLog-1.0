@@ -6,6 +6,8 @@
       from o_find_is_object_hit directly and only set found when the object
       is hit.
 
+    * src/object/o_text.c: Replace g_ascii_strncasecmp with geda_strncmpi.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.
