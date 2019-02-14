@@ -41,8 +41,9 @@
  * signifies that this is an attribute
  */
 
-/*! \brief Add attributes of object to selection
- *  \par Function Description
+/*!
+ * \brief Add attributes of object to selection
+ * \par Function Description
  *  Adds non-selected attributes of \a selected to \a selection list.
  *
  */
@@ -83,8 +84,9 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
   }
 }
 
-/*! \brief Attach attributes in list to preset object
- *  \par Function Description
+/*!
+ * \brief Attach attributes in list to preset object
+ * \par Function Description
  *  Add every text object in list that is an attribute (=) and is not object,
  *  to object.
  */
@@ -187,9 +189,9 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
   }
 }
 
-/*! \brief Remove invisible attributes of an object from the selection list.
- *  \par Function Description
- *
+/*!
+ * \brief Remove invisible attributes of an object from the selection list.
+ * \par Function Description
  *  Remove all invisible attributes attached to the given object
  *  from the selection list. If hidden text is being shown, this
  *  function returns immediately.
@@ -223,16 +225,16 @@ void o_attrib_deselect_invisible (GschemToplevel *w_current,
   }
 }
 
-/*! \brief Add invisible attributes of an object to the selection list.
- *  \par Function Description
- *
+/*!
+ * \brief Add invisible attributes of an object to the selection list.
+ * \par Function Description
  *  Add all invisible attributes attached to the given object
  *  to the selection list. If hidden text is being shown, this
  *  function returns immediately.
  *
- *  \param [in]     w_current  The GschemToplevel object.
- *  \param [in,out] selection  The SELECTION list to add to.
- *  \param [in]     object     Selected Object whose invisible attributes to add.
+ * \param [in]     w_current  The GschemToplevel object.
+ * \param [in,out] selection  The SELECTION list to add to.
+ * \param [in]     object     Selected Object whose invisible attributes to add.
  */
 void o_attrib_select_invisible (GschemToplevel *w_current,
                                 SELECTION      *selection,
@@ -259,14 +261,15 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
   }
 }
 
-/*! \brief Change visibility status of attribute object.
- *  \par Function Description
+/*!
+ * \brief Change visibility status of attribute object.
+ * \par Function Description
  *  This function toggles the visibility status of the attribute \a
  *  object and updates it. The object is erased or redrawn if
  *  necessary.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] object     The attribute object.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] object     The attribute object.
  */
 void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
 {
@@ -292,15 +295,16 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
   }
 }
 
-/*! \brief Set what part of an attribute is shown.
- *  \par Function Description
+/*!
+ * \brief Set what part of an attribute is shown.
+ * \par Function Description
  *  This function changes what part (name, value or both) of an
  *  attribute is shown by its attribute object. The attribute object
  *  is erased, updated and finally redrawn.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] object     The attribute object.
- *  \param [in] show_name_value  The new display flag for attribute.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] object     The attribute object.
+ * \param [in] show_name_value  The new display flag for attribute.
  */
 void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
                                      GedaObject      *object,
@@ -313,17 +317,18 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
   geda_text_object_recreate(object);
 }
 
-/*! \brief Create and Add and Attribute GedaText Object
- *  \par Function Description
- *   Creates a new text attribute using the supplied values and properties.
- *   If \a parent is not NULL, the new attribute will be added the parent
- *   and to the page associated with the parent. The position of the new
- *   attribute is adjusted based on the parent object type. If parent is
- *   NULL the new object is added as a floating attribute to the current
- *   page.
+/*!
+ * \brief Create and Add and Attribute GedaText Object
+ * \par Function Description
+ *  Creates a new text attribute using the supplied values and properties.
+ *  If \a parent is not NULL, the new attribute will be added the parent
+ *  and to the page associated with the parent. The position of the new
+ *  attribute is adjusted based on the parent object type. If parent is
+ *  NULL the new object is added as a floating attribute to the current
+ *  page.
  *
- *  \note This function no longer returns NULL, instead the new object,
- *        aka text item, is always return */
+ * \note This function no longer returns NULL, instead the new object,
+ *       aka text item, is always return */
 GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
                                 const char     *text_string,
                                 int             visibility,
@@ -474,17 +479,18 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
   return new_obj;
 }
 
-/*! \brief Reset Attributes to original positions
- *  \par Function Description
+/*!
+ * \brief Reset Attributes to original positions
+ * \par Function Description
  *  The functions searches for a floating version of the given attribute
  *  and if found, compares the positional data and sets the orientation
  *  of \a attrib to match the floating version if the the positions do
  *  do not match. Essentially, this resets the position to the position
  *  defined in the symbol file if the attribute was inherited.
  *
- *  \returns TRUE if the attribute was modified, otherwise FALSE.
+ * \returns TRUE if the attribute was modified, otherwise FALSE.
  *
- * TODO: This function assumes there is only attribute with the given
+ * TODO: This function assumes there is only one attribute with the given
  *       name.
  */
 bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,

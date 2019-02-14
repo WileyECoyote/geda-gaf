@@ -1,3 +1,7 @@
+2019-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Reformat function documentation.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.
