@@ -633,34 +633,31 @@ int x_event_expose (GtkWidget      *widget,
   printf ("%s, exposing %s <%p>\n", __func__, name, widget);
 #endif
 
-  if (w_current != NULL) {
+  cairo_t *save_cr;
 
-    cairo_t *save_cr;
+  save_cr = w_current->cr;
 
-    save_cr = w_current->cr;
+  gdk_window_begin_paint_region(widget->window, event->region);
 
-    gdk_window_begin_paint_region(widget->window, event->region);
+  w_current->cr = gdk_cairo_create(widget->window);
 
-    w_current->cr = gdk_cairo_create(widget->window);
+  cairo_set_antialias(w_current->cr, w_current->anti_aliasing);
 
-    cairo_set_antialias(w_current->cr, w_current->anti_aliasing);
+  gdk_cairo_rectangle (w_current->cr, &(event->area));
 
-    gdk_cairo_rectangle (w_current->cr, &(event->area));
+  cairo_clip (w_current->cr);
 
-    cairo_clip (w_current->cr);
+  x_grid_repaint_background (w_current, &(event->area));
 
-    x_grid_repaint_background (w_current, &(event->area));
+  x_grid_draw_grid_region (w_current, &(event->area));
 
-    x_grid_draw_grid_region (w_current, &(event->area));
+  o_redraw_rectangle (w_current, &(event->area));
 
-    o_redraw_rectangle (w_current, &(event->area));
+  gdk_window_end_paint(widget->window);
 
-    gdk_window_end_paint(widget->window);
+  cairo_destroy (w_current->cr);
 
-    cairo_destroy (w_current->cr);
-
-    w_current->cr = save_cr;
-  }
+  w_current->cr = save_cr;
 
   return FALSE;
 }

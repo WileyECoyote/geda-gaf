@@ -8,6 +8,10 @@
 
     * src/object/o_text.c: Replace g_ascii_strncasecmp with geda_strncmpi.
 
+    * src/x/x_event.c: Remove checking for w_current in the expose handler;
+      if the event dispatcher does not return our pointer, we are already
+      dead.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.
