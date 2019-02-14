@@ -97,7 +97,6 @@ static void o_find_disposition_object (GschemToplevel *w_current,
   }
 
   Current_Page->object_lastplace = object;
-
 }
 
 /*!
