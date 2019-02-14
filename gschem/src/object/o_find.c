@@ -191,11 +191,9 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 
           if (object->visibility && (object->selectable || w_current->ALTKEY))
           {
-
-            found = o_find_is_object_hit (w_current, object, wx, wy, w_slack);
-
-            if (found) {
+            if (o_find_is_object_hit (w_current, object, wx, wy, w_slack)) {
               o_find_disposition_object (w_current, object, mode);
+              found = TRUE;
               break;           /* Break-out from inner while loop */
             }
           }
@@ -216,11 +214,9 @@ bool o_find_object (GschemToplevel *w_current, int wx, int wy, int mode)
 
       if (object->visibility && (object->selectable || w_current->ALTKEY))
       {
-
-        found = o_find_is_object_hit (w_current, object, wx, wy, w_slack);
-
-        if (found) {
+        if (o_find_is_object_hit (w_current, object, wx, wy, w_slack)) {
           o_find_disposition_object (w_current, object, mode);
+          found = TRUE;
           break;           /* Break-out from for loop found == TRUE */
         }
       }

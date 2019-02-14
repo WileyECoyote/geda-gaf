@@ -2,6 +2,10 @@
 
     * src/object/o_attrib.c: Reformat function documentation.
 
+    * src/object/o_find.c: Revise o_find_object to use the value returned
+      from o_find_is_object_hit directly and only set found when the object
+      is hit.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_arc.c: Reformat function documentation.
