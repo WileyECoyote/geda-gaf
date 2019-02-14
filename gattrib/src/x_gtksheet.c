@@ -784,7 +784,7 @@ void x_gtksheet_init(PageDataSet *PageData)
       scrolled_windows = (GtkWidget**)realloc(scrolled_windows, (i+1)*sizeof(GtkWidget*));
       scrolled_windows[i] = gtk_scrolled_window_new(NULL, NULL);
 
-      gtk_container_add ((GtkContainer*)scrolled_windows[i], (GtkWidget*)sheets[i]);
+      geda_container_add (scrolled_windows[i], (GtkWidget*)sheets[i]);
 
       /* First remove old notebook page. Maybe should probably do some checking here. */
       if (notebook != NULL) {

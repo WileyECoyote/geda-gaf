@@ -1,3 +1,7 @@
+2019-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Replace gtk_container_add with geda_container_add.
+
 2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_attrib.c: Replace g_ascii_strncasecmp with geda_strncmpi.
