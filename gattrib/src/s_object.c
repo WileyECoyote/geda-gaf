@@ -436,7 +436,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 
   /* handle slot= attribute, it's a special case */
   if (parent != NULL &&
-    g_ascii_strncasecmp (text_string, "slot=", 5) == 0) {
+    geda_strncmpi (text_string, "slot=", 5) == 0) {
     geda_struct_slot_update_object (parent);
   }
   else if (parent && parent->selected) {

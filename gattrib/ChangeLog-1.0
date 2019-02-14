@@ -1,3 +1,7 @@
+2019-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_attrib.c: Replace g_ascii_strncasecmp with geda_strncmpi.
+
 2019-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/i_basic.c: Remove function i_update_status.
