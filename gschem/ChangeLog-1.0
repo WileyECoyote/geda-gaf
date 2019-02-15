@@ -1,3 +1,7 @@
+2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_break.c: Adjust line spacing and add Doxygen template.
+
 2019-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Reformat function documentation.

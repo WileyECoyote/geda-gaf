@@ -846,6 +846,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
     v_log_message(_("Point 1 missed x=%d, y=%d\n"), point1.x, point1.y);
 
   g_array_free (points, TRUE);
+
   return result;
 }
 
@@ -918,6 +919,7 @@ static bool o_break_line(GschemToplevel *w_current, GedaObject *object)
       result = TRUE;
     }
   }
+
   return result;
 }
 
@@ -1001,9 +1003,15 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
       result = TRUE;
     }
   }
+
   return result;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 {
   GedaPoint point;
