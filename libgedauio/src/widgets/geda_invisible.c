@@ -325,7 +325,7 @@ geda_invisible_instance_init(GTypeInstance *instance, void *class)
  *  and returns the unsigned integer value. The retained value is returned
  *  on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaInvisible.
+ * \return GedaType identifier associated with GedaInvisible.
  */
 GedaType
 geda_invisible_get_type (void)
