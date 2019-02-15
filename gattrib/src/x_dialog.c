@@ -31,7 +31,6 @@
 
 #include "../include/gattrib.h"
 #include "../include/gattrib_dialog.h"
-#include <geda_container.h>
 #include <geda/geda_dialog_controls.h>
 #include <geda_widgets.h>
 #include <geda_dialogs.h>
