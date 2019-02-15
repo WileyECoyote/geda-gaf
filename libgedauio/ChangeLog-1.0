@@ -2,6 +2,8 @@
 
     * include/geda_combobox.h: Add macro geda_combo_widget_get_active_text.
 
+    * include/geda_widgets.h: Include "geda_container.h".
+
     * src/widgets/geda_combobox.c Relocate geda_combo_box_get_active_text
       before geda_combo_box_insert_text.
 
