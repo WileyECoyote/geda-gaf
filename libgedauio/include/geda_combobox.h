@@ -223,6 +223,7 @@ AtkObject    *geda_combo_widget_get_popup_accessible   (GtkWidget   *combo_box);
 
 /* convenience widget text version */
 #define geda_combo_widget_append_text(cb, txt) geda_combo_box_append_text((GedaComboBox*)cb, txt)
+#define geda_combo_widget_get_active_text(cb) geda_combo_box_get_active_text((GedaComboBox*)cb)
 #define geda_combo_widget_insert_text(cb,txt)  geda_combo_box_insert_text((GedaComboBox*)cb, txt)
 #define geda_combo_widget_prepend_text(cb,txt) geda_combo_box_prepend_text((GedaComboBox*)cb, txt)
 #define geda_combo_widget_remove_index(cb,idx) geda_combo_box_remove_index((GedaComboBox*)cb, idx)

@@ -1,5 +1,7 @@
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_combobox.h: Add macro geda_combo_widget_get_active_text.
+
     * src/widgets/geda_combobox.c Relocate geda_combo_box_get_active_text
       before geda_combo_box_insert_text.
 
