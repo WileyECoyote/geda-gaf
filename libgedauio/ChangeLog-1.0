@@ -1,3 +1,8 @@
+2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c Relocate geda_combo_box_get_active_text
+      before geda_combo_box_insert_text.
+
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Replace g_object_set to set "visible"

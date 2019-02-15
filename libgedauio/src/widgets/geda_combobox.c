@@ -5906,6 +5906,39 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
 }
 
 /*!
+ * \brief Get Active GedaComboBox Text
+ * \par Function Description
+ *  Returns the currently active string in \a combo_box or %NULL if none
+ *  is selected. Note that you can only use this function with combo
+ *  boxes constructed with geda_combo_box_new_text() and with
+ *  #GedaEntry
+ *
+ * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
+ *
+ * \returns: a newly allocated string containing the currently active text.
+ *           Must be freed with g_free().
+ *
+ * If you used this with a #GedaComboBox constructed with geda_combo_box_new_text()
+ * then you should now use #GedaComboBoxText and geda_combo_box_text_get_active_text()
+ * instead. Or if you used this with a #GedaEntry then you should now use
+ * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use geda_entry_get_text
+ * (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
+ */
+char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
+{
+  GedaComboBoxClass *class;
+
+  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), NULL);
+
+  class = GEDA_COMBO_BOX_GET_CLASS (combo_box);
+
+  if (class->get_active_text) {
+    return class->get_active_text (combo_box);
+  }
+  return NULL;
+}
+
+/*!
  * \brief Insert Text into a GedaComboBox
  * \par Function Description
  *  Inserts \a text at \a position in the list of strings stored in \a combo_box.
@@ -6041,39 +6074,6 @@ void geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
 /** \defgroup GedaComboBox-methods GedaComboBox Methods
  *  @{
  */
-
-/*!
- * \brief Get Active GedaComboBox Text
- * \par Function Description
- *  Returns the currently active string in \a combo_box or %NULL if none
- *  is selected. Note that you can only use this function with combo
- *  boxes constructed with geda_combo_box_new_text() and with
- *  #GedaEntry
- *
- * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
- *
- * \returns: a newly allocated string containing the currently active text.
- *           Must be freed with g_free().
- *
- * If you used this with a #GedaComboBox constructed with geda_combo_box_new_text()
- * then you should now use #GedaComboBoxText and geda_combo_box_text_get_active_text()
- * instead. Or if you used this with a #GedaEntry then you should now use
- * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use geda_entry_get_text
- * (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
- */
-char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
-{
-  GedaComboBoxClass *class;
-
-  g_return_val_if_fail (GEDA_IS_COMBO_BOX (combo_box), NULL);
-
-  class = GEDA_COMBO_BOX_GET_CLASS (combo_box);
-
-  if (class->get_active_text) {
-    return class->get_active_text (combo_box);
-  }
-  return NULL;
-}
 
 static void geda_combo_box_real_move_active (GedaComboBox  *combo_box,
                                              GtkScrollType  scroll)
