@@ -1277,6 +1277,23 @@ bool geda_combo_box_text_widget_set_active_text(GtkWidget *widget, const char *t
   return geda_combo_box_text_set_active_text (GEDA_COMBO_BOX_TEXT(widget), text);
 }
 
+
+bool geda_combo_box_text_widget_get_activate_default (GtkWidget *widget)
+{
+  return geda_combo_box_text_get_activate_default ((GedaComboBoxText*)widget);
+}
+
+void geda_combo_box_text_widget_set_activate_default (GtkWidget *widget,
+                                                      bool       setting)
+{
+  geda_combo_box_text_set_activate_default ((GedaComboBoxText*)widget, setting);
+}
+
+GedaEntry *geda_combo_box_text_widget_get_entry (GtkWidget *widget)
+{
+  return geda_combo_box_text_get_entry ((GedaComboBoxText*)widget);
+}
+
 /*!
  * \brief Get the Text Length from a GedaComboBoxText Widget
  * \par Function Description

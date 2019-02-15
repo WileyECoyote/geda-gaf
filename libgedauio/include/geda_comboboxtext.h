@@ -146,6 +146,13 @@ char        *geda_combo_box_text_widget_get_active_text(GtkWidget          *widg
 
 bool         geda_combo_box_text_widget_set_active_text(GtkWidget          *widget,
                                                         const char         *text);
+bool         geda_combo_box_text_widget_get_activate_default
+                                                       (GtkWidget          *widget);
+
+void         geda_combo_box_text_widget_set_activate_default
+                                                       (GtkWidget          *widget,
+                                                        bool                setting);
+GedaEntry   *geda_combo_box_text_widget_get_entry      (GtkWidget          *widget);
 int          geda_combo_box_text_widget_get_text_length(GtkWidget          *widget);
 
 #ifdef __cplusplus
