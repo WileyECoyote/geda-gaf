@@ -87,7 +87,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
   geda_container_add (parent, widget);
   gtk_widget_set_size_request (widget, -1, 30);
 
-  /* turn off the indicator, ie box */
+  /* turn off the indicator, i.e. box */
   gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (widget), FALSE);
 
   /* Set the value of the control, sets raised property */

@@ -798,7 +798,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
 
   case GEDA_RESPONSE_ACCEPT: /* Replace*/
     unload_dialog();
-    replacement_text = geda_combo_box_get_active_text (GEDA_COMBO_BOX (ReplaceTextCombo));
+    replacement_text = geda_combo_widget_get_active_text (ReplaceTextCombo);
     add_search_history(replacement_text);
     Search->Found = x_find_main_search(search_text, replacement_text);
     GEDA_FREE(search_text);
