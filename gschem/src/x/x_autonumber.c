@@ -1795,7 +1795,7 @@ GtkWidget *autonumber_create_dialog(GschemToplevel  *w_current,
                     (GtkAttachOptions) (0), 0, 0);
 
   ScopeTextCombo = geda_combo_box_text_new_with_entry();
-  geda_combo_box_text_set_activate_default(GEDA_COMBO_BOX_TEXT(ScopeTextCombo), TRUE);
+  geda_combo_box_text_widget_set_activate_default(ScopeTextCombo, TRUE);
   gtk_widget_show (ScopeTextCombo);
   gtk_table_attach (upper_table, ScopeTextCombo, 1, 2, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),

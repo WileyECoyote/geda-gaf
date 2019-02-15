@@ -2,6 +2,9 @@
 
     * src/object/o_break.c: Adjust line spacing and add Doxygen template.
 
+    * src/x/x_autonumber.c: Replace geda_combo_box_text_set_activate_default
+      with geda_combo_box_text_widget_set_activate_default and remove cast.
+
 2019-02-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Reformat function documentation.
