@@ -128,45 +128,55 @@ msgstr "Recupera tots els objectes que pertanyen a una pàgina"
 msgid "Add an object to a page or another object."
 msgstr "Afegiu un objecte a una pàgina o a un altre objecte."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Afegeix diversos objectes a una pàgina o a un altre objecte."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Feu una còpia d'un objecte."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Elimina l'objecte d'una pàgina."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Traieu diversos objectes d'una pàgina."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Esborreu un objecte d'una pàgina."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Elimineu diversos objectes d'una pàgina."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Sincronitza l'objecte amb la biblioteca."
 
+# Create a new arc object
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Crea un nou objecte d'arc."
 
+# Create a new box object
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Crea un nou objecte de caixa."
 
+# Create a new bus object = Create a new cable object
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Crea un nou objecte de cable."
 
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
