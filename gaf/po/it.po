@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-02-16 19:29-0600\n"
 "PO-Revision-Date: 2014-12-28 22:09+0100\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gaf/src/gaf.c:71
+#: gaf/src/gaf.c:76
 #, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
@@ -52,15 +52,15 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/gaf.c:91
-#, c-format
+#: gaf/src/gaf.c:96
+#, fuzzy
 msgid ""
-"gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n"
+"included in the gEDA distribution. There is NO WARRANTY; not even \n"
+"for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
+"permitted by law.\n"
 msgstr ""
 "gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gli sviluppatori di gEDA\n"
@@ -69,19 +69,19 @@ msgstr ""
 "nella distribuzione di gEDA.\n"
 "NON C'È ALCUNA GARANZIA, nei limiti della legislazione vigente.\n"
 
-#: gaf/src/gaf.c:103
+#: gaf/src/gaf.c:110
 msgid "Run `gaf --help' for more information"
 msgstr "Eseguire \"gaf --help\" per ulteriori informazioni"
 
-#: gaf/src/gaf.c:172
+#: gaf/src/gaf.c:179
 msgid "No command specified, nothing to do"
 msgstr "Nessun comando specificato, niente da fare"
 
-#: gaf/src/gaf.c:189
+#: gaf/src/gaf.c:196
 msgid "ERROR: Unrecognised command"
 msgstr "ERRORE: comando non riconosciuto"
 
-#: gaf/src/config.c:48
+#: gaf/src/config.c:53
 #, c-format
 msgid ""
 "Usage: gaf config [OPTION] [GROUP KEY [VALUE]]\n"
@@ -125,7 +125,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/config.c:69
+#: gaf/src/config.c:74
 msgid ""
 "\n"
 "Run `gaf config --help' for more information.\n"
@@ -133,28 +133,28 @@ msgstr ""
 "\n"
 "Eseguire \"gaf config --help\" per ulteriori informazioni.\n"
 
-#: gaf/src/config.c:70
+#: gaf/src/config.c:75
 msgid "ERROR: You may only specify a single configuration store.\n"
 msgstr ""
 "ERRORE: si può specificare solo un singolo archivio di configurazione.\n"
 
-#: gaf/src/config.c:167
+#: gaf/src/config.c:172
 #, c-format
 msgid "WARNING: Could not load '%s': %s.\n"
 msgstr "ATTENZIONE: impossibile caricare \"%s\": %s.\n"
 
-#: gaf/src/config.c:178
+#: gaf/src/config.c:183
 #, c-format
 msgid "ERROR: You must specify both configuration group and key.\n"
 msgstr ""
 "ERRORE: si deve specificare sia il gruppo di configurazione che la chiave.\n"
 
-#: gaf/src/config.c:199 gaf/src/config.c:220
+#: gaf/src/config.c:204 gaf/src/config.c:225
 #, c-format
 msgid "ERROR: %s.\n"
 msgstr "ERRORE: %s.\n"
 
-#: gaf/src/config.c:226
+#: gaf/src/config.c:231
 msgid "internal error"
 msgstr "errore interno"
 
@@ -212,7 +212,7 @@ msgstr "ERRORE"
 msgid "ERROR: No document is available to export.\n"
 msgstr ""
 
-#: gaf/src/export.c:1092
+#: gaf/src/export.c:1098
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -259,17 +259,17 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/export.c:1278
+#: gaf/src/export.c:1284
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr "ERRORE: bisogna specificare almeno un nome file in ingresso.\n"
 
-#: gaf/src/export.c:1288
+#: gaf/src/export.c:1294
 #, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr "ERRORE: bisogna specificare un nome file in uscita.\n"
 
-#: gaf/src/shell.c:50
+#: gaf/src/shell.c:55
 #, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
@@ -309,7 +309,7 @@ msgstr ""
 "\n"
 "Segnalare eventuali difetti a %s.\n"
 
-#: gaf/src/shell.c:138
+#: gaf/src/shell.c:143
 #, c-format
 msgid ""
 "\n"

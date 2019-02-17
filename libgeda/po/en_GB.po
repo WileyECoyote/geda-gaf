@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-20 12:12-0600\n"
+"POT-Creation-Date: 2019-02-16 19:29-0600\n"
 "PO-Revision-Date: 2012-01-31 12:15+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1710,71 +1710,71 @@ msgid "Library command failed"
 msgstr "Library command failed"
 
 # Library name [%s] already in use. Using
-#: libgeda/src/struct/s_clib.c:547
+#: libgeda/src/struct/s_clib.c:549
 #, c-format
 msgid "Library name [%s] already in use. Using [%s].\n"
 msgstr "Library name [%s] already in use  Using [%s].\n"
 
 # Duplicate symbol
-#: libgeda/src/struct/s_clib.c:679
+#: libgeda/src/struct/s_clib.c:689
 msgid "Duplicate symbol"
 msgstr ""
 
 # file location
-#: libgeda/src/struct/s_clib.c:680
+#: libgeda/src/struct/s_clib.c:690
 msgid "location"
 msgstr "file location"
 
-#: libgeda/src/struct/s_clib.c:690
+#: libgeda/src/struct/s_clib.c:700
 msgid "Failed to open"
 msgstr "Failed to open"
 
-#: libgeda/src/struct/s_clib.c:789
+#: libgeda/src/struct/s_clib.c:801
 msgid "Failed to scan library"
 msgstr "Failed to scan library"
 
-#: libgeda/src/struct/s_clib.c:790
+#: libgeda/src/struct/s_clib.c:802
 msgid "Scheme function returned non-list"
 msgstr "Scheme function returned non-list"
 
-#: libgeda/src/struct/s_clib.c:800
+#: libgeda/src/struct/s_clib.c:812
 msgid "Non-string symbol name while scanning library"
 msgstr "Non-string symbol name while scanning library"
 
-#: libgeda/src/struct/s_clib.c:1066 libgeda/src/struct/s_clib.c:1114
+#: libgeda/src/struct/s_clib.c:1082 libgeda/src/struct/s_clib.c:1131
 msgid "Cannot add library"
 msgstr "Cannot add library"
 
-#: libgeda/src/struct/s_clib.c:1069 libgeda/src/struct/s_clib.c:1117
+#: libgeda/src/struct/s_clib.c:1085 libgeda/src/struct/s_clib.c:1134
 msgid "name not specified"
 msgstr "name not specified"
 
-#: libgeda/src/struct/s_clib.c:1076
+#: libgeda/src/struct/s_clib.c:1092
 msgid "both 'list' and 'get' commands must be specified"
 msgstr "both 'list' and 'get' commands must be specified"
 
-#: libgeda/src/struct/s_clib.c:1126
+#: libgeda/src/struct/s_clib.c:1143
 msgid "callbacks must be closures"
 msgstr "callbacks must be closures"
 
-#: libgeda/src/struct/s_clib.c:1251
+#: libgeda/src/struct/s_clib.c:1275
 msgid "Failed to load symbol from file"
 msgstr "Failed to load symbol from file"
 
-#: libgeda/src/struct/s_clib.c:1312
+#: libgeda/src/struct/s_clib.c:1338
 msgid "Failed to load symbol data"
 msgstr "Failed to load symbol data"
 
-#: libgeda/src/struct/s_clib.c:1313
+#: libgeda/src/struct/s_clib.c:1339
 msgid "from source"
 msgstr "# from source"
 
-#: libgeda/src/struct/s_clib.c:1535
+#: libgeda/src/struct/s_clib.c:1564
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Component [%s] was not found in the component library\n"
 
-#: libgeda/src/struct/s_clib.c:1542
+#: libgeda/src/struct/s_clib.c:1571
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "More than one component found with name [%s]\n"

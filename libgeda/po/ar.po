@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-20 12:12-0600\n"
+"POT-Creation-Date: 2019-02-16 19:29-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1769,81 +1769,81 @@ msgid "Library command failed"
 msgstr "فشل أمر المكتبة"
 
 # Library name [%s] already in use. Using
-#: libgeda/src/struct/s_clib.c:547
+#: libgeda/src/struct/s_clib.c:549
 #, c-format
 msgid "Library name [%s] already in use. Using [%s].\n"
 msgstr "اسم المكتبة [%s] قيد الاستخدام بالفعل.استعمال [%s].\n"
 
 # Duplicate symbol
-#: libgeda/src/struct/s_clib.c:679
+#: libgeda/src/struct/s_clib.c:689
 msgid "Duplicate symbol"
 msgstr "رمز مكررة"
 
 # file location
-#: libgeda/src/struct/s_clib.c:680
+#: libgeda/src/struct/s_clib.c:690
 msgid "location"
 msgstr "مكان الملف"
 
 # Failed to open
-#: libgeda/src/struct/s_clib.c:690
+#: libgeda/src/struct/s_clib.c:700
 msgid "Failed to open"
 msgstr "فشل في الفتح"
 
 # Unable to scan library
-#: libgeda/src/struct/s_clib.c:789
+#: libgeda/src/struct/s_clib.c:801
 msgid "Failed to scan library"
 msgstr "غير قادر على مسح مكتبة"
 
 # Scheme system did not return List
-#: libgeda/src/struct/s_clib.c:790
+#: libgeda/src/struct/s_clib.c:802
 msgid "Scheme function returned non-list"
 msgstr "لم مخطط النظام لن تعود قائمة"
 
 # Found code is a script name during the scan library
-#: libgeda/src/struct/s_clib.c:800
+#: libgeda/src/struct/s_clib.c:812
 msgid "Non-string symbol name while scanning library"
 msgstr "عثر على اسم رمز غير نصي أثناء تفحص المكتبة"
 
 # Can not Add Library
-#: libgeda/src/struct/s_clib.c:1066 libgeda/src/struct/s_clib.c:1114
+#: libgeda/src/struct/s_clib.c:1082 libgeda/src/struct/s_clib.c:1131
 msgid "Cannot add library"
 msgstr "يتعذّر إضافة مكتبة"
 
 # name not specified
-#: libgeda/src/struct/s_clib.c:1069 libgeda/src/struct/s_clib.c:1117
+#: libgeda/src/struct/s_clib.c:1085 libgeda/src/struct/s_clib.c:1134
 msgid "name not specified"
 msgstr "لم يحدد الاسم"
 
-#: libgeda/src/struct/s_clib.c:1076
+#: libgeda/src/struct/s_clib.c:1092
 msgid "both 'list' and 'get' commands must be specified"
 msgstr "يجب تحديد الأوامر 'list' (قائمة) و 'get' (أحصلعلى)"
 
 # Response should be closure
-#: libgeda/src/struct/s_clib.c:1126
+#: libgeda/src/struct/s_clib.c:1143
 msgid "callbacks must be closures"
 msgstr "لرد يجب أن يكون الإغلاق"
 
 # Unable to load the icon of the file
-#: libgeda/src/struct/s_clib.c:1251
+#: libgeda/src/struct/s_clib.c:1275
 msgid "Failed to load symbol from file"
 msgstr "‏تعذر تحميل الرمز من الملف"
 
 # Unable to load icon data
-#: libgeda/src/struct/s_clib.c:1312
+#: libgeda/src/struct/s_clib.c:1338
 msgid "Failed to load symbol data"
 msgstr "تعذر تحميل بيانات الرمز"
 
 # from the source
-#: libgeda/src/struct/s_clib.c:1313
+#: libgeda/src/struct/s_clib.c:1339
 msgid "from source"
 msgstr "من المصدر"
 
-#: libgeda/src/struct/s_clib.c:1535
+#: libgeda/src/struct/s_clib.c:1564
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "لم يعثر على المكون [%s] في المكتبة المكونات\n"
 
-#: libgeda/src/struct/s_clib.c:1542
+#: libgeda/src/struct/s_clib.c:1571
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "أكثر من مكون واحد عثر عليه باسم [%s]\n"

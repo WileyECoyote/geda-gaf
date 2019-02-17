@@ -148,7 +148,8 @@ msgstr "Αποθηκεύστε όλες τις ανοιχτές σελίδες �
 # Epistréfei to true an to antikeímeno eínai docheío Geda, alliós eínai psevdés
 #: libgedathon/include/geda_module.h:73
 msgid "Returns True if object is a GedaCapsule, otherwise False."
-msgstr "Επιστρέφει το true αν το αντικείμενο είναι δοχείο Geda, αλλιώς είναι ψευδές."
+msgstr ""
+"Επιστρέφει το true αν το αντικείμενο είναι δοχείο Geda, αλλιώς είναι ψευδές."
 
 # Returns the rectangular boundaries of an object
 # Epistréfei ta orthogónia ória enós antikeiménou

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-22 00:37-0600\n"
+"POT-Creation-Date: 2019-02-16 19:29-0600\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -224,69 +224,69 @@ msgstr ""
 "συμπεριλαμβάνεται στη διανομή του gEDA.\n"
 "Δεν υπάρχει ΚΑΜΙΑ ΕΓΓΥΗΣΗ, στα πλαίσια που επιτρέπει ο νόμος.\n"
 
-#: gschem/src/base/gschem_parsecmd.c:247
+#: gschem/src/base/gschem_parsecmd.c:248
 msgid "error parsing"
 msgstr ""
 
-#: gschem/src/base/gschem_parsecmd.c:283 gschem/src/x/x_rc.c:100
+#: gschem/src/base/gschem_parsecmd.c:284 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
 msgstr "ΣΦΑΛΜΑ"
 
-#: gschem/src/base/gschem_parsecmd.c:287
+#: gschem/src/base/gschem_parsecmd.c:288
 msgid "option requires an argument"
 msgstr ""
 
-#: gschem/src/base/gschem_parsecmd.c:293
+#: gschem/src/base/gschem_parsecmd.c:294
 msgid "Unknown option"
 msgstr "'Αγνωστο"
 
-#: gschem/src/base/gschem_parsecmd.c:299
+#: gschem/src/base/gschem_parsecmd.c:300
 msgid "Unknown option character"
 msgstr ""
 
 # help for more information
-#: gschem/src/base/gschem_parsecmd.c:305
+#: gschem/src/base/gschem_parsecmd.c:306
 msgid "help for more information"
 msgstr "help Για περισσότερες πληροφορίες"
 
-#: gschem/src/base/gschem_parsecmd.c:307
+#: gschem/src/base/gschem_parsecmd.c:308
 msgid "Run"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:293
+#: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
 msgstr "Ενδιάμεση μνήμη προεπισκόπησης"
 
-#: gschem/src/base/gschem_preview.c:527 gschem/src/x/x_pagesel.c:1133
+#: gschem/src/base/gschem_preview.c:529 gschem/src/x/x_pagesel.c:1143
 msgid "Filename"
 msgstr "Όνομα αρχείου"
 
-#: gschem/src/base/gschem_preview.c:528
+#: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:535
+#: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
 msgstr "Επιλογή"
 
-#: gschem/src/base/gschem_preview.c:536
+#: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:543
+#: gschem/src/base/gschem_preview.c:545
 msgid "Active"
 msgstr "Ενέργεια"
 
-#: gschem/src/base/gschem_preview.c:544
+#: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:551
+#: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
 msgstr ""
 
-#: gschem/src/base/gschem_preview.c:552
+#: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
 msgstr ""
 
@@ -383,49 +383,49 @@ msgstr "Κατάσταση"
 msgid "Set or get the height of the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1182
+#: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1183
+#: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1184
+#: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1185
+#: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1186
+#: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1187
+#: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1188
+#: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1867
+#: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
 msgstr "πλέγμα"
 
-#: gschem/src/base/gschem_status_bar.c:1873
-#: gschem/src/base/gschem_status_bar.c:1894
+#: gschem/src/base/gschem_status_bar.c:1884
+#: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:1886 gschem/src/object/o_picture.c:615
+#: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
 msgstr "Καθρεπτισμός"
 
-#: gschem/src/base/gschem_status_bar.c:1898
+#: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
 msgstr "ΚΑΝΕΝΑ"
 
@@ -562,12 +562,12 @@ msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5147
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5156
 msgid "current value of"
 msgstr "τρέχουσα αξία των"
 
 # is
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5148
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5157
 msgid "is"
 msgstr "είναι"
 
@@ -584,7 +584,7 @@ msgstr "δεν μπορώ"
 msgid "while inside an action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:772 gschem/src/iface/i_command.c:2803
+#: gschem/src/iface/i_command.c:772 gschem/src/iface/i_command.c:2805
 msgid "New page created"
 msgstr "Δημιουργήθηκε νέα σελίδα"
 
@@ -637,159 +637,159 @@ msgstr ""
 msgid "Empty buffer"
 msgstr "Άδειασμα ενδιάμεσης μνήμης"
 
-#: gschem/src/iface/i_command.c:1694
+#: gschem/src/iface/i_command.c:1698
 msgid "Offset Mode"
 msgstr "Λειτουργία δικτύου"
 
-#: gschem/src/iface/i_command.c:1695
+#: gschem/src/iface/i_command.c:1699
 msgid "Specify offset distance:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2291
+#: gschem/src/iface/i_command.c:2293
 msgid "Zoom Magnification"
 msgstr "Επιλογή"
 
-#: gschem/src/iface/i_command.c:2291
+#: gschem/src/iface/i_command.c:2293
 msgid "Specify new zoom:"
 msgstr ""
 
 # error
-#: gschem/src/iface/i_command.c:2336
+#: gschem/src/iface/i_command.c:2338
 msgid "error"
 msgstr "λάθος"
 
-#: gschem/src/iface/i_command.c:2344
+#: gschem/src/iface/i_command.c:2346
 msgid "No component selected\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:2889
+#: gschem/src/iface/i_command.c:2891
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3071
+#: gschem/src/iface/i_command.c:3073
 msgid "Searching for source"
 msgstr "Αναζήτηση πηγής"
 
-#: gschem/src/iface/i_command.c:3106
+#: gschem/src/iface/i_command.c:3108
 msgid "Failed to descend into"
 msgstr "Αποτυχία να κατέβει σε"
 
-#: gschem/src/iface/i_command.c:3115
+#: gschem/src/iface/i_command.c:3117
 msgid "Hierarchy Error"
 msgstr "_Ιεραρχία"
 
-#: gschem/src/iface/i_command.c:3192
+#: gschem/src/iface/i_command.c:3194
 msgid "Searching for symbol"
 msgstr "Αναζήτηση συμβόλου"
 
-#: gschem/src/iface/i_command.c:3202
+#: gschem/src/iface/i_command.c:3204
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 "Το σύμβολο δεν είναι πραγματικό αρχείο. Το σύμβολο δεν μπορεί να φορτωθεί.\n"
 
-#: gschem/src/iface/i_command.c:3249
+#: gschem/src/iface/i_command.c:3251
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Δεν μπορούν να βρεθούν σχεδιαγράμματα πάνω από το τρέχον!\n"
 
-#: gschem/src/iface/i_command.c:3379
+#: gschem/src/iface/i_command.c:3381
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3785
+#: gschem/src/iface/i_command.c:3787
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4184
+#: gschem/src/iface/i_command.c:4186
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4185
+#: gschem/src/iface/i_command.c:4187
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4191
+#: gschem/src/iface/i_command.c:4193
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4192
+#: gschem/src/iface/i_command.c:4194
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4390
+#: gschem/src/iface/i_command.c:4399
 msgid "Grid OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4391
+#: gschem/src/iface/i_command.c:4400
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4392
+#: gschem/src/iface/i_command.c:4401
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4471
+#: gschem/src/iface/i_command.c:4480
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4476
+#: gschem/src/iface/i_command.c:4485
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4480
+#: gschem/src/iface/i_command.c:4489
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4504
+#: gschem/src/iface/i_command.c:4513
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4507
+#: gschem/src/iface/i_command.c:4516
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4518
+#: gschem/src/iface/i_command.c:4527
 msgid "Magnetic net mode is ON\n"
 msgstr "Λειτουργία μαγνητικού δικτύου ενεργοποιημένη\n"
 
-#: gschem/src/iface/i_command.c:4521
+#: gschem/src/iface/i_command.c:4530
 msgid "Magnetic net mode is OFF\n"
 msgstr "Λειτουργία μαγνητικού δικτύου ανάπηρος\n"
 
-#: gschem/src/iface/i_command.c:4538 gschem/src/iface/i_command.c:4580
+#: gschem/src/iface/i_command.c:4547 gschem/src/iface/i_command.c:4589
 #: gschem/src/x/x_compselect.c:133
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4541 gschem/src/iface/i_command.c:4583
+#: gschem/src/iface/i_command.c:4550 gschem/src/iface/i_command.c:4592
 #: gschem/src/x/x_compselect.c:132
 msgid "On"
 msgstr "Άνοιγμα"
 
 # drag-can-move is now
-#: gschem/src/iface/i_command.c:4543
+#: gschem/src/iface/i_command.c:4552
 msgid "Drag-Can-Move is now"
 msgstr "drag-να-κίνηση είναι τώρα"
 
-#: gschem/src/iface/i_command.c:4555
+#: gschem/src/iface/i_command.c:4564
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4559
+#: gschem/src/iface/i_command.c:4568
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4585
+#: gschem/src/iface/i_command.c:4594
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4637 gschem/src/iface/i_command.c:4666
-#: gschem/src/iface/i_command.c:4686 gschem/src/iface/i_command.c:4706
+#: gschem/src/iface/i_command.c:4646 gschem/src/iface/i_command.c:4675
+#: gschem/src/iface/i_command.c:4695 gschem/src/iface/i_command.c:4715
 msgid "Check path:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4806
+#: gschem/src/iface/i_command.c:4815
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -798,326 +798,326 @@ msgstr ""
 msgid "Canceled Close all\n"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:262
+#: gschem/src/iface/i_sessions.c:263
 msgid "Could not open the session file"
 msgstr "Δεν θα μπορούσε να ανοίξει το αρχείο συνόδου"
 
-#: gschem/src/iface/i_sessions.c:268 gschem/src/x/x_window.c:1018
+#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1019
 msgid "is not accessible"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:272
+#: gschem/src/iface/i_sessions.c:273
 msgid "File"
 msgstr "Αρχείο"
 
-#: gschem/src/iface/i_sessions.c:335
+#: gschem/src/iface/i_sessions.c:336
 msgid "Warning relative file names detected in session"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:346 gschem/src/iface/i_sessions.c:359
-#: gschem/src/iface/i_sessions.c:936 gschem/src/x/x_sessions.c:230
+#: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
+#: gschem/src/iface/i_sessions.c:937 gschem/src/x/x_sessions.c:230
 msgid "Session"
 msgstr "Εμφάνιση _ονόματος"
 
-#: gschem/src/iface/i_sessions.c:347
+#: gschem/src/iface/i_sessions.c:348
 msgid "opening"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:348
+#: gschem/src/iface/i_sessions.c:349
 msgid "of"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:349 gschem/src/iface/i_sessions.c:938
-#: gschem/src/iface/i_sessions.c:1112
+#: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:939
+#: gschem/src/iface/i_sessions.c:1113
 msgid "documents"
 msgstr "_Τεκμηρίωση"
 
-#: gschem/src/iface/i_sessions.c:358
+#: gschem/src/iface/i_sessions.c:359
 msgid "did not contain any accessible documents"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:795
+#: gschem/src/iface/i_sessions.c:796
 msgid "Sessions"
 msgstr "Εμφάνιση _ονόματος"
 
-#: gschem/src/iface/i_sessions.c:859
+#: gschem/src/iface/i_sessions.c:860
 msgid "Removing session"
 msgstr "Αποθήκευση όλων"
 
-#: gschem/src/iface/i_sessions.c:885
+#: gschem/src/iface/i_sessions.c:886
 msgid "Failed to remove session"
 msgstr "Αποτυχία για να αφαιρέσετε συνεδρία"
 
-#: gschem/src/iface/i_sessions.c:888
+#: gschem/src/iface/i_sessions.c:889
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:937
+#: gschem/src/iface/i_sessions.c:938
 msgid "created with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:945
+#: gschem/src/iface/i_sessions.c:946
 msgid "An error occurred attempting to create session"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:955 gschem/src/iface/i_sessions.c:1139
+#: gschem/src/iface/i_sessions.c:956 gschem/src/iface/i_sessions.c:1140
 msgid "<b>Session Error</b>"
 msgstr "<b>Σκοπός</b>"
 
-#: gschem/src/iface/i_sessions.c:955
+#: gschem/src/iface/i_sessions.c:956
 msgid "Creation failed"
 msgstr "Η εισαγωγή από το πρόχειρο απέτυχε"
 
-#: gschem/src/iface/i_sessions.c:999
+#: gschem/src/iface/i_sessions.c:1000
 msgid "Opened session"
 msgstr "Αποθήκευση όλων"
 
-#: gschem/src/iface/i_sessions.c:1048
+#: gschem/src/iface/i_sessions.c:1049
 msgid "Renaming session"
 msgstr "Αποθήκευση όλων"
 
-#: gschem/src/iface/i_sessions.c:1049 gschem/src/object/o_attrib.c:177
+#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:179
 msgid "to"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1073
+#: gschem/src/iface/i_sessions.c:1074
 msgid "Failed to rename session"
 msgstr "Αδυναμία φορτώματος εικόνας: %s"
 
-#: gschem/src/iface/i_sessions.c:1076
+#: gschem/src/iface/i_sessions.c:1077
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1110
+#: gschem/src/iface/i_sessions.c:1111
 msgid "Created session"
 msgstr "Τρέχον παράθυρο"
 
-#: gschem/src/iface/i_sessions.c:1111
+#: gschem/src/iface/i_sessions.c:1112
 msgid "with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1121 gschem/src/x/x_window.c:1242
-#: gschem/src/x/x_window.c:1245
+#: gschem/src/iface/i_sessions.c:1122 gschem/src/x/x_window.c:1243
+#: gschem/src/x/x_window.c:1246
 msgid "Saved"
 msgstr "Αποθηκεύτηκε"
 
-#: gschem/src/iface/i_sessions.c:1122
+#: gschem/src/iface/i_sessions.c:1123
 msgid "documents to session"
 msgstr "Τρέχον παράθυρο"
 
-#: gschem/src/iface/i_sessions.c:1132
+#: gschem/src/iface/i_sessions.c:1133
 msgid "An error occurred attempting to save session"
 msgstr "Παρουσιάστηκε σφάλμα κατά την προσπάθεια να σώσει συνεδρία"
 
-#: gschem/src/iface/i_sessions.c:1140
+#: gschem/src/iface/i_sessions.c:1141
 msgid "Save session failed"
 msgstr "Αποθήκευση αρχείου"
 
-#: gschem/src/iface/i_sessions.c:1231
+#: gschem/src/iface/i_sessions.c:1232
 msgid "Show Sessions at startup is now ENABLED\n"
 msgstr "Εμφάνιση Συνεδρίες κατά την εκκίνηση είναι πλέον ενεργοποιηθεί\n"
 
-#: gschem/src/iface/i_sessions.c:1234
+#: gschem/src/iface/i_sessions.c:1235
 msgid "Show Sessions at startup is now DISABLED\n"
 msgstr "Εμφάνιση Συνεδρίες κατά την εκκίνηση είναι πλέον απενεργοποιημένο\n"
 
-#: gschem/src/iface/i_sessions.c:1304
+#: gschem/src/iface/i_sessions.c:1305
 msgid "Session system initialized!\n"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:130 gschem/etc/system-gschemrc.scm:2147
+#: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2147
 msgid "Deselect Mode"
 msgstr "Λειτουργία Επιλογής"
 
-#: gschem/src/iface/i_status.c:134 gschem/src/x/x_status_bar.c:412
+#: gschem/src/iface/i_status.c:142 gschem/src/x/x_status_bar.c:412
 #: gschem/etc/system-gschemrc.scm:2146 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "Λειτουργία Επιλογής"
 
-#: gschem/src/iface/i_status.c:136
+#: gschem/src/iface/i_status.c:144
 msgid "Select Box Mode"
 msgstr "Λειτουργία Επιλογής"
 
-#: gschem/src/iface/i_status.c:138 gschem/scheme/gschem/builtins.scm:227
+#: gschem/src/iface/i_status.c:146 gschem/scheme/gschem/builtins.scm:227
 msgid "Zoom Box"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:141
+#: gschem/src/iface/i_status.c:149
 msgid "Copy to point"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: gschem/src/iface/i_status.c:143 gschem/scheme/gschem/builtins.scm:122
+#: gschem/src/iface/i_status.c:151 gschem/scheme/gschem/builtins.scm:122
 #: gschem/scheme/gschem/builtins.scm:125
 msgid "Rotate Mode"
 msgstr "Λειτουργία περιστροφής"
 
-#: gschem/src/iface/i_status.c:145
+#: gschem/src/iface/i_status.c:153
 msgid "Side to offset?"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:147 gschem/scheme/gschem/builtins.scm:116
+#: gschem/src/iface/i_status.c:155 gschem/scheme/gschem/builtins.scm:116
 msgid "Mirror Mode"
 msgstr "Λειτουργία καθρεπτισμού"
 
-#: gschem/src/iface/i_status.c:149
+#: gschem/src/iface/i_status.c:157
 msgid "Pan Mode"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:151
+#: gschem/src/iface/i_status.c:159
 msgid "Choose component"
 msgstr "Στοιχείο"
 
-#: gschem/src/iface/i_status.c:154
+#: gschem/src/iface/i_status.c:162
 msgid "Magnetic Net Mode"
 msgstr "Λειτουργία μαγνητικού δικτύου"
 
-#: gschem/src/iface/i_status.c:156
+#: gschem/src/iface/i_status.c:164
 msgid "Net Mode"
 msgstr "Λειτουργία δικτύου"
 
-#: gschem/src/iface/i_status.c:158
+#: gschem/src/iface/i_status.c:166
 msgid "Pin Mode"
 msgstr "Λειτουργία ακροδεκτών"
 
-#: gschem/src/iface/i_status.c:160
+#: gschem/src/iface/i_status.c:168
 msgid "Line Mode"
 msgstr "Λειτουργία γραμμής"
 
-#: gschem/src/iface/i_status.c:162
+#: gschem/src/iface/i_status.c:170
 msgid "Box Mode"
 msgstr "Λειτουργία κουτιού"
 
-#: gschem/src/iface/i_status.c:164
+#: gschem/src/iface/i_status.c:172
 msgid "Circle Mode"
 msgstr "Λειτουργία κύκλου"
 
-#: gschem/src/iface/i_status.c:166
+#: gschem/src/iface/i_status.c:174
 msgid "Text Mode"
 msgstr "Λειτουργία κειμένου"
 
-#: gschem/src/iface/i_status.c:168
+#: gschem/src/iface/i_status.c:176
 msgid "Arc Mode"
 msgstr "Λειτουργία τόξου"
 
-#: gschem/src/iface/i_status.c:170
+#: gschem/src/iface/i_status.c:178
 msgid "Path Mode"
 msgstr "Λειτουργία επικόλλησης %d"
 
-#: gschem/src/iface/i_status.c:172
+#: gschem/src/iface/i_status.c:180
 msgid "Picture Mode"
 msgstr "Λειτουργία εικόνας"
 
-#: gschem/src/iface/i_status.c:174
+#: gschem/src/iface/i_status.c:182
 msgid "Bus Mode"
 msgstr "Λειτουργία διαύλου"
 
-#: gschem/src/iface/i_status.c:176 gschem/scheme/gschem/builtins.scm:110
+#: gschem/src/iface/i_status.c:184 gschem/scheme/gschem/builtins.scm:110
 msgid "Move Mode"
 msgstr "Λειτουργία μετακίνησης"
 
-#: gschem/src/iface/i_status.c:179
+#: gschem/src/iface/i_status.c:187
 #, c-format
 msgid "Paste %d Mode"
 msgstr "Λειτουργία επικόλλησης %d"
 
-#: gschem/src/iface/i_status.c:182
+#: gschem/src/iface/i_status.c:190
 msgid "First point?"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:184
+#: gschem/src/iface/i_status.c:192
 msgid "Second point?"
 msgstr "Τερματικό σημείο δικτύου"
 
-#: gschem/src/iface/i_status.c:186
+#: gschem/src/iface/i_status.c:194
 msgid "Project Mode"
 msgstr "Λειτουργία δικτύου"
 
-#: gschem/src/iface/i_status.c:188
+#: gschem/src/iface/i_status.c:196
 msgid "Select Projectiles"
 msgstr "Επιλεγμένα αντικείμενα"
 
-#: gschem/src/iface/i_status.c:190
+#: gschem/src/iface/i_status.c:198
 msgid "Select Object"
 msgstr "Επιλεγμένα αντικείμενα"
 
-#: gschem/src/iface/i_status.c:237
+#: gschem/src/iface/i_status.c:247
 msgid "Show Hidden"
 msgstr "Εμφάνιση κρυφών"
 
-#: gschem/src/iface/i_status.c:240
+#: gschem/src/iface/i_status.c:250
 msgid "Snap Off"
 msgstr ""
 
-#: gschem/src/iface/i_status.c:242
+#: gschem/src/iface/i_status.c:252
 msgid "Resnap Active"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:768
+#: gschem/src/iface/i_vars.c:780
 msgid "Initializing default configuration settings\n"
 msgstr ""
 
-#: gschem/src/iface/i_vars.c:809
+#: gschem/src/iface/i_vars.c:822
 msgid "Failed to save user configuration to"
 msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
 
-#: gschem/src/iface/i_window.c:99
+#: gschem/src/iface/i_window.c:104
 msgid "Closing Page\n"
 msgstr "Κλείσιμο σελίδας\n"
 
-#: gschem/src/iface/i_window.c:168
+#: gschem/src/iface/i_window.c:172
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:263
+#: gschem/src/iface/i_window.c:276
 msgid "Really revert page?"
 msgstr "Σίγουρα επαναφορά σελίδας;"
 
-#: gschem/src/iface/i_window.c:319
+#: gschem/src/iface/i_window.c:332
 msgid "An error occurred while processing request to revert"
 msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματός να επανέλθει"
 
-#: gschem/src/iface/i_window.c:323
+#: gschem/src/iface/i_window.c:336
 msgid "<b>File error.</b>"
 msgstr "<b>Σκοπός</b>"
 
-#: gschem/src/iface/i_window.c:323
+#: gschem/src/iface/i_window.c:336
 msgid "Revert failed"
 msgstr "Επαναφορά απέτυχε"
 
-#: gschem/src/iface/i_window.c:330
+#: gschem/src/iface/i_window.c:343
 msgid "Error encountered during file operation"
 msgstr "Παρουσιάστηκε σφάλμα κατά τη λειτουργία του αρχείου"
 
-#: gschem/src/iface/i_window.c:331
+#: gschem/src/iface/i_window.c:344
 msgid "Recovery: undo last action\n"
 msgstr "Αναίρεση τελευταίας ενέργειας\n"
 
-#: gschem/src/object/o_attrib.c:125
+#: gschem/src/object/o_attrib.c:127
 msgid "already attached to an object"
 msgstr ""
 
 # Attribute is
-#: gschem/src/object/o_attrib.c:131
+#: gschem/src/object/o_attrib.c:133
 msgid "Attribute is"
 msgstr "Το χαρακτηριστικό είναι"
 
 # One attribute was
-#: gschem/src/object/o_attrib.c:134
+#: gschem/src/object/o_attrib.c:136
 msgid "One attribute was"
 msgstr "Ένα χαρακτηριστικό ήταν"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:139
+#: gschem/src/object/o_attrib.c:141
 msgid "All of the attributes were"
 msgstr "Όλα τα χαρακτηριστικά ήταν"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:143
+#: gschem/src/object/o_attrib.c:145
 msgid "Some of the attributes were"
 msgstr "Ορισμένα από τα χαρακτηριστικά ήταν"
 
-#: gschem/src/object/o_attrib.c:165
+#: gschem/src/object/o_attrib.c:167
 #, fuzzy, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
@@ -1125,13 +1125,13 @@ msgstr[0] "συνημμένο %d χαρακτηριστικό"
 msgstr[1] "συνημμένα %d χαρακτηριστικά"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
-#: gschem/src/object/o_break.c:843
+#: gschem/src/object/o_break.c:845
 #, c-format
 msgid "Point 2 missed x=%d, y=%d\n"
 msgstr ""
 
 #: gschem/src/object/o_break.c:189 gschem/src/object/o_break.c:523
-#: gschem/src/object/o_break.c:846
+#: gschem/src/object/o_break.c:848
 #, c-format
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
@@ -1145,39 +1145,39 @@ msgstr "Μεταφράζοντας αντικείμενα"
 msgid "Translating schematic"
 msgstr "Μεταγραφική σχηματική"
 
-#: gschem/src/object/o_delete.c:88
+#: gschem/src/object/o_delete.c:89
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
 msgstr[0] "Διαγραφή κλειδωμένο αντικείμενο?"
 msgstr[1] "Διαγραφή %u κλειδωμένα αντικείμενα"
 
-#: gschem/src/object/o_edit.c:573
+#: gschem/src/object/o_edit.c:587
 msgid "attributes were hidden"
 msgstr "Γνωρίσματα"
 
 # hidden attributes were revealed -> hidden properties were revealed
-#: gschem/src/object/o_edit.c:577
+#: gschem/src/object/o_edit.c:591
 msgid "hidden attributes were revealed"
 msgstr "κρυφές ιδιότητες αποκαλύφθηκαν"
 
-#: gschem/src/object/o_edit.c:776
+#: gschem/src/object/o_edit.c:790
 msgid "Hidden text is now visible\n"
 msgstr "Το κρυφό κείμενο είναι πλέον ορατό\n"
 
-#: gschem/src/object/o_edit.c:779
+#: gschem/src/object/o_edit.c:793
 msgid "Hidden text is now invisible\n"
 msgstr "Το κρυφό κείμενο είναι πλέον αόρατο\n"
 
-#: gschem/src/object/o_edit.c:1188 gschem/src/x/x_edit_cprop.c:389
+#: gschem/src/object/o_edit.c:1202 gschem/src/x/x_edit_cprop.c:389
 msgid "Could not find symbol"
 msgstr "δεν μπορούσε να βρει το σύμβολο"
 
-#: gschem/src/object/o_edit.c:1189 gschem/src/x/x_edit_cprop.c:390
+#: gschem/src/object/o_edit.c:1203 gschem/src/x/x_edit_cprop.c:390
 msgid "in library. Update failed"
 msgstr "στη βιβλιοθήκη. Ενημέρωση απέτυχε"
 
-#: gschem/src/object/o_edit.c:1194
+#: gschem/src/object/o_edit.c:1208
 msgid "Updating symbol"
 msgstr "σύμβολο ενημέρωση"
 
@@ -1370,13 +1370,13 @@ msgstr ""
 msgid "Overwrite existing numbers"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:609
+#: gschem/src/x/x_autonumber.c:610
 msgid ""
 "slotted object without slot attribute may cause problems when autonumbering "
 "slots\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:625
+#: gschem/src/x/x_autonumber.c:626
 #, c-format
 msgid ""
 "duplicate slot may cause problems: [symbol name=%s, number=%d, slot=%d]\n"
@@ -1384,72 +1384,72 @@ msgstr ""
 "οι διπλές υποδοχές μπορεί να προκαλέσουν προβλήματα: [σύμβολο=%s, αριθμός="
 "%d, υποδοχή=%d]\n"
 
-#: gschem/src/x/x_autonumber.c:934
+#: gschem/src/x/x_autonumber.c:935
 msgid "No search string given in autonumber text.\n"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1160
+#: gschem/src/x/x_autonumber.c:1161
 msgid "Diagonal"
 msgstr "Διαγώνια"
 
-#: gschem/src/x/x_autonumber.c:1161
+#: gschem/src/x/x_autonumber.c:1162
 msgid "Top to bottom"
 msgstr "Πάνω προς κάτω"
 
-#: gschem/src/x/x_autonumber.c:1162
+#: gschem/src/x/x_autonumber.c:1163
 msgid "Bottom to top"
 msgstr "Κάτω προς πάνω"
 
-#: gschem/src/x/x_autonumber.c:1163
+#: gschem/src/x/x_autonumber.c:1164
 msgid "Left to right"
 msgstr "Αριστερά προς δεξιά"
 
-#: gschem/src/x/x_autonumber.c:1164
+#: gschem/src/x/x_autonumber.c:1165
 msgid "Right to left"
 msgstr "Δεξιά προς αριστερά"
 
-#: gschem/src/x/x_autonumber.c:1165
+#: gschem/src/x/x_autonumber.c:1166
 msgid "File order"
 msgstr "Σειρά αρχείων"
 
 # Filter
-#: gschem/src/x/x_autonumber.c:1656
+#: gschem/src/x/x_autonumber.c:1657
 msgid "Filter:"
 msgstr "Φίλτρο:"
 
-#: gschem/src/x/x_autonumber.c:1661
+#: gschem/src/x/x_autonumber.c:1662
 msgid "_History"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1669
+#: gschem/src/x/x_autonumber.c:1670
 msgid "_Unset"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1674
+#: gschem/src/x/x_autonumber.c:1675
 msgid "_Wild"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1697
+#: gschem/src/x/x_autonumber.c:1698
 msgid "Selected objects"
 msgstr "Επιλεγμένα αντικείμενα"
 
-#: gschem/src/x/x_autonumber.c:1698
+#: gschem/src/x/x_autonumber.c:1699
 msgid "Current page"
 msgstr "Τρέχουσα σελίδα"
 
-#: gschem/src/x/x_autonumber.c:1699
+#: gschem/src/x/x_autonumber.c:1700
 msgid "Whole hierarchy"
 msgstr "Ολόκληρη η ιεραρχία"
 
-#: gschem/src/x/x_autonumber.c:1747
+#: gschem/src/x/x_autonumber.c:1748
 msgid "Autonumber text"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1770
+#: gschem/src/x/x_autonumber.c:1771
 msgid "Scope"
 msgstr ""
 
-#: gschem/src/x/x_autonumber.c:1844
+#: gschem/src/x/x_autonumber.c:1845
 msgid "Options"
 msgstr "Επιλογές"
 
@@ -1549,12 +1549,12 @@ msgid "Components"
 msgstr "Στοιχεία"
 
 #: gschem/src/x/x_compselect.c:2691 gschem/src/x/x_confirm_close.c:313
-#: gschem/src/x/x_multiattrib.c:2054 gschem/src/x/x_multiattrib.c:2060
+#: gschem/src/x/x_multiattrib.c:2084 gschem/src/x/x_multiattrib.c:2090
 msgid "Name"
 msgstr "Όνομα"
 
-#: gschem/src/x/x_compselect.c:2703 gschem/src/x/x_multiattrib.c:2056
-#: gschem/src/x/x_multiattrib.c:2062
+#: gschem/src/x/x_compselect.c:2703 gschem/src/x/x_multiattrib.c:2086
+#: gschem/src/x/x_multiattrib.c:2092
 msgid "Value"
 msgstr "Τιμή"
 
@@ -1634,19 +1634,19 @@ msgstr "Προεπισκόπηση"
 msgid "Attributes"
 msgstr "Γνωρίσματα"
 
-#: gschem/src/x/x_compselect.c:3657
+#: gschem/src/x/x_compselect.c:3655
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3658
+#: gschem/src/x/x_compselect.c:3656
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3669
+#: gschem/src/x/x_compselect.c:3667
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3670
+#: gschem/src/x/x_compselect.c:3668
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
@@ -1881,7 +1881,7 @@ msgstr "Κείμενο"
 msgid "Bus"
 msgstr "Δίαυλος"
 
-#: gschem/src/x/x_dialog.c:1115 gschem/src/x/x_edit_array.c:1043
+#: gschem/src/x/x_dialog.c:1115 gschem/src/x/x_edit_array.c:1056
 #: gschem/src/x/x_menus.c:109
 msgid "Selection"
 msgstr "Επιλογή"
@@ -2181,19 +2181,19 @@ msgstr ""
 msgid "Hotkeys"
 msgstr "Γρήγορα Πλήκτρα"
 
-#: gschem/src/x/x_dialog.c:3508
+#: gschem/src/x/x_dialog.c:3509
 msgid "Icon"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3522
+#: gschem/src/x/x_dialog.c:3523
 msgid "Action"
 msgstr "Ενέργεια"
 
-#: gschem/src/x/x_dialog.c:3532
+#: gschem/src/x/x_dialog.c:3533
 msgid "Keystroke(s)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3542
+#: gschem/src/x/x_dialog.c:3543
 msgid "Command"
 msgstr "Εντολή:"
 
@@ -2251,7 +2251,7 @@ msgstr "στη βιβλιοθήκη, δοκιμάστε να ανανεώσετ�
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2656
+#: gschem/src/x/x_dnd.c:509 gschem/src/x/x_multiattrib.c:2686
 msgid "symbol"
 msgstr "Σύμβολα"
 
@@ -2275,127 +2275,127 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:579
+#: gschem/src/x/x_edit_array.c:592
 msgid "X pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:580
+#: gschem/src/x/x_edit_array.c:593
 msgid "Y pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:593
+#: gschem/src/x/x_edit_array.c:606
 msgid "X and Y pitch distance are less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:612
+#: gschem/src/x/x_edit_array.c:625
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:625 gschem/src/x/x_edit_array.c:630
-#: gschem/src/x/x_edit_array.c:635
+#: gschem/src/x/x_edit_array.c:638 gschem/src/x/x_edit_array.c:643
+#: gschem/src/x/x_edit_array.c:648
 msgid "Create Array:Error"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:626
+#: gschem/src/x/x_edit_array.c:639
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:631
+#: gschem/src/x/x_edit_array.c:644
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:636
+#: gschem/src/x/x_edit_array.c:649
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1016 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1029 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr ""
 
 # Count
-#: gschem/src/x/x_edit_array.c:1053 gschem/src/x/x_edit_array.c:1123
-#: gschem/src/x/x_edit_array.c:1156
+#: gschem/src/x/x_edit_array.c:1066 gschem/src/x/x_edit_array.c:1136
+#: gschem/src/x/x_edit_array.c:1169
 msgid "Count"
 msgstr "μετρώ"
 
 # X Size
-#: gschem/src/x/x_edit_array.c:1064
+#: gschem/src/x/x_edit_array.c:1077
 msgid "X Size"
 msgstr "X Μέγεθος"
 
-#: gschem/src/x/x_edit_array.c:1067
+#: gschem/src/x/x_edit_array.c:1080
 msgid "Y Size"
 msgstr "Y Μέγεθος"
 
-#: gschem/src/x/x_edit_array.c:1086 gschem/src/x/x_menus.c:90
+#: gschem/src/x/x_edit_array.c:1099 gschem/src/x/x_menus.c:90
 msgid "Select"
 msgstr "Επιλογή"
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1090
+#: gschem/src/x/x_edit_array.c:1103
 msgid "Deselect"
 msgstr "Αποεπιλέξτε"
 
-#: gschem/src/x/x_edit_array.c:1106 gschem/src/x/x_menus.c:121
+#: gschem/src/x/x_edit_array.c:1119 gschem/src/x/x_menus.c:121
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1115
+#: gschem/src/x/x_edit_array.c:1128
 msgid "Row"
 msgstr ""
 
 # Offset
-#: gschem/src/x/x_edit_array.c:1138 gschem/src/x/x_edit_array.c:1171
+#: gschem/src/x/x_edit_array.c:1151 gschem/src/x/x_edit_array.c:1184
 msgid "Offset"
 msgstr "Αντισταθμίζεται"
 
-#: gschem/src/x/x_edit_array.c:1148
+#: gschem/src/x/x_edit_array.c:1161
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1181
+#: gschem/src/x/x_edit_array.c:1194
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1189
+#: gschem/src/x/x_edit_array.c:1202
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1193
+#: gschem/src/x/x_edit_array.c:1206
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1211
+#: gschem/src/x/x_edit_array.c:1224
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1218
+#: gschem/src/x/x_edit_array.c:1231
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1225
+#: gschem/src/x/x_edit_array.c:1238
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1232
+#: gschem/src/x/x_edit_array.c:1245
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1239
+#: gschem/src/x/x_edit_array.c:1252
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1246
+#: gschem/src/x/x_edit_array.c:1259
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1253
+#: gschem/src/x/x_edit_array.c:1266
 msgid "entry for array vertical pitch"
 msgstr ""
 
@@ -2431,7 +2431,7 @@ msgstr ""
 msgid "Show Name Only"
 msgstr "Εμφάνιση τιμής μόνο"
 
-#: gschem/src/x/x_edit_attrib.c:355 gschem/src/x/x_multiattrib.c:1671
+#: gschem/src/x/x_edit_attrib.c:355 gschem/src/x/x_multiattrib.c:1701
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Εμφάνιση ονόματος & τιμής"
@@ -2440,7 +2440,7 @@ msgstr "Εμφάνιση ονόματος & τιμής"
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:421 gschem/src/x/x_multiattrib.c:2244
+#: gschem/src/x/x_edit_attrib.c:421 gschem/src/x/x_multiattrib.c:2274
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Προσθήκη γνωρίσματος"
@@ -2474,16 +2474,16 @@ msgstr ""
 msgid "Single Attribute Editor"
 msgstr "Επεξεργαστής ενός γνωρίσματος"
 
-#: gschem/src/x/x_edit_attrib.c:475 gschem/src/x/x_multiattrib.c:2261
+#: gschem/src/x/x_edit_attrib.c:475 gschem/src/x/x_multiattrib.c:2291
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: gschem/src/x/x_edit_attrib.c:492 gschem/src/x/x_multiattrib.c:2280
+#: gschem/src/x/x_edit_attrib.c:492 gschem/src/x/x_multiattrib.c:2310
 msgid "Value:"
 msgstr "Τιμή:"
 
-#: gschem/src/x/x_edit_attrib.c:506 gschem/src/x/x_multiattrib.c:2058
-#: gschem/src/x/x_multiattrib.c:2335
+#: gschem/src/x/x_edit_attrib.c:506 gschem/src/x/x_multiattrib.c:2088
+#: gschem/src/x/x_multiattrib.c:2365
 msgid "Visible"
 msgstr "Ορατό"
 
@@ -2913,7 +2913,7 @@ msgstr "στοιχείο αριθμός:"
 msgid "Set the active slot number"
 msgstr "Ορίστε τον ενεργό αριθμό θέσης υποδοχής"
 
-#: gschem/src/x/x_edit_text.c:76 gschem/src/x/x_edit_text.c:715
+#: gschem/src/x/x_edit_text.c:76 gschem/src/x/x_edit_text.c:717
 msgid "Text Content"
 msgstr "Περιεχόμενο κειμένου"
 
@@ -2969,95 +2969,95 @@ msgstr "Περιστροφή:"
 msgid "Set the text rotation angle"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:257
+#: gschem/src/x/x_edit_text.c:259
 msgid "Upper Left"
 msgstr "Πάνω αριστερά"
 
-#: gschem/src/x/x_edit_text.c:260
+#: gschem/src/x/x_edit_text.c:262
 msgid "Upper Middle"
 msgstr "Πάνω μέση"
 
-#: gschem/src/x/x_edit_text.c:263
+#: gschem/src/x/x_edit_text.c:265
 msgid "Upper Right"
 msgstr "Κάτω δεξιά"
 
-#: gschem/src/x/x_edit_text.c:267
+#: gschem/src/x/x_edit_text.c:269
 msgid "Middle Left"
 msgstr "Μέση αριστερά"
 
-#: gschem/src/x/x_edit_text.c:270
+#: gschem/src/x/x_edit_text.c:272
 msgid "Middle Middle"
 msgstr "Μέση μέση"
 
-#: gschem/src/x/x_edit_text.c:273
+#: gschem/src/x/x_edit_text.c:275
 msgid "Middle Right"
 msgstr "Μέση δεξιά"
 
-#: gschem/src/x/x_edit_text.c:277
+#: gschem/src/x/x_edit_text.c:279
 msgid "Lower Left"
 msgstr "Κάτω αριστερά"
 
-#: gschem/src/x/x_edit_text.c:280
+#: gschem/src/x/x_edit_text.c:282
 msgid "Lower Middle"
 msgstr "Κάτω μέση"
 
-#: gschem/src/x/x_edit_text.c:283
+#: gschem/src/x/x_edit_text.c:285
 msgid "Lower Right"
 msgstr "Κάτω δεξιά"
 
-#: gschem/src/x/x_edit_text.c:303
+#: gschem/src/x/x_edit_text.c:305
 msgid "Leave as is"
 msgstr ""
 
 # Upper case -> Top letters
-#: gschem/src/x/x_edit_text.c:307
+#: gschem/src/x/x_edit_text.c:309
 msgid "Upper"
 msgstr "Ανώτατα γράμματα"
 
 # Lower case
-#: gschem/src/x/x_edit_text.c:311
+#: gschem/src/x/x_edit_text.c:313
 msgid "Lower"
 msgstr "Πεζά γράμματα"
 
-#: gschem/src/x/x_edit_text.c:315
+#: gschem/src/x/x_edit_text.c:317
 msgid "Camel"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:319
+#: gschem/src/x/x_edit_text.c:321
 msgid "Sentence"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:697
+#: gschem/src/x/x_edit_text.c:699
 msgid "Edit Text Properties"
 msgstr "Επεξεργασία ιδιοτήτων κειμένου"
 
-#: gschem/src/x/x_edit_text.c:744
+#: gschem/src/x/x_edit_text.c:746
 msgid "Text Properties"
 msgstr "Ιδιότητες κειμένου"
 
-#: gschem/src/x/x_edit_text.c:862
+#: gschem/src/x/x_edit_text.c:864
 msgid "Text alignment combobox"
 msgstr "combobox στοίχιση του κειμένου"
 
 # Text case combobox -> Text case options
-#: gschem/src/x/x_edit_text.c:866
+#: gschem/src/x/x_edit_text.c:868
 msgid "Text case combobox"
 msgstr "Επιλογές κειμένου"
 
-#: gschem/src/x/x_edit_text.c:870
+#: gschem/src/x/x_edit_text.c:872
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:874
+#: gschem/src/x/x_edit_text.c:876
 msgid "Font selector button"
 msgstr ""
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:878
+#: gschem/src/x/x_edit_text.c:880
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "Κείμενο Γωνία περιστροφής Spinner Έναρξη"
 
-#: gschem/src/x/x_edit_text.c:882
+#: gschem/src/x/x_edit_text.c:884
 msgid "Text input field"
 msgstr "πεδίο εισαγωγής κειμένου"
 
@@ -3081,23 +3081,23 @@ msgid "Automatically append the file extension"
 msgstr "Αυτόματα προσαρτήσει την επέκταση αρχείου"
 
 # already exists
-#: gschem/src/x/x_fileselect.c:333
+#: gschem/src/x/x_fileselect.c:337
 msgid "already exists"
 msgstr "υπάρχει ήδη"
 
-#: gschem/src/x/x_fileselect.c:333
+#: gschem/src/x/x_fileselect.c:337
 msgid "Overwrite"
 msgstr "Αντικατάσταση"
 
-#: gschem/src/x/x_fileselect.c:334
+#: gschem/src/x/x_fileselect.c:338
 msgid "Overwrite file?"
 msgstr "Αντικατάσταση αρχείου?"
 
-#: gschem/src/x/x_fileselect.c:336
+#: gschem/src/x/x_fileselect.c:340
 msgid "Save canceled on user request\n"
 msgstr "Αποθήκευση ακυρώθηκε με αίτημα του χρήστη\n"
 
-#: gschem/src/x/x_fileselect.c:474
+#: gschem/src/x/x_fileselect.c:491
 msgid ""
 "If you load the original file, the backup file will be overwritten in the "
 "next autosave timeout and will be lost.\n"
@@ -3105,20 +3105,20 @@ msgid ""
 "Do you want to load the backup file?"
 msgstr ""
 
-#: gschem/src/x/x_guile.c:214 gschem/scheme/gschem/builtins.scm:442
+#: gschem/src/x/x_guile.c:213 gschem/scheme/gschem/builtins.scm:442
 msgid "Guile Path"
 msgstr ""
 
-#: gschem/src/x/x_guile.c:215
+#: gschem/src/x/x_guile.c:214
 msgid "Specify new path to search:"
 msgstr ""
 
-#: gschem/src/x/x_guile.c:240
+#: gschem/src/x/x_guile.c:239
 msgid "Attempting to duplicate path"
 msgstr ""
 
 # Invalid path
-#: gschem/src/x/x_guile.c:247
+#: gschem/src/x/x_guile.c:246
 msgid "Invalid path"
 msgstr "Μη έγκυρη διαδρομή"
 
@@ -3127,7 +3127,7 @@ msgid "Refusing to remove path"
 msgstr ""
 
 # Version
-#: gschem/src/x/x_guile.c:464
+#: gschem/src/x/x_guile.c:465
 msgid "Version"
 msgstr "Εκδοχή"
 
@@ -3394,7 +3394,7 @@ msgstr ""
 msgid "Project linear objects to other objects"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:124 gschem/src/x/x_multiattrib.c:1710
+#: gschem/src/x/x_menus.c:124 gschem/src/x/x_multiattrib.c:1740
 #: gschem/scheme/gschem/builtins.scm:104
 msgid "Delete"
 msgstr "Διαγραφή"
@@ -3535,7 +3535,7 @@ msgstr ""
 msgid "Resume input of the current path"
 msgstr "Τρέχουσα σελίδα"
 
-#: gschem/src/x/x_menus.c:161 gschem/src/x/x_settings_dialog.c:1309
+#: gschem/src/x/x_menus.c:161 gschem/src/x/x_settings_dialog.c:1313
 #: gschem/scheme/gschem/builtins.scm:44
 msgid "Cancel"
 msgstr "Μενού/Άκυρο"
@@ -3770,144 +3770,144 @@ msgstr "Απέτυχε να ανοίξει"
 msgid "falling back to"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:816 gschem/src/x/x_multiattrib.c:2836
+#: gschem/src/x/x_multiattrib.c:816 gschem/src/x/x_multiattrib.c:2866
 msgid "<various>"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:938
+#: gschem/src/x/x_multiattrib.c:968
 msgid "Attribute name must not be empty. Please set a name."
 msgstr ""
 "Γνωρίσματα με κενό όνομα δεν επιτρέπονται. Παρακαλούμε ορίστε ένα όνομα."
 
-#: gschem/src/x/x_multiattrib.c:940
+#: gschem/src/x/x_multiattrib.c:970
 msgid "Multi-Attribute Editor"
 msgstr "Επεξεργαστής ενός γνωρίσματος"
 
-#: gschem/src/x/x_multiattrib.c:1654
+#: gschem/src/x/x_multiattrib.c:1684
 msgid "Select an attribute to add"
 msgstr "Επιλέξτε ένα χαρακτηριστικό για να προσθέσετε"
 
-#: gschem/src/x/x_multiattrib.c:1673
+#: gschem/src/x/x_multiattrib.c:1703
 msgid "Show Value only"
 msgstr "Εμφάνιση τιμής μόνο"
 
-#: gschem/src/x/x_multiattrib.c:1675
+#: gschem/src/x/x_multiattrib.c:1705
 msgid "Show Name only"
 msgstr "Εμφάνιση ονόματος μόνο"
 
-#: gschem/src/x/x_multiattrib.c:1679
+#: gschem/src/x/x_multiattrib.c:1709
 msgid "Select an attribute visibility option"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:1704
+#: gschem/src/x/x_multiattrib.c:1734
 msgid "Promote"
 msgstr "Προώθηση"
 
-#: gschem/src/x/x_multiattrib.c:1709
+#: gschem/src/x/x_multiattrib.c:1739
 msgid "Duplicate"
 msgstr "Αντίγραφο"
 
-#: gschem/src/x/x_multiattrib.c:1711
+#: gschem/src/x/x_multiattrib.c:1741
 msgid "Copy to all"
 msgstr "Αντιγραφή σε 1"
 
-#: gschem/src/x/x_multiattrib.c:2103 gschem/src/x/x_multiattrib.c:2633
+#: gschem/src/x/x_multiattrib.c:2133 gschem/src/x/x_multiattrib.c:2663
 msgid "Edit Attributes"
 msgstr "Επεξεργασία γνωρισμάτων"
 
-#: gschem/src/x/x_multiattrib.c:2295
+#: gschem/src/x/x_multiattrib.c:2325
 msgid "Ctrl+Enter inserts new line; Ctrl+Tab inserts Tab"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2325
+#: gschem/src/x/x_multiattrib.c:2355
 msgid "Enter or type a value for the new attribute then press the Add button"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2340
+#: gschem/src/x/x_multiattrib.c:2370
 msgid "Enable or disable attribute visibility"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2355
+#: gschem/src/x/x_multiattrib.c:2385
 msgid "Add new attribute to component"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2652
+#: gschem/src/x/x_multiattrib.c:2682
 msgid "symbols"
 msgstr "Σύμβολα"
 
-#: gschem/src/x/x_multiattrib.c:2667
+#: gschem/src/x/x_multiattrib.c:2697
 msgid "pins"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2671
+#: gschem/src/x/x_multiattrib.c:2701
 msgid "pin"
 msgstr "Ακροδέκτης"
 
-#: gschem/src/x/x_multiattrib.c:2682
+#: gschem/src/x/x_multiattrib.c:2712
 msgid "nets"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2686
+#: gschem/src/x/x_multiattrib.c:2716
 msgid "net"
 msgstr "Δίκτυο"
 
-#: gschem/src/x/x_multiattrib.c:2697
+#: gschem/src/x/x_multiattrib.c:2727
 msgid "buses"
 msgstr ""
 
-#: gschem/src/x/x_multiattrib.c:2701
+#: gschem/src/x/x_multiattrib.c:2731
 msgid "bus"
 msgstr "Δίαυλος"
 
-#: gschem/src/x/x_multiattrib.c:2712
+#: gschem/src/x/x_multiattrib.c:2742
 msgid "attributes"
 msgstr "Γνωρίσματα"
 
-#: gschem/src/x/x_multiattrib.c:2716
+#: gschem/src/x/x_multiattrib.c:2746
 msgid "attribute"
 msgstr "Γνωρίσματα"
 
-#: gschem/src/x/x_pagesel.c:585
+#: gschem/src/x/x_pagesel.c:594
 msgid "Move Up"
 msgstr "Μετακίνηση"
 
-#: gschem/src/x/x_pagesel.c:586
+#: gschem/src/x/x_pagesel.c:595
 msgid "Move Down"
 msgstr "_Σελίδα"
 
-#: gschem/src/x/x_pagesel.c:588
+#: gschem/src/x/x_pagesel.c:597
 msgid "New Blank"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:589 gschem/scheme/gschem/builtins.scm:308
+#: gschem/src/x/x_pagesel.c:598 gschem/scheme/gschem/builtins.scm:308
 msgid "New Page"
 msgstr "Νέα σελίδα"
 
-#: gschem/src/x/x_pagesel.c:590
+#: gschem/src/x/x_pagesel.c:599
 msgid "Open Page..."
 msgstr "Άνοιγμα αρχείου..."
 
-#: gschem/src/x/x_pagesel.c:592
+#: gschem/src/x/x_pagesel.c:601
 msgid "Save Page"
 msgstr "Αποθήκευση σελίδας"
 
-#: gschem/src/x/x_pagesel.c:593 gschem/scheme/gschem/builtins.scm:320
+#: gschem/src/x/x_pagesel.c:602 gschem/scheme/gschem/builtins.scm:320
 msgid "Close Page"
 msgstr "Κλείσιμο σελίδας"
 
-#: gschem/src/x/x_pagesel.c:594 gschem/scheme/gschem/builtins.scm:323
+#: gschem/src/x/x_pagesel.c:603 gschem/scheme/gschem/builtins.scm:323
 msgid "Discard Page"
 msgstr ""
 
-#: gschem/src/x/x_pagesel.c:1075 gschem/scheme/gschem/builtins.scm:287
+#: gschem/src/x/x_pagesel.c:1085 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
 msgstr "Διαχειριστής σελίδων"
 
-#: gschem/src/x/x_pagesel.c:1160
+#: gschem/src/x/x_pagesel.c:1170
 msgid "Changed"
 msgstr "Τροποποιήθηκε"
 
-#: gschem/src/x/x_pagesel.c:1189
+#: gschem/src/x/x_pagesel.c:1199
 msgid "Right click on rows for more options..."
 msgstr "Δεξί κλικ στο όνομα αρχείου για περισσότερες επιλογές..."
 
@@ -4121,27 +4121,27 @@ msgstr "Αδυναμία αντικατάστασης εικόνων: %s"
 msgid "File error"
 msgstr "<b>Σκοπός</b>"
 
-#: gschem/src/x/x_settings_dialog.c:1127
+#: gschem/src/x/x_settings_dialog.c:1131
 msgid "Clear attributes and restore default filter list?"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:1298
+#: gschem/src/x/x_settings_dialog.c:1302
 msgid "Restore default"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2716
+#: gschem/src/x/x_settings_dialog.c:2720
 msgid "Close without changing any settings"
 msgstr "_Κλείσιμο χωρίς αποθήκευση"
 
-#: gschem/src/x/x_settings_dialog.c:2718 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2722 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: gschem/src/x/x_settings_dialog.c:2722
+#: gschem/src/x/x_settings_dialog.c:2726
 msgid "Close and Write settings to disk"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2728
+#: gschem/src/x/x_settings_dialog.c:2732
 msgid "Change settings and close but do not write settings to storage"
 msgstr ""
 
@@ -4167,51 +4167,51 @@ msgstr "Επανάληψη/κανένα"
 msgid "Pick"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:338
+#: gschem/src/x/x_toolbars.c:339
 msgid "image file not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:416
+#: gschem/src/x/x_toolbars.c:417
 msgid "Toolbar icon not found"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:549
+#: gschem/src/x/x_toolbars.c:550
 msgid "Creating new Toolbar configuration\n"
 msgstr "Δημιουργία νέων ρυθμίσεων Toolbar\n"
 
-#: gschem/src/x/x_toolbars.c:557
+#: gschem/src/x/x_toolbars.c:558
 msgid "Saving Toolbar settings..."
 msgstr "Αποθήκευση ρυθμίσεων Toolbar..."
 
-#: gschem/src/x/x_toolbars.c:576
+#: gschem/src/x/x_toolbars.c:577
 msgid "data saved to"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:583
+#: gschem/src/x/x_toolbars.c:584
 msgid "Could not save Toolbar configuration to"
 msgstr "Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων Toolbar για να"
 
-#: gschem/src/x/x_toolbars.c:690
+#: gschem/src/x/x_toolbars.c:691
 msgid "Error, Toolbar configuration key file"
 msgstr "Σφάλμα, το Toolbar διαμόρφωση βασικό αρχείο"
 
-#: gschem/src/x/x_toolbars.c:698
+#: gschem/src/x/x_toolbars.c:699
 msgid "Retrieving toolbar geometry\n"
 msgstr ""
 
-#: gschem/src/x/x_toolbars.c:726
+#: gschem/src/x/x_toolbars.c:727
 msgid "Toolbar configuration restored from"
 msgstr "Toolbar διαμόρφωση αποκατασταθεί από"
 
-#: gschem/src/x/x_toolbars.c:731
+#: gschem/src/x/x_toolbars.c:732
 msgid "Warning, error restoring toolbar configuration"
 msgstr "Προειδοποίηση, Σφάλμα Επαναφορά ρυθμίσεων toolbar"
 
-#: gschem/src/x/x_toolbars.c:737
+#: gschem/src/x/x_toolbars.c:738
 msgid "Warning, toolbar configuration file access error"
 msgstr "Προειδοποίηση, Σφάλμα πρόσβασης toolbar αρχείο ρυθμίσεων"
 
-#: gschem/src/x/x_toolbars.c:759
+#: gschem/src/x/x_toolbars.c:760
 msgid "Toolbar configuration not found"
 msgstr "διαμόρφωση της γραμμής εργαλείων δεν βρέθηκε"
 
@@ -4237,51 +4237,51 @@ msgstr ""
 msgid "window is not valid"
 msgstr ""
 
-#: gschem/src/x/x_window.c:208
+#: gschem/src/x/x_window.c:209
 msgid "Saving main window settings.\n"
 msgstr "Αποθηκεύστε τις κύριες ρυθμίσεις παραθύρου.\n"
 
-#: gschem/src/x/x_window.c:360
+#: gschem/src/x/x_window.c:361
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:676 gschem/src/x/x_window.c:1110
+#: gschem/src/x/x_window.c:677 gschem/src/x/x_window.c:1111
 msgid "Aborting action\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:682
+#: gschem/src/x/x_window.c:683
 msgid "Close Window canceled\n"
 msgstr "Κλείσιμο παραθύρου ακυρώθηκε\n"
 
 # Shutdown schematic editor
-#: gschem/src/x/x_window.c:706
+#: gschem/src/x/x_window.c:707
 msgid "Shutdown schematic editor\n"
 msgstr "Εκτέλεση σχηματικού επεξεργαστή τερματισμού\n"
 
-#: gschem/src/x/x_window.c:771
+#: gschem/src/x/x_window.c:772
 msgid "Loading file"
 msgstr "φόρτωση του αρχείου"
 
-#: gschem/src/x/x_window.c:918
+#: gschem/src/x/x_window.c:919
 msgid "New file"
 msgstr "Νέο αρχείο"
 
-#: gschem/src/x/x_window.c:966
+#: gschem/src/x/x_window.c:967
 msgid "Failed to load file"
 msgstr "Απέτυχε η φόρτωση του αρχείου"
 
 # Create a new file
-#: gschem/src/x/x_window.c:996
+#: gschem/src/x/x_window.c:997
 msgid "Creating new file"
 msgstr "Δημιουργία νέου αρχείου"
 
 # Path to
-#: gschem/src/x/x_window.c:1009
+#: gschem/src/x/x_window.c:1010
 msgid "Path"
 msgstr "διαδρομή προς"
 
 # did not exist\n successfully created
-#: gschem/src/x/x_window.c:1012
+#: gschem/src/x/x_window.c:1013
 msgid ""
 "did not exist\n"
 "successfully created"
@@ -4290,24 +4290,24 @@ msgstr ""
 "δημιουργήθηκε με επιτυχία"
 
 # purging page
-#: gschem/src/x/x_window.c:1158
+#: gschem/src/x/x_window.c:1159
 msgid "Discarding page"
 msgstr "σελίδα καθαρισμού"
 
 # Close page
-#: gschem/src/x/x_window.c:1159
+#: gschem/src/x/x_window.c:1160
 msgid "Closing"
 msgstr "Κλείσιμο σελίδας"
 
-#: gschem/src/x/x_window.c:1223
+#: gschem/src/x/x_window.c:1224
 msgid "Could NOT save page"
 msgstr "Δεν ήταν δυνατή η αποθήκευση της σελίδας"
 
-#: gschem/src/x/x_window.c:1225
+#: gschem/src/x/x_window.c:1226
 msgid "Error while trying to save"
 msgstr "Σφάλμα κατά την προσπάθεια αποθήκευσης"
 
-#: gschem/src/x/x_window.c:1239
+#: gschem/src/x/x_window.c:1240
 msgid "Saved as"
 msgstr "Αποθήκευση όλων"
 

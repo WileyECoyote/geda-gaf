@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-22 00:37-0600\n"
+"POT-Creation-Date: 2019-02-16 19:29-0600\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
-#: gnetlist/src/parsecmd.c:73
+#: gnetlist/src/parsecmd.c:74
 #, c-format
 msgid ""
 "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
@@ -193,7 +193,7 @@ msgstr ""
 "Домашняя страница gEDA/gaf: <http://www.geda-project.org/>\n"
 " Домашняя страница PCB: <http://pcb.geda-project.org>\n"
 
-#: gnetlist/src/parsecmd.c:112
+#: gnetlist/src/parsecmd.c:114
 #, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
@@ -212,15 +212,15 @@ msgstr ""
 "включенный в дистрибутив Геда.\n"
 "Там нет НИКАКИХ ГАРАНТИЙ, в пределах, допускаемых законом.\n"
 
-#: gnetlist/src/parsecmd.c:131
+#: gnetlist/src/parsecmd.c:132
 msgid "Received an error; tag is"
 msgstr "Получил ошибку; Тег"
 
-#: gnetlist/src/parsecmd.c:227
+#: gnetlist/src/parsecmd.c:229
 msgid "WARNING: output already specified"
 msgstr "ПРЕДУПРЕЖДЕНИЕ: уже указанный результат"
 
-#: gnetlist/src/parsecmd.c:270
+#: gnetlist/src/parsecmd.c:272
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -229,7 +229,7 @@ msgstr ""
 "ОШИБКА: для опции -%c необходим аргумент.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:274
+#: gnetlist/src/parsecmd.c:276
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -238,7 +238,7 @@ msgstr ""
 "ОШИБКА: Неизвестная опция -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:277
+#: gnetlist/src/parsecmd.c:279
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"
@@ -247,7 +247,7 @@ msgstr ""
 "ОШИБКА: Неизвестный символ опции «\\x%x».\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:281
+#: gnetlist/src/parsecmd.c:283
 #, c-format
 msgid ""
 "\n"
@@ -309,39 +309,39 @@ msgstr "Обнаружено ещё одно имя для соединения 
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
 
-#: gnetlist/src/s_netlist.c:219 gnetlist/src/s_netlist.c:337
+#: gnetlist/src/s_netlist.c:220 gnetlist/src/s_netlist.c:338
 msgid "Staring post processing"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:220
+#: gnetlist/src/s_netlist.c:221
 msgid "Naming nets of graphical objects"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:338
+#: gnetlist/src/s_netlist.c:339
 msgid "Naming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:393
+#: gnetlist/src/s_netlist.c:394
 msgid "Renaming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:400
+#: gnetlist/src/s_netlist.c:401
 msgid "Resolving hierarchy"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:410
+#: gnetlist/src/s_netlist.c:411
 msgid "Removing refdes mangling"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:435
+#: gnetlist/src/s_netlist.c:436
 msgid "component"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:441
+#: gnetlist/src/s_netlist.c:442
 msgid "SPECIAL"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:446
+#: gnetlist/src/s_netlist.c:447
 msgid "Hierarchy tag"
 msgstr ""
 

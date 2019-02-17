@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-20 12:12-0600\n"
+"POT-Creation-Date: 2019-02-16 19:29-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1810,83 +1810,83 @@ msgid "Library command failed"
 msgstr "Сбой команды создания библиотеки"
 
 # Library name [%s] already in use. Using
-#: libgeda/src/struct/s_clib.c:547
+#: libgeda/src/struct/s_clib.c:549
 #, c-format
 msgid "Library name [%s] already in use. Using [%s].\n"
 msgstr "Библиотека с именем «%s» уже имеется. Используется «%s».\n"
 
 # Duplicate symbol
-#: libgeda/src/struct/s_clib.c:679
+#: libgeda/src/struct/s_clib.c:689
 msgid "Duplicate symbol"
 msgstr "Повторяющийся символ"
 
 # file location
-#: libgeda/src/struct/s_clib.c:680
+#: libgeda/src/struct/s_clib.c:690
 msgid "location"
 msgstr "расположение файла"
 
 # Failed to open
-#: libgeda/src/struct/s_clib.c:690
+#: libgeda/src/struct/s_clib.c:700
 msgid "Failed to open"
 msgstr "Не удалось открыть каталог"
 
 # Unable to scan library
-#: libgeda/src/struct/s_clib.c:789
+#: libgeda/src/struct/s_clib.c:801
 msgid "Failed to scan library"
 msgstr "Невозможно сканировать библиотеку"
 
 # Scheme function returned non-list
-#: libgeda/src/struct/s_clib.c:790
+#: libgeda/src/struct/s_clib.c:802
 msgid "Scheme function returned non-list"
 msgstr "функция Scheme возвратила не список"
 
 # When scanning is detected symbol library name, not a string
-#: libgeda/src/struct/s_clib.c:800
+#: libgeda/src/struct/s_clib.c:812
 msgid "Non-string symbol name while scanning library"
 msgstr ""
 "При сканировании библиотеки обнаружено имя символа, не являющееся строко"
 
 # Cannot add library
-#: libgeda/src/struct/s_clib.c:1066 libgeda/src/struct/s_clib.c:1114
+#: libgeda/src/struct/s_clib.c:1082 libgeda/src/struct/s_clib.c:1131
 msgid "Cannot add library"
 msgstr "Невозможно добавить библиотеку"
 
 # name not specified
-#: libgeda/src/struct/s_clib.c:1069 libgeda/src/struct/s_clib.c:1117
+#: libgeda/src/struct/s_clib.c:1085 libgeda/src/struct/s_clib.c:1134
 msgid "name not specified"
 msgstr "не указано имя"
 
 # both 'list' and 'get' commands must be specified
-#: libgeda/src/struct/s_clib.c:1076
+#: libgeda/src/struct/s_clib.c:1092
 msgid "both 'list' and 'get' commands must be specified"
 msgstr "должны быть указаны обе команды «list» и «get»"
 
 # callbacks must be closures
-#: libgeda/src/struct/s_clib.c:1126
+#: libgeda/src/struct/s_clib.c:1143
 msgid "callbacks must be closures"
 msgstr "функции обратного вызова должны быть замкнутыми выражениями"
 
 # Failed to load symbol from file
-#: libgeda/src/struct/s_clib.c:1251
+#: libgeda/src/struct/s_clib.c:1275
 msgid "Failed to load symbol from file"
 msgstr "Ошибка загрузки символа из файла"
 
 # Failed to load symbol data
-#: libgeda/src/struct/s_clib.c:1312
+#: libgeda/src/struct/s_clib.c:1338
 msgid "Failed to load symbol data"
 msgstr "Не удалось загрузить данные символа"
 
 # from the source
-#: libgeda/src/struct/s_clib.c:1313
+#: libgeda/src/struct/s_clib.c:1339
 msgid "from source"
 msgstr "из источника"
 
-#: libgeda/src/struct/s_clib.c:1535
+#: libgeda/src/struct/s_clib.c:1564
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Компонент «%s» не найден в библиотеке компонентов\n"
 
-#: libgeda/src/struct/s_clib.c:1542
+#: libgeda/src/struct/s_clib.c:1571
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Обнаружено несколько компонентов с именем «%s»\n"
