@@ -139,45 +139,65 @@ msgstr "ഒരു വസ്തുവിന്റെ ദീർഘചതുരം 
 msgid "Retrieve an object from a GedaCapsule."
 msgstr "ഗദ്ദാകപ്പ്ലെയിൽ നിന്ന് ഒരു വസ്തു വീണ്ടെടുക്കുക"
 
+# Retrieve all objects belonging to a page
+# oru pējil ninnuḷḷa ellā vastukkaḷeyuṁ vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr ""
+msgstr "ഒരു പേജിൽ നിന്നുള്ള എല്ലാ വസ്തുക്കളെയും വീണ്ടെടുക്കുക."
 
+# Add an object to a page or another object
+# oru pējilēkkēā maṟṟeāru objakṟṟilēkkēā oru vastu cērkkuka
 #: libgedathon/include/geda_module.h:77
 msgid "Add an object to a page or another object."
-msgstr ""
+msgstr "ഒരു പേജിലേക്കോ മറ്റൊരു ഒബ്ജക്റ്റിലേക്കോ ഒരു വസ്തു ചേർക്കുക."
 
+# Add multiple objects to a page or another object
+# oru pējilēkkēā maṟṟeāru objakṟṟiyilēkkēā maḷṭṭippiḷ objakṟṟ cērkkuka
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "ഒരു പേജിലേക്കോ മറ്റൊരു ഒബ്ജക്റ്റിയിലേക്കോ മൾട്ടിപ്പിൾ ഒബ്ജക്റ്റ് ചേർക്കുക."
 
+# Make a copy an object
+# oru vastu pakarttuka
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "ഒരു വസ്തു പകർത്തുക."
 
+# Remove object from a page
+# oru pējil ninn vastu nīkkaṁ ceyyuka
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "ഒരു പേജിൽ നിന്ന് വസ്തു നീക്കം ചെയ്യുക."
 
+# Remove multiple objects from a page
+# oru pējil ninnuṁ onniladhikaṁ vastukkaḷ nīkkaṁ ceyyuka
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "ഒരു പേജിൽ നിന്നും ഒന്നിലധികം വസ്തുക്കൾ നീക്കം ചെയ്യുക."
 
+# Delete an object from a page
+# oru pējil ninn oru vastu tuṟakkuka
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "ഒരു പേജിൽ നിന്ന് ഒരു വസ്തു തുറക്കുക."
 
+# Delete multiple objects from a page
+# oru pējil ninn oru vastu tuṟakkuka
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "ഒരു പേജിൽ നിന്ന് ഒരു വസ്തു തുറക്കുക."
 
+# Synchronize object with library
+# laibraṟi upayēāgicc objakṟṟ samanvayippikkuka
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "ലൈബ്രറി ഉപയോഗിച്ച് ഒബ്ജക്റ്റ് സമന്വയിപ്പിക്കുക."
 
+# Create a new arc object
+# oru putiya ārkk objakṟṟ sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "ഒരു പുതിയ ആർക്ക് ഒബ്ജക്റ്റ് സൃഷ്ടിക്കുക."
 
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
