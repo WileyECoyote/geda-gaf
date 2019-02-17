@@ -126,45 +126,55 @@ msgstr "یک شی را به یک صفحه یا یک شی دیگری اضافه �
 msgid "Add an object to a page or another object."
 msgstr "یک شی را به یک صفحه یا یک شی دیگر اضافه کنید."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "اشیای چندگانه را به یک صفحه یا شی دیگر اضافه کنید."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "یک کپی یک شی را بگیرید."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "حذف شیء از یک صفحه."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "اشیای چندگانه را از یک صفحه حذف کنید."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "یک شی را از یک صفحه حذف کنید."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Elimineu diversos objectes d'una pàgina."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "."
 
+# Create a new arc object
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "یک شی جدید قوس ایجاد کنید."
 
+# Create a new box object
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "یک شیء جعبه جدید ایجاد کنید."
 
+# Create a new bus object
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "یک شیء اتوبوس جدید ایجاد کنید."
 
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
