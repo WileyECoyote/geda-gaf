@@ -175,45 +175,65 @@ msgstr "Ανακτήστε όλα τα αντικείμενα που ανήκο�
 msgid "Add an object to a page or another object."
 msgstr "Προσθέστε ένα αντικείμενο σε μια σελίδα ή άλλο αντικείμενο."
 
+# Add multiple objects to a page or another object
+# Prosthéste éna antikeímeno se mia selída í állo antikeímeno
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Προσθέστε ένα αντικείμενο σε μια σελίδα ή άλλο αντικείμενο."
 
+# Make a copy an object
+# Kánte éna antígrafo éna antikeímeno
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Κάντε ένα αντίγραφο ένα αντικείμενο."
 
+# Remove object from a page
+# Katárgisi antikeiménou apó mia selída
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Κατάργηση αντικειμένου από μια σελίδα."
 
+# Remove multiple objects from a page
+# Katargíste pollá antikeímena apó mia selída
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Καταργήστε πολλά αντικείμενα από μια σελίδα."
 
+# Delete an object from a page
+# Diagrápste éna antikeímeno apó mia selída
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Διαγράψτε ένα αντικείμενο από μια σελίδα."
 
+# Delete multiple objects from a page
+# Diagrápste pollá antikeímena apó mia selída
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Διαγράψτε πολλά αντικείμενα από μια σελίδα."
 
+# Synchronize object with library
+# Synchronismós antikeiménou me ti vivliothíki
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Συγχρονισμός αντικειμένου με τη βιβλιοθήκη."
 
+# Create a new arc object
+# Dimiourgíste éna néo antikeímeno tóxou
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο τόξου."
 
+# Create a new box object
+# Dimiourgíste éna néo antikeímeno koutioú
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο κουτιού."
 
+# Create a new bus object
+# Dimiourgíste éna néo antikeímeno diávlou
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο διαύλου."
 
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
