@@ -160,45 +160,65 @@ msgstr "استرداد كل الكائنات التي تنتمي إلى صفحة
 msgid "Add an object to a page or another object."
 msgstr "إضافة كائن إلى صفحة أو كائن آخر."
 
+# Add multiple objects to a page or another object
+# 'iidafat kayinat mutaeadidat 'iilaa safhat 'aw kayin akhar
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "إضافة كائنات متعددة إلى صفحة أو كائن آخر."
 
+# Make a copy an object
+# jaeal nuskhatan kayin
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "جعل نسخة كائن."
 
+# Remove object from a page
+# qum bi'iizalat kayin min safha
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "قم بإزالة كائن من صفحة."
 
+# Remove multiple objects from a page
+# 'iizalat kayinat mutaeadidat min safha
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "إزالة كائنات متعددة من صفحة."
 
+# Delete an object from a page
+# hadhaf kayin min safha
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "حذف كائن من صفحة."
 
+# Delete multiple objects from a page
+# hadhaf kayinat mutaeadidat min safha
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "حذف كائنات متعددة من صفحة."
 
+# Synchronize object with library
+# muzamanat alkayin mae almaktaba
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "مزامنة الكائن مع المكتبة."
 
+# Create a new arc object
+# qum bi'iinsha' kayin qus jadid
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "قم بإنشاء كائن قوس جديد."
 
+# Create a new box object
+# qum bi'iinsha' kayin murabae jadid
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "قم بإنشاء كائن مربع جديد."
 
+# Create a new bus object
+# 'iinsha' kayin naqil jadid
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "إنشاء كائن ناقل جديد."
 
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
