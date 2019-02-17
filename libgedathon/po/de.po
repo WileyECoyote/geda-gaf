@@ -136,45 +136,55 @@ msgstr "Rufen Sie alle zu einer Seite gehörenden Objekte ab."
 msgid "Add an object to a page or another object."
 msgstr "Fügen Sie ein Objekt zu einer Seite oder einem anderen Objekt hinzu."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Tilføj et objekt på en side eller et andet objekt."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Machen Sie eine Kopie eines Objekts."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Objekt von einer Seite entfernen."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Mehrere Objekte von einer Seite entfernen."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Löschen Sie ein Objekt von einer Seite."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Löschen Sie mehrere Objekte von einer Seite."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Objekt mit Bibliothek synchronisieren."
 
+# Create a new arc object
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Opret et nyt lysobjekt."
 
+# Create a new box object
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Erstellen Sie ein neues Boxobjekt."
 
+# Create a new bus object
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Legen Sie ein neues Busobjekt an."
 
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
