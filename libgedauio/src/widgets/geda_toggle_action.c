@@ -254,8 +254,6 @@ geda_toggle_action_class_init (void *class, void *data)
 static void
 geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
 {
-  //GedaToggleAction *action = (GedaToggleAction*)instance;
-
   if (!toggle_action_hash) {
     toggle_action_hash = g_hash_table_new (g_direct_hash, NULL);
   }
