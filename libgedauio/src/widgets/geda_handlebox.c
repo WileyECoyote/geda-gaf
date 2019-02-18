@@ -1003,7 +1003,8 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
 
   /* Draw the handle for the handlebox */
   if (gdk_rectangle_intersect (area, &rect, NULL)) {
-     gtk_paint_handle (widget->style, handlebox->bin_window, GTK_STATE_NORMAL, GTK_SHADOW_OUT,
+     gtk_paint_handle (widget->style, handlebox->bin_window,
+                       GTK_STATE_NORMAL, GTK_SHADOW_OUT,
                        area, widget, "handlebox",
                        rect.x, rect.y, rect.width, rect.height,
                        handle_orientation);
