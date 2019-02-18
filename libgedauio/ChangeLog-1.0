@@ -1,8 +1,10 @@
 2019-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_handlebox.c: Add ancillary GtkStateType state in
-      geda_handle_box_draw_ghost instead of calling gtk_widget_get_state
-      twice.
+    * src/widgets/geda_handlebox.c: Add ancillary GtkStateType state instead
+      of calling gtk_widget_get_state multiple times in functions:
+
+          * geda_handle_box_draw_ghost
+          * geda_handle_box_realize
 
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1097,6 +1097,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   GtkAllocation *allocation;
   GedaHandleBox *handlebox;
   GtkWidget     *child;
+  GtkStateType   state;
   int            attributes_mask;
 
   handlebox = (GedaHandleBox*)widget;
@@ -1181,13 +1182,14 @@ static void geda_handle_box_realize (GtkWidget *widget)
   gdk_window_set_transient_for (handlebox->float_window, (GdkWindow*)topwindow->window);
 
   widget->style = gtk_style_attach (widget->style, widget->window);
-  gtk_style_set_background (widget->style, widget->window, gtk_widget_get_state (widget));
-  gtk_style_set_background (widget->style, handlebox->bin_window, gtk_widget_get_state (widget));
-  gtk_style_set_background (widget->style, handlebox->float_window, gtk_widget_get_state (widget));
+  state = gtk_widget_get_state (widget);
+
+  gtk_style_set_background (widget->style, widget->window, state);
+  gtk_style_set_background (widget->style, handlebox->bin_window, state);
+  gtk_style_set_background (widget->style, handlebox->float_window, state);
   gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
 
   connect_settings_signal(handlebox);
-
 }
 
 /* widget_class->unrealize */
