@@ -6,6 +6,9 @@
           * geda_handle_box_draw_ghost
           * geda_handle_box_realize
 
+    * src/widgets/geda_option_menu.c: Reduce scope of button in function
+      geda_option_menu_size_allocate.
+
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_combobox.h: Add macro geda_combo_widget_get_active_text.

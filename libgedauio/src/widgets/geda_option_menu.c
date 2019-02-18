@@ -470,7 +470,6 @@ static void
 geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   GtkWidget *child;
-  GtkButton *button = (GtkButton*)widget;
   GtkAllocation child_allocation;
   GedaOptionMenuProps props;
   int border_width;
@@ -481,9 +480,14 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   widget->allocation = *allocation;
 
   if (gtk_widget_get_realized (widget)) {
+
+    GtkButton *button = (GtkButton*)widget;
+
     gdk_window_move_resize (button->event_window,
-                            allocation->x + border_width, allocation->y + border_width,
-                            allocation->width - border_width * 2, allocation->height - border_width * 2);
+                            allocation->x + border_width,
+                            allocation->y + border_width,
+                            allocation->width - border_width * 2,
+                            allocation->height - border_width * 2);
   }
 
   child = geda_get_child_widget(widget);
