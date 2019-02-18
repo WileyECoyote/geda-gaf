@@ -7,7 +7,9 @@
           * geda_handle_box_realize
 
     * src/widgets/geda_option_menu.c: Reduce scope of button in function
-      geda_option_menu_size_allocate.
+      geda_option_menu_size_allocate. Add ancillary GtkStateType state in
+      geda_option_menu_paint instead of calling gtk_widget_get_state three
+      times.
 
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
