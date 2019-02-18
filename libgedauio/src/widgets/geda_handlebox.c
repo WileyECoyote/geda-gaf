@@ -845,7 +845,8 @@ static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 /*! \internal helper for geda_handle_box_expose */
 static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 {
-  GtkWidget *widget;
+  GtkWidget   *widget;
+  GtkStateType state;
   unsigned int x;
   unsigned int y;
   unsigned int width;
@@ -871,15 +872,17 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
     width = widget->allocation.width;
     height = handlebox->handle_size;
   }
-  gtk_paint_shadow (widget->style,
-                    widget->window,
-                    gtk_widget_get_state (widget),
+
+  state = gtk_widget_get_state (widget);
+
+  gtk_paint_shadow (widget->style, widget->window, state,
                     GTK_SHADOW_ETCHED_IN,
                     NULL, widget, "handle",
                     x,
                     y,
                     width,
                     height);
+
   if (handle_position == GTK_POS_LEFT ||
       handle_position == GTK_POS_RIGHT)
   {
@@ -896,9 +899,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
       x2 = widget->allocation.width - handlebox->handle_size;
     }
 
-    gtk_paint_hline (widget->style,
-                     widget->window,
-                     gtk_widget_get_state (widget),
+    gtk_paint_hline (widget->style, widget->window, state,
                      NULL, widget, "handlebox", x1, x2,
                      widget->allocation.height >> 1);
   }
@@ -916,9 +917,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
       y2 = widget->allocation.height - handlebox->handle_size;
     }
 
-    gtk_paint_vline (widget->style,
-                     widget->window,
-                     gtk_widget_get_state (widget),
+    gtk_paint_vline (widget->style, widget->window, state,
                      NULL, widget, "handlebox", y1, y2,
                      widget->allocation.width >> 1);
   }

@@ -1,3 +1,9 @@
+2019-02-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Add ancillary GtkStateType state in
+      geda_handle_box_draw_ghost instead of calling gtk_widget_get_state
+      twice.
+
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_combobox.h: Add macro geda_combo_widget_get_active_text.
