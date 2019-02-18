@@ -11,6 +11,9 @@
       geda_option_menu_paint instead of calling gtk_widget_get_state three
       times.
 
+    * src/widgets/geda_separator.c: Add ancillary GtkStateType state in
+      geda_separator_expose.
+
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_combobox.h: Add macro geda_combo_widget_get_active_text.

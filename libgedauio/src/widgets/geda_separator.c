@@ -77,6 +77,7 @@ static bool
 geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   GedaSeparator *seperator = (GedaSeparator*)widget;
+  GtkStateType   state;
   bool wide_separators;
   int  separator_width;
   int  separator_height;
@@ -90,11 +91,12 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                         "separator-height", &separator_height,
                         NULL);
 
+  state = gtk_widget_get_state (widget);
+
   if (seperator->orientation == 0) { /* Horizontal */
 
     if (wide_separators) {
-        gtk_paint_box (widget->style, widget->window,
-                       gtk_widget_get_state (widget), GTK_SHADOW_ETCHED_OUT,
+        gtk_paint_box (widget->style, widget->window, state, GTK_SHADOW_ETCHED_OUT,
                        &event->area, widget, "hseparator",
                        widget->allocation.x,
                        widget->allocation.y + (widget->allocation.height -
@@ -103,8 +105,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                        separator_height);
     }
     else {
-        gtk_paint_hline (widget->style, widget->window,
-                         gtk_widget_get_state (widget),
+        gtk_paint_hline (widget->style, widget->window, state,
                          &event->area, widget, "hseparator",
                          widget->allocation.x,
                          widget->allocation.x + widget->allocation.width - 1,
@@ -115,8 +116,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
   else {
 
     if (wide_separators) {
-      gtk_paint_box (widget->style, widget->window,
-                     gtk_widget_get_state (widget), GTK_SHADOW_ETCHED_OUT,
+      gtk_paint_box (widget->style, widget->window, state, GTK_SHADOW_ETCHED_OUT,
                      &event->area, widget, "vseparator",
                      widget->allocation.x + (widget->allocation.width -
                      separator_width) / 2,
@@ -125,8 +125,7 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                      widget->allocation.height);
     }
     else {
-      gtk_paint_vline (widget->style, widget->window,
-                       gtk_widget_get_state (widget),
+      gtk_paint_vline (widget->style, widget->window, state,
                        &event->area, widget, "vseparator",
                        widget->allocation.y,
                        widget->allocation.y + widget->allocation.height - 1,
