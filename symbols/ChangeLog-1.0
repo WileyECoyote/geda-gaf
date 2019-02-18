@@ -18,6 +18,8 @@
     * passive/rf/TOKO4DFA-1.sym: Add description attribute, remove class=IC
       and pins attribute.
 
+    * passive/rf/txline4-1.sym: Add description attribute, update device.
+
 2019-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * moto/MC13175-1.sym: Relocate symbol, passive -> moto subdirectory.
