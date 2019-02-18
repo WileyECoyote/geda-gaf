@@ -134,8 +134,6 @@ static GType geda_option_menu_child_type (GtkContainer *container)
 
 static void geda_option_menu_item_finalize (GObject *object)
 {
-  //GedaOptionMenu *option_menu_item = GEDA_OPTION_MENU (object);
-
   if (g_hash_table_remove (option_menu_hash, object)) {
     if (!g_hash_table_size (option_menu_hash)) {
       g_hash_table_destroy (option_menu_hash);
