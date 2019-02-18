@@ -10,6 +10,9 @@
     * passive/rf/RF2155-1.sym: Redo symbol; add description, value, and NC
       pins, update pintype attributes.
 
+    * passive/rf/splitter-1.sym: Add description attribute, remove class=IC
+      and pins attribute.
+
 2019-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * moto/MC13175-1.sym: Relocate symbol, passive -> moto subdirectory.
