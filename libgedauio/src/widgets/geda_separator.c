@@ -99,8 +99,8 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
         gtk_paint_box (widget->style, widget->window, state, GTK_SHADOW_ETCHED_OUT,
                        &event->area, widget, "hseparator",
                        widget->allocation.x,
-                       widget->allocation.y + (widget->allocation.height -
-                                               separator_height) / 2,
+                       widget->allocation.y +
+                      (widget->allocation.height - separator_height) / 2,
                        widget->allocation.width,
                        separator_height);
     }
@@ -109,8 +109,8 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                          &event->area, widget, "hseparator",
                          widget->allocation.x,
                          widget->allocation.x + widget->allocation.width - 1,
-                         widget->allocation.y + (widget->allocation.height -
-                                                 widget->style->ythickness) / 2);
+                         widget->allocation.y +
+                        (widget->allocation.height - widget->style->ythickness) / 2);
     }
   }
   else {
@@ -118,8 +118,8 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
     if (wide_separators) {
       gtk_paint_box (widget->style, widget->window, state, GTK_SHADOW_ETCHED_OUT,
                      &event->area, widget, "vseparator",
-                     widget->allocation.x + (widget->allocation.width -
-                     separator_width) / 2,
+                     widget->allocation.x +
+                    (widget->allocation.width - separator_width) / 2,
                      widget->allocation.y,
                      separator_width,
                      widget->allocation.height);
@@ -129,8 +129,8 @@ geda_separator_expose (GtkWidget *widget, GdkEventExpose *event)
                        &event->area, widget, "vseparator",
                        widget->allocation.y,
                        widget->allocation.y + widget->allocation.height - 1,
-                       widget->allocation.x + (widget->allocation.width -
-                       widget->style->xthickness) / 2);
+                       widget->allocation.x +
+                      (widget->allocation.width - widget->style->xthickness) / 2);
     }
   }
 
