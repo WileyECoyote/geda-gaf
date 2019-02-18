@@ -3,15 +3,17 @@
     * passive/rf/osc_coil_aircore-1.sym: Add description attribute, update
       device.
 
-    * passive/rf/port1-1.sym: Add description attribute.
+    * passive/rf/port1-1.sym: Add description attribute, clean symbol.
 
-    * passive/rf/port2-1.sym: Add description attribute.
+    * passive/rf/port2-1.sym: Add description attribute, clean symbol
 
     * passive/rf/RF2155-1.sym: Redo symbol; add description, value, and NC
       pins, update pintype attributes.
 
     * passive/rf/splitter-1.sym: Add description attribute, remove class=IC
       and pins attribute.
+
+    * passive/rf/s-param-1.sym: Replace comment with description attribute.
 
     * passive/rf/TOKO4DFA-1.sym: Add description attribute, remove class=IC
       and pins attribute.
