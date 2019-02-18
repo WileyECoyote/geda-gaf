@@ -7,6 +7,9 @@
 
     * passive/rf/port2-1.sym: Add description attribute.
 
+    * passive/rf/RF2155-1.sym: Redo symbol; add description, value, and NC
+      pins, update pintype attributes.
+
 2019-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * moto/MC13175-1.sym: Relocate symbol, passive -> moto subdirectory.
