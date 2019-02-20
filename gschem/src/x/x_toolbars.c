@@ -32,6 +32,7 @@
 #include "../../include/gschem.h"
 #include <geda/geda_stat.h>
 #include <geda_handlebox.h>
+#include <geda/geda_gui_funcs.h>
 
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
 #define TOOLBAR_TIPS  w_current->show_toolbar_tips       /* per window toolbar tips */
@@ -1926,7 +1927,7 @@ x_toolbars_turn_off_all_radios (GschemToplevel *w_current )
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(bar_widgets->toolbar_none), TRUE);
+  SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
 void
@@ -1934,7 +1935,7 @@ x_toolbars_activate_select (GschemToplevel *w_current)
 {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(bar_widgets->toolbar_none), TRUE);
+  SetToggleState(bar_widgets->toolbar_none, TRUE);
 }
 
 /*!
@@ -1974,7 +1975,7 @@ x_toolbars_set_grid_radio (GschemToplevel *w_current)
       /* if button is not active then action was not initiated by the toolbar */
       if (!target->active) {
         g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(target), TRUE);
+        SetToggleState (target, TRUE);
         g_signal_handlers_unblock_by_func (target, x_toolbars_execute_radio, w_current);
       }
     }
@@ -2058,7 +2059,7 @@ x_toolbars_update(GschemToplevel *w_current)
     /* if button is not active then action was not initiated by the toolbar */
     if (!target->active) {
       g_signal_handlers_block_by_func (target, HideFromDoxygen, w_current);
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(target), TRUE);
+      SetToggleState (target, TRUE);
       g_signal_handlers_unblock_by_func (target, HideFromDoxygen, w_current);
     }
   }

@@ -4,8 +4,8 @@
       function geda_combo_box_set_active_iter with geda_combo_widget_
       set_active_iter.
 
-    * src/x/: Substitute SetToggleState macro for function
-      gtk_toggle_button_set_active in modules:
+    * src/x/: Substitute GetToggleState macro for function
+      gtk_toggle_button_get_active in modules:
 
         * src/x/x_edit_attrib.c
         * src/x/x_fileselect.c
@@ -13,6 +13,8 @@
 
     * src/x/x_print.c: Reformat function documentation.
 
+    * src/x/x_toolbars.c: Include geda/geda_gui_funcs.h and replace
+      gtk_toggle_button_set_active with SetToggleState macro.
 
 2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
