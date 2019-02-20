@@ -644,7 +644,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
 
     checkpoint(&point2, &segment2, &vertex2, &segments[1]);
 
-    if (segment2 || vertex2) { /* if a segment or a vertexer then 2 hit path */
+    if (segment2 || vertex2) { /* if a segment or a vertex then 2 hit path */
 
 #if DEBUG
   fprintf(stderr, "pre swap segment1[%d] vertex1[%d], segment2=[%d] vertex2=[%d]\n", segment1, vertex1, segment2, vertex2);
