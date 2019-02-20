@@ -8,6 +8,7 @@
       gtk_toggle_button_set_active in modules:
 
         * src/x/x_edit_attrib.c
+        * src/x/x_fileselect.c
 
 
 2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
