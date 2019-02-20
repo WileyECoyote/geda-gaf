@@ -195,7 +195,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
     return;
   }
 
-  if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(visbutton)))
+  if (GetToggleState(visbutton))
     vis = VISIBLE;
   else
     vis = INVISIBLE;

@@ -4,6 +4,11 @@
       function geda_combo_box_set_active_iter with geda_combo_widget_
       set_active_iter.
 
+    * src/x/: Substitute SetToggleState macro for function
+      gtk_toggle_button_set_active in modules:
+
+        * src/x/x_edit_attrib.c
+
 
 2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
