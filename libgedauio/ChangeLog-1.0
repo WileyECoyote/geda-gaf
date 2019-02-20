@@ -1,3 +1,8 @@
+2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toggle_action.c: Revise geda_toggle_action_connect_proxy
+      to call gtk_widget_show instead of adding too "visible" properties.
+
 2019-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add ancillary GtkStateType state instead

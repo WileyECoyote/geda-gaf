@@ -185,7 +185,6 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
       g_object_new (GEDA_TYPE_ACCEL_LABEL,
                     "use-underline", TRUE,
                     "xalign", 0.0,
-                    "visible", TRUE,
                     "parent", proxy,
                     "label", label_string,
                     "accel-string", toggler->multikey_accel,
@@ -197,10 +196,11 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
       g_object_set (label,
                     "use-underline", TRUE,
                     "xalign", 0.0,
-                    "visible", TRUE,
                     "accel-string", toggler->multikey_accel,
                     NULL);
     }
+
+    gtk_widget_show(label);
   }
 
   /* Let the parent class do its work now we've fiddled with the label */
