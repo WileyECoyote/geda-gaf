@@ -768,7 +768,7 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
             index = 1;
           }
           else {
-            break;                  /* Or not */
+            break;                  /* Or not, path was open */
           }
         }
 
@@ -796,6 +796,8 @@ static bool o_break_path(GschemToplevel *w_current, GedaObject *object)
       /* Add the new path to the page */
       geda_struct_page_append_object (Current_Page, new_path);
 
+      /* If broke an open path then then need to add a second path
+       * that was created as a result of the break */
       if (!closed) { /* Add path for vertices 0 thru (*end) point */
 
         g_array_free (vertices, TRUE);
