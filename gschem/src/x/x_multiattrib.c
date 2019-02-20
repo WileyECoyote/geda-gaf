@@ -849,9 +849,24 @@ static void ma_column_set_data_visible(GtkTreeViewColumn *tree_column,
                 NULL);
 }
 
-/*! \brief Multi-attribute Dialog
- *  \par Function Description
+/*!
+ * \brief Multi Attribute Show Name Column Data Function
+ * \par Function Description
+ *  Sets the following properties for a given cell in the
+ *  Name column:
+ *  \par
+ *  <DL>
+ *    <DT>active</DT>
+ *    <DT>sensitive</DT>
+ *    <DT>activatable</DT>
+ *    <DT>inconsistent</DT>
+ *  </DL>
  *
+ * \param [in] tree_column Not so much of interest, unused
+ * \param [in] cell        The cell to be set
+ * \param [in] tree_model  The model containing the data
+ * \param [in] iter        to the data in the model
+ * \param [in] data        Unused pointer to dialog
  */
 static void ma_column_set_data_show_name(GtkTreeViewColumn *tree_column,
                                          GtkCellRenderer   *cell,

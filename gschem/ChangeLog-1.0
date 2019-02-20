@@ -7,6 +7,9 @@
     * src/x/x_fileselect.c: Replace g_object_set "visible" with more efficient
       gtk_widget_show, see log entry 2018-08-23.
 
+    * src/x/x_multiattrib.c: Update ma_column_set_data_show_name function
+      documentation.
+
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_break.c: Adjust line spacing and add Doxygen template.
