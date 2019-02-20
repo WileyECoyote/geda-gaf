@@ -143,10 +143,10 @@ x_fileselect_add_preview (GedaFileChooser *filechooser)
 
   cb_size = gtk_check_button_new_with_label (_("Large"));
   gtk_widget_set_tooltip_text(cb_size, _("Enable to enlarge the preview"));
-  SetToggleState (cb_size, FALSE);
-  g_object_set (cb_size, "visible", TRUE, NULL);
-
   gtk_box_pack_start (GTK_BOX(vbox), cb_size, FALSE, FALSE, 0);
+  gtk_widget_show (cb_size);
+
+  SetToggleState (cb_size, FALSE);
 
   g_object_set (filechooser, "use-preview-label", FALSE,
                              "preview-widget", vbox,
