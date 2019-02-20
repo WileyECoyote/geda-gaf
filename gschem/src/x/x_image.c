@@ -903,8 +903,8 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     int invert_color_bw;
 
     if (w_current->toplevel->image_color) {
-      use_print_map   = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(use_print));
-      invert_color_bw = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON(invert_bw));
+      use_print_map   = GetToggleState (use_print);
+      invert_color_bw = GetToggleState (invert_bw);
     }
     else { /* it should not matter */
       use_print_map   = FALSE;
