@@ -504,7 +504,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
 
     /* Visibility */
     visbutton = gtk_check_button_new_with_label (_("Visible"));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (visbutton), TRUE);
+    SetToggleState (visbutton, TRUE);
     gtk_table_attach (table, visbutton, 0, 1, 2, 3,
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
@@ -541,7 +541,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     }
 
     if (!object) {
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(visbutton), TRUE);
+      SetToggleState(visbutton, TRUE);
       /* show value only */
       geda_option_menu_set_history (GEDA_OPTION_MENU (show_options), 0);
     }
