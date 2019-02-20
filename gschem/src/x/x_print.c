@@ -244,7 +244,7 @@ print_dialog_instance_init_orient_combobox (PrintDialog * d)
  *  outside x_print.c
  */
 static void
-print_dialog_action_radio_toggled (GtkWidget * w, PrintDialog * dialog)
+print_dialog_action_radio_toggled (GtkWidget *w, PrintDialog *dialog)
 {
   if (w == GTK_WIDGET (dialog->cmdradio))  {
 
@@ -266,7 +266,7 @@ print_dialog_action_radio_toggled (GtkWidget * w, PrintDialog * dialog)
 static void
 print_dialog_set_property (GObject *object,
                            unsigned int property_id,
-                           const GValue * value, GParamSpec * pspec)
+                           const GValue *value, GParamSpec *pspec)
 {
   PrintDialog *dialog = PRINT_DIALOG (object);
   bool file_active = FALSE;
@@ -316,9 +316,9 @@ print_dialog_set_property (GObject *object,
  *  \par Function Description
  *
  */
-static void print_dialog_set_property_comboboxes (PrintDialog * dialog,
-                                                  GedaComboBox * cbox,
-                                                  const GValue * value)
+static void print_dialog_set_property_comboboxes (PrintDialog  *dialog,
+                                                  GedaComboBox *cbox,
+                                                  const GValue *value)
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
@@ -396,9 +396,9 @@ static void print_dialog_get_property (GObject     *object,
  *  \par Function Description
  *
  */
-static void print_dialog_get_property_comboboxes (PrintDialog * dialog,
-                                                  GedaComboBox * cbox,
-                                                  GValue * value)
+static void print_dialog_get_property_comboboxes (PrintDialog  *dialog,
+                                                  GedaComboBox *cbox,
+                                                  GValue       *value)
 {
   GValue        temp_value = {0, };
   GtkTreeModel *model;
@@ -419,7 +419,7 @@ static void print_dialog_get_property_comboboxes (PrintDialog * dialog,
  *  \todo Update parameter spec strings!
  */
 static void
-print_dialog_class_init (PrintDialogClass * class)
+print_dialog_class_init (PrintDialogClass *class)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
@@ -474,7 +474,7 @@ print_dialog_class_init (PrintDialogClass * class)
  *  \par Function Description
  *
  */
-static void print_dialog_instance_init (PrintDialog * dialog)
+static void print_dialog_instance_init (PrintDialog *dialog)
 {
   GtkWidget *box;
   GtkWidget *frame;
@@ -1024,7 +1024,7 @@ draw_page__print_operation (GtkPrintOperation *print,
                             int page_nr,
                             void * user_data)
 {
-  GschemToplevel *w_current = (GschemToplevel *) user_data;
+  GschemToplevel *w_current = (GschemToplevel*) user_data;
   Page *page;
   cairo_t *cr;
   PangoContext *pc;
