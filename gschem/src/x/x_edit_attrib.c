@@ -552,7 +552,7 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
     i = 0;
     string = (char*) geda_struct_attrib_get(i);
     while (string != NULL) {
-      geda_combo_box_append_text(GEDA_COMBO_BOX(attrib_name_combo_box), string);
+      geda_combo_widget_append_text(attrib_name_combo_box, string);
       i++;
       string = (char*) geda_struct_attrib_get(i);
     }

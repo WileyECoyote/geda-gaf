@@ -1,7 +1,8 @@
 2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_attrib.c: Replace gtk_toggle_button_set_active with
-      SetToggleState macro.
+      SetToggleState macro and replace geda_combo_box_append_text with
+      geda_combo_widget_append_text.
 
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
