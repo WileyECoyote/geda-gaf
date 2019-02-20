@@ -617,14 +617,14 @@ static void print_dialog_instance_init (PrintDialog * dialog)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->cmdradio), TRUE);
 }
 
-/*! \brief Function to retrieve PrintDialog's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve PrintDialog's Type identifier.
+ * \par Function Description
  *  Function to retrieve PrintDialog's Type identifier. On the first call,
  *  this registers the pagesel in the GedaTypesystem. Subsequently
  *  the functions returns the saved value from its first execution.
  *
- *  \return the Type identifier associated with PrintDialog.
+ * \return the Type identifier associated with PrintDialog.
  */
 GedaType print_dialog_get_type (void)
 {
@@ -837,13 +837,14 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
 #define CFG_KEY_PRINTING_PAPER "paper"
 #define CFG_KEY_PRINTING_MONOCHROME "monochrome"
 
-/*! \brief Create a default page setup for a schematic page.
+/*!
+ * \brief Create a default page setup for a schematic page.
  * \par Function Description
- * Creates and returns a new GtkPageSetup for \a page, taking into
- * account the requested \a paper_size_name.  If \a paper_size_name is
- * NULL, the system default paper size is used. The \a orientation may
- * be LANDSCAPE, PORTRAIT or AUTOLAYOUT.  If \a AUTOLAYOUT is chosen,
- * the page orientation that best fits the page contents is chosen.
+ *  Creates and returns a new GtkPageSetup for \a page, taking into
+ *  account the requested \a paper_size_name.  If \a paper_size_name is
+ *  NULL, the system default paper size is used. The \a orientation may
+ *  be LANDSCAPE, PORTRAIT or AUTOLAYOUT.  If \a AUTOLAYOUT is chosen,
+ *  the page orientation that best fits the page contents is chosen.
  *
  * \param toplevel A GedaToplevel structure.
  * \param page     The Page to generate a page setup for.
@@ -898,14 +899,15 @@ static GtkPageSetup *x_print_default_page_setup (GedaToplevel *toplevel, Page *p
   return setup;
 }
 
-/*! \brief Draw a page.
+/*!
+ * \brief Draw a page.
  * \par Function Description
- * Draws the \a page on the Cairo context \a cr, which should have
- * dimensions \a cr_width and \a cr_height.  If the Pango context \a
- * pc is provided, it is used for rendering of text.  The parameter \a
- * is_color controls whether to enable color printing, and \a
- * is_raster should be set if drawing to a raster surface such as an
- * image.
+ *  Draws the \a page on the Cairo context \a cr, which should have
+ *  dimensions \a cr_width and \a cr_height.  If the Pango context \a
+ *  pc is provided, it is used for rendering of text.  The parameter \a
+ *  is_color controls whether to enable color printing, and \a
+ *  is_raster should be set if drawing to a raster surface such as an
+ *  image.
  *
  * \param toplevel A GedaToplevel structure.
  * \param page     The Page to be rendered.
@@ -1129,11 +1131,12 @@ x_print_export_pdf_page (GschemToplevel *w_current, const char *filename)
   return result;
 }
 
-/*! \brief Export a figure-style PDF file of the current page.
+/*!
+ * \brief Export a figure-style PDF file of the current page.
  * \par Function Description
- * Exports the current page as a PDF file to \a filename.  The export
- * is carried out using a page size matching the size of the visible
- * extents of the schematic page.
+ *  Exports the current page as a PDF file to \a filename. The export
+ *  is carried out using a page size matching the size of the visible
+ *  extents of the schematic page.
  *
  * \param w_current A GschemToplevel structure.
  * \param filename  The filename for generated PDF.
@@ -1190,13 +1193,13 @@ bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
   return result;
 }
 
-/*! \brief Show a print dialog and print current page if requested.
+/*!
+ * \brief Show a print dialog and print current page if requested.
  * \par Function Description
- * Shows a standard print dialog, and allows the user to print the current page.
+ *  Shows a standard print dialog, and allows the user to print the current page.
  *
  * \param w_current A GschemToplevel structure.
  */
-
 void x_print (GschemToplevel *w_current)
 {
   static GtkPrintSettings *settings = NULL;

@@ -11,6 +11,8 @@
         * src/x/x_fileselect.c
         * src/x/x_image.c
 
+    * src/x/x_print.c: Reformat function documentation.
+
 
 2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
