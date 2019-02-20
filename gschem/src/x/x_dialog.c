@@ -1204,7 +1204,7 @@ void x_dialog_color_menu_view_changed (GedaComboBox *cbox,
 GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 {
   EdaConfig       *cfg;
-  GedaComboBox    *cbox;
+  GtkWidget       *cbox;
   GtkListStore    *store;
   GtkCellLayout   *layout;
   GtkCellRenderer *text_cell;
@@ -1225,7 +1225,7 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 
   /* The columns are: name of color, index of color. */
   store  = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_INT);
-  cbox   = GEDA_COMBO_BOX (geda_combo_box_new_with_model (GTK_TREE_MODEL (store)));
+  cbox   = geda_combo_box_new_with_model (GTK_TREE_MODEL (store));
   layout = GTK_CELL_LAYOUT (cbox); /* For convenience */
 
   g_object_set (cbox, "list-view", list_view, NULL);
@@ -1258,14 +1258,14 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
     gtk_list_store_set (store, &iter, 0, str, 1, i, -1);
 
     if (i == color_index)
-      geda_combo_box_set_active_iter(cbox, &iter);
+      geda_combo_widget_set_active_iter(cbox, &iter);
   }
 
   g_signal_connect (cbox, "view-changed",
                     G_CALLBACK (x_dialog_color_menu_view_changed),
                     w_current);
 
-  return GTK_WIDGET (cbox);
+  return cbox;
 }
 
 /** @} end group Common-Edit-Dialog */

@@ -1,3 +1,10 @@
+2019-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Change cbox to type GtkWidget and replace
+      function geda_combo_box_set_active_iter with geda_combo_widget_
+      set_active_iter.
+
+
 2019-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_attrib.c: Replace gtk_toggle_button_set_active with
