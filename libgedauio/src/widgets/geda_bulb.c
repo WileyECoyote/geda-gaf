@@ -612,6 +612,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
       state_type = GTK_STATE_NORMAL;
 
     if (bulb->show_butt) {
+
       if (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT) {
 
         GdkRectangle restrict_area;
@@ -651,6 +652,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     else {
       cairo_paint (cr);
     }
+
     cairo_destroy (cr);
   }
 }
@@ -707,9 +709,11 @@ static void geda_bulb_class_init(void *class, void *class_data)
 
   g_object_class_install_property (object_class, PROP_GROUP, params);
 
-  /*! property "use-font":
-   *  \par If this property is set to %TRUE, the button widget will be displayed
-   *       during mouse over-events.
+  /*! property "show-button": GedaBulb::show-button
+   * \brief Show Bulb Button during mouse over events
+   * \par
+   *  If this property is set to %TRUE, the button widget will be
+   *  displayed during mouse over-events.
    */
   params = g_param_spec_boolean ("show-button",
                                _("Show Button"),
