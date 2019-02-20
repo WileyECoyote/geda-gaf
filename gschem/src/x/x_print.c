@@ -248,19 +248,13 @@ print_dialog_action_radio_toggled (GtkWidget * w, PrintDialog * dialog)
 {
   if (w == GTK_WIDGET (dialog->cmdradio))  {
 
-    gtk_widget_set_sensitive (GTK_WIDGET (dialog->cmdfield),
-                              gtk_toggle_button_get_active
-                             (GTK_TOGGLE_BUTTON (w)));
+    gtk_widget_set_sensitive (GTK_WIDGET (dialog->cmdfield), GetToggleState (w));
   }
   else if (w == GTK_WIDGET (dialog->fileradio)) {
 
-    gtk_widget_set_sensitive (GTK_WIDGET (dialog->fnfield),
-                              gtk_toggle_button_get_active
-                             (GTK_TOGGLE_BUTTON (w)));
+    gtk_widget_set_sensitive (GTK_WIDGET (dialog->fnfield), GetToggleState (w));
 
-    gtk_widget_set_sensitive (GTK_WIDGET (dialog->saveasbutton),
-                              gtk_toggle_button_get_active
-                             (GTK_TOGGLE_BUTTON (w)));
+    gtk_widget_set_sensitive (GTK_WIDGET (dialog->saveasbutton), GetToggleState (w));
   }
 }
 

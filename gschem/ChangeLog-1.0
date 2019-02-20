@@ -11,7 +11,8 @@
         * src/x/x_fileselect.c
         * src/x/x_image.c
 
-    * src/x/x_print.c: Reformat function documentation.
+    * src/x/x_print.c: Reformat function documentation, Substitute
+      GetToggleState macro for function gtk_toggle_button_get_active.
 
     * src/x/x_toolbars.c: Include geda/geda_gui_funcs.h and replace
       gtk_toggle_button_set_active with SetToggleState macro.
