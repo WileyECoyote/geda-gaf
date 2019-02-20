@@ -490,8 +490,8 @@ GedaObject *o_attrib_add_attrib(GschemToplevel *w_current,
  *
  * \returns TRUE if the attribute was modified, otherwise FALSE.
  *
- * TODO: This function assumes there is only one attribute with the given
- *       name.
+ * \todo: This function assumes there is only one attribute with the given
+ *        name.
  */
 bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
                                                          GedaObject *attrib)
