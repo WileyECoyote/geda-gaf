@@ -393,13 +393,6 @@ static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
                                                     GdkEventButton *event,
                                                     GschemToplevel *w_current)
 {
-  GtkWidget    *dialog;
-  array_data   *dialog_data;
-
-  /* Get ptr to the data structure */
-  dialog      = w_current->cawindow;
-  dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
-
   if (event->button == 1) {
 
     int  x, y;
@@ -415,6 +408,14 @@ static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
     }
   }
   else if (event->button == 3) {
+
+    GtkWidget    *dialog;
+    array_data   *dialog_data;
+
+    /* Get ptr to the data structure */
+    dialog      = w_current->cawindow;
+    dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
+
     x_dialog_array_edit_disable_events(w_current, dialog_data);
     gtk_window_present (GTK_WINDOW (dialog));
   }

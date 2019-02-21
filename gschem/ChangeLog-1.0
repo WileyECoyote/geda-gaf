@@ -4,6 +4,8 @@
       cleanup source comments and documentation. Revise x_dnd_drag_data_get
       debug message to include the target_type name and type.
 
+    * src/x/x_edit_array.c: Reduce scope of variables in function
+      x_dialog_array_edit_butt_released_select.
 
 2019-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
