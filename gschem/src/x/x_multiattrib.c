@@ -646,15 +646,15 @@ static void multiattrib_action_duplicate_attributes(Multiattrib *ThisDialog,
 
 }
 
-/*! \brief Multi-attribute Dialog Promote Attribute
- *  \par Function Description
- *   Attaches an Attribute object, aka text, to an Object,
- *   presumablby a Complex. If the orginal Attribute was
- *   invisible, then a copy is made and the copy is attached
- *   to the Object instead.
+/*!
+ * \brief Multi-attribute Dialog Promote Attribute
+ * \par Function Description
+ *  Attaches an Attribute object, aka text, to an Object,
+ *  presumablby a Complex. If the orginal Attribute was
+ *  invisible, then a copy is made and the copy is attached
+ *  to the Object instead.
  *
- *   \note: This Attribute object is unselected (not added to
- *          selection).
+ * \note: This Attribute object is unselected (not added to selection).
  */
 static void multiattrib_action_promote_attributes(Multiattrib *ThisDialog,
                                                   GList       *iter)
@@ -1323,13 +1323,14 @@ static bool multiattrib_callback_key_pressed(GtkWidget   *widget,
   return FALSE;
 }
 
-/*! \brief Move edit focus to the cell pointed to by a mouse event.
- *  \par Function Description
+/*!
+ * \brief Move edit focus to the cell pointed to by a mouse event.
+ * \par Function Description
  *  The function reacts to a mouse <B>event</B> at a given x-y coords,
  *  by moving edit-focus to the cell at those coords.
  *
- *  \param [in] multiattrib  The Multiattrib object.
- *  \param [in] event        Mouse event.
+ * \param [in] multiattrib  The Multiattrib object.
+ * \param [in] event        Mouse event.
  */
 static void
 multiattrib_edit_cell(Multiattrib *ThisDialog, GdkEventButton *event)
@@ -1348,8 +1349,9 @@ multiattrib_edit_cell(Multiattrib *ThisDialog, GdkEventButton *event)
   }
 }
 
-/*! \brief  Multi-attribute Dialog Edit Cell on Double (left) click
- *  \par Function Description
+/*!
+ * \brief  Multi-attribute Dialog Edit Cell on Double (left) click
+ * \par Function Description
  *  This is a niffy over-ride function. Normally, edit-focus by click is
  *  handled for us, but this function is useful for overriding the default
  *  behavior of treating a double-click the same as a single-click, with
@@ -1537,12 +1539,12 @@ multiattrib_callback_popup_copy_to_all(GedaMenuItem *menuitem, void *user_data)
   multiattrib_destroy_popup(ThisDialog);
 }
 
-/*! \brief  Multi-attribute Dialog Display Value Key Pressed
- *  \par Function Description
+/*!
+ * \brief  Multi-attribute Dialog Display Value Key Pressed
+ * \par Function Description
  *  Terminates editing of cell if one of these keys are pressed:
  *  - the Return key without the Control modifier
  *  - the Tab key without the Control modifier
- *
  */
 static bool multiattrib_callback_value_key_pressed(GtkWidget   *widget,
                                                    GdkEventKey *event,
@@ -1574,8 +1576,9 @@ static bool multiattrib_callback_value_key_pressed(GtkWidget   *widget,
   return retval;
 }
 
-/*! \brief Multi-attribute Dialog "grab-focus" signal handler
- *  \par Function Description
+/*!
+ * \brief Multi-attribute Dialog "grab-focus" signal handler
+ * \par Function Description
  *  Select the text in the GtkTextView so it may be over-typed quickly
  */
 static void multiattrib_callback_value_grab_focus (GtkWidget *widget,
@@ -1591,14 +1594,13 @@ static void multiattrib_callback_value_grab_focus (GtkWidget *widget,
   gtk_text_buffer_select_range (text_buffer, &end_iter, &start_iter);
 }
 
-/*! \brief Multi-attribute Dialog Add New Attribute
- *
- *  \par Function Description
+/*!
+ * \brief Multi-attribute Dialog Add New Attribute
+ * \par Function Description
  *  This a callback for the "Add" button. The string is retrieved
  *  from the combo entry, along with the value from the test buffer.
  *  multiattrib_action_add_attribute is called to add the attribute
  *  using the visibility retrieved from the check-box button.
- *
  */
 static void multiattrib_callback_button_add(GtkButton *button, void *user_data)
 {
@@ -1642,13 +1644,12 @@ static void multiattrib_callback_button_add(GtkButton *button, void *user_data)
   multiattrib_update (ThisDialog);
 }
 
-/*! \brief Multi-attribute Dialog Pre-load Attribute ComboBox
- *
- *  \par Function Description
- *   This function appends each attribute name string retrieved from
- *   LibGeda->geda_struct_attrib_get() to the Add Frame's Attribute Name
- *   Combo during construction of the dialog.
- *
+/*!
+ * \brief Multi-attribute Dialog Pre-load Attribute ComboBox
+ * \par Function Description
+ *  This function appends each attribute name string retrieved from
+ *  LibGeda->geda_struct_attrib_get() to the Add Frame's Attribute Name
+ *  Combo during construction of the dialog.
  */
 static
 GtkWidget *x_multiattrib_new_entry_combo(void)
@@ -1686,12 +1687,11 @@ GtkWidget *x_multiattrib_new_entry_combo(void)
   return combo;
 }
 
-/*! \brief Multi-attribute Dialog Pre-load Visibilty Options Menu
- *
- *  \par Function Description
+/*!
+ * \brief Multi-attribute Dialog Pre-load Visibilty Options Menu
+ * \par Function Description
  *  This function loads the Visibility Options strings into the
  *  optionmenu during construction of the dialog.
- *
  */
 static void multiattrib_init_visible_types(GedaOptionMenu *optionmenu)
 {
@@ -1709,16 +1709,15 @@ static void multiattrib_init_visible_types(GedaOptionMenu *optionmenu)
   SetWidgetTip (optionmenu, _("Select an attribute visibility option"));
 }
 
-/*! \brief Multi-attribute Dialog Popup Context Sensitive Menu.
- *
- *  \par Function Description
+/*!
+ * \brief Multi-attribute Dialog Popup Context Sensitive Menu.
+ * \par Function Description
  *  Pops up a context-sensitive menu.
  *  <B>event</B> can be NULL if the popup is triggered by a key
  *  binding instead of a mouse click.
  *
- *  \param [in] multiattrib  The Multiattrib object.
- *  \param [in] event        Mouse event.
- *
+ * \param [in] multiattrib  The Multiattrib object.
+ * \param [in] event        Mouse event.
  */
 static void multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *event)
 {
@@ -1801,15 +1800,15 @@ static void multiattrib_popup_menu(Multiattrib *ThisDialog, GdkEventButton *even
                    gdk_event_get_time ((GdkEvent*)event));
 }
 
-/*! \brief GschemDialog "geometry_save" class method handler
- *
- *  \par Function Description
+/*!
+ * \brief GschemDialog "geometry_save" class method handler
+ * \par Function Description
  *  Chain up to our parent's method to save the dialog's size and
  *  position, then save the dialog's current internal geometry.
  *
- *  \param [in] dialog     The GschemDialog to save the geometry of.
- *  \param [in] cfg        A Geda Configuration object.
- *  \param [in] group_name The group name in the key file to store the data under.
+ * \param [in] dialog     The GschemDialog to save the geometry of.
+ * \param [in] cfg        A Geda Configuration object.
+ * \param [in] group_name The group name in the key file to store the data under.
  */
 static void multiattrib_geometry_save (GschemDialog *dialog,
                                        EdaConfig    *cfg,
@@ -1825,15 +1824,15 @@ static void multiattrib_geometry_save (GschemDialog *dialog,
   eda_config_set_boolean (cfg, group_name, "show_inherited", show_inherited);
 }
 
-/*! \brief GschemDialog "geometry_restore" class method handler
- *
- *  \par Function Description
+/*!
+ * \brief GschemDialog "geometry_restore" class method handler
+ * \par Function Description
  *  Chain up to our parent's method to restore the dialog's size and
  *  position, then restore the dialog's current internal geometry.
  *
- *  \param [in] dialog     The GschemDialog to restore the geometry of.
- *  \param [in] cfg        A Geda Configuration object.
- *  \param [in] group_name The group name in the key file to store the data under.
+ * \param [in] dialog     The GschemDialog to restore the geometry of.
+ * \param [in] cfg        A Geda Configuration object.
+ * \param [in] group_name The group name in the key file to store the data under.
  */
 static void
 multiattrib_geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char *group_name)
@@ -1854,15 +1853,14 @@ multiattrib_geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char *group_
   SetSwitch ((MULTIATTRIB (dialog))->ShowInherited, show_inherited);
 }
 
-/*! \brief Function to retrieve Multiattrib's GedaType identifier.
- *
- *  \par Function Description
- *
+/*!
+ * \brief Function to retrieve Multiattrib's GedaType identifier.
+ * \par Function Description
  *  Function to retrieve Multiattrib's GedaType identifier.
  *  Upon first call, this registers Multiattrib in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the GedaType identifier associated with Multiattrib.
+ * \return the GedaType identifier associated with Multiattrib.
  */
 GedaType multiattrib_get_type()
 {
@@ -1889,12 +1887,12 @@ GedaType multiattrib_get_type()
   return multiattrib_type;
 }
 
-/*! \brief Update the multiattrib editor dialog when its object list changes.
+/*!
+ * \brief Update multiattrib editor dialog when its object list changes
+ * \par Function Description
  *
- *  \par Function Description
- *
- *  \param [in] object_list  The GedaList object of we are watching/
- *  \param [in] multiattrib  The multi-attribute editor dialog.
+ * \param [in] object_list  The GedaList object of we are watching/
+ * \param [in] multiattrib  The multi-attribute editor dialog.
  */
 static void
 object_list_changed_cb (GedaList *object_list, Multiattrib *ThisDialog)
@@ -1902,17 +1900,16 @@ object_list_changed_cb (GedaList *object_list, Multiattrib *ThisDialog)
   multiattrib_update (ThisDialog);
 }
 
-/*! \brief Update the dialog when the current object GedaList object is destroyed
- *
- *  \par Function Description
- *
+/*!
+ * \brief Update the dialog when the current object GedaList object is destroyed
+ * \par Function Description
  *  This handler is called when the g_object_weak_ref() on the GedaList object
  *  we're watching expires. We reset our multiattrib->object_list pointer to NULL
  *  to avoid attempting to access the destroyed object. Note: The signal handlers
  *  were automatically disconnected during the destruction process.
  *
- *  \param [in] data                  Pointer to the multi-attrib dialog
- *  \param [in] where_the_object_was  Pointer to where the object was just destroyed
+ * \param [in] data                  Pointer to the multi-attrib dialog
+ * \param [in] where_the_object_was  Pointer to where the object was just destroyed
  */
 static void
 object_list_weak_ref_cb (void *data, GObject *where_the_object_was)
@@ -1923,15 +1920,14 @@ object_list_weak_ref_cb (void *data, GObject *where_the_object_was)
   multiattrib_update (ThisDialog);
 }
 
-/*! \brief Connect signal handler and weak_ref on the GedaList object
- *
- *  \par Function Description
- *
+/*!
+ * \brief Connect signal handler and weak_ref on the GedaList object
+ * \par Function Description
  *  Connect the "changed" signal and add a weak reference
  *  on the GedaList object we are going to watch.
  *
- *  \param [in] multiattrib  The Multiattrib dialog.
- *  \param [in] object_list  The GedaList object to watch.
+ * \param [in] multiattrib  The Multiattrib dialog.
+ * \param [in] object_list  The GedaList object to watch.
  */
 static void
 connect_object_list (Multiattrib *ThisDialog, GedaList *object_list)
@@ -2000,6 +1996,7 @@ multiattrib_dispose (GObject *object)
 
   ((GObjectClass*)multiattrib_parent_class)->dispose (object);
 }
+
 /*!
  * \brief GObject finalize handler
  * \par Function Description
@@ -2021,10 +2018,10 @@ multiattrib_finalize (GObject *object)
 
   ((GObjectClass*)multiattrib_parent_class)->finalize (object);
 }
-/*! \brief GedaType class initializer for Multiattrib
- *
- *  \par Function Description
- *
+
+/*!
+ * \brief GedaType class initializer for Multiattrib
+ * \par Function Description
  *  Type class initializer for Multiattrib. We override our parent's
  *  virtual class methods as needed and register our GObject properties.
  *
@@ -2055,12 +2052,13 @@ static void multiattrib_class_init(MultiattribClass *class)
                                                           G_PARAM_READWRITE));
 }
 
-/*! \brief Regenerate attribute list when the visibility
- *         setting  changes and toggle switch image
- *  \par Function Description: This function changes images for
- *       show_inherited switch to the opposite state, i.e. if ON
- *       use OFF image and if OFF use ON image. The function then
- *       calls multiattrib_update to update the attribute list.
+/*!
+ * \brief Regenerate attribute list when the visibility
+ *        setting  changes and toggle switch image
+ * \par Function Description: This function changes images for
+ *  show_inherited switch to the opposite state, i.e. if ON use
+ *  OFF image and if OFF use ON image. The function then calls
+ *  multiattrib_update to update the attribute list.
  */
 static void multiattrib_show_inherited_toggled (GtkWidget   *widget,
                                                 Multiattrib *ThisDialog)
@@ -2106,14 +2104,13 @@ static void multiattrib_show_inherited_toggled (GtkWidget   *widget,
 #define ColumnResizable    column_def[i].is_resizable
 #define ColumnDataFunc     column_def[i].data_func
 
-/*! \brief GedaType instance initializer for Multiattrib
- *
- *  \par Function Description
- *
+/*!
+ * \brief GedaType instance initializer for Multiattrib
+ * \par Function Description
  *  GedaType instance initializer for Multiattrib. Create
  *  and setup the widgets which make up the dialog.
  *
- *  \param [in] multiattrib The Multiattrib we are initialising
+ * \param [in] multiattrib The Multiattrib we are initialising
  */
 static void multiattrib_init(Multiattrib *ThisDialog)
 {
@@ -2413,18 +2410,17 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   g_list_free (focus_chain);
 }
 
-/*! \brief GObject property setter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property setter function
+ * \par Function Description
  *  Setter function for Multiattrib's GObject property, "object-list".
  *
- *  \param [in]  object       The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [in]  object       The GObject whose properties we are setting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
-
 static void multiattrib_set_property (GObject      *object,
                                       unsigned int  property_id,
                                 const GValue       *value,
@@ -2443,16 +2439,16 @@ static void multiattrib_set_property (GObject      *object,
   }
 }
 
-/*! \brief GObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property getter function
+ * \par Function Description
  *  Getter function for Multiattrib's GObject property, "object-list".
  *
- *  \param [in]  object       The GObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [in]  object       The GObject whose properties we are getting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void multiattrib_get_property (GObject     *object,
                                       unsigned int property_id,
@@ -2488,17 +2484,16 @@ typedef struct {
   GedaList *attribute_gedalist;
 } MODEL_ROW;
 
-/*! \brief For a given Object, produce a GList of MODEL_ROW records
- *
- *  \par Function Description
- *
+/*!
+ * \brief For a given Object, produce a GList of MODEL_ROW records
+ * \par Function Description
  *  The main purpose of this function is to provide the "nth_with_name"
  *  count which we need to merge the attribute lists of various objects
  *  together.
  *
- *  \param [in] multiattrib  The multi-attribute editor dialog (For libgeda API which needs a GedaToplevel)
- *  \param [in] object       TheGedaObject * whos attributes we are processing
- *  \returns  A GList of MODEL_ROW records detailing object's attributes.
+ * \param [in] multiattrib  The multi-attribute editor dialog (For libgeda API which needs a GedaToplevel)
+ * \param [in] object       TheGedaObject * whos attributes we are processing
+ * \returns  A GList of MODEL_ROW records detailing object's attributes.
  */
 static GList *
 object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
@@ -2548,10 +2543,9 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
   return model_rows;
 }
 
-/*! \brief Produce GList of MODEL_ROW records for all attribute objects in our GedaList
- *
- *  \par Function Description
- *
+/*!
+ * \brief Produce GList of MODEL_ROW records for all attribute objects in our GedaList
+ * \par Function Description
  *  This function produces a GList of MODEL_ROWs to the user can edit unattached
  *  attributes, or attributes which are selected separately from their owning
  *  object.
@@ -2559,8 +2553,8 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
  *  It is not expected this will be called when the GedaList the dialog is watching
  *  contains any higher level objects on which we could edit attributes.
  *
- *  \param [in] multiattrib  The multi-attribute editor dialog
- *  \returns  A GList of MODEL_ROW records detailing all lone selected attributes.
+ * \param [in] multiattrib  The multi-attribute editor dialog
+ * \returns  A GList of MODEL_ROW records detailing all lone selected attributes.
  */
 static GList *
 lone_attributes_to_model_rows (Multiattrib *ThisDialog)
@@ -2609,15 +2603,14 @@ lone_attributes_to_model_rows (Multiattrib *ThisDialog)
   return model_rows;
 }
 
-/*! \brief Populate the multiattrib editor dialog's liststore
- *
- *  \par Function Description
- *
+/*!
+ * \brief Populate the multiattrib editor dialog's liststore
+ * \par Function Description
  *  Consumes the GList of MODEL_ROW data, populating the dialog's liststore.
  *  The function frees / consumes the GList and MODEL_ROW data.
  *
- *  \param [in] multiattrib  The multi-attribute editor dialog.
- *  \param [in] model_rows   A GList of MODEL_ROW data.
+ * \param [in] multiattrib  The multi-attribute editor dialog.
+ * \param [in] model_rows   A GList of MODEL_ROW data.
  */
 static void
 multiattrib_populate_liststore (Multiattrib *ThisDialog, GList *model_rows)
@@ -2800,15 +2793,14 @@ static void free_row_record (void *data_record)
   g_free(model_row);
 }
 
-/*! \brief Update the multiattrib editor dialog's interface
- *
- *  \par Function Description
- *
+/*!
+ * \brief Update the multiattrib editor dialog's interface
+ * \par Function Description
  *  Update the dialog to reflect the attributes of the currently selected
  *  object. If no (or multiple) objects are selected, the dialog's controls
  *  are set insensitive.
  *
- *  \param [in] multiattrib  The multi-attribute editor dialog.
+ * \param [in] multiattrib  The multi-attribute editor dialog.
  */
 static void
 multiattrib_update (Multiattrib *ThisDialog)

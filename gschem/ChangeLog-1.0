@@ -7,6 +7,8 @@
     * src/x/x_edit_array.c: Reduce scope of variables in function
       x_dialog_array_edit_butt_released_select and update documentation.
 
+    * src/x/x_multiattrib.c: Reformat function documentation.
+
 2019-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Change cbox to type GtkWidget and replace
