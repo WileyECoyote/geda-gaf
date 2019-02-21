@@ -675,7 +675,6 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
  *          the Drawing Area as the destination
  */
 
-
 /*!
  * \brief When Drag Received from the Source
  * \par Function Description
@@ -1058,7 +1057,7 @@ static void x_dnd_drag_end (GtkWidget *widget, GdkDragContext *context,
 
   if (w_current->dnd_state) {
     i_status_action_start(w_current);
-    w_current->event_state   = w_current->dnd_state;
+    w_current->event_state = w_current->dnd_state;
   }
 
   o_invalidate_all (w_current);
