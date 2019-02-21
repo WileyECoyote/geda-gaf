@@ -384,10 +384,13 @@ static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
   return(0);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Local Select Button Release Event Handler
+ * \par Function Description
+ *  Button press callback for select mode. This is a simple
+ *  "mini" event handler to handle STARTSELECT, for mouse
+ *  button 1, w_current.event_state is set to SELECT or
+ *  SBOX based on the current state.
  */
 static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
                                                     GdkEventButton *event,

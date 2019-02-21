@@ -5,7 +5,7 @@
       debug message to include the target_type name and type.
 
     * src/x/x_edit_array.c: Reduce scope of variables in function
-      x_dialog_array_edit_butt_released_select.
+      x_dialog_array_edit_butt_released_select and update documentation.
 
 2019-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
