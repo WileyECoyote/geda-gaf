@@ -1,6 +1,8 @@
 2019-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_dnd.c: Translate error string in x_dnd_send_string_object.
+    * src/x/x_dnd.c: Translate error string in x_dnd_send_string_object,
+      cleanup source comments and documentation.
+
 
 2019-02-20 Wiley E. Hill <wileyhill@gmail.com>
 

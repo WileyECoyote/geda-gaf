@@ -974,7 +974,7 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
       break;
 
     default:
-      /* Default to some a safe target instead of fail. */
+      /* Send an informative error message instead of failing. */
       gtk_selection_data_set_text (selection_data,
                                    err_string_data,
                                    strlen (err_string_data));
