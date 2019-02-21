@@ -898,11 +898,11 @@ x_dnd_drag_drop (GtkWidget *widget, GdkDragContext *context, int x, int y, unsig
 /** @} end-subgroup Drag-N-Drop-Destination  */
 
 /******************************************************************************/
-/* Signals receivable by source */
 
 /** \defgroup Drag-N-Drop-Source Drag N Drop Source (Originator) Functions
- *  @{ \par This sub-group contains routines to handle signals receivable by the
- *          Source
+ *  @{ \par
+ *  This sub-group contains routines to handle signals receivable by the
+ *  Source.
 */
 
 /*!
