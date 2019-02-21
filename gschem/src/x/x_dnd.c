@@ -236,8 +236,8 @@ x_dnd_send_string_object (GschemToplevel *w_current, GedaObject *object)
       break;
 
     default:
-      string_1 = "Error:";
-      string_2 = geda_strdup("unidentified complex object");
+      string_1 = _("Error:");
+      string_2 = geda_strdup(_("unidentified complex object"));
   }
 
   string_3 = geda_strconcat (string_1, string_2, NULL);

@@ -1,3 +1,7 @@
+2019-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Translate error string in x_dnd_send_string_object.
+
 2019-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Change cbox to type GtkWidget and replace
@@ -257,7 +261,7 @@
     * src/x/x_dnd.c: Revise x_dnd_drag_data_get to reuse the target_type that
       was passed in as the second argument to gtk_selection_data_set instead
       of calling gtk_selection_data_get_target since we already know what type
-      of data is being send.
+      of data is being sent.
 
 2018-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
