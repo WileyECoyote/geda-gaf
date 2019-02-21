@@ -941,7 +941,7 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
                      scale, 0,
                      0, -scale,
                      - (wx_min + 0.5*w_width) * scale + 0.5*cr_width,
-                     (wy_min + 0.5*w_height) * scale + 0.5*cr_height);
+                       (wy_min + 0.5*w_height) * scale + 0.5*cr_height);
 
   /* Second, get the color map. If no color printing is desired,
    * transform the print color map into a black-and-white color map by
@@ -1025,27 +1025,30 @@ draw_page__print_operation (GtkPrintOperation *print,
                             void * user_data)
 {
   GschemToplevel *w_current = (GschemToplevel*) user_data;
-  Page *page;
-  cairo_t *cr;
-  PangoContext *pc;
+  Page           *page;
+  cairo_t        *cr;
+  PangoContext   *pc;
+  EdaConfig      *cfg;
+
   double width, height;
-  EdaConfig *cfg;
-  bool is_color;
+  bool   is_color;
 
   /* Find the page data */
   g_return_if_fail (page_nr != 1);
+
   page = w_current->toplevel->page_current;
+
   g_return_if_fail (page != NULL);
 
   /* Get cairo & pango contexts */
   cr = gtk_print_context_get_cairo_context (context);
   pc = gtk_print_context_create_pango_context (context);
 
-  width = gtk_print_context_get_width (context);
+  width  = gtk_print_context_get_width (context);
   height = gtk_print_context_get_height (context);
 
   /* Find out if colour printing is enabled */
-  cfg = eda_config_get_context_for_path (page->filename);
+  cfg      = eda_config_get_context_for_path (page->filename);
   is_color = !eda_config_get_boolean (cfg, CFG_GROUP_PRINTING,
                                       CFG_KEY_PRINTING_MONOCHROME, NULL);
 
@@ -1184,6 +1187,7 @@ bool x_print_export_pdf (GschemToplevel *w_current, const char *filename)
   }
 
   cairo_surface_destroy (surface);
+
   return result;
 }
 
