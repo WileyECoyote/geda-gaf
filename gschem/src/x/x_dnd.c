@@ -928,7 +928,7 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
 {
   const GschemDndDataDef *datadef;
 
-  const char *err_string_data = "gschem: unknown source data type request.";
+  const char *err_string_data = "gschem: unknown source data type requested";
   const char *string_data;
 
 #if DEBUG || DEBUG_DND_EVENTS
@@ -978,8 +978,10 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
       gtk_selection_data_set_text (selection_data,
                                    err_string_data,
                                    strlen (err_string_data));
-#if DEBUG || DEBUG_DND_EVENTS
-      printf (" Sending string \"%s\".\n", err_string_data);
+#if DEBUG || DEBUG_DND_EVENTS || 1
+      char *tt = gdk_atom_name((GdkAtom)target_type);
+      printf ("%s: \"%s\" (%u)\n", err_string_data, tt, target_type);
+      GEDA_FREE (tt);
 #endif
       break;
   }
