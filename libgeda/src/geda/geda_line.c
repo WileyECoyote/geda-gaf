@@ -253,7 +253,7 @@ static void set_property (GObject *object, unsigned int  prop_id,
  *  GedaType class initializer for GedaLine. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The GedaLine class we are initialising
+ *  \param [in]  class       The GedaLine class we are initializing
  *  \param [in]  class_data  The GedaLine structure associated with the class
  */
 static void geda_line_class_init(void *class, void *class_data)

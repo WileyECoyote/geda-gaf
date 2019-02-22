@@ -281,7 +281,7 @@ static void geda_pin_finalize(GObject *object)
  *  GedaType class initializer for GedaPin. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  klass      The GedaPin class we are initialising
+ * \param [in]  klass      The GedaPin class we are initializing
  * \param [in]  class_data The Pin structure associated with the class
  */
 static void geda_pin_class_init(void *klass, void *class_data)

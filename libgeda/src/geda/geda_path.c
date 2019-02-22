@@ -325,7 +325,7 @@ static void set_property (GObject *object, unsigned int  prop_id,
  *  GedaType class initializer for GedaPath. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  klass       The GedaPath class we are initialising
+ *  \param [in]  klass       The GedaPath class we are initializing
  *  \param [in]  class_data  The Path structure associated with the class
  */
 static void geda_path_class_init(void *klass, void *class_data)

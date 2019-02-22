@@ -103,7 +103,7 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
  *  GedaType instance initializer for GedaToplevel,  initializes a
  *  new GedaToplevel object with sensible default properties.
  *
- * \param [in]  instance The GedaToplevel being initialising.
+ * \param [in]  instance The GedaToplevel being initializing.
  * \param [in]  g_class  The class of the type the instance is created for.
  */
 static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)

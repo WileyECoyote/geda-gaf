@@ -55,7 +55,7 @@ static GObjectClass *geda_list_parent_class = NULL;
  * \par Function Description
  *  GedaType instance initializer for GedaList.
  *
- * \param [in]  instance  The GedaList we are initialising.
+ * \param [in]  instance  The GedaList we are initializing.
  * \param [in]  g_class   The class of the type the instance is created for.
  */
 static void geda_list_instance_init(GTypeInstance *instance, void *g_class)
@@ -97,7 +97,7 @@ static void geda_list_finalize(GObject *object)
  *  GedaType class initializer for GedaList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  g_class       The GedaList we are initialising
+ * \param [in]  g_class       The GedaList we are initializing
  * \param [in]  g_class_data  (unused)
  */
 static void geda_list_class_init(void *g_class, void *g_class_data)

@@ -448,7 +448,7 @@ int geda_object_get_next_sid(void)
  *  GedaObject by setting pointers to NULL and numbers to zero or default
  *  values, the object SID variable is set to the next GedaObject index.
  *
- * \param [in]  instance  The GedaObject being initialising.
+ * \param [in]  instance  The GedaObject being initializing.
  * \param [in]  g_class   The class of the type the instance is created for.
  */
 static void geda_object_instance_init(GTypeInstance *instance, void *g_class)

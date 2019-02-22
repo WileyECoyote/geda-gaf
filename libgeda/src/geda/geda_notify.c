@@ -61,7 +61,7 @@ static GList *list_of_objects = NULL;
  * \par Function Description
  *  GedaType instance initializer for GedaNotifyList.
  *
- *  \param [in]  instance  The GedaNotifyList we are initialising.
+ *  \param [in]  instance  The GedaNotifyList we are initializing.
  *  \param [in]  class     The class of the type the instance is created for.
  */
 static void geda_notify_list_instance_init (GTypeInstance *instance, void *class)
@@ -109,7 +109,7 @@ static void geda_notify_list_finalize (GObject *object)
  *  GedaType class initializer for GedaNotifyList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  class       The GedaNotifyList we are initialising
+ * \param [in]  class       The GedaNotifyList we are initializing
  * \param [in]  class_data  (unused)
  */
 static void geda_notify_list_class_init(void *class, void *class_data)

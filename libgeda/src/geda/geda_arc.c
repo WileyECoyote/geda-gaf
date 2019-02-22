@@ -379,7 +379,7 @@ static void set_property (GObject *object, unsigned int  prop_id,
  *  Type class initializer for Arc. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  klass       The Arc class being initialising
+ * \param [in]  klass       The Arc class being initializing
  * \param [in]  class_data  The Arc structure associated with the class
  */
 static void geda_arc_class_init(void *klass, void *class_data)

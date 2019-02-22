@@ -201,7 +201,7 @@ static void geda_text_finalize(GObject *object)
  *  GedaType class initializer for GedaText. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- * \param [in]  klass       The GedaText class we are initialising
+ * \param [in]  klass       The GedaText class we are initializing
  * \param [in]  class_data  The structure associated with the class
  */
 static void geda_text_class_init(void *klass, void *class_data)

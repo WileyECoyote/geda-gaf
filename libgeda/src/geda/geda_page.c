@@ -188,7 +188,7 @@ void geda_page_remove_all_objects(Page *page)
  *  Page object by setting pointers to NULL and numbers to zero,
  *  the page PID variable is set to the next page index.
  *
- * \param [in] instance The Page being initialising.
+ * \param [in] instance The Page being initializing.
  * \param [in] class    The class the instance is created for.
  */
 static void geda_page_instance_init( GTypeInstance *instance, void *class)

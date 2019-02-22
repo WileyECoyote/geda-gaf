@@ -121,7 +121,7 @@ static void geda_net_finalize(GObject *object)
  *  GedaType class initializer for GedaNet. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  klass       The GedaNet class we are initialising
+ *  \param [in]  klass       The GedaNet class we are initializing
  *  \param [in]  class_data  The GedaNet structure associated with the class
  */
 static void geda_net_class_init(void *klass, void *class_data)
