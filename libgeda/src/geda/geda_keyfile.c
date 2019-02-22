@@ -491,9 +491,9 @@ static int find_file_in_data_dirs (const char   *file,
                          _("Valid key file could not be "
                            "found in search dirs"));
   }
-
-  if (output_file != NULL && fd > 0)
+  else if (output_file != NULL) {
     *output_file = geda_strdup (path);
+  }
 
   GEDA_FREE (path);
 

@@ -1,3 +1,8 @@
+2019-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_keyfile.c: Revise find_file_in_data_dirs to set the
+      output_file in an else clause.
+
 2019-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Replace g_open with standard open.
