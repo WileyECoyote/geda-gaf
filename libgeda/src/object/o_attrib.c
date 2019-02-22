@@ -567,7 +567,7 @@ GedaObject *geda_attrib_object_new_attached(GedaObject *parent,
 
   /* handle slot= attribute, it's a special case */
   if (parent != NULL &&
-    g_ascii_strncasecmp (text, "slot=", 5) == 0) {
+    geda_utility_string_strncmpi (text, "slot=", 5) == 0) {
     geda_struct_slot_update_object (parent);
   }
 
