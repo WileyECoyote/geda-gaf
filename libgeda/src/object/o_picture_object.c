@@ -86,6 +86,7 @@ GedaObject *geda_picture_object_copy(GedaObject *o_current)
 
     return new_obj;
   }
+
   return NULL;
 }
 
@@ -127,6 +128,7 @@ bool geda_picture_object_embed (GedaObject *object)
   else {
     result = FALSE;
   }
+
   return result;
 }
 
@@ -372,7 +374,9 @@ static bool geda_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
       }
     }
   }
+
   errno = ecode;
+
   return result;
 }
 
@@ -422,6 +426,7 @@ bool geda_picture_object_export_object(GedaObject *o_current,
   else {
     result = FALSE;
   }
+
   return result;
 }
 
@@ -471,6 +476,7 @@ bool geda_picture_object_export_orginal (GedaObject *o_current,
   else {
     result = FALSE;
   }
+
   return result;
 }
 
@@ -520,6 +526,7 @@ bool geda_picture_object_export_pixbuf (GdkPixbuf  *pixbuf,
   else {
     result = FALSE;
   }
+
   return result;
 }
 
@@ -539,6 +546,7 @@ const char *geda_picture_object_get_data (GedaObject *object, size_t *len)
   g_return_val_if_fail (object->picture != NULL, NULL);
 
   *len = object->picture->file_length;
+
   return object->picture->file_content;
 }
 
@@ -569,6 +577,7 @@ double geda_picture_object_get_effective_ratio (GedaObject *object)
     BUG_MSG ("Invald type of GedaObject, expecting Picture\n");
     anwser = 1.0;
   }
+
   return anwser;
 }
 
@@ -842,6 +851,7 @@ GdkPixbuf *geda_picture_object_get_pixbuf_fit (GedaObject *object, int interp)
       return g_object_ref(pixbuf3);
     }
   }
+
   return NULL;
 }
 
@@ -860,6 +870,7 @@ bool geda_picture_object_get_position (GedaObject *object, int *x, int *y)
 {
   *x = min(object->picture->lower_x, object->picture->upper_x);
   *y = min(object->picture->lower_y, object->picture->upper_y);
+
   return TRUE;
 }
 
@@ -903,6 +914,7 @@ double geda_picture_object_get_ratio (GedaObject *object)
     BUG_MSG ("Invald type of GedaObject, expecting Picture\n");
     anwser = 1.0;
   }
+
   return anwser;
 }
 
@@ -1332,6 +1344,7 @@ void geda_picture_object_print(GedaToplevel *toplevel, FILE *fp,
   /* If the image failed to load, draw a box in the default color with a
    * cross in it. */
   if (image == NULL) {
+
     int line_width = geda_object_style_get_line_width(toplevel);
     //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
     geda_box_object_print_solid (toplevel, fp, x1, y1, width, height,
@@ -1443,26 +1456,34 @@ GedaObject *geda_picture_object_read (const char  *first_line,
   }
 
   if (width == 0 || height == 0) {
+
     const char *msg = _("Found a picture with zero width/height");
+
     if (geda_object_show_buffer_err(msg, first_line)) {
       geda_log_w("%s: [%d x %d].\n", msg, width, height);
     }
   }
 
   if (mirrored != 0 && mirrored != 1) {
+
     const char *msg = _("Found a picture with an invalid 'mirrored' parameter");
+
     if (geda_object_show_buffer_err(msg, first_line)) {
       geda_log_w("%s: %d.\n", msg, mirrored);
     }
+
     geda_log_w(_("Setting mirrored to 0\n"));
     mirrored = 0;
   }
 
   if ( (embedded > 1) || (embedded < 0)) {
+
     const char *msg = _("Found a picture with an invalid 'embedded' parameter");
+
     if (geda_object_show_buffer_err(msg, first_line)) {
       geda_log_w("%s: %d.\n", msg, embedded);
     }
+
     geda_log_w(_("Setting embedded to 0\n"));
     embedded = 0;
   }
@@ -1853,7 +1874,9 @@ bool geda_picture_object_set_from_file (GedaObject *object,
   }
 
   status = geda_picture_object_set_from_buffer (object, filename, buf, len, error);
+
   GEDA_FREE (buf);
+
   return status;
 }
 
@@ -1969,6 +1992,7 @@ bool geda_picture_object_unembed (GedaObject *object)
     BUG_MSG("object is not a Picture");
     result = FALSE;
   }
+
   return result;
 }
 
