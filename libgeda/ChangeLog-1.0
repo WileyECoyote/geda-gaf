@@ -1,7 +1,8 @@
 2019-02-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Revise find_file_in_data_dirs to set the
-      output_file in an else clause.
+      output_file in an else clause, and revise and convert the plain
+      text comments to internal Doxygen documentation.
 
 2019-02-01 Wiley E. Hill <wileyhill@gmail.com>
 

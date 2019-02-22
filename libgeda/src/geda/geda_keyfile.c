@@ -418,11 +418,12 @@ void geda_keyfile_set_list_separator (GedaKeyFile *key_file, char separator)
   key_file->list_separator = separator;
 }
 
-
-/* Iterates through all the directories in *dirs trying to
- * open file.  When it successfully locates and opens a file it
- * returns the file descriptor to the open file.  It also
- * outputs the absolute path of the file in output_file.
+/*! \internal
+ * Iterates through all the directories in *dirs trying to open
+ * file. The function returns a file descriptor to the open file
+ * upon successfully locating and opening the file and outputs
+ * the absolute path of the file in output_file. If the file is
+ * not found or \a dirs is NULL, the function returns -1.
  */
 static int find_file_in_data_dirs (const char   *file,
                                    const char  **dirs,
