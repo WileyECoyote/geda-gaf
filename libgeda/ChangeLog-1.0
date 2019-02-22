@@ -10,6 +10,8 @@
       default clause in geda_object_get_nearest_point, and redo conditional
       return.
 
+    * src/scheme/scheme_object.c: Replace switch/case with if/else.
+
 2019-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Replace g_open with standard open.

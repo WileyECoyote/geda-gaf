@@ -322,6 +322,7 @@ EDA_SCM_DEFINE (object_bounds, "%object-bounds", 0, 0, 1,
   }
 
   scm_remember_upto_here_1 (rst_s);
+
   return result;
 }
 
@@ -457,15 +458,15 @@ EDA_SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
                     scm_list_2 (obj_s, scm_from_int (type)));
   }
 
-  switch (type) {
-  case FILLING_MESH:
+  if (type == FILLING_MESH) {
     return scm_list_n (type_s, width_s, pitch1_s, angle1_s, pitch2_s, angle2_s,
                        SCM_UNDEFINED);
-  case FILLING_HATCH:
-    return scm_list_4 (type_s, width_s, pitch1_s, angle1_s);
-  default:
-    return scm_list_1 (type_s);
   }
+  else if (type == FILLING_HATCH) {
+    return scm_list_4 (type_s, width_s, pitch1_s, angle1_s);
+  }
+
+  return scm_list_1 (type_s);
 }
 
 /*!
