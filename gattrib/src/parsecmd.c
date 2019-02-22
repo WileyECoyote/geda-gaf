@@ -120,7 +120,7 @@ static void version (void)
  * - help
  * \param argc Number of command line arguments
  * \param argv Command line arguments (array of strings)
- * \returns unknown - looks uninitialised in some circumstances.
+ * \returns unknown - looks uninitialized in some circumstances.
  *
  */
 int parse_commandline(int argc, char *argv[])

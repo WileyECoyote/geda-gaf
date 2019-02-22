@@ -37,7 +37,7 @@
 /*!
  * \brief Create a SHEET_DATA Page Data Struct.
  *  \par Function Description
- * Creates an initialised but empty data struct.
+ * Creates an initialized but empty data struct.
  * \returns a pointer to a data struct.
  */
 SHEET_DATA *s_sheet_data_new()

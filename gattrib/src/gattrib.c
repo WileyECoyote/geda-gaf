@@ -317,7 +317,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   /* Gattrib isn't threaded, but some of GTK's file chooser
    * backends uses threading so we need to call g_thread_init().
-   * GLib requires threading be initialised before any other GLib
+   * GLib requires threading be initialized before any other GLib
    * functions are called. Do it now if its not already setup.  */
 
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
