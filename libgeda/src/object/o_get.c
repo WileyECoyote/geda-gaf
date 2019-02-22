@@ -474,10 +474,9 @@ bool geda_object_get_line_options(GedaObject *object,
  */
 bool geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  bool (*getter) (GedaObject *, int, int, int *, int *) = NULL;
+  bool (*getter) (GedaObject *, int, int, int *, int *);
 
-  switch (object->type)
-  {
+  switch (object->type) {
     case OBJ_NET:
     case OBJ_BUS:
     case OBJ_PIN:
@@ -490,14 +489,10 @@ bool geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, in
     case OBJ_TEXT:    getter = geda_text_object_get_nearest_point;      break;
     case OBJ_PATH:    getter = geda_path_object_get_nearest_point;      break;
     case OBJ_ARC:     getter = geda_arc_object_get_nearest_point;       break;
-    default:
-      break;
+    default:          getter = NULL;                                    break;
   }
 
-  if (getter != NULL) {
-    return (*getter) (object, x, y, nx, ny);
-  }
-  return FALSE;
+  return (getter != NULL) ? (*getter) (object, x, y, nx, ny) : FALSE;
 }
 
 /*!

@@ -6,6 +6,10 @@
 
     * src/object/o_attrib.c: Replace g_ascii_strncasecmp with geda_strncmpi.
 
+    * src/object/o_get.c: Remove initializing getter to NULL and set in the
+      default clause in geda_object_get_nearest_point, and redo conditional
+      return.
+
 2019-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_keyfile.c: Replace g_open with standard open.
