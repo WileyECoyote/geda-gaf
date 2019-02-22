@@ -950,6 +950,7 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
       gtk_selection_data_set_text (selection_data,
                                    string_data,
                                    strlen (string_data));
+
 #if DEBUG || DEBUG_DND_EVENTS
       printf (" Sending string \"%s\".\n", string_data);
 #endif
@@ -978,7 +979,7 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
       gtk_selection_data_set_text (selection_data,
                                    err_string_data,
                                    strlen (err_string_data));
-#if DEBUG || DEBUG_DND_EVENTS || 1
+#if DEBUG || DEBUG_DND_EVENTS
       char *tt = gdk_atom_name((GdkAtom)target_type);
       printf ("%s: \"%s\" (%u)\n", err_string_data, tt, target_type);
       GEDA_FREE (tt);
@@ -1117,8 +1118,8 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
         w_current->event_state = STARTDND;
         w_current->action_event->state = STARTDND;
         break;
-      default:
 
+      default:
         break;
     }
 
