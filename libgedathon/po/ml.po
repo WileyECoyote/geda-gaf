@@ -199,37 +199,53 @@ msgstr "ലൈബ്രറി ഉപയോഗിച്ച് ഒബ്ജക്�
 msgid "Create a new arc object."
 msgstr "ഒരു പുതിയ ആർക്ക് ഒബ്ജക്റ്റ് സൃഷ്ടിക്കുക."
 
+# Create a new box object
+# oru putiya bēāks vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "ഒരു പുതിയ ബോക്സ് വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new bus object
+# putiya bas ōbjakṟṟ sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "പുതിയ ബസ് ഓബ്ജക്റ്റ് സൃഷ്ടിക്കുക."
 
+# Create a new circle object
+# oru putiya sarkkiḷ vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "ഒരു പുതിയ സർക്കിൾ വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new complex object
+# oru putiya saṅkīrṇṇa vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "ഒരു പുതിയ സങ്കീർണ്ണ വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new line object
+# oru putiya lain vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "ഒരു പുതിയ ലൈൻ വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new net object
+# oru putiya objakṟṟ vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "ഒരു പുതിയ ഒബ്ജക്റ്റ് വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new path object
+# oru putiya pātt vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "ഒരു പുതിയ പാത്ത് വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new picture object
+# oru putiya citra vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "ഒരു പുതിയ ചിത്ര വസ്തു സൃഷ്ടിക്കുക."
 
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
