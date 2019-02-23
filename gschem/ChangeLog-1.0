@@ -4,6 +4,8 @@
 
     * po/sr.po: Update Serbian Plural-Forms and fuzzy translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2019-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Translate error string in x_dnd_send_string_object,
