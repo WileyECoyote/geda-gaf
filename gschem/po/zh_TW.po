@@ -58,57 +58,71 @@ msgstr ""
 "gschem無法找到一些數據文件。請確保GEDADATA\n"
 "環境變量指向正確的位置.\n"
 
+# Unable to locate scheme initialization file
+# Wúfǎ zhǎodào fāng'àn chūshǐhuà wénjiàn
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
-msgstr ""
+msgstr "無法找到方案初始化文件"
 
+# Read scheme initialization file
+# Dú fāng'àn chūshǐhuà wénjiàn
 #: gschem/src/base/gschem.c:395
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "讀方案初始化文件"
 
 # Unable to read the schema initialization file
+# Wúfǎ dòu qǔ fāng'àn chūshǐhuà wénjiàn
 #: gschem/src/base/gschem.c:398
 msgid "Failed to read scheme initialization file"
 msgstr "無法讀取方案初始化文件"
 
-# Version
+# version; Bǎn
 #: gschem/src/base/gschem.c:422
 msgid "version"
-msgstr "版"
+msgstr "版本"
 
+# Logging system is disabled; Jìlù xìtǒng yǐ jìnyòng
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "記錄系統已禁用\n"
 
+# ERROR: Failed to load or evaluate startup script
+# Cuòwù: Wúfǎ jiāzài huò pínggū qǐdòng jiǎoběn
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "錯誤：無法加載或評估啟動腳本.\n"
 
+# Exiting normal; Tuìchū zhèngcháng
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "退出正常\n"
 
+# FAILED; Shībài
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "失敗:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
 msgstr "父窗口"
 
+# Parent window for this dialog
+# Cǐ duìhuà kuāng de fù chuāngkǒu
 #: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "此對話框的父窗口"
 
+# Title; Biāotí
 #: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
-msgstr ""
+msgstr "標題"
 
+# Dialog window title; Duìhuà chuāngkǒu biāotí
 #: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
-msgstr ""
+msgstr "對話窗口標題"
 
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
@@ -1152,13 +1166,13 @@ msgstr "所有的屬性都是"
 msgid "Some of the attributes were"
 msgstr "一些屬性是"
 
-# attached attribute
+# attached attributes; Fùjiā shǔxìng
 #: gschem/src/object/o_attrib.c:167
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
-msgstr[0] "附加%d屬性"
-msgstr[1] "附加%d个属性"
+msgstr[0] "附加%d個屬性"
+msgstr[1] "附%d屬性"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
 #: gschem/src/object/o_break.c:845
@@ -2295,11 +2309,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr ""
 
-# Error
+# Error; Cuòwù
 #: gschem/src/x/x_dnd.c:241
-#, fuzzy
 msgid "Error:"
-msgstr "錯誤"
+msgstr "錯誤:"
 
 #: gschem/src/x/x_dnd.c:242
 msgid "unidentified complex object"
