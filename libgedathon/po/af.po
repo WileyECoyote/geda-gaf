@@ -149,49 +149,60 @@ msgstr "Haal lys van alle bladsye op."
 msgid "Add an object to a page or another object."
 msgstr "Voeg 'n voorwerp by 'n bladsy of 'n ander voorwerp."
 
+# Add multiple objects to a page or another object
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Voeg verskeie voorwerpe by 'n bladsy of 'n ander voorwerp."
 
+# Make a copy an object
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Maak 'n voorwerp van 'n kopie."
 
+# Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Verwyder voorwerp van 'n bladsy."
 
+# Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Premakhvane na nyakolko obekta ot stranitsa."
 
+# Delete an object from a page
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Vee 'n voorwerp uit 'n bladsy uit."
 
+# Delete multiple objects from a page
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Vee verskeie voorwerpe uit 'n bladsy uit."
 
+# Synchronize object with library
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Sinkroniseer voorwerp met biblioteek."
 
+# Create a new arc object
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Skep 'n nuwe boogvoorwerp."
 
+# Create a new box object
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "oru putiya bēāks vastu sr̥ṣṭikkuka."
 
+# Create a new bus object
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Skep 'n nuwe busvoorwerp."
 
+# Create a new circle object
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Skep 'n nuwe kringvoorwerp."
 
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
