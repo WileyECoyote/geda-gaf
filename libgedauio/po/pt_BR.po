@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-16 19:29-0600\n"
+"POT-Creation-Date: 2019-02-23 10:12-0600\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -119,35 +119,35 @@ msgstr "identificação de ícone"
 msgid "String name of the icon image"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:703
+#: libgedauio/src/widgets/geda_bulb.c:705
 msgid "Group"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:704
+#: libgedauio/src/widgets/geda_bulb.c:706
 msgid "The bulb button whose group this widget belongs to."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:715
+#: libgedauio/src/widgets/geda_bulb.c:719
 msgid "Show Button"
 msgstr "Mostrar botão"
 
-#: libgedauio/src/widgets/geda_bulb.c:716
+#: libgedauio/src/widgets/geda_bulb.c:720
 msgid "Whether to draw the button during mouse over events"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:723
+#: libgedauio/src/widgets/geda_bulb.c:727
 msgid "Indicator Size"
 msgstr "Tamanho do indicador"
 
-#: libgedauio/src/widgets/geda_bulb.c:724
+#: libgedauio/src/widgets/geda_bulb.c:728
 msgid "Size of check or radio indicator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:733
+#: libgedauio/src/widgets/geda_bulb.c:737
 msgid "Indicator Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_bulb.c:734
+#: libgedauio/src/widgets/geda_bulb.c:738
 msgid "Spacing around check or radio indicator"
 msgstr ""
 
@@ -560,45 +560,45 @@ msgstr ""
 msgid "_Select"
 msgstr "Selecione"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1582
-#: libgedauio/src/widgets/geda_handlebox.c:1591
+#: libgedauio/src/widgets/geda_handlebox.c:1584
+#: libgedauio/src/widgets/geda_handlebox.c:1593
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1600
+#: libgedauio/src/widgets/geda_handlebox.c:1602
 msgid "Position of the handle relative to the child toolbar"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1608
+#: libgedauio/src/widgets/geda_handlebox.c:1610
 msgid "Shrink"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1609
+#: libgedauio/src/widgets/geda_handlebox.c:1611
 msgid "Shrink when toolbar is detached."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1617
+#: libgedauio/src/widgets/geda_handlebox.c:1619
 msgid ""
 "Side of the handlebox that is lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1626
+#: libgedauio/src/widgets/geda_handlebox.c:1628
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1634
+#: libgedauio/src/widgets/geda_handlebox.c:1636
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
 # Handle Size
-#: libgedauio/src/widgets/geda_handlebox.c:1696
+#: libgedauio/src/widgets/geda_handlebox.c:1698
 msgid "Handle Size"
 msgstr "Tamanho do punho"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1697
+#: libgedauio/src/widgets/geda_handlebox.c:1699
 msgid "Size of the drag handle in pixels."
 msgstr ""
 

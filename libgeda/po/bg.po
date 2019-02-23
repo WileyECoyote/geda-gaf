@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-16 19:29-0600\n"
+"POT-Creation-Date: 2019-02-23 10:12-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -549,114 +549,114 @@ msgstr ""
 msgid "is not valid\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:491
+#: libgeda/src/geda/geda_keyfile.c:492
 msgid "Valid key file could not be found in search dirs"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:934
+#: libgeda/src/geda/geda_keyfile.c:935
 #, c-format
 msgid ""
 "Key file contains line '%s' which is not a key-value pair, group, or comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:993
+#: libgeda/src/geda/geda_keyfile.c:994
 msgid "Invalid group name"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1034
+#: libgeda/src/geda/geda_keyfile.c:1035
 msgid "Key file does not start with a group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1060
+#: libgeda/src/geda/geda_keyfile.c:1061
 msgid "Invalid key name"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1087
+#: libgeda/src/geda/geda_keyfile.c:1088
 msgid "Key file contains unsupported encoding"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1331 libgeda/src/geda/geda_keyfile.c:1548
-#: libgeda/src/geda/geda_keyfile.c:3030 libgeda/src/geda/geda_keyfile.c:3100
-#: libgeda/src/geda/geda_keyfile.c:3224 libgeda/src/geda/geda_keyfile.c:3447
-#: libgeda/src/geda/geda_keyfile.c:3620 libgeda/src/geda/geda_keyfile.c:3805
-#: libgeda/src/geda/geda_keyfile.c:3870
+#: libgeda/src/geda/geda_keyfile.c:1332 libgeda/src/geda/geda_keyfile.c:1549
+#: libgeda/src/geda/geda_keyfile.c:3031 libgeda/src/geda/geda_keyfile.c:3101
+#: libgeda/src/geda/geda_keyfile.c:3225 libgeda/src/geda/geda_keyfile.c:3448
+#: libgeda/src/geda/geda_keyfile.c:3621 libgeda/src/geda/geda_keyfile.c:3806
+#: libgeda/src/geda/geda_keyfile.c:3871
 msgid "Key file does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1528
+#: libgeda/src/geda/geda_keyfile.c:1529
 msgid "ERROR: pointer to key file is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1531
+#: libgeda/src/geda/geda_keyfile.c:1532
 msgid "ERROR: pointer to group name is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1534
+#: libgeda/src/geda/geda_keyfile.c:1535
 msgid "ERROR: pointer to key is NULL"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1561
+#: libgeda/src/geda/geda_keyfile.c:1562
 msgid "Key file does not have key"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1678 libgeda/src/geda/geda_keyfile.c:1816
+#: libgeda/src/geda/geda_keyfile.c:1679 libgeda/src/geda/geda_keyfile.c:1817
 #, c-format
 msgid "Key file contains key '%s' with value '%s' which is not UTF-8"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:1700 libgeda/src/geda/geda_keyfile.c:1838
-#: libgeda/src/geda/geda_keyfile.c:2272
+#: libgeda/src/geda/geda_keyfile.c:1701 libgeda/src/geda/geda_keyfile.c:1839
+#: libgeda/src/geda/geda_keyfile.c:2273
 #, c-format
 msgid ""
 "Key file contains key '%s' which has a value that cannot be interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2494 libgeda/src/geda/geda_keyfile.c:2859
+#: libgeda/src/geda/geda_keyfile.c:2495 libgeda/src/geda/geda_keyfile.c:2860
 #, c-format
 msgid ""
 "Key file contains key '%s' in group '%s' which has a value that cannot be "
 "interpreted."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:2571 libgeda/src/geda/geda_keyfile.c:2647
+#: libgeda/src/geda/geda_keyfile.c:2572 libgeda/src/geda/geda_keyfile.c:2648
 #, c-format
 msgid "Key '%s' in group '%s' has value '%s' where %s was expected"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3045 libgeda/src/geda/geda_keyfile.c:3239
-#: libgeda/src/geda/geda_keyfile.c:3882
+#: libgeda/src/geda/geda_keyfile.c:3046 libgeda/src/geda/geda_keyfile.c:3240
+#: libgeda/src/geda/geda_keyfile.c:3883
 #, c-format
 msgid "Key file does not have key '%s' in group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:3427
+#: libgeda/src/geda/geda_keyfile.c:3428
 msgid "Group does not have comment"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4100
+#: libgeda/src/geda/geda_keyfile.c:4101
 msgid "Key file contains escape character at end of line"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4122
+#: libgeda/src/geda/geda_keyfile.c:4123
 msgid "Key file contains invalid escape sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4261
+#: libgeda/src/geda/geda_keyfile.c:4262
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4276
+#: libgeda/src/geda/geda_keyfile.c:4277
 #, c-format
 msgid "Integer value '%s' out of range"
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4308
+#: libgeda/src/geda/geda_keyfile.c:4309
 #, c-format
 msgid "Value '%s' cannot be interpreted as a float number."
 msgstr ""
 
-#: libgeda/src/geda/geda_keyfile.c:4332
+#: libgeda/src/geda/geda_keyfile.c:4333
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -1264,7 +1264,7 @@ msgid "Found a component with an invalid rotation"
 msgstr ""
 
 #: libgeda/src/object/o_complex_object.c:1172
-#: libgeda/src/object/o_picture_object.c:1475
+#: libgeda/src/object/o_picture_object.c:1496
 msgid "Setting angle to 0\n"
 msgstr ""
 
@@ -1324,109 +1324,109 @@ msgstr ""
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:112
+#: libgeda/src/object/o_picture_object.c:113
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:113
+#: libgeda/src/object/o_picture_object.c:114
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:121
+#: libgeda/src/object/o_picture_object.c:122
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:341
+#: libgeda/src/object/o_picture_object.c:343
 msgid "Can not export to type"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:357
+#: libgeda/src/object/o_picture_object.c:359
 msgid "Failed to export"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1238
+#: libgeda/src/object/o_picture_object.c:1250
 msgid "Invalid; picture has no height\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1239
+#: libgeda/src/object/o_picture_object.c:1251
 msgid "Setting aspect to 1.0\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1254
+#: libgeda/src/object/o_picture_object.c:1266
 msgid "Failed to load buffer image"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1271
+#: libgeda/src/object/o_picture_object.c:1283
 msgid "Failed to load image from"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1441
+#: libgeda/src/object/o_picture_object.c:1454
 msgid "Failed to parse picture definition"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1446
+#: libgeda/src/object/o_picture_object.c:1460
 msgid "Found a picture with zero width/height"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1453
+#: libgeda/src/object/o_picture_object.c:1469
 msgid "Found a picture with an invalid 'mirrored' parameter"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1457
+#: libgeda/src/object/o_picture_object.c:1475
 msgid "Setting mirrored to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1462
+#: libgeda/src/object/o_picture_object.c:1481
 msgid "Found a picture with an invalid 'embedded' parameter"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1466
+#: libgeda/src/object/o_picture_object.c:1487
 msgid "Setting embedded to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1471
+#: libgeda/src/object/o_picture_object.c:1492
 msgid "Found an unsupported picture angle"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1498
+#: libgeda/src/object/o_picture_object.c:1519
 msgid "Error"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1510
+#: libgeda/src/object/o_picture_object.c:1531
 msgid "Image filename is missing."
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1568
+#: libgeda/src/object/o_picture_object.c:1589
 msgid "Failed to load image from embedded data"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1569
+#: libgeda/src/object/o_picture_object.c:1590
 msgid "Base64 decoding failed."
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1570
+#: libgeda/src/object/o_picture_object.c:1591
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1693
+#: libgeda/src/object/o_picture_object.c:1714
 msgid "ERROR: unable to encode the picture.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1773
+#: libgeda/src/object/o_picture_object.c:1794
 msgid "Error processing image"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1946
+#: libgeda/src/object/o_picture_object.c:1969
 msgid "Failed to load image from file"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1948
+#: libgeda/src/object/o_picture_object.c:1971
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1957
+#: libgeda/src/object/o_picture_object.c:1980
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
@@ -1566,103 +1566,103 @@ msgstr ""
 msgid "Invalid pin type ~A, must be 'net or 'bus"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:378
+#: libgeda/src/scheme/scheme_object.c:379
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:391
+#: libgeda/src/scheme/scheme_object.c:392
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:456
+#: libgeda/src/scheme/scheme_object.c:457
 msgid "Object ~A has invalid fill style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:512
+#: libgeda/src/scheme/scheme_object.c:513
 msgid "Invalid fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:520
+#: libgeda/src/scheme/scheme_object.c:521
 msgid "Missing second space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:529
+#: libgeda/src/scheme/scheme_object.c:530
 msgid "Missing second angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:539
+#: libgeda/src/scheme/scheme_object.c:540
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:548
+#: libgeda/src/scheme/scheme_object.c:549
 msgid "Missing space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:557
+#: libgeda/src/scheme/scheme_object.c:558
 msgid "Missing angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:797
+#: libgeda/src/scheme/scheme_object.c:798
 msgid "Object ~A has invalid pin type."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1105
+#: libgeda/src/scheme/scheme_object.c:1106
 msgid "Invalid text alignment ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1121
+#: libgeda/src/scheme/scheme_object.c:1122
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1149
+#: libgeda/src/scheme/scheme_object.c:1150
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1223
+#: libgeda/src/scheme/scheme_object.c:1224
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1232
+#: libgeda/src/scheme/scheme_object.c:1233
 msgid "Text object ~A has invalid visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1242
+#: libgeda/src/scheme/scheme_object.c:1243
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1283
+#: libgeda/src/scheme/scheme_object.c:1284
 msgid "Object ~A is not included in a page."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1370
+#: libgeda/src/scheme/scheme_object.c:1371
 msgid "Invalid stroke cap style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1381
+#: libgeda/src/scheme/scheme_object.c:1382
 msgid "Invalid stroke dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1391
+#: libgeda/src/scheme/scheme_object.c:1392
 msgid "Missing dash length parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1401
+#: libgeda/src/scheme/scheme_object.c:1402
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1455
+#: libgeda/src/scheme/scheme_object.c:1456
 msgid "Object ~A has bad type '~A'"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1558
+#: libgeda/src/scheme/scheme_object.c:1559
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1687
+#: libgeda/src/scheme/scheme_object.c:1688
 msgid "Invalid path element type ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1845
+#: libgeda/src/scheme/scheme_object.c:1846
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
