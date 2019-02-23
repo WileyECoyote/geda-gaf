@@ -160,49 +160,71 @@ msgstr "Извличане на всички обекти, принадлежа�
 msgid "Add an object to a page or another object."
 msgstr "Добавете обект към страница или друг обект."
 
+# Add multiple objects to a page or another object
+# Dobavete nyakolko obekta kŭm stranitsa ili drug obekt
 #: libgedathon/include/geda_module.h:78
 msgid "Add multiple objects to a page or another object."
-msgstr ""
+msgstr "Добавете няколко обекта към страница или друг обект."
 
+# Make a copy an object
+# Napravete kopie na obekt
 #: libgedathon/include/geda_module.h:79
 msgid "Make a copy an object."
-msgstr ""
+msgstr "Направете копие на обект."
 
+# Remove object from a page
+# Premakhvane na obekt ot stranitsa
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr ""
+msgstr "Премахване на обект от страница."
 
+# Remove multiple objects from a page
+# Premakhvane na nyakolko obekta ot stranitsa
 #: libgedathon/include/geda_module.h:81
 msgid "Remove multiple objects from a page."
-msgstr ""
+msgstr "Премахване на няколко обекта от страница."
 
+# Delete an object from a page
+# Iztrivane na obekt ot stranitsa
 #: libgedathon/include/geda_module.h:83
 msgid "Delete an object from a page."
-msgstr ""
+msgstr "Изтриване на обект от страница."
 
+# Delete multiple objects from a page
+# Iztrivane na nyakolko obekta ot stranitsa
 #: libgedathon/include/geda_module.h:84
 msgid "Delete multiple objects from a page."
-msgstr ""
+msgstr "Изтриване на няколко обекта от страница."
 
+# Synchronize object with library
+# Sinkhroniziraĭte obekt s biblioteka
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Синхронизирайте обект с библиотека."
 
+# Create a new arc object
+# Sŭzdaĭte nov obekt na dŭga
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
-msgstr ""
+msgstr "Създайте нов обект на дъга."
 
+# Create a new box object
+# Sŭzdaĭte nov obekt na kutiya
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
-msgstr ""
+msgstr "Създайте нов обект на кутия."
 
+# Create a new bus object
+# Sŭzdaĭte nov avtobusen obekt
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
-msgstr ""
+msgstr "Създайте нов автобусен обект."
 
+# Create a new circle object
+# Sŭzdaĭte nov obekt ot krŭga
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Създайте нов обект от кръга."
 
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
