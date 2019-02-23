@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Poedit 1.6.10\n"
-"X-Language: C\n"
+"X-Language: af_ZA\n"
 "X-Source-Language: C\n"
 
 # Get or Set the default symbol for capacitors
