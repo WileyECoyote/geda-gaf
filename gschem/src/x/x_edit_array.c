@@ -419,9 +419,11 @@ static int x_dialog_array_edit_butt_released_select(GtkWidget      *widget,
     dialog      = w_current->cawindow;
     dialog_data = GEDA_OBJECT_GET_DATA (dialog, IDS_ARRAY_EDIT);
 
+    /* Cancel the event and redisplay the array dialog */
     x_dialog_array_edit_disable_events(w_current, dialog_data);
     gtk_window_present (GTK_WINDOW (dialog));
   }
+
   return(0);
 }
 
