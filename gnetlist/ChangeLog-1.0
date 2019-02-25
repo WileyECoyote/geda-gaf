@@ -3,6 +3,9 @@
     * tests/common/outputs/*/powersupply-output.net: Update output to reconcile
       R1 device VARIABLE_RESISTOR -> RESISTOR, and C? footprint=RADIAL-CAN-X00.
 
+    * tests/common/outputs/drc2/*.net: Remove space from "No errors found" in
+      expected outputs.
+
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Reduce the scope of variables in s_rename_destroy_all.
