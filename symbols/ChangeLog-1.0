@@ -2,6 +2,12 @@
 
     * passive/rf/txo-1.sym: Add description attribute, update device.
 
+    * passive/rf/xinger-*.sym: Rename file with device number, add description
+      and value attributes, update device and pinlabel attributes, remove pins
+      and comment:
+
+            * passive/rf/xinger-1A1305-1.sym
+
 2019-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/osc_coil_aircore-1.sym: Add description attribute, update
