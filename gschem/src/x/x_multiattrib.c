@@ -2025,7 +2025,7 @@ multiattrib_finalize (GObject *object)
  *  Type class initializer for Multiattrib. We override our parent's
  *  virtual class methods as needed and register our GObject properties.
  *
- *  \param [in]  class       The MultiattribClass we are initialising
+ *  \param [in]  class       The MultiattribClass we are initializing
  */
 static void multiattrib_class_init(MultiattribClass *class)
 {
@@ -2110,7 +2110,7 @@ static void multiattrib_show_inherited_toggled (GtkWidget   *widget,
  *  GedaType instance initializer for Multiattrib. Create
  *  and setup the widgets which make up the dialog.
  *
- * \param [in] multiattrib The Multiattrib we are initialising
+ * \param [in] multiattrib The Multiattrib we are initializing
  */
 static void multiattrib_init(Multiattrib *ThisDialog)
 {
