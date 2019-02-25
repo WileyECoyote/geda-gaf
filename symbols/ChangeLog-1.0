@@ -1,3 +1,7 @@
+2019-02-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/rf/txo-1.sym: Add description attribute, update device.
+
 2019-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/osc_coil_aircore-1.sym: Add description attribute, update
