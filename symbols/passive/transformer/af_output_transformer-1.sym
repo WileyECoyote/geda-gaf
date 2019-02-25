@@ -1,6 +1,4 @@
 v 20121031 2
-T 10 10 5 10 0 0 0 0 1
-author=AutoTron
 A 1400 1700 200 90 180 3 0 0 0 -1 -1
 A 1400 1300 200 90 180 3 0 0 0 -1 -1
 A 1400 900 200 90 180 3 0 0 0 -1 -1
@@ -59,9 +57,11 @@ pinlabel=X2
 T 2000 700 8 10 0 0 0 0 1
 pintype=pas
 }
-T 0 0 9 10 1 0 0 0 1
-TRANSFORMER AF OUT
+T 0 0 9 10 1 1 0 0 1
+description=TRANSFORMER AF OUT
 T 1300 2100 8 10 1 1 0 0 1
 refdes=T?
 T 1300 2100 8 10 0 0 0 0 1
 footprint=unknown
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron

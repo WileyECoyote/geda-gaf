@@ -12,6 +12,9 @@
             * passive/rf/xinger-4A4305-1.sym
             * passive/rf/xinger-11305-1.sym
 
+    * passive/transformer/af_output_transformer-1.sym: Convert plain text to
+      description attribute.
+
 
 2019-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
