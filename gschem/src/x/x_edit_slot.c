@@ -40,8 +40,9 @@
  *  \image latex slot_dialog.png
  */
 
-/*! \brief response function for the slot edit dialog
- *  \par Function Description
+/*!
+ * \brief response function for the slot edit dialog
+ * \par Function Description
  *  The function calles o_slot_end to apply the dialog entry to the slot
  *  the selected symbol, if they exist.
  */
@@ -82,13 +83,14 @@ void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
   }
 }
 
-/*! \brief Handle selection change event for the Slot Editor Dialog
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for the Slot Editor Dialog
+ * \par Function Description
  *  Updates the Slot Properties dialog widgets when the selection changes.
  *  The initial value is set when x_dialog_edit_slot is first called.
  *
- *  \param w_current pointer to GschemToplevel context
- *  \param object    pointer to a selected Object.
+ * \param w_current pointer to GschemToplevel context
+ * \param object    pointer to a selected Object.
  */
 static void
 x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *object)
@@ -140,13 +142,14 @@ x_dialog_slot_edit_update_selection (GschemToplevel *w_current, GedaObject *obje
   }
 }
 
-/*! \brief Create the slot entry dialog
- *  \par Function Description
+/*!
+ * \brief Create the slot entry dialog
+ * \par Function Description
  *  This function creates the slot edit dialog.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
- *  \param [in] slots     Pointer to numslots value string
- *  \param [in] slot      Pointer to slot value string
+ * \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] slots     Pointer to numslots value string
+ * \param [in] slot      Pointer to slot value string
  */
 void
 x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *slot)
