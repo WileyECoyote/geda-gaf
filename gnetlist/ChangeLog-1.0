@@ -6,6 +6,9 @@
     * tests/common/outputs/drc2/*.net: Remove space from "No errors found" in
       expected outputs.
 
+    * tests/common/outputs/spice-anise/*.net: Remove one of the two trailing
+      whitespaces from write-capacitor and write-resistor outputs.
+
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Reduce the scope of variables in s_rename_destroy_all.
