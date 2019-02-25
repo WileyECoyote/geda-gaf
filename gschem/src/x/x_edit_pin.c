@@ -83,8 +83,9 @@ static WidgetStringData DialogStrings[] = {
   { NULL, NULL, NULL},
 };
 
-/*! \brief Create a pin attribute menu for the Pin Properties Editor dialog
- *  \par Function Description
+/*!
+ * \brief Create a pin attribute menu for the Pin Properties Editor dialog
+ * \par Function Description
  *  This function creates a GedaMenu with the different pin attributes.
  */
 static GtkWidget *create_menu_pin_electricals ( void )
@@ -126,8 +127,10 @@ static GtkWidget *create_menu_pin_electricals ( void )
 
   return(menu);
 }
-/*! \brief Create a pin type menu for the Pin Properties Editor dialog
- *  \par Function Description
+
+/*!
+ * \brief Create a pin type menu for the Pin Properties Editor dialog
+ * \par Function Description
  *  This function creates a GedaMenu with the different pin types.
  */
 static GtkWidget *create_menu_pin_type ( void )
@@ -164,18 +167,19 @@ static GtkWidget *create_menu_pin_type ( void )
   return(menu);
 }
 
-/*! \brief Set the Values in the Pin Properties Editor dialog
- *  \par Function Description
+/*!
+ * \brief Set the Values in the Pin Properties Editor dialog
+ * \par Function Description
  *  Set all widgets in the pin type dialog. Widgets with variables
  *  having a value -1 are disabled.
  *
- *  \param [in]   pin_data   dialog structure
- *  \param [in]   label      pin name
- *  \param [in]   number     the pin number.
- *  \param [in]   sequence   sequence of the pin
- *  \param [in]   elect_type electrical type enumerated code
- *  \param [in]   mech_type  mechanical type enumerated code
- *  \param [in]   node_type  node type - either NET or BUS
+ * \param [in]   pin_data   dialog structure
+ * \param [in]   label      pin name
+ * \param [in]   number     the pin number.
+ * \param [in]   sequence   sequence of the pin
+ * \param [in]   elect_type electrical type enumerated code
+ * \param [in]   mech_type  mechanical type enumerated code
+ * \param [in]   node_type  node type - either NET or BUS
  */
 static void
 x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, const char *number, int sequence,
@@ -233,8 +237,9 @@ static const char *get_pin_entry_string(GtkWidget *entry)
   return string;
 }
 
-/*! \brief Apply function for the Pin Properties Editor Dialog
- *  \par Function Description
+/*!
+ * \brief Apply function for the Pin Properties Editor Dialog
+ * \par Function Description
  *  The function retrieves the values in the Pin Editor dialog
  *  and applies values to selected objects based on dialog settings
  *  and the current selection.
@@ -439,14 +444,15 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   g_list_free (pin_objects);
 }
 
-/*! \brief Set Sensitivities of Widgets on the Pin Properties Editor
- *  \par Function Description:
- *   This function obtains a list of selected pin objects and sets
- * Sensitivities and Tooltip visibilities based on the number of
- * select pins and the state of the switch (check-box buttons).
- * over_rides is the table widget containing all of the over-ride
- * switches and their associated labels and is used to "disable"
- * or enable all switches.
+/*!
+ * \brief Set Sensitivities of Widgets on the Pin Properties Editor
+ * \par Function Description:
+ *  This function obtains a list of selected pin objects and sets
+ *  sensitivities and Tooltip visibilities based on the number of
+ *  select pins and the state of the switch (check-box buttons).
+ *  over_rides is the table widget containing all of the over-ride
+ *  switches and their associated labels and is used to "disable"
+ *  or enable all switches.
  *
  *  \param [in]  Dialog  ptr to the dialog widget
  */
@@ -572,15 +578,16 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
   }
 }
 
-/*! \brief Callback when a Switch is toggled on the Pin Properties Editor
- *  \par Function Description:
- *   This function changes images for switches that are toggled. The image
- * is set to the opposite state, i.e. if ON use OFF image and if OFF use ON
- * image. The function then calls xd_edit_pin_set_sensitivity to update
- * sensitivities of all the applicable widgets on the dialog.
+/*!
+ * \brief Callback when a Switch is toggled on the Pin Properties Editor
+ * \par Function Description:
+ *  This function changes images for switches that are toggled. The image
+ *  is set to the opposite state, i.e. if ON use OFF image and if OFF use ON
+ *  image. The function then calls xd_edit_pin_set_sensitivity to update
+ *  sensitivities of all the applicable widgets on the dialog.
  *
- *  \param [in]  Switch  ptr to the switch, aka toggle-button, widget
- *  \param [in]  Dialog  ptr to the dialog widget
+ * \param [in]  Switch  ptr to the switch, aka toggle-button, widget
+ * \param [in]  Dialog  ptr to the dialog widget
  */
 static void
 xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
@@ -594,13 +601,14 @@ xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
   return;
 }
 
-/*! \brief Handle selection change event for Pin Properties Editor Dialog
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for Pin Properties Editor Dialog
+ * \par Function Description
  *  Updates the Pin Properties dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
  *
- *  \param w_current Pointer to GschemToplevel data structure
- *  \param object    Pointer to a selected Object
+ * \param w_current Pointer to GschemToplevel data structure
+ * \param object    Pointer to a selected Object
  */
 static void
 xd_pin_type_update_selection (GschemToplevel *w_current, GedaObject *object)
@@ -646,14 +654,15 @@ xd_pin_type_update_selection (GschemToplevel *w_current, GedaObject *object)
   }
 }
 
-/*! \brief Response function for the Pin Properties Editor dialog
- *  \par Function Description
+/*!
+ * \brief Response function for the Pin Properties Editor dialog
+ * \par Function Description
  *  This is a response function called when the used selects one
  *  of the action bottons, either CLOSE or APPLY.
  *
- *  \param [in]   Dialog    ptr to the dialog widget
- *  \param [in]   response  int signal indicating which button
- *  \param [in]   pin_data  ptr to THE pin_type_data struction
+ * \param [in]   Dialog    ptr to the dialog widget
+ * \param [in]   response  int signal indicating which button
+ * \param [in]   pin_data  ptr to THE pin_type_data struction
  */
 void
 x_dialog_edit_pin_type_response(GtkWidget     *Dialog,
@@ -699,11 +708,12 @@ static void on_apply_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Creates Action Area for the Pin Type Dialog
- *  \par Function Description
+/*!
+ * \brief Creates Action Area for the Pin Type Dialog
+ * \par Function Description
  *  We create our own "Action Area", because; 1.) GTK's entire
- * concept of an action area is more of a hindrance then it is
- * useful, and 2.) We need access to the apply button widget.
+ *  concept of an action area is more of a hindrance then it is
+ *  useful, and 2.) We need access to the apply button widget.
  */
 static GtkWidget*
 create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
@@ -747,15 +757,15 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
   return action_hbox;
 }
 
-/*! \brief Create the Pin Properties Editor Dialog
- *  \par Function Description
+/*!
+ * \brief Create the Pin Properties Editor Dialog
+ * \par Function Description
  *  This function creates the modaless Pin Properties Dialog, then
  *  connects callback handlers. Memory for a pin_type_data is allocated
  *  and assigned values with pointers to the input widgets, and the data
  *  structure is attached to the dialog. Sperately, a pointer to the
  *  second table containing the over-ride switch/check bottom and their
  *  associated labels is attach to the dialog.
- *
  */
 GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
 {
@@ -1015,8 +1025,9 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   return ThisDialog;
 }
 
-/*! \brief Pin Properties Editor Dialog - Main Entry
- *  \par Function Description
+/*!
+ * \brief Pin Properties Editor Dialog - Main Entry
+ * \par Function Description
  *  This function initiates or activates the Pin Properties Dialog
  *  for manipulating the properties of pins objects.
  */

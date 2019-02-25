@@ -1,3 +1,7 @@
+2019-02-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_pin.c: Reformat function documentation.
+
 2019-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update X-Language Afrikaans.
