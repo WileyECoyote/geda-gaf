@@ -37,7 +37,7 @@ BEGIN
 	PORT MAP (	1 => ten,
 			2 => nine);
  
-  R1 : ENTITY VARIABLE_RESISTOR
+  R1 : ENTITY RESISTOR
 	GENERIC MAP (
 			value => 5k)
 	PORT MAP (	1 => nine,

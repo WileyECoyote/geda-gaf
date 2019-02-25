@@ -44,7 +44,7 @@ modelEquations={
 lm317[value->LM317]["U2"],
 polarized_capacitor[value->1uf]["C4"],
 polarized_capacitor[value->22uF]["C3"],
-variable_resistor[value->5k]["R1"],
+resistor[value->5k]["R1"],
 polarized_capacitor[value->0.1uF]["C2"],
 resistor[value->220]["R2"],
 polarized_capacitor[value->2200uF]["C1"],

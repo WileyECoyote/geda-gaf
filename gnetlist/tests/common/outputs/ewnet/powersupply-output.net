@@ -255,7 +255,7 @@
 		)
 	)
 	(instance "unknown" "R1"
-		(device "VARIABLE_RESISTOR")
+		(device "RESISTOR")
 		(value "5k")
 		(gateswap "0")
 		(pinswap "0")

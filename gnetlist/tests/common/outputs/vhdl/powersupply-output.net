@@ -31,9 +31,6 @@ ARCHITECTURE netlist OF not found IS
     COMPONENT RESISTOR
     END COMPONENT ;
 
-    COMPONENT VARIABLE_RESISTOR
-    END COMPONENT ;
-
     COMPONENT LM317
     END COMPONENT ;
 
@@ -66,7 +63,7 @@ BEGIN
         1 => ten,
         2 => nine);
 
-    R1 : VARIABLE_RESISTOR
+    R1 : RESISTOR
     PORT MAP (
         1 => nine,
         2 => nine,
