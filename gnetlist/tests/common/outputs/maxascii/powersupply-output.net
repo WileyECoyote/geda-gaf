@@ -1,12 +1,12 @@
 *OrCAD
 *START
 *COMP U2	"TO-220"
-*COMP C4	"unknown"
-*COMP C3	"unknown"
+*COMP C4	"RADIAL-CAN-X00"
+*COMP C3	"RADIAL-CAN-X00"
 *COMP R1	"unknown"
-*COMP C2	"unknown"
+*COMP C2	"RADIAL-CAN-X00"
 *COMP R2	"0402"
-*COMP C1	"unknown"
+*COMP C1	"RADIAL-CAN-X00"
 *COMP S1	"none"
 *COMP CONN1	"3WIRES"
 *COMP T1	"none"

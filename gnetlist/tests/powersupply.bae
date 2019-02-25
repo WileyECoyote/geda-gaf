@@ -1,12 +1,12 @@
 LAYOUT board;
 PARTS
     U2 : TO-220;
-    C4 : unknown;
-    C3 : unknown;
+    C4 : RADIAL-CAN-X00;
+    C3 : RADIAL-CAN-X00;
     R1 : unknown;
-    C2 : unknown;
+    C2 : RADIAL-CAN-X00;
     R2 : 0402;
-    C1 : unknown;
+    C1 : RADIAL-CAN-X00;
     S1 : none;
     CONN1 : 3WIRES;
     T1 : none;

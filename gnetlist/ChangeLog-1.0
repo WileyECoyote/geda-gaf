@@ -1,7 +1,7 @@
 2019-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/outputs/*/powersupply-output.net: Update output to reconcile
-      R1 device VARIABLE_RESISTOR -> RESISTOR.
+      R1 device VARIABLE_RESISTOR -> RESISTOR, and C? footprint=RADIAL-CAN-X00.
 
 2019-02-06 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1,10 +1,10 @@
 Part TO-220 { Name U2 }
-Part unknown { Name C4 }
-Part unknown { Name C3 }
+Part RADIAL-CAN-X00 { Name C4 }
+Part RADIAL-CAN-X00 { Name C3 }
 Part unknown { Name R1 }
-Part unknown { Name C2 }
+Part RADIAL-CAN-X00 { Name C2 }
 Part 0402 { Name R2 }
-Part unknown { Name C1 }
+Part RADIAL-CAN-X00 { Name C1 }
 Part none { Name S1 }
 Part 3WIRES { Name CONN1 }
 Part none { Name T1 }
