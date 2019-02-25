@@ -18,6 +18,9 @@
     * passive/transformer/pwrtransformer-1.sym: Rename file and add description
       attribute.
 
+    * passive/transformer/transformer-6.sym: Add description attribute, update
+      attribute positions.
+
 2019-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/osc_coil_aircore-1.sym: Add description attribute, update
