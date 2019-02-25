@@ -4,6 +4,8 @@
 
     * src/x/x_edit_slot.c: Reformat function documentation.
 
+    * src/x/x_toolbars.c: Update function documentation.
+
 2019-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update X-Language Afrikaans.

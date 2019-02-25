@@ -1894,7 +1894,8 @@ x_toolbar_display_both(GtkWidget *widget, GschemToplevel *w_current)
 /*!
  * \brief View Toolbar Icons & Text Side by Side
  * \par Function Description
- *
+ *  Callback function for the View/Menu/Toolbars/Both Horizontal
+ *  radio menu item.
  */
 void
 x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
