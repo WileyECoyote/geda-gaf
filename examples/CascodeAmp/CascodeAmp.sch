@@ -103,12 +103,28 @@ N 32500 51500 32500 51000 4
 T 32500 51600 21 10 1 1 0 0 1
 netname=Vin
 }
+C 27500 58500 1 0 0 spice-model-1.sym
+{
+T 27500 59350 5 10 0 1 0 0 1
+device=model
+T 27600 59100 5 10 1 1 0 0 1
+refdes=A1
+T 28000 58600 5 10 1 1 0 0 1
+file=./models/bjt.lib
+}
 C 27500 57600 1 0 0 spice-include-1.sym
 {
 T 27600 58000 5 10 1 1 0 0 1
 refdes=A2
 T 28000 57700 5 10 1 1 0 0 1
 file=./Simulation.cmd
+}
+C 27500 56700 1 0 0 spice-directive-1.sym
+{
+T 27600 57100 5 10 1 1 0 0 1
+refdes=A3
+T 27500 56800 5 10 1 1 0 0 1
+value=.OPTIONS TEMP=27
 }
 C 31200 57100 1 0 0 vdc-1.sym
 {
@@ -133,13 +149,6 @@ T 31400 50550 5 10 0 1 0 0 1
 device=vsin
 T 31400 50150 5 10 0 1 0 0 1
 footprint=none
-}
-C 27500 56700 1 0 0 spice-directive-1.sym
-{
-T 27600 57100 5 10 1 1 0 0 1
-refdes=A3
-T 27500 56800 5 10 1 1 0 0 1
-value=.OPTIONS TEMP=27
 }
 G 27900 52500 4100 3400 0 0 0
 img/2n5245_iv.png
@@ -246,7 +255,7 @@ device=POLARIZED_CAPACITOR
 T 32700 58400 5 10 1 1 0 6 1
 refdes=C1
 T 33050 57650 5 10 0 1 0 0 1
-symversion=0.1
+symversion=0.2
 T 32700 58200 5 10 1 1 0 6 1
 value=100uF
 }
@@ -358,15 +367,6 @@ T 39300 55300 5 10 0 1 0 0 1
 description=NPN Transistor,planar epitaxial,400mA
 T 39300 54100 5 10 0 0 0 0 1
 model-name=2N3866
-}
-C 27500 58500 1 0 0 spice-model-1.sym
-{
-T 27500 59350 5 10 0 1 0 0 1
-device=model
-T 27600 59100 5 10 1 1 0 0 1
-refdes=A1
-T 28000 58600 5 10 1 1 0 0 1
-file=./models/bjt.lib
 }
 N 34000 54300 34900 54300 4
 {

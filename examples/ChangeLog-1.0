@@ -3,6 +3,9 @@
     * CascodeAmp/bom/CascodeAmp-bom.csv: Update RADIAL-CAN-X00 footprint
       and tests output.
 
+    * CascodeAmp/CascodeAmp.sch: Resequence symbol contents and update C1
+      symversion=0.2.
+
     * lightning_detector/lightning_detector-geda.???: Update R4 device value
       and tests outputs.
 
