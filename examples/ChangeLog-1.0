@@ -6,6 +6,9 @@
     * CascodeAmp/CascodeAmp.sch: Resequence symbol contents and update C1
       symversion=0.2.
 
+    * CascodeAmp/tests/runtest.sh: Remove attempt to create soft link to print
+      color maps in libgeda/ the maps were relocated to libgedacolor.
+
     * lightning_detector/lightning_detector-geda.???: Update R4 device value
       and tests outputs.
 
