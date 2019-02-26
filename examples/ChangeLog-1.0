@@ -7,13 +7,16 @@
       symversion=0.2.
 
     * CascodeAmp/tests/runtest.sh: Remove attempt to create soft link to print
-      color maps in libgeda/ the maps were relocated to libgedacolor.
+      color maps in libgeda the maps were relocated to libgedacolor.
 
     * lightning_detector/lightning_detector-geda.???: Update R4 device value
       and tests outputs.
 
     * lightning_detector/lightning_detector.sch: Cleanup attribute locations
       and C[4,6] symversion=0.2.
+
+    * lightning_detector/tests/runtest.sh: Remove attempt to create soft link
+      to print color maps in libgeda.
 
 2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
