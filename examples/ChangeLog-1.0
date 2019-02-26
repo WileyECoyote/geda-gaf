@@ -12,6 +12,9 @@
     * lightning_detector/lightning_detector-geda.???: Update R4 device value
       and tests outputs.
 
+    * lightning_detector/lightning_detector.sch: Cleanup attribute locations
+      and C[4,6] symversion=0.2.
+
 2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/sym/.sym: Set dist-license=GPLv2.
