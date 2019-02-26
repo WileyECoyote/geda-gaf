@@ -3,7 +3,8 @@
     * CascodeAmp/bom/CascodeAmp-bom.csv: Update RADIAL-CAN-X00 footprint
       and tests output.
 
-    * lightning_detector/lightning_detector-geda.???: Update R4 device value.
+    * lightning_detector/lightning_detector-geda.???: Update R4 device value
+      and tests outputs.
 
 2018-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
