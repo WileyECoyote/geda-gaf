@@ -1,3 +1,7 @@
+2019-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/powersupply.tango: Update test reference output with RADIAL-CAN-X00.
+
 2019-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/outputs/*/powersupply-output.net: Update output to reconcile
