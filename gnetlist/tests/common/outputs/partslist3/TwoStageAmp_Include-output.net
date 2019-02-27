@@ -2,8 +2,6 @@
 ..device	value	footprint	quantity	refdes
 CAPACITOR	1pF	0402	2	CE1 CE2
 CAPACITOR	2.2uF	0402	3	C1 C2 Cout
-directive	.options TEMP=25	unknown	1	A3
-model	unknown	unknown	1	A1
 NPN_TRANSISTOR	unknown	unknown	2	Q1 Q2
 RESISTOR	1	0402	1	R8
 RESISTOR	10	0402	1	R5

@@ -2,7 +2,6 @@
 ..device	value	footprint	quantity	refdes
 CAPACITOR	20p	0402	2	Cm Cp
 LVD	unknown	unknown	1	X1
-model	unknown	unknown	1	A1
 PMOS_TRANSISTOR	w=10u	PMOS_100000X10000	1	M1
 RESISTOR	1k	0402	1	Rt
 RESISTOR	1meg	0402	1	Rlp
