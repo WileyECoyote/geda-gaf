@@ -3,6 +3,9 @@
     * scheme/gnet-bom.scm: Revise no-bom-package? to include packages with
       directive, include, and model devices as no-bom-packages.
 
+    * scheme/partslist-common.scm: Revise get-parts-table to exclude packages
+      with directive and model device attributes.
+
     * tests/common/outputs/bom/*.net: Update JD and TwoStageAmp reference files
       to omit directive, include, and model content.
 
