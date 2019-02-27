@@ -380,8 +380,6 @@ s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
 
     if (nl_current->component_uref) {
 
-      pl_current = nl_current->cpins;
-
       if (strcmp(nl_current->component_uref, wanted_uref) == 0) {
 
         if (nl_current->cpins) {
