@@ -1,5 +1,4 @@
 refdes	refdes	value	device
-A1	A1	unknown	model
 Cm	Cm	20p	CAPACITOR
 Cp	Cp	20p	CAPACITOR
 Rlp	Rlp	1meg	RESISTOR
