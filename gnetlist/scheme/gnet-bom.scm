@@ -122,7 +122,10 @@ If ATTRIBS is #f, reads the list of attributes standard input."
   "Outputs a tab separated list of attribute values for each attribute name
 in ATTRIBLIST for components in LS not having an attribute \"nobom=1\""
   (define (no-bom-package? package)
-    (string=? "1" (get-package-attribute package "nobom")))
+    (or (string=? (get-device package) "directive")
+        (string=? (get-device package) "include")
+        (string=? (get-device package) "model")
+        (string=? "1" (get-package-attribute package "nobom"))))
 
   (define (component-attrib-values package attriblist)
     (map (lambda (attrib)
