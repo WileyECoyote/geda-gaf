@@ -1,6 +1,5 @@
 .START
 ..refdes	device	value	footprint	quantity
-A1	model	unknown	unknown	1
 Cm	CAPACITOR	20p	0402	1
 Cp	CAPACITOR	20p	0402	1
 M1	PMOS_TRANSISTOR	w=10u	PMOS_100000X10000	1

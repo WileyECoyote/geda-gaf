@@ -9,6 +9,11 @@
     * tests/common/outputs/bom/*.net: Update JD and TwoStageAmp reference files
       to omit directive, include, and model content.
 
+    * tests/common/outputs: Update JD and TwoStageAmp reference files to omit
+      directive and model content:
+
+          * tests/common/outputs/partslist1/[JD*,TwoStageAmp*].net
+
 2019-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/powersupply.tango: Update test reference output with RADIAL-CAN-X00.

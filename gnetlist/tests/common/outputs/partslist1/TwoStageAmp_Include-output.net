@@ -1,7 +1,5 @@
 .START
 ..refdes	device	value	footprint	quantity
-A1	model	unknown	unknown	1
-A3	directive	.options TEMP=25	unknown	1
 C1	CAPACITOR	2.2uF	0402	1
 C2	CAPACITOR	2.2uF	0402	1
 CE1	CAPACITOR	1pF	0402	1
