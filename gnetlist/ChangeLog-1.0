@@ -6,6 +6,8 @@
     * scheme/partslist-common.scm: Revise get-parts-table to exclude packages
       with directive and model device attributes.
 
+    * src/s_rename.c: Update function documentation.
+
     * tests/common/outputs/bom/*.net: Update JD and TwoStageAmp reference files
       to omit directive, include, and model content.
 

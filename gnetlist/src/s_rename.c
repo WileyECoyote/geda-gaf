@@ -86,9 +86,9 @@ void s_rename_init(void)
 }
 
 /*!
- * \brief Destroy all Rename Records and release resources
+ * \brief Destroy all Rename Records and Release Resources
  * \par Function Description
- *
+ *  Destroys all rename records in first_set and then the rename hash table.
  */
 void s_rename_destroy_all(void)
 {
@@ -96,6 +96,7 @@ void s_rename_destroy_all(void)
 
     RENAME *temp;
     void   *to_free;
+
     for (temp = first_set->first_rename; temp;) {
       GEDA_FREE(temp->src);
       GEDA_FREE(temp->dest);
