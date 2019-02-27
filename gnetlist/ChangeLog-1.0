@@ -13,6 +13,7 @@
       directive and model content:
 
           * tests/common/outputs/partslist1/[JD*,TwoStageAmp*].net
+          * tests/common/outputs/partslist2/[JD*,TwoStageAmp*].net
 
 2019-02-26 Wiley E. Hill <wileyhill@gmail.com>
 

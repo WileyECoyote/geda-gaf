@@ -5,8 +5,6 @@ CE2	CAPACITOR	1pF	0402	1
 C1	CAPACITOR	2.2uF	0402	1
 C2	CAPACITOR	2.2uF	0402	1
 Cout	CAPACITOR	2.2uF	0402	1
-A3	directive	.options TEMP=25	unknown	1
-A1	model	unknown	unknown	1
 Q1	NPN_TRANSISTOR	unknown	unknown	1
 Q2	NPN_TRANSISTOR	unknown	unknown	1
 R8	RESISTOR	1	0402	1
