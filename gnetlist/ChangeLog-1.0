@@ -1,3 +1,8 @@
+2019-02-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gnetlist_defines.h: Add new header file with unique name and
+      include gnetlist specific defines from libgeda header file.
+
 2019-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-bom.scm: Revise no-bom-package? to include packages with

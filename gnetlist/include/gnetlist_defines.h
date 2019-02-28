@@ -1,12 +1,12 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*
- * file: gnetlist.h
+ * file: gnetlist_defines.h
  *
  * gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlister
  *
- * Copyright (C) 2014 Wiley Edward Hill
- * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2019 Wiley Edward Hill
+ * Copyright (C) 2019 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,14 +24,18 @@
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
  *
  *  Contributing Author: Wiley Edward Hill
- *  Date Contributed: July, 25, 2014
+ *  Date Contributed: February, 28, 2019
  */
 
-#define WITHOUT_GDK_PIX_BUFFER 1
-/*! \cond */
-#include <libgeda/libgeda.h>
-/*! \endcond */
+/* gnetlist: hierarchy_*_order */
+#define APPEND          0
+#define PREPEND         1
 
-#include "../include/gnetlist_defines.h"
-#include "../include/globals.h"
-#include "../include/prototype.h"
+/* gnetlist: netlist_mode */
+#define gEDA            0
+#define SPICE           1
+#define TANGO           2
+
+/* gnetlist: net-naming-priority */
+#define NETATTRIB_ATTRIBUTE 0
+#define NETNAME_ATTRIBUTE   1

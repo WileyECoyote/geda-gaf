@@ -233,19 +233,6 @@
 #define HORIZONTAL      1
 #define VERTICAL        2
 
-/* gnetlist: hierarchy_*_order */
-#define APPEND          0
-#define PREPEND         1
-
-/* gnetlist: netlist_mode */
-#define gEDA            0
-#define SPICE           1
-#define TANGO           2
-
-/* gnetlist: net-naming-priority */
-#define NETATTRIB_ATTRIBUTE 0
-#define NETNAME_ATTRIBUTE   1
-
 /* gschcheck: Error types */
 #define NO_ERR                  0
 #define FLOAT_NET               1
