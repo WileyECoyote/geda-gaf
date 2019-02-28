@@ -8,9 +8,6 @@ RE2	RESISTOR	100	0402
 RC1	RESISTOR	3.3K	0402
 Q2	NPN_TRANSISTOR	unknown	SOT23
 C1	CAPACITOR	2.2uF	0402
-A3	directive	.options TEMP=25	unknown
-A2	include	unknown	unknown
-A1	model	unknown	unknown
 VCC	VOLTAGE_SOURCE	DC 15V	none
 Vinput	vsin	DC 1.6V AC 10MV SIN(0 1MV 1KHZ)	none
 CE1	CAPACITOR	1pF	0402
