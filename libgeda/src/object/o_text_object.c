@@ -1148,7 +1148,7 @@ double geda_text_object_shortest_distance (GedaObject *object, int x, int y, int
 }
 
 /*!
- * \brief Compare the test of two GedaText objects.
+ * \brief Compare the text of two GedaText objects
  *  This function will compare the text of \a object1 with the text of
  *  object \a object2 after validating that both objects are GedaText
  *  objects. This function can be used as a GCompareFunc type.
