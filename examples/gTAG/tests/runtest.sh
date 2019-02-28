@@ -215,7 +215,6 @@ do_setup_geda_environment ()
 
   if [ -d $SRCDIR/../../libgeda/etc ] ; then
      cd $SRCDIR/../../libgeda/etc
-     ln -s $PWD/print-* $GEDADATARC/ 2>/dev/null
      ln -s $PWD/system-gafrc $GEDADATARC/ 2>/dev/null
      cd $CWDSAVE
   else
@@ -233,6 +232,8 @@ do_setup_geda_environment ()
     echo "Error: not in the right place, cannot find gnetlist scheme"
     exit 0
   fi
+
+  # See libgedacolor in gschem/tests/runtest.sh if color maps are needed
 
   # Make links to gnetlist scheme files in the source directory
   if [ -d $SRCDIR/../../libgeda/scheme ] ; then
