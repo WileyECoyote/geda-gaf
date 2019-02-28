@@ -3,6 +3,9 @@
     * CascodeAmp/bom/CascodeAmp-bom.csv: Update BOM and reference; remove
       simulation artifacts from BOM content.
 
+    * MSA-2643/tests/runtest.sh: Remove attempt to create soft link to print
+      color maps in libgeda the maps were relocated to libgedacolor.
+
 2019-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/CascodeAmp-geda.net: Update output sequence, which change
