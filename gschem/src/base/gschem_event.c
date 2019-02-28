@@ -85,8 +85,8 @@ static void gschem_event_finalize( GObject *object )
  *  \par Function Description
  *  Type instance initialiser for GschemEvent.
  *
- *  \param [in]  instance   The GschemEvent we are initialising.
- *  \param [in]  g_class    The GschemEventClass we are initialising.
+ *  \param [in]  instance   The GschemEvent we are initializing.
+ *  \param [in]  g_class    The GschemEventClass we are initializing.
  */
 static void gschem_event_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -113,7 +113,7 @@ static void gschem_event_instance_init(GTypeInstance *instance, void *g_class)
  *  Type class initialiser for GschemEvent. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class      The GschemEventClass we are initialising
+ *  \param [in]  g_class      The GschemEventClass we are initializing
  *  \param [in]  g_class_data Not used
  */
 static void gschem_event_class_init( void *g_class, void *g_class_data )

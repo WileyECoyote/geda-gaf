@@ -527,7 +527,7 @@ static void gschem_dialog_get_property (GObject *object, unsigned int property_i
  *  Type class initializer for GschemDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
- * \param [in] class       The GschemDialogClass we are initialising
+ * \param [in] class       The GschemDialogClass we are initializing
  * \param [in] class_data  (unused)
  */
 static void gschem_dialog_class_init (void *class, void *class_data)
@@ -628,7 +628,7 @@ static void gschem_dialog_class_init (void *class, void *class_data)
  *  GedaType instance initializer for an Object, initializes a new empty
  *  Object by setting the head and tail markers to the GedaType value.
  *
- * \param [in]  instance  The Object being initialising.
+ * \param [in]  instance  The Object being initializing.
  * \param [in]  g_class   The class of the type the instance is created for.
  */
 static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)

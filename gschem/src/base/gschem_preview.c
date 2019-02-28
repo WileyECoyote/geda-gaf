@@ -508,7 +508,7 @@ static void preview_finalize (GObject *self)
  *  Type class initializer GschemPreview. We override parents virtual
  *  class methods as needed and register GObject signals.
  *
- * \param [in]  g_class     The GschemPreviewClass we are initialising
+ * \param [in]  g_class     The GschemPreviewClass we are initializing
  * \param [in]  class_data  GschemPreview structure associated with the class
  */
 static void preview_class_init (void *g_class, void *class_data)
