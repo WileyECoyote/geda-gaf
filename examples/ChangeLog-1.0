@@ -8,6 +8,12 @@
 
     * TwoStageAmp/TwoStageAmp.sch: Clean schematic; align stuff to grid.
 
+    * TwoStageAmp/bom/TwoStageAmp-bom.csv: Update BOM and reference; remove
+      simulation artifacts from BOM content.
+
+    * TwoStageAmp/tests/runtest.sh: Remove attempt to create soft link to
+      print color maps in libgeda.
+
 2019-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/CascodeAmp-geda.net: Update output sequence, which change
