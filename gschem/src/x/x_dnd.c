@@ -920,11 +920,11 @@ x_dnd_drag_drop (GtkWidget *widget, GdkDragContext *context, int x, int y, unsig
  *  32 bit units.
  */
 static void
-x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext *context,
+x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext   *context,
                                         GtkSelectionData *selection_data,
-                                        unsigned int target_type,
-                                        unsigned int time,
-                                        GschemToplevel *w_current)
+                                        unsigned int      target_type,
+                                        unsigned int      time,
+                                        GschemToplevel   *w_current)
 {
   const GschemDndDataDef *datadef;
 
@@ -1128,17 +1128,17 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
       GdkDragContext *context;
       GtkTargetList  *target_list;
 
-      target_list    = gtk_target_list_new (dnd_target_list, dnd_ntargets);
+      target_list = gtk_target_list_new (dnd_target_list, dnd_ntargets);
 
       /*! \note We pass the event we got when the button was pressed, which
        *  was saved for us by x_event_pressed in w_current, not the event
        *  Crossing that was passed to us */
 
-      context  = gtk_drag_begin(DrawingArea, /* or widget */
-                                target_list,
-                                w_current->drag_action,
-                                GDK_BUTTON_PRIMARY,
-                                w_current->drag_event);
+      context = gtk_drag_begin(DrawingArea, /* or widget */
+                               target_list,
+                               w_current->drag_action,
+                               GDK_BUTTON_PRIMARY,
+                               w_current->drag_event);
       gtk_target_list_unref (target_list);
       gtk_drag_set_icon_stock(context, "geda-component", 0, 0);
     }
