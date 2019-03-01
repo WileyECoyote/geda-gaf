@@ -1,3 +1,8 @@
+2019-03-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/Makefile.am: Suppress output to console when generating HTML
+      man page.
+
 2019-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_pin.c: Reformat function documentation.
