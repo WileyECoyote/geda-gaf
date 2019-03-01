@@ -104,7 +104,7 @@ GList *geda_object_list_copy_all (const GList *src_list, GList *dest_list)
         geda_attrib_object_attach(copied_to, dst_object, FALSE);
 
         /* handle slot= attribute, it's a special case */
-        if (!g_ascii_strncasecmp (dst_object->text->string, "slot=", 5))
+        if (!geda_strncmpi (dst_object->text->string, "slot=", 5))
         {
           geda_struct_slot_update_object (copied_to);
         }

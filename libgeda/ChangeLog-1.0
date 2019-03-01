@@ -1,3 +1,7 @@
+2019-03-01 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_list.c: Replace g_ascii_strncasecmp with geda_strncmpi.
+
 2019-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove gnetlist specific defines, these
