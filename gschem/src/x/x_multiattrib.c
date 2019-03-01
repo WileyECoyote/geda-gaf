@@ -2559,7 +2559,6 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, GedaObject *object)
 static GList *
 lone_attributes_to_model_rows (Multiattrib *ThisDialog)
 {
-  //GschemToplevel *w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
   GList *o_iter;
   GList *model_rows = NULL;
 
