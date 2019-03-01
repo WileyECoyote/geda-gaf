@@ -46,7 +46,7 @@
  *  @{ \par This group contains core Routines for Thread.
 */
 
-/*! Non-zero if the gschem threads has been initialised. */
+/*! Non-zero if the gschem threads has been initialized. */
 static volatile GedaType init_called = 0;
 
 /* Anonymous Static GMutex, seems more portable then GSTATIC_MUTEXT*/
