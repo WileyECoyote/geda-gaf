@@ -131,7 +131,6 @@ show_help () {
 
   if [ -d $SRCDIR/../../libgeda/etc ] ; then
      cd $SRCDIR/../../libgeda/etc
-     ln -s $PWD/print-* $GEDADATARC/
      ln -s $PWD/system-gafrc $GEDADATARC/
      cd $CWDSAVE
   else
