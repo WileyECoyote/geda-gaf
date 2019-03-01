@@ -349,10 +349,10 @@ get_bus_object_data(GedaObject *object)
   int   y2          = object->line->y[1];
 
   char *bus_name    = object->bus->bus_name;
-  int   direction   = object->bus->bus_ripper_direction;
+  int   direction   = object->bus->ripper_direction;
   int   line_width  = object->line_options->line_width;
 
-  object->bus->bus_ripper_direction = direction;
+  object->bus->ripper_direction = direction;
 
   if (!bus_name)
     bus_name = "";
@@ -2593,7 +2593,7 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
     object->bus->bus_name  = geda_utility_string_strdup(object->name);
   }
 
-  object->bus->bus_ripper_direction = geda_bus_object_get_direction(object);
+  object->bus->ripper_direction = geda_bus_object_get_direction(object);
 
   add_floating_object(object);
 

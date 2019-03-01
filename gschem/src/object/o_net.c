@@ -843,7 +843,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       /* now deal with the found connection */
       if (bus_orientation == HORIZONTAL && net_orientation == VERTICAL) {
 
-        sign = bus_object->bus_ripper_direction;
+        sign = bus_object->ripper_direction;
         if (!sign) {
           if (line_object->x[0] < line_object->x[1]) {
             first = 0;
@@ -865,7 +865,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           else {
             sign = -1;
           }
-          bus_object->bus_ripper_direction = sign;
+          bus_object->ripper_direction = sign;
         }
 
         /* printf("hor sign: %d\n", sign); */
@@ -953,7 +953,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
       }
       else if (bus_orientation == VERTICAL && net_orientation == HORIZONTAL) {
 
-        sign = bus_object->bus_ripper_direction;
+        sign = bus_object->ripper_direction;
 
         if (!sign) {
           if (line_object->y[0] < line_object->y[1]) {
@@ -976,7 +976,7 @@ int o_net_add_busrippers(GschemToplevel *w_current,
           else {
             sign = -1;
           }
-          bus_object->bus_ripper_direction = sign;
+          bus_object->ripper_direction = sign;
         }
         /* printf("ver sign: %d\n", sign); */
 

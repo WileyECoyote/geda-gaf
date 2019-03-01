@@ -146,7 +146,7 @@ int geda_struct_conn_remove_other (GedaObject *other_object, GedaObject *to_remo
       /* If type BUS and no other connections then reset ripper direction */
       if (other_object->type == OBJ_BUS) {
         if (!g_list_length(other_object->conn_list)) {
-          other_object->bus->bus_ripper_direction = 0;
+          other_object->bus->ripper_direction = 0;
         }
       }
 

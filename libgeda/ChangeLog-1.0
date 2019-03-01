@@ -1,5 +1,9 @@
 2019-03-01 Wiley E. Hill <wileyhill@gmail.com
 
+    * include/libgeda/geda_bus.h: Rename member bus_ripper_direction ->
+      ripper_direction because it is shorter and "ripper" only applies
+      to a bus.
+
     * src/object/o_list.c: Replace g_ascii_strncasecmp with geda_strncmpi.
 
 2019-02-28 Wiley E. Hill <wileyhill@gmail.com>

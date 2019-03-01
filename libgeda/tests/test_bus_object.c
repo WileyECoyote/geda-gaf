@@ -265,7 +265,7 @@ check_accessors (void)
     /* Toggle the direction */
     geda_bus_object_set_ripper_direction(object0, !value);
 
-    if (object0->bus->bus_ripper_direction == value) {
+    if (object0->bus->ripper_direction == value) {
       fprintf(stderr, "FAILED: (O051701) geda_bus_object_set_ripper_direction\n");
       fail++;
     }

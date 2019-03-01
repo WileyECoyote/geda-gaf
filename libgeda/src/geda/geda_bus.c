@@ -69,7 +69,7 @@ static void geda_bus_instance_init(GTypeInstance *instance, void *g_class)
   GedaLine   *line           = &bus->parent_instance;
   GedaObject *object         = &line->parent_instance;
 
-  bus->bus_ripper_direction  = 0;
+  bus->ripper_direction  = 0;
 
   bus->bus_name              = NULL;
 
@@ -115,7 +115,7 @@ static void get_property (GObject *object, unsigned int  prop_id,
   switch (prop_id)
   {
     case PROP_RIPPER_DIR:
-      g_value_set_int (value, bus->bus_ripper_direction);
+      g_value_set_int (value, bus->ripper_direction);
       break;
 
     default:
@@ -134,7 +134,7 @@ set_property (GObject *object, unsigned int  prop_id,
   switch (prop_id)
   {
     case PROP_RIPPER_DIR:
-      bus->bus_ripper_direction = g_value_get_int (value);
+      bus->ripper_direction = g_value_get_int (value);
       break;
 
     default:
@@ -258,7 +258,7 @@ bool is_a_geda_bus (const GedaBus *bus)
  */
 int geda_bus_get_ripper_direction (const GedaBus *bus) {
   if (is_a_geda_bus(bus)) {
-    return bus->bus_ripper_direction;
+    return bus->ripper_direction;
   }
   return -0;
 }
@@ -333,7 +333,7 @@ int geda_bus_get_y1 (const GedaBus *bus) {
  */
 void geda_bus_set_ripper_direction (GedaBus *bus, int dir) {
   if (is_a_geda_bus(bus)) {
-    bus->bus_ripper_direction = dir;
+    bus->ripper_direction = dir;
   }
 }
 

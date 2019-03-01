@@ -268,7 +268,7 @@ extern "C" {
           int    geda_bus_object_get_y2               (const GedaObject *object) WARN_UNUSED;
          void    geda_bus_object_mirror               (GedaObject *object, int center_x, int center_y);
          void    geda_bus_object_modify               (GedaObject *object, int x, int y, int whichone);
-   GedaObject   *geda_bus_object_new                  (int color, int x1, int y1, int x2, int y2, int bus_ripper_direction);
+   GedaObject   *geda_bus_object_new                  (int color, int x1, int y1, int x2, int y2, int ripper_direction);
           int    geda_bus_object_orientation          (const GedaObject *object);
          void    geda_bus_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
          void    geda_bus_object_set_ripper_direction (GedaObject *object, int direction);

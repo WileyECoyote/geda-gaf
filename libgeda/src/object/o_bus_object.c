@@ -187,7 +187,7 @@ GedaObject *geda_bus_object_copy(const GedaObject *o_current)
     new_obj = geda_bus_object_new (o_current->color,
                                    o_current->line->x[0], o_current->line->y[0],
                                    o_current->line->x[1], o_current->line->y[1],
-                                   o_current->bus->bus_ripper_direction);
+                                   o_current->bus->ripper_direction);
 
     new_obj->line_options->line_width = *o_current->bus->line_width;
 
@@ -246,7 +246,7 @@ int geda_bus_object_get_direction(const GedaObject *object)
 int geda_bus_object_get_ripper_direction (const GedaObject *object)
 {
   if (GEDA_IS_BUS(object)) {
-    return object->bus->bus_ripper_direction;
+    return object->bus->ripper_direction;
   }
   geda_bus_object_error(__func__, object);
   return 0;
@@ -441,7 +441,7 @@ GedaObject *geda_bus_object_new(int color, int x1, int y1, int x2, int y2, int d
   new_obj->line->x[1] = x2;
   new_obj->line->y[1] = y2;
 
-  bus->bus_ripper_direction = dir;
+  bus->ripper_direction = dir;
 
   return new_obj;
 }
@@ -650,7 +650,7 @@ void geda_bus_object_rotate(GedaObject *object, int center_x,
 void geda_bus_object_set_ripper_direction (GedaObject *object, int direction)
 {
   if (GEDA_IS_BUS(object)) {
-    object->bus->bus_ripper_direction = direction;
+    object->bus->ripper_direction = direction;
     object->bounds_valid = FALSE;
   }
   else {
@@ -768,7 +768,7 @@ char *geda_bus_object_to_buffer(GedaObject *object)
 
     buf = geda_sprintf("%c %d %d %d %d %d %d", object->type,
     x1, y1, x2, y2, object->color,
-    object->bus->bus_ripper_direction);
+    object->bus->ripper_direction);
     return(buf);
   }
   geda_bus_object_error(__func__, object);

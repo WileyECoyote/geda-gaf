@@ -57,7 +57,7 @@ struct _GedaBus {
 
   /* controls which direction bus rippers goes, is either 0 for un-inited, */
   /* 1 for right, -1 for left (horizontal bus)  1 for up, -1 for down (vertial bus) */
-  int   bus_ripper_direction;
+  int   ripper_direction;
 
   char *bus_name;
 };

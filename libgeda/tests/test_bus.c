@@ -277,7 +277,7 @@ check_accessors ()
     /* Toggle the direction */
     geda_bus_set_ripper_direction(bus, !value);
 
-    if (bus->bus_ripper_direction == value) {
+    if (bus->ripper_direction == value) {
       fprintf(stderr, "FAILED: geda_bus_set_ripper_direction\n");
       fail++;
     }
