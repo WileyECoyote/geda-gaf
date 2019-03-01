@@ -2257,7 +2257,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   EDA_SWITCH(attrib_vbox, ShowInherited, 0, FALSE);
 
   /* Setup callback for Switch widget */
-  GEDA_CALLBACK_SWITCH (ShowInherited, multiattrib_show_inherited_toggled, ThisDialog)
+  GEDA_CALLBACK_SWITCH (ShowInherited, multiattrib_show_inherited_toggled, ThisDialog);
 
   /* Store pointer to widget in ThisDialog */
   ThisDialog->ShowInheritedSwitch = ShowInheritedSwitch;
