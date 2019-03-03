@@ -220,45 +220,65 @@ msgstr "قم بإنشاء كائن مربع جديد."
 msgid "Create a new bus object."
 msgstr "إنشاء كائن ناقل جديد."
 
+# Create a new circle object
+# qum bi'iinsha' kayin dayirat jadid
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "قم بإنشاء كائن دائرة جديد."
 
+# Create a new complex object
+# 'iinsha' kayin mueaqad jadid
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "إنشاء كائن معقد جديد."
 
+# Create a new line object
+# qum bi'iinsha' kayin satar jadid
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "قم بإنشاء كائن سطر جديد."
 
+# Create a new net object
+# 'iinsha' kayin safi jadid
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "إنشاء كائن صافي جديد."
 
+# Create a new path object
+# qum bi'iinsha' kayin masar jadid
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Create a new path object."
 
+# Create a new picture object
+# qum bi'iinsha' kayin surat jadid
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "قم بإنشاء كائن صورة جديد."
 
+# Create a new pin object
+# qum bi'iinsha' kayin dabus jadid
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "قم بإنشاء كائن دبوس جديد."
 
+# Create a new text object
+# qum bi'iinsha' kayin nasi jadid
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "قم بإنشاء كائن نص جديد."
 
+# Create a new attribute object
+# qum bi'iinsha' kayin simat jadid
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "قم بإنشاء كائن سمة جديد."
 
+# New object type syntax
+# bina' jumlat nawe kayin jadid
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "بناء جملة نوع كائن جديد"
 
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
