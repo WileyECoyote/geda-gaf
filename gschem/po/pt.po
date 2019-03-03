@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-23 10:12-0600\n"
+"POT-Creation-Date: 2019-03-01 10:13-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1583,7 +1583,7 @@ msgid "Clipboard Insertion Failed"
 msgstr ""
 
 # Open
-#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2378
+#: gschem/src/x/x_compselect.c:125 gschem/src/x/x_menus.c:2377
 msgid "Open"
 msgstr "Abrir"
 
@@ -1974,7 +1974,7 @@ msgstr "Destino da ligação"
 msgid "Graphic"
 msgstr "Gráficos"
 
-#: gschem/src/x/x_dialog.c:1108 gschem/src/x/x_edit_pin.c:141
+#: gschem/src/x/x_dialog.c:1108 gschem/src/x/x_edit_pin.c:144
 #: gschem/src/x/x_menus.c:95
 msgid "Net"
 msgstr "Ligação"
@@ -2001,7 +2001,7 @@ msgstr "Atributo separado"
 msgid "Text"
 msgstr "Texto"
 
-#: gschem/src/x/x_dialog.c:1114 gschem/src/x/x_edit_pin.c:142
+#: gschem/src/x/x_dialog.c:1114 gschem/src/x/x_edit_pin.c:145
 #: gschem/src/x/x_menus.c:98
 msgid "Bus"
 msgstr "Barramento"
@@ -2965,111 +2965,111 @@ msgid ""
 "symbol file"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:97
+#: gschem/src/x/x_edit_pin.c:98
 msgid "in"
 msgstr "in"
 
-#: gschem/src/x/x_edit_pin.c:98
+#: gschem/src/x/x_edit_pin.c:99
 msgid "out"
 msgstr "out"
 
-#: gschem/src/x/x_edit_pin.c:99
+#: gschem/src/x/x_edit_pin.c:100
 msgid "io"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:100
+#: gschem/src/x/x_edit_pin.c:101
 msgid "oc"
 msgstr "oc"
 
-#: gschem/src/x/x_edit_pin.c:101
+#: gschem/src/x/x_edit_pin.c:102
 msgid "oe"
 msgstr "oe"
 
-#: gschem/src/x/x_edit_pin.c:102
+#: gschem/src/x/x_edit_pin.c:103
 msgid "pas"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:103
+#: gschem/src/x/x_edit_pin.c:104
 msgid "tp"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:104
+#: gschem/src/x/x_edit_pin.c:105
 msgid "tri"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:105
+#: gschem/src/x/x_edit_pin.c:106
 msgid "clk"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:106
+#: gschem/src/x/x_edit_pin.c:107
 msgid "pwr"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:107 gschem/src/x/x_edit_pin.c:192
-#: gschem/src/x/x_edit_pin.c:206
+#: gschem/src/x/x_edit_pin.c:108 gschem/src/x/x_edit_pin.c:196
+#: gschem/src/x/x_edit_pin.c:210
 msgid "*missing*"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:280 gschem/src/x/x_edit_pin.c:291
+#: gschem/src/x/x_edit_pin.c:285 gschem/src/x/x_edit_pin.c:296
 msgid "Pin Properties"
 msgstr "Sociedade Anônima do Pino"
 
-#: gschem/src/x/x_edit_pin.c:280
+#: gschem/src/x/x_edit_pin.c:285
 msgid "Invalid Pin Node Type"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:291
+#: gschem/src/x/x_edit_pin.c:296
 msgid "Ignoring Pin electrical VOID"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:801
+#: gschem/src/x/x_edit_pin.c:811
 msgid "Pin Properties Editor"
 msgstr "Pino Editor de Propriedades"
 
-#: gschem/src/x/x_edit_pin.c:879
+#: gschem/src/x/x_edit_pin.c:889
 msgid "Set"
 msgstr "Definir"
 
-#: gschem/src/x/x_edit_pin.c:882
+#: gschem/src/x/x_edit_pin.c:892
 msgid "Auto"
 msgstr ""
 
 # Attribute Type List
-#: gschem/src/x/x_edit_pin.c:948
+#: gschem/src/x/x_edit_pin.c:958
 msgid "Attribute Type List"
 msgstr "Na lista Tipo de atributo"
 
-#: gschem/src/x/x_edit_pin.c:952
+#: gschem/src/x/x_edit_pin.c:962
 msgid "Text Alignment Option"
 msgstr ""
 
 # Pin Number
-#: gschem/src/x/x_edit_pin.c:956
+#: gschem/src/x/x_edit_pin.c:966
 msgid "Pin Number"
 msgstr "Número do pino"
 
-#: gschem/src/x/x_edit_pin.c:960
+#: gschem/src/x/x_edit_pin.c:970
 msgid "Sequence Number"
 msgstr ""
 
-#: gschem/src/x/x_edit_pin.c:964
+#: gschem/src/x/x_edit_pin.c:974
 msgid "Pin Label"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:164
+#: gschem/src/x/x_edit_slot.c:167
 msgid "Edit slot number"
 msgstr "numero de elemento"
 
-#: gschem/src/x/x_edit_slot.c:186
+#: gschem/src/x/x_edit_slot.c:189
 msgid "Number of slots:"
 msgstr ""
 
-#: gschem/src/x/x_edit_slot.c:209
+#: gschem/src/x/x_edit_slot.c:212
 msgid "Slot number:"
 msgstr "numero de elemento:"
 
 # Set the active slot number
-#: gschem/src/x/x_edit_slot.c:216
+#: gschem/src/x/x_edit_slot.c:219
 msgid "Set the active slot number"
 msgstr "Defina o número do slot ativo"
 
@@ -3733,7 +3733,7 @@ msgstr "Anular"
 msgid "Undo the last path segment"
 msgstr "Undo the last polygon segment"
 
-#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2520
+#: gschem/src/x/x_menus.c:476 gschem/src/x/x_menus.c:2519
 msgid "Clear"
 msgstr ""
 
@@ -3925,20 +3925,20 @@ msgid "Could not open file"
 msgstr "Não foi possível abrir o arquivo"
 
 # Remove => Withdraw
-#: gschem/src/x/x_menus.c:2385
+#: gschem/src/x/x_menus.c:2384
 msgid "Remove"
 msgstr "Retirar"
 
 # Show path
-#: gschem/src/x/x_menus.c:2392
+#: gschem/src/x/x_menus.c:2391
 msgid "_Show path"
 msgstr "_Mostrar caminho"
 
-#: gschem/src/x/x_menus.c:2630
+#: gschem/src/x/x_menus.c:2629
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2683
+#: gschem/src/x/x_menus.c:2682
 msgid "Recent menu items restore from"
 msgstr ""
 

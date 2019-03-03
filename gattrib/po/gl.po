@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-16 19:29-0600\n"
+"POT-Creation-Date: 2019-03-01 10:13-0600\n"
 "PO-Revision-Date: 2012-03-21 00:09+0000\n"
 "Last-Translator: ghas <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -859,12 +859,12 @@ msgid "both"
 msgstr "Ambas"
 
 # Saving main window geometry and settings
-#: gattrib/src/x_window.c:202
+#: gattrib/src/x_window.c:201
 msgid "Saving main window geometry and settings.\n"
 msgstr "Gardando xeometría e axustes da xanela principal.\n"
 
 # Retrieving main Window geometry and settings
-#: gattrib/src/x_window.c:232
+#: gattrib/src/x_window.c:231
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "Restaurar a xeometría e configuración orixinais.\n"
 
