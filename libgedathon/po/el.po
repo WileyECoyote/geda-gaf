@@ -235,45 +235,65 @@ msgstr "Δημιουργήστε ένα νέο αντικείμενο κουτι
 msgid "Create a new bus object."
 msgstr "Δημιουργήστε ένα νέο αντικείμενο διαύλου."
 
+# Create a new circle object
+# Dimiourgíste éna néo antikeímeno kýklou
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο κύκλου."
 
+# Create a new complex object
+# Dimiourgíste éna néo sýntheto antikeímeno
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο σύνθετο αντικείμενο."
 
+# Create a new line object
+# Dimiourgíste éna néo antikeímeno grammís
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο γραμμής."
 
+# Create a new net object
+# Dimiourgíste éna néo katharó antikeímeno
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο καθαρό αντικείμενο."
 
+# Create a new path object
+# Dimiourgíste éna néo antikeímeno diadromís
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο διαδρομής."
 
+# Create a new picture object
+# Dimiourgíste éna néo antikeímeno eikónas
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο εικόνας."
 
+# Create a new pin object
+# Dimiourgíste éna néo antikeímeno karfítsas
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο καρφίτσας."
 
+# Create a new text object
+# Dimiourgíste éna néo antikeímeno keiménou
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο κειμένου."
 
+# Create a new attribute object
+# Dimiourgíste éna néo antikeímeno charaktiristikón
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Δημιουργήστε ένα νέο αντικείμενο χαρακτηριστικών."
 
+# New object type syntax
+# Sýntaxi néou týpou antikeiménou
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Σύνταξη νέου τύπου αντικειμένου"
 
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
