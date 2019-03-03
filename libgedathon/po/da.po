@@ -176,45 +176,55 @@ msgstr "Opret en ny boksobjekt."
 msgid "Create a new bus object."
 msgstr "Opret et nyt busobjekt."
 
+# Create a new circle object
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "Opret en ny cirkelobjekt."
 
+# Create a new complex object
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Opret et nyt komplekst objekt."
 
+# Create a new line object
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Opret et nyt linjepost."
 
+# Create a new net object
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Opret et nyt netobjekt."
 
+# Create a new path object
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Opret et nyt stiobjekt."
 
+# Create a new picture object
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Opret et nyt billedobjekt."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Opret et nyt pinobjekt."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Opret en ny tekstobjekt."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Opret et nyt attributobjekt."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Ny objekttype syntaks"
 
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
