@@ -176,45 +176,55 @@ msgstr "یک شیء جعبه جدید ایجاد کنید."
 msgid "Create a new bus object."
 msgstr "یک شیء اتوبوس جدید ایجاد کنید."
 
+# Create a new circle object
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
-msgstr ""
+msgstr "یک شیء دایره جدید ایجاد کنید."
 
+# Create a new complex object
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "یک شی جدید پیچیده ایجاد کنید."
 
+# Create a new line object
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "یک شیء خط جدید ایجاد کنید."
 
+# Create a new net object
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "یک شیء خالص جدید ایجاد کنید."
 
+# Create a new path object
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "یک شیء مسیر جدید ایجاد کنید."
 
+# Create a new picture object
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "یک شیء تصویر جدید ایجاد کنید."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "یک شی پین جدید ایجاد کنید."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "یک شیء متن جدید ایجاد کنید."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "یک شیء ویژگی جدید ایجاد کنید."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "نحو نوع جدید شی"
 
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
