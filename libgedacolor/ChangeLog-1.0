@@ -1,3 +1,7 @@
+2019-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update X-Language Afrikaans.
+
 2019-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_color.c: Revise checks for geda_color_get_color_name to

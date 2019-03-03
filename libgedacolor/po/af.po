@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2010-02-14 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-"X-Language: C\n"
+"X-Language: af_ZA\n"
 "X-Source-Language: C\n"
 
 #: libgedacolor/src/get/color_get.c:62 libgedacolor/src/get/color_get.c:185
