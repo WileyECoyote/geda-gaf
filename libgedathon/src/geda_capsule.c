@@ -62,29 +62,7 @@ static PyMemberDef GedaCapsule_members[] = {
 };
 
 /* ------------------------------ Begin Methods ---------------------------- */
-/*
-static PyObject*
-GedaCapsule_get_object(PyObject *obj)
-{
-  GedaCapsule *capsule = (GedaCapsule *)obj;
-  PyObject    *py_object;
-  Object      *object;
-  int sid;
 
-  object = capsule->object;
-  if (GEDA_IS_OBJECT(object)
-    py_object = PyGeda_create_object(object);
-  else
-    py_object = Py_None;
-
-  return py_object;
-}
-
-static PyMethodDef GedaCapsule_methods[] = {
-  {"get_object",  (PyCFunction)GedaCapsule_get_object, METH_NOARGS,  object_name_docs},
-  {NULL, NULL, 0, NULL}
-};
-*/
 /* -------------------------- Begin Type Definition ------------------------ */
 
 static PyTypeObject GedaCapsuleType = {
@@ -120,17 +98,13 @@ static PyTypeObject GedaCapsuleType = {
     0,                              /* tp_methods */
     GedaCapsule_members,            /* tp_members */
 };
-/*
-static PyMethodDef GedaCapsule_methods[] = {
-    {NULL}  // Sentinel
-};
-*/
+
 PyTypeObject *GedaCapsuleClass(void)
 {
   return &GedaCapsuleType;
 }
-PyObject *
-GedaCapsule_New(void *obj)
+
+PyObject *GedaCapsule_New(void *obj)
 {
   GedaCapsule *capsule;
   GedaObject  *object = (GedaObject*) obj;
