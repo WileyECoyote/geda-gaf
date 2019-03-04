@@ -3,6 +3,8 @@
     * passive/transformer/transformer-8.sym: Add description attribute, update
       license attributes.
 
+    * serial/16C450N-1.sym: Add value, update device.
+
 2019-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/txo-1.sym: Add description attribute, update device.

@@ -1,7 +1,7 @@
 v 20150315 2
 B 300 400 2500 8000 3 15 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 8700 5 10 0 1 0 0 1
-device=TL16C450N
+T 300 9100 5 10 0 0 0 0 1
+device=16C450N
 P 0 7200 300 7200 1 0 0
 {
 T 50 7250 5 8 1 1 0 0 1
@@ -409,22 +409,22 @@ pintype=io
 T 1800 100 5 8 0 1 0 0 1
 pinseq=20
 }
-T 300 8450 9 10 1 0 0 0 1
-16C450N
 T 300 8900 3 10 0 0 0 0 1
 footprint=DIP40
-T 300 9100 2 10 0 0 0 0 1
-net=VCC:40
 T 300 9300 2 10 0 0 0 0 1
+net=VCC:40
+T 300 9500 2 10 0 0 0 0 1
 net=GND:20
-T 300 9700 5 10 0 0 0 0 1
-description=16C450 Serial UART for RS-232
-T 300 10300 5 10 0 0 0 0 1
-author=Alan Somers <asomers@gmail.com>
 T 2500 8500 8 10 1 1 0 0 1
 refdes=U?
-T 300 9500 5 10 0 0 0 0 1
+T 300 9700 5 10 0 0 0 0 1
 numslots=0
+T 300 8700 5 10 0 1 0 0 1
+description=16C450 Serial UART for RS-232
+T 300 8500 5 10 0 1 0 0 1
+value=TL16C450N
+T 300 10300 5 10 0 0 0 0 1
+author=Alan Somers <asomers@gmail.com>
 T 300 10100 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 300 9900 5 10 0 0 0 0 1
