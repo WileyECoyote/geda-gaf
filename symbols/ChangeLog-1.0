@@ -13,6 +13,8 @@
 
     * serial/SI9200-1.sym: Add description attribute, update device.
 
+    * serial/USBN9604-1.sym: Add value, update device.
+
 2019-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/txo-1.sym: Add description attribute, update device.
