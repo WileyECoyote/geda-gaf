@@ -144,7 +144,7 @@ show_help () {
      ln -s $PWD/print-* $GEDADATARC/
      cd $CWDSAVE
   else
-    echo "Error: not in the right place, cannot find libgeda etc directory"
+    echo "Error: not in the right place, cannot find libgedacolor etc directory"
     exit 0
   fi
 
