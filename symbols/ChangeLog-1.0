@@ -15,6 +15,9 @@
 
     * serial/USBN9604-1.sym: Add value, update device.
 
+    * simulation/spice/nullor-1.sym: Add footprint none and description, convert
+      plain text to pin label attributes.
+
 2019-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/txo-1.sym: Add description attribute, update device.
