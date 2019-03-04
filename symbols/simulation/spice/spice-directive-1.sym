@@ -1,11 +1,13 @@
 v 20150401 2
 B 0 300 2000 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1850 400 9 10 0 1 0 6 1
+T 1750 400 9 10 0 1 0 6 1
 device=directive
 T 100 400 9 10 1 1 0 0 1
 refdes=A?
-T 1850 400 9 10 1 0 0 6 1
-SPICE directive
+T 1750 400 9 10 1 1 0 6 1
+description=SPICE directive
+T 1600 650 9 10 0 1 0 0 1
+footprint=none
 T 100 100 8 10 1 1 0 0 1
 value=?
 T 100 100 8 10 1 1 0 0 1
