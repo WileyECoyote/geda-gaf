@@ -1346,7 +1346,7 @@ void geda_picture_object_print(GedaToplevel *toplevel, FILE *fp,
   if (image == NULL) {
 
     int line_width = geda_object_style_get_line_width(toplevel);
-    //    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
+
     geda_box_object_print_solid (toplevel, fp, x1, y1, width, height,
                                  DEFAULT_COLOR_INDEX,
                                  line_width, SQUARE_CAP, -1, -1, -1, -1);
