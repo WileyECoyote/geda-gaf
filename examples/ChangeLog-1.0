@@ -2,6 +2,8 @@
 
     * MSA-2643/tests/runtest.sh: Update bitmap directory = bitmaps.
 
+    * TwoStageAmp/tests/TwoStageAmp-geda.net: Update geda reference file.
+
 2019-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * CascodeAmp/bom/CascodeAmp-bom.csv: Update BOM and reference; remove
