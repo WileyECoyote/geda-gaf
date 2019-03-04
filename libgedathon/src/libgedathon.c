@@ -228,10 +228,10 @@ PyGeda_glist_2_pylist(GList *object_list)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaBusObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaBusObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaArcObject
  *
@@ -271,10 +271,10 @@ get_arc_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaBoxObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaBoxObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaBoxObject
  *
@@ -323,10 +323,10 @@ get_box_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaBusObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaBusObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaBusObject
  *
@@ -368,10 +368,10 @@ get_bus_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaCircleObject Initializer in order to create a
- *  Python object corresponding the libgeda object. These parameters
- *  MUST be in the correct order or the Python object will not be
- *  created correctly, if at all.
+ *  pass to the PyGedaCircleObject initializer in order to create
+ *  a Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaCircleObject
  *
@@ -419,10 +419,10 @@ get_circle_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaComplexObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaComplexObject initializer in order to create
+ *  a Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaComplexObject
  *
@@ -486,10 +486,10 @@ get_complex_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaLineObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaLineObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaLineObject
  *
@@ -528,10 +528,10 @@ get_line_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaNetObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaNetObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaNetObject
  *
@@ -576,10 +576,10 @@ get_net_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaPathObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaPathObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaPathObject
  *
@@ -645,10 +645,10 @@ get_path_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaPictureObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaPictureObject initializer in order to create
+ *  a Python object corresponding to the given  libgeda object. The
+ *  parameters MUST be in the correct order or the Python object will
+ *  not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaPictureObject
  *
@@ -695,10 +695,10 @@ get_picture_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaPinObject Initializer in order to create a Python
- *  object corresponding the libgeda object. These parameters MUST
- *  be in the correct order or the Python object will not be created
- *  correctly, if at all.
+ *  pass to the PyGedaPinObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaPinObject
  *
@@ -769,10 +769,10 @@ get_pin_object_data(GedaObject *object)
  * \ingroup Python_API_Library_Internal
  * \par Function Description
  *  This function creates a PyObject with the parameters used to
- *  pass to the PyGedaTextObject Initializer in order to create a
- *  Python object corresponding the libgeda object. These parameters
- *  MUST be in the correct order or the Python object will not be
- *  created correctly, if at all.
+ *  pass to the PyGedaTextObject initializer in order to create a
+ *  Python object corresponding to the given libgeda object. The
+ *  parameters MUST be in the correct order or the Python object
+ *  will not be created correctly, if at all.
  *
  * \param [in] object   Pointer to a Libgeda PyGedaTextObject
  *
