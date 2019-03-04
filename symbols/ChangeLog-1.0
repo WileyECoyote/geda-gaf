@@ -5,6 +5,8 @@
 
     * serial/16C450N-1.sym: Add value, update device.
 
+    * serial/AN82527.sym: Add value and description attribute, update attributes.
+
 2019-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/txo-1.sym: Add description attribute, update device.
