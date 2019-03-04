@@ -1,11 +1,11 @@
 v 20150401 2
 T 400 12600 5 10 0 1 0 0 1
 device=FT2232H
-T 400 12800 5 10 0 1 0 0 1
+T 400 12400 5 10 0 1 0 0 1
 description=USB to Dual Serial Bridge Controller
-T 400 13000 5 10 0 1 0 0 1
+T 400 12800 5 10 0 1 0 0 1
 documentation=http://www.ftdichip.com/Documents/DataSheets/DS_FT2232H.pdf
-T 1400 12200 5 10 0 0 0 0 1
+T 1800 12200 5 10 0 0 0 0 1
 numslots=0
 T 3600 12000 8 10 1 1 0 6 1
 refdes=U?
@@ -76,18 +76,16 @@ pinnumber=15
 T 1950 275 5 8 0 1 0 6 1
 pinseq=15
 }
-T 400 12200 9 10 1 1 0 0 1
-LQFP-64-10
-T 400 12000 9 10 1 0 0 0 1
-FT2232H
-T 400 13200 5 10 0 0 0 0 1
+T 400 12000 5 10 1 1 0 0 1
+value=FT2232H
+T 400 13000 5 10 0 0 0 0 1
 use-license=unlimited
-T 400 13600 5 10 0 0 0 0 1
-author=AutoTron
 T 400 13400 5 10 0 0 0 0 1
+author=AutoTron
+T 400 13200 5 10 0 0 0 0 1
 dist-license=GPLv2
-T 1200 12000 9 10 0 0 0 0 1
-symversion=0.3
+T 1800 12000 9 10 0 0 0 0 1
+symversion=0.4
 P 100 7500 400 7500 1 0 0
 {
 T 450 7400 5 8 0 1 0 0 1
@@ -739,5 +737,5 @@ pinseq=36
 }
 T 1200 12600 9 10 0 1 0 0 1
 comment=Pin Types setup MPSSE Interface
-T 400 12400 9 10 1 1 0 0 1
+T 400 12200 9 10 1 1 0 0 1
 footprint=LQFP-64-10-EP
