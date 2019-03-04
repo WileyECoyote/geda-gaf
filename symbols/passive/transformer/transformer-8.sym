@@ -79,14 +79,16 @@ L 600 1200 600 0 3 0 0 0 -1 -1
 L 700 1200 700 0 3 0 0 0 -1 -1
 T 395 1395 8 10 1 1 0 0 1
 refdes=T?
-T -5 1795 8 10 0 0 0 0 1
+T 395 1795 9 10 0 0 0 0 1
 footprint=none
-T -5 1595 8 10 0 1 0 0 1
+T 395 1995 5 10 0 0 0 0 1
 device=TRANSFORMER
-T -5 1995 8 10 0 0 0 0 1
-dist-license=GPLv3 
-T -5 2195 8 10 0 0 0 0 1
-use-license=GPLv3
+T 400 1600 5 10 0 1 0 0 1
+description=TRANSFORMER
+T 395 2195 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 395 2395 5 10 0 0 0 0 1
+use-license=unlimited
 L 400 1200 200 1200 3 0 1 0 -1 -1
 L 400 0 200 0 3 0 1 0 -1 -1
 L 900 0 1100 0 3 0 1 0 -1 -1
