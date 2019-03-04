@@ -11,6 +11,8 @@
 
     * serial/FT2232H-3.sym: Add value, eliminate would be LQFP-64-10 footprint.
 
+    * serial/SI9200-1.sym: Add description attribute, update device.
+
 2019-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/txo-1.sym: Add description attribute, update device.
