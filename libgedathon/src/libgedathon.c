@@ -1864,7 +1864,26 @@ int PyGeda_GedaCapsule_Type(PyObject *py_object)
   return answer;
 }
 
-
+/*!
+ * \brief Get Bounds of a GedaObject or All objects on a Page
+ * \par Method Description
+ *  This function provides a method to retrieve the bounds of an object
+ *  or all objects on a page. To get the bounds of all objects on a page,
+ *  pid should be a valid page identifier an sid should be any negative
+ *  value. To get the bounds of a specific object, \a sid should be the
+ *  sequence index of the object and \a pid should be a page identifier
+ *  or -1 if the object has not been committed to a page. This is a low
+ *  level library routine for the get-bounds module API, which handles
+ *  setting \a pid and \a sid based on the object that was supplied to
+ *  the module.
+ *
+ * \param [in] pid Interger Page identifier or -1
+ * \param [in] sid Interger Sequence identifier of object or -1
+ *
+ * \return [out] A PyList of four integers; left, top, right, bottom,
+ *               or and empty list if there is no bounds, or NULL if
+ *               an error occurred.
+ */
 PyObject *PyGeda_get_bounds( int pid, int sid )
 {
   Page     *page;
