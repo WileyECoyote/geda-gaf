@@ -1,17 +1,15 @@
+2019-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Add Doxygen function documentation for get_bounds.
+
 2019-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/fa.po: Update Persian translations.
 
 2019-02-23 Wiley E. Hill <wileyhill@gmail.com>

@@ -1176,6 +1176,23 @@ METHOD(GedaCapsule_Type)
   return Py_BuildValue("i", answer);
 }
 
+/*!
+ * \brief Get an the Bounds of a GedaObject
+ * \par Method Description
+ *  This function provides a method to bounds of an object. The object
+ *  can be a PyGedaPageObject, PyGedaObject or PyGedaCapsule. If the
+ *  argument is a PyGedaPageObject, the bound of all object on the page
+ *  is returned or an empty list if there are no object on the page. If
+ *  argument is a valid PyGedaObject or PyGedaCapsule, then the bounds
+ *  of the object is returned. If the argument is not a valid object,
+ *  or an error is encountered, then NULL is returned.
+ *
+ *  [in] PyObject A Page, object or capsule containing an object
+ *
+ * \return [out] A PyList of four integers; left, top, right, bottom,
+ *               or and empty list if there is no bounds, or NULL if
+ *               an error occurred.
+ */
 METHOD(get_bounds)
 {
   TYPE_PYOBJECT_I2(get_bounds);
