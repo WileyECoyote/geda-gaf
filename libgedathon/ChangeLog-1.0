@@ -5,6 +5,10 @@
 
     * module/geda.c: Add Doxygen function documentation for get_bounds.
 
+    * src/libgedathon.c: Revise PyGeda_get_bounds to return an empty list
+      when geda_object_get_bounds_list returns FALSE instead of an empty
+      string.
+
 2019-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

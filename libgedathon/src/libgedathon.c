@@ -1882,7 +1882,7 @@ PyObject *PyGeda_get_bounds( int pid, int sid )
       py_list = Py_BuildValue("iiii",  left, top, right, bottom);
     }
     else {
-      py_list = Py_BuildValue("");
+      py_list = Py_BuildValue("()"); /* No objects so return an empty list */
     }
   }
   else {
