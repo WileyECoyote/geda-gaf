@@ -1199,8 +1199,8 @@ METHOD(get_bounds)
   PyObject *unknown;
   PyObject *py_object;
   PyObject *list;
-  int       pid;
-  int       sid;
+  int       pid;      /* Page Id     */
+  int       sid;      /* Sequence Id */
 
   const char *syntax = "syntax: get_bounds(PyGedaPageObject | PyGedaObject)";
 
