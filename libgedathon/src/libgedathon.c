@@ -354,8 +354,9 @@ get_bus_object_data(GedaObject *object)
 
   object->bus->ripper_direction = direction;
 
-  if (!bus_name)
+  if (!bus_name) {
     bus_name = "";
+  }
 
   data = Py_BuildValue("siiiiiiiisii", name, type, pid, sid, lock,
                        x1, y1, x2, y2, bus_name, direction, line_width);
