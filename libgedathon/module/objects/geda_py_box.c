@@ -268,7 +268,6 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   else {
     /* no gotta, check with the base class,  */
     result = (PyGedaObjectClass())->tp_setattro(obj, key, py_value);
-    //result = PyObject_GenericSetAttr(obj, key, py_value);
   }
 
   return result;
