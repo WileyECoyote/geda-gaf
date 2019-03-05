@@ -406,7 +406,7 @@ get_circle_object_data(GedaObject *object)
   int line_space  = object->line_options->line_space;
   int line_length = object->line_options->line_length;
 
-  data = Py_BuildValue("siiiiiiiiiiiiiiiiii",  name, type, pid, sid, lock,
+  data = Py_BuildValue("siiiiiiiiiiiiiiiiii", name, type, pid, sid, lock,
                        x, y, radius,
                        fill_type, fill_width, fill_angle1, fill_pitch1,
                        fill_angle2, fill_pitch2,
