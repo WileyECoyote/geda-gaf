@@ -35,6 +35,7 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
+#include "../../include/gettext.h"
 
 static PyObject *box_module;
 static PyObject *geda_module;
@@ -113,7 +114,7 @@ static int Box_init(PyGedaBoxObject *self, PyObject *args, PyObject *kwds)
                                     &self->line_end, &self->line_type, &self->line_width,
                                     &self->line_space, &self->line_length))
   {
-    PyErr_SetString(PyExc_TypeError, "Error initializing new Box object");
+    PyErr_SetString(PyExc_TypeError, _("Error initializing new Box object"));
     return -1;
   }
 
@@ -200,7 +201,7 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   int  *old_value;
 
   if (py_value == NULL) {
-    PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
+    PyErr_Format(PyExc_ValueError, _("Cannot delete the %s attribute"), name);
     return -1;
   }
 
@@ -223,7 +224,7 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     int  new_value;
 
     if (!PyInt_Check(py_value)) {
-      PyErr_Format(PyExc_TypeError, "The %s attribute must be an integer value", name);
+      PyErr_Format(PyExc_TypeError, _("The %s attribute must be an integer value"), name);
       return -1;
     }
 
@@ -239,7 +240,7 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       new_value = long_val;
     }
     else {
-      PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
+      PyErr_SetString(PyExc_OverflowError, _("Python int too large to convert to C int"));
       return -1;
     }
 
@@ -328,7 +329,7 @@ PyMODINIT_FUNC initBox(PyObject *module)
   if ( PyType_Ready(&PyGedaBoxObjectType) < 0)
     return;
 
-  box_module = Py_InitModule3("Box", NULL, "Creates a Box object type.");
+  box_module = Py_InitModule3("Box", NULL, _("Creates a Box object type."));
 
   if (box_module == NULL)
     return;
