@@ -1,5 +1,8 @@
 2019-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/Makefile.am: Suppress output to console when generating HTML
+      man page.
+
     * module/geda.c: Add Doxygen function documentation for get_bounds.
 
 2019-03-02 Wiley E. Hill <wileyhill@gmail.com>

@@ -72,7 +72,7 @@ docsmandir=$(docdir)/man
 dist_docsman_DATA=$(html_man_files)
 
 .1.html:
-	rm -rf $@.tmp && \
+	@rm -rf $@.tmp && \
 	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
 	mv -f $@.tmp $@
 else
