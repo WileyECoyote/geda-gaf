@@ -2,6 +2,8 @@
 
     * gTAG/tests/runtest.sh: Update bitmap directory = bitmaps.
 
+    * lightning_detector/tests/runtest.sh: Update bitmap directory = bitmaps.
+
 2019-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * MSA-2643/tests/runtest.sh: Update bitmap directory = bitmaps.
