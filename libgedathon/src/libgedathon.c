@@ -52,7 +52,6 @@
 #  endif
 #endif
 
-//#include <pygobject.h>
 #include "../include/gettext.h"
 
 /* Only loading header here to get METHOD_COUNT because it is needed in
