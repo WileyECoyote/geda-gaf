@@ -194,7 +194,7 @@ do_setup_geda_environment ()
   export GEDADATA=$PWD
 
   # Make all subdirectories under the gEDA directory
-  mkdir -m 777 -p bitmap
+  mkdir -m 777 -p bitmaps
   mkdir -m 777 -p scheme/geda/core
   mkdir -m 777 -p scheme/gnetlist
   mkdir -m 777 -p gafrc.d
