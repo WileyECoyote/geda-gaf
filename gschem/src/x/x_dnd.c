@@ -933,7 +933,7 @@ x_dnd_drag_data_get (GtkWidget *widget, GdkDragContext   *context,
 
 #if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
-  printf ("<%s> %s:", __func__, name);
+  printf ("<%s> %s: (%u)", __func__, name, target_type);
 #endif
 
   if (!selection_data)
