@@ -35,18 +35,33 @@
 #include <geda_py_struct.h>
 #include <geda_capsule.h>
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void *GedaCapsule_GetPointer(PyObject *obj)
 {
   GedaCapsule *capsule = (GedaCapsule *)obj;
   return capsule->object;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *GedaCapsule_GetName(PyObject *obj)
 {
   GedaCapsule *capsule = (GedaCapsule *)obj;
   return capsule->name;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static PyObject *GedaCapsule_repr(PyObject *obj)
 {
   GedaCapsule *capsule = (GedaCapsule *)obj;
@@ -99,11 +114,21 @@ static PyTypeObject GedaCapsuleType = {
     GedaCapsule_members,            /* tp_members */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *GedaCapsuleClass(void)
 {
   return &GedaCapsuleType;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyObject *GedaCapsule_New(void *obj)
 {
   GedaCapsule *capsule;
@@ -137,6 +162,11 @@ PyObject *GedaCapsule_New(void *obj)
   return (PyObject *)capsule;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initGedaCapsule(void)
 {
   PyObject* capsule_module;

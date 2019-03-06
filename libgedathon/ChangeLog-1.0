@@ -6,6 +6,8 @@
     * module/objects/geda_py_bus.c: Include local gettext.h and add gettext
       calls for error messages and in the module initializer.
 
+    * src/geda_capsule.c: Add todo Doxygen templates.
+
     * src/libgedathon.c: Revise PyGeda_get_bounds to return an empty list
       when geda_object_get_bounds_list returns FALSE instead of an empty
       string, and add source comments.
