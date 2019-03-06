@@ -1,3 +1,9 @@
+2019-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Revise PyGeda_get_bounds to return an empty list
+      when geda_object_get_bounds_list returns FALSE instead of an empty
+      string, and add source comments.
+
 2019-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Suppress output to console when generating HTML

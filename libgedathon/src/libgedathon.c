@@ -1907,6 +1907,7 @@ PyObject *PyGeda_get_bounds( int pid, int sid )
 
     GedaObject *object = geda_struct_page_get_object(page, sid);
 
+    /* If no object then check for object not yet committed to a page */
     if (!object) {
       object = get_floating_object(sid);
     }
@@ -1916,7 +1917,7 @@ PyObject *PyGeda_get_bounds( int pid, int sid )
         py_list = Py_BuildValue("iiii",  left, top, right, bottom);
       }
       else {
-        py_list = Py_BuildValue("");
+        py_list = Py_BuildValue("()"); /* Should never happen */
       }
     }
     else {
