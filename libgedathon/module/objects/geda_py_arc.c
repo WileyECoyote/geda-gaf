@@ -35,6 +35,7 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
+#include "../../include/gettext.h"
 
 static PyObject *arc_module;
 static PyObject *geda_module;
@@ -106,7 +107,7 @@ static int Arc_init(PyGedaArcObject *self, PyObject *args, PyObject *kwds)
                                     &self->line_width, &self->line_space,
                                     &self->line_length))
   {
-    PyErr_SetString(PyExc_TypeError, "Error initializing new Arc object");
+    PyErr_SetString(PyExc_TypeError, _("Error initializing new Arc object"));
     return -1;
   }
 
@@ -184,7 +185,7 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   int  *old_value;
 
   if (py_value == NULL) {
-    PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
+    PyErr_Format(PyExc_ValueError, _("Cannot delete the %s attribute"), name);
     return -1;
   }
 
@@ -209,7 +210,7 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     int  new_value;
 
     if (!PyInt_Check(py_value)) {
-      PyErr_Format(PyExc_TypeError, "The %s attribute must be an integer value", name);
+      PyErr_Format(PyExc_TypeError, _("The %s attribute must be an integer value"), name);
       return -1;
     }
 
@@ -225,7 +226,7 @@ static int Arc_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       new_value = long_val;
     }
     else {
-      PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
+      PyErr_SetString(PyExc_OverflowError, _("Python int too large to convert to C int"));
       return -1;
     }
 
@@ -314,7 +315,7 @@ PyMODINIT_FUNC initArc(PyObject *module)
   if ( PyType_Ready(&PyGedaArcObjectType) < 0)
     return;
 
-  arc_module = Py_InitModule3("Arc", NULL, "Creates an Arc object extension type.");
+  arc_module = Py_InitModule3("Arc", NULL, _("Creates an Arc object extension type."));
 
   if (arc_module == NULL)
     return;
