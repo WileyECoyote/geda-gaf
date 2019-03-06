@@ -3,6 +3,9 @@
     * module/objects/geda_py_arc.c: Include local gettext.h and add gettext
       calls for error messages and in the module initializer.
 
+    * module/objects/geda_py_bus.c: Include local gettext.h and add gettext
+      calls for error messages and in the module initializer.
+
     * src/libgedathon.c: Revise PyGeda_get_bounds to return an empty list
       when geda_object_get_bounds_list returns FALSE instead of an empty
       string, and add source comments.

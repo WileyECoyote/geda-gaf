@@ -35,6 +35,7 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
+#include "../../include/gettext.h"
 
 static PyObject *bus_module;
 static PyObject *geda_module;
@@ -109,7 +110,7 @@ static int Bus_init(PyGedaBusObject *self, PyObject *args, PyObject *kwds)
                                     &self->x[0], &self->y[0], &self->x[1], &self->y[1],
                                     &py_bus_name, &self->direction, &self->line_width))
   {
-    PyErr_SetString(PyExc_TypeError, "Error initializing new Bus object");
+    PyErr_SetString(PyExc_TypeError, _("Error initializing new Bus object"));
     return -1;
   }
 
@@ -178,7 +179,7 @@ static int Bus_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   int  *old_value;
 
   if (py_value == NULL) {
-    PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
+    PyErr_Format(PyExc_ValueError, _("Cannot delete the %s attribute"), name);
     return -1;
   }
 
@@ -198,7 +199,7 @@ static int Bus_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     int  new_value;
 
     if (!PyInt_Check(py_value)) {
-      PyErr_Format(PyExc_TypeError, "The %s attribute must be an integer value", name);
+      PyErr_Format(PyExc_TypeError, _("The %s attribute must be an integer value"), name);
       return -1;
     }
 
@@ -214,7 +215,7 @@ static int Bus_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       new_value = long_val;
     }
     else {
-      PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
+      PyErr_SetString(PyExc_OverflowError, _("Python int too large to convert to C int"));
       return -1;
     }
 #else
@@ -251,13 +252,13 @@ Bus_get_busname(PyGedaBusObject *self, void *closure)
 static int Bus_set_busname(PyGedaBusObject *self, PyObject *value, void *closure)
 {
   if (value == NULL) {
-    PyErr_SetString(PyExc_TypeError, "Cannot delete the bus name attribute");
+    PyErr_SetString(PyExc_TypeError, ("Cannot delete the bus name attribute"));
     return -1;
   }
 
   if (! PyString_Check(value)) {
     PyErr_SetString(PyExc_TypeError,
-                    "The bus name attribute value must be a string");
+                    _("The bus name attribute value must be a string"));
     return -1;
   }
 
@@ -335,7 +336,7 @@ PyMODINIT_FUNC initBus(PyObject *module)
   if ( PyType_Ready(&PyGedaBusObjectType) < 0)
     return;
 
-  bus_module = Py_InitModule3("Bus", NULL, "Creates a Bus object type.");
+  bus_module = Py_InitModule3("Bus", NULL, _("Creates a Bus object type."));
 
   if (bus_module == NULL)
     return;
