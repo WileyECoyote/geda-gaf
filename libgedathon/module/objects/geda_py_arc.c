@@ -312,7 +312,7 @@ PyMODINIT_FUNC initArc(PyObject *module)
   /* Fill in the bass class */
   PyGedaArcObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaArcObjectType) < 0)
+  if (PyType_Ready(&PyGedaArcObjectType) < 0)
     return;
 
   arc_module = Py_InitModule3("Arc", NULL, _("Creates an Arc object extension type."));

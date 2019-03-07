@@ -336,7 +336,7 @@ PyMODINIT_FUNC initComplex(PyObject *module)
   /* Fill in the bass class */
   PyGedaComplexObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaComplexObjectType) < 0)
+  if (PyType_Ready(&PyGedaComplexObjectType) < 0)
     return;
 
   complex_module = Py_InitModule3("Complex", NULL, "Creates a Complex object type.");

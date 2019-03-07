@@ -288,7 +288,7 @@ static PyTypeObject PyGedaObjectType = {
 PyMODINIT_FUNC initPyGedaObject(PyObject *module)
 {
   geda_module = module;
-  if ( PyType_Ready(&PyGedaObjectType) < 0)
+  if (PyType_Ready(&PyGedaObjectType) < 0)
     return;
 
   object_module = Py_InitModule3("PyGedaObject", PyGedaObject_methods, "Base Geda Object extension type.");

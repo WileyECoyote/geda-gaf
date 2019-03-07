@@ -421,7 +421,7 @@ PyGeda_update_complex_butes(GedaObject *object, PyGedaObject *py_object )
   GList *butes = NULL;
   int    count = 0;
 
-  if ( PyList_Check(py_object->attributes)) {
+  if (PyList_Check(py_object->attributes)) {
 
     int i;
 

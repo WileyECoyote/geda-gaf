@@ -250,7 +250,7 @@ static int Path_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     new_value = long_val;
 #endif
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
       if (py_geda_object->pid >= 0) {
@@ -390,7 +390,7 @@ PyMODINIT_FUNC initPath(PyObject *module)
   /* Fill in the bass class */
   PyGedaPathObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaPathObjectType) < 0)
+  if (PyType_Ready(&PyGedaPathObjectType) < 0)
     return;
 
   path_module = Py_InitModule3("Path", NULL, "Create a new Path object type.");

@@ -645,7 +645,7 @@ METHOD(get_pages)
   py_input_list  = library.func();
   py_output_list = PyList_New(0);
 
-  if ( PyList_Check(py_input_list)) {
+  if (PyList_Check(py_input_list)) {
 
     int i, count;
     count = (int) PyList_GET_SIZE(py_input_list);

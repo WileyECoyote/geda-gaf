@@ -272,7 +272,7 @@ PyMODINIT_FUNC initPage(PyObject *module)
 {
   geda_module = module;
 
-  if ( PyType_Ready(&PyGedaPageObjectType) < 0)
+  if (PyType_Ready(&PyGedaPageObjectType) < 0)
     return;
 
   page_module = Py_InitModule3("Page", Page_methods, "Geda Page Object type.");

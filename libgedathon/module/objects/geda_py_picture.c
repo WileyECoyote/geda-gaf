@@ -235,7 +235,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 #endif
 
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
 
      *old_value = new_value;
 
@@ -337,7 +337,7 @@ PyMODINIT_FUNC initPicture(PyObject *module)
   /* Fill in the bass class */
   PyGedaPictureObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaPictureObjectType) < 0)
+  if (PyType_Ready(&PyGedaPictureObjectType) < 0)
     return;
 
   picture_module = Py_InitModule3("Picture", NULL, "Creates a Picture object type.");

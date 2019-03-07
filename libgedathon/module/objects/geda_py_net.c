@@ -227,7 +227,7 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     new_value = long_val;
 #endif
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
 
      *old_value = new_value;
 
@@ -341,7 +341,7 @@ PyMODINIT_FUNC initNet(PyObject *module)
   /* Fill in the bass class */
   PyGedaNetObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaNetObjectType) < 0)
+  if (PyType_Ready(&PyGedaNetObjectType) < 0)
     return;
 
   net_module = Py_InitModule3("Net", NULL, "Creates a Net object type.");

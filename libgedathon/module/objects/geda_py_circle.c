@@ -248,7 +248,7 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 #endif
 
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
 
       PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
 
@@ -330,7 +330,7 @@ PyMODINIT_FUNC initCircle(PyObject *module)
   /* Fill in the bass class */
   PyGedaCircleObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaCircleObjectType) < 0)
+  if (PyType_Ready(&PyGedaCircleObjectType) < 0)
     return;
 
   circle_module = Py_InitModule3("Circle", NULL, _("Creates a Circle object type."));

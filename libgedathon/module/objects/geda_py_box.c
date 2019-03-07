@@ -251,7 +251,7 @@ static int Box_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 #endif
 
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
 
       PyGedaObject  *py_geda_object = (PyGedaObject*)obj;
 
@@ -326,7 +326,7 @@ PyMODINIT_FUNC initBox(PyObject *module)
   /* Fill in the bass class */
   PyGedaBoxObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaBoxObjectType) < 0)
+  if (PyType_Ready(&PyGedaBoxObjectType) < 0)
     return;
 
   box_module = Py_InitModule3("Box", NULL, _("Creates a Box object type."));

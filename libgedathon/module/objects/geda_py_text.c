@@ -60,7 +60,7 @@ static void update_disp_string (PyGedaTextObject *self)
   else if (self->show == SHOW_NAME) {
     ptr = text;
     while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) { ptr++; } /* find "=" */
-    if ( *ptr == ASCII_EQUAL_SIGN ) {
+    if (*ptr == ASCII_EQUAL_SIGN ) {
       length = ptr - text;            /* is pointer offset to "=" */
       py_disp_string = PyString_FromStringAndSize(text, length);
     }
@@ -71,7 +71,7 @@ static void update_disp_string (PyGedaTextObject *self)
   else if (self->show == SHOW_VALUE) {
     ptr = text;
     while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) { ptr++; } /* find "=" */
-    if ( *ptr == ASCII_EQUAL_SIGN ) {
+    if (*ptr == ASCII_EQUAL_SIGN ) {
       ptr++;            /* pointer offset to first char of value */
       py_disp_string = PyString_FromString(ptr);
     }
@@ -282,7 +282,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 #endif
 
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
       if (py_geda_object->pid >= 0) {
@@ -434,7 +434,7 @@ static PyObject *PyGedaTextObject_value(PyGedaTextObject* self)
     char *nv = PyString_AsString(self->string);
     ptr = nv;
     while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) { ptr++; } /* find "=" */
-    if ( *ptr == ASCII_EQUAL_SIGN ) {
+    if (*ptr == ASCII_EQUAL_SIGN ) {
       ptr++;            /* pointer offset to first char of value */
       out_str = PyString_FromString(ptr);
     }
@@ -502,7 +502,7 @@ PyMODINIT_FUNC initText(PyObject *module)
   /* Fill in the bass class */
   PyGedaTextObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaTextObjectType) < 0)
+  if (PyType_Ready(&PyGedaTextObjectType) < 0)
     return;
 
   text_module = Py_InitModule3("Text", NULL, "Creates an Text object type.");

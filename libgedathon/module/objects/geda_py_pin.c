@@ -277,7 +277,7 @@ static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     new_value = long_val;
 #endif
     /* No need to do anything if new value equals the old value */
-    if ( new_value != *old_value) {
+    if (new_value != *old_value) {
       *old_value = new_value;
       py_geda_object->dirty = 1;
       if (py_geda_object->pid >= 0) {
@@ -509,7 +509,7 @@ PyMODINIT_FUNC initPin(PyObject *module)
   /* Fill in the bass class */
   PyGedaPinObjectType.tp_base = PyGedaObjectClass();
 
-  if ( PyType_Ready(&PyGedaPinObjectType) < 0)
+  if (PyType_Ready(&PyGedaPinObjectType) < 0)
     return;
 
   pin_module = Py_InitModule3("Pin", NULL, "Creates a Pin object type.");

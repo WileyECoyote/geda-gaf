@@ -171,7 +171,7 @@ PyMODINIT_FUNC initGedaCapsule(void)
 {
   PyObject *capsule_module;
 
-  if ( PyType_Ready(&GedaCapsuleType) < 0)
+  if (PyType_Ready(&GedaCapsuleType) < 0)
     return;
 
   capsule_module = Py_InitModule3("GedaCapsule", NULL, "Creates a GedaCapsule object type.");
