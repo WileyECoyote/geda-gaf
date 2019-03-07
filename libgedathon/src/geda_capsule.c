@@ -35,6 +35,8 @@
 #include <geda_py_struct.h>
 #include <geda_capsule.h>
 
+#include "../include/gettext.h"
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -135,7 +137,8 @@ PyObject *GedaCapsule_New(void *obj)
   GedaObject  *object = (GedaObject*) obj;
 
   if(!GEDA_IS_OBJECT(object)) {
-    PyErr_SetString(PyExc_ValueError, "GedaCapsule_New called with invalid pointer");
+    const char *msg = _("called with invalid pointer");
+    PyErr_Format(PyExc_ValueError, "GedaCapsule_New %s", msg);
     return NULL;
   }
 
@@ -174,7 +177,7 @@ PyMODINIT_FUNC initGedaCapsule(void)
   if (PyType_Ready(&GedaCapsuleType) < 0)
     return;
 
-  capsule_module = Py_InitModule3("GedaCapsule", NULL, "Creates a GedaCapsule object type.");
+  capsule_module = Py_InitModule3("GedaCapsule", NULL, _("Creates a GedaCapsule object type."));
 
   if (capsule_module == NULL)
     return;
