@@ -42,7 +42,7 @@
  */
 void *GedaCapsule_GetPointer(PyObject *obj)
 {
-  GedaCapsule *capsule = (GedaCapsule *)obj;
+  GedaCapsule *capsule = (GedaCapsule*)obj;
   return capsule->object;
 }
 
@@ -53,7 +53,7 @@ void *GedaCapsule_GetPointer(PyObject *obj)
  */
 const char *GedaCapsule_GetName(PyObject *obj)
 {
-  GedaCapsule *capsule = (GedaCapsule *)obj;
+  GedaCapsule *capsule = (GedaCapsule*)obj;
   return capsule->name;
 }
 
@@ -64,7 +64,7 @@ const char *GedaCapsule_GetName(PyObject *obj)
  */
 static PyObject *GedaCapsule_repr(PyObject *obj)
 {
-  GedaCapsule *capsule = (GedaCapsule *)obj;
+  GedaCapsule *capsule = (GedaCapsule*)obj;
   return PyString_FromString(capsule->name);
 }
 
@@ -169,7 +169,7 @@ PyObject *GedaCapsule_New(void *obj)
  */
 PyMODINIT_FUNC initGedaCapsule(void)
 {
-  PyObject* capsule_module;
+  PyObject *capsule_module;
 
   if ( PyType_Ready(&GedaCapsuleType) < 0)
     return;
@@ -180,5 +180,5 @@ PyMODINIT_FUNC initGedaCapsule(void)
     return;
 
   Py_INCREF(&GedaCapsuleType);
-  PyModule_AddObject(capsule_module, "GedaCapsule", (PyObject *)&GedaCapsuleType);
+  PyModule_AddObject(capsule_module, "GedaCapsule", (PyObject*)&GedaCapsuleType);
 }
