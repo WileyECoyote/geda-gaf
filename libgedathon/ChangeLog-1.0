@@ -4,7 +4,8 @@
       gettext calls for error messages and in the module initializer.
 
     * src/geda_capsule.c: Include local gettext.h and add gettext calls
-      for error messages and in the module initializer.
+      for error messages and in the module initializer, update function
+      documentation.
 
 2019-03-06 Wiley E. Hill <wileyhill@gmail.com>
 

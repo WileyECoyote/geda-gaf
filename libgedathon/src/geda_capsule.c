@@ -165,10 +165,10 @@ PyObject *GedaCapsule_New(void *obj)
   return (PyObject *)capsule;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Initialize the GedaCapsule module
+ * \par Function Description
+ *  Creates the GedaCapsule type and adds the type to the module.
  */
 PyMODINIT_FUNC initGedaCapsule(void)
 {
