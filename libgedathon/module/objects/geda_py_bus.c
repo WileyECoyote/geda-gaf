@@ -326,6 +326,11 @@ static PyTypeObject PyGedaBusObjectType = {
     (newfunc)Bus_new,               /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initBus(PyObject *module)
 {
   geda_module = module;
@@ -345,6 +350,11 @@ PyMODINIT_FUNC initBus(PyObject *module)
   PyModule_AddObject(bus_module, "Bus", (PyObject *)&PyGedaBusObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaBusClass(void)
 {
   return &PyGedaBusObjectType;
