@@ -35,6 +35,7 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
+#include "../../include/gettext.h"
 
 static PyObject *circle_module;
 static PyObject *geda_module;
@@ -112,7 +113,7 @@ static int Circle_init(PyGedaCircleObject *self, PyObject *args, PyObject *kwds)
                                     &self->line_end, &self->line_type, &self->line_width,
                                     &self->line_space, &self->line_length))
   {
-    PyErr_SetString(PyExc_TypeError, "Error initializing new Circle object");
+    PyErr_SetString(PyExc_TypeError, _("Error initializing new Circle object"));
     return -1;
   }
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
@@ -197,7 +198,7 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   int  *old_value;
 
   if (py_value == NULL) {
-    PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
+    PyErr_Format(PyExc_ValueError, _("Cannot delete the %s attribute"), name);
     return -1;
   }
 
@@ -220,7 +221,7 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     int  new_value;
 
     if (!PyInt_Check(py_value)) {
-      PyErr_Format(PyExc_TypeError, "The %s attribute must be an integer value", name);
+      PyErr_Format(PyExc_TypeError, _("The %s attribute must be an integer value"), name);
       return -1;
     }
 
@@ -236,7 +237,7 @@ static int Circle_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       new_value = long_val;
     }
     else {
-      PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
+      PyErr_SetString(PyExc_OverflowError, _("Python int too large to convert to C int"));
       return -1;
     }
 
@@ -332,7 +333,7 @@ PyMODINIT_FUNC initCircle(PyObject *module)
   if ( PyType_Ready(&PyGedaCircleObjectType) < 0)
     return;
 
-  circle_module = Py_InitModule3("Circle", NULL, "Creates a Circle object type.");
+  circle_module = Py_InitModule3("Circle", NULL, _("Creates a Circle object type."));
 
   if (circle_module == NULL)
     return;
