@@ -69,8 +69,8 @@ static PyObject *GedaCapsule_repr(PyObject *obj)
 }
 
 static PyMemberDef GedaCapsule_members[] = {
-  {"sid",    T_INT,    offsetof(GedaCapsule, sid),    RO, "Geda object sequence Identifier"},
-  {"type",   T_INT,    offsetof(GedaCapsule, type),   RO, "Geda object type Identifier"},
+  {"sid",    T_INT,    offsetof(GedaCapsule, sid),    RO, "Geda object sequence identifier"},
+  {"type",   T_INT,    offsetof(GedaCapsule, type),   RO, "Geda object type identifier"},
   {"name",   T_STRING, offsetof(GedaCapsule, name),   RO, "Geda object name"},
   {"object", T_ULONG,  offsetof(GedaCapsule, object), RO, "Pointer to Geda object"},
   {NULL}  /* Sentinel */
