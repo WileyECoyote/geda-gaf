@@ -497,6 +497,11 @@ static PyTypeObject PyGedaPinObjectType = {
     (newfunc)Pin_new,               /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initPin(PyObject *module)
 {
   geda_module = module;
@@ -516,6 +521,11 @@ PyMODINIT_FUNC initPin(PyObject *module)
   PyModule_AddObject(pin_module, "Pin", (PyObject *)&PyGedaPinObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaPinClass(void)
 {
   return &PyGedaPinObjectType;
