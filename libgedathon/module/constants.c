@@ -33,8 +33,12 @@
 
 static PyObject *self;
 
-PyMODINIT_FUNC
-initConstants(PyObject *module)
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+PyMODINIT_FUNC initConstants(PyObject *module)
 {
   PyObject *main_dic, *con_dic;
 
