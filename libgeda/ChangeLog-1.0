@@ -11,6 +11,9 @@
       messages with MUT macro, add function group check_query and relocate
       call to check_get_nearest_point.
 
+    * tests/test_picture_object.c: Add function group check_accessors and
+      check geda_picture_object_get_data.
+
 2019-03-01 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_bus.h: Rename member bus_ripper_direction ->

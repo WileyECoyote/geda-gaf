@@ -42,6 +42,9 @@
  *  o_picture_object module.
  */
 
+/*! \def MUT Module Under Tests */
+#define MUT "src/object/o_picture_object.c"
+
 #define TOBJECT "GedaPicture"
 #define IMAGE_FILE "../docs/logo_256x101.png"
 #define IMAGE_WIDTH  256
@@ -70,7 +73,7 @@
  *      O1603     geda_picture_object_export_object
  *      O1604     geda_picture_object_export_orginal
  *      O1605     geda_picture_object_export_pixbuf
- *      O1606     geda_picture_object_get_data
+ *      O1606    geda_picture_object_get_data
  *      O1607     geda_picture_object_get_effective_ratio
  *      O1608     geda_picture_object_get_fallback_pixbuf
  *      O1609     geda_picture_object_get_filename
@@ -142,8 +145,7 @@ void posttest(void)
   }
 }
 
-int
-check_construction (void)
+int check_construction (void)
 {
   int count;
   int result = 0;
@@ -238,6 +240,43 @@ check_construction (void)
   return result;
 }
 
+int check_accessors (void)
+{
+  int result = 0;
+
+  int left = 100;
+  int top  = 200;
+
+  int right  = left + IMAGE_WIDTH;
+  int bottom = top  - IMAGE_HEIGHT;
+
+  GedaObject *object0 = geda_picture_object_new(NULL, 0, IMAGE_FILE,
+                                                left, top, right, bottom,
+                                                0, FALSE, FALSE);
+  if (!GEDA_IS_OBJECT(object0)) {
+    fprintf(stderr, "FAILED: (O162302) New GedaObject Failed\n");
+    result++;
+  }
+
+  /* === Function 06: geda_picture_object_get_data  === */
+
+  const char *data;
+  unsigned int len;
+
+  data = geda_picture_object_get_data(object0, &len);
+
+  if (!data) {
+    fprintf(stderr, "FAILED: (O160601A) get_data NULL\n");
+    result++;
+  }
+  else if (len != 8850) {
+    fprintf(stderr, "FAILED: (O160601B) get_data len %u\n", len);
+    result++;
+  }
+
+  return result;
+}
+
 /** @} endgroup test-object-geda-picture */
 
 int
@@ -264,6 +303,18 @@ main (int argc, char *argv[])
     fprintf(stderr, "Caught signal in constructors %s\n\n", __FILE__);
     return 1;
   }
+
+  if (!result) {
+
+    if (setjmp(point) == 0) {
+      result = check_accessors();
+    }
+    else {
+      fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+      return 1;
+    }
+  }
+
   posttest();
   return result;
 }
