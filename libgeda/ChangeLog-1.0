@@ -7,6 +7,9 @@
     * tests/test_bus_object.c: Define define MUT and replace strings in
       messages with MUT macro.
 
+    * tests/test_complex_object.c: Define define MUT and replace strings in
+      messages with MUT macro.
+
 2019-03-01 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_bus.h: Rename member bus_ripper_direction ->

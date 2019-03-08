@@ -43,6 +43,9 @@
  *  o_complex_object module.
  */
 
+/*! \def MUT Module Under Tests */
+#define MUT "src/object/o_complex_object.c"
+
 #define TOBJECT  "GedaComplex"
 #define SYM_FILE "data/ATMega32-DIP_test.sym"
 #define SYMBOL   "ATMega32-DIP_test.sym"
@@ -472,12 +475,14 @@ main (int argc, char *argv[])
       result = check_accessors();
     }
     else {
-      fprintf(stderr, "Caught signal checking accessors in object/o_complex_object.c\n\n");
+      fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+      return 1;
+    }
       return 1;
     }
   }
   else {
-    fprintf(stderr, "discontinuing checks for object/o_complex_object.c\n\n");
+    fprintf(stderr, "discontinuing checks for %s\n\n", MUT);
   }
 
   posttest();
