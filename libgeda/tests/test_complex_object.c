@@ -332,13 +332,6 @@ int check_construction (void)
   return result;
 }
 
-int check_get_nearest_point(GedaObject *object)
-{
-  int result = 0;
-
-  return result;
-}
-
 int check_accessors (void)
 {
   int count;
@@ -394,10 +387,6 @@ int check_accessors (void)
         result++;
       }
 
-      /* === Function 04: geda_complex_object_get_nearest_point  === */
-
-      result += check_get_nearest_point (object1);
-
       /* === Function 05: geda_complex_object_get_pin_objs  === */
 
       GList *p_list;
@@ -442,6 +431,34 @@ int check_accessors (void)
   return result;
 }
 
+int check_get_nearest_point(GedaObject *object)
+{
+  int result = 0;
+
+  return result;
+}
+
+int check_query(void)
+{
+  int result = 0;
+  GedaToplevel *toplevel = geda_toplevel_new ();
+
+  const CLibSymbol *sym = geda_struct_clib_get_symbol_by_name(SYMBOL);
+
+  const char *sym_name = geda_struct_clib_symbol_get_name (sym);
+
+  GedaObject *object = geda_complex_object_new(toplevel, 100, 100, 0, 0,
+                                               sym, sym_name, 1);
+
+  /* === Function 04: geda_complex_object_get_nearest_point  === */
+
+  result += check_get_nearest_point (object);
+
+  g_object_unref (object);
+
+  return result;
+}
+
 /** @} endgroup test-object-geda-complex */
 
 int
@@ -478,6 +495,12 @@ main (int argc, char *argv[])
       fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
       return 1;
     }
+
+    if (setjmp(point) == 0) {
+      result += check_query();
+    }
+    else {
+      fprintf(stderr, "Caught signal during query in %s\n\n", MUT);
       return 1;
     }
   }

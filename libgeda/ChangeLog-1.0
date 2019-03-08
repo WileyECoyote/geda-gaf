@@ -8,7 +8,8 @@
       messages with MUT macro.
 
     * tests/test_complex_object.c: Define define MUT and replace strings in
-      messages with MUT macro.
+      messages with MUT macro, add function group check_query and relocate
+      call to check_get_nearest_point.
 
 2019-03-01 Wiley E. Hill <wileyhill@gmail.com
 
