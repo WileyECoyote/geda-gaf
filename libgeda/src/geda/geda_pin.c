@@ -88,11 +88,14 @@ static char *m_strings[] = { "lead", "body",  "pad", "bump",
 PIN_ELECT geda_pin_lookup_etype(const char *e_str) {
 
   PIN_ELECT index;
+
   for (index = PIN_ELECT_IN; e_strings[index] != NULL; index++) {
     if (strcmp(e_str, e_strings[index]) == 0)
       break;
   }
-  if(e_strings[index] == NULL ) index = PIN_ELECT_VOID;
+
+  if (e_strings[index] == NULL ) index = PIN_ELECT_VOID;
+
   return index;
 }
 
@@ -129,39 +132,6 @@ const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
   }
 
   return str;
-}
-
-/*!
- * \brief GedaType instance initializer for GedaPin
- * \par Function Description
- *  GedaType instance initializer for GedaPin, initializes a new empty
- *  Pin object by setting pointers to NULL and numbers to zero.
- *
- * \param [in] instance The GedaPin structure being initialized,
- * \param [in] g_class  The GedaPin class we are initializing.
- */
-static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
-{
-  GedaPin    *pin    = (GedaPin*)instance;
-  GedaLine   *line   = &pin->parent_instance;
-  GedaObject *object = &line->parent_instance;
-
-  pin->number        = NULL;
-  pin->whichend      = 0;    /* either 0 or 1 */
-
-  pin->elect_type    = PIN_ELECT_VOID; /* electrical type code */
-  pin->mech_type     = PIN_MECH_VOID;  /* mechanical type code */
-  pin->node_type     = PIN_NET_NODE;   /* either NET or BUS */
-
-  pin->label         = NULL; /* Pointer to label string */
-  pin->electrical    = NULL; /* Pointer to electrical string */
-  pin->mechanical    = NULL; /* Pointer to mechanical string */
-
-  object->pin        = pin;
-
-  pin->line_width    = &line->line_options.line_width;
-
-  line->line_options.line_width = default_thick_pin_width;
 }
 
 static void geda_pin_set_property (GObject *object,     unsigned int  prop_id,
@@ -352,6 +322,39 @@ static void geda_pin_class_init(void *klass, void *class_data)
 
 }
 
+/*!
+ * \brief GedaType instance initializer for GedaPin
+ * \par Function Description
+ *  GedaType instance initializer for GedaPin, initializes a new empty
+ *  Pin object by setting pointers to NULL and numbers to zero.
+ *
+ * \param [in] instance The GedaPin structure being initialized,
+ * \param [in] g_class  The GedaPin class we are initializing.
+ */
+static void geda_pin_instance_init(GTypeInstance *instance, void *g_class)
+{
+  GedaPin    *pin    = (GedaPin*)instance;
+  GedaLine   *line   = &pin->parent_instance;
+  GedaObject *object = &line->parent_instance;
+
+  pin->number        = NULL;
+  pin->whichend      = 0;    /* either 0 or 1 */
+
+  pin->elect_type    = PIN_ELECT_VOID; /* electrical type code */
+  pin->mech_type     = PIN_MECH_VOID;  /* mechanical type code */
+  pin->node_type     = PIN_NET_NODE;   /* either NET or BUS */
+
+  pin->label         = NULL; /* Pointer to label string */
+  pin->electrical    = NULL; /* Pointer to electrical string */
+  pin->mechanical    = NULL; /* Pointer to mechanical string */
+
+  object->pin        = pin;
+
+  pin->line_width    = &line->line_options.line_width;
+
+  line->line_options.line_width = default_thick_pin_width;
+}
+
 /*! \brief Function to retrieve Pin's Type identifier.
  *
  *  \par Function Description
@@ -393,6 +396,18 @@ GedaObjectType geda_pin_get_type (void)
   return geda_pin_type;
 }
 
+/*! \brief Determine if object is a Geda Pin GedaObject.
+ *
+ *  \par Function Description
+ *  Returns true if the argument is a Geda Pin object.
+ *
+ *  \return boolean.
+ */
+bool is_a_geda_pin (const GedaPin *pin)
+{
+  return GEDA_IS_OBJECT(pin) && (((GedaObject*)pin)->type == OBJ_PIN);
+}
+
 /*! \brief Returns a pointer to a new Pin object.
  *
  *  \par Function Description
@@ -407,18 +422,6 @@ GedaObject *geda_pin_new (void)
                              "name", "pin",
                               NULL );
   return GEDA_OBJECT(pin);
-}
-
-/*! \brief Determine if object is a Geda Pin GedaObject.
- *
- *  \par Function Description
- *  Returns true if the argument is a Geda Pin object.
- *
- *  \return boolean.
- */
-bool is_a_geda_pin (const GedaPin *pin)
-{
-  return GEDA_IS_OBJECT(pin) && (((GedaObject*)pin)->type == OBJ_PIN);
 }
 
 const char*

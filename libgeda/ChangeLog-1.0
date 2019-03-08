@@ -1,5 +1,7 @@
 2019-03-08 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/geda/geda_pin.c: Reorganize module, somewhat.
+
     * src/iface/i_menu.c: Update function documentation.
 
     * src/iface/i_vars.c: Revise and reformat function documentation.
