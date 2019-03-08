@@ -1623,10 +1623,10 @@ void geda_picture_object_rotate(GedaObject *object, int x, int y, int angle)
 
   /* Only 90 degree multiple and positive angles are allowed. */
   /* angle must be positive */
-  if(angle < 0) angle = -angle;
+  if (angle < 0) angle = -angle;
 
   /* angle must be a 90 multiple or no rotation performed */
-  if((angle % 90) != 0) return;
+  if ((angle % 90) != 0) return;
 
   object->picture->angle = (object->picture->angle + angle) % 360;
 
