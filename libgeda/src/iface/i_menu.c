@@ -37,10 +37,10 @@ static int menu_index=0;
 /* and eventually make this unlimited, is a hack */
 static struct st_menu menu[MAX_MENUS];
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Number of Top Level Menus
+ * \par Function Description
+ * Returns the number of top-level menu containers.
  */
 int geda_iface_menu_return_num(void)
 {
