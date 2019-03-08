@@ -25,7 +25,6 @@
 
 #include <geda_debug.h>
 
-
 char  *default_bitmap_directory          = NULL;
 char  *default_log_directory             = NULL;
 char  *default_postscript_prolog         = NULL;
@@ -74,13 +73,13 @@ int   default_fill_angle1      = 45;
 int   default_fill_pitch2      = 50;
 int   default_fill_angle2      = 135;
 
-/*! \brief Initialize variables in a GedaToplevel object
- *  \par Function Description
+/*!
+ * \brief Initialize variables in a GedaToplevel object
+ * \par Function Description
  *  This function will initialize variables to default values,
  *  which may have been assigned values by RC handlers.
  *
- *  \param [out] toplevel  The GedaToplevel object to be updated.
- *
+ * \param [out] toplevel  The GedaToplevel object to be updated.
  */
 void geda_iface_vars_set(GedaToplevel *toplevel)
 {
@@ -142,10 +141,10 @@ void geda_iface_vars_set(GedaToplevel *toplevel)
 }
 
 
-/*! \brief Free default names
- *  \par Function Description
+/*!
+ * \brief Free default names
+ * \par Function Description
  *  This function will free all of the default variables for libgeda.
- *
  */
 void geda_iface_vars_freenames()
 {
