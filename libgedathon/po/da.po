@@ -226,25 +226,30 @@ msgstr "Opret et nyt attributobjekt."
 msgid "New object type syntax"
 msgstr "Ny objekttype syntaks"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Objektnavnet"
 
+# Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Tilføj et attribut objekt til dette objekt"
 
+# Copy the object
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Kopier objektet"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Drej objektet"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Vælg dette objekt"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
@@ -378,21 +383,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
+# Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Opret et nyt lysobjekt."
+msgstr "Opretter en bueobjekttype."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
+# Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Opret en ny boksobjekt."
+msgstr "Opretter en boks-objekttype."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -402,20 +405,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Opret et nyt busobjekt."
+msgstr "Opretter en busobjekttype."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Opret en ny cirkelobjekt."
+msgstr "Fejl ved initialisering af ny cirkelobjekt"
 
 # Create a new circle object
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Opret en ny cirkelobjekt."
+msgstr "Opretter en cirkelobjekttype."
