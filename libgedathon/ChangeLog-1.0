@@ -4,6 +4,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/ar.po: Update Arabic translations.
+
 2019-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_circle.c: Include local gettext.h and add

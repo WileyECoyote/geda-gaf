@@ -280,25 +280,32 @@ msgstr "قم بإنشاء كائن سمة جديد."
 msgid "New object type syntax"
 msgstr "بناء جملة نوع كائن جديد"
 
+# The object name
+# aism alkayin
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Ime objekta"
 
+# Add an attribute object to this object
+# 'iidafatan kayin simat lhdha alkayin
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "إضافة كائن سمة لهذا الكائن"
 
+# Copy the object; ainsakh alkayin
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "انسخ الكائن"
 
+# Rotate the object; tadwir alkayin
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "تدوير الكائن"
 
+# Select this Object; hadad hdha alkayin
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "حدد هذا الكائن"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
@@ -432,23 +439,21 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
-# qum bi'iinsha' kayin qus jadid
+# Creates an Arc object extension type
+# yakhluq nawe tamdid kayin alqaws
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "قم بإنشاء كائن قوس جديد."
+msgstr "يخلق نوع تمديد كائن القوس."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
-# qum bi'iinsha' kayin murabae jadid
+# Creates a Box object type
+# yakhluq nawe tamdid kayin alqaws
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "قم بإنشاء كائن مربع جديد."
+msgstr "يخلق نوع تمديد كائن القوس."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -458,23 +463,20 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
-# 'iinsha' kayin naqil jadid
+# Creates a Bus object type
+# yunashiy nawe kayin kabal
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "إنشاء كائن ناقل جديد."
+msgstr "ينشئ نوع كائن كبل."
 
-# Create a new circle object
-# qum bi'iinsha' kayin dayirat jadid
+# Error initializing new Circle object
+# khata fi tahyiat kayin dayirat jadid
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "قم بإنشاء كائن دائرة جديد."
+msgstr "خطأ في تهيئة كائن دائرة جديد"
 
-# Create a new circle object
-# qum bi'iinsha' kayin dayirat jadid
+# Creates a Circle object type
+# yunashiy nawe kayin dayira
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "قم بإنشاء كائن دائرة جديد."
+msgstr "ينشئ نوع كائن دائرة."
