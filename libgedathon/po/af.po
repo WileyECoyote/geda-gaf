@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-03-09 20:28-0600\n"
 "PO-Revision-Date: 2017-12-13 02:30-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -204,61 +204,75 @@ msgstr "Skep 'n nuwe busvoorwerp."
 msgid "Create a new circle object."
 msgstr "Skep 'n nuwe kringvoorwerp."
 
+# Create a new complex object
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Skep 'n nuwe komplekse voorwerp."
 
+# Create a new line object
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Skep 'n nuwe lynvoorwerp."
 
+# Create a new net object
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Skep 'n nuwe netto voorwerp."
 
+# Create a new path object
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Create a new path object."
 
+# Create a new picture object
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Skep 'n nuwe prentobjek."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Skep 'n nuwe penvoorwerp."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Skep 'n nuwe teksobjek."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Skep 'n nuwe kenmerk voorwerp."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Nuwe objek tipe sintaksis"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Die voorwerpnaam"
 
+# Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Voeg 'n attribuutvoorwerp by hierdie voorwerp"
 
+# Copy the object
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Kopieer die voorwerp"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Draai die voorwerp"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Kies hierdie objek"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
@@ -364,3 +378,67 @@ msgstr ""
 #: libgedathon/module/functions.c:2114
 msgid "Text"
 msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:110
+msgid "Error initializing new Arc object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:188
+#: libgedathon/module/objects/geda_py_box.c:204
+#: libgedathon/module/objects/geda_py_bus.c:182
+#: libgedathon/module/objects/geda_py_circle.c:201
+#, c-format
+msgid "Cannot delete the %s attribute"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:213
+#: libgedathon/module/objects/geda_py_box.c:227
+#: libgedathon/module/objects/geda_py_bus.c:202
+#: libgedathon/module/objects/geda_py_circle.c:224
+#, c-format
+msgid "The %s attribute must be an integer value"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:229
+#: libgedathon/module/objects/geda_py_box.c:243
+#: libgedathon/module/objects/geda_py_bus.c:218
+#: libgedathon/module/objects/geda_py_circle.c:240
+msgid "Python int too large to convert to C int"
+msgstr ""
+
+# Creates an Arc object extension type
+#: libgedathon/module/objects/geda_py_arc.c:318
+msgid "Creates an Arc object extension type."
+msgstr "Skep 'n Arc-voorwerp-uitbreidingstipe."
+
+#: libgedathon/module/objects/geda_py_box.c:117
+msgid "Error initializing new Box object"
+msgstr ""
+
+# Creates a Box object type
+#: libgedathon/module/objects/geda_py_box.c:332
+msgid "Creates a Box object type."
+msgstr "Skep 'n vak-objek tipe."
+
+#: libgedathon/module/objects/geda_py_bus.c:113
+msgid "Error initializing new Bus object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_bus.c:265
+msgid "The bus name attribute value must be a string"
+msgstr ""
+
+# Creates a Bus object type
+#: libgedathon/module/objects/geda_py_bus.c:348
+msgid "Creates a Bus object type."
+msgstr "Skep 'n Bus-objek tipe."
+
+# Error initializing new Circle object
+#: libgedathon/module/objects/geda_py_circle.c:116
+msgid "Error initializing new Circle object"
+msgstr "Kon nie nuwe kringvoorwerp initialiseer nie"
+
+# Create a new circle object
+#: libgedathon/module/objects/geda_py_circle.c:336
+msgid "Creates a Circle object type."
+msgstr "Skep 'n sirkel-objek tipe."
