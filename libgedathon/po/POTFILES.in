@@ -3,6 +3,20 @@ libgedathon/include/geda_module.h
 
 libgedathon/module/functions.c
 libgedathon/module/geda.c
+libgedathon/module/objects/geda_py_arc.c
+libgedathon/module/objects/geda_py_box.c
+libgedathon/module/objects/geda_py_bus.c
+libgedathon/module/objects/geda_py_circle.c
+libgedathon/module/objects/geda_py_color.c
+libgedathon/module/objects/geda_py_complex.c
+libgedathon/module/objects/geda_py_line.c
+libgedathon/module/objects/geda_py_net.c
+libgedathon/module/objects/geda_py_object.c
+libgedathon/module/objects/geda_py_page.c
+libgedathon/module/objects/geda_py_path.c
+libgedathon/module/objects/geda_py_picture.c
+libgedathon/module/objects/geda_py_pin.c
+libgedathon/module/objects/geda_py_text.c
 
 libgedathon/src/libgedathon.c
 intl/plural.c

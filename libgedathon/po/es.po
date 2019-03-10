@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-03-09 20:28-0600\n"
 "PO-Revision-Date: 2017-12-13 02:37-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -351,3 +351,67 @@ msgstr ""
 #: libgedathon/module/functions.c:2114
 msgid "Text"
 msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:110
+msgid "Error initializing new Arc object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:188
+#: libgedathon/module/objects/geda_py_box.c:204
+#: libgedathon/module/objects/geda_py_bus.c:182
+#: libgedathon/module/objects/geda_py_circle.c:201
+#, c-format
+msgid "Cannot delete the %s attribute"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:213
+#: libgedathon/module/objects/geda_py_box.c:227
+#: libgedathon/module/objects/geda_py_bus.c:202
+#: libgedathon/module/objects/geda_py_circle.c:224
+#, c-format
+msgid "The %s attribute must be an integer value"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:229
+#: libgedathon/module/objects/geda_py_box.c:243
+#: libgedathon/module/objects/geda_py_bus.c:218
+#: libgedathon/module/objects/geda_py_circle.c:240
+msgid "Python int too large to convert to C int"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:318
+#, fuzzy
+msgid "Creates an Arc object extension type."
+msgstr "Crear un nuevo objeto de arco."
+
+#: libgedathon/module/objects/geda_py_box.c:117
+msgid "Error initializing new Box object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_box.c:332
+#, fuzzy
+msgid "Creates a Box object type."
+msgstr "Crear un nuevo objeto caja."
+
+#: libgedathon/module/objects/geda_py_bus.c:113
+msgid "Error initializing new Bus object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_bus.c:265
+msgid "The bus name attribute value must be a string"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_bus.c:348
+#, fuzzy
+msgid "Creates a Bus object type."
+msgstr "Crear un nuevo objeto de bus.."
+
+#: libgedathon/module/objects/geda_py_circle.c:116
+#, fuzzy
+msgid "Error initializing new Circle object"
+msgstr "Crear un nuevo objeto de círculo."
+
+#: libgedathon/module/objects/geda_py_circle.c:336
+#, fuzzy
+msgid "Creates a Circle object type."
+msgstr "Crear un nuevo objeto de círculo."
