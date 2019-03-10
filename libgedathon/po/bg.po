@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-03-09 20:28-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -202,85 +202,97 @@ msgstr "Изтриване на няколко обекта от страниц�
 msgid "Synchronize object with library."
 msgstr "Синхронизирайте обект с библиотека."
 
-# Create a new arc object
-# Sŭzdaĭte nov obekt na dŭga
+# Create a new arc object; Sŭzdaĭte nov obekt na dŭga
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
 msgstr "Създайте нов обект на дъга."
 
-# Create a new box object
-# Sŭzdaĭte nov obekt na kutiya
+# Create a new box object; Sŭzdaĭte nov obekt na kutiya
 #: libgedathon/include/geda_module.h:89
 msgid "Create a new box object."
 msgstr "Създайте нов обект на кутия."
 
-# Create a new bus object
-# Sŭzdaĭte nov avtobusen obekt
+# Create a new bus object; Sŭzdaĭte nov avtobusen obekt
 #: libgedathon/include/geda_module.h:90
 msgid "Create a new bus object."
 msgstr "Създайте нов автобусен обект."
 
-# Create a new circle object
-# Sŭzdaĭte nov obekt ot krŭga
+# Create a new circle object; Sŭzdaĭte nov obekt ot krŭga
 #: libgedathon/include/geda_module.h:91
 msgid "Create a new circle object."
 msgstr "Създайте нов обект от кръга."
 
+# Create a new complex object; Sŭzdaĭte nov slozhen obekt
 #: libgedathon/include/geda_module.h:92
 msgid "Create a new complex object."
-msgstr ""
+msgstr "Създайте нов сложен обект."
 
+# Create a new line object; Sŭzdaĭte nov obekt liniya
 #: libgedathon/include/geda_module.h:93
 msgid "Create a new line object."
-msgstr ""
+msgstr "Създайте нов обект линия."
 
+# Create a new net object; Sŭzdaĭte nov net obekt
 #: libgedathon/include/geda_module.h:94
 msgid "Create a new net object."
-msgstr ""
+msgstr "Създайте нов net обект."
 
+# Create a new path object; Sŭzdaĭte nov obekt pŭt
 #: libgedathon/include/geda_module.h:95
 msgid "Create a new path object."
-msgstr ""
+msgstr "Създайте нов обект път."
 
+# Create a new picture object; Sŭzdaĭte nov obekt na kartina
 #: libgedathon/include/geda_module.h:96
 msgid "Create a new picture object."
-msgstr ""
+msgstr "Създайте нов обект на картина."
 
+# Create a new pin object
+# Sŭzdaĭte nov obekt s pin
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Създайте нов обект с пин."
 
+# Create a new text object; Sŭzdaĭte nov tekstov obekt
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Създайте нов текстов обект."
 
+# Create a new attribute object; Sŭzdaĭte nov obekt na atribut
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Създайте нов обект на атрибут."
 
+# New object type syntax; Nov sintaksis na tip obekt
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Нов синтаксис на тип обект"
 
+# The object name; Imeto na obekta
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Името на обекта"
 
+# Add an attribute object to this object
+# Dobavete atributen obekt kŭm tozi obekt
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Добавете атрибутен обект към този обект"
 
+# Copy the object; Kopiraĭte obekta
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Копирайте обекта"
 
+# Rotate the object; Zavŭrtete obekta
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Завъртете обекта"
 
+# Select this Object; Izberete tozi obekt
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Изберете този обект"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
@@ -386,3 +398,72 @@ msgstr ""
 #: libgedathon/module/functions.c:2114
 msgid "Text"
 msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:110
+msgid "Error initializing new Arc object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:188
+#: libgedathon/module/objects/geda_py_box.c:204
+#: libgedathon/module/objects/geda_py_bus.c:182
+#: libgedathon/module/objects/geda_py_circle.c:201
+#, c-format
+msgid "Cannot delete the %s attribute"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:213
+#: libgedathon/module/objects/geda_py_box.c:227
+#: libgedathon/module/objects/geda_py_bus.c:202
+#: libgedathon/module/objects/geda_py_circle.c:224
+#, c-format
+msgid "The %s attribute must be an integer value"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_arc.c:229
+#: libgedathon/module/objects/geda_py_box.c:243
+#: libgedathon/module/objects/geda_py_bus.c:218
+#: libgedathon/module/objects/geda_py_circle.c:240
+msgid "Python int too large to convert to C int"
+msgstr ""
+
+# Creates an Arc object extension type
+# Sŭzdava tip razshirenie na Arc obekt
+#: libgedathon/module/objects/geda_py_arc.c:318
+msgid "Creates an Arc object extension type."
+msgstr "Създава тип разширение на Arc обект."
+
+#: libgedathon/module/objects/geda_py_box.c:117
+msgid "Error initializing new Box object"
+msgstr ""
+
+# Creates a Box object type
+# Sŭzdava tip obekt Box
+#: libgedathon/module/objects/geda_py_box.c:332
+msgid "Creates a Box object type."
+msgstr "Създава тип обект на кутия."
+
+#: libgedathon/module/objects/geda_py_bus.c:113
+msgid "Error initializing new Bus object"
+msgstr ""
+
+#: libgedathon/module/objects/geda_py_bus.c:265
+msgid "The bus name attribute value must be a string"
+msgstr ""
+
+# Creates a Bus object type
+# Sŭzdava tip obekt Bus
+#: libgedathon/module/objects/geda_py_bus.c:348
+msgid "Creates a Bus object type."
+msgstr "Създава тип обект Bus."
+
+# Error initializing new Circle object
+# Greshka pri initsializirane na nov obekt ot krŭga
+#: libgedathon/module/objects/geda_py_circle.c:116
+msgid "Error initializing new Circle object"
+msgstr "Грешка при инициализиране на нов обект от кръга"
+
+# Create a new circle object
+# Sŭzdava obekt tip krŭg
+#: libgedathon/module/objects/geda_py_circle.c:336
+msgid "Creates a Circle object type."
+msgstr "Creëert een cirkelobjecttype."
