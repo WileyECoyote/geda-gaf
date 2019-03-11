@@ -577,7 +577,7 @@ bool geda_keyfile_load_from_data (GedaKeyFile       *key_file,
   g_return_val_if_fail (key_file != NULL, FALSE);
   g_return_val_if_fail (data != NULL || length == 0, FALSE);
 
-  if (length == (unsigned int )-1)
+  if (length == -1)
     length = strlen (data);
 
   list_separator = key_file->list_separator;
