@@ -4,8 +4,8 @@ T 0 850 9 10 0 1 0 0 1
 device=directive
 T 100 600 9 10 1 1 0 0 1
 refdes=A?
-T 600 600 9 10 1 0 0 0 1
-SPICE directives
+T 600 600 9 10 1 1 0 0 1
+description=SPICE directives
 T 100 100 8 10 1 1 0 0 1
 file=?
 T 100 100 8 10 1 1 0 0 1
