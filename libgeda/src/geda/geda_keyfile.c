@@ -1134,16 +1134,12 @@ static void geda_keyfile_parse_data (GedaKeyFile  *key_file,
 static void
 geda_keyfile_flush_parse_buffer (GedaKeyFile *key_file, GError **error)
 {
-  GError *file_error;
-  char   *buffer;
-
-  file_error = NULL;
-
-  buffer = key_file->parse_buffer;
+  char *buffer = key_file->parse_buffer;
 
   if (buffer && *buffer) {
 
-    size_t len = strlen(buffer);
+    GError *file_error = NULL;
+    size_t  len        = strlen(buffer);
 
     geda_keyfile_parse_line (key_file, buffer, len, &file_error);
 
