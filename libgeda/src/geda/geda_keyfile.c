@@ -1982,7 +1982,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
       }
     }
     else {
-      translated_value = geda_keyfile_get_string (key_file,group_name, key, NULL);
+      translated_value = geda_keyfile_get_string (key_file, group_name, key, NULL);
     }
   }
 
