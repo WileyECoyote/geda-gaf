@@ -49,13 +49,14 @@
 
 static GObjectClass *geda_picture_parent_class = NULL;
 
-/*! \brief Get picture bounding rectangle.
- *  \par Function Description
+/*!
+ * \brief Get picture bounding rectangle.
+ * \par Function Description
  *  This function sets the <B>left</B>, <B>top</B>, <B>right</B> and
  *  <B>bottom</B> parameters to the boundings of the picture object
  *  described in <B>*picture</B>.
  *
- *  \param [in]  object     Picture GedaObject to read coordinates from.
+ * \param [in]  object     Picture GedaObject to read coordinates from.
  */
 static int geda_picture_bounds(GedaObject *object)
 {
@@ -71,14 +72,14 @@ static int geda_picture_bounds(GedaObject *object)
   return TRUE;
 }
 
-/*! \brief GedaType instance initializer for Picture
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for Picture
+ * \par Function Description
  *  GedaType instance initializer for Picture, initializes a new empty
  *  Picture object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The Picture structure being initialized,
- *  \param [in]  g_class The Picture class we are initializing.
+ * \param [in] instance The Picture structure being initialized,
+ * \param [in]  g_class The Picture class we are initializing.
  */
 static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -116,12 +117,13 @@ static void geda_picture_dispose(GObject *object)
 
 }
 
-/*! \brief Geda Picture GedaObject Finalization Function
- *  \par Function Description
- *   This function removes or releases all internal references and
- *   releases the memory allocated to the given Picture structure,
- *   invalidates the Picture's markers, then chain up to the parent's
- *   finalizer.
+/*!
+ * \brief Geda Picture GedaObject Finalization Function
+ * \par Function Description
+ *  This function removes or releases all internal references and
+ *  releases the memory allocated to the given Picture structure,
+ *  invalidates the Picture's markers, then chain up to the parent's
+ *  finalizer.
  */
 static void geda_picture_finalize(GObject *object)
 {
@@ -140,9 +142,9 @@ static void geda_picture_finalize(GObject *object)
   GEDA_OBJECT_CLASS(geda_picture_parent_class)->finalize(object);
 }
 
-/*! \brief GedaType class initializer for GedaPicture
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaPicture
+ * \par Function Description
  *  GedaType class initializer for GedaPicture. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
@@ -163,9 +165,9 @@ static void geda_picture_class_init(void *klass, void *class_data)
   geda_class->bounds              = geda_picture_bounds;
 }
 
-/*! \brief Function to retrieve Picture Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve Picture Type identifier.
+ * \par Function Description
  *  Function to retrieve a #Picture Type identifier. When first called,
  *  the function registers a #Picture in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a Picture and returns
@@ -204,9 +206,9 @@ GedaObjectType geda_picture_get_type (void)
   return geda_picture_type;
 }
 
-/*! \brief Returns a pointer to a new Picture object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Picture object.
+ * \par Function Description
  *  Returns a pointer to a new Picture object.
  *
  *  \return pointer to the new Picture object.
@@ -220,9 +222,9 @@ GedaObject *geda_picture_new (void)
   return GEDA_OBJECT(picture);
 }
 
-/*! \brief Determine if object is a Geda Picture GedaObject.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if object is a Geda Picture GedaObject.
+ * \par Function Description
  *  Returns true if the argument is a Geda Picture object.
  *
  *  \return boolean.
