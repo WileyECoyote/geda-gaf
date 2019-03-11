@@ -262,6 +262,13 @@ bool geda_picture_get_is_embedded (const GedaPicture *pic)
   return -0;
 }
 
+/*!
+ * \brief Set the Angle of a GedaPicture
+ * \par Function Description
+ *  Low-level setter to set the value of the angle property
+ *  if \a pic is a valid GedaPicture object. Silently ignores
+ *  error if \a pic is not a valid GedaPicture.
+ */
 void geda_picture_set_angle (GedaPicture *pic, int angle)
 {
   if (is_a_geda_picture(pic)) {
