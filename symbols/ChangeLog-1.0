@@ -21,6 +21,9 @@
     * simulation/spice/spice-model-1.sym: Add footprint none and convert
       plain text to a description attribute.
 
+    * simulation/spice/spice-npn-1.sym: Add footprint none and description,
+      convert plain text to pin label attributes, fix pin off grid.
+
 2019-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/transformer/transformer-8.sym: Add description attribute, update
