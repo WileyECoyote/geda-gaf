@@ -9,6 +9,7 @@
 
           * geda_picture_get_is_embedded
           * geda_picture_set_angle
+          * geda_picture_set_is_embedded
 
 2019-03-08 Wiley E. Hill <wileyhill@gmail.com
 

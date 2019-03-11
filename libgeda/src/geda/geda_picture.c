@@ -276,6 +276,16 @@ void geda_picture_set_angle (GedaPicture *pic, int angle)
   }
 }
 
+/*!
+ * \brief Set GedaPicture is_embedded Flag
+ * \par Function Description
+ *  Low-level setter to set the is_embedded property if \a pic
+ *  is a valid GedaPicture object. Setting this flag does not
+ *  embed the picture. Silently ignores error if \a pic is not
+ *  a valid GedaPicture.
+ *
+ * \sa geda_object_embed geda_object_unembed
+ */
 void geda_picture_set_is_embedded (GedaPicture *pic, bool is_embedded)
 {
   if (is_a_geda_picture(pic)) {
