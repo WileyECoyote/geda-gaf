@@ -248,6 +248,12 @@ int geda_picture_get_angle (const GedaPicture *pic)
   return -0;
 }
 
+/*!
+ * \brief Get if Picture is Embedded
+ * \par Function Description
+ *  Returns the value of the is_embedded flag or -0 if \a pic
+ *  is not a valid GedaPicture object.
+ */
 bool geda_picture_get_is_embedded (const GedaPicture *pic)
 {
   if (is_a_geda_picture(pic)) {

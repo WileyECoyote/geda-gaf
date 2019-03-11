@@ -4,7 +4,10 @@
       remove unneeded cast in geda_keyfile_load_from_data, add missing braces,
       and reduce scope of file_error in geda_keyfile_flush_parse_buffer.
 
-    * src/geda/geda_picture.c: Reformat function documentation.
+    * src/geda/geda_picture.c: Reformat function documentation, add function
+      documentation for:
+
+          * geda_picture_get_is_embedded
 
 2019-03-08 Wiley E. Hill <wileyhill@gmail.com
 
