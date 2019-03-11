@@ -1,7 +1,7 @@
 2019-03-11 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Remove unused function geda_keyfile_load_from_fd,
-      remove unneeded cast in geda_keyfile_load_from_data.
+      remove unneeded cast in geda_keyfile_load_from_data, add missing braces.
 
 2019-03-08 Wiley E. Hill <wileyhill@gmail.com
 

@@ -577,8 +577,9 @@ bool geda_keyfile_load_from_data (GedaKeyFile       *key_file,
   g_return_val_if_fail (key_file != NULL, FALSE);
   g_return_val_if_fail (data != NULL || length == 0, FALSE);
 
-  if (length == -1)
+  if (length == -1) {
     length = strlen (data);
+  }
 
   list_separator = key_file->list_separator;
   geda_keyfile_clear (key_file);
@@ -977,8 +978,9 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
 
   /* Pull the key name from the line (chomping trailing whitespace)
    */
-  while (g_ascii_isspace (*key_end))
+  while (g_ascii_isspace (*key_end)) {
     key_end--;
+  }
 
   key_len = key_end - line + 2;
 
@@ -996,8 +998,9 @@ geda_keyfile_parse_key_value_pair (GedaKeyFile *key_file,
   }
 
   /* Pull the value from the line; skip leading whitespace */
-  while (g_ascii_isspace (*value_start))
+  while (g_ascii_isspace (*value_start)) {
     value_start++;
+  }
 
   value_len = line + length - value_start + 1;
 
