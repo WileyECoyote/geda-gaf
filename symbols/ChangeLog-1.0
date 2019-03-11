@@ -3,6 +3,11 @@
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
       ground and eliminate net attributes, update pintype attributes.
 
+    * diode/transil: Add new symbols for transil diode group:
+
+            * diode/transil/SMM4F13A-1.sym
+            * diode/transil/SMM4F13A-2.sym
+
 2019-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/transformer/transformer-8.sym: Add description attribute, update
