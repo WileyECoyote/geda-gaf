@@ -24,6 +24,8 @@
     * simulation/spice/spice-npn-1.sym: Add footprint none and description,
       convert plain text to pin label attributes, fix pin off grid.
 
+    * ti/switchreg/LM3475-1.sym: Add symbol; hysteretic PFET buck controller.
+
 2019-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/transformer/transformer-8.sym: Add description attribute, update
