@@ -38,8 +38,8 @@ Options:
   -r, --recursive --  Process all files in the current and all subordinated directories.
   -v, --verbose   --  Verbose mode, spews lots of info about what the prog is doing.
 
-  -a, --append <path> When processing schematic files this option can be used to specify
-                      addition directories to be appended to the libraries search path.
+  -a, --append <path> This option can be used when processing schematic files to specify
+                      additional directories to be appended to the library search path.
                       This option is not needed for directories with the name "sym", if
                       such a directory exist, the directory will be appended automatically.
 
