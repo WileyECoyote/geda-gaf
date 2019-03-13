@@ -1476,7 +1476,7 @@ FUNCTION(AddLine)
  * \code
  *  example 1: AddNet(circuit, 12400,  8800, 13900,  8800)
  *
- *  example 2: AddNet(schematic,2000, 4400, 2700, 4400, "U1_1_U1_5")
+ *  example 2: AddNet(schematic, 2000, 4400, 2700, 4400, "U1_1_U1_5")
  * \endcode
  */
 FUNCTION(AddNet)
