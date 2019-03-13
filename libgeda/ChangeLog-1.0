@@ -1,3 +1,8 @@
+
+    * src/object/o_pin_object.c: Add function documentation for:
+
+          * geda_picture_get_is_embedded
+
 2019-03-11 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Remove unused function geda_keyfile_load_from_fd,

@@ -1583,10 +1583,11 @@ geda_pin_object_update_read_property(GedaObject *o_pin, GedaObject *o_text)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve a Pin Object Electrical Attributes
+ * \par Function Description
+ *  Returns the object->pin->electrical Attributes of \a object.
+ *  The electrical
  */
 const char *geda_pin_object_get_electrical(GedaObject *object)
 {
