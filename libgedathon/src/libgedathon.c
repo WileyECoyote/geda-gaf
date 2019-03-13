@@ -3164,7 +3164,7 @@ PyObject *PyGeda_get_attribs(PyObject *py_object)
   PyGedaObject *geda_object = (PyGedaObject*)py_object;
   int           pid         = geda_object->pid;
   int           sid         = geda_object->sid;
-  PyObject     *output_list = Py_BuildValue("");
+  PyObject     *output_list = Py_BuildValue("()");
   GedaObject   *parent;
 
   /* Get pointer to the parent object */

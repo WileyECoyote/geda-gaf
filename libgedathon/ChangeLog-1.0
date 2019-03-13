@@ -1,21 +1,18 @@
+2019-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Revise PyGeda_get_attribs to initialize the
+      output list to an empty list.
+
 2019-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/POTFILES: Add modules in the module/objects subdirectory.
-
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/en_GB: Update Great Britain.
-
     * po/nl.po: Update Dutch translations.
 
 2019-03-07 Wiley E. Hill <wileyhill@gmail.com>
