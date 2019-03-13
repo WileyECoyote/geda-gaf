@@ -1414,8 +1414,8 @@ FUNCTION(AddInductor)
  *  example 1: AddLine(schematic, 2600, 3100, 3700, 3100)
  *
  *  example 2: line = AddLine(schematic, 2200, 5200, 2800, 5200)
- *              line.line_type = TYPE_DASHED
- *              line.line_space = 25
+ *             line.line_type = TYPE_DASHED
+ *             line.line_space = 25
  * \endcode
  */
 FUNCTION(AddLine)
