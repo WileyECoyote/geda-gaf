@@ -656,7 +656,7 @@ METHOD(get_pages)
       PyObject *py_page;
 
       page_info = PyList_GET_ITEM(py_input_list, i);
-      py_page   = PyObject_CallObject((PyObject*) PyGedaPageClass(), page_info);
+      py_page   = PyObject_CallObject((PyObject*)PyGedaPageClass(), page_info);
 
       if(py_page && PyObject_Type(py_page)) {
         PyList_Append(py_output_list, py_page);
@@ -688,7 +688,7 @@ METHOD(get_active_page)
 
   info = library.func();
   if (info) {
-    page = PyObject_CallObject((PyObject*) PyGedaPageClass(), info);
+    page = PyObject_CallObject((PyObject*)PyGedaPageClass(), info);
   }
   else {
     Py_INCREF(Py_None);
@@ -863,7 +863,7 @@ METHOD(open_page)
   }
 
   info = library.func(filename);
-  page = PyObject_CallObject((PyObject*) PyGedaPageClass(), info);
+  page = PyObject_CallObject((PyObject*)PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(open_page);
   if (page) {
@@ -977,7 +977,7 @@ METHOD(new_page)
     fprintf(stderr, "new_page: info filename=%s, pid=%d\n", name, pid);
 #endif
 
-  page = PyObject_CallObject((PyObject*) PyGedaPageClass(), info);
+  page = PyObject_CallObject((PyObject*)PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(new_page);
   return page;
@@ -1278,37 +1278,37 @@ METHOD(get_object)
       switch (type) {
         case OBJ_PLACEHOLDER:
         case OBJ_COMPLEX:
-          py_object = PyObject_CallObject((PyObject*) PyGedaComplexClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaComplexClass(), object_data);
           break;
         case OBJ_TEXT:
-          py_object = PyObject_CallObject((PyObject*) PyGedaTextClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
           break;
         case OBJ_NET:
-          py_object = PyObject_CallObject((PyObject*) PyGedaNetClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaNetClass(), object_data);
           break;
         case OBJ_LINE:
-          py_object = PyObject_CallObject((PyObject*) PyGedaLineClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaLineClass(), object_data);
           break;
         case OBJ_PATH:
-          py_object = PyObject_CallObject((PyObject*) PyGedaPathClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaPathClass(), object_data);
           break;
         case OBJ_BOX:
-          py_object = PyObject_CallObject((PyObject*) PyGedaBoxClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaBoxClass(), object_data);
           break;
         case OBJ_PICTURE:
-          py_object = PyObject_CallObject((PyObject*) PyGedaPictureClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaPictureClass(), object_data);
           break;
         case OBJ_CIRCLE:
-          py_object = PyObject_CallObject((PyObject*) PyGedaCircleClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaCircleClass(), object_data);
           break;
         case OBJ_BUS:
-          py_object = PyObject_CallObject((PyObject*) PyGedaBusClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaBusClass(), object_data);
           break;
         case OBJ_PIN:
-          py_object = PyObject_CallObject((PyObject*) PyGedaPinClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaPinClass(), object_data);
           break;
         case OBJ_ARC:
-          py_object = PyObject_CallObject((PyObject*) PyGedaArcClass(), object_data);
+          py_object = PyObject_CallObject((PyObject*)PyGedaArcClass(), object_data);
           break;
         default:
           PyErr_SetString(PyExc_TypeError, "Bad Capsule object");
@@ -1841,7 +1841,7 @@ METHOD(new_arc)
 
   object_data = library.func(x, y, radius, start_angle, arc_sweep, py_color);
 
-  py_arc = PyObject_CallObject((PyObject*) PyGedaArcClass(), object_data);
+  py_arc = PyObject_CallObject((PyObject*)PyGedaArcClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_arc);
@@ -1892,7 +1892,7 @@ METHOD(new_box)
 
   object_data = library.func(lower_x, lower_y, upper_x, upper_y, py_color);
 
-  py_box = PyObject_CallObject((PyObject*) PyGedaBoxClass(), object_data);
+  py_box = PyObject_CallObject((PyObject*)PyGedaBoxClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_box);
@@ -1943,7 +1943,7 @@ METHOD(new_bus)
   }
   object_data = library.func(bus_name, x1, y1, x2, y2, py_color);
 
-  py_bus = PyObject_CallObject((PyObject*) PyGedaBusClass(), object_data);
+  py_bus = PyObject_CallObject((PyObject*)PyGedaBusClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_bus);
@@ -1993,7 +1993,7 @@ METHOD(new_circle)
 
   object_data = library.func(x, y, radius, py_color);
 
-  py_circle = PyObject_CallObject((PyObject*) PyGedaCircleClass(), object_data);
+  py_circle = PyObject_CallObject((PyObject*)PyGedaCircleClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_circle);
@@ -2058,7 +2058,7 @@ METHOD(new_complex)
   object_data = library.func(basename, x, y, angle, mirror, embed);
 
   if (object_data != NULL ) {
-    py_complex = PyObject_CallObject((PyObject*) PyGedaComplexClass(), object_data);
+    py_complex = PyObject_CallObject((PyObject*)PyGedaComplexClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2116,7 +2116,7 @@ METHOD(new_line)
 
   object_data = library.func(x1, y1, x2, y2, py_color);
 
-  py_line = PyObject_CallObject((PyObject*) PyGedaLineClass(), object_data);
+  py_line = PyObject_CallObject((PyObject*)PyGedaLineClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_line);
@@ -2171,7 +2171,7 @@ METHOD(new_net)
 
   object_data = library.func(net_name, x1, y1, x2, y2, py_color);
 
-  py_net = PyObject_CallObject((PyObject*) PyGedaNetClass(), object_data);
+  py_net = PyObject_CallObject((PyObject*)PyGedaNetClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_net);
@@ -2219,7 +2219,7 @@ METHOD(new_path)
   object_data = library.func(path_string);
 
   if (object_data != NULL ) {
-    py_path = PyObject_CallObject((PyObject*) PyGedaPathClass(), object_data);
+    py_path = PyObject_CallObject((PyObject*)PyGedaPathClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2286,7 +2286,7 @@ METHOD(new_picture)
   object_data = library.func(filepath, x1, y1, x2, y2, angle, mirror, embedded);
 
   if (object_data != NULL ) {
-    py_picture = PyObject_CallObject((PyObject*) PyGedaPictureClass(), object_data);
+    py_picture = PyObject_CallObject((PyObject*)PyGedaPictureClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2390,7 +2390,7 @@ METHOD(new_pin)
   object_data = library.func(label, number, x1, y1, x2, y2, whichend, etype, mtype, ntype);
 
   if (object_data != NULL ) {
-    py_pin = PyObject_CallObject((PyObject*) PyGedaPinClass(), object_data);
+    py_pin = PyObject_CallObject((PyObject*)PyGedaPinClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2462,7 +2462,7 @@ METHOD(new_text)
 
   object_data = library.func(text, x, y, size, align, angle, py_color);
 
-  py_text = PyObject_CallObject((PyObject*) PyGedaTextClass(), object_data);
+  py_text = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_text);
@@ -2532,7 +2532,7 @@ METHOD(new_attrib)
 
   object_data = library.func(name, value, x, y, visible, show, align, angle, py_color);
 
-  py_text = PyObject_CallObject((PyObject*) PyGedaTextClass(), object_data);
+  py_text = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
 
   Py_XDECREF(object_data);
   ON_METHOD_EXIT(new_attrib);
@@ -2576,7 +2576,7 @@ METHOD(get_attrib)
   object_data  = library.func(py_parent, name);
 
   if (object_data) {
-    py_attrib = PyObject_CallObject((PyObject*) PyGedaTextClass(), object_data);
+    py_attrib = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
@@ -2642,7 +2642,7 @@ METHOD(get_attribs)
         PyObject *py_text;
 
         object_data  = PyList_GET_ITEM(py_input_list, i);
-        py_text      = PyObject_CallObject((PyObject*) PyGedaTextClass(), object_data);
+        py_text      = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
 
         if(py_text && PyObject_Type(py_text)) {
           PyList_Append(py_output_list, py_text);
@@ -2723,7 +2723,7 @@ METHOD(set_attrib)
   object_data  = library.func(py_object_A, py_object_B, name, value, ret_obj);
 
   if (ret_obj && object_data) {
-    py_ret = PyObject_CallObject((PyObject*) PyGedaTextClass(), object_data);
+    py_ret = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
     Py_DECREF(object_data);
   }
   else {
