@@ -31,7 +31,7 @@ Options:
   -f, --force     -- When the force option is specified any existing file matching
                      the output name will be over-written, without any warning.
   -c, --color     -- Optional attribute color.
-  -d, --hidden    -- Set the visibility flag to invisible When adding an attribute.
+  -d, --hidden    -- Set the visibility flag to invisible when adding an attribute.
   -s, --size      -- Optional font size.
   -q, --quite     -- Suppress normal processing messages.
   -v, --verbose   -- Spews lots of info about what the prog is doing.
