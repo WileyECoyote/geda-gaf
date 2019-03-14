@@ -615,7 +615,7 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 
    GedaObject *o_current = (GedaObject*)iter->data;
 
-    if (!o_current->selectable) {
+    if (!geda_object_get_selectable(o_current)) {
       NEXT(iter);
       continue;
     }
@@ -680,7 +680,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
     GedaObject *o_current = (GedaObject*)iter->data;
 
-    if (!o_current->selectable) {
+    if (!geda_object_get_selectable(o_current)) {
       NEXT(iter);
       continue;
     }
