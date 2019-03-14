@@ -1,3 +1,10 @@
+2019-03-14 Wiley E. Hill <wileyhill@gmail.com
+
+    * tests/test_object.c: Add checks for:
+
+          * geda_object_get_selectable
+
+2019-03-13 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_pin_object.c: Add function documentation for:
 

@@ -604,6 +604,13 @@ int check_accessors ()
 
   geda_object_set_color (object0, ATTRIBUTE_COLOR);
 
+  /* === Function: geda_object_get_selectable === */
+
+  if (!geda_object_get_selectable(object0)) {
+    fprintf(stderr, "Failed: get_selectable %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   /* === Function: geda_object_set_selectable === */
 
   /* === Function: geda_object_get_bounds_valid === */
