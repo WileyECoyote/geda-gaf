@@ -1,6 +1,6 @@
 LAYOUT board;
 PARTS
-    A1 : unknown;
+    A1 : none;
     Cm : 0402;
     Cp : 0402;
     Rlp : 0402;

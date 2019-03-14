@@ -63,21 +63,21 @@ CAPACITOR
 ]
 [
 A3
-PATTERN
+none
 directive
 .options TEMP=25
 
 ]
 [
 A2
-PATTERN
+none
 include
 
 
 ]
 [
 A1
-PATTERN
+none
 model
 
 
@@ -166,8 +166,8 @@ R8-2
 )
 (
 Vbase2
-R3-1
 C2-2
+R3-1
 R4-2
 Q2-2
 )
@@ -184,8 +184,8 @@ RL-2
 )
 (
 VColl2
-Q2-3
 Cout-1
+Q2-3
 RC2-1
 )
 (

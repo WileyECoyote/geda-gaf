@@ -95,7 +95,7 @@
 	)
 )
 (components
-	(instance "unknown" "A1"
+	(instance "none" "A1"
 		(device "model")
 		(value "model")
 		(gateswap "0")

@@ -7,9 +7,9 @@ Part 0402 { Name RE2 }
 Part 0402 { Name RC1 }
 Part unknown { Name Q2 }
 Part 0402 { Name C1 }
-Part unknown { Name A3 }
-Part unknown { Name A2 }
-Part unknown { Name A1 }
+Part none { Name A3 }
+Part none { Name A2 }
+Part none { Name A1 }
 Part none { Name VCC }
 Part none { Name Vinput }
 Part 0402 { Name CE1 }
@@ -24,13 +24,13 @@ Part unknown { Name Q1 }
 Signal "unnamed_net2"
   { C2-1 R8-2 }
 Signal "Vbase2"
-  { R3-1 C2-2 R4-2 Q2-2 }
+  { C2-2 R3-1 R4-2 Q2-2 }
 Signal "Vem2"
   { CE2-2 RE2-2 Q2-1 }
 Signal "Vout"
   { Cout-2 RL-2 }
 Signal "VColl2"
-  { Q2-3 Cout-1 RC2-1 }
+  { Cout-1 Q2-3 RC2-1 }
 Signal "GND"
   { R4-1 CE2-1 RE2-1 VCC-2 Vinput-2 CE1-1 RL-1 RE1-1 R2-1 }
 Signal "VCC"

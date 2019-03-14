@@ -1,4 +1,4 @@
-Part unknown { Name A1 }
+Part none { Name A1 }
 Part 0402 { Name Cm }
 Part 0402 { Name Cp }
 Part 0402 { Name Rlp }

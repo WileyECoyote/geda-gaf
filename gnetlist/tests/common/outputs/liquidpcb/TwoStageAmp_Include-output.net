@@ -5,8 +5,8 @@
 			<netnode component="R8" pin=2 />
 		</net>
 		<net name="Vbase2">
-			<netnode component="R3" pin=1 />
 			<netnode component="C2" pin=2 />
+			<netnode component="R3" pin=1 />
 			<netnode component="R4" pin=2 />
 			<netnode component="Q2" pin=2 />
 		</net>
@@ -20,8 +20,8 @@
 			<netnode component="RL" pin=2 />
 		</net>
 		<net name="VColl2">
-			<netnode component="Q2" pin=3 />
 			<netnode component="Cout" pin=1 />
+			<netnode component="Q2" pin=3 />
 			<netnode component="RC2" pin=1 />
 		</net>
 		<net name="GND">

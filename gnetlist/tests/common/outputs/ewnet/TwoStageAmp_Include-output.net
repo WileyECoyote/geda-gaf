@@ -430,7 +430,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "A3"
+	(instance "none" "A3"
 		(device "directive")
 		(value ".options TEMP=25")
 		(gateswap "0")
@@ -441,7 +441,7 @@
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
 	)
-	(instance "unknown" "A2"
+	(instance "none" "A2"
 		(device "include")
 		(value "include")
 		(gateswap "0")
@@ -452,7 +452,7 @@
 		(comp_variants "Default1;")
 		(comp_variant_independent "0")
 	)
-	(instance "unknown" "A1"
+	(instance "none" "A1"
 		(device "model")
 		(value "model")
 		(gateswap "0")

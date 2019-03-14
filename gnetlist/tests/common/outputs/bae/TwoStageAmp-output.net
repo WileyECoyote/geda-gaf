@@ -9,9 +9,9 @@ PARTS
     RC1 : 0402;
     Q2 : unknown;
     C1 : 0402;
-    A3 : unknown;
-    A2 : unknown;
-    A1 : unknown;
+    A3 : none;
+    A2 : none;
+    A1 : none;
     VCC : none;
     Vinput : none;
     CE1 : 0402;
@@ -25,10 +25,10 @@ PARTS
     Q1 : unknown;
 CONNECT
     /'unnamed_net2'/ C2.1=R8.2;
-    /'Vbase2'/ R3.1=C2.2=R4.2=Q2.2;
+    /'Vbase2'/ C2.2=R3.1=R4.2=Q2.2;
     /'Vem2'/ CE2.2=RE2.2=Q2.1;
     /'Vout'/ Cout.2=RL.2;
-    /'VColl2'/ Q2.3=Cout.1=RC2.1;
+    /'VColl2'/ Cout.1=Q2.3=RC2.1;
     /'GND'/ R4.1=CE2.1=RE2.1=VCC.2=Vinput.2=CE1.1=RL.1=RE1.1=R2.1;
     /'VCC'/ R3.2=RC1.2=VCC.1=RC2.2=R1.2;
     /'unnamed_net1'/ C1.1=R5.2;

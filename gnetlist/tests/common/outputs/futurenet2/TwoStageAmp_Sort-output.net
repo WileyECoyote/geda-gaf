@@ -67,17 +67,17 @@ PIN,,NET1,1-1,5,23,1
 (SYM,10
 DATA,2,A3
 DATA,3,.options TEMP=25
-DATA,4,unknown
+DATA,4,none
 )
 (SYM,11
 DATA,2,A2
 DATA,3,include
-DATA,4,unknown
+DATA,4,none
 )
 (SYM,12
 DATA,2,A1
 DATA,3,model
-DATA,4,unknown
+DATA,4,none
 )
 (SYM,13
 DATA,2,VCC

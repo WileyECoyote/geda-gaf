@@ -3,7 +3,7 @@ PINLIST,2
 (SYM,1
 DATA,2,A1
 DATA,3,model
-DATA,4,unknown
+DATA,4,none
 )
 (SYM,2
 DATA,2,CM

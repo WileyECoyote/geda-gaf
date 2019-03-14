@@ -9,9 +9,9 @@ $PACKAGES
 0402! RESISTOR! 3.3K; RC1
 ! NPN_TRANSISTOR! NPN_TRANSISTOR; Q2
 0402! CAPACITOR! 2.2uF; C1
-! directive! .options TEMP=25; A3
-! include! include; A2
-! model! model; A1
+none! directive! .options TEMP=25; A3
+none! include! include; A2
+none! model! model; A1
 none! VOLTAGE_SOURCE! DC 15V; VCC
 none! vsin! DC 1.6V AC 10MV SIN(0 1MV 1KHZ); Vinput
 0402! CAPACITOR! 1pF; CE1
@@ -26,8 +26,8 @@ none! vsin! DC 1.6V AC 10MV SIN(0 1MV 1KHZ); Vinput
 $NETS
 unnamed_net2; C2.1,
  R8.2
-Vbase2; R3.1,
- C2.2,
+Vbase2; C2.2,
+ R3.1,
  R4.2,
  Q2.2
 Vem2; CE2.2,
@@ -35,8 +35,8 @@ Vem2; CE2.2,
  Q2.1
 Vout; Cout.2,
  RL.2
-VColl2; Q2.3,
- Cout.1,
+VColl2; Cout.1,
+ Q2.3,
  RC2.1
 GND; R4.1,
  CE2.1,

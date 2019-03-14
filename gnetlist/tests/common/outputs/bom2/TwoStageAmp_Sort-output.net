@@ -8,6 +8,8 @@ RC2:RC2:1K:RESISTOR:1
 RL:RL:100K:RESISTOR:1
 Cout:Cout:2.2uF:CAPACITOR:1
 CE1:CE1:1pF:CAPACITOR:1
+Vinput:Vinput:DC 1.6V AC 10MV SIN(0 1MV 1KHZ):vsin:1
+VCC:VCC:DC 15V:VOLTAGE_SOURCE:1
 A1:A1:unknown:model:1
 A2:A2:unknown:include:1
 A3:A3:.options TEMP=25:directive:1

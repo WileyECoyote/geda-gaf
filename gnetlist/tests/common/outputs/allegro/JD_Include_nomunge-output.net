@@ -1,6 +1,6 @@
 (Allegro netlister by M. Ettus)
 $PACKAGES
-! model! model; A1
+none! model! model; A1
 0402! CAPACITOR! 20p; Cm
 0402! CAPACITOR! 20p; Cp
 0402! RESISTOR! 1meg; Rlp

@@ -1,5 +1,5 @@
    ;
-ADD 'A1' unknown@smd-ipc (1 1);
+ADD 'A1' none@smd-ipc (1 1);
 VALUE 'A1' 'model';
 ADD 'Cm' 0402@smd-ipc (1 1);
 VALUE 'Cm' '20p';

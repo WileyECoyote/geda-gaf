@@ -3,6 +3,9 @@
     * tests/common/inputs/TwoStageAmp.sch: Replace schematic with a copy of
       examples/TwoStageAmp/TwoStageAmp.sch because it is a cleaner version.
 
+    * tests/common/outputs: Regenerate reference files due to the changing
+      of the TwoStageAmp.sch file noted above.
+
 2019-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gnetlist_defines.h: Add new header file with unique name and

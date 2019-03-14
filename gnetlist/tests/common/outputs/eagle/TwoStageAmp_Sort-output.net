@@ -17,11 +17,11 @@ ADD 'Q2' unknown@smd-ipc (1 1);
 VALUE 'Q2' 'NPN_TRANSISTOR';
 ADD 'C1' 0402@smd-ipc (1 1);
 VALUE 'C1' '2.2uF';
-ADD 'A3' unknown@smd-ipc (1 1);
+ADD 'A3' none@smd-ipc (1 1);
 VALUE 'A3' '.options TEMP=25';
-ADD 'A2' unknown@smd-ipc (1 1);
+ADD 'A2' none@smd-ipc (1 1);
 VALUE 'A2' 'include';
-ADD 'A1' unknown@smd-ipc (1 1);
+ADD 'A1' none@smd-ipc (1 1);
 VALUE 'A1' 'model';
 ADD 'VCC' none@smd-ipc (1 1);
 VALUE 'VCC' 'DC 15V';
@@ -50,8 +50,8 @@ SIGNAL 'UNNAMED_NET2'
    'R8' '2'
 ;
 SIGNAL 'VBASE2'
-   'R3' '1'
    'C2' '2'
+   'R3' '1'
    'R4' '2'
    'Q2' '2'
 ;
@@ -65,8 +65,8 @@ SIGNAL 'VOUT'
    'RL' '2'
 ;
 SIGNAL 'VCOLL2'
-   'Q2' '3'
    'Cout' '1'
+   'Q2' '3'
    'RC2' '1'
 ;
 SIGNAL 'GND'
