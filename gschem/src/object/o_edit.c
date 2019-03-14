@@ -724,8 +724,12 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
     }
 
     if (o_current->type == OBJ_TEXT) {
+
       /* If the parent is not selectable then don't display this attribute */
-      if (o_current->attached_to && !o_current->attached_to->selectable) {
+
+      GedaObject *o_parent = geda_object_get_attached_to(o_current);
+
+      if (o_parent && !geda_object_get_selectable(o_parent)) {
         NEXT(iter);
         continue;
       }
@@ -825,10 +829,15 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 
     if (o_current->type == OBJ_TEXT) {
 
+      GedaObject *o_parent = geda_object_get_attached_to(o_current);
+
       /* If the parent is not selectable then don't display this attribute */
-      if (o_current->attached_to && o_current->attached_to->selectable) {
+      if (o_parent && geda_object_get_selectable(o_parent)) {
+
         if (geda_attrib_string_get_name_value(o_current->text->string, &name, &value)) {
-          if( strcmp(name, "netname") == 0) {
+
+          if (strcmp(name, "netname") == 0) {
+
             if (o_current->visibility == INVISIBLE) {
               o_current->visibility = 2;
               redraw = g_list_prepend(redraw, o_current);

@@ -1,7 +1,10 @@
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Revise o_edit_show_inherited_attrib and
-      o_edit_show_hidden_attrib to utilize geda_object_get_selectable.
+      o_edit_show_hidden_attrib to utilize geda_object_get_selectable,
+      revise o_edit_show_hidden_attrib and o_edit_show_netnames to
+      use an ancillary pointer to the parent in order to utilize
+      geda_object_get_selectable.
 
 2019-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
