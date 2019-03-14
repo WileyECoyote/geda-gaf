@@ -1,5 +1,9 @@
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/object/o_line_object.c: Revise geda_line_object_get_position to
+      verify non-null pointers for x and y and return FALSE if neither were
+      given.
+
     * tests/test_object.c: Add checks for:
 
           * geda_object_get_selectable

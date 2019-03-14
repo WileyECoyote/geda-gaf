@@ -518,12 +518,15 @@ bool geda_line_object_get_position (GedaObject *object, int *x, int *y)
 {
   if (GEDA_IS_LINE(object)) {
 
-    *x = object->line->x[0];
-    *y = object->line->y[0];
+    if (x) *x = object->line->x[0];
 
-    return TRUE;
+    if (y) *y = object->line->y[0];
+
+    return (x || y) ? TRUE : FALSE;
   }
+
   geda_line_object_error(__func__, object);
+
   return FALSE;
 }
 
