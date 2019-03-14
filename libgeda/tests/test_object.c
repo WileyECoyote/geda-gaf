@@ -613,6 +613,16 @@ int check_accessors ()
 
   /* === Function: geda_object_set_selectable === */
 
+  geda_object_set_selectable(object0, FALSE);
+
+  if (geda_object_get_selectable(object0)) {
+    fprintf(stderr, "Failed: set_selectable %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  /* Reset selectable */
+  geda_object_set_selectable(object0, TRUE);
+
   /* === Function: geda_object_get_bounds_valid === */
   /* === Function: geda_object_set_bounds_valid === */
 

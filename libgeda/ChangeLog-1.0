@@ -3,6 +3,7 @@
     * tests/test_object.c: Add checks for:
 
           * geda_object_get_selectable
+          * geda_object_set_selectable
 
 2019-03-13 Wiley E. Hill <wileyhill@gmail.com
 
