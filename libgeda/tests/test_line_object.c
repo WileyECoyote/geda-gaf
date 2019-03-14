@@ -74,7 +74,7 @@
  *      O1108    geda_line_object_get_intersection
  *      O1109    geda_line_object_get_midpoint
  *               geda_line_object_get_nearest_point
- *               geda_line_object_get_position
+ *      O1111    geda_line_object_get_position
  *               geda_line_object_get_slope
  *      O1113    geda_line_object_get_x1
  *      O1114    geda_line_object_get_x2
@@ -786,11 +786,22 @@ check_get_nearest_point(GedaObject *object)
 }
 
 int
-check_get_position(GedaObject *object)
+check_get_position(GedaObject *object, int x1, int y1)
 {
   int result = 0;
 
+  int ax, ay;
+
   /* === Function 11: geda_line_object_get_position  === */
+  if (!geda_line_object_get_position(object, &ax, &ay)) {
+    fprintf(stderr, "FAILED: (O111101A) %s NOT TRUE,", TOBJECT);
+    result++;
+  }
+  else if (ax != object->line->x[0] || ay != object->line->y[0]) {
+    fprintf(stderr, "FAILED: (O111101B) %s (%d,%d),", TOBJECT, ax, ay);
+    fprintf(stderr, " query point (%d,%d)\n", x1, y1);
+    result++;
+  }
 
   return result;
 }
@@ -895,7 +906,7 @@ check_query(void)
 
     fail += check_get_nearest_point(object);
 
-    fail += check_get_position(object);
+    fail += check_get_position(object, x1, y1);
 
     fail += check_get_slope(object);
 

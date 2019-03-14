@@ -5,6 +5,8 @@
           * geda_object_get_selectable
           * geda_object_set_selectable
 
+    * tests/test_line_object.c: Check geda_line_object_get_position.
+
 2019-03-13 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_pin_object.c: Add function documentation for:
