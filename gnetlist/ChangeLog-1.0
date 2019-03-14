@@ -1,3 +1,8 @@
+2019-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/inputs/TwoStageAmp.sch: Replace schematic with a copy of
+      examples/TwoStageAmp/TwoStageAmp.sch because it is a cleaner version.
+
 2019-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gnetlist_defines.h: Add new header file with unique name and
