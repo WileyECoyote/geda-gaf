@@ -678,7 +678,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
   while (iter != NULL) {
 
-   GedaObject *o_current = (GedaObject*)iter->data;
+    GedaObject *o_current = (GedaObject*)iter->data;
 
     if (!o_current->selectable) {
       NEXT(iter);
@@ -691,7 +691,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
       for(iter2 = o_current->complex->prim_objs; iter2; NEXT(iter2)) {
 
-       GedaObject *sub_obj = iter2->data;
+        GedaObject *sub_obj = iter2->data;
 
         if (sub_obj->type == OBJ_PIN) {
 
@@ -699,7 +699,7 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
           for( pa_iter = sub_obj->attribs; pa_iter; NEXT(pa_iter)) {
 
-           GedaObject *p_attrib = pa_iter->data;
+            GedaObject *p_attrib = pa_iter->data;
 
             if (p_attrib->type == OBJ_TEXT) {
 
