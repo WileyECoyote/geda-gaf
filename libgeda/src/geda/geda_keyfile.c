@@ -1064,6 +1064,7 @@ static void geda_keyfile_parse_data (GedaKeyFile  *key_file,
   g_return_if_fail (data != NULL || length == 0);
 
   line_length = i = 0;
+
   while (i < length) {
 
     if (data[i] == '\n') {
@@ -2099,8 +2100,6 @@ geda_keyfile_get_locale_string_list (GedaKeyFile  *key_file,
  * \param [in] locale      a locale identifier
  * \param [in] list        a %NULL-terminated array of locale string values
  * \param [in] length      the length of \a list
- *
-
  */
 void
 geda_keyfile_set_locale_string_list (GedaKeyFile        *key_file,
