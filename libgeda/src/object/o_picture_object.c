@@ -287,7 +287,6 @@ static bool geda_picture_object_real_export_pixbuf (GdkPixbuf  *pixbuf,
         for ( i = 0; i < argc; i++) {
           keys[i] = va_arg (varargs, char *);
           Vals[i] = va_arg (varargs, char *);
-          //printf ("found (%d) keys=%s, Vals=%s\n", i, keys[i], Vals[i]);
         }
 
         /* Add sentinels to the two arrays */
