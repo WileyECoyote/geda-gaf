@@ -113,8 +113,8 @@ static void geda_picture_dispose(GObject *object)
     GEDA_FREE(pic->filename);
     pic->filename = NULL;
   }
-  G_OBJECT_CLASS(geda_picture_parent_class)->dispose(object);
 
+  G_OBJECT_CLASS(geda_picture_parent_class)->dispose(object);
 }
 
 /*!
@@ -239,6 +239,8 @@ bool is_a_geda_picture (const GedaPicture *pic)
  * \par Function Description
  *  Returns the value of the angle member or -0 if \a pic
  *  is not a valid GedaPicture object.
+ *
+ * \return integer angle.
  */
 int geda_picture_get_angle (const GedaPicture *pic)
 {
