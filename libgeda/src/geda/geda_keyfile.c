@@ -2118,27 +2118,47 @@ geda_keyfile_set_locale_string_list (GedaKeyFile        *key_file,
   }
   else {
 
-    GString *value_list;
-    char    *full_key;
-    unsigned int  i;
+    GSList *iter;
+    GSList *value_list;
+    char   *full_key;
+    char   *value;
+    char   *string;
 
-    value_list = g_string_sized_new (length * 128);
+    unsigned int  i;
+    unsigned int  size;
+
+    value_list = NULL;
+    size = 0;
 
     for (i = 0; i < length && list[i] != NULL; i++) {
 
-      char *value;
+      value  = geda_keyfile_parse_string_as_value (key_file, list[i], TRUE);
+      size  += strlen(value);
 
-      value = geda_keyfile_parse_string_as_value (key_file, list[i], TRUE);
-      g_string_append (value_list, value);
-      g_string_append_c (value_list, key_file->list_separator);
-
-      GEDA_FREE (value);
+      value_list = g_slist_append(value_list, value);
     }
 
+    size   = size + length + 1;
+    string = (char*)geda_calloc(size);
+
+    for (iter = value_list; iter; iter = iter->next) {
+
+      value = iter->data;
+
+      strcat (string, value);
+      strcat (string, &key_file->list_separator);
+
+      geda_free (value);
+    }
+
+    g_slist_free(value_list);
+
     full_key = geda_sprintf ("%s[%s]", key, locale);
-    geda_keyfile_set_value (key_file, group_name, full_key, value_list->str);
-    GEDA_FREE (full_key);
-    g_string_free (value_list, TRUE);
+
+    geda_keyfile_set_value (key_file, group_name, full_key, string);
+
+    geda_free (full_key);
+    geda_free (string);
   }
 }
 

@@ -1,3 +1,8 @@
+2019-03-15 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list
+      to eliminate use of GString.
+
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_line_object.c: Revise geda_line_object_get_position to
