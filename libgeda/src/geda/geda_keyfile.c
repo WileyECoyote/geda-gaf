@@ -4104,7 +4104,7 @@ static char *geda_keyfile_parse_string_as_value (GedaKeyFile *key_file,
    */
   value = GEDA_MEM_ALLOC(2 * length);
 
-  p = (gchar *) string;
+  p = (char*)string;
   q = value;
   parsing_leading_space = TRUE;
 
