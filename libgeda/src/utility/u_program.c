@@ -100,9 +100,15 @@ void geda_utility_program_backtrace(void)
 
 #endif
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Request Memory Allocation
+ * \par Function Description
+ *  Request allocation of memory using either \a GLIBC memory
+ *  routines or g_malloc, the latter is only utilized if glib
+ *  is not 2.44 and geda_utility_program_mem_set_vtable has not
+ *  been called.
+ *
+ * \sa geda_utility_program_mem_calloc
  */
 void *geda_utility_program_mem_alloc (unsigned int amount)
 {
