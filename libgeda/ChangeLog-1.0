@@ -6,6 +6,7 @@
     * src/utility/u_program.c: Add function documentation for:
 
           * geda_utility_program_mem_alloc
+          * geda_utility_program_mem_calloc
 
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com
 

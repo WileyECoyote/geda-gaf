@@ -140,9 +140,13 @@ void *geda_utility_program_mem_alloc (unsigned int amount)
   return ptr_mem;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Request Initialized Memory Allocation
+ * \par Function Description
+ *  Allocates memory using geda_utility_program_mem_alloc
+ *  and then initializes the array to zero.
+ *
+ * \sa geda_utility_program_mem_alloc
  */
 void *geda_utility_program_mem_calloc (unsigned int amount)
 {
