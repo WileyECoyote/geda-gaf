@@ -2107,7 +2107,7 @@ geda_keyfile_set_locale_string_list (GedaKeyFile        *key_file,
                                      const char         *key,
                                      const char         *locale,
                                      const char * const  list[],
-                                     unsigned int         length)
+                                     unsigned int        length)
 {
   g_return_if_fail (key != NULL);
   g_return_if_fail (locale != NULL);
