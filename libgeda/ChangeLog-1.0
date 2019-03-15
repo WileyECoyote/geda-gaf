@@ -8,6 +8,8 @@
           * geda_utility_program_mem_alloc
           * geda_utility_program_mem_calloc
 
+    * tests/test_object.c: Check geda_object_get_bounds_valid.
+
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_line_object.c: Revise geda_line_object_get_position to

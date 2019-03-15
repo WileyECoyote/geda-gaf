@@ -624,6 +624,12 @@ int check_accessors ()
   geda_object_set_selectable(object0, TRUE);
 
   /* === Function: geda_object_get_bounds_valid === */
+
+  if (geda_object_get_bounds_valid(object0)) {
+    fprintf(stderr, "Failed: get_bounds_valid %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   /* === Function: geda_object_set_bounds_valid === */
 
   geda_object_unref(object1);
