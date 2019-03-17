@@ -295,29 +295,41 @@ msgstr "Δημιουργήστε ένα νέο αντικείμενο χαρακ
 msgid "New object type syntax"
 msgstr "Σύνταξη νέου τύπου αντικειμένου"
 
+# The object name
+# To ónoma tou antikeiménou
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Το όνομα του αντικειμένου"
 
+# Add an attribute object to this object
+# Prosthéste éna antikeímeno charaktiristikón se aftó to antikeímeno
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Προσθέστε ένα αντικείμενο χαρακτηριστικών σε αυτό το αντικείμενο"
 
+# Copy the object
+# Antigrápste to antikeímeno
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Αντιγράψτε το αντικείμενο"
 
+# Rotate the object
+# Peristrépste to antikeímeno
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Περιστρέψτε το αντικείμενο"
 
+# Select this Object
+# Επιλέξτε αυτό το αντικείμενο
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Επιλέξτε αυτό το αντικείμενο"
 
+# Unselect this Object
+# Katargíste tin epilogí aftoú tou antikeiménou
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Καταργήστε την επιλογή αυτού του αντικειμένου"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
@@ -447,23 +459,21 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
-# Dimiourgíste éna néo antikeímeno tóxou
+# Creates an Arc object extension type
+# Dimiourgeí énan týpo epéktasis antikeiménou tóxou
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Δημιουργήστε ένα νέο αντικείμενο τόξου."
+msgstr "Δημιουργεί έναν τύπο επέκτασης αντικειμένου τόξου."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
-# Dimiourgíste éna néo antikeímeno koutioú
+# Creates a box object type
+# Dimiourgeí énan týpo antikeiménou koutioú
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Δημιουργήστε ένα νέο αντικείμενο κουτιού."
+msgstr "Δημιουργεί έναν τύπο αντικειμένου κουτιού."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
