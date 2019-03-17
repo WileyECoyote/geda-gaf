@@ -247,45 +247,64 @@ msgstr "ഒരു പുതിയ പാത്ത് വസ്തു സൃഷ�
 msgid "Create a new picture object."
 msgstr "ഒരു പുതിയ ചിത്ര വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new pin object
+# oru putiya pin vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "ഒരു പുതിയ പിൻ വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new text object
+# oru putiya ṭeksṟṟ vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "ഒരു പുതിയ ടെക്സ്റ്റ് വസ്തു സൃഷ്ടിക്കുക."
 
+# Create a new attribute object
+# oru putiya āṭribyūṭṭ vastu sr̥ṣṭikkuka
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "ഒരു പുതിയ ആട്രിബ്യൂട്ട് വസ്തു സൃഷ്ടിക്കുക."
 
+# New object type syntax
+# putiya vastu taraṁ sinṟāks
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "പുതിയ വസ്തു തരം സിന്റാക്സ്"
 
+# The object name; vastuvinṟe pēr
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "വസ്തുവിന്റെ പേര്"
 
+# Add an attribute object to this object
+# ī vastuvin oru āṭribyūṭṭ objakṟṟ cērkkuka
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "ഈ വസ്തുവിന് ഒരു ആട്രിബ്യൂട്ട് ഒബ്ജക്റ്റ് ചേർക്കുക"
 
+# Copy the object
+# vastu pakarttuka
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "വസ്തു പകർത്തുക"
 
+# Rotate the object
+# vastuvine tirikkuka
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "വസ്തുവിനെ തിരിക്കുക"
 
+# Select this Object
+# ī vastu tiraññeṭukkuka
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "ഈ വസ്തു തിരഞ്ഞെടുക്കുക"
 
+# Unselect this Object
+# ī objakṟṟ tiraññeṭukkuka
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "ഈ ഒബ്ജക്റ്റ് തിരഞ്ഞെടുക്കുക"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
@@ -415,23 +434,21 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
-# oru putiya ārkk objakṟṟ sr̥ṣṭikkuka
+# Creates an Arc object extension type
+# ārkk objakṟṟ eksṟṟanṣan taraṁ sr̥ṣṭikkunnu
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "ഒരു പുതിയ ആർക്ക് ഒബ്ജക്റ്റ് സൃഷ്ടിക്കുക."
+msgstr "ആർക്ക് ഒബ്ജക്റ്റ് എക്സ്റ്റൻഷൻ തരം സൃഷ്ടിക്കുന്നു"
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
-# oru putiya bēāks vastu sr̥ṣṭikkuka
+# Creates a box object type
+# bēāks objakṟṟ taraṁ sr̥ṣṭikkunnu
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "ഒരു പുതിയ ബോക്സ് വസ്തു സൃഷ്ടിക്കുക."
+msgstr "ബോക്സ് ഒബ്ജക്റ്റ് തരം സൃഷ്ടിക്കുന്നു."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
