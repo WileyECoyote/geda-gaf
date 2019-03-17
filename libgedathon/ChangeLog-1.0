@@ -8,6 +8,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/fi.po: Update Finnish translations.
+
 2019-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_get_attribs to initialize the
