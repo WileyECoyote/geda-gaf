@@ -226,46 +226,53 @@ msgstr "Hozzon létre egy új útvonal objektumot."
 msgid "Create a new picture object."
 msgstr "Új képobjektum létrehozása."
 
-# Create a new path object
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Hozzon létre egy új pin objektumot."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Hozzon létre egy új szövegobjektumot."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Hozzon létre egy új attribútumobjektumot."
 
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Új objektumtípus-szintaxis"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Az objektum neve"
 
+# Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Adjon hozzá egy attribútumobjektumot ehhez az objektumhoz"
 
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Másolja az objektumot"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Forgassa az objektumot"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Válassza ezt az objektumot"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Jelölje ki ezt az objektumot"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
@@ -395,21 +402,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
+# Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Hozzon létre egy új ív objektumot."
+msgstr "Létrehoz egy ív objektum kiterjesztés típusát."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
+# Creates a box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Hozzon létre egy új dobozobjektumot."
+msgstr "Létrehoz egy dobozobjektumot."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -419,11 +424,10 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a box object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Hozzon létre egy új buszobjektumot."
+msgstr "Létrehoz egy dobozobjektumot."
 
 # Create a new circle object
 #: libgedathon/module/objects/geda_py_circle.c:116

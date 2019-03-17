@@ -12,6 +12,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2019-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_get_attribs to initialize the
