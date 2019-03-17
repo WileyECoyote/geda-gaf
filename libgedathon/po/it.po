@@ -206,45 +206,55 @@ msgstr "Crea un nuovo oggetto di percorso."
 msgid "Create a new picture object."
 msgstr "Crea un nuovo oggetto immagine."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Crea un nuovo oggetto pin."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Crea un nuovo oggetto di testo."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Crea un nuovo oggetto attributo."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Nuova sintassi del tipo di oggetto"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Il nome dell'oggetto"
 
+# Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Aggiungi un oggetto attributo a questo oggetto"
 
+# Copy the object
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Copia l'oggetto"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Ruota l'oggetto"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Seleziona questo oggetto"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Deseleziona questo oggetto"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
@@ -374,21 +384,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
+# Creates an arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Crea un nuovo oggetto arco."
+msgstr "Crea un tipo di estensione oggetto arco."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
+# # Creates a box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Crea un nuovo oggetto casella."
+msgstr "Crea un tipo di oggetto casella."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
