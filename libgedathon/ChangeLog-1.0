@@ -1,3 +1,7 @@
+2019-03-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/de.po: Update German translations.
+
 2019-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Revise PyGeda_get_attribs to initialize the
