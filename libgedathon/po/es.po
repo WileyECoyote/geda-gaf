@@ -221,32 +221,37 @@ msgstr "Crear un nuevo objeto de atributo."
 
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Nueva sintaxis de tipo de objeto"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "El nombre del objeto"
 
 # Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
 msgstr "Añadir un objeto de atributo a este objeto"
 
+# Copy the object
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Copia el objeto"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Girar el objeto"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Valitse tämä kohde"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Deseleccionar este objeto"
 
 # Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
@@ -379,19 +384,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
+# Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Crear un nuevo objeto de arco."
+msgstr "Crea un tipo de extensión de objeto de arco."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
+# # Creates a box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Crear un nuevo objeto caja."
+msgstr "Crea un tipo de objeto caja."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
