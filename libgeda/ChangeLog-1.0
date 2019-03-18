@@ -10,6 +10,11 @@
       to indicate the units are dimensionless not world, units are only
       applicable to applications that use them, not the library.
 
+    * src/object/o_complex_object.c: Revise geda_complex_object_check_symbol_version
+      to check that the object is not a placeholder before reporting oddity,
+      it does not make sense to report and oddity regarding versions if the
+      symbol file is missing.
+
 2019-03-15 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list

@@ -251,7 +251,6 @@ void geda_complex_object_check_symbol_version(GedaToplevel *toplevel,
       write_log_warn_msg(_("parse error"));
       geda_log_w ("\t%s symversion=%s\n", _("Could not parse attached"), outside);
       goto done;
-
     }
     outside_present = TRUE;
   }
@@ -270,10 +269,13 @@ void geda_complex_object_check_symbol_version(GedaToplevel *toplevel,
     /* No symversion inside, but a version is outside, is a weird case */
     if (!inside_present && outside_present) {
 
-      write_log_warn_msg(_("oddity"));
-      geda_log_w ("\tsymversion=%s %s\n", outside,
+      /* Do not report symversion oddity if is a placeholder */
+      if (object->type != OBJ_PLACEHOLDER) {
+        write_log_warn_msg(_("oddity"));
+        geda_log_w ("\tsymversion=%s %s\n", outside,
                   _("attached to instantiated symbol,"
                     " but version not found inside symbol file"));
+      }
 
     }
     else {
