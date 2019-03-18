@@ -701,14 +701,12 @@ void geda_arc_object_modify(GedaObject *object, int x, int y, int whichone)
  *  angle is given by start_angle and the end angle by arc_sweep.
  *  The line and fill type of the created arc are set to default.
  *
- *  All dimensions are in world unit, except start_angle and
- *  arc_sweep in degrees.
+ *  All coordinates are in dimensionless, except start_angle and
+ *  arc_sweep, which must be in degrees.
  *
  *  A new object of type GedaObject is allocated. Its type and color
  *  are initilized. The description of the arc characteristics
  *  are stored in a new GedaArc structure.
- *
- *  Now fixed for world coordinates.
  *
  * \param [in] color
  * \param [in] x

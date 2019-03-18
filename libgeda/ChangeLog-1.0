@@ -6,6 +6,10 @@
     * src/iface/i_menu.c: Reduce the scope of SCM new_list and old_list in
       geda_iface_menu_add_entry.
 
+    * src/object/o_arc_object.c: Update documentation for geda_arc_object_new
+      to indicate the units are dimensionless not world, units are only
+      applicable to applications that use them, not the library.
+
 2019-03-15 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list
