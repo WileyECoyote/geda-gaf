@@ -20,6 +20,9 @@
     * simulation/spice/spice-options-1.sym: Add footprint none and convert
       plain text to a description attribute.
 
+    * simulation/spice/spice-pnp-1.sym: Add footprint none and description,
+      convert plain text to pin label attributes, fix pin off grid.
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
