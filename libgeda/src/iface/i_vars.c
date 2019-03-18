@@ -130,8 +130,9 @@ void geda_iface_vars_set(GedaToplevel *toplevel)
   }
 
   for (iter = toplevel->always_promote_attributes; iter != NULL;
-       iter = g_list_next(iter))
+       iter = g_list_next(iter)) {
     iter->data = geda_utility_string_strdup(iter->data);
+  }
 
   /* Cannot free the default* strings here since new windows */
   /* need them */
