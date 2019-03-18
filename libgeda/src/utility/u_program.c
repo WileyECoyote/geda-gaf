@@ -160,9 +160,13 @@ void *geda_utility_program_mem_calloc (unsigned int amount)
   return NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Release Allocated Memory
+ * \par Function Description
+ *  Releases memory allocation using either \a GLIBC memory
+ *  routines or g_malloc, the latter is only utilized if glib
+ *  is not 2.44 and geda_utility_program_mem_set_vtable has
+ *  not been called.
  */
 void geda_utility_program_mem_free (void *ptr_mem)
 {

@@ -18,6 +18,9 @@
     * src/utility/u_glist.c: Utilize geda_strequal and geda_stricmp macros
       to reduce line lenghts.
 
+    * src/utility/u_program.c: Add geda_utility_program_mem_free function
+      documentation.
+
 2019-03-15 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list
