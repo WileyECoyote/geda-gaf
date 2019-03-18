@@ -12,6 +12,7 @@
     * packages: Add "template" symbols for quad flat packs:
 
             * packages/QFP32-7-0P80-1.sym
+            * packages/QFP44-10-0P80-1.sym
 
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
