@@ -1,6 +1,6 @@
 Part none { Name V1 }
 Part 0402 { Name R1 }
-Part unknown { Name A1 }
+Part none { Name A1 }
 Signal "unnamed_net1"
   { V1-1 R1-2 }
 Signal "GND"

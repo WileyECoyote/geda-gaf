@@ -2,7 +2,7 @@
 $PACKAGES
 none! VOLTAGE_SOURCE! DC 1V; V1
 0402! RESISTOR! 20; R1
-! options! abotol=1e-11; A1
+none! options! abotol=1e-11; A1
 $NETS
 unnamed_net1; V1.1,
  R1.2

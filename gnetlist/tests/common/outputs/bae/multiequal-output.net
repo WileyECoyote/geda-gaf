@@ -2,7 +2,7 @@ LAYOUT board;
 PARTS
     V1 : none;
     R1 : 0402;
-    A1 : unknown;
+    A1 : none;
 CONNECT
     /'unnamed_net1'/ V1.1=R1.2;
     /'GND'/ V1.2=R1.1;

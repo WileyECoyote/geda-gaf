@@ -93,7 +93,7 @@
 			(gate "")
 		)
 	)
-	(instance "unknown" "A1"
+	(instance "none" "A1"
 		(device "options")
 		(value "abotol=1e-11")
 		(gateswap "0")

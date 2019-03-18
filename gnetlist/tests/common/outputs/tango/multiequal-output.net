@@ -14,7 +14,7 @@ RESISTOR
 ]
 [
 A1
-PATTERN
+none
 options
 abotol=1e-11
 
