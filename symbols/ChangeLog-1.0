@@ -2,6 +2,11 @@
 
     * atmel/AT89S8252-24PC-1.sym: Resequence and update attributes.
 
+    * diode/schottky: Add 1A version of popular schottky diode:
+
+            * diode/schottky/MBR140-1.sym
+            * diode/schottky/MBR140-2.sym
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
