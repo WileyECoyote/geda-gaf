@@ -1,3 +1,8 @@
+2019-03-18 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be
+      the upper bounds, not backwards like X11.
+
 2019-03-15 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list
