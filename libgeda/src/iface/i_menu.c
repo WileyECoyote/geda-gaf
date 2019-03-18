@@ -64,6 +64,7 @@ SCM geda_iface_menu_return_entry(int index, char **menu_name)
   }
 
   *menu_name = menu[index].menu_name;
+
   return(menu[index].menu_items);
 }
 

@@ -162,6 +162,7 @@ void geda_iface_vars_freenames()
   for (iter = default_component_groups; iter != NULL; iter = g_list_next(iter)){
     GEDA_FREE(iter->data);
   }
+
   g_list_free(default_component_groups);
   default_component_groups = NULL;
 }
