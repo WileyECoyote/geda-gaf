@@ -15,6 +15,9 @@
       it does not make sense to report and oddity regarding versions if the
       symbol file is missing.
 
+    * src/utility/u_glist.c: Utilize geda_strequal and geda_stricmp macros
+      to reduce line lenghts.
+
 2019-03-15 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list

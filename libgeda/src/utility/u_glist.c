@@ -73,7 +73,7 @@ int geda_utility_glist_find_string(GList *list, const char *str)
 
     for (iter = list; iter != NULL; iter = iter->next) {
 
-      if (iter->data && geda_utility_string_strequal(iter->data, str)) {
+      if (iter->data && geda_strequal(iter->data, str)) {
         found = 1;
         break;
       }
@@ -138,7 +138,7 @@ bool geda_utility_glist_str_inlist(GList *list, const char *string)
 
   for (iter = list; iter; iter = iter->next){
 
-    if (geda_utility_string_strequal(iter->data, string)) {
+    if (geda_strequal(iter->data, string)) {
       answer = TRUE;
       break;
     }
@@ -168,7 +168,7 @@ bool geda_utility_glist_stri_inlist(GList *list, const char *string)
 
     for (iter = list; iter; iter = iter->next){
 
-      if (!geda_utility_string_stricmp(iter->data, string)) {
+      if (!geda_stricmp(iter->data, string)) {
         answer = TRUE;
         break;
       }
