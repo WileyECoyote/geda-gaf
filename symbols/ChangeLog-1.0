@@ -17,6 +17,9 @@
     * passive/resistor/resistor-1.sym: Change value attribute justification
       to bottom left.
 
+    * simulation/spice/spice-options-1.sym: Add footprint none and convert
+      plain text to a description attribute.
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and

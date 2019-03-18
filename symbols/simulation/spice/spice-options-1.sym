@@ -4,7 +4,9 @@ T 1650 400 9 10 0 1 0 6 1
 device=options
 T 100 400 9 10 1 1 0 0 1
 refdes=A?
-T 1650 400 9 10 1 0 0 6 1
-SPICE options
+T 1650 400 9 10 1 1 0 6 1
+description=SPICE options
+T 1400 650 9 10 0 1 0 0 1
+footprint=none
 T 100 100 8 10 1 1 0 0 1
 value=?
