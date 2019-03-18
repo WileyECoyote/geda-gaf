@@ -3,6 +3,9 @@
     * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be
       the upper bounds, not backwards like X11.
 
+    * src/iface/i_menu.c: Reduce the scope of SCM new_list and old_list in
+      geda_iface_menu_add_entry.
+
 2019-03-15 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_locale_string_list

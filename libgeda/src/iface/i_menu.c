@@ -77,8 +77,6 @@ SCM geda_iface_menu_return_entry(int index, char **menu_name)
 int geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
 {
   int index;
-  SCM new_list;
-  SCM old_list;
 
   if (menu_name == NULL) {
     index = -1;
@@ -94,6 +92,9 @@ int geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
 
       /* Check if this menu item already exist */
       if (strcmp(menu[index].menu_name, menu_name) == 0) {
+
+        SCM new_list;
+        SCM old_list;
 
         old_list = menu[index].menu_items;
 
