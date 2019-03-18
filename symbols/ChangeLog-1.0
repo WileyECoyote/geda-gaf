@@ -14,6 +14,9 @@
             * packages/QFP32-7-0P80-1.sym
             * packages/QFP44-10-0P80-1.sym
 
+    * passive/resistor/resistor-1.sym: Change value attribute justification
+      to bottom left.
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
