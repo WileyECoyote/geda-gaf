@@ -9,6 +9,10 @@
 
     * linear/switchreg/LM3489-2.sym: Add symbol with alternate pin layout.
 
+    * packages: Add "template" symbols for quad flat packs:
+
+            * packages/QFP32-7-0P80-1.sym
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
