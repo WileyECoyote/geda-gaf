@@ -1,3 +1,7 @@
+2019-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * atmel/AT89S8252-24PC-1.sym: Resequence and update attributes.
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
