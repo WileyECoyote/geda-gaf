@@ -23,6 +23,8 @@
     * simulation/spice/spice-pnp-1.sym: Add footprint none and description,
       convert plain text to pin label attributes, fix pin off grid.
 
+    * ti/switchreg/LM3485-1.sym: Rearrange pin locations.
+
 2019-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence attribute, add pins for VCC and
