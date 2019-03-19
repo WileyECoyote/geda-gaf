@@ -741,11 +741,14 @@ GedaObject *geda_arc_object_new (int color, int x, int y, int radius, int start_
   arc->radius = radius;
 
   /* must check the sign of start_angle, arc_sweep ... */
-  if(arc_sweep < 0) {
+  if (arc_sweep < 0) {
     start_angle = start_angle + arc_sweep;
     arc_sweep   = -arc_sweep;
   }
-  if(start_angle < 0) start_angle = 360 + start_angle;
+
+  if (start_angle < 0) {
+    start_angle = 360 + start_angle;
+  }
 
   arc->start_angle = start_angle;
   arc->arc_sweep   = arc_sweep;
