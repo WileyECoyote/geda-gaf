@@ -684,6 +684,42 @@ int check_methods (void)
   geda_object_unref(object);
 
   /* ------------------------- GedaBox -------------------------- */
+
+  object = geda_box_object_new (3, 1000, 1000, 100, 100);
+
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "Failed: box object_bounds %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    if (!geda_object_get_bounds_valid(object)) {
+      fprintf(stderr, "Failed: get_bounds_valid %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+
+    if (object->left != 100) {
+      fprintf(stderr, "Failed: box object_bounds %s; left <%d>\n", TOBJECT, object->left);
+      result++;
+    }
+
+    if (object->right != 1000) {
+      fprintf(stderr, "Failed: box object_bounds %s; right <%d>\n", TOBJECT, object->right);
+      result++;
+    }
+
+    if (object->top != 100) {
+      fprintf(stderr, "Failed: box object_bounds %s; top <%d>\n", TOBJECT, object->top);
+      result++;
+    }
+
+    if (object->bottom != 1000) {
+      fprintf(stderr, "Failed: box object_bounds %s; bottom <%d>\n", TOBJECT, object->bottom);
+      result++;
+    }
+  }
+  geda_object_unref(object);
+
   /* ------------------------- GedaBus -------------------------- */
   /* ------------------------- GedaCircle ----------------------- */
   /* ------------------------- GedaComplex ---------------------- */

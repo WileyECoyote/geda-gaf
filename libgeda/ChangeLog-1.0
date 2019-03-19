@@ -21,6 +21,7 @@
     * tests/test_object.c: Check geda_object_bounds with:
 
           * geda_arc_object_new
+          * geda_box_object_new
 
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com
 
