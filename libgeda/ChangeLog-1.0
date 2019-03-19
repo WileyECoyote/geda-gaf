@@ -14,6 +14,11 @@
     * tests/test_complex_object.c: Check geda_complex_object_get_nearest_point
       with NULL object argument.
 
+    * tests/test_line_object.c: Check geda_line_object_get_slope with NULL
+      object argument in check_get_slope and pass the random coordinates to
+      the test function.
+
+
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be
