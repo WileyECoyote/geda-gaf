@@ -519,9 +519,11 @@ bool geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, in
 
       bool do_check;
 
-      do_check = obj->type == OBJ_LINE ||
-                 obj->type == OBJ_ARC  ||
-                 obj->type == OBJ_CIRCLE;
+      do_check = obj->type == OBJ_LINE   ||
+                 obj->type == OBJ_ARC    ||
+                 obj->type == OBJ_BOX    ||
+                 obj->type == OBJ_CIRCLE ||
+                 obj->type == OBJ_PIN ;
 
       if (do_check) {
 
