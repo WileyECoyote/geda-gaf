@@ -9,6 +9,8 @@
     * src/geda/geda_keyfile.c: Revise geda_keyfile_set_boolean_list to
       eliminate use of GString.
 
+    * src/geda/geda_line.c: Reformat function documentation.
+
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be

@@ -247,14 +247,14 @@ static void set_property (GObject *object, unsigned int  prop_id,
   }
 }
 
-/*! \brief GedaType class initializer for GedaLine
- *
- *  \par Function Description
+/*!
+ * \brief GedaType class initializer for GedaLine
+ * \par Function Description
  *  GedaType class initializer for GedaLine. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  class       The GedaLine class we are initializing
- *  \param [in]  class_data  The GedaLine structure associated with the class
+ * \param [in]  class       The GedaLine class we are initializing
+ * \param [in]  class_data  The GedaLine structure associated with the class
  */
 static void geda_line_class_init(void *class, void *class_data)
 {
@@ -366,16 +366,16 @@ static void geda_line_class_init(void *class, void *class_data)
   g_object_class_install_property (object_class, PROP_LENGTH, params);
 }
 
-/*! \brief Function to retrieve Line's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve Line's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #Line Type identifier. When first called,
  *  the function registers a #Line in the GedaObjectType system to
  *  obtain an identifier that uniquely itentifies a Line and returns
  *  the unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
  *
- *  \return GedaObjectType identifier associated with Line.
+ * \return GedaObjectType identifier associated with Line.
  */
 GedaObjectType geda_line_get_type (void)
 {
@@ -407,12 +407,12 @@ GedaObjectType geda_line_get_type (void)
   return geda_line_type;
 }
 
-/*! \brief Returns a pointer to a new Line object.
- *
- *  \par Function Description
+/*!
+ * \brief Returns a pointer to a new Line object.
+ * \par Function Description
  *  Returns a pointer to a new Line object.
  *
- *  \return pointer to the new Line object.
+ * \return pointer to the new Line object.
  */
 GedaObject *geda_line_new (void)
 {
@@ -424,12 +424,12 @@ GedaObject *geda_line_new (void)
   return GEDA_OBJECT(line);
 }
 
-/*! \brief Determine if object is a Geda Line GedaObject.
- *
- *  \par Function Description
+/*!
+ * \brief Determine if object is a Geda Line GedaObject.
+ * \par Function Description
  *  Returns true if the argument is a Geda Line object.
  *
- *  \return boolean.
+ * \return boolean.
  */
 bool is_a_geda_line (const GedaLine *lin)
 {
