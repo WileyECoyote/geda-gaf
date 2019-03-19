@@ -2364,28 +2364,46 @@ geda_keyfile_set_boolean_list (GedaKeyFile  *key_file,
                                bool          list[],
                                unsigned int  length)
 {
-  GString *value_list;
-  unsigned int  i;
+  GSList *iter;
+  GSList *value_list;
+  char   *value;
+  char   *string;
+
+  unsigned int i;
+  unsigned int size;
 
   g_return_if_fail (key_file != NULL);
   g_return_if_fail (list != NULL);
 
-  value_list = g_string_sized_new (length * 8);
+  value_list = NULL;
+  size = 0;
 
   for (i = 0; i < length; i++) {
 
-    char *value;
+    value  = geda_keyfile_parse_boolean_as_value (key_file, list[i]);
+    size  += strlen(value);
 
-    value = geda_keyfile_parse_boolean_as_value (key_file, list[i]);
-
-    g_string_append (value_list, value);
-    g_string_append_c (value_list, key_file->list_separator);
-
-    GEDA_FREE (value);
+    value_list = g_slist_append(value_list, value);
   }
 
-  geda_keyfile_set_value (key_file, group_name, key, value_list->str);
-  g_string_free (value_list, TRUE);
+  size   = size + length + 1;
+  string = (char*)geda_calloc(size);
+
+  for (iter = value_list; iter; iter = iter->next) {
+
+    value = iter->data;
+
+    strcat (string, value);
+    strcat (string, &key_file->list_separator);
+
+    geda_free (value);
+  }
+
+  g_slist_free(value_list);
+
+
+  geda_keyfile_set_value (key_file, group_name, key, string);
+  geda_free (string);
 }
 
 /*!

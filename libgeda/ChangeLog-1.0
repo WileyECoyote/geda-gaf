@@ -6,6 +6,9 @@
     * src/object/o_complex_object.c: Revise geda_complex_object_get_nearest_point
       to include boxes and pins when checking for the nearest object.
 
+    * src/geda/geda_keyfile.c: Revise geda_keyfile_set_boolean_list to
+      eliminate use of GString.
+
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be
