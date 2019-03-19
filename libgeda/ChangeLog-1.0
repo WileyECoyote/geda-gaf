@@ -11,6 +11,9 @@
 
     * src/geda/geda_line.c: Reformat function documentation.
 
+    * tests/test_complex_object.c: Check geda_complex_object_get_nearest_point
+      with NULL object argument.
+
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be

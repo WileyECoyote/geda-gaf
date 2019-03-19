@@ -434,6 +434,18 @@ int check_accessors (void)
 int check_get_nearest_point(GedaObject *object)
 {
   int result = 0;
+  int answer;
+  int x, y, nx, ny;
+
+  x = 0; y = 0;
+
+  answer = geda_complex_object_get_nearest_point(NULL, x, y, &nx, &ny);
+
+  if (answer) {
+    fprintf(stderr, "FAILED: (O080400) get_nearest NULL\n");
+    result++;
+  }
+
 
   return result;
 }
