@@ -1,3 +1,8 @@
+2019-03-19 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/geda/geda_arc.c: Revert commit fb1bf1ee552f arc bounds, was
+      confusing coordiantes with bounds.
+
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Reverse arc top and bottom bounds, top should be
