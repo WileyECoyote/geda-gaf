@@ -92,11 +92,11 @@ int notify_attribute;
  *
  * Expected results:
  *
- * R1. There should be 6 members in the resulting list, attrib4, a copy
- *     the arc object, a copy of attrib1, attrib2, and attrib3, and a
- *     copy of attrib6. Only the count is checked here.
+ * R1: There should be 6 members in the resulting list, attrib4, a copy
+ *     of the arc object, a copy of attrib1, attrib2, and attrib3, and
+ *     a copy of attrib6. Only the count is checked here.
  *
- * R2. The "selected" state of the orginal objects should not be changed;
+ * R2: The "selected" state of the orginal objects should not be changed;
  *     The arc and attributes attrib1 and attrib2 should not be selected
  *     and attrib3 and attrib6 should still be selected.
  *
@@ -651,6 +651,7 @@ check_object_list_rotate (GedaToplevel *toplevel)
 
   g_object_get(object7->net, "second-y", &y4, NULL);
 
+  /* Both Y's should be 200 */
   if (y2 - y4) {
     fprintf(stderr, "FAILED: (O120507) geda_object_list_rotate <%d>\n", y4);
     result++;
@@ -697,7 +698,7 @@ check_object_list_rotate (GedaToplevel *toplevel)
     result++;
   }
 
-  /* geda_object_list_rotate a complex with a negative angle */
+  /* check geda_object_list_rotate with a negative angle */
   geda_object_list_rotate(list, x1, y1, -90);
 
   /* === object1->arc === */
