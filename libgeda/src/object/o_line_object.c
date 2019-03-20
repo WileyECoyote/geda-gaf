@@ -1622,7 +1622,7 @@ geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angl
     /*
      * The center of rotation (<B>center_x</B>,<B>center_y</B>)
      * is translated to the origin. The rotation of the two ends of
-     * the line is performed. FInally, the rotated line is translated
+     * the line is performed. Finally, the rotated line is translated
      * back to its previous location.
      */
     /* translate object to origin */
