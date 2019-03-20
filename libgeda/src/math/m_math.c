@@ -185,13 +185,22 @@ void geda_math_rotate_point(int x, int y, int angle, int *newx, int *newy)
   double cos_theta, sin_theta;
   double rad;
 
-  rad = angle * M_PI / 180;
+  rad = angle * M_PI / 180.0;
 
   cos_theta = cos(rad);
   sin_theta = sin(rad);
 
-  *newx = x * cos_theta - y * sin_theta;
-  *newy = x * sin_theta + y * cos_theta;
+#ifdef HAVE_LRINT
+
+  *newx = lrint (x * cos_theta - y * sin_theta);
+  *newy = lrint (x * sin_theta + y * cos_theta);
+
+#else
+
+  *newx = (x * cos_theta - y * sin_theta) + 0.5;
+  *newy = (x * sin_theta + y * cos_theta) + 0.5;
+
+#endif
 }
 
 /*! \brief Rotate point in 90 degree increments only.
