@@ -34,6 +34,9 @@
 
 #include "test-suite.h"
 
+/*! \def MUT Module Under Tests */
+#define MUT "src/object/o_arc_object.c"
+
 #define TOBJECT "GedaArc"
 
 #define USE_RANDOM_NUMBERS 1
@@ -1588,12 +1591,12 @@ main (int argc, char *argv[])
     result = check_construction();
   }
   else {
-    fprintf(stderr, "Caught signal in constructors in src/object/o_arc_object.c\n\n");
+    fprintf(stderr, "Caught signal in constructors in %s\n\n", MUT);
     return 1;
   }
 
   if (result) {
-    fprintf(stderr, "Check constructors in src/object/o_arc_object.c\n\n");
+    fprintf(stderr, "Check constructors in %s\n\n", MUT);
   }
   else {
 
@@ -1601,11 +1604,11 @@ main (int argc, char *argv[])
       result = check_accessors();
     }
     else {
-      fprintf(stderr, "Caught signal in accessors in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Caught signal in accessors in %s\n\n", MUT);
       return 1;
     }
     if (result) {
-      fprintf(stderr, "Check accessors in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Check accessors in %s\n\n", MUT);
     }
   }
 
@@ -1615,11 +1618,11 @@ main (int argc, char *argv[])
       subtotal = check_serialization();
     }
     else {
-      fprintf(stderr, "Caught serialization in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Caught serialization in %s\n\n", MUT);
       return 1;
     }
     if (subtotal) {
-      fprintf(stderr, "Check serialization in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Check serialization in %s\n\n", MUT);
       result = result + subtotal;
     }
 
@@ -1627,11 +1630,11 @@ main (int argc, char *argv[])
       subtotal = check_query();
     }
     else {
-      fprintf(stderr, "Caught signal in query in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Caught signal in query in %s\n\n", MUT);
       return 1;
     }
     if (subtotal) {
-      fprintf(stderr, "Check query functions in src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "Check query functions in %s\n\n", MUT);
       result = result + subtotal;
     }
 
@@ -1640,20 +1643,20 @@ main (int argc, char *argv[])
         subtotal = check_transformer();
       }
       else {
-        fprintf(stderr, "Caught signal in transformers in src/object/o_arc_object.c\n\n");
+        fprintf(stderr, "Caught signal in transformers in %s\n\n", MUT);
         return 1;
       }
       if (subtotal) {
-        fprintf(stderr, "Check transformers in src/object/o_arc_object.c\n\n");
+        fprintf(stderr, "Check transformers in %s\n\n", MUT);
         result = result + subtotal;
       }
     }
     else {
-      fprintf(stderr, "skipping transformation checks src/object/o_arc_object.c\n\n");
+      fprintf(stderr, "skipping transformation checks %s\n\n", MUT);
     }
   }
   else {
-    fprintf(stderr, "discontinuing checks src/object/o_arc_object.c\n\n");
+    fprintf(stderr, "discontinuing checks %s\n\n", MUT);
   }
 
   return result;

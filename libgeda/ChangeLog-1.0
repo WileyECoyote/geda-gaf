@@ -6,6 +6,11 @@
     * src/object/o_line_object.c: Write message to stderr before returning
       from geda_line_object_rotate when angle is not  multiple of 90 degrees.
 
+    * tests.c: Define define MUT and replace strings in messages with MUT
+      macro:
+
+          * tests/test_arc_object.c
+
 2019-03-19 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Revert commit fb1bf1ee552f arc bounds, was
