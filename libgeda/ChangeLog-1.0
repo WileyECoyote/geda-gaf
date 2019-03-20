@@ -3,6 +3,9 @@
     * src/math/m_math.c: Revise geda_math_rotate_point to utilize lrint when
       available to improve accuracy and change denominator 180 to 180.0.
 
+    * src/object/o_line_object.c: Write message to stderr before returning
+      from geda_line_object_rotate when angle is not  multiple of 90 degrees.
+
 2019-03-19 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_arc.c: Revert commit fb1bf1ee552f arc bounds, was

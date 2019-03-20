@@ -1617,7 +1617,10 @@ geda_line_object_rotate(GedaObject *object, int center_x, int center_y, int angl
     /* angle must be positive */
     if (angle < 0) angle = -angle;
     /* angle must be 90 multiple or no rotation performed */
-    if ((angle % 90) != 0) return;
+    if ((angle % 90) != 0) {
+      fprintf(stderr, "%s angle must be multiple of 90 <%d>\n", __func__, angle);
+      return;
+    }
 
     /*
      * The center of rotation (<B>center_x</B>,<B>center_y</B>)
