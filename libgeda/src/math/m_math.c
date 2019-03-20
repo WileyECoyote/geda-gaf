@@ -93,14 +93,17 @@ void geda_math_papersize_to_world(int width, int height, int border, int *right,
 #endif
 
   if (aspect < 1.333333333) {
+
     /* is this lrint really needed? */
 #ifdef HAVE_LRINT
     *right = lrint (width+border + ((height+border)*1.33333333 - (width+border)));
 #else
     *right = (int) width+border + ((height+border)*1.33333333 - (width+border));
 #endif
+
     *bottom = height+border;
-  } else {
+  }
+  else {
     *right = (int) width+border;
     *bottom = (int) height+border + ((width+border)/1.33333333 - (height+border));
   }
@@ -210,7 +213,7 @@ void geda_math_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
 
   /* I could have used sine/cosine for this, but I want absolute
    * accuracy */
-  switch(angle) {
+  switch (angle) {
 
     case(0):
       *newx = x;
