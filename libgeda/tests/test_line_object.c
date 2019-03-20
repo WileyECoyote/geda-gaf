@@ -807,11 +807,48 @@ check_get_position(GedaObject *object, int x1, int y1)
 }
 
 int
-check_get_slope(GedaObject *object)
+check_get_slope(GedaObject *object, int x1, int y1, int x2, int y2)
 {
   int result = 0;
+  int answer;
+  double slope;
 
   /* === Function 12: geda_line_object_get_slope  === */
+
+  answer = geda_line_object_get_slope(NULL, &slope);
+
+  if (answer) {
+    fprintf(stderr, "FAILED: (O111200) get_slope NULL\n");
+    result++;
+  }
+
+  answer = geda_line_object_get_slope(object, &slope);
+
+  if (!answer) {
+    fprintf(stderr, "FAILED: (O111201A) get_slope FALSE\n");
+    result++;
+  }
+  else {
+
+    double dx = x2 - x1;
+
+    if (dx) {
+
+      double dy = y2 - y1;
+      double cs = dy / dx;
+
+      if (abs(cs - slope) > 0.000001) {
+        fprintf(stderr, "FAILED: (O111201B) get_slope slope %f,", slope);
+        fprintf(stderr, " computed <%f>\n", cs);
+        result++;
+      }
+    }
+    else if (slope) {
+      fprintf(stderr, "FAILED: (O111201C) get_slope slope %f,", slope);
+      fprintf(stderr, " line (%d,%d) to (%d,%d)\n", x1, y1, x2, y2);
+      result++;
+    }
+  }
 
   return result;
 }
@@ -908,7 +945,7 @@ check_query(void)
 
     fail += check_get_position(object, x1, y1);
 
-    fail += check_get_slope(object);
+    fail += check_get_slope(object, x1, y1, x2, y2);
 
     fail += check_is_endpoint(object);
 
