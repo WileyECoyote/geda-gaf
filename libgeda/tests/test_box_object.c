@@ -39,6 +39,9 @@
  *  module.
  */
 
+/*! \def MUT Module Under Tests */
+#define MUT "src/object/o_box_object.c"
+
 #define TOBJECT "GedaBox"
 
 /** \defgroup test-object-geda-box Test GEDA Box object Module
@@ -1320,7 +1323,7 @@ int main (int argc, char *argv[])
       result += check_serialization();
     }
     else {
-      fprintf(stderr, "Caught signal checking serialization in src/object/o_box_object.c\n\n");
+      fprintf(stderr, "Caught signal checking serialization in %s\n\n", MUT);
       return 1;
     }
 
@@ -1328,7 +1331,7 @@ int main (int argc, char *argv[])
       result += check_query();
     }
     else {
-      fprintf(stderr, "Caught signal during query in src/object/o_box_object.c\n\n");
+      fprintf(stderr, "Caught signal during query in %s\n\n", MUT);
       return 1;
     }
 
@@ -1336,12 +1339,12 @@ int main (int argc, char *argv[])
       result += check_transformer();
     }
     else {
-      fprintf(stderr, "Caught signal in transformers for src/object/o_box_object.c\n\n");
+      fprintf(stderr, "Caught signal in transformers for %s\n\n", MUT);
       return 1;
     }
   }
   else {
-    fprintf(stderr, "discontinuing checks for object/o_box_object.c\n\n");
+    fprintf(stderr, "discontinuing checks for %s\n\n", MUT);
   }
 
   return result;

@@ -10,6 +10,7 @@
       macro:
 
           * tests/test_arc_object.c
+          * tests/test_box_object.c
 
 2019-03-19 Wiley E. Hill <wileyhill@gmail.com
 
