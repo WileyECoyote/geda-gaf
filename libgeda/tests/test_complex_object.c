@@ -341,7 +341,7 @@ int check_accessors (void)
 
   /* === Function 08: geda_complex_object_is_embedded NULL === */
   if (geda_complex_object_is_embedded (NULL)) {
-    fprintf(stderr, "FAILED: (O080800) object NULL\n");
+    fprintf(stderr, "FAILED: (O080800) object_is_embedded NULL\n");
     result++;
   }
 
