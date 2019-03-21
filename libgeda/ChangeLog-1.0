@@ -12,6 +12,7 @@
     * tests/test_object.c: Check geda_object_bounds with:
 
           * geda_bus_object_new
+          * geda_circle_object_new
 
 2019-03-20 Wiley E. Hill <wileyhill@gmail.com
 

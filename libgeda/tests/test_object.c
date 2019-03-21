@@ -758,6 +758,42 @@ int check_methods (void)
   geda_object_unref(object);
 
   /* ------------------------- GedaCircle ----------------------- */
+
+  object = geda_circle_object_new (3, 1000, 1000, 500);
+
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "Failed: circle object_bounds %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    if (!geda_object_get_bounds_valid(object)) {
+      fprintf(stderr, "Failed: get_bounds_valid %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+
+    if (object->left != 500) {
+      fprintf(stderr, "Failed: circle object_bounds %s; left <%d>\n", TOBJECT, object->left);
+      result++;
+    }
+
+    if (object->right != 1500) {
+      fprintf(stderr, "Failed: circle object_bounds %s; right <%d>\n", TOBJECT, object->right);
+      result++;
+    }
+
+    if (object->top != 500) {
+      fprintf(stderr, "Failed: circle object_bounds %s; top <%d>\n", TOBJECT, object->top);
+      result++;
+    }
+
+    if (object->bottom != 1500) {
+      fprintf(stderr, "Failed: circle object_bounds %s; bottom <%d>\n", TOBJECT, object->bottom);
+      result++;
+    }
+  }
+  geda_object_unref(object);
+
   /* ------------------------- GedaComplex ---------------------- */
   /* ------------------------- GedaLine ------------------------- */
   /* ------------------------- GedaNet -------------------------- */
