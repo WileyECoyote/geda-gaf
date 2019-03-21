@@ -5,6 +5,10 @@
 
     * src/object/o_bus_object.c: Add tests identifiers to documentation.
 
+    * src/object/o_set.c: Add function documentation.
+
+          * geda_set_object_list_invalid
+
 2019-03-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_math.c: Revise geda_math_rotate_point to utilize lrint when

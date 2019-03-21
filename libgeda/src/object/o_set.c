@@ -228,6 +228,13 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
   }
 }
 
+/*!
+ * \brief Set List of Objects Bounds Invalid
+ * \par Function Description
+ *  Sets bounds_valid of each object in \a list to FALSE.
+
+ * \param [in] list  List of Objects who bounds are to be set invalid
+ */
 void geda_set_object_list_invalid(GList *list)
 {
   const GList *o_iter = list;
