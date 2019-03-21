@@ -9,6 +9,10 @@
 
           * geda_set_object_list_invalid
 
+    * tests/test_object.c: Check geda_object_bounds with:
+
+          * geda_bus_object_new
+
 2019-03-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_math.c: Revise geda_math_rotate_point to utilize lrint when
