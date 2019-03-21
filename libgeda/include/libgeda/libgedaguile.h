@@ -45,7 +45,7 @@ void edascm_init ();
 GedaToplevel *edascm_c_current_toplevel ();
 
 /* Set the #GedaToplevel fluid in the current dynamic context. */
-void edascm_dynwind_toplevel (GedaToplevel *toplevel); // edascm_c_dynwind_toplevel?
+void edascm_dynwind_toplevel (GedaToplevel *toplevel); /* edascm_c_dynwind_toplevel? */
 
 /* Set the current #GedaToplevel temporarily. */
 SCM edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
