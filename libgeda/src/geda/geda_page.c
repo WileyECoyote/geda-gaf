@@ -102,7 +102,6 @@ void geda_page_add_object (Page *page, GedaObject *object)
 {
   if (GEDA_IS_OBJECT(object)) {
     page->_object_list = g_list_append (page->_object_list, object);
-    //GEDA_REF (object);
   }
 }
 
@@ -329,7 +328,6 @@ static void geda_page_finalize(GObject *object)
  */
 static void geda_page_class_init(void *class, void *class_data)
 {
-  //PageClass    *page_class   = (PageClass*) class;
   GObjectClass *object_class = (GObjectClass*) class;
 
   geda_page_parent_class     = g_type_class_peek_parent(class);
