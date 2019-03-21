@@ -1,3 +1,8 @@
+2019-03-21 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/math/m_math.c: Revise geda_math_rotate_point_90 to handle negative
+      angles.
+
 2019-03-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_math.c: Revise geda_math_rotate_point to utilize lrint when

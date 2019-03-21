@@ -206,7 +206,7 @@ void geda_math_rotate_point(int x, int y, int angle, int *newx, int *newy)
 /*! \brief Rotate point in 90 degree increments only.
  *  \par Function Description
  *  This function takes a point coordinate and rotates it by
- *  90 degrees at a time.  The new point coordinate is returned
+ *  90 degrees at a time. The new point coordinate is returned
  *  in newx and newy.
  *
  *  \param [in]  x      Input point x coordinate.
@@ -230,18 +230,21 @@ void geda_math_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
       return;
       break;
 
+    case(-270):
     case(90):
       costheta = 0;
       sintheta = 1;
       break;
 
+    case(-180):
     case(180):
       costheta = -1;
-      sintheta = 0;
+      sintheta =  0;
       break;
 
+    case(-90):
     case(270):
-      costheta = 0;
+      costheta =  0;
       sintheta = -1;
       break;
   }
