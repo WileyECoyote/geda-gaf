@@ -165,7 +165,7 @@ void geda_bus_object_consolidate(GedaToplevel *toplevel, Page *page)
   }
 }
 
-/*!
+/*! O0502
  * \brief create a copy of a bus object
  * \par Function Description
  *  This function creates a copy of the bus object \a o_current.
@@ -197,7 +197,7 @@ GedaObject *geda_bus_object_copy(const GedaObject *o_current)
   return NULL;
 }
 
-/*!
+/*! O0503
  * \brief Get the direction of a bus
  * \par Function Description
  *  1 for right, -1 for left (horizontal bus) or
@@ -236,7 +236,7 @@ int geda_bus_object_get_direction(const GedaObject *object)
   return direction;
 }
 
-/*!
+/*! O0504
  * \brief Get the Bus ripper direction
  * \par Function Description
  *  This function gets returns the Bus ripper direction
@@ -252,7 +252,7 @@ int geda_bus_object_get_ripper_direction (const GedaObject *object)
   return 0;
 }
 
-/*!
+/*! O0505
  * \brief get the position of the first bus point
  * \par Function Description
  *  This function gets the position of the first point of a bus object.
@@ -275,7 +275,7 @@ bool geda_bus_object_get_position(GedaObject *object, int *x, int *y)
   return FALSE;
 }
 
-/*!
+/*! O0506
  * \brief Get the x coordinate of first endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -294,7 +294,7 @@ int geda_bus_object_get_x1 (const GedaObject *object)
   return 0;
 }
 
-/*!
+/*! O0507
  * \brief Get the x coordinate of second endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -314,7 +314,7 @@ int geda_bus_object_get_x2 (const GedaObject *object)
   return 0;
 }
 
-/*!
+/*! O0508
  * \brief Get the y coordinate of first endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -334,7 +334,7 @@ int geda_bus_object_get_y1 (const GedaObject *object)
   return 0;
 }
 
-/*!
+/*! O0509
  * \brief Get the y coordinate of second endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -354,7 +354,7 @@ int geda_bus_object_get_y2 (const GedaObject *object)
   return 0;
 }
 
-/*!
+/*! O0510
  * \brief mirror a bus object horizontaly at a centerpoint
  * \par Function Description
  *  This function mirrors a bus \a object horizontaly at the point
@@ -383,7 +383,7 @@ void geda_bus_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
-/*!
+/*! O0511
  * \brief modify one point of a bus object
  * \par Function Description
  *  This function modifies one point of a bus \a object. The point
@@ -411,7 +411,7 @@ void geda_bus_object_modify(GedaObject *object, int x, int y, int whichone)
   }
 }
 
-/*!
+/*! O0512
  * \brief create a new bus object
  * \par Function Description
  *  This function creates and returns a new bus object.
@@ -446,7 +446,7 @@ GedaObject *geda_bus_object_new(int color, int x1, int y1, int x2, int y2, int d
   return new_obj;
 }
 
-/*!
+/*! O0513
  * \brief calculate the orientation of a bus object
  * \par Function Description
  *  This function calculates the orientation of a bus object.
@@ -524,7 +524,7 @@ void geda_bus_object_print(GedaToplevel *toplevel,  FILE *fp,
   }
 }
 
-/*!
+/*! O0515
  * \brief read a bus object from a char buffer
  * \par Function Description
  *  This function reads a bus object from the buffer \a buf.
@@ -594,7 +594,7 @@ GedaObject *geda_bus_object_read(const char     buf[],
   return new_obj;
 }
 
-/*!
+/*! O0516
  * \brief rotate a bus object around a centerpoint
  * \par Function Description
  *  This function rotates a bus \a object around the point
@@ -640,7 +640,7 @@ void geda_bus_object_rotate(GedaObject *object, int center_x,
   }
 }
 
-/*!
+/*! O0517
  * \brief Set the Bus ripper direction
  * \par Function Description
  *
@@ -658,7 +658,7 @@ void geda_bus_object_set_ripper_direction (GedaObject *object, int direction)
   }
 }
 
-/*!
+/*! O0518
  * \brief Set the x coordinate of first endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -679,7 +679,7 @@ void geda_bus_object_set_x1 (GedaObject *object, int x)
   }
 }
 
-/*!
+/*! O0519
  * \brief Set the x coordinate of second endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -700,7 +700,7 @@ void geda_bus_object_set_x2 (GedaObject *object, int x)
   }
 }
 
-/*!
+/*! O0520
  * \brief Set the y coordinate of first endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -721,7 +721,7 @@ void geda_bus_object_set_y1 (GedaObject *object, int y)
   }
 }
 
-/*!
+/*! O0521
  * \brief Set the y coordinate of second endpoint
  * \par Function Description
  *  The coordinate properties are broken out individually to make it easier for
@@ -742,7 +742,7 @@ void geda_bus_object_set_y2 (GedaObject *object, int y)
   }
 }
 
-/*!
+/*! O0522
  * \brief Create a string representation of the bus object
  * \par Function Description
  *  This function takes a bus \a object and return a string
@@ -775,7 +775,7 @@ char *geda_bus_object_to_buffer(GedaObject *object)
   return NULL;
 }
 
-/*!
+/*! O0523
  * \brief move a bus object
  * \par Function Description
  *  This function changes the position of a bus \a object.
