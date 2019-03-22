@@ -122,7 +122,6 @@ geda_math_line_intersection(LINE *line1, LINE *line2, GedaPoint *point)
 
     if (slope1 != slope2) {
 
-
       /* y-intercept = ordinate - slope x abscissa */
       double b11 = line1->y[0] - (slope1 * line1->x[0]);
       double b21 = line2->y[0] - (slope2 * line2->x[0]);
@@ -245,7 +244,6 @@ geda_math_line_length (int x1, int y1, int x2, int y2)
 
 /*!
  * \brief Get Shortest distance from Point to a Line segment.
- *
  *  If the closest point on the line resides beyond the line segment's
  *  end point, this function returns the distance from the given point
  *  to the closest end point.
@@ -266,7 +264,6 @@ geda_math_line_shortest_distance (GedaLine *line, int x, int y)
   double dx, dy;
   double lx0, ly0;
   double ldx, ldy;
-
 
   g_return_val_if_fail (line != NULL, G_MAXDOUBLE);
 
