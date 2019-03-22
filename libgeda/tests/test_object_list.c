@@ -719,6 +719,26 @@ check_object_list_rotate (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object6->line === */
+
+  g_object_get(object6->line, "second-x", &x4, NULL);
+
+  /* Second X should be at original X2=200 */
+  if (x2 - x4) {
+    fprintf(stderr, "FAILED: (O120517) geda_object_list_rotate <%d>\n", x4);
+    result++;
+  }
+
+  /* === object7->net === */
+
+  g_object_get(object7->net, "second-y", &y4, NULL);
+
+  /* Second Y should be at original Y2=200 */
+  if (y2 - y4) {
+    fprintf(stderr, "FAILED: (O120518) geda_object_list_rotate <%d>\n", y4);
+    result++;
+  }
+
   g_object_unref (object1);
   g_object_unref (object2);
   g_object_unref (object3);
