@@ -58,6 +58,9 @@ geda_math_circle_includes_point (GedaCircle *circle, GedaPoint *point)
   int  cx;
   int  cy;
 
+  g_return_val_if_fail (GEDA_IS_CIRCLE(circle), FALSE);
+  g_return_val_if_fail (point != NULL, FALSE);
+
   cx = circle->center_x;
   cy = circle->center_y;
 
