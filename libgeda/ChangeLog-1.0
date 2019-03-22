@@ -13,6 +13,7 @@
           * geda_math_line_intersection
           * geda_math_line_shortest_distance (use GEDA_IS_LINE)
 
+    * src/math/m_transform.c: Reformat function documentation.
 
 2019-03-21 Wiley E. Hill <wileyhill@gmail.com
 
