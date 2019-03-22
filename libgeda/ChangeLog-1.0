@@ -5,6 +5,14 @@
       geda_math_circle_shortest_distance to use is_a_geda_circle instead of
       just checking for a NULL pointer when validating.
 
+    * src/math/m_math.c: Add g_return_val_if_fail to validate arguments in
+      functions:
+
+          * geda_math_line_get_intersection
+          * geda_math_line_includes_point
+          * geda_math_line_intersection
+          * geda_math_line_shortest_distance (use GEDA_IS_LINE)
+
 
 2019-03-21 Wiley E. Hill <wileyhill@gmail.com
 
