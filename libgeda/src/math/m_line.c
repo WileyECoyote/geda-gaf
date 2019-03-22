@@ -46,7 +46,7 @@
  *
  *  \return TRUE if lines intersect
  *
- *  \sa geda_math_line_get_intersection
+ *  \sa geda_math_line_intersection
  */
 bool
 geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, GedaPoint *point)
