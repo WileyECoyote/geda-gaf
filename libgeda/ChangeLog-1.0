@@ -1,7 +1,10 @@
 2019-03-22 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_circle.c: Revise geda_math_circle_includes_point to validate
-      the circle and point arguments using g_return_val_if_fail.
+      the circle and point arguments using g_return_val_if_fail, and revise
+      geda_math_circle_shortest_distance to use is_a_geda_circle instead of
+      just checking for a NULL pointer when validating.
+
 
 2019-03-21 Wiley E. Hill <wileyhill@gmail.com
 

@@ -99,7 +99,7 @@ geda_math_circle_shortest_distance (GedaCircle *circle, int x, int y, int solid)
   double distance_to_center;
   double dx, dy;
 
-  g_return_val_if_fail (circle != NULL, G_MAXDOUBLE);
+  g_return_val_if_fail (GEDA_IS_CIRCLE(circle), G_MAXDOUBLE);
 
   dx = ((double)x) - ((double)circle->center_x);
   dy = ((double)y) - ((double)circle->center_y);
