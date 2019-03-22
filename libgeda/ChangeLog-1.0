@@ -18,6 +18,9 @@
     * src/object/o_line_object.c: Revise geda_line_object_rotate to disable
       setting the angle positive when the angle is negative.
 
+    * tests/test_complex_object.c: Check geda_complex_object_get_nearest_point
+      in first quadrant.
+
 2019-03-21 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_math.c: Revise geda_math_rotate_point_90 to handle negative
