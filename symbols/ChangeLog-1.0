@@ -13,6 +13,9 @@
             * spice/t-line-2.sym
             * spice/w-line-1x.sym
 
+    * switcap: Clean symbol, convert plain text to a description:
+
+            * switcap/switcap-analysis-1.sym
 
 2019-03-17 Wiley E. Hill <wileyhill@gmail.com>
 

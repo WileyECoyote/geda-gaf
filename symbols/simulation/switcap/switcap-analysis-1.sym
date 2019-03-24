@@ -1,17 +1,17 @@
 v 20121031 2
-T 10 10 5 10 0 0 0 0 1
-author=AutoTron
 B 0 0 4400 1300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 0 400 4400 400 3 0 0 0 -1 -1
-T 200 900 9 20 1 0 0 0 1
-Switcap Analysis Block
+T 200 900 9 20 1 1 0 0 1
+description=Switcap Analysis Block
 T 1800 3400 8 10 0 1 0 0 1
 device=SWITCAP-analysis
 T 200 100 8 10 1 1 0 0 1
 refdes=ANA?
 T 3700 100 8 10 0 1 0 0 1
 net=GND:1
-T 600 100 9 10 0 0 0 0 1
+T 1600 1400 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 0 1400 9 10 0 0 0 0 1
 footprint=unknown
+T 10 1610 5 10 0 0 0 0 1
+author=AutoTron
