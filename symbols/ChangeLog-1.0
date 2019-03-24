@@ -11,6 +11,7 @@
     * spice: Rename symbol with dash, add description
 
             * spice/t-line-2.sym
+            * spice/w-line-1x.sym
 
 
 2019-03-17 Wiley E. Hill <wileyhill@gmail.com>

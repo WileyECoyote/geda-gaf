@@ -46,10 +46,14 @@ pinlabel=right-ref
 T 1750 50 5 8 0 1 0 6 1
 pintype=pas
 }
-T 900 350 8 10 0 1 0 0 1
-device=T-Line
+T 200 1050 8 10 0 1 0 0 1
+device=W-Line
 T 200 850 8 10 1 1 0 0 1
 refdes=W?
 T 200 700 8 10 1 1 0 0 1
 value=N=1 RLGCmodel=? L=?
 V 400 400 200 3 0 0 0 100 100 0 0 45 50 135 50
+T 738 397 9 6 1 1 0 0 1
+description=W-Line
+T 200 1200 9 10 0 1 0 0 1
+footprint=none
