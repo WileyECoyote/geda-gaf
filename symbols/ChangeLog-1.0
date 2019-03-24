@@ -6,6 +6,8 @@
             * spice/spice-subcircuit-IO-1.sym
             * spice/spice-subcircuit-IO-2.sym
             * spice/spice-subcircuit-LL-1.sym
+            * spice/spice-vc-switch-1.sym
+
 
 2019-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
