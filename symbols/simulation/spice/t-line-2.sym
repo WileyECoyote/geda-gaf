@@ -39,17 +39,21 @@ P 1800 200 1800 0 1 0 1
 {
 T 1875 0 5 10 0 1 0 0 1
 pinnumber=right-ref
-T 1800 250 5 10 0 1 0 6 1
+T 1750 50 5 10 0 1 0 6 1
 pinseq=4
 T 1875 0 5 10 0 1 0 0 1
 pinlabel=right-ref
 T 1825 125 5 8 0 1 0 0 1
 pintype=pas
 }
-T 1100 400 8 10 0 1 0 4 1
+T 400 1100 8 10 0 1 0 0 1
 device=T-Line
 T 400 900 8 10 1 1 0 0 1
 refdes=T?
 T 400 700 8 10 1 1 0 0 1
 value=TD=?pS Z0=?
 V 400 400 200 3 0 0 0 100 100 0 0 45 50 135 50
+T 700 350 9 8 1 1 0 0 1
+description=Transmission-Line
+T 400 1300 9 10 0 1 0 0 1
+footprint=none
