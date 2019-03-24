@@ -1,3 +1,10 @@
+2019-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * spice: Add footprint none and convert plain text to a description
+      attribute:
+
+            * spice/spice-subcircuit-IO-1.sym
+
 2019-03-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * atmel/AT89S8252-24PC-1.sym: Resequence and update attributes.
