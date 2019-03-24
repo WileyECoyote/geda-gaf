@@ -1,5 +1,5 @@
 v 20150401 2
-T 700 200 8 10 0 1 0 0 1
+T 650 200 5 10 0 1 0 0 1
 device=spice-IO
 T 650 50 8 10 1 1 0 0 1
 refdes=P?
@@ -11,24 +11,22 @@ L 500 200 600 100 3 0 2 0 -1 -1
 L 600 100 500 0 3 0 2 0 -1 -1
 P 200 100 0 100 1 0 1
 {
-T -100 0 5 10 0 0 0 0 1
+T 50 150 5 10 0 1 0 0 1
 pinseq=1
-T -100 0 5 10 0 0 0 0 1
+T 300 250 5 10 0 1 0 0 1
 pintype=io
-T -100 0 5 10 0 0 0 0 1
+T 50 150 5 10 0 1 0 0 1
 pinnumber=1
-T -100 0 5 10 0 0 0 0 1
+T 300 250 9 10 0 1 0 0 1
 pinlabel=io
 }
 T 200 -200 8 10 0 1 0 0 1
-comment=.SUBCKT IO Pin
-T 3600 0 8 10 0 0 0 0 1
-author=Peter Kaiser peterATeasy-asic.de
-T 0 0 8 10 0 0 0 0 1
-dist-license=GPL
-T 1600 0 8 10 0 0 0 0 1
-use-license=unlimited
-T 1600 0 8 10 0 0 0 0 1
+description=.SUBCKT IO Pin
+T 650 350 9 10 0 1 0 0 1
 footprint=none
-T 0 200 8 10 0 0 0 0 1
-comment=Suggested library: spice
+T 50 800 5 10 0 0 0 0 1
+author=Peter Kaiser peterATeasy-asic.de
+T 50 650 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 50 500 5 10 0 0 0 0 1
+use-license=unlimited
