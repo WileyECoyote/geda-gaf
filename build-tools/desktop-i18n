@@ -142,15 +142,16 @@ extract_xml() {
 
 # do_extract [OPTION]... -- [XGETTEXT_OPTION]...
 # ----------------------------------------------
-# A wrapper around xgettext. It identifies the file lists and search
-# directories being used by xgettext, and from them any desktop or
-# mimeinfo files to be processed.
+# A wrapper around xgettext. This function identifies the file lists
+# and searches directories being used by xgettext, and from them any
+# desktop or mimeinfo files to be processed.
 #
-# It then creates a new private directory, and adds it to the xgettext
-# search path. It creates a new file list and set of preprocessed
-# files in that directory, and then calls xgettext (preserving all
-# other original arguments).
+# A new private directory is created and added to the xgettext search
+# path. A new file list and set of preprocessed files is created in the
+# new directory. xgettext is then called (preserving all # other original
+# arguments).
 do_extract() {
+
   XGETTEXT=xgettext
 
   # First we have to process the command-line arguments
@@ -169,9 +170,9 @@ do_extract() {
       esac
 
     else
-      # This is an argument to xgettext.  Luckily the Makefile only
-      # uses full-length arguments, and we only really care about the
-      # ones from there!
+      # This is an argument to xgettext. Luckily the Makefile only uses
+      # full-length arguments, and we only really care about the ones
+      # from there!
       case $name in
         --version)
           # We need to invoke xgettext with --version and do nothing else
@@ -548,10 +549,9 @@ EOF
 }
 
 
-
 # First argument has to be the mode of operation. Then call the
-# appropriate function to process the rest of the arguments and do the
-# work.
+# appropriate function to process the rest of the arguments and
+# do the work.
 if test -z $1; then usage 1; fi
 MODE=$1; shift
 case $MODE in
