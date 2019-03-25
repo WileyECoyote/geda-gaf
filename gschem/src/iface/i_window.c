@@ -359,12 +359,15 @@ void i_window_revert_page (GschemToplevel *w_current)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set the Drawing Area Pointer Cursor
+ * \par Function Description
+ *  Sets the pointer cursor type for the drawing area to the type
+ *  corresponding to the GdkCursorType \a cursor_id. A pointer to
+ *  the current GdkCursor is stored in w_current->cursor.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] cursor_id  Index of cursor
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] cursor_id  Index of cursor
  */
 void i_window_set_cursor(GschemToplevel *w_current, int cursor_id)
 {

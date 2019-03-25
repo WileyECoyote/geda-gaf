@@ -9,6 +9,7 @@
     * src/iface/i_window.c: Add function documentation:
 
         * i_window_close_page
+        * i_window_set_cursor
 
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
