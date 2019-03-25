@@ -28,7 +28,7 @@
  */
 /*!
  * \file x_edit_cprop.c
- * \brief A dialog box for viewing and edit component properties.
+ * \brief A dialog box for viewing and editing component properties.
  */
 
 #include "../../include/gschem.h"
