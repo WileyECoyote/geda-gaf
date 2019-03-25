@@ -395,6 +395,7 @@ msgid "Python int too large to convert to C int"
 msgstr ""
 
 # Creates an Arc object extension type
+#: libgedathon/module/objects/geda_py_arc.c:318
 msgid "Creates an Arc object extension type."
 msgstr "Erstellt einen Bogenobjekterweiterungstyp."
 

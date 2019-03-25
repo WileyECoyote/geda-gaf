@@ -419,6 +419,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_box.c:332
 msgid "Creates a Box object type."
 msgstr "."
+
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
 msgstr ""
