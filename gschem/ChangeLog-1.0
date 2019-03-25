@@ -6,6 +6,10 @@
     * src/globals.c: Remove GdkColor colors white and black, these were
       relocated to libgedacolor.
 
+    * src/iface/i_window.c: Add function documentation:
+
+        * i_window_close_page
+
 2019-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_edit.c: Revise o_edit_show_inherited_attrib and

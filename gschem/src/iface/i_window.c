@@ -78,11 +78,17 @@ static bool i_window_idle_notify_dialogs (GschemToplevel *w_current)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Close Page Action Handler
+ * \par Function Description
+ *  This function is called to respond after the command interface
+ *  receives a "page-close" action, which is always in the context
+ *  of the current page. The function checks if the current page
+ *  has been modified and calls x_confirm_close_changed_page to
+ *  obtain confirmation from the user to close a modified unsaved
+ *  page.
  *
- *  \param [in] w_current   The GschemToplevel object
+ * \param [in] w_current   The GschemToplevel object
  */
 void i_window_close_page (GschemToplevel *w_current)
 {
