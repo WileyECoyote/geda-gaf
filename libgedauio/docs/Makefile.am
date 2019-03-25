@@ -6,7 +6,7 @@ GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
 
 LOCAL_DOX   = libgedauio.dox libgedauio-main.txt
 
-LOCAL_HTML  = what-is-libgedauio.html
+LOCAL_HTML  = $(html_man_files) what-is-libgedauio.html
 
 LOCAL_MAN   = libgedauio.1.in
 
@@ -56,6 +56,24 @@ dist_man_MANS = libgedauio.1
 	v="$(LIBGEDAUIO_DOT_VERSION)-$(DATE_VERSION)" ; \
 	y=`echo $(DATE_VERSION)| sed -e"s/\(....\).*/\1/"`; \
 	sed -e"s:[@]DATE@:$$d:" -e"s:[@]VERSION@:$$v:" -e"s:[@]YEAR@:$$y:" < $< > $@
+
+if ENABLE_GROFF_HTML
+
+# Rules for converting man->html
+html_man_files = libgedauio.html
+
+docsmandir=$(docdir)/man
+docsman_DATA=$(html_man_files)
+
+.1.html:
+	@rm -rf $@.tmp && \
+	LC_NUMERIC=C $(GROFF) -man -T html  $< >$@.tmp && \
+	mv -f $@.tmp $@
+else
+.1.html:
+	@echo "No working groff available: cannot create $@"
+	@! :
+endif
 
 MOSTLYCLEANFILES     = *.log *~ *.bak
 CLEANFILES           = *.log *~ *.bak $(dist_man_MANS)
