@@ -224,41 +224,50 @@ msgstr "Créer un nouvel objet de chemin."
 msgid "Create a new picture object."
 msgstr "Créer un nouvel objet d'image."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Créer un nouvel objet pin."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Créer un nouvel objet texte."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Créer un nouvel objet d'attribut."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Nouvelle syntaxe de type d'objet"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Le nom de l'objet"
 
+# Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Ajouter un objet d'attribut à cet objet"
 
+# Copy the object
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Copier l'objet"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Faire pivoter l'objet"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Sélectionnez cet objet"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
@@ -395,21 +404,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
+# Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Créer un nouvel objet arc."
+msgstr "Crée un type d'extension d'objet Arc."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
+# Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Créer un nouvel objet box."
+msgstr "Crée un type d'objet box."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -419,20 +426,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Créer un nouvel objet de bus."
+msgstr "Crée un type d'objet Bus."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Créer un nouvel objet cercle."
+msgstr "Erreur lors de l'initialisation d'un nouvel objet cercle."
 
-# Create a new circle object
+# Creates a Circle object type
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Créer un nouvel objet cercle."
+msgstr "Crée un type d'objet Cercle."
