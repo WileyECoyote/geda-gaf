@@ -1,3 +1,7 @@
+2019-03-24 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_attrib_object.c: Rename file, formerly o_attrib.c.
+
 2019-03-22 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_circle.c: Revise geda_math_circle_includes_point to validate

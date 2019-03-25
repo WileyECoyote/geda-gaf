@@ -181,7 +181,7 @@ extern "C" {
          void    geda_arc_object_translate            (GedaObject *object, int dx, int dy);
          bool    geda_arc_object_within_sweep         (GedaObject *object, int x, int y);
 
-/* o_attrib.c */
+/* o_attrib_object.c */
          void    geda_attrib_object_add                      (GedaObject *object, GedaObject *item);
          void    geda_attrib_object_append_changed_hook      (Page *page, AttribsChangedFunc func, void *data);
          void    geda_attrib_object_attach                   (GedaObject *object, GedaObject *attrib, int set_color);
