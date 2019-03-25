@@ -424,19 +424,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Creates a box object type
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
 msgid "Creates a Bus object type."
-msgstr "Létrehoz egy dobozobjektumot."
+msgstr "Létrehoz egy buszobjektumot."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Hozzon létre egy új kör objektumot."
+msgstr "Hiba az új kör objektum inicializálásakor"
 
-# Create a new circle object
+# Creates a Circle object type
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Hozzon létre egy új kör objektumot."
+msgstr "Létrehoz egy kör objektumtípust."
