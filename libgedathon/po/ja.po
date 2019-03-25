@@ -266,41 +266,56 @@ msgstr "新しいネットオブジェクトを作成する."
 msgid "Create a new picture object."
 msgstr "新しい画像オブジェクトを作成する."
 
+# Create a new pin object
+# Atarashī pin obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "新しいピンオブジェクトを作成する."
 
+# Create a new text object
+# Atarashī tekisuto obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "新しいテキストオブジェクトを作成する."
 
+# Create a new attribute object
+# Atarashī zokusei obujekuto o sakusei suru
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "新しい属性オブジェクトを作成する."
 
+# New object type syntax
+# Atarashī obujekuto-gata no kōbun
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "新しいオブジェクト型の構文"
 
+# The object name; Obujekuto-mei
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "オブジェクト名"
 
+# Add an attribute object to this object
+# Kono obujekuto ni zokusei obujekuto o tsuika shimasu
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "このオブジェクトに属性オブジェクトを追加します"
 
+# Copy the object; Obujekuto o kopī suru
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "オブジェクトをコピーする"
 
+# Rotate the object; Obujekuto o kaitensaseru
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "オブジェクトを回転させる"
 
+# Select this Object
+# Kono obujekuto o sentaku
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "このオブジェクトを選択"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
@@ -434,23 +449,21 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
-# Atarashī enko obujekuto o sakusei suru
+# Creates an arc object extension type
+# Enko obujekuto kakuchō taipu o sakusei shimasu
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "新しい円弧オブジェクトを作成する."
+msgstr "円弧オブジェクト拡張タイプを作成します."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
-# Atarashī bokkusu obujekuto o sakusei suru
+# CCreates a Box object type
+# Bokkusuobujekutotaipu o sakusei shimasu
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "新しいボックスオブジェクトを作成する."
+msgstr "ボックスオブジェクトタイプを作成します."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -460,21 +473,20 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
-# Atarashī basu obujekuto o sakusei suru
+# Creates a Bus object type
+# Basuobujekutotaipu o sakusei shimasu
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "新しいバスオブジェクトを作成する."
+msgstr "Creates a Bus object type."
 
-# Create a new circle object
+# Error initializing new Circle object
+# Atarashī en obujekuto no shokka erā
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Atarashī en obujekuto o sakusei suru."
+msgstr "新しい円オブジェクトの初期化エラー"
 
-# Create a new circle object
+# Creates a Circle object type
+# Sākuru obujekuto-gata o sakusei shimasu
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Atarashī en obujekuto o sakusei suru."
+msgstr "Circleオブジェクト型を作成します."
