@@ -519,7 +519,7 @@ MKDIR_P = @MKDIR_P@
 
 DESKTOP_I18N_LOCALE_DIR = @DESKTOP_I18N_LOCALE_DIR@
 
-# We need to temporarily install the localisation files somewhere so
+# We need to temporarily install the localization files somewhere so
 # that desktop-i18n --create can look up messages in them. We recreate
 # the timestamp before *and* after running 'make install' so that the
 # make doesn't go into an infinite loop!
