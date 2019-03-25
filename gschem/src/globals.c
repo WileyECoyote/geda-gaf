@@ -30,9 +30,7 @@ int prog_pid = 0;
 /* window list */
 GList *global_window_list = NULL;
 
-/* colors */
-GdkColor white;
-GdkColor black;
+/* Color Related */
 int cmap_flag = 0;
 
 /* command line options */

@@ -36,10 +36,6 @@ extern int prog_pid;
 /* window list */
 extern GList *global_window_list;
 
-/* colors */
-extern GdkColor white;
-extern GdkColor black;
-
 /* command line options */
 
 extern int  auto_place_mode;
