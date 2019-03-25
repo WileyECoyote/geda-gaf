@@ -458,23 +458,20 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
-# putiya bas ōbjakṟṟ sr̥ṣṭikkuka
+# Creates a Bus object type
+# oru bas ōbjakṟṟ taraṁ sr̥ṣṭikkunnu
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "പുതിയ ബസ് ഓബ്ജക്റ്റ് സൃഷ്ടിക്കുക."
+msgstr "ഒരു ബസ് ഓബ്ജക്റ്റ് തരം സൃഷ്ടിക്കുന്നു."
 
-# Create a new circle object
-# oru putiya sarkkiḷ vastu sr̥ṣṭikkuka
+# Error initializing new Circle object
+# putiya sarkkiḷ vastuvine ārambhikkunnatil piśak
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "ഒരു പുതിയ സർക്കിൾ വസ്തു സൃഷ്ടിക്കുക."
+msgstr "പുതിയ സർക്കിൾ വസ്തുവിനെ ആരംഭിക്കുന്നതിൽ പിശക്"
 
-# Create a new circle object
-# oru putiya sarkkiḷ vastu sr̥ṣṭikkuka
+# Creates a Circle object type
+# oru sarkkiḷ objakṟṟ taraṁ sr̥ṣṭikkunnu
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "ഒരു പുതിയ സർക്കിൾ വസ്തു സൃഷ്ടിക്കുക."
+msgstr "ഒരു സർക്കിൾ ഒബ്ജക്റ്റ് തരം സൃഷ്ടിക്കുന്നു."
