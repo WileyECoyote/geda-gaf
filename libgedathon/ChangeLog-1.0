@@ -1,3 +1,9 @@
+2019-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Makefile.am: Append po/stamp-po to distclean, for some reason this
+      does not get done during distcheck since desktop-i18n without sed
+      in-file, but does when sed -i was used.
+
 2019-03-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fi.po: Update Finnish translations.
