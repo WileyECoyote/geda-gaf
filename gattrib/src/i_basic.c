@@ -18,10 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-/*! \file
+/*! \file i_basic.c
  *
- * \todo Unused function in here, i_update_status(). File is a candidate
- *       for removal?
  */
 
 /*------------------------------------------------------------------
