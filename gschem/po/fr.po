@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-23 19:47-0500\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -910,7 +910,7 @@ msgstr "Enregistrer toutes les pages"
 msgid "Renaming session"
 msgstr "Enregistrer toutes les pages"
 
-#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:179
+#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:178
 msgid "to"
 msgstr ""
 
@@ -1095,64 +1095,64 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr "Impossible d'enregistrer la configuration de l'utilisateur"
 
-#: gschem/src/iface/i_window.c:104
+#: gschem/src/iface/i_window.c:110
 msgid "Closing Page\n"
 msgstr "Fermer la page\n"
 
-#: gschem/src/iface/i_window.c:172
+#: gschem/src/iface/i_window.c:178
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:276
+#: gschem/src/iface/i_window.c:282
 msgid "Really revert page?"
 msgstr "Abandonner les modifications?"
 
-#: gschem/src/iface/i_window.c:332
+#: gschem/src/iface/i_window.c:338
 msgid "An error occurred while processing request to revert"
 msgstr "Une erreur s'est produite lors du traitement de la demande de retour"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "<b>File error.</b>"
 msgstr "<b>Portée</b>"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "Revert failed"
 msgstr "Abandonner les modifications ?"
 
-#: gschem/src/iface/i_window.c:343
+#: gschem/src/iface/i_window.c:349
 msgid "Error encountered during file operation"
 msgstr "Erreur rencontrée lors de l'opération de fichier"
 
-#: gschem/src/iface/i_window.c:344
+#: gschem/src/iface/i_window.c:350
 msgid "Recovery: undo last action\n"
 msgstr "Récupération: annuler dernière action\n"
 
-#: gschem/src/object/o_attrib.c:127
+#: gschem/src/object/o_attrib.c:126
 msgid "already attached to an object"
 msgstr ""
 
 # Attribute is
-#: gschem/src/object/o_attrib.c:133
+#: gschem/src/object/o_attrib.c:132
 msgid "Attribute is"
 msgstr "L'attribut est"
 
 # # One attribute was
-#: gschem/src/object/o_attrib.c:136
+#: gschem/src/object/o_attrib.c:135
 msgid "One attribute was"
 msgstr "Un attribut était"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:141
+#: gschem/src/object/o_attrib.c:140
 msgid "All of the attributes were"
 msgstr "Tous les attributs étaient"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:145
+#: gschem/src/object/o_attrib.c:144
 msgid "Some of the attributes were"
 msgstr "Certains des attributs étaient"
 
-#: gschem/src/object/o_attrib.c:167
+#: gschem/src/object/o_attrib.c:166
 #, fuzzy, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"

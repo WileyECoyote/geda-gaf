@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-23 19:47-0500\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -929,7 +929,7 @@ msgstr "Bewaar Alles"
 msgid "Renaming session"
 msgstr "Bewaar Alles"
 
-#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:179
+#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:178
 msgid "to"
 msgstr "om"
 
@@ -1113,65 +1113,65 @@ msgstr "Inisialiseer verstek opset instellings\n"
 msgid "Failed to save user configuration to"
 msgstr "Kon nie gebruiker opset red"
 
-#: gschem/src/iface/i_window.c:104
+#: gschem/src/iface/i_window.c:110
 msgid "Closing Page\n"
 msgstr "Sluit Bladsy\n"
 
-#: gschem/src/iface/i_window.c:172
+#: gschem/src/iface/i_window.c:178
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr "Stel bladsy <%s> aktief.\n"
 
-#: gschem/src/iface/i_window.c:276
+#: gschem/src/iface/i_window.c:282
 msgid "Really revert page?"
 msgstr "gaan regtig terug bladsy?"
 
-#: gschem/src/iface/i_window.c:332
+#: gschem/src/iface/i_window.c:338
 msgid "An error occurred while processing request to revert"
 msgstr "'N fout tydens die verwerking van versoek om die data te herlaai"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "<b>File error.</b>"
 msgstr "<b>Bestek</b>"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "Revert failed"
 msgstr "Gaan Bladsy Terug"
 
-#: gschem/src/iface/i_window.c:343
+#: gschem/src/iface/i_window.c:349
 msgid "Error encountered during file operation"
 msgstr "Fout tydens lêer operasie"
 
-#: gschem/src/iface/i_window.c:344
+#: gschem/src/iface/i_window.c:350
 msgid "Recovery: undo last action\n"
 msgstr "Maak laaste handeling ongedaan\n"
 
-#: gschem/src/object/o_attrib.c:127
+#: gschem/src/object/o_attrib.c:126
 msgid "already attached to an object"
 msgstr ""
 
 # Attribute is
-#: gschem/src/object/o_attrib.c:133
+#: gschem/src/object/o_attrib.c:132
 msgid "Attribute is"
 msgstr "Attribuut is"
 
 # One attribute was
-#: gschem/src/object/o_attrib.c:136
+#: gschem/src/object/o_attrib.c:135
 msgid "One attribute was"
 msgstr "Eén attribuut was"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:141
+#: gschem/src/object/o_attrib.c:140
 msgid "All of the attributes were"
 msgstr "Al die eienskappe was"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:145
+#: gschem/src/object/o_attrib.c:144
 msgid "Some of the attributes were"
 msgstr "Sommige van die eienskappe was"
 
 # attached 1 attribute, attached 2 attributes
-#: gschem/src/object/o_attrib.c:167
+#: gschem/src/object/o_attrib.c:166
 #, fuzzy, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"

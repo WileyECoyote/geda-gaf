@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-23 19:47-0500\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2012-01-31 12:08+0000\n"
 "Last-Translator: Antonio Augusto Todo Bom Neto <atodobom@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -957,7 +957,7 @@ msgstr "Abierto sessão"
 msgid "Renaming session"
 msgstr "Renomeação de sessão"
 
-#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:179
+#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:178
 msgid "to"
 msgstr "ao"
 
@@ -1159,68 +1159,68 @@ msgstr "Inicializando as configurações padrão\n"
 msgid "Failed to save user configuration to"
 msgstr "Falha ao salvar a configuração do usuário para"
 
-#: gschem/src/iface/i_window.c:104
+#: gschem/src/iface/i_window.c:110
 msgid "Closing Page\n"
 msgstr "Fechar página\n"
 
-#: gschem/src/iface/i_window.c:172
+#: gschem/src/iface/i_window.c:178
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr "Definir página <%s> ativa.\n"
 
-#: gschem/src/iface/i_window.c:276
+#: gschem/src/iface/i_window.c:282
 msgid "Really revert page?"
 msgstr "Reverter Página?"
 
 # An error occurred while processing request to revert
-#: gschem/src/iface/i_window.c:332
+#: gschem/src/iface/i_window.c:338
 msgid "An error occurred while processing request to revert"
 msgstr "Ocorreu um erro durante o processamento da solicitação para reverter"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "<b>File error.</b>"
 msgstr "<b>Erro de arquivo.</b>"
 
 # Revert failed
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "Revert failed"
 msgstr "Reverter falhou"
 
 # Error encountered during file operation
-#: gschem/src/iface/i_window.c:343
+#: gschem/src/iface/i_window.c:349
 msgid "Error encountered during file operation"
 msgstr "ERRO: encontrado durante a operação de arquivo"
 
 # Recovery: Undo the last operation
-#: gschem/src/iface/i_window.c:344
+#: gschem/src/iface/i_window.c:350
 msgid "Recovery: undo last action\n"
 msgstr "Recuperação: Desfazer última operação\n"
 
-#: gschem/src/object/o_attrib.c:127
+#: gschem/src/object/o_attrib.c:126
 msgid "already attached to an object"
 msgstr ""
 
-#: gschem/src/object/o_attrib.c:133
+#: gschem/src/object/o_attrib.c:132
 msgid "Attribute is"
 msgstr "Atributo é"
 
 # One attribute was
-#: gschem/src/object/o_attrib.c:136
+#: gschem/src/object/o_attrib.c:135
 msgid "One attribute was"
 msgstr "Um atributo foi"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:141
+#: gschem/src/object/o_attrib.c:140
 msgid "All of the attributes were"
 msgstr "Todos os atributos foram"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:145
+#: gschem/src/object/o_attrib.c:144
 msgid "Some of the attributes were"
 msgstr "Alguns dos atributos foram"
 
 # Detached attribute
-#: gschem/src/object/o_attrib.c:167
+#: gschem/src/object/o_attrib.c:166
 #, fuzzy, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"

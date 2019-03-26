@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-23 19:47-0500\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -945,7 +945,7 @@ msgstr "ban baek samyobrachoum"
 msgid "Renaming session"
 msgstr "kar daoh samyobrachoum"
 
-#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:179
+#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:178
 msgid "to"
 msgstr "tow"
 
@@ -1129,65 +1129,65 @@ msgstr "chabphdaem lomneadaem karkamnt\n"
 msgid "Failed to save user configuration to"
 msgstr "breachy knong kar roksaatouk karkamnt rochneasampnth anak brae"
 
-#: gschem/src/iface/i_window.c:104
+#: gschem/src/iface/i_window.c:110
 msgid "Closing Page\n"
 msgstr "tompr banhchob karpipheaksaea denhdaol\n"
 
-#: gschem/src/iface/i_window.c:172
+#: gschem/src/iface/i_window.c:178
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr "kamnt tompr <%s>  sakam.\n"
 
-#: gschem/src/iface/i_window.c:276
+#: gschem/src/iface/i_window.c:282
 msgid "Really revert page?"
 msgstr "pitchea tralb tompr"
 
-#: gschem/src/iface/i_window.c:332
+#: gschem/src/iface/i_window.c:338
 msgid "An error occurred while processing request to revert"
 msgstr "kamhosa muoy ban kaetlaeng khn pel del ttuol ban thleakchoh tinnony"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "<b>File error.</b>"
 msgstr "<b>kamhosa eksar.</b>"
 
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "Revert failed"
 msgstr "tralb bratebatte kar ban breachy"
 
-#: gschem/src/iface/i_window.c:343
+#: gschem/src/iface/i_window.c:349
 msgid "Error encountered during file operation"
 msgstr ""
 "kamhosa knong kar chuobabrateah knongamlongpel brate b tde kar eksar muoy"
 
-#: gschem/src/iface/i_window.c:344
+#: gschem/src/iface/i_window.c:350
 msgid "Recovery: undo last action\n"
 msgstr "kar ngeublaeng vinh : min thveu sakammopheap chongokraoy\n"
 
-#: gschem/src/object/o_attrib.c:127
+#: gschem/src/object/o_attrib.c:126
 msgid "already attached to an object"
 msgstr "phcheab tow nung vottho ruochhaey"
 
 # Attribute is
-#: gschem/src/object/o_attrib.c:133
+#: gschem/src/object/o_attrib.c:132
 msgid "Attribute is"
 msgstr "kounalokkhan ku"
 
 # One attribute was => An attibute was
-#: gschem/src/object/o_attrib.c:136
+#: gschem/src/object/o_attrib.c:135
 msgid "One attribute was"
 msgstr "kounalokkhan muoy ku"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:141
+#: gschem/src/object/o_attrib.c:140
 msgid "All of the attributes were"
 msgstr "kounalokkhan teangoasa ku"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:145
+#: gschem/src/object/o_attrib.c:144
 msgid "Some of the attributes were"
 msgstr "kounalokkhan muoychamnuon mean"
 
-#: gschem/src/object/o_attrib.c:167
+#: gschem/src/object/o_attrib.c:166
 #, fuzzy, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"

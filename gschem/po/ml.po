@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-23 19:47-0500\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -981,7 +981,7 @@ msgstr ""
 msgid "Renaming session"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:179
+#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:178
 msgid "to"
 msgstr ""
 
@@ -1176,72 +1176,72 @@ msgid "Failed to save user configuration to"
 msgstr "ഉപയോക്തൃ കോൺഫിഗറേഷൻ എന്നതിലേക്ക് സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു"
 
 # Closing Page
-#: gschem/src/iface/i_window.c:104
+#: gschem/src/iface/i_window.c:110
 msgid "Closing Page\n"
 msgstr "അടയ്ക്കുന്നു പേജ്\n"
 
 # Set page <%s> active
-#: gschem/src/iface/i_window.c:172
+#: gschem/src/iface/i_window.c:178
 #, c-format
 msgid "Set page <%s> active.\n"
 msgstr "പേജ് സജ്ജമാക്കുക <%s> സജീവമാണ്.\n"
 
 # Really revert page
-#: gschem/src/iface/i_window.c:276
+#: gschem/src/iface/i_window.c:282
 msgid "Really revert page?"
 msgstr "യഥാർത്ഥത്തിൽ പഴയപടിയാക്കണോ?"
 
 # An error occurred while processing request to revert
-#: gschem/src/iface/i_window.c:332
+#: gschem/src/iface/i_window.c:338
 msgid "An error occurred while processing request to revert"
 msgstr "പഴയപടിയാക്കാനുള്ള അഭ്യർത്ഥന പ്രോസസ്സ് ചെയ്യുന്നതിനിടയിൽ ഒരു പിശക് സംഭവിച്ചു"
 
 # File error
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "<b>File error.</b>"
 msgstr "<b>ഫയൽ പിശക്.</b>"
 
 # Revert failed
-#: gschem/src/iface/i_window.c:336
+#: gschem/src/iface/i_window.c:342
 msgid "Revert failed"
 msgstr "പഴയപടിയാക്കൽ പരാജയപ്പെട്ടു"
 
 # Error encountered during file operation
-#: gschem/src/iface/i_window.c:343
+#: gschem/src/iface/i_window.c:349
 msgid "Error encountered during file operation"
 msgstr "ഫയൽ പ്രവർത്തന വേളയിൽ പിശക് നേരിട്ടു"
 
 # Recovery: undo last action
-#: gschem/src/iface/i_window.c:344
+#: gschem/src/iface/i_window.c:350
 msgid "Recovery: undo last action\n"
 msgstr "വീണ്ടെടുക്കൽ: അവസാന പ്രവർത്തനം പഴയപടിയാക്കുക\n"
 
-#: gschem/src/object/o_attrib.c:127
+#: gschem/src/object/o_attrib.c:126
 msgid "already attached to an object"
 msgstr ""
 
 # Attribute is
-#: gschem/src/object/o_attrib.c:133
+#: gschem/src/object/o_attrib.c:132
 msgid "Attribute is"
 msgstr "ആട്രിബ്യൂട്ട് ആണ്"
 
 # One attribute was
-#: gschem/src/object/o_attrib.c:136
+#: gschem/src/object/o_attrib.c:135
 msgid "One attribute was"
 msgstr "ഒരു ആട്രിബ്യൂട്ട് ആയിരുന്നു"
 
 # All of the attributes were
-#: gschem/src/object/o_attrib.c:141
+#: gschem/src/object/o_attrib.c:140
 msgid "All of the attributes were"
 msgstr "എല്ലാ ആട്രിബ്യൂട്ടുകളും ഉണ്ടായിരുന്നു"
 
 # Some of the attributes were
-#: gschem/src/object/o_attrib.c:145
+#: gschem/src/object/o_attrib.c:144
 msgid "Some of the attributes were"
 msgstr "ചില ആട്രിബ്യൂട്ടുകൾ ഉണ്ടായിരുന്നു"
 
 # attached 1 attribute, attached 2 attributes
-#: gschem/src/object/o_attrib.c:167
+#: gschem/src/object/o_attrib.c:166
 #, fuzzy, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"

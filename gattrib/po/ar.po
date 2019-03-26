@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-01 10:13-0600\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2010-02-08 18:58+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -70,21 +70,21 @@ msgid "file"
 msgstr "ملف"
 
 # The operating system is out of memory or resources
-#: gattrib/src/i_basic.c:84
+#: gattrib/src/i_basic.c:82
 msgid "The operating system is out of memory or resources."
 msgstr "نظام التشغيل خارج الذاكرة أو الموارد."
 
 # failed to open
-#: gattrib/src/i_basic.c:136
+#: gattrib/src/i_basic.c:134
 msgid "failed to open"
 msgstr "فشل في الفتح"
 
-#: gattrib/src/i_basic.c:145
+#: gattrib/src/i_basic.c:143
 msgid "falling back to"
 msgstr ""
 
 # Check path
-#: gattrib/src/i_basic.c:191
+#: gattrib/src/i_basic.c:189
 msgid "Check path"
 msgstr "تحقق من المسار"
 

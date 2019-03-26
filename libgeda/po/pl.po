@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-23 19:47-0500\n"
+"POT-Creation-Date: 2019-03-25 23:46-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1169,26 +1169,26 @@ msgstr "Napotkano niepoprawny kolor"
 msgid "Setting color to default color\n"
 msgstr "Użyję domyślnego koloru\n"
 
-#: libgeda/src/object/o_attrib.c:179
+#: libgeda/src/object/o_attrib_object.c:179
 #, c-format
 msgid "Attribute [%s] already attached\n"
 msgstr ""
 
-#: libgeda/src/object/o_attrib.c:184
+#: libgeda/src/object/o_attrib_object.c:184
 #, c-format
 msgid "Attempt to attach non text object as an attribute!\n"
 msgstr "Próba użycia innego obiektu niż tekst jako atrybut!\n"
 
-#: libgeda/src/object/o_attrib.c:189
+#: libgeda/src/object/o_attrib_object.c:189
 #, c-format
 msgid "Attempt to attach attribute [%s] to more than one object\n"
 msgstr "Próba powiązania atrybutu [%s] z więcej niż jednym obiektem\n"
 
-#: libgeda/src/object/o_attrib.c:740
+#: libgeda/src/object/o_attrib_object.c:740
 msgid "tried to attach a non-text object as an attribute"
 msgstr "Próba użycia innego obiektu niż tekst jako atrybut!"
 
-#: libgeda/src/object/o_attrib.c:749
+#: libgeda/src/object/o_attrib_object.c:749
 msgid "unexpected end-of-file in attribute list"
 msgstr ""
 
