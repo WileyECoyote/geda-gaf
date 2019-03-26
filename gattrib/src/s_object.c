@@ -43,23 +43,18 @@
 /* ===================  Public Functions  ====================== */
 
 /*------------------------------------------------------------------*/
-/*! \brief Add an attribute to an Object
+/*!
+ * \brief Add an attribute to an Object
+ * \par Function Description
+ *  This function adds a new attrib to o_current, when o_current is a
+ *  component.
  *
- * This fcn adds a new attrib to o_current, when o_current is a
- * component.  It does it in the following
- * way:
- * -# It creates an object -- "attrib_graphic" -- and fills it in.
- * -# It gets the position info from o_current's refdes attrib and
- *    calls s_object_attrib_add_attrib_in_object() to add position
- *    info and name=value string to attrib_graphic.
- * -# It calls geda_attrib_object_add() to wrap attrib_graphic with (attribute
- *    Object )
- * \param toplevel GedaToplevel structure
- * \param o_current pointer to object to add attribute to
- * \param new_attrib_name name of the attribute to add
- * \param new_attrib_value value of the attribute to add
- * \param visibility Is the attribute visible?
- * \param show_name_value Control visibility of name and value.
+ * \param toplevel         GedaToplevel structure
+ * \param o_current        Pointer to object to add attribute to
+ * \param new_attrib_name  Name of the attribute to add
+ * \param new_attrib_value Value of the attribute to add
+ * \param visibility       Is the attribute visible?
+ * \param show_name_value  Control visibility of name and value.
  */
 void
 s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
