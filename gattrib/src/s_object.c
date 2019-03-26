@@ -133,20 +133,30 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
 
     char *name_value_pair;
     int   color;
+    int   visible;
 
     name_value_pair = geda_strconcat(new_attrib_name, "=",
                                      new_attrib_value, NULL);
 
-    if (strncmp(new_attrib_name, "pinlabel", 8) == 0){
-      color = TEXT_COLOR;
+    if (strncmp(new_attrib_name, "pinlabel", 8) == 0) {
+      color   = TEXT_COLOR;
+      visible = VISIBLE;
     }
     else {
+
       color = -1;
+
+      if (strncmp(new_attrib_name, "pinnumber", 8) == 0) {
+        visible = VISIBLE;
+      }
+      else {
+        visible = INVISIBLE;
+      }
     }
 
     s_object_attrib_add_attrib_in_object (toplevel,
                                           name_value_pair,
-                                          INVISIBLE,
+                                          visible,
                                           SHOW_NAME_VALUE, color,
                                           o_current);
   }

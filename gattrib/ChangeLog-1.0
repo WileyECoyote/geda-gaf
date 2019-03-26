@@ -1,3 +1,9 @@
+2019-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Revise s_object_add_pin_attrib_to_object to set the
+      attribute visibility to visible when the attribute being added is
+      either a label or a pin number, otherwise set to invisible.
+
 2019-02-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Remove inclusion of geda_container.h, which is now
