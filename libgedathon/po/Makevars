@@ -1,10 +1,11 @@
+#                                                       -*-GNUmakefile-*-
 # Makefile variables for PO directory in any package using GNU gettext.
 
 # Usually the message domain is the same as the package name.
 DOMAIN = libgedathon
 
 # Unfortunately, we need to use message domains that match the current
-# version of libgedauio. Even more unfortunately, the way that the
+# version of libgedathon. Even more unfortunately, the way that the
 # gettext m4 code merges Makevars into the Makefile precludes Makevars
 # from containing anything determined at configure time. So we have
 # *yet another* Makefile fragment.
