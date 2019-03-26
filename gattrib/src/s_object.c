@@ -100,15 +100,9 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
 /*!
  * \brief Add a new attribute to an pin Object
  * \par Function Description
- *
- *  This function adds a new attribute to o_current, when o_current is
- *  a pin using the following technique:
- *
- * -# creates an object -- "attrib_graphic" -- and fills it in.
- * -# gets the position info from o_current's refdes attrib and
- *    calls s_object_attrib_add_attrib_in_object() to add position
- *    info and name=value string to attrib_graphic.
- * -# calls geda_attrib_object_add() to wrap attrib_graphic with (attribute Object )
+ *  This function adds a new text attribute to o_current. The function
+ *  sets the color of the attribute to TEXT_COLOR if the name string
+ *  is "pinlabel".
  *
  * \param toplevel         GedaToplevel structure
  * \param o_current        Pointer to pin object
