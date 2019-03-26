@@ -148,7 +148,7 @@ extract_xml() {
 #
 # A new private directory is created and added to the xgettext search
 # path. A new file list and set of preprocessed files is created in the
-# new directory. xgettext is then called (preserving all # other original
+# new directory. xgettext is then called (preserving all other original
 # arguments).
 do_extract() {
 
