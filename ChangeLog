@@ -1,3 +1,7 @@
+2019-03-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * configure.ac: Bump date version 20190301.
+
 2019-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * build-tools/desktop-i18n: Revise documentation comments to remove it.
