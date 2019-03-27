@@ -177,7 +177,7 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
       if (line_length < 1) {
         if (o_property->line_length < 1) {
           line_length = default_line_length;
-          geda_log_w ("%s=%d\n", _("Setting line length to default"), line_length);
+          geda_log_v ("%s=%d\n", _("Setting line length to default"), line_length);
         }
         else { /* Use current value */
           line_length = o_property->line_length;
@@ -190,7 +190,7 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
 
         if (o_property->line_space < 1) {
           line_space = default_line_space;
-          geda_log_w ("%s=%d\n", _("Setting line space to default"), line_space);
+          geda_log_v ("%s=%d\n", _("Setting line space to default"), line_space);
         }
         else { /* Use current value */
           line_space = o_property->line_space;

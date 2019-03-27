@@ -1,3 +1,8 @@
+2019-03-26 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_set.c: Change warning messages in geda_set_object_line
+      _options to verbose messages.
+
 2019-03-24 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_attrib_object.c: Rename file, formerly o_attrib.c.
