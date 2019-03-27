@@ -2163,7 +2163,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
      * otherwise use the new value extracted from the dialog */
 
     line_options.line_type   = type   == LEAVE_ALONE ? otype   : type;
-    line_options.line_end    = end    == LEAVE_ALONE ? oend    :  end;
+    line_options.line_end    = end    == LEAVE_ALONE ? oend    : end;
     line_options.line_width  = width  == LEAVE_ALONE ? owidth  : width;
     line_options.line_length = length == LEAVE_ALONE ? olength : length;
     line_options.line_space  = space  == LEAVE_ALONE ? ospace  : space;
