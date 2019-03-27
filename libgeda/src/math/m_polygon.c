@@ -26,6 +26,7 @@
 /*!
  * \brief Appends a bezier curve to the polygon
  * \par Function Description
+ *
  * \param [in,out] points   The vertices of the polygon, must not be NULL.
  * \param [in]     bezier   The bezier curve to append.
  * \param [in]     segments Number of segments to subdivide the bezier curve.
@@ -144,6 +145,7 @@ bool geda_math_polygon_interior_point (GArray *points, int x, int y)
         count++;
     }
   }
+
   return (count % 2) == 1;  /* odd */
 }
 
@@ -169,6 +171,7 @@ double geda_math_polygon_shortest_distance (GArray *points, int x, int y, int cl
   double shortest = G_MAXDOUBLE;
 
   if (points->len > 0) {
+
     int i = 0;
     GedaPoint point;
 
