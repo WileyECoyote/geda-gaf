@@ -153,7 +153,7 @@ bool geda_math_polygon_interior_point (GArray *points, int x, int y)
  *  Calculates the distance between the given point and the closest point on
  *  the perimeter of the polygon. If \a closed is TRUE, the function treats
  *  the polygon as a closed shape, creating a line between the first and last
- *  points, if needed. If the first and last points are equal, or inherintly
+ *  points, if needed. If the first and last points are equal, or inherently
  *  closed, this parameter does not matter.
  *
  * \param [in] points The polygon, where polygon != NULL.
