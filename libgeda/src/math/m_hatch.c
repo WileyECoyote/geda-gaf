@@ -159,7 +159,7 @@ geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
 /*!
  * \brief Calculates line segments to hatch a circle.
  * \par Function Description
- *  This function appends new line segments to the lines GArray.  For creating
+ *  This function appends new line segments to the lines GArray. For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
@@ -212,7 +212,7 @@ geda_math_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
 /*!
  * \brief Calculates line segments to hatch a path.
  * \par Function Description
- *  This function appends new line segments to the lines GArray.  For creating
+ *  This function appends new line segments to the lines GArray. For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
@@ -243,7 +243,7 @@ geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
 /*!
  * \brief Calculates line segments to hatch an arbitrary polygon.
  * \par Function Description
- *  This function appends new line segments to the lines GArray.  For creating
+ *  This function appends new line segments to the lines GArray. For creating
  *  a hatch pattern, the GArray must be cleared before calling this function.
  *  For creating cross hatch patterns, this function can be called multiple
  *  times with a different angle or pitch while passing the same lines GArray.
