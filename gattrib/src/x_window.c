@@ -19,9 +19,9 @@
  */
 
 /*------------------------------------------------------------------*/
+
 /*! \file
  * \brief Functions for the toplevel window
- *
  * This file holds functions used to handle the toplevel window and
  * various widgets held by that window. Widgets used to handle
  * GtkSheet pointers are in a different file.
@@ -32,7 +32,6 @@
 #include <gtk/gtk.h>
 #include <gtksheet.h>
 
-#include <geda_container.h>
 #include <geda_widgets.h>
 
 /*------------------------------------------------------------------

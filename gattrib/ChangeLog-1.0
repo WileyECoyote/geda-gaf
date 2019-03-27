@@ -1,3 +1,7 @@
+2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Remove redundant inclusion of geda_container.h.
+
 2019-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Revise s_object_add_pin_attrib_to_object to set the
