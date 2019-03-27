@@ -595,7 +595,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
         char **raw_menu_name = &dummy;
 
   unsigned long handler;
-  int i, j;
+  int i, j, menu_count;
 
   bool menus_broken = FALSE;   /* static for get_menu_item_from_scheme */
 
@@ -943,8 +943,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
 
+  menu_count = geda_iface_menu_return_num();
+
   /* Loop through all top-level menu container */
-  for (i = 0 ; i < geda_iface_menu_return_num(); i++) {
+  for (i = 0 ; i < menu_count; i++) {
 
     GtkWidget *root_menu = NULL;
     char      *menu_name;

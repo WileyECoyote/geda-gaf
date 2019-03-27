@@ -3,6 +3,9 @@
     * src/x/x_dnd.c: Revise x_dnd_source_leave to immediately return
       FALSE if the even state is SBOX.
 
+    * src/x/x_menus: Add ancillary integer menu_count in x_menu_setup_ui
+      and only call geda_iface_menu_return_num once.
+
 2019-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_globals.h: Remove declaration of externals GdkColor
