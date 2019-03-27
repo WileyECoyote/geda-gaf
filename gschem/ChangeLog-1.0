@@ -1,3 +1,8 @@
+2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Revise x_dnd_source_leave to immediately return
+      FALSE if the even state is SBOX.
+
 2019-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_globals.h: Remove declaration of externals GdkColor

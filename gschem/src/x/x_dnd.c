@@ -1110,6 +1110,9 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
 #endif
 
     switch (w_current->event_state) {
+      case SBOX:
+        return FALSE;
+
       case DRAGMOVE:
       case MOVEMODE:
       case COPYMODE:
