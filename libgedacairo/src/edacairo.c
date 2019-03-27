@@ -192,7 +192,6 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
   cairo_device_to_user (cr, &x2, &y2);
   cairo_move_to        (cr, x1,   y1);
   cairo_line_to        (cr, x2,   y2);
-  cairo_line_to        (cr, x1,   y1);
 }
 
 /*! \brief Render a Rectangular Box using Cairo Graphic

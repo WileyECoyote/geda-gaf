@@ -1,3 +1,7 @@
+2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Fix retrace of line in eda_cairo_line.
+
 2018-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Add html and latex man pages as prerequisite to build
