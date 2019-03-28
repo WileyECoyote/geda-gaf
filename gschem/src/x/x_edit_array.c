@@ -277,11 +277,7 @@ static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
     w_x = snap_grid (w_current, x);
     w_y = snap_grid (w_current, y);
 
-    if (w_current->inside_action) {
-      w_current->second_wx = w_x;
-      w_current->second_wy = w_y;
-    }
-    else {
+    if (!w_current->inside_action) {
 
       i_status_action_start(w_current);
 

@@ -1,3 +1,11 @@
+2019-03-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_array.c: Revise x_dialog_array_edit_butt_pressed_dist
+      to eliminated setting w_current->second if inside action and only
+      handle setting w_current->first_wx = w_current->second when not
+      inside action since this is the only plausible conditions the
+      function is expected to handle.
+
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Revise x_dnd_source_leave to immediately return
