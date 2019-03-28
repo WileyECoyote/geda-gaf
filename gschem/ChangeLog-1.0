@@ -4,7 +4,7 @@
       to eliminated setting w_current->second if inside action and only
       handle setting w_current->first_wx = w_current->second when not
       inside action since this is the only plausible conditions the
-      function is expected to handle.
+      function is expected to handle and add function documentation.
 
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 

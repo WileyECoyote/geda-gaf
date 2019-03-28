@@ -258,10 +258,12 @@ static void post_response_col (GschemToplevel *w_current)
 
 /* ----------------------- Button Event Handlers ----------------------- */
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Array Dialog Get Distance Button-Press Callback
+ * \par Function Description
+ *  The is the buttton press callback handler to capture the cursor positions
+ *  when the user wants to point in order to set the distance for "X", "Y" or
+ *  and "XY".
  */
 static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
                                                  GdkEventButton *event,
