@@ -820,8 +820,8 @@ compselect_open_to_symbol (Compselect *ThisDialog, const char *sym_name)
  * \brief Close Row in Tree call-back for Tree-View pop-up menu
  * \par Function Description
  *  This function performs the same functionality as double-clicking on an
- *  opened parent row in a tree-view but is enacted from the right context
- *  menu. This allow closing of large tree folders without scrolling up to
+ *  opened parent row in a tree-view but is initiated from the right context
+ *  menu to allows closing of large tree folders without scrolling up to
  *  the parent or using the collapse all function.
  *
  * \param [in] menu_widget  Un-used menu item widget on the pop-up menu
