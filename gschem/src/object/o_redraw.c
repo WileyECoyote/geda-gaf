@@ -421,6 +421,12 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
 }
 
+/*!
+ * \brief Redraw a List of Objects
+ * \par Function Description
+ * Causes the region bounded by the bounds of the objects in the list
+ * to be redrawn.
+ */
 void o_redraw_list (GschemToplevel *w_current, GList *list)
 {
   int left, top, bottom, right;
