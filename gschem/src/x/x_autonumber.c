@@ -1155,6 +1155,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
   GtkCellRenderer *renderer;
   int i;
 
+  /* Note the next two arrays must be in the same order */
   char *filenames[] = { "gschem_diagonal.png",
                         "gschem_top2bottom.png",
                         "gschem_bottom2top.png",
