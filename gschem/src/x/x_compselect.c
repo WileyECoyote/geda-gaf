@@ -539,10 +539,10 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
     gtk_tree_model_get (tree_model, iter, LVC_ROW_DATA, &source, -1);
     text = geda_struct_clib_source_get_name (source);
     ptr  = strstr(source->name, "/");       /* look for a slash */
+
     if (ptr!= NULL) {
       text = ptr + 1;
     }
-
   }
   g_object_set (cell, "text", text, NULL);
 }
@@ -725,9 +725,9 @@ compselect_open_tree_rows (GtkWidget *menu_widget, GtkTreeView *tree_view)
 /*!
  * \internal csSearchRecord
  * \par
- *  Structure statically allocated by used by compselect_open_to_symbol()
- *  in order to pass two pointers to compselect_foreach_func() via the
- *  gtk_tree_model_foreach function.
+ *  Statically allocated structure used by compselect_open_to_symbol
+ *  in order to pass two pointers to compselect_foreach_func using
+ *  the gtk_tree_model_foreach function.
  */
 typedef struct csSearchRecord {
   Compselect *dialog;
