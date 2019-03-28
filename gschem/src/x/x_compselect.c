@@ -875,10 +875,10 @@ compselect_update_attributes_model (Compselect   *compselect,
 
   gtk_list_store_clear (model);
 
-  /* Invalidate the width for the attribute value column, so the column is
-   * re-sized based on the new data being shown. Symbols with long values
-   * are common, and we don't want having viewed those forcing a h-scroll
-   * bar on symbols with short valued attributes.
+  /*! \note: Invalidate the width for the attribute value column, so the
+   * column is  re-sized based on the new data being shown. Symbols with
+   * long values are common, and we don't want having viewed those forcing
+   * a h-scroll bar on symbols with short valued attributes.
    *
    * We might also consider invalidating the attribute name columns,
    * however that gives an inconsistent column division when swithing
@@ -918,7 +918,7 @@ compselect_update_attributes_model (Compselect   *compselect,
 
     GList  *listiter;
 
-    /* display only attribute that are in the filter list */
+    /* Display only attribute that are in the filter list */
     for (listiter = filter_list; listiter != NULL; NEXT(listiter)) {
 
       for (o_iter = o_attrlist; o_iter != NULL; o_iter = g_list_next (o_iter)) {
@@ -944,15 +944,16 @@ compselect_update_attributes_model (Compselect   *compselect,
 /*!
  * \brief Handles changes in the treeview selection.
  * \par Function Description
- *  This is the callback function called every time the user
- *  select a row in any component treeview of the dialog.
+ *  This is the callback function called every time the user select
+ *  a row in any component treeview of the dialog.
  *
  *  If the selection is not a selection of a component (a directory
  *  name), it does nothing. Otherwise it retrieves the <B>CLibSymbol</B>
  *  from the model.
  *
- *  It then emits the dialog's <B>apply</B> signal to let its parent
- *  know that a component has been selected.
+ *  If a symbol was selected, this function emits the <B>response</B>
+ *  signal on the dialog so that the selected component can be placed
+ *  whilst the dialog remains visible.
  *
  * \param [in] selection The current selection in the treeview.
  * \param [in] user_data The component selection dialog.
@@ -1007,6 +1008,7 @@ compselect_cb_tree_selection_changed (GtkTreeSelection *selection,
     }
 
     if (is_symbol) {
+
       /* signal a component has been selected to parent of dialog */
       g_signal_emit_by_name (compselect,
                              "response",
