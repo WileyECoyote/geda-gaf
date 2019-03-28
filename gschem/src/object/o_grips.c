@@ -527,9 +527,8 @@ o_grips_search_picture_world(GschemToplevel *w_current, GedaObject *o_current,
  *
  *  The parameter <b>size</b> is half the size of the grip in world units.
  *
- *  A circle has only one grip on the lower right corner of the box it
- *  is inscribed in. Moving this grip change the radius of the circle.
- *  The identifier of this grip is <b>CIRCLE_RADIUS</b>.
+ *  A circle has four grips. Moving the middle-right grip changes the radius
+ *  of the circle. The identifier of this grip is <b>CIRCLE_RADIUS</b>.
  *
  *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Circle Object to check.
