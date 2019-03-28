@@ -1082,18 +1082,23 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
         case AUTONUMBER_SORT_YX:
           o_list=g_list_sort(o_list, autonumber_sort_yx);
           break;
+
         case AUTONUMBER_SORT_YX_REV:
           o_list=g_list_sort(o_list, autonumber_sort_yx_rev);
           break;
+
         case AUTONUMBER_SORT_XY:
           o_list=g_list_sort(o_list, autonumber_sort_xy);
           break;
+
         case AUTONUMBER_SORT_XY_REV:
           o_list=g_list_sort(o_list, autonumber_sort_xy_rev);
           break;
+
         case AUTONUMBER_SORT_DIAGONAL:
           o_list=g_list_sort(o_list, autonumber_sort_diagonal);
           break;
+
         default:
           ; /* unsorted file order */
       }
@@ -1437,11 +1442,14 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
     case SCOPE_HISTORY:
       set_scope_filter_text_history (NULL, autotext);
       break;
+
     case SCOPE_QUESTION:
       set_scope_filter_text_question (NULL, autotext);
       break;
+
     case SCOPE_WILD:
       set_scope_filter_text_wild (NULL, autotext);
+
     default:
       break;
   }
@@ -1626,9 +1634,11 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
     case DoRemoveNumber:
       //gtk_widget_set_sensitive(ScopeOverwriteSwitch, state);
       break;
+
     case DoSlotting:
     case ScopeOverwrite:
       break;
+
     default:
       u_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", WhichOne);
   }
