@@ -602,6 +602,7 @@ geda_circle_object_modify(GedaObject *object, int x, int y, int whichone)
         object->circle->center_x = x;
         object->circle->center_y = y;
         break;
+
       case CIRCLE_RADIUS:
         /* modify the radius of the circle */
         if (x == 0) {
