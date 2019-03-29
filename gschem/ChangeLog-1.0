@@ -4,6 +4,8 @@
       for inside_action to call i_callback_cancel when the stretch_list is
       not NULL on entry.
 
+    * src/x/x_console.c: Reformat function documentation.
+
 2019-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_array.c: Revise x_dialog_array_edit_butt_pressed_dist

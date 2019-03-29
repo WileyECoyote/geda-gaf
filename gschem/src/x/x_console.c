@@ -126,12 +126,12 @@ void v_log_message(const char *format, ...)
  */
 
 /*!
- *  \brief Destroy Command Buffer
- *  \par Function Description
+ * \brief Destroy Command Buffer
+ * \par Function Description
  *  We elected to create the GList *command_buffer in this module, rather
- * than in main, so we don't have to externally reference, but this means
- * we also have to free it (or not really since the only time this function
- * is used is when the main line exits and all memory is freed by the OS.
+ *  than in main, so we don't have to externally reference, but this means
+ *  we also have to free it (or not really since the only time this function
+ *  is used is when the main line exits and all memory is freed by the OS.
  *
  *  If the Console dialog instance does exist, present it to the user.
  */
@@ -146,7 +146,7 @@ void x_console_destroy_command_buffer(void *user_data) {
 /*!
  * \brief Initialize the Log & Command Console
  * \par Function Description
- * Retrieves log related settings and determines the Command interface mode.
+ *  Retrieves log related settings and determines the Command interface mode.
  */
 void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
@@ -214,8 +214,8 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
  */
 
 /*!
- *  \brief Open the Console window
- *  \par Function Description
+ * \brief Open the Console window
+ * \par Function Description
  *  If the Console dialog instance doesn't exist, create it, and read
  *  the current log file contents (if they exist) and insert them
  *  into the console dialog.
@@ -280,8 +280,8 @@ void x_console_open (GschemToplevel *w_current)
 }
 
 /*!
- *  \brief Close the Log window
- *  \par Function Description
+ * \brief Close the Log window
+ * \par Function Description
  *  If the log window exists, destroy it.
  */
 void x_console_close ()
@@ -298,8 +298,8 @@ void x_console_close ()
 }
 
 /*!
- *  \brief Console Window Callback Function
- *  \par Function Description
+ * \brief Console Window Callback Function
+ * \par Function Description
  *  Callback function for the Console window. Only used to close the window.
  */
 static void x_console_callback_response (GtkDialog *dialog, int arg1,
@@ -322,11 +322,12 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
  */
 
 /*!
- *  \brief Add a message to the Console Log window
- *  \par Function Description
- *  \param [in] console The console instance
- *  \param [in] message The message to be logged
- *  \param [in] style   The style to use in the text rendering
+ * \brief Add a message to the Console Log window
+ * \par Function Description
+ *
+ * \param [in] console The console instance
+ * \param [in] message The message to be logged
+ * \param [in] style   The style to use in the text rendering
  */
 static void log_message (Console *console, const char *message, const char *style)
 {
@@ -372,17 +373,17 @@ static void log_message (Console *console, const char *message, const char *styl
 }
 
 /*!
- *  \brief Add a message to the Console Window
- *  \par Function Description
+ * \brief Add a message to the Console Window
+ * \par Function Description
  *  This is notify function for the logging systems, the actual logging
  *  is performed by libgeda. This function was registered as a callback
  *  to echo messages to the Console window. This function sets the style
  *  based on the \a log_level flag and calls log_message() to do display
  *  the actual \a message.
  *
- *  \param [in] log_domain
- *  \param [in] log_level The severity of the message
- *  \param [in] message   The message to be displayed
+ * \param [in] log_domain
+ * \param [in] log_level The severity of the message
+ * \param [in] message   The message to be displayed
  */
 void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char *message)
 {
@@ -585,8 +586,8 @@ console_class_init (void *class, void *class_data)
  *  a Custom Entry box is setup to receive "typed" command user input.
  *  and a Close button.
  *
- *  \param [in]  instance  The Console Dialog being initialized.
- *  \param [in]  class     Class of the type the instance is created for.
+ * \param [in]  instance  The Console Dialog being initialized.
+ * \param [in]  class     Class of the type the instance is created for.
  */
 static void console_instance_init (GTypeInstance *instance, void *class)
 {
@@ -693,7 +694,7 @@ static void console_instance_init (GTypeInstance *instance, void *class)
 /*! \note:command list is an extended version of the action list, and
  * includes all the RC variables, the glist list is passed to our
  * custom entry widget for the command completion feature
-*/
+ */
   i_command_get_command_list(&command_list);
 
   /* Instantiate our Custom Entry Widgets */
@@ -752,13 +753,11 @@ static void console_instance_init (GTypeInstance *instance, void *class)
 }
 
 /*!
- *  \brief Get the Console class type
- *
- *  \par Function Description
- *
- * On first call, registers the Console class with the GedaType dynamic
- * type system. On subsequent calls, returns the saved value from first
- * execution.
+ * \brief Get the Console class type
+ * \par Function Description
+ *  On first call, registers the Console class with the GedaType dynamic
+ *  type system. On subsequent calls, returns the saved value from first
+ *  execution.
  *
  * \returns GedaType identifier for the Console class
  */
