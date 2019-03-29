@@ -205,7 +205,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* The display color map is used for "normal" rendering. */
   render_color_map = geda_color_get_display_map();
 
-  /* Retrive a copy pf the outine color map used for rendering rubber
+  /* Retrive a copy of the outl ine color map used for rendering rubber
    * banding nets and buses, and objects which are in the process of
    * being placed. */
   render_outline_color_map = geda_color_get_outline_map();
