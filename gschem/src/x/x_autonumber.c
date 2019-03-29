@@ -1164,7 +1164,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
                         "gschem_fileorder.png",
                         NULL};
 
-  char *names[] = { N_( "Diagonal"),
+  char *names[] = { N_("Diagonal"),
                     N_("Top to bottom"),
                     N_("Bottom to top"),
                     N_("Left to right"),
