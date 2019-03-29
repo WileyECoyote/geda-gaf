@@ -328,6 +328,7 @@ extern "C" {
    GedaObject   *geda_complex_object_find_pin_by_attribute (GedaObject *object, char *name, char *wanted_value);
           int    geda_complex_object_is_embedded           (GedaObject *o_current);
          void    geda_complex_object_mirror                (GedaObject *object, int center_x, int center_y);
+         void    geda_complex_object_modify                (GedaObject *object, int x, int y);
    GedaObject   *geda_complex_object_new                   (GedaToplevel *toplevel, int x, int y, int angle, int mirror,
                                                             const CLibSymbol *clib_sym, const char *basename, int selectable);
    GedaObject   *geda_complex_object_new_embedded          (int x, int y, int angle, int mirror, const char *basename, int selectable);

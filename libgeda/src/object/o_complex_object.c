@@ -872,6 +872,20 @@ void geda_complex_object_mirror(GedaObject *object, int center_x, int center_y)
   }
 }
 
+void geda_complex_object_modify (GedaObject *object, int x, int y)
+{
+  if (GEDA_IS_COMPLEX(object)) {
+
+    GedaComplex *complex = object->complex;
+
+    complex->x = x;
+    complex->y = y;
+  }
+  else {
+    geda_complex_object_error(__func__, object);
+  }
+}
+
 /*!
  * \brief Create a New GedaComplex GedaObject
  * \par Function Description
