@@ -244,7 +244,7 @@ void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
  * no mode / constraint changes were made between the pair, it is not
  * harmful to call the draw operation with "drawing=FALSE".
  *
- *  \param [in] w_current   GschemToplevel which we're drawing for.
+ *  \param [in] w_current   GschemToplevel which we are drawing for.
  *  \param [in] drawing     Set to FALSE for undraw operations to ensure
  *                            matching conditions to a previous draw operation.
  */
@@ -260,7 +260,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 
     int diff_x, diff_y;
 
-    /* If drawing is true, then don't worry about the previous drawing
+    /* If drawing is true, then do not worry about the previous drawing
      * method and movement constraints, use with the current settings */
     if (drawing) {
       /* Ensure we set this to flag there is "something" supposed to be
