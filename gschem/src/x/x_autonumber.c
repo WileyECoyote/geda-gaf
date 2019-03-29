@@ -1614,7 +1614,7 @@ static void autonumber_text_response(GtkWidget       *widget,
  *  This function changes the images of controls created with
  *  create_geda_switch to the opposite state, i.e. if ON use
  *  OFF image and if OFF use ON image. The functions handles
- *  callback for all switches on this Dialog.
+ *  callbacks for all switches on this Dialog.
  *
  *  \param [in] widget    Pointer to the GedaSwitch object.
  *  \param [in] Control   Pointer to integer Switch identifier
