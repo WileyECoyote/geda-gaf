@@ -806,7 +806,7 @@ bool x_event_key (GtkWidget      *widget,
 /*!
  * \brief Drawing Area Pointer Motion Callback Handler
  * \par Function Description
- *  This function is call by the underling window context event
+ *  This function is called by the underling window context event
  *  dispatcher when ever the mouse pointer position changes.
  *
  * \remarks Motion events are not swapped like buttons, i.e. this
