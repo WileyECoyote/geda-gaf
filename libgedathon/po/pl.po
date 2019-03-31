@@ -228,25 +228,30 @@ msgstr "Utwórz nowy obiekt ścieżki."
 msgid "Create a new picture object."
 msgstr "Utwórz nowy obiekt obrazu."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Utwórz nowy obiekt szpilki."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Utwórz nowy obiekt tekstowy."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Utwórz nowy obiekt atrybutu."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Nowa składnia typu obiektu"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Nazwa obiektu"
 
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
@@ -396,21 +401,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
+# Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Utwórz nowy obiekt łuku."
+msgstr "Tworzy typ rozszerzenia obiektu Łuk."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
+# Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Utwórz nowy obiekt skrzynki."
+msgstr "Tworzy typ obiektu ramki."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -420,20 +423,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Utwórz nowy obiekt magistrali."
+msgstr "Tworzy typ obiektu magistrali."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Utwórz nowy obiekt koła."
+msgstr "Błąd inicjowania nowego obiektu okręgu."
 
-# Create a new circle object
+# Creates a Circle object type
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Utwórz nowy obiekt koła."
+msgstr "Tworzy typ obiektu okręgu."
