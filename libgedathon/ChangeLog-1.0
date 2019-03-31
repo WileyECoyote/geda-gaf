@@ -10,6 +10,8 @@
 
     * po/sl.po: Update Slovenian translations
 
+    * po/sr.po: Update Serbian translations.
+
 2019-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Append po/stamp-po to distclean, for some reason this
