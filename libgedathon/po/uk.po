@@ -273,25 +273,34 @@ msgstr "Створіть новий об'єкт шляху."
 msgid "Create a new picture object."
 msgstr "Створіть новий об'єкт зображення."
 
+# Create a new pin object
+# Stvoryty novyy kontaktnyy ob'yekt
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Yeni bir pin nesnesi oluştur."
 
+# Create a new text object
+# Stvoryty novyy tekstovyy ob'yekt
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Створити новий текстовий об'єкт."
 
+# Create a new attribute object
+# Stvoryty novyy ob'yekt atrybuta
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Create a new attribute object."
 
+# New object type syntax
+# Novyy syntaksys typu ob'yekta
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Новий синтаксис типу об'єкта"
 
+# The object name; Nazva ob'yekta
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Назва об'єкта"
 
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
@@ -441,22 +450,20 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
-# Stvoritʹ novyy ob'yekt duhy
+# Creates an Arc object extension type
+# Stvoryuye typ rozshyrennya ob'yekta Arc
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Створіть новий об'єкт дуги."
+msgstr "Створює тип розширення об'єкта Arc."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Створіть новий об'єкт
+# Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Stvoritʹ novyy ob'yekt."
+msgstr "Створює тип об'єкта."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -466,23 +473,20 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
-# Stvoritʹ novyy ob'yekt shyny
+# Creates a Bus object type
+# Stvoryuye typ ob'yekta shyny
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Створіть новий об'єкт шини."
+msgstr "Створює тип об'єкта шини."
 
-# Create a new circle object
-# Stvoritʹ novyy ob'yekt kola
+# Error initializing new Circle object
+# Pomylka initsializatsiyi novoho ob'yekta kola
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Створіть новий об'єкт кола."
+msgstr "Помилка ініціалізації нового об'єкта кола."
 
-# Create a new circle object
-# Stvoritʹ novyy ob'yekt kola
+# Creates a Circle object type
+# Stvoryuye typ ob'yekta kola
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Створіть новий об'єкт кола."
+msgstr "Створює тип об'єкта кола."
