@@ -214,25 +214,30 @@ msgstr "Yeni bir yol nesnesi oluştur."
 msgid "Create a new picture object."
 msgstr "Yeni bir resim nesnesi oluştur."
 
+# Create a new pin object
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "Yeni bir pin nesnesi oluştur."
 
+# Create a new text object
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "Yeni bir metin nesnesi oluştur."
 
+# Create a new attribute object
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "Yeni bir öznitelik nesnesi oluştur."
 
+# New object type syntax
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "Yeni nesne tipi sözdizimi"
 
+# The object name
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "Nesne adı"
 
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
@@ -382,21 +387,19 @@ msgstr ""
 msgid "Python int too large to convert to C int"
 msgstr ""
 
-# Create a new arc object
+# Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Yeni bir ark nesnesi oluştur."
+msgstr "Bir Arc nesnesi uzantısı türü oluşturur."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
+# Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "Yeni bir kutu nesnesi oluştur."
+msgstr "Bir kutu nesnesi türü yaratır."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -406,20 +409,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Yeni bir otobüs nesnesi oluştur."
+msgstr "Bir veri yolu nesnesi türü oluşturur."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Yeni bir daire nesnesi oluştur."
+msgstr "Yeni Circle nesnesini başlatma hatası."
 
-# Create a new circle object
+# Creates a Circle object type
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Yeni bir daire nesnesi oluştur."
+msgstr "Bir daire nesnesi tipi yaratır."
