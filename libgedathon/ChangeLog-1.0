@@ -2,6 +2,8 @@
 
     * po/pl.po: Update Polish translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2019-03-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Append po/stamp-po to distclean, for some reason this
