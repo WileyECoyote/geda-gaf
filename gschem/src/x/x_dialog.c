@@ -3195,8 +3195,10 @@ void x_dialog_translate (GschemToplevel *w_current)
     GtkWidget *sbox;
     GtkWidget *zoom_check_butt;
 
+    const char *entry_tip;
     const char *zoom_tip;
 
+    entry_tip = _("Enter a single digit or a coordinate pair");
     zoom_tip  = _("Automatically zoom to the new extents after translation");
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Translate"),
@@ -3233,6 +3235,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     EntrySelectAll(textentry);
     geda_entry_widget_set_activates_default(textentry, TRUE);
     PACK_BOX(vbox,textentry, FALSE, FALSE, 0);
+    gtk_widget_set_tooltip_text(textentry, entry_tip);
 
     HD_SEPARATOR (vbox, Options);
 
