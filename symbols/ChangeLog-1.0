@@ -5,6 +5,10 @@
             * diode/transil/SMM4F15A-1.sym:
             * diode/transil/SMM4F15A-2.sym
 
+    * diode/zener53: Add symbol for 5 Watt zener diode:
+
+            * diode/zener53/zener_130_1N5381B.sym
+
     * spice: Add footprint none and convert plain text to a description
       attribute:
 
