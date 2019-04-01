@@ -9,6 +9,11 @@
 
             * diode/zener53/zener_130_1N5381B.sym
 
+    * spice: Convert comment attribute to a description
+      attribute:
+
+            * simulation/switcap/switcap-switch-1.sym
+
     * spice: Add footprint none and convert plain text to a description
       attribute:
 
