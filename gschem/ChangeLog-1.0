@@ -7,7 +7,8 @@
 
     * gschem/src/x/x_dialog.c: Add a tool-tip message for the entry in the
       translation dialog. Remove redundant setting of the x_dialog_hotkeys
-      close button to visible.
+      close button to visible. Replace less efficient g_object_set with
+      gtk_widget_show and gtk_widget_hide.
 
 2019-03-29 Wiley E. Hill <wileyhill@gmail.com>
 

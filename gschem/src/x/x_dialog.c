@@ -272,8 +272,8 @@ void x_dialog_set_bulb_on( GtkWidget *widget) {
   GtkWidget *BulbOnImage  = lightbox->data;
   GtkWidget *BulbOffImage = lightbox->next->data;
 
-  g_object_set (BulbOnImage,  "visible", TRUE, NULL);
-  g_object_set (BulbOffImage, "visible", FALSE, NULL);
+  gtk_widget_show (BulbOnImage);
+  gtk_widget_hide (BulbOffImage);
 
   g_list_free(lightbox);
   g_list_free(align);
@@ -294,8 +294,8 @@ void x_dialog_set_bulb_off( GtkWidget *widget) {
   GtkWidget *BulbOnImage  = lightbox->data;
   GtkWidget *BulbOffImage = lightbox->next->data;
 
-  g_object_set (BulbOnImage,  "visible", FALSE, NULL);
-  g_object_set (BulbOffImage, "visible", TRUE, NULL);
+  gtk_widget_hide (BulbOnImage);
+  gtk_widget_show (BulbOffImage);
 
   g_list_free(lightbox);
   g_list_free(align);
@@ -3240,7 +3240,8 @@ void x_dialog_translate (GschemToplevel *w_current)
     HD_SEPARATOR (vbox, Options);
 
     zoom_check_butt = gtk_check_button_new_with_mnemonic (_("Auto Zoom Extents"));
-    g_object_set (zoom_check_butt, "visible", TRUE, NULL);
+    gtk_widget_show (zoom_check_butt);
+
     PACK_BOX (vbox, zoom_check_butt, FALSE, FALSE, 0);
     gtk_widget_set_tooltip_text(zoom_check_butt, zoom_tip);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(zoom_check_butt), TRUE);
@@ -3430,7 +3431,8 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
     scrolled_win = gtk_scrolled_window_new (NULL, NULL);
     PACK_BOX (vbox, scrolled_win, TRUE, TRUE, 0);
-    g_object_set (scrolled_win, "visible", TRUE, NULL);
+    gtk_widget_show (scrolled_win);
+
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_AUTOMATIC);
@@ -3495,10 +3497,10 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       gtk_tree_sortable_set_sort_column_id ((Sortable*)store, 1, GTK_SORT_ASCENDING);
 
       /* the tree view */
-      treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+      treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL(store));
 
-      geda_container_add(scrolled_win, treeview);
-      g_object_set (treeview, "visible", TRUE, NULL);
+      geda_container_add (scrolled_win, treeview);
+      gtk_widget_show (treeview);
 
       /* -------------------- The Columns -------------------- */
 
@@ -3572,8 +3574,8 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
       /* Replace the action_area with the new container */
       action_hbox = gtk_hbox_new(FALSE, 0);
-      g_object_set (action_hbox, "visible", TRUE, NULL);
       gtk_box_pack_end (GTK_BOX (vbox), action_hbox, FALSE, FALSE, 0);
+      gtk_widget_show (action_hbox);
 
       /* Create and add an option toggle switch */
       switch_vbox = gtk_vbox_new(FALSE, 0);
@@ -3599,12 +3601,12 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                             "yalign",        0.5,
                                             NULL));
 
-      g_object_set (alignment, "visible", TRUE, NULL);
+      gtk_widget_show (alignment);
       gtk_box_pack_end (GTK_BOX (action_hbox), alignment, TRUE, TRUE, 0);
 
       /* Create a Horizontal Box for the button to go into */
       butt_hbox = gtk_hbox_new(FALSE, 0);
-      g_object_set (butt_hbox, "visible", TRUE, NULL);
+      gtk_widget_show (butt_hbox);
       geda_container_add (alignment, butt_hbox);
 
       /* Create and connect the Close a Button */
@@ -3613,9 +3615,9 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       g_signal_connect (close_butt, "clicked",
                         G_CALLBACK (hotkey_callback_close_clicked),
                         ThisDialog);
+      g_object_set (close_butt, "can-default", TRUE, NULL);
 
-      g_object_set (close_butt, "visible", TRUE, "can-default", TRUE, NULL);
-
+      gtk_widget_show (close_butt);
       gtk_box_pack_end (GTK_BOX (butt_hbox), close_butt, FALSE, FALSE,
                         DIALOG_H_SPACING);
 
@@ -3888,7 +3890,7 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
 
       /* Add the Close button to dialog action area */
       close_butt = gtk_button_new_from_stock ("gtk-close");
-      g_object_set (close_butt, "visible", TRUE, NULL);
+      gtk_widget_show (close_butt);
       gtk_dialog_add_action_widget (GTK_DIALOG (dialog), close_butt, GEDA_RESPONSE_CLOSE);
       gtk_widget_set_can_default(close_butt, TRUE);
       gtk_widget_set_tooltip_text (close_butt, _("Dismiss this dialog"));
