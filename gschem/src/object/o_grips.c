@@ -838,7 +838,7 @@ o_grips_start_path(GschemToplevel *w_current, GedaObject *o_current, int x, int 
   int gy       = -1;
   int whichone = w_current->which_grip;
 
-  w_current->last_drawb_mode = -1;
+  w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
   for (i = 0; i <  o_current->path->num_sections; i++) {
     section = &o_current->path->sections[i];
