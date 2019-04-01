@@ -19,6 +19,11 @@
     * simulation/verilog/and2-1.sym: Convert comment to a description
       attribute, update pin attributes.
 
+    * spice: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/and2-2.sym
+
 2019-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * spice: Add footprint none and convert plain text to a description
