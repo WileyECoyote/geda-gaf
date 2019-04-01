@@ -7,6 +7,104 @@ Copyright (C) 1998-2017 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
+Notable changes in gEDA/gaf gEDA 2.1.1.1 - 04/01/19 Rampage Edition
+
+* Expanded support for internationalization (i18n).
+
+* All utilities now support internationalization (i18n).
+
+* The visibility of toolbar tooltips can now be control using menu options.
+
+* The context menu available when creating Polygon objects now includes
+  an UNDO option allowing users to undo the previous section and resume
+  path mode from the previous node.
+
+* Scripting to support printing schematic documents from the command-line
+  using gschem has been enhanced to support postscript or pdf output.
+  Previously the default was changed from postscript to pdf. Postscript
+  outputs could still be produced using menu options available in gschem.
+  The output type is now automatically detected when using the command
+  line interface by the file extension of the output file name. The
+  default remains pdf if the output name is not given.
+
+* Configuration function output-type has been renamed output-type.
+
+* Libgedacairo now uses round end-caps when drawing buses, resulting in
+  smoother transitions and improved appearance.
+
+* A new keyword option hide-columns has been added to gattrib to allow
+  user to designate a list attributes to be hidden in the GUI be default.
+  A new Column Visibility dialog has been added to support user management
+  of visible columns.
+
+* A new path backend has been added to the gaf tool to allow scripting
+  lanauages other than scheme to retrieve path information from libgeda.
+
+* Improved appearence of various dialogs in gschem.
+
+* gschem now logs exiting of the schematic editor if log-time is enabled.
+
+* gschem now reports failure to attach attributes that aleady attached.
+
+* gschem text properties dialog now supports operations to manipulate
+  text case.
+
+* gschem translate dialog now allows for translation of only selected
+  objects. Additionally, the translate offset entry now accepts X and
+  Y coordinates.
+
+* Auxiliary buffers can now be explicitly cleared using a right context
+  menu on the corresponding paste menu item.
+
+* The suite now include template documents install to the user's template
+  folder so the user can create new schematic and symbol documents from
+  the system's context menu.
+
+* Issues resolved:
+
+* Libgedacairo has been enhanced to resolve issues with the end points of
+  arcs shifting at different zoom levels. The shifting sometimes resulted
+  in misalignment to adjoining lines at higher magnification levels.
+
+* Extensive revisions were made to the Rampage Edition to build the suite
+  on MinGW platforms. The Rampage Edition is now fully functional under
+  native Win32 host systems including i18n support.
+
+* The Rename Session dialog now fills in the previous session name,
+  previously to dialog presented the user with an empty name field.
+
+* The locked bit is not preserved when copying components in gschem.
+
+* gschem now restarts text search when users change text in the Find Text
+  dialog and click "find" or hits ENTER instead of closing the dialog.
+
+* gschem now raises the main window when interacting with the Array Dialog.
+  Previously, user could selected other application windows and return to
+  the dialog and select the button that lowered the dialog but did not
+  ensure the main window was in the foreground.
+
+* An issue was resolved with controls not being initially enabled on the
+  Attributes tab of the Preferences Dialog if the Attributes tab was the
+  "saved" initial tab in gschem. Switching tabs or the view list controls
+  re-enabled the disabled controls. The saved tab is now restored after
+  settings are uploaded to the Preferences Dialog and this is reflected
+  in the initial state of controls on the Attributes tab.
+
+* An issue was resolved with resetting component-dialog-attributes when
+  a second list was encountered in rc files. If a second attributes list
+  was processed gschem would fault when the list was accessed or exiting
+  gschem.
+
+* The drc2 back end no longer reports duplicate slots for on components
+  that do not have slots. This generally occurred when components have
+  duplicate reference designators because these would typically show up
+  using the same slot number.
+
+* Libgeda no longer reports an oddity regarding symbol versions if the
+  oddity was due to the symbol file being missing.
+
+* The scheme file geda-deprecated-config.scm is no longer installed.
+
 Notable changes in gEDA/gaf gEDA 2.1.1.1 - 11/12/17 Rampage Edition
 
 * Expanded support for internationalization (i18n).
@@ -59,7 +157,7 @@ Notable changes in gEDA/gaf gEDA 2.1.1.0 - 01/01/17 Rampage Edition
   custom color-maps will need to modify their custom map files.
 
 * A new auto-panning feature has been added to gschem. The auto-pan is only in
-  effect while drawing nets and buses and can enabled or disabled through menu
+  effect while drawing nets and buses and can enabled or disabled using menu
   options.
 
 * The Auto-Number dialog in gschem no longer requires the use of wild-card
@@ -629,7 +727,7 @@ Notable changes in gEDA/gaf 2.0.1 - Rampage Edition
   history!
 
 * Gattrib no long launches into a a file selector dialog, files can
-  now be loaded or closed via menu or toolbars, The editing bar is
+  now be loaded or closed via menu or toolbars. The editing bar is
   now fully functional and mouse menus added. Embedded GTK-Sheet has
   been updated to a newer, more stable version. GTK-Sheet code has
   been "modularized" to facilitate future improvements.
