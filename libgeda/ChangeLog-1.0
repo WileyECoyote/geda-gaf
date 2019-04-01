@@ -1,3 +1,8 @@
+2019-04-01 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/geda-deprecated-config.scm: Remove file, the containing routines
+      do not appear to be referenced.
+
 2019-03-29 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_complex_object.c: Add function geda_complex_object_modify.
