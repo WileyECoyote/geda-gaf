@@ -515,15 +515,31 @@ static const char *x_console_get_input_data(void) {
   return string;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *x_console_get_alphanumeric(void) {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALPHANUMERIC);
   return x_console_get_input_data();
 }
+
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *x_console_get_numeric(void) {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_NUMERIC);
   return x_console_get_input_data();
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int x_console_get_number(void) {
   char *string;
   int   result;
@@ -535,6 +551,11 @@ int x_console_get_number(void) {
   return result;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int x_console_get_integer(void) {
   char *string;
   int   result;
@@ -546,6 +567,11 @@ int x_console_get_integer(void) {
   return result;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 float x_console_get_real(void) {
   char *string;
   float result;
@@ -557,6 +583,11 @@ float x_console_get_real(void) {
   return result;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *x_console_get_string() {
   geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
   return x_console_get_input_data();

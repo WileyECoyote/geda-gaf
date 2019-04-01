@@ -5,6 +5,8 @@
     * src/object/o_grips.c: Set last_drawb_mode = LAST_DRAWB_MODE_NONE in
       o_grips_start_path instead of using hard-coded constant -1.
 
+    * src/x/x_console.c: Add Doxygen documentation template blocks.
+
     * gschem/src/x/x_dialog.c: Add a tool-tip message for the entry in the
       translation dialog. Remove redundant setting of the x_dialog_hotkeys
       close button to visible. Replace less efficient g_object_set with
