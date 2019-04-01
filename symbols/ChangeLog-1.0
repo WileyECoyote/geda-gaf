@@ -1,4 +1,4 @@
-2019-03-23 Wiley E. Hill <wileyhill@gmail.com>
+2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
 
@@ -16,6 +16,10 @@
             * simulation/switcap/switcap-timing-1.sym
             * simulation/switcap/switcap-title-1.sym
 
+    * simulation/verilog/and2-1.sym: Convert comment to a description
+      attribute, update pin attributes.
+
+2019-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * spice: Add footprint none and convert plain text to a description
       attribute:
