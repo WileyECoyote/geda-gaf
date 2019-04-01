@@ -13,6 +13,7 @@
       attribute:
 
             * simulation/switcap/switcap-switch-1.sym
+            * simulation/switcap/switcap-timing-1.sym
 
     * spice: Add footprint none and convert plain text to a description
       attribute:

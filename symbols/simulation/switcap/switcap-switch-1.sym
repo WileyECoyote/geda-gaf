@@ -27,7 +27,7 @@ T 300 200 5 10 0 1 0 0 1
 pintype=io
 }
 T 300 0 8 10 1 1 0 0 1
-comment=clock=clk
+description=clock=clk
 T 400 400 8 10 1 1 0 0 1
 refdes=S?
 T 600 100 9 10 0 0 0 0 1
