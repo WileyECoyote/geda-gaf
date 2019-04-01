@@ -1,3 +1,7 @@
+2019-04-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_arc.c: Revise o_arc_end1 documentation.
+
 2019-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Revise o_move_real_start to eliminate the check

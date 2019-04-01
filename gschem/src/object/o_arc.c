@@ -73,14 +73,13 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
 /*!
  * \brief End the input of an arc.
  * \par Function Description
- *  This function ends the input of the radius of the arc.
- *  The (<B>w_x</B>,<B>w_y</B>) point is taken as the other end of the radius segment.
- *  The distance between this point and the center is the radius of the arc.
- *  <B>w_x</B> and <B>w_y</B> are in world coords.
- *
- *  At the end of this function, the center of the arc is at
- *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>) and its radius is
- *  <B>w_current->distance</B>.
+ *  This function ends the input of the radius of the arc. The
+ *  (<B>w_x</B>,<B>w_y</B>) point in world coords, is the other
+ *  end of the radius segment. The distance between this point
+ *  and the center is the radius of the arc. The center of the
+ *  arc is at (<B>w_current->first_wx</B>, <B>w_current->first_wy</B>)
+ *  and the radius is <B>w_current->distance</B>, was computed
+ *  in o_arc_motion.
  *
  *  The two angles needs to be input to fully define the arc.
  *
@@ -103,7 +102,6 @@ static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
     x_dialog_edit_arc_angle(w_current, NULL);
 
   }
-
 }
 
 /*!
