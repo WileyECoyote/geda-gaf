@@ -6,7 +6,8 @@
       o_grips_start_path instead of using hard-coded constant -1.
 
     * gschem/src/x/x_dialog.c: Add a tool-tip message for the entry in the
-      translation dialog.
+      translation dialog. Remove redundant setting of the x_dialog_hotkeys
+      close button to visible.
 
 2019-03-29 Wiley E. Hill <wileyhill@gmail.com>
 

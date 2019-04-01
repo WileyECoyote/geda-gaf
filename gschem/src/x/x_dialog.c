@@ -3614,7 +3614,6 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                         G_CALLBACK (hotkey_callback_close_clicked),
                         ThisDialog);
 
-      g_object_set (close_butt, "visible", TRUE, NULL);
       g_object_set (close_butt, "visible", TRUE, "can-default", TRUE, NULL);
 
       gtk_box_pack_end (GTK_BOX (butt_hbox), close_butt, FALSE, FALSE,
