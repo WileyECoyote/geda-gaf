@@ -164,8 +164,9 @@ void geda_atexit(geda_atexit_func func, void* data)
 
 /*------------------------------------------------------------------*/
 
-/*! \brief Save user config on exit.
- *  \par Function Description
+/*!
+ * \brief Save user config on exit.
+ * \par Function Description
  *  Try to save the user configuration to disk when gattrib exits.
  */
 void gattrib_save_user_config (void)
@@ -250,13 +251,15 @@ int gattrib_quit(int return_code)
 
 /*------------------------------------------------------------------*/
 
-/*! \brief GTK callback to quit the program.
- *  \par Function Description
- * This is called when the user quits the program using the UI. The
- * callback is attached to the GTK window_delete event in
- * x_window_init() and attached to the File->Quit menu item in
- * x_window_create_menu().  On execution, the function checks for
- * unsaved changes before calling gattrib_quit() to quit the program.
+/*!
+ * \brief Callback to quit the program.
+ * \par Function Description
+ *  This is called when the user quits the program using the UI.
+ *  The callback is attached to the GTK window_delete event in
+ *  x_window_init() and attached to the File->Quit menu item in
+ *  x_window_create_menu().  On execution, the function checks
+ *  for unsaved changes before calling gattrib_quit() to quit
+ *  the program.
  *
  *  \return value 0 to the shell to denote a successful quit.
  */
@@ -277,20 +280,20 @@ bool gattrib_really_quit(void)
 /*!
  * \brief The "real" main for gattrib.
  * \par Function Description
- * This is the main program body for gattrib. A pointer to this
- * function is passed to scm_boot_guile() at startup.
+ *  This is the main program body for gattrib. A pointer to this
+ *  function is passed to scm_boot_guile() at startup.
  *
- * This function:
- * - initialises threading, if the underlying GTK library is threaded.
- *   However, gattrib itself isn't threaded.
- * - initialises libgeda;
- * - parses the command line;
- * - starts logging;
- * - registers the Scheme functions with Guile;
- * - parses the RC files;
- * - initialises the GTK UI;
- * - populates the spreadsheet data structure;
- * - calls gtk_main() to start the event loop.
+ *  This function:
+ *  - initialises threading, if the underlying GTK library is threaded.
+ *    However, gattrib itself isn't threaded.
+ *  - initialises libgeda;
+ *  - parses the command line;
+ *  - starts logging;
+ *  - registers the Scheme functions with Guile;
+ *  - parses the RC files;
+ *  - initialises the GTK UI;
+ *  - populates the spreadsheet data structure;
+ *  - calls gtk_main() to start the event loop.
  *
  * \param closure
  * \param argc Number of command line arguments
@@ -465,10 +468,10 @@ void gattrib_main(void *closure, int argc, char *argv[])
 /*!
  * \brief Entry point to gattrib
  * \par Function Description
- * This is just a wrapper which
- * invokes the guile stuff, and points to the real main program,
- * gattrib_main().  Note that I still need some vestigial
- * guile stuff in order to read the rc files.
+ *  This is just a wrapper which
+ *  invokes the guile stuff, and points to the real main program,
+ *  gattrib_main().  Note that I still need some vestigial
+ *  guile stuff in order to read the rc files.
  *
  * \param argc Number of command line arguments
  * \param argv Command line arguments
