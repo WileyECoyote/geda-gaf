@@ -7,7 +7,7 @@
 
     * src/parsecmd.c: Add ancillary variable for translatable string in order
       to remove non-translatable "gEDA/gattrib" and format specifiers from
-      the string to be translated.
+      the string to be translated. Reformat and update documentation.
 
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 

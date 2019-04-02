@@ -50,12 +50,11 @@ extern int optind;
 
 /*!
  * \brief Print usage message
+ * \par Function Description
+ *  Prints gattrib usage information to stdout.
  *
- * Prints gattrib usage information to stdout.
  * \param cmd Unused parameter.
- *
  */
-
 void usage(char *cmd)
 {
     printf(_(
@@ -89,10 +88,11 @@ void usage(char *cmd)
     exit(0);
 }
 
-/*! \brief Print version info and exit.
+/*!
+ * \brief Print version info and exit.
  * \par Function Description
- * Print gEDA version, and copyright/warranty notices, and exit with
- * exit status 0.
+ *  Print gEDA version, and copyright/warranty notices, and exit with
+ *  exit status 0.
  */
 static void version (void)
 {
@@ -115,7 +115,7 @@ static void version (void)
 
 /*!
  * \brief Parse command line switches.
- *
+ * \par Function Description
  * Parse command line switches at startup. There are only 3 command
  * line switches:
  * - verbose
