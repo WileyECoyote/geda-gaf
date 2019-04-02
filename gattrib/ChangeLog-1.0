@@ -9,6 +9,9 @@
       to remove non-translatable "gEDA/gattrib" and format specifiers from
       the string to be translated. Reformat and update documentation.
 
+    * src/s_object.c: Revise s_object_has_sym_file to call geda_complex_get_
+      filename in the conditional return.
+
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Remove redundant inclusion of geda_container.h.

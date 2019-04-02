@@ -472,9 +472,5 @@ s_object_delete_text_object_in_object (GedaToplevel *toplevel,
  */
 int s_object_has_sym_file(GedaObject *object)
 {
-  char *filename;
-
-  filename = geda_complex_get_filename(object->complex);
-
-  return (filename != NULL) ? 0 : 1;
+  return geda_complex_get_filename(object->complex) ? 0 : 1;
 }
