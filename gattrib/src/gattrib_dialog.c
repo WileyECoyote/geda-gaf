@@ -25,15 +25,14 @@
 #include <geda_uio_functions.h>
 #include <geda/geda_stat.h>
 
-/*! \brief Create pixmap widget for dialogs boxes.
- *  \par Function Description
+/*!
+ * \brief Create pixmap widget for dialogs boxes.
+ * \par Function Description
  *  This is an internally used function to create pixmaps.
  *  The default bitmap directory is prefixed to the filename
  *  and if is valid then the image widget is created and returned. GtkWidget *widget,
  */
-
-GtkWidget*
-create_pixmap (const char *filename)
+GtkWidget *create_pixmap (const char *filename)
 {
   char *pathname = NULL;
   GtkWidget *pixmap;
@@ -56,9 +55,9 @@ create_pixmap (const char *filename)
   return pixmap;
 }
 
-GtkWidget* get_geda_switch_image (bool WhichState)
+GtkWidget *get_geda_switch_image (bool WhichState)
 {
-   GtkWidget* image;
+   GtkWidget *image;
 
    if (WhichState)
      image = create_pixmap (SWITCH_ON_IMAGE);
@@ -68,15 +67,15 @@ GtkWidget* get_geda_switch_image (bool WhichState)
    return image;
 }
 
-
-/*! \brief Function to create a Geda switch image control.
- *  \par Function Description
+/*!
+ * \brief Function to create a Geda switch image control.
+ * \par Function Description
  *  This function creates a Check Box widget using an image, the Check
  *  Box indicator is disabled so only the images is displayed. This creates
  *  a control similar to a GTK3 Switch, using standard GTK2 controls. The
  *  On or Off images is controlled by the istate variable.
  *
- *  Returns: Newly created widget
+ * \returns: Newly created switch widget
  */
 GtkWidget*
 create_geda_switch(GtkWidget *parent, GtkWidget *widget,
@@ -117,7 +116,6 @@ static GObjectClass *gattrib_dialog_parent_class = NULL;
 static GedaKeyFile *dialog_geometry = NULL;
 
 #define DIALOG_GEOMETRY_STORE "gattrib-dialog-geometry"
-
 
 /*!
  * \brief Save all geometry data into a file.
@@ -167,11 +165,11 @@ static void geometry_save (GattribDialog *dialog, GedaKeyFile *key_file, char *g
 /*!
  * \brief GattribDialog "geometry_restore" class method handler
  * \par Function Description
- *  Restore dialog's last position and size from the passed GedaKeyFile
+ *  Restore dialog's last position and size from the passed GedaKeyFile.
  *
- * \param [in] dialog     The GattribDialog to restore the position and size of.
- * \param [in] key_file   The GedaKeyFile to load the geometry data from.
- * \param [in] group_name The group name in the key file to find the data under.
+ * \param [in] dialog     The GattribDialog to restore the position and size of
+ * \param [in] key_file   The GedaKeyFile to load the geometry data from
+ * \param [in] group_name The group name in the key file to find the data under
  */
 static void geometry_restore (GattribDialog *dialog, GedaKeyFile *key_file, char *group_name)
 {
@@ -231,17 +229,17 @@ static inline void setup_keyfile ()
 }
 
 /*!
- * \brief GtkWidget show signal handler
+ * \brief Widget show signal handler
  * \par Function Description
- *  Just before the dialog widget is shown, call the hook
- *  to restore its previously saved position and size.
+ *  This function is called before the dialog widget is shown
+ *  to restore the previously saved position and size.
  *
  * \param [in] widget  The GtkWidget being shown.
  */
 static void show_handler (GtkWidget *widget)
 {
-  char *group_name;
   GattribDialog *dialog = (GattribDialog*)widget;
+  char *group_name;
 
   group_name = dialog->settings_name;
 
@@ -265,7 +263,7 @@ static void show_handler (GtkWidget *widget)
 /*!
  * \brief GtkWidget unmap signal handler
  * \par Function Description
- *  Just before the dialog widget is unmapped, call the hook
+ *  This function is called before the dialog widget is unmapped
  *  to save its current position and size.
  *
  *  This typically happens when you call gtk_widget_destroy().
@@ -292,7 +290,8 @@ static void unmap_handler (GtkWidget *widget)
  * \brief GObject finalise handler
  * \par Function Description
  *  Just before the GattribDialog GObject is finalized, free our
- *  allocated data, and then chain up to the parent's finalize handler.
+ *  allocated data, and then chain up to the parent's finalize
+ *  handler.
  *
  * \param [in] object The GObject being finalized.
  */

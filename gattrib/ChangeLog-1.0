@@ -3,6 +3,8 @@
     * src/gattrib.c: Remove remove gattrib_init_data_set. Reformat and
       update documentation.
 
+    * src/gattrib_dialog.c: Reformat and update documentation.
+
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Remove redundant inclusion of geda_container.h.
