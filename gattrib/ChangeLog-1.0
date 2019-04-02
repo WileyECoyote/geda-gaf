@@ -10,7 +10,7 @@
       the string to be translated. Reformat and update documentation.
 
     * src/s_object.c: Revise s_object_has_sym_file to call geda_complex_get_
-      filename in the conditional return.
+      filename in the conditional return. Reformat and update documentation.
 
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -22,14 +22,14 @@
 /*------------------------------------------------------------------*/
 /*! \file
  * \brief Functions for manipulating Objects.
+ * \par
+ *  This file holds functions involved in manipulating the Object data
+ *  structure.  Object is defined in libgeda.  An Object is a graphical
+ *  primitive normally used in gschem.  Example Objects: some text,
+ *  a component (complex), a pin, a line, etc.
  *
- * This file holds functions involved in manipulating the Object data
- * structure.  Object is defined in libgeda.  An Object is a graphical
- * primitive normally used in gschem.  Example Objects: some text,
- * a component (complex), a pin, a line, etc.
- *
- * The functions herein are functions which I wrote as wrappers to the
- * fcns in libgeda.
+ *  The functions herein are functions which I wrote as wrappers to the
+ *  fcns in libgeda.
  */
 
 #include <gattrib.h>
@@ -157,7 +157,6 @@ s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
 /*!
  * \brief Replace attribute value in object
  * \par Function Description
- *
  *  Find the instance of attrib_name on o_current, and replace the
  *  value with the new_attrib_value.
  *
@@ -289,9 +288,9 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
 /*!
  * \brief Attach attribute to object.
  * \par Function Description
- * Attach the name=value pair to the Object "object". This function was
- * re-used from gschem/src/o_attrib.c:o_attrib_add_attrib and hacked for
- * gattrib.
+ *  Attach the name=value pair to the Object "object". This function was
+ *  re-used from gschem/src/o_attrib.c:o_attrib_add_attrib and hacked for
+ *  gattrib.
  *
  * \param toplevel          GedaToplevel to operate on
  * \param text_string       The new attribute text
@@ -466,7 +465,7 @@ s_object_delete_text_object_in_object (GedaToplevel *toplevel,
 /*!
  * \brief Ensure object has a symbol file
  * \par Function Description
- *  This verifies that the object has a non-null symbol file.
+ *  This verifies that the object has a non-null symbol filename.
  *
  * \returns 0 = valid symbol file, 1 = no symbol file found.
  */
