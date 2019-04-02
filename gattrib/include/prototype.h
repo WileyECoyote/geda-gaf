@@ -105,7 +105,6 @@ void s_rename_next_set(void);
 void s_rename_print(void);
 int  s_rename_search(char *src, char *dest, int quiet_flag);
 void s_rename_add(char *src, char *dest);
-//void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest);
 void s_rename_all(GedaToplevel *toplevel, NETLIST *netlist_head);
 
 /* ------------- s_sheet_data.c ------------- */
