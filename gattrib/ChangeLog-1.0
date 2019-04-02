@@ -5,6 +5,10 @@
 
     * src/gattrib_dialog.c: Reformat and update documentation.
 
+    * src/parsecmd.c: Add ancillary variable for translatable string in order
+      to remove non-translatable "gEDA/gattrib" and format specifiers from
+      the string to be translated.
+
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Remove redundant inclusion of geda_container.h.
