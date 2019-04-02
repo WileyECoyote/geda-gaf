@@ -25,9 +25,6 @@
 ;;   5. Uncomment keywords below to override defaults when printing from
 ;;      the command line.
 ;;
-;;(print-orientation "portrait")
-;;(print-color "enabled")
-;;(print-paper "na-letter")
 
 ;(output-capstyle "square")
 ;(output-capstyle "round")
