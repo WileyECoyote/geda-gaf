@@ -491,7 +491,3 @@ int main(int argc, char *argv[])
 
   exit(0);   /* This is not real exit point.  Real exit is in gattrib_quit. */
 }
-
-void gattrib_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData)
-{
-}
