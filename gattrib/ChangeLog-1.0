@@ -4,6 +4,9 @@
 
     * src/x_dialog.c: Update documentation format.
 
+    * src/x_menus.c: Eliminate early return in x_menu_edit_new_attrib to
+      enable implementation of the Delete Attribute menu item.
+
 2019-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Remove remove gattrib_init_data_set. Reformat and

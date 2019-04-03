@@ -194,7 +194,7 @@ void x_menu_edit_new_attrib()
 void x_menu_edit_delete_attrib()
 {
   x_dialog_unimplemented_feature();
-  return;
+
   GtkSheet *sheet = x_gtksheet_get_current_sheet();
 
   if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
