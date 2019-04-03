@@ -59,19 +59,21 @@ void s_visibility_set_invisible() {
   case GTK_SHEET_ROW_SELECTED:
 
     row_start = sheet->range.row0;
-    row_end = sheet->range.rowi;
+    row_end   = sheet->range.rowi;
     col_start = sheet->range.col0;
-    col_end = sheet->range.coli;
+    col_end   = sheet->range.coli;
+
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
-	/* first set cell in SHEET_DATA to invisible */
-	s_visibility_set_cell(cur_page, i, j, INVISIBLE, LEAVE_NAME_VALUE_ALONE);
-	/* Now set cell in gtksheet to desired color */
-	/* Color names are defined in gattrib/include/globals.h */
-	x_gtksheet_set_cell_fgcolor(sheet, i, j, Gray);
+        /* first set cell in SHEET_DATA to invisible */
+        s_visibility_set_cell(cur_page, i, j, INVISIBLE, LEAVE_NAME_VALUE_ALONE);
+        /* Now set cell in gtksheet to desired color */
+        /* Color names are defined in gattrib/include/globals.h */
+        x_gtksheet_set_cell_fgcolor(sheet, i, j, Gray);
       }
     }
-    /* Now return sheet to normal -- unselect range */
+
+    /* Now return the sheet to normal -- unselect range */
     gtk_sheet_unselect_range (sheet);
     break;
 
@@ -80,15 +82,15 @@ void s_visibility_set_invisible() {
     printf("In s_visibility_set_invisible, normal selection.\n");
 #endif
     s_visibility_set_cell(cur_page,
-			  sheet->active_cell.row,
-			  sheet->active_cell.col,
-			  INVISIBLE,
-			  LEAVE_NAME_VALUE_ALONE);
+                          sheet->active_cell.row,
+                          sheet->active_cell.col,
+                          INVISIBLE,
+                          LEAVE_NAME_VALUE_ALONE);
 
     x_gtksheet_set_cell_fgcolor(sheet,
-				sheet->active_cell.row,
-				sheet->active_cell.col,
-				Gray);
+                                sheet->active_cell.row,
+                                sheet->active_cell.col,
+                                Gray);
 
     break;
   }
@@ -104,9 +106,9 @@ void s_visibility_set_invisible() {
  *  of cells which are carried in the global variable "sheet".
  */
 void s_visibility_set_name_only() {
+  GtkSheet *sheet;
   int i, j;
   int row_start, row_end, col_start, col_end;
-  GtkSheet *sheet;
   int cur_page;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -129,26 +131,27 @@ void s_visibility_set_name_only() {
     col_end = sheet->range.coli;
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
-	s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_NAME);
-	/* Color names are defined
-	 * in libgeda/include/geda_colors.h */
-      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Red);
+        s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_NAME);
+        /* Color names are defined
+         * in libgeda/include/geda_colors.h */
+        x_gtksheet_set_cell_fgcolor(sheet, i, j, Red);
       }
     }
-    /* Now return sheet to normal -- unselect range */
+
+    /* Now return the sheet to normal -- unselect range */
     gtk_sheet_unselect_range (sheet);
 
     break;
 
   case GTK_SHEET_NORMAL:
     s_visibility_set_cell(cur_page,
-			  sheet->active_cell.row,
-			  sheet->active_cell.col,
-			  VISIBLE, SHOW_NAME);
+                          sheet->active_cell.row,
+                          sheet->active_cell.col,
+                          VISIBLE, SHOW_NAME);
     x_gtksheet_set_cell_fgcolor(sheet,
-				    sheet->active_cell.row,
-				    sheet->active_cell.col,
-				    Red);
+                                sheet->active_cell.row,
+                                sheet->active_cell.col,
+                                Red);
 
     break;
 
@@ -166,9 +169,9 @@ void s_visibility_set_name_only() {
  *  variable "sheet".
  */
 void s_visibility_set_value_only() {
+  GtkSheet *sheet;
   int i, j;
   int row_start, row_end, col_start, col_end;
-  GtkSheet *sheet;
   int cur_page;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
