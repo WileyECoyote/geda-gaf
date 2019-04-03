@@ -105,7 +105,6 @@ void x_gtksheet_destroy_all() {
  */
 void x_gtksheet_reveal_columns(GtkSheet *sheet) {
 
-  //GtkSheetRange range = sheet->range;
   ColumnVisible *cv;
   GList *list = NULL;
   GList *iter;
@@ -142,15 +141,6 @@ void x_gtksheet_reveal_columns(GtkSheet *sheet) {
   }
 
   geda_glist_free_all (list);
-
-/*
-  for (i = range.col0; i <= range.coli; i++) {
-
-    if (!gtk_sheet_column_visible(sheet, i)) {
-      gtk_sheet_column_set_visibility(sheet, i, TRUE);
-    }
-  }
-*/
 }
 
 /*!
