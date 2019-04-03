@@ -144,7 +144,7 @@ static void menu_open_recent( char* filename)
   s_toplevel_close(sheet_head);
   sheet_head = s_sheet_data_new();
 
-  /* Load the files, don't check if it went OK */
+  /* Load the files, do not check if it went OK */
   x_fileselect_load_file(filename);
   s_toplevel_init_data_set(pr_current, sheet_head);
   x_gtksheet_reinititialize(sheet_head);
@@ -187,9 +187,7 @@ void x_menu_edit_new_attrib()
 /*!
  * \brief Edit->Delete Attribute menu item
  * \par Function Description
- * Implements the Delete Attribute menu item
- *
- * \todo Implement the function that Implements Delete Attribute
+ *  Implements the Delete Attribute menu item.
  */
 void x_menu_edit_delete_attrib()
 {

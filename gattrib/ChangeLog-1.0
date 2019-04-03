@@ -5,7 +5,8 @@
     * src/x_dialog.c: Update documentation format.
 
     * src/x_menus.c: Eliminate early return in x_menu_edit_new_attrib to
-      enable implementation of the Delete Attribute menu item.
+      enable implementation of the Delete Attribute menu item. Update
+      source documentation.
 
 2019-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
