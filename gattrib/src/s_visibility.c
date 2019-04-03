@@ -32,13 +32,12 @@
 /* ----- s_visibility stuff begins here ----- */
 
 /* ---------------------------------------------------------------------- */
-/* \brief Set the selected cells to INVISIBLE
- *
- *
- * This sets the selected cells to INVISIBLE.
- * This function is called from the menu, it assumes you have
- * selected a range of cells which are carried in the global
- * variable "sheet".
+/*!
+ * \brief Set the selected cells to INVISIBLE
+ * \par Function Description
+ *  This function is called from the menu to set the selected
+ *  cells to INVISIBLE, assumming there is selected a range of
+ *  cells which are carried in the global variable "sheet".
  */
 void s_visibility_set_invisible() {
   int i, j;
@@ -102,8 +101,8 @@ void s_visibility_set_invisible() {
  * \brief Set the visibility of the selected cells to NAME_ONLY.
  * \par Function Description
  *  This sets the selected cells to NAME_ONLY. This function is
- *  invoked from the menu, it assumes you have selected a range
- *  of cells which are carried in the global variable "sheet".
+ *  invoked from the menu, it assumes that a range is selected,
+ *  which are carried in the global variable "sheet".
  */
 void s_visibility_set_name_only() {
   GtkSheet *sheet;

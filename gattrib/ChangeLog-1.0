@@ -1,3 +1,7 @@
+2019-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_visibility.c: Revise/edit source documentation.
+
 2019-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Remove remove gattrib_init_data_set. Reformat and
