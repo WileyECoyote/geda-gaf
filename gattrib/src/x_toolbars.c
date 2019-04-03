@@ -61,13 +61,14 @@ static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
 }
 
 /*!
- * \brief Redirect Open, Save & Save As from Toolbar to Handler functions
+ * \brief Callback for Open, Save & Save As Buttons on the Standard Toolbar
  * \par Function Description
- * This is a Call-back function for the file related buttons on the standard
- * toolbar.
+ *  This is a callback function for the file related buttons on the
+ *  standard toolbar. The function redirects Open, Save & Save As
+ *  from Toolbar to menu handler functions.
  *
- *  \param [in] widget is button widget
- *  \param [in] Control pointer to enumerated integer ID of the button
+ * \param [in] widget is button widget
+ * \param [in] Control pointer to enumerated integer ID of the button
  */
 static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
 {
@@ -133,8 +134,8 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 /*!
  * \brief Callback Handler for Visibility relates Toolbars buttons
  * \par Function Description
- * This function calls the approiate functions to process request
- * from attribute toolbar buttons.
+ *  This function calls the approiate functions to process request
+ *  from attribute toolbar buttons.
  *
  * \param [in] widget is button widget
  * \param [in] Control pointer to enumerated integer ID of the button
@@ -283,7 +284,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
 /*!
  * \brief Set Senitivity of Toolbar Buttons.
  * \par Function Description
- *  This function is called by on_notebook_switch_page when ever a TAB
+ *  This function is called by on_notebook_switch_page whenever a TAB
  *  is selected, passing a gslist of toolbar button widgets to be set
  *  to the specified sensitivity
  */
