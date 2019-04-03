@@ -229,6 +229,7 @@ bool x_find_main_search(char *text, char *replacement) {
     }
     search_func();                 /* and try again */
   }
+
   return found;
 }
 
@@ -319,6 +320,7 @@ void x_find_attribute()
     if (!found) {
       x_find_notify_not_found(text);
     }
+
     GEDA_FREE(text);
   }
 }
@@ -354,9 +356,11 @@ void x_find_refdes()
         break;
       }
     }
+
     if (!found) {
       x_find_notify_not_found(text);
     }
+
     GEDA_FREE(text);
   }
 }

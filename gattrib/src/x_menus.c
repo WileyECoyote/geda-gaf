@@ -133,14 +133,17 @@ static void menu_open_recent( char* filename)
     switch (x_dialog_file_not_saved()) {
     case GEDA_RESPONSE_CANCEL:
       return; /* user canceled from the save unsaved file dialog */
+
     case GEDA_RESPONSE_YES:
       x_menu_file_save();
+
     case GEDA_RESPONSE_NO:
     /* No need to do anything here, just fall through */
       default:
       break;
     }
   }
+
   s_toplevel_close(sheet_head);
   sheet_head = s_sheet_data_new();
 
@@ -148,6 +151,7 @@ static void menu_open_recent( char* filename)
   x_fileselect_load_file(filename);
   s_toplevel_init_data_set(pr_current, sheet_head);
   x_gtksheet_reinititialize(sheet_head);
+
   /* -------------- update windows --------------- */
   x_window_add_items(sheet_head); /* updates toplevel & GtkSheet */
   x_window_update_title(pr_current, sheet_head);

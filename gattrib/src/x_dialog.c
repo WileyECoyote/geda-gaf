@@ -687,7 +687,6 @@ char *x_dialog_get_search_text(const char *prompt)
   }
 
   return text;
-
 }
 
 /*********** Start of Search and Replace dialog box *******/

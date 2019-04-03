@@ -40,6 +40,7 @@
  *  cells which are carried in the global variable "sheet".
  */
 void s_visibility_set_invisible() {
+
   int i, j;
   int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
@@ -93,6 +94,7 @@ void s_visibility_set_invisible() {
 
     break;
   }
+
   x_window_update_title(pr_current, sheet_head);
 }
 
@@ -105,6 +107,7 @@ void s_visibility_set_invisible() {
  *  which are carried in the global variable "sheet".
  */
 void s_visibility_set_name_only() {
+
   GtkSheet *sheet;
   int i, j;
   int row_start, row_end, col_start, col_end;
@@ -155,6 +158,7 @@ void s_visibility_set_name_only() {
     break;
 
   }
+
   x_window_update_title(pr_current, sheet_head);
 }
 
@@ -168,6 +172,7 @@ void s_visibility_set_name_only() {
  *  variable "sheet".
  */
 void s_visibility_set_value_only() {
+
   GtkSheet *sheet;
   int i, j;
   int row_start, row_end, col_start, col_end;
@@ -218,6 +223,7 @@ void s_visibility_set_value_only() {
       break;
 
   }
+
   x_window_update_title(pr_current, sheet_head);
 }
 
@@ -279,6 +285,7 @@ void s_visibility_set_name_and_value(void)
       break;
 
   }
+
   x_window_update_title(pr_current, sheet_head);
 }
 

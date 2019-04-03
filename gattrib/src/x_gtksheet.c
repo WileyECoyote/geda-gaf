@@ -880,7 +880,9 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_hea
     gtk_sheet_set_row_title(sheet, j, text);
     string_list_item = string_list_item->next;
   }
+
   width = char_width * width;
+
   gtk_sheet_set_row_titles_width(sheet, width+8);
 }
 
