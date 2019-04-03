@@ -316,8 +316,9 @@ void x_find_attribute()
       }
     }
 
-    if (!found)
+    if (!found) {
       x_find_notify_not_found(text);
+    }
     GEDA_FREE(text);
   }
 }
@@ -353,7 +354,9 @@ void x_find_refdes()
         break;
       }
     }
-    if (!found) x_find_notify_not_found(text);
+    if (!found) {
+      x_find_notify_not_found(text);
+    }
     GEDA_FREE(text);
   }
 }
