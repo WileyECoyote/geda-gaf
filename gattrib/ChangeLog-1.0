@@ -2,6 +2,8 @@
 
     * src/s_visibility.c: Revise/edit source documentation.
 
+    * src/x_dialog.c: Update documentation format.
+
 2019-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Remove remove gattrib_init_data_set. Reformat and

@@ -69,10 +69,10 @@ void generic_msg_dialog (const char *msg)
  * \par Function Description
  *  Display a basic dialog with okay/cancel buttons
  *
- *  \param msg    pointer to message to be displayed
- *  \param type   The context type of the message
+ * \param msg    pointer to message to be displayed
+ * \param type   The context type of the message
  *
- *  \returns True if user select OKAY, False if user select CANCEL
+ * \returns True if user select OKAY, False if user select CANCEL
  */
 bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 {
@@ -523,8 +523,8 @@ void x_dialog_unimplemented_feature()
  *  This function displays a dialog with the error string and terminates
  *  the program.
  *
- *  \param [in] string the error string
- *  \param [in] return_code the exit code
+ * \param [in] string the error string
+ * \param [in] return_code the exit code
  */
 void x_dialog_fatal_error(char *string, int return_code)
 {
