@@ -22,7 +22,7 @@
  *  \brief Functions to manipulate the TABLE structure
  *
  * This file holds functions involved in manipulating the TABLE structure,
- * which is subsidiary to SHEET_DATA.  TABLE is a 2 dimensional array
+ * which is subsidiary to PageDataSet.  TABLE is a 2 dimensional array
  * of structs; each struct corresponds to the data about an element
  * in a single cell of the spreadsheet.
  * \todo TABLE should also store its dimensions in its own data

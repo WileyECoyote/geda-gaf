@@ -44,7 +44,7 @@
  *    and a list of files (in GedaToplevel) simultaneously.
  * - Therefore, I decided to make both the window stuff and GedaToplevel
  *    globals.
- * - Similarly, because I couldn't cram the SHEET_DATA struct into any
+ * - Similarly, because I couldn't cram the PageDataSet struct into any
  *    hook in GedaToplevel, I just made it a global also.
  * - Finally, in my defense, in gschem and gnetlist, (GedaToplevel *w_current
  *    or pr_current) is passed  to almost every function.  Since it

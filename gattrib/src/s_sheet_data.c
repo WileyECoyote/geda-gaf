@@ -22,10 +22,10 @@
  * \file
  *
  * \brief Functions involved in manipulating an entire
- * SHEET_DATA structure.
+ * PageDataSet structure.
  *
  * This file holds functions involved in manipulating an entire
- * SHEET_DATA structure.  The SHEET_DATA structure is the intermediate
+ * PageDataSet structure.  The PageDataSet structure is the intermediate
  * structure between GedaToplevel (gEDA's native format) and the graphical
  * gtksheet widget (from gtkextra), which is the spreadsheet widget
  * displaying the attribs.
@@ -35,12 +35,12 @@
 
 /*------------------------------------------------------------------*/
 /*!
- * \brief Create a SHEET_DATA Page Data Struct.
+ * \brief Create a PageDataSet Page Data Struct.
  *  \par Function Description
  * Creates an initialized but empty data struct.
  * \returns a pointer to a data struct.
  */
-SHEET_DATA *s_sheet_data_new()
+PageDataSet *s_sheet_data_new()
 {
   PageDataSet *new_data_set;
 
@@ -82,9 +82,9 @@ SHEET_DATA *s_sheet_data_new()
 /*------------------------------------------------------------------*/
 
 /*!
- * \brief Frees the contents of a SHEET_DATA struct.
+ * \brief Frees the contents of a PageDataSet struct.
  * \par Function Description
- * Frees the string lists in a SHEET_DATA struct.
+ * Frees the string lists in a PageDataSet struct.
  */
 void
 s_sheet_data_free(PageDataSet *PageData)
@@ -175,9 +175,9 @@ s_sheet_data_add_pin_attrib(PageDataSet *PageData, const char *pin_attrib_str)
 
 /*------------------------------------------------------------------*/
 /*!
- * \brief Fill a SHEET_DATA struct with Template Data and load tables.
+ * \brief Fill a PageDataSet struct with Template Data and load tables.
  *  \par Function Description
- * Creates and initialises a SHEET_DATA struct with dummy data.
+ * Creates and initialises a PageDataSet struct with dummy data.
  */
 void s_sheet_data_load_blank(PageDataSet *PageData)
 {

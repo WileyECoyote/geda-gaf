@@ -128,16 +128,16 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 /*! \brief Copy data from gtksheet into GedaToplevel struct
  *
  * Called when the user invokes "save".  It first
- * places all data from gtksheet into SHEET_DATA.  Then it
+ * places all data from gtksheet into PageDataSet.  Then it
  * loops through all pages & calls s_toplevel_sheetdata_to_toplevel()
  * to place all
- * stuff in SHEET_DATA into the libgeda GedaToplevel structure.
+ * stuff in PageDataSet into the libgeda GedaToplevel structure.
  */
 void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
 {
   GList *iter;
 
-  /* read data from gtksheet into SHEET_DATA */
+  /* read data from gtksheet into PageDataSet */
   s_table_gtksheet_to_all_tables();
 
   /* iterate over all pages in design */
@@ -304,14 +304,14 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 /* =======================  Private functions  ====================== */
 
 /*------------------------------------------------------------------*/
-/*! \brief Copy SHEET_DATA content to TOP_LEVEL
+/*! \brief Copy PageDataSet content to TOP_LEVEL
  *
  * This function
  * loops through all objects on (Page page)->(Object *start_obj).
- * It takes the updated SHEET_DATA->TABLE data and then updates the
+ * It takes the updated PageDataSet->TABLE data and then updates the
  * objects with the new attribs & attrib values.
  * For each component, it updates the attached
- * attrib values using the updated values held in the SHEET_DATA->TABLE
+ * attrib values using the updated values held in the PageDataSet->TABLE
  * structure.  It does so in three steps:
  * -# First find and update component attribs.
  * -# Then find and update net attribs.
@@ -541,7 +541,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
  * For each attrib string attached to the component, update it using the value
  * held in new_comp_attrib_list.  Algorithm:
  * -# Form list of all component attribs held on both the component
- *    (o_current), as well as in the attrib list (SHEET_DATA).
+ *    (o_current), as well as in the attrib list (PageDataSet).
  * -# Loop over name=value pairs held in complete_comp_attrib_list.
  * -# For each name=value pair, look for corresponding attrib on o_current.
  * -# For each name=value pair, look for the corresponding attrib in
@@ -556,7 +556,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
  * \param toplevel GedaToplevel structure
  * \param o_current Component (complex) to be updated.
  * \param new_comp_attrib_list list of name=value attribute pairs
- *                             from SHEET_DATA.
+ *                             from PageDataSet.
  */
 void
 s_toplevel_update_component_attribs_in_toplevel (
@@ -583,7 +583,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
   /*
    * To remove dead attribs from o_current, we need to form a complete list of unique
-   * attribs by taking the union of the new attribs from the SHEET_DATA, and
+   * attribs by taking the union of the new attribs from the PageDataSet, and
    * the old attribs living on o_current.  That's what we're doing here.
    * Later, we can delete those attribs in o_current which don't apear in
    * new_comp_attrib_list.

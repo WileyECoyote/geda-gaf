@@ -44,7 +44,7 @@
  *
  * -# It manipulates objects held in the GedaToplevel data structure. It
  *    does this by importing structs and functions from libgeda.
- * -# Gattrib defines its own layer of structs, notably SHEET_DATA,
+ * -# Gattrib defines its own layer of structs, notably PageDataSet,
  *    which holds a table of attrib name=value pairs, and also holds a
  *    couple of linked lists corresponding to all component's refdeses, and
  *    to all attribute names found in the design. This stuff is native to
@@ -63,9 +63,9 @@
  *    GedaToplevel struct.
  * -# It then loops over everything in GedaToplevel and fills out the refdes
  *    list and the attribute name list. It sticks these into a STRING_LIST
- *    which is associated with the SHEET_DATA struct.
+ *    which is associated with the PageDataSet struct.
  * -# Then, knowing all the refdeses and all the attribute names, it
- *    creates a TABLE data struct (a member of SHEET_DATA), and loops over
+ *    creates a TABLE data struct (a member of PageDataSet), and loops over
  *    each cell in the TABLE. For each cell, it queries GedaToplevel for the
  *    corresponding name=value pair, and sticks the value in the TABLE.
  * -# When done with that, it then creates a GtkSheet and populates it
@@ -79,11 +79,11 @@
  *    Saving out a design is similar, except the process runs in reverse:
  *
  * -# The program loops over all cells in GtkSheet, and sticks the
- *    values found into SHEET_DATA. Handling issues like added/deleted
- *    columns happens first at the GtkSheet, and then to SHEET_DATA and
+ *    values found into PageDataSet. Handling issues like added/deleted
+ *    columns happens first at the GtkSheet, and then to PageDataSet and
  *    GedaToplevel. I've kind of forgotten how I implemented these feaures,
  *    however. :-S
- * -# Then, the program loops over the cells in SHEET_DATA, and updates
+ * -# Then, the program loops over the cells in PageDataSet, and updates
  *    the attributes in GedaToplevel using functions from libgeda, as well as by
  *    reaching directly into the GedaToplevel data structure (a software
  *    engineering no-no). If a previously existing attrib has been removed,
@@ -92,7 +92,7 @@
  * -# Then the design is saved out using the save function from
  *    libgeda.
  *
- * Therefore, think of SHEET_DATA and the other gattrib data structures
+ * Therefore, think of PageDataSet and the other gattrib data structures
  * as a thin layer between GtkSheet and GedaToplevel. The gattrib data
  * structures are used basically for convenience while trying to build or
  * update either of the two other, more important data structures.
@@ -302,7 +302,7 @@ bool gattrib_really_quit(void)
 void gattrib_main(void *closure, int argc, char *argv[])
 {
   /* GedaToplevel *pr_current is a global   */
-  /* SHEET_DATA *sheet_head is a global */
+  /* PageDataSet *sheet_head is a global */
   /* GtkWidget *main_window is a global */
 
   int argv_index;
@@ -408,7 +408,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
     argv_index++;
   }
 
-  /* ---------- Initialize SHEET_DATA data structure ---------- */
+  /* ---------- Initialize PageDataSet data structure ---------- */
   sheet_head = s_sheet_data_new();   /* sheet_head is declared in globals.h */
 
   if (file_list) { /* do we need to call g here? */

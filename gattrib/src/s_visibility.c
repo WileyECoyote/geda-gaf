@@ -65,7 +65,7 @@ void s_visibility_set_invisible() {
 
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
-        /* first set cell in SHEET_DATA to invisible */
+        /* first set cell in PageDataSet to invisible */
         s_visibility_set_cell(cur_page, i, j, INVISIBLE, LEAVE_NAME_VALUE_ALONE);
         /* Now set cell in gtksheet to desired color */
         /* Color names are defined in gattrib/include/globals.h */

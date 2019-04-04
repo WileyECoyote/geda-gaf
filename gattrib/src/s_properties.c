@@ -220,7 +220,7 @@ static void s_properties_set_range_visibility(int visibility) {
     col_end = sheet->range.coli;
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
-        /* first set cell in SHEET_DATA to invisible */
+        /* first set cell in PageDataSet to invisible */
         s_properties_set_cell_visibility(i, j, visibility);
         /* Now set cell in gtksheet to desired color */
         /* Color names are defined in gattrib/include/globals.h */
