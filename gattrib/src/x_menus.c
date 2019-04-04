@@ -199,8 +199,9 @@ void x_menu_edit_delete_attrib()
 
   GtkSheet *sheet = x_gtksheet_get_current_sheet();
 
-  if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
+  if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
     s_toplevel_delete_attrib_col(sheet);
+  }
 }
 
 /*!
