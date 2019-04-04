@@ -156,56 +156,57 @@ void x_gtksheet_reveal_columns(GtkSheet *sheet) {
  */
 static int popup_activated(GtkWidget *widget, IDS_Popup_items *selection)
 {
-    GtkSheet *sheet = x_gtksheet_get_current_sheet();
+  GtkSheet *sheet = x_gtksheet_get_current_sheet();
 
-    int WhichItem = (int)(long)selection;
+  int WhichItem = (int)(long)selection;
 
-    switch ( WhichItem ) {
-      case ToggleVisibility:
-        if (!x_gtksheet_get_is_empty(sheet, sheet->active_cell.row,
-                                            sheet->active_cell.col))
-        {
-          if (s_properties_get_visibility(sheet->active_cell.row,
-                                          sheet->active_cell.col))
-            s_properties_set_invisible();
-          else
-            s_properties_set_visible();
-        }
-        break;
+  switch ( WhichItem ) {
+    case ToggleVisibility:
+      if (!x_gtksheet_get_is_empty(sheet, sheet->active_cell.row,
+        sheet->active_cell.col))
+      {
+        if (s_properties_get_visibility(sheet->active_cell.row,
+          sheet->active_cell.col))
+          s_properties_set_invisible();
+        else
+          s_properties_set_visible();
+      }
+      break;
 
-      case AddAttribute:
-        s_toplevel_add_new_attrib(-1);
-        break;
+    case AddAttribute:
+      s_toplevel_add_new_attrib(-1);
+      break;
 
-      case InsertAttribute:
-        s_toplevel_add_new_attrib(sheet->range.col0);
-        break;
+    case InsertAttribute:
+      s_toplevel_add_new_attrib(sheet->range.col0);
+      break;
 
-      case HideAttribute:
-        gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
-        gtk_sheet_unselect_range(sheet);
-        break;
+    case HideAttribute:
+      gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
+      gtk_sheet_unselect_range(sheet);
+      break;
 
-      case RevealAttribute:
-        x_gtksheet_reveal_columns(sheet);
-        break;
+    case RevealAttribute:
+      x_gtksheet_reveal_columns(sheet);
+      break;
 
-      case DeleteAttribute:
-        s_toplevel_delete_attrib_col(sheet);
-        break;
+    case DeleteAttribute:
+      s_toplevel_delete_attrib_col(sheet);
+      break;
 
-      case ClearAttributeData:
-        gtk_sheet_range_clear(sheet, &sheet->range);
-        break;
+    case ClearAttributeData:
+      gtk_sheet_range_clear(sheet, &sheet->range);
+      break;
 
-      default:
-        geda_log ("%s: unknown button ID: %d\n", __func__, WhichItem);
-    } /* End Switch WhichItem */
+    default:
+      geda_log ("%s: unknown button ID: %d\n", __func__, WhichItem);
+  } /* End Switch WhichItem */
 
-    gtk_widget_destroy(popup);
-    g_object_unref(popup);
-    popup = NULL;
-    return (TRUE);
+  gtk_widget_destroy(popup);
+  g_object_unref(popup);
+  popup = NULL;
+
+  return (TRUE);
 }
 
 /*!
@@ -297,39 +298,39 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
  */
 static int on_mouse_button_press(GtkWidget *widget, GdkEventButton *event, void *data)
 {
-    GdkModifierType mods;
-    GtkSheet *sheet = GTK_SHEET(widget);
-    bool handled = FALSE;
+  GdkModifierType mods;
+  GtkSheet *sheet = GTK_SHEET(widget);
+  bool handled = FALSE;
 
-    gdk_window_get_pointer (gtk_widget_get_window(widget), NULL, NULL, &mods);
+  gdk_window_get_pointer (gtk_widget_get_window(widget), NULL, NULL, &mods);
 
-    if (mods & GDK_BUTTON3_MASK) {
+  if (mods & GDK_BUTTON3_MASK) {
 
-      /* popup is a global pointer to a GtkWidget, see include/globals.h */
-      if (popup) {
-        gtk_widget_destroy(GTK_WIDGET(popup));
-        g_object_unref(popup);
-        popup = NULL;
-      }
-
-      popup = build_popup_menu(widget);
-
-      /* Display the menu we just created */
-      geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
-                      event->button, event->time);
-      handled = TRUE;
-    }
-    else if (mods & GDK_BUTTON2_MASK) {
-
-      GtkWidget *entry = gtk_sheet_get_entry (sheet);
-
-      g_signal_emit_by_name(entry, "paste-clipboard", NULL);
-      sheet_head->CHANGED = TRUE;
-      x_window_update_title(pr_current, sheet_head);
-      handled = TRUE;
+    /* popup is a global pointer to a GtkWidget, see include/globals.h */
+    if (popup) {
+      gtk_widget_destroy(GTK_WIDGET(popup));
+      g_object_unref(popup);
+      popup = NULL;
     }
 
-    return handled;
+    popup = build_popup_menu(widget);
+
+    /* Display the menu we just created */
+    geda_menu_popup(GEDA_MENU(popup), NULL, NULL, NULL, NULL,
+                    event->button, event->time);
+    handled = TRUE;
+  }
+  else if (mods & GDK_BUTTON2_MASK) {
+
+    GtkWidget *entry = gtk_sheet_get_entry (sheet);
+
+    g_signal_emit_by_name(entry, "paste-clipboard", NULL);
+    sheet_head->CHANGED = TRUE;
+    x_window_update_title(pr_current, sheet_head);
+    handled = TRUE;
+  }
+
+  return handled;
 }
 
 /*!
@@ -343,12 +344,18 @@ static int clipboard_handler(GtkSheet *sheet, GdkEventKey *event)
 {
   bool state = sheet->state;
 
-   if (event->state & GDK_CONTROL_MASK || event->keyval==GDK_Control_L ||
-       event->keyval==GDK_Control_R)
-   {
-    if ((event->keyval=='c' || event->keyval == 'C') && state != GTK_STATE_NORMAL)
-    {
-      if (gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
+  if (event->state & GDK_CONTROL_MASK ||
+    event->keyval==GDK_Control_L ||
+    event->keyval==GDK_Control_R)
+  {
+
+    if ((event->keyval=='c' ||
+         event->keyval == 'C') &&
+         state != GTK_STATE_NORMAL) {
+      if (gtk_sheet_in_clip(sheet)) {
+        gtk_sheet_unclip_range(sheet);
+      }
+
       gtk_sheet_clip_range(sheet, &sheet->range);
     }
 
@@ -377,7 +384,7 @@ static void clipboard_receive_entry_text(GtkClipboard *clipboard,
 /*!
  * \brief Callback on button pressed in the entry
  * \par Function Description
- *  Paste contents of the clip board into the entry of the event was
+ *  Paste contents of the clip board into the entry if the event was
  *  a button 2 press, obilterating the contents.
  */
 static int
@@ -524,7 +531,7 @@ static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
     }
   }
 
- return TRUE;
+  return TRUE;
 }
 
 /*!
@@ -540,8 +547,8 @@ static bool on_traverse(GtkWidget *widget,
                     int row, int col, int *new_row, int *new_col,
                     void *data)
 {
- printf("TRAVERSE: %d %d %d %d\n",row,col,*new_row,*new_col);
- return TRUE;
+  printf("TRAVERSE: %d %d %d %d\n",row,col,*new_row,*new_col);
+  return TRUE;
 }
 
 /*!
