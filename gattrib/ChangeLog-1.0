@@ -8,6 +8,7 @@
     * src/x_dialog.c: Add function documentation:
 
           * x_dialog_column_visibility_toggled
+          * x_dialog_column_visibility
 
 2019-04-03 Wiley E. Hill <wileyhill@gmail.com>
 

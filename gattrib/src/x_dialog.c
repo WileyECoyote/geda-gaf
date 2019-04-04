@@ -201,6 +201,17 @@ x_dialog_column_visibility_toggled (GtkCellRendererToggle *cell_renderer,
   *ptr = (visible != TRUE);
 }
 
+/*!
+ * \brief Show Column Visibility Dialog
+ * \par Function Description
+ *  This function creates and presents a dialog with a list of all
+ *  column titles contained within the \a list of ColumnVisible
+ *  records, which is all columns in the active sheet, along with
+ *  an activatable widget set to the current visible state of the
+ *  column.
+ *  The address of the visible field in the ColumnVisible record is
+ *  stored in the COLUMN_DATA column of the tree store.
+ */
 bool x_dialog_column_visibility (GList *list)
 {
   GtkWidget         *dialog;
