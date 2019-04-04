@@ -227,7 +227,7 @@ static void s_properties_set_range_visibility(int visibility) {
         s_properties_set_cell_fgcolor(sheet, i, j);
       }
     }
-    /* Now return sheet to normal -- unselect range */
+    /* Return sheet to normal -- unselect range */
     gtk_sheet_unselect_range (sheet);
     break;
 
