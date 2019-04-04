@@ -63,8 +63,8 @@ typedef struct st_column_visible ColumnVisible;
  *  \brief Sheet data structure
  *  \par
  * st_sheet_data defines PageDataSet, and holds master lists holding
- * sorted lists of comp/netlist names.  Also holds pointers to the heads
- * of the attribute-holding component and net structures.
+ * sorted lists of comp/netlist names.  Also holds pointers to the
+ * heads of the attribute-holding component and net structures.
  */
 /* -------------------------------------------------------------------- */
 struct st_sheet_data {
@@ -98,11 +98,11 @@ struct st_sheet_data {
 /*! \struct st_table
  *  \brief Table cell struct
  *  \par
- * st_table defined what is held in a spreadsheet cell for both
- * comp and net spreadsheets.  Holds pointer to individual comp/net name, and
- * pointer to attrib list.  Ideally, the name pointer points to the
- * refdes/netname string held in the GedaToplevel data structure, so that
- * when PageDataSet is manipulated, so is GedaToplevel.
+ * st_table defined what is held in a spreadsheet cell for both comp
+ * and net spreadsheets. Holds pointer to individual comp/net name,
+ * and pointer to attrib list. Ideally, the name pointer points to the
+ * refdes/netname string held in the GedaToplevel data structure, so
+ * that when PageDataSet is manipulated, so is GedaToplevel.
  */
 /* -------------------------------------------------------------------- */
 struct st_table {
