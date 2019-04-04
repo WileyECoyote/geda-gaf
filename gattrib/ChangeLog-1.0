@@ -5,6 +5,10 @@
 
     * src/s_visibility.c: Comment-out function s_visibility_get_cell.
 
+    * src/x_dialog.c: Add function documentation:
+
+          * x_dialog_column_visibility_toggled
+
 2019-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_visibility.c: Revise/edit source documentation.

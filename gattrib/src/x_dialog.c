@@ -160,6 +160,15 @@ enum {
   NUM_COLUMNS
 };
 
+/*!
+ * \internal
+ * Callback function for the first column of activateble cells "toggled"
+ * signal on the Column Visibility Dialog, aka the column of attributes.
+ * Oddly, the active state is not passed to the callback, and so this
+ * function obtains the state of the cell at the \a path and toggles
+ * the cell and updates the ColumnVisible.visible field, whose address
+ * is contained in the cooresponding COLUMN_DATA cell.
+ */
 static void
 x_dialog_column_visibility_toggled (GtkCellRendererToggle *cell_renderer,
                                     char                  *path,
