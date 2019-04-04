@@ -35,8 +35,8 @@ static SearchRecord Search;
  * \brief Notify Search Text Not Found Dialog
  * \par Function Description
  *  Common pre-search routine to save the range of the current
- * selection of the active worksheet and sets the search mode
- * flag to row, column or all based on the current state.
+ *  selection of the active worksheet and sets the search mode
+ *  flag to row, column or all based on the current state.
  */
 static void x_find_set_search_parameters()
 {
@@ -73,8 +73,8 @@ static void x_find_set_search_parameters()
 /*!
  * \brief Notify Search Text Not Found Dialog
  * \par Function Description
- * called by x_find_attribute and x_find_refdes when the search
- * text was not found
+ *  Called by x_find_attribute and x_find_refdes when the search
+ *  text was not found.
  */
 static void x_find_notify_not_found(char *text)
 {
@@ -87,8 +87,8 @@ static void x_find_notify_not_found(char *text)
 /*!
  * \brief Search Sheet for text and optionally replace string
  * \par Function Description
- *  Performs search, either forward or backward over the active search
- *  range based on flags in SearchRecord.
+ *  Performs search, either forward or backward over the active
+ *  search range based on flags in SearchRecord.
  */
 bool x_find_main_search(char *text, char *replacement) {
 
@@ -236,10 +236,9 @@ bool x_find_main_search(char *text, char *replacement) {
 /*!
  * \brief Launch Search Dialog with Selected Text
  * \par Function Description
- * This is a front-end that launches the search and replace
- * dialog in "find only" mode. This function preloads the
- * st_search struct with and any text that is currently
- * selected in the entry.
+ *  This is a front-end that launches the search and replace dialog
+ *  in "find only" mode. This function preloads the st_search struct
+ *  with and any text that is currently selected in the entry.
  */
 void x_find_attribute_value(void)
 {
@@ -255,7 +254,7 @@ void x_find_attribute_value(void)
 
     int start, end;
 
-    if (gtk_editable_get_selection_bounds (GTK_EDITABLE(entry), &start, &end)) {
+    if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start, &end)) {
       if (end - start > 3) {
         text = gtk_editable_get_chars (GTK_EDITABLE(entry), start, end);
       }
