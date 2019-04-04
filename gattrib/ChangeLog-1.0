@@ -3,6 +3,8 @@
     * include/struct.h: Remove typedef SHEET_DATA, rename PageDataSet
       everywhere.
 
+    * src/s_visibility.c: Comment-out function s_visibility_get_cell.
+
 2019-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_visibility.c: Revise/edit source documentation.

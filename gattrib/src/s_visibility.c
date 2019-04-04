@@ -343,7 +343,7 @@ void s_visibility_set_cell(int cur_page, int row, int col,
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- */
+ *//*
 bool s_visibility_get_cell(int cur_page, int row, int col)
 {
   TABLE **local_table = NULL;
@@ -365,3 +365,4 @@ bool s_visibility_get_cell(int cur_page, int row, int col)
 
   return local_table[col][row].visibility;
 }
+*/
