@@ -23,7 +23,7 @@
 /*------------------------------------------------------------------*/
 /*! \file
  * \brief Functions used to display dialog boxes.
- *
+ * \par
  * Functions used to display dialog boxes.
  */
 

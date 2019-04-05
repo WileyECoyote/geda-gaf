@@ -22,7 +22,7 @@
 /*------------------------------------------------------------------*/
 /*! \file
  * \brief Functions to display file open/save dialog box.
- *
+ * \par
  * This file contains functions used to display the file open/save dialog
  * box. It was cloned from x_fileselect.c in gschem/src, and then hacked
  * by SDB for use in gattrib.

@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------*/
 /*! \file
  * \brief Functions to manipulate attribute visibility
- *
+ * \par
  * This file holds widgets and functions used in conjunction
  * with setting attribute visibility.
  * \todo There seems to be a lot of duplicated code in this file -
