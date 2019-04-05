@@ -285,8 +285,6 @@ void s_rename_all (GedaToplevel *toplevel, NETLIST *netlist_head)
 
   for (i = 0; i < rename_counter; i++) {
 
-    verbose_print("R");
-
 #if DEBUG
     printf("%d Renaming: %s -> %s\n", i, rename_pairs[cur_set][i].src,
     rename_pairs[cur_set][i].dest);
