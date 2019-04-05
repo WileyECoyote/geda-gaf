@@ -215,9 +215,9 @@ static void s_properties_set_range_visibility(int visibility) {
   case GTK_SHEET_ROW_SELECTED:
 
     row_start = sheet->range.row0;
-    row_end = sheet->range.rowi;
+    row_end   = sheet->range.rowi;
     col_start = sheet->range.col0;
-    col_end = sheet->range.coli;
+    col_end   = sheet->range.coli;
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
         /* first set cell in PageDataSet to invisible */
