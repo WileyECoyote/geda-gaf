@@ -44,7 +44,7 @@ static char search_string[MAX_SEARCH_STRING+12];
 static SearchRecord Search;
 
 /*!
- * \brief Notify Search Text Not Found Dialog
+ * \brief Set Search Record Settings
  * \par Function Description
  *  Common pre-search routine to save the range of the current
  *  selection of the active worksheet and sets the search mode
