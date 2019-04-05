@@ -29,8 +29,6 @@
 #include <gattrib.h>
 #include <geda_debug.h>
 
-/* ----- s_visibility stuff begins here ----- */
-
 /* ---------------------------------------------------------------------- */
 /*!
  * \brief Set the selected cells to INVISIBLE
@@ -78,9 +76,6 @@ void s_visibility_set_invisible() {
     break;
 
   case GTK_SHEET_NORMAL:
-#ifdef DEBUG
-    printf("In s_visibility_set_invisible, normal selection.\n");
-#endif
     s_visibility_set_cell(cur_page,
                           sheet->active_cell.row,
                           sheet->active_cell.col,

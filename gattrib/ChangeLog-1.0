@@ -2,6 +2,8 @@
 
     * src/s_rename.c: Remove gnetlist style verbose print in s_rename_all.
 
+    * src/s_visibility.c: Remove debug output and other cruft.
+
 2019-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/struct.h: Remove typedef SHEET_DATA, rename PageDataSet
