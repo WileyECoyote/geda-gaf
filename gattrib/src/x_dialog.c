@@ -913,7 +913,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response, Con
 
    /* We don't have a pointer to the Search structure but this does not
     * matter since we don't need to do anything here, stubbing code here */
-   switch ( response ) {
+   switch (response) {
    case IgnoreCase:
    case WholeWord:
    case SearchBackword:
