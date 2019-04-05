@@ -79,7 +79,6 @@ static void x_find_set_search_parameters()
   Search.Wrap      = TRUE;
   Search.Found     = FALSE;
   Search.count     = 0;
-
 }
 
 /*!

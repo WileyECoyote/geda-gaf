@@ -43,7 +43,6 @@ static RENAME rename_pairs[MAX_SETS][MAX_RENAME];
 static int rename_counter = 0;
 static int cur_set = 0;
 
-
 /*!
  * \brief Initialize the renaming data space
  * \par Function Description

@@ -218,6 +218,7 @@ static void s_properties_set_range_visibility(int visibility) {
     row_end   = sheet->range.rowi;
     col_start = sheet->range.col0;
     col_end   = sheet->range.coli;
+
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
         /* first set cell in PageDataSet to invisible */
@@ -227,6 +228,7 @@ static void s_properties_set_range_visibility(int visibility) {
         s_properties_set_cell_fgcolor(sheet, i, j);
       }
     }
+
     /* Return sheet to normal -- unselect range */
     gtk_sheet_unselect_range (sheet);
     break;
@@ -242,6 +244,7 @@ static void s_properties_set_range_visibility(int visibility) {
 
     break;
   }
+
   x_window_update_title(pr_current, sheet_head);
 }
 
