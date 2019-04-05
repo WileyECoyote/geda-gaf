@@ -4,6 +4,8 @@
 
     * src/s_visibility.c: Remove debug output and other cruft.
 
+    * src/x_find.c: Add file tag with module documentation.
+
 2019-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/struct.h: Remove typedef SHEET_DATA, rename PageDataSet

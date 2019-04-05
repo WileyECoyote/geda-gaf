@@ -20,6 +20,18 @@
  * Date: November, 17, 2012
  * Contributing Author: Wiley Edward Hill
  */
+/*------------------------------------------------------------------*/
+/*! \file
+ * \brief Search and Replace Functions
+ * \par
+ * This module contains search and replace front-ends and support
+ * functions:
+ *
+ *  x_find_attribute_value      - launches dialog in find only mode
+ *  x_find_replace_attrib_value - launches dialog in search and replace mode
+ *  x_find_attribute            - searches column labels
+ *  x_find_refdes               - searches row labels
+ */
 
 #include <gattrib.h>
 #include <geda/geda_gui_funcs.h>
