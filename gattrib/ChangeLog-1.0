@@ -6,6 +6,9 @@
 
     * src/x_find.c: Add file tag with module documentation.
 
+    * src/x_gtksheet.c: Revise switch/case in build_popup_menu to combine
+      redundant cases.
+
 2019-04-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/struct.h: Remove typedef SHEET_DATA, rename PageDataSet

@@ -231,50 +231,31 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
 
     GEDA_SIGNAL_CONNECT(item, "activate", popup_activated, (void*)(long) i);
 
-    gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
-    gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
-
     switch (i) {
       case ToggleVisibility:
-        if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-        }
-        break;
       case AddAttribute:
+      case ClearAttributeData:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
+        else {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
+        }
         break;
+
       case InsertAttribute:
-        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-        }
-        break;
       case HideAttribute:
-        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-        }
-        break;
       case RevealAttribute:
-        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-        }
-        break;
       case DeleteAttribute:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
-        break;
-      case ClearAttributeData:
-        if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
-          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        else {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
         }
         break;
       }
