@@ -11,6 +11,11 @@
     * serial/MAX3420E-1.sym: Add symbol; USB Peripheral Controller with
       SPI Interface.
 
+    * spice: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/and4-1.sym
+
 2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
