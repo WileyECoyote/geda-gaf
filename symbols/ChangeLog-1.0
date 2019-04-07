@@ -8,6 +8,9 @@
 
     * philips/TDA8020HL-1.sym: Add symbol; Dual smart card interface with I2C.
 
+    * serial/MAX3420E-1.sym: Add symbol; USB Peripheral Controller with
+      SPI Interface.
+
 2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
