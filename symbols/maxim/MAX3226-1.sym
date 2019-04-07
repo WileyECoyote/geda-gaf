@@ -172,5 +172,5 @@ T 300 2750 5 10 0 0 0 0 1
 numslots=0
 T 300 3350 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX3224-MAX3245.pdf
-T 300 2550 9 8 1 0 0 0 1
-MAX3226
+T 300 2550 9 8 1 1 0 0 1
+value=MAX3226
