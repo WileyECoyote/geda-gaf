@@ -18,6 +18,9 @@
             * simulation/verilog/and4-2.sym
             * simulation/verilog/and5-1.sym
 
+    * simulation/verilog/block_pos-1.sym: Shift symbol to realign pins
+      with grid, convert comment to a description attribute.
+
 2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
