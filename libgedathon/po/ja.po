@@ -311,35 +311,43 @@ msgstr "オブジェクトをコピーする"
 msgid "Rotate the object"
 msgstr "オブジェクトを回転させる"
 
-# Select this Object
-# Kono obujekuto o sentaku
+# Select this Object; Kono obujekuto o sentaku
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
 msgstr "このオブジェクトを選択"
 
+# Unselect this Object; Kono obujekuto no sentaku o kaijo
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "このオブジェクトの選択を解除"
 
+# Returns the length of a linear object
+# Senkei obujekuto no naga-sa o kaeshimasu
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "線形オブジェクトの長さを返します"
 
+# File name of this Page; Kono pēji no fairu-mei
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "このページのファイル名"
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "幾何学的要素を説明する文字列"
 
+# Retrieve a specific attribute Object
+# Tokutei no zokusei obujekuto o shutoku suru
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "特定の属性オブジェクトを取得する"
 
+# Retrieve list of associated attribute Objects
+# Kanrendzuke rarete iru zokusei obujekuto no risuto o shutoku suru
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "関連付けられている属性オブジェクトのリストを取得する"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
