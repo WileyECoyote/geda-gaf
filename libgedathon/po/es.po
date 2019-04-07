@@ -406,17 +406,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Crear un nuevo objeto de bus.."
+msgstr "Crea un tipo de objeto bus."
 
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Crear un nuevo objeto de círculo."
+msgstr "Error al inicializar el nuevo objeto de círculo"
 
+# Creates a Circle object type
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Crear un nuevo objeto de círculo."
+msgstr "Crea un tipo de objeto de círculo."
