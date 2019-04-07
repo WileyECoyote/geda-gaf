@@ -1,3 +1,7 @@
+2019-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * maxim/MAX3223E-1.sym: Update footprint, remove date comment.
+
 2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:

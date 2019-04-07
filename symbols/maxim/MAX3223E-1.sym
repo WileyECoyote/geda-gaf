@@ -1,16 +1,12 @@
 v 20121031 2
-T 10 10 5 10 0 0 0 0 1
-author=AutoTron
 T 350 4550 9 10 1 1 0 0 1
 device=MAX3223E
 T 350 8300 5 10 0 0 0 0 1
 description=Maxim RS-232 transceiver with autoshutdown and ESD protection
 T 350 8000 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/arpdf/MAX3221E-MAX3243E.pdf
-T 400 7100 5 10 0 0 0 0 1
-comment=$Date$
 T 350 5900 5 10 0 0 0 0 1
-footprint=DIL 20 300
+footprint=DIL-20-300
 T 350 5600 5 10 0 0 0 0 1
 numslots=0
 T 350 5300 5 10 0 0 0 0 1
@@ -245,3 +241,5 @@ L 300 3100 1100 3100 3 0 0 0 -1 -1
 L 1550 3100 2300 3100 3 0 0 0 -1 -1
 L 1550 2700 2300 2700 3 0 0 0 -1 -1
 L 1100 2700 300 2700 3 0 0 0 -1 -1
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron
