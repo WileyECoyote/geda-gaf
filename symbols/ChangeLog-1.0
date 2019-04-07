@@ -4,6 +4,8 @@
 
     * maxim/MAX3226-1.sym: Convert plain text to value attribute.
 
+    * maxim/MAX3238-1.sym: Update description, resequence attributes.
+
 2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
