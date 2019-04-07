@@ -258,7 +258,7 @@ msgstr "این شیء را غیرفعال کنید"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "طول یک شیء خطی را برمی گرداند"
 
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
@@ -406,20 +406,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "یک شیء اتوبوس جدید ایجاد کنید."
+msgstr "یک نوع شی اتوبوس ایجاد می کند."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "یک شیء دایره جدید ایجاد کنید."
+msgstr "خطا در راه اندازی شی جدید دایره"
 
-# Create a new circle object
+# Creates a Circle object type
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "یک شیء دایره جدید ایجاد کنید."
+msgstr "نوع شیء دایره ای ایجاد می کند."
