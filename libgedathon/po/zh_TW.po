@@ -270,45 +270,60 @@ msgstr "創建一個新的路徑對象."
 msgid "Create a new picture object."
 msgstr "創建一個新的圖片對象."
 
+# Create a new pin object
+# Chuàngjiàn yīgè xīn de pin duìxiàng
 #: libgedathon/include/geda_module.h:97
 msgid "Create a new pin object."
-msgstr ""
+msgstr "創建一個新的pin對象."
 
+# Create a new text object
+# Chuàngjiàn yīgè xīn de wénběn duìxiàng
 #: libgedathon/include/geda_module.h:98
 msgid "Create a new text object."
-msgstr ""
+msgstr "創建一個新的文本對象."
 
+# Create a new attribute object
+# Chuàngjiàn yīgè xīn de shǔxìng duìxiàng
 #: libgedathon/include/geda_module.h:99
 msgid "Create a new attribute object."
-msgstr ""
+msgstr "創建一個新的屬性對象."
 
+# New object type syntax
+# Xīn duìxiàng lèixíng yǔfǎ
 #: libgedathon/include/geda_module.h:102
 msgid "New object type syntax"
-msgstr ""
+msgstr "新對像類型語法"
 
+# The object name; Duìxiàng míngchēng
 #: libgedathon/include/geda_module.h:103
 msgid "The object name"
-msgstr ""
+msgstr "對象名稱"
 
+# Add an attribute object to this object
+# Jiāng shǔxìng duìxiàng tiānjiā dào cǐ duìxiàng
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "將屬性對象添加到此對象"
 
+# Copy the object; Fùzhì duìxiàng
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "複製對象"
 
+# Rotate the object; Xuánzhuǎn duìxiàng
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "旋轉對象"
 
+# Select this Object; Xuǎnzé cǐ duìxiàng
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "選擇此對象"
 
+# Unselect this Object; Qǔxiāo xuǎnzé cǐ duìxiàng
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "取消選擇此對象"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
@@ -439,22 +454,20 @@ msgid "Python int too large to convert to C int"
 msgstr ""
 
 # Create a new arc object
-# 创建一个新的arc对象
+# Chuàngjiàn hú duìxiàng kuòzhǎn lèixíng
 #: libgedathon/module/objects/geda_py_arc.c:318
-#, fuzzy
 msgid "Creates an Arc object extension type."
-msgstr "Chuàngjiàn yīgè xīn de arc duìxiàng."
+msgstr "創建弧對象擴展類型."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
 msgstr ""
 
-# Create a new box object
-# Chuàngjiàn yīgè xīn de kuāng duìxiàng
+# Creates a Box object type
+# Chuàngjiàn yīgè kuāng duìxiàng lèixíng
 #: libgedathon/module/objects/geda_py_box.c:332
-#, fuzzy
 msgid "Creates a Box object type."
-msgstr "創建一個新的框對象."
+msgstr "創建一個框對像類型."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
@@ -464,23 +477,20 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
-# Chuàngjiàn yīgè xīn de zǒngxiàn duìxiàng
+# Creates a Bus object type
+# Chuàngjiàn zǒngxiàn duìxiàng lèixíng
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "創建一個新的總線對象."
+msgstr "創建總線對像類型."
 
-# Create a new circle object
-# Chuàngjiàn yīgè xīn de yuán xíng duìxiàng
+# Error initializing new Circle object
+# Chūshǐhuà xīn Circle duìxiàng shí chūcuò
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "創建一個新的圓形對象."
+msgstr "初始化新Circle對象時出錯"
 
-# Create a new circle object
-# Chuàngjiàn yīgè xīn de yuán xíng duìxiàng
+# Creates a Circle object type
+# Chuàngjiàn yuán duìxiàng lèixíng
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "創建一個新的圓形對象."
+msgstr "創建圓對像類型."
