@@ -72,7 +72,7 @@ static void x_find_set_search_parameters()
     }
   }
 
-  /* STUB: Load Previous Settings */
+  /*! \todo STUB: Load Previous Settings */
   Search.Case      = FALSE;
   Search.Whole     = TRUE;
   Search.Backword  = FALSE;

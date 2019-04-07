@@ -8,6 +8,11 @@ Bugs (no particular order):
 
     Grips are not sized correctly.
 
+    Undo re-hides attributes that were temporarily shown, major annoyance.
+    This only applies to the disk based undo system.
+
+    print-orientation, print-paper, print-color
+
     directory bitmap -> bitmaps
 
     exported symbols are not translated back to normalicy

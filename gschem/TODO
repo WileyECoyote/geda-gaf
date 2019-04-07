@@ -1,6 +1,20 @@
 TODOs
 ----------------------
 
+Add a support for drc_rules.txt to options? menu, when user select
+check if file exist, if so read file, open dialog and display array
+of checkboxes/bulbs. If user hits okay, retrieve check boxes and
+determine if any option was changed. If the drc_rules.txt file did
+not exist then create, or if file did exist but there was a change
+then over write the file with updated settings.
+
+tools menus scm code must check for the existence of the file and
+add "-l drc_rules.txt" to gnetlist command line.
+
+i_drc.c (for file io?)
+x_drcrules.c (dialog box?)
+or
+x_drc.c (for both dialog box and file io?)
 
 Code cleanups (no particular order):
 ----------------------

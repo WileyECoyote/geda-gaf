@@ -189,6 +189,7 @@
 #define ATTRIB_FIND          attributes-find-text
 #define ATTRIB_HIDE          attributes-hide-text
 #define ATTRIB_SHOW          attributes-show-text
+#define ATTRIB_PATCH         attributes-patch
 #define ATTRIB_EDIT          attributes-editor
 
 /* Tools */

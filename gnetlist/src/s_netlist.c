@@ -134,6 +134,26 @@ GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
   return NULL;
 }
 
+int s_netlist_length (NETLIST *netlist)
+{
+  if (netlist) {
+
+    NETLIST    *nl_current;
+    int count = 0;
+
+    nl_current = netlist_head;
+
+    /* Loop through the net list */
+    while (nl_current != NULL) {
+      count++;
+      nl_current = nl_current->next;
+    }
+    return count;
+  }
+
+  return -1;
+}
+
 /*!
  * \brief Assign Net list Names in the Graphical Netlist
  * \par Function Description
@@ -147,6 +167,47 @@ GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
  * \param [in] pr_current       Current GedaToplevel structure; toplevel,
  * \param [in] named_netlist    The List to search for net names; the netlist
  * \param [in] unnamed_netlist  NetlList of all objects with a graphical tag
+ *
+ * \remarks This is most certainly wrong. What happens when net-naming-priority
+ *          is "netattrib" and a net was assigned an unnamed_net in the netlist
+ *          but an object in the graphical list has a pin with a net attribute?
+ *          These algorithms will over-write pl_current->net_name, i.e. the
+ *          net attributes of graphical objects is ignored, regardless of the
+ *          net-naming-priority.
+ *          This only occurs when the graphical object has a reference designator
+ *          so maybe this is correct?
+ *
+ *          1.) A hierarchy source symbol is technically a graphical object, though
+ *              this can not be declared in the schematic because the hierarchy
+ *              symbol must have a reference designator to identify nets in the
+ *              sublevel.
+ *
+ *          2.) A io port symbol is also a graphical object, which must not have a
+ *              reference designator or it will show up in the BOM, (unless a "nobom"
+ *              attribute is used to override). The current scheme is to match pin
+ *              labels in the source symbol with refdes attributes in the sublevel.
+ *
+ *          3.) An inter-page connect symbol is also a graphical object. Unlike ports
+ *              these should not have "pintype" per se since the symbols are only
+ *              intended to join connections between pages. Netnames can be used on
+ *              the "nets" to accomplish this but symbols are not allowed to have
+ *              netname attributes. In which case the inter-page connect symbol
+ *              truely is graphical and therefore should NOT have a reference
+ *              designator.
+ *
+ * Ports must have atleast one of
+ *
+ *   1. refdes=      (not refdes=none)
+ *   2. net=         (This will be ignored if both 1 & 3 exist)
+ *   3. graphical=1  (graphical=0 disables the attribute)
+ *
+ *   Or DRC2 reports: "ERROR: Reference not numbered: U?". If a refdes is
+ *   assigned then refdes will shown up in the net list as a component unless
+ *   graphical=1, and even then in the netlist itself (as being "connected")
+ *
+ * \todo Gnetlist needs a bonified User Requirements Document that reflects the
+ *       needs of users, and not dictate how users MUST use the software in order
+ *       to make the software work correctly.
  */
 void s_netlist_name_named_nets (GedaToplevel *pr_current,
                                      NETLIST *named_netlist,

@@ -737,6 +737,7 @@ void          x_dialog_edit_fill_type       (GschemToplevel *w_current);
 void          x_dialog_edit_line_type       (GschemToplevel *w_current);
 void          x_dialog_find_text            (GschemToplevel *w_current);
 void          x_dialog_hide_text            (GschemToplevel *w_current);
+void          x_dialog_patch_text           (GschemToplevel *w_current);
 void          x_dialog_show_text            (GschemToplevel *w_current);
 void          x_dialog_text_input           (GschemToplevel *w_current);
 void          x_dialog_translate            (GschemToplevel *w_current);
@@ -754,6 +755,7 @@ void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
                                              IDE_MESSAGE_TYPE context, const char *title);
 char         *x_dialog_select_file          (GschemToplevel *w_current, const char *, const char *, int);
 void          x_dialog_show_message         (const char *, IDE_MESSAGE_TYPE context, const char *title);
+GLT          *x_dialog_sym_not_embedded     (GschemToplevel *w_current, GList *sym);
 
 /* x_dnd.c */
 bool          x_dnd_receive_string          (GschemToplevel *w_current, int x, int y, const char *string, int where);

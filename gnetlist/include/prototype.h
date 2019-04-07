@@ -101,6 +101,7 @@ char *s_netattrib_return_netname(GedaToplevel *pr_current,GedaObject *o_current,
       NETLIST   *s_netlist_add                 (NETLIST *netlist);
          void    s_netlist_destroy_or_report   (NETLIST *netlist, GedaList *list);
    GedaObject   *s_netlist_find_object         (NETLIST *netlist, const char *uref);
+          int    s_netlist_length              (NETLIST *netlist);
          void    s_netlist_name_named_nets     (GedaToplevel *pr_current, NETLIST *named_netlist, NETLIST *unnamed_netlist);
          char   *s_netlist_netname_of_netid    (GedaToplevel *pr_current, NETLIST *netlist_head, int net_id);
          void    s_netlist_post_process        (GedaToplevel *pr_current, NETLIST *head);

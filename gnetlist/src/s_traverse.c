@@ -35,6 +35,8 @@
 #include <geda_debug.h>
 #include <geda_diagnostics.h>
 
+#include <valgrind/callgrind.h>
+
 /*! Tracks which Objects have been visited so far, and how many times.
  *
  * The keys of the table are the Object pointers, and the visit count
@@ -534,8 +536,14 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
 
       Page *pcurrent;
 
+  //CALLGRIND_START_INSTRUMENTATION;
+
       /* result of s_traverse_net() is not used, implicitly cast function value (void) */
       s_traverse_net (pr_current, nets, TRUE, o_current, hierarchy_tag, cpins->node_type);
+
+  //CALLGRIND_STOP_INSTRUMENTATION;
+
+  //CALLGRIND_DUMP_STATS;
 
       pcurrent = geda_toplevel_get_current_page (pr_current);
 

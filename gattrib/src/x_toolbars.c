@@ -52,7 +52,18 @@ static ToolbarStringData ToolbarStrings[] = {
   { NULL, NULL, NULL},
 };
 
-/*! \brief Redirect Cut, Copy, Paste from Toolbar to Handler function */
+/*!
+ * \brief Callback for Cut, Copy, Paste Buttons on the Standard Toolbar
+ * \par Function Description
+ *  This is a callback function for the clipboard related buttons on the
+ *  standard toolbar. The function passes the call to a common handler;
+ *  x_window_clipboard_handler, which also handles the same task menus.
+ *  The toolbar and menus use a common enumeration, IDS_Toolbar, as the
+ *  the identifier in order to synchronize the task.
+ *
+ * \param [in] widget is button widget
+ * \param [in] Control pointer to enumerated integer ID of the button
+ */
 static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
 {
   int button = (int)(long)Control;

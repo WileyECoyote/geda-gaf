@@ -222,6 +222,7 @@ enum ActionFlag
         COMMAND ( do_find_text )
         COMMAND ( do_hide_text )
         COMMAND ( do_show_text )
+        COMMAND ( do_patch_text )
         COMMAND ( do_attributes )
 
 /* Tools */
@@ -534,6 +535,7 @@ enum {
      COMMAND ( ATTRIB_FIND,         "find text",        USE_MAIN_LOOP,          do_find_text)
      COMMAND ( ATTRIB_HIDE,         "hide text",        USE_MAIN_LOOP,          do_hide_text)
      COMMAND ( ATTRIB_SHOW,         "show text",        USE_MAIN_LOOP,          do_show_text)
+     COMMAND ( ATTRIB_PATCH,        "patch text",       USE_MAIN_LOOP,          do_patch_text)
      COMMAND ( ATTRIB_EDIT,         "edit attrib",      USE_WORKER_THREAD,      do_attributes)
 
 /* Tools */

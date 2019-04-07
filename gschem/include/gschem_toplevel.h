@@ -86,8 +86,12 @@ struct _GschemToplevel {
   GtkWidget *command_box;
   GtkWidget *command_entry;
 
+  GtkWidget *patch_widget;
   GtkWidget *macro_widget;
+  GtkWidget *search_widget;
   GtkWidget *status_bar;
+
+  GtkWidget *bottom_notebook;
 
   char *keyaccel_string;       /* visual feedback when pressing
                                          keyboard accelerators */

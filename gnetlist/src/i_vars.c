@@ -142,6 +142,13 @@ i_vars_init_gnetlist_defaults(void)
 
   /* By default, net= attributes beats netname= attributes. */
   eda_config_set_integer (cfg, "gnetlist", "net-naming-priority", NETATTRIB_ATTRIBUTE);
+
+  /* Maybe should get the system contexts and then assign settings
+   * to default_xxx_xxx variable before the rc files are read so
+   * that the user can over-ride in local files. as it is variables
+   * such as pr_current->hierarchy_traversal are set here and can
+   * never be changed with an rc file, i.e. silly gaf must be used.
+   */
 }
 
 /*!

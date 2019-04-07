@@ -139,7 +139,7 @@ static void menu_open_recent( char* filename)
 
     case GEDA_RESPONSE_NO:
     /* No need to do anything here, just fall through */
-      default:
+    default:
       break;
     }
   }

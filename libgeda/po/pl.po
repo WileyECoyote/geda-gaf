@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-25 23:46-0500\n"
+"POT-Creation-Date: 2019-04-06 21:36-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1132,7 +1132,7 @@ msgid "Found arc with negative radius"
 msgstr "Napotkano koło o zerowym promieniu"
 
 #: libgeda/src/object/o_arc_object.c:1453
-#: libgeda/src/object/o_circle_object.c:1344
+#: libgeda/src/object/o_circle_object.c:1345
 msgid "Setting radius to"
 msgstr "Użyję nachylenia równego"
 
@@ -1141,14 +1141,14 @@ msgid "Found an arc with radius zero"
 msgstr "Napotkano łuk o zerowym promieniu"
 
 #: libgeda/src/object/o_arc_object.c:1460
-#: libgeda/src/object/o_circle_object.c:1351
+#: libgeda/src/object/o_circle_object.c:1352
 msgid "Setting zero radius to 1000\n"
 msgstr "Użyję nachylenia równego 1000\n"
 
 #: libgeda/src/object/o_arc_object.c:1465
 #: libgeda/src/object/o_box_object.c:1581
 #: libgeda/src/object/o_bus_object.c:584
-#: libgeda/src/object/o_circle_object.c:1356
+#: libgeda/src/object/o_circle_object.c:1357
 #: libgeda/src/object/o_line_object.c:1567
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:575
@@ -1160,7 +1160,7 @@ msgstr "Napotkano niepoprawny kolor"
 #: libgeda/src/object/o_arc_object.c:1469
 #: libgeda/src/object/o_box_object.c:1585
 #: libgeda/src/object/o_bus_object.c:588
-#: libgeda/src/object/o_circle_object.c:1360
+#: libgeda/src/object/o_circle_object.c:1361
 #: libgeda/src/object/o_line_object.c:1571
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:579
@@ -1224,22 +1224,22 @@ msgstr "Znaleziono nieprawidłowy kierunkowskaz bus"
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Ustawię kierunek na neutralny (brak kierunku)\n"
 
-#: libgeda/src/object/o_circle_object.c:608
+#: libgeda/src/object/o_circle_object.c:609
 msgid "Null radius circles are not allowed\n"
 msgstr "Koła o zerowym promieniu są niedozwolone\n"
 
-#: libgeda/src/object/o_circle_object.c:1302
-#: libgeda/src/object/o_circle_object.c:1332
+#: libgeda/src/object/o_circle_object.c:1303
+#: libgeda/src/object/o_circle_object.c:1333
 msgid "Failed to parse circle object"
 msgstr ""
 
 # Found circle with a negative radius
-#: libgeda/src/object/o_circle_object.c:1339
+#: libgeda/src/object/o_circle_object.c:1340
 msgid "Found circle with a negative radius"
 msgstr "odkrył okręgu o promieniu ujemnym"
 
 # Found a circle with radius zero
-#: libgeda/src/object/o_circle_object.c:1347
+#: libgeda/src/object/o_circle_object.c:1348
 msgid "Found a circle with radius zero"
 msgstr "Znaleziono okrąg o promieniu zerowym"
 
@@ -1331,29 +1331,29 @@ msgstr ""
 msgid "Component not found"
 msgstr "Nie odnaleziono komponentu"
 
-#: libgeda/src/object/o_complex_object.c:1167
+#: libgeda/src/object/o_complex_object.c:1181
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1172
+#: libgeda/src/object/o_complex_object.c:1186
 msgid "Found a component with an invalid rotation"
 msgstr "Napotkano komponent o błędnej specyfikacji rotacji"
 
-#: libgeda/src/object/o_complex_object.c:1176
+#: libgeda/src/object/o_complex_object.c:1190
 #: libgeda/src/object/o_picture_object.c:1495
 msgid "Setting angle to 0\n"
 msgstr "Użyję nachylenia równego 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1181
+#: libgeda/src/object/o_complex_object.c:1195
 msgid "Found a component with an invalid mirror flag"
 msgstr ""
 "Napotkano komponent z nieprawidłową wartością flagi odbicia lustrzanego"
 
-#: libgeda/src/object/o_complex_object.c:1185
+#: libgeda/src/object/o_complex_object.c:1199
 msgid "Setting mirror to 0\n"
 msgstr "Przyjmuję 'odbity' równe 0\n"
 
-#: libgeda/src/object/o_complex_object.c:1200
+#: libgeda/src/object/o_complex_object.c:1214
 msgid "Invalid complex object"
 msgstr ""
 

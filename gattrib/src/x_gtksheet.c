@@ -225,7 +225,7 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
 
   menu = geda_menu_new();
 
-  for (i = 0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
+  for (i = 0; i < (sizeof(popup_items)/sizeof(popup_items[0])); i++)
   {
     GtkWidget *item = geda_menu_item_new_with_label(popup_items[i]);
 
