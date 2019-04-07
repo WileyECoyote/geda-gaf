@@ -331,21 +331,28 @@ msgstr "Επιλέξτε αυτό το αντικείμενο"
 msgid "Unselect this Object"
 msgstr "Καταργήστε την επιλογή αυτού του αντικειμένου"
 
+# Returns the length of a linear object
+# Epistréfei to míkos enós grammikoú antikeiménou
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Επιστρέφει το μήκος ενός γραμμικού αντικειμένου."
 
+# File Name of this Page; Ónoma archeíou aftís tis selídas
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Όνομα αρχείου αυτής της σελίδας."
 
+# String describing a geometric element
+# Seirá pou perigráfei éna geometrikó stoicheío
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Σειρά που περιγράφει ένα γεωμετρικό στοιχείο"
 
+# Retrieve a specific attribute Object
+# Anáktisi enós synkekriménou antikeiménou
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Ανάκτηση ενός συγκεκριμένου αντικειμένου"
 
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
@@ -483,23 +490,20 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
-# Dimiourgíste éna néo antikeímeno diávlou
+# Creates a bus object type
+# Dimiourgeí énan týpo antikeiménou leoforeíou
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Δημιουργήστε ένα νέο αντικείμενο διαύλου."
+msgstr "Δημιουργεί έναν τύπο αντικειμένου λεωφορείου."
 
-# Create a new circle object
-# Dimiourgíste éna néo antikeímeno kýklou
+# Error initializing new Circle object
+# Parousiástike sfálma katá tin archikopoíisi tou antikeiménou néou kýklou
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Δημιουργήστε ένα νέο αντικείμενο κύκλου."
+msgstr "Παρουσιάστηκε σφάλμα κατά την αρχικοποίηση του αντικειμένου νέου κύκλου"
 
 # Create a new circle object
-# Dimiourgíste éna néo antikeímeno kýklou
+# Dimiourgeí énan týpo antikeiménou kýklou
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Δημιουργήστε ένα νέο αντικείμενο κύκλου."
+msgstr "Δημιουργεί έναν τύπο αντικειμένου κύκλου."
