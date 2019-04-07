@@ -266,21 +266,25 @@ msgstr "Wählen Sie dieses Objekt aus"
 msgid "Unselect this Object"
 msgstr "Deaktivieren Sie dieses Objekt"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Gibt die Länge eines linearen Objekts zurück."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Dateiname dieser Seite."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Zeichenfolge, die ein geometrisches Element beschreibt"
 
+# Retrieve a specific attribute Object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Rufen Sie ein bestimmtes Attribut Object ab"
 
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
@@ -416,20 +420,17 @@ msgstr ""
 msgid "The bus name attribute value must be a string"
 msgstr ""
 
-# Create a new bus object
+# Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
-#, fuzzy
 msgid "Creates a Bus object type."
-msgstr "Legen Sie ein neues Busobjekt an."
+msgstr "Erzeugt einen Busobjekttyp."
 
-# Create a new circle object
+# Error initializing new Circle object
 #: libgedathon/module/objects/geda_py_circle.c:116
-#, fuzzy
 msgid "Error initializing new Circle object"
-msgstr "Erstellen Sie ein neues Kreisobjekt."
+msgstr "Fehler beim Initialisieren eines neuen Kreisobjekts"
 
 # Create a new circle object
 #: libgedathon/module/objects/geda_py_circle.c:336
-#, fuzzy
 msgid "Creates a Circle object type."
-msgstr "Erstellen Sie ein neues Kreisobjekt."
+msgstr "Erzeugt einen Kreisobjekttyp."
