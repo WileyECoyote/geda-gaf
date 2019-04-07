@@ -266,31 +266,36 @@ msgstr "bangvil vottho"
 # Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "chreusa vottho nih"
 
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "min chreusa vottho nih"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "tralb braveng robsa vottho lineaer."
 
+# File name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "chhmoh eksar nei tompr nih"
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "khsae aksaar pipnrnea ampi theato thorneimat"
 
+# Retrieve a specific attribute Object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "tow yk vottho kounalokkhan cheakleak muoy"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "tow yk banhchi robsa vottho kounalokkhan del teaktong"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
