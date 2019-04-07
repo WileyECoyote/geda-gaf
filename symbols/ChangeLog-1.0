@@ -6,6 +6,8 @@
 
     * maxim/MAX3238-1.sym: Update description, resequence attributes.
 
+    * philips/TDA8020HL-1.sym: Add symbol; Dual smart card interface with I2C.
+
 2019-03-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
