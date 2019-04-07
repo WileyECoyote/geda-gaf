@@ -73,7 +73,7 @@ refdes=U?
 T 400 100 5 8 0 0 0 0 1
 device=and
 T 400 200 5 8 0 0 0 0 1
-comment=VERILOG_PORTS=POSITIONAL
+description=VERILOG_PORTS=POSITIONAL
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1
