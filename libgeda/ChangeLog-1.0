@@ -17,6 +17,8 @@
 
           * geda_line_object_is_endpoint
 
+    * tests/test_net_object.c: Add checks for bounds_valid in check_query.
+
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 
