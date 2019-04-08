@@ -1595,24 +1595,43 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
 
   geda_attrib_set_integer_value(NULL, "B", 3);
 
+  geda_attrib_set_integer_value(attrib, "B", -20);
+
+  char *name;
+  char *value;
+
+  if (!geda_attrib_get_name_value(attrib, &name, &value)) {
+    fprintf(stderr, "FAILED: (O032201A) geda_attrib_object_set_integer_value\n");
+    result++;
+  }
+  else {
+
+    if (strncmp(name, "B", 1) || strncmp(value, "-20", 3)) {
+      fprintf(stderr, "FAILED: (O032201B) geda_attrib_object_set_integer_value <%s=%s>\n", name, value);
+      result++;
+    }
+  }
+
+  GEDA_FREE(name);
+  GEDA_FREE(value);
+
+  notify_attribute = 0;
+
   for (count = 0; count < 10; count++) {
 
     int i = geda_random_number (0, 9000000);
 
-    geda_attrib_set_integer_value(attrib, "B", i);
+    geda_attrib_set_integer_value(attrib, "C", i);
 
     if (notify_attribute != 2) {
-      fprintf(stderr, "FAILED: (O032201A) geda_attrib_object_set_integer_value %d\n",notify_attribute);
+      fprintf(stderr, "FAILED: (O032202A) geda_attrib_object_set_integer_value %d\n",notify_attribute);
       result++;
     }
 
     notify_attribute = 0;
 
-    char *name;
-    char *value;
-
     if (!geda_attrib_get_name_value(attrib, &name, &value)) {
-      fprintf(stderr, "FAILED: (O032201B) geda_attrib_object_set_integer_value\n");
+      fprintf(stderr, "FAILED: (O032202B) geda_attrib_object_set_integer_value\n");
       result++;
     }
     else {
@@ -1620,8 +1639,8 @@ check_attrib_set_integer_value(GedaToplevel *toplevel)
       char *val = geda_sprintf("%d", i); /* get what the answer should be */
       int   len = strlen(val);
 
-      if (strncmp(name, "B", 1) || strncmp(value, val, len)) {
-        fprintf(stderr, "FAILED: (O032201C) geda_attrib_object_set_integer_value <%s=%s>\n", name, value);
+      if (strncmp(name, "C", 1) || strncmp(value, val, len)) {
+        fprintf(stderr, "FAILED: (O032202C) geda_attrib_object_set_integer_value <%s=%s>\n", name, value);
         result++;
       }
       g_free(val);

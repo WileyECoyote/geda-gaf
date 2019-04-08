@@ -5,6 +5,9 @@
       and out error message when it is NULL and update function
       documentation.
 
+    * tests/test_attrib_object.c: Revise check_attrib_set_integer_value
+      to check geda_attrib_set_integer_value with a negative value.
+
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 
