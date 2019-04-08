@@ -1106,11 +1106,20 @@ void geda_attrib_object_set_integer_value (GedaObject *attrib,
                                                   int  value)
 {
   if (GEDA_IS_TEXT(attrib)) {
-    GEDA_FREE(attrib->text->string);
-    attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
-    attrib->bounds_valid = FALSE;
-    geda_struct_object_set_page_changed (attrib);
-    geda_attrib_object_emit_changed (attrib);
+
+    if (name_ptr != NULL) {
+
+      GEDA_FREE(attrib->text->string);
+
+      attrib->text->string = geda_sprintf("%s=%d", name_ptr, value, NULL);
+      attrib->bounds_valid = FALSE;
+
+      geda_struct_object_set_page_changed (attrib);
+      geda_attrib_object_emit_changed (attrib);
+    }
+    else {
+      fprintf(stderr, _("Attribute name cannot be NULL!\n"));
+    }
   }
   else {
     geda_object_error(__func__, attrib, GEDA_OBJECT_TEXT);

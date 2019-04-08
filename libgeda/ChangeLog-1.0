@@ -1,3 +1,9 @@
+2019-04-08 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_attrib_object.c: Revise geda_attrib_object_set_
+      integer_value to check that the name_ptr argument is not NULL
+      and out error message when it is NULL.
+
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda-deprecated-config.scm: Remove file, the containing routines
