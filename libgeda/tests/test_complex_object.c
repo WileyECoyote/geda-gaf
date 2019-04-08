@@ -73,7 +73,7 @@
  *      O0803     geda_complex_object_get_filename
  *      O0804     geda_complex_object_get_nearest_point
  *      O0805     geda_complex_object_get_pin_objs
- *      O0806     geda_complex_object_get_prim_objs
+ *      O0806    geda_complex_object_get_prim_objs
  *      O0807     geda_complex_object_find_pin_by_attribute
  *      O0808     geda_complex_object_is_embedded
  *      O0809     geda_complex_object_mirror
@@ -410,6 +410,25 @@ int check_accessors (void)
       }
 
       /* === Function 06: geda_complex_object_get_prim_objs  === */
+
+      GList *prim_objs;
+
+      prim_objs = geda_complex_object_get_prim_objs(object1);
+
+      if (prim_objs == NULL) {
+        fprintf(stderr, "FAILED: (O080601A) get_prim_objs\n");
+        fail++;
+      }
+      else {
+
+        int count = g_list_length(prim_objs);
+
+        if (count != 210) {
+          fprintf(stderr, "FAILED: (O080601B) get_prim_objs <%d>\n", count);
+          fail++;
+        }
+      }
+
       /* === Function 08: geda_complex_object_is_embedded  === */
 
       if (geda_complex_object_is_embedded (object1)) {

@@ -8,6 +8,10 @@
     * tests/test_attrib_object.c: Revise check_attrib_set_integer_value
       to check geda_attrib_set_integer_value with a negative value.
 
+    * tests/test_complex_object.c
+
+          * geda_complex_object_get_prim_objs
+
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 
