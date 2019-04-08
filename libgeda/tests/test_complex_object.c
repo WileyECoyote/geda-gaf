@@ -75,7 +75,7 @@
  *      O0805     geda_complex_object_get_pin_objs
  *      O0806    geda_complex_object_get_prim_objs
  *      O0807     geda_complex_object_find_pin_by_attribute
- *      O0808     geda_complex_object_is_embedded
+ *      O0808    geda_complex_object_is_embedded
  *      O0809     geda_complex_object_mirror
  *      O0810    geda_complex_object_new
  *      O0811    geda_complex_object_new_embedded
@@ -445,6 +445,18 @@ int check_accessors (void)
     g_object_unref (object1);
   }
 
+  GedaObject *object2;
+
+  object2 = geda_complex_object_new_embedded(100, 100, 180, 1,sym_name, 1);
+
+  /* === Function 08: geda_complex_object_is_embedded  === */
+
+  if (!geda_complex_object_is_embedded (object2)) {
+    fprintf(stderr, "FAILED: (O080802) is_embedded\n");
+    result++;
+  }
+
+  g_object_unref (object2);
   g_object_unref(toplevel);
 
   return result;

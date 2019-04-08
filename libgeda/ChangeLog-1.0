@@ -11,6 +11,7 @@
     * tests/test_complex_object.c
 
           * geda_complex_object_get_prim_objs
+          * geda_complex_object_is_embedded
 
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
