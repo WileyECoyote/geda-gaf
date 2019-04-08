@@ -13,6 +13,10 @@
           * geda_complex_object_get_prim_objs
           * geda_complex_object_is_embedded
 
+    * tests/test_line_object.c
+
+          * geda_line_object_is_endpoint
+
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 

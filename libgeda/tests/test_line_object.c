@@ -73,14 +73,14 @@
  *      O1107    geda_line_object_get_line_width
  *      O1108    geda_line_object_get_intersection
  *      O1109    geda_line_object_get_midpoint
- *               geda_line_object_get_nearest_point
+ *      O1110    geda_line_object_get_nearest_point
  *      O1111    geda_line_object_get_position
- *               geda_line_object_get_slope
+ *      O1112    geda_line_object_get_slope
  *      O1113    geda_line_object_get_x1
  *      O1114    geda_line_object_get_x2
  *      O1115    geda_line_object_get_y1
  *      O1116    geda_line_object_get_y2
- *               geda_line_object_is_endpoint
+ *      O1117    geda_line_object_is_endpoint
  *               geda_line_object_length
  *               geda_line_object_mirror
  *               geda_line_object_modify
@@ -858,7 +858,38 @@ check_is_endpoint(GedaObject *object)
 {
   int result = 0;
 
+  GedaPoint pt1, pt2, pt3;
+
+  pt1.x = geda_line_object_get_x1 (object);
+  pt1.y = geda_line_object_get_y1 (object);
+
+  pt2.x = geda_line_object_get_x2 (object);
+  pt2.y = geda_line_object_get_y2 (object);
+
+  pt3.x = pt1.x;
+  pt3.y = pt2.y;
+
   /* === Function 17: geda_line_object_is_endpoint  === */
+
+  if (geda_line_object_is_endpoint(NULL, &pt1)) {
+    fprintf(stderr, "FAILED: (O111700) is_endpoint NULL\n");
+    result++;
+  }
+
+  if (!geda_line_object_is_endpoint(object, &pt1)) {
+    fprintf(stderr, "FAILED: (O111701) is_endpoint\n");
+    result++;
+  }
+
+  if (!geda_line_object_is_endpoint(object, &pt2)) {
+    fprintf(stderr, "FAILED: (O111702) is_endpoint\n");
+    result++;
+  }
+
+  if (geda_line_object_is_endpoint(object, &pt3)) {
+    fprintf(stderr, "FAILED: (O111703) is_endpoint\n");
+    result++;
+  }
 
   return result;
 }
