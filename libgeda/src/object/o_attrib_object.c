@@ -1091,15 +1091,13 @@ GList *geda_attrib_object_search_object_string (const GedaObject *object,
  * \brief Set Attribute to Interger Value
  * \par Function Description
  *  Sets the value of \a attrib using the string representation
- *  of \a value.
+ *  of \a value. The name of the attribute must not be NULL.
  *
  * \param [in] attrib   Attribute whose value is to be set,
  * \param [in] name_ptr Ponter to string of attribute name,
  * \param [in] value    Integer value to be set.
  *
  * \sa geda_attrib_object_set_value
- *
- * \todo does not validate name_ptr || value
  */
 void geda_attrib_object_set_integer_value (GedaObject *attrib,
                                            const char *name_ptr,
@@ -1127,7 +1125,7 @@ void geda_attrib_object_set_integer_value (GedaObject *attrib,
 }
 
 /*! O0323
- * \brief  Set Attribute to Interger Value
+ * \brief  Set Attribute to String Value
  * \par Function Description
  *  Sets the attribute value of \a attrib to the given value.
  *
