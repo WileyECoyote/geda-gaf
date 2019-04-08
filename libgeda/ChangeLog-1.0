@@ -22,6 +22,7 @@
     * tests/test_object.c: Check geda_object_bounds with:
 
           * geda_complex_new
+          * geda_line_object_new
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 

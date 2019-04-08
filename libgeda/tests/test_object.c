@@ -839,6 +839,42 @@ int check_methods (void)
   geda_object_unref(object);
 
   /* ------------------------- GedaLine ------------------------- */
+
+  object = geda_line_object_new (3, 100, 100, 300, 300);
+
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "Failed: line object_bounds %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    if (!geda_object_get_bounds_valid(object)) {
+      fprintf(stderr, "Failed: get_bounds_valid %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+
+    if (object->left != 100) {
+      fprintf(stderr, "Failed: line object_bounds %s; left <%d>\n", TOBJECT, object->left);
+      result++;
+    }
+
+    if (object->right != 300) {
+      fprintf(stderr, "Failed: line object_bounds %s; right <%d>\n", TOBJECT, object->right);
+      result++;
+    }
+
+    if (object->top != 100) {
+      fprintf(stderr, "Failed: line object_bounds %s; top <%d>\n", TOBJECT, object->top);
+      result++;
+    }
+
+    if (object->bottom != 300) {
+      fprintf(stderr, "Failed: line object_bounds %s; bottom <%d>\n", TOBJECT, object->bottom);
+      result++;
+    }
+  }
+  geda_object_unref(object);
+
   /* ------------------------- GedaNet -------------------------- */
   /* ------------------------- GedaPicture ---------------------- */
   /* ------------------------- GedaText ------------------------- */
