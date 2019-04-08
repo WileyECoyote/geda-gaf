@@ -19,6 +19,9 @@
 
     * tests/test_net_object.c: Add checks for bounds_valid in check_query.
 
+    * tests/test_object.c: Check geda_object_bounds with:
+
+          * geda_complex_new
 
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com
 
