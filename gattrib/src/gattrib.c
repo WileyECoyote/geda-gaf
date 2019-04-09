@@ -468,10 +468,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
 /*!
  * \brief Entry point to gattrib
  * \par Function Description
- *  This is just a wrapper which
- *  invokes the guile stuff, and points to the real main program,
- *  gattrib_main().  Note that I still need some vestigial
- *  guile stuff in order to read the rc files.
+ *  This is a wrapper which invokes guile to the real main
+ *  program, gattrib_main, after possibly setting up NLS.
  *
  * \param argc Number of command line arguments
  * \param argv Command line arguments
