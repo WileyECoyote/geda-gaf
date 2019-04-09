@@ -592,58 +592,66 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
     GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
-      printf("\t%s: examining o_current->name = %s\n", __func__, o_current->name);
+    printf("\t%s: examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     /* -----  Now process objects found on page  ----- */
-    if (o_current->type == OBJ_COMPLEX &&
-        o_current->attribs != NULL) {
-
+    if (o_current->type == OBJ_COMPLEX && o_current->attribs != NULL)
+    {
       /* ---- Don't process part if it lacks a refdes ----- */
       temp_uref = s_attrib_get_refdes(o_current);
-      if ( (temp_uref) &&
-	 (strcmp (temp_uref, "none")) &&
-	 (strcmp (temp_uref, "pinlabel")) ){
+      if ((temp_uref) &&
+         (strcmp (temp_uref, "none")) &&
+         (strcmp (temp_uref, "pinlabel")))
+      {
 
-	/* -----  Now iterate through lower level objects looking for pins.  ----- */
+        /* -----  Now iterate through lower level objects looking for pins.  ----- */
         for (o_lower_iter = o_current->complex->prim_objs;
              o_lower_iter != NULL;
              o_lower_iter = g_list_next (o_lower_iter))
         {
           GedaObject *o_lower_current = o_lower_iter->data;
 
-	  if (o_lower_current->type == OBJ_PIN) {
-	    /* -----  Found a pin.  First get its pinnumber.  then get attrib head and loop on attribs.  ----- */
-	    pinnumber = geda_attrib_search_object_by_name (o_lower_current, "pinnumber", 0);
-	    row_label = geda_strconcat(temp_uref, ":", pinnumber, NULL);
+          if (o_lower_current->type == OBJ_PIN) {
+
+            /* -----  Found a pin.  First get its pinnumber.  then get attrib head and loop on attribs.  ----- */
+            pinnumber = geda_attrib_search_object_by_name (o_lower_current, "pinnumber", 0);
+            row_label = geda_strconcat(temp_uref, ":", pinnumber, NULL);
 
 #if DEBUG
-        printf("\t%s, examining pin %s\n",__func__, row_label);
+            printf("\t%s, examining pin %s\n",__func__, row_label);
 #endif
 
-	    a_iter = o_lower_current->attribs;
-	    while (a_iter != NULL) {
-	      pin_attrib = a_iter->data;
-	      if (pin_attrib->type == OBJ_TEXT
-		  && pin_attrib->text != NULL) {  /* found an attribute */
-		attrib_text = geda_strdup(pin_attrib->text->string);
-		attrib_name = geda_strsplit(attrib_text, '=', 0);
-		attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
+            a_iter = o_lower_current->attribs;
 
-		if ( (strcmp(attrib_name, "pinnumber") != 0)
-		     && (attrib_value != 0) ) {
-		  /* Don't include "pinnumber" because it is already in other master list.
-		   * Also must ensure that value is non-null; certain symbols are not well formed.
-		   */
+            while (a_iter != NULL) {
 
-		  /* Get row and col where to put this attrib */
-		  row = s_table_get_index(sheet_head->master_pin_list_head, row_label);
-		  col = s_table_get_index(sheet_head->master_pin_attrib_list_head, attrib_name);
+              pin_attrib = a_iter->data;
+
+              if (pin_attrib->type == OBJ_TEXT &&
+                  pin_attrib->text != NULL)
+              {  /* found an attribute */
+                attrib_text = geda_strdup(pin_attrib->text->string);
+                attrib_name = geda_strsplit(attrib_text, '=', 0);
+                attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
+
+                if ((strcmp(attrib_name, "pinnumber") != 0) &&
+                    (attrib_value != 0))
+                {
+                  /* Don't include "pinnumber" because it is already in other
+                   * master list. Also must ensure that value is non-null;
+                   * certain symbols are not well formed. */
+
+                  /* Get row and col where to put this attrib */
+                  row = s_table_get_index(sheet_head->master_pin_list_head, row_label);
+                  col = s_table_get_index(sheet_head->master_pin_attrib_list_head, attrib_name);
+
                   /* Sanity check */
                   if (row == -1) {
+
                     /* we didn't find the item in the table */
                     const char *err_msg = _("Pin Error looking for row ref");
-                    fprintf (stderr, "%s [%s]\n", err_msg, row_label);
+                   fprintf (stderr, "%s [%s]\n", err_msg, row_label);
                   }
                   else {
                     if (col == -1) {
@@ -651,7 +659,8 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                       fprintf (stderr, "%s [%s]\n", err_msg, attrib_name);
                     }
                     else {
-                      /* Is there a compelling reason for me to put this into a separate fcn? */
+                     /* Is there a compelling reason for me to put this into
+                      * a separate fcn? */
                       ((sheet_head->pin_table)[col][row]).row = row;
                       ((sheet_head->pin_table)[col][row]).col = col;
                       ((sheet_head->pin_table)[col][row]).row_name = geda_strdup(row_label);
@@ -660,17 +669,16 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                     }
                   }
                 }
-		GEDA_FREE(attrib_name);
-		GEDA_FREE(attrib_text);
-		GEDA_FREE(attrib_value);
-	      }
-	      a_iter = g_list_next (a_iter);
+                GEDA_FREE(attrib_name);
+                GEDA_FREE(attrib_text);
+                GEDA_FREE(attrib_value);
+              }
+              a_iter = g_list_next (a_iter);
 
-	    }  /* while (pin_attrib != NULL) */
-	    GEDA_FREE(pinnumber);
-	    GEDA_FREE(row_label);
-	  }
-
+            }  /* while (pin_attrib != NULL) */
+            GEDA_FREE(pinnumber);
+            GEDA_FREE(row_label);
+          }
         }
       }
 

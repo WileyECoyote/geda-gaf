@@ -13,7 +13,8 @@
 
     * src/s_sheet_data.c: Reformat and update function documentation.
 
-    * src/s_table.c: Reformat and update function documentation.
+    * src/s_table.c: Reformat and update function documentation and fix
+      indentations.
 
 2019-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
