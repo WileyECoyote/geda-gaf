@@ -55,6 +55,15 @@ GtkWidget *create_pixmap (const char *filename)
   return pixmap;
 }
 
+/*!
+ * \brief Retrieve a Geda switch image
+ * \par Function Description
+ *  This function creates is required by TOGGLE_SWITCH macro in
+ *  include/geda/geda_dialog_controls.h to return the image widget
+ *  based on WhichState.
+ *
+ * \returns: Newly created switch widget
+ */
 GtkWidget *get_geda_switch_image (bool WhichState)
 {
    GtkWidget *image;
