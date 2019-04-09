@@ -116,15 +116,18 @@ static void version (void)
 /*!
  * \brief Parse command line switches.
  * \par Function Description
- * Parse command line switches at startup. There are only 3 command
- * line switches:
- * - verbose
- * - quiet
+ * Parse command line switches at startup. There are 5 commandline
+ * switches:
+ *
+ * - export-csv
  * - help
+ * - quiet
+ * - verbose
+ * - version
+ *
  * \param argc Number of command line arguments
  * \param argv Command line arguments (array of strings)
  * \returns unknown - looks uninitialized in some circumstances.
- *
  */
 int parse_commandline(int argc, char *argv[])
 {

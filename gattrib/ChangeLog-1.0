@@ -7,6 +7,8 @@
 
     * src/globals.c: Convert cpp comments to c comments.
 
+    * src/parsecmd.c: Update parse_commandline function documentation.
+
 2019-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Remove gnetlist style verbose print in s_rename_all.
