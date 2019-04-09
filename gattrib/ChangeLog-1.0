@@ -2,7 +2,8 @@
 
     * src/gattrib.c: Revise function documentation.
 
-    * src/gattrib_dialog.c: Add get_geda_switch_image function documentation.
+    * src/gattrib_dialog.c: Add get_geda_switch_image function documentation,
+      revise create_geda_switch documentation.
 
 2019-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
