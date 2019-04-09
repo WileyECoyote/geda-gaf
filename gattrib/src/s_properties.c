@@ -29,10 +29,11 @@
 #include <gattrib.h>
 #include <geda_debug.h>
 
-/*! \brief Return index based on attribute properties
-  * \par Function Description
-  * This function returns an enumerated color index
-  */
+/*!
+ * \brief Return index based on attribute properties
+ * \par Function Description
+ *  This function returns an enumerated color index
+ */
 int s_properties_get_fgcolor_index(int visibility, int show_name_value, int is_inherited) {
 
   int fgcolor = 0;
@@ -87,13 +88,14 @@ static TABLE **s_properties_get_current_table() {
 
 /* ---------------------------------------------------------------------- */
 
-/*! \brief set visibility of an individual cell
- *
- * Set the visibility of cell identified by (row, col) to the passed value
- * The function is called by the range handler in this module. This has
- * absolutely nothing to do with the cell visibility property, this is for
- * visibility flag associated with geda-gaf attributes, which determines
- * whether or not attributes are visible in the schematic editor.
+/*!
+ * \brief set visibility of an individual cell
+ * \par Function Description
+ *  Set the visibility of cell identified by (row, col) to the passed value
+ *  The function is called by the range handler in this module. This has
+ *  absolutely nothing to do with the cell visibility property, this is for
+ *  visibility flag associated with geda-gaf attributes, which determines
+ *  whether or not attributes are visible in the schematic editor.
  *
  * \param row Row index of target cell
  * \param col Column index of target cell
@@ -114,13 +116,13 @@ void s_properties_set_cell_visibility(int row, int col, int visibility)
   sheet_head->CHANGED = 1;  /* cell has been updated.  */
 }
 
-/*! \brief set Show Name Value of an individual cell
- *
- *  \par Function Description
- * Set the value of the Show Name flag for the cell identified by (row, col)
- * to the passed value. The function is called by the range handler in this
- * module. The value of the Show Name flag determines whether editor should
- * display the Attribute Name, the Value or Both.
+/*!
+ * \brief set Show Name Value of an individual cell
+ * \par Function Description
+ *  Set the value of the Show Name flag for the cell identified by (row, col)
+ *  to the passed value. The function is called by the range handler in this
+ *  module. The value of the Show Name flag determines whether editor should
+ *  display the Attribute Name, the Value or Both.
  *
  * \param row             Row index of target cell
  * \param col             Column index of target cell
@@ -138,7 +140,10 @@ void s_properties_set_cell_show_name(int row, int col, int show_name_value)
   }
 }
 
-/*! \brief Returns the current visibility setting of a cell */
+/*!
+ * \brief Returns the current visibility setting of a cell
+ * \par Function Description
+ */
 bool s_properties_get_visibility(int row, int col) {
 
   TABLE **local_table = NULL;
@@ -148,7 +153,10 @@ bool s_properties_get_visibility(int row, int col) {
   return local_table[col][row].visibility;
 }
 
-/*! \brief Returns the current Show Name value of a cell */
+/*!
+ * \brief Returns the current Show Name value of a cell
+ * \par Function Description
+ */
 int s_properties_get_show_name_value(int row, int col) {
 
   TABLE **local_table = NULL;
@@ -158,7 +166,10 @@ int s_properties_get_show_name_value(int row, int col) {
   return local_table[col][row].show_name_value;
 }
 
-/*! \brief Returns heredity of the current cell */
+/*!
+ * \brief Returns heredity of the current cell
+ * \par Function Description
+ */
 int s_properties_get_heritence(int row, int col) {
 
   TABLE **local_table = NULL;
@@ -168,9 +179,10 @@ int s_properties_get_heritence(int row, int col) {
   return local_table[col][row].is_inherited;
 }
 
-/*! \brief Set the Foreground color of the cell
-  * \par Function Description
-  *      This function retrieves the color index based on the current
+/*!
+ * \brief Set the Foreground color of the cell
+  *\par Function Description
+  * This function retrieves the color index based on the current
   * visibility and show_name_value and calls a function in x_gtksheet
   * to set the color of the cell identified row, col.
   */
@@ -189,8 +201,9 @@ void s_properties_set_cell_fgcolor(GtkSheet *sheet, int row, int col) {
 
 /* ------------------ Visibility Range Operators ----------------- */
 
-/*! \brief Set visibility of selected cells
- *
+/*!
+ * \brief Set visibility of selected cells
+ * \par Function Description
  * This function sets the visibility of selected cells to the passed
  * value, either VISIBLE or INVISIBLE. This has nothing to do with the
  * cell visibility property. This function is called from the menu
