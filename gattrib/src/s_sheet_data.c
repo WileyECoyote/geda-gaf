@@ -107,18 +107,18 @@ s_sheet_data_free(PageDataSet *PageData)
 
 /* ------------ s_sheet_data interface to s_string_list --------- */
 
-/*! \brief Add Data to string list in sheet-head structures
- *  \par Description
- *       The next 6 functions are  called from the
- * s_sheet_data_add_yada-yada_list_items functions below but have "reduced"
- * names and simplified parameters to improve readability of those functions.
- * These functions are also used by the s_sheet_data_load_blank function
- * below.
+/*!
+ * \brief Add Data to string list in sheet-head structures
+ * \par Description
+ *  The next 6 functions are  called from the
+ *  s_sheet_data_add_yada-yada_list_items functions below but have "reduced"
+ *  names and simplified parameters to improve readability of those functions.
+ *  These functions are also used by the s_sheet_data_load_blank function
+ *  below.
  *
  * \param PageData           pointer to sheet_head structure.
  * \param component_str_name pointer to string to be added to the associated
  *                           string list
- *
  */
 static void
 s_sheet_data_add_comp(PageDataSet *PageData, const char *component_str_name)
@@ -219,13 +219,14 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add components to master list
- *  \par Function Description
- * Add to the master list of components refdeses by iterating through
- * the components and selectively recording discovered comp refdeses.
- * This list is used for the column label on the component sheet. The
- * Data struct being searched  is: Object->attribs(->next. . .)
- * ->object->text->string
+/*!
+ * \brief Add components to master list
+ * \par Function Description
+ *  Add to the master list of components refdeses by iterating through
+ *  the components and selectively recording discovered comp refdeses.
+ *  This list is used for the column label on the component sheet. The
+ *  Data struct being searched  is: Object->attribs(->next. . .)
+ *  ->object->text->string
  *
  * \param obj_list pointer to the component list to be added.
  */
