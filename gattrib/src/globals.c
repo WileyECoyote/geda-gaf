@@ -26,9 +26,9 @@
 #include "../include/gattrib.h"
 
 /* command line arguments */
-int export_mode;  //!< Reflects the value of the command line flag
-int verbose_mode; //!< Reflects the value of the command line flag
-int quiet_mode;   //!< Reflects the value of the command line flag
+int export_mode;         /*!< Reflects the value of -e command line flag */
+int verbose_mode;        /*!< Reflects the value of -v command line flag */
+int quiet_mode;          /*!< Reflects the value of -q command line flag */
 
 /* rc variables */
 GList *hide_columns;

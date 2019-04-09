@@ -5,6 +5,8 @@
     * src/gattrib_dialog.c: Add get_geda_switch_image function documentation,
       revise create_geda_switch documentation.
 
+    * src/globals.c: Convert cpp comments to c comments.
+
 2019-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_rename.c: Remove gnetlist style verbose print in s_rename_all.
