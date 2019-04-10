@@ -57,7 +57,7 @@ TABLE **s_table_new( int rows, int cols)
 
   /* Create a 2 dimensional array of structs */
 
-  new_table = (TABLE **)GEDA_MEM_ALLOC(cols * sizeof(TABLE *));
+  new_table = (TABLE**)GEDA_MEM_ALLOC(cols * sizeof(TABLE*));
 
   for (x = 0; x < cols; x++) {
     new_table[x] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));
