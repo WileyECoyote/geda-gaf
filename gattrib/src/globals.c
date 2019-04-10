@@ -31,6 +31,6 @@ int verbose_mode;        /*!< Reflects the value of -v command line flag */
 int quiet_mode;          /*!< Reflects the value of -q command line flag */
 
 /* rc variables */
-GList *hide_columns;
+GList *hide_columns;     /*!< Pointer to list of invisible columns */
 int    sort_components;
 int    tearoff_menus;
