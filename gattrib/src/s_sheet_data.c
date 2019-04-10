@@ -266,10 +266,10 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
       fprintf(stderr, "ref= %s\n", temp_uref);
 #endif
 
-      /* Now that we have refdes, store refdes and attach attrib list to component */
-      /* Don't add graphical objects or pin label designators*/
+      /* Store refdes and attach attrib list to the component */
       if (temp_uref) {
 
+        /* Skip graphical objects and pin label designators */
         if ((strcmp(temp_uref, "none")) && (strcmp(temp_uref, "pinlabel"))) {
 
 #if DEBUG
