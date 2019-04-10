@@ -25,8 +25,8 @@
  */
 /* ----------------------------------------------------------------- */
 
-#ifndef SHEET_DATA_STRUCT
-#define SHEET_DATA_STRUCT
+#ifndef GATTRIB_DATA_STRUCT
+#define GATTRIB_DATA_STRUCT
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
@@ -175,4 +175,4 @@ struct st_column_visible {
   int visible;
 };
 
-#endif /* ifndef SHEET_DATA_STRUCT */
+#endif /* ifndef GATTRIB_DATA_STRUCT */
