@@ -416,7 +416,7 @@ void s_properties_demote_attribute(void) {
 
   local_table = s_properties_get_current_table();
 
-  /* we only demote attributes previously having been promote */
+  /* Only demote attributes previously having been promoted */
   if(local_table[col][row].is_promoted > 0) {
     local_table[col][row].is_inherited = TRUE;
     local_table[col][row].is_promoted = FALSE;
