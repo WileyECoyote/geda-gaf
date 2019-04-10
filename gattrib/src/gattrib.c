@@ -478,11 +478,13 @@ int main(int argc, char *argv[])
 {
 
 #if ENABLE_NLS
+
   setlocale(LC_ALL, "");
   setlocale(LC_NUMERIC, "C");
   bindtextdomain(GATTRIB_GETTEXT_DOMAIN, LOCALEDIR);
   textdomain(GATTRIB_GETTEXT_DOMAIN);
   bind_textdomain_codeset(GATTRIB_GETTEXT_DOMAIN, "UTF-8");
+
 #endif
 
   /* Initialize the Guile Scheme interpreter. This function does not

@@ -127,6 +127,7 @@ s_sheet_data_add_comp(PageDataSet *PageData, const char *component_str_name)
                          &(PageData->comp_count),
                          component_str_name);
 }
+
 static void
 s_sheet_data_add_comp_attrib(PageDataSet *PageData,
                              const char *comp_attrib_str_name)

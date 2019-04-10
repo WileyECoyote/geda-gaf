@@ -607,6 +607,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
       /* Else clause is suggestion from Ales */
       old_attrib_name = geda_utility_string_split(old_name_value_pair, '=', 0);
+
       if ((strcmp(old_attrib_name, "refdes") != 0) &&
           (strcmp(old_attrib_name, "net") != 0) &&
           (strcmp(old_attrib_name, "slot") != 0) &&
@@ -655,6 +656,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
   /* Now the normal case. . . . */
   local_list = complete_comp_attrib_list;
+
   while (local_list != NULL) {
 
     char *new_attrib_name;
@@ -713,6 +715,7 @@ s_toplevel_update_component_attribs_in_toplevel (
     if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&
         (strlen(new_attrib_value) != 0))
     {
+
       /* simply write new attrib into place of old one. */
 
 #if DEBUG
@@ -732,6 +735,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
     /* -------  Four cases to consider: Case 2 ----- */
     else if ((old_attrib_value != NULL) && (new_attrib_value == NULL)) {
+
       /* remove attrib from component*/
 
 #if DEBUG
@@ -744,6 +748,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
     /* -------  Four cases to consider: Case 3 ----- */
     else if ((old_attrib_value == NULL) && (new_attrib_value != NULL)) {
+
       /* add new attrib to component. */
 
 #if DEBUG
@@ -770,6 +775,7 @@ s_toplevel_update_component_attribs_in_toplevel (
     GEDA_FREE(old_attrib_value);
     local_list = local_list->next;
   }   /*   while (local_list != NULL)  */
+
   return;
 }
 

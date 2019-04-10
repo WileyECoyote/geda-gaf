@@ -78,7 +78,6 @@ TABLE **s_table_new( int rows, int cols)
   }
 
   return (new_table);
-
 }
 
 /*------------------------------------------------------------------*/
@@ -682,7 +681,6 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 
       GEDA_FREE(temp_uref);
     }
-
   }
 
   verbose_done();
