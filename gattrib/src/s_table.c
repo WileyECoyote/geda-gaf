@@ -46,7 +46,6 @@
  *  and deallocated in terms of the number of attributes AND not the number
  *  of components in the design.
  *
- * (Parens used only for clarity.  It works without parens.)
  * \param rows Number of rows required in the new table
  * \param cols Number of columns required in the new table
  * \returns a pointer to an initialized TABLE struct.
@@ -120,7 +119,6 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   /* resize the 2 dimensional array of structs */
   new_table = (TABLE**)realloc(table, Xt * sizeof(TABLE *));
 
-  /* TODO: Fix this:*/
   if (new_table == NULL) return NULL;  /* die if failed to realloc new memory */
 
   new_table[Xt] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));;
