@@ -806,26 +806,28 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
   }
 
   switch (response) {
-  case GEDA_RESPONSE_REJECT: /* Don't replace find next */
+  case GEDA_RESPONSE_REJECT: /* FindButt, do not replace, just find next */
     unload_dialog();
     Search->Found = x_find_main_search(search_text, NULL);
     GEDA_FREE(search_text);
     break;
 
-  case GEDA_RESPONSE_APPLY: /*"Replace All and close dialog"*/
+  case GEDA_RESPONSE_APPLY:  /* Replace All , dialog not closed */
     Search->ReplaceAll = TRUE;
 
-  case GEDA_RESPONSE_ACCEPT: /* Replace*/
+  case GEDA_RESPONSE_ACCEPT: /* Replace */
     unload_dialog();
     replacement_text = geda_combo_widget_get_active_text (ReplaceTextCombo);
+
+    /* The search text was added to history, also add the replacement text */
     add_search_history(replacement_text);
     Search->Found = x_find_main_search(search_text, replacement_text);
     GEDA_FREE(search_text);
     GEDA_FREE(replacement_text);
     break;
 
-  case GEDA_RESPONSE_DELETE_EVENT:
-  case GEDA_RESPONSE_CANCEL:
+  case GEDA_RESPONSE_DELETE_EVENT: /* X widget in dialog bar */
+  case GEDA_RESPONSE_CANCEL:       /* Close button */
     search_replace_dialog_destroy_widgets(ThisDialog);
     gtk_widget_destroy(ThisDialog);
     break;
