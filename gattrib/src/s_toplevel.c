@@ -608,34 +608,36 @@ s_toplevel_update_component_attribs_in_toplevel (
       /* Else clause is suggestion from Ales */
       old_attrib_name = geda_utility_string_split(old_name_value_pair, '=', 0);
       if ((strcmp(old_attrib_name, "refdes") != 0) &&
-        (strcmp(old_attrib_name, "net") != 0) &&
-        (strcmp(old_attrib_name, "slot") != 0) &&
-        (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
-        {
-          s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-        }
-        else {
+          (strcmp(old_attrib_name, "net") != 0) &&
+          (strcmp(old_attrib_name, "slot") != 0) &&
+          (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
+      {
+        s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+      }
+      else {
 
-          int status;
+        int status;
 
-          status = geda_attrib_object_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
+        status = geda_attrib_object_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
 
-          if (status == 0) {
+        if (status == 0) {
 
             /* Don't put "refdes" or "slot" into list.  Don't put old name=value pair into list if a new
              * one is already in there. */
             if ( (strcmp(old_attrib_name, "refdes") != 0) &&
+          if ((strcmp(old_attrib_name, "refdes") != 0) &&
               (strcmp(old_attrib_name, "net") != 0) &&
               (strcmp(old_attrib_name, "slot") != 0) &&
-              (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
+              (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE))
+            {
               s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-              }
-              GEDA_FREE (old_attrib_name);
-            GEDA_FREE (old_attrib_value);
-          }
+            }
+            GEDA_FREE (old_attrib_name);
+          GEDA_FREE (old_attrib_value);
         }
-        GEDA_FREE(old_name_value_pair);
-        GEDA_FREE(old_attrib_name);
+      }
+      GEDA_FREE(old_name_value_pair);
+      GEDA_FREE(old_attrib_name);
     }
     a_iter = g_list_next (a_iter);
   }  /* end while (a_current != NULL) */
@@ -709,7 +711,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
     /* -------  Four cases to consider: Case 1 ----- */
     if ((old_attrib_value != NULL) && (new_attrib_value != NULL) &&
-      (strlen(new_attrib_value) != 0) )
+        (strlen(new_attrib_value) != 0))
     {
       /* simply write new attrib into place of old one. */
 
