@@ -1,3 +1,7 @@
+2019-04-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/globals.c: Add documentation for sort_components and tearoff_menus.
+
 2019-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/struct.h: Rename SHEET_DATA_STRUCT -> GATTRIB_DATA_STRUCT.

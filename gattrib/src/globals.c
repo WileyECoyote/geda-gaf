@@ -32,5 +32,5 @@ int quiet_mode;          /*!< Reflects the value of -q command line flag */
 
 /* rc variables */
 GList *hide_columns;     /*!< Pointer to list of invisible columns */
-int    sort_components;
-int    tearoff_menus;
+int    sort_components;  /*!< Determines if sorting list by refdes */
+int    tearoff_menus;    /*!< Determines tear-off menus are enabled */
