@@ -224,6 +224,8 @@ int gattrib_quit(int return_code)
 
   x_window_release_all();
 
+  x_find_save_search_setting();
+
   gattrib_save_user_config();
 
   i_vars_release_all();
@@ -437,6 +439,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   /* -------------- Complete Remaining Windows Stuff ------------- */
   x_window_finalize_startup((GtkWindow*)main_window, sheet_head);
+
+  x_find_restore_search_setting();
 
   if (export_mode) {
 

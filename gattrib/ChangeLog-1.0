@@ -1,5 +1,8 @@
 2019-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/gattrib.c: Add calls to new functions x_find_save_search_setting
+      in gattrib_quit and x_find_restore_search_setting in gattrib_main.
+
     * src/globals.c: Add documentation for sort_components and tearoff_menus.
 
     * src/s_toplevel.c: Reformat and revise source documentation.
