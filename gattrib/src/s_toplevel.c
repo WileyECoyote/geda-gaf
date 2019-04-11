@@ -582,11 +582,11 @@ s_toplevel_update_component_attribs_in_toplevel (
 #endif
 
   /*
-   * To remove dead attribs from o_current, we need to form a complete list of unique
-   * attribs by taking the union of the new attribs from the PageDataSet, and
-   * the old attribs living on o_current.  That's what we're doing here.
-   * Later, we can delete those attribs in o_current which don't apear in
-   * new_comp_attrib_list.
+   * To remove dead attribs from o_current, we need to form a complete
+   * list of unique attribs by taking the union of the new attribs from
+   * the PageDataSet, and the old attribs living on o_current.  That is
+   * what we are doing here. Later, we can delete those attribs in o_current
+   * which do not apear in new_comp_attrib_list.
    */
   /* First duplicate new_comp_attrib_list */
   complete_comp_attrib_list = s_string_list_duplicate_string_list(new_comp_attrib_list);
@@ -623,9 +623,8 @@ s_toplevel_update_component_attribs_in_toplevel (
 
         if (status == 0) {
 
-            /* Don't put "refdes" or "slot" into list.  Don't put old name=value pair into list if a new
-             * one is already in there. */
-            if ( (strcmp(old_attrib_name, "refdes") != 0) &&
+          /* Do not put "refdes" or "slot" into list.  Do not put old
+           * name=value pair into list if a new one is already in there. */
           if ((strcmp(old_attrib_name, "refdes") != 0) &&
               (strcmp(old_attrib_name, "net") != 0) &&
               (strcmp(old_attrib_name, "slot") != 0) &&
@@ -645,9 +644,10 @@ s_toplevel_update_component_attribs_in_toplevel (
 
 
   /*
-   * Now the main business of this function:  updating the attribs attached to this o_current.
-   * Loop on name=value pairs held in complete_comp_attrib_list , and then use this to get the
-   * name=value pairs out of new_comp_attrib_list and from o_current.
+   * Now the main purpose of this function:  updating the attribs
+   * attached to this o_current. Loop on name=value pairs held in
+   * complete_comp_attrib_list, and then use this to get the name=
+   * value pairs out of new_comp_attrib_list and from o_current.
    */
 
   /* First handle a special case: the component has no attribs (beside refdes). */
@@ -692,18 +692,20 @@ s_toplevel_update_component_attribs_in_toplevel (
     printf("%s:, new value = \"%s\" .\n", __func__, new_attrib_value);
 #endif
 
-    /* Now get row and col where this new attrib lives.  Then get
-     * visibility of the new attrib stored in the component table */
-    /* We'll need this later */
+    /* Now get row and col where this new attrib lives. Then get
+     * visibility of the new attrib stored in the component table,
+     * which will needed later */
     refdes = geda_strdup(s_attrib_get_refdes(o_current));
     row = s_table_get_index(sheet_head->master_comp_list_head, refdes);
     col = s_table_get_index(sheet_head->master_comp_attrib_list_head, new_attrib_name);
 
-    /* if attribute has been deleted from the sheet, here is where we detect that */
+    /* Check if attribute has been deleted from the sheet */
     if ( (row == -1) || (col == -1) ) {
       new_attrib_value = NULL;  /* attrib will be deleted below */
     }
-    else { /* we need a better place to get this info since the TABLE can be out of date */
+    else {
+      /* Need a better place to get this info since the TABLE can
+       * be out of date */
       visibility = sheet_head->component_table[col][row].visibility;
       show_name_value = sheet_head->component_table[col][row].show_name_value;
     }
@@ -716,7 +718,7 @@ s_toplevel_update_component_attribs_in_toplevel (
         (strlen(new_attrib_value) != 0))
     {
 
-      /* simply write new attrib into place of old one. */
+      /* simply write new attrib in place of old one. */
 
 #if DEBUG
       printf("%s: replacing old attrib with name= %s, value= %s\n", __func__,
