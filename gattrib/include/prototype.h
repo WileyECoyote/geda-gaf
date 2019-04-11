@@ -217,6 +217,8 @@ char *x_dialog_get_search_text(const char *prompt);
 void  x_dialog_search_replace(SearchRecord *Search, const char *find_text);
 
 /* ------------- x_find.c ------------- */
+void  x_find_restore_search_setting(void);
+void  x_find_save_search_setting(void);
 bool  x_find_main_search(char* text, char *replacement);
 void  x_find_attribute_value(void);
 void  x_find_replace_attrib_value(void);

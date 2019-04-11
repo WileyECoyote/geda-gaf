@@ -37,6 +37,7 @@
 #include <geda/geda_gui_funcs.h>
 #include <geda_debug.h>
 
+#define SEARCH_CONFIG_GROUP "Search"
 #define MAX_SEARCH_STRING 128
 #define SEARCH_ALL 0
 
@@ -72,13 +73,9 @@ static void x_find_set_search_parameters()
     }
   }
 
-  /*! \todo STUB: Load Previous Settings */
-  Search.Case      = FALSE;
-  Search.Whole     = TRUE;
-  Search.Backword  = FALSE;
-  Search.Wrap      = TRUE;
-  Search.Found     = FALSE;
-  Search.count     = 0;
+  /*! These are initialize each time the dialog is launched */
+  Search.Found = FALSE;
+  Search.count = 0;
 }
 
 /*!
@@ -93,6 +90,62 @@ static void x_find_notify_not_found(char *text)
   strcat(search_string, " ");
   strcat(search_string, _("not found!"));
   x_dialog_generic_confirm_dialog (search_string, GTK_MESSAGE_INFO);
+}
+
+/*!
+ * \brief Restore Search Dialog Options
+ * \par Function Description
+ *  Restores the Case, Whole, and Wrap members from the user
+ *  configuration to the SearchRecord structure. The Backword
+ *  member is initialized to FALSE at the beginning of each
+ *  session.
+ */
+void x_find_restore_search_setting(void)
+{
+  EdaConfig  *cfg;
+  const char *group = SEARCH_CONFIG_GROUP;
+
+  cfg = eda_config_get_user_context ();
+
+  void get_boolean_setting  (const char *key, int *var, int def_val) {
+
+    GError *err = NULL;
+    bool tmp_bool;
+
+    tmp_bool = eda_config_get_boolean (cfg, group, key, &err);
+
+    if (err != NULL) {
+      g_clear_error (&err);
+      *var = def_val;
+    }
+    else {
+      *var = tmp_bool;
+    }
+  }
+
+  get_boolean_setting("case", &Search.Case, FALSE);
+  get_boolean_setting("whole", &Search.Whole, TRUE);
+  get_boolean_setting("wrap", &Search.Wrap, FALSE);
+
+  /* Search backwards is not retained between sessions */
+  Search.Backword  = FALSE;
+}
+
+/*!
+ * \brief Save Search Dialog Options
+ * \par Function Description
+ *  Saved selected members of SearchRecord to the user configuration.
+ */
+void x_find_save_search_setting(void)
+{
+  EdaConfig  *cfg;
+  const char *group  = SEARCH_CONFIG_GROUP;
+
+  cfg = eda_config_get_user_context ();
+
+  eda_config_set_boolean (cfg, group, "case",  Search.Case);
+  eda_config_set_boolean (cfg, group, "whole", Search.Whole);
+  eda_config_set_boolean (cfg, group, "wrap",  Search.Wrap);
 }
 
 /*!
