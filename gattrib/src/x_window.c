@@ -92,8 +92,9 @@ void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
     strcat(buffer, " -- gattrib");
     gtk_window_set_title(main_window, buffer);
   }
-  else
+  else {
     gtk_window_set_title(main_window, "gattrib -- gEDA attribute editor");
+  }
 }
 
 /*!
@@ -259,10 +260,12 @@ void x_window_restore_settings(GtkWindow *window)
     height = DEFAULT_WINDOW_HEIGHT;
   }
 
-  if (xy_error)
+  if (xy_error) {
     gtk_window_set_position(window, GTK_WIN_POS_CENTER);
-  else
+  }
+  else {
     gtk_window_move (window, x, y);
+  }
 
   /* If, for any reason, we pass a zero value to gtk_window_resize an error
    * will be generated. We double check these as fail safe because the above
