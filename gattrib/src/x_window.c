@@ -353,7 +353,8 @@ void x_window_init()
   gtk_box_pack_start((GtkBox*)edit_box, entry, TRUE, TRUE, 0);
 
   /* TODO togglable legend ? */
-  /* -----  Now init notebook widget  ----- */
+
+  /* -----  Initialize notebook widget  ----- */
   notebook = gtk_notebook_new();
   gtk_notebook_set_tab_pos((GtkNotebook*)notebook, GTK_POS_BOTTOM);
   gtk_box_pack_start((GtkBox*)main_vbox, notebook, TRUE, TRUE, 0);
