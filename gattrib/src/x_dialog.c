@@ -944,10 +944,10 @@ static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
 {
   Search->ReplaceAll = FALSE; /* could have been on if struc re-used */
 
-  SetSwitch( IgnoreCase,    !Search->Case);
-  SetSwitch( WholeWord,      Search->Whole);
-  SetSwitch( SearchBackword, Search->Backword);
-  SetSwitch( WrapAround,     Search->Wrap);
+  SetSwitch (IgnoreCase,    !Search->Case);
+  SetSwitch (WholeWord,      Search->Whole);
+  SetSwitch (SearchBackword, Search->Backword);
+  SetSwitch (WrapAround,     Search->Wrap);
 
   /* User can not change these until there is a search string */
   /* disable options */
@@ -963,16 +963,14 @@ static void x_dialog_init_search_replace(GtkWidget    *ThisDialog,
 
   if(g_list_length(search_history) > 0) {
     {
-       lambda (const char* data)
-       {
+       lambda (const char* data) {
          LOAD_GEDA_TEXT_COMBO(SearchText,data);
          return FALSE;
        }
        foreach (search_history);
     }
     {
-       lambda (const char* data)
-       {
+       lambda (const char* data) {
          LOAD_GEDA_TEXT_COMBO(ReplaceText,data);
          return FALSE;
        }
