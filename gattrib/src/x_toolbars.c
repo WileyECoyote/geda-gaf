@@ -108,8 +108,8 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
 /*!
  * \brief Callback Handler for  Search relates Toolbars buttons
  * \par Function Description
- * This function calls the approiate functions to process request
- * from search related buttons on the standard toolbar.
+ *  This function calls the approiate functions to process request
+ *  from search related buttons on the standard toolbar.
  *
  * \param [in] widget is button widget
  * \param [in] Control pointer to enumerated integer ID of the button
@@ -208,7 +208,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
 
   /* --------- Create and Populate the Standard Toolbar -------- */
 
- /* Standard Toolbar*/
+  /* Standard Toolbar*/
   Standard_handlebox = gtk_handle_box_new ();
   gtk_box_pack_start(GTK_BOX (parent_container), Standard_handlebox, FALSE, FALSE, 0);
   gtk_widget_show (Standard_handlebox);
@@ -253,7 +253,8 @@ void x_toolbars_init(GtkWidget *parent_container) {
   gtk_widget_show (Standard_Toolbar);
 
   /* --------- Create and Populate the Attribute Toolbar -------- */
- /* Attribute Toolbar */
+
+  /* Attribute Toolbar */
   Attribute_handlebox = gtk_handle_box_new ();
   gtk_box_pack_start(GTK_BOX (parent_container), Attribute_handlebox, FALSE, FALSE, 0);
   gtk_widget_show (Attribute_handlebox);
@@ -301,11 +302,11 @@ void x_toolbars_init(GtkWidget *parent_container) {
  */
 void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
 {
-    lambda (GtkWidget *menu_item) {
-      gtk_widget_set_sensitive(menu_item, sensitive);
-      return FALSE;
-    }
-    mapcar(ListToolBarItems);
+  lambda (GtkWidget *menu_item) {
+    gtk_widget_set_sensitive(menu_item, sensitive);
+    return FALSE;
+  }
+  mapcar(ListToolBarItems);
 }
 
 /*!
