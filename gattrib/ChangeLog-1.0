@@ -11,6 +11,9 @@
       save_search_setting to retain the state of the Ignore Case, Search
       Whole Words and Search Wrap on the Find/Replace dialog between sessions.
 
+    * src/x_window.c: Convert plain text comments to Doxygen documentation
+      for x_window_set_main_icon.
+
 2019-04-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/struct.h: Rename SHEET_DATA_STRUCT -> GATTRIB_DATA_STRUCT.

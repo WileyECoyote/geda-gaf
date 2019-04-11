@@ -466,9 +466,13 @@ void x_window_add_items(PageDataSet *PageData)
   }
 }
 
-/* Install the app icon for Windows platforms. The bitmap was installed
- * to the themes directory, which for windows should be the prefix/geda
- * /icons\hicolor\48x48\apps\geda-gattrib.png
+/*!
+ * \brief Install the Application Icon for Windows platform
+ * \par Function Description
+ *  Install the app icon for Windows platforms. The bitmap was installed
+ *  to the themes directory, which for windows should be the prefix/geda
+ *  /icons\hicolor\48x48\apps\geda-gattrib.png. If icon is not installed
+ *  then Gtk assigns and ugly generic icon.
  */
 void x_window_set_main_icon()
 {
