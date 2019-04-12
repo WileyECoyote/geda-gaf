@@ -1,3 +1,7 @@
+2019-04-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_event.c: Add Doxygen group X-Events.
+
 2019-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/print.scm: Remove obsolete keywords.

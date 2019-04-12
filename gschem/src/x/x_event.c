@@ -37,6 +37,33 @@
 #include <valgrind/callgrind.h>
 #endif
 
+/** \defgroup X-Events X-Event Module
+ *  @{
+ *  \brief Primary Canvas Event Module
+ *  \par
+ *   This module contains the primary event handlers for the drawing
+ *   canvas and were connected by i_event_setup_handlers. This module
+ *   does not directly handle drag-n-drop or notification events but
+ *   does support drag-n-drop events; x_event_motion stores copies of
+ *   drag events in the toplevel for the Drag-N-Drop module. Button
+ *   event handlers can be temporarily suspended by secondary event
+ *   handlers in other modules by utilizing routines in the i_event
+ *   module.
+ *
+ *   Specifically, functions in this module handle the following
+ *   events:
+ *  <DL>
+ *    <DT><B>"expose_event"</B></DT>
+ *    <DT><B>"button_press_event"</B></DT>
+ *    <DT><B>"button_release_event"</B></DT>
+ *    <DT><B>"motion_notify_event"</B></DT>
+ *    <DT><B>"configure_event"</B></DT>
+ *    <DT><B>"key_press_event"</B></DT>
+ *    <DT><B>"key_release_event"</B></DT>
+ *    <DT><B>"scroll_event"</B></DT>
+ *  </DL>
+ */
+
 /* used by mouse pan */
 int start_pan_x, start_pan_y;
 int throttle = 0;
@@ -1147,3 +1174,5 @@ void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
     }
   }
 }
+
+/** @} end group X-Events */
