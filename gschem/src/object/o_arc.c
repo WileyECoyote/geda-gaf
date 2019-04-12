@@ -262,14 +262,17 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y)
       w_current->second_wy = (((angle_deg + 360) % 360) -
       w_current->second_wx + 360) % 360;
 
-      if (w_current->which_object->arc->arc_sweep < 0)
+      if (w_current->which_object->arc->arc_sweep < 0) {
         w_current->second_wy = w_current->second_wy - 360;
-      if (w_current->second_wy == 0)
+      }
+
+      if (w_current->second_wy == 0) {
         w_current->second_wy = 360;
+      }
     }
   }
 
-  /* draw the new temporary arc */
+  /* Draw the new temporary arc */
   o_arc_invalidate_rubber (w_current);
   w_current->rubber_visible = TRUE;
 }
