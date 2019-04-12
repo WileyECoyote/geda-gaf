@@ -161,11 +161,13 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
     x_menus_set_sensitivities(ComponentMenuItems, TRUE);
     x_toolbar_set_sensitivities(ComponentToolbarButtons, TRUE);
     break;
+
   case Nets:
   case Pins:
     x_menus_set_sensitivities(ComponentMenuItems, FALSE);
     x_toolbar_set_sensitivities(ComponentToolbarButtons, FALSE);
     break;
+
   default:
     geda_log ("notebook_switch_page(): BAD_TAB ID %d\n", page_num);
   }
@@ -240,7 +242,9 @@ void x_window_restore_settings(GtkWindow *window)
     g_clear_error (&err);
     xy_error = TRUE;
   }
+
   y = eda_config_get_integer (cfg, group_name, "window-y-position", &err);
+
   if (err != NULL) {
     g_clear_error (&err);
     xy_error = TRUE;
