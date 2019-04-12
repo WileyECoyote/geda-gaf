@@ -187,6 +187,7 @@ static void post_response_row (GschemToplevel *w_current)
 
     SetEntryText(dialog_data->row_off_entry, y_str);
   }
+
   dialog_data->post_responder = NULL;
 }
 
@@ -199,7 +200,6 @@ static void post_response_row_col (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
-
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
@@ -234,7 +234,6 @@ static void post_response_col (GschemToplevel *w_current)
 {
   GtkWidget  *dialog;
   array_data *dialog_data;
-
 
   /* Get ptr to the data structure */
   dialog      = w_current->cawindow;
@@ -344,6 +343,7 @@ static int x_dialog_array_edit_butt_released_dist(GtkWidget      *widget,
     x_dialog_array_edit_disable_events(w_current, dialog_data);
     gtk_window_present (GTK_WINDOW (dialog));
   }
+
   return(0);
 }
 
@@ -379,6 +379,7 @@ static int x_dialog_array_edit_butt_pressed_select(GtkWidget      *widget,
       w_current->event_state  = STARTSELECT;
     }
   }
+
   return(0);
 }
 
@@ -652,6 +653,7 @@ static void x_dialog_array_edit_ok(GtkWidget  *dialog,
     titled_information_dialog(_("Create Array:Error"), "%s",
                               _("Both row and column\ncan not be zero"));
   }
+
   if (changed) {
     o_undo_savestate(w_current, UNDO_ALL);
   }
