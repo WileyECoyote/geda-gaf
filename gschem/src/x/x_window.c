@@ -208,8 +208,7 @@ void x_window_save_settings(GschemToplevel *w_current)
 
   geda_log_v(_("Saving main window settings.\n"));
 
-  /* Get the Window Geometry - Restored by x_window_restore_settings */
-  cfg    = eda_config_get_user_context ();
+  cfg = eda_config_get_user_context ();
 
   /* All settings from here down are restored by i_vars_recall_user_settings */
 
