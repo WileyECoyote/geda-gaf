@@ -293,7 +293,7 @@ static int x_dialog_array_edit_butt_pressed_dist(GtkWidget      *widget,
 }
 
 /*!
- * \brief Array Dialog Button Release Event Distence Handler
+ * \brief Array Dialog Button Release Event Distance Handler
  * \par Function Description
  *  Local event handler for button release events, this function is
  *  called after the user releases a mouse button when the dialog
