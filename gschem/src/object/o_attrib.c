@@ -189,7 +189,7 @@ void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
 }
 
 /*!
- * \brief Remove invisible attributes of an object from the selection list.
+ * \brief Remove invisible attributes of an object from selection list
  * \par Function Description
  *  Remove all invisible attributes attached to the given object
  *  from the selection list. If hidden text is being shown, this
@@ -225,7 +225,7 @@ void o_attrib_deselect_invisible (GschemToplevel *w_current,
 }
 
 /*!
- * \brief Add invisible attributes of an object to the selection list.
+ * \brief Add invisible attributes of an object to the selection list
  * \par Function Description
  *  Add all invisible attributes attached to the given object
  *  to the selection list. If hidden text is being shown, this
@@ -261,7 +261,7 @@ void o_attrib_select_invisible (GschemToplevel *w_current,
 }
 
 /*!
- * \brief Change visibility status of attribute object.
+ * \brief Change visibility status of attribute object
  * \par Function Description
  *  This function toggles the visibility status of the attribute \a
  *  object and updates it. The object is erased or redrawn if
@@ -295,7 +295,7 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
 }
 
 /*!
- * \brief Set what part of an attribute is shown.
+ * \brief Set what part of an attribute is shown
  * \par Function Description
  *  This function changes what part (name, value or both) of an
  *  attribute is shown by its attribute object. The attribute object
