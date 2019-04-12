@@ -55,7 +55,7 @@ static ToolbarStringData ToolbarStrings[] = {
 /*!
  * \brief Callback for Cut, Copy, Paste Buttons on the Standard Toolbar
  * \par Function Description
- *  This is a callback function for the clipboard related buttons on the
+ *  This is a callback function for cut, copy, and paste buttons on the
  *  standard toolbar. The function passes the call to a common handler;
  *  x_window_clipboard_handler, which also handles the same task menus.
  *  The toolbar and menus use a common enumeration, IDS_Toolbar, as the
