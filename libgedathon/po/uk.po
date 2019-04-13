@@ -302,45 +302,60 @@ msgstr "Новий синтаксис типу об'єкта"
 msgid "The object name"
 msgstr "Назва об'єкта"
 
+# Add an attribute object to this object
+# Dodaty ob'yekt atrybuta do tsʹoho ob'yekta
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Додати об'єкт атрибута до цього об'єкта"
 
+# Copy the object; Skopiyuyte ob'yekt
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Скопіюйте об'єкт"
 
+# Rotate the object; Povernitʹ ob'yekt
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Поверніть об'єкт"
 
+# Select this Object;  Vyberitʹ tsey ob'yekt
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Виберіть цей об'єкт"
 
+# Unselect this object; Skasuvaty vybir tsʹoho ob'yekta
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Скасувати вибір цього об'єкта"
 
+# Returns the length of a linear object
+# Povertaye dovzhynu liniynoho ob'yekta
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Повертає довжину лінійного об'єкта."
 
+# File Name of this Page;  Nazva faylu tsiyeyi storinky
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Назва файлу цієї сторінки."
 
+# String describing a geometric element
+# Ryadok, shcho opysuye heometrychnyy element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Рядок, що описує геометричний елемент"
 
+# Retrieve a specific attribute object
+# Otrymaty pevnyy ob'yekt atrybuta
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Отримати певний об'єкт атрибута"
 
+# Retrieve list of associated attribute objects
+# Otrymaty spysok pov'yazanykh ob'yektiv atrybutiv
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Отримати список пов'язаних об'єктів атрибутів"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
