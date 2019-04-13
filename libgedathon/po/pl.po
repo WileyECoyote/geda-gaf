@@ -253,45 +253,55 @@ msgstr "Nowa składnia typu obiektu"
 msgid "The object name"
 msgstr "Nazwa obiektu"
 
+# Add an attribute object to this object
 #: libgedathon/include/geda_module.h:104
 msgid "Add an attribute object to this object"
-msgstr ""
+msgstr "Dodaj obiekt atrybutu do tego obiektu"
 
+# Copy the object
 #: libgedathon/include/geda_module.h:105
 msgid "Copy the object"
-msgstr ""
+msgstr "Skopiuj obiekt"
 
+# Rotate the object
 #: libgedathon/include/geda_module.h:106
 msgid "Rotate the object"
-msgstr ""
+msgstr "Obróć obiekt"
 
+# Select this Object
 #: libgedathon/include/geda_module.h:107
 msgid "Select this Object"
-msgstr ""
+msgstr "Wybierz ten obiekt"
 
+# Unselect this object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Usuń zaznaczenie tego obiektu"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Zwraca długość obiektu liniowego."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Nazwa pliku tej strony."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Ciąg opisujący element geometryczny"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Pobierz konkretny obiekt atrybutu"
 
+# Retrieve list of associated attribute objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Pobierz listę powiązanych obiektów atrybutów"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
