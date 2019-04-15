@@ -1,3 +1,10 @@
+2019-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/transil: Add new symbols for transil diode group:
+
+            * diode/transil/SMM4F18A-1.sym
+            * diode/transil/SMM4F18A-2.sym
+
 2019-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX3223E-1.sym: Update footprint, remove date comment.
