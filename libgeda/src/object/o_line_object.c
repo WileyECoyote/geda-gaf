@@ -399,11 +399,12 @@ bool geda_line_object_get_midpoint(GedaObject *object, GedaPoint *point)
  */
 bool geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  GedaLine *line;
   bool      result;
   int       ax, ay;
 
   if (GEDA_IS_LINE(object)) {
+
+    GedaLine *line;
 
     line = object->line;
 

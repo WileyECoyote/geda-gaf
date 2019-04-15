@@ -8,6 +8,9 @@
       pointers rather than using is_a_geda_line so as to allow callers
       to use GedaLine structures as arguments. Add module documentation.
 
+    * src/object/o_line_object.c: Reduce scope of pointer to the line
+      object in geda_line_object_get_nearest_point.
+
 2019-04-08 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_attrib_object.c: Revise geda_attrib_object_set_
