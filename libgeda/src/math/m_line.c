@@ -20,8 +20,15 @@
  */
 
 /*! \file m_line.c
- *
- *  \brief Low-level mathmatical functions for lines
+ ** \brief Low-level mathmatical functions for lines
+ *  \par
+ *  Validation of line objects in this module is limited to checking for
+ *  NULL pointers. Functions in this module do not utilize is_a_geda_line
+ *  to allow callers to use GedaLine structures as arguments. For an
+ *  example see geda_box_object_get_nearest_point. All internal library
+ *  routines calling any of the functions in this module should validate
+ *  the objects as lines, noting that pin, net and buses are derived from
+ *  GedaLine objects.
  */
 
 #include "../../../config.h"
@@ -61,7 +68,8 @@ geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, GedaPoint *poi
   return geda_math_line_intersection(L1, L2, point);
 }
 
-/*! \brief Returns True if Line contains point
+/*!
+ * \brief Returns True if Line contains point
  */
 bool
 geda_math_line_includes_point (GedaLine *line, GedaPoint *point)
@@ -262,7 +270,7 @@ geda_math_line_length (int x1, int y1, int x2, int y2)
  *  If the line represents a single point (the endpoints are the same),
  *  this function calculates the distance to that point.
  *
- * \param [in] line  The Line object,
+ * \param [in] line  The line object or structure,
  * \param [in] x     The x coordinate of the given point,
  * \param [in] y     The y coordinate of the given point.
  *

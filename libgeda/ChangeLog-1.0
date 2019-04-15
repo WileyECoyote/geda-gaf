@@ -6,7 +6,7 @@
 
     * src/math/m_line.c: Revise validations to only check for null line
       pointers rather than using is_a_geda_line so as to allow callers
-      to use GedaLine structures as arguments.
+      to use GedaLine structures as arguments. Add module documentation.
 
 2019-04-08 Wiley E. Hill <wileyhill@gmail.com
 
