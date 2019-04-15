@@ -11,13 +11,15 @@
             * passive/inductor/inductor-coupled-1.sym (did git drop this? see 2019-01-27)
             * passive/inductor/inductor-coupled-2.sym (did git drop this? see 2019-01-27)
 
-    *source: Revise attribute locations, add description attribute:
+    * source/generic-power.sym: Remove netname attribute.
+
+    * source: Revise attribute locations, add description attribute:
 
             * source/voltage-1.sym
             * source/voltage-2.sym
             * source/voltage-3.sym
 
-    *st: Rename replacing underscore with dash:
+    * st: Rename replacing underscore with dash:
 
             * st/L293B-1.sym
             * st/L293B-2.sym

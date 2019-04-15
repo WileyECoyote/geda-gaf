@@ -1,10 +1,4 @@
 v 20140915 2
-T 100 1350 8 10 0 0 0 0 1
-author=AutoTron
-T 100 1200 8 10 0 0 0 0 1
-dist-license=GPLv2
-T 100 1050 8 10 0 0 0 0 1
-use-license=unlimited
 T 100 900 8 10 0 0 0 0 1
 numslots=0
 T 100 750 8 10 0 0 0 0 1
@@ -25,7 +19,11 @@ pintype=pwr
 L 50 200 350 200 3 0 0 0 -1 -1
 T 100 400 9 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
-T 50 250 8 10 1 1 0 0 1
-netname=V??
 T 400 200 9 10 1 1 0 0 1
 refdes=none
+T 100 1350 8 10 0 0 0 0 1
+author=AutoTron
+T 100 1200 8 10 0 0 0 0 1
+dist-license=GPLv2
+T 100 1050 8 10 0 0 0 0 1
+use-license=unlimited
