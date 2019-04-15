@@ -4,9 +4,9 @@
 
 scmdatadir = $(GEDADATADIR)/scheme
 nobase_dist_scmdata_DATA = \
-	geda.scm geda-deprecated-config.scm color-map.scm geda/log.scm \
-	geda/object.scm geda/page.scm geda/attrib.scm geda/deprecated.scm \
-	geda/os.scm geda/config.scm
+	geda.scm color-map.scm geda/log.scm geda/object.scm geda/page.scm \
+	geda/attrib.scm geda/deprecated.scm geda/os.scm geda/config.scm
+
 nobase_scmdata_DATA = geda/core/gettext.scm
 
 check-am: update-gaf-tool
