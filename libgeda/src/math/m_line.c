@@ -51,8 +51,8 @@
 bool
 geda_math_line_get_intersection(GedaLine *line1, GedaLine *line2, GedaPoint *point)
 {
-  g_return_val_if_fail (GEDA_IS_LINE(line1), FALSE);
-  g_return_val_if_fail (GEDA_IS_LINE(line2), FALSE);
+  g_return_val_if_fail (line1 != NULL, FALSE);
+  g_return_val_if_fail (line2 != NULL, FALSE);
   g_return_val_if_fail (point != NULL, FALSE);
 
   LINE *L1 = (LINE*) &line1->x[0];
@@ -68,7 +68,7 @@ geda_math_line_includes_point (GedaLine *line, GedaPoint *point)
 {
   bool included;
 
-  g_return_val_if_fail (GEDA_IS_LINE(line), FALSE);
+  g_return_val_if_fail (line != NULL, FALSE);
   g_return_val_if_fail (point != NULL, FALSE);
 
   int x11 = min(line->x[0], line->x[1]);
@@ -276,7 +276,7 @@ geda_math_line_shortest_distance (GedaLine *line, int x, int y)
   double lx0, ly0;
   double ldx, ldy;
 
-  g_return_val_if_fail (GEDA_IS_LINE(line), G_MAXDOUBLE);
+  g_return_val_if_fail (line != NULL, G_MAXDOUBLE);
 
   lx0 = (double)line->x[0];
   ly0 = (double)line->y[0];

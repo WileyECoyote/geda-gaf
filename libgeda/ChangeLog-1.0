@@ -4,6 +4,10 @@
       geda-deprecated-config.scm -- was removed but over-looked in
       previous commit.
 
+    * src/math/m_line.c: Revise validations to only check for null line
+      pointers rather than using is_a_geda_line so as to allow callers
+      to use GedaLine structures as arguments.
+
 2019-04-08 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_attrib_object.c: Revise geda_attrib_object_set_
