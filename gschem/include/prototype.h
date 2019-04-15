@@ -394,7 +394,6 @@ void       i_zoom_world_box_end              (GschemToplevel *w_current, int x, 
 void       i_zoom_world_box_motion           (GschemToplevel *w_current, int x, int y);
 void       i_zoom_world_box_invalidate_rubber(GschemToplevel *w_current);
 void       i_zoom_world_box_draw_rubber      (GschemToplevel *w_current);
-void       correct_aspect                    (GschemToplevel *w_current);
 
  /* m_basic.c */
 int        mil_x                        (GschemToplevel *w_current, int val);
