@@ -12,6 +12,9 @@
       object in geda_line_object_get_nearest_point. Validate line argument
       in geda_line_object_shortest_distance.
 
+    * tests/test_complex_object.c: Add checks for geda_complex_object_get_
+      nearest_point.
+
 2019-04-08 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_attrib_object.c: Revise geda_attrib_object_set_
