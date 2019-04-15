@@ -39,7 +39,7 @@ L 200 250 700 250 3 0 1 0 -1 -1
 T 200 900 5 10 0 1 0 0 1
 description=Inductor,1uH,700mA,0.06ohm,SMD
 T 600 300 5 10 0 1 0 0 1
-footprint=0402
+footprint=unknown
 T 1200 700 5 10 0 0 0 0 1
 symversion=0.2
 T 200 1500 5 10 0 0 0 0 1

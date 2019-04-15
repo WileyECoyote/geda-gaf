@@ -8,6 +8,7 @@
     * passive/inductor: Change footprint attribute to unknown:
 
             * passive/capacitor/capacitor-1.sym
+            * passive/inductor/inductor-coupled-1.sym (did git drop this? see 2019-01-27)
 
 2019-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
