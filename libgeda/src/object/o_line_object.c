@@ -1897,6 +1897,8 @@ void geda_line_object_set_y2 (GedaObject *object, int y) {
  */
 double geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
+  g_return_val_if_fail (GEDA_IS_LINE(object), G_MAXDOUBLE);
+
   return geda_math_line_shortest_distance (object->line, x, y);
 }
 

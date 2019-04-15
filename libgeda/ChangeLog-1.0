@@ -9,7 +9,8 @@
       to use GedaLine structures as arguments. Add module documentation.
 
     * src/object/o_line_object.c: Reduce scope of pointer to the line
-      object in geda_line_object_get_nearest_point.
+      object in geda_line_object_get_nearest_point. Validate line argument
+      in geda_line_object_shortest_distance.
 
 2019-04-08 Wiley E. Hill <wileyhill@gmail.com
 
