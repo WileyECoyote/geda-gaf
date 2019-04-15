@@ -14,6 +14,7 @@
     *source: Revise attribute locations, add description attribute:
 
             * source/voltage-1.sym
+            * source/voltage-2.sym
 
 2019-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
