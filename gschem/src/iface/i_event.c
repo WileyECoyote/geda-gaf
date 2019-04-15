@@ -29,6 +29,24 @@
 
 #include <geda_debug.h>
 
+/** \defgroup I-Events Interface Event Module
+ *  @{
+ *  \brief Primary Canvas Event Module
+ *  \par
+ *   This module contains routines to setup the primary event handlers
+ *   for the user interface. Two of the handlers routines are located
+ *   in this module; i_event_enter and i_event_leave, the remainder are
+ *   in x_window.c. This module also contains routines to support local
+ *   event handlers by temporarily block the primary button press and
+ *   release event handlers. This reduces the complexity of the primary
+ *   event handlers, and more significantly, improves performances by
+ *   localizing events to specific operations. Routines utilizing local
+ *   handlers need only supply a initializer, called when a press event
+ *   occurs, and resolver function that is called when a release event
+ *   occurs. Resolver functions typically terminate the local event
+ *   handling.
+ */
+
 typedef bool (*GschemDrawEvent) (GtkWidget*, void*, GschemToplevel*);
 
 struct event_reg_t {
@@ -753,3 +771,5 @@ i_event_stop_action_handler(GschemToplevel *w_current)
 
   i_status_set_state(w_current, SELECT);
 }
+
+/** @} endgroup I-Events */
