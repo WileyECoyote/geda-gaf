@@ -39,7 +39,7 @@ L 200 265 700 265 3 0 1 0 -1 -1
 T 200 325 9 10 1 1 0 0 1
 value=1uH
 T 600 325 9 10 0 1 0 0 1
-footprint=0603
+footprint=unknown
 T 200 1100 5 10 0 1 0 0 1
 description=Inductor,1uH,700mA,0.06ohm,SMD
 T 200 700 5 10 0 0 0 0 1
