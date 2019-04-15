@@ -5,6 +5,10 @@
             * diode/transil/SMM4F18A-1.sym
             * diode/transil/SMM4F18A-2.sym
 
+    * passive/inductor: Change footprint attribute to unknown:
+
+            * passive/capacitor/capacitor-1.sym
+
 2019-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX3223E-1.sym: Update footprint, remove date comment.
