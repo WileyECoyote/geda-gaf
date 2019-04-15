@@ -75,8 +75,8 @@ geda_path_object_error(const char *func, const void *object)
  */
 bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  GedaPoint   target;
-  bool    result;
+  GedaPoint target;
+  bool result;
 
 #if DEBUG
   fprintf(stderr, "%s begin: x=%d, y=%d\n", __func__, x, y);
