@@ -17,6 +17,13 @@
             * source/voltage-2.sym
             * source/voltage-3.sym
 
+    *st: Rename replacing underscore with dash:
+
+            * st/L293B-1.sym
+            * st/L293B-2.sym
+            * st/L293E-1.sym
+            * st/L293E-2.sym
+
 2019-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * maxim/MAX3223E-1.sym: Update footprint, remove date comment.
