@@ -3,6 +3,7 @@
     * thyristor/diac-?.sym: Update footprint, add description attribute:
 
             * thyristor/diac-1.sym
+            * thyristor/diac-2.sym
 
 2019-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
