@@ -16,6 +16,8 @@
 
     * thyristor/TCR22-4.sym: Add symbol; 1.5A, 400V SCR.
 
+    * thyristor/TCR22-6.sym: Add symbol; 1.5A, 600V SCR.
+
 2019-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
