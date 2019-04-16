@@ -7,6 +7,10 @@
             * thyristor/diac-3.sym
             * thyristor/diac-4.sym
 
+    * st: Rename replacing underscore with dash:
+
+            * st/L298-1.sym
+
 2019-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
