@@ -12,6 +12,8 @@
             * st/L298-1.sym
             * st/L298-2.sym
 
+    * thyristor/TC224-1.sym: Remove obsolete symbol.
+
 2019-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
