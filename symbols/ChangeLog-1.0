@@ -10,6 +10,7 @@
     * st: Rename replacing underscore with dash:
 
             * st/L298-1.sym
+            * st/L298-2.sym
 
 2019-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
