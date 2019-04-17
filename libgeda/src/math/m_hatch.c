@@ -258,12 +258,13 @@ geda_math_hatch_path (GedaPath *path, int angle, int pitch, GArray *lines)
 void
 geda_math_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
 {
-  BOUNDS bounds;
+  BOUNDS  bounds;
   GArray *events;
-  TRANSFORM inverse;
   GArray *points2;
   GArray *status;
-  int sweep_y;
+  int     sweep_y;
+
+  TRANSFORM inverse;
   TRANSFORM transform;
 
   g_return_if_fail(points!=NULL);
