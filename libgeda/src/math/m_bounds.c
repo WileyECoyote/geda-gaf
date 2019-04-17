@@ -56,7 +56,7 @@ geda_math_bounds_of_points(BOUNDS *bounds, GedaPoint points[], int count)
 
   geda_math_bounds_init(bounds);
 
-  for (index=0; index<count; index++) {
+  for (index = 0; index < count; index++) {
 
     int x = points[index].x;
     int y = points[index].y;
