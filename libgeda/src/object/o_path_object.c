@@ -336,7 +336,9 @@ bool geda_path_object_get_position (GedaObject *object, int *x, int *y)
     *y = object->path->sections[0].y3;
     return TRUE;
   }
+
   geda_path_object_error(__func__, object);
+
   return FALSE;
 }
 
@@ -374,6 +376,7 @@ GedaObject *geda_path_object_new (int color, const char *path_string)
   path = geda_struct_path_parse (path_string);
   new_obj = GEDA_OBJECT(path);
   new_obj->color = color;
+
   return new_obj;
 }
 
@@ -511,7 +514,9 @@ GedaObject *geda_path_object_copy (const GedaObject *o_current)
     /* return the new tail of the object list */
     return new_obj;
   }
+
   geda_path_object_error(__func__, o_current);
+
   return NULL;
 }
 
@@ -1396,7 +1401,9 @@ double geda_path_object_shortest_distance (GedaObject *object, int x, int y, int
     return geda_struct_path_shortest_distance (object->path, x, y, solid);
 
   }
+
   geda_path_object_error(__func__, object);
+
   return (G_MAXDOUBLE);
 }
 
