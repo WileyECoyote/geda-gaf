@@ -71,6 +71,7 @@ geda_math_box_shortest_distance (GedaBox *box, int x, int y, int solid)
   }
 
   if (dx < 0) {
+
     if (dy < 0) {
 
 #if HAVE_HYPOT
@@ -92,7 +93,6 @@ geda_math_box_shortest_distance (GedaBox *box, int x, int y, int solid)
 
     if (dy < 0) {
       shortest_distance = fabs (dy);
-
     }
     else {
       shortest_distance = min (dx, dy);
