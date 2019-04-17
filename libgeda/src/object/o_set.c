@@ -38,8 +38,8 @@
  * \par Function Description
  *  Recursively marks the cached bounds of the given GedaObject and its
  *  parents as having been invalidated and in need of an update. They
- *  will be recalculated next time the GedaObject's bounds are requested
- *  (e.g. via geda_object_get_bounds() ).
+ *  will be recalculated the next time the object's bounds are requested
+ *  (e.g. via geda_object_get_bounds()).
  *
  * \param [in] obj
  */
@@ -57,8 +57,8 @@ void geda_set_object_bounds_invalid(GedaObject *obj)
  * \par Function Description
  *  This function sets the color property of \a object to the color index
  *  given by \a color if the value is different from the current object
- *  color index. If modified, the page change flag is set if the object
- *  is on a page.
+ *  color index. If modified and the object is on a page, the page change
+ *  flag is set.
  *
  * \note For complex objects, this function is called recursively,
  *       since geda_object_list_set_color calls this function for each
@@ -142,8 +142,8 @@ void geda_set_object_fill_options(GedaObject *object, FILL_OPTIONS *fill_options
 /*!
  * \brief Set a #GedaObject's line options.
  * \par Function Description
- *  This function allows a line's end, type, width, length and space to be set.
- *  See LINE_END and LINE_TYPE for information on valid
+ *  This function allows a line's end, type, width, length and space
+ *  to be set. See LINE_END and LINE_TYPE for information on valid
  *  object end and type values.
  *
  * \param [in,out] object       GedaObject to set line options on.
