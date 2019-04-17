@@ -23,6 +23,11 @@
  *  \brief functions for the box object
  */
 
+/** \defgroup geda-box-object-proc GedaBox Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaBox Objects
+ */
+
 #include "../../../config.h"
 
 #include <math.h>
@@ -2136,3 +2141,5 @@ void geda_box_object_translate(GedaObject *object, int dx, int dy)
     geda_box_object_error(__func__, object);
   }
 }
+
+/** @} endgroup geda-box-object-proc */
