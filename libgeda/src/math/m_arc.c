@@ -35,6 +35,7 @@
 
 /*!
  * \brief Calculates the length of an Arc sector
+ * \par Function Description
  *  Returns length of the Arc sector.
  *
  * \param [in] radius  The radius of the arc.
@@ -50,6 +51,7 @@ geda_math_arc_length (int radius, int sweep)
 
 /*!
  * \brief Determine if Arc Sector includes a Point
+ * \par Function Description
  *  Compares distance from point to the center of the Arc to the radius
  *  of the Arc, if there is no difference after accounting for the line
  *  width, compares the angle of the ray from the center to the point to

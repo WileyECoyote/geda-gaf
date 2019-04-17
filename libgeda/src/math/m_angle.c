@@ -29,10 +29,13 @@
 
 #include "../../include/libgeda_priv.h"
 
-/*! \brief Checks if an angle is [0,360)
+/*!
+ * \brief Checks if an angle is [0,360)
+ * \par Function Description
  *
- *  \param [in] angle the angle in degrees
- *  \retval TRUE if the angle is [0,360)
+ * \param [in] angle the angle in degrees
+ *
+ * \retval TRUE if the angle is [0,360)
  */
 bool
 geda_math_angle_is_normal (int angle)
@@ -42,6 +45,7 @@ geda_math_angle_is_normal (int angle)
 
 /*!
  * \brief Checks if an angle is orthographic
+ * \par Function Description
  *
  * \param [in] angle the angle in degrees
  *
@@ -55,6 +59,7 @@ geda_math_angle_is_ortho (int angle)
 
 /*!
  * \brief Make an angle orthographic
+ * \par Function Description
  *  Snaps the angle to the nearest 90 degrees
  *
  * \param [in] angle the angle in degrees
@@ -68,6 +73,8 @@ geda_math_angle_make_ortho (int angle)
 
 /*!
  * \brief Normalize an angle to [0,360)
+ * \par Function Description
+ *
  * \param [in] angle the angle in degrees
  *
  * \return the normalized angle inside [0,360)
