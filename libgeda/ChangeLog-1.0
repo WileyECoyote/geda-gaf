@@ -4,7 +4,9 @@
 
     * src/object/o_bus_object.c: Add Doxygen group geda-bus-object-proc.
 
-    * src/object/o_path_object.c:
+    * src/object/o_path_object.c: Add brace to conditionals in function
+      geda_path_object_print and nest second check for line width less
+      than the minimum threshold.
 
 2019-04-15 Wiley E. Hill <wileyhill@gmail.com
 
