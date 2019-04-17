@@ -23,6 +23,11 @@
  *  \brief functions for the bus object
  */
 
+/** \defgroup geda-bus-object-proc GedaBus Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaBus Objects
+ */
+
 #include "../../../config.h"
 
 #include <stdio.h>
@@ -803,3 +808,5 @@ void geda_bus_object_translate(GedaObject *object, int dx, int dy)
     geda_bus_object_error(__func__, object);
   }
 }
+
+/** @} endgroup geda-bus-object-proc */
