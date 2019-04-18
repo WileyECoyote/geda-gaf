@@ -47,9 +47,9 @@ static int compare_status(const void *a, const void *b);
 /*!
  * \brief Calculate the initial y cooridinate of the hatch sweep line
  * \par Function Description
- *  This function centers the hatch lines across the extents of the shape being
- *  hatched.  This caclulation provides symmetrical hatch lines inside
- *  symmetrical shapes, such as circles and squares.  This mechanism may not
+ *  This function centers the hatch lines across the extents of the shape
+ *  being hatched. This calculation provides symmetrical hatch lines inside
+ *  symmetrical shapes, such as circles and squares. This mechanism may not
  *  provide as nice of an appearance in asymmetrical shapes.
  *
  * \param pitch [in] The perpendicular distance between hatch lines.
