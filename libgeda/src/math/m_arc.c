@@ -71,6 +71,8 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
   int  width;
   int  half_width;
 
+  g_return_val_if_fail ((arc != NULL) && (point != NULL), FALSE);
+
   /* Rounding here provides a fuzz distance effect */
   delta = geda_distance(arc->x, arc->y, point->x, point->y) - (arc->radius);
 
