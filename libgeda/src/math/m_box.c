@@ -32,6 +32,24 @@
 
 #include <geda_debug.h>
 
+int
+geda_math_box_area (GedaBox *box)
+{
+  int x1, y1, x2, y2;
+  int area;
+
+  g_return_val_if_fail (box != NULL, 0.0);
+
+  x1 = min (box->upper_x, box->lower_x);
+  y1 = min (box->upper_y, box->lower_y);
+  x2 = max (box->upper_x, box->lower_x);
+  y2 = max (box->upper_y, box->lower_y);
+
+  area = (x2 - x1) * (y2 - y1);
+
+  return area;
+}
+
 /*!
  * \brief Determine shortest distance from a Box to Point
  * \par Function Description

@@ -53,6 +53,7 @@
 #define geda_arc_includes_point         geda_math_arc_includes_point
 
 /* m_box.c */
+#define geda_box_area                   geda_math_box_area
 #define geda_box_shortest_distance      geda_math_box_shortest_distance
 
 /* m_bounds.c */

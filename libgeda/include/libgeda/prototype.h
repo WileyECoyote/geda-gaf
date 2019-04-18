@@ -96,6 +96,7 @@ extern "C" {
          void    geda_math_rotate_point_90               (int x, int y, int angle, int *newx, int *newy);
 
 /* m_box.c */
+         int     geda_math_box_area                      (GedaBox *area);
        double    geda_math_box_shortest_distance         (GedaBox *box, int x, int y, int solid);
 
 /* m_bounds.c */
