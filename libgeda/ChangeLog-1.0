@@ -3,6 +3,11 @@
     * src/math/m_arc.c: Check that the pointer to the arc and the point
       are not NULL in geda_math_arc_includes_point.
 
+    * src/math/m_bounds.c: Add checks for NULL pointers in functions:
+
+          * geda_math_bounds_init
+          * geda_math_bounds_of_points
+
 2019-04-17 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_box_object.c: Add Doxygen group geda-box-object-proc.

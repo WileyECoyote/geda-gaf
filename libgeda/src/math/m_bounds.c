@@ -31,6 +31,8 @@
 void
 geda_math_bounds_init(BOUNDS *bounds)
 {
+  g_return_if_fail (bounds != NULL);
+
   bounds->min_x = INT_MAX;
   bounds->min_y = INT_MAX;
   bounds->max_x = INT_MIN;
@@ -53,6 +55,8 @@ void
 geda_math_bounds_of_points(BOUNDS *bounds, GedaPoint points[], int count)
 {
   int index;
+
+  g_return_if_fail (bounds != NULL);
 
   geda_math_bounds_init(bounds);
 
