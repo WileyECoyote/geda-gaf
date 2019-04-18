@@ -405,9 +405,11 @@ geda_math_hatch_object (GedaObject *object)
             case OBJ_BOX:
               geda_math_hatch_box(object->box, fill_angle2, fill_pitch2, fill_lines);
               break;
+
             case OBJ_CIRCLE:
               geda_math_hatch_circle(object->circle, fill_angle2, fill_pitch2, fill_lines);
               break;
+
             case OBJ_PATH:
               geda_math_hatch_path(object->path, fill_angle2, fill_pitch2, fill_lines);
           }
@@ -419,11 +421,14 @@ geda_math_hatch_object (GedaObject *object)
           case OBJ_BOX:
             geda_math_hatch_box(object->box, fill_angle1, fill_pitch1, fill_lines);
             break;
+
           case OBJ_CIRCLE:
             geda_math_hatch_circle(object->circle, fill_angle1, fill_pitch1, fill_lines);
             break;
+
           case OBJ_PATH:
             geda_math_hatch_path(object->path, fill_angle1, fill_pitch1, fill_lines);
+
           default:
             break;
         }
