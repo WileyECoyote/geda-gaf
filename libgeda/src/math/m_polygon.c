@@ -81,8 +81,10 @@ void geda_math_polygon_append_bezier (GArray *points, BEZIER *bezier, int segmen
 }
 
 /*!
- * \brief Appends a point to the list of vertices in a polygon
+ * \brief Append a Vertex to a Polygon
  * \par Function Description
+ *  Appends a point to the list of vertices in a polygon.
+ *
  * \param [in,out] points  The vertices of the polygon, must not be NULL.
  * \param [in]     x       The x coordinate of the point to append.
  * \param [in]     y       The y coordinate of the point to append.
