@@ -1325,7 +1325,7 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
    *  In such a case, the path is printed filled. Unused parameters for each
    *  of these functions are set to -1 or any passive value.
    */
-  if(o_current->fill_options->fill_type != FILLING_HOLLOW) {
+  if (o_current->fill_options->fill_type != FILLING_HOLLOW) {
 
     FILL_FUNC fill_func = NULL;
 
@@ -1368,7 +1368,7 @@ geda_path_object_print(GedaToplevel *toplevel, FILE *fp,
 
     }
 
-    if((pitch1 <= 0) || (pitch2 <= 0)) {
+    if ((pitch1 <= 0) || (pitch2 <= 0)) {
       angle1 = -1; pitch1 = 1;
       angle2 = -1; pitch2 = 1;
       fill_func = geda_path_object_print_filled;
