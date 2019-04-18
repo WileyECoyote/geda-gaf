@@ -10,6 +10,9 @@
 
     * src/math/m_box.c: Add function geda_math_box_area
 
+    * src/object/o_set.c: Check that the pointer to the object->line_options
+      is not NULL in geda_set_object_line_options.
+
 2019-04-17 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_box_object.c: Add Doxygen group geda-box-object-proc.

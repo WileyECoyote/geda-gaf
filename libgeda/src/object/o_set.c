@@ -160,6 +160,8 @@ void geda_set_object_line_options(GedaObject *object, LINE_OPTIONS *line_options
                     GEDA_IS_BOX(object)    ||
                     GEDA_IS_PATH(object));
 
+  g_return_if_fail (object->line_options != NULL);
+
   LINE_OPTIONS *o_property = object->line_options;
 
   int  line_length = line_options->line_length;
