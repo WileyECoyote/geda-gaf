@@ -81,7 +81,7 @@
  *      O1115    geda_line_object_get_y1
  *      O1116    geda_line_object_get_y2
  *      O1117    geda_line_object_is_endpoint
- *               geda_line_object_length
+ *      O1118    geda_line_object_length
  *               geda_line_object_mirror
  *               geda_line_object_modify
  *      O1121    geda_line_object_new
@@ -899,7 +899,39 @@ check_length(GedaObject *object)
 {
   int result = 0;
 
-  /* === Function 18: geda_line_object_length  === */
+  GedaPoint pt1, pt2;
+
+  double dx, dy;
+  double length_a;
+
+  pt1.x = geda_line_object_get_x1 (object);
+  pt1.y = geda_line_object_get_y1 (object);
+
+  pt2.x = geda_line_object_get_x2 (object);
+  pt2.y = geda_line_object_get_y2 (object);
+
+  dx = abs(pt2.x - pt1.x);
+  dy = abs(pt2.y - pt1.y);
+
+  length_a = sqrt((dx*dx) + (dy*dy));
+
+  /* === Function 18: geda_line_object_length === */
+
+  double length_b;
+
+  length_b = geda_line_object_length(NULL);
+
+  if (length_b != 0.0) {
+    fprintf(stderr, "FAILED: (O111800) line length NULL\n");
+    result++;
+  }
+
+  length_b = geda_line_object_length(object);
+
+  if (length_b != length_a) {
+    fprintf(stderr, "FAILED: (O111801) line length <%f>\n", length_b);
+    result++;
+  }
 
   return result;
 }
