@@ -16,7 +16,10 @@
 
     * tests/test_line_object.c: Add checks for geda_line_object_length.
 
-    * tests/test_object.c: Add comments.
+    * tests/test_object.c: Add comments, check geda_object_bounds with:
+
+          * geda_picture_object_new
+          * geda_text_object_new
 
 2019-04-18 Wiley E. Hill <wileyhill@gmail.com
 

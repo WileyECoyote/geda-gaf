@@ -31,6 +31,10 @@
 
 #define TOBJECT "GedaObject"
 
+#define IMAGE_FILE "../docs/logo_256x101.png"
+#define IMAGE_WIDTH  256
+#define IMAGE_HEIGHT 101
+
 /*! \file test_object.c
  *  \brief Tests for geda_object.c module
  *  \par
@@ -916,7 +920,55 @@ int check_methods (void)
 
   /* ------------------------- GedaPicture ---------------------- */
 
+  object = geda_picture_object_new(NULL, 0, IMAGE_FILE, 100, 200,
+                                                        100 + IMAGE_WIDTH,
+                                                        100 - IMAGE_HEIGHT,
+                                                        0, FALSE, FALSE);
+
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "Failed: picture object_bounds %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    if (!geda_object_get_bounds_valid(object)) {
+      fprintf(stderr, "Failed: get_bounds_valid %s line <%d>\n", TOBJECT, __LINE__);
+      result++;
+    }
+
+    if (object->left != 100) {
+      fprintf(stderr, "Failed: picture object_bounds %s; left <%d>\n", TOBJECT, object->left);
+      result++;
+    }
+
+    if (object->right != 100 + IMAGE_WIDTH) {
+      fprintf(stderr, "Failed: picture object_bounds %s; right <%d>\n", TOBJECT, object->right);
+      result++;
+    }
+
+    if (object->top != 100 - IMAGE_HEIGHT) {
+      fprintf(stderr, "Failed: picture object_bounds %s; top <%d>\n", TOBJECT, object->top);
+      result++;
+    }
+
+    if (object->bottom != 200) {
+      fprintf(stderr, "Failed: picture object_bounds %s; bottom <%d>\n", TOBJECT, object->bottom);
+      result++;
+    }
+  }
+  geda_object_unref(object);
+
   /* ------------------------- GedaText ------------------------- */
+
+  object = geda_text_object_new(9, 100, 100, 1, 0, 10, 1, 0, "Tests");
+
+  /* No renderer has been set so bounds cannot be determined */
+  if (geda_object_bounds(object)) {
+    fprintf(stderr, "Failed: line object_bounds %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  geda_object_unref(object);
 
   return result;
 }
