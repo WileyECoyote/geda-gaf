@@ -839,13 +839,15 @@ char *geda_struct_path_string_from_path (const GedaPath *path)
   return geda_utility_string_remove_last_nl(g_string_free (path_string, FALSE));
 }
 
-/*! \brief Converts a path to a polygon
- *   Parameters \a path and \a points must not be NULL.
+/*!
+ * \brief Converts a path to a polygon
+ * \par Function Description
+ *  Parameters \a path and \a points must not be NULL.
  *
- *  \param [in]  path   The path to convert to a polygon
- *  \param [out] points An array of the polygon's vertices
+ * \param [in]  path   The path to convert to a polygon
+ * \param [out] points An array of the polygon's vertices
  *
- *  \returns TRUE if the path is closed, FALSE if it is open.
+ * \returns TRUE if the path is closed, FALSE if it is open.
  */
 int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
 {
@@ -894,8 +896,11 @@ int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
   return closed;
 }
 
-/*! \brief Calculates the distance between the given point and the closest
- *   point on the given path segment.
+/*!
+ * \brief Calculates the distance from Point to Path
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on the given path segment.
  *
  *  \param [in] path    The path.
  *  \param [in] x       The x coordinate of the given point.

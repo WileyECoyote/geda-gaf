@@ -6,6 +6,8 @@
       geda_math_hatch_circle because the integers over-flow for circles
       with large radius.
 
+    * src/struct/s_path.c: Reformat and revise function documentation.
+
 2019-04-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Check that the pointer to the arc and the point
