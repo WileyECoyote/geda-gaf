@@ -2,6 +2,10 @@
 
     * src/math/m_arc.c: Add function geda_math_arc_chord.
 
+    * src/math/m_hatch.c: Change radius and sweep_y to type double in
+      geda_math_hatch_circle because the integers over-flow for circles
+      with large radius.
+
 2019-04-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Check that the pointer to the arc and the point

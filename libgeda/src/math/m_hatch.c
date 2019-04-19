@@ -175,8 +175,8 @@ geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
 void
 geda_math_hatch_circle(GedaCircle *circle, int angle, int pitch, GArray *lines)
 {
-  int       radius;
-  int       sweep_y;
+  double radius;
+  double sweep_y;
   TRANSFORM transform;
 
   g_return_if_fail (circle != NULL);
