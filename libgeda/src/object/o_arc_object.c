@@ -549,6 +549,7 @@ bool geda_arc_object_get_position (GedaObject *object, int *x, int *y)
 
 /*! O0218
  * \brief Get the radius of the arc
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  *
@@ -568,6 +569,7 @@ geda_arc_object_get_radius (const GedaObject *object)
 
 /*! O0219
  * \brief Get the starting angle of the arc
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  *
@@ -1552,6 +1554,7 @@ void geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int 
 
 /*! O0231
  * \brief Set sweep angle of an Arc GedaObject
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] sweep   New value for the arc sweep
@@ -1573,6 +1576,7 @@ void geda_arc_object_set_arc_sweep (GedaObject *object, int sweep)
 
 /*! O0232
  * \brief Set center X coordinate of an Arc GedaObject
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] x       New value for the arc X coordinate
@@ -1595,6 +1599,7 @@ geda_arc_object_set_center_x (GedaObject *object, int x)
 
 /*! O0233
  * \brief Set center Y coordinate of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] y       New value for the arc Y coordinate
@@ -1616,6 +1621,7 @@ void geda_arc_object_set_center_y (GedaObject *object, int y)
 
 /*! O0234
  * \brief Set Line End Cap Type of an Arc Object
+ * \par Function Description
  *
  * \param [in] object   Pointer to an Arc GedaObject
  * \param [in] line_end New value for the arc line end type
@@ -1639,6 +1645,7 @@ void geda_arc_object_set_end_cap (GedaObject *object, int line_end)
 
 /*! O0235
  * \brief Set Fill Angle 1 property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] angle   New value for the arc fill angle 1
@@ -1660,6 +1667,7 @@ void geda_arc_object_set_fill_angle1 (GedaObject *object, int angle)
 
 /*! O0236
  * \brief Set Fill Angle 2 property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] angle   New value for the arc fill angle 2
@@ -1681,6 +1689,7 @@ void geda_arc_object_set_fill_angle2 (GedaObject *object, int angle)
 
 /*! O0237
  * \brief Set Fill Pitch 1 property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] pitch   New value for the arc fill pitch 1
@@ -1702,6 +1711,7 @@ void geda_arc_object_set_fill_pitch1 (GedaObject *object, int pitch)
 
 /*! O0238
  * \brief Set Fill Pitch 2 property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] pitch   New value for the arc fill pitch 2
@@ -1723,6 +1733,7 @@ void geda_arc_object_set_fill_pitch2 (GedaObject *object, int pitch)
 
 /*! O0239
  * \brief Set Fill Type property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] type    New value for the arc fill type
@@ -1746,6 +1757,7 @@ void geda_arc_object_set_fill_type (GedaObject *object, int type)
 
 /*! O0240
  * \brief Set Fill Width property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] width   New value for the arc fill width
@@ -1767,6 +1779,7 @@ void geda_arc_object_set_fill_width (GedaObject *object, int width)
 
 /*! O0241
  * \brief Set Line Length property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] length  New value for the arc line length
@@ -1788,6 +1801,7 @@ void geda_arc_object_set_line_length (GedaObject *object, int length)
 
 /*! O0242
  * \brief Set Line Space property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] space   New value for the arc line space
@@ -1809,6 +1823,7 @@ void geda_arc_object_set_line_space (GedaObject *object, int space)
 
 /*! O0243
  * \brief Set Line Type property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] type    New value for the arc line type
@@ -1832,6 +1847,7 @@ void geda_arc_object_set_line_type (GedaObject *object, int type)
 
 /*! O0244
  * \brief Set Line Width property of an Arc Object
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] width   New value for the arc line width
@@ -1853,6 +1869,7 @@ void geda_arc_object_set_line_width (GedaObject *object, int width)
 
 /*! O0245
  * \brief Set radius of an Arc GedaObject
+ * \par Function Description
  *
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] radius  New value for the arc radius
@@ -1874,7 +1891,7 @@ void geda_arc_object_set_radius (GedaObject *object, int radius)
 
 /*! O0246
  * \brief Set the starting angle of an Arc GedaObject
- *
+ * \par Function Description
  * \param [in] object  Pointer to an Arc GedaObject
  * \param [in] angle   New value for the arc starting angle
  *
@@ -1894,7 +1911,9 @@ void geda_arc_object_set_start_angle (GedaObject *object, int angle)
 }
 
 /*! O0247
- * \brief Calculates the distance between the given point and the closest
+ * \brief Determine Shortest Distance to an Arc
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
  *  point on the perimeter of the arc.
  *
  * \param [in] object       An GedaObject object of type GedaArc
@@ -2042,6 +2061,7 @@ void geda_arc_object_translate(GedaObject *object, int dx, int dy)
 
 /*! O0250
  * \brief Determines if a point lies within the sweep of the arc.
+ * \par Function Description
  *
  * \param [in] object GedaObject object of type GedaArc
  * \param [in] x      The x coordinate of the given point

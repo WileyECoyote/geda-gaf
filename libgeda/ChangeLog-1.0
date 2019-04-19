@@ -6,6 +6,9 @@
       geda_math_hatch_circle because the integers over-flow for circles
       with large radius.
 
+    * src/object/o_arc_object.c: Add "Function Description" in documentation
+      blocks for consistency with other modules.
+
     * src/struct/s_path.c: Reformat and revise function documentation.
 
 2019-04-18 Wiley E. Hill <wileyhill@gmail.com
