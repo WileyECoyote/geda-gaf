@@ -410,6 +410,7 @@ int check_accessors ()
 
   const GList *list;
 
+  /* The list should be NULL because nothing has been attached to object1 */
   list = geda_object_get_attached(object1);
 
   if (list) {
@@ -440,6 +441,7 @@ int check_accessors ()
   }
   else {
 
+    /* Check that object in the list is the attached Text object */
     if (list->data != object2) {
       fprintf(stderr, "Failed: get_attached %s line <%d>\n", TOBJECT, __LINE__);
       result++;
@@ -876,6 +878,7 @@ int check_methods (void)
   geda_object_unref(object);
 
   /* ------------------------- GedaNet -------------------------- */
+
   object = geda_net_object_new (3, 200, 250, 300, 350);
 
   if (!geda_object_bounds(object)) {

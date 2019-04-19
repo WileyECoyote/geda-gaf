@@ -16,6 +16,8 @@
 
     * tests/test_line_object.c: Add checks for geda_line_object_length.
 
+    * tests/test_object.c: Add comments.
+
 2019-04-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Check that the pointer to the arc and the point
