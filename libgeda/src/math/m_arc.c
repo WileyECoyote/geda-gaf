@@ -33,6 +33,50 @@
 
 #include <geda_debug.h>
 
+void
+geda_math_arc_chord (GedaArc *arc, LINE *line)
+{
+  double angle;
+  double radius;
+  int sx, sy, ex, ey;
+
+  radius = arc->radius;
+
+  angle = M_PI * ((double)arc->start_angle) / 180.0;
+
+#ifdef HAVE_LRINT
+
+  sx = lrint ((double)arc->x + radius * cos (angle));
+  sy = lrint ((double)arc->y + radius * sin (angle));
+
+#else
+
+  sx = ((double)arc->x + radius * cos (angle)) + 0.5;
+  sy = ((double)arc->y + radius * sin (angle)) + 0.5;
+
+#endif
+
+  line->x[0] = sx;
+  line->y[0] = sy;
+
+  angle += M_PI * ((double)arc->arc_sweep) / 180.0;
+
+#ifdef HAVE_LRINT
+
+  ex = lrint ((double)arc->x + radius * cos (angle));
+  ey = lrint ((double)arc->y + radius * sin (angle));
+
+#else
+
+  ex = ((double)arc->x + radius * cos (angle)) + 0.5;
+  ey = ((double)arc->y + radius * sin (angle)) + 0.5;
+
+#endif
+
+  line->x[1] = ex;
+  line->y[1] = ey;
+}
+
 /*!
  * \brief Calculates the length of an Arc sector
  * \par Function Description

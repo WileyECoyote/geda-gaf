@@ -110,6 +110,7 @@ extern "C" {
           int    geda_math_angle_normalize               (int angle);
 
 /* m_arc.c */
+         void    geda_math_arc_chord                     (GedaArc *arc, LINE *line);
        double    geda_math_arc_length                    (int radius, int sweep);
          bool    geda_math_arc_includes_point            (GedaArc *arc, GedaPoint *point);
 
