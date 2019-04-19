@@ -90,7 +90,7 @@ GedaPath *s_path_new_from (PATH_SECTION *sections)
  *  Unreferences the GedaPath object. The path should not be referenced
  *  after calling the function.
  */
-void s_path_free(GedaPath * path)
+void s_path_free(GedaPath *path)
 {
   g_return_if_fail (GEDA_IS_PATH(path));
   GEDA_UNREF (path);
@@ -184,7 +184,7 @@ void s_path_curveto (GedaPath *path, double x1, double y1,
  *  \par Function Description
  *
  */
-void s_path_art_finish (GedaPath * path)
+void s_path_art_finish (GedaPath *path)
 {
   int num_sections;
 
@@ -298,7 +298,7 @@ struct _RSVGParsePathCtx {
   double params[7];   /* parameters that have been parsed */
 };
 
-static void s_path_arc_segment (RSVGParsePathCtx * ctx,
+static void s_path_arc_segment (RSVGParsePathCtx *ctx,
                                 double xc, double yc, double th0, double th1,
                                 double rx, double ry, double x_axis_rotation)
 {
@@ -341,9 +341,8 @@ static void s_path_arc_segment (RSVGParsePathCtx * ctx,
  * @sweep: 0 for "negative angle", 1 for "positive angle".
  * @x: New x coordinate.
  * @y: New y coordinate.
- *
  */
-static void s_path_arc (RSVGParsePathCtx * ctx,
+static void s_path_arc (RSVGParsePathCtx *ctx,
                         double rx, double ry, double x_axis_rotation,
                         int large_arc_flag, int sweep_flag, double x, double y)
 {
@@ -417,7 +416,7 @@ static void s_path_arc (RSVGParsePathCtx * ctx,
 
 /* supply defaults for missing parameters, assuming relative coordinates
    are to be interpreted as x,y */
-static void geda_struct_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_params)
+static void geda_struct_path_parse_default_xy (RSVGParsePathCtx *ctx, int n_params)
 {
   int i;
 
@@ -439,7 +438,7 @@ static void geda_struct_path_parse_default_xy (RSVGParsePathCtx * ctx, int n_par
   }
 }
 
-static void geda_struct_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
+static void geda_struct_path_parse_do_cmd (RSVGParsePathCtx *ctx, bool final)
 {
   double x1, y1, x2, y2, x3, y3;
 
@@ -597,7 +596,7 @@ static void geda_struct_path_parse_do_cmd (RSVGParsePathCtx * ctx, bool final)
   }
 }
 
-static void geda_struct_path_parse_data (RSVGParsePathCtx * ctx, const char *data)
+static void geda_struct_path_parse_data (RSVGParsePathCtx *ctx, const char *data)
 {
   bool in_num        = FALSE;
   bool in_frac       = FALSE;
