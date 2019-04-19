@@ -12,6 +12,8 @@
     * src/struct/s_path.c: Reformat and revise function documentation and
       remove whitespaces preceeding pointers.
 
+    * tests/test_complex_object.c: Add checks for bounds_valid in check_query.
+
 2019-04-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Check that the pointer to the arc and the point

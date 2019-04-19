@@ -533,6 +533,24 @@ int check_query(void)
   GedaObject *object = geda_complex_object_new(toplevel, 100, 100, 0, 0,
                                                sym, sym_name, 1);
 
+  /* bounds_valid should NOT be set */
+  if (object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O081014A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* === Virtual geda_complex_bounds  === */
+  if (!geda_object_bounds(object)) {
+    fprintf(stderr, "FAILED: (O081014B) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
+  /* bounds_valid should be set */
+  if (!object->bounds_valid) {
+    fprintf(stderr, "FAILED: (O081014C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    result++;
+  }
+
   /* === Function 04: geda_complex_object_get_nearest_point  === */
 
   result += check_get_nearest_point (object);
