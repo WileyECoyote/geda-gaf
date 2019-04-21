@@ -251,29 +251,35 @@ msgstr "Drej objektet"
 msgid "Select this Object"
 msgstr "Vælg dette objekt"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Fjern markeringen af ​​dette objekt"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Returnerer længden af ​​en lineær objekt."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Filnavn på denne side."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "String, der beskriver et geometrisk element"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Hent en specifik attributobjekt"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Hent liste over tilhørende attributobjekter"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
