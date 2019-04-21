@@ -146,7 +146,7 @@ msgstr "Връща правоъгълните граници на обект."
 # Vzemete obekt ot konteĭner na Geda
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr "Вземете обект от контейнер на Geda"
+msgstr "Вземете обект от контейнер на Geda."
 
 # Retrieve all objects belonging to a page
 # Izvlichane na vsichki obekti, prinadlezhashti kŭm dadena stranitsa
@@ -294,29 +294,38 @@ msgstr "Завъртете обекта"
 msgid "Select this Object"
 msgstr "Изберете този обект"
 
+# Unselect this Object; Premakhnete izbora na tozi obekt
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Премахнете избора на този обект"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Име на файла на тази страница."
 
+# File Name of this Page
+# Ime na faĭla na tazi stranitsa
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Име на файла на тази страница."
 
+# String describing a geometric element
+# Strun, opisvasht geometrichen element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Струн, описващ геометричен елемент"
 
+# Retrieve a specific attribute object
+# Izvlichane na konkreten obekt atribut
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Извличане на конкретен обект атрибут"
 
+# Retrieve list of associated attribute Objects
+# Izvlichane na spisŭk ot asotsiirani atributni obekti
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Извличане на списък от свързани атрибутни обекти"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
