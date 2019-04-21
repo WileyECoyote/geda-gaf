@@ -150,7 +150,7 @@ msgstr "Hacer una copia de un objeto."
 # Remove object from a page
 #: libgedathon/include/geda_module.h:80
 msgid "Remove object from a page."
-msgstr "Eliminar objeto de una página"
+msgstr "Eliminar objeto de una página."
 
 # Remove multiple objects from a page
 #: libgedathon/include/geda_module.h:81
@@ -169,7 +169,7 @@ msgstr "Eliminar múltiples objetos de una página."
 
 #: libgedathon/include/geda_module.h:85
 msgid "Synchronize object with library."
-msgstr ""
+msgstr "Sincronizar objeto con biblioteca."
 
 #: libgedathon/include/geda_module.h:88
 msgid "Create a new arc object."
@@ -258,17 +258,20 @@ msgstr "Deseleccionar este objeto"
 msgid "Returns the length of a linear object."
 msgstr "Devuelve la longitud de un objeto lineal."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Nombre del archivo de esta página."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Cadena que describe un elemento geométrico"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Recuperar un objeto de atributo específico"
 
 # Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127

@@ -258,23 +258,27 @@ msgstr "این شیء را غیرفعال کنید"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr "طول یک شیء خطی را برمی گرداند"
+msgstr "طول یک شیء خطی را برمی گرداند."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "نام فایل این صفحه."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "رشته ای که یک عنصر هندسی را توصیف می کند"
 
+# Retrieve a specific attribute Object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "یک خصوصیت مشخص Object را بازیابی کنید"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "بازخوانی لیست اشیاء مرتبط مربوطه"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
