@@ -269,26 +269,30 @@ msgstr "Faire pivoter l'objet"
 msgid "Select this Object"
 msgstr "Sélectionnez cet objet"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Désélectionner cet objet"
 
 # Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
 msgstr "Retourne la longueur d'un objet linéaire"
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Nom du fichier de cette page."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Chaîne décrivant un élément géométrique"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Récupérer un objet d'attribut spécifique"
 
 # Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127

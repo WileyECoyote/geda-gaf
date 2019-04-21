@@ -278,25 +278,30 @@ msgstr "ī vastu tiraññeṭukkuka"
 msgid "Unselect this Object"
 msgstr "בטל בחירה של אובייקט זה"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "מחזירה את האובייקט ליניארי."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "שם הקובץ של דף זה."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "מחרוזת המתארת ​​אלמנט גיאומטרי"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "אחזר אובייקט מאפיין ספציפי"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "אחזר רשימה של אובייקטי מאפיין הקשורים"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
