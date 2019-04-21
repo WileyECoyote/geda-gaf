@@ -112,7 +112,7 @@ msgstr "Hernoem 'n bladsy verander die lêernaam."
 # Save the page by writing to storage
 #: libgedathon/include/geda_module.h:68
 msgid "Save the page by writing to storage."
-msgstr "Stoor die bladsy deur op te stoor"
+msgstr "Stoor die bladsy deur op te stoor."
 
 # Save the page using a new file name
 #: libgedathon/include/geda_module.h:69
@@ -274,25 +274,30 @@ msgstr "Draai die voorwerp"
 msgid "Select this Object"
 msgstr "Kies hierdie objek"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Ontkies hierdie objek"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Wys die lengte van 'n lineêre voorwerp."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Lêernaam van hierdie bladsy."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "String wat 'n meetkundige element beskryf"
 
+# Retrieve a specific attribute Object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Haal 'n spesifieke kenmerk Object"
 
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"

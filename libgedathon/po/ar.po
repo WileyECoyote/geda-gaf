@@ -123,7 +123,7 @@ msgstr "احفظ الصفحة بالكتابة للتخزين."
 # ahfuzu alsafhat biastikhdam aism milafin jadid
 #: libgedathon/include/geda_module.h:69
 msgid "Save the page using a new file name."
-msgstr "احفظ الصفحة باستخدام اسم ملف جديد"
+msgstr "احفظ الصفحة باستخدام اسم ملف جديد."
 
 # Save all opened pages to storage
 # ahfuz jmye alsafahat almaftuhat liltakhzin
@@ -307,29 +307,40 @@ msgstr "تدوير الكائن"
 msgid "Select this Object"
 msgstr "حدد هذا الكائن"
 
+# Unselect this Object; qum bi'iilgha' tahdid hdha alkayin
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "قم بإلغاء تحديد هذا الكائن"
 
+# Returns the length of a linear object
+# aism almilafi min hadhih alsafha
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "اسم الملف من هذه الصفحة."
 
+# File Name of this Page
+# aism almilafi min hadhih alsafha
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "اسم الملف من هذه الصفحة."
 
+# String describing a geometric element
+# silsilat tasif aleunsur alhandasii
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "سلسلة تصف العنصر الهندسي"
 
+# Retrieve a specific attribute Object
+# aistirdad kayin simatan muhadad
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "استرداد كائن سمة محدد"
 
+# Retrieve list of associated attribute Objects
+# aistirdad qayimat kayinat alsimat almurtabita
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "استرداد قائمة كائنات السمة المرتبطة"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
