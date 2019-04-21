@@ -274,25 +274,30 @@ msgstr "Válassza ezt az objektumot"
 msgid "Unselect this Object"
 msgstr "Jelölje ki ezt az objektumot"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Visszaadja a lineáris objektum hosszát."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Ennek az oldalnak a neve."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "A geometriai elemet leíró karakterlánc"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
-msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgid "A geometriai elemet leíró karakterlánc"
+msgstr "Adjon meg egy adott attribútumobjektumot"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "A kapcsolódó attribútumok Objektumok listájának lekérése"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
