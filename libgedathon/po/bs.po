@@ -134,7 +134,7 @@ msgstr "Vraća pravokutne granice objekta."
 # Retrieve an object from a Geda container
 #: libgedathon/include/geda_module.h:75
 msgid "Retrieve an object from a GedaCapsule."
-msgstr "Dohvatite objekt iz Geda kontejnera"
+msgstr "Dohvatite objekt iz Geda kontejnera."
 
 # Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
@@ -271,29 +271,34 @@ msgstr "Rotirajte objekat"
 msgid "Select this Object"
 msgstr "Odaberite ovaj objekt"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Poništite odabir ovog objekta"
 
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Vraća dužinu linearnog objekta."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Naziv datoteke."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Niz koji opisuje geometrijski element"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Dohvatite određeni objekt atributa"
 
+# Retrieve list of associated attribute objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Dohvatite popis pridruženih atributnih objekata"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
