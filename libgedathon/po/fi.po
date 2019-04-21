@@ -44,7 +44,7 @@ msgstr "Hanki tai Aseta oletus otsikkoblock-symboli\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
-msgstr "Sulje kaikki tiedostot ja poista kirjasto"
+msgstr "Sulje kaikki tiedostot ja poista kirjasto."
 
 #: libgedathon/include/geda_module.h:55
 msgid "Append a folder to the library search path."
@@ -254,25 +254,30 @@ msgstr "Valitse tämä kohde"
 msgid "Unselect this Object"
 msgstr "Poista tämä kohde"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Palauttaa lineaarisen objektin pituuden."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Tämän sivun tiedostonimi."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Merkkijono, joka kuvaa geometrista elementtiä"
 
+# Retrieve a specific attribute Object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Hae tietty määriteobjekti"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Hae luettelo niihin liittyvistä attribuuttikohteista"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
