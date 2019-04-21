@@ -121,7 +121,7 @@ msgstr "Recupera tots els objectes que pertanyen a una pàgina."
 # Retrieve all objects belonging to a page
 #: libgedathon/include/geda_module.h:76
 msgid "Retrieve all objects belonging to a page."
-msgstr "Recupera tots els objectes que pertanyen a una pàgina"
+msgstr "Recupera tots els objectes que pertanyen a una pàgina."
 
 # Add an object to a page or another object
 #: libgedathon/include/geda_module.h:77
@@ -253,29 +253,35 @@ msgstr "Gira l'objecte"
 msgid "Select this Object"
 msgstr "Seleccioneu aquest objecte"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Desactiveu aquest objecte"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Retorna la longitud d'un objecte lineal."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Nom del fitxer d'aquesta pàgina."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Cadena que descriu un element geomètric"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Recuperar un objecte d’atribut específic"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Recuperar la llista d'objectes d'atribut associats"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
