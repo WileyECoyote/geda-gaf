@@ -12,6 +12,9 @@
 
     * ti/doc/LMX2594-1.sym: Fix duplicate pins, add multible missing signals.
 
+    * transistor/npn-thru/MPSU05_npn_60V_10W_TO-262-4.sym: Update device
+      and pinseq attributes, remove footprints attribute.
+
 2019-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * thyristor/diac-?.sym: Update footprint, add description attribute:
