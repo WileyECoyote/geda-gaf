@@ -5,6 +5,10 @@
             * diode/transil/SMM4F20A-1.sym
             * diode/transil/SMM4F20A-2.sym
 
+    * diode/zener53: Add symbol for 5 Watt zener diode:
+
+            * diode/zener53/zener_150_1N5383B.sym
+
 2019-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * thyristor/diac-?.sym: Update footprint, add description attribute:
