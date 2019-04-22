@@ -1,12 +1,8 @@
 v 20140729 3
-T 0 2300 5 10 0 0 0 0 1
-author=AutoTron
-T 0 2150 5 10 0 0 0 0 1
-dist-license=GPLv2
-T 0 2000 5 10 0 0 0 0 1
-use-license=unlimited
-T 0 1850 5 10 0 0 0 0 1
-symversion=1.0
+T 900 700 8 10 1 1 0 0 1
+device=MPSU06
+T 900 500 8 10 1 1 0 0 1
+refdes=Q?
 T 0 1700 5 10 0 0 0 0 1
 description=PNP Transistor
 T 0 1550 9 10 0 0 0 0 1
@@ -44,22 +40,24 @@ pinlabel=c
 T 600 1000 5 6 0 1 0 0 1
 pintype=pas
 }
-T 900 700 8 10 1 1 0 0 1
-device=MPSU56
 L 600 200 400 400 3 0 0 0 -1 -1
 L 600 800 400 600 3 0 0 0 -1 -1
 L 400 700 400 300 3 10 0 0 -1 -1
 L 400 500 184 500 3 0 0 0 -1 -1
-T 900 500 8 10 1 1 0 0 1
-refdes=Q?
 T 900 300 9 10 0 1 0 0 1
 value=80V, 10W
 T 900 100 9 10 0 1 0 0 1
 footprint=TO-262
-T 0 1400 5 10 0 0 0 0 1
-footprints=EBC
 T 0 1250 5 10 0 0 0 0 1
 spice-type=BJT PNP
 L 575 225 503 261 3 0 0 0 -1 -1
 L 575 225 539 297 3 0 0 0 -1 -1
 L 503 261 539 297 3 0 0 0 -1 -1
+T 0 2300 5 10 0 0 0 0 1
+author=AutoTron
+T 0 2150 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 0 2000 5 10 0 0 0 0 1
+use-license=unlimited
+T 0 1850 5 10 0 0 0 0 1
+symversion=0.2
