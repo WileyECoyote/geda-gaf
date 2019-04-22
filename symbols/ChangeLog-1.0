@@ -10,6 +10,8 @@
             * diode/zener53/zener_150_1N5383B.sym
             * diode/zener53/zener_160_1N5384B.sym
 
+    * ti/doc/LMX2594-1.sym: Fix duplicate pins, add multible missing signals.
+
 2019-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * thyristor/diac-?.sym: Update footprint, add description attribute:
