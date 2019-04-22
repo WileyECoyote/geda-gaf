@@ -18,6 +18,9 @@
     * transistor/npn-thru/MPSU06_npn_80V_10W_TO-262-4.sym: Update device
       attribute, remove footprints attribute.
 
+    * transistor/npn-thru/MPSU55_npn_60V_10W_TO-262-4.sym: Add symbol;
+      PNP power transistor.
+
 2019-04-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * thyristor/diac-?.sym: Update footprint, add description attribute:
