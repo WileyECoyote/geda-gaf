@@ -1,3 +1,8 @@
+2019-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Revise eda_renderer_draw_arc to call eda_renderer_
+      draw_hatch so as to allow hatching of arc shapes.
+
 2019-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Fix retrace of line in eda_cairo_line.
