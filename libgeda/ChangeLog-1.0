@@ -10,6 +10,7 @@
 
           * geda_object_set_bounds_valid
           * geda_object_get_visibility
+          * geda_object_set_visibility
 
 2019-04-19 Wiley E. Hill <wileyhill@gmail.com
 

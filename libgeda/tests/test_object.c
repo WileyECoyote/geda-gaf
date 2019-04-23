@@ -653,6 +653,15 @@ int check_accessors ()
     result++;
   }
 
+  /* === Function: geda_object_set_visibility === */
+
+  geda_object_set_visibility(object0, INVISIBLE);
+
+  if (geda_object_get_visibility(object0)) {
+    fprintf(stderr, "Failed: set_visibility %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   geda_object_unref(object1);
   geda_object_unref(object2);
 
