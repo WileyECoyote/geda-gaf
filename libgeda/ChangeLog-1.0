@@ -6,6 +6,10 @@
           * geda_object_get_show_name_value
           * geda_object_set_show_name_value
 
+    * tests/test_object.c: Add basic checks for:
+
+          * geda_object_get_show_name_value
+
 2019-04-22 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Revise geda_math_arc_includes_point to explicitly

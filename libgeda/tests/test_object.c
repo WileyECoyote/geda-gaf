@@ -662,6 +662,14 @@ int check_accessors ()
     result++;
   }
 
+  /* === Function: geda_object_get_show_name_value === */
+
+  /* SHOW_NAME_VALUE, or 0, is the default */
+  if (geda_object_get_show_name_value(object0)) {
+    fprintf(stderr, "Failed: get_show_name_value %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   geda_object_unref(object1);
   geda_object_unref(object2);
 
