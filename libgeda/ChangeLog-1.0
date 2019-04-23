@@ -6,6 +6,10 @@
     * src/math/m_math.c: Redo geda_math_distance to use pow and eliminate
       conditional use of hypot.
 
+    * tests/test_object.c: Add basic checks for:
+
+          * geda_object_set_bounds_valid
+
 2019-04-19 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Add function geda_math_arc_chord.

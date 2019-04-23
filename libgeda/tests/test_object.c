@@ -638,6 +638,13 @@ int check_accessors ()
 
   /* === Function: geda_object_set_bounds_valid === */
 
+  geda_object_set_bounds_valid(object0, TRUE);
+
+  if (!geda_object_get_bounds_valid(object0)) {
+    fprintf(stderr, "Failed: set_bounds_valid %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   geda_object_unref(object1);
   geda_object_unref(object2);
 
