@@ -6889,6 +6889,7 @@ void geda_label_widget_set_alignment (GtkWidget *widget, float xalign, float yal
 /*!
  * \brief Get GedaLabel widget angle property
  * \par Function Description
+ *  Widget version of #geda_label_get_angle.
  *
  * \returns the angle of rotation for the label
  *
@@ -6902,6 +6903,7 @@ double geda_label_widget_get_angle (GtkWidget *widget)
 /*!
  * \brief Set GedaLabel widget angle property
  * \par Function Description
+ *  Widget version of #geda_label_set_angle.
  *
  * \sa geda_label_set_angle
  */
@@ -7050,7 +7052,7 @@ void geda_label_widget_set_max_width_chars (GtkWidget *label, int n_chars)
  * \param [in] label  The GedaLabel object
  *
  * \retval %TRUE if the user can copy text from the label
- * \sa geda_label_get_selectable
+ * \sa geda_label_set_selectable
  */
 bool geda_label_widget_get_selectable (GtkWidget *label)
 {
