@@ -645,6 +645,14 @@ int check_accessors ()
     result++;
   }
 
+  /* === Function: geda_object_get_visibility === */
+
+  /* Objects are visible by default */
+  if (!geda_object_get_visibility(object0)) {
+    fprintf(stderr, "Failed: get_visibility %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   geda_object_unref(object1);
   geda_object_unref(object2);
 

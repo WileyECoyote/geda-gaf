@@ -9,6 +9,7 @@
     * tests/test_object.c: Add basic checks for:
 
           * geda_object_set_bounds_valid
+          * geda_object_get_visibility
 
 2019-04-19 Wiley E. Hill <wileyhill@gmail.com
 
