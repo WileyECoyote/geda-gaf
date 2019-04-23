@@ -670,6 +670,29 @@ int check_accessors ()
     result++;
   }
 
+  /* === Function: geda_object_set_show_name_value === */
+
+  geda_object_set_show_name_value(object0, SHOW_VALUE);
+
+  if (geda_object_get_show_name_value(object0) != SHOW_VALUE) {
+    fprintf(stderr, "Failed: set_show_name_value %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  geda_object_set_show_name_value(object0, SHOW_NAME);
+
+  if (geda_object_get_show_name_value(object0) != SHOW_NAME) {
+    fprintf(stderr, "Failed: set_show_name_value %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  geda_object_set_show_name_value(object0, -1);
+
+  if (geda_object_get_show_name_value(object0) != SHOW_NAME) {
+    fprintf(stderr, "Failed: set_show_name_value %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   geda_object_unref(object1);
   geda_object_unref(object2);
 
