@@ -144,7 +144,7 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
   width = geda_arc_get_line_width(arc);
 
   /* Calculate 1/2 the width or the drawn width if line-width was zero */
-  half_width = width ? width / 2 : MIN_LINE_WIDTH_THRESHOLD / 2;
+  half_width = width ? width >> 1 : MIN_LINE_WIDTH_THRESHOLD / 2;
 
   /* First compare the distance from the arc center to the radius */
   if (delta < half_width) {

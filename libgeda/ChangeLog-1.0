@@ -1,3 +1,8 @@
+2019-04-22 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/math/m_arc.c: Revise geda_math_arc_includes_point to explicitly
+      shift right to divide.
+
 2019-04-19 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Add function geda_math_arc_chord.
