@@ -756,6 +756,11 @@ eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
 {
   LINE_OPTIONS *line_options = object->line_options;
 
+  /* Hatch arc */
+  int fill_solid = eda_renderer_draw_hatch (renderer, object);
+
+  /* Draw outline of arc */
+
   eda_cairo_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                  line_options->line_width,
                  object->arc->x,
@@ -763,6 +768,10 @@ eda_renderer_draw_arc (EdaRenderer *renderer, GedaObject *object)
                  object->arc->radius,
                  object->arc->start_angle,
                  object->arc->arc_sweep);
+
+  if (fill_solid) {
+    cairo_fill_preserve (renderer->priv->cr);
+  }
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     line_options->line_type,
