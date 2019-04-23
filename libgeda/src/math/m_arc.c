@@ -127,11 +127,11 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
 
 #ifdef HAVE_LRINT
 
-  dist   = lrint(geda_distance(arc->x, arc->y, point->x, point->y));
+  dist = lrint(geda_distance(arc->x, arc->y, point->x, point->y));
 
 #else
 
-  dist   = (int) (geda_distance(arc->x, arc->y, point->x, point->y)) + 0.5;
+  dist = (int) (geda_distance(arc->x, arc->y, point->x, point->y)) + 0.5;
 
 #endif
 
