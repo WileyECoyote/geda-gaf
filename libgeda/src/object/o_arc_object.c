@@ -1526,7 +1526,8 @@ void geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int 
     /* get center, and rotate center */
     x = object->arc->x;
     y = object->arc->y;
-    if(angle % 90 == 0) {
+
+    if (angle % 90 == 0) {
       geda_math_rotate_point_90(x, y, angle % 360, &newx, &newy);
     }
     else {
@@ -1537,6 +1538,7 @@ void geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int 
 
     /* apply rotation to angles */
     object->arc->start_angle = (object->arc->start_angle + angle) % 360;
+
     /* arc_sweep is unchanged as it is the sweep of the arc */
     /* object->arc->arc_sweep = (object->arc->arc_sweep); */
 
