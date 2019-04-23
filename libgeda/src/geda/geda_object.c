@@ -300,7 +300,7 @@ int geda_object_get_show_name_value (ConstObject *object) {
 }
 
 /*!
- * \brief Get the Selectable Flag from a GedaObject
+ * \brief Get the Visibility Flag from a GedaObject
  * \par Function Description
  *  Returns the visibility member of \a object.
  *
