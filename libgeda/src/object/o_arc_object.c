@@ -1540,7 +1540,6 @@ void geda_arc_object_rotate(GedaObject *object, int center_x, int center_y, int 
     object->arc->start_angle = (object->arc->start_angle + angle) % 360;
 
     /* arc_sweep is unchanged as it is the sweep of the arc */
-    /* object->arc->arc_sweep = (object->arc->arc_sweep); */
 
     /* translate object to its previous place */
     object->arc->x += center_x;
