@@ -56,17 +56,12 @@ double geda_math_degrees_to_radians (double degrees)
  */
 double geda_math_distance(int x1, int y1, int x2, int y2)
 {
+  double dx, dy;
 
-#if HAVE_HYPOT
+  dx = (x2 - x1) * 1.0;
+  dy = (y2 - y1) * 1.0;
 
-  return hypot((x1-x2), (y1-y2));
-
-#else
-
-  return sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2));
-
-#endif
-
+  return sqrt(pow(dx, 2) + pow(dy, 2));
 }
 
 /*! \brief Convert Paper size to World coordinates.
