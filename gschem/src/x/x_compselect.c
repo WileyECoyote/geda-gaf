@@ -2242,7 +2242,7 @@ compselect_create_inuse_treeview (Compselect *compselect)
   compselect->inusetreeview = GTK_TREE_VIEW (treeview);
 
   /* Add the scrolled window for directories to the vertical box */
-  PACK_BOX (inuse_vbox, scrolled_win, TRUE, TRUE, 0);
+  PACK_START (inuse_vbox, scrolled_win, TRUE, TRUE, 0);
 
   /* -- refresh button area -- */
   hbox = g_object_new (GTK_TYPE_HBOX,
@@ -2272,7 +2272,7 @@ compselect_create_inuse_treeview (Compselect *compselect)
                     compselect);
 
   /* Add the refresh button area to the vertical box */
-  PACK_BOX(inuse_vbox, hbox, FALSE, FALSE, 0);
+  PACK_START(inuse_vbox, hbox, FALSE, FALSE, 0);
 
   return inuse_vbox;
 }
@@ -2634,7 +2634,7 @@ compselect_create_treeview_box (Compselect   *compselect,
   geda_container_add (scrolled_win, treeview);
 
   /* Add the scrolled window for directories to the vertical box */
-  PACK_BOX(view_vbox, scrolled_win, TRUE, TRUE, 0);
+  PACK_START(view_vbox, scrolled_win, TRUE, TRUE, 0);
 
   g_signal_connect (treeview,
                     "row-activated",
@@ -2755,13 +2755,13 @@ static GtkWidget *compselect_create_filter_area (Compselect *compselect)
                         NULL);
 
   /* Add the search label to the filter area */
-  PACK_BOX(hbox, label, FALSE, FALSE, 0);
+  PACK_START(hbox, label, FALSE, FALSE, 0);
 
   /* create the text entry for filter in components */
   entry = geda_entry_new();
 
   /* Add the filter entry to the filter area */
-  PACK_BOX(hbox, entry,TRUE, TRUE, 0);
+  PACK_START(hbox, entry,TRUE, TRUE, 0);
 
   /* set filter entry of compselect */
   compselect->entry_filter = (GedaEntry*)entry;
@@ -2784,7 +2784,7 @@ static GtkWidget *compselect_create_filter_area (Compselect *compselect)
                                                 GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the clear button to the filter area */
-  PACK_BOX(hbox, clear_butt, FALSE, FALSE, 0);
+  PACK_START(hbox, clear_butt, FALSE, FALSE, 0);
 
   /* Save a pointer to the clear button in compselect */
   compselect->button_clear = GTK_BUTTON (clear_butt);
@@ -2804,7 +2804,7 @@ static GtkWidget *compselect_create_filter_area (Compselect *compselect)
                                                 GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the refresh button to the filter area */
-  PACK_BOX(hbox, refresh_butt, FALSE, FALSE, 0);
+  PACK_START(hbox, refresh_butt, FALSE, FALSE, 0);
 
    /* create the collapse button */
   collapse_butt = g_object_new (GTK_TYPE_BUTTON,
@@ -2821,7 +2821,7 @@ static GtkWidget *compselect_create_filter_area (Compselect *compselect)
                                                 GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the collapse button to the filter area */
-  PACK_BOX(hbox, collapse_butt, FALSE, FALSE, 0);
+  PACK_START(hbox, collapse_butt, FALSE, FALSE, 0);
 
     /* create the expand  button */
   expand_butt = g_object_new (GTK_TYPE_BUTTON,
@@ -2838,7 +2838,7 @@ static GtkWidget *compselect_create_filter_area (Compselect *compselect)
                                                 GTK_ICON_SIZE_SMALL_TOOLBAR));
 
   /* Add the expand button to the filter area */
-  PACK_BOX(hbox, expand_butt, FALSE, FALSE, 0);
+  PACK_START(hbox, expand_butt, FALSE, FALSE, 0);
 
   /* -- Setup the Callbacks for the Entry Area */
   g_signal_connect (entry,
@@ -3190,7 +3190,7 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
     ThisDialog->style_menu = stylemenu;
 
     /* Add the combobox to the horizontal action box */
-    PACK_BOX(action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
+    PACK_START(action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
 
   }
   else {
@@ -3217,7 +3217,7 @@ compselect_create_action_area (Compselect *ThisDialog, GtkWidget *parent, int mo
     ThisDialog->behavior_menu = ((GedaOptionMenu*)optionmenu);
 
     /* Add the combobox to the horizontal action box */
-    PACK_BOX(action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
+    PACK_START(action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
 
   }
   else {
@@ -3368,12 +3368,12 @@ compselect_constructor (GType                  type,
                                                  LOCAL_TAB);
   label = geda_label_new (_(IDS_COMPSELECT_TABS[LOCAL_TAB]));
   gtk_notebook_append_page (notebook, notebook_tab, label);
-  PACK_BOX(left_vbox, notebook, TRUE, TRUE, 0);
+  PACK_START(left_vbox, notebook, TRUE, TRUE, 0);
 
   ThisDialog->filter_hbox = compselect_create_filter_area (ThisDialog);
   gtk_widget_show_all (ThisDialog->filter_hbox);
 
-  PACK_BOX(left_vbox, ThisDialog->filter_hbox, FALSE, FALSE, 0);
+  PACK_START(left_vbox, ThisDialog->filter_hbox, FALSE, FALSE, 0);
 
   gtk_paned_pack1 (GTK_PANED (hpaned), left_vbox, TRUE, FALSE);
 
@@ -3427,7 +3427,7 @@ compselect_constructor (GType                  type,
   gtk_paned_pack2 (GTK_PANED (hpaned), vpaned, FALSE, FALSE);
 
   /* Add the hpaned to the dialog vbox */
-  PACK_BOX(main_vbox, hpaned, TRUE, TRUE, 0)
+  PACK_START(main_vbox, hpaned, TRUE, TRUE, 0)
 
   gtk_widget_show_all (hpaned);
 
@@ -3445,7 +3445,7 @@ compselect_constructor (GType                  type,
   GEDA_CALLBACK_SWITCH (SubGroups,   compselect_cb_switch_toggled, ThisDialog)
 
   /* Add the horizontal options box to the main vertical box */
-  PACK_BOX(main_vbox, opts_hbox, FALSE, FALSE, 0)
+  PACK_START(main_vbox, opts_hbox, FALSE, FALSE, 0)
 
   int mode = w_current->continue_component_place;
 

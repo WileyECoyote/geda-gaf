@@ -1,3 +1,7 @@
+2019-04-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Rename macro PACK_BOX->PACK_START.
+
 2019-04-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * configure.ac: Bump date version 20190401.

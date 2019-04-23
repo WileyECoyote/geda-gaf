@@ -81,6 +81,8 @@
  * ------------------------------------------------------------------
  * WEH | 09/07/18 | Add Macro HD_ACTION_SEPARATOR.
  * ------------------------------------------------------------------
+ * WEH | 04/23/19 | Rename macro PACK_BOX->PACK_START.
+ * ------------------------------------------------------------------
 */
 
 #pragma once
@@ -259,30 +261,30 @@ typedef struct
 
 /* End Base Boxes */
 
-#define PACK_BOX(box, item, isexpandable, isfilled, spacing) \
+#define PACK_START(box, item, isexpandable, isfilled, spacing) \
         gtk_box_pack_start ((GtkBox*)box, (GtkWidget*)item, isexpandable, isfilled, NOT_BELOW_ZERO (spacing));
 
 #define PACK_hBOX(box, item, isexpandable, isfilled, spacing) \
-        PACK_BOX (box##_hbox, item, isexpandable, isfilled, spacing)
+        PACK_START (box##_hbox, item, isexpandable, isfilled, spacing)
 
 #define PACK_vBOX(box, item, isexpandable, isfilled, spacing) \
-        PACK_BOX (box##_vbox, item, isexpandable, isfilled, spacing)
+        PACK_START (box##_vbox, item, isexpandable, isfilled, spacing)
 
 /* These are used by CSECTION_OPTIONS */
-#define HPACK_BOX PACK_hBOX
-#define VPACK_BOX PACK_vBOX
+#define HPACK_START PACK_hBOX
+#define VPACK_START PACK_vBOX
 
 /* End Pack Boxes */
 
 /* Level 2 Box - these combine Box and Packing */
 #define NEW_HCONTROL_BOX(parent, name, spacing); \
         BASE_BOX( name, h, FALSE, DEFAULT_WIDGET_SPACING) \
-        PACK_BOX(parent, name##_hbox, FALSE, TRUE, spacing)
+        PACK_START(parent, name##_hbox, FALSE, TRUE, spacing)
 
 //All Parameters
 #define SECTION_BOX(parent, name, type, homo, spacing, isexpandable, isfilled) \
         LOCAL_BASE_BOX (name, type, homo,  DEFAULT_WIDGET_SPACING) \
-        PACK_BOX(parent, name##_##type##box, isexpandable, isfilled, spacing)
+        PACK_START(parent, name##_##type##box, isexpandable, isfilled, spacing)
 
 //Eliminate type
 #define H_SECTION(parent, name, homo, spacing, isexpandable, isfilled) SECTION_BOX (parent, name, h, homo, spacing, isexpandable, isfilled)
@@ -346,13 +348,13 @@ typedef struct
 
 #define VZXSECTION(parent, name, ysize, vspacing, ispacing ) \
         LOCAL_BASE_BOX (name, v, FALSE, vspacing)            \
-        PACK_BOX(parent, name##_vbox, TRUE, TRUE, ispacing)  \
+        PACK_START(parent, name##_vbox, TRUE, TRUE, ispacing)  \
         SET_WIDGET_SIZE ( name##_vbox, -1, ysize)
 
 /*  Label Widget */
 #define GEDA_NEW_LABEL(name, isexpandable, isfilled, type) \
         name##Label = geda_visible_label_new (_(LABEL (name)));    \
-                      PACK_BOX(name##_##type##box, name##Label, isexpandable, \
+                      PACK_START(name##_##type##box, name##Label, isexpandable, \
                                isfilled, DEFAULT_WIDGET_SPACING)
 
 #define GEDA_PADDED_LABEL(name, hpad, vpad, isexpandable, isfilled, type) \
@@ -389,7 +391,7 @@ typedef struct
           type##ZSECTION(parent, name##Options, -1, ysize) \
           GtkWidget *name##Label=geda_visible_label_new (_(LABEL (name))); \
           gtk_widget_set_tooltip_text ( name##Label, _(TOOLTIP (name))); \
-          type##PACK_BOX (name##Options, name##Label, FALSE, FALSE, pad); \
+          type##PACK_START (name##Options, name##Label, FALSE, FALSE, pad); \
           geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_CENTER);
 
 #define GTK_NEW_SCROLL( parent, name, spacing, xsize, ysize, bars, theme) \
@@ -584,7 +586,7 @@ typedef struct
 #define GEDA_RADIO_GROUP( group, dir) \
         GSList *group##Group = NULL; \
         LOCAL_BASE_BOX(group##Group, dir, TRUE, 0) \
-        PACK_BOX(group##_hbox, group##Group##_##dir##box, FALSE, FALSE, 0)
+        PACK_START(group##_hbox, group##Group##_##dir##box, FALSE, FALSE, 0)
 
 #define GTK_RADIO_GROUP( group, dir) \
         GSList *group##Group = NULL; \
@@ -592,7 +594,7 @@ typedef struct
         GEDA_PADDED_LABEL (group, 5, 0, FALSE, FALSE, h); \
         gtk_widget_set_tooltip_text ( group##Label, _(TOOLTIP (group)));  \
         LOCAL_BASE_BOX(group##Group, dir, TRUE, 0) \
-        PACK_BOX(group##_hbox, group##Group##_##dir##box, FALSE, TRUE, DEFAULT_WIDGET_SPACING)
+        PACK_START(group##_hbox, group##Group##_##dir##box, FALSE, TRUE, DEFAULT_WIDGET_SPACING)
 
 #define GTK_RADIO( group, name, dir) \
         name##Radio = gtk_radio_button_new_with_mnemonic (group##Group, _(LABEL (name))); \
