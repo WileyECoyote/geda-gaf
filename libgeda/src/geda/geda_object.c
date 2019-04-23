@@ -286,6 +286,20 @@ bool geda_object_get_selectable (ConstObject *object) {
 }
 
 /*!
+ * \brief Get the Show Name Value setting from a GedaObject
+ * \par Function Description
+ *  Returns the show_name_value member of \a object.
+ *
+ * \sa geda_object_set_show_name_value
+ */
+int geda_object_get_show_name_value (ConstObject *object) {
+  if (is_a_geda_object(object)) {
+    return object->show_name_value;
+  }
+  return 0;
+}
+
+/*!
  * \brief Get the Selectable Flag from a GedaObject
  * \par Function Description
  *  Returns the visibility member of \a object.

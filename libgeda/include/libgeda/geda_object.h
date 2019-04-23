@@ -130,35 +130,36 @@ struct _GedaObject {
 extern "C" {
 #endif
 
-GedaObjectType geda_object_get_type          (void) GEDA_CONST;
-bool           is_a_geda_object              (const void *object);
+GedaObjectType geda_object_get_type           (void) GEDA_CONST;
+bool           is_a_geda_object               (const void *object);
 
-GedaObject   *geda_object_new                (int type) GEDA_WARN_UNUSED_RESULT;
-GedaObject   *geda_object_ref                (GedaObject *object);
-void          geda_object_unref              (GedaObject *object);
-void          geda_object_weakref_notify     (GedaObject *object);
-void          geda_object_weak_ref           (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
-void          geda_object_weak_unref         (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
-void          geda_object_add_weak_ptr       (GedaObject *object, void *weak_pointer_loc);
-void          geda_object_remove_weak_ptr    (GedaObject *object, void *weak_pointer_loc);
+GedaObject   *geda_object_new                 (int type) GEDA_WARN_UNUSED_RESULT;
+GedaObject   *geda_object_ref                 (GedaObject *object);
+void          geda_object_unref               (GedaObject *object);
+void          geda_object_weakref_notify      (GedaObject *object);
+void          geda_object_weak_ref            (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
+void          geda_object_weak_unref          (GedaObject *object, WeakNotifyFunc notify_func, void *user_data);
+void          geda_object_add_weak_ptr        (GedaObject *object, void *weak_pointer_loc);
+void          geda_object_remove_weak_ptr     (GedaObject *object, void *weak_pointer_loc);
 
-int           geda_object_bounds             (ConstObject *object);
-const GList  *geda_object_get_attached       (ConstObject *object);
-GedaObject   *geda_object_get_attached_to    (ConstObject *object);
-int           geda_object_get_bounds_valid   (ConstObject *object);
-int           geda_object_get_color          (ConstObject *object);
-const GList  *geda_object_get_conn_list      (ConstObject *object);
-int           geda_object_get_locked_color   (ConstObject *object);
-Page         *geda_object_get_page           (ConstObject *object);
-bool          geda_object_get_selectable     (ConstObject *object);
-int           geda_object_get_visibility     (ConstObject *object);
+int           geda_object_bounds              (ConstObject *object);
+const GList  *geda_object_get_attached        (ConstObject *object);
+GedaObject   *geda_object_get_attached_to     (ConstObject *object);
+int           geda_object_get_bounds_valid    (ConstObject *object);
+int           geda_object_get_color           (ConstObject *object);
+const GList  *geda_object_get_conn_list       (ConstObject *object);
+int           geda_object_get_locked_color    (ConstObject *object);
+Page         *geda_object_get_page            (ConstObject *object);
+bool          geda_object_get_selectable      (ConstObject *object);
+int           geda_object_get_show_name_value (ConstObject *object);
+int           geda_object_get_visibility      (ConstObject *object);
 
-void          geda_object_set_bounds_valid   (GedaObject *object, int valid);
-void          geda_object_set_color          (GedaObject *object, int color);
-void          geda_object_set_locked_color   (GedaObject *object, int color);
-void          geda_object_set_page           (GedaObject *object, Page *page);
-void          geda_object_set_selectable     (GedaObject *object, int state);
-void          geda_object_set_visibility     (GedaObject *object, int visible);
+void          geda_object_set_bounds_valid    (GedaObject *object, int valid);
+void          geda_object_set_color           (GedaObject *object, int color);
+void          geda_object_set_locked_color    (GedaObject *object, int color);
+void          geda_object_set_page            (GedaObject *object, Page *page);
+void          geda_object_set_selectable      (GedaObject *object, int state);
+void          geda_object_set_visibility      (GedaObject *object, int visible);
 
 static inline
 int           geda_get_object_type           (GedaObject *object)
