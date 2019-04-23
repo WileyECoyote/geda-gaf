@@ -1027,6 +1027,20 @@ void geda_object_set_selectable (GedaObject *object, int state) {
 }
 
 /*!
+ * \brief Set the Show Name Value property a GedaObject
+ * \par Function Description
+ *  Set the show_name_value member, this is a low-level function
+ *  that does not check the snv argument.
+ *
+ * \sa geda_object_get_show_name_value
+ */
+void geda_object_set_show_name_value (GedaObject *object, int snv) {
+  if (is_a_geda_object(object) && (snv >= 0)) {
+    object->show_name_value = snv;
+  }
+}
+
+/*!
  * \brief Set the visibility property a GedaObject
  * \par Function Description
  *  Set the visibility member property, this is a low-level function

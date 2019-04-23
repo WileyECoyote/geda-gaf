@@ -3,6 +3,7 @@
     * src/geda/geda_object.c: Add functions:
 
           * geda_object_get_show_name_value
+          * geda_object_set_show_name_value
 
 2019-04-22 Wiley E. Hill <wileyhill@gmail.com
 
