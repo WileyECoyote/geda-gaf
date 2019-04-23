@@ -1480,11 +1480,13 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
     activate_anglepitch1_entries = FALSE;
     activate_anglepitch2_entries = FALSE;
     break;
+
   case(FILLING_HATCH):
     activate_width_entry = TRUE;
     activate_anglepitch1_entries = TRUE;
     activate_anglepitch2_entries = FALSE;
     break;
+
   case(FILLING_MESH):
   case(FILLING_VOID):
     activate_width_entry         = TRUE;
