@@ -79,7 +79,7 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
     button = GEDA_OBJECT_GET_DATA (ThisDialog, "visbutton");
 
     /* Update the visibility button widget*/
-    if (object->visibility != VISIBLE) {
+    if (geda_object_get_visibility(object) != VISIBLE) {
       gtk_toggle_button_set_active(button, FALSE);
     }
     else {
@@ -255,9 +255,13 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 
     if (object != NULL && object->type == OBJ_TEXT) {
 
-      /* This preserves "temporary" visibility states */
-      if ( !vis && object->visibility != vis) {
-        vis = object->visibility;
+      int tmp_vis;
+
+      tmp_vis = geda_object_get_visibility(object);
+
+      /* This helps preserves "temporary" visibility states */
+      if ( !vis && tmp_vis != vis) {
+        vis = tmp_vis;
       }
 
       o_text_change(w_current, object, newtext, vis, show);

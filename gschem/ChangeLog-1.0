@@ -6,6 +6,8 @@
     * src/object/o_edit.c: Utilize geda_object_get_visibility and
       geda_object_set_visibility throughout the module.
 
+    * src/x/x_edit_attrib.c: Utilize geda_object_get_visibility.
+
 2019-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Add Doxygen group I-Events.
