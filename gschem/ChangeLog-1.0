@@ -3,6 +3,8 @@
     * src/object/o_attrib.c: Utilize geda_object_get_visibility in
       o_attrib_toggle_visibility.
 
+    * src/object/o_break.c: Declare o_break_snap_object static.
+
     * src/object/o_edit.c: Utilize geda_object_get_visibility and
       geda_object_set_visibility throughout the module.
 

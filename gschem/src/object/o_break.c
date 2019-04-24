@@ -1014,7 +1014,7 @@ static bool o_break_net(GschemToplevel *w_current, GedaObject *object)
  *  \par Function Description
  *
  */
-void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
+static void o_break_snap_object(GschemToplevel *w_current, GedaObject *object)
 {
   GedaPoint point;
   double dist;
