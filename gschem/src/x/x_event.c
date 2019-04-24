@@ -87,7 +87,7 @@ static bool x_event_idle_repeat_last (void *w_current)
  *  routine checks which button triggered the event and whether a key
  *  -- SHIFT, CONTROL or ALT, was pressed when the press event occurred.
  *  The routine also check for a "double" click event, which GDK isolates
- *  for us. The approiate action is performed based on the current state
+ *  for us. The appropriate action is performed based on the current state
  *  of the program. Enumerated state are defined in the file x_states.h.
  *
  * \param [in] widget    The drawing area which received the signal.
