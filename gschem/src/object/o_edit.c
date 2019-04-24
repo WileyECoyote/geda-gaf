@@ -630,16 +630,20 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 
         if (sub_obj->type == OBJ_TEXT) {
 
-          if (sub_obj->visibility == INVISIBLE) {
+          int visibility;
 
-            sub_obj->visibility = 2;
+          visibility = geda_object_get_visibility(sub_obj);
+
+          if (visibility == INVISIBLE) {
+
+            geda_object_set_visibility(sub_obj, 2);
             redraw = g_list_prepend(redraw, sub_obj);
             ++set_visible;
 
           }
-          else if (sub_obj->visibility == 2) {
+          else if (visibility == 2) {
 
-            sub_obj->visibility = INVISIBLE;
+            geda_object_set_visibility(sub_obj, INVISIBLE);
 
             /* Since now invisible, renderer won't return a bounds, so... */
             o_invalidate_force(w_current, sub_obj);
@@ -703,16 +707,20 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
             if (p_attrib->type == OBJ_TEXT) {
 
+              int visibility;
+
               if(strncmp(p_attrib->text->string, "pinseq", 6) == 0)
                 continue;
 
-              if (p_attrib->visibility == INVISIBLE) {
-                p_attrib->visibility = 2;
+              visibility = geda_object_get_visibility(p_attrib);
+
+              if (visibility == INVISIBLE) {
+                geda_object_set_visibility(p_attrib, 2);
                 redraw = g_list_prepend(redraw, p_attrib);
                 ++set_visible;
               }
-              else if (p_attrib->visibility == 2) {
-                p_attrib->visibility = INVISIBLE;
+              else if (visibility == 2) {
+                geda_object_set_visibility(p_attrib, INVISIBLE);
                 /* Invisible set, renderer won't return a bounds, so... */
                 o_invalidate_force(w_current, p_attrib);
                 ++set_hidden;
@@ -725,6 +733,8 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 
     if (o_current->type == OBJ_TEXT) {
 
+      int visibility;
+
       /* If the parent is not selectable then don't display this attribute */
 
       GedaObject *o_parent = geda_object_get_attached_to(o_current);
@@ -734,13 +744,15 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
         continue;
       }
 
-      if (o_current->visibility == INVISIBLE) {
-        o_current->visibility = 2;
+      visibility = geda_object_get_visibility(o_current);
+
+      if (visibility == INVISIBLE) {
+        geda_object_set_visibility(o_current, 2);
         redraw = g_list_prepend(redraw, o_current);
         ++set_visible;
       }
-      else if (o_current->visibility == 2) {
-        o_current->visibility = INVISIBLE;
+      else if (visibility == 2) {
+        geda_object_set_visibility(o_current, INVISIBLE);
         /* Since now invisible, renderer won't return a bounds, so... */
         o_invalidate_force(w_current, o_current);
         ++set_hidden;
@@ -838,13 +850,19 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 
           if (strcmp(name, "netname") == 0) {
 
-            if (o_current->visibility == INVISIBLE) {
-              o_current->visibility = 2;
+            int visibility;
+
+            visibility = geda_object_get_visibility(o_current);
+
+            if (visibility == INVISIBLE) {
+              geda_object_set_visibility(o_current, 2);
               redraw = g_list_prepend(redraw, o_current);
               ++set_visible;
             }
-            else if (o_current->visibility == 2) {
-              o_current->visibility = INVISIBLE;
+            else if (visibility == 2) {
+
+              geda_object_set_visibility(o_current, INVISIBLE);
+
               /* Since now invisible, renderer won't return a bounds, so... */
               o_invalidate_force(w_current, o_current);
               ++set_hidden;
@@ -860,13 +878,20 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
      GedaObject *a_current = geda_attrib_first_attrib_by_name (o_current, "netname");
 
       if ( a_current != NULL) {
-        if (a_current->visibility == INVISIBLE) {
-          a_current->visibility = 2;
+
+        int visibility;
+
+        visibility = geda_object_get_visibility(a_current);
+
+        if (visibility == INVISIBLE) {
+          geda_object_set_visibility(a_current, 2);
           redraw = g_list_prepend(redraw, a_current);
           ++set_visible;
         }
-        else if (a_current->visibility == 2) {
-          a_current->visibility = INVISIBLE;
+        else if (visibility == 2) {
+
+          geda_object_set_visibility(a_current, INVISIBLE);
+
           /* Since now invisible, renderer won't return a bounds, so... */
           o_invalidate_force(w_current, a_current);
           ++set_hidden;
@@ -924,7 +949,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
             int x1, y1, x2, y2;
 
             if (!visible) {
-              o_current->visibility = VISIBLE;
+              geda_object_set_visibility(o_current, VISIBLE);
             }
 
             if (!geda_object_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
@@ -952,7 +977,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
             last_o = o_current;
             if (!visible) {
-              o_current->visibility = 2;
+              geda_object_set_visibility(o_current, 2);
             }
             break;
           }
