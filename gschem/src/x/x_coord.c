@@ -205,6 +205,7 @@ void x_dialog_coord_dnd_drag_receive(GtkWidget        *widget,
 #endif
 }
 
+#if 0
 /*!
  * \brief When Drag Motion over the Destination
  * \par Function Description
@@ -221,6 +222,7 @@ bool x_dialog_coord_drag_motion (GtkWidget      *widget,
   /* Fancy stuff here. This signal spams the console something horrible. */
   return  FALSE;
 }
+#endif
 
 /*!
  * \brief When Drag gets Dropped om the Drawing Area
@@ -514,11 +516,11 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
     g_signal_connect (world_entry, "drag-data-received",
                       G_CALLBACK (x_dialog_coord_dnd_drag_receive),
                       w_current);
-
+/*
     g_signal_connect (world_entry, "drag-motion",
                       G_CALLBACK (x_dialog_coord_drag_motion),
                       w_current);
-
+*/
     g_signal_connect (world_entry, "drag-drop",
                       G_CALLBACK (x_dialog_coord_drag_drop),
                       w_current);
