@@ -40,7 +40,7 @@
 
 /*! \brief Edit Complex Object's Slot Attribute
  *  \par Function Description
- *  This is  really a pre-dialog launch for the Edit Slot Dialog.
+ *  This is really a pre-dialog launch for the Edit Slot Dialog.
  *  The function insures the selected object is a complex and
  *  checks for an existing slot attribute. Either the found slot
  *  attribute or a fictitious values is passed to the Edit-Slot
@@ -92,7 +92,6 @@ void o_slot_start (GschemToplevel *w_current, GedaObject *object)
  *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to Object to receive slot attribute.
  *  \param string    pointer to attribute string.
- *
  */
 void o_slot_end(GschemToplevel *w_current, GedaObject *object, const char *string)
 {
