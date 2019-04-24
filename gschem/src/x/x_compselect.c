@@ -787,7 +787,7 @@ static bool compselect_foreach_func (GtkTreeModel *model,
  * \par Function Description
  *  This function handles the set "symbol" property, which is used at
  *  launch in an attempt to open the tree to the component selected.
- *  This function only succeed if the component selected is a member
+ *  This function only succeeds if the component selected is a member
  *  of the active notebook tab.
  *
  * \param [in] compselect  Pointer to the Compselect dialog
