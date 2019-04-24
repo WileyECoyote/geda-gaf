@@ -274,7 +274,7 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, GedaObject *object)
 {
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
-  if (object->visibility == VISIBLE) {
+  if (geda_object_get_visibility(object) == VISIBLE) {
 
     /* Must hide before changing or libgedacairo will not redraw */
     o_invalidate_object (w_current, object);

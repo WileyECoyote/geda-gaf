@@ -1,3 +1,8 @@
+2019-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Utilize geda_object_get_visibility in
+      o_attrib_toggle_visibility.
+
 2019-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Add Doxygen group I-Events.
