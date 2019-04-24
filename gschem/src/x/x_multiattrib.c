@@ -1055,12 +1055,17 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
 
         while (a_iter != NULL) {
 
-          GedaObject *o_attrib = (GedaObject*)a_iter->data;
+          GedaObject *o_attrib;
+
+          int visibility, show_name_value;
+
+          o_attrib        = (GedaObject*)a_iter->data;
+          visibility      = geda_object_get_visibility(o_attrib);
+          show_name_value = geda_object_get_show_name_value(o_attrib);
 
           /* actually modifies the attribute */
           o_text_change (w_current, o_attrib,
-                         newtext,   o_attrib->visibility,
-                                    o_attrib->show_name_value);
+                         newtext,   visibility, show_name_value);
           NEXT (a_iter);
         };
 

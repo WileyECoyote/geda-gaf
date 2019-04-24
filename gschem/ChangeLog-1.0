@@ -8,6 +8,8 @@
 
     * src/x/x_edit_attrib.c: Utilize geda_object_get_visibility.
 
+    * src/x/x_multiattrib.c: Utilize geda_object_get_visibility.
+
 2019-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_event.c: Add Doxygen group I-Events.
