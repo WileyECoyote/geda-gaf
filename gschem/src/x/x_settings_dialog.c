@@ -2867,7 +2867,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
   tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (FontNameCombo));
 
-  if (tmpstr) {
+  if (tmpstr && tmpstr[0]) {
     eda_config_set_string (cfg, group, "default-font-name", tmpstr);
 
     if (w_current->render_adaptor == CAIRO_ADAPTOR) {
