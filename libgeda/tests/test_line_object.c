@@ -941,7 +941,33 @@ check_shortest_distance(GedaObject *object)
 {
   int result = 0;
 
+  int x1, y1, x2, y2;
+
+  double dist;
+
+  x1 = geda_line_object_get_x1 (object);
+  y1 = geda_line_object_get_y1 (object);
+
+  x2 = geda_line_object_get_x2 (object);
+  y2 = geda_line_object_get_y2 (object);
+
   /* === Function 40: geda_line_object_shortest_distance  === */
+
+  /* Check with end points */
+
+  dist = geda_line_object_shortest_distance(object, x1, y1, 0);
+
+  if (dist != 0.0) {
+    fprintf(stderr, "FAILED: (O114001) line length (x1,y1)\n");
+    result++;
+  }
+
+  dist = geda_line_object_shortest_distance(object, x2, y2, 0);
+
+  if (dist != 0.0) {
+    fprintf(stderr, "FAILED: (O114002) line length (x2,y2)\n");
+    result++;
+  }
 
   return result;
 }

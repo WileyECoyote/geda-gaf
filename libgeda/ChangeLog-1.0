@@ -6,6 +6,9 @@
     * tests/test_complex_object.c: Check geda_complex_object_get_nearest_point
       in second quadrant.
 
+    * tests/test_line_object.c: Check geda_line_object_shortest_distance with
+      end points.
+
 2019-04-23 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_object.c: Update geda_object_get_selectable documentation.
