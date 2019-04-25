@@ -398,6 +398,41 @@ int check_object (void)
     result++;
   }
 
+  /* === Function: geda_object_weakref_notify === */
+
+  object = geda_object_new (OBJ_LINE);
+
+  if (!GEDA_IS_OBJECT(object)) {
+    fprintf(stderr, "Failed: GedaLine is %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else if (!GEDA_IS_LINE(object)) {
+    fprintf(stderr, "%s Failed <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  geda_object_weak_ref (object, weak_notify_func, &notified);
+  geda_object_weak_ref (object, weak_notify_func2, &notified);
+
+  notified = 0;
+
+  geda_object_weakref_notify(object);
+
+  if (notified - 3) {
+    fprintf(stderr, "Failed: %s to notify GedaLine <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  notified = 0;
+
+  geda_object_unref(object);
+
+  /* Weak references were removed when geda_object_weakref_notify called */
+  if (notified) {
+    fprintf(stderr, "Failed: %s to notify GedaLine <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   return result;
 }
 

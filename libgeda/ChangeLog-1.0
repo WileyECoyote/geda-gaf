@@ -9,6 +9,10 @@
     * tests/test_line_object.c: Check geda_line_object_shortest_distance with
       end points.
 
+    * tests/test_object.c: Add checks for:
+
+          * geda_object_weakref_notify
+
 2019-04-23 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_object.c: Update geda_object_get_selectable documentation.
