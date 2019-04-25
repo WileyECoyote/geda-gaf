@@ -347,6 +347,10 @@ void geda_object_list_set_color (const GList *list, int color)
  * \brief Translates a glist of Objects
  * \par Function Description
  *  Calls geda_object_translate for each glist data member
+ *
+ *  \param [in,out] list  The list with lines to scale.
+ *  \param [in]     dx    The x distance to translate.
+ *  \param [in]     dy    The y distance to translate.
  */
 void geda_object_list_translate(const GList *list, int dx, int dy)
 {

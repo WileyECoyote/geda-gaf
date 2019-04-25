@@ -1,6 +1,7 @@
 2019-04-25 Wiley E. Hill <wileyhill@gmail.com
 
-    * src/object/o_list.c: Reformat documentation.
+    * src/object/o_list.c: Reformat documentation and add parameter info
+      for function geda_object_list_translate.
 
 2019-04-23 Wiley E. Hill <wileyhill@gmail.com
 
