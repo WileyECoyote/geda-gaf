@@ -433,6 +433,55 @@ int check_object (void)
     result++;
   }
 
+  /* === Function: geda_object_remove_weak_ptr === */
+
+  object = geda_object_new (OBJ_LINE);
+
+  if (!GEDA_IS_OBJECT(object)) {
+    fprintf(stderr, "Failed: GedaLine is %s line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else if (!GEDA_IS_LINE(object)) {
+    fprintf(stderr, "%s Failed <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  void *ptr1 = (void*)0xF1;
+  void *ptr2 = (void*)0xF2;
+  void *ptr3 = (void*)0xF3;
+
+  geda_object_add_weak_ptr (object, &ptr1);
+  geda_object_add_weak_ptr (object, &ptr2);
+  geda_object_add_weak_ptr (object, &ptr3);
+
+  geda_object_weak_ref (object, weak_notify_func, &notified);
+
+  notified = 0;
+
+  geda_object_remove_weak_ptr(object, &ptr2);
+
+  geda_object_unref(object);
+
+  if (!notified) {
+    fprintf(stderr, "Failed: %s to notify <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  if (ptr1) {
+    fprintf(stderr, "Failed: %s weak_ptr <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
+  if (!ptr2) {
+    fprintf(stderr, "Failed: %s weak_ptr <%d> %p\n", TOBJECT, __LINE__, ptr2);
+    result++;
+  }
+
+  if (ptr3) {
+    fprintf(stderr, "Failed: %s weak_ptr <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+
   return result;
 }
 

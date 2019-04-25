@@ -12,6 +12,7 @@
     * tests/test_object.c: Add checks for:
 
           * geda_object_weakref_notify
+          * geda_object_remove_weak_ptr
 
 2019-04-23 Wiley E. Hill <wileyhill@gmail.com
 
