@@ -860,10 +860,8 @@ void geda_object_unref(GedaObject *object)
 /*!
  * \brief Notify weak reference watchers that a structure is dead.
  * \par Function Description
- *  For each entry in \a weak_refs, call notify function with the dead
- *  pointer \a dead_ptr and the entry's specified user data, and free
- *  \a weak_refs. Should be called during destruction of an structure
- *  that allows weak references.
+ *  For each entry in \a weak_refs, call notify function. This
+ *  function will be called during destruction of the GedaObject.
  *
  * \param [in] object  Pointer to GedaObject being destroyed.
  */
