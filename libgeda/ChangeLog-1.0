@@ -3,6 +3,9 @@
     * src/object/o_list.c: Reformat documentation and add parameter info
       for function geda_object_list_translate.
 
+    * tests/test_complex_object.c: Check geda_complex_object_get_nearest_point
+      in second quadrant.
+
 2019-04-23 Wiley E. Hill <wileyhill@gmail.com
 
     * src/geda/geda_object.c: Update geda_object_get_selectable documentation.
