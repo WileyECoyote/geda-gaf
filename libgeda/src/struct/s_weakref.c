@@ -52,7 +52,7 @@ s_weakref_notify (void *dead_ptr, GList *weak_refs)
 
   for (iter = weak_refs; iter != NULL; iter = g_list_next (iter)) {
 
-    struct WeakRef *entry = (struct WeakRef *) iter->data;
+    struct WeakRef *entry = (struct WeakRef*)iter->data;
 
     if (entry != NULL && entry->notify_func != NULL) {
       entry->notify_func (dead_ptr, entry->user_data);
@@ -121,7 +121,7 @@ s_weakref_remove (GList *weak_refs, void (*notify_func)(void *, void *),
 static void
 weak_ptr_notify_func (void *dead_ptr, void *user_data) {
 
-  void **weak_pointer_loc = (void **)user_data;
+  void **weak_pointer_loc = (void**)user_data;
 
   if (weak_pointer_loc != NULL) {
     *weak_pointer_loc = NULL;
