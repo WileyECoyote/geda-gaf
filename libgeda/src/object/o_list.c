@@ -139,6 +139,7 @@ GList *geda_object_list_copy_all (const GList *src_list, GList *dest_list)
  * \param [in] count  Which occurance to return.
  *
  * \return The n'th attribute object in the given list with the given name.
+ *
  * \todo This function should not be called geda_attrib_object since it
  *       does not accept an object as a argument!
  */
@@ -293,15 +294,15 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
   }
 }
 
-/*! \brief Scale a set of lines.
- *  \par Function Description
- *  This function takes a list of lines and scales them
- *  by the values of x_scale and y_scale.
+/*!
+ * \brief Scale a set of lines.
+ * \par Function Description
+ *  This function takes a list of lines and scales each by
+ *  the values of x_scale and y_scale.
  *
  *  \param [in,out] list     The list with lines to scale.
  *  \param [in]     x_scale  The x scale value for the lines.
  *  \param [in]     y_scale  The y scale value for the lines.
- *
  */
 void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
 {
@@ -329,7 +330,7 @@ void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
 /*!
  * \brief Change the color of a list of objects
  * \par Function Description
- *   This function changes the the new color of a list of objects
+ *  This function changes the the new color of a list of objects
  *
  * \param [in] list    The list of Objects to change color.
  * \param [in] color   The new color.
