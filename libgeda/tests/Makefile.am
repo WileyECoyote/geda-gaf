@@ -23,6 +23,9 @@ check_geda = \
 	test_text \
 	test_toplevel
 
+check_math = \
+	test_arc_math
+
 check_object = \
 	test_arc_object \
 	test_attrib_object \
@@ -42,6 +45,7 @@ check_utility = \
 check_PROGRAMS = \
 	$(check_file) \
 	$(check_geda) \
+	$(check_math) \
 	$(check_object) \
 	$(check_utility)
 
