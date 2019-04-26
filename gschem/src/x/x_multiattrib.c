@@ -1040,7 +1040,7 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
                         COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
                         -1);
 
-    /* If the edit didn't change anything, don't adjust any attributes */
+    /* If the edit did not change anything, don't adjust any attributes */
     if (strcmp (old_value, new_value) != 0) {
 
       char *newtext = geda_sprintf ("%s=%s", name, new_value);
