@@ -2,6 +2,11 @@
 
     * src/x_toolbars.c: Update Doxygen params for callBack_clipboard.
 
+    * src/x_window.c: Change backslashes to forward slashes in the path to
+      geda-gattrib.png, even though they really are backslashes on windows,
+      in the documentation for x_window_set_main_icon so as not to confuse
+      Doxygen. Using escaping the backslashes with backslashes looks bad.
+
 2019-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Add calls to new functions x_find_save_search_setting
