@@ -4,6 +4,10 @@
       of IDE_AN_ControlID typedef to suppress errant DOxygen error
       measages.
 
+    * src/x/x_compselect.c: Add memberof Compselect to documentation
+      of IDE_CS_ControlID typedef to suppress errant DOxygen error
+      measages.
+
 2019-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Utilize geda_object_get_visibility in

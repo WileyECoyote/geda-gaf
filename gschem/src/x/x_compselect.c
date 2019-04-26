@@ -82,7 +82,9 @@ const char *IDS_CATEGORIES[] = {
   NULL
 };
 
-/*! \typedef Enumerated Control IDs */
+/*! \typedef IDE_CS_ControlID Enumerated Control IDs
+ *  \memberof Compselect
+ */
 typedef enum IDE_CS_ControlID {
        FilterEntry,
        ClearButton,
