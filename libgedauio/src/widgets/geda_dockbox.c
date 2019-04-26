@@ -16,7 +16,7 @@
 /**
  * \brief GedaDockBox - A Widget container to hold Handleboxes
  * \par
- * \defgroup GedaDockBox
+ * \defgroup GedaDockBox Docking Widget Implementation Module
  * @{
  */
 
