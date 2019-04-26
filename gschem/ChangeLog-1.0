@@ -1,3 +1,9 @@
+2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: Add memberof GschemDialog to documentation
+      of IDE_AN_ControlID typedef to suppress errant DOxygen error
+      measages.
+
 2019-04-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Utilize geda_object_get_visibility in

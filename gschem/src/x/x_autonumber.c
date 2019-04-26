@@ -89,7 +89,9 @@ typedef enum {
   SCOPE_HIERARCHY
 } AutoNumberScope;
 
-/*! \typedef Enumerated Control IDs */
+/*! \typedef IDE_AN_ControlID Enumerated Control IDs
+ *  \memberof GschemDialog
+ */
 typedef enum IDE_AN_ControlID {
   /* Combo Entry */
   ScopeText,
