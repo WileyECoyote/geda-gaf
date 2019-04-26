@@ -1,3 +1,7 @@
+2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_toolbars.c: Update Doxygen params for callBack_clipboard.
+
 2019-04-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Add calls to new functions x_find_save_search_setting
