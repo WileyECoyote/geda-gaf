@@ -1,3 +1,10 @@
+2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets: Update Doxygen group descriptions in:
+
+          * src/widgets/geda_dockbox.c
+          * src/widgets/geda_option_menu.c
+
 2019-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/Makefile.am: Add rule to create an HTML version of the man page.

@@ -41,7 +41,7 @@
  * \par
  *  A GedaOptionMenu is derived from GtkButton class.
  *
- * \defgroup GedaOptionMenu
+ * \defgroup GedaOptionMenu Buttton Menu Widget Implementation Module
  * @{
  */
 
