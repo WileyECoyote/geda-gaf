@@ -256,25 +256,30 @@ msgstr "Seleziona questo oggetto"
 msgid "Unselect this Object"
 msgstr "Deseleziona questo oggetto"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Restituisce la lunghezza di un oggetto lineare."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "File Nome di questa pagina."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "Stringa che descrive un elemento geometrico"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Recupera un oggetto attributo specifico"
 
+# Retrieve list of associated attribute objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Recupera la lista degli oggetti attributi associati"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
