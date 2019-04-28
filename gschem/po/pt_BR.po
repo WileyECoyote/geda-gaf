@@ -248,7 +248,6 @@ msgstr ""
 "Pagina inicial gEDA/gaf: <http://www.geda-project.org/>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:128
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -257,7 +256,6 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gschem %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA Desenvolvedores\n"
 "Este é um software livre, e você é convidado a redistribui-lo sobcertas "
 "condições. Para detalhes, veja arquivo `COPYING', o qual\n"
