@@ -69,10 +69,10 @@ msgstr ""
 "\n"
 
 #: libgeda/src/file/f_file.c:272
-#, fuzzy
 msgid ""
 "Could not determine which file is newer, so you should do this manually.\n"
-msgstr "Impossibile stabilire se è nuovo, quindi devi farlo manualmente.\n"
+msgstr "Impossibile determinare quale file è più recente, quindi dovresti "
+"farlo manualmente.\n"
 
 #: libgeda/src/file/f_file.c:273
 msgid ""
@@ -83,14 +83,12 @@ msgstr ""
 "utilizzata al posto del file originale.\n"
 
 #: libgeda/src/file/f_file.c:274
-#, fuzzy
 msgid ""
 "This situation may have occurred when an application crashed or was forced "
 "to exit abruptly.\n"
 msgstr ""
-"Gschem normalmente effettua copie di backup in automatico e questa "
-"situazione capita in caso di suoi errori gravi o quando viene interrotto "
-"forzatamente.\n"
+"Questa situazione potrebbe essersi verificata quando un'applicazione si è "
+"arrestata in modo anomalo o è stata forzata ad uscire improvvisamente.\n"
 
 #: libgeda/src/file/f_file.c:275
 msgid ""
@@ -189,27 +187,27 @@ msgstr "Impossibile ottenere gli attributi di file di"
 
 #: libgeda/src/file/f_get.c:448
 msgid "fstat failure"
-msgstr ""
+msgstr "fstat fallimento"
 
 #: libgeda/src/file/f_get.c:468
 msgid "fdopen failure"
-msgstr ""
+msgstr "fdopen fallimento"
 
 #: libgeda/src/file/f_get.c:490
 msgid "ERROR: pointer to filename is NULL"
-msgstr ""
+msgstr "ERRORE: il puntatore al nome file è nullo"
 
 #: libgeda/src/file/f_get.c:493
 msgid "ERROR: pointer to a buffer is NULL"
-msgstr ""
+msgstr "ERRORE: il puntatore a un buffer è nullo"
 
 #: libgeda/src/file/f_get.c:531
 msgid "System error reading the current directory"
-msgstr ""
+msgstr "Errore di sistema durante la lettura della directory corrente"
 
 #: libgeda/src/file/f_get.c:596
 msgid "ERROR: pointer to path is NULL"
-msgstr ""
+msgstr "ERRORE: il puntatore al percorso è nullo"
 
 # error accessing
 #: libgeda/src/file/f_get.c:644
@@ -223,7 +221,8 @@ msgstr "Indice colore fuori scala"
 #: libgeda/src/file/f_print.c:106
 #, c-format
 msgid "Print color map is not set, was print map read?\n"
-msgstr ""
+msgstr "Stampa la mappa dei colori non è impostata, è stata "
+"letta la mappa di stampa?\n"
 
 #: libgeda/src/file/f_print.c:178
 msgid "Unable to get time of day\n"
