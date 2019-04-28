@@ -5,6 +5,8 @@
 
     * cypress/src/CYW4343.ods: Add source document for CYW4343 symbol;
 
+    * mitsubishi/M81749FP-1.sym: Add symbol; 3 phase bridge driver, 600 Volt.
+
 2019-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
