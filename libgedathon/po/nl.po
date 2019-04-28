@@ -266,29 +266,35 @@ msgstr "Roteer het object"
 msgid "Select this Object"
 msgstr "Selecteer dit object"
 
+# Unselect this Object
 #: libgedathon/include/geda_module.h:108
 msgid "Unselect this Object"
-msgstr ""
+msgstr "Deselecteer dit object"
 
+# Returns the length of a linear object
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "Retourneert de lengte van een lineair object."
 
+# File Name of this Page
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "Bestandsnaam van deze pagina."
 
+# String describing a geometric element
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "String die een geometrisch element beschrijft"
 
+# Retrieve a specific attribute object
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "Haal een specifiek attribuutobject op"
 
+# Retrieve list of associated attribute objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Haal de lijst met bijbehorende attribuutobjecten op"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
