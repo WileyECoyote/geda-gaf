@@ -11,6 +11,8 @@
 
     * packages/QFP64-14-0P80-1.sym: Add symbol; empty QFP64 template package.
 
+    * passive/lamp/lamp-4.sym: Add symbol; alternate lamp style.
+
 2019-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
