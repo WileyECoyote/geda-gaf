@@ -325,25 +325,34 @@ msgstr "选择此对象"
 msgid "Unselect this Object"
 msgstr "取消选择此对象"
 
+# Returns the length of a linear object
+# Fǎnhuí xiànxìng duìxiàng de chángdù
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "返回线性对象的长度."
 
+# File Name of this Page; Běn yè de wénjiàn míng
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "本页的文件名."
 
+# String describing a geometric element
+# Miáoshù jǐhé yuánsù de zìfú chuàn
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "描述几何元素的字符串"
 
+# Retrieve a specific attribute object
+# Jiǎnsuǒ tèdìng de shǔxìng duìxiàng
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "检索特定的属性对象"
 
+# Retrieve list of associated attribute objects
+# Jiǎnsuǒ guānlián de shǔxìng duìxiàng dì lièbiǎo
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "检索关联的属性对象的列表"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
