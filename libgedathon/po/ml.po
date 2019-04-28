@@ -306,25 +306,34 @@ msgstr "ഈ വസ്തു തിരഞ്ഞെടുക്കുക"
 msgid "Unselect this Object"
 msgstr "ഈ ഒബ്ജക്റ്റ് തിരഞ്ഞെടുക്കുക"
 
+# Returns the length of a linear object
+# oru lainar vastuvinṟe dairghyaṁ nalkunnu
 #: libgedathon/include/geda_module.h:117
 msgid "Returns the length of a linear object."
-msgstr ""
+msgstr "ഒരു ലൈനർ വസ്തുവിന്റെ ദൈർഘ്യം നൽകുന്നു."
 
+# File Name of this Page; ī pējinṟe phayalinṟe pēr
 #: libgedathon/include/geda_module.h:120
 msgid "File Name of this Page."
-msgstr ""
+msgstr "ഈ പേജിന്റെ ഫയലിന്റെ പേര്."
 
+# String describing a geometric element
+# oru jyāmitīya ghaṭakaṁ vivarikkunna sṭriṅg
 #: libgedathon/include/geda_module.h:123
 msgid "String describing a geometric element"
-msgstr ""
+msgstr "ഒരു ജ്യാമിതീയ ഘടകം വിവരിക്കുന്ന സ്ട്രിംഗ്"
 
+# Retrieve a specific attribute object
+# oru pratyēka āṭribyūṭṭ objakṟṟ vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:126
 msgid "Retrieve a specific attribute Object"
-msgstr ""
+msgstr "ഒരു പ്രത്യേക ആട്രിബ്യൂട്ട് ഒബ്ജക്റ്റ് വീണ്ടെടുക്കുക"
 
+# Retrieve list of associated attribute objects
+# anubandha āṭribyūṭṭ objakṟṟukaḷuṭe lisṟṟ vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "അനുബന്ധ ആട്രിബ്യൂട്ട് ഒബ്ജക്റ്റുകളുടെ ലിസ്റ്റ് വീണ്ടെടുക്കുക"
 
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
