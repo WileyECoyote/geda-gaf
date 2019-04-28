@@ -9,6 +9,8 @@
 
     * packages/QFP44-10-0P80-1.sym: Update sequence of attributes.
 
+    * packages/QFP64-14-0P80-1.sym: Add symbol; empty QFP64 template package.
+
 2019-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
