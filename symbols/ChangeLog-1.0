@@ -13,6 +13,8 @@
 
     * passive/lamp/lamp-4.sym: Add symbol; alternate lamp style.
 
+    * passive/lamp/lamp-5.sym: Add symbol; alternate lamp style.
+
 2019-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
