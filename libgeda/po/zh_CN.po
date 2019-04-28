@@ -64,10 +64,11 @@ msgid ""
 "\n"
 msgstr ""
 
+# # Wúfǎ quèdìng nǎge wénjiàn jiào xīn, yīncǐ nín yīnggāi shǒudòng zhíxíng cǐ cāozuò
 #: libgeda/src/file/f_file.c:272
 msgid ""
 "Could not determine which file is newer, so you should do this manually.\n"
-msgstr ""
+msgstr "无法确定哪个文件较新，因此您应该手动执行此操作.\n"
 
 #: libgeda/src/file/f_file.c:273
 msgid ""
@@ -75,11 +76,13 @@ msgid ""
 "instead of the original file.\n"
 msgstr ""
 
+# Dāng yìngyòng chéngxù bēngkuì huò bèi pò túrán tuìchū shí, kěnéng huì fāshēng
+# zhè zhǒng qíngkuàng
 #: libgeda/src/file/f_file.c:274
 msgid ""
 "This situation may have occurred when an application crashed or was forced "
 "to exit abruptly.\n"
-msgstr ""
+msgstr "当应用程序崩溃或被迫突然退出时，可能会发生这种情况.\n"
 
 #: libgeda/src/file/f_file.c:275
 msgid ""
@@ -849,17 +852,15 @@ msgstr ""
 msgid "libgeda could not %s directory to %s:%s"
 msgstr ""
 
-# changed
+# change; Gēnggǎi
 #: libgeda/src/guile/g_evaluate.c:361
-#, fuzzy
 msgid "change"
-msgstr "变"
+msgstr "更改"
 
-# Error processing image
+# Error processing; Chǔlǐ cuòwù
 #: libgeda/src/guile/g_evaluate.c:393
-#, fuzzy
 msgid "Error processing"
-msgstr "处理图像时出错"
+msgstr "处理错误"
 
 # restore
 #: libgeda/src/guile/g_evaluate.c:403
