@@ -2,6 +2,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/nl.po: Update Dutch translations.
+
 2019-04-26 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Setup new test module for m_arc.c.

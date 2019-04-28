@@ -72,10 +72,9 @@ msgstr ""
 "\n"
 
 #: libgeda/src/file/f_file.c:272
-#, fuzzy
 msgid ""
 "Could not determine which file is newer, so you should do this manually.\n"
-msgstr "Ik kan niet raden of het nieuwer is, je moet het dus handmatig doen.\n"
+msgstr "Kon niet bepalen welk bestand nieuwer is, dus u zou dit handmatig moeten doen.\n"
 
 #: libgeda/src/file/f_file.c:273
 msgid ""
@@ -86,14 +85,12 @@ msgstr ""
 "moeten laden in plaats van het orginele bestand.\n"
 
 #: libgeda/src/file/f_file.c:274
-#, fuzzy
 msgid ""
 "This situation may have occurred when an application crashed or was forced "
 "to exit abruptly.\n"
 msgstr ""
-"Gschem maakt gewoonlijk automatisch reservekopieen, en deze situatie komt "
-"voor wanneer er een crash is of wanneer er een abrupte gedwongen beeindiging "
-"was.\n"
+"Deze situatie kan zijn opgetreden toen een toepassing crashte of abrupt "
+"moest afsluiten.\n"
 
 #: libgeda/src/file/f_file.c:275
 msgid ""
@@ -188,27 +185,27 @@ msgstr "Kan attributen van het bestand te krijgen"
 
 #: libgeda/src/file/f_get.c:448
 msgid "fstat failure"
-msgstr ""
+msgstr "fstat mislukking"
 
 #: libgeda/src/file/f_get.c:468
 msgid "fdopen failure"
-msgstr ""
+msgstr "fstat mislukking"
 
 #: libgeda/src/file/f_get.c:490
 msgid "ERROR: pointer to filename is NULL"
-msgstr ""
+msgstr "FOUT: pointer naar bestandsnaam is null"
 
 #: libgeda/src/file/f_get.c:493
 msgid "ERROR: pointer to a buffer is NULL"
-msgstr ""
+msgstr "FOUT: aanwijzer naar buffer is null"
 
 #: libgeda/src/file/f_get.c:531
 msgid "System error reading the current directory"
-msgstr ""
+msgstr "Systeemfout bij het lezen van de huidige map"
 
 #: libgeda/src/file/f_get.c:596
 msgid "ERROR: pointer to path is NULL"
-msgstr ""
+msgstr "FOUT: pointer naar pad is null"
 
 # error accessing
 #: libgeda/src/file/f_get.c:644
@@ -222,11 +219,11 @@ msgstr "Kleuren index buiten bereik"
 #: libgeda/src/file/f_print.c:106
 #, c-format
 msgid "Print color map is not set, was print map read?\n"
-msgstr ""
+msgstr "Kleurkaart afdrukken is niet ingesteld, was de kaart afgedrukt?\n"
 
 #: libgeda/src/file/f_print.c:178
 msgid "Unable to get time of day\n"
-msgstr ""
+msgstr "Niet in staat om de tijd van de dag te krijgen\n"
 
 #: libgeda/src/file/f_print.c:225
 msgid "Unable to locate prolog file"
