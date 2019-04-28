@@ -19,6 +19,9 @@
 
     * ti/switchreg/TPS61022-1.sym: Add symbol; low input 8A boost converter.
 
+    * ti/switchreg/TPS61088-1.sym: Add symbol; Synchronous boost converter
+      with integrated 10A PFET.
+
 2019-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
