@@ -1,3 +1,7 @@
+2019-04-29 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_arc_object.c: Add function geda_arc_object_scale.
+
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com
 
     * po/it.po: Update Italian translations.

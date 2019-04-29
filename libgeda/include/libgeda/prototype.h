@@ -164,6 +164,7 @@ extern "C" {
    GedaObject   *geda_arc_object_new                  (int color, int x, int y, int radius, int start_angle, int arc_sweep);
 
          void    geda_arc_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_arc_object_scale                (GedaObject *object, int scale);
          void    geda_arc_object_set_arc_sweep        (GedaObject *object, int sweep);
          void    geda_arc_object_set_center_x         (GedaObject *object, int x);
          void    geda_arc_object_set_center_y         (GedaObject *object, int y);
