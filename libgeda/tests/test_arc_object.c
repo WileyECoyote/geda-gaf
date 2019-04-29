@@ -1447,6 +1447,16 @@ int check_transformer (void)
     result++;
   }
 
+  /* === Function 31: geda_arc_object_scale NULL === */
+
+  if (setjmp(point) == 0) {
+    geda_arc_object_scale (NULL, 0);
+  }
+  else {
+    fprintf(stderr, "FAILED: (O023100) geda_arc_object_scale NULL\n");
+    result++;
+  }
+
   /* === Function 50: geda_arc_object_translate NULL === */
 
   if (setjmp(point) == 0) {
@@ -1543,6 +1553,21 @@ int check_transformer (void)
       fprintf(stderr, "FAILED: (O023001) start angle %d != 0\n", ang);
       result++;
     }
+
+    /* === Function 31: geda_arc_object_scale NULL === */
+
+    if (setjmp(point) == 0) {
+      geda_arc_object_scale (object, 10);
+    }
+    else {
+      int rad = geda_arc_object_get_radius (object);
+      int sb  = r * 10;
+      fprintf(stderr, "FAILED: (O023101) geda_arc_object_scale %d != %d\n", rad, sb);
+      result++;
+    }
+
+    /* Reset the radius back to the generated value, not really needed */
+    geda_arc_object_set_radius (object, r);
 
     /* === Function 50: geda_arc_object_translate === */
 
