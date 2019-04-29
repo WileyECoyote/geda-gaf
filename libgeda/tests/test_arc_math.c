@@ -64,6 +64,80 @@
 int check_math_arc_chord ()
 {
   int result = 0;
+
+  GedaObject *object;
+  LINE line;
+
+  object = geda_arc_object_new (3, 1000, 1000, 1000, 0, 90);
+
+  geda_math_arc_chord (object->arc, &line);
+
+  if (line.x[0] != 2000 || line.y[0] != 1000) {
+    fprintf(stderr, "FAILED: (M030101A) chord pt1 (%d, %d)\n", line.x[0], line.y[0]);
+    result++;
+  }
+
+  if (line.x[1] != 1000 || line.y[1] != 2000) {
+    fprintf(stderr, "FAILED: (M030101A) chord pt2 (%d, %d)\n", line.x[1], line.y[1]);
+    result++;
+  }
+
+  object = geda_arc_object_new (3, 1000, 1000, 1000, 90, 90);
+
+  geda_math_arc_chord (object->arc, &line);
+
+  if (line.x[0] != 1000 || line.y[0] != 2000) {
+    fprintf(stderr, "FAILED: (M030102A) chord pt1 (%d, %d)\n", line.x[0], line.y[0]);
+    result++;
+  }
+
+  if (line.x[1] != 0 || line.y[1] != 1000) {
+    fprintf(stderr, "FAILED: (M030102A) chord pt2 (%d, %d)\n", line.x[1], line.y[1]);
+    result++;
+  }
+
+  object = geda_arc_object_new (3, 1000, 1000, 1000, 180, 90);
+
+  geda_math_arc_chord (object->arc, &line);
+
+  if (line.x[0] != 0 || line.y[0] != 1000) {
+    fprintf(stderr, "FAILED: (M030103A) chord pt1 (%d, %d)\n", line.x[0], line.y[0]);
+    result++;
+  }
+
+  if (line.x[1] != 1000 || line.y[1] != 0) {
+    fprintf(stderr, "FAILED: (M030103A) chord pt2 (%d, %d)\n", line.x[1], line.y[1]);
+    result++;
+  }
+
+  object = geda_arc_object_new (3, 1000, 1000, 1000, 270, 90);
+
+  geda_math_arc_chord (object->arc, &line);
+
+  if (line.x[0] != 1000 || line.y[0] != 0) {
+    fprintf(stderr, "FAILED: (M030104A) chord pt1 (%d, %d)\n", line.x[0], line.y[0]);
+    result++;
+  }
+
+  if (line.x[1] != 2000 || line.y[1] != 1000) {
+    fprintf(stderr, "FAILED: (M030104A) chord pt2 (%d, %d)\n", line.x[1], line.y[1]);
+    result++;
+  }
+
+  object = geda_arc_object_new (3, 1000, 1000, 1000, 0, 225);
+
+  geda_math_arc_chord (object->arc, &line);
+
+  if (line.x[0] != 2000 || line.y[0] != 1000) {
+    fprintf(stderr, "FAILED: (M030105A) chord pt1 (%d, %d)\n", line.x[0], line.y[0]);
+    result++;
+  }
+
+  if (line.x[1] != 293 || line.y[1] != 293) {
+    fprintf(stderr, "FAILED: (M030105A) chord pt2 (%d, %d)\n", line.x[1], line.y[1]);
+    result++;
+  }
+
   return result;
 }
 

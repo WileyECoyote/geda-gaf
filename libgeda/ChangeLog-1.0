@@ -5,6 +5,8 @@
     * src/object/o_list.c: Revise geda_object_list_scale to handle the
       case of arc object types.
 
+    * tests/test_arc_math.c: Add checks for geda_math_arc_chord.
+
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com
 
     * po/it.po: Update Italian translations.
