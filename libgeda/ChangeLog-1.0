@@ -7,7 +7,9 @@
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_chord.
 
-    * tests/test_arc_object.c: Update test identifiers.
+    * tests/test_arc_object.c: Update test identifiers, update incorrect
+      arc function numbers in comments.
+
 
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com
 

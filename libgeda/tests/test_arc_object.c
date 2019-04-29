@@ -1419,7 +1419,7 @@ int check_transformer (void)
 {
   int result = 0;
 
-  /* === Function 09: geda_arc_object_mirror NULL === */
+  /* === Function 20: geda_arc_object_mirror NULL === */
   if (setjmp(point) == 0) {
     geda_arc_object_mirror (NULL, 0, 0);
   }
@@ -1428,7 +1428,7 @@ int check_transformer (void)
     result++;
   }
 
-  /* === Function 10: geda_arc_object_modify NULL === */
+  /* === Function 21: geda_arc_object_modify NULL === */
   if (setjmp(point) == 0) {
     geda_arc_object_modify (NULL, 0, 0, 2);
   }
@@ -1437,7 +1437,7 @@ int check_transformer (void)
     result++;
   }
 
-  /* === Function 19: geda_arc_object_rotate NULL === */
+  /* === Function 30: geda_arc_object_rotate NULL === */
 
   if (setjmp(point) == 0) {
     geda_arc_object_rotate (NULL, 0, 0, 180);
@@ -1447,7 +1447,7 @@ int check_transformer (void)
     result++;
   }
 
-  /* === Function 27: geda_arc_object_translate NULL === */
+  /* === Function 50: geda_arc_object_translate NULL === */
 
   if (setjmp(point) == 0) {
     geda_arc_object_translate (NULL, 0, 0);
@@ -1500,7 +1500,7 @@ int check_transformer (void)
       result++;
     }
 
-    /* === Function 10: geda_arc_object_modify === */
+    /* === Function 21: geda_arc_object_modify === */
 
     geda_arc_object_modify(object, x, y, ARC_CENTER);
 
@@ -1534,7 +1534,7 @@ int check_transformer (void)
       result++;
     }
 
-    /* === Function 19: geda_arc_object_rotate === */
+    /* === Function 30: geda_arc_object_rotate === */
 
     geda_arc_object_rotate(object, x, y, 270);
 
@@ -1544,7 +1544,7 @@ int check_transformer (void)
       result++;
     }
 
-    /* === Function 27: geda_arc_object_translate === */
+    /* === Function 50: geda_arc_object_translate === */
 
     int tx = -x + 100;
     int ty = -y + 100;
