@@ -1666,7 +1666,6 @@ geda_line_object_scale(GedaObject *object, int x_scale, int y_scale)
 {
   if (GEDA_IS_LINE(object)) {
 
-    /* scale the line world coords */
     object->line->x[0] = object->line->x[0] * x_scale;
     object->line->y[0] = object->line->y[0] * y_scale;
     object->line->x[1] = object->line->x[1] * x_scale;
