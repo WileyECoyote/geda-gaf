@@ -82,7 +82,6 @@
  *      O0220    geda_arc_object_mirror
  *      O0221    geda_arc_object_modify
  *      O0222    geda_arc_object_new
- *
  *      O0223    geda_arc_object_print
  *      O0224    geda_arc_object_print_center
  *      O0225    geda_arc_object_print_dashed
@@ -90,30 +89,28 @@
  *      O0227    geda_arc_object_print_phantom
  *      O0228    geda_arc_object_print_solid
  *      O0229    geda_arc_object_read
- *
  *      O0230    geda_arc_object_rotate
- *      O0231    geda_arc_object_set_arc_sweep
- *      O0232    geda_arc_object_set_center_x
- *      O0233    geda_arc_object_set_center_y
- *      O0234    geda_arc_object_set_end_cap
- *      O0235    geda_arc_object_set_fill_angle1
- *      O0236    geda_arc_object_set_fill_angle2
- *      O0237    geda_arc_object_set_fill_pitch1
- *      O0238    geda_arc_object_set_fill_pitch2
- *      O0239    geda_arc_object_set_fill_type
- *      O0240    geda_arc_object_set_fill_width
- *      O0241    geda_arc_object_set_line_length
- *      O0242    geda_arc_object_set_line_space
- *      O0243    geda_arc_object_set_line_type
- *      O0244    geda_arc_object_set_line_width
- *      O0245    geda_arc_object_set_radius
- *      O0246    geda_arc_object_set_start_angle
- *      O0247    geda_arc_object_shortest_distance
- *
- *      O0248    geda_arc_object_to_buffer
- *      O0249    geda_arc_object_translate
- *
- *      O0250    geda_arc_object_within_sweep
+ *      O0231    geda_arc_object_scale
+ *      O0232    geda_arc_object_set_arc_sweep
+ *      O0233    geda_arc_object_set_center_x
+ *      O0234    geda_arc_object_set_center_y
+ *      O0235    geda_arc_object_set_end_cap
+ *      O0236    geda_arc_object_set_fill_angle1
+ *      O0237    geda_arc_object_set_fill_angle2
+ *      O0238    geda_arc_object_set_fill_pitch1
+ *      O0239    geda_arc_object_set_fill_pitch2
+ *      O0240    geda_arc_object_set_fill_type
+ *      O0241    geda_arc_object_set_fill_width
+ *      O0242    geda_arc_object_set_line_length
+ *      O0243    geda_arc_object_set_line_space
+ *      O0244    geda_arc_object_set_line_type
+ *      O0245    geda_arc_object_set_line_width
+ *      O0246    geda_arc_object_set_radius
+ *      O0247    geda_arc_object_set_start_angle
+ *      O0248    geda_arc_object_shortest_distance
+ *      O0249    geda_arc_object_to_buffer
+ *      O0250    geda_arc_object_translate
+ *      O0251    geda_arc_object_within_sweep
  */
 
 int check_construction (void)
@@ -524,7 +521,7 @@ int check_accessors (void)
 
       value = geda_arc_object_get_start_angle (object0);
       if (value - a) {
-        fprintf(stderr, "FAILED: (O024601) start angle %d != %d\n", value, a);
+        fprintf(stderr, "FAILED: (O024701) start angle %d != %d\n", value, a);
         fail++;
       }
 
@@ -536,25 +533,25 @@ int check_accessors (void)
 
       value = geda_arc_object_get_radius (object0);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O024501) radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O024601) radius %d != %d\n", value, r);
         fail++;
       }
 
       value = geda_arc_object_get_arc_sweep (object0);
       if (value - s) {
-        fprintf(stderr, "FAILED: (O023101) arc sweep %d != %d\n", value, s);
+        fprintf(stderr, "FAILED: (O023201) arc sweep %d != %d\n", value, s);
         fail++;
       }
 
       value = geda_arc_object_get_center_x(object0);
       if (value - x) {
-        fprintf(stderr, "FAILED: (O023201) center x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O023301) center x %d != %d\n", value, x);
         fail++;
       }
 
       value = geda_arc_object_get_center_y(object0);
       if (value - y) {
-        fprintf(stderr, "FAILED: (O023301) center y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O023401) center y %d != %d\n", value, y);
         fail++;
       }
 
@@ -564,7 +561,7 @@ int check_accessors (void)
 
       value = object0->line_options->line_end;
       if (value - e) {
-        fprintf(stderr, "FAILED: (O023401) %d != %d\n", value, e);
+        fprintf(stderr, "FAILED: (O023501) %d != %d\n", value, e);
         fail++;
       }
 
@@ -579,7 +576,7 @@ int check_accessors (void)
 
       value = object0->line_options->line_length;
       if (value - l) {
-        fprintf(stderr, "FAILED: (O024101) %d != %d\n", value, l);
+        fprintf(stderr, "FAILED: (O024201) %d != %d\n", value, l);
         fail++;
       }
 
@@ -594,7 +591,7 @@ int check_accessors (void)
 
       value = object0->line_options->line_space;
       if (value - p) {
-        fprintf(stderr, "FAILED: (O024201) %d != %d\n", value, p);
+        fprintf(stderr, "FAILED: (O024301) %d != %d\n", value, p);
         fail++;
       }
 
@@ -609,7 +606,7 @@ int check_accessors (void)
 
       value = object0->line_options->line_type;
       if (value - t) {
-        fprintf(stderr, "FAILED: (O024301) %d != %d\n", value, t);
+        fprintf(stderr, "FAILED: (O024401) %d != %d\n", value, t);
         fail++;
       }
 
@@ -624,7 +621,7 @@ int check_accessors (void)
 
       value = object0->line_options->line_width;
       if (value - w) {
-        fprintf(stderr, "FAILED: (O024401) %d != %d\n", value, w);
+        fprintf(stderr, "FAILED: (O024501) %d != %d\n", value, w);
         fail++;
       }
 
@@ -641,7 +638,7 @@ int check_accessors (void)
 
       value = object0->fill_options->fill_angle1;
       if (value - fa1) {
-        fprintf(stderr, "FAILED: (O023501) %d != %d\n", value, fa1);
+        fprintf(stderr, "FAILED: (O023601) %d != %d\n", value, fa1);
         fail++;
       }
 
@@ -657,7 +654,7 @@ int check_accessors (void)
 
       value = object0->fill_options->fill_angle2;
       if (value - fa2) {
-        fprintf(stderr, "FAILED: (O023601) %d != %d\n", value, fa2);
+        fprintf(stderr, "FAILED: (O023701) %d != %d\n", value, fa2);
         fail++;
       }
 
@@ -672,7 +669,7 @@ int check_accessors (void)
 
       value = object0->fill_options->fill_pitch1;
       if (value - fp1) {
-        fprintf(stderr, "FAILED: (O023701) %d != %d\n", value, fp1);
+        fprintf(stderr, "FAILED: (O023801) %d != %d\n", value, fp1);
         fail++;
       }
 
@@ -687,7 +684,7 @@ int check_accessors (void)
 
       value = object0->fill_options->fill_pitch2;
       if (value - fp2) {
-        fprintf(stderr, "FAILED: (O023801) %d != %d\n", value, fp2);
+        fprintf(stderr, "FAILED: (O023901) %d != %d\n", value, fp2);
         fail++;
       }
 
@@ -702,7 +699,7 @@ int check_accessors (void)
 
       value = object0->fill_options->fill_type;
       if (value - ft) {
-        fprintf(stderr, "FAILED: (O023901) %d != %d\n", value, ft);
+        fprintf(stderr, "FAILED: (O024001) %d != %d\n", value, ft);
         fail++;
       }
 
@@ -717,7 +714,7 @@ int check_accessors (void)
 
       value = object0->fill_options->fill_width;
       if (value - fw) {
-        fprintf(stderr, "FAILED: (O024001) %d != %d\n", value, fw);
+        fprintf(stderr, "FAILED: (O024101) %d != %d\n", value, fw);
         fail++;
       }
 
@@ -782,7 +779,7 @@ check_serialization (void)
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O024801A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O024901A) New GedaObject Failed\n");
       result++;
       break;
     }
@@ -812,7 +809,7 @@ check_serialization (void)
 
       value = geda_arc_object_get_start_angle (object1);
       if (value - a) {
-        fprintf(stderr, "FAILED: (O0248/O0229A) start angle %d != %d\n", value, a);
+        fprintf(stderr, "FAILED: (O0249/O0229A) start angle %d != %d\n", value, a);
         fail++;
       }
 
@@ -824,25 +821,25 @@ check_serialization (void)
 
       value = geda_arc_object_get_radius (object1);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O0248/O0229B) radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O0249/O0229B) radius %d != %d\n", value, r);
         fail++;
       }
 
       value = geda_arc_object_get_arc_sweep (object1);
       if (value - s) {
-        fprintf(stderr, "FAILED: (O0248/O0229C) arc sweep %d != %d\n", value, s);
+        fprintf(stderr, "FAILED: (O0249/O0229C) arc sweep %d != %d\n", value, s);
         fail++;
       }
 
       value = geda_arc_object_get_center_x(object1);
       if (value - x) {
-        fprintf(stderr, "FAILED: (O0248/O0229D) center x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O0249/O0229D) center x %d != %d\n", value, x);
         fail++;
       }
 
       value = geda_arc_object_get_center_y(object1);
       if (value - y) {
-        fprintf(stderr, "FAILED: (O0248/O0229E) center y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O0249/O0229E) center y %d != %d\n", value, y);
         fail++;
       }
 
@@ -866,7 +863,7 @@ check_serialization (void)
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O024801B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O024901B) %s buffer mismatch\n", TOBJECT);
         fprintf(stderr, "buffer0=%s\n", buffer0);
         fprintf(stderr, "buffer1=%s\n", buffer1);
         result++;
@@ -1288,7 +1285,7 @@ int query_nearest_shortest_distance (GedaObject *object)
       int id2 = rint(nearest);
 
       if ( (id1 - id2) > 1) {
-        fprintf(stderr, "FAILED: (O024701) (%d,%d) %f incorrect\n", px, py, shortest);
+        fprintf(stderr, "FAILED: (O024801) (%d,%d) %f incorrect\n", px, py, shortest);
         result++;
       }
     }
@@ -1321,14 +1318,14 @@ int check_query (void)
 
   /* === Function 25: geda_arc_object_shortest_distance NULL === */
   if (G_MAXDOUBLE != geda_arc_object_shortest_distance(NULL, dx, dx, 0)) {
-    fprintf(stderr, "FAILED: (O024700) %s answer not G_MAXDOUBLE\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O024800) %s answer not G_MAXDOUBLE\n", TOBJECT);
     result++;
   }
 
   /* === Function 28: geda_arc_object_within_sweep NULL === */
 
   if (geda_arc_object_within_sweep(NULL, dx, dx)) {
-    fprintf(stderr, "FAILED: (O025000) %s answer not FALSE\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O025100) %s answer not FALSE\n", TOBJECT);
     result++;
   }
 
@@ -1456,7 +1453,7 @@ int check_transformer (void)
     geda_arc_object_translate (NULL, 0, 0);
   }
   else {
-    fprintf(stderr, "FAILED: (O024900) geda_arc_object_translate NULL\n");
+    fprintf(stderr, "FAILED: (O025000) geda_arc_object_translate NULL\n");
     result++;
   }
 
@@ -1557,7 +1554,7 @@ int check_transformer (void)
     geda_arc_object_get_position(object, &dx, &dy);
 
     if ((dx - 100) || (dy - 100)) {
-      fprintf(stderr, "FAILED: (O024901) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
+      fprintf(stderr, "FAILED: (O025001) (%d,%d) != (%d,%d)\n", tx, ty, dx, dy);
       result++;
     }
 
