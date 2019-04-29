@@ -297,7 +297,7 @@ void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 /*!
  * \brief Scale a set of lines.
  * \par Function Description
- *  This function takes a list of lines and scales each by
+ *  This function takes a list of objects and scales each by
  *  the values of x_scale and y_scale.
  *
  *  \param [in,out] list     The list with lines to scale.
@@ -317,7 +317,12 @@ void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
 
       GedaObject *o_current = (GedaObject*)iter->data;
 
-      switch(o_current->type) {
+      switch (o_current->type) {
+
+        case(OBJ_ARC):
+          geda_arc_object_scale(o_current, x_scale);
+          break;
+
         case(OBJ_LINE):
           geda_line_object_scale(o_current, x_scale, y_scale);
           break;
