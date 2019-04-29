@@ -10,6 +10,8 @@
     * tests/test_arc_object.c: Update test identifiers, update incorrect
       function numbers in comments and add check for geda_arc_object_scale.
 
+    * tests/test_line_object.c: Extend checks for geda_line_object_shortest_
+      distance.
 
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com
 

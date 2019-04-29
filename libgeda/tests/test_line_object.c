@@ -941,7 +941,7 @@ check_shortest_distance(GedaObject *object)
 {
   int result = 0;
 
-  int x1, y1, x2, y2;
+  int x1, y1, x2, y2, xt, yt;
 
   double dist;
 
@@ -958,14 +958,30 @@ check_shortest_distance(GedaObject *object)
   dist = geda_line_object_shortest_distance(object, x1, y1, 0);
 
   if (dist != 0.0) {
-    fprintf(stderr, "FAILED: (O114001) line length (x1,y1)\n");
+    fprintf(stderr, "FAILED: (O114001) shortest distance (x1,y1)\n");
     result++;
   }
 
   dist = geda_line_object_shortest_distance(object, x2, y2, 0);
 
   if (dist != 0.0) {
-    fprintf(stderr, "FAILED: (O114002) line length (x2,y2)\n");
+    fprintf(stderr, "FAILED: (O114002) shortest distance (x2,y2)\n");
+    result++;
+  }
+
+  if (x1 < x2) {
+    xt = x1 - 300;
+    yt = y1 - 400;
+  }
+  else {
+    xt = x2 - 300;
+    yt = y2 - 400;
+  }
+
+  dist = geda_line_object_shortest_distance(object, xt, yt, 0);
+
+  if (dist != 500.0) {
+    fprintf(stderr, "FAILED: (O114003) shortest distance (%d,%d) <%f>\n", xt, yt, dist);
     result++;
   }
 
