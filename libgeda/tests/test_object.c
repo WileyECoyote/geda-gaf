@@ -107,9 +107,13 @@ int check_object (void)
 
   GedaArc *arc = (GedaArc*)object->arc;
 
+  /* === Function: geda_object_add_weak_ptr === */
+
   geda_object_add_weak_ptr (object, (void*)&arc);
 
   geda_object_weak_ref (object, weak_notify_func, &notified);
+
+  /* === Function: geda_object_ref === */
 
   geda_object_ref(object);
 
@@ -382,6 +386,8 @@ int check_object (void)
     fprintf(stderr, "%s Failed <%d>\n", TOBJECT, __LINE__);
     result++;
   }
+
+  /* === Function: geda_object_weak_ref === */
 
   geda_object_weak_ref (object, weak_notify_func, &notified);
   geda_object_weak_ref (object, weak_notify_func2, &notified);
