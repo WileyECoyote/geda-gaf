@@ -423,7 +423,8 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
     m[1] = gtk_paper_size_get_default_left_margin (settings.paper, GTK_UNIT_POINTS);
     m[2] = gtk_paper_size_get_default_bottom_margin (settings.paper, GTK_UNIT_POINTS);
     m[3] = gtk_paper_size_get_default_right_margin (settings.paper, GTK_UNIT_POINTS);
-  } else {
+  }
+  else {
     m[0] = DEFAULT_MARGIN;
     m[1] = DEFAULT_MARGIN;
     m[2] = DEFAULT_MARGIN;
@@ -786,17 +787,23 @@ static double export_parse_dist (const char *dist)
 
   if (!unit || unit[0] == 0 || strncmp (unit, "pt", 2) == 0) {
     mult = 1.0;
-  } else if (strncmp (unit, "in", 2) == 0) {
+  }
+  else if (strncmp (unit, "in", 2) == 0) {
     mult = 72.0;
-  } else if (strncmp (unit, "cm", 2) == 0) {
+  }
+  else if (strncmp (unit, "cm", 2) == 0) {
     mult = 72.0 / 2.54;
-  } else if (strncmp (unit, "mm", 2) == 0) {
+  }
+  else if (strncmp (unit, "mm", 2) == 0) {
     mult = 72.0 / 25.4;
-  } else if (strncmp (unit, "pc", 2) == 0) { /* Picas */
+  }
+  else if (strncmp (unit, "pc", 2) == 0) { /* Picas */
     mult = 12.0;
-  } else if (strncmp (unit, "px", 2) == 0) {
+  }
+  else if (strncmp (unit, "px", 2) == 0) {
     mult = 72.0 / settings.dpi;
-  } else {
+  }
+  else {
     return -1; /* Indicate that parsing unit failed */
   }
 
