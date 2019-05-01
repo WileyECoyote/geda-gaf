@@ -232,6 +232,11 @@ static GtkBox *geda_dock_box_get_location (GedaDockBox *dockbox, int location)
   return box;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_dock_box_add (GedaDockBox *dockbox, GtkWidget *child, int location)
 {
   GtkBox *box;
@@ -243,6 +248,11 @@ void geda_dock_box_add (GedaDockBox *dockbox, GtkWidget *child, int location)
   gtk_box_pack_start (box, child, FALSE, FALSE, 0);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_dock_widget_add (GtkWidget *dockbox, GtkWidget *child, int location)
 {
   GtkBox *box;
