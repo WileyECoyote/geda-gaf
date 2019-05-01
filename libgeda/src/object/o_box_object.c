@@ -1698,6 +1698,17 @@ void geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int 
   }
 }
 
+/*!
+ * \brief Scale a GedaBox object
+ * \par Function Description
+ *  Increases the width of the box by \a x_scale and the height of the
+ *  box by \a y_scale. If the scale factor is zero, then the corresponding
+ *  dimension is not scale.
+ *
+ * \param [in] object  Must be a GedaBox object
+ * \param [in] x_scale the scale factor by which to increase the width
+ * \param [in] y_scale the scale factor by which to increase the height
+ */
 void geda_box_object_scale (GedaObject *object, int x_scale, int y_scale)
 {
   if (GEDA_IS_BOX(object)) {
