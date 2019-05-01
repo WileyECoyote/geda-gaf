@@ -90,9 +90,12 @@ geda_math_arc_chord (GedaArc *arc, LINE *line)
 double
 geda_math_arc_length (GedaArc *arc)
 {
-  return 2 * M_PI * radius * (sweep / 360);
   g_return_val_if_fail (arc != NULL, 0.0);
 
+  int radius = arc->radius;
+  int sweep  = arc->arc_sweep;
+
+  return 2.0 * M_PI * radius * (sweep / 360.0);
 }
 
 /*!
