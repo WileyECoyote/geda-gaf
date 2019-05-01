@@ -1698,6 +1698,44 @@ void geda_box_object_rotate(GedaObject *object, int center_x, int center_y, int 
   }
 }
 
+void geda_box_object_scale (GedaObject *object, int x_scale, int y_scale)
+{
+  if (GEDA_IS_BOX(object)) {
+
+    int offset;
+
+    if (x_scale) {
+
+      int width;
+
+      width = object->box->upper_x - object->box->lower_x;
+
+      offset = ((width * x_scale) - width) >> 1;
+
+      object->box->lower_x = object->box->lower_x - offset;
+      object->box->upper_x = object->box->upper_x + offset;
+    }
+
+    if (y_scale) {
+
+      int height;
+
+      height = (object->box->upper_y - object->box->lower_y);
+
+      offset = ((height * y_scale) - height) >> 1;
+
+      object->box->lower_y = object->box->lower_y - offset;
+      object->box->upper_x = object->box->upper_y + offset;
+    }
+
+    /* recalc boundings and world coords */
+    object->bounds_valid = FALSE;
+  }
+  else {
+    geda_box_object_error(__func__, object);
+  }
+}
+
 /*!
  * \brief Set Line Length of a Box object
  * \par Function Description

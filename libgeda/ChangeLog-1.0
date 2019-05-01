@@ -4,6 +4,8 @@
       GedaArc, and validate that the arc pointer is not NULL. Revise/
       fix geda_math_arc_length busing real constants.
 
+    * src/object/o_box_object.c: Add function geda_box_object_scale.
+
 2019-04-30 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_object_list.c: Add checks for check_object_list_scale.

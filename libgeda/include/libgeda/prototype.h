@@ -243,6 +243,7 @@ extern "C" {
          void    geda_box_object_mirror               (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_box_object_new                  (int color, int x1, int y1, int x2, int y2);
          void    geda_box_object_rotate               (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_box_object_scale                (GedaObject *object, int x_scale, int y_scale);
          void    geda_box_object_set_end_cap          (GedaObject *object, int cap);
          void    geda_box_object_set_fill_angle1      (GedaObject *object, int angle);
          void    geda_box_object_set_fill_angle2      (GedaObject *object, int angle);
