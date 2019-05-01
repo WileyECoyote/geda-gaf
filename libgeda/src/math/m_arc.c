@@ -88,7 +88,7 @@ geda_math_arc_chord (GedaArc *arc, LINE *line)
  * \return The length of the sector.
  */
 double
-geda_math_arc_length (int radius, int sweep)
+geda_math_arc_length (GedaArc *arc)
 {
   return 2 * M_PI * radius * (sweep / 360);
 }

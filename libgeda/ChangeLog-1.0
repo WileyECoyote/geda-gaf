@@ -1,3 +1,8 @@
+2019-05-01 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/math/m_arc.c: Change argument for geda_math_arc_length to a
+      GedaArc.
+
 2019-04-30 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_object_list.c: Add checks for check_object_list_scale.

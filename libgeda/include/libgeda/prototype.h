@@ -111,7 +111,7 @@ extern "C" {
 
 /* m_arc.c */
          void    geda_math_arc_chord                     (GedaArc *arc, LINE *line);
-       double    geda_math_arc_length                    (int radius, int sweep);
+       double    geda_math_arc_length                    (GedaArc *arc);
          bool    geda_math_arc_includes_point            (GedaArc *arc, GedaPoint *point);
 
 /* m_circle.c */
