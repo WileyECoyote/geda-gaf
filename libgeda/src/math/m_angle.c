@@ -37,8 +37,7 @@
  *
  * \retval TRUE if the angle is [0,360)
  */
-bool
-geda_math_angle_is_normal (int angle)
+bool geda_math_angle_is_normal (int angle)
 {
   return ((0 <= angle) && (angle < 360));
 }
@@ -51,8 +50,7 @@ geda_math_angle_is_normal (int angle)
  *
  * \retval TRUE if the angle is a multiple of 90 degrees
  */
-bool
-geda_math_angle_is_ortho (int angle)
+bool geda_math_angle_is_ortho (int angle)
 {
   return ((angle % 90) == 0);
 }
@@ -65,8 +63,7 @@ geda_math_angle_is_ortho (int angle)
  * \param [in] angle the angle in degrees
  * \return the orthographic angle
  */
-int
-geda_math_angle_make_ortho (int angle)
+int geda_math_angle_make_ortho (int angle)
 {
   return round (angle / 90.0) * 90;
 }
@@ -79,8 +76,7 @@ geda_math_angle_make_ortho (int angle)
  *
  * \return the normalized angle inside [0,360)
  */
-int
-geda_math_angle_normalize (int angle)
+int geda_math_angle_normalize (int angle)
 {
   if (angle < 0) {
     angle = 360 - (-angle % 360);
