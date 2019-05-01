@@ -4445,14 +4445,17 @@ COMMAND (do_cycle_snap)
     geda_log_q(_("Snap OFF (CAUTION!)\n"));
     x_menu_set_togglable(w_current, SNAP_TOGGLE, FALSE);
     break;
+
   case SNAP_GRID:
     x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
     geda_log_q(_("Snap ON\n"));
     break;
+
   case SNAP_RESNAP:
     x_menu_set_togglable(w_current, SNAP_TOGGLE, TRUE);
     geda_log_q(_("Snap back to the grid (CAUTION!)\n"));
     break;
+
   default:
     g_critical("options_snap: toplevel->snap out of range: %d\n", w_current->snap);
   }
