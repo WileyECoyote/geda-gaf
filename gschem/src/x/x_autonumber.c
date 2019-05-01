@@ -1922,7 +1922,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
 
   if (autotext == NULL) {
     /* first call of this function, to allocate and init our structure */
-    autotext=autonumber_init_state(w_current);
+    autotext = autonumber_init_state(w_current);
   }
 
   /* set the GschemToplevel always. Can it be changed between the calls??? */
