@@ -91,6 +91,8 @@ double
 geda_math_arc_length (GedaArc *arc)
 {
   return 2 * M_PI * radius * (sweep / 360);
+  g_return_val_if_fail (arc != NULL, 0.0);
+
 }
 
 /*!

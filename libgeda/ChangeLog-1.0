@@ -1,7 +1,7 @@
 2019-05-01 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Change argument for geda_math_arc_length to a
-      GedaArc.
+      GedaArc, and validate that the arc pointer is not NULL.
 
 2019-04-30 Wiley E. Hill <wileyhill@gmail.com
 
