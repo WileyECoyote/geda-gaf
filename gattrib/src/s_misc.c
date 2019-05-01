@@ -67,7 +67,8 @@ void verbose_done(void)
 
     if (char_index >= 70) {
       printf("\n%s\n",_Done);
-    } else {
+    }
+    else {
       printf(" %s\n", _Done);
     }
 

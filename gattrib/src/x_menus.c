@@ -172,7 +172,8 @@ void x_menu_file_export_csv()
   /* Check that we are on components page. */
   if (cur_page == Components) {
     x_dialog_export_file();
-  } else {
+  }
+  else {
     x_dialog_unimplemented_feature();  /* We only support export
                                           of components now */
   }

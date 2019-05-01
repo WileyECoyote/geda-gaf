@@ -683,7 +683,8 @@ s_toplevel_update_component_attribs_in_toplevel (
 
     if (s_string_list_in_list(new_comp_attrib_list, local_list->data)) {
       new_attrib_value = s_misc_remaining_string(local_list->data, '=', 1);
-    } else {
+    }
+    else {
       new_attrib_value = NULL;
     }
 
