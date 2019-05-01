@@ -143,7 +143,21 @@ int check_math_arc_chord ()
 
 int check_math_arc_length ()
 {
+  GedaObject *object;
   int result = 0;
+  double length;
+
+  object = geda_arc_object_new (3, 100, 100, 18, 0, 2);
+
+  length = geda_math_arc_length (object->arc);
+
+  length = trunc(length * 1000000);
+
+  if (length - 628318.0 != 0) {
+    fprintf(stderr, "FAILED: (M030201) <%p> length=%.5f\n", object->arc, length);
+    result++;
+  }
+
   return result;
 }
 

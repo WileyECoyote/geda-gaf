@@ -7,6 +7,8 @@
     * src/object/o_box_object.c: Add function geda_box_object_scale,
       update function documentation.
 
+    * tests/test_arc_math.c: Add check for geda_math_arc_length.
+
 
 2019-04-30 Wiley E. Hill <wileyhill@gmail.com
 
