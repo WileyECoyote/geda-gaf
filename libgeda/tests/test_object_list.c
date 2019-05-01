@@ -754,6 +754,65 @@ check_object_list_rotate (GedaToplevel *toplevel)
   return result;
 }
 
+int
+check_object_list_scale (GedaToplevel *toplevel)
+{
+  int result = 0;
+
+  int x1 = 100;
+  int y1 = 100;
+  int x2 = 200;
+  int y2 = 200;
+  int r  = 100;
+
+  GedaObject *object1  = geda_arc_object_new (1, x1, y1, r, 0, 90);
+  GedaObject *object2  = geda_box_object_new(2, x1, y1, x2, y2);
+  GedaObject *object3  = geda_bus_object_new(3, x1, y1, x2, y2, 0);
+  GedaObject *object4  = geda_circle_object_new(4, x1, y1, r);
+  GedaObject *object5  = geda_complex_new();
+  GedaObject *object6  = geda_line_object_new(6, x1, y1, x2, y2);
+  GedaObject *object7  = geda_net_object_new (7, x1, y1, x2, y2);
+  GedaObject *object8  = geda_path_object_new(8, &path_string[0]);
+  GedaObject *object9  = geda_picture_new();
+  GedaObject *object10 = geda_pin_object_new(10, x1, y1, x2, y2, 0, 0);
+  GedaObject *object11 = geda_text_object_new(11, x1, y1, 0, 0, 10, 1, 0, "tests");
+
+  geda_complex_set_angle (object5->complex, 0);
+  geda_complex_set_x (object5->complex, x1);
+  geda_complex_set_y (object5->complex, y1);
+
+  geda_picture_object_modify_all (object9, x1, y1, x2, y2);
+
+  GList *list;
+
+  list = g_list_append(NULL, object1);
+  list = g_list_append(list, object2);
+  list = g_list_append(list, object3);
+  list = g_list_append(list, object4);
+  list = g_list_append(list, object5);
+  list = g_list_append(list, object6);
+  list = g_list_append(list, object7);
+  list = g_list_append(list, object8);
+  list = g_list_append(list, object9);
+  list = g_list_append(list, object10);
+  list = g_list_append(list, object11);
+
+  /* === Function 06: geda_object_list_scale  === */
+
+  geda_object_list_scale(list, 10, 0);
+
+  /* === object1->arc === */
+
+  int rad = geda_arc_get_radius (object1->arc);
+
+  if (rad != r * 10) {
+    fprintf(stderr, "FAILED: (O120601) geda_object_list_scale (%d)\n", rad);
+    result++;
+  }
+
+  return result;
+}
+
 GedaToplevel *setup_new_toplevel(void)
 {
   GedaToplevel *toplevel;
@@ -824,6 +883,14 @@ main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, "Caught signal checking geda_object_list_rotate\n\n");
+    return 1;
+  }
+
+  if (setjmp(point) == 0) {
+    result += check_object_list_scale(toplevel);
+  }
+  else {
+    fprintf(stderr, "Caught signal checking geda_object_list_scale\n\n");
     return 1;
   }
 

@@ -1,3 +1,7 @@
+2019-04-30 Wiley E. Hill <wileyhill@gmail.com
+
+    * tests/test_object_list.c: Add checks for check_object_list_scale.
+
 2019-04-29 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_arc_object.c: Add function geda_arc_object_scale.
