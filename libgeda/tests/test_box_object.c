@@ -96,25 +96,25 @@
  *               geda_box_object_print_solid
  *      O0432    geda_box_object_read
  *      O0433    geda_box_object_rotate
- *
- *      O0434    geda_box_object_set_end_cap
- *      O0435    geda_box_object_set_fill_angle1
- *      O0436    geda_box_object_set_fill_angle2
- *      O0437    geda_box_object_set_fill_pitch1
- *      O0438    geda_box_object_set_fill_pitch2
- *      O0439    geda_box_object_set_fill_type
- *      O0440    geda_box_object_set_fill_width
- *      O0441    geda_box_object_set_line_length
- *      O0442    geda_box_object_set_line_space
- *      O0443    geda_box_object_set_line_type
- *      O0444    geda_box_object_set_line_width
- *      O0445    geda_box_object_set_lower_x
- *      O0446    geda_box_object_set_lower_y
- *      O0447    geda_box_object_set_upper_x
- *      O0448    geda_box_object_set_upper_y
- *      O0449    geda_box_object_shortest_distance
- *      O0450    geda_box_object_to_buffer
- *      O0451    geda_box_object_translate
+ *       O0434    geda_box_object_scale
+ *      O0435    geda_box_object_set_end_cap
+ *      O0436    geda_box_object_set_fill_angle1
+ *      O0437    geda_box_object_set_fill_angle2
+ *      O0438    geda_box_object_set_fill_pitch1
+ *      O0439    geda_box_object_set_fill_pitch2
+ *      O0440    geda_box_object_set_fill_type
+ *      O0441    geda_box_object_set_fill_width
+ *      O0442    geda_box_object_set_line_length
+ *      O0443    geda_box_object_set_line_space
+ *      O0444    geda_box_object_set_line_type
+ *      O0445    geda_box_object_set_line_width
+ *      O0446    geda_box_object_set_lower_x
+ *      O0447    geda_box_object_set_lower_y
+ *      O0448    geda_box_object_set_upper_x
+ *      O0449    geda_box_object_set_upper_y
+ *      O0450    geda_box_object_shortest_distance
+ *      O0451    geda_box_object_to_buffer
+ *      O0452    geda_box_object_translate
  */
 
 int check_construction (void)
@@ -341,7 +341,7 @@ int check_accessors (void)
 
     value = object0->line_options->line_end;
     if (value - e) {
-      fprintf(stderr, "FAILED: (O043401) %d != %d\n", value, e);
+      fprintf(stderr, "FAILED: (O043501) %d != %d\n", value, e);
       fail++;
     }
 
@@ -356,7 +356,7 @@ int check_accessors (void)
 
     value = object0->line_options->line_length;
     if (value - l) {
-      fprintf(stderr, "FAILED: (O044101) %d != %d\n", value, l);
+      fprintf(stderr, "FAILED: (O044201) %d != %d\n", value, l);
       fail++;
     }
 
@@ -371,7 +371,7 @@ int check_accessors (void)
 
     value = object0->line_options->line_space;
     if (value - p) {
-      fprintf(stderr, "FAILED: (O044201) %d != %d\n", value, p);
+      fprintf(stderr, "FAILED: (O044301) %d != %d\n", value, p);
       fail++;
     }
 
@@ -386,7 +386,7 @@ int check_accessors (void)
 
     value = object0->line_options->line_type;
     if (value - t) {
-      fprintf(stderr, "FAILED: (O044301) %d != %d\n", value, t);
+      fprintf(stderr, "FAILED: (O044401) %d != %d\n", value, t);
       fail++;
     }
 
@@ -401,7 +401,7 @@ int check_accessors (void)
 
     value = object0->line_options->line_width;
     if (value - w) {
-      fprintf(stderr, "FAILED: (O044401) %d != %d\n", value, w);
+      fprintf(stderr, "FAILED: (O044501) %d != %d\n", value, w);
       fail++;
     }
 
@@ -418,7 +418,7 @@ int check_accessors (void)
 
     value = object0->fill_options->fill_angle1;
     if (value - fa1) {
-      fprintf(stderr, "FAILED: (O043501) %d != %d\n", value, fa1);
+      fprintf(stderr, "FAILED: (O043601) %d != %d\n", value, fa1);
       fail++;
     }
 
@@ -434,7 +434,7 @@ int check_accessors (void)
 
     value = object0->fill_options->fill_angle2;
     if (value - fa2) {
-      fprintf(stderr, "FAILED: (O043601) %d != %d\n", value, fa2);
+      fprintf(stderr, "FAILED: (O043701) %d != %d\n", value, fa2);
       fail++;
     }
 
@@ -449,7 +449,7 @@ int check_accessors (void)
 
     value = object0->fill_options->fill_pitch1;
     if (value - fp1) {
-      fprintf(stderr, "FAILED: (O043701) %d != %d\n", value, fp1);
+      fprintf(stderr, "FAILED: (O043801) %d != %d\n", value, fp1);
       fail++;
     }
 
@@ -464,7 +464,7 @@ int check_accessors (void)
 
     value = object0->fill_options->fill_pitch2;
     if (value - fp2) {
-      fprintf(stderr, "FAILED: (O043801) %d != %d\n", value, fp2);
+      fprintf(stderr, "FAILED: (O043901) %d != %d\n", value, fp2);
       fail++;
     }
 
@@ -479,7 +479,7 @@ int check_accessors (void)
 
     value = object0->fill_options->fill_type;
     if (value - ft) {
-      fprintf(stderr, "FAILED: (O043901) %d != %d\n", value, ft);
+      fprintf(stderr, "FAILED: (O044001) %d != %d\n", value, ft);
       fail++;
     }
 
@@ -494,7 +494,7 @@ int check_accessors (void)
 
     value = object0->fill_options->fill_width;
     if (value - fw) {
-      fprintf(stderr, "FAILED: (O044001) %d != %d\n", value, fw);
+      fprintf(stderr, "FAILED: (O044101) %d != %d\n", value, fw);
       fail++;
     }
 
@@ -511,7 +511,7 @@ int check_accessors (void)
 
     value = object0->box->lower_x;
     if (value - x1) {
-      fprintf(stderr, "FAILED: (O044501) lower_x %d != %d\n", value, x1);
+      fprintf(stderr, "FAILED: (O044601) lower_x %d != %d\n", value, x1);
       fail++;
     }
 
@@ -525,7 +525,7 @@ int check_accessors (void)
 
     value = object0->box->lower_y;
     if (value - y1) {
-      fprintf(stderr, "FAILED: (O044601) lower_y %d != %d\n", value, y1);
+      fprintf(stderr, "FAILED: (O044701) lower_y %d != %d\n", value, y1);
       fail++;
     }
 
@@ -539,7 +539,7 @@ int check_accessors (void)
 
     value = object0->box->upper_x;
     if (value - x2) {
-      fprintf(stderr, "FAILED: (O044701) upper_x %d != %d\n", value, x2);
+      fprintf(stderr, "FAILED: (O044801) upper_x %d != %d\n", value, x2);
       fail++;
     }
 
@@ -553,7 +553,7 @@ int check_accessors (void)
 
     value = object0->box->upper_y;
     if (value - y2) {
-      fprintf(stderr, "FAILED: (O044801) upper_y %d != %d\n", value, y2);
+      fprintf(stderr, "FAILED: (O044901) upper_y %d != %d\n", value, y2);
       fail++;
     }
 
@@ -621,7 +621,7 @@ int check_serialization (void)
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O045001A) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O045101A) New GedaObject Failed\n");
       result++;
       break;
     }
@@ -655,22 +655,22 @@ int check_serialization (void)
       }
 
       if (box->upper_x - x1) {
-        fprintf(stderr, "FAILED: (O0450/O0432X1) box upper_x %d != %d\n", box->upper_x, x1);
+        fprintf(stderr, "FAILED: (O0451/O0432X1) box upper_x %d != %d\n", box->upper_x, x1);
         fail++;
       }
 
       if (box->upper_y - y1) {
-        fprintf(stderr, "FAILED: (O0450/O0432Y1) box upper_y %d != %d\n", box->upper_y, y1);
+        fprintf(stderr, "FAILED: (O0451/O0432Y1) box upper_y %d != %d\n", box->upper_y, y1);
         fail++;
       }
 
       if (box->lower_x - x2) {
-        fprintf(stderr, "FAILED: (O0450/O0432X2) box lower_x %d != %d\n", box->lower_x, x2);
+        fprintf(stderr, "FAILED: (O0451/O0432X2) box lower_x %d != %d\n", box->lower_x, x2);
         fail++;
       }
 
       if (box->lower_y - y2) {
-        fprintf(stderr, "FAILED: (O0450/O0432Y2) box lower_y %d != %d\n", box->lower_y, y2);
+        fprintf(stderr, "FAILED: (O0451/O0432Y2) box lower_y %d != %d\n", box->lower_y, y2);
         fail++;
       }
 
@@ -694,7 +694,7 @@ int check_serialization (void)
       g_object_unref (object1);
 
       if (strcmp (buffer0, buffer1)) {
-        fprintf(stderr, "FAILED: (O045101B) %s buffer mismatch\n", TOBJECT);
+        fprintf(stderr, "FAILED: (O045201B) %s buffer mismatch\n", TOBJECT);
         fprintf(stderr, "buffer0=%s\n", buffer0);
         fprintf(stderr, "buffer1=%s\n", buffer1);
         result++;
@@ -935,11 +935,11 @@ int check_query(void)
     g_object_unref (object);
   }
 
-  /* O0449 geda_box_object_shortest_distance */
+  /* O0450 geda_box_object_shortest_distance */
 
   double nodist = geda_box_object_shortest_distance(NULL, 10, 10, FALSE);
   if (nodist != G_MAXDOUBLE) {
-    fprintf(stderr, "FAILED: (O044900) box_shortest_distance NULL\n");
+    fprintf(stderr, "FAILED: (O045000) box_shortest_distance NULL\n");
     result++;
   }
 
@@ -965,11 +965,11 @@ int check_query(void)
 
     fail = 0;
 
-    /* O0449 geda_box_object_shortest_distance */
+    /* O0450 geda_box_object_shortest_distance */
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044901) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045001) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -980,7 +980,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044902) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045002) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -991,7 +991,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O044903) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045003) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1003,7 +1003,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044904) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045004) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1015,7 +1015,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044905) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045005) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1027,7 +1027,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O044906) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045006) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1039,7 +1039,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044907) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045007) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1051,7 +1051,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044908) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045008) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1063,7 +1063,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044909) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045009) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1077,7 +1077,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O044910) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045010) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1089,7 +1089,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044911) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045011) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1101,7 +1101,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044912) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045012) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1113,7 +1113,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044913) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045013) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1125,7 +1125,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != hypotenuse) {
-      fprintf(stderr, "FAILED: (O044914) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045014) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1137,7 +1137,7 @@ int check_query(void)
     distance = geda_box_object_shortest_distance(object, qx, qy, FALSE);
 
     if (distance != off) {
-      fprintf(stderr, "FAILED: (O044915) box qx=%d, qy=%d,", qx, qy);
+      fprintf(stderr, "FAILED: (O045015) box qx=%d, qy=%d,", qx, qy);
       fprintf(stderr, " distance=%f\n", distance);
       fail++;
     }
@@ -1265,10 +1265,10 @@ int check_transformer(void)
       fail++;
     }
 
-    /* O0451 geda_box_object_translate */
+    /* O0452 geda_box_object_translate */
     geda_box_object_translate(object, -1000, off);
     if (box->lower_x - x1 || box->lower_y - y1 - off) {
-      fprintf(stderr, "FAILED: (O045101) geda_box_object_translate\n");
+      fprintf(stderr, "FAILED: (O045201) geda_box_object_translate\n");
       fail++;
     }
 

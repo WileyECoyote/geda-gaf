@@ -9,6 +9,7 @@
 
     * tests/test_arc_math.c: Add check for geda_math_arc_length.
 
+    * tests/test_box_object.c: Update test identifiers.
 
 2019-04-30 Wiley E. Hill <wileyhill@gmail.com
 
