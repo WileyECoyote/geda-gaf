@@ -133,7 +133,7 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
       success = TRUE;
     }
   }
-  else { /* if (w_current->include_complex) {..} else { */
+  else {
 
    GedaObject *new_object;
 
