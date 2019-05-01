@@ -191,7 +191,8 @@ SCM_DEFINE (g_keyp, "%key?", 1, 0, 0, (SCM key_s),
 {
   if (G_SCM_IS_KEY (key_s)) {
     return SCM_BOOL_T;
-  } else {
+  }
+  else {
     return SCM_BOOL_F;
   }
 }

@@ -106,7 +106,8 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 6, 0, 0,
   int visibility;
   if (scm_is_false (visible_s)) {
     visibility = INVISIBLE;
-  } else {
+  }
+  else {
     visibility = VISIBLE;
   }
 
