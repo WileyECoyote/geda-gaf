@@ -444,13 +444,15 @@ int WORLDclip_change (GschemToplevel *w_current,
     if (in1 && in2) { /* trivally accept */
       done = TRUE;
       visible = TRUE;
-    } else if ( ((half1.left && half2.left) ||
+    }
+    else if ( ((half1.left && half2.left) ||
                  (half1.right && half2.right)) ||
                 ((half1.top && half2.top) ||
                  (half1.bottom && half2.bottom)) ) {
       done = TRUE; /* trivially reject */
       visible = FALSE;
-    } else { /* at least one point outside */
+    }
+    else { /* at least one point outside */
       if (in1) {
         tmp_half = half1;
         half1 = half2;
@@ -464,10 +466,12 @@ int WORLDclip_change (GschemToplevel *w_current,
       if (point2.x == point1.x) { /* vertical line */
         if (half1.top) {
           point1.y = w_t;
-        } else if (half1.bottom) {
+        }
+        else if (half1.bottom) {
           point1.y = w_b;
         }
-      } else { /* not a vertical line */
+      }
+      else { /* not a vertical line */
 
         /* possible fix for alpha core dumping */
         /* assume the object is visible */
@@ -485,20 +489,19 @@ int WORLDclip_change (GschemToplevel *w_current,
         }
 
         if (half1.left) {
-          point1.y = point1.y +
-            (w_l - point1.x) * slope;
+          point1.y = point1.y + (w_l - point1.x) * slope;
           point1.x = w_l;
-        } else if (half1.right) {
-          point1.y = point1.y +
-            (w_r - point1.x) * slope;
+        }
+        else if (half1.right) {
+          point1.y = point1.y + (w_r - point1.x) * slope;
           point1.x = w_r;
-        } else if (half1.bottom) {
-          point1.x = point1.x +
-            (w_b - point1.y) / slope;
+        }
+        else if (half1.bottom) {
+          point1.x = point1.x + (w_b - point1.y) / slope;
           point1.y = w_b;
-        } else if (half1.top) {
-          point1.x = point1.x +
-            (w_t - point1.y) / slope;
+        }
+        else if (half1.top) {
+          point1.x = point1.x + (w_t - point1.y) / slope;
           point1.y = w_t;
         }
       } /* end of not a vertical line */
@@ -580,13 +583,15 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
     if (in1 && in2) { /* trivally accept */
       done = TRUE;
       visible = TRUE;
-    } else if ( ((half1.left && half2.left) ||
+    }
+    else if ( ((half1.left && half2.left) ||
                  (half1.right && half2.right)) ||
                 ((half1.top && half2.top) ||
                  (half1.bottom && half2.bottom)) ) {
       done = TRUE; /* trivially reject */
       visible = FALSE;
-    } else { /* at least one point outside */
+    }
+    else { /* at least one point outside */
       if (in1) {
         tmp_half = half1;
         half1 = half2;
@@ -600,10 +605,12 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
       if (point2.x == point1.x) { /* vertical line */
         if (half1.top) {
           point1.y = w_t;
-        } else if (half1.bottom) {
+        }
+        else if (half1.bottom) {
           point1.y = w_b;
         }
-      } else { /* not a vertical line */
+      }
+      else { /* not a vertical line */
 
         /* possible fix for alpha core dumping */
         /* assume the object is visible */
@@ -621,20 +628,19 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
         }
 
         if (half1.left) {
-          point1.y = point1.y +
-            (w_l - point1.x) * slope;
+          point1.y = point1.y + (w_l - point1.x) * slope;
           point1.x = w_l;
-        } else if (half1.right) {
-          point1.y = point1.y +
-            (w_r - point1.x) * slope;
+        }
+        else if (half1.right) {
+          point1.y = point1.y + (w_r - point1.x) * slope;
           point1.x = w_r;
-        } else if (half1.bottom) {
-          point1.x = point1.x +
-            (w_b - point1.y) / slope;
+        }
+        else if (half1.bottom) {
+          point1.x = point1.x + (w_b - point1.y) / slope;
           point1.y = w_b;
-        } else if (half1.top) {
-          point1.x = point1.x +
-            (w_t - point1.y) / slope;
+        }
+        else if (half1.top) {
+          point1.x = point1.x + (w_t - point1.y) / slope;
           point1.y = w_t;
         }
       } /* end of not a vertical line */
@@ -677,7 +683,8 @@ int visible (GschemToplevel *w_current,
 
   if (!visible) {
     visible = clip_nochange (w_current, wleft, wbottom, wright, wbottom);
-  } else {
+  }
+  else {
     return(visible);
   }
 
@@ -687,7 +694,8 @@ int visible (GschemToplevel *w_current,
 
   if (!visible) {
     visible = clip_nochange (w_current, wleft, wtop, wleft, wbottom);
-  } else {
+  }
+  else {
     return(visible);
   }
 
@@ -697,7 +705,8 @@ int visible (GschemToplevel *w_current,
 
   if (!visible) {
     visible = clip_nochange (w_current, wright, wtop, wright, wbottom);
-  } else {
+  }
+  else {
     return(visible);
   }
 
