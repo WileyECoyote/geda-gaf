@@ -1392,9 +1392,9 @@ geda_circle_object_read (const char buf[], unsigned int release_ver,
 /*!
  * \brief Rotate Circle GedaObject
  * \par Function Description
- *  The function #geda_circle_object_rotate() rotate the circle described
- *  by <B>*object</B> around the (<B>center_x</B>,<B>center_y</B>) point
- *  by angle <B>angle</B> degrees.
+ *  This function rotate the circle described by <B>*object</B> around
+ *  the (<B>center_x</B>,<B>center_y</B>) point by angle <B>angle</B>
+ *  degrees.
  *
  * \param [in,out]  object    Circle GedaObject to rotate.
  * \param [in]      center_x  Rotation center x coordinate.
