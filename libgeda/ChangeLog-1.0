@@ -5,6 +5,8 @@
     * src/object/o_list.c: Revise geda_object_list_scale to handle the
       case of box and circle object types.
 
+    * tests/test_arc_math.c: Extend checks for geda_math_arc_length.
+
     * tests/test_circle_object.c: Update test identifiers.
 
 2019-05-01 Wiley E. Hill <wileyhill@gmail.com

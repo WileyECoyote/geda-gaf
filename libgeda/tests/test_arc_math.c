@@ -158,6 +158,17 @@ int check_math_arc_length ()
     result++;
   }
 
+  geda_arc_object_set_arc_sweep(object, 135);
+
+  length = geda_math_arc_length (object->arc);
+
+  length = trunc(length * 10000);
+
+  if (length - 424115.0 != 0) {
+    fprintf(stderr, "FAILED: (M030202) <%p> length=%.5f\n", object->arc, length);
+    result++;
+  }
+
   return result;
 }
 
