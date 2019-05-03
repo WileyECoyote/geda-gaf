@@ -12,6 +12,9 @@
     * tests/test_complex_object.c: Check geda_complex_object_get_nearest_point
       on negative X axis.
 
+    * tests/test_line_object.c: Extend checks for geda_line_object_shortest_
+      distance.
+
 2019-05-01 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Change argument for geda_math_arc_length to a
