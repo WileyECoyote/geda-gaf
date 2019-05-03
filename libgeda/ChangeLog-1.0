@@ -1,3 +1,7 @@
+2019-05-03 Wiley E. Hill <wileyhill@gmail.com
+
+    * include/libgeda/g_struct.h: Define COMPLEX_INSERTION.
+
 2019-05-02 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_circle_object.c: Add function geda_circle_object_scale.

@@ -161,6 +161,8 @@ struct st_complex {
   /* complex */
 };
 
+#define COMPLEX_INSERTION 1
+
 /*! \brief Structure for connections between GedaObjects
  *
  * The st_conn structure contains a single connection
