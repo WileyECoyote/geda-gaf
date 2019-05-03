@@ -554,6 +554,20 @@ o_grips_search_circle_world(GschemToplevel *w_current, GedaObject *o_current,
   return NULL;
 }
 
+GedaObject*
+o_grips_search_complex_world(GschemToplevel *w_current, GedaObject *o_current,
+                                   int x, int y, int size, int *whichone)
+{
+  /* Check the grip for insertion point */
+  if (o_grips_inside_grip(x, y, o_current->complex->x,
+                                o_current->complex->y, size)) {
+    *whichone = COMPLEX_INSERTION;
+    return(o_current);
+  }
+
+  return NULL;
+}
+
 /*! \brief Check if pointer is inside line grip.
  *  \par Function Description
  *  This function determines if the (<b>\a x</b>,<b>\a y</b>) point given by \a x
@@ -786,6 +800,13 @@ o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
           if(found != NULL) return found;
           break;
 
+        case(OBJ_COMPLEX):
+          /* check the grips of the complex object */
+          found = o_grips_search_complex_world(w_current, object,
+                                              x, y, w_size, whichone);
+          if(found != NULL) return found;
+          break;
+
         case(OBJ_LINE):
         case(OBJ_PIN):
         case(OBJ_NET):
@@ -984,6 +1005,20 @@ o_grips_start_circle(GschemToplevel *w_current, GedaObject *o_current, int x, in
   w_current->rubber_visible = 1;
 }
 
+static void
+o_grips_start_complex(GschemToplevel *w_current, GedaObject *o_current, int x, int y)
+{
+
+  w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
+
+  /* store circle center and radius in GschemToplevel structure */
+  w_current->first_wx = geda_complex_get_x(o_current->complex);
+  w_current->first_wy = geda_complex_get_y(o_current->complex);
+
+  /* draw the first temporary complex */
+  w_current->rubber_visible = 1;
+}
+
 /*! \brief Initialize grip motion process for a line.
  *  This function starts the move of one of the two grips of the
  *  line object <b>\a o_current</b>.
@@ -1087,6 +1122,10 @@ o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 
         case(OBJ_CIRCLE):
           func = o_grips_start_circle;
+          break;
+
+        case(OBJ_COMPLEX):
+          func = o_grips_start_complex;
           break;
 
         case(OBJ_LINE):
@@ -1327,6 +1366,17 @@ o_grips_end_circle(GschemToplevel *w_current, GedaObject *o_current)
   geda_circle_object_modify(o_current, w_current->distance, -1, CIRCLE_RADIUS);
 }
 
+static void
+o_grips_end_complex(GschemToplevel *w_current, GedaObject *o_current)
+{
+  if (w_current->distance == 0) {
+    o_invalidate_object (w_current, o_current);
+    return;
+  }
+
+  geda_complex_object_modify(o_current, w_current->second_wx, w_current->second_wy);
+}
+
 /*! \brief End process of modifying line object with grip.
  *  \par Function Description
  *  This function ends the process of modifying one end of the line
@@ -1526,6 +1576,11 @@ o_grips_end(GschemToplevel *w_current)
       case(OBJ_CIRCLE):
         /* modify a circle object */
         o_grips_end_circle(w_current, object);
+        break;
+
+      case(OBJ_COMPLEX):
+        /* modify a complex object */
+        o_grips_end_complex(w_current, object);
         break;
 
       case(OBJ_LINE):

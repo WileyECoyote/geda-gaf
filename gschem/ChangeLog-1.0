@@ -3,6 +3,10 @@
     * docs/dialogs/text_properties_dialog.png: Add text properties dialo
       image.
 
+    * src/object/o_grips.c: Add function o_grips_search_complex_world,
+      o_grips_start_complex, o_grips_end_complex and revise o_grips_start
+      and o_grips_end to handle the case for OBJ_COMPLEX.
+
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/: Removed non-translated non-translatable string.
