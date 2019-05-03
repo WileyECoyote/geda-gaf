@@ -38,7 +38,8 @@
 /** \defgroup Edit-Text-Dialog Edit Text Editing-Dialog Functions
  *  @{
  *  \ingroup Editing-Dialogs
- *
+ *  \image html text_properties_dialog.png
+ *  \image latex text_properties_dialog.png
  *  \par This group contains Routines for the Edit Text dialog.
  */
 
