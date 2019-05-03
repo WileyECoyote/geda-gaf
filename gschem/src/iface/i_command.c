@@ -2325,10 +2325,13 @@ COMMAND (do_documentation)
         GError *error = NULL;
         bool    result;
 
-        //result = x_show_uri (w_current, attrib_doc, &error);
+#if 1
+        result = x_show_uri (attrib_doc);
 
+#else
         /* Use this instead until debian-gnome work out thier iceweasel issue */
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
+#endif
 
         if (!result) {
           geda_log("%s: %s\n", _("error"), error->message);
