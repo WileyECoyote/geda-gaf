@@ -19,6 +19,7 @@ dialogimages_DATA = array_dialog.png \
 					pin_dialog.png \
 					preferences_dialog.png \
 					slot_dialog.png \
+					text_properties_dialog.png \
 					write_image_dialog.png
 
 EXTRA_DIST           = $(dialogimages_DATA)

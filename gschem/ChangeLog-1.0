@@ -1,3 +1,12 @@
+2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/dialogs/text_properties_dialog.png: Add text properties dialo
+      image.
+
+2019-04-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/: Removed non-translated non-translatable string.
+
 2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Add memberof GschemDialog to documentation
