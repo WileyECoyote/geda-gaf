@@ -93,23 +93,24 @@
  *               geda_circle_object_print_solid
  *      O0630    geda_circle_object_read
  *      O0631    geda_circle_object_rotate
- *      O0632    geda_circle_object_set_center_x
- *      O0633    geda_circle_object_set_center_y
- *      O0634    geda_circle_object_set_end_cap
- *      O0635    geda_circle_object_set_fill_angle1
- *      O0636    geda_circle_object_set_fill_angle2
- *      O0637    geda_circle_object_set_fill_pitch1
- *      O0638    geda_circle_object_set_fill_pitch2
- *      O0639    geda_circle_object_set_fill_type
- *      O0640    geda_circle_object_set_fill_width
- *      O0641    geda_circle_object_set_line_length
- *      O0642    geda_circle_object_set_line_space
- *      O0643    geda_circle_object_set_line_type
- *      O0644    geda_circle_object_set_line_width
- *      O0645    geda_circle_object_set_radius
- *      O0646    geda_circle_object_shortest_distance
- *      O0647    geda_circle_object_to_buffer
- *      O0648    geda_circle_object_translate
+ *      O0632    geda_circle_object_scale
+ *      O0633    geda_circle_object_set_center_x
+ *      O0634    geda_circle_object_set_center_y
+ *      O0635    geda_circle_object_set_end_cap
+ *      O0636    geda_circle_object_set_fill_angle1
+ *      O0637    geda_circle_object_set_fill_angle2
+ *      O0638    geda_circle_object_set_fill_pitch1
+ *      O0639    geda_circle_object_set_fill_pitch2
+ *      O0640    geda_circle_object_set_fill_type
+ *      O0641    geda_circle_object_set_fill_width
+ *      O0642    geda_circle_object_set_line_length
+ *      O0643    geda_circle_object_set_line_space
+ *      O0644    geda_circle_object_set_line_type
+ *      O0645    geda_circle_object_set_line_width
+ *      O0646    geda_circle_object_set_radius
+ *      O0647    geda_circle_object_shortest_distance
+ *      O0648    geda_circle_object_to_buffer
+ *      O0649    geda_circle_object_translate
  */
 
 int
@@ -345,19 +346,19 @@ check_accessors (void)
 
       value = object0->circle->center_x;
       if (value - x) {
-        fprintf(stderr, "FAILED: (O063201) set_center_x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O063301) set_center_x %d != %d\n", value, x);
         fail++;
       }
 
       value = object0->circle->center_y;
       if (value - y) {
-        fprintf(stderr, "FAILED: (O063301) set_center_y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O063401) set_center_y %d != %d\n", value, y);
         fail++;
       }
 
       value = object0->circle->radius;
       if (value - r) {
-        fprintf(stderr, "FAILED: (O064501) set_radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O064601) set_radius %d != %d\n", value, r);
         fail++;
       }
 
@@ -375,7 +376,7 @@ check_accessors (void)
 
       value = geda_circle_object_get_radius (object0);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O061601) get_radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O061701) get_radius %d != %d\n", value, r);
         fail++;
       }
 
@@ -385,7 +386,7 @@ check_accessors (void)
 
       value = object0->line_options->line_end;
       if (value - e) {
-        fprintf(stderr, "FAILED: (O063401) %d != %d\n", value, e);
+        fprintf(stderr, "FAILED: (O063501) %d != %d\n", value, e);
         fail++;
       }
 
@@ -393,7 +394,7 @@ check_accessors (void)
 
       value = object0->line_options->line_length;
       if (value - l) {
-        fprintf(stderr, "FAILED: (O064101) %d != %d\n", value, l);
+        fprintf(stderr, "FAILED: (O064201) %d != %d\n", value, l);
         fail++;
       }
 
@@ -401,7 +402,7 @@ check_accessors (void)
 
       value = object0->line_options->line_space;
       if (value - p) {
-        fprintf(stderr, "FAILED: (O064201) %d != %d\n", value, p);
+        fprintf(stderr, "FAILED: (O064301) %d != %d\n", value, p);
         fail++;
       }
 
@@ -409,7 +410,7 @@ check_accessors (void)
 
       value = object0->line_options->line_type;
       if (value - t) {
-        fprintf(stderr, "FAILED: (O064301) %d != %d\n", value, t);
+        fprintf(stderr, "FAILED: (O064401) %d != %d\n", value, t);
         fail++;
       }
 
@@ -417,7 +418,7 @@ check_accessors (void)
 
       value = object0->line_options->line_width;
       if (value - w) {
-        fprintf(stderr, "FAILED: (O064401) %d != %d\n", value, w);
+        fprintf(stderr, "FAILED: (O064501) %d != %d\n", value, w);
         fail++;
       }
 
@@ -462,7 +463,7 @@ check_accessors (void)
 
       value = object0->fill_options->fill_angle1;
       if (value - fa1) {
-        fprintf(stderr, "FAILED: (O063501) %d != %d\n", value, fa1);
+        fprintf(stderr, "FAILED: (O063601) %d != %d\n", value, fa1);
         fail++;
       }
 
@@ -470,7 +471,7 @@ check_accessors (void)
 
       value = object0->fill_options->fill_angle2;
       if (value - fa2) {
-        fprintf(stderr, "FAILED: (O063601) %d != %d\n", value, fa2);
+        fprintf(stderr, "FAILED: (O063701) %d != %d\n", value, fa2);
         fail++;
       }
 
@@ -478,7 +479,7 @@ check_accessors (void)
 
       value = object0->fill_options->fill_pitch1;
       if (value - fp1) {
-        fprintf(stderr, "FAILED: (O063701) %d != %d\n", value, fp1);
+        fprintf(stderr, "FAILED: (O063801) %d != %d\n", value, fp1);
         fail++;
       }
 
@@ -486,7 +487,7 @@ check_accessors (void)
 
       value = object0->fill_options->fill_pitch2;
       if (value - fp2) {
-        fprintf(stderr, "FAILED: (O063801) %d != %d\n", value, fp2);
+        fprintf(stderr, "FAILED: (O063901) %d != %d\n", value, fp2);
         fail++;
       }
 
@@ -494,7 +495,7 @@ check_accessors (void)
 
       value = object0->fill_options->fill_type;
       if (value - ft) {
-        fprintf(stderr, "FAILED: (O063901) %d != %d\n", value, ft);
+        fprintf(stderr, "FAILED: (O064001) %d != %d\n", value, ft);
         fail++;
       }
 
@@ -502,7 +503,7 @@ check_accessors (void)
 
       value = object0->fill_options->fill_width;
       if (value - fw) {
-        fprintf(stderr, "FAILED: (O064001) %d != %d\n", value, fw);
+        fprintf(stderr, "FAILED: (O064101) %d != %d\n", value, fw);
         fail++;
       }
 
@@ -632,19 +633,19 @@ check_serialization (void)
 
       value = geda_circle_object_get_center_x(object1);
       if (value - x) {
-        fprintf(stderr, "FAILED: (O0647/O0630X) center x %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O0648/O0630X) center x %d != %d\n", value, x);
         fail++;
       }
 
       value = geda_circle_object_get_center_y(object1);
       if (value - y) {
-        fprintf(stderr, "FAILED: (O0647/O0630Y) center y %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O0648/O0630Y) center y %d != %d\n", value, y);
         fail++;
       }
 
       value = geda_circle_object_get_radius (object1);
       if (value - r) {
-        fprintf(stderr, "FAILED: (O0647/O0630R) get_radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O0648/O0630R) get_radius %d != %d\n", value, r);
         fail++;
       }
 
@@ -698,7 +699,7 @@ check_query(void)
   }
 
   if (geda_circle_object_shortest_distance(NULL, 0, 0, 0) != G_MAXDOUBLE ) {
-    fprintf(stderr, "FAILED: (O064600) circle_shortest_distance NULL\n");
+    fprintf(stderr, "FAILED: (O064700) circle_shortest_distance NULL\n");
     result++;
   }
 
@@ -789,7 +790,7 @@ check_query(void)
 
 
       if (dist != r) {
-        fprintf(stderr, "FAILED: (O064601) shortest_distance %d != %d\n", dist, r);
+        fprintf(stderr, "FAILED: (O064701) shortest_distance %d != %d\n", dist, r);
         fail++;
       }
 
@@ -947,13 +948,13 @@ check_transformer(void)
 
       value = object0->circle->center_x;
       if (value - x - r) {
-        fprintf(stderr, "FAILED: (O064801A) modify circle %d != %d\n", value, x);
+        fprintf(stderr, "FAILED: (O064901A) modify circle %d != %d\n", value, x);
         fail++;
       }
 
       value = object0->circle->center_y;
       if (value - y - r) {
-        fprintf(stderr, "FAILED: (O064801B) modify circle %d != %d\n", value, y);
+        fprintf(stderr, "FAILED: (O064901B) modify circle %d != %d\n", value, y);
         fail++;
       }
 
