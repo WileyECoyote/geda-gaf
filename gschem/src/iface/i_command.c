@@ -4482,7 +4482,8 @@ COMMAND (do_toggle_rubberband)
   if (w_current->netconn_rubberband) {
     w_current->netconn_rubberband = 0;
     geda_log_q(_("Rubber band mode is OFF\n"));
-  } else {
+  }
+  else {
     w_current->netconn_rubberband = 1;
     geda_log_q(_("Rubber band mode is ON\n"));
   }
@@ -4516,7 +4517,8 @@ COMMAND (do_toggle_dragcanmove)
   if (w_current->drag_can_move) {
     w_current->drag_can_move = 0;
     OnOff =_("Off");
-  } else {
+  }
+  else {
     w_current->drag_can_move = 1;
     OnOff =_("On");
   }
@@ -4558,7 +4560,8 @@ COMMAND (do_toggle_auto_pan)
   if (w_current->auto_pan) {
     w_current->auto_pan = 0;
     OnOff =_("Off");
-  } else {
+  }
+  else {
     w_current->auto_pan = 1;
     OnOff =_("On");
   }
