@@ -323,6 +323,10 @@ void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
           geda_arc_object_scale(o_current, x_scale);
           break;
 
+        case(OBJ_BOX):
+          geda_box_object_scale(o_current, x_scale, y_scale);
+          break;
+
         case(OBJ_LINE):
           geda_line_object_scale(o_current, x_scale, y_scale);
           break;

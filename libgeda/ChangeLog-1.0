@@ -2,6 +2,9 @@
 
     * src/object/o_circle_object.c: Add function geda_circle_object_scale.
 
+    * src/object/o_list.c: Revise geda_object_list_scale to handle the
+      case of box object types.
+
 2019-05-01 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Change argument for geda_math_arc_length to a
