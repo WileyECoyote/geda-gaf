@@ -305,6 +305,7 @@ extern "C" {
          void    geda_circle_object_mirror            (GedaObject *object, int center_x, int center_y);
    GedaObject   *geda_circle_object_new               (int color, int x, int y, int radius);
          void    geda_circle_object_rotate            (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_circle_object_scale             (GedaObject *object, int scale);
          void    geda_circle_object_set_center_x      (GedaObject *object, int x);
          void    geda_circle_object_set_center_y      (GedaObject *object, int y);
          void    geda_circle_object_set_end_cap       (GedaObject *object, int cap);

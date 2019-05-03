@@ -1449,7 +1449,29 @@ geda_circle_object_rotate(GedaObject *object, int center_x, int center_y, int an
   }
 }
 
-/*! O060?
+/*! O0232
+ * \brief Scale an Circle GedaObject
+ * \par Function Description
+ *  Increase or decreases the radius of the circle object by the
+ *  given \a scale factor.
+ *
+ * \param [in] object  Pointer to a Circle GedaObject
+ * \param [in] scale   Scale factor.
+ */
+void geda_circle_object_scale (GedaObject *object, int scale)
+{
+  if (GEDA_IS_CIRCLE(object)) {
+    if (scale) {
+      object->circle->radius = object->circle->radius * scale;
+      object->bounds_valid = FALSE;
+    }
+  }
+  else {
+    geda_circle_object_error(__func__, object);
+  }
+}
+
+/*! O033
  * \brief Set the center X coordinate of a GedaCircle object
  * \par Function Description
  *  Set the arc center X property to the given value.
