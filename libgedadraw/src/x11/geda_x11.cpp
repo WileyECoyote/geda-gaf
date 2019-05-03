@@ -40,12 +40,13 @@
  * for issue with automake using the in-src configuration for the
  * distcheck rather than having to reconfigure, see libgedadraw/BUGS
  */
-#include "../../../config.h"
+#include "../../config.h"
 
 #include <string>
 #include <cmath>
 
 #include <gdk/gdk.h>
+#include <gdk/gdkdrawable.h>
 
 #define Picture xpicture
 
@@ -698,9 +699,7 @@ XSetColorRed(void)
 unsigned int EdaX11Render::
 SetLineAttributes(XGCValues *gcvals, int total)
 {
-  bool success;
-
-  if (GEDA_IS_OBJECT(object)) {
+   if (GEDA_IS_OBJECT(object)) {
 
     switch (object->line_options->line_end) {
       case END_NONE:   gcvals->cap_style = CapButt;   break;
@@ -786,13 +785,15 @@ SetLineAttributes(XGCValues *gcvals, int total)
     }
 
     gcvals->line_width = GetLineWidth(object->line_options->line_width);
-    success = true;
+
   }
   else {
-    success = false;
+    gcvals->cap_style  = CapButt;
+    gcvals->line_style = LineSolid;
+    gcvals->line_width = GetLineWidth(1);
   }
 
-  return success ? GCCapStyle | GCLineStyle | GCLineWidth : 0;
+  return GCCapStyle | GCLineStyle | GCLineWidth;
 }
 
 /*! \todo Finish function documentation!!!
@@ -1008,7 +1009,7 @@ geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
   int           length;
   XGCValues     gcvals;
 
-  length = geda_math_arc_length (radius, sweep);
+  length = geda_math_arc_length (object->arc);
   bits   = SetLineAttributes (&gcvals, length);
 
   if (bits) {
@@ -1041,23 +1042,73 @@ geda_x11_draw_arc (int cx, int cy, int radius, int start_angle, int sweep)
  *
  */
 void EdaX11Render::
-geda_x11_draw_box (int x, int y, int width, int height)
+geda_x11_draw_box (int x, int y, int w, int h)
 {
   XGCValues gcvals;
   unsigned  long bits;
   int       length;
 
-  length = min(width, height);
+  length = min(w, h);
   bits   = SetLineAttributes(&gcvals, length);
 
   if (bits) {
+
+    int rx, ry;
+    unsigned int rw, rh;
+
     XChangeGC (display, gc, bits, &gcvals);
-    XDrawRectangle (display, drawable, gc, x, y, width, height);
+
+    rx = x ;//- event_x;
+    rw = w ;//- event_x;
+    //if (rx < 0) rx  = 0;
+    //if (rw < 0) rw  = -rw;
+
+    ry = y ;//- event_y;
+    rh = h ;//- event_y;
+    //if (ry < 0) ry  = 0;
+    //if (rh < 0) rh  = -rh;
+
+//fprintf(stderr, "%s x=%d y=%d width=%d, height=%d\n", __func__, rx, ry, rw, rh);
+
+    XDrawRectangle (display, drawable, gc, rx, ry, rw, rh);
+    event_x = 0;
+    event_y = 0;
   }
 
   return;
 }
 
+void EdaX11Render::
+geda_x11_draw_rubber_box (int x, int y, int width, int height)
+{
+  XGCValues gcvals;
+  unsigned  long bits;
+  int       length;
+
+//fprintf(stderr, "%s begin x=%d y=%d width=%d, height=%d\n", __func__, x, y, width, height);
+  length = min(width, height);
+  bits   = SetLineAttributes(&gcvals, length);
+
+  if (bits) {
+
+    Window window;
+    int rx, ry;
+    unsigned int rw, rh;
+    unsigned int border;
+    unsigned int depth;
+
+    XGetGeometry(display, drawable, &window, &rx, &ry, &rw, &rh, &border, &depth);
+
+    XChangeGC (display, gc, bits, &gcvals);
+
+    event_x = x + border;
+    event_y = y + border;
+
+    //XDrawRectangle (display, drawable, gc, x, y, width, height);
+  }
+
+  return;
+}
 /*! \todo Finish function documentation!!!
  *  \brief geda_x11_draw_circle
  *  \par Function Description
@@ -1809,6 +1860,8 @@ EdaX11Render::EdaX11Render (const char *font_name, int size) {
   scale     = 1.0;
   screen    =  -1;
   colormap  =   0;
+  event_x   =   0;
+  event_y   =   0;
   font_size =  -1;
   font      = NULL;
   object    = NULL;
