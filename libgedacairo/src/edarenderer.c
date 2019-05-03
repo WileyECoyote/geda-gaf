@@ -1291,8 +1291,11 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
 
   if(renderer->draw_grips == FALSE)
     return;
-
+/*
   if (!eda_renderer_is_drawable (renderer, object))
+    return;
+*/
+  if (!eda_renderer_is_colorable (renderer, object->color))
     return;
 
   switch (object->type) {
@@ -1349,6 +1352,9 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
                                     object->picture->lower_x, object->picture->lower_y);
       break;
     case OBJ_COMPLEX:
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
+                                    object->complex->x,
+                                    object->complex->y);
     case OBJ_PLACEHOLDER:
       /* No grips */
       break;
