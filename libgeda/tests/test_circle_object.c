@@ -77,11 +77,11 @@
  *      O0613    geda_circle_object_get_line_type
  *      O0614    geda_circle_object_get_line_width
  *      O0615    geda_circle_object_get_nearest_point
- *      O0616    geda_circle_object_get_radius
- *      O0617    geda_circle_object_modify
- *      O0618    geda_circle_object_mirror
- *      O0619    geda_circle_object_new
- *      O0620    geda_circle_object_get_position
+ *      O0616    geda_circle_object_get_position
+ *      O0617    geda_circle_object_get_radius
+ *      O0618    geda_circle_object_modify
+ *      O0619    geda_circle_object_mirror
+ *      O0620    geda_circle_object_new
  *               geda_circle_object_print
  *               geda_circle_object_print_center
  *               geda_circle_object_print_dashed
@@ -126,18 +126,18 @@ check_construction (void)
     int y1 = geda_random_number (0, 75000);
     int r  = geda_random_number (0, 5000);
 
-    /* === Function 14: geda_circle_object_new  === */
+    /* === Function 20: geda_circle_object_new  === */
 
     GedaObject *object0 = geda_circle_object_new(c, x1, y1, r);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O061901A) New GedaObject Failed: %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O062001A) New GedaObject Failed: %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
 
     if (!GEDA_IS_CIRCLE(object0->circle)) {
-      fprintf(stderr, "FAILED: (O061901B) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O062001B) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;   /* terminate loop if fail */
     }
@@ -156,25 +156,25 @@ check_construction (void)
 
       value = circle->center_x;
       if (value - x1) {
-        fprintf(stderr, "FAILED: (O061901CX) circle center_x %d != %d\n", value, x1);
+        fprintf(stderr, "FAILED: (O062001CX) circle center_x %d != %d\n", value, x1);
         fail++;
       }
 
       value = circle->center_y;
       if (value - y1) {
-        fprintf(stderr, "FAILED: (O061901CY) circle center_y %d != %d\n", value, y1);
+        fprintf(stderr, "FAILED: (O062001CY) circle center_y %d != %d\n", value, y1);
         fail++;
       }
 
       value = circle->radius;
       if (value - r) {
-        fprintf(stderr, "FAILED: (O061901CR) circle radius %d != %d\n", value, r);
+        fprintf(stderr, "FAILED: (O062001CR) circle radius %d != %d\n", value, r);
         fail++;
       }
 
       if (!fail) {
 
-        /* === Function 02: geda_circle_object_copy  === */
+        /* === Function 01: geda_circle_object_copy  === */
         GedaObject *object1 = geda_circle_object_copy (object0);
         GedaCircle *circle  = object1->circle;
 
@@ -285,7 +285,7 @@ check_accessors (void)
   }
 
   if (geda_circle_object_get_radius(NULL)) {
-    fprintf(stderr, "FAILED: (O061600) %s radius not zero\n", TOBJECT);
+    fprintf(stderr, "FAILED: (O061700) %s radius not zero\n", TOBJECT);
     result++;
   }
 
@@ -295,13 +295,13 @@ check_accessors (void)
     GedaObject *object0 = geda_circle_object_new (11, 21, 31, 41);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O061901?) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O062001?) New GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_CIRCLE(object0->circle)) {
-      fprintf(stderr, "FAILED: (O061901?) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O062001?) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -599,7 +599,7 @@ check_serialization (void)
     g_object_unref (object0);
 
     if (!buffer0) {
-      fprintf(stderr, "FAILED: (O064701A) circle to buffer\n");
+      fprintf(stderr, "FAILED: (O064801A) circle to buffer\n");
       result++;
       break;
     }
@@ -694,7 +694,7 @@ check_query(void)
   }
 
   if (geda_circle_object_get_position(NULL, &dum, &dum)) {
-    fprintf(stderr, "FAILED: (O062000) circle_get_position NULL\n");
+    fprintf(stderr, "FAILED: (O061600) circle_get_position NULL\n");
     result++;
   }
 
@@ -707,7 +707,7 @@ check_query(void)
 
   /* bounds_valid should NOT be set */
   if (object->bounds_valid) {
-    fprintf(stderr, "FAILED: (O061902A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    fprintf(stderr, "FAILED: (O062002A) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
     result++;
   }
 
@@ -719,7 +719,7 @@ check_query(void)
 
   /* bounds_valid should be set */
   if (!object->bounds_valid) {
-    fprintf(stderr, "FAILED: (O061902C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
+    fprintf(stderr, "FAILED: (O062002C) %s bounds_valid %d\n", TOBJECT, object->bounds_valid);
     result++;
   }
 
@@ -735,13 +735,13 @@ check_query(void)
     GedaObject *object0 = geda_circle_object_new (c, x, y, r);
 
     if (!GEDA_IS_OBJECT(object0)) {
-      fprintf(stderr, "FAILED: (O061901?) New GedaObject Failed\n");
+      fprintf(stderr, "FAILED: (O062001?) New GedaObject Failed\n");
       result++;
       break;
     }
 
     if (!GEDA_IS_CIRCLE(object0->circle)) {
-      fprintf(stderr, "FAILED: (O061901?) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O062001?) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -769,17 +769,17 @@ check_query(void)
         fail++;
       }
 
-      /* === Function 20: geda_circle_object_get_position  === */
+      /* === Function 16: geda_circle_object_get_position  === */
 
       geda_circle_object_get_position(object0, &px, &py);
 
       if (px - x) {
-        fprintf(stderr, "FAILED: (O062001X) get_position x %d != %d\n", px, x);
+        fprintf(stderr, "FAILED: (O061601X) get_position x %d != %d\n", px, x);
         fail++;
       }
 
       if (py - y) {
-        fprintf(stderr, "FAILED: (O062001Y) get_position x %d != %d\n", py, y);
+        fprintf(stderr, "FAILED: (O061601Y) get_position x %d != %d\n", py, y);
         fail++;
       }
 
@@ -840,7 +840,7 @@ check_transformer(void)
     GedaObject *object0 = geda_circle_object_new (c, x, y, r);
 
     if (!GEDA_IS_CIRCLE(object0->circle)) {
-      fprintf(stderr, "FAILED: (O061901?) sub-pointer not a %s\n", TOBJECT);
+      fprintf(stderr, "FAILED: (O062001?) sub-pointer not a %s\n", TOBJECT);
       result++;
       break;
     }
@@ -862,13 +862,13 @@ check_transformer(void)
 
       value = object0->circle->center_x;
       if (value - nx) {
-        fprintf(stderr, "FAILED: (O061701A) modify circle %d != %d\n", value, nx);
+        fprintf(stderr, "FAILED: (O061901A) modify circle %d != %d\n", value, nx);
         fail++;
       }
 
       value = object0->circle->center_y;
       if (value - ny) {
-        fprintf(stderr, "FAILED: (O061701B) modify circle %d != %d\n", value, ny);
+        fprintf(stderr, "FAILED: (O061901B) modify circle %d != %d\n", value, ny);
         fail++;
       }
 
@@ -878,7 +878,7 @@ check_transformer(void)
 
       value = object0->circle->radius;
       if (value - nx) {
-        fprintf(stderr, "FAILED: (O061702) modify circle %d != %d\n", value, nx);
+        fprintf(stderr, "FAILED: (O061902) modify circle %d != %d\n", value, nx);
         fail++;
       }
 
