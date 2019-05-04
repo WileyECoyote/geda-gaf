@@ -16,6 +16,10 @@
 
     * po/fr.po: Update French translation.
 
+    * po/hu.po: Update Hungarian translations.
+
+    * po/pl.po: Update Polish translations.
+
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/g_struct.h: Define COMPLEX_INSERTION.
