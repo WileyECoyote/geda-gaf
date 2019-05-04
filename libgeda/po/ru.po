@@ -90,8 +90,9 @@ msgstr ""
 #: libgeda/src/file/f_file.c:272
 msgid ""
 "Could not determine which file is newer, so you should do this manually.\n"
-msgstr "Не удалось определить, какой файл более новый, поэтому вам следует "
-"сделать это вручную.\n"
+msgstr ""
+"Не удалось определить, какой файл более новый, поэтому вам следует сделать "
+"это вручную.\n"
 
 #: libgeda/src/file/f_file.c:273
 msgid ""

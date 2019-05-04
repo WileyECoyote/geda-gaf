@@ -500,7 +500,8 @@ msgstr "Δημιουργεί έναν τύπο αντικειμένου λεωφ
 # Parousiástike sfálma katá tin archikopoíisi tou antikeiménou néou kýklou
 #: libgedathon/module/objects/geda_py_circle.c:116
 msgid "Error initializing new Circle object"
-msgstr "Παρουσιάστηκε σφάλμα κατά την αρχικοποίηση του αντικειμένου νέου κύκλου"
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την αρχικοποίηση του αντικειμένου νέου κύκλου"
 
 # Create a new circle object
 # Dimiourgeí énan týpo antikeiménou kýklou

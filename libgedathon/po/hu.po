@@ -289,10 +289,11 @@ msgstr "Ennek az oldalnak a neve."
 msgid "String describing a geometric element"
 msgstr "A geometriai elemet leíró karakterlánc"
 
-# Retrieve a specific attribute object
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:126
-msgid "A geometriai elemet leíró karakterlánc"
-msgstr "Adjon meg egy adott attribútumobjektumot"
+#, fuzzy
+msgid "Retrieve a specific attribute Object"
+msgstr "A kapcsolódó attribútumok Objektumok listájának lekérése"
 
 # Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
@@ -443,3 +444,7 @@ msgstr "Hiba az új kör objektum inicializálásakor"
 #: libgedathon/module/objects/geda_py_circle.c:336
 msgid "Creates a Circle object type."
 msgstr "Létrehoz egy kör objektumtípust."
+
+# Retrieve a specific attribute object
+#~ msgid "A geometriai elemet leíró karakterlánc"
+#~ msgstr "Adjon meg egy adott attribútumobjektumot"

@@ -89,8 +89,8 @@ msgid ""
 "This situation may have occurred when an application crashed or was forced "
 "to exit abruptly.\n"
 msgstr ""
-"Essa situação pode ter ocorrido quando um aplicativo falhou ou foi forçado "
-"a sair abruptamente.\n"
+"Essa situação pode ter ocorrido quando um aplicativo falhou ou foi forçado a "
+"sair abruptamente.\n"
 
 #: libgeda/src/file/f_file.c:275
 msgid ""

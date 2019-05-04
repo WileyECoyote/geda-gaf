@@ -97,7 +97,6 @@ msgstr ""
 "Ова ситуација се можда догодила када је апликација пала или је била "
 "присиљена да се нагло повуче.\n"
 
-
 #: libgeda/src/file/f_file.c:275
 msgid ""
 "Run the application to correct this situation or manually delete the backup "

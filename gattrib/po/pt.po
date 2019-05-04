@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-04-06 21:36-0500\n"
+"POT-Creation-Date: 2019-05-04 17:47-0500\n"
 "PO-Revision-Date: 2010-02-06 22:10+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -34,19 +34,19 @@ msgstr ""
 msgid "Failed to save user configuration to"
 msgstr ""
 
-#: gattrib/src/gattrib.c:406
+#: gattrib/src/gattrib.c:408
 msgid "Could not find file"
 msgstr ""
 
-#: gattrib/src/gattrib.c:453
+#: gattrib/src/gattrib.c:457
 msgid "Exported schematic to"
 msgstr ""
 
-#: gattrib/src/gattrib_dialog.c:217
+#: gattrib/src/gattrib_dialog.c:226
 msgid "Could not load geometry from file"
 msgstr ""
 
-#: gattrib/src/gattrib_dialog.c:224
+#: gattrib/src/gattrib_dialog.c:233
 msgid "error creating file"
 msgstr ""
 
@@ -150,26 +150,26 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:242
+#: gattrib/src/s_sheet_data.c:244
 #, c-format
 msgid "Creating master component list.\n"
 msgstr "Criando lista de componentes mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:308
+#: gattrib/src/s_sheet_data.c:310
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Criando a lista de atributos do componente mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:434
+#: gattrib/src/s_sheet_data.c:436
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr "Criando lista de pin mestre.\n"
 
-#: gattrib/src/s_sheet_data.c:484
+#: gattrib/src/s_sheet_data.c:486
 msgid "found component pin without a pin number"
 msgstr "encontrado pino componente sem um número de pino"
 
-#: gattrib/src/s_sheet_data.c:547
+#: gattrib/src/s_sheet_data.c:549
 msgid "Creating master pin attribute list"
 msgstr "Criando lista de atributo de pino mestre"
 
@@ -185,23 +185,23 @@ msgstr ""
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:354 gattrib/src/s_table.c:417
+#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:421
 msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:422
+#: gattrib/src/s_table.c:362 gattrib/src/s_table.c:426
 msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:573
+#: gattrib/src/s_table.c:579
 msgid "Creating pin table"
 msgstr ""
 
-#: gattrib/src/s_table.c:636
+#: gattrib/src/s_table.c:650
 msgid "Pin Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:641
+#: gattrib/src/s_table.c:655
 msgid "Pin Error looking for column"
 msgstr ""
 
@@ -221,12 +221,12 @@ msgstr "atributo"
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:837
+#: gattrib/src/s_toplevel.c:848
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:846
+#: gattrib/src/s_toplevel.c:857
 msgid "did not find refdes:pin"
 msgstr ""
 
@@ -325,7 +325,7 @@ msgstr ""
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:605 gattrib/src/x_menus.c:390
+#: gattrib/src/x_dialog.c:605 gattrib/src/x_menus.c:391
 msgid "Export CSV"
 msgstr ""
 
@@ -418,15 +418,15 @@ msgstr ""
 msgid "Could not load schematic"
 msgstr ""
 
-#: gattrib/src/x_find.c:94
+#: gattrib/src/x_find.c:91
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:306
+#: gattrib/src/x_find.c:359
 msgid "Attribute"
 msgstr "Atributo"
 
-#: gattrib/src/x_find.c:346
+#: gattrib/src/x_find.c:399
 msgid "Designator"
 msgstr ""
 
@@ -476,269 +476,269 @@ msgstr ""
 msgid "Pins"
 msgstr ""
 
-#: gattrib/src/x_menus.c:386
+#: gattrib/src/x_menus.c:387
 msgid "_File"
 msgstr ""
 
-#: gattrib/src/x_menus.c:387
+#: gattrib/src/x_menus.c:388
 msgid "_Open"
 msgstr ""
 
-#: gattrib/src/x_menus.c:388
+#: gattrib/src/x_menus.c:389
 msgid "_Save"
 msgstr ""
 
-#: gattrib/src/x_menus.c:389
+#: gattrib/src/x_menus.c:390
 msgid "Save _As"
 msgstr ""
 
-#: gattrib/src/x_menus.c:392
+#: gattrib/src/x_menus.c:393
 msgid "Quit"
 msgstr ""
 
-#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:35
+#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:35
 msgid "Cut"
 msgstr ""
 
-#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:36
+#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:36
 msgid "Copy"
 msgstr ""
 
-#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:37
+#: gattrib/src/x_menus.c:399 gattrib/src/x_toolbars.c:37
 msgid "Paste"
 msgstr ""
 
 # Add new Attribute
-#: gattrib/src/x_menus.c:400
+#: gattrib/src/x_menus.c:401
 msgid "_Add new Attribute"
 msgstr "Adicionar novo atributo"
 
 # Delete Attribute
-#: gattrib/src/x_menus.c:401
+#: gattrib/src/x_menus.c:402
 msgid "D_elete Attribute"
 msgstr "Excluir atributo"
 
 # Promote Attribute
-#: gattrib/src/x_menus.c:402
+#: gattrib/src/x_menus.c:403
 msgid "_Promote Attribute"
 msgstr "_Promover Atributo"
 
 # Attach the selected attribute
-#: gattrib/src/x_menus.c:402 gattrib/src/x_toolbars.c:47
+#: gattrib/src/x_menus.c:403 gattrib/src/x_toolbars.c:47
 msgid "Attach the selected attribute"
 msgstr "Anexe o atributo selecionado"
 
 # Demote Attribute
-#: gattrib/src/x_menus.c:403
+#: gattrib/src/x_menus.c:404
 msgid "_Demote Attribute"
 msgstr "_Demote Atributo"
 
 # Detach the selected attribute
-#: gattrib/src/x_menus.c:403 gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_menus.c:404 gattrib/src/x_toolbars.c:48
 msgid "Detach the selected attribute"
 msgstr "Destaque o atributo selecionado"
 
-#: gattrib/src/x_menus.c:405
+#: gattrib/src/x_menus.c:406
 msgid "Find Value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:405
+#: gattrib/src/x_menus.c:406
 msgid "Find attribute value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:406
+#: gattrib/src/x_menus.c:407
 msgid "Replace value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:406
+#: gattrib/src/x_menus.c:407
 msgid "Search and Replace Attribute value"
 msgstr ""
 
 # Locate Attribute
-#: gattrib/src/x_menus.c:407
+#: gattrib/src/x_menus.c:408
 msgid "Locate Attribute"
 msgstr "Localizar Atributo"
 
 # Search for an attribute
-#: gattrib/src/x_menus.c:407
+#: gattrib/src/x_menus.c:408
 msgid "Search for an attribute"
 msgstr "Procure um atributo"
 
-#: gattrib/src/x_menus.c:408
+#: gattrib/src/x_menus.c:409
 msgid "Locate Reference"
 msgstr ""
 
-#: gattrib/src/x_menus.c:408
+#: gattrib/src/x_menus.c:409
 msgid "Search for reference designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:411
+#: gattrib/src/x_menus.c:412
 msgid "_View"
 msgstr ""
 
-#: gattrib/src/x_menus.c:412
+#: gattrib/src/x_menus.c:413
 msgid "_Toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:413
+#: gattrib/src/x_menus.c:414
 msgid "_Icons"
 msgstr ""
 
-#: gattrib/src/x_menus.c:413
+#: gattrib/src/x_menus.c:414
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:414
+#: gattrib/src/x_menus.c:415
 msgid "_Text"
 msgstr ""
 
-#: gattrib/src/x_menus.c:414
+#: gattrib/src/x_menus.c:415
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:415
+#: gattrib/src/x_menus.c:416
 msgid "_Both"
 msgstr ""
 
-#: gattrib/src/x_menus.c:415
+#: gattrib/src/x_menus.c:416
 msgid "Display Icons and Text on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:418
+#: gattrib/src/x_menus.c:419
 msgid "_Visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:419 gattrib/src/x_toolbars.c:44
+#: gattrib/src/x_menus.c:420 gattrib/src/x_toolbars.c:44
 msgid "Set selected invisible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:420 gattrib/src/x_toolbars.c:45
+#: gattrib/src/x_menus.c:421 gattrib/src/x_toolbars.c:45
 msgid "Set selected visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:421 gattrib/src/x_toolbars.c:49
+#: gattrib/src/x_menus.c:422 gattrib/src/x_toolbars.c:49
 msgid "Set selected name visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:422 gattrib/src/x_toolbars.c:50
+#: gattrib/src/x_menus.c:423 gattrib/src/x_toolbars.c:50
 msgid "Set selected value visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:423 gattrib/src/x_toolbars.c:51
+#: gattrib/src/x_menus.c:424 gattrib/src/x_toolbars.c:51
 msgid "Set selected name and value visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:425
+#: gattrib/src/x_menus.c:426
 msgid "_Window"
 msgstr ""
 
-#: gattrib/src/x_menus.c:427
+#: gattrib/src/x_menus.c:428
 msgid "_Help"
 msgstr ""
 
-#: gattrib/src/x_menus.c:428
+#: gattrib/src/x_menus.c:429
 msgid "Gattrib Guide"
 msgstr "Guia Gattrib"
 
-#: gattrib/src/x_menus.c:429
+#: gattrib/src/x_menus.c:430
 msgid "Gattrib FAQ"
 msgstr ""
 
-#: gattrib/src/x_menus.c:430
+#: gattrib/src/x_menus.c:431
 msgid "gEDA Docu_mentation..."
 msgstr ""
 
-#: gattrib/src/x_menus.c:431
+#: gattrib/src/x_menus.c:432
 msgid "gEDA _Wiki..."
 msgstr ""
 
-#: gattrib/src/x_menus.c:433
+#: gattrib/src/x_menus.c:434
 msgid "gEDA Attributes"
 msgstr "Atributos GEDA"
 
-#: gattrib/src/x_menus.c:434
+#: gattrib/src/x_menus.c:435
 msgid "gEDA Glossary"
 msgstr ""
 
-#: gattrib/src/x_menus.c:435
+#: gattrib/src/x_menus.c:436
 msgid "About"
 msgstr ""
 
-#: gattrib/src/x_menus.c:442
+#: gattrib/src/x_menus.c:443
 msgid "_Edit bar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:442
+#: gattrib/src/x_menus.c:443
 msgid "Display the Edit Status bar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:443
+#: gattrib/src/x_menus.c:444
 msgid "_Standard"
 msgstr ""
 
-#: gattrib/src/x_menus.c:443
+#: gattrib/src/x_menus.c:444
 msgid "Display Standard Toolbar"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_menus.c:444
+#: gattrib/src/x_menus.c:445
 msgid "A_ttribute"
 msgstr "A_tributo"
 
 # Display Attribute Toolbar
-#: gattrib/src/x_menus.c:444
+#: gattrib/src/x_menus.c:445
 msgid "Display Attribute Toolbar"
 msgstr "Exibir barra de ferramentas de atributos"
 
-#: gattrib/src/x_menus.c:445
+#: gattrib/src/x_menus.c:446
 msgid "_Attached"
 msgstr ""
 
-#: gattrib/src/x_menus.c:445
+#: gattrib/src/x_menus.c:446
 msgid "Hide or unhide non-attached attributes"
 msgstr ""
 
-#: gattrib/src/x_menus.c:446
+#: gattrib/src/x_menus.c:447
 msgid "_Inherited"
 msgstr ""
 
-#: gattrib/src/x_menus.c:446
+#: gattrib/src/x_menus.c:447
 msgid "Hide or unhide inherited attributes"
 msgstr ""
 
-#: gattrib/src/x_menus.c:448
+#: gattrib/src/x_menus.c:449
 msgid "_Autoresize"
 msgstr ""
 
-#: gattrib/src/x_menus.c:448
+#: gattrib/src/x_menus.c:449
 msgid "Enable/Disable Auto resize columns"
 msgstr ""
 
-#: gattrib/src/x_menus.c:449
+#: gattrib/src/x_menus.c:450
 msgid "Auto_Scroll"
 msgstr ""
 
-#: gattrib/src/x_menus.c:449
+#: gattrib/src/x_menus.c:450
 msgid "Enable/Disable AutoScroll"
 msgstr ""
 
-#: gattrib/src/x_menus.c:450
+#: gattrib/src/x_menus.c:451
 msgid "Show _Grid"
 msgstr ""
 
-#: gattrib/src/x_menus.c:450
+#: gattrib/src/x_menus.c:451
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:574
+#: gattrib/src/x_menus.c:575
 msgid "Open _Recent"
 msgstr ""
 
-#: gattrib/src/x_menus.c:575
+#: gattrib/src/x_menus.c:576
 msgid "Open recently used files"
 msgstr ""
 
-#: gattrib/src/x_menus.c:677
+#: gattrib/src/x_menus.c:678
 msgid "Error loading"
 msgstr ""
 
@@ -841,10 +841,10 @@ msgstr ""
 msgid "both"
 msgstr ""
 
-#: gattrib/src/x_window.c:201
+#: gattrib/src/x_window.c:204
 msgid "Saving main window geometry and settings.\n"
 msgstr ""
 
-#: gattrib/src/x_window.c:231
+#: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""

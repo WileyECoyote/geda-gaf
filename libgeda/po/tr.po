@@ -71,8 +71,9 @@ msgstr ""
 #: libgeda/src/file/f_file.c:272
 msgid ""
 "Could not determine which file is newer, so you should do this manually.\n"
-msgstr "Hangi dosyanın daha yeni olduğunu belirleyemedi, bu yüzden bunu "
-"manuel olarak yapmanız.\n"
+msgstr ""
+"Hangi dosyanın daha yeni olduğunu belirleyemedi, bu yüzden bunu manuel "
+"olarak yapmanız.\n"
 
 #: libgeda/src/file/f_file.c:273
 msgid ""
