@@ -8,6 +8,10 @@
 
     * po/de.po: Update German translations.
 
+    * po/el.po: Update Greek translations.
+
+    * po/en_GB.po: Update Great Britain.
+
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/g_struct.h: Define COMPLEX_INSERTION.
