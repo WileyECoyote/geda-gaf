@@ -1,3 +1,9 @@
+2019-05-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
+    * po/ca.po: Update Catalan translations.
+
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/g_struct.h: Define COMPLEX_INSERTION.
