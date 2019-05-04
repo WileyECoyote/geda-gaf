@@ -4,6 +4,10 @@
 
     * po/ca.po: Update Catalan translations.
 
+    * po/da.po: Update Danish translations.
+
+    * po/de.po: Update German translations.
+
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/g_struct.h: Define COMPLEX_INSERTION.

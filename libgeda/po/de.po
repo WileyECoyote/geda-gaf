@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-04-06 21:36-0500\n"
+"POT-Creation-Date: 2019-05-04 16:39-0500\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -72,7 +72,6 @@ msgstr ""
 "\n"
 
 #: libgeda/src/file/f_file.c:272
-#, fuzzy
 msgid ""
 "Could not determine which file is newer, so you should do this manually.\n"
 msgstr ""
@@ -88,13 +87,12 @@ msgstr ""
 "Backup anstatt der originalen Datei geladen werden.\n"
 
 #: libgeda/src/file/f_file.c:274
-#, fuzzy
 msgid ""
 "This situation may have occurred when an application crashed or was forced "
 "to exit abruptly.\n"
 msgstr ""
-"Gschem erstellt automatisch Backupdateien. Stürzt gschem ab oder wird es "
-"absichtlich getötet, so ergibt sich diese Situation.\n"
+"Diese Situation ist möglicherweise aufgetreten, wenn eine Anwendung "
+"abgestürzt ist oder abrupt beendet wurde.\n"
 
 #: libgeda/src/file/f_file.c:275
 msgid ""
@@ -726,75 +724,75 @@ msgstr ""
 msgid "Y coordinate of the second point"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:608
+#: libgeda/src/geda/geda_object.c:622
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:609
+#: libgeda/src/geda/geda_object.c:623
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:618
+#: libgeda/src/geda/geda_object.c:632
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:619
+#: libgeda/src/geda/geda_object.c:633
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:626
+#: libgeda/src/geda/geda_object.c:640
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:627
+#: libgeda/src/geda/geda_object.c:641
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:633
+#: libgeda/src/geda/geda_object.c:647
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:634
+#: libgeda/src/geda/geda_object.c:648
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:639
+#: libgeda/src/geda/geda_object.c:653
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:640
+#: libgeda/src/geda/geda_object.c:654
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:646
+#: libgeda/src/geda/geda_object.c:660
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:647
+#: libgeda/src/geda/geda_object.c:661
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:653
+#: libgeda/src/geda/geda_object.c:667
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:654
+#: libgeda/src/geda/geda_object.c:668
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:661
+#: libgeda/src/geda/geda_object.c:675
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:662
+#: libgeda/src/geda/geda_object.c:676
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:670
+#: libgeda/src/geda/geda_object.c:684
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:671
+#: libgeda/src/geda/geda_object.c:685
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -1100,48 +1098,48 @@ msgstr "Ungültige Daten in der Nähe der Leitung gefunden"
 msgid "On or about line"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1426
-#: libgeda/src/object/o_arc_object.c:1441
+#: libgeda/src/object/o_arc_object.c:1428
+#: libgeda/src/object/o_arc_object.c:1443
 msgid "Failed to parse arc object"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1448
+#: libgeda/src/object/o_arc_object.c:1450
 msgid "Found arc with negative radius"
 msgstr "Kreis mit dem Radius 0 entdeckt"
 
-#: libgeda/src/object/o_arc_object.c:1453
+#: libgeda/src/object/o_arc_object.c:1455
 #: libgeda/src/object/o_circle_object.c:1345
 msgid "Setting radius to"
 msgstr "Setze die Winkelangabe auf"
 
-#: libgeda/src/object/o_arc_object.c:1456
+#: libgeda/src/object/o_arc_object.c:1458
 msgid "Found an arc with radius zero"
 msgstr "Kreisbogen mit Radius 0 entdeckt"
 
-#: libgeda/src/object/o_arc_object.c:1460
+#: libgeda/src/object/o_arc_object.c:1462
 #: libgeda/src/object/o_circle_object.c:1352
 msgid "Setting zero radius to 1000\n"
 msgstr "Setze die Winkelangabe auf 1000\n"
 
-#: libgeda/src/object/o_arc_object.c:1465
-#: libgeda/src/object/o_box_object.c:1581
-#: libgeda/src/object/o_bus_object.c:584
+#: libgeda/src/object/o_arc_object.c:1467
+#: libgeda/src/object/o_box_object.c:1586
+#: libgeda/src/object/o_bus_object.c:585
 #: libgeda/src/object/o_circle_object.c:1357
-#: libgeda/src/object/o_line_object.c:1567
+#: libgeda/src/object/o_line_object.c:1568
 #: libgeda/src/object/o_net_object.c:718
-#: libgeda/src/object/o_path_object.c:575
+#: libgeda/src/object/o_path_object.c:580
 #: libgeda/src/object/o_pin_object.c:197
 #: libgeda/src/object/o_text_object.c:784
 msgid "Found an invalid color"
 msgstr "Fehlerhafte Farbangabe entdeckt"
 
-#: libgeda/src/object/o_arc_object.c:1469
-#: libgeda/src/object/o_box_object.c:1585
-#: libgeda/src/object/o_bus_object.c:588
+#: libgeda/src/object/o_arc_object.c:1471
+#: libgeda/src/object/o_box_object.c:1590
+#: libgeda/src/object/o_bus_object.c:589
 #: libgeda/src/object/o_circle_object.c:1361
-#: libgeda/src/object/o_line_object.c:1571
+#: libgeda/src/object/o_line_object.c:1572
 #: libgeda/src/object/o_net_object.c:722
-#: libgeda/src/object/o_path_object.c:579
+#: libgeda/src/object/o_path_object.c:584
 #: libgeda/src/object/o_pin_object.c:201
 #: libgeda/src/object/o_text_object.c:788
 msgid "Setting color to default color\n"
@@ -1171,36 +1169,41 @@ msgstr "Es wurde versucht eine Attribut anzubringen, welches kein Text ist"
 msgid "unexpected end-of-file in attribute list"
 msgstr ""
 
-#: libgeda/src/object/o_box_object.c:1536
-#: libgeda/src/object/o_box_object.c:1567
+#: libgeda/src/object/o_attrib_object.c:1119
+#, c-format
+msgid "Attribute name cannot be NULL!\n"
+msgstr ""
+
+#: libgeda/src/object/o_box_object.c:1541
+#: libgeda/src/object/o_box_object.c:1572
 msgid "Failed to parse box object"
 msgstr ""
 
 # Rectangle with edge length 0 is discovered
-#: libgeda/src/object/o_box_object.c:1574
+#: libgeda/src/object/o_box_object.c:1579
 msgid "Found a box with zero width/height"
 msgstr "Rechteck mit der Kantenlänge 0 entdeckt"
 
-#: libgeda/src/object/o_bus_object.c:498
+#: libgeda/src/object/o_bus_object.c:499
 #, c-format
 msgid "null in geda_bus_object_print\n"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:555 libgeda/src/object/o_bus_object.c:562
+#: libgeda/src/object/o_bus_object.c:556 libgeda/src/object/o_bus_object.c:563
 msgid "Failed to parse bus object"
 msgstr ""
 
 # zero length bus discovered
-#: libgeda/src/object/o_bus_object.c:568
+#: libgeda/src/object/o_bus_object.c:569
 msgid "Found a bus with zero length"
 msgstr "Null Länge Bus entdeckt"
 
 # Faulty direction indictor in a bus connection discovered
-#: libgeda/src/object/o_bus_object.c:575
+#: libgeda/src/object/o_bus_object.c:576
 msgid "Found an invalid bus ripper direction"
 msgstr "Znaleziono nieprawidłowy kierunek bus-ripper"
 
-#: libgeda/src/object/o_bus_object.c:579
+#: libgeda/src/object/o_bus_object.c:580
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Setze die Richtung auf neutral (keine Richtung)\n"
 
@@ -1355,12 +1358,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Das Bauteil [%s] wurde erfolgreich ausgebettet\n"
 
-#: libgeda/src/object/o_line_object.c:1527
-#: libgeda/src/object/o_line_object.c:1547
+#: libgeda/src/object/o_line_object.c:1528
+#: libgeda/src/object/o_line_object.c:1548
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1560
+#: libgeda/src/object/o_line_object.c:1561
 msgid "Found a line with zero length"
 msgstr "Pin mit der Länge 0 entdeckt"
 
@@ -1372,11 +1375,11 @@ msgstr ""
 msgid "Found a net with zero length"
 msgstr "Pin mit der Länge 0 entdeckt"
 
-#: libgeda/src/object/o_path_object.c:569
+#: libgeda/src/object/o_path_object.c:574
 msgid "Failed to parse path object"
 msgstr ""
 
-#: libgeda/src/object/o_path_object.c:594
+#: libgeda/src/object/o_path_object.c:599
 #: libgeda/src/object/o_text_object.c:803
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
@@ -1551,12 +1554,12 @@ msgid "because"
 msgstr "weil"
 
 # Setting dash length to default
-#: libgeda/src/object/o_set.c:180
+#: libgeda/src/object/o_set.c:182
 msgid "Setting line length to default"
 msgstr "Festlegen der Bindestrichlänge auf Standardwert"
 
 # Setting line space to default
-#: libgeda/src/object/o_set.c:193
+#: libgeda/src/object/o_set.c:195
 msgid "Setting line space to default"
 msgstr "Zeilenraum auf Standard setzen"
 
