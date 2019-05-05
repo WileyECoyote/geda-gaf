@@ -110,6 +110,6 @@ pintype=pas
 T 1200 2500 5 8 0 0 0 0 1
 author=AutoTron
 T 1200 2350 5 8 0 0 0 0 1
-dist-license=GPL3
+dist-license=GPLv2
 T 1200 2200 5 8 0 0 0 0 1
 use-license=unrestricted
