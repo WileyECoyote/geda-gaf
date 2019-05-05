@@ -14,6 +14,8 @@
     * transistor/other/ULN2803A-1.sym: Resequence attributes and update foot
       print to unknown instead of none.
 
+    * transistor/pjfet-0/pjfet-???-?.sym: Update pinseq attributes.
+
 2019-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * cypress/CYW4343-1.sym: Add symbol; 802.11 b,g,n, 5G, Bluetooth 4.1
