@@ -9,6 +9,8 @@
     * transistor/other/ULN2003-1.sym: Convert plain text to value attribute
       and add description attribute.
 
+    * transistor/other/ULN2003A-1.sym: Update license attributes.
+
 2019-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * cypress/CYW4343-1.sym: Add symbol; 802.11 b,g,n, 5G, Bluetooth 4.1
