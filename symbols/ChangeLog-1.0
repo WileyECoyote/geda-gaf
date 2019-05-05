@@ -3,6 +3,9 @@
     * transistor/nmosfet-d/BSS123_nmosfet_dep-1.sym: Fix duplicate pinseq
       and update footprint.
 
+    * transistor/nmosfet-d/LND150-1.sym: Fix duplicate pinseq, update
+      footprint and dist-license.
+
 2019-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * cypress/CYW4343-1.sym: Add symbol; 802.11 b,g,n, 5G, Bluetooth 4.1
