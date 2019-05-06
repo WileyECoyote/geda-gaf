@@ -1,3 +1,7 @@
+2019-05-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/edacairo.h: Reorder functions mostly alphabetically.
+
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Revise eda_renderer_default_draw_grips to handle
