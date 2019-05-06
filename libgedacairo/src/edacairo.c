@@ -40,8 +40,6 @@
 
 #include "../include/edacairo.h"
 
-/* We don't use gettext */
-#define _(x) (x)
 
 static inline int
 screen_width(cairo_t *cr, double width)
