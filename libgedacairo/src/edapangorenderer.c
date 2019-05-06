@@ -316,7 +316,7 @@ eda_pango_renderer_instance_init (GTypeInstance *instance, void *g_class)
 /*! \brief Retrieve EdaPangoRenderer's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve a #EdaPangoRenderer Type identifier. When
+ *  Function to retrieve an #EdaPangoRenderer Type identifier. When
  *  first called, the function registers a #EdaPangoRenderer in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a EdaPangoRenderer and returns the unsigned integer value.
