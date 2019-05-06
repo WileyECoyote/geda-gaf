@@ -354,7 +354,7 @@ GedaType eda_pango_renderer_get_type (void)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \brief Create a New EdaPangoRenderer
  *  \par Function Description
  *
  */
@@ -364,7 +364,7 @@ PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \brief Update EdaPangoRenderer Cairo Context
  *  \par Function Description
  *
  */
@@ -404,7 +404,7 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
 
 /* ---------------------------------------- */
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \internal Make a copy of an EdaPangoAttrOverbar Attribute structure
  *  \par Function Description
  *
  */
@@ -416,7 +416,7 @@ eda_pango_attr_overbar_copy (const PangoAttribute *attr)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \internal Compare EdaPangoAttrOverbar Attribute structures
  *  \par Function Description
  *
  */
@@ -430,7 +430,7 @@ eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \brief Get an EdaPangoAttrOverbar Class
  *  \par Function Description
  *
  */
@@ -450,7 +450,7 @@ eda_pango_attr_overbar_get_class ()
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \brief Create a New EdaPangoAttrOverbar
  *  \par Function Description
  *
  */
@@ -463,9 +463,9 @@ PangoAttribute *eda_pango_attr_overbar_new (bool overbar)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
- *  \par Function Description
- *
+ *  \brief Determine if objects is an
+ *  \par Function Description EdaPangoAttrOverbar
+ *  Looks inside attr without validating
  */
 bool eda_is_pango_attr_overbar (PangoAttribute *attr)
 {
@@ -473,7 +473,7 @@ bool eda_is_pango_attr_overbar (PangoAttribute *attr)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Hierarchy Post Process
+ *  \brief Parse overbar_text
  *  \par Function Description
  *
  */
@@ -508,7 +508,6 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
 
   for (in_ptr=overbar_text; (in_ptr - overbar_text) <= length; in_ptr++)
   {
-
     /* If we find an escape character and we are not already in an
      * escaped state, enter escaped state and don't add the current
      * character to the output. */
