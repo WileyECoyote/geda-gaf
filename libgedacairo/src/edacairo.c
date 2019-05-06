@@ -40,9 +40,7 @@
 
 #include "../include/edacairo.h"
 
-
-static inline int
-screen_width(cairo_t *cr, double width)
+static inline int screen_width(cairo_t *cr, double width)
 {
   double dummy = 0;
   cairo_user_to_device_distance (cr, &width, &dummy);
@@ -56,8 +54,7 @@ screen_width(cairo_t *cr, double width)
 #endif
 }
 
-static inline int
-SCREENabs (cairo_t *cr, double dist)
+static inline int SCREENabs (cairo_t *cr, double dist)
 {
   double dummy = 0;
   cairo_user_to_device_distance (cr, &dist, &dummy);
@@ -71,126 +68,120 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
   *sx = round (wx); *sy = round (wy);
 }
 
-/*! \brief Set the Cairo Source Color
+/*! \brief Render Cairo Arc Common
  *  \par Function Description
- *  This function sets the source color using the color in the given map
- *  at the given index.
+ *  Common routine to call cairo arc.
  */
-void
-eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
+static inline void
+do_arc (cairo_t *cr, double x, double y, double radius,
+                     double start_angle, double arc_sweep)
 {
-  if (map == NULL) {
-    BUG_MSG ("map = NULL");
-  }
-  else if ((color < 0) || (color > map->len - 1)) {
-    BUG_IMSG("Invalid color index", color);
+  cairo_new_sub_path (cr);
+
+  if (arc_sweep > 0) {
+    cairo_arc (cr, x, y, radius, start_angle * (M_PI / 180.),
+                   (start_angle + arc_sweep) * (M_PI / 180.));
   }
   else {
-
-    COLOR c;
-
-    c = g_array_index (map, COLOR, color);
-
-    cairo_set_source_rgba (cr, (double)c.r / 255.0,
-                               (double)c.g / 255.0,
-                               (double)c.b / 255.0,
-                               (double)c.a / 255.0);
+    cairo_arc_negative (cr, x, y, radius, start_angle * (M_PI / 180.),
+                            (start_angle + arc_sweep) * (M_PI / 180.));
   }
 }
 
-/*! \brief Draw line using Cairo Graphic Renderer
+/*! \brief Render an Arc at center point using Cairo Graphic
  *  \par Function Description
- *  Scale line to screen coordinates, establish end points and render
- *  a line using Cairo graphics library.
+ *  Scale coordinates of centerpoint to screen coordinates, calculate
+ *  endpoint and render using Cairo graphics library.
  */
 void
-eda_cairo_line (cairo_t *cr, int flags, int line_end,
-                double w_line_width,
-                double w_x1, double w_y1, double w_x2, double w_y2)
+eda_cairo_arc (cairo_t *cr, int flags,
+               double width, double x, double y,
+               double radius, double start_angle, double arc_sweep)
 {
+  int s_width;
   double x1, y1, x2, y2;
+  double s_x, s_y, s_radius;
   double offset;
-  double xoffset    = 0;
-  double yoffset    = 0;
-  double horizontal = 0;
-  double vertical   = 0;
-  int    line_width;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
-    cairo_move_to (cr, w_x1, w_y1);
-    cairo_line_to (cr, w_x2, w_y2);
+    do_arc (cr, x, y, radius, start_angle, arc_sweep);
     return;
   }
 
-  WORLDtoSCREEN (cr, w_x1, w_y1, &x1, &y1);
-  WORLDtoSCREEN (cr, w_x2, w_y2, &x2, &y2);
-  line_width = screen_width (cr, w_line_width);
+  WORLDtoSCREEN (cr, x - radius, y + radius, &x1, &y1);
+  WORLDtoSCREEN (cr, x + radius, y - radius, &x2, &y2);
 
-  offset = (line_width & 1) ? 0 : 0.5;
+  s_width  = screen_width (cr, width);
+  offset   = ((s_width % 2) == 0) ? 0 : 0.5;
 
-  if (y1 == y2) horizontal = 1;
-  if (x1 == x2) vertical   = 1;
+  s_x      = (double)(x1 + x2) / 2.0;
+  s_y      = (double)(y1 + y2) / 2.0;
+  s_radius = (double)(y2 - y1) / 2.0;
 
-  /* Hint so the length of the line runs along a pixel boundary */
+  cairo_device_to_user (cr, &s_x, &s_y);
+  cairo_device_to_user_distance (cr, &offset, &s_radius);
 
-  if (horizontal) {
-    yoffset = offset;
-  }
-  else if (vertical) {
-    xoffset = offset;
-  }
-  else {
-    xoffset = yoffset = offset;
-  }
+  s_radius = -1 * s_radius;
 
-  /* Now hint the ends of the lines */
-
-  switch (line_end) {
-    case END_NONE:
-      /* Line terminates at the passed coordinate */
-
-      /* Add an extra pixel to give an inclusive span */
-      if (horizontal) {
-        if (x1 > x2) {
-          x1 += 1;
-        }
-        else {
-          x2 += 1;
-        }
-      }
-      else if (vertical) {
-        if (y1 > y2) {
-          y1 += 1;
-        }
-        else {
-          y2 += 1;
-        }
-      }
-      break;
-
-    case END_SQUARE:
-    case END_ROUND:
-
-      /* Line terminates half a width away from the passed coordinate */
-      if (horizontal) {
-        xoffset = offset;
-      }
-      else if (vertical) {
-        yoffset = offset;
-      }
-      break;
-  }
-
-  x1 += xoffset;
-  y1 += yoffset;
-  x2 += xoffset;
-  y2 += yoffset;
-
-  cairo_device_to_user (cr, &x1, &y1);
-  cairo_device_to_user (cr, &x2, &y2);
-  cairo_move_to        (cr, x1,   y1);
-  cairo_line_to        (cr, x2,   y2);
+  do_arc (cr, s_x + offset, s_y + offset, s_radius, start_angle, arc_sweep);
 }
+
+/*! \brief Render an Arc at center point using Cairo Graphic
+ *  \par Function Description
+ *  Scale coordinates of centerpoint to screen coordinates, calculate
+ *  endpoint and render using Cairo graphics library.
+ */
+void
+eda_cairo_center_arc (cairo_t *cr, int flags,
+                      double center_width,
+                      double line_width, double x, double y,
+                      double radius, double start_angle, double arc_sweep)
+{
+  int s_center_width, s_line_width;
+  double s_x, s_y, dummy = 0;
+  int s_diameter;
+  double even_center_width;
+  double even_line_width;
+  double even_diameter;
+  double center_offset;
+  double s_radius;
+  int do_radius_hint = TRUE;
+
+  if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
+    do_arc (cr, x, y, radius, start_angle, arc_sweep);
+    return;
+  }
+
+  WORLDtoSCREEN (cr, x, y, &s_x, &s_y);
+  s_diameter = SCREENabs (cr, 2 * radius);
+  even_diameter = ((s_diameter % 2) == 0);
+  s_radius = (double) s_diameter / 2.;
+
+  /* Switch off radius hinting for small radii. If we don't, then we get
+   * a very abrupt transition once the arc reaches a single pixel size. */
+  if (s_radius <= 1.) do_radius_hint = FALSE;
+
+  /* Hint the center of the arc based on where a line
+   * of thickness center_width (world) would drawn */
+  s_center_width = screen_width (cr, center_width);
+  even_center_width = (center_width == -1 || (s_center_width % 2) == 0);
+  center_offset = even_center_width ? 0. : 0.5;
+
+  /* Hint the radius to land its extermity on the pixel grid */
+  s_line_width = screen_width (cr, line_width);
+  even_line_width = (line_width == -1 || (s_line_width % 2) == 0);
+  if (do_radius_hint)
+    s_radius += ((even_center_width ==
+                        even_line_width) == even_diameter) ? 0. : 0.5;
+
+  s_x += center_offset;
+  s_y += center_offset;
+  cairo_device_to_user (cr, &s_x, &s_y);
+  cairo_device_to_user_distance (cr, &s_radius, &dummy);
+
+  do_arc (cr, s_x, s_y, s_radius, start_angle, arc_sweep);
+}
+
 
 /*! \brief Render a Rectangular Box using Cairo Graphic
  *  \par Function Description
@@ -320,119 +311,207 @@ eda_cairo_center_box (cairo_t *cr, int flags,
   cairo_close_path (cr);
 }
 
-
-/*! \brief Render Cairo Arc Common
+/*! \brief Draw line using Cairo Graphic Renderer
  *  \par Function Description
- *  Common routine to call cairo arc.
+ *  Scale line to screen coordinates, establish end points and render
+ *  a line using Cairo graphics library.
  */
-static inline void
-do_arc (cairo_t *cr, double x, double y, double radius,
-                     double start_angle, double arc_sweep)
+void
+eda_cairo_line (cairo_t *cr, int flags, int line_end,
+                double w_line_width,
+                double w_x1, double w_y1, double w_x2, double w_y2)
 {
-  cairo_new_sub_path (cr);
+  double x1, y1, x2, y2;
+  double offset;
+  double xoffset    = 0;
+  double yoffset    = 0;
+  double horizontal = 0;
+  double vertical   = 0;
+  int    line_width;
 
-  if (arc_sweep > 0) {
-    cairo_arc (cr, x, y, radius, start_angle * (M_PI / 180.),
-                   (start_angle + arc_sweep) * (M_PI / 180.));
+  if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
+    cairo_move_to (cr, w_x1, w_y1);
+    cairo_line_to (cr, w_x2, w_y2);
+    return;
+  }
+
+  WORLDtoSCREEN (cr, w_x1, w_y1, &x1, &y1);
+  WORLDtoSCREEN (cr, w_x2, w_y2, &x2, &y2);
+  line_width = screen_width (cr, w_line_width);
+
+  offset = (line_width & 1) ? 0 : 0.5;
+
+  if (y1 == y2) horizontal = 1;
+  if (x1 == x2) vertical   = 1;
+
+  /* Hint so the length of the line runs along a pixel boundary */
+
+  if (horizontal) {
+    yoffset = offset;
+  }
+  else if (vertical) {
+    xoffset = offset;
   }
   else {
-    cairo_arc_negative (cr, x, y, radius, start_angle * (M_PI / 180.),
-                            (start_angle + arc_sweep) * (M_PI / 180.));
+    xoffset = yoffset = offset;
+  }
+
+  /* Now hint the ends of the lines */
+
+  switch (line_end) {
+    case END_NONE:
+      /* Line terminates at the passed coordinate */
+
+      /* Add an extra pixel to give an inclusive span */
+      if (horizontal) {
+        if (x1 > x2) {
+          x1 += 1;
+        }
+        else {
+          x2 += 1;
+        }
+      }
+      else if (vertical) {
+        if (y1 > y2) {
+          y1 += 1;
+        }
+        else {
+          y2 += 1;
+        }
+      }
+      break;
+
+    case END_SQUARE:
+    case END_ROUND:
+
+      /* Line terminates half a width away from the passed coordinate */
+      if (horizontal) {
+        xoffset = offset;
+      }
+      else if (vertical) {
+        yoffset = offset;
+      }
+      break;
+  }
+
+  x1 += xoffset;
+  y1 += yoffset;
+  x2 += xoffset;
+  y2 += yoffset;
+
+  cairo_device_to_user (cr, &x1, &y1);
+  cairo_device_to_user (cr, &x2, &y2);
+  cairo_move_to        (cr, x1,   y1);
+  cairo_line_to        (cr, x2,   y2);
+}
+
+static inline void
+eda_cairo_path_hint (cairo_t *cr, int flags,
+                     double *x, double *y, int width)
+{
+  if (flags & EDA_CAIRO_ENABLE_HINTS) {
+
+    double offset;
+
+    cairo_user_to_device (cr, x, y);
+
+    offset = ((width % 2) == 0) ? 0 : 0.5;
+    *x    += offset; *y += offset;
+
+    cairo_device_to_user (cr, x, y);
   }
 }
 
-/*! \brief Render an Arc at center point using Cairo Graphic
+/*! \brief Render an Path using Cairo Graphic
  *  \par Function Description
- *  Scale coordinates of centerpoint to screen coordinates, calculate
- *  endpoint and render using Cairo graphics library.
+ *  Scale coordinates of path segment to screen coordinates, and calls correct
+ *  Cairo graphics library routine based in the segment type.
  */
-void
-eda_cairo_arc (cairo_t *cr, int flags,
-               double width, double x, double y,
-               double radius, double start_angle, double arc_sweep)
+void eda_cairo_path (cairo_t *cr, int flags, double line_width,
+                     int nsections, PATH_SECTION *sections)
 {
-  int s_width;
-  double x1, y1, x2, y2;
-  double s_x, s_y, s_radius;
-  double offset;
+  int i;
+  int s_line_width;
 
-  if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
-    do_arc (cr, x, y, radius, start_angle, arc_sweep);
-    return;
+  if (flags & EDA_CAIRO_ENABLE_HINTS) {
+    s_line_width = screen_width (cr, line_width);
+  }
+  else {
+    double dummy = 0;
+    cairo_user_to_device (cr, &line_width, &dummy);
+    s_line_width = line_width;
   }
 
-  WORLDtoSCREEN (cr, x - radius, y + radius, &x1, &y1);
-  WORLDtoSCREEN (cr, x + radius, y - radius, &x2, &y2);
+  for (i = 0; i < nsections; i++) {
 
-  s_width  = screen_width (cr, width);
-  offset   = ((s_width % 2) == 0) ? 0 : 0.5;
+    PATH_SECTION *section = sections + i;
+    double x1 = section->x1;
+    double x2 = section->x2;
+    double x3 = section->x3;
+    double y1 = section->y1;
+    double y2 = section->y2;
+    double y3 = section->y3;
 
-  s_x      = (double)(x1 + x2) / 2.0;
-  s_y      = (double)(y1 + y2) / 2.0;
-  s_radius = (double)(y2 - y1) / 2.0;
+    switch (section->code) {
+      case PATH_CURVETO:
+        /* Two control point grips */
+        eda_cairo_path_hint (cr, flags, &x1, &y1, s_line_width);
+        eda_cairo_path_hint (cr, flags, &x2, &y2, s_line_width);
+        /* Fall through */
+      case PATH_MOVETO:
+      case PATH_MOVETO_OPEN:
+      case PATH_LINETO:
+        /* Destination point grip */
+        eda_cairo_path_hint (cr, flags, &x3, &y3, s_line_width);
+      case PATH_END:
+        break;
+    }
 
-  cairo_device_to_user (cr, &s_x, &s_y);
-  cairo_device_to_user_distance (cr, &offset, &s_radius);
-
-  s_radius = -1 * s_radius;
-
-  do_arc (cr, s_x + offset, s_y + offset, s_radius, start_angle, arc_sweep);
+    switch (section->code) {
+      case PATH_MOVETO:
+        cairo_close_path (cr);
+        /* fall-through */
+      case PATH_MOVETO_OPEN:
+        cairo_move_to (cr, x3, y3);
+        break;
+      case PATH_CURVETO:
+        cairo_curve_to (cr, x1, y1, x2, y2, x3, y3);
+        break;
+      case PATH_LINETO:
+        cairo_line_to (cr, x3, y3);
+        break;
+      case PATH_END:
+        cairo_close_path (cr);
+        break;
+    }
+  }
 }
 
-/*! \brief Render an Arc at center point using Cairo Graphic
+/*! \brief Set the Cairo Source Color
  *  \par Function Description
- *  Scale coordinates of centerpoint to screen coordinates, calculate
- *  endpoint and render using Cairo graphics library.
+ *  This function sets the source color using the color in the given map
+ *  at the given index.
  */
 void
-eda_cairo_center_arc (cairo_t *cr, int flags,
-                      double center_width,
-                      double line_width, double x, double y,
-                      double radius, double start_angle, double arc_sweep)
+eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
 {
-  int s_center_width, s_line_width;
-  double s_x, s_y, dummy = 0;
-  int s_diameter;
-  double even_center_width;
-  double even_line_width;
-  double even_diameter;
-  double center_offset;
-  double s_radius;
-  int do_radius_hint = TRUE;
-
-  if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
-    do_arc (cr, x, y, radius, start_angle, arc_sweep);
-    return;
+  if (map == NULL) {
+    BUG_MSG ("map = NULL");
   }
+  else if ((color < 0) || (color > map->len - 1)) {
+    BUG_IMSG("Invalid color index", color);
+  }
+  else {
 
-  WORLDtoSCREEN (cr, x, y, &s_x, &s_y);
-  s_diameter = SCREENabs (cr, 2 * radius);
-  even_diameter = ((s_diameter % 2) == 0);
-  s_radius = (double) s_diameter / 2.;
+    COLOR c;
 
-  /* Switch off radius hinting for small radii. If we don't, then we get
-   * a very abrupt transition once the arc reaches a single pixel size. */
-  if (s_radius <= 1.) do_radius_hint = FALSE;
+    c = g_array_index (map, COLOR, color);
 
-  /* Hint the center of the arc based on where a line
-   * of thickness center_width (world) would drawn */
-  s_center_width = screen_width (cr, center_width);
-  even_center_width = (center_width == -1 || (s_center_width % 2) == 0);
-  center_offset = even_center_width ? 0. : 0.5;
-
-  /* Hint the radius to land its extermity on the pixel grid */
-  s_line_width = screen_width (cr, line_width);
-  even_line_width = (line_width == -1 || (s_line_width % 2) == 0);
-  if (do_radius_hint)
-    s_radius += ((even_center_width ==
-                        even_line_width) == even_diameter) ? 0. : 0.5;
-
-  s_x += center_offset;
-  s_y += center_offset;
-  cairo_device_to_user (cr, &s_x, &s_y);
-  cairo_device_to_user_distance (cr, &s_radius, &dummy);
-
-  do_arc (cr, s_x, s_y, s_radius, start_angle, arc_sweep);
+    cairo_set_source_rgba (cr, (double)c.r / 255.0,
+                               (double)c.g / 255.0,
+                               (double)c.b / 255.0,
+                               (double)c.a / 255.0);
+  }
 }
 
 /*! \brief Render a Stroke using Cairo Graphic
@@ -567,87 +646,4 @@ eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
   cairo_stroke (cr);
 
   cairo_set_dash (cr, NULL, 0, 0.);
-}
-
-
-static inline void
-eda_cairo_path_hint (cairo_t *cr, int flags,
-                     double *x, double *y, int width)
-{
-  if (flags & EDA_CAIRO_ENABLE_HINTS) {
-
-    double offset;
-
-    cairo_user_to_device (cr, x, y);
-
-    offset = ((width % 2) == 0) ? 0 : 0.5;
-    *x    += offset; *y += offset;
-
-    cairo_device_to_user (cr, x, y);
-  }
-}
-
-/*! \brief Render an Path using Cairo Graphic
- *  \par Function Description
- *  Scale coordinates of path segment to screen coordinates, and calls correct
- *  Cairo graphics library routine based in the segment type.
- */
-void eda_cairo_path (cairo_t *cr, int flags, double line_width,
-                     int nsections, PATH_SECTION *sections)
-{
-  int i;
-  int s_line_width;
-
-  if (flags & EDA_CAIRO_ENABLE_HINTS) {
-    s_line_width = screen_width (cr, line_width);
-  }
-  else {
-    double dummy = 0;
-    cairo_user_to_device (cr, &line_width, &dummy);
-    s_line_width = line_width;
-  }
-
-  for (i = 0; i < nsections; i++) {
-
-    PATH_SECTION *section = sections + i;
-    double x1 = section->x1;
-    double x2 = section->x2;
-    double x3 = section->x3;
-    double y1 = section->y1;
-    double y2 = section->y2;
-    double y3 = section->y3;
-
-    switch (section->code) {
-      case PATH_CURVETO:
-        /* Two control point grips */
-        eda_cairo_path_hint (cr, flags, &x1, &y1, s_line_width);
-        eda_cairo_path_hint (cr, flags, &x2, &y2, s_line_width);
-        /* Fall through */
-      case PATH_MOVETO:
-      case PATH_MOVETO_OPEN:
-      case PATH_LINETO:
-        /* Destination point grip */
-        eda_cairo_path_hint (cr, flags, &x3, &y3, s_line_width);
-      case PATH_END:
-        break;
-    }
-
-    switch (section->code) {
-      case PATH_MOVETO:
-        cairo_close_path (cr);
-        /* fall-through */
-      case PATH_MOVETO_OPEN:
-        cairo_move_to (cr, x3, y3);
-        break;
-      case PATH_CURVETO:
-        cairo_curve_to (cr, x1, y1, x2, y2, x3, y3);
-        break;
-      case PATH_LINETO:
-        cairo_line_to (cr, x3, y3);
-        break;
-      case PATH_END:
-        cairo_close_path (cr);
-        break;
-    }
-  }
 }

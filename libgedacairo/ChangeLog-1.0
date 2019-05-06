@@ -2,7 +2,8 @@
 
     * include/edacairo.h: Reorder functions mostly alphabetically.
 
-    * src/edacairo.c: Remove unneeded define of underscore function.
+    * src/edacairo.c: Remove unneeded define of underscore function and
+      reorder functions to match order in header.
 
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
