@@ -1304,6 +1304,7 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
                                     object->line->x[0], object->line->y[0],
                                     object->line->x[1], object->line->y[1]);
       break;
+
     case OBJ_BOX:
       eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 4,
                                     object->box->upper_x, object->box->upper_y,
@@ -1311,9 +1312,11 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
                                     object->box->upper_x, object->box->lower_y,
                                     object->box->lower_x, object->box->lower_y);
       break;
+
     case OBJ_ARC:
       eda_renderer_draw_arc_grips (renderer, object);
       break;
+
     case OBJ_CIRCLE:
       switch (EDAR_CIRCLE_GRIP_QUAD) {
         case 1: /* Grip at right side */
@@ -1334,13 +1337,16 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
                                         object->circle->center_y); // - object->circle->radius);
       }
       break;
+
     case OBJ_PATH:
       eda_renderer_draw_path_grips (renderer, object);
       break;
+
     case OBJ_TEXT:
       if(renderer->text_origin_marker)
         eda_renderer_draw_text_grips (renderer, object);
       break;
+
     case OBJ_PICTURE:
       eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 4,
                                     object->picture->upper_x, object->picture->upper_y,
@@ -1348,6 +1354,7 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
                                     object->picture->upper_x, object->picture->lower_y,
                                     object->picture->lower_x, object->picture->lower_y);
       break;
+
     case OBJ_COMPLEX:
       eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
                                     object->complex->x,
@@ -1355,6 +1362,7 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
     case OBJ_PLACEHOLDER:
       /* No grips */
       break;
+
     default:
       BUG_IMSG("unhandled case <%c>\n", object->type);
   }
