@@ -1279,6 +1279,12 @@ eda_renderer_draw_grips (EdaRenderer *renderer, GedaObject *object)
 {
   g_return_if_fail (EDA_IS_RENDERER (renderer));
 
+  if (renderer->draw_grips == FALSE)
+    return;
+
+  if (!eda_renderer_is_drawable (renderer, object))
+    return;
+
   EDA_RENDERER_GET_CLASS (renderer)->draw_grips (renderer, object);
 }
 
@@ -1288,15 +1294,6 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, GedaObject *object)
   /* Note renderer was validated in eda_renderer_draw_grips */
   g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
-
-  if(renderer->draw_grips == FALSE)
-    return;
-/*
-  if (!eda_renderer_is_drawable (renderer, object))
-    return;
-*/
-  if (!eda_renderer_is_colorable (renderer, object->color))
-    return;
 
   switch (object->type) {
     case OBJ_LINE:
