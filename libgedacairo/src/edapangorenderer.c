@@ -254,8 +254,9 @@ eda_pango_renderer_prepare_run (PangoRenderer *renderer,
   GSList *l;
 
   for (l = run->item->analysis.extra_attrs; l != NULL; l = g_slist_next (l)) {
-    if (eda_is_pango_attr_overbar ((PangoAttribute *) l->data)) {
-      EdaPangoAttrOverbar *attr = (EdaPangoAttrOverbar *) l->data;
+
+    if (eda_is_pango_attr_overbar ((PangoAttribute*)l->data)) {
+      EdaPangoAttrOverbar *attr = (EdaPangoAttrOverbar*)l->data;
       overbar = attr->overbar;
     }
   }
@@ -411,7 +412,7 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
 static PangoAttribute *
 eda_pango_attr_overbar_copy (const PangoAttribute *attr)
 {
-  const EdaPangoAttrOverbar *a = (const EdaPangoAttrOverbar *) attr;
+  const EdaPangoAttrOverbar *a = (const EdaPangoAttrOverbar*)attr;
   return eda_pango_attr_overbar_new (a->overbar);
 }
 
@@ -424,8 +425,8 @@ static bool
 eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
                                 const PangoAttribute *attr2)
 {
-  const EdaPangoAttrOverbar *a1 = (const EdaPangoAttrOverbar *) attr1;
-  const EdaPangoAttrOverbar *a2 = (const EdaPangoAttrOverbar *) attr2;
+  const EdaPangoAttrOverbar *a1 = (const EdaPangoAttrOverbar*)attr1;
+  const EdaPangoAttrOverbar *a2 = (const EdaPangoAttrOverbar*)attr2;
   return (a1->overbar == a2->overbar);
 }
 
