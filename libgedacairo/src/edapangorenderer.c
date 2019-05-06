@@ -93,8 +93,8 @@ eda_pango_renderer_constructor (GType type,
                                 unsigned int n_construct_properties,
                                 GObjectConstructParam *construct_params)
 {
-  GObject          *object;
-  GObjectClass     *parent_object_class;
+  GObject      *object;
+  GObjectClass *parent_object_class;
 
   parent_object_class = G_OBJECT_CLASS (eda_pango_renderer_parent_class);
   object = parent_object_class->constructor (type, n_construct_properties,
@@ -138,6 +138,7 @@ eda_pango_renderer_get_property (GObject *object, unsigned int property_id,
   case PROP_CAIRO_CONTEXT:
     g_value_set_pointer (value, renderer->priv->cr);
     break;
+
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
