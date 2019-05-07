@@ -48,7 +48,7 @@
 #define TWIDGET "GedaComboBox"
 
 /*! \file test_combobox.c
- *  \brief Tests for accel_label.c module
+ *  \brief Tests for geda_combobox.c module
  */
 
 int check_construction (void)
