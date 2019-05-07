@@ -11,6 +11,7 @@
 
           * geda_menu_item_get_right_justified
           * geda_menu_item_set_right_justified
+          * geda_menu_item_is_selectable
 
 2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
 

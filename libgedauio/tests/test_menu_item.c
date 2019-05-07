@@ -319,7 +319,22 @@ int check_query()
 
     /* geda_menu_item_is_selectable */
 
+    if (geda_menu_item_is_selectable(menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> is_selectable %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     /* geda_menu_item_is_widget_selectable */
+
+    gtk_widget_show (widget);
+    gtk_widget_show (menu);
+
+    /* geda_menu_item_is_selectable */
+
+    if (!geda_menu_item_is_selectable(menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> is_selectable %s\n", __LINE__, TWIDGET);
+      result++;
+    }
 
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
