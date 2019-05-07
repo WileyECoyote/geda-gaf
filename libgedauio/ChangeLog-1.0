@@ -3,6 +3,9 @@
     * src/widgets/geda_dockbox.c: Update function documentation for
       geda_dock_box_add.
 
+    * tests/test_image_menu_item.c: Add helper function main_window and
+      function group check_methods.
+
 2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Update Doxygen group descriptions in:

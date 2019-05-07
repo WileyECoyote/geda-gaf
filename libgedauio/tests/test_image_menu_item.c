@@ -38,6 +38,7 @@
 
 #include <../include/geda_image_menu_item.h>
 #include <../include/geda_bulb.h>
+#include "../include/geda_menu_bar.h"
 
 #include "print_xpm.h"
 #include "test-suite.h"
@@ -198,6 +199,53 @@ check_accessors ()
   return result;
 }
 
+static GtkWindow *main_window(GtkWidget *menubar)
+{
+  GtkWidget *vbox;
+  GtkWidget *window;
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, TRUE, 0);
+
+  gtk_widget_show (menubar);
+  gtk_widget_show (window);
+
+  return GTK_WINDOW(window);
+}
+
+int
+check_methods ()
+{
+  int result = 0;
+
+  GtkWidget    *widget00;
+  GtkWidget    *menu;
+  GtkWidget    *menu_bar;
+  GtkWindow    *window;
+  GedaMenuItem *menu_item;
+
+  menu_bar  = geda_menu_bar_new ();
+  window    = main_window(menu_bar);
+
+  widget00  = geda_menu_item_new_with_mnemonic("_Corophiida");
+  menu_item = GEDA_MENU_ITEM(widget00);
+  menu      = geda_menu_new ();
+
+  geda_menu_item_set_submenu_widget (GEDA_MENU_ITEM (menu_item), menu);
+  geda_menu_shell_append (GEDA_MENU_SHELL (menu_bar), widget00);
+  gtk_widget_set_can_focus (widget00, TRUE);
+  gtk_widget_show (widget00);
+
+  gtk_widget_destroy(GTK_WIDGET(window));
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -228,6 +276,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_methods();
+      }
+      else {
+        fprintf(stderr, "Caught signal checking methods in %s\n\n", MUT);
         return 1;
       }
     }
