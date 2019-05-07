@@ -257,6 +257,17 @@ check_accessors ()
       result++;
     }
 
+    /* geda_menu_item_get_right_justified */
+
+    int justify;
+
+    justify = geda_menu_item_get_right_justified(menu_item);
+
+    if (justify) {
+      fprintf(stderr, "FAILED: line <%d> get_right_justified %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
