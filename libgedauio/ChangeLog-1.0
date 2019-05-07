@@ -6,10 +6,11 @@
     * tests/test_image_menu_item.c: Add helper function main_window and
       function group check_methods.
 
-    * tests/test_menu_item.c: Add function group check_query, add check
+    * tests/test_menu_item.c: Add function group check_query, add checks
       for:
 
           * geda_menu_item_get_right_justified
+          * geda_menu_item_set_right_justified
 
 2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
 

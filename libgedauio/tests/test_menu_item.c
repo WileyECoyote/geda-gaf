@@ -268,6 +268,26 @@ check_accessors ()
       result++;
     }
 
+    /* geda_menu_item_set_right_justified */
+
+    geda_menu_item_set_right_justified (menu_item, FALSE);
+
+    justify = geda_menu_item_get_right_justified(menu_item);
+
+    if (justify) {
+      fprintf(stderr, "FAILED: line <%d> set_right_justified %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    geda_menu_item_set_right_justified (menu_item, TRUE);
+
+    justify = geda_menu_item_get_right_justified(menu_item);
+
+    if (!justify) {
+      fprintf(stderr, "FAILED: line <%d> set_right_justified %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
