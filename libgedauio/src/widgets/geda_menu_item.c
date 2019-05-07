@@ -1400,7 +1400,6 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
   geda_action_sync_menu_visible ((GedaAction*)action, widget,
     geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
 
-
   gtk_widget_set_sensitive (widget, gtk_action_is_sensitive (action));
 
   if (priv->use_action_appearance) {
@@ -1414,12 +1413,12 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
       label = NULL;
     }
 
-    /* Make sure that menu_item has a label and that any
-     * accelerators are set */
+    /* Make sure that menu_item has a label and that the
+     * accelerator is set */
     geda_menu_item_ensure_label (menu_item);
     geda_menu_item_set_use_underline (menu_item, TRUE);
 
-    /* Make label point to the menu_item's label */
+    /* Make the label point to the menu_item's label */
     label = geda_get_child_widget (widget);
 
     if (GEDA_IS_ACCEL_LABEL(label)) {
@@ -3338,7 +3337,7 @@ void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
  * layout is reversed for a right-to-left language like Hebrew
  * or Arabic, right-justified-menu-items appear at the left.)
  *
- * recommend to use with gtk_widget_set_hexpand() and
+ * It is recommended to use with gtk_widget_set_hexpand() and
  * gtk_widget_set_halign().
  *
  * \param [in] menu_item       a GedaMenuItem
