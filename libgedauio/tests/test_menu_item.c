@@ -263,6 +263,39 @@ check_accessors ()
   return result;
 }
 
+int check_query()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_menu_item_new_with_mnemonic("_Pie");
+
+  if (!GEDA_IS_MENU_ITEM(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GtkWidget    *menu;
+    GtkWidget    *menu_bar;
+    GtkWidget    *widget01;
+    GedaMenuItem *menu_item;
+
+    menu      = geda_menu_new ();
+    menu_bar  = main_window();
+    menu_item = GEDA_MENU_ITEM(widget);
+
+    geda_menu_append (menu_bar, widget);
+
+    /* geda_menu_item_is_selectable */
+
+    /* geda_menu_item_is_widget_selectable */
+
+    gtk_widget_destroy(gtk_widget_get_toplevel(widget));
+  }
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -292,6 +325,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_query();
+      }
+      else {
+        fprintf(stderr, "Caught signal in query in %s\n\n", MUT);
         return 1;
       }
     }
