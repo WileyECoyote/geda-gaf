@@ -232,10 +232,15 @@ static GtkBox *geda_dock_box_get_location (GedaDockBox *dockbox, int location)
   return box;
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Add a GedaHandleBox to a GedaDockBox
+ * \par Function Description
+ *  Packs the \a child handlebox into a subcontainer of the \a dockbox.
+ *  If dockbox has no subcontainer, the location is ignore and the child
+ *  is added to a new subcontainer. If the dockbox has a subcontainer then
+ *  the child will be added at the index given by location, which would be
+ *  a new subcontainer if the given location is greater than the current
+ *  number of subcontainers.
  */
 void geda_dock_box_add (GedaDockBox *dockbox, GtkWidget *child, int location)
 {

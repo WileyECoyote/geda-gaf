@@ -1,3 +1,8 @@
+2019-05-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_dockbox.c: Update function documentation for
+      geda_dock_box_add.
+
 2019-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets: Update Doxygen group descriptions in:
