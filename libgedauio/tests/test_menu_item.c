@@ -326,6 +326,11 @@ int check_query()
 
     /* geda_menu_item_is_widget_selectable */
 
+    if (geda_menu_item_is_widget_selectable(widget)) {
+      fprintf(stderr, "FAILED: line <%d> is_widget_selectable %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     gtk_widget_show (widget);
     gtk_widget_show (menu);
 
@@ -335,6 +340,18 @@ int check_query()
       fprintf(stderr, "FAILED: line <%d> is_selectable %s\n", __LINE__, TWIDGET);
       result++;
     }
+
+    /* geda_menu_item_is_widget_selectable */
+
+    if (!geda_menu_item_is_widget_selectable(widget)) {
+      fprintf(stderr, "FAILED: line <%d> is_widget_selectable %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    widget01 = geda_menu_item_new_with_label("_Rhubarb");
+    geda_menu_append (menu, widget01);
+
+    geda_menu_item_set_submenu_widget (menu_item, menu);
 
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
