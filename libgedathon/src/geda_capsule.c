@@ -48,10 +48,11 @@ void *GedaCapsule_GetPointer(PyObject *obj)
   return capsule->object;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve Pointer to Encapsulated Object Name
+ * \par Function Description
+ *  Returns a pointer to the name string, the string belongs to
+ *  the GedaObject and must not be freed or modified.
  */
 const char *GedaCapsule_GetName(PyObject *obj)
 {

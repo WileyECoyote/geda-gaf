@@ -3,6 +3,7 @@
     * src/geda_capsule.c: Update function documentation for:
 
           * GedaCapsule_GetPointer
+          * GedaCapsule_GetName
 
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
