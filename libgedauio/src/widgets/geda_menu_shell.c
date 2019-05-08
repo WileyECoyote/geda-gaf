@@ -1665,10 +1665,11 @@ bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Activate a Menu Shell
+ * \par Function Description
+ *  If \a menu_shell is sensitive, mouse and keyboard events
+ *  will be directed to the widget.
  */
 void geda_menu_shell_activate (GedaMenuShell *menu_shell)
 {
