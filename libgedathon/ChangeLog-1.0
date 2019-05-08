@@ -1,3 +1,9 @@
+2019-05-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda_capsule.c: Update function documentation for:
+
+          * GedaCapsule_GetPointer
+
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/it.po: Update Italian translations.

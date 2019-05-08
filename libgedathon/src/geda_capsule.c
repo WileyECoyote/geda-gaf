@@ -37,10 +37,10 @@
 
 #include "../include/gettext.h"
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve Pointer to contents of a GedaCapsule
+ * \par Function Description
+ *  Returns a pointer to the containing GedaObject.
  */
 void *GedaCapsule_GetPointer(PyObject *obj)
 {
