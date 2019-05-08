@@ -5,7 +5,8 @@
           * geda_dock_widget_add
 
     * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_activate;
-      validate that the argument is a GedaMenuShell.
+      validate that the argument is a GedaMenuShell, and only activate
+      the menu if the menu is senitive.
 
 2019-05-07 Wiley E. Hill <wileyhill@gmail.com>
 

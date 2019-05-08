@@ -1676,9 +1676,13 @@ void geda_menu_shell_activate (GedaMenuShell *menu_shell)
 
   if (!menu_shell->active) {
 
-    gtk_grab_add ((GtkWidget*)menu_shell);
-    menu_shell->have_grab = TRUE;
-    menu_shell->active = TRUE;
+    if (gtk_widget_is_sensitive(menu_shell)) {
+
+      gtk_grab_add ((GtkWidget*)menu_shell);
+
+      menu_shell->have_grab = TRUE;
+      menu_shell->active = TRUE;
+    }
   }
 }
 
