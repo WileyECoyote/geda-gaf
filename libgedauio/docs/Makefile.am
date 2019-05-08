@@ -16,7 +16,7 @@ EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
 
 SUFFIXES    = .1.in .1 .html .tex .pdf
 
-all: 
+all:
 	@echo 'Type: make doxygen  to create doxygen documentation for libgedauio'
 
 # When generating doxygen documentation we check for the existence of the
