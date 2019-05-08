@@ -4,6 +4,7 @@
 
           * GedaCapsule_GetPointer
           * GedaCapsule_GetName
+          * GedaCapsule_repr
 
 2019-04-27 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -60,10 +60,11 @@ const char *GedaCapsule_GetName(PyObject *obj)
   return capsule->name;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the Name of an encapsulated Object
+ * \par Function Description
+ *  Returnd a string containing a printable representation the
+ *  containing object.
  */
 static PyObject *GedaCapsule_repr(PyObject *obj)
 {
