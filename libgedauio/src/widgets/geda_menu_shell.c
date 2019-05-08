@@ -1672,6 +1672,8 @@ bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
  */
 void geda_menu_shell_activate (GedaMenuShell *menu_shell)
 {
+  g_return_if_fail (GEDA_IS_MENU_SHELL (menu_shell));
+
   if (!menu_shell->active) {
 
     gtk_grab_add ((GtkWidget*)menu_shell);

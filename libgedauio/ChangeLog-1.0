@@ -4,6 +4,9 @@
 
           * geda_dock_widget_add
 
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_activate;
+      validate that the argument is a GedaMenuShell.
+
 2019-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_dockbox.c: Update function documentation for
