@@ -1282,7 +1282,7 @@ accelerate_children(GedaMenuItem *menu_item, GtkAccelGroup *accel_group)
                                    0);
 
         g_signal_connect(menu_item, "activate",
-                         G_CALLBACK(activate_child),NULL);
+                         G_CALLBACK(activate_child), NULL);
       }
     }
   }
