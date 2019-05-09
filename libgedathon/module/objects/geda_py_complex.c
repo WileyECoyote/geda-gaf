@@ -329,6 +329,11 @@ static PyTypeObject PyGedaComplexObjectType = {
     (newfunc)Complex_new,               /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initComplex(PyObject *module)
 {
   geda_module = module;
@@ -348,6 +353,11 @@ PyMODINIT_FUNC initComplex(PyObject *module)
   PyModule_AddObject(complex_module, "Complex", (PyObject *)&PyGedaComplexObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaComplexClass(void)
 {
   return &PyGedaComplexObjectType;
