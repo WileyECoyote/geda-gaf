@@ -9,6 +9,11 @@
           * module/objects/geda_py_line.c
           * module/objects/geda_py_net.c
 
+    * module/objects: Include gettext.h and wrap error string with
+      gettext:
+
+          * module/objects/geda_py_pin.c
+
 2019-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda_capsule.c: Update function documentation for:
