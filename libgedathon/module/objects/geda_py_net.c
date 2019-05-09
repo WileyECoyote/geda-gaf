@@ -334,6 +334,11 @@ static PyTypeObject PyGedaNetObjectType = {
     (newfunc)Net_new,               /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initNet(PyObject *module)
 {
   geda_module = module;
@@ -353,6 +358,11 @@ PyMODINIT_FUNC initNet(PyObject *module)
   PyModule_AddObject(net_module, "Net", (PyObject *)&PyGedaNetObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaNetClass(void)
 {
   return &PyGedaNetObjectType;
