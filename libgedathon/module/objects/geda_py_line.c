@@ -308,6 +308,11 @@ static PyTypeObject PyGedaLineObjectType = {
     (newfunc)Line_new,              /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initLine(PyObject *module)
 {
   geda_module = module;
@@ -327,6 +332,11 @@ PyMODINIT_FUNC initLine(PyObject *module)
   PyModule_AddObject(line_module, "Line", (PyObject *)&PyGedaLineObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaLineClass(void)
 {
   return &PyGedaLineObjectType;
