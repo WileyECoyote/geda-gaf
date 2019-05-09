@@ -305,6 +305,11 @@ static PyTypeObject PyGedaArcObjectType = {
     (newfunc)Arc_new,             /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initArc(PyObject *module)
 {
   geda_module = module;
@@ -324,6 +329,11 @@ PyMODINIT_FUNC initArc(PyObject *module)
   PyModule_AddObject(arc_module, "Arc", (PyObject *)&PyGedaArcObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaArcClass(void)
 {
   return &PyGedaArcObjectType;
