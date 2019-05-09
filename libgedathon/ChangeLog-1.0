@@ -3,6 +3,7 @@
     * module/objects: Add todo template documentation:
 
           * module/objects/geda_py_arc.c
+          * module/objects/geda_py_box.c
 
 2019-05-08 Wiley E. Hill <wileyhill@gmail.com>
 

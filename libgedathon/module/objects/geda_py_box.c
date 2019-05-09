@@ -319,6 +319,11 @@ static PyTypeObject PyGedaBoxObjectType = {
     (newfunc)Box_new,             /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initBox(PyObject *module)
 {
   geda_module = module;
@@ -338,6 +343,11 @@ PyMODINIT_FUNC initBox(PyObject *module)
   PyModule_AddObject(box_module, "Box", (PyObject *)&PyGedaBoxObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaBoxClass(void)
 {
   return &PyGedaBoxObjectType;
