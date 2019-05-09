@@ -38,6 +38,7 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
+#include "../../include/gettext.h"
 
 static PyObject *text_module;
 static PyObject *geda_module;
@@ -231,7 +232,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   int  *old_value;
 
   if (py_value == NULL) {
-    PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
+    PyErr_Format(PyExc_ValueError, _("Cannot delete the %s attribute"), name);
     return -1;
   }
 

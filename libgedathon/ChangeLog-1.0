@@ -13,6 +13,7 @@
       gettext:
 
           * module/objects/geda_py_pin.c
+          * module/objects/geda_py_text.c
 
 2019-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
