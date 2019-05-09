@@ -323,6 +323,11 @@ static PyTypeObject PyGedaCircleObjectType = {
     (newfunc)Circle_new,           /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initCircle(PyObject *module)
 {
   geda_module = module;
@@ -342,6 +347,11 @@ PyMODINIT_FUNC initCircle(PyObject *module)
   PyModule_AddObject(circle_module, "Circle", (PyObject *)&PyGedaCircleObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaCircleClass(void)
 {
   return &PyGedaCircleObjectType;
