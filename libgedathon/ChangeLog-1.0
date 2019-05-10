@@ -6,6 +6,7 @@
           * module/objects/geda_py_complex.c
           * module/objects/geda_py_line.c
           * module/objects/geda_py_net.c
+          * module/objects/geda_py_path.c
 
 2019-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
