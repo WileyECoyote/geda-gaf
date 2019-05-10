@@ -4,6 +4,7 @@
       gettext:
 
           * module/objects/geda_py_complex.c
+          * module/objects/geda_py_line.c
 
 2019-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
