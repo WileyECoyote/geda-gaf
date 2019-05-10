@@ -1,22 +1,22 @@
- Using the geda module. 
+ Using the geda module.
 
-  Libgedathon is automatically initialized by the geda module when the module is imported. All functions and methods are available immediately. LibgEDA is initialized by Libgedathon, including the processing of the system-gafrc file. There are no specific Python configuration files. While LibgEDA is a shared static library, Libgedathon is dynamically linked, even on Linux machines. The full symbol library will be available from from the installed library path. This path is append-able using the Libgedathon API. There is also utility functions to create local ``gafrc'' files, which are typically used to append the library search path. 
+  Libgedathon is automatically initialized by the geda module when the module is imported. All functions and methods are available immediately. LibgEDA is initialized by Libgedathon, including the processing of the system-gafrc file. There are no specific Python configuration files. While LibgEDA is a shared static library, Libgedathon is dynamically linked, even on Linux machines. The full symbol library will be available from from the installed library path. This path is append-able using the Libgedathon API. There is also utility functions to create local ``gafrc'' files, which are typically used to append the library search path.
 
 
   In general, programs will start either by opening existing files, schematic or symbols, or creating new files. As a quick example, these operations could be performed using:
 
-schematic = geda.new\_page(filename)\\ 
- or\\ 
+schematic = geda.new\_page(filename)\\
+ or\\
 sheet1 = geda.open\_page(path + ``sheet1'')
 
 
-  The returned objects represent the page. This object must be supplied to most methods, such all methods in the Creation group, as Libgedathon does not currently support the ``current page'' scheme supported by LibgEDA. With Libgedathon the page must always be specified. 
+  The returned objects represent the page. This object must be supplied to most methods, such all methods in the Creation group, as Libgedathon does not currently support the ``current page'' scheme supported by LibgEDA. With Libgedathon the page must always be specified.
 
 
   Pages should be saved before closing using either a module level function or the objects methods. Using the page names from the preceding example, the page could be saved and closed using either of these methods:
 
-geda.save\_page(schematic)\\ 
- or\\ 
+geda.save\_page(schematic)\\
+ or\\
 sheet1.save()
 
 
@@ -48,7 +48,7 @@ AddCapacitor(schematic, 6700, 8600, ``20nF'')
   The high-level Adder functions, such as the one in the previous example, AddCapacitor, use default symbols. The default symbol names are read-writable and can be changed on an as needed basis using the corresponding setter functions, as show in these examples:
 
 DefaultCapacitorSymbol(``capacitor-py'')
-\\ 
+\\
 DefaultOpAmpSymbol(``dual-opamp-py'')
 
 
@@ -59,10 +59,10 @@ current\_titleblock = DefaultTitleblockSymbol()
 
   Default symbols are only applicable to basic component types such as capacitors, resistors, and transistors. Complex types must supply a valid system name. Complexes can be created and added using either the geda module or functions in the high-level submodule as shown in the following examples:
 
-titleblock = geda.new\_complex(``title-B'', 1000, 1000)\\ 
- titleblock.locked = True\\ 
- geda.add\_object(sheet1, titleblock)\\ 
- or\\ 
+titleblock = geda.new\_complex(``title-B'', 1000, 1000)\\
+ titleblock.locked = True\\
+ geda.add\_object(sheet1, titleblock)\\
+ or\\
 tb = AddComponent(sheet1, titleblock, , 1000, 1000)
 
 
@@ -71,7 +71,7 @@ tb = AddComponent(sheet1, titleblock, , 1000, 1000)
 AddComponent(sheet1, titleblock, , 1000, 1000)
 
 
-  In this case, since there is no reference to the object, the Python version of the object will be destroyed immediately, but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method was used, Libgedathon maintained a reference to the Python object but released the reference when the object was added to the Page, in the example above using geda.add\_object. The program could have saved a reference using the module method just as easily by referencing the object returned from geda.add\_object, i.e. tb=geda.add\_object. 
+  In this case, since there is no reference to the object, the Python version of the object will be destroyed immediately, but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method was used, Libgedathon maintained a reference to the Python object but released the reference when the object was added to the Page, in the example above using geda.add\_object. The program could have saved a reference using the module method just as easily by referencing the object returned from geda.add\_object, i.e. tb=geda.add\_object.
 
 
   Note that in the previous examples for AddComponent, the third parameter, which is for the reference designator, was left blank. This is because titleblocks are not normally assigned designators but the positional syntax was used as oppose to using keywords. To illustrate the difference, the following example using mixed-mode syntax is equivalent to the preceding example:
@@ -82,19 +82,19 @@ AddComponent(sheet1, titleblock, ``x''=1000, ``y''=1000)
   The high-level Adder functions also feature auto-referencing and except either strings or integers for the reference designator arguments. The following statements would all add a 560 Ohms resistor and assign ``R1'' as the reference designator:
 
 AddResistor(amplifier, 10400, 7600, ``560'', R1)
-\\ 
+\\
 AddResistor(amplifier, 10400, 7600, ``560'', 1)
-\\ 
+\\
 AddResistor(amplifier, 10400, 7600, ``560'', ``1'')
 
 
-  If the resistor really was the first resistor to be added to the amplifier object then the following two statements would also add a resistor and assign ``R1'' as the reference designator: 
+  If the resistor really was the first resistor to be added to the amplifier object then the following two statements would also add a resistor and assign ``R1'' as the reference designator:
 AddResistor(amplifier, 10400, 7600, ``560'')
-\\ 
+\\
 AddResistor(amplifier, 10400, 7600, ``560'', 0)
 
 
-  In the later case, the 0 means explicitly to use auto-referencing. Auto-referencing can be overridden for any component at any time by specifying the reference designator as was the case in the first statement. If the second statement had been the 4th or 5th, then ``R2'' would be assigned as the reference designator because the auto referencing systems continues to track designations even when being overridden. Note that the auto-referencing system is intended to be fully automatic and there are no configurable options, the system is either used or it is not used. 
+  In the later case, the 0 means explicitly to use auto-referencing. Auto-referencing can be overridden for any component at any time by specifying the reference designator as was the case in the first statement. If the second statement had been the 4th or 5th, then ``R2'' would be assigned as the reference designator because the auto referencing systems continues to track designations even when being overridden. Note that the auto-referencing system is intended to be fully automatic and there are no configurable options, the system is either used or it is not used.
 
 
   Libgedathon and the geda extension module also provide methods for obtaining and manipulating attributes, such in as in this slightly more complex example: \begin{verbatim}
@@ -113,6 +113,6 @@ AddResistor(amplifier, 10400, 7600, ``560'', 0)
 		        attrib.angle = 0
 \end{verbatim}
 
-  A complete example is provided with the source code, the script is named ``lpbf.py''. lpbf uses three other scripts, capacitor.py, dual-opamp.py, and resistor.py to create three custom local symbols, and then creates a complete schematic design for a 4th-order low-pass Butterworth filter with the default title-block and the three local symbols using Python. 
+  A complete example is provided with the source code, the script is named ``lpbf.py''. lpbf uses three other scripts, capacitor.py, dual-opamp.py, and resistor.py to create three custom local symbols, and then creates a complete schematic design for a 4th-order low-pass Butterworth filter with the default title-block and the three local symbols using Python.
 
-  Detailed information on gEDA Python API properties, methods and functions can be obtain from the doxygen generated documents. Basic syntax and descriptions can also be obtained for all functions and methods via the Python help interface. 
+  Detailed information on gEDA Python API properties, methods and functions can be obtain from the doxygen generated documents. Basic syntax and descriptions can also be obtained for all functions and methods via the Python help interface.
