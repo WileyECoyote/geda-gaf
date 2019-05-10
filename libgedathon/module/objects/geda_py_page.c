@@ -264,6 +264,11 @@ static PyTypeObject PyGedaPageObjectType = {
 #define PyMODINIT_FUNC void
 #endif
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initPage(PyObject *module)
 {
   geda_module = module;
@@ -280,6 +285,11 @@ PyMODINIT_FUNC initPage(PyObject *module)
   PyModule_AddObject(page_module, "Page", (PyObject *)&PyGedaPageObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaPageClass(void)
 {
   return &PyGedaPageObjectType;

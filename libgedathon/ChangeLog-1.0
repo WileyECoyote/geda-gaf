@@ -12,6 +12,7 @@
     * module/objects: Add todo template documentation:
 
           * module/objects/geda_py_object.c
+          * module/objects/geda_py_page.c
 
 2019-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
