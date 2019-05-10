@@ -35,6 +35,7 @@
 #include "../../include/geda_py_object.h"
 #include "../../include/geda_py_color.h"
 #include "../../include/geda_py_docs.h"
+#include "../../include/gettext.h"
 
 static PyObject *picture_module;
 static PyObject *geda_module;
@@ -172,7 +173,7 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
   int  *old_value;
 
   if (py_value == NULL) {
-    PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
+    PyErr_Format(PyExc_ValueError, _("Cannot delete the %s attribute"), name);
     return -1;
   }
 
@@ -330,6 +331,11 @@ static PyTypeObject PyGedaPictureObjectType = {
     (newfunc)Picture_new,              /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initPicture(PyObject *module)
 {
   geda_module = module;
@@ -349,6 +355,11 @@ PyMODINIT_FUNC initPicture(PyObject *module)
   PyModule_AddObject(picture_module, "Picture", (PyObject *)&PyGedaPictureObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaPictureClass(void)
 {
   return &PyGedaPictureObjectType;
