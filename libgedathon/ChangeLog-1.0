@@ -9,6 +9,10 @@
           * module/objects/geda_py_path.c
           * module/objects/geda_py_picture.c
 
+    * module/objects: Add todo template documentation:
+
+          * module/objects/geda_py_object.c
+
 2019-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects: Add todo template documentation:

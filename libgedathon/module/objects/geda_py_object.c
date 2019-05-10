@@ -285,6 +285,12 @@ static PyTypeObject PyGedaObjectType = {
 #ifndef PyMODINIT_FUNC  /* declarations for DLL import/export */
 #define PyMODINIT_FUNC void
 #endif
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initPyGedaObject(PyObject *module)
 {
   geda_module = module;
@@ -311,6 +317,11 @@ PyMODINIT_FUNC initPyGedaObject(PyObject *module)
   PyModule_AddObject(object_module, "PyGedaObject", (PyObject *)&PyGedaObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaObjectClass(void)
 {
   return &PyGedaObjectType;
