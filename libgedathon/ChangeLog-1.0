@@ -13,6 +13,7 @@
 
           * module/objects/geda_py_object.c
           * module/objects/geda_py_page.c
+          * module/objects/geda_py_text.c
 
 2019-05-09 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -496,6 +496,11 @@ static PyTypeObject PyGedaTextObjectType = {
     (newfunc)Text_new,              /* tp_new */
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyMODINIT_FUNC initText(PyObject *module)
 {
   geda_module = module;
@@ -515,6 +520,11 @@ PyMODINIT_FUNC initText(PyObject *module)
   PyModule_AddObject(text_module, "Text", (PyObject *)&PyGedaTextObjectType);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 PyTypeObject *PyGedaTextClass(void)
 {
   return &PyGedaTextObjectType;
