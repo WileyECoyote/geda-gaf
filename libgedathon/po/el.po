@@ -354,50 +354,67 @@ msgstr "Σειρά που περιγράφει ένα γεωμετρικό στ�
 msgid "Retrieve a specific attribute Object"
 msgstr "Ανάκτηση ενός συγκεκριμένου αντικειμένου"
 
+# Retrieve list of associated attribute Objects
+# Anáktisi tis lístas ton schetikón antikeiménon charaktiristikón
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
-msgstr ""
+msgstr "Ανάκτηση της λίστας των σχετικών αντικειμένων χαρακτηριστικών"
 
+# Set the value of a specified attribute object
+# Oríste tin timí enós synkekriménou antikeiménou charaktiristikón
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Ορίστε την τιμή ενός συγκεκριμένου αντικειμένου χαρακτηριστικών"
 
+# Refresh objects attributes; Ananéosi charaktiristikón antikeiménon
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Ανανέωση χαρακτηριστικών αντικειμένων"
 
+# Retrieve all objects connected to specific object
+# Anáktisi ólon ton antikeiménon pou syndéontai me synkekriméno antikeímeno
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object"
-msgstr ""
+msgid "Retrieve all objects connected to specific Object"
+msgstr "Ανάκτηση όλων των αντικειμένων που συνδέονται με συγκεκριμένο αντικείμενο"
 
+# Retrieve list of points for junction for specified objects
+# Anáktisi lístas simeíon gia diastávrosi gia synkekriména antikeímena
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Ανάκτηση λίστας σημείων για διασταύρωση για συγκεκριμένα αντικείμενα"
 
+# Retrieve list of points of unconnected nodes for specified objects
+# Anáktisi lístas simeíon mi syndedeménon kómvon gia synkekriména antikeímena
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects"
-msgstr ""
+msgid "Retrieve list of points of unconnected nodes for specified Objects"
+msgstr "Ανάκτηση λίστας σημείων μη συνδεδεμένων κόμβων για συγκεκριμένα αντικείμενα"
 
+# Type error, ignoring invalid optional parameter 5
+# Pliktrologíste sfálma, agnoóntas mi énkyri proairetikí parámetro 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "Πληκτρολογήστε σφάλμα, αγνοώντας μη έγκυρη προαιρετική παράμετρο 5\n"
 
+# get; paírno
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "παίρνω"
 
+# or set; í na rythmísete
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "ή να ρυθμίσετε"
 
+# An error occurred; Parousiástike sfálma
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "Παρουσιάστηκε σφάλμα"
 
+# object was not created; antikeímeno den dimiourgíthike
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "αντικείμενο δεν δημιουργήθηκε"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
