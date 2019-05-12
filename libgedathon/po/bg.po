@@ -327,46 +327,61 @@ msgstr "Извличане на конкретен обект атрибут"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "Извличане на списък от свързани атрибутни обекти"
 
+# Set the value of a specified attribute object
+# Zadaĭte stoĭnostta na opredelen obekt na atribut
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Задайте стойността на определен обект на атрибут"
 
+# Refresh objects attributes; Obnovyavane na atributite na obektite
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Обновяване на атрибутите на обектите"
 
+# Retrieve all objects connected to specific object
+# Izvlichane na vsichki obekti, svŭrzani s konkreten obekt
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object"
-msgstr ""
+msgid "Retrieve all objects connected to specific Object"
+msgstr "Извличане на всички обекти, свързани с конкретен обект"
 
+# Retrieve list of points for junction for specified objects
+# Izvlichane na spisŭk ot tochki za krŭstovishte za opredeleni obekti
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Извличане на списък от точки за кръстовище за определени обекти"
 
+# Retrieve list of points of unconnected nodes for specified Objects
+# Izvlichane na spisŭk ot tochki na nesvŭrzani vŭzli za konkretni obekti
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects"
-msgstr ""
+msgid "Retrieve list of points of unconnected nodes for specified Objects"
+msgstr "Извличане на списък от точки на несвързани възли за конкретни обекти"
 
+# Type error, ignoring invalid optional parameter 5
+# Vŭvedete greshka, prenebregvaĭki nevalidniya nezadŭlzhitelen parametŭr 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "Въведете грешка, пренебрегвайки невалидния незадължителен параметър 5\n"
 
+# get; poluchavam
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "получавам"
 
+# or set; ili nabor
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "или набор"
 
+# An error occurred; Vŭznikna greshka
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "Възникна грешка"
 
+# object was not created; ne e sŭzdaden
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "не е създаден"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"

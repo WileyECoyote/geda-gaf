@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2019-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects: Include gettext.h and wrap error string with
