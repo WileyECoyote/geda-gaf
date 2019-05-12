@@ -283,46 +283,56 @@ msgstr "Recuperar un objecte d’atribut específic"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "Recuperar la llista d'objectes d'atribut associats"
 
+# Set the value of a specified attribute Object
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Definiu el valor d'un objecte d'atribut especificat"
 
+# Refresh objects attributes
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Recuperar tots els objectes connectats a un objecte específic"
 
+# Retrieve all objects connected to specific object
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object"
-msgstr ""
+msgid "Retrieve all objects connected to specific Object"
+msgstr "Recuperar tots els objectes connectats a un objecte específic"
 
+# Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Recuperar la llista de punts per a la unió per a objectes especificats"
 
+# Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects"
-msgstr ""
+msgid "Retrieve list of points of unconnected nodes for specified Objects"
+msgstr "Recuperar la llista de punts de nodes sense connexió per a objectes específics"
 
+# Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "Escriviu l’error, ignorant el paràmetre opcional 5 no vàlid\n"
 
+# get
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "aconseguir"
 
+# or set
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "o establir"
 
+# An error occurred
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "Hi ha hagut un error"
 
+# object was not created
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "l'objecte no es va crear"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"

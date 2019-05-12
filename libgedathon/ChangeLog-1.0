@@ -8,6 +8,8 @@
 
     * po/bs.po: Update Bosnian translations.
 
+    * po/ca.po: Update Catalan translations.
+
 2019-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects: Include gettext.h and wrap error string with
