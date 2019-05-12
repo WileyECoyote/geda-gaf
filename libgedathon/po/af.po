@@ -299,50 +299,60 @@ msgstr "String wat 'n meetkundige element beskryf"
 msgid "Retrieve a specific attribute Object"
 msgstr "Haal 'n spesifieke kenmerk Object"
 
+# Retrieve list of associated attribute Objects
 #: libgedathon/include/geda_module.h:127
 msgid "Retrieve list of associated attribute Objects"
 msgstr "Haal lys van alle bladsye op."
 
+# Set the value of a specified attribute Object
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Stel die waarde van 'n gespesifiseerde kenmerkobjek"
 
+# Refresh objects attributes
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Verfris voorwerpe-eienskappe"
 
+# Retrieve all objects connected to specific object
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object"
-msgstr ""
+msgid "Retrieve all objects connected to specific Object"
+msgstr "Haal alle voorwerpe wat verband hou met spesifieke voorwerpe"
 
+# Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Haal lys van punte vir aansluiting vir gespesifiseerde voorwerpe"
 
+# Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects"
-msgstr ""
+msgid "Retrieve list of points of unconnected nodes for specified Objects"
+msgstr "Haal lys van punte van ongebonde nodes vir spesifieke voorwerpe"
 
+# Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
-
+msgstr "Tik fout, ignoreer ongeldige opsionele parameter 5\n"
+# get
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "kry"
 
+# or set
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "of stel"
 
+# An error occurred
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "'N Fout het voorgekom"
 
+# object was not created
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "voorwerp is nie geskep nie"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
