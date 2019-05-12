@@ -342,46 +342,61 @@ msgstr "استرداد كائن سمة محدد"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "استرداد قائمة كائنات السمة المرتبطة"
 
+# Set the value of a specified attribute object
+# eyn qimat kayin simat muhadad
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "عيّن قيمة كائن سمة محدد"
 
+# Refresh objects attributes; tahdith simat alkayinat
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "تحديث سمات الكائنات"
 
+# Retrieve all objects connected to specific object
+# aistarjae kl alkayinat almutasilat bikayin muhadad
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object"
-msgstr ""
+msgid "Retrieve all objects connected to specific Object"
+msgstr "استرجع كل الكائنات المتصلة بكائن محدد"
 
+# Retrieve list of points for junction for specified objects
+# aistarjae qayimat niqat alwasalat lilkayinat almuhadada
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "استرجع قائمة نقاط الوصلات للكائنات المحددة"
 
+# Retrieve list of points of unconnected nodes for specified Objects
+# aistirdad qayimat niqat aleaqd ghyr almutasilat likayinat muhadada
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects"
-msgstr ""
+msgid "Retrieve list of points of unconnected nodes for specified Objects"
+msgstr "استرداد قائمة نقاط العقد غير المتصلة لكائنات محددة"
 
+# Type error, ignoring invalid optional parameter 5
+# aiktab khata , mae tajahul almaelamat alaikhtiariat ghyr alssalihat 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "اكتب خطأ ، مع تجاهل المعلمة الاختيارية غير الصالحة 5\n"
 
+# get; ahsil ealaa
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "احصل على"
 
+# or set; 'aw majmuea
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "أو مجموعة"
 
+# An error occurred; hadath khata
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "حدث خطأ"
 
+# object was not created; lm yatima 'iinsha' alkayin
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "لم يتم إنشاء الكائن"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
