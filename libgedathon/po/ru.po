@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-03-09 20:28-0600\n"
+"POT-Creation-Date: 2019-05-11 21:53-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -443,6 +443,13 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
 #: libgedathon/module/objects/geda_py_circle.c:201
+#: libgedathon/module/objects/geda_py_complex.c:166
+#: libgedathon/module/objects/geda_py_line.c:175
+#: libgedathon/module/objects/geda_py_net.c:176
+#: libgedathon/module/objects/geda_py_path.c:210
+#: libgedathon/module/objects/geda_py_picture.c:176
+#: libgedathon/module/objects/geda_py_pin.c:230
+#: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
 msgstr ""
@@ -464,7 +471,7 @@ msgstr ""
 
 # Creates an Arc object extension type
 # Sozdayet tip rasshireniya ob"yekta Arc
-#: libgedathon/module/objects/geda_py_arc.c:318
+#: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "Создает тип расширения объекта Arc."
 
@@ -474,7 +481,7 @@ msgstr ""
 
 # Creates a Box object type
 # Создает тип объекта коробка
-#: libgedathon/module/objects/geda_py_box.c:332
+#: libgedathon/module/objects/geda_py_box.c:337
 msgid "Creates a Box object type."
 msgstr "Создает тип объекта коробка."
 
@@ -500,6 +507,6 @@ msgstr "Ошибка инициализации нового объекта кр
 
 # Creates a Circle object type
 # Sozdayet tip ob"yekta kruga
-#: libgedathon/module/objects/geda_py_circle.c:336
+#: libgedathon/module/objects/geda_py_circle.c:341
 msgid "Creates a Circle object type."
 msgstr "Создает тип объекта круга."
