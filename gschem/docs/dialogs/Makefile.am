@@ -3,7 +3,8 @@
 ## The configure script generates the actual Makefile from the Makefile.in.
 
 dialogimagesdir   = $(docdir)/dialogs
-dialogimages_DATA = array_dialog.png \
+dialogimages_DATA = about_dialog.png \
+					array_dialog.png \
 					auto_number_dialog.png \
 					component_properties_dialog.png \
 					component_select_dialog.png \

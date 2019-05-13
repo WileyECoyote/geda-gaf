@@ -1,5 +1,7 @@
 2019-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/dialogs/about_dialog.png: Add image of the about dialog.
+
     * include/gschem_toplevel.h: Revise gschem_toplevel_get_grips_half_size
       to compensate the returned grip size based on the value of the current
       to_world_x_constant as was done previously because the grips are too
@@ -12,7 +14,7 @@
 
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/dialogs/text_properties_dialog.png: Add text properties dialo
+    * docs/dialogs/text_properties_dialog.png: Add text properties dialog
       image.
 
     * src/iface/i_command.c: Unconditionally call x_show_uri.
