@@ -407,6 +407,30 @@ inline int      gschem_toplevel_get_grips_size        (GschemToplevel *w_current
 
 inline int      gschem_toplevel_get_grips_half_size   (GschemToplevel *w_current)
 {
+  if (Current_Page->to_world_x_constant  < 0.5) {
+    return (w_current->grip_size >> 1) + 10;
+  }
+
+  if (Current_Page->to_world_x_constant  < 1.0) {
+    return (w_current->grip_size >> 1) + 8;
+  }
+
+  if (Current_Page->to_world_x_constant  < 2.0) {
+    return (w_current->grip_size >> 1) + 6;
+  }
+
+  if (Current_Page->to_world_x_constant  < 3.0) {
+    return (w_current->grip_size >> 1) + 4;
+  }
+
+  if (Current_Page->to_world_x_constant  < 4.0) {
+    return (w_current->grip_size >> 1) + 2;
+  }
+
+  if (Current_Page->to_world_x_constant  < 6.0) {
+    return (w_current->grip_size >> 1) + 1;
+  }
+
   return w_current->grip_size >> 1;
 };
 
