@@ -21,6 +21,8 @@
     * passive/transformer/transformer-10.sym: Add new symbol; shielded dual
       primary version of dash 9.
 
+    * passive/transformer/transformer-12.sym: Rename old dash 6 -> 12.
+
 
 2019-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
