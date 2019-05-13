@@ -440,9 +440,11 @@ static WidgetStringData DialogStrings[] = {
  *  @{
 */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Callback Link on About Dialog
+ * \par Function Description
+ *  This is a callback for the link on the about dialog, the function
+ *  simply passes the \a link to x_show_uri.
  */
 static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data)
 {
