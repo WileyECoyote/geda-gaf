@@ -12,7 +12,9 @@
       and utilize gschem_toplevel_get_double_world_size to set the grip-
       size in the renderer.
 
-    * src/x/x_dialog.c: Update the documentation for dialog_link_cb.
+    * src/x/x_dialog.c: Update the documentation for dialog_link_cb and
+      include about_dialog.png in the documentation for the About-Dialog
+      group.
 
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
 

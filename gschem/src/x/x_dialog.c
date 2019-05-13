@@ -438,7 +438,9 @@ static WidgetStringData DialogStrings[] = {
 
 /** \defgroup About-Dialog About Dialog
  *  @{
-*/
+ *  \image html about_dialog.png
+ *  \image latex about_dialog.png
+ */
 
 /*!
  * \brief Callback Link on About Dialog
