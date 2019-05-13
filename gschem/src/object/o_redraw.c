@@ -157,7 +157,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   g_return_if_fail (w_current->toplevel != NULL);
   g_return_if_fail (w_current->toplevel->page_current != NULL);
 
-  grip_half_size = w_current->grip_size / 2;
+  grip_half_size = gschem_toplevel_get_grips_half_size (w_current);
 
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
