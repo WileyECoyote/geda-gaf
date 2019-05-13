@@ -15,6 +15,9 @@
     * passive/transformer/transformer-8.sym: Reposition attributes positions
       and alignments.
 
+    * passive/transformer/transformer-9.sym: Add new symbol; dual primary
+      version of dash 7.
+
 
 2019-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
