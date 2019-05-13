@@ -1,3 +1,8 @@
+2019-05-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/transformer/transformer-4.sym: Reposition attributes, revise
+      license attributes.
+
 2019-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-d/BSS123_nmosfet_dep-1.sym: Fix duplicate pinseq
