@@ -15,82 +15,82 @@ L 700 1800 700 0 3 0 0 0 -1 -1
 L 600 1800 600 0 3 0 0 0 -1 -1
 P 0 1300 200 1300 1 0 0
 {
-T 0 1300 5 10 0 1 0 0 1
-pintype=pwr
-T 105 1395 5 10 1 1 0 0 1
-pinlabel=H0
-T 305 1095 5 10 0 1 0 6 1
+T 400 1300 5 10 0 1 0 0 1
 pinnumber=1
-T 200 1100 5 10 0 1 0 0 1
+T 400 1300 5 10 0 1 0 0 1
 pinseq=1
+T 5 1395 5 10 1 1 0 0 1
+pinlabel=H0
+T 0 1250 5 10 0 1 0 2 1
+pintype=pwr
 }
 P 0 500 200 500 1 0 0
 {
-T 0 500 5 10 0 1 0 0 1
-pintype=pwr
-T 105 345 5 10 1 1 0 0 1
-pinlabel=H1
-T 305 545 5 10 0 1 0 6 1
+T 400 450 5 10 0 1 0 0 1
 pinnumber=2
-T 200 550 5 10 0 1 0 0 1
+T 400 450 5 10 0 1 0 0 1
 pinseq=2
+T 5 295 5 10 1 1 0 0 1
+pinlabel=H1
+T -50 600 5 10 0 1 0 0 1
+pintype=pwr
 }
 P 1300 1800 1100 1800 1 0 0
 {
-T 1300 1800 5 10 0 1 0 0 1
-pintype=pwr
+T 850 1750 5 10 0 1 0 6 1
+pinnumber=3
+T 850 1750 5 10 0 1 0 6 1
+pinseq=3
 T 1045 1595 5 10 1 1 0 0 1
 pinlabel=X3
-T 995 1895 5 10 0 1 0 0 1
-pinnumber=3
-T 1000 1900 5 10 0 1 0 0 1
-pinseq=3
+T 1300 1800 5 10 0 1 0 0 1
+pintype=pwr
 }
 P 1300 1000 1100 1000 1 0 0
 {
-T 1300 1000 5 10 0 1 0 0 1
-pintype=pwr
+T 850 1000 5 10 0 1 0 6 1
+pinnumber=4
+T 850 1000 5 10 0 1 0 6 1
+pinseq=4
 T 1095 1095 5 10 1 1 0 0 1
 pinlabel=X2
-T 995 1045 5 10 0 1 0 0 1
-pinnumber=4
-T 1000 1050 5 10 0 1 0 0 1
-pinseq=4
+T 1300 1000 5 10 0 1 0 0 1
+pintype=pwr
 }
 P 1300 800 1100 800 1 0 0
 {
-T 1300 800 5 10 0 1 0 0 1
-pintype=pwr
+T 850 750 5 10 0 1 0 6 1
+pinnumber=5
+T 850 750 5 10 0 1 0 6 1
+pinseq=5
 T 1095 595 5 10 1 1 0 0 1
 pinlabel=X1
-T 995 595 5 10 0 1 0 0 1
-pinnumber=5
-T 1000 600 5 10 0 1 0 0 1
-pinseq=5
+T 1300 800 5 10 0 1 0 0 1
+pintype=pwr
 }
 P 1300 0 1100 0 1 0 0
 {
-T 1300 0 5 10 0 1 0 0 1
-pintype=pwr
+T 850 0 5 10 0 1 0 6 1
+pinnumber=6
+T 850 0 5 10 0 1 0 6 1
+pinseq=6
 T 1045 45 5 10 1 1 0 0 1
 pinlabel=X0
-T 995 45 5 10 0 1 0 0 1
-pinnumber=6
-T 1000 50 5 10 0 1 1 0 1
-pinseq=6
+T 1300 0 5 10 0 1 0 0 1
+pintype=pwr
 }
 T 545 1945 8 10 1 1 0 0 1
 refdes=T?
-T -5 2495 8 10 0 1 0 0 1
-footprint=24V_TRANSFORMER
-T 1095 2095 8 10 0 1 0 0 1
+T 600 2600 9 10 0 1 0 0 1
+footprint=unknown
+T 600 2400 5 10 0 1 0 0 1
 device=TRANSFORMER
-T -5 2295 8 10 0 1 0 0 1
-description=24v Transformer - DigiKey P/N: 595-1118-ND
-T -5 2695 8 10 0 0 0 0 1
-dist-license=LGPLv3 (or later)
-T -5 2895 8 10 0 0 0 0 1
-use-license=LGPLv3 (or later)
+T 600 2200 5 10 0 1 0 0 1
+description=24v Transformer, DigiKey P/N: 595-1118-ND
+T 600 2800 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 600 3000 5 10 0 0 0 0 1
+use-license=unlimited
 L 200 1300 300 1300 3 0 1 0 -1 -1
 L 200 500 300 500 3 0 1 0 -1 -1
 L 1000 0 1100 0 3 0 1 0 -1 -1

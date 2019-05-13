@@ -9,6 +9,10 @@
     * passive/transformer/transformer-6.sym: Replace dash six with dual primary
       version of dash 5.
 
+    * passive/transformer/transformer-7.sym: Reposition attributes, revise
+      license attributes, change footprint to unknown.
+
+
 2019-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/nmosfet-d/BSS123_nmosfet_dep-1.sym: Fix duplicate pinseq
