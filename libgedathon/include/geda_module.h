@@ -129,7 +129,7 @@ const char set_attrib_docs[]         = N_("Set the value of a specified attribut
 const char refresh_attribs_docs[]    = N_("Refresh Objects attributes");
 
 /* Connection and Nodes */
-const char get_network_docs[]        = N_("Retrieve all objects connect to specific Object");
+const char get_network_docs[]        = N_("Retrieve all objects connected to specific Object");
 const char get_junctions_docs[]      = N_("Retrieve list of points for junction for specified Objects");
 const char get_unconnected_docs[]    = N_("Retrieve list of points of unconnect nodes for specified Objects");
 
