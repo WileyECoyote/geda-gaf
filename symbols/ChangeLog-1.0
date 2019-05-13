@@ -23,6 +23,8 @@
 
     * passive/transformer/transformer-12.sym: Rename old dash 6 -> 12.
 
+    * passive/transformer/transformer-13.sym: Add new symbol; dual primary
+      version of dash 4.
 
 2019-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -46,6 +48,8 @@
       attributes.
 
     * transistor/pmosfet-0: Update dist-license=GPLv2.
+
+    * transistor/pnp-bjt/pnp-???-?.sym: Update pinseq attributes.
 
 2019-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
