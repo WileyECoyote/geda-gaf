@@ -254,16 +254,16 @@ msgid "Refresh Objects attributes"
 msgstr "Refresh Objects attributes"
 
 #: libgedathon/include/geda_module.h:132
-msgid "Retrieve all objects connect to specific Object"
-msgstr "Retrieve all objects connect to specific Object"
+msgid "Retrieve all objects connected to specific Object"
+msgstr "Retrieve all objects connected to specific Object"
 
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
 msgstr "Retrieve list of points for junction for specified Objects"
 
 #: libgedathon/include/geda_module.h:134
-msgid "Retrieve list of points of unconnect nodes for specified Objects"
-msgstr "Retrieve list of points of unconnect nodes for specified Objects"
+msgid "Retrieve list of points of unconnected nodes for specified Objects"
+msgstr "Retrieve list of points of unconnected nodes for specified Objects"
 
 #: libgedathon/module/functions.c:164
 #, c-format
