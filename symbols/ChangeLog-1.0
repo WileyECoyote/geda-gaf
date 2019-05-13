@@ -12,6 +12,9 @@
     * passive/transformer/transformer-7.sym: Reposition attributes, revise
       license attributes, change footprint to unknown.
 
+    * passive/transformer/transformer-8.sym: Reposition attributes positions
+      and alignments.
+
 
 2019-05-05 Wiley E. Hill <wileyhill@gmail.com>
 
