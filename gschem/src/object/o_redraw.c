@@ -215,7 +215,7 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   g_object_set (renderer,
                 "cairo-context", w_current->cr,
-                "grip-size", ((double) grip_half_size * Current_Page->to_world_x_constant),
+                "grip-size", gschem_toplevel_get_double_world_size(w_current, grip_half_size),
                 "render-flags", render_flags,
                 "color-map", render_color_map,
                 NULL);
@@ -404,7 +404,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     {
 
       if (w_current->last_drawb_mode != -1) {
-
         eda_renderer_set_color_map (renderer, render_outline_color_map);
         o_move_draw_rubber (w_current, draw_selected);
         eda_renderer_set_color_map (renderer, render_color_map);

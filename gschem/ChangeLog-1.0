@@ -6,7 +6,9 @@
       small at high zoom levels.
 
     * src/object/o_redraw.c: Revise o_redraw_rectangle to utilize inline
-      gschem_toplevel_get_grips_half_size insead of calculating the size.
+      gschem_toplevel_get_grips_half_size instead of calculating the size
+      and utilize gschem_toplevel_get_double_world_size to set the grip-
+      size in the renderer.
 
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
