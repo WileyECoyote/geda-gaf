@@ -448,7 +448,7 @@ static WidgetStringData DialogStrings[] = {
  *  This is a callback for the link on the about dialog, the function
  *  simply passes the \a link to x_show_uri.
  */
-static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data)
+static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void *data)
 {
    x_show_uri(link);
 }
@@ -539,7 +539,7 @@ void about_dialog (GschemToplevel *w_current)
 
 #else
 
-  g_signal_connect(Dialog, "activate-link",G_CALLBACK(dialog_link_cb), NULL);
+  g_signal_connect(Dialog, "activate-link", G_CALLBACK(dialog_link_cb), NULL);
 
 #endif
 
