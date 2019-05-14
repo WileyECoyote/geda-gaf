@@ -1319,7 +1319,6 @@ compselect_toggle_style(GedaCheckMenuItem *button, Compselect *compselect)
   }
 
   g_signal_emit (ThisDialog, signals[REFRESH], 0);
-
 }
 
 /*!
