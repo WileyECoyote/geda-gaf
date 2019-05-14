@@ -716,7 +716,6 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
   bool             valid;
   const char      *new_family_name;
 
-
   new_face        = NULL;
   fallback_face   = NULL;
 
