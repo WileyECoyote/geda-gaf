@@ -175,8 +175,8 @@ o_invalidate_all (GschemToplevel *w_current)
 /*!
  * \brief Invalidate on-screen area for an object
  * \par Function Description
- *  This function calls o_invalidate_rectangle(), after validating the bounds of
- *  the passed Object, converted to screen coordinates.
+ *  This function calls o_invalidate_rectangle(), after validating the
+ *  bounds of the passed Object, converted to screen coordinates.
  *
  * \sa o_invalidate_force
  *
