@@ -113,9 +113,9 @@ T 0 3500 9 10 0 0 0 0 1
 footprint=none
 {
 T -5 3695 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T -5 3895 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T -5 4095 5 10 0 0 0 0 1
 author=AutoTron
 }
