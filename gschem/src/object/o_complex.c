@@ -169,20 +169,6 @@ static bool o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol 
 }
 
 /*!
- * \brief Start Placement of New Complex Object
- * \par Function Description
- *  Calls o_complex_prepare_place to create a new Complex object and sets
- *  event state and handler on success.
- */
-void o_complex_start(GschemToplevel *w_current, const CLibSymbol *sym, int state)
-{
-  if (o_complex_prepare_place (w_current, sym)) {
-    i_status_set_state (w_current, state);
-    i_event_start_paster_handler(w_current, o_complex_end);
-  }
-}
-
-/*!
  * \brief Run the complex place list changed hook
  * \par Function Description
  *  The complex place list is usually used when placing new components
@@ -214,6 +200,20 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
       }
       scm_dynwind_end ();
     }
+  }
+}
+
+/*!
+ * \brief Start Placement of New Complex Object
+ * \par Function Description
+ *  Calls o_complex_prepare_place to create a new Complex object and sets
+ *  event state and handler on success.
+ */
+void o_complex_start(GschemToplevel *w_current, const CLibSymbol *sym, int state)
+{
+  if (o_complex_prepare_place (w_current, sym)) {
+    i_status_set_state (w_current, state);
+    i_event_start_paster_handler(w_current, o_complex_end);
   }
 }
 

@@ -1,3 +1,7 @@
+2019-05-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex.c: Reorganize function sequence; move o_complex_start.
+
 2019-05-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/dialogs/about_dialog.png: Add image of the about dialog.

@@ -463,10 +463,11 @@ void       o_circle_start               (GschemToplevel *w_current, int x, int y
 /* o_complex.c */
 void       o_complex_export                  (GschemToplevel *w_current, GedaObject *o_current);
 void       o_complex_place_changed_run_hook  (GschemToplevel *w_current);
+void       o_complex_start                   (GschemToplevel *w_current, const CLibSymbol *sym, int state);
+bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, GedaObject *complex);
 void       o_complex_translate_all           (GschemToplevel *w_current, int offset, const GList *list);
 void       o_complex_translate_list          (GschemToplevel *w_current, const GList *o_list, int x_offset, int y_offset);
-bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, GedaObject *complex);
-void       o_complex_start                   (GschemToplevel *w_current, const CLibSymbol *sym, int state);
+
 
 /* o_copy.c */
 void       o_copy_cancel                (GschemToplevel *w_current);
