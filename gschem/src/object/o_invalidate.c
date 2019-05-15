@@ -93,9 +93,9 @@ o_invalidate_rubber (GschemToplevel *w_current)
   return (TRUE);
 }
 
-/*! \brief Invalidates a rectangular region of the on screen drawing area
- *  \par Function Description
- *
+/*!
+ * \brief Invalidates a rectangular region of the on screen drawing area
+ * \par Function Description
  *  Given a pair of (x,y) coordinates in SCREEN units, invalidate the
  *  rectangular on-screen drawing area which has those two coordinate
  *  pairs as opposite corners of its region. This will cause that region
