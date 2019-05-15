@@ -456,9 +456,11 @@ static void export_layout_page (Page *page, cairo_rectangle_t *extents,
       case ORIENTATION_LANDSCAPE:
         landscape = TRUE;
         break;
+
       case ORIENTATION_PORTRAIT:
         landscape = FALSE;
         break;
+
       case ORIENTATION_AUTO:
       default:
         landscape = (w_width > w_height);
