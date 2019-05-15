@@ -1088,6 +1088,7 @@ HTML_EXTRA_FILES       = \
                          images/buffers.png \
                          images/projections.png \
                          images/projections2.png \
+                         dialogs/about_dialog.png \
                          dialogs/array_dialog.png \
                          dialogs/auto_number_dialog.png \
                          dialogs/component_properties_dialog.png \
@@ -1659,6 +1660,7 @@ LATEX_EXTRA_FILES      = what-is-geda.tex \
                          images/buffers.png \
                          images/projections.png \
                          images/projections2.png \
+                         dialogs/about_dialog.png \
                          dialogs/array_dialog.png \
                          dialogs/auto_number_dialog.png \
                          dialogs/component_properties_dialog.png \
