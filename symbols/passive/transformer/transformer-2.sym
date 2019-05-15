@@ -70,9 +70,9 @@ T 0 2200 9 10 0 0 0 0 1
 footprint=none
 {
 T -5 2395 5 10 0 0 0 0 1
-dist-license=GPLv3 
+dist-license=GPLv2
 T -5 2595 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T -5 2795 5 10 0 0 0 0 1
 author=AutoTron
 }
