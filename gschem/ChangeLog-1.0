@@ -5,7 +5,8 @@
 
           * images/about_dialog.png
 
-    * src/object/o_complex.c: Reorganize function sequence; move o_complex_start.
+    * src/object/o_complex.c: Reorganize function sequence; move o_complex_start,
+      add function o_complex_invalidate_rubber.
 
 2019-05-13 Wiley E. Hill <wileyhill@gmail.com>
 

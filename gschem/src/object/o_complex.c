@@ -87,6 +87,35 @@ static void o_complex_end (GschemToplevel *w_current)
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
+/*! \brief Invalidate Temporary drawing artifacts for complex object
+ *  \par Function Description
+ *   Get coordinates from top-level and invalidate the bounding
+ *   region of a complex object.
+ */
+void o_complex_invalidate_rubber (GschemToplevel *w_current, GedaObject *o_current)
+{
+  int x, y;
+
+  if (geda_object_get_position (o_current, &x, &y)) {
+
+    int wx1, wy1, wx2, wy2;
+    int sx1, sy1, sx2, sy2;
+    int grip_half_size;
+
+    grip_half_size = gschem_toplevel_get_grips_half_size (w_current);
+
+    wx1 = x - grip_half_size;
+    wx2 = x + grip_half_size;
+    wy1 = y + grip_half_size;
+    wy2 = y - grip_half_size;
+
+    WORLDtoSCREEN (w_current, wx1, wy1, &sx1, &sy1);
+    WORLDtoSCREEN (w_current, wx2, wy2, &sx2, &sy2);
+
+    o_invalidate_rectangle (w_current, sx1, sy1, sx2, sy2);
+  }
+}
+
 /*!
  * \brief Prepare for Placement of New Complex Object
  * \par Function Description

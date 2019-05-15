@@ -1370,6 +1370,7 @@ static void
 o_grips_end_complex(GschemToplevel *w_current, GedaObject *o_current)
 {
   if (w_current->distance == 0) {
+    o_complex_invalidate_rubber (w_current, o_current);
     o_invalidate_object (w_current, o_current);
     return;
   }
