@@ -101,13 +101,13 @@ o_select_object(GschemToplevel *w_current, GedaObject *o_current, int type, int 
 
   switch (o_current->selected) {
 
-    case(FALSE):               /* object not selected */
+    case(FALSE):                /* object not selected */
 
       switch (SHIFTKEY) {       /* shift key pressed? */
 
-        case(TRUE):            /* shift key pressed  */
+        case(TRUE):             /* shift key pressed  */
           /* just fall through  */
-          break;               /* WEH: Or not? */
+          break;                /* WEH: Or not? */
 
         case(FALSE):
 
