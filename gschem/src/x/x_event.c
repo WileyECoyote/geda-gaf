@@ -129,6 +129,7 @@ int x_event_button_pressed(GtkWidget      *widget,
         o_edit_objects (w_current, list, ID_ORIGIN_EVENT);
         i_status_set_state(w_current, SELECT);
         return(0);
+
       default:
         break;
     }
