@@ -1,3 +1,10 @@
+2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/edarenderer.h: Add _EdaRenderer in member draw_complex_grips.
+
+    * src/edarenderer.c: Revise to eda_renderer_default_draw_grips conditionally
+      draw grips on complexes when draw_complex_grips is set.
+
 2019-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/edacairo.h: Reorder functions mostly alphabetically.

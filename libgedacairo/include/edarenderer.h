@@ -113,6 +113,7 @@ struct _EdaRenderer
   /* Public members */
   int      circle_grip_quadrant;  /* Controls where grips are drawn on circles */
   int      draw_grips;            /* controls if grips are enabled or not */
+  int      draw_complex_grips;    /* controls if grips for complexes is enabled or not */
   double   grip_size;
   GdkColor grip_stroke_color;
   GdkColor grip_fill_color;
