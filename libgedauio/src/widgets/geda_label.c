@@ -5725,6 +5725,7 @@ PangoAttrList *geda_label_get_effective_attributes (GedaLabel *label)
 PangoEllipsizeMode geda_label_get_ellipsize (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), PANGO_ELLIPSIZE_NONE);
+
   return label->priv->ellipsize;
 }
 
@@ -5771,6 +5772,7 @@ void geda_label_set_ellipsize (GedaLabel *label, PangoEllipsizeMode mode)
 GtkJustification geda_label_get_justify (GedaLabel *label)
 {
   g_return_val_if_fail (GEDA_IS_LABEL(label), 0);
+
   return label->priv->jtype;
 }
 
@@ -6142,6 +6144,7 @@ char geda_label_get_mnemonic_char (GedaLabel *label)
       return (char)*(str + 1);
     }
   }
+
   return 0xFF;
 }
 
