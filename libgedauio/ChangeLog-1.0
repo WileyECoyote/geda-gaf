@@ -4,7 +4,8 @@
 
     * src/widgets/geda_label.c: Eliminate unnecessary initialization of
       accel_key in geda_label_set_uline_text_internal and revise condictional
-      to eliminate early return.
+      to eliminate early return. Replace geda_menu_shell_append with macro
+      geda_menu_append.
 
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 

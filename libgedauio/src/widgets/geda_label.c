@@ -5337,7 +5337,7 @@ static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     /* Open Link */
     menuitem = geda_image_menu_item_new_with_mnemonic (_("_Open Link"));
     gtk_widget_show (menuitem);
-    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
+    geda_menu_append (menu, menuitem);
 
     g_signal_connect (menuitem, "activate",
                       G_CALLBACK (open_link_activate_cb), label);
@@ -5349,7 +5349,7 @@ static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     /* Copy Link Address */
     menuitem = geda_image_menu_item_new_with_mnemonic (_("Copy _Link Address"));
     gtk_widget_show (menuitem);
-    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
+    geda_menu_append (menu, menuitem);
 
     g_signal_connect (menuitem, "activate",
                       G_CALLBACK (copy_link_activate_cb), label);
@@ -5367,16 +5367,16 @@ static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     menuitem = geda_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
     gtk_widget_set_sensitive (menuitem, FALSE);
     gtk_widget_show (menuitem);
-    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
+    geda_menu_append (menu, menuitem);
 
     menuitem = gtk_separator_menu_item_new ();
     gtk_widget_show (menuitem);
-    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
+    geda_menu_append (menu, menuitem);
 
     menuitem = geda_image_menu_item_new_from_stock (GTK_STOCK_SELECT_ALL, NULL);
     g_signal_connect_swapped (menuitem, "activate", G_CALLBACK (geda_label_select_all), label);
     gtk_widget_show (menuitem);
-    geda_menu_shell_append ((GedaMenuShell*)menu, menuitem);
+    geda_menu_append (menu, menuitem);
   }
 
   g_signal_emit (label, signals[POPULATE_POPUP], 0, menu);
