@@ -1043,7 +1043,7 @@ static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
   return TRUE;
 }
 
-/* widget_class->map */
+/*! \internal widget_class->map */
 static void geda_handle_box_map (GtkWidget *widget)
 {
   GtkBin        *bin;
@@ -1072,7 +1072,7 @@ static void geda_handle_box_map (GtkWidget *widget)
   gdk_window_show (widget->window);
 }
 
-/* widget_class->unmap */
+/*! \internal widget_class->unmap */
 static void geda_handle_box_unmap (GtkWidget *widget)
 {
   GedaHandleBox *handlebox;
@@ -1091,7 +1091,7 @@ static void geda_handle_box_unmap (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_handle_box_parent_class)->unmap (widget);
 }
 
-/* widget_class->realize */
+/*! \internal widget_class->realize */
 static void geda_handle_box_realize (GtkWidget *widget)
 {
   GdkWindowAttr  attributes;
@@ -1193,7 +1193,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   connect_settings_signal(handlebox);
 }
 
-/* widget_class->unrealize */
+/*! \internal widget_class->unrealize */
 static void geda_handle_box_unrealize (GtkWidget *widget)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
@@ -1211,7 +1211,7 @@ static void geda_handle_box_unrealize (GtkWidget *widget)
   GTK_WIDGET_CLASS (geda_handle_box_parent_class)->unrealize (widget);
 }
 
-/* widget_class->size_allocate */
+/*! \internal widget_class->size_allocate */
 static void geda_handle_box_size_allocate (GtkWidget     *widget,
                                            GtkAllocation *allocation)
 {
@@ -1334,7 +1334,7 @@ static void geda_handle_box_size_allocate (GtkWidget     *widget,
   }
 }
 
-/* widget_class->size_request */
+/*! \internal widget_class->size_request */
 static void geda_handle_box_size_request (GtkWidget      *widget,
                                           GtkRequisition *requisition)
 {
@@ -1417,13 +1417,13 @@ static void geda_handle_box_size_request (GtkWidget      *widget,
   }
 }
 
-/* widget_class->style_set */
+/*! \internal widget_class->style_set */
 static void geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
   if (gtk_widget_get_realized (widget) &&
-    gtk_widget_get_has_window (widget))
+      gtk_widget_get_has_window (widget))
   {
     gtk_style_set_background (widget->style, widget->window, widget->state);
     gtk_style_set_background (widget->style, handlebox->bin_window, widget->state);
