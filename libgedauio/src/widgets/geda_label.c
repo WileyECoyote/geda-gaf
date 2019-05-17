@@ -3855,6 +3855,7 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
   }
 }
 
+/*! \internal widget_class->realize */
 static void geda_label_realize (GtkWidget *widget)
 {
   GedaLabel *label = (GedaLabel*)widget;
@@ -3866,6 +3867,7 @@ static void geda_label_realize (GtkWidget *widget)
   }
 }
 
+/*! \internal widget_class->unrealize */
 static void geda_label_unrealize (GtkWidget *widget)
 {
   GedaLabel *label = (GedaLabel*)widget;
@@ -3877,6 +3879,7 @@ static void geda_label_unrealize (GtkWidget *widget)
   ((GtkWidgetClass*)geda_label_parent_class)->unrealize (widget);
 }
 
+/*! \internal widget_class->map */
 static void geda_label_map (GtkWidget *widget)
 {
   GedaLabel *label = (GedaLabel*)widget;
@@ -3888,6 +3891,7 @@ static void geda_label_map (GtkWidget *widget)
   }
 }
 
+/*! \internal widget_class->unmap */
 static void geda_label_unmap (GtkWidget *widget)
 {
   GedaLabel *label = (GedaLabel*)widget;
