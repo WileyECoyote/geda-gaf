@@ -310,6 +310,22 @@ SCM g_rc_draw_grips(SCM mode)
   RETURN_G_RC_MODE("draw-grips", default_draw_grips, mode_table);
 }
 
+/*! \brief Process draw-grips RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for draw-grips RC entry.
+ *
+ */
+SCM g_rc_draw_complex_grips(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("draw-complex-grips", default_draw_complex_grips, mode_table);
+}
+
 /*! \brief Process grip-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

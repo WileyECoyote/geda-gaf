@@ -117,6 +117,7 @@ SCM   g_rc_render_adaptor              (SCM mode);
 SCM   g_rc_action_color                (SCM mode);
 SCM   g_rc_anti_aliasing               (SCM mode);
 SCM   g_rc_draw_grips                  (SCM mode);
+SCM   g_rc_draw_complex_grips          (SCM mode);
 SCM   g_rc_grips_pixel_size            (SCM size);
 SCM   g_rc_grid_mode                   (SCM mode);
 SCM   g_rc_dots_grid_minor_color       (SCM red, SCM green, SCM blue);

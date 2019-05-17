@@ -2,6 +2,10 @@
 
     * include/i_vars.h: Declare default_draw_complex_grips.
 
+    * src/guile/g_rc.c: Add function g_rc_draw_complex_grips.
+
+    * src/guile/g_register.c: Register draw-complex-grips.
+
     * src/iface/i_vars.c: Initialize CairoRenderer->draw_complex_grips.
 
 2019-05-15 Wiley E. Hill <wileyhill@gmail.com>
