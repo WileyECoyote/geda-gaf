@@ -3941,9 +3941,9 @@ static void geda_label_grab_focus (GtkWidget *widget)
   if ( !priv->select_info->selectable &&
         priv->select_info->links && !priv->in_click) {
 
-      link = priv->select_info->links->data;
-      priv->select_info->selection_anchor = link->start;
-      priv->select_info->selection_end = link->start;
+    link = priv->select_info->links->data;
+    priv->select_info->selection_anchor = link->start;
+    priv->select_info->selection_end = link->start;
   }
 }
 
@@ -6367,8 +6367,8 @@ void geda_label_set_pattern (GedaLabel *label, const char *pattern)
 
   if (pattern) {
 
-      geda_label_set_pattern_internal (label, pattern, FALSE);
-      label->priv->pattern_set = TRUE;
+    geda_label_set_pattern_internal (label, pattern, FALSE);
+    label->priv->pattern_set = TRUE;
   }
   else {
     geda_label_recalculate (label);
