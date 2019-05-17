@@ -1,5 +1,10 @@
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/gschemrc.scm: Add keyword draw-complex-grips:
+
+        * etc/system-gschemrc.scm
+        * etc/user-gschemrc.scm
+
     * include/i_vars.h: Declare default_draw_complex_grips.
 
     * src/guile/g_rc.c: Add function g_rc_draw_complex_grips.

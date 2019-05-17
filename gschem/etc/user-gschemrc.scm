@@ -120,6 +120,15 @@
 ;(draw-grips "disabled")
 
 ;
+; draw-complex-grips string
+;
+; Controls if the editing grips are drawn when selecting complex
+; objects when draw-grips is "enabled".
+;
+;(draw-complex-grips "enabled")
+;(draw-complex-grips "disabled")
+
+;
 ; grip-size integer
 ;
 ; Controls the size of grips in pixel units.
