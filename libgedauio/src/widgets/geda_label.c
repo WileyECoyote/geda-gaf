@@ -5188,7 +5188,7 @@ static void activate_cb (GtkWidget *menuitem, GedaLabel *label)
 }
 
 static void append_action_signal (GedaLabel  *label,
-                                  GtkWidget  *menu,
+                                  GedaMenu   *menu,
                                   const char *stock_id,
                                   const char *signal,
                                   bool        sensitive)
@@ -5301,9 +5301,9 @@ static bool geda_label_popup_menu (GtkWidget *widget)
 static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
 {
   SelectionInfo *info = label->priv->select_info;
-  GtkWidget     *menuitem;
-  GtkWidget     *menu;
   GedaLabelLink *link;
+  GedaMenu      *menu;
+  GtkWidget     *menuitem;
   bool           have_selection;
 
   if (!info)
@@ -5313,9 +5313,11 @@ static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
     gtk_widget_destroy (info->popup_menu);
   }
 
-  info->popup_menu = menu = geda_menu_new ();
+  info->popup_menu = geda_menu_new ();
 
-  geda_menu_attach_to_widget ((GedaMenu*)menu, (GtkWidget*)label, popup_menu_detach);
+  menu = (GedaMenu*)info->popup_menu;
+
+  geda_menu_attach_to_widget (menu, (GtkWidget*)label, popup_menu_detach);
 
   have_selection = info->selection_anchor != info->selection_end;
 
@@ -5382,14 +5384,12 @@ static void geda_label_do_popup (GedaLabel *label, GdkEventButton *event)
   g_signal_emit (label, signals[POPULATE_POPUP], 0, menu);
 
   if (event) {
-    geda_menu_popup ((GedaMenu*)menu, NULL, NULL,
-                     NULL, NULL,
-                     event->button, event->time);
+    geda_menu_popup (menu, NULL, NULL, NULL, NULL,
+                                      event->button, event->time);
   }
   else {
-    geda_menu_popup ((GedaMenu*)menu, NULL, NULL,
-                     popup_position_func, label,
-                     0, gtk_get_current_event_time ());
+    geda_menu_popup (menu, NULL, NULL, popup_position_func, label,
+                                       0, gtk_get_current_event_time ());
     geda_menu_shell_select_first ((GedaMenuShell*)menu, FALSE);
   }
 }
