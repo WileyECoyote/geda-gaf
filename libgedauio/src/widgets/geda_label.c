@@ -4028,8 +4028,9 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
           iter = iter->next;
 
         }
-        else
+        else {
           iter = info->links;
+        }
         break;
 
       case GTK_DIR_TAB_BACKWARD:
@@ -4037,8 +4038,9 @@ geda_label_focus (GtkWidget *widget, GtkDirectionType direction)
           iter = g_list_find (info->links, focus_link);
           iter = iter->prev;
         }
-        else
+        else {
           iter = g_list_last (info->links);
+        }
         break;
 
       default:
