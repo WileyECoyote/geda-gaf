@@ -1,0 +1,90 @@
+v 20151031 2
+B 300 200 1100 1200 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
+P 300 1200 0 1200 1 0 1
+{
+T 200 1250 5 8 1 1 0 6 1
+pinnumber=1
+T 200 1250 5 8 0 1 0 6 1
+pinseq=1
+T 350 1200 3 8 1 1 0 0 1
+pinlabel=CTR
+T 350 1175 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 800 0 800 1 0 1
+{
+T 200 850 5 8 1 1 0 6 1
+pinnumber=2
+T 200 850 5 8 0 1 0 6 1
+pinseq=2
+T 350 800 3 8 1 1 0 0 1
+pinlabel=VDD
+T 350 775 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 300 400 0 400 1 0 1
+{
+T 200 450 5 8 1 1 0 6 1
+pinnumber=3
+T 200 450 5 8 0 1 0 6 1
+pinseq=3
+T 350 400 3 8 1 1 0 0 1
+pinlabel=GND
+T 350 375 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 1400 400 1700 400 1 0 1
+{
+T 1500 450 5 8 1 1 0 0 1
+pinnumber=4
+T 1500 450 5 8 0 1 0 0 1
+pinseq=4
+T 1350 400 3 8 1 1 0 6 1
+pinlabel=S1
+T 1350 375 5 8 0 1 0 8 1
+pintype=io
+}
+P 1400 800 1700 800 1 0 1
+{
+T 1500 850 5 8 1 1 0 0 1
+pinnumber=5
+T 1500 850 5 8 0 1 0 0 1
+pinseq=5
+T 1350 800 3 8 1 1 0 6 1
+pinlabel=D
+T 1350 775 5 8 0 1 0 8 1
+pintype=io
+}
+P 1400 1200 1700 1200 1 0 1
+{
+T 1500 1250 5 8 1 1 0 0 1
+pinnumber=6
+T 1500 1250 5 8 0 1 0 0 1
+pinseq=6
+T 1350 1200 3 8 1 1 0 6 1
+pinlabel=S2
+T 1350 1175 5 8 0 1 0 8 1
+pintype=io
+}
+T 300 1700 2 10 1 1 0 0 1
+refdes=U?
+T 300 2100 8 10 0 0 0 0 1
+device=ADG779
+T 300 2300 5 10 0 1 0 0 1
+description=CMOS SPDT SWITCH
+T 300 0 9 8 0 0 0 0 1
+symversion=0.1
+T 300 100 9 8 0 0 0 0 1
+numslots=0
+T 300 1500 3 10 1 1 0 0 1
+value=ADG776
+T 300 1900 9 10 0 1 0 0 1
+footprint=SC70-6
+T 300 2500 5 10 0 1 0 0 1
+documentation=https://www.analog.com/media/en/technical-documentation/data-sheets/adg779.pdf
+T 300 3100 5 10 0 0 0 0 1
+author=AutoTron
+T 300 2900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 300 2700 5 10 0 0 0 0 1
+use-license=unlimited

@@ -1,5 +1,7 @@
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/ADG779-1.sym: Add symbol: CMOS SPDT switch.
+
     * passive/transformer: Revise license attributes:
 
             * passive/transformer/transformer-6.sym
