@@ -55,6 +55,7 @@ int     default_render_adaptor            = RC_NIL;
 int     default_action_color              = RC_NIL;
 int     default_anti_aliasing             = RC_NIL;
 int     default_draw_grips                = RC_NIL;
+int     default_draw_complex_grips        = TRUE;
 int     default_grip_size                 = RC_NIL;
 
 int     default_grid_mode                 = RC_NIL;
@@ -589,6 +590,9 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->action_color,    default_action_color);
   i_set_rc (&w_current->anti_aliasing,   default_anti_aliasing);
   i_set_rc (&CairoRenderer->draw_grips,  default_draw_grips);
+
+  CairoRenderer->draw_complex_grips    = default_draw_complex_grips;
+
   i_set_rc (&w_current->grip_size,       default_grip_size);
   i_set_rc (&w_current->render_adaptor,  default_render_adaptor);
 

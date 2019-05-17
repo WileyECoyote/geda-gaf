@@ -1,3 +1,9 @@
+2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/i_vars.h: Declare default_draw_complex_grips.
+
+    * src/iface/i_vars.c: Initialize CairoRenderer->draw_complex_grips.
+
 2019-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.dox: Add files to HTML_EXTRA_FILES and LATEX_EXTRA_FILES

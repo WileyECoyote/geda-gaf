@@ -11,6 +11,7 @@ extern int default_render_adaptor;
 extern int default_action_color;
 extern int default_anti_aliasing;
 extern int default_draw_grips;
+extern int default_draw_complex_grips;
 extern int default_grip_size;
 
 extern int default_grid_mode;
