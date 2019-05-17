@@ -2,6 +2,9 @@
 
     * src/widgets/geda_handlebox.c: Add internal widget_class documentation.
 
+    * src/widgets/geda_label.c: Eliminate unnecessary initialization of
+      accel_key in geda_label_set_uline_text_internal.
+
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Add cast to widget in function

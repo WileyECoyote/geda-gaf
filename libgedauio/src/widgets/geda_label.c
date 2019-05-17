@@ -3836,7 +3836,7 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
 {
   if (str != NULL) {
 
-    unsigned int accel_key = GDK_KEY_VoidSymbol;
+    unsigned int accel_key;
     char *new_str;
     char *pattern;
 
