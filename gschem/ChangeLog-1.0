@@ -16,6 +16,7 @@
     * src/x/x_edit_array.c: Update function documentation for:
 
         * post_response_row_col
+        * post_response_col
 
 2019-05-15 Wiley E. Hill <wileyhill@gmail.com>
 
