@@ -3843,14 +3843,15 @@ geda_label_set_uline_text_internal (GedaLabel *label, const char *str)
     /* Split text into the base text and a separate pattern
      * of underscores.
      */
-    if (!separate_uline_pattern (str, &accel_key, &new_str, &pattern))
-      return;
+    if (separate_uline_pattern (str, &accel_key, &new_str, &pattern)) {
 
-    geda_label_set_text_internal (label, new_str);
-    geda_label_set_pattern_internal (label, pattern, TRUE);
-    label->priv->mnemonic_keyval = accel_key;
 
-    g_free (pattern);
+      geda_label_set_text_internal (label, new_str);
+      geda_label_set_pattern_internal (label, pattern, TRUE);
+      label->priv->mnemonic_keyval = accel_key;
+
+      g_free (pattern);
+    }
   }
 }
 
