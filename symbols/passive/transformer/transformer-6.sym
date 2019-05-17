@@ -142,9 +142,9 @@ numslots=0
 T 200 3800 9 10 0 0 0 0 1
 footprint=none
 T 195 3995 5 10 0 0 0 0 1
-dist-license=GPLv3
+dist-license=GPLv2
 T 195 4195 5 10 0 0 0 0 1
-use-license=GPLv3
+use-license=unlimited
 T 195 4395 5 10 0 0 0 0 1
 author=AutoTron
 T 200 3400 8 10 0 0 0 0 1
