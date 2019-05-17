@@ -1,3 +1,8 @@
+2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Add cast to widget in function
+      geda_menu_shell_activate.
+
 2019-05-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_dockbox.c: Update function documentation for:
