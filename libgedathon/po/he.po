@@ -303,46 +303,56 @@ msgstr "אחזר אובייקט מאפיין ספציפי"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "אחזר רשימה של אובייקטי מאפיין הקשורים"
 
+# Set the value of a specified attribute object
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "הגדר את הערך של אובייקט מאפיין שצוין"
 
+# Refresh Objects attributes
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "רענן תכונות אובייקטים"
 
+# Retrieve all objects connected to specific object
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "אחזר את כל האובייקטים המחוברים לאובייקט מסוים"
 
+# Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "אחזר רשימת נקודות לצומת עבור אובייקטים שצוינו"
 
+# Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "אחזר רשימה של נקודות של צמתים לא מחוברים עבור אובייקטים שצוינו"
 
+# Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "הקלד שגיאה, תוך התעלמות מפרמטר אופציונלי לא חוקי 5\n"
 
+# get
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "לקבל"
 
+# or set
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "או להגדיר"
 
+# An error occurred
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "התרחשה שגיאה"
 
+# object was not created
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "האובייקט לא נוצר"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
