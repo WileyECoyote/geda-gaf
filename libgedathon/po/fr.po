@@ -299,47 +299,56 @@ msgstr "Récupérer un objet d'attribut spécifique"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "Récupérer la liste des objets d'attributs associés"
 
+# Set the value of a specified attribute object
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Définir la valeur d'un objet d'attribut spécifié"
 
+# Refresh Objects attributes
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Actualiser les attributs des objets"
 
 # Retrieve all objects connected to specific Object
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
 msgstr "Récupérer tous les objets connectés à un objet spécifique"
 
+# Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Récupérer la liste des points de jonction pour les objets spécifiés"
 
+# Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "Récupérer la liste des points des noeuds non connectés pour les objets spécifiés"
 
+# Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "Erreur de type, ignorant le paramètre facultatif non valide 5\n"
 
+# get
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "obtenir"
 
+# or set
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "ou ensemble"
 
+# An error occurred
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "Une erreur est survenue"
 
+# object was not created
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "l'objet n'a pas été créé"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
