@@ -280,46 +280,56 @@ msgstr "یک خصوصیت مشخص Object را بازیابی کنید"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "بازخوانی لیست اشیاء مرتبط مربوطه"
 
+# Set the value of a specified attribute object
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "مقدار یک شی مشخصه مشخص شده را تنظیم کنید"
 
+# Refresh Objects attributes
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "ویژگی های اشیاء را تازه سازی کنید"
 
+# Retrieve all objects connected to specific object
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "تمام اشیاء متصل به شیء خاص را بازیابی کنید"
 
+# Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "بازیابی لیست امتیاز برای اتصال برای اشیاء مشخص شده"
 
+# Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "بازیابی لیست نقاط گره های متصل نشده برای اشیاء مشخص شده"
 
+# Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "خطا را تایپ کنید، پارامتر اختیاری نامعتبر 5 را نادیده بگیرید\n"
 
+# get
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "گرفتن"
 
+# or set
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "یا مجموعه"
 
+# An error occurred
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "خطایی رخ داده است"
 
+# object was not created
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "شی ایجاد نشد"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
