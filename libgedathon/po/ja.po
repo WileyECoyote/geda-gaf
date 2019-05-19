@@ -349,46 +349,62 @@ msgstr "特定の属性オブジェクトを取得する"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "関連付けられている属性オブジェクトのリストを取得する"
 
+# Set the value of a specified attribute object
+# Shitei sa reta zokusei obujekutono-chi o settei shimasu
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "指定された属性オブジェクトの値を設定します"
 
+# Refresh Objects attributes; Obujekuto zokusei no kōshin
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "オブジェクト属性の更新"
 
+# Retrieve all objects connected to specific object
+# Tokutei no obujekuto ni setsuzoku sa rete iru subete no
+# obujekuto o shutoku shimasu
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "特定のオブジェクトに接続されているすべてのオブジェクトを取得します"
 
+# Retrieve list of points for junction for specified objects
+# Shitei shita obujekuto no jankushon no ten no risuto o shutoku shimasu
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "指定したオブジェクトのジャンクションの点のリストを取得します"
 
+# Retrieve list of points of unconnected nodes for specified objects
+# Shitei sa reta obujekuto no mi setsuzoku nōdo no ten no risuto o shutoku shimasu
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "指定されたオブジェクトの未接続ノードの点のリストを取得します"
 
+# Type error, ignoring invalid optional parameter 5
+# Kata erā, mukōna opushonparamēta 5 o mushi shite
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "型エラー、無効なオプションパラメータ5を無視して\n"
 
+# get; Shutoku suru
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "取得する"
 
+# or set; Matawa settei
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "または設定"
 
+# An error occurred; Erā ga hassei shimashita
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "エラーが発生しました"
 
+# object was not created; Obujekuto wa sakusei sa remasendeshita
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "オブジェクトは作成されませんでした"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
