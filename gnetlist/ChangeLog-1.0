@@ -2,7 +2,8 @@
 
     * utils/mk_verilog_syms.c: Rename colour -> color throughout module,
       adjust/remove function argument wrapping. Change refdes color index
-      to 6 instead of 2.
+      to 6 instead of 2. Write version "v 20150101 2" to the output and
+      update all outputs to match the newer file format.
 
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com>
 

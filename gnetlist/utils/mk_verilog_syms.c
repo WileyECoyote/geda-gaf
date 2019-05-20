@@ -128,6 +128,8 @@ main(int argc, char **argv)
         return 1;                   /* Not continuing */
       }
 
+      fprintf(fp,"v 20150101 2\n");
+
       rc = MakeSymbol(fp, j,
                       generate[i].inputBubbles, generate[i].outputBubbles,
                       generate[i].body);
@@ -137,10 +139,10 @@ main(int argc, char **argv)
       }
       else {
         /* and finally add the device attribute */
-        fprintf(fp,"T 400 100 5 8 0 0 0 0\ndevice=%s\n",generate[i].name);
+        fprintf(fp,"T 400 100 5 8 0 0 0 0 1\ndevice=%s\n", generate[i].name);
 
         /* and the positional pin directive */
-        fprintf(fp,"T 400 200 5 8 0 0 0 0\nVERILOG_PORTS=POSITIONAL");
+        fprintf(fp,"T 400 200 5 8 0 0 0 0 1\nVERILOG_PORTS=POSITIONAL");
       }
 
       fclose(fp);
@@ -269,7 +271,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   }
 
   /* drop on a template uref attribute */
-  fprintf(fp,"T %d %d 5 10 1 1 0 6\nrefdes=U?\n", bodyx+100, bodyy-400);
+  fprintf(fp,"T %d %d 5 10 1 1 0 6 1\nrefdes=U?\n", bodyx+100, bodyy-400);
 
   return 0;
 }
@@ -286,17 +288,17 @@ AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
   }
 
   /* top and bottom lines */
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %d %u 0 0 0 -1 -1\n",
           x, y+300, x+400, y+300, color);
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %d %u 0 0 0 -1 -1\n",
           x, y-300, x+400, y-300, color);
 
   /* left line */
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %d %u 0 0 0 -1 -1\n",
           x, y-300, x, y+300, color);
 
   /* arc at right */
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x+400, y, 300, -90, 180, color);
 
   return WidenBody(fp, x, y, pins, color);
@@ -315,19 +317,19 @@ int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
   }
 
   /* top and bottom lines */
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %d %u 0 0 0 -1 -1\n",
           x, y+300, x+300, y+300, color);
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %d %u 0 0 0 -1 -1\n",
           x, y-300, x+300, y-300, color);
 
   /* left arc */
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x-260, y, 400, -48, 97, color);
 
   /* right top and bottom arcs */
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x+300, y+100, 400, 270, 76, color);
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x+300, y-100, 400, 90, -76, color);
 
   return WidenBody(fp, x, y, pins, color);
@@ -347,24 +349,24 @@ int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
   }
 
   /* top and bottom lines */
-  fprintf(fp, "L %d %d %d %d %u\n",
+  fprintf(fp, "L %d %d %d %d %u 0 0 0 -1 -1\n",
           x+100, y+300, x+300, y+300, color);
   fprintf(fp, "L %d %d %d %d %u\n",
           x+100, y-300, x+300, y-300, color);
 
   /* left arc 1 */
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x-260, y, 400, -48, 97, color);
 
   /* left arc 2 */
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x - 160, y, 400, -48, 97, color);
 
 
   /* right top and bottom arcs */
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x+300, y+100, 400, 270, 76, color);
-  fprintf(fp, "A %d %d %d %d %d %u\n",
+  fprintf(fp, "A %d %d %d %d %d %u 0 0 0 -1 -1\n",
           x+300, y-100, 400, 90, -76, color);
 
   return WidenBody(fp, x, y, pins, color);
@@ -395,11 +397,11 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 
   /* output the line segments */
   /* for the top */
-  fprintf(fp, "L %d %d %d %u %u\n",
+  fprintf(fp, "L %d %d %d %u %u 0 0 0 -1 -1\n",
           x, y+300, x, y+300+distanceNeeded, color);
 
   /* for the bottom */
-  fprintf(fp, "L %d %d %d %u %u\n",
+  fprintf(fp, "L %d %d %d %u %u 0 0 0 -1 -1\n",
           x, y-300, x, y-300-distanceNeeded, color);
 
   return 0;
@@ -462,7 +464,7 @@ int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
 
 
     /* draw the bubble */
-    fprintf(fp, "V %d %d %d %d\n",
+    fprintf(fp, "V %d %d %d %d 0 0 0 -1 -1 0 0 -1 -1 -1 -1\n",
             (int) bx, (int) by, br, CYAN);
 
   }
@@ -475,7 +477,7 @@ int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
   }
 
   /* draw the pin */
-  fprintf(fp, "P %d %d %d %d %d\n", px1, py1, px2, py2, WHITE);
+  fprintf(fp, "P %d %d %d %d %d 0 1\n", px1, py1, px2, py2, WHITE);
 
   return 0;
 }
@@ -496,7 +498,7 @@ PinAttribute(FILE *fp, int x, int y, unsigned int n, char *value)
   }
 
   fprintf(fp, "{\n");
-  fprintf(fp, "T %d %d %d %d 0 0 0 0\n",x, y, YELLOW, 8);
+  fprintf(fp, "T %d %d %d %d 0 0 0 0 1\n",x, y, YELLOW, 8);
   fprintf(fp, "pin%u=%s\n",n, value);
   fprintf(fp, "}\n");
 
