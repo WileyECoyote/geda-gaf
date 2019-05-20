@@ -19,6 +19,12 @@
             * linear/opamps/LMV321SE-1.sym
             * linear/opamps/LMV321SE-2.sym
 
+    * linear/opamps/LMV321W-?.sym: Update documenation link to diodes.com
+      because TI no longer uses the SE or W suffixes.
+
+            * linear/opamps/LMV321W-1.sym
+            * linear/opamps/LMV321W-2.sym
+
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADG779-1.sym: Add symbol: CMOS SPDT switch.

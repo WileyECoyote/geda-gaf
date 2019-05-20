@@ -81,4 +81,4 @@ footprint=SOT25
 T 1000 875 5 10 1 1 0 0 1
 value=LMV321W
 T 300 1800 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/lmv321
+documentation=https://www.diodes.com/assets/Datasheets/LMV321_358.pdf
