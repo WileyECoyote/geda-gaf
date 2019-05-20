@@ -213,7 +213,6 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   rc = (*body)(fp, bodyx, bodyy, pins, GREEN);
 
   if (rc) {
-
     fprintf(stderr, "Error: Body function failed in %s()\n", __func__);
     return 1;
   }
@@ -254,9 +253,11 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
                      "in %s()\n", i, __func__);
       return 1;
     }
+
     /* output the attributes */
     sprintf(pinName,"IN%u",i);
     rc = PinAttribute(fp, pinx, piny, pinCount++, pinName);
+
     if (rc) {
 
       fprintf(stderr,"Error: Pin Attributes function failed for pin %u "
@@ -270,9 +271,6 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
   return 0;
 }
-
-
-
 
 /* produce an and shaped body at the given offset.
  * The origin is along the horizontal midline of the shape.
