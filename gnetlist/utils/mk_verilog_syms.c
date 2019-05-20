@@ -124,7 +124,7 @@ main(int argc, char **argv)
 
       if (fp == NULL) {
         fprintf(stderr,"Error: Unable to create file `%s' in %s()\n",
-                name, __func__);
+                        name, __func__);
         return 1;                   /* Not continuing */
       }
 
@@ -224,8 +224,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   if (rc) {
 
     fprintf(stderr, "Error: Pin drawing function failed in %s() "
-    "for output pin\n",
-    __func__);
+                    "for output pin\n", __func__);
     return 1;
   }
   /* attach pin attribute */
@@ -252,8 +251,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
     if (rc) {
 
       fprintf(stderr,"Error: Pin drawing function failed for pin %u "
-      "in %s()\n",
-              i, __func__);
+                     "in %s()\n", i, __func__);
       return 1;
     }
     /* output the attributes */
@@ -283,9 +281,7 @@ int
 AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 {
   if (fp == NULL) {
-
-    fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
-            __func__);
+    fprintf(stderr, "Error: NULL file pointer passed to %s()\n", __func__);
     return 1;
   }
 
@@ -418,9 +414,7 @@ int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
   int br = 50;             /* bubble radius */
 
   if (fp == NULL) {
-
-    fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
-            __func__);
+    fprintf(stderr, "Error: NULL file pointer passed to %s()\n", __func__);
     return 1;
   }
 
@@ -491,15 +485,13 @@ PinAttribute(FILE *fp, int x, int y, unsigned int n, char *value)
 {
   if (fp == NULL) {
 
-    fprintf(stderr, "Error: NULL file pointer passed to %s()\n",
-            __func__);
+    fprintf(stderr, "Error: NULL file pointer passed to %s()\n", __func__);
     return 1;
   }
 
   if (value == NULL) {
 
-    fprintf(stderr, "Error: NULL value pointer passed to %s()\n",
-            __func__);
+    fprintf(stderr, "Error: NULL value pointer passed to %s()\n", __func__);
     return 1;
   }
 
