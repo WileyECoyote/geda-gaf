@@ -1,7 +1,8 @@
 2019-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/mk_verilog_syms.c: Rename colour -> color throughout module,
-      adjust/remove function argument wrapping.
+      adjust/remove function argument wrapping. Change refdes color index
+      to 6 instead of 2.
 
 2019-03-18 Wiley E. Hill <wileyhill@gmail.com>
 

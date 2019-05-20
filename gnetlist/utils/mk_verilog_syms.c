@@ -269,7 +269,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   }
 
   /* drop on a template uref attribute */
-  fprintf(fp,"T %d %d 5 10 1 1 0 2\nrefdes=U?\n", bodyx+100, bodyy-400);
+  fprintf(fp,"T %d %d 5 10 1 1 0 6\nrefdes=U?\n", bodyx+100, bodyy-400);
 
   return 0;
 }
