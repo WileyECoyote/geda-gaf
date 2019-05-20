@@ -218,7 +218,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
   }
 
   /* draw the pins and attach appropriate attributes */
-  rc = Pin(fp, outputx, outputy, outputx+PinLength, outputy, outputBubbles);
+  rc = Pin(fp, outputx, outputy, outputx + PinLength, outputy, outputBubbles);
 
   if (rc) {
 
@@ -243,9 +243,10 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
 
     /* calculate the position of the pin */
     pinx = firstx;
-    piny = firsty+i*PinSpacing;
+    piny = firsty + i * PinSpacing;
+
     /* output a pin */
-    rc = Pin(fp, pinx, piny, pinx-PinLength, piny, inputBubbles);
+    rc = Pin(fp, pinx, piny, pinx - PinLength, piny, inputBubbles);
 
     if (rc) {
 
@@ -255,7 +256,8 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
     }
 
     /* output the attributes */
-    sprintf(pinName,"IN%u",i);
+    sprintf(pinName, "IN%u", i);
+
     rc = PinAttribute(fp, pinx, piny, pinCount++, pinName);
 
     if (rc) {
@@ -389,7 +391,7 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 
 
   /* Compute the amount needed to add to both top and bottom */
-  distanceNeeded = (pins-3) * PinSpacing/2;
+  distanceNeeded = (pins-3) * PinSpacing / 2;
 
   /* output the line segments */
   /* for the top */
@@ -426,8 +428,8 @@ int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
     double x,y;              /* unit vector in direction of line */
 
     /* compute a unit vector */
-    dx = x2-x1;
-    dy = y2-y1;
+    dx = x2 - x1;
+    dy = y2 - y1;
 
 #if HAVE_HYPOT
 
