@@ -25,9 +25,14 @@
             * linear/opamps/LMV321W-1.sym
             * linear/opamps/LMV321W-2.sym
 
+    * simulation/verilog: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/and5-2.sym
+
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * analogdevices/ADG779-1.sym: Add symbol: CMOS SPDT switch.
+    * analogdevices/ADG779-1.sym: Add symbol; CMOS SPDT switch.
 
     * passive/transformer: Revise license attributes:
 
