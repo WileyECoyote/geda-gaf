@@ -8,6 +8,11 @@
     * analogdevices/AD5328-1.sym: Add symbol; 10 Bit DAC, 2.5V to 5.5V Octal
       Output
 
+    * linear/opamps/LMV321-1.sym: Add symbols; vanilla version of LMV321.
+
+            * linear/opamps/LMV321-1.sym
+            * linear/opamps/LMV321-2.sym
+
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/ADG779-1.sym: Add symbol: CMOS SPDT switch.
