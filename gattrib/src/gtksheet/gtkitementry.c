@@ -204,28 +204,6 @@ static void        _item_entry_get_widget_window_size       (GtkWidget     *entr
 
 static GtkEntryClass *parent_class = NULL;
 
-/*
-#ifdef GTK_TYPE_ENTRY_BUFFER
-// In GTK+ 2.18, changes were made to GtkEntry. This caused gtk+extra
-// to crash. So from 2.18 call the appropriate buffer routines in GTK+
-// gtk/gtkentrybuffer.c.
-//
-// rrankin AT ihug DOT com DOT au 21/12/09
-
-typedef struct _GtkEntryPrivate GtkEntryPrivate;
-
-struct _GtkEntryPrivate
-{
-    GtkEntryBuffer *buffer;
-    // The remainder of this structure has been truncated
-
-};
-
-#   define GTK_ENTRY_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), gtk_entry_get_type(), GtkEntryPrivate))
-
-#endif
-*/
-
 GType
 gtk_item_entry_get_type(void)
 {
