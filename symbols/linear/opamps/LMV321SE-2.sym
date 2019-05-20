@@ -79,6 +79,6 @@ author=AutoTron
 T 1000 700 9 10 1 1 0 0 1
 footprint=SOT353
 T 300 1800 5 10 0 1 0 0 1
-documentation=http://www.ti.com/product/lmv321
+documentation=https://www.diodes.com/assets/Datasheets/LMV321_358.pdf
 T 300 1200 5 10 0 0 0 0 1
 device=LMV321
