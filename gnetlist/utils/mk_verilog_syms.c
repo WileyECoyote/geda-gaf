@@ -40,7 +40,7 @@
 
 /* local defines */
 
-/* gEDA colour, these should probably come from somewhere else */
+/* gEDA color, these should probably come from somewhere else */
 #define BLACK		0
 #define WHITE		1
 #define RED		2
@@ -60,12 +60,12 @@ int MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles,
 	       int outputBubbles,
 	       int (*body)(FILE *, int, int, unsigned int, unsigned int));
 
-int AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour);
-int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour);
-int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour);
+int AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color);
+int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color);
+int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color);
 int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble);
 int PinAttribute(FILE *fp, int x, int y, unsigned int n, char *value);
-int WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour);
+int WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color);
 
 /* globals */
 unsigned int PinSpacing = 200;
@@ -280,7 +280,7 @@ MakeSymbol(FILE *fp, unsigned int pins, int inputBubbles, int outputBubbles,
  * The origin is along the horizontal midline of the shape.
  */
 int
-AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
+AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 {
   if (fp == NULL) {
 
@@ -291,25 +291,25 @@ AndBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 
   /* top and bottom lines */
   fprintf(fp, "L %d %d %d %d %u\n",
-          x, y+300, x+400, y+300, colour);
+          x, y+300, x+400, y+300, color);
   fprintf(fp, "L %d %d %d %d %u\n",
-          x, y-300, x+400, y-300, colour);
+          x, y-300, x+400, y-300, color);
 
   /* left line */
   fprintf(fp, "L %d %d %d %d %u\n",
-          x, y-300, x, y+300, colour);
+          x, y-300, x, y+300, color);
 
   /* arc at right */
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x+400, y, 300, -90, 180, colour);
+          x+400, y, 300, -90, 180, color);
 
-  return WidenBody(fp, x, y, pins, colour);
+  return WidenBody(fp, x, y, pins, color);
 }
 
 /* produce a or shaped body at the given offset.
  * The origin is along the horizontal midline of the shape.
  */
-int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
+int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 {
   if (fp == NULL) {
 
@@ -320,27 +320,27 @@ int OrBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 
   /* top and bottom lines */
   fprintf(fp, "L %d %d %d %d %u\n",
-          x, y+300, x+300, y+300, colour);
+          x, y+300, x+300, y+300, color);
   fprintf(fp, "L %d %d %d %d %u\n",
-          x, y-300, x+300, y-300, colour);
+          x, y-300, x+300, y-300, color);
 
   /* left arc */
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x-260, y, 400, -48, 97, colour);
+          x-260, y, 400, -48, 97, color);
 
   /* right top and bottom arcs */
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x+300, y+100, 400, 270, 76, colour);
+          x+300, y+100, 400, 270, 76, color);
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x+300, y-100, 400, 90, -76, colour);
+          x+300, y-100, 400, 90, -76, color);
 
-  return WidenBody(fp, x, y, pins, colour);
+  return WidenBody(fp, x, y, pins, color);
 }
 
 /* produce a xor shaped body at the given offset.
  * The origin is along the horizontal midline of the shape.
  */
-int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
+int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 {
 
   if (fp == NULL) {
@@ -352,32 +352,33 @@ int XorBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
 
   /* top and bottom lines */
   fprintf(fp, "L %d %d %d %d %u\n",
-          x+100, y+300, x+300, y+300, colour);
+          x+100, y+300, x+300, y+300, color);
   fprintf(fp, "L %d %d %d %d %u\n",
-          x+100, y-300, x+300, y-300, colour);
+          x+100, y-300, x+300, y-300, color);
 
   /* left arc 1 */
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x-260, y, 400, -48, 97, colour);
+          x-260, y, 400, -48, 97, color);
+
   /* left arc 2 */
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x-160, y, 400, -48, 97, colour);
+          x - 160, y, 400, -48, 97, color);
 
 
   /* right top and bottom arcs */
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x+300, y+100, 400, 270, 76, colour);
+          x+300, y+100, 400, 270, 76, color);
   fprintf(fp, "A %d %d %d %d %d %u\n",
-          x+300, y-100, 400, 90, -76, colour);
+          x+300, y-100, 400, 90, -76, color);
 
-  return WidenBody(fp, x, y, pins, colour);
+  return WidenBody(fp, x, y, pins, color);
 }
 
 /* output two line segments that will serve to `widen' the
  * body of one of the above gates
  */
 int
-WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
+WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int color)
 {
   unsigned int distanceNeeded;
 
@@ -399,11 +400,11 @@ WidenBody(FILE *fp, int x, int y, unsigned int pins, unsigned int colour)
   /* output the line segments */
   /* for the top */
   fprintf(fp, "L %d %d %d %u %u\n",
-          x, y+300, x, y+300+distanceNeeded, colour);
+          x, y+300, x, y+300+distanceNeeded, color);
 
   /* for the bottom */
   fprintf(fp, "L %d %d %d %u %u\n",
-          x, y-300, x, y-300-distanceNeeded, colour);
+          x, y-300, x, y-300-distanceNeeded, color);
 
   return 0;
 }
