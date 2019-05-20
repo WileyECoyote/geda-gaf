@@ -465,7 +465,7 @@ int Pin(FILE *fp, int x1, int y1, int x2, int y2, int bubble)
 
     /* draw the bubble */
     fprintf(fp, "V %d %d %d %d 0 0 0 -1 -1 0 0 -1 -1 -1 -1\n",
-            (int) bx, (int) by, br, CYAN);
+                 bx, by, br, CYAN);
 
   }
   else {
