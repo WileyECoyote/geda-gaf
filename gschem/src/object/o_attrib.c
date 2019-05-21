@@ -527,7 +527,7 @@ bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
         geda_text_object_set_x (attrib, floater->x);
         geda_text_object_set_y (attrib, floater->y);
         geda_text_object_set_angle (attrib, floater->angle);
-        geda_text_object_set_angle (attrib, floater->alignment);
+        geda_text_object_set_alignment (attrib, floater->alignment);
 
         geda_object_set_visibility(attrib, save_visible);
         o_invalidate_object (w_current, attrib);
