@@ -1,6 +1,7 @@
 2019-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/libgeda/defines.h: Remove unused release version codes.
+    * include/libgeda/defines.h: Remove unused release version codes and
+      add documentation for other codes.
 
 2019-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
