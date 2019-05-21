@@ -516,8 +516,7 @@ bool o_attrib_reset_position (GschemToplevel *w_current, GedaObject *parent,
       if ((attribute->x - floater->x) ||
           (attribute->y - floater->y) ||
           (attribute->angle - floater->angle) ||
-          (attribute->alignment - floater->alignment)
-         )
+          (attribute->alignment - floater->alignment))
       {
 
         int save_visible = geda_object_get_visibility(attrib);
