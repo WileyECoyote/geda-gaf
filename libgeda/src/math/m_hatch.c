@@ -109,6 +109,84 @@ compare_status(const void *a, const void *b)
   return (status_b->x - status_a->x);
 }
 
+void
+geda_math_hatch_arc(GedaArc *arc, int angle, int pitch, GArray *lines)
+{
+  double    radius;
+  double    sweep_y;
+  LINE      chord;
+  TRANSFORM transform;
+
+  g_return_if_fail (arc != NULL);
+  g_return_if_fail (lines  != NULL);
+
+  geda_math_arc_chord (arc, &chord);
+
+  m_transform_init      (&transform);
+  m_transform_rotate    (&transform, angle);
+  m_transform_scale     (&transform, 0.01);
+  m_transform_translate (&transform, arc->x, arc->y);
+
+  radius  = 100 * arc->radius;
+  sweep_y = calculate_initial_sweep(100 * pitch, -radius, radius);
+
+  while (sweep_y < radius) {
+
+    bool      ip1, ip2;
+    LINE      line;
+    GedaPoint point;
+
+    /* Note the hypot func cannot be used here! */
+    int x = round(sqrt((radius * radius) - (sweep_y * sweep_y)));
+
+    line.x[0] = -x;
+    line.y[0] = sweep_y;
+    line.x[1] = x;
+    line.y[1] = sweep_y;
+
+    m_transform_line(&transform, &line);
+
+    point.x = line.x[0];
+    point.y = line.y[0];
+
+    ip1 = geda_math_arc_includes_point (arc, &point);
+
+    point.x = line.x[1];
+    point.y = line.y[1];
+
+    ip2 = geda_math_arc_includes_point (arc, &point);
+
+    /* Check if both endpoints are on the arc */
+    if (ip1 && ip2) {
+      g_array_append_val(lines, line);
+    }
+    else {
+
+      /* Get the intersection with the chord */
+      if (geda_math_line_intersection(&line, &chord, &point)) {
+
+        /* If pt1 was on the arc pt2 is the intersection with chord */
+        if (ip1) {
+          line.x[1] = point.x;
+          line.y[1] = point.y;
+          g_array_append_val(lines, line);
+        }
+        else if (ip2) {
+
+          /* If pt2 was on the arc pt1 is the intersection with chord */
+          line.x[0] = point.x;
+          line.y[0] = point.y;
+          g_array_append_val(lines, line);
+        }
+      }
+    }
+
+    sweep_y += 100 * pitch;
+  }
+
+  g_array_append_val(lines, chord);
+}
+
 /*!
  * \brief Calculates line segments to hatch a box shape
  * \par Function Description
@@ -402,6 +480,10 @@ geda_math_hatch_object (GedaObject *object)
       case FILLING_MESH:
         if ( fill_pitch2 > 0) {
           switch (object->type) {
+            case OBJ_ARC:
+              geda_math_hatch_arc(object->arc, fill_angle2, fill_pitch2, fill_lines);
+              break;
+
             case OBJ_BOX:
               geda_math_hatch_box(object->box, fill_angle2, fill_pitch2, fill_lines);
               break;
@@ -418,6 +500,10 @@ geda_math_hatch_object (GedaObject *object)
         /* Intentionally fall through */
       case FILLING_HATCH:
         switch (object->type) {
+            case OBJ_ARC:
+            geda_math_hatch_arc(object->arc, fill_angle1, fill_pitch1, fill_lines);
+            break;
+
           case OBJ_BOX:
             geda_math_hatch_box(object->box, fill_angle1, fill_pitch1, fill_lines);
             break;

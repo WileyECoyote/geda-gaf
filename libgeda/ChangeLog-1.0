@@ -3,6 +3,8 @@
     * include/libgeda/defines.h: Remove unused release version codes and
       add documentation for other codes.
 
+    * src/math/m_hatch.c: Add function geda_math_hatch_arc.
+
 2019-05-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.
