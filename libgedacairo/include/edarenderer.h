@@ -195,6 +195,7 @@ int      eda_renderer_get_draw_grips           (EdaRenderer *renderer);
 void     eda_renderer_set_draw_grips           (EdaRenderer *renderer, bool draw);
 
 int      eda_renderer_get_draw_complex_grips   (EdaRenderer *renderer);
+void     eda_renderer_set_draw_complex_grips   (EdaRenderer *renderer, bool draw);
 const
 char    *eda_renderer_get_font_name            (EdaRenderer *renderer);
 void     eda_renderer_set_font_name            (EdaRenderer *renderer, const char *name);

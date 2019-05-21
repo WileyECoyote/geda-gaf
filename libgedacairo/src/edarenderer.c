@@ -2244,6 +2244,18 @@ int eda_renderer_get_draw_complex_grips (EdaRenderer *renderer)
   return renderer->draw_complex_grips ;
 }
 
+/*! \brief Set the EdaRenderer draw complex grips Property
+ *  \par Function Description
+ *  Function to set the draw-complex-grips property. When the
+ *  draw-complex-grips property is set, grips will be drawn on
+ *  complex object if draw-grips is enabled.
+ */
+void eda_renderer_set_draw_complex_grips (EdaRenderer *renderer, bool draw)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  renderer->draw_complex_grips  = draw ? 1 : 0;
+}
+
 /*! \brief Get the current EdaRenderer Font Name Property
  *  \par Function Description
  *  Function to retrieve the current font-name property.

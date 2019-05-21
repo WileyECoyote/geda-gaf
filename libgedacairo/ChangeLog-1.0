@@ -3,6 +3,7 @@
     * src/edarenderer.c: Add function:
 
             * eda_renderer_get_draw_complex_grips
+            * eda_renderer_set_draw_complex_grips
 
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
