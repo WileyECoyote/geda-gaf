@@ -2051,7 +2051,7 @@ char *geda_arc_object_to_buffer(GedaObject *object)
   arc_length = object->line_options->line_length;
   arc_space  = object->line_options->line_space;
 
-  /* Describe a circle with post-20000704 file format */
+  /* Describe an arc with post-20190401 file format */
   buf = geda_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
                           x, y, radius, start_angle, arc_sweep, object->color,
                           arc_width, arc_end, arc_type, arc_length, arc_space);
