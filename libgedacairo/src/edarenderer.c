@@ -2232,6 +2232,18 @@ void eda_renderer_set_draw_grips (EdaRenderer *renderer, bool draw)
   renderer->draw_grips = draw ? 1 : 0;
 }
 
+/*! \brief Get the EdaRenderer draw complex grips Property
+ *  \par Function Description
+ *  Function to retrieve the current draw-complex-grips property.
+ *  Grips will not be drawn if the draw-complex-grips property is
+ *  not set.
+ */
+int eda_renderer_get_draw_complex_grips (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return renderer->draw_complex_grips ;
+}
+
 /*! \brief Get the current EdaRenderer Font Name Property
  *  \par Function Description
  *  Function to retrieve the current font-name property.

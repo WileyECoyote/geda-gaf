@@ -1,3 +1,9 @@
+2019-05-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Add function:
+
+            * eda_renderer_get_draw_complex_grips
+
 2019-05-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/edarenderer.h: Add _EdaRenderer in member draw_complex_grips.
