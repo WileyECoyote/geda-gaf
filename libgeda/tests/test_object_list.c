@@ -810,6 +810,17 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  int sx1 = geda_box_object_get_lower_x(object2);
+  int sy1 = geda_box_object_get_lower_y(object2);
+  int sx2 = geda_box_object_get_upper_x(object2);
+  int sy2 = geda_box_object_get_upper_y(object2);
+
+  if (sx1 + 350 || sx2 - 650) {
+    fprintf(stderr, "FAILED: (O120602A) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
   return result;
 }
 
