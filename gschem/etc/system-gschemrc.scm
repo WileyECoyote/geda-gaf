@@ -73,6 +73,7 @@
 ; images are black-on-white when enabled (default). When disabled, generated
 ; images will be the same as the black and white screen image; white-on-
 ; black (like the old gschem style).
+;
 ;(invert-images "enabled")
 (invert-images "disabled")
 
@@ -114,7 +115,7 @@
 ;
 ; draw-grips string
 ;
-; Controls if the editing grips are drawn when selecting objects
+; Controls if the editing grips are drawn when selecting objects.
 ;
 ;(draw-grips "enabled")
 ;(draw-grips "disabled")
