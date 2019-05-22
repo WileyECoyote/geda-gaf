@@ -1101,6 +1101,19 @@ check_query(void)
   return result;
 }
 
+int check_methods (void)
+{
+  int result = 0;
+
+  /* === Function 19: geda_line_object_mirror  === */
+  /* === Function 20: geda_line_object_modify  === */
+  /* === Function 29: geda_line_object_rotate  === */
+  /* === Function 39: geda_line_object_scale  === */
+  /* === Function 42: geda_line_object_translate  === */
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -1147,6 +1160,13 @@ main (int argc, char *argv[])
       return 1;
     }
 
+    if (setjmp(point) == 0) {
+      result += check_methods();
+    }
+    else {
+      fprintf(stderr, "Caught signal during query in %s\n\n", MUT);
+      return 1;
+    }
   }
   else {
     fprintf(stderr, "discontinuing checks for %s\n\n", MUT);
