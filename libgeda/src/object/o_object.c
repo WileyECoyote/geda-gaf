@@ -145,8 +145,7 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   }
 
   if (!GEDA_IS_TOPLEVEL(toplevel)) {
-    g_set_error (err, EDA_ERROR, EINVAL,
-                 _("Invalid pointer to GedaToplevel"));
+    g_set_error (err, EDA_ERROR, EINVAL, _("Invalid pointer to GedaToplevel"));
     return NULL;
   }
 
