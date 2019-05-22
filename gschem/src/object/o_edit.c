@@ -908,11 +908,19 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 GedaObject *last_o = NULL;
 int skiplast;
 
-/*! \todo Finish function documentation!!!
- *  \brief Find Text
- *  \par Function Description
+/*!
+ * \brief Find Text
+ * \par Function Description
+ *  Searches for the string given by \a stext in the strings of each
+ *  text object in \a o_list and optionally in the hierarchy below when
+ *  the SEARCH_DESCEND bit is set in \a flags. If the SEARCH_HIDDEN
+ *  bit is set in \a flags, hidden text objects will be included in
+ *  the search.
  *
- *  \todo Only descends into the first source schematic
+ * \returns 0 if found, 1 if NULL was passed or there was an error,
+ *          or 2 if the end of the list is reached.
+ *
+ * \todo Only descends into the first source schematic
  */
 int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                       const char     *stext,       int flags, int skip)
