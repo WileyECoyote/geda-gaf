@@ -6092,7 +6092,6 @@ void geda_label_set_markup_with_mnemonic (GedaLabel *label, const char *str)
  * \param [in] label  The GedaLabel object
  *
  * \returns the maximum width of the label in characters.
- *
  */
 int geda_label_get_max_width_chars (GedaLabel *label)
 {
@@ -6309,9 +6308,9 @@ GtkWidget *geda_label_get_mnemonic_widget (GedaLabel *label)
  *  when the target is a GedaEntry next to the label).
  *
  *  The target widget will be accelerated by emitting the
- *  GtkWidget::mnemonic-activate signal on it. The default handler for
- *  this signal will activate the widget if there are no mnemonic collisions
- *  and toggle focus between the colliding widgets otherwise.
+ *  GtkWidget::mnemonic-activate signal on it. The default handler for this
+ *  signal will activate the widget if there are no mnemonic collisions and
+ *  toggle focus between the colliding widgets otherwise.
  *
  * \param [in] label    The GedaLabel object
  * \param [in] widget   Target GtkWidget
@@ -6350,10 +6349,10 @@ void geda_label_set_mnemonic_widget (GedaLabel *label, GtkWidget *widget)
 }
 
 /*!
- * \brief geda_label_set_pattern
+ * \brief Set GedaLabel Underline Pattern
  * \par Function Description
- *  The pattern of underlines you want under the existing text within the
- *  #GedaLabel widget.  For example if the current text of the label says
+ *  Sets the pattern of underlines under the existing text within the
+ *  #GedaLabel widget. For example if the current text of the label says
  *  "FooBarBaz" passing a pattern of "___   ___" will underline "Foo" and
  *  "Baz" but not "Bar". If \a pattern is NULL then the current will be
  *  removed.
