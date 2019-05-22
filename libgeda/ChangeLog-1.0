@@ -5,6 +5,9 @@
 
     * tests/test_line_object.c: Add function check_methods.
 
+    * test_object_list.c: Reverse backwards upper/lower coordinates for
+      geda_box_object_new in check_object_list_scale.
+
 2019-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/defines.h: Remove unused release version codes and

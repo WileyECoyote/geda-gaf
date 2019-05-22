@@ -766,7 +766,7 @@ check_object_list_scale (GedaToplevel *toplevel)
   int r  = 100;
 
   GedaObject *object1  = geda_arc_object_new (1, x1, y1, r, 0, 90);
-  GedaObject *object2  = geda_box_object_new(2, x1, y1, x2, y2);
+  GedaObject *object2  = geda_box_object_new(2, x2, y2, x1, y1);
   GedaObject *object3  = geda_bus_object_new(3, x1, y1, x2, y2, 0);
   GedaObject *object4  = geda_circle_object_new(4, x1, y1, r);
   GedaObject *object5  = geda_complex_new();
