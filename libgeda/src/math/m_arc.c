@@ -141,7 +141,7 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
 #endif
 
   fprintf(stderr, "point->x %d, point->y %d\n", point->x, point->y);
-  fprintf(stderr, "dist %d <> radius %d delta %d\n", dist, radius, delta);
+  fprintf(stderr, "dist %d radius %d delta %d\n", dist, radius, delta);
 
 #endif
 
