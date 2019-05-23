@@ -808,10 +808,6 @@ char *geda_struct_path_string_from_path (const GedaPath *path)
 
     switch (section->code) {
       case PATH_MOVETO:
-        g_string_append_printf (path_string, "M %i,%i\n",
-                                section->x3, section->y3);
-        break;
-
       case PATH_MOVETO_OPEN:
         g_string_append_printf (path_string, "M %i,%i\n",
                                 section->x3, section->y3);
