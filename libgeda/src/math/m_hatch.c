@@ -200,7 +200,7 @@ geda_math_hatch_arc(GedaArc *arc, int angle, int pitch, GArray *lines)
  * \param [in]     box   The Gedabox shape to hatch.
  * \param [in]     angle The angle of the hatch lines with respect to the x axis.
  * \param [in]     pitch The distance between hatch lines
- * \param [in,out] lines A GArray of Line to contain the new hatch line segments.
+ * \param [in,out] lines A GArray of Lines to contain the new hatch line segments.
  */
 void
 geda_math_hatch_box(GedaBox *box, int angle, int pitch, GArray *lines)
