@@ -790,10 +790,11 @@ GedaPath *geda_struct_path_parse (const char *path_str)
   return ctx.path;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Converts a Path to a string describing the Path
+ * \par Function Description
+ *  Iterates over sections of an existing GedaPath and assembles
+ *  a string for each vertex.
  */
 char *geda_struct_path_string_from_path (const GedaPath *path)
 {

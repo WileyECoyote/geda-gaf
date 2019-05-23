@@ -1,7 +1,7 @@
 2019-05-23 Wiley E. Hill <wileyhill@gmail.com
 
     * src/struct/s_path.c: Combine cases for PATH_MOVETO_OPEN and
-      PATH_MOVETO.
+      PATH_MOVETO and update function documentation.
 
 2019-05-22 Wiley E. Hill <wileyhill@gmail.com
 
