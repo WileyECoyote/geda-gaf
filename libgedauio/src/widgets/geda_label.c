@@ -7081,9 +7081,9 @@ void geda_label_widget_set_selectable (GtkWidget *label, bool setting)
 }
 
 /*!
- * \brief Get the GedaLabel Widget Text
+ * \brief Get Pointer to GedaLabel Widget Text
  * \par Function Description
- *  Retrieves a pointer to the text from the GedaLabel. The
+ *  Returns a pointer to the text of the GedaLabel. The
  *  string belongs to the widget and should not be released.
  */
 const char *geda_label_widget_get_text (GtkWidget *widget)
