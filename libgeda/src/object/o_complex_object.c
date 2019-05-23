@@ -490,9 +490,10 @@ const char *geda_complex_object_get_filename (GedaObject *object)
 /*!
  * \brief Get Point on a GedaComplex Nearest a Given Point
  * \par Function Description
- *  Recursively calls geda_object_get_nearest_point on the closest sub-object of
- *  the complex and returns the results of the function corresponding
- *  to the appropriate type of object for the selected sub-object.
+ *  Recursively calls geda_object_get_nearest_point on the closest
+ *  sub-object of the complex and returns the results of the function
+ *  corresponding to the appropriate type of object for the selected
+ *  sub-object.
  *
  * \param [in]  object  Pointer to a GedaComplex object
  * \param [in]  x       Integer pointer
@@ -585,7 +586,7 @@ GList *geda_complex_object_get_pin_objs(GedaObject *object)
 /*!
  * \brief Get the position of complex base point
  * \par Function Description
- *  This function gets the position of the base point of a complex object.
+ *  This function returns the position of the base point of a complex object.
  *
  * \param [in] object  GedaComplex object whose position is to be returned
  * \param [out] x      Pointer to save the x-position,
@@ -735,9 +736,9 @@ GedaObject *geda_complex_object_find_pin_by_attribute (GedaObject *object, char 
 /*!
  * \brief check whether an object is a attributes
  * \par Function Description
- *  This function checks if an object should be promoted.
- *  An attribute object is promotable if it is promoted by default, or the user
- *  has configered it to promote an attribute.
+ *  This function checks if an object should be promoted. An attribute
+ *  object is promotable if it is promoted by default, or the user has
+ *  configered it to promote an attribute.
  *
  * \param [in] toplevel  The GedaToplevel object,
  * \param [in] object    The attribute object to check.
