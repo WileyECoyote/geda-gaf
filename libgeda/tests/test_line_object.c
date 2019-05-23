@@ -1103,13 +1103,45 @@ check_query(void)
 
 int check_methods (void)
 {
+  int x1, y1, x2, y2;
   int result = 0;
 
+  GedaObject *object = geda_line_object_new(3, 500, 500, 500, 1000);
+
   /* === Function 19: geda_line_object_mirror  === */
+
+  geda_line_object_mirror(object, 1000, 750);
+
+
+  x1 = geda_line_object_get_x1 (object);
+  y1 = geda_line_object_get_y1 (object);
+
+  x2 = geda_line_object_get_x2 (object);
+  y2 = geda_line_object_get_y2 (object);
+
+  if (x1 != 1500) {
+    fprintf(stderr, "FAILED: (O111902X1) %s line_object_mirror %d\n", TOBJECT, x1);
+    result++;
+  }
+  if (y1 != 500) {
+    fprintf(stderr, "FAILED: (O111902Y1) %s line_object_mirror %d\n", TOBJECT, y1);
+    result++;
+  }
+  if (x2 != 1500) {
+    fprintf(stderr, "FAILED: (O111902X2) %s line_object_mirror %d\n", TOBJECT, x2);
+    result++;
+  }
+  if (y2 != 1000) {
+    fprintf(stderr, "FAILED: (O111902Y2) %s line_object_mirror %d\n", TOBJECT, y2);
+    result++;
+  }
+
   /* === Function 20: geda_line_object_modify  === */
   /* === Function 29: geda_line_object_rotate  === */
   /* === Function 39: geda_line_object_scale  === */
   /* === Function 42: geda_line_object_translate  === */
+
+  g_object_unref (object);
 
   return result;
 }

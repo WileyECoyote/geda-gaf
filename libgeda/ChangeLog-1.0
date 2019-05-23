@@ -6,6 +6,8 @@
     * tests/test_complex_object.c: Extend checks for geda_complex_object_
       get_nearest_point.
 
+    * libgeda/tests/test_line_object.c Add checks for geda_line_object_mirror.
+
 2019-05-22 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_complex_object.c: Extend checks for geda_complex_object_
