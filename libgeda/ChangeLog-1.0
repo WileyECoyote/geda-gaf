@@ -3,6 +3,9 @@
     * src/struct/s_path.c: Combine cases for PATH_MOVETO_OPEN and
       PATH_MOVETO and update function documentation.
 
+    * tests/test_complex_object.c: Extend checks for geda_complex_object_
+      get_nearest_point.
+
 2019-05-22 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_complex_object.c: Extend checks for geda_complex_object_
