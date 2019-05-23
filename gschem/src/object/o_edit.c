@@ -948,7 +948,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
         const char *str = geda_text_object_get_string (o_current);
 
         /* replaced strcmp with strstr to simplify the search */
-        if (strstr (str,stext)) {
+        if (strstr (str, stext)) {
 
           if (!skiplast) {
 
