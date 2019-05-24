@@ -1,3 +1,8 @@
+2019-05-24 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/geda/geda_page: Revise geda_page_set_toplevel to check and release
+      existing page->toplevel.
+
 2019-05-23 Wiley E. Hill <wileyhill@gmail.com
 
     * src/struct/s_path.c: Combine cases for PATH_MOVETO_OPEN and

@@ -604,8 +604,17 @@ int geda_page_rename(Page *page, const char *newname)
 void geda_page_set_toplevel (Page *page, GedaToplevel *toplevel)
 {
   g_return_if_fail (GEDA_IS_PAGE(page));
-  g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
-  page->toplevel = g_object_ref (toplevel);
+
+  if (page->toplevel) {
+    g_object_unref (page->toplevel);
+  }
+
+  if (toplevel && GEDA_IS_TOPLEVEL(toplevel)) {
+    page->toplevel = g_object_ref (toplevel);
+  }
+  else {
+    page->toplevel = toplevel;
+  }
 }
 
 /*!
