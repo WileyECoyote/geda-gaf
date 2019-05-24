@@ -154,8 +154,11 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
   /* First compare the distance from the arc center to the radius */
   if (delta < half_width) {
 
-    /* Second, check angle of ray is within the arc's included angle */
-
+    /* Secondly, check angle of ray is within the arc's included angle.
+     * If the start_angle + arc_angle is > 360 degrees then angle of the
+     * ray could be less than the min_angle but the point could still on
+     * the arc where the arc swept beyond zero, will check for this later.
+     */
     int    arc_angle = arc->start_angle + arc->arc_sweep;
     double min_angle = geda_math_degrees_to_radians (arc->start_angle);
     double max_angle = geda_math_degrees_to_radians (arc_angle);
@@ -168,8 +171,19 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
       radians += 2 * M_PI;
     }
 
-    if (radians < min_angle || radians > max_angle) {
+    if (radians > max_angle) {
       answer = FALSE;
+    }
+    else if (radians < min_angle) {
+
+      /* Check arc swept pass zero */
+      if (max_angle > 2 * M_PI) {
+        /* If ray is within sector that swept pass zero pt is on the arc */
+        answer = radians < max_angle - 2 * M_PI;
+      }
+      else {
+        answer = FALSE;
+      }
     }
     else {
       answer = TRUE;

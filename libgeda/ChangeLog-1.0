@@ -3,6 +3,9 @@
     * src/geda/geda_page: Revise geda_page_set_toplevel to check and release
       existing page->toplevel.
 
+    * src/math/m_arc.c: Fix BUG, revise geda_math_arc_includes_point to handle
+      arcs that wrap back around zero.
+
 2019-05-23 Wiley E. Hill <wileyhill@gmail.com
 
     * src/struct/s_path.c: Combine cases for PATH_MOVETO_OPEN and
