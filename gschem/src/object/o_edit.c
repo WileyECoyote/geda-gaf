@@ -961,8 +961,8 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
             }
 
             if (!geda_object_get_bounds (o_current, &x1, &y1, &x2, &y2)) {
-                BUG_MSG("world object bounds returned FALSE");
-                return 0;
+              BUG_MSG("world object bounds returned FALSE");
+              return 1;
             }
 
             page = gschem_toplevel_get_current_page(w_current);
