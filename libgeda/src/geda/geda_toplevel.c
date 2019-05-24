@@ -560,6 +560,7 @@ Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
   if (GEDA_IS_PAGE(toplevel->page_current)) {
     return toplevel->page_current;
   }
+
   return NULL;
 }
 
@@ -578,6 +579,7 @@ int geda_toplevel_get_file_open_flags (GedaToplevel *toplevel)
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->open_flags;
   }
+
   return F_OPEN_NONE;
 }
 
@@ -598,6 +600,7 @@ int geda_toplevel_get_image_color (GedaToplevel *toplevel)
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->image_color;
   }
+
   return FALSE;
 }
 
@@ -619,6 +622,7 @@ int geda_toplevel_get_invert_images (GedaToplevel *toplevel)
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->image_color;
   }
+
   return FALSE;
 }
 
@@ -635,6 +639,7 @@ int geda_toplevel_get_make_backups (GedaToplevel *toplevel)
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->make_backup_files;
   }
+
   return FALSE;
 }
 
@@ -651,6 +656,7 @@ int geda_toplevel_get_net_consolidate (GedaToplevel *toplevel)
   if (GEDA_IS_TOPLEVEL(toplevel)) {
     return toplevel->net_consolidate;
   }
+
   return FALSE;
 }
 
@@ -818,6 +824,7 @@ Page *geda_toplevel_get_page_up (GedaToplevel *toplevel)
 PageList *geda_toplevel_get_page_list (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+
   return toplevel->pages;
 }
 
@@ -880,6 +887,7 @@ bool geda_toplevel_move_page_down (GedaToplevel *toplevel, Page *page)
       }
     }
   }
+
   return FALSE;
 }
 
@@ -917,6 +925,7 @@ bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
       }
     }
   }
+
   return FALSE;
 }
 
