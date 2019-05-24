@@ -32,7 +32,7 @@
 #define _DEFINES_H_INCL
 
 /* Current schematic/symbol file format */
-#define FILEFORMAT_VERSION     2
+#define FILEFORMAT_VERSION     3
 
 /* release version which had file format changes */
 /* New file format changes after 20030921 use the above version */
@@ -41,6 +41,7 @@
 #define VERSION_20000704 20000704   /*!< last arc, box, circle and line with line type */
 #define VERSION_20020825 20020825   /*!< Last version without bus ripper_dir */
 #define VERSION_20030921 20030921   /*!< Last version which did not have a fileformat */
+
 /* 20030921 wasn't a real version, just a MinGW test version, but it is */
 /* out there */
 

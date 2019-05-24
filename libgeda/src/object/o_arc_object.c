@@ -1417,31 +1417,56 @@ GedaObject *geda_arc_object_read (const char buf[], unsigned int release_ver,
   int  arc_type;
   int  arc_end;
 
+  int  fill_width, angle1, pitch1, angle2, pitch2;
+  int  arc_fill;
+
   /*! \note
    *  Depending on the version of the file format used to describe this arc,
    *  the buffer is parsed differently. The unknown parameters of the less
    *  restrictive - the oldest - file format are set to common values
    */
-  if(release_ver <= VERSION_20000704) {
-    if (sscanf(buf, "%c %d %d %d %d %d %d", &type,
-               &x1, &y1, &radius, &start_angle, &arc_sweep, &color) != 7) {
-      g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
-      return NULL;
-    }
+  if (fileformat_ver >= 3) {
 
-    arc_width = 0;
-    arc_end   = END_NONE;
-    arc_type  = TYPE_SOLID;
-    arc_space = -1;
-    arc_length= -1;
-  }
-  else {
-    if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d", &type,
-               &x1, &y1, &radius, &start_angle, &arc_sweep, &color,
-               &arc_width, &arc_end, &arc_type, &arc_length, &arc_space) != 12)
+    if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+               &type, &x1, &y1, &radius, &start_angle, &arc_sweep, &color,
+               &arc_width, &arc_end, &arc_type, &arc_length, &arc_space,
+               &arc_fill, &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 18)
     {
       g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
       return NULL;
+    }
+  }
+  else {
+
+    /* set fill options to defaults for older file formats */
+    arc_fill   = FILLING_HOLLOW;
+    fill_width = 0;
+    angle1     = -1;
+    pitch1     = -1;
+    angle2     = -1;
+    pitch2     = -1;
+
+    if (release_ver <= VERSION_20000704) {
+      if (sscanf(buf, "%c %d %d %d %d %d %d", &type,
+        &x1, &y1, &radius, &start_angle, &arc_sweep, &color) != 7) {
+        g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
+        return NULL;
+      }
+
+        arc_width = 0;
+        arc_end   = END_NONE;
+        arc_type  = TYPE_SOLID;
+        arc_space = -1;
+        arc_length= -1;
+    }
+    else {
+      if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d", &type,
+        &x1, &y1, &radius, &start_angle, &arc_sweep, &color,
+        &arc_width, &arc_end, &arc_type, &arc_length, &arc_space) != 12)
+      {
+        g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse arc object"));
+        return NULL;
+      }
     }
   }
 
@@ -1483,12 +1508,12 @@ GedaObject *geda_arc_object_read (const char buf[], unsigned int release_ver,
   new_obj->line_options->line_length  = arc_length;
 
   /* set the fill options */
-  new_obj->fill_options->fill_type   = default_fill_type;
-  new_obj->fill_options->fill_width  = default_fill_width;
-  new_obj->fill_options->fill_angle1 = default_fill_angle1;
-  new_obj->fill_options->fill_angle2 = default_fill_angle2;
-  new_obj->fill_options->fill_pitch1 = default_fill_pitch1;
-  new_obj->fill_options->fill_pitch2 = default_fill_pitch2;
+  new_obj->fill_options->fill_type   = arc_fill;
+  new_obj->fill_options->fill_width  = fill_width;
+  new_obj->fill_options->fill_angle1 = angle1;
+  new_obj->fill_options->fill_angle2 = angle2;
+  new_obj->fill_options->fill_pitch1 = pitch1;
+  new_obj->fill_options->fill_pitch2 = pitch2;
 
   return new_obj;
 }
@@ -2033,9 +2058,12 @@ char *geda_arc_object_to_buffer(GedaObject *object)
 {
   int x, y, radius, start_angle, arc_sweep;
   int arc_width, arc_length, arc_space;
+  int fill_width, angle1, pitch1, angle2, pitch2;
   char *buf;
+
   LINE_END arc_end;
   LINE_TYPE arc_type;
+  OBJECT_FILLING arc_fill;
 
   /* radius, center and angles of the arc */
   radius      = object->arc->radius;
@@ -2051,10 +2079,20 @@ char *geda_arc_object_to_buffer(GedaObject *object)
   arc_length = object->line_options->line_length;
   arc_space  = object->line_options->line_space;
 
-  /* Describe an arc with post-20190401 file format */
-  buf = geda_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d", object->type,
-                          x, y, radius, start_angle, arc_sweep, object->color,
-                          arc_width, arc_end, arc_type, arc_length, arc_space);
+  /* filling parameters */
+  arc_fill   = object->arc->fill_options.fill_type;
+  fill_width = object->arc->fill_options.fill_width;
+  angle1     = object->arc->fill_options.fill_angle1;
+  pitch1     = object->arc->fill_options.fill_pitch1;
+  angle2     = object->arc->fill_options.fill_angle2;
+  pitch2     = object->arc->fill_options.fill_pitch2;
+
+  /* Describe an arc with post-20190401 file format 3 */
+  buf = geda_sprintf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+                      object->type,
+                      x, y, radius, start_angle, arc_sweep, object->color,
+                      arc_width, arc_end, arc_type, arc_length, arc_space,
+                      arc_fill, fill_width, angle1, pitch1, angle2, pitch2);
 
   return(buf);
 }

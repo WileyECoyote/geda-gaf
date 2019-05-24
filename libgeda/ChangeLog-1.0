@@ -1,10 +1,16 @@
 2019-05-24 Wiley E. Hill <wileyhill@gmail.com
 
+    * include/libgeda/defines.h: Increment file format version to 3; see below.
+
     * src/geda/geda_page: Revise geda_page_set_toplevel to check and release
       existing page->toplevel.
 
     * src/math/m_arc.c: Fix BUG, revise geda_math_arc_includes_point to handle
       arcs that wrap back around zero.
+
+    * src/object/o_arc_object.c: Revise geda_arc_object_read and geda_arc_
+      object_to_buffer to write filling options for GedaArcs and read the
+      options starting with file format 3.
 
 2019-05-23 Wiley E. Hill <wileyhill@gmail.com
 
