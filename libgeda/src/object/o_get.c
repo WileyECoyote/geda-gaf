@@ -496,7 +496,7 @@ bool geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, in
 }
 
 /*!
- * \brief count the lines of a text string
+ * \brief Count the lines of a text string
  * \par Function Description
  *  This function just counts the number of lines that are
  *  in the \a string.
@@ -583,7 +583,7 @@ const char *geda_object_get_attrib_value (GedaObject *object, const char *name)
 /*!
  * \brief Get List of Objects in List by GedaObject Type.
  * \par Function Description
- *  Returns a glist of objects, that are members of the \a olist that match
+ *  Returns a glist of objects that are members of the \a olist matching
  *  the given \a type. The returned glist must be freed with g_list_free.
  *
  * \param [in] olist A GList of Objects to search
