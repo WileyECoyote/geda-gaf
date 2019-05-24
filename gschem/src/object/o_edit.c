@@ -1151,7 +1151,7 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
  * \todo Consider launching a dialog to call this routine and pass
  *       list of objects and snap the user wants to use. Maybe just
  *       hack the old Grid snap dialog and hack the menus since the
- *       dialog does not work will in an action.
+ *       dialog does not work well inside an action.
  *
  */
 void o_edit_snap (GschemToplevel *w_current, const GList *object_list)
