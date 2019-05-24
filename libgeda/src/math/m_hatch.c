@@ -474,7 +474,7 @@ geda_math_hatch_object (GedaObject *object)
   fill_angle2  = object->fill_options->fill_angle2;
   fill_pitch2  = object->fill_options->fill_pitch2;
 
-  if ( fill_pitch1 > 0) { /* Handle mesh and hatch fill types */
+  if (fill_pitch1 > 0) { /* Handle mesh and hatch fill types */
 
     switch (fill_type) {
       case FILLING_MESH:
