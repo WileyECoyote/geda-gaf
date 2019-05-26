@@ -8,6 +8,7 @@
       attribute:
 
             * simulation/verilog/and7-1.sym
+            * simulation/verilog/and7-2.sym
 
 2019-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
