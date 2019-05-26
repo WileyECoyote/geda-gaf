@@ -303,46 +303,56 @@ msgstr "Pobierz konkretny obiekt atrybutu"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "Pobierz listę powiązanych obiektów atrybutów"
 
+# Set the value of a specified attribute object
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Ustaw wartość określonego obiektu atrybutu"
 
+# Refresh Objects attribute
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Odśwież atrybut obiektów"
 
+# Retrieve all objects connected to specific Object
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "Pobierz wszystkie obiekty połączone z określonym obiektem"
 
+# Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Pobierz listę punktów dla połączenia dla określonych obiektów"
 
+# Retrieve list of points of unconnected nodes for specified objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "Pobierz listę punktów niepołączonych węzłów dla określonych obiektów"
 
+# Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "Wpisz błąd, ignorując niepoprawny opcjonalny parametr 5\n"
 
+# get
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "dostać"
 
+# or set
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "lub ustaw"
 
+# An error occurred
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "Wystąpił błąd"
 
+# object was not created
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "obiekt nie został utworzony"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
