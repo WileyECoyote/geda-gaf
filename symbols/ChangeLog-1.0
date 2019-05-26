@@ -12,6 +12,11 @@
             * simulation/verilog/and8-1.sym
             * simulation/verilog/and8-2.sym
 
+    * simulation/vhdl/and2-1.sym: Add description attribute, revise pin
+      attributes:
+
+            * simulation/vhdl/and2-1.sym
+
 2019-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD5308-1.sym: Add symbol; 10 Bit DAC, 2.5V to 5.5V Octal
