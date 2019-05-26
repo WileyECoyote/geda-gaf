@@ -4,6 +4,11 @@
 
     * mitsubishi/M81735FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
 
+    * simulation/verilog: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/and7-1.sym
+
 2019-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD5308-1.sym: Add symbol; 10 Bit DAC, 2.5V to 5.5V Octal
