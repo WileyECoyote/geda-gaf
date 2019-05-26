@@ -16,6 +16,7 @@
       attributes:
 
             * simulation/vhdl/and2-1.sym
+            * simulation/vhdl/and3-1.sym
 
 2019-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
