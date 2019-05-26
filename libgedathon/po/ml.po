@@ -335,46 +335,62 @@ msgstr "ഒരു പ്രത്യേക ആട്രിബ്യൂട്ട�
 msgid "Retrieve list of associated attribute Objects"
 msgstr "അനുബന്ധ ആട്രിബ്യൂട്ട് ഒബ്ജക്റ്റുകളുടെ ലിസ്റ്റ് വീണ്ടെടുക്കുക"
 
+# Set the value of a specified attribute object
+# nirddiṣṭa āṭribyūṭṭ objakṟṟinṟe mūlyaṁ sajjamākkuka
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "നിർദ്ദിഷ്ട ആട്രിബ്യൂട്ട് ഒബ്ജക്റ്റിന്റെ മൂല്യം സജ്ജമാക്കുക"
 
+# Refresh Objects attribute
+# vastukkaḷuṭe guṇaviśēṣata ṟiphraṣ ceyyuka
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "വസ്തുക്കളുടെ ഗുണവിശേഷത റിഫ്രഷ് ചെയ്യുക"
 
+# Retrieve all objects connected to specific 0bject
+# nirddiṣṭa objakṟṟumāyi bandhappeṭṭa ellā vastukkaḷeyuṁ vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "നിർദ്ദിഷ്ട ഒബ്ജക്റ്റുമായി ബന്ധപ്പെട്ട എല്ലാ വസ്തുക്കളെയും വീണ്ടെടുക്കുക"
 
+# Retrieve list of points for junction for specified objects
+# niścita vastukkaḷkkāyi jaṅgṣan pēāyinṟukaḷ vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "നിശ്ചിത വസ്തുക്കൾക്കായി ജംഗ്ഷൻ പോയിന്റുകൾ വീണ്ടെടുക്കുക"
 
+# Retrieve list of points of unconnected nodes for specified objects
+# nirddiṣṭa objakṟṟukaḷkkāyi nēāṇ-nēāṇ-nēāṇ pēāyinṟukaḷ pēāyinṟukaḷ vīṇṭeṭukkuka
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "നിർദ്ദിഷ്ട ഒബ്ജക്റ്റുകൾക്കായി നോൺ-നോൺ-നോൺ പോയിന്റുകൾ പോയിന്റുകൾ വീണ്ടെടുക്കുക"
 
+# Type error, ignoring invalid optional parameter 5
+# asādhuvāya ōpṣaṇal pārāmīṟṟar 5 avagaṇikkunna taraṁ teṟṟ
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "അസാധുവായ ഓപ്ഷണൽ പാരാമീറ്റർ 5 അവഗണിക്കുന്ന തരം തെറ്റ്\n"
 
+# get; nēṭuka
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "നേടുക"
 
+# or set; alleṅkil sajjamākkuka
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "അല്ലെങ്കിൽ സജ്ജമാക്കുക"
 
+# An error occurred; oru piśak sambhaviccu
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "ഒരു പിശക് സംഭവിച്ചു"
 
+# object was not created; objakṟṟ sr̥ṣṭiccilla
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "ഒബ്ജക്റ്റ് സൃഷ്ടിച്ചില്ല"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
