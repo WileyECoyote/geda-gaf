@@ -11,6 +11,11 @@
 
     * mitsubishi/M81736FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
 
+    * simulation/verilog: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/and9-1.sym
+
 2019-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * mitsubishi/M81734FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
