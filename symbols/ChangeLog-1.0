@@ -37,7 +37,7 @@
             * simulation/verilog/and8-1.sym
             * simulation/verilog/and8-2.sym
 
-    * simulation/vhdl/and2-1.sym: Add description attribute, revise pin
+    * simulation/vhdl/and?-1.sym: Add description attribute, revise pin
       attributes:
 
             * simulation/vhdl/and2-1.sym
