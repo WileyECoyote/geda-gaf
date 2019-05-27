@@ -17,6 +17,12 @@
             * simulation/verilog/and9-1.sym
             * simulation/verilog/and9-2.sym
 
+    * simulation/vhdl/and?-1.sym: Add description attribute, revise pin
+      attributes:
+
+            * simulation/vhdl/and5-1.sym
+            * simulation/vhdl/and6-1.sym
+
 2019-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * mitsubishi/M81734FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
