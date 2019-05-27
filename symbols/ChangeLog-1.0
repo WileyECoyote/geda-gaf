@@ -2,6 +2,8 @@
 
     * diode/zener53/zener_150_1N5383B.sym: Update voltage value.
 
+    * diode/zener53/zener_160_1N5384B.sym: Update voltage value.
+
 2019-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * mitsubishi/M81734FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
