@@ -15,6 +15,7 @@
       attribute:
 
             * simulation/verilog/and9-1.sym
+            * simulation/verilog/and9-2.sym
 
 2019-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
