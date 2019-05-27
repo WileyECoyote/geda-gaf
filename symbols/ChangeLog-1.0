@@ -9,6 +9,8 @@
             * diode/zener53/zener_170_1N5385B.sym
             * diode/zener53/zener_180_1N5386B.sym
 
+    * mitsubishi/M81736FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
+
 2019-05-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * mitsubishi/M81734FP-1.sym: Add symbol; 600 volt half-bridge gate driver.
