@@ -251,62 +251,7 @@ geda_tearoff_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 
 #else /* Gtk-3 */
 
-static void
-geda_tearoff_menu_item_get_preferred_width (GtkWidget *widget,
-                                            int       *minimum,
-                                            int       *natural)
-{
-  GtkStyleContext *context;
-  unsigned int border_width;
-  GtkBorder padding;
-  GtkStateFlags state;
-
-  context = gtk_widget_get_style_context (widget);
-  state = gtk_widget_get_state_flags (widget);
-
-  gtk_style_context_get_padding (context, state, &padding);
-  border_width = geda_get_container_border_width (widget);
-
-  *minimum = *natural = (border_width + BORDER_SPACING) * 2 + padding.left + padding.right;
-}
-
-static void
-geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
-                                             int       *minimum,
-                                             int       *natural)
-{
-  GtkStyleContext *context;
-  GtkWidget       *parent;
-  GtkBorder        padding;
-  GtkStateFlags    state;
-
-  unsigned int border_width;
-
-  context = gtk_widget_get_style_context (widget);
-  state   = gtk_widget_get_state_flags (widget);
-
-  gtk_style_context_get_padding (context, state, &padding);
-
-  border_width = geda_get_container_border_width (widget);
-
-  *minimum = *natural = (border_width * 2) + padding.top + padding.bottom;
-
-  parent = gtk_widget_get_parent (widget);
-
-  if (GEDA_IS_MENU (parent) && ((GedaMenu*)parent)->torn_off) {
-
-    *minimum += ARROW_SIZE;
-    *natural += ARROW_SIZE;
-  }
-  else {
-
-    *minimum += padding.top + 4;
-    *natural += padding.top + 4;
-  }
-}
-
-static bool
-geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
+static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaMenuItem    *menu_item;
   GtkStyleContext *context;
@@ -407,23 +352,61 @@ geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   return FALSE;
 }
 
-#endif
+static void
+geda_tearoff_menu_item_get_preferred_width (GtkWidget *widget,
+                                            int       *minimum,
+                                            int       *natural)
+{
+  GtkStyleContext *context;
+  unsigned int border_width;
+  GtkBorder padding;
+  GtkStateFlags state;
+
+  context = gtk_widget_get_style_context (widget);
+  state = gtk_widget_get_state_flags (widget);
+
+  gtk_style_context_get_padding (context, state, &padding);
+  border_width = geda_get_container_border_width (widget);
+
+  *minimum = *natural = (border_width + BORDER_SPACING) * 2 + padding.left + padding.right;
+}
 
 static void
-geda_tearoff_menu_item_activate (GedaMenuItem *menu_item)
+geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
+                                             int       *minimum,
+                                             int       *natural)
 {
-  GedaMenu  *parent;
-  GtkWidget *widget;
+  GtkStyleContext *context;
+  GtkWidget       *parent;
+  GtkBorder        padding;
+  GtkStateFlags    state;
 
-  widget = (GtkWidget*)menu_item;
-  parent = (GedaMenu*)gtk_widget_get_parent (widget);
+  unsigned int border_width;
 
-  if (GEDA_IS_MENU (parent)) {
-    gtk_widget_queue_resize (widget);
-    geda_menu_set_tearoff_state (parent, !geda_menu_get_tearoff_state (parent));
+  context = gtk_widget_get_style_context (widget);
+  state   = gtk_widget_get_state_flags (widget);
+
+  gtk_style_context_get_padding (context, state, &padding);
+
+  border_width = geda_get_container_border_width (widget);
+
+  *minimum = *natural = (border_width * 2) + padding.top + padding.bottom;
+
+  parent = gtk_widget_get_parent (widget);
+
+  if (GEDA_IS_MENU (parent) && ((GedaMenu*)parent)->torn_off) {
+
+    *minimum += ARROW_SIZE;
+    *natural += ARROW_SIZE;
+  }
+  else {
+
+    *minimum += padding.top + 4;
+    *natural += padding.top + 4;
   }
 }
 
+#endif
 static void
 tearoff_state_changed (GedaMenu *menu, GParamSpec *pspec, void *data)
 {
@@ -457,6 +440,20 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
     g_signal_connect (parent, "notify::tearoff-state",
                       G_CALLBACK (tearoff_state_changed),
                       tearoff_menu_item);
+  }
+}
+
+static void geda_tearoff_menu_item_activate (GedaMenuItem *menu_item)
+{
+  GedaMenu  *parent;
+  GtkWidget *widget;
+
+  widget = (GtkWidget*)menu_item;
+  parent = (GedaMenu*)gtk_widget_get_parent (widget);
+
+  if (GEDA_IS_MENU (parent)) {
+    gtk_widget_queue_resize (widget);
+    geda_menu_set_tearoff_state (parent, !geda_menu_get_tearoff_state (parent));
   }
 }
 
