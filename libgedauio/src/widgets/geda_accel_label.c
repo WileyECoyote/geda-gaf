@@ -76,10 +76,11 @@
  * set (see GtkAccelFlags).
  * A #GedaAccelLabel can display multiple accelerators and even signal names,
  * though it is almost always used to display just one accelerator key.
+ * \par
+ * Example: Creating a simple menu item with an accelerator key.
+ * \par
  * <example>
  * \code{.c}
- * <title>Creating a simple menu item with an accelerator key.</title>
- *
  *   GtkWidget *save_item;
  *   GtkAccelGroup *accel_group;
  *
