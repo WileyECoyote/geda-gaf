@@ -1101,45 +1101,67 @@ check_query(void)
   return result;
 }
 
-int check_methods (void)
+int
+check_line_object_mirror(GedaObject *object, int x1, int y1, int x2, int y2)
 {
-  int x1, y1, x2, y2;
+  int mx1, my1, mx2, my2;
   int result = 0;
-
-  GedaObject *object = geda_line_object_new(3, 500, 500, 500, 1000);
 
   /* === Function 19: geda_line_object_mirror  === */
 
   geda_line_object_mirror(object, 1000, 750);
 
+  mx1 = geda_line_object_get_x1 (object);
+  my1 = geda_line_object_get_y1 (object);
 
-  x1 = geda_line_object_get_x1 (object);
-  y1 = geda_line_object_get_y1 (object);
+  mx2 = geda_line_object_get_x2 (object);
+  my2 = geda_line_object_get_y2 (object);
 
-  x2 = geda_line_object_get_x2 (object);
-  y2 = geda_line_object_get_y2 (object);
+  if (mx1 != 1500) {
+    fprintf(stderr, "FAILED: (O111902X1) %s line_object_mirror %d\n", TOBJECT, mx1);
+    result++;
+  }
 
-  if (x1 != 1500) {
-    fprintf(stderr, "FAILED: (O111902X1) %s line_object_mirror %d\n", TOBJECT, x1);
+  if (my1 != 500) {
+    fprintf(stderr, "FAILED: (O111902Y1) %s line_object_mirror %d\n", TOBJECT, my1);
     result++;
   }
-  if (y1 != 500) {
-    fprintf(stderr, "FAILED: (O111902Y1) %s line_object_mirror %d\n", TOBJECT, y1);
+
+  if (mx2 != 1500) {
+    fprintf(stderr, "FAILED: (O111902X2) %s line_object_mirror %d\n", TOBJECT, mx2);
     result++;
   }
-  if (x2 != 1500) {
-    fprintf(stderr, "FAILED: (O111902X2) %s line_object_mirror %d\n", TOBJECT, x2);
+
+  if (my2 != 1000) {
+    fprintf(stderr, "FAILED: (O111902Y2) %s line_object_mirror %d\n", TOBJECT, my2);
     result++;
   }
-  if (y2 != 1000) {
-    fprintf(stderr, "FAILED: (O111902Y2) %s line_object_mirror %d\n", TOBJECT, y2);
-    result++;
-  }
+
+  return result;
+}
+
+int check_methods (void)
+{
+  int x1, y1, x2, y2;
+  int result = 0;
+
+  x1 = 500;
+  y1 = 500;
+  x2 = 500;
+  y2 = 1000;
+
+  GedaObject *object = geda_line_object_new(3, x1, y1, x2, y2);
+
+  int fail = 0;
+
+  fail += check_line_object_mirror(object, x1, y1, x2, y2);
 
   /* === Function 20: geda_line_object_modify  === */
   /* === Function 29: geda_line_object_rotate  === */
   /* === Function 39: geda_line_object_scale  === */
   /* === Function 42: geda_line_object_translate  === */
+
+  result = result + fail;
 
   g_object_unref (object);
 
