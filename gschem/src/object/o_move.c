@@ -281,10 +281,11 @@ void o_move_end(GschemToplevel *w_current)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Gschem Cancel Move Operation
+ * \par Function Description
+ * Cancels the move operation by canceling the action (event) handler,
+ * destorying the stretch_list, and free the placelist.
  */
 void o_move_cancel (GschemToplevel *w_current)
 {
