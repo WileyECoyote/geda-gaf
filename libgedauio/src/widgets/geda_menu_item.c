@@ -563,6 +563,8 @@ static void geda_menu_item_get_property (GObject     *object,
 }
 
 /* Widget Class Overrides */
+
+/*! \internal widget_class->enter_notify_event */
 static bool geda_menu_item_enter (GtkWidget *widget, GdkEventCrossing *event)
 {
   g_return_val_if_fail (event != NULL, FALSE);
@@ -570,12 +572,15 @@ static bool geda_menu_item_enter (GtkWidget *widget, GdkEventCrossing *event)
   return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent *) event);
 }
 
+/*! \internal widget_class->leave_notify_event */
 static bool geda_menu_item_leave (GtkWidget *widget, GdkEventCrossing *event)
 {
   g_return_val_if_fail (event != NULL, FALSE);
 
   return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent*) event);
 }
+
+/*! \internal widget_class->map */
 static void geda_menu_item_map (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = (GedaMenuItem*)widget;
@@ -586,6 +591,7 @@ static void geda_menu_item_map (GtkWidget *widget)
   gdk_window_show (priv->event_window);
 }
 
+/*! \internal widget_class->unmap */
 static void geda_menu_item_unmap (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = (GedaMenuItem*)widget;
@@ -596,7 +602,7 @@ static void geda_menu_item_unmap (GtkWidget *widget)
   ((GtkWidgetClass*)geda_menu_item_parent_class)->unmap (widget);
 }
 
-
+/*! \internal widget_class->hide_all */
 static void geda_menu_item_hide_all (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);
@@ -612,6 +618,7 @@ static void geda_menu_item_hide_all (GtkWidget *widget)
   }
 }
 
+/*! \internal widget_class->show_all */
 static void geda_menu_item_show_all (GtkWidget *widget)
 {
   GedaMenuItem *menu_item = GEDA_MENU_ITEM(widget);

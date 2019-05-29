@@ -1,5 +1,7 @@
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu_item.c: Add internal widget_class documentation.
+
     * src/widgets/geda_toggle_action.c: Reformat function documentation,
       revise documentation for geda_toggle_action_finalize.
 
