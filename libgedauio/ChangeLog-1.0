@@ -12,7 +12,8 @@
 
     * src/widgets/geda_tearoff_menu_item.c: Reorganize functions to group the
       widget class over-rides together and in the same order as assigned in
-      geda_tearoff_menu_item_class_init.
+      geda_tearoff_menu_item_class_init and add internal widget_class remarks/
+      documentation.
 
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 

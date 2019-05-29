@@ -110,8 +110,11 @@ static void *geda_tearoff_menu_item_parent_class = NULL;
 
 static GHashTable *tearoff_item_hash = NULL;
 
+/* Widget Class Overrides */
+
 #if GTK_MAJOR_VERSION < 3
 
+/*! \internal widget_class->size_request */
 static void
 geda_tearoff_menu_item_size_request (GtkWidget      *widget,
                                      GtkRequisition *requisition)
@@ -241,6 +244,7 @@ geda_tearoff_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   }
 }
 
+/*! \internal widget_class->expose_event */
 static int
 geda_tearoff_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 {
@@ -251,6 +255,7 @@ geda_tearoff_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
 
 #else /* Gtk-3 */
 
+/*! \internal widget_class->draw */
 static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaMenuItem    *menu_item;
@@ -352,6 +357,7 @@ static bool geda_tearoff_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   return FALSE;
 }
 
+/*! \internal widget_class->get_preferred_width */
 static void
 geda_tearoff_menu_item_get_preferred_width (GtkWidget *widget,
                                             int       *minimum,
@@ -371,6 +377,7 @@ geda_tearoff_menu_item_get_preferred_width (GtkWidget *widget,
   *minimum = *natural = (border_width + BORDER_SPACING) * 2 + padding.left + padding.right;
 }
 
+/*! \internal widget_class->get_preferred_height */
 static void
 geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
                                              int       *minimum,
@@ -407,6 +414,8 @@ geda_tearoff_menu_item_get_preferred_height (GtkWidget *widget,
 }
 
 #endif
+
+/*! \internal callback */
 static void
 tearoff_state_changed (GedaMenu *menu, GParamSpec *pspec, void *data)
 {
@@ -420,6 +429,7 @@ tearoff_state_changed (GedaMenu *menu, GParamSpec *pspec, void *data)
   }
 }
 
+/*! \internal widget_class->parent_set */
 static void
 geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
 {
@@ -443,6 +453,7 @@ geda_tearoff_menu_item_parent_set (GtkWidget *widget, GtkWidget *previous)
   }
 }
 
+/*! \internal menu_item_class->activate */
 static void geda_tearoff_menu_item_activate (GedaMenuItem *menu_item)
 {
   GedaMenu  *parent;
