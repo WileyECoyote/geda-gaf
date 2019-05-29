@@ -1,3 +1,7 @@
+2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_toggle_action.c: Reformat function documentation.
+
 2019-05-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Add internal widget_class documentation.

@@ -81,13 +81,13 @@ static void geda_toggle_action_get_property (GObject      *object,
                                              GValue       *value,
                                              GParamSpec   *pspec);
 
-/*! \brief GObject finalise handler
+/*!
+ * \brief GObject finalise handler
+ * \par Function Description
  *
- *  \par Function Description
  *  Just before the GedaToggleAction GObject is finalized, free our
  *  allocated data, and then chain up to the parent's finalize handler.
- *
- *  \param [in] object The GObject being finalized.
+ * \param [in] object The GObject being finalized.
  */
 static void
 geda_toggle_action_finalize (GObject *object)
@@ -108,17 +108,17 @@ geda_toggle_action_finalize (GObject *object)
   ((GObjectClass*)geda_toggle_action_parent_class)->finalize (object);
 }
 
-/*! \brief GObject property setter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property setter function
+ * \par Function Description
  *  Setter function for GedaToggleAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [in]  object       The GObject whose properties we are setting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
 geda_toggle_action_set_property (GObject *object,
@@ -135,17 +135,17 @@ geda_toggle_action_set_property (GObject *object,
   }
 }
 
-/*! \brief GObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property getter function
+ * \par Function Description
  *  Getter function for GedaToggleAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
+ * \param [in]  object       The GObject whose properties we are getting
+ * \param [in]  property_id  The numeric id. under which the property was
  *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void
 geda_toggle_action_get_property (GObject *object, unsigned int property_id,
@@ -207,8 +207,9 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   ((GtkActionClass*)geda_toggle_action_parent_class)->connect_proxy (action, proxy);
 }
 
-/*! \brief GedaToggleAction Class Initializer
- *  \par Function Description
+/*!
+ * \brief GedaToggleAction Class Initializer
+ * \par Function Description
  *  Called to initialize the class instance.
  *
  * \param [in] class A GedaToggleActionClass Object
@@ -242,9 +243,9 @@ geda_toggle_action_class_init (void *class, void *data)
 
 }
 
-/*! \brief Initialize new GedaToggleAction data structure instance.
- *
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaToggleAction data structure instance.
+ * \par Function Description
  *  This function is call after the GedaToggleActionClass is created
  *  to initialize the data structure.
  *
@@ -261,14 +262,14 @@ geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
   g_hash_table_replace (toggle_action_hash, instance, instance);
 }
 
-/*! \brief Function to retrieve GedaToggleAction's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaToggleAction's Type identifier.
+ * \par Function Description
  *  Function to retrieve #GedaToggleAction Type identifier. On the first
  *  call, this registers the #GedaToggleAction in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return GedaType identifier associated with a GedaToggleAction.
+ * \return GedaType identifier associated with a GedaToggleAction.
  */
 GedaType geda_toggle_action_get_type (void)
 {
@@ -309,9 +310,9 @@ bool is_a_geda_toggle_action (GedaToggleAction *action)
   return FALSE;
 }
 
-/*! \brief Create a New GedaToggleAction
- *
- *  \par Function Description
+/*!
+ * \brief Create a New GedaToggleAction
+ * \par Function Description
  *  This function creates and returns a new GedaToggleAction
  *
  * \param [in] name:     A unique name for the action
@@ -321,7 +322,6 @@ bool is_a_geda_toggle_action (GedaToggleAction *action)
  * \param [in] multikey_accel: The accel char string
  *
  * Return value: a new GedaToggleAction
- *
  */
 GedaToggleAction *
 geda_toggle_action_new (const char *name,
