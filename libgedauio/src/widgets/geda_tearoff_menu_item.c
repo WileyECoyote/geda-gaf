@@ -629,6 +629,7 @@ is_a_geda_tearoff_menu_item (GedaTearoffMenuItem *menu_item)
   if ((menu_item != NULL) && (tearoff_item_hash != NULL)) {
     return g_hash_table_lookup(tearoff_item_hash, menu_item) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -645,6 +646,7 @@ bool geda_tearoff_menu_is_active (GtkWidget *menu)
   if (GEDA_IS_TEAROFF_MENU_ITEM (menu)) {
     return (GEDA_MENU(menu)->tearoff_active);
   }
+
   return FALSE;
 }
 
@@ -661,8 +663,10 @@ bool geda_tearoff_menu_is_torn (GtkWidget *menu)
 
     GedaTearoffMenuItem *tearoff_menu_item = GEDA_TEAROFF_MENU_ITEM (menu);
     GedaTearoffMenuItemData *priv = tearoff_menu_item->priv;
+
     return priv->torn_off;
   }
+
   return FALSE;
 }
 
