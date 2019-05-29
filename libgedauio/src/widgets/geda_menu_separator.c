@@ -27,9 +27,9 @@ static GHashTable *separator_hash_table = NULL;
 static void *geda_menu_separator_parent_class = NULL;
 
 /*!
- * \brief gobject_class->finalize a GedaSeparator object
+ * \brief gobject_class->finalize a GedaMenuSeparator object
  * \par Function Description
- *  Releases resources associated with the GedaSeparator object.
+ *  Releases resources associated with the GedaMenuSeparator object.
  *  The object should not be referenced after this function
  *  is executes.
  */
