@@ -153,7 +153,7 @@ geda_toggle_action_get_property (GObject *object, unsigned int property_id,
 {
   GedaToggleAction *action = (GedaToggleAction*)object;
 
-  if(property_id == PROP_MULTIKEY_ACCEL) {
+  if (property_id == PROP_MULTIKEY_ACCEL) {
     g_value_set_string (value, action->multikey_accel);
   }
 }
