@@ -3,6 +3,7 @@
     * src/object/o_move.c: Update function documentation for:
 
         * o_move_cancel
+        * o_move_invalidate_rubber
 
 2019-05-22 Wiley E. Hill <wileyhill@gmail.com>
 

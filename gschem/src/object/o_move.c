@@ -310,10 +310,11 @@ void o_move_cancel (GschemToplevel *w_current)
   o_undo_callback(w_current, UNDO_ACTION);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Invalidate Temporary drawing artifacts While Moving
+ * \par Function Description
+ *  Calls o_place_invalidate_rubber to invalidate to objects and
+ *  then and invalidate any nets being stretched.
  */
 void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
