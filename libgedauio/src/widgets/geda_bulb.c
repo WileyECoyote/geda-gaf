@@ -55,9 +55,9 @@
  * A single bulb button performs the same basic function as a GtkCheckButton,
  * as its position in the object hierarchy reflects. Only when multiple bulb
  * buttons are grouped together that they perform a different role in the user
- * interface. When bulb buttons are grouped and one is selected, all other bulb
- * in the same group are deselected. #GedaBulb are user to offer user a choice
- * from many options.
+ * interface. When bulb buttons are grouped and one is selected, all other bulbs
+ * in the same group are deselected. #GedaBulb are used to offer user a choice
+ * from multiple options.
  * \par
  * Bulb widgets are created using one of the functions in the GedaBulb-Creators
  * group, passing %NULL as the argument if this is the first bulb in a group.

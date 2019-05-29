@@ -4,6 +4,8 @@
       to eliminate the <title> </title> pair, because these were not interpreted
       in the output.
 
+    * src/widgets/geda_bulb.c: Fix grammar in the goup documentation.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add internal widget_class documentation.
