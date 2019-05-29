@@ -6,6 +6,9 @@
     * tests/test_line_object.c Add check_line_object_mirror and move
       checks for geda_line_object_mirror.
 
+    * tests/test_object_list.c: Add Y scale factor and extend checks for
+      scaling box objects.
+
 2019-05-24 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/defines.h: Increment file format version to 3; see below.
@@ -28,7 +31,7 @@
     * tests/test_complex_object.c: Extend checks for geda_complex_object_
       get_nearest_point.
 
-    * libgeda/tests/test_line_object.c Add checks for geda_line_object_mirror.
+    * tests/test_line_object.c Add checks for geda_line_object_mirror.
 
 2019-05-22 Wiley E. Hill <wileyhill@gmail.com
 
@@ -37,8 +40,8 @@
 
     * tests/test_line_object.c: Add function check_methods.
 
-    * test_object_list.c: Reverse backwards upper/lower coordinates for
-      geda_box_object_new in check_object_list_scale and extend checks
+    * tests/test_object_list.c: Reverse backwards upper/lower coordinates
+      for geda_box_object_new in check_object_list_scale and extend checks
       for geda_object_list_scale to check boxes.
 
 2019-05-21 Wiley E. Hill <wileyhill@gmail.com>

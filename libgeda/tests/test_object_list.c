@@ -799,7 +799,7 @@ check_object_list_scale (GedaToplevel *toplevel)
 
   /* === Function 06: geda_object_list_scale  === */
 
-  geda_object_list_scale(list, 10, 0);
+  geda_object_list_scale(list, 10, 10);
 
   /* === object1->arc === */
 
@@ -816,11 +816,16 @@ check_object_list_scale (GedaToplevel *toplevel)
   int sy2 = geda_box_object_get_upper_y(object2);
 
   if (sx1 + 350 || sx2 - 650) {
-    fprintf(stderr, "FAILED: (O120602A) geda_object_list_scale: ");
+    fprintf(stderr, "FAILED: (O120602X) geda_object_list_scale: ");
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
   }
 
+  if (sy1 + 350 || sy2 - 200) {
+    fprintf(stderr, "FAILED: (O120602Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
   return result;
 }
 
