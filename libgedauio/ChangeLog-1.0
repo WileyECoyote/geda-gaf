@@ -8,6 +8,8 @@
 
     * src/widgets/geda_menu_bar.c: Revise group title and make upper case.
 
+    * src/widgets/geda_separator.c: Fix typo; update the module documentation.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add internal widget_class documentation.
