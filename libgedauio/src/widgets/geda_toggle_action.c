@@ -84,9 +84,9 @@ static void geda_toggle_action_get_property (GObject      *object,
 /*!
  * \brief GObject finalise handler
  * \par Function Description
+ *  Just before the GedaToggleAction GObject is finalized, free
+ *  allocated data, and chain up to the parent's finalize handler.
  *
- *  Just before the GedaToggleAction GObject is finalized, free our
- *  allocated data, and then chain up to the parent's finalize handler.
  * \param [in] object The GObject being finalized.
  */
 static void
