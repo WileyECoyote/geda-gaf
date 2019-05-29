@@ -6,6 +6,8 @@
 
     * src/widgets/geda_bulb.c: Fix grammar in the goup documentation.
 
+    * src/widgets/geda_menu_bar.c: Revise group title and make upper case.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add internal widget_class documentation.

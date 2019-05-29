@@ -41,7 +41,7 @@
 #include "../../include/geda_uio_functions.h"
 #include "../../include/gettext.h"
 
-/** \defgroup geda-menu-bar A menu bar widget
+/** \defgroup geda-menu-bar A Menu Bar Object
  * @{
  * \brief Implmentation of GedaMenuBar Class
  * \par Description
