@@ -41,11 +41,17 @@
 #include "../../include/gettext.h"
 
 /**
- * \brief GedaToolbar - A Seperator for Menus and Toolbars
+ * \brief GedaToolbar - A Toolbar Super Class
  * \par
- * A visual widget use to separate items in menu and toolbars.
+ *  A GedaToolbar is a widget typically used to hold toolbar buttons.
+ *  The GedaToolbar is derived from GtkToolbar class. GtkToolbar widgets
+ *  ignore their GtkRcStyle->font_desc property, and hence do not enforce
+ *  uniformity of labels within the children. GedaToolbar objects have a
+ *  "font-size" property and each object that is added to the toolbar is
+ *  interrogated and if a label is found, the font size of the label is
+ *  set the value of GedaToolbar "font-size" property.
  *
- * \defgroup GedaToolbar Geda Toolbar
+ * \defgroup GedaToolbar Geda Toolbar Object
  * @{
  */
 

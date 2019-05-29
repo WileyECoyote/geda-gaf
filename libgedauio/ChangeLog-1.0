@@ -15,6 +15,8 @@
       geda_tearoff_menu_item_class_init and add internal widget_class remarks/
       documentation.
 
+    * src/widgets/geda_toolbar.c: Update module documentation and group title.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add internal widget_class documentation.
