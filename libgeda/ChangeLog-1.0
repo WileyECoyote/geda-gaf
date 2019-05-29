@@ -1,3 +1,8 @@
+2019-05-28 Wiley E. Hill <wileyhill@gmail.com
+
+    * tests/test_complex_object.c: Extend checks for geda_complex_object_
+      get_nearest_point.
+
 2019-05-24 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/defines.h: Increment file format version to 3; see below.

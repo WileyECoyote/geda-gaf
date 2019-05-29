@@ -617,6 +617,26 @@ int check_get_nearest_point(GedaObject *object)
     }
   }
 
+  /* South East */
+
+  x = 4500; y = 100;
+  answer = geda_complex_object_get_nearest_point(object, x, y, &nx, &ny);
+
+  if (!answer) {
+    fprintf(stderr, "FAILED: (O080408A) get_nearest: %s\n", TOBJECT);
+    result++;
+  }
+  else {
+    if (nx - 4100) {
+      fprintf(stderr, "FAILED: (O080408X) get_nearest: %s, nx=%d\n", TOBJECT, nx);
+      result++;
+    }
+    if (ny - 500) {
+      fprintf(stderr, "FAILED: (O080408Y) get_nearest: %s, ny=%d\n", TOBJECT, ny);
+      result++;
+    }
+  }
+
   return result;
 }
 
