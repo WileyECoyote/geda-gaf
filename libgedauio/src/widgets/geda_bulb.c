@@ -72,7 +72,7 @@
  * \par
  * Example: How to create a group of two bulb buttons.
  * \par
- * \code
+ * \code{.c}
  * void create_bulbs (void) {
  *
  *    GtkWidget *window, *bulb1, *bulb2, *box, *entry;
