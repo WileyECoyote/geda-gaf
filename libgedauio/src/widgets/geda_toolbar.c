@@ -85,6 +85,7 @@ geda_toolbar_get_property (GObject     *object,
     case PROP_ORIENTATION:
       g_value_set_int (value, toolbar->orientation);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -104,6 +105,7 @@ geda_toolbar_set_property (GObject      *object,
       toolbar->orientation = g_value_get_int (value);
       gtk_widget_queue_resize (GTK_WIDGET (object));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
