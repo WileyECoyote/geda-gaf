@@ -3,6 +3,8 @@
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with
       paragraph tags.
 
+    * src/widgets/geda_menu_separator.c: Add class/group documentation.
+
 2019-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise the example in the documentation

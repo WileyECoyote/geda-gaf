@@ -6,6 +6,9 @@
 /** \defgroup geda-menu-separator GedaMenuSeparator Object
  * @{
  * \brief Implmentation of GedaMenuSeparator Class
+ *  A GedaMenuSeparator is non-selectable GedaMenuItem with no event window or
+ *  submenu widget, accel path, mnemonic, or label. Is always left justified
+ *  and cannot be on a menubar.
  *
  * \class GedaMenuSeparator geda_menu_separator.h "include/geda_menu_separator.h"
  * \implements GedaMenuItem
