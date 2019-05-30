@@ -1423,7 +1423,7 @@ geda_menu_focus (GtkWidget *widget, GtkDirectionType direction)
 }
 
 /* widget_class->grab_notify */
-static void 
+static void
 geda_menu_grab_notify (GtkWidget *widget, bool was_grabbed)
 {
   GtkWidget      *toplevel;
