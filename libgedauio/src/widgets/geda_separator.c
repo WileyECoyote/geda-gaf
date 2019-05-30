@@ -275,9 +275,7 @@ geda_separator_draw (GtkWidget *widget, cairo_t *cr)
 /*!
  * \brief gobject_class->finalize a GedaSeparator object
  * \par Function Description
- *  Releases resources associated with the GedaSeparator object.
- *  The object should not be referenced after this function
- *  is executes.
+ *  The object should not be referenced after this function executes.
  */
 static void
 geda_separator_finalize (GObject *object)
