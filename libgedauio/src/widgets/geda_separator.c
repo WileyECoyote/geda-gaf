@@ -282,16 +282,12 @@ geda_separator_draw (GtkWidget *widget, cairo_t *cr)
 static void
 geda_separator_finalize (GObject *object)
 {
-#ifndef DEBUG_GEDA_SEPARATOR
-
   if (g_hash_table_remove (separator_hash, object)) {
     if (!g_hash_table_size (separator_hash)) {
       g_hash_table_destroy (separator_hash);
       separator_hash = NULL;
     }
   }
-
-#endif /* DEBUG_GEDA_SEPARATOR */
 
   G_OBJECT_CLASS (geda_separator_parent_class)->finalize (object);
 }

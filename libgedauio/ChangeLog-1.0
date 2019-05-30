@@ -6,6 +6,8 @@
     * src/widgets/geda_menu_separator.c: Add class/group documentation and
       remove DEBUG_GEDA_SEPARATOR conditional.
 
+    * src/widgets/geda_separator.c: Remove DEBUG_GEDA_SEPARATOR conditional.
+
 2019-05-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise the example in the documentation
