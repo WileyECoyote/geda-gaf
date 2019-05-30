@@ -61,12 +61,12 @@
  * widget. A thin "ghost" outline is drawn in the original location of the
  * handlebox. By dragging the separate window back to its original location,
  * the floating window can be re-attached.
- *
+ * \par
  * When re-attaching the float window to the ghost, the float window must be
  * aligned along one of the edges, the "snap edge", which can be specified
  * by the application programmer explicitly, or the code will determine a
  * reasonable default based on the handle position.
- *
+ * \par
  * To make detaching and reattaching the handlebox as minimally confusing
  * as possible to the user, it is important to set the snap edge so that
  * the snap edge does not move when the handlebox is deattached. For
@@ -74,7 +74,6 @@
  * when the handlebox is detached, the bottom edge of the handlebox's
  * allocation will remain fixed as the height of the handlebox shrinks,
  * so the snap edge should be set to %GTK_POS_BOTTOM.
- *
  */
 
 struct _GedaHandleBoxData
