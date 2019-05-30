@@ -39,16 +39,12 @@ static void *geda_menu_separator_parent_class = NULL;
 static void
 geda_menu_separator_finalize (GObject *object)
 {
-#ifndef DEBUG_GEDA_SEPARATOR
-
   if (g_hash_table_remove (separator_hash_table, object)) {
     if (!g_hash_table_size (separator_hash_table)) {
       g_hash_table_destroy (separator_hash_table);
       separator_hash_table = NULL;
     }
   }
-
-#endif /* DEBUG_GEDA_SEPARATOR */
 
   G_OBJECT_CLASS (geda_menu_separator_parent_class)->finalize (object);
 }
