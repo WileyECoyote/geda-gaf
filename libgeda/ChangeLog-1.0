@@ -1,7 +1,9 @@
 2019-05-31 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
-      to use the absolute delta.
+      to use the absolute delta. Revise debug output to eliminate rounding
+      the distence that is now unconditionaly calulated and report the value
+      as a type float.
 
     * src/object/o_complex_object.c: Utilize geda_strdup to shorten line
       length in geda_complex_object_copy.
