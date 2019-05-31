@@ -514,12 +514,13 @@ GList *geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filen
 /*!
  * \brief Make a Copy a GedaObject
  * \par Function Description
- *  returns head !!!!!!!!!!!!!!!!!!!
- *  look at above.. this returns what was passed in!!!!
- *  copies object to list_head (!! returns new list)
+ *  Returns a copy the object \a o_current. The new object inherits
+ *  all of the properties of o_current such as selectable, visibility,
+ *  show_name_value, etc.
  *
- * \param [in]  o_current
- * \return GedaObject pointer.
+ * \param [in]  o_current The object to be copied
+ *
+ * \return pointer to a new GedaObject
  */
 GedaObject *geda_object_copy (GedaObject *o_current)
 {
@@ -592,6 +593,7 @@ GedaObject *geda_object_copy (GedaObject *o_current)
      * Used to retain associations when copying attributes */
     o_current->copied_to = new_obj;
   }
+
   return new_obj;
 }
 

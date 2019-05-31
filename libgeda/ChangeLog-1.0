@@ -6,6 +6,8 @@
     * src/object/o_complex_object.c: Utilize geda_strdup to shorten line
       length in geda_complex_object_copy.
 
+    * src/object/o_object.c: Update geda_object_copy documentation.
+
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
 
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com
