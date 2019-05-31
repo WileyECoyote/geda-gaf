@@ -103,7 +103,7 @@
  *      O1137    geda_line_object_set_y1
  *      O1138    geda_line_object_set_y2
  *               geda_line_object_scale
- *               geda_line_object_shortest_distance
+ *      O1140    geda_line_object_shortest_distance
  *      O1141    geda_line_object_to_buffer
  *               geda_line_object_translate
  */
