@@ -82,10 +82,9 @@ geda_math_arc_chord (GedaArc *arc, LINE *line)
  * \par Function Description
  *  Returns length of the Arc sector.
  *
- * \param [in] radius  The radius of the arc.
- * \param [in] sweep   The included angle.
+ * \param [in] arc An arc object.
  *
- * \return The length of the sector.
+ * \return The sector length of the arc.
  */
 double
 geda_math_arc_length (GedaArc *arc)
