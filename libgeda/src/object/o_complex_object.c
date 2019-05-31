@@ -74,7 +74,7 @@ GedaObject *geda_complex_object_copy(GedaObject *o_current)
     new_complex = GEDA_COMPLEX(o_new);
     old_complex = GEDA_COMPLEX(o_current);
 
-    new_complex->filename    = geda_utility_string_strdup(old_complex->filename);
+    new_complex->filename    = geda_strdup(old_complex->filename);
     new_complex->is_embedded = old_complex->is_embedded;
     new_complex->x           = old_complex->x;
     new_complex->y           = old_complex->y;
@@ -82,7 +82,8 @@ GedaObject *geda_complex_object_copy(GedaObject *o_current)
     new_complex->mirror      = old_complex->mirror;
 
     /* Copy contents and set the parent pointers on the copied objects. */
-    new_complex->prim_objs = geda_object_list_copy_all (old_complex->prim_objs, NULL);
+    new_complex->prim_objs = geda_object_list_copy_all (old_complex->
+                                                        prim_objs, NULL);
 
     for (iter = new_complex->prim_objs; iter != NULL; NEXT (iter)) {
 

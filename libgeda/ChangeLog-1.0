@@ -3,6 +3,9 @@
     * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
       to use the absolute delta.
 
+    * src/object/o_complex_object.c: Utilize geda_strdup to shorten line
+      length in geda_complex_object_copy.
+
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
 
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com
