@@ -109,7 +109,9 @@ GedaObject *geda_complex_object_copy(GedaObject *o_current)
 
     return o_new;
   }
+
   geda_complex_object_error(__func__, o_current);
+
   return NULL;
 }
 
