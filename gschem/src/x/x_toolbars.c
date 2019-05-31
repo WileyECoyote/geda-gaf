@@ -914,27 +914,35 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
       case DockBar:
         geda_handle_box_dock((GedaHandleBox*)ActiveToolBar.handlebox);
         break;
+
       case HideBar:
         do_Hide_HandleBox((GedaHandleBox*)ActiveToolBar.handlebox);
         break;
+
       case MakeHorizontal:
         SET_TOOLBAR_ORIENTATION (ActiveToolBar.toolbar, HORIZONTAL);
         break;
+
       case MakeVertical:
         SET_TOOLBAR_ORIENTATION (ActiveToolBar.toolbar, VERTICAL);
         break;
+
       case ShowIcons:
         gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_ICONS);
         break;
+
       case ShowText:
         gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_TEXT);
         break;
+
       case ShowBoth:
         gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_BOTH);
         break;
+
       case ShowHorizontal:
         gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_HORIZ);
         break;
+
       default:
         fprintf(stderr, "%s: unhandled case <%d>\n",__func__, WhichItem);
     } /* End Switch WhichItem */
