@@ -3,6 +3,8 @@
     * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
       to use the absolute delta.
 
+    * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_complex_object.c: Extend checks for geda_complex_object_

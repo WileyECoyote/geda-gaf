@@ -174,7 +174,53 @@ int check_math_arc_length ()
 
 int check_math_arc_includes_point ()
 {
+  GedaObject *object;
+  GedaPoint   point;
   int result = 0;
+  int answer;
+
+  object = geda_arc_object_new (3, 1000, 1000, 500, 0, 90);
+
+  point.x = 0;
+  point.y = 0;
+
+  /* geda_math_arc_includes_point */
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (answer) {
+    fprintf(stderr, "FAILED: (M030301A) _math_arc_includes_point\n");
+    result++;
+  }
+
+  point.x = 1000;
+  point.y = 1000;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (answer) {
+    fprintf(stderr, "FAILED: (M030301B) _math_arc_includes_point\n");
+    result++;
+  }
+
+  point.x = 1500;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (!answer) {
+    fprintf(stderr, "FAILED: (M030301C) _math_arc_includes_point\n");
+    result++;
+  }
+
+  point.x = 1000;
+  point.y = 1500;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (!answer) {
+    fprintf(stderr, "FAILED: (M030301D) _math_arc_includes_point\n");
+    result++;
+  }
+
   return result;
 }
 
