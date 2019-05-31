@@ -114,15 +114,18 @@ geda_math_arc_length (GedaArc *arc)
 bool
 geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
 {
-  bool answer;
-  int  delta;  /* Will be difference between point to center and radius */
-  int  width;
-  int  half_width;
+  bool   answer;
+  double dist;
+  int    delta;  /* Will be difference between point to center and radius */
+  int    width;
+  int    half_width;
 
   g_return_val_if_fail ((arc != NULL) && (point != NULL), FALSE);
 
+  dist = geda_distance(arc->x, arc->y, point->x, point->y);
+
   /* Rounding here provides a fuzz distance effect */
-  delta = geda_distance(arc->x, arc->y, point->x, point->y) - (arc->radius);
+  delta = abs (dist - arc->radius);
 
 #if DEBUG
 

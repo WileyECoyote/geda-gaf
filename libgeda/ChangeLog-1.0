@@ -1,3 +1,8 @@
+2019-05-31 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
+      to use the absolute delta.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_complex_object.c: Extend checks for geda_complex_object_
