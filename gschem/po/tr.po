@@ -1155,7 +1155,7 @@ msgstr "Özelliklerden bazıları"
 
 # attached attribute
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "ekli %d özellik"
@@ -2280,7 +2280,7 @@ msgstr "geçersiz özellik değeri"
 
 #: gschem/src/x/x_dialog.c:3950
 msgid "Please correct in order to continue"
-msgstr ""
+msgstr "Devam etmek için lütfen düzeltin"
 
 #: gschem/src/x/x_dialog.c:3951
 msgid ""
@@ -2289,39 +2289,44 @@ msgid ""
 "The value cannot start with a space"
 msgstr ""
 
+# Invalid Attribute
 #: gschem/src/x/x_dialog.c:3959
 msgid "Invalid Attribute"
-msgstr ""
+msgstr "Geçersiz Özellik"
 
 # Error
 #: gschem/src/x/x_dnd.c:241
-#, fuzzy
 msgid "Error:"
-msgstr "Hata"
+msgstr "Hata:"
 
+# unidentified complex object
 #: gschem/src/x/x_dnd.c:242
 msgid "unidentified complex object"
-msgstr ""
+msgstr "tanımlanamayan karmaşık nesne"
 
+# Could not locate symbol
 #: gschem/src/x/x_dnd.c:504
 msgid "Could not locate symbol"
-msgstr ""
+msgstr "Sembol bulunamadı"
 
+# in library, try refreshing
 #: gschem/src/x/x_dnd.c:505
 msgid "in library, try refreshing"
-msgstr ""
+msgstr "kütüphanede yenilemeyi deneyin"
 
+# not in library, opening as page
 #: gschem/src/x/x_dnd.c:510
 msgid "not in library, opening as page"
-msgstr ""
+msgstr "kütüphanede değil, sayfa olarak açılıyor"
 
+# symbol
 #: gschem/src/x/x_dnd.c:511 gschem/src/x/x_multiattrib.c:2683
 msgid "symbol"
-msgstr ""
+msgstr "sembol"
 
 #: gschem/src/x/x_dnd.c:657
 msgid "<b>Invalid Data.</b>"
-msgstr ""
+msgstr "<b>Geçersiz veri.</b>"
 
 #: gschem/src/x/x_draw.cpp:463
 msgid "Initializing: Graphics Renderer Adaptor..."

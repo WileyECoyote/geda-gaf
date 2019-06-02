@@ -6,6 +6,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2019-05-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Update function documentation for:
