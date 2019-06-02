@@ -25,6 +25,7 @@
       motors:
 
             * emechanic/motor/ac_motor-1.sym
+            * emechanic/motor/ac_motor-2.sym
 
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
