@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-04 16:39-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1040,7 +1040,7 @@ msgid "The log may contain more information."
 msgstr ""
 
 # in file
-#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:423
+#: libgeda/src/object/o_object.c:125 libgeda/src/object/o_object.c:422
 msgid "in file"
 msgstr "Dosyada"
 
@@ -1052,65 +1052,66 @@ msgstr ""
 msgid "Schematic data is not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:149
+#: libgeda/src/object/o_object.c:148
 msgid "Invalid pointer to GedaToplevel"
 msgstr ""
 
 # Read unexpected attach symbol start marker on line
-#: libgeda/src/object/o_object.c:303
+#: libgeda/src/object/o_object.c:302
 msgid "Read unexpected attach symbol start marker on line"
 msgstr "Beklenmedik şekilde sembol başlama işaretleyicisini satıra ekleyin"
 
 # Read unexpected embedded symbol start marker on line
-#: libgeda/src/object/o_object.c:323 libgeda/src/object/o_object.c:328
+#: libgeda/src/object/o_object.c:322 libgeda/src/object/o_object.c:327
 msgid "Read unexpected embedded symbol start marker on line"
 msgstr "Beklenmedik gömülü simge başlangıç ​​işaretçisini hat üzerinde okuyun"
 
 # Read unexpected embedded symbol end marker on line
-#: libgeda/src/object/o_object.c:364
+#: libgeda/src/object/o_object.c:363
 msgid "Read unexpected embedded symbol end marker on line"
 msgstr "Beklenmedik gömülü sembol bitiş işaretleyicisini satırda okuyun"
 
-#: libgeda/src/object/o_object.c:400
+#: libgeda/src/object/o_object.c:399
 msgid ""
 "Read an old format sym/sch file!\n"
 "Please run g[sym|sch]update on"
 msgstr ""
 
-#: libgeda/src/object/o_object.c:418 libgeda/src/object/o_object.c:422
+#: libgeda/src/object/o_object.c:417 libgeda/src/object/o_object.c:421
 msgid "Read garbage near line"
 msgstr "Hattın yakınında geçersiz veri tespit edildi"
 
-#: libgeda/src/object/o_object.c:460
+#: libgeda/src/object/o_object.c:459
 msgid "On or about line"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1428
-#: libgeda/src/object/o_arc_object.c:1443
+#: libgeda/src/object/o_arc_object.c:1435
+#: libgeda/src/object/o_arc_object.c:1452
+#: libgeda/src/object/o_arc_object.c:1467
 msgid "Failed to parse arc object"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1450
+#: libgeda/src/object/o_arc_object.c:1475
 msgid "Found arc with negative radius"
 msgstr "Desteklenmeyen yazı açısı bulundu"
 
-#: libgeda/src/object/o_arc_object.c:1455
+#: libgeda/src/object/o_arc_object.c:1480
 #: libgeda/src/object/o_circle_object.c:1345
 msgid "Setting radius to"
 msgstr "Yarıçapını ayarla"
 
-#: libgeda/src/object/o_arc_object.c:1458
+#: libgeda/src/object/o_arc_object.c:1483
 msgid "Found an arc with radius zero"
 msgstr "Desteklenmeyen yazı açısı bulundu"
 
-#: libgeda/src/object/o_arc_object.c:1462
+#: libgeda/src/object/o_arc_object.c:1487
 #: libgeda/src/object/o_circle_object.c:1352
 msgid "Setting zero radius to 1000\n"
 msgstr ""
 
-#: libgeda/src/object/o_arc_object.c:1467
+#: libgeda/src/object/o_arc_object.c:1492
 #: libgeda/src/object/o_box_object.c:1586
-#: libgeda/src/object/o_bus_object.c:585
+#: libgeda/src/object/o_bus_object.c:586
 #: libgeda/src/object/o_circle_object.c:1357
 #: libgeda/src/object/o_line_object.c:1568
 #: libgeda/src/object/o_net_object.c:718
@@ -1120,9 +1121,9 @@ msgstr ""
 msgid "Found an invalid color"
 msgstr "Geçersiz bir renk bulundu"
 
-#: libgeda/src/object/o_arc_object.c:1471
+#: libgeda/src/object/o_arc_object.c:1496
 #: libgeda/src/object/o_box_object.c:1590
-#: libgeda/src/object/o_bus_object.c:589
+#: libgeda/src/object/o_bus_object.c:590
 #: libgeda/src/object/o_circle_object.c:1361
 #: libgeda/src/object/o_line_object.c:1572
 #: libgeda/src/object/o_net_object.c:722
@@ -1174,21 +1175,21 @@ msgstr ""
 msgid "null in geda_bus_object_print\n"
 msgstr ""
 
-#: libgeda/src/object/o_bus_object.c:556 libgeda/src/object/o_bus_object.c:563
+#: libgeda/src/object/o_bus_object.c:556 libgeda/src/object/o_bus_object.c:564
 msgid "Failed to parse bus object"
 msgstr ""
 
 # Found a multi-conductor with zero length
-#: libgeda/src/object/o_bus_object.c:569
+#: libgeda/src/object/o_bus_object.c:570
 msgid "Found a bus with zero length"
 msgstr "found a zero-length bus"
 
 # Found invalid multi-conductor direction indicator
-#: libgeda/src/object/o_bus_object.c:576
+#: libgeda/src/object/o_bus_object.c:577
 msgid "Found an invalid bus ripper direction"
 msgstr "Geçersiz çok iletkenli yön göstergesi bulundu"
 
-#: libgeda/src/object/o_bus_object.c:580
+#: libgeda/src/object/o_bus_object.c:581
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr ""
 
@@ -1211,114 +1212,114 @@ msgstr "Negatif yarıçaplı daire bulundu"
 msgid "Found a circle with radius zero"
 msgstr "Yarıçapı sıfır olan bir daire bulundu"
 
-#: libgeda/src/object/o_complex_object.c:146
+#: libgeda/src/object/o_complex_object.c:149
 msgid "instantiated"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:147
+#: libgeda/src/object/o_complex_object.c:150
 msgid "library"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:148
+#: libgeda/src/object/o_complex_object.c:151
 msgid "check"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:159
+#: libgeda/src/object/o_complex_object.c:162
 msgid "Instantiated symbol"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:161
+#: libgeda/src/object/o_complex_object.c:164
 msgid "is"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:162
+#: libgeda/src/object/o_complex_object.c:165
 msgid "than the version in library"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:170
+#: libgeda/src/object/o_complex_object.c:173
 msgid "WARNING: Symbol version"
 msgstr "UYARI: Sembol sürümü"
 
-#: libgeda/src/object/o_complex_object.c:171
+#: libgeda/src/object/o_complex_object.c:174
 msgid "on refdes"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:199
+#: libgeda/src/object/o_complex_object.c:202
 msgid "unknown file"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:227
-#: libgeda/src/object/o_complex_object.c:251
+#: libgeda/src/object/o_complex_object.c:230
+#: libgeda/src/object/o_complex_object.c:254
 msgid "parse error"
 msgstr ""
 
 # Could not parse symbol file
-#: libgeda/src/object/o_complex_object.c:229
+#: libgeda/src/object/o_complex_object.c:232
 msgid "Could not parse symbol file"
 msgstr "Sembol dosyası ayrıştırılamadı"
 
 # Could not parse attached
-#: libgeda/src/object/o_complex_object.c:252
+#: libgeda/src/object/o_complex_object.c:255
 msgid "Could not parse attached"
 msgstr "Ekli ayrıştırılamadı"
 
-#: libgeda/src/object/o_complex_object.c:274
-#: libgeda/src/object/o_complex_object.c:344
+#: libgeda/src/object/o_complex_object.c:277
+#: libgeda/src/object/o_complex_object.c:347
 msgid "oddity"
 msgstr "Tuhaflık"
 
 # attached to instantiated symbol, but version not found inside symbol file
-#: libgeda/src/object/o_complex_object.c:276
+#: libgeda/src/object/o_complex_object.c:279
 msgid ""
 "attached to instantiated symbol, but version not found inside symbol file"
 msgstr "Örneği sembole eklenmiş, Ancak simge dosyasında sürüm bulunamadı"
 
-#: libgeda/src/object/o_complex_object.c:294
+#: libgeda/src/object/o_complex_object.c:297
 msgid "mismatch"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:295
+#: libgeda/src/object/o_complex_object.c:298
 msgid "older"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:319
+#: libgeda/src/object/o_complex_object.c:322
 msgid "MAJOR VERSION CHANGE"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:337
+#: libgeda/src/object/o_complex_object.c:340
 msgid "Minor version change"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:345
+#: libgeda/src/object/o_complex_object.c:348
 msgid "newer"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:390
+#: libgeda/src/object/o_complex_object.c:393
 msgid "Component not found"
 msgstr "bileşen bulanamadı"
 
-#: libgeda/src/object/o_complex_object.c:1181
+#: libgeda/src/object/o_complex_object.c:1185
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1186
+#: libgeda/src/object/o_complex_object.c:1190
 msgid "Found a component with an invalid rotation"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1190
+#: libgeda/src/object/o_complex_object.c:1194
 #: libgeda/src/object/o_picture_object.c:1495
 msgid "Setting angle to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1195
+#: libgeda/src/object/o_complex_object.c:1199
 msgid "Found a component with an invalid mirror flag"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1199
+#: libgeda/src/object/o_complex_object.c:1203
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_object.c:1214
+#: libgeda/src/object/o_complex_object.c:1218
 msgid "Invalid complex object"
 msgstr ""
 

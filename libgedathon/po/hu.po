@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -317,18 +317,21 @@ msgstr "Az objektumhoz kapcsolódó összes objektum lekérése"
 # Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr "A pontok listájának lekérése az egyes objektumokhoz való csatlakozáshoz"
+msgstr ""
+"A pontok listájának lekérése az egyes objektumokhoz való csatlakozáshoz"
 
 # Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr "A nem kapcsolódó csomópontok pontjainak lekérése a megadott objektumokhoz"
+msgstr ""
+"A nem kapcsolódó csomópontok pontjainak lekérése a megadott objektumokhoz"
 
 # Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr "Írja be a hibát, figyelmen kívül hagyva az érvénytelen 5-ös paramétert\n"
+msgstr ""
+"Írja be a hibát, figyelmen kívül hagyva az érvénytelen 5-ös paramétert\n"
 
 # get
 #: libgedathon/module/functions.c:400

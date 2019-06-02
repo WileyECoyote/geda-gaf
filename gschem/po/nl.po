@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-04 17:47-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -399,7 +399,7 @@ msgstr "Snap Modus"
 msgid "Sets the Snap Mode to display on the status bar"
 msgstr ""
 
-#: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:632
+#: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:636
 msgid "Snap Size"
 msgstr "Snap Grootte"
 
@@ -503,7 +503,7 @@ msgstr "vermelding in rc file"
 msgid "Bad Value"
 msgstr "Slechte Waarde"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2052
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2068
 msgid "check"
 msgstr ""
 
@@ -546,59 +546,59 @@ msgstr "Wees alstublieft zeker dat U het laatste rc bestand"
 msgid "file"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:715
+#: gschem/src/guile/g_rc.c:731
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:720
+#: gschem/src/guile/g_rc.c:736
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:721 gschem/src/guile/g_rc.c:1267
-#: gschem/src/guile/g_rc.c:1413 gschem/src/guile/g_rc.c:2006
+#: gschem/src/guile/g_rc.c:737 gschem/src/guile/g_rc.c:1283
+#: gschem/src/guile/g_rc.c:1429 gschem/src/guile/g_rc.c:2022
 msgid "Continuing with default value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:801
+#: gschem/src/guile/g_rc.c:817
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1261
+#: gschem/src/guile/g_rc.c:1277
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1266
+#: gschem/src/guile/g_rc.c:1282
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1407
+#: gschem/src/guile/g_rc.c:1423
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1412
+#: gschem/src/guile/g_rc.c:1428
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2000
+#: gschem/src/guile/g_rc.c:2016
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2005
+#: gschem/src/guile/g_rc.c:2021
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
 # Invalid magnification factor
-#: gschem/src/guile/g_rc.c:2050
+#: gschem/src/guile/g_rc.c:2066
 msgid "Invalid zoom factor"
 msgstr "Ongeldige vergrotingsfactor"
 
@@ -1001,12 +1001,12 @@ msgid "Session system initialized!\n"
 msgstr ""
 
 # Deselect Mode
-#: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2144
+#: gschem/src/iface/i_status.c:138 gschem/etc/system-gschemrc.scm:2154
 msgid "Deselect Mode"
 msgstr "Hef de selectie van Mode"
 
 #: gschem/src/iface/i_status.c:142 gschem/src/x/x_status_bar.c:412
-#: gschem/etc/system-gschemrc.scm:2143 gschem/scheme/gschem/builtins.scm:170
+#: gschem/etc/system-gschemrc.scm:2153 gschem/scheme/gschem/builtins.scm:170
 msgid "Select Mode"
 msgstr "Selectie Mode"
 
@@ -1133,12 +1133,12 @@ msgid "Resnap Active"
 msgstr "Hersnappen Aktief"
 
 # Initializing default configuration settings
-#: gschem/src/iface/i_vars.c:780
+#: gschem/src/iface/i_vars.c:784
 msgid "Initializing default configuration settings\n"
 msgstr "Initialiseren van standaard configuratie-instellingen\n"
 
 # Failed to save user configuration to
-#: gschem/src/iface/i_vars.c:822
+#: gschem/src/iface/i_vars.c:826
 msgid "Failed to save user configuration to"
 msgstr "niet in staat om de gebruiker configuratie op te slaan naar"
 
@@ -1224,11 +1224,11 @@ msgstr ""
 msgid "Point 1 missed x=%d, y=%d\n"
 msgstr ""
 
-#: gschem/src/object/o_complex.c:251 gschem/src/object/o_complex.c:291
+#: gschem/src/object/o_complex.c:280 gschem/src/object/o_complex.c:320
 msgid "Translating objects"
 msgstr "Vertaal voorwerpen"
 
-#: gschem/src/object/o_complex.c:255 gschem/src/object/o_complex.c:295
+#: gschem/src/object/o_complex.c:284 gschem/src/object/o_complex.c:324
 msgid "Translating schematic"
 msgstr "Vertaal schema"
 
@@ -1258,21 +1258,21 @@ msgid "Hidden text is now invisible\n"
 msgstr "Verborgen tekst is nu onzichtbaar\n"
 
 # Could not find symbol
-#: gschem/src/object/o_edit.c:1236 gschem/src/x/x_edit_cprop.c:389
+#: gschem/src/object/o_edit.c:1244 gschem/src/x/x_edit_cprop.c:389
 msgid "Could not find symbol"
 msgstr "Kon het niet vinden symbool"
 
 # in the library. update failed
-#: gschem/src/object/o_edit.c:1237 gschem/src/x/x_edit_cprop.c:390
+#: gschem/src/object/o_edit.c:1245 gschem/src/x/x_edit_cprop.c:390
 msgid "in library. Update failed"
 msgstr "in de bibliotheek. Update mislukt"
 
 # Updating symbol
-#: gschem/src/object/o_edit.c:1242
+#: gschem/src/object/o_edit.c:1250
 msgid "Updating symbol"
 msgstr "Updaten symbool"
 
-#: gschem/src/object/o_move.c:518
+#: gschem/src/object/o_move.c:520
 msgid "Could not resolve which end of pin to connect\n"
 msgstr ""
 
@@ -1582,7 +1582,7 @@ msgstr "Sluit"
 msgid "Refresh"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:131 gschem/src/x/x_compselect.c:3172
+#: gschem/src/x/x_compselect.c:131 gschem/src/x/x_compselect.c:3171
 msgid "Rescan"
 msgstr ""
 
@@ -1634,121 +1634,121 @@ msgid "Disable tooltips"
 msgstr ""
 
 # Normal behavior - reference component
-#: gschem/src/x/x_compselect.c:1379
+#: gschem/src/x/x_compselect.c:1378
 msgid "Default is to reference the component"
 msgstr "Normaal gedrag - referentie component"
 
-#: gschem/src/x/x_compselect.c:1383
+#: gschem/src/x/x_compselect.c:1382
 msgid "Embed component in schematic"
 msgstr "Component insluiten in schema"
 
-#: gschem/src/x/x_compselect.c:1387
+#: gschem/src/x/x_compselect.c:1386
 msgid "Include component as individual objects"
 msgstr "Invoegen component als individuele objecten"
 
-#: gschem/src/x/x_compselect.c:2231 gschem/src/x/x_compselect.c:2617
+#: gschem/src/x/x_compselect.c:2230 gschem/src/x/x_compselect.c:2616
 msgid "Components"
 msgstr "Componenten"
 
-#: gschem/src/x/x_compselect.c:2695 gschem/src/x/x_confirm_close.c:313
+#: gschem/src/x/x_compselect.c:2694 gschem/src/x/x_confirm_close.c:313
 #: gschem/src/x/x_multiattrib.c:2087 gschem/src/x/x_multiattrib.c:2093
 msgid "Name"
 msgstr "Naam"
 
-#: gschem/src/x/x_compselect.c:2707 gschem/src/x/x_multiattrib.c:2089
+#: gschem/src/x/x_compselect.c:2706 gschem/src/x/x_multiattrib.c:2089
 #: gschem/src/x/x_multiattrib.c:2095
 msgid "Value"
 msgstr "Waarde"
 
-#: gschem/src/x/x_compselect.c:2888 gschem/src/x/x_dialog.c:1866
+#: gschem/src/x/x_compselect.c:2887 gschem/src/x/x_dialog.c:1870
 msgid "None"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2889
+#: gschem/src/x/x_compselect.c:2888
 msgid "Style 1"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2890
+#: gschem/src/x/x_compselect.c:2889
 msgid "Style 2"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2891
+#: gschem/src/x/x_compselect.c:2890
 msgid "Style 3"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2892
+#: gschem/src/x/x_compselect.c:2891
 msgid "Style 4"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2893
+#: gschem/src/x/x_compselect.c:2892
 msgid "Style 5"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2894
+#: gschem/src/x/x_compselect.c:2893
 msgid "Style 6"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2895
+#: gschem/src/x/x_compselect.c:2894
 msgid "Style 7"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2896
+#: gschem/src/x/x_compselect.c:2895
 msgid "Style 8"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2897
+#: gschem/src/x/x_compselect.c:2896
 msgid "All"
 msgstr "Alle"
 
-#: gschem/src/x/x_compselect.c:2933
+#: gschem/src/x/x_compselect.c:2932
 msgid "Enable all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2934
+#: gschem/src/x/x_compselect.c:2933
 msgid "Uncheck all styles"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2960
+#: gschem/src/x/x_compselect.c:2959
 msgid "Reference"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2961
+#: gschem/src/x/x_compselect.c:2960
 msgid "Embed"
 msgstr "Insluiten"
 
-#: gschem/src/x/x_compselect.c:2962
+#: gschem/src/x/x_compselect.c:2961
 msgid "Include"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3180
+#: gschem/src/x/x_compselect.c:3179
 msgid "Rescan component libraries"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3182
+#: gschem/src/x/x_compselect.c:3181
 msgid "Set style filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3385 gschem/src/x/x_fileselect.c:123
+#: gschem/src/x/x_compselect.c:3384 gschem/src/x/x_fileselect.c:123
 msgid "Preview"
 msgstr "Vooraf zien"
 
-#: gschem/src/x/x_compselect.c:3421
+#: gschem/src/x/x_compselect.c:3420
 msgid "Attributes"
 msgstr "Attributen"
 
-#: gschem/src/x/x_compselect.c:3659
+#: gschem/src/x/x_compselect.c:3658
 msgid "active view"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3660
+#: gschem/src/x/x_compselect.c:3659
 msgid "Active sheet of the notebook"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3671
+#: gschem/src/x/x_compselect.c:3670
 msgid "Focus Filter"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:3672
+#: gschem/src/x/x_compselect.c:3671
 msgid ""
 "When true, initial focus will be the filter entry, otherwise the Component "
 "Tree"
@@ -1860,23 +1860,23 @@ msgid "World"
 msgstr "Wereld"
 
 # unable to load image file
-#: gschem/src/x/x_dialog.c:497
+#: gschem/src/x/x_dialog.c:501
 msgid "Could not load image file"
 msgstr "Kan afbeelding niet laden bestand"
 
-#: gschem/src/x/x_dialog.c:503
+#: gschem/src/x/x_dialog.c:507
 msgid "gEDA: GPL Electronic Design Automation"
 msgstr "gEDA: GPL Elektronische ontwerp automatisering"
 
-#: gschem/src/x/x_dialog.c:504
+#: gschem/src/x/x_dialog.c:508
 msgid "glibc"
 msgstr "glibc"
 
-#: gschem/src/x/x_dialog.c:505
+#: gschem/src/x/x_dialog.c:509
 msgid "Guile"
 msgstr "Guile"
 
-#: gschem/src/x/x_dialog.c:515
+#: gschem/src/x/x_dialog.c:519
 msgid ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (see ChangeLog for details)"
@@ -1884,381 +1884,381 @@ msgstr ""
 "Copyright © 1998-2017 Ales Hvezda <ahvezda@geda.seul.org>\n"
 "Copyright © 1998-2017 gEDA Contributors (zie het ChangeLog voor details)"
 
-#: gschem/src/x/x_dialog.c:524 gschem/scheme/gschem/builtins.scm:565
+#: gschem/src/x/x_dialog.c:528 gschem/scheme/gschem/builtins.scm:565
 msgid "About gschem"
 msgstr "Omtrent gschem"
 
-#: gschem/src/x/x_dialog.c:659
+#: gschem/src/x/x_dialog.c:663
 msgid "Enter new snap grid spacing:"
 msgstr "Voer nieuwe snap raster waarde in:"
 
-#: gschem/src/x/x_dialog.c:668
+#: gschem/src/x/x_dialog.c:672
 msgid ""
 "Sets the default spacing\n"
 "which objects snaps to."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:745
+#: gschem/src/x/x_dialog.c:749
 msgid "Text Size"
 msgstr "Tekst Hoogte"
 
-#: gschem/src/x/x_dialog.c:771
+#: gschem/src/x/x_dialog.c:775
 msgid "Enter new text size:"
 msgstr "Voer nieuwe tekstgrootte in:"
 
 # Sets the default text font size
-#: gschem/src/x/x_dialog.c:781
+#: gschem/src/x/x_dialog.c:785
 msgid "Sets the default text font size."
 msgstr "Stelt de standaard tekst lettergrootte."
 
-#: gschem/src/x/x_dialog.c:1009
+#: gschem/src/x/x_dialog.c:1013
 msgid "Arc Parameters"
 msgstr "Boog parameters"
 
-#: gschem/src/x/x_dialog.c:1040
+#: gschem/src/x/x_dialog.c:1044
 msgid "Arc Radius:"
 msgstr "Boog Radius:"
 
-#: gschem/src/x/x_dialog.c:1046
+#: gschem/src/x/x_dialog.c:1050
 msgid "Sets the radius of the Arc."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1048
+#: gschem/src/x/x_dialog.c:1052
 msgid "Start Angle:"
 msgstr "Start Hoek:"
 
-#: gschem/src/x/x_dialog.c:1054
+#: gschem/src/x/x_dialog.c:1058
 msgid "Sets the rotation of the arc."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1056
+#: gschem/src/x/x_dialog.c:1060
 msgid "Degrees of Sweep:"
 msgstr "Doorlopen Hoek:"
 
-#: gschem/src/x/x_dialog.c:1062
+#: gschem/src/x/x_dialog.c:1066
 msgid "Sets the central angle of the arc."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1105
+#: gschem/src/x/x_dialog.c:1109
 msgid "Background"
 msgstr "Achtergrond"
 
-#: gschem/src/x/x_dialog.c:1106
+#: gschem/src/x/x_dialog.c:1110
 msgid "Pin"
 msgstr "Pen"
 
-#: gschem/src/x/x_dialog.c:1107
+#: gschem/src/x/x_dialog.c:1111
 msgid "Net endpoint"
 msgstr "Net eindpunt"
 
-#: gschem/src/x/x_dialog.c:1108
+#: gschem/src/x/x_dialog.c:1112
 msgid "Graphic"
 msgstr "Grafisch"
 
-#: gschem/src/x/x_dialog.c:1109 gschem/src/x/x_edit_pin.c:144
+#: gschem/src/x/x_dialog.c:1113 gschem/src/x/x_edit_pin.c:144
 #: gschem/src/x/x_menus.c:95
 msgid "Net"
 msgstr "Draad"
 
-#: gschem/src/x/x_dialog.c:1110
+#: gschem/src/x/x_dialog.c:1114
 msgid "Attribute"
 msgstr "Attribuut"
 
-#: gschem/src/x/x_dialog.c:1111
+#: gschem/src/x/x_dialog.c:1115
 msgid "Logic bubble"
 msgstr "Logische inverter"
 
-#: gschem/src/x/x_dialog.c:1112
+#: gschem/src/x/x_dialog.c:1116
 msgid "Grid point"
 msgstr "Rasterpunt"
 
-#: gschem/src/x/x_dialog.c:1113
+#: gschem/src/x/x_dialog.c:1117
 msgid "Detached attribute"
 msgstr "Vrijstaande attributen"
 
-#: gschem/src/x/x_dialog.c:1114 gschem/src/x/x_menus.c:99
+#: gschem/src/x/x_dialog.c:1118 gschem/src/x/x_menus.c:99
 msgid "Text"
 msgstr "Tekst"
 
-#: gschem/src/x/x_dialog.c:1115 gschem/src/x/x_edit_pin.c:145
+#: gschem/src/x/x_dialog.c:1119 gschem/src/x/x_edit_pin.c:145
 #: gschem/src/x/x_menus.c:98
 msgid "Bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_dialog.c:1116 gschem/src/x/x_edit_array.c:1062
+#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1068
 #: gschem/src/x/x_menus.c:109
 msgid "Selection"
 msgstr "Selectie"
 
-#: gschem/src/x/x_dialog.c:1117
+#: gschem/src/x/x_dialog.c:1121
 msgid "Bounding box"
 msgstr "Omhullende rechthoek"
 
-#: gschem/src/x/x_dialog.c:1118
+#: gschem/src/x/x_dialog.c:1122
 msgid "Zoom box"
 msgstr "Vergroot venster"
 
-#: gschem/src/x/x_dialog.c:1119
+#: gschem/src/x/x_dialog.c:1123
 msgid "Stroke"
 msgstr "Slag"
 
-#: gschem/src/x/x_dialog.c:1120 gschem/etc/system-gschemrc.scm:2167
+#: gschem/src/x/x_dialog.c:1124 gschem/etc/system-gschemrc.scm:2177
 #: gschem/scheme/gschem/builtins.scm:188
 msgid "Lock"
 msgstr "Vergrendel"
 
-#: gschem/src/x/x_dialog.c:1121
+#: gschem/src/x/x_dialog.c:1125
 msgid "Output background"
 msgstr "Uitvoer achtergrond"
 
-#: gschem/src/x/x_dialog.c:1122
+#: gschem/src/x/x_dialog.c:1126
 msgid "Net junction"
 msgstr "Draad aftakking"
 
-#: gschem/src/x/x_dialog.c:1123
+#: gschem/src/x/x_dialog.c:1127
 msgid "Mesh grid major"
 msgstr "Maas raster groot"
 
-#: gschem/src/x/x_dialog.c:1124
+#: gschem/src/x/x_dialog.c:1128
 msgid "Mesh grid minor"
 msgstr "Maas raster klein"
 
-#: gschem/src/x/x_dialog.c:1125
+#: gschem/src/x/x_dialog.c:1129
 msgid "User Style 0"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1126
+#: gschem/src/x/x_dialog.c:1130
 msgid "User Style 1"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1127
+#: gschem/src/x/x_dialog.c:1131
 msgid "User Style 2"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1128
+#: gschem/src/x/x_dialog.c:1132
 msgid "User Style 3"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1129
+#: gschem/src/x/x_dialog.c:1133
 msgid "User Style 4"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1130
+#: gschem/src/x/x_dialog.c:1134
 msgid "User Style 5"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1131
+#: gschem/src/x/x_dialog.c:1135
 msgid "User Style 6"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1132
+#: gschem/src/x/x_dialog.c:1136
 msgid "User Style 7"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1133
+#: gschem/src/x/x_dialog.c:1137
 msgid "User Style 8"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1134
+#: gschem/src/x/x_dialog.c:1138
 msgid "User Style 9"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1138
+#: gschem/src/x/x_dialog.c:1142
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gschem/src/x/x_dialog.c:1292
+#: gschem/src/x/x_dialog.c:1296
 msgid "Hollow"
 msgstr "Hol"
 
-#: gschem/src/x/x_dialog.c:1293
+#: gschem/src/x/x_dialog.c:1297
 msgid "Filled"
 msgstr "Gevuld"
 
-#: gschem/src/x/x_dialog.c:1294
+#: gschem/src/x/x_dialog.c:1298
 msgid "Mesh"
 msgstr "Maas"
 
-#: gschem/src/x/x_dialog.c:1295
+#: gschem/src/x/x_dialog.c:1299
 msgid "Hatch"
 msgstr "Arcering"
 
-#: gschem/src/x/x_dialog.c:1296 gschem/src/x/x_dialog.c:1407
-#: gschem/src/x/x_dialog.c:1416 gschem/src/x/x_dialog.c:1425
-#: gschem/src/x/x_dialog.c:1434 gschem/src/x/x_dialog.c:1443
-#: gschem/src/x/x_dialog.c:1558 gschem/src/x/x_dialog.c:1560
+#: gschem/src/x/x_dialog.c:1300 gschem/src/x/x_dialog.c:1411
+#: gschem/src/x/x_dialog.c:1420 gschem/src/x/x_dialog.c:1429
+#: gschem/src/x/x_dialog.c:1438 gschem/src/x/x_dialog.c:1447
 #: gschem/src/x/x_dialog.c:1562 gschem/src/x/x_dialog.c:1564
-#: gschem/src/x/x_dialog.c:1566 gschem/src/x/x_dialog.c:1869
-#: gschem/src/x/x_dialog.c:1911 gschem/src/x/x_dialog.c:2023
-#: gschem/src/x/x_dialog.c:2032 gschem/src/x/x_dialog.c:2042
-#: gschem/src/x/x_dialog.c:2151 gschem/src/x/x_dialog.c:2153
-#: gschem/src/x/x_dialog.c:2155
+#: gschem/src/x/x_dialog.c:1566 gschem/src/x/x_dialog.c:1568
+#: gschem/src/x/x_dialog.c:1570 gschem/src/x/x_dialog.c:1873
+#: gschem/src/x/x_dialog.c:1915 gschem/src/x/x_dialog.c:2027
+#: gschem/src/x/x_dialog.c:2036 gschem/src/x/x_dialog.c:2046
+#: gschem/src/x/x_dialog.c:2155 gschem/src/x/x_dialog.c:2157
+#: gschem/src/x/x_dialog.c:2159
 msgid "*varies*"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1712 gschem/scheme/gschem/builtins.scm:158
+#: gschem/src/x/x_dialog.c:1716 gschem/scheme/gschem/builtins.scm:158
 msgid "Edit Fill Type"
 msgstr "Bewerk Arcering Type"
 
-#: gschem/src/x/x_dialog.c:1734
+#: gschem/src/x/x_dialog.c:1738
 msgid "Fill Type:"
 msgstr "Arcering Type:"
 
-#: gschem/src/x/x_dialog.c:1737
+#: gschem/src/x/x_dialog.c:1741
 msgid "Line Width:"
 msgstr "Lijn Dikte:"
 
-#: gschem/src/x/x_dialog.c:1740
+#: gschem/src/x/x_dialog.c:1744
 msgid "Angle 1:"
 msgstr "Hoek 1:"
 
-#: gschem/src/x/x_dialog.c:1743
+#: gschem/src/x/x_dialog.c:1747
 msgid "Pitch 1:"
 msgstr "Steek 1:"
 
-#: gschem/src/x/x_dialog.c:1746
+#: gschem/src/x/x_dialog.c:1750
 msgid "Angle 2:"
 msgstr "Hoek 2:"
 
-#: gschem/src/x/x_dialog.c:1749
+#: gschem/src/x/x_dialog.c:1753
 msgid "Pitch 2:"
 msgstr "Steek 2:"
 
 # Select fill pattern
-#: gschem/src/x/x_dialog.c:1755
+#: gschem/src/x/x_dialog.c:1759
 msgid "Select fill pattern"
 msgstr "Selecteer vulpatroon"
 
-#: gschem/src/x/x_dialog.c:1760
+#: gschem/src/x/x_dialog.c:1764
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1765
+#: gschem/src/x/x_dialog.c:1769
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1770
+#: gschem/src/x/x_dialog.c:1774
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1775
+#: gschem/src/x/x_dialog.c:1779
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1780
+#: gschem/src/x/x_dialog.c:1784
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1867
+#: gschem/src/x/x_dialog.c:1871
 msgid "Square"
 msgstr "Vierkant"
 
-#: gschem/src/x/x_dialog.c:1868
+#: gschem/src/x/x_dialog.c:1872
 msgid "Round"
 msgstr "Rond"
 
-#: gschem/src/x/x_dialog.c:1906
+#: gschem/src/x/x_dialog.c:1910
 msgid "Solid"
 msgstr "Getrokken lijn"
 
-#: gschem/src/x/x_dialog.c:1907
+#: gschem/src/x/x_dialog.c:1911
 msgid "Dotted"
 msgstr "Gestippeld"
 
-#: gschem/src/x/x_dialog.c:1908
+#: gschem/src/x/x_dialog.c:1912
 msgid "Dashed"
 msgstr "Gestreept"
 
-#: gschem/src/x/x_dialog.c:1909
+#: gschem/src/x/x_dialog.c:1913
 msgid "Center"
 msgstr "Hart"
 
-#: gschem/src/x/x_dialog.c:1910
+#: gschem/src/x/x_dialog.c:1914
 msgid "Phantom"
 msgstr "Begrenzing"
 
-#: gschem/src/x/x_dialog.c:2298 gschem/scheme/gschem/builtins.scm:155
+#: gschem/src/x/x_dialog.c:2302 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Line Width & Type"
 msgstr "Bewerk Lijn Dikte & Type"
 
 # Line Type
-#: gschem/src/x/x_dialog.c:2321
+#: gschem/src/x/x_dialog.c:2325
 msgid "Line Type:"
 msgstr "Lijntype:"
 
 # End Type
-#: gschem/src/x/x_dialog.c:2324
+#: gschem/src/x/x_dialog.c:2328
 msgid "End Type:"
 msgstr "Eindtype:"
 
-#: gschem/src/x/x_dialog.c:2327
+#: gschem/src/x/x_dialog.c:2331
 msgid "Width:"
 msgstr "Breedte:"
 
-#: gschem/src/x/x_dialog.c:2330
+#: gschem/src/x/x_dialog.c:2334
 msgid "Dash Length:"
 msgstr "Lijn Streeplengte:"
 
-#: gschem/src/x/x_dialog.c:2333
+#: gschem/src/x/x_dialog.c:2337
 msgid "Dash Space:"
 msgstr "Lijn Tussenruimte:"
 
-#: gschem/src/x/x_dialog.c:2348
+#: gschem/src/x/x_dialog.c:2352
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2354
+#: gschem/src/x/x_dialog.c:2358
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2360
+#: gschem/src/x/x_dialog.c:2364
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2602
+#: gschem/src/x/x_dialog.c:2606
 msgid "Find Text"
 msgstr "Vind tekst"
 
-#: gschem/src/x/x_dialog.c:2621
+#: gschem/src/x/x_dialog.c:2625
 msgid "Text to find:"
 msgstr "Te vinden tekst:"
 
 # Search hidden attributes
-#: gschem/src/x/x_dialog.c:2630
+#: gschem/src/x/x_dialog.c:2634
 msgid "Search hidden attributes"
 msgstr "Zoek verborgen attributen"
 
 # Descend into hierarchy
-#: gschem/src/x/x_dialog.c:2633
+#: gschem/src/x/x_dialog.c:2637
 msgid "Descend into hierarchy"
 msgstr "Ga naar de hiërarchie"
 
 # Close on ascent
-#: gschem/src/x/x_dialog.c:2641
+#: gschem/src/x/x_dialog.c:2645
 msgid "Close on ascent"
 msgstr "Dicht bij het klimmen"
 
-#: gschem/src/x/x_dialog.c:2730
+#: gschem/src/x/x_dialog.c:2734
 msgid "Hide Text"
 msgstr "Verberg tekst"
 
-#: gschem/src/x/x_dialog.c:2749
+#: gschem/src/x/x_dialog.c:2753
 msgid "Hide text starting with:"
 msgstr "Verberg tekst beginnend met:"
 
-#: gschem/src/x/x_dialog.c:2845
+#: gschem/src/x/x_dialog.c:2849
 msgid "Show Text"
 msgstr "Toon tekst"
 
-#: gschem/src/x/x_dialog.c:2864
+#: gschem/src/x/x_dialog.c:2868
 msgid "Show text starting with:"
 msgstr "Toon tekst beginnend met:"
 
-#: gschem/src/x/x_dialog.c:2990
+#: gschem/src/x/x_dialog.c:2994
 msgid "Text Entry..."
 msgstr "Tekst Ingeven..."
 
-#: gschem/src/x/x_dialog.c:3015
+#: gschem/src/x/x_dialog.c:3019
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
@@ -2268,19 +2268,19 @@ msgstr ""
 "verplaats cursor in het venster, klik om tekst te plaatsen.\n"
 "Middelste muisknop gebruiken om te plaatsen."
 
-#: gschem/src/x/x_dialog.c:3209
+#: gschem/src/x/x_dialog.c:3213
 msgid "Enter a single digit or a coordinate pair"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3210
+#: gschem/src/x/x_dialog.c:3214
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3212
+#: gschem/src/x/x_dialog.c:3216
 msgid "Translate"
 msgstr "Verplaats"
 
-#: gschem/src/x/x_dialog.c:3238
+#: gschem/src/x/x_dialog.c:3242
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
@@ -2289,36 +2289,36 @@ msgstr ""
 "(0 voor oorsprong)"
 
 # Auto Zoom Extents
-#: gschem/src/x/x_dialog.c:3250
+#: gschem/src/x/x_dialog.c:3254
 msgid "Auto Zoom Extents"
 msgstr "Automatisch Zoom Omvang"
 
-#: gschem/src/x/x_dialog.c:3428
+#: gschem/src/x/x_dialog.c:3432
 msgid "Hotkeys"
 msgstr "Sneltoets"
 
-#: gschem/src/x/x_dialog.c:3517
+#: gschem/src/x/x_dialog.c:3521
 msgid "Icon"
 msgstr "Icon"
 
-#: gschem/src/x/x_dialog.c:3531
+#: gschem/src/x/x_dialog.c:3535
 msgid "Action"
 msgstr "Aktie"
 
-#: gschem/src/x/x_dialog.c:3541
+#: gschem/src/x/x_dialog.c:3545
 msgid "Keystroke(s)"
 msgstr "Toetsaanslag(en)"
 
 # Job
-#: gschem/src/x/x_dialog.c:3551
+#: gschem/src/x/x_dialog.c:3555
 msgid "Command"
 msgstr "Opdracht"
 
-#: gschem/src/x/x_dialog.c:3785
+#: gschem/src/x/x_dialog.c:3789
 msgid "Major symbol changes detected."
 msgstr "Grote symbool veranderingen gedetecteerd."
 
-#: gschem/src/x/x_dialog.c:3812
+#: gschem/src/x/x_dialog.c:3816
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2327,26 +2327,26 @@ msgstr ""
 "Er zijn in onderstaande symbolen veranderingen opgetreden.\n"
 "'nWees er zeker van elk van deze symbolen te verifiëren."
 
-#: gschem/src/x/x_dialog.c:3854
+#: gschem/src/x/x_dialog.c:3858
 msgid "Symbol"
 msgstr "Symbool"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3904
+#: gschem/src/x/x_dialog.c:3908
 msgid "Dismiss this dialog"
 msgstr "Sluit deze dialoog af"
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3945
+#: gschem/src/x/x_dialog.c:3949
 msgid "invalid attribute value"
 msgstr "ongeldige attribuutwaarde"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3946
+#: gschem/src/x/x_dialog.c:3950
 msgid "Please correct in order to continue"
 msgstr "Corrigeer alstublieft om door te gaan"
 
-#: gschem/src/x/x_dialog.c:3947
+#: gschem/src/x/x_dialog.c:3951
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2356,7 +2356,7 @@ msgstr ""
 "De naam mag niet eindigen met een spatie.\n"
 "De waarde mag niet met een spatie beginnen."
 
-#: gschem/src/x/x_dialog.c:3955
+#: gschem/src/x/x_dialog.c:3959
 msgid "Invalid Attribute"
 msgstr "Ongeldig Attribuut"
 
@@ -2410,130 +2410,130 @@ msgstr "Afsluiten: Grafische Renderer-adapter..."
 msgid "Done, renderer is down"
 msgstr "Klaar, de renderer staat uit"
 
-#: gschem/src/x/x_edit_array.c:597
+#: gschem/src/x/x_edit_array.c:603
 msgid "X pitch distance is less than extents\n"
 msgstr "X-steekafstand is minder dan de omvang\n"
 
-#: gschem/src/x/x_edit_array.c:598
+#: gschem/src/x/x_edit_array.c:604
 msgid "Y pitch distance is less than extents\n"
 msgstr "Y-steekafstand is minder dan de omvang\n"
 
-#: gschem/src/x/x_edit_array.c:611
+#: gschem/src/x/x_edit_array.c:617
 msgid "X and Y pitch distance are less than extents\n"
 msgstr "X en Y-steekafstand zijn minder dan de omvang\n"
 
 # Components may overlay, Continue?
-#: gschem/src/x/x_edit_array.c:630
+#: gschem/src/x/x_edit_array.c:636
 msgid "Components may overlay, Continue?"
 msgstr "Componenten kunnen overlappen, doorgaan?"
 
 # Create Array: Error
-#: gschem/src/x/x_edit_array.c:643 gschem/src/x/x_edit_array.c:648
-#: gschem/src/x/x_edit_array.c:653
+#: gschem/src/x/x_edit_array.c:649 gschem/src/x/x_edit_array.c:654
+#: gschem/src/x/x_edit_array.c:659
 msgid "Create Array:Error"
 msgstr "Create Array: Fout"
 
-#: gschem/src/x/x_edit_array.c:644
+#: gschem/src/x/x_edit_array.c:650
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:649
+#: gschem/src/x/x_edit_array.c:655
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:654
+#: gschem/src/x/x_edit_array.c:660
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1035 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1041 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr "Array maken"
 
 # Count
-#: gschem/src/x/x_edit_array.c:1072 gschem/src/x/x_edit_array.c:1142
-#: gschem/src/x/x_edit_array.c:1175
+#: gschem/src/x/x_edit_array.c:1078 gschem/src/x/x_edit_array.c:1148
+#: gschem/src/x/x_edit_array.c:1181
 msgid "Count"
 msgstr "tellen"
 
 # X Size
-#: gschem/src/x/x_edit_array.c:1083
+#: gschem/src/x/x_edit_array.c:1089
 msgid "X Size"
 msgstr "X-formaat"
 
 # Y Size
-#: gschem/src/x/x_edit_array.c:1086
+#: gschem/src/x/x_edit_array.c:1092
 msgid "Y Size"
 msgstr "Y-formaat"
 
-#: gschem/src/x/x_edit_array.c:1105 gschem/src/x/x_menus.c:90
+#: gschem/src/x/x_edit_array.c:1111 gschem/src/x/x_menus.c:90
 msgid "Select"
 msgstr "Selecteer"
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1109
+#: gschem/src/x/x_edit_array.c:1115
 msgid "Deselect"
 msgstr "Deselecteer"
 
-#: gschem/src/x/x_edit_array.c:1125 gschem/src/x/x_menus.c:121
+#: gschem/src/x/x_edit_array.c:1131 gschem/src/x/x_menus.c:121
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1134
+#: gschem/src/x/x_edit_array.c:1140
 msgid "Row"
 msgstr ""
 
 # Offset
-#: gschem/src/x/x_edit_array.c:1157 gschem/src/x/x_edit_array.c:1190
+#: gschem/src/x/x_edit_array.c:1163 gschem/src/x/x_edit_array.c:1196
 msgid "Offset"
 msgstr "compenseren"
 
-#: gschem/src/x/x_edit_array.c:1167
+#: gschem/src/x/x_edit_array.c:1173
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1200
+#: gschem/src/x/x_edit_array.c:1206
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1208
+#: gschem/src/x/x_edit_array.c:1214
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1212
+#: gschem/src/x/x_edit_array.c:1218
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1230
+#: gschem/src/x/x_edit_array.c:1236
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1237
+#: gschem/src/x/x_edit_array.c:1243
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1244
+#: gschem/src/x/x_edit_array.c:1250
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1251
+#: gschem/src/x/x_edit_array.c:1257
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1258
+#: gschem/src/x/x_edit_array.c:1264
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1265
+#: gschem/src/x/x_edit_array.c:1271
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1272
+#: gschem/src/x/x_edit_array.c:1278
 msgid "entry for array vertical pitch"
 msgstr ""
 
@@ -3391,7 +3391,7 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
+#: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2153
 msgid "Activate Select mode"
 msgstr "Activeer modus selecteert"
 
@@ -3403,7 +3403,7 @@ msgstr "Toevoegen"
 msgid "Add modes"
 msgstr "Voeg modi"
 
-#: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2262
+#: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2272
 msgid "Add net"
 msgstr "Voeg net"
 
@@ -3411,7 +3411,7 @@ msgstr "Voeg net"
 msgid "Attribute..."
 msgstr "Attribuut..."
 
-#: gschem/src/x/x_menus.c:96 gschem/etc/system-gschemrc.scm:2264
+#: gschem/src/x/x_menus.c:96 gschem/etc/system-gschemrc.scm:2274
 msgid "Add attribute"
 msgstr "Plaats Attribuut"
 
@@ -3420,15 +3420,15 @@ msgid "Component..."
 msgstr "_Component..."
 
 # Place a symbol of the component library
-#: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2261
+#: gschem/src/x/x_menus.c:97 gschem/etc/system-gschemrc.scm:2271
 msgid "Insert a symbol from the component library"
 msgstr "Plaats een symbool van de component bibliotheek"
 
-#: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2263
+#: gschem/src/x/x_menus.c:98 gschem/etc/system-gschemrc.scm:2273
 msgid "Add bus"
 msgstr "Voeg Bus Toe"
 
-#: gschem/src/x/x_menus.c:99 gschem/etc/system-gschemrc.scm:2265
+#: gschem/src/x/x_menus.c:99 gschem/etc/system-gschemrc.scm:2275
 msgid "Add text"
 msgstr "Voeg Tekst Toe"
 
@@ -3445,7 +3445,7 @@ msgid "In"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:104 gschem/src/x/x_menus.c:156
-#: gschem/etc/system-gschemrc.scm:2209
+#: gschem/etc/system-gschemrc.scm:2219
 msgid "Increase the Zoom magnification"
 msgstr ""
 
@@ -3454,7 +3454,7 @@ msgid "Out"
 msgstr "lager"
 
 #: gschem/src/x/x_menus.c:105 gschem/src/x/x_menus.c:157
-#: gschem/etc/system-gschemrc.scm:2210
+#: gschem/etc/system-gschemrc.scm:2220
 msgid "Decrease the Zoom magnification"
 msgstr ""
 
@@ -3462,7 +3462,7 @@ msgstr ""
 msgid "Box"
 msgstr "Rechthoek"
 
-#: gschem/src/x/x_menus.c:106 gschem/etc/system-gschemrc.scm:2207
+#: gschem/src/x/x_menus.c:106 gschem/etc/system-gschemrc.scm:2217
 msgid "Zoom to a Windowed region"
 msgstr ""
 
@@ -3473,7 +3473,7 @@ msgstr "omvang"
 
 # Zoom to the extents of the drawing
 #: gschem/src/x/x_menus.c:107 gschem/src/x/x_menus.c:158
-#: gschem/etc/system-gschemrc.scm:2208
+#: gschem/etc/system-gschemrc.scm:2218
 msgid "Zoom to the extents of the drawing"
 msgstr "Zoom in op de mate van de tekening"
 
@@ -3481,12 +3481,12 @@ msgstr "Zoom in op de mate van de tekening"
 msgid "Mag"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:108 gschem/etc/system-gschemrc.scm:2211
+#: gschem/src/x/x_menus.c:108 gschem/etc/system-gschemrc.scm:2221
 msgid "Zoom to a specified level"
 msgstr ""
 
 # Zoom to selected objects
-#: gschem/src/x/x_menus.c:109 gschem/etc/system-gschemrc.scm:2212
+#: gschem/src/x/x_menus.c:109 gschem/etc/system-gschemrc.scm:2222
 msgid "Zoom to selected objects"
 msgstr "Zoom naar geselecteerde objecten"
 
@@ -3504,7 +3504,7 @@ msgid "Object..."
 msgstr ""
 
 # Edit Object Attributes
-#: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2131
+#: gschem/src/x/x_menus.c:114 gschem/etc/system-gschemrc.scm:2141
 msgid "Edit Object Attributes"
 msgstr "Objecteigenschappen bewerken"
 
@@ -3512,11 +3512,11 @@ msgstr "Objecteigenschappen bewerken"
 msgid "Color..."
 msgstr "Kleur..."
 
-#: gschem/src/x/x_menus.c:115 gschem/etc/system-gschemrc.scm:2133
+#: gschem/src/x/x_menus.c:115 gschem/etc/system-gschemrc.scm:2143
 msgid "Open the Color Editor Dialog"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:116 gschem/etc/system-gschemrc.scm:2137
+#: gschem/src/x/x_menus.c:116 gschem/etc/system-gschemrc.scm:2147
 msgid "Open the Component Editor Dialog"
 msgstr ""
 
@@ -3524,11 +3524,11 @@ msgstr ""
 msgid "Pin type..."
 msgstr "Pin type..."
 
-#: gschem/src/x/x_menus.c:117 gschem/etc/system-gschemrc.scm:2134
+#: gschem/src/x/x_menus.c:117 gschem/etc/system-gschemrc.scm:2144
 msgid "Open the Pin Type Dialog"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2126
+#: gschem/src/x/x_menus.c:121 gschem/etc/system-gschemrc.scm:2136
 msgid "Create and array of objects"
 msgstr ""
 
@@ -3545,7 +3545,7 @@ msgstr ""
 msgid "Extend"
 msgstr "verlengen"
 
-#: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2128
+#: gschem/src/x/x_menus.c:123 gschem/etc/system-gschemrc.scm:2138
 msgid "Project linear objects to other objects"
 msgstr ""
 
@@ -3554,7 +3554,7 @@ msgstr ""
 msgid "Delete"
 msgstr "Verwijder"
 
-#: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2114
+#: gschem/src/x/x_menus.c:124 gschem/etc/system-gschemrc.scm:2124
 msgid "Delete the current selection"
 msgstr ""
 
@@ -3563,7 +3563,7 @@ msgid "Copy"
 msgstr "Kopieer"
 
 # Copy selection
-#: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2117
+#: gschem/src/x/x_menus.c:125 gschem/etc/system-gschemrc.scm:2127
 msgid "Copy selection"
 msgstr "selectie kopieer"
 
@@ -3573,7 +3573,7 @@ msgid "MCopy"
 msgstr "meerdere kopieën"
 
 # Make multiple copies of selection
-#: gschem/src/x/x_menus.c:126 gschem/etc/system-gschemrc.scm:2118
+#: gschem/src/x/x_menus.c:126 gschem/etc/system-gschemrc.scm:2128
 msgid "Make multiple copies of selection"
 msgstr "Maak multiple kopieën van selectie"
 
@@ -3582,7 +3582,7 @@ msgid "Move"
 msgstr "Verplaats"
 
 # Move selection
-#: gschem/src/x/x_menus.c:127 gschem/etc/system-gschemrc.scm:2120
+#: gschem/src/x/x_menus.c:127 gschem/etc/system-gschemrc.scm:2130
 msgid "Move selection"
 msgstr "Verplaats Selectie"
 
@@ -3590,7 +3590,7 @@ msgstr "Verplaats Selectie"
 msgid "Mirror"
 msgstr "Spiegel"
 
-#: gschem/src/x/x_menus.c:128 gschem/etc/system-gschemrc.scm:2119
+#: gschem/src/x/x_menus.c:128 gschem/etc/system-gschemrc.scm:2129
 msgid "Mirror an object about a point"
 msgstr ""
 
@@ -3599,7 +3599,7 @@ msgid "Rotate"
 msgstr "Roteer"
 
 # Rotate the current selection about a point
-#: gschem/src/x/x_menus.c:129 gschem/etc/system-gschemrc.scm:2122
+#: gschem/src/x/x_menus.c:129 gschem/etc/system-gschemrc.scm:2132
 msgid "Rotate the current selection about a point"
 msgstr "Draai de huidige selectie om een ​​punt"
 
@@ -3626,7 +3626,7 @@ msgid "Down Schematic"
 msgstr "Naar Schema"
 
 # descend in schematic hierarchy
-#: gschem/src/x/x_menus.c:137 gschem/etc/system-gschemrc.scm:2250
+#: gschem/src/x/x_menus.c:137 gschem/etc/system-gschemrc.scm:2260
 msgid "Descend down in the schematic hierarchy"
 msgstr "afdalen in schematisch hierarchie"
 
@@ -3635,7 +3635,7 @@ msgid "Down Symbol"
 msgstr "Naar Symbool"
 
 # descend in Symbol hierarchy
-#: gschem/src/x/x_menus.c:138 gschem/etc/system-gschemrc.scm:2251
+#: gschem/src/x/x_menus.c:138 gschem/etc/system-gschemrc.scm:2261
 msgid "Descend down in the symbol hierarchy"
 msgstr "afdalen in Symbool hierarchie"
 
@@ -3644,7 +3644,7 @@ msgid "Up"
 msgstr "Omhoog"
 
 # ascend up in the schematic hierarchy
-#: gschem/src/x/x_menus.c:139 gschem/etc/system-gschemrc.scm:2252
+#: gschem/src/x/x_menus.c:139 gschem/etc/system-gschemrc.scm:2262
 msgid "ascend up in the schematic hierarchy"
 msgstr "opvoer in het schematisch hiërarchie"
 
@@ -3653,7 +3653,7 @@ msgstr "opvoer in het schematisch hiërarchie"
 msgid "Cut to Clipboard"
 msgstr "Knip naar klembord"
 
-#: gschem/src/x/x_menus.c:144 gschem/etc/system-gschemrc.scm:2111
+#: gschem/src/x/x_menus.c:144 gschem/etc/system-gschemrc.scm:2121
 msgid "Cut the current selection to the system clipboard"
 msgstr ""
 
@@ -3662,7 +3662,7 @@ msgstr ""
 msgid "Copy to Clipboard"
 msgstr "Kopieer naar klembord"
 
-#: gschem/src/x/x_menus.c:145 gschem/etc/system-gschemrc.scm:2112
+#: gschem/src/x/x_menus.c:145 gschem/etc/system-gschemrc.scm:2122
 msgid "Copy the current selection to the system clipboard"
 msgstr ""
 
@@ -3671,7 +3671,7 @@ msgstr ""
 msgid "Paste Clipboard"
 msgstr "Plak van klembord"
 
-#: gschem/src/x/x_menus.c:146 gschem/etc/system-gschemrc.scm:2113
+#: gschem/src/x/x_menus.c:146 gschem/etc/system-gschemrc.scm:2123
 msgid "Paste the contents of the system clipboard"
 msgstr ""
 
@@ -3730,15 +3730,15 @@ msgstr "Maak het laatste padsegment ongedaan"
 msgid "Clear"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:644 gschem/etc/system-gschemrc.scm:2075
+#: gschem/src/x/x_menus.c:644 gschem/etc/system-gschemrc.scm:2085
 msgid "Open an existing schematic or symbol file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:655 gschem/etc/system-gschemrc.scm:2080
+#: gschem/src/x/x_menus.c:655 gschem/etc/system-gschemrc.scm:2090
 msgid "Save the current document"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:665 gschem/etc/system-gschemrc.scm:2099
+#: gschem/src/x/x_menus.c:665 gschem/etc/system-gschemrc.scm:2109
 msgid "Quit gschem and exit"
 msgstr "Quit gschem en afsluiten"
 
@@ -3759,7 +3759,7 @@ msgstr ""
 msgid "Oops... got a NULL menu name"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1026 gschem/etc/system-gschemrc.scm:2394
+#: gschem/src/x/x_menus.c:1026 gschem/etc/system-gschemrc.scm:2404
 msgid "_View"
 msgstr "_Toon"
 
@@ -4278,12 +4278,12 @@ msgstr ""
 msgid "_Rename"
 msgstr "_Verdopen"
 
-#: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2114
+#: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2124
 msgid "_Delete"
 msgstr "Verwij_der"
 
 # Export
-#: gschem/src/x/x_sessions.c:660 gschem/etc/system-gschemrc.scm:2089
+#: gschem/src/x/x_sessions.c:660 gschem/etc/system-gschemrc.scm:2099
 msgid "_Export"
 msgstr "_Exporteer"
 
@@ -4537,1121 +4537,1121 @@ msgstr "gEDA schema bewerking"
 msgid "Create and edit electrical schematics and symbols with gschem"
 msgstr "Creer en bewerk elektrische schema's en symbolen met gschem"
 
-#: gschem/etc/system-gschemrc.scm:2074 gschem/etc/system-gschemrc.scm:2282
+#: gschem/etc/system-gschemrc.scm:2084 gschem/etc/system-gschemrc.scm:2292
 msgid "_New"
 msgstr "_Nieuw"
 
-#: gschem/etc/system-gschemrc.scm:2074
+#: gschem/etc/system-gschemrc.scm:2084
 msgid "Create a new empty file"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2075 gschem/etc/system-gschemrc.scm:2283
+#: gschem/etc/system-gschemrc.scm:2085 gschem/etc/system-gschemrc.scm:2293
 msgid "_Open..."
 msgstr "_Open..."
 
-#: gschem/etc/system-gschemrc.scm:2076
+#: gschem/etc/system-gschemrc.scm:2086
 msgid "Open Recen_t"
 msgstr "Open Recen_t"
 
-#: gschem/etc/system-gschemrc.scm:2076
+#: gschem/etc/system-gschemrc.scm:2086
 msgid "Open recently accessed schematic or symbol files"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2080 gschem/etc/system-gschemrc.scm:2286
+#: gschem/etc/system-gschemrc.scm:2090 gschem/etc/system-gschemrc.scm:2296
 msgid "_Save"
 msgstr "Op_slaan"
 
-#: gschem/etc/system-gschemrc.scm:2081 gschem/etc/system-gschemrc.scm:2287
+#: gschem/etc/system-gschemrc.scm:2091 gschem/etc/system-gschemrc.scm:2297
 msgid "Save _As..."
 msgstr "Opslaan _Als..."
 
-#: gschem/etc/system-gschemrc.scm:2081
+#: gschem/etc/system-gschemrc.scm:2091
 msgid "Save the current document to a new name or location"
 msgstr ""
 
 # Save All
-#: gschem/etc/system-gschemrc.scm:2082
+#: gschem/etc/system-gschemrc.scm:2092
 msgid "Save A_ll"
 msgstr "Bewaar alles"
 
-#: gschem/etc/system-gschemrc.scm:2082
+#: gschem/etc/system-gschemrc.scm:2092
 msgid "Save all open documents"
 msgstr ""
 
 # Save Modified
-#: gschem/etc/system-gschemrc.scm:2083
+#: gschem/etc/system-gschemrc.scm:2093
 msgid "Save _Modified"
 msgstr "Bewaar gemodificeerd"
 
-#: gschem/etc/system-gschemrc.scm:2083
+#: gschem/etc/system-gschemrc.scm:2093
 msgid "Save all modified documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2084 gschem/etc/system-gschemrc.scm:2245
+#: gschem/etc/system-gschemrc.scm:2094 gschem/etc/system-gschemrc.scm:2255
 msgid "_Revert"
 msgstr "Te_rughalen"
 
-#: gschem/etc/system-gschemrc.scm:2084
+#: gschem/etc/system-gschemrc.scm:2094
 msgid "Discard changes and reload the current document"
 msgstr ""
 
 # Revert All
-#: gschem/etc/system-gschemrc.scm:2085
+#: gschem/etc/system-gschemrc.scm:2095
 msgid "Re_vert All"
 msgstr "Alle terugzetten"
 
-#: gschem/etc/system-gschemrc.scm:2085
+#: gschem/etc/system-gschemrc.scm:2095
 msgid "Discard changes and reload all open documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2088
+#: gschem/etc/system-gschemrc.scm:2098
 msgid "_Print..."
 msgstr "Af_drukken..."
 
 # Print the current document
-#: gschem/etc/system-gschemrc.scm:2088
+#: gschem/etc/system-gschemrc.scm:2098
 msgid "Print the current document"
 msgstr "Het huidige document afdrukken"
 
-#: gschem/etc/system-gschemrc.scm:2089
+#: gschem/etc/system-gschemrc.scm:2099
 msgid "Export options"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2090
+#: gschem/etc/system-gschemrc.scm:2100
 msgid "Write p_df"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2090
+#: gschem/etc/system-gschemrc.scm:2100
 msgid "Create PDF document"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2091
+#: gschem/etc/system-gschemrc.scm:2101
 msgid "Write _image..."
 msgstr "Schrijf afbeeld_ing..."
 
 # Export Image
-#: gschem/etc/system-gschemrc.scm:2091
+#: gschem/etc/system-gschemrc.scm:2101
 msgid "Export image"
 msgstr "Exporteer Afbeelding"
 
 # Execute Script
-#: gschem/etc/system-gschemrc.scm:2094
+#: gschem/etc/system-gschemrc.scm:2104
 msgid "E_xecute Script..."
 msgstr "Script Uitvoeren..."
 
 # Execute a script file
-#: gschem/etc/system-gschemrc.scm:2094
+#: gschem/etc/system-gschemrc.scm:2104
 msgid "Execute a script file"
 msgstr "Uitvoeren een scriptbestand uit"
 
-#: gschem/etc/system-gschemrc.scm:2097 gschem/etc/system-gschemrc.scm:2244
+#: gschem/etc/system-gschemrc.scm:2107 gschem/etc/system-gschemrc.scm:2254
 msgid "_Close"
 msgstr "S_luit"
 
-#: gschem/etc/system-gschemrc.scm:2097
+#: gschem/etc/system-gschemrc.scm:2107
 msgid "Close the current document"
 msgstr ""
 
 # Close All
-#: gschem/etc/system-gschemrc.scm:2098
+#: gschem/etc/system-gschemrc.scm:2108
 msgid "Close All"
 msgstr "Sluit alles"
 
-#: gschem/etc/system-gschemrc.scm:2098
+#: gschem/etc/system-gschemrc.scm:2108
 msgid "Close all open documents"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2099
+#: gschem/etc/system-gschemrc.scm:2109
 msgid "_Quit"
 msgstr "A_fsluiten"
 
-#: gschem/etc/system-gschemrc.scm:2107
+#: gschem/etc/system-gschemrc.scm:2117
 msgid "_Undo"
 msgstr "_Ongedaan maken"
 
 # Undo the last action
-#: gschem/etc/system-gschemrc.scm:2107
+#: gschem/etc/system-gschemrc.scm:2117
 msgid "Undo the last action"
 msgstr "Ontdoen de laatste actie"
 
-#: gschem/etc/system-gschemrc.scm:2108
+#: gschem/etc/system-gschemrc.scm:2118
 msgid "_Redo"
 msgstr "He_rstel"
 
-#: gschem/etc/system-gschemrc.scm:2108
+#: gschem/etc/system-gschemrc.scm:2118
 msgid "redo the last un-done action"
 msgstr "Maak laatste bewerking ongedaan"
 
-#: gschem/etc/system-gschemrc.scm:2111
+#: gschem/etc/system-gschemrc.scm:2121
 msgid "Cu_t clipboard"
 msgstr "Knip naar klembord"
 
-#: gschem/etc/system-gschemrc.scm:2112
+#: gschem/etc/system-gschemrc.scm:2122
 msgid "_Copy clipboard"
 msgstr "Kopieer naar klembord"
 
-#: gschem/etc/system-gschemrc.scm:2113
+#: gschem/etc/system-gschemrc.scm:2123
 msgid "_Paste clipboard"
 msgstr "Plak van klembord"
 
-#: gschem/etc/system-gschemrc.scm:2117
+#: gschem/etc/system-gschemrc.scm:2127
 msgid "C_opy"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2118
+#: gschem/etc/system-gschemrc.scm:2128
 msgid "_Multiple Copy"
 msgstr "Meervoudig Kopieren"
 
-#: gschem/etc/system-gschemrc.scm:2119
+#: gschem/etc/system-gschemrc.scm:2129
 msgid "M_irror"
 msgstr "Spiegel"
 
-#: gschem/etc/system-gschemrc.scm:2120
+#: gschem/etc/system-gschemrc.scm:2130
 msgid "Mo_ve"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2121
+#: gschem/etc/system-gschemrc.scm:2131
 msgid "O_ffset"
 msgstr "Offset"
 
-#: gschem/etc/system-gschemrc.scm:2121
+#: gschem/etc/system-gschemrc.scm:2131
 msgid "Offset the selected objects"
 msgstr "De geselecteerde objecten"
 
-#: gschem/etc/system-gschemrc.scm:2122
+#: gschem/etc/system-gschemrc.scm:2132
 msgid "Rotate _90"
 msgstr "Roteer _90"
 
 # Snap to grid
-#: gschem/etc/system-gschemrc.scm:2123
+#: gschem/etc/system-gschemrc.scm:2133
 msgid "Snap to _grid"
 msgstr "Snap op het raster"
 
-#: gschem/etc/system-gschemrc.scm:2123
+#: gschem/etc/system-gschemrc.scm:2133
 msgid "Snap selection to current grid"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2126
+#: gschem/etc/system-gschemrc.scm:2136
 msgid "_Array"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2127
+#: gschem/etc/system-gschemrc.scm:2137
 msgid "_Break"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2127
+#: gschem/etc/system-gschemrc.scm:2137
 msgid "Break a linear object into separate objects"
 msgstr ""
 
 # Extend
-#: gschem/etc/system-gschemrc.scm:2128
+#: gschem/etc/system-gschemrc.scm:2138
 msgid "E_xtend"
 msgstr "verlengen"
 
-#: gschem/etc/system-gschemrc.scm:2131
+#: gschem/etc/system-gschemrc.scm:2141
 msgid "_Edit..."
 msgstr "_Bewerk..."
 
-#: gschem/etc/system-gschemrc.scm:2132
+#: gschem/etc/system-gschemrc.scm:2142
 msgid "E_dit Text..."
 msgstr "Bewerk Tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2132
+#: gschem/etc/system-gschemrc.scm:2142
 msgid "Open the Text Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2133
+#: gschem/etc/system-gschemrc.scm:2143
 msgid "Co_lor..."
 msgstr "K_leur..."
 
-#: gschem/etc/system-gschemrc.scm:2134
+#: gschem/etc/system-gschemrc.scm:2144
 msgid "Edit Pi_n..."
 msgstr "Bewerk Pe_n..."
 
 # Line Thickness & Type
-#: gschem/etc/system-gschemrc.scm:2135
+#: gschem/etc/system-gschemrc.scm:2145
 msgid "Line _Width & Type..."
 msgstr "Lijn Dikte & Type..."
 
-#: gschem/etc/system-gschemrc.scm:2135
+#: gschem/etc/system-gschemrc.scm:2145
 msgid "Open the Line Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2136
+#: gschem/etc/system-gschemrc.scm:2146
 msgid "Fill T_ype..."
 msgstr "Arcering T_ype..."
 
-#: gschem/etc/system-gschemrc.scm:2136
+#: gschem/etc/system-gschemrc.scm:2146
 msgid "Open the Fill Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2137
+#: gschem/etc/system-gschemrc.scm:2147
 msgid "Edit Component..."
 msgstr "Bewerken Komponent..."
 
-#: gschem/etc/system-gschemrc.scm:2138
+#: gschem/etc/system-gschemrc.scm:2148
 msgid "_Slot..."
 msgstr "_Slot..."
 
-#: gschem/etc/system-gschemrc.scm:2138
+#: gschem/etc/system-gschemrc.scm:2148
 msgid "Open the Slot Editor Dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2144
+#: gschem/etc/system-gschemrc.scm:2154
 msgid "Activate Deselect mode"
 msgstr "Activeer mode Hef de selectie"
 
-#: gschem/etc/system-gschemrc.scm:2145 gschem/scheme/gschem/builtins.scm:173
+#: gschem/etc/system-gschemrc.scm:2155 gschem/scheme/gschem/builtins.scm:173
 msgid "Select All"
 msgstr "Selecteer Alles"
 
 # Select all objects
-#: gschem/etc/system-gschemrc.scm:2145
+#: gschem/etc/system-gschemrc.scm:2155
 msgid "Select all objects"
 msgstr "Selecteer alle objecten"
 
 # Deselect everything
-#: gschem/etc/system-gschemrc.scm:2146 gschem/scheme/gschem/builtins.scm:185
+#: gschem/etc/system-gschemrc.scm:2156 gschem/scheme/gschem/builtins.scm:185
 msgid "Deselect All"
 msgstr "Deselecteer alles"
 
 # Unselect everything
-#: gschem/etc/system-gschemrc.scm:2146
+#: gschem/etc/system-gschemrc.scm:2156
 msgid "Unselect everything"
 msgstr "unselect alles"
 
 # Invert Selection
-#: gschem/etc/system-gschemrc.scm:2147
+#: gschem/etc/system-gschemrc.scm:2157
 msgid "_Invert Selection"
 msgstr "Omgekeerde selectie"
 
-#: gschem/etc/system-gschemrc.scm:2147
+#: gschem/etc/system-gschemrc.scm:2157
 msgid "Invert the current selection set"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2150
+#: gschem/etc/system-gschemrc.scm:2160
 msgid "Copy into 1"
 msgstr "Kopieer naar 1"
 
-#: gschem/etc/system-gschemrc.scm:2150
+#: gschem/etc/system-gschemrc.scm:2160
 msgid "Copy selection to first auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2151
+#: gschem/etc/system-gschemrc.scm:2161
 msgid "Copy into 2"
 msgstr "Kopieer naar 2"
 
-#: gschem/etc/system-gschemrc.scm:2151
+#: gschem/etc/system-gschemrc.scm:2161
 msgid "Copy selection to second auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2152
+#: gschem/etc/system-gschemrc.scm:2162
 msgid "Copy into 3"
 msgstr "Kopieer naar 3"
 
-#: gschem/etc/system-gschemrc.scm:2152
+#: gschem/etc/system-gschemrc.scm:2162
 msgid "Copy selection to third auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2153
+#: gschem/etc/system-gschemrc.scm:2163
 msgid "Copy into 4"
 msgstr "Kopieer naar 4"
 
-#: gschem/etc/system-gschemrc.scm:2153
+#: gschem/etc/system-gschemrc.scm:2163
 msgid "Copy selection to forth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2154
+#: gschem/etc/system-gschemrc.scm:2164
 msgid "Copy into 5"
 msgstr "Kopieer naar 5"
 
-#: gschem/etc/system-gschemrc.scm:2154
+#: gschem/etc/system-gschemrc.scm:2164
 msgid "Copy selection to fifth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2155
+#: gschem/etc/system-gschemrc.scm:2165
 msgid "Cut into 1"
 msgstr "Knip naar 1"
 
-#: gschem/etc/system-gschemrc.scm:2155
+#: gschem/etc/system-gschemrc.scm:2165
 msgid "Cut selection to first auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2156
+#: gschem/etc/system-gschemrc.scm:2166
 msgid "Cut into 2"
 msgstr "Knip naar 2"
 
-#: gschem/etc/system-gschemrc.scm:2156
+#: gschem/etc/system-gschemrc.scm:2166
 msgid "Cut selection to second auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2157
+#: gschem/etc/system-gschemrc.scm:2167
 msgid "Cut into 3"
 msgstr "Knip naar 3"
 
-#: gschem/etc/system-gschemrc.scm:2157
+#: gschem/etc/system-gschemrc.scm:2167
 msgid "Cut selection to third auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2158
+#: gschem/etc/system-gschemrc.scm:2168
 msgid "Cut into 4"
 msgstr "Knip naar 4"
 
-#: gschem/etc/system-gschemrc.scm:2158
+#: gschem/etc/system-gschemrc.scm:2168
 msgid "Cut selection to forth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2159
+#: gschem/etc/system-gschemrc.scm:2169
 msgid "Cut into 5"
 msgstr "Knip naar 5"
 
-#: gschem/etc/system-gschemrc.scm:2159
+#: gschem/etc/system-gschemrc.scm:2169
 msgid "Cut selection to fifth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2160
+#: gschem/etc/system-gschemrc.scm:2170
 msgid "Paste from 1"
 msgstr "Plak vanuit 1"
 
-#: gschem/etc/system-gschemrc.scm:2160
+#: gschem/etc/system-gschemrc.scm:2170
 msgid "Insert contents of the first auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2161
+#: gschem/etc/system-gschemrc.scm:2171
 msgid "Paste from 2"
 msgstr "Plak vanuit 2"
 
-#: gschem/etc/system-gschemrc.scm:2161
+#: gschem/etc/system-gschemrc.scm:2171
 msgid "Insert contents of the second auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2162
+#: gschem/etc/system-gschemrc.scm:2172
 msgid "Paste from 3"
 msgstr "Plak vanuit 3"
 
-#: gschem/etc/system-gschemrc.scm:2162
+#: gschem/etc/system-gschemrc.scm:2172
 msgid "Insert contents of the third auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2163
+#: gschem/etc/system-gschemrc.scm:2173
 msgid "Paste from 4"
 msgstr "Plak vanuit 4"
 
-#: gschem/etc/system-gschemrc.scm:2163
+#: gschem/etc/system-gschemrc.scm:2173
 msgid "Insert contents of the forth auxiliary buffer"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2164
+#: gschem/etc/system-gschemrc.scm:2174
 msgid "Paste from 5"
 msgstr "Plak vanuit 5"
 
-#: gschem/etc/system-gschemrc.scm:2164
+#: gschem/etc/system-gschemrc.scm:2174
 msgid "Insert contents of the fifth auxiliary buffer"
 msgstr ""
 
 # Lock selected objects
-#: gschem/etc/system-gschemrc.scm:2167
+#: gschem/etc/system-gschemrc.scm:2177
 msgid "Lock selected objects"
 msgstr "Geselecteerde objecten vergrendelen"
 
-#: gschem/etc/system-gschemrc.scm:2168 gschem/scheme/gschem/builtins.scm:191
+#: gschem/etc/system-gschemrc.scm:2178 gschem/scheme/gschem/builtins.scm:191
 msgid "Unlock"
 msgstr "Ontgrendel"
 
 # Unlock selected objects
-#: gschem/etc/system-gschemrc.scm:2168
+#: gschem/etc/system-gschemrc.scm:2178
 msgid "Unlock selected objects"
 msgstr "Ontgrendel geselecteerde objecten"
 
-#: gschem/etc/system-gschemrc.scm:2203
+#: gschem/etc/system-gschemrc.scm:2213
 msgid "_Redraw"
 msgstr "He_rtekenen"
 
 # Redraw the current window
-#: gschem/etc/system-gschemrc.scm:2203
+#: gschem/etc/system-gschemrc.scm:2213
 msgid "Redraw the current window"
 msgstr "Teken het huidige venster opnieuw in"
 
-#: gschem/etc/system-gschemrc.scm:2204
+#: gschem/etc/system-gschemrc.scm:2214
 msgid "_Pan"
 msgstr "_Schuif"
 
-#: gschem/etc/system-gschemrc.scm:2204
+#: gschem/etc/system-gschemrc.scm:2214
 msgid "Activate Panning"
 msgstr ""
 
 # Zoom All
-#: gschem/etc/system-gschemrc.scm:2206
+#: gschem/etc/system-gschemrc.scm:2216
 msgid "Zoom _All"
 msgstr "Alleszoomen"
 
-#: gschem/etc/system-gschemrc.scm:2206
+#: gschem/etc/system-gschemrc.scm:2216
 msgid "Zoom to the limits of the drawing area"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2207
+#: gschem/etc/system-gschemrc.scm:2217
 msgid "Zoom _Box"
 msgstr "_Vergroot Venster"
 
-#: gschem/etc/system-gschemrc.scm:2208
+#: gschem/etc/system-gschemrc.scm:2218
 msgid "Zoom _Extents"
 msgstr "Toon All_es"
 
-#: gschem/etc/system-gschemrc.scm:2209
+#: gschem/etc/system-gschemrc.scm:2219
 msgid "Zoom _In"
 msgstr "Ver_groot"
 
-#: gschem/etc/system-gschemrc.scm:2210
+#: gschem/etc/system-gschemrc.scm:2220
 msgid "Zoom _Out"
 msgstr "Ver_klein"
 
-#: gschem/etc/system-gschemrc.scm:2211
+#: gschem/etc/system-gschemrc.scm:2221
 msgid "Zoom _Mag"
 msgstr "Zoom vergroting"
 
-#: gschem/etc/system-gschemrc.scm:2212
+#: gschem/etc/system-gschemrc.scm:2222
 msgid "Zoom _Selection"
 msgstr "Zoom _Selectie"
 
-#: gschem/etc/system-gschemrc.scm:2215 gschem/etc/system-gschemrc.scm:2253
+#: gschem/etc/system-gschemrc.scm:2225 gschem/etc/system-gschemrc.scm:2263
 msgid "D_ocumentation..."
 msgstr "D_ocumentatie..."
 
 # Find component documentation
-#: gschem/etc/system-gschemrc.scm:2215
+#: gschem/etc/system-gschemrc.scm:2225
 msgid "View component documentation"
 msgstr "Zoek de component documentatie"
 
-#: gschem/etc/system-gschemrc.scm:2216
+#: gschem/etc/system-gschemrc.scm:2226
 msgid "Show/Hide Inv Text"
 msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
 
 # Toggle hidden text attributes
-#: gschem/etc/system-gschemrc.scm:2216
+#: gschem/etc/system-gschemrc.scm:2226
 msgid "Toggle hidden text attributes"
 msgstr "Wissel verborgen tekstkenmerken wisselen"
 
 # Show/Hide Net Names
-#: gschem/etc/system-gschemrc.scm:2217
+#: gschem/etc/system-gschemrc.scm:2227
 msgid "Show/Hide Net Names"
 msgstr "Toon / Verberg Netnamen"
 
 # Toggle hidden net name attributes
-#: gschem/etc/system-gschemrc.scm:2217
+#: gschem/etc/system-gschemrc.scm:2227
 msgid "Toggle hidden net name attributes"
 msgstr "Wissel verborgen netnaamkenmerken"
 
-#: gschem/etc/system-gschemrc.scm:2220
+#: gschem/etc/system-gschemrc.scm:2230
 msgid "_Dark color scheme"
 msgstr "_Donker kleuren schema"
 
-#: gschem/etc/system-gschemrc.scm:2220
+#: gschem/etc/system-gschemrc.scm:2230
 msgid "Set the color map to the Dark set"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2221
+#: gschem/etc/system-gschemrc.scm:2231
 msgid "_Light color scheme"
 msgstr "_Licht kleuren schema"
 
-#: gschem/etc/system-gschemrc.scm:2221
+#: gschem/etc/system-gschemrc.scm:2231
 msgid "Set the color map to the Light set"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2222
+#: gschem/etc/system-gschemrc.scm:2232
 msgid "B_W color scheme"
 msgstr "Z_W kleuren schema"
 
-#: gschem/etc/system-gschemrc.scm:2222
+#: gschem/etc/system-gschemrc.scm:2232
 msgid "Set the color map to Black and White"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2231
+#: gschem/etc/system-gschemrc.scm:2241
 msgid "_Draw Order"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2231
+#: gschem/etc/system-gschemrc.scm:2241
 msgid "Change order objects are drawn"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2234
+#: gschem/etc/system-gschemrc.scm:2244
 msgid "_Manager..."
 msgstr "_Manager..."
 
-#: gschem/etc/system-gschemrc.scm:2234
+#: gschem/etc/system-gschemrc.scm:2244
 msgid "Open the Page Manager"
 msgstr "Open de Pagina Manager"
 
-#: gschem/etc/system-gschemrc.scm:2235
+#: gschem/etc/system-gschemrc.scm:2245
 msgid "_First"
 msgstr ""
 
 # Goto the first page
-#: gschem/etc/system-gschemrc.scm:2235
+#: gschem/etc/system-gschemrc.scm:2245
 msgid "Goto the first page"
 msgstr "Ga naar de eerste pagina"
 
-#: gschem/etc/system-gschemrc.scm:2236
+#: gschem/etc/system-gschemrc.scm:2246
 msgid "_Previous"
 msgstr "_Vorige"
 
-#: gschem/etc/system-gschemrc.scm:2236
+#: gschem/etc/system-gschemrc.scm:2246
 msgid "Switch to the previous page"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2237
+#: gschem/etc/system-gschemrc.scm:2247
 msgid "_Next"
 msgstr "Volge_nde"
 
-#: gschem/etc/system-gschemrc.scm:2237
+#: gschem/etc/system-gschemrc.scm:2247
 msgid "Switch to the next page"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2238
+#: gschem/etc/system-gschemrc.scm:2248
 msgid "_Up"
 msgstr "O_mhoog"
 
-#: gschem/etc/system-gschemrc.scm:2238
+#: gschem/etc/system-gschemrc.scm:2248
 msgid "Go up one page"
 msgstr ""
 
 # Down
-#: gschem/etc/system-gschemrc.scm:2239
+#: gschem/etc/system-gschemrc.scm:2249
 msgid "_Down"
 msgstr "naar beneden"
 
-#: gschem/etc/system-gschemrc.scm:2239
+#: gschem/etc/system-gschemrc.scm:2249
 msgid "Go down one page"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2240
+#: gschem/etc/system-gschemrc.scm:2250
 msgid "_Last"
 msgstr ""
 
 # Goto the last page
-#: gschem/etc/system-gschemrc.scm:2240
+#: gschem/etc/system-gschemrc.scm:2250
 msgid "Goto the last page"
 msgstr "Ontdoen de laatste bewerking"
 
-#: gschem/etc/system-gschemrc.scm:2241
+#: gschem/etc/system-gschemrc.scm:2251
 msgid "Ne_w"
 msgstr "Nieu_w"
 
-#: gschem/etc/system-gschemrc.scm:2241
+#: gschem/etc/system-gschemrc.scm:2251
 msgid "Create a new Page"
 msgstr ""
 
 #  Close the current page
-#: gschem/etc/system-gschemrc.scm:2244
+#: gschem/etc/system-gschemrc.scm:2254
 msgid "Close the current page"
 msgstr "Sluit de huidige pagina"
 
-#: gschem/etc/system-gschemrc.scm:2245
+#: gschem/etc/system-gschemrc.scm:2255
 msgid "Discard changes and reload the current documents"
 msgstr ""
 
 # Discard
-#: gschem/etc/system-gschemrc.scm:2246
+#: gschem/etc/system-gschemrc.scm:2256
 msgid "D_iscard"
 msgstr "af_danken"
 
 # Close the current page without saving
-#: gschem/etc/system-gschemrc.scm:2246
+#: gschem/etc/system-gschemrc.scm:2256
 msgid "Close the current page without saving"
 msgstr "Sluit de huidige pagina zonder op te slaan"
 
 # Print
-#: gschem/etc/system-gschemrc.scm:2247
+#: gschem/etc/system-gschemrc.scm:2257
 msgid "Prin_t"
 msgstr "Afdrukken"
 
 # Print the current page
-#: gschem/etc/system-gschemrc.scm:2247
+#: gschem/etc/system-gschemrc.scm:2257
 msgid "Print the current page"
 msgstr "Druk de huidige pagina af"
 
 # Down Schematic
-#: gschem/etc/system-gschemrc.scm:2250
+#: gschem/etc/system-gschemrc.scm:2260
 msgid "Down _Schematic"
 msgstr "Schematisch neer"
 
 # Down Symbol
-#: gschem/etc/system-gschemrc.scm:2251
+#: gschem/etc/system-gschemrc.scm:2261
 msgid "Down S_ymbol"
 msgstr "Naar s_ymbool"
 
 # Hierarchy Up
-#: gschem/etc/system-gschemrc.scm:2252
+#: gschem/etc/system-gschemrc.scm:2262
 msgid "_Hierarchy Up"
 msgstr "Hiërarchie Omhoog"
 
 # Find component documentation
-#: gschem/etc/system-gschemrc.scm:2253
+#: gschem/etc/system-gschemrc.scm:2263
 msgid "Find component documentation"
 msgstr "Zoek de component documentatie"
 
-#: gschem/etc/system-gschemrc.scm:2261
+#: gschem/etc/system-gschemrc.scm:2271
 msgid "_Component..."
 msgstr "_Component..."
 
-#: gschem/etc/system-gschemrc.scm:2262
+#: gschem/etc/system-gschemrc.scm:2272
 msgid "_Net"
 msgstr "_Draad"
 
-#: gschem/etc/system-gschemrc.scm:2263
+#: gschem/etc/system-gschemrc.scm:2273
 msgid "B_us"
 msgstr "B_us"
 
-#: gschem/etc/system-gschemrc.scm:2264
+#: gschem/etc/system-gschemrc.scm:2274
 msgid "_Attribute..."
 msgstr "_Attribuut..."
 
-#: gschem/etc/system-gschemrc.scm:2265
+#: gschem/etc/system-gschemrc.scm:2275
 msgid "_Text..."
 msgstr "_Tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2268
+#: gschem/etc/system-gschemrc.scm:2278
 msgid "A_rc"
 msgstr "_Boog"
 
-#: gschem/etc/system-gschemrc.scm:2268
+#: gschem/etc/system-gschemrc.scm:2278
 msgid "Create arc"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2269
+#: gschem/etc/system-gschemrc.scm:2279
 msgid "_Box"
 msgstr "_Rechthoek"
 
 # Add box
-#: gschem/etc/system-gschemrc.scm:2269
+#: gschem/etc/system-gschemrc.scm:2279
 msgid "Add box"
 msgstr "Voeg vakje toe"
 
-#: gschem/etc/system-gschemrc.scm:2270
+#: gschem/etc/system-gschemrc.scm:2280
 msgid "C_ircle"
 msgstr "C_irkel"
 
 # Add circle
-#: gschem/etc/system-gschemrc.scm:2270
+#: gschem/etc/system-gschemrc.scm:2280
 msgid "Add circle"
 msgstr "Voeg cirkel toe"
 
-#: gschem/etc/system-gschemrc.scm:2271
+#: gschem/etc/system-gschemrc.scm:2281
 msgid "_Line"
 msgstr "_Lijn"
 
 # Add line
-#: gschem/etc/system-gschemrc.scm:2271
+#: gschem/etc/system-gschemrc.scm:2281
 msgid "Add line"
 msgstr "Voeg Lijn Toe"
 
-#: gschem/etc/system-gschemrc.scm:2272
+#: gschem/etc/system-gschemrc.scm:2282
 msgid "Pat_h"
 msgstr "Pat_h"
 
-#: gschem/etc/system-gschemrc.scm:2272 gschem/scheme/gschem/builtins.scm:371
+#: gschem/etc/system-gschemrc.scm:2282 gschem/scheme/gschem/builtins.scm:371
 msgid "Add Path"
 msgstr "Voeg Pad Toe"
 
-#: gschem/etc/system-gschemrc.scm:2273
+#: gschem/etc/system-gschemrc.scm:2283
 msgid "Pictu_re..."
 msgstr "Afbeelding..."
 
-#: gschem/etc/system-gschemrc.scm:2273
+#: gschem/etc/system-gschemrc.scm:2283
 msgid "Insert an image into the current document"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2274
+#: gschem/etc/system-gschemrc.scm:2284
 msgid "_Pin"
 msgstr "_Pen"
 
 # Add pin
-#: gschem/etc/system-gschemrc.scm:2274
+#: gschem/etc/system-gschemrc.scm:2284
 msgid "Add pin"
 msgstr "Pin toevoegen"
 
-#: gschem/etc/system-gschemrc.scm:2282
+#: gschem/etc/system-gschemrc.scm:2292
 msgid "Create a new session"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2283
+#: gschem/etc/system-gschemrc.scm:2293
 msgid "Launch the open Session dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2284
+#: gschem/etc/system-gschemrc.scm:2294
 msgid "_Restore"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2284
+#: gschem/etc/system-gschemrc.scm:2294
 msgid "Restore an existing Session"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2286
+#: gschem/etc/system-gschemrc.scm:2296
 msgid "Save the current Session"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2287
+#: gschem/etc/system-gschemrc.scm:2297
 msgid "Save the current Session to another name"
 msgstr ""
 
 # Manage
-#: gschem/etc/system-gschemrc.scm:2289
+#: gschem/etc/system-gschemrc.scm:2299
 msgid "_Manage..."
 msgstr "beheren..."
 
-#: gschem/etc/system-gschemrc.scm:2289
+#: gschem/etc/system-gschemrc.scm:2299
 msgid "Open the Session Manager dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2297
+#: gschem/etc/system-gschemrc.scm:2307
 msgid "_Attach"
 msgstr "V_astmaken"
 
 # Attach selected attributes to symbol
-#: gschem/etc/system-gschemrc.scm:2297
+#: gschem/etc/system-gschemrc.scm:2307
 msgid "Attach selected attributes to symbol"
 msgstr "Bevestig geselecteerde attributen aan symbool"
 
-#: gschem/etc/system-gschemrc.scm:2298
+#: gschem/etc/system-gschemrc.scm:2308
 msgid "_Detach"
 msgstr "_Losmaken"
 
-#: gschem/etc/system-gschemrc.scm:2298
+#: gschem/etc/system-gschemrc.scm:2308
 msgid "Detach selected attributes from a symbol"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2299
+#: gschem/etc/system-gschemrc.scm:2309
 msgid "Show _Value"
 msgstr "Toon _Waarde"
 
-#: gschem/etc/system-gschemrc.scm:2299
+#: gschem/etc/system-gschemrc.scm:2309
 msgid "Set selected value visible"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2300
+#: gschem/etc/system-gschemrc.scm:2310
 msgid "Show _Name"
 msgstr "Toon _Naam"
 
-#: gschem/etc/system-gschemrc.scm:2300
+#: gschem/etc/system-gschemrc.scm:2310
 msgid "Set selected name visible"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2301
+#: gschem/etc/system-gschemrc.scm:2311
 msgid "Show _Both"
 msgstr "Toon _Beide"
 
-#: gschem/etc/system-gschemrc.scm:2301
+#: gschem/etc/system-gschemrc.scm:2311
 msgid "Set selected name and value visible"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2303
+#: gschem/etc/system-gschemrc.scm:2313
 msgid "_Toggle Visibility"
 msgstr "Schakel Zich_tbaarheid"
 
-#: gschem/etc/system-gschemrc.scm:2303
+#: gschem/etc/system-gschemrc.scm:2313
 msgid "Toggle attribute visibility"
 msgstr "Schakel attribuut Zichtbaarheid"
 
 # Reset Position
-#: gschem/etc/system-gschemrc.scm:2304
+#: gschem/etc/system-gschemrc.scm:2314
 msgid "_Reset Position"
 msgstr "resetstand"
 
-#: gschem/etc/system-gschemrc.scm:2304
+#: gschem/etc/system-gschemrc.scm:2314
 msgid "Restore attribute positions and orientation"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2306
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "_Find Specific Text..."
 msgstr "Vind Speci_fieke Tekst..."
 
 # Find an attribute
-#: gschem/etc/system-gschemrc.scm:2306
+#: gschem/etc/system-gschemrc.scm:2316
 msgid "Find an attribute"
 msgstr "Zoek een attribuut"
 
-#: gschem/etc/system-gschemrc.scm:2307
+#: gschem/etc/system-gschemrc.scm:2317
 msgid "_Hide Specific Text..."
 msgstr "Verberg Specifieke Tekst..."
 
 # Hide selected attribute
-#: gschem/etc/system-gschemrc.scm:2307
+#: gschem/etc/system-gschemrc.scm:2317
 msgid "Hide selected attribute"
 msgstr "Verberg geselecteerde attribuut"
 
-#: gschem/etc/system-gschemrc.scm:2308
+#: gschem/etc/system-gschemrc.scm:2318
 msgid "_Show Specific Text..."
 msgstr "Toon _Specifieke Tekst..."
 
-#: gschem/etc/system-gschemrc.scm:2308
+#: gschem/etc/system-gschemrc.scm:2318
 msgid "Show a specific attribute"
 msgstr "Toon een specifiek kenmerk"
 
 # Single Attribute Editing
-#: gschem/etc/system-gschemrc.scm:2310
+#: gschem/etc/system-gschemrc.scm:2320
 msgid "Attribute _Editor..."
 msgstr "_Enkelvoudige Attribuut Bewerking..."
 
-#: gschem/etc/system-gschemrc.scm:2310
+#: gschem/etc/system-gschemrc.scm:2320
 msgid "Open the Attributes Editor Dialog"
 msgstr "Enkelvoudige Attribuut Bewerking"
 
-#: gschem/etc/system-gschemrc.scm:2318
+#: gschem/etc/system-gschemrc.scm:2328
 msgid "A_utonumber Text..."
 msgstr "A_utomatisch Tekst Nummeren..."
 
-#: gschem/etc/system-gschemrc.scm:2318
+#: gschem/etc/system-gschemrc.scm:2328
 msgid "Open Auto Number dialog"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2319
+#: gschem/etc/system-gschemrc.scm:2329
 msgid "Show _Console Window..."
 msgstr "Toon _Console venster..."
 
-#: gschem/etc/system-gschemrc.scm:2319
+#: gschem/etc/system-gschemrc.scm:2329
 msgid "Display the console window"
 msgstr "Geef het console venster"
 
-#: gschem/etc/system-gschemrc.scm:2320
+#: gschem/etc/system-gschemrc.scm:2330
 msgid "Show Coord _Window..."
 msgstr "Toon Coordinaten venster..."
 
-#: gschem/etc/system-gschemrc.scm:2320
+#: gschem/etc/system-gschemrc.scm:2330
 msgid "Display coordinates"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2323 gschem/scheme/gschem/builtins.scm:445
+#: gschem/etc/system-gschemrc.scm:2333 gschem/scheme/gschem/builtins.scm:445
 msgid "Invoke Macro"
 msgstr "Macro Aanroepen"
 
-#: gschem/etc/system-gschemrc.scm:2323
+#: gschem/etc/system-gschemrc.scm:2333
 msgid "Invoke a macro"
 msgstr "Macro Aanroepen"
 
-#: gschem/etc/system-gschemrc.scm:2324
+#: gschem/etc/system-gschemrc.scm:2334
 msgid "G_uile Path..."
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2324
+#: gschem/etc/system-gschemrc.scm:2334
 msgid "View or manage guile path"
 msgstr "Bekijken of beheren guile pad"
 
-#: gschem/etc/system-gschemrc.scm:2328 gschem/scheme/gschem/builtins.scm:451
+#: gschem/etc/system-gschemrc.scm:2338 gschem/scheme/gschem/builtins.scm:451
 msgid "Embed Component/Picture"
 msgstr "Component/Afbeelding Insluiten"
 
-#: gschem/etc/system-gschemrc.scm:2328
+#: gschem/etc/system-gschemrc.scm:2338
 msgid "Embed a component or image object"
 msgstr "Embed onderdeel of een afbeelding object"
 
-#: gschem/etc/system-gschemrc.scm:2329 gschem/scheme/gschem/builtins.scm:454
+#: gschem/etc/system-gschemrc.scm:2339 gschem/scheme/gschem/builtins.scm:454
 msgid "Unembed Component/Picture"
 msgstr "Component/Afbeelding Uitsluiten"
 
-#: gschem/etc/system-gschemrc.scm:2329
+#: gschem/etc/system-gschemrc.scm:2339
 msgid "Unembed a component or image object"
 msgstr "Unembed een component of beeldobject"
 
-#: gschem/etc/system-gschemrc.scm:2330 gschem/scheme/gschem/builtins.scm:457
+#: gschem/etc/system-gschemrc.scm:2340 gschem/scheme/gschem/builtins.scm:457
 msgid "Update Component"
 msgstr "Hernieuw Component"
 
-#: gschem/etc/system-gschemrc.scm:2330
+#: gschem/etc/system-gschemrc.scm:2340
 msgid "Reload definition of selected component"
 msgstr "Reload definitie van de geselecteerde component"
 
-#: gschem/etc/system-gschemrc.scm:2338
+#: gschem/etc/system-gschemrc.scm:2348
 msgid "Cycle _grid styles"
 msgstr "Schakel r_aster stijlen"
 
 # Toggle grid between dot, mesh and off
-#: gschem/etc/system-gschemrc.scm:2338
+#: gschem/etc/system-gschemrc.scm:2348
 msgid "Toggle grid between Dot, Mesh and Off"
 msgstr "Schakelen rooster tussen dot, gaas en off"
 
-#: gschem/etc/system-gschemrc.scm:2339
+#: gschem/etc/system-gschemrc.scm:2349
 msgid "Scale _up Grid Spacing"
 msgstr "Omhoog schalen Raster A_fstand"
 
-#: gschem/etc/system-gschemrc.scm:2339
+#: gschem/etc/system-gschemrc.scm:2349
 msgid "Increase the snap size"
 msgstr "Verhoging van de snap formaat"
 
-#: gschem/etc/system-gschemrc.scm:2340
+#: gschem/etc/system-gschemrc.scm:2350
 msgid "Scale _down Grid Spacing"
 msgstr "Omlaag schalen Snap Raster Afstan_d"
 
-#: gschem/etc/system-gschemrc.scm:2340
+#: gschem/etc/system-gschemrc.scm:2350
 msgid "Decrease the snap size"
 msgstr ""
 
 # Snap Grid Spacing
-#: gschem/etc/system-gschemrc.scm:2341
+#: gschem/etc/system-gschemrc.scm:2351
 msgid "S_nap Grid Spacing..."
 msgstr "Snap Rasterafstand..."
 
-#: gschem/etc/system-gschemrc.scm:2341
+#: gschem/etc/system-gschemrc.scm:2351
 msgid "Adjust snap size"
 msgstr "Pas snap maat"
 
-#: gschem/etc/system-gschemrc.scm:2344
+#: gschem/etc/system-gschemrc.scm:2354
 msgid "_Snap On-Off"
 msgstr "_Snap Aan"
 
 # Toggle the object snap mode
-#: gschem/etc/system-gschemrc.scm:2344
+#: gschem/etc/system-gschemrc.scm:2354
 msgid "Toggle the object snap mode"
 msgstr "de objectmagneetmenu modus"
 
 # Rubberband => Hold connections
-#: gschem/etc/system-gschemrc.scm:2345
+#: gschem/etc/system-gschemrc.scm:2355
 msgid "_Rubberband"
 msgstr "Houd Aansluitingen"
 
-#: gschem/etc/system-gschemrc.scm:2345
+#: gschem/etc/system-gschemrc.scm:2355
 msgid "Toggle rubberband net mode"
 msgstr "elastisch netbinding modus"
 
 # Magnetic Net
-#: gschem/etc/system-gschemrc.scm:2346
+#: gschem/etc/system-gschemrc.scm:2356
 msgid "_Magnetic Net"
 msgstr "Magnetische Draad"
 
-#: gschem/etc/system-gschemrc.scm:2346
+#: gschem/etc/system-gschemrc.scm:2356
 msgid "Toggle magnetic net mode"
 msgstr "_Magnetische Draad Modus"
 
 # Drag Moves
-#: gschem/etc/system-gschemrc.scm:2347
+#: gschem/etc/system-gschemrc.scm:2357
 msgid "_Drag Move"
 msgstr "Sleep beweegt"
 
-#: gschem/etc/system-gschemrc.scm:2347
+#: gschem/etc/system-gschemrc.scm:2357
 msgid "Toggle Drag-can-Move mode"
 msgstr "sleep-kan-move-modus"
 
-#: gschem/etc/system-gschemrc.scm:2348
+#: gschem/etc/system-gschemrc.scm:2358
 msgid "_Outline-Box"
 msgstr "C_ontour/Rechthoek"
 
 # Toggle action feedback
-#: gschem/etc/system-gschemrc.scm:2348
+#: gschem/etc/system-gschemrc.scm:2358
 msgid "Toggle action feedback"
 msgstr "Aktie terugkoppel"
 
 # Automatic Panning
-#: gschem/etc/system-gschemrc.scm:2349
+#: gschem/etc/system-gschemrc.scm:2359
 msgid "_Auto-Pan"
 msgstr "Automatische panning"
 
-#: gschem/etc/system-gschemrc.scm:2349
+#: gschem/etc/system-gschemrc.scm:2359
 msgid "Toggle auto panning mode"
 msgstr "Automatische panning mode"
 
-#: gschem/etc/system-gschemrc.scm:2352
+#: gschem/etc/system-gschemrc.scm:2362
 msgid "_Text Size..."
 msgstr "_Tekst Hoogte..."
 
 # Open the Text Size settings
-#: gschem/etc/system-gschemrc.scm:2352
+#: gschem/etc/system-gschemrc.scm:2362
 msgid "Open the Text Size settings"
 msgstr "Open de Tekstgrootte instellingen"
 
 # Preferences
-#: gschem/etc/system-gschemrc.scm:2353
+#: gschem/etc/system-gschemrc.scm:2363
 msgid "_Preferences..."
 msgstr "_Voorkeuren..."
 
 # Open the Preferences dialog
-#: gschem/etc/system-gschemrc.scm:2353
+#: gschem/etc/system-gschemrc.scm:2363
 msgid "Open the Preferences dialog"
 msgstr "Open het dialoogvenster Voorkeuren"
 
-#: gschem/etc/system-gschemrc.scm:2362
+#: gschem/etc/system-gschemrc.scm:2372
 msgid "Gschem Guide"
 msgstr "gschem Gebruikers Gids"
 
-#: gschem/etc/system-gschemrc.scm:2363
+#: gschem/etc/system-gschemrc.scm:2373
 msgid "_Hotkeys..."
 msgstr "_Sneltoets..."
 
-#: gschem/etc/system-gschemrc.scm:2364
+#: gschem/etc/system-gschemrc.scm:2374
 msgid "gschem _FAQ..."
 msgstr "gschem _FAQ..."
 
-#: gschem/etc/system-gschemrc.scm:2366
+#: gschem/etc/system-gschemrc.scm:2376
 msgid "Component D_ocumentation..."
 msgstr "Component D_ocumentatie..."
 
-#: gschem/etc/system-gschemrc.scm:2368
+#: gschem/etc/system-gschemrc.scm:2378
 msgid "gEDA Docu_mentation..."
 msgstr "gEDA Docu_mentatie..."
 
-#: gschem/etc/system-gschemrc.scm:2369
+#: gschem/etc/system-gschemrc.scm:2379
 msgid "gEDA _Wiki..."
 msgstr "gEDA _Wiki..."
 
-#: gschem/etc/system-gschemrc.scm:2370
+#: gschem/etc/system-gschemrc.scm:2380
 msgid "_About..."
 msgstr "Om_trent..."
 
 # Draw objects before another object
-#: gschem/etc/system-gschemrc.scm:2378
+#: gschem/etc/system-gschemrc.scm:2388
 msgid "Draw objects before another object"
 msgstr "Teken objecten voor een ander object"
 
 # Draw object after another object
-#: gschem/etc/system-gschemrc.scm:2379
+#: gschem/etc/system-gschemrc.scm:2389
 msgid "Draw object after another object"
 msgstr "Teken object na het andere object"
 
 # Raise objects to top of drawing order
-#: gschem/etc/system-gschemrc.scm:2381
+#: gschem/etc/system-gschemrc.scm:2391
 msgid "Raise objects to top of drawing order"
 msgstr "Raise voorwerpen naar boven of tekening orde"
 
 # Lower to bottom of the drawing order
-#: gschem/etc/system-gschemrc.scm:2382
+#: gschem/etc/system-gschemrc.scm:2392
 msgid "Lower to bottom of the drawing order"
 msgstr "Lagere tot de onderkant van de tekening orde"
 
-#: gschem/etc/system-gschemrc.scm:2390
+#: gschem/etc/system-gschemrc.scm:2400
 msgid "_File"
 msgstr "_Bestand"
 
-#: gschem/etc/system-gschemrc.scm:2391
+#: gschem/etc/system-gschemrc.scm:2401
 msgid "_Edit"
 msgstr "B_ewerk"
 
-#: gschem/etc/system-gschemrc.scm:2392
+#: gschem/etc/system-gschemrc.scm:2402
 msgid "_Select"
 msgstr "_Selecteer"
 
-#: gschem/etc/system-gschemrc.scm:2395
+#: gschem/etc/system-gschemrc.scm:2405
 msgid "_Page"
 msgstr "_Pagina"
 
-#: gschem/etc/system-gschemrc.scm:2396
+#: gschem/etc/system-gschemrc.scm:2406
 msgid "_Add"
 msgstr "Toe_voegen"
 
-#: gschem/etc/system-gschemrc.scm:2397
+#: gschem/etc/system-gschemrc.scm:2407
 msgid "Sessio_ns"
 msgstr "Sess_ie"
 
-#: gschem/etc/system-gschemrc.scm:2398
+#: gschem/etc/system-gschemrc.scm:2408
 msgid "Attri_butes"
 msgstr "Attri_buten"
 
 # Tools
-#: gschem/etc/system-gschemrc.scm:2399
+#: gschem/etc/system-gschemrc.scm:2409
 msgid "_Tools"
 msgstr "_Gereedschap"
 
-#: gschem/etc/system-gschemrc.scm:2409
+#: gschem/etc/system-gschemrc.scm:2419
 msgid "_Options"
 msgstr "_Opties"
 
-#: gschem/etc/system-gschemrc.scm:2410
+#: gschem/etc/system-gschemrc.scm:2420
 msgid "_Help"
 msgstr "_Help"
 

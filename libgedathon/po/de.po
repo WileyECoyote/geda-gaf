@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -304,7 +304,8 @@ msgstr "Objektattribute aktualisieren"
 # Retrieve all objects connected to specific object
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr "Rufen Sie alle Objekte ab, die mit einem bestimmten Objekt verbunden sind"
+msgstr ""
+"Rufen Sie alle Objekte ab, die mit einem bestimmten Objekt verbunden sind"
 
 # Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
@@ -314,7 +315,8 @@ msgstr "Ruft eine Liste von Punkten für die Kreuzung für angegebene Objekte ab
 # Retrieve list of points of unconnected nodes for specified objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr "Liste der Punkte nicht verbundener Knoten für bestimmte Objekte abrufen"
+msgstr ""
+"Liste der Punkte nicht verbundener Knoten für bestimmte Objekte abrufen"
 
 # Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -361,7 +361,8 @@ msgstr "Извличане на списък от точки на несвърз
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr "Въведете грешка, пренебрегвайки невалидния незадължителен параметър 5\n"
+msgstr ""
+"Въведете грешка, пренебрегвайки невалидния незадължителен параметър 5\n"
 
 # get; poluchavam
 #: libgedathon/module/functions.c:400

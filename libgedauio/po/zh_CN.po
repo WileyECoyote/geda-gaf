@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-23 10:12-0600\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -77,27 +77,27 @@ msgstr "预习"
 msgid "Active to enable the preview pane"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:613
+#: libgedauio/src/widgets/geda_accel_label.c:614
 msgid "Accelerator Closure"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:614
+#: libgedauio/src/widgets/geda_accel_label.c:615
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:620
+#: libgedauio/src/widgets/geda_accel_label.c:621
 msgid "Accelerator Widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:621
+#: libgedauio/src/widgets/geda_accel_label.c:622
 msgid "The widget to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:627
+#: libgedauio/src/widgets/geda_accel_label.c:628
 msgid "Accelerator String"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:628
+#: libgedauio/src/widgets/geda_accel_label.c:629
 msgid "The accelerator string to be displayed"
 msgstr ""
 
@@ -303,72 +303,72 @@ msgstr ""
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:662
+#: libgedauio/src/widgets/geda_entry.c:660
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:663
+#: libgedauio/src/widgets/geda_entry.c:661
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:670
+#: libgedauio/src/widgets/geda_entry.c:668
 #: libgedauio/src/widgets/geda_label.c:1405
 msgid "Attributes"
 msgstr "属性"
 
-#: libgedauio/src/widgets/geda_entry.c:671
+#: libgedauio/src/widgets/geda_entry.c:669
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:678
+#: libgedauio/src/widgets/geda_entry.c:676
 msgid "Auto-Completion"
 msgstr "自动完成"
 
-#: libgedauio/src/widgets/geda_entry.c:679
+#: libgedauio/src/widgets/geda_entry.c:677
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:686
+#: libgedauio/src/widgets/geda_entry.c:684
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:687
+#: libgedauio/src/widgets/geda_entry.c:685
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:694
+#: libgedauio/src/widgets/geda_entry.c:692
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:695
+#: libgedauio/src/widgets/geda_entry.c:693
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:704
+#: libgedauio/src/widgets/geda_entry.c:702
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:705
+#: libgedauio/src/widgets/geda_entry.c:703
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:714
+#: libgedauio/src/widgets/geda_entry.c:712
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:715
+#: libgedauio/src/widgets/geda_entry.c:713
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1370
+#: libgedauio/src/widgets/geda_entry.c:1351
 msgid "Auto Complete"
 msgstr "自动完成"
 
-#: libgedauio/src/widgets/geda_entry.c:1378
+#: libgedauio/src/widgets/geda_entry.c:1359
 msgid "On"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1383
+#: libgedauio/src/widgets/geda_entry.c:1364
 msgid "Off"
 msgstr ""
 
@@ -553,45 +553,45 @@ msgstr ""
 msgid "_Select"
 msgstr "选择"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1584
-#: libgedauio/src/widgets/geda_handlebox.c:1593
+#: libgedauio/src/widgets/geda_handlebox.c:1583
+#: libgedauio/src/widgets/geda_handlebox.c:1592
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1602
+#: libgedauio/src/widgets/geda_handlebox.c:1601
 msgid "Position of the handle relative to the child toolbar"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1610
+#: libgedauio/src/widgets/geda_handlebox.c:1609
 msgid "Shrink"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1611
+#: libgedauio/src/widgets/geda_handlebox.c:1610
 msgid "Shrink when toolbar is detached."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1619
+#: libgedauio/src/widgets/geda_handlebox.c:1618
 msgid ""
 "Side of the handlebox that is lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1628
+#: libgedauio/src/widgets/geda_handlebox.c:1627
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1636
+#: libgedauio/src/widgets/geda_handlebox.c:1635
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
 # Handle Size
-#: libgedauio/src/widgets/geda_handlebox.c:1698
+#: libgedauio/src/widgets/geda_handlebox.c:1697
 msgid "Handle Size"
 msgstr "手柄尺寸"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1699
+#: libgedauio/src/widgets/geda_handlebox.c:1698
 msgid "Size of the drag handle in pixels."
 msgstr ""
 
@@ -795,11 +795,11 @@ msgid "Whether visited links should be tracked"
 msgstr ""
 
 # Open Link
-#: libgedauio/src/widgets/geda_label.c:5337
+#: libgedauio/src/widgets/geda_label.c:5346
 msgid "_Open Link"
 msgstr "打开链接"
 
-#: libgedauio/src/widgets/geda_label.c:5349
+#: libgedauio/src/widgets/geda_label.c:5358
 msgid "Copy _Link Address"
 msgstr ""
 
@@ -890,16 +890,16 @@ msgstr ""
 msgid "Swatch Enabled"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_toggle_action.c:236
 #: libgedauio/src/widgets/geda_toggle_action.c:237
+#: libgedauio/src/widgets/geda_toggle_action.c:238
 msgid "Multikey Accelerator"
 msgstr ""
 
 # Font Size
-#: libgedauio/src/widgets/geda_toolbar.c:167
+#: libgedauio/src/widgets/geda_toolbar.c:176
 msgid "Font Size"
 msgstr "字体大小"
 
-#: libgedauio/src/widgets/geda_toolbar.c:168
+#: libgedauio/src/widgets/geda_toolbar.c:177
 msgid "Set point size of the font for child widgets"
 msgstr ""

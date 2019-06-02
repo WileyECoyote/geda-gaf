@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2017-12-13 02:30-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -334,6 +334,7 @@ msgstr "Haal lys van punte van ongebonde nodes vir spesifieke voorwerpe"
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "Tik fout, ignoreer ongeldige opsionele parameter 5\n"
+
 # get
 #: libgedathon/module/functions.c:400
 msgid "get"

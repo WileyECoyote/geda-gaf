@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -306,7 +306,9 @@ msgstr "Recuperar la llista de punts per a la unió per a objectes especificats"
 # Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr "Recuperar la llista de punts de nodes sense connexió per a objectes específics"
+msgstr ""
+"Recuperar la llista de punts de nodes sense connexió per a objectes "
+"específics"
 
 # Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164

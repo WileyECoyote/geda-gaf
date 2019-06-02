@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -375,7 +375,8 @@ msgstr "Ανανέωση χαρακτηριστικών αντικειμένων
 # Anáktisi ólon ton antikeiménon pou syndéontai me synkekriméno antikeímeno
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr "Ανάκτηση όλων των αντικειμένων που συνδέονται με συγκεκριμένο αντικείμενο"
+msgstr ""
+"Ανάκτηση όλων των αντικειμένων που συνδέονται με συγκεκριμένο αντικείμενο"
 
 # Retrieve list of points for junction for specified objects
 # Anáktisi lístas simeíon gia diastávrosi gia synkekriména antikeímena
@@ -387,7 +388,8 @@ msgstr "Ανάκτηση λίστας σημείων για διασταύρωσ
 # Anáktisi lístas simeíon mi syndedeménon kómvon gia synkekriména antikeímena
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr "Ανάκτηση λίστας σημείων μη συνδεδεμένων κόμβων για συγκεκριμένα αντικείμενα"
+msgstr ""
+"Ανάκτηση λίστας σημείων μη συνδεδεμένων κόμβων για συγκεκριμένα αντικείμενα"
 
 # Type error, ignoring invalid optional parameter 5
 # Pliktrologíste sfálma, agnoóntas mi énkyri proairetikí parámetro 5

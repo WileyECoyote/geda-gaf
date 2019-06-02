@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-11 21:53-0500\n"
+"POT-Creation-Date: 2019-06-01 21:18-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -315,20 +315,24 @@ msgstr "tow yk vottho teangoasa del ban taphcheab tow vottho cheakleak"
 # Retrieve list of points for junction for specified objects
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr "tow yk banhchi chamnoch samreab chamnochabrasapv samreab "
-"vottho del ban banhcheak"
+msgstr ""
+"tow yk banhchi chamnoch samreab chamnochabrasapv samreab vottho del ban "
+"banhcheak"
 
 # Retrieve list of points of unconnected nodes for specified Objects
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr "tow yk banhchi chamnoch nei thnang del min teaktng samreab "
-"vottho del ban banhcheak"
+msgstr ""
+"tow yk banhchi chamnoch nei thnang del min teaktng samreab vottho del ban "
+"banhcheak"
 
 # Type error, ignoring invalid optional parameter 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr "banhchoul kamhosa daoy min aepeu bareametr srech chett del min troemotrauv 5\n"
+msgstr ""
+"banhchoul kamhosa daoy min aepeu bareametr srech chett del min troemotrauv "
+"5\n"
 
 # get
 #: libgedathon/module/functions.c:400
