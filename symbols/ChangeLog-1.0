@@ -27,6 +27,13 @@
             * emechanic/motor/ac_motor-1.sym
             * emechanic/motor/ac_motor-2.sym
 
+    * emechanic/switch/switch_pushbutton-*-?.sym: Shift symbol up 100 units
+      as to align with other similar switches and revise draw order:
+
+            * emechanic/switch/switch_pushbutton-nc-2.sym
+            * emechanic/switch/switch_pushbutton-no-1.sym
+            * emechanic/switch/switch_pushbutton-spdt-1.sym
+
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/zener_150_1N5383B.sym: Update voltage value.
