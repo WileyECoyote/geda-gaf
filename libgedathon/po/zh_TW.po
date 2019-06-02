@@ -354,46 +354,61 @@ msgstr "檢索特定的屬性對象"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "檢索關聯的屬性對象的列表"
 
+# Set the value of a specified attribute object
+# Shèzhì zhǐdìng shǔxìng duìxiàng de zhí
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "設置指定屬性對象的值"
 
+# Refresh objects attributes; Shuāxīn duìxiàng shǔxìng
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "刷新對象屬性"
 
+# Retrieve all objects connected to specific object
+# Jiǎnsuǒ liánjiē dào tèdìng duìxiàng de suǒyǒu duìxiàng
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "檢索連接到特定對象的所有對象"
 
+# Retrieve list of points for junction for specified objects
+# Jiǎnsuǒ zhǐdìng duìxiàng de liánjié diǎn dì lièbiǎo
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "檢索指定對象的聯結點的列表"
 
+# Retrieve list of points of unconnected nodes for specified objects
+# Jiǎnsuǒ zhǐdìng duìxiàng de wèi liánjiē jiédiǎn dì lièbiǎo
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "檢索指定對象的未連接節點的列表"
 
+# Type error, ignoring invalid optional parameter 5
+# Shūrù cuòwù, hūlüè wúxiào de kě xuǎn cānshù 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "輸入錯誤，忽略無效的可選參數5\n"
 
+# get; Dédào
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "得到"
 
+# or set; Huò shèdìng
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "或設定"
 
+# An error occurred; Fāshēng cuòwù
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "發生錯誤"
 
+# object was not created; Duìxiàng wèi chuàngjiàn
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "對象未創建"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
