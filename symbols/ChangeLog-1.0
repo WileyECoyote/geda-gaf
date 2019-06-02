@@ -13,11 +13,12 @@
             * emechanic/breaker/circuit-breaker_2p-1.sym
             * emechanic/breaker/circuit-breaker_3p-1.sym
 
-    * emechanic/breaker/circuit-breaker_?p-[2,3].sym: Add dash 2 circuit breaker
-      with larger spacing:
+    * emechanic/breaker/circuit-breaker_?p-[2,3].sym: Add dash 2 and 3 circuit
+      breakers with larger spacing:
 
             * emechanic/breaker/circuit-breaker_2p-2.sym
             * emechanic/breaker/circuit-breaker_3p-2.sym
+            * emechanic/breaker/circuit-breaker_2p-3.sym
 
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
