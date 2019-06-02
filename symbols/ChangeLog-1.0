@@ -13,6 +13,11 @@
             * emechanic/breaker/circuit-breaker_2p-1.sym
             * emechanic/breaker/circuit-breaker_3p-1.sym
 
+    * emechanic/breaker/circuit-breaker_?p-[2,3].sym: Add dash 2 circuit breaker
+      with larger spacing:
+
+            * emechanic/breaker/circuit-breaker_2p-2.sym
+
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/zener_150_1N5383B.sym: Update voltage value.
