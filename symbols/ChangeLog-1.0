@@ -6,6 +6,13 @@
             * emechanic/accelerometer/CMR3000-1.sym
             * emechanic/accelerometer/MMA7260Q-1.sym
 
+    * emechanic/breaker/circuit-breaker_?p-1.sym: Remove "comment=Version 080424"
+      attribute:
+
+            * emechanic/breaker/circuit-breaker_1p-1.sym
+            * emechanic/breaker/circuit-breaker_2p-1.sym
+            * emechanic/breaker/circuit-breaker_3p-1.sym
+
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/zener_150_1N5383B.sym: Update voltage value.

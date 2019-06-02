@@ -39,8 +39,6 @@ T 0 1600 5 10 0 1 0 0 1
 documentation=http://www.te.com/usa-en/product-1466958-1.html
 T 0 2200 5 10 0 0 0 0 1
 author=JacekPlucinski
-T 0 2000 5 10 0 1 0 0 1
-comment=Version 080424
 T 0 1400 5 10 0 0 0 0 1
 symversion=0.2
 T 0 25 5 10 1 1 180 8 1

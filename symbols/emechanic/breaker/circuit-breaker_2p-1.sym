@@ -68,6 +68,4 @@ T 600 1700 5 10 0 0 0 0 1
 symversion=0.2
 T 0 25 5 10 1 1 180 8 1
 value=TMC0902221
-T 600 2300 5 10 0 1 0 0 1
-comment=Version 080424
 
