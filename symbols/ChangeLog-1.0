@@ -21,6 +21,11 @@
             * emechanic/breaker/circuit-breaker_2p-3.sym
             * emechanic/breaker/circuit-breaker_3p-3.sym
 
+    * emechanic/motor/ac_motor-?.sym: Add basic symbols for single phase AC
+      motors:
+
+            * emechanic/motor/ac_motor-1.sym
+
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/zener_150_1N5383B.sym: Update voltage value.
