@@ -1268,7 +1268,7 @@ msgid "Some of the attributes were"
 msgstr "Некоторые из атрибутов были"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "прикрепленный атрибут %d"
@@ -2451,13 +2451,13 @@ msgstr "Недопустимый атрибут"
 
 # Error
 #: gschem/src/x/x_dnd.c:241
-#, fuzzy
 msgid "Error:"
-msgstr "Ошибка"
+msgstr "Ошибка:"
 
+# neopoznannyy slozhnyy ob"yekt
 #: gschem/src/x/x_dnd.c:242
 msgid "unidentified complex object"
-msgstr ""
+msgstr "неопознанный сложный объект"
 
 # Could not locate symbol
 #: gschem/src/x/x_dnd.c:504
@@ -2469,46 +2469,58 @@ msgstr "Не удалось найти символ"
 msgid "in library, try refreshing"
 msgstr "В библиотеке, попробуйте местополож"
 
+# not in library, opening as page
+# ne v biblioteke, otkryvayetsya kak stranitsa
 #: gschem/src/x/x_dnd.c:510
 msgid "not in library, opening as page"
-msgstr ""
+msgstr "не в библиотеке, открывается как страница"
 
 # symbol
 #: gschem/src/x/x_dnd.c:511 gschem/src/x/x_multiattrib.c:2683
 msgid "symbol"
 msgstr "Символ"
 
+# Invalid Data; Nevernyye dannyye
 #: gschem/src/x/x_dnd.c:657
 msgid "<b>Invalid Data.</b>"
-msgstr ""
+msgstr "<b>Неверные данные.</b>"
 
+# Initsializatsiya: adapter graficheskogo renderera
 #: gschem/src/x/x_draw.cpp:463
 msgid "Initializing: Graphics Renderer Adaptor..."
-msgstr ""
+msgstr "Инициализация: адаптер графического рендерера..."
 
 #: gschem/src/x/x_draw.cpp:487
 msgid "done"
-msgstr ""
+msgstr "сделанный"
 
+# Zaversheniye raboty: adapter graficheskogo renderera
 #: gschem/src/x/x_draw.cpp:493
 msgid "Shutting down: Graphics Renderer Adaptor..."
-msgstr ""
+msgstr "Завершение работы: адаптер графического рендерера..."
 
+# Gotovo, render ne rabotayet
 #: gschem/src/x/x_draw.cpp:501
 msgid "Done, renderer is down"
-msgstr ""
+msgstr "Готово, рендер не работает"
 
+# X pitch distance is less than extents
+# Расстояние по шагу X меньше экстентов
 #: gschem/src/x/x_edit_array.c:603
 msgid "X pitch distance is less than extents\n"
-msgstr ""
+msgstr "Расстояние по шагу X меньше экстентов\n"
 
+# Y pitch distance is less than extents
+# Rasstoyaniye po osi Y men'she ekstentov
 #: gschem/src/x/x_edit_array.c:604
 msgid "Y pitch distance is less than extents\n"
-msgstr ""
+msgstr "Расстояние по оси Y меньше экстентов\n"
 
+# X and Y pitch distance are less than extents
+# Rasstoyaniye shaga X i Y men'she ekstenta
 #: gschem/src/x/x_edit_array.c:617
 msgid "X and Y pitch distance are less than extents\n"
-msgstr ""
+msgstr "Расстояние шага X и Y меньше экстента\n"
 
 #: gschem/src/x/x_edit_array.c:636
 msgid "Components may overlay, Continue?"
