@@ -524,33 +524,40 @@ msgstr "Obravnavati"
 msgid "Skipping"
 msgstr "Preskočite"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "vnos v datoteko rc"
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "Napačna vrednost"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2068
 msgid "check"
-msgstr ""
+msgstr "preverite"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "ali shema, nadaljujte z"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "največja vrednost"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "minimalna vrednost"
 
+# default value
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "privzeta vrednost"
 
 # Invalid value type
 #: gschem/src/guile/g_rc.c:155
