@@ -1,3 +1,11 @@
+2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * emechanic/accelerometer: Rename with dash one:
+
+            * emechanic/accelerometer/BMA220-1.sym
+            * emechanic/accelerometer/CMR3000-1.sym
+            * emechanic/accelerometer/MMA7260Q-1.sym
+
 2019-05-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/zener53/zener_150_1N5383B.sym: Update voltage value.
