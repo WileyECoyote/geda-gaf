@@ -2434,13 +2434,16 @@ msgstr ""
 msgid "Dismiss this dialog"
 msgstr ""
 
+# invalid attribute value; nevažeća vrednost atributa
 #: gschem/src/x/x_dialog.c:3949
 msgid "invalid attribute value"
-msgstr ""
+msgstr "неважећа вредност атрибута"
 
+# Please correct in order to continue
+# Ispravite da biste nastavili
 #: gschem/src/x/x_dialog.c:3950
 msgid "Please correct in order to continue"
-msgstr ""
+msgstr "Исправите да бисте наставили"
 
 #: gschem/src/x/x_dialog.c:3951
 msgid ""
@@ -2449,22 +2452,25 @@ msgid ""
 "The value cannot start with a space"
 msgstr ""
 
+# Invalid Attribute; Nevažeći atribut
 #: gschem/src/x/x_dialog.c:3959
 msgid "Invalid Attribute"
-msgstr ""
+msgstr "Неважећи атрибут"
 
 # Error; Greška
 #: gschem/src/x/x_dnd.c:241
 msgid "Error:"
 msgstr "Грешка:"
 
+# unidentified complex object; neidentifikovani kompleksni objekt
 #: gschem/src/x/x_dnd.c:242
 msgid "unidentified complex object"
-msgstr ""
+msgstr "неидентификовани комплексни објект"
 
+# Could not locate symbol; Nije moguće pronaći simbol
 #: gschem/src/x/x_dnd.c:504
 msgid "Could not locate symbol"
-msgstr ""
+msgstr "Није могуће пронаћи симбол"
 
 #: gschem/src/x/x_dnd.c:505
 msgid "in library, try refreshing"
