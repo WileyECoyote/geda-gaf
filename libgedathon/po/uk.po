@@ -357,46 +357,61 @@ msgstr "Отримати певний об'єкт атрибута"
 msgid "Retrieve list of associated attribute Objects"
 msgstr "Отримати список пов'язаних об'єктів атрибутів"
 
+# Set the value of a specified attribute object
+# Vstanovitʹ znachennya zadanoho ob'yekta atrybuta
 #: libgedathon/include/geda_module.h:128
 msgid "Set the value of a specified attribute Object"
-msgstr ""
+msgstr "Встановіть значення заданого об'єкта атрибута"
 
+# Refresh objects attributes; Onovyty atrybuty ob'yektiv
 #: libgedathon/include/geda_module.h:129
 msgid "Refresh Objects attributes"
-msgstr ""
+msgstr "Оновити атрибути об'єктів"
 
+# Retrieve all objects connected to specific object
+# Otrymaty vsi ob'yekty, pov'yazani z pevnym ob'yektom
 #: libgedathon/include/geda_module.h:132
 msgid "Retrieve all objects connected to specific Object"
-msgstr ""
+msgstr "Отримати всі об'єкти, пов'язані з певним об'єктом"
 
+# Retrieve list of points for junction for specified objects
+# Otrymaty spysok tochok dlya perekhodu dlya zadanykh ob'yektiv
 #: libgedathon/include/geda_module.h:133
 msgid "Retrieve list of points for junction for specified Objects"
-msgstr ""
+msgstr "Отримати список точок для переходу для заданих об'єктів"
 
+# Retrieve list of points of unconnected nodes for specified objects
+# Otrymaty spysok tochok nezv'yazanykh vuzliv dlya zadanykh ob'yektiv
 #: libgedathon/include/geda_module.h:134
 msgid "Retrieve list of points of unconnected nodes for specified Objects"
-msgstr ""
+msgstr "Отримати список точок незв'язаних вузлів для заданих об'єктів"
 
+# Type error, ignoring invalid optional parameter 5
+# Vveditʹ pomylku, ihnoruyuchy nediysnyy neobov'yazkovyy parametr 5
 #: libgedathon/module/functions.c:164
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
-msgstr ""
+msgstr "Введіть помилку, ігноруючи недійсний необов'язковий параметр 5\n"
 
+# get; otrymaty
 #: libgedathon/module/functions.c:400
 msgid "get"
-msgstr ""
+msgstr "отримати"
 
+# or set; abo nabir
 #: libgedathon/module/functions.c:401
 msgid "or set"
-msgstr ""
+msgstr "або набір"
 
+# An error occurred; Vynykla pomylka
 #: libgedathon/module/functions.c:415
 msgid "An error occurred"
-msgstr ""
+msgstr "Виникла помилка"
 
+# object was not created; Ob'yekt ne buv stvorenyy
 #: libgedathon/module/functions.c:416
 msgid "object was not created"
-msgstr ""
+msgstr "Об'єкт не був створений"
 
 #: libgedathon/module/functions.c:783
 msgid "Arc"
