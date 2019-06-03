@@ -187,6 +187,20 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
   return answer;
 }
 
+/*!
+ * \brief Determine Shortest Distance to an Arc
+ * \par Function Description
+ *  Calculates the distance between the given point and the closest
+ *  point on the perimeter of the arc.
+ *
+ * \param [in] arc    A GedaArc object
+ * \param [in] x      The x coordinate of the given point
+ * \param [in] y      The y coordinate of the given point
+ * \param [in] solid  Treat arc as solid if TRUE, otherwise treat as hollow.
+ *
+ * \return The shortest distance from the object to the point. With an
+ *         invalid parameter, this function returns G_MAXDOUBLE.
+ */
 double geda_math_arc_shortest_distance (GedaArc *arc, int x, int y, int solid)
 {
   double shortest_distance;

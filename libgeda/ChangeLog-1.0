@@ -1,6 +1,8 @@
 2019-06-03 Wiley E. Hill <wileyhill@gmail.com
 
-    * src/math/m_arc.c: Add function geda_math_arc_shortest_distance.
+    * src/math/m_arc.c: Add function geda_math_arc_shortest_distance and
+      add function documentation.
+
     * src/object/o_arc_object.c: Redo geda_arc_object_shortest_distance to
       utilize geda_math_arc_shortest_distance.
 
