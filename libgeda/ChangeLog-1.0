@@ -11,6 +11,9 @@
 
     * tests/test_arc_math.c: Add shell function check_math_arc_shortest_distance.
 
+    * tests/test_complex_object.c: Extend checks for geda_complex_object_
+      get_nearest_point.
+
 2019-05-31 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
