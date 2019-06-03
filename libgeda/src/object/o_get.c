@@ -94,16 +94,17 @@ int geda_object_get_bounds(GedaObject *o_current,
       }
     }
     else {
-     *rleft   = o_current->left;
-     *rtop    = o_current->top;
-     *rright  = o_current->right;
-     *rbottom = o_current->bottom;
+
+      *rleft   = o_current->left;
+      *rtop    = o_current->top;
+      *rright  = o_current->right;
+      *rbottom = o_current->bottom;
 
 #if DEBUG
-     geda_object_bounds(o_current);
-     if (o_current->top != *rtop) {
-       fprintf(stderr, "%s bounds_valid=%d\n", o_current->name, o_current->bounds_valid);
-     }
+      geda_object_bounds(o_current);
+      if (o_current->top != *rtop) {
+        fprintf(stderr, "%s bounds_valid=%d\n", o_current->name, o_current->bounds_valid);
+      }
 #endif
       result = 1;
     }
