@@ -381,7 +381,7 @@ GtkWidget *geda_toolbar_new (int orientation)
 /*!
  * \brief Get the GedaToolbar Style of property
  * \par Function Description
- *  Retrieves the current value of the "toolbar-style"  property
+ *  Retrieves the current value of the "toolbar-style" property
  *  of the GedaToolbar.
  *
  * \param [in] toolbar Pointer to GedaToolbar object
