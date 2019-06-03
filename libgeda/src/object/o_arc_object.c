@@ -1976,67 +1976,18 @@ void geda_arc_object_set_start_angle (GedaObject *object, int angle)
  */
 double geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
 {
-  double shortest_distance;
-  double radius;
+  if (GEDA_IS_ARC(object)) {
 
-  if (!GEDA_IS_ARC(object)) {
-    geda_arc_object_error(__func__, object);
-    return G_MAXDOUBLE;
+    int solid;
+
+    solid = force_solid || object->fill_options->fill_type != FILLING_HOLLOW;
+
+    return geda_math_arc_shortest_distance (object->arc, x, y, solid);
   }
 
-  radius = (double)object->arc->radius;
+  geda_arc_object_error(__func__, object);
 
-  if (geda_arc_within_sweep (object->arc, x, y)) {
-
-    double distance_to_center;
-    double dx;
-    double dy;
-
-    dx = ((double)x) - ((double)object->arc->x);
-    dy = ((double)y) - ((double)object->arc->y);
-
-#if HAVE_HYPOT
-    distance_to_center = hypot (dx, dy);
-#else
-    distance_to_center = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-    shortest_distance = fabs (distance_to_center - radius);
-
-  }
-  else {
-
-    double angle;
-    double distance_to_end0;
-    double distance_to_end1;
-    double dx, dy;
-
-    angle = M_PI * ((double)object->arc->start_angle) / 180;
-
-    dx = ((double)x) - radius * cos (angle) - ((double)object->arc->x);
-    dy = ((double)y) - radius * sin (angle) - ((double)object->arc->y);
-
-#if HAVE_HYPOT
-    distance_to_end0 = hypot (dx, dy);
-#else
-    distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-    angle += M_PI * ((double)object->arc->arc_sweep) / 180;
-
-    dx = ((double)x) - radius * cos (angle) - ((double)object->arc->x);
-    dy = ((double)y) - radius * sin (angle) - ((double)object->arc->y);
-
-#if HAVE_HYPOT
-    distance_to_end1 = hypot (dx, dy);
-#else
-    distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
-#endif
-
-    shortest_distance = min (distance_to_end0, distance_to_end1);
-  }
-
-  return shortest_distance;
+  return (G_MAXDOUBLE);
 }
 
 /*! O0249
