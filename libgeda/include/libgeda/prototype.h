@@ -113,6 +113,7 @@ extern "C" {
          void    geda_math_arc_chord                     (GedaArc *arc, LINE *line);
        double    geda_math_arc_length                    (GedaArc *arc);
          bool    geda_math_arc_includes_point            (GedaArc *arc, GedaPoint *point);
+       double    geda_math_arc_shortest_distance         (GedaArc *arc, int x, int y, int solid);
 
 /* m_circle.c */
        double    geda_math_circle_circumference          (int radius);

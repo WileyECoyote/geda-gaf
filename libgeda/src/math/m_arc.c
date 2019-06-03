@@ -186,3 +186,69 @@ geda_math_arc_includes_point (GedaArc *arc, GedaPoint *point)
 
   return answer;
 }
+
+double geda_math_arc_shortest_distance (GedaArc *arc, int x, int y, int solid)
+{
+  double shortest_distance;
+  double radius;
+
+  g_return_val_if_fail (GEDA_IS_ARC(arc), G_MAXDOUBLE);
+
+  radius = (double)arc->radius;
+
+  if (geda_arc_within_sweep (arc, x, y)) {
+
+    double distance_to_center;
+    double dx;
+    double dy;
+
+    dx = ((double)x) - ((double)arc->x);
+    dy = ((double)y) - ((double)arc->y);
+
+#if HAVE_HYPOT
+    distance_to_center = hypot (dx, dy);
+#else
+    distance_to_center = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+    if (solid && distance_to_center - radius < 0) {
+      shortest_distance = 0.0;
+    }
+    else {
+      shortest_distance = fabs (distance_to_center - radius);
+    }
+  }
+  else {
+
+    double angle;
+    double distance_to_end0;
+    double distance_to_end1;
+    double dx, dy;
+
+    angle = M_PI * ((double)arc->start_angle) / 180;
+
+    dx = ((double)x) - radius * cos (angle) - ((double)arc->x);
+    dy = ((double)y) - radius * sin (angle) - ((double)arc->y);
+
+#if HAVE_HYPOT
+    distance_to_end0 = hypot (dx, dy);
+#else
+    distance_to_end0 = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+    angle += M_PI * ((double)arc->arc_sweep) / 180;
+
+    dx = ((double)x) - radius * cos (angle) - ((double)arc->x);
+    dy = ((double)y) - radius * sin (angle) - ((double)arc->y);
+
+#if HAVE_HYPOT
+    distance_to_end1 = hypot (dx, dy);
+#else
+    distance_to_end1 = sqrt ((dx * dx) + (dy * dy));
+#endif
+
+    shortest_distance = min (distance_to_end0, distance_to_end1);
+  }
+
+  return shortest_distance;
+}

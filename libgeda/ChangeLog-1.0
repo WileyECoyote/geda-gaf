@@ -1,3 +1,7 @@
+2019-06-03 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/math/m_arc.c: Add function geda_math_arc_shortest_distance.
+
 2019-05-31 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
