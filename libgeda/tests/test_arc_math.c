@@ -224,6 +224,15 @@ int check_math_arc_includes_point ()
   return result;
 }
 
+int check_math_arc_shortest_distance (void)
+{
+  int result = 0;
+
+  /* geda_math_arc_shortest_distance */
+
+  return result;
+}
+
 int main (int argc, char *argv[])
 {
   int result = 0;
@@ -256,6 +265,14 @@ int main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, "Caught signal checking arc_includes_point in %s\n\n", MUT);
+    return 1;
+  }
+
+  if (setjmp(point) == 0) {
+    result += check_math_arc_shortest_distance();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking arc_shortest_distance in %s\n\n", MUT);
     return 1;
   }
 

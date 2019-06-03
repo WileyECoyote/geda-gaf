@@ -9,6 +9,8 @@
     * src/object/o_list.c: Revise geda_object_list_scale to handle the
       case of bus and net object types.
 
+    * tests/test_arc_math.c: Add shell function check_math_arc_shortest_distance.
+
 2019-05-31 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Fix may BUG; Revise geda_math_arc_includes_point
