@@ -231,10 +231,10 @@ static void post_response_row_col (GschemToplevel *w_current)
 /*!
  * \brief Array Dialog Callback Post Column X Distance
  * \par Function Description
- *  Virtual post_responder called when after the user has released
- *  the pointer button to point to the array column offset. This
- *  function fills in the distance column offset entry when the
- *  dialog is redisplayed.
+ *  Virtual post_responder called after the user releases the
+ *  pointer button to point to the array column offset. This
+ *  function fills in the distance column offset entry when
+ *  the dialog is redisplayed.
  */
 static void post_response_col (GschemToplevel *w_current)
 {

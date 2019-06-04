@@ -1,3 +1,9 @@
+2019-06-04 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_edit_array.c: Update function documentation for:
+
+        * post_response_col
+
 2019-06-01 Wiley E. Hill <wileyhill@gmail.com
 
     * po/ru.po: Update Russian translations.
