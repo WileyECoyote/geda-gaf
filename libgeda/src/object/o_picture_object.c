@@ -1595,8 +1595,8 @@ GedaObject *geda_picture_object_read (const char  *first_line,
   /* create the picture */
   /* The picture is described by its upper left and lower right corner */
   new_obj = geda_picture_object_new (file_content, file_length, filename,
-                           x1, y1+height, x1+width, y1,
-                           angle, mirrored, embedded);
+                                     x1, y1 + height, x1 + width, y1,
+                                     angle, mirrored, embedded);
 
   GEDA_FREE (file_content);
   GEDA_FREE (filename);
