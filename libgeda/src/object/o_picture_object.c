@@ -1432,7 +1432,7 @@ GedaObject *geda_picture_object_read (const char  *first_line,
 {
   GedaObject *new_obj;
 
-  char *file_content = NULL;
+  char *file_content;
   char *filename;
   char *tmpstr;
   char  type;
@@ -1442,7 +1442,7 @@ GedaObject *geda_picture_object_read (const char  *first_line,
   int   x1, y1;
   int   num_conv;
 
-  unsigned int file_length = 0;
+  unsigned int file_length;
 
   num_conv = sscanf(first_line, "%c %d %d %d %d %d %d %d\n", &type,
                     &x1, &y1, &width, &height, &angle, &mirrored, &embedded);
@@ -1530,6 +1530,9 @@ GedaObject *geda_picture_object_read (const char  *first_line,
     geda_log_w (_("Image filename is missing."));
     GEDA_FREE (filename);
   }
+
+  file_content = NULL;
+  file_length  = 0;
 
   if (embedded == 1) {
 
