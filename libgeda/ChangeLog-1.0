@@ -6,6 +6,9 @@
     * tests/test_arc_math.c: Revise check_math_arc_includes_point to check
       a point inside the sweep and inside the arc.
 
+    * tests/test_line_object.c: Revise check_line_object_mirror to be more
+      dynamic.
+
 2019-06-03 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Add function geda_math_arc_shortest_distance and
