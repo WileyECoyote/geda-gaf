@@ -3,6 +3,9 @@
     * src/object/o_picture_object.c: Move initialialize of file_length and
       file_content until later in the function.
 
+    * tests/test_arc_math.c: Revise check_math_arc_includes_point to check
+      a point inside the sweep and inside the arc.
+
 2019-06-03 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Add function geda_math_arc_shortest_distance and

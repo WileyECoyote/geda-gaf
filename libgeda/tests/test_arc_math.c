@@ -192,6 +192,7 @@ int check_math_arc_includes_point ()
     result++;
   }
 
+  /* Center point */
   point.x = 1000;
   point.y = 1000;
 
@@ -202,6 +203,7 @@ int check_math_arc_includes_point ()
     result++;
   }
 
+  /* End point 1 */
   point.x = 1500;
 
   answer = geda_math_arc_includes_point(object->arc, &point);
@@ -211,6 +213,7 @@ int check_math_arc_includes_point ()
     result++;
   }
 
+  /* End point 2 */
   point.x = 1000;
   point.y = 1500;
 
@@ -218,6 +221,17 @@ int check_math_arc_includes_point ()
 
   if (!answer) {
     fprintf(stderr, "FAILED: (M030301D) _math_arc_includes_point\n");
+    result++;
+  }
+
+  /* Inside sweep, inside arc */
+  point.x = 1200;
+  point.y = 1200;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (answer) {
+    fprintf(stderr, "FAILED: (M030301E) _math_arc_includes_point\n");
     result++;
   }
 
