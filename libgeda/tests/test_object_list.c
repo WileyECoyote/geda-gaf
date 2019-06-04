@@ -810,6 +810,8 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object2->box === */
+
   int sx1 = geda_box_object_get_lower_x(object2);
   int sy1 = geda_box_object_get_lower_y(object2);
   int sx2 = geda_box_object_get_upper_x(object2);
@@ -826,6 +828,26 @@ check_object_list_scale (GedaToplevel *toplevel)
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
   }
+
+  /* === object3->bus === */
+
+  sx1 = geda_bus_object_get_x1(object3);
+  sy1 = geda_bus_object_get_y1(object3);
+  sx2 = geda_bus_object_get_x2(object3);
+  sy2 = geda_bus_object_get_y2(object3);
+
+  if (sx1 - 1000 || sx2 - 2000) {
+    fprintf(stderr, "FAILED: (O120603X) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 - 1000 || sy2 - 2000) {
+    fprintf(stderr, "FAILED: (O120603Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
   return result;
 }
 

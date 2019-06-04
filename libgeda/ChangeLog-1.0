@@ -9,6 +9,8 @@
     * tests/test_line_object.c: Revise check_line_object_mirror to be more
       dynamic.
 
+    * tests/test_object_list.c: Check scaling bus objects in list.
+
 2019-06-03 Wiley E. Hill <wileyhill@gmail.com
 
     * src/math/m_arc.c: Add function geda_math_arc_shortest_distance and
