@@ -1014,13 +1014,13 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   array_data *dialog_data;
 
-  const char *cnt_sel_tip    = "Indicates total number of objects currently selected";
-  const char *x_size_tip     = "x_size_tip";
-  const char *y_size_tip     = "y_size_tip";
-  const char *row_cnt_tip    = "Number of rows to create";
-  const char *col_cnt_tip    = "Number of columns to create";
-  const char *row_off_tip    = "Vertical pitch of array, negative is downward";
-  const char *col_off_tip    = "Horizontal pitch of array, negative is to left";
+  const char *cnt_sel_tip  = "Indicates total number of objects currently selected";
+  const char *x_size_tip   = "x_size_tip";
+  const char *y_size_tip   = "y_size_tip";
+  const char *row_cnt_tip  = "Number of rows to create";
+  const char *col_cnt_tip  = "Number of columns to create";
+  const char *row_off_tip  = "Vertical pitch of array, negative is downward";
+  const char *col_off_tip  = "Horizontal pitch of array, negative is to left";
 
   void x_dialog_array_edit_set_focus_chain(void) {
     GList *focus_chain; /* Aka Tab Order */
