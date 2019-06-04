@@ -162,10 +162,12 @@ static void x_dialog_ca_update_selection (GschemToplevel *w_current,
   }
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Array Dialog Callback Post Row Distance
+ * \par Function Description
+ *  Virtual post_responder called after the user has released the
+ *  pointer button to point to the array row offset to fill in the
+ *  offset distance in the row entry when the dialog is redisplayed.
  */
 static void post_response_row (GschemToplevel *w_current)
 {
