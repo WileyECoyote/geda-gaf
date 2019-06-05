@@ -1555,7 +1555,7 @@ GtkWidget* x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   SetWidgetTip(widget, _(mname_tip));
   properties->mname_entry = widget;
 
-  /** Set the relationships between the label and their Widgets **/
+  /* Set the relationships between the label and their Widgets */
   geda_label_set_mnemonic_widget (GEDA_LABEL(symbol_label), properties->symbol_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(device_label), properties->device_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL(author_label), properties->author_entry);
