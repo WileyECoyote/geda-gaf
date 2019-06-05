@@ -789,7 +789,7 @@ void        x_dialog_array_edit             (GschemToplevel *w_current);
 bool        x_confirm_close_changed_page    (GschemToplevel *w_current, Page *page);
 bool        x_confirm_close_window          (GschemToplevel *w_current);
 
-/* x_edit_array.c */
+/* x_edit_color.c */
 void        x_dialog_edit_color             (GschemToplevel *w_current);
 
 /* x_edit_pin.c */
