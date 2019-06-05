@@ -4092,7 +4092,7 @@ COMMAND (do_attributes)
 
 /* ------------------- Tools ----------------- */
 
-/*! \brief Launch the Auto Number Dialog */
+/*! \brief Action Responder to Launch the Auto Number Dialog */
 COMMAND (do_autonumber)
 {
   NOT_NULL(w_current);
@@ -4105,7 +4105,7 @@ COMMAND (do_autonumber)
 
 
 /*!
- * \brief Launch the Log Console Dialog Action Responder
+ * \brief Action Responder to Launch the Log Console Dialog
  * \brief i_cmd_do_show_console in i_command_Option_Actions
  *
  * \par Function Description
@@ -4119,9 +4119,8 @@ COMMAND (do_show_console)
 }
 
 /*!
- * \brief Launch the Coordinates Dialog Action Responder
+ * \brief Action Responder to Launch the Coordinates Dialog
  * \brief i_cmd_do_show_coordinates in i_command_Option_Actions
- *
  * \par Function Description
  *  This is a callback function to launch the Coordinates Dialog.
  *
@@ -4136,8 +4135,7 @@ COMMAND (do_show_coordinates)
 
 /*!
  * \brief Toggle Macro Entry Area
- * @brief i_cmd_do_macro in i_command_Edit_Actions
- *
+ * \brief i_cmd_do_macro in i_command_Edit_Actions
  * \par Function Description
  *  This function set the macro widget to visable and set focus to
  *  to the entry object member.
