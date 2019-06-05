@@ -78,7 +78,7 @@ static GArray *sessions;
  *  Returns a pointer to Session record entry whose name matches
  *  the specified name or NULL if the record was not found.
  *
- * \param name is the name of the session whose record is to be retieved
+ * \param name is the name of the session whose record is to be retrieved
  */
 static Session *i_session_get_record(const char *name)
 {
