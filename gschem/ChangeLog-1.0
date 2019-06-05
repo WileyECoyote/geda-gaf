@@ -8,6 +8,10 @@
         * i_cmd_do_show_console
         * i_cmd_do_show_coordinates
 
+    * src/x/x_coord.c: Add internal documentation for:
+
+        * co_on_entry_activate
+
 2019-06-04 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_edit_array.c: Update function documentation for:

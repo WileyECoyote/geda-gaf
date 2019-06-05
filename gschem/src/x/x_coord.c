@@ -227,9 +227,9 @@ bool x_dialog_coord_drag_motion (GtkWidget      *widget,
 /*!
  * \brief When Drag gets Dropped om the Drawing Area
  * \par Function Description
- * Called when the user releases (drops) the selection. We choose the
- * target type we wish the source could send. We call gtk_drag_get_data
- * which will emit "drag-data-get" on the source, passing along our wish.
+ *  Called when the user releases (drops) the selection. We choose the
+ *  target type we wish the source could send. We call gtk_drag_get_data
+ *  which will emit "drag-data-get" on the source, passing along our wish.
  *
  * \return TRUE if the operation should continue, other FALSE
  */
@@ -357,6 +357,17 @@ void x_dialog_coord_update_display(GschemToplevel *w_current, int sx, int sy, in
   GEDA_FREE(string);
 }
 
+/*!
+ * \internal Callback on world_entry "process-entry"
+ * \par
+ *  Signal handler called when the user presses the "Enter" key to
+ *  activate the world coordinates entry on the coodinates dialog.
+ *  If there are valid coodinates in the entry, then the pointer
+ *  will be positioned to the coodinates if the DND_BUFFER is empty
+ *  or the object dropped on the entry will be pasted into to page
+ *  at the interpreted coodinates. If what was dropped, was a string,
+ *  x_dnd_receive_string is called to handler the insertion.
+ */
 static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 {
   const char *str;
