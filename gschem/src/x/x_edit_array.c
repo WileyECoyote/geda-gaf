@@ -68,10 +68,12 @@ static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
   i_status_action_stop(w_current);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Array Dialog Enable Virtual Event Handlers
+ * \par Function Description
+ *  Calls i_event_block_buttons to block the main event handler and
+ *  connects the button press and release signals to the handlers
+ *  prescribed in the dialog_data.
  */
 static void x_dialog_array_edit_enable_events(GschemToplevel *w_current,
                                               array_data     *dialog_data)

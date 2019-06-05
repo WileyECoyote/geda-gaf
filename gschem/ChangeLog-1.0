@@ -12,6 +12,10 @@
 
         * co_on_entry_activate
 
+    * src/x/x_edit_array.c: Update function documentation for:
+
+        * x_dialog_array_edit_enable_events
+
 2019-06-04 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_edit_array.c: Update function documentation for:
