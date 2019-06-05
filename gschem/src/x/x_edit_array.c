@@ -90,10 +90,11 @@ static void x_dialog_array_edit_enable_events(GschemToplevel *w_current,
                                                w_current);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Array Dialog Disable Local Event Handlers
+ * \par Function Description
+ *  Causes the local event handlers to be disconnected and calls
+ *  i_event_unblock_buttons to re-enable the main event handler.
  */
 static void x_dialog_array_edit_disable_events(GschemToplevel *w_current,
                                                array_data     *dialog_data)
