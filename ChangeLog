@@ -3,6 +3,9 @@
     * autogen.sh: Teach autogen.sh to fix up bad intl trees. See commit to
       master branch 2018-08-12, 884f884054d7770ac05020c79f3ffe9947e5d9fc.
 
+    * Makefile.am: Don't require a valid tag for successful build. See commit
+      to master branch 2018-08-12, a5c1d1c91a18ddd0932cbaa8766620c6667d5bb3.
+
 2019-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Rename macro PACK_BOX->PACK_START.
