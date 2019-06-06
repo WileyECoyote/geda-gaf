@@ -442,9 +442,10 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
               if (do_delete) {
                 geda_struct_object_release_objects(object_buffer[DND_BUFFER]);
               }
-              if (!valid)
+              if (!valid) {
                 fprintf(stderr, "Coord Entry freed the Drag&Drop buffer, "
                                 "did not know what else to do\n");
+              }
         }
       }
 
