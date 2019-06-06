@@ -1,8 +1,8 @@
 #!/bin/sh
 #                                                   -*-Shell-script-*-
 # Developer helper script for setting up gEDA build environment
-# Copyright (C) 2009-2014  Peter Brett <peter@peter-b.co.uk>
-#
+# Copyright (C) 2009, 2016 Peter Brett <peter@peter-b.co.uk>
+
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -112,6 +112,11 @@ run_tool() {
 # the top-level po directory.  If it has, we copy the files to po
 # directories that we actually use.
 #
+# In newer versions of autopoint, there is a second bug whereby the
+# "intl" embedded internationalization library installed by autopoint
+# requires a "ChangeLog" file for "make dist", but doesn't actually
+# provide one.
+#
 # N.b. when this function is called we've cd'd into $srcdir.
 autopoint_fix() {
   top_po="po"
@@ -128,6 +133,12 @@ autopoint_fix() {
           cp -p $top_po/* $d || break
         done
       } && rm -rf $top_po
+    fi
+
+    cl="intl/ChangeLog"
+    if test -d "intl" -a ! -e "$cl"; then
+      echo "$script_name: creating file $cl"
+      touch "$cl"
     fi
   else
     exit $?
