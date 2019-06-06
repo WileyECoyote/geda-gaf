@@ -119,5 +119,3 @@ libgeda/src/utility/u_string.c
 libgeda/scheme/geda.scm
 libgeda/scheme/geda/attrib.scm
 
-intl/plural.c
-
