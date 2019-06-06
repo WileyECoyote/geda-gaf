@@ -2,6 +2,9 @@
 
     * po/POTFILES.in: Remove intl/plural.c.
 
+    * src/guile/g_rc_parse.c: Revise g_rc_parse_system to remove unnecessary
+      initialization.
+
 2019-06-05 Wiley E. Hill <wileyhill@gmail.com
 
     * po/tr.po: Add Plural-Forms.

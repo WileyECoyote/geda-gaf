@@ -192,9 +192,9 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
  */
 bool g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
 {
-  bool    status     = FALSE;
-  char   *name_norm  = NULL;
-  GError *tmp_err    = NULL;
+  bool    status    = FALSE;
+  char   *name_norm = NULL;
+  GError *tmp_err   = NULL;
 
   if (rcfile == NULL) {
     BUG_MSG("rcfile is NULL.");
@@ -317,22 +317,20 @@ bool g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
  *
  * \param rcname    The basename of the RC file to load, or NULL.
  * \param err       Return location for errors, or NULL.
+ *
  * \return TRUE on success, FALSE on failure.
  */
 bool g_rc_parse_system (const char *rcname, GError **err)
 {
-  char *sysname = NULL;
-  char *rcfile = NULL;
+  char *sysname;
+  char *rcfile;
   bool  status;
 
   /* Default to gafrc */
-  rcname = (rcname != NULL) ? rcname : "gafrc";
-
+  rcname  = (rcname != NULL) ? rcname : "gafrc";
   sysname = geda_sprintf ("system-%s", rcname);
-
-  rcfile = g_build_filename (geda_sys_config_path (), sysname, NULL);
-
-  status = g_rc_parse_file (rcfile, eda_config_get_system_context ("geda"), err);
+  rcfile  = g_build_filename (geda_sys_config_path (), sysname, NULL);
+  status  = g_rc_parse_file (rcfile, eda_config_get_system_context ("geda"), err);
 
   GEDA_FREE (rcfile);
   GEDA_FREE (sysname);
