@@ -744,7 +744,7 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
  * \endcode
  *
  *  The array of string can be NULL, in which case the strings are
- *  retieved using geda_struct_attrib_get. The only "list" passed to
+ *  retrieved using geda_struct_attrib_get. The only "list" passed to
  *  this function is the default list that is used when configuration
  *  data is missing.
 */
