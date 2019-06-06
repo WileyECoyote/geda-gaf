@@ -1,3 +1,8 @@
+2019-06-06 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/iface/i_window.c: Refresh component library cache when reverting page.
+      see commit to master 2018-08-12, 884f884054d7770ac05020c79f3ffe9947e5d9fc.
+
 2019-06-05 Wiley E. Hill <wileyhill@gmail.com
 
     * po/tr.po: Add Plural-Forms.
@@ -5760,7 +5765,7 @@
 2016-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_action.c: Add preprocessor conditionals and use function
-      scm_c_public_variable if availabl, see commit to master 2016-08-06,
+      scm_c_public_variable if available, see commit to master 2016-08-06,
       03d06844d167d268b35c4f15c9e3a8e5495bb9a5.
 
     * src/x/x_compselect.c:: Replace strndup with geda_strndup in function

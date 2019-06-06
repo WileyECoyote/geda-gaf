@@ -317,6 +317,9 @@ void i_window_revert_page (GschemToplevel *w_current)
 
     geda_struct_page_delete_objects (page);
 
+    /* Force symbols to be re-loaded from disk */
+    geda_struct_clib_refresh();
+
     geda_toplevel_set_file_open_flags(toplevel, F_OPEN_RESTORE_CWD);
 
     page->filename = NULL;
