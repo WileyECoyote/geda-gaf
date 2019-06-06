@@ -60,7 +60,7 @@ In order to compile gEDA from the distributed source archives, you
 
 The following tools and libraries are *highly recommended*:
 
- - GNU `gettext', version 0.16 or newer.
+ - GNU `gettext', version 0.18 or newer.
    <http://www.gnu.org/software/gettext/>
 
  - GNU `troff' (`groff'). <http://www.gnu.org/software/groff/>
@@ -189,7 +189,7 @@ The major components of the gEDA suite are:
 
 `gaf'
   A command-line utility for editing gEDA configuration files and
-  exporting gEDA documents. gaf also provides a Scheme REPL for 
+  exporting gEDA documents. gaf also provides a Scheme REPL for
   command-line batch processing of schematic data.
 
 `gsch2pcb'
