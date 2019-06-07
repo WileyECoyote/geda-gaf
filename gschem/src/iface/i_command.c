@@ -4123,8 +4123,6 @@ COMMAND (do_show_console)
  * \brief i_cmd_do_show_coordinates in i_command_Option_Actions
  * \par Function Description
  *  This is a callback function to launch the Coordinates Dialog.
- *
- *  TODO: Slated to be relocated in 2.09. Where?
  */
 COMMAND (do_show_coordinates)
 {
