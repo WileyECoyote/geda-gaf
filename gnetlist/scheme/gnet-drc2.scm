@@ -348,7 +348,6 @@
                    )
                (drc2:check-non-numbered-items (cdr packages)))))))
 
-
 ;;
 ;; Check for duplicated slots
 ;;
@@ -378,7 +377,6 @@
       ))
     (for-each check-duplicated-slots-of-package packages)
 ))
-
 
 ;;
 ;; Checks for slots not used.
@@ -538,7 +536,6 @@
                ))
 ))
 
-
 ;
 ;  End of symbol checking functions
 ;-----------------------------------------------------------------------
@@ -670,7 +667,6 @@
     (for-each add-pintype net)
     output-list
 ))
-
 
 ;;
 ;; Display pins of a specified type connected to a net
@@ -936,7 +932,6 @@
 ;  End of Net checking functions
 ;-----------------------------------------------------------------------
 
-
 ;;; Highest level function
 ;;; Write special testing netlist format
 ;;;
@@ -1068,7 +1063,6 @@
                  (message "DRC warnings found. See output file.\n"))))
 
      ))
-
 
 ;;
 ;; DRC backend written by Carlos Nieves Onega ends here.
