@@ -107,7 +107,7 @@
 ;;     Report them as an error             action-unused-slots                   #\w
 ;;
 ;; Note 1: DRC checks are case sensitive by default. If you want them to be case
-;; insensitive, then you only have to define the variable 'case_insensitive' to
+;; insensitive, then you only have to define the variable 'case-insensitive' to
 ;; whatever value you want.
 ;;
 ;; Example:
@@ -121,7 +121,7 @@
 ;; (define dont-check-duplicated-slots 1)
 ;; (define dont-check-unused-slots 1)
 ;; (define action-unused-slots #\w)
-;; (define case_insensitive 1)
+;; (define case-insensitive 1)
 ;;
 ;; The check for not driven nets is only performed when checking the type of the
 ;; pins connected to each net.There is a list which specifies which type of pin
@@ -135,7 +135,7 @@
 ;;   (define pintype-can-drive (list 0 0 1 1 1 1 1 1 1 0 1 0 ))
 ;;
 ;; There are two checks that are configurable by a DRC connection matrix:
-;; checks for unconnected pins and check for the type of pins connected to
+;; checks for unconnected pins and checks for the type of pins connected to
 ;; each net. Each element of the DRC matrix matches one connection between
 ;; two pins (the "row" pin and the "column" pin). The order is specified
 ;; below and is very important, since each position in the list matches one
@@ -514,7 +514,7 @@
 
 ;; Count the ocurrences of a given reference in the given list.
 (define (drc2:count-reference-in-list refdes lst)
-  (define refdes=? (if (defined? 'case_insensitive) string-ci=? string=?))
+  (define refdes=? (if (defined? 'case-insensitive) string-ci=? string=?))
   (fold
    (lambda (x count) (if (refdes=? refdes x) (1+ count) count))
    0 lst))
