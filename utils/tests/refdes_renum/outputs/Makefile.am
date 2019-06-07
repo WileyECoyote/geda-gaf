@@ -41,8 +41,3 @@ EXTRA_DIST= \
 			some_old_refdeses1-someold1.sch \
 			some_old_refdeses2-someold1.sch
 
-MOSTLYCLEANFILES     = *.log *.ps core FILE *~
-CLEANFILES           = *.log *.ps core FILE *~
-DISTCLEANFILES       = *.log *.ps core FILE *~
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
-

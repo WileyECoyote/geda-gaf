@@ -13,8 +13,4 @@ EXTRA_DIST= \
 			someold2.sch \
 			someold3.sch
 
-MOSTLYCLEANFILES     = *.log *.ps core FILE *~
-CLEANFILES           = *.log *.ps core FILE *~
-DISTCLEANFILES       = *.log *.ps core FILE *~
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
 
