@@ -131,7 +131,7 @@ typedef enum
 
 /* File System Stuff */
 
-/*! \enum IDE_OPEN_FLAGS flags used by libgeda controling file open events
+/*! \enum IDE_OPEN_FLAGS flags used by libgeda controlling file open events
  *  \brief geda_file_open behaviour flags. See documentation for
  *         geda_file_open_flags() in f_basic.c.
  */
