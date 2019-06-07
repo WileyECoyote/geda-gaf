@@ -143,7 +143,7 @@ geda_toggle_action_set_property (GObject *object,
  *
  * \param [in]  object       The GObject whose properties we are getting
  * \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
+ *                           registered with g_object_class_install_property()
  * \param [out] value        The GValue in which to return the value of the property
  * \param [in]  pspec        A GParamSpec describing the property being got
  */
@@ -315,11 +315,11 @@ bool is_a_geda_toggle_action (GedaToggleAction *action)
  * \par Function Description
  *  This function creates and returns a new GedaToggleAction
  *
- * \param [in] name:     A unique name for the action
- * \param [in] label:    The label displayed in menu items and on buttons, or %NULL
- * \param [in] tooltip:  A tooltip for the action, or %NULL
- * \param [in] icon_id:  The stock icon to display in widgets representing the action, or %NULL
- * \param [in] multikey_accel: The accel char string
+ * \param [in] name           A unique name for the action
+ * \param [in] label          Label displayed in menu items and on buttons, or %NULL
+ * \param [in] tooltip        A tooltip for the action, or %NULL
+ * \param [in] icon_id        Stock icon to display in widgets representing the action, or %NULL
+ * \param [in] multikey_accel The accel char string
  *
  * Return value: a new GedaToggleAction
  */
