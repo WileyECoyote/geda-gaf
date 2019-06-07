@@ -1,3 +1,7 @@
+2019-06-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * m4/.gitignore: Ignore new auto-installed m4 files.
+
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * m4/geda-git-version.m4: Don't require a valid tag for successful build. See
