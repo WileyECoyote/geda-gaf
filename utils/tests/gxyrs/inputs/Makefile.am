@@ -11,8 +11,5 @@ EXTRA_DIST= \
 			report1.txt \
 			report2.txt
 
-MOSTLYCLEANFILES     = *.log *.ps core FILE *~
-CLEANFILES           = *.log *.ps core FILE *~
-DISTCLEANFILES       = *.log *.ps core FILE *~
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
+
 
