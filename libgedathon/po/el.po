@@ -418,45 +418,55 @@ msgstr "Παρουσιάστηκε σφάλμα"
 msgid "object was not created"
 msgstr "αντικείμενο δεν δημιουργήθηκε"
 
+# Arc; Tóxo
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "Τόξο"
 
+# Text Attribute; Charaktiristikó keiménou
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "Χαρακτηριστικό κειμένου"
 
+# Box; koutí
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "κουτί"
 
+# Bus; Leoforeío
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "Λεωφορείο"
 
+# Circle; Kýklos
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "Κύκλος"
 
+# Line; Γραμμή
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "Grammí"
 
+# Net
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "δικτυωτό"
 
+# Path => Polygon; Monopáti
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "Μονοπάτι"
 
+# Pin; Karfítsa
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "Καρφίτσα"
 
+# Text; Keímeno
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "Κείμενο"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
