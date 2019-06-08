@@ -398,45 +398,55 @@ msgstr "حدث خطأ"
 msgid "object was not created"
 msgstr "لم يتم إنشاء الكائن"
 
+# Arc; qus
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "قوس"
 
+# Text Attribute; simat alnas
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "سمة النص"
 
+# Box => Rectangle; mustatil
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "مستطيل"
 
+# Bus, alhafila
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "الحافلة"
 
+# Circle; dayira
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "دائرة"
 
+# Line; khat
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "خط"
 
+# Net; shabaka
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "net"
 
+# Path => Polygon; masar
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "مسار"
 
+# Pin; dabus
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "دبوس"
 
+# Text; nasi
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "نص"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
