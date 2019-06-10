@@ -196,7 +196,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
               "%%%%Pages: 1\n"
               "%%%%Endcomments\n"
               "%%%%BeginProlog\n",
-              PACKAGE_GIT_VERSION,
+              PACKAGE_DOTTED_VERSION,
               ctime(&current_time),
               page->filename,
 #ifdef HAVE_GETLOGIN

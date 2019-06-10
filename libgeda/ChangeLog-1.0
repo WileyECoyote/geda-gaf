@@ -3,6 +3,8 @@
     * shell/shell.c: Replace non existent PACKAGE_GIT_VERSION with
       PACKAGE_DOTTED_VERSION in shell_main.
 
+    * src/file/f_print.c:: Replace PACKAGE_GIT_VERSION with PACKAGE_DOTTED_VERSION.
+
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com
 
     * po/POTFILES.in: Remove intl/plural.c.
