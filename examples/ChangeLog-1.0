@@ -1,6 +1,8 @@
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * MSA-2643/MSA-2643.sch: Add footprint 0402 on capacitor symbols.
+    * MSA-2643/MSA-2643.sch: Add footprint 0402 attribute on capacitor symbols.
+
+    * TwoStageAmp/TwoStageAmp.sch: Add footprint 0402 attribute on capacitors.
 
 2019-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
