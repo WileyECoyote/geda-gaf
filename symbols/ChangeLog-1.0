@@ -16,6 +16,9 @@
             * diode/zener53/zener_190_1N5387B.sym
             * diode/zener53/zener_200_1N5388B.sym
 
+    * simulation/verilog/nand?-?.sym: Convert comment to a description
+      attribute:
+
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/accelerometer: Rename with dash one:
