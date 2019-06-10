@@ -23,6 +23,7 @@
       attributes:
 
             * simulation/vhdl/and7-1.sym
+            * simulation/vhdl/and8-1.sym
 
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
