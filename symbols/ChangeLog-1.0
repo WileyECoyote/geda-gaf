@@ -14,6 +14,7 @@
     * diode/zener53: Add symbol for 5 Watt zener diode:
 
             * diode/zener53/zener_190_1N5387B.sym
+            * diode/zener53/zener_200_1N5388B.sym
 
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
