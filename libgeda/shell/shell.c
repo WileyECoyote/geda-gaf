@@ -210,7 +210,7 @@ shell_main (void *data, int argc, char **argv)
     if (isatty (1) && isatty (0)) {
 
       printf (
-        "gEDA " PACKAGE_GIT_VERSION "\n"
+        "gEDA " PACKAGE_DOTTED_VERSION "\n"
         "Copyright (C) 1998-2017 gEDA developers\n"
         "This is free software, and you are welcome to redistribute it under\n"
         "certain conditions. For details, see the file `COPYING', which is\n"

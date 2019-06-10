@@ -1,3 +1,8 @@
+2019-06-10 Wiley E. Hill <wileyhill@gmail.com
+
+    * shell/shell.c: Replace non existent PACKAGE_GIT_VERSION with
+      PACKAGE_DOTTED_VERSION in shell_main.
+
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com
 
     * po/POTFILES.in: Remove intl/plural.c.
