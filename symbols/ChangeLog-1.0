@@ -11,6 +11,10 @@
 
     * diode/zener53/zener_28_1N5362B.sym: Update voltage value.
 
+    * diode/zener53: Add symbol for 5 Watt zener diode:
+
+            * diode/zener53/zener_190_1N5387B.sym
+
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/accelerometer: Rename with dash one:
