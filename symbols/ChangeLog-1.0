@@ -1,3 +1,10 @@
+2019-06-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/transil: Add new symbols for transil diode group:
+
+            * diode/transil/SMM4F24A-1.sym
+            * diode/transil/SMM4F24A-2.sym
+
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/accelerometer: Rename with dash one:
