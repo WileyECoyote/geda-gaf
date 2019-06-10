@@ -1,5 +1,7 @@
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/common/inputs/LVDfoo.sch: Add footprint 0402 on capacitor symbols.
+
     * tests/common/outputs: Update outputs due to 0402 footprint remove from
       capacitor symbol.
 
