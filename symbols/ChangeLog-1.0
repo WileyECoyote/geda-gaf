@@ -19,6 +19,11 @@
     * simulation/verilog/nand?-?.sym: Convert comment to a description
       attribute:
 
+    * simulation/vhdl/and?-1.sym: Add description attribute, revise pin
+      attributes:
+
+            * simulation/vhdl/and7-1.sym
+
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/accelerometer: Rename with dash one:
