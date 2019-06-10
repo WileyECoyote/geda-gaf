@@ -1,6 +1,7 @@
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * MSA-2643/MSA-2643.sch: Add footprint 0402 attribute on capacitor symbols.
+    * MSA-2643/MSA-2643.sch: Add footprint 0402 attribute on capacitor symbols
+      and footprint none for parasitic capacitance.
 
     * TwoStageAmp/TwoStageAmp.sch: Add footprint 0402 attribute on capacitors.
 
