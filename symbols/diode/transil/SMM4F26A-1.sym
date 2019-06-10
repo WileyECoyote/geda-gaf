@@ -1,0 +1,52 @@
+v 20150401 2
+L 50 300 350 300 3 15 2 0 -1 -1
+L 350 300 200 500 3 15 2 0 -1 -1
+L 200 500 50 300 3 15 2 0 -1 -1
+L 200 200 200 300 3 15 0 0 -1 -1
+L 200 700 200 800 3 15 0 0 -1 -1
+L 50 500 0 400 3 15 2 0 -1 -1
+L 50 500 350 500 3 15 2 0 -1 -1
+L 350 500 400 600 3 15 2 0 -1 -1
+P 200 800 200 1000 1 0 1
+{
+T 150 925 5 8 0 1 0 6 1
+pinnumber=1
+T 150 775 5 8 0 1 0 6 1
+pinseq=2
+T 250 875 5 8 0 1 0 0 1
+pinlabel=C
+T 250 750 5 8 0 1 0 0 1
+pintype=pas
+}
+P 200 0 200 200 1 0 0
+{
+T 150 25 5 8 0 1 0 6 1
+pinnumber=2
+T 150 175 5 8 0 1 0 6 1
+pinseq=1
+T 300 50 5 8 0 1 0 0 1
+pinlabel=A
+T 250 175 5 8 0 1 0 0 1
+pintype=pas
+}
+L 350 700 50 700 3 15 2 0 -1 -1
+L 50 700 200 500 3 15 2 0 -1 -1
+L 200 500 350 700 3 15 2 0 -1 -1
+T 550 400 5 10 1 1 0 0 1
+device=SMM4F26A
+T 550 800 8 10 1 1 0 0 1
+refdes=D?
+T 550 200 9 10 0 1 0 0 1
+footprint=DO-222AA
+T 550 600 5 10 1 1 0 0 1
+value=26V
+T 543 985 5 10 0 1 0 0 1
+description=TVS,26 Volt,Unidirectional,-55 to +175
+T 543 1185 5 10 0 1 0 0 1
+documentation=www.st.com/resource/en/datasheet/smm4f.pdf
+T 550 1800 5 10 0 0 0 0 1
+author=AutoTron
+T 550 1600 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 550 1400 5 10 0 0 0 0 1
+use-license=unlimited
