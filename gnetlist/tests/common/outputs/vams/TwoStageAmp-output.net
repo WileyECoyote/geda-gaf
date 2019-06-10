@@ -19,6 +19,7 @@ BEGIN
  
   C2 : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			symversion => 0.1, 
 			device => CAPACITOR, 
 			value => 2.2uF)
@@ -51,6 +52,7 @@ BEGIN
  
   CE2 : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			symversion => 0.1, 
 			device => CAPACITOR, 
 			value => 1pF)
@@ -83,6 +85,7 @@ BEGIN
  
   C1 : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			symversion => 0.1, 
 			device => CAPACITOR, 
 			value => 2.2uF)
@@ -126,6 +129,7 @@ BEGIN
  
   CE1 : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			symversion => 0.1, 
 			device => CAPACITOR, 
 			value => 1pF)
@@ -134,6 +138,7 @@ BEGIN
  
   Cout : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			symversion => 0.1, 
 			device => CAPACITOR, 
 			value => 2.2uF)

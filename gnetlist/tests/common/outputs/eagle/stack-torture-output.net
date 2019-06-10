@@ -1,5 +1,5 @@
    ;
-ADD 'C?' 0402@smd-ipc (1 1);
+ADD 'C?' unknown@smd-ipc (1 1);
 VALUE 'C?' 'CAPACITOR';
 SIGNAL 'UNNAMED_NET1025'
    'C?' '2'

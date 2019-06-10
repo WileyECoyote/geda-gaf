@@ -20,6 +20,7 @@ BEGIN
  
   Cm : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			device => CAPACITOR, 
 			value => 20p, 
 			symversion => 0.1)
@@ -28,6 +29,7 @@ BEGIN
  
   Cp : ENTITY CAPACITOR
 	GENERIC MAP (
+			footprint => 0402, 
 			value => 20p, 
 			symversion => 0.1)
 	PORT MAP (	1 => p,

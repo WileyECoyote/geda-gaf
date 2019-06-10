@@ -1,6 +1,6 @@
 *OrCAD
 *START
-*COMP C?	"0402"
+*COMP C?	"unknown"
 *NET "unnamed_net1025"
 *NET "unnamed_net1025" C?."2"
 *NET "unnamed_net1024"

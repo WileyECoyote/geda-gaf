@@ -1,6 +1,6 @@
 LAYOUT board;
 PARTS
-    C? : 0402;
+    C? : unknown;
 CONNECT
     /'unnamed_net1025'/ C?.2;
     /'unnamed_net1024'/ C?.1=C?.2;

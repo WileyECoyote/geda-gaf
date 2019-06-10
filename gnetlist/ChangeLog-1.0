@@ -1,3 +1,8 @@
+2019-06-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/outputs: Update outputs due to 0402 footprint remove from
+      capacitor symbol.
+
 2019-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * utils/mk_verilog_syms.c: Rename colour -> color throughout module,
