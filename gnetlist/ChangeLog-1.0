@@ -2,6 +2,8 @@
 
     * tests/common/inputs/LVDfoo.sch: Add footprint 0402 on capacitor symbols.
 
+    * tests/common/inputs/TwoStageAmp.sch: Add footprint 0402 on capacitor symbols.
+
     * tests/common/outputs: Update outputs due to 0402 footprint remove from
       capacitor symbol.
 
