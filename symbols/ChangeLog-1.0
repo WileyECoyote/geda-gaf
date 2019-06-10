@@ -7,6 +7,8 @@
             * diode/transil/SMM4F26A-1.sym
             * diode/transil/SMM4F26A-2.sym
 
+    * diode/zener53/zener_27_1N5361B.sym: Update voltage value.
+
 2019-06-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * emechanic/accelerometer: Rename with dash one:
