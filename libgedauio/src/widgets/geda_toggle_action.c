@@ -334,19 +334,21 @@ geda_toggle_action_new (const char *name,
 
   g_return_val_if_fail (name != NULL, NULL);
 
-  if (multikey_accel != NULL)
+  if (multikey_accel != NULL) {
     action = g_object_new (GEDA_TYPE_TOGGLE_ACTION, "name", name,
                                                     "label", label,
                                                     "tooltip", tooltip,
                                                     "stock-id", icon_id,
                                                     "multikey-accel", multikey_accel,
                                                     NULL);
-  else
+  }
+  else {
     action = g_object_new (GEDA_TYPE_TOGGLE_ACTION, "name", name,
                                                     "label", label,
                                                     "tooltip", tooltip,
                                                     "stock-id", icon_id,
                                                     NULL);
+  }
   return action;
 }
 
