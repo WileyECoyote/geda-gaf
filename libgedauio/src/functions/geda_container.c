@@ -113,10 +113,10 @@ old_focus_coords (GtkContainer *container, GdkRectangle *old_focus_rect)
 }
 
 static GList*
-gtk_container_focus_sort_left_right (GtkContainer     *container,
-                                     GList            *children,
-                                     GtkDirectionType  direction,
-                                     GtkWidget        *old_focus)
+geda_container_focus_sort_left_right (GtkContainer     *container,
+                                      GList            *children,
+                                      GtkDirectionType  direction,
+                                      GtkWidget        *old_focus)
 {
   CompareInfo compare;
   GList *tmp_list;
@@ -245,10 +245,10 @@ up_down_compare (const void *a, const void *b, void *data)
 }
 
 static GList*
-gtk_container_focus_sort_up_down (GtkContainer     *container,
-                                  GList            *children,
-                                  GtkDirectionType  direction,
-                                  GtkWidget        *old_focus)
+geda_container_focus_sort_up_down (GtkContainer     *container,
+                                   GList            *children,
+                                   GtkDirectionType  direction,
+                                   GtkWidget        *old_focus)
 {
   CompareInfo  compare;
   GList       *tmp_list;
@@ -371,10 +371,10 @@ tab_compare (const void*a, const void*b, void*data)
 }
 
 static GList*
-gtk_container_focus_sort_tab (GtkContainer     *container,
-                              GList            *children,
-                              GtkDirectionType  direction,
-                              GtkWidget        *old_focus)
+geda_container_focus_sort_tab (GtkContainer     *container,
+                               GList            *children,
+                               GtkDirectionType  direction,
+                               GtkWidget        *old_focus)
 {
   GtkTextDirection text_direction = gtk_widget_get_direction (GTK_WIDGET (container));
 
@@ -431,13 +431,13 @@ geda_container_focus_sort (GtkContainer     *container,
   switch (direction) {
     case GTK_DIR_TAB_FORWARD:
     case GTK_DIR_TAB_BACKWARD:
-      return gtk_container_focus_sort_tab (container, visible_children, direction, old_focus);
+      return geda_container_focus_sort_tab (container, visible_children, direction, old_focus);
     case GTK_DIR_UP:
     case GTK_DIR_DOWN:
-      return gtk_container_focus_sort_up_down (container, visible_children, direction, old_focus);
+      return geda_container_focus_sort_up_down (container, visible_children, direction, old_focus);
     case GTK_DIR_LEFT:
     case GTK_DIR_RIGHT:
-      return gtk_container_focus_sort_left_right (container, visible_children, direction, old_focus);
+      return geda_container_focus_sort_left_right (container, visible_children, direction, old_focus);
   }
 
   return NULL;

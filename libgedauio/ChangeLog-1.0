@@ -1,3 +1,7 @@
+2019-06-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_container.c: Rename static function with geda prefix.
+
 2019-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with
