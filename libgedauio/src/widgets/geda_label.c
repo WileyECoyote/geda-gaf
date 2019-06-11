@@ -2570,8 +2570,8 @@ geda_label_setup_mnemonic (GedaLabel *label, unsigned int last_key)
 
         /* Not sure if this ever works */
         geda_menu_shell_add_mnemonic ((GedaMenuShell*)menu_shell,
-                                      priv->mnemonic_keyval,
-                                      widget);
+                                                      priv->mnemonic_keyval,
+                                                      widget);
         mnemonic_menu = menu_shell;
       }
 
