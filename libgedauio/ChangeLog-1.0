@@ -8,6 +8,9 @@
     * src/widgets/geda_menu_shell.c: Update documentation for geda_menu_shell_
       add_mnemonic.
 
+    * src/widgets/geda_toggle_action.c: Add note in geda_toggle_action_class_
+      init documentation.
+
 2019-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with

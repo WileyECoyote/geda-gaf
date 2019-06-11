@@ -212,6 +212,10 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
  * \par Function Description
  *  Called to initialize the class instance.
  *
+ * \note GtkActionClass is the parent of the GtkToggleActionClass
+ *       from which we are derived. the GtkToggleActionClass has
+ *       no member connect_proxy.
+ *
  * \param [in] class A GedaToggleActionClass Object
  * \param [in] data  A GedaToggleAction data structure
  */
