@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-06-11 11:30-0500\n"
 "PO-Revision-Date: 2012-03-16 10:58+0000\n"
 "Last-Translator: simone.sandri <lexluxsox@hotmail.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1044,15 +1044,15 @@ msgstr "Errore durante l'elaborazione del file RC"
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:452
+#: libgeda/src/guile/g_rc_parse.c:450
 msgid "ERROR"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:458
+#: libgeda/src/guile/g_rc_parse.c:456
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:477
+#: libgeda/src/guile/g_rc_parse.c:475
 msgid "The log may contain more information."
 msgstr ""
 
@@ -1469,38 +1469,38 @@ msgid "Image filename is missing."
 msgstr ""
 
 # Failed to load image from embedded data
-#: libgeda/src/object/o_picture_object.c:1588
+#: libgeda/src/object/o_picture_object.c:1591
 msgid "Failed to load image from embedded data"
 msgstr "Impossibile caricare l'immagine dai dati incorporati"
 
-#: libgeda/src/object/o_picture_object.c:1589
+#: libgeda/src/object/o_picture_object.c:1592
 msgid "Base64 decoding failed."
 msgstr "Decodifica Base64 fallita."
 
-#: libgeda/src/object/o_picture_object.c:1590
+#: libgeda/src/object/o_picture_object.c:1593
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Ritorno al caricamento del file. Immagine non incorporata.\n"
 
 # ERROR: unable to encode the picture
-#: libgeda/src/object/o_picture_object.c:1713
+#: libgeda/src/object/o_picture_object.c:1716
 msgid "ERROR: unable to encode the picture.\n"
 msgstr "ERRORE: impossibile codificare l'immagine.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1793
+#: libgeda/src/object/o_picture_object.c:1796
 msgid "Error processing image"
 msgstr "elaborazione delle immagini Errore"
 
 # Failed to load image from file
-#: libgeda/src/object/o_picture_object.c:1968
+#: libgeda/src/object/o_picture_object.c:1971
 msgid "Failed to load image from file"
 msgstr "Impossibile caricare l'immagine dal file"
 
-#: libgeda/src/object/o_picture_object.c:1970
+#: libgeda/src/object/o_picture_object.c:1973
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1979
+#: libgeda/src/object/o_picture_object.c:1982
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "L'immagine [%s] è stata rimossa\n"

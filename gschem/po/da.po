@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-06-11 11:31-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -546,11 +546,11 @@ msgstr ""
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5164
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5172
 msgid "current value of"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5165
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5173
 msgid "is"
 msgstr ""
 
@@ -678,96 +678,96 @@ msgstr ""
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4188
+#: gschem/src/iface/i_command.c:4196
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4189
+#: gschem/src/iface/i_command.c:4197
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4195
+#: gschem/src/iface/i_command.c:4203
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4196
+#: gschem/src/iface/i_command.c:4204
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4401
+#: gschem/src/iface/i_command.c:4409
 msgid "Grid OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4402
+#: gschem/src/iface/i_command.c:4410
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4403
+#: gschem/src/iface/i_command.c:4411
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4482
+#: gschem/src/iface/i_command.c:4490
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4488
+#: gschem/src/iface/i_command.c:4496
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4493
+#: gschem/src/iface/i_command.c:4501
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4518
+#: gschem/src/iface/i_command.c:4526
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4522
+#: gschem/src/iface/i_command.c:4530
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4533
+#: gschem/src/iface/i_command.c:4541
 msgid "Magnetic net mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4536
+#: gschem/src/iface/i_command.c:4544
 msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4553 gschem/src/iface/i_command.c:4596
+#: gschem/src/iface/i_command.c:4561 gschem/src/iface/i_command.c:4604
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4557 gschem/src/iface/i_command.c:4600
+#: gschem/src/iface/i_command.c:4565 gschem/src/iface/i_command.c:4608
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4559
+#: gschem/src/iface/i_command.c:4567
 msgid "Drag-Can-Move is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4571
+#: gschem/src/iface/i_command.c:4579
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4575
+#: gschem/src/iface/i_command.c:4583
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4602
+#: gschem/src/iface/i_command.c:4610
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4654 gschem/src/iface/i_command.c:4683
-#: gschem/src/iface/i_command.c:4703 gschem/src/iface/i_command.c:4723
+#: gschem/src/iface/i_command.c:4662 gschem/src/iface/i_command.c:4691
+#: gschem/src/iface/i_command.c:4711 gschem/src/iface/i_command.c:4731
 msgid "Check path:"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4823
+#: gschem/src/iface/i_command.c:4831
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1051,23 +1051,23 @@ msgstr ""
 msgid "Really revert page?"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:338
+#: gschem/src/iface/i_window.c:341
 msgid "An error occurred while processing request to revert"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:342
+#: gschem/src/iface/i_window.c:345
 msgid "<b>File error.</b>"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:342
+#: gschem/src/iface/i_window.c:345
 msgid "Revert failed"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:349
+#: gschem/src/iface/i_window.c:352
 msgid "Error encountered during file operation"
 msgstr ""
 
-#: gschem/src/iface/i_window.c:350
+#: gschem/src/iface/i_window.c:353
 msgid "Recovery: undo last action\n"
 msgstr ""
 
@@ -1693,15 +1693,15 @@ msgstr ""
 msgid "Drag & Drop failed"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:469
+#: gschem/src/x/x_coord.c:481
 msgid "Coordinates"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:484
+#: gschem/src/x/x_coord.c:496
 msgid "Screen"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:494
+#: gschem/src/x/x_coord.c:506
 msgid "World"
 msgstr ""
 
@@ -1827,7 +1827,7 @@ msgstr ""
 msgid "Bus"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1068
+#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1073
 #: gschem/src/x/x_menus.c:109
 msgid "Selection"
 msgstr ""
@@ -2225,123 +2225,123 @@ msgstr ""
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:603
+#: gschem/src/x/x_edit_array.c:608
 msgid "X pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:604
+#: gschem/src/x/x_edit_array.c:609
 msgid "Y pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:617
+#: gschem/src/x/x_edit_array.c:622
 msgid "X and Y pitch distance are less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:636
+#: gschem/src/x/x_edit_array.c:641
 msgid "Components may overlay, Continue?"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:649 gschem/src/x/x_edit_array.c:654
-#: gschem/src/x/x_edit_array.c:659
+#: gschem/src/x/x_edit_array.c:654 gschem/src/x/x_edit_array.c:659
+#: gschem/src/x/x_edit_array.c:664
 msgid "Create Array:Error"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:650
+#: gschem/src/x/x_edit_array.c:655
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:655
+#: gschem/src/x/x_edit_array.c:660
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:660
+#: gschem/src/x/x_edit_array.c:665
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1041 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1046 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1078 gschem/src/x/x_edit_array.c:1148
-#: gschem/src/x/x_edit_array.c:1181
+#: gschem/src/x/x_edit_array.c:1083 gschem/src/x/x_edit_array.c:1153
+#: gschem/src/x/x_edit_array.c:1186
 msgid "Count"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1089
+#: gschem/src/x/x_edit_array.c:1094
 msgid "X Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1092
+#: gschem/src/x/x_edit_array.c:1097
 msgid "Y Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1111 gschem/src/x/x_menus.c:90
+#: gschem/src/x/x_edit_array.c:1116 gschem/src/x/x_menus.c:90
 msgid "Select"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1115
+#: gschem/src/x/x_edit_array.c:1120
 msgid "Deselect"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1131 gschem/src/x/x_menus.c:121
+#: gschem/src/x/x_edit_array.c:1136 gschem/src/x/x_menus.c:121
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1140
+#: gschem/src/x/x_edit_array.c:1145
 msgid "Row"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1163 gschem/src/x/x_edit_array.c:1196
+#: gschem/src/x/x_edit_array.c:1168 gschem/src/x/x_edit_array.c:1201
 msgid "Offset"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1173
+#: gschem/src/x/x_edit_array.c:1178
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1206
+#: gschem/src/x/x_edit_array.c:1211
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1214
+#: gschem/src/x/x_edit_array.c:1219
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1218
+#: gschem/src/x/x_edit_array.c:1223
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1236
+#: gschem/src/x/x_edit_array.c:1241
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1243
+#: gschem/src/x/x_edit_array.c:1248
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1250
+#: gschem/src/x/x_edit_array.c:1255
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1257
+#: gschem/src/x/x_edit_array.c:1262
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1264
+#: gschem/src/x/x_edit_array.c:1269
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1271
+#: gschem/src/x/x_edit_array.c:1276
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1278
+#: gschem/src/x/x_edit_array.c:1283
 msgid "entry for array vertical pitch"
 msgstr ""
 

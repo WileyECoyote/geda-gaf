@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-06-11 11:30-0500\n"
 "PO-Revision-Date: 2012-10-22 13:10+0000\n"
 "Last-Translator: Patrick Fiquet <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1042,17 +1042,17 @@ msgstr "Erreur de traitement du fichier RC"
 msgid "Error accessing configuration"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:452
+#: libgeda/src/guile/g_rc_parse.c:450
 msgid "ERROR"
 msgstr "ERREUR"
 
-#: libgeda/src/guile/g_rc_parse.c:458
+#: libgeda/src/guile/g_rc_parse.c:456
 msgid "An unknown error occurred while parsing configuration files."
 msgstr ""
 "Une erreur inconnue s'est produite lors de l'interprétation des fichiers de "
 "configuration."
 
-#: libgeda/src/guile/g_rc_parse.c:477
+#: libgeda/src/guile/g_rc_parse.c:475
 msgid "The log may contain more information."
 msgstr "Le fichier journal contient plus d'information."
 
@@ -1468,38 +1468,38 @@ msgid "Image filename is missing."
 msgstr ""
 
 # Failed to load image from embedded data
-#: libgeda/src/object/o_picture_object.c:1588
+#: libgeda/src/object/o_picture_object.c:1591
 msgid "Failed to load image from embedded data"
 msgstr "Échec du chargement de l'image depuis les données embarquées"
 
-#: libgeda/src/object/o_picture_object.c:1589
+#: libgeda/src/object/o_picture_object.c:1592
 msgid "Base64 decoding failed."
 msgstr "Échec du décodage Base64."
 
-#: libgeda/src/object/o_picture_object.c:1590
+#: libgeda/src/object/o_picture_object.c:1593
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Échec du chargement du fichier. Image enlevée.\n"
 
 # ERROR: unable to encode the picture
-#: libgeda/src/object/o_picture_object.c:1713
+#: libgeda/src/object/o_picture_object.c:1716
 msgid "ERROR: unable to encode the picture.\n"
 msgstr "ERROR: impossible d'encoder l'image.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1793
+#: libgeda/src/object/o_picture_object.c:1796
 msgid "Error processing image"
 msgstr "Erreur lors du traitement de l'image"
 
 # Failed to load image from file
-#: libgeda/src/object/o_picture_object.c:1968
+#: libgeda/src/object/o_picture_object.c:1971
 msgid "Failed to load image from file"
 msgstr "Échec du chargement de l'image depuis le fichier"
 
-#: libgeda/src/object/o_picture_object.c:1970
+#: libgeda/src/object/o_picture_object.c:1973
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1979
+#: libgeda/src/object/o_picture_object.c:1982
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "L'image [%s] a été débarquée\n"

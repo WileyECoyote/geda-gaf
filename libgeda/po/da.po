@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-06-11 11:30-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -1038,15 +1038,15 @@ msgstr "Fejl opstod ved behandling af RC-fil"
 msgid "Error accessing configuration"
 msgstr "Fejl ved adgang til konfiguration"
 
-#: libgeda/src/guile/g_rc_parse.c:452
+#: libgeda/src/guile/g_rc_parse.c:450
 msgid "ERROR"
 msgstr "FEJL"
 
-#: libgeda/src/guile/g_rc_parse.c:458
+#: libgeda/src/guile/g_rc_parse.c:456
 msgid "An unknown error occurred while parsing configuration files."
 msgstr "Der opstod en ukendt fejl under parsing af konfigurationsfiler."
 
-#: libgeda/src/guile/g_rc_parse.c:477
+#: libgeda/src/guile/g_rc_parse.c:475
 msgid "The log may contain more information."
 msgstr "Loggen kan indeholde flere oplysninger."
 
@@ -1461,38 +1461,38 @@ msgid "Image filename is missing."
 msgstr ""
 
 # Unable to load the image from the embedded data
-#: libgeda/src/object/o_picture_object.c:1588
+#: libgeda/src/object/o_picture_object.c:1591
 msgid "Failed to load image from embedded data"
 msgstr "Kan ikke indlæse billedet fra den integrerede data"
 
-#: libgeda/src/object/o_picture_object.c:1589
+#: libgeda/src/object/o_picture_object.c:1592
 msgid "Base64 decoding failed."
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1590
+#: libgeda/src/object/o_picture_object.c:1593
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr ""
 
 # ERROR: unable to encode the picture
-#: libgeda/src/object/o_picture_object.c:1713
+#: libgeda/src/object/o_picture_object.c:1716
 msgid "ERROR: unable to encode the picture.\n"
 msgstr "FEJL: ude af stand til at kode billedet.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1793
+#: libgeda/src/object/o_picture_object.c:1796
 msgid "Error processing image"
 msgstr "Billedbehandling fejl"
 
 # Failed to load symbol from file
-#: libgeda/src/object/o_picture_object.c:1968
+#: libgeda/src/object/o_picture_object.c:1971
 msgid "Failed to load image from file"
 msgstr "Kunne ikke indlæse symbol fra fil"
 
-#: libgeda/src/object/o_picture_object.c:1970
+#: libgeda/src/object/o_picture_object.c:1973
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1979
+#: libgeda/src/object/o_picture_object.c:1982
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
