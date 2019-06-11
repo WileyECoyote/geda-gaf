@@ -5,6 +5,9 @@
     * src/functions/geda_mnemonic_hash.c: Add template/todo Doxygen comment
       blocks.
 
+    * src/widgets/geda_menu_shell.c: Update documentation for geda_menu_shell_
+      add_mnemonic.
+
 2019-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with

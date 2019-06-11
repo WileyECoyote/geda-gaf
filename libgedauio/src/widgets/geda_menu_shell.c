@@ -1753,10 +1753,11 @@ void geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
   g_object_unref (menu_item);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Add a Mnemonic to a GedaMenuShell
+ * \par Function Description
+ *  Causes \a keyval to be added to the hash of mnemonics that
+ *  will active \a target.
  */
 void geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
                                    unsigned int   keyval,
