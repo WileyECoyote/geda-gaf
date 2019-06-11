@@ -130,7 +130,7 @@ geda_toolbar_finalize (GObject *object)
   ((GObjectClass*)geda_toolbar_parent_class)->finalize (object);
 }
 
-/* widget_class->realize */
+/*! \internal widget_class->realize */
 static void
 geda_toolbar_box_realize (GtkWidget *widget)
 {
@@ -138,6 +138,7 @@ geda_toolbar_box_realize (GtkWidget *widget)
   gdk_window_set_type_hint (widget->window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
 }
 
+/*! \internal widget_class->size_request */
 static void
 geda_toolbar_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
@@ -365,7 +366,7 @@ geda_toolbar_append_widget (GedaToolbar *bar,
 /*!
  * \brief Create New GedaToolbar
  * \par Function Description
- * Creates a new #GedaToolbar with the given orientation.
+ *  Creates a new #GedaToolbar with the given orientation.
  *
  * \param [in] orientation the toolbar's orientation
  *

@@ -11,6 +11,8 @@
     * src/widgets/geda_toggle_action.c: Add note in geda_toggle_action_class_
       init documentation.
 
+    * src/widgets/geda_toolbar.c: Add internal widget class tags.
+
 2019-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with
@@ -640,7 +642,7 @@
       According to https://developer.gnome.org/gdk2/stable/gdk2-Fonts.html single
       fonts compare equal if they have the same X font ID, which is not correect and
       the operation does not currently work correctly for fontsets. And apparently
-      does not work correctly for __MINGW32__, since comparing the id's works.
+      does not work correctly for __MINGW32__, since comparing the id`s works.
 
     * tests/test_menu_separator.c: Check if the widget is gobject before sinking
       and dereferencing the seperator, or else failure under MinGW.
