@@ -38,6 +38,11 @@ struct _GedaMnemonicHash
   GHashTable *hash;
 };
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaMnemonicHash *
 geda_mnemonic_hash_new (void)
 {
@@ -48,6 +53,11 @@ geda_mnemonic_hash_new (void)
   return mnemonic_hash;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 mnemonic_hash_free_foreach (void *key, void *value, void *user)
 {
@@ -61,6 +71,11 @@ mnemonic_hash_free_foreach (void *key, void *value, void *user)
   g_slist_free (targets);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_mnemonic_hash_free (GedaMnemonicHash *mnemonic_hash)
 {
@@ -72,6 +87,11 @@ geda_mnemonic_hash_free (GedaMnemonicHash *mnemonic_hash)
   g_free (mnemonic_hash);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_mnemonic_hash_add (GedaMnemonicHash *mnemonic_hash,
                         unsigned int      keyval,
@@ -93,6 +113,11 @@ geda_mnemonic_hash_add (GedaMnemonicHash *mnemonic_hash,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_mnemonic_hash_remove (GedaMnemonicHash *mnemonic_hash,
                            unsigned int      keyval,
@@ -120,6 +145,11 @@ geda_mnemonic_hash_remove (GedaMnemonicHash *mnemonic_hash,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool
 geda_mnemonic_hash_activate (GedaMnemonicHash *mnemonic_hash,
                              unsigned int      keyval)
@@ -171,6 +201,11 @@ geda_mnemonic_hash_activate (GedaMnemonicHash *mnemonic_hash,
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GSList *
 geda_mnemonic_hash_lookup (GedaMnemonicHash *mnemonic_hash,
                            unsigned int      keyval)
@@ -178,6 +213,11 @@ geda_mnemonic_hash_lookup (GedaMnemonicHash *mnemonic_hash,
   return g_hash_table_lookup (mnemonic_hash->hash, (void*)(DWORD)keyval);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void
 mnemonic_hash_foreach_func (void *key,
                             void *value,
@@ -194,6 +234,11 @@ mnemonic_hash_foreach_func (void *key,
   (*info->func) (keyval, targets, info->func_data);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_mnemonic_hash_foreach (GedaMnemonicHash *mnemonic_hash,
                             MnemonicHashFunc  func,

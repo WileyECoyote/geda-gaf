@@ -2,6 +2,9 @@
 
     * src/functions/geda_container.c: Rename static function with geda prefix.
 
+    * src/functions/geda_mnemonic_hash.c: Add template/todo Doxygen comment
+      blocks.
+
 2019-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with
