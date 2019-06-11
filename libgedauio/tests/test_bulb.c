@@ -139,7 +139,7 @@ int check_construction (void)
 
   /* geda_bulb_new_with_mnemonic */
 
-  widget = geda_bulb_new_with_mnemonic (NULL, "b0");
+  widget = geda_bulb_new_with_mnemonic (NULL, "_b0");
 
   if (!GEDA_IS_BULB(widget)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -157,7 +157,7 @@ int check_construction (void)
 
   /* geda_bulb_new_visible_with_mnemonic */
 
-  widget1 = geda_bulb_new_visible_with_mnemonic (NULL, "</b>b1</b>");
+  widget1 = geda_bulb_new_visible_with_mnemonic (NULL, "</b>_b1</b>");
 
   if (!GEDA_IS_BULB(widget1)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
@@ -181,7 +181,7 @@ int check_construction (void)
     result++;
   }
 
-  widget3 = geda_bulb_new_with_mnemonic_from_widget (widget2, "</b>b3</b>", TRUE);
+  widget3 = geda_bulb_new_with_mnemonic_from_widget (widget2, "</b>_b3</b>", TRUE);
 
   if (!GEDA_IS_BULB(widget3)) {
     fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);

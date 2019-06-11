@@ -13,6 +13,8 @@
 
     * src/widgets/geda_toolbar.c: Add internal widget class tags.
 
+    * tests/test_bulb.c: Add underscores to labels with mnemonic.
+
 2019-05-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Replace blank lines in documentation with
