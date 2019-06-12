@@ -1,3 +1,9 @@
+2019-06-12 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object: Declare object argument const:
+
+          * o_arc_object.c::geda_arc_object_shortest_distance
+
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com
 
     * shell/shell.c: Replace non existent PACKAGE_GIT_VERSION with

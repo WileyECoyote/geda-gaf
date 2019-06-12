@@ -1974,7 +1974,7 @@ void geda_arc_object_set_start_angle (GedaObject *object, int angle)
  * \return The shortest distance from the object to the point. With an
  *         invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_arc_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_arc_object_shortest_distance (ConstObject *object, int x, int y, int force_solid)
 {
   if (GEDA_IS_ARC(object)) {
 
