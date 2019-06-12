@@ -185,7 +185,7 @@ void        geda_line_object_print_phantom       (GedaToplevel *toplevel, FILE *
                                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
 void        geda_line_object_print_solid         (GedaToplevel *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color,
                                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
-double      geda_line_object_shortest_distance   (GedaObject *object, int x, int y, int force_soild);
+double      geda_line_object_shortest_distance   (ConstObject *object, int x, int y, int force_soild);
 GedaObject *geda_line_object_read                (const char buf[], unsigned int release_ver,
                                                   unsigned int fileformat_ver, GError **err);
 char       *geda_line_object_to_buffer           (GedaObject *object);

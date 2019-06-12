@@ -1894,7 +1894,7 @@ void geda_line_object_set_y2 (GedaObject *object, int y) {
  * \return The shortest distance from the object to the point. With an
  *         invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_line_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_line_object_shortest_distance (ConstObject *object, int x, int y, int force_solid)
 {
   g_return_val_if_fail (GEDA_IS_LINE(object), G_MAXDOUBLE);
 
