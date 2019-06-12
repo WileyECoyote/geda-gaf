@@ -1845,7 +1845,7 @@ geda_circle_object_set_radius (GedaObject *object, int radius)
  *         G_MAXDOUBLE if the parameters are invalid parameter.
  */
 double
-geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+geda_circle_object_shortest_distance (ConstObject *object, int x, int y, int force_solid)
 {
   if (GEDA_IS_CIRCLE(object)) {
 

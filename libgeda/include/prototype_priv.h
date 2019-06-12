@@ -158,7 +158,7 @@ void        geda_circle_object_print_solid       (GedaToplevel *toplevel, FILE *
                                                   int circle_width, int capstyle, int length, int space, int origin_x, int origin_y);
 GedaObject *geda_circle_object_read              (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
 char       *geda_circle_object_to_buffer         (GedaObject *object);
-double      geda_circle_object_shortest_distance (GedaObject *object, int x, int y, int force_soild);
+double      geda_circle_object_shortest_distance (ConstObject *object, int x, int y, int force_soild);
 
 /* o_complex_object.c */
 int         geda_complex_object_get_bounds       (GedaObject *complex);
@@ -167,7 +167,7 @@ GList      *geda_complex_object_get_promotable   (GedaToplevel *toplevel, GedaOb
 GedaObject *geda_complex_object_read             (GedaToplevel *toplevel, const char buf[], unsigned int release_ver,
                                                   unsigned int fileformat_ver, GError **err);
 char       *geda_complex_object_to_buffer        (GedaObject *object);
-double      geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int force_soild);
+double      geda_complex_object_shortest_distance(ConstObject *object, int x, int y, int force_soild);
 
 /* o_get.c */
 int         geda_object_get_capstyle             (LINE_END end);
