@@ -217,9 +217,9 @@ bool        geda_picture_object_embed            (GedaObject *object);
 bool        geda_picture_object_get_position     (GedaObject *object, int *x, int *y);
 GedaObject *geda_picture_object_read             (const char *first_line, TextBuffer *tb,
                                                   unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-char       *geda_picture_object_save             (GedaObject *object);
-double      geda_picture_object_shortest_distance(GedaObject *object, int x, int y, int force_soild);
-bool        geda_picture_object_unembed          (GedaObject *object);
+char       *geda_picture_object_save             (GedaObject  *object);
+double      geda_picture_object_shortest_distance(ConstObject *object, int x, int y, int force_soild);
+bool        geda_picture_object_unembed          (GedaObject  *object);
 
 /* o_pin_object.c */
 bool        geda_pin_object_get_position         (GedaObject *object, int *x, int *y);

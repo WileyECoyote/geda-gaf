@@ -1895,7 +1895,7 @@ bool geda_picture_object_set_from_file (GedaObject *object,
  * \return The shortest distance from the object to the point. With
  *         an invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_picture_object_shortest_distance (GedaObject *object,
+double geda_picture_object_shortest_distance (ConstObject *object,
                                               int x, int y, int force_solid)
 {
   double dx, dy;
