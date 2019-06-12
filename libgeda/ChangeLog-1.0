@@ -10,6 +10,9 @@
           * o_picture_object.c::geda_picture_object_shortest_distance
           * o_text_object.c::geda_text_object_shortest_distance
 
+    * src/struct/s_path.c: Delcare path argument to geda_struct_path_to_polygon
+      const.
+
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com
 
     * shell/shell.c: Replace non existent PACKAGE_GIT_VERSION with

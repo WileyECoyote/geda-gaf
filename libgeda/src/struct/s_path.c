@@ -845,7 +845,7 @@ char *geda_struct_path_string_from_path (const GedaPath *path)
  *
  * \returns TRUE if the path is closed, FALSE if it is open.
  */
-int geda_struct_path_to_polygon (GedaPath *path, GArray *points)
+int geda_struct_path_to_polygon (const GedaPath *path, GArray *points)
 {
   int closed = FALSE;
   int i;

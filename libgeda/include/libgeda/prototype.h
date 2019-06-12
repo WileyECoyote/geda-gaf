@@ -708,7 +708,7 @@ const CLibSymbol *geda_struct_clib_get_symbol_by_name      (const char *name);
      GedaPath   *geda_struct_path_copy_modify              (GedaPath *path, int dx, int dy, int new_x, int new_y, int whichone);
      GedaPath   *geda_struct_path_parse                    (const char *path_str);
          char   *geda_struct_path_string_from_path         (const GedaPath *path);
-          int    geda_struct_path_to_polygon               (GedaPath *path, GArray *points);
+          int    geda_struct_path_to_polygon               (const GedaPath *path, GArray *points);
        double    geda_struct_path_shortest_distance        (GedaPath *path, int x, int y, int solid);
 
 /* s_place.c */
