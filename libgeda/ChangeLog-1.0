@@ -6,6 +6,7 @@
           * o_box_object.c::geda_box_object_shortest_distance
           * o_circle_object.c::geda_circle_object_shortest_distance
           * o_line_object.c::geda_line_object_shortest_distance
+          * o_path_object.c::geda_path_object_shortest_distance
 
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com
 
