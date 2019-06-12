@@ -1380,7 +1380,7 @@ char *geda_complex_object_to_buffer(GedaObject *object)
  *         large number (G_MAXDOUBLE).  With an invalid parameter, this
  *         function returns G_MAXDOUBLE.
  */
-double geda_complex_object_shortest_distance(GedaObject *object, int x, int y, int force_solid)
+double geda_complex_object_shortest_distance(ConstObject *object, int x, int y, int force_solid)
 {
 
   GedaBox line_bounds;
