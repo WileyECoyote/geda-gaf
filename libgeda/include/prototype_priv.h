@@ -127,7 +127,7 @@ void        geda_box_object_print_phantom        (GedaToplevel *toplevel, FILE *
 void        geda_box_object_print_solid          (GedaToplevel *toplevel, FILE *fp, int x, int y, int width, int height, int color,
                                                   int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
 GedaObject *geda_box_object_read                 (const char buf[], unsigned int release_ver, unsigned int fileformat_ver, GError **err);
-double      geda_box_object_shortest_distance    (GedaObject *object, int x, int y, int force_soild);
+double      geda_box_object_shortest_distance    (ConstObject *object, int x, int y, int force_soild);
 char       *geda_box_object_to_buffer            (GedaObject *object);
 
 /* o_bus_object.c */

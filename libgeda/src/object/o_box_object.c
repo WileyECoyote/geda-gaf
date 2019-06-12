@@ -2076,7 +2076,7 @@ void geda_box_object_set_upper_y (GedaObject *object, int y) {
  * \return The shortest distance from the object to the point. With an
  *         invalid parameter, this function returns G_MAXDOUBLE.
  */
-double geda_box_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_box_object_shortest_distance (ConstObject *object, int x, int y, int force_solid)
 {
   if (GEDA_IS_BOX(object)) {
 
