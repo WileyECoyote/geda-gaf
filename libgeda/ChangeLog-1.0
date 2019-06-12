@@ -8,6 +8,7 @@
           * o_line_object.c::geda_line_object_shortest_distance
           * o_path_object.c::geda_path_object_shortest_distance
           * o_picture_object.c::geda_picture_object_shortest_distance
+          * o_text_object.c::geda_text_object_shortest_distance
 
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com
 

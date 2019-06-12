@@ -235,9 +235,9 @@ void        geda_text_object_print                   (GedaToplevel *toplevel, FI
                                                       int unicode_count, gunichar *unicode_table);
 GedaObject *geda_text_object_read                    (const char *first_line, TextBuffer *tb, unsigned int release_ver,
                                                       unsigned int fileformat_ver, GError **err);
-char       *geda_text_object_save                    (GedaObject *object);
-double      geda_text_object_shortest_distance       (GedaObject *object, int x, int y, int force_soild);
-void        geda_text_object_update_disp_string      (GedaObject *object);
+char       *geda_text_object_save                    (GedaObject  *object);
+double      geda_text_object_shortest_distance       (ConstObject *object, int x, int y, int force_soild);
+void        geda_text_object_update_disp_string      (GedaObject  *object);
 
 /* s_attrib.c */
  void       geda_struct_attrib_init                  (void);

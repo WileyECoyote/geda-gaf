@@ -1124,7 +1124,7 @@ void geda_text_object_set_y (GedaObject *object, int y)
  *         large number (G_MAXDOUBLE).  With an invalid parameter, this
  *         funciton returns G_MAXDOUBLE.
  */
-double geda_text_object_shortest_distance (GedaObject *object, int x, int y, int force_solid)
+double geda_text_object_shortest_distance (ConstObject *object, int x, int y, int force_solid)
 {
   int left, top, right, bottom;
   double dx, dy;
