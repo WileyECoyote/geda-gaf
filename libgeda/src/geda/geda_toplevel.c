@@ -567,8 +567,7 @@ Page *geda_toplevel_get_current_page (GedaToplevel *toplevel)
 /*!
  * \brief Get the current open flags setting
  * \par Function Description
- *  This function returns the current value of open_flags
- *  in \a toplevel.
+ *  This function returns the current value of open_flags in \a toplevel.
  *
  * \param [in] toplevel GedaToplevel object
  *
