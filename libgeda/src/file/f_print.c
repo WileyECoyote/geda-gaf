@@ -185,7 +185,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
   else
     fprintf(fp, "%%!PS-Adobe-3.0\n");
 
-  fprintf(fp, "%%%%Creator: gEDA gschem %s\n"
+  fprintf(fp, "%%%%Creator: gEDA-gaf %s\n"
               "%%%%CreationDate: %s"
               "%%%%Title: %s\n"
 #ifdef HAVE_GETLOGIN

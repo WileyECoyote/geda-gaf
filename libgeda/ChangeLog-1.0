@@ -1,3 +1,7 @@
+2019-06-13 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/file/f_print.c: Replace "gschem" with "gaf" in f_print_header.
+
 2019-06-12 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object: Declare object argument const:
