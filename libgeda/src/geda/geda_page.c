@@ -762,8 +762,8 @@ GList *geda_page_get_selection_list(Page *page)
 /*!
  * \brief Print Contents of Page Structure for Debugging
  * \par Function Description
- *  This function can be usefull when debugging page objects. The
- *  prints assigned pointers and values in \a page.
+ *  This function can be useful when debugging page objects.
+ *  Prints assigned pointers and values in \a page.
  */
 void geda_page_debug_print (Page *page)
 {
