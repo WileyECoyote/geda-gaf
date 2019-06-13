@@ -62,7 +62,7 @@ typedef struct {
 } NewToplevelHook;
 
 
-/*! \brief Internal Function to Call Register Toplevel Hooks
+/*! \internal Function to Call Register Toplevel Hooks
  *  \par Function Description
  *
  */
@@ -74,17 +74,17 @@ static void call_new_toplevel_hook (void *hook, void *toplevel)
   h->func (t, h->data);
 }
 
-/*! \brief Append New TopLevel Hook List to a GedaToplevel.
+/*!
+ * \brief Append New TopLevel Hook List to a GedaToplevel.
  * \par Function Description
- * Adds a callback hook \a func to \a toplevel. After a new
- * \a toplevel is created, \a func will be called with two
- * arguments: the \a toplevel, and the \a data.
+ *  Adds a callback hook \a func to \a toplevel. After a new
+ *  \a toplevel is created, \a func will be called with two
+ *  arguments: the \a toplevel, and the \a data.
  *
  * \sa geda_toplevel_weak_unref
  *
  * \param [in] func    Weak reference notify function.
  * \param [in] data      Data to be passed to \a func
- *
  */
 void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
 {
@@ -206,10 +206,10 @@ static void geda_toplevel_instance_init(GTypeInstance *instance, void *g_class)
 /*!
  * \brief Geda Toplevel Object Finalization Function
  * \par Function Description
- *   This function removes or releases all internal references
- *   and releases the memory allocated to the given GedaToplevel
- *   data structure and then chain up to the parent's finalize
- *   handler.
+ *  This function removes or releases all internal references
+ *  and releases the memory allocated to the given GedaToplevel
+ *  data structure and then chain up to the parent's finalize
+ *  handler.
  */
 static void geda_toplevel_finalize(GObject *object)
 {
@@ -969,14 +969,15 @@ bool geda_toplevel_set_auto_save_interval (GedaToplevel *toplevel, int interval)
   return TRUE;
 }
 
-/*! \brief Set Backup Loader Query Function in GedaToplevel object
- *  \par Function Description
+/*!
+ * \brief Set Backup Loader Query Function in GedaToplevel object
+ * \par Function Description
  *  Sets function to be call when a files is requested to be loaded
  *  and a newer backup file is detected.
  *
- *  \param [in] toplevel  The GedaToplevel object being set
- *  \param [in] func      Function to call if a backup is newer.
- *  \param [in] ...       Optional data to be passed to the function.
+ * \param [in] toplevel  The GedaToplevel object being set
+ * \param [in] func      Function to call if a backup is newer.
+ * \param [in] ...       Optional data to be passed to the function.
  */
 void geda_toplevel_set_bkloader_query_func (GedaToplevel *toplevel, void *func, ...)
 {
@@ -1071,8 +1072,9 @@ void geda_toplevel_set_net_consolidate (GedaToplevel *toplevel, int consolidate)
   toplevel->net_consolidate = consolidate;
 }
 
-/*! \brief Set the font-renderer-specific bounds function.
- *  \par Function Description
+/*!
+ * \brief Set the font-renderer-specific bounds function.
+ * \par Function Description
  *  Set the function to be used to calculate text bounds for #Text
  *  Objects for all pages associated with the given #GedaToplevel.
  *  This allows a global page renderer function to be defined. If the
@@ -1084,13 +1086,13 @@ void geda_toplevel_set_net_consolidate (GedaToplevel *toplevel, int consolidate)
  *  GedaToplevel. Note that any previous setting is erased and
  *  passing NULL will disable rendering at this level.
  *
- *  \sa geda_struct_page_set_bounds_func
- *  \sa geda_text_object_set_rendered_bounds_func
+ * \sa geda_struct_page_set_bounds_func
+ * \sa geda_text_object_set_rendered_bounds_func
  *
- *  \param [in] toplevel  The GedaToplevel for which the render
- *                        function should be associated.
- *  \param [in] func      Function to use.
- *  \param [in] user_data User data to be passed to the function.
+ * \param [in] toplevel  The GedaToplevel for which the render
+ *                       function should be associated.
+ * \param [in] func      Function to use.
+ * \param [in] user_data User data to be passed to the function.
  */
 void geda_toplevel_set_rendered_bounds_func(GedaToplevel       *toplevel,
                                             RenderedBoundsFunc  func,
