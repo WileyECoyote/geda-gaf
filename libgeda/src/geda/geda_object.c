@@ -221,7 +221,7 @@ const GList *geda_object_get_conn_list (const GedaObject *object)
 /*!
  * \brief Retrieve the Value of the GedaObject Locked Color Index
  * \par Function Description
- *  Returns the value of the object->locked_color member, which holes the
+ *  Returns the value of the object->locked_color member, which holds the
  *  index of the locked color value, not the color value. The color index
  *  of the object is saved to the locked_color member when the object is
  *  locked so that the previous color can be restored when the object is
