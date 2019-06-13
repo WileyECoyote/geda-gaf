@@ -73,7 +73,7 @@ int geda_object_get_attached_parent_id (GedaObject *object)
  * \retval 0 No bound was found
  * \retval 1 Bound was found
  */
-int geda_object_get_bounds(GedaObject *o_current,
+int geda_object_get_bounds(ConstObject *o_current,
                            int *rleft,  int *rtop,
                            int *rright, int *rbottom)
 {
@@ -713,7 +713,7 @@ double geda_object_get_shortest_distance_full (GedaObject *object, int x, int y,
 
   if(GEDA_IS_OBJECT(object)) {
 
-    double (*func) (GedaObject *, int, int, int) = NULL;
+    double (*func) (ConstObject *, int, int, int) = NULL;
 
     switch(object->type) {
       case OBJ_BUS:
@@ -740,6 +740,7 @@ double geda_object_get_shortest_distance_full (GedaObject *object, int x, int y,
   else {
     shortest_distance = G_MAXDOUBLE;
   }
+
   return shortest_distance;
 }
 

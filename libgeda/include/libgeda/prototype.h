@@ -352,7 +352,7 @@ extern "C" {
 
 /* o_get.c */
           int    geda_object_get_attached_parent_id        (GedaObject *object);
-          int    geda_object_get_bounds                    (GedaObject *o_current, int *left, int *top, int *right, int *bottom);
+          int    geda_object_get_bounds                    (const GedaObject *o_current, int *left, int *top, int *right, int *bottom);
           int    geda_object_get_bounds_list               (const GList *o_list, int *left, int *top, int *right, int *bottom);
          bool    geda_object_get_fill_options              (GedaObject *object, OBJECT_FILLING *type, int *width, int *pitch1,
                                                             int *angle1, int *pitch2, int *angle2);

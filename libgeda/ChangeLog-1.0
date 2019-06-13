@@ -2,6 +2,9 @@
 
     * src/file/f_print.c: Replace "gschem" with "gaf" in f_print_header.
 
+    * src/object/o_get.c: Delcare object argument to geda_object_get_bounds
+      const.
+
 2019-06-12 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object: Declare object argument const:
