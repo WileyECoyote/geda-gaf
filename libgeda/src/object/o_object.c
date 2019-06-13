@@ -330,16 +330,16 @@ GList *geda_object_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         break;
 
       case(END_EMBEDDED):
-        if (embedded_level>0) {
+        if (embedded_level > 0) {
 
           GList *pins = NULL;
           GList *iter;
 
           new_object_list = g_list_reverse (new_object_list);
 
-          new_obj = object_list_save->data;
+          new_obj                     = object_list_save->data;
           new_obj->complex->prim_objs = new_object_list;
-          new_object_list = object_list_save;
+          new_object_list             = object_list_save;
 
           /* set the parent fields now and check for pin objects */
           for (iter = new_obj->complex->prim_objs; iter != NULL; iter = iter->next) {
