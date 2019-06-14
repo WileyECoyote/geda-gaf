@@ -538,11 +538,11 @@ GSList *geda_key_hash_lookup (GedaKeyHash     *key_hash,
 /*!
  * \brief Search for Key in Hash
  * \par Function Description
- * Looks up the best matching entry or entries in the hash table for a
- * given keyval/modifiers pair. It's better to use
- * geda_key_hash_lookup() if you have the original GdkEventKey
- * available.  The results are sorted so that entries with less
- * modifiers come before entries with more modifiers.
+ *  Looks up the best matching entry or entries in the hash table for a
+ *  given keyval/modifiers pair. It is better to use geda_key_hash_lookup
+ *  if you have the original GdkEventKey available. The results are sorted
+ *  so that entries with less modifiers come before entries with more
+ *  modifiers.
  *
  * \param[in] key_hash  a #GedaKeyHash
  * \param[in] keyval    Key code value
