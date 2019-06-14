@@ -1,3 +1,7 @@
+2019-06-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedauio.c: Update documentation.
+
 2019-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Rename static function with geda prefix.

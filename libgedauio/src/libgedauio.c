@@ -42,9 +42,7 @@
  *  This function calls "satellite" initialization functions in
  *  various modules to initialize data structures for runtime.
  *  This function should normally be called before any other
- *  functions in libgeda are called. scm_with_guile is utilized
- *  to ensure library procedure are in guile mode, regardless
- *  of whether the client is in guile mode.
+ *  functions in libgedauio are called.
  */
 void libgedauio_setup_locale(void)
 {
