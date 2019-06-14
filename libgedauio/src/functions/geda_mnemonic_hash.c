@@ -38,10 +38,11 @@ struct _GedaMnemonicHash
   GHashTable *hash;
 };
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Create a New GedaMnemonicHash
+ * \par Function Description
+ * Returns a pointer to newly allocated  GedaMnemonicHash, which is nothing
+ * more than a pointer to a GHashTable.
  */
 GedaMnemonicHash *
 geda_mnemonic_hash_new (void)

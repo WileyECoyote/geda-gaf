@@ -2,6 +2,10 @@
 
     * src/libgedauio.c: Update documentation.
 
+    * src/functions/geda_mnemonic_hash.c: Add function documentation:
+
+          * geda_mnemonic_hash_new
+
 2019-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Rename static function with geda prefix.
