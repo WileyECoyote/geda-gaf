@@ -181,6 +181,7 @@ int check_construction (void)
     result++;
   }
 
+  /* geda_bulb_new_with_mnemonic_from_widget */
   widget3 = geda_bulb_new_with_mnemonic_from_widget (widget2, "</b>_b3</b>", TRUE);
 
   if (!GEDA_IS_BULB(widget3)) {
@@ -244,9 +245,10 @@ check_accessors ()
 
     widget3 = geda_bulb_new_visible (NULL);
 
+    /* check geda_bulb_get_group */
     group   = geda_bulb_get_group(widget1);
 
-    /* check geda_bulb_set_group */
+    /* Check geda_bulb_set_group */
     geda_bulb_set_group(widget3, group);
 
     /* Update pointer to the list */
@@ -261,7 +263,7 @@ check_accessors ()
 
     widget4 = geda_bulb_new (NULL);
 
-    /* check geda_bulb_join_group */
+    /* Check geda_bulb_join_group */
     geda_bulb_join_group (widget4, widget3);
 
     group = geda_bulb_get_group(widget1);
