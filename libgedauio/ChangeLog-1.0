@@ -9,6 +9,10 @@
 
     * src/functions/geda_widget.c: Add template/todo Doxygen comment blocks.
 
+    * src/widgets/geda_menu_item.c: Add function documentation:
+
+          * geda_menu_item_popup_submenu
+
 2019-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Rename static function with geda prefix.

@@ -2838,10 +2838,12 @@ static int get_popup_delay (GedaMenuItem *menu_item)
     return MENU_POPUP_DELAY;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief GedaMenuItem Open Submenu
+ * \par Function Description
+ *  Called by the parent shell to popup the menu of a menu item.
  *
+ * \sa geda_menu_item_real_popup_submenu
  */
 void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
 {
