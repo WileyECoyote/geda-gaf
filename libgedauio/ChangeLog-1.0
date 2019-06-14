@@ -5,6 +5,7 @@
     * src/functions/geda_mnemonic_hash.c: Add function documentation:
 
           * geda_mnemonic_hash_new
+          * mnemonic_hash_free_foreach
 
 2019-06-11 Wiley E. Hill <wileyhill@gmail.com>
 

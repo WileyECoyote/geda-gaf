@@ -54,10 +54,10 @@ geda_mnemonic_hash_new (void)
   return mnemonic_hash;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \internal GedaMnemonicHash free foreach
+ * \par Function Description
+ *  Releases the string associated with the key.
  */
 static void
 mnemonic_hash_free_foreach (void *key, void *value, void *user)
