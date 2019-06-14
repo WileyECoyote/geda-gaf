@@ -1769,7 +1769,9 @@ void geda_menu_shell_add_mnemonic (GedaMenuShell *menu_shell,
   g_return_if_fail (GTK_IS_WIDGET (target));
 
   mnemonic_hash = geda_menu_shell_get_mnemonic_hash (menu_shell, TRUE);
+
   geda_mnemonic_hash_add (mnemonic_hash, keyval, target);
+
   geda_menu_shell_reset_key_hash (menu_shell);
 }
 
