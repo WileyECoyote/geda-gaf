@@ -148,7 +148,7 @@ geda_toolbar_size_request (GtkWidget *widget, GtkRequisition *requisition)
 }
 
 static void
-geda_toolbar_class_init(void *class, void *class_data)
+geda_toolbar_class_init (void *class, void *class_data)
 {
   /*  (GedaToolbarClass *class) */
   GObjectClass   *object_class;
@@ -184,7 +184,7 @@ geda_toolbar_class_init(void *class, void *class_data)
 }
 
 static void
-geda_toolbar_instance_init(GTypeInstance *instance, void *g_class)
+geda_toolbar_instance_init (GTypeInstance *instance, void *g_class)
 {
   //GedaToolbar *toolbar = (GedaToolbar*)instance;
 
