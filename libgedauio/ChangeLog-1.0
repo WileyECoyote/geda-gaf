@@ -7,6 +7,8 @@
           * geda_mnemonic_hash_new
           * mnemonic_hash_free_foreach
 
+    * src/functions/geda_widget.c: Add template/todo Doxygen comment blocks.
+
 2019-06-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Rename static function with geda prefix.

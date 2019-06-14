@@ -13,6 +13,11 @@
 
 #include "../../include/geda_widget.h"
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_widget_buildable_finish_accelerator (GtkWidget *widget,
                                           GtkWidget *toplevel,
@@ -54,6 +59,11 @@ geda_widget_buildable_finish_accelerator (GtkWidget *widget,
 
 static GQuark quark_accel_path = 0;
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char*
 geda_widget_get_accel_path (GtkWidget *widget, bool *locked)
 {
@@ -77,7 +87,11 @@ geda_widget_get_accel_path (GtkWidget *widget, bool *locked)
 static GQuark quark_aux_info = 0;
 
 
-/* called by: geda_label_size_request
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ * called by: geda_label_size_request
  *            geda_label_ensure_layout
  */
 GtkWidgetAuxInfo*
@@ -245,6 +259,11 @@ geda_widget_modify_fg (GtkWidget *widget,
                             GTK_RC_FG, state, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_widget_modify_insensitive_bg (GtkWidget *widget, const GdkColor *color)
 {
@@ -252,6 +271,11 @@ geda_widget_modify_insensitive_bg (GtkWidget *widget, const GdkColor *color)
                             GTK_RC_BG, GTK_STATE_INSENSITIVE, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_widget_modify_insensitive_fg (GtkWidget *widget, const GdkColor *color)
 {
@@ -259,6 +283,11 @@ geda_widget_modify_insensitive_fg (GtkWidget *widget, const GdkColor *color)
                             GTK_RC_FG, GTK_STATE_INSENSITIVE, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_widget_modify_normal_bg (GtkWidget *widget, const GdkColor *color)
 {
@@ -266,6 +295,11 @@ geda_widget_modify_normal_bg (GtkWidget *widget, const GdkColor *color)
                             GTK_RC_BG, GTK_STATE_NORMAL, color);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_widget_modify_normal_fg (GtkWidget *widget, const GdkColor *color)
 {
@@ -330,6 +364,11 @@ geda_widget_set_pointer_position(GtkWidget *widget, int x, int y)
 
 #else /* Gtk-2 rendition */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_widget_set_pointer_position(GtkWidget *widget, int x, int y)
 {
