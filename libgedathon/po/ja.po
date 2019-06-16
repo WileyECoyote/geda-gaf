@@ -406,45 +406,55 @@ msgstr "エラーが発生しました"
 msgid "object was not created"
 msgstr "オブジェクトは作成されませんでした"
 
+# Arc; Āku
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "アーク"
 
+# Text Attribute; Tekisuto zokusei
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "テキスト属性"
 
+# Box => Rectangle; Kukei
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "矩形"
 
+# Bus => cable; Kēburu
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "ケーブル"
 
+# Circle; Sākuru
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "サークル"
 
+# Line; Rain
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "ライン"
 
+# Net; Netto
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "ネット"
 
+# Path => polygon; Porigon
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "ポリゴン"
 
+# Pin
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "ピン"
 
+# Text; Tekisuto
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "テキスト"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
