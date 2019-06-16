@@ -331,45 +331,55 @@ msgstr "Tapahtui virhe"
 msgid "object was not created"
 msgstr "kohdetta ei ole luotu"
 
+# Arc
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "kaari"
 
+# Text Attribute
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "Tekstin määrite"
 
+# Box => Rectangle
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "Suorakulmio"
 
+# Bus => cable
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "kaapeli"
 
+# Circle
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "Ympyrä"
 
+# Line
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "Linja"
 
+# Net
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "Netto"
 
+# Path => polygon
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "Monikulmio"
 
+# Pin
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "tappi"
 
+# Text
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "Teksti"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
