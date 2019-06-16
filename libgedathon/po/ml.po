@@ -392,45 +392,55 @@ msgstr "ഒരു പിശക് സംഭവിച്ചു"
 msgid "object was not created"
 msgstr "ഒബ്ജക്റ്റ് സൃഷ്ടിച്ചില്ല"
 
+# Arc; ārkk
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "ആർക്ക്"
 
+# Text Attribute; ṭeksṟṟ āṭribyūṭṭ
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "ടെക്സ്റ്റ് ആട്രിബ്യൂട്ട്"
 
+# Box => Rectangle; dīrghacaturaṁ
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "ദീർഘചതുരം"
 
+# Bus => cable; kēbiḷ
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "കേബിൾ"
 
+# Circle; sarkkiḷ
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "സർക്കിൾ"
 
+# Line; lain
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "ലൈൻ"
 
+# Net; neṟṟ
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "നെറ്റ്"
 
+# Path => polygon; bahubhujaṁ
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "ബഹുഭുജം"
 
+# Pin
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "പിൻ"
 
+# Text; vācakaṁ
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "വാചകം"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
