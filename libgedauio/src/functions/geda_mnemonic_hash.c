@@ -72,10 +72,10 @@ mnemonic_hash_free_foreach (void *key, void *value, void *user)
   g_slist_free (targets);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Destory a GedaMnemonicHash
+ * \par Function Description
+ *  Releases all resources allocated to a GedaMnemonicHash.
  */
 void
 geda_mnemonic_hash_free (GedaMnemonicHash *mnemonic_hash)

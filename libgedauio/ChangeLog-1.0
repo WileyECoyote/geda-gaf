@@ -1,5 +1,9 @@
 2019-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/functions/geda_mnemonic_hash.c: Add function documentation:
+
+          * geda_mnemonic_hash_free
+
     * src/widgets/geda_combobox.c: Substitute geda_container_get_children macro
       for gtk_container_get_children, substitute geda_container_remove macro
       for gtk_container_remove.
