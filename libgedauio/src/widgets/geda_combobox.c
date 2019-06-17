@@ -3736,7 +3736,7 @@ static void geda_combo_box_relayout (GedaComboBox *combo_box)
     return;
   }
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = g_list_last (list); iter; iter = iter->prev) {
     gtk_container_remove ((GtkContainer*)menu, iter->data);
@@ -4162,7 +4162,7 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
   GtkTreePath *mpath;
   bool         skip;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
   skip = skip_first;
   item = NULL;
 
@@ -4913,7 +4913,7 @@ static void pack_start_recurse (GtkWidget *menu, GtkCellRenderer *cell, bool exp
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
@@ -4974,7 +4974,7 @@ static void pack_end_recurse (GtkWidget *menu, GtkCellRenderer *cell, bool expan
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
@@ -5048,7 +5048,7 @@ static void clear_recurse (GtkWidget *menu)
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
@@ -5113,7 +5113,7 @@ static void add_attribute_recurse (GtkWidget       *menu,
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
@@ -5205,7 +5205,7 @@ static void set_cell_data_func_recurse (GtkWidget       *menu,
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
@@ -5277,7 +5277,7 @@ clear_attributes_recurse (GtkWidget *menu, GtkCellRenderer *cell)
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
@@ -5343,7 +5343,7 @@ static void reorder_recurse (GtkWidget       *menu,
 {
   GList *iter, *list;
 
-  list = gtk_container_get_children ((GtkContainer*)menu);
+  list = geda_container_get_children (menu);
 
   for (iter = list; iter; iter = iter->next) {
 
