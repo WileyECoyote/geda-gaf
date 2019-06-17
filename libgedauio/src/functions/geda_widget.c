@@ -333,12 +333,16 @@ void geda_widget_set_item_active(GtkWidget *widget, bool state)
   }
 }
 
-/*! \brief Set the Pointer position relative to widget
- *  Contrast this with the ease of setting the pointer position on
- *  other platforms, this example is for Win32:
+/*!
+ * \brief Set Pointer Position Relative to widget
+ * \par Function Description
+ *  This function sets the pointer position to relative screen coordinates
+ *  of the given widget. For setting the cursor relative to the drawing
+ *  area using world coordinates see i_window_set_pointer_position.
  *
- *       ClientToScreen(hWnd, &pt);
- *       SetCursorPos(pt.x,pt.y);
+ * \param [in] widget to which the coordinates will be relative
+ * \param [in] x      integer abscissa in screen units
+ * \param [in] y      integer ordinate in screen units
  */
 #if GTK_CHECK_VERSION(3, 0, 0)
 void

@@ -5,6 +5,10 @@
           * geda_mnemonic_hash_free
           * geda_mnemonic_hash_add
 
+    * src/functions/geda_widget.c: Update function documentation:
+
+          * geda_widget_set_pointer_position
+
     * src/widgets/geda_combobox.c: Substitute geda_container_get_children macro
       for gtk_container_get_children, substitute geda_container_remove macro
       for gtk_container_remove.
