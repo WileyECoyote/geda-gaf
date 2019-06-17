@@ -563,8 +563,8 @@ static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 
     if (!priv->tree_view && priv->separator) {
 
-      gtk_container_remove ((GtkContainer*)priv->separator->parent,
-                             priv->separator);
+      geda_container_remove (priv->separator->parent, priv->separator);
+
       priv->separator = NULL;
 
       gtk_widget_queue_resize ((GtkWidget*)container);
@@ -2581,8 +2581,7 @@ static void geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget 
     priv->popup_widget = NULL;
   }
   else if (priv->popup_widget) {
-    gtk_container_remove ((GtkContainer*)priv->scrolled_window,
-                           priv->popup_widget);
+    geda_container_remove (priv->scrolled_window, priv->popup_widget);
     g_object_unref (priv->popup_widget);
     priv->popup_widget = NULL;
   }
@@ -3739,7 +3738,7 @@ static void geda_combo_box_relayout (GedaComboBox *combo_box)
   list = geda_container_get_children (menu);
 
   for (iter = g_list_last (list); iter; iter = iter->prev) {
-    gtk_container_remove ((GtkContainer*)menu, iter->data);
+    geda_container_remove (menu, iter->data);
   }
 
   geda_combo_box_menu_fill (combo_box);
@@ -4346,7 +4345,7 @@ static void geda_combo_box_menu_row_deleted (GtkTreeModel *model,
 
     item = find_menu_by_path (priv->popup_widget, path, FALSE);
     menu = gtk_widget_get_parent (item);
-    gtk_container_remove ((GtkContainer*)menu, item);
+    geda_container_remove (menu, item);
 
     if (gtk_tree_path_get_depth (path) > 1) {
 
