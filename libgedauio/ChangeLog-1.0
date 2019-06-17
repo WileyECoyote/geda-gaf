@@ -16,6 +16,9 @@
     * src/widgets/geda_menu_item.c: Substitute geda_container_get_children macro
       for gtk_container_get_children.
 
+    * tests/test_bulb.c: Revise check_accessors to ensure the group pointer
+      returned from geda_bulb_get_group is not NULL.
+
 2019-06-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedauio.c: Update documentation.

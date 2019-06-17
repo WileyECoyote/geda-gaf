@@ -248,6 +248,11 @@ check_accessors ()
     /* check geda_bulb_get_group */
     group   = geda_bulb_get_group(widget1);
 
+    if (!group) {
+      fprintf(stderr, "FAILED: line <%d> %s get_group\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     /* Check geda_bulb_set_group */
     geda_bulb_set_group(widget3, group);
 
