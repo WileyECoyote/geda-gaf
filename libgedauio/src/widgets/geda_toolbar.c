@@ -186,13 +186,9 @@ geda_toolbar_class_init (void *class, void *class_data)
 static void
 geda_toolbar_instance_init (GTypeInstance *instance, void *g_class)
 {
-  //GedaToolbar *toolbar = (GedaToolbar*)instance;
-
   if (!toolbar_hash_table) {
     toolbar_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
-
-  //toolbar->children = NULL;
 
   g_hash_table_replace (toolbar_hash_table, instance, instance);
 }
