@@ -88,10 +88,10 @@ geda_mnemonic_hash_free (GedaMnemonicHash *mnemonic_hash)
   g_free (mnemonic_hash);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Add a Key to a GedaMnemonicHash
+ * \par Function Description
+ *  Appends GedaMnemonicHash with new keyval for target.
  */
 void
 geda_mnemonic_hash_add (GedaMnemonicHash *mnemonic_hash,
