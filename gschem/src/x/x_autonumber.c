@@ -1522,7 +1522,7 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
   autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 
   /* Sort order */
-  autotext->order = geda_combo_box_get_active((GedaComboBox*)SortOrderCombo);
+  autotext->order = geda_combo_widget_get_active(SortOrderCombo);
 
   /* Options */
   autotext->startnum  = GET_SPIN_IVALUE (StartNumberSpin);

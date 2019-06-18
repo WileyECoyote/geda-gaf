@@ -1,7 +1,8 @@
 2019-06-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_autonumber.c: Substitute geda_combo_widget_set_model for
-      geda_combo_box_set_model.
+      geda_combo_box_set_model, and geda_combo_widget_get_active for
+      geda_combo_box_get_active.
 
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com
 
