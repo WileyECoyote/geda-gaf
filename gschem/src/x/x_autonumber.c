@@ -1192,7 +1192,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
     GEDA_FREE(path);
   }
 
-  geda_combo_box_set_model((GedaComboBox*)SortOrderCombo, (GtkTreeModel*)store);
+  geda_combo_widget_set_model(SortOrderCombo, (GtkTreeModel*)store);
 
   renderer = gtk_cell_renderer_text_new ();
 
