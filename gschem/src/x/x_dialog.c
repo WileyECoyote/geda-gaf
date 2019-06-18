@@ -1262,8 +1262,9 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, 0, str, 1, i, -1);
 
-    if (i == color_index)
+    if (i == color_index) {
       geda_combo_widget_set_active_iter(cbox, &iter);
+    }
   }
 
   g_signal_connect (cbox, "view-changed",
