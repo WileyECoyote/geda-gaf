@@ -814,7 +814,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                                    cell, "text", 0, NULL);
     GEDA_UNREF (menu_model);
     gtk_table_attach_defaults(GTK_TABLE(table), casecombo, 1,2,3,4);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(casecombo), text_case_tip);
+    gtk_widget_set_tooltip_text (casecombo, text_case_tip);
 
     /* Text Rotation Label  -- Table Row 5 */
     rotate_label=geda_aligned_mnemonic_label_new(_LABEL(Rotation), 0,0);
