@@ -4,6 +4,8 @@
       geda_combo_box_set_model, and geda_combo_widget_get_active for
       geda_combo_box_get_active.
 
+    * src/x/x_edit_text.c: Remove unnecessary cast in x_dialog_edit_text.
+
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_window.c: Refresh component library cache when reverting page.

@@ -773,7 +773,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
                                    cell, "text", 0, NULL);
     GEDA_UNREF (menu_model);
     gtk_table_attach(GTK_TABLE(table), combobox, 1,2,0,1, GTK_FILL,0,0,DIALOG_V_SPACING);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(combobox), text_align_tip);
+    gtk_widget_set_tooltip_text (combobox, text_align_tip);
 
     /* Color Property Label -- Table Row 2 */
     color_label = geda_aligned_mnemonic_label_new(_LABEL(TextColor), 0, 0);
