@@ -146,7 +146,7 @@ static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
   string = (char*)geda_struct_papersizes_get (i);
   while (string != NULL) {
 
-    geda_combo_box_insert_text (GEDA_COMBO_BOX (combobox), i, string);
+    geda_combo_box_insert_text (combobox, i, string);
 
     i++;
     string = (char*)geda_struct_papersizes_get (i);

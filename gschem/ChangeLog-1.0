@@ -6,6 +6,8 @@
 
     * src/x/x_edit_text.c: Remove unnecessary cast in x_dialog_edit_text.
 
+    * src/x/x_print.c: Remove unnecessary cast in x_dialog_edit_text.
+
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_window.c: Refresh component library cache when reverting page.
