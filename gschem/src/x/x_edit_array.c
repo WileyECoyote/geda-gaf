@@ -61,10 +61,12 @@ static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
     g_signal_handler_disconnect (DrawingArea, dialog_data->press_hid);
     dialog_data->press_hid = 0;
   }
+
   if (dialog_data->release_hid) {
     g_signal_handler_disconnect (DrawingArea, dialog_data->release_hid);
     dialog_data->release_hid = 0;
   }
+
   i_status_action_stop(w_current);
 }
 
