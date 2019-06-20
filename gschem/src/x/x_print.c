@@ -126,10 +126,10 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
 }
 
 /*!
- *  \brief Create, initialize and populate a combobox for selecting
- *  what paper size to print to.
- *  \par Private function, should not be
- *  called by any code outside x_print.c
+ * \brief Add Paper Size Combo Box to the Print Dialog
+ * \par Private function
+ *  Creates and populates a combobox for selecting the paper
+ *  size to print to.
  */
 static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
 {

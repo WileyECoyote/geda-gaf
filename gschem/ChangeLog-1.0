@@ -5,6 +5,10 @@
         * i_var_restore_group_double
         * i_var_restore_group_integer
 
+    * src/x/x_print.c: Revise function documentation for:
+
+        * print_dialog_instance_init_paper_combobox
+
 2019-06-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_autonumber.c: Substitute geda_combo_widget_set_model for
