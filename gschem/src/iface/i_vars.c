@@ -279,9 +279,19 @@ bool i_var_restore_group_boolean(EdaConfig *cfg, const char *group,
   return result;
 }
 
-/* Retrieves a double from key file in specified group */
-/* Returns True if the value was restored from configuration or
- * False if \a def_val was assigned */
+/*!
+ * \brief Retrieve a double from key file in and specified group
+ * \par Function Description
+ *  Retrieves a double from key file in specified group. Returns True
+ *  if the value was restored from configuration or False if \a def_val
+ *  was assigned.
+ *
+ * \param cfg      Pointer to EdaConfig Object
+ * \param group    String name of configuration group
+ * \param key      string name of record key to be retrieved
+ * \param var      Pointer to variable whose value is to be set
+ * \param def_val  default returned value if key does not exist.
+ */
 bool i_var_restore_group_double (EdaConfig *cfg, const char *group, const char *key, double *var, double def_val)
 {
   GError *err = NULL;

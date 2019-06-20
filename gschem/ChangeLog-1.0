@@ -1,3 +1,9 @@
+2019-06-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/iface/i_vars.c: Add function documentation for:
+
+        * i_var_restore_group_double
+
 2019-06-18 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_autonumber.c: Substitute geda_combo_widget_set_model for
