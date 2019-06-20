@@ -156,10 +156,10 @@ static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
 }
 
 /*!
- *  \brief Create, initialize and populate a combobox for selecting
- *  the layout of the output to produce.
- *  \par Private function, should not be called by any code
- *  outside x_print.c
+ * \brief Add Layout Combo Box to the Print Dialog
+ * \par Private function
+ *  Creates and populates a combobox for selecting the layout of the
+ *  output to produce.
  */
 static void print_dialog_instance_init_layout_combobox (PrintDialog * d)
 {

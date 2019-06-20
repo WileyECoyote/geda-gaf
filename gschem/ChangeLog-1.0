@@ -8,6 +8,7 @@
     * src/x/x_print.c: Revise function documentation for:
 
         * print_dialog_instance_init_paper_combobox
+        * print_dialog_instance_init_layout_combobox
 
 2019-06-18 Wiley E. Hill <wileyhill@gmail.com
 
