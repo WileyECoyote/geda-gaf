@@ -251,14 +251,14 @@ static char *x_image_get_type_from_description(char *descr) {
 }
 
 /*!
- * \brief Update the filename of a file dialog, when the image type has changed
+ * \brief Update the Image File dialog Filename
  * \par Function Description
  *  Given a combobox inside a file chooser dialog, this function updates
  *  the filename displayed by the dialog, removing the current extension,
  *  and adding the extension of the image type selected.
  *
  * \param[in] type_Combo A combobox inside a file chooser dialog, with
- *                        gdk-pixbuf image type descriptions.
+ *                       gdk-pixbuf image type descriptions.
  * \param[in] w_current  the GschemToplevel structure.
  *
  * \return nothing.
