@@ -594,7 +594,6 @@ static void i_vars_recall_user_settings(GschemToplevel *w_current)
  *   The variables in this section have been organized into groups. The
  *   groups are listed "mostly" alphabeticaly, with the non-catagorized
  *   group last. Variables are listed alphabeticaly within each group.
- *
  */
 void i_vars_set(GschemToplevel *w_current)
 {

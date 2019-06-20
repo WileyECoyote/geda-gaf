@@ -72,7 +72,7 @@
  *   Other modules supporting Drag&Drop may use portions of this module
  *
  * \sa Coordinates-Drag-N-Drop-Destination
-*/
+ */
 
 typedef const char* (* GschemDndSendFunc) (GschemToplevel   *w_current,
                                            GdkDragContext   *context,
