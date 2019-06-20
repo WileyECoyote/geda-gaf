@@ -902,7 +902,6 @@ void x_dialog_edit_text (GschemToplevel *w_current, GedaObject *text_object)
 
     w_current->tewindow = ThisDialog;
   }
-
   else { /* dialog already there */
     gtk_window_present(GTK_WINDOW(ThisDialog));
   }
