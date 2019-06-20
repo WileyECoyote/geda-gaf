@@ -264,8 +264,8 @@ static char *x_image_get_type_from_description(char *descr) {
  * \return nothing.
  */
 static void
-x_image_update_dialog_filename(GedaComboBox     *type_Combo,
-                               GschemToplevel   *w_current)
+x_image_update_dialog_filename(GedaComboBox   *type_Combo,
+                               GschemToplevel *w_current)
 {
   GedaToplevel *toplevel  = w_current->toplevel;
   char *image_type_descr  = NULL;
