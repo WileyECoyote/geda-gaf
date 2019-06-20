@@ -208,7 +208,7 @@ char *i_var_get_global_config_string(EdaConfig *cfg, const char *key) {
 
 /*!
  * \brief Retrieve a color from config given a key and specified group
- * \par
+ * \par Function Description
  *  Retrieve interger list from configuration with \a key in \a group and
  *  set members of \a var from the retrieved values, if the key does not
  *  exist then the values are set from the current display color map using
@@ -248,7 +248,7 @@ void i_var_restore_group_color(EdaConfig *cfg, const char *group, const char *ke
 
 /*!
  * \brief Retrieve a boolean from key file in and specified group
- * \par
+ * \par Function Description
  *  Returns True if the value was restored from configuration or
  *  False if \a def_val was assigned.
  *
