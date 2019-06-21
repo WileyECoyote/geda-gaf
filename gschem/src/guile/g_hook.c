@@ -274,9 +274,9 @@ static void g_hook_run_idle_notify (void *data)
  * \par Function Description
  *  This is a main-loop task instigated to run SCM hooks.
  *
- * \warning Should never be called from outside the main context
- *          this should not be a problem, since the function is
- *          a callback.
+ * \warning Should never be called from outside the main context.
+ *          This should not be a problem since the function is a
+ *          callback.
  *
  * \param [in] data  IdleHookData record for hook arguments
  *
