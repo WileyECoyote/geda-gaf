@@ -86,6 +86,15 @@ typedef bool   (* GschemDndRecvFunc) (GschemToplevel  *w_current,
 
 typedef const char *(* x_dnd_str_data_drag_func) (GschemToplevel *w_current, GedaObject *object);
 
+static GtkTargetEntry dnd_send_list[] = {
+    GSCHEM_TARGET_NONE,
+    GSCHEM_TARGET_TEXT,
+    GSCHEM_TARGET_STRING,
+    GSCHEM_TARGET_TEXT_PLAIN,
+    GSCHEM_TARGET_UTF8_STRING,
+    GSCHEM_TARGET_OBJECTS,
+};
+
 static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_NONE,
     GSCHEM_TARGET_TEXT,
@@ -1131,7 +1140,7 @@ x_dnd_source_leave (GtkWidget *widget, GdkEventCrossing *event, GschemToplevel *
       GdkDragContext *context;
       GtkTargetList  *target_list;
 
-      target_list = gtk_target_list_new (dnd_target_list, dnd_ntargets);
+      target_list = gtk_target_list_new (dnd_send_list, dnd_ntargets - 1);
 
       /*! \note We pass the event we got when the button was pressed, which
        *  was saved for us by x_event_pressed in w_current, not the event

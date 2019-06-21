@@ -2,6 +2,12 @@
 
     * src/guile/g_rc.c: Update g_rc_world_size documentation.
 
+    * src/x/x_dnd.c: Add a separate GtkTargetEntry, dnd_send_list, without
+      GSCHEM_TARGET_URI_LIST, due to a flaw in Gtk. If Gtk gets wind that
+      we could accept a URI, then that is all we will ever get request to
+      send and most targets do not handle URI targets that are really just
+      ordinary strings.
+
 2019-06-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_vars.c: Add function documentation for:
