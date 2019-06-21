@@ -42,7 +42,7 @@
  *  \brief Primary Canvas Event Module
  *  \par
  *   This module contains the primary event handlers for the drawing
- *   canvas and were connected by i_event_setup_handlers. This module
+ *   canvas and are connected by i_event_setup_handlers. This module
  *   does not directly handle drag-n-drop or notification events but
  *   does support drag-n-drop events; x_event_motion stores copies of
  *   drag events in the toplevel for the Drag-N-Drop module. Button
