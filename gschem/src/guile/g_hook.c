@@ -175,7 +175,7 @@ g_hook_idle_run_object_list (GschemToplevel *w_current, const char *name,
  * \brief Runs a page hook.
  * \par Function Description
  *  Runs a hook called \a name, which should expect the single Page \a
- *  page as its argument.
+ *  page as an argument.
  *
  * \param [in] w_current Gschem Toplevel object
  * \param [in] name      name of hook to run
