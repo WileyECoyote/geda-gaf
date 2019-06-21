@@ -131,7 +131,7 @@ static void print_dialog_action_choosefile (GtkWidget   *w,
  *  Creates and populates a combobox for selecting the paper
  *  size to print to.
  */
-static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
+static void print_dialog_instance_init_paper_combobox (PrintDialog *d)
 {
   GedaComboBox *combobox;
 
@@ -161,7 +161,7 @@ static void print_dialog_instance_init_paper_combobox (PrintDialog * d)
  *  Creates and populates a combobox for selecting the layout of the
  *  output to produce.
  */
-static void print_dialog_instance_init_layout_combobox (PrintDialog * d)
+static void print_dialog_instance_init_layout_combobox (PrintDialog *d)
 {
   GtkListStore    *model;
   GtkTreeIter      iter;
@@ -203,7 +203,7 @@ static void print_dialog_instance_init_layout_combobox (PrintDialog * d)
  *  outside x_print.c
  */
 static void
-print_dialog_instance_init_orient_combobox (PrintDialog * d)
+print_dialog_instance_init_orient_combobox (PrintDialog *d)
 {
   GtkWidget       *combobox;
   GtkListStore    *model;
