@@ -238,7 +238,8 @@ static int get_is_busy()
  *  Callback handler for notication that the main loop source
  *  g_hook_run_idle_callback has been destroyed; removes reference
  *  on incapsulated objects and releases the memory allocated by
- *  with g_hook_get_new_capsule */
+ *  with g_hook_get_new_capsule
+ */
 static void g_hook_run_idle_notify (void *data)
 {
   IdleHookData *capsule = data;;
