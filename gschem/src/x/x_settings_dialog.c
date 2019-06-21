@@ -83,7 +83,9 @@
  * WEH | 08/21/18 | verify geda_combo_box_get_active_text returned
  *                | a pointer.
  * ------------------------------------------------------------------
- *
+ * WEH | 06/19/19 | Substituted geda_combo_widget_get_active_text for
+ *                | geda_combo_box_get_active_text.
+ * ------------------------------------------------------------------
  */
 
 /*!
@@ -2850,8 +2852,10 @@ void GatherSettings(GschemToplevel *w_current) {
     }
   } /* else do nothing because the map did not change */
 
-  tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (TitleBlockCombo));
+  tmpstr = geda_combo_widget_get_active_text (TitleBlockCombo);
+
   eda_config_set_string (cfg, group, "default-titleblock", tmpstr);
+
   g_free(tmpstr);
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (RipperSymbolCombo));
@@ -2865,7 +2869,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->render_adaptor   = gtk_combo_box_get_active (GTK_COMBO_BOX (RendererCombo));
   w_current->anti_aliasing    = gtk_combo_box_get_active (GTK_COMBO_BOX (AntiAliasCombo));
 
-  tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (FontNameCombo));
+  tmpstr = geda_combo_widget_get_active_text (FontNameCombo);
 
   if (tmpstr && tmpstr[0]) {
     eda_config_set_string (cfg, group, "default-font-name", tmpstr);

@@ -8,6 +8,9 @@
       send and most targets do not handle URI targets that are really just
       ordinary strings.
 
+    * src/x/x_settings_dialog.c: Substitute geda_combo_widget_get_active_text
+      for geda_combo_box_get_active_text.
+
 2019-06-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_vars.c: Add function documentation for:
