@@ -344,7 +344,7 @@ g_hook_get_new_capsule(GschemToplevel *w_current, Hooker hook)
  * \par Function Description
  *  Spawns idle thread to run object hooks. This is done, not because
  *  Guile is slow, but because these task need to be ran in the main
- *  loop and the callers could running as worker threads.
+ *  loop and the callers could be running as worker threads.
  *
  * \param [in] wc        Gschem Toplevel object,
  * \param [in] hook      Enumerated hook to run,
