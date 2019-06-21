@@ -671,9 +671,9 @@ SCM g_rc_window_size(SCM width, SCM height)
 
 /*! \brief Process world-size RC entry.
  *  \par Function Description
- *       function to dynamically process configuration data
- *       for the world-size RC entry. This sets the World
- *       size parameters "init_right" and "init_bottom".
+ *       Function to dynamically process configuration data for the
+ *       world-size RC entry. This sets the World size parameters
+ *      "default_world_right" and "default_world_bottom".
  *
  *  \param [in] width
  *  \param [in] height
