@@ -409,45 +409,55 @@ msgstr "Произошла ошибка"
 msgid "object was not created"
 msgstr "объект не был создан"
 
+# Arc; duga
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "дуга"
 
+# Text Attribute; Tekstovyy atribut
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "Текстовый атрибут"
 
+# Box; korobka
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "коробка"
 
+# Bus => cable; kabel'
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "кабель"
 
+# Circle; Krug
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "Круг"
 
+# Line; Liniya
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "Линия"
 
+# Net; Set'
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "Сеть"
 
+# Path => polygon; mnogougol'nik
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "многоугольник"
 
+# Pin; Shtyr
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "Штырь"
 
+# Text; Tekst
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
