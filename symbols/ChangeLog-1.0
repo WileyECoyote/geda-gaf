@@ -1,3 +1,10 @@
+2019-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nor?-?.sym: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/nor2-1.sym
+
 2019-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
