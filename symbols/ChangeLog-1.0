@@ -13,6 +13,9 @@
 
             * simulation/vhdl/and9-1.sym
 
+    * source/ccvs-1.sym: Add description attribute, remove source and transres
+      attributes
+
 2019-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
