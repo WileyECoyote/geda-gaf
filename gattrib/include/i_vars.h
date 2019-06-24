@@ -28,8 +28,6 @@ extern int   default_text_case;
 
 extern int   default_paper_width;
 extern int   default_paper_height;
-extern int   default_init_right;
-extern int   default_init_bottom;
 
 extern int   default_sort_components;
 extern int   default_tearoff_menus;

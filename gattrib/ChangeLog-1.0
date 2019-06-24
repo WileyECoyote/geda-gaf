@@ -1,5 +1,11 @@
 2019-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/i_vars.h: Remove extern declaration for nonexistent variables:
+
+
+          * default_init_right
+          * default_init_bottom
+
     * src: Reformat documentation:
 
           * src/gattrib.c
