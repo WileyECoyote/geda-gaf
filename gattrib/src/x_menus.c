@@ -554,6 +554,7 @@ void x_menu_fix_gtk_recent_submenu(void) {
  *  Called from x_menu_create_menu function to attach the Open
  *  Recent option under the File menu.
  */
+static
 GtkActionGroup *x_menu_create_recent_action_group(void) {
 
   GtkRecentAction *recent_action;

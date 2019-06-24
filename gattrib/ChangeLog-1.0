@@ -2,7 +2,6 @@
 
     * include/i_vars.h: Remove extern declaration for nonexistent variables:
 
-
           * default_init_right
           * default_init_bottom
 
@@ -11,6 +10,8 @@
           * src/gattrib.c
           * src/s_sheet_data.c
           * src/s_toplevel.c
+
+    * src/x_menus.c: Declare x_menu_create_recent_action_group static.
 
 2019-05-20 Wiley E. Hill <wileyhill@gmail.com>
 

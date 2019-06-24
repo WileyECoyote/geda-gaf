@@ -259,7 +259,7 @@ void  x_menu_edit_new_attrib();
 void  x_menu_edit_delete_attrib();
 void  x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive);
 void  x_menu_fix_gtk_recent_submenu();
-GtkActionGroup* x_menu_create_recent_action_group(void);
+//GtkActionGroup* x_menu_create_recent_action_group(void);
 GtkWidget* x_menu_create_menu(GtkWindow *window);
 void  x_menu_release_all(void);
 
