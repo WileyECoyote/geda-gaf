@@ -446,9 +446,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 /*!
  * \brief Delete text object
  * \par Function Description
- *  Delete the text object pointed to by text_object. This function
- *  was shamelessly stolen from gschem/src/o_delete.c and hacked
- *  for gattrib by SDB.
+ *  Delete the text object pointed to by text_object.
  *
  * \param toplevel    GedaToplevel to be operated on
  * \param text_object text object to be deleted
