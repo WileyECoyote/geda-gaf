@@ -23,7 +23,6 @@
 /*------------------------------------------------------------------*/
 /*! \file
  *  \brief Functions to manipulate the GedaToplevel struct.
- *
  * This file holds functions involved in manipulating the GedaToplevel data
  * structure.  GedaToplevel is the data structure inherited from gEDA's
  * other programs, and holds all info about a project in a form
@@ -54,14 +53,16 @@ void s_toplevel_close(PageDataSet *PageData) {
   geda_close_file(pr_current);  /*  Does absolutely nothing */
 }
 
-/*! \brief Read a schematic page
+/*!
+ * \brief Read a schematic page
+ * \par Function Description
+ *  Reads in a schematic page & calls geda_open_file, which fills out the
+ *  toplevel structure.
  *
- * Reads in a schematic page & calls geda_open_file, which fills out the
- * toplevel structure.
+ * \param toplevel GedaToplevel structure
+ * \param filename file to be opened
  *
- *  \param toplevel GedaToplevel structure
- *  \param filename file to be opened
- *  \returns 1 on success, 0 on failure
+ * \returns 1 on success, 0 on failure
  */
 int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
 {
@@ -82,16 +83,17 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
   return result;
 }
 
-/*! \brief Verify the entire design
- *
- * This function loops through all components in the
- * design looking for components which are placeholders.
+/*!
+ * \brief Verify the entire design
+ * \par Function Description
+ *  This function loops through all components in the
+ *  design looking for components which are placeholders.
  *
  *  Placeholders are inserted into the object list when
  *  no symbol file is found.  If this function finds a
  *  placeholder, it warns the user.
  *
- *  \param toplevel pointer to the toplevel object to be verified
+ * \param toplevel pointer to the toplevel object to be verified
  */
 void s_toplevel_verify_design (GedaToplevel *toplevel)
 {
@@ -125,8 +127,9 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Copy data from gtksheet into GedaToplevel struct
- *
+/*!
+ * \brief Copy data from gtksheet into GedaToplevel struct
+ * \par Function Description
  * Called when the user invokes "save".  It first
  * places all data from gtksheet into PageDataSet.  Then it
  * loops through all pages & calls s_toplevel_sheetdata_to_toplevel()
@@ -166,8 +169,9 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add a new attribute to the top level
- *
+/*!
+ * \brief Add a new attribute to the top level
+ * \par Function Description
  *  This function gets called when the user has entered a new attrib name,
  *  and clicked the OK button.  It does this:
  *  -# It figures out which attrib/sheet is being added to
@@ -251,8 +255,9 @@ void s_toplevel_add_new_attrib(int column_location) {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Delete an attribute column
- *
+/*!
+ * \brief Delete an attribute column
+ * \par Function Description
  *  This function gets called when the user has selected a single attrib
  *  column, selected the edit->delete attrib item from the pull-down
  *  menu, and then said "yes" to the confirm dialog.
@@ -304,8 +309,9 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 /* =======================  Private functions  ====================== */
 
 /*------------------------------------------------------------------*/
-/*! \brief Copy PageDataSet content to TOP_LEVEL
- *
+/*!
+ * \brief Copy PageDataSet content to TOP_LEVEL
+ * \par Function Description
  * This function
  * loops through all objects on (Page page)->(Object *start_obj).
  * It takes the updated PageDataSet->TABLE data and then updates the
@@ -316,6 +322,7 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
  * -# First find and update component attribs.
  * -# Then find and update net attribs.
  * -# Finally find and update pin attribs.
+ *
  * \param toplevel GedaToplevel structure
  * \param page schematic page to copy
  */
@@ -459,11 +466,14 @@ s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
 #undef DEBUG
 
 /*------------------------------------------------------------------*/
-/*! \brief Get the component attributes from the top level
+/*!
+ * \brief Get the component attributes from the top level
+ * \par Function Description
+ *  This function returns a list of attributes attached to obj_name = comp
+ *  refdes or netlist.
  *
- * This function returns a list of attributes attached to obj_name = comp
- * refdes or netlist.
  * \param refdes component refdes to return values from
+ *
  * \returns a STRING_LIST where the data field holds a name=value string.
  */
 STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
@@ -1006,6 +1016,10 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
   /* ---------- Create and load the tables  ---------- */

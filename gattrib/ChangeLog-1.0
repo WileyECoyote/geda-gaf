@@ -1,8 +1,10 @@
 2019-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gattrib.c: Reformat documentation.
+    * src: Reformat documentation:
 
-    * src/s_sheet_data.c: Reformat documentation.
+          * src/gattrib.c
+          * src/s_sheet_data.c
+          * src/s_toplevel.c
 
 2019-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
