@@ -8,6 +8,11 @@
             * simulation/verilog/nor3-1.sym
             * simulation/verilog/nor3-2.sym
 
+    * simulation/vhdl/and?-1.sym: Add description attribute, revise pin
+      attributes:
+
+            * simulation/vhdl/and9-1.sym
+
 2019-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
