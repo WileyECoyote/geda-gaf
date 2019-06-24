@@ -288,12 +288,13 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add attributes to master list
- *  \par Function Description
- * Adds attribute names to the master list of comp attributes. The names
- * are obtained by iterating through each component on the page, selectively
- * recording discovered attributes.The data struct being searched  is:
- * sheet_head->component_list_head->attrib->name;
+/*!
+ * \brief Add attributes to master list
+ * \par Function Description
+ *  Adds attribute names to the master list of comp attributes. The names
+ *  are obtained by iterating through each component on the page, selectively
+ *  recording discovered attributes.The data struct being searched  is:
+ *  sheet_head->component_list_head->attrib->name;
  *
  * \param obj_list pointer to list of objects
  */
@@ -374,13 +375,13 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add net names to master list.
- *  \par Function Description
- * Build the master list of net names by running
- * through the individual cells and recording the net refdeses
- * it discovers.
- * It's currently empty, waiting for implementation of net
- * attributes.
+/*!
+ * \brief Add net names to master list.
+ * \par Function Description
+ *  Build the master list of net names by running through individual
+ *  cells and recording the net refdeses.
+ *  It's currently empty, waiting for implementation of net
+ *  attributes.
  */
 void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
   s_sheet_data_add_net(sheet_head, "none");
