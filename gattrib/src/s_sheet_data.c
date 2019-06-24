@@ -177,8 +177,8 @@ s_sheet_data_add_pin_attrib(PageDataSet *PageData, const char *pin_attrib_str)
 /*------------------------------------------------------------------*/
 /*!
  * \brief Fill a PageDataSet struct with Template Data and load tables.
- *  \par Function Description
- * Creates and initialises a PageDataSet struct with dummy data.
+ * \par Function Description
+ * Creates and initializes a PageDataSet struct with dummy data.
  */
 void s_sheet_data_load_blank(PageDataSet *PageData)
 {
