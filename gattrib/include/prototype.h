@@ -154,9 +154,9 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt) GEDA_WARN_UN
 void s_table_destroy(TABLE **table, int row_count, int col_count);
 int  s_table_get_index(STRING_LIST *list, char *string);
 STRING_LIST *s_table_create_attrib_pair(char *row_name,
-					TABLE **table,
-					STRING_LIST *row_list,
-					int num_attribs);
+                                        TABLE **table,
+                                        STRING_LIST *row_list,
+                                        int num_attribs);
 
 void s_table_add_items_to_comp_table(const GList *obj_list);
 void s_table_add_items_to_net_table(const GList *obj_list);
@@ -165,8 +165,8 @@ bool s_table_remove_attribute(TABLE **table, int X);
 
 void s_table_gtksheet_to_all_tables();
 void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
-			      STRING_LIST *master_row_list, STRING_LIST *master_col_list,
-			      TABLE **local_table, int num_rows, int num_cols);
+                               STRING_LIST *master_row_list, STRING_LIST *master_col_list,
+                               TABLE **local_table, int num_rows, int num_cols);
 void s_table_load_new_page(PageDataSet *PageData);
 
 /* ------------- s_toplevel.c ------------- */
