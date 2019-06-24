@@ -16,6 +16,10 @@
     * source/ccvs-1.sym: Add description attribute, remove source and transres
       attributes
 
+    * source/*gnd-1.sym: Update device attribute=GND:
+
+            * source/chassis-gnd-1.sym
+
 2019-06-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
@@ -35,7 +39,7 @@
             * diode/zener53/zener_200_1N5388B.sym
 
     * simulation/verilog/nand?-?.sym: Convert comment to a description
-      attribute:
+      attribute.
 
     * simulation/vhdl/and?-1.sym: Add description attribute, revise pin
       attributes:
