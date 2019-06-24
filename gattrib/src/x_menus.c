@@ -551,8 +551,8 @@ void x_menu_fix_gtk_recent_submenu(void) {
 /*!
  * \brief Attach a submenu with filenames to the 'Open Recent'
  * \par Function Description
- *  Called from x_window_init function to attach the Open Recent
- *  option under the File menu.
+ *  Called from x_menu_create_menu function to attach the Open
+ *  Recent option under the File menu.
  */
 GtkActionGroup *x_menu_create_recent_action_group(void) {
 
