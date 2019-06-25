@@ -215,7 +215,6 @@ void geda_color_x11_free (void)
 
 /*! \brief Initializes the color system for the application.
  *  \par Function Documentation
- *
  *  Initializes color maps to default values.
  */
 void geda_color_x11_init (void)
