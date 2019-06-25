@@ -1,5 +1,7 @@
 2019-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/color_utility.c: Reformat and update documentation.
+
     * src/x11/color_x11.c: Rename function geda_color_x11_lookup to
       geda_color_x11_display_lookup.
 

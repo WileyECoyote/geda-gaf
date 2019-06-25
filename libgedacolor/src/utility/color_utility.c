@@ -35,7 +35,8 @@
 #include "../../include/gettext_priv.h"
 #include <geda_debug.h>
 
-/*! \brief Decode a hexadecimal RGB or RGBA color code.
+/*!
+ * \brief Decode a hexadecimal RGB or RGBA color code.
  * \par Function Description
  * Accepts a hexadecimal color code \a rgba of either the form "#RRGGBB"
  * or "#RRGGBBAA", and parses it to extract the numerical color values,
@@ -98,8 +99,9 @@ bool geda_color_utility_decode_rgba (const char *rgba,
   return TRUE;
 }
 
-/*! \brief Encode a hexadecimal RGB or RGBA color code.
- *  \par Function Description
+/*!
+ * \brief Encode a hexadecimal RGB or RGBA color code.
+ * \par Function Description
  *  Encodes four color components into either the form "#RRGGBB" or
  *  "#RRGGBBAA". The shorter form is used when the alpha component is
  *  0xff.
@@ -144,8 +146,9 @@ char *geda_color_utility_get_hex(COLOR *c)
   return (NULL);
 }
 
-/*! \brief Return distance between colors
- *  \par Function Description
+/*!
+ * \brief Return distance between colors
+ * \par Function Description
  *  Calculates the distance squared between colors *c1 and *c2.
  *  RGB values scaled
  */
