@@ -140,10 +140,10 @@ GdkColor *geda_color_x11_color_from_index(int index)
 {
   if ((index < 0) || (index >= MAX_COLORS) || (x_display_colors[index] == NULL)) {
     x11_color_invalid_index(index);
-    return(&white);
+    return (&white);
   }
   else {
-    return(x_display_colors[index]);
+    return (x_display_colors[index]);
   }
 }
 

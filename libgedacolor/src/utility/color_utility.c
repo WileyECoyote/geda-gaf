@@ -183,7 +183,7 @@ char *geda_color_utility_lookup_name(COLOR *c1, GError **err)
   index = 0;
 
 #if DEBUG
-fprintf(stderr, "%s: looking for %02x%02x%02x\n", __func__,(int)c1->r, (int)c1->g, (int)c1->b);
+  fprintf(stderr, "%s: looking for %02x%02x%02x\n", __func__,(int)c1->r, (int)c1->g, (int)c1->b);
 #endif
 
   while (index >= 0 && index < max_colors) {
