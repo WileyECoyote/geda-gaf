@@ -229,12 +229,13 @@ static ColorElement stdcolors [] =
   { 0,0,0, NULL}
 };
 
-/*! \brief Get Table of Standard Color Names
- *  \par Function Documentation
- *   Returns a pointer to a new Garray containing a copy of the
- *   stdcolors allocations.
+/*!
+ * \brief Get Table of Standard Color Names
+ * \par Function Documentation
+ *  Returns a pointer to a new Garray containing a copy of the
+ *  stdcolors allocations.
  *
- *  \returns color_table, the table should be freed using g_array_free.
+ * \returns color_table, the table should be freed using g_array_free.
  */
 GArray *geda_color_get_standard_names(void)
 {
@@ -242,17 +243,19 @@ GArray *geda_color_get_standard_names(void)
 
   color_table = g_array_sized_new (FALSE, FALSE, sizeof(ColorElement), G_N_ELEMENTS(stdcolors));
   color_table = g_array_append_vals (color_table, stdcolors, G_N_ELEMENTS(stdcolors));
+
   return color_table;
 }
 
-/*! \brief Initialise a color map to B&W
- *  \par Function Description
+/*!
+ * \brief Initialise a color map to B&W
+ * \par Function Description
  *  Initializes a color map to simple defaults: black features
  *  on a white background, with "special" colors as gray.
  *
- *  \warning \a map must have length of at least #MAX_COLORS.
+ * \warning \a map must have length of at least #MAX_COLORS.
  *
- *  \param map Color map to initialize.
+ * \param map Color map to initialize.
  */
 static void geda_color_struct_map_defaults (COLOR *map)
 {
@@ -278,8 +281,9 @@ static void geda_color_struct_map_defaults (COLOR *map)
   }
 }
 
-/*! \brief Initializes the color system for the application.
- *  \par Function Documentation
+/*!
+ * \brief Initializes the color system for the application.
+ * \par Function Documentation
  *  Initializes color maps to default values.
  */
 void geda_color_struct_init(void)
@@ -290,10 +294,10 @@ void geda_color_struct_init(void)
 
 }
 
-/*! \brief Frees memory used by the color system.
- *  \par Function Documentation
- *  This function frees the colors from colormap along with
- *  \b black and \b white.
+/*!
+ * \brief Frees memory used by the color system.
+ * \par Function Documentation
+ *  This function does nothing.
  */
 void geda_color_struct_release_resources(void)
 {
