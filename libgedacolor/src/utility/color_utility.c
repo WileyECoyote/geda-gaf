@@ -113,12 +113,14 @@ bool geda_color_utility_decode_rgba (const char *rgba,
  */
 char *geda_color_utility_encode_rgba (uint8 r, uint8 g, uint8 b, uint8 a)
 {
-  if (a < 0xff)
+  if (a < 0xff) {
     return geda_sprintf("#%02x%02x%02x%02x",
                            (int) r, (int) g, (int) b, (int) a);
-  else
+  }
+  else {
     return geda_sprintf("#%02x%02x%02x",
                            (int) r, (int) g, (int) b);
+  }
 }
 
 /*!
@@ -233,7 +235,8 @@ char *geda_color_utility_postscript(int color)
 
   if ((c.a == 0) || !c.enabled) {
     return NULL;
-  } else {
+  }
+  else {
     return geda_sprintf ("%.3f %.3f %.3f",
                             (double) c.r/255.0,
                             (double) c.g/255.0,
