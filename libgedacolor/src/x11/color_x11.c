@@ -133,7 +133,7 @@ void geda_color_x11_allocate (void)
 
 /*! \brief Get Pointer to GdkColor
  *  \par Function Documentation
- *   Returns a pointer to the active GdkColor object given the geda
+ *   Returns a pointer to the active GdkColor object given the
  *   color index.
  */
 GdkColor *geda_color_x11_color_from_index(int index)
