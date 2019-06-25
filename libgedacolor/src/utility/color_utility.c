@@ -121,15 +121,16 @@ char *geda_color_utility_encode_rgba (uint8 r, uint8 g, uint8 b, uint8 a)
                            (int) r, (int) g, (int) b);
 }
 
-/*! \brief Return pointer to hexidecimal string name of color
- *  \par Function Description
- *  The function obtains the RGB color at the given index
- *  position and calls library function geda_color_utility_encode_rgba
- *  to obtain the a pointer to hex string name of the color.
- *  This function is similar to geda_color_utility_encode_rgba but does
+/*!
+ * \brief Return pointer to hexidecimal string name of color
+ * \par Function Description
+ *  The function obtains the RGB color at the given index position
+ *  and calls library function geda_color_utility_encode_rgba to
+ *  obtain the a pointer to hex string name of the color. This
+ *  function is similar to geda_color_utility_encode_rgba but does
  *  not return a value if the given color in not enabled.
  *
- *  \sa geda_color_utility_encode_rgba
+ * \sa geda_color_utility_encode_rgba
  */
 char *geda_color_utility_get_hex(COLOR *c)
 {
@@ -137,8 +138,8 @@ char *geda_color_utility_get_hex(COLOR *c)
     return geda_color_utility_encode_rgba (c->r, c->g, c->b, c->a);
   }
 
-  /* didn't find a color, but there still might be more */
-  return(NULL);
+  /* Did not find a color, but there still might be more */
+  return (NULL);
 }
 
 /*! \brief Return distance between colors
