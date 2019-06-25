@@ -1,3 +1,8 @@
+2019-06-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x11/color_x11.c: Rename function geda_color_x11_lookup to
+      geda_color_x11_display_lookup.
+
 2019-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update X-Language Afrikaans.

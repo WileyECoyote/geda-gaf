@@ -152,9 +152,8 @@ GdkColor *geda_color_x11_color_from_index(int index)
  *  \brief Get RGBA color for display given a color Index
  *  \par Function Description
  *  \return display color at index.
- *  \todo function name should include the word "display"
  */
-COLOR *geda_color_x11_lookup (int color)
+COLOR *geda_color_x11_display_lookup (int color)
 {
   if (color < 0 || color >= MAX_COLORS || !display_colors[color].enabled) {
     x11_color_invalid_index(color);

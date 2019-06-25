@@ -58,7 +58,7 @@ extern "C" {
 #ifdef __GDK_COLOR_H__
      GdkColor   *geda_color_x11_color_from_index (int color);
 #endif
-        COLOR   *geda_color_x11_lookup           (int color);
+        COLOR   *geda_color_x11_display_lookup   (int color);
          bool    geda_color_x11_get_state        (int color);
          void    geda_color_x11_set_state        (int color, int state);
 

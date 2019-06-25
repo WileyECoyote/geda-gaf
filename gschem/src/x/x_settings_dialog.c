@@ -2195,7 +2195,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
     TODO: Really should check all indexes
  */
-  cflag = geda_color_x11_lookup(10); /* index of "bus" */
+  cflag = geda_color_x11_display_lookup(10); /* index of "bus" */
   if (cflag->g == 0xff) {
     rc_options.color_scheme_index = 0;
   }
