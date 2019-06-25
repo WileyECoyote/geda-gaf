@@ -160,6 +160,11 @@ long u_color_dist(COLOR *c1, COLOR *c2)
     return Yred2 * r * r + Ygre2 * g * g + Yblu2 * b * b;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 char *geda_color_utility_lookup_name(COLOR *c1, GError **err)
 {
   GArray *color_table = geda_color_get_standard_names();
