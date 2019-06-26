@@ -230,7 +230,7 @@ char *geda_color_utility_postscript(int color)
   COLOR c;
 
   if (color >= MAX_COLORS) {
-    fprintf(stderr,_("Color index out of range"));
+    fprintf(stderr,"libgedacolor: %s", _("Color index out of range"));
     return NULL;
   }
 
