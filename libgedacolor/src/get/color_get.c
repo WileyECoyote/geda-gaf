@@ -80,7 +80,7 @@ char *geda_color_get_color_name(int index, GArray *cmap, GError **err)
       color = &print_colors[index];
     }
 
-    return geda_color_utility_lookup_name (color, err);
+    return geda_color_utility_lookup_name (color);
 
   }
   return NULL;

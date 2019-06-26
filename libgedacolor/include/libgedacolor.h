@@ -51,7 +51,7 @@ extern "C" {
          bool    geda_color_utility_decode_rgba  (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
          char   *geda_color_utility_encode_rgba  (uint8 r, uint8 g, uint8 b, uint8 a);
          char   *geda_color_utility_get_hex      (COLOR *c);
-         char   *geda_color_utility_lookup_name  (COLOR *c1, GError **err);
+         char   *geda_color_utility_lookup_name  (COLOR *c);
          char   *geda_color_utility_postscript   (int color);
 
 /* xcolor.c */

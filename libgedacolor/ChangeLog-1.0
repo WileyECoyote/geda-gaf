@@ -7,6 +7,10 @@
           * E9FFDB, nyanza
           * FFE5B4, peach
 
+    * src/utility/color_utility.c: Remove gerror argument to function
+      geda_color_utility_lookup_name because an error does not make
+      sense; a name is either found, or it is not.
+
 2019-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/color_struct.c: Reformat and update documentation.

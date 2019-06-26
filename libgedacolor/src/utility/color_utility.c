@@ -170,7 +170,7 @@ long u_color_dist(COLOR *c1, COLOR *c2)
  *  \par Function Description
  *
  */
-char *geda_color_utility_lookup_name(COLOR *c1, GError **err)
+char *geda_color_utility_lookup_name(COLOR *c1)
 {
   GArray *color_table = geda_color_get_standard_names();
   int     index;
@@ -203,20 +203,16 @@ char *geda_color_utility_lookup_name(COLOR *c1, GError **err)
         name = geda_utility_string_strdup(record->name);
       }
       else {
-
-        if (!err) {
-          fprintf(stderr, "%s: I see RED\n", __func__);
-        }
-        else {
-          g_set_error (err, EDA_ERROR, EDA_ERROR_NUM_ERRORS, "I see RED");
-        }
+        fprintf(stderr, "%s: internal error; index <%d>\n", __func__, index);
       }
+
       break;
     }
     index++;
   }
 
   g_array_free(color_table, TRUE);
+
   return name;
 }
 
