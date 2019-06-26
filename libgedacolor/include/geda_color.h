@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*
- * File: color_struct.h
+ * File: geda_color.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
