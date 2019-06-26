@@ -2,6 +2,7 @@
 
     * src/struct/color_struct.c: Add stdcolors entry:
 
+          * D1E231, pear
           * E9FFDB, nyanza
           * FFE5B4, peach
 
