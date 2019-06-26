@@ -1,3 +1,9 @@
+2019-06-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/color_struct.c: Add stdcolors entry:
+
+          * E9FFDB, nyanza
+
 2019-06-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/color_struct.c: Reformat and update documentation.
