@@ -3,6 +3,7 @@
     * src/struct/color_struct.c: Add stdcolors entry:
 
           * EFDECD, almond
+          * F8F4FF, magnolia
 
 2019-06-26 Wiley E. Hill <wileyhill@gmail.com>
 
