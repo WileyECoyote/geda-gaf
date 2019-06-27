@@ -222,7 +222,7 @@ void geda_struct_clib_flush_cache (void)
   }
 }
 
-/*! \brief Initialise the component library.
+/*! \brief Initialize the component library.
  *  \par Function Description
  *  Resets and initialises the component library.
  *
