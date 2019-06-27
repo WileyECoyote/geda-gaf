@@ -150,7 +150,7 @@ void s_traverse_process(GedaToplevel *pr_current)
 
   s_traverse_init();
 
-  /* Initialise the hashtable which contains the visit
+  /* Initialize the hashtable which contains the visit
    *      count. N.b. no free functions are required. */
   visit_table = g_hash_table_new (g_direct_hash, g_direct_equal);
 
