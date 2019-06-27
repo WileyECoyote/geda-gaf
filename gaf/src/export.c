@@ -992,7 +992,7 @@ static bool export_parse_scale (const char *scale)
   return TRUE;
 }
 
-/* Initialise settings from config store. */
+/* Initialize settings from config store. */
 static void export_config (void)
 {
   GError    *err;
