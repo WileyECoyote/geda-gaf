@@ -47,8 +47,6 @@ char *geda_color_get_color_name(int index, GArray *cmap, GError **err)
 {
   int limit;
 
-
-
   if (cmap) {                       /* Find end of cmap */
     limit = cmap->len;
   }
@@ -83,6 +81,7 @@ char *geda_color_get_color_name(int index, GArray *cmap, GError **err)
     return geda_color_utility_lookup_name (color);
 
   }
+
   return NULL;
 }
 
@@ -134,6 +133,7 @@ GArray *geda_color_get_display_map(void)
 
   color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
   color_map = g_array_append_vals (color_map, display_colors, MAX_COLORS);
+
   return color_map;
 }
 
