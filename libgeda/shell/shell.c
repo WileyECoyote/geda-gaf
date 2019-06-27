@@ -234,7 +234,7 @@ shell_main (void *data, int argc, char **argv)
     scm_eval_x (setup_lst, scm_current_module ());
   }
 
-  /* Initialise libgeda */
+  /* Initialize libgeda */
   libgeda_init (argc, argv);
   scm_dynwind_begin (0);
   toplevel = geda_toplevel_new ();
