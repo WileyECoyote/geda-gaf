@@ -251,7 +251,7 @@ GArray *geda_color_get_standard_names(void)
 }
 
 /*!
- * \brief Initialise a color map to B&W
+ * \brief Initialize a color map to B&W
  * \par Function Description
  *  Initializes a color map to simple defaults: black features
  *  on a white background, with "special" colors as gray.
