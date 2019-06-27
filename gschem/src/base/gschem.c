@@ -496,7 +496,7 @@ static void main_prog(void *closure, int argc, char *argv[])
 
 #ifdef HAVE_GTHREAD
 
-  /* Initialise threading before any more GLib functions are called. */
+  /* Initialize threading before any more GLib functions are called. */
   if (gschem_threads_init()) {
     run_mode = 2;
   }
