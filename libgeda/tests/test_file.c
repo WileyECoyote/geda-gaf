@@ -492,7 +492,7 @@ int test_get (void)
   string = geda_file_get_bitmap_filespec("close_box.png");
 
   if (!string) {
-    fprintf(stderr, "FAILED: (F020402) string <%s>\n", string);
+    fprintf(stderr, "FAILED: (F020402) string NULL\n");
     result++;
   }
 
