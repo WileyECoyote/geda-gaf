@@ -3,7 +3,7 @@
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
 
     * tests/test_utility.c: Check the string returned from geda_strconcat
-      for tests U060101 as U060101B.
+      for tests U060101 as U060101B. Fix incorrect Doxygen end group names.
 
 2019-06-13 Wiley E. Hill <wileyhill@gmail.com
 

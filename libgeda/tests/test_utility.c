@@ -374,7 +374,7 @@ int test_glist (void)
 
   return result;
 }
-/** @} endgroup test-utility-geda-log */
+/** @} endgroup test-utility-geda-glist */
 
 /** \defgroup test-utility-geda-log Test GEDA Log Module
  * @{
@@ -628,7 +628,7 @@ int test_log (void)
 
   return result;
 }
-/** @} endgroup test-utility-geda-program */
+/** @} endgroup test-utility-geda-log */
 
 /** \defgroup test-utility-geda-program Test GEDA Program Module
  * @{
