@@ -292,6 +292,7 @@ geda_math_line_shortest_distance (GedaLine *line, int x, int y)
   ldy = (double)(line->y[1] - line->y[0]);
 
   if (ldx == 0 && ldy == 0) {
+
     /* if line is a point, just calculate distance to the point */
     dx = x - lx0;
     dy = y - ly0;

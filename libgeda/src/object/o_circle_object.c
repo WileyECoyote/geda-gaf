@@ -1855,7 +1855,9 @@ geda_circle_object_shortest_distance (ConstObject *object, int x, int y, int for
 
     return geda_math_circle_shortest_distance (object->circle, x, y, solid);
   }
+
   geda_circle_object_error(__func__, object);
+
   return (G_MAXDOUBLE);
 }
 

@@ -476,11 +476,14 @@ bool geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *
         ay = point.y;
       }
       else {
+
         int index = geda_line_object_get_closest_endpoint(object, x, y);
+
         ax = line->x[index];
         ay = line->y[index];
       }
     }
+
     result = TRUE;
   }
   else { /* was not an Line */
