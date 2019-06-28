@@ -1,3 +1,7 @@
+2019-06-28 Wiley E. Hill <wileyhill@gmail.com
+
+    * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
+
 2019-06-13 Wiley E. Hill <wileyhill@gmail.com
 
     * src/file/f_print.c: Replace "gschem" with "gaf" in f_print_header.

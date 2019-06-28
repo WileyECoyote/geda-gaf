@@ -235,6 +235,17 @@ int check_math_arc_includes_point ()
     result++;
   }
 
+  /* Inside sweep, outside arc */
+  point.x = 1358;
+  point.y = 1358;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (answer) {
+    fprintf(stderr, "FAILED: (M030301F) _math_arc_includes_point\n");
+    result++;
+  }
+
   return result;
 }
 
