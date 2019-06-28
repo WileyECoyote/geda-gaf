@@ -246,6 +246,27 @@ int check_math_arc_includes_point ()
     result++;
   }
 
+  /* midpoint 1354, with fuzzy +/- 3 */
+  point.x = 1351;
+  point.y = 1351;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (!answer) {
+    fprintf(stderr, "FAILED: (M030301G) _math_arc_includes_point\n");
+    result++;
+  }
+
+  point.x = 1357;
+  point.y = 1357;
+
+  answer = geda_math_arc_includes_point(object->arc, &point);
+
+  if (!answer) {
+    fprintf(stderr, "FAILED: (M030301H) _math_arc_includes_point\n");
+    result++;
+  }
+
   return result;
 }
 
