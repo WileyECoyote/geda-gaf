@@ -866,7 +866,11 @@ int test_strings (void)
 
   string = geda_strconcat(str1, NULL);
   if (!string) {                           /* NULL input */
-    fprintf(stderr, "FAILED: (U060101) geda_strconcat NULL\n");
+    fprintf(stderr, "FAILED: (U060101A) geda_strconcat NULL\n");
+    result++;
+  }
+  else if (strcmp(string, "Dog")) {
+    fprintf(stderr, "FAILED: (U060101B) geda_strconcat <%s>\n", string);
     result++;
   }
 
