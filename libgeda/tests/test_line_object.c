@@ -999,7 +999,7 @@ check_shortest_distance(GedaObject *object)
   dist = geda_line_object_shortest_distance(object, xt, yt, 0);
 
   if (dist != 1300.0) {
-    fprintf(stderr, "FAILED: (O114003) shortest distance (%d,%d) <%f>\n", xt, yt, dist);
+    fprintf(stderr, "FAILED: (O114004) shortest distance (%d,%d) <%f>\n", xt, yt, dist);
     result++;
   }
 
