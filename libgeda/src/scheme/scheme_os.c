@@ -175,7 +175,7 @@ init_module_geda_core_os (void *nothing)
 }
 
 /*!
- * \brief Initialise the host platform support procedures.
+ * \brief Initialize the host platform support procedures.
  * \par Function Description
  * Registers some Scheme procedures that provide cross-platform
  * support. Should only be called by edascm_init().

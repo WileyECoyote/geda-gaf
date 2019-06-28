@@ -126,7 +126,7 @@ init_module_geda_core_toplevel (void *nothing)
 }
 
 /*!
- * \brief Initialise the GedaToplevel manipulation procedures.
+ * \brief Initialize the GedaToplevel manipulation procedures.
  * \par Function Description
  * Registers some Scheme procedures for working with #GedaToplevel smobs
  * and creates the #GedaToplevel fluid. Should only be called by

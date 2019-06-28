@@ -2078,7 +2078,7 @@ init_module_geda_core_object (void *nothing)
 }
 
 /*!
- * \brief Initialise the basic gEDA object manipulation procedures.
+ * \brief Initialize the basic gEDA object manipulation procedures.
  * \par Function Description
  *  Registers some Scheme procedures for working with GedaObject
  *  smobs. Should only be called by edascm_init().

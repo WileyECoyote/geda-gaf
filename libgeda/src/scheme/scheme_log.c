@@ -201,7 +201,7 @@ init_module_geda_core_log ()
 }
 
 /*!
- * \brief Initialise the basic gEDA logging procedures
+ * \brief Initialize the basic gEDA logging procedures
  * \par Function Description
  *
  * Registers some core Scheme procedures for logging support.  Should

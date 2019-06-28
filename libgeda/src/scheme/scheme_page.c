@@ -508,7 +508,7 @@ init_module_geda_core_page (void *nothing)
 }
 
 /*!
- * \brief Initialise the basic gEDA page manipulation procedures.
+ * \brief Initialize the basic gEDA page manipulation procedures.
  * \par Function Description
  *  Registers some Scheme procedures for working with #Page
  *  smobs. Should only be called by edascm_init().

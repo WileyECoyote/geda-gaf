@@ -432,7 +432,7 @@ init_module_geda_core_complex (void *nothing)
 }
 
 /*!
- * \brief Initialise the basic gEDA complex object manipulation procedures.
+ * \brief Initialize the basic gEDA complex object manipulation procedures.
  * \par Function Description
  * Registers some Scheme procedures for working with complex #GedaObject
  * smobs. Should only be called by edascm_init().

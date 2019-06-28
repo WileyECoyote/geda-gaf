@@ -59,7 +59,7 @@ static void *edascm_init_impl (void *data)
 }
 
 /*!
- * \brief Initialise the Scheme API.
+ * \brief Initialize the Scheme API.
  * \ingroup guile_c_iface
  *
  * \par Function Description

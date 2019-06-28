@@ -604,7 +604,7 @@ static void init_module_geda_core_smob (void *nothing)
 }
 
 /*!
- * \brief Initialise the basic gEDA smob types.
+ * \brief Initialize the basic gEDA smob types.
  * \par Function Description
  * Registers the gEDA core smob types and some procedures acting on
  * them.  gEDA only uses a single Guile smob, and uses the flags field
