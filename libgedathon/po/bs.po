@@ -401,9 +401,10 @@ msgstr "Pin"
 msgid "Text"
 msgstr "Tekst"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Greška pri inicijalizaciji novog objekta luka"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -420,29 +421,31 @@ msgstr ""
 msgid "Cannot delete the %s attribute"
 msgstr ""
 
+# Atributŭt %s tryabva da e tsyalo chislo
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Атрибутът %s трябва да е цяло число"
 
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python int too large to convert to C int"
-msgstr ""
+msgstr "Python int je prevelik da bi se pretvorio u C int"
 
 # Create a new arc object
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "Kreira tip proširenja luka."
 
+# Error initializing new box object
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Greška pri inicijalizaciji novog okvira objekta"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
@@ -451,11 +454,12 @@ msgstr "Kreira tip proširenja luka."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Greška pri pokretanju novog objekta kabla"
 
+# The bus name attribute value must be a string
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Vrijednost atributa imena sabirnice mora biti niz"
 
 # Creates a Bus object type = Creates a cable object type
 #: libgedathon/module/objects/geda_py_bus.c:348
