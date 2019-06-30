@@ -405,9 +405,10 @@ msgstr "Speld"
 msgid "Text"
 msgstr "teks"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Kon nie nuwe boogvoorwerp initialiseer nie"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -422,7 +423,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Kan nie die kenmerk %s uitvee nie"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -430,14 +431,14 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Die %s kenmerk moet 'n heelgetalwaarde wees"
 
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python int too large to convert to C int"
-msgstr ""
+msgstr "Python int te groot om na C int te omskep"
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
@@ -446,7 +447,7 @@ msgstr "Skep 'n Arc-voorwerp-uitbreidingstipe."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Kon nie nuwe boksvoorwerp initialiseer nie"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
@@ -455,11 +456,12 @@ msgstr "Skep 'n vak-objek tipe."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Kon nie nuwe kabelvoorwerp begin nie"
 
+# The bus name attribute value must be a string
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Die waarde van die busnaam kenmerk moet 'n string wees"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
