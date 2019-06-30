@@ -448,10 +448,12 @@ msgstr "دبوس"
 msgid "Text"
 msgstr "نص"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "خطأ في تهيئة كائن قوس جديد"
 
+# la yumkin hadhf alsmt
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -465,7 +467,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "لا يمكن حذف السمة ٪s"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -473,14 +475,15 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "يجب أن تكون السمة ٪s قيمة عددية"
 
+# بايثون عدد صحيح كبير جدا لتحويله إلى عدد صحيح سي
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python int too large to convert to C int"
-msgstr ""
+msgstr "بايثون عدد صحيح كبير جدا لتحويله إلى عدد صحيح سي"
 
 # Creates an Arc object extension type
 # yakhluq nawe tamdid kayin alqaws
@@ -488,9 +491,10 @@ msgstr ""
 msgid "Creates an Arc object extension type."
 msgstr "يخلق نوع تمديد كائن القوس."
 
+# khata fi tahyiat kayin murabae jadid
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "خطأ في تهيئة كائن مربع جديد"
 
 # Creates a Box object type
 # yakhluq nawe tamdid kayin alqaws
@@ -498,13 +502,16 @@ msgstr ""
 msgid "Creates a Box object type."
 msgstr "يخلق نوع تمديد كائن القوس."
 
+# Error initializing new Bus object
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "خطأ في تهيئة كائن كبل جديد"
 
+# The bus name attribute value must be a string
+# yjb 'an takun qimat simatan aism alnnaqil silsilatan
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "يجب أن تكون قيمة سمة اسم الناقل سلسلة"
 
 # Creates a Bus object type
 # yunashiy nawe kayin kabal
