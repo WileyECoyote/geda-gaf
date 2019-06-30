@@ -382,10 +382,12 @@ msgstr "Pin"
 msgid "Text"
 msgstr "Tekst"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Fejl ved at initialisere nyt lysobjekt"
 
+# Cannot delete the %s attribute
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -399,7 +401,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Kan ikke slette attributten %s"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -407,23 +409,24 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Egenskaben %s skal være en heltalværdi"
 
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python int too large to convert to C int"
-msgstr ""
+msgstr "Python int for stor til at konvertere til C int"
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "Opretter en bueobjekttype."
 
+# Error initializing new box object
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Fejl ved initialisering af ny boksobjekt"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
@@ -432,11 +435,12 @@ msgstr "Opretter en boks-objekttype."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Fejl ved initialisering af nyt kabelobjekt"
 
+# The bus name attribute value must be a string
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Bussenavnet attributværdi skal være en streng"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
