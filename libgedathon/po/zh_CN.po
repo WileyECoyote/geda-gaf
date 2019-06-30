@@ -410,45 +410,55 @@ msgstr "发生错误"
 msgid "object was not created"
 msgstr "对象未创建"
 
+# Arc; Hú
 #: libgedathon/module/functions.c:783
 msgid "Arc"
-msgstr ""
+msgstr "弧"
 
+# Text Attribute; Wénzì shǔxìng
 #: libgedathon/module/functions.c:887
 msgid "Text Attribute"
-msgstr ""
+msgstr "文字属性"
 
+# Box; Kuāng
 #: libgedathon/module/functions.c:949
 msgid "Box"
-msgstr ""
+msgstr "框"
 
+# Bus => cable; Diànlǎn
 #: libgedathon/module/functions.c:1018
 msgid "Bus"
-msgstr ""
+msgstr "电缆"
 
+# Circle; Quān
 #: libgedathon/module/functions.c:1227
 msgid "Circle"
-msgstr ""
+msgstr "圈"
 
+# Line; Xiàn
 #: libgedathon/module/functions.c:1447
 msgid "Line"
-msgstr ""
+msgstr "线"
 
+# Net; Jìng
 #: libgedathon/module/functions.c:1512
 msgid "Net"
-msgstr ""
+msgstr "净"
 
+# Path; Lùjìng
 #: libgedathon/module/functions.c:1662
 msgid "Path"
-msgstr ""
+msgstr "路径"
 
+# Pin; Xiāo
 #: libgedathon/module/functions.c:1879
 msgid "Pin"
-msgstr ""
+msgstr "销"
 
+# Text; Wénběn
 #: libgedathon/module/functions.c:2114
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
