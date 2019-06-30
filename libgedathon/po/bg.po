@@ -434,10 +434,13 @@ msgstr "щифт"
 msgid "Text"
 msgstr "Текст"
 
+# Error initializing new Arc object
+# Greshka pri initsializirane na nov obekt na dŭga
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Грешка при инициализиране на нов обект на дъга"
 
+# Атрибутът %s не може да бъде изтрит
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -451,22 +454,24 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Атрибутът %s не може да бъде изтрит"
 
+# Atributŭt %s tryabva da e tsyalo chislo
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Атрибутът %s трябва да е цяло число"
 
+# Python int tvŭrde golyam, za da konvertirate v C int
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python int too large to convert to C int"
-msgstr ""
+msgstr "Python int твърде голям, за да конвертирате в C int"
 
 # Creates an Arc object extension type
 # Sŭzdava tip razshirenie na Arc obekt
@@ -474,9 +479,10 @@ msgstr ""
 msgid "Creates an Arc object extension type."
 msgstr "Създава тип разширение на Arc обект."
 
+# Greshka pri initsializirane na nov obekt na kutiya
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Грешка при инициализиране на нов обект на кутия"
 
 # Creates a Box object type
 # Sŭzdava tip obekt Box
@@ -484,13 +490,16 @@ msgstr ""
 msgid "Creates a Box object type."
 msgstr "Създава тип обект на кутия."
 
+# Greshka pri initsializirane na nov obekt na kabel
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Грешка при инициализиране на нов обект на кабел"
 
+# The bus name attribute value must be a string
+# Stoĭnostta na atributa za ime na shinata tryabva da bŭde niz
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Стойността на атрибута за име на шината трябва да бъде низ"
 
 # Creates a Bus object type
 # Sŭzdava tip obekt Bus
