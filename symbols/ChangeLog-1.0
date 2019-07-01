@@ -6,6 +6,10 @@
             * diode/transil/SMM4F28A-2.sym
             * diode/transil/SMM4F33A-2.sym
 
+    * source/*gnd-1.sym: Update device attribute=GND:
+
+            * source/gnd-3.sym
+
 2019-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nor?-?.sym: Convert comment to a description

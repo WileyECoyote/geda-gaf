@@ -14,7 +14,7 @@ T 158 161 5 4 0 1 0 0 1
 pintype=pwr
 }
 T 200 0 5 10 0 1 0 0 1
-device=GROUND_NODE
+device=GND
 T 200 350 8 10 0 1 0 0 1
 refdes=none
 T 200 500 9 10 0 1 0 0 1
