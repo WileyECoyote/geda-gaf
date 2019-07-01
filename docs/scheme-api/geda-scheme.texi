@@ -623,8 +623,8 @@ invisible text is always included.
 @defun fold-bounds bounds...
 Calculates the union of several sets of @var{bounds} (as returned by
 @code{object-bounds}).  If any of the @var{bounds} are @samp{#f}, they
-are skipped; if all of the @var{bounds} are @samp{#f}, @samp{#f} is
-returned.
+are skipped; if all of the @var{bounds} are @samp{#f}, then @samp{#f}
+is returned.
 @end defun
 
 @node Object color
