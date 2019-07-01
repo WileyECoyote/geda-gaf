@@ -9,6 +9,7 @@
     * source/*gnd-1.sym: Update device attribute=GND:
 
             * source/gnd-3.sym
+            * source/gnd-4.sym
 
 2019-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
