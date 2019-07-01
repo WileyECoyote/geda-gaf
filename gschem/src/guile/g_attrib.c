@@ -162,7 +162,7 @@ init_module_gschem_core_attrib ()
 }
 
 /*!
- * \brief Initialise the gschem attribute procedures.
+ * \brief Initialize the gschem attribute procedures.
  * \par Function Description
 
  * Registers some Scheme procedures for working with

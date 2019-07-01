@@ -195,7 +195,7 @@ init_module_gschem_core_builtins ()
 }
 
 /*!
- * \brief Initialise gschem built-in actions.
+ * \brief Initialize gschem built-in actions.
  * \par Function Description
  *  Registers the Scheme procedures used to access gschem's built-in
  *  editing actions implemented in C. Should only be called by main_prog().
