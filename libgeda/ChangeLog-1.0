@@ -4,7 +4,11 @@
       to lepton-eda project by Vladimir Zhbanov <vzhbanov@gmail.com>.
       Rename arc-end-angle -> arc-sweep-angle because that is what it
       really returns, and add replacement arc-end-angle that returns
-      the real ending angle.
+      the real ending angle. Rename end-angle argument sweep-angle for
+      functions:
+
+          * set-arc!
+          * make-arc
 
     * src/guile/g_rc.c: Revise functions:
 

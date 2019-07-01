@@ -186,18 +186,18 @@
 (define-public (arc? a)
   (object-type? a 'arc))
 
-(define*-public (set-arc! a center radius start-angle end-angle
+(define*-public (set-arc! a center radius start-angle sweep-angle
                           #:optional color)
   (%set-arc! a
              (car center) (cdr center)
-             radius start-angle end-angle
+             radius start-angle sweep-angle
              (if (not color)
                  (object-color a)
                  color)))
 
-(define*-public (make-arc center radius start-angle end-angle #:optional color)
+(define*-public (make-arc center radius start-angle sweep-angle #:optional color)
   (let ((c (%make-arc)))
-    (set-arc! c center radius start-angle end-angle color)))
+    (set-arc! c center radius start-angle sweep-angle color)))
 
 (define-public (arc-info c)
   (let* ((params (%arc-info c))
