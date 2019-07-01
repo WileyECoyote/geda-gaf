@@ -15,7 +15,8 @@
 
 
 (use-modules (geda page)
-             (gschem action))
+             (gschem action)
+             (gschem window))
 
 ;; =================================================================
 ;; Define your favorite editor here

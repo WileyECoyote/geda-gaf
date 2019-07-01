@@ -229,13 +229,6 @@
   (let ((params (line-info pin)))
     (cons (list-ref params 0) (list-ref params 1))))
 
-;; get-active-filename
-;;
-;; Returns the filename associated with the active page in the current
-;; gschem window.
-(define-public (get-active-filename)
-  (page-filename (active-page)))
-
 ;; get-selected-component-attributes
 ;;
 ;; Returns a list of all selected text object strings, with duplicate

@@ -31,5 +31,12 @@
 (define-public set-active-page! %set-active-page!)
 (define-public pointer-position %pointer-position)
 
+;; get-active-filename
+;;
+;; Returns the filename associated with the active page in the current
+;; gschem window.
+(define-public (get-active-filename)
+  (page-filename (active-page)))
+
 (define-public (snap-point point)
   (%snap-point (car point) (cdr point)))

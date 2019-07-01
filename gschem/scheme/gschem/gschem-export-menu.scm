@@ -14,7 +14,8 @@
 ;;
 
 (use-modules (geda page)
-             (gschem action))
+             (gschem action)
+             (gschem window))
 
 ;; =================================================================
 (define export:geda2xml "geda2xml")
