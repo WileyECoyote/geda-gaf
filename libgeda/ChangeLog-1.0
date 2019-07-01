@@ -1,3 +1,15 @@
+2019-07-01 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/guile/g_rc.c: Revise functions:
+
+          * g_rc_attribute_promotion
+          * g_rc_promote_invisible
+          * g_rc_keep_invisible
+
+      to return the value of the current setting if there is no argument,
+      see commit ecle887c6bc to lepton-eda project by Vladimir Zhbanov
+      <vzhbanov@gmail.com>.
+
 2019-06-28 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.

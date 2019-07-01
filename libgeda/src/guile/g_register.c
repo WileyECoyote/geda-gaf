@@ -53,9 +53,9 @@ static struct gsubr_t rc_func_table[] = {
   { "thin-net-width",             1, 0, 0, g_rc_thin_net_width },
   { "thin-pin-width",             1, 0, 0, g_rc_thin_pin_width },
 
-  { "attribute-promotion",        1, 0, 0, g_rc_attribute_promotion },
-  { "promote-invisible",          1, 0, 0, g_rc_promote_invisible },
-  { "keep-invisible",             1, 0, 0, g_rc_keep_invisible },
+  { "attribute-promotion",        0, 1, 0, g_rc_attribute_promotion },
+  { "promote-invisible",          0, 1, 0, g_rc_promote_invisible },
+  { "keep-invisible",             0, 1, 0, g_rc_keep_invisible },
   { "always-promote-attributes",  1, 0, 0, g_rc_always_promote_attributes },
 
   { "bitmap-directory",           1, 0, 0, g_rc_bitmap_directory },

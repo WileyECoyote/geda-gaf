@@ -1191,6 +1191,10 @@ SCM g_rc_attribute_promotion(SCM mode)
     {FALSE, "disabled"},
   };
 
+  if (scm_is_eq (mode, SCM_UNDEFINED)) {
+    return scm_from_bool (default_attribute_promotion);
+  }
+
   RETURN_G_RC_MODE("attribute-promotion",
                     default_attribute_promotion, mode_table);
 }
@@ -1210,6 +1214,10 @@ SCM g_rc_keep_invisible(SCM mode)
     {TRUE , "enabled" },
     {FALSE, "disabled"},
   };
+
+  if (scm_is_eq (mode, SCM_UNDEFINED)) {
+    return scm_from_bool (default_keep_invisible);
+  }
 
   RETURN_G_RC_MODE("keep-invisible", default_keep_invisible, mode_table);
 }
@@ -1464,6 +1472,10 @@ SCM g_rc_promote_invisible(SCM mode)
     {TRUE , "enabled" },
     {FALSE, "disabled"},
   };
+
+  if (scm_is_eq (mode, SCM_UNDEFINED)) {
+    return scm_from_bool (default_promote_invisible);
+  }
 
   RETURN_G_RC_MODE("promote-invisible",
                     default_promote_invisible, mode_table);
