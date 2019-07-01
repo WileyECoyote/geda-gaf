@@ -268,7 +268,6 @@
       )
       (apply %path-insert p idx type (transform-points points '()))
   )
-
 )
 
 ;;; Pictures
