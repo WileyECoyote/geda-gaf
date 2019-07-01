@@ -572,7 +572,7 @@ CONTENT:
 
    (1) new lines in /gschem/src/g_register.c
 
-	gh_new_procedure0_0 ("get-selected-filename",g_get_selected_filename);
+	gh_new_procedure0_0 ("get-active-filename",g_get_selected_filename);
 
 
    (2) new lines in /gschem/include/prototype.h

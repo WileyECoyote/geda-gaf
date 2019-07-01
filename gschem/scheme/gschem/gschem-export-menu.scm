@@ -25,7 +25,7 @@
 (define (export:check-saved)
   (if (page-dirty? (active-page))
       (let* ((response (gschem-confirm-cancel (string-append
-                        "Save " (get-selected-filename) " first?\n"))))
+                        "Save " (get-active-filename) " first?\n"))))
         (if (= response 1)
             (gschem-save-file)
             (if (= response 0)
@@ -41,7 +41,7 @@
 ;; ------------------------- export:xml ------------------------------
 (define (export:xml)
   (if (export:check-saved)
-    (let  ((fin (get-selected-filename)))
+    (let  ((fin (get-active-filename)))
       (system (string-append export:geda2xml " -f " fin " "))
     )
   )

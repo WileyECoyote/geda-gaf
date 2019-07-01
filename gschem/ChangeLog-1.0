@@ -1,5 +1,10 @@
 2019-06-21 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/gschem/deprecated.scm: Rename get-selected-filename to
+      get-active-filename.
+
+2019-06-21 Wiley E. Hill <wileyhill@gmail.com
+
     * src/guile/g_rc.c: Update g_rc_world_size documentation.
 
     * src/x/x_dnd.c: Add a separate GtkTargetEntry, dnd_send_list, without

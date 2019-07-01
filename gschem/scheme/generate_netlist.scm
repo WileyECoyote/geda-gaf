@@ -15,7 +15,7 @@
 ;;   1 - generate netlist of current schematic
 ;;   2 - generate entity of selected component, or of toplevel, when non selected
 ;;
-;; get-selected-filename: - returns the whole filename of
+;; get-active-filename: - returns the whole filename of
 ;;                          the current-gschem-schematic
 ;;
 ;; get-selected-component-attributes: - returns all toplevel attributes
@@ -27,7 +27,7 @@
 (define generate-netlist
   (lambda ()
     (let* ((command "")
-	   (source-file (get-selected-filename))
+	   (source-file (get-active-filename))
 	   (source-file-length (string-length source-file))
 
 	   ;;generate a sensible output-filename (<old-path>/<old-basefilename>.vhdl)
@@ -89,7 +89,7 @@
 			  (list2string top-attribs) ") (define generate-mode '2)\""))
      (set! command (string-append "gnetlist -c " guile-comm
 				  " -o " vhdl-path "/" target-file
-				  " -g vams " (get-selected-filename)))
+				  " -g vams " (get-active-filename)))
      (display command)
      (newline)
      (system command)
@@ -126,7 +126,7 @@
 	      (append (substring (car top-attribs) 7
 				 (string-length (car top-attribs)))))
 	    (which-source-file (cdr top-attribs)))
-	(append (get-selected-filename)))))
+	(append (get-active-filename)))))
 
 
 ;; define the default vhdl-path, where netlist- and entity-files are

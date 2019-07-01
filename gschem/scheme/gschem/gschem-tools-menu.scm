@@ -46,7 +46,7 @@
 
 ;; ======================== Utilities code  ========================
 ;; Get the current input schematic/sym filepath when called
-(define (tools:ifpath) (get-selected-filename))
+(define (tools:ifpath) (get-active-filename))
 
 (define (tools:ifdir)
   (substring (tools:ifpath) 0
@@ -76,7 +76,7 @@
       #f)
     (if (page-dirty? (active-page))
       (let* ((response (gschem-confirm-cancel (string-append
-                        "Save " (get-selected-filename) " first?\n"))))
+                        "Save " (get-active-filename) " first?\n"))))
         (if (= response 1)
             (gschem-save-file)
             (if (= response 0)
@@ -95,7 +95,7 @@
 (define (tools:check-saved)
   (if (page-dirty? (active-page))
       (let* ((response (gschem-confirm-cancel (string-append
-                        "Save " (get-selected-filename) " first?\n"))))
+                        "Save " (get-active-filename) " first?\n"))))
         (if (= response 1)
             (gschem-save-file)
             (if (= response 0)
