@@ -1,5 +1,11 @@
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/geda/object.scm: Revise Scheme API per commit fb882a7500b5
+      to lepton-eda project by Vladimir Zhbanov <vzhbanov@gmail.com>.
+      Rename arc-end-angle -> arc-sweep-angle because that is what it
+      really returns, and add replacement arc-end-angle that returns
+      the real ending angle.
+
     * src/guile/g_rc.c: Revise functions:
 
           * g_rc_attribute_promotion

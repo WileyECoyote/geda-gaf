@@ -215,8 +215,11 @@
 (define-public (arc-start-angle a)
   (list-ref (arc-info a) 2))
 
-(define-public (arc-end-angle a)
+(define-public (arc-sweep-angle a)
   (list-ref (arc-info a) 3))
+
+(define-public (arc-end-angle a)
+  (+ (arc-start-angle a) (arc-sweep-angle a)))
 
 ;;; Paths
 
