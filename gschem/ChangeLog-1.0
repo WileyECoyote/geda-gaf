@@ -1,3 +1,7 @@
+2019-07-01 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_console.c: Add function x_console_update_decorated.
+
 2019-06-21 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/deprecated.scm: Rename get-selected-filename to

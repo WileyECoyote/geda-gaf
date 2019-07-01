@@ -704,6 +704,7 @@ const char   *x_console_get_string          (void);
 void          x_console_open                (GschemToplevel *w_current);
 void          x_console_close               (void);
 void          x_console_init_commands       (GschemToplevel *w_current, int mode);
+void          x_console_update_decorated    (GschemToplevel *w_current);
 void          q_log_message                 (const char *format, ...);
 void          v_log_message                 (const char *format, ...);
 void          x_log_message                 (const char *log_domain, GLogLevelFlags log_level,

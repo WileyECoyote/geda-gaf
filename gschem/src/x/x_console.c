@@ -279,6 +279,21 @@ void x_console_open (GschemToplevel *w_current)
   }
 }
 
+void x_console_update_decorated (GschemToplevel *w_current)
+{
+  if (IS_CONSOLE (console_dialog)) {
+
+    bool decorate = (console_window_type == DECORATED);
+
+    g_object_set (console_dialog,
+                  /* GtkDialog */
+                  "has-separator",   decorate,
+                  /* GtkWindow */
+                  "decorated",       decorate,
+                  NULL);
+  }
+}
+
 /*!
  * \brief Close the Log window
  * \par Function Description
