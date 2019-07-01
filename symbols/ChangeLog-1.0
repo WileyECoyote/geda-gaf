@@ -3,6 +3,7 @@
     * diode/transil: Add new symbols for transil diode group:
 
             * diode/transil/SMM4F28A-1.sym
+            * diode/transil/SMM4F28A-2.sym
 
 2019-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
