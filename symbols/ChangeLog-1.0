@@ -11,6 +11,11 @@
             * source/gnd-3.sym
             * source/gnd-4.sym
 
+    * simulation/verilog/nor?-?.sym: Convert comment to a description
+      attribute:
+
+            * simulation/verilog/nor4-1.sym
+
 2019-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nor?-?.sym: Convert comment to a description
