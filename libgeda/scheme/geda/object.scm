@@ -444,6 +444,10 @@
 
 (define-public object-bounds %object-bounds)
 
+;; Calculates the union of several sets of BOUNDS, as returned by
+;; object-bounds, i.e. left, top, right, bottom.  If any of the
+;; BOUNDS are #f, they are skipped, if all of the BOUNDS are #f,
+;; then #f is returned.
 (define-public (fold-bounds . bounds)
   (fold
    (lambda (a b)

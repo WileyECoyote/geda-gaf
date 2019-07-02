@@ -1,3 +1,8 @@
+2019-07-02 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/geda/object.scm: Add documentation/explanation for procedure
+      fold-bounds.
+
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/object.scm: Revise Scheme API per commit fb882a7500b5
