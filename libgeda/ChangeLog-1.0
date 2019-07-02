@@ -4,7 +4,8 @@
       fold-bounds.
 
     * scheme/unit-tests/t0103-object-arc.scm: Update arc-sweep-angle
-      procedure name in api-tests.
+      procedure name in api-tests. Add checks for arc-end-angle replacement
+      procedure.
 
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
