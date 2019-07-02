@@ -37,3 +37,6 @@
   (let ((mode (promote-invisible)))
     (assert-equal mode #f)))
 
+(begin-test 'keep-invisible/getter
+  (let ((mode (keep-invisible)))
+    (assert-equal mode #t)))
