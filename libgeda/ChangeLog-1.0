@@ -14,6 +14,10 @@
           * promote-invisible
           * keep-invisible
 
+    * scheme/unit-tests/t0401-os-expand-env-variables.scm: Revise scheme API
+      tests per commit e42b80341f01e3 to lepton-eda project by dmn <graahnul@gmail.com>,
+      Make expand-env-variables api test work on FreeBSD.
+
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/object.scm: Revise Scheme API per commit fb882a7500b5
