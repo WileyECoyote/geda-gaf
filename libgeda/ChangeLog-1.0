@@ -1,5 +1,7 @@
 2019-07-02 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/geda/version.scm: Add new file for libgeda-version.
+
     * scheme/geda/object.scm: Add documentation/explanation for procedure
       fold-bounds.
 
@@ -18,8 +20,10 @@
       tests per commit e42b80341f01e3 to lepton-eda project by dmn <graahnul@gmail.com>,
       Make expand-env-variables api test work on FreeBSD.
 
-    * libgeda/src/scheme/scheme_log.c: Reverse the documentation for log_open_x
-      and log_open_x.
+    * src/scheme/scheme_log.c: Reverse the documentation for log_open_x and
+      log_open_x.
+
+    * src/scheme/scheme_version.c: Add API module for libgeda version.
 
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 

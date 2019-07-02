@@ -17,5 +17,6 @@ libgeda_la_SOURCES += \
 	scheme/scheme_os.c \
 	scheme/scheme_page.c \
 	scheme/scheme_smob.c \
-	scheme/scheme_toplevel.c
+	scheme/scheme_toplevel.c \
+	scheme/scheme_version.c
 

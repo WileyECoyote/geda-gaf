@@ -88,6 +88,7 @@ libgeda/src/scheme/scheme_os.c
 libgeda/src/scheme/scheme_page.c
 libgeda/src/scheme/scheme_smob.c
 libgeda/src/scheme/scheme_toplevel.c
+libgeda/src/scheme/scheme_version.c
 
 libgeda/src/struct/s_struct.c
 libgeda/src/struct/s_attrib.c
