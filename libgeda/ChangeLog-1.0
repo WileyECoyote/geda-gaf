@@ -7,6 +7,11 @@
       procedure name in api-tests. Add checks for arc-end-angle replacement
       procedure.
 
+    * scheme/unit-tests/t0301-promotable-attributes.scm: Check values returned
+      from rc getters:
+
+          * attribute-promotion
+
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/object.scm: Revise Scheme API per commit fb882a7500b5

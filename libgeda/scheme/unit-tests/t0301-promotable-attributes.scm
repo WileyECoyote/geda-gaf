@@ -28,3 +28,7 @@
         (p (make-net-pin '(0 . 0) '(100 . 0))))
     (page-append! P p)
     (assert-equal '() (promote-attribs! p))))
+
+(begin-test 'attribute-promotion/getter
+  (let ((mode (attribute-promotion)))
+    (assert-equal mode #t)))
