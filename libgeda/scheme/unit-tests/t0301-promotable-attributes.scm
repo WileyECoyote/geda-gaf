@@ -32,3 +32,8 @@
 (begin-test 'attribute-promotion/getter
   (let ((mode (attribute-promotion)))
     (assert-equal mode #t)))
+
+(begin-test 'promote-invisible/getter
+  (let ((mode (promote-invisible)))
+    (assert-equal mode #f)))
+

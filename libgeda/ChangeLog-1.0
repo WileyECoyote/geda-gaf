@@ -11,6 +11,7 @@
       from rc getters:
 
           * attribute-promotion
+          * promote-invisible
 
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
