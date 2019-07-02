@@ -73,7 +73,7 @@ decode_level (SCM level_s)
  */
 EDA_SCM_DEFINE (log_open_x, "%log-open", 0, 1, 0,
                (SCM prefix_s),
-               "Shuts down the libgeda logging system")
+               "Initialize libgeda logging system")
 {
   char *prefix;
 
@@ -91,7 +91,7 @@ EDA_SCM_DEFINE (log_open_x, "%log-open", 0, 1, 0,
 
 EDA_SCM_DEFINE (log_close_x, "%log-close", 0, 0, 0,
                (),
-               "Initialize libgeda logging system")
+               "Shuts down the libgeda logging system")
 {
    geda_utility_log_close();
    return SCM_UNSPECIFIED;
