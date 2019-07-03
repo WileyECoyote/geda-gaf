@@ -476,12 +476,13 @@ static char *edit_text_to_sentence(char *string)
 
   if (string) {
 
-    unsigned int i, start;
     unsigned int len;
 
     len = strlen (string);
 
     if (len > 0) {
+
+      unsigned int i, start;
 
       new_str = geda_malloc(len + 1);
 
