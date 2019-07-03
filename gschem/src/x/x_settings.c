@@ -683,16 +683,16 @@ KEYWORD (load_in_rc) {
   /* The hard-coded integer below refers to the index from the combo box for
      the color map scheme, now stored in rc_options.color_scheme_index
    */
-  if (strstr(ptr, DARK_DISPLAY_MAP ) != NULL)
+  if (strstr(ptr, DARK_DISPLAY_MAP) != NULL)
     fix(0);
   else
-    if (strstr(ptr, LIGHT_DISPLAY_MAP ) != NULL)
+    if (strstr(ptr, LIGHT_DISPLAY_MAP) != NULL)
       fix(1);
     else
-      if (strstr(ptr, BW_DISPLAY_MAP ) != NULL)
+      if (strstr(ptr, BW_DISPLAY_MAP) != NULL)
         fix(2);
       else
-        if (strstr(ptr, CUSTOM_DISPLAY_MAP ) != NULL)
+        if (strstr(ptr, CUSTOM_DISPLAY_MAP) != NULL)
           fix(3);
         /* else do nothing, but could check for other "loads" */
 
