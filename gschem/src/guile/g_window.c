@@ -166,7 +166,7 @@ SCM_DEFINE (active_page, "%active-page", 0, 0, 0,
 {
   GedaToplevel *toplevel = edascm_c_current_toplevel ();
 
-  if (toplevel->page_current != NULL) {
+  if (toplevel && toplevel->page_current != NULL) {
     return edascm_from_page (toplevel->page_current);
   }
   else {
