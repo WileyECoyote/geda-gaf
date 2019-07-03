@@ -8,6 +8,9 @@
     * src/x/x_edit_text.c: Reduce the scope of variables  "i" and "start" in
       function edit_text_to_sentence.
 
+    * src/x/x_settings_dialog.c: Update the console dialog if the console
+      window type setting changes.
+
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_console.c: Add function x_console_update_decorated.

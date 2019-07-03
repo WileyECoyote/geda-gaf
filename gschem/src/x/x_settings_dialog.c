@@ -2814,7 +2814,13 @@ void GatherSettings(GschemToplevel *w_current) {
 /* Combo Boxes (10) */
 
   w_current->dots_grid_mode = gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo));
-  console_window_type       = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
+  tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
+
+  if (tmp_int != console_window_type) {
+    console_window_type = tmp_int;
+    x_console_update_decorated(w_current);
+  }
+
   w_current->undo_type      = gtk_combo_box_get_active (GTK_COMBO_BOX (UndoTypeCombo));
 
   if (w_current->undo_type == UNDO_NONE) {
