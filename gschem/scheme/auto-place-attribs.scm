@@ -706,12 +706,12 @@
                                   (get-point-of-bound "min-y" new-attrib-bounds))))
               )
         (set-attribute-text-properties! attribute
-                        new-color
-                        -1 ; keep previous size
-                        new-alignment
-                        new-angle
-                        (+ new-x x_offset)
-                        (+ new-y y_offset))
+                                        new-color
+                                        -1 ; keep previous size
+                                        new-alignment
+                                        new-angle
+                                        (+ new-x x_offset)
+                                        (+ new-y y_offset))
         (if (not (= new-color -1))
              (set-object-color! attribute new-color))
         )
