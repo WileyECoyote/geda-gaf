@@ -64,7 +64,7 @@ void x_window_setup (GschemToplevel *w_current)
   /* Initialize the autosave callback */
   geda_struct_page_autosave_init(toplevel);
 
-  /* setup world, init_right and _bottom were set in i_vars.c
+  /* setup world, world_right and world_bottom were set in i_vars.c
    * before this function is called */
   toplevel->width          = w_current->world_right;
   toplevel->height         = w_current->world_bottom;
