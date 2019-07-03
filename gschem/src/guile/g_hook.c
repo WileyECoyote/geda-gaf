@@ -383,7 +383,8 @@ void g_hook_run_object_list (GschemToplevel *wc, Hooker hook, GList *list)
  * \par Function Description
  *  Spawns idle thread to run object hooks. This is done, not because
  *  Guile is slow, but because the task needs to be ran in the main
- *  context.
+ *  context and the thread that triggered the hook may not have been
+ *  running in the main loop.
  *
  * \param [in] w_current Gschem Toplevel object,
  * \param [in] hook      Enumerated hook to run,
