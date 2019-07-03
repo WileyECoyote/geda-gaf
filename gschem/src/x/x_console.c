@@ -662,6 +662,8 @@ static void console_instance_init (GTypeInstance *instance, void *class)
                 "type-hint",       GDK_WINDOW_TYPE_HINT_NORMAL,
                 /* GtkDialog */
                 "has-separator",   decorate,
+                /* GtkWindow */
+                "decorated",       decorate,
                  NULL);
 
   /* create a scrolled window for the textview */

@@ -3,6 +3,8 @@
     * src/guile/g_window.c: Revise active_page to check that the toplevel
       pointer is not null before referencing.
 
+    * src/x/x_console.c: Set the console window "decorated" property.
+
 2019-07-01 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_console.c: Add function x_console_update_decorated.
