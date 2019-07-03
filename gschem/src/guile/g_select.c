@@ -179,7 +179,7 @@ init_module_gschem_core_select ()
                 s_object_selected_p, NULL);
 }
 
-/*! \brief Initialise the selection manipulation procedures.
+/*! \brief Initialize the selection manipulation procedures.
  * \par Function Description
  * Registers some Scheme procedures for working with the selection.
  * Should only be called by main_prog().

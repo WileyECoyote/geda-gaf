@@ -458,7 +458,7 @@ init_module_gschem_core_hook ()
 }
 
 /*!
- * \brief Initialise the gschem hooks.
+ * \brief Initialize the gschem hooks.
  * \par Function Description
  *  Registers gschem's Guile hooks for various events.. Should only be
  *  called by main_prog().

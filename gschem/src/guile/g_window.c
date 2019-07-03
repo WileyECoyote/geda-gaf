@@ -318,7 +318,7 @@ init_module_gschem_core_window ()
 }
 
 /*!
- * \brief Initialise the GschemToplevel manipulation procedures.
+ * \brief Initialize the GschemToplevel manipulation procedures.
  * \par Function Description
 
  * Registers some Scheme procedures for working with #GschemToplevel

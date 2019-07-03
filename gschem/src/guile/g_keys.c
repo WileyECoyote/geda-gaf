@@ -756,7 +756,7 @@ static void init_module_gschem_core_keymap ()
                 s_g_key_to_display_string, NULL);
 }
 
-/*! \brief Initialise the key combination procedures
+/*! \brief Initialize the key combination procedures
  * \par Function Description
  * Registers some Scheme procedures for working with key combinations.
  * Should only be called by main_prog().

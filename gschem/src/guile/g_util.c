@@ -84,7 +84,7 @@ static void init_module_gschem_core_util ()
   scm_c_export (s_show_uri, NULL);
 }
 
-/*! \brief SCM API Initialise miscellaneous gschem utility procedures.
+/*! \brief SCM API Initialize miscellaneous gschem utility procedures.
  * \par Function Description
  * Registers some Scheme utility procedures for e.g. accessing
  * miscellaneous system services.  Should only be called by
