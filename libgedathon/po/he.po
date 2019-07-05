@@ -404,9 +404,10 @@ msgstr "הצמד"
 msgid "Text"
 msgstr "טקסט"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "שגיאה באתחול אובייקט arc חדש"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -421,44 +422,49 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "לא ניתן למחוק את התכונה %s"
 
+# The %s attribute must be an integer value
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "התכונה %s חייבת להיות ערך שלם"
 
+# Python integer too large to convert to C integer
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
-msgid "Python int too large to convert to C int"
-msgstr ""
+msgid "Python integer too large to convert to C integer"
+msgstr "מספר שלם של Python גדול מדי כדי להמיר C שלם"
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "יוצר סוג הרחבה של אובייקט קשת."
 
+# Error initializing new box object
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "שגיאה באתחול אובייקט תיבה חדש"
 
 # # Creates a box object type
 #: libgedathon/module/objects/geda_py_box.c:337
 msgid "Creates a Box object type."
-msgstr "."
+msgstr "יוצר סוג אובייקט תיבת."
 
+# Error initializing new cable object
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "שגיאה באתחול אובייקט כבל חדש"
 
+# The cable name attribute value must be a string
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "ערך מאפיין שם הכבל חייב להיות מחרוזת"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
