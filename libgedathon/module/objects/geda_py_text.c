@@ -275,7 +275,7 @@ static int Text_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
       new_value = long_val;
     }
     else {
-      PyErr_SetString(PyExc_OverflowError, "Python int too large to convert to C int");
+      PyErr_SetString(PyExc_OverflowError, "Python integer too large to convert to C integer");
       return -1;
     }
 #else

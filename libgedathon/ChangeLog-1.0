@@ -1,21 +1,18 @@
+2019-07-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_*.c: Revise error messages to not abbreviate
+      the word integer.
+
 2019-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
 
 2019-06-29 Wiley E. Hill <wileyhill@gmail.com>
