@@ -3,7 +3,7 @@
     * module/objects/geda_py_*.c: Revise error messages to not abbreviate
       the word integer.
 
-    * module/functions.c: Add API for DefaultTransformerSymbol.
+    * module/functions.c: Add API for DefaultTransformerSymbol and AddTransformer.
 
     * module/geda.c: Reduce the scope of ptr in suffix_installed_library.
 

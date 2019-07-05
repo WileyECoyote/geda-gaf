@@ -2218,4 +2218,84 @@ FUNCTION(AddTitleblock)
   return py_titleblock;
 }
 
+/*!
+ * \brief Create and Add an AddTransformer component Python API Function
+ * \par Function Description
+ *  This function calls Geda API Library routines to create a new
+ *  <b>PyGedaComplexObject</b> using the symbol whose name is pointer
+ *  to by the <b>TransformerSymbol</b> variable. The default symbol name
+ *  is "transformer-1". The Object is attached to the given Page object.
+ *  A text  attribute is attached to the object for the refdes. The value
+ *  of refdes is optional and will be auto assigned if not specified using
+ *  the letter "T" as a prefix. When specifying refdes as a string, refdes
+ *  does not need to include the character prefix.
+ *
+ *  [in] page        A Page object
+ *  [in] x           Integer X location
+ *  [in] y           Integer Y location
+ *
+ *  Optional parameters:
+ *
+ *  [in] refdes      String Or Integer reference designator
+ *  [in] angle       integer orientation property
+ *  [in] mirror      If true the object will be mirrored
+ *  [in] embed       If true, symbol data will be embedded into the schematic
+ *
+ * \return [out] PyGedaComplexObject representing the transformer or Py_None if
+ *               an error occurred.
+ * \code
+ *  example 1: AddTransformer(page, 5000, 6500)
+ *
+ *  example 2: AddTransformer(schematic, 6800, 8000, "T1", 0, 0, 0)
+ * \endcode
+ */
+FUNCTION(AddTransformer)
+{
+  PyObject *py_page;
+  PyObject *py_x;
+  PyObject *py_y;
+  PyObject *py_xformer = NULL;
+  PyObject *py_refdes  = NULL;
+
+  int angle  = -1;
+  int mirror = -1;
+  int embed  = -1;
+
+  static char *kwlist[] = {"page", "x", "y", "refdes", "angle", "mirror", "embed", NULL};
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "OOO|Siii:geda.py_xformer, Bad Arguments",
+                                   kwlist, &py_page, &py_x, &py_y,
+                                   &py_refdes, &angle, &mirror, &embed))
+  {
+    ABORT_SYNTAX_ERROR(AddTransformer);
+  }
+
+  py_xformer = call_pysymbol_xyi3(TransformerSymbol, py_x, py_y, angle, mirror, embed);
+
+  if (py_xformer) {
+
+    char *refdes;
+
+    if (py_refdes) {
+      refdes = AutoDesignate(GetNextURef, py_refdes);
+    }
+    else {
+      refdes = GetNextURef(0);
+    }
+
+    Py_XINCREF(py_xformer);
+    PyObject_CallMethod(geda_module, "add_object", "OO", py_page, py_xformer);
+    PyObject_CallMethod(geda_module, "set_attrib", "Ossi", py_xformer, "refdes", refdes, FALSE);
+
+    g_free(refdes);
+  }
+  else {
+    show_error_object_not_created(FUNCTION_NAME(AddTransformer),
+                                  PyString_AsString(TransformerSymbol));
+    py_xformer = Py_BuildValue("");
+  }
+
+  return py_xformer;
+}
+
 /** @} END Group Python_Geda_Module_Functions */

@@ -79,6 +79,7 @@ const char AddResistor_docs[]     = "(Page, x, y, value [,refdes [, angle [, mir
 const char AddSource_docs[]       = "(Page, name, x, y [, angle [, mirror [, embed]])\n";
 const char AddText_docs[]         = "(page, string, x, y [, size [, alignment [, angle]]])";
 const char AddTitleblock_docs[]   = "(page, x, y [, embed])";
+const char AddTransformer_docs[]  = "(Page, x, y, [,refdes [, angle [, mirror [, embed]]]])\n";
 
 /* define Macro for declarations because FUNCTION was not defined */
 #define FUNCTION(function) FIRST_PASS_FUNCTIONS(function);
@@ -110,6 +111,7 @@ const char AddTitleblock_docs[]   = "(page, x, y [, embed])";
         FUNCTION ( AddSource )
         FUNCTION ( AddText )
         FUNCTION ( AddTitleblock )
+        FUNCTION ( AddTransformer )
 
 #undef  FUNCTION
 
@@ -154,6 +156,7 @@ enum {
      FUNCTION ( AddSource,                  METH_VARARGS|METH_KEYWORDS )
      FUNCTION ( AddText,                    METH_VARARGS|METH_KEYWORDS )
      FUNCTION ( AddTitleblock,              METH_VARARGS|METH_KEYWORDS )
+     FUNCTION ( AddTransformer,             METH_VARARGS|METH_KEYWORDS )
 
 #ifdef _MAKE_FUNCTION_ENUM_
      FUNCTION_COUNT,
