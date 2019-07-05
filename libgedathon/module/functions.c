@@ -2169,9 +2169,7 @@ FUNCTION (AddText)
  * \return [out] PyGedaComplexObject representing the Titleblock or
  *               Py_None if an error occurred.
  * \code
- *  example 1: AddOpAmp(page, 5000, 6500)
- *
- *  example 2: AddOpAmp(schematic, 6800, 8000, "U1", 0, 0, 0, 0)
+ *  example 1: AddTitleblock(page, 500, 500)
  * \endcode
  */
 FUNCTION(AddTitleblock)
