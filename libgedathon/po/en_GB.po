@@ -357,8 +357,8 @@ msgstr "he %s attribute must be an integer value"
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
-msgid "Python int too large to convert to C int"
-msgstr "Python int too large to convert to C int"
+msgid "Python integer too large to convert to C integer"
+msgstr "Python integer too large to convert to C integer"
 
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
