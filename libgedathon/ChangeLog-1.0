@@ -3,6 +3,8 @@
     * module/objects/geda_py_*.c: Revise error messages to not abbreviate
       the word integer.
 
+    * src/libgedathon.c: Reduce the scope of fullname in PyGeda_open_page.
+
 2019-07-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.

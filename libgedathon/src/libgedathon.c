@@ -1474,8 +1474,6 @@ PyObject *PyGeda_open_page( const char *filename )
 
     if (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
-      char *fullname;
-
       if (geda_is_path_absolute (filename)) {
         /* An existing filename was passed, see if already loaded */
         page = geda_struct_page_search (toplevel, filename);
@@ -1483,6 +1481,7 @@ PyObject *PyGeda_open_page( const char *filename )
       else {
 
         char *cwd;
+        char *fullname;
 
         cwd = getcwd(0, 0);
 
