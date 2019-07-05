@@ -100,17 +100,23 @@ static struct {
  */
 static const char *suffix_installed_library(const char *ext)
 {
-  char *ptr;
+
 
   libgedapath = installed_library_path;
 
   if (ext != NULL) {
 
     if (!strstr (installed_library_path, ext)) {
+
+      char *ptr;
+
       ptr = installed_library_path;
+
       while (*ptr != '\0') ptr++;
-      while (*ptr != 'n') ptr--;
+      while (*ptr != 'n') ptr--;       /* last char in libgedathon */
+
       ptr++;
+
       while (*ext != '\0') *ptr++ = *ext++;
       *ptr = '\0';
     }
