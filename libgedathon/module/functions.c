@@ -55,6 +55,7 @@ static PyObject *InductorSymbol;
 static PyObject *OpAmpSymbol;
 static PyObject *ResistorSymbol;
 static PyObject *TitleblockSymbol;
+static PyObject *TransformerSymbol;
 
 #define FUNCTION(symbol, aflag ) [ e##symbol ] = \
  { ASSOCIATED_FUNCTION(symbol), aflag, symbol##_docs },
@@ -199,6 +200,7 @@ initFunctions(PyObject *module)
   OpAmpSymbol        = PyString_FromString(DEFAULT_OPAMP_SYMBOL);
   ResistorSymbol     = PyString_FromString(DEFAULT_RESISTOR_SYMBOL);
   TitleblockSymbol   = PyString_FromString(DEFAULT_TITLEBLOCK_SYMBOL);
+  TransformerSymbol  = PyString_FromString(DEFAULT_TRANSFORMER_SYMBOL);
 
   Py_XINCREF(CapacitorSymbol);
   Py_XINCREF(ElectrolyticSymbol);
@@ -206,6 +208,7 @@ initFunctions(PyObject *module)
   Py_XINCREF(OpAmpSymbol);
   Py_XINCREF(ResistorSymbol);
   Py_XINCREF(TitleblockSymbol);
+  Py_XINCREF(TransformerSymbol);
 
   /* Make geda.functions.XXX legal */
   PyModule_AddObject(module, "functions", self);
@@ -715,6 +718,35 @@ FUNCTION(DefaultTitleblockSymbol)
   }
   Py_XINCREF(TitleblockSymbol);
   return TitleblockSymbol;
+}
+
+FUNCTION(DefaultTransformerSymbol)
+{
+  PyObject *py_symbol = NULL;
+
+  if (!PyArg_ParseTuple(args, "|S:geda.DefaultTransformerSymbol", &py_symbol))
+  {
+    return set_default_symbol_error_string("DefaultTransformerSymbol");
+  }
+
+  if (py_symbol) {
+
+    const char *tmp_str;
+
+    tmp_str = PyString_AsString(py_symbol);
+
+    Py_XDECREF(TransformerSymbol);
+
+    if ((tmp_str && !strcmp(tmp_str, "default")) || !tmp_str) {
+      TransformerSymbol = PyString_FromString(DEFAULT_TRANSFORMER_SYMBOL);
+    }
+    else {
+      TransformerSymbol = PyString_FromString(tmp_str);
+    }
+  }
+  Py_XINCREF(TransformerSymbol);
+
+  return TransformerSymbol;
 }
 
 /** @} END Group Python_API_Symbols_For_GedaFunctions */

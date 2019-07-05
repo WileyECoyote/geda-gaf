@@ -42,6 +42,7 @@
 #define DEFAULT_OPAMP_SYMBOL        "opamp-1"
 #define DEFAULT_RESISTOR_SYMBOL     "resistor-1"
 #define DEFAULT_TITLEBLOCK_SYMBOL   "title-B"
+#define DEFAULT_TRANSFORMER_SYMBOL  "transformer-1"
 
 #ifndef QUOTE_SYMBOL
 #define QUOTE_SYMBOL(symbol) #symbol
@@ -57,6 +58,7 @@ const char DefaultInductorSymbol_docs[]     = N_("Get or Set the default symbol 
 const char DefaultOpAmpSymbol_docs[]        = N_("Get or Set the default operational amplifier symbol\n");
 const char DefaultResistorSymbol_docs[]     = N_("Get or Set the default symbol for resistors\n");
 const char DefaultTitleblockSymbol_docs[]   = N_("Get or Set the default titleblock symbol\n");
+const char DefaultTransformerSymbol_docs[]  = N_("Get or Set the default transformer symbol\n");
 
 const char AddArc_docs[]          = "(Page, x, y, radius, start-angle, end-angle [, color])\n";
 const char AddAttribute_docs[]    = "(page, name, value, x, y [, visible [, show [, alignment [, angle]]]])";
@@ -87,6 +89,7 @@ const char AddTitleblock_docs[]   = "(page, x, y [, embed])";
         FUNCTION ( DefaultOpAmpSymbol )
         FUNCTION ( DefaultResistorSymbol )
         FUNCTION ( DefaultTitleblockSymbol )
+        FUNCTION ( DefaultTransformerSymbol )
 
         FUNCTION ( AddArc)
         FUNCTION ( AddAttribute )
@@ -130,6 +133,7 @@ enum {
      FUNCTION ( DefaultOpAmpSymbol,         METH_VARARGS )
      FUNCTION ( DefaultResistorSymbol,      METH_VARARGS )
      FUNCTION ( DefaultTitleblockSymbol,    METH_VARARGS )
+     FUNCTION ( DefaultTransformerSymbol,   METH_VARARGS )
 
      FUNCTION ( AddArc,                     METH_VARARGS|METH_KEYWORDS )
      FUNCTION ( AddAttribute,               METH_VARARGS|METH_KEYWORDS )
