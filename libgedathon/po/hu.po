@@ -403,9 +403,10 @@ msgstr "tű"
 msgid "Text"
 msgstr "Szöveg"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Hiba az új ív objektum inicializálásakor"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -420,44 +421,49 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "A %s attribútum nem törölhető"
 
+# The %s attribute must be an integer value
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "A %s attribútumnak egész számnak kell lennie"
 
+# Python integer too large to convert to C integer
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
-msgid "Python int too large to convert to C int"
-msgstr ""
+msgid "Python integer too large to convert to C integer"
+msgstr "A Python egész szám túl nagy ahhoz, hogy C egész számra konvertálhassa"
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "Létrehoz egy ív objektum kiterjesztés típusát."
 
+# Error initializing new box object
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Hiba az új dobozobjektum inicializálásakor"
 
 # Creates a box object type
 #: libgedathon/module/objects/geda_py_box.c:337
 msgid "Creates a Box object type."
 msgstr "Létrehoz egy dobozobjektumot."
 
+# Error initializing new cable object
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Hiba az új kábelobjektum inicializálásakor"
 
+# The cable name attribute value must be a string
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "A kábelnév attribútumának stringnek kell lennie"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
