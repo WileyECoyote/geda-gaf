@@ -415,6 +415,7 @@ static inline void BlockMethod (int index)
   }
   PyGeda_API[index]->status |= METHOD_ACTIVE; /* Block this Method */
 }
+
 #define METHOD_HELP(symbol)GedaMethods[e##symbol].docstring
 #define METHOD(func) static PyObject *do_##func(PyObject *self, PyObject *args)
 
@@ -511,7 +512,9 @@ typedef void      (*PyGeda_void_v1_type)         ( void );
 METHOD(unknown)
 {
   fprintf(stderr, "unknown method handler\n");
+
   Py_INCREF(Py_None);
+
   return Py_None;
 }
 
@@ -526,9 +529,13 @@ METHOD(unknown)
 METHOD(shutdown)
 {
   TYPE_VOID_V1(shutdown)
+
   library.func();
+
   ON_METHOD_EXIT(shutdown);
+
   Py_INCREF(Py_None);
+
   return Py_None;
 }
 
@@ -629,6 +636,7 @@ METHOD(declare_local_sym)
   }
 
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -671,7 +679,9 @@ METHOD(get_pages)
   }
 
   Py_XDECREF(py_input_list);  /* Destroy the input list */
+
   ON_METHOD_EXIT(get_pages);  /* re-enable this method */
+
   return py_output_list;      /* return the Python list of page Objects */
 }
 
@@ -750,7 +760,9 @@ METHOD(set_active_page)
   if (!status) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -783,7 +795,9 @@ METHOD(is_page_modified)
   if (!page->modified) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -830,7 +844,9 @@ METHOD(goto_page)
   if (!status) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -875,6 +891,7 @@ METHOD(open_page)
   if (page) {
       PyErr_Clear();
   }
+
   return page;
 }
 
@@ -929,7 +946,9 @@ METHOD(close_page)
   if (status == 0) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -986,6 +1005,7 @@ METHOD(new_page)
   page = PyObject_CallObject((PyObject*)PyGedaPageClass(), info);
 
   ON_METHOD_EXIT(new_page);
+
   return page;
 }
 
@@ -1037,7 +1057,9 @@ METHOD(rename_page)
   if (status == 0) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -1070,7 +1092,9 @@ METHOD(save_page)
   if (status != 0) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -1121,7 +1145,9 @@ METHOD(save_page_as)
   if (status == 0) {
     Py_RETURN_FALSE;
   }
+
   PyErr_Clear();
+
   Py_RETURN_TRUE;
 }
 
@@ -1158,6 +1184,7 @@ METHOD(save_all_pages)
   status = library.func(pages);
 
   ON_METHOD_EXIT(save_all_pages);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1179,6 +1206,7 @@ METHOD(GedaCapsule_Type)
   int answer = library.func(args);
 
   ON_METHOD_EXIT(GedaCapsule_Type);
+
   return Py_BuildValue("i", answer);
 }
 
@@ -1236,6 +1264,7 @@ METHOD(get_bounds)
   list = library.func(pid, sid);
 
   ON_METHOD_EXIT(get_bounds);
+
   return list;
 }
 
@@ -1322,7 +1351,9 @@ METHOD(get_object)
       }
     }
   }
+
   ON_METHOD_EXIT(get_object);
+
   return py_object;
 }
 
@@ -1391,6 +1422,7 @@ METHOD(get_objects)
   list = library.func(pid, sid);
 
   ON_METHOD_EXIT(get_objects);
+
   return list;
 }
 
@@ -1453,6 +1485,7 @@ METHOD(add_object)
   status = library.func(page, py_object_A, py_object_B);
 
   ON_METHOD_EXIT(add_object);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1500,7 +1533,9 @@ METHOD(add_objects)
   }
 
   status = library.func(page, py_object_A, py_object_B);
+
   ON_METHOD_EXIT(add_objects);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1604,7 +1639,9 @@ METHOD(copy_object)
       Py_XDECREF(py_object_D);
     }
   }
+
   ON_METHOD_EXIT(copy_object);
+
   return py_object_B;
 }
 
@@ -1640,7 +1677,9 @@ METHOD(remove_object)
   }
 
   status = library.func(py_object);
+
   ON_METHOD_EXIT(remove_object);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1680,6 +1719,7 @@ METHOD(remove_objects)
   status = library.func(objects);
 
   ON_METHOD_EXIT(remove_objects);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1720,6 +1760,7 @@ METHOD(delete_object)
     Py_DECREF(object);
 
   ON_METHOD_EXIT(delete_object);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1757,6 +1798,7 @@ METHOD(delete_objects)
   status = library.func(objects);
 
   ON_METHOD_EXIT(delete_objects);
+
   return Py_BuildValue("i", status);
 }
 
@@ -1850,7 +1892,9 @@ METHOD(new_arc)
   py_arc = PyObject_CallObject((PyObject*)PyGedaArcClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_arc);
+
   return py_arc;
 }
 
@@ -1901,7 +1945,9 @@ METHOD(new_box)
   py_box = PyObject_CallObject((PyObject*)PyGedaBoxClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_box);
+
   return py_box;
 }
 
@@ -1952,7 +1998,9 @@ METHOD(new_bus)
   py_bus = PyObject_CallObject((PyObject*)PyGedaBusClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_bus);
+
   return py_bus;
 }
 
@@ -2002,7 +2050,9 @@ METHOD(new_circle)
   py_circle = PyObject_CallObject((PyObject*)PyGedaCircleClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_circle);
+
   return py_circle;
 }
 
@@ -2073,6 +2123,7 @@ METHOD(new_complex)
   }
 
   ON_METHOD_EXIT(new_complex);
+
   return py_complex;
 }
 
@@ -2125,7 +2176,9 @@ METHOD(new_line)
   py_line = PyObject_CallObject((PyObject*)PyGedaLineClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_line);
+
   return py_line;
 }
 
@@ -2180,7 +2233,9 @@ METHOD(new_net)
   py_net = PyObject_CallObject((PyObject*)PyGedaNetClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_net);
+
   return py_net;
 }
 
@@ -2234,6 +2289,7 @@ METHOD(new_path)
   }
 
   ON_METHOD_EXIT(new_path);
+
   return py_path;
 }
 
@@ -2301,6 +2357,7 @@ METHOD(new_picture)
   }
 
   ON_METHOD_EXIT(new_picture);
+
   return py_picture;
 }
 
@@ -2405,6 +2462,7 @@ METHOD(new_pin)
   }
 
   ON_METHOD_EXIT(new_pin);
+
   return py_pin;
 }
 
@@ -2471,7 +2529,9 @@ METHOD(new_text)
   py_text = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_text);
+
   return py_text;
 }
 
@@ -2541,7 +2601,9 @@ METHOD(new_attrib)
   py_text = PyObject_CallObject((PyObject*)PyGedaTextClass(), object_data);
 
   Py_XDECREF(object_data);
+
   ON_METHOD_EXIT(new_attrib);
+
   return py_text;
 }
 /** @} END Group Python_API_Create_Methods */
@@ -2591,6 +2653,7 @@ METHOD(get_attrib)
   }
 
   ON_METHOD_EXIT(get_attrib);
+
   return py_attrib;
 }
 
@@ -2662,7 +2725,9 @@ METHOD(get_attribs)
     PyErr_SetString(PyExc_TypeError, "get_attribs: Bad GedaCapsuleObject");
     py_output_list = NULL;
   }
+
   ON_METHOD_EXIT(get_attribs);
+
   return py_output_list;
 }
 
@@ -2738,7 +2803,9 @@ METHOD(set_attrib)
   }
 
   //Py_XDECREF(py_value);
+
   ON_METHOD_EXIT(set_attrib);
+
   return py_ret;
 }
 
@@ -2772,7 +2839,9 @@ METHOD(refresh_attribs)
   }
 
   status = library.func(object);
+
   ON_METHOD_EXIT(refresh_attribs);
+
   return Py_BuildValue("i", status);
 }
 
@@ -2841,6 +2910,7 @@ METHOD(get_network)
   list = library.func(pid, sid, filter);
 
   ON_METHOD_EXIT(get_network);
+
   return list;
 }
 
@@ -2912,8 +2982,11 @@ METHOD(get_junctions)
   if (py_tmp) {
     Py_DECREF(py_tmp);
   }
+
   Py_DECREF(py_source_list);
+
   ON_METHOD_EXIT(get_junctions);
+
   return py_output_list;
 }
 
@@ -2987,8 +3060,11 @@ METHOD(get_unconnected)
   if (py_tmp) {
     Py_DECREF(py_tmp);
   }
+
   Py_DECREF(py_source_list);
+
   ON_METHOD_EXIT(get_unconnected);
+
   return py_output_list;
 }
 
