@@ -468,10 +468,13 @@ msgstr "Καρφίτσα"
 msgid "Text"
 msgstr "Κείμενο"
 
+# Error initializing new arc object
+# Sfálma katá tin archikopoíisi néou antikeiménou tóxou
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Σφάλμα κατά την αρχικοποίηση νέου αντικειμένου τόξου"
 
+# Den eínai dynatí i diagrafí tou charaktiristikoú %s
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -485,22 +488,26 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Δεν είναι δυνατή η διαγραφή του χαρακτηριστικού %s"
 
+# The %s attribute must be an integer value
+# To charaktiristikó %s prépei na eínai mia akéraia timí
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Το χαρακτηριστικό %s πρέπει να είναι μια ακέραια τιμή"
 
+# Python integer too large to convert to C integer
+# Python akéraios polý megálos gia na metatrapeí se akéraio C
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
-msgid "Python int too large to convert to C int"
-msgstr ""
+msgid "Python integer too large to convert to C integer"
+msgstr "Python ακέραιος πολύ μεγάλος για να μετατραπεί σε ακέραιο C"
 
 # Creates an Arc object extension type
 # Dimiourgeí énan týpo epéktasis antikeiménou tóxou
@@ -508,9 +515,11 @@ msgstr ""
 msgid "Creates an Arc object extension type."
 msgstr "Δημιουργεί έναν τύπο επέκτασης αντικειμένου τόξου."
 
+# Error initializing new box object
+# Parousiástike sfálma katá tin proetoimasía néou antikeiménou plaisíou
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Παρουσιάστηκε σφάλμα κατά την προετοιμασία νέου αντικειμένου πλαισίου"
 
 # Creates a box object type
 # Dimiourgeí énan týpo antikeiménou koutioú
@@ -518,13 +527,17 @@ msgstr ""
 msgid "Creates a Box object type."
 msgstr "Δημιουργεί έναν τύπο αντικειμένου κουτιού."
 
+# Error initializing new cable object
+# Parousiástike sfálma katá tin proetoimasía néou antikeiménou kalodíou
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Παρουσιάστηκε σφάλμα κατά την προετοιμασία νέου αντικειμένου καλωδίου"
 
+# The cable name attribute value must be a string
+# I timí charaktiristikoú onómatos kalodíou prépei na eínai mia symvoloseirá
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Η τιμή χαρακτηριστικού ονόματος καλωδίου πρέπει να είναι μια συμβολοσειρά"
 
 # Creates a bus object type
 # Dimiourgeí énan týpo antikeiménou leoforeíou
