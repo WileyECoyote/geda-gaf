@@ -1880,7 +1880,7 @@ void geda_line_object_set_y2 (GedaObject *object, int y) {
 
 /*!
  * \brief Calculates the distance between the given point and the closest
- *  point on the given line segment.
+ *  point on the centerline of the given line segment.
  *
  *  If the closest point on the line resides beyond the line segment's
  *  end point, this function returns the distance from the given point to the
