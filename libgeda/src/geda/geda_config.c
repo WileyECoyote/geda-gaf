@@ -257,7 +257,7 @@ static void eda_config_finalize (GObject *object)
 }
 
 /*!
- * \brief Initialise EdaConfig class
+ * \brief Initialize EdaConfig class
  * \par Function Description
  *  GedaType class initializer for EdaConfigClass. We override the
  *  parent virtual class methods as needed and register GObject
@@ -320,7 +320,7 @@ static void eda_config_class_init(void *class, void *class_data)
                 G_TYPE_STRING, G_TYPE_STRING);
 }
 
-/*! Initialise EdaConfig instance. */
+/*! Initialize EdaConfig instance. */
 static void eda_config_instance_init(GTypeInstance *instance, void *class)
 {
   EdaConfig *config = (EdaConfig*)instance;
@@ -743,6 +743,7 @@ EdaConfig *eda_config_get_user_context (void)
     GEDA_FREE (filename);
     g_once_init_leave (&initialized, 1);
   }
+
   return eda_config_ref(config);
 }
 
@@ -836,7 +837,7 @@ EdaConfig *eda_config_get_context_for_file (const char *path)
 
   EdaConfig *config = NULL;
 
-  /* Initialise global state */
+  /* Initialize global state */
   if (g_once_init_enter (&initialized)) {
 
     local_contexts = g_hash_table_new_full (g_str_hash,
