@@ -181,14 +181,14 @@ EDA_SCM_DEFINE (object_make_box, "%make-box", 0, 0, 0,
   return result;
 }
 
-/*! \brief Create a new circle.
+/*!
+ * \brief Create a new circle.
  * \par Function Description
-
- * Creates a new circle object, with all its parameters set to default
- * values.
+ *  Creates a new circle object, with all its parameters set to default
+ *  values.
  *
  * \note Scheme API: Implements the %make-circle procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
  * \return a newly-created circle object.
  */
@@ -205,13 +205,14 @@ EDA_SCM_DEFINE (object_make_circle, "%make-circle", 0, 0, 0,
   return result;
 }
 
-/*! \brief Create a new arc.
+/*!
+ * \brief Create a new arc.
  * \par Function Description
- * Creates a new arc object, with all its parameters set to default
- * values.
+ *  Creates a new arc object, with all its parameters set to default
+ *  values.
  *
  * \note Scheme API: Implements the %make-arc procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
  * \return a newly-created arc object.
  */
@@ -227,16 +228,16 @@ EDA_SCM_DEFINE (object_make_arc, "%make-arc", 0, 0, 0,
   return result;
 }
 
-/*! \brief Create a new text item.
+/*!
+ * \brief Create a new text item.
  * \par Function Description
- * Creates a new text object, with all its parameters set to default
- * values.
+ *  Creates a new text object, with all its parameters set to default
+ *  values.
  *
  * \note Scheme API: Implements the %make-text procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
  * \return a newly-created text object.
- *
  */
 EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
                "Create a new text object.")
@@ -251,13 +252,14 @@ EDA_SCM_DEFINE (object_make_text, "%make-text", 0, 0, 0, (),
   return result;
 }
 
-/*! \brief Make a new, empty path object.
+/*!
+ * \brief Make a new, empty path object.
  * \par Function Description
- * Creates a new, empty path object with default color, stroke and
- * fill options.
+ *  Creates a new, empty path object with default color, stroke and
+ *  fill options.
  *
  * \note Scheme API: Implements the %make-path procedure in the (geda
- * core object) module.
+ *       core object) module.
  *
  * \return a newly-created path object.
  */
@@ -274,14 +276,15 @@ EDA_SCM_DEFINE (object_make_path, "%make-path", 0, 0, 0,
   return result;
 }
 
-/*! \brief Create a new, empty picture object.
+/*!
+ * \brief Create a new, empty picture object.
  * \par Function Description
- * Creates a new picture object with no filename, no image data and
- * all other parameters set to default values.  It is initially set to
- * be embedded.
+ *  Creates a new picture object with no filename, no image data and
+ *  all other parameters set to default values.  It is initially set to
+ *  be embedded.
  *
  * \note Scheme API: Implements the %make-picture procedure in the
- * (geda core object) module.
+ *       (geda core object) module.
  *
  * \return a newly-created picture object.
  */
@@ -304,8 +307,8 @@ EDA_SCM_DEFINE (object_make_picture, "%make-picture", 0, 0, 0, (),
 /*!
  * \brief Initialize the basic gEDA object Creator Routines.
  * \par Function Description
- * Registers some Scheme procedures for creating new GedaObjects.
- * Should only be called by edascm_init().
+ *  Registers some Scheme procedures for creating new GedaObjects.
+ *  Should only be called by edascm_init().
  */
 void
 edascm_init_make_object ()
