@@ -119,7 +119,7 @@ static void clip_clear (GtkClipboard *cb, void * user_data_or_owner)
 }
 
 /*!
- * \brief Initialises system clipboard support
+ * \brief Initializes system clipboard support
  * \par Function Description
  *  Registers a signal handler to detect if the clipboard has changed
  *  and update the menu item sensitivity if necessary.
