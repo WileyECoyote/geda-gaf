@@ -1444,7 +1444,7 @@ int test_strings (void)
 
   string = geda_strsplit(str_110, 0, 0); /* NULL Argument 2 defaults space */
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061100B) geda_strsplit <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061100B) geda_strsplit NULL\n");
     result++;
   }
   else {
