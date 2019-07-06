@@ -368,11 +368,6 @@ geda_widget_set_pointer_position(GtkWidget *widget, int x, int y)
 
 #else /* Gtk-2 rendition */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
 void
 geda_widget_set_pointer_position(GtkWidget *widget, int x, int y)
 {
