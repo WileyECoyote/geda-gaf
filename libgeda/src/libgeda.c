@@ -112,7 +112,7 @@ void libgeda_init(int argc, char **argv)
   const char *env_path;
 
 #ifdef ENABLE_NLS
-  /* Initialise gettext */
+  /* Initialize gettext */
   bindtextdomain (LIBGEDA_GETTEXT_DOMAIN, LOCALEDIR);
   bind_textdomain_codeset(LIBGEDA_GETTEXT_DOMAIN, "UTF-8");
 #endif
