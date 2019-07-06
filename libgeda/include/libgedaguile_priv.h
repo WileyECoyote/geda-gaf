@@ -154,7 +154,7 @@ enum geda_smob_flags {
  * is valid.
  */
 #define EDASCM_SMOB_VALIDP(x) \
-  (SCM_SMOB_PREDICATE (geda_smob_tag, x) && ((void *)SCM_SMOB_DATA (x) != NULL))
+  (SCM_SMOB_PREDICATE (geda_smob_tag, x) && ((void*)SCM_SMOB_DATA (x) != NULL))
 
 /*! \brief Assert that a gEDA smob is valid.
  * \par Macro Description
