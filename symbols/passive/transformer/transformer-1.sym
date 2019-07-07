@@ -69,9 +69,9 @@ T 0 1900 5 10 0 0 0 0 1
 numslots=0
 T 0 2100 9 10 0 0 0 0 1
 footprint=none
-T -5 2295 5 10 0 0 0 0 1
+T 0 2300 5 10 0 0 0 0 1
 dist-license=GPLv2
-T -5 2495 5 10 0 0 0 0 1
+T 0 2500 5 10 0 0 0 0 1
 use-license=unlimited
-T -5 2695 5 10 0 0 0 0 1
+T 0 2700 5 10 0 0 0 0 1
 author=AutoTron
