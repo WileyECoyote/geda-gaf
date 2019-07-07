@@ -68,13 +68,11 @@ T 0 2000 5 10 0 0 0 0 1
 numslots=0
 T 0 2200 9 10 0 0 0 0 1
 footprint=none
-{
 T -5 2395 5 10 0 0 0 0 1
 dist-license=GPLv2
 T -5 2595 5 10 0 0 0 0 1
 use-license=unlimited
 T -5 2795 5 10 0 0 0 0 1
 author=AutoTron
-}
 T 0 1800 8 10 0 0 0 0 1
 description=Transformer

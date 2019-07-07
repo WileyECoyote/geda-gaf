@@ -1,6 +1,10 @@
 2019-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
-    * passive/transformer/transformer-1.sym: Remove unintended braces.
+    * passive/transformer/transformer-[1,2].sym: Remove unintended braces,
+      revise attribute positions and visibility.
+
+            * passive/transformer/transformer-1.sym
+            * passive/transformer/transformer-2.sym
 
 2019-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
