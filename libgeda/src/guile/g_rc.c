@@ -1175,14 +1175,20 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
   return SCM_BOOL_T;
 }
 
-/*! \brief Handles the attribute-promote SCM keyword.
- *  \par Function Description
- *  Uses MACRO to call g_rc_parse_mode to sets boolean configuration
- *  variable based on string argument.
+/*!
+ * \brief Handle attribute-promote SCM keyword
+ * \par Function Description
+ *  When an argument is given, this function uses the RETURN_G_RC_MODE
+ *  to call g_rc_parse_mode to set the boolean configuration variable
+ *  based on the string argument. When an argument is not given, this
+ *  function returns the current value of default_attribute_promotion.
  *
  *  \param [in] mode string "enabled" or "disabled"
  *
- *  \returns SCM_BOOL_T on success, SCM_BOOL_F if mode is not a valid value.
+ *  \returns The current value of default_attribute_promotion if no
+ *           mode argument,if an argument is given then returns
+ *           SCM_BOOL_T on success or SCM_BOOL_F if mode was not
+ *           otherwise valid.
  */
 SCM g_rc_attribute_promotion(SCM mode)
 {

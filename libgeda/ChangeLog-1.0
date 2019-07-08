@@ -3,6 +3,8 @@
     * src/Makefile.am: Add scheme/scheme_version.x to the list of
       BUILT_SOURCES.
 
+    * src/guile/g_rc.c: Update attribute-promote function documentation.
+
     * src/scheme/scheme_log.c: Add Doxygen templates as todos.
 
 2019-07-02 Wiley E. Hill <wileyhill@gmail.com
