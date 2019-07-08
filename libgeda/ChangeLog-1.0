@@ -1,5 +1,12 @@
 2019-07-10 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/unit-tests/t0301-promotable-attributes.scm: Reverse the
+      order of arguments to assert-equal in:
+
+          * attribute-promotion
+          * promote-invisible
+          * keep-invisible
+
     * src/Makefile.am: Add scheme/scheme_version.x to the list of
       BUILT_SOURCES.
 
