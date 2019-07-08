@@ -27,7 +27,8 @@ BUILT_SOURCES   = \
 		scheme/scheme_config.x \
 		scheme/scheme_closure.x \
 		scheme/scheme_deprecated.x \
-		scheme/scheme_log.x
+		scheme/scheme_log.x \
+		scheme/scheme_version.x
 
 libgeda_la_SOURCES =
 
