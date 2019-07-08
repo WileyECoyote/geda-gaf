@@ -787,7 +787,7 @@ void geda_net_object_refresh_conn_cache(GedaObject *o_current)
    * Push next entry on the stack if we encounter a net segment.
    */
 
-  /* Initialise the stack for the starting net segment. */
+  /* Initialize the stack for the starting net segment. */
   stack = g_list_prepend (stack, o_current->conn_list);
 
   while (stack != NULL) {
