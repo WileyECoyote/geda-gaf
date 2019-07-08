@@ -58,7 +58,7 @@ static struct gsubr_t rc_func_table[] = {
   { "keep-invisible",             0, 1, 0, g_rc_keep_invisible },
   { "always-promote-attributes",  1, 0, 0, g_rc_always_promote_attributes },
 
-  { "bitmap-directory",           1, 0, 0, g_rc_bitmap_directory },
+  { "bitmap-directory",           0, 1, 0, g_rc_bitmap_directory },
   { "log-directory",              1, 0, 0, g_rc_log_directory },
   { "scheme-directory",           1, 0, 0, g_rc_scheme_directory },
 

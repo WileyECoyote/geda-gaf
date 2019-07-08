@@ -4,6 +4,9 @@
       BUILT_SOURCES.
 
     * src/guile/g_rc.c: Update attribute-promote function documentation.
+      Revise function g_rc_bitmap_directory to return the value of the
+      current setting if there is no argument, see commit c55fe1788 to
+      lepton-eda project by Vladimir Zhbanov <vzhbanov@gmail.com>.
 
     * src/scheme/scheme_log.c: Add Doxygen templates as todos.
 
