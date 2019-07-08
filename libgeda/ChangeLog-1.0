@@ -15,6 +15,10 @@
       current setting if there is no argument, see commit c55fe1788 to
       lepton-eda project by Vladimir Zhbanov <vzhbanov@gmail.com>.
 
+    * src/scheme/scheme_complex.c: Add missing validations for mirror_s
+      and locked_s in scheme_complex_set_x, see commit d8aad61a7b to
+      lepton-eda project by Vladimir Zhbanov <vzhbanov@gmail.com>.
+
     * src/scheme/scheme_log.c: Add Doxygen templates as todos.
 
 2019-07-02 Wiley E. Hill <wileyhill@gmail.com

@@ -140,9 +140,11 @@ EDA_SCM_DEFINE (complex_set_x, "%set-complex!", 6, 0, 0,
 {
   SCM_ASSERT (edascm_is_object_type (complex_s, OBJ_COMPLEX), complex_s,
               SCM_ARG1, scheme_complex_set_x);
-  SCM_ASSERT (scm_is_integer (x_s),     x_s,     SCM_ARG2, scheme_complex_set_x);
-  SCM_ASSERT (scm_is_integer (y_s),     y_s,     SCM_ARG3, scheme_complex_set_x);
-  SCM_ASSERT (scm_is_integer (angle_s), angle_s, SCM_ARG4, scheme_complex_set_x);
+  SCM_ASSERT (scm_is_integer (x_s),     x_s,      SCM_ARG2, scheme_complex_set_x);
+  SCM_ASSERT (scm_is_integer (y_s),     y_s,      SCM_ARG3, scheme_complex_set_x);
+  SCM_ASSERT (scm_is_integer (angle_s), angle_s,  SCM_ARG4, scheme_complex_set_x);
+  SCM_ASSERT (scm_is_bool    (mirror_s),mirror_s, SCM_ARG5, scheme_complex_set_x);
+  SCM_ASSERT (scm_is_bool    (locked_s),locked_s, SCM_ARG6, scheme_complex_set_x);
 
   GedaObject *obj = edascm_to_object (complex_s);
 
