@@ -4,9 +4,11 @@ T 1750 300 9 10 0 1 0 6 1
 device=options
 T 100 300 9 10 1 1 0 0 1
 refdes=A?
-T 1750 300 9 10 1 0 0 6 1
-Gnucap options
+T 1750 300 9 10 1 1 0 6 1
+description=Gnucap options
 T 100 0 8 10 1 1 0 0 1
 value=?
-T 100 600 8 10 0 0 0 0 1
+T 100 600 9 10 0 0 0 0 1
 numslots=0
+T 100 800 9 10 0 0 0 0 1
+footprint=none

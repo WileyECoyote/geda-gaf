@@ -13,6 +13,9 @@
     * simulation/spice/gnucap-npn-1.sym: Convert description to documentation
       attribute and add description and footprint none.
 
+    * simulation/spice/gnucap-options-1.sym: Convert plain text to a description
+      attribute and add footprint none.
+
 2019-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
