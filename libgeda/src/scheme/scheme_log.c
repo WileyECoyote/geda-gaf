@@ -89,6 +89,11 @@ EDA_SCM_DEFINE (log_open_x, "%log-open", 0, 1, 0,
   return SCM_UNSPECIFIED;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 EDA_SCM_DEFINE (log_close_x, "%log-close", 0, 0, 0,
                (),
                "Shuts down the libgeda logging system")
@@ -148,6 +153,11 @@ EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
     return SCM_UNSPECIFIED;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0,
             (),
             "Get log contents as string.")
