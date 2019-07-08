@@ -44,6 +44,7 @@
 #define DEFAULT_CONFIG_DIR        "/etc"
 
 #define STD_USER_CONFIG_DIRS      ".config"
+#define STD_USER_CACHE_DIR        ".cache"
 
 /*! Default value for XDG_CONFIG_DIRS if no system configuration found. */
 #define XDG_CONFIG_DIRS_DEFAULT   "/etc/xdg/"

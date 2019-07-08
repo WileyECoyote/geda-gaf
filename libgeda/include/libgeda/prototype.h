@@ -33,6 +33,7 @@ extern "C" {
    const char   *geda_file_path_sys_doc          (void);
    const char   *geda_file_path_sys_config       (void);
    const char   *geda_file_path_user_config      (void);
+   const char   *geda_file_path_user_cache       (void);
 
 /* f_print.c */
           int    geda_file_print_command         (GedaToplevel *toplevel, Page *page, GArray *color_map, const char *command);

@@ -54,6 +54,7 @@ static char *sys_data_path    = NULL;
 static char *sys_doc_path     = NULL;
 static char *sys_config_path  = NULL;
 static char *user_config_path = NULL;
+static char *user_cache_path  = NULL;
 
 /* ------------------ Directory Utility Functions --------------- */
 
@@ -223,6 +224,7 @@ void geda_file_path_free (void) {
   GEDA_FREE(sys_doc_path);
   GEDA_FREE(sys_config_path);
   GEDA_FREE(user_config_path);
+  GEDA_FREE(user_cache_path);
 }
 
 /*! F0303 alias geda_get_dirname
@@ -619,4 +621,62 @@ const char *geda_file_path_user_config (void) {
     }
   }
   return user_config_path;
+}
+
+const char *geda_file_path_user_cache (void) {
+
+  if (user_cache_path == NULL) {
+
+    const char *homedir;
+    const char *cachedir;
+
+#if defined (GEDA_USE_XDG)
+
+    cachedir = STD_USER_CACHE_DIR;
+    homedir  = g_get_user_cache_dir();
+
+#else
+
+    cachedir = STD_USER_CACHE_DIR;
+
+#ifdef OS_LINUX
+
+    homedir = getenv ("HOME");
+
+#else
+
+    homedir = (char*)g_get_home_dir();
+
+#endif
+
+    if (homedir == NULL) {
+
+#if defined OS_WIN32
+
+      homedir = (char*)g_get_home_dir();
+
+#else
+
+      struct passwd *pw = getpwuid(getuid());
+
+      if (pw) {
+        homedir = pw->pw_dir;
+      }
+
+#endif
+
+    }
+
+#endif
+
+    user_cache_path =
+    geda_strconcat(homedir, DIR_SEPARATOR_S, cachedir, NULL);
+
+    /* As a last resort just use the config directory */
+    if (user_cache_path == NULL) {
+      user_cache_path = geda_strdup(geda_user_config_path ());
+    }
+  }
+
+  return user_cache_path;
 }

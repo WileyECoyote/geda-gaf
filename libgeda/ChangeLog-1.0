@@ -1,5 +1,10 @@
 2019-07-10 Wiley E. Hill <wileyhill@gmail.com
 
+    * include/libgeda/geda_config.h: Add string macro STD_USER_CACHE_DIR.
+
+    * include/libgeda/geda_file.h: Add function macro geda_user_cache_path
+      as short version of geda_file_path_user_cache.
+
     * scheme/unit-tests/t0301-promotable-attributes.scm: Reverse the
       order of arguments to assert-equal in:
 
@@ -9,6 +14,9 @@
 
     * src/Makefile.am: Add scheme/scheme_version.x to the list of
       BUILT_SOURCES.
+
+    * src/file/f_path.c: Add user_cache_path and function geda_file_
+      path_user_cache.
 
     * src/guile/g_rc.c: Update attribute-promote function documentation.
       Revise function g_rc_bitmap_directory to return the value of the

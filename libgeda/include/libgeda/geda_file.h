@@ -66,6 +66,7 @@
 #define geda_sys_doc_path         geda_file_path_sys_doc
 #define geda_sys_config_path      geda_file_path_sys_config
 #define geda_user_config_path     geda_file_path_user_config
+#define geda_user_cache_path      geda_file_path_user_cache
 
 /* f_print.c */
 #define geda_print_file           geda_file_print_file
