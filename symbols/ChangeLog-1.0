@@ -7,6 +7,9 @@
             * passive/transformer/transformer-2.sym
             * passive/transformer/transformer-3.sym
 
+    * simulation/spice/gnucap-model-1.sym: Convert plain text to a description
+      attribute and add footprint none.
+
 2019-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/transil: Add new symbols for transil diode group:
