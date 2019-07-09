@@ -1005,10 +1005,10 @@ int test_path (void)
 
   /* === Function 05: geda_file_path_sys_doc === */
 
-  path = (char*) geda_sys_doc_path();
+  path = (char*)geda_sys_doc_path();
 
   if (path == NULL) {
-    fprintf(stderr, "FAILED: (F030501A) geda_file_path_sys_doc <%s>\n", path);
+    fprintf(stderr, "FAILED: (F030501A) geda_file_path_sys_doc NULL\n");
     result++;
   }
   else {
@@ -1021,10 +1021,10 @@ int test_path (void)
 
   /* === Function 06: geda_file_path_sys_config === */
 
-  path = (char*) geda_sys_config_path();
+  path = (char*)geda_sys_config_path();
 
   if (path == NULL) {
-    fprintf(stderr, "FAILED: (F030601A) geda_file_path_sys_config <%s>\n", path);
+    fprintf(stderr, "FAILED: (F030601A) geda_file_path_sys_config NULL\n");
     result++;
   }
   else {
@@ -1043,10 +1043,10 @@ int test_path (void)
 
   /* === Function 07: geda_file_path_user_config === */
 
-  path = (char*) geda_user_config_path();
+  path = (char*)geda_user_config_path();
 
   if (path == NULL) {
-    fprintf(stderr, "FAILED: (F030701A) geda_file_path_user_config <%s>\n", path);
+    fprintf(stderr, "FAILED: (F030701A) geda_file_path_user_config NULL\n");
     result++;
   }
   else {

@@ -21,6 +21,8 @@
       geda_picture_object_new does not generate a warning message
       that the picture has no height.
 
+    * tests/test_file.c: Revise checks to not reference NULL pointers.
+
 2019-07-08 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_config.h: Add string macro STD_USER_CACHE_DIR.
