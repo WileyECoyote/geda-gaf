@@ -6,6 +6,13 @@
     * scheme/unit-tests/t0002-g_rc.scm: Add new test module for checking
       routines in src/guile/g_rc.c.
 
+    * scheme/unit-tests/t0301-promotable-attributes.scm: Relocate checks
+      to t0002-g_rc.scm:
+
+          * attribute-promotion
+          * promote-invisible
+          * keep-invisible
+
 2019-07-08 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_config.h: Add string macro STD_USER_CACHE_DIR.
