@@ -255,7 +255,7 @@ void geda_utility_log_init (const char *prefix)
   /* Find/create the directory where we are going to put the logs. Then
    * iterate over files in the directory finding the "biggest" existing
    * filename with a matching prefix & date. It is okay to use the logging
-   * functions from here, because  there is already a default handler.
+   * functions from here, because there is already a default handler.
    */
   if (default_log_directory) {
 
