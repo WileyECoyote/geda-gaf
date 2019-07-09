@@ -1,4 +1,9 @@
-2019-07-10 Wiley E. Hill <wileyhill@gmail.com
+2019-07-09 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/unit-tests/t0001-geda.scm: Rename file to something that
+      makes more sense.
+
+2019-07-08 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_config.h: Add string macro STD_USER_CACHE_DIR.
 
