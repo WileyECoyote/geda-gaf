@@ -30,6 +30,7 @@ AM_SCM_LOG_FLAGS = -p $(srcdir) -p $(builddir) \
 	-e '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
 
 TESTS = unit-tests/t0001-geda.scm \
+		unit-tests/t0002-g_rc.scm \
 		unit-tests/t0100-object-line.scm \
 		unit-tests/t0101-object-box.scm \
 		unit-tests/t0102-object-circle.scm \

@@ -3,6 +3,9 @@
     * scheme/unit-tests/t0001-geda.scm: Rename file to something that
       makes more sense.
 
+    * scheme/unit-tests/t0002-g_rc.scm: Add new test module for checking
+      routines in src/guile/g_rc.c.
+
 2019-07-08 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_config.h: Add string macro STD_USER_CACHE_DIR.
