@@ -16,6 +16,11 @@
     * src/scheme/scheme_log.c: Revise log_read_x to conditionaly free
       the string when unwinding, that is, only when string is not NULL.
 
+    * src/scheme/scheme_make.c: Revise object_make_picture to pass a
+      nonzero second coordinate to geda_picture_object_new so that
+      geda_picture_object_new does not generate a warning message
+      that the picture has no height.
+
 2019-07-08 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_config.h: Add string macro STD_USER_CACHE_DIR.
