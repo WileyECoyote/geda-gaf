@@ -118,7 +118,7 @@ edascm_hook_proxy_finalize (GObject *object)
   G_OBJECT_CLASS (edascm_hook_proxy_parent_class)->finalize (object);
 }
 
-/*! Initialise EdascmHookProxy class. */
+/*! Initialize EdascmHookProxy class. */
 static void
 edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
 {
@@ -155,7 +155,7 @@ edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
                 EDASCM_TYPE_SCM);
 }
 
-/*! Initialise EdascmHookProxy instance. */
+/*! Initialize EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_init (EdascmHookProxy *proxy)
 {
