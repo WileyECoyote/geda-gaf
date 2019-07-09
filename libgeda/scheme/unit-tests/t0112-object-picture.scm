@@ -59,6 +59,7 @@ static char * test_image_xpm[] = {
 
     ;; Bad angle
     (assert-thrown 'misc-error (set-picture! a '(1 . 2) '(5 . 4) 45 #f))
+
     ;; Bad data
     (assert-thrown 'misc-error
                    (make-picture/vector
