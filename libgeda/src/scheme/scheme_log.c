@@ -158,9 +158,8 @@ EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
  *  \par Function Description
  *
  */
-EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0,
-            (),
-            "Get log contents as string.")
+EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0, (),
+               "Get log contents as string.")
 {
   SCM value_s;
 
@@ -168,11 +167,12 @@ EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0,
 
   char *string = geda_utility_log_read ();
 
-  scm_dynwind_unwind_handler ((void (*)(void *)) geda_free, string,
-                              SCM_F_WIND_EXPLICITLY);
   if (string) {
 
     char *str;
+
+    scm_dynwind_unwind_handler ((void (*)(void *)) geda_free, string,
+                                SCM_F_WIND_EXPLICITLY);
 
     str = geda_utility_string_get_valid_utf8 (string);
     value_s = scm_from_utf8_string (str);
