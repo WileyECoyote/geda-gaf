@@ -23,11 +23,11 @@
  * \brief Scheme API procedures for working with Libgeda EDA version list.
  */
 
-#include <config.h>
-#include <version.h>
+#include "../../../config.h"
+#include "../../../version.h"
 
-#include "libgeda_priv.h"
-#include "libgedaguile_priv.h"
+#include "../../include/libgeda_priv.h"
+#include "../../include/libgedaguile_priv.h"
 
 /*!
  * \brief Returns Libgeda EDA version list.

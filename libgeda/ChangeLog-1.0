@@ -1,5 +1,7 @@
 2019-07-10 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/scheme/scheme_version.c: Use relative paths for included headers.
+
     * src/utility/u_log.c: Change the location of log files to the user
       cache folder.
 
