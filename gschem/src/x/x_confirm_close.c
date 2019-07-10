@@ -448,9 +448,11 @@ confirm_close_dialog_constructor (GedaType type,
                 /* GtkContainer */
                 "border-width",      5,
                 NULL);
+
   g_object_set (GTK_DIALOG (dialog)->vbox, /* GtkBox */
                 "spacing", 14,
                 NULL);
+
   g_object_set (GTK_DIALOG (dialog)->action_area, /* GtkBox */
                 "spacing",      6,
                 /* GtkContainer */
