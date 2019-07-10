@@ -70,8 +70,8 @@ static WidgetStringData DialogStrings[] = {
   { NULL, NULL, NULL},
 };
 
-static char *x_image_sizes[] = {"320x240",  "640x480",   "800x600", "1200x768",
-                                "1280x960", "1600x1200", "3200x2400", NULL};
+static char *x_image_sizes[] = {"320x240",  "640x480",  "800x600",   "1024x768",
+                                "1200x768", "1280x960", "1600x1200", "3200x2400", NULL};
 
 const char *ImageTypeStrings[] = { "ico", "bmp", "tiff", "jpeg", "png", "eps", "pdf" };
 

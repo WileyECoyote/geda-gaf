@@ -2,6 +2,8 @@
 
     * src/x/x_confirm_close.c: Make the close confirmation dialog resizable.
 
+    * src/x/x_image.c: Add "1024x768" to x_image_sizes.
+
 2019-07-03 Wiley E. Hill <wileyhill@gmail.com
 
     * src/guile/g_window.c: Revise active_page to check that the toplevel
