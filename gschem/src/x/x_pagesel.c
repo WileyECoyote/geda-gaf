@@ -51,8 +51,8 @@ typedef enum {
 static GschemDialogClass *pagesel_parent_class = NULL;
 
 static WidgetStringData DialogStrings[] = {
-  { "AutoHeightSwitch",    "AutoHeight", "Enable or disable Page Select dialog auto height"},
-  { "ShowFullNameSwitch",  "full names", "Enable or disable displaying of paths in file names"},
+  { "AutoHeightSwitch",    N_("Auto Height"), N_("Enable or disable Page Select dialog auto height")},
+  { "ShowFullNameSwitch",  N_("Full names"), N_("Enable or disable displaying of paths in file names")},
   { NULL, NULL, NULL},
 };
 
