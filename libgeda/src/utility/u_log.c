@@ -287,8 +287,8 @@ void geda_utility_log_init (const char *prefix)
     const char *user_dir;
     int status;
 
-    user_dir = geda_user_config_path();
-    dir_path = g_build_filename(user_dir, "logs", NULL);
+    user_dir = geda_user_cache_path();
+    dir_path = g_build_filename(user_dir, "gEDA/logs", NULL);
 
     if (g_file_test(dir_path, G_FILE_TEST_IS_DIR)) {
 

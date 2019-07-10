@@ -1,3 +1,8 @@
+2019-07-10 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/utility/u_log.c: Change the location of log files to the user
+      cache folder.
+
 2019-07-09 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/unit-tests/t0001-geda.scm: Rename file to something that
