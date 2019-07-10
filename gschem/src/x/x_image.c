@@ -131,7 +131,7 @@ static GtkWidget *create_size_menu (void)
  * \note This function is only used in this file, there are other
  *       create_menus...
  */
-static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
+static GtkWidget *create_type_menu(IMAGE_TYPES default_type)
 {
   GSList *formats;
   GSList *list;
