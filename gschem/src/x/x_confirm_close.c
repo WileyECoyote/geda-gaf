@@ -443,7 +443,7 @@ confirm_close_dialog_constructor (GedaType type,
   g_object_set (dialog, /* GtkDialog */
                 "has-separator",     FALSE,
                 /* GtkWindow */
-                "resizable",         FALSE,
+                "resizable",         TRUE,
                 "skip-taskbar-hint", TRUE,
                 /* GtkContainer */
                 "border-width",      5,
@@ -538,7 +538,7 @@ confirm_close_dialog_constructor (GedaType type,
     /* the opportunity to save them before exiting */
     gtk_box_pack_start (GTK_BOX (vbox),
                         confirm_close_dialog_build_page_list (dialog),
-                        FALSE, FALSE, 0);
+                        TRUE, TRUE, 0);
   }
 
   /* secondary label */
@@ -554,7 +554,7 @@ confirm_close_dialog_constructor (GedaType type,
                         NULL);
 
   gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
 
   /* add buttons to dialog action area */
@@ -577,7 +577,7 @@ confirm_close_dialog_constructor (GedaType type,
   gtk_widget_show_all (hbox);
 
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox,
-                      FALSE, FALSE, 0);
+                      TRUE, TRUE, 0);
 
   return object;
 }
