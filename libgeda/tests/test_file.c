@@ -1060,6 +1060,21 @@ int test_path (void)
     g_free(config_dir);
   }
 
+  /* === Function 08: geda_file_path_user_cache === */
+
+  path = (char*)geda_user_cache_path();
+
+  if (path == NULL) {
+    fprintf(stderr, "FAILED: (F030801A) geda_file_path_user_cache NULL\n");
+    result++;
+  }
+  else {
+    if (!strstr(path, STD_USER_CACHE_DIR)) {
+      fprintf(stderr, "FAILED: (F030801B) geda_file_path_user_cache <%s>\n", path);
+      result++;
+    }
+  }
+
   /* Ensure directory is restored, regardless of what happened above */
 
   geda_file_path_free();

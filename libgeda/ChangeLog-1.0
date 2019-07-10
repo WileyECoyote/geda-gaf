@@ -5,6 +5,8 @@
     * src/utility/u_log.c: Change the location of log files to the user
       cache folder.
 
+    * tests/test_file.c: Add check for geda_user_cache_path.
+
 2019-07-09 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/unit-tests/t0001-geda.scm: Rename file to something that
