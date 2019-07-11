@@ -362,46 +362,50 @@ EDA_SCM_DEFINE (object_stroke, "%object-stroke", 1, 0, 0,
   GedaObject *obj = edascm_to_object (obj_s);
 
   int end, type, width, length, space;
-  geda_object_get_line_options (obj, (LINE_END *) &end, (LINE_TYPE *) &type, &width,
-                      &length, &space);
 
-  SCM width_s = scm_from_int (width);
+  geda_object_get_line_options (obj, (LINE_END*) &end,
+                                     (LINE_TYPE*) &type,
+                                     &width, &length, &space);
+
+  SCM width_s  = scm_from_int (width);
   SCM length_s = scm_from_int (length);
-  SCM space_s = scm_from_int (space);
+  SCM space_s  = scm_from_int (space);
 
   SCM cap_s;
   switch (end) {
-  case END_NONE: cap_s = none_sym; break;
-  case END_SQUARE: cap_s = square_sym; break;
-  case END_ROUND: cap_s = round_sym; break;
-  default:
-    scm_misc_error (scheme_object_stroke,
-                    _("Object ~A has invalid stroke cap style ~A"),
-                    scm_list_2 (obj_s, scm_from_int (end)));
+    case END_NONE:   cap_s = none_sym;   break;
+    case END_SQUARE: cap_s = square_sym; break;
+    case END_ROUND:  cap_s = round_sym;  break;
+    default:
+      scm_misc_error (scheme_object_stroke,
+                      _("Object ~A has invalid stroke cap style ~A"),
+                      scm_list_2 (obj_s, scm_from_int (end)));
   }
 
   SCM dash_s;
   switch (type) {
-  case TYPE_SOLID: dash_s = solid_sym; break;
-  case TYPE_DOTTED: dash_s = dotted_sym; break;
-  case TYPE_DASHED: dash_s = dashed_sym; break;
-  case TYPE_CENTER: dash_s = center_sym; break;
-  case TYPE_PHANTOM: dash_s = phantom_sym; break;
-  default:
-    scm_misc_error (scheme_object_stroke,
-                    _("Object ~A has invalid stroke dash style ~A"),
-                    scm_list_2 (obj_s, scm_from_int (type)));
+    case TYPE_SOLID:   dash_s = solid_sym;   break;
+    case TYPE_DOTTED:  dash_s = dotted_sym;  break;
+    case TYPE_DASHED:  dash_s = dashed_sym;  break;
+    case TYPE_CENTER:  dash_s = center_sym;  break;
+    case TYPE_PHANTOM: dash_s = phantom_sym; break;
+    default:
+      scm_misc_error (scheme_object_stroke,
+                      _("Object ~A has invalid stroke dash style ~A"),
+                      scm_list_2 (obj_s, scm_from_int (type)));
   }
 
   switch (type) {
-  case TYPE_DASHED:
-  case TYPE_CENTER:
-  case TYPE_PHANTOM:
-    return scm_list_5 (width_s, cap_s, dash_s, space_s, length_s);
-  case TYPE_DOTTED:
-    return scm_list_4 (width_s, cap_s, dash_s, space_s);
-  default:
-    return scm_list_3 (width_s, cap_s, dash_s);
+    case TYPE_DASHED:
+    case TYPE_CENTER:
+    case TYPE_PHANTOM:
+      return scm_list_5 (width_s, cap_s, dash_s, space_s, length_s);
+
+    case TYPE_DOTTED:
+      return scm_list_4 (width_s, cap_s, dash_s, space_s);
+
+    default:
+      return scm_list_3 (width_s, cap_s, dash_s);
   }
 }
 
@@ -1439,23 +1443,24 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s, SCM_ARG1, scheme_object_type);
 
   GedaObject *obj = edascm_to_object (obj_s);
+
   switch (obj->type) {
-  case OBJ_LINE:    result = line_sym;       break;
-  case OBJ_NET:     result = net_sym;        break;
-  case OBJ_BUS:     result = bus_sym;        break;
-  case OBJ_BOX:     result = box_sym;        break;
-  case OBJ_PICTURE: result = picture_sym;    break;
-  case OBJ_CIRCLE:  result = circle_sym;     break;
-  case OBJ_PLACEHOLDER:
-  case OBJ_COMPLEX: result = complex_sym;    break;
-  case OBJ_TEXT:    result = text_sym;       break;
-  case OBJ_PATH:    result = path_sym;       break;
-  case OBJ_PIN:     result = pin_sym;        break;
-  case OBJ_ARC:     result = arc_sym;        break;
-  default:
-    scm_misc_error (scheme_object_type, _("Object ~A has bad type '~A'"),
-                    scm_list_2 (obj_s,
-                                scm_integer_to_char (scm_from_int (obj->type))));
+    case OBJ_LINE:    result = line_sym;       break;
+    case OBJ_NET:     result = net_sym;        break;
+    case OBJ_BUS:     result = bus_sym;        break;
+    case OBJ_BOX:     result = box_sym;        break;
+    case OBJ_PICTURE: result = picture_sym;    break;
+    case OBJ_CIRCLE:  result = circle_sym;     break;
+    case OBJ_PLACEHOLDER:
+    case OBJ_COMPLEX: result = complex_sym;    break;
+    case OBJ_TEXT:    result = text_sym;       break;
+    case OBJ_PATH:    result = path_sym;       break;
+    case OBJ_PIN:     result = pin_sym;        break;
+    case OBJ_ARC:     result = arc_sym;        break;
+    default:
+      scm_misc_error (scheme_object_type, _("Object ~A has bad type '~A'"),
+      scm_list_2 (obj_s,
+                  scm_integer_to_char (scm_from_int (obj->type))));
   }
 
   return result;
