@@ -2,6 +2,7 @@
 
     * scheme/auto-place-attribs.scm: Fix backwards logic in autoplace-text
       so that set-default-position is called when attrib-defaults exist.
+      Eliminate superfluous begin in check-object-attributes.
 
 2019-07-10 Wiley E. Hill <wileyhill@gmail.com
 

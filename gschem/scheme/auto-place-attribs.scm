@@ -633,7 +633,6 @@
       #t
       (if (< (length attributes_list) 2)
       (error (string-append "check-object-attributes: Odd number in attributes list."))
-        (begin
       (let* ((attribute-name (car attributes_list))
              (attribute-pattern (car (cdr attributes_list)))
              (attribute-values (if (string=? attribute-name "OBJ_TYPE")
@@ -652,7 +651,6 @@
             )
           )
         )
-      )
       )
     )
   )
