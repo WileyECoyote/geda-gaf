@@ -86,8 +86,7 @@
     (let ( (bounds (get-object-bounds object (list "all") (list)))
        )
       (begin
-    (if (or (char=? (get-object-type object) OBJ_NET)
-        (char=? (get-object-type object) OBJ_BUS))
+    (if (or (net? object) (bus? object))
         (let ( ; Get the net bounds without the attribute
            (min-x (get-point-of-bound "min-x" bounds))
            (max-x (get-point-of-bound "max-x" bounds))
@@ -793,10 +792,7 @@
 (define (autoplace-object-attributes object)
   (let* ((pin-list (get-object-pins object))
          (pin-directions (get-pin-directions pin-list))
-         (connection-sides (if (or (char=? (get-object-type object)
-                                    OBJ_NET)
-                                  (char=? (get-object-type object)
-                                    OBJ_BUS))
+         (connection-sides (if (or (net? object) (bus? object))
                              (get-net-connection-sides object)
                              (get-connection-sides pin-directions)))
          (attribute-list (get-object-attributes object)))
