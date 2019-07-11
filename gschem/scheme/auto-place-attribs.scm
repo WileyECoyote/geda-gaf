@@ -95,10 +95,10 @@
            (max-y (get-point-of-bound "max-y" bounds))
            )
           ; Line's width needs to be considered here.
-          (if (eq? (- max-x min-x) (get-line-width object))
+          (if (eq? (- max-x min-x) (object-stroke-width object))
           ; If the x bounds are the same, this is a vertical segment.
           "^v"
-          (if (eq? (- max-y min-y) (get-line-width object))
+          (if (eq? (- max-y min-y) (object-stroke-width object))
               ; If the y bounds are, this is a horizontal segment.
               "<>"
               ; X or Y bounds are not the same. We don't know.
