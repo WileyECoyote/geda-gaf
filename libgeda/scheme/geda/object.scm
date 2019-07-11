@@ -121,7 +121,6 @@
 
 ;;;; Boxes
 
-
 (define-public (box? l)
   (object-type? l 'box))
 
