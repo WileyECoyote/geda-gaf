@@ -571,11 +571,11 @@
   (if (not (string-index position-string #\ ))
       (error "get-reference : Wrong reference format")
   )
-  (let* ((object-type (get-object-type object))
-              ; Get the object bounds:
-              ;  - If it's a pin: including everything.
-              ;  - otherwise: without attributes neither pins.
-         (bounds (if (char=? object-type OBJ_PIN)
+
+  (let* (; Get the object bounds:
+         ;  - If it's a pin: including everything.
+         ;  - otherwise: without attributes neither pins.
+         (bounds (if (pin? object)
                      (get-object-bounds object (list "all") (list))
                      (get-object-bounds object (list "all")
                      (list (list->string (list OBJ_PIN))))))
