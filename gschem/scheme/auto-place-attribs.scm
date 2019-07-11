@@ -94,7 +94,7 @@
            (min-y (get-point-of-bound "min-y" bounds))
            (max-y (get-point-of-bound "max-y" bounds))
            )
-              ; Line's width needs to be considered here.
+          ; Line's width needs to be considered here.
           (if (eq? (- max-x min-x) (get-line-width object))
           ; If the x bounds are the same, this is a vertical segment.
           "^v"
@@ -633,29 +633,28 @@
       #t
       (if (< (length attributes_list) 2)
       (error (string-append "check-object-attributes: Odd number in attributes list."))
-      (let* ( (attribute-name (car attributes_list))
-          (attribute-pattern (car (cdr attributes_list)))
-          (attribute-values (if (string=? attribute-name
-                           "OBJ_TYPE")
-                     (list
-                     (list->string
-                      (list (get-object-type object))))
-                    (get-attrib-value-by-attrib-name
-                     object attribute-name)))
-           )
         (begin
+      (let* ((attribute-name (car attributes_list))
+             (attribute-pattern (car (cdr attributes_list)))
+             (attribute-values (if (string=? attribute-name "OBJ_TYPE")
+                                 (list
+                                   (list->string
+                                   (list (get-object-type object))))
+                                 (get-attrib-value-by-attrib-name
+                                    object attribute-name)))
+            )
+
           (if (null? attribute-values)
-          #f
-          (if (list-string-match attribute-pattern attribute-values)
-              (check-object-attributes object
-                           (cdr (cdr attributes_list)))
+            #f
+            (if (list-string-match attribute-pattern attribute-values)
+               (check-object-attributes object (cdr (cdr attributes_list)))
               #f
-              )
-          )
+            )
           )
         )
       )
       )
+    )
   )
 
 ; This function sets the default parameters of each attribute,
@@ -671,6 +670,7 @@
              (def-attrib-name   (list-ref default-def def-attrib-name-pos))  ; Default attrib name
              (def-direction     (list-ref default-def def-direction-pos))    ; Default direction
             )
+
     ; Check if the attribute's name and direction matches.
     (if (and (string=? attrib-name def-attrib-name)
              (string=? def-direction direction)
@@ -722,7 +722,7 @@
 
 (define (get-attrib-default-position attribute direction)
   (let* ((attrib-name-value (get-attribute-name-value attribute))
-         (attrib-name       (car attrib-name-value))                     ; Attribute name
+         (attrib-name       (car attrib-name-value))                   ; Attribute name
         )
     (filter
         (lambda (record)
