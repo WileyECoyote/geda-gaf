@@ -88,7 +88,8 @@ update-gaf-tool:
 
 .PHONY: update-gaf-tool
 
-MOSTLYCLEANFILES     = *.log *~
-CLEANFILES           = *.log *~ geda/core/gettext.scm
-DISTCLEANFILES       = *.log *~ core FILE
-MAINTAINERCLEANFILES = *.log *~ Makefile.in
+MOSTLYCLEANFILES     = *.log */*~ *~
+CLEANFILES           = *.log */*~ *~ geda/core/gettext.scm
+DISTCLEANFILES       = *.log */*~ *~ core FILE
+MAINTAINERCLEANFILES = *.log */*~ *~ Makefile.in
+

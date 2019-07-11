@@ -1,3 +1,7 @@
+2019-07-11 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/Makefile.am: Clean subdirectories.
+
 2019-07-10 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/scheme_version.c: Use relative paths for included headers.
