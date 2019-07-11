@@ -746,7 +746,7 @@
   (map
     (lambda (attrib)
       (let* ((attrib-defaults (get-attrib-default-position attrib direction)))
-        (if (null? attrib-defaults)
+        (if (not (null? attrib-defaults))
           (set-default-position object attrib direction attrib-defaults)
         )
       )
