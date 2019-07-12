@@ -34,7 +34,7 @@
 ;; - figure out how to launch a gsch2pcb editor to modify the gsch2pcb project
 ;;   file.
 ;;
-;; - figure out how to capture standard output from gsch2pcb and put it to 
+;; - figure out how to capture standard output from gsch2pcb and put it to
 ;;   the gschem log.  Perhaps a gschem-system-and-log function?
 ;;
 ;; - tell the listening pcb to load the new netlist and also load the
@@ -86,11 +86,11 @@
 
       ;; pipe is open so try and write out our value
       (begin
-	(catch #t 
+	(catch #t
 
 	       ;; try to write our value
 	       (lambda ()
-		 (display val pcb:pipe) 
+		 (display val pcb:pipe)
 		 )
 
 	       ;; and if we fail spit out a message
@@ -110,9 +110,9 @@
 
       ;; pipe is not open so don't try and write to it
       ;;(display "pcb:pipe is not open\n")
-      
+
       )
-  
+
 )
 
 ;;
@@ -121,17 +121,17 @@
 ;;
 
 (define (pcb-select-component-hook attribs)
-  
-  (for-each 
-     (lambda (attrib) 
-       (let* ((name-value (get-attribute-name-value attrib))
+
+  (for-each
+     (lambda (attrib)
+       (let* ((name-value (parse-attrib attrib))
               (name (car name-value))
               (value (cdr name-value))
              )
 	     (if (string=? name "refdes")
 		 (let ()
 		  (pcb:pipe-write "Select(ElementByName, ^")
-		  (pcb:pipe-write value) 
+		  (pcb:pipe-write value)
 		  (pcb:pipe-write "$)\n")
 		  )
 		 )
@@ -147,9 +147,9 @@
 ;;
 
 (define (pcb-deselect-component-hook attribs)
-  (for-each 
-     (lambda (attrib) 
-       (let* ((name-value (get-attribute-name-value attrib))
+  (for-each
+     (lambda (attrib)
+       (let* ((name-value (parse-attrib attrib))
               (name (car name-value))
               (value (cdr name-value))
              )
@@ -228,7 +228,7 @@
 (define (pcb:launch-pcb)
   ;; We don't want to crash on a SIGPIPE if the user
   ;; exits from PCB
-  (if pcb:pipe 
+  (if pcb:pipe
       (begin
 	(gschem-log "PCB is already running\n")
 	(gschem-msg "PCB is already running\n")
@@ -239,7 +239,7 @@
 	    (begin
 	      (sigaction SIGPIPE SIG_IGN)
 	      (gschem-log "Launching PCB\n")
-	      (set! pcb:pipe (open-output-pipe 
+	      (set! pcb:pipe (open-output-pipe
 			      (string-append pcb:pcb-cmd " --listen")
 			      )
 		    )
@@ -293,7 +293,7 @@
     )
   )
 
-(define pcb:menu-items 
+(define pcb:menu-items
 ;;
 ;;          menu item name      menu action     	menu hotkey action
 ;;
