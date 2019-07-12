@@ -1342,7 +1342,7 @@
 ;(add-hook! (@ (gschem hook) new-page-hook) (lambda (page)
 ;   ; Only place the titleblock if there are no objects in the page
 ;   ; and the page filename ends in ".sym".
-;   (if (and (null? (get-objects-in-page page))
+;   (if (and (null? (page-contents page))
 ;            ; If the guile installation doesn't provide the regex module,
 ;            ; don't care about the page filename.
 ;            (if (provided? 'regex)

@@ -3,6 +3,9 @@
     * etc/system-gschemrc.scm: Replace get-objects-in-page with
       page-contents; the order of object does not matter.
 
+    * etc/user-gschemrc.scm: Replace get-objects-in-page with
+      page-contents; the order of object does not matter.
+
 2019-07-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/auto-place-attribs.scm: Fix backwards logic in autoplace-text
