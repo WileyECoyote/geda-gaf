@@ -138,12 +138,6 @@
     (list-set! params 3 (simple-format #f "~A=~A" (car name-value) value))
     (apply set-text! attrib params)))
 
-;; get-objects-in-page page
-;;
-;; Get the contents of page, in reverse order.
-(define-public (get-objects-in-page page)
-  (reverse! (page-contents page)))
-
 ;; get-current-page
 ;;
 ;; Return the page which currently has focus in gschem.

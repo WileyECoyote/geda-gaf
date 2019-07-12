@@ -9,6 +9,11 @@
     * scheme/auto-place-attribs.scm: Replace get-attribute-name-value
       with parse-attrib.
 
+    * scheme/print-NB-attribs.scm: Remove module; does not appear to be
+      particularly useful.
+
+    * scheme/gschem/deprecated.scm: Remove unused get-objects-in-page.
+
 2019-07-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/auto-place-attribs.scm: Fix backwards logic in autoplace-text
