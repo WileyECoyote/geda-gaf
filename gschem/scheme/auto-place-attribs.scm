@@ -189,8 +189,7 @@
        (lambda (bounds desired-side pin-list)
      (if (null? pin-list)
          bounds
-         (begin
-           (let* ( (pin (car pin-list))
+         (let* ( (pin (car pin-list))
                (pin-direction (get-pin-direction pin))
                (pin-bounds (get-object-bounds pin (list) (list)))
                (new-bounds bounds)
@@ -225,7 +224,7 @@
                         "max-y" old-bounds))))))))
            (get-bound-of-list-of-pins-with-attribs
             new-bounds desired-side (cdr pin-list))
-           ))))))
+         )))))
 
      (get-bound-of-list-of-pins-with-attribs
       (list)

@@ -9,6 +9,9 @@
     * scheme/auto-place-attribs.scm: Replace get-attribute-name-value
       with parse-attrib.
 
+    * scheme/auto-place-attribs.scm: Eliminate superfluous begin in
+      get-bounds-of-pins-with-attribs-in-side.
+
     * scheme/print-NB-attribs.scm: Remove module; does not appear to be
       particularly useful.
 
