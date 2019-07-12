@@ -9,7 +9,6 @@ nobase_dist_scmdata_DATA = \
 			generate_netlist.scm \
 			gschem.scm \
 			list-keys.scm \
-			print-NB-attribs.scm \
 			auto-place-attribs.scm \
 			auto-place-netname.scm \
 			pcb.scm \
