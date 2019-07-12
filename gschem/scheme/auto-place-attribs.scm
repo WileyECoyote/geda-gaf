@@ -661,7 +661,7 @@
 (define (set-default-position object attribute direction defaults)
   (if (null? defaults)
       0
-      (let* ((attrib-name-value (get-attribute-name-value attribute))
+      (let* ((attrib-name-value (parse-attrib attribute))
              (attrib-name       (car attrib-name-value))                     ; Attribute name
              (default-def       (car defaults))                              ; Default definition
              (def-attrib-name   (list-ref default-def def-attrib-name-pos))  ; Default attrib name
@@ -718,7 +718,7 @@
 ) ; End of definition of set-default-position
 
 (define (get-attrib-default-position attribute direction)
-  (let* ((attrib-name-value (get-attribute-name-value attribute))
+  (let* ((attrib-name-value (parse-attrib attribute))
          (attrib-name       (car attrib-name-value))                   ; Attribute name
         )
     (filter

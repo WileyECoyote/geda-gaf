@@ -6,6 +6,9 @@
     * etc/user-gschemrc.scm: Replace get-objects-in-page with
       page-contents; the order of object does not matter.
 
+    * scheme/auto-place-attribs.scm: Replace get-attribute-name-value
+      with parse-attrib.
+
 2019-07-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/auto-place-attribs.scm: Fix backwards logic in autoplace-text
