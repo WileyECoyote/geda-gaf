@@ -48,11 +48,11 @@ msgstr "പ്രതിരോധക്കാർക്കായി സ്ഥി�
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "സ്ഥിരസ്ഥിതി ശീർഷക ബ്ലോക്ക് ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
-# sthirasthiti śīrṣaka blēākk cihnaṁ nēṭuka alleṅkil sajjamākkuka
+# Get or Set the default transformer symbol
+# sthira ṭrānsphēārmar cihnaṁ nēṭuka alleṅkil sajjamākkuka
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "സ്ഥിരസ്ഥിതി ശീർഷക ബ്ലോക്ക് ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
+msgstr "സ്ഥിര ട്രാൻസ്ഫോർമർ ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # Close all files and the library - ellā phayalukaḷuṁ laibraṟiyuṁ aṭaykkuka
 #: libgedathon/include/geda_module.h:53
@@ -448,10 +448,13 @@ msgstr "പിൻ"
 msgid "Text"
 msgstr "വാചകം"
 
+# Error initializing new Arc object
+# putiya ārkk ob‌jakṟṟ samārambhikkunnatil piśak
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "പുതിയ ആർക്ക് ഒബ്‌ജക്റ്റ് സമാരംഭിക്കുന്നതിൽ പിശക്"
 
+# Cannot delete the %s attribute; %s āṭribyūṭṭ illātākkān kaḻiyilla
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -465,22 +468,26 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "%s ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കാൻ കഴിയില്ല"
 
+# The %s attribute must be an integer value
+# %s āṭribyūṭṭ oru pūrṇṇasaṅkhyayāyirikkaṇaṁ
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "%s ആട്രിബ്യൂട്ട് ഒരു പൂർണ്ണസംഖ്യയായിരിക്കണം"
 
+# Python integer too large to convert to C integer
+# si pūrṇṇasaṅkhyayilēkk parivarttanaṁ ceyyān paittaṇ saṅkhya vaḷare valutāṇ
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
-msgstr ""
+msgstr "സി പൂർണ്ണസംഖ്യയിലേക്ക് പരിവർത്തനം ചെയ്യാൻ പൈത്തൺ സംഖ്യ വളരെ വലുതാണ്"
 
 # Creates an Arc object extension type
 # ārkk objakṟṟ eksṟṟanṣan taraṁ sr̥ṣṭikkunnu
@@ -488,9 +495,11 @@ msgstr ""
 msgid "Creates an Arc object extension type."
 msgstr "ആർക്ക് ഒബ്ജക്റ്റ് എക്സ്റ്റൻഷൻ തരം സൃഷ്ടിക്കുന്നു"
 
+# Error initializing new Box object
+# putiya bēāks ob‌jakṟṟ samārambhikkunnatil piśak
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "പുതിയ ബോക്സ് ഒബ്‌ജക്റ്റ് സമാരംഭിക്കുന്നതിൽ പിശക്"
 
 # Creates a box object type
 # bēāks objakṟṟ taraṁ sr̥ṣṭikkunnu
@@ -498,13 +507,17 @@ msgstr ""
 msgid "Creates a Box object type."
 msgstr "ബോക്സ് ഒബ്ജക്റ്റ് തരം സൃഷ്ടിക്കുന്നു."
 
+# Error initializing new cable object
+# putiya kēbiḷ ob‌jakṟṟ samārambhikkunnatil piśak
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "പുതിയ കേബിൾ ഒബ്‌ജക്റ്റ് സമാരംഭിക്കുന്നതിൽ പിശക്"
 
+# The bus name attribute value must be a string
+# bas nāma āṭribyūṭṭ mūlyaṁ oru sṭriṅg āyirikkaṇaṁ
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "ബസ് നാമ ആട്രിബ്യൂട്ട് മൂല്യം ഒരു സ്ട്രിംഗ് ആയിരിക്കണം"
 
 # Creates a Bus object type
 # oru bas ōbjakṟṟ taraṁ sr̥ṣṭikkunnu
