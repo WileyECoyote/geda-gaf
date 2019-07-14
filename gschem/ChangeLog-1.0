@@ -1,3 +1,7 @@
+2019-07-13 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/es.po: Update Spanish translations.
+
 2019-07-12 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Replace get-objects-in-page with
@@ -803,7 +807,7 @@
 
     * po/af.po: Update Afrikaans translations.
     * po/ar.po: Update Arabic translations.
-    * po/bs.po: Update Bosnian translations
+    * po/bs.po: Update Bosnian translations.
     * po/fa.po: Update Persian translations.
     * po/fi.po: Update Finnish translations.
     * po/he.po: Update Hebrew translations.

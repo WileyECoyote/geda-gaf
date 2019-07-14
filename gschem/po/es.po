@@ -2407,9 +2407,10 @@ msgstr "Deseleccionar"
 msgid "Array"
 msgstr "Formación"
 
+# Row
 #: gschem/src/x/x_edit_array.c:1147
 msgid "Row"
-msgstr ""
+msgstr "Fila"
 
 # Offset
 #: gschem/src/x/x_edit_array.c:1170 gschem/src/x/x_edit_array.c:1203
@@ -2418,39 +2419,41 @@ msgstr "Compensar"
 
 #: gschem/src/x/x_edit_array.c:1180
 msgid "Column"
-msgstr ""
+msgstr "Columna"
 
 #: gschem/src/x/x_edit_array.c:1213
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: gschem/src/x/x_edit_array.c:1221
 msgid "X,Y"
-msgstr ""
+msgstr "X,Y"
 
 #: gschem/src/x/x_edit_array.c:1225
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: gschem/src/x/x_edit_array.c:1243
 msgid "Read only count of objects currently selected"
-msgstr ""
+msgstr "Cuenta de solo lectura de objetos actualmente seleccionados"
 
 #: gschem/src/x/x_edit_array.c:1250
 msgid "Read only x bounds displacement of selected object"
-msgstr ""
+msgstr "Solo lectura x límites de desplazamiento del objeto seleccionado"
 
 #: gschem/src/x/x_edit_array.c:1257
 msgid "Read only y bounds displacement of selected object"
-msgstr ""
+msgstr "Solo lectura y límites de desplazamiento del objeto seleccionado"
 
+# Spinner entry number of rows to create
 #: gschem/src/x/x_edit_array.c:1264
 msgid "Spinner entry number of rows to create"
-msgstr ""
+msgstr "Spinner número de entrada de filas para crear"
 
+# pinner entry number of columns to create
 #: gschem/src/x/x_edit_array.c:1271
 msgid "Spinner entry number of columns to create"
-msgstr ""
+msgstr "Spinner número de entrada de columnas para crear"
 
 #: gschem/src/x/x_edit_array.c:1278
 msgid "Entry for array horizontal pitch"
