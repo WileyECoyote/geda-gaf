@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-04 17:47-0500\n"
+"POT-Creation-Date: 2019-07-13 22:09-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -38,11 +38,11 @@ msgid "Failed to save user configuration to"
 msgstr ""
 
 # Unable to find file
-#: gattrib/src/gattrib.c:408
+#: gattrib/src/gattrib.c:409
 msgid "Could not find file"
 msgstr "Не удалось найти файл"
 
-#: gattrib/src/gattrib.c:457
+#: gattrib/src/gattrib.c:458
 msgid "Exported schematic to"
 msgstr ""
 
@@ -169,22 +169,22 @@ msgstr "Увеличьте количество пар переименован�
 msgid "Creating master component list.\n"
 msgstr "Создание списка основных компонентов.\n"
 
-#: gattrib/src/s_sheet_data.c:310
+#: gattrib/src/s_sheet_data.c:311
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Создание списка атрибутов основного компонента.\n"
 
-#: gattrib/src/s_sheet_data.c:436
+#: gattrib/src/s_sheet_data.c:437
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr "Создание мастер-списка выводов.\n"
 
 # found component pin with no pinnumber
-#: gattrib/src/s_sheet_data.c:486
+#: gattrib/src/s_sheet_data.c:487
 msgid "found component pin without a pin number"
 msgstr "найденный штырь компонента без номера штыря"
 
-#: gattrib/src/s_sheet_data.c:549
+#: gattrib/src/s_sheet_data.c:550
 msgid "Creating master pin attribute list"
 msgstr "Создание списка атрибутов мастер-штифта"
 
@@ -226,7 +226,7 @@ msgid "Pin Error looking for column"
 msgstr "Ошибка вывода столбца"
 
 # Are you sure you want to remove this attribute
-#: gattrib/src/s_toplevel.c:273
+#: gattrib/src/s_toplevel.c:278
 msgid ""
 "Are you sure you want to delete\n"
 "the"
@@ -235,22 +235,22 @@ msgstr ""
 "the"
 
 # Attribute
-#: gattrib/src/s_toplevel.c:277
+#: gattrib/src/s_toplevel.c:282
 msgid "attribute"
 msgstr "атрибут"
 
 # could not find the «refdes» in the main list
-#: gattrib/src/s_toplevel.c:490
+#: gattrib/src/s_toplevel.c:500
 msgid "did not find the refdes in the master list\n"
 msgstr "не смог найти «refdes» в метку этого символа основного списка!\n"
 
-#: gattrib/src/s_toplevel.c:848
+#: gattrib/src/s_toplevel.c:858
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr "отсутствует атрибут «refdes» или «pinnumber» у объекта!"
 
 # did not find the refdes:pin
-#: gattrib/src/s_toplevel.c:857
+#: gattrib/src/s_toplevel.c:867
 msgid "did not find refdes:pin"
 msgstr "не смог найти ««refdes»»:«pinnumber»"
 
@@ -787,15 +787,15 @@ msgstr ""
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:575
+#: gattrib/src/x_menus.c:576
 msgid "Open _Recent"
 msgstr ""
 
-#: gattrib/src/x_menus.c:576
+#: gattrib/src/x_menus.c:577
 msgid "Open recently used files"
 msgstr ""
 
-#: gattrib/src/x_menus.c:678
+#: gattrib/src/x_menus.c:679
 msgid "Error loading"
 msgstr "Ошибка загрузки"
 

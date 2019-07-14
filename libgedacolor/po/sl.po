@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedacolor\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-09-29 00:04-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,8 +19,8 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedacolor/src/get/color_get.c:62 libgedacolor/src/get/color_get.c:185
-#: libgedacolor/src/utility/color_utility.c:222
+#: libgedacolor/src/get/color_get.c:60 libgedacolor/src/get/color_get.c:185
+#: libgedacolor/src/utility/color_utility.c:229
 #, c-format
 msgid "Color index out of range"
 msgstr ""
@@ -81,15 +81,15 @@ msgstr ""
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:253
+#: libgedacolor/src/x11/color_x11.c:251
 msgid "Allocating color scheme"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:258 libgedacolor/src/libgedacolor.c:136
+#: libgedacolor/src/x11/color_x11.c:256 libgedacolor/src/libgedacolor.c:136
 msgid "Something went wrong, check"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:263 libgedacolor/src/libgedacolor.c:141
+#: libgedacolor/src/x11/color_x11.c:261 libgedacolor/src/libgedacolor.c:141
 msgid "Could not locate file"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,36 +19,43 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 
 # Kondensa no deforutoshinboru o shutoku matawa settei suru
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "コンデンサのデフォルトシンボルを取得または設定する\n"
 
 # Denkai kondensa no deforutoshinboru no shutoku matawa settei
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr "電解コンデンサのデフォルトシンボルの取得または設定\n"
 
 # Indakuta no deforutoshinboru o shutoku matawa settei suru
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "インダクタのデフォルトシンボルを取得または設定する\n"
 
 # Get or Set the default operational amplifier symbol
 # Deforuto no opeanpushinboru o shutoku matawa settei suru
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr "デフォルトのオペアンプシンボルを取得または設定する\n"
 
 # Get or Set the default symbol for resistors
 # Rejisuta no deforutoshinboru o shutoku matawa settei suru
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "レジスタのデフォルトシンボルを取得または設定する\n"
 
 # Get or Set the default titleblock symbol
 # Deforuto no taitoruburokkushinboru o shutoku matawa settei suru
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "デフォルトのタイトルブロックシンボルを取得または設定する\n"
+
+# Get or Set the default titleblock symbol
+# Deforuto no taitoruburokkushinboru o shutoku matawa settei suru
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "デフォルトのタイトルブロックシンボルを取得または設定する\n"
 
 # Close all files and deinitialize the library
@@ -381,78 +388,78 @@ msgstr "指定されたオブジェクトの未接続ノードの点のリスト
 
 # Type error, ignoring invalid optional parameter 5
 # Kata erā, mukōna opushonparamēta 5 o mushi shite
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "型エラー、無効なオプションパラメータ5を無視して\n"
 
 # get; Shutoku suru
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "取得する"
 
 # or set; Matawa settei
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "または設定"
 
 # An error occurred; Erā ga hassei shimashita
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "エラーが発生しました"
 
 # object was not created; Obujekuto wa sakusei sa remasendeshita
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "オブジェクトは作成されませんでした"
 
 # Arc; Āku
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "アーク"
 
 # Text Attribute; Tekisuto zokusei
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "テキスト属性"
 
 # Box => Rectangle; Kukei
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "矩形"
 
 # Bus => cable; Kēburu
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "ケーブル"
 
 # Circle; Sākuru
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "サークル"
 
 # Line; Rain
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "ライン"
 
 # Net; Netto
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "ネット"
 
 # Path => polygon; Porigon
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "ポリゴン"
 
 # Pin
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "ピン"
 
 # Text; Tekisuto
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "テキスト"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,31 +19,36 @@ msgstr ""
 "X-Poedit-Country: NETHERLANDS\n"
 "X-Poedit-Language: Dutch\n"
 
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "Krijg of stel het standaardsymbool voor condensatoren in\n"
 
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr ""
 "Zoek of stel het standaardsymbool in voor elektrolytische condensatoren\n"
 
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "Zoek of stel het standaardsymbool voor inductoren in\n"
 
 # Retrieve or Set the default operational amplifier symbol
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr ""
 "Ophalen of instellen van het standaard operationele versterkersymbool\n"
 
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "Ophalen of instellen van het standaardsymbool voor weerstanden\n"
 
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "Haal het standaard symbool voor het titelblok op of stel het in\n"
+
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "Haal het standaard symbool voor het titelblok op of stel het in\n"
 
 #: libgedathon/include/geda_module.h:53
@@ -324,77 +329,77 @@ msgstr ""
 "objecten"
 
 # Type error, ignoring invalid optional parameter 5
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "Typ error, negeer ongeldige optionele parameter 5\n"
 
 # get
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "krijgen"
 
 # or set
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "of stel in"
 
 # An error occurred
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "Er is een fout opgetreden"
 
 # object was not created
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "object is niet gemaakt"
 
 # Arc
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "Boog"
 
 # Text Attribute
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "Tekstkenmerk"
 
 # Box
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "Doos"
 
 # Bus => cable
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "kabel"
 
 # Circle
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "Cirkel"
 
 # Line
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "Lijn"
 
 # Net
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "Netto"
 
 # Path => polygon
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "veelhoek"
 
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "Pin"
 
 # Text
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "Tekst"
 

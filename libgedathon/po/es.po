@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2017-12-13 02:37-0600\n"
 "Last-Translator: Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -18,34 +18,40 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Poedit 1.6.10\n"
 
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "Obtener o establecer el símbolo predeterminado para condensadores\n"
 
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr ""
 "Obtenga o establezca el símbolo predeterminado para condensadores "
 "electrolíticos\n"
 
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "Obtener o establecer el símbolo por defecto para inductores\n"
 
 # Get or Set the default operational amplifier symbol
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr ""
 "Obtener o establecer el símbolo del amplificador operacional predeterminado\n"
 
 # Get or Set the default symbol for resistors
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "Consigue o establece el símbolo por defecto para resistencias\n"
 
 # Get or Set the default titleblock symbol
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "Obtener o establecer el símbolo de bloqueo de título predeterminado\n"
+
+# Get or Set the default titleblock symbol
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "Obtener o establecer el símbolo de bloqueo de título predeterminado\n"
 
 # Close all files and deinitialize the library
@@ -305,78 +311,78 @@ msgstr ""
 "Recuperar lista de puntos de nodos desconectados para objetos especificados"
 
 # Type error, ignoring invalid optional parameter 5
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "Tipo de error, ignorando el parámetro opcional inválido 5\n"
 
 # get
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "obtener"
 
 # or set
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "o conjunto"
 
 # An error occurred
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "Ocurrió un error"
 
 # object was not created
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "el objeto no fue creado"
 
 # Arc
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "Arco"
 
 # Text Attribute
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "Atributo de texto"
 
 # Box => Rectangle
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "Rectángulo"
 
 # Bus
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "ómnibus"
 
 # Circle
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "Circulo"
 
 # Line
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "Línea"
 
 # Net
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "cadena"
 
 # Path => Polygon
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "Camino"
 
 # Pin
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "Alfiler"
 
 # Text
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "Texto"
 

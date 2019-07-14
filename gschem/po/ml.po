@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-11 11:31-0500\n"
+"POT-Creation-Date: 2019-07-13 22:09-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1164,12 +1164,12 @@ msgid "Resnap Active"
 msgstr "റീ-സ്നാപ്പ് സജീവ"
 
 # Initializing default configuration settings
-#: gschem/src/iface/i_vars.c:784
+#: gschem/src/iface/i_vars.c:805
 msgid "Initializing default configuration settings\n"
 msgstr "സ്ഥിരസ്ഥിതി കോൺഫിഗറേഷൻ ക്രമീകരണങ്ങൾ സമാരംഭിക്കുന്നു\n"
 
 # Failed to save user configuration to
-#: gschem/src/iface/i_vars.c:826
+#: gschem/src/iface/i_vars.c:847
 msgid "Failed to save user configuration to"
 msgstr "ഉപയോക്തൃ കോൺഫിഗറേഷൻ എന്നതിലേക്ക് സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു"
 
@@ -1667,7 +1667,7 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:2887 gschem/src/x/x_dialog.c:1870
+#: gschem/src/x/x_compselect.c:2887 gschem/src/x/x_dialog.c:1871
 msgid "None"
 msgstr ""
 
@@ -1765,35 +1765,35 @@ msgstr ""
 msgid "S_elect the schematics you want to save:"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:508
+#: gschem/src/x/x_confirm_close.c:510
 #, c-format
 msgid "Save the changes to schematic \"%s\" before closing?"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:515
+#: gschem/src/x/x_confirm_close.c:517
 #, c-format
 msgid ""
 "There are %d schematics with unsaved changes. Save changes before closing?"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:545
+#: gschem/src/x/x_confirm_close.c:547
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:562
+#: gschem/src/x/x_confirm_close.c:564
 msgid "Close without saving"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:615
+#: gschem/src/x/x_confirm_close.c:617
 msgid "unsaved page"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:623
+#: gschem/src/x/x_confirm_close.c:625
 msgid "unsaved pages"
 msgstr ""
 
 # selected pages
-#: gschem/src/x/x_confirm_close.c:630
+#: gschem/src/x/x_confirm_close.c:632
 msgid "selected pages"
 msgstr "തിരഞ്ഞെടുത്ത പേജുകൾ"
 
@@ -1824,11 +1824,11 @@ msgstr ""
 msgid "Command interface: engaged using"
 msgstr ""
 
-#: gschem/src/x/x_console.c:360
+#: gschem/src/x/x_console.c:375
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr ""
 
-#: gschem/src/x/x_console.c:642
+#: gschem/src/x/x_console.c:657
 msgid "gEDA Console"
 msgstr ""
 
@@ -1836,7 +1836,7 @@ msgstr ""
 msgid "Drag & Drop"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:154 gschem/src/x/x_dnd.c:655
+#: gschem/src/x/x_coord.c:154 gschem/src/x/x_dnd.c:662
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr ""
 
@@ -1844,7 +1844,7 @@ msgstr ""
 msgid "Data error"
 msgstr ""
 
-#: gschem/src/x/x_coord.c:160 gschem/src/x/x_dnd.c:657
+#: gschem/src/x/x_coord.c:160 gschem/src/x/x_dnd.c:664
 msgid "Drag & Drop failed"
 msgstr ""
 
@@ -1984,7 +1984,7 @@ msgid "Bus"
 msgstr "ബസ്"
 
 # Selection
-#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1073
+#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1075
 #: gschem/src/x/x_menus.c:109
 msgid "Selection"
 msgstr "തിരഞ്ഞെടുക്കൽ"
@@ -2067,250 +2067,250 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1296
+#: gschem/src/x/x_dialog.c:1297
 msgid "Hollow"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1297
+#: gschem/src/x/x_dialog.c:1298
 msgid "Filled"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1298
+#: gschem/src/x/x_dialog.c:1299
 msgid "Mesh"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1299
+#: gschem/src/x/x_dialog.c:1300
 msgid "Hatch"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1300 gschem/src/x/x_dialog.c:1411
-#: gschem/src/x/x_dialog.c:1420 gschem/src/x/x_dialog.c:1429
-#: gschem/src/x/x_dialog.c:1438 gschem/src/x/x_dialog.c:1447
-#: gschem/src/x/x_dialog.c:1562 gschem/src/x/x_dialog.c:1564
-#: gschem/src/x/x_dialog.c:1566 gschem/src/x/x_dialog.c:1568
-#: gschem/src/x/x_dialog.c:1570 gschem/src/x/x_dialog.c:1873
-#: gschem/src/x/x_dialog.c:1915 gschem/src/x/x_dialog.c:2027
-#: gschem/src/x/x_dialog.c:2036 gschem/src/x/x_dialog.c:2046
-#: gschem/src/x/x_dialog.c:2155 gschem/src/x/x_dialog.c:2157
-#: gschem/src/x/x_dialog.c:2159
+#: gschem/src/x/x_dialog.c:1301 gschem/src/x/x_dialog.c:1412
+#: gschem/src/x/x_dialog.c:1421 gschem/src/x/x_dialog.c:1430
+#: gschem/src/x/x_dialog.c:1439 gschem/src/x/x_dialog.c:1448
+#: gschem/src/x/x_dialog.c:1563 gschem/src/x/x_dialog.c:1565
+#: gschem/src/x/x_dialog.c:1567 gschem/src/x/x_dialog.c:1569
+#: gschem/src/x/x_dialog.c:1571 gschem/src/x/x_dialog.c:1874
+#: gschem/src/x/x_dialog.c:1916 gschem/src/x/x_dialog.c:2028
+#: gschem/src/x/x_dialog.c:2037 gschem/src/x/x_dialog.c:2047
+#: gschem/src/x/x_dialog.c:2156 gschem/src/x/x_dialog.c:2158
+#: gschem/src/x/x_dialog.c:2160
 msgid "*varies*"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1716 gschem/scheme/gschem/builtins.scm:158
+#: gschem/src/x/x_dialog.c:1717 gschem/scheme/gschem/builtins.scm:158
 msgid "Edit Fill Type"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1738
+#: gschem/src/x/x_dialog.c:1739
 msgid "Fill Type:"
 msgstr ""
 
 # Line Width
-#: gschem/src/x/x_dialog.c:1741
+#: gschem/src/x/x_dialog.c:1742
 msgid "Line Width:"
 msgstr "ലൈൻ വീതി:"
 
-#: gschem/src/x/x_dialog.c:1744
+#: gschem/src/x/x_dialog.c:1745
 msgid "Angle 1:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1747
+#: gschem/src/x/x_dialog.c:1748
 msgid "Pitch 1:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1750
+#: gschem/src/x/x_dialog.c:1751
 msgid "Angle 2:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1753
+#: gschem/src/x/x_dialog.c:1754
 msgid "Pitch 2:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1759
+#: gschem/src/x/x_dialog.c:1760
 msgid "Select fill pattern"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1764
+#: gschem/src/x/x_dialog.c:1765
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1769
+#: gschem/src/x/x_dialog.c:1770
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1774
+#: gschem/src/x/x_dialog.c:1775
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1779
+#: gschem/src/x/x_dialog.c:1780
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1784
+#: gschem/src/x/x_dialog.c:1785
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1871
+#: gschem/src/x/x_dialog.c:1872
 msgid "Square"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1872
+#: gschem/src/x/x_dialog.c:1873
 msgid "Round"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1910
+#: gschem/src/x/x_dialog.c:1911
 msgid "Solid"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1911
+#: gschem/src/x/x_dialog.c:1912
 msgid "Dotted"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1912
+#: gschem/src/x/x_dialog.c:1913
 msgid "Dashed"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1913
+#: gschem/src/x/x_dialog.c:1914
 msgid "Center"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1914
+#: gschem/src/x/x_dialog.c:1915
 msgid "Phantom"
 msgstr ""
 
 # Set the Line Width & Type
-#: gschem/src/x/x_dialog.c:2302 gschem/scheme/gschem/builtins.scm:155
+#: gschem/src/x/x_dialog.c:2303 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Line Width & Type"
 msgstr "വരയുടെ വീതി & തരം സജ്ജമാക്കുക"
 
 # Line Type
-#: gschem/src/x/x_dialog.c:2325
+#: gschem/src/x/x_dialog.c:2326
 msgid "Line Type:"
 msgstr "ലൈൻ തരം:"
 
-#: gschem/src/x/x_dialog.c:2328
+#: gschem/src/x/x_dialog.c:2329
 msgid "End Type:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2331
+#: gschem/src/x/x_dialog.c:2332
 msgid "Width:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2334
+#: gschem/src/x/x_dialog.c:2335
 msgid "Dash Length:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2337
+#: gschem/src/x/x_dialog.c:2338
 msgid "Dash Space:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2352
+#: gschem/src/x/x_dialog.c:2353
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2358
+#: gschem/src/x/x_dialog.c:2359
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2364
+#: gschem/src/x/x_dialog.c:2365
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2606
+#: gschem/src/x/x_dialog.c:2607
 msgid "Find Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2625
+#: gschem/src/x/x_dialog.c:2626
 msgid "Text to find:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2634
+#: gschem/src/x/x_dialog.c:2635
 msgid "Search hidden attributes"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2637
+#: gschem/src/x/x_dialog.c:2638
 msgid "Descend into hierarchy"
 msgstr ""
 
 # Close when ascending hierarchy
-#: gschem/src/x/x_dialog.c:2645
+#: gschem/src/x/x_dialog.c:2646
 msgid "Close on ascent"
 msgstr "ചിട്ടപ്പെടുത്തിയ ആരോഹണ പുലർത്തുക"
 
-#: gschem/src/x/x_dialog.c:2734
+#: gschem/src/x/x_dialog.c:2735
 msgid "Hide Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2753
+#: gschem/src/x/x_dialog.c:2754
 msgid "Hide text starting with:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2849
+#: gschem/src/x/x_dialog.c:2850
 msgid "Show Text"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2868
+#: gschem/src/x/x_dialog.c:2869
 msgid "Show text starting with:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2994
+#: gschem/src/x/x_dialog.c:2995
 msgid "Text Entry..."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3019
+#: gschem/src/x/x_dialog.c:3020
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
 "Middle button to rotate while placing."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3213
+#: gschem/src/x/x_dialog.c:3214
 msgid "Enter a single digit or a coordinate pair"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3214
+#: gschem/src/x/x_dialog.c:3215
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3216
+#: gschem/src/x/x_dialog.c:3217
 msgid "Translate"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3242
+#: gschem/src/x/x_dialog.c:3243
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
 msgstr ""
 
 # Auto Zoom Extents
-#: gschem/src/x/x_dialog.c:3254
+#: gschem/src/x/x_dialog.c:3255
 msgid "Auto Zoom Extents"
 msgstr "ഓട്ടോ സൂം വിപുലീകരണങ്ങൾ"
 
-#: gschem/src/x/x_dialog.c:3432
+#: gschem/src/x/x_dialog.c:3433
 msgid "Hotkeys"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3521
+#: gschem/src/x/x_dialog.c:3522
 msgid "Icon"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3535
+#: gschem/src/x/x_dialog.c:3536
 msgid "Action"
 msgstr "പ്രവർത്തനം"
 
-#: gschem/src/x/x_dialog.c:3545
+#: gschem/src/x/x_dialog.c:3546
 msgid "Keystroke(s)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3555
+#: gschem/src/x/x_dialog.c:3556
 msgid "Command"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3789
+#: gschem/src/x/x_dialog.c:3790
 msgid "Major symbol changes detected."
 msgstr "പ്രധാന ചിഹ്ന മാറ്റങ്ങൾ കണ്ടെത്തി."
 
-#: gschem/src/x/x_dialog.c:3816
+#: gschem/src/x/x_dialog.c:3817
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2321,62 +2321,62 @@ msgstr ""
 "ഈ ഒരോ ചിഹ്നങ്ങളും പരിശോധിച്ചുറപ്പുവരുത്തുക."
 
 # Symbol
-#: gschem/src/x/x_dialog.c:3858
+#: gschem/src/x/x_dialog.c:3859
 msgid "Symbol"
 msgstr "ചിഹ്നം"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3908
+#: gschem/src/x/x_dialog.c:3909
 msgid "Dismiss this dialog"
 msgstr "ഈ സംഭാഷണം നിരസിക്കുക"
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3949
+#: gschem/src/x/x_dialog.c:3950
 msgid "invalid attribute value"
 msgstr "ആട്രിബ്യൂട്ട് മൂല്യം അസാധുവാണ്"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3950
+#: gschem/src/x/x_dialog.c:3951
 msgid "Please correct in order to continue"
 msgstr "തുടരുന്നതിന് ദയവായി ശരിയാക്കുക"
 
-#: gschem/src/x/x_dialog.c:3951
+#: gschem/src/x/x_dialog.c:3952
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
 "The value cannot start with a space"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3959
+#: gschem/src/x/x_dialog.c:3960
 msgid "Invalid Attribute"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:241
+#: gschem/src/x/x_dnd.c:248
 #, fuzzy
 msgid "Error:"
 msgstr "പിശക്"
 
-#: gschem/src/x/x_dnd.c:242
+#: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:504
+#: gschem/src/x/x_dnd.c:511
 msgid "Could not locate symbol"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:505
+#: gschem/src/x/x_dnd.c:512
 msgid "in library, try refreshing"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:510
+#: gschem/src/x/x_dnd.c:517
 msgid "not in library, opening as page"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:511 gschem/src/x/x_multiattrib.c:2683
+#: gschem/src/x/x_dnd.c:518 gschem/src/x/x_multiattrib.c:2683
 msgid "symbol"
 msgstr ""
 
-#: gschem/src/x/x_dnd.c:657
+#: gschem/src/x/x_dnd.c:664
 msgid "<b>Invalid Data.</b>"
 msgstr ""
 
@@ -2399,129 +2399,129 @@ msgstr "ഷട്ട്ഡൗൺ ചെയ്യുക: ഗ്രാഫിക്
 msgid "Done, renderer is down"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:608
+#: gschem/src/x/x_edit_array.c:610
 msgid "X pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:609
+#: gschem/src/x/x_edit_array.c:611
 msgid "Y pitch distance is less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:622
+#: gschem/src/x/x_edit_array.c:624
 msgid "X and Y pitch distance are less than extents\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:641
+#: gschem/src/x/x_edit_array.c:643
 msgid "Components may overlay, Continue?"
 msgstr ""
 
 # Create Array: Error
-#: gschem/src/x/x_edit_array.c:654 gschem/src/x/x_edit_array.c:659
-#: gschem/src/x/x_edit_array.c:664
+#: gschem/src/x/x_edit_array.c:656 gschem/src/x/x_edit_array.c:661
+#: gschem/src/x/x_edit_array.c:666
 msgid "Create Array:Error"
 msgstr "ശ്രേണി സൃഷ്ടിക്കുക: പിശക്"
 
-#: gschem/src/x/x_edit_array.c:655
+#: gschem/src/x/x_edit_array.c:657
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:660
+#: gschem/src/x/x_edit_array.c:662
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:665
+#: gschem/src/x/x_edit_array.c:667
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
 # Create Array
-#: gschem/src/x/x_edit_array.c:1046 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1048 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr "അറേ സൃഷ്ടിക്കുക"
 
-#: gschem/src/x/x_edit_array.c:1083 gschem/src/x/x_edit_array.c:1153
-#: gschem/src/x/x_edit_array.c:1186
+#: gschem/src/x/x_edit_array.c:1085 gschem/src/x/x_edit_array.c:1155
+#: gschem/src/x/x_edit_array.c:1188
 msgid "Count"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1094
+#: gschem/src/x/x_edit_array.c:1096
 msgid "X Size"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1097
+#: gschem/src/x/x_edit_array.c:1099
 msgid "Y Size"
 msgstr ""
 
 # Select
-#: gschem/src/x/x_edit_array.c:1116 gschem/src/x/x_menus.c:90
+#: gschem/src/x/x_edit_array.c:1118 gschem/src/x/x_menus.c:90
 msgid "Select"
 msgstr "തിരഞ്ഞെടുക്കുക"
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1120
+#: gschem/src/x/x_edit_array.c:1122
 msgid "Deselect"
 msgstr "തിരഞ്ഞെടുത്തത് മാറ്റുക"
 
 # Array
-#: gschem/src/x/x_edit_array.c:1136 gschem/src/x/x_menus.c:121
+#: gschem/src/x/x_edit_array.c:1138 gschem/src/x/x_menus.c:121
 msgid "Array"
 msgstr "അറേ"
 
-#: gschem/src/x/x_edit_array.c:1145
+#: gschem/src/x/x_edit_array.c:1147
 msgid "Row"
 msgstr ""
 
 # Offset
-#: gschem/src/x/x_edit_array.c:1168 gschem/src/x/x_edit_array.c:1201
+#: gschem/src/x/x_edit_array.c:1170 gschem/src/x/x_edit_array.c:1203
 msgid "Offset"
 msgstr "ഓഫ്സെറ്റ്"
 
-#: gschem/src/x/x_edit_array.c:1178
+#: gschem/src/x/x_edit_array.c:1180
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1211
+#: gschem/src/x/x_edit_array.c:1213
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1219
+#: gschem/src/x/x_edit_array.c:1221
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1223
+#: gschem/src/x/x_edit_array.c:1225
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1241
+#: gschem/src/x/x_edit_array.c:1243
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1248
+#: gschem/src/x/x_edit_array.c:1250
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1255
+#: gschem/src/x/x_edit_array.c:1257
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1262
+#: gschem/src/x/x_edit_array.c:1264
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1269
+#: gschem/src/x/x_edit_array.c:1271
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1276
+#: gschem/src/x/x_edit_array.c:1278
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1283
+#: gschem/src/x/x_edit_array.c:1285
 msgid "entry for array vertical pitch"
 msgstr ""
 
@@ -3031,7 +3031,7 @@ msgstr ""
 msgid "Set the active slot number"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:77 gschem/src/x/x_edit_text.c:718
+#: gschem/src/x/x_edit_text.c:77 gschem/src/x/x_edit_text.c:719
 msgid "Text Content"
 msgstr ""
 
@@ -3141,39 +3141,39 @@ msgid "Sentence"
 msgstr "വാചകം"
 
 # Edit Text Properties
-#: gschem/src/x/x_edit_text.c:700
+#: gschem/src/x/x_edit_text.c:701
 msgid "Edit Text Properties"
 msgstr "ടെക്സ്റ്റ് ഗുണവിശേഷതകള് എഡിറ്റുചെയ്യുക"
 
 # Text Properties
-#: gschem/src/x/x_edit_text.c:747
+#: gschem/src/x/x_edit_text.c:748
 msgid "Text Properties"
 msgstr "ടെക്സ്റ്റ് ഗുണവിശേഷതകൾ"
 
 # Text Alignment Selector
-#: gschem/src/x/x_edit_text.c:865
+#: gschem/src/x/x_edit_text.c:866
 msgid "Text alignment combobox"
 msgstr "ടെക്സ്റ്റ് വിന്യാസം സെലക്ടർ"
 
 # Text case combobox
-#: gschem/src/x/x_edit_text.c:869
+#: gschem/src/x/x_edit_text.c:870
 msgid "Text case combobox"
 msgstr "ടെക്സ്റ്റ് കേസ് കോംബോബോക്സ്"
 
-#: gschem/src/x/x_edit_text.c:873
+#: gschem/src/x/x_edit_text.c:874
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:877
+#: gschem/src/x/x_edit_text.c:878
 msgid "Font selector button"
 msgstr ""
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:881
+#: gschem/src/x/x_edit_text.c:882
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "ടെക്സ്റ്റ് റൊട്ടേഷൻ ആംഗിൾ സ്പിന്നർ ഇൻപുട്ട്"
 
-#: gschem/src/x/x_edit_text.c:885
+#: gschem/src/x/x_edit_text.c:886
 msgid "Text input field"
 msgstr ""
 
@@ -3722,7 +3722,7 @@ msgstr "തുടരുക"
 msgid "Resume input of the current path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:161 gschem/src/x/x_settings_dialog.c:1313
+#: gschem/src/x/x_menus.c:161 gschem/src/x/x_settings_dialog.c:1315
 #: gschem/scheme/gschem/builtins.scm:44
 msgid "Cancel"
 msgstr ""
@@ -4056,6 +4056,26 @@ msgstr "ഗുണവിശേഷങ്ങൾ"
 msgid "attribute"
 msgstr "ആട്രിബ്യൂട്ട്"
 
+# Width x Height
+#: gschem/src/x/x_pagesel.c:54
+#, fuzzy
+msgid "Auto Height"
+msgstr "വീതി x പൊക്കം"
+
+#: gschem/src/x/x_pagesel.c:54
+msgid "Enable or disable Page Select dialog auto height"
+msgstr ""
+
+# Filename
+#: gschem/src/x/x_pagesel.c:55
+#, fuzzy
+msgid "Full names"
+msgstr "ഫയലിന്റെ പേര്"
+
+#: gschem/src/x/x_pagesel.c:55
+msgid "Enable or disable displaying of paths in file names"
+msgstr ""
+
 # Move Up
 #: gschem/src/x/x_pagesel.c:594
 msgid "Move Up"
@@ -4335,27 +4355,27 @@ msgstr ""
 msgid "File error"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:1131
+#: gschem/src/x/x_settings_dialog.c:1133
 msgid "Clear attributes and restore default filter list?"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:1302
+#: gschem/src/x/x_settings_dialog.c:1304
 msgid "Restore default"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2720
+#: gschem/src/x/x_settings_dialog.c:2722
 msgid "Close without changing any settings"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2722 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2724 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2726
+#: gschem/src/x/x_settings_dialog.c:2728
 msgid "Close and Write settings to disk"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2732
+#: gschem/src/x/x_settings_dialog.c:2734
 msgid "Change settings and close but do not write settings to storage"
 msgstr ""
 
@@ -6164,12 +6184,12 @@ msgid "No documentation found"
 msgstr ""
 
 # Export embedded symbol => Export embedded code
-#: gschem/scheme/gschem/gschem-export-menu.scm:57
+#: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "ഉൾച്ചേർത്ത ചിഹ്നം എക്സ്പോർട്ടുചെയ്യുക"
 
 # Embedded image export
-#: gschem/scheme/gschem/gschem-export-menu.scm:58
+#: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "ഉൾച്ചേർത്ത ഇമേജ് കയറ്റുമതി"
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,38 +20,45 @@ msgstr ""
 
 # Get or Set the default symbol for capacitors
 # Lípsi í Orismós proepilegménou symvólou gia pyknotés
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "Λήψη ή Ορισμός προεπιλεγμένου συμβόλου για πυκνωτές\n"
 
 # Get or Set the default symbol for electrolytic capacitors
 # Λήψη ή Ορισμός προεπιλεγμένου συμβόλου για ηλεκτρολυτικούς πυκνωτές
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr "Λήψη ή Ορισμός προεπιλεγμένου συμβόλου για ηλεκτρολυτικούς πυκνωτές\n"
 
 # Get or Set the default symbol for inductors
 # Apoktíste í oríste to proepilegméno sýmvolo gia epagogeís
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "Αποκτήστε ή ορίστε το προεπιλεγμένο σύμβολο για επαγωγείς\n"
 
 # Get or Set the default operational amplifier symbol
 # Lípsi í orismós tou proepilegménou leitourgikoú enischytí
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr "Λήψη ή ορισμός του προεπιλεγμένου λειτουργικού ενισχυτή\n"
 
 # Get or Set the default symbol for resistors
 # Lípsi í Orismós proepilegménou symvólou gia antistáseis
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "Λήψη ή Ορισμός προεπιλεγμένου συμβόλου για αντιστάσεις\n"
 
 # Get or Set the default titleblock symbol
 # Lípsi í orismós tou proepilegménou symvólou blok títlou
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "Λήψη ή ορισμός του προεπιλεγμένου συμβόλου μπλοκ τίτλου\n"
+
+# Get or Set the default titleblock symbol
+# Lípsi í orismós tou proepilegménou symvólou blok títlou
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "Λήψη ή ορισμός του προεπιλεγμένου συμβόλου μπλοκ τίτλου\n"
 
 # Close all file and deinitialize the library
@@ -393,78 +400,78 @@ msgstr ""
 
 # Type error, ignoring invalid optional parameter 5
 # Pliktrologíste sfálma, agnoóntas mi énkyri proairetikí parámetro 5
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "Πληκτρολογήστε σφάλμα, αγνοώντας μη έγκυρη προαιρετική παράμετρο 5\n"
 
 # get; paírno
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "παίρνω"
 
 # or set; í na rythmísete
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "ή να ρυθμίσετε"
 
 # An error occurred; Parousiástike sfálma
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "Παρουσιάστηκε σφάλμα"
 
 # object was not created; antikeímeno den dimiourgíthike
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "αντικείμενο δεν δημιουργήθηκε"
 
 # Arc; Tóxo
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "Τόξο"
 
 # Text Attribute; Charaktiristikó keiménou
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "Χαρακτηριστικό κειμένου"
 
 # Box; koutí
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "κουτί"
 
 # Bus; Leoforeío
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "Λεωφορείο"
 
 # Circle; Kýklos
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "Κύκλος"
 
 # Line; Γραμμή
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "Grammí"
 
 # Net
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "δικτυωτό"
 
 # Path => Polygon; Monopáti
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "Μονοπάτι"
 
 # Pin; Karfítsa
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "Καρφίτσα"
 
 # Text; Keímeno
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "Κείμενο"
 
@@ -537,7 +544,8 @@ msgstr "Παρουσιάστηκε σφάλμα κατά την προετοιμ
 # I timí charaktiristikoú onómatos kalodíou prépei na eínai mia symvoloseirá
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr "Η τιμή χαρακτηριστικού ονόματος καλωδίου πρέπει να είναι μια συμβολοσειρά"
+msgstr ""
+"Η τιμή χαρακτηριστικού ονόματος καλωδίου πρέπει να είναι μια συμβολοσειρά"
 
 # Creates a bus object type
 # Dimiourgeí énan týpo antikeiménou leoforeíou

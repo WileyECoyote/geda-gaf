@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,33 +19,39 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 
 # Get or Set the default symbol for capacitors
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "קבל או הגדר את סמל ברירת המחדל עבור קבלים\n"
 
 # Get or Set the default symbol for electrolytic capacitors
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr "קבל או הגדר את סמל ברירת המחדל עבור קבלים אלקטרוליטיים\n"
 
 # Get or Set the default symbol for inductors
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "קבל או הגדר את סמל ברירת המחדל עבור משרנים\n"
 
 # Get or Set the default operational amplifier symbol
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr "קבל או הגדר את סמל המגבר התפעולי המוגדר כברירת מחדל\n"
 
 # Get or Set the default symbol for resistors
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "קבל או הגדר את סמל ברירת המחדל עבור נגדים\n"
 
 # Get or Set the default titleblock symbol
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "קבל או הגדר את סמל בלוק ברירת המחדל\n"
+
+# Get or Set the default titleblock symbol
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "קבל או הגדר את סמל בלוק ברירת המחדל\n"
 
 # Close all files and release the library
@@ -329,78 +335,78 @@ msgid "Retrieve list of points of unconnected nodes for specified Objects"
 msgstr "אחזר רשימה של נקודות של צמתים לא מחוברים עבור אובייקטים שצוינו"
 
 # Type error, ignoring invalid optional parameter 5
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "הקלד שגיאה, תוך התעלמות מפרמטר אופציונלי לא חוקי 5\n"
 
 # get
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "לקבל"
 
 # or set
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "או להגדיר"
 
 # An error occurred
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "התרחשה שגיאה"
 
 # object was not created
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "האובייקט לא נוצר"
 
 # Arc
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "קשת"
 
 # Text Attribute
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "תכונת טקסט"
 
 # Box => Rectangle
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "מלבן"
 
 # Bus => cable
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "כבל"
 
 # Circle
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "מעגל"
 
 # Line
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "קו"
 
 # Net
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "נטו"
 
 # Path => polygon
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "מצולע"
 
 # Pin
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "הצמד"
 
 # Text
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "טקסט"
 

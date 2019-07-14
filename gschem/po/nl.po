@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-11 11:31-0500\n"
+"POT-Creation-Date: 2019-07-13 22:09-0500\n"
 "PO-Revision-Date: 2014-08-31 22:35+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1133,12 +1133,12 @@ msgid "Resnap Active"
 msgstr "Hersnappen Aktief"
 
 # Initializing default configuration settings
-#: gschem/src/iface/i_vars.c:784
+#: gschem/src/iface/i_vars.c:805
 msgid "Initializing default configuration settings\n"
 msgstr "Initialiseren van standaard configuratie-instellingen\n"
 
 # Failed to save user configuration to
-#: gschem/src/iface/i_vars.c:826
+#: gschem/src/iface/i_vars.c:847
 msgid "Failed to save user configuration to"
 msgstr "niet in staat om de gebruiker configuratie op te slaan naar"
 
@@ -1660,7 +1660,7 @@ msgstr "Naam"
 msgid "Value"
 msgstr "Waarde"
 
-#: gschem/src/x/x_compselect.c:2887 gschem/src/x/x_dialog.c:1870
+#: gschem/src/x/x_compselect.c:2887 gschem/src/x/x_dialog.c:1871
 msgid "None"
 msgstr ""
 
@@ -1758,38 +1758,38 @@ msgstr ""
 msgid "S_elect the schematics you want to save:"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:508
+#: gschem/src/x/x_confirm_close.c:510
 #, c-format
 msgid "Save the changes to schematic \"%s\" before closing?"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:515
+#: gschem/src/x/x_confirm_close.c:517
 #, c-format
 msgid ""
 "There are %d schematics with unsaved changes. Save changes before closing?"
 msgstr ""
 
-#: gschem/src/x/x_confirm_close.c:545
+#: gschem/src/x/x_confirm_close.c:547
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
 # Close the current page without saving
-#: gschem/src/x/x_confirm_close.c:562
+#: gschem/src/x/x_confirm_close.c:564
 msgid "Close without saving"
 msgstr "Sluit de huidige pagina zonder op te slaan"
 
 # unsaved page
-#: gschem/src/x/x_confirm_close.c:615
+#: gschem/src/x/x_confirm_close.c:617
 msgid "unsaved page"
 msgstr "niet-opgeslagen pagina"
 
 # unsaved pages
-#: gschem/src/x/x_confirm_close.c:623
+#: gschem/src/x/x_confirm_close.c:625
 msgid "unsaved pages"
 msgstr "niet-opgeslagen pagina's"
 
 # selected pages
-#: gschem/src/x/x_confirm_close.c:630
+#: gschem/src/x/x_confirm_close.c:632
 msgid "selected pages"
 msgstr "Geselecteerde pagina's"
 
@@ -1819,11 +1819,11 @@ msgstr "onbekend"
 msgid "Command interface: engaged using"
 msgstr ""
 
-#: gschem/src/x/x_console.c:360
+#: gschem/src/x/x_console.c:375
 msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
 msgstr "** Ongeldige UTF-8 in logboek bericht. Zie stderr of gschem.log.\n"
 
-#: gschem/src/x/x_console.c:642
+#: gschem/src/x/x_console.c:657
 msgid "gEDA Console"
 msgstr ""
 
@@ -1832,7 +1832,7 @@ msgid "Drag & Drop"
 msgstr ""
 
 # An error occurred while receiving Drag & Drop data
-#: gschem/src/x/x_coord.c:154 gschem/src/x/x_dnd.c:655
+#: gschem/src/x/x_coord.c:154 gschem/src/x/x_dnd.c:662
 msgid "An error occurred while receiving Drag & Drop data"
 msgstr "Er is een fout opgetreden tijdens het ontvangen van Drag & Drop data"
 
@@ -1842,7 +1842,7 @@ msgid "Data error"
 msgstr "gegevensfout"
 
 # Drag & Drop failed
-#: gschem/src/x/x_coord.c:160 gschem/src/x/x_dnd.c:657
+#: gschem/src/x/x_coord.c:160 gschem/src/x/x_dnd.c:664
 msgid "Drag & Drop failed"
 msgstr "Drag & Drop mislukt"
 
@@ -1985,7 +1985,7 @@ msgstr "Tekst"
 msgid "Bus"
 msgstr "Bus"
 
-#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1073
+#: gschem/src/x/x_dialog.c:1120 gschem/src/x/x_edit_array.c:1075
 #: gschem/src/x/x_menus.c:109
 msgid "Selection"
 msgstr "Selectie"
@@ -2067,198 +2067,198 @@ msgstr ""
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: gschem/src/x/x_dialog.c:1296
+#: gschem/src/x/x_dialog.c:1297
 msgid "Hollow"
 msgstr "Hol"
 
-#: gschem/src/x/x_dialog.c:1297
+#: gschem/src/x/x_dialog.c:1298
 msgid "Filled"
 msgstr "Gevuld"
 
-#: gschem/src/x/x_dialog.c:1298
+#: gschem/src/x/x_dialog.c:1299
 msgid "Mesh"
 msgstr "Maas"
 
-#: gschem/src/x/x_dialog.c:1299
+#: gschem/src/x/x_dialog.c:1300
 msgid "Hatch"
 msgstr "Arcering"
 
-#: gschem/src/x/x_dialog.c:1300 gschem/src/x/x_dialog.c:1411
-#: gschem/src/x/x_dialog.c:1420 gschem/src/x/x_dialog.c:1429
-#: gschem/src/x/x_dialog.c:1438 gschem/src/x/x_dialog.c:1447
-#: gschem/src/x/x_dialog.c:1562 gschem/src/x/x_dialog.c:1564
-#: gschem/src/x/x_dialog.c:1566 gschem/src/x/x_dialog.c:1568
-#: gschem/src/x/x_dialog.c:1570 gschem/src/x/x_dialog.c:1873
-#: gschem/src/x/x_dialog.c:1915 gschem/src/x/x_dialog.c:2027
-#: gschem/src/x/x_dialog.c:2036 gschem/src/x/x_dialog.c:2046
-#: gschem/src/x/x_dialog.c:2155 gschem/src/x/x_dialog.c:2157
-#: gschem/src/x/x_dialog.c:2159
+#: gschem/src/x/x_dialog.c:1301 gschem/src/x/x_dialog.c:1412
+#: gschem/src/x/x_dialog.c:1421 gschem/src/x/x_dialog.c:1430
+#: gschem/src/x/x_dialog.c:1439 gschem/src/x/x_dialog.c:1448
+#: gschem/src/x/x_dialog.c:1563 gschem/src/x/x_dialog.c:1565
+#: gschem/src/x/x_dialog.c:1567 gschem/src/x/x_dialog.c:1569
+#: gschem/src/x/x_dialog.c:1571 gschem/src/x/x_dialog.c:1874
+#: gschem/src/x/x_dialog.c:1916 gschem/src/x/x_dialog.c:2028
+#: gschem/src/x/x_dialog.c:2037 gschem/src/x/x_dialog.c:2047
+#: gschem/src/x/x_dialog.c:2156 gschem/src/x/x_dialog.c:2158
+#: gschem/src/x/x_dialog.c:2160
 msgid "*varies*"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1716 gschem/scheme/gschem/builtins.scm:158
+#: gschem/src/x/x_dialog.c:1717 gschem/scheme/gschem/builtins.scm:158
 msgid "Edit Fill Type"
 msgstr "Bewerk Arcering Type"
 
-#: gschem/src/x/x_dialog.c:1738
+#: gschem/src/x/x_dialog.c:1739
 msgid "Fill Type:"
 msgstr "Arcering Type:"
 
-#: gschem/src/x/x_dialog.c:1741
+#: gschem/src/x/x_dialog.c:1742
 msgid "Line Width:"
 msgstr "Lijn Dikte:"
 
-#: gschem/src/x/x_dialog.c:1744
+#: gschem/src/x/x_dialog.c:1745
 msgid "Angle 1:"
 msgstr "Hoek 1:"
 
-#: gschem/src/x/x_dialog.c:1747
+#: gschem/src/x/x_dialog.c:1748
 msgid "Pitch 1:"
 msgstr "Steek 1:"
 
-#: gschem/src/x/x_dialog.c:1750
+#: gschem/src/x/x_dialog.c:1751
 msgid "Angle 2:"
 msgstr "Hoek 2:"
 
-#: gschem/src/x/x_dialog.c:1753
+#: gschem/src/x/x_dialog.c:1754
 msgid "Pitch 2:"
 msgstr "Steek 2:"
 
 # Select fill pattern
-#: gschem/src/x/x_dialog.c:1759
+#: gschem/src/x/x_dialog.c:1760
 msgid "Select fill pattern"
 msgstr "Selecteer vulpatroon"
 
-#: gschem/src/x/x_dialog.c:1764
+#: gschem/src/x/x_dialog.c:1765
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1769
+#: gschem/src/x/x_dialog.c:1770
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1774
+#: gschem/src/x/x_dialog.c:1775
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1779
+#: gschem/src/x/x_dialog.c:1780
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1784
+#: gschem/src/x/x_dialog.c:1785
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1871
+#: gschem/src/x/x_dialog.c:1872
 msgid "Square"
 msgstr "Vierkant"
 
-#: gschem/src/x/x_dialog.c:1872
+#: gschem/src/x/x_dialog.c:1873
 msgid "Round"
 msgstr "Rond"
 
-#: gschem/src/x/x_dialog.c:1910
+#: gschem/src/x/x_dialog.c:1911
 msgid "Solid"
 msgstr "Getrokken lijn"
 
-#: gschem/src/x/x_dialog.c:1911
+#: gschem/src/x/x_dialog.c:1912
 msgid "Dotted"
 msgstr "Gestippeld"
 
-#: gschem/src/x/x_dialog.c:1912
+#: gschem/src/x/x_dialog.c:1913
 msgid "Dashed"
 msgstr "Gestreept"
 
-#: gschem/src/x/x_dialog.c:1913
+#: gschem/src/x/x_dialog.c:1914
 msgid "Center"
 msgstr "Hart"
 
-#: gschem/src/x/x_dialog.c:1914
+#: gschem/src/x/x_dialog.c:1915
 msgid "Phantom"
 msgstr "Begrenzing"
 
-#: gschem/src/x/x_dialog.c:2302 gschem/scheme/gschem/builtins.scm:155
+#: gschem/src/x/x_dialog.c:2303 gschem/scheme/gschem/builtins.scm:155
 msgid "Edit Line Width & Type"
 msgstr "Bewerk Lijn Dikte & Type"
 
 # Line Type
-#: gschem/src/x/x_dialog.c:2325
+#: gschem/src/x/x_dialog.c:2326
 msgid "Line Type:"
 msgstr "Lijntype:"
 
 # End Type
-#: gschem/src/x/x_dialog.c:2328
+#: gschem/src/x/x_dialog.c:2329
 msgid "End Type:"
 msgstr "Eindtype:"
 
-#: gschem/src/x/x_dialog.c:2331
+#: gschem/src/x/x_dialog.c:2332
 msgid "Width:"
 msgstr "Breedte:"
 
-#: gschem/src/x/x_dialog.c:2334
+#: gschem/src/x/x_dialog.c:2335
 msgid "Dash Length:"
 msgstr "Lijn Streeplengte:"
 
-#: gschem/src/x/x_dialog.c:2337
+#: gschem/src/x/x_dialog.c:2338
 msgid "Dash Space:"
 msgstr "Lijn Tussenruimte:"
 
-#: gschem/src/x/x_dialog.c:2352
+#: gschem/src/x/x_dialog.c:2353
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2358
+#: gschem/src/x/x_dialog.c:2359
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2364
+#: gschem/src/x/x_dialog.c:2365
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2606
+#: gschem/src/x/x_dialog.c:2607
 msgid "Find Text"
 msgstr "Vind tekst"
 
-#: gschem/src/x/x_dialog.c:2625
+#: gschem/src/x/x_dialog.c:2626
 msgid "Text to find:"
 msgstr "Te vinden tekst:"
 
 # Search hidden attributes
-#: gschem/src/x/x_dialog.c:2634
+#: gschem/src/x/x_dialog.c:2635
 msgid "Search hidden attributes"
 msgstr "Zoek verborgen attributen"
 
 # Descend into hierarchy
-#: gschem/src/x/x_dialog.c:2637
+#: gschem/src/x/x_dialog.c:2638
 msgid "Descend into hierarchy"
 msgstr "Ga naar de hiërarchie"
 
 # Close on ascent
-#: gschem/src/x/x_dialog.c:2645
+#: gschem/src/x/x_dialog.c:2646
 msgid "Close on ascent"
 msgstr "Dicht bij het klimmen"
 
-#: gschem/src/x/x_dialog.c:2734
+#: gschem/src/x/x_dialog.c:2735
 msgid "Hide Text"
 msgstr "Verberg tekst"
 
-#: gschem/src/x/x_dialog.c:2753
+#: gschem/src/x/x_dialog.c:2754
 msgid "Hide text starting with:"
 msgstr "Verberg tekst beginnend met:"
 
-#: gschem/src/x/x_dialog.c:2849
+#: gschem/src/x/x_dialog.c:2850
 msgid "Show Text"
 msgstr "Toon tekst"
 
-#: gschem/src/x/x_dialog.c:2868
+#: gschem/src/x/x_dialog.c:2869
 msgid "Show text starting with:"
 msgstr "Toon tekst beginnend met:"
 
-#: gschem/src/x/x_dialog.c:2994
+#: gschem/src/x/x_dialog.c:2995
 msgid "Text Entry..."
 msgstr "Tekst Ingeven..."
 
-#: gschem/src/x/x_dialog.c:3019
+#: gschem/src/x/x_dialog.c:3020
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
@@ -2268,19 +2268,19 @@ msgstr ""
 "verplaats cursor in het venster, klik om tekst te plaatsen.\n"
 "Middelste muisknop gebruiken om te plaatsen."
 
-#: gschem/src/x/x_dialog.c:3213
+#: gschem/src/x/x_dialog.c:3214
 msgid "Enter a single digit or a coordinate pair"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3214
+#: gschem/src/x/x_dialog.c:3215
 msgid "Automatically zoom to the new extents after translation"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3216
+#: gschem/src/x/x_dialog.c:3217
 msgid "Translate"
 msgstr "Verplaats"
 
-#: gschem/src/x/x_dialog.c:3242
+#: gschem/src/x/x_dialog.c:3243
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
@@ -2289,36 +2289,36 @@ msgstr ""
 "(0 voor oorsprong)"
 
 # Auto Zoom Extents
-#: gschem/src/x/x_dialog.c:3254
+#: gschem/src/x/x_dialog.c:3255
 msgid "Auto Zoom Extents"
 msgstr "Automatisch Zoom Omvang"
 
-#: gschem/src/x/x_dialog.c:3432
+#: gschem/src/x/x_dialog.c:3433
 msgid "Hotkeys"
 msgstr "Sneltoets"
 
-#: gschem/src/x/x_dialog.c:3521
+#: gschem/src/x/x_dialog.c:3522
 msgid "Icon"
 msgstr "Icon"
 
-#: gschem/src/x/x_dialog.c:3535
+#: gschem/src/x/x_dialog.c:3536
 msgid "Action"
 msgstr "Aktie"
 
-#: gschem/src/x/x_dialog.c:3545
+#: gschem/src/x/x_dialog.c:3546
 msgid "Keystroke(s)"
 msgstr "Toetsaanslag(en)"
 
 # Job
-#: gschem/src/x/x_dialog.c:3555
+#: gschem/src/x/x_dialog.c:3556
 msgid "Command"
 msgstr "Opdracht"
 
-#: gschem/src/x/x_dialog.c:3789
+#: gschem/src/x/x_dialog.c:3790
 msgid "Major symbol changes detected."
 msgstr "Grote symbool veranderingen gedetecteerd."
 
-#: gschem/src/x/x_dialog.c:3816
+#: gschem/src/x/x_dialog.c:3817
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2327,26 +2327,26 @@ msgstr ""
 "Er zijn in onderstaande symbolen veranderingen opgetreden.\n"
 "'nWees er zeker van elk van deze symbolen te verifiëren."
 
-#: gschem/src/x/x_dialog.c:3858
+#: gschem/src/x/x_dialog.c:3859
 msgid "Symbol"
 msgstr "Symbool"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3908
+#: gschem/src/x/x_dialog.c:3909
 msgid "Dismiss this dialog"
 msgstr "Sluit deze dialoog af"
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3949
+#: gschem/src/x/x_dialog.c:3950
 msgid "invalid attribute value"
 msgstr "ongeldige attribuutwaarde"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3950
+#: gschem/src/x/x_dialog.c:3951
 msgid "Please correct in order to continue"
 msgstr "Corrigeer alstublieft om door te gaan"
 
-#: gschem/src/x/x_dialog.c:3951
+#: gschem/src/x/x_dialog.c:3952
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2356,39 +2356,39 @@ msgstr ""
 "De naam mag niet eindigen met een spatie.\n"
 "De waarde mag niet met een spatie beginnen."
 
-#: gschem/src/x/x_dialog.c:3959
+#: gschem/src/x/x_dialog.c:3960
 msgid "Invalid Attribute"
 msgstr "Ongeldig Attribuut"
 
-#: gschem/src/x/x_dnd.c:241
+#: gschem/src/x/x_dnd.c:248
 #, fuzzy
 msgid "Error:"
 msgstr "Fout"
 
-#: gschem/src/x/x_dnd.c:242
+#: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
 msgstr ""
 
 # Could not locate symbol
-#: gschem/src/x/x_dnd.c:504
+#: gschem/src/x/x_dnd.c:511
 msgid "Could not locate symbol"
 msgstr "Niet konden vinden symbool"
 
 # in library, try refreshing
-#: gschem/src/x/x_dnd.c:505
+#: gschem/src/x/x_dnd.c:512
 msgid "in library, try refreshing"
 msgstr "In bibliotheek, probeer verfrissende"
 
 # not in library, opening as page
-#: gschem/src/x/x_dnd.c:510
+#: gschem/src/x/x_dnd.c:517
 msgid "not in library, opening as page"
 msgstr "niet in bibliotheek, openen als pagina"
 
-#: gschem/src/x/x_dnd.c:511 gschem/src/x/x_multiattrib.c:2683
+#: gschem/src/x/x_dnd.c:518 gschem/src/x/x_multiattrib.c:2683
 msgid "symbol"
 msgstr "symbool"
 
-#: gschem/src/x/x_dnd.c:657
+#: gschem/src/x/x_dnd.c:664
 msgid "<b>Invalid Data.</b>"
 msgstr "<b>Onjuiste data.</b>"
 
@@ -2410,130 +2410,130 @@ msgstr "Afsluiten: Grafische Renderer-adapter..."
 msgid "Done, renderer is down"
 msgstr "Klaar, de renderer staat uit"
 
-#: gschem/src/x/x_edit_array.c:608
+#: gschem/src/x/x_edit_array.c:610
 msgid "X pitch distance is less than extents\n"
 msgstr "X-steekafstand is minder dan de omvang\n"
 
-#: gschem/src/x/x_edit_array.c:609
+#: gschem/src/x/x_edit_array.c:611
 msgid "Y pitch distance is less than extents\n"
 msgstr "Y-steekafstand is minder dan de omvang\n"
 
-#: gschem/src/x/x_edit_array.c:622
+#: gschem/src/x/x_edit_array.c:624
 msgid "X and Y pitch distance are less than extents\n"
 msgstr "X en Y-steekafstand zijn minder dan de omvang\n"
 
 # Components may overlay, Continue?
-#: gschem/src/x/x_edit_array.c:641
+#: gschem/src/x/x_edit_array.c:643
 msgid "Components may overlay, Continue?"
 msgstr "Componenten kunnen overlappen, doorgaan?"
 
 # Create Array: Error
-#: gschem/src/x/x_edit_array.c:654 gschem/src/x/x_edit_array.c:659
-#: gschem/src/x/x_edit_array.c:664
+#: gschem/src/x/x_edit_array.c:656 gschem/src/x/x_edit_array.c:661
+#: gschem/src/x/x_edit_array.c:666
 msgid "Create Array:Error"
 msgstr "Create Array: Fout"
 
-#: gschem/src/x/x_edit_array.c:655
+#: gschem/src/x/x_edit_array.c:657
 msgid ""
 "Both row and column offset\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:660
+#: gschem/src/x/x_edit_array.c:662
 msgid ""
 "Either row or column count\n"
 " must be greater than 1"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:665
+#: gschem/src/x/x_edit_array.c:667
 msgid ""
 "Both row and column\n"
 "can not be zero"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1046 gschem/scheme/gschem/builtins.scm:131
+#: gschem/src/x/x_edit_array.c:1048 gschem/scheme/gschem/builtins.scm:131
 msgid "Create Array"
 msgstr "Array maken"
 
 # Count
-#: gschem/src/x/x_edit_array.c:1083 gschem/src/x/x_edit_array.c:1153
-#: gschem/src/x/x_edit_array.c:1186
+#: gschem/src/x/x_edit_array.c:1085 gschem/src/x/x_edit_array.c:1155
+#: gschem/src/x/x_edit_array.c:1188
 msgid "Count"
 msgstr "tellen"
 
 # X Size
-#: gschem/src/x/x_edit_array.c:1094
+#: gschem/src/x/x_edit_array.c:1096
 msgid "X Size"
 msgstr "X-formaat"
 
 # Y Size
-#: gschem/src/x/x_edit_array.c:1097
+#: gschem/src/x/x_edit_array.c:1099
 msgid "Y Size"
 msgstr "Y-formaat"
 
-#: gschem/src/x/x_edit_array.c:1116 gschem/src/x/x_menus.c:90
+#: gschem/src/x/x_edit_array.c:1118 gschem/src/x/x_menus.c:90
 msgid "Select"
 msgstr "Selecteer"
 
 # Deselect
-#: gschem/src/x/x_edit_array.c:1120
+#: gschem/src/x/x_edit_array.c:1122
 msgid "Deselect"
 msgstr "Deselecteer"
 
-#: gschem/src/x/x_edit_array.c:1136 gschem/src/x/x_menus.c:121
+#: gschem/src/x/x_edit_array.c:1138 gschem/src/x/x_menus.c:121
 msgid "Array"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1145
+#: gschem/src/x/x_edit_array.c:1147
 msgid "Row"
 msgstr ""
 
 # Offset
-#: gschem/src/x/x_edit_array.c:1168 gschem/src/x/x_edit_array.c:1201
+#: gschem/src/x/x_edit_array.c:1170 gschem/src/x/x_edit_array.c:1203
 msgid "Offset"
 msgstr "compenseren"
 
-#: gschem/src/x/x_edit_array.c:1178
+#: gschem/src/x/x_edit_array.c:1180
 msgid "Column"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1211
+#: gschem/src/x/x_edit_array.c:1213
 msgid "Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1219
+#: gschem/src/x/x_edit_array.c:1221
 msgid "X,Y"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1223
+#: gschem/src/x/x_edit_array.c:1225
 msgid "X"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1241
+#: gschem/src/x/x_edit_array.c:1243
 msgid "Read only count of objects currently selected"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1248
+#: gschem/src/x/x_edit_array.c:1250
 msgid "Read only x bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1255
+#: gschem/src/x/x_edit_array.c:1257
 msgid "Read only y bounds displacement of selected object"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1262
+#: gschem/src/x/x_edit_array.c:1264
 msgid "Spinner entry number of rows to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1269
+#: gschem/src/x/x_edit_array.c:1271
 msgid "Spinner entry number of columns to create"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1276
+#: gschem/src/x/x_edit_array.c:1278
 msgid "Entry for array horizontal pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_array.c:1283
+#: gschem/src/x/x_edit_array.c:1285
 msgid "entry for array vertical pitch"
 msgstr ""
 
@@ -3048,7 +3048,7 @@ msgstr "slot nummer:"
 msgid "Set the active slot number"
 msgstr "Stel het actieve slotnummer in"
 
-#: gschem/src/x/x_edit_text.c:77 gschem/src/x/x_edit_text.c:718
+#: gschem/src/x/x_edit_text.c:77 gschem/src/x/x_edit_text.c:719
 msgid "Text Content"
 msgstr "Tekst Inhoud"
 
@@ -3157,38 +3157,38 @@ msgstr ""
 msgid "Sentence"
 msgstr "Volzin"
 
-#: gschem/src/x/x_edit_text.c:700
+#: gschem/src/x/x_edit_text.c:701
 msgid "Edit Text Properties"
 msgstr "Bewerk Tekst Eigenschappen"
 
-#: gschem/src/x/x_edit_text.c:747
+#: gschem/src/x/x_edit_text.c:748
 msgid "Text Properties"
 msgstr "Tekst Eigenschappen"
 
 # Text Alignment combobox
-#: gschem/src/x/x_edit_text.c:865
+#: gschem/src/x/x_edit_text.c:866
 msgid "Text alignment combobox"
 msgstr "Tekstuitlijning combobox"
 
 # Text case combobox
-#: gschem/src/x/x_edit_text.c:869
+#: gschem/src/x/x_edit_text.c:870
 msgid "Text case combobox"
 msgstr "Tekstvak combobox"
 
-#: gschem/src/x/x_edit_text.c:873
+#: gschem/src/x/x_edit_text.c:874
 msgid "Color options menu"
 msgstr ""
 
-#: gschem/src/x/x_edit_text.c:877
+#: gschem/src/x/x_edit_text.c:878
 msgid "Font selector button"
 msgstr ""
 
 # Text rotation angle Spinner input
-#: gschem/src/x/x_edit_text.c:881
+#: gschem/src/x/x_edit_text.c:882
 msgid "Text Rotation Angle Spinner Entry"
 msgstr "Tekst draaihoek Spinner ingang"
 
-#: gschem/src/x/x_edit_text.c:885
+#: gschem/src/x/x_edit_text.c:886
 msgid "Text input field"
 msgstr "Tekstinvoerveld"
 
@@ -3708,7 +3708,7 @@ msgstr ""
 msgid "Resume input of the current path"
 msgstr "Hervatten tekening veelhoek"
 
-#: gschem/src/x/x_menus.c:161 gschem/src/x/x_settings_dialog.c:1313
+#: gschem/src/x/x_menus.c:161 gschem/src/x/x_settings_dialog.c:1315
 #: gschem/scheme/gschem/builtins.scm:44
 msgid "Cancel"
 msgstr "Afbreken"
@@ -4049,6 +4049,24 @@ msgstr "attributen"
 msgid "attribute"
 msgstr "Attribuut"
 
+# Automatic Height
+#: gschem/src/x/x_pagesel.c:54
+msgid "Auto Height"
+msgstr "Automatische hoogte"
+
+#: gschem/src/x/x_pagesel.c:54
+msgid "Enable or disable Page Select dialog auto height"
+msgstr ""
+
+#: gschem/src/x/x_pagesel.c:55
+#, fuzzy
+msgid "Full names"
+msgstr "Bestandsnaam"
+
+#: gschem/src/x/x_pagesel.c:55
+msgid "Enable or disable displaying of paths in file names"
+msgstr ""
+
 # Move Up
 #: gschem/src/x/x_pagesel.c:594
 msgid "Move Up"
@@ -4329,28 +4347,28 @@ msgstr "Schreef configuratie"
 msgid "File error"
 msgstr "Bestandsfout"
 
-#: gschem/src/x/x_settings_dialog.c:1131
+#: gschem/src/x/x_settings_dialog.c:1133
 msgid "Clear attributes and restore default filter list?"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:1302
+#: gschem/src/x/x_settings_dialog.c:1304
 msgid "Restore default"
 msgstr ""
 
 # Close without changing any settings
-#: gschem/src/x/x_settings_dialog.c:2720
+#: gschem/src/x/x_settings_dialog.c:2722
 msgid "Close without changing any settings"
 msgstr "Sluiten zonder het wijzigen van instellingen"
 
-#: gschem/src/x/x_settings_dialog.c:2722 gschem/scheme/gschem/builtins.scm:56
+#: gschem/src/x/x_settings_dialog.c:2724 gschem/scheme/gschem/builtins.scm:56
 msgid "Save"
 msgstr "Opslaan"
 
-#: gschem/src/x/x_settings_dialog.c:2726
+#: gschem/src/x/x_settings_dialog.c:2728
 msgid "Close and Write settings to disk"
 msgstr ""
 
-#: gschem/src/x/x_settings_dialog.c:2732
+#: gschem/src/x/x_settings_dialog.c:2734
 msgid "Change settings and close but do not write settings to storage"
 msgstr ""
 
@@ -6175,12 +6193,12 @@ msgid "No documentation found"
 msgstr "Geen documentatie gevonden"
 
 # Export embedded symbol
-#: gschem/scheme/gschem/gschem-export-menu.scm:57
+#: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Geïntegreerd symbool exporteren"
 
 # Export embedded picture
-#: gschem/scheme/gschem/gschem-export-menu.scm:58
+#: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Ingesloten afbeelding exporteren"
 
@@ -6206,10 +6224,6 @@ msgstr "~S is geen voorafgaande toetsen combinatie."
 
 #~ msgid "<b>Edit Attribute</b>"
 #~ msgstr "<b>Bewerk Attribuut</b>"
-
-# Automatic Height
-#~ msgid "Auto Height"
-#~ msgstr "Automatische hoogte"
 
 #~ msgid "<b>Selection</b>"
 #~ msgstr "Selectie"

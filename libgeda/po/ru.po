@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-11 11:30-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -541,53 +541,53 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1040 libgeda/src/geda/geda_config.c:1169
+#: libgeda/src/geda/geda_config.c:1041 libgeda/src/geda/geda_config.c:1170
 msgid "Undefined configuration filename"
 msgstr "Не определено имя файла настроек"
 
-#: libgeda/src/geda/geda_config.c:1043
+#: libgeda/src/geda/geda_config.c:1044
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr "Ошибка при загрузке конфигурации; имя файла не определено\n"
 
-#: libgeda/src/geda/geda_config.c:1114 libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/geda/geda_config.c:1115 libgeda/src/guile/g_rc_parse.c:295
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1117
+#: libgeda/src/geda/geda_config.c:1118
 msgid "Error loading configuration"
 msgstr "Ошибка при загрузке конфигурации"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1172
+#: libgeda/src/geda/geda_config.c:1173
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "Ошибка при сохранении конфигурации, имя файла не определено\n"
 
-#: libgeda/src/geda/geda_config.c:1197 libgeda/src/object/o_save.c:424
+#: libgeda/src/geda/geda_config.c:1198 libgeda/src/object/o_save.c:424
 msgid "file"
 msgstr "файл"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1233
+#: libgeda/src/geda/geda_config.c:1234
 msgid "Error saving configuration to"
 msgstr "произошла ошибка при попытке сохранить конфигурацию"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1240
+#: libgeda/src/geda/geda_config.c:1241
 msgid "bad path in file"
 msgstr "недействительный путь к файлу"
 
-#: libgeda/src/geda/geda_config.c:1244
+#: libgeda/src/geda/geda_config.c:1245
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1577 libgeda/src/geda/geda_config.c:1641
+#: libgeda/src/geda/geda_config.c:1578 libgeda/src/geda/geda_config.c:1642
 msgid "Configuration does not have group"
 msgstr "В настройках не обнаружено группы «%s»"
 
-#: libgeda/src/geda/geda_config.c:1655
+#: libgeda/src/geda/geda_config.c:1656
 msgid "Configuration does not have key"
 msgstr "В настройках не обнаружено ключа «%s»"
 
@@ -1038,7 +1038,7 @@ msgid "list element is not a string"
 msgstr "элемент списка не является строкой"
 
 # invalid polygon
-#: libgeda/src/guile/g_rc.c:1242 libgeda/src/guile/g_rc.c:1282
+#: libgeda/src/guile/g_rc.c:1265 libgeda/src/guile/g_rc.c:1305
 msgid "invalid path"
 msgstr "недопустимый многоугольник"
 
@@ -1165,7 +1165,7 @@ msgstr "Установка радиуса в 1000\n"
 #: libgeda/src/object/o_box_object.c:1586
 #: libgeda/src/object/o_bus_object.c:586
 #: libgeda/src/object/o_circle_object.c:1357
-#: libgeda/src/object/o_line_object.c:1568
+#: libgeda/src/object/o_line_object.c:1571
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:580
 #: libgeda/src/object/o_pin_object.c:197
@@ -1177,7 +1177,7 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_box_object.c:1590
 #: libgeda/src/object/o_bus_object.c:590
 #: libgeda/src/object/o_circle_object.c:1361
-#: libgeda/src/object/o_line_object.c:1572
+#: libgeda/src/object/o_line_object.c:1575
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:584
 #: libgeda/src/object/o_pin_object.c:201
@@ -1395,12 +1395,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонент «%s» успешно исключён\n"
 
-#: libgeda/src/object/o_line_object.c:1528
-#: libgeda/src/object/o_line_object.c:1548
+#: libgeda/src/object/o_line_object.c:1531
+#: libgeda/src/object/o_line_object.c:1551
 msgid "Failed to parse line object"
 msgstr "Ошибка в определении линии"
 
-#: libgeda/src/object/o_line_object.c:1561
+#: libgeda/src/object/o_line_object.c:1564
 msgid "Found a line with zero length"
 msgstr "Шина нулевой длины"
 
@@ -1653,35 +1653,35 @@ msgstr "Объект ~A является атрибутом другого об�
 msgid "~A is not a valid attribute: invalid string '~A'."
 msgstr "~A не является допустимым атрибутом: недопустимая строка «~A»."
 
-#: libgeda/src/scheme/scheme_complex.c:171
+#: libgeda/src/scheme/scheme_complex.c:173
 msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 "Недопустимый угол поворота составного объекта ~A. Должен быть 0, 90, 180 или "
 "270 градусов"
 
 # Object ~A is already on a page
-#: libgeda/src/scheme/scheme_complex.c:290
+#: libgeda/src/scheme/scheme_complex.c:292
 msgid "Object ~A is already on a page"
 msgstr "Объект ~A прикреплён к странице"
 
-#: libgeda/src/scheme/scheme_complex.c:298 libgeda/src/scheme/scheme_page.c:65
+#: libgeda/src/scheme/scheme_complex.c:300 libgeda/src/scheme/scheme_page.c:65
 msgid "Object ~A is already attached to something"
 msgstr "Объект ~A уже к чему-то прикреплён"
 
-#: libgeda/src/scheme/scheme_complex.c:360
+#: libgeda/src/scheme/scheme_complex.c:362
 msgid "Object ~A is attached to a different complex"
 msgstr "Объект ~A прикреплён к другому составному объекту"
 
-#: libgeda/src/scheme/scheme_complex.c:367
+#: libgeda/src/scheme/scheme_complex.c:369
 msgid "Object ~A is attached to a page"
 msgstr "Объект ~A прикреплён к странице"
 
-#: libgeda/src/scheme/scheme_complex.c:374
+#: libgeda/src/scheme/scheme_complex.c:376
 #: libgeda/src/scheme/scheme_page.c:365
 msgid "Object ~A is attached as an attribute"
 msgstr "Объект ~A прикреплён как атрибут"
 
-#: libgeda/src/scheme/scheme_complex.c:381
+#: libgeda/src/scheme/scheme_complex.c:383
 #: libgeda/src/scheme/scheme_page.c:372
 msgid "Object ~A has attributes"
 msgstr "К объекту ~A прикреплены атрибуты"
@@ -1690,106 +1690,106 @@ msgstr "К объекту ~A прикреплены атрибуты"
 msgid "Invalid pin type ~A, must be 'net or 'bus"
 msgstr "Недопустимый тип вывода ~A, должен быть «'net» или «'bus»"
 
-#: libgeda/src/scheme/scheme_object.c:379
+#: libgeda/src/scheme/scheme_object.c:381
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr "Недопустимый стиль концов линий объекта ~A: ~A"
 
 # 'stroke' в данном случае означает линию, а не жест
-#: libgeda/src/scheme/scheme_object.c:392
+#: libgeda/src/scheme/scheme_object.c:394
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr "Недопустимый тип линий для объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:457
+#: libgeda/src/scheme/scheme_object.c:461
 msgid "Object ~A has invalid fill style ~A"
 msgstr "Недопустимый тип заполнения объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:513
+#: libgeda/src/scheme/scheme_object.c:517
 msgid "Invalid fill style ~A."
 msgstr "Недопустимый тип заполнения ~A."
 
-#: libgeda/src/scheme/scheme_object.c:521
+#: libgeda/src/scheme/scheme_object.c:525
 msgid "Missing second space parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «pitch2»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:530
+#: libgeda/src/scheme/scheme_object.c:534
 msgid "Missing second angle parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «angle2»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:540
+#: libgeda/src/scheme/scheme_object.c:544
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «fillwidth»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:549
+#: libgeda/src/scheme/scheme_object.c:553
 msgid "Missing space parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «pitch1»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:558
+#: libgeda/src/scheme/scheme_object.c:562
 msgid "Missing angle parameter for fill style ~A."
 msgstr "Отсутствует параметр типа заполнения «angle1»: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:798
+#: libgeda/src/scheme/scheme_object.c:802
 msgid "Object ~A has invalid pin type."
 msgstr "Недопустимый тип вывода объекта ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1106
+#: libgeda/src/scheme/scheme_object.c:1110
 msgid "Invalid text alignment ~A."
 msgstr "Недопустимое значение поля «alignment» текстового объекта: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1122
+#: libgeda/src/scheme/scheme_object.c:1126
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 "Недопустимое значение угла поворота текстового объекта ~A. Угол должен быть "
 "равен  0, 90, 180 или 270 градусов"
 
-#: libgeda/src/scheme/scheme_object.c:1150
+#: libgeda/src/scheme/scheme_object.c:1154
 msgid "Invalid text name/value visibility ~A."
 msgstr "Недопустимое значение поля «show_name_value» текстового объекта: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1224
+#: libgeda/src/scheme/scheme_object.c:1228
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr "Недопустимое значение поля «alignment» текстового объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1233
+#: libgeda/src/scheme/scheme_object.c:1237
 msgid "Text object ~A has invalid visibility ~A"
 msgstr "Недопустимое значение поля «visibility» текстового объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1243
+#: libgeda/src/scheme/scheme_object.c:1247
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr "Недопустимое значение поля «show_name_value» текстового объекта ~A: ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1284
+#: libgeda/src/scheme/scheme_object.c:1288
 msgid "Object ~A is not included in a page."
 msgstr "Объекта ~A нет на странице."
 
-#: libgeda/src/scheme/scheme_object.c:1371
+#: libgeda/src/scheme/scheme_object.c:1375
 msgid "Invalid stroke cap style ~A."
 msgstr "Недопустимое значение поля «capstyle» (стиль концов линии): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1382
+#: libgeda/src/scheme/scheme_object.c:1386
 msgid "Invalid stroke dash style ~A."
 msgstr "Недопустимое значение поля «dashstyle» (тип линии): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1392
+#: libgeda/src/scheme/scheme_object.c:1396
 msgid "Missing dash length parameter for dash style ~A."
 msgstr "Отсутствует поле «dashlength» (длина штриха): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1402
+#: libgeda/src/scheme/scheme_object.c:1406
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr "Отсутствует поле «dashspace» (тип линии): ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1456
+#: libgeda/src/scheme/scheme_object.c:1461
 msgid "Object ~A has bad type '~A'"
 msgstr "Недопустимый тип объекта ~A: «~A»"
 
-#: libgeda/src/scheme/scheme_object.c:1559
+#: libgeda/src/scheme/scheme_object.c:1564
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr "Контур ~A имеет недопустимое значение типа элемента ~A с индексом ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1688
+#: libgeda/src/scheme/scheme_object.c:1693
 msgid "Invalid path element type ~A."
 msgstr "Недопустимое значение типа элемента контура: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1846
+#: libgeda/src/scheme/scheme_object.c:1851
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 "Недопустимое значение угла поворота изображения ~A. Угол должен быть равен  "

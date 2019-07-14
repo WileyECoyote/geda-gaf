@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-05-04 17:47-0500\n"
+"POT-Creation-Date: 2019-07-13 22:09-0500\n"
 "PO-Revision-Date: 2012-03-21 00:09+0000\n"
 "Last-Translator: ghas <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -37,12 +37,12 @@ msgid "Failed to save user configuration to"
 msgstr "Fallou ao gardar a configuración do usuario en"
 
 # Could not find file
-#: gattrib/src/gattrib.c:408
+#: gattrib/src/gattrib.c:409
 msgid "Could not find file"
 msgstr "Non se puido atopar o ficheiro"
 
 # Exported schematic to
-#: gattrib/src/gattrib.c:457
+#: gattrib/src/gattrib.c:458
 msgid "Exported schematic to"
 msgstr "Explicado esquemático para"
 
@@ -163,23 +163,23 @@ msgstr ""
 msgid "Creating master component list.\n"
 msgstr "Creando a lista de compoñentes mestres.\n"
 
-#: gattrib/src/s_sheet_data.c:310
+#: gattrib/src/s_sheet_data.c:311
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Crear lista de atributos de compoñente principal.\n"
 
 # Creating master pin list
-#: gattrib/src/s_sheet_data.c:436
+#: gattrib/src/s_sheet_data.c:437
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr "Creando lista de pines principais.\n"
 
 # found component pin without a pin number
-#: gattrib/src/s_sheet_data.c:486
+#: gattrib/src/s_sheet_data.c:487
 msgid "found component pin without a pin number"
 msgstr "atopouse o pin dos compoñentes sen un número de pin"
 
-#: gattrib/src/s_sheet_data.c:549
+#: gattrib/src/s_sheet_data.c:550
 msgid "Creating master pin attribute list"
 msgstr "Creación da lista de atributos de ponto principal"
 
@@ -215,7 +215,7 @@ msgstr ""
 msgid "Pin Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:273
+#: gattrib/src/s_toplevel.c:278
 msgid ""
 "Are you sure you want to delete\n"
 "the"
@@ -223,20 +223,20 @@ msgstr ""
 "Está seguro de que quere eliminar\n"
 "o"
 
-#: gattrib/src/s_toplevel.c:277
+#: gattrib/src/s_toplevel.c:282
 msgid "attribute"
 msgstr "atributo"
 
-#: gattrib/src/s_toplevel.c:490
+#: gattrib/src/s_toplevel.c:500
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:848
+#: gattrib/src/s_toplevel.c:858
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:857
+#: gattrib/src/s_toplevel.c:867
 msgid "did not find refdes:pin"
 msgstr ""
 
@@ -741,15 +741,15 @@ msgstr ""
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:575
+#: gattrib/src/x_menus.c:576
 msgid "Open _Recent"
 msgstr ""
 
-#: gattrib/src/x_menus.c:576
+#: gattrib/src/x_menus.c:577
 msgid "Open recently used files"
 msgstr ""
 
-#: gattrib/src/x_menus.c:678
+#: gattrib/src/x_menus.c:679
 msgid "Error loading"
 msgstr ""
 

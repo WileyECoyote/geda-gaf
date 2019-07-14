@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2017-12-11 01:03+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,38 +20,45 @@ msgstr ""
 
 # Get or Set the default symbol for capacitors
 # Huòqǔ huò shèzhì diànróngqì de mòrèn fúhào
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "獲取或設置電容器的默認符號\n"
 
 # Get or Set the default symbol for electrolytic capacitors
 # Huòqǔ huò shèzhì diànjiě diànróng de mòrèn fúhà
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr "Get or Set the default symbol for electrolytic capacitors\n"
 
 # Get or Set the default symbol for inductors
 # Huòqǔ huò shèzhì diàngǎn de mòrèn fúhào
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "獲取或設置電感的默認符號\n"
 
 # Get or Set the default operational amplifier symbol
 # Huòqǔ huò shèzhì mòrèn yùnsuàn fàngdàqì fúhào
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr "獲取或設置默認運算放大器符號\n"
 
 # Get or Set the default symbol for resistors
 # Huòqǔ huò shèzhì diànzǔ de mòrèn fúhào
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "獲取或設置電阻的默認符號\n"
 
 # Get or Set the default title block symbol
 # Huòqǔ huò shèzhì mòrèn biāotí lán fúhào
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "獲取或設置默認標題欄符號\n"
+
+# Get or Set the default title block symbol
+# Huòqǔ huò shèzhì mòrèn biāotí lán fúhào
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "獲取或設置默認標題欄符號\n"
 
 # Close all files and deinitialize the library
@@ -385,78 +392,78 @@ msgstr "檢索指定對象的未連接節點的列表"
 
 # Type error, ignoring invalid optional parameter 5
 # Shūrù cuòwù, hūlüè wúxiào de kě xuǎn cānshù 5
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "輸入錯誤，忽略無效的可選參數5\n"
 
 # get; Dédào
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "得到"
 
 # or set; Huò shèdìng
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "或設定"
 
 # An error occurred; Fāshēng cuòwù
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "發生錯誤"
 
 # object was not created; Duìxiàng wèi chuàngjiàn
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "對象未創建"
 
 # Arc; Hú
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "弧"
 
 # Text Attribute; Wénzì shǔxìng
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "文字屬性"
 
 # Box; Kuāng
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "框"
 
 # Bus => cable; Diànlǎn
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "電纜"
 
 # Circle; Quān
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "圈"
 
 # Line; Xiàn
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "線"
 
 # Net; Jìng
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "淨"
 
 # Path; Lùjìng
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "路徑"
 
 # Pin; Xiāo
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "銷"
 
 # Text; Wénběn
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "文本"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -19,33 +19,39 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "ക്യാപ്സെയ്റ്ററുകൾക്കായി സ്ഥിരസ്ഥിതി ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # ilakṭrēālaiṟṟik kappāsiṟṟaṟukaḷkkāyi sthirasthiti cihnaṁ nēṭuka alleṅkil sajjamākkuka
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr "ഇലക്ട്രോലൈറ്റിക് കപ്പാസിറ്ററുകൾക്കായി സ്ഥിരസ്ഥിതി ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # inḍakṟṟaṟukaḷkkāyi sthirasthiti cihnaṁ nēṭuka alleṅkil sajjamākkuka
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "ഇൻഡക്റ്ററുകൾക്കായി സ്ഥിരസ്ഥിതി ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # sthira ōppaṟēṣan āmpliphayar cihnamākkuka alleṅkil sajjamākkuka
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr "സ്ഥിര ഓപ്പറേഷൻ ആംപ്ലിഫയർ ചിഹ്നമാക്കുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # pratirēādhakkārkkāyi sthirasthiti cihnaṁ nēṭuka alleṅkil sajjamākkuka
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "പ്രതിരോധക്കാർക്കായി സ്ഥിരസ്ഥിതി ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # sthirasthiti śīrṣaka blēākk cihnaṁ nēṭuka alleṅkil sajjamākkuka
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "സ്ഥിരസ്ഥിതി ശീർഷക ബ്ലോക്ക് ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
+
+# sthirasthiti śīrṣaka blēākk cihnaṁ nēṭuka alleṅkil sajjamākkuka
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "സ്ഥിരസ്ഥിതി ശീർഷക ബ്ലോക്ക് ചിഹ്നം നേടുക അല്ലെങ്കിൽ സജ്ജമാക്കുക\n"
 
 # Close all files and the library - ellā phayalukaḷuṁ laibraṟiyuṁ aṭaykkuka
@@ -367,78 +373,78 @@ msgstr "നിർദ്ദിഷ്ട ഒബ്ജക്റ്റുകൾക�
 
 # Type error, ignoring invalid optional parameter 5
 # asādhuvāya ōpṣaṇal pārāmīṟṟar 5 avagaṇikkunna taraṁ teṟṟ
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr "അസാധുവായ ഓപ്ഷണൽ പാരാമീറ്റർ 5 അവഗണിക്കുന്ന തരം തെറ്റ്\n"
 
 # get; nēṭuka
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "നേടുക"
 
 # or set; alleṅkil sajjamākkuka
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "അല്ലെങ്കിൽ സജ്ജമാക്കുക"
 
 # An error occurred; oru piśak sambhaviccu
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "ഒരു പിശക് സംഭവിച്ചു"
 
 # object was not created; objakṟṟ sr̥ṣṭiccilla
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "ഒബ്ജക്റ്റ് സൃഷ്ടിച്ചില്ല"
 
 # Arc; ārkk
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "ആർക്ക്"
 
 # Text Attribute; ṭeksṟṟ āṭribyūṭṭ
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "ടെക്സ്റ്റ് ആട്രിബ്യൂട്ട്"
 
 # Box => Rectangle; dīrghacaturaṁ
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "ദീർഘചതുരം"
 
 # Bus => cable; kēbiḷ
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "കേബിൾ"
 
 # Circle; sarkkiḷ
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "സർക്കിൾ"
 
 # Line; lain
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "ലൈൻ"
 
 # Net; neṟṟ
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "നെറ്റ്"
 
 # Path => polygon; bahubhujaṁ
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "ബഹുഭുജം"
 
 # Pin
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "പിൻ"
 
 # Text; vācakaṁ
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "വാചകം"
 

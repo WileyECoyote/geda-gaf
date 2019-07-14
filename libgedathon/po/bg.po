@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedathon\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-01 21:18-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,37 +20,44 @@ msgstr ""
 "X-Generator: Launchpad (build 16265)\n"
 
 # Vzemete ili zadaĭte simvol po podrazbirane za kondenzatori
-#: libgedathon/include/functions.h:54
+#: libgedathon/include/functions.h:55
 msgid "Get or Set the default symbol for capacitors\n"
 msgstr "Вземете или задайте символ по подразбиране за кондензатори\n"
 
 # Poluchete ili zadaĭte simvola po podrazbirane za elektrolitni kondenzatori
-#: libgedathon/include/functions.h:55
+#: libgedathon/include/functions.h:56
 msgid "Get or Set the default symbol for electrolytic capacitors\n"
 msgstr ""
 "Получете или задайте символа по подразбиране за електролитни кондензатори\n"
 
 # Izteglete ili zadaĭte simvola po podrazbirane za induktori
-#: libgedathon/include/functions.h:56
+#: libgedathon/include/functions.h:57
 msgid "Get or Set the default symbol for inductors\n"
 msgstr "Изтеглете или задайте символа по подразбиране за индуктори\n"
 
 # Get or Set the default operational amplifier symbol
 # Vzemete ili zadaĭte simvola po podrazbirane za operatsionen usilvatel
-#: libgedathon/include/functions.h:57
+#: libgedathon/include/functions.h:58
 msgid "Get or Set the default operational amplifier symbol\n"
 msgstr "Вземете или задайте символа по подразбиране за операционен усилвател\n"
 
 # Get or Set the default symbol for resistors
 # Poluchete ili zadaĭte simvol po podrazbirane za rezistori
-#: libgedathon/include/functions.h:58
+#: libgedathon/include/functions.h:59
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "Получете или задайте символ по подразбиране за резистори\n"
 
 # Get or Set the default titleblock symbol
 # Vzemete ili zadaĭte simvola na osnovniya blok na zaglavieto
-#: libgedathon/include/functions.h:59
+#: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
+msgstr "Вземете или задайте символа на основния блок на заглавието\n"
+
+# Get or Set the default titleblock symbol
+# Vzemete ili zadaĭte simvola na osnovniya blok na zaglavieto
+#: libgedathon/include/functions.h:61
+#, fuzzy
+msgid "Get or Set the default transformer symbol\n"
 msgstr "Вземете или задайте символа на основния блок на заглавието\n"
 
 # Close all files and deinitialize the library
@@ -358,79 +365,79 @@ msgstr "Извличане на списък от точки на несвърз
 
 # Type error, ignoring invalid optional parameter 5
 # Vŭvedete greshka, prenebregvaĭki nevalidniya nezadŭlzhitelen parametŭr 5
-#: libgedathon/module/functions.c:164
+#: libgedathon/module/functions.c:165
 #, c-format
 msgid "Type error, ignoring invalid optional parameter 5\n"
 msgstr ""
 "Въведете грешка, пренебрегвайки невалидния незадължителен параметър 5\n"
 
 # get; poluchavam
-#: libgedathon/module/functions.c:400
+#: libgedathon/module/functions.c:403
 msgid "get"
 msgstr "получавам"
 
 # or set; ili nabor
-#: libgedathon/module/functions.c:401
+#: libgedathon/module/functions.c:404
 msgid "or set"
 msgstr "или набор"
 
 # An error occurred; Vŭznikna greshka
-#: libgedathon/module/functions.c:415
+#: libgedathon/module/functions.c:418
 msgid "An error occurred"
 msgstr "Възникна грешка"
 
 # object was not created; ne e sŭzdaden
-#: libgedathon/module/functions.c:416
+#: libgedathon/module/functions.c:419
 msgid "object was not created"
 msgstr "не е създаден"
 
 # Arc; Dŭga
-#: libgedathon/module/functions.c:783
+#: libgedathon/module/functions.c:815
 msgid "Arc"
 msgstr "Дъга"
 
 # Text Attribute; Tekstov atribut
-#: libgedathon/module/functions.c:887
+#: libgedathon/module/functions.c:919
 msgid "Text Attribute"
 msgstr "Текстов атрибут"
 
 # Box => Rectangle; pravoŭgŭlnik
-#: libgedathon/module/functions.c:949
+#: libgedathon/module/functions.c:981
 msgid "Box"
 msgstr "правоъгълник"
 
 # Bus; Avtobusen
-#: libgedathon/module/functions.c:1018
+#: libgedathon/module/functions.c:1050
 msgid "Bus"
 msgstr "Автобусен"
 
 # Circle; krŭg
-#: libgedathon/module/functions.c:1227
+#: libgedathon/module/functions.c:1259
 msgid "Circle"
 msgstr "кръг"
 
 # Line ; liniya
-#: libgedathon/module/functions.c:1447
+#: libgedathon/module/functions.c:1479
 msgid "Line"
 msgstr "линия"
 
 # Net; neto
-#: libgedathon/module/functions.c:1512
+#: libgedathon/module/functions.c:1544
 msgid "Net"
 msgstr "нето"
 
 # Path => Polygon; pŭt
-#: libgedathon/module/functions.c:1662
+#: libgedathon/module/functions.c:1694
 msgid "Path"
 msgstr "път"
 
 # Pin; shtift
-#: libgedathon/module/functions.c:1879
+#: libgedathon/module/functions.c:1911
 msgid "Pin"
 msgstr "щифт"
 
 # Text; Tekst
-#: libgedathon/module/functions.c:2114
+#: libgedathon/module/functions.c:2146
 msgid "Text"
 msgstr "Текст"
 

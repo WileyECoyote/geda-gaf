@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-06-11 11:30-0500\n"
+"POT-Creation-Date: 2019-07-13 22:06-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -519,53 +519,53 @@ msgstr ""
 msgid "Set whether configuration context is trusted config source."
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1040 libgeda/src/geda/geda_config.c:1169
+#: libgeda/src/geda/geda_config.c:1041 libgeda/src/geda/geda_config.c:1170
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1043
+#: libgeda/src/geda/geda_config.c:1044
 #, c-format
 msgid "Error loading configuration, file name is undefined\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1114 libgeda/src/guile/g_rc_parse.c:295
+#: libgeda/src/geda/geda_config.c:1115 libgeda/src/guile/g_rc_parse.c:295
 msgid "accessing file"
 msgstr ""
 
 # Error loading configuration
-#: libgeda/src/geda/geda_config.c:1117
+#: libgeda/src/geda/geda_config.c:1118
 msgid "Error loading configuration"
 msgstr "configuració de càrrega d'error"
 
 # Error saving configuration; file name is undefined
-#: libgeda/src/geda/geda_config.c:1172
+#: libgeda/src/geda/geda_config.c:1173
 #, c-format
 msgid "Error saving configuration, file name is undefined\n"
 msgstr "Error en desar la configuració; nom de l'arxiu no està definit\n"
 
-#: libgeda/src/geda/geda_config.c:1197 libgeda/src/object/o_save.c:424
+#: libgeda/src/geda/geda_config.c:1198 libgeda/src/object/o_save.c:424
 msgid "file"
 msgstr "de l'arxiu"
 
 # an error occurred while attempting to save configuration to
-#: libgeda/src/geda/geda_config.c:1233
+#: libgeda/src/geda/geda_config.c:1234
 msgid "Error saving configuration to"
 msgstr "s'ha produït un error en desar la configuració de"
 
 # bad path in file
-#: libgeda/src/geda/geda_config.c:1240
+#: libgeda/src/geda/geda_config.c:1241
 msgid "bad path in file"
 msgstr "ruta no vàlida en nom d'arxiu"
 
-#: libgeda/src/geda/geda_config.c:1244
+#: libgeda/src/geda/geda_config.c:1245
 msgid "Error saving configuration, bad path in"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1577 libgeda/src/geda/geda_config.c:1641
+#: libgeda/src/geda/geda_config.c:1578 libgeda/src/geda/geda_config.c:1642
 msgid "Configuration does not have group"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1655
+#: libgeda/src/geda/geda_config.c:1656
 msgid "Configuration does not have key"
 msgstr ""
 
@@ -1007,7 +1007,7 @@ msgstr ""
 msgid "list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:1242 libgeda/src/guile/g_rc.c:1282
+#: libgeda/src/guile/g_rc.c:1265 libgeda/src/guile/g_rc.c:1305
 msgid "invalid path"
 msgstr ""
 
@@ -1129,7 +1129,7 @@ msgstr ""
 #: libgeda/src/object/o_box_object.c:1586
 #: libgeda/src/object/o_bus_object.c:586
 #: libgeda/src/object/o_circle_object.c:1357
-#: libgeda/src/object/o_line_object.c:1568
+#: libgeda/src/object/o_line_object.c:1571
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:580
 #: libgeda/src/object/o_pin_object.c:197
@@ -1141,7 +1141,7 @@ msgstr ""
 #: libgeda/src/object/o_box_object.c:1590
 #: libgeda/src/object/o_bus_object.c:590
 #: libgeda/src/object/o_circle_object.c:1361
-#: libgeda/src/object/o_line_object.c:1572
+#: libgeda/src/object/o_line_object.c:1575
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:584
 #: libgeda/src/object/o_pin_object.c:201
@@ -1357,12 +1357,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1528
-#: libgeda/src/object/o_line_object.c:1548
+#: libgeda/src/object/o_line_object.c:1531
+#: libgeda/src/object/o_line_object.c:1551
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1561
+#: libgeda/src/object/o_line_object.c:1564
 msgid "Found a line with zero length"
 msgstr ""
 
@@ -1609,33 +1609,33 @@ msgstr ""
 msgid "~A is not a valid attribute: invalid string '~A'."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:171
+#: libgeda/src/scheme/scheme_complex.c:173
 msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
 # Object ~A is already on a page
-#: libgeda/src/scheme/scheme_complex.c:290
+#: libgeda/src/scheme/scheme_complex.c:292
 msgid "Object ~A is already on a page"
 msgstr "Objecte ~A ja està en una pàgina"
 
-#: libgeda/src/scheme/scheme_complex.c:298 libgeda/src/scheme/scheme_page.c:65
+#: libgeda/src/scheme/scheme_complex.c:300 libgeda/src/scheme/scheme_page.c:65
 msgid "Object ~A is already attached to something"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:360
+#: libgeda/src/scheme/scheme_complex.c:362
 msgid "Object ~A is attached to a different complex"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:367
+#: libgeda/src/scheme/scheme_complex.c:369
 msgid "Object ~A is attached to a page"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:374
+#: libgeda/src/scheme/scheme_complex.c:376
 #: libgeda/src/scheme/scheme_page.c:365
 msgid "Object ~A is attached as an attribute"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:381
+#: libgeda/src/scheme/scheme_complex.c:383
 #: libgeda/src/scheme/scheme_page.c:372
 msgid "Object ~A has attributes"
 msgstr ""
@@ -1644,103 +1644,103 @@ msgstr ""
 msgid "Invalid pin type ~A, must be 'net or 'bus"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:379
+#: libgeda/src/scheme/scheme_object.c:381
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:392
+#: libgeda/src/scheme/scheme_object.c:394
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:457
+#: libgeda/src/scheme/scheme_object.c:461
 msgid "Object ~A has invalid fill style ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:513
+#: libgeda/src/scheme/scheme_object.c:517
 msgid "Invalid fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:521
+#: libgeda/src/scheme/scheme_object.c:525
 msgid "Missing second space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:530
+#: libgeda/src/scheme/scheme_object.c:534
 msgid "Missing second angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:540
+#: libgeda/src/scheme/scheme_object.c:544
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:549
+#: libgeda/src/scheme/scheme_object.c:553
 msgid "Missing space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:558
+#: libgeda/src/scheme/scheme_object.c:562
 msgid "Missing angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:798
+#: libgeda/src/scheme/scheme_object.c:802
 msgid "Object ~A has invalid pin type."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1106
+#: libgeda/src/scheme/scheme_object.c:1110
 msgid "Invalid text alignment ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1122
+#: libgeda/src/scheme/scheme_object.c:1126
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1150
+#: libgeda/src/scheme/scheme_object.c:1154
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1224
+#: libgeda/src/scheme/scheme_object.c:1228
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1233
+#: libgeda/src/scheme/scheme_object.c:1237
 msgid "Text object ~A has invalid visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1243
+#: libgeda/src/scheme/scheme_object.c:1247
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1284
+#: libgeda/src/scheme/scheme_object.c:1288
 msgid "Object ~A is not included in a page."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1371
+#: libgeda/src/scheme/scheme_object.c:1375
 msgid "Invalid stroke cap style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1382
+#: libgeda/src/scheme/scheme_object.c:1386
 msgid "Invalid stroke dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1392
+#: libgeda/src/scheme/scheme_object.c:1396
 msgid "Missing dash length parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1402
+#: libgeda/src/scheme/scheme_object.c:1406
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1456
+#: libgeda/src/scheme/scheme_object.c:1461
 msgid "Object ~A has bad type '~A'"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1559
+#: libgeda/src/scheme/scheme_object.c:1564
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1688
+#: libgeda/src/scheme/scheme_object.c:1693
 msgid "Invalid path element type ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1846
+#: libgeda/src/scheme/scheme_object.c:1851
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
