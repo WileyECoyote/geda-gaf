@@ -1,3 +1,7 @@
+2019-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Fix format specifiers.
+
 2019-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_*.c: Revise error messages to not abbreviate

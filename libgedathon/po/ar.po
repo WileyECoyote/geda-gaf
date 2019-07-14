@@ -473,7 +473,7 @@ msgstr "خطأ في تهيئة كائن قوس جديد"
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr "لا يمكن حذف السمة ٪s"
+msgstr "لا يمكن حذف السمة %s"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -481,7 +481,7 @@ msgstr "لا يمكن حذف السمة ٪s"
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr "يجب أن تكون السمة ٪s قيمة عددية"
+msgstr "يجب أن تكون السمة %s قيمة عددية"
 
 # بايثون عدد صحيح كبير جدا لتحويله إلى عدد صحيح سي
 #: libgedathon/module/objects/geda_py_arc.c:229
