@@ -4,6 +4,8 @@
 
     * po/fa.po: Fix format specifiers in Persian translation.
 
+    * po/ja.po: Update Japanese translations.
+
 2019-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_*.c: Revise error messages to not abbreviate

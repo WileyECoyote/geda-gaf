@@ -51,12 +51,11 @@ msgstr "レジスタのデフォルトシンボルを取得または設定する
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "デフォルトのタイトルブロックシンボルを取得または設定する\n"
 
-# Get or Set the default titleblock symbol
-# Deforuto no taitoruburokkushinboru o shutoku matawa settei suru
+# Get or Set the default transformer symbol
+# Deforuto no toransufōmāshinboru o shutoku matawa settei shimasu
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "デフォルトのタイトルブロックシンボルを取得または設定する\n"
+msgstr "デフォルトのトランスフォーマーシンボルを取得または設定します\n"
 
 # Close all files and deinitialize the library
 # Subete no fairu o toji, raiburari no shokka o kaijo suru
@@ -463,10 +462,14 @@ msgstr "ピン"
 msgid "Text"
 msgstr "テキスト"
 
+# Error initializing new Arc object
+# Atarashī Arc obujekuto no shokka er
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "新しいArcオブジェクトの初期化エラー"
 
+# Cannot delete the %s attribute
+# Pāsento s zokusei o sakujo dekimasen
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -480,22 +483,26 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "%s属性を削除できません"
 
+# The %s attribute must be an integer value
+# Pāsento s zokusei wa seisū-chidenakereba narimasen
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "%s属性は整数値でなければなりません"
 
+# Python integer too large to convert to C integer
+# Paison no seisū ga ōki sugite C no seisū ni henkan dekinai
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
-msgstr ""
+msgstr "Pythonの整数が大きすぎてCの整数に変換できない"
 
 # Creates an arc object extension type
 # Enko obujekuto kakuchō taipu o sakusei shimasu
@@ -503,9 +510,11 @@ msgstr ""
 msgid "Creates an Arc object extension type."
 msgstr "円弧オブジェクト拡張タイプを作成します."
 
+# Error initializing new Box object
+# Atarashī bokkusu obujekuto no shokka erā
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "新しいボックスオブジェクトの初期化エラー"
 
 # CCreates a Box object type
 # Bokkusuobujekutotaipu o sakusei shimasu
@@ -513,19 +522,23 @@ msgstr ""
 msgid "Creates a Box object type."
 msgstr "ボックスオブジェクトタイプを作成します."
 
+# Error initializing new cable object
+# Atarashī kēburuobujekuto no shokka erā
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "新しいケーブルオブジェクトの初期化エラー"
 
+# The bus name attribute value must be a string
+# Basu-mei zokuseichi wa mojiretsudenakereba narimasen
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "バス名属性値は文字列でなければなりません"
 
-# Creates a Bus object type
-# Basuobujekutotaipu o sakusei shimasu
+# Creates a cable object type
+# BKēburuobujekutotaipu o sakusei shimasu
 #: libgedathon/module/objects/geda_py_bus.c:348
 msgid "Creates a Bus object type."
-msgstr "Creates a Bus object type."
+msgstr "ケーブルオブジェクトタイプを作成します."
 
 # Error initializing new Circle object
 # Atarashī en obujekuto no shokka erā
@@ -533,8 +546,8 @@ msgstr "Creates a Bus object type."
 msgid "Error initializing new Circle object"
 msgstr "新しい円オブジェクトの初期化エラー"
 
-# Creates a Circle object type
-# Sākuru obujekuto-gata o sakusei shimasu
+# Creates a circle object type
+# En obujekuto taipu o sakusei shimasu
 #: libgedathon/module/objects/geda_py_circle.c:341
 msgid "Creates a Circle object type."
-msgstr "Circleオブジェクト型を作成します."
+msgstr "円オブジェクトタイプを作成します."
