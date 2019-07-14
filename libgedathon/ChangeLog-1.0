@@ -2,6 +2,8 @@
 
     * po/ar.po: Fix format specifiers and update Arabic translations;
 
+    * po/fa.po: Fix format specifiers in Persian translation.
+
 2019-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_*.c: Revise error messages to not abbreviate

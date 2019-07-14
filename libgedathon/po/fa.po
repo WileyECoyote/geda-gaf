@@ -413,7 +413,7 @@ msgstr "می توانید ویژگی %s را حذف کنید"
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr "ویژگی ٪s باید یک مقدار صحیح باشد"
+msgstr "ویژگی %s باید یک مقدار صحیح باشد"
 
 # Python integer too large to convert to C integer
 #: libgedathon/module/objects/geda_py_arc.c:229
