@@ -6,6 +6,8 @@
 
     * po/ja.po: Update Japanese translations.
 
+    * po/kh.po: Update Khmer translations.
+
 2019-07-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_*.c: Revise error messages to not abbreviate

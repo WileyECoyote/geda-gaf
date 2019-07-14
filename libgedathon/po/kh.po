@@ -45,10 +45,10 @@ msgstr "ttuol ryy kamnt nimittasanhnhea lomneadaem samreab tngsyong\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "ttuol ryy kamnt nimittasanhnhea blok chamnangcheung lomneadaem\n"
 
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "ttuol ryy kamnt nimittasanhnhea blok chamnangcheung lomneadaem\n"
+msgstr "ttuol ryy kamnt nimittasanhnhea bleng tam lomneadaem\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
@@ -411,8 +411,9 @@ msgstr "atthabat"
 
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "kamhosa knong kar chabphtaem vottho thnou thmei"
 
+# Cannot delete the %s attribute
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
 #: libgedathon/module/objects/geda_py_bus.c:182
@@ -426,44 +427,49 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "min ach loub kounalokkhan %s ban te"
 
+# The %s attribute must be an integer value
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
 #: libgedathon/module/objects/geda_py_bus.c:202
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "kounalokkhan %s trauvte chea chamnuonokt"
 
+# Python integer too large to convert to C integer
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
-msgstr ""
+msgstr "chamnuonokt Python  thom pek daembi bamleng tow chamnuonokt C"
 
 # Creates an arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "bangkeut braphet phnek banthem vottho thnou."
 
+# Error initializing new Box object
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "kamhosa knong kar chabphtaem vottho braab thmei"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
 msgid "Creates a Box object type."
 msgstr "bangkeut braphet vottho braab muoy."
 
+# Error initializing new cable object
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "kamhosa knong kar chabphtaem vottho khsae thmei"
 
+# The bus name attribute value must be a string
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "tamlei kounalokkhan chhmoh rothayont trauvte khsae aksaar"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348
