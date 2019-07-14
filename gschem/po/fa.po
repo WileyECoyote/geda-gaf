@@ -472,17 +472,19 @@ msgstr ""
 msgid "Right pointer button assignment, right click for options"
 msgstr "انتساب دکمه سمت راست اشارهگر، راست کلیک برای گزینه ها"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "نشان می دهد که ضربه محکم و ناگهانی، واحد شبکه و یا دولت"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "حالت فعلی دستور را نشان می دهد"
 
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "نوار وضعیت Gschem"
 
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
@@ -491,7 +493,7 @@ msgstr "توری"
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "خاموش"
 
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
@@ -500,31 +502,35 @@ msgstr "خطا"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "هیچ یک"
 
+# Object ~A is not included in the current gschem page
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current gschem page."
-msgstr ""
+msgstr "شی ~A در صفحه فعلی gschem گنجانده نشده است"
 
+# Invalid text name/value visibility ~A
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "نمایش نام متن / ارزش نامعتبر است ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "در حال پردازش"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "پرش"
 
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "ورود به فایل rc"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "ارزش بد"
 
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2068
 msgid "check"
