@@ -41,16 +41,17 @@ msgstr "الحصول على أو تعيين رمز مكبر للصوت التش�
 msgid "Get or Set the default symbol for resistors\n"
 msgstr "الحصول على أو تعيين الرمز الافتراضي للمقاومات\n"
 
+# Get or Set the default titleblock symbol
 # alhusul ealaa 'aw taeyin ramz kutlat aleunwan al'iiftiradii
 #: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "الحصول على أو تعيين رمز كتلة العنوان الافتراضي\n"
 
-# alhusul ealaa 'aw taeyin ramz kutlat aleunwan al'iiftiradii
+# Get or Set the default transformer symbol
+# alhusul ealaa 'aw taeyin ramz almihawal al'iiftiradii
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "الحصول على أو تعيين رمز كتلة العنوان الافتراضي\n"
+msgstr "الحصول على أو تعيين رمز المحول الافتراضي\n"
 
 # Close all files and the library - 'ughliq kl almilaffat walmaktaba
 #: libgedathon/include/geda_module.h:53
