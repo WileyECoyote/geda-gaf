@@ -34,8 +34,6 @@
 
 (define-public get-line-width %get-line-width)
 
-(define-public get-attribute-name-value parse-attrib)
-
 (define-public get-attribute-angle text-angle)
 
 (define-public (get-object-attributes object)
