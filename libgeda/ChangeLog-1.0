@@ -8,6 +8,9 @@
     * src/file/f_path.c: Suffix "gEDA" to the location returned by
       geda_file_path_user_cache.
 
+    * src/utility/u_log.c: Drop the "gEDA" prefix from the location of log
+      files.
+
 2019-07-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/Makefile.am: Clean subdirectories.
