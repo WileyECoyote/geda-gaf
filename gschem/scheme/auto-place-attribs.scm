@@ -180,9 +180,9 @@
          )
        ))))
 
-; This function returns the bounds of the pins in the given side of the object
-; The side is a one character string: "^", "v", "<" or ">". The arrow
-; points the pin's end, which is NOT the active connection end.
+; This function returns the bounds of the pins on the given side of the
+; object The side is a one character string: "^", "v", "<" or ">". The
+; arrow points to the pin's end, which is NOT the active connection end.
 (define get-bounds-of-pins-with-attribs-in-side
    (lambda (object desired_side)
      (define get-bound-of-list-of-pins-with-attribs
