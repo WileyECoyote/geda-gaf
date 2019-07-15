@@ -2,6 +2,9 @@
 
     * scheme/geda/deprecated.scm: Remove get-attribute-name-value
 
+    * scheme/unit-tests/t1000-deprecated.scm: Remove test for get-attribute-
+      name-value.
+
 2019-07-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/Makefile.am: Clean subdirectories.

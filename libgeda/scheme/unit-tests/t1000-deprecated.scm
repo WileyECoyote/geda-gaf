@@ -6,10 +6,6 @@
 (use-modules (geda attrib))
 (use-modules (geda page))
 
-(begin-test 'get-attribute-name-value
-  (let ((t (make-text '(1 . 2) 'lower-left 0 "name=value" 10 #t 'both)))
-    (assert-equal '("name" . "value") (get-attribute-name-value t))))
-
 (begin-test 'calcule-new-attrib-bounds
   ; Can't actually test this procedure in libgeda only, due to the
   ; absence of a function for calculating text bounds.
