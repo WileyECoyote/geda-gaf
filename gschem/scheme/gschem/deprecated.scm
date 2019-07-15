@@ -141,7 +141,7 @@
 ;; get-current-page
 ;;
 ;; Return the page which currently has focus in gschem.
-(define-public get-current-page active-page)
+;;(define-public get-current-page active-page)
 
 ;; get-object-pins object
 ;;
