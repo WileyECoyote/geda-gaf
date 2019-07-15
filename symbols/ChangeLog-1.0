@@ -8,6 +8,11 @@
 
     * opto/ASSR-1228-1.sym: Add symbol; Dual solid state opto relay.
 
+    * simulation/vhdl/nor[2-6]-1.sym: Add description attribute, revise pin
+      attributes:
+
+            * simulation/vhdl/nor2-1.sym
+
 2019-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/transformer/transformer-[1,2].sym: Remove unintended braces,
