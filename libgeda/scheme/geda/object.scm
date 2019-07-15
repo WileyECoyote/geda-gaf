@@ -440,7 +440,7 @@
 (define-public set-object-fill! %set-object-fill!)
 
 ;;;; GedaObject bounds
-
+;;The bounds is returned in the form ((left . top) . (right . bottom))
 (define-public object-bounds %object-bounds)
 
 ;; Calculates the union of several sets of BOUNDS, as returned by
