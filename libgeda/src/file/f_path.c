@@ -377,7 +377,8 @@ char *geda_file_path_get_dirname (const char *filespec)
  */
 static void *libgeda_module_handle (void)
 {
-  typedef BOOL (WINAPI *t_GetModuleHandleExA) (DWORD, LPCTSTR, HMODULE *);
+  typedef BOOL (WINAPI *t_GetModuleHandleExA) (DWORD, LPCTSTR, HMODULE*);
+
   static t_GetModuleHandleExA p_GetModuleHandleExA = NULL;
   static const void *address = (void (*)(void)) &libgeda_module_handle;
   static HMODULE hmodule = NULL;
