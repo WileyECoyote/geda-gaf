@@ -46,7 +46,7 @@
     (assert-equal (list "y" "x") (get-attrib-value-by-attrib-name p "name"))
 
     ;;WEH The next test is not a valid test because set-text will set the would
-    ;;be attribute to be a text object but is still in the the object's attribute
+    ;;be attribute to be a text object but is still in the object's attribute
     ;;list, e.g. is set-text- not set-attribute. There is no automatic attribute
     ;;demotion mechanism in Libgeda.
 
