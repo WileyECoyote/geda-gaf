@@ -1,3 +1,6 @@
+2019-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * lineartech/LT3580-1.sym: Add symbol; Step-Up (Boost) DC/DC Converter:
 2019-07-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/transformer/transformer-[1,2].sym: Remove unintended braces,
