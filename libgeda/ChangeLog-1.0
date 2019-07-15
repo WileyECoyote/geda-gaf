@@ -5,6 +5,9 @@
     * scheme/unit-tests/t1000-deprecated.scm: Remove test for get-attribute-
       name-value.
 
+    * src/file/f_path.c: Suffix "gEDA" to the location returned by
+      geda_file_path_user_cache.
+
 2019-07-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/Makefile.am: Clean subdirectories.

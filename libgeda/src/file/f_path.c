@@ -671,7 +671,8 @@ const char *geda_file_path_user_cache (void) {
 #endif
 
     user_cache_path =
-    geda_strconcat(homedir, DIR_SEPARATOR_S, cachedir, NULL);
+    geda_strconcat(homedir, DIR_SEPARATOR_S, cachedir,
+                            DIR_SEPARATOR_S, GEDA_CONFIG_DIR, NULL);
 
     /* As a last resort just use the config directory */
     if (user_cache_path == NULL) {
