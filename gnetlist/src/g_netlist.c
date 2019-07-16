@@ -780,7 +780,7 @@ SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin,
 
           if (return_value) {
 #if DEBUG
-            printf("GOT IT: %s\n", return_value);
+            printf("GOT return_value=<%s>\n", return_value);
 #endif
             break;
           }
