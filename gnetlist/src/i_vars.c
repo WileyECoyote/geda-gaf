@@ -90,14 +90,17 @@ void i_vars_set(GedaToplevel *pr_current)
     default_hierarchy_netattrib_separator =
     geda_utility_string_strdup (DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR);
   }
+
   if (!default_hierarchy_uref_separator) {
     default_hierarchy_uref_separator =
     geda_utility_string_strdup (DEFAULT_HIERARCHY_UREF_SEPARATOR);
   }
+
   if (!default_unnamed_netname) {
     default_unnamed_netname =
     geda_utility_string_strdup (DEFAULT_UNNAMED_NETNAME);
   }
+
   if (!default_unnamed_busname) {
     default_unnamed_busname =
     geda_utility_string_strdup (DEFAULT_UNNAMED_BUSNAME);
@@ -164,4 +167,3 @@ void i_vars_free_strings (void)
   GEDA_FREE(default_unnamed_netname);
   GEDA_FREE(default_unnamed_busname);
 }
-
