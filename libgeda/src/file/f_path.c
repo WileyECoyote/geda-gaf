@@ -436,16 +436,21 @@ const char *geda_file_path_sys_data (void) {
 
   if (sys_data_path == NULL) {
 
-# if defined (OS_WIN32)
+#if defined (OS_WIN32)
+
     /* On Windows, guess the path from the location of the libgeda DLL. */
     char *directory =
       g_win32_get_package_installation_directory_of_module (libgeda_module_handle ());
     sys_data_path = g_build_filename (directory, "share", "gEDA", NULL);
+
     GEDA_FREE (directory);
-# else
+
+#else
+
     /* On other platforms, use the compiled-in path */
     sys_data_path = geda_strdup(GEDADATADIR);
-# endif
+
+#endif
 
     setenv (DATA_ENV_STR, sys_data_path, FALSE);
   }
