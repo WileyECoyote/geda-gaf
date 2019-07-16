@@ -538,8 +538,7 @@ SCM g_get_pins_nets(SCM scm_uref)
 
   free (wanted_uref);
 
-  pinslist = scm_reverse (pinslist);	/* pins are in reverse order on way out */
-  return (pinslist);
+  return (scm_reverse (pinslist)); /* pins are in reverse order on way out */
 }
 
 
