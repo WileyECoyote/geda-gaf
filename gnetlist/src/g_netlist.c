@@ -911,11 +911,12 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
   return (scm_return_value);
 }
 
-/*! \brief Returns verbosity level for messages
+/*!
+ * \brief Returns verbosity level for messages
  * \par Function Description
  *  If the "-q" gnetlist command-line option was specified, returns -1.
  *  If the "-v" gnetlist command-line option was specified, returns 1.
- * Otherwise, returns 0.
+ *  Otherwise, returns 0.
  */
 SCM g_get_verbosity (void)
 {
