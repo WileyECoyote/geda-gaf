@@ -38,29 +38,29 @@ int   logfile_fd  = -1;
 
 volatile int log_destiny=CONSOLE_WINDOW;
 
-/* netlist specific variables */
+/* Netlist specific variables */
 NETLIST *netlist_head=NULL;
 
 /* Special objects with graphical=1 attribute */
 NETLIST *graphical_netlist_head=NULL;
 char    *guile_proc=NULL;
 
-/* command line arguments */
+/* Command line arguments */
 int list_backends=FALSE;
 int verbose_mode=FALSE;
 int interactive_mode=FALSE;
 int quiet_mode=FALSE;
 
-/* what kind of netlist are we generating? see define.h for #defs */
+/* What kind of netlist are we generating? see define.h for #defs */
 int netlist_mode=gEDA;
 
-/* scheme expression to evaluate before loading of rc files */
+/* Scheme expression to evaluate before loading of rc files */
 SCM pre_rc_list = SCM_EOL;
 
-/* scheme expression to evaluate before loading of the backend */
+/* Scheme expression to evaluate before loading of the backend */
 SCM pre_backend_list = SCM_EOL;
 
-/* scheme expression to evaluate after loading of the backend but
+/* Scheme expression to evaluate after loading of the backend but
  * before the execution of the backend procedure */
 SCM post_backend_list = SCM_EOL;
 
