@@ -476,7 +476,7 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 /*!
  * \brief Get Nets of a given Net UREF
  * \par Function Description
- *  Given a uref, Return a list of pairs, each pair contains the pin
+ *  Given a uref, return a list of pairs, each pair contains the pin
  *  number and the name of the net connected to that pin.
  *
  *  Alias gnetlist:get-pin-nets
