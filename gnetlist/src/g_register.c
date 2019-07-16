@@ -76,8 +76,9 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "gnetlist:get-version",                 0, 0, 0, g_get_version },
   { NULL,                                   0, 0, 0, NULL } };
 
-/*! \brief Register function with Scheme.
- *  \par Function Description
+/*!
+ * \brief Register function with Scheme.
+ * \par Function Description
  *  Creates <B>subr</B> objects to make <B>g_rc_*</B> gnetlist API functions
  *  visible to Scheme.
  */
@@ -92,8 +93,9 @@ void g_register_funcs(void)
 
 }
 
-/*! \brief SCM API terminate program
- *  \par Function Description
+/*!
+ * \brief SCM API terminate program
+ * \par Function Description
  *  Scheme API function to terminate gnetlist.
  */
 SCM g_quit(void)
