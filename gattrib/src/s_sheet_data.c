@@ -389,11 +389,12 @@ void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add net attributes to master list.
- *  \par Function Description
- * Build the master list of net attribs.
- * It's currently empty, waiting for implementation of net
- * attributes.
+/*!
+ * \brief Add net attributes to master list.
+ * \par Function Description
+ *  Build the master list of net attribs.
+ *  It's currently empty, waiting for implementation of net
+ *  attributes.
  */
 void s_sheet_data_add_master_net_attrib_list_items (const GList *obj_start) {
   s_sheet_data_add_net_attrib(sheet_head, "none");
@@ -401,22 +402,24 @@ void s_sheet_data_add_master_net_attrib_list_items (const GList *obj_start) {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add pin names to master list.
- *  \par Function Description
- * Build the master
- * list of pin names.  It writes the
- * label refdes:pinnumber into the global master pin list.
- * Algorithm:
- * -# Loop on o_current looking for OBJ_COMPLEX
- * -# When we find a complex, save the refdes.
- * -# Dive down to o_lower_current = o_current->complex->prim_objs
- * -# Loop on o_lower_current looking for OBJ_PIN
- * -# When we find a pin, find the pinnumber by calling
- *    geda_attrib_search_object_by_name(o_lower_current, "pinnumber", 0)
- * -# Create the pin list label as "refdes=XXX", and stick it into
- *    the master pin list.
- * Since this function operates on the global sheet_data->master_pin_list,
- * it doesn't return a value.
+/*!
+ * \brief Add pin names to master list.
+ * \par Function Description
+ *  Build the master
+ *  list of pin names.  It writes the
+ *  label refdes:pinnumber into the global master pin list.
+ *  Algorithm:
+ *  -# Loop on o_current looking for OBJ_COMPLEX
+ *  -# When we find a complex, save the refdes.
+ *  -# Dive down to o_lower_current = o_current->complex->prim_objs
+ *  -# Loop on o_lower_current looking for OBJ_PIN
+ *  -# When we find a pin, find the pinnumber by calling
+ *     geda_attrib_search_object_by_name(o_lower_current, "pinnumber", 0)
+ *  -# Create the pin list label as "refdes=XXX", and stick it into
+ *     the master pin list.
+ *  Since this function operates on the global sheet_data->master_pin_list,
+ *  it doesn't return a value.
+ *
  * \param obj_list pointer to list of pin names to be added.
  */
 void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
@@ -514,20 +517,22 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add pin attributes to master list.
- *  \par Function Description
- * Build the master
- * list of pin attributes.  It writes
- * each attrib name into the master pin attrib list.
- * Algorithm:
- * -# Loop on o_current looking for OBJ_COMPLEX
- * -# When we find a complex, save the refdes.
- * -# Dive down to o_lower_current = o_current->complex->prim_objs
- * -# Loop on o_lower_current looking for OBJ_PIN
- * -# When we find a pin, get pin_attribs = o_lower_current->attribs
- * -# Loop on attribs looking for non-NULL text.
- * -# When we find a non-NULL text attrib, extract the attrib name
- *    and stick it in the master pin attrib list.
+/*!
+ * \brief Add pin attributes to master list.
+ * \par Function Description
+ *  Build the master
+ *  list of pin attributes.  It writes
+ *  each attrib name into the master pin attrib list.
+ *  Algorithm:
+ *  -# Loop on o_current looking for OBJ_COMPLEX
+ *  -# When we find a complex, save the refdes.
+ *  -# Dive down to o_lower_current = o_current->complex->prim_objs
+ *  -# Loop on o_lower_current looking for OBJ_PIN
+ *  -# When we find a pin, get pin_attribs = o_lower_current->attribs
+ *  -# Loop on attribs looking for non-NULL text.
+ *  -# When we find a non-NULL text attrib, extract the attrib name
+ *     and stick it in the master pin attrib list.
+ *
  * \param obj_list pointer to list of pin attributes to be added.
  */
 void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
