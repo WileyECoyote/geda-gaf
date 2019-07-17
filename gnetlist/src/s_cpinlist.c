@@ -30,15 +30,16 @@
 #include <gnetlist.h>
 #include <geda_debug.h>
 
-/*! \brief Add a Pin List record to Pin List
- *  \par Function Description
- *   Allocates and initializes a CPINLIST record structure. The
- *   record is appended to the Pin List given by \a ptr and links
- *   the previous record.
+/*!
+ * \brief Add a Pin List record to Pin List
+ * \par Function Description
+ *  Allocates and initializes a CPINLIST record structure. The
+ *  record is appended to the Pin List given by \a ptr and links
+ *  the previous record.
  *
- *  \note \a ptr can be NULL.
+ * \note \a ptr can be NULL.
  *
- *  \returns new node
+ * \returns new node
  */
 CPINLIST *s_cpinlist_add(CPINLIST *ptr)
 {
@@ -68,16 +69,17 @@ CPINLIST *s_cpinlist_add(CPINLIST *ptr)
   }
 }
 
-/*! \brief Release memory for CPINLIST Record Structures
- *  \par Function Description
- *   Iterates \a pinlist and calls s_net_destroy_or_report for each
- *   found NET, frees internal strings for the pin label and the pin
- *   number and adds the net_name pointer to \a list before releasing
- *   the CPINLIST structure.
+/*!
+ * \brief Release memory for CPINLIST Record Structures
+ * \par Function Description
+ *  Iterates \a pinlist and calls s_net_destroy_or_report for each
+ *  found NET, frees internal strings for the pin label and the pin
+ *  number and adds the net_name pointer to \a list before releasing
+ *  the CPINLIST structure.
  *
- *  \param [in]  pinlist  Pointer to linked list of CPINLIST structures.
- *  \param [out] list     List to be appended with the pointers of all
- *                        net-names encountered (but not removed).
+ * \param [in]  pinlist  Pointer to linked list of CPINLIST structures.
+ * \param [out] list     List to be appended with the pointers of all
+ *                       net-names encountered (but not removed).
  */
 void s_cpinlist_destroy_or_report(CPINLIST *pinlist, GedaList *list)
 {
@@ -156,8 +158,9 @@ void s_cpinlist_print(CPINLIST *ptr)
   }
 }
 
-/*! \brief Return first node in a Pin list
- *  \par Function Description
+/*!
+ * \brief Return first node in a Pin list
+ * \par Function Description
  *  hack rename this to be s_return_head
  *  update object_head or any list of that matter
  */
@@ -175,8 +178,9 @@ CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
   return (ret_struct);
 }
 
-/*! \brief Return last record in a linked list
- *  \par Function Description
+/*!
+ * \brief Return last record in a linked list
+ * \par Function Description
  *  hack rename this to be s_return_tail
  *  update object_tail or any list of that matter
  */
@@ -195,13 +199,14 @@ CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
   return (ret_struct);
 }
 
-/*! \brief Search or Pin Number in List of Pins
- *  \par Function Description
- *   Searches pin list \a ptr looking for a record containing
- *   \a pin_number.
+/*!
+ * \brief Search or Pin Number in List of Pins
+ * \par Function Description
+ *  Searches pin list \a ptr looking for a record containing
+ *  \a pin_number.
  *
- *  \returns pointer to pinlist record containing \a pin_number
- *           or NULL if the number was not found.
+ * \returns pointer to pinlist record containing \a pin_number
+ *          or NULL if the number was not found.
  */
 CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number)
 {

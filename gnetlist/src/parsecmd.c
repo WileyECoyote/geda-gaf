@@ -139,8 +139,8 @@ static SCM catch_handler (void *data, SCM tag, SCM throw_args)
 /*!
  * \brief Parse gnetlist command-line options.
  * \par Function Description
- * Parse command line options, displaying usage message or version
- * information as required.
+ *  Parse command line options, displaying usage message or version
+ *  information as required.
  *
  * \param argc Number of command-line arguments.
  * \param argv Array of command-line arguments.
