@@ -1,3 +1,7 @@
+2019-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_toplevel.c: Add documentation for s_toplevel_init_data_set.
+
 2019-06-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/i_vars.h: Remove extern declaration for nonexistent variables:

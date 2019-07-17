@@ -1015,9 +1015,13 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Initialize gattrib PageDataSet
+ * \par Function Description
+ *  Calls s_table_load_new_page to load component, net, and pin data into
+ *  the tables; PageData->component_table, PageData->net_table and PageData->
+ *  pin_table and then potentially sorts the data before validating the
+ *  design.
  */
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
