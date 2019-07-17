@@ -33,8 +33,9 @@
 
 static int char_index = 0;
 
-/*! \brief Verbose Print a String
- *  \par Function Description
+/*!
+ * \brief Verbose Print a String
+ * \par Function Description
  *  Writes \a string to stdout if verbose and increments char_index
  *  If char_index is > 77, a line-feed/carriage return is also
  *  written char_index reset to 0.
@@ -54,8 +55,9 @@ void verbose_print(char *string)
   }
 }
 
-/*! \brief Verbose Done
- *  \par Function Description
+/*!
+ * \brief Verbose Done
+ * \par Function Description
  *  Write to "Done" message to stdout if verbose, is the char_index 69
  *  the message is prepended with a line-feed/carriage return.
  */
@@ -73,12 +75,13 @@ void verbose_done(void)
   }
 }
 
-/*! \brief Reset the character Index to Zero
- *  \par Function Description
- *   The char_index variable is used to control the number of
- *   characters written to the output before a line-feed/carriage
- *   return is sent to the output. Calling this function resets
- *   the index to zero.
+/*!
+ * \brief Reset the character Index to Zero
+ * \par Function Description
+ *  The char_index variable is used to control the number of
+ *  characters written to the output before a line-feed/carriage
+ *  return is sent to the output. Calling this function resets
+ *  the index to zero.
  */
 void verbose_reset_index(void)
 {
