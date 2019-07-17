@@ -569,7 +569,6 @@ const char *geda_file_path_sys_config (void) {
  *
  * \warning The returned string is owned by libgeda and should not be
  *          modified or free'd.
- *
  */
 const char *geda_file_path_user_config (void) {
 
