@@ -955,6 +955,8 @@ void s_table_load_new_page(PageDataSet *PageData)
        * before doing anything with the nets because we need to first
        * determine where they are all connected!   */
 
+
+
       /* adds all nets from page to net_table */
       s_table_add_items_to_net_table(p_local->object_head);
 #endif
@@ -963,4 +965,6 @@ void s_table_load_new_page(PageDataSet *PageData)
       s_table_add_tems_to_pin_table (geda_struct_page_get_objects (p_local));
     }
   } /* for loop over pages */
+
+  /* Why not run gnetlist -g geda to get the net list ?*/
 }
