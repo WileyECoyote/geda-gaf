@@ -56,8 +56,8 @@ void s_toplevel_close(PageDataSet *PageData) {
 /*!
  * \brief Read a schematic page
  * \par Function Description
- *  Reads in a schematic page & calls geda_open_file, which fills out the
- *  toplevel structure.
+ *  Reads in a schematic page & calls geda_open_file, which fills out
+ *  the toplevel structure.
  *
  * \param toplevel GedaToplevel structure
  * \param filename file to be opened
@@ -86,12 +86,11 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
 /*!
  * \brief Verify the entire design
  * \par Function Description
- *  This function loops through all components in the
- *  design looking for components which are placeholders.
+ *  This function loops through all components in the design looking
+ *  for components which are placeholders. Placeholders are inserted
+ *  into the object list when no symbol file is found.
  *
- *  Placeholders are inserted into the object list when
- *  no symbol file is found.  If this function finds a
- *  placeholder, it warns the user.
+ *  If this function finds a placeholder, it warns the user.
  *
  * \param toplevel pointer to the toplevel object to be verified
  */
@@ -130,11 +129,10 @@ void s_toplevel_verify_design (GedaToplevel *toplevel)
 /*!
  * \brief Copy data from gtksheet into GedaToplevel struct
  * \par Function Description
- * Called when the user invokes "save".  It first
- * places all data from gtksheet into PageDataSet.  Then it
- * loops through all pages & calls s_toplevel_sheetdata_to_toplevel()
- * to place all
- * stuff in PageDataSet into the libgeda GedaToplevel structure.
+ * Called when the user invokes "save".  It first places all data from
+ * gtksheet into PageDataSet. Then it loops through all pages & calls
+ * s_toplevel_sheetdata_to_toplevel() to place all stuff in PageDataSet
+ * into the libgeda GedaToplevel structure.
  */
 void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
 {
@@ -312,13 +310,12 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 /*!
  * \brief Copy PageDataSet content to TOP_LEVEL
  * \par Function Description
- * This function
- * loops through all objects on (Page page)->(Object *start_obj).
- * It takes the updated PageDataSet->TABLE data and then updates the
- * objects with the new attribs & attrib values.
- * For each component, it updates the attached
- * attrib values using the updated values held in the PageDataSet->TABLE
- * structure.  It does so in three steps:
+ * This function loops through all objects on (Page page)->(Object *start_obj).
+ * It takes the updated PageDataSet->TABLE data and then updates the objects
+ * with the new attribs & attrib values. For each component, it updates the
+ * attached attrib values using the updated values held in the PageDataSet->
+ * TABLE structure. It does so in three steps:
+ *
  * -# First find and update component attribs.
  * -# Then find and update net attribs.
  * -# Finally find and update pin attribs.
@@ -549,7 +546,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
 /*! \brief Update component attributes in TOP_LEVEL
  *
  * For each attrib string attached to the component, update it using the value
- * held in new_comp_attrib_list.  Algorithm:
+ * held in new_comp_attrib_list. Algorithm:
  * -# Form list of all component attribs held on both the component
  *    (o_current), as well as in the attrib list (PageDataSet).
  * -# Loop over name=value pairs held in complete_comp_attrib_list.
@@ -563,6 +560,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
  * -# If the attribs doesn't exist on o_current, but is non-null in
  *    the name=value pair, create an attrib object and add it to the part
  *    on o_current.
+ *
  * \param toplevel GedaToplevel structure
  * \param o_current Component (complex) to be updated.
  * \param new_comp_attrib_list list of name=value attribute pairs
@@ -921,6 +919,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, GedaObject *pin)
  *    delete the attrib.
  * -# If the attribs doesn't exist on pin, but is non-null in
  *    the name=value pair, create an attrib object and add it to the pin.
+ *
  * \param toplevel GedaToplevel structure
  * \param refdes Unused - needs refactored out
  * \param [in,out] o_pin pin to update
