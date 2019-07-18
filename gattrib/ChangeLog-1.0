@@ -1,3 +1,7 @@
+2019-07-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
 2019-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_toplevel.c: Add documentation for s_toplevel_init_data_set.
