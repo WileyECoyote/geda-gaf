@@ -1240,7 +1240,7 @@ msgstr "ചില ആട്രിബ്യൂട്ടുകൾ ഉണ്ടാ�
 
 # attached 1 attribute, attached 2 attributes
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "അറ്റാച്ചുചെയ്ത %d ആട്രിബ്യൂട്ട്"
@@ -2351,10 +2351,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr ""
 
+# Error; piśak
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "പിശക്"
+msgstr "പിശക്:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -4056,21 +4056,22 @@ msgstr "ഗുണവിശേഷങ്ങൾ"
 msgid "attribute"
 msgstr "ആട്രിബ്യൂട്ട്"
 
-# Width x Height
+# Automatic Height; yāntrika uyaraṁ
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "വീതി x പൊക്കം"
+msgstr "യാന്ത്രിക ഉയരം"
 
+# Enable or disable Page Select dialog auto height
+# pēj tiraññeṭukkuka prāptamākkuka alleṅkil aprāptamākkuka
+# ḍayalēāg yāntrika uyaraṁ tiraññeṭukkuka
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
-msgstr ""
+msgstr "പേജ് തിരഞ്ഞെടുക്കുക പ്രാപ്തമാക്കുക അല്ലെങ്കിൽ അപ്രാപ്തമാക്കുക ഡയലോഗ് യാന്ത്രിക ഉയരം തിരഞ്ഞെടുക്കുക"
 
-# Filename
+# full file name; pūrṇṇa phayalinṟe pēr
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "ഫയലിന്റെ പേര്"
+msgstr "പൂർണ്ണ ഫയലിന്റെ പേര്"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
