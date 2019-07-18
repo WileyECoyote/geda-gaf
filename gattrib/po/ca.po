@@ -128,7 +128,6 @@ msgstr ""
 "     "
 
 #: gattrib/src/parsecmd.c:101
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -137,13 +136,12 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gattrib %s (%s) (g%.7s)\n"
 "Drets d'autor (C) 1998-2017 gEDA desenvolupadors\n"
-"Es tracta de programari lliure, i us convidem a redistribuir-lo\n"
-"certes condicions. Per obtenir més informació, consulteu el fitxer "
-"'COPYING', que és\n"
-"inclòs en la distribució de GEDA.\n"
-"NO hi ha cap GARANTIA, en la mesura que la llei ho permeti.\n"
+"Aquest és un programari gratuït i us convé redistribuir-lo\n"
+"certes condicions. Per obtenir més informació, consulteu la còpia del fitxer, que és\n"
+"inclòs a la distribució de gEDA. No hi ha cap garantia; ni tan sols \n"
+"per a COMERCIABILITAT o ADEQUACIÓ PER A UN PROPSIT PARTICULAR, fins al punt\n"
+"permès per la llei.\n"
 
 #: gattrib/src/s_misc.c:66
 msgid "DONE"
