@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2019-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_toplevel.c: Add documentation for s_toplevel_init_data_set.
