@@ -1205,7 +1205,7 @@ msgstr "Niektóre z atrybutów były"
 
 # attached 1 attribute, attached 2 attributes
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "załącznik %d atrybut"
@@ -2374,9 +2374,8 @@ msgstr "Nieprawidłowy atrybut"
 
 # Error
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "Błąd"
+msgstr "Błąd:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -4102,21 +4101,20 @@ msgstr "Atrybuty"
 msgid "attribute"
 msgstr "Atrybut"
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Szerokość x Wysokość"
+msgstr "pełna nazwa pliku"
 
-# Enable or disable color imaging
+# Enable or disable Page Select dialog Automatic height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "Włączyć lub wyłączyć obraz kolorowy"
+msgstr "Włącz lub wyłącz automatyczną wysokość okna dialogowego Wybór strony"
 
+# Full file names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Nazwa pliku"
+msgstr "Pełne nazwy plików"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
