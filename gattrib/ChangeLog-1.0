@@ -10,6 +10,8 @@
 
     * po/ja.po: Update Japanese translations
 
+    * po/nl.po: Update Dutch translations.
+
 2019-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_toplevel.c: Add documentation for s_toplevel_init_data_set.
