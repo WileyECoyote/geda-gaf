@@ -1186,7 +1186,7 @@ msgid "Some of the attributes were"
 msgstr "kounalokkhan muoychamnuon mean"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "phcheab kounalokkhan %d"
@@ -2354,9 +2354,8 @@ msgid "Invalid Attribute"
 msgstr "kounalokkhan min troemotrauv"
 
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "kamhosa knong kar"
+msgstr "Kamhos:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -4079,26 +4078,23 @@ msgstr "kounalokkhan"
 msgid "attribute"
 msgstr "kounalokkhan"
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "ttung * kamposa"
+msgstr "kamposa daoy svyobravotte"
 
 # Enable or disable color imaging
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "baek damnaerkar ryy bet kar thatroub pnr"
+msgstr "baek ryy bet braab chreusa tompr braab kamposa svyobravotte"
 
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "chhmoh​ eksar"
+msgstr "chhmoh eksar penhlenh"
 
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Enable or disable displaying of paths in file names"
-msgstr "baek ryy bet pheap meulkheunh nei kounalokkhan"
+msgstr "baek ryy bet kar bangheanh phlauv knong chhmoh eksar"
 
 #: gschem/src/x/x_pagesel.c:594
 msgid "Move Up"
