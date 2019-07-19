@@ -1210,7 +1210,7 @@ msgid "Some of the attributes were"
 msgstr "Някои от атрибутите бяха"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "прикрепен %d ​​атрибут"
@@ -2321,8 +2321,8 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr ""
 
+# Error; greshka
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
 msgstr "грешка"
 
@@ -3947,11 +3947,10 @@ msgstr ""
 msgid "Enable or disable Page Select dialog auto height"
 msgstr ""
 
-# Filename
+# Full names; Pŭlni imena
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Име на файл"
+msgstr "Пълни имена"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
