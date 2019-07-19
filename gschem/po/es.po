@@ -1153,7 +1153,7 @@ msgid "Some of the attributes were"
 msgstr "Algunos de los atributos fueron"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "%d atributo adjunto"
@@ -2289,10 +2289,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr "Propiedad incorrecta"
 
+# Error
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "Error"
+msgstr "Error:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3918,10 +3918,10 @@ msgstr "Altura automática"
 msgid "Enable or disable Page Select dialog auto height"
 msgstr ""
 
+# Full names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Nombre de archivo"
+msgstr "Nombres completos"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
