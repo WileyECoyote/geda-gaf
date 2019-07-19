@@ -1116,7 +1116,7 @@ msgid "Some of the attributes were"
 msgstr "Ορισμένα από τα χαρακτηριστικά ήταν"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "συνημμένο %d χαρακτηριστικό"
@@ -2241,10 +2241,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr "Μη έγκυρο γνώρισμα"
 
+# Error; Láthos
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "Καθρεπτισμός"
+msgstr "Λάθος:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3887,10 +3887,10 @@ msgstr "Αυτόματο Ύψος"
 msgid "Enable or disable Page Select dialog auto height"
 msgstr ""
 
+# Full names; Plíri onómata
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Όνομα αρχείου"
+msgstr "Πλήρη ονόματα"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
