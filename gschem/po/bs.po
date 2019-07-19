@@ -1162,7 +1162,7 @@ msgstr "Niektóre z atrybutów były"
 
 # attached 1 attribute, attached 2 attributes
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "priložen %d atribut"
@@ -2292,9 +2292,8 @@ msgstr ""
 
 # Error
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "greška"
+msgstr "Greška:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3959,14 +3958,13 @@ msgstr ""
 
 # Enable or disable color imaging
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "Omogućite ili onemogućite slikanje u boji"
+msgstr "Omogući ili onemogući automatsku visinu dijaloga Izbor stranice"
 
+# Full names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Ime dokumenta"
+msgstr "Puno ime"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
