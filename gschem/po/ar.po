@@ -1129,7 +1129,7 @@ msgstr "بعض من الصفات كانت"
 
 # attached 1 attribute, attached 2 attributes
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "مرفق%d سمة"
@@ -2271,10 +2271,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr "﻿سمة غير صالحة"
 
+# Error; khata
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "مرآة"
+msgstr "خطأ:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3921,10 +3921,10 @@ msgstr "ارتفاع تلقائي"
 msgid "Enable or disable Page Select dialog auto height"
 msgstr ""
 
+# Full names; al'asma' alkamila
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "اسم الملف"
+msgstr "الأسماء الكاملة"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
