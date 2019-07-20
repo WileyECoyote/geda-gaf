@@ -1169,7 +1169,7 @@ msgstr "Osa ominaisuuksista oli"
 
 # attached 1 attribute, attached 2 attributes
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "liitteenä oleva %d attribuutti"
@@ -2277,10 +2277,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr ""
 
+# Error
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "Virhe"
+msgstr "Virhe:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
