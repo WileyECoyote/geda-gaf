@@ -1151,7 +1151,7 @@ msgid "Some of the attributes were"
 msgstr "Certains des attributs étaient"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "attaché %d attribut"
@@ -2281,10 +2281,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr "Attribut invalide"
 
+# Error
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "Miroir"
+msgstr "Erreur:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3931,16 +3931,15 @@ msgstr "Attributs"
 msgid "Auto Height"
 msgstr "Hauteur automatique"
 
-# Enable or disable color imaging
+# Enable or disable Page Select dialog auto height
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "Activer ou désactiver l'imagerie couleur"
+msgstr "Activer ou désactiver la hauteur automatique du dialogue de sélection de page"
 
+# Full names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Nom de fichier"
+msgstr "Noms complets"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
