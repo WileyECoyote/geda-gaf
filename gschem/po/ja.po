@@ -1131,11 +1131,10 @@ msgstr "属性は"
 msgid "One attribute was"
 msgstr "1つの属性は"
 
-# Some of the attributes were
+# All of the attributes were; Subete no zokusei wa
 #: gschem/src/object/o_attrib.c:140
-#, fuzzy
 msgid "All of the attributes were"
-msgstr "いくつかの属性は"
+msgstr "すべての属性は"
 
 # Some of the attributes were
 #: gschem/src/object/o_attrib.c:144
@@ -1143,7 +1142,7 @@ msgid "Some of the attributes were"
 msgstr "いくつかの属性は"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "添付された %d つの属性"
@@ -2263,10 +2262,10 @@ msgstr ""
 msgid "Invalid Attribute"
 msgstr ""
 
+# Error; Erā
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "反転"
+msgstr "エラー:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3898,10 +3897,10 @@ msgstr ""
 msgid "Enable or disable Page Select dialog auto height"
 msgstr ""
 
+# Full names; Furunēmu
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "ファイル名"
+msgstr "フルネーム"
 
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
