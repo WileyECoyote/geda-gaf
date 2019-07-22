@@ -1,0 +1,77 @@
+--vmode
+--minwidth 3500
+--extlabels
+
+[labels]
+r U?
+v STM32F030C6T6
+! use-license=unlimited
+! dist-license=GPLv2
+! numslots=0
+! description=Value-line ARM®-based 32-bit MCU with up to 256-KB Flash, timers, ADC, communication interfaces, 2.4-3.6 V operation
+! documentation=http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00088500.pdf
+! author=Wojciech Krutnik
+! footprint=LQFP48_7
+! device=IC
+! symversion=2.0
+
+[left]
+10 io  PA0
+11 io  PA1
+12 io  PA2
+13 io  PA3
+14 io  PA4
+15 io  PA5
+16 io  PA6
+17 io  PA7
+29 io  PA8
+30 io  PA9
+31 io  PA10
+32 io  PA11
+33 io  PA12
+34 io  PA13 (SWDIO)
+37 io  PA14 (SWCLK)
+38 io  PA15
+
+2  io  PC13
+3  io  PC14 (OSC32_IN)
+4  io  PC15 (OSC32_OUT)
+
+7  i!  NRST
+44 i   BOOT0
+
+[right]
+18 io  PB0
+19 io  PB1
+20 io  PB2
+39 io  PB3
+40 io  PB4
+41 io  PB5
+42 io  PB6
+43 io  PB7
+45 io  PB8
+46 io  PB9
+21 io  PB10
+22 io  PB11
+25 io  PB12
+26 io  PB13
+27 io  PB14
+28 io  PB15
+.skip 800
+5  io  PF0 (OSC_IN)
+6  io  PF1 (OSC_OUT)
+35 io  PF6
+36 io  PF7
+
+[top]
+1  p   VDD
+24 p   VDD
+48 p   VDD
+
+9  p   VDDA
+
+[bottom]
+23 p   VSS
+47 p   VSS
+
+8  p   VSSA
