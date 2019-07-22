@@ -172,6 +172,10 @@ The major components of the gEDA suite are:
 `libgeda'
   A library of functions for manipulating gEDA schematics and symbols.
 
+`libgedacolor'
+  A library of functions for translating color code found in gEDA
+  schematics and symbols files to RGB.
+
 `libgedacairo'
   A library of functions for rendering graphics using Cairo and Pango.
 
