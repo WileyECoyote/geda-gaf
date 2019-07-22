@@ -2,11 +2,13 @@
 
     * po/bs.po: Add Plural-Forms, update plural translation.
 
-    * po/fa.po: Add Plural-Forms
+    * po/fa.po: Add Plural-Forms.
 
-    * po/he.po: Add Plural-Forms
+    * po/he.po: Add Plural-Forms.
 
     * po/ja.po: Add Plural-Forms, update plural translations.
+
+    * po/ml.po: Add Plural-Forms.
 
 2019-07-20 Wiley E. Hill <wileyhill@gmail.com
 
