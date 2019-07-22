@@ -50,7 +50,7 @@ In order to compile gEDA from the distributed source archives, you
    <http://www.gtk.org/>
 
  - The `lex' tool for generating lexical scanners.  The `flex'
-   implementation recommended.  <http://flex.sourceforge.net/>
+   implementation recommended.  <https://github.com/westes/flex/releases/>
 
  - The `awk' tool for data processing.  GNU Awk (`gawk') is
    recommended.  <http://www.gnu.org/software/gawk/>
