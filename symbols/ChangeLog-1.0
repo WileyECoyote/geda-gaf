@@ -3,6 +3,10 @@
     * linear/temperature/AM2302-1.sym: Add symbol; Temperature and humidity
       sensor module.
 
+    * lineartech/LT3680-?.sym: Add symbol; Step-Down (Buck) DC/DC Converter:
+
+            * lineartech/LT3680-1.sym
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT3580-?.sym: Add symbol; Step-Up (Boost) DC/DC Converter:
