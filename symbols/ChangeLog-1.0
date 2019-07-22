@@ -12,6 +12,9 @@
     * micro/arm/STM32F030C6T6.sym: Add symbol; ARM based 32-bit MCU with
       256-KB flash.
 
+    * microchip/MCP4728-1.sym: Add symbol; Quad 12-Bit Digital-to-Analog
+      Converter with EEPROM Memory.
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT3580-?.sym: Add symbol; Step-Up (Boost) DC/DC Converter:
