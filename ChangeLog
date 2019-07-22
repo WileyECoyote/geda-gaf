@@ -1,6 +1,7 @@
 2019-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * README: Update lex tool URL, adjust paragraph format; line wrapping.
+      Update Automake version to the actual version required (1.9.6).
 
 2019-06-06 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -137,7 +137,7 @@ tools *in addition to* the ones listed above:
   - The `git' version control tool, version 1.6 or newer.
     <http://git-scm.com/>
 
-  - GNU Automake, version 1.11.0 or newer.
+  - GNU Automake, version 1.9.6 or newer.
     <http://www.gnu.org/software/automake/>
 
   - GNU Autoconf, version 2.60 or newer.
