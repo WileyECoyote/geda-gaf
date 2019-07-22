@@ -9,6 +9,9 @@
             * lineartech/LT3680-2.sym
             * lineartech/LT3680-3.sym
 
+    * micro/arm/STM32F030C6T6.sym: Add symbol; ARM based 32-bit MCU with
+      256-KB flash.
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT3580-?.sym: Add symbol; Step-Up (Boost) DC/DC Converter:
