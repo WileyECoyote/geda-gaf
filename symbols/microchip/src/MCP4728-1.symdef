@@ -1,0 +1,33 @@
+#--vmode
+--minwidth 1500
+
+[labels]
+r U?
+v MCP4728
+! use-license=unlimited
+! dist-license=GPLv2
+! numslots=0
+! description=12-Bit, Quad Digital-to-Analog Converter with EEPROM Memory
+! documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/22187E.pdf
+! author=Wojciech Krutnik
+! footprint=MSOP10
+! device=IC
+! symversion=1.0
+
+[left]
+3  oc  SDA
+2  oc  SCL
+4  i   \_LDAC\_
+5  oc  RDY/\_BSY\_
+
+[right]
+6      VOUT_A
+7      VOUT_B
+8      VOUT_C
+9      VOUT_D
+
+[top]
+1  p   VDD
+
+[bottom]
+10 p   VSS
