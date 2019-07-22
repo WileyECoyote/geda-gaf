@@ -1,3 +1,8 @@
+2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/temperature/AM2302-1.sym: Add symbol; Temperature and humidity
+      sensor module.
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT3580-?.sym: Add symbol; Step-Up (Boost) DC/DC Converter:
