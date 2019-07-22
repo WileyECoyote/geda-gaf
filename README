@@ -10,12 +10,12 @@ Introduction
 The GPL Electronic Design Automation (gEDA) project has produced and
 continues working on a full GPL'd suite and toolkit of Electronic
 Design Automation tools. These tools are used for electrical circuit
-design, schematic capture, simulation, prototyping, and
-production. Currently, the gEDA project offers a mature suite of free
-software applications for electronics design, including schematic
-capture, attribute management, bill of materials (BOM) generation,
-netlisting into over 20 netlist formats, analog and digital
-simulation, and printed circuit board (PCB) layout.
+design, schematic capture, simulation, prototyping, and production.
+Currently, the gEDA project offers a mature suite of free software
+applications for electronics design, including schematic capture,
+attribute management, bill of materials (BOM) generation, netlisting
+into over 20 netlist formats, analog and digital simulation, and
+printed circuit board (PCB) layout.
 
 The gEDA project was started because of the lack of free EDA tools for
 POSIX systems with the primary purpose of advancing the state of free
