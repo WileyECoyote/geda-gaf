@@ -15,6 +15,8 @@
     * microchip/MCP4728-1.sym: Add symbol; Quad 12-Bit Digital-to-Analog
       Converter with EEPROM Memory.
 
+    * serial/ST232-1.sym: Add symbol; Multi-channel RS-232 driver and receiver.
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * lineartech/LT3580-?.sym: Add symbol; Step-Up (Boost) DC/DC Converter:
