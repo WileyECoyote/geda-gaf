@@ -57,14 +57,14 @@ volatile int console_window_type;
 
 /*! \brief General Purpose Global GList Buffers
  *  \par Description
- * Gschem currently uses 8 glist buffers, there used to be 6,
- * with system clipboard data errently mixed between 0 and 1.
- * So a separate glist was created in the toplevel, clipboard
- * _buffer. The next five buffers are the buffers in the menu
- * labeled 1 through 5, these are object_buffer[0] thru object
- * _buffer[4].
- * Currently, object_buffer[5] and object_buffer[6] are not
- * used. object_buffer[7] is used by Drag & Drop.
+ * Gschem currently uses 7 glist buffers, the first 5 are used
+ * as auxillary clipboard buffers. These are the buffers in the
+ * menu labeled 1 through 5, cooresponding to object_buffer[0]
+ * thru object_buffer[4]. The system clipboard is not mixed with
+ * these buffers. The system clipboard data is stored in toplevel
+ * member clipboard_buffer.
+ * Currently, object_buffer[5] and object_buffer[6] are not used,
+ * object_buffer[7] is used by Drag & Drop.
  */
 GList *object_buffer[MAX_BUFFERS];
 
