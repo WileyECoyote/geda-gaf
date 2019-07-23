@@ -289,7 +289,7 @@ If you see an error like:
 
 ! LaTeX Error: File `float.sty' not found.
 
-The mostly like cause is that stlye files are missing from the latex/live package.
+The mostly like cause is that style files are missing from the latex/live package.
 A distributor (aka Debian) likely divided up the latex package for distribution
 purposes. You may need to install one or more of the following packages:
 
