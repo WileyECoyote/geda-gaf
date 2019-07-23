@@ -1,5 +1,7 @@
 2019-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/common/inputs/powersupply.sch: Update capacitor-2.sym symversion=0.2.
+
     * tests/common/outputs: Update powersupply node names for T1.
 
           * tests/common/outputs/spice/powersupply-output.net
