@@ -179,6 +179,10 @@ The major components of the gEDA suite are:
 `libgedacairo'
   A library of functions for rendering graphics using Cairo and Pango.
 
+`libgedathon'
+  A Python extension library for accessing libgeda using the Python
+  language.
+
 `gschem'
   A schematic editor.
 
