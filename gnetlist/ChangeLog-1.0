@@ -9,6 +9,8 @@
           * tests/common/outputs/spice-sdb/powersupply-output.net
           * tests/common/outputs/vams/powersupply-output.net
 
+    * tests/common/outputs/vams/powersupply-output.net: Update symversion=0.2.
+
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/LVDfoo.sch: Add footprint 0402 on capacitor symbols.
