@@ -275,7 +275,7 @@ cd top_builddir/which_one/docs
 doyygen which_one.dox
 
 This seems trival, but one might note that one could have just as easily
-have subsituded a different configuration file from the ".dox" file in
+have substituted a different configuration file from the ".dox" file in
 the source directories. When using the in-source configuration file, the
 documentation will be generated in the source tree unless the enviormnent
 varible DOXYGEN_OUTDIR is used, i.e something like:
