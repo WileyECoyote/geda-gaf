@@ -1,3 +1,12 @@
+2019-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/common/outputs: Update powersupply node names for T1.
+
+          * tests/common/outputs/spice/powersupply-output.net
+          * tests/common/outputs/spice-anise/powersupply-output.net
+          * tests/common/outputs/spice-sdb/powersupply-output.net
+          * tests/common/outputs/vams/powersupply-output.net
+
 2019-06-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/LVDfoo.sch: Add footprint 0402 on capacitor symbols.

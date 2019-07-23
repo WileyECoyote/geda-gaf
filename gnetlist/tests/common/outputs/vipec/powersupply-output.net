@@ -11,7 +11,7 @@ CKT
 	error	8 7 	% C1
 	error	3 6 	% S1
 	error	3 4 0 	% CONN1
-	error	4 5 10 9 	% T1
+	error	5 4 9 10 	% T1
 	error	6 5 	% F1
 	error	10 9 8 7 	% U1
 	DEF2P	#<unspecified>  #<unspecified>
