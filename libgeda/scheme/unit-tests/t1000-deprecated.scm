@@ -16,12 +16,6 @@
   ; absence of a function for calculating text bounds.
   #f)
 
-(begin-test 'get-attribute-angle
-  (let ((t0  (make-text '(1 . 2) 'lower-left 0 "name=value" 10 #t 'both))
-        (t90 (make-text '(1 . 2) 'lower-left 90 "name=value" 10 #t 'both)))
-    (assert-equal 0 (get-attribute-angle t0))
-    (assert-equal 90 (get-attribute-angle t90)) ))
-
 (begin-test 'get-object-attributes
   (let ((C (make-component "testcomponent" '(0 . 0) 0 #f #f))
         (p (make-net-pin '(0 . 0) '(100 . 0)))

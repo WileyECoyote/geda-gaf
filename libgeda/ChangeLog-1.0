@@ -2,6 +2,8 @@
 
     * scheme/geda/deprecated.scm: Remove get-attribute-angle.
 
+    * scheme/unit-tests/t1000-deprecated.scm: Remove get-attribute-angle checks.
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/deprecated.scm: Remove get-attribute-name-value.
