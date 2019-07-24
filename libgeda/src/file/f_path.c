@@ -630,6 +630,16 @@ const char *geda_file_path_user_config (void) {
   return user_config_path;
 }
 
+/*!
+ * \brief Get the user gEDA cache directory
+ * \par Function description
+ *  Returns the path to the current user's gEDA cache directory.
+ *  On UNIX platforms this typically returns the equivalent of
+ *  ~/.cache/gEDA.
+ *
+ * \warning The returned string is owned by libgeda and should
+ *          not be modified or free'd.
+ */
 const char *geda_file_path_user_cache (void) {
 
   if (user_cache_path == NULL) {
