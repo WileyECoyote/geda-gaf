@@ -91,24 +91,29 @@ error_from_gerror (const char *subr, GError **error)
   if (err->domain == EDA_CONFIG_ERROR) {
     /* Configuration context-related errors */
     switch (err->code) {
-    case EDA_CONFIG_ERROR_UNKNOWN_ENCODING:
-      rest = scm_list_1 (unknown_encoding_sym);
-      break;
-    case EDA_CONFIG_ERROR_PARSE:
-      rest = scm_list_1 (parse_sym);
-      break;
-    case EDA_CONFIG_ERROR_KEY_NOT_FOUND:
-      rest = scm_list_1 (key_not_found_sym);
-      break;
-    case EDA_CONFIG_ERROR_GROUP_NOT_FOUND:
-      rest = scm_list_1 (group_not_found_sym);
-      break;
-    case EDA_CONFIG_ERROR_INVALID_VALUE:
-      rest = scm_list_1 (invalid_value_sym);
-      break;
-    default:
-      rest = SCM_BOOL_F;
-      break;
+      case EDA_CONFIG_ERROR_UNKNOWN_ENCODING:
+        rest = scm_list_1 (unknown_encoding_sym);
+        break;
+
+      case EDA_CONFIG_ERROR_PARSE:
+        rest = scm_list_1 (parse_sym);
+        break;
+
+      case EDA_CONFIG_ERROR_KEY_NOT_FOUND:
+        rest = scm_list_1 (key_not_found_sym);
+        break;
+
+      case EDA_CONFIG_ERROR_GROUP_NOT_FOUND:
+        rest = scm_list_1 (group_not_found_sym);
+        break;
+
+      case EDA_CONFIG_ERROR_INVALID_VALUE:
+        rest = scm_list_1 (invalid_value_sym);
+        break;
+
+      default:
+        rest = SCM_BOOL_F;
+        break;
     }
     scm_error (config_error_sym, subr, err->message, SCM_EOL, rest);
   }
