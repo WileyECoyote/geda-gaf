@@ -8,6 +8,9 @@
     * scheme/unit-tests/t1000-deprecated.scm: Remove get-attribute-angle
       checks.
 
+    * libgeda/src/file/f_path.c: Eliminate inline definition of directory in
+      geda_file_path_sys_data.
+
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/deprecated.scm: Remove get-attribute-name-value.
