@@ -34,8 +34,8 @@ GList *global_window_list = NULL;
 int cmap_flag = 0;
 
 /* command line options */
-int  auto_place_mode      = FALSE; /*!< -p automatically place window */
-int  auto_load_last       = FALSE;
+int  auto_place_mode      = FALSE; /*!< automatically place window, -p enables */
+int  auto_load_last       = FALSE; /*!< auto load last document, -n disables */
 int  iconify_main_window  = FALSE;
 int  override_autoload    = FALSE;
 int  quiet_mode           = FALSE;
