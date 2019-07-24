@@ -36,7 +36,7 @@ int cmap_flag = 0;
 /* command line options */
 int  auto_place_mode      = FALSE; /*!< automatically place window, -p enables */
 int  auto_load_last       = FALSE; /*!< auto load last document, -n disables */
-int  iconify_main_window  = FALSE;
+int  iconify_main_window  = FALSE; /*!< hide main window for scripting -z enables */
 int  override_autoload    = FALSE;
 int  quiet_mode           = FALSE;
 int  run_mode             = 0;
