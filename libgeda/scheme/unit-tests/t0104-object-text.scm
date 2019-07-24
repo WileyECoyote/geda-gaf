@@ -55,6 +55,12 @@
       (set-text! a '(3 . 4) 'upper-right 1 "more text" 20 #f 'name))
     ))
 
+(begin-test 'text-angle
+  (let ((t0  (make-text '(1 . 2) 'lower-left 0 "name=value" 10 #t 'both))
+        (t90 (make-text '(1 . 2) 'lower-left 90 "name=value" 10 #t 'both)))
+    (assert-equal 0 (text-angle t0))
+    (assert-equal 90 (text-angle t90)) ))
+
 (begin-test 'set-text-visibility!
   (let ((a (make-text '(1 . 2) 'lower-left 0 "test text" 10 #t 'both 21))
         (b (make-text '(1 . 2) 'lower-left 0 "test text" 10 #t 'both 21)))

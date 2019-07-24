@@ -2,7 +2,11 @@
 
     * scheme/geda/deprecated.scm: Remove get-attribute-angle.
 
-    * scheme/unit-tests/t1000-deprecated.scm: Remove get-attribute-angle checks.
+    * scheme/unit-tests/t0104-object-text.scm: Add dedicated checks for
+      text-angle.
+
+    * scheme/unit-tests/t1000-deprecated.scm: Remove get-attribute-angle
+      checks.
 
 2019-07-14 Wiley E. Hill <wileyhill@gmail.com
 
