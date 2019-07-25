@@ -387,7 +387,9 @@ GtkToolbarStyle
 geda_toolbar_get_style (GedaToolbar *toolbar)
 {
   int style;
+
   g_object_get (toolbar, "toolbar-style", &style, NULL);
+
   return style;
 }
 
