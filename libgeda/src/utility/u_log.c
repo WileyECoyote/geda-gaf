@@ -54,7 +54,7 @@ static int is_logging = FALSE; /* Variable to controls whether logging is enable
 #define PRINT_LOG_LEVELS (CATCH_LOG_LEVELS ^ \
                           (G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE))
 
-#define LOG_OPEN_ATTEMPTS 5
+#define LOG_OPEN_ATTEMPTS 50
 #define LOG_READ_BUFFER_SIZE  200
 #define LOG_WRITE_BUFFER_SIZE 1024
 
