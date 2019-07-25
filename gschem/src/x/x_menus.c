@@ -193,12 +193,13 @@ static void x_menu_toggle_tips         (GtkWidget *widget, GSList *list);
 static void x_menu_toggle_main_tips    (GtkWidget *widget, GschemToplevel *w_current);
 static void x_menu_update_recent_files (void);
 
-/*! \brief Execute Main Menu Selection
- *  \par Function Description
+/*!
+ * \brief Execute Main Menu Selection
+ * \par Function Description
  *  This retrieves the action from the menu items a checks if the
- * action string is a valid command and if so, the action string
- * is passed to i_command_process, otherwise the string is passed
- * to g_action_eval_by_name for evaluation with guile.
+ *  action string is a valid command and if so, the action string
+ *  is passed to i_command_process, otherwise the string is passed
+ *  to g_action_eval_by_name for evaluation with guile.
  *
  * \remarks The process evaluated all of the action string with
  *  guile, resulting in c=>scheme=>c. This in efficiency and
@@ -232,13 +233,14 @@ static void x_menu_execute(GedaAction *action, void *user_data)
   }
 }
 
-/*! \brief  Execute Main Popup Menu Selection
- *  \par Function Description
+/*!
+ * \brief  Execute Main Popup Menu Selection
+ * \par Function Description
  *  This functions essentialy performs the same action as the preceeding
- * main menu function but there is no Scheme involved and commands are
- * known to be valid. The second argument to i_command_process is the
- * action string referenced in the static string structure IDS_Popup_
- * Actions using the enumerated integer from pop_MenuItem.
+ *  main menu function but there is no Scheme involved and commands are
+ *  known to be valid. The second argument to i_command_process is the
+ *  action string referenced in the static string structure IDS_Popup_
+ *  Actions using the enumerated integer from pop_MenuItem.
  */
 static void x_menu_main_popup_execute(GtkObject *widget, int action_id)
 {
@@ -306,8 +308,9 @@ static void x_menu_free_toggler (void *data_record, void *nothing)
   g_free(toggler_data);
 }
 
-/*! \brief Menu->Destroy->Toggle Items
- *  \par Function Description
+/*!
+ * \brief Menu->Destroy->Toggle Items
+ * \par Function Description
  *  This function is called by gschem_quit to free each ToggleMenuData
  *  structure that was allocated for toggle menu items.
  */
@@ -1591,11 +1594,11 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   return GTK_IS_WIDGET(POPUP_MAIN);
 }
 
-/*! \brief Show the Popup Menu
- *  \par Function Description
+/*!
+ * \brief Show the Popup Menu
+ * \par Function Description
  *
- *  \note
- *  need to look at this... here and the setup
+ * \note need to look at this... here and the setup
  */
 int
 x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
@@ -1631,8 +1634,9 @@ x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
 
 static int sensitivity_errors = 0;
 
-/*! \brief Set Sensitivity of Main Menu Item
- *  \par Function Description
+/*!
+ * \brief Set Sensitivity of Main Menu Item
+ * \par Function Description
  *  This function is called from i_status to set the senitivity of menu items!
  */
 void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
@@ -1673,8 +1677,9 @@ void x_menu_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
   }
 }
 
-/*! \brief Set Sensitivity of Popup Menu Item
- *  \par Function Description
+/*!
+ * \brief Set Sensitivity of Popup Menu Item
+ * \par Function Description
  *  This function sets the sensitivity of the items in the right button
  *  popup.
  */
@@ -2200,9 +2205,10 @@ void x_menu_set_toolbar_toggle_tips(GschemToplevel *w_current, bool state)
  * \brief This group contains core Routine for the Recent Files Menu.
 */
 
-/*! \brief Update Recent Files Menus
- *  \par Function Description
- *   Make all toplevels reflect changes to the recent files list.
+/*!
+ * \brief Update Recent Files Menus
+ * \par Function Description
+ *  Make all toplevels reflect changes to the recent files list.
  */
 static void x_menu_update_recent_files(void)
 {
@@ -2233,8 +2239,9 @@ static void x_menu_update_recent_files(void)
    }
 }
 
-/*! \brief Remove all entries from the recent files
- *         list and update all toplevels.
+/*!
+ * \brief Remove all entries from the recent files list
+ *  and update the menus.
  */
 static void x_menu_clear_recent_file_list(void *data)
 {
@@ -2257,8 +2264,9 @@ static void x_menu_recent_destroy_data (GedaMenuItem *menuitem, void *menu_data)
   GEDA_FREE (menu_data);
 }
 
-/*! \brief Recent Menu item Clicked
- *  \par Function Description
+/*!
+ * \brief Recent Menu item Clicked
+ * \par Function Description
  *  Called with user clicks on a menu item on the recent files menu or when
  *  the user select "open" from the popup menu on the recent file submenu.
  */
@@ -2286,7 +2294,8 @@ static void x_menu_recent_file_clicked (GedaMenuItem *menuitem, void *menu_data)
    x_window_set_current_page(w_current, page);
 }
 
-/*! \brief Make RECENT_FILES_STORE contain an empty file list.
+/*!
+ * \brief Make RECENT_FILES_STORE contain an empty file list.
  *  Create a new empty key, nothing is written to the file.
  */
 static void x_menu_recent_files_create_empty(void)
@@ -2316,8 +2325,9 @@ static void x_menu_recent_files_create_empty(void)
  *  @{
  */
 
-/*! \brief Recent Menu item Popup Show Recent Paths Toggled
- *  \par Function Description
+/*!
+ * \brief Recent Menu item Popup Show Recent Paths Toggled
+ * \par Function Description
  *  Called with user toggles to Show path items on recent file pop-up menu.
  *  Toggles the state of show_recent_path, calls to update the menu and
  *  causes the recent file sub-menu to reappear with the opposite state.
@@ -2341,9 +2351,9 @@ static void x_menu_toggle_recent_path (GedaCheckMenuItem *menuitem, void *user_d
   geda_menu_item_activate_item(menu_item);
 }
 
-/*! \brief Recent Files Menu Internal Populate Popup
- *
- *  \par Function Description
+/*!
+ * \brief Recent Files Menu Internal Populate Popup
+ * \par Function Description
  *  This functions call when the remove option is selected from
  *  the Recent File Menu popup menu to remove the file whose
  *  name is in the RecentMenuData record from recent history.
@@ -2358,9 +2368,9 @@ static void x_menu_recent_file_remove (GedaMenuItem *menuitem, void *user_data)
   x_menu_update_recent_files();
 }
 
-/*! \brief Recent Files Menu Internal Show Popup
- *
- *  \par Function Description
+/*!
+ * \brief Recent Files Menu Internal Show Popup
+ * \par Function Description
  *  This functions creates and displays a small pop-up menu on
  *  the recent files menu. The open option is provided for the
  *  sake of completeness, the real objective here is to allow
@@ -2409,13 +2419,14 @@ static void x_menu_recent_show_popup (GedaMenuItem   *menu_widget,
   g_object_unref (menu);
 }
 
-/*! \brief Popup Callback for recent files menu item
- *  \par Function Description
+/*!
+ * \brief Popup Callback for recent files menu item
+ * \par Function Description
  *  Called when a mouse button is release with the cursor over
  *  a menu items. If the 3rd button was released, a small popup
  *  menu is displays
  *
- *  \sa x_menu_recent_show_popup
+ * \sa x_menu_recent_show_popup
  */
 static bool x_menu_recent_button_released (GedaMenuItem   *menu_item,
                                            GdkEventButton *event,
@@ -2439,10 +2450,9 @@ static bool x_menu_recent_button_released (GedaMenuItem   *menu_item,
 /** @} endgroup recent-popup-menu */
 /** @} endgroup recent-file-internal */
 
-/*! \brief Attach a submenu with filenames to the 'Open Recent'
- *         menu item.
- *
- *  Called from x_window_setup().
+/*!
+ * \brief Attach a submenu with filenames to the 'Open Recent'
+ *  menu item. Called from x_window_setup().
  */
 void x_menu_attach_recent_submenu(GschemToplevel *w_current)
 {
@@ -2535,10 +2545,9 @@ void x_menu_attach_recent_submenu(GschemToplevel *w_current)
    geda_menu_item_set_submenu_widget((GedaMenuItem*)recent_menu_item, recent_submenu);
 }
 
-/*! \brief Add a filename to the list of recent files.
- *
- *  If filename is already in the list, moves it to the head of the
- *  list.
+/*!
+ * \brief Add a filename to the list of recent files.
+ *  If filename is already in the list, moves it to the head of the list.
  */
 void x_menu_recent_files_add(const char *filename)
 {
@@ -2595,9 +2604,10 @@ void x_menu_recent_files_add(const char *filename)
    x_menu_update_recent_files();
 }
 
-/*! \brief Save the list of recent files to RECENT_FILES_STORE.
+/*!
+ * \brief Save the list of recent files to RECENT_FILES_STORE.
  *
- *  \param [in] user_data unused
+ * \param [in] user_data unused
  */
 void x_menu_recent_files_save(void *user_data)
 {
@@ -2638,8 +2648,8 @@ void x_menu_recent_files_save(void *user_data)
    geda_keyfile_free(keyfile);
 }
 
-/*! \brief Load the recent file list using data from RECENT_FILES_STORE.
- *
+/*!
+ * \brief Load the recent file list using data from RECENT_FILES_STORE.
  *  Must be called before any other recent-files-related
  *  functions.
  */
@@ -2692,12 +2702,13 @@ void x_menu_recent_files_load()
    geda_keyfile_free(keyfile);
 }
 
-/*! \brief Get the Most Recent Filename
- *  \par Function Description
+/*!
+ * \brief Get the Most Recent Filename
+ * \par Function Description
  *  This function returns a char pointer to the name of the most
  *  recent file loaded and is used by the auto_load_last mechanism.
  *
- *  \return  const char pointer to the filename string
+ * \return  const char pointer to the filename string
  */
 const char *x_menu_recent_files_last(void)
 {
