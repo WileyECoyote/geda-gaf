@@ -1,3 +1,9 @@
+2019-07-25 Wiley E. Hill <wileyhill@gmail.com
+
+    * include/gschem_bin.h: Remove file.
+
+    * src/base/gschem_bin.c: Remove class module.
+
 2019-07-22 Wiley E. Hill <wileyhill@gmail.com
 
     * po/bs.po: Add Plural-Forms, update plural translation.

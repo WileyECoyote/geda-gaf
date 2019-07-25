@@ -13,7 +13,6 @@
 /*! \endcond */
 
 /* gschem headers */
-#include "gschem_bin.h"
 #include "gschem_event.h"
 #include "gschem_globals.h"
 #include "gschem_idefines.h"       /* integer defines */
@@ -21,7 +20,6 @@
 #include "gschem_page_history.h"
 #include "gschem_toplevel.h"
 #include "gschem_struct.h"
-#include "gschem_search_results.h"
 #include "gschem_search_widget.h"
 #include "gschem_status_bar.h"
 #include "gschem_types.h"

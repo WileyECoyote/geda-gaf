@@ -1,5 +1,4 @@
 gschem/src/base/gschem.c
-gschem/src/base/gschem_bin.c
 gschem/src/base/gschem_dialog.c
 gschem/src/base/gschem_event.c
 gschem/src/base/gschem_macro_widget.c

@@ -6,7 +6,6 @@
 
 gschem_SOURCES += \
 		base/gschem.c \
-		base/gschem_bin.c \
 		base/gschem_dialog.c \
 		base/gschem_event.c \
 		base/gschem_macro_widget.c \

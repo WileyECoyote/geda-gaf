@@ -5,7 +5,6 @@
 noinst_HEADERS = \
 		gettext.h                   \
 		gschem.h                    \
-		gschem_bin.h                \
 		gschem_globals.h            \
 		gschem_dialog.h             \
 		gschem_event.h              \
@@ -19,7 +18,6 @@ noinst_HEADERS = \
 		gschem_patch.h               \
 		gschem_patch_widget.h \
 		gschem_preview.h            \
-		gschem_search_results.h \
 		gschem_search_widget.h \
 		gschem_sdefines.h           \
 		gschem_status_bar.h         \
