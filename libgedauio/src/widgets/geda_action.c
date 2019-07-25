@@ -494,6 +494,22 @@ geda_action_activate (GedaAction *action)
   gtk_action_activate ((GtkAction*)action);
 }
 
+/*!
+ * \brief GedaAction Get Action Name
+ * \par Function Description
+ *  Returns the name of the action asociated with the GedaAction object.
+ *
+ * \param [in] action A GedaAction object
+ *
+ * \returns const char * to the action name;
+ */
+const char*
+geda_action_get_action_name (GedaAction *action)
+{
+  g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
+  return action->action_name;
+}
+
 /*! \brief GedaAction Get Icon Name
  *  \par Function Description
  * Returns the name of the icon asociated with the GedaAction

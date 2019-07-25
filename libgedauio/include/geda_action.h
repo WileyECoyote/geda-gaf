@@ -63,6 +63,7 @@ GedaAction *geda_action_new                      (const char   *name,
                                                   const char   *icon_id,
                                                   const char   *multikey_accel);
 void        geda_action_activate                 (GedaAction   *action);
+const char *geda_action_get_action_name          (GedaAction   *action);
 const char *geda_action_get_icon_name            (GedaAction   *action);
 void        geda_action_set_icon_name            (GedaAction   *action,
                                                   const char   *icon_name);
