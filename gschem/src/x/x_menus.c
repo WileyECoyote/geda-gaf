@@ -216,18 +216,25 @@ static void x_menu_execute(GedaAction *action, void *user_data)
 #if DEBUG
     fprintf(stderr, "Bypassing, guile for menu action %s\n",action_name);
 #endif
+
     i_command_process(w_current, action_name, 0, NULL, ID_ORIGIN_MENU);
   }
   else {
+
     if (strncmp (action_name, "buffer-", 7) == 0 ) {
+
+      /* Append the string with -menu, like "buffer-copy2-menu" */
       menu_action = geda_strconcat (action_name, "-menu", NULL);
+
       g_action_eval_by_name (w_current, menu_action);
       GEDA_FREE(menu_action);
     }
     else {
+
 #if DEBUG
       fprintf(stderr, "passing action to guile %s\n", action_name);
 #endif
+
       g_action_eval_by_name (w_current, action_name);
     }
   }
@@ -1619,6 +1626,7 @@ x_menu_display_main_popup (GschemToplevel *w_current, GdkEventButton *event)
     geda_menu_popup ((GedaMenu*)menu, NULL, NULL, NULL, NULL,
                      event->button, event->time);
   }
+
   return FALSE;
 }
 
