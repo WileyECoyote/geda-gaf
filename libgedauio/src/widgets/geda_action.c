@@ -95,13 +95,13 @@ static GHashTable *action_hash_table = NULL;
   * @{
   */
 
-/*! \brief GObject finalize handler
- *
- *  \par Function Description
+/*!
+ * \brief GObject finalize handler
+ * \par Function Description
  *  Called just before the Action object is destroyed to release
  *  resources. Chains up to the parent's finalize handler.
  *
- *  \param [in] object The GObject being finalized.
+ * \param [in] object The GObject being finalized.
  */
 static void geda_action_finalize (GObject *object)
 {
@@ -125,17 +125,17 @@ static void geda_action_finalize (GObject *object)
   ((GObjectClass*)geda_action_parent_class)->finalize (object);
 }
 
-/*! \brief GObject property setter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property setter function
+ * \par Function Description
  *  Setter function for GedaAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are setting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [in]  value        The GValue the property is being set from
- *  \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [in]  object       The GObject whose properties we are setting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
 geda_action_set_property (GObject *object, unsigned int property_id,
@@ -162,17 +162,17 @@ geda_action_set_property (GObject *object, unsigned int property_id,
   }
 }
 
-/*! \brief GObject property getter function
- *
- *  \par Function Description
+/*!
+ * \brief GObject property getter function
+ * \par Function Description
  *  Getter function for GedaAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- *  \param [in]  object       The GObject whose properties we are getting
- *  \param [in]  property_id  The numeric id. under which the property was
- *                            registered with g_object_class_install_property()
- *  \param [out] value        The GValue in which to return the value of the property
- *  \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [in]  object       The GObject whose properties we are getting
+ * \param [in]  property_id  The numeric id. under which the property was
+ *                           registered with g_object_class_install_property()
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void
 geda_action_get_property (GObject *object, unsigned int property_id,
@@ -252,15 +252,15 @@ geda_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 
 /** @} geda-action-pcvo */
 
-/*! \brief GedaAction Type Class Initializer
- *
- *  \par Function Description
+/*!
+ * \brief GedaAction Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaAction class we are initializing
- *  \param [in]  class_data  GedaAction structure associated with the class
+ * \param [in]  class       GedaAction class we are initializing
+ * \param [in]  class_data  GedaAction structure associated with the class
  */
 static void
 geda_action_class_init(void *class, void *class_data)
@@ -294,9 +294,9 @@ geda_action_class_init(void *class, void *class_data)
   g_object_class_install_property (object_class, PROP_ICON_ID, params);
 }
 
-/*! \brief Initialize new GedaAction data structure instance.
- *
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaAction data structure instance.
+ * \par Function Description
  *  This function is call after the GedaActionClass is created
  *  to initialize the data structure.
  *
@@ -318,16 +318,16 @@ geda_action_instance_init (GTypeInstance *instance, void *class)
   g_hash_table_replace (action_hash_table, instance, instance);
 }
 
-/*! \brief Function to retrieve GedaAction's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaAction's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaAction Type identifier. When
  *  first called, the function registers a #GedaAction in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaAction and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaAction.
+ * \return GedaType identifier associated with GedaAction.
  */
 GedaType geda_action_get_type (void)
 {
@@ -376,8 +376,9 @@ is_a_geda_action (GedaAction *action)
   return FALSE;
 }
 
-/*! \brief Creates a new Menu Item with an Action Object
- *  \par Function Description
+/*!
+ * \brief Creates a new Menu Item with an Action Object
+ * \par Function Description
  *  This function creates a geda menu item widget that proxies
  *  for the given action.
  *
@@ -388,8 +389,7 @@ is_a_geda_action (GedaAction *action)
  *
  * \returns GtkWidget pointer to a new action menu item.
  */
-GtkWidget *
-geda_action_create_menu_item (GedaAction *action)
+GtkWidget *geda_action_create_menu_item (GedaAction *action)
 {
   GtkWidget *menu_item;
 
@@ -421,15 +421,15 @@ geda_action_create_menu_item (GedaAction *action)
   return menu_item;
 }
 
-/*! \brief Creates a new Menu Item with an Action Object from Widget
- *
- *  \par Function Description
+/*!
+ * \brief Creates a new Menu Item with an Action Object from Widget
+ * \par Function Description
  *  This function is a convience funtion to type cast the source
  *  action from a Widget to an Action [widget].
  *
  * \param [in] widget A GedaAction object
  *
- * \returns: GtkWidget geda_action_create_menu_item().
+ * \returns GtkWidget geda_action_create_menu_item().
  */
 GtkWidget*
 geda_action_widget_create_menu_item (GtkWidget *widget)
@@ -437,10 +437,10 @@ geda_action_widget_create_menu_item (GtkWidget *widget)
   return geda_action_create_menu_item((GedaAction*)widget);
 }
 
-/*! \brief Creates a new GedaAction object
- *  \par Function Description
- *
- * Creates a new GedaAction object.
+/*!
+ * \brief Creates a new GedaAction object
+ * \par Function Description
+ *  Creates a new GedaAction object.
  *
  * \param [in] name            A unique name for the action
  * \param [in] label           The label displayed in menu items and on buttons, or NULL
@@ -479,8 +479,9 @@ geda_action_new (const char *name,
   return action;
 }
 
-/*! \brief Activate a GedaAction
- *  \par Function Description
+/*!
+ * \brief Activate a GedaAction
+ * \par Function Description
  *  Calls base class to emits the "activate" signal on the \a action,
  *  if it is not insensitive. This gets called by the proxy widgets
  *  when they get activated and can also be used to manually activate
@@ -510,10 +511,10 @@ geda_action_get_action_name (GedaAction *action)
   return action->action_name;
 }
 
-/*! \brief GedaAction Get Icon Name
- *  \par Function Description
- * Returns the name of the icon asociated with the GedaAction
- * object.
+/*!
+ * \brief GedaAction Get Icon Name
+ * \par Function Description
+ *  Returns the name of the icon asociated with the GedaAction object.
  *
  * \param [in] action A GedaAction object
  *
@@ -526,10 +527,11 @@ geda_action_get_icon_name (GedaAction *action)
   return action->icon_name;
 }
 
-/*! \brief GedaAction Set Icon Name
- *  \par Function Description
- * Set the name of the icon asociated with the GedaAction
- * object.
+/*!
+ * \brief GedaAction Set Icon Name
+ * \par Function Description
+ *  Set the name of the icon asociated with the GedaAction
+ *  object.
  *
  * \param [in] action    A GedaAction object
  * \param [in] icon_name Point to string containing the icon name

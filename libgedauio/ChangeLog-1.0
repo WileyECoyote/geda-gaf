@@ -2,7 +2,8 @@
 
     * include/geda_action.h: Add member action_name.
 
-    * src/widgets/geda_action.c: Add function geda_action_get_action_name.
+    * src/widgets/geda_action.c: Add function geda_action_get_action_name,
+      update documentation format.
 
 2019-06-17 Wiley E. Hill <wileyhill@gmail.com>
 
