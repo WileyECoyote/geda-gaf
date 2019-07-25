@@ -40,8 +40,9 @@ struct _GedaAction
 {
   GtkAction parent_instance;
 
-  char     *multikey_accel;
-  char     *icon_name;
+  const char *action_name;
+        char *icon_name;
+        char *multikey_accel;
 };
 
 struct _GedaActionClass

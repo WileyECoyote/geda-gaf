@@ -414,6 +414,8 @@ geda_action_create_menu_item (GedaAction *action)
 
     geda_menu_item_set_use_action_appearance(item, TRUE);
     geda_menu_item_set_related_action(item, (GtkAction*)action);
+
+    action->action_name = gtk_action_get_name((GtkAction*)action);
   }
 
   return menu_item;
