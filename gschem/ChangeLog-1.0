@@ -4,6 +4,9 @@
 
     * src/base/gschem_bin.c: Remove class module.
 
+    * src/x/x_menus.c: Replace gtk_action_get_name with geda_action_
+      get_action_name.
+
 2019-07-22 Wiley E. Hill <wileyhill@gmail.com
 
     * po/bs.po: Add Plural-Forms, update plural translation.

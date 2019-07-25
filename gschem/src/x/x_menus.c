@@ -204,10 +204,10 @@ static void x_menu_update_recent_files (void);
  *  guile, resulting in c=>scheme=>c. This in efficiency and
  *  proved to be unstable.
  */
-static void x_menu_execute(GtkAction *action, void *user_data)
+static void x_menu_execute(GedaAction *action, void *user_data)
 {
   GschemToplevel *w_current    = (GschemToplevel*)user_data;
-  const char     *action_name  = gtk_action_get_name(action);
+  const char     *action_name  = geda_action_get_action_name(action);
   char           *menu_action  = NULL;
 
   if (i_command_is_valid(action_name)) {
