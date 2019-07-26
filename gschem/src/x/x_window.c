@@ -436,9 +436,9 @@ void x_window_create_main(GschemToplevel *w_current)
   }
 
   /* delete_event is sent of close with the X in the window */
-  g_signal_connect (MainWindow, "delete_event",
-                    G_CALLBACK (i_event_close_wm),
-                    w_current);
+  g_signal_connect_swapped (MainWindow, "delete_event",
+                            G_CALLBACK (i_event_close_wm),
+                            w_current);
 
   /* Containers first */
   main_box = gtk_vbox_new(FALSE, 1);

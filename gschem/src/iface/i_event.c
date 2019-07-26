@@ -778,7 +778,7 @@ i_event_stop_action_handler(GschemToplevel *w_current)
  *  when the user clicks the close button on the window which sends a
  *  DELETE signal to the app
  */
-bool i_event_close_wm (GtkWidget *widget, GdkEvent *event, GschemToplevel *w_current)
+bool i_event_close_wm (GschemToplevel* w_current, GdkEvent *event, GtkWidget *widget)
 {
   x_window_close(w_current);
 

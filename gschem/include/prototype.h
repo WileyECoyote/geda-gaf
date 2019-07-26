@@ -300,7 +300,7 @@ void       i_event_end_action_handler       (GschemToplevel *w_current);
 void       i_event_start_adder_handler      (GschemToplevel *w_current, ActionInit ifunc, ActionAdder resolver);
 void       i_event_start_paster_handler     (GschemToplevel *w_current, ActionPaster resolver);
 void       i_event_stop_action_handler      (GschemToplevel *w_current);
-bool       i_event_close_wm                 (GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
+bool       i_event_close_wm                 (GschemToplevel* w_current, GdkEvent *event, GtkWidget *widget);
 
 /* i_pan_world.c */
 void       i_pan_auto                       (GschemToplevel *w_current, GdkEventCrossing *event);
