@@ -1,3 +1,10 @@
+2019-07-26 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/iface/i_callbacks.c: Remove function i_callback_close_wm.
+
+    * src/iface/i_event.c: Relocate function i_callback_close_wm and
+      rename to i_event_close_wm.
+
 2019-07-25 Wiley E. Hill <wileyhill@gmail.com
 
     * include/gschem_bin.h: Remove file.

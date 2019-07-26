@@ -284,8 +284,6 @@ void       i_callback_page_discard           I_CALLBACK_ARGUMENTS;
 
 void       i_callback_cancel                 I_CALLBACK_ARGUMENTS;
 
-bool       i_callback_close_wm              (GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
-
 /* i_command.c */
 void        i_command_engage                (GschemToplevel *w_current);
 void        i_command_disengage             (bool immediate, bool wait_return);
@@ -308,6 +306,7 @@ void       i_event_end_action_handler       (GschemToplevel *w_current);
 void       i_event_start_adder_handler      (GschemToplevel *w_current, ActionInit ifunc, ActionAdder resolver);
 void       i_event_start_paster_handler     (GschemToplevel *w_current, ActionPaster resolver);
 void       i_event_stop_action_handler      (GschemToplevel *w_current);
+bool       i_event_close_wm                 (GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
 
 /* i_pan_world.c */
 void       i_pan_auto                       (GschemToplevel *w_current, GdkEventCrossing *event);

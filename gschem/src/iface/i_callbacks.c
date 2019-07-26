@@ -185,23 +185,3 @@ DEFINE_I_CALLBACK(cancel)
   /* Reset the action event handler */
   i_event_cancel_action_handler (w_current);
 }
-
-/*! \brief Close main window callback
- *  \par Function Description
- *  When invoked (via signal delete_event), closes the current window
- *  when the user clicks the close button on the window which sends a
- *  DELETE signal to the app
- *
- */
-bool i_callback_close_wm ( GtkWidget      *widget, GdkEvent *event,
-                           GschemToplevel *w_current )
-{
-  x_window_close(w_current);
-
-  /* Stop further propagation of the delete_event signal for window:
-   * If user has canceled the close the window should obviously not
-   * be destroyed, otherwise window has already been destroyed and
-   * there is nothing more to do
-   */
-  return TRUE;
-}
