@@ -1,6 +1,10 @@
 2019-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/refdes_renum/.gitignore: Remove unneeded file.
+    * tests/refdes_renum: Remove unneeded gitignore files:
+
+          * tests/refdes_renum/.gitignore
+          * tests/refdes_renum/inputs/.gitignore
+          * tests/refdes_renum/outputs.gitignore
 
 2018-01-17 Wiley E. Hill <wileyhill@gmail.com>
 
