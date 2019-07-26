@@ -192,8 +192,6 @@ DEFINE_I_CALLBACK(cancel)
  *  when the user clicks the close button on the window which sends a
  *  DELETE signal to the app
  *
- *  \remarks This is a special callback function which cannot use the
- *           above DEFINE_I_CALLBACK macro
  */
 bool i_callback_close_wm ( GtkWidget      *widget, GdkEvent *event,
                            GschemToplevel *w_current )
