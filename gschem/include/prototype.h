@@ -276,12 +276,6 @@ void       i_callback_view_pan_right         I_CALLBACK_ARGUMENTS;
 void       i_callback_view_pan_up            I_CALLBACK_ARGUMENTS;
 void       i_callback_view_pan_down          I_CALLBACK_ARGUMENTS;
 
-void       i_callback_file_new               I_CALLBACK_ARGUMENTS;
-void       i_callback_file_open              I_CALLBACK_ARGUMENTS;
-void       i_callback_file_save              I_CALLBACK_ARGUMENTS;
-void       i_callback_page_close             I_CALLBACK_ARGUMENTS;
-void       i_callback_page_discard           I_CALLBACK_ARGUMENTS;
-
 void       i_callback_cancel                 I_CALLBACK_ARGUMENTS;
 
 /* i_command.c */
