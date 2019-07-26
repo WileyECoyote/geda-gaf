@@ -1,5 +1,8 @@
 2019-07-26 Wiley E. Hill <wileyhill@gmail.com
 
+    * include/prototype.h: Update declaration, remove declarationa for
+      extinct i_callback_buffer_xxx functions.
+
     * src/iface/i_callbacks.c: Remove function i_callback_close_wm.
 
     * src/iface/i_event.c: Relocate function i_callback_close_wm and
