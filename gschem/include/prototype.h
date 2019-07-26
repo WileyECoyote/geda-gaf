@@ -252,8 +252,6 @@ void gschem_quit   (void);
 #define I_CALLBACK_ARGUMENTS (GschemToplevel* w_current, unsigned int callback_action, GtkWidget *widget)
 
 /* i_callbacks.c Hotkeys */
-void       i_callback_clipboard_paste_hotkey I_CALLBACK_ARGUMENTS;
-
 void       i_callback_view_pan_hotkey        I_CALLBACK_ARGUMENTS;
 void       i_callback_view_pan_left          I_CALLBACK_ARGUMENTS;
 void       i_callback_view_pan_right         I_CALLBACK_ARGUMENTS;
