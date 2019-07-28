@@ -55,12 +55,11 @@ msgstr "Добити или поставити подразумевани сим
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Добити или поставити подразумевани симбол насловног блока\n"
 
-# Get or Set the default titleblock symbol
-# Dobiti ili postaviti podrazumevani simbol naslovnog bloka
+# Get or Set the default transformer symbol
+# Dobijte ili podesite podrazumevani simbol bloka za naslov
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Добити или поставити подразумевани симбол насловног блока\n"
+msgstr "Добијте или подесите подразумевани симбол блока за наслов\n"
 
 # Close all files and deinitialize the library
 # Zatvorite sve datoteke i deinitializujte biblioteku
@@ -466,9 +465,11 @@ msgstr "Пин"
 msgid "Text"
 msgstr "Текст"
 
+# Error initializing new Arc object
+# Greška pri pokretanju novog objekta luka
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Грешка при покретању новог објекта лука"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
