@@ -6,6 +6,11 @@
             * thyristor/triac-1.sym
             * thyristor/triac-2.sym
 
+    * thyristor/triac-3.sym: Remove superfluous line, draw gate pin line
+      before pin:
+
+            * thyristor/triac-3.sym
+
 2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/AM2302-1.sym: Add symbol; Temperature and humidity
