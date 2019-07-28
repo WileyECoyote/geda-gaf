@@ -4178,23 +4178,27 @@ msgstr "Атрибуты"
 msgid "attribute"
 msgstr "атрибут"
 
+# Automatic Height; Avtomaticheskaya vysota
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "Ширина × высота"
+msgstr "Автоматическая высота"
 
+# Enable or disable Page Select dialog automatic height
+# Vklyuchit' ili otklyuchit' avtomaticheskuyu vysotu dialoga vybora stranitsy
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
-msgstr ""
+msgstr "Включить или отключить автоматическую высоту диалога выбора страницы"
 
+# Full names; Polnyye imena
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Имя файла"
+msgstr "Полные имена"
 
+# Enable or disable displaying of paths in file names
+# Vklyuchit' ili otklyuchit' otobrazheniye putey v imenakh faylov
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
-msgstr ""
+msgstr "Включить или отключить отображение путей в именах файлов"
 
 # См. примечание выше для "Copy"
 #: gschem/src/x/x_pagesel.c:594
