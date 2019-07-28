@@ -12,6 +12,10 @@
             * thyristor/triac-3.sym
             * thyristor/triac-4.sym
 
+    * thyristor/BTA140-1.sym: Add symbol;
+
+            * thyristor/BTA140-1.sym
+
 2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/AM2302-1.sym: Add symbol; Temperature and humidity
