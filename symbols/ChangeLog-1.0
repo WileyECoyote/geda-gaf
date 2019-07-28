@@ -12,9 +12,10 @@
             * thyristor/triac-3.sym
             * thyristor/triac-4.sym
 
-    * thyristor/BTA140-1.sym: Add symbol;
+    * thyristor/BTA140-[1,2].sym: Add symbols; 4 quad triode thyristor 25A:
 
             * thyristor/BTA140-1.sym
+            * thyristor/BTA140-2.sym
 
 2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
