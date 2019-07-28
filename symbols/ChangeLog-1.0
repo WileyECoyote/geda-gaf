@@ -6,10 +6,11 @@
             * thyristor/triac-1.sym
             * thyristor/triac-2.sym
 
-    * thyristor/triac-3.sym: Remove superfluous line, draw gate pin line
+    * thyristor/triac-[3,4].sym: Remove superfluous line, draw gate pin line
       before pin:
 
             * thyristor/triac-3.sym
+            * thyristor/triac-4.sym
 
 2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
