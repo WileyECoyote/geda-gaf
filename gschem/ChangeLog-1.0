@@ -6,6 +6,8 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2019-07-26 Wiley E. Hill <wileyhill@gmail.com
 
     * include/prototype.h: Update declaration, remove declarationa for
