@@ -4006,24 +4006,27 @@ msgstr "屬性"
 msgid "attribute"
 msgstr "屬性"
 
+# Automatic Height; Zìdòng gāodù
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Auto Height"
-msgstr "寬度 x 高度"
+msgstr "自動高度"
 
-# Enable or disable color imaging
+# Enable or disable Page Select dialog auto height
+# Qǐyòng huò jìnyòng yèmiàn xuǎnzé duìhuà kuāng zìdòng gāodù
 #: gschem/src/x/x_pagesel.c:54
-#, fuzzy
 msgid "Enable or disable Page Select dialog auto height"
-msgstr "啟用或禁用彩色成像"
+msgstr "啟用或禁用頁面選擇對話框自動高度"
 
+# Full names
 #: gschem/src/x/x_pagesel.c:55
 msgid "Full names"
 msgstr ""
 
+# Enable or disable displaying of paths in file names
+# Qǐyòng huò jìnyòng wénjiàn míng zhōng de lùjìng xiǎnshì
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
-msgstr ""
+msgstr "啟用或禁用文件名中的路徑顯示"
 
 # Move Up => Move Upward
 #: gschem/src/x/x_pagesel.c:594
