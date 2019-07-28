@@ -6,6 +6,10 @@
 
     * po/sr.po: Update Serbian translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2019-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Fix format specifiers and update Arabic translations;

@@ -54,12 +54,11 @@ msgstr "獲取或設置電阻的默認符號\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "獲取或設置默認標題欄符號\n"
 
-# Get or Set the default title block symbol
-# Huòqǔ huò shèzhì mòrèn biāotí lán fúhào
+# Get or Set the default transformer symbol
+# Huòqǔ huò shèzhì mòrèn biànhuàn qì fúhào
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "獲取或設置默認標題欄符號\n"
+msgstr "獲取或設置默認變換器符號\n"
 
 # Close all files and deinitialize the library
 # Guānbì suǒyǒu wénjiàn bìng qǔxiāo chūshǐhuà kù
