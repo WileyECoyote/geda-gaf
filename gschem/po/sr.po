@@ -4083,22 +4083,27 @@ msgstr ""
 msgid "attribute"
 msgstr ""
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
 msgid "Auto Height"
-msgstr ""
+msgstr "Аутоматиц Хеигхт"
 
+# Enable or disable Page Select dialog automatic height
+# Omogući ili onemogući automatsku visinu dijaloga za izbor stranice
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
-msgstr ""
+msgstr "Омогући или онемогући аутоматску висину дијалога за избор странице"
 
+# Full names; Puna imena
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Naziv dokumenta"
+msgstr "Пуна имена"
 
+# Enable or disable displaying of paths in file names
+# Omogućite ili onemogućite prikazivanje putanja u imenima datoteka
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
-msgstr ""
+msgstr "Омогућите или онемогућите приказивање путања у именима датотека"
 
 #: gschem/src/x/x_pagesel.c:594
 msgid "Move Up"
