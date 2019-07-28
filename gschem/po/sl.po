@@ -1226,11 +1226,11 @@ msgid "Some of the attributes were"
 msgstr "Nekateri atributi so bili"
 
 #: gschem/src/object/o_attrib.c:166
-#, fuzzy, c-format
+#, c-format
 msgid "Attached %d attribute"
 msgid_plural "Attached %d attributes"
 msgstr[0] "pritrjen %d atribut"
-msgstr[1] "priloženi 2 atributi"
+msgstr[1] "priloženi %d atributi"
 
 #: gschem/src/object/o_break.c:186 gschem/src/object/o_break.c:520
 #: gschem/src/object/o_break.c:845
@@ -2338,9 +2338,8 @@ msgstr ""
 
 # Error
 #: gschem/src/x/x_dnd.c:248
-#, fuzzy
 msgid "Error:"
-msgstr "Napaka"
+msgstr "Napaka:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -3968,23 +3967,25 @@ msgstr ""
 msgid "attribute"
 msgstr ""
 
+# Automatic Height
 #: gschem/src/x/x_pagesel.c:54
 msgid "Auto Height"
 msgstr "Samodejna višina"
 
+# Enable or disable Page Select dialog automatic height
 #: gschem/src/x/x_pagesel.c:54
 msgid "Enable or disable Page Select dialog auto height"
-msgstr ""
+msgstr "Omogoči ali onemogoči pogovorno okno za izbiro strani Samodejna višina"
 
-# Filename
+# Full names
 #: gschem/src/x/x_pagesel.c:55
-#, fuzzy
 msgid "Full names"
-msgstr "Ime datoteke"
+msgstr "Polna imena"
 
+# Enable or disable displaying of paths in file names
 #: gschem/src/x/x_pagesel.c:55
 msgid "Enable or disable displaying of paths in file names"
-msgstr ""
+msgstr "Omogoči ali onemogoči prikazovanje poti v imenih datotek"
 
 #: gschem/src/x/x_pagesel.c:594
 msgid "Move Up"
