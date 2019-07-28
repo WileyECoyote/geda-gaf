@@ -49,9 +49,8 @@ msgstr "Pridobi ali nastavi privzeti simbol naslovnega bloka\n"
 
 # Get or Set the default titleblock symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Pridobi ali nastavi privzeti simbol naslovnega bloka\n"
+msgstr "Pridobite ali nastavite privzeti simbol naslona\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
@@ -408,9 +407,10 @@ msgstr "Pin"
 msgid "Text"
 msgstr "Besedilo"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Napaka pri inicializaciji novega obloka"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
