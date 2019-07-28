@@ -54,12 +54,11 @@ msgstr "Получить или установить символ по умол�
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Получить или установить символ заголовка по умолчанию\n"
 
-# Get or Set the default titleblock symbol
-# Poluchit' ili ustanovit' simvol zagolovka po umolchaniyu
+# Get or Set the default transformer symbol
+# Poluchit' ili ustanovit' simvol transformatora po umolchaniyu
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Получить или установить символ заголовка по умолчанию\n"
+msgstr "Получить или установить символ трансформатора по умолчанию\n"
 
 # Close all files and deinitialize the library
 # Zakroyte vse fayly i deinitsializiruyte biblioteku
@@ -466,9 +465,11 @@ msgstr "Штырь"
 msgid "Text"
 msgstr "Текст"
 
+# Error initializing new Arc object
+# Oshibka initsializatsii novogo ob"yekta dugi
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Ошибка инициализации нового объекта дуги"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
