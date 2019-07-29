@@ -24,6 +24,7 @@
       attributes:
 
             * simulation/vhdl/nor6-1.sym
+            * simulation/vhdl/nor7-1.sym
 
 2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
