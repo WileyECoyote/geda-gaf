@@ -595,6 +595,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
   }
 }
 
+/*! \internal widget_class->expose_event */
 static int
 geda_option_menu_expose (GtkWidget *widget, GdkEventExpose *event)
 {

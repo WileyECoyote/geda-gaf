@@ -12,6 +12,7 @@
 
           * geda_option_menu_size_request
           * geda_option_menu_size_allocate
+          * geda_option_menu_expose
 
 2019-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
