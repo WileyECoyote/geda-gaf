@@ -4587,9 +4587,10 @@ static void geda_label_destroy_window (GedaLabel *label)
   }
 }
 
-/* Helper for:
- *             geda_label_ensure_select_info
-               geda_label_realize
+/*! \internal Helper for:
+ *
+ *     geda_label_ensure_select_info
+ *     geda_label_realize
  */
 static void geda_label_create_window (GedaLabel *label)
 {

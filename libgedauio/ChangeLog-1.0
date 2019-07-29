@@ -4,6 +4,7 @@
 
           * geda_label_motion
           * geda_label_destroy_window
+          * geda_label_create_window
 
 2019-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
