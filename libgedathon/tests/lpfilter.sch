@@ -257,28 +257,28 @@ device=VOLTAGE_SOURCE
 C 9000 3700 1 0 0 gnd-1.sym
 {
 T 9200 3700 5 10 0 1 0 0 1
-device=GROUND_NODE
+device=GND
 T 9200 4050 5 10 0 1 0 0 1
 footprint=none
 }
 C 12100 3700 1 0 0 gnd-1.sym
 {
 T 12300 3700 5 10 0 1 0 0 1
-device=GROUND_NODE
+device=GND
 T 12300 4050 5 10 0 1 0 0 1
 footprint=none
 }
 C 7300 3700 1 0 0 gnd-1.sym
 {
 T 7500 3700 5 10 0 1 0 0 1
-device=GROUND_NODE
+device=GND
 T 7500 4050 5 10 0 1 0 0 1
 footprint=none
 }
 C 14400 8400 1 0 0 gnd-1.sym
 {
 T 14600 8400 5 10 0 1 0 0 1
-device=GROUND_NODE
+device=GND
 T 14600 8750 5 10 0 1 0 0 1
 footprint=none
 }
