@@ -1,5 +1,8 @@
 2019-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/led_drivers/SCT2180-1.sym: Add symbol; 8 channel constant
+      current drivers.
+
     * thyristor/triac-[1,2].sym: Move path vertices so that the triangles do
       not over-run lines.
 

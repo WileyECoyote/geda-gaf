@@ -1,0 +1,50 @@
+--vmode
+--minwidth 2200
+#--extlabels
+
+[labels]
+r U?
+v SCT2180
+! use-license=unlimited
+! dist-license=GPLv2
+! numslots=0
+! description=8-bit Parallel-In/Parallel-Out Constant Current Driver
+! documentation=http://www.starchips.com.tw/pdf/datasheet/SCT2180V02_05.pdf
+! author=Wojciech Krutnik
+! footprint=SO24W
+! device=SCT2180
+! symversion=1.0
+
+[left]
+10 i   INS
+21 i!  \_LA\_
+1  i!  \_OE\_
+
+3  i   IN0
+5  i   IN1
+11 i   IN2
+12 i   IN3
+13 i   IN4
+14 i   IN5
+20 i   IN6
+22 i   IN7
+
+[right]
+23     REXT
+.skip 1200
+6  oc  OUT0
+7  oc  OUT1
+8  oc  OUT2
+9  oc  OUT3
+16 oc  OUT4
+17 oc  OUT5
+18 oc  OUT6
+19 oc  OUT7
+
+[top]
+24 p   VDD
+
+[bottom]
+2  p   GNDD
+15 p   GNDD
+4  p   GNDA
