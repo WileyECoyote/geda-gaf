@@ -4411,6 +4411,7 @@ static void drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void *dat
   }
 }
 
+/*! \internal  widget_class->motion_notify_event */
 static bool geda_label_motion (GtkWidget *widget, GdkEventMotion *event)
 {
   GedaLabel     *label;
