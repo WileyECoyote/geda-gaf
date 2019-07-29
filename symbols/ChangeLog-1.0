@@ -20,6 +20,11 @@
             * thyristor/BTA140-1.sym
             * thyristor/BTA140-2.sym
 
+    * simulation/vhdl/nor[6,7]-1.sym: Add description attribute, revise pin
+      attributes:
+
+            * simulation/vhdl/nor6-1.sym
+
 2019-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/temperature/AM2302-1.sym: Add symbol; Temperature and humidity
