@@ -421,6 +421,7 @@ geda_option_menu_get_props (GedaOptionMenu      *option_menu,
   gtk_border_free (indicator_spacing);
 }
 
+/*! \internal widget_class->size_request */
 static void
 geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {

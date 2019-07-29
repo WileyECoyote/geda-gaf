@@ -7,6 +7,11 @@
           * geda_label_create_window
           * geda_label_ensure_select_info
 
+    * src/widgets/geda_option_menu.c: Add internal function documentation
+      tags for widget class over-rides:
+
+          * geda_option_menu_size_request
+
 2019-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_action.h: Add member action_name.
