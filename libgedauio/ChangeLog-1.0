@@ -11,6 +11,7 @@
       tags for widget class over-rides:
 
           * geda_option_menu_size_request
+          * geda_option_menu_size_allocate
 
 2019-07-25 Wiley E. Hill <wileyhill@gmail.com>
 

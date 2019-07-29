@@ -467,6 +467,7 @@ geda_option_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
   requisition->height = MAX (requisition->height, height);
 }
 
+/*! \internal widget_class->size_allocate */
 static void
 geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
