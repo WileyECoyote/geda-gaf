@@ -3,6 +3,7 @@
     * src/widgets/geda_label.c: Add internal function documentation tags:
 
           * geda_label_motion
+          * geda_label_destroy_window
 
 2019-07-25 Wiley E. Hill <wileyhill@gmail.com>
 

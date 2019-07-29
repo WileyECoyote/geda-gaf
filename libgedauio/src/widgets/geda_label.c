@@ -4563,6 +4563,7 @@ static bool geda_label_leave_notify (GtkWidget *widget, GdkEventCrossing *event)
   return FALSE;
 }
 
+/*! \internal Helper for geda_label_clear_select_info */
 static void geda_label_destroy_window (GedaLabel *label)
 {
   if (label->priv->select_info == NULL) {
