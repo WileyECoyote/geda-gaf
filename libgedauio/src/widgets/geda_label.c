@@ -4642,6 +4642,7 @@ static void geda_label_create_window (GedaLabel *label)
   }
 }
 
+/*! \internal Helper for geda_label_set_selectable */
 static bool geda_label_ensure_select_info (GedaLabel *label)
 {
   GedaLabelData *priv = label->priv;
