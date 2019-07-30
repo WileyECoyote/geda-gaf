@@ -1,3 +1,9 @@
+2019-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/gxyrs/run_tests.sh: Revise script to allow specifying regeneration
+      via environment variable, see commit to master branch e6a82ebcf64ee6a by
+      Roland Lutz <rlutz@hedmen.org>.
+
 2019-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/refdes_renum: Remove unneeded gitignore files:

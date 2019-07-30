@@ -4,7 +4,7 @@
 #    adapted from refdes_renum test suite by Dan McMahill.
 # Copyright (C) 2008 other contributors
 #                        (see ChangeLog or SCM history for details)
- 
+
 # This file is part of gxyrs.
 
 # This program is free software; you can redistribute it and/or
@@ -19,10 +19,8 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
 # 02110-1301, USA.
-
-regen=no
 
 usage() {
 cat << EOF
@@ -45,13 +43,13 @@ Options
 Description
 
 $0 reads a file, tests.list,  describing tests to run on geda_filter.
-If no specific test is specified on the $0 command line, then all 
+If no specific test is specified on the $0 command line, then all
 tests are run.
 
 Examples
 
 $0
-$0 --regen new_test 
+$0 --regen new_test
 
 EOF
 }
@@ -68,7 +66,7 @@ do
     -r|--regen)
 	# regenerate the 'golden' output files.  Use this with caution.
 	# In particular, all differences should be noted and understood.
-	regen=yes
+	REGEN=1
 	shift
 	;;
 
@@ -215,7 +213,7 @@ for t in $all_tests ; do
 	ref_error=${GOLDEN_DIR}/${t}-${f}-error
 	error=${rundir}/$error_file
 
-	if test "X$regen" = "Xyes" ; then
+	if test "X$REGEN" = "X1" ; then
 	    cp ${out} ${ref}
 	    echo "Regenerated ${ref}"
 	    cp ${error} ${ref_error}
@@ -229,7 +227,7 @@ for t in $all_tests ; do
 		    fail=`expr $fail + 1`
 		    bad=1
 		    good=0
-		    if test $DEBUG ; then 
+		    if test $DEBUG ; then
 			exit 1;
 		    fi
 		fi
