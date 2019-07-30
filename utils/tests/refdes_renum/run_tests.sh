@@ -99,7 +99,7 @@ top_srcdir=`cd $top_srcdir && pwd`
 # the perl program
 PERL=${PERL:-perl}
 
-rundir=${here}/run
+rundir=${here}/${t}.run
 
 GOLDEN_DIR=${srcdir}/outputs
 INPUT_DIR=${srcdir}/inputs

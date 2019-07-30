@@ -1,8 +1,12 @@
 2019-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/gxyrs/run_tests.sh: Revise script to allow specifying regeneration
-      via environment variable, see commit to master branch e6a82ebcf64ee6a by
-      Roland Lutz <rlutz@hedmen.org>.
+      via environment variable, qnd use test-specific run directories see commit
+      to master branch e6a82ebcf64ee6a by Roland Lutz <rlutz@hedmen.org>.
+
+    * tests/refdes_renum/run_tests.sh: Revise script to use test-specific run
+      directories,  see commit to master branch 1fc631fda144222 by Roland Lutz
+      <rlutz@hedmen.org>.
 
 2019-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
