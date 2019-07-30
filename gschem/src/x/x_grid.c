@@ -270,8 +270,7 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
 /*************************** Mesh Grid ****************************/
 
-/*! \brief Helper function for draw_mesh_grid_regin
- */
+/*! \brief Helper function for x_grid_draw_mesh_region */
 static void inline
 draw_mesh (GschemToplevel *w_current, int x_start, int y_start,
                                       int x_end,   int y_end,
