@@ -938,6 +938,8 @@ char *geda_text_object_save(GedaObject *object)
   int   num_lines;
   int   visibility;
 
+  g_return_val_if_fail (GEDA_IS_TEXT(object), NULL);
+
   x = object->text->x;
   y = object->text->y;
 
