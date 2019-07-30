@@ -75,7 +75,7 @@ query_grid_fixed_spacing (GschemToplevel *w_current, int *threshold)
 /*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
  *  \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
- *  the grid drawing code may drop elelments which are too densly packed for a
+ *  the grid drawing code may drop elements which are too densly packed for a
  *  given zoom level.
  *
  *  \param [in] w_current  The GschemToplevel.
@@ -117,7 +117,7 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
 /*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
  *  \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
- *  the grid drawing code may drop elelments which are too densly packed for a
+ *  the grid drawing code may drop elements which are too densly packed for a
  *  given zoom level.
  *
  *  \param [in] w_current  The GschemToplevel.
@@ -538,7 +538,7 @@ void x_grid_configure_variables (GschemToplevel *w_current)
 /*! \brief Query the spacing in world coordinates at which the grid is drawn.
  *  \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
- *  the grid drawing code may drop elelments which are too densly packed for a
+ *  the grid drawing code may drop elements which are too densly packed for a
  *  given zoom level.
  *
  *  \param [in] w_current  The GschemToplevel.
