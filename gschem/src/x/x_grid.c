@@ -239,7 +239,7 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   x_start -= (x_start % incr);
   y_start -= (y_start % incr);
 
-  /** Draw the fine grid if its on-screen spacing is large enough **/
+  /* Draw the fine grid if its on-screen spacing is large enough */
   if (screen_incr >= w_current->dots_grid_threshold) {
 
     c = &w_current->grid_minor_color;
@@ -255,7 +255,7 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   incr       *= COARSE_GRID_MULTIPLIER;
   screen_incr = SCREENabs (w_current, incr);
 
-  /** Draw the coarse grid if its on-screen spacing is large enough **/
+  /* Draw the coarse grid if its on-screen spacing is large enough */
   if (screen_incr >= w_current->dots_grid_threshold) {
 
     c = &w_current->grid_major_color;
@@ -363,7 +363,7 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   cairo_set_line_cap (w_current->cr, CAIRO_LINE_CAP_SQUARE);
   cairo_set_line_width (w_current->cr, w_current->grid_size_factor);
 
-  /** Draw the fine grid if its on-screen spacing is large enough **/
+  /* Draw the fine grid if its on-screen spacing is large enough */
   if (screen_incr >= w_current->mesh_grid_threshold) {
 
     c = &w_current->grid_minor_color;
@@ -377,7 +377,7 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   incr       *= COARSE_GRID_MULTIPLIER;
   screen_incr = SCREENabs (w_current, incr);
 
-  /** Draw the coarse grid if its on-screen spacing is large enough **/
+  /* Draw the coarse grid if its on-screen spacing is large enough */
   if (screen_incr >= w_current->mesh_grid_threshold) {
 
     c = &w_current->grid_major_color;
