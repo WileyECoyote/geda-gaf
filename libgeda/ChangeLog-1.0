@@ -1,6 +1,7 @@
 2019-07-30 Wiley E. Hill <wileyhill@gmail.com
 
-    * src/object/o_text_object.c: Validate object in geda_text_object_save.
+    * src/object/o_text_object.c: Validate object in geda_text_object_save
+      and only validate object type in geda_text_object_set_alignment.
 
 2019-07-24 Wiley E. Hill <wileyhill@gmail.com
 
