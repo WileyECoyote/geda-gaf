@@ -1280,11 +1280,12 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
  *  @{ \memberof Editing-Dialogs
  */
 
-/*! \brief Create a menu with fill types for the line type dialog
- *  \par Function Description
+/*!
+ * \brief Create a menu with fill types for the line type dialog
+ * \par Function Description
  *  This function creates a GedaMenu with the different fill types.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 {
@@ -1322,20 +1323,22 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
   return menu;
 }
 
-/*! \brief Get the filltype data from selected objects
- *  \par Function Description
+/*!
+ * \brief Get the filltype data from selected objects
+ * \par Function Description
  *  Get filltype information over all selected objects. If an object
  *  property is different than other objects, then set the value of
  *  that property equal to -2 to indicate there are mixed values.
  *
- *  \param [in]   selection the selection list
- *  \param [out]  type      #OBJECT_FILLING type
- *  \param [out]  width     fill width.
- *  \param [out]  pitch1    cross hatch line distance
- *  \param [out]  angle1    cross hatch angle
- *  \param [out]  pitch2    cross hatch line distance
- *  \param [out]  angle2    cross hatch angle
- *  \returns TRUE if filltype found, FALSE otherwise
+ * \param [in]   selection the selection list
+ * \param [out]  type      #OBJECT_FILLING type
+ * \param [out]  width     fill width.
+ * \param [out]  pitch1    cross hatch line distance
+ * \param [out]  angle1    cross hatch angle
+ * \param [out]  pitch2    cross hatch line distance
+ * \param [out]  angle2    cross hatch angle
+ *
+ * \returns TRUE if filltype found, FALSE otherwise
  */
 static bool selection_get_fill_type(GList *selection,
                                     OBJECT_FILLING *type, int *width,
@@ -1379,18 +1382,19 @@ static bool selection_get_fill_type(GList *selection,
   return found;
 }
 
-/*! \brief Set the filltype in the filltype dialog
- *  \par Function Description
+/*!
+ * \brief Set the filltype in the filltype dialog
+ * \par Function Description
  *  Set all widgets in the filltype dialog. Variables marked with the
  *  invalid value -2 are set to *varies*.
  *
- *  \param [in]   fill_data dialog structure
- *  \param [in]   type      OBJECT_FILLING type
- *  \param [in]   width     fill width.
- *  \param [in]   pitch1    cross hatch line distance
- *  \param [in]   angle1    cross hatch angle
- *  \param [in]   pitch2    cross hatch line distance
- *  \param [in]   angle2    cross hatch angle
+ * \param [in]   fill_data dialog structure
+ * \param [in]   type      OBJECT_FILLING type
+ * \param [in]   width     fill width.
+ * \param [in]   pitch1    cross hatch line distance
+ * \param [in]   angle1    cross hatch angle
+ * \param [in]   pitch2    cross hatch line distance
+ * \param [in]   angle2    cross hatch angle
  */
 static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
                                                OBJECT_FILLING type, int width,
@@ -1454,8 +1458,9 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 }
 
-/*! \brief Callback function for the filltype menu in the filltype dialog
- *  \par Function Description
+/*!
+ * \brief Callback function for the filltype menu in the filltype dialog
+ * \par Function Description
  *  This function sets the entry activity according to the selected
  *  filltype of the filltype dialog.
  */
@@ -1512,8 +1517,9 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
   return(0);
 }
 
-/*! \brief Apply the settings of the filltype dialog to the selection
- *  \par Function Description
+/*!
+ * \brief Apply the settings of the filltype dialog to the selection
+ * \par Function Description
  *  This function applies the settings of the filltype dialog to the
  *  selected objects
  */
@@ -1625,8 +1631,9 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-/*! \brief response function for the filltype dialog
- *  \par Function Description
+/*!
+ * \brief response function for the filltype dialog
+ * \par Function Description
  *  This function handles the user response to the filltype dialog.
  *  It destroys the dialog after that.
  */
@@ -1655,12 +1662,14 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
 
 }
 
-/*! \brief Handle selection change event for x_dialog_edit_fill_type
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for x_dialog_edit_fill_type
+ * \par Function Description
  *  Updates the fill_type dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
- *  \param w_current pointer to GschemToplevel context
- *  \param object    pointer to a selected Object.
+ *
+ * \param w_current pointer to GschemToplevel context
+ * \param object    pointer to a selected Object.
  */
 static void
 x_dialog_fill_type_update_selection (GschemToplevel *w_current,
@@ -1816,11 +1825,12 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   return Dialog;
 }
 
-/*! \brief Creates the fill type dialog
- *  \par Function Description
+/*!
+ * \brief Creates the fill type dialog
+ * \par Function Description
  *  This function creates the fill type dialog.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_edit_fill_type(GschemToplevel *w_current)
 {
@@ -1854,11 +1864,12 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
  *  @{ \memberof Editing-Dialogs
  */
 
-/*! \brief Create a line end type menu for the line type dialog
- *  \par Function Description
+/*!
+ * \brief Create a line end type menu for the line type dialog
+ * \par Function Description
  *  This function creates a GedaMenu with the different line end types.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
 {
@@ -1894,11 +1905,12 @@ static GtkWidget *create_endtype_menu (GschemToplevel *w_current)
   return(menu);
 }
 
-/*! \brief Create a line type menu for the line type dialog
- *  \par Function Description
+/*!
+ * \brief Create a line type menu for the line type dialog
+ * \par Function Description
  *  This function creates a GedaMenu with the different linetypes.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
 {
@@ -1934,18 +1946,21 @@ static GtkWidget *create_linetype_menu (GschemToplevel *w_current)
   return(menu);
 }
 
-/*! \brief get the linetype data from selected objects
- *  \par Function Description
+/*!
+ * \brief get the linetype data from selected objects
+ * \par Function Description
  *  Get linetype information over all selected objects.
  *  If a object property is different to the other objects, then
  *  return LEAVE_ALONE in that variable.
- *  \param [in]   selection the selection list
- *  \param [out]  end       #LINE_END type
- *  \param [out]  type      OBJECT_FILLING type
- *  \param [out]  width     line width
- *  \param [out]  length    length of each line
- *  \param [out]  space     space between points and lines
- *  \returns TRUE if linetype found, FALSE otherwise
+ *
+ * \param [in]   selection the selection list
+ * \param [out]  end       #LINE_END type
+ * \param [out]  type      OBJECT_FILLING type
+ * \param [out]  width     line width
+ * \param [out]  length    length of each line
+ * \param [out]  space     space between points and lines
+ *
+ * \returns TRUE if linetype found, FALSE otherwise
  */
 static bool
 selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
@@ -1988,17 +2003,18 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
   return found;
 }
 
-/*! \brief set the linetype in the linetype dialog
- *  \par Function Description
+/*!
+ * \brief set the linetype in the linetype dialog
+ * \par Function Description
  *  Set all widgets in the linetype dialog. Variables marked with the
  *  invalid value LEAVE_ALONE (-2) are set to *varies*.
  *
- *  \param [in]   line_data line dialog structure
- *  \param [in]   end       #LINE_END type (currently not used)
- *  \param [in]   type      #LINE_TYPE type
- *  \param [in]   width     fill width.
- *  \param [in]   length    length of each line
- *  \param [in]   space     space between points and lines
+ * \param [in]   line_data line dialog structure
+ * \param [in]   end       #LINE_END type (currently not used)
+ * \param [in]   type      #LINE_TYPE type
+ * \param [in]   width     fill width.
+ * \param [in]   length    length of each line
+ * \param [in]   space     space between points and lines
  */
 static void
 x_dialog_edit_line_type_set_values(line_type_data *line_data,
@@ -2052,8 +2068,9 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 }
 
-/*! \brief Callback function for the linetype menu item in the line type dialog
- *  \par Function Description
+/*!
+ * \brief Callback function for the linetype menu item in the line type dialog
+ * \par Function Description
  *  This Function is called when the user changes the line type selection.
  *  It sets the dash space/length entries either active or inactive.
  */
@@ -2095,8 +2112,9 @@ x_dialog_edit_line_type_change(GtkWidget *w, line_type_data *line_data)
   return(0);
 }
 
-/*! \brief Worker function for the line type and width dialog
- *  \par Function Description
+/*!
+ * \brief Worker function for the line type and width dialog
+ * \par Function Description
  *  The function takes the properties of the dialog and applies
  *  them to the selected objects.
  */
@@ -2207,11 +2225,11 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-/*! \brief response function for the line type and width dialog
- *  \par Function Description
+/*!
+ * \brief response function for the line type and width dialog
+ * \par Function Description
  *  This function takes the user input and applies it to selected
- *  objects.
- *  After that it kills the dialog.
+ *  objects. After that it kills the dialog.
  */
 void
 x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
@@ -2239,13 +2257,14 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
 
 }
 
-/*! \brief Handle selection change event for x_dialog_edit_fill_type
- *  \par Function Description
+/*!
+ * \brief Handle selection change event for x_dialog_edit_fill_type
+ * \par Function Description
  *  Updates the fill_type dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
  *
- *  \param w_current pointer to GschemToplevel context
- *  \param object    pointer to a selected Object.
+ * \param w_current pointer to GschemToplevel context
+ * \param object    pointer to a selected Object.
  */
 static void
 x_dialog_line_type_update_selection (GschemToplevel *w_current,
@@ -2398,12 +2417,13 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   return Dialog;
 }
 
-/*! \brief Creates the line type and width dialog
- *  \par Function Description
+/*!
+ * \brief Creates the line type and width dialog
+ * \par Function Description
  *  This function creates and sets up a dialog for manipulating
  *  properties of line objects.
  *
- *  \param [in] w_current Pointer to a GschemToplevel object
+ * \param [in] w_current Pointer to a GschemToplevel object
  */
 void x_dialog_edit_line_type (GschemToplevel *w_current)
 {
@@ -2440,8 +2460,9 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
 Page *remember_page;
 Page *forget_page;
 
-/*! \brief response function for the find text dialog
- *  \par Function Description
+/*!
+ * \brief response function for the find text dialog
+ * \par Function Description
  *  This function calls o_edit_find_text to search schematics for
  *  the user input string.
  */
@@ -2546,13 +2567,13 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
   }
 }
 
-/*! \brief Find Text Dialog Descend into Hierarchy Check-box Callback
- *   Enable or disabled sensitivity of Close-on-Ascent checkbox
- *   based on the state of the check-box.
+/*!
+ * \brief Find Text Dialog Descend into Hierarchy Check-box Callback
+ *  Enable or disabled sensitivity of Close-on-Ascent checkbox
+ *  based on the state of the check-box.
  *
- *  \param [in] check_butt Pointer to the Descend CheckBox widget
- *  \param [in] cb         Pointer to the Ascend CheckBox widget
- *
+ * \param [in] check_butt Pointer to the Descend CheckBox widget
+ * \param [in] cb         Pointer to the Ascend CheckBox widget
  */
 static void x_dialog_find_text_on_descend (GtkWidget *check_butt, GtkWidget *cb)
 {
@@ -2782,6 +2803,11 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 /*********** End of hide text dialog box *******/
 
 /** @} End Group Hide-Text-Dialog */
+
+void x_dialog_patch_text(GschemToplevel *w_current)
+{
+  fprintf(stderr, "Weeeeee!\n");
+}
 
 /** \defgroup Show-Text-Dialog Show Text Dialog
  *  @{ \memberof Editing-Dialogs
@@ -4247,6 +4273,64 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
   }
 
   gtk_widget_destroy (dialog);
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
+GList *x_dialog_sym_not_embedded(GschemToplevel *w_current, GList *syms)
+{
+  GList     *items;
+  GList     *iter;
+
+  items = NULL;
+
+  if (syms && (g_list_length(syms) > 1)) {
+
+    for (iter = syms; iter; iter = iter->next) {
+
+      GedaObject *object = (GedaObject*)iter->data;
+
+      if (object != NULL) {
+
+        const char *filename;
+
+        filename = NULL;
+
+        if (object->type == OBJ_COMPLEX) {
+          filename = geda_complex_object_get_filename(object);
+        }
+        else if (object->type == OBJ_PICTURE) {
+          filename = geda_picture_object_get_filename(object);
+        }
+
+        if (filename) {
+
+          GedaConfirmItem *item;
+
+          item = geda_confirm_item_new (filename, object);
+
+          if (item) {
+            items = g_list_append(items, item);
+          }
+        }
+      }
+    }
+
+    if (items) {
+
+      GtkWidget *dialog;
+
+      dialog = geda_confirm_dialog_items_new(items);
+
+      gtk_dialog_run (GTK_DIALOG (dialog));
+
+      gtk_widget_destroy (dialog);
+    }
+  }
+
+  return NULL;
 }
 
 /******************* End of General message dialogs **********************/
