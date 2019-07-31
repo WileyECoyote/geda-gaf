@@ -360,14 +360,15 @@ geda_combo_box_text_buildable_custom_finished (GtkBuildable *buildable,
   }
 }
 
-/*! \brief GedaComboBox Type Class Initializer
- *  \par Function Description
+/*!
+ * \brief GedaComboBox Type Class Initializer
+ * \par Function Description
  *  Type class initializer called to initialize the class instance.
  *  Overrides parents virtual class methods as needed and registers
  *  GObject signals.
  *
- *  \param [in]  class       GedaComboClass class we are initializing
- *  \param [in]  class_data  GedaCombo structure associated with the class
+ * \param [in]  class       GedaComboClass class we are initializing
+ * \param [in]  class_data  GedaCombo structure associated with the class
  */
 static void geda_combo_box_text_class_init (void *class, void *class_data)
 {
@@ -381,8 +382,9 @@ static void geda_combo_box_text_class_init (void *class, void *class_data)
   geda_combo_box_text_parent_class = g_type_class_peek_parent (class);
 }
 
-/*! \brief Initialize new GedaComboBoxText data structure instance.
- *  \par Function Description
+/*!
+ * \brief Initialize new GedaComboBoxText data structure instance.
+ * \par Function Description
  *  This function is call after the GedaComboBoxTextClass is created
  *  to initialize the data structure.
  *
