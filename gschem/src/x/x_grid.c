@@ -130,7 +130,7 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
   return query_grid_fixed_spacing (w_current, &w_current->mesh_grid_threshold);
 }
 
-/*************************** Dots Grid ****************************/
+/* ------------------------ Dots Grid ------------------------ */
 
 /*! \brief Draw an area of the screen with a dotted grid pattern
  *  \par Function Description
@@ -268,7 +268,7 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   }
 }
 
-/*************************** Mesh Grid ****************************/
+/* ------------------------ Mesh Grid ------------------------ */
 
 /*! \brief Helper function for x_grid_draw_mesh_region */
 static void inline
