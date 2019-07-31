@@ -1539,7 +1539,7 @@ geda_menu_bar_hierarchy_changed (GtkWidget *widget, GtkWidget *old_toplevel)
 /*!
  * \brief Move GedaMenuBar Focus
  * \par Function Description
- * Move the focus between menubars in the toplevel.
+ *  Move the focus between menubars in the toplevel.
  *
  * \param[in] menubar Pointer #GedaMenuBar object
  * \param[in] dir     Direction in which to cycle the focus
@@ -1588,25 +1588,26 @@ static int geda_menu_bar_get_popup_delay (GedaMenuShell *menu_shell)
   return MENU_BAR_POPUP_DELAY;
 }
 
-/*! \internal
- *   The MenuDirection for GedaMenuBar is not the same orientations
- *   as GedaMenuBar, for example MENU_DIR_PREV on a MenuBar is LEFT
- *   but on GedaMenu MENU_DIR_PREV is up. This function is initiated
- *   when a menu item is selected on a MenuBar and the user presses a
- *   key,then geda_menu_key_press() receives the event and chains up
- *   to parent::key_press_event, which is geda_menu_shell_key_press.
- *   Seeing that there is a parent shell, geda_menu_shell_key_press
- *   propagates the event by calling gtk_widget_event, which invokes
- *   geda_menu_bar_key_press. geda_menu_bar_key_press then calls
- *   gtk_bindings_activate_event before checking with children and
- *   thus we end up here since "move-current" has bindings pointing
- *   to geda_menu_bar_move_current.
+/*!
+ * \internal
+ *  The MenuDirection for GedaMenuBar is not the same orientations
+ *  as GedaMenuBar, for example MENU_DIR_PREV on a MenuBar is LEFT
+ *  but on GedaMenu MENU_DIR_PREV is up. This function is initiated
+ *  when a menu item is selected on a MenuBar and the user presses a
+ *  key,then geda_menu_key_press() receives the event and chains up
+ *  to parent::key_press_event, which is geda_menu_shell_key_press.
+ *  Seeing that there is a parent shell, geda_menu_shell_key_press
+ *  propagates the event by calling gtk_widget_event, which invokes
+ *  geda_menu_bar_key_press. geda_menu_bar_key_press then calls
+ *  gtk_bindings_activate_event before checking with children and
+ *  thus we end up here since "move-current" has bindings pointing
+ *  to geda_menu_bar_move_current.
  *
- *   The directions are translated here before chaining up to the
- *   parent class GedaMenushell::move_current so that the key press
- *   is ultimately handled by geda_real_menu_shell_move_current.
- *   Seems to be a bit messy but some how works in a round-about
- *   sort of way.
+ *  The directions are translated here before chaining up to the
+ *  parent class GedaMenushell::move_current so that the key press
+ *  is ultimately handled by geda_real_menu_shell_move_current.
+ *  Seems to be a bit messy but some how works in a round-about
+ *  sort of way.
  */
 static void
 geda_menu_bar_move_current (GedaMenuShell *menu_shell, MenuDirection direction)
