@@ -151,12 +151,12 @@ void x_clipboard_finish (GschemToplevel *w_current)
   gtk_clipboard_store (cb);
 }
 
-/*! \brief Callback for determining if any clipboard targets are pastable
- *
+/*!
+ * \brief Callback for determining if any clipboard targets are pastable
  * \par Function Description
- * Checks if the clipboard targets match any format we recognise, then
- * calls back into a supplied callback function which is interested in
- * the TRUE / FALSE answer to whether we can paste from the clipboard.
+ *  Checks if the clipboard targets match any format we recognise, then
+ *  calls back into a supplied callback function which is interested in
+ *  the TRUE / FALSE answer to whether we can paste from the clipboard.
  */
 static void
 query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, void *data)
