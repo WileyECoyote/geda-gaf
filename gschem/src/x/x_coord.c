@@ -459,7 +459,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 /*!
  * \brief Create the Coordinates Dialog
  * \par Function Description
- *  This function creates the coord dialog box.
+ *  This function creates the coordinates dialog box.
  */
 void x_dialog_coord_dialog (GschemToplevel *w_current)
 {
