@@ -153,6 +153,7 @@ geda_combo_box_text_constructor (GType                  type,
   return object;
 }
 
+/*! \internal object_class->finalize */
 static void geda_combo_box_text_finalize  (GObject *object)
 {
   GedaComboBoxText *self = GEDA_COMBO_BOX_TEXT(object);
