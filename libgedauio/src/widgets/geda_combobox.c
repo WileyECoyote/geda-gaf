@@ -5580,7 +5580,6 @@ static void geda_combo_box_set_active_internal (GedaComboBox *combo_box,
 
 /*!
  * \brief Set Active #GedaComboBox item
- *
  * \par Function Description
  *  Sets the active item of \a combo_box to be the item at \a index.
  *
