@@ -137,7 +137,6 @@ static void geda_bulb_set_property (GObject      *object,
     GedaBulb *button;
 
     case PROP_GROUP:
-
       button = g_value_get_object (value);
       if (button) {
         slist = geda_bulb_get_group ((GtkWidget*)button);
@@ -234,6 +233,7 @@ static void geda_bulb_finalize (GObject *object)
     off_pixbuf = NULL;
     on_pixbuf  = NULL;
   }
+
   ((GObjectClass*)geda_bulb_parent_class)->finalize (object);
 }
 
@@ -305,11 +305,13 @@ static bool geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
           focus_list = g_slist_copy (bulb->group);
           focus_list = g_slist_sort_with_data (focus_list, left_right_compare, toplevel);
           break;
+
         case GTK_DIR_UP:
         case GTK_DIR_DOWN:
           focus_list = g_slist_copy (bulb->group);
           focus_list = g_slist_sort_with_data (focus_list, up_down_compare, toplevel);
           break;
+
         case GTK_DIR_TAB_FORWARD:
         case GTK_DIR_TAB_BACKWARD:
           /* fall through */
