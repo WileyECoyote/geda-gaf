@@ -2360,11 +2360,11 @@ GtkWidget *geda_entry_new_visible_buffer (GtkEntryBuffer *buffer)
  * \brief Create a New Visible GedaEntry with Completion
  * \par Function Description
  *  Creates a new entry with history and completion list. The completion
- *  list should contain complete keyword string. User can complete an entry
- *  using the TAB key if a suitable match is found in the list. The new
- *  widget is set visible.
+ *  list should contain complete keyword strings. User can complete an
+ *  entry using the TAB key if a suitable match is found in the list.
+ *  The new widget is set visible.
  *
- * \param [in] complete Point to location of GList pointer containing key words.
+ * \param [in] complete Pointer to location of GList pointer containing key words.
  *
  * \return a new #GedaEntry
  */
@@ -2387,7 +2387,7 @@ GtkWidget *geda_entry_new_visible_completion (GList **complete)
  *  keys. User input that is not in the list will be appended to the
  *  \a history list. The new widget is set visible.
  *
- * \param [in] history  Point to location of GList pointer to store entry strings.
+ * \param [in] history Pointer to location of GList pointer to store entry strings.
  *
  * \return a new #GedaEntry
  */
