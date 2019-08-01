@@ -254,10 +254,11 @@ EDA_SCM_DEFINE (page_get_filename, "%page-filename", 1, 0, 0,
 EDA_SCM_DEFINE (page_get_opened, "%active-pages", 0, 0, 0, (),
               "Retrieve a list of currently-opened pages")
 {
-  GedaToplevel *toplevel = edascm_c_current_toplevel ();
+  GedaToplevel *toplevel  = edascm_c_current_toplevel ();
+  GList        *page_list = geda_toplevel_get_pages (toplevel);
+
   SCM lst = SCM_EOL;
   SCM rlst;
-  GList *page_list = geda_toplevel_get_pages (toplevel);
 
   while (page_list != NULL) {
     lst = scm_cons (edascm_from_page (page_list->data), lst);
