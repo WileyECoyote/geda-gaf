@@ -538,51 +538,70 @@ void geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
    * MIDDLE_MIDDLE maps to itself.
    */
   alignment = o_current->text->alignment;
-  angle = o_current->text->angle;
+  angle     = o_current->text->angle;
+
   if(angle == 180) {
+
     angle = 0;        /* reset angle to 0 to make text upright */
+
     switch(alignment) {
-    case(LOWER_LEFT):    alignment = UPPER_RIGHT;
+      case(LOWER_LEFT):    alignment = UPPER_RIGHT;
       break;
-    case(MIDDLE_LEFT):   alignment = MIDDLE_RIGHT;
+
+      case(MIDDLE_LEFT):   alignment = MIDDLE_RIGHT;
       break;
-    case(UPPER_LEFT):    alignment = LOWER_RIGHT;
+
+      case(UPPER_LEFT):    alignment = LOWER_RIGHT;
       break;
-    case(LOWER_MIDDLE):  alignment = UPPER_MIDDLE;
+
+      case(LOWER_MIDDLE):  alignment = UPPER_MIDDLE;
       break;
-    case(MIDDLE_MIDDLE): alignment = MIDDLE_MIDDLE;
+
+      case(MIDDLE_MIDDLE): alignment = MIDDLE_MIDDLE;
       break;
-    case(UPPER_MIDDLE):  alignment = LOWER_MIDDLE;
+
+      case(UPPER_MIDDLE):  alignment = LOWER_MIDDLE;
       break;
-    case(LOWER_RIGHT):   alignment = UPPER_LEFT;
+
+      case(LOWER_RIGHT):   alignment = UPPER_LEFT;
       break;
-    case(MIDDLE_RIGHT):  alignment = MIDDLE_LEFT;
+
+      case(MIDDLE_RIGHT):  alignment = MIDDLE_LEFT;
       break;
-    case(UPPER_RIGHT):   alignment = LOWER_LEFT;
+
+      case(UPPER_RIGHT):   alignment = LOWER_LEFT;
       break;
     }
   }
 
   /* Create an appropriate control string for the centering. */
   switch(alignment) {
-                                       /* hcenter rjustify vcenter vjustify */
-  case(LOWER_LEFT):    centering_control = "false false false false";
+    /* hcenter rjustify vcenter vjustify */
+    case(LOWER_LEFT):    centering_control = "false false false false";
     break;
-  case(MIDDLE_LEFT):   centering_control = "false false true false";
+
+    case(MIDDLE_LEFT):   centering_control = "false false true false";
     break;
-  case(UPPER_LEFT):    centering_control = "false false false true";
+
+    case(UPPER_LEFT):    centering_control = "false false false true";
     break;
-  case(LOWER_MIDDLE):  centering_control = "true false false false";
+
+    case(LOWER_MIDDLE):  centering_control = "true false false false";
     break;
-  case(MIDDLE_MIDDLE): centering_control = "true false true false";
+
+    case(MIDDLE_MIDDLE): centering_control = "true false true false";
     break;
-  case(UPPER_MIDDLE):  centering_control = "true false false true";
+
+    case(UPPER_MIDDLE):  centering_control = "true false false true";
     break;
-  case(LOWER_RIGHT):   centering_control = "false true false false";
+
+    case(LOWER_RIGHT):   centering_control = "false true false false";
     break;
-  case(MIDDLE_RIGHT):  centering_control = "false true true false";
+
+    case(MIDDLE_RIGHT):  centering_control = "false true true false";
     break;
-  case(UPPER_RIGHT):   centering_control = "false true false true";
+
+    case(UPPER_RIGHT):   centering_control = "false true false true";
     break;
   }
 
