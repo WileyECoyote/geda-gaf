@@ -2893,10 +2893,12 @@ void geda_menu_item_popup_submenu (GedaMenuItem *menu_item, bool with_delay)
   geda_menu_item_real_popup_submenu ((GtkWidget*)menu_item, FALSE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Pop Down GedaMenuItem Submenu
+ * \par Function Description
+ *  Closes the submenu if present and removes the timer.
  *
+ * \sa geda_real_menu_item_deselect geda_menu_shell_button_release
  */
 void geda_menu_item_popdown_submenu (GedaMenuItem *menu_item)
 {
