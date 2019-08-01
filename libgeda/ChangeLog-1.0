@@ -1,3 +1,8 @@
+2019-08-01 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/struct/s_page.c: Remove inline declaration from function
+      geda_struct_page_new_common.
+
 2019-07-30 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_text_object.c: Validate object in geda_text_object_save

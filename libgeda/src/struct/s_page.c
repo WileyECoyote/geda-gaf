@@ -112,7 +112,7 @@ pre_object_removed (Page *page, GedaObject *object)
   }
 }
 
-static inline Page *
+static Page *
 geda_struct_page_new_common(GedaToplevel *toplevel, Page *page)
 {
   page->hierarchy_up = -2;
