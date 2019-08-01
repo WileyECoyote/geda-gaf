@@ -412,16 +412,16 @@ geda_combo_box_text_instance_init (GTypeInstance *instance, void *class)
   combo_box->store = store;
 }
 
-/*! \brief Retrieve GedaComboBoxText's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve GedaComboBoxText's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #GedaComboBoxText Type identifier. When
  *  first called, the function registers a #GedaComboBoxText in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a GedaComboBoxText and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaComboBoxText.
+ * \return GedaType identifier associated with GedaComboBoxText.
  */
 GedaType geda_combo_box_text_get_type (void)
 {
@@ -478,28 +478,26 @@ is_a_geda_combo_box_text (GedaComboBoxText *combo_text_box)
   return FALSE;
 }
 
-/*! \brief Create a New GedaComboBoxText
- *  \par Function Description
- *
- * Creates a new #GedaComboBoxText, which is a GedaComboBox just
- * displaying strings.
+/*!
+ * \brief Create a New GedaComboBoxText
+ * \par Function Description
+ *  Creates a new #GedaComboBoxText, which is a GedaComboBox just
+ *  displaying strings.
  *
  * \return new #GedaComboBoxText
- *
  */
 GtkWidget *geda_combo_box_text_new (void)
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, NULL);
 }
 
-/*! \brief Create a New GedaComboBoxText with Entry
- *  \par Function Description
- *
- * Creates a new #GedaComboBoxText, which is a GedaComboBox just displaying
- * strings. The combo box created by this function has an entry.
+/*!
+ * \brief Create a New GedaComboBoxText with Entry
+ * \par Function Description
+ *  Creates a new #GedaComboBoxText, which is a GedaComboBox just displaying
+ *  strings. The combo box created by this function has an entry.
  *
  * \return new #GedaComboBoxText
- *
  */
 GtkWidget *geda_combo_box_text_new_with_entry (void)
 {
