@@ -297,7 +297,7 @@ EDA_SCM_DEFINE (page_is_dirty, "%page-dirty?", 1, 0, 0,
 /*!
  * \brief Create a new page.
  * \par Function Description
- *  Creates and initialises a new #Page object associated with the
+ *  Creates and initializes a new #Page object associated with the
  *  filename \a filename_s. Note that this does not check that a file
  *  exists with that name, or attempt to load any data from it.
  *
