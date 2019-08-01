@@ -2832,10 +2832,11 @@ static int get_popup_delay (GedaMenuItem *menu_item)
 
   parent = gtk_widget_get_parent ((GtkWidget*)menu_item);
 
-  if (GEDA_IS_MENU_SHELL (parent))
+  if (GEDA_IS_MENU_SHELL (parent)) {
     return geda_menu_shell_get_popup_delay ((GedaMenuShell*)parent);
-  else
-    return MENU_POPUP_DELAY;
+  }
+
+  return MENU_POPUP_DELAY;
 }
 
 /*!
