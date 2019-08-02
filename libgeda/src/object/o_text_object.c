@@ -631,6 +631,7 @@ void geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
   /* Collect pertinent info about the text location */
   x = o_current->text->x;
   y = o_current->text->y;
+
   fprintf(fp,"] %d %d %d %f text\n",angle,x,y,font_size);
 
   GEDA_FREE(output_string);
@@ -666,16 +667,23 @@ void geda_text_object_print_text_string(FILE *fp, char *string, int unicode_coun
   fprintf(fp, "(");
 
   while (aux && ((gunichar) (*aux) != 0)) {
+
     current_char = g_utf8_get_char_validated(aux, -1);
+
     if (current_char == '(' || current_char == ')' || current_char == '\\') {
       fprintf(fp, "\\");
     }
 
     c = current_char;
+
     if (c >= 128) {
+
       current_char = '?';
+
       if (unicode_count)  {
+
         for (j = 0; j < unicode_count; j++) {
+
           if (c == unicode_table[j]) {
             current_char = j + 128;
             break;
