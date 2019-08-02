@@ -238,6 +238,7 @@ EDA_SCM_DEFINE (page_get_filename, "%page-filename", 1, 0, 0,
                             scheme_page_get_filename);
 
   page = edascm_to_page (page_s);
+
   return scm_from_utf8_string (page->filename);
 }
 
@@ -266,7 +267,9 @@ EDA_SCM_DEFINE (page_get_opened, "%active-pages", 0, 0, 0, (),
   }
 
   rlst = scm_reverse (lst);
+
   scm_remember_upto_here_1 (lst);
+
   return rlst;
 }
 
@@ -292,6 +295,7 @@ EDA_SCM_DEFINE (page_is_dirty, "%page-dirty?", 1, 0, 0,
               SCM_ARG1, scheme_page_is_dirty);
 
   Page *page = edascm_to_page (page_s);
+
   return page->CHANGED ? SCM_BOOL_T : SCM_BOOL_F;
 }
 
