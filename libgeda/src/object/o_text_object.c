@@ -610,9 +610,10 @@ void geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
   fprintf(fp,"%s %f [",centering_control, font_size * PRINT_LINE_SPACING);
 
   /* split the line at each newline and print them */
-  p = output_string;   /* Current point */
-  s = output_string;   /* Start of the current string */
-  len = strlen(output_string)+1;
+  p   = output_string;             /* Current point */
+  s   = output_string;             /* Start of the current string */
+  len = strlen(output_string) + 1;
+
   while(len != 0) {
     /* Have we reached the end of a line? */
     if((*p == '\n') || (*p == '\0')) {
@@ -620,7 +621,7 @@ void geda_text_object_print(GedaToplevel *toplevel, FILE *fp,
       *p = '\0';
       geda_text_object_print_text_string(fp,s,unicode_count,unicode_table);
       /* Update output string start for next string */
-      s = p+1; /* One past the current character. */
+      s = p + 1; /* One past the current character. */
     }
     p++;   /* Advance to next character */
     len--; /* Keep track of how many characters left to process */
