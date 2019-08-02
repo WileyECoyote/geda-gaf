@@ -696,7 +696,8 @@ void geda_text_object_print_text_string(FILE *fp, char *string, int unicode_coun
     if (current_char == '\t') {
       /* Output eight spaces instead of the tab character */
       fprintf(fp, "       ");
-    } else {
+    }
+    else {
       fprintf(fp, "%c", current_char);
     }
 
