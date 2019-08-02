@@ -537,6 +537,7 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
     SCM_ASSERT (scm_is_integer (angle2_s), angle2_s,
                 SCM_ARG7, scheme_object_set_fill_x);
     fill_options.fill_angle2 = scm_to_int (angle2_s);
+
     /* This case intentionally falls through */
   case FILLING_HATCH:
     if (width_s == SCM_UNDEFINED) {
@@ -567,6 +568,7 @@ EDA_SCM_DEFINE (object_set_fill_x, "%set-object-fill!", 2, 5, 0,
     fill_options.fill_angle1 = scm_to_int (angle1_s);
     /* This case intentionally falls through */
     break;
+
   case FILLING_HOLLOW:
   case FILL_SOLID:
   case FILLING_VOID:
@@ -679,12 +681,14 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG6, scheme_object_set_line_x);
 
   GedaObject *obj = edascm_to_object (line_s);
+
   int x1 = scm_to_int (x1_s);
   int y1 = scm_to_int (y1_s);
   int x2 = scm_to_int (x2_s);
   int y2 = scm_to_int (y2_s);
 
   geda_object_notify_emit_pre_change (obj);
+
   switch (obj->type) {
   case OBJ_NET:
     geda_struct_conn_remove_object (obj); /* We may need to update connectivity. */
@@ -1399,6 +1403,7 @@ EDA_SCM_DEFINE (object_set_stroke_x, "%set-object-stroke!", 4, 2, 0,
     SCM_ASSERT (scm_is_integer (length_s), length_s,
                 SCM_ARG6, scheme_object_set_stroke_x);
     line_options.line_length = scm_to_int (length_s);
+
     /* This case intentionally falls through */
   case TYPE_DOTTED:
     if (space_s == SCM_UNDEFINED) {
