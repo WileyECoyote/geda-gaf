@@ -418,10 +418,10 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 
   /* first create text item */
   new_obj = geda_text_object_new(color, world_x, world_y,
-                       align, angle,            /* zero is angle */
-                       DEFAULT_TEXT_SIZE,       /* default text size */
-                       visibility,              /* we did not check */
-                       show_name_value, text_string);
+                                 align, angle,          /* zero is angle */
+                                 DEFAULT_TEXT_SIZE,     /* default text size */
+                                 visibility,            /* we did not check */
+                                 show_name_value, text_string);
 
   /* Attach the new attribute to the object if parent is not NULL */
   /* remember that parent contains the object to get the attribute */
