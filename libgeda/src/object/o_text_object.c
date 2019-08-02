@@ -675,11 +675,12 @@ void geda_text_object_print_text_string(FILE *fp, char *string, int unicode_coun
     if (c >= 128) {
       current_char = '?';
       if (unicode_count)  {
-        for (j = 0; j < unicode_count; j++)
+        for (j = 0; j < unicode_count; j++) {
           if (c == unicode_table[j]) {
             current_char = j + 128;
             break;
           }
+        }
       }
     }
 
