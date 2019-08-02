@@ -39,13 +39,14 @@ SCM_SYMBOL (win32_native_sym, "win32-native");
  * \par Function Description
  * Returns a list of symbols describing the operating system.
  * The symbols may include:
- *
- * - win32 -- Windows
- * - win32-native -- Windows, not via Cygwin
- * - cygwin -- Cygwin
- * - carbon -- Mac OS X Carbon
- * - linux -- Linux
- *
+ * \par
+ *  <DL>
+ *    <DT>win32 -- Windows</DT>
+ *    <DT>win32-native -- Windows, not via Cygwin</DT>
+ *    <DT>cygwin -- Cygwin</DT>
+ *    <DT>carbon -- Mac OS X Carbon</DT>
+ *    <DT>linux -- Linux</DT>
+ *  </DL>
  * \return a list of symbols.
  */
 EDA_SCM_DEFINE (os_platform, "%platform", 0, 0, 0,

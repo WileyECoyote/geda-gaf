@@ -1,3 +1,7 @@
+2019-08-02 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/scheme/scheme_os.c: Add HTML documentation formating codes.
+
 2019-08-01 Wiley E. Hill <wileyhill@gmail.com
 
     * src/struct/s_page.c: Remove inline declaration from function
