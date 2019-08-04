@@ -46,11 +46,10 @@ msgstr "Podesite ili podesite podrazumevani simbol za otpornike\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Podesite ili podesite podrazumevani simbol naslovnog bloka\n"
 
-# Get or Set the default titleblock symbol
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Podesite ili podesite podrazumevani simbol naslovnog bloka\n"
+msgstr "Dohvati ili postavi zadani simbol transformatora\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
