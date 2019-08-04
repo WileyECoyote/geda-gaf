@@ -14,6 +14,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/en_GB: Update Great Britain.
+
 2019-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/lpfilter.sch: Regenerate reference file to update ground device

@@ -42,9 +42,8 @@ msgid "Get or Set the default titleblock symbol\n"
 msgstr "Get or Set the default titleblock symbol\n"
 
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Get or Set the default titleblock symbol\n"
+msgstr "Get or Set the default transformer symbol\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
