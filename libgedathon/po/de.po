@@ -45,13 +45,12 @@ msgstr "Holen Sie sich oder setzen Sie das Standardsymbol für Widerstände\n"
 # Get or Set the default titleblock symbol
 #: libgedathon/include/functions.h:60
 msgid "Get or Set the default titleblock symbol\n"
-msgstr "Holen Sie sich oder setzen Sie das Standard-Schriftfeldsymbol\n"
+msgstr "Rufen Sie das Standard-Schriftfeldsymbol ab oder legen Sie es fest\n"
 
-# Get or Set the default titleblock symbol
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Holen Sie sich oder setzen Sie das Standard-Schriftfeldsymbol\n"
+msgstr "Abrufen oder Festlegen des Standardtransformatorsymbols\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
