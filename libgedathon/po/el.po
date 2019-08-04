@@ -54,12 +54,11 @@ msgstr "Λήψη ή Ορισμός προεπιλεγμένου συμβόλου
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Λήψη ή ορισμός του προεπιλεγμένου συμβόλου μπλοκ τίτλου\n"
 
-# Get or Set the default titleblock symbol
-# Lípsi í orismós tou proepilegménou symvólou blok títlou
+# Get or Set the default transformer symbol
+# Lípsi í orismós tou proepilegménou symvólou metaschimatistí
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Λήψη ή ορισμός του προεπιλεγμένου συμβόλου μπλοκ τίτλου\n"
+msgstr "Λήψη ή ορισμός του προεπιλεγμένου συμβόλου μετασχηματιστή\n"
 
 # Close all file and deinitialize the library
 # Kleíste óla ta archeía kai apenergopoiíste tin vivliothíki
