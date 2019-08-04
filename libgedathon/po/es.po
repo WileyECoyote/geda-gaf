@@ -48,11 +48,10 @@ msgstr "Consigue o establece el símbolo por defecto para resistencias\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obtener o establecer el símbolo de bloqueo de título predeterminado\n"
 
-# Get or Set the default titleblock symbol
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Obtener o establecer el símbolo de bloqueo de título predeterminado\n"
+msgstr "Obtener o establecer el símbolo del transformador predeterminado\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
