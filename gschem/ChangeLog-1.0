@@ -4,6 +4,10 @@
 
     * include/i_vars.h: Remove unused default_background_color.
 
+    * src/iface/i_vars.c: Removed some unused default color variables:
+
+        * default_attribute_color
+
     * src/x/x_grid.c: Revise x_grid_repaint_background to use BACKGROUND_COLOR
       index instead of referencing w_current->background_color. See commit
       to master branch a003d3f1207c2cf.
