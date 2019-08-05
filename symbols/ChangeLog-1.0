@@ -1,3 +1,10 @@
+2019-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nor*.sym: Update pinlabel and pintype attribute
+      values:
+
+            * simulation/verilog/nor2-1.sym
+
 2019-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/led_drivers/SCT2180-1.sym: Add symbol; 8 channel constant
