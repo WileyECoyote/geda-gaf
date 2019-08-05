@@ -104,7 +104,7 @@
 ;; Reports unused slots                    dont-check-unused-slots               whatever you want
 ;;     Don't report anything               action-unused-slots                   #\c
 ;;     Report them as a warning            action-unused-slots                   #\w
-;;     Report them as an error             action-unused-slots                   #\w
+;;     Report them as an error             action-unused-slots                   #\e
 ;;
 ;; Note 1: DRC checks are case sensitive by default. If you want them to be case
 ;; insensitive, then you only have to define the variable 'case-insensitive' to
