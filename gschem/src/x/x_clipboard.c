@@ -161,27 +161,27 @@ void x_clipboard_finish (GschemToplevel *w_current)
 static void
 query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, void *data)
 {
-    struct query_usable *callback_info = data;
+  struct query_usable *callback_info = data;
 
-    int   i;
-    int   is_usable = FALSE;
+  int   i;
+  int   is_usable = FALSE;
 
-    for (i = 0; i < ntargets; i++) {
+  for (i = 0; i < ntargets; i++) {
 
-      char *name = gdk_atom_name (targets[i]);
+    char *name = gdk_atom_name (targets[i]);
 
-      if (strcmp (name, MIME_TYPE_SCHEMATIC) == 0) {
-        g_free(name);
-        is_usable = TRUE;
-        break;
-      }
-
+    if (strcmp (name, MIME_TYPE_SCHEMATIC) == 0) {
       g_free(name);
+      is_usable = TRUE;
+      break;
     }
 
-    callback_info->callback (is_usable, callback_info->userdata);
-    GEDA_FREE (callback_info);
-    set_got_answer(TRUE);           /* Set flag */
+    g_free(name);
+  }
+
+  callback_info->callback (is_usable, callback_info->userdata);
+  GEDA_FREE (callback_info);
+  set_got_answer(TRUE);           /* Set flag */
 }
 
 /*!
