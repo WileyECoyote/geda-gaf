@@ -41,7 +41,6 @@
  *  that they maybe written to when RC files are processed.
  */
 /* Color Related */
-int     default_detachattr_color          = DETACHED_ATTRIBUTE_COLOR;
 int     default_junction_color            = RC_NIL;
 int     default_net_endpoint_color        = RC_NIL;
 int     default_override_net_color        = RC_NIL;

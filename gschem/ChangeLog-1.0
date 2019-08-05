@@ -7,6 +7,7 @@
     * src/iface/i_vars.c: Removed some unused default color variables:
 
         * default_attribute_color
+        * default_detachattr_color
 
     * src/x/x_grid.c: Revise x_grid_repaint_background to use BACKGROUND_COLOR
       index instead of referencing w_current->background_color. See commit
