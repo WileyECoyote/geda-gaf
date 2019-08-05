@@ -91,11 +91,11 @@ static void clip_get (GtkClipboard     *cb,
   GdkAtom         type;
   char           *buf;
 
-  w_current = (GschemToplevel*) user_data_or_owner;
-
   type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
 
   if (info != CLIP_TYPE_SCHEMATIC) return;
+
+  w_current = (GschemToplevel*)user_data_or_owner;
 
   /* Convert objects in the clipboard buffer to gEDA schematic format */
   buf = geda_object_save_buffer (w_current->clipboard_buffer);
