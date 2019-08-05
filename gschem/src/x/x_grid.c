@@ -565,7 +565,7 @@ x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
 {
   GdkColor *color;
 
-  color = geda_color_x11_color_from_index (w_current->background_color);
+  color = geda_color_x11_color_from_index (BACKGROUND_COLOR);
 
   cairo_set_source_rgb (w_current->cr,
                         color->red   / 65535.0,

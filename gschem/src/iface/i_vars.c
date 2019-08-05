@@ -42,7 +42,6 @@
  */
 /* Color Related */
 int     default_attribute_color           = ATTRIBUTE_COLOR;
-int     default_background_color          = BACKGROUND_COLOR;
 int     default_detachattr_color          = DETACHED_ATTRIBUTE_COLOR;
 int     default_junction_color            = RC_NIL;
 int     default_net_endpoint_color        = RC_NIL;
@@ -618,7 +617,6 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->render_adaptor,  default_render_adaptor);
 
 /* Color Related */
-  w_current->background_color          = default_background_color;
   w_current->override_net_color        = default_override_net_color;
   w_current->override_bus_color        = default_override_bus_color;
   w_current->override_pin_color        = default_override_pin_color;

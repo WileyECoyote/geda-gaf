@@ -145,8 +145,6 @@ struct _GschemToplevel {
   int screen_width;                      /* Actual size of window (?) */
   int screen_height;
 
-  int background_color;
-
   double   grid_size_factor;
   edaColor grid_minor_color;
   edaColor grid_major_color;

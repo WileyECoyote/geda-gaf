@@ -1,7 +1,6 @@
 
 /* Color Related */
 extern int cmap_flag;
-extern int default_background_color;
 extern int default_override_bus_color;
 extern int default_override_net_color;
 extern int default_override_pin_color;

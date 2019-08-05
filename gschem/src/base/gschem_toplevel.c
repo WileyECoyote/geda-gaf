@@ -220,7 +220,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   /* Imaging Related */
   w_current->image_width               = 0;
   w_current->image_height              = 0;
-  w_current->background_color          = 0;
 
   /*    Log Related    */
   logging                              = 0;
