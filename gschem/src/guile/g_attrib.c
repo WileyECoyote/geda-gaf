@@ -146,10 +146,10 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 6, 0, 0,
 }
 
 /*!
- * \brief Create the (gschem core object) Scheme module.
+ * \brief Create the (gschem core attrib) Scheme module.
  * \par Function Description
- * Defines procedures in the (gschem core object) module. The module can
- * be accessed using (use-modules (gschem core object)).
+ * Defines procedures in the (gschem core attrib) module. The module can
+ * be accessed using (use-modules (gschem core attrib)).
  */
 static void
 init_module_gschem_core_attrib ()
