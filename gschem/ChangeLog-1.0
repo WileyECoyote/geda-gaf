@@ -1,3 +1,7 @@
+2019-08-06 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_grid.c: Remove DOTS_POINTS_ARRAY_SIZE macro.
+
 2019-08-05 Wiley E. Hill <wileyhill@gmail.com
 
     * include/gschem_toplevel.h: Remove unneeded member background_color.

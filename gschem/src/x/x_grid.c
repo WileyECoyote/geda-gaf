@@ -43,7 +43,6 @@
  *    \ingroup main-window
 */
 
-#define DOTS_POINTS_ARRAY_SIZE       8192
 #define DOTS_VARIABLE_MODE_SPACING   30
 #define COARSE_GRID_MULTIPLIER        5
 #define TILES_FONT_SIZE              21
