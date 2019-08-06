@@ -2,6 +2,8 @@
 
     * etc/system-gschemrc.scm: Remove the stroke zoom in and out patterns;
       user are expected to have a scroll-wheel to perform these actions.
+      Remove the "123789258" pattern for Insert component and change to
+      "852" or "258".
 
     * src/x/x_grid.c: Remove DOTS_POINTS_ARRAY_SIZE macro, and reformat
       documentation.

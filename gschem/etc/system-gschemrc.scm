@@ -1463,6 +1463,9 @@
 ; Letter L for line
   '(("14789" . add-line)
 
+; Letter i for Insert component (without dot)
+("852" . add-component)
+("258" . add-component)
 
 ; Letter C for copy
 ("3214789" . edit-copy)
@@ -1494,9 +1497,6 @@
 ("456321478" . edit-attributes)
 ("456214789" . edit-attributes)
 ("45621478" . edit-attributes)
-
-; Letter I for Insert component
-("123789258" . add-component)
 
 ; Letter N for net
 ("415963" . add-net)
