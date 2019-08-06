@@ -1,5 +1,8 @@
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
+    * etc/system-gschemrc.scm: Remove the stroke zoom in and out patterns;
+      user are expected to have a scroll-wheel to perform these actions.
+
     * src/x/x_grid.c: Remove DOTS_POINTS_ARRAY_SIZE macro, and reformat
       documentation.
 

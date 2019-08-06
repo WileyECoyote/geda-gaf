@@ -1463,10 +1463,6 @@
 ; Letter L for line
   '(("14789" . add-line)
 
-; line up for zoom out
-("852" . view-zoom-out)
-; line down for zoom in
-("258" . view-zoom-in)
 
 ; Letter C for copy
 ("3214789" . edit-copy)
