@@ -1,3 +1,8 @@
+2019-08-06 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,
+      see commit to master branch ef6de223f5231bfa.
+
 2019-08-02 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/scheme_os.c: Add HTML documentation formating codes.
