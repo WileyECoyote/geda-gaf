@@ -71,16 +71,17 @@ query_grid_fixed_spacing (GschemToplevel *w_current, int *threshold)
   return -1;
 }
 
-/*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
- *  \par Function Description
+/*!
+ * \brief Query the spacing in world coordinates at which the dots grid is drawn.
+ * \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
  *  the grid drawing code may drop elements which are too densly packed for a
  *  given zoom level.
  *
- *  \param [in] w_current  The GschemToplevel.
+ * \param [in] w_current  The GschemToplevel.
  *
- *  \returns The grid spacing in world units of the grid as rendered, or -1
- *           if there are no items drawn.
+ * \returns The grid spacing in world units of the grid as rendered, or -1
+ *          if there are no items drawn.
  */
 static int query_dots_grid_spacing (GschemToplevel *w_current)
 {
@@ -113,16 +114,17 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
   return incr;
 }
 
-/*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
- *  \par Function Description
+/*!
+ * \brief Query the spacing in world coordinates at which the mesh grid is drawn.
+ * \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
  *  the grid drawing code may drop elements which are too densly packed for a
  *  given zoom level.
  *
- *  \param [in] w_current  The GschemToplevel.
+ * \param [in] w_current  The GschemToplevel.
  *
- *  \returns The grid spacing in world units of the grid as rendered, or -1
- *           if there are no items drawn.
+ * \returns The grid spacing in world units of the grid as rendered, or -1
+ *          if there are no items drawn.
  */
 static int query_mesh_grid_spacing (GschemToplevel *w_current)
 {
@@ -131,17 +133,18 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
 
 /* ------------------------ Dots Grid ------------------------ */
 
-/*! \brief Draw an area of the screen with a dotted grid pattern
- *  \par Function Description
+/*!
+ * \brief Draw an area of the screen with a dotted grid pattern
+ * \par Function Description
  *  Draws the dotted grid pattern over a given region of the screen.
  *
- *  \param [in] w_current   The GschemToplevel.
- *  \param [in] x_start     The left screen coordinate for the drawing.
- *  \param [in] y_start     The top screen coordinate for the drawing.
- *  \param [in] x_end       The right screen coordinate to draw.
- *  \param [in] y_end       The bottom screen coordinate to draw.
- *  \param [in] incr        The step of the minor grid.
- *  \param [in] coarse_mult The step of the major grid.
+ * \param [in] w_current   The GschemToplevel.
+ * \param [in] x_start     The left screen coordinate for the drawing.
+ * \param [in] y_start     The top screen coordinate for the drawing.
+ * \param [in] x_end       The right screen coordinate to draw.
+ * \param [in] y_end       The bottom screen coordinate to draw.
+ * \param [in] incr        The step of the minor grid.
+ * \param [in] coarse_mult The step of the major grid.
  */
 static inline void
 draw_dots (GschemToplevel *w_current,
@@ -199,12 +202,13 @@ draw_dots (GschemToplevel *w_current,
   }
 }
 
-/*! \brief Draw an area of the screen with a dotted grid pattern
- *  \par Function Description
+/*!
+ * \brief Draw an area of the screen with a dotted grid pattern
+ * \par Function Description
  *  Draws the dotted grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel
- *  \param [in] rectangle  The screen rectangle region to drawing
+ * \param [in] w_current  The GschemToplevel
+ * \param [in] rectangle  The screen rectangle region to drawing
  */
 static void
 x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
@@ -331,12 +335,13 @@ draw_mesh (GschemToplevel *w_current, int x_start, int y_start,
   cairo_stroke (w_current->cr);
 }
 
-/*! \brief Draw an area of the screen with a mesh grid pattern
- *  \par Function Description
+/*!
+ * \brief Draw an area of the screen with a mesh grid pattern
+ * \par Function Description
  *  Draws the mesh grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel
- *  \param [in] rectangle  The screen rectangle region to drawing
+ * \param [in] w_current  The GschemToplevel
+ * \param [in] rectangle  The screen rectangle region to drawing
  */
 static void
 x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
@@ -386,12 +391,13 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   }
 }
 
-/*! \brief Draw an area of the screen with the current grid pattern.
- *  \par Function Description
+/*!
+ * \brief Draw an area of the screen with the current grid pattern.
+ * \par Function Description
  *  Draws the desired grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel
- *  \param [in] rectangle  The screen rectangle region to drawing
+ * \param [in] w_current  The GschemToplevel
+ * \param [in] rectangle  The screen rectangle region to drawing
  */
 void
 x_grid_draw_grid_region (GschemToplevel *w_current, GdkRectangle *rectangle)
@@ -457,14 +463,15 @@ static void x_grid_print_parameters (GschemToplevel *w_current, char *when)
 }
 #endif
 
-/*! \brief Configure Grid Variables for the Current Grid Mode
- *  \par Function Description
+/*!
+ * \brief Configure Grid Variables for the Current Grid Mode
+ * \par Function Description
  *  This function sets up toplevel variables used by the grid system
  *  for the grid mode and must be called if the grid color settings
  *  are changed. Numerical adjustments are made to data here so that
  *  the computations are performed outside of the expose event loop.
  *
- *  \param [in] w_current  The GschemToplevel
+ * \param [in] w_current  The GschemToplevel
  */
 void x_grid_configure_variables (GschemToplevel *w_current)
 {
@@ -533,15 +540,17 @@ void x_grid_configure_variables (GschemToplevel *w_current)
 #endif
 }
 
-/*! \brief Query the spacing in world coordinates at which the grid is drawn.
- *  \par Function Description
+/*!
+ * \brief Query the spacing in world coordinates at which the grid is drawn.
+ * \par Function Description
  *  Returns the world spacing of the rendered grid, taking into account where
  *  the grid drawing code may drop elements which are too densly packed for a
  *  given zoom level.
  *
- *  \param [in] w_current  The GschemToplevel.
- *  \returns The grid spacing in world units of the grid as rendered, or -1
- *           if there are no items drawn.
+ * \param [in] w_current  The GschemToplevel.
+ *
+ * \returns The grid spacing in world units of the grid as rendered, or -1
+ *          if there are no items drawn.
  */
 int x_grid_query_drawn_spacing (GschemToplevel *w_current)
 {
@@ -553,8 +562,9 @@ int x_grid_query_drawn_spacing (GschemToplevel *w_current)
   }
 }
 
-/*! \brief Repaint Background Region
- *  \par Function Description
+/*!
+ * \brief Repaint Background Region
+ * \par Function Description
  *  This function is called by x_event_expose to redraw the grid
  *  within a rectangular region given by specific parameters and
  *  is also used by the preview widget.
@@ -574,11 +584,12 @@ x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
   cairo_paint (w_current->cr);
 }
 
-/*! \brief Draw tile grid pattern
- *  \par Function Description
+/*!
+ * \brief Draw tile grid pattern
+ * \par Function Description
  *  Draws the tile grid pattern over the screen area.
  *
- *  \param [in] w_current  The GschemToplevel.
+ * \param [in] w_current  The GschemToplevel.
  */
 void x_grid_draw_tiles(GschemToplevel *w_current)
 {

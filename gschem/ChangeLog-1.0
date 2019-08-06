@@ -1,6 +1,7 @@
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
-    * src/x/x_grid.c: Remove DOTS_POINTS_ARRAY_SIZE macro.
+    * src/x/x_grid.c: Remove DOTS_POINTS_ARRAY_SIZE macro, and reformat
+      documentation.
 
 2019-08-05 Wiley E. Hill <wileyhill@gmail.com
 
