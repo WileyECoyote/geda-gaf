@@ -90,8 +90,10 @@ void x_menu_file_open()
       switch (x_dialog_file_not_saved()) {
         case GEDA_RESPONSE_CANCEL:
           return; /* user canceled from the save unsaved file dialog */
+
         case GEDA_RESPONSE_YES:
           x_menu_file_save();
+
         case GEDA_RESPONSE_NO:
           /* No need to do anything here, just fall through */
           default:
