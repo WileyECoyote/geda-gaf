@@ -858,7 +858,7 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
   char string[32]="slot=";  /* char buffer to hold set=refdes=xx*/
   char s_val[5];            /* char buffer for integer conversion to string */
 
-  if ( slot > 0) {
+  if (slot > 0) {
     /* update the slot on the owner object */
     geda_utility_string_int2str( slot, &string[5], 10);
     o_slot_end (autotext->w_current, o_current->attached_to, string);
@@ -884,6 +884,7 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
 static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 {
   GschemToplevel *w_current;
+  GedaObject     *o_current;
 
   const GList *iter;
   GList *o_list          = NULL;
@@ -892,8 +893,6 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   GList *text_item;
   GList *obj_item;
   GList *page_item;
-
-  GedaObject *o_current;
 
   char *searchtext;
   char *scope_text;
