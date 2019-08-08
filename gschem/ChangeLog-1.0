@@ -1,3 +1,9 @@
+2019-08-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_grid.c: Replace cairo_turtle_arc with cairo_rectangle, with the
+      grid-dot-size limited to 3 the rectangles look like dots with a nearly
+      100 percent faster performence.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Remove the stroke zoom in and out patterns;
