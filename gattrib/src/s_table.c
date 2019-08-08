@@ -814,9 +814,8 @@ void s_table_gtksheet_to_all_tables() {
 /*!
  * \brief Extract attributes from gtksheet into TABLE
  * \par Function Description
- *  This function does the actual heavy lifting of looping through the
- *  spreadsheet, extracting the attribs from the cells, and placing them
- *  back into TABLE.
+ *  This function loops through the spreadsheet, extractins attribute
+ *  data from the cells and updatea the attributes in the data TABLE.
  *
  * \param local_gtk_sheet GtkSheet to save
  * \param master_row_list STRING_LIST of rows

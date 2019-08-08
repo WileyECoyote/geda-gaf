@@ -1,5 +1,7 @@
 2019-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_table.c: Revise s_table_gtksheet_to_table function documentation.
+
     * src/x_fileselect.c: Relocate the call to gtk_recent_manager_add_item
       from x_fileselect_open to x_fileselect_load_file.
 
