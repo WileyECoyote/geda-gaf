@@ -67,7 +67,7 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
 
   eda_cairo_line (cr, flags, END_NONE, wwidth, x1, y1, x1 + rdx, y1 + rdy);
 
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);;
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
 }
 
 /*!
