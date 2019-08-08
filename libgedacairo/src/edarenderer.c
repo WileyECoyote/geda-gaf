@@ -1848,14 +1848,14 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
 
 /** @} eda-renderer-bounds */
 
-/*! \brief Type class initializer for EdaRenderer
- *
- *  \par Function Description
+/*!
+ * \brief Type class initializer for EdaRenderer
+ * \par Function Description
  *  Type class initializer for EdaRenderer. Overrides parent virtual class
  *  methods as needed and register GObject signals.
  *
- *  \param [in]  g_class      The EdaRenderer class being initialized
- *  \param [in]  class_data   EdaRenderer structure associated with the class
+ * \param [in]  g_class      The EdaRenderer class being initialized
+ * \param [in]  class_data   EdaRenderer structure associated with the class
  */
 static void
 eda_renderer_class_init(void *g_class, void *class_data)
@@ -2031,14 +2031,14 @@ eda_renderer_class_init(void *g_class, void *class_data)
   g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_THLD, params);
 }
 
-/*! \brief Type instance initializer for EdaRenderer
- *
- *  \par Function Description
+/*!
+ * \brief Type instance initializer for EdaRenderer
+ * \par Function Description
  *  Type instance initializer for EdaRenderer, initializes a new empty
  *  EdaRenderer object.
  *
- *  \param [in] instance The EdaRenderer structure being initialized,
- *  \param [in] g_class  The EdaRenderer class we are initializing.
+ * \param [in] instance The EdaRenderer structure being initialized,
+ * \param [in] g_class  The EdaRenderer class we are initializing.
  */
 static void
 eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
@@ -2079,16 +2079,16 @@ eda_renderer_instance_init(GTypeInstance *instance, void *g_class)
                            (GDestroyNotify) pango_font_metrics_unref);  */
 }
 
-/*! \brief Function to retrieve EdaRenderer's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve EdaRenderer's Type identifier.
+ * \par Function Description
  *  Function to retrieve a #EdaRenderer Type identifier. When
  *  first called, the function registers a #EdaRenderer in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a EdaRenderer and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with EdaRenderer.
+ * \return GedaType identifier associated with EdaRenderer.
  */
 GedaType eda_renderer_get_type (void)
 {
@@ -2124,9 +2124,11 @@ GedaType eda_renderer_get_type (void)
  * MISCELLANEOUS (CREATION, DESTRUCTION, ACCESSORS)
  * ================================================================ */
 
-/*! \brief Get a New EdaRenderer Object
- *  \par Function Description
+/*!
+ * \brief Get a New EdaRenderer Object
+ * \par Function Description
  *  Creates and returns a new EdaRenderer instance
+ *
  */
 EdaRenderer *
 eda_renderer_new (cairo_t *cr, PangoContext *pc)
@@ -2137,8 +2139,9 @@ eda_renderer_new (cairo_t *cr, PangoContext *pc)
                        NULL);
 }
 
-/*! \brief Destroy a EdaRenderer Object
- *  \par Function Description
+/*!
+ * \brief Destroy a EdaRenderer Object
+ * \par Function Description
  *  Decrements the reference of \a renderer
  */
 void eda_renderer_destroy (EdaRenderer *renderer)
@@ -2151,8 +2154,9 @@ void eda_renderer_destroy (EdaRenderer *renderer)
   }
 }
 
-/*! \brief Get the active EdaRenderer Cairo Context
- *  \par Function Description
+/*!
+ * \brief Get the active EdaRenderer Cairo Context
+ * \par Function Description
  *  Function to retrieve the current Cairo Context.
  */
 cairo_t *eda_renderer_get_cairo_context (EdaRenderer *renderer)
@@ -2163,8 +2167,9 @@ cairo_t *eda_renderer_get_cairo_context (EdaRenderer *renderer)
   return cr;
 }
 
-/*! \brief Set the active EdaRenderer Cairo Context
- *  \par Function Description
+/*!
+ * \brief Set the active EdaRenderer Cairo Context
+ * \par Function Description
  *  Function to retrieve the current Cairo Context.
  */
 void
@@ -2175,8 +2180,9 @@ eda_renderer_set_cairo_context (EdaRenderer *renderer, cairo_t *cr)
   }
 }
 
-/*! \brief Get the active EdaRenderer Cairo Flags
- *  \par Function Description
+/*!
+ * \brief Get the active EdaRenderer Cairo Flags
+ * \par Function Description
  *  Function to retrieve the current Cairo Flags.
  */
 int
@@ -2186,8 +2192,9 @@ eda_renderer_get_cairo_flags (EdaRenderer *renderer)
   return EDA_RENDERER_CAIRO_FLAGS (renderer);
 }
 
-/*! \brief Get the current EdaRenderer Color Map Array
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Color Map Array
+ * \par Function Description
  *  Function to retrieve the current color-map Array.
  */
 GArray*
@@ -2199,8 +2206,9 @@ eda_renderer_get_color_map (EdaRenderer *renderer)
   return map;
 }
 
-/*! \brief Set the EdaRenderer Color Map Array
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Color Map Array
+ * \par Function Description
  *  Sets the color-map Array.
  */
 void
@@ -2210,8 +2218,9 @@ eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
   g_object_set (renderer, "color-map", map, NULL);
 }
 
-/*! \brief Get the EdaRenderer draw grips Property
- *  \par Function Description
+/*!
+ * \brief Get the EdaRenderer draw grips Property
+ * \par Function Description
  *  Function to retrieve the current draw-grips property. Grips
  *  will not be drawn if the draw-grips property is not set.
  */
@@ -2221,8 +2230,9 @@ int eda_renderer_get_draw_grips (EdaRenderer *renderer)
   return renderer->draw_grips;
 }
 
-/*! \brief Set the EdaRenderer draw grips Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer draw grips Property
+ * \par Function Description
  *  Function to set the draw-grips property. When the draw-grips
  *  property is set, grips will be drawn.
  */
@@ -2232,8 +2242,9 @@ void eda_renderer_set_draw_grips (EdaRenderer *renderer, bool draw)
   renderer->draw_grips = draw ? 1 : 0;
 }
 
-/*! \brief Get the EdaRenderer draw complex grips Property
- *  \par Function Description
+/*!
+ * \brief Get the EdaRenderer draw complex grips Property
+ * \par Function Description
  *  Function to retrieve the current draw-complex-grips property.
  *  Grips will not be drawn if the draw-complex-grips property is
  *  not set.
@@ -2244,8 +2255,9 @@ int eda_renderer_get_draw_complex_grips (EdaRenderer *renderer)
   return renderer->draw_complex_grips ;
 }
 
-/*! \brief Set the EdaRenderer draw complex grips Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer draw complex grips Property
+ * \par Function Description
  *  Function to set the draw-complex-grips property. When the
  *  draw-complex-grips property is set, grips will be drawn on
  *  complex object if draw-grips is enabled.
@@ -2256,8 +2268,9 @@ void eda_renderer_set_draw_complex_grips (EdaRenderer *renderer, bool draw)
   renderer->draw_complex_grips  = draw ? 1 : 0;
 }
 
-/*! \brief Get the current EdaRenderer Font Name Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Font Name Property
+ * \par Function Description
  *  Function to retrieve the current font-name property.
  */
 const char*
@@ -2267,8 +2280,9 @@ eda_renderer_get_font_name(EdaRenderer *renderer)
   return (renderer->priv->font_name);
 }
 
-/*! \brief Set the EdaRenderer Font Name Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Font Name Property
+ * \par Function Description
  *  Sets the font-name property.
  */
 void
@@ -2282,8 +2296,9 @@ eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
   renderer->priv->font_name = geda_utility_string_strdup (font_name);
 }
 
-/*! \brief Set EdaRenderer Flags
- *  \par Function Description
+/*!
+ * \brief Set EdaRenderer Flags
+ * \par Function Description
  *  Function to set the EdaRenderer flags.
  */
 bool
@@ -2296,8 +2311,9 @@ eda_renderer_set_flags (EdaRenderer *renderer, int flags)
   return TRUE;
 }
 
-/*! \brief Is EdaRenderer Flag Set
- *  \par Function Description
+/*!
+ * \brief Is EdaRenderer Flag Set
+ * \par Function Description
  *  Function to check whether a flag bit is set.
  */
 bool
@@ -2310,8 +2326,9 @@ eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
   return TRUE;
 }
 
-/*! \brief Get the current EdaRenderer Flags
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Flags
+ * \par Function Description
  *  Function to retrieve the current EdaRenderer Flags
  */
 int
@@ -2321,8 +2338,9 @@ eda_renderer_get_flags (EdaRenderer *renderer)
   return renderer->priv->flags;
 }
 
-/*! \brief Get the EdaRenderer Hinting Enabled Property
- *  \par Function Description
+/*!
+ * \brief Get the EdaRenderer Hinting Enabled Property
+ * \par Function Description
  *  Function to retrieve the current hinting property.
  */
 bool
@@ -2332,8 +2350,9 @@ eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
   return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);
 }
 
-/*! \brief Get the current EdaRenderer Override Color Index Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Override Color Index Property
+ * \par Function Description
  *  Function to retrieve the current override-color property.
  */
 int
@@ -2342,8 +2361,9 @@ eda_renderer_get_override_color_index (EdaRenderer *renderer)
   return renderer->priv->override_color;
 }
 
-/*! \brief Set the EdaRenderer Override Color Index Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Override Color Index Property
+ * \par Function Description
  *  Sets the override-color property.
  */
 void
@@ -2352,8 +2372,9 @@ eda_renderer_set_override_color_index (EdaRenderer *renderer, int color_index)
   renderer->priv->override_color = color_index;
 }
 
-/*! \brief Get the current EdaRenderer Grip Circle Quadrant Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Grip Circle Quadrant Property
+ * \par Function Description
  *  Function to retrieve the current circle-grip-quadrant property.
  */
 int
@@ -2363,8 +2384,9 @@ eda_renderer_get_circle_grip_quad (EdaRenderer *renderer)
   return EDAR_CIRCLE_GRIP_QUAD;
 }
 
-/*! \brief Set the EdaRenderer Grip Circle Quadrant Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Grip Circle Quadrant Property
+ * \par Function Description
  *  Sets the circle-grip-quadrant property.
  */
 void
@@ -2376,8 +2398,9 @@ eda_renderer_set_circle_grip_quad (EdaRenderer *renderer, int quad)
   }
 }
 
-/*! \brief Get the current EdaRenderer Grip Size Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Grip Size Property
+ * \par Function Description
  *  Function to retrieve the current grip-size property.
  */
 double
@@ -2387,8 +2410,9 @@ eda_renderer_get_grips_size (EdaRenderer *renderer)
   return EDAR_GRIP_SIZE;
 }
 
-/*! \brief Set the EdaRenderer Grip Size Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Grip Size Property
+ * \par Function Description
  *  Sets the grip-size property.
  */
 void
@@ -2398,8 +2422,9 @@ eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
   g_object_set (renderer, "grip-size", new_size, NULL);
 }
 
-/*! \brief Get the current EdaRenderer Grip Stroke Color Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Grip Stroke Color Property
+ * \par Function Description
  *  Function to retrieve the current grips-stroke-color property.
  */
 const GdkColor*
@@ -2409,8 +2434,9 @@ eda_renderer_get_grips_stroke_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_GRIP_STROKE_COLOR;
 }
 
-/*! \brief Set the EdaRenderer Grip Stroke Color Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Grip Stroke Color Property
+ * \par Function Description
  *  Sets the grips-stroke-color property.
  */
 void
@@ -2424,8 +2450,9 @@ eda_renderer_set_grips_stroke_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_GRIP_STROKE_COLOR.blue  = color->blue;
 }
 
-/*! \brief Get the current EdaRenderer Grips Fill Color Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Grips Fill Color Property
+ * \par Function Description
  *  Function to retrieve the current grips-fill-color property.
  */
 const GdkColor*
@@ -2435,8 +2462,9 @@ eda_renderer_get_grips_fill_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_GRIP_FILL_COLOR;
 }
 
-/*! \brief Set the EdaRenderer Grips Fill Color Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Grips Fill Color Property
+ * \par Function Description
  *  Sets the grips-fill-color property.
  */
 void
@@ -2450,8 +2478,9 @@ eda_renderer_set_grips_fill_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_GRIP_FILL_COLOR.blue  = color->blue;
 }
 
-/*! \brief Get the current EdaRenderer Junction Color Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Junction Color Property
+ * \par Function Description
  *  Function to retrieve the current junction-color property.
  */
 const GdkColor*
@@ -2461,8 +2490,9 @@ eda_renderer_get_junction_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_JUNCTION_COLOR;
 }
 
-/*! \brief Set the EdaRenderer Junction Color Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Junction Color Property
+ * \par Function Description
  *  Sets the junction-color property.
  */
 void
@@ -2476,8 +2506,9 @@ eda_renderer_set_junction_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_JUNCTION_COLOR.blue  = color->blue;
 }
 
-/*! \brief Get the current EdaRenderer Junction Size Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Junction Size Property
+ * \par Function Description
  *  Function to retrieve the current junction-size property.
  */
 int
@@ -2487,8 +2518,9 @@ eda_renderer_get_junction_size (EdaRenderer *renderer)
   return EDAR_JUNCTION_SIZE;
 }
 
-/*! \brief Set the EdaRenderer Junction Size Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Junction Size Property
+ * \par Function Description
  *  Sets the junction-size property.
  */
 void
@@ -2498,8 +2530,9 @@ eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
   g_object_set (renderer, "junction-size", new_size, NULL);
 }
 
-/*! \brief Get the current EdaRenderer Marker Threshold Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Marker Threshold Property
+ * \par Function Description
  *  Function to retrieve the current text-marker-threshold property.
  */
 double
@@ -2509,8 +2542,9 @@ eda_renderer_get_marker_threshold (EdaRenderer *renderer)
   return EDAR_MARKER_THRESHOLD;
 }
 
-/*! \brief Set the EdaRenderer Marker Threshold Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Marker Threshold Property
+ * \par Function Description
  *  Sets the text-marker-threshold property.
  */
 void
@@ -2520,8 +2554,9 @@ eda_renderer_set_marker_threshold (EdaRenderer *renderer, double threshold)
   g_object_set (renderer, "text-marker-threshold", threshold, NULL);
 }
 
-/*! \brief Get the current EdaRenderer Net Endpoint Color Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Net Endpoint Color Property
+ * \par Function Description
  *  Function to retrieve the current net-endpoint-color property.
  */
 const GdkColor*
@@ -2531,8 +2566,9 @@ eda_renderer_get_net_endpoint_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_NET_ENDPOINT_COLOR;
 }
 
-/*! \brief Set the EdaRenderer Net Endpoint Color Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Net Endpoint Color Property
+ * \par Function Description
  *  Sets the net-endpoint-color property.
  */
 void
@@ -2546,8 +2582,9 @@ eda_renderer_set_net_endpoint_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_NET_ENDPOINT_COLOR.blue  = color->blue;
 }
 
-/*! \brief Get the current EdaRenderer Text Marker Color Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Text Marker Color Property
+ * \par Function Description
  *  Function to retrieve the current text marker color property.
  */
 const GdkColor*
@@ -2557,8 +2594,9 @@ eda_renderer_get_text_marker_color (EdaRenderer *renderer)
   return (const GdkColor*) &EDAR_TEXT_MARKER_COLOR;
 }
 
-/*! \brief Set the EdaRenderer Text Marker Color Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Text Marker Color Property
+ * \par Function Description
  *  Sets the text marker color property.
  */
 void
@@ -2572,8 +2610,9 @@ eda_renderer_set_text_marker_color (EdaRenderer *renderer, GdkColor* color)
   EDAR_TEXT_MARKER_COLOR.blue  = color->blue;
 }
 
-/*! \brief Get the current EdaRenderer Text Marker Size Property
- *  \par Function Description
+/*!
+ * \brief Get the current EdaRenderer Text Marker Size Property
+ * \par Function Description
  *  Function to retrieve the current text-marker-size property.
  */
 int
@@ -2583,8 +2622,9 @@ eda_renderer_get_text_marker_size (EdaRenderer *renderer)
   return EDAR_TEXT_MARKER_SIZE;
 }
 
-/*! \brief Set the EdaRenderer Text Marker Size Property
- *  \par Function Description
+/*!
+ * \brief Set the EdaRenderer Text Marker Size Property
+ * \par Function Description
  *  Sets the text-marker-size property.
  */
 void
