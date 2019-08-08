@@ -70,22 +70,22 @@ x_hscrollbar_idle_update(GschemToplevel *w_current)
 
   if (w_current->h_scrollbar) {
 
-  hadjustment = gtk_range_get_adjustment (GTK_RANGE (w_current->h_scrollbar));
+    hadjustment = gtk_range_get_adjustment (GTK_RANGE (w_current->h_scrollbar));
 
-  hadjustment->value = toplevel->page_current->left;
+    hadjustment->value = toplevel->page_current->left;
 
-  hadjustment->page_size = fabs(toplevel->page_current->right -
-                                toplevel->page_current->left);
+    hadjustment->page_size = fabs(toplevel->page_current->right -
+    toplevel->page_current->left);
 
-  hadjustment->page_increment = hadjustment->page_size - 100.0;
+    hadjustment->page_increment = hadjustment->page_size - 100.0;
 
 #if DEBUG
-  printf("H %f %f\n", hadjustment->lower, hadjustment->upper);
-  printf("Hp %f\n", hadjustment->page_size);
+    printf("H %f %f\n", hadjustment->lower, hadjustment->upper);
+    printf("Hp %f\n", hadjustment->page_size);
 #endif
 
-  g_signal_emit_by_name(G_OBJECT(hadjustment), "changed");
-  g_signal_emit_by_name(G_OBJECT(hadjustment), "value_changed");
+    g_signal_emit_by_name(G_OBJECT(hadjustment), "changed");
+    g_signal_emit_by_name(G_OBJECT(hadjustment), "value_changed");
   }
 
 #if DEBUG
