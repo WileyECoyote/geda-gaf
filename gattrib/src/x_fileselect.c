@@ -89,7 +89,9 @@ bool x_fileselect (char *filename)
   else {
     result = FALSE;
   }
+
   gtk_widget_destroy (dialog);
+
   return result;
 }
 
@@ -219,5 +221,6 @@ GSList *x_fileselect_open (void)
   }
 
   gtk_widget_destroy (dialog);
+
   return filenames;
 }
