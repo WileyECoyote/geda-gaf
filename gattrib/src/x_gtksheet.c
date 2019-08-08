@@ -961,7 +961,7 @@ void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
 
   /* given the RGB, gtk->resolve the 32 bit pixel data */
   if (!gdk_colormap_alloc_color (color_map, &color_t, FALSE, FALSE)) {
-    g_error ("could not allocate color");
+    g_error (_("could not allocate color"));
     return;
   }
 
@@ -1001,7 +1001,7 @@ void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
 
   /* given the RGB, gtk->resolve the 32 bit pixel data */
   if (!gdk_colormap_alloc_color (color_map, &color_t, FALSE, FALSE)) {
-    g_error ("could not allocate color");
+    g_error (_("could not allocate color"));
     return;
   }
 

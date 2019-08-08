@@ -3,6 +3,8 @@
     * src/x_fileselect.c: Relocate the call to gtk_recent_manager_add_item
       from x_fileselect_open to x_fileselect_load_file.
 
+    * src/x_gtksheet.c Wrap translatables in gettext macro.
+
 2019-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
