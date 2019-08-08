@@ -1,3 +1,11 @@
+2019-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * .travis.yml: Travis CI released an update to their Xenial build
+      environment, which introduced a new way to start up XVFB for front
+      end builds. Unfortunately, they broke all existing builds based on
+      their documentation. Revised by removing the before_script section
+      that started xvfb and switched to using the new syntax.
+
 2019-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * README: Add libgedathonto the major components section, fix a couple
