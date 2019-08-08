@@ -88,10 +88,19 @@ do_arc (cairo_t *cr, double x, double y, double radius,
   }
 }
 
-/*! \brief Render an Arc at center point using Cairo Graphic
- *  \par Function Description
+/*!
+ * \brief Render an Arc at center point using Cairo Graphic
+ * \par Function Description
  *  Scale coordinates of centerpoint to screen coordinates, calculate
  *  endpoint and render using Cairo graphics library.
+ *
+ * \param [in]  cr           EdaRenderer Cairo Context
+ * \param [in]  flags        EdaRenderer Cairo Flags
+ * \param [in]  x            Arc center X
+ * \param [in]  y            Arc center Y
+ * \param [in]  radius       Radius of the arc
+ * \param [in]  start_angle  Starting angle in degrees
+ * \param [in]  arc_sweep    Arc sweep angle in degrees
  */
 void
 eda_cairo_arc (cairo_t *cr, int flags,

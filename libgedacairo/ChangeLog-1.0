@@ -1,3 +1,7 @@
+2019-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Document eda_cairo_arc parameters.
+
 2019-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Add function:
