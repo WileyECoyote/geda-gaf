@@ -194,7 +194,7 @@ draw_dots (GschemToplevel *w_current,
 
       WORLDtoSCREEN (w_current, i,j, &dot_x, &dot_y);
 
-      cairo_new_sub_path(w_current->cr);
+      //cairo_new_sub_path(w_current->cr);
 
       /* Aka cairo_turtle_arc
         cairo_arc (w_current->cr, dot_x, dot_y, dot_size, 0, 2 * M_PI); */

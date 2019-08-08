@@ -4,6 +4,8 @@
 
         * x_dialog_array_edit_disconnect_events
 
+    * src/x/x_grid.c: Suspend the call to cairo_new_sub_path.
+
 2019-08-07 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_grid.c: Replace cairo_turtle_arc with cairo_rectangle, with the
