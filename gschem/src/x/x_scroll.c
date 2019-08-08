@@ -88,11 +88,6 @@ x_hscrollbar_idle_update(GschemToplevel *w_current)
     g_signal_emit_by_name(G_OBJECT(hadjustment), "value_changed");
   }
 
-#if DEBUG
-  else {
-    BUG_MSG("Bad pointer, w_current->h_scrollbar == NULL");
-  }
-#endif
 
   return FALSE;
 }
@@ -161,11 +156,7 @@ x_vscrollbar_idle_update(GschemToplevel *w_current)
     g_signal_emit_by_name(G_OBJECT(vadjustment), "changed");
     g_signal_emit_by_name(G_OBJECT(vadjustment), "value_changed");
   }
-#if DEBUG
-  else {
-    BUG_MSG("Bad pointer, w_current->v_scrollbar = NULL");
-  }
-#endif
+
   return FALSE;
 }
 
