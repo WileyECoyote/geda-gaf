@@ -475,7 +475,7 @@ void x_window_create_main(GschemToplevel *w_current)
   }
 
   /* --------------------------------------------------------- */
-  /*  Try to create popup menu (appears in right mouse button  */
+  /*  Setup right mouse popup context menu */
   x_menu_setup_popup(w_current);
 
   center_hbox = gtk_hbox_new(FALSE, 1);
