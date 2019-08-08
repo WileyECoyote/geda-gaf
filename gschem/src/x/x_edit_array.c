@@ -49,10 +49,12 @@
  *  \ingroup Array-Dialog
  */
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Disconnects Array Dialog Buttom Press and Release
+ * \par Function Description
+ *  This function disconnects the button press and release handlers, which
+ *  were connected too when the user choose to select objects or point to
+ *  the array pitch using buttons on the dialog.
  */
 static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
                                                    array_data     *dialog_data)
