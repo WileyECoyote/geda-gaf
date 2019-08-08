@@ -107,7 +107,6 @@ bool x_fileselect (char *filename)
  *
  * \retval FALSE if the file could not be opened, TRUE otherwise
  */
-/* TODO:move gtk_recent_manager_add_item from x_fileselect_open to here */
 bool x_fileselect_load_file (char *filename) {
 
   const GList *Objects;
@@ -138,6 +137,8 @@ bool x_fileselect_load_file (char *filename) {
   s_sheet_data_add_master_pin_list_items (Objects);
   s_sheet_data_add_master_pin_attrib_list_items (Objects);
 
+  gtk_recent_manager_add_item (recent_manager,
+                               g_filename_to_uri(filename, NULL, NULL));
   return TRUE;
 }
 
@@ -185,7 +186,6 @@ GSList *x_fileselect_open (void)
 {
   GtkWidget *dialog;
   char      *cwd;
-  GSList    *ptrname;
   GSList    *filenames = NULL;
 
   dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_OPEN);
@@ -207,17 +207,7 @@ GSList *x_fileselect_open (void)
   geda_file_chooser_set_filter(dialog, FILTER_SCHEMATIC);
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GEDA_RESPONSE_ACCEPT) {
-
     filenames = geda_file_chooser_get_filenames (dialog);
-
-    for (ptrname = filenames; ptrname != NULL; ptrname = ptrname->next)
-    {
-      char *filename = ptrname->data;
-
-      gtk_recent_manager_add_item (recent_manager,
-                                   g_filename_to_uri(filename,
-                                                     NULL, NULL));
-    }
   }
 
   gtk_widget_destroy (dialog);
