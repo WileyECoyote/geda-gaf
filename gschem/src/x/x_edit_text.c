@@ -328,8 +328,8 @@ static GtkListStore *create_menu_case (GschemToplevel *w_current)
 /*!
  * \brief Apply the settings from the text property dialog
  * \par Function Description
- *  This function retrieve the user settings to the selected text objects
- *  and closes the dialog
+ *  This function retrieve the user settings to the selected text
+ *  objects and closes the dialog
  */
 void x_dialog_edit_text_ok(GschemToplevel *w_current, GedaObject *object)
 {
