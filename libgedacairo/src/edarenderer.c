@@ -479,7 +479,7 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
  * value is always set to 0xff.
  *
  * \param [in] spec  Pointer to string hex representation of color to parse
- * \param [in] color GEDA Color structure to recieve RGB values.
+ * \param [in] color GEDA Color structure to receive RGB values.
  *
  * \returns: TRUE on success, otherwise FALSE.
  */
