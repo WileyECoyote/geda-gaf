@@ -138,7 +138,7 @@ static GList *remove_title_blocks(GList **page_list)
  *  This function undoes what remove_title_blocks did, prepending the
  *  removed objects for title-blocks.
  *
- * \param [in] page_list   List to recieve the title block objects,
+ * \param [in] page_list   List to receive the title block objects,
  * \param [in] titleblocks List returned from remove_title_blocks
  *
  * \returns Composited List.
