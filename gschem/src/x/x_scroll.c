@@ -32,7 +32,7 @@
 #include <geda_debug.h>
 
 /** \defgroup scrollbars-module Scrollbars Module
- *  @{\brief This group contains functions to the scrollbars
+ *  @{\brief This group contains functions for the scrollbars
  *    \ingroup main-window
  */
 
