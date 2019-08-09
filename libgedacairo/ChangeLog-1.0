@@ -1,3 +1,7 @@
+2019-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Add Doxygen templates as todos.
+
 2019-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Document eda_cairo_arc parameters.

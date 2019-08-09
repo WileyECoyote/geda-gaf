@@ -1687,6 +1687,10 @@ eda_renderer_draw_cues_list (EdaRenderer *renderer, GList *objects)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void
 eda_renderer_draw_cues (EdaRenderer *renderer, GedaObject *object)
 {
@@ -1704,6 +1708,10 @@ eda_renderer_draw_cues (EdaRenderer *renderer, GedaObject *object)
  * RENDERED BOUNDS
  * ================================================================ */
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 int
 eda_renderer_get_user_bounds (EdaRenderer      *renderer,
                               const GedaObject *object,
@@ -1717,6 +1725,10 @@ eda_renderer_get_user_bounds (EdaRenderer      *renderer,
                                                          right,    bottom);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 int
 eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
                                       const GedaObject *object,
@@ -1750,6 +1762,10 @@ eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 int
 eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
                                    const GedaObject *object,
