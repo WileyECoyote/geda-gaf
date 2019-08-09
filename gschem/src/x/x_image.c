@@ -692,8 +692,8 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
  * \brief Display the image file selection dialog.
  * \par Function Description
  *  Displays the image file selection dialog, allowing the user to
- *  set several options, like image size and image type.
- *  When the user hits "ok", the image is written to the file.
+ *  set several options, like image size and image type. If the user
+ *  hits "ok", the image is written to the file based on the options.
  *
  * \param[in] w_current    the GschemToplevel structure.
  * \param[in] default_type the default (last) image type created.

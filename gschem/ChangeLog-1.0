@@ -2,6 +2,8 @@
 
     * src/object/o_redraw.c: Move assignment of draw_selected after for loop.
 
+    * src/x/x_image.c: Revise/append x_image_setup documentation.
+
 2019-08-08 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_edit_array.c: Update function documentation for:
