@@ -40,7 +40,7 @@
  * \brief Start process to place objects
  * \par Function Description
  *  This function starts the process of interactively placing objects.
- *  The objects may be objects being copied or objects recieved from
+ *  The objects may be objects being copied or objects received from
  *  the clibboard or from drag-and-drop. Temporary outline maybe used
  *  during the process.
  *
