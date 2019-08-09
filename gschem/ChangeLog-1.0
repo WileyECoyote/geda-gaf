@@ -4,6 +4,8 @@
 
     * src/x/x_image.c: Revise/append x_image_setup documentation.
 
+    * src/x/x_menus.c: Add/update x_menu_recent_files_save documentation.
+
 2019-08-08 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_edit_array.c: Update function documentation for:

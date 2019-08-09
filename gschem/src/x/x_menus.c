@@ -2614,6 +2614,9 @@ void x_menu_recent_files_add(const char *filename)
 
 /*!
  * \brief Save the list of recent files to RECENT_FILES_STORE.
+ * \par Function Description
+ *  This function is called before exiting to save the list of recent
+ *  files to disk.
  *
  * \param [in] user_data unused
  */
