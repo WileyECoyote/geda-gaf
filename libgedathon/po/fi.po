@@ -42,10 +42,10 @@ msgstr "Hanki tai Aseta oletusarvon otsikkosymboli\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Hanki tai Aseta oletus otsikkoblock-symboli\n"
 
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Hanki tai Aseta oletus otsikkoblock-symboli\n"
+msgstr "Hanki tai aseta muuntajan oletussymboli\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
