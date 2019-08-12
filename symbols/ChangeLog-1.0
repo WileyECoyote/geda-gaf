@@ -10,6 +10,11 @@
             * simulation/verilog/nor9-1.sym
             * simulation/verilog/nor9-2.sym
 
+    * simulation/verilog/i*.sym: Add description attribute, reposition
+      attributes, update the sequence of pin attributes:
+
+            * simulation/verilog/iopad-1.sym
+
 2019-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nor*.sym: Update pinlabel and pintype attribute
