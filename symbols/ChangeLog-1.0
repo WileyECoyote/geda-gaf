@@ -1,3 +1,10 @@
+2019-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nor*.sym: Convert comment text to a description
+      attribute and update the sequence of pin attributes:
+
+            * simulation/verilog/nor6-2.sym
+
 2019-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nor*.sym: Update pinlabel and pintype attribute
