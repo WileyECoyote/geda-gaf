@@ -206,11 +206,14 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action) {
+
     if (w_current->rubber_visible) {
       o_place_invalidate_rubber (w_current, FALSE);
     }
+
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
+
     o_place_invalidate_rubber (w_current, TRUE);
     w_current->rubber_visible = TRUE;
   }
