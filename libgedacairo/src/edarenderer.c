@@ -1725,9 +1725,20 @@ eda_renderer_get_user_bounds (EdaRenderer      *renderer,
                                                          right,    bottom);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get user bounds of a GedaObject
+ * \par Function Description
+ *  Calculates and returns the bounds of GedaText objects. Returns
+ *  FALSE for all other object types.
+ *
+ * \param [in]  renderer Pointer to a EdaRenderer object.
+ * \param [in]  object   Pointer to a GedaObject.
+ * \param [out] left     Pointer to integer location for the left bounds
+ * \param [out] top      Pointer to integer location for the top bounds
+ * \param [out] right    Pointer to integer location for the right bounds
+ * \param [out] bottom   Pointer to integer location for the bottom bounds
+ *
+ * \returns TRUE if the bounds was set.
  */
 int
 eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
