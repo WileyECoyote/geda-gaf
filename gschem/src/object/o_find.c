@@ -141,7 +141,7 @@ GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
 /*!
  * \brief Find an Object at a given set of coordinates
  * \par Function Description
- *  Tests for ObjectS hit at a given set of coordinates. Objects that
+ *  Tests for objects hit at a given set of coordinates. Objects that
  *  are not selectable (e.g. it is locked), or are invisible are not
  *  tested. The Find operations resume searching after the last object
  *  which was found, so multiple find operations at the same point will
