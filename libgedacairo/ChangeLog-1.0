@@ -1,3 +1,7 @@
+2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Reformat Doxygen documentation.
+
 2019-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Add Doxygen templates as todos.
