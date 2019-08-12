@@ -5,6 +5,7 @@
     * src/edarenderer.c: Add function documentation:
 
             * eda_renderer_default_get_user_bounds
+            * eda_renderer_get_text_user_bounds
 
 2019-08-09 Wiley E. Hill <wileyhill@gmail.com>
 
