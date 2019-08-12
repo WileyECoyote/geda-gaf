@@ -16,6 +16,8 @@
             * simulation/verilog/iopad-1.sym
             * simulation/verilog/ipad-1.sym
 
+    * simulation/verilog/nand2-1.sym: Add description attribute, reposition
+      attributes, update attribute values:
 
 2019-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
