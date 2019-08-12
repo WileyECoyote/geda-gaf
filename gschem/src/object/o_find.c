@@ -65,7 +65,7 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
 /*!
  * \brief Disposition objects found by o_find_object
  * \par Function Description
- *  Handler dispositing of any found objects in o_find_object. The object
+ *  Handles dispositing of any found objects by o_find_object. The object
  *  is added to or replaces the current selection depending on the mode
  *  flag, if \a mode is add or replace the object is not selected. If
  *  the selection is modified sensitivities are updated.
