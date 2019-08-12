@@ -14,6 +14,8 @@
       attributes, update the sequence of pin attributes:
 
             * simulation/verilog/iopad-1.sym
+            * simulation/verilog/ipad-1.sym
+
 
 2019-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
