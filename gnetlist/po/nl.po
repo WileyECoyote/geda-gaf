@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-08-13 15:19-0500\n"
+"POT-Creation-Date: 2019-08-13 15:43-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -282,21 +282,19 @@ msgstr ""
 msgid "Missing pin number attribute"
 msgstr ""
 
-#: gnetlist/src/s_net.c:480
-#, fuzzy
+#: gnetlist/src/s_net.c:481
 msgid "Found Duplicate net names, renaming"
-msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
+msgstr "Vond een duplicaat net naam, hernoem"
 
-#: gnetlist/src/s_net.c:482
+#: gnetlist/src/s_net.c:484 gnetlist/src/s_net.c:495
 msgid "to"
-msgstr ""
+msgstr "naar"
 
-#: gnetlist/src/s_net.c:490
-#, fuzzy, c-format
-msgid "Add rename record for [%s] to [%s]\n"
-msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
+#: gnetlist/src/s_net.c:493
+msgid "Add rename record for"
+msgstr "Voeg record voor hernoemen toe"
 
-#: gnetlist/src/s_net.c:630
+#: gnetlist/src/s_net.c:634
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Verhoog aantal naamloze netten (s_net.c)\n"
