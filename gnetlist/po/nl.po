@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-16 19:29-0600\n"
+"POT-Creation-Date: 2019-08-13 15:19-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,16 +18,16 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gnetlist/src/g_netlist.c:466
+#: gnetlist/src/g_netlist.c:465
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
 
-#: gnetlist/src/g_netlist.c:842
+#: gnetlist/src/g_netlist.c:840
 msgid "retrieved from a graphical object"
 msgstr ""
 
-#: gnetlist/src/g_netlist.c:843
+#: gnetlist/src/g_netlist.c:841
 msgid "Pin"
 msgstr ""
 
@@ -193,7 +193,8 @@ msgid ""
 "permitted by law.\n"
 msgstr ""
 "Copyright (C) 1998-2017 gEDA developers\n"
-"Dit is gratis software en u bent van harte welkom om het te verspreiden onder\n"
+"Dit is gratis software en u bent van harte welkom om het te verspreiden "
+"onder\n"
 "bepaalde voorwaarden. Zie het bestand Kopiëren voor meer informatie\n"
 "opgenomen in de gEDA-distributie. Er is GEEN GARANTIE; zelfs niet \n"
 "voor VERKOOPBAARHEID of GESCHIKTHEID VOOR EEN BEPAALD DOEL, voor zover\n"
@@ -254,7 +255,7 @@ msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
 # DONE
-#: gnetlist/src/s_misc.c:70
+#: gnetlist/src/s_misc.c:72
 msgid "DONE"
 msgstr "GEDAAN"
 
@@ -281,19 +282,21 @@ msgstr ""
 msgid "Missing pin number attribute"
 msgstr ""
 
-#: gnetlist/src/s_net.c:481
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Found Duplicate net names, renaming [%s] to [%s]\n"
+#: gnetlist/src/s_net.c:480
+#, fuzzy
+msgid "Found Duplicate net names, renaming"
 msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
 
-#: gnetlist/src/s_net.c:489
+#: gnetlist/src/s_net.c:482
+msgid "to"
+msgstr ""
+
+#: gnetlist/src/s_net.c:490
 #, fuzzy, c-format
 msgid "Add rename record for [%s] to [%s]\n"
 msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
 
-#: gnetlist/src/s_net.c:629
+#: gnetlist/src/s_net.c:630
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Verhoog aantal naamloze netten (s_net.c)\n"

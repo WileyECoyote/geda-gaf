@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-16 19:29-0600\n"
+"POT-Creation-Date: 2019-08-13 15:19-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,16 +18,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnetlist/src/g_netlist.c:466
+#: gnetlist/src/g_netlist.c:465
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "get-nets: недопустимое позиционное обозначение («%s») и вывод («%s»)\n"
 
-#: gnetlist/src/g_netlist.c:842
+#: gnetlist/src/g_netlist.c:840
 msgid "retrieved from a graphical object"
 msgstr ""
 
-#: gnetlist/src/g_netlist.c:843
+#: gnetlist/src/g_netlist.c:841
 msgid "Pin"
 msgstr ""
 
@@ -204,7 +204,8 @@ msgid ""
 msgstr ""
 "Copyright (C) 1998-2017 разработчики gEDA\n"
 "Это бесплатное программное обеспечение, и вы можете распространять его под\n"
-"определенные условия. Для получения дополнительной информации см. Копирование файла,\n"
+"определенные условия. Для получения дополнительной информации см. "
+"Копирование файла,\n"
 "включены в дистрибутив gEDA. Нет НИКАКИХ ГАРАНТИЙ; даже не \n"
 "для УДАРНЫХ И ФИТНЕС ДЛЯ ОСОБЫХ ЦЕЛЕЙ, в той степени, в которой\n"
 "разрешено законом.\n"
@@ -262,7 +263,7 @@ msgstr "Переход к обработке источника данных"
 msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "ОШИБКА: Не удалось загрузить подсхему «%s»: %s\n"
 
-#: gnetlist/src/s_misc.c:70
+#: gnetlist/src/s_misc.c:72
 msgid "DONE"
 msgstr ""
 
@@ -289,19 +290,21 @@ msgstr ""
 msgid "Missing pin number attribute"
 msgstr ""
 
-#: gnetlist/src/s_net.c:481
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Found Duplicate net names, renaming [%s] to [%s]\n"
+#: gnetlist/src/s_net.c:480
+#, fuzzy
+msgid "Found Duplicate net names, renaming"
 msgstr "Обнаружено ещё одно имя для соединения «%s», переименование в «%s»\n"
 
-#: gnetlist/src/s_net.c:489
+#: gnetlist/src/s_net.c:482
+msgid "to"
+msgstr ""
+
+#: gnetlist/src/s_net.c:490
 #, fuzzy, c-format
 msgid "Add rename record for [%s] to [%s]\n"
 msgstr "Обнаружено ещё одно имя для соединения «%s», переименование в «%s»\n"
 
-#: gnetlist/src/s_net.c:629
+#: gnetlist/src/s_net.c:630
 #, c-format
 msgid "Increase number of unnamed nets (s_net.c)\n"
 msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
