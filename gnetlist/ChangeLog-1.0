@@ -4,6 +4,9 @@
 
     * po/ru.po: Update Russian translations.
 
+    * src/s_net.c: Revise translatable message output to reduce format specifiers
+      in translations string.
+
 2019-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/powersupply.sch: Update capacitor-2.sym symversion=0.2.

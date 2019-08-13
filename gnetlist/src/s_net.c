@@ -477,8 +477,9 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
             }
             else {
               if (!quiet_mode) {
+                const char *msg = _("Found Duplicate net names, renaming");
                 fprintf(stderr,
-                      _("\nFound Duplicate net names, renaming [%s] to [%s]\n"), name, net_name);
+                        "\n%s <%s> %s <%s>\n", msg, name, _("to"), net_name);
               }
             }
           }
