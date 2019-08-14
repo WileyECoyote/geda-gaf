@@ -723,7 +723,8 @@ char *find_element (char *dir_path, char *element)
   }
 
   if (verbose > 1) {
-    printf ("\t  Searching: \"%s\" for \"%s\"\n", dir_path, element);
+    const char *msg = _("Searching");
+    printf ("\t  %s: \"%s\" %s \"%s\"\n", msg, dir_path, _("for"), element);
   }
 
   while ((name = (char *) g_dir_read_name (dir)) != NULL) {
