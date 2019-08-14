@@ -664,8 +664,9 @@ insert_element (FILE *f_out,     char *element_file,
       str[3] = 0;                   /* Truncate line */
 
       if (strncmp ("PCB", str, 3) == 0) {
-        printf ("Warning: %s appears to be a PCB layout file. Skipping.\n",
-                element_file);
+        const char *warn = _("WARNING");
+        const char *msg  = _("appears to be a PCB layout file. Skipping");
+        printf ("%s: %s %s.\n", warn, element_file, msg);
         fclose (f_in);
         return FALSE;
       }

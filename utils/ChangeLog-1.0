@@ -1,3 +1,8 @@
+2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
+      pointers to reduce format specifiers in translatable strings.
+
 2019-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/gxyrs/run_tests.sh: Revise script to allow specifying regeneration

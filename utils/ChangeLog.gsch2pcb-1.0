@@ -3,10 +3,15 @@ gsch2pcb Changelog
 1.14.0
 ---------
 
+2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
+      pointers to reduce format specifiers in translatable strings.
+
 2018-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
-      pointers to reduce format specifiers in in translatable strings.
+      pointers to reduce format specifiers in translatable strings.
 
 2018-06-22 Wiley E. Hill <wileyhill@gmail.com>
 
