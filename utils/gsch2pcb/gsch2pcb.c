@@ -800,11 +800,18 @@ char *search_element_directories (PcbElement *el)
         GEDA_FREE (str);
       }
     }
+
     if (!elname) {
-      printf ("Warning: argument passing may have been confused by\n");
-      printf ("         a comma in a component value:\n");
-      printf ("         Check %s %s %s\n", el->refdes, el->description, el->value);
-      printf ("         Maybe just use a space instead of a comma?\n");
+
+      const char *msg1 = _("Warning: argument passing may have been confused by");
+      const char *msg2 = _("a comma in a component value");
+      const char *msg3 = _("Check");
+      const char *msg4 = _("Maybe just use a space instead of a comma");
+
+      printf ("%s\n", msg1);
+      printf ("         %s:\n", msg2);
+      printf ("         %s %s %s %s\n", msg3, el->refdes, el->description, el->value);
+      printf ("         %s?\n", msg4);
     }
   }
 
