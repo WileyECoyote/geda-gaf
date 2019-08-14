@@ -334,11 +334,10 @@
 ;
 ; Specifies the size of the world and a border (in world space units)
 ; Be sure all inputs are reals (floats/doubles) and don't try to reverse
-; the values to get a portrait mode.  Code to support that needs to be added
-; The code that implements this automatically transforms the dimensions into
-; the proper aspect ratio.  All units are in inches.
-; This is not the paper size.  That is specified elsewhere.  End users should
-; not change this at all.
+; the values to get a portrait mode. The values will automatically be
+; transformed into the proper aspect ratio. All units are in inches.
+; This is not the paper size, which is specified elsewhere. End users
+; should not normally change these values.
 ;
 ;(world-size 60.0 45.0 1.0)
 (world-size 120.0 90.0 1.0)

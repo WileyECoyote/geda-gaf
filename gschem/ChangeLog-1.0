@@ -1,5 +1,7 @@
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com
 
+    * etc/system-gschemrc.scm: Revise world-size documentation.
+
     * src/x/x_window.c: Revised x_window_create_main to utilize world_left and
       world_top when setting up adjustments.
 
