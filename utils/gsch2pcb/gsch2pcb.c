@@ -772,6 +772,7 @@ char *find_element (char *dir_path, char *element)
     }
   }
   g_dir_close (dir);
+
   return found;
 }
 
@@ -948,14 +949,14 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
   }
 
   g_strfreev (args);
-  
+
   /* Common Transalable strings */
   const char *warn = _("WARNING");
   const char *msg2 = _("so will not be in the layout");
 
   if (empty_footprint_name && !strcmp (el->description, empty_footprint_name)) {
     if (verbose) {
-      
+
       const char *msg1 = _("has the empty footprint attribute");
 
       printf ("%s: %s \"%s\" %s.\n", el->refdes, msg1, el->description, msg2);
@@ -964,7 +965,7 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
     el->omit_PKG = TRUE;
   }
   else if (!strcmp (el->description, "none")) {
-  
+
     const char *msg1 = _("has a footprint attribute");
 
     fprintf (stderr,  "%s: %s %s \"%s\" %s.\n", warn, el->refdes, msg1, el->description, msg2);
@@ -972,7 +973,7 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
     el->omit_PKG = TRUE;
   }
   else if (!strcmp (el->description, "unknown")) {
-    
+
     const char *msg1 = _("has no footprint attribute");
     fprintf (stderr, "%s: %s %s %s.\n", warn, el->refdes, msg1, msg2);
     n_unknown += 1;
