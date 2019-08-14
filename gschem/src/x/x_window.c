@@ -502,13 +502,14 @@ void x_window_create_main(GschemToplevel *w_current)
     GtkAdjustment     *h_adjustment;
     GtkAdjustment     *v_adjustment;
 
-    h_adjustment = geda_adjustment_new (0.0, 0.0,
+    h_adjustment = geda_adjustment_new (0.0,
+                                        w_current->world_left,
                                         w_current->world_right,
                                         100.0, 100.0, 10.0);
 
     v_adjustment = geda_adjustment_new (w_current->world_bottom,
                                         0.0,
-                                        w_current->world_bottom,
+                                        w_current->world_bottom - w_current->world_top,
                                         100.0, 100.0, 10.0);
 
     draw_window = gtk_scrolled_window_new (h_adjustment, v_adjustment);

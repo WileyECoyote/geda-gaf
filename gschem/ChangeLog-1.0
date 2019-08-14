@@ -1,3 +1,8 @@
+2019-08-14 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_window.c: Revised x_window_create_main to utilize world_left and
+      world_top when setting up adjustments.
+
 2019-08-09 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_redraw.c: Move assignment of draw_selected after for loop.
