@@ -848,6 +848,15 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object4->circle  === */
+
+  rad = geda_circle_object_get_radius(object4);
+
+  if (rad != r * 10) {
+    fprintf(stderr, "FAILED: (O120604) geda_object_list_scale (%d)\n", rad);
+    result++;
+  }
+
   return result;
 }
 

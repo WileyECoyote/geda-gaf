@@ -2,6 +2,8 @@
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
 
+    * tests/test_object_list.c: Check scaling circle objects in list.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,
