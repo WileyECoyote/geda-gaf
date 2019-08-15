@@ -217,7 +217,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
   NET     *n_current;
 
   if (verbose_mode) {
-    printf("\n- %s\n", _("Staring post processing"));
+    printf("\n- %s\n", _("Starting post processing"));
     printf("- %s:\n", _("Naming nets of graphical objects"));
   }
 
