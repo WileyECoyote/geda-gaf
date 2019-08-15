@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-08-13 15:43-0500\n"
+"POT-Creation-Date: 2019-08-15 01:26-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -302,17 +302,16 @@ msgstr "в"
 msgid "Add rename record for"
 msgstr "Добавить запись переименования для"
 
-#: gnetlist/src/s_net.c:634
-#, c-format
-msgid "Increase number of unnamed nets (s_net.c)\n"
-msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
-
-#: gnetlist/src/s_netlist.c:220 gnetlist/src/s_netlist.c:338
-msgid "Staring post processing"
+#: gnetlist/src/s_netlist.c:220
+msgid "Starting post processing"
 msgstr ""
 
 #: gnetlist/src/s_netlist.c:221
 msgid "Naming nets of graphical objects"
+msgstr ""
+
+#: gnetlist/src/s_netlist.c:338
+msgid "Staring post processing"
 msgstr ""
 
 #: gnetlist/src/s_netlist.c:339
@@ -462,6 +461,9 @@ msgstr ""
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""
 "Обнаружено возможно бесконечное число подключений для вывода/соединения\n"
+
+#~ msgid "Increase number of unnamed nets (s_net.c)\n"
+#~ msgstr "Увеличьте количество безымянных соединений (в s_net.c)\n"
 
 #~ msgid "ERROR: `%s' is reserved for internal use.\n"
 #~ msgstr ""
