@@ -1801,7 +1801,7 @@ eda_renderer_get_text_user_bounds (EdaRenderer      *renderer,
   visible = object->visibility != INVISIBLE;
 
   /* First check if this is hidden text. */
-  if ( visible || EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
+  if (visible || EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
 
     /* Also, check that we actually need to display a string */
     if (object->text->disp_string != NULL) {
