@@ -631,10 +631,9 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
     }
   }
   else {
-    fprintf(stderr, _("Increase number of unnamed nets (s_net.c)\n"));
+    fprintf(stderr, "Increase the number of unnamed nets (s_net.c)\n");
     return NULL;
   }
 
   return string;
-
 }
