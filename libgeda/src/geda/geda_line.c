@@ -61,16 +61,16 @@ enum {
 
 static GObjectClass *geda_line_parent_class = NULL;
 
-/*! \brief Calculate and return the boundaries of a Line object
- *
- *  \par Function Description
+/*!
+ * \brief Calculate and return the boundaries of a Line object
+ * \par Function Description
  *  This function calculates the object boudaries of a Line \a object
  *  but does not account for the thickness of the line.
  *
- *  \note Bus, Net and Pin objects are derived from a GedaLine, so this
- *        is also the bounds function for those object type.
+ * \note Bus, Net and Pin objects are derived from a GedaLine, so this
+ *       is also the bounds function for those object type.
  *
- *  \param [in]  object Pointer to Line object
+ * \param [in]  object Pointer to Line object
  */
 static int geda_line_bounds(GedaObject *object)
 {
@@ -91,14 +91,14 @@ static int geda_line_bounds(GedaObject *object)
   return TRUE;
 }
 
-/*! \brief GedaType instance initializer for Line
- *
- *  \par Function Description
+/*!
+ * \brief GedaType instance initializer for Line
+ * \par Function Description
  *  GedaType instance initializer for Line, initializes a new empty
  *  Line object by setting pointers to NULL and numbers to zero.
  *
- *  \param [in] instance The Line structure being initialized,
- *  \param [in] g_class  The Line class we are initializing.
+ * \param [in] instance The Line structure being initialized,
+ * \param [in] g_class  The Line class we are initializing.
  */
 static void geda_line_instance_init(GTypeInstance *instance, void *g_class)
 {
@@ -125,10 +125,11 @@ static void geda_line_dispose(GObject *object)
   G_OBJECT_CLASS(geda_line_parent_class)->dispose(object);
 }
 
-/*! \brief Geda Line GedaObject Finalization Function
- *  \par Function Description
- *   Invalidates the Line's markers and then chains up to the parent's
- *   finalize handler. Once invalidated, GEDA_IS_LINE will fail.
+/*!
+ * \brief Geda Line GedaObject Finalization Function
+ * \par Function Description
+ *  Invalidates the Line's markers and then chains up to the parent
+ *  finalize handler. Once invalidated, GEDA_IS_LINE will fail.
  */
 static void geda_line_finalize(GObject *object)
 {
