@@ -30,13 +30,13 @@
  *  \brief Geda Line Object Class Module
  */
 
-/** \defgroup geda-line-object Geda Line Object
+/** \defgroup geda-line-object GedaLine Object
  * @{
  * \brief Implmentation of #GedaLine Class
  * \par
-*  A Geda Line GedaObject is a graphical object that does not involve
- * electrical interconnections. Lines have line-type properties. The
- * GedaLineClass is derived from the GedaObject base class.
+*  A GedaLine object is a graphical object that does not involve
+ * electrical interconnections. Lines have line-type properties.
+ * The GedaLineClass is derived from the GedaObject base class.
  *
  * \class GedaLine geda_line.h "include/libgeda/geda_line.h"
  * \implements geda-object
