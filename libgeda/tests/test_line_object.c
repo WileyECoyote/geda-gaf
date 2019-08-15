@@ -222,8 +222,7 @@ check_construction (void)
   return result;
 }
 
-int
-check_accessors (void)
+int check_accessors (void)
 {
   int count;
   int result = 0;
@@ -442,8 +441,7 @@ check_accessors (void)
   return result;
 }
 
-int
-check_serialization (void)
+int check_serialization (void)
 {
   int  count;
   int  converted;
@@ -561,8 +559,8 @@ check_serialization (void)
   return result;
 }
 
-int
-check_get_closest_endpoint(GedaObject *object)
+/* === Function 02: geda_line_object_get_closest_endpoint  === */
+int check_get_closest_endpoint(GedaObject *object)
 {
   int result = 0;
 
@@ -570,8 +568,6 @@ check_get_closest_endpoint(GedaObject *object)
   int x2 = geda_line_object_get_x2 (object);
   int y1 = geda_line_object_get_y1 (object);
   int y2 = geda_line_object_get_y2 (object);
-
-  /* === Function 02: geda_line_object_get_closest_endpoint  === */
 
   if (geda_line_object_get_closest_endpoint(object, x1 - 10, y1 - 10)) {
     fprintf(stderr, "FAILED: (O110201) %s closest_endpoint != 0\n", TOBJECT);
@@ -587,8 +583,7 @@ check_get_closest_endpoint(GedaObject *object)
 }
 
 /* === Function 08: geda_line_object_get_intersection  === */
-int
-check_get_intersection(GedaObject *object0)
+int check_get_intersection(GedaObject *object0)
 {
   int result = 0;
 
@@ -678,7 +673,7 @@ check_get_intersection(GedaObject *object0)
   return result;
 }
 
-  /* === Function 09: geda_line_object_get_midpoint  === */
+/* === Function 09: geda_line_object_get_midpoint  === */
 int
 check_get_midpoint(GedaObject *object)
 {
