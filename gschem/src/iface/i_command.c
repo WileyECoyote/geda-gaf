@@ -3793,12 +3793,10 @@ COMMAND (do_attach)
         /* Find first object that is NOT an attribute */
         if (!geda_object_get_is_valid_attribute(iter->data)) {
           w_current->which_object = iter->data;
-        }
-
-        if (!(NEXT(iter))) {
           break;
         }
-      } while (!w_current->which_object);
+
+      } while ((NEXT(iter)) != NULL);
 
       if (w_current->which_object) {
         o_attrib_attach_list_2_object(w_current, selected);
