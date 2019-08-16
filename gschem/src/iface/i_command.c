@@ -3756,13 +3756,12 @@ COMMAND (do_attach)
       bool    first_is_an_attribute;
       bool    second_is_an_attribute;
 
-      first_object  = (GedaObject*) selected->data;
+      first_object  = (GedaObject*)selected->data;
       next          = selected->next;
-      second_object = (GedaObject*) next->data;
+      second_object = (GedaObject*)next->data;
 
-      w_current->which_object = NULL;
-      first_is_an_attribute   = geda_object_get_is_valid_attribute(first_object);
-      second_is_an_attribute  = geda_object_get_is_valid_attribute(second_object);
+      first_is_an_attribute  = geda_object_get_is_valid_attribute(first_object);
+      second_is_an_attribute = geda_object_get_is_valid_attribute(second_object);
 
       /* Ensure 1 and only 1 is a valid attribute */
       if (1 == first_is_an_attribute + second_is_an_attribute) {
