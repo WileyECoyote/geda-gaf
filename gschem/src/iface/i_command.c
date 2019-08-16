@@ -3816,6 +3816,9 @@ COMMAND (do_attach)
 /** @brief i_cmd_do_detach in i_command_Attribute_Actions */
 COMMAND (do_detach)
 {
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+
  /* Do Not modify attributes while inside an action */
   BEGIN_NO_ACTION(do_detach);
 
