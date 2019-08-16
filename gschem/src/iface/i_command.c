@@ -3730,7 +3730,6 @@ COMMAND (do_attach)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
 
  /* Do Not modify attributes while inside an action */
   BEGIN_NO_ACTION(do_attach);
