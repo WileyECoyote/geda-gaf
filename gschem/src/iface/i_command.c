@@ -3743,8 +3743,8 @@ COMMAND (do_attach)
     GList  *selected;
     int     count;
 
-    selected = geda_list_get_glist(Current_Selection);
     count    = o_select_get_count(w_current);
+    selected = geda_toplevel_struct_get_selection(w_current->toplevel);
 
     if (count == 1) {
       geda_log("Feature not implemented\n");
