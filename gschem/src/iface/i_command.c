@@ -3825,7 +3825,7 @@ COMMAND (do_detach)
   GList *s_current;
   GList *detached_attribs = NULL;
 
-  s_current = geda_list_get_glist(Current_Selection);
+  s_current = geda_toplevel_struct_get_selection(w_current->toplevel);
 
   while (s_current != NULL) {
 

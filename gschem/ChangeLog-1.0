@@ -4,7 +4,8 @@
       geda_toplevel_struct_get_selection instead of Current_Selection,
       remove validation for page_current not NULL, and simplify the do
       while loop in the else clause. Add checks for w_current and toplevel
-      not NULL in i_cmd_do_detach.
+      not NULL in i_cmd_do_detach and utilize accessor for the current
+      selection.
 
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com
 
