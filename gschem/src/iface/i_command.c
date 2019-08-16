@@ -3735,7 +3735,6 @@ COMMAND (do_attach)
  /* Do Not modify attributes while inside an action */
   BEGIN_NO_ACTION(do_attach);
 
-
   w_current->which_object = NULL;
 
   if (o_select_is_selection(w_current)) {
