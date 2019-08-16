@@ -7,6 +7,10 @@
       not NULL in i_cmd_do_detach and utilize accessor for the current
       selection.
 
+    * src/object/o_attrib.c: Update documentation for:
+
+        * o_attrib_attach_list_2_object
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Revise world-size documentation.

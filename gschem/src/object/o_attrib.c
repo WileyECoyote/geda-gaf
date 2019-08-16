@@ -86,8 +86,8 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
 /*!
  * \brief Attach attributes in list to preset object
  * \par Function Description
- *  Add every text object in list that is an attribute (=) and is not object,
- *  to object.
+ *  Add every text object in list that is an attribute (=) and is not
+ *  w_current->which_object, to w_current->which_object.
  */
 void o_attrib_attach_list_2_object(GschemToplevel *w_current, GList *list)
 {
