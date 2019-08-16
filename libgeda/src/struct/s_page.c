@@ -568,7 +568,7 @@ const char *geda_struct_page_get_file_extension (Page *page)
  *
  * \returns Pointer to selection GedaList of the page
  *
- * \sa geda_page_get_selection_list
+ * \sa geda_page_get_selection_list geda_toplevel_struct_get_selection
  */
 SELECTION *geda_struct_page_get_selection (Page *page)
 {
