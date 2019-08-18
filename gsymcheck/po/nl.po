@@ -338,9 +338,9 @@ msgid "Found offgrid pin at location (x2=%d,y2=%d)\n"
 msgstr "Pen naast het raster gevonden op locatie (x2=%d,y2=%d)\n"
 
 #: gsymcheck/src/s_check.c:1221
-#, fuzzy, c-format
+#, c-format
 msgid "Found redundant numslots=%s attribute\n"
-msgstr "numslots=%s attribuut gevonden\n"
+msgstr "Redundant kenmerk numslots=%s gevonden\n"
 
 #: gsymcheck/src/s_check.c:1226
 #, c-format
