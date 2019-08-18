@@ -1,3 +1,8 @@
+2019-08-17 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_edit_array.c: Update array selection size tooltip and wrap
+      the tooltip string with gettext.
+
 2019-08-16 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_command.c: Revise i_cmd_do_attach to utilize accessor
