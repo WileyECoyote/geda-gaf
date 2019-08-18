@@ -336,9 +336,9 @@ msgid "Found offgrid pin at location (x2=%d,y2=%d)\n"
 msgstr "Trovato pin fuori griglia alla posizione (x2=%d,y2=%d)\n"
 
 #: gsymcheck/src/s_check.c:1221
-#, fuzzy, c-format
+#, c-format
 msgid "Found redundant numslots=%s attribute\n"
-msgstr "Trovati attributi numslots=%s\n"
+msgstr"Trovato attributo numslots=%s ridondante\n"
 
 #: gsymcheck/src/s_check.c:1226
 #, c-format
