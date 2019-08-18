@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-utils\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-01-19 20:50-0600\n"
+"POT-Creation-Date: 2019-08-17 22:25-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -33,254 +33,282 @@ msgstr ""
 msgid "not updated"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:762
-msgid "Yes"
-msgstr ""
-
-#: utils/gsch2pcb/gsch2pcb.c:762
-msgid "No"
-msgstr ""
-
-#: utils/gsch2pcb/gsch2pcb.c:818
-msgid "Searching directories looking for file element"
-msgstr ""
-
-#: utils/gsch2pcb/gsch2pcb.c:826
-msgid "Looking in directory"
-msgstr ""
-
-#: utils/gsch2pcb/gsch2pcb.c:833
-msgid "Found"
-msgstr ""
-
-#: utils/gsch2pcb/gsch2pcb.c:881
-msgid "Bad package line"
-msgstr ""
-
-#: utils/gsch2pcb/gsch2pcb.c:944
+#: utils/gsch2pcb/gsch2pcb.c:667 utils/gsch2pcb/gsch2pcb.c:954
 msgid "WARNING"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:945
+#: utils/gsch2pcb/gsch2pcb.c:668
+msgid "appears to be a PCB layout file. Skipping"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:726
+msgid "Searching"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:727
+msgid "for"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:764
+msgid "Yes"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:764
+msgid "No"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:807
+msgid "Warning: argument passing may have been confused by"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:808
+msgid "a comma in a component value"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:809
+msgid "Check"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:810
+msgid "Maybe just use a space instead of a comma"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:828
+msgid "Searching directories looking for file element"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:836
+msgid "Looking in directory"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:843
+msgid "Found"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:891
+msgid "Bad package line"
+msgstr ""
+
+#: utils/gsch2pcb/gsch2pcb.c:955
 msgid "so will not be in the layout"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:950
+#: utils/gsch2pcb/gsch2pcb.c:960
 msgid "has the empty footprint attribute"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:959
+#: utils/gsch2pcb/gsch2pcb.c:969
 msgid "has a footprint attribute"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:967
+#: utils/gsch2pcb/gsch2pcb.c:977
 msgid "has no footprint attribute"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1057
+#: utils/gsch2pcb/gsch2pcb.c:1067
 msgid "No file element found"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1067
+#: utils/gsch2pcb/gsch2pcb.c:1077
 msgid "added new file element for footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1074
+#: utils/gsch2pcb/gsch2pcb.c:1084
 msgid "cannot find PCB element for footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1082
+#: utils/gsch2pcb/gsch2pcb.c:1092
 #, c-format
 msgid "So device %s will not be in the layout.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1100
+#: utils/gsch2pcb/gsch2pcb.c:1110
 msgid "added new m4 element for footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1144
+#: utils/gsch2pcb/gsch2pcb.c:1154
 #, c-format
 msgid "Could not find any elements to fix.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1167
+#: utils/gsch2pcb/gsch2pcb.c:1177
 msgid "updating element Description"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1212
+#: utils/gsch2pcb/gsch2pcb.c:1222
 msgid "Preserving PCB element not in the schematic"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1213
+#: utils/gsch2pcb/gsch2pcb.c:1223
 msgid "element"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1259
+#: utils/gsch2pcb/gsch2pcb.c:1269
 msgid "deleted element"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1274
+#: utils/gsch2pcb/gsch2pcb.c:1284
 msgid "changed element"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1275
+#: utils/gsch2pcb/gsch2pcb.c:1285
 msgid "value"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1395
+#: utils/gsch2pcb/gsch2pcb.c:1405
 msgid "invalid schematics option"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1459
+#: utils/gsch2pcb/gsch2pcb.c:1469
 msgid "Adding directory to file element directory list"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1511
+#: utils/gsch2pcb/gsch2pcb.c:1521
 msgid "Reading project file"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1708
+#: utils/gsch2pcb/gsch2pcb.c:1718
 msgid "bad or incomplete arg:"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1784
+#: utils/gsch2pcb/gsch2pcb.c:1794
 msgid "Processing PCBLIBPATH="
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1793
+#: utils/gsch2pcb/gsch2pcb.c:1803
 #, c-format
 msgid "Adding %s to the newlib search path\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1826
+#: utils/gsch2pcb/gsch2pcb.c:1836
 #, c-format
 msgid "Failed to run gnetlist\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1836
+#: utils/gsch2pcb/gsch2pcb.c:1846
 #, c-format
 msgid "No elements found, so nothing to do.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1852
+#: utils/gsch2pcb/gsch2pcb.c:1862
 #, c-format
 msgid "Done processing. Work performed:\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1856
+#: utils/gsch2pcb/gsch2pcb.c:1866
 msgid "is backed up as"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1861
+#: utils/gsch2pcb/gsch2pcb.c:1871
 msgid "elements deleted from"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1866
+#: utils/gsch2pcb/gsch2pcb.c:1876
 msgid "file elements and"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1867
+#: utils/gsch2pcb/gsch2pcb.c:1877
 msgid "elements added to"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1872
+#: utils/gsch2pcb/gsch2pcb.c:1882
 msgid "No elements to add, not creating"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1878
+#: utils/gsch2pcb/gsch2pcb.c:1888
 msgid "not found elements added to"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1884
+#: utils/gsch2pcb/gsch2pcb.c:1894
 msgid "components had no footprint attribute and are omitted"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1889
+#: utils/gsch2pcb/gsch2pcb.c:1899
 msgid "components with footprint \"none\" omitted from"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1894
+#: utils/gsch2pcb/gsch2pcb.c:1904
 msgid "components with empty footprint"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1895
+#: utils/gsch2pcb/gsch2pcb.c:1905
 msgid "omitted from"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1901
+#: utils/gsch2pcb/gsch2pcb.c:1911
 msgid "elements had a value change in"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1906
+#: utils/gsch2pcb/gsch2pcb.c:1916
 msgid "elements fixed in"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1911 utils/gsch2pcb/gsch2pcb.c:1923
+#: utils/gsch2pcb/gsch2pcb.c:1921 utils/gsch2pcb/gsch2pcb.c:1933
 msgid "elements could not be found"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1914 utils/gsch2pcb/gsch2pcb.c:1926
+#: utils/gsch2pcb/gsch2pcb.c:1924 utils/gsch2pcb/gsch2pcb.c:1936
 msgid "is incomplete"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1935
+#: utils/gsch2pcb/gsch2pcb.c:1945
 msgid "elements not in the schematic preserved in"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1945
+#: utils/gsch2pcb/gsch2pcb.c:1955
 msgid "Next step"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1946
+#: utils/gsch2pcb/gsch2pcb.c:1956
 msgid "Run pcb on your file"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1948
+#: utils/gsch2pcb/gsch2pcb.c:1958
 msgid "You will find all your footprints in a bundle ready for you to place"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1949
+#: utils/gsch2pcb/gsch2pcb.c:1959
 msgid "or disperse with \"Select -> Disperse all elements\" in PCB"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1950
+#: utils/gsch2pcb/gsch2pcb.c:1960
 msgid "from within PCB, select \"File -> Load netlist file\" and select"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1951
+#: utils/gsch2pcb/gsch2pcb.c:1961
 msgid "to load the netlist"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1952 utils/gsch2pcb/gsch2pcb.c:1963
+#: utils/gsch2pcb/gsch2pcb.c:1962 utils/gsch2pcb/gsch2pcb.c:1973
 msgid "From within PCB, enter"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1954
+#: utils/gsch2pcb/gsch2pcb.c:1964
 msgid "to propagate the pin names of all footprints to the layout"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1957
+#: utils/gsch2pcb/gsch2pcb.c:1967
 msgid "From within PCB, select \"File -> Load layout data to paste buffer\""
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1958
+#: utils/gsch2pcb/gsch2pcb.c:1968
 msgid "    and select"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1959
+#: utils/gsch2pcb/gsch2pcb.c:1969
 #, c-format
 msgid "to load the new footprints into your existing layout.\n"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1960
+#: utils/gsch2pcb/gsch2pcb.c:1970
 msgid "From within PCB, select \"File -> Load netlist file\" and select"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1961
+#: utils/gsch2pcb/gsch2pcb.c:1971
 msgid "to load the updated netlist"
 msgstr ""
 
-#: utils/gsch2pcb/gsch2pcb.c:1965
+#: utils/gsch2pcb/gsch2pcb.c:1975
 msgid "to update the pin names of all footprints"
 msgstr ""
 

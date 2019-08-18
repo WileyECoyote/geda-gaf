@@ -442,7 +442,9 @@ msgstr "Atrybut %s musi być liczbą całkowitą"
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
-msgstr "Liczba całkowita Pythona jest zbyt duża, aby przekonwertować ją na liczbę całkowitą C."
+msgstr ""
+"Liczba całkowita Pythona jest zbyt duża, aby przekonwertować ją na liczbę "
+"całkowitą C."
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323

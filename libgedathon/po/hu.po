@@ -50,7 +50,8 @@ msgstr "Szerezzen be vagy állítsa be az alapértelmezett címblokk szimbólumo
 # Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Szerezze be vagy állítsa be az alapértelmezett transzformátor szimbólumot\n"
+msgstr ""
+"Szerezze be vagy állítsa be az alapértelmezett transzformátor szimbólumot\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
