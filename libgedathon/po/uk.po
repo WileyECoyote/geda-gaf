@@ -59,12 +59,11 @@ msgstr "Отримати або Встановити символ за замо�
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Отримати або встановити символ заголовка за умовчанням\n"
 
-# Get or Set the default titleblock symbol
-# Otrymaty abo vstanovyty symvol zaholovka za umovchannyam
+# Get or Set the default transformer symbol
+# Otrymaty abo vstanovyty symvol transformatora za zamovchuvannyam
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Отримати або встановити символ заголовка за умовчанням\n"
+msgstr "Отримати або встановити символ трансформатора за замовчуванням\n"
 
 # Close all files and deinitialize the library
 # Zakryyte vsi fayly ta deinitsializuyte biblioteku
