@@ -3,6 +3,9 @@
     * src/object/o_select.c: Revise o_select_is_selection to return logical
       result.
 
+    * src/x/x_edit_array.c: Revise x_dialog_array_edit_constructor to not
+      pass variables to gettext.
+
 2019-08-17 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_edit_array.c: Update array selection size tooltip and wrap
