@@ -3,6 +3,8 @@
     * src/object/o_select.c: Revise o_select_is_selection to return logical
       result.
 
+    * src/x/x_dnd.c: Declare x_dnd_send_string static.
+
     * src/x/x_edit_array.c: Revise x_dialog_array_edit_constructor to not
       pass variables to gettext.
 

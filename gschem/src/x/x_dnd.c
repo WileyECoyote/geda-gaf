@@ -122,7 +122,7 @@ struct _GschemDndDataDef
 static bool x_dnd_source_leave    (GtkWidget        *widget,
                                    GdkEventCrossing *event,
                                    GschemToplevel   *w_current);
-
+static
 const char *x_dnd_send_string     (GschemToplevel   *w_current,
                                    GdkDragContext   *context,
                                    GtkSelectionData *selection);
@@ -393,7 +393,7 @@ x_dnd_send_string_text (GschemToplevel *w_current, GedaObject *object)
 /******************* Begin Handlers by Data Catagory ******************/
 
 /*! \brief Route Request for String Data to type Specific Sub-Handlers */
-const char*
+static const char*
 x_dnd_send_string (GschemToplevel *w_current, GdkDragContext   *context,
                    GtkSelectionData *selection)
 {
