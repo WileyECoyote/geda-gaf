@@ -3,6 +3,7 @@
     * src/edapangorenderer.c: Add function documentation:
 
             * eda_pango_renderer_new
+            * eda_pango_renderer_update
 
 2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
 

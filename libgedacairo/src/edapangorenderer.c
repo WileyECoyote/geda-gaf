@@ -365,10 +365,10 @@ PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
   return g_object_new (EDA_TYPE_PANGO_RENDERER, "cairo-context", cr, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Update EdaPangoRenderer Cairo Context
- *  \par Function Description
- *
+/*!
+ * \brief Update EdaPangoRenderer Cairo Context
+ * \par Function Description
+ *  Updates the EdaPangoRenderer object's Cairo Context property.
  */
 void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
 {
