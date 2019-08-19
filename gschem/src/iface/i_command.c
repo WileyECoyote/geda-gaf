@@ -3832,14 +3832,20 @@ COMMAND (do_detach)
     GedaObject *o_current = (GedaObject*) s_current->data;
 
     if (o_current) {
+
       if (o_current->attribs) {
+
         detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                           detached_attribs);
+
         geda_attrib_object_detach_all (o_current);
       }
       else {
+
         if (o_current->attached_to) {
+
           geda_attrib_object_detach (o_current);
+
           detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                             detached_attribs);
         }
