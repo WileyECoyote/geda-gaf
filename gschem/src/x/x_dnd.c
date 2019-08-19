@@ -274,29 +274,34 @@ static const char *x_dnd_string_data_name(char *name)
 
   return &dnd_string_data_name[0];
 }
+
 static char *x_dnd_string_data_arc_properties(GedaArc *arc)
 {
   return
   geda_sprintf("center=(%d,%d), radius=%d, angle=%d",
              arc->x, arc->y, arc->radius, arc->start_angle);
 }
+
 static char *x_dnd_string_data_circle_properties(GedaCircle *circle)
 {
   return
   geda_sprintf("center=(%d,%d), radius=%d", circle->center_x,
                    circle->center_y, circle->radius);
 }
+
 static char *x_dnd_string_data_line_properties(GedaLine *line)
 {
   return
   geda_sprintf("start (%d,%d), end (%d,%d)",
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 }
+
 static char *x_dnd_string_data_path_properties(GedaPath *path)
 {
   return
   geda_sprintf("sections=%d",path->num_sections);
 }
+
 static char *x_dnd_string_data_box_properties(GedaBox *box)
 {
   return
@@ -348,6 +353,7 @@ static const char *x_dnd_send_string_shape (GschemToplevel *w_current, GedaObjec
 
   GEDA_FREE(common);
   GEDA_FREE(properties);
+
   return string;
 }
 
