@@ -355,10 +355,10 @@ GedaType eda_pango_renderer_get_type (void)
   return eda_pango_renderer_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Create a New EdaPangoRenderer
- *  \par Function Description
- *
+/*!
+ * \brief Create a New EdaPangoRenderer
+ * \par Function Description
+ *  Returns a new EdaPangoRenderer object with the given Cairo Context.
  */
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
 {
