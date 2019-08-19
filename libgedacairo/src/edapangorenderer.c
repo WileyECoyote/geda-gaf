@@ -114,7 +114,7 @@ eda_pango_renderer_set_property (GObject *object, unsigned int property_id,
   case PROP_CAIRO_CONTEXT:
 
     if (renderer->priv->cr != NULL) {
-      cairo_destroy (renderer->priv->cr); /* IS decrement */
+      cairo_destroy (renderer->priv->cr);   /* Is decrement */
     }
 
     renderer->priv->cr = (cairo_t *) g_value_get_pointer (value);
