@@ -126,11 +126,11 @@ static
 const char *x_dnd_send_string     (GschemToplevel   *w_current,
                                    GdkDragContext   *context,
                                    GtkSelectionData *selection);
-
+static
 const char *x_dnd_send_objects    (GschemToplevel   *w_current,
                                    GdkDragContext   *context,
                                    GtkSelectionData *selection);
-
+static
 bool        x_dnd_receive_objects (GschemToplevel   *w_current, int x, int y,
                                    const char       *buffer,    int who);
 
@@ -444,6 +444,7 @@ x_dnd_send_string (GschemToplevel *w_current, GdkDragContext   *context,
 
 }
 
+static
 const char *x_dnd_send_objects (GschemToplevel   *w_current,
                                 GdkDragContext   *context,
                                 GtkSelectionData *selection)
@@ -643,7 +644,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
 }
 
 /*! \brief Process Object Data Received from Drag & Drop Source */
-bool
+static bool
 x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buffer, int who)
 {
   bool result;
