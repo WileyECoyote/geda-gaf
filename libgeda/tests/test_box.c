@@ -413,6 +413,23 @@ int check_accessors (void)
         fail++;
       }
 
+      int lx, ly;
+
+      if (!geda_box_get_position (box, &lx, &ly)) {
+        fprintf(stderr, "FAILED: geda_box_get_position FALSE\n");
+        fail++;
+      }
+      else {
+        if (lx - x1) {
+          fprintf(stderr, "FAILED: geda_box_get_position <%d>\n", lx);
+          fail++;
+        }
+        if (ly - y2) {
+          fprintf(stderr, "FAILED: geda_box_get_position <%d>\n", ly);
+          fail++;
+        }
+      }
+
       /* Check line type properties */
 
       geda_box_set_end_cap (box, e);
