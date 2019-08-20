@@ -1,3 +1,8 @@
+2019-08-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * include/libgeda/geda_page.h: Add attribute warn unused to function
+      geda_page_get_changed_refdes.
+
 2019-08-15 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
