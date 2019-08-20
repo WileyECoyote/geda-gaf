@@ -12,6 +12,9 @@
 
     * tests/test_box.c: Add check for geda_box_get_position.
 
+    * tests/test_net_object.c: Add check for geda_net_object_is_fully_
+      connected.
+
 2019-08-15 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.

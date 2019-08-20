@@ -539,6 +539,10 @@ int check_transformer(void)
 
     /* O1308 geda_net_object_is_fully_connected */
 
+    if (geda_net_object_is_fully_connected(object)) {
+      fprintf(stderr, "FAILED: (O130801) net is_fully_connected\n");
+      fail++;
+    }
 
     /* O1310 geda_net_object_modify */
 
