@@ -84,6 +84,7 @@ int            geda_box_get_line_type       (const GedaBox *box) WARN_UNUSED;
 int            geda_box_get_line_width      (const GedaBox *box) WARN_UNUSED;
 int            geda_box_get_lower_x         (const GedaBox *box) WARN_UNUSED;
 int            geda_box_get_lower_y         (const GedaBox *box) WARN_UNUSED;
+bool           geda_box_get_position        (const GedaBox *box, int *x, int *y);
 int            geda_box_get_upper_x         (const GedaBox *box) WARN_UNUSED;
 int            geda_box_get_upper_y         (const GedaBox *box) WARN_UNUSED;
 

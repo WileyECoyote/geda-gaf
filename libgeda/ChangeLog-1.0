@@ -3,6 +3,8 @@
     * include/libgeda/geda_page.h: Add attribute warn unused to function
       geda_page_get_changed_refdes.
 
+    * src/geda/geda_box.c: Add function geda_box_object_get_position
+
 2019-08-15 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.

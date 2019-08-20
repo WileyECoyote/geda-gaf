@@ -787,6 +787,15 @@ int geda_box_get_lower_y (const GedaBox *box) {
   return -0;
 }
 
+bool geda_box_get_position (const GedaBox *box, int *x, int *y)
+{
+  if (is_a_geda_box(box)) {
+    *x = min(box->lower_x, box->upper_x);
+    *y = min(box->lower_y, box->upper_y);
+    return TRUE;
+  }
+  return -0;
+}
 /*!
  * \brief Retrieve Upper ordinate value of the Box
  * \par Function Description
