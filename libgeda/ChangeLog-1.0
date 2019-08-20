@@ -5,6 +5,9 @@
 
     * src/geda/geda_box.c: Add function geda_box_object_get_position
 
+    * src/scheme/scheme_deprecated.c: Validate the object type in scheme
+      API procedure get_line_width.
+
 2019-08-15 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.

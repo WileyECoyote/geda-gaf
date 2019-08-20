@@ -40,7 +40,12 @@
 EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
                (SCM obj_s), "Get the width of line used to draw an object")
 {
-  SCM_ASSERT (EDASCM_OBJECTP(obj_s), obj_s, SCM_ARG1, scheme_get_line_width);
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)   ||
+               edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
+               edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_PATH)),
+               obj_s, SCM_ARG1, scheme_get_line_width);
 
   GedaObject *object = edascm_to_object (obj_s);
 
