@@ -74,7 +74,7 @@
  *      O1604     geda_picture_object_export_orginal
  *      O1605     geda_picture_object_export_pixbuf
  *      O1606    geda_picture_object_get_data
- *      O1607     geda_picture_object_get_effective_ratio
+ *      O1607    geda_picture_object_get_effective_ratio
  *      O1608     geda_picture_object_get_fallback_pixbuf
  *      O1609     geda_picture_object_get_filename
  *      O1610     geda_picture_object_get_height
@@ -271,6 +271,17 @@ int check_accessors (void)
   }
   else if (len != 8850) {
     fprintf(stderr, "FAILED: (O160601B) get_data len %u\n", len);
+    result++;
+  }
+
+  /* === Function 07: geda_picture_object_get_effective_ratio  === */
+
+  double ratio;
+
+  ratio = geda_picture_object_get_effective_ratio(object0);
+
+  if (abs((ratio - (IMAGE_WIDTH / IMAGE_HEIGHT))) > 0.000001) {
+    fprintf(stderr, "FAILED: (O160701) get_effective_ratio <%f>\n", ratio);
     result++;
   }
 

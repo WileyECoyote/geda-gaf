@@ -17,6 +17,9 @@
 
     * tests/test_object_list.c: Check scaling line objects in list.
 
+    * tests/test_picture_object.c: Add check for geda_picture_object_get_
+      effective_ratio.
+
 2019-08-15 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
