@@ -15,6 +15,8 @@
     * tests/test_net_object.c: Add check for geda_net_object_is_fully_
       connected.
 
+    * tests/test_object_list.c: Check scaling line objects in list.
+
 2019-08-15 Wiley E. Hill <wileyhill@gmail.com
 
     * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
