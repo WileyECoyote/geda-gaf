@@ -377,10 +377,9 @@ x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
                              name, object->sid, netname,
                              object->color, properties);
 
-
-
-  if (netname != NULL) GEDA_FREE(netname);
+  GEDA_FREE(netname);
   GEDA_FREE(properties);
+
   return string;
 }
 
