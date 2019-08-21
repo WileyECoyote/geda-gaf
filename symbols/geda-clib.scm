@@ -31,7 +31,7 @@
 ;;;              "dir/sub-dir"
 ;;;
 ;;; The sub-dir itself is a source, and a member of the group named "dir".
-;;; When string2 does not contain Category, the source will be displayed
+;;; When string2 does not contain a Category, the source will be displayed
 ;;; with the "Standard" Category. Sources can be displayed directly under
 ;;; the categories "Standard", "Manufacturers" or "Simulation" or under
 ;;; the group name. Sub-groups that are a member of:
