@@ -2034,13 +2034,15 @@ COMMAND (do_select_invert)
 
   GedaToplevel *toplevel  = w_current->toplevel;
   SELECTION    *selection = toplevel->page_current->selection_list;
+  GList        *list      = g_list_copy (geda_list_get_glist(selection));
 
-  GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);
+
   while(list != NULL) {
     geda_object_selection_remove (selection, (GedaObject*)list->data);
     NEXT(list);
   }
+
   g_list_free (list);
 
   EXIT_COMMAND(do_select_invert);
