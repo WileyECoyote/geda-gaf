@@ -1,3 +1,8 @@
+2019-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_bulb.c: Reinstate sink and destroying of widget2 and widget3
+      before exiting check_overides.
+
 2019-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Eliminate else clause in get_popup_delay.
@@ -1633,7 +1638,7 @@
 
     * src/widgets/geda_font_dialog.c: Eliminate unnecessary type-checking
       cast to GedaFontDialog in geda_font_dialog_set_property. Include
-      geda_gtk_compat.h", and revise geda_font_dialog_get_font; replace
+      geda_gtk_compat.h, and revise geda_font_dialog_get_font; replace
       gdk_font_from_description with gdk_font_from_description_for_display,
       which bypasses the former and and attempts to get the real font.
       Update function documentation:

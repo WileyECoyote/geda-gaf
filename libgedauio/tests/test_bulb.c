@@ -352,13 +352,13 @@ check_overides ()
     result++;
   }
 
-  g_object_ref_sink(widget1); /* Sink reference to entry widget */
-  //g_object_ref_sink(widget2); /* Sink reference to entry widget */
-  //g_object_ref_sink(widget3); /* Sink reference to entry widget */
+  g_object_ref_sink(widget1); /* Sink reference to widget 1*/
+  g_object_ref_sink(widget2); /* Sink reference to widget 2 */
+  g_object_ref_sink(widget3); /* Sink reference to widget 3 */
 
-  g_object_unref(widget1);    /* Destroy widget1 */
-  //g_object_unref(widget2);    /* Destroy widget2 */
- // g_object_unref(widget3);    /* Destroy widget3 */
+  g_object_unref(widget1);    /* Destroy widget 1 */
+  g_object_unref(widget2);    /* Destroy widget 2 */
+  g_object_unref(widget3);    /* Destroy widget 3 */
 
   return result;
 }
