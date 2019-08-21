@@ -463,25 +463,26 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   }
 }
 
-/*! \brief Return RGB color from string color name
- *  \par Function Description
- * Parses a textual specification of a color and fill in the <b>red</b>,
- * <b>green</b>, and <b>blue</b> fields of a GdkColor structure. The color
- * is <em>not</em> allocated. The string can be either one of the standard
- * names (Taken from the X11 <b>rgb.txt</b> file), or a hex
- * value in the form 'rgb' 'rrggbb' 'rrrgggbbb' or 'rrrrggggbbbb' where 'r',
- * 'g' and 'b' are hex digits of the red, green, and blue components of the
+/*!
+ * \brief Return RGB color from string color name
+ * \par Function Description
+ *  Parses a textual specification of a color and fill in the <b>red</b>,
+ *  <b>green</b>, and <b>blue</b> fields of a GdkColor structure. The color
+ *  is <em>not</em> allocated. The string can be either one of the standard
+ *  names (Taken from the X11 <b>rgb.txt</b> file), or a hex
+ *  value in the form 'rgb' 'rrggbb' 'rrrgggbbb' or 'rrrrggggbbbb' where 'r',
+ *  'g' and 'b' are hex digits of the red, green, and blue components of the
  *  color, respectively. (White in the four forms is 'fff' 'ffffff' 'fffffffff'
  *  and 'ffffffffffff')
- * This function implements similar functionality to u_color_rgba_decode
- * and gdk_color_parse() but accept a pointer to a <b>GEDA COLOR</b>structure
- * as an argument but does not fully support the alpha channel. The alpha
- * value is always set to 0xff.
+ *  This function implements similar functionality to u_color_rgba_decode
+ *  and gdk_color_parse() but accept a pointer to a <b>GEDA COLOR</b>structure
+ *  as an argument but does not fully support the alpha channel. The alpha
+ *  value is always set to 0xff.
  *
  * \param [in] spec  Pointer to string hex representation of color to parse
  * \param [in] color GEDA Color structure to receive RGB values.
  *
- * \returns: TRUE on success, otherwise FALSE.
+ * \returns TRUE on success, otherwise FALSE.
  */
 bool
 eda_renderer_parse_color (const char *spec, COLOR *color)
@@ -518,13 +519,14 @@ eda_renderer_draw_list (EdaRenderer *renderer, GList *objects)
   }
 }
 
-/*! \brief Draw GedaObject using Cairo Renderer
- *  \par Function Description
+/*!
+ * \brief Draw GedaObject using Cairo Renderer
+ * \par Function Description
  *  Wrapper that calls the virtual eda_renderer_draw_xxxxx routine
  *  associated with the GedaObject.
  *
- *  \param [in] renderer Pointer to a EdaRenderer object.
- *  \param [in] object   Pointer to a GedaObject.
+ * \param [in] renderer Pointer to a EdaRenderer object.
+ * \param [in] object   Pointer to a GedaObject.
  */
 void
 eda_renderer_draw (EdaRenderer *renderer, GedaObject *object)
@@ -1249,12 +1251,13 @@ eda_renderer_draw_picture (EdaRenderer *renderer, GedaObject *object)
  * ================================================================
  */
 
-/*! \brief Draw Grips for List of GedaObject using Cairo Renderer
- *  \par Function Description
+/*!
+ * \brief Draw Grips for List of GedaObject using Cairo Renderer
+ * \par Function Description
  *  Wrapper that calls eda_renderer_draw_grips for each member of list.
  *
- *  \param [in] renderer Pointer to a EdaRenderer object.
- *  \param [in] list     List of Objects for which grips are to be drawn.
+ * \param [in] renderer Pointer to a EdaRenderer object.
+ * \param [in] list     List of Objects for which grips are to be drawn.
  */
 void
 eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
@@ -1267,12 +1270,13 @@ eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *list)
   }
 }
 
-/*! \brief Draw Grips for GedaObject using Cairo Renderer
- *  \par Function Description
+/*!
+ * \brief Draw Grips for GedaObject using Cairo Renderer
+ * \par Function Description
  *  Calls virtual draw_grips routine for \a object.
  *
- *  \param [in] renderer Pointer to a EdaRenderer object.
- *  \param [in] object   GedaObject for which grips are to be drawn.
+ * \param [in] renderer Pointer to a EdaRenderer object.
+ * \param [in] object   GedaObject for which grips are to be drawn.
  */
 void
 eda_renderer_draw_grips (EdaRenderer *renderer, GedaObject *object)
