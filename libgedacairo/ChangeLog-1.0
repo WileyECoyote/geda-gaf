@@ -3,6 +3,7 @@
     * src/edapangorenderer.c: Add internal function documentation:
 
             * eda_pango_attr_overbar_copy
+            * eda_pango_attr_overbar_compare
 
 2019-08-19 Wiley E. Hill <wileyhill@gmail.com>
 

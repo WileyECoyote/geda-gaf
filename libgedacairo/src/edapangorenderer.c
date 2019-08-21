@@ -417,10 +417,10 @@ eda_pango_attr_overbar_copy (const PangoAttribute *attr)
   return eda_pango_attr_overbar_new (a->overbar);
 }
 
-/*! \todo Finish function documentation!!!
- *  \internal Compare EdaPangoAttrOverbar Attribute structures
- *  \par Function Description
- *
+/*!
+ * \internal Compare EdaPangoAttrOverbar Attribute structures
+ * \par Function Description
+ *  Compare method for the custom PangoAttrClass EdaPangoAttrOverbar.
  */
 static bool
 eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
