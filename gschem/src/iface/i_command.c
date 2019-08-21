@@ -2038,7 +2038,7 @@ COMMAND (do_select_invert)
   GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);
   while(list != NULL) {
-    geda_object_selection_remove (selection, (GedaObject*) list->data);
+    geda_object_selection_remove (selection, (GedaObject*)list->data);
     NEXT(list);
   }
   g_list_free (list);
@@ -3829,7 +3829,7 @@ COMMAND (do_detach)
 
   while (s_current != NULL) {
 
-    GedaObject *o_current = (GedaObject*) s_current->data;
+    GedaObject *o_current = (GedaObject*)s_current->data;
 
     if (o_current) {
 
@@ -4199,7 +4199,7 @@ COMMAND (do_embed)
 
     while (s_current != NULL) {
 
-      GedaObject *o_current = (GedaObject*) s_current->data;
+      GedaObject *o_current = (GedaObject*)s_current->data;
 
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
@@ -4234,7 +4234,7 @@ COMMAND (do_unembed)
 
     while (s_current != NULL) {
 
-      GedaObject *o_current = (GedaObject*) s_current->data;
+      GedaObject *o_current = (GedaObject*)s_current->data;
 
       if (o_current != NULL) {
         if ((o_current->type == OBJ_COMPLEX) ||
