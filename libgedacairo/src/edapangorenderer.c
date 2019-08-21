@@ -405,10 +405,10 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
 }
 
 /* ---------------------------------------- */
-/*! \todo Finish function documentation!!!
- *  \internal Make a copy of an EdaPangoAttrOverbar Attribute structure
- *  \par Function Description
- *
+/*!
+ * \internal Make a copy of an EdaPangoAttrOverbar Attribute structure
+ * \par Function Description
+ *  Copy method for the custom PangoAttrClass EdaPangoAttrOverbar.
  */
 static PangoAttribute *
 eda_pango_attr_overbar_copy (const PangoAttribute *attr)
