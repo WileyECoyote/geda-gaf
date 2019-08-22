@@ -89,9 +89,9 @@ behaviour:
       a copy of this array, and doesn't free it when the EdaRenderer
       is destroyed.
 .IP
-  "override-color"  [int] Index of a colour to force all drawing to
+  "override-color"  [int] Index of a color to force all drawing to
       take place with. This can be used e.g. when highlighting a set
-      of objects in a particular colour.  If "override-color" is set
+      of objects in a particular color.  If "override-color" is set
       to -1, color override is disabled.
 .IP
   "grip-size"  [double]
