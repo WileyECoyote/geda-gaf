@@ -100,6 +100,9 @@ behaviour:
   "junction-size"  [interger]
       Size to draw junction cue points.
 .IP
+  "net-endpoint-color"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering Net and Pin endpoints.
+.IP
   "grip-size"  [double]
       Size to draw grips, in *user* coordinates.
 .IP
