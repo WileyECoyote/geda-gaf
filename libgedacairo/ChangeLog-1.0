@@ -1,3 +1,7 @@
+2019-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacairo.1.in: Document "junction-color" property.
+
 2019-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edapangorenderer.c: Add internal function documentation:
