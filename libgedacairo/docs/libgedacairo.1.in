@@ -106,6 +106,9 @@ behaviour:
   "text-marker-color"  [GDK_TYPE_COLOR]
       GDK color to use when rendering text markers.
 .IP
+  "text-marker-size"  [interger]
+      Size to draw text markers.
+.IP
   "grip-size"  [double]
       Size to draw grips, in *user* coordinates.
 .IP
