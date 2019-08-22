@@ -5,8 +5,9 @@
             * "junction-color"
             * "junction-size"
             * "net-endpoint-color"
-            * text-marker-color
+            * "text-marker-color"
             * "text-marker-size"
+            * "text-marker-threshold"
 
 2019-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
