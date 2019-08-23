@@ -6,6 +6,10 @@
             * "grips-fill"
             * "circle-grip-quadrant"
 
+    * src/edarenderer.c: Add function documentation:
+
+            * eda_renderer_get_user_bounds
+
 2019-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedacairo.1.in: Add documentation for properties:

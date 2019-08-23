@@ -1712,9 +1712,11 @@ eda_renderer_draw_cues (EdaRenderer *renderer, GedaObject *object)
  * RENDERED BOUNDS
  * ================================================================ */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get user bounds of a single object
+ * \par Function Description
+ *  Front-end for retrieving the bounds of a single object. Calls the
+ *  virtual renderer class member user_bounds.
  */
 int
 eda_renderer_get_user_bounds (EdaRenderer      *renderer,
