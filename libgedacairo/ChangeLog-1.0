@@ -3,6 +3,7 @@
     * docs/libgedacairo.1.in: Add documentation for properties:
 
             * "grips-stroke"
+            * "grips-fill"
 
 2019-08-22 Wiley E. Hill <wileyhill@gmail.com>
 

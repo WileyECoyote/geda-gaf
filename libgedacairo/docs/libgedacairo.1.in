@@ -121,6 +121,9 @@ behaviour:
   "grips-stroke"  [GDK_TYPE_COLOR]
       GDK color to use when rendering strokes for grips.
 .IP
+  "grips-fill"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering background of grips.
+.IP
   "render-flags"  [EdaRendererFlags]
       Flags that control various rendering options.
 .IP
