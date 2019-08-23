@@ -118,6 +118,9 @@ behaviour:
   "grip-size"  [double]
       Size to draw grips, in *user* coordinates.
 .IP
+  "grips-stroke"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering strokes for grips.
+.IP
   "render-flags"  [EdaRendererFlags]
       Flags that control various rendering options.
 .IP

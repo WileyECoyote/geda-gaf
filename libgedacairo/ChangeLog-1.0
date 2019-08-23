@@ -1,3 +1,9 @@
+2019-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacairo.1.in: Add documentation for properties:
+
+            * "grips-stroke"
+
 2019-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedacairo.1.in: Add documentation for properties:
