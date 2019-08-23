@@ -2016,7 +2016,7 @@ eda_renderer_class_init(void *g_class, void *class_data)
    */
   params = g_param_spec_int ("circle-grip-quadrant",
                            _("Circle Grip Quadrant"),
-                           _("Controls where grips are drawn on circles."),
+                           _("Controls where grips are drawn on circles"),
                               1,
                               4,
                               EDAR_DEFAULT_CIRCLE_GRIP_QUAD,
@@ -2034,7 +2034,7 @@ eda_renderer_class_init(void *g_class, void *class_data)
 
   params = g_param_spec_int ("junction-size",
                            _("Junction size"),
-                           _("Size to draw junction cue points."),
+                           _("Size to draw junction cue points"),
                               0, 999, 10,
                               param_flags);
 
@@ -2068,7 +2068,7 @@ eda_renderer_class_init(void *g_class, void *class_data)
 
   params = g_param_spec_double ("text-marker-threshold",
                               _("Text Marker Threshold"),
-                              _("The threshold to draw text markers."),
+                              _("The threshold to draw text markers"),
                                  EDAR_MIN_MARKER_DIST_THLD,
                                  EDAR_MAX_MARKER_DIST_THLD,
                                  EDAR_DEFAULT_MARKER_DIST_THLD,
