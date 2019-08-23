@@ -465,8 +465,8 @@ PangoAttribute *eda_pango_attr_overbar_new (bool overbar)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief Determine if objects is an
- *  \par Function Description EdaPangoAttrOverbar
+ *  \brief Determine if an object is an EdaPangoAttrOverbar
+ *  \par Function Description
  *  Looks inside attr without validating
  */
 bool eda_is_pango_attr_overbar (PangoAttribute *attr)
