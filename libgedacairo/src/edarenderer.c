@@ -1659,23 +1659,27 @@ eda_renderer_default_draw_cues (EdaRenderer *renderer, GedaObject *object)
   case OBJ_TEXT:
   case OBJ_PICTURE:
     break;
+
   case OBJ_COMPLEX:
   case OBJ_PLACEHOLDER:
     /* Recurse */
     eda_renderer_draw_cues_list (renderer, object->complex->prim_objs);
     break;
+
   case OBJ_NET:
   case OBJ_BUS:
     eda_renderer_draw_mid_cues (renderer, object);
     eda_renderer_draw_end_cues (renderer, object, 0);
     eda_renderer_draw_end_cues (renderer, object, 1);
     break;
+
   case OBJ_PIN:
     if ((object->pin->whichend == 1) || (object->pin->whichend == 0))
       eda_renderer_draw_end_cues (renderer, object, object->pin->whichend);
     else
       BUG_IMSG("pin->whichend is invalid=%d \n", object->pin->whichend);
     break;
+
   default:
     BUG_IMSG("unhandled case <%c>\n", object->type);
   }
