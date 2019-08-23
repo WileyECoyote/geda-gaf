@@ -314,16 +314,16 @@ eda_pango_renderer_instance_init (GTypeInstance *instance, void *g_class)
   renderer->priv = g_malloc0 (sizeof(EdaPangoRendererData));
 }
 
-/*! \brief Retrieve EdaPangoRenderer's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve EdaPangoRenderer's Type identifier.
+ * \par Function Description
  *  Function to retrieve an #EdaPangoRenderer Type identifier. When
  *  first called, the function registers a #EdaPangoRenderer in the
  *  GedaType system to obtain an identifier that uniquely itentifies
  *  a EdaPangoRenderer and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with EdaPangoRenderer.
+ * \return GedaType identifier associated with EdaPangoRenderer.
  */
 GedaType eda_pango_renderer_get_type (void)
 {
@@ -381,8 +381,8 @@ void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
  *  Draws layout given by \a pl using the PangoRenderer pointed
  *  to in the EdaPangoRenderer.
  *
- *  \param [in] renderer EdaPangoRenderer object.
- *  \param [in] pl       PangoLayout to be drawn.
+ * \param [in] renderer EdaPangoRenderer object.
+ * \param [in] pl       PangoLayout to be drawn.
  */
 void
 eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
@@ -434,7 +434,6 @@ eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
 /*! \todo Finish function documentation!!!
  *  \brief Get an EdaPangoAttrOverbar Class
  *  \par Function Description
- *
  */
 PangoAttrClass *
 eda_pango_attr_overbar_get_class ()
