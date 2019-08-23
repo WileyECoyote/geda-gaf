@@ -1691,9 +1691,11 @@ eda_renderer_draw_cues_list (EdaRenderer *renderer, GList *objects)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Draw Object Cues
+ * \par Function Description
+ *  Front-end for drawing the cues of a single object. Calls the
+ *  virtual renderer class member draw_cues.
  */
 void
 eda_renderer_draw_cues (EdaRenderer *renderer, GedaObject *object)

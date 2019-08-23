@@ -9,6 +9,7 @@
     * src/edarenderer.c: Add function documentation:
 
             * eda_renderer_get_user_bounds
+            * eda_renderer_draw_cues
 
 2019-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
