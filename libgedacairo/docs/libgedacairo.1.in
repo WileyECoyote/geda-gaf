@@ -124,6 +124,9 @@ behaviour:
   "grips-fill"  [GDK_TYPE_COLOR]
       GDK color to use when rendering background of grips.
 .IP
+  "circle-grip-quadrant"  [GDK_TYPE_COLOR]
+      Controls where grips are drawn on circles.
+.IP
   "render-flags"  [EdaRendererFlags]
       Flags that control various rendering options.
 .IP
