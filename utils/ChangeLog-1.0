@@ -1,3 +1,7 @@
+2019-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/el.po: Update Greek translations.
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
