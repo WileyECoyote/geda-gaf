@@ -10,6 +10,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/kh.po: Update Khmer translations.
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char

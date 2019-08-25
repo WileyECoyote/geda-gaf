@@ -22,7 +22,7 @@ msgstr ""
 
 #: utils/gsch2pcb/gsch2pcb.c:195
 msgid "Running command"
-msgstr ""
+msgstr "damnaerkar peaky banhchea"
 
 #: utils/gsch2pcb/gsch2pcb.c:237
 msgid "Failed to execute external program"
@@ -332,7 +332,6 @@ msgid ""
 msgstr ""
 
 #: utils/gsch2pdf/parsecmd.c:90 utils/gschlas/parsecmd.c:80
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -341,12 +340,11 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gschlas %s (%s) (g%.7s)\n"
-"Roksaasetthi (C) 1998-2015 gEDA anak aphivodtho\n"
+"Roksaasetthi (C) 1998-2017 gEDA anak aphivodtho\n"
 "nih kuchea phnek tn seri haey anak ka ach chekchay vea now kraom\n"
 "lokkhakhand cheakleak. saum meul kar `COPYING' eksar samreab p tr\n"
 "mean lomet, del trauv ban ruom banhchoul nowknong karchekcheay gEDA.\n"
-"kmean karthanea , tomham del ban anounhnhat daoy chbab.\n"
+"kmean karthanea, tomham del ban anounhnhat daoy chbab.\n"
 
 #: utils/gschlas/g_rc.c:73
 #, c-format
@@ -677,18 +675,3 @@ msgstr ""
 #, c-format
 msgid "Unknown page Size, defaulting to A\n"
 msgstr ""
-
-#~ msgid ""
-#~ "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
-#~ "Copyright (C) 1998-2017 gEDA developers\n"
-#~ "This is free software, and you are welcome to redistribute it under\n"
-#~ "certain conditions. For details, see the file `COPYING', which is\n"
-#~ "included in the gEDA distribution.\n"
-#~ "There is NO WARRANTY, to the extent permitted by law.\n"
-#~ msgstr ""
-#~ "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
-#~ "Roksaasetthi (C) 1998-2017 gEDA anak aphivodtho\n"
-#~ "nih kuchea phnek tn seri haey anak ka ach chekchay vea now kraom\n"
-#~ "lokkhakhand cheakleak. saum meul kar `COPYING' eksar samreab p tr\n"
-#~ "mean lomet, del trauv ban ruom banhchoul nowknong karchekcheay gEDA.\n"
-#~ "kmean karthanea , tomham del ban anounhnhat daoy chbab.\n"
