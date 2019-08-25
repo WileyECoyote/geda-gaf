@@ -23,7 +23,7 @@ msgstr ""
 
 #: utils/gsch2pcb/gsch2pcb.c:195
 msgid "Running command"
-msgstr ""
+msgstr "Esecuzione del comando"
 
 #: utils/gsch2pcb/gsch2pcb.c:237
 msgid "Failed to execute external program"
@@ -333,7 +333,6 @@ msgid ""
 msgstr ""
 
 #: utils/gsch2pdf/parsecmd.c:90 utils/gschlas/parsecmd.c:80
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -342,12 +341,11 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gschlas %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 sviluppatori gEDA\n"
-"Questo è software libero, è possibile la sua ridistribuzione sotto\n"
+"Questo � software libero, � possibile la sua ridistribuzione sotto\n"
 "certe condizioni. Per i dettagli, vedere il file `COPYING', incluso\n"
 "nella distribuzione di gEDA.\n"
-"Non c'è ALCUNA GARANZIA, nei limiti di legge.\n"
+"Non c'� ALCUNA GARANZIA, nei limiti di legge.\n"
 
 #: utils/gschlas/g_rc.c:73
 #, c-format
@@ -678,18 +676,3 @@ msgstr ""
 #, c-format
 msgid "Unknown page Size, defaulting to A\n"
 msgstr ""
-
-#~ msgid ""
-#~ "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
-#~ "Copyright (C) 1998-2017 gEDA developers\n"
-#~ "This is free software, and you are welcome to redistribute it under\n"
-#~ "certain conditions. For details, see the file `COPYING', which is\n"
-#~ "included in the gEDA distribution.\n"
-#~ "There is NO WARRANTY, to the extent permitted by law.\n"
-#~ msgstr ""
-#~ "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
-#~ "Copyright (C) 1998-2017 sviluppatori gEDA\n"
-#~ "Questo è software libero, è possibile la sua ridistribuzione sotto\n"
-#~ "certe condizioni. Per i dettagli, vedere il file `COPYING', incluso\n"
-#~ "nella distribuzione di gEDA.\n"
-#~ "Non c'è ALCUNA GARANZIA, nei limiti di legge.\n"
