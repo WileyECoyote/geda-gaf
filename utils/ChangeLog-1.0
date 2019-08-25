@@ -6,6 +6,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/fr.po: Update French translations.
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char

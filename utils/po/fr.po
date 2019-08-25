@@ -23,7 +23,7 @@ msgstr ""
 
 #: utils/gsch2pcb/gsch2pcb.c:195
 msgid "Running command"
-msgstr ""
+msgstr "Commande en cours d'exécution"
 
 #: utils/gsch2pcb/gsch2pcb.c:237
 msgid "Failed to execute external program"
@@ -333,7 +333,6 @@ msgid ""
 msgstr ""
 
 #: utils/gsch2pdf/parsecmd.c:90 utils/gschlas/parsecmd.c:80
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -342,13 +341,12 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gschlas %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
-"Ceci est un logiciel libre, et vous Ãªtes invitÃ© Ã  le diffuser sous\n"
-"certaines conditions. Pour plus de dÃ©tails, reportez-vous au fichier "
+"Ceci est un logiciel libre, et vous êtes invité à le diffuser sous\n"
+"certaines conditions. Pour plus de détails, reportez-vous au fichier "
 "`COPYING',\n"
 "inclus dans la distribution gEDA.\n"
-"Il n'y a AUCUNE GARANTIE autre que celles prÃ©vues par la loi.\n"
+"Il n'y a AUCUNE GARANTIE autre que celles prévues par la loi.\n"
 
 #: utils/gschlas/g_rc.c:73
 #, c-format
