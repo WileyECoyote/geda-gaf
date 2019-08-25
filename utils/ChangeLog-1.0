@@ -4,6 +4,8 @@
 
     * po/en_GB: Update Great Britain.
 
+    * po/es.po: Update Spanish translations.
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
