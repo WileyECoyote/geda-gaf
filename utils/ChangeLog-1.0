@@ -2,6 +2,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/en_GB: Update Great Britain.
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
