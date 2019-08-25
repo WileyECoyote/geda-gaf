@@ -14,6 +14,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
 2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
