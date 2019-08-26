@@ -2069,6 +2069,7 @@ init_module_geda_core_object (void *nothing)
                 "OBJ_PICTURE", "OBJ_PIN", "OBJ_PLACEHOLDER", "OBJ_TEXT",
                  NULL);
 
+  /* Add the modules routines to public definitions. */
   scm_c_export (scheme_object_copy,
                 scheme_object_mirror_x,
                 scheme_object_rotate_x,
