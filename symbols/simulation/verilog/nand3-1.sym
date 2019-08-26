@@ -54,7 +54,7 @@ device=nand3
 T 550 800 5 8 0 1 0 0 1
 description=3 INPUT NAND GATE
 L 300 600 700 600 3 0 0 0 -1 -1
-T 550 1200 9 10 0 0 0 0 1
+T 550 1250 9 10 0 0 0 0 1
 numslots=0
-T 550 1050 9 10 0 0 0 0 1
+T 550 1100 9 10 0 0 0 0 1
 footprint=unknown
