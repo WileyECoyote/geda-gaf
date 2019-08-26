@@ -246,6 +246,20 @@ bool is_a_geda_bus (const GedaBus *bus)
   return GEDA_IS_OBJECT(bus) && (((GedaObject*)bus)->type == OBJ_BUS);
 }
 
+bool geda_bus_get_position (const GedaBus *bus, int *x, int *y)
+{
+  if (is_a_geda_bus(bus)) {
+
+    GedaLine *line = (GedaLine*)bus;
+
+    *x = line->x[0];
+    *y = line->y[0];
+
+    return TRUE;
+  }
+  return -0;
+}
+
 /*!
  * \brief Retrieve Bus Ripper Direction Property of a bus
  * \par Function Description

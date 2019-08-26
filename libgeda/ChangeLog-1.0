@@ -6,6 +6,8 @@
 
     * src/geda/geda_box.c: Add geda_box_get_position documentation.
 
+    * src/geda/geda_bus.c: Add function geda_bus_object_get_position.
+
     * src/scheme/scheme_deprecated.c: Remove exporting definitions of object
       character types.
 
