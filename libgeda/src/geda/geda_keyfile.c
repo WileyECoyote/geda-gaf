@@ -357,10 +357,10 @@ static void geda_keyfile_clear (GedaKeyFile *key_file)
 /*!
  * \brief Determine if object is Geda KeyFile Object.
  * \par Function Description
- *  Returns true if the argument is a GedaKeyFile object.
- *  The function checks if the pointer is in the list of allocated
- *  GedaKeyFile objects returns if the address is in the list,
- *  otherwise FALSE.
+ *  Returns true if the argument is a GedaKeyFile object. This
+ *  function checks if the pointer is in the list of allocated
+ *  GedaKeyFile objects and returns true if the address is in
+ *  the list, otherwise FALSE is returned.
  *
  * \param [in] keyfile  Pointer to GedaKeyFile Object
  *
