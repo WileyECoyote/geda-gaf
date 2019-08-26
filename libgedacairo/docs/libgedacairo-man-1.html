@@ -148,17 +148,68 @@ is destroyed.</p>
 
 
 <p style="margin-left:22%; margin-top: 1em">&quot;override-color&quot;
-[int] Index of a colour to force all drawing to <br>
-take place with. This can be used e.g. when highlighting a
-set <br>
-of objects in a particular colour. If
-&quot;override-color&quot; is set <br>
-to -1, color override is disabled.</p>
+[int] <br>
+Index of a color to force all drawing to take place with.
+This <br>
+can be used e.g. when highlighting a set of objects in a
+particular <br>
+color. If &quot;override-color&quot; is set to -1, color
+override is disabled.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;junction-color&quot;
+[GDK_TYPE_COLOR] <br>
+GDK color to use when rendering Junctions.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;junction-size&quot;
+[interger] <br>
+Size to draw junction cue points.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;net-endpoint-color&quot;
+[GDK_TYPE_COLOR] <br>
+GDK color to use when rendering Net and Pin endpoints.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;text-marker-color&quot;
+[GDK_TYPE_COLOR] <br>
+GDK color to use when rendering text markers.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;text-marker-size&quot;
+[interger] <br>
+Size to draw text markers.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;text-marker-threshold&quot;
+[double] <br>
+The threshold to draw text markers.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;draw-grip&quot;
+[Boolean] <br>
+Controls if grips should be drawn.</p>
 
 
 <p style="margin-left:22%; margin-top: 1em">&quot;grip-size&quot;
 [double] <br>
 Size to draw grips, in *user* coordinates.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;grips-stroke&quot;
+[GDK_TYPE_COLOR] <br>
+GDK color to use when rendering strokes for grips.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;grips-fill&quot;
+[GDK_TYPE_COLOR] <br>
+GDK color to use when rendering background of grips.</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&quot;circle-grip-quadrant&quot;
+[GDK_TYPE_COLOR] <br>
+Controls where grips are drawn on circles.</p>
 
 
 <p style="margin-left:22%; margin-top: 1em">&quot;render-flags&quot;
@@ -264,7 +315,7 @@ for details.</p>
 
 
 <p style="margin-left:11%; margin-top: 1em">Copyright
-&copy; 2018 gEDA Contributors. License GPLv2+: GNU GPL <br>
+&copy; 2019 gEDA Contributors. License GPLv2+: GNU GPL <br>
 version 2 or later. Please see the &rsquo;COPYING&rsquo;
 file included with this <br>
 program for full details.</p>
