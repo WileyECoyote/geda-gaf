@@ -14,6 +14,8 @@
     * src/scheme/scheme_object.c: Export definitions of object character
       types, they are still used in c code so why not use in scheme.
 
+    * tests/test_bus.c: Add check for geda_bus_get_position.
+
 2019-08-20 Wiley E. Hill <wileyhill@gmail.com
 
     * include/libgeda/geda_page.h: Add attribute warn unused to function
