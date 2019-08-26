@@ -1,5 +1,9 @@
 2019-08-26 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/geda/deprecated.scm: Remove re-exporting object character types.
+
+    * scheme/geda/object.scm: Re-export object character types.
+
     * src/scheme/scheme_deprecated.c: Remove exporting definitions of object
       character types.
 

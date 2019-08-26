@@ -32,7 +32,11 @@
   ; Optional arguments
   #:use-module (ice-9 optargs)
 
-  #:use-module (srfi srfi-1))
+  #:use-module (srfi srfi-1)
+
+  #:re-export (OBJ_LINE OBJ_PATH OBJ_BOX OBJ_PICTURE OBJ_CIRCLE OBJ_NET
+               OBJ_BUS OBJ_COMPLEX OBJ_TEXT OBJ_PIN OBJ_ARC)
+)
 
 (define-public object-type %object-type)
 (define-public object? %object?)
