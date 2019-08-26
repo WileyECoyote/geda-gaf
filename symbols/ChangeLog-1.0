@@ -5,6 +5,9 @@
 
     * simulation/verilog/nand3-1.sym: Adjust attribute positions.
 
+    * simulation/verilog/nand6-1.sym: Adjust attribute positions, update
+      the sequence of pin attributes.
+
 2019-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nand*.sym: Add description attribute and update
