@@ -8,6 +8,11 @@
     * simulation/verilog/nand6-1.sym: Adjust attribute positions, update
       the sequence of pin attributes.
 
+    * simulation/verilog/or*.sym: Convert comment text to a description
+      attribute and update attributes:
+
+            * verilog/or2-1.sym
+
 2019-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nand*.sym: Add description attribute and update
