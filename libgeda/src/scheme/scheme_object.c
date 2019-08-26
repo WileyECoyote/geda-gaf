@@ -2049,7 +2049,26 @@ init_module_geda_core_object (void *nothing)
   /* Register the functions and symbols */
   #include "scheme_object.x"
 
+  /* Define object character types */
+  scm_c_define("OBJ_ARC",         SCM_MAKE_CHAR((unsigned char) OBJ_ARC));
+  scm_c_define("OBJ_BOX",         SCM_MAKE_CHAR((unsigned char) OBJ_BOX));
+  scm_c_define("OBJ_BUS",         SCM_MAKE_CHAR((unsigned char) OBJ_BUS));
+  scm_c_define("OBJ_CIRCLE",      SCM_MAKE_CHAR((unsigned char) OBJ_CIRCLE));
+  scm_c_define("OBJ_COMPLEX",     SCM_MAKE_CHAR((unsigned char) OBJ_COMPLEX));
+  scm_c_define("OBJ_LINE",        SCM_MAKE_CHAR((unsigned char) OBJ_LINE));
+  scm_c_define("OBJ_NET",         SCM_MAKE_CHAR((unsigned char) OBJ_NET));
+  scm_c_define("OBJ_PATH",        SCM_MAKE_CHAR((unsigned char) OBJ_PATH));
+  scm_c_define("OBJ_PICTURE",     SCM_MAKE_CHAR((unsigned char) OBJ_PICTURE));
+  scm_c_define("OBJ_PIN",         SCM_MAKE_CHAR((unsigned char) OBJ_PIN));
+  scm_c_define("OBJ_PLACEHOLDER", SCM_MAKE_CHAR((unsigned char) OBJ_PLACEHOLDER));
+  scm_c_define("OBJ_TEXT",        SCM_MAKE_CHAR((unsigned char) OBJ_TEXT));
+
   /* Add them to the module's public definitions. */
+  scm_c_export ("OBJ_ARC", "OBJ_BOX", "OBJ_BUS", "OBJ_CIRCLE",
+                "OBJ_COMPLEX", "OBJ_LINE",  "OBJ_NET", "OBJ_PATH",
+                "OBJ_PICTURE", "OBJ_PIN", "OBJ_PLACEHOLDER", "OBJ_TEXT",
+                 NULL);
+
   scm_c_export (scheme_object_copy,
                 scheme_object_mirror_x,
                 scheme_object_rotate_x,
