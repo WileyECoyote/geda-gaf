@@ -787,6 +787,17 @@ int geda_box_get_lower_y (const GedaBox *box) {
   return -0;
 }
 
+/*!
+ * \brief get the position of the Box
+ * \par Function Description
+ *  This function returns the lower left corner of a box object.
+ *
+ * \param [in]  box  Pointer to a GedaBox object
+ * \param [out] x    pointer to hold the x-position
+ * \param [out] y    pointer to hold the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
+ */
 bool geda_box_get_position (const GedaBox *box, int *x, int *y)
 {
   if (is_a_geda_box(box)) {

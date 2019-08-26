@@ -4,6 +4,8 @@
 
     * scheme/geda/object.scm: Re-export object character types.
 
+    * src/geda/geda_box.c: Add geda_box_get_position documentation.
+
     * src/scheme/scheme_deprecated.c: Remove exporting definitions of object
       character types.
 
