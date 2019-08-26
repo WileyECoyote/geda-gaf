@@ -1,3 +1,8 @@
+2019-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nand2-1.sym: Adjust attribute positions; fix
+      description font size.
+
 2019-08-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nand*.sym: Add description attribute and update

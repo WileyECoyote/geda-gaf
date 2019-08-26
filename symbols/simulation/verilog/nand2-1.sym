@@ -38,12 +38,12 @@ pintype=in
 }
 T 550 650 8 10 1 1 0 0 1
 refdes=U?
-T 550 950 5 8 0 1 0 0 1
+T 550 950 5 10 0 1 0 0 1
 device=nand2
-T 550 800 5 8 0 1 0 0 1
+T 550 800 5 10 0 1 0 0 1
 description=2 INPUT NAND GATE
 L 300 600 700 600 3 0 0 0 -1 -1
-T 550 1225 9 10 0 0 0 0 1
+T 550 1250 9 10 0 0 0 0 1
 numslots=0
-T 550 1075 9 10 0 0 0 0 1
+T 550 1100 9 10 0 0 0 0 1
 footprint=unknown
