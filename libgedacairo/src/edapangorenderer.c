@@ -533,7 +533,7 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
      * Enter or exit overbar state if appropriate. Otherwise, simply
      * append the character (which may have been escaped) to the output.
      */
-    if ((*in_ptr == '_') && escape_start) {
+    if (escape_start && (*in_ptr == '_')) {
 
       if (overbar_start) {
         overbar_end = out_ptr;
