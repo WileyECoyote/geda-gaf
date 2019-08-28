@@ -2668,7 +2668,9 @@ eda_renderer_set_text_marker_color (EdaRenderer *renderer, GdkColor* color)
 /*!
  * \brief Get the current EdaRenderer Text Marker Size Property
  * \par Function Description
- *  Function to retrieve the current text-marker-size property.
+ *  Function to retrieve the current text-marker-size property. The
+ *  Text Marker is the little "x" drawn at the insertion coordinates
+ *  of the text object.
  */
 int
 eda_renderer_get_text_marker_size (EdaRenderer *renderer)
@@ -2681,6 +2683,7 @@ eda_renderer_get_text_marker_size (EdaRenderer *renderer)
  * \brief Set the EdaRenderer Text Marker Size Property
  * \par Function Description
  *  Sets the text-marker-size property.
+ * \see eda_renderer_get_text_marker_size
  */
 void
 eda_renderer_set_text_marker_size (EdaRenderer *renderer, int new_size)

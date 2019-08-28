@@ -11,7 +11,10 @@
     * src/edarenderer.c: Revise eda_renderer_default_get_user_bounds
       to returns the bounds of non-text object by calling their internal
       virtual bound functions and transferring the results, and update
-      the function documentation.
+      the function documentation. Also update the documentation for
+
+            * eda_renderer_get_text_marker_size
+            * eda_renderer_set_text_marker_size
 
 2019-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
