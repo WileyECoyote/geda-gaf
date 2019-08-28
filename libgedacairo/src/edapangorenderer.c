@@ -476,10 +476,19 @@ bool eda_is_pango_attr_overbar (PangoAttribute *attr)
   return attr->klass->type == eda_pango_attr_overbar_get_class()->type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Parse overbar_text
- *  \par Function Description
+/*!
+ * \brief Parse overbar_text
+ * \par Function Description
+ *  Iterates over \a overbar_text and stores the string without the
+ *  delimiter to \a text along with a list of PangoAttributes to be
+ *  applied to the text to \a attr_list. The attribute list should
+ *  be disposed using pango_attr_list_unref once the pango layout
+ *  has been set.
  *
+ * \param [in]  overbar_text The overbar text to be Parsed
+ * \param [in]  length       Lenght of overbar_text or -1 if NULL terminated
+ * \param [out] attr_list    Location to store the PangoAttrList
+ * \param [out] text         Location to store the output string
  */
 bool
 eda_pango_parse_overbars (const char *overbar_text,  int    length,
