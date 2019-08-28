@@ -70,9 +70,6 @@ void gnetlist_quit(void)
 
   /* Free GSList backend_params */
   g_slist_free (backend_params);
-
-  g_slist_free (input_files);
-
 }
 
 void gnetlist_show_error(const char *msg1, const char *msg2, const char *msg3)
@@ -293,9 +290,6 @@ static void main_prog(void *closure, int argc, char *argv[])
       GEDA_FREE(output_filename);
       exit(2);
     }
-
-    /* collect input filenames into Global GSList for backend use */
-    input_files = g_slist_append(input_files, argv[i]);
 
     i++;
     GEDA_FREE (filename);

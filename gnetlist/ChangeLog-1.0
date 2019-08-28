@@ -6,6 +6,8 @@
     * gnetlist/src/gnetlist.c: Revise main to check for pages in the top level
       rather than checking input_files list.
 
+    * src/globals.c: Remove global input_files GSList.
+
     * src/s_netlist.c: Revise s_netlist_return_head to eliminate unnecessary
       initialization of nl_current to NULL.
 
