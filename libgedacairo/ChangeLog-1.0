@@ -2,7 +2,10 @@
 
     * src/edapangorenderer.c: Replace g_new with g_malloc in
       eda_pango_attr_overbar_new. Revise eda_is_pango_attr_overbar
-      to validate that the argument pointer is not NULL.
+      to validate that the argument pointer is not NULL. Add
+      function documentation:
+
+            * eda_is_pango_attr_overbar
 
 2019-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
