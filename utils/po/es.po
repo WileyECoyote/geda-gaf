@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the utils package.
 #
 #
-# Carlos Nieves Ónega <cnieves@iespana.es>, 2005-2010.
+# Carlos Nieves Ãnega <cnieves@iespana.es>, 2005-2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: utils VERSION\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: utils/gsch2pcb/gsch2pcb.c:195
 msgid "Running command"
-msgstr "Comando en ejecuci�n"
+msgstr "Comando en ejecución"
 
 #: utils/gsch2pcb/gsch2pcb.c:237
 msgid "Failed to execute external program"
@@ -341,8 +341,8 @@ msgid ""
 msgstr ""
 "Derechos Reservados (C) 1998-2017 desarrolladores de gEDA\n"
 "Esto es software libre, y eres bienvenido a redistribuirlo bajo\n"
-"ciertas condiciones. Para m�s detalles, revisa el fichero `COPYING', que se\n"
-"incluye en la distribuci�n de gEDA.\n"
+"ciertas condiciones. Para más detalles, revisa el fichero `COPYING', que se\n"
+"incluye en la distribución de gEDA.\n"
 "NO EXISTEN GARANTIAS, dentro de lo que la ley permite.\n"
 
 #: utils/gschlas/g_rc.c:73
@@ -686,7 +686,7 @@ msgstr ""
 #~ "gEDA/gsch2pdf %s (%s) (g%.7s)\n"
 #~ "Derechos Reservados (C) 1998-2017 desarrolladores de gEDA\n"
 #~ "Esto es software libre, y eres bienvenido a redistribuirlo bajo\n"
-#~ "ciertas condiciones. Para más detalles, revisa el fichero `COPYING', que "
+#~ "ciertas condiciones. Para mÃ¡s detalles, revisa el fichero `COPYING', que "
 #~ "se\n"
-#~ "incluye en la distribución de gEDA.\n"
+#~ "incluye en la distribuciÃ³n de gEDA.\n"
 #~ "NO EXISTEN GARANTIAS, dentro de lo que la ley permite.\n"
