@@ -342,10 +342,10 @@ msgid ""
 "permitted by law.\n"
 msgstr ""
 "Copyright (C) 1998-2017 sviluppatori gEDA\n"
-"Questo è software libero, è possibile la sua ridistribuzione sotto\n"
+"Questo Ã¨ software libero, Ã¨ possibile la sua ridistribuzione sotto\n"
 "certe condizioni. Per i dettagli, vedere il file `COPYING', incluso\n"
 "nella distribuzione di gEDA.\n"
-"Non c'è ALCUNA GARANZIA, nei limiti di legge.\n"
+"Non c'Ã¨ ALCUNA GARANZIA, nei limiti di legge.\n"
 
 #: utils/gschlas/g_rc.c:73
 #, c-format
