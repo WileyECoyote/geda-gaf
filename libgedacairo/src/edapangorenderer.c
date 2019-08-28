@@ -470,6 +470,9 @@ PangoAttribute *eda_pango_attr_overbar_new (bool overbar)
  */
 bool eda_is_pango_attr_overbar (PangoAttribute *attr)
 {
+  g_return_val_if_fail (attr != NULL, FALSE);
+  g_return_val_if_fail (attr->klass != NULL, FALSE);
+
   return attr->klass->type == eda_pango_attr_overbar_get_class()->type;
 }
 
