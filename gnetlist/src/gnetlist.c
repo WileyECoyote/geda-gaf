@@ -360,7 +360,7 @@ static void main_prog(void *closure, int argc, char *argv[])
 
   s_rename_init();
 
-  if (g_slist_length(input_files) > 0) {
+  if (g_list_length(geda_toplevel_get_pages (pr_current)) > 0) {
 
     s_traverse_process (pr_current);
 

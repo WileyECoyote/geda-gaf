@@ -3,6 +3,9 @@
     * src/g_netlist.c: Revise g_get_input_files to return the list of pages
       in the toplevel rather than using global input_files list.
 
+    * gnetlist/src/gnetlist.c: Revise main to check for pages in the top level
+      rather than checking input_files list.
+
 2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.
