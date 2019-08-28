@@ -1740,8 +1740,7 @@ eda_renderer_get_user_bounds (EdaRenderer      *renderer,
 /*!
  * \brief Get user bounds of a GedaObject
  * \par Function Description
- *  Calculates and returns the bounds of GedaText objects. Returns
- *  FALSE for all other object types.
+ *  Calculates and returns the bounds of GedaObjects.
  *
  * \param [in]  renderer Pointer to a EdaRenderer object.
  * \param [in]  object   Pointer to a GedaObject.
