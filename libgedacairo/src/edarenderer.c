@@ -1776,7 +1776,13 @@ eda_renderer_default_get_user_bounds (EdaRenderer      *renderer,
   case OBJ_NET:
   case OBJ_BUS:
   case OBJ_PIN:
-    /* No rendered bounds available for most Object types. */
+    if (geda_object_bounds(object)) {
+      *left    = object->left;
+      *top     = object->top;
+      *right   = object->right;
+      *bottom  = object->bottom;
+      return TRUE;
+    }
     return FALSE;
 
   default:
