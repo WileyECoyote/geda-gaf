@@ -457,7 +457,7 @@ eda_pango_attr_overbar_get_class ()
  */
 PangoAttribute *eda_pango_attr_overbar_new (bool overbar)
 {
-  EdaPangoAttrOverbar *result = g_new (EdaPangoAttrOverbar, 1);
+  EdaPangoAttrOverbar *result = g_malloc (sizeof(EdaPangoAttrOverbar));
   result->attr.klass = eda_pango_attr_overbar_get_class ();
   result->overbar = overbar;
   return (PangoAttribute *) result;

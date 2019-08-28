@@ -1,3 +1,7 @@
+2019-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edapangorenderer.c: Replace g_new with g_malloc in
+      eda_pango_attr_overbar_new.
 2019-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/libgedacairo.1.in: Add documentation for properties:
