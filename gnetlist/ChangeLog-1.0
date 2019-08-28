@@ -6,6 +6,9 @@
     * gnetlist/src/gnetlist.c: Revise main to check for pages in the top level
       rather than checking input_files list.
 
+    * src/s_netlist.c: Revise s_netlist_return_head to eliminate unnecessary
+      initialization of nl_current to NULL.
+
 2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

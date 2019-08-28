@@ -470,10 +470,8 @@ void s_netlist_print(NETLIST *nl_current)
  */
 NETLIST *s_netlist_return_head(NETLIST *tail)
 {
-  NETLIST *nl_current = NULL;
+  NETLIST *nl_current = tail;
   NETLIST *ret_struct = NULL;
-
-  nl_current = tail;
 
   while (nl_current != NULL) {  /* goto end of list */
     ret_struct = nl_current;
