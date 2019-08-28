@@ -1,3 +1,8 @@
+2019-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Revise g_get_input_files to return the list of pages
+      in the toplevel rather than using global input_files list.
+
 2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nl.po: Update Dutch translations.

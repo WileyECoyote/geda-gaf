@@ -968,12 +968,18 @@ SCM g_get_backend_arguments(void)
  */
 SCM g_get_input_files(void)
 {
-  SCM list = SCM_EOL;
-  GSList *current = input_files;
+  GedaToplevel *toplevel;
+  GList        *p_iter;
+  SCM           list;
 
-  while (current != NULL) {
-    list = scm_cons (scm_from_locale_string (current->data), list);
-    current = g_slist_next(current);
+  list     = SCM_EOL;
+  toplevel = edascm_c_current_toplevel ();
+  p_iter   = geda_toplevel_get_pages (toplevel);
+
+  while (p_iter != NULL) {
+    const char *filename = p_iter->data;
+    list = scm_cons (scm_from_locale_string (filename), list);
+    NEXT(p_iter);
   }
 
   return scm_reverse_x (list, SCM_EOL);
