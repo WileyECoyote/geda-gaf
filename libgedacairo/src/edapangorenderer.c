@@ -542,6 +542,7 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
       }
     }
     else {
+      /* just append the character to the output */
       *out_ptr++ = *in_ptr;
     }
 
