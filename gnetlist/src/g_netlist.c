@@ -990,7 +990,13 @@ SCM g_get_input_files(void)
  * \par Function Description
  *  given a net name, an attribute, and a wanted attribute, return all
  *  the given attributes of all the graphical objects connected to that
- *  net name
+ *  net name.
+ *
+ * \param [in] scm_netname          Name of the net to search which
+ * \param [in] scm_has_attribute    Must possess this attribute
+ * \param [in] scm_wanted_attribute Attribute to search for
+ *
+ * \returns list of values from wanted attributes if found
  */
 SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has_attribute, SCM scm_wanted_attribute)
 {
