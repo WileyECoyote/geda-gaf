@@ -270,7 +270,6 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
   }
 
   verbose_done();
-
 }
 
 /*!
@@ -314,6 +313,7 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
     }
     nl_current = nl_current->next;
   }
+
   return NULL;
 }
 
