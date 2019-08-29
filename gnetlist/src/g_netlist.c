@@ -989,7 +989,7 @@ SCM g_get_input_files(void)
  * \brief Get graphical objects connected to given net
  * \par Function Description
  *  given a net name, an attribute, and a wanted attribute, return all
- *  the given attribute of all the graphical objects connected to that
+ *  the given attributes of all the graphical objects connected to that
  *  net name
  */
 SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has_attribute, SCM scm_wanted_attribute)
