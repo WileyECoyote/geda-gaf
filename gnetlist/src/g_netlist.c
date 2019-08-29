@@ -1006,12 +1006,12 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
   SCM_ASSERT(scm_is_string (scm_netname), scm_netname, SCM_ARG1,
              "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
-  SCM_ASSERT(scm_is_string (scm_wanted_attribute),
-             scm_wanted_attribute, SCM_ARG3,
-             "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
-
   SCM_ASSERT(scm_is_string (scm_has_attribute),
              scm_has_attribute, SCM_ARG2,
+             "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
+
+  SCM_ASSERT(scm_is_string (scm_wanted_attribute),
+             scm_wanted_attribute, SCM_ARG3,
              "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
   net_name      = scm_to_utf8_string (scm_netname);
