@@ -1,3 +1,8 @@
+2019-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Revise g_graphical_objs_in_net_with_attrib_get_attrib;
+      add pointer to wanted_value to ensure attrib_value is released properly.
+
 2019-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_netlist.c: Revise g_get_input_files to return the list of pages

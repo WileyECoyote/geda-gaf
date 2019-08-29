@@ -1053,16 +1053,17 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
                 ((has_attrib_value != NULL) && (attrib_value != NULL) &&
                  (strcmp(attrib_value, has_attrib_value) == 0)))
             {
-              GEDA_FREE (attrib_value);
-              attrib_value =
+              char *wanted_value =
+
               geda_attrib_search_object_by_name (nl_current->object_ptr,
                                                  wanted_attrib, 0);
-              if (attrib_value) {
-
-                list = scm_cons (scm_from_utf8_string (attrib_value), list);
+              if (wanted_value) {
+                list = scm_cons (scm_from_utf8_string (wanted_value), list);
               }
-              GEDA_FREE (attrib_value);
+              GEDA_FREE (wanted_value);
             }
+
+            GEDA_FREE (attrib_value);
             GEDA_FREE (has_attrib_name);
             GEDA_FREE (has_attrib_value);
           }
