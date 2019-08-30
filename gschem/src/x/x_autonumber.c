@@ -1228,7 +1228,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
  * \param [in] history GList to be prepended with \a text
  * \param [in] text    The text string to be prepended to the list
  */
-static GList * autonumber_add_history(GList *history, char *text)
+static GList *autonumber_add_history(GList *history, char *text)
 {
   /* Search for this text in history and delete it (so we don't have
    * duplicate entries) */
@@ -1671,7 +1671,7 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   gtk_misc_set_alignment ((GtkMisc*)widget, 0, 0.5);
 
-   widget = geda_bulb_new_visible_with_mnemonic(NULL, _("_History"));
+  widget = geda_bulb_new_visible_with_mnemonic(NULL, _("_History"));
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
 
