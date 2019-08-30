@@ -1177,12 +1177,12 @@ bool geda_attrib_object_string_get_name_value (const char  *string,
                                                      char **name_ptr,
                                                      char **value_ptr)
 {
-  /* If no return name address set pointer to NULL */
+  /* If return name address set pointer to NULL */
   if (name_ptr != NULL) {
     *name_ptr = NULL;
   }
 
-  /* If no return value address set pointer to NULL */
+  /* If return value address set pointer to NULL */
   if (value_ptr != NULL) {
     *value_ptr = NULL;
   }
