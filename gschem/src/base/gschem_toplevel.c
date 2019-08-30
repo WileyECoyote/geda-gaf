@@ -111,9 +111,9 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   w_current->window             = NULL;
   w_current->cr                 = NULL;
 
-  w_current->world_left         = 0;
+  w_current->world_left         = default_world_left;
   w_current->world_right        = default_world_right;
-  w_current->world_top          = 0;
+  w_current->world_top          = default_world_top;
   w_current->world_bottom       = default_world_bottom;
 
   w_current->screen_width       = 0;

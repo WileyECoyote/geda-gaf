@@ -2,6 +2,9 @@
 
     * po/sl.po: Add Plural-Forms.
 
+    * src/base/gschem_toplevel.c: Initialize world_left and world_top from
+      default_world_left and default_world_top.
+
     * src/i_vars.c: Add default_world_left and default_world_top.
 
 2019-08-21 Wiley E. Hill <wileyhill@gmail.com
