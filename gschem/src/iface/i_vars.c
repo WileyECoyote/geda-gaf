@@ -83,8 +83,10 @@ int     default_warp_cursor               = TRUE;
 int     default_zoom_gain                 = DEFAULT_ZOOM_GAIN;
 int     default_zoom_with_pan             = TRUE;
 
+int     default_world_left                = 0;
 int     default_world_right               = WIDTH_C;
 int     default_world_bottom              = HEIGHT_C;
+int     default_world_top                 = 0;
 
 /* Image Related */
 int     default_image_color               = RC_NIL;

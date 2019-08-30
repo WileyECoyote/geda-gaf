@@ -2,6 +2,8 @@
 
     * po/sl.po: Add Plural-Forms.
 
+    * src/i_vars.c: Add default_world_left and default_world_top.
+
 2019-08-21 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_dnd.c: Remove conditional from GEDA_FREE(netname) in
