@@ -702,8 +702,8 @@ SCM g_rc_world_size(SCM width, SCM height, SCM border)
   geda_math_papersize_to_world(i_width, i_height, i_border, &i_right, &i_bottom);
 
 #if DEBUG
-  printf("%d %d\n", i_width, i_height);
-  printf("%d %d\n", i_right, i_bottom);
+  printf("i_width=%d, i_right=%d\n", i_width, i_right);
+  printf("i_height=%d, i_bottom=%d\n", i_height, i_bottom);
 #endif
 
   default_world_right  = i_right;
