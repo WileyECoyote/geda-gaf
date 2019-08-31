@@ -724,17 +724,20 @@ msgstr "Prekliči vse\n"
 msgid "Closing all documents\n"
 msgstr "Zapiranje vseh dokumentov\n"
 
+# starting shut-down
 #: gschem/src/iface/i_command.c:1248
 msgid "starting shut-down"
-msgstr ""
+msgstr "zagon izklopa"
 
+# Symbol is not embedded, export anyway
 #: gschem/src/iface/i_command.c:1262
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Simbol ni vgrajen, vseeno izvozite?"
 
+# Picture is not embedded, export anyway
 #: gschem/src/iface/i_command.c:1286
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Slika ni vdelana, vseeno izvozite?"
 
 # Empty buffer
 #: gschem/src/iface/i_command.c:1433
@@ -751,38 +754,45 @@ msgstr "Offset način"
 msgid "Specify offset distance:"
 msgstr "Določite odmik oddaljenosti:"
 
+# Zoom Magnification
 #: gschem/src/iface/i_command.c:2293
 msgid "Zoom Magnification"
-msgstr ""
+msgstr "Povečava povečave"
 
+# Specify new zoom
 #: gschem/src/iface/i_command.c:2293
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Določite novo povečavo:"
 
 # error
 #: gschem/src/iface/i_command.c:2340
 msgid "error"
 msgstr "napaka"
 
+# No component selected
 #: gschem/src/iface/i_command.c:2348
 msgid "No component selected\n"
-msgstr ""
+msgstr "Izbrana ni nobena komponenta\n"
 
+# Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:2893
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Potrdite razveljavi VSE dokumente"
 
+# Searching for source
 #: gschem/src/iface/i_command.c:3075
 msgid "Searching for source"
-msgstr ""
+msgstr "Iskanje vira"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3110
 msgid "Failed to descend into"
-msgstr ""
+msgstr "Sestop ni uspel"
 
+# Hierarchy Error
 #: gschem/src/iface/i_command.c:3119
 msgid "Hierarchy Error"
-msgstr ""
+msgstr "Hierarhijska napaka"
 
 #: gschem/src/iface/i_command.c:3196
 msgid "Searching for symbol"
@@ -2429,17 +2439,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
-# Zoom Selection
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Zoom za izbor"
+msgstr "Izbira x velikost"
 
-# Zoom Selection
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Zoom za izbor"
+msgstr "Izbira y velikost"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
