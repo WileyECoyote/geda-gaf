@@ -437,9 +437,10 @@ msgstr "സ്നാപ്പ് മോഡ്"
 msgid "Sets the Snap Mode to display on the status bar"
 msgstr "സ്റ്റാറ്റസ് ബാറിൽ പ്രദർശിപ്പിക്കുന്നതിന് സ്നാപ്പ് മോഡ് സജ്ജമാക്കുന്നു"
 
+# Snap Size -> Mapping Size; māppiṅg valuppaṁ
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:636
 msgid "Snap Size"
-msgstr ""
+msgstr "മാപ്പിംഗ് വലുപ്പം"
 
 # Sets the Snap Size to display on the status bar
 # sṟṟāṟṟas bāṟil pradarśippikkunnatin snāpp valuppatte sajjamākkunnu
@@ -477,43 +478,55 @@ msgstr "സ്റ്റാറ്റസ് ബാർ ഉയരം"
 msgid "Set or get the height of the status bar"
 msgstr "സ്റ്റാറ്റസ് ബാറിന്റെ ഉയരം സെറ്റുചെയ്യുക അല്ലെങ്കിൽ നേടുക"
 
+# Coordinate display, right click for format options
+# kēārḍinēṟṟ ḍisplē, phēārmāṟṟ ōpṣanukaḷkkāyi ṟaiṟṟ klikk ceyyuka
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "കോർഡിനേറ്റ് ഡിസ്പ്ലേ, ഫോർമാറ്റ് ഓപ്ഷനുകൾക്കായി റൈറ്റ് ക്ലിക്ക് ചെയ്യുക"
 
+# Left pointer button assignment ;iṭat pēāyinṟar baṭṭaṇ asainme
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "ഇടത് പോയിന്റർ ബട്ടൺ അസൈൻമെന്റ്"
 
+# Middle pointer button assignment, right click for options
+# miḍil pēāyinṟar baṭṭaṇ asainmenṟ, ōpṣanukaḷkkāyi valat klikkuceyyuka
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "മിഡിൽ പോയിന്റർ ബട്ടൺ അസൈൻമെന്റ്, ഓപ്ഷനുകൾക്കായി വലത് ക്ലിക്കുചെയ്യുക"
 
 # Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
 msgstr "വലത് പോയിന്റർ ബട്ടൺ അസൈൻമെന്റ്, ഓപ്ഷനുകൾക്കായി റൈറ്റ് ക്ലിക്ക് ചെയ്യുക"
 
+# Indicates the current snap, grid units or state
+# nilavile snāpp, griḍ yūṇiṟṟukaḷ alleṅkil avasthaye sūcippikkunnu
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "നിലവിലെ സ്നാപ്പ്, ഗ്രിഡ് യൂണിറ്റുകൾ അല്ലെങ്കിൽ അവസ്ഥയെ സൂചിപ്പിക്കുന്നു"
 
+# Indicates the current command state
+# nilavile kamānḍ nila sūcippikkunnu
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "നിലവിലെ കമാൻഡ് നില സൂചിപ്പിക്കുന്നു"
 
+# Gschem sṟṟāṟṟas bār
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem സ്റ്റാറ്റസ് ബാർ"
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
-msgstr ""
+msgstr "ഗ്രിഡ്"
 
+# OFF;  ōphāṇ
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "ഓഫാണ്"
 
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
@@ -2444,17 +2457,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
-# Selection
+# Selection x size; tiraññeṭukkal x valuppaṁ
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "തിരഞ്ഞെടുക്കൽ"
+msgstr "തിരഞ്ഞെടുക്കൽ x വലുപ്പം"
 
-# Selection
+# Selection y size; tiraññeṭukkal y valuppaṁ
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "തിരഞ്ഞെടുക്കൽ"
+msgstr "തിരഞ്ഞെടുക്കൽ y വലുപ്പം"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
