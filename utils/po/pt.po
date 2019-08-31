@@ -22,8 +22,9 @@ msgstr ""
 "X-Source-Language: pt_PT\n"
 
 #: utils/gsch2pcb/gsch2pcb.c:195
+#, fuzzy
 msgid "Running command"
-msgstr ""
+msgstr "Comando em execução"
 
 #: utils/gsch2pcb/gsch2pcb.c:237
 msgid "Failed to execute external program"
@@ -341,6 +342,11 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"Copyright (C) 1998-2017 gEDA Desenvolvedores\n"
+"Este é um software livre, e você é convidado a redistribui-lo sobcertas "
+"condições. Para detalhes, veja arquivo `COPYING', o qual\n"
+"é incluído na distribuição gEDA.\n"
+"Ele é SEM GARANTIA, dentro do permitido pela lei.\n"
 
 #: utils/gschlas/g_rc.c:73
 #, c-format
