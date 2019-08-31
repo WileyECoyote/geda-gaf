@@ -2548,16 +2548,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
-# Select Box Mode
+# Selection x size; Izbor k veličine
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Изаберите Бок Моде"
+msgstr "Избор к величине"
 
+# Selection y size; Izbor i veličine
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "зоом Избор"
+msgstr "Избор и величине"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -6180,38 +6179,49 @@ msgstr ""
 msgid "Could not show documentation for selected component\n"
 msgstr ""
 
+# "gschem User Guide; Vodič za korisnike gschem-a
 #: gschem/scheme/gschem/builtins.scm:548
 msgid "gschem User Guide"
-msgstr ""
+msgstr "Водич за кориснике гсцхем-а"
 
+# View the gschem User Guide in a browser
+# Pogledajte Vodič za korisnike gschema u pregledaču
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr ""
+msgstr "Погледајте Водич за кориснике гсцхема у прегледачу."
 
+# gschem FAQ; FAK
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
-msgstr ""
+msgstr "гсцхем ФАК"
 
+# Frequently Asked Questions about using gschem
+# Često postavljana pitanja o korišćenju gschema.
 #: gschem/scheme/gschem/builtins.scm:555
 msgid "Frequently Asked Questions about using gschem."
-msgstr ""
+msgstr "Често постављана питања о коришћењу гсцхема."
 
+# gEDA wiki; viki
 #: gschem/scheme/gschem/builtins.scm:560
 msgid "gEDA wiki"
-msgstr ""
+msgstr "гЕДА вики"
 
+# View the front page of the gEDA wiki in a browser
+# Pogledajte naslovnu stranicu gEDA vikija u pregledaču
 #: gschem/scheme/gschem/builtins.scm:561
 msgid "View the front page of the gEDA wiki in a browser."
-msgstr ""
+msgstr "Погледајте насловну страницу гЕДА викија у прегледачу."
 
+# Invalid text alignment; Nevažeće poravnavanje teksta
 #: gschem/scheme/gschem/deprecated.scm:103
 #, scheme-format
 msgid "Invalid text alignment ~A."
-msgstr ""
+msgstr "Неважеће поравнавање текста ~A."
 
+# No documentation found; Nije pronađena dokumentacija
 #: gschem/scheme/gschem/gschemdoc.scm:241
 msgid "No documentation found"
-msgstr ""
+msgstr "Није пронађена документација"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
@@ -6223,12 +6233,15 @@ msgstr "Извоз уграђени симбол"
 msgid "Export embedded picture"
 msgstr "Извоз уграђене слике"
 
+# is not a valid key combination
+# nije validna kombinacija tastera
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
-msgstr ""
+msgstr "~S није валидна комбинација тастера."
 
+# is not a prefix key sequence; nije sekvenca prefiksa
 #: gschem/scheme/gschem/keymap.scm:156
 #, scheme-format
 msgid "~S is not a prefix key sequence."
-msgstr ""
+msgstr "~S није секвенца префикса."
