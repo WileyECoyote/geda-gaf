@@ -98,46 +98,53 @@ msgstr "Vindue ejer"
 msgid "Parent window for this dialog"
 msgstr "Primær vindue til denne dialog"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
-msgstr ""
+msgstr "Dialogvindues titel"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "Maerketekst"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Tekst, der skal vises til makroetiketten"
 
+# Macro
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "Makro:"
 
+# Macro String
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "Makrostreng"
 
+# Evaluate
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "Vurdere"
 
 #: gschem/src/base/gschem_main_window.c:243
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Henter hovedvinduet position.\n"
 
 #: gschem/src/base/gschem_main_window.c:299
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Henter hovedvinduet geometri.\n"
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Gendan automatisk"
 
 #: gschem/src/base/gschem_main_window.c:423
 msgid "Automatically restore the main window geometry"
