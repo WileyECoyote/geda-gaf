@@ -4,6 +4,7 @@
       update the sequence of pin attributes, reposition attributes:
 
             * xilinx/XC2S100-5PQ208C.sym
+            * xilinx/XC2S100-5PQ208I.sym
 
 2019-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
