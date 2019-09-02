@@ -1,3 +1,10 @@
+2019-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * xilinx: Add description attribute, convert plain text to value,
+      update the sequence of pin attributes, reposition attributes:
+
+            * xilinx/XC2S100-5PQ208C.sym
+
 2019-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nand2-1.sym: Adjust attribute positions; fix
