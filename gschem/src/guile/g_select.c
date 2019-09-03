@@ -28,14 +28,16 @@
 
 SCM_SYMBOL (object_state_sym, "object-state");
 
-/*! \brief Get a list of selected objects on a page.
+/*!
+ * \brief Get a list of selected objects on a page.
  * \par Function Description
- * Retrieve a list of selected objects on \a page_s.
+ *  Retrieve a list of selected objects on \a page_s.
  *
  * \note Scheme API: Implements the %page-selection procedure in the
- * (gschem core selection) module.
+ *       (gschem core selection) module.
  *
  *  param page_s Page smob for the page from which to get the selection.
+ *
  * \return a list of Object smobs.
  */
 SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,
@@ -61,7 +63,8 @@ SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,
   return result;
 }
 
-/*! \brief Select an object.
+/*!
+ * \brief Select an object.
  * \par Function Description
  * Add \a obj_s to its associated page's selection.  If \a obj_s is
  * not included directly in a page (i.e. inclusion in a component is
@@ -69,9 +72,10 @@ SCM_DEFINE (page_selection, "%page-selection", 1, 0, 0,
  * selected, does nothing.
  *
  * \note Scheme API: Implements the %select-object! procedure in the
- * (gschem core selection) module.
+ *       (gschem core selection) module.
  *
  * \param obj_s Object smob for object to be selected.
+ *
  * \return obj_s.
  */
 SCM_DEFINE (select_object_x, "%select-object!", 1, 0, 0,
@@ -97,7 +101,8 @@ SCM_DEFINE (select_object_x, "%select-object!", 1, 0, 0,
   return obj_s;
 }
 
-/*! \brief Deselect an object.
+/*!
+ * \brief Deselect an object.
  * \par Function Description
  * Remove \a obj_s from its associated page's selection.  If \a obj_s
  * is not included directly in a page (i.e. not via inclusion in a
@@ -133,14 +138,15 @@ SCM_DEFINE (deselect_object_x, "%deselect-object!", 1, 0, 0,
   return obj_s;
 }
 
-/*! \brief Test if an object is selected.
+/*!
+ * \brief Test if an object is selected.
  * \par Function Description
- * If \a obj_s is selected, returns SCM_BOOL_T.  Otherwise, returns
- * SCM_BOOL_F.  If \a obj_s is not included directly in a page
- * (i.e. not via inclusion in a component), throws a Scheme error.
+ *  If \a obj_s is selected, returns SCM_BOOL_T.  Otherwise, returns
+ *  SCM_BOOL_F.  If \a obj_s is not included directly in a page
+ *  (i.e. not via inclusion in a component), throws a Scheme error.
  *
  * \note Scheme API: Implements the %object-selected? procedure in the
- * (gschem core selection) module.
+ *       (gschem core selection) module.
  *
  * \param obj_s Object smob to be tested.
  * \return SCM_BOOL_T if \a obj_s is selected, otherwise SCM_BOOL_F.
@@ -163,10 +169,11 @@ SCM_DEFINE (object_selected_p, "%object-selected?", 1, 0, 0,
   return (obj->selected ? SCM_BOOL_T : SCM_BOOL_F);
 }
 
-/*! \brief Create the (gschem core selection) Scheme module
+/*!
+ * \brief Create the (gschem core selection) Scheme module
  * \par Function Description
- * Defines procedures in the (gschem core selection) module. The module
- * can be accessed using (use-modules (gschem core selection)).
+ *  Defines procedures in the (gschem core selection) module. The module
+ *  can be accessed using (use-modules (gschem core selection)).
  */
 static void
 init_module_gschem_core_select ()
@@ -179,10 +186,11 @@ init_module_gschem_core_select ()
                 s_object_selected_p, NULL);
 }
 
-/*! \brief Initialize the selection manipulation procedures.
+/*!
+ * \brief Initialize the selection manipulation procedures.
  * \par Function Description
- * Registers some Scheme procedures for working with the selection.
- * Should only be called by main_prog().
+ *  Registers some Scheme procedures for working with the selection.
+ *  Should only be called by main_prog().
  */
 void
 g_init_select ()

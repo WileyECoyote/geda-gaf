@@ -2,6 +2,8 @@
 
     * src/guile/g_register.c: Add structure documentation for gschem_rc_funcs.
 
+    * src/guile/g_select.c: Reformat Doxygen documentation.
+
 2019-08-31 Wiley E. Hill <wileyhill@gmail.com
 
     * po/ca.po: Update Catalan translations.
