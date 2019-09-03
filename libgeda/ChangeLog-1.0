@@ -2,6 +2,9 @@
 
     * scheme/geda/object.scm: Reorder object types using alphabetical order.
 
+    * src/scheme/scheme_deprecated.c: Include derivative line types in
+      validation list since these type do have valid pointer to line options.
+
 2019-08-26 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/deprecated.scm: Remove re-exporting object character types.

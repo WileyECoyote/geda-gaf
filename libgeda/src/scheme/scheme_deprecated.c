@@ -42,8 +42,11 @@ EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
 {
   SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)   ||
                edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_BUS)    ||
                edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
                edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_NET)    ||
+               edascm_is_object_type (obj_s, OBJ_PIN)    ||
                edascm_is_object_type (obj_s, OBJ_PATH)),
                obj_s, SCM_ARG1, scheme_get_line_width);
 
