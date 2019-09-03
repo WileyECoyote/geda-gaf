@@ -27,7 +27,11 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-/*! \brief */
+/*!
+ * \struct gschem_rc_funcs
+ * \brief gschem RC functions
+ * \par Function data table for registering RC handlers with Guile.
+ */
 static struct gsubr_t gschem_rc_funcs[] = {
   /* rc file */
 
