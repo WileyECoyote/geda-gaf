@@ -34,8 +34,10 @@
 
   #:use-module (srfi srfi-1)
 
-  #:re-export (OBJ_LINE OBJ_PATH OBJ_BOX OBJ_PICTURE OBJ_CIRCLE OBJ_NET
-               OBJ_BUS OBJ_COMPLEX OBJ_TEXT OBJ_PIN OBJ_ARC)
+
+  #:re-export (OBJ_ARC OBJ_BOX OBJ_BUS OBJ_CIRCLE OBJ_COMPLEX
+               OBJ_LINE OBJ_NET OBJ_PATH OBJ_PICTURE OBJ_PIN
+               OBJ_PLACEHOLDER OBJ_TEXT)
 )
 
 (define-public object-type %object-type)

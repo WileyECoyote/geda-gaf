@@ -1,3 +1,7 @@
+2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/geda/object.scm: Reorder object types using alphabetical order.
+
 2019-08-26 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/geda/deprecated.scm: Remove re-exporting object character types.
