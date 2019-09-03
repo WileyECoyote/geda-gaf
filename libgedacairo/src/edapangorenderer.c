@@ -519,6 +519,7 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
 
   out_ptr = *text;
 
+  /* todo: eliminate pointer math */
   for (in_ptr=overbar_text; (in_ptr - overbar_text) <= length; in_ptr++)
   {
     /* If we find an escape character and we are not already in an
