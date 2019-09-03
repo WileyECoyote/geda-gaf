@@ -294,12 +294,11 @@ static int g_keys_print_key (SCM smob, SCM port, scm_print_state *pstate)
   return 1;
 }
 
-/* \brief Test if two key combinations are equivalent.
+/*!
+ * \internal Test if two key combinations are equivalent.
  * \par Function Description
- * Tests if the two gschem key objects \a a and \a b represent the
- * same key event.
- *
- * Used internally to Guile.
+ *  Tests if the two gschem key objects \a a and \a b represent the
+ *  same key event. Used internally to Guile.
  */
 static SCM g_keys_equalp (SCM a, SCM b)
 {

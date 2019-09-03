@@ -4,6 +4,8 @@
 
     * src/guile/g_select.c: Reformat Doxygen documentation.
 
+    * src/guile/g_keys.c: Add internal tag for g_keys_equalp documentation.
+
     * src/guile/g_util.c: Reformat Doxygen documentation and update incomplete
       function definitions as void.
 
