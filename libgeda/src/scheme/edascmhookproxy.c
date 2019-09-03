@@ -56,7 +56,7 @@ static void cclosure_marshal_VOID__SCM            (GClosure *closure,
 
 static GObjectClass *edascm_hook_proxy_parent_class = NULL;
 
-/*! Set a property of an EdascmHookProxy instance. */
+/*! \internal Set a property of an EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_set_property (GObject *object, guint property_id,
                                 const GValue *value, GParamSpec *pspec)
@@ -81,7 +81,7 @@ edascm_hook_proxy_set_property (GObject *object, guint property_id,
   }
 }
 
-/*! Get a property of an EdascmHookProxy instance. */
+/*! \internal Get a property of an EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_get_property (GObject *object, guint property_id,
                                 GValue *value, GParamSpec *pspec)
@@ -100,8 +100,10 @@ edascm_hook_proxy_get_property (GObject *object, guint property_id,
   }
 }
 
-/*! Finalize an EdascmHookProxy instance. Free all resources held by
- * the instance. */
+/*!
+ * \internal Finalize instance of a EdascmHookProxy
+ *  Free all resources held by the instance.
+ */
 static void
 edascm_hook_proxy_finalize (GObject *object)
 {
@@ -118,7 +120,7 @@ edascm_hook_proxy_finalize (GObject *object)
   G_OBJECT_CLASS (edascm_hook_proxy_parent_class)->finalize (object);
 }
 
-/*! Initialize EdascmHookProxy class. */
+/*! \internal Initialize EdascmHookProxy class. */
 static void
 edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
 {
@@ -155,7 +157,7 @@ edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
                 EDASCM_TYPE_SCM);
 }
 
-/*! Initialize EdascmHookProxy instance. */
+/*! \internal Initialize EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_init (EdascmHookProxy *proxy)
 {

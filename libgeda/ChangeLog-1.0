@@ -2,6 +2,9 @@
 
     * scheme/geda/object.scm: Reorder object types using alphabetical order.
 
+    * src/scheme/edascmhookproxy.c: Add internal Doxygen tags for documented
+      static functions.
+
     * src/scheme/scheme_deprecated.c: Include derivative line types in
       validation list since these type do have valid pointer to line options.
 
