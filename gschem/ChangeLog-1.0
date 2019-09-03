@@ -4,6 +4,8 @@
 
     * src/guile/g_select.c: Reformat Doxygen documentation.
 
+    * src/guile/g_util.c: Reformat Doxygen documentation.
+
 2019-08-31 Wiley E. Hill <wileyhill@gmail.com
 
     * po/ca.po: Update Catalan translations.
