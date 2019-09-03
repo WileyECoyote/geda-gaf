@@ -3,6 +3,8 @@
     * src/g_netlist.c: Eliminate unnecessary initialization of name value
       targets in g_graphical_objs_in_net_with_attrib_get_attrib.
 
+    * src/g_register.c: Add structure documentation for gnetlist_funcs.
+
 2019-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_netlist.c: Revise g_graphical_objs_in_net_with_attrib_get_attrib;
