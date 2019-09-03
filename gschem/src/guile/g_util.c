@@ -77,7 +77,7 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
  *  Defines procedures in the (gschem core util) module. The module can
  *  be accessed using (use-modules (gschem core util)).
  */
-static void init_module_gschem_core_util ()
+static void init_module_gschem_core_util (void)
 {
   /* Register the functions */
   #include "g_util.x"
@@ -93,7 +93,7 @@ static void init_module_gschem_core_util ()
  *  miscellaneous system services.  Should only be called by
  *  main_prog().
  */
-void g_init_util ()
+void g_init_util (void)
 {
   /* Define the (gschem core util) module */
   scm_c_define_module ("gschem core util",

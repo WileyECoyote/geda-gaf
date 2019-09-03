@@ -4,7 +4,8 @@
 
     * src/guile/g_select.c: Reformat Doxygen documentation.
 
-    * src/guile/g_util.c: Reformat Doxygen documentation.
+    * src/guile/g_util.c: Reformat Doxygen documentation and update incomplete
+      function definitions as void.
 
 2019-08-31 Wiley E. Hill <wileyhill@gmail.com
 
