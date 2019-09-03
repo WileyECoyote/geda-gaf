@@ -1,3 +1,8 @@
+2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Eliminate unnecessary initialization of name value
+      targets in g_graphical_objs_in_net_with_attrib_get_attrib.
+
 2019-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_netlist.c: Revise g_graphical_objs_in_net_with_attrib_get_attrib;

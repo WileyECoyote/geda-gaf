@@ -1046,8 +1046,8 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
 
         if (strcmp(current_name, net_name) == 0) {
 
-          char *has_attrib_name  = NULL;
-          char *has_attrib_value = NULL;
+          char *has_attrib_name;
+          char *has_attrib_value;
 
           if (geda_attrib_string_get_name_value (has_attrib, &has_attrib_name, &has_attrib_value) != 0)
           {
