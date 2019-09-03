@@ -1472,6 +1472,30 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
   return result;
 }
 
+
+/*!
+ * \brief Get the internal id of an object.
+ * \par Function Description
+ *  Returns an internal id number of the #GedaObject smob \a obj_s.
+ *
+ * \note Scheme API: Implements the %object-id procedure in the
+ *       (geda core object) module.
+ *
+ * \param [in] obj_s an #OBJECT smob.
+ *
+ * \return a Scheme symbol representing the object type.
+ */
+SCM_DEFINE (object_id, "%object-id", 1, 0, 0,
+            (SCM obj_s), "Get an object smob's id")
+{
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
+              SCM_ARG1, scheme_object_type);
+
+  GedaObject *obj = edascm_to_object (obj_s);
+
+  return scm_from_int (obj->sid);
+}
+
 /*!
  * \brief Get the number of elements in a path.
  * \par Function Description

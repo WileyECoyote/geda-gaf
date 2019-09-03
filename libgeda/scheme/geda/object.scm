@@ -41,6 +41,7 @@
 )
 
 (define-public object-type %object-type)
+(define-public object-id %object-id)
 (define-public object? %object?)
 
 (define-public (object-type? x type)

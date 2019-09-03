@@ -1,12 +1,16 @@
-2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
+2019-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/object.scm: Reorder object types using alphabetical order.
+      Add public API object-id.
 
     * src/scheme/edascmhookproxy.c: Add internal Doxygen tags for documented
       static functions and reformat documentation blocks.
 
     * src/scheme/scheme_deprecated.c: Include derivative line types in
       validation list since these type do have valid pointer to line options.
+
+    * src/scheme/scheme_object.c: Add Scheme API "%object-id" implementation
+      procedure.
 
 2019-08-26 Wiley E. Hill <wileyhill@gmail.com
 
