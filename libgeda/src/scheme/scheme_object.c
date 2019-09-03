@@ -166,13 +166,14 @@ edascm_from_object_glist (const GList *objs)
  *
  * \return non-zero if \a smob is an GedaObject smob of \a type.
  */
-int
-edascm_is_object_type (SCM smob, int type)
+int edascm_is_object_type (SCM smob, int type)
 {
-  if (!EDASCM_OBJECTP(smob))
+  if (!EDASCM_OBJECTP(smob)) {
     return 0;
+  }
 
   GedaObject *obj = edascm_to_object (smob);
+
   return (obj->type == type);
 }
 
