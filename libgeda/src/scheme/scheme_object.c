@@ -2100,6 +2100,7 @@ init_module_geda_core_object (void *nothing)
                 scheme_object_rotate_x,
                 scheme_object_translate_x,
                 scheme_object_type,
+                scheme_object_id,
                 scheme_object_connections,
                 scheme_object_complex,
                 scheme_object_bounds,
