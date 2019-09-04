@@ -669,6 +669,40 @@ EDA_SCM_DEFINE (object_selectable, "%object-selectable?", 1, 0, 0,
 }
 
 /*!
+ * \brief Lock or Unlock an Object
+ * \par Function Description
+ *  Sets the object's selectable flag: locked objects cannot be selected.
+ *
+ * \note Scheme API: Implements the %set-object-selectable! procedure
+ *       in the (geda core object) module.
+ *
+ * param obj_s         #GedaObject smob to modify.
+ * param selectable_s  boolean: object's selectable flag.
+ *
+ * \return the object (\a obj_s).
+ */
+EDA_SCM_DEFINE (object_set_selectable_x, "%set-object-selectable!", 2, 0, 0,
+               (SCM obj_s, SCM selectable_s), "Lock or unlock an object.")
+{
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
+              SCM_ARG1, scheme_object_set_selectable_x);
+  SCM_ASSERT (scm_is_bool (selectable_s), selectable_s,
+              SCM_ARG2, scheme_object_set_selectable_x);
+
+  GedaObject *obj = edascm_to_object (obj_s);
+
+  int selectable = scm_is_true (selectable_s);
+
+  if (obj->selectable != selectable) {
+
+    obj->selectable = selectable;
+
+    geda_struct_object_set_page_changed (obj);
+  }
+
+  return obj_s;
+}
+
 /*!
  * \brief Get line parameters.
  * \par Function Description
@@ -2143,6 +2177,7 @@ init_module_geda_core_object (void *nothing)
                 scheme_object_circle_info,
                 scheme_object_set_circle_x,
                 scheme_object_selectable,
+                scheme_object_set_selectable_x,
                 scheme_object_line_info,
                 scheme_object_set_line_x,
                 scheme_object_path_length,

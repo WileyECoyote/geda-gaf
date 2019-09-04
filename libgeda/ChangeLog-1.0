@@ -3,6 +3,7 @@
     * scheme/geda/object.scm: Add scheme interface:
 
           * object-selectable?
+          * set-object-selectable!
 
     * scheme/unit-tests/t0101-object-box.scm: Add check for object-id.
 
@@ -13,6 +14,7 @@
       object_line_info before object_set_line_x. Add API routines:
 
           * scheme_object_selectable
+          * object_set_selectable_x
 
 2019-09-03 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -60,6 +60,8 @@
 
 (define-public object-selectable? %object-selectable?)
 
+(define-public set-object-selectable! %set-object-selectable!)
+
 ;;;; Lines
 
 (define-public (line? l)
