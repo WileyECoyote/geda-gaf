@@ -830,7 +830,7 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   geda_set_object_color (obj, scm_to_int (color_s));
   geda_object_notify_emit_change (obj);
 
-  geda_struct_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed (obj);
 
   return line_s;
 }
