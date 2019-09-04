@@ -12,6 +12,12 @@
     (assert-true (circle? a))
     (assert-true (circle? b))
 
+    (let* ((id1 (object-id a))
+           (id2 (object-id b)))
+      (assert-true (integer? id1))
+      (assert-true (integer? id2))
+    )
+
     (assert-equal '(1 . 2) (circle-center a))
     (assert-equal 3 (circle-radius a))
     (assert-equal (circle-center a) (circle-center b))
