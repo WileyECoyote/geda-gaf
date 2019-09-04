@@ -58,6 +58,8 @@
 
 (define-public object-component %object-complex)
 
+(define-public object-selectable? %object-selectable?)
+
 ;;;; Lines
 
 (define-public (line? l)

@@ -645,6 +645,30 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
 }
 
 /*!
+ * \brief Check Whether an Object is Locked.
+ * \par Function Description
+ *  Check the state of an object's selectable flag: if it is set, the
+ *  object is considered to be unlocked, otherwise it is locked.
+ *
+ *  \note Scheme API: Implements the %object-selectable? procedure in
+ *        the (geda core object) module.
+ *
+ * param obj_s  #GedaObject smob to inspect.
+ *
+ * \return Boolean value indicating whether \a obj_s is selectable.
+ */
+EDA_SCM_DEFINE (object_selectable, "%object-selectable?", 1, 0, 0,
+               (SCM obj_s), "Check whether an object is locked.")
+{
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
+              SCM_ARG1, scheme_object_selectable);
+
+  GedaObject *obj = edascm_to_object (obj_s);
+
+  return scm_from_bool (obj->selectable);
+}
+
+/*!
 /*!
  * \brief Get line parameters.
  * \par Function Description
@@ -776,8 +800,6 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
 
   return line_s;
 }
-
-/*!
 
 /*!
  * \brief Get the type of a pin object.
@@ -2120,6 +2142,7 @@ init_module_geda_core_object (void *nothing)
                 scheme_object_set_box_x,
                 scheme_object_circle_info,
                 scheme_object_set_circle_x,
+                scheme_object_selectable,
                 scheme_object_line_info,
                 scheme_object_set_line_x,
                 scheme_object_path_length,
