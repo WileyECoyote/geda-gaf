@@ -645,6 +645,53 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
 }
 
 /*!
+/*!
+ * \brief Get line parameters.
+ * \par Function Description
+ *  Retrieves the parameters of a line object. The return value is a
+ *  list of parameters:
+ *
+ * -# X-coordinate of start of line
+ * -# Y-coordinate of start of line
+ * -# X-coordinate of end of line
+ * -# Y-coordinate of end of line
+ * -# Colormap index of color to be used for drawing the line
+ *
+ *  This function also works on net, bus and pin objects.  For pins,
+ *  the start is the connectable point on the pin.
+ *
+ *  param line_s the line object to inspect.
+ *
+ * \return a list of line parameters.
+ */
+EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
+               (SCM line_s), "Get line parameters.")
+{
+  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE) ||
+               edascm_is_object_type (line_s, OBJ_NET)  ||
+               edascm_is_object_type (line_s, OBJ_BUS)  ||
+               edascm_is_object_type (line_s, OBJ_PIN)),
+               line_s, SCM_ARG1, scheme_object_line_info);
+
+  GedaObject *obj = edascm_to_object (line_s);
+
+  SCM      x1 = scm_from_int (obj->line->x[0]);
+  SCM      y1 = scm_from_int (obj->line->y[0]);
+  SCM      x2 = scm_from_int (obj->line->x[1]);
+  SCM      y2 = scm_from_int (obj->line->y[1]);
+  SCM   color = scm_from_int (obj->color);
+
+  /* Swap ends according to pin's whichend flag. */
+  if ((obj->type == OBJ_PIN) && obj->pin->whichend) {
+    SCM s;
+    s = x1; x1 = x2; x2 = s;
+    s = y1; y1 = y2; y2 = s;
+  }
+
+  return scm_list_n (x1, y1, x2, y2, color, SCM_UNDEFINED);
+}
+
+/*!
  * \brief Set line parameters.
  * \par Function Description
  *  Modifies a line object by setting its parameters to new values.
@@ -731,49 +778,6 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
 }
 
 /*!
- * \brief Get line parameters.
- * \par Function Description
- *  Retrieves the parameters of a line object. The return value is a
- *  list of parameters:
- *
- * -# X-coordinate of start of line
- * -# Y-coordinate of start of line
- * -# X-coordinate of end of line
- * -# Y-coordinate of end of line
- * -# Colormap index of color to be used for drawing the line
- *
- *  This function also works on net, bus and pin objects.  For pins,
- *  the start is the connectable point on the pin.
- *
- *  param line_s the line object to inspect.
- *
- * \return a list of line parameters.
- */
-EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
-               (SCM line_s), "Get line parameters.")
-{
-  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE) ||
-               edascm_is_object_type (line_s, OBJ_NET)  ||
-               edascm_is_object_type (line_s, OBJ_BUS)  ||
-               edascm_is_object_type (line_s, OBJ_PIN)),
-               line_s, SCM_ARG1, scheme_object_line_info);
-
-  GedaObject *obj = edascm_to_object (line_s);
-  SCM      x1 = scm_from_int (obj->line->x[0]);
-  SCM      y1 = scm_from_int (obj->line->y[0]);
-  SCM      x2 = scm_from_int (obj->line->x[1]);
-  SCM      y2 = scm_from_int (obj->line->y[1]);
-  SCM   color = scm_from_int (obj->color);
-
-  /* Swap ends according to pin's whichend flag. */
-  if ((obj->type == OBJ_PIN) && obj->pin->whichend) {
-    SCM s;
-    s = x1; x1 = x2; x2 = s;
-    s = y1; y1 = y2; y2 = s;
-  }
-
-  return scm_list_n (x1, y1, x2, y2, color, SCM_UNDEFINED);
-}
 
 /*!
  * \brief Get the type of a pin object.

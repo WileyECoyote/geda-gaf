@@ -5,7 +5,8 @@
     * scheme/unit-tests/t0102-object-circle.scm: Add check for object-id.
 
     * src/scheme/scheme_object.c: Replace SCM_DEFINE macro with EDA_SCM_DEFINE
-      and export scheme_object_id during module initialization.
+      and export scheme_object_id during module initialization. Move function
+      object_line_info before object_set_line_x.
 
 2019-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
