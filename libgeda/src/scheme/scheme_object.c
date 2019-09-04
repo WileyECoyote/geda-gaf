@@ -1541,7 +1541,7 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
  * \note Scheme API: Implements the %object-id procedure in the
  *       (geda core object) module.
  *
- * \param [in] obj_s an #OBJECT smob.
+ * param [in] obj_s an #OBJECT smob.
  *
  * \return a Scheme symbol representing the object type.
  */
