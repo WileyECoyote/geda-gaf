@@ -1485,8 +1485,8 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
  *
  * \return a Scheme symbol representing the object type.
  */
-SCM_DEFINE (object_id, "%object-id", 1, 0, 0,
-            (SCM obj_s), "Get an object smob's id")
+EDA_SCM_DEFINE (object_id, "%object-id", 1, 0, 0,
+               (SCM obj_s), "Get an object smob's id")
 {
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
               SCM_ARG1, scheme_object_type);
