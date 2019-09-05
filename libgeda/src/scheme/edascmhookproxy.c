@@ -217,6 +217,12 @@ GedaType edascm_hook_proxy_get_type (void)
   return edascm_hook_proxy_type;
 }
 
+/*!
+ * \par Function Description
+ *  Returns true if the argument is an EdascmHookProxy object.
+ *
+ * \return boolean.
+ */
 bool is_a_edascm_hook_proxy (EdascmHookProxy *proxy)
 {
   if (G_IS_OBJECT(proxy)) {

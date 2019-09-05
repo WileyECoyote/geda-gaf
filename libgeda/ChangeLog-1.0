@@ -2,6 +2,8 @@
 
     * scheme/unit-tests/t0101-object-box.scm: Enhance check for object-ids.
 
+    * src/scheme/edascmhookproxy.c: Add is_a_edascm_hook_proxy documentation.
+
   ** src/scheme/scheme_object.c: Fix object-id SCM_ASSERT subr argument.
 
 2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
