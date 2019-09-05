@@ -284,6 +284,7 @@
 )
 
 ;;; Pictures
+
 (define-public (picture? x)
   (object-type? x 'picture))
 
