@@ -1,3 +1,7 @@
+2019-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/unit-tests/t0101-object-box.scm: Enhance check for object-ids.
+
 2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/object.scm: Add scheme interface:
