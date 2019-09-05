@@ -2,6 +2,8 @@
 
     * scheme/unit-tests/t0101-object-box.scm: Enhance check for object-ids.
 
+  ** src/scheme/scheme_object.c: Fix object-id SCM_ASSERT subr argument.
+
 2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/object.scm: Add scheme interface:

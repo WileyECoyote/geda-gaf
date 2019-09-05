@@ -1549,7 +1549,7 @@ EDA_SCM_DEFINE (object_id, "%object-id", 1, 0, 0,
                (SCM obj_s), "Get an object smob's id")
 {
   SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
-              SCM_ARG1, scheme_object_type);
+              SCM_ARG1, scheme_object_id);
 
   GedaObject *obj = edascm_to_object (obj_s);
 
