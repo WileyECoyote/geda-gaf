@@ -6,6 +6,8 @@
 
     * src/scheme/edascmvaluetypes.c: Reformat documentation blocks.
 
+    * src/scheme/scheme_init.c: Call edascm_init_version in edascm_init_impl.
+
   ** src/scheme/scheme_object.c: Fix object-id SCM_ASSERT subr argument.
 
 2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
