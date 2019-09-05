@@ -12,6 +12,10 @@
 
   ** src/scheme/scheme_object.c: Fix object-id SCM_ASSERT subr argument.
 
+    * src/scheme/scheme_version.c: Revise edascm_init_version to declare the
+      module as the "geda core version" module instead of "libgeda", which is
+      inconsistence with all other libgeda modules.
+
 2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/geda/object.scm: Add scheme interface:

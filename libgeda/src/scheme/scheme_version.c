@@ -71,8 +71,8 @@ init_module_libgeda_core_version (void *unused)
  */
 void edascm_init_version ()
 {
-  /* Define the (libgeda core version) module */
-  scm_c_define_module ("libgeda core version",
+  /* Define the (geda core version) module */
+  scm_c_define_module ("geda core version",
                        (void (*)(void*)) init_module_libgeda_core_version,
                        NULL);
 }
