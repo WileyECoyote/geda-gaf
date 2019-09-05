@@ -4,6 +4,8 @@
 
     * src/scheme/edascmhookproxy.c: Add is_a_edascm_hook_proxy documentation.
 
+    * src/scheme/edascmvaluetypes.c: Reformat documentation blocks.
+
   ** src/scheme/scheme_object.c: Fix object-id SCM_ASSERT subr argument.
 
 2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
