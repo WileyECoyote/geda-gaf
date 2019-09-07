@@ -154,10 +154,15 @@ EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
     return SCM_UNSPECIFIED;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Log.
+ * \par Function Description
+ *  Returns a scheme string of the log.
  *
+ * \note Scheme API: Implements the %log-read procedure in the (geda
+ *       core log) module.
+ *
+ * \return string array.
  */
 EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0, (),
                "Get log contents as string.")
