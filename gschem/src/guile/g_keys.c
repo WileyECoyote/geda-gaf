@@ -756,7 +756,7 @@ GHashTable *g_keys_to_new_hash_table (void)
  *  Defines procedures in the (gschem core keymap) module. The module
  *  can be accessed using (use-modules (gschem core keymap)).
  */
-static void init_module_gschem_core_keymap ()
+static void init_module_gschem_core_keymap (void)
 {
   /* Register the functions */
   #include "g_keys.x"
@@ -772,7 +772,7 @@ static void init_module_gschem_core_keymap ()
  *  Registers some Scheme procedures for working with key combinations.
  *  Should only be called by main_prog().
  */
-void g_keys_init ()
+void g_keys_init (void)
 {
   /* Register key smob type */
   g_key_smob_tag = scm_make_smob_type ("gschem-key", 0);
