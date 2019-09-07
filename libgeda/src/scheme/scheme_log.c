@@ -40,8 +40,7 @@ SCM_SYMBOL(debug_sym,    "debug");
  * Helper function to construct a GLogLevelFlags value from a Scheme
  * symbol.
  */
-static GLogLevelFlags
-decode_level (SCM level_s)
+static GLogLevelFlags decode_level (SCM level_s)
 {
     if (level_s == error_sym)    return (G_LOG_LEVEL_ERROR | G_LOG_FLAG_FATAL);
     if (level_s == critical_sym) return G_LOG_LEVEL_CRITICAL;
