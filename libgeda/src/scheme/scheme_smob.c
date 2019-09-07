@@ -606,11 +606,11 @@ static void init_module_geda_core_smob (void *nothing)
 /*!
  * \brief Initialize the basic gEDA smob types.
  * \par Function Description
- * Registers the gEDA core smob types and some procedures acting on
- * them.  gEDA only uses a single Guile smob, and uses the flags field
- * to multiplex the several different underlying C structures that may
- * be represented by that smob. Should only be called by
- * edascm_init().
+ *  Registers the gEDA core smob types and some procedures acting on
+ *  them.  gEDA only uses a single Guile smob, and uses the flags field
+ *  to multiplex the several different underlying C structures that may
+ *  be represented by that smob. Should only be called by
+ *  edascm_init().
  */
 void edascm_init_smob (void)
 {
