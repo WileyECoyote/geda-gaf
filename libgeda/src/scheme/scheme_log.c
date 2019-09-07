@@ -219,7 +219,7 @@ init_module_geda_core_log ()
  *  Registers some core Scheme procedures for logging support. Should
  *  only be called by edascm_init().
  */
-void edascm_init_log ()
+void edascm_init_log (void)
 {
     /* Define the (geda core log) module */
     scm_c_define_module ("geda core log",
