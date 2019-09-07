@@ -315,7 +315,7 @@ EDA_SCM_DEFINE (object_make_picture, "%make-picture", 0, 0, 0, (),
  *  from init_module_geda_core_object as an extension to that module.
  */
 void
-edascm_init_make_object ()
+edascm_init_make_object (void)
 {
   /* Register the functions */
   #include "scheme_make.x"
