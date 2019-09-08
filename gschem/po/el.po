@@ -140,20 +140,25 @@ msgstr "Ανάκτηση της θέσης του κύριου παραθύρο�
 
 #: gschem/src/base/gschem_main_window.c:299
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Ανάκτηση της γεωμετρίας του κύριου παραθύρου.\n"
 
+# Auto-Restore; Αυτόματη επαναφορά
+# Anáktisi tis geometrías tou kýriou parathýrou
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Αυτόματη επαναφορά"
 
+# Automatically restore the main window geometry
+# Aftómati epanaforá tis geometrías tou kýriou parathýrou
 #: gschem/src/base/gschem_main_window.c:423
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "Αυτόματη επαναφορά της γεωμετρίας του κύριου παραθύρου"
 
+# Horizontal adjustment; Orizóntia rýthmisi
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Οριζόντια ρύθμιση"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
