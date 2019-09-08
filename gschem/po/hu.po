@@ -22,19 +22,19 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "Figyelem: <%s> nem bővült"
 
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "Parancssori hiba: az automatikus betöltés letiltása utoljára\n"
 
 #: gschem/src/base/gschem.c:219
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "Feltételezve, hogy a"
 
 #: gschem/src/base/gschem.c:233
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "Feltételezve, hogy a"
 
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
@@ -42,7 +42,7 @@ msgstr "Hiba betöltése kért munkamenet"
 
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr ""
+msgstr "Automatikus betöltése"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -51,6 +51,10 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"Be kell állítani a GEDADATA környezeti változót!\n"
+"\n"
+"A gschem nem talál egyes adatfájlokat. Kérjük, ellenőrizze a GEDADATA-t\n"
+"a környezeti változó a megfelelő helyre mutat.\n"
 
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
@@ -70,20 +74,20 @@ msgstr "Mind mentése"
 
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "A naplózási rendszer le van tiltva\n"
 
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "HIBA: Nem sikerült betölteni vagy értékelni az indító szkriptet.\n"
 
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Kilép a normálból\n"
 
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "NEM SIKERÜLT:"
 
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
@@ -91,15 +95,15 @@ msgstr "Jelenlegi nézet"
 
 #: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "A párbeszédablak szülőablaka"
 
 #: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 #: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
-msgstr ""
+msgstr "A párbeszédablak címe"
 
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
@@ -107,32 +111,32 @@ msgstr "Szöveg elrejtése"
 
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "A makró címkénél megjelenítendő szöveg"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "Macro:"
 
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "Makró karakterlánc"
 
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "értékelje"
 
 #: gschem/src/base/gschem_main_window.c:243
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "A főablak helyének lekérése.\n"
 
 #: gschem/src/base/gschem_main_window.c:299
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "A főablak geometriájának beolvasása.\n"
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Automatikus visszaállítás"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:423
