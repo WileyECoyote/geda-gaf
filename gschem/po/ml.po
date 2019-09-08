@@ -93,10 +93,10 @@ msgid "ERROR: Failed to load or evaluate startup script.\n"
 msgstr ""
 "പിശക്: സ്റ്റാർട്ടപ്പ് സ്ക്രിപ്റ്റ് ലോഡുചെയ്യുന്നതിനോ മൂല്യനിർണ്ണയമാക്കുന്നതിനോ പരാജയപ്പെട്ടു.\n"
 
-# Exiting normal
+# Exiting normal; sādhāraṇa puṟattukaṭakkunnu
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr "Exiting normal\n"
+msgstr "സാധാരണ പുറത്തുകടക്കുന്നു\n"
 
 # FAILED
 #: gschem/src/base/gschem.c:558
@@ -533,29 +533,33 @@ msgstr "ഓഫാണ്"
 msgid "Error"
 msgstr "പിശക്"
 
+# NONE; illa
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "ഇല്ല"
 
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current gschem page."
-msgstr ""
+msgstr "വസ്തു ~A നിലവിലെ gschem പേജിൽ ഉൾപ്പെടുത്തിയിട്ടില്ല."
 
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "അസാധുവായ വാചക നാമം / മൂല്യ ദൃശ്യപരത ~A."
 
+# Processing; prēāsas'siṅg
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "പ്രോസസ്സിംഗ്"
 
+# Skipping; oḻivākkunnu
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "ഒഴിവാക്കുന്നു"
 
+# entry in rc file; ār‌si phayalile en‌ṭri
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "ആർ‌സി ഫയലിലെ എൻ‌ട്രി"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
