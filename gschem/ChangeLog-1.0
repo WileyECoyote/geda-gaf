@@ -1,3 +1,7 @@
+2019-09-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/ca.po: Update Catalan translations.
+
 2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_register.c: Add structure documentation for gschem_rc_funcs.

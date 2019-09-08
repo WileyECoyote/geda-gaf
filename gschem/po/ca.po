@@ -150,27 +150,30 @@ msgstr "Restablir automàticament"
 
 #: gschem/src/base/gschem_main_window.c:423
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "Restaure automàticament la geometria de la finestra principal"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Ajust horitzontal"
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
-msgstr ""
+msgstr "Pàg"
 
+# Page Geometry
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Geometria de la pàgina"
 
+# Vertical adjustment
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Ajust vertical"
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, c-format
