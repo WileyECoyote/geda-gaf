@@ -18,30 +18,36 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# Keikoku:<% S > wa tenkai sa remasendeshita
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr ""
+msgstr "警告：<％s> は展開されませんでした\n"
 
+# Komandorain'erā: Jidō rōdo o saigo ni mukōnisuru
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr ""
+msgstr "コマンドラインエラー：自動ロードを最後に無効にする\n"
 
+# Karozu fairu no safikkusu o sōtei
 #: gschem/src/base/gschem.c:219
 msgid "Assuming schematic file suffix for"
-msgstr ""
+msgstr "回路図ファイルのサフィックスを想定"
 
+# Shinboru fairu no safikkusu o sōtei
 #: gschem/src/base/gschem.c:233
 msgid "Assuming symbol file suffix for"
-msgstr ""
+msgstr "シンボルファイルのサフィックスを想定"
 
+# Yōkyū sa reta sesshon no yomikomi-chū ni erā ga hassei shimashita
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
-msgstr ""
+msgstr "要求されたセッションの読み込み中にエラーが発生しました"
 
+# Auto Load: Jidō rōdo
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr ""
+msgstr "自動ロード"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -50,6 +56,10 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
+"GEDADATA環境変数を設定する必要があります!\n"
+"\n"
+"gschemは一部のデータファイルを見つけることができません。 GEDADATAを確認してください\n"
+"環境変数が正しい場所を指している.\n"
 
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
@@ -67,22 +77,27 @@ msgstr "スキーム初期化ファイルの読み込みに失敗しました"
 msgid "version"
 msgstr "すべて保存"
 
+# Logging system is disabled; Rogingushisutemu wa mukōdesu
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "ロギングシステムは無効です\n"
 
+# ERROR: Failed to load or evaluate startup script
+# Erā: Kidō sukuriputo no rōdo matawa hyōka ni shippai shimashita
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "エラー：起動スクリプトのロードまたは評価に失敗しました.\n"
 
+# Exiting normal; Tsūjō shūryō
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "通常終了"
 
+# FAILED; Shippai shimashita
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "失敗しました:"
 
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
