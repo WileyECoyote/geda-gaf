@@ -113,18 +113,19 @@ msgstr ""
 msgid "Label Text"
 msgstr "Cacher le texte"
 
+# Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "Texte à afficher pour l'étiquette Macro"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "Macro:"
 
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "Macro String"
 
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
@@ -132,7 +133,7 @@ msgstr "Évaluer"
 
 #: gschem/src/base/gschem_main_window.c:243
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Récupération de la position de la fenêtre principale.\n"
 
 #: gschem/src/base/gschem_main_window.c:299
 msgid "Retrieving main window geometry.\n"
@@ -140,7 +141,7 @@ msgstr "Récupération de la géométrie de la fenêtre principale.\n"
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Restauration automatique"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:423
@@ -150,22 +151,24 @@ msgstr "Restaurer automatiquement la géométrie de la fenêtre principale"
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Réglage horizontal"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
 msgstr "Page"
 
+# Page Geometry
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Géométrie de la page"
 
+# Vertical adjustment
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Ajustement vertical"
 
 #: gschem/src/base/gschem_parsecmd.c:85
 #, c-format

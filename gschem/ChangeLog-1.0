@@ -6,6 +6,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/fr.po: Update French translations.
+
 2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_register.c: Add structure documentation for gschem_rc_funcs.
