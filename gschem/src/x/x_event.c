@@ -879,7 +879,7 @@ bool x_event_motion (GtkWidget      *widget,
     if (test_event->type == GDK_MOTION_NOTIFY &&
        ((GdkEventMotion*)test_event)->state == event->state)
     {
-        skip_event++;
+      skip_event++;
     }
 
     gdk_event_put(test_event); /* put it back in front of the queue */
