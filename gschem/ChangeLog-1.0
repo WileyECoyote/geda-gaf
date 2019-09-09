@@ -1,5 +1,8 @@
 2019-09-09 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/guile/g_keys.c: Declare init_module_gschem_core_keymap has
+      one void pointer argument.
+
     * src/x/x_event.c: Move setting control key states after the check
       for DOING_STROKE in x_event_motion.
 
