@@ -87,10 +87,11 @@ static void o_complex_end (GschemToplevel *w_current)
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
-/*! \brief Invalidate Temporary drawing artifacts for complex object
- *  \par Function Description
- *   Get coordinates from top-level and invalidate the bounding
- *   region of a complex object.
+/*!
+ * \brief Invalidate Temporary drawing artifacts for complex object
+ * \par Function Description
+ *  Get coordinates from top-level and invalidate the bounding
+ *  region of a complex object.
  */
 void o_complex_invalidate_rubber (GschemToplevel *w_current, GedaObject *o_current)
 {
@@ -335,14 +336,15 @@ o_complex_translate_all(GschemToplevel *w_current, int offset, const GList  *obj
   i_status_update_sensitivities(w_current);
 }
 
-/*! \brief Reposition attributes to original positions
- *  \par Function Description
+/*!
+ * \brief Reposition attributes to original positions
+ * \par Function Description
  *  The functions iterates over the attributes attached to the
  *  given object and calls o_attrib_reset_position to reposition
  *  each attribute back to where the attribute was defined in the
  *  symbol file if the attribute was inherited.
  *
- *  \returns TRUE if an object was modified, otherwise FALSE.
+ * \returns TRUE if an object was modified, otherwise FALSE.
  */
 bool o_complex_reset_attrib_positions (GschemToplevel *w_current, GedaObject *o_current)
 {
