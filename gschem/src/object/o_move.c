@@ -507,7 +507,7 @@ void o_move_draw_rubber (GschemToplevel *w_current, int drawing)
  *  \par Function Description
  *
  */
-int o_move_return_whichone(GedaObject *object, int x, int y)
+static int o_move_return_whichone(GedaObject *object, int x, int y)
 {
   if (object->line->x[0] == x && object->line->y[0] == y) {
     return (0);
