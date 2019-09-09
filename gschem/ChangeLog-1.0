@@ -1,21 +1,18 @@
+2019-09-09 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_event.c: Move setting control key states after the check
+      for DOING_STROKE in x_event_motion.
+
 2019-09-07 Wiley E. Hill <wileyhill@gmail.com
 
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/el.po: Update Greek translations.
-
     * po/fr.po: Update French translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/sl.po: Update Slovenian translations.
-
     * po/sr.po: Update Serbian translations.
 
 2019-09-02 Wiley E. Hill <wileyhill@gmail.com>

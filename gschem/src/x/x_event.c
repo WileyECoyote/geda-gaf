@@ -852,10 +852,6 @@ bool x_event_motion (GtkWidget      *widget,
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-  w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
-  w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
-
 #if DEBUG_EVENTS
   printf("MOTION!\n");
 #endif
@@ -866,6 +862,10 @@ bool x_event_motion (GtkWidget      *widget,
     return(0);
   }
 #endif /* HAVE_LIBSTROKE */
+
+  w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
+  w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
+  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
   /* Werner: Skip the motion event if there are other motion events
    * in the gdk event queue but only if event is the same event and
