@@ -265,7 +265,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
         printf("%s: removing attrib with name = %s\n", __func__, old_attrib_name);
 #endif
 
-        s_object_delete_text_object_in_object (toplevel, a_current);
+        s_object_delete_text_object (toplevel, a_current);
 
         GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
@@ -452,8 +452,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
  * \param text_object text object to be deleted
  */
 void
-s_object_delete_text_object_in_object (GedaToplevel *toplevel,
-                                       GedaObject   *text_object)
+s_object_delete_text_object (GedaToplevel *toplevel, GedaObject *text_object)
 {
   geda_struct_page_remove_object (toplevel->page_current, text_object);
   geda_struct_object_release (text_object);
