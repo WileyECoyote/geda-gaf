@@ -457,16 +457,3 @@ s_object_delete_text_object (GedaToplevel *toplevel, GedaObject *text_object)
   geda_struct_page_remove_object (toplevel->page_current, text_object);
   geda_struct_object_release (text_object);
 }
-
-/*------------------------------------------------------------------*/
-/*!
- * \brief Ensure object has a symbol file
- * \par Function Description
- *  This verifies that the object has a non-null symbol filename.
- *
- * \returns 0 = valid symbol file, 1 = no symbol file found.
- */
-int s_object_has_sym_file(GedaObject *object)
-{
-  return geda_complex_get_filename(object->complex) ? 0 : 1;
-}

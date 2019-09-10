@@ -77,7 +77,6 @@ void s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                            GedaObject   *object);
 
 void s_object_delete_text_object(GedaToplevel *toplevel, GedaObject *test_object);
-int  s_object_has_sym_file(GedaObject *object);
 
 /* ------------- s_misc.c ------------- */
 void verbose_print(char *string);
