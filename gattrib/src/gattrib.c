@@ -27,7 +27,7 @@
  * code were borrowed from other sources, and hacked together by SDB in
  * Dec. 2003.  Particularly rich sources for code were gEDA/gnetlist, and
  * the gtkextra program testgtksheet.c. Thanks to their authors for
- * providing the foundation upon which this is built.
+ * providing the foundation upon which gattrib is built.
  *
  * Of course, I *did* write major portions of the code too . . . . .
  * Some documentation about the internal operation of this program can be
@@ -59,22 +59,22 @@
  *
  * When run, gattrib does this:
  *
- * -# It uses libgeda functions to read in your design, and fill up the
+ * -# Uses libgeda functions to read in your design, and fill up the
  *    GedaToplevel struct.
- * -# It then loops over everything in GedaToplevel and fills out the refdes
+ * -# Loops over everything in GedaToplevel and fills out the refdes
  *    list and the attribute name list. It sticks these into a STRING_LIST
  *    which is associated with the PageDataSet struct.
- * -# Then, knowing all the refdeses and all the attribute names, it
- *    creates a TABLE data struct (a member of PageDataSet), and loops over
- *    each cell in the TABLE. For each cell, it queries GedaToplevel for the
- *    corresponding name=value pair, and sticks the value in the TABLE.
- * -# When done with that, it then creates a GtkSheet and populates it
- *    by looping over TABLE.
- * -# Then it turns over control to the user, who can manipulate the
- *    GtkSheet. As the user adds and deletes values from the GtkSheet, the
- *    values are stored locally there. The GtkSheet is the master
- *    repository of all attributes at that point; the other data structures
- *    are not updated.
+ * -# With all the refdeses and all the attribute names in list, gattrib
+ *    then creates a TABLE data struct (a member of PageDataSet), and loops
+ *    over each cell in the TABLE. For each cell, it queries GedaToplevel
+ *    for the corresponding name=value pair, and sticks the value in the
+ *    TABLE.
+ * -# After the data is loaded into the tables, a GtkSheet is creates and
+ *    populated with the data in the TABLE.
+ * -# Then it turns over control to the user, who can manipulate the GtkSheet.
+ *    As the user adds and deletes values from the GtkSheet, the values are
+ *    stored locally there. The GtkSheet is the master repository of all
+ *    attributes at that point; the other data structures are not updated.
  *
  *    Saving out a design is similar, except the process runs in reverse:
  *
@@ -84,8 +84,8 @@
  *    GedaToplevel. I've kind of forgotten how I implemented these feaures,
  *    however. :-S
  * -# Then, the program loops over the cells in PageDataSet, and updates
- *    the attributes in GedaToplevel using functions from libgeda, as well as by
- *    reaching directly into the GedaToplevel data structure (a software
+ *    the attributes in GedaToplevel using functions from libgeda, as well as
+ *    by reaching directly into the GedaToplevel data structure (a software
  *    engineering no-no). If a previously existing attrib has been removed,
  *    then it is removed from GedaToplevel. If a new attrib has been attached
  *    to a component, then it is added to GedaToplevel.

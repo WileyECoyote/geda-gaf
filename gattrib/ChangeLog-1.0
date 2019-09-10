@@ -1,3 +1,7 @@
+2019-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Revise/update internal documentation.
+
 2019-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_table.c: Revise s_table_gtksheet_to_table function documentation.
