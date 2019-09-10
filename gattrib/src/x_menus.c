@@ -123,11 +123,9 @@ void x_menu_file_open()
 }
 
 /*!
- * \brief Menu Open Recent
+ * \internal Menu Open Recent
  * \par Function Description
- * Menu Ppen Recent file.
- * -# close the current project and reinitialize structures
- * -# load the new project
+ *  Menu open Recent file.
  */
 static void menu_open_recent( char* filename)
 {
