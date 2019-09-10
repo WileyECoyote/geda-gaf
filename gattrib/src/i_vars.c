@@ -48,7 +48,7 @@ GList *default_hide_columns = NULL;
 /*!
  * \brief Initialize variables in the GedaToplevel
  * \par Function Description
- * Initialize the variables in toplevel. In practice, this is only
+ * Initializes the variables in toplevel. In practice, this is only
  * the paper size for the sheet.
  *
  * \param toplevel pointer to the GedaToplevel to set paper size in.
