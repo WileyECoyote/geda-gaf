@@ -203,7 +203,9 @@ bool x_find_main_search(char *text, char *replacement) {
         strcpy(new, replacement);
     }
     else {
+
       strcpy(new, cell_text);
+
       if (Search.Case) {
         geda_utility_string_strsubst(new, text, replacement);
       }
@@ -217,47 +219,66 @@ bool x_find_main_search(char *text, char *replacement) {
   }
 
   void search_range_backword() {
+
     for (col = scol; col > (Search.range.col0-1); col--) {
+
       /*check current cell and advance here?*/
       for (row = srow; row > (Search.range.row0-1); row--) {
+
         cell_text = gtk_sheet_cell_get_text(Search.sheet, row, col);
+
         if (ishit() > 0) {
+
           found = TRUE;
+
           gtk_sheet_set_active_cell (Search.sheet, row, col);
+
           if (replacement) {
             do_replace_text(row, col);
           }
+
           if (!Search.ReplaceAll) {
             break;
           }
         }
       }
+
       if ((found) && (!Search.ReplaceAll)) {
           break;
       }
+
       srow = Search.range.rowi; /* for subsequent rows start at the beginning*/
     }
   }
 
   void search_range_forward() {
+
     for (col = scol; col < (Search.range.coli+1); col++) {
+
       /*check current cell and advance here?*/
       for (row = srow; row < (Search.range.rowi+1); row++) {
+
         cell_text = gtk_sheet_cell_get_text(Search.sheet, row, col);
+
         if (ishit() > 0) {
+
           found = TRUE;
           gtk_sheet_set_active_cell (Search.sheet, row, col);
+
           if (replacement) {
             do_replace_text(row, col);
           }
+
           if (!Search.ReplaceAll) {
             break;
           }
         }
       }
+
       if ((found) && (!Search.ReplaceAll)) {
           break;
       }
+
       srow = Search.range.row0; /* for subsequent rows start at the beginning*/
     }
   }
@@ -298,6 +319,7 @@ bool x_find_main_search(char *text, char *replacement) {
 
   /* if Wrap is enabled and we did not find and was not from the beginning */
   if ((Search.Wrap) && (!found || Search.ReplaceAll) && (srow + scol != first_cell )) {
+
     /* reset starting index to the beginning and search again */
     if (Search.Backword){
       srow = (Search.mode < 0) ? abs(Search.mode) : Search.range.rowi;
@@ -342,7 +364,9 @@ void x_find_attribute_value(void)
   }
 
   gtk_sheet_unselect_range(Search.sheet);
-  Search.FindOnlyMode=TRUE;
+
+  Search.FindOnlyMode = TRUE;
+
   x_dialog_search_replace(&Search, text);
 
   if (text) {
