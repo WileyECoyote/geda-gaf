@@ -5,6 +5,8 @@
     * src/s_object.c: Rename s_object_delete_text_object_in_object ->
       s_object_delete_text_object. Remove function s_object_has_sym_file.
 
+    * src/x_gtksheet.c: Add x_gtksheet_get_is_empty function documentation.
+
 2019-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_table.c: Revise s_table_gtksheet_to_table function documentation.

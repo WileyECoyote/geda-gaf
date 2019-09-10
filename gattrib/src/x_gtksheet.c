@@ -1052,7 +1052,16 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
   x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 
-
+/*!
+ * \brief Get GtkSheet cell at given Row Col is Empty
+ * \par Function Description
+ *
+ * \param sheet GtkSheet to query
+ * \param row   The Row to query
+ * \param col   The column to query
+ *
+ * \returns TRUE if the cell at Row Col is empty.
+ */
 bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
 {
   return gtk_sheet_cell_get_text(sheet, row, col) == NULL;
