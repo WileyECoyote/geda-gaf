@@ -446,7 +446,7 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 /*!
  * \brief Delete text object
  * \par Function Description
- *  Delete the text object pointed to by text_object.
+ *  Delete the text object pointed to by \a text_object.
  *
  * \param toplevel    GedaToplevel to be operated on
  * \param text_object text object to be deleted
