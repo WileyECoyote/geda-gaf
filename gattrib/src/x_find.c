@@ -171,19 +171,26 @@ bool x_find_main_search(char *text, char *replacement) {
 
   int ishit( ) {
 
-    if (!cell_text)
+    if (!cell_text) {
       return 0;
+    }
 
-    if (Search.Whole)
-      if (Search.Case)
-        return !(strcmp ( cell_text, text));
-      else
-        return (!geda_utility_string_stricmp ( cell_text, text));
-    else
-      if (Search.Case)
-        return (strstr ( cell_text, text)) ? (strlen (strstr ( cell_text, text))) : 0;
-      else
-        return (geda_string_istr ( cell_text, text)) ? (strlen (geda_string_istr ( cell_text, text))) : 0;
+    if (Search.Whole) {
+      if (Search.Case) {
+        return !(strcmp (cell_text, text));
+      }
+      else {
+        return (!geda_utility_string_stricmp (cell_text, text));
+      }
+    }
+    else {
+      if (Search.Case) {
+        return (strstr (cell_text, text)) ? (strlen (strstr (cell_text, text))) : 0;
+      }
+      else {
+        return (geda_string_istr (cell_text, text)) ? (strlen (geda_string_istr (cell_text, text))) : 0;
+      }
+    }
   }
 
   void do_replace_text(int row, int col) {
@@ -192,14 +199,17 @@ bool x_find_main_search(char *text, char *replacement) {
 
     new = malloc(strlen (cell_text) - strlen (text) + strlen (replacement) +2 );
 
-    if (Search.Whole)
+    if (Search.Whole) {
         strcpy(new, replacement);
+    }
     else {
       strcpy(new, cell_text);
-      if (Search.Case)
+      if (Search.Case) {
         geda_utility_string_strsubst(new, text, replacement);
-      else
+      }
+      else {
         geda_utility_string_strisubst(new, text, replacement);
+      }
     }
 
     gtk_sheet_set_cell_text(Search.sheet, row, col, new);
@@ -207,9 +217,9 @@ bool x_find_main_search(char *text, char *replacement) {
   }
 
   void search_range_backword() {
-    for( col = scol; col > (Search.range.col0-1); col--) {
+    for (col = scol; col > (Search.range.col0-1); col--) {
       /*check current cell and advance here?*/
-      for( row = srow; row > (Search.range.row0-1); row--) {
+      for (row = srow; row > (Search.range.row0-1); row--) {
         cell_text = gtk_sheet_cell_get_text(Search.sheet, row, col);
         if (ishit() > 0) {
           found = TRUE;
@@ -217,20 +227,22 @@ bool x_find_main_search(char *text, char *replacement) {
           if (replacement) {
             do_replace_text(row, col);
           }
-          if (!Search.ReplaceAll)
+          if (!Search.ReplaceAll) {
             break;
+          }
         }
       }
-      if ((found) && (!Search.ReplaceAll))
+      if ((found) && (!Search.ReplaceAll)) {
           break;
-        srow = Search.range.rowi; /* for subsequent rows start at the beginning*/
+      }
+      srow = Search.range.rowi; /* for subsequent rows start at the beginning*/
     }
   }
 
   void search_range_forward() {
-    for( col = scol; col < (Search.range.coli+1); col++) {
+    for (col = scol; col < (Search.range.coli+1); col++) {
       /*check current cell and advance here?*/
-      for( row = srow; row < (Search.range.rowi+1); row++) {
+      for (row = srow; row < (Search.range.rowi+1); row++) {
         cell_text = gtk_sheet_cell_get_text(Search.sheet, row, col);
         if (ishit() > 0) {
           found = TRUE;
@@ -238,13 +250,15 @@ bool x_find_main_search(char *text, char *replacement) {
           if (replacement) {
             do_replace_text(row, col);
           }
-          if (!Search.ReplaceAll)
+          if (!Search.ReplaceAll) {
             break;
+          }
         }
       }
-      if ((found) && (!Search.ReplaceAll))
+      if ((found) && (!Search.ReplaceAll)) {
           break;
-        srow = Search.range.row0; /* for subsequent rows start at the beginning*/
+      }
+      srow = Search.range.row0; /* for subsequent rows start at the beginning*/
     }
   }
 
@@ -273,10 +287,12 @@ bool x_find_main_search(char *text, char *replacement) {
     /* else we need to advance the starting position depending on the
      * search mode and then search. For our data, a forward search is
      * top-to-bottom and then left to right */
-      if (Search.mode < 0) /* if row was selected*/
-        scol = scol + inc; /* advance 1 column to left or right */
-      else
-        srow = srow + inc; /* advance the cursor in case we are on a hit */
+      if (Search.mode < 0)  { /* if row was selected*/
+        scol = scol + inc;    /* advance 1 column to left or right */
+      }
+      else {
+        srow = srow + inc;    /* advance the cursor in case we are on a hit */
+      }
       search_func();
   }
 
