@@ -1,7 +1,8 @@
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtkitementry.c: Add ancillary pointer to GtkStyle in
-      _item_entry_get_insertion_cursor_gc.
+    * src/gtksheet/gtkitementry.c: Add ancillary pointer to GtkStyle and GdkGC
+      in _item_entry_get_insertion_cursor_gc to improve readability and eliminate
+      early return.
 
 2019-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

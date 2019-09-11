@@ -1726,6 +1726,7 @@ _item_entry_get_insertion_cursor_gc(GtkWidget *widget, _Bool is_primary)
 {
   CursorInfo *cursor_info;
   GtkStyle   *style;
+  GdkGC      *gc;
 
   style       = gtk_widget_get_style(widget);
   cursor_info = g_object_get_data((GObject*)style, "gtk-style-cursor-info");
@@ -1770,7 +1771,7 @@ _item_entry_get_insertion_cursor_gc(GtkWidget *widget, _Bool is_primary)
                                                            "cursor-color",
                                                            &style->black);
     }
-    return g_object_ref(cursor_info->primary_gc);
+    gc = cursor_info->primary_gc;
   }
   else {
 
@@ -1781,8 +1782,10 @@ _item_entry_get_insertion_cursor_gc(GtkWidget *widget, _Bool is_primary)
                                                              "secondary-cursor-color",
                                                              &gray);
     }
-    return g_object_ref(cursor_info->secondary_gc);
+    gc = cursor_info->secondary_gc;
   }
+
+  return g_object_ref(gc);
 }
 
 /*
