@@ -1274,7 +1274,7 @@ color_button_popup_menu_callback (GedaMenuItem *item, void * data)
 bool color_button_popup_destroy(GtkWidget *widget, void *data)
 {
   if (GEDA_IS_MENU(popup_menu)) {
-    g_object_unref((GtkObject*)popup_menu);
+    g_object_unref(popup_menu);
     popup_menu = NULL;
   }
   return FALSE;

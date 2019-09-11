@@ -6,6 +6,9 @@
         * x_menu_main_popup_execute
         * x_menu_path_popup_execute
 
+    * src/x/x_settings_dialog.c: Remove unnecessary GtkObject cast in
+      color_button_popup_destroy.
+
 2019-09-09 Wiley E. Hill <wileyhill@gmail.com
 
     * src/guile/g_keys.c: Declare init_module_gschem_core_keymap has
