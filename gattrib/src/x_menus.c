@@ -129,7 +129,7 @@ void x_menu_file_open()
  */
 static void menu_open_recent( char* filename)
 {
-  if( sheet_head->CHANGED == TRUE) {
+  if (sheet_head->CHANGED == TRUE) {
     switch (x_dialog_file_not_saved()) {
     case GEDA_RESPONSE_CANCEL:
       return; /* user canceled from the save unsaved file dialog */
