@@ -1767,7 +1767,7 @@ _item_entry_get_insertion_cursor_gc(GtkWidget *widget, _Bool is_primary)
       if (!cursor_info->primary_gc) {
         cursor_info->primary_gc = _item_entry_make_cursor_gc(widget,
                                                              "cursor-color",
-                                                             &gtk_widget_get_style(widget)->black);
+                                                             &style->black);
       }
       return g_object_ref(cursor_info->primary_gc);
     }
