@@ -1696,92 +1696,93 @@ _item_entry_make_cursor_gc(GtkWidget  *widget,
                            const char *property_name,
                            GdkColor   *fallback)
 {
-    GdkGCValues gc_values;
-    GdkGCValuesMask gc_values_mask;
-    GdkColor *cursor_color;
+  GdkGCValues gc_values;
+  GdkGCValuesMask gc_values_mask;
+  GdkColor *cursor_color;
 
-    gtk_widget_style_get(widget, property_name, &cursor_color, NULL);
+  gtk_widget_style_get(widget, property_name, &cursor_color, NULL);
 
-    gc_values_mask = GDK_GC_FOREGROUND;
+  gc_values_mask = GDK_GC_FOREGROUND;
 
-    if (cursor_color) {
+  if (cursor_color) {
 
-      gc_values.foreground = *cursor_color;
-      gdk_color_free(cursor_color);
-    }
-    else {
-      gc_values.foreground = *fallback;
-    }
+    gc_values.foreground = *cursor_color;
+    gdk_color_free(cursor_color);
+  }
+  else {
+    gc_values.foreground = *fallback;
+  }
 
-    gdk_rgb_find_color(gtk_widget_get_style(widget)->colormap,
-	&gc_values.foreground);
-    return gtk_gc_get(gtk_widget_get_style(widget)->depth,
-	gtk_widget_get_style(widget)->colormap,
-	&gc_values, gc_values_mask);
+  gdk_rgb_find_color(gtk_widget_get_style(widget)->colormap,
+                     &gc_values.foreground);
+
+  return gtk_gc_get(gtk_widget_get_style(widget)->depth,
+                    gtk_widget_get_style(widget)->colormap,
+                    &gc_values, gc_values_mask);
 }
 
 static GdkGC*
 _item_entry_get_insertion_cursor_gc(GtkWidget *widget, _Bool is_primary)
 {
-    CursorInfo *cursor_info;
-    GtkStyle   *style;
+  CursorInfo *cursor_info;
+  GtkStyle   *style;
 
-    style       = gtk_widget_get_style(widget);
-    cursor_info = g_object_get_data((GObject*)style, "gtk-style-cursor-info");
+  style       = gtk_widget_get_style(widget);
+  cursor_info = g_object_get_data((GObject*)style, "gtk-style-cursor-info");
 
-    if (!cursor_info) {
+  if (!cursor_info) {
 
-      cursor_info = g_malloc(sizeof(CursorInfo));
+    cursor_info = g_malloc(sizeof(CursorInfo));
 
-      cursor_info->primary_gc   = NULL;
+    cursor_info->primary_gc   = NULL;
+    cursor_info->secondary_gc = NULL;
+    cursor_info->for_type     = G_TYPE_INVALID;
+
+    g_object_set_data((GObject*)style, "gtk-style-cursor-info", cursor_info);
+  }
+
+  /* We have to keep track of the type because gtk_widget_style_get()
+   * can return different results when called on the same property and
+   * same style but for different widgets. :-(. That is,
+   * GtkEntry::cursor-color = "red" in a style will modify the cursor
+   * color for entries but not for text view.
+   */
+  if (cursor_info->for_type != G_OBJECT_TYPE(widget)) {
+
+    cursor_info->for_type = G_OBJECT_TYPE(widget);
+
+    if (cursor_info->primary_gc) {
+
+      gtk_gc_release(cursor_info->primary_gc);
+      cursor_info->primary_gc = NULL;
+    }
+    if (cursor_info->secondary_gc) {
+
+      gtk_gc_release(cursor_info->secondary_gc);
       cursor_info->secondary_gc = NULL;
-      cursor_info->for_type     = G_TYPE_INVALID;
-
-      g_object_set_data((GObject*)style, "gtk-style-cursor-info", cursor_info);
     }
+  }
 
-    /* We have to keep track of the type because gtk_widget_style_get()
-     * can return different results when called on the same property and
-     * same style but for different widgets. :-(. That is,
-     * GtkEntry::cursor-color = "red" in a style will modify the cursor
-     * color for entries but not for text view.
-     */
-    if (cursor_info->for_type != G_OBJECT_TYPE(widget)) {
+  if (is_primary) {
 
-      cursor_info->for_type = G_OBJECT_TYPE(widget);
-
-      if (cursor_info->primary_gc) {
-
-        gtk_gc_release(cursor_info->primary_gc);
-        cursor_info->primary_gc = NULL;
-      }
-      if (cursor_info->secondary_gc) {
-
-        gtk_gc_release(cursor_info->secondary_gc);
-        cursor_info->secondary_gc = NULL;
-      }
+    if (!cursor_info->primary_gc) {
+      cursor_info->primary_gc = _item_entry_make_cursor_gc(widget,
+                                                           "cursor-color",
+                                                           &style->black);
     }
+    return g_object_ref(cursor_info->primary_gc);
+  }
+  else {
 
-    if (is_primary) {
+    static GdkColor gray = { 0, 0x8888, 0x8888, 0x8888 };
 
-      if (!cursor_info->primary_gc) {
-        cursor_info->primary_gc = _item_entry_make_cursor_gc(widget,
-                                                             "cursor-color",
-                                                             &style->black);
-      }
-      return g_object_ref(cursor_info->primary_gc);
+    if (!cursor_info->secondary_gc) {
+      cursor_info->secondary_gc = _item_entry_make_cursor_gc(widget,
+                                                             "secondary-cursor-color",
+                                                             &gray);
     }
-    else {
-
-      static GdkColor gray = { 0, 0x8888, 0x8888, 0x8888 };
-
-      if (!cursor_info->secondary_gc) {
-        cursor_info->secondary_gc = _item_entry_make_cursor_gc(widget,
-                                                               "secondary-cursor-color",
-                                                               &gray);
-      }
-      return g_object_ref(cursor_info->secondary_gc);
-    }
+    return g_object_ref(cursor_info->secondary_gc);
+  }
 }
 
 /*
