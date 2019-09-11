@@ -46,7 +46,7 @@
  * \ingroup main-window
  */
 
-static void x_menu_main_popup_execute(GtkObject *widget, int action_id);
+static void x_menu_main_popup_execute(GtkWidget *widget, int action_id);
 static void x_menu_path_popup_execute(GtkObject *widget, int action_id);
 
 /* Note: These are referenced using pop_MenuItem defined in x_menus.h
@@ -249,7 +249,7 @@ static void x_menu_execute(GedaAction *action, void *user_data)
  *  action string referenced in the static string structure IDS_Popup_
  *  Actions using the enumerated integer from pop_MenuItem.
  */
-static void x_menu_main_popup_execute(GtkObject *widget, int action_id)
+static void x_menu_main_popup_execute(GtkWidget *widget, int action_id)
 {
   GschemToplevel *w_current;
   const char     *action;
