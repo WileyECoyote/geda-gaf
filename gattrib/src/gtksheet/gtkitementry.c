@@ -1720,21 +1720,24 @@ _item_entry_make_cursor_gc(GtkWidget  *widget,
 	&gc_values, gc_values_mask);
 }
 
-static GdkGC *
+static GdkGC*
 _item_entry_get_insertion_cursor_gc(GtkWidget *widget, _Bool is_primary)
 {
     CursorInfo *cursor_info;
+    GtkStyle   *style;
 
-    cursor_info = g_object_get_data((GObject*)gtk_widget_get_style(widget),
-                                             "gtk-style-cursor-info");
+    style       = gtk_widget_get_style(widget);
+    cursor_info = g_object_get_data((GObject*)style, "gtk-style-cursor-info");
+
     if (!cursor_info) {
 
       cursor_info = g_malloc(sizeof(CursorInfo));
-      g_object_set_data((GObject*)gtk_widget_get_style(widget),
-                                 "gtk-style-cursor-info", cursor_info);
+
       cursor_info->primary_gc   = NULL;
       cursor_info->secondary_gc = NULL;
       cursor_info->for_type     = G_TYPE_INVALID;
+
+      g_object_set_data((GObject*)style, "gtk-style-cursor-info", cursor_info);
     }
 
     /* We have to keep track of the type because gtk_widget_style_get()
