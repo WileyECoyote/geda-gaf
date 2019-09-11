@@ -1,3 +1,9 @@
+2019-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_dialog_controls.h: Substitute geda_adjustment_new
+      for gtk_adjustment_new in GTK_NUMERIC_SPIN and GEDA_NUMERIC_SPIN
+      macros in order to eliminate the use of GtkObject pointers.
+
 2019-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * .travis.yml: Travis CI released an update to their Xenial build

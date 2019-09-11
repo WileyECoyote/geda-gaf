@@ -802,8 +802,8 @@ typedef struct
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, spacing); /* create hbox and label */  \
-        GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
-        name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
+        GtkAdjustment *name##Spin_adj = geda_adjustment_new (ivalue, minval, maxval, step, page, 0); \
+        name##Spin = gtk_spin_button_new (name##Spin_adj, 1, 0); \
         gtk_widget_show (name##Spin); \
         SET_WIDGET_SIZE (name##Spin, -1, 33)  \
         PACK_hBOX(name, name##Spin, FALSE, TRUE, 0) \
@@ -815,8 +815,8 @@ typedef struct
         double step = (maxval > 100 ? 5 : 1 ); \
         double page = (maxval > 100 ? 25 : 10 ); \
                 page = (maxval > 1000 ? 50 : 10 ); \
-        GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
-        name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
+        GtkAdjustment *name##Spin_adj = geda_adjustment_new (ivalue, minval, maxval, step, page, 0); \
+        name##Spin = gtk_spin_button_new (name##Spin_adj, 1, 0); \
         gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
         gtk_entry_set_activates_default(GTK_ENTRY(name##Spin), TRUE); \
         gtk_widget_show (name##Spin); \
