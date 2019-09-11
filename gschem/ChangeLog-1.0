@@ -1,9 +1,10 @@
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_menus.c: Replace GtkObject with GtkWidget as the first
-      argument to function:
+      argument to functions:
 
         * x_menu_main_popup_execute
+        * x_menu_path_popup_execute
 
 2019-09-09 Wiley E. Hill <wileyhill@gmail.com
 
