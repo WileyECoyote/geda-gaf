@@ -326,8 +326,8 @@ static int clipboard_handler(GtkSheet *sheet, GdkEventKey *event)
   bool state = sheet->state;
 
   if (event->state & GDK_CONTROL_MASK ||
-    event->keyval==GDK_Control_L ||
-    event->keyval==GDK_Control_R)
+      event->keyval==GDK_Control_L ||
+      event->keyval==GDK_Control_R)
   {
 
     if ((event->keyval=='c' ||
