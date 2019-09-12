@@ -347,8 +347,10 @@ void x_find_attribute_value(void)
   GtkEntry *entry;
       char *text;
 
+  /* Save range of current selection and init Search flags */
   x_find_set_search_parameters();
 
+  /* Attempt to get the selected text of the active cell entry */
   entry = GTK_ENTRY(gtk_sheet_get_entry(Search.sheet));
   text  = NULL;
 
