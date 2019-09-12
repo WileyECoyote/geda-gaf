@@ -12335,9 +12335,7 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
 {
     GtkWidget *parent;
     GtkWidget *entry = NULL;
-    GtkTableChild *table_child;
-    GtkBoxChild *box_child;
-    GList *children = NULL;
+    GList     *children = NULL;
 
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
@@ -12367,11 +12365,13 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
     while (children) {
 
       if (GTK_IS_TABLE(parent)) {
+        GtkTableChild *table_child;
         table_child = children->data;
         entry = table_child->widget;
       }
 
       if (GTK_IS_BOX(parent)) {
+        GtkBoxChild *box_child;
         box_child = children->data;
         entry = box_child->widget;
       }
