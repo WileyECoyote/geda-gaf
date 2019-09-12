@@ -1,3 +1,7 @@
+2019-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Remove call to deprecated gtk_window_position x_dialog_column_visibility.
+
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Add ancillary pointer to GtkStyle and GdkGC

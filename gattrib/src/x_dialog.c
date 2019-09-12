@@ -237,8 +237,6 @@ bool x_dialog_column_visibility (GList *list)
                                            GEDA_RESPONSE_REJECT,
                                            -1);
 
-  gtk_window_position(GTK_WINDOW(dialog), GTK_WIN_POS_MOUSE);
-
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_APPLY);
 
   /* create the model for the TreeView */
