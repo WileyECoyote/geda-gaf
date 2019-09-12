@@ -12429,31 +12429,32 @@ GtkWidget *gtk_sheet_get_entry_widget(GtkSheet *sheet)
  */
 char *gtk_sheet_get_entry_text(GtkSheet *sheet)
 {
-    char *text = NULL;
-    GtkWidget *entry = NULL;
+  char *text = NULL;
+  GtkWidget *entry = NULL;
 
-    g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
+  g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
-    if (!sheet->sheet_entry)   /* PR#102114 */
-      return(NULL);
+  if (!sheet->sheet_entry)   /* PR#102114 */
+    return(NULL);
 
-    entry = gtk_sheet_get_entry(sheet);
-    g_return_val_if_fail(entry != NULL, NULL);
+  entry = gtk_sheet_get_entry(sheet);
+  g_return_val_if_fail(entry != NULL, NULL);
 
-    if (GTK_IS_EDITABLE(entry)) {
-      text = gtk_editable_get_chars(GTK_EDITABLE(entry), 0, -1);
-    }
-    else if (GTK_IS_DATA_TEXT_VIEW(entry) || GTK_IS_TEXT_VIEW(entry))
-    {
-      GtkTextIter start, end;
-      GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(entry));
-      gtk_text_buffer_get_bounds(buffer, &start, &end);
-      text = gtk_text_buffer_get_text(buffer, &start, &end, TRUE);
-    }
-    else {
-      g_warning("%s: no GTK_EDITABLE, don't know how to get the text.\n", __func__);
-    }
-    return (text);
+  if (GTK_IS_EDITABLE(entry)) {
+    text = gtk_editable_get_chars(GTK_EDITABLE(entry), 0, -1);
+  }
+  else if (GTK_IS_DATA_TEXT_VIEW(entry) || GTK_IS_TEXT_VIEW(entry))
+  {
+    GtkTextIter start, end;
+    GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(entry));
+    gtk_text_buffer_get_bounds(buffer, &start, &end);
+    text = gtk_text_buffer_get_text(buffer, &start, &end, TRUE);
+  }
+  else {
+    g_warning("%s: no GTK_EDITABLE, don't know how to get the text.\n", __func__);
+  }
+
+  return (text);
 }
 
 /**
