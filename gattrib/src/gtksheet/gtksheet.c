@@ -12354,10 +12354,10 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
     parent = (GtkWidget*)sheet->sheet_entry;
 
     if (GTK_IS_TABLE(parent))
-      children = GTK_TABLE(parent)->children;
+      children = gtk_container_get_children((GtkContainer*)parent);
 
     if (GTK_IS_BOX(parent))
-      children = GTK_BOX(parent)->children;
+      children = gtk_container_get_children((GtkContainer*)parent);
 
     if (!children)
       return (NULL);
