@@ -12324,7 +12324,7 @@ gtk_sheet_get_entry_type(GtkSheet *sheet)
  *
  * Get sheet's entry widget.
  *
- * If the entry widget is a container, the direct childs of the
+ * If the entry widget is a container, the direct children of the
  * container are searched for a valid entry widget. If you want
  * the container itself to be returned, you should use
  * #gtk_sheet_get_entry_widget() instead.
