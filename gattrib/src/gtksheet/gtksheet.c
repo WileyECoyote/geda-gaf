@@ -12351,7 +12351,7 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
     if (GTK_IS_TEXT_VIEW(sheet->sheet_entry))
       return (sheet->sheet_entry);
 
-    parent = GTK_WIDGET(sheet->sheet_entry);
+    parent = (GtkWidget*)sheet->sheet_entry;
 
     if (GTK_IS_TABLE(parent))
       children = GTK_TABLE(parent)->children;
