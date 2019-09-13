@@ -1,5 +1,8 @@
 2019-09-13 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/base/gschem.c: Replace gdk_set_locale with setlocale to initialize
+      the locale based on environment variables.
+
     * src/base/gschem_page_view.c: Replace GTK_WIDGET_REALIZED macro with
       gtk_widget_get_realized in gschem_page_view_invalidate_object.
 

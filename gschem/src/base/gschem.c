@@ -512,8 +512,8 @@ static void main_prog(void *closure, int argc, char *argv[])
 
 #if ENABLE_NLS
 
-  /* This should be equivalent to setlocale (LC_ALL, "") */
-  gdk_set_locale();
+  /* Initialize locale based on environment */
+  setlocale (LC_ALL, "");
 
   /* This must be the same for all locales, use decimal point instead
    * of comma, use "C" or "POSIX" */
