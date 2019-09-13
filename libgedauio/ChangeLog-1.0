@@ -1,3 +1,7 @@
+2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define GtkTooltips as void when not defined.
+
 2019-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_bulb.c: Reinstate sink and destroying of widget2 and widget3

@@ -42,6 +42,10 @@
 /*! \def geda_adjustment_new Gtk < 3 oddly returns a GtkObject */
 #define geda_adjustment_new (void*)gtk_adjustment_new
 
+#ifndef GtkTooltips
+#define GtkTooltips void
+#endif
+
 #if !GTK_CHECK_VERSION(3, 0, 0)
 
 /* Map GtkStateFlags to GtkStateType */
