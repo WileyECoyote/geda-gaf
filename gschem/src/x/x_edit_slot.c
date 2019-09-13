@@ -178,8 +178,6 @@ x_dialog_edit_slot (GschemToplevel *w_current, const char *slots, const char *sl
                                             GEDA_RESPONSE_REJECT,
                                             -1);
 
-    gtk_window_position(GTK_WINDOW(ThisDialog), GTK_WIN_POS_MOUSE);
-
     gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog),
                                      GEDA_RESPONSE_APPLY);
 
