@@ -1018,7 +1018,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     menu = create_file_menu();
 
     menu_item = geda_menu_item_new_with_label ("_File");
-    g_object_set (menu_item, "visible", TRUE, NULL);;
+    g_object_set (menu_item, "visible", TRUE, NULL);
 
     geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_File");
