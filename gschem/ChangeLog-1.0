@@ -9,7 +9,11 @@
     * src/x/x_autonumber.c: Replace gtk_entry_select_region with
       gtk_editable_select_region.
 
-    * src/x/x_edit_slot.c: Remove call to deprecated gtk_window_position.
+    * src/x/x_edit_slot.c: Remove call to deprecated gtk_window_position in
+      function x_dialog_edit_slot.
+
+    * src/x/x_event.c: Replace gdk_drawable_get_display with gdk_window_get_display
+      in function x_event_motion.
 
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com
 

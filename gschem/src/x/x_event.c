@@ -870,7 +870,7 @@ bool x_event_motion (GtkWidget      *widget,
   /* Werner: Skip the motion event if there are other motion events
    * in the gdk event queue but only if event is the same event and
    * no buttons or modifier keys changed*/
-  display = gdk_drawable_get_display (event->window);
+  display = gdk_window_get_display (event->window);
 
   if ((test_event = gdk_display_get_event(display)) != NULL) {
 
