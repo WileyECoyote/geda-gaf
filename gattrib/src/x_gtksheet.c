@@ -560,13 +560,13 @@ static void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 
   return;
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "changed", (GtkSignalFunc) on_change, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "changed", on_change, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "resize_range", (GtkSignalFunc) on_resize, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "resize_range", on_resize, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", (GtkSignalFunc) on_move, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", on_move, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "traverse", (GtkSignalFunc) on_traverse, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "traverse", on_traverse, NULL);
 }
 
 /*!
