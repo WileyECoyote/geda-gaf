@@ -1,3 +1,8 @@
+2019-09-13 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/base/gschem_page_view.c: Replace GTK_WIDGET_REALIZED macro with
+      gtk_widget_get_realized in gschem_page_view_invalidate_object.
+
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_menus.c: Replace GtkObject with GtkWidget as the first
