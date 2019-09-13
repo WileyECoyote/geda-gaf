@@ -15,6 +15,9 @@
     * src/x/x_event.c: Replace gdk_drawable_get_display with gdk_window_get_display
       in function x_event_motion.
 
+    * src/x/x_stroke.c: Revise x_stroke_record to render gestures using cairo
+      instead of Gdk.
+
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_menus.c: Replace GtkObject with GtkWidget as the first
