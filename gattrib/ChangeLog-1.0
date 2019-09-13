@@ -1,3 +1,7 @@
+2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gtksheet/gtkcompat.h: Define gdk_cursor_destroy when not defined.
+
 2019-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Reduce scope of GtkTableChild and GtkBoxChild,
