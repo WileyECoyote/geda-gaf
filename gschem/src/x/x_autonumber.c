@@ -1552,14 +1552,13 @@ static void select_scope_text_value(AUTONUMBER_TEXT *autotext)
 
   if (pos) {
 
-    GtkEntry *entry;
+    GtkEditable *entry;
 
     pos++;  /* skip over the equal sign */
 
-    entry = (GtkEntry*)geda_combo_widget_get_entry(ScopeTextCombo);
+    entry = (GtkEditable*)geda_combo_widget_get_entry(ScopeTextCombo);
 
-    gtk_entry_select_region (entry, pos, strlen(text));
-
+    gtk_editable_select_region (entry, pos, strlen(text));
   }
 
   g_free(text);
