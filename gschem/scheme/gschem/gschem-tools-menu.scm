@@ -281,8 +281,8 @@
   )
 )
 
-(add-menu "_Tools" tools:menu-items)
-(add-menu "_Tools/_Symbols" tools:symbol-items)
-(add-menu "_Tools/S_pice netlist" tools:spice-items)
+(add-menu (N_ "_Tools") tools:menu-items)
+(add-menu (N_ "_Tools/_Symbols") tools:symbol-items)
+(add-menu (N_ "_Tools/S_pice netlist") tools:spice-items)
 
 ;; ==================================================================

@@ -2,6 +2,8 @@
 
     * etc/system-gschemrc.scm: Translate draw order menu items.
 
+    * scheme/gschem/gschem-tools-menu.scm: Translate tool submenus.
+
 2019-09-13 Wiley E. Hill <wileyhill@gmail.com
 
     * src/base/gschem.c: Replace gdk_set_locale with setlocale to initialize
