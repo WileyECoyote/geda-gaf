@@ -22,7 +22,7 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr "警告：<％s> は展開されませんでした\n"
+msgstr "警告：<%s> は展開されませんでした\n"
 
 # Komandorain'erā: Jidō rōdo o saigo ni mukōnisuru
 #: gschem/src/base/gschem.c:193
@@ -92,7 +92,7 @@ msgstr "エラー：起動スクリプトのロードまたは評価に失敗し
 # Exiting normal; Tsūjō shūryō
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr "通常終了"
+msgstr "通常終了\n"
 
 # FAILED; Shippai shimashita
 #: gschem/src/base/gschem.c:558
