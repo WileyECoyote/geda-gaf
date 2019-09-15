@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-08-15 01:26-0500\n"
+"POT-Creation-Date: 2019-09-14 21:36-0500\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -32,19 +32,19 @@ msgid "Pin"
 msgstr ""
 
 # ERROR
-#: gnetlist/src/gnetlist.c:80
+#: gnetlist/src/gnetlist.c:77
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: gnetlist/src/gnetlist.c:123
+#: gnetlist/src/gnetlist.c:120
 msgid "Can not open directory"
 msgstr "Не удалось открыть каталог"
 
-#: gnetlist/src/gnetlist.c:159
+#: gnetlist/src/gnetlist.c:156
 msgid "List of available backends"
 msgstr "Список доступных драйверов"
 
-#: gnetlist/src/gnetlist.c:241
+#: gnetlist/src/gnetlist.c:238
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
@@ -52,14 +52,14 @@ msgstr ""
 "GEDA/gnetlist поставляется с абсолютно БЕСПЛАТНОЙ ГАРАНТИЕЙ; См. КОПИРОВАНИЕ "
 "для более подробной информации.\n"
 
-#: gnetlist/src/gnetlist.c:243
+#: gnetlist/src/gnetlist.c:240
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 "Это бесплатное программное обеспечение, и вы можете перераспределить его при "
 "определенных\n"
 
-#: gnetlist/src/gnetlist.c:245
+#: gnetlist/src/gnetlist.c:242
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
@@ -67,57 +67,57 @@ msgstr ""
 "условия; Более подробную информацию см. В файле COPYING.\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:283 gnetlist/src/gnetlist.c:284
+#: gnetlist/src/gnetlist.c:280 gnetlist/src/gnetlist.c:281
 msgid "Loading schematic"
 msgstr "Загрузка схемы"
 
 # load failed
-#: gnetlist/src/gnetlist.c:290
+#: gnetlist/src/gnetlist.c:287
 msgid "load failed"
 msgstr "Ошибка загрузки"
 
 # System could not change to directory
-#: gnetlist/src/gnetlist.c:309 gnetlist/src/gnetlist.c:372
+#: gnetlist/src/gnetlist.c:303 gnetlist/src/gnetlist.c:366
 msgid "System could not change to directory"
 msgstr "Система не может быть изменена в каталог"
 
-#: gnetlist/src/gnetlist.c:335
+#: gnetlist/src/gnetlist.c:329
 msgid "ERROR: Could not find backend"
 msgstr "ОШИБКА: не удалось найти драйвер в пути загрузки"
 
-#: gnetlist/src/gnetlist.c:336
+#: gnetlist/src/gnetlist.c:330
 msgid "for a full list of available backends"
 msgstr "для полного списка доступных бэкэндов"
 
 # in load path
-#: gnetlist/src/gnetlist.c:338
+#: gnetlist/src/gnetlist.c:332
 msgid "in load path"
 msgstr "В пути загрузки"
 
-#: gnetlist/src/gnetlist.c:339
+#: gnetlist/src/gnetlist.c:333
 msgid "Run"
 msgstr "Выполнить"
 
-#: gnetlist/src/gnetlist.c:407 gnetlist/src/gnetlist.c:435
+#: gnetlist/src/gnetlist.c:401 gnetlist/src/gnetlist.c:429
 msgid "Path"
 msgstr "Путь к файлу"
 
 # is not accessible
-#: gnetlist/src/gnetlist.c:408 gnetlist/src/gnetlist.c:436
+#: gnetlist/src/gnetlist.c:402 gnetlist/src/gnetlist.c:430
 msgid "is not accessible"
 msgstr "Недоступен"
 
 # file
-#: gnetlist/src/gnetlist.c:419 gnetlist/src/g_rc.c:75
+#: gnetlist/src/gnetlist.c:413 gnetlist/src/g_rc.c:75
 msgid "file"
 msgstr "файл"
 
 # Could not create
-#: gnetlist/src/gnetlist.c:458
+#: gnetlist/src/gnetlist.c:452
 msgid "Could not create"
 msgstr "Не удалось создать"
 
-#: gnetlist/src/gnetlist.c:484
+#: gnetlist/src/gnetlist.c:478
 #, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "Не задан ни драйвер для работы, ни интерактивный режим!\n"
@@ -444,19 +444,19 @@ msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:573
+#: gnetlist/src/s_traverse.c:563
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:633
+#: gnetlist/src/s_traverse.c:623
 msgid "WARNING: Found label"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:634
+#: gnetlist/src/s_traverse.c:624
 msgid "label= is deprecated, please use netname"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:698
+#: gnetlist/src/s_traverse.c:688
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""

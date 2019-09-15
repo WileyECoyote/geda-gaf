@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-08-17 22:21-0500\n"
+"POT-Creation-Date: 2019-09-14 21:36-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1591,11 +1591,11 @@ msgstr "Encontró una alineación de texto no compatible"
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Cambiando el alineamiento a 'Abajo a la izquierda'\n"
 
-#: libgeda/src/scheme/edascmhookproxy.c:141
+#: libgeda/src/scheme/edascmhookproxy.c:143
 msgid "Scheme hook"
 msgstr ""
 
-#: libgeda/src/scheme/edascmhookproxy.c:142
+#: libgeda/src/scheme/edascmhookproxy.c:144
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
@@ -1652,118 +1652,118 @@ msgstr "Objeto ~A tiene atributos"
 msgid "Invalid pin type ~A, must be 'net or 'bus"
 msgstr "Tipo de pata ~A no válido, debe ser 'conexión o 'bus"
 
-#: libgeda/src/scheme/scheme_object.c:381
+#: libgeda/src/scheme/scheme_object.c:382
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr "El objeto ~A tiene un estilo de trazado de extremo no válido ~A."
 
-#: libgeda/src/scheme/scheme_object.c:394
+#: libgeda/src/scheme/scheme_object.c:395
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr "El objeto ~A tiene un estilo de trazado discontinuo no válido ~A."
 
-#: libgeda/src/scheme/scheme_object.c:461
+#: libgeda/src/scheme/scheme_object.c:462
 msgid "Object ~A has invalid fill style ~A"
 msgstr "El objeto ~A tiene un estilo de relleno no válido ~A"
 
-#: libgeda/src/scheme/scheme_object.c:517
+#: libgeda/src/scheme/scheme_object.c:518
 msgid "Invalid fill style ~A."
 msgstr "Estilo de relleno no válido ~A."
 
-#: libgeda/src/scheme/scheme_object.c:525
+#: libgeda/src/scheme/scheme_object.c:526
 msgid "Missing second space parameter for fill style ~A."
 msgstr ""
 "No se encuentra el parámetro de espaciado secundario para el estilo de "
 "relleno ~A."
 
-#: libgeda/src/scheme/scheme_object.c:534
+#: libgeda/src/scheme/scheme_object.c:535
 msgid "Missing second angle parameter for fill style ~A."
 msgstr ""
 "No se encuentra el parámetro de ángulo secundario para el estilo de relleno "
 "~A."
 
-#: libgeda/src/scheme/scheme_object.c:545
+#: libgeda/src/scheme/scheme_object.c:546
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr ""
 "No se ha especificado el parámetro de grosor de trazado para el estilo de "
 "relleno ~A."
 
-#: libgeda/src/scheme/scheme_object.c:554
+#: libgeda/src/scheme/scheme_object.c:555
 msgid "Missing space parameter for fill style ~A."
 msgstr ""
 "No se encuentra el parámetro de espaciado para el estilo de relleno ~A."
 
-#: libgeda/src/scheme/scheme_object.c:563
+#: libgeda/src/scheme/scheme_object.c:564
 msgid "Missing angle parameter for fill style ~A."
 msgstr "No se encuentra el parámetro de ángulo para el estilo de relleno ~A."
 
-#: libgeda/src/scheme/scheme_object.c:806
+#: libgeda/src/scheme/scheme_object.c:867
 msgid "Object ~A has invalid pin type."
 msgstr "El objeto ~A tiene un tipo de pata no válido."
 
-#: libgeda/src/scheme/scheme_object.c:1114
+#: libgeda/src/scheme/scheme_object.c:1175
 msgid "Invalid text alignment ~A."
 msgstr "Alineación de texto inválida ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1130
+#: libgeda/src/scheme/scheme_object.c:1191
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ángulo de texto ~A no válido. Debe ser 0, 90, 180 ó 270 grados"
 
-#: libgeda/src/scheme/scheme_object.c:1158
+#: libgeda/src/scheme/scheme_object.c:1219
 msgid "Invalid text name/value visibility ~A."
 msgstr "Visibilidad de nombre/valor de texto inválida ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1232
+#: libgeda/src/scheme/scheme_object.c:1293
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr "El objeto de texto ~A tiene una alineación de texto inválida ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1241
+#: libgeda/src/scheme/scheme_object.c:1302
 msgid "Text object ~A has invalid visibility ~A"
 msgstr "El objeto de texto ~A tiene una visibilidad ~A no válida"
 
-#: libgeda/src/scheme/scheme_object.c:1251
+#: libgeda/src/scheme/scheme_object.c:1312
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr ""
 "El objeto de texto ~A tiene una visibilidad de propiedad de texto ~A no "
 "válida"
 
-#: libgeda/src/scheme/scheme_object.c:1292
+#: libgeda/src/scheme/scheme_object.c:1353
 msgid "Object ~A is not included in a page."
 msgstr "El objeto ~A no está incluido en una página."
 
-#: libgeda/src/scheme/scheme_object.c:1379
+#: libgeda/src/scheme/scheme_object.c:1440
 msgid "Invalid stroke cap style ~A."
 msgstr "Estilo de trazado de extremo no válido ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1390
+#: libgeda/src/scheme/scheme_object.c:1451
 msgid "Invalid stroke dash style ~A."
 msgstr "Estilo de trazado discontinuo no válido ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1400
+#: libgeda/src/scheme/scheme_object.c:1461
 msgid "Missing dash length parameter for dash style ~A."
 msgstr ""
 "No se ha especificado la longitud de espaciado para el estilo de "
 "interlineado ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1411
+#: libgeda/src/scheme/scheme_object.c:1472
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr ""
 "No se ha especificado el parámetro de espaciado entre punto/línea para el "
 "estilo discontinuo ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1466
+#: libgeda/src/scheme/scheme_object.c:1527
 msgid "Object ~A has bad type '~A'"
 msgstr "Objeto ~A tiene tipo equivocado '~A'"
 
-#: libgeda/src/scheme/scheme_object.c:1569
+#: libgeda/src/scheme/scheme_object.c:1654
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr ""
 "El objeto de trazado ~A tiene un tipo de elemento ~A no válido en el índice "
 "~A"
 
-#: libgeda/src/scheme/scheme_object.c:1698
+#: libgeda/src/scheme/scheme_object.c:1783
 msgid "Invalid path element type ~A."
 msgstr "Tipo de elemento de trazado ~A no válido."
 
-#: libgeda/src/scheme/scheme_object.c:1856
+#: libgeda/src/scheme/scheme_object.c:1941
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr "Ángulo de imagen ~A no válido. Debe ser 0, 90, 180 o 270 grados"
 
