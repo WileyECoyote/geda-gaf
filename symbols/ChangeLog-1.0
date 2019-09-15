@@ -1,3 +1,7 @@
+2019-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/half-bridge/SBR30U30CT-1.sym: Add symbol; half wave rectifier.
+
 2019-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * xilinx: Update order of pin sequence:
