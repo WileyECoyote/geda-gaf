@@ -22,7 +22,7 @@ msgstr ""
 #: gschem/src/base/gschem.c:192
 #, c-format
 msgid "Warning: <%s> did not expand\n"
-msgstr "Figyelem: <%s> nem bővült"
+msgstr "Figyelem: <%s> nem bővült\n"
 
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
