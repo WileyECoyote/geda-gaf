@@ -813,7 +813,7 @@ msgstr "Predmet je nečemu pritrjen\n"
 
 #: gschem/src/iface/i_command.c:3786
 msgid "Attribute is already attached\n"
-msgstr "Atributi so že priloženi"
+msgstr "Atributi so že priloženi\n"
 
 #: gschem/src/iface/i_command.c:4200
 msgid "WARNING: Do not translate with snap off!\n"
