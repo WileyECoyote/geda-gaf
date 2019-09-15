@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2015-09-13 16:05+0300\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -5886,6 +5886,7 @@ msgstr "Атрибуты"
 
 # Tools=>utilities
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr "коммунальные"
 
@@ -6439,6 +6440,16 @@ msgstr "Экспорт встроенного символа"
 msgid "Export embedded picture"
 msgstr "Экспорт встроенного изображения"
 
+# symbols
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+#, fuzzy
+msgid "_Tools/_Symbols"
+msgstr "символы"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
+
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
@@ -6448,11 +6459,6 @@ msgstr "Недопустимая комбинация клавиш ~S."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S не является префиксом клавишной последовательности."
-
-# symbols
-#, fuzzy
-#~ msgid "_Tools/_Symbols"
-#~ msgstr "символы"
 
 # Input attribute is invalid
 #~ msgid "Input attribute is invalid"

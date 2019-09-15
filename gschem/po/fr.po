@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -5510,6 +5510,7 @@ msgid "Attri_butes"
 msgstr "Attributs"
 
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr ""
 
@@ -6027,6 +6028,15 @@ msgstr "Exporter le symbole incorporé"
 msgid "Export embedded picture"
 msgstr "Exporter une image intégrée"
 
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+#, fuzzy
+msgid "_Tools/_Symbols"
+msgstr "sym - Symboles"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
+
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
@@ -6036,10 +6046,6 @@ msgstr "~S n'est pas une combinaison de touches valide."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S n'est pas un préfixe valide."
-
-#, fuzzy
-#~ msgid "_Tools/_Symbols"
-#~ msgstr "sym - Symboles"
 
 #~ msgid "Input attribute is invalid"
 #~ msgstr "L'attribut d'entrée est incorrect"

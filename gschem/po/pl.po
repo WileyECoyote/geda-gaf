@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2012-02-04 00:18+0000\n"
 "Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -5799,6 +5799,7 @@ msgstr "Atry_buty"
 
 # Tools
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr "_Przybory"
 
@@ -6392,6 +6393,15 @@ msgstr "Eksportuj osadzony symbolu"
 msgid "Export embedded picture"
 msgstr "Eksportuj osadzony obrazek"
 
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+#, fuzzy
+msgid "_Tools/_Symbols"
+msgstr "symbolika"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
+
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
@@ -6401,10 +6411,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "_Tools/_Symbols"
-#~ msgstr "symbolika"
 
 # attribute input is incorrect
 #~ msgid "Input attribute is invalid"

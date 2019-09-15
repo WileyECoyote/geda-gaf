@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -5691,6 +5691,7 @@ msgid "Attri_butes"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr ""
 
@@ -6252,6 +6253,14 @@ msgstr "Извоз уграђени симбол"
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Извоз уграђене слике"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+msgid "_Tools/_Symbols"
+msgstr ""
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
 
 # is not a valid key combination
 # nije validna kombinacija tastera

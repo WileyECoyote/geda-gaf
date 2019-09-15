@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2012-01-31 12:07+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -5478,6 +5478,7 @@ msgid "Attri_butes"
 msgstr "アトリビュート"
 
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr ""
 
@@ -5998,6 +5999,16 @@ msgstr "埋め込みシンボルのエクスポート"
 msgid "Export embedded picture"
 msgstr "埋め込み画像の書き出し"
 
+# Symbol
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+#, fuzzy
+msgid "_Tools/_Symbols"
+msgstr "シンボル"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
+
 # It is not a valid key combination
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
@@ -6009,11 +6020,6 @@ msgstr "~S 有効なキーの組み合わせではありません."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 接頭辞キーシーケンスではありません."
-
-# Symbol
-#, fuzzy
-#~ msgid "_Tools/_Symbols"
-#~ msgstr "シンボル"
 
 #, fuzzy
 #~ msgid "_Open Editor"

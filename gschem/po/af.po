@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -5499,6 +5499,7 @@ msgid "Attri_butes"
 msgstr "Eienskappe"
 
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr ""
 
@@ -6015,6 +6016,15 @@ msgstr "Uitvoer ingebed simbool"
 msgid "Export embedded picture"
 msgstr "Uitvoer ingebedde prentjie"
 
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+#, fuzzy
+msgid "_Tools/_Symbols"
+msgstr "Simbole"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
+
 #: gschem/scheme/gschem/keymap.scm:41
 #, scheme-format
 msgid "~S is not a valid key combination."
@@ -6024,10 +6034,6 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#, fuzzy
-#~ msgid "_Tools/_Symbols"
-#~ msgstr "Simbole"
 
 #~ msgid "Input attribute is invalid"
 #~ msgstr "Insette formaat is ongeldig"

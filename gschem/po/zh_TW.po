@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:28-0500\n"
+"POT-Creation-Date: 2019-09-14 21:35-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -5705,6 +5705,7 @@ msgid "Attri_butes"
 msgstr "屬性"
 
 #: gschem/etc/system-gschemrc.scm:2399
+#: gschem/scheme/gschem/gschem-tools-menu.scm:303
 msgid "_Tools"
 msgstr ""
 
@@ -6314,6 +6315,14 @@ msgstr "導出嵌入符號"
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "導出嵌入圖片"
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+msgid "_Tools/_Symbols"
+msgstr ""
+
+#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+msgid "_Tools/S_pice netlist"
+msgstr ""
 
 # is not a valid key combination
 #: gschem/scheme/gschem/keymap.scm:41
