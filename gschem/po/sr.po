@@ -1376,7 +1376,7 @@ msgstr "Превођење шема"
 #, c-format
 msgid "Delete locked object?"
 msgid_plural "Delete %u locked objects?"
-msgstr[0] "Желите ли избрисати закључани објект?"
+msgstr[0] "Избришите %u закључане објекте?"
 msgstr[1] "Избрисати %u закључана предмета?"
 msgstr[2] "Избрисати %u закључана објекта?"
 
