@@ -13,6 +13,8 @@
             * thyristor/2N5445-1.sym
             * thyristor/2N5446-1.sym
 
+    * ti/SM74611-1.sym: Add symbol; photovoltaic bypass diode module.
+
 2019-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * xilinx: Update order of pin sequence:
