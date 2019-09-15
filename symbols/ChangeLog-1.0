@@ -4,6 +4,10 @@
 
     * onsemi/MCH12140-1.sym: Add symbol; Phase Detector.
 
+    * thyristor/2N5441-?.sym: Add symbol; 40A TRIAC:
+
+            * thyristor/2N5441-1.sym
+
 2019-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * xilinx: Update order of pin sequence:
