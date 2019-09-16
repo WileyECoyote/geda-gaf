@@ -1,3 +1,8 @@
+2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define GtkNotebookPage as GtkWidget when
+      GtkNotebookPage is not defined.
+
 2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define GtkTooltips as void when not defined.

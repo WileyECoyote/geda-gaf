@@ -46,6 +46,10 @@
 #define GtkTooltips void
 #endif
 
+#ifndef GtkNotebookPage
+#define GtkNotebookPage GtkWidget
+#endif
+
 #if !GTK_CHECK_VERSION(3, 0, 0)
 
 /* Map GtkStateFlags to GtkStateType */
