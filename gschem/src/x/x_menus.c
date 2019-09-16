@@ -976,7 +976,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     menu_item = geda_tearoff_menu_item_new ();
     geda_container_add(menu, menu_item);
-    g_object_set (menu_item, "visible", TRUE, NULL);
+    gtk_widget_show(menu_item);
+
     g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn), w_current);
 
 
@@ -987,7 +988,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
       menu_item = get_menu_item_from_scheme(scm_items, j);
       geda_container_add(menu, menu_item);
-      g_object_set (menu_item, "visible", TRUE, NULL);
+      gtk_widget_show(menu_item);
     }
 
     if (strstr(menu_name, "/")) {
@@ -1001,7 +1002,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     geda_menu_item_set_submenu_widget ((GedaMenuItem*)root_menu, menu);
 
-    g_object_set (root_menu, "visible", TRUE, NULL);
+    gtk_widget_show(root_menu);
 
     /* Do not free *raw_menu_name */
   }

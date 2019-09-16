@@ -1,3 +1,7 @@
+2019-09-16 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x_menus.c: Replace g_object_set "visible" with gtk_widget_show.
+
 2019-09-14 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Translate draw order menu items.
