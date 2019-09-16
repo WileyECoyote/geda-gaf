@@ -1320,7 +1320,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_show_all(menu_item);
   }
   else {
-    fprintf(stderr, "No Menu!\n");
+    fprintf(stderr, "No View/Redraw Menu!\n");
   }
 
   x_menu_add_menu_popups(w_current, menu_data);
