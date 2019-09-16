@@ -518,16 +518,12 @@ static void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
   GObject *SheetObj;
   SheetObj = G_OBJECT(sheet);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event",
-                      on_mouse_button_press, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event", on_mouse_button_press, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "activate",
-                      on_activate_cell,
-                      NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "activate", on_activate_cell, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "deactivate",
-                      on_deactivate_cell,
-                      PageData);
+  GEDA_SIGNAL_CONNECT(SheetObj, "deactivate", on_deactivate_cell, PageData);
+
 
   return;
 
