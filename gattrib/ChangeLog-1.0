@@ -3,6 +3,8 @@
     * src/x_gtksheet.c: Remove unused function change_entry. Replace cast
        to GtkSignalFunc with GCallback.
 
+    * src/x_toolbars.c: Include geda_gtk_compat.h.
+
 2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * gtksheet/gtkcompat.h: Define gdk_cursor_destroy when not defined.

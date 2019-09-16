@@ -25,6 +25,7 @@
 #include <geda_container.h>
 #include <geda_toolbar.h>
 #include <geda/geda_toolbars.h>
+#include <geda_gtk_compat.h>
 #include <geda_debug.h>
 
 static ToolbarStringData ToolbarStrings[] = {
