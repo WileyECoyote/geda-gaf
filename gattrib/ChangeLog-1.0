@@ -1,3 +1,7 @@
+2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Remove unused function change_entry.
+
 2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * gtksheet/gtkcompat.h: Define gdk_cursor_destroy when not defined.
@@ -8,7 +12,8 @@
       replace dynamic cast with static cast to GtkWidget, and utilize
       gtk_container_get_children in function gtk_sheet_get_entry.
 
-    * src/x_dialog.c: Remove call to deprecated gtk_window_position x_dialog_column_visibility.
+    * src/x_dialog.c: Remove call to deprecated gtk_window_position in
+      x_dialog_column_visibility.
 
     * src/x_gtksheet.c: Remove GtkSignalFunc cast in SetupCSheetHandlers.
 

@@ -411,35 +411,6 @@ static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
 }
 
 /*!
- * \brief Callback on Change Entry
- * \par Function Description
- *  This function is not used.
- */
-bool change_entry(GtkWidget *widget,
-                  int row, int col, int *new_row, int *new_col,
-                  void *data)
-{
-  GtkSheet *sheet;
-
-  sheet = GTK_SHEET(widget);
-  bool state = sheet->state;
-
-  if (*new_col == 0 && (col != 0 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, gtk_combo_get_type());
-
-  if (*new_col == 1 && (col != 1 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, GTK_TYPE_ENTRY);
-
-  if (*new_col == 2 && (col != 2 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, GTK_TYPE_SPIN_BUTTON);
-
-  if (*new_col >= 3 && (col < 3 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, GTK_TYPE_CELL_EDITABLE);
-
-  return TRUE;
-}
-
-/*!
  * \brief Callback on Change Cell
  * \par Function Description
  *  This function is not used. Despite the apparent usefulness of
