@@ -1,7 +1,7 @@
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x_menus.c: Replace g_object_set "visible" with gtk_widget_show, update
-      "View/Redraw" error message.
+      "View/Redraw" error message, and wrap the backup file menu label with gettext.
 
 2019-09-14 Wiley E. Hill <wileyhill@gmail.com
 
@@ -1714,7 +1714,7 @@
 
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c: Conditionaly use stricmp in x_menu_recent_files_add
+    * src/x/x_menus.c: Conditionally use stricmp in x_menu_recent_files_add
       for Win32 builds because file names are not case senitive and can result
       in duplicate recent meu items. Revise x_menu_recent_files_save and
       x_menu_recent_files_load to log saving and restoring of the recent
