@@ -760,23 +760,23 @@ void x_gtksheet_init(PageDataSet *PageData)
       gtk_widget_show(notebook);  /* show updated notebook  */
 
       g_signal_connect (sheets[i], "key_press_event",
-                       (GtkSignalFunc) clipboard_handler, NULL);
+                       (GCallback) clipboard_handler, NULL);
 
       /*  The entry cell is the text entry field is the one at the top */
       g_signal_connect(gtk_sheet_get_entry((GtkSheet*)sheets[i]),
-                       "changed", (GtkSignalFunc)show_entry, NULL);
+                       "changed", (GCallback)show_entry, NULL);
 
       g_signal_connect(sheets[i],
-                       "activate", (GtkSignalFunc)activate_sheet_cell, NULL);
+                       "activate", (GCallback)activate_sheet_cell, NULL);
     }
   }
 
   /* The next 2 functions setup callbacks for the Entry widget in the would
    * be status bar */
   g_signal_connect (entry, "button_press_event",
-                   (GtkSignalFunc) x_gtksheet_button_pressed, NULL);
+                   (GCallback) x_gtksheet_button_pressed, NULL);
 
-  g_signal_connect(entry, "changed", (GtkSignalFunc)on_entry_changed, NULL);
+  g_signal_connect(entry, "changed", (GCallback)on_entry_changed, NULL);
 
   GedaEntryClass *entry_class = GEDA_ENTRY_GET_CLASS(entry);
 

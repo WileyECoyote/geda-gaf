@@ -1,6 +1,7 @@
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x_gtksheet.c: Remove unused function change_entry.
+    * src/x_gtksheet.c: Remove unused function change_entry. Replace cast
+       to GtkSignalFunc with GCallback.
 
 2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
