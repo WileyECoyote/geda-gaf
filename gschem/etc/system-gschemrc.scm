@@ -2048,14 +2048,9 @@
 ;
 ; The "menu item name" is the name of the item as it will appear in the menu
 ; The "menu action" is the scheme function which is executed when the item
-; is selected off of the menu.  And "menu hotkey function" is the scheme
-; function which is executed when the hotkey is pressed.
-; "menu hotkey function" has no real functionality in the menuing scheme other
-; than providing the information as to what hotkey to display in the menu.
-; "menu hotkey function" is not executed when you select an item off of the
-; list.  The hotkeys which are displayed are defined by the global-keymap.
-; Actions can have several hotkeys, but the displayed keys are the last
-; ones found.
+; is selected off of the menu.
+; The hotkeys which are displayed are defined by the global-keymap. Actions
+; can have several hotkeys, but the displayed keys are the last ones found.
 ;
 ; The SEPARATOR keyword is case sensitive and adds a separator into the menu.
 ;
