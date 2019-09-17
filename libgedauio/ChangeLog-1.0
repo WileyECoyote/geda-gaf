@@ -5,6 +5,9 @@
 
     * include/geda_toolbar.h: Enumerate GedaToolbarChildType.
 
+    * src/widgets/geda_toolbar.c: Substitute GedaToolbarChildType for
+      GtkToolbarChildType as the second argument to geda_toolbar_append_element.
+
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define GtkNotebookPage as GtkWidget when
