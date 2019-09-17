@@ -158,13 +158,11 @@ static void
 geda_option_menu_class_init(void *class, void *class_data)
 {
   GObjectClass      *gobject_class;
-  GtkObjectClass    *object_class;
   GtkWidgetClass    *widget_class;
   GtkContainerClass *container_class;
   GParamSpec        *params;
 
   gobject_class    = (GObjectClass*)class;
-  object_class     = (GtkObjectClass*)class;
   widget_class     = (GtkWidgetClass*)class;
   container_class  = (GtkContainerClass*)class;
 
@@ -180,7 +178,6 @@ geda_option_menu_class_init(void *class, void *class_data)
   gobject_class->finalize          = geda_option_menu_item_finalize;
   gobject_class->set_property      = geda_option_menu_set_property;
   gobject_class->get_property      = geda_option_menu_get_property;
-  object_class->destroy            = geda_option_menu_destroy;
 
   widget_class->size_request       = geda_option_menu_size_request;
   widget_class->size_allocate      = geda_option_menu_size_allocate;
@@ -193,6 +190,20 @@ geda_option_menu_class_init(void *class, void *class_data)
   widget_class->mnemonic_activate  = geda_option_menu_mnemonic_activate;
 
   container_class->child_type      = geda_option_menu_child_type;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *object_class;
+
+  object_class = (GtkObjectClass*)class;
+
+  object_class->destroy = geda_option_menu_destroy;
+
+#else
+
+  widget_class->destroy = geda_option_menu_destroy;
+
+#endif
 
   geda_option_menu_parent_class    = g_type_class_peek_parent (class);
 
@@ -385,7 +396,15 @@ geda_option_menu_destroy (GtkObject *object)
     option_menu->menu = NULL;
   }
 
+#if GTK_MAJOR_VERSION < 3
+
   ((GtkObjectClass*)geda_option_menu_parent_class)->destroy (object);
+
+#else
+
+  ((GtkWidgetClass*)geda_option_menu_parent_class)->destroy (object);
+
+#endif
 }
 
 static void
