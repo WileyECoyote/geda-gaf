@@ -50,6 +50,10 @@
 #define GtkNotebookPage GtkWidget
 #endif
 
+#ifndef gdk_cursor_destroy
+#define gdk_cursor_destroy gdk_cursor_unref
+#endif
+
 #if !GTK_CHECK_VERSION(3, 0, 0)
 
 /* Map GtkStateFlags to GtkStateType */
