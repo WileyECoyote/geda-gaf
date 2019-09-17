@@ -3,6 +3,8 @@
     * include/geda_gtk_compat.h: Define gdk_cursor_destroy as gdk_cursor_unref
       when gdk_cursor_destroy is not defined.
 
+    * include/geda_toolbar.h: Enumerate GedaToolbarChildType.
+
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define GtkNotebookPage as GtkWidget when
