@@ -6,7 +6,7 @@
     * include/geda_toolbar.h: Enumerate GedaToolbarChildType.
 
     * src/widgets/geda_combobox.c: Substitute gtk_widget_hide_all with
-      geda_menu_hide_children.
+      geda_widget_hide_all.
 
     * src/functions/geda_widget.c: Add function geda_widget_hide_all.
 
@@ -15,7 +15,9 @@
 
     * src/widgets/geda_option_menu.c: Revise geda_option_menu_class_init to
       conditionally compile geda_option_menu_destroy as over-ride to either
-      GtkObjectClass->destory or GtkWidgetClass->destroy.
+      GtkObjectClass->destroy or GtkWidgetClass->destroy and utilize
+      geda_widget_hide_all in geda_option_menu_hide_all to replace
+      gtk_widget_hide_all.
 
     * src/widgets/geda_toolbar.c: Substitute GedaToolbarChildType for
       GtkToolbarChildType as the second argument to geda_toolbar_append_element.

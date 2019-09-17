@@ -987,8 +987,7 @@ geda_option_menu_hide_all (GtkWidget *widget)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (widget));
 
-  gtk_widget_hide (widget);
-  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
+  geda_widget_hide_all (widget);
 }
 
 static bool
