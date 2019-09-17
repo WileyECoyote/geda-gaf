@@ -11,6 +11,7 @@
 
 #include <gtk/gtk.h>
 
+#include "../../include/geda_container.h"
 #include "../../include/geda_widget.h"
 
 /*! \todo Finish function documentation!!!
@@ -116,6 +117,28 @@ geda_widget_get_aux_info (GtkWidget *widget, bool create)
   }
 
   return aux_info;
+}
+
+static void
+geda_widget_hide_recursive (GtkWidget *widget)
+{
+  if (!GTK_IS_CONTAINER(widget)) {
+    gtk_widget_hide (widget);
+  }
+  else {
+    geda_container_foreach (widget, geda_widget_hide_recursive, NULL);
+  }
+}
+
+void geda_widget_hide_all (GtkWidget *widget)
+{
+  g_return_if_fail (GTK_IS_WIDGET (widget));
+
+  gtk_widget_hide (widget);
+
+  if (GTK_IS_CONTAINER(widget)) {
+    geda_container_foreach (widget, geda_widget_hide_recursive, NULL);
+  }
 }
 
 /*!

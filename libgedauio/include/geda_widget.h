@@ -26,6 +26,8 @@ GtkWidgetAuxInfo
            *geda_widget_get_aux_info                 (GtkWidget      *widget,
                                                       bool            create);
 
+void        geda_widget_hide_all                     (GtkWidget      *widget);
+
 void        geda_widget_modify_bg                    (GtkWidget      *widget,
                                                       GtkStateType    state,
                                                       const GdkColor *color);

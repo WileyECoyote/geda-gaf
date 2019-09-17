@@ -5,6 +5,8 @@
 
     * include/geda_toolbar.h: Enumerate GedaToolbarChildType.
 
+    * src/functions/geda_widget.c: Add function geda_widget_hide_all.
+
     * src/widgets/geda_toolbar.c: Substitute GedaToolbarChildType for
       GtkToolbarChildType as the second argument to geda_toolbar_append_element.
 
