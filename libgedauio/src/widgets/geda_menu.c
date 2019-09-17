@@ -1441,12 +1441,23 @@ geda_menu_grab_notify (GtkWidget *widget, bool was_grabbed)
   }
 }
 
+static void
+geda_menu_hide_children (GtkWidget *widget)
+{
+  if (!GTK_IS_CONTAINER(widget)) {
+    gtk_widget_hide (widget);
+  }
+  else {
+    geda_container_foreach (widget, geda_menu_hide_children, NULL);
+  }
+}
+
 /*! \internal widget_class->hide_all */
 static void
 geda_menu_hide_all (GtkWidget *widget)
 {
   /* Hide children, but not self. */
-  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
+  geda_container_foreach (widget, geda_menu_hide_children, NULL);
 }
 
 

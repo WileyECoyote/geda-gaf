@@ -7,6 +7,9 @@
 
     * src/functions/geda_widget.c: Add function geda_widget_hide_all.
 
+    * src/widgets/geda_menu.c: Add geda_menu_hide_children and utilize in
+      geda_menu_hide_all to replace gtk_widget_hide_all.
+
     * src/widgets/geda_toolbar.c: Substitute GedaToolbarChildType for
       GtkToolbarChildType as the second argument to geda_toolbar_append_element.
 
