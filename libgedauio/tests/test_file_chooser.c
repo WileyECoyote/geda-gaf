@@ -423,7 +423,7 @@ unmap_and_remap_cb (GtkButton *button, GtkFileChooser *chooser)
 }
 
 static void
-kill_dependent (GtkWindow *win, GtkObject *dep)
+kill_dependent (GtkWindow *win, GtkWidget *dep)
 {
   gtk_widget_destroy (GTK_WIDGET(dep));
 }
