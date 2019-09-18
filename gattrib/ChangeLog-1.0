@@ -1,5 +1,7 @@
 2019-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gtksheet/gtkcompat.h: Define gdk_gc_destroy when not defined.
+
     * src/gtksheet/gtksheet.c: Simplfy gtk_sheet_get_entry. Conditionally
       compile calls to GDK_THREADS_ENTER and GDK_THREADS_LEAVE in function
       gtk_sheet_flash and _gtk_sheet_scroll_to_pointer.
