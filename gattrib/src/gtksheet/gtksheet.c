@@ -533,20 +533,22 @@ _default_font_descent(GtkWidget *widget)
 static inline int
 _gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
 {
-    if (row < 0 || row > sheet->maxrow)
-	return (sheet->voffset);
-    return (sheet->voffset + sheet->row[row].top_ypixel);
+  if (row < 0 || row > sheet->maxrow)
+    return (sheet->voffset);
+
+  return (sheet->voffset + sheet->row[row].top_ypixel);
 }
 
 static inline int
 _gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
 {
-    int ypixel = _gtk_sheet_row_top_ypixel(sheet, row);
-    if (0 <= row && row <= sheet->maxrow)
-	ypixel += sheet->row[row].height;
-    return (ypixel);
-}
+  int ypixel = _gtk_sheet_row_top_ypixel(sheet, row);
 
+  if (0 <= row && row <= sheet->maxrow)
+    ypixel += sheet->row[row].height;
+
+  return (ypixel);
+}
 
 /**
  * _gtk_sheet_row_from_ypixel:
