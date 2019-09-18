@@ -5417,99 +5417,102 @@ int gtk_sheet_in_clip(GtkSheet *sheet)
     return (GTK_SHEET_IN_CLIP(sheet));
 }
 
-
 static int gtk_sheet_flash(void *data)
 {
-    GtkSheet *sheet;
-    int x, y, width, height;
-    GdkRectangle clip_area;
+  GtkSheet *sheet;
+  int x, y, width, height;
+  GdkRectangle clip_area;
 
-    sheet = (GtkSheet*)data;
+  sheet = (GtkSheet*)data;
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-	return (TRUE);
-    if (!gtk_widget_is_drawable((GtkWidget*)sheet))
-	return (TRUE);
-    if (!gtk_sheet_range_isvisible(sheet, sheet->clip_range))
-	return (TRUE);
-    if (GTK_SHEET_IN_XDRAG(sheet))
-	return (TRUE);
-    if (GTK_SHEET_IN_YDRAG(sheet))
-	return (TRUE);
-
-    GDK_THREADS_ENTER();
-
-    x = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.col0) + 1;
-    y = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.row0) + 1;
-    width = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.coli) - x +
-	COLPTR(sheet, sheet->clip_range.coli)->width - 1;
-    height = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.rowi) - y +
-	sheet->row[sheet->clip_range.rowi].height - 1;
-
-    clip_area.x = _gtk_sheet_column_left_xpixel(sheet, MIN_VIEW_COLUMN(sheet));
-    clip_area.y = _gtk_sheet_row_top_ypixel(sheet, MIN_VIEW_ROW(sheet));
-    clip_area.width = sheet->sheet_window_width;
-    clip_area.height = sheet->sheet_window_height;
-
-    if (x < 0) {
-      width = width + x + 1;
-      x = -1;
-    }
-
-    if (width > clip_area.width) {
-      width = clip_area.width + 10;
-    }
-
-    if (y < 0) {
-      height = height + y + 1;
-      y = -1;
-    }
-
-    if (height > clip_area.height) {
-      height = clip_area.height + 10;
-    }
-
-    gdk_draw_pixmap(sheet->sheet_window,
-                    gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
-                    sheet->pixmap,
-                    x, y,
-                    x, y,
-                    1, height);
-
-    gdk_draw_pixmap(sheet->sheet_window,
-                    gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
-                    sheet->pixmap,
-                    x, y,
-                    x, y,
-                    width, 1);
-
-    gdk_draw_pixmap(sheet->sheet_window,
-                    gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
-                    sheet->pixmap,
-                    x, y + height,
-                    x, y + height,
-                    width, 1);
-
-    gdk_draw_pixmap(sheet->sheet_window,
-                    gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
-                    sheet->pixmap,
-                    x + width, y,
-                    x + width, y,
-                    1, height);
-
-    sheet->interval = sheet->interval + 1;
-
-    if (sheet->interval == TIME_INTERVAL) {
-      sheet->interval = 0;
-    }
-
-    gdk_gc_set_dashes(sheet->xor_gc, sheet->interval, (int8_t*)"\4\4", 2);
-    gtk_sheet_draw_flashing_range(sheet, sheet->clip_range);
-    gdk_gc_set_dashes(sheet->xor_gc, 0, (int8_t*)"\4\4", 2);
-
-    GDK_THREADS_LEAVE();
-
+  if (!gtk_widget_get_realized((GtkWidget*)sheet))
     return (TRUE);
+  if (!gtk_widget_is_drawable((GtkWidget*)sheet))
+    return (TRUE);
+  if (!gtk_sheet_range_isvisible(sheet, sheet->clip_range))
+    return (TRUE);
+  if (GTK_SHEET_IN_XDRAG(sheet))
+    return (TRUE);
+  if (GTK_SHEET_IN_YDRAG(sheet))
+    return (TRUE);
+
+#if GTK_CHECK_VERSION(3,6,0) == 0
+    GDK_THREADS_ENTER();
+#endif
+
+  x = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.col0) + 1;
+  y = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.row0) + 1;
+  width = _gtk_sheet_column_left_xpixel(sheet, sheet->clip_range.coli) - x +
+  COLPTR(sheet, sheet->clip_range.coli)->width - 1;
+  height = _gtk_sheet_row_top_ypixel(sheet, sheet->clip_range.rowi) - y +
+  sheet->row[sheet->clip_range.rowi].height - 1;
+
+  clip_area.x = _gtk_sheet_column_left_xpixel(sheet, MIN_VIEW_COLUMN(sheet));
+  clip_area.y = _gtk_sheet_row_top_ypixel(sheet, MIN_VIEW_ROW(sheet));
+  clip_area.width = sheet->sheet_window_width;
+  clip_area.height = sheet->sheet_window_height;
+
+  if (x < 0) {
+    width = width + x + 1;
+    x = -1;
+  }
+
+  if (width > clip_area.width) {
+    width = clip_area.width + 10;
+  }
+
+  if (y < 0) {
+    height = height + y + 1;
+    y = -1;
+  }
+
+  if (height > clip_area.height) {
+    height = clip_area.height + 10;
+  }
+
+  gdk_draw_pixmap(sheet->sheet_window,
+                  gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+                  sheet->pixmap,
+                  x, y,
+                  x, y,
+                  1, height);
+
+  gdk_draw_pixmap(sheet->sheet_window,
+                  gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+                  sheet->pixmap,
+                  x, y,
+                  x, y,
+                  width, 1);
+
+  gdk_draw_pixmap(sheet->sheet_window,
+                  gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+                  sheet->pixmap,
+                  x, y + height,
+                  x, y + height,
+                  width, 1);
+
+  gdk_draw_pixmap(sheet->sheet_window,
+                  gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+                  sheet->pixmap,
+                  x + width, y,
+                  x + width, y,
+                  1, height);
+
+  sheet->interval = sheet->interval + 1;
+
+  if (sheet->interval == TIME_INTERVAL) {
+    sheet->interval = 0;
+  }
+
+  gdk_gc_set_dashes(sheet->xor_gc, sheet->interval, (int8_t*)"\4\4", 2);
+  gtk_sheet_draw_flashing_range(sheet, sheet->clip_range);
+  gdk_gc_set_dashes(sheet->xor_gc, 0, (int8_t*)"\4\4", 2);
+
+#if GTK_CHECK_VERSION(3,6,0) == 0
+  GDK_THREADS_LEAVE();
+#endif
+
+  return (TRUE);
 }
 
 static void gtk_sheet_draw_flashing_range(GtkSheet *sheet, GtkSheetRange range)
@@ -9986,7 +9989,9 @@ _gtk_sheet_scroll_to_pointer(void *data)
     int x, y, row, column;
     int move = TRUE;
 
+#if GTK_CHECK_VERSION(3,6,0) == 0
     GDK_THREADS_ENTER();
+#endif
 
     gtk_widget_get_pointer((GtkWidget*)sheet, &x, &y);
     gtk_sheet_get_pixel_info(sheet, NULL, x, y, &row, &column);
@@ -10013,7 +10018,10 @@ _gtk_sheet_scroll_to_pointer(void *data)
       }
     }
 
+#if GTK_CHECK_VERSION(3,6,0) == 0
     GDK_THREADS_LEAVE();
+#endif
+
     return (TRUE);
 }
 
@@ -12362,6 +12370,8 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
 
     while (children) {
 
+#if GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 20
+
       if (GTK_IS_TABLE(parent)) {
         GtkTableChild *table_child;
         table_child = children->data;
@@ -12373,6 +12383,11 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
         box_child = children->data;
         entry = box_child->widget;
       }
+
+#else
+      entry = children->data;;
+#endif
+
 
       if (GTK_IS_EDITABLE(entry))
         return (entry);
