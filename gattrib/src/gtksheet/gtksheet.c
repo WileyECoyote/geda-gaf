@@ -530,7 +530,6 @@ _default_font_descent(GtkWidget *widget)
 }
 
 /* gives the top/bottom pixel of the given row in context of the sheet's voffset */
-
 static inline int
 _gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
 {
@@ -562,7 +561,6 @@ _gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
  *
  * Returns: row index, -1 or maxcol+1 (beyond right edge)
  */
-
 static inline int
 _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
 {
