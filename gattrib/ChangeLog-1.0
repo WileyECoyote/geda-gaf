@@ -7,7 +7,8 @@
 
     * src/gtksheet/gtksheet.c: Simplfy gtk_sheet_get_entry. Conditionally
       compile calls to GDK_THREADS_ENTER and GDK_THREADS_LEAVE in function
-      gtk_sheet_flash and _gtk_sheet_scroll_to_pointer.
+      gtk_sheet_flash and _gtk_sheet_scroll_to_pointer. Add macro/function
+      _gtk_sheet_draw_pixmap and conditionally replace gdk_draw_pixmap.
 
     * src/gattrib.c: Replace gdk_set_locale with setlocale to initialize
       the locale based on environment variables.
