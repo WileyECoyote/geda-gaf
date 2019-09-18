@@ -1,3 +1,7 @@
+2019-09-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Simplfy gtk_sheet_get_entry.
+
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Remove unused function change_entry. Replace cast
