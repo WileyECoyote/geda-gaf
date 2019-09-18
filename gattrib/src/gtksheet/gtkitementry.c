@@ -1880,7 +1880,7 @@ gtk_item_entry_draw_cursor(GtkEntry *entry, CursorType type)
     int x2 = 0;
     GdkGC *gc;
 
-    gdk_window_get_size(entry->text_area, NULL, &text_area_height);
+    text_area_height = gdk_window_get_height(entry->text_area);
 
     gtk_item_entry_get_cursor_locations(entry, type, &strong_x, &weak_x);
 
@@ -2000,7 +2000,7 @@ gtk_item_entry_adjust_scroll(GtkEntry *entry)
 
   item_entry = GTK_ITEM_ENTRY(entry);
 
-  gdk_window_get_size(entry->text_area, &text_area_width, NULL);
+  text_area_width  = gdk_window_get_width(entry->text_area);
   text_area_width -= 2 * INNER_BORDER;
 
   layout = gtk_item_entry_ensure_layout(entry, TRUE);
