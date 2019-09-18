@@ -2,6 +2,9 @@
 
     * src/gtksheet/gtksheet.c: Simplfy gtk_sheet_get_entry.
 
+    * src/gattrib.c: Replace gdk_set_locale with setlocale to initialize
+      the locale based on environment variables.
+
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Remove unused function change_entry. Replace cast
