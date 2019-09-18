@@ -852,7 +852,7 @@ POSSIBLE_XDRAG(GtkSheet *sheet, int x, int *drag_column)
 	*drag_column = column;
 	return (TRUE);
 #if 0
-	return(GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
+	return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
 #endif
     }
 
@@ -863,7 +863,7 @@ POSSIBLE_XDRAG(GtkSheet *sheet, int x, int *drag_column)
 	*drag_column = column;
 	return (TRUE);
 #if 0
-	return(GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
+	return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
 #endif
     }
 
@@ -904,7 +904,7 @@ POSSIBLE_YDRAG(GtkSheet *sheet, int y, int *drag_row)
 	*drag_row = row;
 	return (TRUE);
 #if 0
-	return(GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)));
+	return (GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)));
 #endif
     }
 
@@ -915,7 +915,7 @@ POSSIBLE_YDRAG(GtkSheet *sheet, int y, int *drag_row)
 	*drag_row = row;
 	return (TRUE);
 #if 0
-	return(GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)));
+	return (GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)));
 #endif
     }
 
@@ -6181,7 +6181,7 @@ global_button_press_handler(GtkWidget      *widget,
 	    &retval);
     }
 
-    return(retval);
+    return (retval);
 }
 
 static void create_global_button(GtkSheet *sheet)
@@ -8331,7 +8331,7 @@ gtk_sheet_set_active_cell(GtkSheet *sheet, int row, int col)
 	    fprintf(stderr,"gtk_sheet_set_active_cell: deactivation moved active cell to row %d col %d\n",
 		    sheet->active_cell.row, sheet->active_cell.col);
 #endif
-	    return(FALSE);
+	    return (FALSE);
 	}
 #endif
     }
@@ -8629,7 +8629,7 @@ gtk_sheet_activate_cell(GtkSheet *sheet, int row, int col)
 
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
-    if (GTK_SHEET_FLAGS(sheet) & GTK_SHEET_IS_DESTROYED) return(FALSE); /* PR#102114 */
+    if (GTK_SHEET_FLAGS(sheet) & GTK_SHEET_IS_DESTROYED) return (FALSE); /* PR#102114 */
 
     if (row < 0 || col < 0)
 	return (FALSE);
@@ -9763,7 +9763,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
     g_return_val_if_fail(GTK_IS_SHEET(widget), FALSE);
     g_return_val_if_fail(event != NULL, FALSE);
 /*
-    if(event->type != GDK_BUTTON_PRESS) return(TRUE);
+    if(event->type != GDK_BUTTON_PRESS) return (TRUE);
 */
 
 #if GTK_SHEET_DEBUG_MOUSE > 0
@@ -9837,7 +9837,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 
 	gtk_widget_get_pointer(widget, &x, &y);
 	gtk_sheet_get_pixel_info(sheet, NULL, x, y, &row, &column);
-	if (row < 0 && column < 0) return(FALSE);  /* chain up to global button press handler*/
+	if (row < 0 && column < 0) return (FALSE);  /* chain up to global button press handler*/
 
 #if GTK_SHEET_DEBUG_MOUSE > 0
 	fprintf(stderr,"%s: pointer grab (%d,%d) r %d c %d mr %d mc %d\n", __func__,
@@ -9939,7 +9939,7 @@ gtk_sheet_button_press_handler(GtkWidget *widget, GdkEventButton *event)
 	    if (veto)
 		GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_SELECTION);
 	}
-	return(TRUE);
+	return (TRUE);
     }
 
     if (event->window == sheet->column_title_window) {
@@ -11697,7 +11697,7 @@ static int gtk_sheet_focus(GtkWidget *widget, GtkDirectionType direction)
 
     if (!gtk_widget_is_sensitive((GtkWidget*)sheet)) {
       fprintf(stderr,"gtk_sheet_focus: X");
-      return(FALSE);
+      return (FALSE);
     }
 
 #if GTK_SHEET_DEBUG_KEYPRESS > 0
@@ -11715,15 +11715,15 @@ static int gtk_sheet_focus(GtkWidget *widget, GtkDirectionType direction)
     if (row < 0 || col < 0)  /* not in sheet */
     {
 	_gtk_sheet_move_cursor(sheet, GTK_MOVEMENT_VISUAL_POSITIONS, 1, FALSE);
-	return(TRUE);
+	return (TRUE);
     }
 
     int veto;
 
     gtk_sheet_click_cell(sheet, row, col, &veto);
-    if (!veto) return(FALSE);
+    if (!veto) return (FALSE);
 
-    return(TRUE);
+    return (TRUE);
 }
 
 
@@ -12340,7 +12340,7 @@ GtkWidget *gtk_sheet_get_entry(GtkSheet *sheet)
     g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
     if (!sheet->sheet_entry)   /* PR#102114 */
-      return(NULL);
+      return (NULL);
 
     if (GTK_IS_EDITABLE(sheet->sheet_entry))
       return (sheet->sheet_entry);
@@ -12435,7 +12435,7 @@ char *gtk_sheet_get_entry_text(GtkSheet *sheet)
   g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
   if (!sheet->sheet_entry)   /* PR#102114 */
-    return(NULL);
+    return (NULL);
 
   entry = gtk_sheet_get_entry(sheet);
   g_return_val_if_fail(entry != NULL, NULL);
@@ -12610,7 +12610,7 @@ unsigned long gtk_sheet_entry_signal_connect_changed(GtkSheet *sheet, GCallback 
     g_return_val_if_fail(GTK_IS_SHEET(sheet), handler_id);
 
     if (!sheet->sheet_entry)   /* PR#102114 */
-	return(handler_id);
+	return (handler_id);
 
     entry = gtk_sheet_get_entry(sheet);
     g_return_val_if_fail(entry != NULL, handler_id);
