@@ -105,7 +105,7 @@ void geda_color_x11_allocate (void)
       x_display_colors[i]->green = c.g + (c.g<<8);
       x_display_colors[i]->blue  = c.b + (c.b<<8);
 
-      error = gdk_color_alloc(x_colormap, x_display_colors[i]);
+      error = gdk_colormap_alloc_color (x_colormap, x_display_colors[i], FALSE, TRUE);
 
       if (error == FALSE) {
         log_allocation_error(_("display"));
@@ -122,7 +122,7 @@ void geda_color_x11_allocate (void)
       x_outline_colors[i]->green = c.g + (c.g<<8);
       x_outline_colors[i]->blue  = c.b + (c.b<<8);
 
-      error = gdk_color_alloc(x_colormap, x_outline_colors[i]);
+      error = gdk_colormap_alloc_color (x_colormap, x_outline_colors[i], FALSE, TRUE);
 
       if (error == FALSE) {
         log_allocation_error(_("outline"));
