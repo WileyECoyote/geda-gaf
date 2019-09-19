@@ -50,7 +50,7 @@ enum {
   PROP_GROUP
 };
 
-static void geda_radio_menu_item_destroy        (GtkObject      *object);
+//static void geda_radio_menu_item_destroy        (GtkObject      *object);
 static void geda_radio_menu_item_activate       (GedaMenuItem   *menu_item);
 static void geda_radio_menu_item_set_property   (GObject        *object,
                                                  unsigned int    prop_id,
@@ -209,7 +209,15 @@ static void geda_radio_menu_item_destroy (GtkObject *object)
     g_signal_emit (radio_menu_item, group_changed_signal, 0);
   }
 
+#if GTK_MAJOR_VERSION < 3
+
   GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
+
+#else
+
+  GTK_WIDGET_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
+
+#endif
 }
 
 static void geda_radio_menu_item_finalize (GObject *object)
@@ -239,17 +247,33 @@ static void geda_radio_menu_item_finalize (GObject *object)
 static void geda_radio_menu_item_class_init(void *class, void *class_data)
 {
   GObjectClass      *gobject_class;
-  GtkObjectClass    *object_class;
   GedaMenuItemClass *menu_item_class;
   GParamSpec        *params;
 
   gobject_class   = G_OBJECT_CLASS (class);
-  object_class    = GTK_OBJECT_CLASS (class);
   menu_item_class = GEDA_MENU_ITEM_CLASS (class);
 
   gobject_class->finalize     = geda_radio_menu_item_finalize;
   gobject_class->set_property = geda_radio_menu_item_set_property;
   gobject_class->get_property = geda_radio_menu_item_get_property;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *object_class;
+
+  object_class = (GtkObjectClass*)class;
+
+  object_class->destroy = geda_radio_menu_item_destroy;
+
+#else
+
+  GtkWidgetClass *widget_class;
+
+  widget_class = (GtkWidgetClass*)class;
+
+  widget_class->destroy = geda_radio_menu_item_destroy;
+
+#endif
 
   /*!
    * property GedaRadioMenuItem::group
@@ -262,8 +286,6 @@ static void geda_radio_menu_item_class_init(void *class, void *class_data)
                                  G_PARAM_WRITABLE);
 
   g_object_class_install_property (gobject_class, PROP_GROUP, params);
-
-  object_class->destroy = geda_radio_menu_item_destroy;
 
   menu_item_class->activate = geda_radio_menu_item_activate;
 

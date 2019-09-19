@@ -1,3 +1,9 @@
+2019-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_radio_menu_item.c: Revise geda_radio_menu_item_class_init
+      to conditionally compile geda_radio_menu_item_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy.
+
 2019-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Define gdk_cursor_destroy as gdk_cursor_unref
