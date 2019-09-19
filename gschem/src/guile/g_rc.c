@@ -1968,10 +1968,11 @@ SCM g_rc_scrollbars(SCM mode)
   RETURN_G_RC_MODE("scrollbars", default_scrollbars, mode_table);
 }
 
-/*! \brief Process scrollbar-update RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the scrollbar-update RC entry.
+/*!
+ * \brief Process scrollbar-update RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the scrollbar-update RC entry.
  */
 SCM g_rc_scrollbar_update(SCM mode)
 {
@@ -1983,10 +1984,11 @@ SCM g_rc_scrollbar_update(SCM mode)
  RETURN_G_RC_MODE("scrollbar-update", default_scrollbar_update, mode_table);
 }
 
-/*! \brief Process scrollbars-visible RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the scrollbars-visible RC entry.
+/*!
+ * \brief Process scrollbars-visible RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the scrollbars-visible RC entry.
  */
 SCM g_rc_scrollbars_visible(SCM mode)
 {
@@ -1998,10 +2000,11 @@ SCM g_rc_scrollbars_visible(SCM mode)
   RETURN_G_RC_MODE("scrollbars-visible", default_scrollbars_visible, mode_table);
 }
 
-/*! \brief Process scrollpan_steps RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the scrollpan_steps RC entry.
+/*!
+ * \brief Process scrollpan_steps RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the scrollpan_steps RC entry.
  */
 SCM g_rc_scrollpan_steps(SCM steps)
 {
@@ -2031,10 +2034,11 @@ SCM g_rc_scrollpan_steps(SCM steps)
 /** @} END Group RC-Scrollbar-Options Functions */
 
 /* ----- Text Related ----- */
-/*! \brief Process text-case RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text-case RC entry.
+/*!
+ * \brief Process text-case RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the text-case RC entry.
  */
 SCM g_rc_text_case(SCM mode)
 {
@@ -2047,10 +2051,11 @@ SCM g_rc_text_case(SCM mode)
   RETURN_G_RC_MODE("text-case", default_text_case, mode_table);
 }
 
-/*! \brief Process text-display_zoom factor RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while processing
- *       configuration data for the text_display_zoom factor RC entry.
+/*!
+ * \brief Process text-display_zoom factor RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while processing
+ *  configuration data for the text_display_zoom factor RC entry.
  */
 SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 {
@@ -2074,10 +2079,11 @@ SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process text-feedback RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text_feedback RC entry.
+/*!
+ * \brief Process text-feedback RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the text_feedback RC entry.
  */
 SCM g_rc_text_feedback(SCM mode)
 {
@@ -2089,10 +2095,11 @@ SCM g_rc_text_feedback(SCM mode)
   RETURN_G_RC_MODE("text-feedback", default_text_feedback, mode_table);
 }
 
-/*! \brief Process text-origin-marker RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text_origin_marker RC entry.
+/*!
+ * \brief Process text-origin-marker RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the text_origin_marker RC entry.
  */
 SCM g_rc_text_origin_marker(SCM mode)
 {
@@ -2104,10 +2111,11 @@ SCM g_rc_text_origin_marker(SCM mode)
   RETURN_G_RC_MODE("text-origin-marker", default_text_origin_marker, mode_table);
 }
 
-/*! \brief Process text-marker-size RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text-marker-size RC entry.
+/*!
+ * \brief Process text-marker-size RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the text-marker-size RC entry.
  */
 SCM g_rc_text_marker_size(SCM size)
 {
@@ -2119,9 +2127,10 @@ SCM g_rc_text_marker_size(SCM size)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process text-marker-threshold RC entry.
- *  \par Function Description
- *   Processing configuration data for the text_marker_threshold RC entry.
+/*!
+ * \brief Process text-marker-threshold RC entry.
+ * \par Function Description
+ *  Processing configuration data for the text_marker_threshold RC entry.
  */
 SCM g_rc_text_marker_threshold(SCM mode)
 {
@@ -2135,10 +2144,11 @@ SCM g_rc_text_marker_threshold(SCM mode)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process text-size RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the text-size RC entry.
+/*!
+ * \brief Process text-size RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the text-size RC entry.
  */
 SCM g_rc_text_size(SCM size)
 {
@@ -2150,10 +2160,11 @@ SCM g_rc_text_size(SCM size)
 
 /* ----- Undo System ----- */
 
-/*! \brief Process undo-control RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the undo-control RC entry.
+/*!
+ * \brief Process undo-control RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the undo-control RC entry.
  */
 SCM g_rc_undo_control(SCM mode)
 {
@@ -2177,10 +2188,11 @@ SCM g_rc_undo_levels(SCM levels)
   return SCM_BOOL_T;
 }
 
-/*! \brief Process undo-panzoom RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the undo-panzoom RC entry.
+/*!
+ * \brief Process undo-panzoom RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the undo-panzoom RC entry.
  */
 SCM g_rc_undo_panzoom(SCM mode)
 {
@@ -2192,10 +2204,11 @@ SCM g_rc_undo_panzoom(SCM mode)
   RETURN_G_RC_MODE("undo-panzoom", default_undo_panzoom, mode_table);
 }
 
-/*! \brief Process undo-preserve RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the undo-preserve RC entry.
+/*!
+ * \brief Process undo-preserve RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the undo-preserve RC entry.
  */
 SCM g_rc_undo_preserve(SCM mode)
 {
@@ -2207,10 +2220,11 @@ SCM g_rc_undo_preserve(SCM mode)
   RETURN_G_RC_MODE("undo-preserve", default_undo_preserve, mode_table);
 }
 
-/*! \brief Process undo-type RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the undo-type RC entry.
+/*!
+ * \brief Process undo-type RC entry.
+ * \par Function Description
+ *  C function to dynamically convert lisp variable while
+ *  processing configuration data for the undo-type RC entry.
  */
 SCM g_rc_undo_type(SCM mode)
 {
