@@ -184,6 +184,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #else /* GTK >= 3 */
 
+#define GtkObject GtkWidget
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
 
