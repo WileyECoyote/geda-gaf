@@ -231,7 +231,7 @@ typedef struct
                                    _(TB_TOOLTIP (name)), \
                                      TB_ACTION(name), \
                                      GTK_WIDGET(icon), \
-                                    (GtkSignalFunc) func, \
+                                    (GCallback) func, \
                                      data); \
    g_object_set_data ((GObject*) var, "action", (void*)TB_ACTION(name)); \
    { \
