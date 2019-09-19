@@ -1,3 +1,8 @@
+2019-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda/geda_toolbars.h: Update geda_toolbar_append_element argument
+      GEDA_TOOLBAR_CHILD_RADIOBUTTON in TOOLBAR_GSCHEM_RADIO_ELEMENT.
+
 2019-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda/geda_dialog_controls.h: Substitute geda_adjustment_new

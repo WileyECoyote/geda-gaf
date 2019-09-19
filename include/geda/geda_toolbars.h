@@ -225,7 +225,7 @@ typedef struct
 
 #define TOOLBAR_GSCHEM_RADIO_ELEMENT( bar, icon, var, grp, name, func, data) \
    var = geda_toolbar_append_element(GEDA_TOOLBAR(bar), \
-                                     GTK_TOOLBAR_CHILD_RADIOBUTTON, \
+                                     GEDA_TOOLBAR_CHILD_RADIOBUTTON, \
                                      grp, \
                                    _(TB_LABEL (name)), \
                                    _(TB_TOOLTIP (name)), \
