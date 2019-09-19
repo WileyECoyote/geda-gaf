@@ -529,7 +529,11 @@ _default_font_descent(GtkWidget *widget)
     return (PANGO_PIXELS(val));
 }
 
-/* gives the top/bottom pixel of the given row in context of the sheet's voffset */
+/**
+ * _gtk_sheet_row_top_ypixel:
+ *  Returns the top/bottom pixel of the given row in context
+ *  of the sheet's voffset
+ */
 static inline int
 _gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
 {
