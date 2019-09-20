@@ -26,33 +26,34 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief Convert Degrees to Radian
- *  \par Function Description
+/*!
+ * \brief Convert Degrees to Radian
+ * \par Function Description
  *  This function converts angular \a degrees into radian measure.
  *
- *  \param [in] degrees degrees to convert
+ * \param [in] degrees degrees to convert
  *
- *  \returns radians conversion as a double
+ * \returns radians conversion as a double
  *
- *  \sa geda_math_radians_to_degrees
+ * \sa geda_math_radians_to_degrees
  */
 double geda_math_degrees_to_radians (double degrees)
 {
   return (double)degrees * M_PI / 180.0;
 }
 
-/*! \brief Calculate the distance between two points
- *
- *  \par Function Description
+/*!
+ * \brief Calculate the distance between two points
+ * \par Function Description
  *  This function calculates the distance between two points defined
  *  by the (\a x1, \a y1) and (\a x2, \a y2) parameters.
  *
- *  \param [in]  x1  x-value of the first point
- *  \param [in]  y1  y-value of the first point
- *  \param [in]  x2  x-value of the second point
- *  \param [in]  y2  y-value of the second point
+ * \param [in]  x1  x-value of the first point
+ * \param [in]  y1  y-value of the first point
+ * \param [in]  x2  x-value of the second point
+ * \param [in]  y2  y-value of the second point
  *
- *  \return the distance
+ * \return the distance
  */
 double geda_math_distance(int x1, int y1, int x2, int y2)
 {
@@ -64,18 +65,19 @@ double geda_math_distance(int x1, int y1, int x2, int y2)
   return sqrt(pow(dx, 2) + pow(dy, 2));
 }
 
-/*! \brief Convert Paper size to World coordinates.
- *  \par Function Description
+/*!
+ * \brief Convert Paper size to World coordinates.
+ * \par Function Description
  *  This function takes the paper size and converts it to
  *  world coordinates. It supports landscape with a fixed aspect ratio.
  *
- *  \param [in]  width   Paper width. (units?)
- *  \param [in]  height  Paper height. (units?)
- *  \param [in]  border  Paper border size. (units?)
- *  \param [out] right   Right world coordinate. (units?)
- *  \param [out] bottom  Bottom world coordinate. (units?)
+ * \param [in]  width   Paper width. (units?)
+ * \param [in]  height  Paper height. (units?)
+ * \param [in]  border  Paper border size. (units?)
+ * \param [out] right   Right world coordinate. (units?)
+ * \param [out] bottom  Bottom world coordinate. (units?)
  *
- *  \todo Support more modes than just landscape only mode.
+ * \todo Support more modes than just landscape only mode.
  */
 void geda_math_papersize_to_world(int width, int height, int border, int *right, int *bottom)
 {
@@ -110,15 +112,16 @@ void geda_math_papersize_to_world(int width, int height, int border, int *right,
 
 }
 
-/*! \brief Convert Radians to Degrees
- *  \par Function Description
+/*!
+ * \brief Convert Radians to Degrees
+ * \par Function Description
  *  This function converts radian measure into angular \a degrees.
  *
- *  \param [in] radians measure to convert
+ * \param [in] radians measure to convert
  *
- *  \returns degrees conversion as a double
+ * \returns degrees conversion as a double
  *
- *  \sa geda_math_degrees_to_radians
+ * \sa geda_math_degrees_to_radians
  */
 double geda_math_radians_to_degrees(double radians)
 {
@@ -164,16 +167,17 @@ int geda_math_random_number (int min_num, int max_num)
   return result;
 }
 
-/*! \brief Rotate a point by an arbitrary angle.
- *  \par Function Description
+/*!
+ * \brief Rotate a point by an arbitrary angle.
+ * \par Function Description
  *  This function will rotate a point coordinate by an arbitrary angle
  *  and return the new coordinate in the newx and newy parameters.
  *
- *  \param [in]  x      Input point x coordinate.
- *  \param [in]  y      Input point y coordinate.
- *  \param [in]  angle  Angle to rotate in degrees.
- *  \param [out] newx   Output point x coordinate.
- *  \param [out] newy   Output point y coordinate.
+ * \param [in]  x      Input point x coordinate.
+ * \param [in]  y      Input point y coordinate.
+ * \param [in]  angle  Angle to rotate in degrees.
+ * \param [out] newx   Output point x coordinate.
+ * \param [out] newy   Output point y coordinate.
  */
 void geda_math_rotate_point(int x, int y, int angle, int *newx, int *newy)
 {
@@ -198,17 +202,18 @@ void geda_math_rotate_point(int x, int y, int angle, int *newx, int *newy)
 #endif
 }
 
-/*! \brief Rotate point in 90 degree increments only.
- *  \par Function Description
+/*!
+ * \brief Rotate point in 90 degree increments only.
+ * \par Function Description
  *  This function takes a point coordinate and rotates it by
  *  90 degrees at a time. The new point coordinate is returned
  *  in newx and newy.
  *
- *  \param [in]  x      Input point x coordinate.
- *  \param [in]  y      Input point y coordinate.
- *  \param [in]  angle  Angle to rotate by (90 degree increments only).
- *  \param [out] newx   Output point x coordinate.
- *  \param [out] newy   Output point y coordinate.
+ * \param [in]  x      Input point x coordinate.
+ * \param [in]  y      Input point y coordinate.
+ * \param [in]  angle  Angle to rotate by (90 degree increments only).
+ * \param [out] newx   Output point x coordinate.
+ * \param [out] newy   Output point y coordinate.
  */
 void geda_math_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
 {
