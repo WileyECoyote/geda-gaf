@@ -487,7 +487,7 @@ GList *geda_object_read (GedaToplevel *toplevel, GList *object_list, char *filen
   size_t size   = 0;
 
   /* Return NULL if error reporting is enabled and the return location
-   * for an error isn't NULL. */
+   * for an error is not NULL. */
   g_return_val_if_fail (err == (NULL) || *err == NULL, (NULL));
 
   if (!geda_file_get_contents (filename, &buffer, &size, err)){

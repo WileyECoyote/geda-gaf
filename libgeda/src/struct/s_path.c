@@ -353,7 +353,7 @@ static void s_path_arc (RSVGParsePathCtx *ctx,
   double th0, th1, th_arc;
   int i, n_segs;
 
-  /* Check that neither radius is zero, since its isn't either
+  /* Check that neither radius is zero, since its is not either
      geometrically or mathematically meaningful and will
      cause divide by zero and subsequent NaNs.  We should
      really do some ranged check ie -0.001 < x < 000.1 rather

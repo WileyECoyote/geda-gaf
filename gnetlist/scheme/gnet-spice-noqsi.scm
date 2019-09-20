@@ -161,7 +161,7 @@
 (define cards '())
 
 
-;; If this isn't zero, exit with nonzero status when done.
+;; If this is not zero, exit with nonzero status when done.
 
 (define error-count 0)
 
@@ -179,7 +179,7 @@
 
 
 ;; Get a list of numbers 1..n
-;; Why isn't this basic function in Guile?
+;; Why is not this basic function in Guile?
 
 (define (range n)
     (if (positive? n) (append (range (1- n)) (list n)) '()))

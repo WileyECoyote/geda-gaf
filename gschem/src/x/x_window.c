@@ -420,12 +420,12 @@ void x_window_create_main(GschemToplevel *w_current)
   GtkWidget *main_box;
   GtkWidget *menubar;
 
-  /* used to signify that the window isn't mapped yet */
+  /* used to signify that the window is not mapped yet */
   w_current->window       = NULL;
 
   w_current->main_window = gschem_main_window_new (!auto_place_mode);
 
-  /* We want the widgets to flow around the drawing area, so we don't
+  /* We want the widgets to flow around the drawing area, so we do not
    * set a size of the main window.  The drawing area's size is fixed,
    * see below. Normally we let the window manager handle locating and
    * sizing the window.  However, for some batch processing of schematics

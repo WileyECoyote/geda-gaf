@@ -55,7 +55,7 @@ EDA_SCM_DEFINE (page_append_x, "%page-append!", 2, 0, 0,
   Page *page = edascm_to_page (page_s);
   GedaObject *obj = edascm_to_object (obj_s);
 
-  /* Check that the object isn't already attached to something. */
+  /* Check that the object is not already attached to something. */
   Page *curr_page = geda_object_get_page (obj);
 
   if (((curr_page != NULL) && (curr_page != page))||

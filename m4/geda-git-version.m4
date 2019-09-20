@@ -20,7 +20,7 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 # AX_GIT_VERSION DATE-VERSION
 # Check for a git repository. If present, sanity check the latest tag
-# name. This probably isn't strictly necessary.
+# name. This probably is not strictly necessary.
 AC_DEFUN([AX_GIT_VERSION],
 [
   AC_PREREQ([2.60])dnl

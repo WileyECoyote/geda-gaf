@@ -2023,7 +2023,7 @@ void geda_menu_shell_select_item (GedaMenuShell *menu_shell,
  * \param [in] menu_shell        a #GedaMenuShell
  * \param [in] search_sensitive: if %TRUE, search for the first selectable
  *                               menu item, otherwise select nothing if
- *                               the first item isn't sensitive. This
+ *                               the first item is not sensitive. This
  *                               should be %FALSE if the menu is being
  *                               popped up initially.
  */

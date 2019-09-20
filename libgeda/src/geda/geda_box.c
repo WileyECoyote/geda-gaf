@@ -84,7 +84,7 @@ static int geda_box_bounds(GedaObject *object)
 
   halfwidth = object->line_options->line_width / 2;
 
-  /* This isn't strictly correct, but a 1st order approximation */
+  /* This is not strictly correct, but a 1st order approximation */
   object->left   = min(object->box->upper_x, object->box->lower_x) - halfwidth;
   object->top    = min(object->box->upper_y, object->box->lower_y) - halfwidth;
   object->right  = max(object->box->upper_x, object->box->lower_x) + halfwidth;

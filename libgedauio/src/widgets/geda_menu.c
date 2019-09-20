@@ -819,7 +819,7 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
     }
 
     /*  geda_menu_start_scrolling() might have hit the top of the
-     *  menu, so check if the button isn't insensitive before
+     *  menu, so check if the button is not insensitive before
      *  changing it to something else.
      */
     if (priv->upper_arrow_state != GTK_STATE_INSENSITIVE) {
@@ -923,7 +923,7 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
     }
 
     /*  geda_menu_start_scrolling() might have hit the bottom of the
-     *  menu, so check if the button isn't insensitive before
+     *  menu, so check if the button is not insensitive before
      *  changing it to something else.
      */
     if (priv->lower_arrow_state != GTK_STATE_INSENSITIVE) {

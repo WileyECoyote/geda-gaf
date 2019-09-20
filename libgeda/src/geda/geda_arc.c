@@ -140,7 +140,7 @@ static int geda_arc_bounds(GedaObject *object)
     }
   }
 
-  /* This isn't strictly correct, but a 1st order approximation */
+  /* This is not strictly correct, but a 1st order approximation */
   object->left   = left   - halfwidth;
   object->top    = top    - halfwidth;
   object->right  = right  + halfwidth;

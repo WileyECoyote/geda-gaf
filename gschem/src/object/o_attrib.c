@@ -61,7 +61,7 @@ void o_attrib_attached_2_selection(GschemToplevel *w_current,
 
       GedaObject *a_current = a_iter->data;
 
-      /* make sure object isn't selected already */
+      /* make sure object is not selected already */
       if (!a_current->selected) {
         geda_object_selection_add (selection, a_current);
         objects_added = g_list_prepend (objects_added, a_current);

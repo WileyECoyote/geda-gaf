@@ -80,7 +80,7 @@ static int geda_line_bounds(GedaObject *object)
 
   expand = ceil (0.5 * G_SQRT2 * object->line_options->line_width);
 
-  /* This isn't strictly correct, but a 1st order approximation */
+  /* This is not strictly correct, but a 1st order approximation */
   object->left   = min( object->line->x[0], object->line->x[1] ) - expand;
   object->right  = max( object->line->x[0], object->line->x[1] ) + expand;
   object->top    = min( object->line->y[0], object->line->y[1] ) - expand;

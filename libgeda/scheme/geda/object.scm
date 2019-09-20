@@ -470,7 +470,7 @@
                (cons (max (cadr a) (cadr b))    ; right
                      (min (cddr a) (cddr b)))) ; bottom
 
-         ;; return whichever isn't #f
+         ;; return whichever is not #f
          (or a b)))
    #f ;; default
    bounds))

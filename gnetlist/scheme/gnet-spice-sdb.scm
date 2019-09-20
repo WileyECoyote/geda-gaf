@@ -258,7 +258,7 @@
 ;;----------------------------------------------------------------
 (define spice-sdb:sort-spice-IO-pins
   (lambda (package-list)
-    ;;  Yes, this isn't good Scheme form.  Tough!  Writing this out
+    ;;  Yes, this is not good Scheme form.  Tough!  Writing this out
     ;;  in a functional programming form would be totally confusing!
     ;;  Note that this fcn requires that
     ;;  each spice-IO pin have the same, single character prefix (i.e. 'P')
@@ -612,7 +612,7 @@
 ;;  The algorithm is as follows:
 ;;
 ;;  1.  Figure out what type of model goes with this part from
-;;      file-info-list.  If it isn't listed, look for a MODEL attribute.
+;;      file-info-list.  If it is not listed, look for a MODEL attribute.
 ;;      If MODEL attribute is attached, write out SPICE card, and then
 ;;      write out .MODEL on next line.
 ;;      If no MODEL attribute is attached, just write out what little
@@ -620,7 +620,7 @@
 ;;
 ;;  2.  If the model-name is in the file-info-list, get the associated
 ;;      file-type.  Compare it against the component's refdes. If model-type
-;;      is .MODEL or .SUBCKT and refdes doesn't begin with a U or X
+;;      is .MODEL or .SUBCKT and refdes does not begin with a U or X
 ;;      respectively, prepend the correct prefix to the refdes.
 ;;
 ;; 3.   Print out the rest of the line.

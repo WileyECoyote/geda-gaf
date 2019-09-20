@@ -674,7 +674,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
     printf("<%p>\n", new_net->connected_to);
 #endif
 
-    /* Terminate if we hit a pin which isn't the one we started with */
+    /* Terminate if we hit a pin which is not the one we started with */
     if (!starting) {
       return nets;
     }

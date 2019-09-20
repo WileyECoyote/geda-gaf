@@ -288,7 +288,7 @@ bool gattrib_really_quit(void)
  *
  *  This function:
  *  - initialises threading, if the underlying GTK library is threaded.
- *    However, gattrib itself isn't threaded.
+ *    However, gattrib itself is not threaded.
  *  - initialises libgeda;
  *  - parses the command line;
  *  - starts logging;
@@ -321,7 +321,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
 #ifdef HAVE_GTHREAD
 
-  /* Gattrib isn't threaded, but some of GTK's file chooser
+  /* Gattrib is not threaded, but some of GTK's file chooser
    * backends uses threading so we need to call g_thread_init().
    * GLib requires threading be initialized before any other GLib
    * functions are called. Do it now if its not already setup.  */

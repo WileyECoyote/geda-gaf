@@ -449,7 +449,7 @@ static int find_file_in_data_dirs (const char   *file,
     char *candidate_file;
     char *sub_dir;
 
-    candidate_file = (char*) file;
+    candidate_file = (char*)file;
     sub_dir        = geda_strdup ("");
 
     while (candidate_file != NULL && fd == -1) {
@@ -2018,7 +2018,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
  * \param [out] error       Location for a GError or %NULL
  *
  * \returns a newly allocated %NULL-terminated string array or %NULL
- *          if the key isn't found. The string array should be freed
+ *          if the key is not found. The string array should be freed
  *          with g_strfreev().
  */
 char**

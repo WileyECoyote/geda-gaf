@@ -121,7 +121,7 @@ geda_path_bounds (GedaObject *object)
 
   if (found_bound) {
 
-    /* This isn't strictly correct, but a 1st order approximation */
+    /* This is n t strictly correct, but a 1st order approximation */
     int halfwidth = object->line_options->line_width / 2;
 
     object->left   = left   - halfwidth;
