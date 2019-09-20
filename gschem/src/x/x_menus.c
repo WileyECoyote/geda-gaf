@@ -987,6 +987,10 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     for (j = 0 ; j < scm_items_len; j++) {
 
       menu_item = get_menu_item_from_scheme(scm_items, j);
+
+      /* Skip if the was an error */
+      if (!menu_item) continue;
+
       geda_container_add(menu, menu_item);
       gtk_widget_show(menu_item);
     }
