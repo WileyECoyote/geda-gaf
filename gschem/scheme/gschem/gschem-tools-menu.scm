@@ -11,7 +11,6 @@
 ;;     system-gschemrc file, normally under /usr/share/gEDA/ folder:
 ;;
 ;     (load-from-path "gschem/gschem-tools-menu.scm")
-;;
 
 
 (use-modules (geda page)
