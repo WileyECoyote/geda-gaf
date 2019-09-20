@@ -1,5 +1,8 @@
 2019-09-20 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/base/gschem_main_window.c: Remove inclusion of geda_gtk_compat.h
+      because this is already indirectly included by gschem.h.
+
     * scheme/gschem/gschem-tools-menu.scm: Add tooltips for "Spice netlist" and
       SDB netlist" menu items.
 
