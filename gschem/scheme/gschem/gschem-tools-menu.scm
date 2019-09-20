@@ -273,8 +273,8 @@
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
   '(
-    ("Spice netlist"        tools:spice-netlist        "geda-spectrum")
-    ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave")
+    ("Spice netlist"        tools:spice-netlist        "geda-spectrum"    "Generate spice netlists")
+    ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave"        "Generate spice netlists using SDB backend")
     ("Anise netlist"        tools:spice-anise-netlist  "geda-waves")
     ("NoSqi netlist"        tools:spice-noqsi-netlist  "geda-sinx")
   )

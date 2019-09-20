@@ -1,3 +1,8 @@
+2019-09-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/gschem/gschem-tools-menu.scm: Add tooltips for "Spice netlist" and
+      SDB netlist" menu items.
+
 2019-09-16 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x_menus.c: Replace g_object_set "visible" with gtk_widget_show, update
