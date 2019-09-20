@@ -163,7 +163,8 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 
   DrawingArea = GTK_WIDGET (gschem_page_view_new ());
 
-  GTK_WIDGET_UNSET_FLAGS (DrawingArea, GTK_DOUBLE_BUFFERED);
+  gtk_widget_set_double_buffered (DrawingArea, FALSE);
+
   /* Set the size here. Be sure that it has an aspect ratio of 1.333
    * We could calculate this based on root window size, but for now
    * lets just set it to:
