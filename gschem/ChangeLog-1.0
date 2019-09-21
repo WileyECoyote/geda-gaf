@@ -1,10 +1,14 @@
-2019-09-20 Wiley E. Hill <wileyhill@gmail.com
+2019-09-21 Wiley E. Hill <wileyhill@gmail.com
 
     * po/hu.po: Update Hungarian translations.
 
     * po/it.po: Update Italian translations.
 
     * po/ja.po: Update Japanese translations.
+
+    * po/kh.po: Update Khmer translations.
+
+2019-09-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/base/gschem_main_window.c: Remove inclusion of geda_gtk_compat.h
       because this is already indirectly included by gschem.h.

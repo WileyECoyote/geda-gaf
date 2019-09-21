@@ -2452,27 +2452,25 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "kar chreus"
+msgstr "kar chreusareusa tomham x"
 
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "kar chreus"
+msgstr "chreusareusa tomham y"
 
-# Spinner entry number of rows to create
+# Number of rows to create
 #: gschem/src/x/x_edit_array.c:1029
-#, fuzzy
 msgid "Number of rows to create"
-msgstr "bangkeun chamnuon theato chuordek samreab bangkeut"
+msgstr "chamnuon chuordek del trauv bangkeut"
 
-# Spinner entry number of columns to create
+# Number of columns to create
 #: gschem/src/x/x_edit_array.c:1030
-#, fuzzy
 msgid "Number of columns to create"
-msgstr "bangkeun lekh t t pheak nei chuorochhr daembi bangkeut"
+msgstr "chamnuon chuorochhr del trauv bangkeut"
 
 #: gschem/src/x/x_edit_array.c:1031
 msgid "Vertical pitch of array, negative is downward"
@@ -5615,9 +5613,8 @@ msgid "_About..."
 msgstr "..."
 
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "m chchhu m teab cheang"
+msgstr "phnek khangokraom teab"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5639,10 +5636,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom"
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "kampoul tow bat"
+msgstr "bat phlasati tow bat"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -6208,10 +6205,10 @@ msgstr "neachenh roubtamnang"
 msgid "Export embedded picture"
 msgstr "neachenh roub bangkob"
 
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "nimittasanhnhea"
+msgstr "ubakar/nimittasanhnhea"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
@@ -6226,6 +6223,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "numslots chattouk batkhluon"
