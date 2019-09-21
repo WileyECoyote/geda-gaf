@@ -2470,27 +2470,25 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Selection"
+msgstr "Wybór x rozmiar"
 
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Selection"
+msgstr "Wybór y rozmiar"
 
-# Number of slots
+# Number of rows to create
 #: gschem/src/x/x_edit_array.c:1029
-#, fuzzy
 msgid "Number of rows to create"
-msgstr "Ilość gniazd:"
+msgstr "Liczba wierszy do utworzenia"
 
 # Number of slots
 #: gschem/src/x/x_edit_array.c:1030
-#, fuzzy
 msgid "Number of columns to create"
-msgstr "Ilość gniazd:"
+msgstr "Liczba kolumn do utworzenia"
 
 #: gschem/src/x/x_edit_array.c:1031
 msgid "Vertical pitch of array, negative is downward"
@@ -5737,10 +5735,10 @@ msgstr "_Wiki gEDA..."
 msgid "_About..."
 msgstr "_O programie..."
 
+# Lower Behind
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "Na środku poniżej"
+msgstr "Niżej"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5762,10 +5760,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Od góry do dołu"
+msgstr "Przejdź na dół"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -6393,10 +6391,10 @@ msgstr "Eksportuj osadzony symbolu"
 msgid "Export embedded picture"
 msgstr "Eksportuj osadzony obrazek"
 
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "symbolika"
+msgstr "Narzędzia/Symbole"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
