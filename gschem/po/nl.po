@@ -2454,15 +2454,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Selectie"
+msgstr "Selectie x grootte"
 
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Selectie"
+msgstr "Selectie y maat"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -5645,10 +5645,10 @@ msgstr "gEDA _Wiki..."
 msgid "_About..."
 msgstr "Om_trent..."
 
+# Lower Behind
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "Onder Midden"
+msgstr "_Lager achter"
 
 # Draw objects before another object
 #: gschem/etc/system-gschemrc.scm:2378
@@ -5673,10 +5673,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr "Raise voorwerpen naar boven of tekening orde"
 
+# Move to Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Van boven naar beneden"
+msgstr "Ga naar _Beneden"
 
 # Lower to bottom of the drawing order
 #: gschem/etc/system-gschemrc.scm:2382
@@ -6250,11 +6250,10 @@ msgstr "Geïntegreerd symbool exporteren"
 msgid "Export embedded picture"
 msgstr "Ingesloten afbeelding exporteren"
 
-# symbols
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "symbolen"
+msgstr "Extra/Symbols"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
