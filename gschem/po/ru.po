@@ -2553,27 +2553,25 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Выделение"
+msgstr "Выбор x размер"
 
+# # Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Выделение"
+msgstr "Выбор у размер"
 
-# Number of slots => Number of sections
+# Number of rows to create; Kolichestvo strok dlya sozdaniya
 #: gschem/src/x/x_edit_array.c:1029
-#, fuzzy
 msgid "Number of rows to create"
-msgstr "Количество секций:"
+msgstr "Количество строк для создания"
 
-# Number of slots => Number of sections
+# Number of columns to create; Kolichestvo stolbtsov dlya sozdaniya
 #: gschem/src/x/x_edit_array.c:1030
-#, fuzzy
 msgid "Number of columns to create"
-msgstr "Количество секций:"
+msgstr "Количество столбцов для создания"
 
 #: gschem/src/x/x_edit_array.c:1031
 msgid "Vertical pitch of array, negative is downward"
@@ -5824,10 +5822,10 @@ msgstr "gEDA _Wiki..."
 msgid "_About..."
 msgstr "_О программе..."
 
+# Lower Behind
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "по центру снизу"
+msgstr "пНиже сзади"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5849,10 +5847,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom; Peremestit' v niz
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Сверху вниз"
+msgstr "Переместить в низ"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -6440,11 +6438,10 @@ msgstr "Экспорт встроенного символа"
 msgid "Export embedded picture"
 msgstr "Экспорт встроенного изображения"
 
-# symbols
+# Tools/Symbols; Instrumenty/Simvoly
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "символы"
+msgstr "Инструменты/Символы"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
