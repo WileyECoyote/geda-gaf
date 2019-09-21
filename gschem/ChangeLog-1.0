@@ -14,6 +14,8 @@
 
     * po/pt.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
 2019-09-20 Wiley E. Hill <wileyhill@gmail.com
 
     * src/base/gschem_main_window.c: Remove inclusion of geda_gtk_compat.h
