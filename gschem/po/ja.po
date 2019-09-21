@@ -2370,15 +2370,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size; Sentaku x saizu
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "選択"
+msgstr "選択xサイズ"
 
+#Selection y size; Sentaku waisaizu
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "選択"
+msgstr "選択Yサイズ"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -5420,10 +5420,10 @@ msgstr ""
 msgid "_About..."
 msgstr ""
 
+# Lower Behind; Yori hikui
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "下 中央"
+msgstr "より低い"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5999,11 +5999,10 @@ msgstr "埋め込みシンボルのエクスポート"
 msgid "Export embedded picture"
 msgstr "埋め込み画像の書き出し"
 
-# Symbol
+# Tools/Symbols; Tsūru/ shinboru'
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "シンボル"
+msgstr "ツール/シンボル」"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
@@ -6020,56 +6019,3 @@ msgstr "~S 有効なキーの組み合わせではありません."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S 接頭辞キーシーケンスではありません."
-
-#, fuzzy
-#~ msgid "_Open Editor"
-#~ msgstr "シングルアトルビュートエディタ"
-
-#, fuzzy
-#~ msgid "Open text editor"
-#~ msgstr "シングルアトルビュートエディタ"
-
-#, fuzzy
-#~ msgid "Edit DRC rules..."
-#~ msgstr "テキスト編集..."
-
-# Open the Attributes Editor Dialog
-#, fuzzy
-#~ msgid "Open the DRC rules dialog"
-#~ msgstr "アトリビュートエディタダイアログを開く"
-
-# Version
-#, fuzzy
-#~ msgid "Version Control"
-#~ msgstr "バージョン"
-
-# Generated PDF file
-#, fuzzy
-#~ msgid "Generate a BOM"
-#~ msgstr "生成されたPDFファイル"
-
-# Hierarchy Error
-#, fuzzy
-#~ msgid "hierarchy Verilog"
-#~ msgstr "階層エラー"
-
-# All of the attributes were
-#~ msgid "すべての属性は"
-#~ msgstr "アトリビュート編集"
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "入力属性が無効です"
-
-# Selection
-#~ msgid "<b>Selection</b>"
-#~ msgstr "選択"
-
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>アレイ</b>"
-
-#~ msgid "session"
-#~ msgstr "すべて保存"
-
-#~ msgid "documents\n"
-#~ msgstr "部品モード"

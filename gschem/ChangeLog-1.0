@@ -4,6 +4,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/ja.po: Update Japanese translations.
+
     * src/base/gschem_main_window.c: Remove inclusion of geda_gtk_compat.h
       because this is already indirectly included by gschem.h.
 
