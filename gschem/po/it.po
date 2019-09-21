@@ -2389,15 +2389,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Seleziona"
+msgstr "Selezione x dimensioni"
 
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Seleziona"
+msgstr "Selezione y dimensione"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -5462,10 +5462,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Dall'alto verso il basso"
+msgstr "Sposta in basso"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -6015,10 +6015,10 @@ msgstr "Esporta simbolo incorporato"
 msgid "Export embedded picture"
 msgstr "Esporta immagine incorporata"
 
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "Simboli"
+msgstr "Strumenti/Simboli"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"

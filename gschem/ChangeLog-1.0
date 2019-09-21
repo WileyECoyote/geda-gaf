@@ -2,6 +2,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/it.po: Update Italian translations.
+
     * src/base/gschem_main_window.c: Remove inclusion of geda_gtk_compat.h
       because this is already indirectly included by gschem.h.
 
