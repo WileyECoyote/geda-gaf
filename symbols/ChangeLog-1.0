@@ -4,6 +4,8 @@
 
             * connector/jumper/jumper-1.sym
 
+            * connector/jumper/jumper-1p1p-2.sym
+
 2019-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/half-bridge/SBR30U30CT-1.sym: Add symbol; half wave rectifier.
