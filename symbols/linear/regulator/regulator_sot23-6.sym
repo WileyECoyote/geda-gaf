@@ -13,11 +13,9 @@ pintype=io
 }
 T 1300 1250 8 10 1 1 0 6 1
 refdes=U?
-T 300 1700 5 10 0 0 0 0 1
-pins=5
-T 300 1900 8 10 0 0 0 0 1
+T 300 1900 9 10 0 0 0 0 1
 footprint=SOT23-5
-T 300 1500 8 10 0 0 0 0 1
+T 300 2100 9 10 0 0 0 0 1
 numslots=0
 P 300 600 0 600 1 0 1
 {
@@ -63,5 +61,7 @@ pinlabel=GND
 T 755 250 5 8 0 1 180 0 1
 pintype=io
 }
-T 600 100 9 10 0 0 0 0 1
+T 300 1500 5 10 0 0 0 0 1
 device=none
+T 300 1700 5 10 0 0 0 0 1
+description=Voltage Regulator
