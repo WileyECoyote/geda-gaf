@@ -18,6 +18,10 @@
 
             * regulator/regulator_sot23-6.sym
 
+    * linear/regulator: Add description, update device attribute:
+
+            * regulator/volt_reg_adj-1.sym
+
 2019-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/half-bridge/SBR30U30CT-1.sym: Add symbol; half wave rectifier.
