@@ -1,3 +1,9 @@
+2019-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/jumper: Add description attribute:
+
+            * connector/jumper/jumper-1.sym
+
 2019-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/half-bridge/SBR30U30CT-1.sym: Add symbol; half wave rectifier.
