@@ -7,6 +7,9 @@
       conditionally compile geda_combo_box_destroy as over-ride to either
       GtkObjectClass->destroy or GtkWidgetClass->destroy.
 
+    * src/widgets/geda_menu_button.c: Revise geda_menu_button_class_init to
+      conditionally compile geda_menu_button_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy.
 
 2019-09-20 Wiley E. Hill <wileyhill@gmail.com>
 

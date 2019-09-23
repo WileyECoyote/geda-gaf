@@ -1045,7 +1045,16 @@ static void geda_menu_button_destroy (GtkObject *object)
 
   }
 
+#if GTK_MAJOR_VERSION < 3
+
   GTK_OBJECT_CLASS (geda_menu_button_parent_class)->destroy (object);
+
+#else
+
+  GTK_WIDGET_CLASS (geda_menu_button_parent_class)->destroy (object);
+
+#endif
+
 }
 
 /* END -------------------------- Destructors ------------------------------ */
@@ -1128,16 +1137,12 @@ static void geda_menu_button_init (GTypeInstance *instance, void *class)
 static void geda_menu_button_class_init (void *class, void *class_data)
 {
   GedaMenuButtonClass *menu_button_class;
-  GtkObjectClass      *gtk_object_class;
   GObjectClass        *object_class;
   GtkWidgetClass      *widget_class;
 
   menu_button_class = (GedaMenuButtonClass*)class;
-  gtk_object_class  = (GtkObjectClass*)class;
   object_class      = (GObjectClass*)class;
   widget_class      = (GtkWidgetClass*)class;
-
-  gtk_object_class->destroy        = geda_menu_button_destroy;
 
   object_class->finalize           = geda_menu_button_finalize;
   object_class->dispose            = geda_menu_button_dispose;
@@ -1158,6 +1163,19 @@ static void geda_menu_button_class_init (void *class, void *class_data)
   menu_button_class->enter         = geda_menu_button_update_state;
   menu_button_class->leave         = geda_menu_button_update_state;
   menu_button_class->activate      = geda_menu_button_activate;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *gtk_object_class;
+
+  gtk_object_class                 = (GtkObjectClass*)class;
+  gtk_object_class->destroy        = geda_menu_button_destroy;
+
+#else
+
+  widget_class->destroy            = geda_menu_button_destroy;
+
+#endif
 
   geda_menu_button_parent_class    = g_type_class_peek_parent (class);
 
