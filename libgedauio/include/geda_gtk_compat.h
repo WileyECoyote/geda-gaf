@@ -191,6 +191,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
 
+/*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk >= 3 */
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
 
