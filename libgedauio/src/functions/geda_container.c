@@ -2,12 +2,13 @@
 #include "../../../config.h"
 #endif
 
-#include <geda/geda.h>
-#include <geda/geda_standard.h>
-
 #include <glib.h>
 
 #include <gtk/gtk.h>
+
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
+#include "../../include/geda_gtk_compat.h"
 
 typedef struct _CompareInfo CompareInfo;
 
@@ -49,7 +50,7 @@ find_old_focus (GtkContainer *container, GList *children)
 
     while (widget && widget != (GtkWidget*)container) {
 
-      GtkWidget *parent = widget->parent;
+      GtkWidget *parent = geda_get_widget_parent(widget);
 
       if (parent && ((GtkContainer *)parent)->focus_child != widget)
         goto next;
