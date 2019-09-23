@@ -168,12 +168,13 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
-/*! \def geda_get_widget_allocation Get Pointer to Allocation */
+/*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk < 3 */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
 
 /*! \def geda_get_widget_parent Get parent from widget Gtk < 3 */
 #define geda_get_widget_parent(w) (void*)((GtkWidget*)w)->parent
 
+/*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk < 3 */
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
@@ -194,6 +195,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_widget_parent(w) gtk_widget_get_parent (GTK_WIDGET(w))
 
+/*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk >= 3 */
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
 
