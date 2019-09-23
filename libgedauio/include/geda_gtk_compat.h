@@ -177,6 +177,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk < 3 */
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
+/*! \def geda_get_widget_window Get Pointer to window  Gtk < 3 */
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
 
 #define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
@@ -200,6 +201,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
 
+/*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
 #define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))
 
 /* Gtk[VH]Box */
