@@ -3,6 +3,7 @@
     * include/geda_gtk_compat.h: Add documentation for
 
           * geda_get_widget_requisition
+          * geda_get_widget_parent
 
     * src/functions/geda_container.c: Include "geda_gtk_compat.h" and utilize
       geda_get_widget_parent and geda_get_widget_allocation macros.

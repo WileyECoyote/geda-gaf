@@ -193,6 +193,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
 
+/*! \def geda_get_widget_parent Get parent from widget Gtk >= 3 */
 #define geda_get_widget_parent(w) gtk_widget_get_parent (GTK_WIDGET(w))
 
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk >= 3 */
