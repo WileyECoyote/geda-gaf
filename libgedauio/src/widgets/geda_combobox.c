@@ -1446,7 +1446,16 @@ static void geda_combo_box_destroy (GtkObject *object)
   combo_box->priv->row_separator_data = NULL;
   combo_box->priv->row_separator_destroy = NULL;
 
+#if GTK_MAJOR_VERSION < 3
+
   GTK_OBJECT_CLASS (geda_combo_box_parent_class)->destroy (object);
+
+#else
+
+  GTK_WIDGET_CLASS (geda_combo_box_parent_class)->destroy (object);
+
+#endif
+
   combo_box->priv->cell_view = NULL;
 }
 
@@ -1777,7 +1786,6 @@ static void geda_combo_box_class_init(void *class, void *class_data)
 {
   GedaComboBoxClass *combo_class;
   GObjectClass      *object_class;
-  GtkObjectClass    *gtk_object_class;
   GtkContainerClass *container_class;
   GtkWidgetClass    *widget_class;
   GtkBindingSet     *binding_set;
@@ -1804,15 +1812,25 @@ static void geda_combo_box_class_init(void *class, void *class_data)
   widget_class->state_changed     = geda_combo_box_state_changed;
   widget_class->style_set         = geda_combo_box_style_set;
 
-  gtk_object_class                = (GtkObjectClass*)class;
-  gtk_object_class->destroy       = geda_combo_box_destroy;
-
   object_class                    = (GObjectClass*)class;
   object_class->constructor       = geda_combo_box_constructor;
   object_class->dispose           = geda_combo_box_dispose;
   object_class->finalize          = geda_combo_box_finalize;
   object_class->get_property      = geda_combo_box_get_property;
   object_class->set_property      = geda_combo_box_set_property;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *gtk_object_class;
+
+  gtk_object_class                = (GtkObjectClass*)class;
+  gtk_object_class->destroy       = geda_combo_box_destroy;
+
+#else
+
+  widget_class->destroy = geda_combo_box_destroy;
+
+#endif
 
   geda_combo_box_parent_class = g_type_class_peek_parent (class);
 

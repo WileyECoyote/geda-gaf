@@ -3,6 +3,10 @@
     * src/functions/geda_container.c: Include "geda_gtk_compat.h" and utilize
       geda_get_widget_parent and geda_get_widget_allocation macros.
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_class_init to
+      conditionally compile geda_combo_box_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy.
+
 
 2019-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
