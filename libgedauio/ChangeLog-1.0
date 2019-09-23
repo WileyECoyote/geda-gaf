@@ -1,7 +1,8 @@
 2019-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Include "geda_gtk_compat.h" and utilize
-      geda_get_widget_parent.
+      geda_get_widget_parent and geda_get_widget_allocation macros.
+
 
 2019-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
