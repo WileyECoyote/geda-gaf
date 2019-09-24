@@ -5420,7 +5420,7 @@ geda_combo_box_cell_layout_reorder (GtkCellLayout   *layout,
  * \brief Creates a new empty #GedaComboBox
  * \par Function Description
  *
- * \return value: A new #GedaComboBox.
+ * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new (void)
 {
