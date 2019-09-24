@@ -161,21 +161,6 @@ struct _GedaComboBoxData
   char *tearoff_title;
 };
 
-/*
- * 4) list mode, child added
- *
- * tree_view -> GtkTreeView, child of scrolled_window
- * cell_view -> NULL
- * cell_view_frame -> NULL
- * button -> GtkToggleButton, set_parent to combo
- * arrow -> GtkArrow, child of button
- * separator -> NULL
- * popup_widget -> tree_view
- * popup_window -> GtkWindow
- * scrolled_window -> GtkScrolledWindow, child of popup_window
- *
- */
-
 enum {
   CHANGED,
   MOVE_ACTIVE,
