@@ -48,8 +48,8 @@
 
 /*! \brief A widget used to choose from a list of items
  *  \par SECTION:GedaComboBox
- * A GedaComboBox is a widget that allows the user to choose from a list of
- * valid choices. The GedaComboBox displays the selected choice. When
+ * A GedaComboBox is a widget that allows the user to choose from a list
+ * of valid choices. The GedaComboBox displays the selected choice. When
  * activated, the GedaComboBox displays a popup which allows the user to
  * make a new choice. The style in which the selected value is displayed,
  * and the style of the popup is determined by the current theme. It may
