@@ -5432,7 +5432,7 @@ GtkWidget *geda_combo_box_new (void)
  * \par Function Description
  *  Creates a new empty #GedaComboBox with an entry.
  *
- * \return value: A new #GedaComboBox.
+ * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new_with_entry (void)
 {
