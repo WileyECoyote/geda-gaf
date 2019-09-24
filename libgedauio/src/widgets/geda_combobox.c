@@ -4239,7 +4239,7 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
   return item;
 }
 
-/*!internal helper called by geda_combo_box_model_row_inserted */
+/*! \internal helper called by geda_combo_box_model_row_inserted */
 static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
                                               GtkTreePath  *path,
                                               GtkTreeIter  *iter,
