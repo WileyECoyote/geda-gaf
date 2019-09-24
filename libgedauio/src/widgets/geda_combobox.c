@@ -5444,7 +5444,7 @@ GtkWidget *geda_combo_box_new_with_entry (void)
  * \par Function Description
  *  Creates a new #GedaComboBox with the model initialized to model.
  *
- * \return value: A new #GedaComboBox.
+ * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new_with_model (GtkTreeModel *model)
 {
