@@ -586,10 +586,14 @@ static void geda_combo_box_forall (GtkContainer *container,
   GtkWidget        *child;
 
   if (include_internals) {
-    if (priv->button)
+
+    if (priv->button) {
       (* callback) (priv->button, callback_data);
-    if (priv->cell_view_frame)
+    }
+
+    if (priv->cell_view_frame) {
       (* callback) (priv->cell_view_frame, callback_data);
+    }
   }
 
   child = geda_get_child_widget(container);
