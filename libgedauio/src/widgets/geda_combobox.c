@@ -5922,8 +5922,8 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
  *
  * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
  *
- * \returns: a newly allocated string containing the currently active text.
- *           Must be freed with g_free().
+ * \returns: a newly allocated string containing the currently active text,
+ *           which should be release when no longer needed.
  *
  * If you used this with a #GedaComboBox constructed with geda_combo_box_new_text()
  * then you should now use #GedaComboBoxText and geda_combo_box_text_get_active_text()
