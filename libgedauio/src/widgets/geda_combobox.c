@@ -5548,8 +5548,9 @@ static void geda_combo_box_set_active_internal (GedaComboBox *combo_box,
 
       GedaMenu *menu = GEDA_MENU (priv->popup_widget);
 
-      if (GEDA_IS_MENU (menu))
+      if (GEDA_IS_MENU (menu)) {
         geda_menu_set_active (menu, -1);
+      }
     }
 
     if (priv->cell_view) {
