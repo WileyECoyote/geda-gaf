@@ -5887,7 +5887,7 @@ GtkWidget *geda_combo_box_new_text_with_entry (void)
  * \brief Append Text to a GedaComboBox
  * \par Function Description
  *  Appends \a text to the list of strings stored in \a combo_box. Note
- *  that this can only use this function with combo boxes constructed with
+ *  that this function can only be used with combo boxes constructed with
  *  geda_combo_box_new_text().
  *
  * \param [in] combo_box A #GedaComboBox constructed using geda_combo_box_new_text()
