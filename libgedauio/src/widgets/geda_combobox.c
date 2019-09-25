@@ -5557,8 +5557,8 @@ static void geda_combo_box_set_active_internal (GedaComboBox *combo_box,
       gtk_cell_view_set_displayed_row ((GtkCellView*)priv->cell_view, NULL);
     }
 
-    /*  Do not emit a "changed" signal when an already invalid selection was
-     *  now set to invalid.
+    /* Do not emit a "changed" signal when an already invalid selection
+     * was now set to invalid.
      */
     if (!is_valid_row_reference) {
       return;
