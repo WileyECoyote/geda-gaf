@@ -5560,8 +5560,9 @@ static void geda_combo_box_set_active_internal (GedaComboBox *combo_box,
     /*  Do not emit a "changed" signal when an already invalid selection was
      *  now set to invalid.
      */
-    if (!is_valid_row_reference)
+    if (!is_valid_row_reference) {
       return;
+    }
   }
   else {
 
