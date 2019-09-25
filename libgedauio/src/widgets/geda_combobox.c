@@ -5864,7 +5864,7 @@ GtkWidget *geda_combo_box_new_text (void)
  *
  *  This is a convenience function utilizing geda_combo_box_new_with_
  *  model_and_entry to create simple editable combo text box by
- *  adding a GtkListStore with a single single column. For a more
+ *  adding a GtkListStore with a single string column. For a more
  *  advanced editable text combo use a #GedaComboBoxText widget.
  *
  * \returns A new text #GedaComboBox.
