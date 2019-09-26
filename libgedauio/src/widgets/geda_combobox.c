@@ -5925,11 +5925,10 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
  * \returns: a newly allocated string containing the currently active text,
  *           which should be release when no longer needed.
  *
- * If you used this with a #GedaComboBox constructed with geda_combo_box_new_text()
- * then you should now use #GedaComboBoxText and geda_combo_box_text_get_active_text()
- * instead. Or if you used this with a #GedaEntry then you should now use
- * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use geda_entry_get_text
- * (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
+ * If \a #GedaComboBox was constructed with geda_combo_box_new_text() then use
+ * #GedaComboBoxText and geda_combo_box_text_get_active_text() instead. Or if
+ * used with a #GedaEntry then use #GedaComboBox with #GedaComboBox:has-entry
+ * as %TRUE and use geda_entry_get_text (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
  */
 char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
 {
