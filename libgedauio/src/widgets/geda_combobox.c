@@ -6361,7 +6361,7 @@ bool geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
 /*!
  * \brief Set Add Tearoff GedaComboBox Property
  * \par Function Description
- *  Sets whether the popup menu should have a tearoff menu item.
+ *  Sets whether or not the popup menu should have a tearoff menu item.
  *
  * \param [in] combo_box    a #GedaComboBox
  * \param [in] add_tearoffs %TRUE to add tearoff menu items
