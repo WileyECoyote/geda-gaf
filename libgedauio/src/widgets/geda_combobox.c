@@ -6114,33 +6114,33 @@ static void geda_combo_box_real_move_active (GedaComboBox  *combo_box,
         }
         /* else fall through */
 
-        case GTK_SCROLL_PAGE_FORWARD:
-        case GTK_SCROLL_PAGE_DOWN:
-        case GTK_SCROLL_PAGE_RIGHT:
-        case GTK_SCROLL_END:
-          found = tree_last (combo_box, combo_box->priv->model, &new_iter, FALSE);
+      case GTK_SCROLL_PAGE_FORWARD:
+      case GTK_SCROLL_PAGE_DOWN:
+      case GTK_SCROLL_PAGE_RIGHT:
+      case GTK_SCROLL_END:
+        found = tree_last (combo_box, combo_box->priv->model, &new_iter, FALSE);
+        break;
+
+      case GTK_SCROLL_STEP_FORWARD:
+      case GTK_SCROLL_STEP_DOWN:
+      case GTK_SCROLL_STEP_RIGHT:
+        if (active_iter) {
+
+          found = tree_next (combo_box, combo_box->priv->model,
+                             &iter, &new_iter, FALSE);
           break;
+        }
+        /* else fall through */
 
-        case GTK_SCROLL_STEP_FORWARD:
-        case GTK_SCROLL_STEP_DOWN:
-        case GTK_SCROLL_STEP_RIGHT:
-          if (active_iter) {
+      case GTK_SCROLL_PAGE_BACKWARD:
+      case GTK_SCROLL_PAGE_UP:
+      case GTK_SCROLL_PAGE_LEFT:
+      case GTK_SCROLL_START:
+        found = tree_first (combo_box, combo_box->priv->model, &new_iter, FALSE);
+        break;
 
-            found = tree_next (combo_box, combo_box->priv->model,
-                               &iter, &new_iter, FALSE);
-            break;
-          }
-          /* else fall through */
-
-          case GTK_SCROLL_PAGE_BACKWARD:
-          case GTK_SCROLL_PAGE_UP:
-          case GTK_SCROLL_PAGE_LEFT:
-          case GTK_SCROLL_START:
-            found = tree_first (combo_box, combo_box->priv->model, &new_iter, FALSE);
-            break;
-
-          default:
-            return;
+      default:
+        return;
     }
 
     if (found && active_iter) {
