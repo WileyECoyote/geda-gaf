@@ -6624,8 +6624,8 @@ void geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
  *  When enabled, GtkWidget:has-tooltip will be set to %TRUE and
  *  tree_view will connect a GtkWidget::query-tooltip signal handler.
  *
- * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
- * so &, <, etc have to be escaped in the text.
+ * \note the signal handler sets the text with gtk_tooltip_set_markup(),
+ *       so &, <, etc have to be escaped in the text.
  *
  * \param [in] combo   Pointer to a #GedaComboBox
  * \param [in] column  Valid integer column number for tree model
