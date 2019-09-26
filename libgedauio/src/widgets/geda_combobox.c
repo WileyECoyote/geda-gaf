@@ -5984,6 +5984,10 @@ void geda_combo_box_insert_text (GedaComboBox *combo_box,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void
 geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
 {
