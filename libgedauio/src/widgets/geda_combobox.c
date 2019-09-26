@@ -6071,10 +6071,10 @@ void geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
 
   if (position >= 0) {
 
-  GtkListStore *store = GTK_LIST_STORE (combo_box->priv->model);
+    GtkListStore *store = GTK_LIST_STORE (combo_box->priv->model);
 
-  if (gtk_tree_model_iter_nth_child (combo_box->priv->model, &iter,
-                                     NULL, position))
+    if (gtk_tree_model_iter_nth_child (combo_box->priv->model, &iter,
+      NULL, position))
     {
       gtk_list_store_remove (store, &iter);
     }
