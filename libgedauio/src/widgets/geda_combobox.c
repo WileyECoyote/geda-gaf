@@ -6722,6 +6722,7 @@ AtkObject *geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
   else {
     atk_obj = NULL;
   }
+
   return atk_obj;
 }
 
