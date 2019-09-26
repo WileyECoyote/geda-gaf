@@ -6408,7 +6408,7 @@ int geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
  * \brief Set #GedaComboBox Column Span
  * \par Function Description
  *  Sets the column with column span information for \a combo_box to be
- *  \a column_span. The column span column contains integers which indicate
+ *  \a column_span. The column span column contains integers indicating
  *  how many columns an item should span.
  *
  * \param [in] combo_box   A #GedaComboBox
