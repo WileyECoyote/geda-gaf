@@ -6236,8 +6236,8 @@ static bool gtk_cell_editable_key_press (GtkWidget   *widget,
     return TRUE;
   }
   else if (event->keyval == GDK_Return ||
-    event->keyval == GDK_ISO_Enter ||
-    event->keyval == GDK_KP_Enter)
+           event->keyval == GDK_ISO_Enter ||
+           event->keyval == GDK_KP_Enter)
   {
     gtk_cell_editable_editing_done (GTK_CELL_EDITABLE (combo_box));
     gtk_cell_editable_remove_widget (GTK_CELL_EDITABLE (combo_box));
