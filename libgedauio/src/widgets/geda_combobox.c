@@ -2984,8 +2984,9 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
   GedaComboBoxData *priv = combo_box->priv;
   const GList *children, *child;
 
-  if (!priv->model)
+  if (!priv->model) {
     return;
+  }
 
   children = geda_menu_shell_get_children ((GedaMenuShell*)menu);
 
@@ -2997,8 +2998,9 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
     item      = GTK_WIDGET (child->data);
     cell_view = geda_get_child_widget (item);
 
-    if (!GTK_IS_CELL_VIEW (cell_view))
+    if (!GTK_IS_CELL_VIEW (cell_view)) {
       continue;
+    }
 
     submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)item);
 
