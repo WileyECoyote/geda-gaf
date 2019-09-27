@@ -6733,7 +6733,7 @@ AtkObject *geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
  *
  * \param [in] combo_box a #GedaComboBox
  *
- * \return value: the current row separator function.
+ * \return the current row separator function.
  *
  */
 GtkTreeViewRowSeparatorFunc
