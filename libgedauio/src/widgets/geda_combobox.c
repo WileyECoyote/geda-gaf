@@ -6833,7 +6833,7 @@ GtkSensitivityType geda_combo_box_get_button_sensitivity (GedaComboBox *combo_bo
  *
  * \param [in] combo_box a #GedaComboBox
  *
- * \return Value: whether there is an entry in \a combo_box.
+ * \returns whether there is an entry in \a combo_box.
  */
 bool geda_combo_box_get_has_entry (GedaComboBox *combo_box)
 {
