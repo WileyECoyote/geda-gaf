@@ -2969,9 +2969,11 @@ static bool cell_view_is_sensitive (GtkCellView *cell_view)
 
     g_object_get (iter->data, "sensitive", &sensitive, NULL);
 
-      if (sensitive)
-        break;
+    if (sensitive) {
+      break;
+    }
   }
+
   g_list_free (cells);
 
   return sensitive;
