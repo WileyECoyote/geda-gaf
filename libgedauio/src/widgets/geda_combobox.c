@@ -2594,8 +2594,10 @@ static void geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget 
   if (GEDA_IS_MENU (popup))  {
 
     if (priv->popup_window) {
+
       gtk_widget_set_name (priv->popup_window, NULL);
       gtk_widget_destroy (priv->popup_window);
+
       priv->popup_window = NULL;
     }
 
@@ -2893,23 +2895,29 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
   }
 
   window = geda_get_widget_window (widget);
+
   gdk_window_get_root_coords (window, *x, *y, x, y);
 
-  *width = allocation->width;
+ *width = allocation->width;
 
   hpolicy = vpolicy = GTK_POLICY_NEVER;
+
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->scrolled_window),
                                   hpolicy, vpolicy);
+
   gtk_widget_size_request (priv->scrolled_window, &popup_req);
 
   if (popup_req.width > *width) {
+
     hpolicy = GTK_POLICY_ALWAYS;
+
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->scrolled_window),
                                     hpolicy, vpolicy);
+
     gtk_widget_size_request (priv->scrolled_window, &popup_req);
   }
 
-  *height = popup_req.height;
+ *height = popup_req.height;
 
   screen      = gtk_widget_get_screen (GTK_WIDGET (combo_box));
   monitor_num = gdk_screen_get_monitor_at_window (screen, window);
