@@ -7069,7 +7069,7 @@ void geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
 /*!
  * \brief Get GedaComboBox Widget Title Property
  * \par Function Description
- *  Gets the current title of the menu in tearoff mode/
+ *  Gets the current title of the menu in tearoff mode.
  * \see geda_combo_box_set_add_tearoffs().
  *
  * \param [in] combo_box a #GedaComboBox
