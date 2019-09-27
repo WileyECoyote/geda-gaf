@@ -6814,12 +6814,10 @@ void geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
  *
  * \param [in] combo_box a #GedaComboBox
  *
- * \return Value: %GTK_SENSITIVITY_ON if the dropdown button
- *    is sensitive when the model is empty, %GTK_SENSITIVITY_OFF
- *    if the button is always insensitive or
- *    %GTK_SENSITIVITY_AUTO if it is only sensitive as long as
- *    the model has one item to be selected.
- *
+ * \return %GTK_SENSITIVITY_ON if the dropdown button is sensitive
+ *         when the model is empty, %GTK_SENSITIVITY_OFF if the button
+ *         is always insensitive or %GTK_SENSITIVITY_AUTO if it is only
+ *         sensitive as long as the model has one item to be selected.
  */
 GtkSensitivityType geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
 {
