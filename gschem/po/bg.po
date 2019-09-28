@@ -2409,15 +2409,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size; Izbor kh razmer
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "избор"
+msgstr "Избор х размер"
 
+# Selection y size; Izbor y razmer
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "избор"
+msgstr "Избор y размер"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -6087,10 +6087,10 @@ msgstr "Експортиран вграден символ"
 msgid "Export embedded picture"
 msgstr "Експортиране на вградено изображение"
 
+# Tools/_Symbols; Instrumenti/Simvoli
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "символи"
+msgstr "Инструменти/Символи"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
