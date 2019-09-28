@@ -693,19 +693,18 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
   GedaComboBoxData *priv      = combo_box->priv;
   GtkWidget        *child;
 
-  if (gtk_widget_is_drawable (widget) &&
-      GTK_SHADOW_NONE != priv->shadow_type)
-    {
-      GtkAllocation  *allocation;
+  if (gtk_widget_is_drawable(widget) && GTK_SHADOW_NONE != priv->shadow_type)
+  {
+    GtkAllocation  *allocation;
 
-      allocation = geda_get_widget_allocation (widget);
+    allocation = geda_get_widget_allocation (widget);
 
-      gtk_paint_shadow (widget->style, widget->window,
-                        GTK_STATE_NORMAL, priv->shadow_type,
-                        NULL, widget, "combobox",
-                        allocation->x, allocation->y,
-                        allocation->width, allocation->height);
-    }
+    gtk_paint_shadow (widget->style, widget->window,
+                      GTK_STATE_NORMAL, priv->shadow_type,
+                      NULL, widget, "combobox",
+                      allocation->x, allocation->y,
+                      allocation->width, allocation->height);
+  }
 
   gtk_container_propagate_expose ((GtkContainer*)widget, priv->button, event);
 
