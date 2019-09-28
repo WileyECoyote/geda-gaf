@@ -2312,14 +2312,12 @@ msgid "Indicates total number of objects currently selected"
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Select"
+msgstr "Selection x size"
 
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Select"
+msgstr "Selection y size"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -5307,9 +5305,8 @@ msgid "_About..."
 msgstr "_About..."
 
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "Lower Middle"
+msgstr "_Lower Behind"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5332,9 +5329,8 @@ msgid "Raise objects to top of drawing order"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Top to bottom"
+msgstr "Move to _Bottom"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -5880,9 +5876,8 @@ msgid "Export embedded picture"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "Symbols"
+msgstr "_Tools/_Symbols"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
