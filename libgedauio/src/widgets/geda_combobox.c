@@ -631,15 +631,18 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
   gtk_widget_unparent (widget);
   GTK_BIN (container)->child = NULL;
 
-  if (GTK_OBJECT_FLAGS (combo_box) & GTK_IN_DESTRUCTION)
+  if (GTK_OBJECT_FLAGS (combo_box) & GTK_IN_DESTRUCTION) {
     return;
+  }
 
   gtk_widget_queue_resize (GTK_WIDGET (container));
 
-  if (!priv->tree_view)
+  if (!priv->tree_view) {
     appears_as_list = FALSE;
-  else
+  }
+  else {
     appears_as_list = TRUE;
+  }
 
   if (appears_as_list) {
     geda_combo_box_list_destroy (combo_box);
@@ -3005,8 +3008,10 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
     submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)item);
 
     if (submenu != NULL) {
+
       gtk_widget_set_sensitive (item, TRUE);
       update_menu_sensitivity (combo_box, submenu);
+
     }
     else {
 
@@ -3021,9 +3026,12 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
 
         g_object_set (item, "visible", sensitive, NULL);
         g_object_set (separator, "visible", sensitive, NULL);
+
       }
       else {
+
         gtk_widget_set_sensitive (item, sensitive);
+
       }
     }
   }
@@ -3065,8 +3073,7 @@ static void geda_combo_box_menu_popup (GedaComboBox *combo_box,
     int width = gtk_widget_get_allocated_width (combo_box);
 
     gtk_widget_set_size_request (priv->popup_widget, -1, -1);
-    gtk_widget_size_request (priv->popup_widget, &requisition);
-
+    gtk_widget_size_request     (priv->popup_widget, &requisition);
     gtk_widget_set_size_request (priv->popup_widget,
                                  MAX (width, requisition.width), -1);
   }
