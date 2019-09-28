@@ -2374,31 +2374,28 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_edit_array.c:1026
-#, fuzzy
 msgid "Indicates total number of objects currently selected"
-msgstr "Cuenta de solo lectura de objetos actualmente seleccionados"
+msgstr "Indica el número total de objetos actualmente seleccionados"
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Selección"
+msgstr "Selección x tamaño"
 
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Selección"
+msgstr "Selección y tamaño"
 
-# Spinner entry number of rows to create
+# Number of rows to create
 #: gschem/src/x/x_edit_array.c:1029
-#, fuzzy
 msgid "Number of rows to create"
-msgstr "Spinner número de entrada de filas para crear"
+msgstr "Número de filas para crear"
 
-# pinner entry number of columns to create
+# Number of columns to create
 #: gschem/src/x/x_edit_array.c:1030
-#, fuzzy
 msgid "Number of columns to create"
-msgstr "Spinner número de entrada de columnas para crear"
+msgstr "Número de columnas para crear"
 
 #: gschem/src/x/x_edit_array.c:1031
 msgid "Vertical pitch of array, negative is downward"
@@ -2485,7 +2482,7 @@ msgstr "Solo lectura y límites de desplazamiento del objeto seleccionado"
 msgid "Spinner entry number of rows to create"
 msgstr "Spinner número de entrada de filas para crear"
 
-# pinner entry number of columns to create
+# Spinner entry number of columns to create
 #: gschem/src/x/x_edit_array.c:1273
 msgid "Spinner entry number of columns to create"
 msgstr "Spinner número de entrada de columnas para crear"
@@ -5429,10 +5426,10 @@ msgstr "_Wiki de gEDA..."
 msgid "_About..."
 msgstr "_Acerca de..."
 
+# Lower Behind
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "Abajo centrado"
+msgstr "Más abajo"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5454,10 +5451,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "De arriba hacia abajo"
+msgstr "Mover a la parte inferior"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -6002,10 +5999,10 @@ msgstr "Exportar símbolo insertado"
 msgid "Export embedded picture"
 msgstr "Exportar imagen insertada"
 
+# Tools/_Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "Símbolos"
+msgstr "Herramientas/Símbolos"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
