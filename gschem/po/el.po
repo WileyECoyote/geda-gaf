@@ -2334,15 +2334,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size; Epilogí x mégethos
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Επιλογή"
+msgstr "Επιλογή x μέγεθος"
 
+# Selection y size; Epilogí y mégethos
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
-msgid "Selection y size"
-msgstr "Επιλογή"
+sgid "Selection y size"
+msgstr "Επιλογή y μέγεθος"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -5398,10 +5398,10 @@ msgstr "gEDA _Wiki..."
 msgid "_About..."
 msgstr "_Σχετικά..."
 
+# Lower Behind
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "Κάτω μέση"
+msgstr "Κάτω Πίσω"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5423,10 +5423,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom; Metakínisi sto káto méros
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Πάνω προς κάτω"
+msgstr "Μετακίνηση στο κάτω μέρος"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -5975,10 +5975,10 @@ msgstr "Εξαγωγή του ενσωματωμένου συμβόλου"
 msgid "Export embedded picture"
 msgstr "Εξαγωγή ενσωματωμένης εικόνας"
 
+# Tools/_Symbols; Ergaleía/Sýmvola
 #: gschem/scheme/gschem/gschem-tools-menu.scm:304
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "Σύμβολα"
+msgstr "Εργαλεία/Σύμβολα"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:305
 msgid "_Tools/S_pice netlist"
