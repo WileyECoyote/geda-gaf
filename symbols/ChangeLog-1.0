@@ -1,3 +1,8 @@
+2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulator/TPS74001-1.sym: Add symbol; adjustable LDO
+      regulator with dual input voltages, 1.5A.
+
 2019-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/jumper: Add description attribute:
