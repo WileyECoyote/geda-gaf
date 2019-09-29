@@ -12,6 +12,8 @@
 
     * linear/special/vicor_gen1.sym: Reposition footprint, update device.
 
+    * logic/4000/4094b-3.sym: Reposition attributes, add value and description.
+
 2019-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/jumper: Add description attribute:
