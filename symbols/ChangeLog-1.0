@@ -17,6 +17,8 @@
     * logic/logic-symbols/clkinv.sym: Remove P= attribute, add device, footprint
       and description.
 
+    * logic/logic-symbols/dffr.sym: Remove source= attribute, add description.
+
 2019-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/jumper: Add description attribute:
