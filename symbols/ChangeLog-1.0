@@ -6,6 +6,10 @@
     * linear/regulator/TPS74012-1.sym: Add symbol; LDO regulator with
       dual input voltages, fixed, 1.5A.
 
+    * linear/regulator: Add description, update device attribute:
+
+            * regulator/vreg_dual_input-1.sym
+
 2019-09-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * connector/jumper: Add description attribute:
