@@ -233,7 +233,7 @@ int test_file (void)
   flags = geda_open_flags(toplevel);
 
   if (flags ^ F_OPEN_RESTORE_CWD) {
-    fprintf(stderr, "FAILED: (F010401) geda_file_open_flags <%d>\n", flags);
+    fprintf(stderr, "FAILED: (F010401) geda_file_open_flags <%u>\n", flags);
     result++;
   }
 
