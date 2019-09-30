@@ -1373,9 +1373,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
 
   widget_class->activate_signal = signals[ACTIVATE];
 
-  /* GedaMenuButton::show-menu:
-   * button: the object on which the signal is emitted
-   *
+  /*! GedaMenuButton::show-menu:
+   * \par
    * The ::show-menu signal is emitted before the menu is shown.
    *
    * It can be used to populate the menu on demand, using
@@ -1384,6 +1383,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Note that even if you populate the menu dynamically in this way,
    * you must set an empty menu on the #GedaMenuButton beforehand,
    * since the arrow is made insensitive if the menu is not set.
+   *
+   * param button: the object on which the signal is emitted.
    */
   signals[SHOW_MENU] = g_signal_new ("show-menu", type,
                          G_SIGNAL_RUN_FIRST,
