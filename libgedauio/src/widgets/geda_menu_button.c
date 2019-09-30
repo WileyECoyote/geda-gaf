@@ -1750,8 +1750,8 @@ GtkWidget *geda_menu_button_new_from_icon_name (const char *icon_name)
 /*!
  * \brief New GedaMenuButton from Stock Id
  * \par Function Description
- * Creates a new GedaMenuButton. The new GedaMenuButton will contain
- * an icon and label from the stock item indicated by \a stock_id.
+ *  Creates a new GedaMenuButton. The new GedaMenuButton will contain
+ *  an icon and label from the stock item indicated by \a stock_id.
  *
  * \param [in] stock_id  Name of a stock item
  *
