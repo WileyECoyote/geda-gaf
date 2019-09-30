@@ -1485,7 +1485,7 @@ static void menu_detacher (GtkWidget *widget, GedaMenu *menu)
   priv->menu = NULL;
 }
 
-/* Helper call by:
+/*! \internal Helper call by:
  *   arrow_button_toggled_cb
  *   arrow_button_press_event_cb
  */
