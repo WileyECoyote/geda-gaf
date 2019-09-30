@@ -1725,7 +1725,7 @@ GtkWidget *geda_menu_button_new(GtkWidget *icon_widget, const char *label)
  * \brief New GedaMenuButton with Icon Image
  * \par Function Description
  * Creates a new Menu Button containing an icon from the current icon
- * theme. If the icon name isn’t known, a “broken image” icon will be
+ * theme. If the icon name is not known, a "broken image" icon will be
  * displayed instead. If the current icon theme is changed, the icon
  * will be updated appropriately.
  *
