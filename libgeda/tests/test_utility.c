@@ -1708,7 +1708,7 @@ int test_strings (void)
 
   string = geda_strisubst(str_170, "brown", "Silver");
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061701) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061701) geda_strisubst NULL\n");
     result++;
   }
 
@@ -1716,7 +1716,7 @@ int test_strings (void)
 
   string = geda_strisubst(str_170, "Silver", "Grey");
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U061702) geda_strisubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U061702) geda_strisubst NULL\n");
     result++;
   }
 
@@ -1928,7 +1928,7 @@ int test_strings (void)
 
   string = geda_strsubst(str_22, "Brown", "Red");
   if (string == NULL) {
-    fprintf(stderr, "FAILED: (U062201) geda_strsubst <%s>\n", string);
+    fprintf(stderr, "FAILED: (U062201) geda_strsubst NULL\n");
     result++;
   }
 
