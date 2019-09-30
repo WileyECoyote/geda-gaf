@@ -1463,9 +1463,9 @@ bool is_a_geda_menu_button (GedaMenuButton *menu_button)
 
 /* BEGIN ------+-------+-------^    Sub-Menu   ^-------+-------+-------+-----*/
 
-/* Callback for the "deactivate" signal on the pop-up menu.
- * This is used so that we unset the state of the toggle button
- * when the pop-up menu disappears.
+/*! \internal Callback for the "deactivate" signal on the pop-up menu.
+ *  This is used to unset the state of the toggle button when the pop-up
+ *  menu disappears.
  */
 static int geda_menu_deactivate_cb (GedaMenuShell *menu_shell, GedaMenuButton *button)
 {
