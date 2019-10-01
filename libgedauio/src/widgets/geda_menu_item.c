@@ -842,7 +842,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::activate:
-   *
+   * \par
    * Emitted when the item is activated.
    *
    * menuitem: the object which received the signal.
@@ -859,7 +859,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::activate-item:
-   *
+   * \par
    * Emitted when the item is activated, but also if the menu item has a
    * submenu. For normal applications, the relevant signal is
    * GedaMenuItem::activate.
@@ -915,7 +915,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::right-justified
-   *
+   * \par
    * Sets whether the menu item appears justified
    * at the right side of a menu bar.
    */
@@ -929,7 +929,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::submenu
-   *
+   * \par
    * The submenu attached to the menu item, or %NULL if it has none.
    */
   g_object_class_install_property (gobject_class,
@@ -942,7 +942,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::accel-path
-   *
+   * \par
    * Sets the accelerator path of the menu item, through which runtime
    * changes of the menu item's accelerator caused by the user can be
    * identified and saved to persistant storage.
@@ -957,7 +957,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::label
-   *
+   * \par
    * The text for the child label.
    */
   g_object_class_install_property (gobject_class,
@@ -977,7 +977,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
                                                         G_PARAM_READWRITE));
   /*!
    * GedaMenuItem::use-underline
-   *
+   * \par
    * %TRUE if underlines in the text indicate mnemonics.
    */
   g_object_class_install_property (gobject_class,
@@ -1024,7 +1024,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::horizontal-padding
-   *
+   * \par
    * Padding to left and right of the menu item.
    */
   gtk_widget_class_install_style_property (widget_class,
@@ -1070,7 +1070,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::width-chars
-   *
+   * \par
    * The minimum desired width of the menu item in characters.
    */
   gtk_widget_class_install_style_property (widget_class,
