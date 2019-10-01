@@ -1404,8 +1404,9 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     }
   }
 
-  if (!action)
+  if (!action) {
     return;
+  }
 
   geda_action_sync_menu_visible ((GedaAction*)action, widget,
     geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
