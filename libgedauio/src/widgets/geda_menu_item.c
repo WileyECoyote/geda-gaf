@@ -1328,28 +1328,28 @@ static void activatable_update_label (GedaMenuItem *menu_item, GtkAction *action
  */
 static bool geda_menu_is_empty (GtkWidget *menu)
 {
-  GList *children, *cur;
+  GList *children, *iter;
   bool result;
 
   g_return_val_if_fail (GEDA_IS_MENU(menu), TRUE);
 
   children = geda_container_get_children (menu);
-  cur      = children;
+  iter     = children;
   result   = TRUE;
 
-  while (cur) {
+  while (iter) {
 
-    if (gtk_widget_get_visible (cur->data)) {
+    if (gtk_widget_get_visible (iter->data)) {
 
-      if (!GTK_IS_TEAROFF_MENU_ITEM (cur->data) &&
-          !GEDA_OBJECT_GET_DATA (cur->data, "empty-menu-item"))
+      if (!GTK_IS_TEAROFF_MENU_ITEM (iter->data) &&
+          !GEDA_OBJECT_GET_DATA (iter->data, "empty-menu-item"))
       {
         result = FALSE;
         break;
       }
 
     }
-    cur = cur->next;
+    iter = iter->next;
   }
   g_list_free (children);
 
