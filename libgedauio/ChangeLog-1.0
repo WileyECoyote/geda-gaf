@@ -1,3 +1,7 @@
+2019-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Simplify validation of menu in geda_menu_is_empty.
+
 2019-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add documentation for
