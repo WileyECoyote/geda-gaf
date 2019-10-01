@@ -1113,14 +1113,17 @@ static void geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   }
 
 #if (GTK_MAJOR_VERSION == 3)
+
   GtkStyleContext *context;
   context = gtk_widget_get_style_context ((GtkWidget*)menu_item);
   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENUITEM);
+
 #endif
 
   if (!menu_item_hash_table) {
     menu_item_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
+
   g_hash_table_replace (menu_item_hash_table, instance, instance);
 }
 
@@ -1206,6 +1209,7 @@ bool is_a_geda_menu_item (GedaMenuItem *menu_item)
   if ((menu_item != NULL) && (menu_item_hash_table != NULL)) {
     return g_hash_table_lookup(menu_item_hash_table, menu_item) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
