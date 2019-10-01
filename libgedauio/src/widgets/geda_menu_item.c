@@ -400,6 +400,7 @@ static void geda_menu_item_do_set_right_justified (GedaMenuItem *menu_item,
   if (priv->right_justify != right_justified) {
 
     priv->right_justify = right_justified;
+
     gtk_widget_queue_resize ((GtkWidget*)menu_item);
   }
 }
