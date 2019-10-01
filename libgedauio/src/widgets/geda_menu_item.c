@@ -634,6 +634,7 @@ static void geda_menu_item_show_all (GtkWidget *widget)
   gtk_widget_show (widget);
 }
 
+/*! \internal widget_class->can_activate_accel */
 static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
                                                unsigned int signal_id)
 {
