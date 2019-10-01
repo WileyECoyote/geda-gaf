@@ -1,7 +1,8 @@
 2019-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove redundant validation and simplify
-      validation of menu in geda_menu_is_empty.
+      validation of menu in geda_menu_is_empty, suspend initialization of the
+      result until after validation.
 
 2019-09-23 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1329,13 +1329,13 @@ static void activatable_update_label (GedaMenuItem *menu_item, GtkAction *action
 static bool geda_menu_is_empty (GtkWidget *menu)
 {
   GList *children, *cur;
-  bool result = TRUE;
+  bool result;
 
   g_return_val_if_fail (GEDA_IS_MENU(menu), TRUE);
 
   children = geda_container_get_children (menu);
-
-  cur = children;
+  cur      = children;
+  result   = TRUE;
 
   while (cur) {
 
