@@ -1332,8 +1332,6 @@ static bool geda_menu_is_empty (GtkWidget *menu)
   bool result = TRUE;
 
   g_return_val_if_fail (GEDA_IS_MENU(menu), TRUE);
-  if (!menu)
-    return FALSE;
 
   children = geda_container_get_children (menu);
 
