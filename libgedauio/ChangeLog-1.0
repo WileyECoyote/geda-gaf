@@ -2,7 +2,7 @@
 
     * src/widgets/geda_menu_item.c: Convert While loop to a For loop in
       geda_menu_is_empty, and remove checking for the "empty-menu-item"
-      data, which is never set. Add ancillary Boolean is_empty in
+      data, which is never set. Add ancillary is_empty and sensitive in
       geda_menu_item_update.
 
 2019-10-01 Wiley E. Hill <wileyhill@gmail.com>

@@ -1371,7 +1371,11 @@ static void geda_menu_item_update (GtkActivatable *activatable,
   }
   else if (strcmp (property_name, "sensitive") == 0) {
 
-    gtk_widget_set_sensitive ((GtkWidget*)menu_item, gtk_action_is_sensitive (action));
+    bool sensitive;
+
+    sensitive = gtk_action_is_sensitive (action);
+
+    gtk_widget_set_sensitive ((GtkWidget*)menu_item, sensitive);
 
   }
   else if (priv->use_action_appearance) {
