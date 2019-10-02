@@ -1554,10 +1554,10 @@ void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GedaMenu *submenu)
 }
 
 /*!
- * \brief Set GedaMenuItem submenu Widget
+ * \brief Set or Clear GedaMenuItem submenu Widget
  * \par Function Description
- *  Sets or replaces the submenu of menu item, or removes it when a %NULL
- *  submenu is passed.
+ *  Sets or replaces the submenu of menu item, or removes it when
+ *  \a submenu is %NULL.
  *
  * \param [in] menu_item a #GedaMenuItem
  * \param [in] submenu   the submenu, or %NULL
