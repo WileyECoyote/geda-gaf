@@ -1347,10 +1347,10 @@ static bool geda_menu_is_empty (GtkWidget *menu)
         result = FALSE;
         break;
       }
-
     }
     iter = iter->next;
   }
+
   g_list_free (children);
 
   return result;
@@ -1367,6 +1367,7 @@ static void geda_menu_item_update (GtkActivatable *activatable,
 
     geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item,
                                    geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
+
   }
   else if (strcmp (property_name, "sensitive") == 0) {
 
@@ -1544,6 +1545,7 @@ void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GedaMenu *submenu)
     if (gtk_widget_get_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
+
     GEDA_OBJECT_NOTIFY (menu_item, "submenu");
   }
 }
@@ -1592,6 +1594,7 @@ void geda_menu_item_set_submenu_widget (GedaMenuItem *menu_item, GtkWidget *subm
     if (gtk_widget_get_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
+
     GEDA_OBJECT_NOTIFY (menu_item, "submenu");
   }
 }
