@@ -1779,10 +1779,13 @@ void geda_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
   g_signal_emit (menu_item, menu_item_signals[TOGGLE_SIZE_ALLOCATE], 0, allocation);
 }
 
-/* Gtk3 Helper called by:
+/* Common Helper, called by:
  *
- *    1.) geda_menu_item_draw
- *    2.) geda_menu_item_get_preferred_width
+ *    1.) Gtk2 geda_menu_item_size_request
+ *    2.) Gtk3 geda_menu_item_draw
+ *    3.) Gtk3 geda_menu_item_get_preferred_width
+ *    4.) Gtk3 geda_menu_item_real_get_height
+ *    5.) Gtk3 geda_menu_item_size_allocate
  */
 static void get_arrow_size (GtkWidget *widget, GtkWidget *child, int *size, int *spacing)
 {

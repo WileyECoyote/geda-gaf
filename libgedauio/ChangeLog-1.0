@@ -6,6 +6,7 @@
       geda_menu_item_update. Revise documentation:
 
           * geda_menu_item_set_submenu
+          * get_arrow_size
 
 2019-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
