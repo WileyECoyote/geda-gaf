@@ -1506,7 +1506,7 @@ GtkWidget *geda_menu_item_new_with_mnemonic (const char *label)
  *
  * \param [in] menu_item a #GedaMenuItem
  */
-GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
+GdkWindow *geda_menu_item_get_event_window (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
   return menu_item->priv->event_window;
@@ -1756,7 +1756,7 @@ void geda_menu_item_activate_item (GedaMenuItem *menu_item)
  * \param [in] requisition the requisition to use as signal data.
  */
 void geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
-                                         int        *requisition)
+                                                  int *requisition)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
@@ -1772,7 +1772,7 @@ void geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
  * \param [in] allocation  the allocation to use as signal data.
  */
 void geda_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
-                                          int           allocation)
+                                                   int  allocation)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
