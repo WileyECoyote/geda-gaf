@@ -1,7 +1,8 @@
 2019-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Convert While loop to a For loop in
-      geda_menu_is_empty
+      geda_menu_is_empty, and remove checking for the "empty-menu-item"
+      data, which is never set.
 
 2019-10-01 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1341,9 +1341,7 @@ static bool geda_menu_is_empty (GtkWidget *menu)
 
     if (gtk_widget_get_visible (iter->data)) {
 
-      if (!GTK_IS_TEAROFF_MENU_ITEM (iter->data) &&
-          !GEDA_OBJECT_GET_DATA (iter->data, "empty-menu-item"))
-      {
+      if (!GTK_IS_TEAROFF_MENU_ITEM (iter->data)) {
         result = FALSE;
         break;
       }
