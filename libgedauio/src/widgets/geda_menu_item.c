@@ -1362,8 +1362,11 @@ static void geda_menu_item_update (GtkActivatable *activatable,
 
   if (strcmp (property_name, "visible") == 0) {
 
-    geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item,
-                                   geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
+    bool is_empty;
+
+    is_empty = geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item));
+
+    geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item, is_empty);
 
   }
   else if (strcmp (property_name, "sensitive") == 0) {
