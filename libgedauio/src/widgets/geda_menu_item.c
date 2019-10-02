@@ -1479,7 +1479,6 @@ GtkWidget *geda_menu_item_new_with_label (const char *label)
   return g_object_new (GEDA_TYPE_MENU_ITEM, "label", label, NULL);
 }
 
-
 /*!
  * \brief Creates a new GedaMenuItem with mnemonic
  * \par Function Description
