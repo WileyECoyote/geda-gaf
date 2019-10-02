@@ -1,3 +1,8 @@
+2019-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Convert While loop to a For loop in
+      geda_menu_is_empty
+
 2019-10-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove redundant validation and simplify

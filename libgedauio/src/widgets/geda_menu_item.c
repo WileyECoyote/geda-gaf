@@ -1334,10 +1334,10 @@ static bool geda_menu_is_empty (GtkWidget *menu)
   g_return_val_if_fail (GEDA_IS_MENU(menu), TRUE);
 
   children = geda_container_get_children (menu);
-  iter     = children;
+
   result   = TRUE;
 
-  while (iter) {
+  for (iter = children; iter; iter = iter->next) {
 
     if (gtk_widget_get_visible (iter->data)) {
 
@@ -1348,7 +1348,6 @@ static bool geda_menu_is_empty (GtkWidget *menu)
         break;
       }
     }
-    iter = iter->next;
   }
 
   g_list_free (children);
