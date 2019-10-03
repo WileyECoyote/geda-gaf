@@ -2324,7 +2324,7 @@ COMMAND (do_documentation)
 
       if (attrib_doc) {
 
-        GError *error = NULL;
+        GError *error;
         bool    result;
 
 #if 1

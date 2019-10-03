@@ -1,41 +1,30 @@
+2019-10-03 Wiley E. Hill <wileyhill@gmail.com
+
+    * gschem/src/iface/i_command.c: Remove unnecessary initialization of
+      GError in do_documentation.
+
 2019-09-28 Wiley E. Hill <wileyhill@gmail.com
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/en_GB.po: Update Great Britain.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
 
 2019-09-21 Wiley E. Hill <wileyhill@gmail.com
 
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/ru.po: Update Russian translations.
 
 2019-09-20 Wiley E. Hill <wileyhill@gmail.com
