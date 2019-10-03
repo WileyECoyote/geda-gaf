@@ -2331,14 +2331,17 @@ COMMAND (do_documentation)
         result = x_show_uri (attrib_doc);
 
 #else
+
         /* Use this instead until debian-gnome work out thier iceweasel issue */
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
+
 #endif
 
         if (!result) {
           geda_log("%s: %s\n", _("error"), error->message);
           g_error_free (error);
         }
+
         GEDA_FREE(attrib_doc);
       }
     }
