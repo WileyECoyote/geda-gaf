@@ -1988,6 +1988,7 @@ static int geda_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
+/*! \internal Gtk2 widget_class->size_request */
 static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaMenuItem        *menu_item;
