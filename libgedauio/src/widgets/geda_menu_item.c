@@ -2308,6 +2308,7 @@ static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   return FALSE;
 }
 
+/*! \internal Gtk3 widget_class->get_preferred_width */
 static void geda_menu_item_get_preferred_width (GtkWidget *widget,
                                                 int       *minimum_size,
                                                 int       *natural_size)
