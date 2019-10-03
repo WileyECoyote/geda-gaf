@@ -2219,6 +2219,7 @@ static void geda_real_menu_item_select (GedaMenuItem *menu_item)
 
 #else /* GTK_MAJOR_VERSION >= 3.0 */
 
+/*! \internal Gtk3 widget_class->draw */
 static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;

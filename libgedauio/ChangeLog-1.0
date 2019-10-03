@@ -3,6 +3,7 @@
     * src/widgets/geda_menu_item.c: Add internal documentation for
 
           * geda_menu_item_size_request
+          * geda_menu_item_draw;
 
 2019-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
