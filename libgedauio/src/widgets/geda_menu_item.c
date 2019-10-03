@@ -2489,6 +2489,7 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
     *natural_size = nat_height;
 }
 
+/*! \internal Gtk3 widget_class->get_preferred_height */
 static void geda_menu_item_get_preferred_height (GtkWidget *widget,
                                                  int       *minimum_size,
                                                  int       *natural_size)

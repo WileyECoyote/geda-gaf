@@ -5,6 +5,7 @@
           * geda_menu_item_size_request
           * geda_menu_item_draw;
           * geda_menu_item_get_preferred_width;
+          * geda_menu_item_get_preferred_height;
 
 2019-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
