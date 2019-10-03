@@ -1509,6 +1509,7 @@ GtkWidget *geda_menu_item_new_with_mnemonic (const char *label)
 GdkWindow *geda_menu_item_get_event_window (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
+
   return menu_item->priv->event_window;
 }
 
@@ -1821,7 +1822,6 @@ static void get_arrow_size (GtkWidget *widget, GtkWidget *child, int *size, int 
  * Gtk2 geda_menu_item_size_request
  * Gtk3 geda_menu_item_get_preferred_width
  */
-
 static int get_minimum_width (GtkWidget *widget)
 {
   PangoContext     *context;
