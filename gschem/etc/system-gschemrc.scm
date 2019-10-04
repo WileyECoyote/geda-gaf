@@ -2375,7 +2375,7 @@
 ;;
 ;;    menu item name         menu action           menu icon                   Menu Item Tooltip
 ;;
-  '((,(N_"_Lower Behind")     page-draw-before     "gtk-sort-ascending"        ,(N_ "Draw objects before another object"))
+  `((,(N_ "_Lower Behind")    page-draw-before     "gtk-sort-ascending"        ,(N_ "Draw objects before another object"))
     (,(N_"_Raise Above")      page-draw-after      "gtk-sort-descending"       ,(N_ "Draw object after another object"))
     ("SEPARATOR"             #f                    #f)
     (,(N_"Bring to _Top")     page-draw-last       "gtk-sort-ascending"        ,(N_ "Raise objects to top of drawing order"))

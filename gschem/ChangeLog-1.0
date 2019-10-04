@@ -1,6 +1,8 @@
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
-    * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable.
+    * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable. Replace
+      apostrophe quote, 0x27, with grave accent, 0x60, so that the translation
+      no-op macros are evaluated.
 
     * scheme/gschem/gschem-export-menu.scm: Flag Export menu item as
       translatable.
