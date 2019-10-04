@@ -4,9 +4,9 @@
       apostrophe quote, 0x27, with grave accent, 0x60, so that the translation
       no-op macros are evaluated.
 
-    * scheme/gschem/gschem-export-menu.scm: Flag Export menu item as translatable.
-      Replace apostrophe quote, 0x27, with grave accent, 0x60, so that the translation
-      no-op macros are evaluated.
+    * scheme/gschem/gschem-export-menu.scm: Flag Export menu item and menu-items
+      as translatable. Replace apostrophe quote, 0x27, with grave accent, 0x60,
+      so that the translation no-op macros are evaluated.
 
     * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T E" to launch the
       text editor. Replace apostrophe quote, 0x27, with grave accent, 0x60, so
