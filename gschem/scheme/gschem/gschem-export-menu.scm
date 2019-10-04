@@ -53,7 +53,7 @@
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("_XML"               export:xml             "geda-xml"                    "Export document to XML file")
+  `(("_XML"               export:xml             "geda-xml"                    "Export document to XML file")
     ("SEPARATOR"                #f                     #f)
     ("_Symbol"            export-symbol          "geda-inbed"                 ,(N_ "Export embedded symbol"))
     ("_Picture"           export-picture         "gtk-orientation-portrait"   ,(N_ "Export embedded picture"))
