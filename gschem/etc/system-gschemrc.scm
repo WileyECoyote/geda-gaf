@@ -2399,7 +2399,7 @@
 (add-menu (N_ "_Tools")      tools-menu-items)
 
 ;; The add the sub-menu items under the Draw Order menu item
-(add-menu "_Page/_Draw Order" draw-order-menu-items)
+(add-menu (N_ "_Page/_Draw Order") draw-order-menu-items)
 
 (load-from-path "gschem/gschem-export-menu.scm")
 

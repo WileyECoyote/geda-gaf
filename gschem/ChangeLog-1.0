@@ -1,5 +1,7 @@
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
+    * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable.
+
     * scheme/gschem/gschem-export-menu.scm: Flag Export menu item as
       translatable.
 
