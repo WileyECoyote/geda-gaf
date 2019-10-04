@@ -1,5 +1,8 @@
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/gschem/gschem-export-menu.scm: Flag Export menu item as
+      translatable.
+
     * gschem/src/iface/i_command.c: Clean up code a bit in do_documentation.
 
 2019-10-03 Wiley E. Hill <wileyhill@gmail.com
