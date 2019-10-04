@@ -239,7 +239,7 @@
 ;;
 ;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-  '(
+  `(
     ("_Symbols"                 #f                     "geda-component"     "Tool for symbol files")
     ("SEPARATOR"                #f                     #f)
     ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
@@ -263,7 +263,7 @@
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(
+  `(
     ("Symbol _Translate..."  tools-translate           "gtk-convert"       "Reset the X-Y Zero point")
     ("Check Symbol"          tools:check-symbol        "geda-inspect-grn"  "Run gsymcheck")
   )
@@ -273,7 +273,7 @@
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(
+  `(
     ("Spice netlist"        tools:spice-netlist        "geda-spectrum"    "Generate spice netlists")
     ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave"        "Generate spice netlists using SDB backend")
     ("Anise netlist"        tools:spice-anise-netlist  "geda-waves")
