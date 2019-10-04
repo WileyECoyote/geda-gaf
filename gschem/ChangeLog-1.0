@@ -5,6 +5,9 @@
     * scheme/gschem/gschem-export-menu.scm: Flag Export menu item as
       translatable.
 
+    * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T E" to launch the
+      text editor.
+
     * gschem/src/iface/i_command.c: Clean up code a bit in do_documentation.
 
 2019-10-03 Wiley E. Hill <wileyhill@gmail.com

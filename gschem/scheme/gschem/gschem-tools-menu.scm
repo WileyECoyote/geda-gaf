@@ -230,6 +230,7 @@
         (tools:open-editor? fout)
 ))))
 
+(map-keys "T E"    "tools:open-editor")
 (map-keys "T S"    "tools:check-symbol")
 (map-keys "T T"    "tools-translate")
 
