@@ -1,3 +1,7 @@
+2019-10-04 Wiley E. Hill <wileyhill@gmail.com
+
+    * gschem/src/iface/i_command.c: Clean up code a bit in do_documentation.
+
 2019-10-03 Wiley E. Hill <wileyhill@gmail.com
 
     * gschem/src/iface/i_command.c: Remove unnecessary initialization of
