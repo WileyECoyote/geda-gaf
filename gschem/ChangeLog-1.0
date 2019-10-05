@@ -12,6 +12,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations.
+
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable. Replace

@@ -6396,20 +6396,18 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "_Symbole:"
+msgstr "_Symbole"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Eksportuj osadzony symbolu"
 
-# Add Picture
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Dodaj Obraz"
+msgstr "Obrazek"
 
 # Export embed picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
