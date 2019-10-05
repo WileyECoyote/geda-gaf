@@ -6019,19 +6019,18 @@ msgid "Export document to XML file"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Simbolo:"
+msgstr "_Simbolo"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Esporta simbolo incorporato"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Aggiungi immagine"
+msgstr "Immagine"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
@@ -6039,9 +6038,8 @@ msgid "Export embedded picture"
 msgstr "Esporta immagine incorporata"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
-#, fuzzy
 msgid "_File/_Export"
-msgstr "Esporta immagine"
+msgstr "_File/_Esporta"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
