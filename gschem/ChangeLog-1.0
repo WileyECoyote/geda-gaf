@@ -6,6 +6,8 @@
 
     * po/ja.po: Update Japanese translations.
 
+    * po/kh.po: Update Khmer translations.
+
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable. Replace

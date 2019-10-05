@@ -6208,9 +6208,8 @@ msgid "Export document to XML file"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "_Nimittaroub:"
+msgstr "Nimittaroub"
 
 # Export embedded symbol
 # neachenh nimittasanhnhea del ban bangkob
@@ -6218,10 +6217,10 @@ msgstr "_Nimittaroub:"
 msgid "Export embedded symbol"
 msgstr "neachenh roubtamnang"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "banthem roubpheap..."
+msgstr "roubpheap"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
