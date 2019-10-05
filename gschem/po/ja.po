@@ -6004,7 +6004,6 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
 msgstr "シンボル"
 
@@ -6013,10 +6012,10 @@ msgstr "シンボル"
 msgid "Export embedded symbol"
 msgstr "埋め込みシンボルのエクスポート"
 
+# Picture; Gazō
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "画像(_R)"
+msgstr "画像"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
