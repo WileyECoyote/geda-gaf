@@ -6254,30 +6254,28 @@ msgid "Export document to XML file"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "_Symbool:"
+msgstr "_Symbool"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Geïntegreerd symbool exporteren"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Voeg Afbeelding Toe"
+msgstr "Afbeelding"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Ingesloten afbeelding exporteren"
 
-# Export
+# File/Export
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
-#, fuzzy
 msgid "_File/_Export"
-msgstr "_Exporteer"
+msgstr "_File/_Export"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294

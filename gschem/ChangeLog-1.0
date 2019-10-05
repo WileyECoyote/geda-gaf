@@ -10,6 +10,8 @@
 
     * po/ml.po: Updated Malayalam translations.
 
+    * po/nl.po: Update Dutch translations.
+
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable. Replace
