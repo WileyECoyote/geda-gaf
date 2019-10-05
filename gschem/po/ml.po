@@ -6265,7 +6265,6 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
 msgstr "ചിഹ്നം"
 
@@ -6274,10 +6273,10 @@ msgstr "ചിഹ്നം"
 msgid "Export embedded symbol"
 msgstr "ഉൾച്ചേർത്ത ചിഹ്നം എക്സ്പോർട്ടുചെയ്യുക"
 
+# Picture; citraṁ
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "ചിത്രം മോഡ്"
+msgstr "ചിത്രം"
 
 # Embedded image export
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
