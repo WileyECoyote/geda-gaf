@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:35-0500\n"
+"POT-Creation-Date: 2019-10-04 14:34-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -139,19 +139,19 @@ msgstr ""
 msgid "Evaluate"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:243
+#: gschem/src/base/gschem_main_window.c:242
 msgid "Retrieving main window position.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:299
+#: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:422
+#: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
 msgstr ""
 
-#: gschem/src/base/gschem_main_window.c:423
+#: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
 msgstr ""
 
@@ -482,7 +482,7 @@ msgstr "ulazak u RC datoteku"
 msgid "Bad Value"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2086
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2092
 msgid "check"
 msgstr ""
 
@@ -532,8 +532,8 @@ msgstr ""
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1301
-#: gschem/src/guile/g_rc.c:1447 gschem/src/guile/g_rc.c:2040
+#: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1302
+#: gschem/src/guile/g_rc.c:1448 gschem/src/guile/g_rc.c:2044
 msgid "Continuing with default value"
 msgstr ""
 
@@ -542,38 +542,38 @@ msgstr ""
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1295
+#: gschem/src/guile/g_rc.c:1296
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1300
+#: gschem/src/guile/g_rc.c:1301
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1441
+#: gschem/src/guile/g_rc.c:1442
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1446
+#: gschem/src/guile/g_rc.c:1447
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2034
+#: gschem/src/guile/g_rc.c:2038
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2039
+#: gschem/src/guile/g_rc.c:2043
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2084
+#: gschem/src/guile/g_rc.c:2090
 msgid "Invalid zoom factor"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgstr ""
 msgid "Object ~A is not directly included in a page."
 msgstr ""
 
-#: gschem/src/guile/g_util.c:68
+#: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
 msgstr ""
 
@@ -590,237 +590,238 @@ msgstr ""
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5178
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5194
 msgid "current value of"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5179
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5195
 msgid "is"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:406
+#: gschem/src/iface/i_command.c:411
 msgid "Processing Action"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:517
+#: gschem/src/iface/i_command.c:522
 msgid "Cannot"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:517
+#: gschem/src/iface/i_command.c:522
 msgid "while inside an action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:772 gschem/src/iface/i_command.c:2809
+#: gschem/src/iface/i_command.c:777 gschem/src/iface/i_command.c:2823
 msgid "New page created"
 msgstr "Nova strana kreirana"
 
 # New Window created
-#: gschem/src/iface/i_command.c:812
+#: gschem/src/iface/i_command.c:817
 msgid "New Window created"
 msgstr "Novi prozor stvorio"
 
-#: gschem/src/iface/i_command.c:1011
+#: gschem/src/iface/i_command.c:1016
 msgid "Failed to Save All"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1014 gschem/src/iface/i_command.c:1031
+#: gschem/src/iface/i_command.c:1019 gschem/src/iface/i_command.c:1036
 msgid "Saved All"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1028
+#: gschem/src/iface/i_command.c:1033
 msgid "Error encountered, Save Failed"
 msgstr ""
 
 # Write image
-#: gschem/src/iface/i_command.c:1098 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1103 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Piši sliku"
 
-#: gschem/src/iface/i_command.c:1120
+#: gschem/src/iface/i_command.c:1125
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1216
+#: gschem/src/iface/i_command.c:1221
 msgid "Canceled close all\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1225 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1230 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1248
+#: gschem/src/iface/i_command.c:1253
 msgid "starting shut-down"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1262
+#: gschem/src/iface/i_command.c:1267
 msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1286
+#: gschem/src/iface/i_command.c:1291
 msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1433
+#: gschem/src/iface/i_command.c:1438
 msgid "Empty buffer"
 msgstr "Isprazni bafer"
 
 # offset mode
-#: gschem/src/iface/i_command.c:1698
+#: gschem/src/iface/i_command.c:1703
 msgid "Offset Mode"
 msgstr "istup režim"
 
-#: gschem/src/iface/i_command.c:1699
+#: gschem/src/iface/i_command.c:1704
 msgid "Specify offset distance:"
 msgstr ""
 
 # set Zoom
-#: gschem/src/iface/i_command.c:2295
+#: gschem/src/iface/i_command.c:2300
 msgid "Zoom Magnification"
 msgstr "set Uvećanje"
 
 # enter new zoom
-#: gschem/src/iface/i_command.c:2295
+#: gschem/src/iface/i_command.c:2300
 msgid "Specify new zoom:"
 msgstr "ulazak na nova zoom:"
 
+#: gschem/src/iface/i_command.c:2342 gschem/src/iface/i_command.c:4682
+#: gschem/src/iface/i_command.c:4712 gschem/src/iface/i_command.c:4733
+#: gschem/src/iface/i_command.c:4753
+msgid "Check path:"
+msgstr ""
+
 # error
-#: gschem/src/iface/i_command.c:2342
+#: gschem/src/iface/i_command.c:2353
 msgid "error"
 msgstr "greška"
 
 # no component is selected
-#: gschem/src/iface/i_command.c:2350
+#: gschem/src/iface/i_command.c:2364
 msgid "No component selected\n"
 msgstr "nije izabrana nijedna komponenta\n"
 
 # Confirm reload All documents
-#: gschem/src/iface/i_command.c:2895
+#: gschem/src/iface/i_command.c:2909
 msgid "Confirm revert ALL documents"
 msgstr "Potvrdi reload Svi dokumenti"
 
-#: gschem/src/iface/i_command.c:3077
+#: gschem/src/iface/i_command.c:3091
 msgid "Searching for source"
 msgstr "Tražim izvor"
 
-#: gschem/src/iface/i_command.c:3112
+#: gschem/src/iface/i_command.c:3126
 msgid "Failed to descend into"
 msgstr ""
 
 # hierarchy error
-#: gschem/src/iface/i_command.c:3121
+#: gschem/src/iface/i_command.c:3135
 msgid "Hierarchy Error"
 msgstr "Hijerarhija greška"
 
-#: gschem/src/iface/i_command.c:3198
+#: gschem/src/iface/i_command.c:3212
 msgid "Searching for symbol"
 msgstr "Tražim izvor"
 
-#: gschem/src/iface/i_command.c:3208
+#: gschem/src/iface/i_command.c:3222
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Simbol nije iz datoteke. Simbol se ne može učitati.\n"
 
-#: gschem/src/iface/i_command.c:3255
+#: gschem/src/iface/i_command.c:3269
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Ne možete pronaći bilo kakve šeme iznad trenutne jedan!\n"
 
-#: gschem/src/iface/i_command.c:3385
+#: gschem/src/iface/i_command.c:3399
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3788
+#: gschem/src/iface/i_command.c:3802
 msgid "Attribute is already attached\n"
 msgstr "Atribut je već u prilogu\n"
 
-#: gschem/src/iface/i_command.c:4202
+#: gschem/src/iface/i_command.c:4216
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4203
+#: gschem/src/iface/i_command.c:4217
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4209
+#: gschem/src/iface/i_command.c:4223
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4210
+#: gschem/src/iface/i_command.c:4224
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4415
+#: gschem/src/iface/i_command.c:4429
 msgid "Grid OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4416
+#: gschem/src/iface/i_command.c:4430
 msgid "Dot grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4417
+#: gschem/src/iface/i_command.c:4431
 msgid "Mesh grid activated\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4496
+#: gschem/src/iface/i_command.c:4510
 msgid "Snap OFF (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4502
+#: gschem/src/iface/i_command.c:4516
 msgid "Snap ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4507
+#: gschem/src/iface/i_command.c:4521
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4532
+#: gschem/src/iface/i_command.c:4546
 msgid "Rubber band mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4536
+#: gschem/src/iface/i_command.c:4550
 msgid "Rubber band mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4547
+#: gschem/src/iface/i_command.c:4561
 msgid "Magnetic net mode is ON\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4550
+#: gschem/src/iface/i_command.c:4564
 msgid "Magnetic net mode is OFF\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4567 gschem/src/iface/i_command.c:4610
+#: gschem/src/iface/i_command.c:4581 gschem/src/iface/i_command.c:4624
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4571 gschem/src/iface/i_command.c:4614
+#: gschem/src/iface/i_command.c:4585 gschem/src/iface/i_command.c:4628
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4573
+#: gschem/src/iface/i_command.c:4587
 msgid "Drag-Can-Move is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4585
+#: gschem/src/iface/i_command.c:4599
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4589
+#: gschem/src/iface/i_command.c:4603
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4616
+#: gschem/src/iface/i_command.c:4630
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4668 gschem/src/iface/i_command.c:4697
-#: gschem/src/iface/i_command.c:4717 gschem/src/iface/i_command.c:4737
-msgid "Check path:"
-msgstr ""
-
-#: gschem/src/iface/i_command.c:4837
+#: gschem/src/iface/i_command.c:4853
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1508,7 +1509,7 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2402
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2423
 msgid "Open"
 msgstr "Otvori"
 
@@ -3670,7 +3671,7 @@ msgstr "poništiti promjene"
 msgid "Undo the last path segment"
 msgstr "Otkažite posljednji odsječak put"
 
-#: gschem/src/x/x_menus.c:486 gschem/src/x/x_menus.c:2544
+#: gschem/src/x/x_menus.c:486 gschem/src/x/x_menus.c:2565
 msgid "Clear"
 msgstr ""
 
@@ -3690,192 +3691,192 @@ msgstr ""
 msgid "redraw the current window"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:747
+#: gschem/src/x/x_menus.c:764
 msgid "Error reading menu item"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:748
+#: gschem/src/x/x_menus.c:765
 msgid "Bad string"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:968
+#: gschem/src/x/x_menus.c:989
 msgid "Oops... got a NULL menu name"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1025 gschem/etc/system-gschemrc.scm:2390
+#: gschem/src/x/x_menus.c:1046 gschem/etc/system-gschemrc.scm:2390
 msgid "_File"
 msgstr "_Datoteka"
 
-#: gschem/src/x/x_menus.c:1041 gschem/etc/system-gschemrc.scm:2394
+#: gschem/src/x/x_menus.c:1062 gschem/etc/system-gschemrc.scm:2394
 msgid "_View"
 msgstr "_Pogled"
 
 # Grid
-#: gschem/src/x/x_menus.c:1057
+#: gschem/src/x/x_menus.c:1078
 msgid "_Grid"
 msgstr "koordinatna mreža"
 
 # Display dots grid
-#: gschem/src/x/x_menus.c:1092
+#: gschem/src/x/x_menus.c:1113
 msgid "Display dots grid"
 msgstr "Prikaz tačaka mreže"
 
 # Display mesh grid
-#: gschem/src/x/x_menus.c:1093
+#: gschem/src/x/x_menus.c:1114
 msgid "Display mesh grid"
 msgstr "Mreža mrežastih mreža"
 
-#: gschem/src/x/x_menus.c:1094
+#: gschem/src/x/x_menus.c:1115
 msgid "Turn off the grid display"
 msgstr ""
 
 # Toolbars
-#: gschem/src/x/x_menus.c:1113
+#: gschem/src/x/x_menus.c:1134
 msgid "_Toolbars"
 msgstr "alatne trake"
 
-#: gschem/src/x/x_menus.c:1160
+#: gschem/src/x/x_menus.c:1181
 msgid "Toggle visibility of the Standard toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1161
+#: gschem/src/x/x_menus.c:1182
 msgid "Toggle visibility of the Selection toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1162
+#: gschem/src/x/x_menus.c:1183
 msgid "Toggle visibility of the Page toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1163
+#: gschem/src/x/x_menus.c:1184
 msgid "Toggle visibility of the Add toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1164
+#: gschem/src/x/x_menus.c:1185
 msgid "Toggle visibility of the Zoom toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1165
+#: gschem/src/x/x_menus.c:1186
 msgid "Toggle visibility of the Symbol toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1166
+#: gschem/src/x/x_menus.c:1187
 msgid "Toggle visibility of the Edit toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1167
+#: gschem/src/x/x_menus.c:1188
 msgid "Toggle visibility of the Attributes toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1168
+#: gschem/src/x/x_menus.c:1189
 msgid "Toggle visibility of the Grid/Snap toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1193
+#: gschem/src/x/x_menus.c:1214
 msgid "Toggle visibility of tooltips on toolbars"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1252
+#: gschem/src/x/x_menus.c:1273
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1253
+#: gschem/src/x/x_menus.c:1274
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1254
+#: gschem/src/x/x_menus.c:1275
 msgid "Display Icons and Text vertically on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1255
+#: gschem/src/x/x_menus.c:1276
 msgid "Display Icons and Text horizontally on the toolbar"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1309
+#: gschem/src/x/x_menus.c:1330
 msgid "Toggle visibility of main menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1310
+#: gschem/src/x/x_menus.c:1331
 msgid "Toggle main menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1311
+#: gschem/src/x/x_menus.c:1332
 msgid "Toggle visibility of main context menu icons"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1312
+#: gschem/src/x/x_menus.c:1333
 msgid "Toggle main context menu tooltips"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1674
+#: gschem/src/x/x_menus.c:1695
 msgid "Tried to set the sensitivity on non-existent menu item"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1685
+#: gschem/src/x/x_menus.c:1706
 msgid "Excessive errors"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1686
+#: gschem/src/x/x_menus.c:1707
 msgid "disabling sensitivity warnings"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1752
+#: gschem/src/x/x_menus.c:1773
 msgid "Saving menu toolbar options..."
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1762
+#: gschem/src/x/x_menus.c:1783
 msgid " done\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1765
+#: gschem/src/x/x_menus.c:1786
 #, c-format
 msgid " there were %d errors\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1867
+#: gschem/src/x/x_menus.c:1888
 msgid "gschem: Enabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1870
+#: gschem/src/x/x_menus.c:1891
 msgid "gschem: Disabling menu icons\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1940
+#: gschem/src/x/x_menus.c:1961
 msgid "Enabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:1943
+#: gschem/src/x/x_menus.c:1964
 msgid "Disabling menu tooltips\n"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2065
+#: gschem/src/x/x_menus.c:2086
 msgid "Action not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2070
+#: gschem/src/x/x_menus.c:2091
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2156 gschem/src/x/x_menus.c:2190
+#: gschem/src/x/x_menus.c:2177 gschem/src/x/x_menus.c:2211
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2299
+#: gschem/src/x/x_menus.c:2320
 msgid "Could not open file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2409
+#: gschem/src/x/x_menus.c:2430
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2416
+#: gschem/src/x/x_menus.c:2437
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2657
+#: gschem/src/x/x_menus.c:2678
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2710
+#: gschem/src/x/x_menus.c:2731
 msgid "Recent menu items restore from"
 msgstr ""
 
@@ -5565,16 +5566,20 @@ msgstr "atri_buti"
 
 # Tools
 #: gschem/etc/system-gschemrc.scm:2399
-#: gschem/scheme/gschem/gschem-tools-menu.scm:303
+#: gschem/scheme/gschem/gschem-tools-menu.scm:293
 msgid "_Tools"
 msgstr "alat"
 
+#: gschem/etc/system-gschemrc.scm:2402
+msgid "_Page/_Draw Order"
+msgstr ""
+
 # Options
-#: gschem/etc/system-gschemrc.scm:2409
+#: gschem/etc/system-gschemrc.scm:2410
 msgid "_Options"
 msgstr "_Opcije"
 
-#: gschem/etc/system-gschemrc.scm:2410
+#: gschem/etc/system-gschemrc.scm:2411
 msgid "_Help"
 msgstr "_Pomoć"
 
@@ -6159,22 +6164,45 @@ msgstr "Nevažeće poravnanje teksta ~A."
 msgid "No documentation found"
 msgstr "Nije pronađena dokumentacija"
 
+#: gschem/scheme/gschem/gschem-export-menu.scm:56
+msgid "_XML"
+msgstr ""
+
+#: gschem/scheme/gschem/gschem-export-menu.scm:56
+msgid "Export document to XML file"
+msgstr ""
+
+#: gschem/scheme/gschem/gschem-export-menu.scm:58
+#, fuzzy
+msgid "_Symbol"
+msgstr "Doljen _Simbol:"
+
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Izvoz ugrađenog simbol"
+
+# Add Photo
+#: gschem/scheme/gschem/gschem-export-menu.scm:59
+#, fuzzy
+msgid "_Picture"
+msgstr "Dodaj Slika"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Izvoz ugrađenog slike"
 
+#: gschem/scheme/gschem/gschem-export-menu.scm:65
+msgid "_File/_Export"
+msgstr ""
+
 # Tools/_Symbols
-#: gschem/scheme/gschem/gschem-tools-menu.scm:304
+#: gschem/scheme/gschem/gschem-tools-menu.scm:294
 msgid "_Tools/_Symbols"
 msgstr "Alati/_Simboli"
 
-#: gschem/scheme/gschem/gschem-tools-menu.scm:305
+#: gschem/scheme/gschem/gschem-tools-menu.scm:295
 msgid "_Tools/S_pice netlist"
 msgstr ""
 
