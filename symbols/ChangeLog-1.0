@@ -1,9 +1,10 @@
 2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * linear/opamps/dual-opamp-1.sym: Convert documentation to comment
+    * linear/opamps/dual-opamp-[1,2].sym: Convert documentation to comment
       and add documentation link, update symversion:
 
             * linear/opamps/dual-opamp-1.sym
+            * linear/opamps/dual-opamp-2.sym
 
 2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
