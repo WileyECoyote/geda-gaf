@@ -8,6 +8,11 @@
 
     * logic/logic-symbols/latr.sym: Clean symbol, resequence attributes.
 
+    * logic/logic-symbols/nand2.sym: Remove P=2u attribute, source= attribute
+      to description, add device and footprint:
+
+            * logic/logic-symbols/nand2.sym
+
 2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/TPS74001-1.sym: Add symbol; adjustable LDO
