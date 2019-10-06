@@ -6,6 +6,8 @@
             * linear/opamps/dual-opamp-1.sym
             * linear/opamps/dual-opamp-2.sym
 
+    * logic/logic-symbols/latr.sym: Clean symbol, resequence attributes.
+
 2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/TPS74001-1.sym: Add symbol; adjustable LDO
