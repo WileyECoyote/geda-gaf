@@ -17,6 +17,10 @@
     * logic/logic-symbols/nor2.sym: Convert source attribute to comment,
       remove P=2u attribute.
 
+    * logic/SN/SN74LVC1T45-1.sym: Add description attribute:
+
+            * logic/SN/SN74LVC1T45-1.sym
+
 2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/TPS74001-1.sym: Add symbol; adjustable LDO
