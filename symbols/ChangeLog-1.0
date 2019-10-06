@@ -1,3 +1,10 @@
+2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamps/dual-opamp-1.sym: Convert documentation to comment
+      and add documentation link, update symversion:
+
+            * linear/opamps/dual-opamp-1.sym
+
 2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/regulator/TPS74001-1.sym: Add symbol; adjustable LDO
