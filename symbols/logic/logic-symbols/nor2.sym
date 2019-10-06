@@ -47,6 +47,4 @@ description=Not OR Gate
 T 300 1300 5 10 0 1 0 0 1
 footprint=none
 T 300 1475 5 10 0 1 0 0 1
-source=nor2.sch
-T 450 515 8 6 1 0 0 0 1
-P=3.2u
+comment=nor2.sch

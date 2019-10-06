@@ -14,6 +14,8 @@
             * logic/logic-symbols/nand2.sym
             * logic/logic-symbols/nand3.sym
 
+    * logic/logic-symbols/nor2.sym: Convert source attribute to comment,
+      remove P=2u attribute.
 
 2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
