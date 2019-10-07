@@ -1,22 +1,19 @@
+2019-10-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/guile/g_util.c: Revise show_uri to free uri.
+
 2019-10-05 Wiley E. Hill <wileyhill@gmail.com
 
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
+    * po/ru.po: Update Russian translations.
 
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 
