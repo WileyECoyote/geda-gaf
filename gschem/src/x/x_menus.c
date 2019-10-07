@@ -767,7 +767,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       /* Check for a 4th parameter = tooltip string */
       if (scm_item_len == 4) {
 
-        scm_item_tip = SCM_CAR (scm_cdddr (scm_item ));      /* Extract tooltip string */
+        scm_item_tip = SCM_CAR (scm_cdddr (scm_item));      /* Extract tooltip string */
 
         if (scm_is_string(scm_item_tip)) {                   /* Validate tip is really a string */
           menu_item_tip = scm_to_utf8_string (scm_item_tip); /* if valid, convert to c string */
