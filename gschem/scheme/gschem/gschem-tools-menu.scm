@@ -233,6 +233,7 @@
 (map-keys "T E"    "tools:open-editor")
 (map-keys "T S"    "tools:check-symbol")
 (map-keys "T T"    "tools-translate")
+(map-keys "T V"    "tools:open-gitclient")
 
 ;; ==================================================================
 (define tools:menu-items

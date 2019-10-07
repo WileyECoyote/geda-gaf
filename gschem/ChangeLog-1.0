@@ -1,5 +1,7 @@
 2019-10-07 Wiley E. Hill <wileyhill@gmail.com
 
+    * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T V" to launch git.
+
     * src/guile/g_util.c: Revise show_uri to free uri.
 
 2019-10-05 Wiley E. Hill <wileyhill@gmail.com
