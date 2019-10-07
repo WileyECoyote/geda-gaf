@@ -2085,9 +2085,8 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   }
 
   accel_width = 0;
-  geda_container_foreach (menu_item,
-                          geda_menu_item_accel_width_foreach,
-                         &accel_width);
+
+  geda_container_foreach (menu_item, geda_menu_item_accel_width_foreach, &accel_width);
 
   priv->accelerator_width = accel_width;
 }
