@@ -1,3 +1,8 @@
+2019-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Partially revert commit e1b2ae6b7810;
+      revise geda_menu_is_empty to validate that menu is a container.
+
 2019-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Add internal documentation for
