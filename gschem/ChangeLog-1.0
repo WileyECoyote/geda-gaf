@@ -1,6 +1,7 @@
 2019-10-07 Wiley E. Hill <wileyhill@gmail.com
 
-    * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T V" to launch git.
+    * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T V" to launch git,
+      and explicitly map to icon "geda-text-editor" to "tools:open-editor".
 
     * src/guile/g_util.c: Revise show_uri to free uri.
 

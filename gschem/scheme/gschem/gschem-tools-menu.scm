@@ -235,6 +235,8 @@
 (map-keys "T T"    "tools-translate")
 (map-keys "T V"    "tools:open-gitclient")
 
+(map-icon "geda-text-editor" "tools:open-editor")
+
 ;; ==================================================================
 (define tools:menu-items
 ;;
