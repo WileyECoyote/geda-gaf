@@ -157,7 +157,7 @@ x_show_uri (const char *uri)
   if (!g_app_info_launch_default_for_uri(uri, NULL, &error)) {
     if (verbose_mode) {
       const char *log_msg = _("Failed to open");
-     u_log_message("glib %s <%s>, %s\n", log_msg, uri, error->message);
+      u_log_message("glib %s <%s>, %s\n", log_msg, uri, error->message);
     }
     g_error_free (error);
     error = NULL;
@@ -184,13 +184,13 @@ x_show_uri (const char *uri)
 
   /* Windows use another function so we don't need to worry about *pid */
   spawn_status = g_spawn_async (NULL, /* Inherit working directory */
-                               argv,
-                               NULL, /* Inherit environment */
-                               G_SPAWN_SEARCH_PATH, /* Flags */
-                               NULL, /* No child setup function */
-                               NULL, /* No child setup function data */
-                               NULL, /* No child pid */
-                               &error);
+                               &argv,
+                                NULL, /* Inherit environment */
+                                G_SPAWN_SEARCH_PATH, /* Flags */
+                                NULL, /* No child setup function */
+                                NULL, /* No child setup function data */
+                                NULL, /* No child pid */
+                                &error);
 
   if (!spawn_status) return FALSE;
 
