@@ -692,9 +692,13 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
                        geda_option_menu_position, option_menu,
                        0, event->time);
       menu_item = geda_menu_widget_get_active (option_menu->menu);
-      if (menu_item)
-        geda_menu_shell_select_item ((GedaMenuShell*)option_menu->menu,
-                                     menu_item);
+
+      if (menu_item) {
+
+        GedaMenuShell *menu_shell = (GedaMenuShell*)option_menu->menu;
+
+        geda_menu_shell_select_item (menu_shell, menu_item);
+      }
       return TRUE;
   }
 
