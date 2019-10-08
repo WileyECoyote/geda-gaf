@@ -2,7 +2,9 @@
 
     * src/widgets/geda_option_menu.c: Add ancillary bwidth_x2 in geda_option_
       menu_size_allocate and explicitly shift left to multiply by 2. Add
-      ancillary menu_shell in geda_option_menu_key_press.
+      ancillary menu_shell in geda_option_menu_key_press. Add ancillaries
+      xpad and ypad in geda_option_menu_paint and explicitly shift left to
+      multiply by 2.
 
 2019-10-07 Wiley E. Hill <wileyhill@gmail.com>
 

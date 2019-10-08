@@ -593,13 +593,18 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
     if (props.interior_focus) {
 
-      button_area.x += widget->style->xthickness + props.focus_pad;
-      button_area.y += widget->style->ythickness + props.focus_pad;
-      button_area.width -= 2 * (widget->style->xthickness + props.focus_pad) +
-      props.indicator_spacing.left +
-      props.indicator_spacing.right +
-      props.indicator_size.width;
-      button_area.height -= 2 * (widget->style->ythickness + props.focus_pad);
+      int xpad, ypad;
+
+      xpad = widget->style->xthickness + props.focus_pad;
+      ypad = widget->style->ythickness + props.focus_pad;
+
+      button_area.x += xpad;
+      button_area.y += ypad;
+
+      button_area.width -= (xpad << 2) + props.indicator_spacing.left +
+                                         props.indicator_spacing.right +
+                                         props.indicator_size.width;
+      button_area.height -= ypad << 1;
 
       if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
         button_area.x += props.indicator_spacing.left +
