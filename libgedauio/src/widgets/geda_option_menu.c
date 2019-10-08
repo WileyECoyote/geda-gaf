@@ -496,6 +496,7 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   int border_width;
 
   geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
+
   border_width = ((GtkContainer*)widget)->border_width;
 
   widget->allocation = *allocation;
@@ -592,6 +593,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
       props.indicator_spacing.right +
       props.indicator_size.width;
       button_area.height -= 2 * (widget->style->ythickness + props.focus_pad);
+
       if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
         button_area.x += props.indicator_spacing.left +
                          props.indicator_spacing.right +
@@ -830,6 +832,7 @@ geda_option_menu_remove_contents (GedaOptionMenu *option_menu)
                                           option_menu);
 
     g_object_unref (option_menu->menu_item);
+
     option_menu->menu_item = NULL;
   }
 }
