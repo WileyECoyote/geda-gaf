@@ -905,12 +905,13 @@ geda_option_menu_position (GedaMenu  *menu,
   g_return_if_fail (GEDA_IS_OPTION_MENU (user_data));
 
   option_menu = GEDA_OPTION_MENU (user_data);
-  widget = GTK_WIDGET (option_menu);
+  widget      = GTK_WIDGET (option_menu);
 
   gtk_widget_get_child_requisition (GTK_WIDGET (menu), &requisition);
-  menu_width = requisition.width;
 
-  active = geda_menu_widget_get_active (option_menu->menu);
+  menu_width = requisition.width;
+  active     = geda_menu_widget_get_active (option_menu->menu);
+
   gdk_window_get_origin (widget->window, &menu_xpos, &menu_ypos);
 
   /* set combo box type hint for menu popup */
