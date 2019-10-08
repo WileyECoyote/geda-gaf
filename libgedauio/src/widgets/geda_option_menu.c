@@ -531,10 +531,11 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     child_allocation.height = MAX (1, allocation->height - (border_width + ythickness + props.focus_width + props.focus_pad) * 2 -
                               CHILD_TOP_SPACING - CHILD_BOTTOM_SPACING);
 
-    if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+    if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
       child_allocation.x += props.indicator_size.width +
                             props.indicator_spacing.left +
                             props.indicator_spacing.right;
+    }
 
     gtk_widget_size_allocate (child, &child_allocation);
   }
