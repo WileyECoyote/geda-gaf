@@ -573,13 +573,15 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
                  button_area.x, button_area.y,
                  button_area.width, button_area.height);
 
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
     tab_x = button_area.x + props.indicator_spacing.right +
             widget->style->xthickness;
-  else
+  }
+  else {
     tab_x = button_area.x + button_area.width -
             props.indicator_size.width - props.indicator_spacing.right -
             widget->style->xthickness;
+  }
 
   gtk_paint_tab (widget->style, widget->window, state, GTK_SHADOW_OUT,
                  area, widget, "optionmenutab",
