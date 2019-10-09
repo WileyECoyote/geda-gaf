@@ -329,6 +329,23 @@ check_accessors ()
       return 0;
     }
 
+    geda_font_dialog_set_font((GedaFontDialog*)widget, font1);
+
+    font2 = geda_font_dialog_get_font ((GedaFontDialog*)widget);
+
+    if (!font2) {
+      fprintf(stderr, "FAILED: line <%d> set_font %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else {
+
+      if (!gdk_font_equal(font1, font2)) {
+        fprintf(stderr, "FAILED: line <%d> set_font %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      gdk_font_unref(font2);
+    }
+
     g_object_ref_sink(widget); /* Sink reference to the widget */
     g_object_unref(widget);    /* Destroy the widget */
   }

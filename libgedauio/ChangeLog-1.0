@@ -5,6 +5,7 @@
     * tests/test_font_dialog.c: Add checks for:
 
           * geda_font_dialog_get_font
+          * geda_font_dialog_set_font
 
 2019-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
