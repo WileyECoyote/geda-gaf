@@ -2,6 +2,8 @@
 
     * scheme/gschem/gschem-tools-menu.scm: Translate tools:menu-items.
 
+    * po/ru.po: Update Russian translations.
+
 2019-10-07 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T V" to launch git,
@@ -20,7 +22,6 @@
     * po/pl.po: Update Polish translations.
     * po/pt.po: Update Portuguese translations.
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-    * po/ru.po: Update Russian translations.
 
 2019-10-04 Wiley E. Hill <wileyhill@gmail.com
 

@@ -6443,30 +6443,28 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Символ:"
+msgstr "Символ"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Экспорт встроенного символа"
 
+# Picture; Risunok
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Добавить изображение"
+msgstr "_Рисунок"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Экспорт встроенного изображения"
 
-# Export
+# File/Export; Fayl/Eksport
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
-#, fuzzy
 msgid "_File/_Export"
-msgstr "экспорт"
+msgstr "Файл/Экспорт"
 
 # Tools/Symbols; Instrumenty/Simvoly
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
