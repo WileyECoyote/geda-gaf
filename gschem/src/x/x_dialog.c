@@ -3342,12 +3342,12 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
 /*! \brief Fix up displaying icons in list of hotkeys.
  * gschem incorporates both GTK's stock and theme icons. Each is identified
  * by a single icon name, which could be either a GTK stock icon or a theme
- * icon.  To determine which icon to show, we first check if there's a
- * matching stock icon, and if one doesn't exist, we fall back to looking
+ * icon.  To determine which icon to show, we first check if there is a
+ * matching stock icon, and if one does not exist, we fall back to looking
  * in the theme.
  *
- * The GtkCellRendererPixbuf doesn't provide this capability.  If its
- * "icon-name" property is set, it doesn't look at stock items, but if
+ * The GtkCellRendererPixbuf does not provide this capability.  If its
+ * "icon-name" property is set, it does not look at stock items, but if
  * its "stock-id" property is set, it ignores the "icon-name" even if
  * no matching stock item exists.
  *
