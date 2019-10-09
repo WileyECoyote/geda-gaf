@@ -329,6 +329,7 @@ const char *i_command_get_action_icon (const char *command)
         }
       }
     }
+
     if (!icon_id) {
       icache = index;
       for (index = 1; index < icache; index++) {
@@ -4631,6 +4632,7 @@ COMMAND (do_show_manual)
       geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
+
     GEDA_FREE(pathname);
   }
 
@@ -4660,6 +4662,7 @@ COMMAND (do_show_faq)
       geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
+
     GEDA_FREE(pathname);
   }
   EXIT_COMMAND(do_show_faq);
