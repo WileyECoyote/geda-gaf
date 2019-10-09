@@ -659,8 +659,8 @@ geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 
   option_menu = (GedaOptionMenu*)widget;
 
-  if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1))
-  {
+  if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+
     GedaMenu  *menu;
     GtkWidget *menu_item;
 
