@@ -1825,6 +1825,23 @@ GdkFont *geda_font_dialog_get_font (GedaFontDialog *dialog)
   return dialog->font;
 }
 
+bool geda_font_dialog_set_font (GedaFontDialog *dialog, GdkFont *font)
+{
+  g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
+
+  if (font) {
+
+    if (G_IS_OBJECT(dialog->font)) {
+      gdk_font_unref (dialog->font);
+    }
+
+    dialog->font = font;
+
+    return TRUE;
+  }
+  return FALSE;
+}
+
 /*!
  * \brief Retrieve the GedaFontDialog Font Description property
  * \par Function Description
