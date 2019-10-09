@@ -243,21 +243,23 @@
 ;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
 ;;
   `(
-    ("_Symbols"                 #f                     "geda-component"     "Tool for symbol files")
+    ((N_ "_Symbols")            #f                          "geda-component"     "Tool for symbol files")
     ("SEPARATOR"                #f                     #f)
-    ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
-    ("Run DRC 1"            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
-    ("Run DRC 2"            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
-    ("Version Control"      tools:open-gitclient       "git-logo"           "Launch version system")
-    ("Bill of Materials"    tools:run-bom              "gaf-bom"            "Generate a BOM")
+    ((N_ "_Open Editor")         tools:open-editor          "geda-text-editor"   "Open text editor")
+
+    ((N_ "Edit DRC rules...")    tools:drc-rules            "gtk-preferences"    "Open the DRC rules dialog")
+    ((N_ "Run DRC 1")            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
+    ((N_ "Run DRC 2")            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
+    ((N_ "Version Control")      tools:open-gitclient       "git-logo"           "Launch version system")
+    ((N_ "Bill of Materials")    tools:run-bom              "gaf-bom"            "Generate a BOM")
 
     ("SEPARATOR"                #f                     #f)
-    ("gEDA netlist"         tools:geda-netlist         "gschem-net")
-    ("S_pice netlist"           #f                     "geda-wave"          "Generate spice netlists")
+    ((N_ "gEDA netlist")         tools:geda-netlist         "gschem-net")
+    ((N_ "S_pice netlist")      #f                          "geda-wave"          "Generate spice netlists")
     ("SEPARATOR"                #f                     #f)
-    ("VHDL netlist"         tools:vhdl-sch-netlist     "geda-simulate")
-    ("Verilog netlist"      tools:verilog-netlist      "geda-verilog-blue")
-    ("hierarchy Verilog"    tools:gnet_hier_verilog    "geda-verilog-grn")
+    ((N_ "VHDL netlist")         tools:vhdl-sch-netlist     "geda-simulate")
+    ((N_ "Verilog netlist")      tools:verilog-netlist      "geda-verilog-blue")
+    ((N_ "hierarchy Verilog")    tools:gnet_hier_verilog    "geda-verilog-grn")
   )
 )
 

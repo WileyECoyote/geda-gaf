@@ -1,3 +1,7 @@
+2019-10-09 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/gschem/gschem-tools-menu.scm: Translate tools:menu-items.
+
 2019-10-07 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T V" to launch git,
