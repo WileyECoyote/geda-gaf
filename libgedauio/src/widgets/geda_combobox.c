@@ -800,8 +800,9 @@ static bool tree_column_row_is_sensitive (GedaComboBox *combo_box, GtkTreeIter *
 
     g_object_get (list->data, "sensitive", &sensitive, NULL);
 
-    if (sensitive)
+    if (sensitive) {
       break;
+    }
   }
   g_list_free (cells);
 
@@ -822,12 +823,15 @@ static bool tree_next_func (GtkTreeModel *model,
 
   if (search_data->found) {
 
-    if (!tree_column_row_is_sensitive (search_data->combo, iter))
+    if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
       return FALSE;
+    }
 
     if (search_data->visible &&
       !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
+    {
       return FALSE;
+    }
 
     search_data->set = TRUE;
     search_data->iter = *iter;
@@ -835,8 +839,9 @@ static bool tree_next_func (GtkTreeModel *model,
     return TRUE;
   }
 
-  if (gtk_tree_path_compare (path, search_data->path) == 0)
+  if (gtk_tree_path_compare (path, search_data->path) == 0) {
     search_data->found = TRUE;
+  }
 
   return FALSE;
 }
@@ -876,12 +881,15 @@ static bool tree_prev_func (GtkTreeModel *model,
     return TRUE;
   }
 
-  if (!tree_column_row_is_sensitive (search_data->combo, iter))
+  if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
     return FALSE;
+  }
 
   if (search_data->visible &&
     !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
+  {
     return FALSE;
+  }
 
   search_data->set = TRUE;
   search_data->iter = *iter;
@@ -919,14 +927,17 @@ static bool tree_last_func (GtkTreeModel *model,
 {
   SearchData *search_data = (SearchData *)data;
 
-  if (!tree_column_row_is_sensitive (search_data->combo, iter))
+  if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
     return FALSE;
+  }
 
   /* Note that we rely on the fact that collapsed rows do not have nodes
    */
   if (search_data->visible &&
       !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
+  {
     return FALSE;
+  }
 
   search_data->set  = TRUE;
   search_data->iter = *iter;
