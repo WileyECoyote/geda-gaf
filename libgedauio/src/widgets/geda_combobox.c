@@ -932,8 +932,7 @@ static bool tree_last_func (GtkTreeModel *model,
     return FALSE;
   }
 
-  /* Note that we rely on the fact that collapsed rows do not have nodes
-   */
+  /* Note that we rely on the fact that collapsed rows do not have nodes */
   if (search_data->visible &&
       !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
   {
