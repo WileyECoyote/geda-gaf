@@ -1393,7 +1393,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
   }
 }
 
-/* widget_class->state_changed */
+/*! \internal widget_class->state_changed */
 static void geda_combo_box_state_changed (GtkWidget   *widget,
                                           GtkStateType previous)
 {
@@ -1411,7 +1411,7 @@ static void geda_combo_box_state_changed (GtkWidget   *widget,
   gtk_widget_queue_draw (widget);
 }
 
-/* widget_class->style_set */
+/*! \internal widget_class->style_set */
 static void geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 {
   GedaComboBox *combo_box = (GedaComboBox*)widget;
@@ -1431,7 +1431,7 @@ static void geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
   }
 }
 
-/* gtk_object_class->destroy */
+/*! \internal gtk_object_class->destroy || widget_class->destroy */
 static void geda_combo_box_destroy (GtkObject *object)
 {
   GedaComboBox *combo_box = (GedaComboBox*)object;
@@ -1465,7 +1465,7 @@ static void geda_combo_box_destroy (GtkObject *object)
   combo_box->priv->cell_view = NULL;
 }
 
-/* object_class->constructor */
+/*! \internal object_class->constructor */
 static GObject *geda_combo_box_constructor (GType                  type,
                                             unsigned int           n_construct_properties,
                                             GObjectConstructParam *construct_properties)
@@ -1499,7 +1499,7 @@ static GObject *geda_combo_box_constructor (GType                  type,
   return object;
 }
 
-/* object_class->dispose */
+/*! \internal object_class->dispose */
 static void geda_combo_box_dispose(GObject *object)
 {
   GedaComboBox *combo_box = (GedaComboBox*)object;
