@@ -1,7 +1,7 @@
 2019-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Convert plain text to internal Doxygen
-      documentation.
+      documentation, add internal documentation.
 
 2019-10-09 Wiley E. Hill <wileyhill@gmail.com>
 

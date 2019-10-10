@@ -1514,6 +1514,7 @@ static void geda_combo_box_dispose(GObject *object)
   ((GObjectClass*)geda_combo_box_parent_class)->dispose (object);
 }
 
+/*! \internal object_class->finalize */
 static void geda_combo_box_finalize (GObject *object)
 {
   GedaComboBox *combo_box = (GedaComboBox*)object;
@@ -1563,6 +1564,7 @@ static void geda_combo_box_finalize (GObject *object)
   ((GObjectClass*)geda_combo_box_parent_class)->finalize (object);
 }
 
+/*! \internal object_class->get_property */
 static void geda_combo_box_get_property (GObject      *object,
                                          unsigned int  prop_id,
                                          GValue       *value,
@@ -1647,6 +1649,7 @@ static void geda_combo_box_set_list_view(GedaComboBox *combo_box, int mode)
   }
 }
 
+/*! \internal object_class->set_property */
 static void geda_combo_box_set_property (GObject      *object,
                                          unsigned int  prop_id,
                                          const GValue *value,
