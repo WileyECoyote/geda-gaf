@@ -1181,10 +1181,12 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
 
       GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON
 
-      if (is_rtl)
+      if (is_rtl) {
         child_alloc.x = allocation->x + req.width + shadow_width;
-      else
+      }
+      else {
         child_alloc.x = allocation->x + shadow_width;
+      }
 
       child_alloc.y      = allocation->y + shadow_height;
       child_alloc.width  = allocation->width - req.width - 2 * shadow_width;
