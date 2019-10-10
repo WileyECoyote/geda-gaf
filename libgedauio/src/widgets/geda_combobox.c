@@ -833,7 +833,7 @@ static bool tree_next_func (GtkTreeModel *model,
       return FALSE;
     }
 
-    search_data->set = TRUE;
+    search_data->set  = TRUE;
     search_data->iter = *iter;
 
     return TRUE;
@@ -891,7 +891,7 @@ static bool tree_prev_func (GtkTreeModel *model,
     return FALSE;
   }
 
-  search_data->set = TRUE;
+  search_data->set  = TRUE;
   search_data->iter = *iter;
 
   return FALSE;
