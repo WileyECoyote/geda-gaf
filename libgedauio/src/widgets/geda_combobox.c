@@ -820,7 +820,7 @@ static bool tree_next_func (GtkTreeModel *model,
                             GtkTreeIter  *iter,
                             void         *data)
 {
-  SearchData *search_data = (SearchData *)data;
+  SearchData *search_data = (SearchData*)data;
 
   if (search_data->found) {
 
