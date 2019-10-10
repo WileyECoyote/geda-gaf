@@ -731,6 +731,7 @@ static void geda_combo_box_grab_focus (GtkWidget *widget)
     GtkWidget *child;
 
     child = gtk_bin_get_child (GTK_BIN (combo_box));
+
     if (child) {
       gtk_widget_grab_focus (child);
     }
