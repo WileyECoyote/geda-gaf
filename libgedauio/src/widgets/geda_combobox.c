@@ -804,6 +804,7 @@ static bool tree_column_row_is_sensitive (GedaComboBox *combo_box, GtkTreeIter *
       break;
     }
   }
+
   g_list_free (cells);
 
   return sensitive;
@@ -1249,6 +1250,7 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
     if (gtk_widget_get_visible (priv->popup_window)) {
 
       int x, y, width, height;
+
       geda_combo_box_list_position (combo_box, &x, &y, &width, &height);
       gtk_window_move ((GtkWindow*)priv->popup_window, x, y);
       gtk_widget_set_size_request (priv->popup_window, width, height);
