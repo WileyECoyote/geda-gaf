@@ -184,7 +184,7 @@ x_show_uri (const char *uri)
 
   /* Windows use another function so we don't need to worry about *pid */
   spawn_status = g_spawn_async (NULL, /* Inherit working directory */
-                               &argv,
+                                argv,
                                 NULL, /* Inherit environment */
                                 G_SPAWN_SEARCH_PATH, /* Flags */
                                 NULL, /* No child setup function */

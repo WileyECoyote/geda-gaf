@@ -7,6 +7,9 @@
       in i_command_get_action_icon, and revise i_command_map_icon to
       return true for actions involving buffers.
 
+    * src/x/x_misc.c: Fix passing address of pointer to g_spawn_async in
+      function x_show_uri.
+
 2019-10-09 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Translate tools:menu-items.
