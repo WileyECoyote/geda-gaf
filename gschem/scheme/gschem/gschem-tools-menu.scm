@@ -240,7 +240,7 @@
 ;; ==================================================================
 (define tools:menu-items
 ;;
-;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
+;;    menu item name             menu action             menu stock icon menu    Menu Item Tooltip
 ;;
   `(
     ((N_ "_Symbols")            #f                          "geda-component"     "Tool for symbol files")
