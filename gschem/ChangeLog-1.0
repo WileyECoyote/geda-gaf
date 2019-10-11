@@ -4,7 +4,8 @@
       to be evaluated.
 
     * src/iface/i_command.c: Fix backwards cut and copy enumerations
-      in i_command_get_action_icon.
+      in i_command_get_action_icon, and revise i_command_map_icon to
+      return true for actions involving buffers.
 
 2019-10-09 Wiley E. Hill <wileyhill@gmail.com
 
