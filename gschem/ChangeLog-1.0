@@ -5,7 +5,8 @@
 
     * src/iface/i_command.c: Fix backwards cut and copy enumerations
       in i_command_get_action_icon, and revise i_command_map_icon to
-      return true for actions involving buffers.
+      return true for actions involving buffers. Fix For loops not
+      iterating through LAST_ACTION using condition <=.
 
     * src/x/x_misc.c: Fix passing address of pointer to g_spawn_async in
       function x_show_uri.

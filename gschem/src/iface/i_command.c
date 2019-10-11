@@ -295,7 +295,7 @@ void i_command_get_action_list(GList** list)
 {
   int i;
 
-  for (i = 1; i < LAST_ACTION; i++)
+  for (i = 1; i <= LAST_ACTION; i++)
     *list = g_list_prepend(*list, command_struc[i].name);
   return;
 }
@@ -319,7 +319,7 @@ const char *i_command_get_action_icon (const char *command)
 
     int  index;
 
-    for (index = icache; index < LAST_ACTION; index++) {
+    for (index = icache; index <= LAST_ACTION; index++) {
 
       if (geda_strequal(command_struc[index].name, command)) {
         if (command_struc[index].icon_id) {
@@ -373,7 +373,7 @@ bool i_command_map_icon  (const char *command, const char *icon)
 {
   int i;
   bool result = FALSE;
-  for (i = 1; i < LAST_ACTION; i++) {
+  for (i = 1; i <= LAST_ACTION; i++) {
     if (geda_strequal(command_struc[i].name, command)) {
       if (command_struc[i].icon_id) {
         GEDA_FREE(command_struc[i].icon_id);
