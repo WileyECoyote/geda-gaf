@@ -247,7 +247,6 @@
     ("SEPARATOR"                #f                     #f)
     ((N_ "_Open Editor")         tools:open-editor          "geda-text-editor"   "Open text editor")
 
-    ((N_ "Edit DRC rules...")    tools:drc-rules            "gtk-preferences"    "Open the DRC rules dialog")
     ((N_ "Run DRC 1")            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
     ((N_ "Run DRC 2")            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
     ((N_ "Version Control")      tools:open-gitclient       "git-logo"           "Launch version system")
