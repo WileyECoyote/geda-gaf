@@ -309,7 +309,7 @@ const char *i_command_get_action_icon (const char *command)
   if (strstr(command, "buffer-copy") != 0) {
     icon_id = command_struc[cmd_do_copy_clip].icon_id;
   }
-  if (strstr(command, "buffer-cut") != 0) {
+  else if (strstr(command, "buffer-cut") != 0) {
     icon_id = command_struc[cmd_do_cut_clip].icon_id;
   }
   else if (strstr(command, "buffer-paste") != 0) {
