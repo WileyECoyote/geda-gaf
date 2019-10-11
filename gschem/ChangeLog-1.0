@@ -3,6 +3,9 @@
     * scheme/gschem/gschem-tools-menu.scm: Mark noop tools:menu-items
       to be evaluated.
 
+    * src/iface/i_command.c: Fix backwards cut and copy enumerations
+      in i_command_get_action_icon.
+
 2019-10-09 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Translate tools:menu-items.
