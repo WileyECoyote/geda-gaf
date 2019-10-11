@@ -854,7 +854,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             menu_icon_name = i_command_get_action_icon (action_name);
           }
           else {
-            menu_icon_name = menu_item_stock; /* Icons specified in menu take presendence */
+            menu_icon_name = menu_item_stock; /* Icons specified in menu take precedence */
           }
 
           is_a_toggle = FALSE;
