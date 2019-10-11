@@ -1,3 +1,8 @@
+2019-10-11 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/gschem/gschem-tools-menu.scm: Mark noop tools:menu-items
+      to be evaluated.
+
 2019-10-09 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Translate tools:menu-items.
