@@ -14,6 +14,7 @@
     * xilinx: Resequence and reorder pins:
 
             * xilinx/XC2S100-5PQ208C.sym
+            * xilinx/XC2S100-5PQ208I.sym
 
 2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
