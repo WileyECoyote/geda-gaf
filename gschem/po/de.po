@@ -5430,10 +5430,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to _Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Von oben nach unten"
+msgstr "Nach unten gehen"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -5992,18 +5992,18 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Symbole:"
+msgstr "Symbole"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Eingebettetes Symbol exportieren"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
 msgstr "Bild"
 
@@ -6017,19 +6017,17 @@ msgid "_File/_Export"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Symbole:"
+msgstr "Symbole"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Einzel-Attributebearbeitung"
+msgstr "Öffnen Sie den Texteditor"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Text bearbeiten..."
+msgstr "Bearbeiten Sie die DRC-Regeln..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6039,10 +6037,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Version"
+msgstr "Versionskontrolle"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
