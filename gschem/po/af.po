@@ -5464,10 +5464,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "Bo to onder"
+msgstr "_Beweeg na onder"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -5502,10 +5502,10 @@ msgstr "Eienskappe"
 msgid "_Tools"
 msgstr ""
 
+# Page/Draw Order
 #: gschem/etc/system-gschemrc.scm:2402
-#, fuzzy
 msgid "_Page/_Draw Order"
-msgstr "/Teken Bestel"
+msgstr "Blaai/trek volgorde"
 
 #: gschem/etc/system-gschemrc.scm:2410
 msgid "_Options"
@@ -6018,45 +6018,45 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Simbole:"
+msgstr "Simbole"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Uitvoer ingebed simbool"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Afbeelding"
+msgstr "Prent"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Uitvoer ingebedde prentjie"
 
+# File/Export
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
-#, fuzzy
 msgid "_File/_Export"
-msgstr "uitvoer"
+msgstr "Lêer/Uitvoer"
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Simbole:"
+msgstr "Simbole"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Enkeleienskap-Bewerker"
+msgstr "Oop redakteur"
 
+# Edit DRC rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Bewerk Teks..."
+msgstr "Wys DRK-reëls..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6068,18 +6068,16 @@ msgstr ""
 
 # Version
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "weergawe"
+msgstr "Weergawe beheer"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "Handleiding"
+msgstr "gEDA netlist"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6094,9 +6092,8 @@ msgid "Verilog netlist"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Hierargie"
+msgstr "hiërargie Verilog"
 
 # Tools/_Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
