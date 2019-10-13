@@ -8,6 +8,9 @@
 
     * national/DS26C32-1.sym: Add description attribute.
 
+    * national/DS26LS31-1.sym: Add description attribute, convert plain text
+      to value attribute, update footprint.
+
 2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/dual-opamp-[1,2].sym: Convert documentation to comment
