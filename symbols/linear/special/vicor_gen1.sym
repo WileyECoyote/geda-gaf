@@ -105,9 +105,11 @@ pinlabel=Trim
 T 1975 475 5 8 0 1 0 0 1
 pintype=in
 }
-T 300 3400 9 10 0 0 0 0 1
-numslots=0
 T 300 3600 9 10 0 0 0 0 1
+numslots=0
+T 300 3800 9 10 0 0 0 0 1
 footprint=unknown
-T 285 2993 8 10 1 1 0 0 1
+T 285 3000 8 10 1 1 0 0 1
+description=Input Attenuator Module
+T 285 3400 8 10 1 1 0 0 1
 documentation=http://www.vicorpower.com/products

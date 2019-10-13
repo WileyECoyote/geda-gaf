@@ -1,3 +1,7 @@
+2019-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/special/vicor_gen1.sym: Add description attribute.
+
 2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/dual-opamp-[1,2].sym: Convert documentation to comment
