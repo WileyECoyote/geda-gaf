@@ -5490,10 +5490,10 @@ msgstr "Propiedades"
 msgid "_Tools"
 msgstr ""
 
+# Page/Draw Order
 #: gschem/etc/system-gschemrc.scm:2402
-#, fuzzy
 msgid "_Page/_Draw Order"
-msgstr "Orden de trazado"
+msgstr "Página/Orden de dibujo"
 
 #: gschem/etc/system-gschemrc.scm:2410
 msgid "_Options"
@@ -6005,15 +6005,16 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Símbolos:"
+msgstr "Símbolos"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Exportar símbolo insertado"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 #, fuzzy
 msgid "_Picture"
