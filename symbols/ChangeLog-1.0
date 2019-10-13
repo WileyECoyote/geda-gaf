@@ -4,6 +4,8 @@
 
     * moto/MC13175-1.sym: Remove pins attribute, add description attribute.
 
+    * national/DS1602-1.sym: Rename symbol; DS1620-1 -> DS1602-1.
+
 2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/opamps/dual-opamp-[1,2].sym: Convert documentation to comment
