@@ -2374,27 +2374,25 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Sélection"
+msgstr "Sélection x taille"
 
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Sélection"
+msgstr "Sélection y taille"
 
-# Spinner entry number of rows to create
+# Number of rows to create
 #: gschem/src/x/x_edit_array.c:1029
-#, fuzzy
 msgid "Number of rows to create"
-msgstr "Spinner nombre de lignes à créer"
+msgstr "Nombre de lignes à créer"
 
-# Spinner entry number of columns to create
+# Number of columns to create
 #: gschem/src/x/x_edit_array.c:1030
-#, fuzzy
 msgid "Number of columns to create"
-msgstr "Spinner nombre de colonnes à créer"
+msgstr "Nombre de colonnes à créer"
 
 #: gschem/src/x/x_edit_array.c:1031
 msgid "Vertical pitch of array, negative is downward"
@@ -5452,10 +5450,10 @@ msgstr "gEDA _Wiki..."
 msgid "_About..."
 msgstr "À _propos..."
 
+# Lower Behind
 #: gschem/etc/system-gschemrc.scm:2378
-#, fuzzy
 msgid "_Lower Behind"
-msgstr "En bas au milieu"
+msgstr "Plus bas derrière"
 
 #: gschem/etc/system-gschemrc.scm:2378
 msgid "Draw objects before another object"
@@ -5477,10 +5475,10 @@ msgstr ""
 msgid "Raise objects to top of drawing order"
 msgstr ""
 
+# Move to Bottom
 #: gschem/etc/system-gschemrc.scm:2382
-#, fuzzy
 msgid "Move to _Bottom"
-msgstr "de haut en bas"
+msgstr "Déplacer vers le bas"
 
 #: gschem/etc/system-gschemrc.scm:2382
 msgid "Lower to bottom of the drawing order"
@@ -6031,10 +6029,10 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "_Symbole:"
+msgstr "Symbole"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
@@ -6042,7 +6040,6 @@ msgid "Export embedded symbol"
 msgstr "Exporter le symbole incorporé"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
 msgstr "Image"
 
