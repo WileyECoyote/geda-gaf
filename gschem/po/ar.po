@@ -6011,18 +6011,18 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "رموز:"
+msgstr "رموز"
 
 # Export embedded symbol => Export embedded code
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "تصدير رمز مضمّن"
 
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
 msgstr "صورة"
 
@@ -6035,20 +6035,20 @@ msgstr "تصدير الصورة المدمجة"
 msgid "_File/_Export"
 msgstr ""
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "رموز:"
+msgstr "حرف"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "محرّر سمة منفردة"
+msgstr "فتح محرر"
 
+# Edit DRC rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "حرّر النص..."
+msgstr "تحرير قواعد جمهورية الكونغو الديمقراطية..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6060,18 +6060,16 @@ msgstr ""
 
 # Version
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "الإصدار"
+msgstr "التحكم في الإصدار"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "يدوي"
+msgstr "gEDA netlist"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6086,9 +6084,8 @@ msgid "Verilog netlist"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "تسلسل هرمي"
+msgstr "التسلسل الهرمي فيريلوج"
 
 # Tools/_Symbols; adawat / alrumuz
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
