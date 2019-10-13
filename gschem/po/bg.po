@@ -6090,8 +6090,8 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
 msgstr "символ"
 
@@ -6100,10 +6100,10 @@ msgstr "символ"
 msgid "Export embedded symbol"
 msgstr "Експортиран вграден символ"
 
+# Picture; snimka
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "режим на картината"
+msgstr "снимка"
 
 #  Export embedded image
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
@@ -6114,19 +6114,19 @@ msgstr "Експортиране на вградено изображение"
 msgid "_File/_Export"
 msgstr ""
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "символ"
+msgstr "Символи"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
 msgid "_Open Editor"
 msgstr ""
 
+# Edit DRC rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Редактирай Текст..."
+msgstr "Редактиране на правилата за DRC..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6136,11 +6136,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control; Versiya za kontrol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "версия"
+msgstr "Версия за контрол"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"

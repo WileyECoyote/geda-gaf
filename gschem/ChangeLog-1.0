@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2019-10-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Mark noop tools:menu-items
