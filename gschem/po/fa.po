@@ -6087,7 +6087,6 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
 msgstr "نماد"
 
@@ -6096,11 +6095,10 @@ msgstr "نماد"
 msgid "Export embedded symbol"
 msgstr "صادرات نماد تعبیه شده"
 
-# Export Picture
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "صادرات تصویر"
+msgstr "تصویر"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
@@ -6111,21 +6109,20 @@ msgstr "صادرات تصویر جاسازی شده"
 msgid "_File/_Export"
 msgstr ""
 
-# Symbol
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "نماد"
+msgstr "نمادها"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Attributes"
+msgstr "ویرایشگر را باز کنید"
 
+# Edit DRC rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Edit Text..."
+msgstr "قوانین DRC را ویرایش کنید..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6135,10 +6132,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "نسخه"
+msgstr "کنترل نسخه"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"

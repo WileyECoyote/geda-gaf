@@ -12,6 +12,8 @@
 
     * po/es.po: Update Spanish translations.
 
+    * po/fa.po: Update Persian translations.
+
 2019-10-11 Wiley E. Hill <wileyhill@gmail.com
 
     * scheme/gschem/gschem-tools-menu.scm: Mark noop tools:menu-items
