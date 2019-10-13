@@ -5978,18 +5978,18 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Σύμβολα:"
+msgstr "Σύμβολα"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Εξαγωγή του ενσωματωμένου συμβόλου"
 
+# Picture; Eikóna
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
 msgstr "Εικόνα"
 
@@ -5998,24 +5998,24 @@ msgstr "Εικόνα"
 msgid "Export embedded picture"
 msgstr "Εξαγωγή ενσωματωμένης εικόνας"
 
+# File/Export
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
 msgid "_File/_Export"
-msgstr ""
+msgstr "Αρχείο/Εξαγωγή"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Σύμβολα:"
+msgstr "Σύμβολα"
 
+# Open Editor; Anoíxte to prógramma epexergasías
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Επεξεργαστής ενός γνωρίσματος"
+msgstr "Ανοίξτε το πρόγραμμα επεξεργασίας"
 
+# Edit DRC rules; Epexergasía kanónon DRC
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Επεξεργασία κειμένου..."
+msgstr "Επεξεργασία κανόνων DRC..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6025,11 +6025,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control; Élenchos ékdosis
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Εκδοχή"
+msgstr "Έλεγχος έκδοσης"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -6051,10 +6050,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
+# hierarchy Verilog; ierarchía Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "_Ιεραρχία"
+msgstr "ιεραρχία Verilog"
 
 # Tools/_Symbols; Ergaleía/Sýmvola
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
