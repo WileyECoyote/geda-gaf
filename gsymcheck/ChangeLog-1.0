@@ -3,6 +3,8 @@
     * etc/system-gsymcheckrc.in: Add "manufacturer" to list of valid attributes,
       this seem reasonable, other EDA software recognizes this attribute.
 
+    * src/i_vars.c: Add "manufacturer" to the list of standard_attributes.
+
 2019-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/it.po: Update Italian translations.
