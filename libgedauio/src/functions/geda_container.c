@@ -142,10 +142,12 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
     compare_y1 = old_allocation.y;
     compare_y2 = old_allocation.y + old_allocation.height;
 
-    if (direction == GTK_DIR_LEFT)
+    if (direction == GTK_DIR_LEFT) {
       compare_x = old_allocation.x;
-    else
+    }
+    else {
       compare_x = old_allocation.x + old_allocation.width;
+    }
 
     tmp_list = children;
 
