@@ -201,22 +201,27 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
     }
     else {
 
-      if (!gtk_widget_get_has_window (widget))
+      if (!gtk_widget_get_has_window (widget)) {
         compare.y = allocation->y + allocation->height / 2;
-      else
+      }
+      else {
         compare.y = allocation->height / 2;
+      }
     }
 
-    if (!gtk_widget_get_has_window (widget))
+    if (!gtk_widget_get_has_window (widget)) {
       compare.x = (direction == GTK_DIR_RIGHT) ? allocation->x : allocation->x + allocation->width;
-    else
+    }
+    else {
       compare.x = (direction == GTK_DIR_RIGHT) ? 0 : allocation->width;
+    }
   }
 
   children = g_list_sort_with_data (children, left_right_compare, &compare);
 
-  if (compare.reverse)
+  if (compare.reverse) {
     children = g_list_reverse (children);
+  }
 
   return children;
 }
