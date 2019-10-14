@@ -126,8 +126,9 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
   compare.container = container;
   compare.reverse = (direction == GTK_DIR_LEFT);
 
-  if (!old_focus)
+  if (!old_focus) {
     old_focus = find_old_focus (container, children);
+  }
 
   if (old_focus && get_allocation_coords (container, old_focus, &old_allocation))
   {
