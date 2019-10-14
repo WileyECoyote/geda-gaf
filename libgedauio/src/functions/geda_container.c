@@ -34,9 +34,10 @@ get_allocation_coords (GtkContainer  *container,
                        0, 0, &allocation->x, &allocation->y);
 }
 
-/* Look for a child in @children that is intermediate between
- * the focus widget and container. This widget, if it exists,
- * acts as the starting widget for focus navigation.
+/*!
+ * \internal Look for a child in children that is intermediate
+ *  between the focus widget and container. This widget, if it
+ *  exists, acts as the starting widget for focus navigation.
  */
 static GtkWidget*
 find_old_focus (GtkContainer *container, GList *children)

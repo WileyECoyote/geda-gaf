@@ -1,3 +1,8 @@
+2019-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_container.c: Convert comments to internal Doxygen
+      documentation.
+
 2019-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Convert plain text to internal Doxygen
