@@ -205,7 +205,7 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
         compare.y = allocation->y + allocation->height / 2;
       }
       else {
-        compare.y = allocation->height / 2;
+        compare.y = allocation->height >> 1;
       }
     }
 
