@@ -465,9 +465,11 @@ geda_container_focus_sort (GtkContainer     *container,
     case GTK_DIR_TAB_FORWARD:
     case GTK_DIR_TAB_BACKWARD:
       return geda_container_focus_sort_tab (container, visible_children, direction, old_focus);
+
     case GTK_DIR_UP:
     case GTK_DIR_DOWN:
       return geda_container_focus_sort_up_down (container, visible_children, direction, old_focus);
+
     case GTK_DIR_LEFT:
     case GTK_DIR_RIGHT:
       return geda_container_focus_sort_left_right (container, visible_children, direction, old_focus);
