@@ -289,10 +289,12 @@ geda_container_focus_sort_up_down (GtkContainer     *container,
     compare_x1 = old_allocation.x;
     compare_x2 = old_allocation.x + old_allocation.width;
 
-    if (direction == GTK_DIR_UP)
+    if (direction == GTK_DIR_UP) {
       compare_y = old_allocation.y;
-    else
+    }
+    else {
       compare_y = old_allocation.y + old_allocation.height;
+    }
 
     tmp_list = children;
     while (tmp_list) {
