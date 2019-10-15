@@ -201,11 +201,15 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
     }
     else {
 
+      int half_height;
+
+      half_height = allocation->height >> 1; /* Divide by 2 */
+
       if (!gtk_widget_get_has_window (widget)) {
-        compare.y = allocation->y + allocation->height / 2;
+        compare.y = allocation->y + half_height;
       }
       else {
-        compare.y = allocation->height >> 1;
+        compare.y = half_height;
       }
     }
 
