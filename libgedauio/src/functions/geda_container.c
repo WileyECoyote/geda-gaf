@@ -348,16 +348,19 @@ geda_container_focus_sort_up_down (GtkContainer     *container,
       }
     }
 
-    if (!gtk_widget_get_has_window (widget))
+    if (!gtk_widget_get_has_window (widget)) {
       compare.y = (direction == GTK_DIR_DOWN) ? allocation->y : allocation->y + allocation->height;
-    else
+    }
+    else {
       compare.y = (direction == GTK_DIR_DOWN) ? 0 : + allocation->height;
+    }
   }
 
   children = g_list_sort_with_data (children, up_down_compare, &compare);
 
-  if (compare.reverse)
+  if (compare.reverse) {
     children = g_list_reverse (children);
+  }
 
   return children;
 }
