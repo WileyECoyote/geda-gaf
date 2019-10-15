@@ -340,10 +340,12 @@ geda_container_focus_sort_up_down (GtkContainer     *container,
     }
     else {
 
-      if (!gtk_widget_get_has_window (widget))
+      if (!gtk_widget_get_has_window (widget)) {
         compare.x = allocation->x + allocation->width / 2;
-      else
+      }
+      else {
         compare.x = allocation->width / 2;
+      }
     }
 
     if (!gtk_widget_get_has_window (widget))
