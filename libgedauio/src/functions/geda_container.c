@@ -407,7 +407,9 @@ geda_container_focus_sort_tab (GtkContainer     *container,
                                GtkDirectionType  direction,
                                GtkWidget        *old_focus)
 {
-  GtkTextDirection text_direction = gtk_widget_get_direction (GTK_WIDGET (container));
+  GtkTextDirection text_direction;
+
+  text_direction = gtk_widget_get_direction (GTK_WIDGET (container));
 
   children = g_list_sort_with_data (children, tab_compare, INT_TO_POINTER (text_direction));
 
