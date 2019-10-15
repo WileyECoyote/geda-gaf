@@ -2,7 +2,8 @@
 
     * src/functions/geda_container.c: And half_height in geda_container_
       focus_sort_left_right, and half_width in geda_container_focus_sort_
-      up_down.
+      up_down. Replace GINT_TO_POINTER with INT_TO_POINTER in geda_container_
+      focus_sort_tab.
 
 2019-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
