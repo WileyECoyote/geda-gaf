@@ -413,9 +413,7 @@ geda_container_focus_sort_tab (GtkContainer     *container,
 
   children = g_list_sort_with_data (children, tab_compare, INT_TO_POINTER (text_direction));
 
-  /* if we are going backwards then reverse the order
-   *  of the children.
-   */
+  /* if going backwards then reverse the order of the children. */
   if (direction == GTK_DIR_TAB_BACKWARD) {
     children = g_list_reverse (children);
   }
