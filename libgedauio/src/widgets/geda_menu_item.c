@@ -3541,12 +3541,14 @@ void geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
 
   if (GEDA_IS_MENU(parent)) {
 
-    GedaMenu *menu = (GedaMenu*)parent;
+    GtkAccelGroup *accel_group;
 
-    if (menu->accel_group) {
+    accel_group = geda_menu_get_accel_group ((GedaMenu*)parent);
+
+    if (accel_group) {
       geda_menu_item_refresh_accel_path (menu_item,
                                          NULL,
-                                         menu->accel_group,
+                                         accel_group,
                                          FALSE);
     }
   }

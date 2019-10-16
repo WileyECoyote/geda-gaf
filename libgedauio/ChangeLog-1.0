@@ -1,3 +1,8 @@
+2019-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_set_accel_path to
+      use accessor geda_menu_get_accel_group and eliminate ancillary pointer.
+
 2019-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: And half_height in geda_container_
