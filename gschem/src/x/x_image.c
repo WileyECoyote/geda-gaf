@@ -1073,10 +1073,14 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
     error_dialog("Could not allocate memory resources; %s, maybe you should try saving next",
                   errmsg);
 
-    if (new_w_current)
+    if (new_w_current) {
       free (new_w_current);
-    if (toplevel)
+    }
+
+    if (toplevel) {
       g_object_unref (toplevel);
+    }
+
     return NULL;
   }
 
