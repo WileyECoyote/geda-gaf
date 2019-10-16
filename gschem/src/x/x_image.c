@@ -1042,7 +1042,7 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
 }
 
 /*!
- * \brief Retreive Pixel Buffer for Imaging
+ * \brief Retrieve Pixel Buffer for Imaging
  * \par Function Description
  *  The entire top-level is copied, including
  */
