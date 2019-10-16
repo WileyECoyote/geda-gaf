@@ -1,21 +1,17 @@
+2019-10-16 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_image.c: Translate the dialog error text in x_image_get_pixbuf.
+
 2019-10-12 Wiley E. Hill <wileyhill@gmail.com
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/fr.po: Update French translations.
 
 2019-10-11 Wiley E. Hill <wileyhill@gmail.com

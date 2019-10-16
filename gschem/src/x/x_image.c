@@ -1066,12 +1066,14 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
 
   if (!new_w_current || !toplevel) {
 
-    char *errmsg = strerror(errno);
+    const char *msg1 = _("Could not allocate memory resources");
+    const char *msg2 = _("maybe you should try saving next");
+
+    const char *errmsg = strerror(errno);
 
     fprintf(stderr, "%s: could not allocate memory resources: %s\n",__func__, errmsg);
 
-    error_dialog("Could not allocate memory resources, %s, maybe you should try saving next",
-                  errmsg);
+    error_dialog("%s, %s, %s", msg1, errmsg, msg2);
 
     if (new_w_current) {
       free (new_w_current);
