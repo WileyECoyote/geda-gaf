@@ -1044,7 +1044,8 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
 /*!
  * \brief Retrieve Pixel Buffer for Imaging
  * \par Function Description
- *  The entire top-level is copied, including
+ *  The entire top-level is copied, including the GedaToplevel referenced
+ *  within \a w_current using memcpy().
  */
 GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
                                bool use_print_map, bool invert_color_bw)
