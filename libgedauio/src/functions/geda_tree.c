@@ -60,10 +60,11 @@ bool geda_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
     bool ret;
 
     path = gtk_tree_model_get_path (tree_model, iter);
-    ret = gtk_tree_path_prev (path);
-    if (ret != FALSE)
+    ret  = gtk_tree_path_prev (path);
 
+    if (ret != FALSE) {
       gtk_tree_model_get_iter (tree_model, iter, path);
+    }
 
     gtk_tree_path_free (path);
 
