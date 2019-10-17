@@ -1272,8 +1272,8 @@ geda_menu_shell_screen_changed (GtkWidget *widget, GdkScreen *previous_screen)
 
 /* GObject over-rides */
 
-static void
-geda_menu_shell_dispose (GObject *object)
+/*! \internal gobject_class->dispose */
+static void geda_menu_shell_dispose (GObject *object)
 {
   GedaMenuShell *menu_shell = (GedaMenuShell*)object;
 
