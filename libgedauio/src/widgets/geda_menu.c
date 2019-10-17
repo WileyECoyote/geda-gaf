@@ -2399,7 +2399,7 @@ static void geda_menu_dispose (GObject *object)
   ((GObjectClass*)geda_menu_parent_class)->dispose (object);
 }
 
-/* gobject_class->finalize */
+/*! \internal gobject_class->finalize */
 static void geda_menu_finalize (GObject *object)
 {
   if (g_hash_table_remove (menu_hash_table, object)) {
