@@ -757,7 +757,9 @@ geda_option_menu_item_state_changed_cb (GtkWidget      *widget,
   GtkWidget *child = geda_get_child_widget(option_menu);
 
   if (child && gtk_widget_get_sensitive (child) != gtk_widget_is_sensitive (widget))
+  {
     gtk_widget_set_sensitive (child, gtk_widget_is_sensitive (widget));
+  }
 }
 
 static void
