@@ -407,6 +407,7 @@ static void geda_menu_item_do_set_right_justified (GedaMenuItem *menu_item,
 
 /* GObject Over-rides*/
 
+/*! \internal gobject_class->dispose */
 static void geda_menu_item_dispose (GObject *object)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)object;
