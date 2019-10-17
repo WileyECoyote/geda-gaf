@@ -1282,6 +1282,7 @@ static void geda_menu_shell_dispose (GObject *object)
   G_OBJECT_CLASS (geda_menu_shell_parent_class)->dispose (object);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_menu_shell_finalize (GObject *object)
 {
   GedaMenuShell *menu_shell = (GedaMenuShell*)object;
