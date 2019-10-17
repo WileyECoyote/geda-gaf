@@ -707,6 +707,7 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 
         geda_menu_shell_select_item (menu_shell, menu_item);
       }
+
       return TRUE;
   }
 
