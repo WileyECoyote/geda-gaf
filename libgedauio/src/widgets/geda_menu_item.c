@@ -435,6 +435,7 @@ static void geda_menu_item_dispose (GObject *object)
   ((GObjectClass*)geda_menu_item_parent_class)->dispose (object);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_menu_item_finalize (GObject *object)
 {
   GedaMenuItem *menu_item = (GedaMenuItem*)object;
