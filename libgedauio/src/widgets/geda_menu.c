@@ -2387,7 +2387,7 @@ static void geda_menu_destroy (GtkObject *object)
   ((GtkObjectClass*)geda_menu_parent_class)->destroy (object);
 }
 
-/* gobject_class->dispose */
+/*! \internal gobject_class->dispose */
 static void geda_menu_dispose (GObject *object)
 {
   GedaMenu *menu = (GedaMenu*)object;
