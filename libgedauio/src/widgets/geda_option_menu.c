@@ -740,7 +740,7 @@ geda_option_menu_select_first_sensitive (GedaOptionMenu *option_menu)
       if (gtk_widget_get_sensitive (children->data)) {
 
         geda_option_menu_set_history (option_menu, index);
-        return;
+        break;
       }
 
       children = children->next;

@@ -1,3 +1,8 @@
+2019-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Replace return with break in function
+      geda_option_menu_select_first_sensitive.
+
 2019-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Revise geda_menu_item_set_accel_path to
