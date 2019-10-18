@@ -1134,6 +1134,7 @@ void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
     if (GTK_WIDGET (option_menu)->parent) {
       gtk_widget_queue_resize (GTK_WIDGET (option_menu));
     }
+
     geda_option_menu_update_contents (option_menu);
 
     GEDA_OBJECT_NOTIFY (option_menu, "menu");
@@ -1158,6 +1159,7 @@ void geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
     if (GEDA_MENU_SHELL (option_menu->menu)->active) {
       geda_menu_shell_cancel ((GedaMenuShell*)option_menu->menu);
     }
+
     geda_menu_detach ((GedaMenu*)option_menu->menu);
   }
 }
@@ -1180,6 +1182,7 @@ void geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int ind
     GtkWidget *menu_item;
 
     geda_menu_widget_set_active (option_menu->menu, index);
+
     menu_item = geda_menu_widget_get_active (option_menu->menu);
 
     if (menu_item != option_menu->menu_item) {
