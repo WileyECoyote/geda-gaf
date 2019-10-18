@@ -663,7 +663,7 @@ static void geda_handle_box_reattach (GedaHandleBox *handlebox)
   * @{
   */
 
-/* container_class->add */
+/*! \internal container_class->add */
 static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 {
   if (GEDA_IS_HANDLE_BOX(container)) {
@@ -679,7 +679,7 @@ static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
   }
 }
 
-/* container_class->remove */
+/*! \internal container_class->remove */
 static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 {
   ((GtkContainerClass*)geda_handle_box_parent_class)->remove (container, widget);
@@ -692,7 +692,7 @@ static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
   * @{
   */
 
-/* widget_class->button_press == callback for mouse button press event */
+/*! \internal widget_class->button_press == callback for mouse button press event */
 static bool geda_handle_box_button_press (GtkWidget      *widget,
                                           GdkEventButton *event)
 {
@@ -838,7 +838,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
   return event_handled;
 }
 
-/* widget_class->delete_event */
+/*! \internal widget_class->delete_event */
 static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
@@ -1025,7 +1025,7 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
   }
 }
 
-/* widget_class->expose_event */
+/*! \internal widget_class->expose_event */
 static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   if (gtk_widget_is_drawable (widget)) {
