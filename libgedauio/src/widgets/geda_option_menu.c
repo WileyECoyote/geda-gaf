@@ -1051,11 +1051,13 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
 
       index += index_dir;
 
-      if (index < 0)
+      if (index < 0) {
         break;
+      }
 
-      if (index >= n_children)
+      if (index >= n_children) {
         break;
+      }
 
       list = g_list_nth (GEDA_MENU_SHELL(option_menu->menu)->children, index);
       item = GEDA_MENU_ITEM (list->data);
