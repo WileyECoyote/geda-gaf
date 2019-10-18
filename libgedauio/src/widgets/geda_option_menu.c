@@ -1203,6 +1203,8 @@ void geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int ind
  */
 int geda_option_menu_get_history (GedaOptionMenu *option_menu)
 {
+  int index;
+
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
   if (GEDA_IS_MENU(option_menu->menu)) {
@@ -1212,16 +1214,18 @@ int geda_option_menu_get_history (GedaOptionMenu *option_menu)
     active_widget = geda_menu_widget_get_active (option_menu->menu);
 
     if (active_widget) {
-      return g_list_index (((GedaMenuShell*)option_menu->menu)->children,
+      index = g_list_index (((GedaMenuShell*)option_menu->menu)->children,
                            active_widget);
     }
     else {
-        return -1;
+      index = -1;
     }
   }
   else {
-    return -1;
+    index = -1;
   }
+
+  return index;
 }
 
 /* Widget Argument */
