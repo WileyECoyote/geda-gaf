@@ -114,6 +114,7 @@ static void geda_radio_menu_item_activate (GedaMenuItem *menu_item)
     check_menu_item->active = !check_menu_item->active;
 
     tmp_list = radio_menu_item->group;
+
     while (tmp_list) {
 
       tmp_menu_item = tmp_list->data;
@@ -155,6 +156,7 @@ static void geda_radio_menu_item_set_property (GObject      *object,
         slist = NULL;
       geda_radio_menu_item_set_group (radio_menu_item, slist);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -390,6 +392,7 @@ bool is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
   if ((radio_menu_item != NULL) && (radio_menu_hash != NULL)) {
     return g_hash_table_lookup(radio_menu_hash, radio_menu_item) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -636,7 +639,6 @@ void geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
   g_signal_emit (radio_menu_item, group_changed_signal, 0);
 
   if (old_group_singleton) {
-
     g_signal_emit (old_group_singleton, group_changed_signal, 0);
     g_object_unref (old_group_singleton);
   }
