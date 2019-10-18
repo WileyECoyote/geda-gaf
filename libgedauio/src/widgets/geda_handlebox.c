@@ -542,10 +542,13 @@ static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       width  = child_requisition.width  + border_2x;
       height = child_requisition.height + border_2x;
 
-      if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
+      if (handle_position == GTK_POS_LEFT ||
+          handle_position == GTK_POS_RIGHT) {
         width += handlebox->handle_size;
-      else
+      }
+      else {
         height += handlebox->handle_size;
+      }
 
       gdk_window_move_resize (handlebox->float_window, new_x, new_y, width, height);
       gdk_window_reparent (handlebox->bin_window, handlebox->float_window, 0, 0);
@@ -701,8 +704,9 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
     GedaHandleBox *handlebox;
     handlebox = (GedaHandleBox*)widget;
 
-    if (event->window != handlebox->bin_window)
+    if (event->window != handlebox->bin_window) {
       return FALSE;
+    }
 
     child = geda_get_child_widget(handlebox);
 
