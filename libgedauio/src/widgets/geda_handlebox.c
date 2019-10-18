@@ -1996,7 +1996,7 @@ void geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, bool shrink
  * the handle position. If the handle position is %GTK_POS_RIGHT or %GTK_POS_LEFT,
  * then the snap edge will be %GTK_POS_TOP, otherwise it will be %GTK_POS_LEFT.
  *
- * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  * \param [in] edge       Enumerated GtkPositionType, can be:
  *
  *  <DL>
@@ -2027,7 +2027,7 @@ void geda_handle_box_set_snap_edge (GedaHandleBox *handlebox, GtkPositionType ed
  *  Gets the edge used for determining reattachment of the handle box. See
  *  geda_handle_box_set_snap_edge().
  *
- * \param [in] handlebox    The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  *
  * \returns the edge used for determining reattachment, or (GtkPositionType)-1
  *          if this is determined (as per default) from the handle position.
@@ -2099,7 +2099,7 @@ void geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
  * \par Function Description
  *  Sets the side of the handlebox where the handle is drawn.
  *
- * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  * \param [in] position   Side of the handlebox where the handle should
  *                        be drawn.
  *
@@ -2116,7 +2116,7 @@ void geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
  * \par Function Description
  *  Widget version of geda_handle_box_set_shadow_type.
  *
- * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  * \param [in] type       Enumerated ShadowType
  *
  * \see geda_handle_box_set_shadow_type
