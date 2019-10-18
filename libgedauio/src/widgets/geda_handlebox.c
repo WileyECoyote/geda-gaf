@@ -648,6 +648,7 @@ static void geda_handle_box_reattach (GedaHandleBox *handlebox)
                        0, child);
       }
     }
+
     handlebox->float_window_mapped = FALSE;
   }
 
@@ -723,15 +724,19 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
         case GTK_POS_LEFT:
           in_handle = event->x < handlebox->handle_size;
           break;
+
         case GTK_POS_TOP:
           in_handle = event->y < handlebox->handle_size;
           break;
+
         case GTK_POS_RIGHT:
           in_handle = event->x > border_widthx2 + child_allocation.width;
           break;
+
         case GTK_POS_BOTTOM:
           in_handle = event->y > border_widthx2 + child_allocation.height;
           break;
+
         default:
           in_handle = FALSE;
           break;
@@ -842,6 +847,7 @@ static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
       geda_handle_box_reattach (handlebox);
       return TRUE;
   }
+
   return FALSE;
 }
 
@@ -1183,6 +1189,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
 
   /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
   GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
+
   gdk_window_set_transient_for (handlebox->float_window, (GdkWindow*)topwindow->window);
 
   widget->style = gtk_style_attach (widget->style, widget->window);
@@ -1917,7 +1924,9 @@ void geda_handle_box_set_shadow_type (GedaHandleBox *handlebox, GtkShadowType ty
   if ((GtkShadowType) handlebox->shadow_type != type) {
 
     handlebox->shadow_type = type;
+
     GEDA_OBJECT_NOTIFY (handlebox, "shadow-type");
+
     gtk_widget_queue_resize ((GtkWidget*)handlebox);
   }
 }
