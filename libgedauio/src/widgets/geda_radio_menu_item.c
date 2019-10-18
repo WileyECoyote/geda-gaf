@@ -95,8 +95,9 @@ static void geda_radio_menu_item_activate (GedaMenuItem *menu_item)
       tmp_menu_item = tmp_list->data;
       tmp_list = tmp_list->next;
 
-      if (tmp_menu_item->active && (tmp_menu_item != check_menu_item))
+      if (tmp_menu_item->active && (tmp_menu_item != check_menu_item)) {
         break;
+      }
 
       tmp_menu_item = NULL;
     }
@@ -184,8 +185,10 @@ static void geda_radio_menu_item_destroy (GtkObject *object)
 
   radio_menu_item->group = g_slist_remove (radio_menu_item->group,
                                            radio_menu_item);
-  if (radio_menu_item->group && !radio_menu_item->group->next)
+
+  if (radio_menu_item->group && !radio_menu_item->group->next) {
     old_group_singleton = radio_menu_item->group->data;
+  }
 
   tmp_list = radio_menu_item->group;
 
@@ -586,8 +589,9 @@ void geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
     /* remove and update the old group */
     old_group = g_slist_remove (radio_menu_item->group, radio_menu_item);
 
-    if (old_group && !old_group->next)
+    if (old_group && !old_group->next) {
       old_group_singleton = g_object_ref (old_group->data);
+    }
 
     for (iter = old_group; iter; iter = iter->next) {
 
