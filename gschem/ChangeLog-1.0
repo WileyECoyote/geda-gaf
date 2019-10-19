@@ -8,6 +8,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/sl.po: Update Slovenian translations.
+
 2019-10-16 Wiley E. Hill <wileyhill@gmail.com
 
     * src/x/x_image.c: Translate the dialog error text in x_image_get_pixbuf,

@@ -6202,37 +6202,35 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
+# Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "navzdol Simbol"
+msgstr "_Simbol"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Izvozi vdelani simbol"
 
-# export image
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "izvoz slike"
+msgstr "Slika"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
 msgstr "Izvozi vdelano sliko"
 
-# Export
+# File/Export
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
-#, fuzzy
 msgid "_File/_Export"
-msgstr "_izvažati"
+msgstr "Datoteka/izvoz"
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "navzdol Simbol"
+msgstr "_Simboli"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
 msgid "_Open Editor"
@@ -6250,19 +6248,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Verzija"
+msgstr "Nadzor različice"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
+# gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDA netlist"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6276,16 +6274,15 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Hierarhijska napaka"
+msgstr "hierarhija Verilog"
 
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "navzdol Simbol"
+msgstr "Orodja/simboli"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:295
 msgid "_Tools/S_pice netlist"
