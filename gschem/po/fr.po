@@ -6032,7 +6032,7 @@ msgstr ""
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "_Symbol"
-msgstr "Symbole"
+msgstr "_Symbole"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
@@ -6052,20 +6052,20 @@ msgstr "Exporter une image intégrée"
 msgid "_File/_Export"
 msgstr ""
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "_Symbole:"
+msgstr "_Symboles"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Éditeur d'attribut"
+msgstr "Ouvrir l'Éditeur"
 
+# Edit DRC rules...
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Éditer le texte..."
+msgstr "Modifier les règles de la DRC..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6075,20 +6075,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Version"
+msgstr "Contrôle de Version"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
+# gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "Manuels gEDA"
+msgstr "netlist gEDA"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6102,16 +6101,15 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Erreur de hiérarchie"
+msgstr "hiérarchie Verilog"
 
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
-#, fuzzy
 msgid "_Tools/_Symbols"
-msgstr "sym - Symboles"
+msgstr "Outils/_Symboles"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:295
 msgid "_Tools/S_pice netlist"
