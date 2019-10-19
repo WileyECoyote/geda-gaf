@@ -2390,29 +2390,25 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
-# Selection
+# Selection x size
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "Seçim"
+msgstr "Seçim x boyut"
 
-# Selection
+# Selection y size
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "Seçim"
+msgstr "Seçim y boyutu"
 
-# Spinner entry number of rows to create
+# Number of rows to create
 #: gschem/src/x/x_edit_array.c:1029
-#, fuzzy
 msgid "Number of rows to create"
-msgstr "Oluşturulan satırların dönen giriş sayısı"
+msgstr "Oluşturulacak satır sayısı"
 
-# Spinner entry number of columns to create
+# Number of columns to create
 #: gschem/src/x/x_edit_array.c:1030
-#, fuzzy
 msgid "Number of columns to create"
-msgstr "Spinner giriş sütunlarının sayısı oluşturulur"
+msgstr "Oluşturulacak sütun sayısı"
 
 #: gschem/src/x/x_edit_array.c:1031
 msgid "Vertical pitch of array, negative is downward"
@@ -6208,20 +6204,18 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "sembol"
+msgstr "_Sembol"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Gömülü sembolü dışa aktar"
 
-# Export Picture
+# Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Resmi Dışa Aktar"
+msgstr "Resim"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
@@ -6232,23 +6226,20 @@ msgstr "Gömülü resmi dışa aktar"
 msgid "_File/_Export"
 msgstr ""
 
-# Symbol
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "sembol"
+msgstr "_Semboller"
 
-# Open Attributes Editor
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Açık Öznitelik Düzenleyici"
+msgstr "Editör'ü aç"
 
-# Edit Text
+# Edit DRC rules...
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Metin Düzenle..."
+msgstr "DRC kurallarını düzenle..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6258,20 +6249,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Versiyon"
+msgstr "Sürüm Kontrolü"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
+# gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "gEDA El Kitapları"
+msgstr "gEDA netliste"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6285,11 +6275,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Hiyerarşi Hatası"
+msgstr "hiyerarşi Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
 msgid "_Tools/_Symbols"
