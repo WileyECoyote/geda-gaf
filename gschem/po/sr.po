@@ -6257,22 +6257,20 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
-# Export Symbol
+# Symbol; Simbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "Извоз Симбол"
+msgstr "Симбол"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Извоз уграђени симбол"
 
-# Picture Mode
+# Picture; Slika
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Режим слике"
+msgstr "Слика"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
@@ -6283,21 +6281,20 @@ msgstr "Извоз уграђене слике"
 msgid "_File/_Export"
 msgstr ""
 
-# Export Symbol
+# Symbols; Simboli
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Извоз Симбол"
+msgstr "Симболи"
 
-# Open a Session
+# Open Editor; Otvorite Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Отворите Сессион"
+msgstr "Отворите Едитор"
 
+# Edit DRC rules; Izmena DRC pravila
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr ""
+msgstr "Измена ДРЦ правила..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6307,19 +6304,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# version
+# Version Control; Kontrola verzije
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Верзија"
+msgstr "Контрола верзије"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
+# gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDA нетлист"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6333,11 +6330,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# hierarchy Error
+# hierarchy Verilog; hijerarhija Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "hijerarhija Грешка"
+msgstr "хијерархија Верилог"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
 msgid "_Tools/_Symbols"
@@ -6359,8 +6355,3 @@ msgstr "~S није валидна комбинација тастера."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S није секвенца префикса."
-
-# Open font selection dialog
-#, fuzzy
-#~ msgid "Open the DRC rules dialog"
-#~ msgstr "Отворите дијалог за одабир фонта"
