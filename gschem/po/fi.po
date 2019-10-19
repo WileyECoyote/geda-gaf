@@ -5981,7 +5981,7 @@ msgstr ""
 # Symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "_Symbol"
-msgstr "نماد"
+msgstr "_Symboli"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
@@ -5997,25 +5997,25 @@ msgstr "Kuva"
 msgid "Export embedded picture"
 msgstr "Vie upotettu kuva"
 
+# File/Export
 #: gschem/scheme/gschem/gschem-export-menu.scm:65
-#, fuzzy
 msgid "_File/_Export"
-msgstr "/Vie"
+msgstr "Tiedosto/Vienti"
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Symboli"
+msgstr "Symbolit"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Määrite"
+msgstr "Avaa Editori"
 
+# Edit DRC rules...
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Muokkaa tekstiä..."
+msgstr "Muokkaa DRC-sääntöjä..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6025,21 +6025,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Versio"
+msgstr "Version hallinta"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
-# gEDA Instructions
+# gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "gEDA Käyttöohjeet"
+msgstr "gEDA netlist"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6053,13 +6051,15 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
+# hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
 msgid "hierarchy Verilog"
-msgstr ""
+msgstr "hierarkia Verilog"
 
+# Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
 msgid "_Tools/_Symbols"
-msgstr ""
+msgstr "Työkalut/_Symbolit"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:295
 msgid "_Tools/S_pice netlist"
