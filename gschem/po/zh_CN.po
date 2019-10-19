@@ -2392,17 +2392,15 @@ msgstr ""
 msgid "Indicates total number of objects currently selected"
 msgstr ""
 
-# Selection
+# Selection x size; Xuǎnzé x chǐcùn
 #: gschem/src/x/x_edit_array.c:1027
-#, fuzzy
 msgid "Selection x size"
-msgstr "选择"
+msgstr "选择x尺寸"
 
-# Selection
+# Selection y size; Xuǎnzé y chǐcùn
 #: gschem/src/x/x_edit_array.c:1028
-#, fuzzy
 msgid "Selection y size"
-msgstr "选择"
+msgstr "选择y尺寸"
 
 #: gschem/src/x/x_edit_array.c:1029
 msgid "Number of rows to create"
@@ -6333,22 +6331,20 @@ msgstr ""
 msgid "Export document to XML file"
 msgstr ""
 
-# Inside the symbol
+# Symbol; Fúhào
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "里面的符号"
+msgstr "符号"
 
 # Export embedded symbol
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "导出嵌入式符号"
 
-# add picture
+# Picture; Túpiàn
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "添加图片"
+msgstr "图片"
 
 # Export embedded picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
@@ -6359,23 +6355,20 @@ msgstr "导出嵌入图片"
 msgid "_File/_Export"
 msgstr ""
 
-# Inside the symbol
+# Symbols; Fúhào
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "里面的符号"
+msgstr "符号"
 
-# Property Editor
+# Open Editor; Dǎkāi biānjí qì
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "属性编辑器"
+msgstr "打开编辑器"
 
-# Edit Text
+# Edit DRC rules; Biānjí DRC guīzé
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "编辑文本..."
+msgstr "编辑DRC规则..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6385,21 +6378,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control; Bǎnběn kòngzhì
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "版"
+msgstr "版本控制"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
-# gEDA Manuals
+# gEDA netlist; Wǎng biǎo
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "gEDA手册"
+msgstr "gEDA网表"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6413,11 +6404,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# hierarchy Verilog; Céngcì Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "层次错误"
+msgstr "层次Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
 msgid "_Tools/_Symbols"
