@@ -4,6 +4,10 @@
 
     * opto/HCPL-0701-1.sym: Rename symbol with hyphen to match device attribute.
 
+    * opto/HCPL: Add symbol; Dual-Channel Darlington optocoupler:
+
+            * opto/HCPL-0730-1.sym
+
 2019-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/vicor_gen1.sym: Add description attribute.
