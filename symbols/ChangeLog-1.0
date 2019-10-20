@@ -11,6 +11,8 @@
             * opto/HCPL-2730-1.sym
             * opto/HCPL-2731-1.sym
 
+    * opto/HCPL-4534-1.sym: Add dscription attribute, update documentation link.
+
 2019-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/vicor_gen1.sym: Add description attribute.
