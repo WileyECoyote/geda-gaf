@@ -2,6 +2,8 @@
 
     * opto/HCPL-0700-1.sym: Rename symbol with hyphen to match device attribute.
 
+    * opto/HCPL-0701-1.sym: Rename symbol with hyphen to match device attribute.
+
 2019-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * linear/special/vicor_gen1.sym: Add description attribute.
