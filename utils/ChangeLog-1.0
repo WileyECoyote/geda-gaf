@@ -1,8 +1,12 @@
+2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gsymfix.pl: Reset skip_line_out if $state == $st_pin_start.
+
 2019-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/el.po: Add Plural-Forms.
 
-    * po/pt_BR.po: Add Plural-Forms.
+    * po/pt_BR.po: Add Plural-Forms, update translations.
 
 2019-08-24 Wiley E. Hill <wileyhill@gmail.com>
 

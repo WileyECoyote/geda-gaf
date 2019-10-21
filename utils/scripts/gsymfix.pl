@@ -74,6 +74,7 @@ while ($line = <NETLIST>) {
   }
   #==========================
   elsif ( $state == $st_pin_start ) {
+    $skip_line_out = 0;
     if ( $line =~ /^{/) {
       $state = $st_pin_body;
       $found_pinnumber_attr = 0;
