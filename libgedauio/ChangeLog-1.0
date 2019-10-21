@@ -1,7 +1,10 @@
 2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Revise conditional in geda_image_
-      menu_item_sync_action in order to avoid early return.
+      menu_item_sync_action in order to avoid early return. Revise function
+      geda_image_menu_item_set_accel_group to handle the else condition of
+      accel_group = NULL by removing image_menu_item from any group of which
+      it is a member.
 
     * tests/test_menu_separator.c: Check response from GedaMenuItem
       accessors:

@@ -1110,6 +1110,31 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
       }
     }
   }
+  else {
+
+    GtkWidget *parent;
+
+    parent = geda_get_widget_parent(image_menu_item);
+
+    if (GEDA_IS_MENU(parent)) {
+
+      GtkAccelGroup *accel_group;
+
+      accel_group = geda_menu_widget_get_accel_group (parent);
+
+      if (accel_group) {
+
+        char accel;
+        unsigned int keyval;
+        GdkModifierType mods;
+
+        accel = geda_menu_item_get_mnemonic ((GedaMenuItem*)image_menu_item);
+
+        gtk_accelerator_parse (&accel, &keyval, &mods);
+        gtk_widget_remove_accelerator ((GtkWidget*)image_menu_item, accel_group, keyval, mods);
+      }
+    }
+  }
 }
 
 GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_menu_item)
