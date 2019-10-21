@@ -253,12 +253,15 @@ static void geda_image_menu_item_update (GtkActivatable *activatable,
 
     image_menu_item = (GedaImageMenuItem*)activatable;
 
-    if (strcmp (property_name, "stock-id") == 0)
+    if (strcmp (property_name, "stock-id") == 0) {
       activatable_update_stock_id (image_menu_item, action);
-    else if (strcmp (property_name, "gicon") == 0)
+    }
+    else if (strcmp (property_name, "gicon") == 0) {
       activatable_update_gicon (image_menu_item, action);
-    else if (strcmp (property_name, "icon-name") == 0)
+    }
+    else if (strcmp (property_name, "icon-name") == 0) {
       activatable_update_icon_name (image_menu_item, action);
+    }
   }
 }
 
