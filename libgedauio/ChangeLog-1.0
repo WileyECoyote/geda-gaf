@@ -1,3 +1,10 @@
+2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_reserve_indicator
+
 2019-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_option_menu.c: Revise geda_option_menu_get_history to
