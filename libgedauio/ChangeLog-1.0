@@ -6,6 +6,9 @@
       accel_group = NULL by removing image_menu_item from any group of which
       it is a member, and update the function documentation.
 
+    * src/widgets/geda_menu.c: Revise function geda_menu_enter_notify to use
+      ancillary parent.
+
     * tests/test_menu_separator.c: Check response from GedaMenuItem
       accessors:
 
