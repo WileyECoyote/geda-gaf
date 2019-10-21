@@ -1,5 +1,8 @@
 2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: Revise conditional in geda_image_
+      menu_item_sync_action in order to avoid early return.
+
     * tests/test_menu_separator.c: Check response from GedaMenuItem
       accessors:
 

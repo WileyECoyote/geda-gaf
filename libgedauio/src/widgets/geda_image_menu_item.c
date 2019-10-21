@@ -210,30 +210,30 @@ static void geda_image_menu_item_sync_action (GtkActivatable *activatable,
 
   g_object_get (activatable, "use-action-appearance", &use_appearance, NULL);
 
-  if (!use_appearance)
-    return;
+  if (use_appearance) {
 
-  image = geda_image_menu_item_get_image (image_menu_item);
+    image = geda_image_menu_item_get_image (image_menu_item);
 
-  if (image && !GTK_IS_IMAGE (image)) {
-    geda_image_menu_item_set_image (image_menu_item, NULL);
-    image = NULL;
-  }
+    if (image && !GTK_IS_IMAGE (image)) {
+      geda_image_menu_item_set_image (image_menu_item, NULL);
+      image = NULL;
+    }
 
-  if (!image) {
-    image = gtk_image_new ();
-    gtk_widget_show (image);
-    geda_image_menu_item_set_image (image_menu_item, image);
-  }
+    if (!image) {
+      image = gtk_image_new ();
+      gtk_widget_show (image);
+      geda_image_menu_item_set_image (image_menu_item, image);
+    }
 
-  if (!activatable_update_stock_id (image_menu_item, action) &&
+    if (!activatable_update_stock_id (image_menu_item, action) &&
       !activatable_update_gicon (image_menu_item, action))
-  {
-    activatable_update_icon_name (image_menu_item, action);
-  }
+    {
+      activatable_update_icon_name (image_menu_item, action);
+    }
 
-  geda_image_menu_item_set_show_image (image_menu_item,
-                                       gtk_action_get_always_show_image (action));
+    geda_image_menu_item_set_show_image (image_menu_item,
+                                         gtk_action_get_always_show_image (action));
+  }
 }
 
 /*! \internal iface->update */
