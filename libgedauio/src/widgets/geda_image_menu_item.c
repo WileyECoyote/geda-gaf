@@ -1078,6 +1078,9 @@ bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
  *  If you want this menu item to have changeable accelerators then
  *  you should not need this, see geda_image_menu_item_new_from_stock().
  *
+ *  If \a accel_group is NULL, then image_menu_item is removed from
+ *  any group of which it is a member.
+ *
  * \param [in] image_menu_item a #GedaImageMenuItem
  * \param [in] accel_group     the GtkAccelGroup
  *
