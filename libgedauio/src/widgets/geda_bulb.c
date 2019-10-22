@@ -1161,9 +1161,9 @@ GSList *geda_bulb_get_group (GtkWidget *bulb)
  * \par Function Description
  *  Sets the group of the #GedaBulb object.
  *
- *  \note Setting the group does not change the interface layout in any way,
- *  if groups are changed the layout may need to be rearranged to reflect the
- *  changes.
+ * \note Setting the group does not change the interface layout in any way,
+ *       if groups are changed the layout may need to be rearranged to reflect
+ *       the changes.
  *
  * \param [in] widget The #GedaBulb is group is to be set
  * \param [in] group  The bulb group \a bulb is to join
@@ -1300,7 +1300,7 @@ void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
  *  in other words, the bulb that is turned-on.
  *
  *  \note Group list are Zero based single-linked list, so the
- *  first bulb is 0 and the last is group length minus 1.
+ *        first bulb is 0 and the last is group length minus 1.
  *
  * \param [in] group_list The bulb group to be queried
  *
