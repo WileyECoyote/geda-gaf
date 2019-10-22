@@ -1277,6 +1277,7 @@ void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
   if (group_source) {
 
     GSList *group;
+
     group = geda_bulb_get_group (group_source);
 
     if (!group) {
@@ -1333,6 +1334,7 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
       break;
     }
   }
+
   /* new buttons are *prepended* to the list, so buttons added first
    * in the last positions in the list and using glist reverse
    * confuses gtk */
@@ -1377,6 +1379,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
       gtk_toggle_button_set_active (button, TRUE);
     }
   }
+
   return;
 }
 
