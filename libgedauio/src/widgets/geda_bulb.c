@@ -1255,7 +1255,7 @@ void geda_bulb_set_group (GtkWidget *widget, GSList *group)
  * \param [in] group_source The bulb whose group \a bulb is to join
  *
  *  example:
- *
+ * \code{.c}
  *   GedaBulb *bulb;
  *   GedaBulb *last_button;
  *
@@ -1266,6 +1266,7 @@ void geda_bulb_set_group (GtkWidget *widget, GSList *group)
  *        geda_bulb_join_group (bulb, last_button);
  *        last_button = bulb;
  *   }
+ * \endcode
  */
 void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
 {
