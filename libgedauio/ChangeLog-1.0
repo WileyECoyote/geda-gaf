@@ -1,7 +1,12 @@
 2019-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Add Doxygen code/endcode tags in
-      geda_bulb_set_group documentation.
+      geda_bulb_set_group documentation. Revise geda_bulb_finalize
+      to eliminate redundant emission of the group_changed_signal
+      when old_group_singleton and was_in_group are both set by
+      only checking was_in_group when old_group_singleton is not
+      set, effectively the else condition, so as not inadvertently
+      reduce the reference count on other group members.
 
     * tests/test_bulb.c: Add check for geda_bulb_group_get_active_index.
 

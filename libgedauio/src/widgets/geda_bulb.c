@@ -215,9 +215,10 @@ static void geda_bulb_finalize (GObject *object)
   if (old_group_singleton) {
     g_signal_emit (old_group_singleton, group_changed_signal, 0);
   }
-
-  if (was_in_group) {
-    g_signal_emit (bulb, group_changed_signal, 0);
+  else {
+    if (was_in_group) {
+      g_signal_emit (bulb, group_changed_signal, 0);
+    }
   }
 
   g_object_unref (off_pixbuf);
