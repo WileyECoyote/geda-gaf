@@ -1177,8 +1177,9 @@ void geda_bulb_set_group (GtkWidget *widget, GSList *group)
 
   g_return_if_fail (GEDA_IS_BULB (widget));
 
-  if (g_slist_find (group, widget))
+  if (g_slist_find (group, widget)) {
     return;
+  }
 
   bulb = (GedaBulb*)widget;
 
@@ -1323,8 +1324,9 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
 
     button = (GtkToggleButton*)g_slist_nth_data (group_list, index);
 
-    if (button == NULL)
+    if (button == NULL) {
       return -1;
+    }
 
     if (gtk_toggle_button_get_active (button) == TRUE) {
       active = index;
