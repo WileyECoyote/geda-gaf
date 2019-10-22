@@ -1106,9 +1106,9 @@ GtkWidget *geda_bulb_new_with_label_from_widget (GtkWidget  *group_member,
 /*!
  * \brief Create a New GedaBulb with a Mnemonic Label from group Member
  * \par Function Description
- *  Creates a new #GedaBulb object with a mnemonic label, the bulb is added to
- *  same group as \a group_member. The \a label can, and should, include an
- *  underscores in indicate the mnemonic for the widget.
+ *  Creates a new #GedaBulb object with a mnemonic label, the bulb is added
+ *  to same group as \a group_member. The \a label can, and should, include
+ *  an underscores in indicate the mnemonic for the widget.
  *
  * \param [in] group_member The group to use for the new #GedaBulb
  * \param [in] label        String with mnemonic to use use for the label
