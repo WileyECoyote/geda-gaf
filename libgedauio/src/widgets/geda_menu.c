@@ -1171,7 +1171,7 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
     }
   }
 
-  if (GEDA_IS_MENU_ITEM (menu_item) {
+  if (GEDA_IS_MENU_ITEM (menu_item)) {
 
     /* If this is a faked enter (see geda_menu_motion_notify), 'widget'
      * will not correspond to the event widget's parent.  Check to see
