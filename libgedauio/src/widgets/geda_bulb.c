@@ -1281,7 +1281,7 @@ void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
 
     if (!group) {
 
-      /* if we are not already part of a group we need to set up
+      /* if we are not already part of a group we need to setup
        * a new group and then get the newly created group */
       geda_bulb_set_group (group_source, NULL);
       group = geda_bulb_get_group (group_source);
