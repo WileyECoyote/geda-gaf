@@ -280,6 +280,15 @@ check_accessors ()
       result++;
     }
 
+    int index;
+
+    index = geda_bulb_group_get_active_index(group);
+
+    if (index != 0) {
+      fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
+      result++;
+    }
+
     g_object_ref_sink(widget1); /* Sink reference to entry widget */
     g_object_ref_sink(widget2); /* Sink reference to entry widget */
     g_object_ref_sink(widget3); /* Sink reference to entry widget */

@@ -3,6 +3,8 @@
     * src/widgets/geda_bulb.c: Add Doxygen code/endcode tags in
       geda_bulb_set_group documentation.
 
+    * tests/test_bulb.c: Add check for geda_bulb_group_get_active_index.
+
 2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Revise conditional in geda_image_
