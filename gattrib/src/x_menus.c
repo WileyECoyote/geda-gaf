@@ -375,6 +375,7 @@ void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
 static bool x_menu_quit(void)
 {
   g_object_ref_sink(menu_bar);
+
   return gattrib_really_quit();
 }
 
@@ -477,7 +478,9 @@ GtkRecentFilter *x_menu_geda_filter() {
  *  data type don't help, so we rename here using something more reasonable.
  */
 GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
+
   GtkWidget *rc = gtk_recent_chooser_menu_new_for_manager(rm );
+
   return (GtkRecentChooser*) rc;
 }
 
