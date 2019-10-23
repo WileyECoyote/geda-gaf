@@ -297,7 +297,7 @@ void x_window_restore_settings(GtkWindow *window)
  */
 static bool x_window_quit(void)
 {
-  g_object_ref(menu_bar);
+  g_object_ref_sink(menu_bar);
   return gattrib_really_quit();
 }
 
