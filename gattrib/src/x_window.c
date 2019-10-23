@@ -298,6 +298,7 @@ void x_window_restore_settings(GtkWindow *window)
 static bool x_window_quit(void)
 {
   g_object_ref_sink(menu_bar);
+
   return gattrib_really_quit();
 }
 
@@ -384,6 +385,7 @@ void x_window_init()
 void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 {
   s_sheet_data_load_blank(PageData);
+
   toplevel->page_current = geda_struct_page_new (toplevel, toplevel->untitled_name);
   toplevel->page_current->filename = toplevel->untitled_name;
 }
@@ -530,6 +532,7 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
   gtk_window_set_position (main_window, GTK_WIN_POS_MOUSE);
 
   gtk_widget_show((GtkWidget*)main_window);
+
   x_window_update_title(pr_current, PageData);
 }
 
@@ -568,6 +571,7 @@ void x_window_standard_toolbar_toggle(GtkToggleAction *action,
     gtk_widget_show(Standard_handlebox);
   else
     gtk_widget_hide(Standard_handlebox);
+
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
