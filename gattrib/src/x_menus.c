@@ -374,7 +374,7 @@ void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
  */
 static bool x_menu_quit(void)
 {
-  g_object_ref(menu_bar);
+  g_object_ref_sink(menu_bar);
   return gattrib_really_quit();
 }
 

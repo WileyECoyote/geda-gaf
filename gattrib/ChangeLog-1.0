@@ -4,6 +4,8 @@
       old_attrib_nam in s_object_replace_attrib_in_object, factor releasing
       old_attrib_text from both clause of conditional.
 
+    * src/x_menus.c: Replace g_object_ref with g_object_ref_sink.
+
 2019-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gtksheet/gtkcompat.h: Define gdk_gc_destroy when not defined.
