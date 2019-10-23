@@ -176,8 +176,6 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
                                   int           show_name_value)
 {
   GList *a_iter;
-  char  *old_attrib_text;
-  char  *old_attrib_name;
 
   a_iter = o_current->attribs;
 
@@ -188,6 +186,9 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
 
       /* found an attribute? */
+
+      char  *old_attrib_text;
+      char  *old_attrib_name;
 
       /* may need to check more thoroughly here. . . . */
       old_attrib_text = geda_strdup(a_current->text->string);
