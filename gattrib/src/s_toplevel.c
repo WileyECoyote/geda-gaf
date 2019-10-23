@@ -933,10 +933,6 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
 {
   STRING_LIST *local_list;
 
-#if DEBUG
-  printf("-----  Entering %s\n", __func__);
-#endif
-
   /* loop on name=value pairs held in new_pin_attrib_list */
   local_list = new_pin_attrib_list;
 

@@ -4,6 +4,9 @@
       old_attrib_nam in s_object_replace_attrib_in_object, factor releasing
       old_attrib_text from both clause of conditional.
 
+    * src/s_toplevel.c: Remove s_toplevel_update_pin_attribs_in_toplevel
+      entry debug output.
+
     * src/x_menus.c: Replace g_object_ref with g_object_ref_sink.
 
     * src/x_window.c: Replace g_object_ref with g_object_ref_sink.
