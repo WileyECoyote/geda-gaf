@@ -5654,13 +5654,13 @@ static int gtk_sheet_cell_isvisible(GtkSheet *sheet, int row, int column)
  */
 void gtk_sheet_get_visible_range(GtkSheet *sheet, GtkSheetRange *range)
 {
-    g_return_if_fail(GTK_IS_SHEET(sheet));
-    g_return_if_fail(range != NULL);
+  g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(range != NULL);
 
-    range->row0 = MIN_VIEW_ROW(sheet);
-    range->col0 = MIN_VIEW_COLUMN(sheet);
-    range->rowi = MAX_VIEW_ROW(sheet);
-    range->coli = MAX_VIEW_COLUMN(sheet);
+  range->row0 = MIN_VIEW_ROW(sheet);
+  range->col0 = MIN_VIEW_COLUMN(sheet);
+  range->rowi = MAX_VIEW_ROW(sheet);
+  range->coli = MAX_VIEW_COLUMN(sheet);
 }
 
 /**
@@ -5674,9 +5674,9 @@ void gtk_sheet_get_visible_range(GtkSheet *sheet, GtkSheetRange *range)
 GtkAdjustment *
 gtk_sheet_get_vadjustment(GtkSheet *sheet)
 {
-    g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
+  g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
-    return (sheet->vadjustment);
+  return (sheet->vadjustment);
 }
 
 /**
@@ -5703,47 +5703,48 @@ GtkAdjustment *gtk_sheet_get_hadjustment(GtkSheet *sheet)
  */
 void gtk_sheet_set_vadjustment(GtkSheet *sheet, GtkAdjustment *adjustment)
 {
-    GtkAdjustment *old_adjustment;
+  GtkAdjustment *old_adjustment;
 
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (adjustment)
-	g_return_if_fail(GTK_IS_ADJUSTMENT(adjustment));
-    if (sheet->vadjustment == adjustment)
-	return;
+  if (adjustment)
+    g_return_if_fail(GTK_IS_ADJUSTMENT(adjustment));
 
-    old_adjustment = sheet->vadjustment;
+  if (sheet->vadjustment == adjustment)
+    return;
 
-    if (sheet->vadjustment) {
-      g_signal_handlers_disconnect_matched( G_OBJECT(sheet->vadjustment),
-                                            G_SIGNAL_MATCH_DATA,
-                                            0, 0, NULL, NULL, sheet);
-      g_object_unref(sheet->vadjustment);
-    }
+  old_adjustment = sheet->vadjustment;
 
-    sheet->vadjustment = adjustment;
+  if (sheet->vadjustment) {
+    g_signal_handlers_disconnect_matched( G_OBJECT(sheet->vadjustment),
+                                          G_SIGNAL_MATCH_DATA,
+                                          0, 0, NULL, NULL, sheet);
+    g_object_unref(sheet->vadjustment);
+  }
 
-    if (sheet->vadjustment) {
+  sheet->vadjustment = adjustment;
 
-      g_object_ref(sheet->vadjustment);
-      g_object_ref_sink(sheet->vadjustment);
-      g_object_unref(sheet->vadjustment);
+  if (sheet->vadjustment) {
 
-      g_signal_connect(sheet->vadjustment, "changed",
-                      (void *)_vadjustment_changed_handler,
-                      (void *)sheet);
-      g_signal_connect(sheet->vadjustment, "value_changed",
-                      (void *)_vadjustment_value_changed_handler,
-                      (void *)sheet);
-    }
+    g_object_ref(sheet->vadjustment);
+    g_object_ref_sink(sheet->vadjustment);
+    g_object_unref(sheet->vadjustment);
 
-    if (!sheet->vadjustment || !old_adjustment) {
+    g_signal_connect(sheet->vadjustment, "changed",
+                     (void *)_vadjustment_changed_handler,
+                     (void *)sheet);
+    g_signal_connect(sheet->vadjustment, "value_changed",
+                     (void *)_vadjustment_value_changed_handler,
+                     (void *)sheet);
+  }
 
-      gtk_widget_queue_resize((GtkWidget*)sheet);
-      return;
-    }
+  if (!sheet->vadjustment || !old_adjustment) {
 
-    sheet->old_vadjustment = gtk_adjustment_get_value(sheet->vadjustment);
+    gtk_widget_queue_resize((GtkWidget*)sheet);
+    return;
+  }
+
+  sheet->old_vadjustment = gtk_adjustment_get_value(sheet->vadjustment);
 }
 
 /**
