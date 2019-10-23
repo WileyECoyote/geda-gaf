@@ -194,6 +194,8 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
       old_attrib_text = geda_strdup(a_current->text->string);
       old_attrib_name = geda_strsplit(old_attrib_text, '=', 0);
 
+      GEDA_FREE(old_attrib_text);
+
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 
         /* Update the attrib string with the new name and value */
@@ -205,12 +207,10 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
         if (show_name_value != LEAVE_NAME_VALUE_ALONE)
           a_current->show_name_value = show_name_value;
 
-        GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
         return;     /* we are done -- leave. */
       }
       else {
-        GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
       }  /* if (strcmp . . . . */
     } /* if (a_current . . . . */
