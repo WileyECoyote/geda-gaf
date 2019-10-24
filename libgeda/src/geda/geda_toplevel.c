@@ -695,7 +695,7 @@ Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 /*!
  * \brief Get the number of page in Toplevel Page list
  * \par Function Description
- *  Returns the numberr pages in \a toplevel page list.
+ *  Returns the number of pages in \a toplevel page list.
  *
  * \param [in] toplevel This toplevel
  */
