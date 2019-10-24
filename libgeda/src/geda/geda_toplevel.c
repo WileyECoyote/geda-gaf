@@ -1014,7 +1014,6 @@ bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
   return TRUE;
 }
 
-
 /*!
  * \brief Set the Open Flags in a Toplevel
  * \par Function Description
