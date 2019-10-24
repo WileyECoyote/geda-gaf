@@ -827,6 +827,13 @@ PageList *geda_toplevel_get_page_list (GedaToplevel *toplevel)
   return toplevel->pages;
 }
 
+char *geda_toplevel_get_untitled_name (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+
+  return geda_strdup(toplevel->untitled_name);
+}
+
 /*!
  * \brief Get if Page is the Current Page in Toplevel
  * \par Function Description
