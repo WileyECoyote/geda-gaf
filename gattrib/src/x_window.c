@@ -547,7 +547,7 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
  */
 void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
                                        GtkWindow       *main_window)
-  {
+{
   bool show = gtk_toggle_action_get_active(action);
   if(show)
     gtk_widget_show(Attribute_handlebox);
