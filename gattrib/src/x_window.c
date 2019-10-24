@@ -551,10 +551,14 @@ void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
                                        GtkWindow       *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
-  if(show)
+
+  if(show) {
     gtk_widget_show(Attribute_handlebox);
-  else
+  }
+  else {
     gtk_widget_hide(Attribute_handlebox);
+  }
+
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
