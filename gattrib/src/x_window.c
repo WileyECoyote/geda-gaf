@@ -387,6 +387,7 @@ void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
   s_sheet_data_load_blank(PageData);
 
   toplevel->page_current = geda_struct_page_new (toplevel, toplevel->untitled_name);
+
   toplevel->page_current->filename = toplevel->untitled_name;
 }
 
@@ -715,6 +716,7 @@ void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *main_window)
 void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
+
   gtk_sheet_set_autoscroll(sheets[Components], show);
   gtk_sheet_set_autoscroll(sheets[Nets], show);
   gtk_sheet_set_autoscroll(sheets[Pins], show);
@@ -729,6 +731,7 @@ void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
+
   gtk_sheet_show_grid(sheets[Components], show);
   gtk_sheet_show_grid(sheets[Nets], show);
   gtk_sheet_show_grid(sheets[Pins], show);
