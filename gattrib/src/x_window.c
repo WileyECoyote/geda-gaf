@@ -384,11 +384,13 @@ void x_window_init()
  */
 void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 {
+  Page *page;
+
   s_sheet_data_load_blank(PageData);
 
-  toplevel->page_current = geda_struct_page_new (toplevel, toplevel->untitled_name);
+  page = geda_struct_page_new (toplevel, NULL);
 
-  toplevel->page_current->filename = toplevel->untitled_name;
+  geda_toplevel_set_current_page(page);
 }
 
 /*!
