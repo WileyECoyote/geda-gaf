@@ -827,6 +827,17 @@ PageList *geda_toplevel_get_page_list (GedaToplevel *toplevel)
   return toplevel->pages;
 }
 
+/*!
+ * \brief Get the untitled name in GedaToplevel
+ * \par Function Description
+ *  This function returns a pointer to a newly allocated string
+ *  containging the default untitled name. The string should be
+ *  released when no long required.
+ *
+ * \param [in] toplevel This toplevel
+ *
+ * \returns copy of toplevel->untitled_name string
+ */
 char *geda_toplevel_get_untitled_name (GedaToplevel *toplevel)
 {
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
