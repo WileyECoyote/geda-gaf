@@ -178,7 +178,7 @@ Page *geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
     }
   }
   else {
-    page->filename = geda_utility_string_strdup (toplevel->untitled_name);
+    page->filename = geda_toplevel_get_untitled_name (toplevel);
   }
 
   return geda_struct_page_new_common(toplevel, page);
