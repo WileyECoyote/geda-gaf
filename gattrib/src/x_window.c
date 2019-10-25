@@ -390,7 +390,7 @@ void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 
   page = geda_struct_page_new (toplevel, NULL);
 
-  geda_toplevel_set_current_page(page);
+  geda_toplevel_set_current_page(toplevel, page);
 }
 
 /*!
