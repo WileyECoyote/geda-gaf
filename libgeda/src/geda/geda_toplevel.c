@@ -954,7 +954,7 @@ bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
  *  or if \a page is not in the list.
  *
  * \param [in] toplevel This toplevel
- * \param [in] page     New auto-save interval in seconds
+ * \param [in] page     The page to be removed
  */
 void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 {
