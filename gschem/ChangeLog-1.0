@@ -1,21 +1,19 @@
+2019-10-25 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_undo.c: Revise conditionals in o_undo_savestate; nest
+      if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) with if
+      (flag == UNDO_ALL) to eliminate the redundant flag == UNDO_ALL.
+
 2019-10-19 Wiley E. Hill <wileyhill@gmail.com
 
     * po/bs.po: Update Bosnian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/sl.po: Update Slovenian translations.
-
     * po/sr.po: Update Serbian translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2019-10-16 Wiley E. Hill <wileyhill@gmail.com
