@@ -832,7 +832,7 @@ PageList *geda_toplevel_get_page_list (GedaToplevel *toplevel)
  * \par Function Description
  *  This function returns a pointer to a newly allocated string
  *  containging the default untitled name. The string should be
- *  released when no long required.
+ *  released when no longer required.
  *
  * \param [in] toplevel This toplevel
  *
