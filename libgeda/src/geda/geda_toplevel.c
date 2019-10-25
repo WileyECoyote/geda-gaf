@@ -244,6 +244,7 @@ static void geda_toplevel_finalize(GObject *object)
   }
 
   if (toplevel->component_groups != NULL) {
+
     for (iter = toplevel->component_groups; iter != NULL; NEXT(iter)){
       GEDA_FREE(iter->data);
     }
@@ -353,6 +354,7 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
   if (toplevel) {
     return g_list_find(list_of_toplevels, toplevel) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -394,6 +396,7 @@ bool geda_toplevel_set_text_bounds(GedaToplevel *toplevel, GedaObject *o_current
       o_current->bottom = bottom;
     }
   }
+
   return result;
 }
 
@@ -420,7 +423,6 @@ void geda_toplevel_unref(GedaToplevel *toplevel)
  *  that allows weak references.
  *
  * \param [in] toplevel  Pointer to GedaObject being destroyed.
- *
  */
 void geda_toplevel_weakref_notify (GedaToplevel *toplevel)
 {
@@ -448,6 +450,7 @@ void geda_toplevel_weakref_notify (GedaToplevel *toplevel)
 void geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   toplevel->weak_refs = s_weakref_add (toplevel->weak_refs, func, data);
 }
 
@@ -467,6 +470,7 @@ void geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *
 void geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   toplevel->weak_refs = s_weakref_remove (toplevel->weak_refs, func, data);
 }
 
@@ -485,6 +489,7 @@ void geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void
 void geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   g_object_add_weak_pointer ((GObject*)toplevel,  weak_pointer_loc);
 }
 
@@ -501,6 +506,7 @@ void geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 void geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   g_object_remove_weak_pointer((GObject*)toplevel, weak_pointer_loc);
 }
 
@@ -738,6 +744,7 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
     if (len == 1 && GEDA_IS_PAGE(list->data)) {
       page = toplevel->page_current = list->data;
     }
+
     iter = NULL;
   }
 
