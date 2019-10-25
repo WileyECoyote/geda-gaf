@@ -1,3 +1,8 @@
+2019-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Revise geda_toplevel_remove_page to set
+      page_current to NULL if the page being removed was also page_current.
+
 2019-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Add function documentation.

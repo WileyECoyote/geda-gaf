@@ -964,7 +964,12 @@ void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
     if (geda_list_is_in_list(toplevel->pages, page)) {
       geda_list_remove (toplevel->pages, page);
       geda_page_unref (page);
-      /* Note toplevel->page_current maybe dead! */
+
+      /* Check if removed page was page_current */
+
+      if (toplevel->page_current == page) {
+        toplevel->page_current = NULL;
+      }
     }
   }
 }
