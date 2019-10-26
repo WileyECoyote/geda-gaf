@@ -3311,23 +3311,28 @@ msgstr "عرض × ارتفاع"
 msgid "Image type"
 msgstr "نوع الصورة"
 
+# tamkin aistikhdam kharitat tibaeat al'alwan bdlaan min kharitat 'alwan aleard
 #: gschem/src/x/x_image.c:845
 msgid "Enable to use the Print color map instead of the display color map"
-msgstr ""
+msgstr "تمكين استخدام خريطة طباعة الألوان بدلاً من خريطة ألوان العرض"
 
+# eind tamkin alsuwar almulawnat almuneakisat , sayatimu eaks al'aswad wal'abyad faqat
 #: gschem/src/x/x_image.c:848
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
-msgstr ""
+msgstr "عند تمكين الصور الملونة المنعكسة ، سيتم عكس الأسود والأبيض فقط"
 
+# Could not allocate memory resources
+# la yumkin takhsis mawarid aldhdhakira
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "لا يمكن الحصول على الرسومات السياق"
+msgstr "لا يمكن تخصيص موارد الذاكرة"
 
+# maybe you should try saving next
+# rubama yjb 'an tuhawil alaidikhar almuqbil
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
-msgstr ""
+msgstr "ربما يجب أن تحاول الادخار المقبل"
 
 #: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
 msgid "Activate Select mode"
