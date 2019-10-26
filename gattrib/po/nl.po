@@ -525,23 +525,23 @@ msgstr "Attribuut verwijderen"
 msgid "Clear Attribute Data"
 msgstr "Wyczyść dane atrybutu"
 
+# Components
 #: gattrib/src/x_gtksheet.c:682
 msgid "Components"
-msgstr ""
+msgstr "componenten"
 
 #: gattrib/src/x_gtksheet.c:682
 msgid "Nets"
-msgstr ""
+msgstr "Nets"
 
 #: gattrib/src/x_gtksheet.c:682
 msgid "Pins"
-msgstr ""
+msgstr "Pins"
 
-# Could not load schematic
+# could not allocate color
 #: gattrib/src/x_gtksheet.c:931 gattrib/src/x_gtksheet.c:971
-#, fuzzy
 msgid "could not allocate color"
-msgstr "Kon niet schematische laden"
+msgstr "kon geen kleur toewijzen"
 
 #: gattrib/src/x_menus.c:388
 msgid "_File"
