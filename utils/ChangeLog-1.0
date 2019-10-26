@@ -2,6 +2,8 @@
 
     * po/pt_BR.po: Update Portuguese translations.
 
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
 2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * scripts/gsymfix.pl: Reset skip_line_out if $state == $st_pin_start.
