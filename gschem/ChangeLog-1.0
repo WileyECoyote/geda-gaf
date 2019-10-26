@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/de.po: Update German translations.
+
 2019-10-25 Wiley E. Hill <wileyhill@gmail.com
 
     * src/object/o_undo.c: Revise conditionals in o_undo_savestate; nest

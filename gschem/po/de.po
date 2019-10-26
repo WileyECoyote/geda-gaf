@@ -3289,21 +3289,22 @@ msgstr "Bildformat"
 
 #: gschem/src/x/x_image.c:845
 msgid "Enable to use the Print color map instead of the display color map"
-msgstr ""
+msgstr "Aktivieren Sie diese Option, um die Druckfarbkarte anstelle der Anzeigefarbkarte zu verwenden"
 
 #: gschem/src/x/x_image.c:848
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
-msgstr ""
+msgstr "Wenn diese Option für umgekehrte Farbbilder aktiviert ist, werden nur Schwarzweißbilder umgekehrt"
 
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Ein grafikkontext konnte nicht zugewiesen werden"
+msgstr "Speicherressourcen konnten nicht zugeordnet werden"
 
+# maybe you should try saving next
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
-msgstr ""
+msgstr "Vielleicht sollten Sie als nächstes versuchen, zu speichern"
 
 #: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
 msgid "Activate Select mode"
@@ -3311,11 +3312,11 @@ msgstr "Auswahlmodus"
 
 #: gschem/src/x/x_menus.c:94
 msgid "Add"
-msgstr "_Einfügen"
+msgstr "Hinzufügen"
 
 #: gschem/src/x/x_menus.c:94
 msgid "Add modes"
-msgstr "/Bauteil hinzufügen …"
+msgstr "Modi hinzufügen"
 
 #: gschem/src/x/x_menus.c:95 gschem/etc/system-gschemrc.scm:2262
 msgid "Add net"
@@ -6072,9 +6073,8 @@ msgid "Verilog netlist"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Hie_rarchie"
+msgstr "Hierarchie Verilog"
 
 # Tools/_Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
