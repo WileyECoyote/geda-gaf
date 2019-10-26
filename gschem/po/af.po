@@ -3324,21 +3324,22 @@ msgstr "Afbeeldingsoort"
 
 #: gschem/src/x/x_image.c:845
 msgid "Enable to use the Print color map instead of the display color map"
-msgstr ""
+msgstr "Aktiveer om die Drukkleurkaart te gebruik in plaas van die vertoonkleurkaart"
 
 #: gschem/src/x/x_image.c:848
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
-msgstr ""
+msgstr "As dit ingeskakel is vir omgekeerde kleure, sal slegs swart en wit omgekeer word"
 
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Kon nie toeken n grafiese konteks"
+msgstr "Kon nie geheuebronne toewys nie"
 
+# maybe you should try saving next
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
-msgstr ""
+msgstr "miskien moet u probeer om volgende te stoor"
 
 #: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
 msgid "Activate Select mode"
@@ -6122,19 +6123,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Move to Bottom
-#~ msgid "Beweeg na onder"
-#~ msgstr "Bo to onder"
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Insette formaat is ongeldig"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Bestek</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Voeg Eienskap By</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Bewerk Eienskap</b>"
