@@ -522,23 +522,25 @@ msgstr "Удалить атрибут"
 msgid "Clear Attribute Data"
 msgstr "Очистить данные атрибута"
 
+# Components; Komponenty
 #: gattrib/src/x_gtksheet.c:682
 msgid "Components"
-msgstr ""
+msgstr "Компоненты"
 
+# Nets; seti
 #: gattrib/src/x_gtksheet.c:682
 msgid "Nets"
-msgstr ""
+msgstr "сети"
 
+# Pins; shtyr'ki
 #: gattrib/src/x_gtksheet.c:682
 msgid "Pins"
-msgstr ""
+msgstr "штырьки"
 
-# Failed to load schematic
+# could not allocate color; ne mog vydelit' tsvet
 #: gattrib/src/x_gtksheet.c:931 gattrib/src/x_gtksheet.c:971
-#, fuzzy
 msgid "could not allocate color"
-msgstr "Не удалось загрузить схему"
+msgstr "не мог выделить цвет"
 
 #: gattrib/src/x_menus.c:388
 msgid "_File"

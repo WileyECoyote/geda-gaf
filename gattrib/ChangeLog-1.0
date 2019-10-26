@@ -4,6 +4,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/ru.po: Update Russian translations.
+
 2019-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Revamp x_window_blank_document to eliminate accessing
