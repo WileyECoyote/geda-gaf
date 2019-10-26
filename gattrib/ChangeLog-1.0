@@ -1,3 +1,7 @@
+2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
 2019-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_window.c: Revamp x_window_blank_document to eliminate accessing

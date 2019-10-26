@@ -500,23 +500,25 @@ msgstr "حذف السمة"
 msgid "Clear Attribute Data"
 msgstr "مسح بيانات السمة"
 
+# Components; almukawanat
 #: gattrib/src/x_gtksheet.c:682
 msgid "Components"
-msgstr ""
+msgstr "المكونات"
 
+# Nets; shabakat
 #: gattrib/src/x_gtksheet.c:682
 msgid "Nets"
-msgstr ""
+msgstr "شبكات"
 
+# Pins
 #: gattrib/src/x_gtksheet.c:682
 msgid "Pins"
-msgstr ""
+msgstr "دبابيس"
 
-# could not delete item
+# could not allocate color; la yumkin takhsis allawn
 #: gattrib/src/x_gtksheet.c:931 gattrib/src/x_gtksheet.c:971
-#, fuzzy
 msgid "could not allocate color"
-msgstr "تعذر حذف العنصر"
+msgstr "لا يمكن تخصيص اللون"
 
 #: gattrib/src/x_menus.c:388
 msgid "_File"
