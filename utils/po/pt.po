@@ -22,45 +22,44 @@ msgstr ""
 "X-Source-Language: pt_PT\n"
 
 #: utils/gsch2pcb/gsch2pcb.c:195
-#, fuzzy
 msgid "Running command"
 msgstr "Comando em execução"
 
 #: utils/gsch2pcb/gsch2pcb.c:237
 msgid "Failed to execute external program"
-msgstr ""
+msgstr "Falha ao executar o programa externo"
 
 #: utils/gsch2pcb/gsch2pcb.c:328
 msgid "command failed"
-msgstr ""
+msgstr "comando falhou"
 
 #: utils/gsch2pcb/gsch2pcb.c:329
 msgid "not updated"
-msgstr ""
+msgstr "não atualizado"
 
 #: utils/gsch2pcb/gsch2pcb.c:667 utils/gsch2pcb/gsch2pcb.c:954
 msgid "WARNING"
-msgstr ""
+msgstr "AVISO"
 
 #: utils/gsch2pcb/gsch2pcb.c:668
 msgid "appears to be a PCB layout file. Skipping"
-msgstr ""
+msgstr "parece ser um arquivo de layout de PCB. Ignorando"
 
 #: utils/gsch2pcb/gsch2pcb.c:726
 msgid "Searching"
-msgstr ""
+msgstr "Procurando"
 
 #: utils/gsch2pcb/gsch2pcb.c:727
 msgid "for"
-msgstr ""
+msgstr "para"
 
 #: utils/gsch2pcb/gsch2pcb.c:764
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: utils/gsch2pcb/gsch2pcb.c:764
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: utils/gsch2pcb/gsch2pcb.c:807
 msgid "Warning: argument passing may have been confused by"
