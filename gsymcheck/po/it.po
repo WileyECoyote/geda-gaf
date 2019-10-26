@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2018-12-22 00:09-0600\n"
+"POT-Creation-Date: 2019-10-26 19:19-0500\n"
 "PO-Revision-Date: 2015-01-12 10:15+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -325,143 +325,143 @@ msgstr "attributo"
 msgid "check pin number"
 msgstr "controllare numero pin"
 
-#: gsymcheck/src/s_check.c:1157
+#: gsymcheck/src/s_check.c:1159
 #, c-format
 msgid "Found offgrid pin at location (x1=%d,y1=%d)\n"
 msgstr "Trovato pin fuori griglia alla posizione (x1=%d,y1=%d)\n"
 
-#: gsymcheck/src/s_check.c:1168
+#: gsymcheck/src/s_check.c:1170
 #, c-format
 msgid "Found offgrid pin at location (x2=%d,y2=%d)\n"
 msgstr "Trovato pin fuori griglia alla posizione (x2=%d,y2=%d)\n"
 
-#: gsymcheck/src/s_check.c:1221
+#: gsymcheck/src/s_check.c:1223
 #, c-format
 msgid "Found redundant numslots=%s attribute\n"
 msgstr "Trovato attributo numslots=%s ridondante\n"
 
-#: gsymcheck/src/s_check.c:1226
+#: gsymcheck/src/s_check.c:1228
 #, c-format
 msgid "Found numslots=%s attribute\n"
 msgstr "Trovati attributi numslots=%s\n"
 
-#: gsymcheck/src/s_check.c:1231
+#: gsymcheck/src/s_check.c:1233
 msgid "numslots set to zero, symbol does not have slots\n"
 msgstr "numslots impostato a zero, il simbolo non ha slots\n"
 
-#: gsymcheck/src/s_check.c:1251
+#: gsymcheck/src/s_check.c:1253
 #, c-format
 msgid "Found %s slotdef= attributes. Expecting %s slotdef= attributes\n"
 msgstr "Trovati %s attributi slotdef=. Previsti %s attributi slotdef=\n"
 
-#: gsymcheck/src/s_check.c:1257
+#: gsymcheck/src/s_check.c:1259
 #, c-format
 msgid "Found slotdef=%s attribute\n"
 msgstr "Trovato attributo slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1264 gsymcheck/src/s_check.c:1293
-#: gsymcheck/src/s_check.c:1302 gsymcheck/src/s_check.c:1310
+#: gsymcheck/src/s_check.c:1266 gsymcheck/src/s_check.c:1295
+#: gsymcheck/src/s_check.c:1304 gsymcheck/src/s_check.c:1312
 #, c-format
 msgid "Invalid slotdef=%s attributes\n"
 msgstr "attributi non valido slotdef=%s\n"
 
-#: gsymcheck/src/s_check.c:1272
+#: gsymcheck/src/s_check.c:1274
 msgid "Found a zero slot in slotdef"
 msgstr "Trovato uno zero slot in slotdef"
 
-#: gsymcheck/src/s_check.c:1284
+#: gsymcheck/src/s_check.c:1286
 #, c-format
 msgid "Slot %s is larger then the maximum number of slots (%s)\n"
 msgstr "Slot %s è più grande del valore massimo di slot (%s)\n"
 
-#: gsymcheck/src/s_check.c:1320
+#: gsymcheck/src/s_check.c:1322
 msgid "Duplicate slot number in slotdef"
 msgstr "Numero slot duplicato in slotdef"
 
-#: gsymcheck/src/s_check.c:1340
+#: gsymcheck/src/s_check.c:1342
 msgid "Not enough pins in slotdef"
 msgstr "Non abbastanza pin in slotdef"
 
-#: gsymcheck/src/s_check.c:1348
+#: gsymcheck/src/s_check.c:1350
 msgid "Too many pins in slotdef"
 msgstr "Troppi pin in slotdef"
 
-#: gsymcheck/src/s_check.c:1358
+#: gsymcheck/src/s_check.c:1360
 msgid "Found a zero pin in slotdef"
 msgstr "Trovato uno zero pin in slotdef"
 
-#: gsymcheck/src/s_check.c:1376
+#: gsymcheck/src/s_check.c:1378
 #, c-format
 msgid "Missing slotdef= (there should be %s slotdef= attributes)\n"
 msgstr "Mancante slotdef= (dovrebbero esserci %s attributi slotdef=)\n"
 
-#: gsymcheck/src/s_check.c:1395
+#: gsymcheck/src/s_check.c:1397
 msgid "Malformed slotdef= (the format is #:#,#,#,...)\n"
 msgstr "Malformato slotdef= (il formato è #:#,#,#,...)\n"
 
-#: gsymcheck/src/s_check.c:1440
+#: gsymcheck/src/s_check.c:1442
 #, c-format
 msgid "Found %d distinct pins in slots\n"
 msgstr "Trovati %d pin distinti negli slot\n"
 
-#: gsymcheck/src/s_check.c:1518
+#: gsymcheck/src/s_check.c:1520
 #, c-format
 msgid "Found old pin#=# attribute: %s\n"
 msgstr "Trovato vecchio attributo pin#=#: %s\n"
 
-#: gsymcheck/src/s_check.c:1582
+#: gsymcheck/src/s_check.c:1584
 msgid "Found old slot#=# attribute"
 msgstr "Trovato vecchio attributo slot#=#"
 
-#: gsymcheck/src/s_check.c:1615
+#: gsymcheck/src/s_check.c:1617
 #, c-format
 msgid "Missing %s= attribute\n"
 msgstr "Attributo %s= mancante\n"
 
-#: gsymcheck/src/s_check.c:1622
+#: gsymcheck/src/s_check.c:1624
 #, c-format
 msgid "Found %s=%s attribute\n"
 msgstr "Trovato attributo %s=%s\n"
 
-#: gsymcheck/src/s_check.c:1632
+#: gsymcheck/src/s_check.c:1634
 #, c-format
 msgid "Found multiple %s=%s attributes\n"
 msgstr "Trovati attributi %s=%s multipli\n"
 
-#: gsymcheck/src/s_check.c:1680
+#: gsymcheck/src/s_check.c:1682
 msgid "Check pin number"
 msgstr "Controllare il numero pin"
 
-#: gsymcheck/src/s_check.c:1688
+#: gsymcheck/src/s_check.c:1690
 msgid "Check pin sequence"
 msgstr "Controllare la sequenza pin"
 
-#: gsymcheck/src/s_check.c:1702 gsymcheck/src/s_check.c:1708
+#: gsymcheck/src/s_check.c:1704 gsymcheck/src/s_check.c:1710
 #, c-format
 msgid "Found %s attribute\n"
 msgstr "Trovato attributo %s\n"
 
-#: gsymcheck/src/s_check.c:1716
+#: gsymcheck/src/s_check.c:1718
 msgid "Missing footprint= attribute\n"
 msgstr "Attributo footprint= mancante\n"
 
-#: gsymcheck/src/s_check.c:1721
+#: gsymcheck/src/s_check.c:1723
 msgid "Multiple footprint= attributes found\n"
 msgstr "Trovati multipli attributi footprint=\n"
 
-#: gsymcheck/src/s_check.c:1726
+#: gsymcheck/src/s_check.c:1728
 msgid "Missing refdes= attribute\n"
 msgstr "Attributo refdes= mancante\n"
 
-#: gsymcheck/src/s_check.c:1731
+#: gsymcheck/src/s_check.c:1733
 msgid "Multiple refdes= attributes found\n"
 msgstr "Trovati multipli attributi refdes=\n"
 
-#: gsymcheck/src/s_check.c:1751
+#: gsymcheck/src/s_check.c:1753
 msgid "Found a net inside a symbol\n"
 msgstr "Trovata una net dentro un simbolo\n"
 
-#: gsymcheck/src/s_check.c:1758
+#: gsymcheck/src/s_check.c:1760
 msgid "Found a bus inside a symbol\n"
 msgstr "Trovato un bus dentro un simbolo\n"
 

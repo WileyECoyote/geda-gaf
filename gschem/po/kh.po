@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-10-09 11:01-0500\n"
+"POT-Creation-Date: 2019-10-26 19:19-0500\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -496,7 +496,7 @@ msgstr "tamlei knong eksar daoy rc"
 msgid "Bad Value"
 msgstr "koun tamlei"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2075
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2077
 msgid "check"
 msgstr "pinityameul"
 
@@ -550,8 +550,8 @@ msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato pongrik kar "
 "kaenlaeng nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1285
-#: gschem/src/guile/g_rc.c:1431 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1287
+#: gschem/src/guile/g_rc.c:1433 gschem/src/guile/g_rc.c:2029
 msgid "Continuing with default value"
 msgstr "bant cheamuoy tamlei lomneadaem"
 
@@ -562,35 +562,35 @@ msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato kab chheu nowknong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1279
+#: gschem/src/guile/g_rc.c:1281
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , mean tomham khtasa min ach chea sauny , pinityameul "
 "eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1284
+#: gschem/src/guile/g_rc.c:1286
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul tomham theato khtasa knong "
 "eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:1425
+#: gschem/src/guile/g_rc.c:1427
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 "tamlei min troemotrauv , rth y nd krong - Ripper tomham min ach chea sauny "
 "pinity eksar daoy rc theato\n"
 
-#: gschem/src/guile/g_rc.c:1430
+#: gschem/src/guile/g_rc.c:1432
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul theato rth y nd krong - "
 "Ripper tomham nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2023
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
@@ -598,14 +598,14 @@ msgstr ""
 "min ach rmour 0 chomhan scrollpan chomhan - min troemotrauv pinityameul "
 "theato nowknong eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2028
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 "karchattang braphet min troemotrauv , pinityameul scrollpan chaul knong "
 "chomhan eksar daoy rc\n"
 
-#: gschem/src/guile/g_rc.c:2073
+#: gschem/src/guile/g_rc.c:2075
 msgid "Invalid zoom factor"
 msgstr "katta pongrik min troemotrauv"
 
@@ -623,165 +623,165 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "smob bangauoch del gschem min troemotrauv del ban rk kheunh ~S"
 
 # Present value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5194
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5208
 msgid "current value of"
 msgstr "tamlei bachchobbann nei kar"
 
 # is
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5195
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5209
 msgid "is"
 msgstr "ku"
 
 # processing directive
-#: gschem/src/iface/i_command.c:411
+#: gschem/src/iface/i_command.c:425
 msgid "Processing Action"
 msgstr "sarachr damnaerkar"
 
-#: gschem/src/iface/i_command.c:522
+#: gschem/src/iface/i_command.c:536
 msgid "Cannot"
 msgstr "min ach"
 
-#: gschem/src/iface/i_command.c:522
+#: gschem/src/iface/i_command.c:536
 msgid "while inside an action!\n"
 msgstr "khn pel del nowknong sakammopheap muoy!\n"
 
-#: gschem/src/iface/i_command.c:777 gschem/src/iface/i_command.c:2823
+#: gschem/src/iface/i_command.c:791 gschem/src/iface/i_command.c:2837
 msgid "New page created"
 msgstr "tompr thmei del ban bangkeut laeng"
 
-#: gschem/src/iface/i_command.c:817
+#: gschem/src/iface/i_command.c:831
 msgid "New Window created"
 msgstr "ban bangkeut bangauoch kammovithi thmei"
 
-#: gschem/src/iface/i_command.c:1016
+#: gschem/src/iface/i_command.c:1030
 msgid "Failed to Save All"
 msgstr "ban breachy knong kar roksaatouk eksar teangoasa"
 
-#: gschem/src/iface/i_command.c:1019 gschem/src/iface/i_command.c:1036
+#: gschem/src/iface/i_command.c:1033 gschem/src/iface/i_command.c:1050
 msgid "Saved All"
 msgstr "eksar teangoasa trauv ban roksaatouk"
 
-#: gschem/src/iface/i_command.c:1033
+#: gschem/src/iface/i_command.c:1047
 msgid "Error encountered, Save Failed"
 msgstr "ban chuobabrateah kamhosa , roksaatouk ban breachy"
 
-#: gschem/src/iface/i_command.c:1103 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1117 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "sarser roubpheap"
 
-#: gschem/src/iface/i_command.c:1125
+#: gschem/src/iface/i_command.c:1139
 msgid "Write PDF"
 msgstr "sarser chea PDF"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1221
+#: gschem/src/iface/i_command.c:1235
 msgid "Canceled close all\n"
 msgstr "loubchaol yeang chitasnetth teangoasa\n"
 
-#: gschem/src/iface/i_command.c:1230 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1244 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "bet eksar teangoasa\n"
 
-#: gschem/src/iface/i_command.c:1253
+#: gschem/src/iface/i_command.c:1267
 msgid "starting shut-down"
 msgstr "kar chabphtaem lomdab bet choh"
 
-#: gschem/src/iface/i_command.c:1267
+#: gschem/src/iface/i_command.c:1281
 msgid "Symbol is not embedded, export anyway?"
 msgstr "nimittasanhnhea min trauv ban bangkob,  neachenh yeangnakadaoy?"
 
-#: gschem/src/iface/i_command.c:1291
+#: gschem/src/iface/i_command.c:1305
 msgid "Picture is not embedded, export anyway?"
 msgstr "roubpheap min trauv ban bangkob neachenh te?"
 
-#: gschem/src/iface/i_command.c:1438
+#: gschem/src/iface/i_command.c:1452
 msgid "Empty buffer"
 msgstr "sate b ntaoh asann ku tte"
 
-#: gschem/src/iface/i_command.c:1703
+#: gschem/src/iface/i_command.c:1717
 msgid "Offset Mode"
 msgstr "rbieb ohvaset"
 
-#: gschem/src/iface/i_command.c:1704
+#: gschem/src/iface/i_command.c:1718
 msgid "Specify offset distance:"
 msgstr "banhcheak chamngeay bahbauv:"
 
-#: gschem/src/iface/i_command.c:2300
+#: gschem/src/iface/i_command.c:2314
 msgid "Zoom Magnification"
 msgstr "pongrik pongrik"
 
-#: gschem/src/iface/i_command.c:2300
+#: gschem/src/iface/i_command.c:2314
 msgid "Specify new zoom:"
 msgstr "banhcheak pongrik thmei:"
 
 # Check path
-#: gschem/src/iface/i_command.c:2342 gschem/src/iface/i_command.c:4682
-#: gschem/src/iface/i_command.c:4712 gschem/src/iface/i_command.c:4733
-#: gschem/src/iface/i_command.c:4753
+#: gschem/src/iface/i_command.c:2356 gschem/src/iface/i_command.c:4696
+#: gschem/src/iface/i_command.c:4726 gschem/src/iface/i_command.c:4747
+#: gschem/src/iface/i_command.c:4767
 msgid "Check path:"
 msgstr "saum pinityameul phlauv:"
 
 # error
-#: gschem/src/iface/i_command.c:2353
+#: gschem/src/iface/i_command.c:2367
 msgid "error"
 msgstr "kamhos"
 
-#: gschem/src/iface/i_command.c:2364
+#: gschem/src/iface/i_command.c:2378
 msgid "No component selected\n"
 msgstr "sameasapheak del ban chreusa min mean\n"
 
-#: gschem/src/iface/i_command.c:2909
+#: gschem/src/iface/i_command.c:2923
 msgid "Confirm revert ALL documents"
 msgstr "aahang kar phtok laengvinh eksar teangoasa"
 
-#: gschem/src/iface/i_command.c:3091
+#: gschem/src/iface/i_command.c:3105
 msgid "Searching for source"
 msgstr "karosvengork samreab braphp"
 
-#: gschem/src/iface/i_command.c:3126
+#: gschem/src/iface/i_command.c:3140
 msgid "Failed to descend into"
 msgstr "ban breachy knong kar choh chaul tow knong"
 
-#: gschem/src/iface/i_command.c:3135
+#: gschem/src/iface/i_command.c:3149
 msgid "Hierarchy Error"
 msgstr "kamhosa knong thananoukram"
 
-#: gschem/src/iface/i_command.c:3212
+#: gschem/src/iface/i_command.c:3226
 msgid "Searching for symbol"
 msgstr "karosvengork nimittaroub"
 
-#: gschem/src/iface/i_command.c:3222
+#: gschem/src/iface/i_command.c:3236
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr ""
 "nimittasanhnhea minmen cheaek sar pitabrakd. nimittasanhnhea del min ach "
 "trauv ban phtok.\n"
 
-#: gschem/src/iface/i_command.c:3269
+#: gschem/src/iface/i_command.c:3283
 msgid "Cannot find any schematics above the current one!\n"
 msgstr ""
 "min ach rk kheunh koumnour bampruonh teangoasa khangleu bachchobbann!\n"
 
-#: gschem/src/iface/i_command.c:3399
+#: gschem/src/iface/i_command.c:3413
 msgid "Object is attached to something\n"
 msgstr "vottho trauv ban phcheab tow nung aveimuoy\n"
 
-#: gschem/src/iface/i_command.c:3802
+#: gschem/src/iface/i_command.c:3816
 msgid "Attribute is already attached\n"
 msgstr "kounalokkhan trauv ban phcheab ruoch tow haey\n"
 
-#: gschem/src/iface/i_command.c:4216
+#: gschem/src/iface/i_command.c:4230
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "bamream: mi k bre daoyman khtasa bet!\n"
 
-#: gschem/src/iface/i_command.c:4217
+#: gschem/src/iface/i_command.c:4231
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "promean: baek khtasa now leu ning bant cheamuoy karobakabre.\n"
 
-#: gschem/src/iface/i_command.c:4223
+#: gschem/src/iface/i_command.c:4237
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "promean: tomham kraleachatrangk khtasa min smaenung 100!\n"
 
-#: gschem/src/iface/i_command.c:4224
+#: gschem/src/iface/i_command.c:4238
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -789,75 +789,75 @@ msgstr ""
 "promean: brasenbae anak kampoung bakabre chea nimittasanhnhea muoy tow daem, "
 "kraleachatrangk khtasa tomham trauv ban kamnt tow 100\n"
 
-#: gschem/src/iface/i_command.c:4429
+#: gschem/src/iface/i_command.c:4443
 msgid "Grid OFF\n"
 msgstr "bet kraleachatrang\n"
 
-#: gschem/src/iface/i_command.c:4430
+#: gschem/src/iface/i_command.c:4444
 msgid "Dot grid activated\n"
 msgstr "kraleachatrangk chamnoch thveu aoy sakam\n"
 
-#: gschem/src/iface/i_command.c:4431
+#: gschem/src/iface/i_command.c:4445
 msgid "Mesh grid activated\n"
 msgstr "kraleachatrangk saamnanh ban thveu aoy sakam\n"
 
-#: gschem/src/iface/i_command.c:4510
+#: gschem/src/iface/i_command.c:4524
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "khtasa bet (braytn !)\n"
 
-#: gschem/src/iface/i_command.c:4516
+#: gschem/src/iface/i_command.c:4530
 msgid "Snap ON\n"
 msgstr "khtasa now leu\n"
 
-#: gschem/src/iface/i_command.c:4521
+#: gschem/src/iface/i_command.c:4535
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "khtasa tralbtow kraleachatrangk (braytn!)\n"
 
-#: gschem/src/iface/i_command.c:4546
+#: gschem/src/iface/i_command.c:4560
 msgid "Rubber band mode is OFF\n"
 msgstr "rbieb bet kawsaou robsa krom t nrti\n"
 
-#: gschem/src/iface/i_command.c:4550
+#: gschem/src/iface/i_command.c:4564
 msgid "Rubber band mode is ON\n"
 msgstr "rbieb del krom tantrei kawsaou ku now thngai\n"
 
-#: gschem/src/iface/i_command.c:4561
+#: gschem/src/iface/i_command.c:4575
 msgid "Magnetic net mode is ON\n"
 msgstr "rbieb sotth meanhetich del mean now leu\n"
 
-#: gschem/src/iface/i_command.c:4564
+#: gschem/src/iface/i_command.c:4578
 msgid "Magnetic net mode is OFF\n"
 msgstr "rbieb bet sotth meanhetich ku\n"
 
-#: gschem/src/iface/i_command.c:4581 gschem/src/iface/i_command.c:4624
+#: gschem/src/iface/i_command.c:4595 gschem/src/iface/i_command.c:4638
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr "Bet"
 
-#: gschem/src/iface/i_command.c:4585 gschem/src/iface/i_command.c:4628
+#: gschem/src/iface/i_command.c:4599 gschem/src/iface/i_command.c:4642
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "now thngaiti"
 
 # Drag-Can-Move is now
-#: gschem/src/iface/i_command.c:4587
+#: gschem/src/iface/i_command.c:4601
 msgid "Drag-Can-Move is now"
 msgstr "ausa ach phlasati ku ilauv"
 
-#: gschem/src/iface/i_command.c:4599
+#: gschem/src/iface/i_command.c:4613
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "rbieb mte anak ban kamnt daembi krong sakammopheap\n"
 
-#: gschem/src/iface/i_command.c:4603
+#: gschem/src/iface/i_command.c:4617
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "rbieb mte anak ban kamnt daembi chtokaon sakammopheap chang\n"
 
 # Auto-Pan is now
-#: gschem/src/iface/i_command.c:4630
+#: gschem/src/iface/i_command.c:4644
 msgid "Auto-Pan is now"
 msgstr "daoy svyobravotte ban ku ilauv"
 
-#: gschem/src/iface/i_command.c:4853
+#: gschem/src/iface/i_command.c:4867
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(ban te an) ttung=%d, kamposa=%d\n"
@@ -1346,34 +1346,34 @@ msgstr ""
 msgid "Gschem Undo System"
 msgstr "brapnth minothveuvinh Gschem"
 
-#: gschem/src/object/o_undo.c:266
+#: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
 msgstr "minothveuvinh nouv brapn kamhosa: eksar"
 
 # Undo: system error
-#: gschem/src/object/o_undo.c:267
+#: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
 msgstr "minothveuvinh:  kamhosa brapn"
 
-#: gschem/src/object/o_undo.c:268
+#: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
 msgstr "bdaur tow rbieb kar changcham"
 
-#: gschem/src/object/o_undo.c:474
+#: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
 msgstr ""
 "kamhosa muoy ban kaetlaeng kamlong pel bratebatte kar robsa tha sa "
 "minothveuvinh"
 
-#: gschem/src/object/o_undo.c:477
+#: gschem/src/object/o_undo.c:476
 msgid "Undo/Redo disabled\n"
 msgstr "minothveuvinh / thveuvinh chn pikear\n"
 
-#: gschem/src/object/o_undo.c:563
+#: gschem/src/object/o_undo.c:562
 msgid "Undo error"
 msgstr "minothveuvinh kamhos"
 
-#: gschem/src/object/o_undo.c:565
+#: gschem/src/object/o_undo.c:564
 msgid "Undo failed"
 msgstr "minothveuvinh ban breachy"
 
@@ -3460,6 +3460,15 @@ msgid ""
 msgstr ""
 "nowpel del ban anounhnhat samreab roubpheap  n tralb kraoy,  te khmaw ning "
 "sa nung trauv ban tralb"
+
+#: gschem/src/x/x_image.c:1070
+#, fuzzy
+msgid "Could not allocate memory resources"
+msgstr "min ach bamroungtouk bribt krahvek"
+
+#: gschem/src/x/x_image.c:1071
+msgid "maybe you should try saving next"
+msgstr ""
 
 #: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
 msgid "Activate Select mode"
@@ -5679,11 +5688,11 @@ msgstr ""
 msgid "_Page/_Draw Order"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2410
+#: gschem/etc/system-gschemrc.scm:2409
 msgid "_Options"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2411
+#: gschem/etc/system-gschemrc.scm:2410
 msgid "_Help"
 msgstr "Chhuoi Phorng"
 

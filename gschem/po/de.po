@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-10-09 11:01-0500\n"
+"POT-Creation-Date: 2019-10-26 19:19-0500\n"
 "PO-Revision-Date: 2012-04-12 22:09+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -447,7 +447,7 @@ msgstr ""
 msgid "Bad Value"
 msgstr "Wert"
 
-#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2075
+#: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2077
 msgid "check"
 msgstr ""
 
@@ -497,8 +497,8 @@ msgstr ""
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1285
-#: gschem/src/guile/g_rc.c:1431 gschem/src/guile/g_rc.c:2027
+#: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1287
+#: gschem/src/guile/g_rc.c:1433 gschem/src/guile/g_rc.c:2029
 msgid "Continuing with default value"
 msgstr ""
 
@@ -507,38 +507,38 @@ msgstr ""
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1279
+#: gschem/src/guile/g_rc.c:1281
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1284
+#: gschem/src/guile/g_rc.c:1286
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1425
+#: gschem/src/guile/g_rc.c:1427
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:1430
+#: gschem/src/guile/g_rc.c:1432
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2021
+#: gschem/src/guile/g_rc.c:2023
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2026
+#: gschem/src/guile/g_rc.c:2028
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
-#: gschem/src/guile/g_rc.c:2073
+#: gschem/src/guile/g_rc.c:2075
 msgid "Invalid zoom factor"
 msgstr "Ungültiger Zoomfaktor"
 
@@ -556,165 +556,165 @@ msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5194
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5208
 msgid "current value of"
 msgstr "Aktueller Wert von"
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5195
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5209
 msgid "is"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:411
+#: gschem/src/iface/i_command.c:425
 msgid "Processing Action"
 msgstr "Verarbeitung"
 
-#: gschem/src/iface/i_command.c:522
+#: gschem/src/iface/i_command.c:536
 msgid "Cannot"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:522
+#: gschem/src/iface/i_command.c:536
 msgid "while inside an action!\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:777 gschem/src/iface/i_command.c:2823
+#: gschem/src/iface/i_command.c:791 gschem/src/iface/i_command.c:2837
 msgid "New page created"
 msgstr "Neue Seite erzeugt"
 
 # New window created
-#: gschem/src/iface/i_command.c:817
+#: gschem/src/iface/i_command.c:831
 msgid "New Window created"
 msgstr "Neues Fenster erstellt"
 
-#: gschem/src/iface/i_command.c:1016
+#: gschem/src/iface/i_command.c:1030
 msgid "Failed to Save All"
 msgstr "Alles speichern gescheitert"
 
-#: gschem/src/iface/i_command.c:1019 gschem/src/iface/i_command.c:1036
+#: gschem/src/iface/i_command.c:1033 gschem/src/iface/i_command.c:1050
 msgid "Saved All"
 msgstr "Alles gespeichert"
 
-#: gschem/src/iface/i_command.c:1033
+#: gschem/src/iface/i_command.c:1047
 msgid "Error encountered, Save Failed"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1103 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1117 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Bild exportieren"
 
-#: gschem/src/iface/i_command.c:1125
+#: gschem/src/iface/i_command.c:1139
 msgid "Write PDF"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1221
+#: gschem/src/iface/i_command.c:1235
 msgid "Canceled close all\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1230 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1244 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Seite schließen\n"
 
-#: gschem/src/iface/i_command.c:1253
+#: gschem/src/iface/i_command.c:1267
 msgid "starting shut-down"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1267
+#: gschem/src/iface/i_command.c:1281
 msgid "Symbol is not embedded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1291
+#: gschem/src/iface/i_command.c:1305
 msgid "Picture is not embedded, export anyway?"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:1438
+#: gschem/src/iface/i_command.c:1452
 msgid "Empty buffer"
 msgstr "Leerer Zwischenspeicher"
 
-#: gschem/src/iface/i_command.c:1703
+#: gschem/src/iface/i_command.c:1717
 msgid "Offset Mode"
 msgstr "Netzmodus"
 
 # Specify offset distance
-#: gschem/src/iface/i_command.c:1704
+#: gschem/src/iface/i_command.c:1718
 msgid "Specify offset distance:"
 msgstr "Offsetabstand angeben:"
 
 # zoom magnification
-#: gschem/src/iface/i_command.c:2300
+#: gschem/src/iface/i_command.c:2314
 msgid "Zoom Magnification"
 msgstr "Zoomvergrößerung"
 
 # Specify new magnification
-#: gschem/src/iface/i_command.c:2300
+#: gschem/src/iface/i_command.c:2314
 msgid "Specify new zoom:"
 msgstr "Geben Sie eine neue Vergrößerung an:"
 
-#: gschem/src/iface/i_command.c:2342 gschem/src/iface/i_command.c:4682
-#: gschem/src/iface/i_command.c:4712 gschem/src/iface/i_command.c:4733
-#: gschem/src/iface/i_command.c:4753
+#: gschem/src/iface/i_command.c:2356 gschem/src/iface/i_command.c:4696
+#: gschem/src/iface/i_command.c:4726 gschem/src/iface/i_command.c:4747
+#: gschem/src/iface/i_command.c:4767
 msgid "Check path:"
 msgstr ""
 
 # error
-#: gschem/src/iface/i_command.c:2353
+#: gschem/src/iface/i_command.c:2367
 msgid "error"
 msgstr "fehler"
 
-#: gschem/src/iface/i_command.c:2364
+#: gschem/src/iface/i_command.c:2378
 msgid "No component selected\n"
 msgstr "Punktraster ausgewählt\n"
 
-#: gschem/src/iface/i_command.c:2909
+#: gschem/src/iface/i_command.c:2923
 msgid "Confirm revert ALL documents"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3091
+#: gschem/src/iface/i_command.c:3105
 msgid "Searching for source"
 msgstr "Nach der Quelle suchen"
 
-#: gschem/src/iface/i_command.c:3126
+#: gschem/src/iface/i_command.c:3140
 msgid "Failed to descend into"
 msgstr "Die folgenden Bilder konnten nicht überschrieben werden: %s"
 
-#: gschem/src/iface/i_command.c:3135
+#: gschem/src/iface/i_command.c:3149
 msgid "Hierarchy Error"
 msgstr "Hie_rarchie"
 
-#: gschem/src/iface/i_command.c:3212
+#: gschem/src/iface/i_command.c:3226
 msgid "Searching for symbol"
 msgstr "Nach dem Symbol suchen"
 
-#: gschem/src/iface/i_command.c:3222
+#: gschem/src/iface/i_command.c:3236
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Das Symbol ist keine reale Datei. Symbol kann nicht geöffnet werden.\n"
 
-#: gschem/src/iface/i_command.c:3269
+#: gschem/src/iface/i_command.c:3283
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Konnte keinen übergeordneten Schaltplan finden!\n"
 
-#: gschem/src/iface/i_command.c:3399
+#: gschem/src/iface/i_command.c:3413
 msgid "Object is attached to something\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:3802
+#: gschem/src/iface/i_command.c:3816
 msgid "Attribute is already attached\n"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4216
+#: gschem/src/iface/i_command.c:4230
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr ""
 "ACHTUNG: Keine Transformation mit ausgeschalteter Ausrichtung am Raster!\n"
 
-#: gschem/src/iface/i_command.c:4217
+#: gschem/src/iface/i_command.c:4231
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr ""
 "ACHTUNG:\"am Raster ausrichten\" wird aktiviert und mit der Transformation "
 "fortgefahren.\n"
 
-#: gschem/src/iface/i_command.c:4223
+#: gschem/src/iface/i_command.c:4237
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "ACHTUNG: Das Raster ist ungleich 100!\n"
 
-#: gschem/src/iface/i_command.c:4224
+#: gschem/src/iface/i_command.c:4238
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -722,76 +722,76 @@ msgstr ""
 "ACHTUNG: Wenn ein Symbol transformiert wird, sollte das Raster auf 100 "
 "gesetzt sein.\n"
 
-#: gschem/src/iface/i_command.c:4429
+#: gschem/src/iface/i_command.c:4443
 msgid "Grid OFF\n"
 msgstr "Raster AUS\n"
 
-#: gschem/src/iface/i_command.c:4430
+#: gschem/src/iface/i_command.c:4444
 msgid "Dot grid activated\n"
 msgstr "Punktraster ausgewählt\n"
 
-#: gschem/src/iface/i_command.c:4431
+#: gschem/src/iface/i_command.c:4445
 msgid "Mesh grid activated\n"
 msgstr "Linienraster ausgewählt\n"
 
-#: gschem/src/iface/i_command.c:4510
+#: gschem/src/iface/i_command.c:4524
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Freihandmodus (ACHTUNG! Ausrichten am Raster abgeschaltet)\n"
 
-#: gschem/src/iface/i_command.c:4516
+#: gschem/src/iface/i_command.c:4530
 msgid "Snap ON\n"
 msgstr "Am Raster ausrichten\n"
 
-#: gschem/src/iface/i_command.c:4521
+#: gschem/src/iface/i_command.c:4535
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Objekte neu am Raster ausrichten (Achtung!)\n"
 
-#: gschem/src/iface/i_command.c:4546
+#: gschem/src/iface/i_command.c:4560
 msgid "Rubber band mode is OFF\n"
 msgstr "Gummifäden AUS \n"
 
-#: gschem/src/iface/i_command.c:4550
+#: gschem/src/iface/i_command.c:4564
 msgid "Rubber band mode is ON\n"
 msgstr "Gummifäden EIN\n"
 
-#: gschem/src/iface/i_command.c:4561
+#: gschem/src/iface/i_command.c:4575
 msgid "Magnetic net mode is ON\n"
 msgstr "Magnetischer Netzmodus: EIN\n"
 
-#: gschem/src/iface/i_command.c:4564
+#: gschem/src/iface/i_command.c:4578
 msgid "Magnetic net mode is OFF\n"
 msgstr "Magnetischer Netzmodus: AUS\n"
 
 # Switched off
-#: gschem/src/iface/i_command.c:4581 gschem/src/iface/i_command.c:4624
+#: gschem/src/iface/i_command.c:4595 gschem/src/iface/i_command.c:4638
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr "Ausgeschaltet"
 
 # Switched on
-#: gschem/src/iface/i_command.c:4585 gschem/src/iface/i_command.c:4628
+#: gschem/src/iface/i_command.c:4599 gschem/src/iface/i_command.c:4642
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "Eingeschaltet"
 
 # Drag-can-move is now
-#: gschem/src/iface/i_command.c:4587
+#: gschem/src/iface/i_command.c:4601
 msgid "Drag-Can-Move is now"
 msgstr "Drag-Can-Move ist jetzt"
 
-#: gschem/src/iface/i_command.c:4599
+#: gschem/src/iface/i_command.c:4613
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Aktions-Rückmeldemodus wurde auf OUTLINE festgelegt.\n"
 
-#: gschem/src/iface/i_command.c:4603
+#: gschem/src/iface/i_command.c:4617
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Aktions-Rückmeldemodus wurde auf BOUNDINGBOX festgelegt.\n"
 
-#: gschem/src/iface/i_command.c:4630
+#: gschem/src/iface/i_command.c:4644
 msgid "Auto-Pan is now"
 msgstr ""
 
-#: gschem/src/iface/i_command.c:4853
+#: gschem/src/iface/i_command.c:4867
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr ""
@@ -1279,33 +1279,33 @@ msgstr ""
 msgid "Gschem Undo System"
 msgstr "gschem System rückgängig machen"
 
-#: gschem/src/object/o_undo.c:266
+#: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
 msgstr ""
 
-#: gschem/src/object/o_undo.c:267
+#: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
 msgstr ""
 
 # switching to memory mode
-#: gschem/src/object/o_undo.c:268
+#: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
 msgstr "Umschalten in den Speichermodus"
 
-#: gschem/src/object/o_undo.c:474
+#: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
 msgstr "Während einer UNDO-Datenträgeroperation ist ein Fehler aufgetreten"
 
-#: gschem/src/object/o_undo.c:477
+#: gschem/src/object/o_undo.c:476
 msgid "Undo/Redo disabled\n"
 msgstr "Rückgängig/Wiederherstellen deaktiviert\n"
 
 # Undo error
-#: gschem/src/object/o_undo.c:563
+#: gschem/src/object/o_undo.c:562
 msgid "Undo error"
 msgstr "Fehler rückgängig"
 
-#: gschem/src/object/o_undo.c:565
+#: gschem/src/object/o_undo.c:564
 msgid "Undo failed"
 msgstr "Rückgängig ausgefallen"
 
@@ -3294,6 +3294,15 @@ msgstr ""
 #: gschem/src/x/x_image.c:848
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
+msgstr ""
+
+#: gschem/src/x/x_image.c:1070
+#, fuzzy
+msgid "Could not allocate memory resources"
+msgstr "Ein grafikkontext konnte nicht zugewiesen werden"
+
+#: gschem/src/x/x_image.c:1071
+msgid "maybe you should try saving next"
 msgstr ""
 
 #: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
@@ -5472,11 +5481,11 @@ msgstr ""
 msgid "_Page/_Draw Order"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2410
+#: gschem/etc/system-gschemrc.scm:2409
 msgid "_Options"
 msgstr "_Optionen"
 
-#: gschem/etc/system-gschemrc.scm:2411
+#: gschem/etc/system-gschemrc.scm:2410
 msgid "_Help"
 msgstr "_Hilfe"
 
