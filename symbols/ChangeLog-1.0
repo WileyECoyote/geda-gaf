@@ -7,6 +7,10 @@
             * microchip/MCP2022-1.sym
             * microchip/MCP2022-2.sym
 
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GCM1555C1H101JA16_100pF_50V.sym
+
 2019-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/HCPL-0700-1.sym: Rename symbol with hyphen to match device attribute.
