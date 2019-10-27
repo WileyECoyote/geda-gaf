@@ -1,3 +1,9 @@
+2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip: Update "mfr" attribute = "manufacturer":
+
+            * microchip/MCP2021-1.sym
+
 2019-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * opto/HCPL-0700-1.sym: Rename symbol with hyphen to match device attribute.
