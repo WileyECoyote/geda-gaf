@@ -10,6 +10,7 @@
     * murata: Update "mfr" attribute = "manufacturer":
 
             * murata/capacitor/GCM1555C1H101JA16_100pF_50V.sym
+            * murata/capacitor/GCM1555C1H121JA16_120pF_50V.sym
 
 2019-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
