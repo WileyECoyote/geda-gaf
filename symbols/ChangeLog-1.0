@@ -1,4 +1,10 @@
-2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
+2019-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GCM155R71H102KA37_1nF_50V.sym
+
+2019-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip: Update "mfr" attribute = "manufacturer":
 
