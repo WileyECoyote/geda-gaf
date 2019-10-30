@@ -1,3 +1,9 @@
+2019-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GRM1555C1H360JA01_36pF_50V.sym
+
 2019-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * murata: Update "mfr" attribute = "manufacturer":
