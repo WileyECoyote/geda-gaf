@@ -3,6 +3,7 @@
     * murata: Update "mfr" attribute = "manufacturer":
 
             * murata/capacitor/GRM1555C1H360JA01_36pF_50V.sym
+            * murata/capacitor/GRM1555C1H6R8DA01_6.8pF_50V.sym
 
 2019-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
