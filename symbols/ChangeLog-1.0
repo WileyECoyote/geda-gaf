@@ -3,6 +3,7 @@
     * murata: Update "mfr" attribute = "manufacturer":
 
             * murata/capacitor/GRM155R71H223KA12_22nF_50V.sym
+            * murata/capacitor/GRM155R71H683KE14_68nF_50V.sym
 
 2019-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
