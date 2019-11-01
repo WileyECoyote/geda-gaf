@@ -525,9 +525,11 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
     child_allocation.x = widget->allocation.x + border_width + xthickness + props.focus_width + props.focus_pad + CHILD_LEFT_SPACING;
     child_allocation.y = widget->allocation.y + border_width + ythickness + props.focus_width + props.focus_pad + CHILD_TOP_SPACING;
+
     child_allocation.width = MAX (1, allocation->width - (border_width + xthickness + props.focus_width + props.focus_pad) * 2 -
                              props.indicator_size.width - props.indicator_spacing.left - props.indicator_spacing.right -
                              CHILD_LEFT_SPACING - CHILD_RIGHT_SPACING);
+
     child_allocation.height = MAX (1, allocation->height - (border_width + ythickness + props.focus_width + props.focus_pad) * 2 -
                               CHILD_TOP_SPACING - CHILD_BOTTOM_SPACING);
 
@@ -616,6 +618,7 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
       button_area.x -= props.focus_width + props.focus_pad;
       button_area.y -= props.focus_width + props.focus_pad;
+
       button_area.width += (props.focus_width + props.focus_pad) << 1;
       button_area.height += (props.focus_width + props.focus_pad) << 1;
     }
