@@ -30,6 +30,11 @@
  *  \brief functions for the pin object
  */
 
+/** \defgroup geda-pin-object-proc GedaPin Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaPin Objects
+ */
+
 /*!
  * \brief create a new pin object
  * \par Function Description
@@ -1616,3 +1621,5 @@ const char *geda_pin_object_get_mechanical(GedaObject *object)
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
   return object->pin->mechanical;
 }
+
+/** @} endgroup geda-pin-object-proc */
