@@ -1,3 +1,7 @@
+2019-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_circle_object.c: Add Doxygen group geda-circle-object-proc.
+
 2019-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_toplevel.c: Revise geda_toplevel_remove_page to set
