@@ -101,7 +101,7 @@ static void geda_dock_box_instance_init(GTypeInstance *instance, void *g_class)
  * \par Function Description
  *  Function to retrieve a #GedaDockBox Type identifier. When
  *  first called, the function registers a #GedaDockBox in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaDockBox and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

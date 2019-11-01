@@ -951,7 +951,7 @@ static void geda_font_button_instance_init(GTypeInstance *instance, void *g_clas
  * \par Function Description
  *  Function to retrieve a #GedaFontButton Type identifier. When
  *  first called, the function registers a #GedaFontButton in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaFontButton and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

@@ -3547,7 +3547,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaMenu Type identifier. When
  *  first called, the function registers a #GedaMenu in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenu and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

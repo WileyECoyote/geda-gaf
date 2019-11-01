@@ -97,7 +97,7 @@ geda_menu_separator_instance_init(GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaMenuSeparator Type identifier. When
  *  first called, the function registers a #GedaMenuSeparator in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuSeparator and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

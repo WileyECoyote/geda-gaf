@@ -1113,7 +1113,7 @@ geda_image_chooser_instance_init (GTypeInstance *instance, void *class)
  *  \par Function Description
  *  Function to retrieve a #GedaImageChooser Type identifier. When
  *  first called, the function registers a #GedaImageChooser in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaImageChooser and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

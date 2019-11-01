@@ -659,7 +659,7 @@ static void geda_accel_label_instance_init (GTypeInstance *instance, void *g_cla
  * \par Function Description
  *  Function to retrieve a #GedaAccelLabel Type identifier. When
  *  first called, the function registers a #GedaAccelLabel in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaAccelLabel and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

@@ -1765,7 +1765,7 @@ static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class
  * \par Function Description
  *  Function to retrieve a #GedaHandleBox Type identifier. When
  *  first called, the function registers a #GedaHandleBox in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaHandleBox and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

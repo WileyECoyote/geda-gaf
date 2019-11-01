@@ -1399,7 +1399,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
  * \par Function Description
  *  Function to retrieve a #GedaMenuButton Type identifier. When
  *  first called, the function registers a #GedaMenuButton in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuButton and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

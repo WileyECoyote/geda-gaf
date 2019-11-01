@@ -343,7 +343,7 @@ static void geda_radio_menu_item_instance_init(GTypeInstance *instance, void *cl
  * \par Function Description
  *  Function to retrieve a GedaRadioMenuItemType identifier. When
  *  first called, the function registers a #GedaRadioMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaRadioMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

@@ -578,7 +578,7 @@ geda_tearoff_menu_item_instance_init (GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaTearoffMenuItem Type identifier. When
  *  first called, the function registers a #GedaTearoffMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaTearoffMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

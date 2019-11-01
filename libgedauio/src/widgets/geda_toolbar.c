@@ -198,7 +198,7 @@ geda_toolbar_instance_init (GTypeInstance *instance, void *g_class)
  * \par Function Description
  *  Function to retrieve a #GedaToolbar Type identifier. When
  *  first called, the function registers a #GedaToolbar in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaToolbar and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

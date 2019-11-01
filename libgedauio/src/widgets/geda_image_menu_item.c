@@ -502,7 +502,7 @@ static void geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
  * \par Function Description
  *  Function to retrieve a #GedaImageMenuItem Type identifier. When
  *  first called, the function registers a #GedaImageMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaImageMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
