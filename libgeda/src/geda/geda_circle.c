@@ -470,7 +470,7 @@ static void geda_circle_class_init(void *klass, void *class_data)
  * \brief Function to retrieve GedaCircle's Type identifier.
  * \par Function Description
  *  Function to retrieve a #GedaCircle Type identifier. When first called,
- *  the function registers a #GedaCircle in the GedaType system to obtain
+ *  the function registers a #GedaCircle in the GType system to obtain
  *  an identifier that uniquely itentifies a GedaCircle and returns the
  *  unsigned integer value. The retained value is returned on all
  *  Subsequent calls.
