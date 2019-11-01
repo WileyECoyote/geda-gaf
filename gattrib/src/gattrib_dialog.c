@@ -448,7 +448,7 @@ static void gattrib_dialog_class_init(void *klass, void *class_data)
  * \brief Function to retrieve GattribDialog's GedaType identifier
  * \par Function Description
  *  Function to retrieve GattribDialog's Type identifier. On first call,
- *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  this registers the GattribDialog in the GType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
  * \return GedaType identifier associated with GattribDialog.
