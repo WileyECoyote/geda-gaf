@@ -259,7 +259,7 @@ celltextview_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
  * \brief Function to retrieve CellTextView's Type identifier
  * \par Function Description
  *  Function to retrieve CellTextView's Type identifier. On the first
- *  call, this registers the CellTextView in the GedaType system.
+ *  call, this registers the CellTextView in the GType system.
  *  Subsequently the function returns the saved value from its first
  *  execution.
  *
@@ -1862,7 +1862,7 @@ multiattrib_geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char *group_
  * \brief Function to retrieve Multiattrib's GedaType identifier.
  * \par Function Description
  *  Function to retrieve Multiattrib's GedaType identifier.
- *  Upon first call, this registers Multiattrib in the GedaType system.
+ *  Upon first call, this registers Multiattrib in the GType system.
  *  Subsequently it returns the saved value from its first execution.
  *
  * \return the GedaType identifier associated with Multiattrib.

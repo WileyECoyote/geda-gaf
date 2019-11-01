@@ -386,7 +386,7 @@ static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
  * \brief Function to retrieve GschemToplevel's Type identifier.
  * \par Function Description
  *  Function to retrieve GschemToplevel's Type identifier. On first call,
- *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  this registers the GattribDialog in the GType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
  * \return GedaType identifier associated with GschemToplevel.
