@@ -3223,9 +3223,8 @@ msgstr ""
 "reversed"
 
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Could not allocate a graphics context"
+msgstr "Could not allocate memory resources"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -5890,18 +5889,16 @@ msgid "Export document to XML file"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
-#, fuzzy
 msgid "_Symbol"
-msgstr "_Symbol:"
+msgstr "_Symbol"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:58
 msgid "Export embedded symbol"
 msgstr "Export embedded symbol"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Pictu_re..."
+msgstr "_Picture"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
@@ -5912,18 +5909,16 @@ msgid "_File/_Export"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "_Symbol:"
+msgstr "_Symbols"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
 msgid "_Open Editor"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Edit Text..."
+msgstr "Edit DRC rules..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -5934,9 +5929,8 @@ msgid "Run DRC 2"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Version"
+msgstr "Version Control"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -5959,9 +5953,8 @@ msgid "Verilog netlist"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Hierarchy Error"
+msgstr "Hierarchy Verilog"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
 msgid "_Tools/_Symbols"
