@@ -3320,11 +3320,10 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-# Could not allocate a graphics context
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "No se pudo asignar un contexto gráfico"
+msgstr "No se pudieron asignar recursos de memoria"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6026,9 +6025,8 @@ msgstr "Exportar símbolo insertado"
 
 # Picture
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
-#, fuzzy
 msgid "_Picture"
-msgstr "Añadir Imagen"
+msgstr "Imagen"
 
 #: gschem/scheme/gschem/gschem-export-menu.scm:59
 msgid "Export embedded picture"
@@ -6039,19 +6037,16 @@ msgid "_File/_Export"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Símbolos:"
+msgstr "_Símbolos"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Editor de una única propiedad"
+msgstr "Editor abierto"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Editar texto..."
+msgstr "Editar reglas de DRC..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6063,9 +6058,8 @@ msgstr ""
 
 # Version
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Versión"
+msgstr "Control de versiones"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -6087,11 +6081,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# Hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Error de Jerarquía"
+msgstr "jerarquía Verilog"
 
 # Tools/_Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
@@ -6111,21 +6104,3 @@ msgstr "~S no es una combinación de teclas válida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S no es una secuencia de teclas válida como prefijo."
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Atributo de entrada no válido"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Ámbito</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Añadir propiedad</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Editar propiedades</b>"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "Modo ayuda _magnética a la conexión"
-
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "Act/Desact aju_ste a la rejilla"
