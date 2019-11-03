@@ -3462,9 +3462,8 @@ msgstr ""
 "sa nung trauv ban tralb"
 
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "min ach bamroungtouk bribt krahvek"
+msgstr "min ach bengchek thonthean angk changcham ban te"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6240,20 +6239,19 @@ msgstr "neachenh roub bangkob"
 msgid "_File/_Export"
 msgstr ""
 
+# Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Nimittaroub"
+msgstr "Nimittasanhnhea"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "kammovithi niponth attribute temuoy"
+msgstr "baek kammovithi nipon"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "..."
+msgstr "kesamruol vithean DRC..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6263,11 +6261,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Kamne:"
+msgstr "kar truotpinity kamne"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -6290,9 +6287,8 @@ msgid "Verilog netlist"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "kamhosa knong thananoukram"
+msgstr "thananoukram Verilog"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
