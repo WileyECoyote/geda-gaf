@@ -3300,9 +3300,8 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Ei voitu jakaa graafinen konteksti"
+msgstr "Muistiresursseja ei voitu varata"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
