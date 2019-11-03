@@ -3314,10 +3314,11 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
+# Could not allocate memory resources
+# Memoririsōsu o wariateru koto ga dekimasendeshita
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "グラフィックスコンテキストを割り当てることができませんでした"
+msgstr "メモリリソースを割り当てることができませんでした"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6035,21 +6036,20 @@ msgstr "埋め込み画像の書き出し"
 msgid "_File/_Export"
 msgstr ""
 
-# Symbol
+# Symbols; Kigō
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "シンボル"
+msgstr "記号"
 
+# Open Editor; Editā o hiraku
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "シングルアトルビュートエディタ"
+msgstr "エディターを開く"
 
+# Edit DRC rules; rūru o henshū suru
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "テキスト編集..."
+msgstr "DRCルールを編集する..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6059,11 +6059,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control; Bājon kanri
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "バージョン"
+msgstr "バージョン管理"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -6085,11 +6084,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# Hierarchy Verilog; Kaisō berirogu
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "階層エラー"
+msgstr "階層Verilog"
 
 # Tools/Symbols; Tsūru/ shinboru'
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
