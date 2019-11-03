@@ -3339,9 +3339,8 @@ msgstr ""
 "saranno invertiti"
 
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Impossibile allocare un contesto grafico"
+msgstr "Impossibile allocare le risorse di memoria"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6051,19 +6050,16 @@ msgid "_File/_Export"
 msgstr "_File/_Esporta"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "_Simbolo"
+msgstr "_Simboli"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Editor Singola Caratteristica"
+msgstr "Apri l'editor"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Modifica il testo..."
+msgstr "Modifica regole DRC..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6074,18 +6070,16 @@ msgid "Run DRC 2"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Versione"
+msgstr "Controllo versione"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "Manuali gEDA"
+msgstr "netlist gEDA"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6099,11 +6093,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Errore gerarchia"
+msgstr "gerarchia Verilog"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
@@ -6123,29 +6116,3 @@ msgstr "~S non è una combinazione di tasti valida."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S non è un prefisso di sequenza di tasti."
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "attributo di input non è valido"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Visibilità</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Aggiungi Caratteristiche</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Modifica Caratteristiche</b>"
-
-# Selection
-#~ msgid "<b>Selection</b>"
-#~ msgstr "Kiválasztás"
-
-# Array
-#~ msgid "<b>Array</b>"
-#~ msgstr "<b>schieramento</b>"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "Commuta Net _Magnetiche"
-
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "_Commuta aggancio automatico"
