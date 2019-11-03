@@ -3272,9 +3272,8 @@ msgid ""
 msgstr ""
 
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Nem sikerült lefoglalni egy grafikus háttér"
+msgstr "Nem lehet elosztani a memória erőforrásait"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -5982,20 +5981,17 @@ msgid "_File/_Export"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
 msgstr "_Szimbólumok"
 
-# Open Attributes Editor
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Nyílt attribútumok szerkesztő"
+msgstr "Nyissa meg a Szerkesztőt"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Szöveg szerkesztése..."
+msgstr "A DRC szabályok szerkesztése..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6007,9 +6003,8 @@ msgstr ""
 
 # Version
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Változat"
+msgstr "Verzióvezérlés"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -6031,11 +6026,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# Hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Hierarchia hiba"
+msgstr "Hierarchia Verilog"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
