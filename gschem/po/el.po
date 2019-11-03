@@ -3290,10 +3290,11 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
+# Could not allocate memory resources
+# Den ítan dynatí i ekchórisi póron mnímis
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "δεν θα μπορούσε να διαθέσει ένα πλαίσιο γραφικών"
+msgstr "Δεν ήταν δυνατή η εκχώρηση πόρων μνήμης"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
