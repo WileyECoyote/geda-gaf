@@ -16,6 +16,10 @@
 
             * xilinx/XC2S150-5PQ208C.sym
 
+    * xilinx: Resequence pins:
+
+            * xilinx/XC2S150-5PQ208I.sym
+
 2019-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * murata: Update "mfr" attribute = "manufacturer":
