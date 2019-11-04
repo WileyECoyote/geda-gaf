@@ -10,6 +10,8 @@
 
     * ti/TPS7A6401QPWP-1.sym: Add symbol; Adjustable LDO REG, 300mA, HTSSOP-14.
 
+    * ti/TPS7A650QPWP-1.sym: Add symbol; Fix 5.0 Volt LDO REG, 300mA, HTSSOP-14.
+
 2019-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * murata: Update "mfr" attribute = "manufacturer":
