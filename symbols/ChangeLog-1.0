@@ -4,6 +4,8 @@
 
             * murata/capacitor/GRM21BR71E225KA73_2.2uF_25V.sym
 
+    * ti/TPS7A6301QPWP-1.sym: Add symbol; Adjustable LDO REG, 300mA, HTSSOP-14.
+
 2019-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * murata: Update "mfr" attribute = "manufacturer":
