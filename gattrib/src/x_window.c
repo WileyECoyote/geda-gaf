@@ -655,8 +655,8 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 /*!
  * \brief Toggle View of Inherited Attributes
  * \par Function Description
- *      This function loops through all rows and columns and either
- * delete or restore attribute values if the attribute is inherited.
+ *  This function loops through all rows and columns and either delete
+ *  or restores attribute values if the attribute is inherited.
  */
 void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) {
 
