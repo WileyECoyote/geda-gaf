@@ -606,7 +606,7 @@ is_a_geda_file_chooser (GedaFileChooser *chooser)
 }
 
 /*! \brief Instantiate a New Geda File Chooser Dialog
- *  to provide a GedaFileChooser equivelant of the convenience function
+ *  to provide a GedaFileChooser equivalent of the convenience function
  *  gtk_file_chooser_dialog_new(...)
  *
  *  \par Function Description
