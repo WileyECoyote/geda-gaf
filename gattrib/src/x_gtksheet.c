@@ -248,7 +248,6 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
       case InsertAttribute:
       case HideAttribute:
       case RevealAttribute:
-      case DeleteAttribute:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
@@ -256,6 +255,31 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
         else {
           gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
+        }
+        break;
+
+      case DeleteAttribute:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        else {
+
+          int mincol, maxcol, sensitive;
+
+
+          mincol = x_gtksheet_get_min_col((GtkSheet*)sheet);
+          maxcol = x_gtksheet_get_max_col((GtkSheet*)sheet);
+
+          if ((mincol != maxcol) || (mincol == -1) || (maxcol == -1)) {
+            sensitive = FALSE;
+          }
+          else {
+            sensitive = TRUE;
+          }
+
+          gtk_widget_set_sensitive(GTK_WIDGET(item), sensitive);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), sensitive);
         }
         break;
       }

@@ -3,6 +3,9 @@
     * src/x_dialog.c: Revise x_dialog_new_attrib to utilize an ancillary
       container and accessor macro gtk_dialog_get_content_area.
 
+    * src/x_gtksheet.c: Revise build_popup_menu to set the DeleteAttribute popup
+      menu item insensitive if more than one column is selected.
+
     * src/x_menus.c: Remove inappropriate call to x_dialog_unimplemented_feature
       because the feature is implemented.
 
