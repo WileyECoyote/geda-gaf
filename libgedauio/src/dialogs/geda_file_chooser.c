@@ -545,16 +545,16 @@ geda_file_chooser_instance_init (GTypeInstance *instance, void *class)
   list_of_choosers = g_list_append(list_of_choosers, instance);
 }
 
-    /*! \brief Function to retrieve GedaFileChooser's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaFileChooser's Type identifier
+ * \par Function Description
  *  Function to retrieve a #GedaFileChooser Type identifier. When
  *  first called, the function registers a #GedaFileChooser in the
  *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaFileChooser and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaFileChooser.
+ * \return GedaType identifier associated with GedaFileChooser.
  */
 GedaType geda_file_chooser_get_type (void)
 {
