@@ -186,8 +186,7 @@ x_dialog_column_visibility_toggled (GtkCellRendererToggle *cell_renderer,
 
   model = GTK_TREE_MODEL (store);
 
-  /* Removed conditional but don't know why, can not find documentation
-   * supporting change so re-instating the conditional to "see what happens" */
+  /* Abort if tree path not found */
   if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
     return;
   }
