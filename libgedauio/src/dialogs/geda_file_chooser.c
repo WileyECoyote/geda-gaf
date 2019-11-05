@@ -861,6 +861,7 @@ char *geda_file_chooser_get_filename(GtkWidget *widget)
     BUG_MSG ("Operative is not a GtkFileChooser");
     name = NULL;
   }
+
   return name;
 }
 
@@ -948,6 +949,7 @@ char *geda_file_chooser_get_current_folder(GtkWidget *widget)
     BUG_MSG ("Operative is not a GtkFileChooser");
     folder = NULL;
   }
+
   return folder;
 }
 
@@ -1013,6 +1015,7 @@ GtkWidget *geda_file_chooser_get_extra_widget(GtkWidget *hideous)
     BUG_MSG ("Operative is not a GtkFileChooser");
     extra = NULL;
   }
+
   return extra;
 }
 
