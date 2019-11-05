@@ -1,3 +1,8 @@
+2019-11-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Revise x_dialog_new_attrib to utilize an ancillary
+      container and accessor macro gtk_dialog_get_content_area.
+
 2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

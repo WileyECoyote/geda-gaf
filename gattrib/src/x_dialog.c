@@ -105,10 +105,11 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 char *x_dialog_new_attrib()
 {
   GtkDialog *dialog;
+  GtkWidget *container;
   GtkWidget *widget;
   GtkWidget *label;
   GtkWidget *attrib_entry;
-  char *entry_text;
+  char      *entry_text;
 
   /* Create the dialog */
   widget = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
@@ -119,17 +120,19 @@ char *x_dialog_new_attrib()
 
   dialog = (GtkDialog*)widget;
 
+  container = gtk_dialog_get_content_area(dialog);
+
   gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_OK);
 
   /*  Create a text label for the dialog window */
   label = geda_label_new (_("Enter new attribute name"));
-  geda_container_add(dialog->vbox, label);
+  geda_container_add(container, label);
 
   /*  Create the "attrib" text entry area */
   attrib_entry = geda_entry_new_with_max_length(48);
   geda_entry_widget_set_activates_default(attrib_entry, TRUE);
 
-  geda_container_add(dialog->vbox, attrib_entry);
+  geda_container_add(container, attrib_entry);
   gtk_widget_set_size_request (widget, 300, 140);
 
   gtk_widget_show_all(widget);
