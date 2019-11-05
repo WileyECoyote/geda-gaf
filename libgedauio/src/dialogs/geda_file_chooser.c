@@ -109,10 +109,13 @@ static void FixGtkCrap(GtkWidget *widget, void *self)
 
 static void get_filter_button(GedaFileChooser *chooser)
 {
-  GList *children, *iter;
+  GList     *children, *iter;
+  GtkWidget *vbox;
+
+  vbox = gtk_dialog_get_content_area(GTK_DIALOG(chooser));
 
   /* Get all object inside the contents area of the dialog */
-  children = geda_container_get_children (GTK_DIALOG (chooser)->vbox);
+  children = geda_container_get_children (vbox);
 
   /* For each container in the contents area to call look for combo box */
   for (iter = children; iter; iter = iter->next) {
