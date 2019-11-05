@@ -232,6 +232,11 @@ int check_accessors(void)
       fprintf(stderr, "FAILED: line <%d> %s; reserve indicator\n", __LINE__, TWIDGET);
       result++;
     }
+
+    if (geda_menu_item_get_show_submenu_indicator (menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> %s; reserve indicator\n", __LINE__, TWIDGET);
+      result++;
+    }
   }
 
   g_object_ref_sink(widget); /* Sink reference to menu_seperator */

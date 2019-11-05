@@ -8,6 +8,11 @@
     * src/dialogs/geda_image_chooser.c: Utilize gtk_dialog_get_content_area in
       geda_image_chooser_constructor.
 
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_show_submenu_indicator
+
 2019-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Add Doxygen code/endcode tags in
