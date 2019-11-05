@@ -605,17 +605,15 @@ is_a_geda_file_chooser (GedaFileChooser *chooser)
   return FALSE;
 }
 
-/*! \brief Instantiate a New Geda File Chooser Dialog
- *  to provide a GedaFileChooser equivalent of the convenience function
- *  gtk_file_chooser_dialog_new(...)
- *
- *  \par Function Description
+/*!
+ * \brief Instantiate a New Geda File Chooser Dialog
+ * \par Function Description
  *  Convenience function which creates a GedaFileChooser with buttons and options.
  *
- *  \param [in]  parent         The GtkWindow Widget which will parent this dialog
- *  \param [in]  chooser_action The #FileChooserAction to use when setting up the dialog
+ * \param [in]  parent         The GtkWindow Widget which will parent this dialog
+ * \param [in]  chooser_action The #FileChooserAction to use when setting up the dialog
  *
- *  \return  The GedaFileChooser created.
+ * \return  The GedaFileChooser created.
  */
 GtkWidget*
 geda_file_chooser_new (void *parent, FileChooserAction chooser_action)
