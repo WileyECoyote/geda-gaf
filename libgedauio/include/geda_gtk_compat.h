@@ -163,7 +163,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define gtk_widget_get_allocated_width(widget) (((GtkWidget*) (widget))->allocation.width)
 
 /*! \def gtk_dialog_get_content_area Not in Gtk < 3 */
-#define gtk_dialog_get_content_area (GTK_DIALOG(dialog)->vbox)
+#define gtk_dialog_get_content_area(dialog) (GTK_DIALOG(dialog)->vbox)
 
 /*! \def gtk_widget_reset_style Not in Gtk < 3 */
 #define gtk_widget_reset_style gtk_widget_reset_rc_styles
