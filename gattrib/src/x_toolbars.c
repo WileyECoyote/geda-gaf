@@ -28,6 +28,7 @@
 #include <geda_gtk_compat.h>
 #include <geda_debug.h>
 
+/* See IDS_Toolbar enumerations in include/globals.h */
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
   { "open_button",       N_("Open"),     N_("Open file"), "Private"},
