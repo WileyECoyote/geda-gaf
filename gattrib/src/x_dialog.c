@@ -146,6 +146,7 @@ char *x_dialog_new_attrib()
   }
 
   gtk_widget_destroy(widget);
+
   return entry_text;
 }
 
@@ -481,7 +482,9 @@ int x_dialog_file_not_saved()
   gtk_dialog_set_default_response (dialog, GEDA_RESPONSE_YES);
 
   result = gtk_dialog_run (dialog);
+
   gtk_widget_destroy ((GtkWidget*)dialog);
+
   return result;
 }
 
@@ -509,6 +512,7 @@ void x_dialog_unsaved_data()
     default:
        break;
   }
+
   return;
 }
 
