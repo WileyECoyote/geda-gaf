@@ -1,5 +1,7 @@
 2019-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macro gtk_dialog_get_content_area for Gtk<3.0.
+
     * src/dialogs/geda_file_chooser.c: Rename macro; ChooseClass -> ChooserClass
 
 2019-10-22 Wiley E. Hill <wileyhill@gmail.com>
