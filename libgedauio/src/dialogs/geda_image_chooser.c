@@ -726,14 +726,15 @@ geda_image_chooser_find_entry (GtkWidget *chooser)
   g_list_free (children);
 }
 
-static GObject *
+static GObject*
 geda_image_chooser_constructor (GType                  type,
                                 unsigned int           n_properties,
                                 GObjectConstructParam *properties)
 {
-  GObject *obj;
-  GList   *children, *iter;
-  GedaImageChooser   *chooser;
+  GObject          *obj;
+  GList            *children, *iter;
+  GedaImageChooser *chooser;
+  GtkWidget        *vbox;
 
   /* Chain up to the parent constructor */
   obj = G_OBJECT_CLASS (geda_image_chooser_parent_class)->constructor (type, n_properties, properties);
@@ -742,8 +743,10 @@ geda_image_chooser_constructor (GType                  type,
 
   chooser = GEDA_IMAGE_CHOOSER(obj);
 
+  vbox = gtk_dialog_get_content_area(GTK_DIALOG(chooser));
+
   /* Get all object inside the contents area of the dialog */
-  children = geda_container_get_children (GTK_DIALOG (obj)->vbox);
+  children = geda_container_get_children (vbox);
 
   /* For each container in the contents area to call look for combo box */
   for (iter = children; iter; iter = iter->next) {
