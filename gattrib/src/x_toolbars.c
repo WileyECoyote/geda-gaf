@@ -45,6 +45,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { "invisible_button",  N_("invisible"), N_("Set selected invisible")},
   { "visible_button",    N_("visible"),   N_("Set selected visible")},
   { "add_button",        N_("add"),       N_("Add a new attribute")},
+  { "delete_button",     N_("delete"),    N_("Delete selected attribute")},
   { "promote_button",    N_("promote"),   N_("Attach the selected attribute")},
   { "demote_button",     N_("demote"),    N_("Detach the selected attribute")},
   { "name_only_button",  N_("name"),      N_("Set selected name visible only")},
@@ -171,6 +172,10 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
       s_toplevel_add_new_attrib(-1);
       break;
 
+    case tb_del:
+      x_menu_edit_delete_attrib();
+      break;
+
     case tb_promote:
       s_properties_promote_attribute();
       break;
@@ -274,6 +279,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
   TOOLBAR_STD_BUTTON(Attribute, tb_invisible,  PIX, GEDA_GHOST_INVISIBLE_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, tb_visible,    PIX, GEDA_EYE_GLASSES_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, tb_add,        PIX, GEDA_REDCROSS_BITMAP, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, tb_del,        STK, DELETE, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, tb_promote,    PIX, GAF_PROMOTE_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, tb_demote,     PIX, GAF_DEMOTE_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, tb_name_only,  PIX, GEDA_NAME_TAG_BITMAP, callBack_AttributeBar0);
@@ -287,6 +293,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_invisible_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_visible_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_add_button);
+
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_promote_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_demote_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_name_only_button);

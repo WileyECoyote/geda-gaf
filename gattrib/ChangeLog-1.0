@@ -6,6 +6,8 @@
     * src/x_menus.c: Remove inappropriate call to x_dialog_unimplemented_feature
       because the feature is implemented.
 
+    * src/x_toolbars.c: Add delete attribute button to the Attribute toolbar.
+
 2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ar.po: Update Arabic translations.

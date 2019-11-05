@@ -155,8 +155,8 @@ typedef enum  { ToggleVisibility,
 
 typedef enum  { tb_open, tb_save, tb_save_as, tb_cut, tb_copy, tb_paste,
                 tb_find, tb_replace, tb_attribute, tb_designator,
-                tb_invisible, tb_visible, tb_add, tb_promote, tb_demote,
-                tb_name_only, tb_value_only, tb_name_value
+                tb_invisible, tb_visible, tb_add, tb_del, tb_promote,
+                tb_demote, tb_name_only, tb_value_only, tb_name_value
 } IDS_Toolbar;
 
 #endif
