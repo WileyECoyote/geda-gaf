@@ -44,7 +44,7 @@
 
 #include <geda_debug.h>
 
-#define ChooseClass GedaFileChooserClass
+#define ChooserClass GedaFileChooserClass
 
 /**
  * \brief GedaFileChooser - A File Chooser Dialog
@@ -437,7 +437,7 @@ geda_file_chooser_class_init (void *class, void *data)
   GParamSpec     *params;
   GedaType        type;
 
-  ChooseClass    *chooser_class   = (ChooseClass*) class;
+  ChooserClass   *chooser_class   = (ChooserClass*) class;
   GObjectClass   *gobject_class   = (GObjectClass*) class;
   GtkWidgetClass *widget_class    = (GtkWidgetClass*) class;
 
@@ -1051,6 +1051,6 @@ void geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
-#undef ChooseClass
+#undef ChooserClass
 
 /** @} end group GedaFileChooser */
