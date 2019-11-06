@@ -68,10 +68,12 @@ GtkWidget *get_geda_switch_image (bool WhichState)
 {
    GtkWidget *image;
 
-   if (WhichState)
+   if (WhichState) {
      image = create_pixmap (SWITCH_ON_IMAGE);
-   else
+   }
+   else {
      image = create_pixmap (SWITCH_OFF_IMAGE);
+   }
 
    return image;
 }
