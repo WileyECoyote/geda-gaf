@@ -137,7 +137,7 @@ char *x_dialog_new_attrib()
 
   gtk_widget_show_all(widget);
 
-  switch(gtk_dialog_run(dialog)) {
+  switch (gtk_dialog_run(dialog)) {
     case GEDA_RESPONSE_OK:
       entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry) );
       break;
@@ -383,7 +383,7 @@ void x_dialog_delete_attrib()
 
   gtk_window_set_title((GtkWindow*)dialog, _("Delete attribute"));
 
-  switch(gtk_dialog_run((GtkDialog*)dialog)) {
+  switch (gtk_dialog_run((GtkDialog*)dialog)) {
     case GEDA_RESPONSE_YES:
       /* call the fcn to actually delete the attrib column.  */
       s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
@@ -619,7 +619,7 @@ void x_dialog_export_file()
   geda_file_chooser_set_current_folder (dialog, cwd);
   free (cwd);
 
-  switch(gtk_dialog_run((GtkDialog*)dialog)) {
+  switch (gtk_dialog_run((GtkDialog*)dialog)) {
     case GEDA_RESPONSE_ACCEPT:
       filename = geda_file_chooser_get_filename (dialog);
       if (filename != NULL) {
