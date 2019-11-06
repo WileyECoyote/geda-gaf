@@ -5,6 +5,9 @@
           * x_gtksheet_reveal_columns
           * on_move
 
+    * src/gtksheet/gtksheet.c: Fix BUG in gtksheet; old_range always -1 when
+      "move-range" signal emitted, set old_range before unselecting old_range.
+
 2019-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Revise x_dialog_new_attrib to utilize an ancillary

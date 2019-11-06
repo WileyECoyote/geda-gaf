@@ -10324,6 +10324,8 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
       GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IN_DRAG);
       gdk_pointer_ungrab(event->time);
 
+      old_range = sheet->range;
+
       gtk_sheet_real_unselect_range(sheet, NULL);
 
       sheet->active_cell.row = sheet->active_cell.row +
@@ -10335,9 +10337,10 @@ gtk_sheet_button_release_handler(GtkWidget *widget, GdkEventButton *event)
       sheet->selection_cell.col = sheet->selection_cell.col +
                               (sheet->drag_range.col0 - sheet->range.col0);
 
-      old_range = sheet->range;
+
       sheet->range = sheet->drag_range;
       sheet->drag_range = old_range;
+
       g_signal_emit(G_OBJECT(sheet), sheet_signals[MOVE_RANGE], 0,
                     &sheet->drag_range, &sheet->range);
       gtk_sheet_select_range(sheet, &sheet->range);
