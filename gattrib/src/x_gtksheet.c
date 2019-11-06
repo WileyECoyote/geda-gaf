@@ -99,9 +99,15 @@ void x_gtksheet_destroy_all() {
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
+ *  This function called when then RevealAttribute option is selected
+ *  from the column pop-up context menu. The function create a lists
+ *  of structures and passes the list to x_dialog_column_visibility,
+ *  which displays the list to the user. Upon return, the visibility
+ *  of any columns that do not match the desired state as specified
+ *  in the list ColumnVisible structures, is set to the desired state.
  */
 void x_gtksheet_reveal_columns(GtkSheet *sheet) {
 

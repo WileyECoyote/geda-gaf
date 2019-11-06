@@ -1,3 +1,9 @@
+2019-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Add function documentation:
+
+          * x_gtksheet_reveal_columns
+
 2019-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Revise x_dialog_new_attrib to utilize an ancillary
