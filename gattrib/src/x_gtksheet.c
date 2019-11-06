@@ -422,9 +422,9 @@ static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
                     GtkSheetRange *new_range, void *data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
-                                    old_range->rowi, old_range->coli);
+                                        old_range->rowi, old_range->coli);
   printf("NEW SELECTION: %d %d %d %d\n",new_range->row0, new_range->col0,
-                                    new_range->rowi, new_range->coli);
+                                        new_range->rowi, new_range->coli);
 }
 
 /*!
@@ -436,9 +436,9 @@ static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
                     GtkSheetRange *new_range, void *data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
-                                    old_range->rowi, old_range->coli);
+                                        old_range->rowi, old_range->coli);
   printf("NEW SELECTION: %d %d %d %d\n",new_range->row0, new_range->col0,
-                                    new_range->rowi, new_range->coli);
+                                        new_range->rowi, new_range->coli);
 }
 
 /*!
