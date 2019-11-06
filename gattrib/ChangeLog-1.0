@@ -1,6 +1,7 @@
 2019-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x_gtksheet.c: Enable on_move callback and add function documentation:
+    * src/x_gtksheet.c: Enable on_move callback, change underscores to hyphens in
+      gtksheet signal names and add function documentation:
 
           * x_gtksheet_reveal_columns
           * on_move

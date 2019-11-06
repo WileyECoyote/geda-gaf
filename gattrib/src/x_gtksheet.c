@@ -549,19 +549,19 @@ static void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
   GObject *SheetObj;
   SheetObj = G_OBJECT(sheet);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event", on_mouse_button_press, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "button-press-event", on_mouse_button_press, NULL);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "activate", on_activate_cell, NULL);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "deactivate", on_deactivate_cell, PageData);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", on_move, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "move-range", on_move, NULL);
 
   return;
 
   GEDA_SIGNAL_CONNECT(SheetObj, "changed", on_change, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "resize_range", on_resize, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "resize-range", on_resize, NULL);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "traverse", on_traverse, NULL);
 }
