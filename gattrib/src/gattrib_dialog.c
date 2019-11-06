@@ -51,7 +51,9 @@ GtkWidget *create_pixmap (const char *filename)
   }
 
   pixmap = gtk_image_new_from_file (pathname);
+
   GEDA_FREE (pathname);
+
   return pixmap;
 }
 
