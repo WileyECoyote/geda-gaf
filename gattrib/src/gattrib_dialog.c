@@ -86,9 +86,9 @@ GtkWidget *get_geda_switch_image (bool WhichState)
  *  This function creates a Check Box widget using an image, the checkbox
  *  indicator is disabled so only the images is displayed. This creates a
  *  control similar to a GTK3 Switch, using standard GTK2 controls. The
- *  On or Off images is controlled by the istate variable.
+ *  On or Off images is controlled by the istate parameter.
  *
- * \returns: Newly created switch widget
+ * \returns Newly created switch widget
  */
 GtkWidget*
 create_geda_switch(GtkWidget *parent, GtkWidget *widget,
