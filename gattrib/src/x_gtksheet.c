@@ -427,9 +427,10 @@ static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
                                     new_range->rowi, new_range->coli);
 }
 
-/*! \brief Callback on sheet Move
- *  \par Function Description
- *  This function is not used.
+/*!
+ * \brief Callback on sheet Move
+ * \par Function Description
+ *  This function is called when the selection square is dragged.
  */
 static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
                     GtkSheetRange *new_range, void *data)
@@ -554,14 +555,13 @@ static void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 
   GEDA_SIGNAL_CONNECT(SheetObj, "deactivate", on_deactivate_cell, PageData);
 
+  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", on_move, NULL);
 
   return;
 
   GEDA_SIGNAL_CONNECT(SheetObj, "changed", on_change, NULL);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "resize_range", on_resize, NULL);
-
-  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", on_move, NULL);
 
   GEDA_SIGNAL_CONNECT(SheetObj, "traverse", on_traverse, NULL);
 }
