@@ -894,15 +894,18 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
   int char_width;
 
   /* Leave if no items to add are available */
-  if ((count == 0) || (list_head == NULL))
+  if ((count == 0) || (list_head == NULL))  {
     return;
+  }
 
   style =  gtk_widget_get_style((GtkWidget*)sheet);
 
-  if (style->private_font)
+  if (style->private_font) {
     char_width = gdk_char_width (style->private_font, (char)'X');
-  else
+  }
+  else {
     char_width = DEFAULT_FONT_WIDTH;
+  }
 
   string_list_item = list_head;
 
