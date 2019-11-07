@@ -1,3 +1,7 @@
+2019-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Remove unused second argument from create_geda_switch.
+
 2019-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Enable on_move callback, change underscores to hyphens in
@@ -6,7 +10,7 @@
           * x_gtksheet_reveal_columns
           * on_move
 
-    * src/gtksheet/gtksheet.c: Fix BUG in gtksheet; old_range always -1 when
+  ** src/gtksheet/gtksheet.c: Fix BUG in gtksheet; old_range always -1 when
       "move-range" signal emitted, set old_range before unselecting old_range.
 
 2019-11-05 Wiley E. Hill <wileyhill@gmail.com>

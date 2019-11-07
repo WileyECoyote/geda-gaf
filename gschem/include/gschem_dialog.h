@@ -129,8 +129,7 @@ const char *gschem_dialog_get_title       (GschemDialog *dialog);
 void        gschem_dialog_set_title       (GschemDialog *dialog, const char*title);
 
 /* Prototypes for Dialogs */
-GtkWidget* create_geda_switch             (GtkWidget *parent,
-                                           GtkWidget *widget, GtkWidget *SwitchImage, int istate);
+GtkWidget* create_geda_switch             (GtkWidget *parent, GtkWidget *SwitchImage, int istate);
 GtkWidget* get_geda_switch_image          (int WhichState);
 
 #endif /* __GSCHEM_DIALOG_H__ */

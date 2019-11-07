@@ -91,10 +91,12 @@ GtkWidget *get_geda_switch_image (bool WhichState)
  * \returns Newly created switch widget
  */
 GtkWidget*
-create_geda_switch(GtkWidget *parent, GtkWidget *widget,
-                   GtkWidget *SwitchImage, bool istate)
+create_geda_switch(GtkWidget *parent, GtkWidget *SwitchImage, bool istate)
 {
+  GtkWidget *widget;
+
   widget = gtk_check_button_new ();
+
   gtk_widget_show (widget);
   geda_container_add (parent, widget);
   gtk_widget_set_size_request (widget, -1, 30);

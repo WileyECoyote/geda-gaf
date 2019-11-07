@@ -1,21 +1,17 @@
+2019-11-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_dialog.c: Remove unused second argument from create_geda_switch.
+
 2019-11-02 Wiley E. Hill <wileyhill@gmail.com
 
     * po/el.po: Update Greek translations.
-
     * po/en_GB.po: Update Great Britain.
-
     * po/es.po: Update Spanish translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/fr.po: Update French translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
 
 2019-10-26 Wiley E. Hill <wileyhill@gmail.com
