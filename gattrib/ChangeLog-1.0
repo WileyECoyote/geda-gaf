@@ -2,6 +2,8 @@
 
     * src/gattrib_dialog.c: Remove unused second argument from create_geda_switch.
 
+    * src/s_table.c: Update s_table_add_items_to_comp_table documentation.
+
 2019-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_gtksheet.c: Enable on_move callback, change underscores to hyphens in

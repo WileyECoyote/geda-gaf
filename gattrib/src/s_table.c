@@ -280,11 +280,11 @@ STRING_LIST *s_table_create_attrib_pair(char        *row_name,
 /*!
  * \brief Add components to the component table
  * \par Function Description
-*  This fcn iterates over adds all objects found on this page looking
-*  for components. When it finds a component, it finds all component
-*  attribs and sticks them in the TABLE.
+*  This fcn iterates over a list of objects looking for components.
+*  When a component is found, all attributes of the commponent are
+*  added in the TABLE.
 *
-* \param obj_list pointer to GList containing objects on this page
+* \param obj_list pointer to GList containing objects
 */
 void s_table_add_items_to_comp_table (const GList *obj_list) {
 
