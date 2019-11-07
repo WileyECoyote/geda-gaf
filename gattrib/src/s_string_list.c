@@ -37,9 +37,11 @@
 #include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
-/*! \brief Return a pointer to a new STRING_LIST
+/*!
+ * \brief Return a pointer to a new STRING_LIST
+ * \par Function Description
+ *  Returns a pointer to a new STRING_LIST struct. This list is empty.
  *
- * Returns a pointer to a new STRING_LIST struct. This list is empty.
  * \returns pointer to the new STRING_LIST struct.
  */
 STRING_LIST *s_string_list_new() {
@@ -86,11 +88,14 @@ void s_string_list_free(STRING_LIST *strlist)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Duplicate a STRING_LIST
+/*!
+ * \brief Duplicate a STRING_LIST
+ * \par Function Description
+ *  Given a STRING_LIST, duplicate it and returns a pointer
+ *  to the new, duplicate list.
  *
- * Given a STRING_LIST, duplicate it and returns a pointer
- * to the new, duplicate list.
  * \param old_string_list pointer to the STRING_LIST to be duplicated
+ *
  * \returns a pointer to the duplicate STRING_LIST
  */
 STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
@@ -123,10 +128,11 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add an item to a STRING_LIST
- *
- * This function adds \a item into a STRING_LIST, after iterating
- * through the list to make sure that there are no duplications.
+/*!
+ * \brief Add an item to a STRING_LIST
+ * \par Function Description
+ *  This function adds \a item into a STRING_LIST, after iterating
+ *  through the list to make sure that there are no duplications.
  *
  * \param [in,out] list  pointer to STRING_LIST to be added to.
  * \param [in,out] count total count on input, is updated if \a item added
@@ -186,9 +192,11 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Delete an item from a STRING_LIST
+/*!
+ * \brief Delete an item from a STRING_LIST
+ * \par Function Description
+ *  Deletes an item in a STRING_LIST.
  *
- * Deletes an item in a STRING_LIST.
  * \param list pointer to STRING_LIST
  * \param count pointer to count of items in list
  * \param item item to remove from list
@@ -286,10 +294,11 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Insert item into STRING_LIST
- *
- * Inserts a new string into a STRING_LIST. The string is not check
- * for dupilcation, caller should use s_string_list_in_list first
+/*!
+ * \brief Insert item into STRING_LIST
+ * \par Function Description
+ *  Inserts a new string into a STRING_LIST. The string is not check
+ *  for dupilcation, caller should use s_string_list_in_list first
  *
  * \param list      pointer to STRING_LIST to be added to.
  * \param old_count pointer to integer with total count to be updated
@@ -333,12 +342,14 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Detect item in list
- *
- * Look for item in the list.
+/*!
+ * \brief Detect item in list
+ * \par Function Description
+ *  Look for item in the list.
  *
  * \param list pointer to the STRING_LIST struct
  * \param item string to search for
+ *
  * \returns 0 if absent, 1 if present
  */
 int s_string_list_in_list(STRING_LIST *list, char *item)
@@ -368,13 +379,15 @@ int s_string_list_in_list(STRING_LIST *list, char *item)
 
 
 /*------------------------------------------------------------------*/
-/*! \brief Get an item from a STRING_LIST by index
+/*!
+ * \brief Get an item from a STRING_LIST by index
+ * \par Function Description
+ *  Returns the index'th item in the string list.
  *
- * Returns the index'th item in the string list.
  * \param list pointer to STRING_LIST to get from
  * \param index index of item to return
- * \returns NULL if there is a problem otherwise a pointer to
- *          the string.
+ *
+ * \returns NULL if there is a problem otherwise a pointer to the string.
  */
 char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 {
@@ -397,14 +410,14 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 
 /*------------------------------------------------------------------*/
 
-/*! \brief Sort the master component list
+/*!
+ * \brief Sort the master component list
+ * \par Function Description
+ *  Takes the master comp list sheet_head->master_comp_list_head
+ *  and sorts the list by putting the reference designators (refdes)
+ *  in alphabetical order.
  *
- *  \par Function Description
- * Takes the master comp list sheet_head->master_comp_list_head
- * and sorts the list by putting the reference designators (refdes)
- * in alphabetical order.
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  *
  */
 void s_string_list_sort_master_comp_list() {
@@ -469,15 +482,13 @@ static struct {
 #define DEFAULT_ATTRIB_POS 100
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master component attribute list
+/*!
+ * \brief Sort the master component attribute list
+ * \par Function Description
+ *  Take the master comp attrib list sheet_head->master_comp_attrib_list_head
+ *  and sort it in this order: all refdeses in alphabetical order.
  *
- * Take the master comp attrib list
- * sheet_head->master_comp_attrib_list_head
- * and sort it in this order:
- *
- * all refdeses in alphabetical order
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_comp_attrib_list() {
 
@@ -526,10 +537,11 @@ void s_string_list_sort_master_comp_attrib_list() {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master netlist
- *
- * This fcn takes the master net list sheet_head->master_net_list_head
- * and sorts the list by putting all nets in alphabetical order
+/*!
+ * \brief Sort the master netlist
+ * \par Function Description
+ *  This fcn takes the master net list sheet_head->master_net_list_head
+ *  and sorts the list by putting all nets in alphabetical order
  */
 void s_string_list_sort_master_net_list() {
   int i = 0;
@@ -550,13 +562,12 @@ void s_string_list_sort_master_net_list() {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master net attribute list
- *
- * Take the master net attribute list
- * sheet_head->master_net_attrib_list_head
- * and sort it in this order:
- * value, footprint, model-name, file,
- * all other attributes in alphabetical order
+/*!
+ * \brief Sort the master net attribute list
+ * \par Function Description
+ *  Take the master net attribute list sheet_head->master_net_attrib_list_head
+ *  and sort it in this order: value, footprint, model-name, file, all other
+ *  attributes in alphabetical order
  */
 void s_string_list_sort_master_net_attrib_list() {
   int i = 0;
@@ -576,15 +587,13 @@ void s_string_list_sort_master_net_attrib_list() {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master pin list
+/*!
+ * \brief Sort the master pin list
+ * \par Function Description
+ *  Take the master pin list sheet_head->master_pin_list_head and
+ *  sorts it in this order: all refdeses in alphabetical order.
  *
- * Take the master pin list
- * sheet_head->master_pin_list_head
- * and sorts it in this order:
- *
- * all refdeses in alphabetical order
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_pin_list()
 {
@@ -631,15 +640,13 @@ void s_string_list_sort_master_pin_list()
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master pin attribute list
+/*!
+ * \brief Sort the master pin attribute list
+ * \par Function Description
+ *  Takes the master pin attrib list sheet_head->master_pin_attrib_list_head
+ *  and sorts it in this order: all pin attribs in alphabetical order.
  *
- * Takes the master pin attrib list
- * sheet_head->master_pin_attrib_list_head
- * and sorts it in this order:
- *
- * all pin attribs in alphabetical order
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_pin_attrib_list() {
 

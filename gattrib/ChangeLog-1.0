@@ -2,6 +2,8 @@
 
     * src/gattrib_dialog.c: Remove unused second argument from create_geda_switch.
 
+    * src/s_string_list.c: Reformat function documentation.
+
     * src/s_table.c: Update s_table_add_items_to_comp_table documentation.
 
     * src/x_gtksheet.c: Update x_gtksheet_add_col_labels documentation.
