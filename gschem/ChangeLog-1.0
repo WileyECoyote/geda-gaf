@@ -1,5 +1,8 @@
 2019-11-07 Wiley E. Hill <wileyhill@gmail.com
 
+    * src/iface/i_command.c: Revise i_command_map_icon to not bother checking
+      for "buffer" strings if the command is already found.
+
     * src/x/x_dialog.c: Remove unused second argument from create_geda_switch.
 
     * src/x/x_edit_pin.c: Update create_geda_switch arguments.

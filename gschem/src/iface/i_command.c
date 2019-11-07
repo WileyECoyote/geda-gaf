@@ -389,15 +389,17 @@ bool i_command_map_icon  (const char *command, const char *icon)
     }
   }
 
-  /* Hack for buffer */
-  if (strstr(command, "buffer-copy") != 0) {
-    result = TRUE;
-  }
-  else if (strstr(command, "buffer-cut") != 0) {
-    result = TRUE;
-  }
-  else if (strstr(command, "buffer-paste") != 0) {
-    result = TRUE;
+  if (!result){
+    /* Hack for buffer */
+    if (strstr(command, "buffer-copy") != 0) {
+      result = TRUE;
+    }
+    else if (strstr(command, "buffer-cut") != 0) {
+      result = TRUE;
+    }
+    else if (strstr(command, "buffer-paste") != 0) {
+      result = TRUE;
+    }
   }
 
   return result;
