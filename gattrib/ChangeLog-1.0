@@ -2,7 +2,8 @@
 
     * src/gattrib_dialog.c: Remove unused second argument from create_geda_switch.
 
-    * src/s_string_list.c: Reformat function documentation.
+    * src/s_string_list.c: Reformat function documentation, add todo documentation
+      template for s_string_list_sort_all_list.
 
     * src/s_table.c: Update s_table_add_items_to_comp_table documentation.
 

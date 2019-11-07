@@ -672,6 +672,10 @@ void s_string_list_sort_master_pin_attrib_list() {
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void s_string_list_sort_all_list() {
    /* ---------- Sort the master lists  ---------- */
   s_string_list_sort_master_comp_list();
