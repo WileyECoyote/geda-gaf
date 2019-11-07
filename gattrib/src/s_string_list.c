@@ -401,7 +401,7 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
  *
  *  \par Function Description
  * Takes the master comp list sheet_head->master_comp_list_head
- * and sorts the list by putting the refrence desiginators (refdes)
+ * and sorts the list by putting the reference designators (refdes)
  * in alphabetical order.
  *
  * Right now it does nothing other than fill in the "position".
