@@ -2,6 +2,8 @@
 
     * src/x/x_dialog.c: Remove unused second argument from create_geda_switch.
 
+    * src/x/x_edit_pin.c: Update create_geda_switch arguments.
+
 2019-11-02 Wiley E. Hill <wileyhill@gmail.com
 
     * po/el.po: Update Greek translations.

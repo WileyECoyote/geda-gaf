@@ -910,7 +910,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
 
   gtk_table_attach(table, label, 1, 2, 1, 2, GTK_FILL, 0, 0, 0);
 
-  SetPinNodeTypeSwitch = create_geda_switch (switch_hbox, SetPinNodeTypeSwitch,  SwitchImage, FALSE);
+  SetPinNodeTypeSwitch = create_geda_switch (switch_hbox, SwitchImage, FALSE);
 
   gtk_table_attach(table, switch_hbox, 2, 3, 1, 2, GTK_SHRINK, 0, 0, 0);
 
@@ -926,7 +926,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   geda_label_widget_set_justify (label, GTK_JUSTIFY_RIGHT);
   gtk_table_attach(table, label, 1,2,3,4, GTK_SHRINK,0,0,0);
 
-  AutoNumberSwitch = create_geda_switch (switch_hbox, AutoNumberSwitch,  SwitchImage, FALSE);
+  AutoNumberSwitch = create_geda_switch (switch_hbox, SwitchImage, FALSE);
 
   gtk_table_attach(table, switch_hbox, 2, 3, 3, 4, GTK_SHRINK, 0, 0, 0);
 
