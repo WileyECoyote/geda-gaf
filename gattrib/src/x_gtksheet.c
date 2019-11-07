@@ -876,8 +876,9 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_hea
 /*!
  * \brief Add column labels to GtkSheet
  * \par Function Description
- *  This function adds column labels to GtkSheet. The width of the
- *  columns is increased based on the data.
+ *  This function adds column labels to a GtkSheet and hides the column
+ *  if the label text is found in hide_columns. The width of the columns
+ *  is increased based on the data.
  *
  * \param sheet GtkSheet to add columns to
  * \param count
