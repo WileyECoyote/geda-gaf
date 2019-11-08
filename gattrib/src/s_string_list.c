@@ -462,6 +462,7 @@ void s_string_list_sort_master_comp_list() {
       sheet_head->master_comp_list_head = local_list;
     }
   }
+
   return;
 }
 
@@ -511,7 +512,6 @@ void s_string_list_sort_master_comp_attrib_list() {
       if (iter->data != NULL) {
 
         if (strcmp (certain_attribs[i].attrib, iter->data) == 0) {
-
           iter->pos = certain_attribs[i].pos;
           break;
         }
@@ -678,6 +678,7 @@ void s_string_list_sort_master_pin_attrib_list() {
  *  \par Function Description
  */
 void s_string_list_sort_all_list() {
+
    /* ---------- Sort the master lists  ---------- */
   s_string_list_sort_master_comp_list();
   s_string_list_sort_master_comp_attrib_list();
