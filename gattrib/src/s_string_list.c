@@ -418,7 +418,6 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
  *  in alphabetical order.
  *
  *  Right now it does nothing other than fill in the "position".
- *
  */
 void s_string_list_sort_master_comp_list() {
 
