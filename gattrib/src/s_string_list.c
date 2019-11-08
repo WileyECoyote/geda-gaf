@@ -424,13 +424,14 @@ void s_string_list_sort_master_comp_list() {
 
   STRING_LIST *local_list, *iter;
 
-  /* Sort the list */
+  /* Retrieve the list */
   local_list = sheet_head->master_comp_list_head;
 
   for (iter = local_list; iter; iter = iter->next) {
     iter->pos = 0;
   }
 
+  /* Sort the list */
   local_list = listsort(local_list, 0, 1);
 
   if (local_list) {
