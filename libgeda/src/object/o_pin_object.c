@@ -36,7 +36,7 @@
  */
 
 /*!
- * \brief create a new pin object
+ * \brief Create a new pin object
  * \par Function Description
  *  This function creates and returns a new pin object.
  *
