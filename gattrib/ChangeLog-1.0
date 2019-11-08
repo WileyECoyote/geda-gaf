@@ -1,3 +1,7 @@
+2019-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Remove function s_object_add_net_attrib_to_object.
+
 2019-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib_dialog.c: Remove unused second argument from create_geda_switch.

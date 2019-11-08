@@ -50,10 +50,6 @@ void s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
                                          char *new_attrib_value,
                                          int visibility,
                                          int show_name_value);
-void s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                        GedaObject *o_current,
-                                        char *new_attrib_name,
-                                        char *new_attrib_value);
 void s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
                                         GedaObject *o_current,
                                         char *new_attrib_name,

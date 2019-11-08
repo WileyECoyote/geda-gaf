@@ -83,20 +83,6 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- */
-void
-s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                   GedaObject   *o_current,
-                                   char         *new_attrib_name,
-                                   char         *new_attrib_value)
-{
-  /* TBD */
-}
-
-/*------------------------------------------------------------------*/
 /*!
  * \brief Add a new attribute to an pin Object
  * \par Function Description
