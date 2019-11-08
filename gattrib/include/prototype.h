@@ -44,12 +44,12 @@ int   s_attrib_name_in_list(STRING_LIST *name_value_list, char *name);
 char *s_attrib_get_refdes(GedaObject *object);
 
 /* ------------- s_object.c ------------- */
-void s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                         GedaObject *o_current,
-                                         char *new_attrib_name,
-                                         char *new_attrib_value,
-                                         int visibility,
-                                         int show_name_value);
+void s_object_add_attrib_to_object (GedaToplevel *toplevel,
+                                    GedaObject *o_current,
+                                    char *new_attrib_name,
+                                    char *new_attrib_value,
+                                    int visibility,
+                                    int show_name_value);
 void s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
                                         GedaObject *o_current,
                                         char *new_attrib_name,

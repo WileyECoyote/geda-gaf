@@ -767,12 +767,12 @@ s_toplevel_update_component_attribs_in_toplevel (
       __func__, new_attrib_name, new_attrib_value);
 #endif
 
-      s_object_add_comp_attrib_to_object (toplevel,
-                                          o_current,
-                                          new_attrib_name,
-                                          new_attrib_value,
-                                          visibility,
-                                          show_name_value);
+      s_object_add_attrib_to_object (toplevel,
+                                     o_current,
+                                     new_attrib_name,
+                                     new_attrib_value,
+                                     visibility,
+                                     show_name_value);
 
       /* -------  Four cases to consider: Case 4 ----- */
     }

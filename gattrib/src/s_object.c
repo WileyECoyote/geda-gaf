@@ -57,12 +57,12 @@
  * \param show_name_value  Control visibility of name and value.
  */
 void
-s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                    GedaObject   *o_current,
-                                    char         *new_attrib_name,
-                                    char         *new_attrib_value,
-                                    int           visibility,
-                                    int           show_name_value)
+s_object_add_attrib_to_object (GedaToplevel *toplevel,
+                               GedaObject   *o_current,
+                               char         *new_attrib_name,
+                               char         *new_attrib_value,
+                               int           visibility,
+                               int           show_name_value)
 {
   /* One last sanity check, then add attrib */
   if (strlen(new_attrib_value) != 0) {
