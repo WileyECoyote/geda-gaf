@@ -224,6 +224,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *SwitchImage, bool istate)
   gtk_widget_set_name (widget, "GedaToggleSwitch");
 
   SwitchImage = get_geda_switch_image (istate);
+
   gtk_widget_show (SwitchImage);
   geda_container_add (widget, SwitchImage);
 
