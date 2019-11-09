@@ -6295,21 +6295,19 @@ msgstr "ഉൾച്ചേർത്ത ഇമേജ് കയറ്റുമത�
 msgid "_File/_Export"
 msgstr ""
 
-# Symbol
+# Symbols; cihnaṅṅaḷ
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "ചിഹ്നം"
+msgstr "ചിഹ്നങ്ങൾ"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
 msgid "_Open Editor"
 msgstr ""
 
-# Edit Text
+# Edit design rules; ḍisain niyamaṅṅaḷ eḍiṟṟuceyyuka
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "ടെക്സ്റ്റ് എഡിറ്റ്..."
+msgstr "ഡിസൈൻ നിയമങ്ങൾ എഡിറ്റുചെയ്യുക"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6319,11 +6317,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Edition
+# Version Control; patipp niyantraṇaṁ
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "പതിപ്പ്"
+msgstr "പതിപ്പ് നിയന്ത്രണം"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"

@@ -1,3 +1,7 @@
+2019-11-08 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/ml.po: Updated Malayalam translations.
+
 2019-11-07 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_command.c: Revise i_command_map_icon to not bother checking
