@@ -3544,14 +3544,11 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-# Здесь я написал "Не удалось выделить цвет" вместо "назначить", так
-# как речь идёт о резервировании поля в colormap.
-# %s разместил по-другому, потому что будет выдаваться, например, "чёрный
-# цвет".
+# Could not allocate memory resources
+# Ne udalos' vydelit' resursy pamyati
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Не может выделить в контексте графической подсистемы"
+msgstr "Не удалось выделить ресурсы памяти"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6479,22 +6476,20 @@ msgstr "Экспорт встроенного изображения"
 msgid "_File/_Export"
 msgstr "Файл/Экспорт"
 
-# Symbol
+# Symbol; Simvoly
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "Символ"
+msgstr "Символы"
 
-# Open Attributes Editor
+# Open Editor; Otkrytyy redaktor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Открыть редактор атрибутов"
+msgstr "Открытый редактор"
 
+# Edit design rules; Izmenit' pravila dizayna
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Правка текста..."
+msgstr "Изменить правила дизайна..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6504,20 +6499,19 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# version
+# Version Control; Kontrol' versiy
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Версия"
+msgstr "Контроль версий"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
+# node list; spisok uzlov
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "Документация gEDA"
+msgstr "список узлов gEDA"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6531,11 +6525,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# Hierarchy Verilog; Iyerarkhiya Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Ошибка иерархии"
+msgstr "Иерархия Верилог"
 
 # Tools/Symbols; Instrumenty/Simvoly
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
@@ -6555,7 +6548,3 @@ msgstr "Недопустимая комбинация клавиш ~S."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S не является префиксом клавишной последовательности."
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Вход неверный атрибут"
