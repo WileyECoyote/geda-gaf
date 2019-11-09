@@ -3363,24 +3363,29 @@ msgstr "寬度 x 高度"
 msgid "Image type"
 msgstr "圖片格式"
 
+# Enable to use the Print color map instead of the display color map
+# Qǐyòng yǐ shǐyòng “dǎyìn” yánsè tú dàitì “xiǎnshì” yánsè tú
 #: gschem/src/x/x_image.c:845
 msgid "Enable to use the Print color map instead of the display color map"
-msgstr ""
+msgstr "啟用以使用“打印”顏色圖代替“顯示”顏色圖"
 
+# When enabled for reversed color images, only black and white will be reversed
+# Dāng qǐyòng fǎn zhuǎn cǎisè túxiàng shí, jǐn hēibái fǎn zhuǎn
 #: gschem/src/x/x_image.c:848
 msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
-msgstr ""
+msgstr "當啟用反轉彩色圖像時，僅黑白反轉"
 
-# Unable to allocate graphics context
+# Could not allocate memory resources; Wúfǎ fēnpèi nèicún zīyuán
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "無法分配圖形上下文"
+msgstr "無法分配內存資源"
 
+# maybe you should try saving next
+# Yěxǔ nín yīnggāi chángshì xià yībù bǎocún
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
-msgstr ""
+msgstr "也許您應該嘗試下一步保存"
 
 # Activate Select mode
 #: gschem/src/x/x_menus.c:90 gschem/etc/system-gschemrc.scm:2143
@@ -6361,7 +6366,7 @@ msgstr "符號"
 msgid "_Open Editor"
 msgstr "打開編輯器"
 
-# Edit DRC rules; Biānjí DRC guīzé
+# Edit design rules; Biānjí DRC guīzé
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
 msgstr "編輯DRC規則..."

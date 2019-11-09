@@ -14,6 +14,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2019-11-07 Wiley E. Hill <wileyhill@gmail.com
 
     * src/iface/i_command.c: Revise i_command_map_icon to not bother checking
