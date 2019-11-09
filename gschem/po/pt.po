@@ -3447,10 +3447,10 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Não foi possível reservar memoria para a contexto de gráficos"
+msgstr "Não foi possível alocar recursos de memória"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6389,21 +6389,18 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "_Símbolo"
+msgstr "_Símbolos"
 
-# Open Attributes Editor
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Abra o Editor de Atributos"
+msgstr "Editor aberto"
 
-# Edit Text
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Editar Texto..."
+msgstr "Editar regras de design..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6413,20 +6410,18 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Versão"
+msgstr "Controle de versão"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
 msgstr ""
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
-#, fuzzy
 msgid "gEDA netlist"
-msgstr "Manuais gEDA"
+msgstr "netlist gEDA"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6440,11 +6435,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# Hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Erro Hierarquia"
+msgstr "Hierarquia Verilog"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
