@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-10-26 19:19-0500\n"
+"POT-Creation-Date: 2019-11-09 11:45-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -44,12 +44,12 @@ msgid "Exported schematic to"
 msgstr "Şunlara gönderilen şema:"
 
 # Could not load geometry from file
-#: gattrib/src/gattrib_dialog.c:226
+#: gattrib/src/gattrib_dialog.c:232
 msgid "Could not load geometry from file"
 msgstr "Geometri dosyadan yüklenemedi"
 
 # error creating file
-#: gattrib/src/gattrib_dialog.c:233
+#: gattrib/src/gattrib_dialog.c:239
 msgid "error creating file"
 msgstr "dosya oluştururken hata oluştu"
 
@@ -120,11 +120,11 @@ msgstr ""
 msgid "DONE"
 msgstr ""
 
-#: gattrib/src/s_object.c:223
+#: gattrib/src/s_object.c:207
 msgid "failed to find attribute"
 msgstr ""
 
-#: gattrib/src/s_object.c:224
+#: gattrib/src/s_object.c:208
 msgid "Exiting..."
 msgstr ""
 
@@ -176,15 +176,15 @@ msgstr "pin numarası olmadan bileşen pimi bulundu"
 msgid "Creating master pin attribute list"
 msgstr "Ana pin öznitelik listesi oluşturma"
 
-#: gattrib/src/s_string_list.c:142
+#: gattrib/src/s_string_list.c:148
 msgid "attempted to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:205
+#: gattrib/src/s_string_list.c:213
 msgid "attempted to remove item from an empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:283
+#: gattrib/src/s_string_list.c:291
 msgid "could not delete item"
 msgstr ""
 
@@ -233,35 +233,35 @@ msgstr ""
 msgid "did not find refdes:pin"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:114
+#: gattrib/src/x_dialog.c:115
 msgid "Add new attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:125
+#: gattrib/src/x_dialog.c:128
 msgid "Enter new attribute name"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:226
+#: gattrib/src/x_dialog.c:229
 msgid "Column Visibility"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:274
+#: gattrib/src/x_dialog.c:277
 msgid "Visible"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:295
+#: gattrib/src/x_dialog.c:298
 msgid "Column"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:379
+#: gattrib/src/x_dialog.c:382
 msgid "Are you sure you want to delete this attribute?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:381
+#: gattrib/src/x_dialog.c:384
 msgid "Delete attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:407
+#: gattrib/src/x_dialog.c:410
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -272,23 +272,23 @@ msgid ""
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:420
+#: gattrib/src/x_dialog.c:423
 msgid "Missing symbol file found for component!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:450
+#: gattrib/src/x_dialog.c:453
 msgid "Save the changes before closing?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:453
+#: gattrib/src/x_dialog.c:456
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:469
+#: gattrib/src/x_dialog.c:472
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:524
+#: gattrib/src/x_dialog.c:530
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -302,15 +302,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:532
+#: gattrib/src/x_dialog.c:538
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:559
+#: gattrib/src/x_dialog.c:565
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:575
+#: gattrib/src/x_dialog.c:581
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -324,92 +324,92 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:585
+#: gattrib/src/x_dialog.c:591
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:603 gattrib/src/x_menus.c:392
+#: gattrib/src/x_dialog.c:609 gattrib/src/x_menus.c:390
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:651 gattrib/src/x_dialog.c:1110
-#: gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_dialog.c:657 gattrib/src/x_dialog.c:1116
+#: gattrib/src/x_toolbars.c:40
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:682
+#: gattrib/src/x_dialog.c:688
 msgid "Enter"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:741
+#: gattrib/src/x_dialog.c:747
 msgid "Search for:"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:741
+#: gattrib/src/x_dialog.c:747
 msgid "Enter or select the text to find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:742
+#: gattrib/src/x_dialog.c:748
 msgid "Replace with:"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:742
+#: gattrib/src/x_dialog.c:748
 msgid "Enter or select the replacement text"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:745
+#: gattrib/src/x_dialog.c:751
 msgid "Ignore Case"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:745
+#: gattrib/src/x_dialog.c:751
 msgid "Set search case sensitivity"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:746
+#: gattrib/src/x_dialog.c:752
 msgid "Match Words"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:746
+#: gattrib/src/x_dialog.c:752
 msgid "Limit Search hits to entire work"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:747
+#: gattrib/src/x_dialog.c:753
 msgid "Search Backward"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:747
+#: gattrib/src/x_dialog.c:753
 msgid "Reverse search direction"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:748
+#: gattrib/src/x_dialog.c:754
 msgid "Wrap Around"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:748
+#: gattrib/src/x_dialog.c:754
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1086
+#: gattrib/src/x_dialog.c:1092
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1088
+#: gattrib/src/x_dialog.c:1094
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1097
+#: gattrib/src/x_dialog.c:1103
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1099 gattrib/src/x_toolbars.c:40
+#: gattrib/src/x_dialog.c:1105 gattrib/src/x_toolbars.c:41
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1108
+#: gattrib/src/x_dialog.c:1114
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1115
+#: gattrib/src/x_dialog.c:1121
 msgid "Find next"
 msgstr ""
 
@@ -468,386 +468,396 @@ msgstr "Özniteliği Sil"
 msgid "Clear Attribute Data"
 msgstr "Öznitelik Verilerini Temizle"
 
-#: gattrib/src/x_gtksheet.c:682
+#: gattrib/src/x_gtksheet.c:712
 msgid "Components"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:682
+#: gattrib/src/x_gtksheet.c:712
 msgid "Nets"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:682
+#: gattrib/src/x_gtksheet.c:712
 msgid "Pins"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:931 gattrib/src/x_gtksheet.c:971
+#: gattrib/src/x_gtksheet.c:965 gattrib/src/x_gtksheet.c:1005
 msgid "could not allocate color"
 msgstr ""
 
-#: gattrib/src/x_menus.c:388
+#: gattrib/src/x_menus.c:386
 msgid "_File"
 msgstr ""
 
-#: gattrib/src/x_menus.c:389
+#: gattrib/src/x_menus.c:387
 msgid "_Open"
 msgstr ""
 
-#: gattrib/src/x_menus.c:390
+#: gattrib/src/x_menus.c:388
 msgid "_Save"
 msgstr ""
 
-#: gattrib/src/x_menus.c:391
+#: gattrib/src/x_menus.c:389
 msgid "Save _As"
 msgstr ""
 
-#: gattrib/src/x_menus.c:394
+#: gattrib/src/x_menus.c:392
 msgid "Quit"
 msgstr ""
 
-#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:36
+#: gattrib/src/x_menus.c:396 gattrib/src/x_toolbars.c:37
 msgid "Cut"
 msgstr ""
 
-#: gattrib/src/x_menus.c:399 gattrib/src/x_toolbars.c:37
+#: gattrib/src/x_menus.c:397 gattrib/src/x_toolbars.c:38
 msgid "Copy"
 msgstr ""
 
-#: gattrib/src/x_menus.c:400 gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_menus.c:398 gattrib/src/x_toolbars.c:39
 msgid "Paste"
 msgstr ""
 
 # Add new Attribute
-#: gattrib/src/x_menus.c:402
+#: gattrib/src/x_menus.c:400
 msgid "_Add new Attribute"
 msgstr "Yeni Özellik Ekle"
 
 # Delete Attribute
-#: gattrib/src/x_menus.c:403
+#: gattrib/src/x_menus.c:401
 msgid "D_elete Attribute"
 msgstr "Özniteliği Sil"
 
 # Promote Attribute
-#: gattrib/src/x_menus.c:404
+#: gattrib/src/x_menus.c:402
 msgid "_Promote Attribute"
 msgstr "Öznitelik Tanıtma"
 
 # Attach the selected attribute
-#: gattrib/src/x_menus.c:404 gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_menus.c:402 gattrib/src/x_toolbars.c:50
 msgid "Attach the selected attribute"
 msgstr "Seçili özniteliği ekle"
 
 # Demote Attribute
-#: gattrib/src/x_menus.c:405
+#: gattrib/src/x_menus.c:403
 msgid "_Demote Attribute"
 msgstr "Özelliği Done Verme"
 
 # Detach the selected attribute
-#: gattrib/src/x_menus.c:405 gattrib/src/x_toolbars.c:49
+#: gattrib/src/x_menus.c:403 gattrib/src/x_toolbars.c:51
 msgid "Detach the selected attribute"
 msgstr "Seçili özniteliği ayırın"
 
-#: gattrib/src/x_menus.c:407
+#: gattrib/src/x_menus.c:405
 msgid "Find Value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:407
+#: gattrib/src/x_menus.c:405
 msgid "Find attribute value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:408
+#: gattrib/src/x_menus.c:406
 msgid "Replace value"
 msgstr ""
 
-#: gattrib/src/x_menus.c:408
+#: gattrib/src/x_menus.c:406
 msgid "Search and Replace Attribute value"
 msgstr ""
 
 # Locate Attribute
-#: gattrib/src/x_menus.c:409
+#: gattrib/src/x_menus.c:407
 msgid "Locate Attribute"
 msgstr "Özniteliği Bul"
 
 # Search for an attribute
-#: gattrib/src/x_menus.c:409
+#: gattrib/src/x_menus.c:407
 msgid "Search for an attribute"
 msgstr "Search for an attribute"
 
-#: gattrib/src/x_menus.c:410
+#: gattrib/src/x_menus.c:408
 msgid "Locate Reference"
 msgstr ""
 
-#: gattrib/src/x_menus.c:410
+#: gattrib/src/x_menus.c:408
 msgid "Search for reference designator"
 msgstr ""
 
-#: gattrib/src/x_menus.c:413
+#: gattrib/src/x_menus.c:411
 msgid "_View"
 msgstr ""
 
-#: gattrib/src/x_menus.c:414
+#: gattrib/src/x_menus.c:412
 msgid "_Toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:415
+#: gattrib/src/x_menus.c:413
 msgid "_Icons"
 msgstr ""
 
-#: gattrib/src/x_menus.c:415
+#: gattrib/src/x_menus.c:413
 msgid "Display Icons on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:416
+#: gattrib/src/x_menus.c:414
 msgid "_Text"
 msgstr ""
 
-#: gattrib/src/x_menus.c:416
+#: gattrib/src/x_menus.c:414
 msgid "Display Text on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:417
+#: gattrib/src/x_menus.c:415
 msgid "_Both"
 msgstr ""
 
-#: gattrib/src/x_menus.c:417
+#: gattrib/src/x_menus.c:415
 msgid "Display Icons and Text on the toolbar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:420
+#: gattrib/src/x_menus.c:418
 msgid "_Visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:421 gattrib/src/x_toolbars.c:45
+#: gattrib/src/x_menus.c:419 gattrib/src/x_toolbars.c:46
 msgid "Set selected invisible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:422 gattrib/src/x_toolbars.c:46
+#: gattrib/src/x_menus.c:420 gattrib/src/x_toolbars.c:47
 msgid "Set selected visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:423 gattrib/src/x_toolbars.c:50
+#: gattrib/src/x_menus.c:421 gattrib/src/x_toolbars.c:52
 msgid "Set selected name visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:424 gattrib/src/x_toolbars.c:51
+#: gattrib/src/x_menus.c:422 gattrib/src/x_toolbars.c:53
 msgid "Set selected value visible only"
 msgstr ""
 
-#: gattrib/src/x_menus.c:425 gattrib/src/x_toolbars.c:52
+#: gattrib/src/x_menus.c:423 gattrib/src/x_toolbars.c:54
 msgid "Set selected name and value visible"
 msgstr ""
 
-#: gattrib/src/x_menus.c:427
+#: gattrib/src/x_menus.c:425
 msgid "_Window"
 msgstr ""
 
-#: gattrib/src/x_menus.c:429
+#: gattrib/src/x_menus.c:427
 msgid "_Help"
 msgstr ""
 
 # Gattrib Guide
-#: gattrib/src/x_menus.c:430
+#: gattrib/src/x_menus.c:428
 msgid "Gattrib Guide"
 msgstr "Gattrib Uçak Bileti"
 
-#: gattrib/src/x_menus.c:431
+#: gattrib/src/x_menus.c:429
 msgid "Gattrib FAQ"
 msgstr ""
 
-#: gattrib/src/x_menus.c:432
+#: gattrib/src/x_menus.c:430
 msgid "gEDA Docu_mentation..."
 msgstr ""
 
-#: gattrib/src/x_menus.c:433
+#: gattrib/src/x_menus.c:431
 msgid "gEDA _Wiki..."
 msgstr ""
 
 # gEDA Attributes
-#: gattrib/src/x_menus.c:435
+#: gattrib/src/x_menus.c:433
 msgid "gEDA Attributes"
 msgstr "gEDA Özellikleri"
 
-#: gattrib/src/x_menus.c:436
+#: gattrib/src/x_menus.c:434
 msgid "gEDA Glossary"
 msgstr ""
 
-#: gattrib/src/x_menus.c:437
+#: gattrib/src/x_menus.c:435
 msgid "About"
 msgstr ""
 
-#: gattrib/src/x_menus.c:444
+#: gattrib/src/x_menus.c:442
 msgid "_Edit bar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:444
+#: gattrib/src/x_menus.c:442
 msgid "Display the Edit Status bar"
 msgstr ""
 
-#: gattrib/src/x_menus.c:445
+#: gattrib/src/x_menus.c:443
 msgid "_Standard"
 msgstr ""
 
-#: gattrib/src/x_menus.c:445
+#: gattrib/src/x_menus.c:443
 msgid "Display Standard Toolbar"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_menus.c:446
+#: gattrib/src/x_menus.c:444
 msgid "A_ttribute"
 msgstr "Nitelikler"
 
 # Display Attribute Toolbar
-#: gattrib/src/x_menus.c:446
+#: gattrib/src/x_menus.c:444
 msgid "Display Attribute Toolbar"
 msgstr "Öznitelik Araç Çubuğunu Göster"
 
-#: gattrib/src/x_menus.c:447
+#: gattrib/src/x_menus.c:445
 msgid "_Attached"
 msgstr ""
 
-#: gattrib/src/x_menus.c:447
+#: gattrib/src/x_menus.c:445
 msgid "Hide or unhide non-attached attributes"
 msgstr ""
 
-#: gattrib/src/x_menus.c:448
+#: gattrib/src/x_menus.c:446
 msgid "_Inherited"
 msgstr ""
 
-#: gattrib/src/x_menus.c:448
+#: gattrib/src/x_menus.c:446
 msgid "Hide or unhide inherited attributes"
 msgstr ""
 
-#: gattrib/src/x_menus.c:450
+#: gattrib/src/x_menus.c:448
 msgid "_Autoresize"
 msgstr ""
 
-#: gattrib/src/x_menus.c:450
+#: gattrib/src/x_menus.c:448
 msgid "Enable/Disable Auto resize columns"
 msgstr ""
 
-#: gattrib/src/x_menus.c:451
+#: gattrib/src/x_menus.c:449
 msgid "Auto_Scroll"
 msgstr ""
 
-#: gattrib/src/x_menus.c:451
+#: gattrib/src/x_menus.c:449
 msgid "Enable/Disable AutoScroll"
 msgstr ""
 
-#: gattrib/src/x_menus.c:452
+#: gattrib/src/x_menus.c:450
 msgid "Show _Grid"
 msgstr ""
 
-#: gattrib/src/x_menus.c:452
+#: gattrib/src/x_menus.c:450
 msgid "Toggle grid visibility"
 msgstr ""
 
-#: gattrib/src/x_menus.c:579
+#: gattrib/src/x_menus.c:577
 msgid "Open _Recent"
 msgstr ""
 
-#: gattrib/src/x_menus.c:580
+#: gattrib/src/x_menus.c:578
 msgid "Open recently used files"
 msgstr ""
 
-#: gattrib/src/x_menus.c:682
+#: gattrib/src/x_menus.c:680
 msgid "Error loading"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:33
+#: gattrib/src/x_toolbars.c:34
 msgid "Open"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:33
+#: gattrib/src/x_toolbars.c:34
 msgid "Open file"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:34
+#: gattrib/src/x_toolbars.c:35
 msgid "Save"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:34
+#: gattrib/src/x_toolbars.c:35
 msgid "Save file"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:35
+#: gattrib/src/x_toolbars.c:36
 msgid "Save As"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:35
+#: gattrib/src/x_toolbars.c:36
 msgid "Save the file to different name or location"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:36
+#: gattrib/src/x_toolbars.c:37
 msgid "Cut selection to the clipboard"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:37
+#: gattrib/src/x_toolbars.c:38
 msgid "Copy selection to the clipboard"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:38
+#: gattrib/src/x_toolbars.c:39
 msgid "Paste selection from the clipboard"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:39
+#: gattrib/src/x_toolbars.c:40
 msgid "Search for attribute value"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:40
+#: gattrib/src/x_toolbars.c:41
 msgid "Search and Replace attribute value"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_toolbars.c:41
+#: gattrib/src/x_toolbars.c:42
 msgid "Attrib"
 msgstr "nitelik"
 
 # Locate attribute
-#: gattrib/src/x_toolbars.c:41
+#: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
 msgstr "Özniteliği bulun"
 
-#: gattrib/src/x_toolbars.c:42
+#: gattrib/src/x_toolbars.c:43
 msgid "Ref Des"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:42
+#: gattrib/src/x_toolbars.c:43
 msgid "Locate Reference Designator"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:45
+#: gattrib/src/x_toolbars.c:46
 msgid "invisible"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:46
+#: gattrib/src/x_toolbars.c:47
 msgid "visible"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:47
+#: gattrib/src/x_toolbars.c:48
 msgid "add"
 msgstr ""
 
 # Add a new attribute
-#: gattrib/src/x_toolbars.c:47
+#: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
 msgstr "Yeni bir nitelik ekle"
 
-#: gattrib/src/x_toolbars.c:48
+#: gattrib/src/x_toolbars.c:49
+msgid "delete"
+msgstr ""
+
+# Detach the selected attribute
+#: gattrib/src/x_toolbars.c:49
+#, fuzzy
+msgid "Delete selected attribute"
+msgstr "Seçili özniteliği ayırın"
+
+#: gattrib/src/x_toolbars.c:50
 msgid "promote"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:49
+#: gattrib/src/x_toolbars.c:51
 msgid "demote"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:50
+#: gattrib/src/x_toolbars.c:52
 msgid "name"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:51
+#: gattrib/src/x_toolbars.c:53
 msgid "value"
 msgstr ""
 
-#: gattrib/src/x_toolbars.c:52
+#: gattrib/src/x_toolbars.c:54
 msgid "both"
 msgstr ""
 

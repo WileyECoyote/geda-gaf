@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:36-0500\n"
+"POT-Creation-Date: 2019-11-09 11:45-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1131,7 +1131,7 @@ msgid "Found arc with negative radius"
 msgstr "Napotkano koło o zerowym promieniu"
 
 #: libgeda/src/object/o_arc_object.c:1480
-#: libgeda/src/object/o_circle_object.c:1345
+#: libgeda/src/object/o_circle_object.c:1350
 msgid "Setting radius to"
 msgstr "Użyję nachylenia równego"
 
@@ -1140,18 +1140,18 @@ msgid "Found an arc with radius zero"
 msgstr "Napotkano łuk o zerowym promieniu"
 
 #: libgeda/src/object/o_arc_object.c:1487
-#: libgeda/src/object/o_circle_object.c:1352
+#: libgeda/src/object/o_circle_object.c:1357
 msgid "Setting zero radius to 1000\n"
 msgstr "Użyję nachylenia równego 1000\n"
 
 #: libgeda/src/object/o_arc_object.c:1492
 #: libgeda/src/object/o_box_object.c:1586
 #: libgeda/src/object/o_bus_object.c:586
-#: libgeda/src/object/o_circle_object.c:1357
+#: libgeda/src/object/o_circle_object.c:1362
 #: libgeda/src/object/o_line_object.c:1571
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:580
-#: libgeda/src/object/o_pin_object.c:197
+#: libgeda/src/object/o_pin_object.c:202
 #: libgeda/src/object/o_text_object.c:814
 msgid "Found an invalid color"
 msgstr "Napotkano niepoprawny kolor"
@@ -1159,11 +1159,11 @@ msgstr "Napotkano niepoprawny kolor"
 #: libgeda/src/object/o_arc_object.c:1496
 #: libgeda/src/object/o_box_object.c:1590
 #: libgeda/src/object/o_bus_object.c:590
-#: libgeda/src/object/o_circle_object.c:1361
+#: libgeda/src/object/o_circle_object.c:1366
 #: libgeda/src/object/o_line_object.c:1575
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:584
-#: libgeda/src/object/o_pin_object.c:201
+#: libgeda/src/object/o_pin_object.c:206
 #: libgeda/src/object/o_text_object.c:818
 msgid "Setting color to default color\n"
 msgstr "Użyję domyślnego koloru\n"
@@ -1228,22 +1228,22 @@ msgstr "Znaleziono nieprawidłowy kierunkowskaz bus"
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Ustawię kierunek na neutralny (brak kierunku)\n"
 
-#: libgeda/src/object/o_circle_object.c:609
+#: libgeda/src/object/o_circle_object.c:614
 msgid "Null radius circles are not allowed\n"
 msgstr "Koła o zerowym promieniu są niedozwolone\n"
 
-#: libgeda/src/object/o_circle_object.c:1303
-#: libgeda/src/object/o_circle_object.c:1333
+#: libgeda/src/object/o_circle_object.c:1308
+#: libgeda/src/object/o_circle_object.c:1338
 msgid "Failed to parse circle object"
 msgstr ""
 
 # Found circle with a negative radius
-#: libgeda/src/object/o_circle_object.c:1340
+#: libgeda/src/object/o_circle_object.c:1345
 msgid "Found circle with a negative radius"
 msgstr "odkrył okręgu o promieniu ujemnym"
 
 # Found a circle with radius zero
-#: libgeda/src/object/o_circle_object.c:1348
+#: libgeda/src/object/o_circle_object.c:1353
 msgid "Found a circle with radius zero"
 msgstr "Znaleziono okrąg o promieniu zerowym"
 
@@ -1521,27 +1521,27 @@ msgstr "Obrazek [%s] został osadzony\n"
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Obrazek [%s] nie jest już osadzony\n"
 
-#: libgeda/src/object/o_pin_object.c:163 libgeda/src/object/o_pin_object.c:173
+#: libgeda/src/object/o_pin_object.c:168 libgeda/src/object/o_pin_object.c:178
 msgid "Failed to parse pin object"
 msgstr ""
 
 # Found a pin which did not have the whichend field set
-#: libgeda/src/object/o_pin_object.c:181
+#: libgeda/src/object/o_pin_object.c:186
 msgid "Found a pin which did not have the whichend field set"
 msgstr "Napotkano pin bez ustawionego pola 'whichone'"
 
 # Verify and correct manually
-#: libgeda/src/object/o_pin_object.c:185
+#: libgeda/src/object/o_pin_object.c:190
 msgid "Verify and correct manually.\n"
 msgstr "Popraw plik manualnie.\n"
 
 # Encountered an invalid value 'whichend' assigned to the pin
-#: libgeda/src/object/o_pin_object.c:188
+#: libgeda/src/object/o_pin_object.c:193
 msgid "Found an invalid whichend on a pin"
 msgstr "Napotkano nieprawidłową wartość 'whichend' przypisaną do pinu"
 
 # Reset to zero
-#: libgeda/src/object/o_pin_object.c:192
+#: libgeda/src/object/o_pin_object.c:197
 msgid "Setting to zero\n"
 msgstr "Ustawienie na zero\n"
 

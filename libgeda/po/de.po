@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:36-0500\n"
+"POT-Creation-Date: 2019-11-09 11:45-0600\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1109,7 +1109,7 @@ msgid "Found arc with negative radius"
 msgstr "Kreis mit dem Radius 0 entdeckt"
 
 #: libgeda/src/object/o_arc_object.c:1480
-#: libgeda/src/object/o_circle_object.c:1345
+#: libgeda/src/object/o_circle_object.c:1350
 msgid "Setting radius to"
 msgstr "Setze die Winkelangabe auf"
 
@@ -1118,18 +1118,18 @@ msgid "Found an arc with radius zero"
 msgstr "Kreisbogen mit Radius 0 entdeckt"
 
 #: libgeda/src/object/o_arc_object.c:1487
-#: libgeda/src/object/o_circle_object.c:1352
+#: libgeda/src/object/o_circle_object.c:1357
 msgid "Setting zero radius to 1000\n"
 msgstr "Setze die Winkelangabe auf 1000\n"
 
 #: libgeda/src/object/o_arc_object.c:1492
 #: libgeda/src/object/o_box_object.c:1586
 #: libgeda/src/object/o_bus_object.c:586
-#: libgeda/src/object/o_circle_object.c:1357
+#: libgeda/src/object/o_circle_object.c:1362
 #: libgeda/src/object/o_line_object.c:1571
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:580
-#: libgeda/src/object/o_pin_object.c:197
+#: libgeda/src/object/o_pin_object.c:202
 #: libgeda/src/object/o_text_object.c:814
 msgid "Found an invalid color"
 msgstr "Fehlerhafte Farbangabe entdeckt"
@@ -1137,11 +1137,11 @@ msgstr "Fehlerhafte Farbangabe entdeckt"
 #: libgeda/src/object/o_arc_object.c:1496
 #: libgeda/src/object/o_box_object.c:1590
 #: libgeda/src/object/o_bus_object.c:590
-#: libgeda/src/object/o_circle_object.c:1361
+#: libgeda/src/object/o_circle_object.c:1366
 #: libgeda/src/object/o_line_object.c:1575
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:584
-#: libgeda/src/object/o_pin_object.c:201
+#: libgeda/src/object/o_pin_object.c:206
 #: libgeda/src/object/o_text_object.c:818
 msgid "Setting color to default color\n"
 msgstr "Verwende die Default Farbe\n"
@@ -1208,22 +1208,22 @@ msgstr "Znaleziono nieprawidłowy kierunek bus-ripper"
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Setze die Richtung auf neutral (keine Richtung)\n"
 
-#: libgeda/src/object/o_circle_object.c:609
+#: libgeda/src/object/o_circle_object.c:614
 msgid "Null radius circles are not allowed\n"
 msgstr "Kreise mit dem Radius 0 sind nicht erlaubt\n"
 
-#: libgeda/src/object/o_circle_object.c:1303
-#: libgeda/src/object/o_circle_object.c:1333
+#: libgeda/src/object/o_circle_object.c:1308
+#: libgeda/src/object/o_circle_object.c:1338
 msgid "Failed to parse circle object"
 msgstr ""
 
 # Found circle with a negative radius
-#: libgeda/src/object/o_circle_object.c:1340
+#: libgeda/src/object/o_circle_object.c:1345
 msgid "Found circle with a negative radius"
 msgstr "Entdeckte einen Kreis mit einem Radiusnegativ"
 
 # Found a circle with radius zero
-#: libgeda/src/object/o_circle_object.c:1348
+#: libgeda/src/object/o_circle_object.c:1353
 msgid "Found a circle with radius zero"
 msgstr "Einen Kreis mit Radius Null gefunden"
 
@@ -1500,27 +1500,27 @@ msgstr "Das Bild wurde eingebettet\n"
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Das Bild [%s] wurde ausgebettet\n"
 
-#: libgeda/src/object/o_pin_object.c:163 libgeda/src/object/o_pin_object.c:173
+#: libgeda/src/object/o_pin_object.c:168 libgeda/src/object/o_pin_object.c:178
 msgid "Failed to parse pin object"
 msgstr ""
 
 # Found a pin which did not have the whichend field set
-#: libgeda/src/object/o_pin_object.c:181
+#: libgeda/src/object/o_pin_object.c:186
 msgid "Found a pin which did not have the whichend field set"
 msgstr "Pin ohne Markierung (whichend) der aktiven Seite entdeckt"
 
 # Check the marking and correct if necessary
-#: libgeda/src/object/o_pin_object.c:185
+#: libgeda/src/object/o_pin_object.c:190
 msgid "Verify and correct manually.\n"
 msgstr "Kontrolliere die Markierung und korrigiere ggf. manuell.\n"
 
 # Found an invalid 'whichend' on a pin
-#: libgeda/src/object/o_pin_object.c:188
+#: libgeda/src/object/o_pin_object.c:193
 msgid "Found an invalid whichend on a pin"
 msgstr "Es wurde ein ungültiger 'whichend' Wert zugewiesen"
 
 # Reset to zero
-#: libgeda/src/object/o_pin_object.c:192
+#: libgeda/src/object/o_pin_object.c:197
 msgid "Setting to zero\n"
 msgstr "Einstellung auf Null\n"
 

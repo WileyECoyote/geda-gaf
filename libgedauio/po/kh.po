@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgedauio\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-10-26 19:19-0500\n"
+"POT-Creation-Date: 2019-11-09 11:45-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -20,62 +20,62 @@ msgstr ""
 "X-Poedit-Language: Khmer\n"
 "X-Poedit-Country: CAMBODIA\n"
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:459
-#: libgedauio/src/dialogs/geda_image_chooser.c:1039
+#: libgedauio/src/dialogs/geda_file_chooser.c:462
+#: libgedauio/src/dialogs/geda_image_chooser.c:1042
 msgid "filter index"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:460
-#: libgedauio/src/dialogs/geda_image_chooser.c:1040
+#: libgedauio/src/dialogs/geda_file_chooser.c:463
+#: libgedauio/src/dialogs/geda_image_chooser.c:1043
 msgid "Set or retrieve index of the filter combo"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:643
-#: libgedauio/src/dialogs/geda_image_chooser.c:1189
+#: libgedauio/src/dialogs/geda_file_chooser.c:644
+#: libgedauio/src/dialogs/geda_image_chooser.c:1192
 msgid "_Open"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:644
-#: libgedauio/src/dialogs/geda_image_chooser.c:1190
+#: libgedauio/src/dialogs/geda_file_chooser.c:645
+#: libgedauio/src/dialogs/geda_image_chooser.c:1193
 msgid "Open..."
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:648
-#: libgedauio/src/dialogs/geda_image_chooser.c:1194
+#: libgedauio/src/dialogs/geda_file_chooser.c:649
+#: libgedauio/src/dialogs/geda_image_chooser.c:1197
 msgid "_Save"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:649
-#: libgedauio/src/dialogs/geda_image_chooser.c:1195
+#: libgedauio/src/dialogs/geda_file_chooser.c:650
+#: libgedauio/src/dialogs/geda_image_chooser.c:1198
 msgid "Save As..."
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:653
-#: libgedauio/src/dialogs/geda_image_chooser.c:1199
+#: libgedauio/src/dialogs/geda_file_chooser.c:654
+#: libgedauio/src/dialogs/geda_image_chooser.c:1202
 msgid "_Select Folder..."
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:654
-#: libgedauio/src/dialogs/geda_image_chooser.c:1200
+#: libgedauio/src/dialogs/geda_file_chooser.c:655
+#: libgedauio/src/dialogs/geda_image_chooser.c:1203
 msgid "Select Folder"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:658
-#: libgedauio/src/dialogs/geda_image_chooser.c:1204
+#: libgedauio/src/dialogs/geda_file_chooser.c:659
+#: libgedauio/src/dialogs/geda_image_chooser.c:1207
 msgid "OOPS"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_file_chooser.c:664
-#: libgedauio/src/dialogs/geda_image_chooser.c:1209
+#: libgedauio/src/dialogs/geda_file_chooser.c:665
+#: libgedauio/src/dialogs/geda_image_chooser.c:1212
 msgid "_Cancel"
 msgstr ""
 
 #: libgedauio/src/dialogs/geda_image_chooser.c:602
-#: libgedauio/src/dialogs/geda_image_chooser.c:786
+#: libgedauio/src/dialogs/geda_image_chooser.c:789
 msgid "Preview"
 msgstr ""
 
-#: libgedauio/src/dialogs/geda_image_chooser.c:788
+#: libgedauio/src/dialogs/geda_image_chooser.c:791
 msgid "Active to enable the preview pane"
 msgstr ""
 
