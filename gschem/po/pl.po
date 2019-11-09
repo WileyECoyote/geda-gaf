@@ -3468,11 +3468,10 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-# Error during allocation of the graphics context
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Błąd podczas alokacji kontekst grafika"
+msgstr "Nie można przydzielić zasobów pamięci"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6430,20 +6429,18 @@ msgstr ""
 
 # Symbol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:250
-#, fuzzy
 msgid "_Symbols"
-msgstr "_Symbole"
+msgstr "_Symbolika"
 
+# Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
-#, fuzzy
 msgid "_Open Editor"
-msgstr "Edycja pojedyńczego atrybutu"
+msgstr "Otwórz edytor"
 
-# Edit Text
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
-#, fuzzy
 msgid "Edit DRC rules..."
-msgstr "Edytować tekst..."
+msgstr "Edytuj reguły projektowania..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
@@ -6453,11 +6450,10 @@ msgstr ""
 msgid "Run DRC 2"
 msgstr ""
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
-#, fuzzy
 msgid "Version Control"
-msgstr "Wersja"
+msgstr "Kontrola Wersji"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
@@ -6479,11 +6475,10 @@ msgstr ""
 msgid "Verilog netlist"
 msgstr ""
 
-# Hierarchy Error
+# Hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
-#, fuzzy
 msgid "hierarchy Verilog"
-msgstr "Błąd hierarchii"
+msgstr "Hierarchia Verilog"
 
 # Tools/Symbols
 #: gschem/scheme/gschem/gschem-tools-menu.scm:294
