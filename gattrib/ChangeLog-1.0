@@ -3,6 +3,9 @@
     * src/s_sheet_data.c: Update s_sheet_data_add_master_comp_list_items
       documention. Utilize __func__ macro in debug output.
 
+    * src/s_string_list.c: Add error message when a NULL record is found in
+      s_string_list_sort_master_comp_attrib_list.
+
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Remove function s_object_add_net_attrib_to_object, and

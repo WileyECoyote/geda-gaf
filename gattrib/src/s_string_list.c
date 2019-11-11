@@ -516,6 +516,9 @@ void s_string_list_sort_master_comp_attrib_list() {
           break;
         }
       }
+      else {
+         fprintf(stderr, "%s: internal error; NULL in list data!\n", __func__);
+      }
     }
   }
 
