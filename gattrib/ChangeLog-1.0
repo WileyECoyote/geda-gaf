@@ -1,7 +1,7 @@
 2019-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Update s_sheet_data_add_master_comp_list_items
-      documention.
+      documention. Utilize __func__ macro in debug output.
 
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com>
 

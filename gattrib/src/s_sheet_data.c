@@ -248,15 +248,15 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
     GedaObject *o_current = iter->data;
 
 #ifdef DEBUG
-    printf("In s_sheet_data_add_master_comp_list_items, examining o_current->name = %s\n", o_current->name);
+    printf("%s: examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     /*-----  only process if this is a component with attributes ----*/
     if (o_current->type == OBJ_COMPLEX && o_current->attribs != NULL) {
 
 #if DEBUG
-      printf("In s_sheet_data_add_master_comp_list_items; found component on page\n");
-      printf(". . . . filename = %s.\n", o_current->filename);
+      printf("%s: found component on page", __func__);
+      printf(". . . . filename = %s.\n", o_current->name);
 #endif
 
       temp_uref = s_attrib_get_refdes(o_current);
@@ -272,7 +272,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
         if ((strcmp(temp_uref, "none")) && (strcmp(temp_uref, "pinlabel"))) {
 
 #if DEBUG
-          printf("In s_sheet_add_master_comp_list, about to add to master list refdes = %s\n", temp_uref);
+          printf("%s: adding refdes=%s to master list\n", __func__, temp_uref);
 #endif
 
           s_sheet_data_add_comp(sheet_head, temp_uref);
