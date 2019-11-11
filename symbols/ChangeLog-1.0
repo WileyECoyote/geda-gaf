@@ -1,12 +1,13 @@
 2019-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * transistor/pjfet-0/pjfet-dsg-[1-4].sym: Update device, dist-license, and
+    * transistor/pjfet-0/pjfet-dsg-[1-5].sym: Update device, dist-license, and
       value attributes:
 
             * transistor/pjfet-0/pjfet-dsg-1.sym
             * transistor/pjfet-0/pjfet-dsg-2.sym
             * transistor/pjfet-0/pjfet-dsg-3.sym
             * transistor/pjfet-0/pjfet-dsg-4.sym
+            * transistor/pjfet-0/pjfet-dsg-5.sym
 
 2019-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
