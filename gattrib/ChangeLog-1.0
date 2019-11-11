@@ -6,6 +6,10 @@
     * src/s_string_list.c: Add error message when a NULL record is found in
       s_string_list_sort_master_comp_attrib_list.
 
+    * gattrib/src/s_toplevel.c: Revise s_toplevel_init_data_set to call
+      s_table_load_new_page after sorting is sorting is performed. This
+      fix bug when sort-components is "enabled".
+
     * src/x_dialog.c: Remove unused function x_dialog_delete_attrib.
 
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com>

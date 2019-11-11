@@ -1021,12 +1021,12 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
  */
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
-  /* ---------- Create and load the tables  ---------- */
-  s_table_load_new_page(PageData);
-
   if (sort_components) {
     s_string_list_sort_all_list();
   }
+
+  /* ---------- Create and load the tables  ---------- */
+  s_table_load_new_page(PageData);
 
   /* ---------- Now verify correctness of entire design.  ---------- */
   s_toplevel_verify_design(toplevel);  /* pr_current is a global */
