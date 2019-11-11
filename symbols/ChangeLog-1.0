@@ -10,6 +10,11 @@
             * transistor/pjfet-0/pjfet-dsg-5.sym
             * transistor/pjfet-0/pjfet-dsg-6.sym
 
+    * transistor/pjfet-0/pjfet-sdg-3.sym: Update device, dist-license, and
+      value attributes, resequence pin attributes, reorder attributes:
+
+            * pjfet-0/pjfet-sdg-3.sym
+
 2019-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * murata: Update "mfr" attribute = "manufacturer":
