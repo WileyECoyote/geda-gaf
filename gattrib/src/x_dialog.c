@@ -347,57 +347,6 @@ bool x_dialog_column_visibility (GList *list)
 /****************** End of Column Visibility dialog box ******************/
 
 /*!
- * \brief Delete Attribute dialog
- * \par Function Description
- *  This function throws up the "Delete foo, are you sure?" dialog box.
- *  The dialog offers two buttons: "yes" and "cancel".
- */
-void x_dialog_delete_attrib()
-{
-  GtkWidget  *dialog;
-  GtkSheet   *sheet;
-  int mincol, maxcol;
-  int cur_page;
-
-  /* First verify that exactly one column is selected.  */
-  cur_page = gtk_notebook_get_current_page((GtkNotebook*)notebook);
-  sheet    = (GtkSheet*)sheets[cur_page];
-
-  if (sheet == NULL) {
-    return;
-  }
-
-  mincol = x_gtksheet_get_min_col(sheet);
-  maxcol = x_gtksheet_get_max_col(sheet);
-
-  if ((mincol != maxcol) || (mincol == -1) || (maxcol == -1)) {
-    /* Improper selection -- maybe throw up error box? */
-    return;
-  }
-
-  /* Create the dialog */
-  dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
-                                         GTK_MESSAGE_QUESTION,
-                                         GTK_BUTTONS_YES_NO,
-                                      _("Are you sure you want to delete this attribute?"));
-
-  gtk_window_set_title((GtkWindow*)dialog, _("Delete attribute"));
-
-  switch (gtk_dialog_run((GtkDialog*)dialog)) {
-    case GEDA_RESPONSE_YES:
-      /* call the fcn to actually delete the attrib column.  */
-      s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
-                                        * which col to delete. */
-      break;
-
-    default:
-      break;
-  }
-
-  gtk_widget_destroy(dialog);
-}
-
-/*!
  * \brief Missing Symbol dialog
  * \par Function Description
  *  This is the "missing symbol file found on object" dialog, which

@@ -6,6 +6,8 @@
     * src/s_string_list.c: Add error message when a NULL record is found in
       s_string_list_sort_master_comp_attrib_list.
 
+    * src/x_dialog.c: Remove unused function x_dialog_delete_attrib.
+
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_object.c: Remove function s_object_add_net_attrib_to_object, and
