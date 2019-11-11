@@ -225,9 +225,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
  * \par Function Description
  *  Add to the master list of components refdeses by iterating through
  *  the components and selectively recording discovered comp refdeses.
- *  This list is used for the column label on the component sheet. The
- *  Data struct being searched  is: Object->attribs(->next. . .)
- *  ->object->text->string
+ *  This list is used for the row labels on the component sheet.
  *
  * \param obj_list pointer to the component list to be added.
  */
