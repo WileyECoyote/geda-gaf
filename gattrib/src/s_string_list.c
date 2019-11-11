@@ -487,7 +487,8 @@ static struct {
  * \brief Sort the master component attribute list
  * \par Function Description
  *  Take the master comp attrib list sheet_head->master_comp_attrib_list_head
- *  and sort it in this order: all refdeses in alphabetical order.
+ *  and sort it in this order: all refdeses in alphabetical order after
+ *  prioritizing selected attributes.
  *
  *  Right now it does nothing other than fill in the "position".
  */
