@@ -16,6 +16,9 @@
             * pjfet-0/pjfet-sdg-3.sym
             * pjfet-0/pjfet-sdg-4.sym
 
+    * transistor/pjfet-0/pjfet-sgd-4.sym: Fix duplicate pinseq=2 attribute, update,
+      resequence and reorder and other attributes.
+
 2019-11-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * murata: Update "mfr" attribute = "manufacturer":
