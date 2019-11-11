@@ -315,7 +315,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
     GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
-    printf("In s_sheet_data_add_master_comp_attrib_list_items, examining o_current->name = %s\n", o_current->name);
+    printf("%s: examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     /*-----  only process if this is a component with attributes ----*/
