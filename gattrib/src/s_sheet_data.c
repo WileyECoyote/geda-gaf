@@ -291,8 +291,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
  * \par Function Description
  *  Adds attribute names to the master list of comp attributes. The names
  *  are obtained by iterating through each component on the page, selectively
- *  recording discovered attributes.The data struct being searched  is:
- *  sheet_head->component_list_head->attrib->name;
+ *  recording discovered attributes.
  *
  * \param obj_list pointer to list of objects
  */
