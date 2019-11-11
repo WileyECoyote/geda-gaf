@@ -921,8 +921,8 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     if (width < COLUMN_MIN_WIDTH) {
       width = COLUMN_MIN_WIDTH;
     }
-    gtk_sheet_set_column_width(sheet, j, char_width * width);
 
+    gtk_sheet_set_column_width(sheet, j, char_width * width);
     gtk_sheet_column_button_add_label(sheet, j, text);
     gtk_sheet_column_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
     gtk_sheet_set_column_title(sheet, j, text);
