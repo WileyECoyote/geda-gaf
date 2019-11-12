@@ -212,8 +212,10 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
   STRING_LIST *next_item = NULL;
   STRING_LIST *prev_item = NULL;
 
-  /* First check to see if list is empty.  If empty, spew error and return */
+  /* First check to see if list is empty. */
   if ( (*list)->data == NULL) {
+
+    /* Was empty, spew error and return */
     fprintf(stderr, "%s: %s",  __func__, _("attempted to remove item from an empty list\n"));
     return;
   }
