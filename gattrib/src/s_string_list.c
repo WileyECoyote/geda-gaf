@@ -241,31 +241,31 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
       printf("%s: found match . . . . . \n", __func__);
 #endif
 
-    prev_item = list_item->prev;
-    next_item = list_item->next;
+      prev_item = list_item->prev;
+      next_item = list_item->next;
 
-    /* Check position in list */
-    if (next_item == NULL && prev_item == NULL) {
-      /* pathological case of one item list. */
-      (*list) = NULL;
-    }
-    else if (next_item == NULL && prev_item != NULL) {
-      /* at list's end */
-      prev_item->next = NULL;
-    }
-    else if (next_item != NULL && prev_item == NULL) {
-      /* at list's beginning */
-      next_item->prev = NULL;
-      (*list) = next_item;         /* also need to fix pointer to list head */
-      /*  GEDA_FREE(list);  */
-    }
-    else {
-      /* normal case of element in middle of list */
-      if (next_item != NULL) {
-        next_item->prev = prev_item;
+      /* Check position in list */
+      if (next_item == NULL && prev_item == NULL) {
+        /* pathological case of one item list. */
+        (*list) = NULL;
       }
-      prev_item->next = next_item;
-    }
+      else if (next_item == NULL && prev_item != NULL) {
+        /* at list's end */
+        prev_item->next = NULL;
+      }
+      else if (next_item != NULL && prev_item == NULL) {
+        /* at list's beginning */
+        next_item->prev = NULL;
+        (*list) = next_item;         /* also need to fix pointer to list head */
+        /*  GEDA_FREE(list);  */
+      }
+      else {
+        /* normal case of element in middle of list */
+        if (next_item != NULL) {
+          next_item->prev = prev_item;
+        }
+        prev_item->next = next_item;
+      }
 
 #ifdef DEBUG
     printf("In s_string_list_delete_item, now free list_item\n");
