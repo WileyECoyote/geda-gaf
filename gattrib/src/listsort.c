@@ -61,7 +61,6 @@
  *
  * \returns +ve if al > bl, -ve if al < bl, 0 if al = bl
  */
-/*----------------------------------------------------------------*/
 int cmp(STRING_LIST *al, STRING_LIST *bl) {
 
   char *a = al->data;
@@ -127,7 +126,6 @@ int cmp(STRING_LIST *al, STRING_LIST *bl) {
  *
  * \returns a pointer to the new head of the list
  */
-/*----------------------------------------------------------------*/
 STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
 {
   STRING_LIST *p, *q, *e, *tail;
