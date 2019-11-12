@@ -537,6 +537,20 @@ void s_string_list_sort_master_comp_attrib_list() {
       local_list = local_list->next;
     }
   }
+
+#ifdef DEBUG
+
+  for (iter = sheet_head->master_comp_attrib_list_head; iter;
+       iter = iter->next) {
+
+    int pos = iter->pos;
+    char *aname= iter->data;
+
+    fprintf(stderr, "%s: pos[%d]=\"%s\"\n", __func__, pos, aname);
+  }
+
+#endif
+
   return;
 }
 
