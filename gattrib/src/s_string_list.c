@@ -221,7 +221,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
   }
 
 #ifdef DEBUG
-    printf("In s_string_list_delete_item, about to delete item %s from list.\n", item);
+    printf("%s: attempting to delete %s\n", __func__, item);
 #endif
 
   /* Now loop through list looking for item */
@@ -232,13 +232,13 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
     char *trial_item = geda_utility_string_strdup(list_item->data);
 
 #ifdef DEBUG
-    printf("In s_string_list_delete_item, matching item against trial item = %s from list.\n", trial_item);
+    printf("%s: matching item against trial item = %s from list.\n", __func__, trial_item);
 #endif
 
     if (strcmp(trial_item, item) == 0) { /* found item, now delete it. */
 
 #ifdef DEBUG
-    printf("In s_string_list_delete_item, found match . . . . . \n");
+      printf("%s: found match . . . . . \n", __func__);
 #endif
 
     prev_item = list_item->prev;
