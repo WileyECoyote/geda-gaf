@@ -954,8 +954,6 @@ void s_table_load_new_page(PageDataSet *PageData)
        * before doing anything with the nets because we need to first
        * determine where they are all connected!   */
 
-
-
       /* adds all nets from page to net_table */
       s_table_add_items_to_net_table(p_local->object_head);
 #endif
