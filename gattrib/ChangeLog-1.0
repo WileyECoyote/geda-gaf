@@ -2,7 +2,8 @@
 
     * src/listsort.c: Reformat function documentation and code style.
 
-    * src/s_string_list.c: Add debug code to print the attribute list.
+    * src/s_string_list.c: Add debug code to print the attribute list, add
+      todo documentation template for s_string_list_free.
 
 2019-11-11 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -57,6 +57,10 @@ STRING_LIST *s_string_list_new() {
   return local_string_list;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void s_string_list_free(STRING_LIST *strlist)
 {
   STRING_LIST *s_iter = strlist;
