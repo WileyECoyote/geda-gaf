@@ -1,6 +1,6 @@
 2019-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/listsort.c: Reformat function documentation.
+    * src/listsort.c: Reformat function documentation and code style.
 
     * src/s_string_list.c: Add debug code to print the attribute list.
 
