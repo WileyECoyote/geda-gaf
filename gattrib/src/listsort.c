@@ -51,11 +51,14 @@
 #include <geda_debug.h>
 
 /*----------------------------------------------------------------*/
-/*! \brief Compare values of string data
+/*!
+ * \brief Compare values of string data
+ * \par Function Description
+ *  Comparison function -- compare values of string data.
  *
- * Comparison function -- compare values of string data.
  * \param al pointer to first STRING_LIST item to be compared
  * \param bl pointer to second STRING_LIST item to be compared
+ *
  * \returns +ve if al > bl, -ve if al < bl, 0 if al = bl
  */
 /*----------------------------------------------------------------*/
@@ -92,22 +95,24 @@ int cmp(STRING_LIST *al, STRING_LIST *bl) {
 }
 
 /*----------------------------------------------------------------*/
-/*! \brief Sort the linked list
+/*!
+ * \brief Sort the linked list
+ * \par Function Description
+ *  This is the actual sort function. Notice that it returns the new
+ *  head of the list. (It has to, because the head will not
+ *  generally be the same element after the sort.) So unlike sorting
+ *  an array, where you can do
  *
- * This is the actual sort function. Notice that it returns the new
- * head of the list. (It has to, because the head will not
- * generally be the same element after the sort.) So unlike sorting
- * an array, where you can do
+ *  - sort(myarray);
  *
- * - sort(myarray);
+ *  you now have to do
  *
- * you now have to do
- *
- * - list = listsort(mylist);
+ *  - list = listsort(mylist);
  *
  * \param list The linked STRING_LIST to be sorted
  * \param is_circular TRUE if this is a circularly linked list
  * \param is_double TRUE if this is a doubly-linked list
+ *
  * \returns a pointer to the new head of the list
  */
 /*----------------------------------------------------------------*/

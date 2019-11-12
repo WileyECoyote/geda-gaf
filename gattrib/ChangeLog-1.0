@@ -1,3 +1,7 @@
+2019-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/listsort.c: Reformat function documentation.
+
 2019-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Update s_sheet_data_add_master_comp_list_items
