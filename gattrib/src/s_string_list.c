@@ -368,9 +368,7 @@ int s_string_list_in_list(STRING_LIST *list, char *item)
 
   /* item was not in the list, so return 0 */
   return 0;
-
 }
-
 
 /*------------------------------------------------------------------*/
 /*!
@@ -648,6 +646,7 @@ void s_string_list_sort_master_pin_list()
       sheet_head->master_pin_list_head = local_list;
     }
   }
+
   return;
 }
 
