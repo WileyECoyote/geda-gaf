@@ -279,7 +279,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
     list_item = list_item->next;
   }
 
-  /* If we are here, it's 'cause we didn't find the item.
+  /* If we are here, it is because we did not find the item.
    * Spew error and return.
    */
   fprintf(stderr, "%s: %s %s\n",  __func__, _("could not delete item"), item);
