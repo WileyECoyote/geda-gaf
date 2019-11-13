@@ -816,8 +816,6 @@ void x_gtksheet_init(PageDataSet *PageData)
   entry_class->activate = on_entry_activate;
 
   SetupCSheetHandlers(sheets[Components], PageData);
-
-  sheets[Pins]->autoresize_columns=TRUE;
 }
 
 /*------------------------------------------------------------------*/

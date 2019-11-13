@@ -4,6 +4,11 @@
       s_string_list_delete_item, add function documentation. Sort the
       pin attributes in s_string_list_sort_master_pin_attrib_list.
 
+    * src/x_gtksheet.c: Remove setting autoresize_columns TRUE for the
+      pins sheet in x_gtksheet_init because the width of the first column
+      is reduce from the manually set values and the hides the last two
+      characters in "pinlabel".
+
 2019-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/listsort.c: Reformat function documentation and code style.
