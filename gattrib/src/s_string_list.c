@@ -623,8 +623,8 @@ void s_string_list_sort_master_pin_list()
 
     int i = 0;
 
-    /* Do this after sorting is done.  This resets the order of the individual
-     * items in the list.  */
+    /* Do this after sorting is done. This resets the order of the
+     * individual items in the list.  */
     while (local_list) {  /* make sure item is not null */
 
       local_list->pos = i;
@@ -655,8 +655,8 @@ void s_string_list_sort_master_pin_list()
 /*!
  * \brief Sort the master pin attribute list
  * \par Function Description
- *  Takes the master pin attrib list sheet_head->master_pin_attrib_list_head
- *  and sorts it in this order: all pin attribs in alphabetical order.
+ *  Takes the master pin attrib list master_pin_attrib_list_head
+ *  in sheet_head and sorts the list in alphabetical order.
  *
  *  Right now it does nothing other than fill in the "position".
  */
