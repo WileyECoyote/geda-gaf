@@ -773,6 +773,9 @@ void x_gtksheet_init(PageDataSet *PageData)
                                      (GtkWidget*)scrolled_windows[i],
                                      (GtkWidget*)label, NULL, -1);
 
+      /* Do not autoresize, gtksheet does not handle correctly. The
+       * width of the columns are manually set when the labels are
+       * added, see x_gtksheet_add_col_labels */
       sheets[i]->autoresize_columns = FALSE;
       sheets[i]->autoresize_rows = FALSE;
 
