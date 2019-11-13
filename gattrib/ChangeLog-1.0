@@ -1,3 +1,8 @@
+2019-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_string_list.c: Remove trival debug output from function
+      s_string_list_delete_item.
+
 2019-11-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/listsort.c: Reformat function documentation and code style.

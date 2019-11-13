@@ -267,23 +267,11 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
         prev_item->next = next_item;
       }
 
-#ifdef DEBUG
-    printf("In s_string_list_delete_item, now free list_item\n");
-#endif
-
       GEDA_FREE(list_item);  /* free current list item */
       (*count)--;       /* decrement count */
       /* Do we need to re-number the list? */
 
-#ifdef DEBUG
-    printf("In s_string_list_delete_item, now free trial_item\n");
-#endif
-
       GEDA_FREE(trial_item); /* free trial item before returning */
-
-#ifdef DEBUG
-    printf("In s_string_list_delete_item, returning . . . .\n");
-#endif
 
       return;
     }
