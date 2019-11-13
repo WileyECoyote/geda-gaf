@@ -661,23 +661,44 @@ void s_string_list_sort_master_pin_list()
  */
 void s_string_list_sort_master_pin_attrib_list() {
 
-  STRING_LIST *local_list;
+  STRING_LIST *local_list, *iter;
   int i = 0;
 
-  /* Here's where we do the sort */
-
-  /*
-   * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want
-   * certain attribs to go first.
-   */
-
-  /* Do this after sorting is done.  This resets the order of the individual items
-   * in the list.  */
   local_list = sheet_head->master_pin_attrib_list_head;
-  while (local_list != NULL) {
-    local_list->pos = i;
-    i++;
-    local_list = local_list->next;
+
+  for (iter = local_list; iter; iter=iter->next)
+    iter->pos = 0;
+
+  local_list = listsort(local_list, 0, 1);
+
+  if (local_list) {
+
+    int i = 0;
+
+    /* Do this after sorting is done. This resets the order of the
+     * individual items in the list.  */
+    while (local_list) {  /* make sure item is not null */
+
+      local_list->pos = i;
+
+      if (local_list->next != NULL) {
+        i++;
+        local_list = local_list->next;
+      }
+      else {
+        break;  /* leave loop *before* iterating to NULL EOL marker */
+      }
+    }
+
+    if (local_list) {
+
+      /* After assign list head to new first element */
+      while (local_list->prev) {
+        local_list = local_list->prev;
+      }
+
+      sheet_head->master_pin_attrib_list_head = local_list;
+    }
   }
 
   return;
