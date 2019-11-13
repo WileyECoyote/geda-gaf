@@ -537,7 +537,7 @@ static bool on_traverse(GtkWidget *widget,
 /*!
  * \brief Setup Call Back handlers for the Component Sheet
  * \par Function Description
- *  This function is  setup the callbacks for the Component sheet.
+ *  This function connects the callbacks for the Component sheet.
  *  Note that we only use 3 before returing. The others are listed
  *  for possiable future.
  *
