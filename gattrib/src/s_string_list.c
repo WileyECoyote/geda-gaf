@@ -683,9 +683,14 @@ void s_string_list_sort_master_pin_attrib_list() {
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Sort all master list
+ * \par Function Description
+ *  Wrapper for individual list sorters.
+ *
+ * \todo Only comp_attrib_list prioritizes certain_attribs the
+ *       other call functions sort alphabetically and should be
+ *       refactored.
  */
 void s_string_list_sort_all_list() {
 
