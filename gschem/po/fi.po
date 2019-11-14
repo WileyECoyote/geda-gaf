@@ -6018,29 +6018,32 @@ msgstr "Symbolit"
 # Open Editor
 #: gschem/scheme/gschem/gschem-tools-menu.scm:252
 msgid "_Open Editor"
-msgstr "Avaa Editori"
+msgstr "Muokkaa suunnittelusääntöjä"
 
-# Edit DRC rules...
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
 msgstr "Muokkaa DRC-sääntöjä..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "ensimmäiset suunnittelusäännöt"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "toinen suunnittelusääntö"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Version hallinta"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Materiaalilasku"
 
 # gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
@@ -6082,12 +6085,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Määri_tteet..."
-
-#~ msgid "session"
-#~ msgstr "Näytä _Nimi"
-
-#~ msgid "documents\n"
-#~ msgstr "D_okumentaatio..."
