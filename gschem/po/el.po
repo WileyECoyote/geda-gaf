@@ -6022,31 +6022,34 @@ msgstr "Σύμβολα"
 msgid "_Open Editor"
 msgstr "Ανοίξτε το πρόγραμμα επεξεργασίας"
 
-# Edit DRC rules; Epexergasía kanónon DRC
+# Edit design rules; Epexergasteíte tous kanónes schediasmoú
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "Επεξεργασία κανόνων DRC..."
+msgstr "Επεξεργαστείτε τους κανόνες σχεδιασμού..."
 
+# first design rules; prótous kanónes schediasmoú
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "πρώτους κανόνες σχεδιασμού"
 
+# second design rules; défterous kanónes schediasmoú
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "δεύτερους κανόνες σχεδιασμού"
 
 # Version Control; Élenchos ékdosis
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Έλεγχος έκδοσης"
 
+# Bill of Materials; Syllogí ylikón
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Συλλογή υλικών"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDA netlist"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
