@@ -6131,31 +6131,34 @@ msgstr "Символи"
 msgid "_Open Editor"
 msgstr ""
 
-# Edit DRC rules
+# Edit design rules; Redaktirane na dizaĭnerskite pravila
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "Редактиране на правилата за DRC..."
+msgstr "Редактиране на дизайнерските правила..."
 
+# first design rules; pŭrvi pravila za dizaĭn
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "първи правила за дизайн"
 
+# second design rules; vtori pravila za dizaĭn
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "втори правила за дизайн"
 
 # Version Control; Versiya za kontrol
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Версия за контрол"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Бил за материали"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDA netlist"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
