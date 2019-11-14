@@ -6127,31 +6127,35 @@ msgstr "نمادها"
 msgid "_Open Editor"
 msgstr "ویرایشگر را باز کنید"
 
-# Edit DRC rules
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "قوانین DRC را ویرایش کنید..."
+msgstr "قوانین طراحی را ویرایش کنید..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "قوانین طراحی اول"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "قوانین طراحی دوم"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "کنترل نسخه"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "لایحه مواد"
 
+# gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "لیست بندی گدا"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
