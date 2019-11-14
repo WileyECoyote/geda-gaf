@@ -6039,30 +6039,34 @@ msgstr "Symbole"
 msgid "_Open Editor"
 msgstr "Öffnen Sie den Texteditor"
 
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "Bearbeiten Sie die DRC-Regeln..."
+msgstr "Gestaltungsregeln bearbeiten..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "erste Designregeln"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "zweite Designregeln"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Versionskontrolle"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Stückliste"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDA-Netzliste"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
@@ -6098,46 +6102,3 @@ msgstr "~S ist keine gültige Tasten-Kombination."
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr "~S ist kein gültiger erster Teil einer Tastenkombination."
-
-# Move to Bottom
-#~ msgid "Nach unten gehen"
-#~ msgstr "Von oben nach unten"
-
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Das Eingabeattribut ist ungültig"
-
-#~ msgid "<b>Scope</b>"
-#~ msgstr "<b>Suchbereich</b>"
-
-#~ msgid "<b>Add Attribute</b>"
-#~ msgstr "<b>Attribut hinzufügen</b>"
-
-#~ msgid "<b>Edit Attribute</b>"
-#~ msgstr "<b>Attribut bearbeiten</b>"
-
-#~ msgid "Toggle _Magnetic Net"
-#~ msgstr "_Magnetischen Netzmodus umschalten"
-
-#~ msgid "Toggle _Snap On-Off"
-#~ msgstr "_Raster umschalten"
-
-#~ msgid "session"
-#~ msgstr "_Name anzeigen"
-
-#~ msgid "New page created [%s]\n"
-#~ msgstr "Neue Seite erzeugt [%s]\n"
-
-#~ msgid "An error occurred while receiving drag-and-drop data"
-#~ msgstr "Beim Empfangen von Drag & Drop-Daten ist ein Fehler aufgetreten"
-
-#~ msgid "check the log for more information"
-#~ msgstr "Das Log-Fenster von gschem sind eventuell Details eingetragen."
-
-#~ msgid "Could not allocate graphic context\n"
-#~ msgstr "Konnte gc in x_window_setup_gc nicht zuweisen\n"
-
-#~ msgid "An error occurred while dropping data"
-#~ msgstr "Beim Empfangen von Daten ist ein Fehler aufgetreten"
-
-#~ msgid "documents\n"
-#~ msgstr "_Dokumentation..."
