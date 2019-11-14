@@ -6214,27 +6214,30 @@ msgstr "_Simbol"
 msgid "_Open Editor"
 msgstr "Otvoreni uređivač"
 
-# Edit DRC rules...
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "Uređivanje DRC pravila..."
+msgstr "Uređivanje pravila dizajna..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "prva pravila dizajna"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "druga pravila dizajna"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Kontrola Verzije"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Nacrt materijala"
 
 # gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
