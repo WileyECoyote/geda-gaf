@@ -6059,31 +6059,35 @@ msgstr "حرف"
 msgid "_Open Editor"
 msgstr "فتح محرر"
 
-# Edit DRC rules
+# Edit design rules; tahrir qawaeid altasmim
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "تحرير قواعد جمهورية الكونغو الديمقراطية..."
+msgstr "تحرير قواعد التصميم..."
 
+# first design rules; qawaeid altasmim al'awal
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "قواعد التصميم الأول"
 
+# second design rules; qawaeid altasmim alththani
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "قواعد التصميم الثاني"
 
 # Version
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "التحكم في الإصدار"
 
+# Bill of Materials; fatwrat almawadi
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "فاتورة المواد"
 
+# gEDA node list; qayimat aleuqda
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr "gEDA netlist"
+msgstr "gEDA قائمة العقدة"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
