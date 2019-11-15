@@ -39,12 +39,13 @@
 
 #if defined (OS_WIN32)
 
-/*! \brief Launch application to show URI on Windows.
+/*!
+ * \brief Launch application to show URI on Windows.
  * \par Function Description
- * On native Windows, the ShellExecute Windows API function provides a
- * reliable way to open a URI in a default application.
+ *  On native Windows, the ShellExecute Windows API function provides a
+ *  reliable way to open a URI in a default application.
  *
- * This function is called by x_show_uri().
+ *  This function is called by x_show_uri().
  *
  * \param uri    URI to launch viewer for.
  * \param error  Location to return error information.
@@ -93,17 +94,18 @@ static bool show_uri__win32 (const char *uri, GError **error)
 }
 #endif /* OS_WIN32 */
 
-/*! \brief Launch default application for a URI.
+/*!
+ * \brief Launch default application for a URI.
  * \par Function Description
- * Launches the default application associated with \a uri on the host
- * platform.
+ *  Launches the default application associated with \a uri on the host
+ *  platform.
  *
- * Depending on the way gEDA was configured, this may occur by one of
- * the following methods:
+ *  Depending on the way gEDA was configured, this may occur by one of
+ *  the following methods:
  *
- * Calling gtk_show_uri() to use the GIO library (default on Linux)
- * Calling the ShellExecute() Windows API call (default on Windows)
- * Running an appropriate external tool.
+ *  Calling gtk_show_uri() to use the GIO library (default on Linux)
+ *  Calling the ShellExecute() Windows API call (default on Windows)
+ *  Running an appropriate external tool.
  *
  * \param uri  URI to launch viewer for.
  *

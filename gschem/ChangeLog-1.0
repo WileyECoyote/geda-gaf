@@ -1,19 +1,16 @@
+2019-11-08 Wiley E. Hill <wileyhill@gmail.com
+
+    * gschem/src/x/x_misc.c: Reformat documentation.
+
 2019-11-14 Wiley E. Hill <wileyhill@gmail.com
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
     * po/fi.po: Update Finnish translations.
 
