@@ -373,6 +373,7 @@ bool i_command_map_icon  (const char *command, const char *icon)
 {
   int i;
   bool result = FALSE;
+
   for (i = 1; i <= LAST_ACTION; i++) {
     if (geda_strequal(command_struc[i].name, command)) {
       if (command_struc[i].icon_id) {
@@ -876,7 +877,9 @@ open_command_idle_notify (void *data)
   }
 
   GSource *source;
+
   source = g_main_context_find_source_by_id (NULL, packet->source_id);
+
   if (source) {
     /* TODO: Does this happen everytime? */
     g_source_destroy (source);
@@ -940,6 +943,7 @@ COMMAND (do_open) {
   }
   EXIT_COMMAND(do_open);
 }
+
 /** @} endgroup open-files-command */
 
 /** @brief i_cmd_do_save in i_command_File_Actions */
