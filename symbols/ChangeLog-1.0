@@ -4,6 +4,7 @@
       value, resequence and reorder other attributes:
 
             * transistor/pjfet-0/pjfet-sdg-6.sym
+            * transistor/pjfet-0/pjfet-sgd-1.sym
 
 2019-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
