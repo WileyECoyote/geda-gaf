@@ -9,6 +9,9 @@
             * transistor/pjfet-0/pjfet-sgd-3.sym
             * transistor/pjfet-0/pjfet-sgd-6.sym
 
+    * transistor/pjfet-0/pjfet-sgd-5.sym: Fix duplicate pinseq=2 attribute,
+      update, resequence and reorder other attributes.
+
 2019-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/pjfet-0/pjfet-dsg-[1-6].sym: Update device, dist-license, and
