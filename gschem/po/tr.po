@@ -3382,11 +3382,10 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-# Could not locate symbol
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Sembol bulunamadı"
+msgstr "Bellek kaynakları ayrılamadı"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6246,44 +6245,50 @@ msgstr "_Semboller"
 msgid "_Open Editor"
 msgstr "Editör'ü aç"
 
-# Edit DRC rules...
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "DRC kurallarını düzenle..."
+msgstr "Tasarım kurallarını düzenle..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "ilk tasarım kuralları"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "ikinci tasarım kuralları"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Sürüm Kontrolü"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Malzeme Listesi"
 
-# gEDA netlist
+# gEDA node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr "gEDA netliste"
+msgstr "GEDA düğümü listesi"
 
+# Simulation node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "Simülasyon düğümü listesi"
 
+# VHDL node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
-msgstr ""
+msgstr "VHDL düğüm listesi"
 
+# Verilog node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "Verilog düğümü listesi"
 
 # hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
