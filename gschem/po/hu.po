@@ -5989,42 +5989,49 @@ msgstr "_Szimbólumok"
 msgid "_Open Editor"
 msgstr "Nyissa meg a Szerkesztőt"
 
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "A DRC szabályok szerkesztése..."
+msgstr "Szerkessze a tervezési szabályokat..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "első tervezési szabályok"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "második tervezési szabályok"
 
-# Version
+# Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Verzióvezérlés"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Darabjegyzékben"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDA csomópontlista"
 
+# Simulation node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "Szimulációs csomópont lista"
 
+# VHDL node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
-msgstr ""
+msgstr "VHDL csomópontlista"
 
+# Verilog node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "Verilog csomópontlista"
 
 # Hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
