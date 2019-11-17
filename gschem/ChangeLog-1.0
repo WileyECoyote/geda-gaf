@@ -6,6 +6,8 @@
 
     * po/hu.po: Update Hungarian translations.
 
+    * po/it.po: Update Italian translations.
+
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com
 
     * gschem/src/x/x_misc.c: Reformat documentation.

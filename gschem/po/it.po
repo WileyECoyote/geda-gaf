@@ -6057,41 +6057,48 @@ msgstr "_Simboli"
 msgid "_Open Editor"
 msgstr "Apri l'editor"
 
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "Modifica regole DRC..."
+msgstr "Modifica regole di progettazione..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "prime regole di progettazione"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "seconde regole di progettazione"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Controllo versione"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Distinta materiali"
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
 msgstr "netlist gEDA"
 
+# Simulation node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "Elenco dei nodi di simulazione"
 
+# VHDL node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
-msgstr ""
+msgstr "Elenco dei nodi VHDL"
 
+# Verilog node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "Elenco dei nodi Verilog"
 
 # hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
