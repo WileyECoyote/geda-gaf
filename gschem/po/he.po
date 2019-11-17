@@ -6225,44 +6225,50 @@ msgstr "סמלים"
 msgid "_Open Editor"
 msgstr "עורך פתוח"
 
-# Edit DRC rules...
+# Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "ערוך את כללי DRC..."
+msgstr "ערוך כללי עיצוב..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "כללי עיצוב ראשונים"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "כללי עיצוב שני"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "בקרת גרסאות"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "שטר חומרים"
 
 # gEDA netlist
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
 msgstr "gEDA נטליסט"
 
+# Simulation node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "רשימת צומת סימולציה"
 
+# VHDL node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
-msgstr ""
+msgstr "רשימת צומת VHDL"
 
+# Verilog node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "רשימת צומת Verilog"
 
 # hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266

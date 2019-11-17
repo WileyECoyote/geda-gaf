@@ -2,6 +2,8 @@
 
     * po/fr.po: Update French translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com
 
     * gschem/src/x/x_misc.c: Reformat documentation.
