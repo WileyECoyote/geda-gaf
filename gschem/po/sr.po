@@ -3491,11 +3491,11 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-# Could not allocate a graphics context
+# Could not allocate memory resources
+# Nije moguće dodeliti memorijske resurse
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "Не могу додијелити графички контекст"
+msgstr "Није могуће доделити меморијске ресурсе"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6301,44 +6301,50 @@ msgstr "Симболи"
 msgid "_Open Editor"
 msgstr "Отворите Едитор"
 
-# Edit DRC rules; Izmena DRC pravila
+# Edit design rules; Izmena pravila dizajna
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "Измена ДРЦ правила..."
+msgstr "Измена правила дизајна..."
 
+# first design rules; prva pravila dizajna
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "прва правила дизајна"
 
+# second design rules; druga pravila dizajna
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "друга правила дизајна"
 
 # Version Control; Kontrola verzije
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Контрола верзије"
 
+# Bill of Materials; Sastavnica
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Саставница"
 
-# gEDA netlist
+# gEDA node list; gEDA lista čvorova
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr "gEDA нетлист"
+msgstr "гЕДА листа чворова"
 
+# Simulation node list; Lista čvorova simulacije
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "Листа чворова симулације"
 
+# VHDL node list; VHDL lista čvorova
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
-msgstr ""
+msgstr "ВХДЛ листа чворова"
 
+# Verilog node list; Verilog liste čvorova
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "Верилог листе чворова"
 
 # hierarchy Verilog; hijerarhija Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
