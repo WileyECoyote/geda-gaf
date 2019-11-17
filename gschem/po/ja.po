@@ -6046,43 +6046,50 @@ msgstr "記号"
 msgid "_Open Editor"
 msgstr "エディターを開く"
 
-# Edit DRC rules; rūru o henshū suru
+# Edit design rules; rūru o henshū suru
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "DRCルールを編集する..."
+msgstr "設計ルールを編集する..."
 
+# first design rules; Saisho no sekkei rūru
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "最初の設計ルール"
 
+# second design rules; 2-Banme no sekkei kisoku
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "2番目の設計規則"
 
 # Version Control; Bājon kanri
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "バージョン管理"
 
+# Bill of Materials; Buhin-hyō
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "部品表"
 
+# gEDA node list; GEDA nōdorisuto
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr ""
+msgstr "gEDAノードリスト"
 
+# Simulation node list; Shimyurēshon'nōdorisuto
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "シミュレーションノードリスト"
 
+# VHDL node list; VHDL nōdorisuto
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
-msgstr ""
+msgstr "VHDLノードリスト"
 
+# Verilog node list; Berirogu nōdorisuto
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "Verilogノードリスト"
 
 # Hierarchy Verilog; Kaisō berirogu
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
