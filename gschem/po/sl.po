@@ -3382,12 +3382,10 @@ msgid ""
 "When enabled for reversed color images, only black and white will be reversed"
 msgstr ""
 
-# a graphics context could not be allocated
-# graphics context was not granted
+# Could not allocate memory resources
 #: gschem/src/x/x_image.c:1070
-#, fuzzy
 msgid "Could not allocate memory resources"
-msgstr "kontekst grafika ni bila dodeljena"
+msgstr "Pomnilniških virov ni bilo mogoče dodeliti"
 
 #: gschem/src/x/x_image.c:1071
 msgid "maybe you should try saving next"
@@ -6250,41 +6248,47 @@ msgstr ""
 # Edit design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr ""
+msgstr "Urejanje oblikovalskih pravil..."
 
+# first design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
-msgstr ""
+msgstr "prva pravila oblikovanja"
 
+# second design rules
 #: gschem/scheme/gschem/gschem-tools-menu.scm:256
 msgid "Run DRC 2"
-msgstr ""
+msgstr "druga pravila oblikovanja"
 
 # Version Control
 #: gschem/scheme/gschem/gschem-tools-menu.scm:257
 msgid "Version Control"
 msgstr "Nadzor različice"
 
+# Bill of Materials
 #: gschem/scheme/gschem/gschem-tools-menu.scm:258
 msgid "Bill of Materials"
-msgstr ""
+msgstr "Račun za materiale"
 
-# gEDA netlist
+# gEDA node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:261
 msgid "gEDA netlist"
-msgstr "gEDA netlist"
+msgstr "seznam vozlišč gEDA"
 
+# Simulation node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:262
 msgid "S_pice netlist"
-msgstr ""
+msgstr "Seznam vozlišč za simulacijo"
 
+# VHDL node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:264
 msgid "VHDL netlist"
 msgstr ""
 
+# Verilog node list
 #: gschem/scheme/gschem/gschem-tools-menu.scm:265
 msgid "Verilog netlist"
-msgstr ""
+msgstr "Seznam vozlišč Verilog"
 
 # hierarchy Verilog
 #: gschem/scheme/gschem/gschem-tools-menu.scm:266
