@@ -890,10 +890,10 @@ static void gtk_item_entry_real_insert_text(GtkEditable *editable,
     text_length = g_utf8_offset_to_pointer(new_text, n_chars) - new_text;
   }
 
-  if (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
-  {
-    while (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size)
-    {
+  if (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size) {
+
+    while (text_length + ientry->item_n_bytes + 1 > ientry->item_text_size) {
+
       if (ientry->item_text_size == 0) {
         ientry->item_text_size = MIN_SIZE;
       }
