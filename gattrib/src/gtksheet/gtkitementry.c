@@ -1021,27 +1021,27 @@ static void gtk_item_entry_real_delete_text(GtkEditable *editable,
  */
 static int _item_entry_get_better_cursor_x(GtkEntry *entry, int offset)
 {
-    GtkTextDirection keymap_direction =
-	(gdk_keymap_get_direction(gdk_keymap_get_default()) == PANGO_DIRECTION_LTR) ?
-	GTK_TEXT_DIR_LTR : GTK_TEXT_DIR_RTL;
-    GtkTextDirection widget_direction = gtk_widget_get_direction(GTK_WIDGET(entry));
-    _Bool split_cursor;
+  GtkTextDirection keymap_direction =
+  (gdk_keymap_get_direction(gdk_keymap_get_default()) == PANGO_DIRECTION_LTR) ?
+  GTK_TEXT_DIR_LTR : GTK_TEXT_DIR_RTL;
+  GtkTextDirection widget_direction = gtk_widget_get_direction(GTK_WIDGET(entry));
+  _Bool split_cursor;
 
-    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, TRUE);
-    int index = g_utf8_offset_to_pointer(entry->text, offset) - entry->text;
+  PangoLayout *layout = gtk_item_entry_ensure_layout(entry, TRUE);
+  int index = g_utf8_offset_to_pointer(entry->text, offset) - entry->text;
 
-    PangoRectangle strong_pos, weak_pos;
+  PangoRectangle strong_pos, weak_pos;
 
-    g_object_get(gtk_widget_get_settings(GTK_WIDGET(entry)),
-	"gtk-split-cursor", &split_cursor,
-	NULL);
+  g_object_get(gtk_widget_get_settings(GTK_WIDGET(entry)),
+               "gtk-split-cursor", &split_cursor,
+               NULL);
 
-    pango_layout_get_cursor_pos(layout, index, &strong_pos, &weak_pos);
+  pango_layout_get_cursor_pos(layout, index, &strong_pos, &weak_pos);
 
-    if (split_cursor)
-	return strong_pos.x / PANGO_SCALE;
-    else
-	return (keymap_direction == widget_direction) ? strong_pos.x / PANGO_SCALE : weak_pos.x / PANGO_SCALE;
+  if (split_cursor)
+    return strong_pos.x / PANGO_SCALE;
+  else
+    return (keymap_direction == widget_direction) ? strong_pos.x / PANGO_SCALE : weak_pos.x / PANGO_SCALE;
 }
 
 static void gtk_item_entry_move_cursor(GtkEntry       *entry,
@@ -1167,8 +1167,8 @@ static void gtk_item_entry_delete_from_cursor(GtkEntry       *entry,
     return;
   }
 
-  switch(type)
-  {
+  switch(type) {
+
     case GTK_DELETE_CHARS:
       end_pos = gtk_item_entry_move_logically(entry, entry->current_pos, count);
       gtk_editable_delete_text(editable, MIN(start_pos, end_pos), MAX(start_pos, end_pos));
@@ -1235,9 +1235,7 @@ gtk_item_entry_preedit_changed_cb(GtkIMContext *context, GtkEntry *entry)
     char *preedit_string;
     int cursor_pos;
 
-    gtk_im_context_get_preedit_string(entry->im_context,
-	&preedit_string, NULL,
-	&cursor_pos);
+    gtk_im_context_get_preedit_string(entry->im_context, &preedit_string, NULL, &cursor_pos);
     entry->preedit_length = strlen(preedit_string);
     cursor_pos = CLAMP(cursor_pos, 0, g_utf8_strlen(preedit_string, -1));
     entry->preedit_cursor = cursor_pos;
@@ -1251,10 +1249,9 @@ static _Bool gtk_item_entry_retrieve_surrounding_cb(GtkIMContext *context,
 {
     GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
 
-    gtk_im_context_set_surrounding(context,
-	entry->text,
-	gtk_entry_buffer_get_bytes(buffer),
-	g_utf8_offset_to_pointer(entry->text, entry->current_pos) - entry->text);
+    gtk_im_context_set_surrounding(context, entry->text,
+                                   gtk_entry_buffer_get_bytes(buffer),
+                                   g_utf8_offset_to_pointer(entry->text, entry->current_pos) - entry->text);
 
     return TRUE;
 }
