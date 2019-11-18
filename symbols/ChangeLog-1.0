@@ -12,6 +12,10 @@
 
     * xilinx/XC2S100-5PQ208C.sym: Convert plain text to pin labels.
 
+    * xilinx: Reorder pins:
+
+            * xilinx/XC2S150-5PQ208I.sym
+
 2019-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
