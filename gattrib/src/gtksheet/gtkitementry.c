@@ -1247,17 +1247,17 @@ gtk_item_entry_preedit_changed_cb(GtkIMContext *context, GtkEntry *entry)
 static _Bool gtk_item_entry_retrieve_surrounding_cb(GtkIMContext *context,
                                                     GtkEntry     *entry)
 {
-    GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
-    unsigned int bytes;
-    char *ptr;
+  GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+  unsigned int bytes;
+  char *ptr;
 
-    bytes = gtk_entry_buffer_get_bytes(buffer);
+  bytes = gtk_entry_buffer_get_bytes(buffer);
 
-    ptr = g_utf8_offset_to_pointer (entry->text, entry->current_pos);
+  ptr = g_utf8_offset_to_pointer (entry->text, entry->current_pos);
 
-    gtk_im_context_set_surrounding(context, entry->text, bytes, ptr - entry->text);
+  gtk_im_context_set_surrounding(context, entry->text, bytes, ptr - entry->text);
 
-    return TRUE;
+  return TRUE;
 }
 
 static _Bool gtk_item_entry_delete_surrounding_cb(GtkIMContext *slave,
@@ -1265,11 +1265,11 @@ static _Bool gtk_item_entry_delete_surrounding_cb(GtkIMContext *slave,
                                                   int           n_chars,
                                                   GtkEntry     *entry)
 {
-    gtk_editable_delete_text(GTK_EDITABLE(entry),
-	entry->current_pos + offset,
-	entry->current_pos + offset + n_chars);
+  gtk_editable_delete_text(GTK_EDITABLE(entry),
+                           entry->current_pos + offset,
+                           entry->current_pos + offset + n_chars);
 
-    return TRUE;
+  return TRUE;
 }
 
 
@@ -1359,34 +1359,34 @@ static void _item_entry_update_im_cursor_location(GtkEntry *entry)
 
 static int _item_entry_recompute_idle_func(gpointer data)
 {
-    GtkEntry *entry;
+  GtkEntry *entry;
 
-    GDK_THREADS_ENTER();
+  GDK_THREADS_ENTER();
 
-    entry = GTK_ENTRY(data);
+  entry = GTK_ENTRY(data);
 
-    gtk_item_entry_adjust_scroll(entry);
-    gtk_item_entry_queue_draw(entry);
+  gtk_item_entry_adjust_scroll(entry);
+  gtk_item_entry_queue_draw(entry);
 
-    entry->recompute_idle = FALSE;
+  entry->recompute_idle = FALSE;
 
-    _item_entry_update_im_cursor_location(entry);
+  _item_entry_update_im_cursor_location(entry);
 
-    GDK_THREADS_LEAVE();
+  GDK_THREADS_LEAVE();
 
-    return FALSE;
+  return FALSE;
 }
 
 static void gtk_item_entry_recompute(GtkEntry *entry)
 {
-    gtk_item_entry_reset_layout(entry);
-    gtk_item_entry_check_cursor_blink(entry);
+  gtk_item_entry_reset_layout(entry);
+  gtk_item_entry_check_cursor_blink(entry);
 
-    if (!entry->recompute_idle) {
+  if (!entry->recompute_idle) {
 
-	entry->recompute_idle = g_idle_add_full(G_PRIORITY_HIGH_IDLE + 15, /* between resize and redraw */
-	    _item_entry_recompute_idle_func, entry, NULL);
-    }
+    entry->recompute_idle = g_idle_add_full(G_PRIORITY_HIGH_IDLE + 15, /* between resize and redraw */
+                                            _item_entry_recompute_idle_func, entry, NULL);
+  }
 }
 
 static void _item_entry_append_char(GString *str, gunichar ch, int count)
