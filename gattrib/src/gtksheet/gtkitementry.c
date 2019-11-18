@@ -927,19 +927,22 @@ static void gtk_item_entry_real_insert_text(GtkEditable *editable,
   g_memmove(entry->text + index + text_length, entry->text + index, ientry->item_n_bytes - index);
   memcpy(entry->text + index, new_text, text_length);
 
-  if (text_length + *position > ientry->item_n_bytes)
+  if (text_length + *position > ientry->item_n_bytes) {
     ientry->item_n_bytes = text_length + *position;
+  }
 
   /* NUL terminate for safety and convenience */
   entry->text[ientry->item_n_bytes] = '\0';
 
   entry->text_length = strlen(entry->text);
 
-  if (entry->current_pos > *position)
+  if (entry->current_pos > *position) {
     entry->current_pos += n_chars;
+  }
 
-  if (entry->selection_bound > *position)
+  if (entry->selection_bound > *position) {
     entry->selection_bound += n_chars;
+  }
 
 #endif /* GTK_TYPE_ENTRY_BUFFER */
 
@@ -965,8 +968,9 @@ static void gtk_item_entry_real_delete_text(GtkEditable *editable,
     start_pos = 0;
   }
 
-  if (end_pos < 0 || end_pos > entry->text_length)
+  if (end_pos < 0 || end_pos > entry->text_length) {
     end_pos = entry->text_length;
+  }
 
   if (start_pos < end_pos) {
 
@@ -990,8 +994,9 @@ static void gtk_item_entry_real_delete_text(GtkEditable *editable,
     ientry->item_n_bytes -= (end_index - start_index);
     entry->text_length   -= (end_pos - start_pos);
 
-    if (entry->current_pos > start_pos)
+    if (entry->current_pos > start_pos) {
       entry->current_pos -= MIN(entry->current_pos, end_pos) - start_pos;
+    }
 
     if (entry->selection_bound > start_pos) {
       entry->selection_bound -= MIN(entry->selection_bound, end_pos) - start_pos;
