@@ -1564,25 +1564,25 @@ _item_entry_get_layout_position(GtkEntry *entry, int *x, int *y)
     /* Align primarily for locale's ascent/descent */
 
     y_pos = ((area_height - entry->ascent - entry->descent) / 2 +
-	entry->ascent + logical_rect.y);
+            entry->ascent + logical_rect.y);
 
 
     /* Now see if we need to adjust to fit in actual drawn string */
 
     if (logical_rect.height > area_height)
-	y_pos = (area_height - logical_rect.height) / 2;
+      y_pos = (area_height - logical_rect.height) / 2;
     else if (y_pos < 0)
-	y_pos = 0;
+      y_pos = 0;
     else if (y_pos + logical_rect.height > area_height)
-	y_pos = area_height - logical_rect.height;
+      y_pos = area_height - logical_rect.height;
 
     y_pos = y_pos / PANGO_SCALE;
 
     if (x)
-	*x = -entry->scroll_offset;
+      *x = -entry->scroll_offset;
 
     if (y)
-	*y = y_pos;
+      *y = y_pos;
 }
 
 static void
