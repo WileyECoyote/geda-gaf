@@ -1248,10 +1248,14 @@ static _Bool gtk_item_entry_retrieve_surrounding_cb(GtkIMContext *context,
                                                     GtkEntry     *entry)
 {
     GtkEntryBuffer *buffer = _item_entry_get_buffer(entry);
+    unsigned int bytes;
+    char *ptr;
 
-    gtk_im_context_set_surrounding(context, entry->text,
-                                   gtk_entry_buffer_get_bytes(buffer),
-                                   g_utf8_offset_to_pointer(entry->text, entry->current_pos) - entry->text);
+    bytes = gtk_entry_buffer_get_bytes(buffer);
+
+    ptr = g_utf8_offset_to_pointer (entry->text, entry->current_pos);
+
+    gtk_im_context_set_surrounding(context, entry->text, bytes, ptr - entry->text);
 
     return TRUE;
 }
