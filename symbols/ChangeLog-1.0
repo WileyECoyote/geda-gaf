@@ -1,3 +1,10 @@
+2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
+      value:
+
+            * transistor/pjfet-0/pjfet-gds-1.sym
+
 2019-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
