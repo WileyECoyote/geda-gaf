@@ -899,8 +899,8 @@ static void gtk_item_entry_real_insert_text(GtkEditable *editable,
       }
       else {
 
-        if (2 * (guint)ientry->item_text_size < MAX_SIZE &&
-            2 * (guint)ientry->item_text_size > ientry->item_text_size)
+        if (2 * (unsigned int)ientry->item_text_size < MAX_SIZE &&
+            2 * (unsigned int)ientry->item_text_size > ientry->item_text_size)
         {
           ientry->item_text_size *= 2;
         }
