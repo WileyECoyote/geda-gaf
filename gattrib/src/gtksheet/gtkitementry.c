@@ -1638,17 +1638,13 @@ gtk_item_entry_draw_text(GtkEntry *entry)
 
       if (gtk_widget_has_focus(GTK_WIDGET(entry))) {
 
-        selection_gc =
-        gtk_widget_get_style(widget)->base_gc[GTK_STATE_SELECTED];
-        text_gc =
-        gtk_widget_get_style(widget)->text_gc[GTK_STATE_SELECTED];
+        selection_gc = gtk_widget_get_style(widget)->base_gc[GTK_STATE_SELECTED];
+        text_gc = gtk_widget_get_style(widget)->text_gc[GTK_STATE_SELECTED];
       }
       else {
 
-        selection_gc =
-        gtk_widget_get_style(widget)->base_gc[GTK_STATE_ACTIVE];
-        text_gc =
-        gtk_widget_get_style(widget)->text_gc[GTK_STATE_ACTIVE];
+        selection_gc = gtk_widget_get_style(widget)->base_gc[GTK_STATE_ACTIVE];
+        text_gc = gtk_widget_get_style(widget)->text_gc[GTK_STATE_ACTIVE];
       }
 
       for (i = 0; i < n_ranges; i++) {
@@ -1667,9 +1663,7 @@ gtk_item_entry_draw_text(GtkEntry *entry)
       }
 
       gdk_gc_set_clip_region(text_gc, clip_region);
-      gdk_draw_layout(entry->text_area, text_gc,
-                      x, y,
-                      layout);
+      gdk_draw_layout(entry->text_area, text_gc, x, y, layout);
       gdk_gc_set_clip_region(text_gc, NULL);
 
       gdk_region_destroy(clip_region);
