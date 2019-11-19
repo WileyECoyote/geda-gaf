@@ -1309,6 +1309,7 @@ static void gtk_item_entry_set_positions(GtkEntry *entry,
   g_object_freeze_notify(G_OBJECT(entry));
 
   if (current_pos != -1 && entry->current_pos != current_pos) {
+
     entry->current_pos = current_pos;
     changed = TRUE;
 
@@ -1316,6 +1317,7 @@ static void gtk_item_entry_set_positions(GtkEntry *entry,
   }
 
   if (selection_bound != -1 && entry->selection_bound != selection_bound) {
+
     entry->selection_bound = selection_bound;
     changed = TRUE;
 
@@ -1349,6 +1351,7 @@ static void _item_entry_update_im_cursor_location(GtkEntry *entry)
 
     strong_xoffset = area_width;
   }
+
   area.x = x + strong_xoffset;
   area.y = y + area_height;
   area.width = area_width;
