@@ -559,7 +559,7 @@ static inline int _gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
  * from a y pixel location (relative to the sheet window)
  * honoring the sheet's scrolling offset and title visibility.
  *
- * beware: the top border belongs to the row, the bottom border to the next
+ * \warning the top border belongs to the row, the bottom border to the next
  *
  * \param sheet:  the sheet
  * \param y:      the pixel
@@ -599,7 +599,7 @@ static inline int _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
  *  from a x pixel location  (relative to the sheet window)
  *  honoring the sheet's scrolling offset and title visibility.
  *
- * beware: the left border belongs to the column, the right border to the next
+ * \warning the left border belongs to the column, the right border to the next
  *
  * \param sheet  the sheet
  * \param x      the pixel
@@ -8558,8 +8558,7 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
     sheet->active_cell.row = -1;  /* reset before signal emission, to prevent recursion */
     sheet->active_cell.col = -1;
 
-    /* beware: DEACTIVATE handler may call gtk_sheet_set_active_cell()
-       */
+    /* beware: DEACTIVATE handler may call gtk_sheet_set_active_cell() */
 
     _gtksheet_signal_emit(sheet, sheet_signals[DEACTIVATE], row, col, &veto);
 
