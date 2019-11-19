@@ -1,3 +1,7 @@
+2019-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Refomat documentation.
+
 2019-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_string_list.c: Remove trival debug output from function

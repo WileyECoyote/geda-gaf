@@ -391,17 +391,17 @@ _gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkGC *gc, GdkDrawable *src,
 #endif
 
 
-/**
- * _gtk_sheet_row_default_height:
+/*!
+ * \brief _gtk_sheet_row_default_height
+ * \par Function Description
+ * Calculate row height from font or return default row height
+ * when there is no font associated
+ *
  * \param widget: a GtkWidget
  *
- * Returns: row height in pixels
- *
- * calculate row height from font or return default row height
- * when there is no font associated
+ * \returns row height in pixels
  */
-unsigned int
-_gtk_sheet_row_default_height(GtkWidget *widget)
+unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
 {
     PangoFontDescription *font_desc =
 	gtk_widget_get_style(GTK_WIDGET(widget))->font_desc;
@@ -420,8 +420,7 @@ _gtk_sheet_row_default_height(GtkWidget *widget)
     return (PANGO_PIXELS(val) + 2 * CELLOFFSET);
 }
 
-static inline unsigned int
-_default_font_ascent(GtkWidget *widget)
+static inline unsigned int _default_font_ascent(GtkWidget *widget)
 {
     PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
 
@@ -529,13 +528,13 @@ _default_font_descent(GtkWidget *widget)
     return (PANGO_PIXELS(val));
 }
 
-/**
- * _gtk_sheet_row_top_ypixel:
+/*!
+ * \brief _gtk_sheet_row_top_ypixel
+ * \par Function Description
  *  Returns the top/bottom pixel of the given row in context
  *  of the sheet's voffset
  */
-static inline int
-_gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
+static inline int _gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
 {
   if (row < 0 || row > sheet->maxrow)
     return (sheet->voffset);
@@ -543,8 +542,7 @@ _gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
   return (sheet->voffset + sheet->row[row].top_ypixel);
 }
 
-static inline int
-_gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
+static inline int _gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
 {
   int ypixel = _gtk_sheet_row_top_ypixel(sheet, row);
 
@@ -554,21 +552,21 @@ _gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
   return (ypixel);
 }
 
-/**
- * _gtk_sheet_row_from_ypixel:
- * \param sheet:  the sheet
- * \param y:      the pixel
- *
+/*!
+ * \brief _gtk_sheet_row_from_ypixel
+ * \par Function Description
  * get row from y pixel location. returns the row index
  * from a y pixel location (relative to the sheet window)
  * honoring the sheet's scrolling offset and title visibility.
  *
  * beware: the top border belongs to the row, the bottom border to the next
  *
- * Returns: row index, -1 or maxcol+1 (beyond right edge)
+ * \param sheet:  the sheet
+ * \param y:      the pixel
+ *
+ * \returns row index, -1 or maxcol+1 (beyond right edge)
  */
-static inline int
-_gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
+static inline int _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
 {
   int i, cy;
 
@@ -593,21 +591,21 @@ _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
     return (sheet->maxrow + 1);
 }
 
-/**
- * _gtk_sheet_column_from_xpixel:
- * \param sheet:  the sheet
- * \param x:      the pixel
- *
- * get column from x pixel location. returns the column index
- * from a x pixel location  (relative to the sheet window)
- * honoring the sheet's scrolling offset and title visibility.
+/*!
+ * \brief _gtk_sheet_column_from_xpixel
+ * \par Function Description
+ *  get column from x pixel location. returns the column index
+ *  from a x pixel location  (relative to the sheet window)
+ *  honoring the sheet's scrolling offset and title visibility.
  *
  * beware: the left border belongs to the column, the right border to the next
  *
- * Returns: column index, or maxcol+1 (beyond right edge)
+ * \param sheet  the sheet
+ * \param x      the pixel
+ *
+ * \returns column index, or maxcol+1 (beyond right edge)
  */
-static inline int
-_gtk_sheet_column_from_xpixel(GtkSheet *sheet, int x)
+static inline int _gtk_sheet_column_from_xpixel(GtkSheet *sheet, int x)
 {
   int i, cx;
 
@@ -633,13 +631,14 @@ _gtk_sheet_column_from_xpixel(GtkSheet *sheet, int x)
   return (sheet->maxcol + 1);
 }
 
-/**
- * _gtk_sheet_first_visible_colidx:
- * \param sheet:  the sheet
+/*!
+ * \brief _gtk_sheet_first_visible_colidx
+ * \par Function Description
+ *  Find index of leftmost visible column >= startidx
  *
- * find index of leftmost visible column >= startidx
+ * \param sheet  the sheet
  *
- * returns: column index or -1
+ * \returns column index or -1
  */
 static inline int _gtk_sheet_first_visible_colidx(GtkSheet *sheet, int startidx)
 {
@@ -652,13 +651,14 @@ static inline int _gtk_sheet_first_visible_colidx(GtkSheet *sheet, int startidx)
   return (-1);
 }
 
-/**
- * _gtk_sheet_last_visible_colidx:
- * \param sheet:  the sheet
+/*!
+ * \brief _gtk_sheet_last_visible_colidx
+ * \par Function Description
+ *  Find  index of rightmost visible column <= startidx
  *
- * find  index of rightmost visible column <= startidx
+ * \param sheet  the sheet
  *
- * returns: column index or -1
+ * \returns column index or -1
  */
 static inline int _gtk_sheet_last_visible_colidx(GtkSheet *sheet, int startidx)
 {
@@ -671,13 +671,14 @@ static inline int _gtk_sheet_last_visible_colidx(GtkSheet *sheet, int startidx)
   return (-1);
 }
 
-/**
- * _gtk_sheet_first_visible_rowidx:
- * \param sheet:  the sheet
+/*!
+ * \brief _gtk_sheet_first_visible_rowidx
+ * \par Function Description
+ * Find index of topmost visible row >= startidx
  *
- * find index of topmost visible row >= startidx
+ * \param sheet  the sheet
  *
- * returns: row index or -1
+ * \returns row index or -1
  */
 static inline int _gtk_sheet_first_visible_rowidx(GtkSheet *sheet, int startidx)
 {
@@ -690,13 +691,14 @@ static inline int _gtk_sheet_first_visible_rowidx(GtkSheet *sheet, int startidx)
   return (-1);
 }
 
-/**
- * _gtk_sheet_last_visible_rowidx:
- * \param sheet:  the sheet
+/*!
+ * \brief _gtk_sheet_last_visible_rowidx
+ * \par Function Description
+ *  Find index of bottommost visible row <= startidx
  *
- * find index of bottommost visible row <= startidx
+ * \param sheet  the sheet
  *
- * returns: row index or -1
+ * \returns row index or -1
  */
 static inline int _gtk_sheet_last_visible_rowidx(GtkSheet *sheet, int startidx)
 {
@@ -709,15 +711,15 @@ static inline int _gtk_sheet_last_visible_rowidx(GtkSheet *sheet, int startidx)
     return (-1);
 }
 
-/**
- * _gtk_sheet_get_visible_range:
- * \param sheet:  the sheet
- * \param visr:  pointer to store results
+/*!
+ * \brief _gtk_sheet_get_visible_range
+ * \par Function Description
+ *  return visible sheet area [first visible row/col .. last visible row/col]
  *
- * return visible sheet area
- * [first visible row/col .. last visible row/col]
+ * \param sheet  the sheet
+ * \param visr  pointer to store results
  *
- * returns: TRUE if any visible cells exist and range is valid
+ * \returns TRUE if any visible cells exist and range is valid
  */
 static inline int _gtk_sheet_get_visible_range(GtkSheet *sheet,
                                                GtkSheetRange *visr)
@@ -743,14 +745,15 @@ static inline int _gtk_sheet_get_visible_range(GtkSheet *sheet,
     return (TRUE);
 }
 
-/**
- * _gtk_sheet_count_visible:
- * \param sheet:  the sheet
- * \param range: the #GtkSheetRange to inspect
- * \param nrows: number of visible rows in range (out)
- * \param ncols: number of visible columns in range (out)
+/*!
+ * \brief _gtk_sheet_count_visible
+ * \par Function Description
+ *  count visible rows/cols in range
  *
- * count visible rows/cols in range
+ * \param sheet the sheet
+ * \param range the #GtkSheetRange to inspect
+ * \param nrows number of visible rows in range (out)
+ * \param ncols number of visible columns in range (out)
  */
 static inline void _gtk_sheet_count_visible(GtkSheet *sheet,
                                             GtkSheetRange *range,
@@ -773,17 +776,16 @@ static inline void _gtk_sheet_count_visible(GtkSheet *sheet,
 
 
 
-/**
- * _gtk_sheet_height:
- * \param sheet:  the #GtkSheet
+/*!
+ * \brief _gtk_sheet_height
+ * \par Function Description
+ *  returns the total height of the sheet
  *
- * returns the total height of the sheet
+ * \param sheet  the #GtkSheet
  *
- * returns: total height of all visible rows, including
- * col_titles area
+ * \returns total height of all visible rows, including col_titles area
  */
-static inline int
-_gtk_sheet_height(GtkSheet *sheet)
+static inline int _gtk_sheet_height(GtkSheet *sheet)
 {
     int i, cx;
 
