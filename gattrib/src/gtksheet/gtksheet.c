@@ -4620,41 +4620,46 @@ const char *gtk_sheet_get_row_title(GtkSheet *sheet,
  */
 void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
 {
-    GtkSheetButton *button;
-    GtkRequisition req;
-    int aux_c, aux_r;
+  GtkSheetButton *button;
+  GtkRequisition req;
+  int aux_c, aux_r;
 
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (row < 0 || row > sheet->maxrow)
-	return;
+  if (row < 0 || row > sheet->maxrow) {
+    return;
+  }
 
-    button = &sheet->row[row].button;
-    if (button->label)
-	g_free(button->label);
-    button->label = g_strdup(label);
+  button = &sheet->row[row].button;
 
-    aux_c = gtk_sheet_autoresize_columns(sheet);
-    aux_r = gtk_sheet_autoresize_rows(sheet);
-    gtk_sheet_set_autoresize(sheet, FALSE);
-    gtk_sheet_set_autoresize_rows(sheet, TRUE);
-    _gtk_sheet_button_size_request(sheet, button, &req);
-    gtk_sheet_set_autoresize_columns(sheet, aux_c);
-    gtk_sheet_set_autoresize_rows(sheet, aux_r);
+  if (button->label) {
+    g_free(button->label);
+  }
 
-    if (req.height > sheet->row[row].height)
-	gtk_sheet_set_row_height(sheet, row, req.height);
+  button->label = g_strdup(label);
 
-    if (req.width > sheet->row_title_area.width)
-    {
-	gtk_sheet_set_row_titles_width(sheet, req.width);
-    }
+  aux_c = gtk_sheet_autoresize_columns(sheet);
+  aux_r = gtk_sheet_autoresize_rows(sheet);
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-    {
-	_gtk_sheet_draw_button(sheet, row, -1);
-    }
-    g_signal_emit(G_OBJECT(sheet), sheet_signals[CHANGED], 0, row, -1);
+  gtk_sheet_set_autoresize(sheet, FALSE);
+  gtk_sheet_set_autoresize_rows(sheet, TRUE);
+  _gtk_sheet_button_size_request(sheet, button, &req);
+  gtk_sheet_set_autoresize_columns(sheet, aux_c);
+  gtk_sheet_set_autoresize_rows(sheet, aux_r);
+
+  if (req.height > sheet->row[row].height) {
+    gtk_sheet_set_row_height(sheet, row, req.height);
+  }
+
+  if (req.width > sheet->row_title_area.width) {
+    gtk_sheet_set_row_titles_width(sheet, req.width);
+  }
+
+  if (!GTK_SHEET_IS_FROZEN(sheet)) {
+    _gtk_sheet_draw_button(sheet, row, -1);
+  }
+
+  g_signal_emit(G_OBJECT(sheet), sheet_signals[CHANGED], 0, row, -1);
 }
 
 /**
