@@ -1,6 +1,7 @@
 2019-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: Refomat documentation.
+    * src/gtksheet/gtksheet.c: Refomat documentation, add ancillary GdkGC in
+      gtk_sheet_flash so as not to call gtk_widget_get_style four times.
 
 2019-11-13 Wiley E. Hill <wileyhill@gmail.com>
 

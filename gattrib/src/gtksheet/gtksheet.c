@@ -5484,6 +5484,7 @@ int gtk_sheet_in_clip(GtkSheet *sheet)
 static int gtk_sheet_flash(void *data)
 {
   GtkSheet *sheet;
+  GdkGC *gc;
   int x, y, width, height;
   GdkRectangle clip_area;
 
@@ -5534,29 +5535,27 @@ static int gtk_sheet_flash(void *data)
     height = clip_area.height + 10;
   }
 
-  _gtk_sheet_draw_pixmap(sheet->sheet_window,
-                         gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+  gc = gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL];
+
+  _gtk_sheet_draw_pixmap(sheet->sheet_window, gc,
                          sheet->pixmap,
                          x, y,
                          x, y,
                          1, height);
 
-  _gtk_sheet_draw_pixmap(sheet->sheet_window,
-                         gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+  _gtk_sheet_draw_pixmap(sheet->sheet_window, gc,
                          sheet->pixmap,
                          x, y,
                          x, y,
                          width, 1);
 
-  _gtk_sheet_draw_pixmap(sheet->sheet_window,
-                         gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+  _gtk_sheet_draw_pixmap(sheet->sheet_window,gc,
                          sheet->pixmap,
                          x, y + height,
                          x, y + height,
                          width, 1);
 
-  _gtk_sheet_draw_pixmap(sheet->sheet_window,
-                         gtk_widget_get_style((GtkWidget*)sheet)->fg_gc[GTK_STATE_NORMAL],
+  _gtk_sheet_draw_pixmap(sheet->sheet_window, gc,
                          sheet->pixmap,
                          x + width, y,
                          x + width, y,
