@@ -5600,15 +5600,15 @@ static void gtk_sheet_draw_flashing_range(GtkSheet *sheet, GtkSheetRange range)
     sheet->row[sheet->clip_range.rowi].height - 1;
 
     if (x < 0) {
-
       width = width + x + 1;
       x = -1;
     }
-    if (width > clip_area.width)
+
+    if (width > clip_area.width) {
       width = clip_area.width + 10;
+    }
 
     if (y < 0) {
-
       height = height + y + 1;
       y = -1;
     }
@@ -8495,16 +8495,20 @@ gtk_sheet_entry_changed_handler(GtkWidget *widget, void *data)
 
     sheet = (GtkSheet*)data;
 
-    if (!gtk_widget_get_visible(gtk_sheet_get_entry_widget(sheet)))
-	return;
-    if (sheet->state != GTK_STATE_NORMAL)
-	return;
+    if (!gtk_widget_get_visible(gtk_sheet_get_entry_widget(sheet))) {
+      return;
+    }
+
+    if (sheet->state != GTK_STATE_NORMAL){
+      return;
+    }
 
     row = sheet->active_cell.row;
     col = sheet->active_cell.col;
 
-    if (row < 0 || col < 0)
-	return;
+    if (row < 0 || col < 0){
+      return;
+    }
 
     sheet->active_cell.row = -1;
     sheet->active_cell.col = -1;
@@ -8515,8 +8519,9 @@ gtk_sheet_entry_changed_handler(GtkWidget *widget, void *data)
     gtk_sheet_set_cell_text(sheet, row, col, text);
     g_free(text);
 
-    if (sheet->freeze_count == 0)
-	GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IS_FROZEN);
+    if (sheet->freeze_count == 0) {
+      GTK_SHEET_UNSET_FLAGS(sheet, GTK_SHEET_IS_FROZEN);
+    }
 
     sheet->active_cell.row = row;;
     sheet->active_cell.col = col;
@@ -8538,17 +8543,21 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
     fprintf(stderr,"gtk_sheet_deactivate_cell: called, row %d col %d\n", row, col);
 #endif
 
-    if (row < 0 || row > sheet->maxrow)
-	return (TRUE);
+    if (row < 0 || row > sheet->maxrow) {
+      return (TRUE);
+    }
 
-    if (col < 0 || col > sheet->maxcol)
-	return (TRUE);
+    if (col < 0 || col > sheet->maxcol) {
+      return (TRUE);
+    }
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-	return (FALSE);
+    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+      return (FALSE);
+    }
 
-    if (sheet->state != GTK_SHEET_NORMAL)
-	return (FALSE);
+    if (sheet->state != GTK_SHEET_NORMAL) {
+      return (FALSE);
+    }
 
     gtk_sheet_entry_signal_disconnect_by_func(sheet,
                                               G_CALLBACK(gtk_sheet_entry_changed_handler));
