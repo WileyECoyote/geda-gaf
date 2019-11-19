@@ -505,6 +505,7 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
 
   if (width)
     *width = extent.width;
+
   if (height)
     *height = extent.height;
 }
@@ -648,6 +649,7 @@ static inline int _gtk_sheet_first_visible_colidx(GtkSheet *sheet, int startidx)
     if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
       return (i);
   }
+
   return (-1);
 }
 
@@ -668,6 +670,7 @@ static inline int _gtk_sheet_last_visible_colidx(GtkSheet *sheet, int startidx)
     if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
       return (i);
   }
+
   return (-1);
 }
 
@@ -688,6 +691,7 @@ static inline int _gtk_sheet_first_visible_rowidx(GtkSheet *sheet, int startidx)
     if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
       return (i);
   }
+
   return (-1);
 }
 
@@ -708,6 +712,7 @@ static inline int _gtk_sheet_last_visible_rowidx(GtkSheet *sheet, int startidx)
     if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
       return (i);
   }
+
   return (-1);
 }
 
@@ -731,14 +736,17 @@ static inline int _gtk_sheet_get_visible_range(GtkSheet *sheet,
     return (FALSE);
 
   visr->rowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->maxrow);
+
   if (visr->rowi < 0)
     return (FALSE);
 
   visr->col0 = _gtk_sheet_first_visible_colidx(sheet, 0);
+
   if (visr->col0 < 0)
     return (FALSE);
 
   visr->coli = _gtk_sheet_last_visible_colidx(sheet, sheet->maxcol);
+
   if (visr->coli < 0)
     return (FALSE);
 
@@ -853,14 +861,17 @@ _gtk_sheet_recalc_view_range(GtkSheet *sheet)
 void
 _gtk_sheet_range_fixup(GtkSheet *sheet, GtkSheetRange *range)
 {
-    if (range->row0 < 0)
-	range->row0 = 0;
-    if (range->rowi > sheet->maxrow)
-	range->rowi = sheet->maxrow;
-    if (range->col0 < 0)
-	range->col0 = 0;
-    if (range->coli > sheet->maxcol)
-	range->coli = sheet->maxcol;
+  if (range->row0 < 0)
+    range->row0 = 0;
+
+  if (range->rowi > sheet->maxrow)
+    range->rowi = sheet->maxrow;
+
+  if (range->col0 < 0)
+    range->col0 = 0;
+
+  if (range->coli > sheet->maxcol)
+    range->coli = sheet->maxcol;
 }
 
 /*
@@ -880,33 +891,36 @@ POSSIBLE_XDRAG(GtkSheet *sheet, int x, int *drag_column)
     int column, xdrag;
 
     column = _gtk_sheet_column_from_xpixel(sheet, x);
-    if (column < 0 || column > sheet->maxcol)
-	return (FALSE);
+    if (column < 0 || column > sheet->maxcol) {
+      return (FALSE);
+    }
 
     xdrag = _gtk_sheet_column_left_xpixel(sheet, column);
 
-    if (column > 0 && x <= xdrag + DRAG_WIDTH / 2)  /* you pick it at the left border */
-    {
-	while (column > 0 && !GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column - 1))) column--;
+    if (column > 0 && x <= xdrag + DRAG_WIDTH / 2)  {  /* you pick it at the left border */
 
-	--column;  /* you really want to resize the column on the left side */
+      while (column > 0 && !GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column - 1))) column--;
 
-	if (column < 0 || column > sheet->maxcol)
-	    return (FALSE);
+      --column;  /* you really want to resize the column on the left side */
 
-	*drag_column = column;
-	return (TRUE);
+      if (column < 0 || column > sheet->maxcol)
+        return (FALSE);
+
+      *drag_column = column;
+      return (TRUE);
+
 #if 0
-	return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
+      return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
 #endif
     }
 
     xdrag = _gtk_sheet_column_right_xpixel(sheet, column);
 
-    if (xdrag - DRAG_WIDTH / 2 <= x && x <= xdrag + DRAG_WIDTH / 2)
-    {
+    if (xdrag - DRAG_WIDTH / 2 <= x && x <= xdrag + DRAG_WIDTH / 2) {
+
 	*drag_column = column;
 	return (TRUE);
+
 #if 0
 	return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
 #endif
