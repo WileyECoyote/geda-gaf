@@ -403,21 +403,21 @@ _gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkGC *gc, GdkDrawable *src,
  */
 unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
 {
-    PangoFontDescription *font_desc =
-	gtk_widget_get_style(GTK_WIDGET(widget))->font_desc;
+  PangoFontDescription *font_desc =
+  gtk_widget_get_style(GTK_WIDGET(widget))->font_desc;
 
-    if (!font_desc)
-	return (GTK_SHEET_ROW_DEFAULT_HEIGHT);
+  if (!font_desc)
+    return (GTK_SHEET_ROW_DEFAULT_HEIGHT);
 
-    PangoContext *context = gtk_widget_get_pango_context(widget);
+  PangoContext *context = gtk_widget_get_pango_context(widget);
 
-    PangoFontMetrics *metrics = pango_context_get_metrics(context,
-	font_desc, pango_context_get_language(context));
-    unsigned int val = pango_font_metrics_get_descent(metrics) +
-	pango_font_metrics_get_ascent(metrics);
-    pango_font_metrics_unref(metrics);
+  PangoFontMetrics *metrics = pango_context_get_metrics(context,
+                                                        font_desc, pango_context_get_language(context));
+  unsigned int val = pango_font_metrics_get_descent(metrics) +
+  pango_font_metrics_get_ascent(metrics);
+  pango_font_metrics_unref(metrics);
 
-    return (PANGO_PIXELS(val) + 2 * CELLOFFSET);
+  return (PANGO_PIXELS(val) + 2 * CELLOFFSET);
 }
 
 static inline unsigned int _default_font_ascent(GtkWidget *widget)
@@ -448,84 +448,83 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
                                PangoFontDescription *font_desc, const char *text,
                                unsigned int *width, unsigned int *height)
 {
-    PangoRectangle extent;
-    PangoLayout *layout;
+  PangoRectangle extent;
+  PangoLayout *layout;
 
-    layout = gtk_widget_create_pango_layout((GtkWidget*)sheet, text);
-    pango_layout_set_font_description(layout, font_desc);
+  layout = gtk_widget_create_pango_layout((GtkWidget*)sheet, text);
+  pango_layout_set_font_description(layout, font_desc);
 
-    if (colptr && !gtk_sheet_autoresize_columns(sheet))
-    {
-	switch(colptr->wrap_mode)
-	{
-	    case GTK_WRAP_NONE:
-		break;
+  if (colptr && !gtk_sheet_autoresize_columns(sheet)) {
 
-	    case GTK_WRAP_CHAR:
-		pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
-		pango_layout_set_wrap(layout, PANGO_WRAP_CHAR);
-		break;
+    switch(colptr->wrap_mode) {
 
-	    case GTK_WRAP_WORD:
-		pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
-		pango_layout_set_wrap(layout, PANGO_WRAP_WORD);
-		break;
+      case GTK_WRAP_NONE:
+        break;
 
-	    case GTK_WRAP_WORD_CHAR:
-		pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
-		pango_layout_set_wrap(layout, PANGO_WRAP_WORD_CHAR);
-		break;
-	}
+      case GTK_WRAP_CHAR:
+        pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
+        pango_layout_set_wrap(layout, PANGO_WRAP_CHAR);
+        break;
+
+      case GTK_WRAP_WORD:
+        pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
+        pango_layout_set_wrap(layout, PANGO_WRAP_WORD);
+        break;
+
+      case GTK_WRAP_WORD_CHAR:
+        pango_layout_set_width(layout, colptr->width * PANGO_SCALE);
+        pango_layout_set_wrap(layout, PANGO_WRAP_WORD_CHAR);
+        break;
     }
+  }
 
 
-    pango_layout_get_pixel_extents(layout, NULL, &extent);
+  pango_layout_get_pixel_extents(layout, NULL, &extent);
 
 #if GTK_SHEET_DEBUG_FONT_METRICS > 0
-    {
-	PangoContext *context = gtk_widget_get_pango_context((GtkWidget*)sheet);
-	PangoFontMetrics *metrics = pango_context_get_metrics(
-	    context, font_desc, pango_context_get_language(context));
+  {
+    PangoContext *context = gtk_widget_get_pango_context((GtkWidget*)sheet);
+    PangoFontMetrics *metrics = pango_context_get_metrics(
+      context, font_desc, pango_context_get_language(context));
 
-	int ascent = pango_font_metrics_get_ascent(metrics) / PANGO_SCALE;
-	int descent = pango_font_metrics_get_descent(metrics) / PANGO_SCALE;
-	int spacing = pango_layout_get_spacing(layout) / PANGO_SCALE;
+    int ascent = pango_font_metrics_get_ascent(metrics) / PANGO_SCALE;
+    int descent = pango_font_metrics_get_descent(metrics) / PANGO_SCALE;
+    int spacing = pango_layout_get_spacing(layout) / PANGO_SCALE;
 
-	pango_font_metrics_unref(metrics);
-
-	fprintf(stderr,"_get_string_extent(%s): ext (%d, %d, %d, %d) asc %d desc %d spac %d",
-	    text,
-	    extent.x, extent.y,
-	    extent.width, extent.height,
-	    ascent, descent, spacing);
-    }
-#endif
-
-    g_object_unref(layout);
-
-    if (width)
-	*width = extent.width;
-    if (height)
-	*height = extent.height;
-}
-
-static inline unsigned int
-_default_font_descent(GtkWidget *widget)
-{
-    PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
-
-    if (!font_desc) {
-      return (GTK_SHEET_DEFAULT_FONT_DESCENT);
-    }
-
-    PangoContext *context = gtk_widget_get_pango_context(widget);
-
-    PangoFontMetrics *metrics = pango_context_get_metrics(context,
-	font_desc, pango_context_get_language(context));
-    unsigned int val =  pango_font_metrics_get_descent(metrics);
     pango_font_metrics_unref(metrics);
 
-    return (PANGO_PIXELS(val));
+    fprintf(stderr,"_get_string_extent(%s): ext (%d, %d, %d, %d) asc %d desc %d spac %d",
+            text,
+            extent.x, extent.y,
+            extent.width, extent.height,
+            ascent, descent, spacing);
+  }
+#endif
+
+  g_object_unref(layout);
+
+  if (width)
+    *width = extent.width;
+  if (height)
+    *height = extent.height;
+}
+
+static inline unsigned int _default_font_descent(GtkWidget *widget)
+{
+  PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
+
+  if (!font_desc) {
+    return (GTK_SHEET_DEFAULT_FONT_DESCENT);
+  }
+
+  PangoContext *context = gtk_widget_get_pango_context(widget);
+
+  PangoFontMetrics *metrics = pango_context_get_metrics(context,
+                                                        font_desc, pango_context_get_language(context));
+  unsigned int val =  pango_font_metrics_get_descent(metrics);
+  pango_font_metrics_unref(metrics);
+
+  return (PANGO_PIXELS(val));
 }
 
 /*!
@@ -574,21 +573,22 @@ static inline int _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
   if (sheet->column_titles_visible)
     cy += sheet->column_title_area.height;
 
-  if (y < cy)
+  if (y < cy) {
     return (-1);    /* top outside */
+  }
 
-    for (i = 0; i <= sheet->maxrow; i++) {
+  for (i = 0; i <= sheet->maxrow; i++) {
 
-      if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
 
-        if (cy <= y  && y < (cy + sheet->row[i].height))
-          return (i);
-        cy += sheet->row[i].height;
-      }
+      if (cy <= y  && y < (cy + sheet->row[i].height))
+        return (i);
+      cy += sheet->row[i].height;
     }
+  }
 
-    /* no match */
-    return (sheet->maxrow + 1);
+  /* no match */
+  return (sheet->maxrow + 1);
 }
 
 /*!
@@ -702,13 +702,13 @@ static inline int _gtk_sheet_first_visible_rowidx(GtkSheet *sheet, int startidx)
  */
 static inline int _gtk_sheet_last_visible_rowidx(GtkSheet *sheet, int startidx)
 {
-    int i;
-    for (i = startidx; i >= 0; i--) {
+  int i;
+  for (i = startidx; i >= 0; i--) {
 
-	if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
-	    return (i);
-    }
-    return (-1);
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
+      return (i);
+  }
+  return (-1);
 }
 
 /*!
@@ -724,25 +724,25 @@ static inline int _gtk_sheet_last_visible_rowidx(GtkSheet *sheet, int startidx)
 static inline int _gtk_sheet_get_visible_range(GtkSheet *sheet,
                                                GtkSheetRange *visr)
 {
-    visr->row0 = visr->rowi = visr->col0 = visr->coli = -1;
+  visr->row0 = visr->rowi = visr->col0 = visr->coli = -1;
 
-    visr->row0 = _gtk_sheet_first_visible_rowidx(sheet, 0);
-    if (visr->row0 < 0)
-	return (FALSE);
+  visr->row0 = _gtk_sheet_first_visible_rowidx(sheet, 0);
+  if (visr->row0 < 0)
+    return (FALSE);
 
-    visr->rowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->maxrow);
-    if (visr->rowi < 0)
-	return (FALSE);
+  visr->rowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->maxrow);
+  if (visr->rowi < 0)
+    return (FALSE);
 
-    visr->col0 = _gtk_sheet_first_visible_colidx(sheet, 0);
-    if (visr->col0 < 0)
-	return (FALSE);
+  visr->col0 = _gtk_sheet_first_visible_colidx(sheet, 0);
+  if (visr->col0 < 0)
+    return (FALSE);
 
-    visr->coli = _gtk_sheet_last_visible_colidx(sheet, sheet->maxcol);
-    if (visr->coli < 0)
-	return (FALSE);
+  visr->coli = _gtk_sheet_last_visible_colidx(sheet, sheet->maxcol);
+  if (visr->coli < 0)
+    return (FALSE);
 
-    return (TRUE);
+  return (TRUE);
 }
 
 /*!
@@ -759,22 +759,19 @@ static inline void _gtk_sheet_count_visible(GtkSheet *sheet,
                                             GtkSheetRange *range,
                                             int *nrows, int *ncols)
 {
-    int i;
-    *nrows = *ncols = 0;
+  int i;
+  *nrows = *ncols = 0;
 
-    for (i = range->row0; i <= range->rowi; i++)
-    {
-	if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
-	    ++(*nrows);
-    }
-    for (i = range->col0; i <= range->coli; i++)
-    {
-	if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
-	    ++(*ncols);
-    }
+  for (i = range->row0; i <= range->rowi; i++) {
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
+      ++(*nrows);
+  }
+
+  for (i = range->col0; i <= range->coli; i++) {
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
+      ++(*ncols);
+  }
 }
-
-
 
 /*!
  * \brief _gtk_sheet_height
