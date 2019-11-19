@@ -1287,8 +1287,9 @@ static void gtk_item_entry_enter_text(GtkEntry *entry, const char *str)
   }
   else {
 
-    if (entry->overwrite_mode)
+    if (entry->overwrite_mode) {
       gtk_item_entry_delete_from_cursor(entry, GTK_DELETE_CHARS, 1);
+    }
   }
 
   tmp_pos = entry->current_pos;
@@ -1307,16 +1308,14 @@ static void gtk_item_entry_set_positions(GtkEntry *entry,
 
   g_object_freeze_notify(G_OBJECT(entry));
 
-  if (current_pos != -1 && entry->current_pos != current_pos)
-  {
+  if (current_pos != -1 && entry->current_pos != current_pos) {
     entry->current_pos = current_pos;
     changed = TRUE;
 
     g_object_notify(G_OBJECT(entry), "cursor_position");
   }
 
-  if (selection_bound != -1 && entry->selection_bound != selection_bound)
-  {
+  if (selection_bound != -1 && entry->selection_bound != selection_bound) {
     entry->selection_bound = selection_bound;
     changed = TRUE;
 
@@ -1325,8 +1324,9 @@ static void gtk_item_entry_set_positions(GtkEntry *entry,
 
   g_object_thaw_notify(G_OBJECT(entry));
 
-  if (changed)
+  if (changed) {
     gtk_item_entry_recompute(entry);
+  }
 }
 
 static void _item_entry_update_im_cursor_location(GtkEntry *entry)
