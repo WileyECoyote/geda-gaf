@@ -427,26 +427,27 @@ unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
 
 static inline unsigned int _default_font_ascent(GtkWidget *widget)
 {
-    PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
+  PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
 
-    if (!font_desc) {
-      return (GTK_SHEET_DEFAULT_FONT_ASCENT);
-    }
+  if (!font_desc) {
+    return (GTK_SHEET_DEFAULT_FONT_ASCENT);
+  }
 
-    PangoContext     *context;
-    PangoFontMetrics *metrics;
-    unsigned int      val;
+  PangoContext     *context;
+  PangoLanguage    *language;
+  PangoFontMetrics *metrics;
 
-    context = gtk_widget_get_pango_context(widget);
+  unsigned int      val;
 
-    metrics = pango_context_get_metrics(context,
-                                        font_desc, pango_context_get_language(context));
+  context  = gtk_widget_get_pango_context(widget);
+  language = pango_context_get_language(context);
+  metrics  = pango_context_get_metrics(context, font_desc, language);
 
-    val = pango_font_metrics_get_ascent(metrics);
+  val = pango_font_metrics_get_ascent(metrics);
 
-    pango_font_metrics_unref(metrics);
+  pango_font_metrics_unref(metrics);
 
-    return (PANGO_PIXELS(val));
+  return (PANGO_PIXELS(val));
 }
 
 static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
@@ -488,15 +489,19 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
 
 #if GTK_SHEET_DEBUG_FONT_METRICS > 0
   {
-    PangoContext *context = gtk_widget_get_pango_context((GtkWidget*)sheet);
-    PangoFontMetrics *metrics = pango_context_get_metrics(
-      context, font_desc, pango_context_get_language(context));
+    PangoContext     *context;
+    PangoLanguage    *language;
+    PangoFontMetrics *metrics;
+
+    context  = gtk_widget_get_pango_context((GtkWidget*)sheet);
+    language = pango_context_get_language(context);
+    metrics  = pango_context_get_metrics(context, font_desc, language);
 
     int ascent = pango_font_metrics_get_ascent(metrics) / PANGO_SCALE;
     int descent = pango_font_metrics_get_descent(metrics) / PANGO_SCALE;
     int spacing = pango_layout_get_spacing(layout) / PANGO_SCALE;
 
-    pango_font_metrics_unref(metrics);
+    language(metrics);
 
     fprintf(stderr,"_get_string_extent(%s): ext (%d, %d, %d, %d) asc %d desc %d spac %d",
             text,
@@ -517,17 +522,24 @@ static void _get_string_extent(GtkSheet *sheet, GtkSheetColumn *colptr,
 
 static inline unsigned int _default_font_descent(GtkWidget *widget)
 {
-  PangoFontDescription *font_desc = gtk_widget_get_style(widget)->font_desc;
+  PangoFontDescription *font_desc;
+  PangoContext         *context;
+  PangoFontMetrics     *metrics;
+  PangoLanguage        *language;
+
+  unsigned int val;
+
+  font_desc = gtk_widget_get_style(widget)->font_desc;
 
   if (!font_desc) {
     return (GTK_SHEET_DEFAULT_FONT_DESCENT);
   }
 
-  PangoContext *context = gtk_widget_get_pango_context(widget);
+  context  = gtk_widget_get_pango_context(widget);
+  language = pango_context_get_language(context);
+  metrics  = pango_context_get_metrics(context, font_desc, language);
+  val      =  pango_font_metrics_get_descent(metrics);
 
-  PangoFontMetrics *metrics = pango_context_get_metrics(context,
-                                                        font_desc, pango_context_get_language(context));
-  unsigned int val =  pango_font_metrics_get_descent(metrics);
   pango_font_metrics_unref(metrics);
 
   return (PANGO_PIXELS(val));
