@@ -15269,43 +15269,38 @@ label_size_request(GtkSheet *sheet, char *label, GtkRequisition *req)
  * size request handler for all sheet buttons
  */
 void
-_gtk_sheet_button_size_request(GtkSheet *sheet,
-    GtkSheetButton *button,
-    GtkRequisition *button_requisition)
+_gtk_sheet_button_size_request(GtkSheet       *sheet,
+                               GtkSheetButton *button,
+                               GtkRequisition *button_requisition)
 {
-    GtkRequisition requisition;
-    GtkRequisition label_requisition;
+  GtkRequisition requisition;
+  GtkRequisition label_requisition;
 
-    if (gtk_sheet_autoresize(sheet) && button->label && button->label[0])
-    {
-	label_size_request(sheet, button->label, &label_requisition);
-	label_requisition.width += 2 * CELLOFFSET;
-	label_requisition.height += 2 * CELLOFFSET;
-    }
-    else
-    {
-	label_requisition.height = _gtk_sheet_row_default_height((GtkWidget*)sheet);
-	label_requisition.width = GTK_SHEET_COLUMN_MIN_WIDTH;
-    }
+  if (gtk_sheet_autoresize(sheet) && button->label && button->label[0]) {
+    label_size_request(sheet, button->label, &label_requisition);
+    label_requisition.width += 2 * CELLOFFSET;
+    label_requisition.height += 2 * CELLOFFSET;
+  }
+  else {
+    label_requisition.height = _gtk_sheet_row_default_height((GtkWidget*)sheet);
+    label_requisition.width = GTK_SHEET_COLUMN_MIN_WIDTH;
+  }
 
-    if (button->child)
-    {
-	gtk_widget_size_request(button->child->widget, &requisition);
-	requisition.width += 2 * button->child->xpadding;
-	requisition.height += 2 * button->child->ypadding;
-	requisition.width += 2 * gtk_widget_get_style(sheet->button)->xthickness;
-	requisition.height += 2 * gtk_widget_get_style(sheet->button)->ythickness;
-    }
-    else
-    {
-	requisition.height = _gtk_sheet_row_default_height((GtkWidget*)sheet);
-	requisition.width = GTK_SHEET_COLUMN_MIN_WIDTH;
-    }
+  if (button->child) {
+    gtk_widget_size_request(button->child->widget, &requisition);
+    requisition.width  += 2 * button->child->xpadding;
+    requisition.height += 2 * button->child->ypadding;
+    requisition.width  += 2 * gtk_widget_get_style(sheet->button)->xthickness;
+    requisition.height += 2 * gtk_widget_get_style(sheet->button)->ythickness;
+  }
+  else {
+    requisition.height = _gtk_sheet_row_default_height((GtkWidget*)sheet);
+    requisition.width = GTK_SHEET_COLUMN_MIN_WIDTH;
+  }
 
-    *button_requisition = requisition;
-    button_requisition->width = MAX(requisition.width, label_requisition.width);
-    button_requisition->height = MAX(requisition.height, label_requisition.height);
-
+  *button_requisition = requisition;
+  button_requisition->width = MAX(requisition.width, label_requisition.width);
+  button_requisition->height = MAX(requisition.height, label_requisition.height);
 }
 
 static void
