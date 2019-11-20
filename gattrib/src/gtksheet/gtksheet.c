@@ -826,17 +826,17 @@ static inline void _gtk_sheet_count_visible(GtkSheet *sheet,
  */
 static inline int _gtk_sheet_height(GtkSheet *sheet)
 {
-    int i, cx;
+  int i, cx;
 
-    cx = (sheet->column_titles_visible ? sheet->column_title_area.height : 0);
+  cx = (sheet->column_titles_visible ? sheet->column_title_area.height : 0);
 
-    for (i = 0; i <= sheet->maxrow; i++)
-    {
-	if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
-	    cx += sheet->row[i].height;
+  for (i = 0; i <= sheet->maxrow; i++) {
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
+      cx += sheet->row[i].height;
     }
+  }
 
-    return (cx);
+  return (cx);
 }
 
 /**
@@ -851,17 +851,17 @@ static inline int _gtk_sheet_height(GtkSheet *sheet)
 static inline int
 _gtk_sheet_width(GtkSheet *sheet)
 {
-    int i, cx;
+  int i, cx;
 
-    cx = (sheet->row_titles_visible ? sheet->row_title_area.width : 0);
+  cx = (sheet->row_titles_visible ? sheet->row_title_area.width : 0);
 
-    for (i = 0; i <= sheet->maxcol; i++)
-    {
-	if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
-	    cx += COLPTR(sheet, i)->width;
+  for (i = 0; i <= sheet->maxcol; i++) {
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) {
+      cx += COLPTR(sheet, i)->width;
     }
+  }
 
-    return (cx);
+  return (cx);
 }
 
 /**
