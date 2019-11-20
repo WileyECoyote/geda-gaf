@@ -406,6 +406,7 @@ unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
   PangoContext         *context;
   PangoFontDescription *font_desc;
   PangoFontMetrics     *metrics;
+  PangoLanguage        *language;
   unsigned int val;
 
   font_desc = gtk_widget_get_style(GTK_WIDGET(widget))->font_desc;
@@ -414,9 +415,10 @@ unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
     return (GTK_SHEET_ROW_DEFAULT_HEIGHT);
   }
 
-  context = gtk_widget_get_pango_context(widget);
-  metrics = pango_context_get_metrics(context, font_desc, pango_context_get_language (context));
-  val     = pango_font_metrics_get_descent(metrics) + pango_font_metrics_get_ascent(metrics);
+  context  = gtk_widget_get_pango_context(widget);
+  language = pango_context_get_language (context);
+  metrics  = pango_context_get_metrics(context, font_desc, language);
+  val      = pango_font_metrics_get_descent(metrics) + pango_font_metrics_get_ascent(metrics);
 
   pango_font_metrics_unref(metrics);
 

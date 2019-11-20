@@ -1,6 +1,7 @@
 2019-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/gtksheet/gtksheet.c: clean up declarations in _gtk_sheet_row_default_height.
+    * src/gtksheet/gtksheet.c: clean up declarations and add ancillary
+      PangoLanguage in _gtk_sheet_row_default_height.
 
     * src/x_toolbars.c: Rename callback functions without capitalization.
 
