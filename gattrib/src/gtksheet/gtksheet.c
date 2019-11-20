@@ -403,18 +403,21 @@ _gtk_sheet_draw_pixmap (GdkDrawable *drawable, GdkGC *gc, GdkDrawable *src,
  */
 unsigned int _gtk_sheet_row_default_height(GtkWidget *widget)
 {
-  PangoFontDescription *font_desc =
-  gtk_widget_get_style(GTK_WIDGET(widget))->font_desc;
+  PangoContext         *context;
+  PangoFontDescription *font_desc;
+  PangoFontMetrics     *metrics;
+  unsigned int val;
 
-  if (!font_desc)
+  font_desc = gtk_widget_get_style(GTK_WIDGET(widget))->font_desc;
+
+  if (!font_desc) {
     return (GTK_SHEET_ROW_DEFAULT_HEIGHT);
+  }
 
-  PangoContext *context = gtk_widget_get_pango_context(widget);
+  context = gtk_widget_get_pango_context(widget);
+  metrics = pango_context_get_metrics(context, font_desc, pango_context_get_language (context));
+  val     = pango_font_metrics_get_descent(metrics) + pango_font_metrics_get_ascent(metrics);
 
-  PangoFontMetrics *metrics = pango_context_get_metrics(context,
-                                                        font_desc, pango_context_get_language(context));
-  unsigned int val = pango_font_metrics_get_descent(metrics) +
-  pango_font_metrics_get_ascent(metrics);
   pango_font_metrics_unref(metrics);
 
   return (PANGO_PIXELS(val) + 2 * CELLOFFSET);
