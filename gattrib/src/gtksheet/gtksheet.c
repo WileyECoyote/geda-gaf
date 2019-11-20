@@ -922,45 +922,38 @@ _gtk_sheet_range_fixup(GtkSheet *sheet, GtkSheetRange *range)
 static inline int
 POSSIBLE_XDRAG(GtkSheet *sheet, int x, int *drag_column)
 {
-    int column, xdrag;
+  int column, xdrag;
 
-    column = _gtk_sheet_column_from_xpixel(sheet, x);
+  column = _gtk_sheet_column_from_xpixel(sheet, x);
+
+  if (column < 0 || column > sheet->maxcol) {
+    return (FALSE);
+  }
+
+  xdrag = _gtk_sheet_column_left_xpixel(sheet, column);
+
+  if (column > 0 && x <= xdrag + DRAG_WIDTH / 2)  {  /* you pick it at the left border */
+
+    while (column > 0 && !GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column - 1))) column--;
+
+    --column;  /* you really want to resize the column on the left side */
+
     if (column < 0 || column > sheet->maxcol) {
       return (FALSE);
     }
 
-    xdrag = _gtk_sheet_column_left_xpixel(sheet, column);
+    *drag_column = column;
+    return (TRUE);
+  }
 
-    if (column > 0 && x <= xdrag + DRAG_WIDTH / 2)  {  /* you pick it at the left border */
+  xdrag = _gtk_sheet_column_right_xpixel(sheet, column);
 
-      while (column > 0 && !GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, column - 1))) column--;
+  if (xdrag - DRAG_WIDTH / 2 <= x && x <= xdrag + DRAG_WIDTH / 2) {
+    *drag_column = column;
+    return (TRUE);
+  }
 
-      --column;  /* you really want to resize the column on the left side */
-
-      if (column < 0 || column > sheet->maxcol)
-        return (FALSE);
-
-      *drag_column = column;
-      return (TRUE);
-
-#if 0
-      return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
-#endif
-    }
-
-    xdrag = _gtk_sheet_column_right_xpixel(sheet, column);
-
-    if (xdrag - DRAG_WIDTH / 2 <= x && x <= xdrag + DRAG_WIDTH / 2) {
-
-	*drag_column = column;
-	return (TRUE);
-
-#if 0
-	return (GTK_SHEET_COLUMN_IS_SENSITIVE(COLPTR(sheet, column)));
-#endif
-    }
-
-    return (FALSE);
+  return (FALSE);
 }
 
 /*
