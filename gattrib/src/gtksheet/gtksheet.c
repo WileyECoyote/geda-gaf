@@ -553,8 +553,9 @@ static inline unsigned int _default_font_descent(GtkWidget *widget)
  */
 static inline int _gtk_sheet_row_top_ypixel(GtkSheet *sheet, int row)
 {
-  if (row < 0 || row > sheet->maxrow)
+  if (row < 0 || row > sheet->maxrow) {
     return (sheet->voffset);
+  }
 
   return (sheet->voffset + sheet->row[row].top_ypixel);
 }
@@ -563,8 +564,9 @@ static inline int _gtk_sheet_row_bottom_ypixel(GtkSheet *sheet, int row)
 {
   int ypixel = _gtk_sheet_row_top_ypixel(sheet, row);
 
-  if (0 <= row && row <= sheet->maxrow)
+  if (0 <= row && row <= sheet->maxrow) {
     ypixel += sheet->row[row].height;
+  }
 
   return (ypixel);
 }
@@ -588,8 +590,9 @@ static inline int _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
   int i, cy;
 
   cy = sheet->voffset;
-  if (sheet->column_titles_visible)
+  if (sheet->column_titles_visible)  {
     cy += sheet->column_title_area.height;
+  }
 
   if (y < cy) {
     return (-1);    /* top outside */
@@ -599,8 +602,10 @@ static inline int _gtk_sheet_row_from_ypixel(GtkSheet *sheet, int y)
 
     if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
 
-      if (cy <= y  && y < (cy + sheet->row[i].height))
+      if (cy <= y  && y < (cy + sheet->row[i].height)) {
         return (i);
+      }
+
       cy += sheet->row[i].height;
     }
   }
@@ -628,8 +633,9 @@ static inline int _gtk_sheet_column_from_xpixel(GtkSheet *sheet, int x)
   int i, cx;
 
   cx = sheet->hoffset;
-  if (sheet->row_titles_visible)
+  if (sheet->row_titles_visible) {
     cx += sheet->row_title_area.width;
+  }
 
   if (x < cx) {
     return (-1);  /* left outside */
@@ -639,8 +645,10 @@ static inline int _gtk_sheet_column_from_xpixel(GtkSheet *sheet, int x)
 
     if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) {
 
-      if (cx <= x  && x < (cx + COLPTR(sheet, i)->width))
+      if (cx <= x  && x < (cx + COLPTR(sheet, i)->width)) {
         return (i);
+      }
+
       cx += COLPTR(sheet, i)->width;
     }
   }
@@ -661,10 +669,11 @@ static inline int _gtk_sheet_column_from_xpixel(GtkSheet *sheet, int x)
 static inline int _gtk_sheet_first_visible_colidx(GtkSheet *sheet, int startidx)
 {
   int i;
-  for (i = startidx; i <= sheet->maxcol; i++) {
 
-    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
+  for (i = startidx; i <= sheet->maxcol; i++) {
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) {
       return (i);
+    }
   }
 
   return (-1);
@@ -682,10 +691,11 @@ static inline int _gtk_sheet_first_visible_colidx(GtkSheet *sheet, int startidx)
 static inline int _gtk_sheet_last_visible_colidx(GtkSheet *sheet, int startidx)
 {
   int i;
-  for (i = startidx; i >= 0; i--) {
 
-    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
+  for (i = startidx; i >= 0; i--) {
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) {
       return (i);
+    }
   }
 
   return (-1);
@@ -703,10 +713,11 @@ static inline int _gtk_sheet_last_visible_colidx(GtkSheet *sheet, int startidx)
 static inline int _gtk_sheet_first_visible_rowidx(GtkSheet *sheet, int startidx)
 {
   int i;
-  for (i = startidx; i <= sheet->maxrow; i++) {
 
-    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
+  for (i = startidx; i <= sheet->maxrow; i++) {
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
       return (i);
+    }
   }
 
   return (-1);
@@ -724,10 +735,11 @@ static inline int _gtk_sheet_first_visible_rowidx(GtkSheet *sheet, int startidx)
 static inline int _gtk_sheet_last_visible_rowidx(GtkSheet *sheet, int startidx)
 {
   int i;
-  for (i = startidx; i >= 0; i--) {
 
-    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
+  for (i = startidx; i >= 0; i--) {
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
       return (i);
+    }
   }
 
   return (-1);
@@ -754,18 +766,21 @@ static inline int _gtk_sheet_get_visible_range(GtkSheet *sheet,
 
   visr->rowi = _gtk_sheet_last_visible_rowidx(sheet, sheet->maxrow);
 
-  if (visr->rowi < 0)
+  if (visr->rowi < 0) {
     return (FALSE);
+  }
 
   visr->col0 = _gtk_sheet_first_visible_colidx(sheet, 0);
 
-  if (visr->col0 < 0)
+  if (visr->col0 < 0) {
     return (FALSE);
+  }
 
   visr->coli = _gtk_sheet_last_visible_colidx(sheet, sheet->maxcol);
 
-  if (visr->coli < 0)
+  if (visr->coli < 0) {
     return (FALSE);
+  }
 
   return (TRUE);
 }
@@ -788,13 +803,15 @@ static inline void _gtk_sheet_count_visible(GtkSheet *sheet,
   *nrows = *ncols = 0;
 
   for (i = range->row0; i <= range->rowi; i++) {
-    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i)))
+    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, i))) {
       ++(*nrows);
+    }
   }
 
   for (i = range->col0; i <= range->coli; i++) {
-    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i)))
+    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) {
       ++(*ncols);
+    }
   }
 }
 
