@@ -3336,7 +3336,8 @@ GtkWidget *gtk_sheet_new(unsigned int rows, unsigned int columns, const char *ti
 /*!
  * \brief gtk_sheet_construct
  * \par Function Description
- *  Initializes an existent #GtkSheet with the given number of rows and columns.
+ *  Initializes an existent #GtkSheet with the given number of
+ *  rows and columns.
  *
  * \param sheet: a #GtkSheet
  * \param rows: number of rows
@@ -3396,7 +3397,8 @@ GtkWidget *gtk_sheet_new_browser(unsigned int rows, unsigned int columns, const 
 /*!
  * \brief gtk_sheet_construct_browser
  * \par Function Description
- *  Initializes an existent read-only #GtkSheet with the given number of rows and columns.
+ *  Initializes an existent read-only #GtkSheet with the given number
+ *  of rows and columns.
  *
  * \param sheet: a #GtkSheet
  * \param rows: number of rows
@@ -3414,7 +3416,8 @@ void gtk_sheet_construct_browser(GtkSheet *sheet, unsigned int rows, unsigned in
 /*!
  * \brief gtk_sheet_new_with_custom_entry
  * \par Function Description
- *  Creates a new sheet widget with the given number of rows and columns and a custome entry type.
+ *  Creates a new sheet widget with the given number of rows and
+ *  columns and a custome entry type.
  *
  * \param rows: initial number of rows
  * \param columns: initial number of columns
