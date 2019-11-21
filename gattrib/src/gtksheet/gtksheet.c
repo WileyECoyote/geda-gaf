@@ -3601,7 +3601,7 @@ void gtk_sheet_set_grid(GtkSheet *sheet, GdkColor *color)
  * \par Function Description
  *  Get the number of the rows of the #GtkSheet.
  *
- * \param sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * \returns number of rows.
  */
@@ -3614,7 +3614,7 @@ unsigned int gtk_sheet_get_rows_count(GtkSheet *sheet)
 
 /**
  * gtk_sheet_get_columns_count:
- * \param sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Get the number of the columns of the #GtkSheet.
  *
@@ -3630,7 +3630,7 @@ unsigned int gtk_sheet_get_columns_count(GtkSheet *sheet)
 
 /**
  * gtk_sheet_get_state:
- * \param sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Get the selection state of the sheet (#GtkSheetState).
  *
@@ -3646,9 +3646,9 @@ GtkSheetState gtk_sheet_get_state(GtkSheet *sheet)
 
 /**
  * gtk_sheet_get_selection:
- * \param sheet: a #GtkSheet
- * \param state: where to store the #GtkSheetState, may be NULL
- * \param range: where to store the #GtkSheetRange
+ * \param sheet a #GtkSheet
+ * \param state where to store the #GtkSheetState, may be NULL
+ * \param range where to store the #GtkSheetRange
  *
  * Inquire current cell selection state and range.
  *
@@ -3669,8 +3669,8 @@ int gtk_sheet_get_selection(GtkSheet *sheet, GtkSheetState *state, GtkSheetRange
 
 /**
  * gtk_sheet_set_selection_mode:
- * \param sheet: a #GtkSheet
- * \param mode: GTK_SELECTION_SINGLE or GTK_SELECTION_BROWSE
+ * \param sheet a #GtkSheet
+ * \param mode GTK_SELECTION_SINGLE or GTK_SELECTION_BROWSE
  *
  * Sets the selection mode of the cells in a #GtkSheet.
  */
@@ -3685,8 +3685,8 @@ void gtk_sheet_set_selection_mode(GtkSheet *sheet, GtkSelectionMode mode)
 
 /**
  * gtk_sheet_set_autoresize:
- * \param sheet: a #GtkSheet
- * \param autoresize: TRUE or FALSE
+ * \param sheet      a #GtkSheet
+ * \param autoresize TRUE or FALSE
  *
  * Controls whether cells will be autoresized upon deactivation,
  * as you type text or set a cell_text value. If you want the
@@ -3704,8 +3704,8 @@ void gtk_sheet_set_autoresize(GtkSheet *sheet, int autoresize)
 
 /**
  * gtk_sheet_set_autoresize_columns:
- * \param sheet: a #GtkSheet
- * \param autoresize: TRUE or FALSE
+ * \param sheet a #GtkSheet
+ * \param autoresize TRUE or FALSE
  *
  * Controls wether columns will be autoresized upon
  * deactivation, as you type text or set a cell_text value. If
@@ -3722,8 +3722,8 @@ gtk_sheet_set_autoresize_columns(GtkSheet *sheet, int autoresize)
 
 /**
  * gtk_sheet_set_autoresize_rows:
- * \param sheet: a #GtkSheet
- * \param autoresize: TRUE or FALSE
+ * \param sheet       a #GtkSheet
+ * \param autoresize TRUE or FALSE
  *
  * Controls wether rows will be autoresized upon deactivation,
  * as you type text or set a cell_text value. If you want the
@@ -3740,7 +3740,7 @@ void gtk_sheet_set_autoresize_rows(GtkSheet *sheet, int autoresize)
 
 /**
  * gtk_sheet_autoresize:
- * \param sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Gets the autoresize mode of #GtkSheet.
  *
@@ -3757,7 +3757,7 @@ gtk_sheet_autoresize(GtkSheet *sheet)
 
 /**
  * gtk_sheet_autoresize_columns:
- * \param sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Gets the autoresize mode for #GtkSheet columns.
  *
@@ -3772,7 +3772,7 @@ int gtk_sheet_autoresize_columns(GtkSheet *sheet)
 
 /**
  * gtk_sheet_autoresize_rows:
- * \param sheet: a #GtkSheet
+ * \param sheet a #GtkSheet
  *
  * Gets the autoresize mode for #GtkSheet rows.
  *
@@ -3788,8 +3788,8 @@ gtk_sheet_autoresize_rows(GtkSheet *sheet)
 
 /**
  * _gtk_sheet_recalc_extent_width:
- * \param sheet:  the #GtkSheet
- * \param col:    column to be recalculated
+ * \param sheet  the #GtkSheet
+ * \param col    column to be recalculated
  *
  * recalc maximum column extent width
  */
@@ -3832,8 +3832,8 @@ static void _gtk_sheet_recalc_extent_width(GtkSheet *sheet, int col)
 
 /**
  * _gtk_sheet_recalc_extent_height:
- * \param sheet:  the #GtkSheet
- * \param row:    row to be recalculated
+ * \param sheet  the #GtkSheet
+ * \param row    row to be recalculated
  *
  * recalc maximum row extent height
  */
@@ -3878,10 +3878,10 @@ static void _gtk_sheet_recalc_extent_height(GtkSheet *sheet, int row)
 
 /**
  * _gtk_sheet_update_extent:
- * \param sheet:  the #GtkSheet
- * \param cell:   the #GtkSheetCell
- * \param row:    the row
- * \param col:    the column
+ * \param sheet  the #GtkSheet
+ * \param cell   the #GtkSheetCell
+ * \param row    the row
+ * \param col    the column
  *
  * update cell extent and propagate to max row/column extent
  */
