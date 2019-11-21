@@ -12326,17 +12326,11 @@ static void sheet_entry_populate_popup_handler(GtkWidget *widget,
 static void
 create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
 {
-    //GtkWidget *widget;
-    GtkWidget  *entry, *new_entry;
-    //GtkStyle *style;
-
-    //widget = (GtkWidget*)sheet;
+    GtkWidget *entry, *new_entry;
 
 #if GTK_SHEET_DEBUG_ENTRY > 0
     fprintf(stderr,"%s: called\n", __func__);
 #endif
-
-    //style = gtk_style_copy(gtk_widget_get_style((GtkWidget*)sheet));
 
     destroy_sheet_entry(sheet);
 
