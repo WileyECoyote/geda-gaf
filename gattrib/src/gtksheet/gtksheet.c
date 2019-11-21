@@ -6815,8 +6815,10 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
   char             *label, *dataformat;
   GdkGC            *gc;
   PangoLayout      *layout;
-  PangoFontMetrics *metrics;
   PangoContext     *context;
+  PangoLanguage    *language;
+  PangoFontMetrics *metrics;
+
 
   PangoRectangle    rect;
   GdkRectangle      area, clip_area;
@@ -6911,11 +6913,9 @@ static void _cell_draw_label(GtkSheet *sheet, int row, int col)
 
   pango_layout_get_pixel_extents(layout, NULL, &rect);
 
-  context = gtk_widget_get_pango_context((GtkWidget*)sheet);
-
-  metrics = pango_context_get_metrics(context,
-                                      attributes.font_desc,
-                                      pango_context_get_language(context));
+  context  = gtk_widget_get_pango_context((GtkWidget*)sheet);
+  language = pango_context_get_language(context);
+  metrics  = pango_context_get_metrics(context, attributes.font_desc, language);
 
   ascent  = pango_font_metrics_get_ascent(metrics) / PANGO_SCALE;
   descent = pango_font_metrics_get_descent(metrics) / PANGO_SCALE;
@@ -14335,7 +14335,8 @@ void gtk_sheet_range_set_font(GtkSheet             *sheet,
   int i, j;
   int font_height;
   GtkSheetRange range;
-  PangoContext *context;
+  PangoContext     *context;
+  PangoLanguage    *language;
   PangoFontMetrics *metrics;
 
   g_return_if_fail(GTK_IS_SHEET(sheet));
@@ -14349,10 +14350,9 @@ void gtk_sheet_range_set_font(GtkSheet             *sheet,
 
   gtk_sheet_freeze(sheet);
 
-  context = gtk_widget_get_pango_context((GtkWidget*)sheet);
-  metrics = pango_context_get_metrics(context,
-                                      font_desc,
-                                      pango_context_get_language(context));
+  context  = gtk_widget_get_pango_context((GtkWidget*)sheet);
+  language = pango_context_get_language(context);
+  metrics  = pango_context_get_metrics(context, font_desc, language);
 
   font_height = pango_font_metrics_get_ascent(metrics) +
                 pango_font_metrics_get_descent(metrics);
