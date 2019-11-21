@@ -3714,8 +3714,7 @@ void gtk_sheet_set_autoresize(GtkSheet *sheet, int autoresize)
  * you want the cells to be autoresized when you pack widgets
  * look at gtk_sheet_attach_*().
  */
-void
-gtk_sheet_set_autoresize_columns(GtkSheet *sheet, int autoresize)
+void gtk_sheet_set_autoresize_columns(GtkSheet *sheet, int autoresize)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
@@ -3749,8 +3748,7 @@ void gtk_sheet_set_autoresize_rows(GtkSheet *sheet, int autoresize)
  * Returns: TRUE if autoresize_columns or autoresize_rows was
  * set, or FALSE if none
  */
-int
-gtk_sheet_autoresize(GtkSheet *sheet)
+int gtk_sheet_autoresize(GtkSheet *sheet)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
@@ -3780,8 +3778,7 @@ int gtk_sheet_autoresize_columns(GtkSheet *sheet)
  *
  * Returns: TRUE or FALSE
  */
-int
-gtk_sheet_autoresize_rows(GtkSheet *sheet)
+int gtk_sheet_autoresize_rows(GtkSheet *sheet)
 {
     g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
