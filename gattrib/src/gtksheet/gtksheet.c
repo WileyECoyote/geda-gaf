@@ -3738,7 +3738,6 @@ void gtk_sheet_set_autoresize_rows(GtkSheet *sheet, int autoresize)
     sheet->autoresize_rows = autoresize;
 }
 
-
 /**
  * gtk_sheet_autoresize:
  * \param sheet a #GtkSheet
@@ -4211,8 +4210,6 @@ GtkSheetVerticalJustification gtk_sheet_get_vjustification(GtkSheet *sheet)
     return (sheet->vjust);
 }
 
-
-
 /**
  * gtk_sheet_set_locked:
  * \param sheet: a #GtkSheet
@@ -4336,7 +4333,6 @@ const char *gtk_sheet_get_description(GtkSheet *sheet, const char *description)
     return (sheet->description);
 }
 
-
 /**
  * gtk_sheet_is_frozen:
  * \param sheet: the #GtkSheet
@@ -4349,7 +4345,6 @@ int gtk_sheet_is_frozen(GtkSheet *sheet)
 {
     return (GTK_SHEET_IS_FROZEN(sheet));
 }
-
 
 /**
  * gtk_sheet_freeze:
@@ -4371,7 +4366,6 @@ gtk_sheet_freeze(GtkSheet *sheet)
 #endif
 
 }
-
 
 /**
  * _gtk_sheet_redraw_internal:
@@ -4435,7 +4429,6 @@ void _gtk_sheet_redraw_internal(GtkSheet *sheet,
       _gtk_sheet_range_draw(sheet, NULL, TRUE);
     }
 }
-
 
 /**
  * gtk_sheet_thaw:
@@ -4521,7 +4514,6 @@ void gtk_sheet_set_row_titles_width(GtkSheet *sheet, unsigned int width)
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-
 /**
  * gtk_sheet_show_row_titles:
  * \param sheet: a #GtkSheet
@@ -4565,7 +4557,6 @@ void gtk_sheet_show_row_titles(GtkSheet *sheet)
     _gtk_sheet_scrollbar_adjust(sheet);
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
-
 
 /**
  * gtk_sheet_hide_row_titles:
