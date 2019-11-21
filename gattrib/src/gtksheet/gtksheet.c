@@ -12323,8 +12323,7 @@ static void sheet_entry_populate_popup_handler(GtkWidget *widget,
 	sheet_signals[ENTRY_POPULATE_POPUP], 0, menu);
 }
 
-static void
-create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
+static void create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
 {
     GtkWidget *entry, *new_entry;
 
@@ -12413,8 +12412,7 @@ create_sheet_entry(GtkSheet *sheet, GType new_entry_type)
  *
  * Returns: a #GtkSheetEntryType or GTK_SHEET_ENTRY_TYPE_DEFAULT
  */
-GType
-gtk_sheet_get_entry_type(GtkSheet *sheet)
+GType gtk_sheet_get_entry_type(GtkSheet *sheet)
 {
     g_return_val_if_fail(sheet, GTK_SHEET_ENTRY_TYPE_DEFAULT);
     g_return_val_if_fail(GTK_IS_SHEET(sheet), GTK_SHEET_ENTRY_TYPE_DEFAULT);
