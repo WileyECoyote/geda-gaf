@@ -3516,15 +3516,17 @@ void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
  */
 void gtk_sheet_show_grid(GtkSheet *sheet, int show)
 {
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (show == sheet->show_grid)
-	return;
+  if (show == sheet->show_grid) {
+    return;
+  }
 
-    sheet->show_grid = show;
+  sheet->show_grid = show;
 
-    if (!GTK_SHEET_IS_FROZEN(sheet))
-	_gtk_sheet_range_draw(sheet, NULL, TRUE);
+  if (!GTK_SHEET_IS_FROZEN(sheet)) {
+    _gtk_sheet_range_draw(sheet, NULL, TRUE);
+  }
 }
 
 /*!
