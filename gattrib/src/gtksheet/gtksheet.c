@@ -3333,14 +3333,15 @@ GtkWidget *gtk_sheet_new(unsigned int rows, unsigned int columns, const char *ti
     return (widget);
 }
 
-/**
- * gtk_sheet_construct:
+/*!
+ * \brief gtk_sheet_construct
+ * \par Function Description
+ *  Initializes an existent #GtkSheet with the given number of rows and columns.
+ *
  * \param sheet: a #GtkSheet
  * \param rows: number of rows
  * \param columns: number of columns
  * \param title: sheet title
- *
- * Initializes an existent #GtkSheet with the given number of rows and columns.
  */
 void gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int columns, const char *title)
 {
@@ -3370,15 +3371,16 @@ void gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int column
     }
 }
 
-/**
- * gtk_sheet_new_browser:
+/*!
+ * \brief gtk_sheet_new_browser
+ * \par Function Description
+ *  Creates a new browser sheet. Its cells cannot be edited(read-only).
+ *
  * \param rows: initial number of rows
  * \param columns: initial number of columns
  * \param title: sheet title
  *
- * Creates a new browser sheet. Its cells cannot be edited(read-only).
- *
- * Returns: the new read-only #GtkSheet
+ * \returns the new read-only #GtkSheet
  */
 GtkWidget *gtk_sheet_new_browser(unsigned int rows, unsigned int columns, const char *title)
 {
@@ -3391,14 +3393,15 @@ GtkWidget *gtk_sheet_new_browser(unsigned int rows, unsigned int columns, const 
     return (widget);
 }
 
-/**
- * gtk_sheet_construct_browser:
+/*!
+ * \brief gtk_sheet_construct_browser
+ * \par Function Description
+ *  Initializes an existent read-only #GtkSheet with the given number of rows and columns.
+ *
  * \param sheet: a #GtkSheet
  * \param rows: number of rows
  * \param columns: number of columns
  * \param title: sheet title
- *
- * Initializes an existent read-only #GtkSheet with the given number of rows and columns.
  */
 void gtk_sheet_construct_browser(GtkSheet *sheet, unsigned int rows, unsigned int columns,
     const char *title)
@@ -3408,16 +3411,17 @@ void gtk_sheet_construct_browser(GtkSheet *sheet, unsigned int rows, unsigned in
     gtk_sheet_set_locked(sheet, TRUE);
 }
 
-/**
- * gtk_sheet_new_with_custom_entry:
+/*!
+ * \brief gtk_sheet_new_with_custom_entry
+ * \par Function Description
+ *  Creates a new sheet widget with the given number of rows and columns and a custome entry type.
+ *
  * \param rows: initial number of rows
  * \param columns: initial number of columns
  * \param title: sheet title
  * \param entry_type: a GType
  *
- * Creates a new sheet widget with the given number of rows and columns and a custome entry type.
- *
- * Returns: the new sheet #GtkSheet
+ * \returns the new sheet #GtkSheet
  */
 GtkWidget *gtk_sheet_new_with_custom_entry(unsigned int rows,
                                            unsigned int columns,
@@ -3435,16 +3439,17 @@ GtkWidget *gtk_sheet_new_with_custom_entry(unsigned int rows,
     return (widget);
 }
 
-/**
- * gtk_sheet_construct_with_custom_entry:
+/*!
+ * \brief gtk_sheet_construct_with_custom_entry
+ * \par Function Description
+ *  Initializes an existent read-only #GtkSheet
+ *  with the given number of rows and columns and a custom entry.
+ *
  * \param sheet: a #GtkSheet
  * \param rows: number of rows
  * \param columns: number of columns
  * \param title: sheet title
  * \param entry_type: a GType
- *
- * Initializes an existent read-only #GtkSheet
- * with the given number of rows and columns and a custom entry.
  */
 void
 gtk_sheet_construct_with_custom_entry(GtkSheet *sheet,
@@ -3457,15 +3462,16 @@ gtk_sheet_construct_with_custom_entry(GtkSheet *sheet,
     create_sheet_entry(sheet, entry_type ? entry_type : G_TYPE_NONE);
 }
 
-/**
- * gtk_sheet_change_entry:
+/*!
+ * \brief gtk_sheet_change_entry
+ * \par Function Description
+ *  Changes the current entry of the cell in #GtkSheet. The old
+ *  sheet entry widget gets dropped and a new entry widget is
+ *  created. Beware: You will have to reconnect all your signal
+ *  handlers after changing an entry.
+ *
  * \param sheet: a #GtkSheet
  * \param entry_type: a GType
- *
- * Changes the current entry of the cell in #GtkSheet. The old
- * sheet entry widget gets dropped and a new entry widget is
- * created. Beware: You will have to reconnect all your signal
- * handlers after changing an entry.
  */
 void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
 {
@@ -3497,12 +3503,13 @@ void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
     }
 }
 
-/**
- * gtk_sheet_show_grid:
- * \param sheet: a #GtkSheet
- * \param show: TRUE(grid visible) or FALSE(grid invisible)
+/*!
+ * \brief gtk_sheet_show_grid
+ * \par Function Description
+ *  Sets the visibility of grid in #GtkSheet.
  *
- * Sets the visibility of grid in #GtkSheet.
+ * \param sheet a #GtkSheet
+ * \param show  TRUE(grid visible) or FALSE(grid invisible)
  */
 void gtk_sheet_show_grid(GtkSheet *sheet, int show)
 {
@@ -3517,13 +3524,14 @@ void gtk_sheet_show_grid(GtkSheet *sheet, int show)
 	_gtk_sheet_range_draw(sheet, NULL, TRUE);
 }
 
-/**
- * gtk_sheet_grid_visible:
+/*!
+ * \brief gtk_sheet_grid_visible
+ * \par Function Description
+ *  Gets the visibility of grid in #GtkSheet.
+ *
  * \param sheet: a #GtkSheet
  *
- * Gets the visibility of grid in #GtkSheet.
- *
- * Returns: TRUE(grid visible) or FALSE(grid invisible)
+ * \retval TRUE(grid visible) or FALSE(grid invisible)
  */
 int gtk_sheet_grid_visible(GtkSheet *sheet)
 {
@@ -3532,13 +3540,14 @@ int gtk_sheet_grid_visible(GtkSheet *sheet)
     return (sheet->show_grid);
 }
 
-/**
- * gtk_sheet_set_background:
- * \param sheet: a #GtkSheet
- * \param color: a #GdkColor structure
+/*!
+ * \brief gtk_sheet_set_background
+ * \par Function Description
+ *  Sets the background color of the #GtkSheet.
+ *  If pass NULL, the sheet will be reset to the default color.
  *
- * Sets the background color of the #GtkSheet.
- * If pass NULL, the sheet will be reset to the default color.
+ * \param sheet a #GtkSheet
+ * \param color a #GdkColor structure
  */
 void gtk_sheet_set_background(GtkSheet *sheet, GdkColor *color)
 {
@@ -3558,13 +3567,14 @@ void gtk_sheet_set_background(GtkSheet *sheet, GdkColor *color)
     _gtk_sheet_range_draw(sheet, NULL, TRUE);
 }
 
-/**
- * gtk_sheet_set_grid:
- * \param sheet: a #GtkSheet
- * \param color: a #GdkColor structure
+/*!
+ * \brief gtk_sheet_set_grid
+ * \par Function Description
+ *  Set the grid color.
+ *  If pass NULL, the grid will be reset to the default color.
  *
- * Set the grid color.
- * If pass NULL, the grid will be reset to the default color.
+ * \param sheet a #GtkSheet
+ * \param color a #GdkColor structure
  */
 void gtk_sheet_set_grid(GtkSheet *sheet, GdkColor *color)
 {
@@ -3583,13 +3593,14 @@ void gtk_sheet_set_grid(GtkSheet *sheet, GdkColor *color)
     }
 }
 
-/**
- * gtk_sheet_get_rows_count:
+/*!
+ * \brief gtk_sheet_get_rows_count
+ * \par Function Description
+ *  Get the number of the rows of the #GtkSheet.
+ *
  * \param sheet: a #GtkSheet
  *
- * Get the number of the rows of the #GtkSheet.
- *
- * Returns: number of rows.
+ * \returns number of rows.
  */
 unsigned int gtk_sheet_get_rows_count(GtkSheet *sheet)
 {

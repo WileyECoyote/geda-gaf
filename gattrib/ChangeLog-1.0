@@ -1,3 +1,7 @@
+2019-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Refomat documentation.
+
 2019-11-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: clean up declarations and add ancillary
