@@ -2997,8 +2997,6 @@ static void _gtk_sheet_class_init_bindings(GtkSheetClass *klass)
     _gtk_sheet_class_init_tab_bindings(klass, GTK_DIR_TAB_FORWARD);
 }
 
-
-
 /**
  * _gtk_sheet_binding_filter:
  * \param sheet:  The #GtkSheet
@@ -3042,7 +3040,6 @@ static int _gtk_sheet_binding_filter(GtkSheet *sheet, GdkEventKey *key)
  *
  * \param klass
  */
-
 static void gtk_sheet_class_init(GtkSheetClass *klass)
 {
     GtkObjectClass *object_class;
@@ -3262,7 +3259,6 @@ static void gtk_sheet_init(GtkSheet *sheet)
     /* make sure the tooltip signal fires even if the sheet itself has no tooltip */
     gtk_widget_set_has_tooltip((GtkWidget*)sheet, TRUE);
 }
-
 
 static void _gtk_sheet_row_init(GtkSheetRow *row)
 {
@@ -3630,7 +3626,6 @@ unsigned int gtk_sheet_get_columns_count(GtkSheet *sheet)
 
     return (sheet->maxcol + 1);
 }
-
 
 /**
  * gtk_sheet_get_state:
