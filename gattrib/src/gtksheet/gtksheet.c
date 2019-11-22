@@ -4251,8 +4251,6 @@ int gtk_sheet_locked(GtkSheet *sheet)
  */
 void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
 {
-//    GtkWidget *label;
-
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
     if (sheet->title) {
@@ -4267,35 +4265,7 @@ void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
     if (!gtk_widget_get_realized((GtkWidget*)sheet) || !title)
       return;
 
-/*
-    if (gtk_bin_get_child(GTK_BIN(sheet->button)))
-	label = gtk_bin_get_child(GTK_BIN(sheet->button));
-
-  gtk_label_set_text(GTK_LABEL(label), title);
-*/
     size_allocate_global_button(sheet);
-
-    /* remove and destroy the old widget */
-/*
-  old_widget = gtk_bin_get_child(GTK_BIN (sheet->button));
-  if (old_widget)
-    {
-      gtk_container_remove (GTK_CONTAINER (sheet->button), old_widget);
-    }
-
-  label = gtk_label_new (title);
-  gtk_misc_set_alignment(GTK_MISC(label), 0.5 , 0.5 );
-
-  gtk_container_add (GTK_CONTAINER (sheet->button), label);
-  gtk_widget_show (label);
-
-  size_allocate_global_button(sheet);
-
-  g_signal_emit(G_OBJECT(sheet),sheet_signals[CHANGED], 0, -1, -1);
-
-  if(old_widget)
-      gtk_widget_destroy (old_widget);
-*/
 }
 
 /**
