@@ -1033,8 +1033,6 @@ _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet)
     }
 }
 
-
-
 /**
  * gtk_sheet_set_column_width:
  * \param sheet  a #GtkSheet.
@@ -1074,7 +1072,6 @@ void gtk_sheet_set_column_width(GtkSheet *sheet, int col, unsigned int width)
     g_signal_emit_by_name(GTK_OBJECT(sheet), "new-column-width", col, width);
 }
 
-
 /**
  * gtk_sheet_get_column_width:
  * \param sheet a #GtkSheet
@@ -1091,7 +1088,6 @@ gtk_sheet_get_column_width(GtkSheet *sheet, int col)
 
     return (COLPTR(sheet, col)->width);
 }
-
 
 /**
  * gtk_sheet_column_button_add_label:
@@ -1250,7 +1246,6 @@ gtk_sheet_column_get_vjustification(GtkSheet *sheet, int col)
 
     return (COLPTR(sheet, col)->vjust);
 }
-
 
 /**
  * gtk_sheet_column_get_iskey:
