@@ -907,13 +907,14 @@ _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
     return (sheet->hoffset + COLPTR(sheet, col)->left_xpixel);
 }
 
-/**
- * _gtk_sheet_column_right_xpixel:
+/*!
+ * \brief _gtk_sheet_column_right_xpixel
+ * \par Function Description
+ *  gives the right pixel of the given column in context of the
+ *  sheet's hoffset.
+ *
  * \param sheet  the #GtkSheet
  * \param col    column index
- *
- * gives the right pixel of the given column in context of the
- * sheet's hoffset
  *
  * \returns pixel offset
  */
@@ -925,13 +926,14 @@ _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
     return (xpixel);
 }
 
-/**
- * _gtk_sheet_column_size_request:
+/*!
+ * \brief _gtk_sheet_column_size_request
+ * \par Function Description
+ *  Size request handler for all sheet buttons
+ *
  * \param sheet       the #GtkSheet
  * \param col         column index
  * \param requisition the requisition width
- *
- * size request handler for all sheet buttons
  */
 void _gtk_sheet_column_size_request(GtkSheet *sheet, int col, unsigned int *requisition)
 {
@@ -965,11 +967,12 @@ void _gtk_sheet_column_size_request(GtkSheet *sheet, int col, unsigned int *requ
 #endif
 }
 
-/**
- * _gtk_sheet_column_buttons_size_allocate:
- * \param sheet  the #GtkSheet
+/*!
+ * \brief _gtk_sheet_column_buttons_size_allocate
+ * \par Function Description
+ *  Column title button size allocation
  *
- * column title button size allocation
+ * \param sheet  the #GtkSheet
  */
 void
 _gtk_sheet_column_buttons_size_allocate(GtkSheet *sheet)
