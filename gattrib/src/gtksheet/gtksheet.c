@@ -1659,13 +1659,14 @@ GType gtk_sheet_range_get_type(void)
     return (sheet_range_type);
 }
 
-/**
- * _gtk_sheet_entry_type_from_gtype:
- * \param entry_type: type to be mapped
+/*!
+ * \brief _gtk_sheet_entry_type_from_gtype
+ * \par Function Description
+ *  Map gtype to #GtkSheetEntryType
  *
- * map gtype to #GtkSheetEntryType
+ * \param entry_type type to be mapped
  *
- * Returns: #GtkSheetEntryType or #GTK_SHEET_ENTRY_TYPE_DEFAULT
+ * \returns #GtkSheetEntryType or #GTK_SHEET_ENTRY_TYPE_DEFAULT
  */
 GtkSheetEntryType _gtk_sheet_entry_type_from_gtype(GType entry_type)
 {
@@ -1700,13 +1701,14 @@ GtkSheetEntryType _gtk_sheet_entry_type_from_gtype(GType entry_type)
     return (GTK_SHEET_ENTRY_TYPE_DEFAULT);
 }
 
-/**
- * _gtk_sheet_entry_type_to_gtype:
- * \param ety:    type to be mapped
+/*!
+ * \brief _gtk_sheet_entry_type_to_gtype
+ * \par Function Description
+ *  Map GType to #GtkSheetEntryType.
  *
- * map GType to #GtkSheetEntryType
+ * \param ety    type to be mapped
  *
- * Returns: GType or #G_TYPE_NONE
+ * \returns GType or #G_TYPE_NONE
  */
 GType _gtk_sheet_entry_type_to_gtype(GtkSheetEntryType ety)
 {
