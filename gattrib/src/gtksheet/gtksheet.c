@@ -2995,19 +2995,24 @@ static void _gtk_sheet_class_init_bindings(GtkSheetClass *klass)
     _gtk_sheet_class_init_tab_bindings(klass, GTK_DIR_TAB_FORWARD);
 }
 
-/**
- * _gtk_sheet_binding_filter:
- * \param sheet:  The #GtkSheet
- * \param key:    The keypress event
+/*!
+ * \brief _gtk_sheet_binding_filter
+ * \par Function Description
+ *  keypress binding filter
+ *  Some keypress events (with no MODS) are very convenient for the
+ *  user to navigate the sheet may be processed by a sheet_entry itself.
+ *  For example the Up/Down keys are very handy to navigate from row to
+ *  row are used by GtkTextView to move Up/Down within a multi line text.
  *
- * keypress binding filter
+ *  In order to get most out of both worlds, we generally allow useful
+ *  bindings for all sheet_entry types and filter out useage collisions
+ *  depending on the type of the sheet_entry.
  *
- * Some keypress events (with no MODS) are very convenient for the user to navigate the sheet may be processed by a sheet_entry itself. For example the Up/Down keys are very handy to navigate from row to row are used by GtkTextView to move Up/Down within a multi line text.
+ * \param sheet  The #GtkSheet
+ * \param key    The keypress event
  *
- * In order to get most out of both worlds, we generally allow useful bindings for all sheet_entry types and filter out useage collisions depending on the type of the sheet_entry.
- *
- * Returns: TRUE to activate the binding on the sheet, FALSE to
- *  	   let the sheet_entry process the keypress
+ * \retval TRUE to activate the binding on the sheet, FALSE to
+ *              let the sheet_entry process the keypress
  */
 static int _gtk_sheet_binding_filter(GtkSheet *sheet, GdkEventKey *key)
 {
@@ -3302,15 +3307,16 @@ static void gtk_sheet_row_finalize(GtkSheetRow *row)
     }
 }
 
-/**
- * gtk_sheet_new:
- * \param rows: initial number of rows
- * \param columns: initial number of columns
- * \param title: sheet title
- *
+/*!
+ * \brief gtk_sheet_new
+ * \par Function Description
  * Creates a new sheet widget with the given number of rows and columns.
  *
- * Returns: the new sheet #GtkSheet
+ * \param rows    initial number of rows
+ * \param columns initial number of columns
+ * \param title   sheet title
+ *
+ * \returns the new sheet #GtkSheet
  */
 GtkWidget *gtk_sheet_new(unsigned int rows, unsigned int columns, const char *title)
 {
