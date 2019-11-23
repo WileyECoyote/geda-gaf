@@ -2901,7 +2901,6 @@ static void _gtk_sheet_class_init_tab_bindings(GtkSheetClass *klass, GtkDirectio
 	GTK_MOVEMENT_LOGICAL_POSITIONS, sec_back,
 	FALSE);
 
-#if 1
     /* Return / Enter (Normal) */
     _add_binding_ext(b, GDK_KEY_Return, GDK_KEY_KP_Enter,
 	0,
@@ -2923,7 +2922,6 @@ static void _gtk_sheet_class_init_tab_bindings(GtkSheetClass *klass, GtkDirectio
 	GTK_SHEET_MOD_MASK | GDK_CONTROL_MASK | GDK_SHIFT_MASK,
 	GTK_MOVEMENT_LOGICAL_POSITIONS, sec_back,
 	FALSE);
-#endif
 }
 
 static void _gtk_sheet_class_init_bindings(GtkSheetClass *klass)
