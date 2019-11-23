@@ -3341,10 +3341,10 @@ GtkWidget *gtk_sheet_new(unsigned int rows, unsigned int columns, const char *ti
  *  Initializes an existent #GtkSheet with the given number of
  *  rows and columns.
  *
- * \param sheet: a #GtkSheet
- * \param rows: number of rows
- * \param columns: number of columns
- * \param title: sheet title
+ * \param sheet    a #GtkSheet
+ * \param rows     number of rows
+ * \param columns  number of columns
+ * \param title:   sheet title
  */
 void gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int columns, const char *title)
 {
@@ -3379,9 +3379,9 @@ void gtk_sheet_construct(GtkSheet *sheet, unsigned int rows, unsigned int column
  * \par Function Description
  *  Creates a new browser sheet. Its cells cannot be edited(read-only).
  *
- * \param rows: initial number of rows
- * \param columns: initial number of columns
- * \param title: sheet title
+ * \param rows     initial number of rows
+ * \param columns  initial number of columns
+ * \param title    sheet title
  *
  * \returns the new read-only #GtkSheet
  */
@@ -3402,10 +3402,10 @@ GtkWidget *gtk_sheet_new_browser(unsigned int rows, unsigned int columns, const 
  *  Initializes an existent read-only #GtkSheet with the given number
  *  of rows and columns.
  *
- * \param sheet: a #GtkSheet
- * \param rows: number of rows
- * \param columns: number of columns
- * \param title: sheet title
+ * \param sheet    a #GtkSheet
+ * \param rows     number of rows
+ * \param columns  number of columns
+ * \param title    sheet title
  */
 void gtk_sheet_construct_browser(GtkSheet *sheet, unsigned int rows, unsigned int columns,
     const char *title)
@@ -3421,10 +3421,10 @@ void gtk_sheet_construct_browser(GtkSheet *sheet, unsigned int rows, unsigned in
  *  Creates a new sheet widget with the given number of rows and
  *  columns and a custome entry type.
  *
- * \param rows: initial number of rows
- * \param columns: initial number of columns
- * \param title: sheet title
- * \param entry_type: a GType
+ * \param rows        initial number of rows
+ * \param columns     initial number of columns
+ * \param title       sheet title
+ * \param entry_type  a GType
  *
  * \returns the new sheet #GtkSheet
  */
@@ -3450,11 +3450,11 @@ GtkWidget *gtk_sheet_new_with_custom_entry(unsigned int rows,
  *  Initializes an existent read-only #GtkSheet
  *  with the given number of rows and columns and a custom entry.
  *
- * \param sheet: a #GtkSheet
- * \param rows: number of rows
- * \param columns: number of columns
- * \param title: sheet title
- * \param entry_type: a GType
+ * \param sheet      a #GtkSheet
+ * \param rows       number of rows
+ * \param columns    number of columns
+ * \param title      sheet title
+ * \param entry_type a GType
  */
 void
 gtk_sheet_construct_with_custom_entry(GtkSheet *sheet,
@@ -3475,8 +3475,8 @@ gtk_sheet_construct_with_custom_entry(GtkSheet *sheet,
  *  created. Beware: You will have to reconnect all your signal
  *  handlers after changing an entry.
  *
- * \param sheet: a #GtkSheet
- * \param entry_type: a GType
+ * \param sheet       Pointer to a #GtkSheet
+ * \param entry_type  GType
  */
 void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
 {
@@ -3536,7 +3536,7 @@ void gtk_sheet_show_grid(GtkSheet *sheet, int show)
  * \par Function Description
  *  Gets the visibility of grid in #GtkSheet.
  *
- * \param sheet: a #GtkSheet
+ * \param sheet Pointer to a #GtkSheet
  *
  * \retval TRUE(grid visible) or FALSE(grid invisible)
  */
