@@ -861,40 +861,49 @@ msgstr "Добав"
 msgid "Add a new attribute"
 msgstr "Добав на нов атрибут"
 
+# delete; Iztriĭ
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "Изтрий"
 
-# Detach the selected attribute
+# Delete selected attribute;  Iztriĭte izbraniya atribut
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Отворете избрания атрибут"
+msgstr "Изтрийте избрания атрибут"
 
+# promote; nasŭrchavane
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
-msgstr ""
+msgstr "насърчаване"
 
+# demote; ponizhavam
 #: gattrib/src/x_toolbars.c:51
 msgid "demote"
-msgstr ""
+msgstr "понижавам"
 
+# name; ime
 #: gattrib/src/x_toolbars.c:52
 msgid "name"
-msgstr ""
+msgstr "име"
 
+# value; stoĭnost
 #: gattrib/src/x_toolbars.c:53
 msgid "value"
-msgstr ""
+msgstr "стойност"
 
+# both; i dvete
 #: gattrib/src/x_toolbars.c:54
 msgid "both"
-msgstr ""
+msgstr "и двете"
 
+# Saving main window geometry and settings
+# Zapazvane na geometriyata i nastroĭkite na glavniya prozorets
 #: gattrib/src/x_window.c:204
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "Запазване на геометрията и настройките на главния прозорец.\n"
 
+# Retrieving main Window geometry and settings
+# Izvlichane na osnovnata geometriya i nastroĭki na prozoretsa
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Извличане на основната геометрия и настройки на прозореца.\n"

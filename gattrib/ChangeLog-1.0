@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2019-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Refomat documentation.
