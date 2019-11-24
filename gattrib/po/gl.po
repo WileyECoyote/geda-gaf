@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-11-09 11:45-0600\n"
+"POT-Creation-Date: 2019-11-23 19:23-0600\n"
 "PO-Revision-Date: 2012-03-21 00:09+0000\n"
 "Last-Translator: ghas <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -158,40 +158,40 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:244
+#: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
 msgstr "Creando a lista de compoñentes mestres.\n"
 
-#: gattrib/src/s_sheet_data.c:311
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Crear lista de atributos de compoñente principal.\n"
 
 # Creating master pin list
-#: gattrib/src/s_sheet_data.c:440
+#: gattrib/src/s_sheet_data.c:436
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr "Creando lista de pines principais.\n"
 
 # found component pin without a pin number
-#: gattrib/src/s_sheet_data.c:490
+#: gattrib/src/s_sheet_data.c:486
 msgid "found component pin without a pin number"
 msgstr "atopouse o pin dos compoñentes sen un número de pin"
 
-#: gattrib/src/s_sheet_data.c:555
+#: gattrib/src/s_sheet_data.c:551
 msgid "Creating master pin attribute list"
 msgstr "Creación da lista de atributos de ponto principal"
 
-#: gattrib/src/s_string_list.c:148
+#: gattrib/src/s_string_list.c:152
 msgid "attempted to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:213
+#: gattrib/src/s_string_list.c:219
 msgid "attempted to remove item from an empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:291
+#: gattrib/src/s_string_list.c:285
 msgid "could not delete item"
 msgstr ""
 
@@ -260,15 +260,7 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:382
-msgid "Are you sure you want to delete this attribute?"
-msgstr ""
-
-#: gattrib/src/x_dialog.c:384
-msgid "Delete attribute"
-msgstr ""
-
-#: gattrib/src/x_dialog.c:410
+#: gattrib/src/x_dialog.c:359
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -279,23 +271,23 @@ msgid ""
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:423
+#: gattrib/src/x_dialog.c:372
 msgid "Missing symbol file found for component!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:453
+#: gattrib/src/x_dialog.c:402
 msgid "Save the changes before closing?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:456
+#: gattrib/src/x_dialog.c:405
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:472
+#: gattrib/src/x_dialog.c:421
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:530
+#: gattrib/src/x_dialog.c:479
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -309,15 +301,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:538
+#: gattrib/src/x_dialog.c:487
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:565
+#: gattrib/src/x_dialog.c:514
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:581
+#: gattrib/src/x_dialog.c:530
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -331,92 +323,92 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:591
+#: gattrib/src/x_dialog.c:540
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:609 gattrib/src/x_menus.c:390
+#: gattrib/src/x_dialog.c:558 gattrib/src/x_menus.c:390
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:657 gattrib/src/x_dialog.c:1116
+#: gattrib/src/x_dialog.c:606 gattrib/src/x_dialog.c:1065
 #: gattrib/src/x_toolbars.c:40
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:688
+#: gattrib/src/x_dialog.c:637
 msgid "Enter"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:747
+#: gattrib/src/x_dialog.c:696
 msgid "Search for:"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:747
+#: gattrib/src/x_dialog.c:696
 msgid "Enter or select the text to find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:748
+#: gattrib/src/x_dialog.c:697
 msgid "Replace with:"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:748
+#: gattrib/src/x_dialog.c:697
 msgid "Enter or select the replacement text"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:751
+#: gattrib/src/x_dialog.c:700
 msgid "Ignore Case"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:751
+#: gattrib/src/x_dialog.c:700
 msgid "Set search case sensitivity"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:752
+#: gattrib/src/x_dialog.c:701
 msgid "Match Words"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:752
+#: gattrib/src/x_dialog.c:701
 msgid "Limit Search hits to entire work"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:753
+#: gattrib/src/x_dialog.c:702
 msgid "Search Backward"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:753
+#: gattrib/src/x_dialog.c:702
 msgid "Reverse search direction"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:754
+#: gattrib/src/x_dialog.c:703
 msgid "Wrap Around"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:754
+#: gattrib/src/x_dialog.c:703
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1092
+#: gattrib/src/x_dialog.c:1041
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1094
+#: gattrib/src/x_dialog.c:1043
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1103
+#: gattrib/src/x_dialog.c:1052
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1105 gattrib/src/x_toolbars.c:41
+#: gattrib/src/x_dialog.c:1054 gattrib/src/x_toolbars.c:41
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1114
+#: gattrib/src/x_dialog.c:1063
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1121
+#: gattrib/src/x_dialog.c:1070
 msgid "Find next"
 msgstr ""
 
@@ -487,7 +479,7 @@ msgstr ""
 msgid "Pins"
 msgstr ""
 
-#: gattrib/src/x_gtksheet.c:965 gattrib/src/x_gtksheet.c:1005
+#: gattrib/src/x_gtksheet.c:970 gattrib/src/x_gtksheet.c:1010
 msgid "could not allocate color"
 msgstr ""
 

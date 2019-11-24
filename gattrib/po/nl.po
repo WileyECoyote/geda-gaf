@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-11-09 11:45-0600\n"
+"POT-Creation-Date: 2019-11-23 19:23-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -168,39 +168,39 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in"
 
-#: gattrib/src/s_sheet_data.c:244
+#: gattrib/src/s_sheet_data.c:242
 #, c-format
 msgid "Creating master component list.\n"
 msgstr "Hoofdcomponentenlijst maken.\n"
 
-#: gattrib/src/s_sheet_data.c:311
+#: gattrib/src/s_sheet_data.c:308
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr "Hoofdcomponent attribuut lijst maken.\n"
 
-#: gattrib/src/s_sheet_data.c:440
+#: gattrib/src/s_sheet_data.c:436
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr "Creëren van de hoofdspeldlijst.\n"
 
 # found component pin without a pin number
-#: gattrib/src/s_sheet_data.c:490
+#: gattrib/src/s_sheet_data.c:486
 msgid "found component pin without a pin number"
 msgstr "gevonden componentpen zonder pincode"
 
-#: gattrib/src/s_sheet_data.c:555
+#: gattrib/src/s_sheet_data.c:551
 msgid "Creating master pin attribute list"
 msgstr "Het creëren van master-pin lijst"
 
-#: gattrib/src/s_string_list.c:148
+#: gattrib/src/s_string_list.c:152
 msgid "attempted to add to a NULL list.\n"
 msgstr "geprobeerd toe te voegen aan een NULL lijst.\n"
 
-#: gattrib/src/s_string_list.c:213
+#: gattrib/src/s_string_list.c:219
 msgid "attempted to remove item from an empty list\n"
 msgstr "geprobeerd om een item te verwijderen van een lege lijst\n"
 
-#: gattrib/src/s_string_list.c:291
+#: gattrib/src/s_string_list.c:285
 msgid "could not delete item"
 msgstr ""
 
@@ -270,15 +270,7 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:382
-msgid "Are you sure you want to delete this attribute?"
-msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"
-
-#: gattrib/src/x_dialog.c:384
-msgid "Delete attribute"
-msgstr "Verwijder attribuut"
-
-#: gattrib/src/x_dialog.c:410
+#: gattrib/src/x_dialog.c:359
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -297,23 +289,23 @@ msgstr ""
 "Kies \"Quit\" om gattrib te verlaten en het probleem op te lossen, of\n"
 "\"Forward\" om door te gaan met werken met gattrib.\n"
 
-#: gattrib/src/x_dialog.c:423
+#: gattrib/src/x_dialog.c:372
 msgid "Missing symbol file found for component!"
 msgstr "Ontbrekende symbool voor component gevonden!"
 
-#: gattrib/src/x_dialog.c:453
+#: gattrib/src/x_dialog.c:402
 msgid "Save the changes before closing?"
 msgstr "Sla de wijzigingen op voor het afsluiten?"
 
-#: gattrib/src/x_dialog.c:456
+#: gattrib/src/x_dialog.c:405
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr "Als u niet opslaat, gaan al uw wijzigingen definitief verloren."
 
-#: gattrib/src/x_dialog.c:472
+#: gattrib/src/x_dialog.c:421
 msgid "Close without saving"
 msgstr "Afsluiten zonder opslaan"
 
-#: gattrib/src/x_dialog.c:530
+#: gattrib/src/x_dialog.c:479
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -337,15 +329,15 @@ msgstr ""
 "\n"
 "Of anders, hou je vast -- implementeer ik deze opties snel!\n"
 
-#: gattrib/src/x_dialog.c:538
+#: gattrib/src/x_dialog.c:487
 msgid "Unimplemented feature!"
 msgstr "Niet geïmplementeerde functie"
 
-#: gattrib/src/x_dialog.c:565
+#: gattrib/src/x_dialog.c:514
 msgid "Fatal error"
 msgstr "Fatale fout"
 
-#: gattrib/src/x_dialog.c:581
+#: gattrib/src/x_dialog.c:530
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -368,104 +360,104 @@ msgstr ""
 "met genereuze programmacodebijdragen van gschem, gnetlist, \n"
 "en gtkextra, en ook ondersteuning van de gEDA gemeenschap."
 
-#: gattrib/src/x_dialog.c:591
+#: gattrib/src/x_dialog.c:540
 msgid "About..."
 msgstr "Over..."
 
-#: gattrib/src/x_dialog.c:609 gattrib/src/x_menus.c:390
+#: gattrib/src/x_dialog.c:558 gattrib/src/x_menus.c:390
 msgid "Export CSV"
 msgstr "Exporteer CSV"
 
 # Find
-#: gattrib/src/x_dialog.c:657 gattrib/src/x_dialog.c:1116
+#: gattrib/src/x_dialog.c:606 gattrib/src/x_dialog.c:1065
 #: gattrib/src/x_toolbars.c:40
 msgid "Find"
 msgstr "Vind"
 
 # Enter
-#: gattrib/src/x_dialog.c:688
+#: gattrib/src/x_dialog.c:637
 msgid "Enter"
 msgstr "invoeren"
 
 # Search for
-#: gattrib/src/x_dialog.c:747
+#: gattrib/src/x_dialog.c:696
 msgid "Search for:"
 msgstr "Zoeken:"
 
 # Enter or select the text to find
-#: gattrib/src/x_dialog.c:747
+#: gattrib/src/x_dialog.c:696
 msgid "Enter or select the text to find"
 msgstr "Voer de gewenste tekst in of selecteer deze"
 
 # Replace with
-#: gattrib/src/x_dialog.c:748
+#: gattrib/src/x_dialog.c:697
 msgid "Replace with:"
 msgstr "Vervangen door:"
 
 # Enter or select the replacement text
-#: gattrib/src/x_dialog.c:748
+#: gattrib/src/x_dialog.c:697
 msgid "Enter or select the replacement text"
 msgstr "Voer de vervangende tekst in of selecteer deze"
 
 # Ignore Case
-#: gattrib/src/x_dialog.c:751
+#: gattrib/src/x_dialog.c:700
 msgid "Ignore Case"
 msgstr "Negeer zaak"
 
 # Set search case sensitivity
-#: gattrib/src/x_dialog.c:751
+#: gattrib/src/x_dialog.c:700
 msgid "Set search case sensitivity"
 msgstr "Stel hoofdlettergevoeligheid in"
 
 # Match Words
-#: gattrib/src/x_dialog.c:752
+#: gattrib/src/x_dialog.c:701
 msgid "Match Words"
 msgstr "overeenkomen met woorden"
 
 # Limit Search hits to entire work
-#: gattrib/src/x_dialog.c:752
+#: gattrib/src/x_dialog.c:701
 msgid "Limit Search hits to entire work"
 msgstr "Beperk hits tot volledig werk"
 
 # Search Backward
-#: gattrib/src/x_dialog.c:753
+#: gattrib/src/x_dialog.c:702
 msgid "Search Backward"
 msgstr "Zoek achteruit"
 
 # Reverse search direction
-#: gattrib/src/x_dialog.c:753
+#: gattrib/src/x_dialog.c:702
 msgid "Reverse search direction"
 msgstr "Omgekeerde zoekrichting"
 
-#: gattrib/src/x_dialog.c:754
+#: gattrib/src/x_dialog.c:703
 msgid "Wrap Around"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:754
+#: gattrib/src/x_dialog.c:703
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1092
+#: gattrib/src/x_dialog.c:1041
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1094
+#: gattrib/src/x_dialog.c:1043
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1103
+#: gattrib/src/x_dialog.c:1052
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1105 gattrib/src/x_toolbars.c:41
+#: gattrib/src/x_dialog.c:1054 gattrib/src/x_toolbars.c:41
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1114
+#: gattrib/src/x_dialog.c:1063
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1121
+#: gattrib/src/x_dialog.c:1070
 msgid "Find next"
 msgstr ""
 
@@ -539,7 +531,7 @@ msgid "Pins"
 msgstr "Pins"
 
 # could not allocate color
-#: gattrib/src/x_gtksheet.c:965 gattrib/src/x_gtksheet.c:1005
+#: gattrib/src/x_gtksheet.c:970 gattrib/src/x_gtksheet.c:1010
 msgid "could not allocate color"
 msgstr "kon geen kleur toewijzen"
 
@@ -916,6 +908,12 @@ msgstr ""
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Are you sure you want to delete this attribute?"
+#~ msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"
+
+#~ msgid "Delete attribute"
+#~ msgstr "Verwijder attribuut"
 
 #~ msgid "<big><b>"
 #~ msgstr "<big><b>"
