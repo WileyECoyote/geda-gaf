@@ -8,6 +8,8 @@
 
     * po/bs.po: Update Bosnian translations
 
+    * po/ca.po: Update Catalan translations.
+
 2019-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Refomat documentation.
