@@ -827,15 +827,15 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "Füge ein neues Attribut hinzu"
 
+# delete
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "löschen"
 
-# Detach the selected attribute
+# Delete selected attribute
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Trennen Sie das ausgewählte Attribut"
+msgstr "Löscht das ausgewählte Attribut"
 
 # promote
 #: gattrib/src/x_toolbars.c:50
