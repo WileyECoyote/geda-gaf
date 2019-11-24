@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/ar.po: Update Arabic translations.
+
 2019-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtksheet.c: Refomat documentation.
