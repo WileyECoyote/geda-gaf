@@ -826,15 +826,15 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "Προσθέστε ένα νέο χαρακτηριστικό"
 
+# delete; diagráfo
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "διαγράφω"
 
-# Detach the selected attribute
+# Detach the selected attribute; Diagrafí epilegménou charaktiristikoú
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Αποσυνδέστε το επιλεγμένο χαρακτηριστικό"
+msgstr "Διαγραφή επιλεγμένου χαρακτηριστικού"
 
 # promote
 #: gattrib/src/x_toolbars.c:50
