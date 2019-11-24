@@ -831,40 +831,47 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "Tilføj ny Attribut"
 
+# delete
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "slette"
 
-# Detach the selected attribute
+# Delete selected attribute
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Fjern den valgte attribut"
+msgstr "Slet valgt attribut"
 
+# promote
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
-msgstr ""
+msgstr "fremme"
 
+# demote
 #: gattrib/src/x_toolbars.c:51
 msgid "demote"
-msgstr ""
+msgstr "degradere"
 
+# name
 #: gattrib/src/x_toolbars.c:52
 msgid "name"
-msgstr ""
+msgstr "navn"
 
+# value
 #: gattrib/src/x_toolbars.c:53
 msgid "value"
-msgstr ""
+msgstr "værdi"
 
+# both
 #: gattrib/src/x_toolbars.c:54
 msgid "both"
-msgstr ""
+msgstr "begge"
 
+# Saving main window geometry and settings
 #: gattrib/src/x_window.c:204
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "Gemme hovedvinduet geometri og indstillinger.\n"
 
+# Retrieving main Window geometry and settings
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
+msgstr "Henter hovedvinduet geometri og indstillinger.\n"
