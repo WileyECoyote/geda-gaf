@@ -10,6 +10,11 @@
             * simulation/spice/cccs-1.sym
             * simulation/spice/ccvs-1.sym
 
+    * simulation/spice/gnucap-*-1.sym: Convert plain text to description and
+      add footprint attribute:
+
+            * simulation/spice/gnucap-directive-1.sym
+
 
 2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
 

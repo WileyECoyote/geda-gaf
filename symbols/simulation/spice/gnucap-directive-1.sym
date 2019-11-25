@@ -1,14 +1,16 @@
 v 20150401 2
 B 0 200 2100 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 1950 300 9 10 0 1 0 6 1
+T 100 600 5 10 0 1 0 0 1
 device=directive
 T 100 300 9 10 1 1 0 0 1
 refdes=A?
-T 1950 300 9 10 1 0 0 6 1
-Gnucap directive
+T 1850 300 9 10 1 1 0 6 1
+description=Gnucap directive
+T 100 800 9 10 0 0 0 0 1
+footprint=none
 T 100 0 8 10 1 1 0 0 1
 file=?
 T 100 0 8 10 1 1 0 0 1
 value=?
-T 100 600 8 10 0 0 0 0 1
+T 900 600 9 10 0 0 0 0 1
 numslots=0
