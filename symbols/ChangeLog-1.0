@@ -16,6 +16,10 @@
             * simulation/spice/gnucap-directive-1.sym
             * simulation/spice/gnucap-include-1.sym
 
+    * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
+      value:
+
+            * transistor/pjfet-0/pjfet-sdg-1.sym
 
 2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
