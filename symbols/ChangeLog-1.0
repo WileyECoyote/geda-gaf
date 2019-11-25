@@ -5,6 +5,10 @@
 
     * passive/rf/if_transformer_aircore-1.sym: Rename symbol file.
 
+    * simulation/spice/cc?s-1.sym: Add footprint none attribute:
+
+            * simulation/spice/cccs-1.sym
+
 2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
