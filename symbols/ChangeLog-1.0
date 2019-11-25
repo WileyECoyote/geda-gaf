@@ -14,6 +14,7 @@
       add footprint attribute:
 
             * simulation/spice/gnucap-directive-1.sym
+            * simulation/spice/gnucap-include-1.sym
 
 
 2019-11-17 Wiley E. Hill <wileyhill@gmail.com>

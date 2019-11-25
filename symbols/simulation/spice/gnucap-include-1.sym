@@ -4,8 +4,10 @@ T 1850 300 9 10 0 1 0 6 1
 device=include
 T 100 300 9 10 1 1 0 0 1
 refdes=A?
-T 1850 300 9 10 1 0 0 6 1
-Gnucap include
+T 1850 300 9 10 1 1 0 6 1
+description=Gnucap include
+T 100 800 9 10 0 0 0 0 1
+footprint=none
 T 500 0 8 10 1 1 0 0 1
 file=?
 T 100 0 9 10 1 0 0 0 1
