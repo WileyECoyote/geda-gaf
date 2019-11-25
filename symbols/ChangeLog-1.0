@@ -8,6 +8,8 @@
     * simulation/spice/cc?s-1.sym: Add footprint none attribute:
 
             * simulation/spice/cccs-1.sym
+            * simulation/spice/ccvs-1.sym
+
 
 2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
