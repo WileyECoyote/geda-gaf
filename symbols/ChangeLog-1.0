@@ -3,6 +3,8 @@
     * passive/rf/balun_quadrifilar.sym: Update dist-license, remove comment,
       and add description.
 
+    * passive/rf/if_transformer_aircore-1.sym: Rename symbol file.
+
 2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
