@@ -2222,30 +2222,29 @@ gtk_item_entry_move_forward_word(GtkEntry *entry, int start)
 static int
 gtk_item_entry_move_backward_word(GtkEntry *entry, int start)
 {
-    int new_pos = start;
+  int new_pos = start;
 
-    /* Prevent any leak of information */
-    if (!entry->visible)
-    {
-	new_pos = 0;
-    }
-    else if (entry->text && start > 0)
-    {
-	PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
-	PangoLogAttr *log_attrs;
-	int n_attrs;
+  /* Prevent any leak of information */
+  if (!entry->visible) {
+    new_pos = 0;
+  }
+  else if (entry->text && start > 0) {
 
-	pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
+    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
+    PangoLogAttr *log_attrs;
+    int n_attrs;
 
-	new_pos = start - 1;
+    pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
 
-	/* Find the previous word beginning */
-	while (new_pos > 0 && !log_attrs[new_pos].is_word_start) new_pos--;
+    new_pos = start - 1;
 
-	g_free(log_attrs);
-    }
+    /* Find the previous word beginning */
+    while (new_pos > 0 && !log_attrs[new_pos].is_word_start) new_pos--;
 
-    return new_pos;
+    g_free(log_attrs);
+  }
+
+  return new_pos;
 }
 
 static void
