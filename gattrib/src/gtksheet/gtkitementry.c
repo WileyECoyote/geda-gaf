@@ -2250,23 +2250,24 @@ gtk_item_entry_move_backward_word(GtkEntry *entry, int start)
 static void
 gtk_item_entry_delete_whitespace(GtkEntry *entry)
 {
-    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
-    PangoLogAttr *log_attrs;
-    int n_attrs;
-    int start, end;
+  PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
+  PangoLogAttr *log_attrs;
+  int n_attrs;
+  int start, end;
 
-    pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
+  pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
 
-    start = end = entry->current_pos;
+  start = end = entry->current_pos;
 
-    while (start > 0 && log_attrs[start - 1].is_white) start--;
+  while (start > 0 && log_attrs[start - 1].is_white) start--;
 
-    while (end < n_attrs && log_attrs[end].is_white) end++;
+  while (end < n_attrs && log_attrs[end].is_white) end++;
 
-    g_free(log_attrs);
+  g_free(log_attrs);
 
-    if (start != end)
-	gtk_editable_delete_text(GTK_EDITABLE(entry), start, end);
+  if (start != end) {
+    gtk_editable_delete_text(GTK_EDITABLE(entry), start, end);
+  }
 }
 
 
