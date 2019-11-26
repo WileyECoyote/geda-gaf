@@ -3673,12 +3673,13 @@ int gtk_sheet_get_selection(GtkSheet *sheet, GtkSheetState *state, GtkSheetRange
     return (TRUE);
 }
 
-/**
- * gtk_sheet_set_selection_mode:
+/*!
+ * \brief gtk_sheet_set_selection_mode
+ * \par Function Description
+ *  Sets the selection mode of the cells in a #GtkSheet.
+ *
  * \param sheet a #GtkSheet
  * \param mode GTK_SELECTION_SINGLE or GTK_SELECTION_BROWSE
- *
- * Sets the selection mode of the cells in a #GtkSheet.
  */
 void gtk_sheet_set_selection_mode(GtkSheet *sheet, GtkSelectionMode mode)
 {
@@ -3689,16 +3690,17 @@ void gtk_sheet_set_selection_mode(GtkSheet *sheet, GtkSelectionMode mode)
     sheet->selection_mode = mode;
 }
 
-/**
- * gtk_sheet_set_autoresize:
+/*!
+ * \brief gtk_sheet_set_autoresize
+ * \par Function Description
+ *  Controls whether cells will be autoresized upon deactivation,
+ *  as you type text or set a cell_text value. If you want the
+ *  cells to be autoresized when you pack widgets look at
+ *  gtk_sheet_attach_*(). This function sets both:
+ *  autoresize_columns and autoresize_cells.
+ *
  * \param sheet      a #GtkSheet
  * \param autoresize TRUE or FALSE
- *
- * Controls whether cells will be autoresized upon deactivation,
- * as you type text or set a cell_text value. If you want the
- * cells to be autoresized when you pack widgets look at
- * gtk_sheet_attach_*(). This function sets both:
- * autoresize_columns and autoresize_cells.
  */
 void gtk_sheet_set_autoresize(GtkSheet *sheet, int autoresize)
 {
@@ -3708,15 +3710,15 @@ void gtk_sheet_set_autoresize(GtkSheet *sheet, int autoresize)
     sheet->autoresize_rows = autoresize;
 }
 
-/**
- * gtk_sheet_set_autoresize_columns:
+/*!
+ * \brief gtk_sheet_set_autoresize_columns
+ * \par Function Description
+ *  Controls wether columns will be autoresized upon deactivation,
+ *  as you type text or set a cell_text value. If you want the cells
+ *  to be autoresized when you pack widgets look at gtk_sheet_attach_*.
+ *
  * \param sheet a #GtkSheet
  * \param autoresize TRUE or FALSE
- *
- * Controls wether columns will be autoresized upon
- * deactivation, as you type text or set a cell_text value. If
- * you want the cells to be autoresized when you pack widgets
- * look at gtk_sheet_attach_*().
  */
 void gtk_sheet_set_autoresize_columns(GtkSheet *sheet, int autoresize)
 {
