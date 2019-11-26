@@ -2155,40 +2155,40 @@ gtk_item_entry_move_visually(GtkEntry *entry, int start, int count)
 static int
 gtk_item_entry_move_logically(GtkEntry *entry, int start, int count)
 {
-    int new_pos = start;
+  int new_pos = start;
 
-    /* Prevent any leak of information */
-    if (!entry->visible)
-    {
-	new_pos = CLAMP(start + count, 0, entry->text_length);
-    }
-    else if (entry->text)
-    {
-	PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
-	PangoLogAttr *log_attrs;
-	int n_attrs;
+  /* Prevent any leak of information */
+  if (!entry->visible) {
+    new_pos = CLAMP(start + count, 0, entry->text_length);
+  }
+  else if (entry->text) {
 
-	pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
+    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
+    PangoLogAttr *log_attrs;
+    int n_attrs;
 
-	while (count > 0 && new_pos < entry->text_length)
-	{
-	    do new_pos++;
-	    while (new_pos < entry->text_length && !log_attrs[new_pos].is_cursor_position);
+    pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
 
-	    count--;
-	}
-	while (count < 0 && new_pos > 0)
-	{
-	    do new_pos--;
-	    while (new_pos > 0 && !log_attrs[new_pos].is_cursor_position);
+    while (count > 0 && new_pos < entry->text_length) {
 
-	    count++;
-	}
+      do new_pos++;
+      while (new_pos < entry->text_length && !log_attrs[new_pos].is_cursor_position);
 
-	g_free(log_attrs);
+      count--;
     }
 
-    return new_pos;
+    while (count < 0 && new_pos > 0) {
+
+      do new_pos--;
+      while (new_pos > 0 && !log_attrs[new_pos].is_cursor_position);
+
+      count++;
+    }
+
+    g_free(log_attrs);
+  }
+
+  return new_pos;
 }
 
 static int
