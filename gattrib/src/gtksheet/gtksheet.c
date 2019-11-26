@@ -3617,13 +3617,14 @@ unsigned int gtk_sheet_get_rows_count(GtkSheet *sheet)
     return (sheet->maxrow + 1);
 }
 
-/**
- * gtk_sheet_get_columns_count:
+/*!
+ * \brief gtk_sheet_get_columns_count
+ * \par Function Description
+ *  Get the number of the columns of the #GtkSheet.
+ *
  * \param sheet a #GtkSheet
  *
- * Get the number of the columns of the #GtkSheet.
- *
- * Returns: number of columns.
+ * \returns number of columns
  */
 unsigned int gtk_sheet_get_columns_count(GtkSheet *sheet)
 {
@@ -3632,14 +3633,14 @@ unsigned int gtk_sheet_get_columns_count(GtkSheet *sheet)
     return (sheet->maxcol + 1);
 }
 
-/**
- * gtk_sheet_get_state:
+/*!
+ * \brief gtk_sheet_get_state
+ * \par Function Description
+ *  Get the selection state of the sheet (#GtkSheetState).
+ *
  * \param sheet a #GtkSheet
  *
- * Get the selection state of the sheet (#GtkSheetState).
- *
- * Returns:
- * GTK_SHEET_NORMAL,GTK_SHEET_ROW_SELECTED,GTK_SHEET_COLUMN_SELECTED,GTK_SHEET_RANGE_SELECTED
+ * \returns GTK_SHEET_NORMAL,GTK_SHEET_ROW_SELECTED,GTK_SHEET_COLUMN_SELECTED,GTK_SHEET_RANGE_SELECTED
  */
 GtkSheetState gtk_sheet_get_state(GtkSheet *sheet)
 {
@@ -3648,15 +3649,16 @@ GtkSheetState gtk_sheet_get_state(GtkSheet *sheet)
     return (sheet->state);
 }
 
-/**
- * gtk_sheet_get_selection:
+/*!
+ * \brief gtk_sheet_get_selection
+ * \par Function Description
+ *  Inquire current cell selection state and range.
+ *
  * \param sheet a #GtkSheet
  * \param state where to store the #GtkSheetState, may be NULL
  * \param range where to store the #GtkSheetRange
  *
- * Inquire current cell selection state and range.
- *
- * Returns: TRUE: there is a selection, FALSE: no selection or error
+ * \retval TRUE: there is a selection, FALSE: no selection or error
  */
 int gtk_sheet_get_selection(GtkSheet *sheet, GtkSheetState *state, GtkSheetRange *range)
 {
