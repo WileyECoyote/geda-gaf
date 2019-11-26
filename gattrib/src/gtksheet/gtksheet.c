@@ -839,14 +839,14 @@ static inline int _gtk_sheet_height(GtkSheet *sheet)
   return (cx);
 }
 
-/**
- * _gtk_sheet_width:
- * \param sheet:  the #GtkSheet
+/*!
+ * \brief _gtk_sheet_width
+ * \par Function Description
+ *  Retrieve total width of the sheet
  *
- * total width of the sheet
+ * \param sheet  the #GtkSheet
  *
- * returns: total width of all visible columns, including
- * row_titles area
+ * \returns total width of all visible columns, including row_titles area
  */
 static inline int
 _gtk_sheet_width(GtkSheet *sheet)
@@ -864,11 +864,12 @@ _gtk_sheet_width(GtkSheet *sheet)
   return (cx);
 }
 
-/**
- * _gtk_sheet_recalc_view_range:
- * \param sheet:  the #GtkSheet
+/*!
+ * \brief _gtk_sheet_recalc_view_range
+ * \par Function Description
+ *  Recalculate visible sheet range.
  *
- * recalculate visible sheet range
+ * \param sheet  the #GtkSheet
  */
 void
 _gtk_sheet_recalc_view_range(GtkSheet *sheet)
@@ -884,13 +885,13 @@ _gtk_sheet_recalc_view_range(GtkSheet *sheet)
 	sheet->sheet_window_width - 1);
 }
 
-/**
- * _gtk_sheet_range_fixup:
+/*!
+ * \brief _gtk_sheet_range_fixup
+ * \par Function Description
+ *  Force range into bounds
  *
  * \param sheet  the #GtkSheet
  * \param range  the range
- *
- * force range into bounds
  */
 void
 _gtk_sheet_range_fixup(GtkSheet *sheet, GtkSheetRange *range)
