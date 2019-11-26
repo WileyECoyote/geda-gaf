@@ -3727,15 +3727,16 @@ void gtk_sheet_set_autoresize_columns(GtkSheet *sheet, int autoresize)
     sheet->autoresize_columns = autoresize;
 }
 
-/**
- * gtk_sheet_set_autoresize_rows:
- * \param sheet       a #GtkSheet
- * \param autoresize TRUE or FALSE
+/*!
+ * \brief gtk_sheet_set_autoresize_rows
+ * \par Function Description
+ *  Controls wether rows will be autoresized upon deactivation,
+ *  as you type text or set a cell_text value. If you want the
+ *  cells to be autoresized when you pack widgets look at
+ *  gtk_sheet_attach_*.
  *
- * Controls wether rows will be autoresized upon deactivation,
- * as you type text or set a cell_text value. If you want the
- * cells to be autoresized when you pack widgets look at
- * gtk_sheet_attach_*().
+ * \param sheet       a #GtkSheet
+ * \param autoresize TRUE or FALSE.
  */
 void gtk_sheet_set_autoresize_rows(GtkSheet *sheet, int autoresize)
 {
@@ -3744,14 +3745,15 @@ void gtk_sheet_set_autoresize_rows(GtkSheet *sheet, int autoresize)
     sheet->autoresize_rows = autoresize;
 }
 
-/**
- * gtk_sheet_autoresize:
+/*!
+ * \brief gtk_sheet_autoresize
+ * \par Function Description
+ *  Gets the autoresize mode of #GtkSheet.
+ *
  * \param sheet a #GtkSheet
  *
- * Gets the autoresize mode of #GtkSheet.
- *
- * Returns: TRUE if autoresize_columns or autoresize_rows was
- * set, or FALSE if none
+ * \retval TRUE if autoresize_columns or autoresize_rows was
+ *         set, or FALSE if none
  */
 int gtk_sheet_autoresize(GtkSheet *sheet)
 {
@@ -3760,13 +3762,14 @@ int gtk_sheet_autoresize(GtkSheet *sheet)
     return (sheet->autoresize_columns || sheet->autoresize_rows);
 }
 
-/**
- * gtk_sheet_autoresize_columns:
+/*!
+ * \brief gtk_sheet_autoresize_columns
+ * \par Function Description
+ *  Gets the autoresize mode for #GtkSheet columns.
+ *
  * \param sheet a #GtkSheet
  *
- * Gets the autoresize mode for #GtkSheet columns.
- *
- * Returns: TRUE or FALSE
+ * \retval TRUE or FALSE
  */
 int gtk_sheet_autoresize_columns(GtkSheet *sheet)
 {
@@ -3775,13 +3778,14 @@ int gtk_sheet_autoresize_columns(GtkSheet *sheet)
     return (sheet->autoresize_columns);
 }
 
-/**
- * gtk_sheet_autoresize_rows:
+/*!
+ * \brief gtk_sheet_autoresize_rows
+ * \par Function Description
+ *  Gets the autoresize mode for #GtkSheet rows.
+ *
  * \param sheet a #GtkSheet
  *
- * Gets the autoresize mode for #GtkSheet rows.
- *
- * Returns: TRUE or FALSE
+ * \retval TRUE or FALSE
  */
 int gtk_sheet_autoresize_rows(GtkSheet *sheet)
 {
