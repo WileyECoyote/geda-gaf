@@ -2194,29 +2194,28 @@ gtk_item_entry_move_logically(GtkEntry *entry, int start, int count)
 static int
 gtk_item_entry_move_forward_word(GtkEntry *entry, int start)
 {
-    int new_pos = start;
+  int new_pos = start;
 
-    /* Prevent any leak of information */
-    if (!entry->visible)
-    {
-	new_pos = entry->text_length;
-    }
-    else if (entry->text && (new_pos < entry->text_length))
-    {
-	PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
-	PangoLogAttr *log_attrs;
-	int n_attrs;
+  /* Prevent any leak of information */
+  if (!entry->visible) {
+    new_pos = entry->text_length;
+  }
+  else if (entry->text && (new_pos < entry->text_length))  {
 
-	pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
+    PangoLayout *layout = gtk_item_entry_ensure_layout(entry, FALSE);
+    PangoLogAttr *log_attrs;
+    int n_attrs;
 
-	/* Find the next word end */
-	new_pos++;
-	while (new_pos < n_attrs && !log_attrs[new_pos].is_word_end) new_pos++;
+    pango_layout_get_log_attrs(layout, &log_attrs, &n_attrs);
 
-	g_free(log_attrs);
-    }
+    /* Find the next word end */
+    new_pos++;
+    while (new_pos < n_attrs && !log_attrs[new_pos].is_word_end) new_pos++;
 
-    return new_pos;
+    g_free(log_attrs);
+  }
+
+  return new_pos;
 }
 
 
