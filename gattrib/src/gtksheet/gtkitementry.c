@@ -2278,24 +2278,25 @@ gtk_item_entry_delete_whitespace(GtkEntry *entry)
 static char *
 gtk_item_entry_get_public_chars(GtkEntry *entry, int start, int end)
 {
-    if (end < 0)
-	end = entry->text_length;
+  if (end < 0) {
+    end = entry->text_length;
+  }
 
-    if (entry->visible)
-	return gtk_editable_get_chars(GTK_EDITABLE(entry), start, end);
-    else
-    {
-	char *str;
-	int i;
-	int n_chars = end - start;
+  if (entry->visible) {
+    return gtk_editable_get_chars(GTK_EDITABLE(entry), start, end);
+  }
+  else {
 
-	str = g_malloc(n_chars + 1);
-	for (i = 0; i < n_chars; i++) str[i] = '*';
-	str[i] = '\0';
+    char *str;
+    int i;
+    int n_chars = end - start;
 
-	return str;
-    }
+    str = g_malloc(n_chars + 1);
+    for (i = 0; i < n_chars; i++) str[i] = '*';
+    str[i] = '\0';
 
+    return str;
+  }
 }
 
 static void
