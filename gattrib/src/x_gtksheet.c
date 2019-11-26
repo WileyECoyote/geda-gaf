@@ -917,6 +917,7 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     int   width;
 
     text  = string_list_item->data;
+
     width = strlen(text);
 
     if (width < COLUMN_MIN_WIDTH) {
@@ -924,8 +925,11 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     }
 
     gtk_sheet_set_column_width(sheet, j, char_width * width);
+
     gtk_sheet_column_button_add_label(sheet, j, text);
+
     gtk_sheet_column_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
+
     gtk_sheet_set_column_title(sheet, j, text);
 
     if (geda_utility_glist_find_string(hide_columns, text) > -1) {
