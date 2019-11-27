@@ -3917,16 +3917,20 @@ static void _gtk_sheet_update_extent(GtkSheet *sheet,
 
     old_extent = cell->extent;  /* to check wether it was increased */
 
-    if (!cell->text || !cell->text[0])
-    {
-	cell->extent.width = 0;
-	cell->extent.height = 0;
+    if (!cell->text || !cell->text[0]) {
 
-	if (old_extent.height != 0)
-	    _gtk_sheet_recalc_extent_height(sheet, row);
-	if (old_extent.width != 0)
-	    _gtk_sheet_recalc_extent_width(sheet, col);
-	return;
+      cell->extent.width = 0;
+      cell->extent.height = 0;
+
+      if (old_extent.height != 0) {
+        _gtk_sheet_recalc_extent_height(sheet, row);
+      }
+
+      if (old_extent.width != 0) {
+        _gtk_sheet_recalc_extent_width(sheet, col);
+      }
+
+      return;
     }
 
     GtkSheetCellAttr attributes;
