@@ -4107,13 +4107,14 @@ static void gtk_sheet_autoresize_all(GtkSheet *sheet)
   }
 }
 
-/**
- * gtk_sheet_set_autoscroll:
- * \param sheet: a #GtkSheet
- * \param autoscroll: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_set_autoscroll
+ * \par Function Description
+ *  The sheet will be automatically scrolled when you move beyond
+ *  the last row/col in #GtkSheet.
  *
- * The sheet will be automatically scrolled when you move beyond
- * the last row/col in #GtkSheet.
+ * \param sheet      a #GtkSheet
+ * \param autoscroll TRUE or FALSE
  */
 void gtk_sheet_set_autoscroll(GtkSheet *sheet, int autoscroll)
 {
@@ -4122,13 +4123,14 @@ void gtk_sheet_set_autoscroll(GtkSheet *sheet, int autoscroll)
     sheet->autoscroll = autoscroll;
 }
 
-/**
- * gtk_sheet_autoscroll:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_autoscroll
+ * \par Function Description
+ *  Get the autoscroll mode of #GtkSheet.
  *
- * Get the autoscroll mode of #GtkSheet.
+ * \param sheet  a #GtkSheet
  *
- * Returns: TRUE or FALSE
+ * \returns TRUE or FALSE
  */
 int gtk_sheet_autoscroll(GtkSheet *sheet)
 {
@@ -4137,14 +4139,15 @@ int gtk_sheet_autoscroll(GtkSheet *sheet)
     return (sheet->autoscroll);
 }
 
-/**
- * gtk_sheet_set_clip_text:
- * \param sheet: a #GtkSheet
- * \param clip_text: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_set_clip_text
+ * \par Function Description
+ *  Clip text in cell. When clip text mode is turned off, cell
+ *  text is written over neighbour columns, as long as their
+ *  contents are empty.
  *
- * Clip text in cell. When clip text mode is turned off, cell
- * text is written over neighbour columns, as long as their
- * contents are empty.
+ * \param sheet      a #GtkSheet
+ * \param clip_text  TRUE or FALSE
  */
 void gtk_sheet_set_clip_text(GtkSheet *sheet, int clip_text)
 {
