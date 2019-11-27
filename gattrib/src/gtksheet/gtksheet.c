@@ -3937,7 +3937,7 @@ static void _gtk_sheet_update_extent(GtkSheet *sheet,
     gtk_sheet_get_attributes(sheet, row, col, &attributes);
 
     _get_string_extent(sheet, colptr,
-	attributes.font_desc, cell->text, &text_width, &text_height);
+                       attributes.font_desc, cell->text, &text_width, &text_height);
 
     /* add borders */
     new_extent_width = CELL_EXTENT_WIDTH(text_width, attributes.border.width);
@@ -4004,14 +4004,14 @@ static void _gtk_sheet_autoresize_column_internal(GtkSheet *sheet, int col)
 
 #if GTK_SHEET_DEBUG_SIZE > 0
     fprintf(stderr,"_gtk_sheet_autoresize_column_internal[%d]: called col w %d new w %d",
-	col, colptr->width, new_width);
+            col, colptr->width, new_width);
 #endif
 
     if (new_width != colptr->width)
     {
 #if GTK_SHEET_DEBUG_SIZE > 0
-	fprintf(stderr,"_gtk_sheet_autoresize_column_internal[%d]: set width %d",
-	    col, new_width);
+      fprintf(stderr,"_gtk_sheet_autoresize_column_internal[%d]: set width %d",
+              col, new_width);
 #endif
 	gtk_sheet_set_column_width(sheet, col, new_width);
 	GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
@@ -4036,18 +4036,18 @@ static void _gtk_sheet_autoresize_row_internal(GtkSheet *sheet, int row)
     new_height = ROW_EXTENT_TO_HEIGHT(rowptr->max_extent_height);
 
 #if 0 && GTK_SHEET_DEBUG_SIZE > 0
-    fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: win_h %d ext_h %d row_max_h %d",
-	row, sheet->sheet_window_height, rowptr->max_extent_height,
-	ROW_MAX_HEIGHT(sheet));
-    fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: called row h %d new h %d",
-	row, rowptr->height, new_height);
+  fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: win_h %d ext_h %d row_max_h %d",
+          row, sheet->sheet_window_height, rowptr->max_extent_height,
+          ROW_MAX_HEIGHT(sheet));
+  fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: called row h %d new h %d",
+          row, rowptr->height, new_height);
 #endif
 
     if (new_height != rowptr->height) {
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-	fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: set height %d",
-	    row, new_height);
+    fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: set height %d",
+            row, new_height);
 #endif
 	gtk_sheet_set_row_height(sheet, row, new_height);
 	GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
