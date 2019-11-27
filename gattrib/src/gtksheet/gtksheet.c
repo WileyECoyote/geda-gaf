@@ -4156,15 +4156,16 @@ void gtk_sheet_set_clip_text(GtkSheet *sheet, int clip_text)
     sheet->clip_text = clip_text;
 }
 
-/**
- * gtk_sheet_clip_text:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_clip_text
+ * \par Function Description
+ *  Get clip text mode in #GtkSheet. When clip text mode is
+ *  turned off, cell text is written over neighbour columns, as
+ *  long as their contents are empty.
  *
- * Get clip text mode in #GtkSheet. When clip text mode is
- * turned off, cell text is written over neighbour columns, as
- * long as their contents are empty.
+ * \param sheet a #GtkSheet
  *
- * Returns: TRUE or FALSE
+ * \retval TRUE or FALSE
  */
 int gtk_sheet_clip_text(GtkSheet *sheet)
 {
@@ -4173,12 +4174,13 @@ int gtk_sheet_clip_text(GtkSheet *sheet)
     return (sheet->clip_text);
 }
 
-/**
- * gtk_sheet_set_justify_entry:
- * \param sheet: a #GtkSheet
- * \param justify: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_set_justify_entry
+ * \par Function Description
+ *  Justify cell entry editor in #GtkSheet.
  *
- * Justify cell entry editor in #GtkSheet.
+ * \param sheet    a #GtkSheet
+ * \param justify TRUE or FALSE
  */
 void gtk_sheet_set_justify_entry(GtkSheet *sheet, int justify)
 {
@@ -4187,14 +4189,14 @@ void gtk_sheet_set_justify_entry(GtkSheet *sheet, int justify)
     sheet->justify_entry = justify;
 }
 
-/**
- * gtk_sheet_justify_entry:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_justify_entry
+ * \par Function Description
+ * Get the cell entry editor justification setting from #GtkSheet.
  *
- * Get the cell entry editor justification setting from
- * #GtkSheet.
+ * \param sheet a #GtkSheet
  *
- * Returns: TRUE or FALSE
+ * \retval TRUE or FALSE
  */
 int gtk_sheet_justify_entry(GtkSheet *sheet)
 {
