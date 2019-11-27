@@ -3907,9 +3907,9 @@ static void _gtk_sheet_update_extent(GtkSheet *sheet,
 
 #if GTK_SHEET_DEBUG_SIZE > 0
     fprintf(stderr,"_gtk_sheet_update_extent[%d,%d]: called cell (xw %d,xh %d) colxw %d rowxh %d",
-	row, col,
-	cell->extent.width, cell->extent.height,
-	colptr->max_extent_width, rowptr->max_extent_height);
+            row, col,
+            cell->extent.width, cell->extent.height,
+            colptr->max_extent_width, rowptr->max_extent_height);
 #endif
 
     old_extent = cell->extent;  /* to check wether it was increased */
@@ -3970,9 +3970,9 @@ static void _gtk_sheet_update_extent(GtkSheet *sheet,
 
 #if GTK_SHEET_DEBUG_SIZE > 0
     fprintf(stderr,"_gtk_sheet_update_extent[%d,%d]: done cell (xw %d,xh %d) colxw %d rowxh %d",
-	row, col,
-	cell->extent.width, cell->extent.height,
-	colptr->max_extent_width, rowptr->max_extent_height);
+            row, col,
+            cell->extent.width, cell->extent.height,
+            colptr->max_extent_width, rowptr->max_extent_height);
 #endif
 }
 
