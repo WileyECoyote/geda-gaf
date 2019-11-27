@@ -3990,13 +3990,15 @@ static void _gtk_sheet_autoresize_column_internal(GtkSheet *sheet, int col)
 
     g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (col < 0 || col > sheet->maxalloccol || col > sheet->maxcol)
-	return;
+    if (col < 0 || col > sheet->maxalloccol || col > sheet->maxcol) {
+      return;
+    }
 
     colptr = COLPTR(sheet, col);
 
-    if (!GTK_SHEET_COLUMN_IS_VISIBLE(colptr))
-	return;
+    if (!GTK_SHEET_COLUMN_IS_VISIBLE(colptr)) {
+      return;
+    }
 
     new_width = COLUMN_EXTENT_TO_WIDTH(colptr->max_extent_width);
 
