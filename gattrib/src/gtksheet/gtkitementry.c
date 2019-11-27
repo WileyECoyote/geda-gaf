@@ -2364,18 +2364,19 @@ GtkWidget *gtk_item_entry_new(void)
   return gtk_widget_new(G_TYPE_ITEM_ENTRY, NULL);
 }
 
-/**
- * gtk_item_entry_new_with_max_length:
- * @max: the maximum character length of the entry, or 0 for no
- * maximum. (other than the maximum length of entries.) The
- * value passed in will be clamped to the range 0-65536.
+/*!
+ * \brief gtk_item_entry_new_with_max_length
+ * \par Function Description
+ *  Creates a new #GtkItemEntry with the maximum allowed number
+ *  of characters in the contents of the widget. If the current
+ *  contents are longer than the given length, then they will be
+ *  truncated to fit.
  *
- * Creates a new #GtkItemEntry with the maximum allowed number
- * of characters in the contents of the widget. If the current
- * contents are longer than the given length, then they will be
- * truncated to fit.
+ * \param max the maximum character length of the entry, or 0 for no
+ *            maximum. (other than the maximum length of entries.) The
+ *            value passed in will be clamped to the range 0-65536.
  *
- * Returns: the newly-created #GtkItemEntry widget.
+ * \returns the newly-created #GtkItemEntry widget.
  */
 GtkWidget *gtk_item_entry_new_with_max_length(int max)
 {
@@ -2388,13 +2389,15 @@ GtkWidget *gtk_item_entry_new_with_max_length(int max)
   return GTK_WIDGET(entry);
 }
 
-/**
- * gtk_item_entry_set_text:
- * @entry: a #GtkItemEntry
- * @text: the new text
- * @justification: a #GtkJustification : GTK_JUSTIFY_LEFT,GTK_JUSTIFY_RIGHT,GTK_JUSTIFY_CENTER,GTK_JUSTIFY_FILL
+/*!
+ * \brief gtk_item_entry_set_text
+ * \par Function Description
+ *  Sets the text in the widget to the given value, replacing the current contents.
  *
- * Sets the text in the widget to the given value, replacing the current contents.
+ * \param entry         a #GtkItemEntry
+ * \param text          the new text
+ * \param justification a #GtkJustification : GTK_JUSTIFY_LEFT, GTK_JUSTIFY_RIGHT,
+ *                                             GTK_JUSTIFY_CENTER,GTK_JUSTIFY_FILL
  */
 void gtk_item_entry_set_text(GtkItemEntry    *item_entry,
                              const char      *text,
@@ -2434,13 +2437,9 @@ void gtk_item_entry_set_text(GtkItemEntry    *item_entry,
   }
 }
 
-/**
- * gtk_item_entry_get_layout_offsets:
- * @entry: a #GtkEntry
- * @x: location to store X offset of layout, or %NULL
- * @y: location to store Y offset of layout, or %NULL
- *
- *
+/*!
+ * \brief gtk_item_entry_get_layout_offsets
+ * \par Function Description
  * Obtains the position of the #PangoLayout used to render text
  * in the entry, in widget coordinates. Useful if you want to line
  * up the text in an entry with some other text, e.g. when using the
@@ -2461,6 +2460,9 @@ void gtk_item_entry_set_text(GtkItemEntry    *item_entry,
  * gtk_entry_text_index_to_layout_index() are needed to convert byte
  * indices in the layout to byte indices in the entry contents.
  *
+ * \param entry  a #GtkEntry
+ * \param x      location to store X offset of layout, or %NULL
+ * \param y      location to store Y offset of layout, or %NULL
  */
 void
 gtk_item_entry_get_layout_offsets(GtkItemEntry *entry, int *x, int *y)
@@ -2482,17 +2484,17 @@ gtk_item_entry_get_layout_offsets(GtkItemEntry *entry, int *x, int *y)
       *y += text_area_y;
 }
 
-/**
- * gtk_item_entry_get_max_length_bytes:
- * @item_entry: a #GtkItemEntry
+/*!
+ * \brief gtk_item_entry_get_max_length_bytes
+ * \par Function Description
+ *  Retrieves the maximum byte length for the contents of #GtkItemEntry.
  *
- * Retrieves the maximum byte length for the contents of
- * #GtkItemEntry.
+ * \param item_entry a #GtkItemEntry
  *
- * Returns: maximum byte length or 0.
+ * \retval maximum byte length or 0.
  *
  * Since: 3.0.6
- **/
+ */
 int
 gtk_item_entry_get_max_length_bytes(GtkItemEntry *item_entry)
 {
@@ -2500,13 +2502,14 @@ gtk_item_entry_get_max_length_bytes(GtkItemEntry *item_entry)
     return item_entry->max_length_bytes;
 }
 
-/**
- * gtk_item_entry_set_max_length_bytes:
- * @item_entry:  a #GtkItemEntry
- * @max_length_bytes:  maximum byte length or 0
+/*!
+ * \brief gtk_item_entry_set_max_length_bytes
+ * \par Function Description
+ *  Sets the maximum byte length for the contents of the
+ *  #GtkItemEntry. Existing content will not be truncted.
  *
- * Sets the maximum byte length for the contents of the
- * #GtkItemEntry. Existing content will not be truncted.
+ * \param item_entry:  a #GtkItemEntry
+ * \param max_length_bytes:  maximum byte length or 0
  *
  * Since: 3.0.6
  */
