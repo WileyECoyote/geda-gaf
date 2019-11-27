@@ -4007,33 +4007,34 @@ static void _gtk_sheet_autoresize_column_internal(GtkSheet *sheet, int col)
             col, colptr->width, new_width);
 #endif
 
-    if (new_width != colptr->width)
-    {
+    if (new_width != colptr->width) {
+
 #if GTK_SHEET_DEBUG_SIZE > 0
       fprintf(stderr,"_gtk_sheet_autoresize_column_internal[%d]: set width %d",
               col, new_width);
 #endif
-	gtk_sheet_set_column_width(sheet, col, new_width);
-	GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
+
+      gtk_sheet_set_column_width(sheet, col, new_width);
+      GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
     }
 }
 
 static void _gtk_sheet_autoresize_row_internal(GtkSheet *sheet, int row)
 {
-    int new_height;
-    GtkSheetRow *rowptr;
+  int new_height;
+  GtkSheetRow *rowptr;
 
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (row < 0 || row > sheet->maxallocrow || row > sheet->maxrow)
-	return;
+  if (row < 0 || row > sheet->maxallocrow || row > sheet->maxrow)
+    return;
 
-    rowptr = ROWPTR(sheet, row);
+  rowptr = ROWPTR(sheet, row);
 
-    if (!GTK_SHEET_ROW_IS_VISIBLE(rowptr))
-	return;
+  if (!GTK_SHEET_ROW_IS_VISIBLE(rowptr))
+    return;
 
-    new_height = ROW_EXTENT_TO_HEIGHT(rowptr->max_extent_height);
+  new_height = ROW_EXTENT_TO_HEIGHT(rowptr->max_extent_height);
 
 #if 0 && GTK_SHEET_DEBUG_SIZE > 0
   fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: win_h %d ext_h %d row_max_h %d",
@@ -4043,66 +4044,67 @@ static void _gtk_sheet_autoresize_row_internal(GtkSheet *sheet, int row)
           row, rowptr->height, new_height);
 #endif
 
-    if (new_height != rowptr->height) {
+  if (new_height != rowptr->height) {
 
 #if GTK_SHEET_DEBUG_SIZE > 0
     fprintf(stderr,"_gtk_sheet_autoresize_row_internal[%d]: set height %d",
             row, new_height);
 #endif
-	gtk_sheet_set_row_height(sheet, row, new_height);
-	GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
-    }
+    gtk_sheet_set_row_height(sheet, row, new_height);
+    GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IN_REDRAW_PENDING);
+  }
 }
 
 static void gtk_sheet_autoresize_all(GtkSheet *sheet)
 {
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+  if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-	fprintf(stderr,"gtk_sheet_autoresize_all: not realized");
+    fprintf(stderr,"gtk_sheet_autoresize_all: not realized");
 #endif
-	return;
+
+    return;
+  }
+
+#if GTK_SHEET_DEBUG_SIZE > 0
+  fprintf(stderr,"gtk_sheet_autoresize_all: running");
+#endif
+
+  if (gtk_sheet_autoresize_columns(sheet)) {
+
+    int col;
+
+#if GTK_SHEET_DEBUG_SIZE > 0
+    fprintf(stderr,"gtk_sheet_autoresize_all: columns");
+#endif
+
+    for (col = 0; col <= sheet->maxalloccol; col++) {
+
+      if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col))) {
+
+        _gtk_sheet_autoresize_column_internal(sheet, col);
+      }
     }
+  }
+
+  if (gtk_sheet_autoresize_rows(sheet)) {
+
+    int row;
 
 #if GTK_SHEET_DEBUG_SIZE > 0
-    fprintf(stderr,"gtk_sheet_autoresize_all: running");
+    fprintf(stderr,"gtk_sheet_autoresize_all: rows");
 #endif
 
-    if (gtk_sheet_autoresize_columns(sheet)) {
+    for (row = 0; row <= sheet->maxallocrow; row++) {
 
-	int col;
-
-#if GTK_SHEET_DEBUG_SIZE > 0
-	fprintf(stderr,"gtk_sheet_autoresize_all: columns");
-#endif
-
-	for (col = 0; col <= sheet->maxalloccol; col++) {
-
-	    if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, col))) {
-
-		_gtk_sheet_autoresize_column_internal(sheet, col);
-	    }
-	}
+      if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, row)))
+      {
+        _gtk_sheet_autoresize_row_internal(sheet, row);
+      }
     }
-
-    if (gtk_sheet_autoresize_rows(sheet))
-    {
-	int row;
-
-#if GTK_SHEET_DEBUG_SIZE > 0
-	fprintf(stderr,"gtk_sheet_autoresize_all: rows");
-#endif
-
-	for (row = 0; row <= sheet->maxallocrow; row++)
-	{
-	    if (GTK_SHEET_ROW_IS_VISIBLE(ROWPTR(sheet, row)))
-	    {
-		_gtk_sheet_autoresize_row_internal(sheet, row);
-	    }
-	}
-    }
+  }
 }
 
 /**
