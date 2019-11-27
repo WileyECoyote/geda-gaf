@@ -2328,27 +2328,32 @@ static void _item_entry_primary_clear_cb(GtkClipboard *clipboard, void *data)
 
 static void gtk_item_entry_update_primary_selection(GtkEntry *entry)
 {
-    static const GtkTargetEntry targets[] = {
-	{ "UTF8_STRING", 0, 0 },
-	{ "STRING", 0, 0 },
-	{ "TEXT",   0, 0 },
-	{ "COMPOUND_TEXT", 0, 0 }
-    };
+  static const GtkTargetEntry targets[] = {
+      { "UTF8_STRING", 0, 0 },
+      { "STRING", 0, 0 },
+      { "TEXT",   0, 0 },
+      { "COMPOUND_TEXT", 0, 0 }
+  };
 
-    GtkClipboard *clipboard = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
-    int start, end;
+  GtkClipboard *clipboard;
+  int start, end;
 
-    if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start, &end))
+  clipboard = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
+
+  if (gtk_editable_get_selection_bounds(GTK_EDITABLE(entry), &start, &end))
+  {
+    if (!gtk_clipboard_set_with_owner(clipboard, targets, G_N_ELEMENTS(targets),
+      _item_entry_primary_get_cb, _item_entry_primary_clear_cb, (GObject*)entry))
     {
-	if (!gtk_clipboard_set_with_owner(clipboard, targets, G_N_ELEMENTS(targets),
-		_item_entry_primary_get_cb, _item_entry_primary_clear_cb, (GObject*)entry))
-	    _item_entry_primary_clear_cb(clipboard, entry);
+      _item_entry_primary_clear_cb(clipboard, entry);
     }
-    else
-    {
-	if (gtk_clipboard_get_owner(clipboard) == (GObject*)entry)
-	    gtk_clipboard_clear(clipboard);
+  }
+  else
+  {
+    if (gtk_clipboard_get_owner(clipboard) == (GObject*)entry) {
+      gtk_clipboard_clear(clipboard);
     }
+  }
 }
 
 /* Public API
@@ -2356,7 +2361,7 @@ static void gtk_item_entry_update_primary_selection(GtkEntry *entry)
 
 GtkWidget *gtk_item_entry_new(void)
 {
-    return gtk_widget_new(G_TYPE_ITEM_ENTRY, NULL);
+  return gtk_widget_new(G_TYPE_ITEM_ENTRY, NULL);
 }
 
 /**
@@ -2374,12 +2379,13 @@ GtkWidget *gtk_item_entry_new(void)
  */
 GtkWidget *gtk_item_entry_new_with_max_length(int max)
 {
-    GtkItemEntry *entry;
+  GtkItemEntry *entry;
 
-    entry = g_object_new(G_TYPE_ITEM_ENTRY, NULL);
-    gtk_entry_set_max_length(GTK_ENTRY(entry), max);
+  entry = g_object_new(G_TYPE_ITEM_ENTRY, NULL);
 
-    return GTK_WIDGET(entry);
+  gtk_entry_set_max_length(GTK_ENTRY(entry), max);
+
+  return GTK_WIDGET(entry);
 }
 
 /**
@@ -2394,38 +2400,38 @@ void gtk_item_entry_set_text(GtkItemEntry    *item_entry,
                              const char      *text,
                              GtkJustification justification)
 {
-    g_return_if_fail(GTK_IS_ITEM_ENTRY(item_entry));
-    g_return_if_fail(text != NULL);
+  g_return_if_fail(GTK_IS_ITEM_ENTRY(item_entry));
+  g_return_if_fail(text != NULL);
 
-    GtkEntry *entry = (GtkEntry*)item_entry;
+  GtkEntry *entry = (GtkEntry*)item_entry;
 
-    item_entry->justification = justification;
+  item_entry->justification = justification;
 
-    /* Actually setting the text will affect the cursor and selection;
-     * if the contents don't actually change, this will look odd to the user.
-     */
-    if (entry->text && strcmp(entry->text, text) == 0) {
-      return;
-    }
+  /* Actually setting the text will affect the cursor and selection;
+   * if the contents don't actually change, this will look odd to the user.
+   */
+  if (entry->text && strcmp(entry->text, text) == 0) {
+    return;
+  }
 
-    if (entry->recompute_idle) {
-      g_source_remove(entry->recompute_idle);
-      entry->recompute_idle = 0;
-    }
+  if (entry->recompute_idle) {
+    g_source_remove(entry->recompute_idle);
+    entry->recompute_idle = 0;
+  }
 
-    if (entry->blink_timeout) {
-      g_source_remove(entry->blink_timeout);
-      entry->blink_timeout = 0;
-    }
+  if (entry->blink_timeout) {
+    g_source_remove(entry->blink_timeout);
+    entry->blink_timeout = 0;
+  }
 
-    gtk_editable_delete_text((GtkEditable*)entry, 0, -1);
+  gtk_editable_delete_text((GtkEditable*)entry, 0, -1);
 
-    item_entry->item_n_bytes = 0;    /* rraptor edited */
+  item_entry->item_n_bytes = 0;    /* rraptor edited */
 
-    if (text[0]) {
-      int tmp_pos = 0;
-      gtk_editable_insert_text((GtkEditable*)entry, text, -1, &tmp_pos);
-    }
+  if (text[0]) {
+    int tmp_pos = 0;
+    gtk_editable_insert_text((GtkEditable*)entry, text, -1, &tmp_pos);
+  }
 }
 
 /**
