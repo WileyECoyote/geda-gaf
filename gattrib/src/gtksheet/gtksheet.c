@@ -3946,33 +3946,33 @@ static void _gtk_sheet_update_extent(GtkSheet *sheet,
     cell->extent.width = new_extent_width;
     cell->extent.height = new_extent_height;
 
-    if (!GTK_SHEET_COLUMN_IS_VISIBLE(colptr))
-	return;
-    if (!GTK_SHEET_ROW_IS_VISIBLE(rowptr))
-	return;
-
-    if (new_extent_width > old_extent.width)  /* wider */
-    {
-	if (new_extent_width > colptr->max_extent_width)
-	{
-	    colptr->max_extent_width = new_extent_width;
-	}
-    }
-    else if (new_extent_width < old_extent.width)  /* narrower */
-    {
-	_gtk_sheet_recalc_extent_width(sheet, col);
+    if (!GTK_SHEET_COLUMN_IS_VISIBLE(colptr)) {
+      return;
     }
 
-    if (new_extent_height > old_extent.height)  /* higher */
-    {
-	if (new_extent_height > rowptr->max_extent_height)
-	{
-	    rowptr->max_extent_height = new_extent_height;
-	}
+    if (!GTK_SHEET_ROW_IS_VISIBLE(rowptr)) {
+      return;
     }
-    else if (new_extent_height < old_extent.height)  /* lower */
-    {
-	_gtk_sheet_recalc_extent_height(sheet, row);
+
+    if (new_extent_width > old_extent.width) { /* wider */
+
+      if (new_extent_width > colptr->max_extent_width) {
+
+        colptr->max_extent_width = new_extent_width;
+      }
+    }
+    else if (new_extent_width < old_extent.width) { /* narrower */
+      _gtk_sheet_recalc_extent_width(sheet, col);
+    }
+
+    if (new_extent_height > old_extent.height) { /* higher */
+
+      if (new_extent_height > rowptr->max_extent_height) {
+        rowptr->max_extent_height = new_extent_height;
+      }
+    }
+    else if (new_extent_height < old_extent.height)  { /* lower */
+      _gtk_sheet_recalc_extent_height(sheet, row);
     }
 
 #if GTK_SHEET_DEBUG_SIZE > 0
