@@ -2292,7 +2292,11 @@ gtk_item_entry_get_public_chars(GtkEntry *entry, int start, int end)
     int n_chars = end - start;
 
     str = g_malloc(n_chars + 1);
-    for (i = 0; i < n_chars; i++) str[i] = '*';
+
+    for (i = 0; i < n_chars; i++) {
+      str[i] = '*';
+    }
+
     str[i] = '\0';
 
     return str;
