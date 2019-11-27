@@ -3794,12 +3794,13 @@ int gtk_sheet_autoresize_rows(GtkSheet *sheet)
     return (sheet->autoresize_rows);
 }
 
-/**
- * _gtk_sheet_recalc_extent_width:
+/*!
+ * \brief _gtk_sheet_recalc_extent_width
+ * \par Function Description
+ *  Recalc maximum column extent width
+ *
  * \param sheet  the #GtkSheet
  * \param col    column to be recalculated
- *
- * recalc maximum column extent width
  */
 static void _gtk_sheet_recalc_extent_width(GtkSheet *sheet, int col)
 {
@@ -3838,12 +3839,13 @@ static void _gtk_sheet_recalc_extent_width(GtkSheet *sheet, int col)
     COLPTR(sheet, col)->max_extent_width = new_width;
 }
 
-/**
- * _gtk_sheet_recalc_extent_height:
+/*!
+ * \brief _gtk_sheet_recalc_extent_height
+ * \par Function Description
+ *  Recalc maximum row extent height.
+ *
  * \param sheet  the #GtkSheet
  * \param row    row to be recalculated
- *
- * recalc maximum row extent height
  */
 static void _gtk_sheet_recalc_extent_height(GtkSheet *sheet, int row)
 {
@@ -3884,14 +3886,15 @@ static void _gtk_sheet_recalc_extent_height(GtkSheet *sheet, int row)
     ROWPTR(sheet, row)->max_extent_height = new_height;
 }
 
-/**
- * _gtk_sheet_update_extent:
+/*!
+ * \brief _gtk_sheet_update_extent
+ * \par Function Description
+ *  Update cell extent and propagate to max row/column extent.
+ *
  * \param sheet  the #GtkSheet
  * \param cell   the #GtkSheetCell
  * \param row    the row
  * \param col    the column
- *
- * update cell extent and propagate to max row/column extent
  */
 static void _gtk_sheet_update_extent(GtkSheet *sheet,
                                      GtkSheetCell *cell, int row, int col)
