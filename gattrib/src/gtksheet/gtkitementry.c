@@ -2303,11 +2303,10 @@ gtk_item_entry_get_public_chars(GtkEntry *entry, int start, int end)
   }
 }
 
-static void
-_item_entry_primary_get_cb(GtkClipboard     *clipboard,
-                           GtkSelectionData *selection_data,
-                           unsigned int      info,
-                           void             *data)
+static void _item_entry_primary_get_cb(GtkClipboard     *clipboard,
+                                       GtkSelectionData *selection_data,
+                                       unsigned int      info,
+                                       void             *data)
 {
     GtkEntry *entry = GTK_ENTRY(data);
     int start, end;
@@ -2320,16 +2319,14 @@ _item_entry_primary_get_cb(GtkClipboard     *clipboard,
     }
 }
 
-static void
-_item_entry_primary_clear_cb(GtkClipboard *clipboard, void *data)
+static void _item_entry_primary_clear_cb(GtkClipboard *clipboard, void *data)
 {
     GtkEntry *entry = GTK_ENTRY(data);
 
     gtk_editable_select_region((GtkEditable*)entry, entry->current_pos, entry->current_pos);
 }
 
-static void
-gtk_item_entry_update_primary_selection(GtkEntry *entry)
+static void gtk_item_entry_update_primary_selection(GtkEntry *entry)
 {
     static const GtkTargetEntry targets[] = {
 	{ "UTF8_STRING", 0, 0 },
@@ -2357,8 +2354,7 @@ gtk_item_entry_update_primary_selection(GtkEntry *entry)
 /* Public API
  */
 
-GtkWidget *
-gtk_item_entry_new(void)
+GtkWidget *gtk_item_entry_new(void)
 {
     return gtk_widget_new(G_TYPE_ITEM_ENTRY, NULL);
 }
@@ -2376,8 +2372,7 @@ gtk_item_entry_new(void)
  *
  * Returns: the newly-created #GtkItemEntry widget.
  */
-GtkWidget *
-gtk_item_entry_new_with_max_length(int max)
+GtkWidget *gtk_item_entry_new_with_max_length(int max)
 {
     GtkItemEntry *entry;
 
@@ -2395,10 +2390,9 @@ gtk_item_entry_new_with_max_length(int max)
  *
  * Sets the text in the widget to the given value, replacing the current contents.
  */
-void
-gtk_item_entry_set_text(GtkItemEntry    *item_entry,
-                        const char      *text,
-                        GtkJustification justification)
+void gtk_item_entry_set_text(GtkItemEntry    *item_entry,
+                             const char      *text,
+                             GtkJustification justification)
 {
     g_return_if_fail(GTK_IS_ITEM_ENTRY(item_entry));
     g_return_if_fail(text != NULL);
