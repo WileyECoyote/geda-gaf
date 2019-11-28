@@ -3,6 +3,8 @@
     * src/s_toplevel.c: Revise s_toplevel_add_new_attrib to set sheet_head
       CHANGED member.
 
+    * src/x_dialog.c: Revise x_dialog_new_attrib to set focus to the entry.
+
 2019-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

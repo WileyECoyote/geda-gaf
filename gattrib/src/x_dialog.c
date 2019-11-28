@@ -135,6 +135,7 @@ char *x_dialog_new_attrib()
   geda_container_add(container, attrib_entry);
   gtk_widget_set_size_request (widget, 300, 140);
 
+  x_dialog_new_attrib(attrib_entry);
   gtk_widget_show_all(widget);
 
   switch (gtk_dialog_run(dialog)) {
