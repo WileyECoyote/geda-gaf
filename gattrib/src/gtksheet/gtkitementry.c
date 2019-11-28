@@ -2681,8 +2681,9 @@ gtk_item_entry_pend_cursor_blink(GtkEntry *entry)
 {
   if (_item_entry_cursor_blinks(entry)) {
 
-    if (entry->blink_timeout != 0)
+    if (entry->blink_timeout != 0) {
       g_source_remove(entry->blink_timeout);
+    }
 
     entry->blink_timeout = g_timeout_add_full( 0,
       _item_entry_get_cursor_time(entry) * CURSOR_PEND_MULTIPLIER,
