@@ -2508,8 +2508,8 @@ gtk_item_entry_get_max_length_bytes(GtkItemEntry *item_entry)
  *  Sets the maximum byte length for the contents of the
  *  #GtkItemEntry. Existing content will not be truncted.
  *
- * \param item_entry:  a #GtkItemEntry
- * \param max_length_bytes:  maximum byte length or 0
+ * \param item_entry        a #GtkItemEntry
+ * \param max_length_bytes  maximum byte length or 0
  *
  * Since: 3.0.6
  */
@@ -2528,12 +2528,13 @@ void gtk_item_entry_set_max_length_bytes(GtkItemEntry *item_entry,
     item_entry->max_length_bytes = max_length_bytes;
 }
 
-/**
- * gtk_item_entry_set_justification:
- * @entry: a #GtkItemEntry
- * @just: a #GtkJustification : GTK_JUSTIFY_LEFT,GTK_JUSTIFY_RIGHT,GTK_JUSTIFY_CENTER,GTK_JUSTIFY_FILL
+/*!
+ * \brief gtk_item_entry_set_justification
+ * \par Function Description
+ *  Sets justification of the widget to the given value, replacing the current one.
  *
- * Sets justification of the widget to the given value, replacing the current one.
+ * \param entry  a #GtkItemEntry
+ * \param just   a #GtkJustification : GTK_JUSTIFY_LEFT,GTK_JUSTIFY_RIGHT,GTK_JUSTIFY_CENTER,GTK_JUSTIFY_FILL
  */
 void
 gtk_item_entry_set_justification(GtkItemEntry *entry, GtkJustification just)
@@ -2692,12 +2693,13 @@ gtk_item_entry_pend_cursor_blink(GtkEntry *entry)
   }
 }
 
-/**
- * gtk_item_set_cursor_visible:
- * @entry: a #GtkItemEntry
- * @visible: TRUE for visible or FALSE for invisible
+/*!
+ * \brief gtk_item_set_cursor_visible
+ * \par Function Description
+ *  Sets the cursor visibility in the widget.
  *
- * Sets the cursor visibility in the widget.
+ * \param entry    a #GtkItemEntry
+ * \param visible  TRUE for visible or FALSE for invisible
  */
 void
 gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, _Bool visible)
@@ -2707,13 +2709,14 @@ gtk_item_entry_set_cursor_visible(GtkItemEntry *entry, _Bool visible)
     ((GtkEntry*)entry)->cursor_visible = visible;
 }
 
-/**
- * gtk_item_get_cursor_visible:
- * @entry: a #GtkItemEntry
- *
+/*!
+ * \brief gtk_item_get_cursor_visible
+ * \par Function Description
  * Gets the cursor visibility in the widget.
  *
- * Returns: TRUEfor visible or FALSE for invisible
+ * \param entry a #GtkItemEntry
+ *
+ * \returns TRUE for visible or FALSE for invisible
  */
 _Bool
 gtk_item_entry_get_cursor_visible(GtkItemEntry *entry)
