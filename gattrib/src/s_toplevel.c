@@ -247,6 +247,8 @@ void s_toplevel_add_new_attrib(int column_location) {
     }
 #endif
 
+    sheet_head->CHANGED = TRUE;
+
     GEDA_FREE(new_attrib_name);
   }
   return;
