@@ -3,6 +3,7 @@
     * simulation/: Reorder attributes, add description:
 
             * simulation/switcap/switcap-timing-1.sym
+            * simulation/switcap/switcap-vcvs-1.sym
 
 2019-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
