@@ -13,6 +13,7 @@
             * simulation/verilog/block-1.sym
             * simulation/verilog/buf-1.sym
             * simulation/verilog/bufif0-1.sym
+            * simulation/verilog/bufif1-1.sym
 
 2019-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
