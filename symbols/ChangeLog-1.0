@@ -11,6 +11,7 @@
     * simulation/: Clean symbol, update footprint, add description:
 
             * simulation/verilog/block-1.sym
+            * simulation/verilog/buf-1.sym
 
 2019-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
