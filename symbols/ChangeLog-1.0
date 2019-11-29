@@ -1,3 +1,9 @@
+2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/: Reorder attributes, add description:
+
+            * simulation/switcap/switcap-timing-1.sym
+
 2019-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/rf/balun_quadrifilar.sym: Update dist-license, remove comment,
