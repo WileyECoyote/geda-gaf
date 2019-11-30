@@ -292,11 +292,62 @@ int check_math_arc_includes_point ()
   return result;
 }
 
+/* geda_math_arc_shortest_distance */
 int check_math_arc_shortest_distance (void)
 {
   int result = 0;
+  int i;
 
-  /* geda_math_arc_shortest_distance */
+  for (i = 0; i < 10; i++) {
+
+    GedaObject *object;
+
+    int j;
+    int x = geda_random_number (0, 120000);
+    int y = geda_random_number (0, 80000);
+
+    object = geda_arc_object_new (3, x, y, 500, 0, 90);
+
+    for (j = 0; j < 10; j++) {
+
+      int nx;
+      int ny;
+
+      int px = geda_random_number (0, 120000);
+      int py = geda_random_number (0, 80000);
+
+      double shortest;
+
+      shortest = geda_math_arc_shortest_distance (object->arc, px, py, 0);
+
+      if (geda_arc_object_get_nearest_point (object, px, py, &nx, &ny)) {
+
+        int dx;
+        int dy;
+
+        dx = px - nx;
+        dy = py - ny;
+
+        if (dy) {
+
+          double nearest = hypot (dx, dy);
+
+          int id1 = rint(shortest);
+          int id2 = rint(nearest);
+
+          if ((id1 - id2) > 1) {
+            fprintf(stderr, "FAILED: (%d,%d) %f arc_shortest_distance\n", px, py, shortest);
+            result++;
+          }
+        }
+        else {
+          fprintf(stderr, "skipped shortest_distance\n");
+        }
+      }
+    }
+
+    g_object_unref (object);
+  }
 
   return result;
 }

@@ -1,3 +1,8 @@
+2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_math.c: Add random checks for geda_math_arc_shortest_distance.
+      This should complete the tests for this module.
+
 2019-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_circle_object.c: Add Doxygen group geda-circle-object-proc.
