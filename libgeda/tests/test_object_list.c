@@ -857,6 +857,10 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object5->complex  === */
+
+  /* geda_object_list_scale ignores complexes, so it's a no tests. */
+
   /* === object6->line  === */
 
   sx1 = geda_line_object_get_x1(object3);
