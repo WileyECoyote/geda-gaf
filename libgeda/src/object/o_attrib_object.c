@@ -1172,6 +1172,8 @@ void geda_attrib_object_set_value (GedaObject *attrib,
  * \param [out] value_ptr  The return location for the value, or NULL.
  *
  * \return TRUE on success, FALSE otherwise.
+ *
+ * \todo Move this to string utilities because does not accept an object!
  */
 bool geda_attrib_object_string_get_name_value (const char  *string,
                                                      char **name_ptr,
