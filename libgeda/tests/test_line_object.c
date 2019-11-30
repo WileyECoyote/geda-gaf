@@ -1137,28 +1137,44 @@ check_line_object_mirror(GedaObject *object, int x1, int y1, int x2, int y2)
 
 int check_methods (void)
 {
-  int x1, y1, x2, y2;
+  int index;
   int result = 0;
 
-  x1 = 500;
-  y1 = 500;
-  x2 = 500;
-  y2 = 1000;
+  for (index = 0; index < 10; index++) {
 
-  GedaObject *object = geda_line_object_new(3, x1, y1, x2, y2);
+    int x1, y1, x2, y2;
 
-  int fail = 0;
+    x1 = geda_random_number (0, 119500);
+    y1 = geda_random_number (0, 79000);
 
-  fail += check_line_object_mirror(object, x1, y1, x2, y2);
+    x2 = x1;
+    y2 = y1 + 500;
 
-  /* === Function 20: geda_line_object_modify  === */
-  /* === Function 29: geda_line_object_rotate  === */
-  /* === Function 39: geda_line_object_scale  === */
-  /* === Function 42: geda_line_object_translate  === */
+    GedaObject *object = geda_line_object_new(3, x1, y1, x2, y2);
 
-  result = result + fail;
+    int fail = 0;
 
-  g_object_unref (object);
+    fail += check_line_object_mirror(object, x1, y1, x2, y2);
+
+    /* === Function 20: geda_line_object_modify  === */
+
+    /* === Function 29: geda_line_object_rotate  === */
+    /* === Function 39: geda_line_object_scale  === */
+    /* === Function 42: geda_line_object_translate  === */
+
+    if (fail) {
+
+      fprintf(stderr, "Test Function: %s, in loop index %d\n", __func__, index);
+      fprintf(stderr, "Conditions: ");
+      fprintf(stderr, "(x1, y1)=(%d,%d) ", x1, y1);
+      fprintf(stderr, "(x2, y2)=(%d,%d)\n", x2, y2);
+
+      result = result + fail;
+      break;
+    }
+
+    g_object_unref (object);
+  }
 
   return result;
 }
