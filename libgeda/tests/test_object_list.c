@@ -880,6 +880,25 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object7->net  === */
+
+  sx1 = geda_line_object_get_x1(object7);
+  sy1 = geda_line_object_get_y1(object7);
+  sx2 = geda_line_object_get_x2(object7);
+  sy2 = geda_line_object_get_y2(object7);
+
+  if (sx1 - 1000 || sx2 - 2000) {
+    fprintf(stderr, "FAILED: (O120607X) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 - 1000 || sy2 - 2000) {
+    fprintf(stderr, "FAILED: (O120607Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
   return result;
 }
 

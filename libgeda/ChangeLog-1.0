@@ -9,7 +9,8 @@
     * tests/test_math.c: Add skelton module to check m_math.c.
 
     * tests/test_object_list.c: Fix incorrect object reference in checks for
-      check_object_list_scale: object3 -> object6.
+      check_object_list_scale: object3 -> object6, and add check with for
+      scaling net object.
 
 2019-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
