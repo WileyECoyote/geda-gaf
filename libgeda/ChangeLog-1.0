@@ -6,6 +6,8 @@
     * tests/test_line_object.c: Add for loop to check_methods and random
       starting points.
 
+    * tests/test_math.c: Add skelton module to check m_math.c.
+
 2019-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_circle_object.c: Add Doxygen group geda-circle-object-proc.
