@@ -863,10 +863,10 @@ check_object_list_scale (GedaToplevel *toplevel)
 
   /* === object6->line  === */
 
-  sx1 = geda_line_object_get_x1(object3);
-  sy1 = geda_line_object_get_y1(object3);
-  sx2 = geda_line_object_get_x2(object3);
-  sy2 = geda_line_object_get_y2(object3);
+  sx1 = geda_line_object_get_x1(object6);
+  sy1 = geda_line_object_get_y1(object6);
+  sx2 = geda_line_object_get_x2(object6);
+  sy2 = geda_line_object_get_y2(object6);
 
   if (sx1 - 1000 || sx2 - 2000) {
     fprintf(stderr, "FAILED: (O120606X) geda_object_list_scale: ");
