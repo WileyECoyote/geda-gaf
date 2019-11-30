@@ -1284,7 +1284,7 @@ int query_nearest_shortest_distance (GedaObject *object)
       int id1 = rint(shortest);
       int id2 = rint(nearest);
 
-      if ( (id1 - id2) > 1) {
+      if ((id1 - id2) > 1) {
         fprintf(stderr, "FAILED: (O024801) (%d,%d) %f incorrect\n", px, py, shortest);
         result++;
       }
