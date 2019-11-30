@@ -22,12 +22,12 @@ test_file
 test_keyfile
 test_line
 test_line_object
-test_math
-test_object
-test_object_list
 test_list
+test_math
 test_net
 test_net_object
+test_object
+test_object_list
 test_path
 test_picture
 test_picture_object
