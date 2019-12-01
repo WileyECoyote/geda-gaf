@@ -11,6 +11,10 @@
             * simulation/verilog/bufif0-1.sym
             * simulation/verilog/bufif1-1.sym
 
+    * simulation/: Clean symbol, update footprint, add description:
+
+            * simulation/verilog/high-1.sym
+
 2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/: Reorder attributes, add description:
