@@ -812,32 +812,35 @@ msgstr ""
 msgid "invisible"
 msgstr ""
 
+# visible; dr̥śyamāṇ
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
-msgstr ""
+msgstr "ദൃശ്യമാണ്"
 
+# add; cērkkuka
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "ചേർക്കുക"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
 msgstr "ഒരു പുതിയ ആട്രിബ്യൂട്ട് ചേർക്കുക"
 
+# delete; illātākkuka
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "ഇല്ലാതാക്കുക"
 
-# Detach the selected attribute
+# Delete selected attribute; tiraññeṭutta āṭribyūṭṭ illātākkuka
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "തിരഞ്ഞെടുത്ത ആട്രിബ്യൂട്ട് വേർതിരിക്കുക"
+msgstr "തിരഞ്ഞെടുത്ത ആട്രിബ്യൂട്ട് ഇല്ലാതാക്കുക"
 
+# promote; prēātsāhippikkuka
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
-msgstr ""
+msgstr "പ്രോത്സാഹിപ്പിക്കുക"
 
 #: gattrib/src/x_toolbars.c:51
 msgid "demote"
