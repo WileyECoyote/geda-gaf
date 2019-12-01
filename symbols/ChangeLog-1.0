@@ -14,6 +14,7 @@
     * simulation/: Clean symbol, update footprint, add description:
 
             * simulation/verilog/high-1.sym
+            * simulation/verilog/low-1.sym
 
 2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
 

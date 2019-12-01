@@ -1,23 +1,25 @@
 v 20121031 2
 P 200 300 200 100 1 0 0
 {
-T 400 200 5 10 0 1 0 0 1
-pinnumber=LOW
-T 400 200 5 10 0 0 0 0 1
+T 400 50 5 10 0 1 0 0 1
+pinnumber=1
+T 400 50 5 10 0 1 0 0 1
 pinseq=1
-T 400 200 5 10 0 1 0 0 1
-pintype=pwr
-T 400 200 5 10 0 1 0 0 1
+T 300 400 5 10 0 1 0 0 1
 pinlabel=LOW
+T 550 50 5 10 0 1 0 0 1
+pintype=pwr
 }
 L 50 100 350 100 3 0 0 0 -1 -1
-T 400 0 5 10 0 1 0 0 1
-device=LOW
 L 100 50 300 50 3 0 0 0 -1 -1
 L 150 0 250 0 3 0 0 0 -1 -1
+T 300 400 5 10 0 1 0 0 1
+device=LOW
+T 300 925 5 10 0 1 0 0 1
+description=Verilog Logic Low
 T 300 200 5 10 1 1 0 0 1
 refdes=G?
-T 600 100 9 10 0 0 0 0 1
+T 300 750 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 300 600 9 10 0 0 0 0 1
 footprint=none
