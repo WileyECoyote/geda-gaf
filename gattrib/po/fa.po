@@ -837,15 +837,15 @@ msgstr "ضمیمه کردن"
 msgid "Add a new attribute"
 msgstr "یک ویژگی جدید اضافه کنید"
 
+# delete
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "حذف"
 
-# Detach the selected attribute => Separate selected feature
+# Delete selected attribute => Separate selected feature
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "ویژگی انتخاب شده را جدا کنید"
+msgstr "ویژگی انتخاب شده را حذف کنید"
 
 # promote
 #: gattrib/src/x_toolbars.c:50
