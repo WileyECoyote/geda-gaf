@@ -5,6 +5,10 @@
     * simulation/verilog/and2-1.sym Update pinlabel and resequence
       attributes.
 
+    * simulation/: Update pintype attributes:
+
+            * simulation/verilog/buf-1.sym
+
 2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/: Reorder attributes, add description:
