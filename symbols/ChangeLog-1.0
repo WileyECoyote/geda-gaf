@@ -1,3 +1,7 @@
+2019-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/spice/kmutual-1.sym: Add footprint and description.
+
 2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/: Reorder attributes, add description:
