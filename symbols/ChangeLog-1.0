@@ -16,6 +16,7 @@
             * simulation/verilog/high-1.sym
             * simulation/verilog/low-1.sym
             * simulation/verilog/not-1.sym
+            * simulation/verilog/notif0-1.sym
 
 2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
 

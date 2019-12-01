@@ -6,47 +6,49 @@ L 300 500 300 200 3 0 0 0 -1 -1
 V 850 500 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 1100 500 900 500 1 0 0
 {
-T 915 600 5 8 0 1 0 0 1
-pinnumber=OUTW
-T 915 600 5 8 0 0 0 0 1
+T 915 350 5 8 0 1 0 0 1
+pinnumber=1
+T 915 350 5 8 0 1 0 0 1
 pinseq=1
-T 915 600 5 8 0 1 0 0 1
-pintype=io
-T 915 600 5 8 0 1 0 0 1
+T 915 550 5 8 0 1 0 0 1
 pinlabel=OUTW
+T 1015 350 5 8 0 1 0 0 1
+pintype=io
 }
 P 300 500 0 500 1 0 1
 {
-T 0 600 5 8 0 1 0 0 1
-pinnumber=INW
-T 0 600 5 8 0 0 0 0 1
+T 50 350 5 8 0 1 0 0 1
+pinnumber=2
+T 50 350 5 8 0 1 0 0 1
 pinseq=2
-T 0 600 5 8 0 1 0 0 1
-pintype=io
-T 0 600 5 8 0 1 0 0 1
+T 0 550 5 8 0 1 0 0 1
 pinlabel=INW
+T 350 450 5 8 0 1 0 0 1
+pintype=io
 }
 V 600 700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 0 900 300 900 1 0 0
 {
-T 50 950 5 10 0 1 0 0 1
-pinnumber=CONTROLW
-T 50 950 5 10 0 0 0 0 1
+T 50 750 5 8 0 1 0 0 1
+pinnumber=3
+T 50 750 5 8 0 1 0 0 1
 pinseq=3
 T 50 950 5 10 0 1 0 0 1
-pintype=io
-T 50 950 5 10 0 1 0 0 1
 pinlabel=CONTROLW
+T 150 750 5 8 0 1 0 0 1
+pintype=io
 }
 L 600 900 600 750 3 0 0 0 -1 -1
-T 700 750 2 10 0 0 0 0 1
+T 50 1150 5 10 0 0 0 0 1
 comment=VERILOG_PORTS=POSITIONAL
-T 650 250 2 10 0 1 0 0 1
+T 50 50 5 10 0 1 0 0 1
 device=notif0
-T 500 300 5 10 1 1 0 2 1
+T 50 1325 5 10 0 1 0 0 1
+description=Verilog notif0
+T 900 750 8 10 1 1 180 8 1
 refdes=U?
-T 600 100 9 10 0 0 0 0 1
+T 50 1500 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+T 600 50 9 10 0 0 0 0 1
+footprint=none
 L 300 900 600 900 3 0 0 0 -1 -1
