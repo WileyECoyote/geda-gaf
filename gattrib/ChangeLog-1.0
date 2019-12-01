@@ -2,6 +2,8 @@
 
     * po/en_GB.po: Update Great Britain.
 
+    * po/es.po: Update Spanish translations.
+
 2019-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_toplevel.c: Revise s_toplevel_add_new_attrib to set sheet_head

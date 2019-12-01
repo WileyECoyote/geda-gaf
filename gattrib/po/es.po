@@ -805,10 +805,12 @@ msgstr "Localizar el Designador de Referencia"
 msgid "invisible"
 msgstr "invisible"
 
+# visible
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
 msgstr "visible"
 
+# add
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
 msgstr "añadir"
@@ -818,15 +820,15 @@ msgstr "añadir"
 msgid "Add a new attribute"
 msgstr "Agregar un atributo nuevo"
 
+# delete
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "borrar"
 
 # Detach the selected attribute
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Desvincular el atributo seleccionado"
+msgstr "Eliminar atributo seleccionado"
 
 # promote
 #: gattrib/src/x_toolbars.c:50
