@@ -12,7 +12,7 @@ pinseq=1
 T 865 300 5 8 0 1 0 0 1
 pinlabel=OUTW
 T 815 600 5 8 0 1 0 0 1
-pintype=io
+pintype=out
 }
 P 300 500 0 500 1 0 1
 {
@@ -23,7 +23,7 @@ pinseq=2
 T 0 600 5 8 0 1 0 0 1
 pinlabel=INW
 T 150 350 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 600 700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P -300 900 300 900 1 0 0
@@ -35,7 +35,7 @@ pinseq=3
 T 0 950 5 10 0 1 0 0 1
 pinlabel=CONTROLW
 T -250 950 5 10 0 1 0 0 1
-pintype=io
+pintype=in
 }
 L 600 900 600 750 3 0 0 0 -1 -1
 L 300 900 600 900 3 0 0 0 -1 -1
