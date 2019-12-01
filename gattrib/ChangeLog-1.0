@@ -14,6 +14,8 @@
 
     * po/it.po: Update Italian translations.
 
+    * po/ja.po: Update Japanese translations
+
 2019-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_toplevel.c: Revise s_toplevel_add_new_attrib to set sheet_head

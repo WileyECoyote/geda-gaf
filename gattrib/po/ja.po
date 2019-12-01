@@ -823,31 +823,35 @@ msgstr ""
 msgid "invisible"
 msgstr ""
 
+# visible; Mieru
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
-msgstr ""
+msgstr "見える"
 
+# add; Kuwaeru
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "加える"
 
+# Add a new attribute; Atarashī zokusei o tsuika suru
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
-msgstr ""
+msgstr "新しい属性を追加する"
 
+# delete; Sakujo suru
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "削除する"
 
-# Delete Attribute
+# Delete selected attribute; Sentaku shita zokusei o sakujo
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "属性の削除"
+msgstr "選択した属性を削除"
 
+# promote; Sokushin suru
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
-msgstr ""
+msgstr "促進する"
 
 #: gattrib/src/x_toolbars.c:51
 msgid "demote"
