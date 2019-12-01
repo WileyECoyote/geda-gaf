@@ -2,6 +2,9 @@
 
     * simulation/spice/kmutual-1.sym: Add footprint and description.
 
+    * simulation/verilog/and2-1.sym Update pinlabel and resequence
+      attributes.
+
 2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/: Reorder attributes, add description:
