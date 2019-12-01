@@ -807,28 +807,30 @@ msgstr ""
 msgid "invisible"
 msgstr ""
 
+# visible
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
-msgstr ""
+msgstr "látható"
 
+# add
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "hozzáad"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
 msgstr "gEDA attribútumszerkesztő"
 
+# delete
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "töröl"
 
-# Detach the selected attribute
+# Delete selected attribute
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Távolítsa el a kiválasztott attribútumot"
+msgstr "Törölje a kijelölt attribútumot"
 
 # promote
 #: gattrib/src/x_toolbars.c:50
