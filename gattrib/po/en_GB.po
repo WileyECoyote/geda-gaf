@@ -744,84 +744,83 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:36
 msgid "Save the file to different name or location"
-msgstr ""
+msgstr "Save the file to different name or location"
 
 #: gattrib/src/x_toolbars.c:37
 msgid "Cut selection to the clipboard"
-msgstr ""
+msgstr "Cut selection to the clipboard"
 
 #: gattrib/src/x_toolbars.c:38
 msgid "Copy selection to the clipboard"
-msgstr ""
+msgstr "Copy selection to the clipboard"
 
 #: gattrib/src/x_toolbars.c:39
 msgid "Paste selection from the clipboard"
-msgstr ""
+msgstr "Paste selection from the clipboard"
 
 #: gattrib/src/x_toolbars.c:40
 msgid "Search for attribute value"
-msgstr ""
+msgstr "Search for attribute value"
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Search and Replace attribute value"
-msgstr ""
+msgstr "Search and Replace attribute value"
 
 #: gattrib/src/x_toolbars.c:42
 msgid "Attrib"
-msgstr ""
+msgstr "Attrib"
 
 #: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
-msgstr ""
+msgstr "Locate attribute"
 
 #: gattrib/src/x_toolbars.c:43
 msgid "Ref Des"
-msgstr ""
+msgstr "Ref Des"
 
 #: gattrib/src/x_toolbars.c:43
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Locate Reference Designator"
 
 #: gattrib/src/x_toolbars.c:46
 msgid "invisible"
-msgstr ""
+msgstr "invisible"
 
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
-msgstr ""
+msgstr "visible"
 
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "add"
 
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
-msgstr ""
+msgstr "Add a new attribute"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "delete"
 
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Delete Attribute"
+msgstr "Delete selected attribute"
 
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
-msgstr ""
+msgstr "promote"
 
 #: gattrib/src/x_toolbars.c:51
 msgid "demote"
-msgstr ""
+msgstr "demote"
 
 #: gattrib/src/x_toolbars.c:52
 msgid "name"
-msgstr ""
+msgstr "name"
 
 #: gattrib/src/x_toolbars.c:53
 msgid "value"
-msgstr ""
+msgstr "value"
 
 #: gattrib/src/x_toolbars.c:54
 msgid "both"
