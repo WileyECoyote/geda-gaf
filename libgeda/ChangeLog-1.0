@@ -12,6 +12,9 @@
 
     * src/object/o_embed.c: Reformat documentation block.
 
+    * src/object/o_list.c: Add missing punctuations in documentation,
+      update geda_object_list_rotate parameter documentation.
+
 2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_math.c: Add random checks for geda_math_arc_shortest_distance.

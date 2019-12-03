@@ -259,6 +259,11 @@ void geda_object_list_mirror (const GList *list, int x, int y)
  * \brief Rotate a glist of Objects
  * \par Function Description
  *  Calls geda_object_rotate for each glist data member.
+ *
+ *  \param [in,out] list   The list with objects to rotate.
+ *  \param [in]     x      The x coordinate of rotation.
+ *  \param [in]     y      The y coordinate of rotation.
+ *  \param [in]     angle  The angle of rotation.
  */
 void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 {
