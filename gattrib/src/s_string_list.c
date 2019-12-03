@@ -301,8 +301,6 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
  */
 void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
 {
-  int count = 0;
-
   if (pos == *old_count) {
 
     /* if just appending */
@@ -310,28 +308,33 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
   }
   else {
 
-    STRING_LIST *new_list;
-    char *str;
-    int index;
+    STRING_LIST *new_record;
+    STRING_LIST *iter;
 
-    new_list = s_string_list_new();
-
-    for (index = 0; index < pos; index++) {
-      str = s_string_list_get_data_at_index(list, index);
-      s_string_list_add_item(new_list, &count, geda_strdup(str));
+    for (iter = list; iter; iter = iter->next) {
+      if (iter->pos == pos) {
+        break;
+      }
     }
 
-    s_string_list_add_item(new_list, &count, geda_strdup(item));
+    new_record = GEDA_MEM_ALLOC(sizeof(STRING_LIST));
+    new_record->data = geda_strdup(item);
+    new_record->pos  = pos;
+    new_record->next = iter;
+    new_record->prev = iter->prev;
 
-    for (index = pos + 1; index < *old_count; index++) {
-      str = s_string_list_get_data_at_index(list, index);
-      s_string_list_add_item(new_list, &count, geda_strdup(str));
+    iter->prev = new_record;
+
+    if (new_record->prev) {
+      iter = new_record->prev;
+      iter->next = new_record;
     }
 
-    s_string_list_free(list);
+    for (iter = new_record->next; iter; iter = iter->next) {
+      iter->pos++;
+    }
 
-    *list      = *new_list;
-    *old_count = count;
+    *old_count = *old_count + 1;
   }
 }
 

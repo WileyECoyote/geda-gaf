@@ -1,6 +1,8 @@
 2019-12-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/s_string_list.c: Utilize geda_strdup macro to shorten line lengths.
+    * src/s_string_list.c: Utilize geda_strdup macro to shorten line lengths, redo
+      s_string_list_insert to actually insert a new record into the old list instead
+      of recreating an entirely new list.
 
 2019-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
