@@ -318,14 +318,14 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
 
     for (index = 0; index < pos; index++) {
       str = s_string_list_get_data_at_index(list, index);
-      s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
+      s_string_list_add_item(new_list, &count, geda_strdup(str));
     }
 
-    s_string_list_add_item(new_list, &count, geda_utility_string_strdup(item));
+    s_string_list_add_item(new_list, &count, geda_strdup(item));
 
-    for (index = pos; index < *old_count; index++) {
+    for (index = pos + 1; index < *old_count; index++) {
       str = s_string_list_get_data_at_index(list, index);
-      s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
+      s_string_list_add_item(new_list, &count, geda_strdup(str));
     }
 
     s_string_list_free(list);
