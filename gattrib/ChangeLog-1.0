@@ -4,6 +4,8 @@
       s_string_list_insert to actually insert a new record into the old list instead
       of recreating an entirely new list.
 
+    * src/x_dialog.c: Fix inadvertent copy/paste over gtk_widget_grab_focus.
+
 2019-11-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/en_GB.po: Update Great Britain.
