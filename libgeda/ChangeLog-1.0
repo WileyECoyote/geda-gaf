@@ -4,6 +4,7 @@
 
           * src/math/m_angle.c math-angle-proc
           * src/math/m_arc.c   math-arc-proc
+          * src/math/m_box.c   math-box-proc
 
 2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
 

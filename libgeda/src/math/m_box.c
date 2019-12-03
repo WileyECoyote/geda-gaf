@@ -23,6 +23,11 @@
  *  \brief Low-level mathmatical functions for boxes
  */
 
+/** \defgroup math-box-proc Math Procedures for Boxes
+ * @{
+ * \brief Math Related Procedures for Boxes
+ */
+
 #include "../../../config.h"
 
 #include <math.h>
@@ -119,3 +124,5 @@ geda_math_box_shortest_distance (GedaBox *box, int x, int y, int solid)
 
   return shortest_distance;
 }
+
+/** @} endgroup math-box-proc */
