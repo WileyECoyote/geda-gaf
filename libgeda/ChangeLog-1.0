@@ -8,6 +8,8 @@
 
     * src/math/m_bounds.c: Add brief Doxygen file tag.
 
+    * src/math/m_line.c: Update function wrapping.
+
 2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_math.c: Add random checks for geda_math_arc_shortest_distance.
