@@ -3,6 +3,7 @@
     * src/math: Add Doxygen group:
 
           * src/math/m_angle.c math-angle-proc
+          * src/math/m_arc.c   math-arc-proc
 
 2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
