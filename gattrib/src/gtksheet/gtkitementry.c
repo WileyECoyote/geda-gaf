@@ -28,7 +28,8 @@
  * SECTION: gtkitementry
  * @short_description: An item entry widget.
  *
- * Originally GtkSheetEntry. This widget allows to change colors and justification and can be dinamically resized.
+ * Originally GtkSheetEntry. This widget allows to change colors and
+ * justification and can be dinamically resized.
  */
 
 /**
