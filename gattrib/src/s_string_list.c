@@ -292,7 +292,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
  * \brief Insert item into STRING_LIST
  * \par Function Description
  *  Inserts a new string into a STRING_LIST. The string is not check
- *  for dupilcation, caller should use s_string_list_in_list first
+ *  for duplication, caller should use s_string_list_in_list first
  *
  * \param list      pointer to STRING_LIST to be added to.
  * \param old_count pointer to integer with total count to be updated
