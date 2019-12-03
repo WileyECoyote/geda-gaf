@@ -301,38 +301,38 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
  */
 void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
 {
-    int count = 0;
+  int count = 0;
 
-    if (pos == *old_count) {
+  if (pos == *old_count) {
 
-      /* if just appending */
-      s_string_list_add_item(list, old_count, item);
+    /* if just appending */
+    s_string_list_add_item(list, old_count, item);
+  }
+  else {
+
+    STRING_LIST *new_list;
+    char *str;
+    int index;
+
+    new_list = s_string_list_new();
+
+    for ( index = 0; index < pos; index++) {
+      str = s_string_list_get_data_at_index(list, index);
+      s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
     }
-    else {
 
-      STRING_LIST *new_list;
-      char *str;
-      int index;
+    s_string_list_add_item(new_list, &count, geda_utility_string_strdup(item));
 
-      new_list = s_string_list_new();
-
-      for ( index = 0; index < pos; index++) {
-        str = s_string_list_get_data_at_index(list, index);
-        s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
-      }
-
-      s_string_list_add_item(new_list, &count, geda_utility_string_strdup(item));
-
-      for ( index = pos; index < *old_count; index++) {
-        str = s_string_list_get_data_at_index(list, index);
-        s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
-      }
-
-      s_string_list_free(list);
-
-      *list      = *new_list;
-      *old_count = count;
+    for ( index = pos; index < *old_count; index++) {
+      str = s_string_list_get_data_at_index(list, index);
+      s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
     }
+
+    s_string_list_free(list);
+
+    *list      = *new_list;
+    *old_count = count;
+  }
 }
 
 /*------------------------------------------------------------------*/
