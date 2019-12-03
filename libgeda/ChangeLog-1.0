@@ -10,6 +10,8 @@
 
     * src/math/m_line.c: Update function wrapping.
 
+    * src/object/o_embed.c: Reformat documentation block.
+
 2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_math.c: Add random checks for geda_math_arc_shortest_distance.
