@@ -6,6 +6,8 @@
           * src/math/m_arc.c   math-arc-proc
           * src/math/m_box.c   math-box-proc
 
+    * src/math/m_bounds.c: Add brief Doxygen file tag.
+
 2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_arc_math.c: Add random checks for geda_math_arc_shortest_distance.

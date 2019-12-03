@@ -17,6 +17,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
+/*!
+ * \file m_bounds.c
+ * \brief Functions for working with boundaries
+ */
 
 #include "../../../config.h"
 #include <libgeda_priv.h>
