@@ -4205,13 +4205,13 @@ int gtk_sheet_justify_entry(GtkSheet *sheet)
     return (sheet->justify_entry);
 }
 
-/**
- * gtk_sheet_set_vjustification:
- * \param sheet: a #GtkSheet
- * \param vjust: a #GtkSheetVerticalJustification
+/*!
+ * \brief gtk_sheet_set_vjustification
+ * \par Function Description
+ *  Set the default vertical cell text justification for #GtkSheet.
  *
- * Set the default vertical cell text justification for
- * #GtkSheet.
+ * \param sheet  a #GtkSheet
+ * \param vjust  a #GtkSheetVerticalJustification
  */
 void gtk_sheet_set_vjustification(GtkSheet *sheet, GtkSheetVerticalJustification vjust)
 {
@@ -4220,14 +4220,14 @@ void gtk_sheet_set_vjustification(GtkSheet *sheet, GtkSheetVerticalJustification
     sheet->vjust = vjust;
 }
 
-/**
- * gtk_sheet_get_vjustification:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_get_vjustification
+ * \par Function Description
+ *  Get the default vertical cell text justification from #GtkSheet.
  *
- * Get the default vertical cell text justification from
- * #GtkSheet.
+ * \param sheet a #GtkSheet
  *
- * Returns: the default #GtkSheetVerticalJustification
+ * \returns the default #GtkSheetVerticalJustification
  */
 GtkSheetVerticalJustification gtk_sheet_get_vjustification(GtkSheet *sheet)
 {
@@ -4236,14 +4236,15 @@ GtkSheetVerticalJustification gtk_sheet_get_vjustification(GtkSheet *sheet)
     return (sheet->vjust);
 }
 
-/**
- * gtk_sheet_set_locked:
- * \param sheet: a #GtkSheet
- * \param locked: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_set_locked
+ * \par Function Description
+ *  Lock the #GtkSheet, which means it is no longer editable,
+ *  cell contents cannot be modified by the user.
  *
- * Lock the #GtkSheet, which means it is no longer editable,
- * cell contents cannot be modified by the user.
-    */
+ * \param sheet   a #GtkSheet
+ * \param locked  TRUE or FALSE
+ */
 void gtk_sheet_set_locked(GtkSheet *sheet, int locked)
 {
     g_return_if_fail(GTK_IS_SHEET(sheet));
