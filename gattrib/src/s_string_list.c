@@ -662,7 +662,6 @@ void s_string_list_sort_master_pin_list()
 void s_string_list_sort_master_pin_attrib_list() {
 
   STRING_LIST *local_list, *iter;
-  int i = 0;
 
   local_list = sheet_head->master_pin_attrib_list_head;
 
