@@ -192,8 +192,8 @@ gtk_item_entry_get_type(void)
 {
   static GType item_entry_type = 0;
 
-  if (!item_entry_type)
-  {
+  if (!item_entry_type) {
+
     static const GInterfaceInfo item_editable_info =
     {
       (GInterfaceInitFunc)gtk_item_entry_editable_init,    /* interface_init */
@@ -1431,10 +1431,12 @@ gtk_item_entry_create_layout(GtkEntry *entry, _Bool  include_preedit)
       preedit_len_chars = g_utf8_strlen(preedit_string, -1);
       ch_len += preedit_len_chars;
 
-      if (entry->invisible_char != 0)
+      if (entry->invisible_char != 0) {
         invisible_char = entry->invisible_char;
-      else
+      }
+      else {
         invisible_char = ' '; /* just pick a char */
+      }
 
         _item_entry_append_char(tmp_string, invisible_char, ch_len);
 
@@ -1500,8 +1502,9 @@ static PangoLayout *
 gtk_item_entry_ensure_layout(GtkEntry *entry, _Bool  include_preedit)
 {
   if (entry->preedit_length > 0 &&
-    !include_preedit != !entry->cache_includes_preedit)
+    !include_preedit != !entry->cache_includes_preedit) {
     gtk_item_entry_reset_layout(entry);
+  }
 
   if (!entry->cached_layout) {
     entry->cached_layout = gtk_item_entry_create_layout(entry, include_preedit);
