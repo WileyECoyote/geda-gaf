@@ -2,7 +2,7 @@
 
     * src/gtksheet/gtkitementry.c: Remove reference to GTK+ Team in file header,
       the files were not distributed with GTKK+ nor were the files available at
-      ftp://ftp.gtk.org/pub/gtk.
+      ftp://ftp.gtk.org/pub/gtk. Update/revise section header.
 
 2019-12-03 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -18,18 +18,13 @@
  */
 
 /**
- * SECTION: gtkitementry
- * @short_description: An item entry widget.
+ * \section gtkitementry
+ * \brief short_description: An item entry widget.
  *
  * Originally GtkSheetEntry. This widget allows to change colors and
- * justification and can be dynamically resized.
- */
-
-/**
- * GtkItemEntry:
- *
- * The GtkItemEntry struct contains only private data.
- * It should only be accessed through the functions described below.
+ * justification and can be dynamically resized. The GtkItemEntry struct
+ * contains only private data and should only be accessed through the
+ * functions described below.
  */
 
 #include <string.h>
