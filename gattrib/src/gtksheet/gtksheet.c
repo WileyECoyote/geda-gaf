@@ -4309,11 +4309,13 @@ void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
  */
 void gtk_sheet_set_description(GtkSheet *sheet, const char *description)
 {
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    if (sheet->description)
-	g_free(sheet->description);
-    sheet->description = g_strdup(description);
+  if (sheet->description) {
+    g_free(sheet->description);
+  }
+
+  sheet->description = g_strdup(description);
 }
 
 /**
@@ -4327,9 +4329,9 @@ void gtk_sheet_set_description(GtkSheet *sheet, const char *description)
  */
 const char *gtk_sheet_get_description(GtkSheet *sheet, const char *description)
 {
-    g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
+  g_return_val_if_fail(GTK_IS_SHEET(sheet), NULL);
 
-    return (sheet->description);
+  return (sheet->description);
 }
 
 /**
@@ -4342,7 +4344,7 @@ const char *gtk_sheet_get_description(GtkSheet *sheet, const char *description)
  */
 int gtk_sheet_is_frozen(GtkSheet *sheet)
 {
-    return (GTK_SHEET_IS_FROZEN(sheet));
+  return (GTK_SHEET_IS_FROZEN(sheet));
 }
 
 /**
@@ -4352,16 +4354,15 @@ int gtk_sheet_is_frozen(GtkSheet *sheet)
  * Freeze all visual updates of the #GtkSheet.
  * The updates will occure in a more efficient way than if you made them on a unfrozen #GtkSheet .
  */
-void
-gtk_sheet_freeze(GtkSheet *sheet)
+void gtk_sheet_freeze(GtkSheet *sheet)
 {
-    g_return_if_fail(GTK_IS_SHEET(sheet));
+  g_return_if_fail(GTK_IS_SHEET(sheet));
 
-    sheet->freeze_count++;
-    GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IS_FROZEN);
+  sheet->freeze_count++;
+  GTK_SHEET_SET_FLAGS(sheet, GTK_SHEET_IS_FROZEN);
 
 #if GTK_SHEET_DEBUG_FREEZE > 0
-    fprintf(stderr,"gtk_sheet_freeze: freeze_count == %d", sheet->freeze_count);
+  fprintf(stderr,"gtk_sheet_freeze: freeze_count == %d", sheet->freeze_count);
 #endif
 
 }
@@ -4380,53 +4381,57 @@ void _gtk_sheet_redraw_internal(GtkSheet *sheet,
                                 int       reset_hadjustment,
                                 int       reset_vadjustment)
 {
-    int done = FALSE;  /* handle sheets with no scrollbars */
+  int done = FALSE;  /* handle sheets with no scrollbars */
 
-    if (reset_hadjustment)
-      sheet->old_hadjustment = -1.;  /* causes redraw */
+  if (reset_hadjustment) {
+    sheet->old_hadjustment = -1.;  /* causes redraw */
+  }
 
-    if (reset_vadjustment)
-      sheet->old_vadjustment = -1.;  /* causes redraw */
+  if (reset_vadjustment) {
+    sheet->old_vadjustment = -1.;  /* causes redraw */
+  }
 
-    if (!gtk_widget_get_realized((GtkWidget*)sheet))
-      return;
+  if (!gtk_widget_get_realized((GtkWidget*)sheet)) {
+    return;
+  }
 
-    if (GTK_SHEET_IS_FROZEN(sheet))
-      return;
+  if (GTK_SHEET_IS_FROZEN(sheet)){
+    return;
+  }
 
 #if GTK_SHEET_DEBUG_DRAW > 0
-    fprintf(stderr,"_gtk_sheet_redraw_internal: called");
+  fprintf(stderr,"_gtk_sheet_redraw_internal: called");
 #endif
 
-    _gtk_sheet_recalc_view_range(sheet);
+  _gtk_sheet_recalc_view_range(sheet);
 
-    if (sheet->row_titles_visible || sheet->column_titles_visible) {
-      size_allocate_global_button(sheet);
-    }
+  if (sheet->row_titles_visible || sheet->column_titles_visible) {
+    size_allocate_global_button(sheet);
+  }
 
-    if (sheet->row_titles_visible) {
-      size_allocate_row_title_buttons(sheet);
-    }
+  if (sheet->row_titles_visible) {
+    size_allocate_row_title_buttons(sheet);
+  }
 
-    if (sheet->column_titles_visible) {
-      _gtk_sheet_column_buttons_size_allocate(sheet);
-    }
+  if (sheet->column_titles_visible) {
+    _gtk_sheet_column_buttons_size_allocate(sheet);
+  }
 
-    /* send value_changed or redraw directly */
+  /* send value_changed or redraw directly */
 
-    if (sheet->vadjustment) {
-      g_signal_emit_by_name(G_OBJECT(sheet->vadjustment), "value_changed");
-      done = TRUE;
-    }
+  if (sheet->vadjustment) {
+    g_signal_emit_by_name(G_OBJECT(sheet->vadjustment), "value_changed");
+    done = TRUE;
+  }
 
-    if (sheet->hadjustment) {
-      g_signal_emit_by_name(G_OBJECT(sheet->hadjustment), "value_changed");
-      done = TRUE;
-    }
+  if (sheet->hadjustment) {
+    g_signal_emit_by_name(G_OBJECT(sheet->hadjustment), "value_changed");
+    done = TRUE;
+  }
 
-    if (!done) {
-      _gtk_sheet_range_draw(sheet, NULL, TRUE);
-    }
+  if (!done) {
+    _gtk_sheet_range_draw(sheet, NULL, TRUE);
+  }
 }
 
 /**
