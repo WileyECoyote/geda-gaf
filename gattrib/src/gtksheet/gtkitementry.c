@@ -67,14 +67,12 @@ typedef enum {
     CURSOR_DND
 } CursorType;
 
-/* GObject, GtkObject methods
- */
+/* GObject, GtkObject methods */
 static void   gtk_item_entry_class_init(GtkItemEntryClass *klass);
 static void   gtk_item_entry_init(GtkItemEntry *entry);
 static void   gtk_item_entry_editable_init(GtkEditableClass *iface);
 
-/* GtkWidget methods
- */
+/* GtkWidget methods */
 static void   gtk_item_entry_realize(GtkWidget *widget);
 static void   gtk_item_entry_size_request(GtkWidget *widget,
                                           GtkRequisition *requisition);
@@ -90,8 +88,7 @@ static void   gtk_item_entry_style_set(GtkWidget *widget, GtkStyle *previous_sty
 static void   gtk_item_entry_direction_changed(GtkWidget *widget, GtkTextDirection previous_dir);
 static void   gtk_item_entry_state_changed(GtkWidget *widget, GtkStateType previous_state);
 
-/* GtkEditable method implementations
- */
+/* GtkEditable method implementations */
 static void     gtk_item_entry_insert_text(GtkEditable *editable,
                                            const char *new_text,
                                            int         new_text_length,
@@ -104,8 +101,7 @@ static void     gtk_item_entry_real_set_position(GtkEditable *editable,
                                                  int         position);
 static int     gtk_item_entry_get_position(GtkEditable *editable);
 
-/* Default signal handlers
- */
+/* Default signal handlers */
 static void gtk_item_entry_real_insert_text(GtkEditable     *editable,
                                             const char     *new_text,
                                             int             new_text_length,
@@ -123,8 +119,7 @@ static void gtk_item_entry_delete_from_cursor(GtkEntry        *entry,
                                               GtkDeleteType    type,
                                               int             count);
 
-/* IM Context Callbacks
- */
+/* IM Context Callbacks */
 static void     gtk_item_entry_commit_cb(GtkIMContext *context,
                                          const char  *str,
                                          GtkEntry     *entry);
@@ -137,8 +132,7 @@ static _Bool gtk_item_entry_delete_surrounding_cb(GtkIMContext *context,
                                                      int          n_chars,
                                                      GtkEntry     *entry);
 
-/* Internal routines
- */
+/* Internal routines */
 static void         gtk_item_entry_enter_text(GtkEntry       *entry,
                                               const char     *str);
 static void         gtk_item_entry_set_positions(GtkEntry    *entry,
@@ -1262,8 +1256,7 @@ static _Bool gtk_item_entry_delete_surrounding_cb(GtkIMContext *slave,
 }
 
 
-/* Internal functions
- */
+/* Internal functions */
 
 /* Used for im_commit_cb and inserting Unicode chars */
 static void gtk_item_entry_enter_text(GtkEntry *entry, const char *str)
