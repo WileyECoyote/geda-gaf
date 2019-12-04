@@ -4252,14 +4252,15 @@ void gtk_sheet_set_locked(GtkSheet *sheet, int locked)
     sheet->locked = locked;
 }
 
-/**
- * gtk_sheet_locked:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_locked
+ * \par Function Description
+ *  Get the lock status of #GtkSheet, locked means the sheet is
+ *  not editable, cell contents cannot be modified by the user.
  *
- * Get the lock status of #GtkSheet, locked means the sheet is
- * not editable, cell contents cannot be modified by the user.
+ * \param sheet  a #GtkSheet
  *
- * Returns: TRUE or FALSE
+ * \retval TRUE or FALSE
  */
 int gtk_sheet_locked(GtkSheet *sheet)
 {
@@ -4271,13 +4272,13 @@ int gtk_sheet_locked(GtkSheet *sheet)
 /* This routine has problems with gtk+-1.2 related with the
  * label/button drawing - I think it's a bug in gtk+-1.2 */
 
-/**
- * gtk_sheet_set_title:
- * \param sheet: a #GtkSheet
- * \param title: #GtkSheet title
+/*!
+ * \brief gtk_sheet_set_title
+ * \par Function Description
+ *  Set  #GtkSheet title. The widget will keep a copy of the string.
  *
- * Set  #GtkSheet title. The widget will keep a copy of the
- * string.
+ * \param sheet  a #GtkSheet
+ * \param title  #GtkSheet title
  */
 void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
 {
@@ -4298,12 +4299,13 @@ void gtk_sheet_set_title(GtkSheet *sheet, const char *title)
     size_allocate_global_button(sheet);
 }
 
-/**
- * gtk_sheet_set_description:
- * \param sheet: a #GtkSheet
- * \param description: #GtkSheet description
+/*!
+ * \brief gtk_sheet_set_description
+ * \par Function Description
+ *  Set  #GtkSheet description for application use.
  *
- * Set  #GtkSheet description for application use.
+ * \param sheet        a #GtkSheet
+ * \param description  #GtkSheet description
  */
 void gtk_sheet_set_description(GtkSheet *sheet, const char *description)
 {
