@@ -61,7 +61,6 @@
 #   define GTK_ITEM_ENTRY_DEBUG_DESTUCTION 0  /* destroy, dispose, finalize */
 #endif
 
-
 typedef enum {
     CURSOR_STANDARD,
     CURSOR_DND
@@ -187,8 +186,7 @@ static void        _item_entry_get_widget_window_size       (GtkWidget     *entr
 
 static GtkEntryClass *parent_class = NULL;
 
-GType
-gtk_item_entry_get_type(void)
+GType gtk_item_entry_get_type(void)
 {
   static GType item_entry_type = 0;
 
@@ -564,8 +562,7 @@ gtk_item_entry_size_allocate(GtkWidget *widget, GtkAllocation *allocation)
     }
 }
 
-static void
-gtk_item_entry_reset_layout(GtkEntry *entry)
+static void gtk_item_entry_reset_layout(GtkEntry *entry)
 {
   if (entry->cached_layout) {
     g_object_unref(entry->cached_layout);
@@ -573,8 +570,7 @@ gtk_item_entry_reset_layout(GtkEntry *entry)
   }
 }
 
-static void
-gtk_item_entry_draw_frame(GtkWidget *widget)
+static void gtk_item_entry_draw_frame(GtkWidget *widget)
 {
 }
 
@@ -773,8 +769,7 @@ gtk_item_entry_delete_text(GtkEditable *editable, int start_pos, int end_pos)
     g_object_unref(editable);
 }
 
-static void
-gtk_item_entry_style_set(GtkWidget *widget, GtkStyle *previous_style)
+static void gtk_item_entry_style_set(GtkWidget *widget, GtkStyle *previous_style)
 {
     GtkEntry *entry = (GtkEntry*)widget;
 
@@ -789,8 +784,7 @@ gtk_item_entry_style_set(GtkWidget *widget, GtkStyle *previous_style)
     }
 }
 
-static void
-gtk_item_entry_real_set_position(GtkEditable *editable, int position)
+static void gtk_item_entry_real_set_position(GtkEditable *editable, int position)
 {
     GtkEntry *entry = GTK_ENTRY(editable);
 
