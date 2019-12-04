@@ -2036,7 +2036,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     gobject_class->set_property = gtk_sheet_set_property;
     gobject_class->get_property = gtk_sheet_get_property;
 
-    /**
+    /*!
      * GtkSheet:title:
      *
      * The sheets title string
@@ -2048,7 +2048,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
                                 G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_TITLE, pspec);
 
-    /**
+    /*!
      * GtkSheet:description:
      *
      * The sheets description, a place to store further information
@@ -2063,7 +2063,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_DESCRIPTION, pspec);
 
 #if 0
-    /**
+    /*!
      * GtkSheet:n-cols:
      *
      * Number of columns in the sheet
@@ -2075,7 +2075,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property (gobject_class, PROP_GTK_SHEET_NCOLS, pspec);
 #endif
 
-    /**
+    /*!
      * GtkSheet:n-rows:
      *
      * Number of rows in the sheet
@@ -2086,7 +2086,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_NROWS, pspec);
 
-    /**
+    /*!
      * GtkSheet:locked:
      *
      * If the sheet ist locked, it is not editable, cell contents
@@ -2098,7 +2098,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_LOCKED, pspec);
 
-    /**
+    /*!
      * GtkSheet:selection-mode:
      *
      * Sets the selection mode of the cells in a #GtkSheet
@@ -2111,7 +2111,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_SELECTION_MODE, pspec);
 
 #if 1
-    /**
+    /*!
      * GtkSheet:autoresize:
      *
      * Autoreisize cells while typing (rows and columns)
@@ -2127,7 +2127,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	PROP_GTK_SHEET_AUTO_RESIZE, pspec);
 #endif
 
-    /**
+    /*!
      * GtkSheet:autoresize-rows:
      *
      * Autoreisize rows while typing
@@ -2139,7 +2139,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
 	PROP_GTK_SHEET_AUTO_RESIZE_ROWS, pspec);
 
-    /**
+    /*!
      * GtkSheet:autoresize-cols:
      *
      * Autoreisize columns while typing
@@ -2151,7 +2151,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
 	PROP_GTK_SHEET_AUTO_RESIZE_COLUMNS, pspec);
 
-    /**
+    /*!
      * GtkSheet:autoscroll:
      *
      * The sheet will be automatically scrolled when you move beyond
@@ -2163,7 +2163,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_AUTO_SCROLL, pspec);
 
-    /**
+    /*!
      * GtkSheet:clip-text:
      *
      * Clip text in cells
@@ -2180,7 +2180,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_JUSTIFY_ENTRY, pspec);
 
-    /**
+    /*!
      * GtkSheet:bgcolor:
      *
      * Background color of the sheet
@@ -2191,7 +2191,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_BG_COLOR, pspec);
 
-    /**
+    /*!
      * GtkSheet:grid-visible:
      *
      * Sets the visibility of grid
@@ -2202,7 +2202,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_GRID_VISIBLE, pspec);
 
-    /**
+    /*!
      * GtkSheet:grid-color:
      *
      * Color of the grid
@@ -2213,7 +2213,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_GRID_COLOR, pspec);
 
-    /**
+    /*!
      * GtkSheet:col-titles-visible:
      *
      * Visibility of the column titles
@@ -2224,7 +2224,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_COLUMN_TITLES_VISIBLE, pspec);
 
-    /**
+    /*!
      * GtkSheet:columns-resizable:
      *
      * Columns resizable
@@ -2235,7 +2235,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_COLUMNS_RESIZABLE, pspec);
 
-    /**
+    /*!
      * GtkSheet:col-titles-height:
      *
      * Height of the column titles
@@ -2246,7 +2246,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_COLUMN_TITLES_HEIGHT, pspec);
 
-    /**
+    /*!
      * GtkSheet:row-titles-visible:
      *
      * Row titles visible
@@ -2257,7 +2257,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_ROW_TITLES_VISIBLE, pspec);
 
-    /**
+    /*!
      * GtkSheet:rows-resizable:
      *
      * Rows resizable
@@ -2268,7 +2268,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_ROWS_RESIZABLE, pspec);
 
-    /**
+    /*!
      * GtkSheet:row-titles-width:
      *
      * Width of the row title area
@@ -2279,7 +2279,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
 	G_PARAM_READWRITE);
     g_object_class_install_property(gobject_class, PROP_GTK_SHEET_ROW_TITLES_WIDTH, pspec);
 
-    /**
+    /*!
      * GtkSheet:entry-type:
      *
      * Sheet cell entry widget type
@@ -2292,7 +2292,7 @@ gtk_sheet_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
 	PROP_GTK_SHEET_ENTRY_TYPE, pspec);
 
-    /**
+    /*!
      * GtkSheet:vjust:
      *
      * Default vertical cell text justification
@@ -2414,7 +2414,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
      /* 20 signals to go, so get the type only once */
      GType type = gtk_sheet_get_type();
 
-    /**
+    /*!
      * GtkSheet::select-row:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: the newly selected row index
@@ -2430,7 +2430,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                              G_TYPE_NONE, 1,
                                              G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::select-column:
      * \param sheet: the sheet widget that emitted the signal
      * \param select_column: the newly selected column index
@@ -2446,7 +2446,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                 G_TYPE_NONE, 1,
                                                 G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::select-range:
      * \param sheet: the sheet widget that emitted the signal
      * \param select_range: the newly selected #GtkSheetRange
@@ -2462,7 +2462,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                G_TYPE_NONE, 1,
                                                G_TYPE_SHEET_RANGE);
 
-    /**
+    /*!
      * GtkSheet::clip-range:
      * \param sheet: the sheet widget that emitted the signal
      * \param clip_range: the newly selected #GtkSheetRange
@@ -2478,7 +2478,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                              G_TYPE_NONE, 1,
                                              G_TYPE_SHEET_RANGE);
 
-    /**
+    /*!
     * GtkSheet::resize-range:
     * \param sheet: the sheet widget that emitted the signal
     * \param old_range: the previous selected #GtkSheetRange.
@@ -2494,7 +2494,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                gtksheet_VOID__BOXED_BOXED,
                                                G_TYPE_NONE, 2, G_TYPE_SHEET_RANGE, G_TYPE_SHEET_RANGE);
 
-    /**
+    /*!
      * GtkSheet::move-range:
      * \param sheet: the sheet widget that emitted the signal.
      * \param old_range: the previous selected #GtkSheetRange.
@@ -2510,7 +2510,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                              gtksheet_VOID__BOXED_BOXED,
                                              G_TYPE_NONE, 2, G_TYPE_SHEET_RANGE, G_TYPE_SHEET_RANGE);
 
-    /**
+    /*!
      * GtkSheet::traverse:
      * \param sheet: the sheet widget that emitted the signal.
      * \param row: row number of old cell
@@ -2534,7 +2534,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                            G_TYPE_BOOLEAN, 4, G_TYPE_INT, G_TYPE_INT,
                                            G_TYPE_POINTER, G_TYPE_POINTER);
 
-    /**
+    /*!
      * GtkSheet::deactivate:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: row number of deactivated cell.
@@ -2554,7 +2554,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                              gtksheet_BOOLEAN__INT_INT,
                                              G_TYPE_BOOLEAN, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::activate:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: row number of activated cell.
@@ -2572,7 +2572,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                            gtksheet_BOOLEAN__INT_INT,
                                            G_TYPE_BOOLEAN, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::set-cell:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: row number of activated cell.
@@ -2588,7 +2588,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                            gtksheet_VOID__INT_INT,
                                            G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::clear-cell:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: row number of cleared cell.
@@ -2604,7 +2604,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                              gtksheet_VOID__INT_INT,
                                              G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::changed:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: row number of changed cell.
@@ -2621,7 +2621,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                           gtksheet_VOID__INT_INT,
                                           G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::new-column-width:
      * \param sheet: the sheet widget that emitted the signal
      * \param col: modified column number.
@@ -2637,7 +2637,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                 gtksheet_VOID__INT_INT,
                                                 G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::new-row-height:
      * \param sheet: the sheet widget that emitted the signal
      * \param row: modified row number.
@@ -2653,7 +2653,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                  gtksheet_VOID__INT_INT,
                                                  G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
-    /**
+    /*!
      * GtkSheet::entry-focus-in:
      * \param sheet: the sheet widget that emitted the signal
      * \param event: the #GdkEventFocus which triggered this signal
@@ -2675,7 +2675,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                  G_TYPE_BOOLEAN, 1,
                                                  GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
 
-    /**
+    /*!
      * GtkSheet::entry-focus-out:
      * \param sheet: the sheet widget that emitted the signal
      * \param event: the #GdkEventFocus which triggered this signal
@@ -2697,7 +2697,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                   G_TYPE_BOOLEAN, 1,
                                                   GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
 
-    /**
+    /*!
      * GtkSheet::populate-popup:
      * \param sheet: the sheet widget that emitted the signal
      * \param menu: the menu that ist being populated
@@ -2720,7 +2720,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                        gtk_menu_get_type());
 
 
-    /**
+    /*!
      * GtkSheet::set-scroll-adjustments:
      * \param sheet: the sheet widget that emitted the signal
      * \param hadjustment: horizontal #GtkAdjustment.
@@ -2738,7 +2738,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                                                gtk_adjustment_get_type(),
                                                                gtk_adjustment_get_type());
 
-    /**
+    /*!
      * GtkSheet::move-cursor:
      * \param sheet: the sheet widget that emitted the signal
      * \param step: the granularity of the move, as a #GtkMovementStep
@@ -2765,7 +2765,7 @@ _gtk_sheet_class_init_signals(GtkObjectClass *object_class,
                                               G_TYPE_INT,
                                               G_TYPE_BOOLEAN);
 
-    /**
+    /*!
      * GtkSheet::enter-pressed:
      * \param sheet: the sheet widget that emitted the signal
      * \param event: (type Gdk.EventKey): the #GdkEventKey which triggered this signal.
