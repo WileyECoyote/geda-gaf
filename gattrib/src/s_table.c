@@ -90,9 +90,9 @@ TABLE **s_table_new( int rows, int cols)
  *  make room for the insertion.
  *
  * \param table Table to resize
- * \param rows Number of rows in the table
- * \param Xa Where to add the new column
- * \param Xt The current number of columns in the table.
+ * \param rows  Number of rows in the table
+ * \param Xa    Where to add the new column
+ * \param Xt    The current number of columns in the table.
  *
  * \returns a pointer to the resized table
  */
