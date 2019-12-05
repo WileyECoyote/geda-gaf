@@ -2,6 +2,9 @@
 
     * src/globals.c: Include glib.h instead of gattrib.h.
 
+    * gattrib/src/s_table.c: Fix BUG; Revise s_table_add_column to use pointer to
+      reallocated memory, new_table, when shifting records.
+
 2019-12-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gtksheet/gtkitementry.c: Remove reference to GTK+ Team in file header,

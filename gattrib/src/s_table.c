@@ -133,15 +133,15 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 
     for (x = Xt; x > Xa; x--) {
       for (y = 0; y < rows; y++) {
-        table[x][y].row = table[x-1][y].row;
-        table[x][y].col = table[x-1][y].col;
-        table[x][y].row_name = table[x-1][y].row_name;
-        table[x][y].col_name = table[x-1][y].col_name;
-        table[x][y].attrib_value = table[x-1][y].attrib_value;
-        table[x][y].visibility = table[x-1][y].visibility;
-        table[x][y].show_name_value = table[x-1][y].show_name_value;
-        table[x][y].is_inherited = table[x-1][y].is_inherited;
-        table[x][y].is_promoted = table[x-1][y].is_promoted;
+        new_table[x][y].row = new_table[x-1][y].row;
+        new_table[x][y].col = new_table[x-1][y].col;
+        new_table[x][y].row_name = new_table[x-1][y].row_name;
+        new_table[x][y].col_name = new_table[x-1][y].col_name;
+        new_table[x][y].attrib_value = new_table[x-1][y].attrib_value;
+        new_table[x][y].visibility = new_table[x-1][y].visibility;
+        new_table[x][y].show_name_value = new_table[x-1][y].show_name_value;
+        new_table[x][y].is_inherited = new_table[x-1][y].is_inherited;
+        new_table[x][y].is_promoted = new_table[x-1][y].is_promoted;
       }
     }
     init_new_record(Xa);
