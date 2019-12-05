@@ -192,7 +192,9 @@ void s_toplevel_add_new_attrib(int column_location) {
     cur_tab = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
     sheet   = sheets[cur_tab];
 
-    if(column_location < 0) column_location = sheet->maxcol + 1;
+    if (column_location < 0) {
+      column_location = sheet->maxcol + 1;
+    }
 
     switch (cur_tab) {
       case Components:   /* component attribute sheet */
