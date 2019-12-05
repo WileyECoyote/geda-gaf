@@ -131,6 +131,8 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 
     int x;
 
+    /* Loop over the table, starting from the far right column, and
+     * shift columns to the right of Xa one column to the right */
     for (x = Xt; x > Xa; x--) {
       for (y = 0; y < rows; y++) {
         new_table[x][y].row = new_table[x-1][y].row;
@@ -144,6 +146,8 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
         new_table[x][y].is_promoted = new_table[x-1][y].is_promoted;
       }
     }
+
+    /* Now blank out the column at Xa */
     init_new_record(Xa);
   }
 
