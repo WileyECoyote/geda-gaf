@@ -146,6 +146,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
     }
     init_new_record(Xa);
   }
+
   return new_table;
 }
 
@@ -739,6 +740,7 @@ bool s_table_remove_attribute(TABLE **table, int X)
     }
     GEDA_FREE (table[col_count - 1]);
   }
+
   return TRUE;
 }
 
