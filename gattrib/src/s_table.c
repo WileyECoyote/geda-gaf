@@ -122,7 +122,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
     return NULL;  /* die if failed to realloc new memory */
   }
 
-  new_table[Xt] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));;
+  new_table[Xt] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));
 
   if (Xa == Xt) { /* if appending a column */
      init_new_record(Xt);
