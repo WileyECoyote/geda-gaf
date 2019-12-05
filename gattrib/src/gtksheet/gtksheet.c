@@ -4318,14 +4318,15 @@ void gtk_sheet_set_description(GtkSheet *sheet, const char *description)
   sheet->description = g_strdup(description);
 }
 
-/**
- * gtk_sheet_get_description:
- * \param sheet: a #GtkSheet
- * \param description: #GtkSheet description
+/*!
+ * \brief gtk_sheet_get_description
+ * \par Function Description
+ *  Get sheet description.
  *
- * Get sheet description.
+ * \param sheet        a #GtkSheet
+ * \param description  #GtkSheet description
  *
- * Returns: sheet description or NULL, do not modify or free it
+ * \returns sheet description or NULL, do not modify or free it
  */
 const char *gtk_sheet_get_description(GtkSheet *sheet, const char *description)
 {
@@ -4334,25 +4335,27 @@ const char *gtk_sheet_get_description(GtkSheet *sheet, const char *description)
   return (sheet->description);
 }
 
-/**
- * gtk_sheet_is_frozen:
- * \param sheet: the #GtkSheet
+/*!
+ * \brief gtk_sheet_is_frozen
+ * \par Function Description
+ *  Get freeze status.
  *
- * Get freeze status.
+ * \param sheet the #GtkSheet
  *
- * Returns: TRUE or FALSE wether the sheet is frozen
+ * \returns TRUE or FALSE wether the sheet is frozen
  */
 int gtk_sheet_is_frozen(GtkSheet *sheet)
 {
   return (GTK_SHEET_IS_FROZEN(sheet));
 }
 
-/**
- * gtk_sheet_freeze:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_freeze
+ * \par Function Description
+ *  Freeze all visual updates of the #GtkSheet. The updates will occure
+ *  in a more efficient way than if you made them on a unfrozen #GtkSheet.
  *
- * Freeze all visual updates of the #GtkSheet.
- * The updates will occure in a more efficient way than if you made them on a unfrozen #GtkSheet .
+ * \param sheet a #GtkSheet
  */
 void gtk_sheet_freeze(GtkSheet *sheet)
 {
