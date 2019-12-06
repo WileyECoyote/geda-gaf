@@ -103,15 +103,15 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 
   void init_new_record(int col) {
     for (y = 0; y < rows; y++) {
-      (table[col][y]).attrib_value = NULL;
-      (table[col][y]).row_name = NULL;
-      (table[col][y]).col_name = NULL;
-      (table[col][y]).row = y;
-      (table[col][y]).col = col;
-      (table[col][y]).is_inherited= FALSE;
-      (table[col][y]).is_promoted = -2;
-      (table[col][y]).visibility = VISIBLE;
-      (table[col][y]).show_name_value = SHOW_VALUE;
+      (new_table[col][y]).attrib_value = NULL;
+      (new_table[col][y]).row_name = NULL;
+      (new_table[col][y]).col_name = NULL;
+      (new_table[col][y]).row = y;
+      (new_table[col][y]).col = col;
+      (new_table[col][y]).is_inherited= FALSE;
+      (new_table[col][y]).is_promoted = -2;
+      (new_table[col][y]).visibility = VISIBLE;
+      (new_table[col][y]).show_name_value = SHOW_VALUE;
     }
   }
 

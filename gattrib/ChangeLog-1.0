@@ -2,6 +2,9 @@
 
     * src/s_sheet_data.c: Shorten attribute name string in function arguments.
 
+    * src/s_table.c: Revise s_table_add_column to use pointer to reallocated
+      memory, new_table, when initializing records.
+
 2019-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/globals.c: Include glib.h instead of gattrib.h.
