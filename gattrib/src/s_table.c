@@ -181,9 +181,7 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
       GEDA_FREE ((table[x][y]).row_name);
       GEDA_FREE ((table[x][y]).col_name);
     }
-  }
 
-  for (x = 0; x < col_count; x++) {
     GEDA_FREE (table[x]);
   }
 

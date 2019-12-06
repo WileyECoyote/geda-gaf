@@ -3,7 +3,8 @@
     * src/s_sheet_data.c: Shorten attribute name string in function arguments.
 
     * src/s_table.c: Revise s_table_add_column to use pointer to reallocated
-      memory, new_table, when initializing records.
+      memory, new_table, when initializing records. Consolidate loops in
+      s_table_destroy; release the row at the end of the first loop.
 
     * src/s_toplevel.c: Revise function s_toplevel_add_new_attrib to temporarily
       disable redrawing the sheet using gtk_sheet_freeze and gtk_sheet_thaw.
