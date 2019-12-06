@@ -196,6 +196,8 @@ void s_toplevel_add_new_attrib(int column_location) {
       column_location = sheet->maxcol + 1;
     }
 
+    gtk_sheet_freeze(sheet);
+
     switch (cur_tab) {
       case Components:   /* component attribute sheet */
 
@@ -249,6 +251,8 @@ void s_toplevel_add_new_attrib(int column_location) {
       fprintf(stderr, "s_string comp_attrib[%d] = [%s]\n",i , str);
     }
 #endif
+
+    gtk_sheet_thaw(sheet);
 
     sheet_head->CHANGED = TRUE;
 

@@ -5,6 +5,9 @@
     * src/s_table.c: Revise s_table_add_column to use pointer to reallocated
       memory, new_table, when initializing records.
 
+    * src/s_toplevel.c: Revise function s_toplevel_add_new_attrib to temporarily
+      disable redrawing the sheet using gtk_sheet_freeze and gtk_sheet_thaw.
+
 2019-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/globals.c: Include glib.h instead of gattrib.h.
