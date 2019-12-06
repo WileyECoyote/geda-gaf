@@ -1460,7 +1460,7 @@ gtk_sheet_get_area_at(GtkSheet *sheet, int x, int y)
  * \param tooltip
  * \param user_data
  *
- * \param return TRUE or FALSE wether to show the tip or not
+ * \param return TRUE or FALSE whether to show the tip or not
  */
 static int
 gtk_sheet_query_tooltip_handler(GtkWidget *widget,
@@ -3493,7 +3493,7 @@ void gtk_sheet_change_entry(GtkSheet *sheet, const GType entry_type)
 
     create_sheet_entry(sheet, entry_type ? entry_type : G_TYPE_NONE);
 
-    sheet->entry_type = entry_type;  /* save wanted type, no matter wether it failed */
+    sheet->entry_type = entry_type;  /* save wanted type, no matter whether it failed */
 
     if (state == GTK_SHEET_NORMAL) {
 
@@ -3713,7 +3713,7 @@ void gtk_sheet_set_autoresize(GtkSheet *sheet, int autoresize)
 /*!
  * \brief gtk_sheet_set_autoresize_columns
  * \par Function Description
- *  Controls wether columns will be autoresized upon deactivation,
+ *  Controls whether columns will be autoresized upon deactivation,
  *  as you type text or set a cell_text value. If you want the cells
  *  to be autoresized when you pack widgets look at gtk_sheet_attach_*.
  *
@@ -3730,7 +3730,7 @@ void gtk_sheet_set_autoresize_columns(GtkSheet *sheet, int autoresize)
 /*!
  * \brief gtk_sheet_set_autoresize_rows
  * \par Function Description
- *  Controls wether rows will be autoresized upon deactivation,
+ *  Controls whether rows will be autoresized upon deactivation,
  *  as you type text or set a cell_text value. If you want the
  *  cells to be autoresized when you pack widgets look at
  *  gtk_sheet_attach_*.
@@ -3915,7 +3915,7 @@ static void _gtk_sheet_update_extent(GtkSheet *sheet,
             colptr->max_extent_width, rowptr->max_extent_height);
 #endif
 
-    old_extent = cell->extent;  /* to check wether it was increased */
+    old_extent = cell->extent;  /* to check whether it was increased */
 
     if (!cell->text || !cell->text[0]) {
 
@@ -4342,7 +4342,7 @@ const char *gtk_sheet_get_description(GtkSheet *sheet, const char *description)
  *
  * \param sheet the #GtkSheet
  *
- * \returns TRUE or FALSE wether the sheet is frozen
+ * \returns TRUE or FALSE whether the sheet is frozen
  */
 int gtk_sheet_is_frozen(GtkSheet *sheet)
 {
@@ -8238,7 +8238,7 @@ gtk_sheet_cell_get_state(GtkSheet *sheet, int row, int col)
  * window (NULL) defaults to the sheet window.
  *
  * row and column may return values in the range [-1 .. max+1]
- * depending on wether the position lies within the title area,
+ * depending on whether the position lies within the title area,
  * the sheet cell area or beyond the outermost row/column.
  *
  * All 9 sheet areas can be reliably determined by evaluating
@@ -10265,8 +10265,8 @@ gtk_sheet_click_cell(GtkSheet *sheet, int row, int col, int *veto)
 #endif
       }
 
-      /* auto switch column entry_type */
-      /* not sure wether to move this code to gtk_sheet_show_active_cell() */
+      /* auto switch column entry_type, not sure whether to move this
+       * code to gtk_sheet_show_active_cell() */
       {
         GType installed_entry_type = sheet->installed_entry_type;
         GType wanted_type =
@@ -11196,8 +11196,8 @@ gtk_sheet_entry_key_press_handler(GtkWidget *widget, GdkEventKey *key, void *use
 
 #if 1
     /* process enter-event
-       - detect wether Return or Enter was pressed
-       - detect wether the application wants it to be handled by the sheet
+       - detect whether Return or Enter was pressed
+       - detect whether the application wants it to be handled by the sheet
        - if unwanted: execute appropriate application handler
        - use a new signal for this ?
        */
@@ -15543,7 +15543,7 @@ gtk_sheet_position_child(GtkSheet *sheet, GtkSheetChild *child)
  *
  * \param container the #GtkSheet
  * \param include_internals
- *                  Flag wether to include internal childs
+ *                  Flag whether to include internal childs
  * \param callback  a callback function
  * \param callback_data
  *                  callback user data
