@@ -144,7 +144,6 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
  */
 void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
 {
-
   STRING_LIST *prev;
   STRING_LIST *local_list;
 
