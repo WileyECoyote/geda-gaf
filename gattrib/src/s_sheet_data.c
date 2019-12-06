@@ -330,9 +330,9 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
           /* Don't include "refdes" or "slot" because they form the row name */
           /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
           if ((strcmp(attrib_name, "graphical") != 0) &&
-            (strcmp(attrib_name, "refdes") != 0) &&
-            (strcmp(attrib_name, "net") != 0) &&
-            (strcmp(attrib_name, "slot") != 0) )
+              (strcmp(attrib_name, "refdes") != 0) &&
+              (strcmp(attrib_name, "net") != 0) &&
+              (strcmp(attrib_name, "slot") != 0))
           {
 
             is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
