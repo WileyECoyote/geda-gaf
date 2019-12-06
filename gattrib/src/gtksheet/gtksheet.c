@@ -4370,15 +4370,16 @@ void gtk_sheet_freeze(GtkSheet *sheet)
 
 }
 
-/**
- * _gtk_sheet_redraw_internal:
- * \param sheet:  to be redrawn
- * \param reset_hadjustment: wether to reset horizontal adjustment
- * \param reset_vadjustment: wether to reset vertical adjustment
- *
- *  do a complete sheet redraw. used after rows/cols have been
+/*!
+ * \brief _gtk_sheet_redraw_internal
+ * \par Function Description
+ *  Do a complete sheet redraw. used after rows/cols have been
  *  appended/deleted or after combined operations while the
  *  sheet was frozen
+ *
+ * \param sheet              to be redrawn
+ * \param reset_hadjustment  whether to reset horizontal adjustment
+ * \param reset_vadjustment  whether to reset vertical adjustment
  */
 void _gtk_sheet_redraw_internal(GtkSheet *sheet,
                                 int       reset_hadjustment,
@@ -4437,12 +4438,14 @@ void _gtk_sheet_redraw_internal(GtkSheet *sheet,
   }
 }
 
-/**
- * gtk_sheet_thaw:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_thaw
+ * \par Function Description
+* Thaw the sheet after you have made a number of changes on a frozen sheet.
+ * The updates will occure in a more efficient way than if you made them on
+ * a unfrozen sheet.
  *
- * Thaw the sheet after you have made a number of changes on a frozen sheet.
- * The updates will occure in a more efficient way than if you made them on a unfrozen sheet .
+ * \param sheet a #GtkSheet
  */
 void gtk_sheet_thaw(GtkSheet *sheet)
 {
@@ -4499,12 +4502,13 @@ void gtk_sheet_thaw(GtkSheet *sheet)
     }
 }
 
-/**
- * gtk_sheet_set_row_titles_width:
- * \param sheet: a #GtkSheet
- * \param width: row titles width.
+/*!
+ * \brief gtk_sheet_set_row_titles_width
+ * \par Function Description
+ *  Resize row titles area.
  *
- * Resize row titles area.
+ * \param sheet  a #GtkSheet
+ * \param width  row titles width.
  */
 void gtk_sheet_set_row_titles_width(GtkSheet *sheet, unsigned int width)
 {
