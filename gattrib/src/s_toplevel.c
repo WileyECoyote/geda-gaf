@@ -231,6 +231,7 @@ void s_toplevel_add_new_attrib(int column_location) {
                                                          column_location, sheet_head->comp_attrib_count-1);
 
         break;
+
       case 1:  /* net attribute  */
         /* insert into net attribute list  */
         break;
@@ -253,6 +254,7 @@ void s_toplevel_add_new_attrib(int column_location) {
 
     GEDA_FREE(new_attrib_name);
   }
+
   return;
 }
 
