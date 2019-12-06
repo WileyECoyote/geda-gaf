@@ -129,21 +129,17 @@ s_sheet_data_add_comp(PageDataSet *PageData, const char *component_str_name)
 }
 
 static void
-s_sheet_data_add_comp_attrib(PageDataSet *PageData,
-                             const char *comp_attrib_str_name)
+s_sheet_data_add_comp_attrib(PageDataSet *PageData, const char *attrib_name)
 {
   s_string_list_add_item(PageData->master_comp_attrib_list_head,
-                         &(PageData->comp_attrib_count),
-                         comp_attrib_str_name);
+                         &(PageData->comp_attrib_count), attrib_name);
 }
 
 static void
-s_sheet_data_attached_attrib(PageDataSet *PageData,
-                             const char  *comp_attrib_str_name)
+s_sheet_data_attached_attrib(PageDataSet *PageData, const char  *attrib_name)
 {
   s_string_list_add_item(PageData->attached_attrib,
-                         &(PageData->attached_attrib_count),
-                         comp_attrib_str_name);
+                         &(PageData->attached_attrib_count), attrib_name);
 }
 
 static void
@@ -153,11 +149,10 @@ s_sheet_data_add_net(PageDataSet *PageData, const char *net_str_name)
                          &(PageData->net_count), net_str_name);
 }
 
-static void s_sheet_data_add_net_attrib(PageDataSet *PageData,
-                                        const char *net_attrib_str_name)
+static void s_sheet_data_add_net_attrib(PageDataSet *PageData, const char *net_name)
 {
   s_string_list_add_item(PageData->master_net_attrib_list_head,
-                         &(PageData->net_attrib_count),net_attrib_str_name);
+                         &(PageData->net_attrib_count),net_name);
 }
 
 static void
