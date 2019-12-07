@@ -4,6 +4,8 @@
 
     * po/nl.po: Update Dutch translations.
 
+    * po/pl.po: Update Polish translations
+
 2019-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Shorten attribute name string in function arguments.
