@@ -813,24 +813,25 @@ msgstr ""
 msgid "visible"
 msgstr ""
 
+# add
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "Lägg till"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
 msgstr "Lägg till ett nytt attribut"
 
+# delete
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "radera"
 
-# Detach the selected attribute
+# Delete selected attribute
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Lossa det valda attributet"
+msgstr "Radera valt attribut"
 
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
