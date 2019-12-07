@@ -815,23 +815,25 @@ msgstr ""
 msgid "visible"
 msgstr ""
 
+# add; dodati
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "додати"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
 msgstr "Додајте нови атрибут"
 
+# delete; izbriši
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "избриши"
 
+# Delete selected attribute; Izbrišite izabrani atribut
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Одвојите изабрани атрибут"
+msgstr "Избришите изабрани атрибут"
 
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"

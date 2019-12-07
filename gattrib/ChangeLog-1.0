@@ -14,6 +14,8 @@
 
     * po/sl.po: Update Slovenian translations.
 
+    * po/sr.po: Update Serbian translations.
+
 2019-12-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_sheet_data.c: Shorten attribute name string in function arguments.
