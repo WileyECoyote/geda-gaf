@@ -15033,8 +15033,9 @@ GtkSheetChild *gtk_sheet_put(GtkSheet *sheet, GtkWidget *child, int x, int y)
  * \param row: row number
  * \param col: column number
  *
- * The widget is attached to the top-left corner of a cell (row,column) and moves with it when you change width,
- * height, or you delete of add row/columns
+ * The widget is attached to the top-left corner of a cell (row,column)
+ * and moves with it when you change width, height, or you delete of add
+ * row/columns
  */
 void
 gtk_sheet_attach_floating(GtkSheet *sheet, GtkWidget *widget, int row, int col)
@@ -15062,10 +15063,12 @@ gtk_sheet_attach_floating(GtkSheet *sheet, GtkWidget *widget, int row, int col)
  * \param col: column number
  *
  * Attaches a child widget to the given cell with the 0,0 alignments.
- * Works basically like gtk_table_attach, with the same options, the widget is confined in the cell, and whether it fills the
- * cell, expands with it, or shrinks with it, depending on the options.
- * The child is reallocated each time the column or row changes, keeping attached to the same cell.
- * It's in fact gtk_sheet_attach() with GTK_EXPAND set.
+ * Works basically like gtk_table_attach, with the same options, the
+ * widget is confined in the cell, and whether it fills the cell,
+ * expands with it, or shrinks with it, depending on the options.
+ * The child is reallocated each time the column or row changes,
+ * keeping attached to the same cell. It's in fact gtk_sheet_attach()
+ * with GTK_EXPAND set.
  */
 void
 gtk_sheet_attach_default(GtkSheet *sheet,
@@ -15093,9 +15096,11 @@ gtk_sheet_attach_default(GtkSheet *sheet,
  * \param ypadding: y coordinate of the alignment
  *
  * Attaches a child widget to the given cell with the given alignments.
- * Works basically like gtk_table_attach, with the same options, the widget is confined in the cell, and whether it fills the
- * cell, expands with it, or shrinks with it, depending on the options , if GTK_EXPAND is set.
- * The child is reallocated each time the column or row changes, keeping attached to the same cell.
+ * Works basically like gtk_table_attach, with the same options, the widget
+ * is confined in the cell, and whether it fills the cell, expands with it,
+ * or shrinks with it, depending on the options , if GTK_EXPAND is set.
+ * The child is reallocated each time the column or row changes, keeping
+ * attached to the same cell.
  */
 void gtk_sheet_attach(GtkSheet *sheet, GtkWidget *widget, int row,
                                                           int col,
