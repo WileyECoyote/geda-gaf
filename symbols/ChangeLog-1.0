@@ -12,6 +12,8 @@
             * simulation/verilog/and8-1.sym
             * simulation/verilog/and9-1.sym
 
+    * simulation/verilog/opad-1.sym: Add description attribute.
+
 2019-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/kmutual-1.sym: Add footprint and description.
