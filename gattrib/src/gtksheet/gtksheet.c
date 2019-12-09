@@ -4573,7 +4573,7 @@ void gtk_sheet_show_row_titles(GtkSheet *sheet)
  * gtk_sheet_hide_row_titles:
  * \param sheet a #GtkSheet
  *
- * Hide row titles .
+ * Hide row titles.
  */
 void gtk_sheet_hide_row_titles(GtkSheet *sheet)
 {
@@ -4616,7 +4616,7 @@ void gtk_sheet_hide_row_titles(GtkSheet *sheet)
  * gtk_sheet_row_titles_visible:
  * \param sheet: a #GtkSheet
  *
- * Get the visibility of row column titles .
+ * Get the visibility of row column titles.
  *
  * Returns: TRUE or FALSE
  */
@@ -4963,7 +4963,7 @@ int gtk_sheet_row_sensitive(GtkSheet *sheet, int row)
  * \param row: row number
  * \param sensitive: TRUE or FALSE
  *
- * Set row button sensitivity. If sensitivity is TRUE can be toggled, otherwise it acts as a title .
+ * Set row button sensitivity. If sensitivity is TRUE can be toggled, otherwise it acts as a title.
  */
 void gtk_sheet_row_set_sensitivity(GtkSheet *sheet, int row,  int sensitive)
 {
