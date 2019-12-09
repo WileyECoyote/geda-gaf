@@ -6,6 +6,9 @@
     * src/x_fileselect.c: Add ancillary point to uri in x_fileselect_load_file in
       order to release the string returned from g_filename_to_uri.
 
+    * src/x_window.c: Revise x_window_attached_toggle to utilize gtk_sheet_freeze
+      and gtk_sheet_thaw to temporarily disable redrawing of the sheet.
+
 2019-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nb.po: Update Norwegian Bokmal translations.

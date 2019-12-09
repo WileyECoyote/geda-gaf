@@ -607,6 +607,8 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   bool show = gtk_toggle_action_get_active(action);
   int count = sheet->maxcol;
 
+  gtk_sheet_freeze (sheet);
+
   for ( i = 0; i <= count; i++) {
 
     if (show) {
@@ -647,6 +649,8 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   x = (show) ? x - TOGGLE_ATTACH_X_OFFSET : x + TOGGLE_ATTACH_X_OFFSET;
 
   gtk_window_resize(main_window, x, y);
+
+  gtk_sheet_thaw (sheet);
 
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
