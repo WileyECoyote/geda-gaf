@@ -21,8 +21,8 @@
  */
 
 /**
- * SECTION: gtksheetcolumn
- * @short_description: A spreadsheet column widget for #GtkSheet
+ * \section gtksheetcolumn
+ * \brief short_description: A spreadsheet column widget for #GtkSheet
  *
  * The #GtkSheetColumn provides properties for sheet columns.
  */
