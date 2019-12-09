@@ -229,8 +229,9 @@ void s_toplevel_add_new_attrib(int column_location) {
 
         /* resize table to accomodate new attrib col      */
         sheet_head->component_table = s_table_add_column(sheet_head->component_table,  /* Table */
-                                                         sheet_head->comp_count,             /* number of rows */
-                                                         column_location, sheet_head->comp_attrib_count-1);
+                                                         sheet_head->comp_count,       /* number of rows */
+                                                         column_location,
+                                                         sheet_head->comp_attrib_count-1);
 
         break;
 
