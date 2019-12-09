@@ -110,6 +110,7 @@ bool x_fileselect (char *filename)
 bool x_fileselect_load_file (char *filename) {
 
   const GList *Objects;
+         char *uri;
 
   if (!quiet_mode) {
     geda_log ("%s: \"%s\"\n", _("Loading file"), filename);
@@ -137,8 +138,12 @@ bool x_fileselect_load_file (char *filename) {
   s_sheet_data_add_master_pin_list_items (Objects);
   s_sheet_data_add_master_pin_attrib_list_items (Objects);
 
-  gtk_recent_manager_add_item (recent_manager,
-                               g_filename_to_uri(filename, NULL, NULL));
+  uri = g_filename_to_uri(filename, NULL, NULL);
+
+  gtk_recent_manager_add_item (recent_manager, uri);
+
+  geda_free (uri);
+
   return TRUE;
 }
 

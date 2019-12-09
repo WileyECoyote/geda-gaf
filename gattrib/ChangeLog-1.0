@@ -3,6 +3,9 @@
     * src/s_table.c: Increase allocation by 1 more than Xt in s_table_add_column,
       otherwise the allocation is not being resized.
 
+    * src/x_fileselect.c: Add ancillary point to uri in x_fileselect_load_file in
+      order to release the string returned from g_filename_to_uri.
+
 2019-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/nb.po: Update Norwegian Bokmal translations.
