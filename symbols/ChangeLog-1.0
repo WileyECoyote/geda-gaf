@@ -4,12 +4,13 @@
       pinlabel and pinnumber:
 
             * simulation/verilog/and2-1.sym
+            * simulation/verilog/and3-1.sym
 
 2019-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/kmutual-1.sym: Add footprint and description.
 
-    * simulation/verilog/and2-1.sym Update pinlabel and resequence
+    * simulation/verilog/and2-1.sym: Update pinlabel and resequence
       attributes.
 
     * simulation/: Update pintype attributes:
