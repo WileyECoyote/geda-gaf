@@ -1,3 +1,10 @@
+2019-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute positions, visibilities, and swap
+      pinlabel and pinnumber:
+
+            * simulation/verilog/and2-1.sym
+
 2019-12-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/kmutual-1.sym: Add footprint and description.
