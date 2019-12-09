@@ -4525,11 +4525,12 @@ void gtk_sheet_set_row_titles_width(GtkSheet *sheet, unsigned int width)
     _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-/**
- * gtk_sheet_show_row_titles:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_show_row_titles
+ * \par Function Description
+ *  Show row titles.
  *
- * Show row titles .
+ * \param sheet a #GtkSheet
  */
 void gtk_sheet_show_row_titles(GtkSheet *sheet)
 {
@@ -4569,11 +4570,12 @@ void gtk_sheet_show_row_titles(GtkSheet *sheet)
   _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-/**
- * gtk_sheet_hide_row_titles:
- * \param sheet a #GtkSheet
+/*!
+ * \brief gtk_sheet_hide_row_titles
+ * \par Function Description
+ *  Hide row titles.
  *
- * Hide row titles.
+ * \param sheet a #GtkSheet
  */
 void gtk_sheet_hide_row_titles(GtkSheet *sheet)
 {
@@ -4612,13 +4614,14 @@ void gtk_sheet_hide_row_titles(GtkSheet *sheet)
   _gtk_sheet_redraw_internal(sheet, TRUE, FALSE);
 }
 
-/**
- * gtk_sheet_row_titles_visible:
- * \param sheet: a #GtkSheet
+/*!
+ * \brief gtk_sheet_row_titles_visible
+ * \par Function Description
+ *  Get the visibility of row column titles.
  *
- * Get the visibility of row column titles.
+ * \param sheet a #GtkSheet
  *
- * Returns: TRUE or FALSE
+ * \retval TRUE or FALSE
  */
 int gtk_sheet_row_titles_visible(GtkSheet *sheet)
 {
