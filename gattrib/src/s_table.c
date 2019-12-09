@@ -85,7 +85,7 @@ TABLE **s_table_new( int rows, int cols)
  * \brief Add Comlumn to the Component TABLE
  * \par Function Description
  *  This function adds a column to the component table by increasing the
- *  allocated memory and initialized the new column record. If the coloumn
+ *  allocated memory and initialized the new column record. If the column
  *  is inserted rather than appended, existing record are relocated to
  *  make room for the insertion.
  *
