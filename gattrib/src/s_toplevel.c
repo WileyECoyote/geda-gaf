@@ -141,10 +141,10 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
   /* read data from gtksheet into PageDataSet */
   s_table_gtksheet_to_all_tables();
 
+  iter = geda_toplevel_get_pages(toplevel);
+
   /* iterate over all pages in design */
-  for ( iter  = geda_toplevel_get_pages(toplevel);
-        iter != NULL;
-        iter  = g_list_next( iter ) ) {
+  for (; iter != NULL; iter  = g_list_next(iter)) {
 
     Page *p_current = (Page*)iter->data;
 
