@@ -204,7 +204,7 @@ void s_toplevel_add_new_attrib(int column_location) {
         if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
           strcpy(msg_buffer, "Can not add \"");
           strcat(msg_buffer, new_attrib_name);
-          strcat(msg_buffer, "\", \nAttribute name are ready exist!");
+          strcat(msg_buffer, "\", \nAttribute name already exist!");
           generic_msg_dialog( msg_buffer );
           GEDA_FREE(new_attrib_name);
           return;
