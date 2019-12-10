@@ -4630,14 +4630,14 @@ int gtk_sheet_row_titles_visible(GtkSheet *sheet)
   return (sheet->row_titles_visible);
 }
 
-
-/**
- * gtk_sheet_set_row_title:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param title: row title
+/*!
+ * \brief gtk_sheet_set_row_title
+ * \par Function Description
+ *  Set row title.
  *
- * Set row title.
+ * \param sheet  a #GtkSheet
+ * \param row    row number
+ * \param title  row title
  */
 void gtk_sheet_set_row_title(GtkSheet *sheet,
     int row,
@@ -4651,15 +4651,15 @@ void gtk_sheet_set_row_title(GtkSheet *sheet,
   sheet->row[row].name = g_strdup(title);
 }
 
-/**
- * gtk_sheet_get_row_title:
- * \param sheet: a #GtkSheet
- * \param row: row number
+/*!
+ * \brief gtk_sheet_get_row_title
+ * \par Function Description
+ *  Get row title.
  *
- * Get row title.
+ * \param sheet  a #GtkSheet
+ * \param row    row number
  *
- * Returns: a pointer to the row title or NULL.
- * Do not modify or free it.
+ * \returns Pointer to the row title or NULL, do not modify or free it.
  */
 const char *gtk_sheet_get_row_title(GtkSheet *sheet,
     int row)
@@ -4669,13 +4669,14 @@ const char *gtk_sheet_get_row_title(GtkSheet *sheet,
   return (sheet->row[row].name);
 }
 
-/**
- * gtk_sheet_row_button_add_label:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param label: text label
+/*!
+ * \brief gtk_sheet_row_button_add_label
+ * \par Function Description
+ *  Set button label.It is used to set a row title.
  *
- * Set button label.It is used to set a row title.
+ * \param sheet  a #GtkSheet
+ * \param row    row number
+ * \param label  text label
  */
 void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
 {
