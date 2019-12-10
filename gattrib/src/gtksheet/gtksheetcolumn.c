@@ -195,8 +195,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         {
           colobj->justification = justification;
         }
-        else
+        else {
           gtk_sheet_column_set_justification(sheet, col, justification);
+        }
       }
       break;
 
@@ -210,8 +211,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         {
           colobj->is_key = is_key;
         }
-        else
+        else {
           gtk_sheet_column_set_iskey(sheet, col, is_key);
+        }
       }
       break;
 
@@ -225,8 +227,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         {
           colobj->is_readonly = is_readonly;
         }
-        else
+        else {
           gtk_sheet_column_set_readonly(sheet, col, is_readonly);
+        }
       }
       break;
 
@@ -241,8 +244,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
           if (colobj->data_type) g_free(colobj->data_type);
           colobj->data_type = g_strdup(data_type);
         }
-        else
+        else {
           gtk_sheet_column_set_datatype(sheet, col, data_type);
+        }
       }
       break;
 
@@ -275,8 +279,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
           if (colobj->description) g_free(colobj->description);
           colobj->description = g_strdup(description);
         }
-        else
+        else {
           gtk_sheet_column_set_description(sheet, col, description);
+        }
       }
       break;
 
@@ -290,8 +295,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         {
           colobj->entry_type = entry_type;
         }
-        else
+        else {
           gtk_sheet_column_set_entry_type(sheet, col, entry_type);
+        }
       }
       break;
 
@@ -305,8 +311,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         {
           colobj->vjust = vjust;
         }
-        else
+        else {
           gtk_sheet_column_set_vjustification(sheet, col, vjust);
+        }
       }
       break;
 
@@ -325,8 +332,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         {
           GTK_SHEET_COLUMN_SET_VISIBLE(colobj, visible);
         }
-        else
+        else {
           gtk_sheet_column_set_visibility(sheet, col, visible);
+        }
       }
       break;
 
