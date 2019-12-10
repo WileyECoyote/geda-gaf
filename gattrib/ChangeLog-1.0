@@ -8,7 +8,8 @@
 
     * src/s_toplevel.c: Translate unknown page error in s_toplevel_gtksheet_
       to_toplevel attempt to duplicate attribute name message in s_toplevel_
-      add_new_attrib.
+      add_new_attrib and revise s_toplevel_add_new_attrib documentation to
+      eliminate use of neutered pronoun.
 
 2019-12-09 Wiley E. Hill <wileyhill@gmail.com>
 

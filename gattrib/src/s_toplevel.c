@@ -174,13 +174,13 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
 /*!
  * \brief Add a new attribute to the top level
  * \par Function Description
- *  This function gets called when the user has entered a new attrib name,
- *  and clicks the OK button. It does this:
- *  -# It figures out which attrib/sheet is being added to
- *  -# It destroys the old table in preparation for the new attrib.
- *  -# It adds the new attrib to the master lists.
- *  -# It creates a new table with the new attrib.
- *  -# It then adds the appropriate col to the gtksheet.
+ *  This function is called when the user elects to add or insert a
+ *  new attribute. The function:
+ *
+ *  -# Displays a dialog to prompt the user for the new attribute name
+ *  -# Handles which attrib/sheet is being modified
+ *  -# Adds the new attrib to the master lists.
+ *  -# Adds the appropriate col to the gtksheet.
  *
  * \param column_location The column the attribute is to be added
  */
