@@ -6,8 +6,9 @@
       a g_object then the "!gtk_widget_get_realized" condition will always
       be true, albeit with noise.
 
-    * src/s_toplevel.c: Translate attempt to duplicate attribute name message
-      in s_toplevel_add_new_attrib.
+    * src/s_toplevel.c: Translate unknown page error in s_toplevel_gtksheet_
+      to_toplevel attempt to duplicate attribute name message in s_toplevel_
+      add_new_attrib.
 
 2019-12-09 Wiley E. Hill <wileyhill@gmail.com>
 

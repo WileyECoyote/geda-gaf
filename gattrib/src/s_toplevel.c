@@ -157,10 +157,14 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
       }
     }
     else {
-       strcpy(msg_buffer, "Unknown error selecting page <");
-       strcat(msg_buffer, p_current->filename);
-       strcat(msg_buffer, ">, \n!");
-       generic_msg_dialog( msg_buffer );
+
+      const char *msg = _("Unknown error selecting page");
+
+      strcpy(msg_buffer, msg);
+      strcat(msg_buffer, " <");
+      strcat(msg_buffer, p_current->filename);
+      strcat(msg_buffer, ">, \n!");
+      generic_msg_dialog( msg_buffer );
     }
   }
   return;
@@ -203,8 +207,8 @@ void s_toplevel_add_new_attrib(int column_location) {
 
         if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
 
-          const char *msg1= _("Can not add");
-          const char *msg2= _("Attribute name already exist!");
+          const char *msg1 = _("Can not add");
+          const char *msg2 = _("Attribute name already exist!");
 
           strcpy(msg_buffer, msg1);
           strcat(msg_buffer, " \"");
