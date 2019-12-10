@@ -3,8 +3,11 @@
     * src/gtksheet/gtksheetcolumn.c: Revise gtk_sheet_column_set_property;
       remove the "or not g_object" conditions. If the sheet was null then
       gtk_sheet_column_get_index would return for -1 for col AND if is not
-      a g_object then the "!gtk_widget_get_realized condition will always
+      a g_object then the "!gtk_widget_get_realized" condition will always
       be true, albeit with noise.
+
+    * src/s_toplevel.c: Translate attempt to duplicate attribute name message
+      in s_toplevel_add_new_attrib.
 
 2019-12-09 Wiley E. Hill <wileyhill@gmail.com>
 

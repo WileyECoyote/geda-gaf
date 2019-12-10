@@ -202,10 +202,17 @@ void s_toplevel_add_new_attrib(int column_location) {
       case Components:   /* component attribute sheet */
 
         if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
-          strcpy(msg_buffer, "Can not add \"");
+
+          const char *msg1= _("Can not add");
+          const char *msg2= _("Attribute name already exist!");
+
+          strcpy(msg_buffer, msg1);
+          strcat(msg_buffer, " \"");
           strcat(msg_buffer, new_attrib_name);
-          strcat(msg_buffer, "\", \nAttribute name already exist!");
-          generic_msg_dialog( msg_buffer );
+          strcat(msg_buffer, "\",\n");
+          strcat(msg_buffer, msg2);
+
+          generic_msg_dialog (msg_buffer);
           GEDA_FREE(new_attrib_name);
           return;
         }
