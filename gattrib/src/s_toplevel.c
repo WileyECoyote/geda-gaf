@@ -205,8 +205,8 @@ void s_toplevel_add_new_attrib(int column_location) {
     switch (cur_tab) {
       case Components:   /* component attribute sheet */
 
-        if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
-
+        if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name))
+        {
           const char *msg1 = _("Can not add");
           const char *msg2 = _("Attribute name already exist!");
 
