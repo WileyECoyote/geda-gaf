@@ -360,7 +360,7 @@ int s_string_list_in_list(STRING_LIST *list, char *item)
   /* Otherwise, loop through list looking for duplicates */
   while (list != NULL) {
 
-    if (strcmp(list->data, item) == 0) {
+    if (geda_stricmp(list->data, item) == 0) {
       /* Found item already in list.  return 1. */
       return 1;
     }
