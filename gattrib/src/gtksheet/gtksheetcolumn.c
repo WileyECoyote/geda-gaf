@@ -425,7 +425,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     gobject_class->set_property = gtk_sheet_column_set_property;
     gobject_class->get_property = gtk_sheet_column_get_property;
 
-    /**
+    /*!
      * GtkSheetColumn:position:
      *
      * The packing position of the column
@@ -437,7 +437,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_POSITION, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:label:
      *
      * Label of the column button
@@ -449,7 +449,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_LABEL, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:width:
      *
      * Width of the column
@@ -461,7 +461,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_WIDTH, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:justification:
      *
      * Justification of the column
@@ -474,7 +474,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_JUSTIFICATION, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:iskey:
      *
      * Flag for key columns
@@ -486,7 +486,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_ISKEY, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:readonly:
      *
      * Lock column contents for editing.
@@ -498,7 +498,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_READONLY, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:datatype:
      *
      * no functionality, a datatype hint for the application because
@@ -511,7 +511,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_DATATYPE, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:dataformat:
      *
      * a formatting string that controls what you see when the
@@ -524,7 +524,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_DATAFMT, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:description:
      *
      * Description of column contents
@@ -536,7 +536,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_DESCRIPTION, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:entry-type:
      *
      * Column cell entry widget type
@@ -549,7 +549,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_ENTRY_TYPE, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:vjust:
      *
      * Column vertical cell text justification
@@ -562,7 +562,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_VJUST, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:visible:
      *
      * Visible property for columns
@@ -574,7 +574,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_VISIBLE, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:max-length:
      *
      * Maximum number orf characters in this column, Zero if no
@@ -593,7 +593,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_MAX_LENGTH, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:max-length-bytes:
      *
      * Set the maximum length in bytes for the GtkDataEntry. For
@@ -617,7 +617,7 @@ static void gtk_sheet_column_class_init_properties(GObjectClass *gobject_class)
     g_object_class_install_property(gobject_class,
                                     PROP_SHEET_COLUMN_MAX_LENGTH_BYTES, pspec);
 
-    /**
+    /*!
      * GtkSheetColumn:wrap-mode:
      *
      *  This property is passed to the sheet entry editor. It is
