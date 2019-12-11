@@ -255,7 +255,9 @@ static void gtk_sheet_column_set_property(GObject      *object,
         const char *description = g_value_get_string(value);
 
         if ((col < 0) || !gtk_widget_get_realized(GTK_WIDGET(sheet))) {
-          if (colobj->description) g_free(colobj->description);
+          if (colobj->description) {
+            g_free(colobj->description);
+          }
           colobj->description = g_strdup(description);
         }
         else {
