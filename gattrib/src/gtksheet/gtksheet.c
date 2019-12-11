@@ -4722,15 +4722,15 @@ void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
   g_signal_emit(G_OBJECT(sheet), sheet_signals[CHANGED], 0, row, -1);
 }
 
-/**
- * gtk_sheet_row_button_get_label:
- * \param sheet: a #GtkSheet
- * \param row: row number
+/*!
+ * \brief gtk_sheet_row_button_get_label
+ * \par Function Description
+ *  Get a row button label.
  *
- * Get a row button label.
+ * \param sheet  a #GtkSheet
+ * \param row    row number
  *
- * Returns: In case of succes , a pointer to label
- * text.Otherwise NULL
+ * \return In case of succes, a pointer to label text, otherwise NULL.
  */
 const char *gtk_sheet_row_button_get_label(GtkSheet *sheet, int row)
 {
@@ -4742,13 +4742,14 @@ const char *gtk_sheet_row_button_get_label(GtkSheet *sheet, int row)
   return (sheet->row[row].button.label);
 }
 
-/**
- * gtk_sheet_row_label_set_visibility:
- * \param sheet: a #GtkSheet
- * \param row: row number
- * \param visible: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_row_label_set_visibility
+ * \par Function Description
+ *  Set row label visibility.
  *
- * Set row label visibility.
+ * \param sheet    a #GtkSheet
+ * \param row      row number
+ * \param visible  TRUE or FALSE
  */
 void
 gtk_sheet_row_label_set_visibility(GtkSheet *sheet, int row, int visible)
@@ -4766,14 +4767,15 @@ gtk_sheet_row_label_set_visibility(GtkSheet *sheet, int row, int visible)
   }
 }
 
-/**
- * gtk_sheet_rows_labels_set_visibility:
- * \param sheet: a #GtkSheet
- * \param visible: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_rows_labels_set_visibility
+ * \par Function Description
+ *  Set all rows label visibility. The sheet itself has no such property,
+ *  this is a convenience function to set the property for all existing
+ *  rows.
  *
- * Set all rows label visibility. The sheet itself
- * has no such property, this is a convenience function to set
- * the property for all existing rows.
+ * \param sheet    a #GtkSheet
+ * \param visible  TRUE or FALSE
  */
 void gtk_sheet_rows_labels_set_visibility(GtkSheet *sheet, int visible)
 {
