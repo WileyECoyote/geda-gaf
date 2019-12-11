@@ -344,78 +344,77 @@ static void gtk_sheet_column_get_property(GObject      *object,
     GtkSheet *sheet = colobj->sheet;
     int col = gtk_sheet_column_get_index(colobj);
 
-    switch(property_id)
-    {
-        case PROP_SHEET_COLUMN_POSITION:
-            {
-                if (!sheet) return;
-                if (col >= 0) g_value_set_int(value, col);
-            }
-            break;
+    switch(property_id) {
+      case PROP_SHEET_COLUMN_POSITION:
+      {
+        if (!sheet) return;
+        if (col >= 0) g_value_set_int(value, col);
+      }
+      break;
 
-        case PROP_SHEET_COLUMN_LABEL:
-            g_value_set_string(value, colobj->button.label);
-            break;
+      case PROP_SHEET_COLUMN_LABEL:
+        g_value_set_string(value, colobj->button.label);
+        break;
 
-        case PROP_SHEET_COLUMN_WIDTH:
-            g_value_set_int(value, colobj->width);
-            break;
+      case PROP_SHEET_COLUMN_WIDTH:
+        g_value_set_int(value, colobj->width);
+        break;
 
-        case PROP_SHEET_COLUMN_JUSTIFICATION:
-            g_value_set_enum(value, colobj->justification);
-            break;
+      case PROP_SHEET_COLUMN_JUSTIFICATION:
+        g_value_set_enum(value, colobj->justification);
+        break;
 
-        case PROP_SHEET_COLUMN_ISKEY:
-            g_value_set_boolean(value, colobj->is_key);
-            break;
+      case PROP_SHEET_COLUMN_ISKEY:
+        g_value_set_boolean(value, colobj->is_key);
+        break;
 
-        case PROP_SHEET_COLUMN_READONLY:
-            g_value_set_boolean(value, colobj->is_readonly);
-            break;
+      case PROP_SHEET_COLUMN_READONLY:
+        g_value_set_boolean(value, colobj->is_readonly);
+        break;
 
-        case PROP_SHEET_COLUMN_DATATYPE:
-            g_value_set_string(value, colobj->data_type);
-            break;
+      case PROP_SHEET_COLUMN_DATATYPE:
+        g_value_set_string(value, colobj->data_type);
+        break;
 
-        case PROP_SHEET_COLUMN_DATAFMT:
-            g_value_set_string(value, colobj->data_format);
-            break;
+      case PROP_SHEET_COLUMN_DATAFMT:
+        g_value_set_string(value, colobj->data_format);
+        break;
 
-        case PROP_SHEET_COLUMN_DESCRIPTION:
-            g_value_set_string(value, colobj->description);
-            break;
+      case PROP_SHEET_COLUMN_DESCRIPTION:
+        g_value_set_string(value, colobj->description);
+        break;
 
-        case PROP_SHEET_COLUMN_ENTRY_TYPE:
-            {
-                GtkSheetEntryType et = _gtk_sheet_entry_type_from_gtype(colobj->entry_type);
-                g_value_set_enum(value, et);
-            }
-            break;
+      case PROP_SHEET_COLUMN_ENTRY_TYPE:
+      {
+        GtkSheetEntryType et = _gtk_sheet_entry_type_from_gtype(colobj->entry_type);
+        g_value_set_enum(value, et);
+      }
+      break;
 
-        case PROP_SHEET_COLUMN_VJUST:
-            g_value_set_enum(value, colobj->vjust);
-            break;
+      case PROP_SHEET_COLUMN_VJUST:
+        g_value_set_enum(value, colobj->vjust);
+        break;
 
-        case PROP_SHEET_COLUMN_VISIBLE:
-            g_value_set_boolean(value, GTK_SHEET_COLUMN_IS_VISIBLE(colobj));
-            break;
+      case PROP_SHEET_COLUMN_VISIBLE:
+        g_value_set_boolean(value, GTK_SHEET_COLUMN_IS_VISIBLE(colobj));
+        break;
 
-        case PROP_SHEET_COLUMN_MAX_LENGTH:
-            g_value_set_int(value, colobj->max_length);
-            break;
+      case PROP_SHEET_COLUMN_MAX_LENGTH:
+        g_value_set_int(value, colobj->max_length);
+        break;
 
-	case PROP_SHEET_COLUMN_MAX_LENGTH_BYTES:
-	    g_value_set_int(value, colobj->max_length_bytes);
-	    break;
+      case PROP_SHEET_COLUMN_MAX_LENGTH_BYTES:
+        g_value_set_int(value, colobj->max_length_bytes);
+        break;
 
-	case PROP_SHEET_COLUMN_WRAP_MODE:
-	    g_value_set_enum(value, colobj->wrap_mode);
-	    break;
+      case PROP_SHEET_COLUMN_WRAP_MODE:
+        g_value_set_enum(value, colobj->wrap_mode);
+        break;
 
-        default:
-            /* We don't have any other property... */
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
-            break;
+      default:
+        /* We don't have any other property... */
+        G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
+        break;
     }
 }
 
