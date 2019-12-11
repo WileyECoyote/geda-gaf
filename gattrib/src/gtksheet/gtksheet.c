@@ -4672,7 +4672,7 @@ const char *gtk_sheet_get_row_title(GtkSheet *sheet,
 /*!
  * \brief gtk_sheet_row_button_add_label
  * \par Function Description
- *  Set button label.It is used to set a row title.
+ *  Set button label. It is used to set a row title.
  *
  * \param sheet  a #GtkSheet
  * \param row    row number
