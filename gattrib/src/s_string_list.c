@@ -339,9 +339,9 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
 
 /*------------------------------------------------------------------*/
 /*!
- * \brief Detect item in list
+ * \brief Detect string in list
  * \par Function Description
- *  Look for item in the list.
+ *  Look for string in the list ignoring case.
  *
  * \param list pointer to the STRING_LIST struct
  * \param item string to search for
@@ -351,7 +351,7 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
 int s_string_list_in_list(STRING_LIST *list, char *item)
 {
   /* First check to see if list is empty.  If empty, return
-   * 0 automatically.  (I probably don't need to handle this
+   * 0 automatically.  (probably don't need to handle this
    * separately.)  */
   if (list->data == NULL) {
     return 0;
