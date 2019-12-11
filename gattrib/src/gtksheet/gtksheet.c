@@ -4730,7 +4730,7 @@ void gtk_sheet_row_button_add_label(GtkSheet *sheet, int row, const char *label)
  * \param sheet  a #GtkSheet
  * \param row    row number
  *
- * \return In case of succes, a pointer to label text, otherwise NULL.
+ * \return In case of success, a pointer to label text, otherwise NULL.
  */
 const char *gtk_sheet_row_button_get_label(GtkSheet *sheet, int row)
 {
