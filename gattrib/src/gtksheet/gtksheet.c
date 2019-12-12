@@ -24,17 +24,16 @@
  * SECTION: gtksheet
  * \param short_description: A spreadsheet widget for Gtk+
  *
- * #GtkSheet is a matrix widget for GTK+. It consists of an scrollable grid of
- * cells where you can put text or other GtkWidget's in. Cells
- * are organized in rows (#GtkSheetRow) and columns
- * (#GtkSheetColumn). Cell contents can be edited interactively
- * through a specially designed entry (#GtkItemEntry). A
- * #GtkSheet is also a container subclass, allowing you to
- * display buttons, curves, pixmaps and any other widget in it.
- * You can also set many attributes as: border, foreground and
- * background color, text justification, and more. The
- * testgtksheet program shows how easy is to create a
- * spreadsheet-like GUI using this widget set.
+ * #GtkSheet is a matrix widget for GTK+. It consists of an scrollable
+ * grid of cells where you can put text or other GtkWidget's in. Cells
+ * are organized in rows (#GtkSheetRow) and columns (#GtkSheetColumn).
+ * Cell contents can be edited interactively through a specially designed
+ * entry (#GtkItemEntry). A #GtkSheet is also a container subclass,
+ * allowing you to display buttons, curves, pixmaps and any other widget
+ * in it. You can also set many attributes as: border, foreground and
+ * background color, text justification, and more. The testgtksheet
+ * program shows how easy is to create a spreadsheet-like GUI using
+ * this widget set.
  */
 
 
