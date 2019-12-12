@@ -868,9 +868,10 @@ gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
 {
     int i, res = -1;
 
-    for (i = 0; i <= sheet->maxcol; i++)
-    {
-        if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) res = i;
+    for (i = 0; i <= sheet->maxcol; i++) {
+        if (GTK_SHEET_COLUMN_IS_VISIBLE(COLPTR(sheet, i))) {
+          res = i;
+        }
     }
 
     return (res);
@@ -888,7 +889,9 @@ gtk_sheet_column_rightmost_visible(GtkSheet *sheet)
 int
 _gtk_sheet_column_left_xpixel(GtkSheet *sheet, int col)
 {
-    if (col < 0 || col > sheet->maxcol) return (sheet->hoffset);
+    if (col < 0 || col > sheet->maxcol) {
+      return (sheet->hoffset);
+    }
     return (sheet->hoffset + COLPTR(sheet, col)->left_xpixel);
 }
 
@@ -907,7 +910,9 @@ int
 _gtk_sheet_column_right_xpixel(GtkSheet *sheet, int col)
 {
     int xpixel = _gtk_sheet_column_left_xpixel(sheet, col);
-    if (0 <= col && col <= sheet->maxcol) xpixel += COLPTR(sheet, col)->width;
+    if (0 <= col && col <= sheet->maxcol) {
+      xpixel += COLPTR(sheet, col)->width;
+    }
     return (xpixel);
 }
 
