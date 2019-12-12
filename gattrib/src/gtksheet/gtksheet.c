@@ -4784,15 +4784,14 @@ void gtk_sheet_rows_labels_set_visibility(GtkSheet *sheet, int visible)
   for (i = 0; i <= sheet->maxrow; i++) gtk_sheet_row_label_set_visibility(sheet, i, visible);
 }
 
-
-/**
- * gtk_sheet_row_button_justify:
- * \param sheet: a #GtkSheet.
- * \param row: row number
- * \param justification: a #GtkJustification :GTK_JUSTIFY_LEFT, RIGHT,
- *  			 CENTER
+/*!
+ * \brief gtk_sheet_row_button_justify
+ * \par Function Description
+ *  Set the justification(alignment) of the row buttons.
  *
- * Set the justification(alignment) of the row buttons.
+ * \param sheet          a #GtkSheet.
+ * \param row            row number
+ * \param justification  a #GtkJustification :GTK_JUSTIFY_LEFT, RIGHT, CENTER
  */
 void gtk_sheet_row_button_justify(GtkSheet *sheet, int row,
                                   GtkJustification justification)
@@ -4813,24 +4812,24 @@ void gtk_sheet_row_button_justify(GtkSheet *sheet, int row,
   }
 }
 
-/**
- * gtk_sheet_moveto:
- * \param sheet: a #GtkSheet.
- * \param row: row number
- * \param column: column number
- * \param row_align: row alignment
- * \param col_align: column alignment
+/*!
+ * \brief gtk_sheet_moveto
+ * \par Function Description
+ *  Scroll the viewing area of the sheet to the given column and row;
+ *  row_align and col_align are between 0-1 representing the location
+ *  the row should appear on the screnn, 0 being top or left,
+ *  1 being bottom or right.
  *
- * Scroll the viewing area of the sheet to the given column and row;
+ *  passing row_align/col_align of -1 will suppress movement in that
+ *  direction.
  *
- * row_align and col_align are between 0-1 representing the location
- * the row should appear on the screnn, 0 being top or left,
- * 1 being bottom or right.
+ *  if row or column is negative then there is no change
  *
- * passing row_align/col_align of -1 will suppress movement in
- * that direction.
- *
- * if row or column is negative then there is no change
+ * \param sheet      a #GtkSheet.
+ * \param row        row number
+ * \param column     column number
+ * \param row_align  row alignment
+ * \param col_align  column alignment
  */
 
 void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_align)
@@ -4940,16 +4939,15 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
 }
 
 
-/**
- * gtk_sheet_row_sensitive:
- * \param sheet: a #GtkSheet.
- * \param row: row number
+/*!
+ * \brief gtk_sheet_row_sensitive
+ * \par Function Description
+ *  Get row button sensitivity.
  *
- * Get row button sensitivity.
+ * \param sheet  a #GtkSheet.
+ * \param row    row number
  *
- * Returns:
- * TRUE - is sensitive,
- * FALSE - insensitive or not existant
+ * \returns TRUE - is sensitive, FALSE - insensitive or not existant
  */
 int gtk_sheet_row_sensitive(GtkSheet *sheet, int row)
 {
