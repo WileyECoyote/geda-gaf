@@ -4890,8 +4890,7 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
 
     sheet->old_vadjustment = -1.;
 
-    if (sheet->vadjustment)
-    {
+    if (sheet->vadjustment) {
       g_signal_emit_by_name(G_OBJECT(sheet->vadjustment), "value_changed");
     }
   }
@@ -4901,15 +4900,15 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
 
     int x;
 
-    if (col_align == 0)  /* align left cell border */
-    {
+    if (col_align == 0)  { /* align left cell border */
+
       x = _gtk_sheet_column_left_xpixel(sheet, col) - sheet->hoffset;
 
       if (sheet->row_titles_visible)
         x -= sheet->row_title_area.width; /* to right edge of title area*/
     }
-    else  /* align right cell border */
-    {
+    else  { /* align right cell border */
+
       x = _gtk_sheet_column_left_xpixel(sheet, col) - sheet->hoffset
       + COLPTR(sheet, col)->width;
 
@@ -4931,8 +4930,7 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
 
     sheet->old_hadjustment = -1.;
 
-    if (sheet->hadjustment)
-    {
+    if (sheet->hadjustment) {
       g_signal_emit_by_name(G_OBJECT(sheet->hadjustment), "value_changed");
     }
   }
