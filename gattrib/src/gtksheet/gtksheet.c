@@ -24,7 +24,7 @@
  * SECTION: gtksheet
  * \param short_description: A spreadsheet widget for Gtk+
  *
- * #GtkSheet is a matrix widget for GTK+. It consists of an scrollable
+ * #GtkSheet is a matrix widget for GTK+, consisting of a scrollable
  * grid of cells where you can put text or other GtkWidget's in. Cells
  * are organized in rows (#GtkSheetRow) and columns (#GtkSheetColumn).
  * Cell contents can be edited interactively through a specially designed
