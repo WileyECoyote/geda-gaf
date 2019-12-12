@@ -809,15 +809,15 @@ gtk_sheet_column_get_type(void)
     return (sheet_column_type);
 }
 
-/**
- * gtk_sheet_column_get:
+/*!
+ * \brief gtk_sheet_column_get
+ * \par Function Description
+ *  Get a #GtkSheetColumn.
+ *
  * \param sheet  a #GtkSheet.
- * \param col column index
+ * \param col    column index
  *
- * Get a #GtkSheetColumn
- *
- * \returns	(transfer none) the requested #GtkSheetColumn or
- * NULL
+ * \returns	(transfer none) the requested #GtkSheetColumn or NULL
  */
 GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
 {
@@ -829,11 +829,12 @@ GtkSheetColumn *gtk_sheet_column_get(GtkSheet *sheet, int col)
 }
 
 
-/**
- * gtk_sheet_column_get_index:
- * \param colobj #GtkSheetColumn to find
+/*!
+ * \brief gtk_sheet_column_get_index
+ * \par Function Description
+ *  Find index of @colobj in GtkSheet.
  *
- * find index of @colobj in GtkSheet
+ * \param colobj #GtkSheetColumn to find
  *
  * \returns column index or -1
  */
@@ -853,11 +854,12 @@ gtk_sheet_column_get_index(GtkSheetColumn *colobj)
 }
 
 
-/**
- * gtk_sheet_column_rightmost_visible:
- * \param sheet  the sheet
+/*!
+ * \brief gtk_sheet_column_rightmost_visible
+ * \par Function Description
+ *  Rightmost visible column index.
  *
- * rightmost visible column index
+ * \param sheet  the sheet
  *
  * \returns index of rightmost visible column or -1 (if none)
  */
