@@ -4841,10 +4841,10 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
   g_return_if_fail(sheet->hadjustment != NULL);
   g_return_if_fail(sheet->vadjustment != NULL);
 
-  #if GTK_SHEET_DEBUG_MOVE > 0
+#if GTK_SHEET_DEBUG_MOVE > 0
   fprintf(stderr,"gtk_sheet_moveto: row %d col %d row_align %d col_align %d",
           row, col, row_align, col_align);
-  #endif
+#endif
 
   if (row < 0 || row > sheet->maxrow)
     return;
@@ -4875,13 +4875,13 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
       y -= height;  /* to bottom edge of window */
     }
 
-    #if GTK_SHEET_DEBUG_ADJUSTMENT > 0
+#if GTK_SHEET_DEBUG_ADJUSTMENT > 0
     fprintf(stderr,"gtk_sheet_moveto: rowTpx %d voffs %d height %d rheight %d colTw %s y %d",
             _gtk_sheet_row_top_ypixel(sheet, row), sheet->voffset,
             height, sheet->row[row].height,
             sheet->column_titles_visible ? "Yes" : "No",
             y);
-    #endif
+#endif
 
     if (y < 0)
       gtk_adjustment_set_value(sheet->vadjustment, 0.0);
