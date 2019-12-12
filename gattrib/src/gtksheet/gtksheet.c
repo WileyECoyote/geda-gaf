@@ -4848,6 +4848,7 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
 
   if (row < 0 || row > sheet->maxrow)
     return;
+
   if (col < 0 || col > sheet->maxcol)
     return;
 
@@ -4883,10 +4884,12 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
             y);
 #endif
 
-    if (y < 0)
+    if (y < 0) {
       gtk_adjustment_set_value(sheet->vadjustment, 0.0);
-    else
+    }
+    else {
       gtk_adjustment_set_value(sheet->vadjustment, y);
+    }
 
     sheet->old_vadjustment = -1.;
 
@@ -4923,10 +4926,12 @@ void gtk_sheet_moveto(GtkSheet *sheet, int row, int col, int row_align, int col_
             x);
 #endif
 
-    if (x < 0)
+    if (x < 0) {
       gtk_adjustment_set_value(sheet->hadjustment, 0.0);
-    else
+    }
+    else {
       gtk_adjustment_set_value(sheet->hadjustment, x);
+    }
 
     sheet->old_hadjustment = -1.;
 
@@ -4951,8 +4956,9 @@ int gtk_sheet_row_sensitive(GtkSheet *sheet, int row)
 {
   g_return_val_if_fail(GTK_IS_SHEET(sheet), FALSE);
 
-  if (row < 0 || row > sheet->maxrow)
+  if (row < 0 || row > sheet->maxrow) {
     return (FALSE);
+  }
 
   return (GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)));
 }
@@ -4969,18 +4975,24 @@ void gtk_sheet_row_set_sensitivity(GtkSheet *sheet, int row,  int sensitive)
 {
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
-  if (row < 0 || row > sheet->maxrow)
+  if (row < 0 || row > sheet->maxrow) {
     return;
+  }
 
   GTK_SHEET_ROW_SET_SENSITIVE(ROWPTR(sheet, row), sensitive);
 
-  if (!sensitive)
+  if (!sensitive) {
     sheet->row[row].button.state = GTK_STATE_INSENSITIVE;
-  else
+  }
+  else {
     sheet->row[row].button.state = GTK_STATE_NORMAL;
+  }
 
-  if (gtk_widget_get_realized((GtkWidget*)sheet) && !GTK_SHEET_IS_FROZEN(sheet))
+  if (gtk_widget_get_realized((GtkWidget*)sheet) &&
+     !GTK_SHEET_IS_FROZEN(sheet))
+  {
     _gtk_sheet_draw_button(sheet, row, -1);
+  }
 }
 
 /**
@@ -4999,7 +5011,9 @@ void gtk_sheet_rows_set_sensitivity(GtkSheet *sheet, int sensitive)
 
   g_return_if_fail(GTK_IS_SHEET(sheet));
 
-  for (i = 0; i <= sheet->maxrow; i++) gtk_sheet_row_set_sensitivity(sheet, i, sensitive);
+  for (i = 0; i <= sheet->maxrow; i++) {
+    gtk_sheet_row_set_sensitivity(sheet, i, sensitive);
+  }
 }
 
 /**
