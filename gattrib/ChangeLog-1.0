@@ -4,6 +4,9 @@
       that the Okay button is on the right side and set alternative button
       order. Replace gtk_widget_show_all with gtk_widget_show.
 
+    * src/s_string_list: Revise s_string_list_in_list to checks for NULL
+      string inside the loop instead of only checking the first item.
+
 2019-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_string_list.c: Replace strcmp with geda_stricmp in function

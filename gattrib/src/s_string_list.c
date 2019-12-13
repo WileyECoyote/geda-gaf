@@ -350,19 +350,14 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
  */
 int s_string_list_in_list(STRING_LIST *list, char *item)
 {
-  /* First check to see if list is empty.  If empty, return
-   * 0 automatically.  (probably don't need to handle this
-   * separately.)  */
-  if (list->data == NULL) {
-    return 0;
-  }
-
   /* Otherwise, loop through list looking for duplicates */
   while (list != NULL) {
 
-    if (geda_stricmp(list->data, item) == 0) {
-      /* Found item already in list.  return 1. */
-      return 1;
+    if (list->data) {
+      if (geda_stricmp(list->data, item) == 0) {
+        /* Found item already in list.  return 1. */
+        return 1;
+      }
     }
 
     list = list->next;
