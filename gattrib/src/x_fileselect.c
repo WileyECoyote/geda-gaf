@@ -170,8 +170,9 @@ bool x_fileselect_load_files (GSList *filenames)
 
     char *filename = ptrname->data;
 
-    if ( !x_fileselect_load_file(filename))
+    if (!x_fileselect_load_file(filename)) {
        ret_val = FALSE;
+    }
   }   /* end of loop over files     */
 
   return ret_val;
