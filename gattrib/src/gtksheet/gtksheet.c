@@ -5406,7 +5406,8 @@ void gtk_sheet_cell_set_tooltip_text(GtkSheet *sheet,
  * \param sheet: a #GtkSheet.
  * \param row: row number
  *
- * Select the row. The range is then highlighted, and the bounds are stored in sheet->range.
+ * Select the row. The range is then highlighted, and the bounds
+ * are stored in sheet->range.
  */
 void gtk_sheet_select_row(GtkSheet *sheet, int row)
 {
@@ -5443,7 +5444,8 @@ void gtk_sheet_select_row(GtkSheet *sheet, int row)
  * \param sheet: a #GtkSheet.
  * \param column: column number
  *
- * Select the column. The range is then highlighted, and the bounds are stored in sheet->range.
+ * Select the column. The range is then highlighted, and the bounds
+ * are stored in sheet->range.
  */
 void gtk_sheet_select_column(GtkSheet *sheet, int column)
 {
@@ -6282,7 +6284,8 @@ gtk_sheet_realize_handler(GtkWidget *widget)
  * \param event  the GdkEventButton which triggered this signal
  * \param data   the #GtkSheet passed on signal connection
  *
- * \param return TRUE to stop other handlers from being invoked for the event. FALSE to propagate the event further.
+ * \param return TRUE to stop other handlers from being invoked for the
+ *        event. FALSE to propagate the event further.
  */
 static int
 global_button_press_handler(GtkWidget      *widget,
