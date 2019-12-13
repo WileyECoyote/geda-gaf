@@ -122,6 +122,12 @@ char *x_dialog_new_attrib()
 
   container = gtk_dialog_get_content_area(dialog);
 
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(dialog,
+                                          GEDA_RESPONSE_OK,
+                                          GEDA_RESPONSE_CANCEL,
+                                          -1);
+
   gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_OK);
 
   /*  Create a text label for the dialog window */
