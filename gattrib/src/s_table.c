@@ -410,8 +410,8 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   old_visibility      = geda_object_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
                   old_show_name_value = a_current->show_name_value;
 
-                  /* Don't include "refdes" or "slot" because they form the row name. */
-                  /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
+                  /* Do not include "refdes" or "slot" because they form the row name. */
+                  /* Also do not include "net" per bug found by Steve W. 4.3.2007 -- SDB */
                   if ((strcmp(attrib_name, "refdes") != 0) &&
                       (strcmp(attrib_name, "net") != 0) &&
                       (strcmp(attrib_name, "slot") != 0))
