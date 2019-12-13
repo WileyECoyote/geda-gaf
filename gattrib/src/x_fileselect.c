@@ -119,8 +119,8 @@ bool x_fileselect_load_file (char *filename) {
   geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
   if (s_toplevel_read_page(pr_current, filename) == 0) {
-     fprintf(stderr,"%s: \"%s\"\n",  _("Could not load schematic"), filename);
-     return FALSE;
+    fprintf(stderr,"%s: \"%s\"\n",  _("Could not load schematic"), filename);
+    return FALSE;
   }
 
   Objects = geda_struct_page_get_objects (pr_current->page_current);
@@ -195,12 +195,9 @@ GSList *x_fileselect_open (void)
 
   dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_OPEN);
 
-  g_object_set (dialog,
-                /* GedaFileChooser */
-                "select-multiple", TRUE,
-                NULL);
+  g_object_set (dialog, "select-multiple", TRUE, NULL);
 
-  /* add file filters to dialog */
+  /* Add file filters to dialog */
 
   gtk_widget_show (dialog);
 
