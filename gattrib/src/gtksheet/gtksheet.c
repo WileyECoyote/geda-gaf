@@ -4963,13 +4963,15 @@ int gtk_sheet_row_sensitive(GtkSheet *sheet, int row)
   return (GTK_SHEET_ROW_IS_SENSITIVE(ROWPTR(sheet, row)));
 }
 
-/**
- * gtk_sheet_row_set_sensitivity:
- * \param sheet: a #GtkSheet.
- * \param row: row number
- * \param sensitive: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_row_set_sensitivity
+ * \par Function Description
+ *  Set row button sensitivity. If sensitivity is TRUE can be toggled,
+ *  otherwise it acts as a title.
  *
- * Set row button sensitivity. If sensitivity is TRUE can be toggled, otherwise it acts as a title.
+ * \param sheet      a #GtkSheet.
+ * \param row        row number
+ * \param sensitive: TRUE or FALSE
  */
 void gtk_sheet_row_set_sensitivity(GtkSheet *sheet, int row,  int sensitive)
 {
@@ -4995,15 +4997,16 @@ void gtk_sheet_row_set_sensitivity(GtkSheet *sheet, int row,  int sensitive)
   }
 }
 
-/**
- * gtk_sheet_rows_set_sensitivity:
- * \param sheet: a #GtkSheet.
- * \param sensitive: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_rows_set_sensitivity
+ * \par Function Description
+ *  Set rows buttons sensitivity. If sensitivity is TRUE button
+ *  can be toggled, otherwise act as titles. The sheet itself
+ *  has no such property, it is a convenience function to set the
+ *  property for all existing rows.
  *
- * Set rows buttons sensitivity. If sensitivity is TRUE button
- * can be toggled, otherwise act as titles. The sheet itself
- * has no such property, it is a convenience function to set the
- * property for all existing rows.
+ * \param sheet      a #GtkSheet.
+ * \param sensitive  TRUE or FALSE
  */
 void gtk_sheet_rows_set_sensitivity(GtkSheet *sheet, int sensitive)
 {
@@ -5016,12 +5019,13 @@ void gtk_sheet_rows_set_sensitivity(GtkSheet *sheet, int sensitive)
   }
 }
 
-/**
- * gtk_sheet_rows_set_resizable:
- * \param sheet: a #GtkSheet.
- * \param resizable: TRUE or FALSE
+/*!
+ * \brief gtk_sheet_rows_set_resizable
+ * \par Function Description
+ *  Set rows resizable status.
  *
- * Set rows resizable status.
+ * \param sheet      a #GtkSheet.
+ * \param resizable  TRUE or FALSE
  */
 void gtk_sheet_rows_set_resizable(GtkSheet *sheet, int resizable)
 {
