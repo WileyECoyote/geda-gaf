@@ -1,3 +1,8 @@
+2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so
+      that the Okay button is on the right side.
+
 2019-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_string_list.c: Replace strcmp with geda_stricmp in function

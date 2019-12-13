@@ -114,8 +114,8 @@ char *x_dialog_new_attrib()
   /* Create the dialog */
   widget = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
                                        GTK_DIALOG_MODAL,
-                                       GTK_STOCK_OK, GEDA_RESPONSE_OK,
                                        GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                       GTK_STOCK_OK, GEDA_RESPONSE_OK,
                                        NULL);
 
   dialog = (GtkDialog*)widget;
