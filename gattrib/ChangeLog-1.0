@@ -1,7 +1,8 @@
 2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so
-      that the Okay button is on the right side.
+      that the Okay button is on the right side. Replace gtk_widget_show_all
+      with gtk_widget_show.
 
 2019-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
