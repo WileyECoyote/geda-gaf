@@ -10,6 +10,8 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so
