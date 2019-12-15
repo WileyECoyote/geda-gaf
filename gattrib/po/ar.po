@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2010-02-08 18:58+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -462,7 +462,7 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "سمة النص"
 
@@ -840,10 +840,6 @@ msgid "Search and Replace attribute value"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "السمة"
-
-#: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
 msgstr "تحديد سمة"
 
@@ -918,3 +914,6 @@ msgstr "حفظ هندسة النافذة الرئيسية والإعدادات.\
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "استعادة الرئيسية نافذة الهندسة والإعدادات.\n"
+
+#~ msgid "Attrib"
+#~ msgstr "السمة"

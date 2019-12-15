@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -484,7 +484,7 @@ msgid "not found!"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "Дтрибут"
 
@@ -857,11 +857,6 @@ msgstr "Поиск значения атрибута"
 msgid "Search and Replace attribute value"
 msgstr "Поиск и замена значения атрибута"
 
-# Attribute
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "Дтрибут"
-
 # Locate attribute
 #: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
@@ -930,6 +925,10 @@ msgstr ""
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+# Attribute
+#~ msgid "Attrib"
+#~ msgstr "Дтрибут"
 
 #~ msgid "Are you sure you want to delete this attribute?"
 #~ msgstr "Вы уверены, что хотите удалить этот атрибут?"

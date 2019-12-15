@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2012-04-09 11:22+0000\n"
 "Last-Translator: Miha Gašperšič <mihec.gaspersic@gmail.com>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -434,7 +434,7 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "Atribut"
 
@@ -803,11 +803,6 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
-# Attribute
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "Atribut"
-
 # Locate attribute
 #: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
@@ -876,3 +871,7 @@ msgstr ""
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+# Attribute
+#~ msgid "Attrib"
+#~ msgstr "Atribut"

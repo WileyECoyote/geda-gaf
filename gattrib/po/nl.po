@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -487,7 +487,7 @@ msgstr "Kon niet schematische laden"
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "Attribuut"
 
@@ -852,10 +852,6 @@ msgid "Search and Replace attribute value"
 msgstr "Zoeken en vervangen attribuutwaarde"
 
 #: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "Attribuut"
-
-#: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
 msgstr "Zoek attribuut"
 
@@ -921,6 +917,9 @@ msgstr ""
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Attrib"
+#~ msgstr "Attribuut"
 
 #~ msgid "Are you sure you want to delete this attribute?"
 #~ msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"

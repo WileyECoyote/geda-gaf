@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2012-03-21 00:09+0000\n"
 "Last-Translator: ghas <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -437,7 +437,7 @@ msgid "not found!"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "Atributo"
 
@@ -805,11 +805,6 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
-# Atributo
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "Atributo"
-
 # Locate attribute
 #: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
@@ -886,6 +881,10 @@ msgstr "Gardando xeometría e axustes da xanela principal.\n"
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "Restaurar a xeometría e configuración orixinais.\n"
+
+# Atributo
+#~ msgid "Attrib"
+#~ msgstr "Atributo"
 
 #~ msgid ""
 #~ "You are running gEDA/gaf version [%s%s.%s],\n"

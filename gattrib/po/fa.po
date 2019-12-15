@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -439,7 +439,7 @@ msgid "not found!"
 msgstr ""
 
 # Attribute
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "صفت"
 
@@ -809,11 +809,6 @@ msgstr ""
 msgid "Search and Replace attribute value"
 msgstr ""
 
-# Attribute
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "جنبه"
-
 # Locate attribute
 #: gattrib/src/x_toolbars.c:42
 msgid "Locate attribute"
@@ -893,3 +888,7 @@ msgstr "صرفه جویی در هندسه پنجره و تنظیمات\n"
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr "بازیابی هندسه اصلی و تنظیمات اصلی.\n"
+
+# Attribute
+#~ msgid "Attrib"
+#~ msgstr "جنبه"

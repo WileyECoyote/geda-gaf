@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -424,7 +424,7 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr ""
 
@@ -774,10 +774,6 @@ msgstr ""
 
 #: gattrib/src/x_toolbars.c:41
 msgid "Search and Replace attribute value"
-msgstr ""
-
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
 msgstr ""
 
 #: gattrib/src/x_toolbars.c:42
