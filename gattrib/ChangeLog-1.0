@@ -4,6 +4,8 @@
 
     * po/oc.po: Update Occitan translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so
