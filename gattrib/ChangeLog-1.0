@@ -1,3 +1,7 @@
+2019-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ca.po: Update Catalan translations.
+
 2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so

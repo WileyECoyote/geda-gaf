@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -459,7 +459,7 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "atribut"
 
@@ -813,29 +813,30 @@ msgstr ""
 msgid "Save the file to different name or location"
 msgstr ""
 
+# Cut selection to the clipboard
 #: gattrib/src/x_toolbars.c:37
 msgid "Cut selection to the clipboard"
-msgstr ""
+msgstr "Retalla la selecció al porta-retalls"
 
+# Copy selection to the clipboard
 #: gattrib/src/x_toolbars.c:38
 msgid "Copy selection to the clipboard"
-msgstr ""
+msgstr "Copieu la selecció al porta-retalls"
 
+# Paste selection from the clipboard
 #: gattrib/src/x_toolbars.c:39
 msgid "Paste selection from the clipboard"
 msgstr ""
 
+# Search for attribute value
 #: gattrib/src/x_toolbars.c:40
 msgid "Search for attribute value"
-msgstr ""
+msgstr "Cerqueu el valor d'atribut"
 
+# Search and Replace attribute value
 #: gattrib/src/x_toolbars.c:41
 msgid "Search and Replace attribute value"
-msgstr ""
-
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "atributs"
+msgstr "Cerqueu i substituïu el valor dels atributs"
 
 # Locate Attribute
 #: gattrib/src/x_toolbars.c:42
@@ -846,21 +847,25 @@ msgstr "localitza atribut"
 msgid "Ref Des"
 msgstr "Ref Des"
 
+# Locate Reference Designator
 #: gattrib/src/x_toolbars.c:43
 msgid "Locate Reference Designator"
 msgstr "Localitza referència de designació"
 
+# invisible
 #: gattrib/src/x_toolbars.c:46
 msgid "invisible"
-msgstr ""
+msgstr "invisible"
 
+# visible
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
-msgstr ""
+msgstr "visible"
 
+# add
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "afegir"
 
 #: gattrib/src/x_toolbars.c:48
 msgid "Add a new attribute"
@@ -911,3 +916,6 @@ msgstr "Desant la geometria i la configuració de la finestra principal.\n"
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
 "Recuperació de la configuració i de la geometria de la finestra principal.\n"
+
+#~ msgid "Attrib"
+#~ msgstr "atributs"
