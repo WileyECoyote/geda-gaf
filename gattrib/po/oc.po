@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:32-0600\n"
+"POT-Creation-Date: 2019-12-14 19:48-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Occitan (post 1500) <oc@li.org>\n"
@@ -449,7 +449,7 @@ msgstr ""
 msgid "not found!"
 msgstr ""
 
-#: gattrib/src/x_find.c:401
+#: gattrib/src/x_find.c:401 gattrib/src/x_toolbars.c:42
 msgid "Attribute"
 msgstr "Atribut"
 
@@ -795,29 +795,30 @@ msgstr ""
 msgid "Save the file to different name or location"
 msgstr ""
 
+# Cut selection to the clipboard
 #: gattrib/src/x_toolbars.c:37
 msgid "Cut selection to the clipboard"
-msgstr ""
+msgstr "Retalha la seleccion al pòrta-de parraquets"
 
+# Copy selection to the clipboard
 #: gattrib/src/x_toolbars.c:38
 msgid "Copy selection to the clipboard"
-msgstr ""
+msgstr "Copiatz la seleccion al pòrta-de parraquets"
 
+# Paste selection from the clipboard
 #: gattrib/src/x_toolbars.c:39
 msgid "Paste selection from the clipboard"
-msgstr ""
+msgstr "Enganchatz la seleccion dempuèi lo pòrta-de parraquets"
 
+# Search for attribute value
 #: gattrib/src/x_toolbars.c:40
 msgid "Search for attribute value"
-msgstr ""
+msgstr "Cercatz la valor de atribut"
 
+# Search and Replace attribute value
 #: gattrib/src/x_toolbars.c:41
 msgid "Search and Replace attribute value"
-msgstr ""
-
-#: gattrib/src/x_toolbars.c:42
-msgid "Attrib"
-msgstr "Atribut"
+msgstr "Cercatz e substituissètz la valor dels atributs"
 
 # Locate attribute
 #: gattrib/src/x_toolbars.c:42
@@ -826,23 +827,27 @@ msgstr "localiza atribut"
 
 #: gattrib/src/x_toolbars.c:43
 msgid "Ref Des"
-msgstr ""
+msgstr "referéncia designacion"
 
+# Locate Reference Designator
 #: gattrib/src/x_toolbars.c:43
 msgid "Locate Reference Designator"
-msgstr ""
+msgstr "Localiza referéncia de designacion"
 
+# invisible
 #: gattrib/src/x_toolbars.c:46
 msgid "invisible"
-msgstr ""
+msgstr "invisible"
 
+# visible
 #: gattrib/src/x_toolbars.c:47
 msgid "visible"
-msgstr ""
+msgstr "Visible"
 
+# add
 #: gattrib/src/x_toolbars.c:48
 msgid "add"
-msgstr ""
+msgstr "Apondre"
 
 # Add a new attribute
 #: gattrib/src/x_toolbars.c:48
@@ -851,13 +856,12 @@ msgstr "Apond un nòu atribut"
 
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "eliminar"
 
-# Detach the selected attribute
+# Delete selected attribute
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "Desmontatz lo atribut seleccionat "
+msgstr "Suprimís lo atribut seleccionat"
 
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
@@ -886,6 +890,9 @@ msgstr ""
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
 msgstr ""
+
+#~ msgid "Attrib"
+#~ msgstr "Atribut"
 
 #~ msgid ""
 #~ "You are running gEDA/gaf version [%s%s.%s],\n"
