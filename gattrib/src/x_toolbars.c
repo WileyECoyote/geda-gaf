@@ -31,16 +31,16 @@
 /* See IDS_Toolbar enumerations in include/globals.h */
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
-  { "open_button",       N_("Open"),     N_("Open file"), "Private"},
-  { "save_button",       N_("Save"),     N_("Save file"), "Private"},
-  { "save_as_button",    N_("Save As"),  N_("Save the file to different name or location"), "Private"},
-  { "cut_button",        N_("Cut"),      N_("Cut selection to the clipboard"), "Private"},
-  { "copy_button",       N_("Copy"),     N_("Copy selection to the clipboard"), "Private"},
-  { "paste_button",      N_("Paste"),    N_("Paste selection from the clipboard"), "Private"},
-  { "find_button",       N_("Find"),     N_("Search for attribute value"), "Private"},
-  { "replace_button",    N_("Replace"),  N_("Search and Replace attribute value"), "Private"},
-  { "attribute_button",  N_("Attrib"),   N_("Locate attribute"), "Private"},
-  { "designator_button", N_("Ref Des"),  N_("Locate Reference Designator"), "Private"},
+  { "open_button",       N_("Open"),      N_("Open file"), "Private"},
+  { "save_button",       N_("Save"),      N_("Save file"), "Private"},
+  { "save_as_button",    N_("Save As"),   N_("Save the file to different name or location"), "Private"},
+  { "cut_button",        N_("Cut"),       N_("Cut selection to the clipboard"), "Private"},
+  { "copy_button",       N_("Copy"),      N_("Copy selection to the clipboard"), "Private"},
+  { "paste_button",      N_("Paste"),     N_("Paste selection from the clipboard"), "Private"},
+  { "find_button",       N_("Find"),      N_("Search for attribute value"), "Private"},
+  { "replace_button",    N_("Replace"),   N_("Search and Replace attribute value"), "Private"},
+  { "attribute_button",  N_("Attribute"), N_("Locate attribute"), "Private"},
+  { "designator_button", N_("Ref Des"),   N_("Locate Reference Designator"), "Private"},
 
    /* Attribute Toolbar */
   { "invisible_button",  N_("invisible"), N_("Set selected invisible")},
