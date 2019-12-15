@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-11-23 19:23-0600\n"
+"POT-Creation-Date: 2019-12-14 19:32-0600\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -150,81 +150,93 @@ msgstr ""
 msgid "Increase the number of rename_pairs (MAX_RENAME) in"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:242
+#: gattrib/src/s_sheet_data.c:237
 #, c-format
 msgid "Creating master component list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:308
+#: gattrib/src/s_sheet_data.c:303
 #, c-format
 msgid "Creating master component attribute list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:436
+#: gattrib/src/s_sheet_data.c:431
 #, c-format
 msgid "Creating master pin list.\n"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:486
+#: gattrib/src/s_sheet_data.c:481
 msgid "found component pin without a pin number"
 msgstr ""
 
-#: gattrib/src/s_sheet_data.c:551
+#: gattrib/src/s_sheet_data.c:546
 msgid "Creating master pin attribute list"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:152
+#: gattrib/src/s_string_list.c:151
 msgid "attempted to add to a NULL list.\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:219
+#: gattrib/src/s_string_list.c:218
 msgid "attempted to remove item from an empty list\n"
 msgstr ""
 
-#: gattrib/src/s_string_list.c:285
+#: gattrib/src/s_string_list.c:284
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:358 gattrib/src/s_table.c:421
+#: gattrib/src/s_table.c:363 gattrib/src/s_table.c:426
 msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:362 gattrib/src/s_table.c:426
+#: gattrib/src/s_table.c:367 gattrib/src/s_table.c:431
 msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:579
+#: gattrib/src/s_table.c:584
 msgid "Creating pin table"
 msgstr ""
 
-#: gattrib/src/s_table.c:650
+#: gattrib/src/s_table.c:655
 msgid "Pin Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:655
+#: gattrib/src/s_table.c:660
 msgid "Pin Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:276
+#: gattrib/src/s_toplevel.c:161
+msgid "Unknown error selecting page"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:210
+msgid "Can not add"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:211
+msgid "Attribute name already exist!"
+msgstr ""
+
+#: gattrib/src/s_toplevel.c:298
 msgid ""
 "Are you sure you want to delete\n"
 "the"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:280
+#: gattrib/src/s_toplevel.c:302
 msgid "attribute"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:497
+#: gattrib/src/s_toplevel.c:519
 msgid "did not find the refdes in the master list\n"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:856
+#: gattrib/src/s_toplevel.c:878
 #, c-format
 msgid "Error: object missing either refdes or pinnumber!"
 msgstr ""
 
-#: gattrib/src/s_toplevel.c:865
+#: gattrib/src/s_toplevel.c:887
 msgid "did not find refdes:pin"
 msgstr ""
 
@@ -232,23 +244,23 @@ msgstr ""
 msgid "Add new attribute"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:128
+#: gattrib/src/x_dialog.c:134
 msgid "Enter new attribute name"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:229
+#: gattrib/src/x_dialog.c:236
 msgid "Column Visibility"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:277
+#: gattrib/src/x_dialog.c:284
 msgid "Visible"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:298
+#: gattrib/src/x_dialog.c:305
 msgid "Column"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:359
+#: gattrib/src/x_dialog.c:366
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
@@ -259,23 +271,23 @@ msgid ""
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:372
+#: gattrib/src/x_dialog.c:379
 msgid "Missing symbol file found for component!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:402
+#: gattrib/src/x_dialog.c:409
 msgid "Save the changes before closing?"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:405
+#: gattrib/src/x_dialog.c:412
 msgid "If you do not save, all your changes will be permanently lost."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:421
+#: gattrib/src/x_dialog.c:428
 msgid "Close without saving"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:479
+#: gattrib/src/x_dialog.c:486
 msgid ""
 "Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
@@ -289,15 +301,15 @@ msgid ""
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:487
+#: gattrib/src/x_dialog.c:494
 msgid "Unimplemented feature!"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:514
+#: gattrib/src/x_dialog.c:521
 msgid "Fatal error"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:530
+#: gattrib/src/x_dialog.c:537
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -311,100 +323,100 @@ msgid ""
 "and gtkextra, as well as support from the gEDA community."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:540
+#: gattrib/src/x_dialog.c:547
 msgid "About..."
 msgstr ""
 
-#: gattrib/src/x_dialog.c:558 gattrib/src/x_menus.c:390
+#: gattrib/src/x_dialog.c:565 gattrib/src/x_menus.c:390
 msgid "Export CSV"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:606 gattrib/src/x_dialog.c:1065
+#: gattrib/src/x_dialog.c:613 gattrib/src/x_dialog.c:1072
 #: gattrib/src/x_toolbars.c:40
 msgid "Find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:637
+#: gattrib/src/x_dialog.c:644
 msgid "Enter"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:696
+#: gattrib/src/x_dialog.c:703
 msgid "Search for:"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:696
+#: gattrib/src/x_dialog.c:703
 msgid "Enter or select the text to find"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:697
+#: gattrib/src/x_dialog.c:704
 msgid "Replace with:"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:697
+#: gattrib/src/x_dialog.c:704
 msgid "Enter or select the replacement text"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:700
+#: gattrib/src/x_dialog.c:707
 msgid "Ignore Case"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:700
+#: gattrib/src/x_dialog.c:707
 msgid "Set search case sensitivity"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:701
+#: gattrib/src/x_dialog.c:708
 msgid "Match Words"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:701
+#: gattrib/src/x_dialog.c:708
 msgid "Limit Search hits to entire work"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:702
+#: gattrib/src/x_dialog.c:709
 msgid "Search Backward"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:702
+#: gattrib/src/x_dialog.c:709
 msgid "Reverse search direction"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:703
+#: gattrib/src/x_dialog.c:710
 msgid "Wrap Around"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:703
+#: gattrib/src/x_dialog.c:710
 msgid "Continue search from the beginning"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1041
+#: gattrib/src/x_dialog.c:1048
 msgid "Close this dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1043
+#: gattrib/src/x_dialog.c:1050
 msgid "Replace All"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1052
+#: gattrib/src/x_dialog.c:1059
 msgid "Replace All and close dialog"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1054 gattrib/src/x_toolbars.c:41
+#: gattrib/src/x_dialog.c:1061 gattrib/src/x_toolbars.c:41
 msgid "Replace"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1063
+#: gattrib/src/x_dialog.c:1070
 msgid "Replace selected text and continue"
 msgstr ""
 
-#: gattrib/src/x_dialog.c:1070
+#: gattrib/src/x_dialog.c:1077
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:115
+#: gattrib/src/x_fileselect.c:116
 msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:121
+#: gattrib/src/x_fileselect.c:122
 msgid "Could not load schematic"
 msgstr ""
 
