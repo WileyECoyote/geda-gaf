@@ -828,44 +828,49 @@ msgstr ""
 msgid "Add a new attribute"
 msgstr "添加一个新属性"
 
+# delete; Shānchú
 #: gattrib/src/x_toolbars.c:49
 msgid "delete"
-msgstr ""
+msgstr "删除"
 
-# Detach the selected attribute
+# Delete selected attribute; Shānchú suǒ xuǎn shǔxìng
 #: gattrib/src/x_toolbars.c:49
-#, fuzzy
 msgid "Delete selected attribute"
-msgstr "分离所选属性"
+msgstr "删除所选属性"
 
+# promote; Cùjìn
 #: gattrib/src/x_toolbars.c:50
 msgid "promote"
-msgstr ""
+msgstr "促进"
 
+# demote; Jiàngjí
 #: gattrib/src/x_toolbars.c:51
 msgid "demote"
-msgstr ""
+msgstr "降级"
 
+# name; Míngchēng
 #: gattrib/src/x_toolbars.c:52
 msgid "name"
-msgstr ""
+msgstr "名称"
 
+# value; Zhí
 #: gattrib/src/x_toolbars.c:53
 msgid "value"
-msgstr ""
+msgstr "值"
 
+# both; Dōu
 #: gattrib/src/x_toolbars.c:54
 msgid "both"
-msgstr ""
+msgstr "都"
 
+# Saving main window geometry and settings
+# Bǎocún zhǔ chuāngkǒu de jǐhé xíngzhuàng hé shèzhì
 #: gattrib/src/x_window.c:204
 msgid "Saving main window geometry and settings.\n"
-msgstr ""
+msgstr "保存主窗口的几何形状和设置.\n"
 
+# Retrieving main Window geometry and settings
+# Jiǎnsuǒ zhǔ chuāngkǒu de jǐhé xíngzhuàng hé shèzhì
 #: gattrib/src/x_window.c:234
 msgid "Retrieving main Window geometry and settings.\n"
-msgstr ""
-
-# Attribute
-#~ msgid "Attrib"
-#~ msgstr "属性"
+msgstr "检索主窗口的几何形状和设置.\n"

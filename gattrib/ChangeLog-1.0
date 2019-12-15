@@ -8,6 +8,8 @@
 
     * po/uk.po: Update Ukrainian translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so
