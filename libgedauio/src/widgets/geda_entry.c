@@ -839,13 +839,13 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   priv->case_sensitive      = FALSE;
   priv->attrs               = NULL; */
 
-  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
+  g_signal_connect_after (G_OBJECT (entry), "key-press-event",
                           G_CALLBACK (geda_entry_key_press), NULL);
 
   g_signal_connect_object (G_OBJECT (entry), "populate-popup",
                            G_CALLBACK (geda_entry_populate_popup), NULL, 0);
 
-  g_signal_connect_object (G_OBJECT (entry), "insert_text",
+  g_signal_connect_object (G_OBJECT (entry), "insert-text",
                            G_CALLBACK (geda_entry_validate_input), NULL, 0);
 
   if (!entry_hash_table) {
