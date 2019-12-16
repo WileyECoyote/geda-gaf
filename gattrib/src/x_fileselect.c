@@ -186,7 +186,6 @@ bool x_fileselect_load_files (GSList *filenames)
  *  Called from x_menu_file_open
  *
  * \returns list of files to be opened, or NULL if the user canceled
- *          the dialog
  */
 GSList *x_fileselect_open (void)
 {
