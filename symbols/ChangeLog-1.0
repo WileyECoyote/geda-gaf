@@ -1,3 +1,10 @@
+2019-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute order and positions, add
+      description attribute:
+
+            * simulation/verilog/or2-2.sym
+
 2019-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute positions, visibilities, and swap
