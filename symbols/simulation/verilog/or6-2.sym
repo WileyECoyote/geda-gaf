@@ -13,9 +13,9 @@ pinnumber=OUT
 T 1000 600 5 8 0 0 0 0 1
 pinseq=1
 T 1000 600 5 8 0 0 0 0 1
-pintype=io
-T 1000 600 5 8 0 0 0 0 1
 pinlabel=n_a
+T 1000 600 5 8 0 0 0 0 1
+pintype=io
 }
 V 250 100 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 100 0 100 1 0 1
@@ -25,9 +25,9 @@ pinnumber=IN0
 T 300 100 5 8 0 0 0 0 1
 pinseq=2
 T 300 100 5 8 0 0 0 0 1
-pintype=io
-T 300 100 5 8 0 0 0 0 1
 pinlabel=n_a
+T 300 100 5 8 0 0 0 0 1
+pintype=io
 }
 V 250 300 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 300 0 300 1 0 1
@@ -37,9 +37,9 @@ pinnumber=IN1
 T 300 300 5 8 0 0 0 0 1
 pinseq=3
 T 300 300 5 8 0 0 0 0 1
-pintype=io
-T 300 300 5 8 0 0 0 0 1
 pinlabel=n_a
+T 300 300 5 8 0 0 0 0 1
+pintype=io
 }
 V 250 500 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 500 0 500 1 0 1
@@ -49,9 +49,9 @@ pinnumber=IN2
 T 300 500 5 8 0 0 0 0 1
 pinseq=4
 T 300 500 5 8 0 0 0 0 1
-pintype=io
-T 300 500 5 8 0 0 0 0 1
 pinlabel=n_a
+T 300 500 5 8 0 0 0 0 1
+pintype=io
 }
 V 250 700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 700 0 700 1 0 1
@@ -61,9 +61,9 @@ pinnumber=IN3
 T 300 700 5 8 0 0 0 0 1
 pinseq=5
 T 300 700 5 8 0 0 0 0 1
-pintype=io
-T 300 700 5 8 0 0 0 0 1
 pinlabel=n_a
+T 300 700 5 8 0 0 0 0 1
+pintype=io
 }
 V 250 900 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 900 0 900 1 0 1
@@ -73,9 +73,9 @@ pinnumber=IN4
 T 300 900 5 8 0 0 0 0 1
 pinseq=6
 T 300 900 5 8 0 0 0 0 1
-pintype=io
-T 300 900 5 8 0 0 0 0 1
 pinlabel=n_a
+T 300 900 5 8 0 0 0 0 1
+pintype=io
 }
 V 250 1100 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 1100 0 1100 1 0 1
@@ -85,17 +85,19 @@ pinnumber=IN5
 T 300 1100 5 8 0 0 0 0 1
 pinseq=7
 T 300 1100 5 8 0 0 0 0 1
-pintype=io
-T 300 1100 5 8 0 0 0 0 1
 pinlabel=n_a
+T 300 1100 5 8 0 0 0 0 1
+pintype=io
 }
 T 750 550 5 10 1 1 0 6 1
 refdes=U?
-T 400 100 5 8 0 0 0 0 1
-device=or
-T 400 200 5 8 0 0 0 0 1
+T 200 1700 5 10 0 1 0 0 1
 comment=VERILOG_PORTS=POSITIONAL
-T 600 100 9 10 0 0 0 0 1
+T 200 2100 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 200 1500 9 10 0 0 0 0 1
 footprint=unknown
+T 200 1900 5 10 0 1 0 0 1
+description=6 input OR gate
+T 200 1300 5 10 0 0 0 0 1
+device=or
