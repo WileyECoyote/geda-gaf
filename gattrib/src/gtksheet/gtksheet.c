@@ -11199,65 +11199,65 @@ gtk_sheet_extend_selection(GtkSheet *sheet, int row, int column)
 static int
 gtk_sheet_entry_key_press_handler(GtkWidget *widget, GdkEventKey *key, void *user_data)
 {
-    int stop_emission = FALSE;
-    GtkSheet *sheet = GTK_SHEET(widget);
+  int stop_emission = FALSE;
+  GtkSheet *sheet = GTK_SHEET(widget);
 
 #if GTK_SHEET_DEBUG_KEYPRESS > 0
-    fprintf(stderr,"gtk_sheet_entry_key_press_handler: called, key %s",
-	gtk_accelerator_name(key->keyval, key->state));
+  fprintf(stderr,"gtk_sheet_entry_key_press_handler: called, key %s",
+          gtk_accelerator_name(key->keyval, key->state));
 #endif
 
-    if (!_gtk_sheet_binding_filter(sheet, key))
-    {
+  if (!_gtk_sheet_binding_filter(sheet, key))
+  {
 #if GTK_SHEET_DEBUG_KEYPRESS > 0
-	fprintf(stderr,"gtk_sheet_entry_key_press_handler: filtered binding");
+    fprintf(stderr,"gtk_sheet_entry_key_press_handler: filtered binding");
 #endif
-	return (FALSE);
-    }
+    return (FALSE);
+  }
 
 #if 1
-    /* process enter-event
-       - detect whether Return or Enter was pressed
-       - detect whether the application wants it to be handled by the sheet
-       - if unwanted: execute appropriate application handler
-       - use a new signal for this ?
-       */
-    if ((key->keyval == GDK_KEY_Return) || (key->keyval == GDK_KEY_KP_Enter))
-    {
+  /* process enter-event
+   *      - detect whether Return or Enter was pressed
+   *      - detect whether the application wants it to be handled by the sheet
+   *      - if unwanted: execute appropriate application handler
+   *      - use a new signal for this ?
+   */
+  if ((key->keyval == GDK_KEY_Return) || (key->keyval == GDK_KEY_KP_Enter))
+  {
 #if GTK_SHEET_DEBUG_ENTER_PRESSED > 0
-	fprintf(stderr,"gtk_sheet_entry_key_press_handler: enter-pressed: invoke");
+    fprintf(stderr,"gtk_sheet_entry_key_press_handler: enter-pressed: invoke");
 #endif
 
-	_gtksheet_signal_emit(sheet, sheet_signals[ENTER_PRESSED], key, &stop_emission);
+    _gtksheet_signal_emit(sheet, sheet_signals[ENTER_PRESSED], key, &stop_emission);
 
 #if GTK_SHEET_DEBUG_ENTER_PRESSED > 0
-	fprintf(stderr,"gtk_sheet_entry_key_press_handler: enter-pressed: returns %d", stop_emission);
+    fprintf(stderr,"gtk_sheet_entry_key_press_handler: enter-pressed: returns %d", stop_emission);
 #endif
-    }
+  }
 #endif
 
-    if (!stop_emission)
+  if (!stop_emission)
+  {
+    /* intercept item_entry processing if there exists a key binding on the sheet */
+
+    if (gtk_bindings_activate_event(GTK_OBJECT(sheet), key))
     {
-	/* intercept item_entry processing if there exists a key binding on the sheet */
-
-	if (gtk_bindings_activate_event(GTK_OBJECT(sheet), key))
-	{
-	    stop_emission = TRUE;
-	}
-	else
-	{
-	    g_signal_emit_by_name(G_OBJECT(widget),
-		"key_press_event", key,
-		&stop_emission);
-	}
+      stop_emission = TRUE;
     }
+    else
+    {
+      g_signal_emit_by_name(G_OBJECT(widget),
+                            "key_press_event", key,
+                            &stop_emission);
+    }
+  }
 
 #if GTK_SHEET_DEBUG_KEYPRESS > 0
-    fprintf(stderr,"gtk_sheet_entry_key_press_handler: done, key %s stop %d",
-	gtk_accelerator_name(key->keyval, key->state), stop_emission);
+  fprintf(stderr,"gtk_sheet_entry_key_press_handler: done, key %s stop %d",
+          gtk_accelerator_name(key->keyval, key->state), stop_emission);
 #endif
 
-    return (stop_emission);
+  return (stop_emission);
 }
 
 /*
