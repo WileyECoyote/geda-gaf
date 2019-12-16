@@ -1466,7 +1466,7 @@ geda_menu_hide_all (GtkWidget *widget)
   geda_container_foreach (widget, geda_menu_hide_children, NULL);
 }
 
-
+/*! \internal widget_class->key_press_event */
 static bool geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   geda_menu_stop_navigating_submenu ((GedaMenu*)widget);
