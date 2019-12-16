@@ -950,6 +950,7 @@ static void geda_entry_process_entry (GedaEntry *entry, void *data)
     priv->history_list = g_list_append(NULL, text);
     list_length        = 1;
   }
+
   entry->history_index = list_length;
 }
 
