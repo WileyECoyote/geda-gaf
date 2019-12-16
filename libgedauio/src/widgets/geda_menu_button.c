@@ -1548,14 +1548,13 @@ static bool arrow_button_press_event_cb (GtkWidget      *widget,
 {
   if (event->button == 1) {
 
-      popup_menu_under_arrow (button, event);
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(widget), TRUE);
+    popup_menu_under_arrow (button, event);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(widget), TRUE);
 
-      return TRUE;
+    return TRUE;
   }
-  else  {
-      return FALSE;
-  }
+
+  return FALSE;
 }
 
 /*!
