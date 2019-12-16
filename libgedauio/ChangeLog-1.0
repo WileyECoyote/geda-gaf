@@ -1,7 +1,8 @@
 2019-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Rename function geda_entry_activate ->
-      geda_entry_process_entry.
+      geda_entry_process_entry. Add virtual over-ride geda_entry_widget_key_press
+      to emit "activate" on the GtkEntry.
 
 2019-11-04 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -126,6 +126,8 @@ static void    geda_entry_history_down       (GedaEntry        *entry);
 static bool    geda_entry_key_press          (GedaEntry        *widget,
                                               GdkEventKey      *event,
                                               void             *data);
+static bool    geda_entry_widget_key_press   (GtkWidget        *widget,
+                                              GdkEventKey      *event);
 static int     geda_entry_strncmpi           (char             *str1,
                                               char             *str2,
                                               int               n);
@@ -559,6 +561,22 @@ static void geda_entry_grab_focus (GtkWidget *widget)
   ((GtkWidgetClass*)geda_entry_parent_class)->grab_focus (widget);
 }
 
+static bool geda_entry_widget_key_press (GtkWidget *widget, GdkEventKey *event)
+{
+  if (event->keyval == GDK_KEY_KP_Enter ||
+      event->keyval == GDK_KEY_Return ||
+      event->keyval == GDK_KEY_ISO_Enter)
+  {
+    GedaEntry *entry = (GedaEntry*)widget;
+
+    if (entry->activates_default) {
+      GEDA_OBJECT_NOTIFY (entry, "activate");
+    }
+  }
+
+  return ((GtkWidgetClass*)geda_entry_parent_class)->key_press_event (widget, event);
+}
+
 /*! widget_class->realize
  * \brief GedaEntry Realize
  * \par Function Description
@@ -750,9 +768,10 @@ static void geda_entry_class_init(void *klass, void *class_data)
 
   gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,  "process-entry", 0);
 
-  widget_class->grab_focus = geda_entry_grab_focus;
-  widget_class->realize    = geda_entry_realize;
-  widget_class->unrealize  = geda_entry_unrealize;
+  widget_class->grab_focus      = geda_entry_grab_focus;
+  widget_class->key_press_event = geda_entry_widget_key_press;
+  widget_class->realize         = geda_entry_realize;
+  widget_class->unrealize       = geda_entry_unrealize;
 
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s created: history=%d, completion=%d\n",
