@@ -119,7 +119,7 @@ static void    geda_entry_grab_focus         (GtkWidget        *widget);
 static void    geda_entry_realize            (GtkWidget        *widget);
 static void    geda_entry_unrealize          (GtkWidget        *widget);
 
-static void    geda_entry_activate           (GedaEntry        *entry,
+static void    geda_entry_process_entry      (GedaEntry        *entry,
                                               void             *data);
 static void    geda_entry_history_up         (GedaEntry        *entry);
 static void    geda_entry_history_down       (GedaEntry        *entry);
@@ -782,7 +782,7 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   if (have_history) {
 
     g_signal_connect     (G_OBJECT (entry), "process-entry",
-                          G_CALLBACK (geda_entry_activate), NULL);
+                          G_CALLBACK (geda_entry_process_entry), NULL);
 
     if (history_list_arg) {
 
@@ -894,12 +894,12 @@ bool is_a_geda_entry (GedaEntry *entry)
 }
 
 /*!
- * \brief On Activate a GedaEntry
+ * \brief On process-entry a GedaEntry
  * \par Function Description
  * This is a callback for the "process-entry" signal. If there is text
  * in the entry and a history_list the history_list is updated.
  */
-static void geda_entry_activate (GedaEntry *entry, void *data)
+static void geda_entry_process_entry (GedaEntry *entry, void *data)
 {
   GedaEntryPriv *priv = entry->priv;
   int list_length;
