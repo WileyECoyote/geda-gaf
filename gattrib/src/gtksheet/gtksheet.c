@@ -7737,7 +7737,7 @@ gtk_sheet_set_cell_text(GtkSheet *sheet, int row, int col, const char *text)
  * \param sheet: a #GtkSheet.
  * \param row: row_number
  * \param col: column number
- * \param justification: a #GtkJustification :GTK_JUSTIFY_LEFT, RIGHT, CENTER
+ * \param justification: a #GtkJustification; GTK_JUSTIFY_LEFT, RIGHT, CENTER
  * \param text: cell text
  *
  * Set cell contents and allocate memory if needed.
