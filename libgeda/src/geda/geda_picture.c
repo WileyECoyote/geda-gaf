@@ -284,6 +284,22 @@ bool geda_picture_get_is_embedded (const GedaPicture *pic)
 }
 
 /*!
+ * \brief Retrieve the As Loaded Width of a GedaPicture
+ * \par Function Description
+ *  Returns the value of the width member or -0 if \a pic
+ *  is not a valid GedaPicture object.
+ *
+ * \return integer width.
+ */
+int geda_picture_get_width (const GedaPicture *pic)
+{
+  if (is_a_geda_picture(pic)) {
+    return pic->width;
+  }
+  return -0;
+}
+
+/*!
  * \brief Set the Angle of a GedaPicture
  * \par Function Description
  *  Low-level setter to set the value of the angle property
@@ -318,6 +334,13 @@ void geda_picture_set_is_embedded (GedaPicture *pic, bool is_embedded)
 {
   if (is_a_geda_picture(pic)) {
     pic->is_embedded = is_embedded;
+  }
+}
+
+void geda_picture_set_width (GedaPicture *pic, int width)
+{
+  if (is_a_geda_picture(pic)) {
+    pic->width = width;
   }
 }
 
