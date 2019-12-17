@@ -1,7 +1,7 @@
 2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Add documentation for geda_accel_label_refetch
-      and todo template for geda_accel_label_get_accel_width.
+      and todo template for geda_accel_label_get_accel_width and reorganize module.
 
 2019-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
