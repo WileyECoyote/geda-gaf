@@ -316,6 +316,11 @@ static void geda_accel_label_set_accel_string_width (GedaAccelLabel *accel_label
 #endif
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 unsigned int geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
 {
   g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), 0);
