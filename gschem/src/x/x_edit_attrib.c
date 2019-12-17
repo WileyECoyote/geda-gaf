@@ -118,7 +118,6 @@ x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
   }
 
   GEDA_OBJECT_SET_DATA (ThisDialog, object, "attrib");
-
 }
 
 /*!

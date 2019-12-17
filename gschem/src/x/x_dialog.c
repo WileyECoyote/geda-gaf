@@ -3487,6 +3487,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       GtkTreeViewColumn *column;
 
       do {
+
         GtkTreeIter iter2;
         const char *icon_id;
         char *action;
@@ -3526,7 +3527,9 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                              3, binding,
                                              -1);
         }
+
         GEDA_FREE(action);
+
       } while (gtk_tree_model_iter_next ((GtkTreeModel*)key_store, &iter));
 
       g_object_unref(key_store);
