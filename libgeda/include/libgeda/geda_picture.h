@@ -78,6 +78,10 @@ struct _GedaPicture {
   int    upper_y;
   int    lower_x;
   int    lower_y;
+
+  /* height and width are used to retain the as loaded dimensions */
+  int    height;
+  int    width;
 };
 
 #ifdef __cplusplus

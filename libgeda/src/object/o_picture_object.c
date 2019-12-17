@@ -1240,6 +1240,9 @@ GedaObject *geda_picture_object_new (const char   *file_content,
   picture->mirrored     = mirrored;
   picture->is_embedded  = embedded;
 
+  picture->height       = picture->upper_y - picture->lower_y;
+  picture->width        = picture->lower_x - picture->upper_x;
+
   /* Can not divide by zero */
   if ((picture->lower_y - picture->upper_y) != 0) {
     picture->ratio = (double) (picture->lower_x - picture->upper_x) /

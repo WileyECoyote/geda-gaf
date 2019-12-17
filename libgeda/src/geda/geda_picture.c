@@ -102,6 +102,9 @@ static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
   picture->lower_x      = 0;
   picture->lower_y      = 0;
 
+  picture->height       = 0;
+  picture->width        = 0;
+
   object->picture       = picture;
 }
 

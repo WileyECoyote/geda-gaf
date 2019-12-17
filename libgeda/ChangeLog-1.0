@@ -1,7 +1,11 @@
 2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/geda_picture.h: Add height and width to retain the as
+      loaded dimensions of pictures;
+
     * src/object/o_picture_object.c: Reverse terms in geda_picture_object_new
-      so that picture->ratio is not the quotient of two negative factor.
+      so that picture->ratio is not the quotient of two negative factor, and
+      set the new height and width members.
 
 2019-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
