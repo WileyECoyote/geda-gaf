@@ -254,6 +254,22 @@ int geda_picture_get_angle (const GedaPicture *pic)
 }
 
 /*!
+ * \brief Retrieve the As Loaded Height of a GedaPicture
+ * \par Function Description
+ *  Returns the value of the height member or -0 if \a pic
+ *  is not a valid GedaPicture object.
+ *
+ * \return integer height.
+ */
+int geda_picture_get_height (const GedaPicture *pic)
+{
+  if (is_a_geda_picture(pic)) {
+    return pic->height;
+  }
+  return -0;
+}
+
+/*!
  * \brief Get if Picture is Embedded
  * \par Function Description
  *  Returns the value of the is_embedded flag or -0 if \a pic
@@ -278,6 +294,13 @@ void geda_picture_set_angle (GedaPicture *pic, int angle)
 {
   if (is_a_geda_picture(pic)) {
     pic->angle = angle;
+  }
+}
+
+void geda_picture_set_height (GedaPicture *pic, int height)
+{
+  if (is_a_geda_picture(pic)) {
+    pic->height = height;
   }
 }
 

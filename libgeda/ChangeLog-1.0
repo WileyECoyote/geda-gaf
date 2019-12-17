@@ -3,6 +3,11 @@
     * include/libgeda/geda_picture.h: Add height and width to retain the as
       loaded dimensions of pictures;
 
+    * src/geda/geda_picture.c: Add getter and setter functions:
+
+          * geda_picture_get_height
+          * geda_picture_set_height
+
     * src/object/o_picture_object.c: Reverse terms in geda_picture_object_new
       so that picture->ratio is not the quotient of two negative factor, and
       set the new height and width members.
