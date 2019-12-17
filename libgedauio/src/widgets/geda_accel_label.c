@@ -118,7 +118,17 @@ static void *geda_accel_label_parent_class = NULL;
 
 static GHashTable *accel_label_hash = NULL;
 
-
+/*!
+ * \brief Reset Accelerator String if not enabled
+ * \par Function Description
+ *  Ensures the string representing the accelerator keys is an empty
+ *  string if enable-accels is not set. If enable-accels are enabled
+ *  then this function does virtually nothing.
+ *
+ * \param accel_label  A #GedaAccelLabel object
+ *
+ * \retval FALSE
+ */
 bool geda_accel_label_refetch (GedaAccelLabel *accel_label)
 {
   bool enable_accels;
