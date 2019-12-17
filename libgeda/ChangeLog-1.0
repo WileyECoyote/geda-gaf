@@ -1,3 +1,8 @@
+2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_picture_object.c: Reverse terms in geda_picture_object_new
+      so that picture->ratio is not the quotient of two negative factor.
+
 2019-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math: Add Doxygen group:

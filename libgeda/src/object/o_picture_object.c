@@ -1242,8 +1242,8 @@ GedaObject *geda_picture_object_new (const char   *file_content,
 
   /* Can not divide by zero */
   if ((picture->lower_y - picture->upper_y) != 0) {
-    picture->ratio = (double) (picture->upper_x - picture->lower_x) /
-                              (picture->lower_y - picture->upper_y);
+    picture->ratio = (double) (picture->lower_x - picture->upper_x) /
+                              (picture->upper_y - picture->lower_y);
   }
   else {
     geda_log_w(_("Invalid; picture has no height\n"));
