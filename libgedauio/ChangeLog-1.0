@@ -3,6 +3,8 @@
     * src/widgets/geda_accel_label.c: Add documentation for geda_accel_label_refetch
       and todo template for geda_accel_label_get_accel_width and reorganize module.
 
+    * tests/test_bulb.c: Add checks for geda_bulb_group_set_active_index.
+
 2019-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_entry.c: Rename function geda_entry_activate ->

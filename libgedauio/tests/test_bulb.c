@@ -216,6 +216,13 @@ int check_construction (void)
   return result;
 }
 
+static void callback_toggled (GtkToggleButton *checkbox, void *user_data)
+{
+  int *index  = (int*)user_data;
+
+  *index = 2;
+}
+
 int
 check_accessors ()
 {
@@ -282,9 +289,32 @@ check_accessors ()
 
     int index;
 
+    /* Check geda_bulb_group_get_active_index */
     index = geda_bulb_group_get_active_index(group);
 
     if (index != 0) {
+      fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
+      index = 0;
+      result++;
+    }
+
+    /* dual purpose index is used here to indicate the callback occured */
+    g_signal_connect (widget2, "toggled", G_CALLBACK (callback_toggled), &index);
+
+    index = 0;
+
+    /* Check geda_bulb_group_set_active_index */
+    geda_bulb_group_set_active_index(group, 1);
+
+    /* The callback should set the index = 2 */
+    if (index != 2) {
+      fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
+      result++;
+    }
+
+    index = geda_bulb_group_get_active_index(group);
+
+    if (index != 1) {
       fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
       result++;
     }
