@@ -878,7 +878,6 @@ static void geda_image_menu_item_forall (GtkContainer *container,
 
 /*!
  * \brief Remove the image object attached to the menu item
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  GtkContainerClass->remove virtual over-ride
  */
@@ -911,7 +910,6 @@ static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *chi
 
 /*!
  * \brief Create a New GedaImageMenuItem Object
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem with an empty label.
  *
@@ -926,11 +924,10 @@ GtkWidget *geda_image_menu_item_new (void)
 
 /*!
  * \brief Create a New GedaImageMenuItem Object with a Plain Label
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem containing a label.
  *
- * \param [in] label: the text of the menu item.
+ * \param [in] label the text of the menu item.
  *
  * \returns a new #GedaImageMenuItem.
  *
@@ -947,7 +944,6 @@ GtkWidget *geda_image_menu_item_new_with_label (const char *label)
 
 /*!
  * \brief Create a New GedaImageMenuItem Object with a Mnemonic Label
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem containing a label and setting
  *  use-underline proptery to TRUE, so an underscore in the label
@@ -970,7 +966,6 @@ GtkWidget *geda_image_menu_item_new_with_mnemonic (const char *label)
 
 /*!
  * \brief Create a New GedaImageMenuItem Object with a Stock Image
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem containing the image and text from a
  *  stock item. Some stock ids have preprocessor macros like GTK_STOCK_OK
@@ -1014,7 +1009,6 @@ GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_me
 
 /*!
  * \brief Add Accel group to a GedaImageMenuItem object
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Specify the accel_group to add the menu items accelerator to
  *  (this only applies to stock items so a stock item must already
@@ -1091,7 +1085,6 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
 
 /*!
  * \brief Get the image object associated with the menu item
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *
  * \param [in] image_menu_item a #GedaImageMenuItem
@@ -1112,7 +1105,6 @@ GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
 
 /*!
  * \brief Set/Attach an image object to the menu item
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *
  * \param [in] image_menu_item a #GedaImageMenuItem.
@@ -1154,12 +1146,11 @@ void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
 
 /*!
  * \brief Get GedaImageMenuItem Show-Image Property
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Returns whether the menu item will ignore the GtkSettings:
  *  gtk-menu-images setting and always show the image, if available.
  *
- * \param [in] image_menu_item: a #GedaImageMenuItem
+ * \param [in] image_menu_item a #GedaImageMenuItem
  *
  * \retval %TRUE if the menu item will always show the image
  *
@@ -1173,7 +1164,6 @@ bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
 
 /*!
  * \brief Set GedaImageMenuItem Show-Image Property
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
  *  setting and always show the image, if available.
@@ -1209,7 +1199,6 @@ void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
 
 /*!
  * \brief Get GedaImageMenuItem Use-Stock Property
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Checks whether the label set in the menuitem is used as a stock id to
  *  select the stock item for the item.
@@ -1228,7 +1217,6 @@ bool geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
 
 /*!
  * \brief Set GedaImageMenuItem Use-Stock Property
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  If %TRUE, the label set in the menuitem is used as a stock id to select
  *  the stock item for the item.
