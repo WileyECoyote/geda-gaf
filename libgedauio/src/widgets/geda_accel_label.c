@@ -225,6 +225,7 @@ static void geda_accel_label_get_property (GObject      *object,
     }
 }
 
+/*! \internal gobject_class->dispose */
 static void geda_accel_label_dispose (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
@@ -236,6 +237,7 @@ static void geda_accel_label_dispose (GObject *object)
   ((GObjectClass*)geda_accel_label_parent_class)->dispose (object);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_accel_label_finalize (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
@@ -281,6 +283,7 @@ static void geda_accel_label_set_accel_string_width (GedaAccelLabel *accel_label
 #endif
 }
 
+/*! \internal widget_class->size_request */
 static void geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (widget);
@@ -290,6 +293,10 @@ static void geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *re
   geda_accel_label_set_accel_string_width (accel_label);
 }
 
+/* Common to:
+ * (Gtk-2) geda_accel_label_expose_event
+ * (Gtk-3) geda_accel_label_draw
+ */
 static int get_first_baseline (PangoLayout *layout)
 {
   PangoLayoutIter *iter;
