@@ -416,74 +416,74 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
   if (allocation->width >= requisition.width + ac_width) {
 
-      GtkTextDirection direction;
-      GtkStyleContext *context;
-      PangoLayout     *label_layout;
-      PangoLayout     *accel_layout;
+    GtkTextDirection direction;
+    GtkStyleContext *context;
+    PangoLayout     *label_layout;
+    PangoLayout     *accel_layout;
 
-      int x;
-      int y;
-      int xpad;
+    int x;
+    int y;
+    int xpad;
 
-      context      = gtk_widget_get_style_context (widget);
-      direction    = gtk_widget_get_direction (widget);
-      label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
+    context      = gtk_widget_get_style_context (widget);
+    direction    = gtk_widget_get_direction (widget);
+    label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
 
-      cairo_save (cr);
+    cairo_save (cr);
 
-      /* XXX: Mad hack: We modify the label's width so it renders
-       * properly in its draw function that we chain to. */
-      if (direction == GTK_TEXT_DIR_RTL) {
-        cairo_translate (cr, ac_width, 0);
-      }
+    /* XXX: Mad hack: We modify the label's width so it renders
+     * properly in its draw function that we chain to. */
+    if (direction == GTK_TEXT_DIR_RTL) {
+      cairo_translate (cr, ac_width, 0);
+    }
 
-      if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
-        int width = pango_layout_get_width (label_layout);
-        pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
-      }
+    if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
+      int width = pango_layout_get_width (label_layout);
+      pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
+    }
 
-      allocation->width -= ac_width;
+    allocation->width -= ac_width;
 
-      gtk_widget_set_allocation (widget, &allocation);
+    gtk_widget_set_allocation (widget, &allocation);
 
-      if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
-        ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
-      }
+    if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
+      ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
+    }
 
-      allocation->width += ac_width;
-      gtk_widget_set_allocation (widget, &allocation);
+    allocation->width += ac_width;
+    gtk_widget_set_allocation (widget, &allocation);
 
-      if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
-        int width = pango_layout_get_width (label_layout);
-        pango_layout_set_width (label_layout, width + ac_width * PANGO_SCALE);
-      }
+    if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
+      int width = pango_layout_get_width (label_layout);
+      pango_layout_set_width (label_layout, width + ac_width * PANGO_SCALE);
+    }
 
-      cairo_restore (cr);
+    cairo_restore (cr);
 
-      gtk_misc_get_padding ((GtkMisc*)accel_label, &xpad, NULL);
+    gtk_misc_get_padding ((GtkMisc*)accel_label, &xpad, NULL);
 
-      if (direction == GTK_TEXT_DIR_RTL) {
-        x = xpad;
-      }
-      else {
-        x = gtk_widget_get_allocated_width (widget) - xpad - ac_width;
-      }
+    if (direction == GTK_TEXT_DIR_RTL) {
+      x = xpad;
+    }
+    else {
+      x = gtk_widget_get_allocated_width (widget) - xpad - ac_width;
+    }
 
-      geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
+    geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
 
-      const char *string = geda_accel_label_get_string (accel_label);
+    const char *string = geda_accel_label_get_string (accel_label);
 
-      accel_layout = gtk_widget_create_pango_layout (widget, string);
+    accel_layout = gtk_widget_create_pango_layout (widget, string);
 
-      y += get_first_baseline (label_layout) - get_first_baseline (accel_layout);
+    y += get_first_baseline (label_layout) - get_first_baseline (accel_layout);
 
-      gtk_style_context_save (context);
-      gtk_style_context_add_class (context, GTK_STYLE_CLASS_ACCELERATOR);
+    gtk_style_context_save (context);
+    gtk_style_context_add_class (context, GTK_STYLE_CLASS_ACCELERATOR);
 
-      gtk_render_layout (context, cr, x, y, accel_layout);
-      gtk_style_context_restore (context);
+    gtk_render_layout (context, cr, x, y, accel_layout);
+    gtk_style_context_restore (context);
 
-      g_object_unref (accel_layout);
+    g_object_unref (accel_layout);
   }
   else if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
     ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
