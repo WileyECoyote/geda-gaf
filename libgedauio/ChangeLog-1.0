@@ -9,6 +9,8 @@
     * src/widgets/geda_image_menu_item.c: Reorganize module, remove unneeded ingroup
       Doxygen tags.
 
+    * src/widgets/geda_menu_shell.c: Update Doxygen group description.
+
 2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Add documentation for geda_accel_label_refetch

@@ -47,7 +47,7 @@
 
 #include <geda_debug.h>
 
-/** \defgroup geda-menu-shell GedaMenuShell Object
+/** \defgroup geda-menu-shell Geda Menu Shell
  * @{
  * \brief A base class for menu objects
  * A #GedaMenuShell is an abstract base class used to derive the
