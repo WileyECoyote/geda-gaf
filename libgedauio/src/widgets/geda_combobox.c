@@ -459,16 +459,19 @@ static GHashTable *combo_box_hash = NULL;
 
 static GtkBuildableIface *parent_buildable_iface;
 
+/*! \internal Default GedaComboBoxClass->changed */
 static void geda_combo_box_on_changed(GedaComboBox *combo_box)
 {
 
 }
 
+/*! \internal Default GedaComboBoxClass->view_changed */
 static void geda_combo_box_on_view_changed(GedaComboBox *combo_box, unsigned int mode)
 {
 
 }
 
+/*! \internal Default GedaComboBoxClass->format_entry_text */
 static char *geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
 {
   char *text = NULL;
@@ -497,6 +500,7 @@ static char *geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
   return text;
 }
 
+/*! \internal Default GedaComboBoxClass->get_active_text */
 static char *geda_combo_box_format_entry_text (GedaComboBox *combo_box, const char *path)
 {
   GedaComboBoxData *priv = combo_box->priv;
