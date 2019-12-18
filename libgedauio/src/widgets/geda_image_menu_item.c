@@ -1084,6 +1084,9 @@ bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
  * \param [in] image_menu_item a #GedaImageMenuItem
  * \param [in] accel_group     the GtkAccelGroup
  *
+ *  \todo Why does this only apply to stock items? Should this not
+ *  apply to any item with an accelerator whose parent menu has a
+ *  group?
  */
 void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
                                            GtkAccelGroup     *accel_group)
