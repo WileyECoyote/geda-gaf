@@ -72,20 +72,20 @@ GtkWidget *geda_image_menu_item_new_with_label        (const char        *label)
 GtkWidget *geda_image_menu_item_new_with_mnemonic     (const char        *label);
 GtkWidget *geda_image_menu_item_new_from_stock        (const char        *stock_id,
                                                        GtkAccelGroup     *accel_group);
-void       geda_image_menu_item_set_show_image        (GedaImageMenuItem *image_menu_item,
-                                                       bool               always_show);
-bool       geda_image_menu_item_get_show_image        (GedaImageMenuItem *image_menu_item);
-void       geda_image_menu_item_set_image             (GedaImageMenuItem *image_menu_item,
-                                                       GtkWidget         *image);
-GtkWidget *geda_image_menu_item_get_image             (GedaImageMenuItem *image_menu_item);
-void       geda_image_menu_item_set_use_stock         (GedaImageMenuItem *image_menu_item,
-                                                       bool               use_stock);
-bool       geda_image_menu_item_get_use_stock         (GedaImageMenuItem *image_menu_item);
-
 GtkAccelGroup
           *geda_image_menu_item_get_accel_group       (GedaImageMenuItem *image_menu_item);
 void       geda_image_menu_item_set_accel_group       (GedaImageMenuItem *image_menu_item,
                                                        GtkAccelGroup     *accel_group);
+GtkWidget *geda_image_menu_item_get_image             (GedaImageMenuItem *image_menu_item);
+void       geda_image_menu_item_set_image             (GedaImageMenuItem *image_menu_item,
+                                                       GtkWidget         *image);
+bool       geda_image_menu_item_get_show_image        (GedaImageMenuItem *image_menu_item);
+void       geda_image_menu_item_set_show_image        (GedaImageMenuItem *image_menu_item,
+                                                       bool               always_show);
+bool       geda_image_menu_item_get_use_stock         (GedaImageMenuItem *image_menu_item);
+void       geda_image_menu_item_set_use_stock         (GedaImageMenuItem *image_menu_item,
+                                                       bool               use_stock);
+
 
 #ifdef __cplusplus
 }

@@ -6,6 +6,8 @@
     * src/widgets/geda_combobox.c: Add internal GedaComboBoxClass comments, convert
       container_class and widget_class comment to internal documentation.
 
+    * src/widgets/geda_image_menu_item.c Reorganize module.
+
 2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Add documentation for geda_accel_label_refetch
