@@ -521,7 +521,7 @@ static char *geda_combo_box_format_entry_text (GedaComboBox *combo_box, const ch
   return text;
 }
 
-/* container_class->add */
+/*! \internal container_class->add */
 static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
@@ -579,7 +579,7 @@ static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
     }
 }
 
-/* container_class->forall */
+/*! \internal container_class->forall */
 static void geda_combo_box_forall (GtkContainer *container,
                                            bool  include_internals,
                                     GtkCallback  callback,
@@ -607,7 +607,7 @@ static void geda_combo_box_forall (GtkContainer *container,
   }
 }
 
-/* container_class->remove */
+/*! \internal container_class->remove */
 static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
@@ -689,7 +689,7 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
   }
 }
 
-/* widget_class->expose_event */
+/*! \internal widget_class->expose_event */
 static bool geda_combo_box_expose_event (GtkWidget      *widget,
                                          GdkEventExpose *event)
 {
@@ -725,7 +725,7 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
   return FALSE;
 }
 
-/* widget_class->grab_focus */
+/*! \internal widget_class->grab_focus */
 static void geda_combo_box_grab_focus (GtkWidget *widget)
 {
   GedaComboBox *combo_box = (GedaComboBox*)widget;
@@ -745,7 +745,7 @@ static void geda_combo_box_grab_focus (GtkWidget *widget)
   }
 }
 
-/* widget_class->mnemonic_activate */
+/*! \internal widget_class->mnemonic_activate */
 static bool geda_combo_box_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
@@ -1006,7 +1006,7 @@ static bool tree_first (GedaComboBox *combo,
   return search_data.set;
 }
 
-/* widget_class->scroll_event */
+/*! \internal widget_class->scroll_event */
 static bool geda_combo_box_scroll_event (GtkWidget      *widget,
                                          GdkEventScroll *event)
 {
@@ -1034,7 +1034,7 @@ static bool geda_combo_box_scroll_event (GtkWidget      *widget,
   return TRUE;
 }
 
-/* widget_class->size_allocate */
+/*! \internal widget_class->size_allocate */
 #define GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON                     \
   gtk_widget_size_request (combo_box->priv->button, &req);  \
   if (is_rtl)                                               \

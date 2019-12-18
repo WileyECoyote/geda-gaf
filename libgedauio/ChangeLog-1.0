@@ -2,7 +2,8 @@
 
     * src/widgets/geda_accel_label.c: Add internal gobject and widget class comments.
 
-    * src/widgets/geda_combobox.c: Add internal GedaComboBoxClass comments.
+    * src/widgets/geda_combobox.c: Add internal GedaComboBoxClass comments, convert
+      container_class and widget_class comment to internal documentation.
 
 2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
 
