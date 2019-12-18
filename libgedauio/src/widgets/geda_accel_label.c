@@ -491,6 +491,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
   return FALSE;
 }
+
 #endif
 
 /*!
@@ -709,10 +710,11 @@ void geda_accel_label_set_accel_widget (GedaAccelLabel *accel_label,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Get the Width of a GedaAccelLabel
+ * \par Function Description
+ *  Returns the width of the accel_label string in pixels + padding or
+ *  zero if the string is has no width, e.g. an empty string.
  */
 unsigned int geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
 {
