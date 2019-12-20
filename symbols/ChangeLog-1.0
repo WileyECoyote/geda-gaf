@@ -1,5 +1,10 @@
 2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * symbols/ti/battery: Add new symbol for BQ2980xy series battery protection
+	  system:
+
+            * symbols/ti/battery/BQ298000-1.sym
+
     * symbols/ti/switchreg: Relocate symbol files:
 
             * symbols/ti/switchreg/TPS62140-1.sym
