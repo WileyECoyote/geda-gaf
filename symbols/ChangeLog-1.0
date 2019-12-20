@@ -4,6 +4,8 @@
 
     * symbols/allegro/A3909-1.sym: Add new symbol; dual full bridge motor driver.
 
+    * symbols/allegro/A3910-1.sym: Add new symbol; dual half bridge motor driver.
+
 2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/ti/battery: Add new symbol for BQ2980xy series battery protection
