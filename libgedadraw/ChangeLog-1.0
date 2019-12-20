@@ -1,3 +1,8 @@
+2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\win32\geda_win32.cpp: Revise geda_win32_draw_arc to use an actual arc
+	  in order to utilize geda_math_arc_length.
+
 2019-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x11/geda_x11.cpp: Update the argument to geda_math_arc_length in
