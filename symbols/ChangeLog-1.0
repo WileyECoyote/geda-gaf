@@ -13,6 +13,8 @@
             * symbols/ti/battery/BQ298012-1.sym
             * symbols/ti/battery/BQ298015-1.sym
 
+	* symbols/ti/switchreg/LM5001-1.sym: Add new symbol; high-voltage switch-mode regulator.
+
 2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/ti/battery: Add new symbol for BQ2980xy series battery protection
