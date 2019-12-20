@@ -15,6 +15,8 @@
 
 	* symbols/ti/switchreg/LM5001-1.sym: Add new symbol; high-voltage switch-mode regulator.
 
+	* symbols/ti/switchreg/LM5022-1.sym: Resequence attributes, add value.
+
 2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/ti/battery: Add new symbol for BQ2980xy series battery protection

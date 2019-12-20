@@ -1,18 +1,14 @@
 v 20150401 2
-T 300 2050 5 10 0 1 0 0 1
-footprint=VSSOP-10
-T 300 3050 5 10 0 0 0 0 1
-author=AutoTron
+T 1800 1850 8 10 1 1 0 6 1
+refdes=U?
+T 300 2250 5 10 0 1 0 0 1
+device=LM5022
 T 300 2850 5 10 0 1 0 0 1
 documentation=http://www.ti.com/product/lm5022
 T 300 2650 5 10 0 1 0 0 1
 description=Low Side Controller for Boost,60V
 T 1300 2450 5 10 0 0 0 0 1
 numslots=0
-T 1800 1850 8 10 1 1 0 6 1
-refdes=U?
-T 300 2250 5 10 0 1 0 0 1
-device=LM5022
 B 300 0 1500 1800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 0 1500 300 1500 1 0 0
 {
@@ -124,7 +120,11 @@ pinlabel=SS
 T 1750 1425 5 8 0 1 0 8 1
 pintype=pwr
 }
+T 300 1850 9 10 1 1 0 0 1
+value=LM5022
+T 300 2050 5 10 0 1 0 0 1
+footprint=VSSOP-10
 T 300 2450 5 8 0 0 0 0 1
 symversion=0.1
-T 300 1850 9 10 1 0 0 0 1
-LM5022
+T 300 3050 5 10 0 0 0 0 1
+author=AutoTron
