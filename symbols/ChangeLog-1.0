@@ -15,7 +15,10 @@
 
 	* symbols/ti/switchreg/LM5001-1.sym: Add new symbol; high-voltage switch-mode regulator.
 
-	* symbols/ti/switchreg/LM5022-1.sym: Resequence attributes, add value.
+	* symbols/ti/switchreg: Resequence attributes, add value.
+
+            * symbols/ti/switchreg/LM5022-1.sym
+            * symbols/ti/switchreg/LM5022-2.sym
 
 2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
