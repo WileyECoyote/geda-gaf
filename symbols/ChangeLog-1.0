@@ -5,6 +5,7 @@
 
             * symbols/ti/battery/BQ298000-1.sym
             * symbols/ti/battery/BQ298006-1.sym
+            * symbols/ti/battery/BQ298009-1.sym
 
     * symbols/ti/switchreg: Relocate symbol files:
 
