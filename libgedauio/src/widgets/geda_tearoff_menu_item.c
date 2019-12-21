@@ -633,7 +633,6 @@ is_a_geda_tearoff_menu_item (GedaTearoffMenuItem *menu_item)
   return FALSE;
 }
 
-
 /*!
  * \brief Get the active state of a GedaTearoffMenuItem
  * \par Function Description
