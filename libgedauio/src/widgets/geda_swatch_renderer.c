@@ -124,6 +124,7 @@ get_property (GObject      *object,
 }
 
 /*! \brief Render the swatch into the cell
+ *  \par Function Description
  *
  *  \param [in] cell
  *  \param [in] window
@@ -191,6 +192,7 @@ render (GtkCellRenderer      *cell,
 
 /*! \private
  *  \brief Set the swatch color.
+ *  \par Function Description
  *
  *  \param [in,out] swatch The swatch cell renderer
  *  \param [in]     color  The color of the swatch
@@ -208,6 +210,7 @@ set_color (GedaSwatchRenderer *swatch, const GdkColor *color)
 
 /*! \private
  *  \brief Set a property.
+ *  \par Function Description
  *
  *  \brief [in,out] object   The object with the property
  *  \brief [in]     param_id The id of the property
