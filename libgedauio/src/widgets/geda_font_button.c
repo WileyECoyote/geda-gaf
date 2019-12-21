@@ -308,7 +308,7 @@ static bool font_description_style_equal (const PangoFontDescription *a,
 /*!
  * \brief Font Button Update Font Data
  * \par Function Description
- *  This function update the font, font style, font_family, font_face,
+ *  This function updates the font, font style, font_family, font_face,
  *  and family members based on the current PangoFontDescription.
  *
  * \param font_button Pointer to a #GedaFontButton object.
