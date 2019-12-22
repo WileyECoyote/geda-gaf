@@ -1218,7 +1218,7 @@ bool is_a_geda_menu_bar (GedaMenuBar *menu_bar)
 /*!
  * \brief Creates a new GedaMenuBar
  * \par Function Description
- *  Creates a new #GedaMenuBar
+ *  Creates a new #GedaMenuBar object.
  *
  * \returns new menu bar, as a GtkWidget
  */
@@ -1594,7 +1594,7 @@ static int geda_menu_bar_get_popup_delay (GedaMenuShell *menu_shell)
  *  as GedaMenuBar, for example MENU_DIR_PREV on a MenuBar is LEFT
  *  but on GedaMenu MENU_DIR_PREV is up. This function is initiated
  *  when a menu item is selected on a MenuBar and the user presses a
- *  key,then geda_menu_key_press() receives the event and chains up
+ *  key, then geda_menu_key_press() receives the event and chains up
  *  to parent::key_press_event, which is geda_menu_shell_key_press.
  *  Seeing that there is a parent shell, geda_menu_shell_key_press
  *  propagates the event by calling gtk_widget_event, which invokes
