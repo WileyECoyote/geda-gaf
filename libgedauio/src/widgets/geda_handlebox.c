@@ -719,15 +719,19 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
         case GTK_POS_LEFT:
           in_handle = event->x < handlebox->handle_size;
           break;
+
         case GTK_POS_TOP:
           in_handle = event->y < handlebox->handle_size;
           break;
+
         case GTK_POS_RIGHT:
           in_handle = event->x > border_widthx2 + child_allocation.width;
           break;
+
         case GTK_POS_BOTTOM:
           in_handle = event->y > border_widthx2 + child_allocation.height;
           break;
+
         default:
           in_handle = FALSE;
           break;
