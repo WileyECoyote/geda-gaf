@@ -4,6 +4,8 @@
 
     * symbols/allegro/A3918-1.sym: Add new symbol; low voltage DC motor driver.
 
+    * symbols/allegro/A3921-1.sym: Add new symbol; dual half bridge motor driver.
+
 2019-12-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/allegro/A3908-1.sym: Add new symbol; low voltage DC motor driver.
