@@ -18,29 +18,30 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# veriga skhematichen
 #: libgeda/data/libgeda.xml.in:3
 msgid "gEDA circuit schematic"
-msgstr ""
+msgstr "gEDA верига схематичен"
 
 #: libgeda/data/libgeda.xml.in:4
 msgid "gEDA schematic symbol"
-msgstr ""
+msgstr "gEDA схематичен символ"
 
 #: libgeda/data/libgeda.xml.in:5
 msgid "gEDA gsch2pcb project"
-msgstr ""
+msgstr "gEDA gsch2pcb проект"
 
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
 msgid "gEDA Gsch2pcb Project"
-msgstr ""
+msgstr "gEDA gsch2pcb проект"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
 msgid "gEDA Circuit Schematic"
-msgstr ""
+msgstr "gEDA верига схематичен"
 
 #: libgeda/data/x-geda-symbol.desktop.in:3
 msgid "gEDA Schematic Symbol"
-msgstr ""
+msgstr "gEDA схематичен символ"
 
 #: libgeda/src/file/f_file.c:102 libgeda/src/file/f_file.c:117
 msgid "Failed to get file statistics"

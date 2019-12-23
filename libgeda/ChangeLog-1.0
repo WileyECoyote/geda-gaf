@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/bg.po: Update Bulgarian translations.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,
