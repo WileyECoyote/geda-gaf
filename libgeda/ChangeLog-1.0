@@ -10,6 +10,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,
