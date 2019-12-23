@@ -20,27 +20,27 @@ msgstr ""
 
 #: libgeda/data/libgeda.xml.in:3
 msgid "gEDA circuit schematic"
-msgstr ""
+msgstr "gEDA مدار شماتیک"
 
 #: libgeda/data/libgeda.xml.in:4
 msgid "gEDA schematic symbol"
-msgstr ""
+msgstr "gEDA نماد شماتیک"
 
 #: libgeda/data/libgeda.xml.in:5
 msgid "gEDA gsch2pcb project"
-msgstr ""
+msgstr "gEDA پروژه gsch2pcb"
 
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
 msgid "gEDA Gsch2pcb Project"
-msgstr ""
+msgstr "gEDA پروژه gsch2pcb"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
 msgid "gEDA Circuit Schematic"
-msgstr ""
+msgstr "gEDA  مدار شماتیک"
 
 #: libgeda/data/x-geda-symbol.desktop.in:3
 msgid "gEDA Schematic Symbol"
-msgstr ""
+msgstr "gEDA نماد شماتیک"
 
 #: libgeda/src/file/f_file.c:102 libgeda/src/file/f_file.c:117
 msgid "Failed to get file statistics"
