@@ -17,29 +17,33 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
+# circuit schematic; Karozu
 #: libgeda/data/libgeda.xml.in:3
 msgid "gEDA circuit schematic"
-msgstr ""
+msgstr "gEDA 回路図"
 
+# Karozu kigō
 #: libgeda/data/libgeda.xml.in:4
 msgid "gEDA schematic symbol"
-msgstr ""
+msgstr "gEDA 回路図記号"
 
+# Gsch 2 pcb purojekuto
 #: libgeda/data/libgeda.xml.in:5
 msgid "gEDA gsch2pcb project"
-msgstr ""
+msgstr "gEDA gsch2pcbプロジェクト"
 
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
 msgid "gEDA Gsch2pcb Project"
-msgstr ""
+msgstr "gEDA gsch2pcbプロジェクト"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
 msgid "gEDA Circuit Schematic"
-msgstr ""
+msgstr "gEDA 回路図"
 
+# Karozu kigō
 #: libgeda/data/x-geda-symbol.desktop.in:3
 msgid "gEDA Schematic Symbol"
-msgstr ""
+msgstr "gEDA 回路図記号"
 
 #: libgeda/src/file/f_file.c:102 libgeda/src/file/f_file.c:117
 msgid "Failed to get file statistics"

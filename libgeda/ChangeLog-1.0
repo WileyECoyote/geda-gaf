@@ -12,6 +12,8 @@
 
     * po/he.po: Update Hebrew translations.
 
+    * po/ja.po: Update Japanese translations.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,
