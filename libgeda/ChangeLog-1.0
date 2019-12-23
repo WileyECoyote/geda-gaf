@@ -4,6 +4,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/bs.po: Update Bosnian translations.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,
