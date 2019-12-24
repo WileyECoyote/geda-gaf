@@ -10,6 +10,9 @@
 
     * apex/PA73-1.sym: Add new symbol; Power operational amplifier, +/130V, 5A.
 
+    * apex/PA92-1.sym: Add new symbol; High voltage power operational
+	  amplifier, +/- 200 Volts.
+
     * apex/PA94-1.sym: Add new symbol; High voltage power operational
 	  amplifier, +/- 430 Volts.
 

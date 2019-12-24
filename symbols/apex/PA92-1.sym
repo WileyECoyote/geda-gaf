@@ -1,0 +1,156 @@
+v 20181017 2
+L 200 1800 200 200 3 0 0 0 -1 -1
+L 200 1800 1800 1000 3 0 0 0 -1 -1
+L 1800 1000 200 200 3 0 0 0 -1 -1
+P 0 600 200 600 1 0 0
+{
+T 50 650 5 8 1 1 0 0 1
+pinnumber=1
+T 50 650 5 8 0 1 0 0 1
+pinseq=1
+T 225 550 9 10 1 1 0 0 1
+pinlabel=in-
+T 50 475 5 8 0 1 0 0 1
+pintype=in
+}
+P 0 1300 200 1300 1 0 0
+{
+T 50 1350 5 8 1 1 0 0 1
+pinnumber=2
+T 50 1350 5 8 0 1 0 0 1
+pinseq=2
+T 225 1250 9 10 1 1 0 0 1
+pinlabel=in+
+T 50 1150 5 8 0 1 0 0 1
+pintype=in
+}
+P 1200 700 1200 500 1 0 1
+{
+T 1250 500 5 8 1 1 0 0 1
+pinnumber=3
+T 1250 500 5 8 0 1 0 0 1
+pinseq=3
+T 1175 775 9 8 1 1 0 6 1
+pinlabel=IQ
+T 1150 625 5 8 0 1 90 6 1
+pintype=pas
+}
+P 1100 1350 1100 1550 1 0 1
+{
+T 1150 1450 5 8 1 1 0 0 1
+pinnumber=4
+T 1150 1450 5 8 0 1 0 0 1
+pinseq=4
+T 1050 1300 9 8 1 1 0 8 1
+pinlabel=RC
+T 1150 1600 5 8 0 1 0 0 1
+pintype=pas
+}
+P 1500 800 1500 600 1 0 1
+{
+T 1550 600 5 8 1 1 0 0 1
+pinnumber=5
+T 1550 600 5 8 0 1 0 0 1
+pinseq=5
+T 1475 875 9 8 1 1 0 6 1
+pinlabel=CC
+T 1450 725 5 8 0 1 90 6 1
+pintype=pas
+}
+P 1800 1000 2000 1000 1 0 1
+{
+T 1950 850 5 8 1 1 0 0 1
+pinnumber=6
+T 1950 850 5 8 0 1 0 0 1
+pinseq=6
+T 1825 1075 9 10 1 1 0 0 1
+pinlabel=out
+T 1750 850 9 8 0 1 0 0 1
+pintype=out
+}
+P 500 300 500 100 1 0 1
+{
+T 550 50 5 8 1 1 0 0 1
+pinnumber=7
+T 550 50 5 8 0 1 0 0 1
+pinseq=7
+T 525 475 9 10 1 1 0 0 1
+pinlabel=V-
+T 450 225 5 8 0 1 90 6 1
+pintype=pwr
+}
+P 800 500 800 300 1 0 1
+{
+T 850 250 5 8 1 1 0 0 1
+pinnumber=8
+T 850 250 5 8 0 1 0 0 1
+pinseq=8
+T 525 475 9 10 1 1 0 0 1
+pinlabel=V-
+T 750 425 5 8 0 1 90 6 1
+pintype=pwr
+}
+P 1600 1100 1600 1300 1 0 1
+{
+T 1650 1200 5 8 1 1 0 0 1
+pinnumber=9
+T 1650 1200 5 8 0 1 0 0 1
+pinseq=9
+T 1350 1200 9 8 1 1 0 8 1
+pinlabel=CL
+T 1350 1300 5 8 0 1 90 0 1
+pintype=pas
+}
+P 1400 1200 1400 1400 1 0 1
+{
+T 1450 1400 5 8 1 1 0 0 1
+pinnumber=10
+T 1450 1400 5 8 0 1 0 0 1
+pinseq=10
+T 1350 1200 9 8 1 1 0 8 1
+pinlabel=CL
+T 1350 1300 5 8 0 1 90 0 1
+pintype=pas
+}
+P 800 1500 800 1700 1 0 1
+{
+T 850 1650 5 8 1 1 0 0 1
+pinnumber=11
+T 850 1650 5 8 0 1 0 0 1
+pinseq=11
+T 550 1350 9 10 1 1 0 0 1
+pinlabel=V+
+T 750 1600 5 8 0 1 90 0 1
+pintype=pwr
+}
+P 500 1700 500 1900 1 0 1
+{
+T 550 1850 5 8 1 1 0 0 1
+pinnumber=12
+T 550 1850 5 8 0 1 0 0 1
+pinseq=12
+T 550 1350 9 10 1 1 0 0 1
+pinlabel=V+
+T 450 1800 5 8 0 1 90 0 1
+pintype=pwr
+}
+T 1750 450 8 10 1 1 0 0 1
+refdes=U?
+T 1800 1575 5 10 1 1 0 0 1
+device=PA92
+T 1750 250 5 10 0 0 0 0 1
+numslots=0
+T 1800 2000 5 10 0 1 0 0 1
+description=High Voltage Power Operational Amplifier, ±200V, 4A
+T 1800 1400 9 10 1 1 0 0 1
+footprint=SIP-16
+T 1800 2200 5 10 0 1 0 0 1
+documentation=http://www.apexanalog.com/resources/products/pa92u.pdf
+T 1800 1800 5 10 0 0 0 0 1
+symversion=0.2
+T 1800 2400 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 1800 2600 5 10 0 0 0 0 1
+use-license=unlimited
+T 1800 2800 5 10 0 0 0 0 1
+author=AutoTron
