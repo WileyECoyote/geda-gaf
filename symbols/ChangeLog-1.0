@@ -1,5 +1,7 @@
 2019-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * apex/PA01-1.sym: Add new symbol; Power operational amplifier, +/-30V, 5A.
+
     * apex/PA94-1.sym: Add new symbol; High voltage power operational
 	  amplifier, +/- 430 Volts.
 
