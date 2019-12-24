@@ -4,6 +4,8 @@
 
     * symbols\dallas\DS12887-1.sym: Rename symbol file with DS prefix.
 
+    * symbols\dallas\DS1230AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+
 2019-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/allegro/A3916-1.sym: Add new symbol; Dual DMOS full-bridge motor driver.
