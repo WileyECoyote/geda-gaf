@@ -1,3 +1,7 @@
+2019-12-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols\dallas\DS12885-1.sym: Rename symbol file with DS prefix.
+
 2019-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/allegro/A3916-1.sym: Add new symbol; Dual DMOS full-bridge motor driver.
