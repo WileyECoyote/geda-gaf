@@ -2,6 +2,8 @@
 
     * symbols\dallas\DS1230Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
+    * symbols\dallas\DS1245Y-1.sym: Add new symbol; Nonvolatile SRAM, 1024k.
+
 2019-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols\dallas\DS12885-1.sym: Rename symbol file with DS prefix.
