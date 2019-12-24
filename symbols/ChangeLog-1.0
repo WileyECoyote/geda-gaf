@@ -1,28 +1,31 @@
 2019-12-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * symbols\dallas\DS1230Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+    * apex/PA94-1.sym: Add new symbol; High voltage power operational
+	  amplifier, +/- 430 Volts.
 
-    * symbols\dallas\DS1245Y-1.sym: Add new symbol; Nonvolatile SRAM, 1024k.
+    * dallas/DS1230Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+
+    * dallas/DS1245Y-1.sym: Add new symbol; Nonvolatile SRAM, 1024k.
 
 2019-12-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * symbols\dallas\DS12885-1.sym: Rename symbol file with DS prefix.
+    * dallas/DS12885-1.sym: Rename symbol file with DS prefix.
 
-    * symbols\dallas\DS12887-1.sym: Rename symbol file with DS prefix.
+    * dallas/DS12887-1.sym: Rename symbol file with DS prefix.
 
-    * symbols\dallas\DS1225AB-1.sym: Add new symbol; Nonvolatile SRAM, 64k.
+    * dallas/DS1225AB-1.sym: Add new symbol; Nonvolatile SRAM, 64k.
 
-    * symbols\dallas\DS1225Y-1.sym: Add new symbol; Nonvolatile SRAM, 64k.
+    * dallas/DS1225Y-1.sym: Add new symbol; Nonvolatile SRAM, 64k.
 
-    * symbols\dallas\DS1230AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+    * dallas/DS1230AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
-    * symbols\dallas\DS1235AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+    * dallas/DS1235AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
-    * symbols\dallas\DS1235Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+    * dallas/DS1235Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
-    * symbols\dallas\DS1245AB-1.sym: Add new symbol; Nonvolatile SRAM, 1024k.
+    * dallas/DS1245AB-1.sym: Add new symbol; Nonvolatile SRAM, 1024k.
 
-    * symbols\dallas\DS1866-1.sym: Rename symbol file with dash one.
+    * dallas/DS1866-1.sym: Rename symbol file with dash one.
 
 2019-12-21 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -8600,7 +8603,7 @@
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/BQ20z45-2.sch: Add dash 2 version of ti\BQ20z45 fuel gauge.
+    * ti/BQ20z45-2.sch: Add dash 2 version of ti/BQ20z45 fuel gauge.
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -8608,7 +8611,7 @@
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/BQ20z45-1.sch: Add New symbol ti\BQ20z45 fuel gauge.
+    * ti/BQ20z45-1.sch: Add New symbol ti/BQ20z45 fuel gauge.
 
 2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
