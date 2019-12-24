@@ -10,6 +10,8 @@
 
     * symbols\dallas\DS1230AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
+    * symbols\dallas\DS1235AB-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
+
     * symbols\dallas\DS1235Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
     * symbols\dallas\DS1245AB-1.sym: Add new symbol; Nonvolatile SRAM, 1024k.
