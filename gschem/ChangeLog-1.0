@@ -1,3 +1,7 @@
+2019-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Deactivate undeveloped x_dialog_sym_not_embedded.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Remove the stroke zoom in and out patterns;
