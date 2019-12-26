@@ -61,6 +61,10 @@ executing it. This option can be specified multiple times.
 Specify a Scheme expression to be executed during \fBgnetlist\fR
 startup. This option can be specified multiple times.
 .TP 8
+\fB-r\fR \fIFILE\fR
+Specify the name of the rc initialization file. By default, name is
+"gnetlistrc".
+.TP 8
 \fB-i\fR
 After the schematic files have been loaded and compiled, and after all
 Scheme files have been loaded, but before running the backend, enter a
