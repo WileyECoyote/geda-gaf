@@ -30,9 +30,7 @@
 #include <gnetlist.h>
 #include <geda_debug.h>
 
-/* TODO rc_filename could be changable via parse_commandline
- *      option, see gschem::gschem_parse_commandline
- */
+/* rc_filename is changable via parse_commandline */
 char *rc_filename = NULL;
 int   logfile_fd  = -1;
 
