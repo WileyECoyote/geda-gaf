@@ -41,6 +41,14 @@ AC_DEFUN([AX_HOST],
       AC_DEFINE([OS_WIN32_NATIVE], [1],
                 [Define to 1 if on native Windows.])
       ;;
+    *-*-msys)
+      OS_WIN32_NATIVE=yes
+      OS_MINGW32=yes
+      AC_DEFINE([OS_WIN32_NATIVE], [1],
+                [Define to 1 if on native Windows.])
+      AC_DEFINE([OS_MINGW32], [1],
+                [Define to 1 if on mingw.])
+      ;;
     *-*-cygwin*)
       OS_CYGWIN=yes
       AC_DEFINE([OS_CYGWIN], [1],
