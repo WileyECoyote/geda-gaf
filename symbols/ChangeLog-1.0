@@ -3,6 +3,7 @@
     * exar: Add symbol for XR76112 Synchronous Step Down COT Regulator, 12A:
 
             * exar/XR76112EH-F.sym
+            * exar/XR76112ELMTR-F.sym
 
 2019-12-24 Wiley E. Hill <wileyhill@gmail.com>
 

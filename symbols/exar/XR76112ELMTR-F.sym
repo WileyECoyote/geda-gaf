@@ -1,0 +1,357 @@
+v 20180521 2
+T 400 6700 9 10 0 0 0 0 1
+numslots=0
+T 400 5700 5 10 1 1 0 0 1
+value=XR76112ELMTR-F
+T 400 6100 9 10 0 0 0 0 1
+footprint=QFN-30_5X5
+T 400 5900 8 10 1 1 0 0 1
+refdes=U?
+T 400 6300 5 10 0 0 0 0 1
+device=XR76112ELMTR-F
+T 400 6900 5 10 0 1 0 0 1
+documentation=http://www.exar.com/ds/xr76108_xr76112.pdf
+T 400 6500 5 10 0 1 0 0 1
+description=Synchronous Step Down COT Regulator, 12A
+P 2500 2900 2200 2900 1 0 0
+{
+T 2300 2950 5 8 1 1 0 0 1
+pinnumber=1
+T 2150 2900 3 10 1 1 0 6 1
+pinlabel=ILIM
+T 2300 2950 5 8 1 1 0 0 1
+pinseq=1
+T 2150 2875 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 2900 400 2900 1 0 0
+{
+T 300 2950 5 8 1 1 0 6 1
+pinnumber=2
+T 450 2900 3 10 1 1 0 0 1
+pinlabel=EN/MODE
+T 300 2950 5 8 1 1 0 6 1
+pinseq=2
+T 450 2875 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1300 400 1300 1 0 0
+{
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=3
+T 450 1300 3 10 1 1 0 0 1
+pinlabel=TON
+T 300 1350 5 8 1 1 0 6 1
+pinseq=3
+T 450 1275 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1700 400 1700 1 0 0
+{
+T 300 1750 5 8 1 1 0 6 1
+pinnumber=4
+T 450 1700 3 10 1 1 0 0 1
+pinlabel=SS
+T 300 1750 5 8 1 1 0 6 1
+pinseq=4
+T 450 1675 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 2500 400 2500 1 0 0
+{
+T 300 2550 5 8 1 1 0 6 1
+pinnumber=5
+T 450 2500 3 10 1 1 0 0 1
+pinlabel=PGOOD
+T 300 2550 5 8 1 1 0 6 1
+pinseq=5
+T 450 2475 5 8 0 1 0 2 1
+pintype=out
+}
+P 2500 2100 2200 2100 1 0 0
+{
+T 2300 2150 5 8 1 1 0 0 1
+pinnumber=6
+T 2150 2100 3 10 1 1 0 6 1
+pinlabel=FB
+T 2300 2150 5 8 1 1 0 0 1
+pinseq=6
+T 2150 2075 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 900 400 900 1 0 0
+{
+T 300 950 5 8 1 1 0 6 1
+pinnumber=7
+T 450 900 3 10 1 1 0 0 1
+pinlabel=AGND
+T 300 950 5 8 1 1 0 6 1
+pinseq=7
+T 450 875 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2500 5400 2200 5400 1 0 0
+{
+T 2300 5450 5 8 1 1 0 0 1
+pinnumber=8
+T 2150 5400 3 10 1 1 0 6 1
+pinlabel=VIN
+T 2300 5450 5 8 1 1 0 0 1
+pinseq=8
+T 2150 5375 5 8 0 1 0 8 1
+pintype=in
+}
+P 100 2100 400 2100 1 0 0
+{
+T 300 2150 5 8 1 1 0 6 1
+pinnumber=9
+T 450 2100 3 10 1 1 0 0 1
+pinlabel=VCC
+T 300 2150 5 8 1 1 0 6 1
+pinseq=9
+T 450 2075 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 600 400 600 1 0 0
+{
+T 300 650 5 8 1 1 0 6 1
+pinnumber=10
+T 450 600 3 10 1 1 0 0 1
+pinlabel=AGND
+T 300 650 5 8 1 1 0 6 1
+pinseq=10
+T 450 575 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2500 3300 2200 3300 1 0 0
+{
+T 2300 3350 5 8 1 1 0 0 1
+pinnumber=11
+T 2150 3300 3 10 1 1 0 6 1
+pinlabel=SW
+T 2300 3350 5 8 1 1 0 0 1
+pinseq=11
+T 2150 3275 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 3600 2200 3600 1 0 0
+{
+T 2300 3650 5 8 1 1 0 0 1
+pinnumber=12
+T 2150 3600 3 10 1 1 0 6 1
+pinlabel=SW
+T 2300 3650 5 8 1 1 0 0 1
+pinseq=12
+T 2150 3575 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 3900 2200 3900 1 0 0
+{
+T 2300 3950 5 8 1 1 0 0 1
+pinnumber=13
+T 2150 3900 3 10 1 1 0 6 1
+pinlabel=SW
+T 2300 3950 5 8 1 1 0 0 1
+pinseq=13
+T 2150 3875 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 4200 2200 4200 1 0 0
+{
+T 2300 4250 5 8 1 1 0 0 1
+pinnumber=14
+T 2150 4200 3 10 1 1 0 6 1
+pinlabel=SW
+T 2300 4250 5 8 1 1 0 0 1
+pinseq=14
+T 2150 4175 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 1500 2200 1500 1 0 0
+{
+T 2300 1550 5 8 1 1 0 0 1
+pinnumber=15
+T 2150 1500 3 10 1 1 0 6 1
+pinlabel=PGND
+T 2300 1550 5 8 1 1 0 0 1
+pinseq=15
+T 2150 1475 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 300 2200 300 1 0 0
+{
+T 2300 350 5 8 1 1 0 0 1
+pinnumber=16
+T 2150 300 3 10 1 1 0 6 1
+pinlabel=PGND
+T 2300 350 5 8 1 1 0 0 1
+pinseq=16
+T 2150 275 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 600 2200 600 1 0 0
+{
+T 2300 650 5 8 1 1 0 0 1
+pinnumber=17
+T 2150 600 3 10 1 1 0 6 1
+pinlabel=PGND
+T 2300 650 5 8 1 1 0 0 1
+pinseq=17
+T 2150 575 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 900 2200 900 1 0 0
+{
+T 2300 950 5 8 1 1 0 0 1
+pinnumber=18
+T 2150 900 3 10 1 1 0 6 1
+pinlabel=PGND
+T 2300 950 5 8 1 1 0 0 1
+pinseq=18
+T 2150 875 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 1200 2200 1200 1 0 0
+{
+T 2300 1250 5 8 1 1 0 0 1
+pinnumber=19
+T 2150 1200 3 10 1 1 0 6 1
+pinlabel=PGND
+T 2300 1250 5 8 1 1 0 0 1
+pinseq=19
+T 2150 1175 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 2500 4500 2200 4500 1 0 0
+{
+T 2300 4550 5 8 1 1 0 0 1
+pinnumber=20
+T 2150 4500 3 10 1 1 0 6 1
+pinlabel=SW
+T 2300 4550 5 8 1 1 0 0 1
+pinseq=20
+T 2150 4475 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 3300 400 3300 1 0 0
+{
+T 300 3350 5 8 1 1 0 6 1
+pinnumber=21
+T 450 3300 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 3350 5 8 1 1 0 6 1
+pinseq=21
+T 450 3275 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3600 400 3600 1 0 0
+{
+T 300 3650 5 8 1 1 0 6 1
+pinnumber=22
+T 450 3600 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 3650 5 8 1 1 0 6 1
+pinseq=22
+T 450 3575 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 3900 400 3900 1 0 0
+{
+T 300 3950 5 8 1 1 0 6 1
+pinnumber=23
+T 450 3900 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 3950 5 8 1 1 0 6 1
+pinseq=23
+T 450 3875 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4200 400 4200 1 0 0
+{
+T 300 4250 5 8 1 1 0 6 1
+pinnumber=24
+T 450 4200 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 4250 5 8 1 1 0 6 1
+pinseq=24
+T 450 4175 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4500 400 4500 1 0 0
+{
+T 300 4550 5 8 1 1 0 6 1
+pinnumber=25
+T 450 4500 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 4550 5 8 1 1 0 6 1
+pinseq=25
+T 450 4475 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 4800 400 4800 1 0 0
+{
+T 300 4850 5 8 1 1 0 6 1
+pinnumber=26
+T 450 4800 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 4850 5 8 1 1 0 6 1
+pinseq=26
+T 450 4775 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 5100 400 5100 1 0 0
+{
+T 300 5150 5 8 1 1 0 6 1
+pinnumber=27
+T 450 5100 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 5150 5 8 1 1 0 6 1
+pinseq=27
+T 450 5075 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 5400 400 5400 1 0 0
+{
+T 300 5450 5 8 1 1 0 6 1
+pinnumber=28
+T 450 5400 3 10 1 1 0 0 1
+pinlabel=PVIN
+T 300 5450 5 8 1 1 0 6 1
+pinseq=28
+T 450 5375 5 8 0 1 0 2 1
+pintype=in
+}
+P 2500 4800 2200 4800 1 0 0
+{
+T 2300 4850 5 8 1 1 0 0 1
+pinnumber=29
+T 2150 4800 3 10 1 1 0 6 1
+pinlabel=SW
+T 2300 4850 5 8 1 1 0 0 1
+pinseq=29
+T 2150 4775 5 8 0 1 0 8 1
+pintype=pas
+}
+P 2500 5100 2200 5100 1 0 0
+{
+T 2300 5150 5 8 1 1 0 0 1
+pinnumber=30
+T 2150 5100 3 10 1 1 0 6 1
+pinlabel=BST
+T 2300 5150 5 8 1 1 0 0 1
+pinseq=30
+T 2150 5075 5 8 0 1 0 8 1
+pintype=pas
+}
+P 100 300 400 300 1 0 0
+{
+T 300 350 5 8 1 1 0 6 1
+pinnumber=31
+T 450 300 3 10 1 1 0 0 1
+pinlabel=AGND
+T 300 350 5 8 1 1 0 6 1
+pinseq=31
+T 450 275 5 8 0 1 0 2 1
+pintype=pwr
+}
+B 400 100 1800 5500 3 0 0 0 100 100 0 0 45 50 135 50
