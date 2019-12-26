@@ -1,5 +1,7 @@
 2019-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * apex/PA74-1.sym: Add new symbol; Dual Power Operational Amplifiers.
+
     * exar: Add symbol for XR76112 Synchronous Step Down COT Regulator, 12A:
 
             * exar/XR76112EH-F.sym
