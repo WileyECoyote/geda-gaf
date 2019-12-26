@@ -295,6 +295,7 @@ void       i_pan_world_mouse                (GschemToplevel *w_current, int diff
 /* i_sessions.c */
 int        i_sessions_delete_session        (GschemToplevel *w_current, const char *name);
 int        i_sessions_export_session        (const char *name, const char *filename);
+void       i_sessions_list_sessions         (void);
 int        i_sessions_new_session           (GschemToplevel *w_current, const char *name);
 bool       i_sessions_open_session          (GschemToplevel *w_current, const char *name);
 int        i_sessions_rename_session        (GschemToplevel *w_current, const char *old_name, const char *new_name);

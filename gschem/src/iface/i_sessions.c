@@ -912,6 +912,36 @@ int i_sessions_export_session(const char *name, const char *filename)
   return geda_file_copy (record->session_file, filename);
 }
 
+void i_sessions_list_sessions(void)
+{
+  if (sessions == NULL) {
+    i_sessions_load_data();
+  }
+
+  if (sessions != NULL) {
+
+    if (sessions->len) {
+
+      int index = 0;
+
+      while (index < sessions->len) {
+
+        Session *record;
+
+        record = &g_array_index(sessions, Session, index);
+
+        if (record != NULL) {
+          printf ("%s\n", record->session_name);
+        }
+        index++;
+      }
+    }
+    else {
+      printf (_("There are no saved sessions"));
+    }
+  }
+}
+
 /*!
  * \brief Create a New Session
  * \par Function Description
