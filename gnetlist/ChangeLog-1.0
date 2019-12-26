@@ -1,3 +1,7 @@
+2019-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Wrap callgrind.h> in conditional  PERFORMANCE directive.
+
 2019-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/powersupply.sch: Update capacitor-2.sym symversion=0.2.
