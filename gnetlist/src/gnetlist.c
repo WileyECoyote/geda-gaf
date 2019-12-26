@@ -280,8 +280,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     }
 
     if (!quiet_mode) {
-      geda_log ("%s: \"%s\"\n", _("Loading schematic"), filename);
-      fprintf (stderr,"%s: \"%s\"\n", _("Loading schematic"), filename);
+      geda_log ("%s: \"%s\"\n",  _("Loading schematic"), filename);
     }
 
     geda_struct_page_goto (geda_struct_page_new (pr_current, filename));

@@ -2,6 +2,8 @@
 
     * docs/gnetlist.1.in: Update man page; document command-line option "r".
 
+    * src/gnetlist.c: Remove message output to strerr in main_prog.
+
     * src/parsecmd.c: Add command-line option "r" to allow users the option of
 	  specifying the name of the rc file.
 
