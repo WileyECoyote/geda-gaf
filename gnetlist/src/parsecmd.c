@@ -39,7 +39,7 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-#define OPTIONS "c:g:hil:L:m:o:O:qvV"
+#define OPTIONS "c:g:hil:L:m:o:O:qr:vV"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -86,6 +86,7 @@ void usage(char *cmd)
     "  -m <file.scm>   Load Scheme file after loading backend.\n"
     "  -c <expresion>  Evaluate Scheme expression at startup.\n"
     "  -i              Enter interactive Scheme REPL after loading.\n"
+    "  -r <filename>   RC Filename, default is gnetlistrc.\n"
     "  --list-backends Print a list of available netlist backends.\n"
     "  -h, --help      Display usage and parameter information.\n"
     "  -V, --version   Show gnetlist or a backend version information.\n"
@@ -185,6 +186,14 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
           interactive_mode = TRUE;
           guile_proc = geda_strdup("shell");
           break;
+
+        case 'r':
+           if (rc_filename) {
+             const char *msg = _("WARNING: output already specified");
+             fprintf(stderr, "%s <%s>\n", msg, rc_filename);
+             g_free(rc_filename);
+           }
+          rc_filename = geda_utility_string_strdup(optarg);
 
         case 'q':
           quiet_mode = TRUE;

@@ -1,3 +1,8 @@
+2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src\parsecmd.c: Add command-line option "r" to allow users the option of
+	  specifying the name of the rc file.
+
 2019-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_traverse.c: Wrap callgrind.h> in conditional  PERFORMANCE directive.
