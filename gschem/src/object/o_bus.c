@@ -30,13 +30,13 @@
 
 
 /*!
- * \brief draw a rubberbus segment
+ * \brief draw a rubber bus segment
  * \par Function Description
  *  This function draws a bus segment from the point (<B>first_wx</B>,
  *  <B>first_wy</B>) to the point (<B>second_wx</B>,<B>second_wy</B>)
  *  from the <B>GschemToplevel</B> structure.
  *
- *  The function can be used to draw or erase the rubberbus on the screen.
+ *  The function can be used to draw or erase the rubber bus on the screen.
  *
  *  \param [in] w_current  The GschemToplevel object
  */
@@ -83,7 +83,7 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
     color = w_current->override_bus_color;
   }
 
-  /* set flag erase the rubberbus */
+  /* set flag erase the rubber bus */
   w_current->rubber_visible = FALSE;
 
   /* don't allow zero length bus */
@@ -180,8 +180,8 @@ void o_bus_invalidate_rubber (GschemToplevel *w_current)
  *  </B> structure to the input parameter (<B>w_x</B>, <B>w_y</B>).
  *
  *  The function stores creates an non-orthogonal bus segment if the
- *  CONTROLKEY is pressed. The coordinates of the second rubberbus point
- *  is stored as (<B>second_wx</B>,<B>second_wy</B>) in the
+ *  CONTROLKEY is pressed. The coordinates of the second rubber bus
+ *  point is stored as (<B>second_wx</B>,<B>second_wy</B>) in the
  *  <B>GschemToplevel</B> structure.
  *
  * \param [in] w_current  The GschemToplevel object.
