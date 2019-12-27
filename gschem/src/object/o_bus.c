@@ -29,12 +29,12 @@
 #include <geda_debug.h>
 
 
-/*! \brief draw a rubberbus segment
- *  \par Function Description
- *  This function draws a bus segment from the point
- *  (<B>first_wx</B>,<B>first_wy</B>) to the point
- *  (<B>second_wx</B>,<B>second_wy</B>) from the <B>GschemToplevel</B>
- *   structure.
+/*!
+ * \brief draw a rubberbus segment
+ * \par Function Description
+ *  This function draws a bus segment from the point (<B>first_wx</B>,
+ *  <B>first_wy</B>) to the point (<B>second_wx</B>,<B>second_wy</B>)
+ *  from the <B>GschemToplevel</B> structure.
  *
  *  The function can be used to draw or erase the rubberbus on the screen.
  *
@@ -55,8 +55,9 @@ void o_bus_draw_rubber (GschemToplevel *w_current)
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_ROUND, width, -1, -1);
 }
 
-/*! \brief finish a bus drawing action
- *  \par Function Description
+/*!
+ * \brief finish a bus drawing action
+ * \par Function Description
  *  This function finishes a net drawing action. The function draws
  *  a bus from the point (<B>first_wx</B>,<B>first_wy</B>) to
  *  (<B>second_wx</B>,<B>second_wy</B>). Both points are taken from
@@ -65,9 +66,9 @@ void o_bus_draw_rubber (GschemToplevel *w_current)
  *  The function returns TRUE if a bus object has been created and
  *  FALSE if no bus object has been created.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        (unused)
- *  \param [in] w_y        (unused)
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        (unused)
+ * \param [in] w_y        (unused)
  */
 static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -120,15 +121,16 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Initialize Variables to input a new bus
- *  \par Function Description
+/*!
+ * \brief Initialize Variables to input a new bus
+ * \par Function Description
  *  This function initializes variables to input a new bus object. The
  *  start point is stored in <B>first_wx</B>, <B>first_wy</B> in the
  *  <B>GschemToplevel</B> structure.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] w_x        Current x coordinate of pointer in world
- *  \param [in] w_y        Current y coordinate of pointer in world
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] w_x        Current x coordinate of pointer in world
+ * \param [in] w_y        Current y coordinate of pointer in world
  */
 static void o_bus_init(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -140,12 +142,13 @@ static void o_bus_init(GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Invalidate Temporary drawing artifacts for Bus objects
- *  \par Function Description
- *   Get coordinates from top-level and invalidate the bounding
- *   region of a GedaBus object.
+/*!
+ * \brief Invalidate Temporary drawing artifacts for Bus objects
+ * \par Function Description
+ *  Get coordinates from top-level and invalidate the bounding
+ *  region of a GedaBus object.
  *
- *  \param [in] w_current  The GschemToplevel object
+ * \param [in] w_current  The GschemToplevel object
  */
 void o_bus_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -169,8 +172,9 @@ void o_bus_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, min_x, min_y, max_x, max_y);
 }
 
-/*! \brief draw the bus rubber when creating a bus
- *  \par Function Description
+/*!
+ * \brief draw the bus rubber when creating a bus
+ * \par Function Description
  *  This function draws a bus rubber from the point
  *  (<B>first_wx</B>,<B>first_wy</B>) from the <B>GschemToplevel
  *  </B> structure to the input parameter (<B>w_x</B>, <B>w_y</B>).
@@ -180,9 +184,9 @@ void o_bus_invalidate_rubber (GschemToplevel *w_current)
  *  is stored as (<B>second_wx</B>,<B>second_wy</B>) in the
  *  <B>GschemToplevel</B> structure.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        current x position in world units
- *  \param [in] w_y        current y position in world units
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        current x position in world units
+ * \param [in] w_y        current y position in world units
  */
 void o_bus_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -218,12 +222,13 @@ void o_bus_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Start input for a new bus object
- *  \par Function Description
+/*!
+ * \brief Start input for a new bus object
+ * \par Function Description
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        the x position in world coords
- *  \param [in] w_y        the y position in world coords
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        the x position in world coords
+ * \param [in] w_y        the y position in world coords
  */
 void o_bus_start(GschemToplevel *w_current, int w_x, int w_y)
 {
