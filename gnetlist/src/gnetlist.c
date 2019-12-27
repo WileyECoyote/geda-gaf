@@ -244,7 +244,7 @@ static void main_prog(void *closure, int argc, char *argv[])
   geda_log
   (_("conditions; please see the COPYING file for more details.\n\n"));
 
-  /* immediately setup configuration and user params */
+  /* Immediately setup configuration and user params */
   i_vars_init_gnetlist_defaults ();
 
   if (!output_filename) {
@@ -293,14 +293,14 @@ static void main_prog(void *closure, int argc, char *argv[])
       exit(2);
     }
 
-    /* collect input filenames into Global GSList for backend use */
+    /* Collect input filenames into Global GSList for backend use */
     input_files = g_slist_append(input_files, argv[i]);
 
     i++;
     GEDA_FREE (filename);
   }
 
-  /* Change back to the directory where we started.  This is done since
+  /* Change back to the directory where we started. This is done since
    * gnetlist is a command line utility and will deposit its output in
    * the current directory. Having the output go to a different directory
    * will confuse the user (confused me, at first). */
@@ -348,7 +348,7 @@ static void main_prog(void *closure, int argc, char *argv[])
     /* Evaluate second set of Scheme expressions. */
     scm_eval (post_backend_list, scm_current_module ());
 
-    /* this is a kludge to make sure that spice mode gets set. Is Hacked by SDB
+    /* This is a kludge to make sure spice mode gets set. Is Hacked by SDB
      * to allow spice netlisters of arbitrary name as long as they begin with
      * "spice".  For example, this spice netlister is valid: "spice-sdb".
      */
@@ -400,7 +400,7 @@ static void main_prog(void *closure, int argc, char *argv[])
 
             g_clear_error (&err);
 
-            /* attempt to create the directories */
+            /* Attempt to create the directories */
             if (geda_create_path (path, S_IRWXU | S_IRWXG)) {
 
               const char *_Path = _("Path");
@@ -423,9 +423,8 @@ static void main_prog(void *closure, int argc, char *argv[])
           }
         }
       }
-      else {
+      else {  /* path is absolute, so check it */
 
-        /* path is absolute, so check it */
         if (!g_file_test(path, G_FILE_TEST_IS_DIR)) {
 
           /* Does not exist so attempt to create the path */
@@ -467,7 +466,7 @@ static void main_prog(void *closure, int argc, char *argv[])
 
     char *eval;
 
-    /* check size here hack */
+    /* Check size here hack */
     eval = geda_sprintf ("(%s \"%s\")", guile_proc, output_filename);
 
     /* Execute the back-end passing the name of the output file */
