@@ -24,7 +24,7 @@
 #include <geda_debug.h>
 
 /* Colon after a character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "a:c:f:g:hmno:pqr:s:t:vVx:z"
+#define GETOPT_OPTIONS "a:c:f:g:hlmno:pqr:s:t:vVx:z"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -43,6 +43,7 @@ struct option long_options[] =
     {"font",           1, 0, 'f'},
     {"guile",          1, 0, 'g'},
     {"help",           0, 0, 'h'},
+    {"list",           0, 0, 'l'},
     {"safe-mode",      0, 0, 'm'},
     {"no-auto",        0, 0, 'n'},
     {"output",         1, 0, 'o'},
@@ -94,6 +95,7 @@ usage(char *cmd)
     "  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
     "  -f, --font <NAME>          set font family name\n"
     "  -h, --help                 Help; this message.\n"
+    "  -l, --list                 List saved session names.\n"
     "  -m, --safe-mode            Safe Mode.\n"
     "  -n, --no-auto              No auto load last document.\n"
     "  -o, --output <FILE>        Output filename (for printing and image output).\n"
@@ -217,6 +219,11 @@ int gschem_parse_commandline(int argc, char *argv[])
       case 'h':
         usage(argv[0]);
         break;
+
+      case 'l':
+        i_sessions_list_sessions ();
+        i_sessions_destroy_sessions();
+        exit (0);
 
       case 'm':
         run_mode = 1;
