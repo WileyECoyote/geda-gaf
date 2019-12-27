@@ -217,8 +217,6 @@ void o_box_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-
-
 /*! \brief Start process to input a new box
  *  \par Function Description
  *  This function starts the process to input a new box.
