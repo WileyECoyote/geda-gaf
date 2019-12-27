@@ -30,8 +30,9 @@
 #include <gschem_macros.h>
 #include <geda_debug.h>
 
-/*! \brief Initialize Variables to input a new box
- *  \par Function Description
+/*!
+ * \brief Initialize Variables to input a new box
+ * \par Function Description
  *  This function initializes variables to input a new box. Parameters for the
  *  box are put into/extracted from the <B>w_current</B> toplevel structure.
  *  <B>w_x</B> and <B>w_y</B> are current coordinates of the pointer in world
@@ -44,9 +45,9 @@
  *  The other corner will be saved in (<B>w_current->second_wx</B>,
  *  <B>w_current->second_wy</B>).
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] w_x        Current x coordinate of pointer in world
- *  \param [in] w_y        Current y coordinate of pointer in world
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] w_x        Current x coordinate of pointer in world
+ * \param [in] w_y        Current y coordinate of pointer in world
  */
 static void o_box_init(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -58,15 +59,16 @@ static void o_box_init(GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Draw temporary box
- *  \par Function Description
+/*!
+ * \brief Draw temporary box
+ * \par Function Description
  *  This function draws the box from the variables in the GschemToplevel
  *  structure <B>*w_current</B>.
  *  One corner of the box is at (<B>w_current->first_wx</B>,
  *  <B>w_current->first_wy</B>) and the second corner is at
  *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>.
  *
- *  \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_current  The GschemToplevel object.
  */
 void o_box_draw_rubber (GschemToplevel *w_current)
 {
@@ -82,8 +84,9 @@ void o_box_draw_rubber (GschemToplevel *w_current)
   eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, width, -1, -1);
 }
 
-/*! \brief End the input of a box.
- *  \par Function Description
+/*!
+ * \brief End the input of a box.
+ * \par Function Description
  *  This function ends the input of the second corner of a box.
  *  The (<B>w_x</B>,<B>w_y</B>) point is set to be this second corner. The box is
  *  then defined by (<B>w_current->first_wx</B>,<B>w_current->first_wy</B> and
@@ -94,9 +97,9 @@ void o_box_draw_rubber (GschemToplevel *w_current)
  *  and linked to the object list ; The object is finally drawn on the
  *  current sheet.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] w_x        Current x coordinate of pointer in world units
- *  \param [in] w_y        Current y coordinate of pointer in world units
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] w_x        Current x coordinate of pointer in world units
+ * \param [in] w_y        Current y coordinate of pointer in world units
  */
 static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -156,10 +159,11 @@ static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Invalidate Temporary drawing artifacts for Box objects
- *  \par Function Description
- *   Get coordinates from top-level and invalidate the bounding
- *   region of a Box object.
+/*!
+ * \brief Invalidate Temporary drawing artifacts for Box objects
+ * \par Function Description
+ *  Get coordinates from top-level and invalidate the bounding
+ *  region of a Box object.
  */
 void o_box_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -174,8 +178,9 @@ void o_box_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, x1, y2, x2, y2);
 }
 
-/*! \brief Draw temporary box while dragging edge.
- *  \par Function Description
+/*!
+ * \brief Draw temporary box while dragging edge.
+ * \par Function Description
  *  This function is used to draw the box while dragging one of its edge or
  *  angle. It erases the previous temporary box drawn before, and draws a new
  *  updated one. <B>w_x</B> and <B>w_y</B> are the new position of the mobile point,
@@ -184,9 +189,9 @@ void o_box_invalidate_rubber (GschemToplevel *w_current)
  *  The old values are inside the <B>w_current</B> pointed structure. Old width,
  *  height and left and top values are recomputed by the corresponding macros.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.
- *  \param [in] w_y        Current y coordinate of pointer in world units.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] w_x        Current x coordinate of pointer in world units.
+ * \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void o_box_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
@@ -217,13 +222,14 @@ void o_box_motion (GschemToplevel *w_current, int w_x, int w_y)
   }
 }
 
-/*! \brief Start process to input a new box
- *  \par Function Description
+/*!
+ * \brief Start process to input a new box
+ * \par Function Description
  *  This function starts the process to input a new box.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] w_x        Current x coordinate of pointer in world
- *  \param [in] w_y        Current y coordinate of pointer in world
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] w_x        Current x coordinate of pointer in world
+ * \param [in] w_y        Current y coordinate of pointer in world
  */
 void o_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
