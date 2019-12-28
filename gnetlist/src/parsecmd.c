@@ -187,7 +187,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
           guile_proc = geda_strdup("shell");
           break;
 
-        case 'r':
+        case 'r': /* Argument is filename of RC script to load */
            if (rc_filename) {
              const char *msg = _("WARNING: output already specified");
              fprintf(stderr, "%s <%s>\n", msg, rc_filename);
@@ -212,7 +212,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
                     pre_rc_list);
           break;
 
-        case 'g':
+        case 'g': /* Argument is netlist backend to use */
           guile_proc = geda_utility_string_strdup(optarg);
           backend_flag = TRUE;
           break;
@@ -233,7 +233,7 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
                     post_backend_list);
           break;
 
-        case 'o':
+        case 'o':  /* Argument is the name of the output file */
            if (*output_filename) {
              fprintf(stderr, "%s <%s>\n", _("WARNING: output already specified"),
                     *output_filename);
@@ -242,11 +242,11 @@ int parse_commandline (int argc, char *argv[], char **output_filename)
           *output_filename = geda_utility_string_strdup(optarg);
           break;
 
-        case 'O':
+        case 'O': /* Argument is a parameter to pass to the backend */
           backend_params = g_slist_append(backend_params, optarg);
           break;
 
-        case 'c':
+        case 'c': /* Argument is a scheme expression to be evaluated */
           scm_internal_catch (SCM_BOOL_T,
                              (scm_t_catch_body) scm_c_eval_string,
                              (void *) optarg,
