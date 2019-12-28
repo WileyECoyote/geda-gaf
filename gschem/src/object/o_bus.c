@@ -86,7 +86,7 @@ static void o_bus_end(GschemToplevel *w_current, int w_x, int w_y)
   /* set flag erase the rubber bus */
   w_current->rubber_visible = FALSE;
 
-  /* don't allow zero length bus */
+  /* Do not allow zero length bus */
   /* this ends the bus drawing behavior we want this? hack */
   if ((w_current->first_wx == w_current->second_wx) &&
       (w_current->first_wy == w_current->second_wy))
