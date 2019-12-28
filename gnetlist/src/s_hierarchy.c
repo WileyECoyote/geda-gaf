@@ -35,14 +35,15 @@
 #include <gettext.h>
 #include <geda_debug.h>
 
-/*! \brief Traverse Hierarchy
- *  \par Function Description
- *   Called by s_traverse_sheet or s_traverse_hierarchy_sheet if
- *   hierarchy-traversal is enabled to check \a o_current for any
- *   source= attributes, there can be more then one, and if found
- *   geda_struct_hierarchy_down_single is called to get the page
- *   object for the sheet/page. s_traverse_hierarchy_sheet is then
- *   called to traverse page.
+/*!
+ * \brief Traverse Hierarchy
+ * \par Function Description
+ *  Called by s_traverse_sheet or s_traverse_hierarchy_sheet if
+ *  hierarchy-traversal is enabled to check \a o_current for any
+ *  source= attributes, there can be more then one, and if found
+ *  geda_struct_hierarchy_down_single is called to get the page
+ *  object for the sheet/page. s_traverse_hierarchy_sheet is then
+ *  called to traverse page.
  */
 void s_hierarchy_traverse(GedaToplevel *pr_current,
                           GedaObject   *o_current,
@@ -182,9 +183,10 @@ void s_hierarchy_traverse(GedaToplevel *pr_current,
   }
 }
 
-/*! \brief Remove Unreferenced connections in Hierarchical net list
- *  \par Function Description
- *   Removes stuff from netlist connected to \a uref_disable
+/*!
+ * \brief Remove Unreferenced connections in Hierarchical net list
+ * \par Function Description
+ *  Removes stuff from netlist connected to \a uref_disable.
  */
 GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
 {
@@ -267,8 +269,9 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
   return g_list_reverse(removed);
 }
 
-/*! \brief Create a refdes relative to Hierarchy
- *  \par Function Description
+/*!
+ * \brief Create a refdes relative to Hierarchy
+ * \par Function Description
  *  Creates a string composed of \a hierarchy_tag and \a basename
  *  separated by the separator found in the toplevel variable
  *  hierarchy_uref_separator, with the order determined by the
@@ -276,15 +279,15 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
  *  are supplied, if \a hierarchy_tag is NULL a copy of \a basename
  *  is returned, if \a basename is NULL, then NULL is returned.
  *
- *  \param [in] pr_current    GedaToplevel toplevel structure;
- *  \param [in] basename      Is the value of refdes=,
- *  \param [in] hierarchy_tag netlist->hierarchy_tag or NULL.
+ * \param [in] pr_current    GedaToplevel toplevel structure;
+ * \param [in] basename      Is the value of refdes=,
+ * \param [in] hierarchy_tag netlist->hierarchy_tag or NULL.
  *
- *  \return Character string hierarchy reference.
+ * \return Character string hierarchy reference.
  *
- *  \note Caller should release the returned character string.
+ * \note Caller should release the returned character string.
  *
- *  \sa g_rc_hierarchy_uref_separator g_rc_hierarchy_uref_mangle i_vars_set
+ * \sa g_rc_hierarchy_uref_separator g_rc_hierarchy_uref_mangle i_vars_set
  */
 char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
                               char *hierarchy_tag)
@@ -339,21 +342,22 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
   return (return_value);
 }
 
-/*! \brief Hierarchy Setup Rename Nets
- *  \par Function Description
- *   Searches \a head for \a uref after possibly hierarchical prefixing
- *   by s_hierarchy_create_uref and if the resulting composite is found
- *   s_rename_add is called to create a rename structure to replace what
- *   ever net_name is in the PIN list with \a new_name. All instances of
- *   component_uref are removed from the NET list and uniquely added to
- *   the \a removed list.
+/*!
+ * \brief Hierarchy Setup Rename Nets
+ * \par Function Description
+ *  Searches \a head for \a uref after possibly hierarchical prefixing
+ *  by s_hierarchy_create_uref and if the resulting composite is found
+ *  s_rename_add is called to create a rename structure to replace what
+ *  ever net_name is in the PIN list with \a new_name. All instances of
+ *  component_uref are removed from the NET list and uniquely added to
+ *  the \a removed list.
  *
- *  \param [in]  pr_current GedaToplevel needed by s_hierarchy_create_uref
- *  \param [in]  head       The Netlist
- *  \param [in]  uref       To look for in the NET list
- *  \param [in]  label      pinlabel= needed by s_hierarchy_create_uref
- *  \param [in]  new_name   The net_name to store in the PIN list
- *  \param [out] removed    A list to be appended with any pointer removed.
+ * \param [in]  pr_current GedaToplevel needed by s_hierarchy_create_uref
+ * \param [in]  head       The Netlist
+ * \param [in]  uref       To look for in the NET list
+ * \param [in]  label      pinlabel= needed by s_hierarchy_create_uref
+ * \param [in]  new_name   The net_name to store in the PIN list
+ * \param [out] removed    A list to be appended with any pointer removed.
  */
 static int
 s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
@@ -847,11 +851,12 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
   return (return_value);
 }
 
-/*! \brief Has Graphical attribute set
- *  \par Function Description
- *   Checks for existence of a graphical attribute and if found
- *   check if the value of the attribute is non zero, which is
- *   interpreted as meaning the object is a graphical object.
+/*!
+ * \brief Has Graphical attribute set
+ * \par Function Description
+ *  Checks for existence of a graphical attribute and if found
+ *  check if the value of the attribute is non zero, which is
+ *  interpreted as meaning the object is a graphical object.
  */
 int s_hierarchy_graphical_search (GedaObject* o_current, int count)
 {
