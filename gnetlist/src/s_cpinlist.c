@@ -148,7 +148,6 @@ void s_cpinlist_print(CPINLIST *ptr)
 
       printf("\n");
 
-
       if (pl_current->nets) {
         s_net_print(pl_current->nets);
       }
