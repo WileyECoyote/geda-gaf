@@ -22,7 +22,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA, <http://www.gnu.org/licenses/>.
- *
  */
 
 #include "../../config.h"
@@ -246,9 +245,8 @@ s_netattrib_create_pins(GedaToplevel *pr_current, GedaObject *o_current,
 /*!
  * \brief Process Net Attributes
  * \par Function Description
- *  Searches \a o_current for inherited and attached net
- *  attributes and calls s_netattrib_create_pins for each
- *  attribute that is found.
+ *  Searches \a o_current for inherited and attached net attributes and
+ *  calls s_netattrib_create_pins for each attribute that is found.
  */
 void
 s_netattrib_handle (GedaToplevel *pr_current,GedaObject *o_current,
@@ -409,8 +407,8 @@ char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
 /*!
  * \brief Get net-name associated with an Object's pin
  * \par Function Description
- *  Returns the netname associated with \a pinnumber of the
- *  object that \a o_pin belongs too.
+ *  Returns the netname associated with \a pinnumber of the object
+ *  that \a o_pin belongs too.
  */
 char *s_netattrib_return_netname(GedaToplevel *pr_current,
                                    GedaObject *o_pin,
