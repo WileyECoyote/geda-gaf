@@ -155,7 +155,7 @@ s_netattrib_create_pins(GedaToplevel *pr_current, GedaObject *o_current,
 
   net_name = s_netattrib_extract_netname(value);
 
-  /* skip over first : */
+  /* Skip over first : */
   start_of_pinlist = char_ptr + 1;
   current_pin      = strtok(start_of_pinlist, DELIMITERS);
 
@@ -313,7 +313,7 @@ char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
   if (o_current == NULL || o_current->complex == NULL)
     return NULL;
 
-  /* for now just look inside the component */
+  /* For now just look inside the component */
   for (counter = 0; ;) {
 
     char *net_name;
@@ -356,7 +356,7 @@ char *s_netattrib_net_search (GedaObject *o_current, const char *wanted_pin)
     GEDA_FREE (value);
   }
 
-  /* now look outside the component */
+  /* Now look outside the component */
   for (counter = 0; ;) {
 
     char *net_name;
@@ -425,7 +425,7 @@ char *s_netattrib_return_netname(GedaToplevel *pr_current,
     return NULL;
   }
 
-  /* use hierarchy tag here to make this net unique */
+  /* Use hierarchy tag here to make this net unique */
   tmp_netname = s_netattrib_net_search(o_pin->parent_object, pin_num);
 
   netname = s_hierarchy_create_netattrib(pr_current, tmp_netname, hierarchy_tag);
