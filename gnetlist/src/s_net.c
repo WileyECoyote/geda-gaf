@@ -545,10 +545,9 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
   printf("didn't find named net\n");
 #endif
 
-  /* didn't find a name */
-  /* go looking for another net which might have already been named */
-  /* ie we do not want to create a new unnamed net if the net has */
-  /* already been named */
+  /* Did not find a name, go looking for another net which might
+   * have already been named, ie we do not want to create a new
+   * unnamed net if the net has already been named */
   nl_current = netlist_head;
   while (nl_current != NULL) {
     if (nl_current->cpins) {
@@ -577,10 +576,9 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
   printf("didn't find previously named\n");
 #endif
 
-  /* AND we don't want to assign a dangling pin */
-  /* which is signified by having only a head node */
-  /* which is just a place holder */
-  /* and the head node shows up here */
+  /* AND we do not want to assign a dangling pin, which is signified
+   * by having only a head node, which is just a place holder and the
+   * head node shows up here */
 
   if (net_head->nid  == -1 &&
       net_head->prev == NULL &&
