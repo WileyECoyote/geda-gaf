@@ -40,15 +40,16 @@ static int unnamed_pin_counter = 1;
 
 static int missing_pinnum = 0;
 
-/*! \brief Add a NET record to NET List
- *  \par Function Description
- *   Allocates and initializes a NET record structure. The record
- *   is appended to the NET List given by \a ptr by adding links
- *   to the previous record if \a ptr is not NULL.
+/*!
+ * \brief Add a NET record to NET List
+ * \par Function Description
+ *  Allocates and initializes a NET record structure. The record
+ *  is appended to the NET List given by \a ptr by adding links
+ *  to the previous record if \a ptr is not NULL.
  *
- *  \note \a ptr can be NULL.
+ * \note \a ptr can be NULL.
  *
- *  \returns new node or NULL if an error occurred allocating memory
+ * \returns new node or NULL if an error occurred allocating memory
  */
 NET *s_net_add(NET *ptr)
 {
@@ -82,15 +83,16 @@ NET *s_net_add(NET *ptr)
   return (NULL);
 }
 
-/*! \brief Release memory for a Net Record Structure
- *  \par Function Description
- *   Frees internal strings for the pin label and the connected_to
- *   and adds the net_name pointer to \a list before releasing the
- *   NET structure for each NET in the linked list pointed to by \a ptr.
+/*!
+ * \brief Release memory for a Net Record Structure
+ * \par Function Description
+ *  Frees internal strings for the pin label and the connected_to
+ *  and adds the net_name pointer to \a list before releasing the
+ *  NET structure for each NET in the linked list pointed to by \a ptr.
  *
- *  \param [in]  ptr   Pointer to linked list of NET structures.
- *  \param [out] list  List to be appended with the pointers of
- *                     net-names encountered (but not removed).
+ * \param [in]  ptr   Pointer to linked list of NET structures.
+ * \param [out] list  List to be appended with the pointers of
+ *                    net-names encountered (but not removed).
  */
 void s_net_destroy_or_report(NET *ptr, GedaList *list)
 {
