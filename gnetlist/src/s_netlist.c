@@ -221,8 +221,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
     printf("- %s:\n", _("Naming nets of graphical objects"));
   }
 
-  /* this pass gives all nets a name, whether specified or creates a */
-  /* name */
+  /* This pass gives all nets a name, if not specified, a name is created */
   nl_current = unnamed_netlist;
 
   while (nl_current != NULL) {
