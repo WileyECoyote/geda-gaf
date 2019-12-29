@@ -258,7 +258,7 @@ GList *s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
           removed = g_list_prepend(removed, nl_current->component_uref);
         }
 
-        /* can't do frees, since some names are links */
+        /* Can not do frees, since some names are links */
         nl_current->component_uref = NULL;
       }
     }
