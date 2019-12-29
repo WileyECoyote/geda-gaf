@@ -60,7 +60,7 @@ void s_hierarchy_traverse(GedaToplevel *pr_current,
 
   attrib = geda_attrib_search_attached_by_name (o_current, "source", 0);
 
-  /* if above is null, then look inside symbol */
+  /* If above is null, then look inside symbol */
   if (attrib == NULL) {
 
     attrib = geda_attrib_search_inherited_by_name (o_current, "source", count);
@@ -81,17 +81,16 @@ void s_hierarchy_traverse(GedaToplevel *pr_current,
 
   while (attrib) {
 
-    /* look for source=filename,filename, ... */
+    /* Look for source=filename,filename, ... */
     int   pcount = 0;
     char *current_filename = geda_utility_string_split(attrib, ',', pcount);
 
-    /* loop over all filenames */
+    /* Loop over all filenames */
     while (current_filename != NULL) {
 
       geda_log("%s \"%s\"\n", _("Commence traversing source"), current_filename);
 
-      /* guts here */
-      /* guts for a single filename */
+      /* Guts here for a single filename */
       p_current = pr_current->page_current;
 
 #if DEBUG
@@ -147,7 +146,7 @@ void s_hierarchy_traverse(GedaToplevel *pr_current,
 
     count++;
 
-    /* continue looking outside first */
+    /* Continue looking outside first */
     if (!looking_inside) {
       attrib = geda_attrib_search_attached_by_name (o_current, "source", count);
     }
