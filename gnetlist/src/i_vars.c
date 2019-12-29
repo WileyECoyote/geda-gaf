@@ -123,16 +123,16 @@ void i_vars_set(GedaToplevel *pr_current)
 /*!
  * \brief Setup gnetlist default configuration.
  * \par Function Description
- * Populate the default configuration context with compiled-in
- * defaults.
+ *  Populate the default configuration context with compiled-in
+ *  defaults.
  */
 void
 i_vars_init_gnetlist_defaults(void)
 {
   EdaConfig *cfg = eda_config_get_default_context ();
 
-  /* This is the default name used for nets for which the user has set
-   * no explicit name via the netname= or net= attributes. */
+  /* This is the default name used for nets for which the user has
+   * set no explicit name via the netname= or net= attributes. */
   eda_config_set_string (cfg, "gnetlist", "default-net-name", "unnamed_net");
 
   /* This is the default name used for buses for which the user has set
@@ -156,7 +156,7 @@ i_vars_init_gnetlist_defaults(void)
 /*!
  * \brief Release resources for global strings
  * \par Function Description
- * Called during shutdown to free the global strings.
+ *  Called during shutdown to free the global strings.
  */
 void i_vars_free_strings (void)
 {
