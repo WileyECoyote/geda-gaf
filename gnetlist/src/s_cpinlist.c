@@ -181,8 +181,8 @@ CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
 /*!
  * \brief Return last record in a linked list
  * \par Function Description
- *  hack rename this to be s_return_tail
- *  update object_tail or any list of that matter
+ *  This is a hack, rename this to be s_return_tail
+ *  update object_tail or any list of that matter.
  */
 CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
 {
@@ -202,11 +202,10 @@ CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
 /*!
  * \brief Search or Pin Number in List of Pins
  * \par Function Description
- *  Searches pin list \a ptr looking for a record containing
- *  \a pin_number.
+ *  Searches pin list \a ptr looking for a record containing \a pin_number.
  *
- * \returns pointer to pinlist record containing \a pin_number
- *          or NULL if the number was not found.
+ * \returns pointer to pinlist record containing \a pin_number or NULL if
+ *          the number was not found.
  */
 CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number)
 {
