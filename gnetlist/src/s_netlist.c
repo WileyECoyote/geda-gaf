@@ -63,12 +63,13 @@ NETLIST *s_netlist_add(NETLIST *ptr)
 
   if (ptr == NULL) {
     new_node->prev = NULL;	/* setup previous link */
-    return (new_node);
   }
   else {
     new_node->prev = ptr;	/* setup previous link */
-    return (ptr->next = new_node);
+    ptr->next = new_node;
   }
+
+   return new_node;
 }
 
 /*!

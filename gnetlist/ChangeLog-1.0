@@ -1,6 +1,6 @@
 2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/s_netlist.c: Revise s_netlist_add to return assignment directly.
+    * src/s_netlist.c: Revise s_netlist_add eliminate separate returns.
 
 2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
