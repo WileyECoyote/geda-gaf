@@ -190,6 +190,7 @@ o_invalidate_object (GschemToplevel *w_current, GedaObject *object)
   int s_left, s_top, s_bottom, s_right;
 
   if (geda_object_get_bounds(object, &left,  &top, &right, &bottom)) {
+
     WORLDtoSCREEN (w_current, left, top, &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
@@ -216,6 +217,7 @@ void
 o_invalidate_force(GschemToplevel *w_current, GedaObject *object)
 {
   int s_left, s_top, s_bottom, s_right;
+
   WORLDtoSCREEN (w_current, object->left,  object->top,    &s_left, &s_top);
   WORLDtoSCREEN (w_current, object->right, object->bottom, &s_right, &s_bottom);
   o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);

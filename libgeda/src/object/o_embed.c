@@ -64,6 +64,7 @@ bool geda_object_embed(GedaObject *o_current)
   if (page_modified) {
     geda_page_set_changed (geda_object_get_page (o_current), TRUE);
   }
+
   return (page_modified);
 }
 
