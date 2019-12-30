@@ -1,6 +1,10 @@
+2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_sessions.c: Declare i_sessions_destroy_sessions non-static.
+
 2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src\base\gschem_parsecmd.c: gschem: Add command line options to list
+    * src/base/gschem_parsecmd.c: gschem: Add command line options to list
       sessions.
 
 2019-12-25 Wiley E. Hill <wileyhill@gmail.com>

@@ -809,7 +809,7 @@ static void i_sessions_load_data(void)
  *
  * \note Does not free memory assocated with the menu items
  */
-static void i_sessions_destroy_sessions(void)
+void i_sessions_destroy_sessions(void)
 {
   if (sessions != NULL) {
 
