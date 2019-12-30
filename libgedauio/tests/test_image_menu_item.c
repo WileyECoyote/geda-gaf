@@ -145,6 +145,19 @@ check_accessors ()
 
     GedaImageMenuItem *image_menu_item = (GedaImageMenuItem*)widget;
 
+    /* geda_image_menu_item_get_accel_group */
+
+    GtkAccelGroup *group;
+
+    group = geda_image_menu_item_get_accel_group (image_menu_item);
+
+    if (group) {
+      fprintf(stderr, "FAILED: line <%d> get_accel_group %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    /* geda_image_menu_item_set_accel_group */
+
     /* geda_image_menu_item_get_show_image */
 
     /* The default is FALSE */

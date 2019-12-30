@@ -4,6 +4,8 @@
 
     * src/widgets/geda_radio_menu_item.c: Update Doxygen group description.
 
+    * tests/test_image_menu_item.c: Add check for geda_image_menu_item_get_accel_group.
+
 2019-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Add internal gobject and widget class comments.
