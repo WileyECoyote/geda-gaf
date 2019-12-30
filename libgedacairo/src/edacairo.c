@@ -68,8 +68,9 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
   *sx = round (wx); *sy = round (wy);
 }
 
-/*! \brief Render Cairo Arc Common
- *  \par Function Description
+/*!
+ * \brief Render Cairo Arc Common
+ * \par Function Description
  *  Common routine to call cairo arc.
  */
 static inline void
@@ -88,10 +89,19 @@ do_arc (cairo_t *cr, double x, double y, double radius,
   }
 }
 
-/*! \brief Render an Arc at center point using Cairo Graphic
- *  \par Function Description
+/*!
+ * \brief Render an Arc at center point using Cairo Graphic
+ * \par Function Description
  *  Scale coordinates of centerpoint to screen coordinates, calculate
  *  endpoint and render using Cairo graphics library.
+ *
+ * \param [in]  cr           EdaRenderer Cairo Context
+ * \param [in]  flags        EdaRenderer Cairo Flags
+ * \param [in]  x            Arc center X
+ * \param [in]  y            Arc center Y
+ * \param [in]  radius       Radius of the arc
+ * \param [in]  start_angle  Starting angle in degrees
+ * \param [in]  arc_sweep    Arc sweep angle in degrees
  */
 void
 eda_cairo_arc (cairo_t *cr, int flags,
@@ -183,8 +193,9 @@ eda_cairo_center_arc (cairo_t *cr, int flags,
 }
 
 
-/*! \brief Render a Rectangular Box using Cairo Graphic
- *  \par Function Description
+/*!
+ * \brief Render a Rectangular Box using Cairo Graphic
+ * \par Function Description
  *  Scale coordinates of vertices to screen coordinates and render a box
  *  using Cairo graphics library.
  */
@@ -231,8 +242,9 @@ eda_cairo_box (cairo_t *cr, int flags, double line_width,
   cairo_close_path (cr);
 }
 
-/*! \brief Render a Box at center point using Cairo Graphic
- *  \par Function Description
+/*!
+ * \brief Render a Box at center point using Cairo Graphic
+ * \par Function Description
  *  Scale coordinates of centerpoint to screen coordinates, calculate
  *  vertices of the rectangle and render using Cairo graphics library.
  */
@@ -311,8 +323,8 @@ eda_cairo_center_box (cairo_t *cr, int flags,
   cairo_close_path (cr);
 }
 
-/*! \brief Draw line using Cairo Graphic Renderer
- *  \par Function Description
+/*!\brief Draw line using Cairo Graphic Renderer
+ * \par Function Description
  *  Scale line to screen coordinates, establish end points and render
  *  a line using Cairo graphics library.
  */
@@ -422,8 +434,9 @@ eda_cairo_path_hint (cairo_t *cr, int flags,
   }
 }
 
-/*! \brief Render an Path using Cairo Graphic
- *  \par Function Description
+/*!
+ * \brief Render an Path using Cairo Graphic
+ * \par Function Description
  *  Scale coordinates of path segment to screen coordinates, and calls correct
  *  Cairo graphics library routine based in the segment type.
  */
@@ -487,8 +500,9 @@ void eda_cairo_path (cairo_t *cr, int flags, double line_width,
   }
 }
 
-/*! \brief Set the Cairo Source Color
- *  \par Function Description
+/*!
+ * \brief Set the Cairo Source Color
+ * \par Function Description
  *  This function sets the source color using the color in the given map
  *  at the given index.
  */
@@ -514,8 +528,9 @@ eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
   }
 }
 
-/*! \brief Render a Stroke using Cairo Graphic
- *  \par Function Description
+/*!
+ * \brief Render a Stroke using Cairo Graphic
+ * \par Function Description
  *  Sets end point type and render stroke using Cairo graphics library.
  */
 void

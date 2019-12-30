@@ -158,13 +158,11 @@ static void
 geda_option_menu_class_init(void *class, void *class_data)
 {
   GObjectClass      *gobject_class;
-  GtkObjectClass    *object_class;
   GtkWidgetClass    *widget_class;
   GtkContainerClass *container_class;
   GParamSpec        *params;
 
   gobject_class    = (GObjectClass*)class;
-  object_class     = (GtkObjectClass*)class;
   widget_class     = (GtkWidgetClass*)class;
   container_class  = (GtkContainerClass*)class;
 
@@ -180,7 +178,6 @@ geda_option_menu_class_init(void *class, void *class_data)
   gobject_class->finalize          = geda_option_menu_item_finalize;
   gobject_class->set_property      = geda_option_menu_set_property;
   gobject_class->get_property      = geda_option_menu_get_property;
-  object_class->destroy            = geda_option_menu_destroy;
 
   widget_class->size_request       = geda_option_menu_size_request;
   widget_class->size_allocate      = geda_option_menu_size_allocate;
@@ -193,6 +190,20 @@ geda_option_menu_class_init(void *class, void *class_data)
   widget_class->mnemonic_activate  = geda_option_menu_mnemonic_activate;
 
   container_class->child_type      = geda_option_menu_child_type;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *object_class;
+
+  object_class = (GtkObjectClass*)class;
+
+  object_class->destroy = geda_option_menu_destroy;
+
+#else
+
+  widget_class->destroy = geda_option_menu_destroy;
+
+#endif
 
   geda_option_menu_parent_class    = g_type_class_peek_parent (class);
 
@@ -261,7 +272,7 @@ geda_option_menu_instance_init(GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaOptionMenu Type identifier. When
  *  first called, the function registers a #GedaOptionMenu in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaOptionMenu and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -385,7 +396,15 @@ geda_option_menu_destroy (GtkObject *object)
     option_menu->menu = NULL;
   }
 
+#if GTK_MAJOR_VERSION < 3
+
   ((GtkObjectClass*)geda_option_menu_parent_class)->destroy (object);
+
+#else
+
+  ((GtkWidgetClass*)geda_option_menu_parent_class)->destroy (object);
+
+#endif
 }
 
 static void
@@ -477,19 +496,24 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   int border_width;
 
   geda_option_menu_get_props ((GedaOptionMenu*)widget, &props);
+
   border_width = ((GtkContainer*)widget)->border_width;
 
   widget->allocation = *allocation;
 
   if (gtk_widget_get_realized (widget)) {
 
+    int bwidth_x2;
+
     GtkButton *button = (GtkButton*)widget;
+
+    bwidth_x2 = border_width << 1;
 
     gdk_window_move_resize (button->event_window,
                             allocation->x + border_width,
                             allocation->y + border_width,
-                            allocation->width - border_width * 2,
-                            allocation->height - border_width * 2);
+                            allocation->width - bwidth_x2,
+                            allocation->height - bwidth_x2);
   }
 
   child = geda_get_child_widget(widget);
@@ -501,16 +525,19 @@ geda_option_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
     child_allocation.x = widget->allocation.x + border_width + xthickness + props.focus_width + props.focus_pad + CHILD_LEFT_SPACING;
     child_allocation.y = widget->allocation.y + border_width + ythickness + props.focus_width + props.focus_pad + CHILD_TOP_SPACING;
+
     child_allocation.width = MAX (1, allocation->width - (border_width + xthickness + props.focus_width + props.focus_pad) * 2 -
                              props.indicator_size.width - props.indicator_spacing.left - props.indicator_spacing.right -
                              CHILD_LEFT_SPACING - CHILD_RIGHT_SPACING);
+
     child_allocation.height = MAX (1, allocation->height - (border_width + ythickness + props.focus_width + props.focus_pad) * 2 -
                               CHILD_TOP_SPACING - CHILD_BOTTOM_SPACING);
 
-    if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+    if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
       child_allocation.x += props.indicator_size.width +
                             props.indicator_spacing.left +
                             props.indicator_spacing.right;
+    }
 
     gtk_widget_size_allocate (child, &child_allocation);
   }
@@ -548,13 +575,15 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
                  button_area.x, button_area.y,
                  button_area.width, button_area.height);
 
-  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
     tab_x = button_area.x + props.indicator_spacing.right +
             widget->style->xthickness;
-  else
+  }
+  else {
     tab_x = button_area.x + button_area.width -
             props.indicator_size.width - props.indicator_spacing.right -
             widget->style->xthickness;
+  }
 
   gtk_paint_tab (widget->style, widget->window, state, GTK_SHADOW_OUT,
                  area, widget, "optionmenutab",
@@ -566,24 +595,32 @@ geda_option_menu_paint (GtkWidget *widget, GdkRectangle *area)
 
     if (props.interior_focus) {
 
-      button_area.x += widget->style->xthickness + props.focus_pad;
-      button_area.y += widget->style->ythickness + props.focus_pad;
-      button_area.width -= 2 * (widget->style->xthickness + props.focus_pad) +
-      props.indicator_spacing.left +
-      props.indicator_spacing.right +
-      props.indicator_size.width;
-      button_area.height -= 2 * (widget->style->ythickness + props.focus_pad);
-      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+      int xpad, ypad;
+
+      xpad = widget->style->xthickness + props.focus_pad;
+      ypad = widget->style->ythickness + props.focus_pad;
+
+      button_area.x += xpad;
+      button_area.y += ypad;
+
+      button_area.width -= (xpad << 2) + props.indicator_spacing.left +
+                                         props.indicator_spacing.right +
+                                         props.indicator_size.width;
+      button_area.height -= ypad << 1;
+
+      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL) {
         button_area.x += props.indicator_spacing.left +
                          props.indicator_spacing.right +
                          props.indicator_size.width;
+      }
     }
     else {
 
       button_area.x -= props.focus_width + props.focus_pad;
       button_area.y -= props.focus_width + props.focus_pad;
-      button_area.width += 2 * (props.focus_width + props.focus_pad);
-      button_area.height += 2 * (props.focus_width + props.focus_pad);
+
+      button_area.width += (props.focus_width + props.focus_pad) << 1;
+      button_area.height += (props.focus_width + props.focus_pad) << 1;
     }
 
     gtk_paint_focus (widget->style, widget->window, state,
@@ -625,8 +662,8 @@ geda_option_menu_button_press (GtkWidget *widget, GdkEventButton *event)
 
   option_menu = (GedaOptionMenu*)widget;
 
-  if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1))
-  {
+  if ((event->type == GDK_BUTTON_PRESS) && (event->button == 1)) {
+
     GedaMenu  *menu;
     GtkWidget *menu_item;
 
@@ -666,9 +703,14 @@ geda_option_menu_key_press (GtkWidget *widget, GdkEventKey *event)
                        geda_option_menu_position, option_menu,
                        0, event->time);
       menu_item = geda_menu_widget_get_active (option_menu->menu);
-      if (menu_item)
-        geda_menu_shell_select_item ((GedaMenuShell*)option_menu->menu,
-                                     menu_item);
+
+      if (menu_item) {
+
+        GedaMenuShell *menu_shell = (GedaMenuShell*)option_menu->menu;
+
+        geda_menu_shell_select_item (menu_shell, menu_item);
+      }
+
       return TRUE;
   }
 
@@ -701,7 +743,7 @@ geda_option_menu_select_first_sensitive (GedaOptionMenu *option_menu)
       if (gtk_widget_get_sensitive (children->data)) {
 
         geda_option_menu_set_history (option_menu, index);
-        return;
+        break;
       }
 
       children = children->next;
@@ -718,7 +760,9 @@ geda_option_menu_item_state_changed_cb (GtkWidget      *widget,
   GtkWidget *child = geda_get_child_widget(option_menu);
 
   if (child && gtk_widget_get_sensitive (child) != gtk_widget_is_sensitive (widget))
+  {
     gtk_widget_set_sensitive (child, gtk_widget_is_sensitive (widget));
+  }
 }
 
 static void
@@ -811,6 +855,7 @@ geda_option_menu_remove_contents (GedaOptionMenu *option_menu)
                                           option_menu);
 
     g_object_unref (option_menu->menu_item);
+
     option_menu->menu_item = NULL;
   }
 }
@@ -883,12 +928,13 @@ geda_option_menu_position (GedaMenu  *menu,
   g_return_if_fail (GEDA_IS_OPTION_MENU (user_data));
 
   option_menu = GEDA_OPTION_MENU (user_data);
-  widget = GTK_WIDGET (option_menu);
+  widget      = GTK_WIDGET (option_menu);
 
   gtk_widget_get_child_requisition (GTK_WIDGET (menu), &requisition);
-  menu_width = requisition.width;
 
-  active = geda_menu_widget_get_active (option_menu->menu);
+  menu_width = requisition.width;
+  active     = geda_menu_widget_get_active (option_menu->menu);
+
   gdk_window_get_origin (widget->window, &menu_xpos, &menu_ypos);
 
   /* set combo box type hint for menu popup */
@@ -968,8 +1014,7 @@ geda_option_menu_hide_all (GtkWidget *widget)
 {
   g_return_if_fail (GEDA_IS_OPTION_MENU (widget));
 
-  gtk_widget_hide (widget);
-  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
+  geda_widget_hide_all (widget);
 }
 
 static bool
@@ -1009,11 +1054,13 @@ geda_option_menu_scroll_event (GtkWidget *widget, GdkEventScroll *event)
 
       index += index_dir;
 
-      if (index < 0)
+      if (index < 0) {
         break;
+      }
 
-      if (index >= n_children)
+      if (index >= n_children) {
         break;
+      }
 
       list = g_list_nth (GEDA_MENU_SHELL(option_menu->menu)->children, index);
       item = GEDA_MENU_ITEM (list->data);
@@ -1074,8 +1121,8 @@ void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
 
     option_menu->menu = menu;
     geda_menu_attach_to_widget (GEDA_MENU (menu),
-                               GTK_WIDGET (option_menu),
-                               geda_option_menu_detacher);
+                                GTK_WIDGET (option_menu),
+                                geda_option_menu_detacher);
 
     geda_option_menu_calc_size (option_menu);
 
@@ -1090,6 +1137,7 @@ void geda_option_menu_set_menu (GedaOptionMenu *option_menu, GtkWidget *menu)
     if (GTK_WIDGET (option_menu)->parent) {
       gtk_widget_queue_resize (GTK_WIDGET (option_menu));
     }
+
     geda_option_menu_update_contents (option_menu);
 
     GEDA_OBJECT_NOTIFY (option_menu, "menu");
@@ -1114,6 +1162,7 @@ void geda_option_menu_remove_menu (GedaOptionMenu *option_menu)
     if (GEDA_MENU_SHELL (option_menu->menu)->active) {
       geda_menu_shell_cancel ((GedaMenuShell*)option_menu->menu);
     }
+
     geda_menu_detach ((GedaMenu*)option_menu->menu);
   }
 }
@@ -1136,6 +1185,7 @@ void geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int ind
     GtkWidget *menu_item;
 
     geda_menu_widget_set_active (option_menu->menu, index);
+
     menu_item = geda_menu_widget_get_active (option_menu->menu);
 
     if (menu_item != option_menu->menu_item) {
@@ -1156,6 +1206,8 @@ void geda_option_menu_set_history (GedaOptionMenu *option_menu, unsigned int ind
  */
 int geda_option_menu_get_history (GedaOptionMenu *option_menu)
 {
+  int index;
+
   g_return_val_if_fail (GEDA_IS_OPTION_MENU (option_menu), -1);
 
   if (GEDA_IS_MENU(option_menu->menu)) {
@@ -1165,16 +1217,18 @@ int geda_option_menu_get_history (GedaOptionMenu *option_menu)
     active_widget = geda_menu_widget_get_active (option_menu->menu);
 
     if (active_widget) {
-      return g_list_index (((GedaMenuShell*)option_menu->menu)->children,
+      index = g_list_index (((GedaMenuShell*)option_menu->menu)->children,
                            active_widget);
     }
     else {
-        return -1;
+      index = -1;
     }
   }
   else {
-    return -1;
+    index = -1;
   }
+
+  return index;
 }
 
 /* Widget Argument */

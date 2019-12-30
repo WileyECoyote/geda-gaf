@@ -24,6 +24,11 @@
  *  \brief Low-level mathmatical functions for arcs
  */
 
+/** \defgroup math-arc-proc Math Procedures for Arcs
+ * @{
+ * \brief Math Related Procedures for Arcs
+ */
+
 #include "../../../config.h"
 
 #include <math.h>
@@ -266,3 +271,5 @@ double geda_math_arc_shortest_distance (GedaArc *arc, int x, int y, int solid)
 
   return shortest_distance;
 }
+
+/** @} endgroup math-arc-proc */

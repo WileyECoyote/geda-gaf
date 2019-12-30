@@ -258,7 +258,12 @@ void geda_object_list_mirror (const GList *list, int x, int y)
 /*!
  * \brief Rotate a glist of Objects
  * \par Function Description
- *  Calls geda_object_rotate for each glist data member
+ *  Calls geda_object_rotate for each glist data member.
+ *
+ *  \param [in,out] list   The list with objects to rotate.
+ *  \param [in]     x      The x coordinate of rotation.
+ *  \param [in]     y      The y coordinate of rotation.
+ *  \param [in]     angle  The angle of rotation.
  */
 void geda_object_list_rotate (const GList *list, int x, int y, int angle)
 {
@@ -348,7 +353,7 @@ void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
 /*!
  * \brief Change the color of a list of objects
  * \par Function Description
- *  This function changes the the new color of a list of objects
+ *  This function changes the the new color of a list of objects.
  *
  * \param [in] list    The list of Objects to change color.
  * \param [in] color   The new color.
@@ -364,7 +369,7 @@ void geda_object_list_set_color (const GList *list, int color)
 /*!
  * \brief Translates a glist of Objects
  * \par Function Description
- *  Calls geda_object_translate for each glist data member
+ *  Calls geda_object_translate for each glist data member.
  *
  *  \param [in,out] list  The list with lines to scale.
  *  \param [in]     dx    The x distance to translate.

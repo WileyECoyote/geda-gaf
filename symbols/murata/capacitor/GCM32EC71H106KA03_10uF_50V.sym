@@ -38,7 +38,7 @@ symversion=0.2
 T 450 0 9 10 0 1 0 0 1
 footprint=1210
 T 450 1600 5 10 0 0 0 0 1
-mfr=Murata
+manufacturer=Murata
 T 450 400 5 10 1 1 0 0 1
 value=10uF
 T 450 1200 5 10 0 1 0 0 1

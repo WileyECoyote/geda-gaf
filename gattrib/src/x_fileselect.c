@@ -110,6 +110,7 @@ bool x_fileselect (char *filename)
 bool x_fileselect_load_file (char *filename) {
 
   const GList *Objects;
+         char *uri;
 
   if (!quiet_mode) {
     geda_log ("%s: \"%s\"\n", _("Loading file"), filename);
@@ -118,8 +119,8 @@ bool x_fileselect_load_file (char *filename) {
   geda_struct_page_goto (geda_struct_page_new (pr_current, filename));
 
   if (s_toplevel_read_page(pr_current, filename) == 0) {
-     fprintf(stderr,"%s: \"%s\"\n",  _("Could not load schematic"), filename);
-     return FALSE;
+    fprintf(stderr,"%s: \"%s\"\n",  _("Could not load schematic"), filename);
+    return FALSE;
   }
 
   Objects = geda_struct_page_get_objects (pr_current->page_current);
@@ -137,8 +138,12 @@ bool x_fileselect_load_file (char *filename) {
   s_sheet_data_add_master_pin_list_items (Objects);
   s_sheet_data_add_master_pin_attrib_list_items (Objects);
 
-  gtk_recent_manager_add_item (recent_manager,
-                               g_filename_to_uri(filename, NULL, NULL));
+  uri = g_filename_to_uri(filename, NULL, NULL);
+
+  gtk_recent_manager_add_item (recent_manager, uri);
+
+  geda_free (uri);
+
   return TRUE;
 }
 
@@ -165,8 +170,9 @@ bool x_fileselect_load_files (GSList *filenames)
 
     char *filename = ptrname->data;
 
-    if ( !x_fileselect_load_file(filename))
+    if (!x_fileselect_load_file(filename)) {
        ret_val = FALSE;
+    }
   }   /* end of loop over files     */
 
   return ret_val;
@@ -180,7 +186,6 @@ bool x_fileselect_load_files (GSList *filenames)
  *  Called from x_menu_file_open
  *
  * \returns list of files to be opened, or NULL if the user canceled
- *          the dialog
  */
 GSList *x_fileselect_open (void)
 {
@@ -190,12 +195,9 @@ GSList *x_fileselect_open (void)
 
   dialog = geda_file_chooser_new (main_window, FILE_CHOOSER_ACTION_OPEN);
 
-  g_object_set (dialog,
-                /* GedaFileChooser */
-                "select-multiple", TRUE,
-                NULL);
+  g_object_set (dialog, "select-multiple", TRUE, NULL);
 
-  /* add file filters to dialog */
+  /* Add file filters to dialog */
 
   gtk_widget_show (dialog);
 

@@ -22,6 +22,14 @@
 
 #include <gtk/gtk.h>
 
+#ifndef gdk_cursor_destroy
+#define gdk_cursor_destroy gdk_cursor_unref
+#endif
+
+#ifndef gdk_gc_destroy
+#define gdk_gc_destroy g_object_unref
+#endif
+
 #if !GTK_CHECK_VERSION(2,20,0)
 
     /* before V2.20 */

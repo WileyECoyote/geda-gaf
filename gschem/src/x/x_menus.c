@@ -46,8 +46,8 @@
  * \ingroup main-window
  */
 
-static void x_menu_main_popup_execute(GtkObject *widget, int action_id);
-static void x_menu_path_popup_execute(GtkObject *widget, int action_id);
+static void x_menu_main_popup_execute(GtkWidget *widget, int action_id);
+static void x_menu_path_popup_execute(GtkWidget *widget, int action_id);
 
 /* Note: These are referenced using pop_MenuItem defined in x_menus.h
  *       Actions are defined in i_actions.h
@@ -249,7 +249,7 @@ static void x_menu_execute(GedaAction *action, void *user_data)
  *  action string referenced in the static string structure IDS_Popup_
  *  Actions using the enumerated integer from pop_MenuItem.
  */
-static void x_menu_main_popup_execute(GtkObject *widget, int action_id)
+static void x_menu_main_popup_execute(GtkWidget *widget, int action_id)
 {
   GschemToplevel *w_current;
   const char     *action;
@@ -270,7 +270,7 @@ static void x_menu_torn(GedaMenuItem *menu_item, void *user_data)
   gtk_widget_grab_focus (w_current->drawing_area);
 }
 
-static void x_menu_path_popup_execute(GtkObject *widget, int action_id)
+static void x_menu_path_popup_execute(GtkWidget *widget, int action_id)
 {
   GschemToplevel *w_current;
 
@@ -767,7 +767,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       /* Check for a 4th parameter = tooltip string */
       if (scm_item_len == 4) {
 
-        scm_item_tip = SCM_CAR (scm_cdddr (scm_item ));      /* Extract tooltip string */
+        scm_item_tip = SCM_CAR (scm_cdddr (scm_item));      /* Extract tooltip string */
 
         if (scm_is_string(scm_item_tip)) {                   /* Validate tip is really a string */
           menu_item_tip = scm_to_utf8_string (scm_item_tip); /* if valid, convert to c string */
@@ -854,7 +854,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             menu_icon_name = i_command_get_action_icon (action_name);
           }
           else {
-            menu_icon_name = menu_item_stock; /* Icons specified in menu take presendence */
+            menu_icon_name = menu_item_stock; /* Icons specified in menu take precedence */
           }
 
           is_a_toggle = FALSE;
@@ -925,7 +925,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     }
 
     /* add a handle to the menu_bar object to get access to widget
-     * objects. This string should NOT be internationalized */
+     * objects. This string must NOT be internationalized */
     buf = geda_sprintf("%s/%s", *raw_menu_name, raw_menu_item_name);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, buf);
     GEDA_FREE(buf);
@@ -976,7 +976,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     menu_item = geda_tearoff_menu_item_new ();
     geda_container_add(menu, menu_item);
-    g_object_set (menu_item, "visible", TRUE, NULL);
+    gtk_widget_show(menu_item);
+
     g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn), w_current);
 
 
@@ -986,8 +987,12 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     for (j = 0 ; j < scm_items_len; j++) {
 
       menu_item = get_menu_item_from_scheme(scm_items, j);
+
+      /* Skip if the was an error */
+      if (!menu_item) continue;
+
       geda_container_add(menu, menu_item);
-      g_object_set (menu_item, "visible", TRUE, NULL);
+      gtk_widget_show(menu_item);
     }
 
     if (strstr(menu_name, "/")) {
@@ -1001,7 +1006,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     geda_menu_item_set_submenu_widget ((GedaMenuItem*)root_menu, menu);
 
-    g_object_set (root_menu, "visible", TRUE, NULL);
+    gtk_widget_show(root_menu);
 
     /* Do not free *raw_menu_name */
   }
@@ -1017,8 +1022,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     menu = create_file_menu();
 
-    menu_item = geda_menu_item_new_with_label ("_File");
-    g_object_set (menu_item, "visible", TRUE, NULL);;
+    menu_item = geda_menu_item_new_with_label (_("_File"));
+    g_object_set (menu_item, "visible", TRUE, NULL);
 
     geda_menu_item_set_submenu_widget ((GedaMenuItem*)menu_item, menu);
     GEDA_OBJECT_SET_DATA(MENU_BAR, menu_item, "_File");
@@ -1319,7 +1324,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     gtk_widget_show_all(menu_item);
   }
   else {
-    fprintf(stderr, "No Menu!\n");
+    fprintf(stderr, "No View/Redraw Menu!\n");
   }
 
   x_menu_add_menu_popups(w_current, menu_data);
@@ -2614,6 +2619,9 @@ void x_menu_recent_files_add(const char *filename)
 
 /*!
  * \brief Save the list of recent files to RECENT_FILES_STORE.
+ * \par Function Description
+ *  This function is called before exiting to save the list of recent
+ *  files to disk.
  *
  * \param [in] user_data unused
  */

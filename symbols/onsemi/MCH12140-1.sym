@@ -1,0 +1,110 @@
+v 20090328 2
+T 400 2100 5 8 0 1 0 0 1
+description=Phase Detector
+T 400 2300 5 8 0 0 0 0 1
+numslots=0
+T 400 2700 5 8 0 0 0 0 1
+documentation=http://www.onsemi.com/pub_link/Collateral/MCH12140-D.PDF
+T 400 1500 8 10 1 1 0 0 1
+refdes=U?
+T 400 1900 5 10 1 1 0 0 1
+device=MCH12140
+T 400 1700 9 10 1 1 0 0 1
+footprint=SO8
+P 1700 300 1400 300 1 0 0
+{
+T 1445 345 5 8 1 1 0 0 1
+pinnumber=1
+T 1445 345 5 8 1 1 0 0 1
+pinseq=1
+T 1345 295 9 8 1 1 0 6 1
+pinlabel=\_U\_
+T 1350 200 5 8 0 1 180 2 1
+pintype=pas
+}
+P 1700 600 1400 600 1 0 0
+{
+T 1445 645 5 8 1 1 0 0 1
+pinnumber=2
+T 1445 645 5 8 1 1 0 0 1
+pinseq=2
+T 1345 595 9 8 1 1 0 6 1
+pinlabel=U
+T 1350 500 5 8 0 1 180 2 1
+pintype=pas
+}
+P 1700 900 1400 900 1 0 0
+{
+T 1445 945 5 8 1 1 0 0 1
+pinnumber=3
+T 1445 945 5 8 1 1 0 0 1
+pinseq=3
+T 1345 895 9 8 1 1 0 6 1
+pinlabel=\_D\_
+T 1350 800 5 8 0 1 180 2 1
+pintype=pas
+}
+P 1700 1200 1400 1200 1 0 0
+{
+T 1445 1245 5 8 1 1 0 0 1
+pinnumber=4
+T 1445 1245 5 8 1 1 0 0 1
+pinseq=4
+T 1345 1195 9 8 1 1 0 6 1
+pinlabel=D
+T 1350 1100 5 8 0 1 180 2 1
+pintype=pas
+}
+P 400 1200 100 1200 1 0 1
+{
+T 255 1245 5 8 1 1 0 6 1
+pinnumber=5
+T 255 1245 5 8 1 1 0 6 1
+pinseq=5
+T 455 1195 9 8 1 1 0 0 1
+pinlabel=Vee
+T 450 1100 5 8 0 1 180 8 1
+pintype=pwr
+}
+P 400 900 100 900 1 0 1
+{
+T 255 945 5 8 1 1 0 6 1
+pinnumber=6
+T 255 945 5 8 1 1 0 6 1
+pinseq=6
+T 455 895 9 8 1 1 0 0 1
+pinlabel=V
+T 450 800 5 8 0 1 180 8 1
+pintype=pas
+}
+P 400 600 100 600 1 0 1
+{
+T 255 645 5 8 1 1 0 6 1
+pinnumber=7
+T 255 645 5 8 1 1 0 6 1
+pinseq=7
+T 455 595 9 8 1 1 0 0 1
+pinlabel=R
+T 450 500 5 8 0 1 180 8 1
+pintype=pas
+}
+P 400 300 100 300 1 0 1
+{
+T 255 345 5 8 1 1 0 6 1
+pinnumber=8
+T 255 345 5 8 1 1 0 6 1
+pinseq=8
+T 455 295 9 8 1 1 0 0 1
+pinlabel=Vcc
+T 450 200 5 8 0 1 180 8 1
+pintype=pwr
+}
+B 400 100 1000 1300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 400 2500 5 8 0 0 0 0 1
+comment=pin compatible: SY100EP140, MC100EP140, MAX9382
+T 400 3300 5 8 0 0 0 0 1
+author=AutoTron
+T 400 3100 5 8 0 0 0 0 1
+dist-license=GPLv2
+T 400 2900 5 8 0 0 0 0 1
+use-license=unlimited

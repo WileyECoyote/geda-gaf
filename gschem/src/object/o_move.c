@@ -501,13 +501,8 @@ void o_move_draw_rubber (GschemToplevel *w_current, int drawing)
   }
 }
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-int o_move_return_whichone(GedaObject *object, int x, int y)
+/*! \internal helper for o_move_check_endpoint */
+static int o_move_return_whichone(GedaObject *object, int x, int y)
 {
   if (object->line->x[0] == x && object->line->y[0] == y) {
     return (0);

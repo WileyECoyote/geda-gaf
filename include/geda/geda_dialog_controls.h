@@ -802,8 +802,8 @@ typedef struct
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, spacing); /* create hbox and label */  \
-        GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
-        name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
+        GtkAdjustment *name##Spin_adj = geda_adjustment_new (ivalue, minval, maxval, step, page, 0); \
+        name##Spin = gtk_spin_button_new (name##Spin_adj, 1, 0); \
         gtk_widget_show (name##Spin); \
         SET_WIDGET_SIZE (name##Spin, -1, 33)  \
         PACK_hBOX(name, name##Spin, FALSE, TRUE, 0) \
@@ -815,8 +815,8 @@ typedef struct
         double step = (maxval > 100 ? 5 : 1 ); \
         double page = (maxval > 100 ? 25 : 10 ); \
                 page = (maxval > 1000 ? 50 : 10 ); \
-        GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
-        name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
+        GtkAdjustment *name##Spin_adj = geda_adjustment_new (ivalue, minval, maxval, step, page, 0); \
+        name##Spin = gtk_spin_button_new (name##Spin_adj, 1, 0); \
         gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
         gtk_entry_set_activates_default(GTK_ENTRY(name##Spin), TRUE); \
         gtk_widget_show (name##Spin); \
@@ -829,7 +829,7 @@ typedef struct
         GtkWidget *name##Image=NULL;                    \
         NEW_HCONTROL_BOX (parent, name, spacing)        \
         PANGO_R5_LABEL (name)                           \
-        name##Switch = create_geda_switch (name##_hbox, name##Switch,  name##Image, state); \
+        name##Switch = create_geda_switch (name##_hbox, name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
 }
 #define GSCHEM_SWITCH(table, name, left, top, state)  {     \
@@ -839,7 +839,7 @@ typedef struct
         BASE_BOX( name, h, FALSE, DEFAULT_WIDGET_SPACING) \
         gtk_table_attach(GTK_TABLE(table), name##_hbox, left, left+1, top, top+1, GTK_SHRINK, GTK_FILL,0,0); \
         GTK_RS_LABEL (name, 2)                          \
-        name##Switch = create_geda_switch (name##_hbox, name##Switch,  name##Image, state); \
+        name##Switch = create_geda_switch (name##_hbox, name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
 }
 

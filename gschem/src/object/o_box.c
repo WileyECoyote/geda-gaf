@@ -144,7 +144,7 @@ static void o_box_end(GschemToplevel *w_current, int w_x, int w_y)
     geda_struct_page_append_object (toplevel->page_current, new_obj);
 
 #if DEBUG
-    printf("coords: %d %d %d %d\n", box_left, box_top, box_width, box_height);
+    printf("box: %d %d %d %d\n", box_left, box_top, box_width, box_height);
 #endif
 
     /* Call add-objects-hook */

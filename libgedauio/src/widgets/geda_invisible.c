@@ -409,7 +409,7 @@ geda_invisible_new_for_screen (GdkScreen *screen)
  * \brief Set the GedaInvisible Screen Property
  * \par Function Description
  *  Sets the GedaInvisible private screen where the #GedaInvisible
- *  object will recieve event signals.
+ *  object will receive event signals.
  *
  * \param[in] invisible Pointer to a #GedaInvisible
  * \param[in] screen    A GdkScreen

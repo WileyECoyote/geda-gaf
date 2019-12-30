@@ -186,7 +186,7 @@ void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
  * \par Function Description
  *  Locks an object by setting the selectable property to FALSE. The color
  *  is also set to the locked_color. This locks the entire selected list
- *  including components, but does NOT change the color of primatives of
+ *  including components, but does NOT change the color of primitives of
  *  the components. This cannot be called recursively.
  */
 void o_edit_lock_selection (GschemToplevel *w_current)

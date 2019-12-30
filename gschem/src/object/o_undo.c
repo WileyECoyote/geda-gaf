@@ -250,19 +250,18 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       /* This is where the net consolidation call would have been
        * triggered before it was removed from geda_object_save_buffer().
        */
-      if (toplevel->net_consolidate == TRUE) {
+      if (geda_toplevel_get_net_consolidate(toplevel) == TRUE) {
         geda_net_object_consolidate (toplevel, p_current);
       }
-    }
 
-    if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
+      if (w_current->undo_type == UNDO_DISK) {
 
-      filename = geda_sprintf(UNDO_FILE_PATTERN,
-                                  tmp_path, DIR_SEPARATOR,
-                                  prog_pid, undo_file_index++);
+        filename = geda_sprintf(UNDO_FILE_PATTERN,
+                                tmp_path, DIR_SEPARATOR,
+                                prog_pid, undo_file_index++);
 
-      if (!geda_object_save (geda_struct_page_get_objects (p_current), filename, &err))
-      {
+        if (!geda_object_save (geda_struct_page_get_objects (p_current), filename, &err))
+        {
           const char *file_err_msg = _("Undo: encountered an error, file");
           const char *sys_err_msg1 = _("Undo: system error");
           const char *sys_err_msg2 = _("switching to MEMORY mode");
@@ -275,8 +274,8 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
           geda_struct_undo_free_all (p_current);
+        }
       }
-
     }
 
     /* Clear Anything above current */

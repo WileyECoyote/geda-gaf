@@ -2,12 +2,13 @@
 #include "../../../config.h"
 #endif
 
-#include <geda/geda.h>
-#include <geda/geda_standard.h>
-
 #include <glib.h>
 
 #include <gtk/gtk.h>
+
+#include <geda/geda.h>
+#include <geda/geda_standard.h>
+#include "../../include/geda_gtk_compat.h"
 
 typedef struct _CompareInfo CompareInfo;
 
@@ -33,9 +34,10 @@ get_allocation_coords (GtkContainer  *container,
                        0, 0, &allocation->x, &allocation->y);
 }
 
-/* Look for a child in @children that is intermediate between
- * the focus widget and container. This widget, if it exists,
- * acts as the starting widget for focus navigation.
+/*!
+ * \internal Look for a child in children that is intermediate
+ *  between the focus widget and container. This widget, if it
+ *  exists, acts as the starting widget for focus navigation.
  */
 static GtkWidget*
 find_old_focus (GtkContainer *container, GList *children)
@@ -49,7 +51,7 @@ find_old_focus (GtkContainer *container, GList *children)
 
     while (widget && widget != (GtkWidget*)container) {
 
-      GtkWidget *parent = widget->parent;
+      GtkWidget *parent = geda_get_widget_parent(widget);
 
       if (parent && ((GtkContainer *)parent)->focus_child != widget)
         goto next;
@@ -125,8 +127,9 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
   compare.container = container;
   compare.reverse = (direction == GTK_DIR_LEFT);
 
-  if (!old_focus)
+  if (!old_focus) {
     old_focus = find_old_focus (container, children);
+  }
 
   if (old_focus && get_allocation_coords (container, old_focus, &old_allocation))
   {
@@ -139,10 +142,12 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
     compare_y1 = old_allocation.y;
     compare_y2 = old_allocation.y + old_allocation.height;
 
-    if (direction == GTK_DIR_LEFT)
+    if (direction == GTK_DIR_LEFT) {
       compare_x = old_allocation.x;
-    else
+    }
+    else {
       compare_x = old_allocation.x + old_allocation.width;
+    }
 
     tmp_list = children;
 
@@ -182,10 +187,13 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
   }
   else {
 
-    /* No old focus widget, need to figure out starting x,y some other way
-     */
-    GtkWidget *widget = GTK_WIDGET (container);
-    GdkRectangle old_focus_rect;
+    GtkWidget     *widget;
+    GtkAllocation *allocation;
+    GdkRectangle   old_focus_rect;
+
+    /* No old focus widget, need to figure out starting x,y some other way */
+    widget     = (GtkWidget*)container;
+    allocation = geda_get_widget_allocation (widget);
 
     if (old_focus_coords (container, &old_focus_rect)) {
 
@@ -193,22 +201,31 @@ geda_container_focus_sort_left_right (GtkContainer     *container,
     }
     else {
 
-      if (!gtk_widget_get_has_window (widget))
-        compare.y = widget->allocation.y + widget->allocation.height / 2;
-      else
-        compare.y = widget->allocation.height / 2;
+      int half_height;
+
+      half_height = allocation->height >> 1; /* Divide by 2 */
+
+      if (!gtk_widget_get_has_window (widget)) {
+        compare.y = allocation->y + half_height;
+      }
+      else {
+        compare.y = half_height;
+      }
     }
 
-    if (!gtk_widget_get_has_window (widget))
-      compare.x = (direction == GTK_DIR_RIGHT) ? widget->allocation.x : widget->allocation.x + widget->allocation.width;
-    else
-      compare.x = (direction == GTK_DIR_RIGHT) ? 0 : widget->allocation.width;
+    if (!gtk_widget_get_has_window (widget)) {
+      compare.x = (direction == GTK_DIR_RIGHT) ? allocation->x : allocation->x + allocation->width;
+    }
+    else {
+      compare.x = (direction == GTK_DIR_RIGHT) ? 0 : allocation->width;
+    }
   }
 
   children = g_list_sort_with_data (children, left_right_compare, &compare);
 
-  if (compare.reverse)
+  if (compare.reverse) {
     children = g_list_reverse (children);
+  }
 
   return children;
 }
@@ -272,10 +289,12 @@ geda_container_focus_sort_up_down (GtkContainer     *container,
     compare_x1 = old_allocation.x;
     compare_x2 = old_allocation.x + old_allocation.width;
 
-    if (direction == GTK_DIR_UP)
+    if (direction == GTK_DIR_UP) {
       compare_y = old_allocation.y;
-    else
+    }
+    else {
       compare_y = old_allocation.y + old_allocation.height;
+    }
 
     tmp_list = children;
     while (tmp_list) {
@@ -313,10 +332,13 @@ geda_container_focus_sort_up_down (GtkContainer     *container,
   }
   else {
 
-    /* No old focus widget, need to figure out starting x,y some other way
-     */
-    GtkWidget *widget = GTK_WIDGET (container);
-    GdkRectangle old_focus_rect;
+    GtkWidget     *widget;
+    GtkAllocation *allocation;
+    GdkRectangle   old_focus_rect;
+
+    /* No old focus widget, need to figure out starting x,y some other way */
+    widget     = (GtkWidget*)container;
+    allocation = geda_get_widget_allocation (widget);
 
     if (old_focus_coords (container, &old_focus_rect)) {
 
@@ -324,22 +346,31 @@ geda_container_focus_sort_up_down (GtkContainer     *container,
     }
     else {
 
-      if (!gtk_widget_get_has_window (widget))
-        compare.x = widget->allocation.x + widget->allocation.width / 2;
-      else
-        compare.x = widget->allocation.width / 2;
+      int half_width;
+
+      half_width = allocation->width >> 1; /* Divide by 2 */
+
+      if (!gtk_widget_get_has_window (widget)) {
+        compare.x = allocation->x + half_width;
+      }
+      else {
+        compare.x = half_width;
+      }
     }
 
-    if (!gtk_widget_get_has_window (widget))
-      compare.y = (direction == GTK_DIR_DOWN) ? widget->allocation.y : widget->allocation.y + widget->allocation.height;
-    else
-      compare.y = (direction == GTK_DIR_DOWN) ? 0 : + widget->allocation.height;
+    if (!gtk_widget_get_has_window (widget)) {
+      compare.y = (direction == GTK_DIR_DOWN) ? allocation->y : allocation->y + allocation->height;
+    }
+    else {
+      compare.y = (direction == GTK_DIR_DOWN) ? 0 : + allocation->height;
+    }
   }
 
   children = g_list_sort_with_data (children, up_down_compare, &compare);
 
-  if (compare.reverse)
+  if (compare.reverse) {
     children = g_list_reverse (children);
+  }
 
   return children;
 }
@@ -376,13 +407,13 @@ geda_container_focus_sort_tab (GtkContainer     *container,
                                GtkDirectionType  direction,
                                GtkWidget        *old_focus)
 {
-  GtkTextDirection text_direction = gtk_widget_get_direction (GTK_WIDGET (container));
+  GtkTextDirection text_direction;
 
-  children = g_list_sort_with_data (children, tab_compare, GINT_TO_POINTER (text_direction));
+  text_direction = gtk_widget_get_direction (GTK_WIDGET (container));
 
-  /* if we are going backwards then reverse the order
-   *  of the children.
-   */
+  children = g_list_sort_with_data (children, tab_compare, INT_TO_POINTER (text_direction));
+
+  /* if going backwards then reverse the order of the children. */
   if (direction == GTK_DIR_TAB_BACKWARD) {
     children = g_list_reverse (children);
   }
@@ -432,9 +463,11 @@ geda_container_focus_sort (GtkContainer     *container,
     case GTK_DIR_TAB_FORWARD:
     case GTK_DIR_TAB_BACKWARD:
       return geda_container_focus_sort_tab (container, visible_children, direction, old_focus);
+
     case GTK_DIR_UP:
     case GTK_DIR_DOWN:
       return geda_container_focus_sort_up_down (container, visible_children, direction, old_focus);
+
     case GTK_DIR_LEFT:
     case GTK_DIR_RIGHT:
       return geda_container_focus_sort_left_right (container, visible_children, direction, old_focus);

@@ -244,6 +244,7 @@ static void geda_toplevel_finalize(GObject *object)
   }
 
   if (toplevel->component_groups != NULL) {
+
     for (iter = toplevel->component_groups; iter != NULL; NEXT(iter)){
       GEDA_FREE(iter->data);
     }
@@ -353,6 +354,7 @@ bool is_a_geda_toplevel (GedaToplevel *toplevel)
   if (toplevel) {
     return g_list_find(list_of_toplevels, toplevel) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -394,6 +396,7 @@ bool geda_toplevel_set_text_bounds(GedaToplevel *toplevel, GedaObject *o_current
       o_current->bottom = bottom;
     }
   }
+
   return result;
 }
 
@@ -420,7 +423,6 @@ void geda_toplevel_unref(GedaToplevel *toplevel)
  *  that allows weak references.
  *
  * \param [in] toplevel  Pointer to GedaObject being destroyed.
- *
  */
 void geda_toplevel_weakref_notify (GedaToplevel *toplevel)
 {
@@ -448,6 +450,7 @@ void geda_toplevel_weakref_notify (GedaToplevel *toplevel)
 void geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   toplevel->weak_refs = s_weakref_add (toplevel->weak_refs, func, data);
 }
 
@@ -467,6 +470,7 @@ void geda_toplevel_weak_ref (GedaToplevel *toplevel, WeakNotifyFunc func, void *
 void geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void *data)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   toplevel->weak_refs = s_weakref_remove (toplevel->weak_refs, func, data);
 }
 
@@ -485,6 +489,7 @@ void geda_toplevel_weak_unref (GedaToplevel *toplevel, WeakNotifyFunc func, void
 void geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   g_object_add_weak_pointer ((GObject*)toplevel,  weak_pointer_loc);
 }
 
@@ -501,6 +506,7 @@ void geda_toplevel_add_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 void geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
+
   g_object_remove_weak_pointer((GObject*)toplevel, weak_pointer_loc);
 }
 
@@ -695,7 +701,7 @@ Page *geda_toplevel_get_page_by_id (GedaToplevel *toplevel, int page_id)
 /*!
  * \brief Get the number of page in Toplevel Page list
  * \par Function Description
- *  Returns the numberr pages in \a toplevel page list.
+ *  Returns the number of pages in \a toplevel page list.
  *
  * \param [in] toplevel This toplevel
  */
@@ -738,6 +744,7 @@ Page *geda_toplevel_get_page_down (GedaToplevel *toplevel)
     if (len == 1 && GEDA_IS_PAGE(list->data)) {
       page = toplevel->page_current = list->data;
     }
+
     iter = NULL;
   }
 
@@ -825,6 +832,24 @@ PageList *geda_toplevel_get_page_list (GedaToplevel *toplevel)
   g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
 
   return toplevel->pages;
+}
+
+/*!
+ * \brief Get the untitled name in GedaToplevel
+ * \par Function Description
+ *  This function returns a pointer to a newly allocated string
+ *  containging the default untitled name. The string should be
+ *  released when no longer required.
+ *
+ * \param [in] toplevel This toplevel
+ *
+ * \returns copy of toplevel->untitled_name string
+ */
+char *geda_toplevel_get_untitled_name (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+
+  return geda_strdup(toplevel->untitled_name);
 }
 
 /*!
@@ -936,17 +961,24 @@ bool geda_toplevel_move_page_up (GedaToplevel *toplevel, Page *page)
  *  or if \a page is not in the list.
  *
  * \param [in] toplevel This toplevel
- * \param [in] page     New auto-save interval in seconds
+ * \param [in] page     The page to be removed
  */
 void geda_toplevel_remove_page (GedaToplevel *toplevel, Page *page)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
 
   if (GEDA_IS_PAGE(page)) {
+
     if (geda_list_is_in_list(toplevel->pages, page)) {
+
       geda_list_remove (toplevel->pages, page);
       geda_page_unref (page);
-      /* Note toplevel->page_current maybe dead! */
+
+      /* Check if removed page was page_current */
+
+      if (toplevel->page_current == page) {
+        toplevel->page_current = NULL;
+      }
     }
   }
 }
@@ -1007,7 +1039,6 @@ bool geda_toplevel_set_current_page (GedaToplevel *toplevel, Page *page)
   return TRUE;
 }
 
-
 /*!
  * \brief Set the Open Flags in a Toplevel
  * \par Function Description
@@ -1058,7 +1089,7 @@ bool geda_toplevel_set_make_backups (GedaToplevel *toplevel, int make_backups)
  * \brief Set whether to Consolidate Nets
  * \par Function Description
  *  Set the value of net_consolidate in \a toplevel to \a consolidate.
- *  When net_consolidate is TRUE connected net segments will be combine
+ *  When net_consolidate is TRUE connected net segments will be combined
  *  when it makes sense to do so.
  *
  * \param [in,out] toplevel    GedaToplevel object

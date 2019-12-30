@@ -42,13 +42,14 @@
 #include "../../include/gschem.h"
 #include <libguile.h>             /* for doxygen */
 
-/*! \brief SCM API Launch default application for a URI.
+/*!
+ * \brief SCM API Launch default application for a URI.
  * \par Function Description
- * Launches the default application associated with \a uri_s on the
- * host platform.  Raises an error on failure.
+ *  Launches the default application associated with \a uri_s on the
+ *  host platform.  Raises an error on failure.
  *
  * \note Scheme API: Implements the %show-uri procedure in the (gschem
- * core util) module.
+ *       core util) module.
  *
  * \sa x_show_uri().
  *
@@ -58,24 +59,29 @@
 SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
             "Show a URI in the associated default application")
 {
+  char *uri;
+
   /* Check that we were passed a string. */
   SCM_ASSERT (scm_is_string (uri_s), uri_s, SCM_ARG1, s_show_uri);
 
-  const char *uri = scm_to_utf8_string (uri_s);
+  uri = scm_to_utf8_string (uri_s);
 
   if (!x_show_uri (uri)) {
-    u_log_message( "%s %s\n", _("Could not launch URI"), uri);
+    u_log_message( "%s <%s>\n", _("Could not launch URI"), uri);
   }
+
+  free (uri);
 
   return SCM_UNDEFINED;
 }
 
-/*! \brief SCM API Create the (gschem core util) Scheme module
+/*!
+ * \brief SCM API Create the (gschem core util) Scheme module
  * \par Function Description
- * Defines procedures in the (gschem core util) module. The module can
- * be accessed using (use-modules (gschem core util)).
+ *  Defines procedures in the (gschem core util) module. The module can
+ *  be accessed using (use-modules (gschem core util)).
  */
-static void init_module_gschem_core_util ()
+static void init_module_gschem_core_util (void *data)
 {
   /* Register the functions */
   #include "g_util.x"
@@ -84,13 +90,14 @@ static void init_module_gschem_core_util ()
   scm_c_export (s_show_uri, NULL);
 }
 
-/*! \brief SCM API Initialize miscellaneous gschem utility procedures.
+/*!
+ * \brief SCM API Initialize miscellaneous gschem utility procedures.
  * \par Function Description
- * Registers some Scheme utility procedures for e.g. accessing
- * miscellaneous system services.  Should only be called by
- * main_prog().
+ *  Registers some Scheme utility procedures for e.g. accessing
+ *  miscellaneous system services.  Should only be called by
+ *  main_prog().
  */
-void g_init_util ()
+void g_init_util (void)
 {
   /* Define the (gschem core util) module */
   scm_c_define_module ("gschem core util",

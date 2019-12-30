@@ -858,7 +858,7 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
   char string[32]="slot=";  /* char buffer to hold set=refdes=xx*/
   char s_val[5];            /* char buffer for integer conversion to string */
 
-  if ( slot > 0) {
+  if (slot > 0) {
     /* update the slot on the owner object */
     geda_utility_string_int2str( slot, &string[5], 10);
     o_slot_end (autotext->w_current, o_current->attached_to, string);
@@ -884,6 +884,7 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
 static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 {
   GschemToplevel *w_current;
+  GedaObject     *o_current;
 
   const GList *iter;
   GList *o_list          = NULL;
@@ -892,8 +893,6 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   GList *text_item;
   GList *obj_item;
   GList *page_item;
-
-  GedaObject *o_current;
 
   char *searchtext;
   char *scope_text;
@@ -1229,7 +1228,7 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
  * \param [in] history GList to be prepended with \a text
  * \param [in] text    The text string to be prepended to the list
  */
-static GList * autonumber_add_history(GList *history, char *text)
+static GList *autonumber_add_history(GList *history, char *text)
 {
   /* Search for this text in history and delete it (so we don't have
    * duplicate entries) */
@@ -1553,14 +1552,13 @@ static void select_scope_text_value(AUTONUMBER_TEXT *autotext)
 
   if (pos) {
 
-    GtkEntry *entry;
+    GtkEditable *entry;
 
     pos++;  /* skip over the equal sign */
 
-    entry = (GtkEntry*)geda_combo_widget_get_entry(ScopeTextCombo);
+    entry = (GtkEditable*)geda_combo_widget_get_entry(ScopeTextCombo);
 
-    gtk_entry_select_region (entry, pos, strlen(text));
-
+    gtk_editable_select_region (entry, pos, strlen(text));
   }
 
   g_free(text);
@@ -1672,7 +1670,7 @@ void autonumber_create_filter_options (GtkWidget       *Dialog,
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
   gtk_misc_set_alignment ((GtkMisc*)widget, 0, 0.5);
 
-   widget = geda_bulb_new_visible_with_mnemonic(NULL, _("_History"));
+  widget = geda_bulb_new_visible_with_mnemonic(NULL, _("_History"));
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
   gtk_box_pack_start ((GtkBox*)container, widget,  FALSE, FALSE, 5);
 

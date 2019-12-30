@@ -848,6 +848,57 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object4->circle  === */
+
+  rad = geda_circle_object_get_radius(object4);
+
+  if (rad != r * 10) {
+    fprintf(stderr, "FAILED: (O120604) geda_object_list_scale (%d)\n", rad);
+    result++;
+  }
+
+  /* === object5->complex  === */
+
+  /* geda_object_list_scale ignores complexes, so it's a no tests. */
+
+  /* === object6->line  === */
+
+  sx1 = geda_line_object_get_x1(object6);
+  sy1 = geda_line_object_get_y1(object6);
+  sx2 = geda_line_object_get_x2(object6);
+  sy2 = geda_line_object_get_y2(object6);
+
+  if (sx1 - 1000 || sx2 - 2000) {
+    fprintf(stderr, "FAILED: (O120606X) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 - 1000 || sy2 - 2000) {
+    fprintf(stderr, "FAILED: (O120606Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  /* === object7->net  === */
+
+  sx1 = geda_line_object_get_x1(object7);
+  sy1 = geda_line_object_get_y1(object7);
+  sx2 = geda_line_object_get_x2(object7);
+  sy2 = geda_line_object_get_y2(object7);
+
+  if (sx1 - 1000 || sx2 - 2000) {
+    fprintf(stderr, "FAILED: (O120607X) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 - 1000 || sy2 - 2000) {
+    fprintf(stderr, "FAILED: (O120607Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
   return result;
 }
 

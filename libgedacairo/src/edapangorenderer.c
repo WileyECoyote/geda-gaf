@@ -114,10 +114,10 @@ eda_pango_renderer_set_property (GObject *object, unsigned int property_id,
   case PROP_CAIRO_CONTEXT:
 
     if (renderer->priv->cr != NULL) {
-      cairo_destroy (renderer->priv->cr); /* IS decrement */
+      cairo_destroy (renderer->priv->cr);   /* Is decrement */
     }
 
-    renderer->priv->cr = (cairo_t *) g_value_get_pointer (value);
+    renderer->priv->cr = (cairo_t*)g_value_get_pointer (value);
 
     if (renderer->priv->cr != NULL) {
       cairo_reference (renderer->priv->cr);
@@ -314,16 +314,16 @@ eda_pango_renderer_instance_init (GTypeInstance *instance, void *g_class)
   renderer->priv = g_malloc0 (sizeof(EdaPangoRendererData));
 }
 
-/*! \brief Retrieve EdaPangoRenderer's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve EdaPangoRenderer's Type identifier.
+ * \par Function Description
  *  Function to retrieve an #EdaPangoRenderer Type identifier. When
  *  first called, the function registers a #EdaPangoRenderer in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a EdaPangoRenderer and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with EdaPangoRenderer.
+ * \return GedaType identifier associated with EdaPangoRenderer.
  */
 GedaType eda_pango_renderer_get_type (void)
 {
@@ -355,20 +355,20 @@ GedaType eda_pango_renderer_get_type (void)
   return eda_pango_renderer_type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Create a New EdaPangoRenderer
- *  \par Function Description
- *
+/*!
+ * \brief Create a New EdaPangoRenderer
+ * \par Function Description
+ *  Returns a new EdaPangoRenderer object with the given Cairo Context.
  */
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
 {
   return g_object_new (EDA_TYPE_PANGO_RENDERER, "cairo-context", cr, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Update EdaPangoRenderer Cairo Context
- *  \par Function Description
- *
+/*!
+ * \brief Update EdaPangoRenderer Cairo Context
+ * \par Function Description
+ *  Updates the EdaPangoRenderer object's Cairo Context property.
  */
 void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
 {
@@ -381,8 +381,8 @@ void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
  *  Draws layout given by \a pl using the PangoRenderer pointed
  *  to in the EdaPangoRenderer.
  *
- *  \param [in] renderer EdaPangoRenderer object.
- *  \param [in] pl       PangoLayout to be drawn.
+ * \param [in] renderer EdaPangoRenderer object.
+ * \param [in] pl       PangoLayout to be drawn.
  */
 void
 eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
@@ -405,10 +405,10 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
 }
 
 /* ---------------------------------------- */
-/*! \todo Finish function documentation!!!
- *  \internal Make a copy of an EdaPangoAttrOverbar Attribute structure
- *  \par Function Description
- *
+/*!
+ * \internal Make a copy of an EdaPangoAttrOverbar Attribute structure
+ * \par Function Description
+ *  Copy method for the custom PangoAttrClass EdaPangoAttrOverbar.
  */
 static PangoAttribute *
 eda_pango_attr_overbar_copy (const PangoAttribute *attr)
@@ -417,10 +417,10 @@ eda_pango_attr_overbar_copy (const PangoAttribute *attr)
   return eda_pango_attr_overbar_new (a->overbar);
 }
 
-/*! \todo Finish function documentation!!!
- *  \internal Compare EdaPangoAttrOverbar Attribute structures
- *  \par Function Description
- *
+/*!
+ * \internal Compare EdaPangoAttrOverbar Attribute structures
+ * \par Function Description
+ *  Compare method for the custom PangoAttrClass EdaPangoAttrOverbar.
  */
 static bool
 eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
@@ -434,7 +434,6 @@ eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
 /*! \todo Finish function documentation!!!
  *  \brief Get an EdaPangoAttrOverbar Class
  *  \par Function Description
- *
  */
 PangoAttrClass *
 eda_pango_attr_overbar_get_class ()
@@ -458,26 +457,38 @@ eda_pango_attr_overbar_get_class ()
  */
 PangoAttribute *eda_pango_attr_overbar_new (bool overbar)
 {
-  EdaPangoAttrOverbar *result = g_new (EdaPangoAttrOverbar, 1);
+  EdaPangoAttrOverbar *result = g_malloc (sizeof(EdaPangoAttrOverbar));
   result->attr.klass = eda_pango_attr_overbar_get_class ();
   result->overbar = overbar;
   return (PangoAttribute *) result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Determine if objects is an
- *  \par Function Description EdaPangoAttrOverbar
- *  Looks inside attr without validating
+/*!
+ * \brief Determine if an object is an EdaPangoAttrOverbar
+ * \par Function Description
+ *  Returns TRUE if \a attr is an EdaPangoAttrOverbar object.
  */
 bool eda_is_pango_attr_overbar (PangoAttribute *attr)
 {
+  g_return_val_if_fail (attr != NULL, FALSE);
+  g_return_val_if_fail (attr->klass != NULL, FALSE);
+
   return attr->klass->type == eda_pango_attr_overbar_get_class()->type;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Parse overbar_text
- *  \par Function Description
+/*!
+ * \brief Parse overbar_text
+ * \par Function Description
+ *  Iterates over \a overbar_text and stores the string without the
+ *  delimiter to \a text along with a list of PangoAttributes to be
+ *  applied to the text to \a attr_list. The attribute list should
+ *  be disposed using pango_attr_list_unref once the pango layout
+ *  has been set.
  *
+ * \param [in]  overbar_text The overbar text to be Parsed
+ * \param [in]  length       Lenght of overbar_text or -1 if NULL terminated
+ * \param [out] attr_list    Location to store the PangoAttrList
+ * \param [out] text         Location to store the output string
  */
 bool
 eda_pango_parse_overbars (const char *overbar_text,  int    length,
@@ -508,6 +519,7 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
 
   out_ptr = *text;
 
+  /* todo: eliminate pointer math */
   for (in_ptr=overbar_text; (in_ptr - overbar_text) <= length; in_ptr++)
   {
     /* If we find an escape character and we are not already in an
@@ -522,7 +534,7 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
      * Enter or exit overbar state if appropriate. Otherwise, simply
      * append the character (which may have been escaped) to the output.
      */
-    if ((*in_ptr == '_') && escape_start) {
+    if (escape_start && (*in_ptr == '_')) {
 
       if (overbar_start) {
         overbar_end = out_ptr;
@@ -531,6 +543,7 @@ eda_pango_parse_overbars (const char *overbar_text,  int    length,
       }
     }
     else {
+      /* just append the character to the output */
       *out_ptr++ = *in_ptr;
     }
 

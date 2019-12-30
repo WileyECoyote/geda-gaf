@@ -366,7 +366,7 @@ static PyObject *rgb_parse_css(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-/* __getstate__ isn't exposed */
+/* __getstate__ is not exposed */
 static PyObject *rgb_getstate(PyObject *self)
 {
     PyGedaColorObject *rgb;

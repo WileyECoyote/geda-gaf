@@ -1,3 +1,44 @@
+2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/pt_BR.po: Update Portuguese translations.
+
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
+2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scripts/gsymfix.pl: Reset skip_line_out if $state == $st_pin_start.
+
+2019-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/el.po: Add Plural-Forms.
+
+    * po/pt_BR.po: Add Plural-Forms, update translations.
+
+2019-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/el.po: Update Greek translations.
+
+    * po/en_GB: Update Great Britain.
+
+    * po/es.po: Update Spanish translations.
+
+    * po/fr.po: Update French translations.
+
+    * po/it.po: Update Italian translations.
+
+    * po/kh.po: Update Khmer translations.
+
+    * po/nl.po: Update Dutch translations.
+
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
+    * po/ru.po: Update Russian translations.
+
+2019-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gsch2pcb/gsch2pcb.c: Convert some message strings, add ancillary char
+      pointers to reduce format specifiers in translatable strings.
+
 2019-07-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/gxyrs/run_tests.sh: Revise script to allow specifying regeneration

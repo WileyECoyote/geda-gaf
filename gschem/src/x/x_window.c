@@ -163,7 +163,8 @@ x_window_create_drawing_area (GschemToplevel *w_current, GtkWidget *window)
 
   DrawingArea = GTK_WIDGET (gschem_page_view_new ());
 
-  GTK_WIDGET_UNSET_FLAGS (DrawingArea, GTK_DOUBLE_BUFFERED);
+  gtk_widget_set_double_buffered (DrawingArea, FALSE);
+
   /* Set the size here. Be sure that it has an aspect ratio of 1.333
    * We could calculate this based on root window size, but for now
    * lets just set it to:
@@ -419,12 +420,12 @@ void x_window_create_main(GschemToplevel *w_current)
   GtkWidget *main_box;
   GtkWidget *menubar;
 
-  /* used to signify that the window isn't mapped yet */
+  /* used to signify that the window is not mapped yet */
   w_current->window       = NULL;
 
   w_current->main_window = gschem_main_window_new (!auto_place_mode);
 
-  /* We want the widgets to flow around the drawing area, so we don't
+  /* We want the widgets to flow around the drawing area, so we do not
    * set a size of the main window.  The drawing area's size is fixed,
    * see below. Normally we let the window manager handle locating and
    * sizing the window.  However, for some batch processing of schematics
@@ -475,7 +476,7 @@ void x_window_create_main(GschemToplevel *w_current)
   }
 
   /* --------------------------------------------------------- */
-  /*  Try to create popup menu (appears in right mouse button  */
+  /*  Setup right mouse popup context menu */
   x_menu_setup_popup(w_current);
 
   center_hbox = gtk_hbox_new(FALSE, 1);
@@ -502,13 +503,14 @@ void x_window_create_main(GschemToplevel *w_current)
     GtkAdjustment     *h_adjustment;
     GtkAdjustment     *v_adjustment;
 
-    h_adjustment = geda_adjustment_new (0.0, 0.0,
+    h_adjustment = geda_adjustment_new (0.0,
+                                        w_current->world_left,
                                         w_current->world_right,
                                         100.0, 100.0, 10.0);
 
     v_adjustment = geda_adjustment_new (w_current->world_bottom,
                                         0.0,
-                                        w_current->world_bottom,
+                                        w_current->world_bottom - w_current->world_top,
                                         100.0, 100.0, 10.0);
 
     draw_window = gtk_scrolled_window_new (h_adjustment, v_adjustment);

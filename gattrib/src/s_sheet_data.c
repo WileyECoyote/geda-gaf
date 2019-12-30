@@ -129,21 +129,17 @@ s_sheet_data_add_comp(PageDataSet *PageData, const char *component_str_name)
 }
 
 static void
-s_sheet_data_add_comp_attrib(PageDataSet *PageData,
-                             const char *comp_attrib_str_name)
+s_sheet_data_add_comp_attrib(PageDataSet *PageData, const char *attrib_name)
 {
   s_string_list_add_item(PageData->master_comp_attrib_list_head,
-                         &(PageData->comp_attrib_count),
-                         comp_attrib_str_name);
+                         &(PageData->comp_attrib_count), attrib_name);
 }
 
 static void
-s_sheet_data_attached_attrib(PageDataSet *PageData,
-                             const char  *comp_attrib_str_name)
+s_sheet_data_attached_attrib(PageDataSet *PageData, const char  *attrib_name)
 {
   s_string_list_add_item(PageData->attached_attrib,
-                         &(PageData->attached_attrib_count),
-                         comp_attrib_str_name);
+                         &(PageData->attached_attrib_count), attrib_name);
 }
 
 static void
@@ -153,11 +149,10 @@ s_sheet_data_add_net(PageDataSet *PageData, const char *net_str_name)
                          &(PageData->net_count), net_str_name);
 }
 
-static void s_sheet_data_add_net_attrib(PageDataSet *PageData,
-                                        const char *net_attrib_str_name)
+static void s_sheet_data_add_net_attrib(PageDataSet *PageData, const char *net_name)
 {
   s_string_list_add_item(PageData->master_net_attrib_list_head,
-                         &(PageData->net_attrib_count),net_attrib_str_name);
+                         &(PageData->net_attrib_count),net_name);
 }
 
 static void
@@ -225,9 +220,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
  * \par Function Description
  *  Add to the master list of components refdeses by iterating through
  *  the components and selectively recording discovered comp refdeses.
- *  This list is used for the column label on the component sheet. The
- *  Data struct being searched  is: Object->attribs(->next. . .)
- *  ->object->text->string
+ *  This list is used for the row labels on the component sheet.
  *
  * \param obj_list pointer to the component list to be added.
  */
@@ -250,15 +243,15 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
     GedaObject *o_current = iter->data;
 
 #ifdef DEBUG
-    printf("In s_sheet_data_add_master_comp_list_items, examining o_current->name = %s\n", o_current->name);
+    printf("%s: examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     /*-----  only process if this is a component with attributes ----*/
     if (o_current->type == OBJ_COMPLEX && o_current->attribs != NULL) {
 
 #if DEBUG
-      printf("In s_sheet_data_add_master_comp_list_items; found component on page\n");
-      printf(". . . . filename = %s.\n", o_current->filename);
+      printf("%s: found component on page", __func__);
+      printf(". . . . filename = %s.\n", o_current->name);
 #endif
 
       temp_uref = s_attrib_get_refdes(o_current);
@@ -274,7 +267,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
         if ((strcmp(temp_uref, "none")) && (strcmp(temp_uref, "pinlabel"))) {
 
 #if DEBUG
-          printf("In s_sheet_add_master_comp_list, about to add to master list refdes = %s\n", temp_uref);
+          printf("%s: adding refdes=%s to master list\n", __func__, temp_uref);
 #endif
 
           s_sheet_data_add_comp(sheet_head, temp_uref);
@@ -293,8 +286,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list)
  * \par Function Description
  *  Adds attribute names to the master list of comp attributes. The names
  *  are obtained by iterating through each component on the page, selectively
- *  recording discovered attributes.The data struct being searched  is:
- *  sheet_head->component_list_head->attrib->name;
+ *  recording discovered attributes.
  *
  * \param obj_list pointer to list of objects
  */
@@ -317,7 +309,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
     GedaObject *o_current = o_iter->data;
 
 #ifdef DEBUG
-    printf("In s_sheet_data_add_master_comp_attrib_list_items, examining o_current->name = %s\n", o_current->name);
+    printf("%s: examining o_current->name = %s\n", __func__, o_current->name);
 #endif
 
     /*-----  only process if this is a component with attributes ----*/
@@ -337,11 +329,10 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list)
 
           /* Don't include "refdes" or "slot" because they form the row name */
           /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
-          //WEH: use instr and gang strings?
           if ((strcmp(attrib_name, "graphical") != 0) &&
-            (strcmp(attrib_name, "refdes") != 0) &&
-            (strcmp(attrib_name, "net") != 0) &&
-            (strcmp(attrib_name, "slot") != 0) )
+              (strcmp(attrib_name, "refdes") != 0) &&
+              (strcmp(attrib_name, "net") != 0) &&
+              (strcmp(attrib_name, "slot") != 0))
           {
 
             is_attached = a_current->attached_to == o_current ? TRUE : FALSE;

@@ -400,12 +400,14 @@ static void geda_menu_item_do_set_right_justified (GedaMenuItem *menu_item,
   if (priv->right_justify != right_justified) {
 
     priv->right_justify = right_justified;
+
     gtk_widget_queue_resize ((GtkWidget*)menu_item);
   }
 }
 
 /* GObject Over-rides*/
 
+/*! \internal gobject_class->dispose */
 static void geda_menu_item_dispose (GObject *object)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)object;
@@ -433,6 +435,7 @@ static void geda_menu_item_dispose (GObject *object)
   ((GObjectClass*)geda_menu_item_parent_class)->dispose (object);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_menu_item_finalize (GObject *object)
 {
   GedaMenuItem *menu_item = (GedaMenuItem*)object;
@@ -633,6 +636,7 @@ static void geda_menu_item_show_all (GtkWidget *widget)
   gtk_widget_show (widget);
 }
 
+/*! \internal widget_class->can_activate_accel */
 static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
                                                unsigned int signal_id)
 {
@@ -840,7 +844,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::activate:
-   *
+   * \par
    * Emitted when the item is activated.
    *
    * menuitem: the object which received the signal.
@@ -857,7 +861,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::activate-item:
-   *
+   * \par
    * Emitted when the item is activated, but also if the menu item has a
    * submenu. For normal applications, the relevant signal is
    * GedaMenuItem::activate.
@@ -913,7 +917,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::right-justified
-   *
+   * \par
    * Sets whether the menu item appears justified
    * at the right side of a menu bar.
    */
@@ -927,7 +931,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::submenu
-   *
+   * \par
    * The submenu attached to the menu item, or %NULL if it has none.
    */
   g_object_class_install_property (gobject_class,
@@ -940,7 +944,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::accel-path
-   *
+   * \par
    * Sets the accelerator path of the menu item, through which runtime
    * changes of the menu item's accelerator caused by the user can be
    * identified and saved to persistant storage.
@@ -955,7 +959,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::label
-   *
+   * \par
    * The text for the child label.
    */
   g_object_class_install_property (gobject_class,
@@ -975,7 +979,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
                                                         G_PARAM_READWRITE));
   /*!
    * GedaMenuItem::use-underline
-   *
+   * \par
    * %TRUE if underlines in the text indicate mnemonics.
    */
   g_object_class_install_property (gobject_class,
@@ -1022,7 +1026,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::horizontal-padding
-   *
+   * \par
    * Padding to left and right of the menu item.
    */
   gtk_widget_class_install_style_property (widget_class,
@@ -1068,7 +1072,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
 
   /*!
    * GedaMenuItem::width-chars
-   *
+   * \par
    * The minimum desired width of the menu item in characters.
    */
   gtk_widget_class_install_style_property (widget_class,
@@ -1111,14 +1115,17 @@ static void geda_menu_item_instance_init(GTypeInstance *instance, void *class)
   }
 
 #if (GTK_MAJOR_VERSION == 3)
+
   GtkStyleContext *context;
   context = gtk_widget_get_style_context ((GtkWidget*)menu_item);
   gtk_style_context_add_class (context, GTK_STYLE_CLASS_MENUITEM);
+
 #endif
 
   if (!menu_item_hash_table) {
     menu_item_hash_table = g_hash_table_new (g_direct_hash, NULL);
   }
+
   g_hash_table_replace (menu_item_hash_table, instance, instance);
 }
 
@@ -1127,7 +1134,7 @@ static void geda_menu_item_instance_init(GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaMenuItem Type identifier. When
  *  first called, the function registers a #GedaMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -1204,6 +1211,7 @@ bool is_a_geda_menu_item (GedaMenuItem *menu_item)
   if ((menu_item != NULL) && (menu_item_hash_table != NULL)) {
     return g_hash_table_lookup(menu_item_hash_table, menu_item) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -1322,32 +1330,30 @@ static void activatable_update_label (GedaMenuItem *menu_item, GtkAction *action
  */
 static bool geda_menu_is_empty (GtkWidget *menu)
 {
-  GList *children, *cur;
-  bool result = TRUE;
+  GList *children, *iter;
+  bool result;
 
-  g_return_val_if_fail (menu == NULL || GEDA_IS_MENU(menu), TRUE);
-
-  if (!menu)
+  if (!GTK_IS_CONTAINER(menu)) {
     return FALSE;
+  }
+
+  g_return_val_if_fail (GEDA_IS_MENU(menu), TRUE);
 
   children = geda_container_get_children (menu);
 
-  cur = children;
+  result   = TRUE;
 
-  while (cur) {
+  for (iter = children; iter; iter = iter->next) {
 
-    if (gtk_widget_get_visible (cur->data)) {
+    if (gtk_widget_get_visible (iter->data)) {
 
-      if (!GTK_IS_TEAROFF_MENU_ITEM (cur->data) &&
-          !GEDA_OBJECT_GET_DATA (cur->data, "empty-menu-item"))
-      {
+      if (!GTK_IS_TEAROFF_MENU_ITEM (iter->data)) {
         result = FALSE;
         break;
       }
-
     }
-    cur = cur->next;
   }
+
   g_list_free (children);
 
   return result;
@@ -1362,12 +1368,20 @@ static void geda_menu_item_update (GtkActivatable *activatable,
 
   if (strcmp (property_name, "visible") == 0) {
 
-    geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item,
-                                   geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
+    bool is_empty;
+
+    is_empty = geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item));
+
+    geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item, is_empty);
+
   }
   else if (strcmp (property_name, "sensitive") == 0) {
 
-    gtk_widget_set_sensitive ((GtkWidget*)menu_item, gtk_action_is_sensitive (action));
+    bool sensitive;
+
+    sensitive = gtk_action_is_sensitive (action);
+
+    gtk_widget_set_sensitive ((GtkWidget*)menu_item, sensitive);
 
   }
   else if (priv->use_action_appearance) {
@@ -1401,8 +1415,9 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
     }
   }
 
-  if (!action)
+  if (!action) {
     return;
+  }
 
   geda_action_sync_menu_visible ((GedaAction*)action, widget,
     geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
@@ -1470,7 +1485,6 @@ GtkWidget *geda_menu_item_new_with_label (const char *label)
   return g_object_new (GEDA_TYPE_MENU_ITEM, "label", label, NULL);
 }
 
-
 /*!
  * \brief Creates a new GedaMenuItem with mnemonic
  * \par Function Description
@@ -1498,9 +1512,10 @@ GtkWidget *geda_menu_item_new_with_mnemonic (const char *label)
  *
  * \param [in] menu_item a #GedaMenuItem
  */
-GdkWindow *geda_menu_item_get_event_window (GedaMenuItem  *menu_item)
+GdkWindow *geda_menu_item_get_event_window (GedaMenuItem *menu_item)
 {
   g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), NULL);
+
   return menu_item->priv->event_window;
 }
 
@@ -1540,15 +1555,16 @@ void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GedaMenu *submenu)
     if (gtk_widget_get_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
+
     GEDA_OBJECT_NOTIFY (menu_item, "submenu");
   }
 }
 
 /*!
- * \brief Set GedaMenuItem submenu Widget
+ * \brief Set or Clear GedaMenuItem submenu Widget
  * \par Function Description
- *  Sets or replaces the submenu of menu item, or removes it when a %NULL
- *  submenu is passed.
+ *  Sets or replaces the submenu of menu item, or removes it when
+ *  \a submenu is %NULL.
  *
  * \param [in] menu_item a #GedaMenuItem
  * \param [in] submenu   the submenu, or %NULL
@@ -1588,6 +1604,7 @@ void geda_menu_item_set_submenu_widget (GedaMenuItem *menu_item, GtkWidget *subm
     if (gtk_widget_get_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
+
     GEDA_OBJECT_NOTIFY (menu_item, "submenu");
   }
 }
@@ -1746,7 +1763,7 @@ void geda_menu_item_activate_item (GedaMenuItem *menu_item)
  * \param [in] requisition the requisition to use as signal data.
  */
 void geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
-                                         int        *requisition)
+                                                  int *requisition)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
@@ -1762,17 +1779,20 @@ void geda_menu_item_toggle_size_request (GedaMenuItem *menu_item,
  * \param [in] allocation  the allocation to use as signal data.
  */
 void geda_menu_item_toggle_size_allocate (GedaMenuItem *menu_item,
-                                          int           allocation)
+                                                   int  allocation)
 {
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   g_signal_emit (menu_item, menu_item_signals[TOGGLE_SIZE_ALLOCATE], 0, allocation);
 }
 
-/* Gtk3 Helper called by:
+/* Common Helper, called by:
  *
- *    1.) geda_menu_item_draw
- *    2.) geda_menu_item_get_preferred_width
+ *    1.) Gtk2 geda_menu_item_size_request
+ *    2.) Gtk3 geda_menu_item_draw
+ *    3.) Gtk3 geda_menu_item_get_preferred_width
+ *    4.) Gtk3 geda_menu_item_real_get_height
+ *    5.) Gtk3 geda_menu_item_size_allocate
  */
 static void get_arrow_size (GtkWidget *widget, GtkWidget *child, int *size, int *spacing)
 {
@@ -1808,7 +1828,6 @@ static void get_arrow_size (GtkWidget *widget, GtkWidget *child, int *size, int 
  * Gtk2 geda_menu_item_size_request
  * Gtk3 geda_menu_item_get_preferred_width
  */
-
 static int get_minimum_width (GtkWidget *widget)
 {
   PangoContext     *context;
@@ -1975,6 +1994,7 @@ static int geda_menu_item_expose (GtkWidget *widget, GdkEventExpose *event)
   return FALSE;
 }
 
+/*! \internal Gtk2 widget_class->size_request */
 static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaMenuItem        *menu_item;
@@ -2009,9 +2029,9 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   }
 
   requisition->width  = (((GtkContainer*)widget)->border_width +
-                         widget->style->xthickness) << 1;
+                                         widget->style->xthickness) << 1;
   requisition->height = (((GtkContainer*)widget)->border_width +
-                         widget->style->ythickness) << 1;
+                                         widget->style->ythickness) << 1;
 
   if ((pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) &&
     (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL))
@@ -2067,9 +2087,8 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   }
 
   accel_width = 0;
-  geda_container_foreach (menu_item,
-                          geda_menu_item_accel_width_foreach,
-                         &accel_width);
+
+  geda_container_foreach (menu_item, geda_menu_item_accel_width_foreach, &accel_width);
 
   priv->accelerator_width = accel_width;
 }
@@ -2205,6 +2224,7 @@ static void geda_real_menu_item_select (GedaMenuItem *menu_item)
 
 #else /* GTK_MAJOR_VERSION >= 3.0 */
 
+/*! \internal Gtk3 widget_class->draw */
 static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
 {
   GedaMenuItem        *menu_item = (GedaMenuItem*)widget;
@@ -2293,6 +2313,7 @@ static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   return FALSE;
 }
 
+/*! \internal Gtk3 widget_class->get_preferred_width */
 static void geda_menu_item_get_preferred_width (GtkWidget *widget,
                                                 int       *minimum_size,
                                                 int       *natural_size)
@@ -2473,6 +2494,7 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
     *natural_size = nat_height;
 }
 
+/*! \internal Gtk3 widget_class->get_preferred_height */
 static void geda_menu_item_get_preferred_height (GtkWidget *widget,
                                                  int       *minimum_size,
                                                  int       *natural_size)
@@ -2480,6 +2502,7 @@ static void geda_menu_item_get_preferred_height (GtkWidget *widget,
   geda_menu_item_real_get_height (widget, -1, minimum_size, natural_size);
 }
 
+/*! \internal Gtk3 widget_class->get_preferred_height_for_width */
 static void geda_menu_item_get_preferred_height_for_width (GtkWidget *widget,
                                                            int        for_size,
                                                            int       *minimum_size,
@@ -3520,12 +3543,14 @@ void geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
 
   if (GEDA_IS_MENU(parent)) {
 
-    GedaMenu *menu = (GedaMenu*)parent;
+    GtkAccelGroup *accel_group;
 
-    if (menu->accel_group) {
+    accel_group = geda_menu_get_accel_group ((GedaMenu*)parent);
+
+    if (accel_group) {
       geda_menu_item_refresh_accel_path (menu_item,
                                          NULL,
-                                         menu->accel_group,
+                                         accel_group,
                                          FALSE);
     }
   }

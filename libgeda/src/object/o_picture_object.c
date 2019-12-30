@@ -171,8 +171,8 @@ static void geda_picture_object_add_if_writable (GdkPixbufFormat *data,
  *  for gdk_pixbuf_save. Options usually occur as key/value pairs of pointers
  *  but some are single pointer, these can be combined to ensure solo pointers
  *  are last on the stack or two singles can be paired. The point is, stack
- *  searching stops when a NULL is encountered and a NULL must present at the
- *  end of the data.
+ *  searching stops when a NULL is encountered and a NULL must be present at
+ *  the end of the data.
  * \par
  *  Below is a summary of some of the advertised options:
  * \par
@@ -1240,10 +1240,13 @@ GedaObject *geda_picture_object_new (const char   *file_content,
   picture->mirrored     = mirrored;
   picture->is_embedded  = embedded;
 
+  picture->height       = picture->upper_y - picture->lower_y;
+  picture->width        = picture->lower_x - picture->upper_x;
+
   /* Can not divide by zero */
   if ((picture->lower_y - picture->upper_y) != 0) {
-    picture->ratio = (double) (picture->upper_x - picture->lower_x) /
-                              (picture->lower_y - picture->upper_y);
+    picture->ratio = (double) (picture->lower_x - picture->upper_x) /
+                              (picture->upper_y - picture->lower_y);
   }
   else {
     geda_log_w(_("Invalid; picture has no height\n"));

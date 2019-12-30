@@ -7,20 +7,24 @@ L 100 200 700 200 3 0 0 0 -1 -1
 L 700 200 800 100 3 0 0 0 -1 -1
 P 1000 100 800 100 1 0 0
 {
-T 1100 150 5 10 0 1 0 0 1
-pinnumber=1
-T 1100 150 5 10 0 1 0 0 1
+T 125 25 5 10 1 1 0 0 1
+pinnumber=IOPAD
+T 825 160 5 10 0 1 0 0 1
 pinseq=1
-T 675 225 5 10 0 1 0 0 1
-pintype=io
-T 125 35 5 10 1 1 0 0 1
+T 125 25 5 10 0 1 0 0 1
 pinlabel=IOPAD
+T 575 235 5 10 0 1 0 0 1
+pintype=io
 }
-T 75 225 2 10 0 1 0 0 1
+T 125 25 2 10 0 1 0 0 1
 device=IOPAD
-T 850 175 5 10 1 1 0 0 1
+T 100 400 2 10 0 1 0 0 1
+description=Input/Output Pad
+T 125 225 5 10 1 1 0 0 1
 refdes=P?
-T 50 400 9 10 0 0 0 0 1
+T 100 600 9 10 0 0 0 0 1
 numslots=0
-T 50 550 9 10 0 0 0 0 1
-footprint=none
+T 100 800 9 10 0 0 0 0 1
+footprint=unknown
+T 100 975 5 10 0 0 0 0 1
+author=AutoTron

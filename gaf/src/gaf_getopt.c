@@ -328,7 +328,7 @@ getopt_internal(int nargc, char * const *nargv, const char *options,
     (oli = (char*)strchr(options, optchar)) == NULL)
   {
     /*
-     * If the user specified "-" and  '-' isn't listed in
+     * If the user specified "-" and  '-' is not listed in
      * options, return -1 (non-option) as per POSIX.
      * Otherwise, it is an unknown option character (or ':').
      */

@@ -1,13 +1,15 @@
 v 20121031 2
-T 10 10 5 10 0 0 0 0 1
-author=AutoTron
-T 1700 700 8 10 1 0 0 0 1
-comment=PERIOD=1e-6
-T 200 1000 9 8 0 0 0 0 1
+T 1600 1500 9 8 0 0 0 0 1
 device=none
-T 200 100 9 10 0 0 0 0 1
+T 1600 1100 9 10 0 0 0 0 1
 footprint=none
-T 200 300 8 10 0 0 0 0 1
+T 1600 500 8 10 0 0 0 0 1
 refdes=none
-T 200 100 9 10 0 0 0 0 1
+T 1600 1300 9 10 0 0 0 0 1
 numslots=0
+T 1600 900 5 10 1 0 0 0 1
+description=Switcap Timing
+T 1600 700 8 10 1 0 0 0 1
+comment=PERIOD=1e-6
+T 1600 1700 5 10 0 0 0 0 1
+author=AutoTron

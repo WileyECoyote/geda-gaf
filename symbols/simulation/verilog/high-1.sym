@@ -1,21 +1,23 @@
 v 20121031 2
 V 100 250 50 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
-T 300 300 5 10 0 1 0 0 1
+T 200 350 5 10 0 1 0 0 1
 device=HIGH
 P 100 200 100 0 1 0 1
 {
-T 200 100 5 10 0 1 0 0 1
+T 200 350 5 10 0 1 0 0 1
 pinnumber=HIGH
-T 200 100 5 10 0 0 0 0 1
+T 200 50 5 10 0 1 0 0 1
 pinseq=1
-T 200 100 5 10 0 1 0 0 1
+T 200 50 5 10 0 1 0 0 1
+pinlabel=1
+T 300 50 5 10 0 1 0 0 1
 pintype=io
-T 200 100 5 10 0 1 0 0 1
-pinlabel=n_a
 }
 T 200 200 5 10 1 1 0 0 1
 refdes=H?
-T 600 100 9 10 0 0 0 0 1
+T 200 525 5 10 0 1 0 0 1
+description=Verilog Logic High
+T 200 700 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+T 200 850 9 10 0 0 0 0 1
+footprint=none

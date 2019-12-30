@@ -16,36 +16,36 @@ L 600 300 400 400 3 0 2 0 -1 -1
 L 600 500 600 300 3 0 2 0 -1 -1
 P 0 500 200 500 1 0 0
 {
-T 50 700 5 8 0 1 0 0 1
-pintype=io
-T 150 300 9 10 0 1 0 6 1
-pinlabel=A
 T 100 550 5 8 1 1 0 6 1
 pinnumber=3
 T 175 550 5 8 0 1 0 6 1
 pinseq=1
+T 150 300 9 10 0 1 0 6 1
+pinlabel=A
+T 50 700 5 8 0 1 0 0 1
+pintype=io
 }
 P 1000 500 800 500 1 0 0
 {
-T 1000 350 5 8 0 1 0 0 1
-pintype=io
-T 850 300 9 10 0 1 0 0 1
-pinlabel=B
 T 900 550 5 8 1 1 0 0 1
 pinnumber=4
 T 1000 550 5 8 0 1 0 0 1
 pinseq=2
+T 850 300 9 10 0 1 0 0 1
+pinlabel=B
+T 1000 350 5 8 0 1 0 0 1
+pintype=io
 }
 P 500 0 500 200 1 0 0
 {
-T 550 0 5 8 0 1 0 0 1
-pintype=io
-T 650 50 5 10 0 1 0 0 1
-pinlabel=DIR
 T 450 50 5 8 1 1 0 6 1
 pinnumber=5
 T 300 50 5 8 0 1 0 0 1
 pinseq=3
+T 650 50 5 10 0 1 0 0 1
+pinlabel=DIR
+T 550 0 5 8 0 1 0 0 1
+pintype=io
 }
 T 200 900 9 10 1 0 0 0 1
 74LVC1T45
@@ -55,12 +55,13 @@ T 200 1300 5 10 0 0 0 0 1
 footprint=SOT26
 T 200 1500 5 10 0 0 0 0 1
 device=SN74LVC1T45
-T 200 2100 5 10 0 0 0 0 1
-author=AutoTron
 T 200 1700 5 10 0 0 0 0 1
-dist-license=GPLv2
+description=Single-Bit Noninverting Bus Transceiver, Dual-Supply
+T 200 2300 5 10 0 0 0 0 1
+author=AutoTron
 T 200 1900 5 10 0 0 0 0 1
+dist-license=GPLv2
+T 200 2100 5 10 0 0 0 0 1
 use-license=unlimited
 T 900 700 5 10 0 0 0 0 1
 symversion=0.1
-

@@ -1787,7 +1787,7 @@ geda_label_buildable_interface_init (GtkBuildableIface *iface)
  * \par Function Description
  *  Function to retrieve a #GedaLabel Type identifier. When
  *  first called, the function registers a #GedaLabel in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaLabel and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

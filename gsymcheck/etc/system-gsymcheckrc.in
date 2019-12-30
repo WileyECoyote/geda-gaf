@@ -65,4 +65,4 @@
                     "description" "documentation" "symversion" "dist-license"
                     "use-license" "graphical" "net" "netname" "slot" "slotdef"
                     "value" "comment" "footprints" "model-name" "file" "pins"
-                    "spice-type"))
+                    "spice-type" "manufacturer"))

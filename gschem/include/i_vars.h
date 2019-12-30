@@ -42,8 +42,10 @@ extern int default_warp_cursor;
 extern int default_zoom_gain;
 extern int default_zoom_with_pan;
 
+extern int default_world_left;
 extern int default_world_right;
 extern int default_world_bottom;
+extern int default_world_top;
 
 /* Logging */
 extern int default_logging;

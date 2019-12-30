@@ -111,11 +111,12 @@ typedef struct {
   char *disp_str;            /* UTF-8. Free with GEDA_FREE(). */
 } GschemKey;
 
-/*! \brief Test if a key is valid.
+/*!
+ * \brief Test if a key is valid.
  * \par Function Description
- * Test if the key combination defined by \a keyval and \a modifiers
- * is valid for key binding.  This is a less restrictive version of
- * gtk_accelerator_valid() from GTK 2.
+ *  Test if the key combination defined by \a keyval and \a modifiers
+ *  is valid for key binding.  This is a less restrictive version of
+ *  gtk_accelerator_valid() from GTK 2.
  *
  * \param keyval     The key that was pressed.
  * \param modifiers  The active modifiers when the key was pressed.
@@ -152,11 +153,12 @@ static bool g_key_is_valid ( unsigned int keyval, GdkModifierType modifiers)
   return TRUE;
 }
 
-/*! \brief Create a new bindable key object.
+/*!
+ * \brief Create a new bindable key object.
  * \par Function Description
- * Create and return a new gschem key object from a \a keyval and a
- * set of \a modifiers.  If the key combination is invalid, return
- * SCM_BOOL_F.
+ *  Create and return a new gschem key object from a \a keyval and a
+ *  set of \a modifiers.  If the key combination is invalid, return
+ *  SCM_BOOL_F.
  *
  * \param keyval     the pressed key.
  * \param modifiers  the active modifiers for the key.
@@ -175,15 +177,17 @@ static SCM g_make_key (unsigned int keyval, GdkModifierType modifiers)
   return result;
 }
 
-/*! \brief Test if a Scheme value is a bindable key object.
+/*!
+ * \brief Test if a Scheme value is a bindable key object.
  * \par Function Description
- * Returns SCM_BOOL_T if \a key_s is a gschem key object.  Otherwise,
- * returns SCM_BOOL_F.
+ *  Returns SCM_BOOL_T if \a key_s is a gschem key object.  Otherwise,
+ *  returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %key? procedure in the
- * (gschem core keymap) module.
+ *       (gschem core keymap) module.
  *
- * \param key_s          value to test
+ * \param key_s value to test
+ *
  * \return SCM_BOOL_T iff value is a key, otherwise SCM_BOOL_F.
  */
 SCM_DEFINE (g_keyp, "%key?", 1, 0, 0, (SCM key_s),
@@ -197,16 +201,18 @@ SCM_DEFINE (g_keyp, "%key?", 1, 0, 0, (SCM key_s),
   }
 }
 
-/*! \brief Create a bindable key object from a string.
+/*!
+ * \brief Create a bindable key object from a string.
  * \par Function Description
- * Parse the string key description \a str_s to create and return a
- * new gschem key object.  If \a str_s contains syntax errors, or does
- * not represent a valid bindable key combination, returns SCM_BOOL_F.
+ *  Parse the string key description \a str_s to create and return a
+ *  new gschem key object.  If \a str_s contains syntax errors, or does
+ *  not represent a valid bindable key combination, returns SCM_BOOL_F.
  *
  * \note Scheme API: Implements the %string-key procedure in the
- * (gschem core keymap) module.
+ *       (gschem core keymap) module.
  *
  * \param str_s  string to parse.
+ *
  * \return a new gschem key object, or SCM_BOOL_F.
  */
 SCM_DEFINE (g_string_to_key, "%string->key", 1, 0, 0, (SCM str_s),
@@ -229,13 +235,14 @@ SCM_DEFINE (g_string_to_key, "%string->key", 1, 0, 0, (SCM str_s),
   return g_make_key (keyval, modifiers);
 }
 
-/*! \brief Convert a bindable key object to a string.
+/*!
+ * \brief Convert a bindable key object to a string.
  * \par Function Description
- * Returns a string representation of the gschem key object \a key_s,
- * in a format suitable for parsing with %string->key.
+ *  Returns a string representation of the gschem key object \a key_s,
+ *  in a format suitable for parsing with %string->key.
  *
  * \note Scheme API: Implements the %key->string procedure in the
- * (gschem core keymap) module.
+ *       (gschem core keymap) module.
  *
  * \param key_s  Bindable key object to convert to string.
  * \return a string representation of the key combination.
@@ -252,16 +259,18 @@ SCM_DEFINE (g_key_to_string, "%key->string", 1, 0, 0, (SCM key_s),
   return scm_from_utf8_string (key->str);
 }
 
-/*! \brief Convert a bindable key object to a displayable string.
+/*!
+ * \brief Convert a bindable key object to a displayable string.
  * \par Function Description
- * Returns a string representation of the gschem key object \a key_s,
- * in a format suitable for display to the user (e.g. as accelerator
- * text in a menu).
+ *  Returns a string representation of the gschem key object \a key_s,
+ *  in a format suitable for display to the user (e.g. as accelerator
+ *  text in a menu).
  *
  * \note Scheme API: Implements the %key->display-string procedure in
- * the (gschem core keymap) module.
+ *       the (gschem core keymap) module.
  *
  * \param key_s  Bindable key object to convert to string.
+ *
  * \return a string representation of the key combination.
  */
 SCM_DEFINE (g_key_to_display_string, "%key->display-string", 1, 0, 0,
@@ -277,12 +286,11 @@ SCM_DEFINE (g_key_to_display_string, "%key->display-string", 1, 0, 0,
   return scm_from_utf8_string (key->disp_str);
 }
 
-/*! \brief Print a representation of a key smob
+/*!
+ * \brief Print a representation of a key smob
  * \par Function Description
- * Outputs a string representing the \a smob to a Scheme output \a
- * port.  The format used is "#<gschem-key \"Ctrl+A\">".
- *
- * Used internally to Guile.
+ *  Outputs a string representing the \a smob to a Scheme output \a port.
+ *  The format used is "#<gschem-key \"Ctrl+A\">". Used internally to Guile.
  */
 static int g_keys_print_key (SCM smob, SCM port, scm_print_state *pstate)
 {
@@ -294,12 +302,11 @@ static int g_keys_print_key (SCM smob, SCM port, scm_print_state *pstate)
   return 1;
 }
 
-/* \brief Test if two key combinations are equivalent.
+/*!
+ * \internal Test if two key combinations are equivalent.
  * \par Function Description
- * Tests if the two gschem key objects \a a and \a b represent the
- * same key event.
- *
- * Used internally to Guile.
+ *  Tests if the two gschem key objects \a a and \a b represent the
+ *  same key event. Used internally to Guile.
  */
 static SCM g_keys_equalp (SCM a, SCM b)
 {
@@ -328,12 +335,13 @@ SCM_SYMBOL (reset_keys_sym, "reset-keys");
 SCM_SYMBOL (press_key_sym,  "press-key");
 SCM_SYMBOL (prefix_sym,     "prefix");
 
-/*! \brief Clear the current key accelerator string.
+/*!
+ * \brief Clear the current key accelerator string.
  * \par Function Description
- * This function clears the current keyboard accelerator string in
- * the status bar of the relevant toplevel.  Called some time after a
- * keystroke is pressed.  If the current key sequence was a prefix,
- * let it persist.
+ *  This function clears the current keyboard accelerator string in
+ *  the status bar of the relevant toplevel.  Called some time after a
+ *  keystroke is pressed.  If the current key sequence was a prefix,
+ *  let it persist.
  *
  * \param [in] data a pointer to the GschemToplevel to update.
  * \return FALSE (this is a one-shot timer).
@@ -354,10 +362,11 @@ static bool clear_keyaccel_string(void * data)
   return FALSE;
 }
 
-/*! \brief Reset the current key sequence.
+/*!
+ * \brief Reset the current key sequence.
  * \par Function Description
- * If any prefix keys are stored in the current key sequence, clears
- * them.
+ *  If any prefix keys are stored in the current key sequence, clears
+ *  them.
  *
  * \param w_current  The active #GschemToplevel context.
  */
@@ -442,11 +451,12 @@ GArray *g_keys_dump_keymap (void)
  *  if ("gschem-keymap"
  }
  */
-/*! \brief Evaluate a user keystroke.
+/*!
+ * \brief Evaluate a user keystroke.
  * \par Function Description
- * Evaluates the key combination specified by \a event using the
- * current keymap.  Updates the gschem status bar with the current key
- * sequence.
+ *  Evaluates the key combination specified by \a event using the
+ *  current keymap.  Updates the gschem status bar with the current key
+ *  sequence.
  *
  * \param w_current  The active #GschemToplevel context.
  * \param event      A GdkEventKey structure.
@@ -620,16 +630,15 @@ char *g_keys_find_key (char *action) {
   return keys;
 }
 
-/*! \brief Exports the keymap in Scheme to a GtkListStore
- *  \par Function Description
+/*!
+ * \brief Exports the keymap in Scheme to a GtkListStore
+ * \par Function Description
  *  This function converts the list of key sequence/action pairs
  *  returned by the Scheme function \c dump-global-keymap into a
- *  GtkListStore with two columns.  The first column contains the name
- *  of the action executed by the keybinding as a string, and the
- *  second contains the keybinding itself as a string suitable for
- *  display.
- *
- *  The returned value must be freed by caller.
+ *  GtkListStore with two columns.  The first column contains the
+ *  name of the action executed by the keybinding as a string, and
+ *  the second contains the keybinding itself as a string suitable
+ *  for display. The returned value must be freed by caller.
  *
  *  \return A GtkListStore containing keymap data.
  */
@@ -741,12 +750,13 @@ GHashTable *g_keys_to_new_hash_table (void)
   return key_hash;
 }
 
-/*! \brief Create the (gschem core keymap) Scheme module
+/*!
+ * \brief Create the (gschem core keymap) Scheme module
  * \par Function Description
- * Defines procedures in the (gschem core keymap) module.  The module
- * can be accessed using (use-modules (gschem core keymap)).
+ *  Defines procedures in the (gschem core keymap) module. The module
+ *  can be accessed using (use-modules (gschem core keymap)).
  */
-static void init_module_gschem_core_keymap ()
+static void init_module_gschem_core_keymap (void *data)
 {
   /* Register the functions */
   #include "g_keys.x"
@@ -756,12 +766,13 @@ static void init_module_gschem_core_keymap ()
                 s_g_key_to_display_string, NULL);
 }
 
-/*! \brief Initialize the key combination procedures
+/*!
+ * \brief Initialize the key combination procedures
  * \par Function Description
- * Registers some Scheme procedures for working with key combinations.
- * Should only be called by main_prog().
+ *  Registers some Scheme procedures for working with key combinations.
+ *  Should only be called by main_prog().
  */
-void g_keys_init ()
+void g_keys_init (void)
 {
   /* Register key smob type */
   g_key_smob_tag = scm_make_smob_type ("gschem-key", 0);

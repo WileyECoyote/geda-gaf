@@ -40,7 +40,15 @@
 EDA_SCM_DEFINE (get_line_width, "%get-line-width", 1, 0, 0,
                (SCM obj_s), "Get the width of line used to draw an object")
 {
-  SCM_ASSERT (EDASCM_OBJECTP(obj_s), obj_s, SCM_ARG1, scheme_get_line_width);
+  SCM_ASSERT ((edascm_is_object_type (obj_s, OBJ_LINE)   ||
+               edascm_is_object_type (obj_s, OBJ_BOX)    ||
+               edascm_is_object_type (obj_s, OBJ_BUS)    ||
+               edascm_is_object_type (obj_s, OBJ_CIRCLE) ||
+               edascm_is_object_type (obj_s, OBJ_ARC)    ||
+               edascm_is_object_type (obj_s, OBJ_NET)    ||
+               edascm_is_object_type (obj_s, OBJ_PIN)    ||
+               edascm_is_object_type (obj_s, OBJ_PATH)),
+               obj_s, SCM_ARG1, scheme_get_line_width);
 
   GedaObject *object = edascm_to_object (obj_s);
 
@@ -59,25 +67,8 @@ init_module_geda_core_deprecated (void *nothing)
   /* Register the functions */
   #include "scheme_deprecated.x"
 
-  /* Some other deprecated definitions */
-  scm_c_define("OBJ_LINE",    SCM_MAKE_CHAR((unsigned char) OBJ_LINE));
-  scm_c_define("OBJ_BOX",     SCM_MAKE_CHAR((unsigned char) OBJ_BOX));
-  scm_c_define("OBJ_PICTURE", SCM_MAKE_CHAR((unsigned char) OBJ_PICTURE));
-  scm_c_define("OBJ_CIRCLE",  SCM_MAKE_CHAR((unsigned char) OBJ_CIRCLE));
-  scm_c_define("OBJ_NET",     SCM_MAKE_CHAR((unsigned char) OBJ_NET));
-  scm_c_define("OBJ_BUS",     SCM_MAKE_CHAR((unsigned char) OBJ_BUS));
-  scm_c_define("OBJ_COMPLEX", SCM_MAKE_CHAR((unsigned char) OBJ_COMPLEX));
-  scm_c_define("OBJ_TEXT",    SCM_MAKE_CHAR((unsigned char) OBJ_TEXT));
-  scm_c_define("OBJ_PIN",     SCM_MAKE_CHAR((unsigned char) OBJ_PIN));
-  scm_c_define("OBJ_ARC",     SCM_MAKE_CHAR((unsigned char) OBJ_ARC));
-  scm_c_define("OBJ_PLACEHOLDER", SCM_MAKE_CHAR((unsigned char) OBJ_PLACEHOLDER));
-  scm_c_define("OBJ_PATH",    SCM_MAKE_CHAR((unsigned char) OBJ_PATH));
-
   /* Add them to the module's public definitions. */
-  scm_c_export (scheme_get_line_width,
-                "OBJ_LINE", "OBJ_BOX", "OBJ_PICTURE",
-                "OBJ_CIRCLE", "OBJ_NET", "OBJ_BUS", "OBJ_COMPLEX", "OBJ_TEXT",
-                "OBJ_PIN", "OBJ_ARC", "OBJ_PATH", "OBJ_PLACEHOLDER", NULL);
+  scm_c_export (scheme_get_line_width, NULL);
 }
 
 /*!

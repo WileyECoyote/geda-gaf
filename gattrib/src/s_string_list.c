@@ -37,9 +37,11 @@
 #include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
-/*! \brief Return a pointer to a new STRING_LIST
+/*!
+ * \brief Return a pointer to a new STRING_LIST
+ * \par Function Description
+ *  Returns a pointer to a new STRING_LIST struct. This list is empty.
  *
- * Returns a pointer to a new STRING_LIST struct. This list is empty.
  * \returns pointer to the new STRING_LIST struct.
  */
 STRING_LIST *s_string_list_new() {
@@ -55,6 +57,10 @@ STRING_LIST *s_string_list_new() {
   return local_string_list;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void s_string_list_free(STRING_LIST *strlist)
 {
   STRING_LIST *s_iter = strlist;
@@ -86,11 +92,14 @@ void s_string_list_free(STRING_LIST *strlist)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Duplicate a STRING_LIST
+/*!
+ * \brief Duplicate a STRING_LIST
+ * \par Function Description
+ *  Given a STRING_LIST, duplicate it and returns a pointer
+ *  to the new, duplicate list.
  *
- * Given a STRING_LIST, duplicate it and returns a pointer
- * to the new, duplicate list.
  * \param old_string_list pointer to the STRING_LIST to be duplicated
+ *
  * \returns a pointer to the duplicate STRING_LIST
  */
 STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
@@ -123,10 +132,11 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add an item to a STRING_LIST
- *
- * This function adds \a item into a STRING_LIST, after iterating
- * through the list to make sure that there are no duplications.
+/*!
+ * \brief Add an item to a STRING_LIST
+ * \par Function Description
+ *  This function adds \a item into a STRING_LIST, after iterating
+ *  through the list to make sure that there are no duplications.
  *
  * \param [in,out] list  pointer to STRING_LIST to be added to.
  * \param [in,out] count total count on input, is updated if \a item added
@@ -134,7 +144,6 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list)
  */
 void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
 {
-
   STRING_LIST *prev;
   STRING_LIST *local_list;
 
@@ -186,9 +195,11 @@ void s_string_list_add_item(STRING_LIST *list, int *count, const char *item)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Delete an item from a STRING_LIST
+/*!
+ * \brief Delete an item from a STRING_LIST
+ * \par Function Description
+ *  Deletes an item in a STRING_LIST.
  *
- * Deletes an item in a STRING_LIST.
  * \param list pointer to STRING_LIST
  * \param count pointer to count of items in list
  * \param item item to remove from list
@@ -200,14 +211,16 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
   STRING_LIST *next_item = NULL;
   STRING_LIST *prev_item = NULL;
 
-  /* First check to see if list is empty.  If empty, spew error and return */
+  /* First check to see if list is empty. */
   if ( (*list)->data == NULL) {
+
+    /* Was empty, spew error and return */
     fprintf(stderr, "%s: %s",  __func__, _("attempted to remove item from an empty list\n"));
     return;
   }
 
 #ifdef DEBUG
-    printf("In s_string_list_delete_item, about to delete item %s from list.\n", item);
+    printf("%s: attempting to delete %s\n", __func__, item);
 #endif
 
   /* Now loop through list looking for item */
@@ -218,58 +231,46 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
     char *trial_item = geda_utility_string_strdup(list_item->data);
 
 #ifdef DEBUG
-    printf("In s_string_list_delete_item, matching item against trial item = %s from list.\n", trial_item);
+    printf("%s: matching item against trial item = %s from list.\n", __func__, trial_item);
 #endif
 
     if (strcmp(trial_item, item) == 0) { /* found item, now delete it. */
 
 #ifdef DEBUG
-    printf("In s_string_list_delete_item, found match . . . . . \n");
+      printf("%s: found match . . . . . \n", __func__);
 #endif
 
-    prev_item = list_item->prev;
-    next_item = list_item->next;
+      prev_item = list_item->prev;
+      next_item = list_item->next;
 
-    /* Check position in list */
-    if (next_item == NULL && prev_item == NULL) {
-      /* pathological case of one item list. */
-      (*list) = NULL;
-    }
-    else if (next_item == NULL && prev_item != NULL) {
-      /* at list's end */
-      prev_item->next = NULL;
-    }
-    else if (next_item != NULL && prev_item == NULL) {
-      /* at list's beginning */
-      next_item->prev = NULL;
-      (*list) = next_item;         /* also need to fix pointer to list head */
-      /*  GEDA_FREE(list);  */
-    }
-    else {
-      /* normal case of element in middle of list */
-      if (next_item != NULL) {
-        next_item->prev = prev_item;
+      /* Check position in list */
+      if (next_item == NULL && prev_item == NULL) {
+        /* pathological case of one item list. */
+        (*list) = NULL;
       }
-      prev_item->next = next_item;
-    }
-
-#ifdef DEBUG
-    printf("In s_string_list_delete_item, now free list_item\n");
-#endif
+      else if (next_item == NULL && prev_item != NULL) {
+        /* at list's end */
+        prev_item->next = NULL;
+      }
+      else if (next_item != NULL && prev_item == NULL) {
+        /* at list's beginning */
+        next_item->prev = NULL;
+        (*list) = next_item;         /* also need to fix pointer to list head */
+        /*  GEDA_FREE(list);  */
+      }
+      else {
+        /* normal case of element in middle of list */
+        if (next_item != NULL) {
+          next_item->prev = prev_item;
+        }
+        prev_item->next = next_item;
+      }
 
       GEDA_FREE(list_item);  /* free current list item */
       (*count)--;       /* decrement count */
       /* Do we need to re-number the list? */
 
-#ifdef DEBUG
-    printf("In s_string_list_delete_item, now free trial_item\n");
-#endif
-
       GEDA_FREE(trial_item); /* free trial item before returning */
-
-#ifdef DEBUG
-    printf("In s_string_list_delete_item, returning . . . .\n");
-#endif
 
       return;
     }
@@ -277,7 +278,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
     list_item = list_item->next;
   }
 
-  /* If we are here, it's 'cause we didn't find the item.
+  /* If we are here, it is because we did not find the item.
    * Spew error and return.
    */
   fprintf(stderr, "%s: %s %s\n",  __func__, _("could not delete item"), item);
@@ -286,10 +287,11 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Insert item into STRING_LIST
- *
- * Inserts a new string into a STRING_LIST. The string is not check
- * for dupilcation, caller should use s_string_list_in_list first
+/*!
+ * \brief Insert item into STRING_LIST
+ * \par Function Description
+ *  Inserts a new string into a STRING_LIST. The string is not check
+ *  for duplication, caller should use s_string_list_in_list first
  *
  * \param list      pointer to STRING_LIST to be added to.
  * \param old_count pointer to integer with total count to be updated
@@ -298,64 +300,64 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item)
  */
 void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
 {
-    int count = 0;
+  if (pos == *old_count) {
 
-    if (pos == *old_count) {
+    /* if just appending */
+    s_string_list_add_item(list, old_count, item);
+  }
+  else {
 
-      /* if just appending */
-      s_string_list_add_item(list, old_count, item);
-    }
-    else {
+    STRING_LIST *new_record;
+    STRING_LIST *iter;
 
-      STRING_LIST *new_list;
-      char *str;
-      int index;
-
-      new_list = s_string_list_new();
-
-      for ( index = 0; index < pos; index++) {
-        str = s_string_list_get_data_at_index(list, index);
-        s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
+    for (iter = list; iter; iter = iter->next) {
+      if (iter->pos == pos) {
+        break;
       }
-
-      s_string_list_add_item(new_list, &count, geda_utility_string_strdup(item));
-
-      for ( index = pos; index < *old_count; index++) {
-        str = s_string_list_get_data_at_index(list, index);
-        s_string_list_add_item(new_list, &count, geda_utility_string_strdup(str));
-      }
-
-      s_string_list_free(list);
-
-      *list      = *new_list;
-      *old_count = count;
     }
+
+    new_record = GEDA_MEM_ALLOC(sizeof(STRING_LIST));
+    new_record->data = geda_strdup(item);
+    new_record->pos  = pos;
+    new_record->next = iter;
+    new_record->prev = iter->prev;
+
+    iter->prev = new_record;
+
+    if (new_record->prev) {
+      iter = new_record->prev;
+      iter->next = new_record;
+    }
+
+    for (iter = new_record->next; iter; iter = iter->next) {
+      iter->pos++;
+    }
+
+    *old_count = *old_count + 1;
+  }
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Detect item in list
- *
- * Look for item in the list.
+/*!
+ * \brief Detect string in list
+ * \par Function Description
+ *  Look for string in the list ignoring case.
  *
  * \param list pointer to the STRING_LIST struct
  * \param item string to search for
+ *
  * \returns 0 if absent, 1 if present
  */
 int s_string_list_in_list(STRING_LIST *list, char *item)
 {
-  /* First check to see if list is empty.  If empty, return
-   * 0 automatically.  (I probably don't need to handle this
-   * separately.)  */
-  if (list->data == NULL) {
-    return 0;
-  }
-
   /* Otherwise, loop through list looking for duplicates */
   while (list != NULL) {
 
-    if (strcmp(list->data, item) == 0) {
-      /* Found item already in list.  return 1. */
-      return 1;
+    if (list->data) {
+      if (geda_stricmp(list->data, item) == 0) {
+        /* Found item already in list.  return 1. */
+        return 1;
+      }
     }
 
     list = list->next;
@@ -363,18 +365,18 @@ int s_string_list_in_list(STRING_LIST *list, char *item)
 
   /* item was not in the list, so return 0 */
   return 0;
-
 }
 
-
 /*------------------------------------------------------------------*/
-/*! \brief Get an item from a STRING_LIST by index
+/*!
+ * \brief Get an item from a STRING_LIST by index
+ * \par Function Description
+ *  Returns the index'th item in the string list.
  *
- * Returns the index'th item in the string list.
  * \param list pointer to STRING_LIST to get from
  * \param index index of item to return
- * \returns NULL if there is a problem otherwise a pointer to
- *          the string.
+ *
+ * \returns NULL if there is a problem otherwise a pointer to the string.
  */
 char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 {
@@ -397,27 +399,27 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 
 /*------------------------------------------------------------------*/
 
-/*! \brief Sort the master component list
+/*!
+ * \brief Sort the master component list
+ * \par Function Description
+ *  Takes the master comp list sheet_head->master_comp_list_head
+ *  and sorts the list by putting the reference designators (refdes)
+ *  in alphabetical order.
  *
- *  \par Function Description
- * Takes the master comp list sheet_head->master_comp_list_head
- * and sorts the list by putting the refrence desiginators (refdes)
- * in alphabetical order.
- *
- * Right now it does nothing other than fill in the "position".
- *
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_comp_list() {
 
   STRING_LIST *local_list, *iter;
 
-  /* Sort the list */
+  /* Retrieve the list */
   local_list = sheet_head->master_comp_list_head;
 
   for (iter = local_list; iter; iter = iter->next) {
     iter->pos = 0;
   }
 
+  /* Sort the list */
   local_list = listsort(local_list, 0, 1);
 
   if (local_list) {
@@ -448,6 +450,7 @@ void s_string_list_sort_master_comp_list() {
       sheet_head->master_comp_list_head = local_list;
     }
   }
+
   return;
 }
 
@@ -469,15 +472,14 @@ static struct {
 #define DEFAULT_ATTRIB_POS 100
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master component attribute list
+/*!
+ * \brief Sort the master component attribute list
+ * \par Function Description
+ *  Take the master comp attrib list sheet_head->master_comp_attrib_list_head
+ *  and sort it in this order: all refdeses in alphabetical order after
+ *  prioritizing selected attributes.
  *
- * Take the master comp attrib list
- * sheet_head->master_comp_attrib_list_head
- * and sort it in this order:
- *
- * all refdeses in alphabetical order
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_comp_attrib_list() {
 
@@ -499,10 +501,12 @@ void s_string_list_sort_master_comp_attrib_list() {
       if (iter->data != NULL) {
 
         if (strcmp (certain_attribs[i].attrib, iter->data) == 0) {
-
           iter->pos = certain_attribs[i].pos;
           break;
         }
+      }
+      else {
+         fprintf(stderr, "%s: internal error; NULL in list data!\n", __func__);
       }
     }
   }
@@ -522,14 +526,29 @@ void s_string_list_sort_master_comp_attrib_list() {
       local_list = local_list->next;
     }
   }
+
+#ifdef DEBUG
+
+  for (iter = sheet_head->master_comp_attrib_list_head; iter;
+       iter = iter->next) {
+
+    int pos = iter->pos;
+    char *aname= iter->data;
+
+    fprintf(stderr, "%s: pos[%d]=\"%s\"\n", __func__, pos, aname);
+  }
+
+#endif
+
   return;
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master netlist
- *
- * This fcn takes the master net list sheet_head->master_net_list_head
- * and sorts the list by putting all nets in alphabetical order
+/*!
+ * \brief Sort the master netlist
+ * \par Function Description
+ *  This fcn takes the master net list sheet_head->master_net_list_head
+ *  and sorts the list by putting all nets in alphabetical order
  */
 void s_string_list_sort_master_net_list() {
   int i = 0;
@@ -550,13 +569,12 @@ void s_string_list_sort_master_net_list() {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master net attribute list
- *
- * Take the master net attribute list
- * sheet_head->master_net_attrib_list_head
- * and sort it in this order:
- * value, footprint, model-name, file,
- * all other attributes in alphabetical order
+/*!
+ * \brief Sort the master net attribute list
+ * \par Function Description
+ *  Take the master net attribute list sheet_head->master_net_attrib_list_head
+ *  and sort it in this order: value, footprint, model-name, file, all other
+ *  attributes in alphabetical order
  */
 void s_string_list_sort_master_net_attrib_list() {
   int i = 0;
@@ -576,15 +594,13 @@ void s_string_list_sort_master_net_attrib_list() {
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master pin list
+/*!
+ * \brief Sort the master pin list
+ * \par Function Description
+ *  Take the master pin list sheet_head->master_pin_list_head and
+ *  sorts it in this order: all refdeses in alphabetical order.
  *
- * Take the master pin list
- * sheet_head->master_pin_list_head
- * and sorts it in this order:
- *
- * all refdeses in alphabetical order
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_pin_list()
 {
@@ -602,8 +618,8 @@ void s_string_list_sort_master_pin_list()
 
     int i = 0;
 
-    /* Do this after sorting is done.  This resets the order of the individual
-     * items in the list.  */
+    /* Do this after sorting is done. This resets the order of the
+     * individual items in the list.  */
     while (local_list) {  /* make sure item is not null */
 
       local_list->pos = i;
@@ -627,45 +643,74 @@ void s_string_list_sort_master_pin_list()
       sheet_head->master_pin_list_head = local_list;
     }
   }
+
   return;
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Sort the master pin attribute list
+/*!
+ * \brief Sort the master pin attribute list
+ * \par Function Description
+ *  Takes the master pin attrib list master_pin_attrib_list_head
+ *  in sheet_head and sorts the list in alphabetical order.
  *
- * Takes the master pin attrib list
- * sheet_head->master_pin_attrib_list_head
- * and sorts it in this order:
- *
- * all pin attribs in alphabetical order
- *
- * Right now it does nothing other than fill in the "position".
+ *  Right now it does nothing other than fill in the "position".
  */
 void s_string_list_sort_master_pin_attrib_list() {
 
-  STRING_LIST *local_list;
-  int i = 0;
+  STRING_LIST *local_list, *iter;
 
-  /* Here's where we do the sort */
-
-  /*
-   * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want
-   * certain attribs to go first.
-   */
-
-  /* Do this after sorting is done.  This resets the order of the individual items
-   * in the list.  */
   local_list = sheet_head->master_pin_attrib_list_head;
-  while (local_list != NULL) {
-    local_list->pos = i;
-    i++;
-    local_list = local_list->next;
+
+  for (iter = local_list; iter; iter=iter->next)
+    iter->pos = 0;
+
+  local_list = listsort(local_list, 0, 1);
+
+  if (local_list) {
+
+    int i = 0;
+
+    /* Do this after sorting is done. This resets the order of the
+     * individual items in the list.  */
+    while (local_list) {  /* make sure item is not null */
+
+      local_list->pos = i;
+
+      if (local_list->next != NULL) {
+        i++;
+        local_list = local_list->next;
+      }
+      else {
+        break;  /* leave loop *before* iterating to NULL EOL marker */
+      }
+    }
+
+    if (local_list) {
+
+      /* After assign list head to new first element */
+      while (local_list->prev) {
+        local_list = local_list->prev;
+      }
+
+      sheet_head->master_pin_attrib_list_head = local_list;
+    }
   }
 
   return;
 }
 
+/*!
+ * \brief Sort all master list
+ * \par Function Description
+ *  Wrapper for individual list sorters.
+ *
+ * \todo Only comp_attrib_list prioritizes certain_attribs the
+ *       other call functions sort alphabetically and should be
+ *       refactored.
+ */
 void s_string_list_sort_all_list() {
+
    /* ---------- Sort the master lists  ---------- */
   s_string_list_sort_master_comp_list();
   s_string_list_sort_master_comp_attrib_list();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-02-16 19:29-0600\n"
+"POT-Creation-Date: 2019-09-14 21:36-0500\n"
 "PO-Revision-Date: 2014-08-31 20:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,95 +18,95 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gnetlist/src/g_netlist.c:466
+#: gnetlist/src/g_netlist.c:465
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
 
-#: gnetlist/src/g_netlist.c:842
+#: gnetlist/src/g_netlist.c:840
 msgid "retrieved from a graphical object"
 msgstr ""
 
-#: gnetlist/src/g_netlist.c:843
+#: gnetlist/src/g_netlist.c:841
 msgid "Pin"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:80
+#: gnetlist/src/gnetlist.c:77
 msgid "ERROR"
 msgstr "FOUT"
 
-#: gnetlist/src/gnetlist.c:123
+#: gnetlist/src/gnetlist.c:120
 msgid "Can not open directory"
 msgstr "Kan bestandenmap niet openen"
 
-#: gnetlist/src/gnetlist.c:159
+#: gnetlist/src/gnetlist.c:156
 msgid "List of available backends"
 msgstr "Lijst van beschikbare backends"
 
-#: gnetlist/src/gnetlist.c:241
+#: gnetlist/src/gnetlist.c:238
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:243
+#: gnetlist/src/gnetlist.c:240
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:245
+#: gnetlist/src/gnetlist.c:242
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
 
 # Loading schematic
-#: gnetlist/src/gnetlist.c:283 gnetlist/src/gnetlist.c:284
+#: gnetlist/src/gnetlist.c:280 gnetlist/src/gnetlist.c:281
 msgid "Loading schematic"
 msgstr "Laden van schema"
 
 # Failed to load
-#: gnetlist/src/gnetlist.c:290
+#: gnetlist/src/gnetlist.c:287
 msgid "load failed"
 msgstr "faalde bij het laden van"
 
-#: gnetlist/src/gnetlist.c:309 gnetlist/src/gnetlist.c:372
+#: gnetlist/src/gnetlist.c:303 gnetlist/src/gnetlist.c:366
 msgid "System could not change to directory"
 msgstr "Systeem kan niet wijzigen naar directory"
 
-#: gnetlist/src/gnetlist.c:335
+#: gnetlist/src/gnetlist.c:329
 msgid "ERROR: Could not find backend"
 msgstr "FOUT: Kan backend niet vinden in het"
 
-#: gnetlist/src/gnetlist.c:336
+#: gnetlist/src/gnetlist.c:330
 msgid "for a full list of available backends"
 msgstr "voor een volledige lijst van beschikbare backends"
 
-#: gnetlist/src/gnetlist.c:338
+#: gnetlist/src/gnetlist.c:332
 msgid "in load path"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:339
+#: gnetlist/src/gnetlist.c:333
 msgid "Run"
 msgstr "Doe"
 
-#: gnetlist/src/gnetlist.c:407 gnetlist/src/gnetlist.c:435
+#: gnetlist/src/gnetlist.c:401 gnetlist/src/gnetlist.c:429
 msgid "Path"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:408 gnetlist/src/gnetlist.c:436
+#: gnetlist/src/gnetlist.c:402 gnetlist/src/gnetlist.c:430
 msgid "is not accessible"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:419 gnetlist/src/g_rc.c:75
+#: gnetlist/src/gnetlist.c:413 gnetlist/src/g_rc.c:75
 msgid "file"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:458
+#: gnetlist/src/gnetlist.c:452
 msgid "Could not create"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:484
+#: gnetlist/src/gnetlist.c:478
 #, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"
@@ -184,7 +184,6 @@ msgstr ""
 " PCB huispagina: <http://pcb.geda-project.org>\n"
 
 #: gnetlist/src/parsecmd.c:114
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -193,12 +192,13 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gnetlist %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
-"Dit is vrije software, en u bent welkom om deze te herdistribueren onder\n"
-"bepaalde condities. Voor details, zie het bestand `COPYING', welke is\n"
-"bijgesloten in de gEDA distributie.\n"
-"Er is GEEN GARANTIE, voor zover toegestaan door de wet.\n"
+"Dit is gratis software en u bent van harte welkom om het te verspreiden "
+"onder\n"
+"bepaalde voorwaarden. Zie het bestand Kopiëren voor meer informatie\n"
+"opgenomen in de gEDA-distributie. Er is GEEN GARANTIE; zelfs niet \n"
+"voor VERKOOPBAARHEID of GESCHIKTHEID VOOR EEN BEPAALD DOEL, voor zover\n"
+"wettelijk toegestaan.\n"
 
 #: gnetlist/src/parsecmd.c:132
 msgid "Received an error; tag is"
@@ -255,7 +255,7 @@ msgid "ERROR: Failed to load subcircuit '%s': %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
 # DONE
-#: gnetlist/src/s_misc.c:70
+#: gnetlist/src/s_misc.c:72
 msgid "DONE"
 msgstr "GEDAAN"
 
@@ -283,28 +283,27 @@ msgid "Missing pin number attribute"
 msgstr ""
 
 #: gnetlist/src/s_net.c:481
-#, fuzzy, c-format
-msgid ""
-"\n"
-"Found Duplicate net names, renaming [%s] to [%s]\n"
-msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
+msgid "Found Duplicate net names, renaming"
+msgstr "Vond een duplicaat net naam, hernoem"
 
-#: gnetlist/src/s_net.c:489
-#, fuzzy, c-format
-msgid "Add rename record for [%s] to [%s]\n"
-msgstr "Vond een duplicaat net naam, hernoem [%s] naar [%s]\n"
+#: gnetlist/src/s_net.c:484 gnetlist/src/s_net.c:495
+msgid "to"
+msgstr "naar"
 
-#: gnetlist/src/s_net.c:629
-#, c-format
-msgid "Increase number of unnamed nets (s_net.c)\n"
-msgstr "Verhoog aantal naamloze netten (s_net.c)\n"
+#: gnetlist/src/s_net.c:493
+msgid "Add rename record for"
+msgstr "Voeg record voor hernoemen toe"
 
-#: gnetlist/src/s_netlist.c:220 gnetlist/src/s_netlist.c:338
-msgid "Staring post processing"
+#: gnetlist/src/s_netlist.c:220
+msgid "Starting post processing"
 msgstr ""
 
 #: gnetlist/src/s_netlist.c:221
 msgid "Naming nets of graphical objects"
+msgstr ""
+
+#: gnetlist/src/s_netlist.c:338
+msgid "Staring post processing"
 msgstr ""
 
 #: gnetlist/src/s_netlist.c:339
@@ -433,22 +432,25 @@ msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Kon geen refdes vinden op component en kon geen speciaal attributen vinden!"
 
-#: gnetlist/src/s_traverse.c:573
+#: gnetlist/src/s_traverse.c:563
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Niet-verbindbaar object naar verbindingtype gevraagd\n"
 
-#: gnetlist/src/s_traverse.c:633
+#: gnetlist/src/s_traverse.c:623
 msgid "WARNING: Found label"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:634
+#: gnetlist/src/s_traverse.c:624
 msgid "label= is deprecated, please use netname"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:698
+#: gnetlist/src/s_traverse.c:688
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr "Vond een mogelijk oneindige net/pen verbinding\n"
+
+#~ msgid "Increase number of unnamed nets (s_net.c)\n"
+#~ msgstr "Verhoog aantal naamloze netten (s_net.c)\n"
 
 # is reserved for internal use
 #~ msgid "ERROR: `%s' is reserved for internal use.\n"

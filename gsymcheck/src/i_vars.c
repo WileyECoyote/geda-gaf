@@ -153,6 +153,7 @@ void i_vars_set_valid_attributes(SYMCHECK *s_current)
                                    "file",
                                    "pins",
                                    "spice-type",
+                                   "manufacturer",
                                    NULL};
 
     int i;

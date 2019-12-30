@@ -145,12 +145,12 @@ EDA_SCM_DEFINE (attrib_detach_x, "%detach-attrib!", 2, 0, 0,
   GedaObject *obj = edascm_to_object (obj_s);
   GedaObject *attrib = edascm_to_object (attrib_s);
 
-  /* If attrib isn't attached, do nothing */
+  /* If attrib is not attached, do nothing */
   if (attrib->attached_to == NULL) {
     return obj_s;
   }
 
-  /* Check that attrib isn't attached elsewhere */
+  /* Check that attrib is not attached elsewhere */
   if (attrib->attached_to != obj) {
     scm_error (edascm_object_state_sym, scheme_attrib_detach_x,
                _("Object ~A is attribute of wrong object"),

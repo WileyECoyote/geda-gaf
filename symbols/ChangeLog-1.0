@@ -105,6 +105,480 @@
             * symbols/ti/switchreg/TPS62142-1.sym
             * symbols/ti/switchreg/TPS62143-1.sym
 
+2019-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute order and positions, add
+      description attribute:
+
+            * simulation/verilog/or2-2.sym
+            * simulation/verilog/or3-2.sym
+            * simulation/verilog/or4-2.sym
+            * simulation/verilog/or5-1.sym
+            * simulation/verilog/or5-2.sym
+            * simulation/verilog/or6-1.sym
+            * simulation/verilog/or6-2.sym
+            * simulation/verilog/or7-1.sym
+            * simulation/verilog/or7-2.sym
+
+2019-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute positions, visibilities, and swap
+      pinlabel and pinnumber:
+
+            * simulation/verilog/and2-1.sym
+            * simulation/verilog/and3-1.sym
+            * simulation/verilog/and4-1.sym
+            * simulation/verilog/and5-1.sym
+            * simulation/verilog/and6-1.sym
+            * simulation/verilog/and7-1.sym
+            * simulation/verilog/and8-1.sym
+            * simulation/verilog/and9-1.sym
+
+    * simulation/verilog/opad-1.sym: Add description attribute.
+
+2019-12-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/spice/kmutual-1.sym: Add footprint and description.
+
+    * simulation/verilog/and2-1.sym: Update pinlabel and resequence
+      attributes.
+
+    * simulation/: Update pintype attributes:
+
+            * simulation/verilog/buf-1.sym
+            * simulation/verilog/bufif0-1.sym
+            * simulation/verilog/bufif1-1.sym
+
+    * simulation/: Clean symbol, update footprint, add description:
+
+            * simulation/verilog/high-1.sym
+            * simulation/verilog/low-1.sym
+            * simulation/verilog/not-1.sym
+            * simulation/verilog/notif0-1.sym
+
+2019-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/: Reorder attributes, add description:
+
+            * simulation/switcap/switcap-timing-1.sym
+            * simulation/switcap/switcap-vcvs-1.sym
+            * simulation/switcap/switcap-vcvs-2.sym
+            * simulation/switcap/switcap-vcvs-3.sym
+            * simulation/switcap/switcap-vsrc-1.sym
+
+    * simulation/: Clean symbol, update footprint, add description:
+
+            * simulation/verilog/block-1.sym
+            * simulation/verilog/buf-1.sym
+            * simulation/verilog/bufif0-1.sym
+            * simulation/verilog/bufif1-1.sym
+
+2019-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/rf/balun_quadrifilar.sym: Update dist-license, remove comment,
+      and add description.
+
+    * passive/rf/if_transformer_aircore-1.sym: Rename symbol file.
+
+    * simulation/spice/cc?s-1.sym: Add footprint none attribute:
+
+            * simulation/spice/cccs-1.sym
+            * simulation/spice/ccvs-1.sym
+
+    * simulation/spice/gnucap-*-1.sym: Convert plain text to description and
+      add footprint attribute:
+
+            * simulation/spice/gnucap-directive-1.sym
+            * simulation/spice/gnucap-include-1.sym
+
+    * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
+      value:
+
+            * transistor/pjfet-0/pjfet-sdg-1.sym
+            * transistor/pjfet-0/pjfet-sdg-2.sym
+            * transistor/pjfet-0/pjfet-sdg-5.sym
+
+2019-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
+      value:
+
+            * transistor/pjfet-0/pjfet-gds-1.sym
+            * transistor/pjfet-0/pjfet-gds-2.sym
+            * transistor/pjfet-0/pjfet-gds-3.sym
+            * transistor/pjfet-0/pjfet-gds-4.sym
+            * transistor/pjfet-0/pjfet-gds-5.sym
+            * transistor/pjfet-0/pjfet-gds-6.sym
+
+    * xilinx/XC2S100-5PQ208C.sym: Convert plain text to pin labels.
+
+    * xilinx: Reorder pins:
+
+            * xilinx/XC2S150-5PQ208I.sym
+            * xilinx/XC2S150-6PQ208C.sym
+
+2019-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pjfet-0/pjfet-*.sym: Update device, dist-license, and
+      value, resequence and reorder other attributes:
+
+            * transistor/pjfet-0/pjfet-sdg-6.sym
+            * transistor/pjfet-0/pjfet-sgd-1.sym
+            * transistor/pjfet-0/pjfet-sgd-2.sym
+            * transistor/pjfet-0/pjfet-sgd-3.sym
+            * transistor/pjfet-0/pjfet-sgd-6.sym
+
+    * transistor/pjfet-0/pjfet-sgd-5.sym: Fix duplicate pinseq=2 attribute,
+      update, resequence and reorder other attributes.
+
+2019-11-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/pjfet-0/pjfet-dsg-[1-6].sym: Update device, dist-license, and
+      value attributes:
+
+            * transistor/pjfet-0/pjfet-dsg-1.sym
+            * transistor/pjfet-0/pjfet-dsg-2.sym
+            * transistor/pjfet-0/pjfet-dsg-3.sym
+            * transistor/pjfet-0/pjfet-dsg-4.sym
+            * transistor/pjfet-0/pjfet-dsg-5.sym
+            * transistor/pjfet-0/pjfet-dsg-6.sym
+
+    * transistor/pjfet-0/pjfet-sdg-3.sym: Update device, dist-license, and
+      value attributes, resequence pin attributes, reorder attributes:
+
+            * pjfet-0/pjfet-sdg-3.sym
+            * pjfet-0/pjfet-sdg-4.sym
+
+    * transistor/pjfet-0/pjfet-sgd-4.sym: Fix duplicate pinseq=2 attribute, update,
+      resequence and reorder and other attributes.
+
+2019-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GRM21BR71E225KA73_2.2uF_25V.sym
+
+    * ti/TPS7A6301QPWP-1.sym: Add symbol; Adjustable LDO REG, 300mA, HTSSOP-14.
+
+    * ti/TPS7A633QPWP-1.sym: Add symbol; Fix 3.3 Volt LDO REG, 300mA, HTSSOP-14.
+
+    * ti/TPS7A6401QPWP-1.sym: Add symbol; Adjustable LDO REG, 300mA, HTSSOP-14.
+
+    * ti/TPS7A650QPWP-1.sym: Add symbol; Fix 5.0 Volt LDO REG, 300mA, HTSSOP-14.
+
+    * xilinx: Reorder pins:
+
+            * xilinx/XC2S150-5PQ208C.sym
+            * xilinx/XC2S200-5PQ208C.sym
+
+    * xilinx: Resequence pins:
+
+            * xilinx/XC2S150-5PQ208I.sym
+            * xilinx/XC2S150-6PQ208C.sym
+
+2019-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GRM155R71H223KA12_22nF_50V.sym
+            * murata/capacitor/GRM155R71H683KE14_68nF_50V.sym
+            * murata/capacitor/GRM1885C1H102JA01_1nF_50V.sym
+            * murata/capacitor/GRM188R6YA225KA12D_2.2uF_35V.sym
+            * murata/capacitor/GRM188R71C153KA01_0.015uF_16V.sym
+            * murata/capacitor/GRM188R71E104KA01_0.1uF_25V.sym
+            * murata/capacitor/GRM188R71H332KA01_3.3nF_50V.sym
+            * murata/capacitor/GRM21BR61H225KA73_2.2uF_50V.sym
+            * murata/capacitor/GRM21BR71A475KA73_4.7uF_10V.sym
+
+2019-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GRM1555C1H360JA01_36pF_50V.sym
+            * murata/capacitor/GRM1555C1H6R8DA01_6.8pF_50V.sym
+            * murata/capacitor/GRM155R61E105KA12_1uF_25V.sym
+            * murata/capacitor/GRM155R61E105MA12_1uF_25V.sym
+            * murata/capacitor/GRM155R71A103KA01_0.01uF_10V.sym
+            * murata/capacitor/GRM155R71A104KA01_0.1uF_10V.sym
+            * murata/capacitor/GRM155R71C683KA88_68nF_16V.sym
+            * murata/capacitor/GRM155R71C822KA01_8.2nF_16V.sym
+            * murata/capacitor/GRM155R71H102KA01_1nF_50V.sym
+
+2019-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GCM188R71C105KA64_1uF_16V.sym
+            * murata/capacitor/GCM21BR71A106KE22_10uF_10V.sym
+            * murata/capacitor/GCM21BR71E105KA56_1uF_25V.sym
+            * murata/capacitor/GCM21BR71H105KA03_1uF_50V.sym
+            * murata/capacitor/GCM31CC71E106KA03_10uF_25V.sym
+            * murata/capacitor/GCM31CC71H475KA03_4.7uF_50V.sym
+            * murata/capacitor/GCM32EC71H106KA03_10uF_50V.sym
+            * murata/capacitor/GRM1555C1H101FA01_100pF_50V.sym
+            * murata/capacitor/GRM1555C1H330JA01_3.3pF_50V.sym
+
+2019-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GCM155R71H102KA37_1nF_50V.sym
+            * murata/capacitor/GCM155R71H103KA55_0.01uF_50V.sym
+            * murata/capacitor/GCM155R71H104KE02_0.1uF_50V.sym
+            * murata/capacitor/GCM155R71H153KA55_15nF_50V.sym
+            * murata/capacitor/GCM155R71H182KA37_1.8nF_50V.sym
+            * murata/capacitor/GCM155R71H221KA37_220pF_50V.sym
+            * murata/capacitor/GCM155R71H331KA37_330pF_50V.sym
+            * murata/capacitor/GCM155R71H682KA55_6.8nF_50V.sym
+            * murata/capacitor/GCM188C71A225KE02_2.2uF_10V.sym
+
+2019-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip: Update "mfr" attribute = "manufacturer":
+
+            * microchip/MCP2021-1.sym
+            * microchip/MCP2021-2.sym
+            * microchip/MCP2022-1.sym
+            * microchip/MCP2022-2.sym
+
+    * murata: Update "mfr" attribute = "manufacturer":
+
+            * murata/capacitor/GCM1555C1H101JA16_100pF_50V.sym
+            * murata/capacitor/GCM1555C1H121JA16_120pF_50V.sym
+            * murata/capacitor/GCM155R71C104KA55_0.1uF_16V.sym
+            * murata/capacitor/GCM155R71C473KA37_47nF_16V.sym
+            * murata/capacitor/GCM155R71E103KA37_10nF_25V.sym
+
+2019-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * opto/HCPL-0700-1.sym: Rename symbol with hyphen to match device attribute.
+
+    * opto/HCPL-0701-1.sym: Rename symbol with hyphen to match device attribute.
+
+    * opto/HCPL: Add symbol; Dual-Channel Darlington optocoupler:
+
+            * opto/HCPL-0730-1.sym
+            * opto/HCPL-0731-1.sym
+            * opto/HCPL-2730-1.sym
+            * opto/HCPL-2731-1.sym
+
+    * opto/HCPL-4534-1.sym: Add description attribute, update documentation link.
+
+    * opto/HCPL4701-1.sym: Add description attribute.
+
+    * resistors/EXBA10P-1.sym: Add dscription attribute.
+
+2019-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/special/vicor_gen1.sym: Add description attribute.
+
+    * moto/MC13175-1.sym: Remove pins attribute, add description attribute.
+
+    * national/DS1602-1.sym: Rename symbol; DS1620-1 -> DS1602-1.
+
+    * national/DS26C32-1.sym: Add description attribute.
+
+    * national/DS26LS31-1.sym: Add description attribute, convert plain text
+      to value attribute, update footprint.
+
+    * xilinx: Resequence and reorder pins:
+
+            * xilinx/XC2S100-5PQ208C.sym
+            * xilinx/XC2S100-5PQ208I.sym
+
+    * xilinx: Resequence pins:
+
+            * xilinx/XC2S100-6PQ208C.sym
+            * xilinx/XC2S150-5PQ208C.sym
+
+2019-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/opamps/dual-opamp-[1,2].sym: Convert documentation to comment
+      and add documentation link, update symversion:
+
+            * linear/opamps/dual-opamp-1.sym
+            * linear/opamps/dual-opamp-2.sym
+
+    * logic/logic-symbols/latr.sym: Clean symbol, resequence attributes.
+
+    * logic/logic-symbols/nand[2,3].sym: Remove P=2u attribute, source=
+      attribute to description, add device and footprint:
+
+            * logic/logic-symbols/nand2.sym
+            * logic/logic-symbols/nand3.sym
+
+    * logic/logic-symbols/nor2.sym: Convert source attribute to comment,
+      remove P=2u attribute.
+
+    * logic/SN/SN74LVC1T45-1.sym: Add description attribute:
+
+            * logic/SN/SN74LVC1T45-1.sym
+            * logic/SN/SN74LVC1T45-2.sym
+
+    * misc/NPTH-1.sym: Rename file; hole-1.sym -> NPTH-1.sym.
+
+2019-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/regulator/TPS74001-1.sym: Add symbol; adjustable LDO
+      regulator with dual input voltages, 1.5A.
+
+    * linear/regulator/TPS74012-1.sym: Add symbol; LDO regulator with
+      dual input voltages, fixed, 1.5A.
+
+    * linear/regulator: Add description, update device attribute:
+
+            * regulator/vreg_dual_input-1.sym
+
+    * linear/special/vicor_gen1.sym: Reposition footprint, update device.
+
+    * logic/4000/4094b-3.sym: Reposition attributes, add value and description.
+
+    * logic/logic-symbols/clkinv.sym: Remove P= attribute, add device, footprint
+      and description.
+
+    * logic/logic-symbols/dffr.sym: Remove source= attribute, add description.
+
+    * logic/logic-symbols/inv.sym: Remove P= attribute, add device, footprint
+      and description.
+
+    * logic/logic-symbols/lat.sym: Add description attribute.
+
+2019-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * connector/jumper: Add description attribute:
+
+            * connector/jumper/jumper-1.sym
+
+            * connector/jumper/jumper-1p1p-2.sym
+
+    * linear/regulator: Remove pins attribute, add description:
+
+            * regulator/regulator_312-1.sym
+
+            * regulator/regulator_312-4.sym
+
+            * regulator/regulator_321-1.sym
+
+            * regulator/regulator_dpak-1.sym
+
+            * regulator/regulator_sot23-6.sym
+
+    * linear/regulator: Add description, update device attribute:
+
+            * regulator/volt_reg_adj-1.sym
+
+            * regulator/volt_reg_adj-2.sym
+
+2019-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * diode/half-bridge/SBR30U30CT-1.sym: Add symbol; half wave rectifier.
+
+    * onsemi/MCH12140-1.sym: Add symbol; Phase Detector.
+
+    * thyristor/2N5441-?.sym: Add symbols; 40A TRIACs:
+
+            * thyristor/2N5441-1.sym
+            * thyristor/2N5442-1.sym
+            * thyristor/2N5443-1.sym
+            * thyristor/2N5444-1.sym
+            * thyristor/2N5445-1.sym
+            * thyristor/2N5446-1.sym
+
+    * ti/SM74611-1.sym: Add symbol; photovoltaic bypass diode module.
+
+2019-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * xilinx: Update order of pin sequence:
+
+            * xilinx/XC2S100-5PQ208C.sym
+            * xilinx/XC2S100-5PQ208I.sym
+            * xilinx/XC2S100-6PQ208C.sym
+            * xilinx/XC2S150-5PQ208C.sym
+            * xilinx/XC2S150-5PQ208I.sym
+            * xilinx/XC2S150-6PQ208C.sym
+            * xilinx/XC2S200-5PQ208C.sym
+            * xilinx/XC2S200-5PQ208I.sym
+            * xilinx/XC2S200-6PQ208C.sym
+
+2019-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * xilinx: Add description attribute, convert plain text to value,
+      update the sequence of pin attributes, reposition attributes:
+
+            * xilinx/XC2S100-5PQ208C.sym
+            * xilinx/XC2S100-5PQ208I.sym
+            * xilinx/XC2S100-6PQ208C.sym
+            * xilinx/XC2S150-5PQ208C.sym
+            * xilinx/XC2S150-5PQ208I.sym
+            * xilinx/XC2S150-6PQ208C.sym
+            * xilinx/XC2S200-5PQ208C.sym
+            * xilinx/XC2S200-5PQ208I.sym
+            * xilinx/XC2S200-6PQ208C.sym
+
+2019-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nand2-1.sym: Adjust attribute positions; fix
+      description font size.
+
+    * simulation/verilog/nand3-1.sym: Adjust attribute positions.
+
+    * simulation/verilog/nand6-1.sym: Adjust attribute positions, update
+      the sequence of pin attributes.
+
+    * simulation/verilog/or*.sym: Convert comment text to a description
+      attribute and update attributes:
+
+            * verilog/or2-1.sym
+            * verilog/or3-1.sym
+            * verilog/or4-1.sym
+
+    * simulation/vhdl/nand*.sym: Add description attribute and update
+      the sequence of pin attributes:
+
+            * simulation/vhdl/nand7-1.sym
+            * simulation/vhdl/nand8-1.sym
+            * simulation/vhdl/nand9-1.sym
+
+2019-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nand*.sym: Add description attribute and update
+      the sequence of pin attributes:
+
+            * simulation/verilog/nand2-1.sym
+            * simulation/verilog/nand3-1.sym
+            * simulation/verilog/nand4-1.sym
+            * simulation/verilog/nand5-1.sym
+
+    * simulation/vhdl/nand*.sym: Add description attribute and update
+      the sequence of pin attributes:
+
+            * simulation/vhdl/nand2-1.sym
+            * simulation/vhdl/nand3-1.sym
+            * simulation/vhdl/nand4-1.sym
+            * simulation/vhdl/nand5-1.sym
+            * simulation/vhdl/nand6-1.sym
+
+2019-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog/nor*.sym: Convert comment text to a description
+      attribute and update the sequence of pin attributes:
+
+            * simulation/verilog/nor6-2.sym
+            * simulation/verilog/nor7-2.sym
+            * simulation/verilog/nor8-1.sym
+            * simulation/verilog/nor8-2.sym
+            * simulation/verilog/nor9-1.sym
+            * simulation/verilog/nor9-2.sym
+
+    * simulation/verilog/i*.sym: Add description attribute, reposition
+      attributes, update the sequence of pin attributes:
+
+            * simulation/verilog/iopad-1.sym
+            * simulation/verilog/ipad-1.sym
+
+    * simulation/verilog/nand2-1.sym: Add description attribute, reposition
+      attributes, update attribute values:
+
 2019-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/nor*.sym: Update pinlabel and pintype attribute

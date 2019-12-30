@@ -1,3 +1,227 @@
+2019-12-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Add internal gobject and widget class comments.
+      Add function documentation for geda_accel_label_get_accel_width.
+
+    * src/widgets/geda_combobox.c: Add internal GedaComboBoxClass comments, convert
+      container_class and widget_class comment to internal documentation.
+
+    * src/widgets/geda_image_menu_item.c: Reorganize module, remove unneeded ingroup
+      Doxygen tags.
+
+    * src/widgets/geda_menu_shell.c: Update Doxygen group description.
+
+2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_accel_label.c: Add documentation for geda_accel_label_refetch
+      and todo template for geda_accel_label_get_accel_width and reorganize module.
+
+    * tests/test_bulb.c: Add checks for geda_bulb_group_set_active_index.
+
+2019-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_entry.c: Rename function geda_entry_activate ->
+      geda_entry_process_entry. Add virtual over-ride geda_entry_widget_key_press
+      to emit "activate" on the GtkEntry.
+
+    * src/widgets/geda_menu.c: Add internal documentation/comment.
+
+2019-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add macro gtk_dialog_get_content_area for Gtk<3.0.
+
+    * src/dialogs/geda_file_chooser.c: Rename macro; ChooseClass -> ChooserClass.
+      Utilize gtk_dialog_get_content_area in get_filter_button.
+
+    * src/dialogs/geda_image_chooser.c: Utilize gtk_dialog_get_content_area in
+      geda_image_chooser_constructor.
+
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_show_submenu_indicator
+
+2019-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Add Doxygen code/endcode tags in
+      geda_bulb_set_group documentation. Revise geda_bulb_finalize
+      to eliminate redundant emission of the group_changed_signal
+      when old_group_singleton and was_in_group are both set by
+      only checking was_in_group when old_group_singleton is not
+      set, effectively the else condition, so as not inadvertently
+      reduce the reference count on other group members.
+
+    * tests/test_bulb.c: Add check for geda_bulb_group_get_active_index.
+
+2019-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Revise conditional in geda_image_
+      menu_item_sync_action in order to avoid early return. Revise function
+      geda_image_menu_item_set_accel_group to handle the else condition of
+      accel_group = NULL by removing image_menu_item from any group of which
+      it is a member, and update the function documentation.
+
+    * src/widgets/geda_menu.c: Revise function geda_menu_enter_notify to use
+      ancillary parent.
+
+    * tests/test_menu_separator.c: Check response from GedaMenuItem
+      accessors:
+
+          * geda_menu_item_get_reserve_indicator
+
+2019-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Revise geda_option_menu_get_history to
+      eliminate early returns.
+
+2019-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Replace return with break in function
+      geda_option_menu_select_first_sensitive.
+
+2019-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Revise geda_menu_item_set_accel_path to
+      use accessor geda_menu_get_accel_group and eliminate ancillary pointer.
+
+2019-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_container.c: And half_height in geda_container_
+      focus_sort_left_right, and half_width in geda_container_focus_sort_
+      up_down. Replace GINT_TO_POINTER with INT_TO_POINTER in geda_container_
+      focus_sort_tab.
+
+2019-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_container.c: Convert comments to internal Doxygen
+      documentation.
+
+2019-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Convert plain text to internal Doxygen
+      documentation, add internal documentation.
+
+2019-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Add geda_font_dialog_set_font.
+
+    * tests/test_font_dialog.c: Add checks for:
+
+          * geda_font_dialog_get_font
+          * geda_font_dialog_set_font
+
+2019-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_option_menu.c: Add ancillary bwidth_x2 in geda_option_
+      menu_size_allocate and explicitly shift left to multiply by 2. Add
+      ancillary menu_shell in geda_option_menu_key_press. Add ancillaries
+      xpad and ypad in geda_option_menu_paint and explicitly shift left to
+      multiply by 2.
+
+2019-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Partially revert commit e1b2ae6b7810;
+      revise geda_menu_is_empty to validate that menu is a container.
+
+2019-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Add internal documentation for
+
+          * geda_menu_item_size_request
+          * geda_menu_item_draw;
+          * geda_menu_item_get_preferred_width;
+          * geda_menu_item_get_preferred_height;
+          * geda_menu_item_get_preferred_height_for_width
+
+2019-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Convert While loop to a For loop in
+      geda_menu_is_empty, and remove checking for the "empty-menu-item"
+      data, which is never set. Add ancillary is_empty and sensitive in
+      geda_menu_item_update. Revise documentation:
+
+          * geda_menu_item_set_submenu
+          * get_arrow_size
+
+2019-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Remove redundant validation and simplify
+      validation of menu in geda_menu_is_empty, suspend initialization of the
+      result until after validation, and rename list pointer cur -> iter.
+
+2019-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add documentation for
+
+          * geda_get_widget_requisition
+          * geda_get_widget_parent
+          * geda_get_widget_window
+          * geda_get_widget_allocation
+
+    * src/functions/geda_container.c: Include "geda_gtk_compat.h" and utilize
+      geda_get_widget_parent and geda_get_widget_allocation macros.
+
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_class_init to
+      conditionally compile geda_combo_box_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy.
+
+    * src/widgets/geda_menu_button.c: Revise geda_menu_button_class_init to
+      conditionally compile geda_menu_button_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy.
+
+2019-09-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_widgets.h: Include "geda_gtk_compat.h".
+
+2019-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define define GtkObject is GtkWidget when Gtk+-3.
+
+    * src/widgets/geda_radio_menu_item.c: Revise geda_radio_menu_item_class_init
+      to conditionally compile geda_radio_menu_item_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy.
+
+2019-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define gdk_cursor_destroy as gdk_cursor_unref
+      when gdk_cursor_destroy is not defined.
+
+    * include/geda_toolbar.h: Enumerate GedaToolbarChildType.
+
+    * src/widgets/geda_combobox.c: Substitute gtk_widget_hide_all with
+      geda_widget_hide_all.
+
+    * src/functions/geda_widget.c: Add function geda_widget_hide_all.
+
+    * src/widgets/geda_menu.c: Add geda_menu_hide_children and utilize in
+      geda_menu_hide_all to replace gtk_widget_hide_all.
+
+    * src/widgets/geda_option_menu.c: Revise geda_option_menu_class_init to
+      conditionally compile geda_option_menu_destroy as over-ride to either
+      GtkObjectClass->destroy or GtkWidgetClass->destroy and utilize
+      geda_widget_hide_all in geda_option_menu_hide_all to replace
+      gtk_widget_hide_all.
+
+    * src/widgets/geda_toolbar.c: Substitute GedaToolbarChildType for
+      GtkToolbarChildType as the second argument to geda_toolbar_append_element.
+
+    * tests/test_file_chooser.c: Replace GtkObject with GtkWidget as the
+      second argument to kill_dependent().
+
+2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define GtkNotebookPage as GtkWidget when
+      GtkNotebookPage is not defined.
+
+2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Define GtkTooltips as void when not defined.
+
+2019-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_bulb.c: Reinstate sink and destroying of widget2 and widget3
+      before exiting check_overides.
+
 2019-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Eliminate else clause in get_popup_delay.
@@ -1633,7 +1857,7 @@
 
     * src/widgets/geda_font_dialog.c: Eliminate unnecessary type-checking
       cast to GedaFontDialog in geda_font_dialog_set_property. Include
-      geda_gtk_compat.h", and revise geda_font_dialog_get_font; replace
+      geda_gtk_compat.h, and revise geda_font_dialog_get_font; replace
       gdk_font_from_description with gdk_font_from_description_for_display,
       which bypasses the former and and attempts to get the real font.
       Update function documentation:

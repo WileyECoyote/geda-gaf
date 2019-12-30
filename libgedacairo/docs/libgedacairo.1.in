@@ -89,13 +89,43 @@ behaviour:
       a copy of this array, and doesn't free it when the EdaRenderer
       is destroyed.
 .IP
-  "override-color"  [int] Index of a colour to force all drawing to
-      take place with. This can be used e.g. when highlighting a set
-      of objects in a particular colour.  If "override-color" is set
-      to -1, color override is disabled.
+  "override-color"  [int]
+      Index of a color to force all drawing to take place with. This
+      can be used e.g. when highlighting a set of objects in a particular
+      color. If "override-color" is set to -1, color override is disabled.
+.IP
+  "junction-color"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering Junctions.
+.IP
+  "junction-size"  [interger]
+      Size to draw junction cue points.
+.IP
+  "net-endpoint-color"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering Net and Pin endpoints.
+.IP
+  "text-marker-color"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering text markers.
+.IP
+  "text-marker-size"  [interger]
+      Size to draw text markers.
+.IP
+  "text-marker-threshold"  [double]
+      The threshold to draw text markers.
+.IP
+  "draw-grip"  [Boolean]
+      Controls if grips should be drawn.
 .IP
   "grip-size"  [double]
       Size to draw grips, in *user* coordinates.
+.IP
+  "grips-stroke"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering strokes for grips.
+.IP
+  "grips-fill"  [GDK_TYPE_COLOR]
+      GDK color to use when rendering background of grips.
+.IP
+  "circle-grip-quadrant"  [GDK_TYPE_COLOR]
+      Controls where grips are drawn on circles.
 .IP
   "render-flags"  [EdaRendererFlags]
       Flags that control various rendering options.

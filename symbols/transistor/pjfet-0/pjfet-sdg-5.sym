@@ -48,15 +48,15 @@ symversion=3.1
 T 0 2150 8 10 0 0 0 0 1
 author=AutoTron
 T 0 1850 5 8 0 0 0 0 1
-dist-license=GPL
+dist-license=GPLv2
 T 0 1700 5 8 0 0 0 0 1
 use-license=unlimited
 T 0 1400 9 8 0 0 0 0 1
 documentation=http://en.wikipedia.org/wiki/JFET
 T 900 500 5 10 1 1 0 0 1
-device=2N?
+device=JFET
 T 900 250 5 8 0 1 0 0 1
-value=none
+value=2N?
 T 0 1250 9 8 0 0 0 0 1
 description=P Channel Junction Field Effects Transistor
 L 200 300 400 300 3 5 0 0 -1 -1

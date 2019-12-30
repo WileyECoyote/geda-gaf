@@ -33,13 +33,13 @@ pinlabel=OUT
 T 1380 650 5 8 0 1 0 0 1
 pintype=io
 }
-T 1300 950 8 10 1 1 0 6 1
+T 300 950 8 10 1 1 0 0 1
 refdes=U?
-T 300 1700 5 10 0 0 0 0 1
-pins=3
-T 300 1500 8 10 0 0 0 0 1
+T 300 1500 5 10 0 0 0 0 1
+description=Voltage Regulator
+T 300 1300 9 10 0 0 0 0 1
 footprint=DPAK
-T 300 1300 8 10 0 0 0 0 1
+T 300 1700 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 300 1100 5 10 0 0 0 0 1
 device=none

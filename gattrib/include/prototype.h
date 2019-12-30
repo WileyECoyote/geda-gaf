@@ -44,16 +44,12 @@ int   s_attrib_name_in_list(STRING_LIST *name_value_list, char *name);
 char *s_attrib_get_refdes(GedaObject *object);
 
 /* ------------- s_object.c ------------- */
-void s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                         GedaObject *o_current,
-                                         char *new_attrib_name,
-                                         char *new_attrib_value,
-                                         int visibility,
-                                         int show_name_value);
-void s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                        GedaObject *o_current,
-                                        char *new_attrib_name,
-                                        char *new_attrib_value);
+void s_object_add_attrib_to_object (GedaToplevel *toplevel,
+                                    GedaObject *o_current,
+                                    char *new_attrib_name,
+                                    char *new_attrib_value,
+                                    int visibility,
+                                    int show_name_value);
 void s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
                                         GedaObject *o_current,
                                         char *new_attrib_name,
@@ -76,8 +72,7 @@ void s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                            int           color,
                                            GedaObject   *object);
 
-void s_object_delete_text_object_in_object(GedaToplevel *toplevel, GedaObject *test_object);
-int  s_object_has_sym_file(GedaObject *object);
+void s_object_delete_text_object(GedaToplevel *toplevel, GedaObject *test_object);
 
 /* ------------- s_misc.c ------------- */
 void verbose_print(char *string);
@@ -202,7 +197,6 @@ void  generic_msg_dialog (const char *msg);
 bool  x_dialog_generic_confirm_dialog (const char *msg, int type);
 char *x_dialog_new_attrib();
 bool  x_dialog_column_visibility (GList *list);
-void  x_dialog_delete_attrib();
 void  x_dialog_missing_sym();
 int   x_dialog_file_not_saved();
 void  x_dialog_unsaved_data();

@@ -65,7 +65,7 @@ inline static bool o_find_is_object_hit (GschemToplevel *w_current,
 /*!
  * \brief Disposition objects found by o_find_object
  * \par Function Description
- *  Handler dispositing of any found objects in o_find_object. The object
+ *  Handles dispositing of any found objects by o_find_object. The object
  *  is added to or replaces the current selection depending on the mode
  *  flag, if \a mode is add or replace the object is not selected. If
  *  the selection is modified sensitivities are updated.
@@ -141,7 +141,7 @@ GedaObject *o_find_get_hit (GschemToplevel *w_current, int x, int y)
 /*!
  * \brief Find an Object at a given set of coordinates
  * \par Function Description
- *  Tests for ObjectS hit at a given set of coordinates. Objects that
+ *  Tests for objects hit at a given set of coordinates. Objects that
  *  are not selectable (e.g. it is locked), or are invisible are not
  *  tested. The Find operations resume searching after the last object
  *  which was found, so multiple find operations at the same point will

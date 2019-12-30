@@ -49,10 +49,12 @@
  *  \ingroup Array-Dialog
  */
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Disconnects Array Dialog Buttom Press and Release
+ * \par Function Description
+ *  This function disconnects the button press and release handlers, which
+ *  were connected too when the user choose to select objects or point to
+ *  the array pitch using buttons on the dialog.
  */
 static void x_dialog_array_edit_disconnect_events (GschemToplevel *w_current,
                                                    array_data     *dialog_data)
@@ -1021,13 +1023,13 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
 
   array_data *dialog_data;
 
-  const char *cnt_sel_tip  = "Indicates total number of objects currently selected";
-  const char *x_size_tip   = "x_size_tip";
-  const char *y_size_tip   = "y_size_tip";
-  const char *row_cnt_tip  = "Number of rows to create";
-  const char *col_cnt_tip  = "Number of columns to create";
-  const char *row_off_tip  = "Vertical pitch of array, negative is downward";
-  const char *col_off_tip  = "Horizontal pitch of array, negative is to left";
+  const char *cnt_sel_tip  = _("Indicates total number of objects currently selected");
+  const char *x_size_tip   = _("Selection x size");
+  const char *y_size_tip   = _("Selection y size");
+  const char *row_cnt_tip  = _("Number of rows to create");
+  const char *col_cnt_tip  = _("Number of columns to create");
+  const char *row_off_tip  = _("Vertical pitch of array, negative is downward");
+  const char *col_off_tip  = _("Horizontal pitch of array, negative is to left");
 
   void x_dialog_array_edit_set_focus_chain(void) {
     GList *focus_chain; /* Aka Tab Order */
@@ -1090,7 +1092,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_table_attach (GTK_TABLE (table), widget, 1, 2, 0, 1, (GTK_EXPAND), 0, 0, 0);
   gtk_editable_set_editable (GTK_EDITABLE (widget), FALSE);
   gtk_widget_set_can_focus(widget, FALSE);
-  SetWidgetTip(widget, _(cnt_sel_tip));
+  SetWidgetTip(widget, cnt_sel_tip);
   dialog_data->cnt_sel_entry = widget;
 
   x_size_label = GEDA_AV_LABEL_NEW (_("X Size"), 0, 0.5);
@@ -1104,7 +1106,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_table_attach (GTK_TABLE (table), widget, 1, 2, 1, 2, (GTK_EXPAND), 0, 0, 0);
   gtk_editable_set_editable (GTK_EDITABLE (widget), FALSE);
   gtk_widget_set_can_focus(widget, FALSE);
-  SetWidgetTip(widget, _(x_size_tip));
+  SetWidgetTip(widget, x_size_tip);
   dialog_data->x_size_entry = widget;
 
   widget = gtk_entry_new ();
@@ -1112,7 +1114,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_table_attach (GTK_TABLE (table), widget, 1, 2, 2, 3, (GTK_EXPAND), 0, 0, 0);
   gtk_editable_set_editable (GTK_EDITABLE (widget), FALSE);
   gtk_widget_set_can_focus(widget, FALSE);
-  SetWidgetTip(widget, _(y_size_tip));
+  SetWidgetTip(widget, y_size_tip);
   dialog_data->y_size_entry = widget;
 
   select_butt = gtk_button_new_with_mnemonic (_("Select"));
@@ -1158,7 +1160,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   widget = gtk_spin_button_new_with_range(1,999,1);
   gtk_widget_show (widget);
   gtk_table_attach(GTK_TABLE(table), widget, 2, 3, 0, 1, GTK_FILL,0,0,0);
-  SetWidgetTip(widget, _(row_cnt_tip));
+  SetWidgetTip(widget, row_cnt_tip);
   SetSpinValue(widget, 2);
   dialog_data->row_spin = widget;
 
@@ -1173,7 +1175,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   widget = gtk_entry_new ();
   gtk_widget_show (widget);
   gtk_table_attach (GTK_TABLE (table), widget, 5, 6, 0, 1, (GTK_EXPAND), 0, 0, 0);
-  SetWidgetTip(widget, _(row_off_tip));
+  SetWidgetTip(widget, row_off_tip);
   dialog_data->row_off_entry = widget;
 
 /* Row 3*/
@@ -1191,7 +1193,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   widget = gtk_spin_button_new_with_range(1,999,1);
   gtk_widget_show (widget);
   gtk_table_attach(GTK_TABLE(table), widget, 2, 3, 2, 3, GTK_FILL,0,0,0);
-  SetWidgetTip(widget, _(col_cnt_tip));
+  SetWidgetTip(widget, col_cnt_tip);
   SetSpinValue(widget, 2);
   dialog_data->col_spin = widget;
 
@@ -1207,7 +1209,7 @@ static GtkWidget *x_dialog_array_edit_constructor (GschemToplevel *w_current)
   gtk_widget_show (widget);
   gtk_table_attach (GTK_TABLE (table), widget, 5, 6, 2, 3, (GTK_EXPAND), 0, 0, 0);
   gtk_entry_set_activates_default (GTK_ENTRY(widget), TRUE);
-  SetWidgetTip(widget, _(col_off_tip));
+  SetWidgetTip(widget, col_off_tip);
   dialog_data->col_off_entry = widget;
 
   row_butt = gtk_button_new_with_mnemonic (_("Y"));

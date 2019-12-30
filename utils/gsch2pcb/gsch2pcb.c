@@ -664,8 +664,9 @@ insert_element (FILE *f_out,     char *element_file,
       str[3] = 0;                   /* Truncate line */
 
       if (strncmp ("PCB", str, 3) == 0) {
-        printf ("Warning: %s appears to be a PCB layout file. Skipping.\n",
-                element_file);
+        const char *warn = _("WARNING");
+        const char *msg  = _("appears to be a PCB layout file. Skipping");
+        printf ("%s: %s %s.\n", warn, element_file, msg);
         fclose (f_in);
         return FALSE;
       }
@@ -722,7 +723,8 @@ char *find_element (char *dir_path, char *element)
   }
 
   if (verbose > 1) {
-    printf ("\t  Searching: \"%s\" for \"%s\"\n", dir_path, element);
+    const char *msg = _("Searching");
+    printf ("\t  %s: \"%s\" %s \"%s\"\n", msg, dir_path, _("for"), element);
   }
 
   while ((name = (char *) g_dir_read_name (dir)) != NULL) {
@@ -770,6 +772,7 @@ char *find_element (char *dir_path, char *element)
     }
   }
   g_dir_close (dir);
+
   return found;
 }
 
@@ -798,11 +801,18 @@ char *search_element_directories (PcbElement *el)
         GEDA_FREE (str);
       }
     }
+
     if (!elname) {
-      printf ("Warning: argument passing may have been confused by\n");
-      printf ("         a comma in a component value:\n");
-      printf ("         Check %s %s %s\n", el->refdes, el->description, el->value);
-      printf ("         Maybe just use a space instead of a comma?\n");
+
+      const char *msg1 = _("Warning: argument passing may have been confused by");
+      const char *msg2 = _("a comma in a component value");
+      const char *msg3 = _("Check");
+      const char *msg4 = _("Maybe just use a space instead of a comma");
+
+      printf ("%s\n", msg1);
+      printf ("         %s:\n", msg2);
+      printf ("         %s %s %s %s\n", msg3, el->refdes, el->description, el->value);
+      printf ("         %s?\n", msg4);
     }
   }
 
@@ -939,14 +949,14 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
   }
 
   g_strfreev (args);
-  
+
   /* Common Transalable strings */
   const char *warn = _("WARNING");
   const char *msg2 = _("so will not be in the layout");
 
   if (empty_footprint_name && !strcmp (el->description, empty_footprint_name)) {
     if (verbose) {
-      
+
       const char *msg1 = _("has the empty footprint attribute");
 
       printf ("%s: %s \"%s\" %s.\n", el->refdes, msg1, el->description, msg2);
@@ -955,7 +965,7 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
     el->omit_PKG = TRUE;
   }
   else if (!strcmp (el->description, "none")) {
-  
+
     const char *msg1 = _("has a footprint attribute");
 
     fprintf (stderr,  "%s: %s %s \"%s\" %s.\n", warn, el->refdes, msg1, el->description, msg2);
@@ -963,7 +973,7 @@ static PcbElement *pkg_to_element (FILE *f, char *pkg_line)
     el->omit_PKG = TRUE;
   }
   else if (!strcmp (el->description, "unknown")) {
-    
+
     const char *msg1 = _("has no footprint attribute");
     fprintf (stderr, "%s: %s %s %s.\n", warn, el->refdes, msg1, msg2);
     n_unknown += 1;

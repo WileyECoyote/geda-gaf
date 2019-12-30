@@ -1,7 +1,7 @@
 v 20130414 2
 B 300 300 1200 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 1200 5 10 0 0 0 0 1
-device=regulator
+T 300 1150 5 10 0 0 0 0 1
+device=Volt_reg
 P 300 600 0 600 1 0 1
 {
 T 250 650 5 8 1 1 0 6 1
@@ -35,7 +35,7 @@ pinlabel=OUT
 T 1555 650 5 8 0 1 0 0 1
 pintype=io
 }
-T 1450 950 8 10 1 1 0 6 1
+T 300 950 8 10 1 1 0 0 1
 refdes=U?
 P 500 300 500 0 1 0 1
 {
@@ -59,7 +59,9 @@ pinlabel=BYP
 T 1250 250 5 8 0 1 0 8 1
 pintype=io
 }
-T 600 100 9 10 0 0 0 0 1
+T 300 1550 5 10 0 0 0 0 1
+description=Voltage Regulator
+T 300 1750 9 10 0 0 0 0 1
 numslots=0
-T 600 100 9 10 0 0 0 0 1
+T 300 1350 9 10 0 0 0 0 1
 footprint=unknown

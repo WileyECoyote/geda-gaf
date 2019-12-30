@@ -1683,7 +1683,7 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
  * \par Function Description
  *  Function to retrieve a #GedaFontDialog Type identifier. When
  *  first called, the function registers a #GedaFontDialog in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaFontDialog and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -1823,6 +1823,23 @@ GdkFont *geda_font_dialog_get_font (GedaFontDialog *dialog)
   }
 
   return dialog->font;
+}
+
+bool geda_font_dialog_set_font (GedaFontDialog *dialog, GdkFont *font)
+{
+  g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog), FALSE);
+
+  if (font) {
+
+    if (G_IS_OBJECT(dialog->font)) {
+      gdk_font_unref (dialog->font);
+    }
+
+    dialog->font = font;
+
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /*!

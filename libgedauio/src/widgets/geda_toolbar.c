@@ -198,7 +198,7 @@ geda_toolbar_instance_init (GTypeInstance *instance, void *g_class)
  * \par Function Description
  *  Function to retrieve a #GedaToolbar Type identifier. When
  *  first called, the function registers a #GedaToolbar in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaToolbar and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -295,15 +295,15 @@ is_a_geda_toolbar (GedaToolbar *toolbar)
 
 /* Any element type */
 GtkWidget*
-geda_toolbar_append_element (GedaToolbar        *toolbar,
-                             GtkToolbarChildType type,
-                             GtkWidget          *widget,
-                             const char         *text,
-                             const char         *tooltip_text,
-                             const char         *tooltip_private_text,
-                             GtkWidget          *icon,
-                             GCallback           callback,
-                             void               *user_data)
+geda_toolbar_append_element (GedaToolbar         *toolbar,
+                             GedaToolbarChildType type,
+                             GtkWidget           *widget,
+                             const char          *text,
+                             const char          *tooltip_text,
+                             const char          *tooltip_private_text,
+                             GtkWidget           *icon,
+                             GCallback            callback,
+                             void                *user_data)
 {
   GtkWidget *element;
 

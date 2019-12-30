@@ -123,15 +123,13 @@ void x_menu_file_open()
 }
 
 /*!
- * \brief Menu Open Recent
+ * \internal Menu Open Recent
  * \par Function Description
- * Menu Ppen Recent file.
- * -# close the current project and reinitialize structures
- * -# load the new project
+ *  Menu open Recent file.
  */
 static void menu_open_recent( char* filename)
 {
-  if( sheet_head->CHANGED == TRUE) {
+  if (sheet_head->CHANGED == TRUE) {
     switch (x_dialog_file_not_saved()) {
     case GEDA_RESPONSE_CANCEL:
       return; /* user canceled from the save unsaved file dialog */
@@ -198,8 +196,6 @@ void x_menu_edit_new_attrib()
  */
 void x_menu_edit_delete_attrib()
 {
-  x_dialog_unimplemented_feature();
-
   GtkSheet *sheet = x_gtksheet_get_current_sheet();
 
   if (sheet->state == GTK_SHEET_COLUMN_SELECTED) {
@@ -376,7 +372,8 @@ void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
  */
 static bool x_menu_quit(void)
 {
-  g_object_ref(menu_bar);
+  g_object_ref_sink(menu_bar);
+
   return gattrib_really_quit();
 }
 
@@ -479,7 +476,9 @@ GtkRecentFilter *x_menu_geda_filter() {
  *  data type don't help, so we rename here using something more reasonable.
  */
 GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
+
   GtkWidget *rc = gtk_recent_chooser_menu_new_for_manager(rm );
+
   return (GtkRecentChooser*) rc;
 }
 

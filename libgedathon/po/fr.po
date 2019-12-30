@@ -45,11 +45,10 @@ msgstr "Obtenir ou définir le symbole par défaut pour les résistances\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obtenir ou définir le symbole de cartouche par défaut\n"
 
-# Get or Set the default titleblock symbol
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Obtenir ou définir le symbole de cartouche par défaut\n"
+msgstr "Obtenir ou définir le symbole du transformateur par défaut\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53

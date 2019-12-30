@@ -25,25 +25,28 @@
 #include <geda_container.h>
 #include <geda_toolbar.h>
 #include <geda/geda_toolbars.h>
+#include <geda_gtk_compat.h>
 #include <geda_debug.h>
 
+/* See IDS_Toolbar enumerations in include/globals.h */
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
-  { "open_button",       N_("Open"),     N_("Open file"), "Private"},
-  { "save_button",       N_("Save"),     N_("Save file"), "Private"},
-  { "save_as_button",    N_("Save As"),  N_("Save the file to different name or location"), "Private"},
-  { "cut_button",        N_("Cut"),      N_("Cut selection to the clipboard"), "Private"},
-  { "copy_button",       N_("Copy"),     N_("Copy selection to the clipboard"), "Private"},
-  { "paste_button",      N_("Paste"),    N_("Paste selection from the clipboard"), "Private"},
-  { "find_button",       N_("Find"),     N_("Search for attribute value"), "Private"},
-  { "replace_button",    N_("Replace"),  N_("Search and Replace attribute value"), "Private"},
-  { "attribute_button",  N_("Attrib"),   N_("Locate attribute"), "Private"},
-  { "designator_button", N_("Ref Des"),  N_("Locate Reference Designator"), "Private"},
+  { "open_button",       N_("Open"),      N_("Open file"), "Private"},
+  { "save_button",       N_("Save"),      N_("Save file"), "Private"},
+  { "save_as_button",    N_("Save As"),   N_("Save the file to different name or location"), "Private"},
+  { "cut_button",        N_("Cut"),       N_("Cut selection to the clipboard"), "Private"},
+  { "copy_button",       N_("Copy"),      N_("Copy selection to the clipboard"), "Private"},
+  { "paste_button",      N_("Paste"),     N_("Paste selection from the clipboard"), "Private"},
+  { "find_button",       N_("Find"),      N_("Search for attribute value"), "Private"},
+  { "replace_button",    N_("Replace"),   N_("Search and Replace attribute value"), "Private"},
+  { "attribute_button",  N_("Attribute"), N_("Locate attribute"), "Private"},
+  { "designator_button", N_("Ref Des"),   N_("Locate Reference Designator"), "Private"},
 
    /* Attribute Toolbar */
   { "invisible_button",  N_("invisible"), N_("Set selected invisible")},
   { "visible_button",    N_("visible"),   N_("Set selected visible")},
   { "add_button",        N_("add"),       N_("Add a new attribute")},
+  { "delete_button",     N_("delete"),    N_("Delete selected attribute")},
   { "promote_button",    N_("promote"),   N_("Attach the selected attribute")},
   { "demote_button",     N_("demote"),    N_("Detach the selected attribute")},
   { "name_only_button",  N_("name"),      N_("Set selected name visible only")},
@@ -64,7 +67,7 @@ static ToolbarStringData ToolbarStrings[] = {
  * \param [in] widget  is the button widget
  * \param [in] Control pointer to enumerated integer ID of the button
  */
-static void callBack_clipboard (GtkWidget *widget, IDS_Toolbar *Control)
+static void callback_clipboard (GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long)Control;
 
@@ -83,7 +86,7 @@ static void callBack_clipboard (GtkWidget *widget, IDS_Toolbar *Control)
  * \param [in] widget is button widget
  * \param [in] Control pointer to enumerated integer ID of the button
  */
-static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
+static void callback_toolbar (GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long)Control;
 
@@ -116,7 +119,7 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
  * \param [in] widget is button widget
  * \param [in] Control pointer to enumerated integer ID of the button
  */
-static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
+static void callback_searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long) Control;
 
@@ -153,7 +156,7 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
  * \param [in] widget is button widget
  * \param [in] Control pointer to enumerated integer ID of the button
  */
-static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
+static void callback_attribute_bar(GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long)Control;
 
@@ -168,6 +171,10 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
 
     case tb_add:
       s_toplevel_add_new_attrib(-1);
+      break;
+
+    case tb_del:
+      x_menu_edit_delete_attrib();
       break;
 
     case tb_promote:
@@ -224,33 +231,33 @@ void x_toolbars_init(GtkWidget *parent_container) {
   geda_container_add (Standard_handlebox, Standard_Toolbar);
 
   /* Add Open Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_open, PIX, GSCHEM_OPEN_BITMAP, callBack_toolbar0)
+  TOOLBAR_STD_BUTTON(Standard, tb_open, PIX, GSCHEM_OPEN_BITMAP, callback_toolbar)
 
   /* Add Save Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_save, PIX, GSCHEM_SAVE_BITMAP, callBack_toolbar0)
+  TOOLBAR_STD_BUTTON(Standard, tb_save, PIX, GSCHEM_SAVE_BITMAP, callback_toolbar)
 
   /* Add Save As Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_save_as, STK, SAVE_AS, callBack_toolbar0)
+  TOOLBAR_STD_BUTTON(Standard, tb_save_as, STK, SAVE_AS, callback_toolbar)
 
   gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
 
-  TOOLBAR_STD_BUTTON(Standard, tb_cut,   STK, CUT,   callBack_clipboard)
-  TOOLBAR_STD_BUTTON(Standard, tb_copy,  STK, COPY,  callBack_clipboard)
-  TOOLBAR_STD_BUTTON(Standard, tb_paste, STK, PASTE, callBack_clipboard)
+  TOOLBAR_STD_BUTTON(Standard, tb_cut,   STK, CUT,   callback_clipboard)
+  TOOLBAR_STD_BUTTON(Standard, tb_copy,  STK, COPY,  callback_clipboard)
+  TOOLBAR_STD_BUTTON(Standard, tb_paste, STK, PASTE, callback_clipboard)
 
   gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
 
   /* Add Find Button to Search_ToolbarToolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_find,  PIX, GEDA_BITMAP_FIND_TINY, callBack_Searchbar)
+  TOOLBAR_STD_BUTTON(Standard, tb_find,  PIX, GEDA_BITMAP_FIND_TINY, callback_searchbar)
 
   /* Add Replace Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_replace, PIX, GEDA_BITMAP_FIND_REPLACE_TINY, callBack_Searchbar)
+  TOOLBAR_STD_BUTTON(Standard, tb_replace, PIX, GEDA_BITMAP_FIND_REPLACE_TINY, callback_searchbar)
 
   /* Add Locate Attribute Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_attribute, PIX, GEDA_BITMAP_FIND_ATTRIBUTE_TINY, callBack_Searchbar)
+  TOOLBAR_STD_BUTTON(Standard, tb_attribute, PIX, GEDA_BITMAP_FIND_ATTRIBUTE_TINY, callback_searchbar)
 
   /* Add Locate Reference Designator to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, tb_designator, PIX, GEDA_LOCATE_REFERENCE_BITMAP, callBack_Searchbar)
+  TOOLBAR_STD_BUTTON(Standard, tb_designator, PIX, GEDA_LOCATE_REFERENCE_BITMAP, callback_searchbar)
 
   gtk_widget_show (Standard_Toolbar);
 
@@ -270,14 +277,15 @@ void x_toolbars_init(GtkWidget *parent_container) {
   geda_container_add (Attribute_handlebox, Attribute_Toolbar);
 
     /* Add Open Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Attribute, tb_invisible,  PIX, GEDA_GHOST_INVISIBLE_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_visible,    PIX, GEDA_EYE_GLASSES_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_add,        PIX, GEDA_REDCROSS_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_promote,    PIX, GAF_PROMOTE_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_demote,     PIX, GAF_DEMOTE_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_name_only,  PIX, GEDA_NAME_TAG_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_value_only, PIX, GEDA_VALUE_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, tb_name_value, PIX, GEDA_NAME_VALUE_BITMAP, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, tb_invisible,  PIX, GEDA_GHOST_INVISIBLE_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_visible,    PIX, GEDA_EYE_GLASSES_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_add,        PIX, GEDA_REDCROSS_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_del,        STK, DELETE, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_promote,    PIX, GAF_PROMOTE_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_demote,     PIX, GAF_DEMOTE_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_name_only,  PIX, GEDA_NAME_TAG_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_value_only, PIX, GEDA_VALUE_BITMAP, callback_attribute_bar);
+  TOOLBAR_STD_BUTTON(Attribute, tb_name_value, PIX, GEDA_NAME_VALUE_BITMAP, callback_attribute_bar);
 
   gtk_widget_show (Attribute_Toolbar);
 
@@ -286,6 +294,7 @@ void x_toolbars_init(GtkWidget *parent_container) {
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_invisible_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_visible_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_add_button);
+
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_promote_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_demote_button);
   ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, tb_name_only_button);

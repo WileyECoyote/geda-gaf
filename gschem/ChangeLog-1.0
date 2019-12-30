@@ -9,6 +9,389 @@
 
     * src/x/x_dialog.c: Deactivate undeveloped x_dialog_sym_not_embedded.
 
+2019-11-16 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/fr.po: Update French translations.
+
+    * po/he.po: Update Hebrew translations.
+
+    * po/hu.po: Update Hungarian translations.
+
+    * po/it.po: Update Italian translations.
+
+    * po/ja.po: Update Japanese translations.
+
+    * po/kh.po: Update Khmer translations.
+
+    * po/sl.po: Update Slovenian translations.
+
+    * po/sr.po: Update Serbian translations.
+
+    * po/tr.po: Update Turkish translations.
+
+2019-11-08 Wiley E. Hill <wileyhill@gmail.com
+
+    * gschem/src/x/x_misc.c: Reformat documentation.
+
+2019-11-14 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/af.po: Update Afrikaans translations.
+    * po/ar.po: Update Arabic translations.
+    * po/bg.po: Update Bulgarian translations.
+    * po/bs.po: Update Bosnian translations.
+    * po/de.po: Update German translations.
+    * po/el.po: Update Greek translations.
+    * po/es.po: Update Spanish translations.
+    * po/fa.po: Update Persian translations.
+    * po/fi.po: Update Finnish translations.
+
+2019-11-08 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/ml.po: Updated Malayalam translations.
+    * po/nl.po: Update Dutch translations.
+    * po/pl.po: Update Polish translations.
+    * po/pt.po: Update Portuguese translations.
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+    * po/ru.po: Update Russian translations.
+    * po/zh_CN.po: Update Chinese simplified translations.
+    * po/zh_TW.po: Update Chinese traditional translations.
+
+2019-11-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/iface/i_command.c: Revise i_command_map_icon to not bother checking
+      for "buffer" strings if the command is already found.
+
+    * src/x/x_dialog.c: Remove unused second argument from create_geda_switch.
+
+    * src/x/x_edit_pin.c: Update create_geda_switch arguments.
+
+2019-11-02 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/el.po: Update Greek translations.
+    * po/en_GB.po: Update Great Britain.
+    * po/es.po: Update Spanish translations.
+    * po/fi.po: Update Finnish translations.
+    * po/fr.po: Update French translations.
+    * po/hu.po: Update Hungarian translations.
+    * po/it.po: Update Italian translations.
+    * po/ja.po: Update Japanese translations.
+    * po/kh.po: Update Khmer translations.
+
+2019-10-26 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/af.po: Update Afrikaans translations.
+    * po/ar.po: Update Arabic translations.
+    * po/de.po: Update German translations.
+
+2019-10-25 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_undo.c: Revise conditionals in o_undo_savestate; nest
+      if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) with if
+      (flag == UNDO_ALL) to eliminate the redundant flag == UNDO_ALL, and
+      utilize geda_toplevel_get_net_consolidate instead of accessing
+      net_consolidate member directly.
+
+2019-10-19 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/bs.po: Update Bosnian translations.
+    * po/fi.po: Update Finnish translations.
+    * po/fr.po: Update French translations.
+    * po/he.po: Update Hebrew translations.
+    * po/sl.po: Update Slovenian translations.
+    * po/sr.po: Update Serbian translations.
+    * po/tr.po: Update Turkish translations.
+    * po/zh_CN.po: Update Chinese simplified translations.
+    * po/zh_TW.po: Update Chinese traditional translations.
+
+2019-10-16 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_image.c: Translate the dialog error text in x_image_get_pixbuf,
+      and update the function documentation.
+
+2019-10-12 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/af.po: Update Afrikaans translations.
+    * po/ar.po: Update Arabic translations.
+    * po/bg.po: Update Bulgarian translations.
+    * po/de.po: Update German translations.
+    * po/el.po: Update Greek translations.
+    * po/es.po: Update Spanish translations.
+    * po/fa.po: Update Persian translations.
+    * po/fi.po: Update Finnish translations.
+    * po/fr.po: Update French translations.
+
+2019-10-11 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/gschem/gschem-tools-menu.scm: Mark noop tools:menu-items
+      to be evaluated.
+
+    * src/iface/i_command.c: Fix backwards cut and copy enumerations
+      in i_command_get_action_icon, and revise i_command_map_icon to
+      return true for actions involving buffers. Fix For loops not
+      iterating through LAST_ACTION using condition <=. Revise else
+      condition in i_command_get_action_icon.
+
+    * src/x/x_misc.c: Fix passing address of pointer to g_spawn_async in
+      function x_show_uri.
+
+2019-10-09 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/gschem/gschem-tools-menu.scm: Translate tools:menu-items.
+
+    * po/ru.po: Update Russian translations.
+
+2019-10-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T V" to launch git,
+      and explicitly map to icon "geda-text-editor" to "tools:open-editor".
+
+    * src/guile/g_util.c: Revise show_uri to free uri.
+
+2019-10-05 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/hu.po: Update Hungarian translations.
+    * po/it.po: Update Italian translations.
+    * po/ja.po: Update Japanese translations.
+    * po/kh.po: Update Khmer translations.
+    * po/ml.po: Updated Malayalam translations.
+    * po/nl.po: Update Dutch translations.
+    * po/pl.po: Update Polish translations.
+    * po/pt.po: Update Portuguese translations.
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
+2019-10-04 Wiley E. Hill <wileyhill@gmail.com
+
+    * etc/system-gschemrc.scm: Mark "Draw Order" menu as translatable. Replace
+      apostrophe quote, 0x27, with grave accent, 0x60, so that the translation
+      no-op macros are evaluated.
+
+    * scheme/gschem/gschem-export-menu.scm: Flag Export menu item and menu-items
+      as translatable. Replace apostrophe quote, 0x27, with grave accent, 0x60,
+      so that the translation no-op macros are evaluated.
+
+    * scheme/gschem/gschem-tools-menu.scm: Add hot keys, "T E" to launch the
+      text editor. Replace apostrophe quote, 0x27, with grave accent, 0x60, so
+      that the translation no-op macros are evaluated.
+
+    * gschem/src/iface/i_command.c: Clean up code a bit in do_documentation.
+
+2019-10-03 Wiley E. Hill <wileyhill@gmail.com
+
+    * gschem/src/iface/i_command.c: Remove unnecessary initialization of
+      GError in do_documentation.
+
+2019-09-28 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/af.po: Update Afrikaans translations.
+    * po/ar.po: Update Arabic translations.
+    * po/bg.po: Update Bulgarian translations.
+    * po/bs.po: Update Bosnian translations.
+    * po/de.po: Update German translations.
+    * po/el.po: Update Greek translations.
+    * po/en_GB.po: Update Great Britain.
+    * po/es.po: Update Spanish translations.
+    * po/fa.po: Update Persian translations.
+
+2019-09-21 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/hu.po: Update Hungarian translations.
+    * po/it.po: Update Italian translations.
+    * po/ja.po: Update Japanese translations.
+    * po/kh.po: Update Khmer translations.
+    * po/nl.po: Update Dutch translations.
+    * po/pl.po: Update Polish translations.
+    * po/pt.po: Update Portuguese translations.
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+    * po/ru.po: Update Russian translations.
+
+2019-09-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/base/gschem_main_window.c: Remove inclusion of geda_gtk_compat.h
+      because this is already indirectly included by gschem.h.
+
+    * scheme/gschem/gschem-tools-menu.scm: Add tooltips for "Spice netlist" and
+      SDB netlist" menu items.
+
+    * src/x/x_menus.c: Revise x_menu_setup_ui to continue loop over scheme items
+      when get_menu_item_from_scheme returns an error.
+
+    * src/x/x_window.c: Utilize gtk_widget_set_double_buffered instead of using
+      GTK_WIDGET_UNSET_FLAGS macro with call.
+
+2019-09-16 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x_menus.c: Replace g_object_set "visible" with gtk_widget_show, update
+      "View/Redraw" error message, and wrap the backup file menu label with gettext.
+
+2019-09-14 Wiley E. Hill <wileyhill@gmail.com
+
+    * etc/system-gschemrc.scm: Translate draw order menu items.
+
+    * scheme/gschem/gschem-tools-menu.scm: Translate tool submenus.
+
+2019-09-13 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/base/gschem.c: Replace gdk_set_locale with setlocale to initialize
+      the locale based on environment variables.
+
+    * src/base/gschem_page_view.c: Replace GTK_WIDGET_REALIZED macro with
+      gtk_widget_get_realized in gschem_page_view_invalidate_object.
+
+    * src/x/x_autonumber.c: Replace gtk_entry_select_region with
+      gtk_editable_select_region.
+
+    * src/x/x_edit_slot.c: Remove call to deprecated gtk_window_position in
+      function x_dialog_edit_slot.
+
+    * src/x/x_event.c: Replace gdk_drawable_get_display with gdk_window_get_display
+      in function x_event_motion.
+
+    * src/x/x_stroke.c: Revise x_stroke_record to render gestures using cairo
+      instead of Gdk.
+
+2019-09-11 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_menus.c: Replace GtkObject with GtkWidget as the first
+      argument to functions:
+
+        * x_menu_main_popup_execute
+        * x_menu_path_popup_execute
+
+    * src/x/x_settings_dialog.c: Remove unnecessary GtkObject cast in
+      color_button_popup_destroy.
+
+2019-09-09 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/guile/g_keys.c: Declare init_module_gschem_core_keymap has
+      one void pointer argument.
+
+    * src/guile/g_util.c: Declare init_module_gschem_core_keymap has
+      one void pointer argument.
+
+    * src/object/o_move.c: Declare o_move_return_whichone static and
+      update documentation.
+
+    * src/x/x_event.c: Move setting control key states after the check
+      for DOING_STROKE in x_event_motion.
+
+2019-09-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/ca.po: Update Catalan translations.
+    * po/da.po: Update Danish translations.
+    * po/el.po: Update Greek translations.
+    * po/fr.po: Update French translations.
+    * po/hu.po: Update Hungarian translations.
+    * po/ja.po: Update Japanese translations.
+    * po/ml.po: Updated Malayalam translations.
+    * po/sl.po: Update Slovenian translations.
+    * po/sr.po: Update Serbian translations.
+
+2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_register.c: Add structure documentation for gschem_rc_funcs.
+
+    * src/guile/g_select.c: Reformat Doxygen documentation.
+
+    * src/guile/g_keys.c: Add internal tag for g_keys_equalp documentation
+      and reformat Doxygen documentation.
+
+    * src/guile/g_util.c: Reformat Doxygen documentation and update incomplete
+      function definitions as void.
+
+2019-08-31 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/ca.po: Update Catalan translations.
+
+    * po/da.po: Update Danish translations.
+
+    * po/de.po: Update German translations.
+
+    * po/ml.po: Updated Malayalam translations.
+
+    * po/sl.po: Update Slovenian translations.
+
+    * po/sr.po: Update Serbian translations.
+
+2019-08-30 Wiley E. Hill <wileyhill@gmail.com
+
+    * po/sl.po: Add Plural-Forms.
+
+    * src/base/gschem_toplevel.c: Initialize world_left and world_top from
+      default_world_left and default_world_top.
+
+    * src/guile/g_rc.c: Update debug message in g_rc_world_size.
+
+    * src/i_vars.c: Add default_world_left and default_world_top.
+
+2019-08-21 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_dnd.c: Remove conditional from GEDA_FREE(netname) in
+      x_dnd_send_string_signal.
+
+2019-08-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_dnd.c: Declare x_dnd_receive_objects and x_dnd_send_string
+      static.
+
+2019-08-19 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_select.c: Revise o_select_is_selection to return logical
+      result.
+
+    * src/x/x_dnd.c: Declare x_dnd_send_string static.
+
+    * src/x/x_edit_array.c: Revise x_dialog_array_edit_constructor to not
+      pass variables to gettext.
+
+2019-08-17 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_edit_array.c: Update array selection size tooltip and wrap
+      the tooltip string with gettext.
+
+2019-08-16 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/iface/i_command.c: Revise i_cmd_do_attach to utilize accessor
+      geda_toplevel_struct_get_selection instead of Current_Selection,
+      remove validation for page_current not NULL, and simplify the do
+      while loop in the else clause. Add checks for w_current and toplevel
+      not NULL in i_cmd_do_detach and utilize accessor for the current
+      selection.
+
+    * src/object/o_attrib.c: Update documentation for:
+
+        * o_attrib_attach_list_2_object
+
+2019-08-14 Wiley E. Hill <wileyhill@gmail.com
+
+    * etc/system-gschemrc.scm: Revise world-size documentation.
+
+    * src/x/x_window.c: Revised x_window_create_main to utilize world_left and
+      world_top when setting up adjustments.
+
+2019-08-09 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/object/o_redraw.c: Move assignment of draw_selected after for loop.
+
+    * src/x/x_image.c: Revise/append x_image_setup documentation.
+
+    * src/x/x_menus.c: Add/update x_menu_recent_files_save documentation.
+
+2019-08-08 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_edit_array.c: Update function documentation for:
+
+        * x_dialog_array_edit_disconnect_events
+
+    * src/x/x_grid.c: Suspend the call to cairo_new_sub_path.
+
+    * src/x/x_scroll.c: Remove debug error outputs.
+
+2019-08-07 Wiley E. Hill <wileyhill@gmail.com
+
+    * src/x/x_grid.c: Replace cairo_turtle_arc with cairo_rectangle, with the
+      grid-dot-size limited to 3 the rectangles look like dots with a nearly
+      100 percent faster performence.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * etc/system-gschemrc.scm: Remove the stroke zoom in and out patterns;
@@ -1551,7 +1934,7 @@
 
 2018-08-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_menus.c: Conditionaly use stricmp in x_menu_recent_files_add
+    * src/x/x_menus.c: Conditionally use stricmp in x_menu_recent_files_add
       for Win32 builds because file names are not case senitive and can result
       in duplicate recent meu items. Revise x_menu_recent_files_save and
       x_menu_recent_files_load to log saving and restoring of the recent

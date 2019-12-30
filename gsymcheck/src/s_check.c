@@ -1123,7 +1123,9 @@ static void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
         else {
           done = TRUE;
         }
+
         counter++;
+
       } while (!done);
     }
   }

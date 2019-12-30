@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-07-13 22:06-0500\n"
+"POT-Creation-Date: 2019-08-17 22:21-0500\n"
 "PO-Revision-Date: 2017-12-11 12:11+0000\n"
 "Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -87,16 +87,16 @@ msgstr ""
 msgid "outline"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:251
+#: libgedacolor/src/x11/color_x11.c:254
 msgid "Allocating color scheme"
 msgstr ""
 
-#: libgedacolor/src/x11/color_x11.c:256 libgedacolor/src/libgedacolor.c:136
+#: libgedacolor/src/x11/color_x11.c:259 libgedacolor/src/libgedacolor.c:136
 msgid "Something went wrong, check"
 msgstr ""
 
 # Could not locate file
-#: libgedacolor/src/x11/color_x11.c:261 libgedacolor/src/libgedacolor.c:141
+#: libgedacolor/src/x11/color_x11.c:264 libgedacolor/src/libgedacolor.c:141
 msgid "Could not locate file"
 msgstr "Не вдалося знайти файл"
 

@@ -141,10 +141,10 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
   /* read data from gtksheet into PageDataSet */
   s_table_gtksheet_to_all_tables();
 
+  iter = geda_toplevel_get_pages(toplevel);
+
   /* iterate over all pages in design */
-  for ( iter  = geda_toplevel_get_pages(toplevel);
-        iter != NULL;
-        iter  = g_list_next( iter ) ) {
+  for (; iter != NULL; iter  = g_list_next(iter)) {
 
     Page *p_current = (Page*)iter->data;
 
@@ -157,10 +157,14 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
       }
     }
     else {
-       strcpy(msg_buffer, "Unknown error selecting page <");
-       strcat(msg_buffer, p_current->filename);
-       strcat(msg_buffer, ">, \n!");
-       generic_msg_dialog( msg_buffer );
+
+      const char *msg = _("Unknown error selecting page");
+
+      strcpy(msg_buffer, msg);
+      strcat(msg_buffer, " <");
+      strcat(msg_buffer, p_current->filename);
+      strcat(msg_buffer, ">, \n!");
+      generic_msg_dialog( msg_buffer );
     }
   }
   return;
@@ -170,13 +174,13 @@ void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
 /*!
  * \brief Add a new attribute to the top level
  * \par Function Description
- *  This function gets called when the user has entered a new attrib name,
- *  and clicks the OK button. It does this:
- *  -# It figures out which attrib/sheet is being added to
- *  -# It destroys the old table in preparation for the new attrib.
- *  -# It adds the new attrib to the master lists.
- *  -# It creates a new table with the new attrib.
- *  -# It then adds the appropriate col to the gtksheet.
+ *  This function is called when the user elects to add or insert a
+ *  new attribute. The function:
+ *
+ *  -# Displays a dialog to prompt the user for the new attribute name
+ *  -# Handles which attrib/sheet is being modified
+ *  -# Adds the new attrib to the master lists.
+ *  -# Adds the appropriate col to the gtksheet.
  *
  * \param column_location The column the attribute is to be added
  */
@@ -192,16 +196,27 @@ void s_toplevel_add_new_attrib(int column_location) {
     cur_tab = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
     sheet   = sheets[cur_tab];
 
-    if(column_location < 0) column_location = sheet->maxcol + 1;
+    if (column_location < 0) {
+      column_location = sheet->maxcol + 1;
+    }
+
+    gtk_sheet_freeze(sheet);
 
     switch (cur_tab) {
       case Components:   /* component attribute sheet */
 
-        if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
-          strcpy(msg_buffer, "Can not add \"");
+        if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name))
+        {
+          const char *msg1 = _("Can not add");
+          const char *msg2 = _("Attribute name already exist!");
+
+          strcpy(msg_buffer, msg1);
+          strcat(msg_buffer, " \"");
           strcat(msg_buffer, new_attrib_name);
-          strcat(msg_buffer, "\", \nAttribute name are ready exist!");
-          generic_msg_dialog( msg_buffer );
+          strcat(msg_buffer, "\",\n");
+          strcat(msg_buffer, msg2);
+
+          generic_msg_dialog (msg_buffer);
           GEDA_FREE(new_attrib_name);
           return;
         }
@@ -225,10 +240,12 @@ void s_toplevel_add_new_attrib(int column_location) {
 
         /* resize table to accomodate new attrib col      */
         sheet_head->component_table = s_table_add_column(sheet_head->component_table,  /* Table */
-                                                         sheet_head->comp_count,             /* number of rows */
-                                                         column_location, sheet_head->comp_attrib_count-1);
+                                                         sheet_head->comp_count,       /* number of rows */
+                                                         column_location,
+                                                         sheet_head->comp_attrib_count-1);
 
         break;
+
       case 1:  /* net attribute  */
         /* insert into net attribute list  */
         break;
@@ -247,8 +264,13 @@ void s_toplevel_add_new_attrib(int column_location) {
     }
 #endif
 
+    gtk_sheet_thaw(sheet);
+
+    sheet_head->CHANGED = TRUE;
+
     GEDA_FREE(new_attrib_name);
   }
+
   return;
 }
 
@@ -767,12 +789,12 @@ s_toplevel_update_component_attribs_in_toplevel (
       __func__, new_attrib_name, new_attrib_value);
 #endif
 
-      s_object_add_comp_attrib_to_object (toplevel,
-                                          o_current,
-                                          new_attrib_name,
-                                          new_attrib_value,
-                                          visibility,
-                                          show_name_value);
+      s_object_add_attrib_to_object (toplevel,
+                                     o_current,
+                                     new_attrib_name,
+                                     new_attrib_value,
+                                     visibility,
+                                     show_name_value);
 
       /* -------  Four cases to consider: Case 4 ----- */
     }
@@ -933,10 +955,6 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
 {
   STRING_LIST *local_list;
 
-#if DEBUG
-  printf("-----  Entering %s\n", __func__);
-#endif
-
   /* loop on name=value pairs held in new_pin_attrib_list */
   local_list = new_pin_attrib_list;
 
@@ -1025,12 +1043,12 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
  */
 void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
-  /* ---------- Create and load the tables  ---------- */
-  s_table_load_new_page(PageData);
-
   if (sort_components) {
     s_string_list_sort_all_list();
   }
+
+  /* ---------- Create and load the tables  ---------- */
+  s_table_load_new_page(PageData);
 
   /* ---------- Now verify correctness of entire design.  ---------- */
   s_toplevel_verify_design(toplevel);  /* pr_current is a global */

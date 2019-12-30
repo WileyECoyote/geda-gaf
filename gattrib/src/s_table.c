@@ -85,14 +85,14 @@ TABLE **s_table_new( int rows, int cols)
  * \brief Add Comlumn to the Component TABLE
  * \par Function Description
  *  This function adds a column to the component table by increasing the
- *  allocated memory and initialized the new column record. If the coloumn
+ *  allocated memory and initialized the new column record. If the column
  *  is inserted rather than appended, existing record are relocated to
  *  make room for the insertion.
  *
  * \param table Table to resize
- * \param rows Number of rows in the table
- * \param Xa Where to add the new column
- * \param Xt The current number of columns in the table.
+ * \param rows  Number of rows in the table
+ * \param Xa    Where to add the new column
+ * \param Xt    The current number of columns in the table.
  *
  * \returns a pointer to the resized table
  */
@@ -103,24 +103,26 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 
   void init_new_record(int col) {
     for (y = 0; y < rows; y++) {
-      (table[col][y]).attrib_value = NULL;
-      (table[col][y]).row_name = NULL;
-      (table[col][y]).col_name = NULL;
-      (table[col][y]).row = y;
-      (table[col][y]).col = col;
-      (table[col][y]).is_inherited= FALSE;
-      (table[col][y]).is_promoted = -2;
-      (table[col][y]).visibility = VISIBLE;
-      (table[col][y]).show_name_value = SHOW_VALUE;
+      (new_table[col][y]).attrib_value = NULL;
+      (new_table[col][y]).row_name = NULL;
+      (new_table[col][y]).col_name = NULL;
+      (new_table[col][y]).row = y;
+      (new_table[col][y]).col = col;
+      (new_table[col][y]).is_inherited= FALSE;
+      (new_table[col][y]).is_promoted = -2;
+      (new_table[col][y]).visibility = VISIBLE;
+      (new_table[col][y]).show_name_value = SHOW_VALUE;
     }
   }
 
   /* resize the 2 dimensional array of structs */
-  new_table = (TABLE**)realloc(table, Xt * sizeof(TABLE *));
+  new_table = (TABLE**)realloc(table, (Xt + 1) * sizeof(TABLE *));
 
-  if (new_table == NULL) return NULL;  /* die if failed to realloc new memory */
+  if (new_table == NULL) {
+    return NULL;  /* die if failed to realloc new memory */
+  }
 
-  new_table[Xt] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));;
+  new_table[Xt] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));
 
   if (Xa == Xt) { /* if appending a column */
      init_new_record(Xt);
@@ -129,21 +131,26 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 
     int x;
 
+    /* Loop over the table, starting from the far right column, and
+     * shift columns to the right of Xa one column to the right */
     for (x = Xt; x > Xa; x--) {
       for (y = 0; y < rows; y++) {
-        table[x][y].row = table[x-1][y].row;
-        table[x][y].col = table[x-1][y].col;
-        table[x][y].row_name = table[x-1][y].row_name;
-        table[x][y].col_name = table[x-1][y].col_name;
-        table[x][y].attrib_value = table[x-1][y].attrib_value;
-        table[x][y].visibility = table[x-1][y].visibility;
-        table[x][y].show_name_value = table[x-1][y].show_name_value;
-        table[x][y].is_inherited = table[x-1][y].is_inherited;
-        table[x][y].is_promoted = table[x-1][y].is_promoted;
+        new_table[x][y].row = new_table[x-1][y].row;
+        new_table[x][y].col = new_table[x-1][y].col;
+        new_table[x][y].row_name = new_table[x-1][y].row_name;
+        new_table[x][y].col_name = new_table[x-1][y].col_name;
+        new_table[x][y].attrib_value = new_table[x-1][y].attrib_value;
+        new_table[x][y].visibility = new_table[x-1][y].visibility;
+        new_table[x][y].show_name_value = new_table[x-1][y].show_name_value;
+        new_table[x][y].is_inherited = new_table[x-1][y].is_inherited;
+        new_table[x][y].is_promoted = new_table[x-1][y].is_promoted;
       }
     }
+
+    /* Now blank out the column at Xa */
     init_new_record(Xa);
   }
+
   return new_table;
 }
 
@@ -174,9 +181,7 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
       GEDA_FREE ((table[x][y]).row_name);
       GEDA_FREE ((table[x][y]).col_name);
     }
-  }
 
-  for (x = 0; x < col_count; x++) {
     GEDA_FREE (table[x]);
   }
 
@@ -280,11 +285,11 @@ STRING_LIST *s_table_create_attrib_pair(char        *row_name,
 /*!
  * \brief Add components to the component table
  * \par Function Description
-*  This fcn iterates over adds all objects found on this page looking
-*  for components. When it finds a component, it finds all component
-*  attribs and sticks them in the TABLE.
+*  This fcn iterates over a list of objects looking for components.
+*  When a component is found, all attributes of the commponent are
+*  added in the TABLE.
 *
-* \param obj_list pointer to GList containing objects on this page
+* \param obj_list pointer to GList containing objects
 */
 void s_table_add_items_to_comp_table (const GList *obj_list) {
 
@@ -405,8 +410,8 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   old_visibility      = geda_object_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
                   old_show_name_value = a_current->show_name_value;
 
-                  /* Don't include "refdes" or "slot" because they form the row name. */
-                  /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
+                  /* Do not include "refdes" or "slot" because they form the row name. */
+                  /* Also do not include "net" per bug found by Steve W. 4.3.2007 -- SDB */
                   if ((strcmp(attrib_name, "refdes") != 0) &&
                       (strcmp(attrib_name, "net") != 0) &&
                       (strcmp(attrib_name, "slot") != 0))
@@ -737,6 +742,7 @@ bool s_table_remove_attribute(TABLE **table, int X)
     }
     GEDA_FREE (table[col_count - 1]);
   }
+
   return TRUE;
 }
 
@@ -953,8 +959,6 @@ void s_table_load_new_page(PageDataSet *PageData)
       /* Note that this must be changed.  We need to input the entire project
        * before doing anything with the nets because we need to first
        * determine where they are all connected!   */
-
-
 
       /* adds all nets from page to net_table */
       s_table_add_items_to_net_table(p_local->object_head);

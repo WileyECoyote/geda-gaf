@@ -45,11 +45,10 @@ msgstr "Uzyskaj lub ustaw domyślny symbol dla rezystorów\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Uzyskaj lub ustaw domyślny symbol bloku tytułowego\n"
 
-# Get or Set the default titleblock symbol
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Uzyskaj lub ustaw domyślny symbol bloku tytułowego\n"
+msgstr "Uzyskaj lub ustaw domyślny symbol transformatora\n"
 
 # Close all files and deinitialize the library
 #: libgedathon/include/geda_module.h:53
@@ -393,7 +392,7 @@ msgstr "Linia"
 # Net
 #: libgedathon/module/functions.c:1544
 msgid "Net"
-msgstr ""
+msgstr "Netto"
 
 # Path => polygon
 #: libgedathon/module/functions.c:1694
@@ -410,9 +409,10 @@ msgstr "Kołek"
 msgid "Text"
 msgstr "Tekst"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Uzyskaj lub ustaw domyślny symbol transformatora"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -427,7 +427,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Nie można usunąć atrybutu %s"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -435,7 +435,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Atrybut %s musi być liczbą całkowitą"
 
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
@@ -443,6 +443,8 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
 msgstr ""
+"Liczba całkowita Pythona jest zbyt duża, aby przekonwertować ją na liczbę "
+"całkowitą C."
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
@@ -451,7 +453,7 @@ msgstr "Tworzy typ rozszerzenia obiektu Łuk."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Błąd podczas inicjowania nowego obiektu Box"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
@@ -460,11 +462,11 @@ msgstr "Tworzy typ obiektu ramki."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Błąd podczas inicjowania nowego obiektu Bus"
 
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Wartość atrybutu nazwy magistrali musi być ciągiem"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348

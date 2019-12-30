@@ -395,7 +395,7 @@ bool g_rc_parse_local (const char *rcname, const char *path, GError **err)
 
     dir = strcpy (&buffer[0], path);
 
-    /* If path isn't a directory, get the dirname. */
+    /* If path is not a directory, get the dirname. */
     if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
 
       char *ptr = dir;

@@ -29,7 +29,6 @@
  */
 
 #include <gschem.h>
-#include <geda_gtk_compat.h>
 #include <geda_keysyms.h>
 #include <geda_debug.h>
 

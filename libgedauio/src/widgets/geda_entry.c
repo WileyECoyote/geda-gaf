@@ -119,13 +119,15 @@ static void    geda_entry_grab_focus         (GtkWidget        *widget);
 static void    geda_entry_realize            (GtkWidget        *widget);
 static void    geda_entry_unrealize          (GtkWidget        *widget);
 
-static void    geda_entry_activate           (GedaEntry        *entry,
+static void    geda_entry_process_entry      (GedaEntry        *entry,
                                               void             *data);
 static void    geda_entry_history_up         (GedaEntry        *entry);
 static void    geda_entry_history_down       (GedaEntry        *entry);
 static bool    geda_entry_key_press          (GedaEntry        *widget,
                                               GdkEventKey      *event,
                                               void             *data);
+static bool    geda_entry_widget_key_press   (GtkWidget        *widget,
+                                              GdkEventKey      *event);
 static int     geda_entry_strncmpi           (char             *str1,
                                               char             *str2,
                                               int               n);
@@ -559,6 +561,22 @@ static void geda_entry_grab_focus (GtkWidget *widget)
   ((GtkWidgetClass*)geda_entry_parent_class)->grab_focus (widget);
 }
 
+static bool geda_entry_widget_key_press (GtkWidget *widget, GdkEventKey *event)
+{
+  if (event->keyval == GDK_KEY_KP_Enter ||
+      event->keyval == GDK_KEY_Return ||
+      event->keyval == GDK_KEY_ISO_Enter)
+  {
+    GedaEntry *entry = (GedaEntry*)widget;
+
+    if (entry->activates_default) {
+      GEDA_OBJECT_NOTIFY (entry, "activate");
+    }
+  }
+
+  return ((GtkWidgetClass*)geda_entry_parent_class)->key_press_event (widget, event);
+}
+
 /*! widget_class->realize
  * \brief GedaEntry Realize
  * \par Function Description
@@ -750,9 +768,10 @@ static void geda_entry_class_init(void *klass, void *class_data)
 
   gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,  "process-entry", 0);
 
-  widget_class->grab_focus = geda_entry_grab_focus;
-  widget_class->realize    = geda_entry_realize;
-  widget_class->unrealize  = geda_entry_unrealize;
+  widget_class->grab_focus      = geda_entry_grab_focus;
+  widget_class->key_press_event = geda_entry_widget_key_press;
+  widget_class->realize         = geda_entry_realize;
+  widget_class->unrealize       = geda_entry_unrealize;
 
 #if DEBUG_GEDA_ENTRY
   fprintf(stderr, "%s created: history=%d, completion=%d\n",
@@ -782,7 +801,7 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   if (have_history) {
 
     g_signal_connect     (G_OBJECT (entry), "process-entry",
-                          G_CALLBACK (geda_entry_activate), NULL);
+                          G_CALLBACK (geda_entry_process_entry), NULL);
 
     if (history_list_arg) {
 
@@ -820,13 +839,13 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
   priv->case_sensitive      = FALSE;
   priv->attrs               = NULL; */
 
-  g_signal_connect_after (G_OBJECT (entry), "key_press_event",
+  g_signal_connect_after (G_OBJECT (entry), "key-press-event",
                           G_CALLBACK (geda_entry_key_press), NULL);
 
   g_signal_connect_object (G_OBJECT (entry), "populate-popup",
                            G_CALLBACK (geda_entry_populate_popup), NULL, 0);
 
-  g_signal_connect_object (G_OBJECT (entry), "insert_text",
+  g_signal_connect_object (G_OBJECT (entry), "insert-text",
                            G_CALLBACK (geda_entry_validate_input), NULL, 0);
 
   if (!entry_hash_table) {
@@ -841,7 +860,7 @@ static void geda_entry_instance_init(GTypeInstance *instance, void *g_class)
  * \par Function Description
  *  Function to retrieve a #GedaEntry Type identifier. When
  *  first called, the function registers a #GedaEntry in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaEntry and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -894,12 +913,12 @@ bool is_a_geda_entry (GedaEntry *entry)
 }
 
 /*!
- * \brief On Activate a GedaEntry
+ * \brief On process-entry a GedaEntry
  * \par Function Description
  * This is a callback for the "process-entry" signal. If there is text
  * in the entry and a history_list the history_list is updated.
  */
-static void geda_entry_activate (GedaEntry *entry, void *data)
+static void geda_entry_process_entry (GedaEntry *entry, void *data)
 {
   GedaEntryPriv *priv = entry->priv;
   int list_length;
@@ -950,6 +969,7 @@ static void geda_entry_activate (GedaEntry *entry, void *data)
     priv->history_list = g_list_append(NULL, text);
     list_length        = 1;
   }
+
   entry->history_index = list_length;
 }
 

@@ -311,13 +311,39 @@ check_accessors ()
   }
   else {
 
-    GdkFont *font;
+    GdkFont *font1;
+    GdkFont *font2;
 
-    font = geda_font_dialog_get_font ((GedaFontDialog*)widget);
+    font1 = geda_font_dialog_get_font ((GedaFontDialog*)widget);
 
-    if (!font) {
+    if (!font1) {
       fprintf(stderr, "FAILED: line <%d> get_font %s\n", __LINE__, TWIDGET);
       result++;
+    }
+
+    // "-adobe-times-bold-i-normal--12-120-75-75-p-68-iso10646-1"
+    font1 = gdk_font_load ("12x24");
+
+    if (!font1) {
+      fprintf(stderr, "GdkFont failure <%d> get_font %s\n", __LINE__, TWIDGET);
+      return 0;
+    }
+
+    geda_font_dialog_set_font((GedaFontDialog*)widget, font1);
+
+    font2 = geda_font_dialog_get_font ((GedaFontDialog*)widget);
+
+    if (!font2) {
+      fprintf(stderr, "FAILED: line <%d> set_font %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else {
+
+      if (!gdk_font_equal(font1, font2)) {
+        fprintf(stderr, "FAILED: line <%d> set_font %s\n", __LINE__, TWIDGET);
+        result++;
+      }
+      gdk_font_unref(font2);
     }
 
     g_object_ref_sink(widget); /* Sink reference to the widget */

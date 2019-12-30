@@ -297,7 +297,8 @@ void x_window_restore_settings(GtkWindow *window)
  */
 static bool x_window_quit(void)
 {
-  g_object_ref(menu_bar);
+  g_object_ref_sink(menu_bar);
+
   return gattrib_really_quit();
 }
 
@@ -383,9 +384,13 @@ void x_window_init()
  */
 void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 {
+  Page *page;
+
   s_sheet_data_load_blank(PageData);
-  toplevel->page_current = geda_struct_page_new (toplevel, toplevel->untitled_name);
-  toplevel->page_current->filename = toplevel->untitled_name;
+
+  page = geda_struct_page_new (toplevel, NULL);
+
+  geda_toplevel_set_current_page(toplevel, page);
 }
 
 /*!
@@ -530,6 +535,7 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
   gtk_window_set_position (main_window, GTK_WIN_POS_MOUSE);
 
   gtk_widget_show((GtkWidget*)main_window);
+
   x_window_update_title(pr_current, PageData);
 }
 
@@ -543,12 +549,16 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
  */
 void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
                                        GtkWindow       *main_window)
-  {
+{
   bool show = gtk_toggle_action_get_active(action);
-  if(show)
+
+  if(show) {
     gtk_widget_show(Attribute_handlebox);
-  else
+  }
+  else {
     gtk_widget_hide(Attribute_handlebox);
+  }
+
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
@@ -564,10 +574,14 @@ void x_window_standard_toolbar_toggle(GtkToggleAction *action,
                                       GtkWindow       *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
-  if(show)
+
+  if(show) {
     gtk_widget_show(Standard_handlebox);
-  else
+  }
+  else {
     gtk_widget_hide(Standard_handlebox);
+  }
+
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
@@ -592,6 +606,8 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 
   bool show = gtk_toggle_action_get_active(action);
   int count = sheet->maxcol;
+
+  gtk_sheet_freeze (sheet);
 
   for ( i = 0; i <= count; i++) {
 
@@ -634,6 +650,8 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 
   gtk_window_resize(main_window, x, y);
 
+  gtk_sheet_thaw (sheet);
+
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
 }
@@ -641,8 +659,8 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 /*!
  * \brief Toggle View of Inherited Attributes
  * \par Function Description
- *      This function loops through all rows and columns and either
- * delete or restore attribute values if the attribute is inherited.
+ *  This function loops through all rows and columns and either delete
+ *  or restores attribute values if the attribute is inherited.
  */
 void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) {
 
@@ -708,6 +726,7 @@ void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *main_window)
 void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
+
   gtk_sheet_set_autoscroll(sheets[Components], show);
   gtk_sheet_set_autoscroll(sheets[Nets], show);
   gtk_sheet_set_autoscroll(sheets[Pins], show);
@@ -722,6 +741,7 @@ void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
 void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
+
   gtk_sheet_show_grid(sheets[Components], show);
   gtk_sheet_show_grid(sheets[Nets], show);
   gtk_sheet_show_grid(sheets[Pins], show);

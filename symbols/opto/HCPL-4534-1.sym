@@ -1,16 +1,14 @@
 v 20151031 2
-T 300 3300 5 10 0 0 0 0 1
-author=AutoTron
 P 300 1200 0 1200 1 0 1
 {
 T 100 1250 5 8 1 1 0 0 1
 pinnumber=1
 T 100 1250 5 8 0 1 0 0 1
 pinseq=1
-T 50 1100 5 8 0 1 0 0 1
-pintype=pas
 T 350 1250 9 10 1 1 0 0 1
 pinlabel=A
+T 50 1100 5 8 0 1 0 0 1
+pintype=pas
 }
 P 300 200 0 200 1 0 1
 {
@@ -18,10 +16,10 @@ T 100 250 5 8 1 1 0 0 1
 pinnumber=2
 T 100 250 5 8 0 1 0 0 1
 pinseq=2
-T 50 100 5 8 0 1 0 0 1
-pintype=pas
 T 350 300 9 10 1 1 0 0 1
 pinlabel=C
+T 50 100 5 8 0 1 0 0 1
+pintype=pas
 }
 P 2800 1200 3100 1200 1 0 1
 {
@@ -29,10 +27,10 @@ T 2950 1300 5 8 1 1 0 0 1
 pinnumber=7
 T 2850 1300 5 8 0 1 0 0 1
 pinseq=3
-T 2900 1100 5 8 0 1 0 0 1
-pintype=oc
 T 2650 1050 9 10 1 1 0 0 1
 pinlabel=C
+T 2900 1100 5 8 0 1 0 0 1
+pintype=oc
 }
 L 300 1200 800 1200 3 0 0 0 -1 -1
 L 800 1200 800 900 3 0 0 0 -1 -1
@@ -89,11 +87,15 @@ T 300 1700 5 10 0 0 0 0 1
 footprint=DIP8
 T 2800 1500 8 10 1 1 0 6 1
 refdes=U?
+T 300 2700 5 10 0 1 0 0 1
+documentation=https://datasheet.octopart.com/HCPL-4534-020E-Avago-datasheet-21098.pdf
+T 300 2900 5 10 0 0 0 0 1
+description=Dual Channel Optocoupler
 T 350 50 5 10 0 0 0 0 1
 symversion=1.0
-T 300 3100 5 10 0 0 0 0 1
+T 300 3300 5 10 0 0 0 0 1
 dist-license=GPLv2
-T 300 2900 5 10 0 0 0 0 1
+T 300 3100 5 10 0 0 0 0 1
 use-license=unlimited
-T 300 2700 5 10 0 0 0 0 1
-documentation=http://www.avagotech.com/docs/AV02-2333EN
+T 300 3500 5 10 0 0 0 0 1
+author=AutoTron

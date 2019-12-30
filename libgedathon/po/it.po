@@ -43,10 +43,10 @@ msgstr "Ottieni o imposta il simbolo predefinito per i resistori\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obteniu o estableixi el símbol del bloc de títol predeterminat\n"
 
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Obteniu o estableixi el símbol del bloc de títol predeterminat\n"
+msgstr "Ottieni o imposta il simbolo del trasformatore predefinito\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."

@@ -1756,8 +1756,9 @@ METHOD(delete_object)
 
   status = library.func(object);
 
-  if (status > 0)
+  if (status > 0) {
     Py_DECREF(object);
+  }
 
   ON_METHOD_EXIT(delete_object);
 

@@ -48,8 +48,8 @@
 
 /*! \brief A widget used to choose from a list of items
  *  \par SECTION:GedaComboBox
- * A GedaComboBox is a widget that allows the user to choose from a list of
- * valid choices. The GedaComboBox displays the selected choice. When
+ * A GedaComboBox is a widget that allows the user to choose from a list
+ * of valid choices. The GedaComboBox displays the selected choice. When
  * activated, the GedaComboBox displays a popup which allows the user to
  * make a new choice. The style in which the selected value is displayed,
  * and the style of the popup is determined by the current theme. It may
@@ -160,21 +160,6 @@ struct _GedaComboBoxData
 
   char *tearoff_title;
 };
-
-/*
- * 4) list mode, child added
- *
- * tree_view -> GtkTreeView, child of scrolled_window
- * cell_view -> NULL
- * cell_view_frame -> NULL
- * button -> GtkToggleButton, set_parent to combo
- * arrow -> GtkArrow, child of button
- * separator -> NULL
- * popup_widget -> tree_view
- * popup_window -> GtkWindow
- * scrolled_window -> GtkScrolledWindow, child of popup_window
- *
- */
 
 enum {
   CHANGED,
@@ -474,16 +459,19 @@ static GHashTable *combo_box_hash = NULL;
 
 static GtkBuildableIface *parent_buildable_iface;
 
+/*! \internal Default GedaComboBoxClass->changed */
 static void geda_combo_box_on_changed(GedaComboBox *combo_box)
 {
 
 }
 
+/*! \internal Default GedaComboBoxClass->view_changed */
 static void geda_combo_box_on_view_changed(GedaComboBox *combo_box, unsigned int mode)
 {
 
 }
 
+/*! \internal Default GedaComboBoxClass->format_entry_text */
 static char *geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
 {
   char *text = NULL;
@@ -512,6 +500,7 @@ static char *geda_combo_box_real_get_active_text (GedaComboBox *combo_box)
   return text;
 }
 
+/*! \internal Default GedaComboBoxClass->get_active_text */
 static char *geda_combo_box_format_entry_text (GedaComboBox *combo_box, const char *path)
 {
   GedaComboBoxData *priv = combo_box->priv;
@@ -532,7 +521,7 @@ static char *geda_combo_box_format_entry_text (GedaComboBox *combo_box, const ch
   return text;
 }
 
-/* container_class->add */
+/*! \internal container_class->add */
 static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
@@ -590,7 +579,7 @@ static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
     }
 }
 
-/* container_class->forall */
+/*! \internal container_class->forall */
 static void geda_combo_box_forall (GtkContainer *container,
                                            bool  include_internals,
                                     GtkCallback  callback,
@@ -601,10 +590,14 @@ static void geda_combo_box_forall (GtkContainer *container,
   GtkWidget        *child;
 
   if (include_internals) {
-    if (priv->button)
+
+    if (priv->button) {
       (* callback) (priv->button, callback_data);
-    if (priv->cell_view_frame)
+    }
+
+    if (priv->cell_view_frame) {
       (* callback) (priv->cell_view_frame, callback_data);
+    }
   }
 
   child = geda_get_child_widget(container);
@@ -614,7 +607,7 @@ static void geda_combo_box_forall (GtkContainer *container,
   }
 }
 
-/* container_class->remove */
+/*! \internal container_class->remove */
 static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (container);
@@ -642,15 +635,18 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
   gtk_widget_unparent (widget);
   GTK_BIN (container)->child = NULL;
 
-  if (GTK_OBJECT_FLAGS (combo_box) & GTK_IN_DESTRUCTION)
+  if (GTK_OBJECT_FLAGS (combo_box) & GTK_IN_DESTRUCTION) {
     return;
+  }
 
   gtk_widget_queue_resize (GTK_WIDGET (container));
 
-  if (!priv->tree_view)
+  if (!priv->tree_view) {
     appears_as_list = FALSE;
-  else
+  }
+  else {
     appears_as_list = TRUE;
+  }
 
   if (appears_as_list) {
     geda_combo_box_list_destroy (combo_box);
@@ -693,7 +689,7 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
   }
 }
 
-/* widget_class->expose_event */
+/*! \internal widget_class->expose_event */
 static bool geda_combo_box_expose_event (GtkWidget      *widget,
                                          GdkEventExpose *event)
 {
@@ -701,19 +697,18 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
   GedaComboBoxData *priv      = combo_box->priv;
   GtkWidget        *child;
 
-  if (gtk_widget_is_drawable (widget) &&
-      GTK_SHADOW_NONE != priv->shadow_type)
-    {
-      GtkAllocation  *allocation;
+  if (gtk_widget_is_drawable(widget) && GTK_SHADOW_NONE != priv->shadow_type)
+  {
+    GtkAllocation  *allocation;
 
-      allocation = geda_get_widget_allocation (widget);
+    allocation = geda_get_widget_allocation (widget);
 
-      gtk_paint_shadow (widget->style, widget->window,
-                        GTK_STATE_NORMAL, priv->shadow_type,
-                        NULL, widget, "combobox",
-                        allocation->x, allocation->y,
-                        allocation->width, allocation->height);
-    }
+    gtk_paint_shadow (widget->style, widget->window,
+                      GTK_STATE_NORMAL, priv->shadow_type,
+                      NULL, widget, "combobox",
+                      allocation->x, allocation->y,
+                      allocation->width, allocation->height);
+  }
 
   gtk_container_propagate_expose ((GtkContainer*)widget, priv->button, event);
 
@@ -730,7 +725,7 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
   return FALSE;
 }
 
-/* widget_class->grab_focus */
+/*! \internal widget_class->grab_focus */
 static void geda_combo_box_grab_focus (GtkWidget *widget)
 {
   GedaComboBox *combo_box = (GedaComboBox*)widget;
@@ -740,6 +735,7 @@ static void geda_combo_box_grab_focus (GtkWidget *widget)
     GtkWidget *child;
 
     child = gtk_bin_get_child (GTK_BIN (combo_box));
+
     if (child) {
       gtk_widget_grab_focus (child);
     }
@@ -749,7 +745,7 @@ static void geda_combo_box_grab_focus (GtkWidget *widget)
   }
 }
 
-/* widget_class->mnemonic_activate */
+/*! \internal widget_class->mnemonic_activate */
 static bool geda_combo_box_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
@@ -808,9 +804,11 @@ static bool tree_column_row_is_sensitive (GedaComboBox *combo_box, GtkTreeIter *
 
     g_object_get (list->data, "sensitive", &sensitive, NULL);
 
-    if (sensitive)
+    if (sensitive) {
       break;
+    }
   }
+
   g_list_free (cells);
 
   return sensitive;
@@ -826,25 +824,29 @@ static bool tree_next_func (GtkTreeModel *model,
                             GtkTreeIter  *iter,
                             void         *data)
 {
-  SearchData *search_data = (SearchData *)data;
+  SearchData *search_data = (SearchData*)data;
 
   if (search_data->found) {
 
-    if (!tree_column_row_is_sensitive (search_data->combo, iter))
+    if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
       return FALSE;
+    }
 
     if (search_data->visible &&
       !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
+    {
       return FALSE;
+    }
 
-    search_data->set = TRUE;
+    search_data->set  = TRUE;
     search_data->iter = *iter;
 
     return TRUE;
   }
 
-  if (gtk_tree_path_compare (path, search_data->path) == 0)
+  if (gtk_tree_path_compare (path, search_data->path) == 0) {
     search_data->found = TRUE;
+  }
 
   return FALSE;
 }
@@ -884,14 +886,17 @@ static bool tree_prev_func (GtkTreeModel *model,
     return TRUE;
   }
 
-  if (!tree_column_row_is_sensitive (search_data->combo, iter))
+  if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
     return FALSE;
+  }
 
   if (search_data->visible &&
     !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
+  {
     return FALSE;
+  }
 
-  search_data->set = TRUE;
+  search_data->set  = TRUE;
   search_data->iter = *iter;
 
   return FALSE;
@@ -927,14 +932,16 @@ static bool tree_last_func (GtkTreeModel *model,
 {
   SearchData *search_data = (SearchData *)data;
 
-  if (!tree_column_row_is_sensitive (search_data->combo, iter))
+  if (!tree_column_row_is_sensitive (search_data->combo, iter)) {
     return FALSE;
+  }
 
-  /* Note that we rely on the fact that collapsed rows do not have nodes
-   */
+  /* Note that we rely on the fact that collapsed rows do not have nodes */
   if (search_data->visible &&
       !path_visible (GTK_TREE_VIEW (search_data->combo->priv->tree_view), path))
+  {
     return FALSE;
+  }
 
   search_data->set  = TRUE;
   search_data->iter = *iter;
@@ -999,7 +1006,7 @@ static bool tree_first (GedaComboBox *combo,
   return search_data.set;
 }
 
-/* widget_class->scroll_event */
+/*! \internal widget_class->scroll_event */
 static bool geda_combo_box_scroll_event (GtkWidget      *widget,
                                          GdkEventScroll *event)
 {
@@ -1027,7 +1034,7 @@ static bool geda_combo_box_scroll_event (GtkWidget      *widget,
   return TRUE;
 }
 
-/* widget_class->size_allocate */
+/*! \internal widget_class->size_allocate */
 #define GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON                     \
   gtk_widget_size_request (combo_box->priv->button, &req);  \
   if (is_rtl)                                               \
@@ -1178,10 +1185,12 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
 
       GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON
 
-      if (is_rtl)
+      if (is_rtl) {
         child_alloc.x = allocation->x + req.width + shadow_width;
-      else
+      }
+      else {
         child_alloc.x = allocation->x + shadow_width;
+      }
 
       child_alloc.y      = allocation->y + shadow_height;
       child_alloc.width  = allocation->width - req.width - 2 * shadow_width;
@@ -1246,6 +1255,7 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
     if (gtk_widget_get_visible (priv->popup_window)) {
 
       int x, y, width, height;
+
       geda_combo_box_list_position (combo_box, &x, &y, &width, &height);
       gtk_window_move ((GtkWindow*)priv->popup_window, x, y);
       gtk_widget_set_size_request (priv->popup_window, width, height);
@@ -1387,7 +1397,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
   }
 }
 
-/* widget_class->state_changed */
+/*! \internal widget_class->state_changed */
 static void geda_combo_box_state_changed (GtkWidget   *widget,
                                           GtkStateType previous)
 {
@@ -1405,7 +1415,7 @@ static void geda_combo_box_state_changed (GtkWidget   *widget,
   gtk_widget_queue_draw (widget);
 }
 
-/* widget_class->style_set */
+/*! \internal widget_class->style_set */
 static void geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 {
   GedaComboBox *combo_box = (GedaComboBox*)widget;
@@ -1425,7 +1435,7 @@ static void geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
   }
 }
 
-/* gtk_object_class->destroy */
+/*! \internal gtk_object_class->destroy || widget_class->destroy */
 static void geda_combo_box_destroy (GtkObject *object)
 {
   GedaComboBox *combo_box = (GedaComboBox*)object;
@@ -1446,11 +1456,20 @@ static void geda_combo_box_destroy (GtkObject *object)
   combo_box->priv->row_separator_data = NULL;
   combo_box->priv->row_separator_destroy = NULL;
 
+#if GTK_MAJOR_VERSION < 3
+
   GTK_OBJECT_CLASS (geda_combo_box_parent_class)->destroy (object);
+
+#else
+
+  GTK_WIDGET_CLASS (geda_combo_box_parent_class)->destroy (object);
+
+#endif
+
   combo_box->priv->cell_view = NULL;
 }
 
-/* object_class->constructor */
+/*! \internal object_class->constructor */
 static GObject *geda_combo_box_constructor (GType                  type,
                                             unsigned int           n_construct_properties,
                                             GObjectConstructParam *construct_properties)
@@ -1484,7 +1503,7 @@ static GObject *geda_combo_box_constructor (GType                  type,
   return object;
 }
 
-/* object_class->dispose */
+/*! \internal object_class->dispose */
 static void geda_combo_box_dispose(GObject *object)
 {
   GedaComboBox *combo_box = (GedaComboBox*)object;
@@ -1499,6 +1518,7 @@ static void geda_combo_box_dispose(GObject *object)
   ((GObjectClass*)geda_combo_box_parent_class)->dispose (object);
 }
 
+/*! \internal object_class->finalize */
 static void geda_combo_box_finalize (GObject *object)
 {
   GedaComboBox *combo_box = (GedaComboBox*)object;
@@ -1548,6 +1568,7 @@ static void geda_combo_box_finalize (GObject *object)
   ((GObjectClass*)geda_combo_box_parent_class)->finalize (object);
 }
 
+/*! \internal object_class->get_property */
 static void geda_combo_box_get_property (GObject      *object,
                                          unsigned int  prop_id,
                                          GValue       *value,
@@ -1632,6 +1653,7 @@ static void geda_combo_box_set_list_view(GedaComboBox *combo_box, int mode)
   }
 }
 
+/*! \internal object_class->set_property */
 static void geda_combo_box_set_property (GObject      *object,
                                          unsigned int  prop_id,
                                          const GValue *value,
@@ -1777,7 +1799,6 @@ static void geda_combo_box_class_init(void *class, void *class_data)
 {
   GedaComboBoxClass *combo_class;
   GObjectClass      *object_class;
-  GtkObjectClass    *gtk_object_class;
   GtkContainerClass *container_class;
   GtkWidgetClass    *widget_class;
   GtkBindingSet     *binding_set;
@@ -1804,15 +1825,25 @@ static void geda_combo_box_class_init(void *class, void *class_data)
   widget_class->state_changed     = geda_combo_box_state_changed;
   widget_class->style_set         = geda_combo_box_style_set;
 
-  gtk_object_class                = (GtkObjectClass*)class;
-  gtk_object_class->destroy       = geda_combo_box_destroy;
-
   object_class                    = (GObjectClass*)class;
   object_class->constructor       = geda_combo_box_constructor;
   object_class->dispose           = geda_combo_box_dispose;
   object_class->finalize          = geda_combo_box_finalize;
   object_class->get_property      = geda_combo_box_get_property;
   object_class->set_property      = geda_combo_box_set_property;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *gtk_object_class;
+
+  gtk_object_class                = (GtkObjectClass*)class;
+  gtk_object_class->destroy       = geda_combo_box_destroy;
+
+#else
+
+  widget_class->destroy = geda_combo_box_destroy;
+
+#endif
 
   geda_combo_box_parent_class = g_type_class_peek_parent (class);
 
@@ -2359,7 +2390,7 @@ static void geda_combo_box_instance_init(GTypeInstance *instance, void *class)
    \par Function Description
  *  Function to retrieve a #GedaComboBox Type identifier. When
  *  first called, the function registers a #GedaComboBox in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaComboBox and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -2587,8 +2618,10 @@ static void geda_combo_box_set_popup_widget (GedaComboBox *combo_box, GtkWidget 
   if (GEDA_IS_MENU (popup))  {
 
     if (priv->popup_window) {
+
       gtk_widget_set_name (priv->popup_window, NULL);
       gtk_widget_destroy (priv->popup_window);
+
       priv->popup_window = NULL;
     }
 
@@ -2886,23 +2919,29 @@ static void geda_combo_box_list_position (GedaComboBox *combo_box,
   }
 
   window = geda_get_widget_window (widget);
+
   gdk_window_get_root_coords (window, *x, *y, x, y);
 
-  *width = allocation->width;
+ *width = allocation->width;
 
   hpolicy = vpolicy = GTK_POLICY_NEVER;
+
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->scrolled_window),
                                   hpolicy, vpolicy);
+
   gtk_widget_size_request (priv->scrolled_window, &popup_req);
 
   if (popup_req.width > *width) {
+
     hpolicy = GTK_POLICY_ALWAYS;
+
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->scrolled_window),
                                     hpolicy, vpolicy);
+
     gtk_widget_size_request (priv->scrolled_window, &popup_req);
   }
 
-  *height = popup_req.height;
+ *height = popup_req.height;
 
   screen      = gtk_widget_get_screen (GTK_WIDGET (combo_box));
   monitor_num = gdk_screen_get_monitor_at_window (screen, window);
@@ -2954,9 +2993,11 @@ static bool cell_view_is_sensitive (GtkCellView *cell_view)
 
     g_object_get (iter->data, "sensitive", &sensitive, NULL);
 
-      if (sensitive)
-        break;
+    if (sensitive) {
+      break;
+    }
   }
+
   g_list_free (cells);
 
   return sensitive;
@@ -2967,8 +3008,9 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
   GedaComboBoxData *priv = combo_box->priv;
   const GList *children, *child;
 
-  if (!priv->model)
+  if (!priv->model) {
     return;
+  }
 
   children = geda_menu_shell_get_children ((GedaMenuShell*)menu);
 
@@ -2980,14 +3022,17 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
     item      = GTK_WIDGET (child->data);
     cell_view = geda_get_child_widget (item);
 
-    if (!GTK_IS_CELL_VIEW (cell_view))
+    if (!GTK_IS_CELL_VIEW (cell_view)) {
       continue;
+    }
 
     submenu = geda_menu_item_get_submenu_widget ((GedaMenuItem*)item);
 
     if (submenu != NULL) {
+
       gtk_widget_set_sensitive (item, TRUE);
       update_menu_sensitivity (combo_box, submenu);
+
     }
     else {
 
@@ -3002,9 +3047,12 @@ static void update_menu_sensitivity (GedaComboBox *combo_box, GtkWidget *menu)
 
         g_object_set (item, "visible", sensitive, NULL);
         g_object_set (separator, "visible", sensitive, NULL);
+
       }
       else {
+
         gtk_widget_set_sensitive (item, sensitive);
+
       }
     }
   }
@@ -3046,8 +3094,7 @@ static void geda_combo_box_menu_popup (GedaComboBox *combo_box,
     int width = gtk_widget_get_allocated_width (combo_box);
 
     gtk_widget_set_size_request (priv->popup_widget, -1, -1);
-    gtk_widget_size_request (priv->popup_widget, &requisition);
-
+    gtk_widget_size_request     (priv->popup_widget, &requisition);
     gtk_widget_set_size_request (priv->popup_widget,
                                  MAX (width, requisition.width), -1);
   }
@@ -3220,7 +3267,9 @@ void geda_combo_box_popdown (GedaComboBox *combo_box)
   if (gtk_widget_get_realized ((GtkWidget*)combo_box)) {
 
     gtk_grab_remove (priv->popup_window);
-    gtk_widget_hide_all (priv->popup_window);
+
+    geda_widget_hide_all (priv->popup_window);
+
     gtk_toggle_button_set_active ((GtkToggleButton*)priv->button, FALSE);
   }
 }
@@ -4230,7 +4279,7 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
   return item;
 }
 
-/*!internal helper called by geda_combo_box_model_row_inserted */
+/*! \internal helper called by geda_combo_box_model_row_inserted */
 static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
                                               GtkTreePath  *path,
                                               GtkTreeIter  *iter,
@@ -5411,7 +5460,7 @@ geda_combo_box_cell_layout_reorder (GtkCellLayout   *layout,
  * \brief Creates a new empty #GedaComboBox
  * \par Function Description
  *
- * \return value: A new #GedaComboBox.
+ * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new (void)
 {
@@ -5423,7 +5472,7 @@ GtkWidget *geda_combo_box_new (void)
  * \par Function Description
  *  Creates a new empty #GedaComboBox with an entry.
  *
- * \return value: A new #GedaComboBox.
+ * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new_with_entry (void)
 {
@@ -5435,7 +5484,7 @@ GtkWidget *geda_combo_box_new_with_entry (void)
  * \par Function Description
  *  Creates a new #GedaComboBox with the model initialized to model.
  *
- * \return value: A new #GedaComboBox.
+ * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new_with_model (GtkTreeModel *model)
 {
@@ -5454,7 +5503,7 @@ GtkWidget *geda_combo_box_new_with_model (GtkTreeModel *model)
  *  Creates a new empty #GedaComboBox with an entry
  *  and with the model initialized to model.
  *
- * \returns A new #GedaComboBox
+ * \returns a new #GedaComboBox
  */
 GtkWidget *geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
 {
@@ -5539,19 +5588,21 @@ static void geda_combo_box_set_active_internal (GedaComboBox *combo_box,
 
       GedaMenu *menu = GEDA_MENU (priv->popup_widget);
 
-      if (GEDA_IS_MENU (menu))
+      if (GEDA_IS_MENU (menu)) {
         geda_menu_set_active (menu, -1);
+      }
     }
 
     if (priv->cell_view) {
       gtk_cell_view_set_displayed_row ((GtkCellView*)priv->cell_view, NULL);
     }
 
-    /*  Do not emit a "changed" signal when an already invalid selection was
-     *  now set to invalid.
+    /* Do not emit a "changed" signal when an already invalid selection
+     * was not set to invalid.
      */
-    if (!is_valid_row_reference)
+    if (!is_valid_row_reference) {
       return;
+    }
   }
   else {
 
@@ -5853,7 +5904,7 @@ GtkWidget *geda_combo_box_new_text (void)
  *
  *  This is a convenience function utilizing geda_combo_box_new_with_
  *  model_and_entry to create simple editable combo text box by
- *  adding a GtkListStore with a single single column. For a more
+ *  adding a GtkListStore with a single string column. For a more
  *  advanced editable text combo use a #GedaComboBoxText widget.
  *
  * \returns A new text #GedaComboBox.
@@ -5875,9 +5926,9 @@ GtkWidget *geda_combo_box_new_text_with_entry (void)
 /*!
  * \brief Append Text to a GedaComboBox
  * \par Function Description
- *   Appends \a string to the list of strings stored in \a combo_box. Note
- *   that this can only use this function with combo boxes constructed with
- *   geda_combo_box_new_text().
+ *  Appends \a text to the list of strings stored in \a combo_box. Note
+ *  that this function can only be used with combo boxes constructed with
+ *  geda_combo_box_new_text().
  *
  * \param [in] combo_box A #GedaComboBox constructed using geda_combo_box_new_text()
  * \param [in] text A string
@@ -5911,14 +5962,13 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
  *
  * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
  *
- * \returns: a newly allocated string containing the currently active text.
- *           Must be freed with g_free().
+ * \returns: a newly allocated string containing the currently active text,
+ *           which should be release when no longer needed.
  *
- * If you used this with a #GedaComboBox constructed with geda_combo_box_new_text()
- * then you should now use #GedaComboBoxText and geda_combo_box_text_get_active_text()
- * instead. Or if you used this with a #GedaEntry then you should now use
- * #GedaComboBox with #GedaComboBox:has-entry as %TRUE and use geda_entry_get_text
- * (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
+ * If \a #GedaComboBox was constructed with geda_combo_box_new_text() then use
+ * #GedaComboBoxText and geda_combo_box_text_get_active_text() instead. Or if
+ * used with a #GedaEntry then use #GedaComboBox with #GedaComboBox:has-entry
+ * as %TRUE and use geda_entry_get_text (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
  */
 char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
 {
@@ -5974,6 +6024,10 @@ void geda_combo_box_insert_text (GedaComboBox *combo_box,
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void
 geda_combo_box_remove_index (GedaComboBox *combo_box, int position)
 {
@@ -6057,10 +6111,10 @@ void geda_combo_box_remove_text (GedaComboBox *combo_box, int position)
 
   if (position >= 0) {
 
-  GtkListStore *store = GTK_LIST_STORE (combo_box->priv->model);
+    GtkListStore *store = GTK_LIST_STORE (combo_box->priv->model);
 
-  if (gtk_tree_model_iter_nth_child (combo_box->priv->model, &iter,
-                                     NULL, position))
+    if (gtk_tree_model_iter_nth_child (combo_box->priv->model, &iter,
+      NULL, position))
     {
       gtk_list_store_remove (store, &iter);
     }
@@ -6100,33 +6154,33 @@ static void geda_combo_box_real_move_active (GedaComboBox  *combo_box,
         }
         /* else fall through */
 
-        case GTK_SCROLL_PAGE_FORWARD:
-        case GTK_SCROLL_PAGE_DOWN:
-        case GTK_SCROLL_PAGE_RIGHT:
-        case GTK_SCROLL_END:
-          found = tree_last (combo_box, combo_box->priv->model, &new_iter, FALSE);
+      case GTK_SCROLL_PAGE_FORWARD:
+      case GTK_SCROLL_PAGE_DOWN:
+      case GTK_SCROLL_PAGE_RIGHT:
+      case GTK_SCROLL_END:
+        found = tree_last (combo_box, combo_box->priv->model, &new_iter, FALSE);
+        break;
+
+      case GTK_SCROLL_STEP_FORWARD:
+      case GTK_SCROLL_STEP_DOWN:
+      case GTK_SCROLL_STEP_RIGHT:
+        if (active_iter) {
+
+          found = tree_next (combo_box, combo_box->priv->model,
+                             &iter, &new_iter, FALSE);
           break;
+        }
+        /* else fall through */
 
-        case GTK_SCROLL_STEP_FORWARD:
-        case GTK_SCROLL_STEP_DOWN:
-        case GTK_SCROLL_STEP_RIGHT:
-          if (active_iter) {
+      case GTK_SCROLL_PAGE_BACKWARD:
+      case GTK_SCROLL_PAGE_UP:
+      case GTK_SCROLL_PAGE_LEFT:
+      case GTK_SCROLL_START:
+        found = tree_first (combo_box, combo_box->priv->model, &new_iter, FALSE);
+        break;
 
-            found = tree_next (combo_box, combo_box->priv->model,
-                               &iter, &new_iter, FALSE);
-            break;
-          }
-          /* else fall through */
-
-          case GTK_SCROLL_PAGE_BACKWARD:
-          case GTK_SCROLL_PAGE_UP:
-          case GTK_SCROLL_PAGE_LEFT:
-          case GTK_SCROLL_START:
-            found = tree_first (combo_box, combo_box->priv->model, &new_iter, FALSE);
-            break;
-
-          default:
-            return;
+      default:
+        return;
     }
 
     if (found && active_iter) {
@@ -6222,8 +6276,8 @@ static bool gtk_cell_editable_key_press (GtkWidget   *widget,
     return TRUE;
   }
   else if (event->keyval == GDK_Return ||
-    event->keyval == GDK_ISO_Enter ||
-    event->keyval == GDK_KP_Enter)
+           event->keyval == GDK_ISO_Enter ||
+           event->keyval == GDK_KP_Enter)
   {
     gtk_cell_editable_editing_done (GTK_CELL_EDITABLE (combo_box));
     gtk_cell_editable_remove_widget (GTK_CELL_EDITABLE (combo_box));
@@ -6347,7 +6401,7 @@ bool geda_combo_box_get_add_tearoffs (GedaComboBox *combo_box)
 /*!
  * \brief Set Add Tearoff GedaComboBox Property
  * \par Function Description
- *  Sets whether the popup menu should have a tearoff menu item.
+ *  Sets whether or not the popup menu should have a tearoff menu item.
  *
  * \param [in] combo_box    a #GedaComboBox
  * \param [in] add_tearoffs %TRUE to add tearoff menu items
@@ -6394,7 +6448,7 @@ int geda_combo_box_get_column_span_column (GedaComboBox *combo_box)
  * \brief Set #GedaComboBox Column Span
  * \par Function Description
  *  Sets the column with column span information for \a combo_box to be
- *  \a column_span. The column span column contains integers which indicate
+ *  \a column_span. The column span column contains integers indicating
  *  how many columns an item should span.
  *
  * \param [in] combo_box   A #GedaComboBox
@@ -6610,8 +6664,8 @@ void geda_combo_box_set_title (GedaComboBox *combo_box, const char *title)
  *  When enabled, GtkWidget:has-tooltip will be set to %TRUE and
  *  tree_view will connect a GtkWidget::query-tooltip signal handler.
  *
- * Note that the signal handler sets the text with gtk_tooltip_set_markup(),
- * so &, <, etc have to be escaped in the text.
+ * \note the signal handler sets the text with gtk_tooltip_set_markup(),
+ *       so &, <, etc have to be escaped in the text.
  *
  * \param [in] combo   Pointer to a #GedaComboBox
  * \param [in] column  Valid integer column number for tree model
@@ -6708,6 +6762,7 @@ AtkObject *geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
   else {
     atk_obj = NULL;
   }
+
   return atk_obj;
 }
 
@@ -6718,7 +6773,7 @@ AtkObject *geda_combo_box_get_popup_accessible (GedaComboBox *combo_box)
  *
  * \param [in] combo_box a #GedaComboBox
  *
- * \return value: the current row separator function.
+ * \return the current row separator function.
  *
  */
 GtkTreeViewRowSeparatorFunc
@@ -6799,12 +6854,10 @@ void geda_combo_box_set_button_sensitivity (GedaComboBox       *combo_box,
  *
  * \param [in] combo_box a #GedaComboBox
  *
- * \return Value: %GTK_SENSITIVITY_ON if the dropdown button
- *    is sensitive when the model is empty, %GTK_SENSITIVITY_OFF
- *    if the button is always insensitive or
- *    %GTK_SENSITIVITY_AUTO if it is only sensitive as long as
- *    the model has one item to be selected.
- *
+ * \return %GTK_SENSITIVITY_ON if the dropdown button is sensitive
+ *         when the model is empty, %GTK_SENSITIVITY_OFF if the button
+ *         is always insensitive or %GTK_SENSITIVITY_AUTO if it is only
+ *         sensitive as long as the model has one item to be selected.
  */
 GtkSensitivityType geda_combo_box_get_button_sensitivity (GedaComboBox *combo_box)
 {
@@ -6820,7 +6873,7 @@ GtkSensitivityType geda_combo_box_get_button_sensitivity (GedaComboBox *combo_bo
  *
  * \param [in] combo_box a #GedaComboBox
  *
- * \return Value: whether there is an entry in \a combo_box.
+ * \returns whether there is an entry in \a combo_box.
  */
 bool geda_combo_box_get_has_entry (GedaComboBox *combo_box)
 {
@@ -7056,7 +7109,7 @@ void geda_combo_widget_set_row_span_column (GtkWidget *combo, int row_span)
 /*!
  * \brief Get GedaComboBox Widget Title Property
  * \par Function Description
- *  Gets the current title of the menu in tearoff mode/
+ *  Gets the current title of the menu in tearoff mode.
  * \see geda_combo_box_set_add_tearoffs().
  *
  * \param [in] combo_box a #GedaComboBox

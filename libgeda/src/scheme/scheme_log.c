@@ -35,13 +35,13 @@ SCM_SYMBOL(info_sym,     "info");
 SCM_SYMBOL(debug_sym,    "debug");
 
 
-/*! \brief Convert a Scheme symbol to log level flags.
+/*!
+ * \brief Convert a Scheme symbol to log level flags.
  * \par Function Description
- * Helper function to construct a GLogLevelFlags value from a Scheme
- * symbol.
+ *  Helper function to construct a GLogLevelFlags value from a Scheme
+ *  symbol.
  */
-static GLogLevelFlags
-decode_level (SCM level_s)
+static GLogLevelFlags decode_level (SCM level_s)
 {
     if (level_s == error_sym)    return (G_LOG_LEVEL_ERROR | G_LOG_FLAG_FATAL);
     if (level_s == critical_sym) return G_LOG_LEVEL_CRITICAL;
@@ -102,16 +102,17 @@ EDA_SCM_DEFINE (log_close_x, "%log-close", 0, 0, 0,
    return SCM_UNSPECIFIED;
 }
 
-/*! \brief Log a message Scheme API provider
+/*!
+ * \brief Log a message Scheme API provider
  * \par Function Description
- * Add a message to the message log. The \a domain_s should normally
- * be SCM_BOOL_F, and the \a message_s should almost always be
- * translated for all log levels other than "debug". The \a level_s
- * should be one of the symbols "error", "critical", "message", "info"
- * "warning" or "debug".
+ *  Add a message to the message log. The \a domain_s should normally
+ *  be SCM_BOOL_F, and the \a message_s should almost always be
+ *  translated for all log levels other than "debug". The \a level_s
+ *  should be one of the symbols "error", "critical", "message", "info"
+ *  "warning" or "debug".
  *
  * \note Scheme API: Implements the \%log! procedure in the (geda core
- * log) module.
+ *       log) module.
  *
  * param domain_s  The log domain, as a string, or SCM_BOOL_F.
  * param level_s   The log level, as a symbol.
@@ -153,10 +154,15 @@ EDA_SCM_DEFINE (log_x, "%log!", 3, 0, 0,
     return SCM_UNSPECIFIED;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Retrieve the Log.
+ * \par Function Description
+ *  Returns a scheme string of the log.
  *
+ * \note Scheme API: Implements the %log-read procedure in the (geda
+ *       core log) module.
+ *
+ * \return string array.
  */
 EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0, (),
                "Get log contents as string.")
@@ -195,8 +201,8 @@ EDA_SCM_DEFINE (log_read_x, "%log-read", 0, 0, 0, (),
 /*!
  * \brief Create the (geda core log) Scheme module.
  * \par Function Description
- * Defines procedures in the (geda core log) module.  The module can
- * be accessed using (use-modules (geda core log)).
+ *  Defines procedures in the (geda core log) module.  The module can
+ *  be accessed using (use-modules (geda core log)).
  */
 static void
 init_module_geda_core_log ()
@@ -215,10 +221,10 @@ init_module_geda_core_log ()
 /*!
  * \brief Initialize the basic gEDA logging procedures
  * \par Function Description
- * Registers some core Scheme procedures for logging support.  Should
- * only be called by edascm_init().
+ *  Registers some core Scheme procedures for logging support. Should
+ *  only be called by edascm_init().
  */
-void edascm_init_log ()
+void edascm_init_log (void)
 {
     /* Define the (geda core log) module */
     scm_c_define_module ("geda core log",

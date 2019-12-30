@@ -30,42 +30,40 @@ AM_SCM_LOG_FLAGS = -p $(srcdir) -p $(builddir) \
 	-e '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
 
 TESTS = unit-tests/t0001-geda.scm \
-		unit-tests/t0002-g_rc.scm \
-		unit-tests/t0100-object-line.scm \
-		unit-tests/t0101-object-box.scm \
-		unit-tests/t0102-object-circle.scm \
-		unit-tests/t0103-object-arc.scm\
-		unit-tests/t0104-object-text.scm \
-		unit-tests/t0105-object-complex.scm \
-		unit-tests/t0106-object-bounds.scm \
-		unit-tests/t0107-object-stroke-fill.scm \
-		unit-tests/t0108-object-connections.scm \
-		unit-tests/t0109-object-copy.scm \
-		unit-tests/t0110-object-transform.scm \
-		unit-tests/t0111-object-path.scm \
-		unit-tests/t0112-object-picture.scm \
-		unit-tests/t0113-object-library.scm \
-		unit-tests/t0200-page.scm \
-		unit-tests/t0201-page-remove.scm \
-		unit-tests/t0202-page-dirty.scm \
-		unit-tests/t0203-page-string.scm \
-		unit-tests/t0204-page-parse-ordering.scm \
-		unit-tests/t0205-page-parse-unterminated-attribute-list.scm \
-		unit-tests/t0206-page-parse-garbage-attribute.scm \
-		unit-tests/t0207-page-parse-line-endings.scm \
-		unit-tests/t0208-page-parse-embed-no-complex.scm \
-		unit-tests/t0300-attribute.scm \
-		unit-tests/t0301-promotable-attributes.scm \
-		unit-tests/t0400-os.scm \
-		unit-tests/t0401-os-expand-env-variables.scm \
-		unit-tests/t0402-config.scm \
-		unit-tests/t0403-log.scm \
-		unit-tests/t1000-deprecated.scm
+	unit-tests/t0002-g_rc.scm \
+	unit-tests/t0100-object-line.scm \
+	unit-tests/t0101-object-box.scm \
+	unit-tests/t0102-object-circle.scm \
+	unit-tests/t0103-object-arc.scm\
+	unit-tests/t0104-object-text.scm \
+	unit-tests/t0105-object-complex.scm \
+	unit-tests/t0106-object-bounds.scm \
+	unit-tests/t0107-object-stroke-fill.scm \
+	unit-tests/t0108-object-connections.scm \
+	unit-tests/t0109-object-copy.scm \
+	unit-tests/t0110-object-transform.scm \
+	unit-tests/t0111-object-path.scm \
+	unit-tests/t0112-object-picture.scm \
+	unit-tests/t0113-object-library.scm \
+	unit-tests/t0200-page.scm \
+	unit-tests/t0201-page-remove.scm \
+	unit-tests/t0202-page-dirty.scm \
+	unit-tests/t0203-page-string.scm \
+	unit-tests/t0204-page-parse-ordering.scm \
+	unit-tests/t0205-page-parse-unterminated-attribute-list.scm \
+	unit-tests/t0206-page-parse-garbage-attribute.scm \
+	unit-tests/t0207-page-parse-line-endings.scm \
+	unit-tests/t0208-page-parse-embed-no-complex.scm \
+	unit-tests/t0300-attribute.scm \
+	unit-tests/t0301-promotable-attributes.scm \
+	unit-tests/t0400-os.scm \
+	unit-tests/t0401-os-expand-env-variables.scm \
+	unit-tests/t0402-config.scm \
+	unit-tests/t0403-log.scm \
+	unit-tests/t1000-deprecated.scm
 
 XFAIL_TESTS = \
 		unit-tests/t0301-promotable-attributes.scm
-
-#		unit-tests/t0402-config.scm
 
 dist_noinst_DATA = geda/core/gettext.scm.in unit-test.scm $(TESTS)
 

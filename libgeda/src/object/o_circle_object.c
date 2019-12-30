@@ -29,6 +29,11 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup geda-circle-object-proc GedaCircle Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaCircle Objects
+ */
+
 static void
 geda_object_error(const char *func, const void *object, IDE_OBJECT_TYPE type)
 {
@@ -1943,3 +1948,5 @@ geda_circle_object_translate(GedaObject *object, int dx, int dy)
     geda_circle_object_error(__func__, object);
   }
 }
+
+/** @} endgroup geda-circle-object-proc */

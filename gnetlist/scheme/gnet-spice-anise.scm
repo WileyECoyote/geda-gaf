@@ -313,7 +313,7 @@
 ;;----------------------------------------------------------------
 (define spice-anise:sort-spice-IO-pins
   (lambda (package-list)
-    ;;  Yes, this isn't good Scheme form.  Tough!  Writing this out
+    ;;  Yes, this is not good Scheme form.  Tough!  Writing this out
     ;;  in a functional programming form would be totally confusing!
     ;;  Note that this fcn requires that
     ;;  each spice-IO pin have the same, single character prefix (i.e. 'P')

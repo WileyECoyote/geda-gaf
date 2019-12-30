@@ -60,8 +60,8 @@ static void inline x11_color_invalid_index(int index)
 /*!
  * \brief Allocate system colors
  * \par Function Documentation
- *  Allocates system colors found in color maps. Called
- *  after initialization of the colormaps.
+ *  Allocates system colors found in color maps. Called after initialization
+ *  of the colormaps.
  */
 void geda_color_x11_allocate (void)
 {
@@ -105,7 +105,7 @@ void geda_color_x11_allocate (void)
       x_display_colors[i]->green = c.g + (c.g<<8);
       x_display_colors[i]->blue  = c.b + (c.b<<8);
 
-      error = gdk_color_alloc(x_colormap, x_display_colors[i]);
+      error = gdk_colormap_alloc_color (x_colormap, x_display_colors[i], FALSE, TRUE);
 
       if (error == FALSE) {
         log_allocation_error(_("display"));
@@ -122,7 +122,7 @@ void geda_color_x11_allocate (void)
       x_outline_colors[i]->green = c.g + (c.g<<8);
       x_outline_colors[i]->blue  = c.b + (c.b<<8);
 
-      error = gdk_color_alloc(x_colormap, x_outline_colors[i]);
+      error = gdk_colormap_alloc_color (x_colormap, x_outline_colors[i], FALSE, TRUE);
 
       if (error == FALSE) {
         log_allocation_error(_("outline"));
@@ -131,10 +131,10 @@ void geda_color_x11_allocate (void)
   }
 }
 
-/*! \brief Get Pointer to GdkColor
- *  \par Function Documentation
- *   Returns a pointer to the active GdkColor object given the
- *   color index.
+/*!
+ * \brief Get Pointer to GdkColor
+ * \par Function Documentation
+ *  Returns a pointer to the active GdkColor object given the color index.
  */
 GdkColor *geda_color_x11_color_from_index(int index)
 {
@@ -149,9 +149,10 @@ GdkColor *geda_color_x11_color_from_index(int index)
 
 
 /*!
- *  \brief Get RGBA color for display given a color Index
- *  \par Function Description
- *  \return display color at index.
+ * \brief Get RGBA color for display given a color Index
+ * \par Function Description
+ *
+ * \return display color at index.
  */
 COLOR *geda_color_x11_display_lookup (int color)
 {
@@ -168,6 +169,7 @@ COLOR *geda_color_x11_display_lookup (int color)
  * \brief Get if color is enabled or disabled
  * \par Function Description
  * \note is only relavent to display color
+ *
  * \returns the enable flag corresponding to \a color
  */
 bool geda_color_x11_get_state (int color)
@@ -212,8 +214,9 @@ void geda_color_x11_free (void)
   }
 }
 
-/*! \brief Initializes the color system for the application.
- *  \par Function Documentation
+/*!
+ * \brief Initializes the color system for the application.
+ * \par Function Documentation
  *  Initializes color maps to default values.
  */
 void geda_color_x11_init (void)
@@ -228,12 +231,12 @@ void geda_color_x11_init (void)
   }
 }
 
-/*! \brief Loads and executes a color map scheme
- *  \par Function Description
- *       This function executes a color map scm file after
- *       verifying accessibility. The file must be referenced
- *       relative to the path returned by geda-rc-path. The
- *       current colors are free and the new color allocated.
+/*!
+ * \brief Loads and executes a color map scheme
+ * \par Function Description
+ *  This function executes a color map scm file after verifying accessibility.
+ *  The file must be referenced relative to the path returned by geda-rc-path.
+ *  The current colors are free and the new color allocated.
  */
 int geda_color_x11_load_scheme(char *scheme) {
 
@@ -269,8 +272,9 @@ int geda_color_x11_load_scheme(char *scheme) {
 }
 
 
-/*! \brief Release resources memory used by X11 color system.
- *  \par Function Documentation
+/*!
+ * \brief Release resources memory used by X11 color system.
+ * \par Function Documentation
  *  Releases resources allocated by geda_color_x11_init.
  */
 void geda_color_x11_release_resources (void)

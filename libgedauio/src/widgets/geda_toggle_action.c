@@ -270,7 +270,7 @@ geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
  * \brief Function to retrieve GedaToggleAction's Type identifier.
  * \par Function Description
  *  Function to retrieve #GedaToggleAction Type identifier. On the first
- *  call, this registers the #GedaToggleAction in the GedaType system.
+ *  call, this registers the #GedaToggleAction in the GType system.
  *  Subsequently it returns the saved value from its first execution.
  *
  * \return GedaType identifier associated with a GedaToggleAction.

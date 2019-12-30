@@ -22,14 +22,15 @@
 #include <math.h>
 #include <geda_debug.h>
 
-/*! \brief Convert x coordinate to mils
- *  \par Function Description
- *   Convert a x coordinate to mils.
+/*!
+ * \brief Convert x coordinate to mils
+ * \par Function Description
+ *  Convert a x coordinate to mils.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] val        The x coordinate to convert
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] val        The x coordinate to convert
  *
- *  \return The coordinate value in mils.
+ * \return The coordinate value in mils.
  */
 int mil_x (GschemToplevel *w_current, int val)
 {
@@ -61,14 +62,15 @@ int mil_x (GschemToplevel *w_current, int val)
   return(j);
 }
 
-/*! \brief Convert y coordinate to mils
- *  \par Function Description
- *   Convert a y coordinate to mils.
+/*!
+ * \brief Convert y coordinate to mils
+ * \par Function Description
+ *  Convert a y coordinate to mils.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] val        The y coordinate to convert
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] val        The y coordinate to convert
  *
- *  \return The coordinate value in mils.
+ * \return The coordinate value in mils.
  */
 int mil_y(GschemToplevel *w_current, int val)
 {
@@ -100,14 +102,15 @@ int mil_y(GschemToplevel *w_current, int val)
   return(j);
 }
 
-/*! \brief Convert x coordinate to pixels
- *  \par Function Description
- *   Convert a x coordinate to pixels.
+/*!
+ * \brief Convert x coordinate to pixels
+ * \par Function Description
+ *  Convert a x coordinate to pixels.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] val        The x coordinate to convert
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] val        The x coordinate to convert
  *
- *  \return The coordinate value in pixels.
+ * \return The coordinate value in pixels.
  */
 int pix_x (GschemToplevel *w_current, int val)
 {
@@ -145,14 +148,15 @@ int pix_x (GschemToplevel *w_current, int val)
   return(j);
 }
 
-/*! \brief Convert a y coordinate to pixels
- *  \par Function Description
- *   Convert a y coordinate to pixels.
+/*!
+ * \brief Convert a y coordinate to pixels
+ * \par Function Description
+ *  Convert a y coordinate to pixels.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] val        The y coordinate to convert
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] val        The y coordinate to convert
  *
- *  \return The coordinate value in pixels.
+ * \return The coordinate value in pixels.
  */
 int pix_y(GschemToplevel *w_current, int val)
 {
@@ -189,16 +193,17 @@ int pix_y(GschemToplevel *w_current, int val)
   return(j);
 }
 
-/*! \brief Transform WORLD coordinates to SCREEN coordinates
- *  \par Function Description
- *   This function takes in WORLD x/y coordinates pair and
- *   transforms the values to SCREEN x/y coordinates.
+/*!
+ * \brief Transform WORLD coordinates to SCREEN coordinates
+ * \par Function Description
+ *  This function takes in WORLD x/y coordinates pair and
+ *  transforms the values to SCREEN x/y coordinates.
  *
- *  \param [in]  w_current  The GschemToplevel object
- *  \param [in]  x          The x coordinate in WORLD units
- *  \param [in]  y          The y coordinate in WORLD units
- *  \param [out] px         The x coordinate in SCREEN units
- *  \param [out] py         The y coordinate in SCREEN units
+ * \param [in]  w_current  The GschemToplevel object
+ * \param [in]  x          The x coordinate in WORLD units
+ * \param [in]  y          The y coordinate in WORLD units
+ * \param [out] px         The x coordinate in SCREEN units
+ * \param [out] py         The y coordinate in SCREEN units
  */
 void WORLDtoSCREEN (GschemToplevel *w_current, int x, int y, int *px, int *py)
 {
@@ -207,17 +212,17 @@ void WORLDtoSCREEN (GschemToplevel *w_current, int x, int y, int *px, int *py)
   *py = pix_y (w_current, y);
 }
 
-/*! \brief Transform SCREEN coordinates to WORLD coordinates
- *  \par Function Description
- *   This function takes in SCREEN x/y coordinates and
- *   transforms them to WORLD x/y coordinates.
+/*!
+ * \brief Transform SCREEN coordinates to WORLD coordinates
+ * \par Function Description
+ *  This function takes in SCREEN x/y coordinates and
+ *  transforms them to WORLD x/y coordinates.
  *
- *  \param [in]  w_current  The GschemToplevel object
- *  \param [in]  mx         The x coordinate in SCREEN units
- *  \param [in]  my         The y coordinate in SCREEN units
- *  \param [out] x          The x coordinate in WORLD units
- *  \param [out] y          The y coordinate in WORLD units
- *
+ * \param [in]  w_current  The GschemToplevel object
+ * \param [in]  mx         The x coordinate in SCREEN units
+ * \param [in]  my         The y coordinate in SCREEN units
+ * \param [out] x          The x coordinate in WORLD units
+ * \param [out] y          The y coordinate in WORLD units
  */
 void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
 {
@@ -225,18 +230,19 @@ void SCREENtoWORLD (GschemToplevel *w_current, int mx, int my, int *x, int *y)
   *y = mil_y (w_current, my);
 }
 
-/*! \brief Snap input value to the closest grid coordinate
- *  \par Function Description
- *   This function snaps the input coordinate to the
- *   closest grid coordinate.
+/*!
+ * \brief Snap input value to the closest grid coordinate
+ * \par Function Description
+ *  This function snaps the input coordinate to the
+ *  closest grid coordinate.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] input      The coordinate to snap
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] input      The coordinate to snap
  *
- *  \return The closest grid coordinate to the input,
+ * \return The closest grid coordinate to the input,
  *
- *  WEH: Tweeked to eliminate conditional, library call to abs
- *       and final multiplication instruction.
+ * WEH: Tweeked to eliminate conditional, library call to abs
+ *      and final multiplication instruction.
  */
 int snap_grid(GschemToplevel *w_current, int input)
 {
@@ -259,6 +265,7 @@ int snap_grid(GschemToplevel *w_current, int input)
   p = value / snap_grid;
   m = value % snap_grid;
   n = p * snap_grid;
+
   if (m > snap_grid / 2) {
      n += snap_grid;
   }
@@ -278,14 +285,15 @@ int snap_grid(GschemToplevel *w_current, int input)
   return n;
 }
 
-/*! \brief Get absolute SCREEN coordinate.
- *  \par Function Description
- *   Get absolute SCREEN coordinate.
+/*!
+ * \brief Get absolute SCREEN coordinate.
+ * \par Function Description
+ *  Get absolute SCREEN coordinate.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] val        The coordinate to convert
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] val        The coordinate to convert
  *
- *  \return The converted SCREEN coordinate.
+ * \return The converted SCREEN coordinate.
  */
 int SCREENabs(GschemToplevel *w_current, int val)
 {
@@ -311,14 +319,15 @@ int SCREENabs(GschemToplevel *w_current, int val)
   return(j);
 }
 
-/*! \brief Get absolute WORLD coordinate.
- *  \par Function Description
- *   Get absolute WORLD coordinate.
+/*!
+ * \brief Get absolute WORLD coordinate.
+ * \par Function Description
+ *  Get absolute WORLD coordinate.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in] val        The coordinate to convert
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in] val        The coordinate to convert
  *
- *  \return The converted WORLD coordinate.
+ * \return The converted WORLD coordinate.
  */
 int WORLDabs(GschemToplevel *w_current, int val)
 {
@@ -356,16 +365,18 @@ struct st_halfspace {
  * algorithm. They are used to determine if an object is visible or not
  */
 
-/*! \brief Encode WORLD coordinates as halfspace matrix.
- *  \par Function Description
- *   This function takes a point and checks if it is in the bounds of the
- *   current GedaToplevel object's page coordinates. It handles points with WORLD coordinates.
+/*!
+ * \brief Encode WORLD coordinates as halfspace matrix.
+ * \par Function Description
+ *  This function takes a point and checks if it is in the bounds of the
+ *  current GedaToplevel object's page coordinates. It handles points with
+ *  WORLD coordinates.
  *
- *  \param [in]  w_current  The GschemToplevel object.
- *  \param [in]  point      The point in WORLD coordinates to be checked.
- *  \param [out] halfspace  The created HALFSPACE structure.
+ * \param [in]  w_current  The GschemToplevel object.
+ * \param [in]  point      The point in WORLD coordinates to be checked.
+ * \param [out] halfspace  The created HALFSPACE structure.
  *
- *  \warning halfspace must be allocated before this function is called
+ * \warning halfspace must be allocated before this function is called
  */
 static void WORLDencode_halfspace (GschemToplevel *w_current,
                                    GedaPoint      *point,
@@ -377,20 +388,21 @@ static void WORLDencode_halfspace (GschemToplevel *w_current,
   halfspace->top    = point->y < w_current->toplevel->page_current->top;
 }
 
-/*! \brief Calculate the cliping region for a set of coordinates.
- *  \par Function Description
+/*!
+ * \brief Calculate the cliping region for a set of coordinates.
+ * \par Function Description
  *  This function will check the provided set of coordinates to see if
  *  they fall within a clipping region.  If they do the coordinates will
  *  be changed to reflect only the region no covered by the clipping window.
  *  All coordinates should be in WORLD units.
  *
- *  \param [in] w_current  The GschemToplevel object
- *  \param [in,out] x1     x coordinate of the first screen point
- *  \param [in,out] y1     y coordinate of the first screen point
- *  \param [in,out] x2     x coordinate of the second screen point
- *  \param [in,out] y2     y coordinate of the second screen point
+ * \param [in] w_current  The GschemToplevel object
+ * \param [in,out] x1     x coordinate of the first screen point
+ * \param [in,out] y1     y coordinate of the first screen point
+ * \param [in,out] x2     x coordinate of the second screen point
+ * \param [in,out] y2     y coordinate of the second screen point
  *
- *  \return TRUE if coordinates are now visible, FALSE otherwise.
+ * \return TRUE if coordinates are now visible, FALSE otherwise.
  */
 int WORLDclip_change (GschemToplevel *w_current,
                       int *x1, int *y1, int *x2, int *y2)
@@ -517,18 +529,20 @@ int WORLDclip_change (GschemToplevel *w_current,
   return(visible);
 }
 
-/*! \brief Check if a set of coordinates are within a clipping region
- *  \par Function Description
+/*!
+ * \brief Check if a set of coordinates are within a clipping region
+ * \par Function Description
  *  This function will check if the given set of coordinates
  *  are within a clipping region. No action will be taken to change
  *  the coordinates.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in,out] x1     x coordinate of the first screen point.
- *  \param [in,out] y1     y coordinate of the first screen point.
- *  \param [in,out] x2     x coordinate of the second screen point.
- *  \param [in,out] y2     y coordinate of the second screen point.
- *  \return TRUE if coordinates are now visible, FALSE otherwise.
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in,out] x1     x coordinate of the first screen point.
+ * \param [in,out] y1     y coordinate of the first screen point.
+ * \param [in,out] x2     x coordinate of the second screen point.
+ * \param [in,out] y2     y coordinate of the second screen point.
+ *
+ * \return TRUE if coordinates are now visible, FALSE otherwise.
  */
 int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
 {
@@ -650,20 +664,22 @@ int clip_nochange (GschemToplevel *w_current, int x1, int y1, int x2, int y2)
   return(visible);
 }
 
-/*! \brief Check if a bounding box is visible on the screen.
- *  \par Function Description
+/*!
+ * \brief Check if a bounding box is visible on the screen.
+ * \par Function Description
  *  This function checks if a given bounding box is visible on the screen.
  *
  *  WARNING: top and bottom are mis-named in world-coords,
  *  top is the smallest "y" value, and bottom is the largest.
  *  Be careful! This doesn't correspond to what you'd expect.
  *
- *  \param [in] w_current  The GschemToplevel object.
- *  \param [in] wleft      Left coordinate of the bounding box.
- *  \param [in] wtop       Top coordinate of the bounding box.
- *  \param [in] wright     Right coordinate of the bounding box.
- *  \param [in] wbottom    Bottom coordinate of the bounding box.
- *  \return TRUE if bounding box is visible, FALSE otherwise
+ * \param [in] w_current  The GschemToplevel object.
+ * \param [in] wleft      Left coordinate of the bounding box.
+ * \param [in] wtop       Top coordinate of the bounding box.
+ * \param [in] wright     Right coordinate of the bounding box.
+ * \param [in] wbottom    Bottom coordinate of the bounding box.
+ *
+ * \return TRUE if bounding box is visible, FALSE otherwise
  */
 int visible (GschemToplevel *w_current,
              int wleft, int wtop, int wright, int wbottom)
@@ -740,8 +756,9 @@ int visible (GschemToplevel *w_current,
   return(visible);
 }
 
-/*! \brief Rounds numbers by a power of 10.
- *  \par Function Description
+/*!
+ * \brief Rounds numbers by a power of 10.
+ * \par Function Description
  *  This function will round numbers using a power of 10 method.
  *  For example:
  *                1235 rounds to 1000
@@ -749,8 +766,9 @@ int visible (GschemToplevel *w_current,
  *               0.234 rounds to  0.2
  *  integer values would be enough if there are no numbers smaller than 1 (hw)
  *
- *  \param [in] unrounded  The number to be rounded.
- *  \return The rounded number.
+ * \param [in] unrounded  The number to be rounded.
+ *
+ * \return The rounded number.
  */
 /* rounds for example 1235 to 1000, 670 to 500, 0.234 to 0.2 ...
 int would be enough if there are no numbers smaller 1 (hw)*/

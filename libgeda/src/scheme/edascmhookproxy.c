@@ -56,7 +56,7 @@ static void cclosure_marshal_VOID__SCM            (GClosure *closure,
 
 static GObjectClass *edascm_hook_proxy_parent_class = NULL;
 
-/*! Set a property of an EdascmHookProxy instance. */
+/*! \internal Set a property of an EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_set_property (GObject *object, guint property_id,
                                 const GValue *value, GParamSpec *pspec)
@@ -81,7 +81,7 @@ edascm_hook_proxy_set_property (GObject *object, guint property_id,
   }
 }
 
-/*! Get a property of an EdascmHookProxy instance. */
+/*! \internal Get a property of an EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_get_property (GObject *object, guint property_id,
                                 GValue *value, GParamSpec *pspec)
@@ -100,8 +100,10 @@ edascm_hook_proxy_get_property (GObject *object, guint property_id,
   }
 }
 
-/*! Finalize an EdascmHookProxy instance. Free all resources held by
- * the instance. */
+/*!
+ * \internal Finalize instance of a EdascmHookProxy
+ *  Free all resources held by the instance.
+ */
 static void
 edascm_hook_proxy_finalize (GObject *object)
 {
@@ -118,7 +120,7 @@ edascm_hook_proxy_finalize (GObject *object)
   G_OBJECT_CLASS (edascm_hook_proxy_parent_class)->finalize (object);
 }
 
-/*! Initialize EdascmHookProxy class. */
+/*! \internal Initialize EdascmHookProxy class. */
 static void
 edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
 {
@@ -155,7 +157,7 @@ edascm_hook_proxy_class_init (EdascmHookProxyClass *klass)
                 EDASCM_TYPE_SCM);
 }
 
-/*! Initialize EdascmHookProxy instance. */
+/*! \internal Initialize EdascmHookProxy instance. */
 static void
 edascm_hook_proxy_init (EdascmHookProxy *proxy)
 {
@@ -174,15 +176,15 @@ edascm_hook_proxy_init (EdascmHookProxy *proxy)
   proxy->priv->closure = scm_gc_protect_object (proc);
 }
 
-/*! \brief Retrieve EdascmHookProxy GedaType identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve EdascmHookProxy GedaType identifier.
+ * \par Function Description
  *  Function to retrieve EdascmHookProxy GedaType identifier. Upon
  *  first call, this registers the EdascmHookProxy in the Type system.
  *  The saved value from the first execution is returned on subsequent
  *  calls.
  *
- *  \return the GedaType identifier associated with EdascmHookProxy.
+ * \return the GedaType identifier associated with EdascmHookProxy.
  */
 GedaType edascm_hook_proxy_get_type (void)
 {
@@ -215,6 +217,12 @@ GedaType edascm_hook_proxy_get_type (void)
   return edascm_hook_proxy_type;
 }
 
+/*!
+ * \par Function Description
+ *  Returns true if the argument is an EdascmHookProxy object.
+ *
+ * \return boolean.
+ */
 bool is_a_edascm_hook_proxy (EdascmHookProxy *proxy)
 {
   if (G_IS_OBJECT(proxy)) {
@@ -264,10 +272,11 @@ edascm_hook_proxy_closure (SCM args, void *user_data) {
   return SCM_UNSPECIFIED;
 }
 
-/*! \brief Default handler for run signals.
- *
- * Does nothing (but provides a useful example of how to write a "run"
- * signal handler).
+/*!
+ * \brief Default handler for run signals.
+ * \par Function Description
+ *  Does nothing (but provides a useful example of how to write a "run"
+ *  signal handler).
  *
  * \param proxy           Hook proxy object.
  * \param unpacked_args   Hook arguments (as unpacked Scheme value).
@@ -282,9 +291,10 @@ edascm_hook_proxy_default_run_handler (EdascmHookProxy *proxy,
   g_return_if_fail (scm_is_true (scm_list_p (unpacked_args)));
 }
 
-/*! \brief Callback marshal function for run signals.
+/*!
+ * \brief Callback marshal function for run signals.
  * \par Function Description
- * Based heavily on g_cclosure_marshal_VOID__STRING() from GObject.
+ *  Based heavily on g_cclosure_marshal_VOID__STRING() from GObject.
  */
 static void
 cclosure_marshal_VOID__SCM (GClosure     *closure,
@@ -318,10 +328,10 @@ cclosure_marshal_VOID__SCM (GClosure     *closure,
 
 /* ---------------------------------------------------------------- */
 
-/*! \public \memberof EdascmHookProxy
+/*!
+ * \public \memberof EdascmHookProxy
  * \brief Create a new hook proxy.
- *
- * Create a new hook proxy for the Scheme-level hook \a hook_s.
+ *  Create a new hook proxy for the Scheme-level hook \a hook_s.
  *
  * \param hook_s  Hook to be proxied.
  * \return a new #EdascmHookProxy instance.

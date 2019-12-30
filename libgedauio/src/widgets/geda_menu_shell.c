@@ -47,7 +47,7 @@
 
 #include <geda_debug.h>
 
-/** \defgroup geda-menu-shell GedaMenuShell Object
+/** \defgroup geda-menu-shell Geda Menu Shell
  * @{
  * \brief A base class for menu objects
  * A #GedaMenuShell is an abstract base class used to derive the
@@ -1272,8 +1272,8 @@ geda_menu_shell_screen_changed (GtkWidget *widget, GdkScreen *previous_screen)
 
 /* GObject over-rides */
 
-static void
-geda_menu_shell_dispose (GObject *object)
+/*! \internal gobject_class->dispose */
+static void geda_menu_shell_dispose (GObject *object)
 {
   GedaMenuShell *menu_shell = (GedaMenuShell*)object;
 
@@ -1282,6 +1282,7 @@ geda_menu_shell_dispose (GObject *object)
   G_OBJECT_CLASS (geda_menu_shell_parent_class)->dispose (object);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_menu_shell_finalize (GObject *object)
 {
   GedaMenuShell *menu_shell = (GedaMenuShell*)object;
@@ -1612,7 +1613,7 @@ static void geda_menu_shell_instance_init(GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaMenuShell Type identifier. When
  *  first called, the function registers a #GedaMenuShell in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuShell and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -2023,7 +2024,7 @@ void geda_menu_shell_select_item (GedaMenuShell *menu_shell,
  * \param [in] menu_shell        a #GedaMenuShell
  * \param [in] search_sensitive: if %TRUE, search for the first selectable
  *                               menu item, otherwise select nothing if
- *                               the first item isn't sensitive. This
+ *                               the first item is not sensitive. This
  *                               should be %FALSE if the menu is being
  *                               popped up initially.
  */

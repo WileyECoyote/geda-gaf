@@ -334,11 +334,10 @@
 ;
 ; Specifies the size of the world and a border (in world space units)
 ; Be sure all inputs are reals (floats/doubles) and don't try to reverse
-; the values to get a portrait mode.  Code to support that needs to be added
-; The code that implements this automatically transforms the dimensions into
-; the proper aspect ratio.  All units are in inches.
-; This is not the paper size.  That is specified elsewhere.  End users should
-; not change this at all.
+; the values to get a portrait mode. The values will automatically be
+; transformed into the proper aspect ratio. All units are in inches.
+; This is not the paper size, which is specified elsewhere. End users
+; should not normally change these values.
 ;
 ;(world-size 60.0 45.0 1.0)
 (world-size 120.0 90.0 1.0)
@@ -2049,14 +2048,9 @@
 ;
 ; The "menu item name" is the name of the item as it will appear in the menu
 ; The "menu action" is the scheme function which is executed when the item
-; is selected off of the menu.  And "menu hotkey function" is the scheme
-; function which is executed when the hotkey is pressed.
-; "menu hotkey function" has no real functionality in the menuing scheme other
-; than providing the information as to what hotkey to display in the menu.
-; "menu hotkey function" is not executed when you select an item off of the
-; list.  The hotkeys which are displayed are defined by the global-keymap.
-; Actions can have several hotkeys, but the displayed keys are the last
-; ones found.
+; is selected off of the menu.
+; The hotkeys which are displayed are defined by the global-keymap. Actions
+; can have several hotkeys, but the displayed keys are the last ones found.
 ;
 ; The SEPARATOR keyword is case sensitive and adds a separator into the menu.
 ;
@@ -2381,11 +2375,11 @@
 ;;
 ;;    menu item name         menu action           menu icon                   Menu Item Tooltip
 ;;
-  '(("_Lower Behind"         page-draw-before     "gtk-sort-ascending"        ,(N_ "Draw objects before another object"))
-    ("_Raise Above"          page-draw-after      "gtk-sort-descending"       ,(N_ "Draw object after another object"))
-    ("SEPARATOR"            #f                   #f)
-    ("Bring to _Top"         page-draw-last       "gtk-sort-ascending"        ,(N_ "Raise objects to top of drawing order"))
-    ("Move to _Bottom"       page-draw-first      "gtk-sort-descending"       ,(N_ "Lower to bottom of the drawing order"))
+  `((,(N_ "_Lower Behind")    page-draw-before     "gtk-sort-ascending"        ,(N_ "Draw objects before another object"))
+    (,(N_"_Raise Above")      page-draw-after      "gtk-sort-descending"       ,(N_ "Draw object after another object"))
+    ("SEPARATOR"             #f                    #f)
+    (,(N_"Bring to _Top")     page-draw-last       "gtk-sort-ascending"        ,(N_ "Raise objects to top of drawing order"))
+    (,(N_"Move to _Bottom")   page-draw-first      "gtk-sort-descending"       ,(N_ "Lower to bottom of the drawing order"))
   )
 )
 
@@ -2405,7 +2399,7 @@
 (add-menu (N_ "_Tools")      tools-menu-items)
 
 ;; The add the sub-menu items under the Draw Order menu item
-(add-menu "_Page/_Draw Order" draw-order-menu-items)
+(add-menu (N_ "_Page/_Draw Order") draw-order-menu-items)
 
 (load-from-path "gschem/gschem-export-menu.scm")
 

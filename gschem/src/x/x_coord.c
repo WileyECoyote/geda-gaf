@@ -566,5 +566,5 @@ void x_dialog_coord_dialog (GschemToplevel *w_current)
   /* always update the coords when the dialog is requested */
   x_dialog_coord_update_display(w_current, 0, 0, 0, 0);
 }
+
 /** @} end-subgroup Coordinates-Dialog  */
-/***************** End of coord dialog box **************************/

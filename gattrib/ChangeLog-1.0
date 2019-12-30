@@ -1,3 +1,312 @@
+2019-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ca.po: Update Catalan translations.
+
+    * po/oc.po: Update Occitan translations.
+
+    * po/tr.po: Update Turkish translations.
+
+    * po/uk.po: Update Ukrainian translations.
+
+    * po/zh_CN.po: Update Chinese simplified translations.
+
+    * po/zh_TW.po: Update Chinese traditional translations.
+
+2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Reverse the buttons on the "new attribute" dialog so
+      that the Okay button is on the right side and set alternative button
+      order. Replace gtk_widget_show_all with gtk_widget_show.
+
+    * src/s_string_list: Revise s_string_list_in_list to checks for NULL
+      string inside the loop instead of only checking the first item.
+
+2019-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_string_list.c: Replace strcmp with geda_stricmp in function
+      s_string_list_in_list so that checks for attribute names are case
+      insenitive.
+
+2019-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheetcolumn.c: Revise gtk_sheet_column_set_property;
+      remove the "or not g_object" conditions. If the sheet was null then
+      gtk_sheet_column_get_index would return for -1 for col AND if is not
+      a g_object then the "!gtk_widget_get_realized" condition will always
+      be true, albeit with noise.
+
+    * src/s_toplevel.c: Translate unknown page error in s_toplevel_gtksheet_
+      to_toplevel attempt to duplicate attribute name message in s_toplevel_
+      add_new_attrib and revise s_toplevel_add_new_attrib documentation to
+      eliminate use of neutered pronoun.
+
+2019-12-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Increase allocation by 1 more than Xt in s_table_add_column,
+      otherwise the allocation is not being resized.
+
+    * src/x_fileselect.c: Add ancillary point to uri in x_fileselect_load_file in
+      order to release the string returned from g_filename_to_uri.
+
+    * src/x_window.c: Revise x_window_attached_toggle to utilize gtk_sheet_freeze
+      and gtk_sheet_thaw to temporarily disable redrawing of the sheet.
+
+2019-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/nb.po: Update Norwegian Bokmal translations.
+    * po/nl.po: Update Dutch translations.
+    * po/pl.po: Update Polish translations
+    * po/pt.po: Update Portuguese translations.
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+    * po/ru.po: Update Russian translations.
+    * po/sl.po: Update Slovenian translations.
+    * po/sr.po: Update Serbian translations.
+    * po/sv.po: Update Swedish translations.
+
+2019-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_sheet_data.c: Shorten attribute name string in function arguments.
+
+    * src/s_table.c: Revise s_table_add_column to use pointer to reallocated
+      memory, new_table, when initializing records. Consolidate loops in
+      s_table_destroy; release the row at the end of the first loop.
+
+    * src/s_toplevel.c: Revise function s_toplevel_add_new_attrib to temporarily
+      disable redrawing the sheet using gtk_sheet_freeze and gtk_sheet_thaw.
+
+2019-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/globals.c: Include glib.h instead of gattrib.h.
+
+    * gattrib/src/s_table.c: Fix BUG; Revise s_table_add_column to use pointer to
+      reallocated memory, new_table, when shifting records.
+
+2019-12-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Remove reference to GTK+ Team in file header,
+      the files were not distributed with GTKK+ nor were the files available at
+      ftp://ftp.gtk.org/pub/gtk. Update/revise section header.
+
+2019-12-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_string_list.c: Utilize geda_strdup macro to shorten line lengths, redo
+      s_string_list_insert to actually insert a new record into the old list instead
+      of recreating an entirely new list.
+
+    * src/x_dialog.c: Fix inadvertent copy/paste over gtk_widget_grab_focus.
+
+2019-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/en_GB.po: Update Great Britain.
+
+    * po/es.po: Update Spanish translations.
+
+    * po/fa.po: Update Persian translations.
+
+    * po/fr.po: Update French translations.
+
+    * po/gl.po: Update Galician translations.
+
+    * po/hu.po: Update Hungarian translations.
+
+    * po/it.po: Update Italian translations.
+
+    * po/ja.po: Update Japanese translations
+
+    * po/ml.po: Updated Malayalam translations.
+
+2019-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_toplevel.c: Revise s_toplevel_add_new_attrib to set sheet_head
+      CHANGED member.
+
+    * src/x_dialog.c: Revise x_dialog_new_attrib to set focus to the entry.
+
+2019-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
+    * po/ar.po: Update Arabic translations.
+
+    * po/bg.po: Update Bulgarian translations.
+
+    * po/bs.po: Update Bosnian translations
+
+    * po/ca.po: Update Catalan translations.
+
+    * po/da.po: Update Danish translations.
+
+    * po/de.po: Update German translations.
+
+    * po/el.po: Update Greek translations.
+
+2019-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Refomat documentation.
+
+2019-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: clean up declarations and add ancillary
+      PangoLanguage.
+
+    * src/x_toolbars.c: Rename callback functions without capitalization.
+
+2019-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Refomat documentation, add ancillary GdkGC in
+      gtk_sheet_flash so as not to call gtk_widget_get_style four times.
+
+2019-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_string_list.c: Remove trival debug output from function
+      s_string_list_delete_item, add function documentation. Sort the
+      pin attributes in s_string_list_sort_master_pin_attrib_list.
+
+    * src/x_gtksheet.c: Remove setting autoresize_columns TRUE for the
+      pins sheet in x_gtksheet_init because the width of the first column
+      is reduce from the manually set values and the hides the last two
+      characters in "pinlabel".
+
+2019-11-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/listsort.c: Reformat function documentation and code style.
+
+    * src/s_string_list.c: Add debug code to print the attribute list, add
+      todo documentation template for s_string_list_free and revise debug
+      message, utilize __func__ macro.
+
+2019-11-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_sheet_data.c: Update s_sheet_data_add_master_comp_list_items
+      documention. Utilize __func__ macro in debug output.
+
+    * src/s_string_list.c: Add error message when a NULL record is found in
+      s_string_list_sort_master_comp_attrib_list.
+
+    * gattrib/src/s_toplevel.c: Revise s_toplevel_init_data_set to call
+      s_table_load_new_page after sorting is sorting is performed. This
+      fix bug when sort-components is "enabled".
+
+    * src/x_dialog.c: Remove unused function x_dialog_delete_attrib.
+
+2019-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_object.c: Remove function s_object_add_net_attrib_to_object, and
+      rename s_object_add_comp_attrib_to_object s_object_add_attrib_to_object.
+
+2019-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib_dialog.c: Remove unused second argument from create_geda_switch.
+
+    * src/s_string_list.c: Reformat function documentation, add todo documentation
+      template for s_string_list_sort_all_list.
+
+    * src/s_table.c: Update s_table_add_items_to_comp_table documentation.
+
+    * src/x_gtksheet.c: Update x_gtksheet_add_col_labels documentation.
+
+2019-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Enable on_move callback, change underscores to hyphens in
+      gtksheet signal names and add function documentation:
+
+          * x_gtksheet_reveal_columns
+          * on_move
+
+  ** src/gtksheet/gtksheet.c: Fix BUG in gtksheet; old_range always -1 when
+      "move-range" signal emitted, set old_range before unselecting old_range.
+
+2019-11-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Revise x_dialog_new_attrib to utilize an ancillary
+      container and accessor macro gtk_dialog_get_content_area.
+
+    * src/x_gtksheet.c: Revise build_popup_menu to set the DeleteAttribute popup
+      menu item insensitive if more than one column is selected.
+
+    * src/x_menus.c: Remove inappropriate call to x_dialog_unimplemented_feature
+      because the feature is implemented.
+
+    * src/x_toolbars.c: Add delete attribute button to the Attribute toolbar.
+
+2019-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/ar.po: Update Arabic translations.
+
+    * po/nl.po: Update Dutch translations.
+
+    * po/ru.po: Update Russian translations.
+
+2019-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_window.c: Revamp x_window_blank_document to eliminate accessing
+      structure members directly.
+
+2019-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/s_object.c: Reduce scope of pointers old_attrib_text and
+      old_attrib_nam in s_object_replace_attrib_in_object, factor releasing
+      old_attrib_text from both clause of conditional.
+
+    * src/s_toplevel.c: Remove s_toplevel_update_pin_attribs_in_toplevel
+      entry debug output.
+
+    * src/x_menus.c: Replace g_object_ref with g_object_ref_sink.
+
+    * src/x_window.c: Replace g_object_ref with g_object_ref_sink.
+
+2019-09-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gtksheet/gtkcompat.h: Define gdk_gc_destroy when not defined.
+
+    * src/gtksheet/gtkitementry.c: Substitute gdk_window_get_height in place
+      of gdk_window_get_size.
+
+    * src/gtksheet/gtksheet.c: Simplfy gtk_sheet_get_entry. Conditionally
+      compile calls to GDK_THREADS_ENTER and GDK_THREADS_LEAVE in function
+      gtk_sheet_flash and _gtk_sheet_scroll_to_pointer. Add macro/function
+      _gtk_sheet_draw_pixmap and conditionally replace gdk_draw_pixmap.
+
+    * src/gattrib.c: Replace gdk_set_locale with setlocale to initialize
+      the locale based on environment variables.
+
+2019-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_gtksheet.c: Remove unused function change_entry. Replace cast
+       to GtkSignalFunc with GCallback.
+
+    * src/x_toolbars.c: Include geda_gtk_compat.h.
+
+2019-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gtksheet/gtkcompat.h: Define gdk_cursor_destroy when not defined.
+
+2019-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtksheet.c: Reduce scope of GtkTableChild and GtkBoxChild,
+      replace dynamic cast with static cast to GtkWidget, and utilize
+      gtk_container_get_children in function gtk_sheet_get_entry.
+
+    * src/x_dialog.c: Remove call to deprecated gtk_window_position in
+      x_dialog_column_visibility.
+
+    * src/x_gtksheet.c: Remove GtkSignalFunc cast in SetupCSheetHandlers.
+
+2019-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gtksheet/gtkitementry.c: Add ancillary pointer to GtkStyle and GdkGC
+      in _item_entry_get_insertion_cursor_gc to improve readability and eliminate
+      early return.
+
+2019-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Revise/update internal documentation.
+
+    * src/s_object.c: Rename s_object_delete_text_object_in_object ->
+      s_object_delete_text_object. Remove function s_object_has_sym_file.
+
+    * src/x_gtksheet.c: Add x_gtksheet_get_is_empty function documentation.
+
 2019-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_table.c: Revise s_table_gtksheet_to_table function documentation.

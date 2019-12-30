@@ -238,10 +238,6 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
 #endif
 
-  /* Determine whether we should draw the selection at all */
-  draw_selected = !(w_current->inside_action && (w_current->event_state == MOVEMODE ||
-                                                 w_current->event_state == DRAGMOVE));
-
   /* First pass -- render non-selected objects */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
 
@@ -272,6 +268,10 @@ void o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       }
     }
   }
+
+  /* Determine whether we should draw the selection at all */
+  draw_selected = !(w_current->inside_action && (w_current->event_state == MOVEMODE ||
+                                                 w_current->event_state == DRAGMOVE));
 
   /* Third pass -- render selected objects, cues & grips. This is
    * done in a separate pass to non-selected items to make sure that

@@ -53,14 +53,14 @@
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("_XML"               export:xml             "geda-xml"                    "Export document to XML file")
-    ("SEPARATOR"                #f                     #f)
-    ("_Symbol"            export-symbol          "geda-inbed"                 ,(N_ "Export embedded symbol"))
-    ("_Picture"           export-picture         "gtk-orientation-portrait"   ,(N_ "Export embedded picture"))
+  `((,(N_ "_XML")          export:xml             "geda-xml"                   ,(N_ "Export document to XML file"))
+    ("SEPARATOR"           #f                     #f)
+    (,(N_ "_Symbol")       export-symbol          "geda-inbed"                 ,(N_ "Export embedded symbol"))
+    (,(N_ "_Picture")      export-picture         "gtk-orientation-portrait"   ,(N_ "Export embedded picture"))
 
   )
 )
+
 ;(add-menu (N_ "_File")       file-menu-items)
-(add-menu "_File/_Export" export:menu-items)
+(add-menu (N_ "_File/_Export") export:menu-items)
 ;; ==================================================================
-;;

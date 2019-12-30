@@ -40,7 +40,7 @@
  * \brief Start process to place objects
  * \par Function Description
  *  This function starts the process of interactively placing objects.
- *  The objects may be objects being copied or objects recieved from
+ *  The objects may be objects being copied or objects received from
  *  the clibboard or from drag-and-drop. Temporary outline maybe used
  *  during the process.
  *
@@ -206,11 +206,14 @@ o_place_end (GschemToplevel *w_current, int continue_placing, GList **ret_new_ob
 void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action) {
+
     if (w_current->rubber_visible) {
       o_place_invalidate_rubber (w_current, FALSE);
     }
+
     w_current->second_wx = w_x;
     w_current->second_wy = w_y;
+
     o_place_invalidate_rubber (w_current, TRUE);
     w_current->rubber_visible = TRUE;
   }
@@ -357,9 +360,9 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
  * no mode / constraint changes were made between the pair, it is not
  * harmful to call the draw operation with "drawing=FALSE".
  *
- *  \param [in] w_current   GschemToplevel which we're drawing for.
- *  \param [in] drawing     Set to FALSE for undraw operations to ensure
- *                            matching conditions to a previous draw operation.
+ * \param [in] w_current   GschemToplevel which we're drawing for.
+ * \param [in] drawing     Set to FALSE for undraw operations to ensure
+ *                         matching conditions to a previous draw operation.
  */
 void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
 {
@@ -457,8 +460,8 @@ void o_place_mirror (GschemToplevel *w_current)
 /*!
  * \brief Rotate objects being placed
  * \par Function Description
- *   Passes list of objects being placed to geda_rotate_list
- *   with and angle of 90.
+ *  Passes list of objects being placed to geda_rotate_list
+ *  with and angle of 90.
  */
 void o_place_rotate (GschemToplevel *w_current, int angle)
 {

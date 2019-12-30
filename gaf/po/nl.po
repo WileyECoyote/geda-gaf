@@ -55,7 +55,6 @@ msgstr ""
 "Rapporteer onvolkomenheden alstublieft aan %s.\n"
 
 #: gaf/src/gaf.c:96
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -64,12 +63,13 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gEDA developers\n"
-"Dit is vrije software, en U bent welkom om deze te herdistribueren onder\n"
-"bepaalde condities. Voor details, zie het bestand `COPYING', welke in\n"
-"de gEDA distributie is bijgevoegd.\n"
-"Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
+"Dit is gratis software en u bent van harte welkom om het te verspreiden "
+"onder\n"
+"bepaalde voorwaarden. Zie het bestand Kopiëren voor meer informatie\n"
+"opgenomen in de gEDA-distributie. Er is GEEN GARANTIE; zelfs niet \n"
+"voor VERKOOPBAARHEID of GESCHIKTHEID VOOR EEN BEPAALD DOEL, voor zover\n"
+"wettelijk toegestaan.\n"
 
 #: gaf/src/gaf.c:110
 msgid "Run `gaf --help' for more information"
@@ -207,7 +207,7 @@ msgid "ERROR: No document is available to export.\n"
 msgstr ""
 
 #: gaf/src/export.c:1107
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -247,7 +247,7 @@ msgstr ""
 "                           stel uitlijning van tekening binnen pagina\n"
 "  -d, --dpi=DPI          pixels-per-inch voor raster uitvoer\n"
 "  -c, --color            schakel kleuren uitvoer in\n"
-"  --no-color             schakel kleuren uitvoer uit\n"
+"  -n, --no-color         schakel kleuren uitvoer uit\n"
 "  -F, --font=NAAM        stel font familie voor tekst afdrukken in\n"
 "  -h, --help     toon gebruiksinformatie en stop\n"
 "\n"

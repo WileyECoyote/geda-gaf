@@ -1,21 +1,35 @@
+2019-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/pt.po: Update Portuguese translations.
+
+    * po/pt_BR.po: Update Brazilian Portuguese translations.
+
+    * po/tr.po: Update Turkish translations.
+
+    * po/uk.po: Update Ukrainian translations.
+
+2019-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/fa.po: Update Persian translation.
+    * po/fi.po: Update Finnish translations.
+    * po/fr.po: Update French translations.
+    * po/he.po: Update Hebrew translations.
+    * po/hu.po: Update Hungarian translations.
+    * po/it.po: Update Italian translations.
+    * po/nl.po: Update Dutch translations.
+    * po/pl.po: Update Polish translations.
+    * po/sv.po: Update Swedish translations.
+
 2019-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/en_GB: Update Great Britain.
-
     * po/es.po: Update Spanish translations.
 
 2019-07-29 Wiley E. Hill <wileyhill@gmail.com>

@@ -692,8 +692,8 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
  * \brief Display the image file selection dialog.
  * \par Function Description
  *  Displays the image file selection dialog, allowing the user to
- *  set several options, like image size and image type.
- *  When the user hits "ok", the image is written to the file.
+ *  set several options, like image size and image type. If the user
+ *  hits "ok", the image is written to the file based on the options.
  *
  * \param[in] w_current    the GschemToplevel structure.
  * \param[in] default_type the default (last) image type created.
@@ -1042,9 +1042,10 @@ static void x_image_invert_color_buffer(GdkPixbuf *pixbuf, bool bw_only)
 }
 
 /*!
- * \brief Retreive Pixel Buffer for Imaging
+ * \brief Retrieve Pixel Buffer for Imaging
  * \par Function Description
- *  The entire top-level is copied, including
+ *  The entire top-level is copied, including the GedaToplevel referenced
+ *  within \a w_current using memcpy().
  */
 GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
                                bool use_print_map, bool invert_color_bw)
@@ -1066,17 +1067,23 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
 
   if (!new_w_current || !toplevel) {
 
-    char *errmsg = strerror(errno);
+    const char *msg1 = _("Could not allocate memory resources");
+    const char *msg2 = _("maybe you should try saving next");
+
+    const char *errmsg = strerror(errno);
 
     fprintf(stderr, "%s: could not allocate memory resources: %s\n",__func__, errmsg);
 
-    error_dialog("Could not allocate memory resources; %s, maybe you should try saving next",
-                  errmsg);
+    error_dialog("%s, %s, %s", msg1, errmsg, msg2);
 
-    if (new_w_current)
+    if (new_w_current) {
       free (new_w_current);
-    if (toplevel)
+    }
+
+    if (toplevel) {
       g_object_unref (toplevel);
+    }
+
     return NULL;
   }
 

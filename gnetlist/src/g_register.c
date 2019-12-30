@@ -30,6 +30,11 @@
 #include <gnetlist.h>
 #include <geda_debug.h>
 
+/*!
+ * \struct gnetlist_funcs
+ * \brief gnetlist RC functions
+ * \par Function data table for registering RC handlers with Guile.
+ */
 static struct gsubr_t gnetlist_funcs[] = {
   { "quit",                         0, 0, 0, g_quit },
   { "exit",                         0, 0, 0, g_quit },

@@ -46,10 +46,10 @@ msgstr "Ophalen of instellen van het standaardsymbool voor weerstanden\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Haal het standaard symbool voor het titelblok op of stel het in\n"
 
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Haal het standaard symbool voor het titelblok op of stel het in\n"
+msgstr "Krijg of stel het standaard transformatorsymbool in\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
@@ -403,9 +403,10 @@ msgstr "Pin"
 msgid "Text"
 msgstr "Tekst"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Krijg of stel het standaard transformatorsymbool in"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -420,7 +421,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Kan het kenmerk %s niet verwijderen"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -428,14 +429,14 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Het kenmerk% s moet een geheel getal zijn"
 
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
-msgstr ""
+msgstr "Python-geheel getal te groot om te converteren naar C-geheel getal"
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
@@ -444,20 +445,21 @@ msgstr "Voeg een kenmerkobject toe aan dit object."
 
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Fout bij initialiseren van nieuw Box-object"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
 msgid "Creates a Box object type."
 msgstr "Creëert een box-objecttype."
 
+# Error initializing new Bus object
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Fout bij het initialiseren van nieuw Bus-object"
 
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "De kenmerknaam van de busnaam moet een tekenreeks zijn"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348

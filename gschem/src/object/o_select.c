@@ -689,7 +689,7 @@ o_select_is_selection(GschemToplevel *w_current)
 {
   Page *page = gschem_toplevel_get_current_page(w_current);
 
-  return !page ? 0 : (geda_page_get_selection(page) != FALSE);
+  return !page ? FALSE : (geda_page_get_selection(page) != NULL);
 }
 
 /*!

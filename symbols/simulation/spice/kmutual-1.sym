@@ -1,4 +1,4 @@
-v 20050820 1
+v 20050820 2
 T 300 450 8 10 1 1 0 0 1
 refdes=K?
 A 500 300 400 0 180 3 0 0 0 -1 -1
@@ -10,5 +10,9 @@ T 300 300 8 10 1 1 0 0 1
 value=0.0
 T 300 95 8 10 1 1 0 0 1
 inductors=L? L?
-T 0 -10 8 10 0 1 0 0 1
+T 0 100 8 10 0 1 0 0 1
 device=K
+T 100 1000 5 10 0 1 0 0 1
+description=mutual inductance factor
+T 100 800 9 10 0 0 0 0 1
+footprint=none

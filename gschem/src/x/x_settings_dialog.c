@@ -1274,7 +1274,7 @@ color_button_popup_menu_callback (GedaMenuItem *item, void * data)
 bool color_button_popup_destroy(GtkWidget *widget, void *data)
 {
   if (GEDA_IS_MENU(popup_menu)) {
-    g_object_unref((GtkObject*)popup_menu);
+    g_object_unref(popup_menu);
     popup_menu = NULL;
   }
   return FALSE;
@@ -2960,8 +2960,9 @@ void GatherSettings(GschemToplevel *w_current) {
     geda_toplevel_set_auto_save_interval(toplevel, new_auto_save);
 
      /* Check if Auto save was enabled, i.e. from 0 -> >0 */
-    if (!old_auto_save && new_auto_save)
+    if (!old_auto_save && new_auto_save) {
       geda_struct_page_autosave_init(toplevel);
+    }
   }
 
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);

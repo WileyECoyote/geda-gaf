@@ -408,7 +408,7 @@ static void geda_check_menu_item_activatable_interface_init (GtkActivatableIface
  * \par Function Description
  *  Function to retrieve a #GedaCheckMenuItem type identifier. When
  *  first called, the function registers a #GedaCheckMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaCheckMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

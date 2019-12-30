@@ -99,9 +99,15 @@ void x_gtksheet_destroy_all() {
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
+ *  This function called when then RevealAttribute option is selected
+ *  from the column pop-up context menu. The function create a lists
+ *  of structures and passes the list to x_dialog_column_visibility,
+ *  which displays the list to the user. Upon return, the visibility
+ *  of any columns that do not match the desired state as specified
+ *  in the list ColumnVisible structures, is set to the desired state.
  */
 void x_gtksheet_reveal_columns(GtkSheet *sheet) {
 
@@ -248,7 +254,6 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
       case InsertAttribute:
       case HideAttribute:
       case RevealAttribute:
-      case DeleteAttribute:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
@@ -256,6 +261,31 @@ static GtkWidget *build_popup_menu(GtkWidget *sheet)
         else {
           gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
+        }
+        break;
+
+      case DeleteAttribute:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        else {
+
+          int mincol, maxcol, sensitive;
+
+
+          mincol = x_gtksheet_get_min_col((GtkSheet*)sheet);
+          maxcol = x_gtksheet_get_max_col((GtkSheet*)sheet);
+
+          if ((mincol != maxcol) || (mincol == -1) || (maxcol == -1)) {
+            sensitive = FALSE;
+          }
+          else {
+            sensitive = TRUE;
+          }
+
+          gtk_widget_set_sensitive(GTK_WIDGET(item), sensitive);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), sensitive);
         }
         break;
       }
@@ -326,8 +356,8 @@ static int clipboard_handler(GtkSheet *sheet, GdkEventKey *event)
   bool state = sheet->state;
 
   if (event->state & GDK_CONTROL_MASK ||
-    event->keyval==GDK_Control_L ||
-    event->keyval==GDK_Control_R)
+      event->keyval==GDK_Control_L ||
+      event->keyval==GDK_Control_R)
   {
 
     if ((event->keyval=='c' ||
@@ -392,51 +422,23 @@ static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
                     GtkSheetRange *new_range, void *data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
-                                    old_range->rowi, old_range->coli);
+                                        old_range->rowi, old_range->coli);
   printf("NEW SELECTION: %d %d %d %d\n",new_range->row0, new_range->col0,
-                                    new_range->rowi, new_range->coli);
+                                        new_range->rowi, new_range->coli);
 }
 
-/*! \brief Callback on sheet Move
- *  \par Function Description
- *  This function is not used.
+/*!
+ * \brief Callback on sheet Move
+ * \par Function Description
+ *  This function is called when the selection square is dragged.
  */
 static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
                     GtkSheetRange *new_range, void *data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
-                                    old_range->rowi, old_range->coli);
+                                        old_range->rowi, old_range->coli);
   printf("NEW SELECTION: %d %d %d %d\n",new_range->row0, new_range->col0,
-                                    new_range->rowi, new_range->coli);
-}
-
-/*!
- * \brief Callback on Change Entry
- * \par Function Description
- *  This function is not used.
- */
-bool change_entry(GtkWidget *widget,
-                  int row, int col, int *new_row, int *new_col,
-                  void *data)
-{
-  GtkSheet *sheet;
-
-  sheet = GTK_SHEET(widget);
-  bool state = sheet->state;
-
-  if (*new_col == 0 && (col != 0 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, gtk_combo_get_type());
-
-  if (*new_col == 1 && (col != 1 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, GTK_TYPE_ENTRY);
-
-  if (*new_col == 2 && (col != 2 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, GTK_TYPE_SPIN_BUTTON);
-
-  if (*new_col >= 3 && (col < 3 || state != GTK_STATE_NORMAL))
-         gtk_sheet_change_entry(sheet, GTK_TYPE_CELL_EDITABLE);
-
-  return TRUE;
+                                        new_range->rowi, new_range->coli);
 }
 
 /*!
@@ -535,7 +537,7 @@ static bool on_traverse(GtkWidget *widget,
 /*!
  * \brief Setup Call Back handlers for the Component Sheet
  * \par Function Description
- *  This function is  setup the callbacks for the Component sheet.
+ *  This function connects the callbacks for the Component sheet.
  *  Note that we only use 3 before returing. The others are listed
  *  for possiable future.
  *
@@ -547,26 +549,21 @@ static void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
   GObject *SheetObj;
   SheetObj = G_OBJECT(sheet);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "button_press_event",
-                      on_mouse_button_press, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "button-press-event", on_mouse_button_press, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "activate",
-                      on_activate_cell,
-                      NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "activate", on_activate_cell, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "deactivate",
-                      on_deactivate_cell,
-                      PageData);
+  GEDA_SIGNAL_CONNECT(SheetObj, "deactivate", on_deactivate_cell, PageData);
+
+  GEDA_SIGNAL_CONNECT(SheetObj, "move-range", on_move, NULL);
 
   return;
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "changed", (GtkSignalFunc) on_change, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "changed", on_change, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "resize_range", (GtkSignalFunc) on_resize, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "resize-range", on_resize, NULL);
 
-  GEDA_SIGNAL_CONNECT(SheetObj, "move_range", (GtkSignalFunc) on_move, NULL);
-
-  GEDA_SIGNAL_CONNECT(SheetObj, "traverse", (GtkSignalFunc) on_traverse, NULL);
+  GEDA_SIGNAL_CONNECT(SheetObj, "traverse", on_traverse, NULL);
 }
 
 /*!
@@ -776,6 +773,9 @@ void x_gtksheet_init(PageDataSet *PageData)
                                      (GtkWidget*)scrolled_windows[i],
                                      (GtkWidget*)label, NULL, -1);
 
+      /* Do not autoresize, gtksheet does not handle correctly. The
+       * width of the columns are manually set when the labels are
+       * added, see x_gtksheet_add_col_labels */
       sheets[i]->autoresize_columns = FALSE;
       sheets[i]->autoresize_rows = FALSE;
 
@@ -793,31 +793,29 @@ void x_gtksheet_init(PageDataSet *PageData)
       gtk_widget_show(notebook);  /* show updated notebook  */
 
       g_signal_connect (sheets[i], "key_press_event",
-                       (GtkSignalFunc) clipboard_handler, NULL);
+                       (GCallback) clipboard_handler, NULL);
 
       /*  The entry cell is the text entry field is the one at the top */
       g_signal_connect(gtk_sheet_get_entry((GtkSheet*)sheets[i]),
-                       "changed", (GtkSignalFunc)show_entry, NULL);
+                       "changed", (GCallback)show_entry, NULL);
 
       g_signal_connect(sheets[i],
-                       "activate", (GtkSignalFunc)activate_sheet_cell, NULL);
+                       "activate", (GCallback)activate_sheet_cell, NULL);
     }
   }
 
   /* The next 2 functions setup callbacks for the Entry widget in the would
    * be status bar */
   g_signal_connect (entry, "button_press_event",
-                   (GtkSignalFunc) x_gtksheet_button_pressed, NULL);
+                   (GCallback) x_gtksheet_button_pressed, NULL);
 
-  g_signal_connect(entry, "changed", (GtkSignalFunc)on_entry_changed, NULL);
+  g_signal_connect(entry, "changed", (GCallback)on_entry_changed, NULL);
 
   GedaEntryClass *entry_class = GEDA_ENTRY_GET_CLASS(entry);
 
   entry_class->activate = on_entry_activate;
 
   SetupCSheetHandlers(sheets[Components], PageData);
-
-  sheets[Pins]->autoresize_columns=TRUE;
 }
 
 /*------------------------------------------------------------------*/
@@ -879,8 +877,9 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_hea
 /*!
  * \brief Add column labels to GtkSheet
  * \par Function Description
- *  This function adds column labels to GtkSheet. The width of the
- *  columns is increased based on the data.
+ *  This function adds column labels to a GtkSheet and hides the column
+ *  if the label text is found in hide_columns. The width of the columns
+ *  is increased based on the data.
  *
  * \param sheet GtkSheet to add columns to
  * \param count
@@ -897,15 +896,18 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
   int char_width;
 
   /* Leave if no items to add are available */
-  if ((count == 0) || (list_head == NULL))
+  if ((count == 0) || (list_head == NULL))  {
     return;
+  }
 
   style =  gtk_widget_get_style((GtkWidget*)sheet);
 
-  if (style->private_font)
+  if (style->private_font) {
     char_width = gdk_char_width (style->private_font, (char)'X');
-  else
+  }
+  else {
     char_width = DEFAULT_FONT_WIDTH;
+  }
 
   string_list_item = list_head;
 
@@ -915,15 +917,19 @@ void x_gtksheet_add_col_labels(GtkSheet    *sheet,
     int   width;
 
     text  = string_list_item->data;
+
     width = strlen(text);
 
     if (width < COLUMN_MIN_WIDTH) {
       width = COLUMN_MIN_WIDTH;
     }
+
     gtk_sheet_set_column_width(sheet, j, char_width * width);
 
     gtk_sheet_column_button_add_label(sheet, j, text);
+
     gtk_sheet_column_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
+
     gtk_sheet_set_column_title(sheet, j, text);
 
     if (geda_utility_glist_find_string(hide_columns, text) > -1) {
@@ -1052,7 +1058,16 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
   x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 
-
+/*!
+ * \brief Get GtkSheet cell at given Row Col is Empty
+ * \par Function Description
+ *
+ * \param sheet GtkSheet to query
+ * \param row   The Row to query
+ * \param col   The column to query
+ *
+ * \returns TRUE if the cell at Row Col is empty.
+ */
 bool x_gtksheet_get_is_empty(GtkSheet *sheet, int row, int col)
 {
   return gtk_sheet_cell_get_text(sheet, row, col) == NULL;

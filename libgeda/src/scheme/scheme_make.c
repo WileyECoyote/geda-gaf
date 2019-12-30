@@ -309,10 +309,13 @@ EDA_SCM_DEFINE (object_make_picture, "%make-picture", 0, 0, 0, (),
  * \brief Initialize the basic gEDA object Creator Routines.
  * \par Function Description
  *  Registers some Scheme procedures for creating new GedaObjects.
- *  Should only be called by edascm_init().
+ *  Unlike other edascm initialization procedures, this function is
+ *  not called from edascm_init. The routines in this module are part
+ *  of the "geda core object" interface and so this function is called
+ *  from init_module_geda_core_object as an extension to that module.
  */
 void
-edascm_init_make_object ()
+edascm_init_make_object (void)
 {
   /* Register the functions */
   #include "scheme_make.x"

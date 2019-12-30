@@ -106,6 +106,7 @@ void edascm_init_os         (void);
 void edascm_init_page       (void);
 void edascm_init_smob       (void);
 void edascm_init_toplevel   (void);
+void edascm_init_version    (void);
 
 /* ---------------------------------------- */
 

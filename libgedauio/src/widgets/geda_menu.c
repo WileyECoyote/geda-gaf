@@ -819,7 +819,7 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
     }
 
     /*  geda_menu_start_scrolling() might have hit the top of the
-     *  menu, so check if the button isn't insensitive before
+     *  menu, so check if the button is not insensitive before
      *  changing it to something else.
      */
     if (priv->upper_arrow_state != GTK_STATE_INSENSITIVE) {
@@ -923,7 +923,7 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
     }
 
     /*  geda_menu_start_scrolling() might have hit the bottom of the
-     *  menu, so check if the button isn't insensitive before
+     *  menu, so check if the button is not insensitive before
      *  changing it to something else.
      */
     if (priv->lower_arrow_state != GTK_STATE_INSENSITIVE) {
@@ -1125,7 +1125,7 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
                 touchscreen_setting, &touchscreen_mode,
                 NULL);
 
-  menu_item = gtk_get_event_widget ((GdkEvent*) event);
+  menu_item = gtk_get_event_widget ((GdkEvent*)event);
 
   if (GEDA_IS_MENU (widget)) {
 
@@ -1171,14 +1171,20 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
     }
   }
 
-  /* If this is a faked enter (see geda_menu_motion_notify), 'widget'
-   * will not correspond to the event widget's parent.  Check to see
-   * if we are in the parent's navigation region.
-   */
-  if (GEDA_IS_MENU_ITEM (menu_item) && GEDA_IS_MENU (menu_item->parent) &&
-    geda_menu_navigating_submenu ((GedaMenu*)menu_item->parent,
-                                   event->x_root, event->y_root))
-    return TRUE;
+  if (GEDA_IS_MENU_ITEM (menu_item)) {
+
+    /* If this is a faked enter (see geda_menu_motion_notify), 'widget'
+     * will not correspond to the event widget's parent.  Check to see
+     * if we are in the parent's navigation region.
+     */
+    GedaMenu *parent = (GedaMenu*)menu_item->parent;
+
+    if (GEDA_IS_MENU (parent) &&
+        geda_menu_navigating_submenu (parent, event->x_root, event->y_root))
+    {
+      return TRUE;
+    }
+  }
 
   return ((GtkWidgetClass*)geda_menu_parent_class)->enter_notify_event (widget, event);
 }
@@ -1441,15 +1447,26 @@ geda_menu_grab_notify (GtkWidget *widget, bool was_grabbed)
   }
 }
 
+static void
+geda_menu_hide_children (GtkWidget *widget)
+{
+  if (!GTK_IS_CONTAINER(widget)) {
+    gtk_widget_hide (widget);
+  }
+  else {
+    geda_container_foreach (widget, geda_menu_hide_children, NULL);
+  }
+}
+
 /*! \internal widget_class->hide_all */
 static void
 geda_menu_hide_all (GtkWidget *widget)
 {
   /* Hide children, but not self. */
-  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
+  geda_container_foreach (widget, geda_menu_hide_children, NULL);
 }
 
-
+/*! \internal widget_class->key_press_event */
 static bool geda_menu_key_press (GtkWidget *widget, GdkEventKey *event)
 {
   geda_menu_stop_navigating_submenu ((GedaMenu*)widget);
@@ -2376,7 +2393,7 @@ static void geda_menu_destroy (GtkObject *object)
   ((GtkObjectClass*)geda_menu_parent_class)->destroy (object);
 }
 
-/* gobject_class->dispose */
+/*! \internal gobject_class->dispose */
 static void geda_menu_dispose (GObject *object)
 {
   GedaMenu *menu = (GedaMenu*)object;
@@ -2388,7 +2405,7 @@ static void geda_menu_dispose (GObject *object)
   ((GObjectClass*)geda_menu_parent_class)->dispose (object);
 }
 
-/* gobject_class->finalize */
+/*! \internal gobject_class->finalize */
 static void geda_menu_finalize (GObject *object)
 {
   if (g_hash_table_remove (menu_hash_table, object)) {
@@ -3530,7 +3547,7 @@ geda_menu_instance_init (GTypeInstance *instance, void *class)
  * \par Function Description
  *  Function to retrieve a #GedaMenu Type identifier. When
  *  first called, the function registers a #GedaMenu in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenu and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *

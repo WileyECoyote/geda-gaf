@@ -71,6 +71,7 @@ bool           is_a_geda_bus                 (const GedaBus *bus);
 
 GedaObject    *geda_bus_new                  (void);
 
+bool           geda_bus_get_position         (const GedaBus *bus, int *x, int *y);
 int            geda_bus_get_ripper_direction (const GedaBus *bus) WARN_UNUSED;
 int            geda_bus_get_x0               (const GedaBus *bus) WARN_UNUSED;
 int            geda_bus_get_x1               (const GedaBus *bus) WARN_UNUSED;

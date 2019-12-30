@@ -29,13 +29,14 @@
 
 #include <libgeda_priv.h>
 
-/*! \brief embed an object into a schematic
- *  \par Function Description
+/*!
+ * \brief embed an object into a schematic
+ * \par Function Description
  *  This functions embeds an object \a o_current into a
  *  libgeda. Currently complex objects are just marked to
  *  be embedded later. Picture objects are embedded immediatly.
  *
- *  \param o_current The GedaObject to embed
+ * \param o_current The GedaObject to embed
  */
 bool geda_object_embed(GedaObject *o_current)
 {

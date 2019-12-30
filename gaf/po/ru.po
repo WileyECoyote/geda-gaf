@@ -58,7 +58,6 @@ msgstr ""
 "Сообщайте об ошибках по адресу: %s\n"
 
 #: gaf/src/gaf.c:96
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -67,12 +66,13 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 разработчики gEDA\n"
-"Это свободное программное обеспечение, и вы можете его распространять\n"
-"на определённых условиях. Подробности см. в файле COPYING в дистрибутиве\n"
-"gEDA. Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся "
-"законодательством.\n"
+"Это бесплатное программное обеспечение, и вы можете распространять его под\n"
+"определенные условия. Для получения дополнительной информации см. "
+"Копирование файла,\n"
+"включены в дистрибутив gEDA. Нет НИКАКИХ ГАРАНТИЙ; даже не \n"
+"для УДАРНЫХ И ФИТНЕС ДЛЯ ОСОБЫХ ЦЕЛЕЙ, в той степени, в которой\n"
+"разрешено законом.\n"
 
 #: gaf/src/gaf.c:110
 msgid "Run `gaf --help' for more information"
@@ -209,7 +209,7 @@ msgid "ERROR: No document is available to export.\n"
 msgstr ""
 
 #: gaf/src/export.c:1107
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -253,7 +253,7 @@ msgstr ""
 "  -d, --dpi=DPI               количество точек на дюйм для\n"
 "                              растровых изображений\n"
 "  -c, --color                 цветной вывод\n"
-"  --no-color                  монохромный вывод\n"
+"  -n, --no-color              монохромный вывод\n"
 "  -F, --font=ИМЯ_ШРИФТА       имя шрифта для вывода текста\n"
 "  -h, --help                  справка по использованию и выход\n"
 "\n"

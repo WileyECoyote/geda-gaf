@@ -30,8 +30,13 @@
  *  \brief functions for the pin object
  */
 
+/** \defgroup geda-pin-object-proc GedaPin Object Procedures
+ * @{
+ * \brief Procedures for Operations with #GedaPin Objects
+ */
+
 /*!
- * \brief create a new pin object
+ * \brief Create a new pin object
  * \par Function Description
  *  This function creates and returns a new pin object.
  *
@@ -1540,6 +1545,7 @@ GList *geda_pin_object_realize_attributes(GedaToplevel *toplevel, GedaObject *ob
     }
     return object->attribs;
   }
+
   return NULL;
 }
 
@@ -1592,6 +1598,7 @@ geda_pin_object_update_read_property(GedaObject *o_pin, GedaObject *o_text)
 const char *geda_pin_object_get_electrical(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
+
   return object->pin->electrical;
 }
 
@@ -1603,6 +1610,7 @@ const char *geda_pin_object_get_electrical(GedaObject *object)
 const char *geda_pin_object_get_label(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
+
   return object->pin->label;
 }
 
@@ -1614,5 +1622,8 @@ const char *geda_pin_object_get_label(GedaObject *object)
 const char *geda_pin_object_get_mechanical(GedaObject *object)
 {
   g_return_val_if_fail(GEDA_IS_PIN(object), NULL);
+
   return object->pin->mechanical;
 }
+
+/** @} endgroup geda-pin-object-proc */

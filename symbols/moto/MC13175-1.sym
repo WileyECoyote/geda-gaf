@@ -182,11 +182,11 @@ T 300 3700 8 10 0 1 0 0 1
 device=MC13175
 T 1500 2100 9 15 1 0 0 4 1
 value=MC13175
-T 300 4100 8 10 0 0 0 0 1
-pins=16
 T 300 3900 8 10 0 1 0 0 1
 footprint=SO16
 T 300 4300 9 10 0 0 0 0 1
 numslots=0
-T 310 4510 5 10 0 0 0 0 1
+T 300 4500 9 10 0 0 0 0 1
+description=AM/FM transmitter
+T 310 4700 5 10 0 0 0 0 1
 author=AutoTron

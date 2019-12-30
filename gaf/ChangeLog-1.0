@@ -1,3 +1,11 @@
+2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/it.po: Update Italian translations.
+
+    * po/nl.po: Update Dutch translations.
+
+    * po/ru.po: Update Russian translations.
+
 2019-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * gaf_getopt.c: Update function documentation:

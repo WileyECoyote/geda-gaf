@@ -18,12 +18,9 @@ install: ./autogen.sh && ./configure --disable-update-xdg-database -with-x=yes
 
 after_failure: ./travis-after-failure.sh
 
-# Setup Virtual X Framebuffer
-before_script:
-- export DISPLAY=:99
-- export XVFBARGS=":99 +extension RANDR"
-- sh -e /etc/init.d/xvfb start
-- sleep 3
+# Start the Virtual X Framebuffer
+services:
+  - xvfb
 
 # Bootstrap the LCB compiler, build the default target set and run a
 # the default test suite.

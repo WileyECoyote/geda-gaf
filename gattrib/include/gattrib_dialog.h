@@ -93,8 +93,7 @@ GtkWidget *gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent
                                             const char *settings_name, const char *first_button_text, ...);
 
 /* Prototypes for Dialogs */
-GtkWidget *create_geda_switch(GtkWidget *parent, GtkWidget *widget, GtkWidget *SwitchImage,
-                                bool istate);
+GtkWidget *create_geda_switch(GtkWidget *parent, GtkWidget *SwitchImage, bool istate);
 GtkWidget *get_geda_switch_image (bool WhichState);
 
 #endif /* __GATTRIB_DIALOG_H__ */

@@ -111,9 +111,9 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void *class)
   w_current->window             = NULL;
   w_current->cr                 = NULL;
 
-  w_current->world_left         = 0;
+  w_current->world_left         = default_world_left;
   w_current->world_right        = default_world_right;
-  w_current->world_top          = 0;
+  w_current->world_top          = default_world_top;
   w_current->world_bottom       = default_world_bottom;
 
   w_current->screen_width       = 0;
@@ -386,7 +386,7 @@ static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
  * \brief Function to retrieve GschemToplevel's Type identifier.
  * \par Function Description
  *  Function to retrieve GschemToplevel's Type identifier. On first call,
- *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  this registers the GattribDialog in the GType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
  * \return GedaType identifier associated with GschemToplevel.

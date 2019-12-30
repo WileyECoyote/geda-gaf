@@ -357,10 +357,10 @@ static void geda_keyfile_clear (GedaKeyFile *key_file)
 /*!
  * \brief Determine if object is Geda KeyFile Object.
  * \par Function Description
- *  Returns true if the argument is a GedaKeyFile object.
- *  The function checks if the pointer is in the list of allocated
- *  GedaKeyFile objects returns if the address is in the list,
- *  otherwise FALSE.
+ *  Returns true if the argument is a GedaKeyFile object. This
+ *  function checks if the pointer is in the list of allocated
+ *  GedaKeyFile objects and returns true if the address is in
+ *  the list, otherwise FALSE is returned.
  *
  * \param [in] keyfile  Pointer to GedaKeyFile Object
  *
@@ -449,7 +449,7 @@ static int find_file_in_data_dirs (const char   *file,
     char *candidate_file;
     char *sub_dir;
 
-    candidate_file = (char*) file;
+    candidate_file = (char*)file;
     sub_dir        = geda_strdup ("");
 
     while (candidate_file != NULL && fd == -1) {
@@ -2018,7 +2018,7 @@ geda_keyfile_get_locale_string (GedaKeyFile *key_file,
  * \param [out] error       Location for a GError or %NULL
  *
  * \returns a newly allocated %NULL-terminated string array or %NULL
- *          if the key isn't found. The string array should be freed
+ *          if the key is not found. The string array should be freed
  *          with g_strfreev().
  */
 char**

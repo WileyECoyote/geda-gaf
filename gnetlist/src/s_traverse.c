@@ -99,7 +99,7 @@ static inline int visit(GedaObject *obj)
  *  Reset all visit counts. Simply clears the hashtable completely.
  */
 static inline void
-s_traverse_clear_all_visited (const GList *obj_list)
+s_traverse_clear_all_visited (void)
 {
   g_hash_table_foreach_remove (visit_table,
                                (GHRFunc) returns_true,
@@ -535,20 +535,10 @@ CPINLIST *s_traverse_component(GedaToplevel *pr_current,
     /* This avoids us adding an unnamed net for an unconnected pin */
     if (geda_object_get_conn_list(o_current)) {
 
-      Page *pcurrent;
-
-  //CALLGRIND_START_INSTRUMENTATION;
-
       /* result of s_traverse_net() is not used, implicitly cast function value (void) */
       s_traverse_net (pr_current, nets, TRUE, o_current, hierarchy_tag, cpins->node_type);
 
-  //CALLGRIND_STOP_INSTRUMENTATION;
-
-  //CALLGRIND_DUMP_STATS;
-
-      pcurrent = geda_toplevel_get_current_page (pr_current);
-
-      s_traverse_clear_all_visited (geda_struct_page_get_objects (pcurrent));
+      s_traverse_clear_all_visited();
     }
 
     cpins->nets = nets_head;
@@ -685,7 +675,7 @@ NET *s_traverse_net (GedaToplevel *pr_current, NET *nets, int starting,
     printf("<%p>\n", new_net->connected_to);
 #endif
 
-    /* Terminate if we hit a pin which isn't the one we started with */
+    /* Terminate if we hit a pin which is not the one we started with */
     if (!starting) {
       return nets;
     }

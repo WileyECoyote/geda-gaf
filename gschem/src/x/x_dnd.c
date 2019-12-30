@@ -122,15 +122,15 @@ struct _GschemDndDataDef
 static bool x_dnd_source_leave    (GtkWidget        *widget,
                                    GdkEventCrossing *event,
                                    GschemToplevel   *w_current);
-
+static
 const char *x_dnd_send_string     (GschemToplevel   *w_current,
                                    GdkDragContext   *context,
                                    GtkSelectionData *selection);
-
+static
 const char *x_dnd_send_objects    (GschemToplevel   *w_current,
                                    GdkDragContext   *context,
                                    GtkSelectionData *selection);
-
+static
 bool        x_dnd_receive_objects (GschemToplevel   *w_current, int x, int y,
                                    const char       *buffer,    int who);
 
@@ -274,29 +274,34 @@ static const char *x_dnd_string_data_name(char *name)
 
   return &dnd_string_data_name[0];
 }
+
 static char *x_dnd_string_data_arc_properties(GedaArc *arc)
 {
   return
   geda_sprintf("center=(%d,%d), radius=%d, angle=%d",
              arc->x, arc->y, arc->radius, arc->start_angle);
 }
+
 static char *x_dnd_string_data_circle_properties(GedaCircle *circle)
 {
   return
   geda_sprintf("center=(%d,%d), radius=%d", circle->center_x,
                    circle->center_y, circle->radius);
 }
+
 static char *x_dnd_string_data_line_properties(GedaLine *line)
 {
   return
   geda_sprintf("start (%d,%d), end (%d,%d)",
                   line->x[0], line->y[0], line->x[1], line->y[1]);
 }
+
 static char *x_dnd_string_data_path_properties(GedaPath *path)
 {
   return
   geda_sprintf("sections=%d",path->num_sections);
 }
+
 static char *x_dnd_string_data_box_properties(GedaBox *box)
 {
   return
@@ -348,6 +353,7 @@ static const char *x_dnd_send_string_shape (GschemToplevel *w_current, GedaObjec
 
   GEDA_FREE(common);
   GEDA_FREE(properties);
+
   return string;
 }
 
@@ -371,10 +377,9 @@ x_dnd_send_string_signal (GschemToplevel *w_current, GedaObject *object)
                              name, object->sid, netname,
                              object->color, properties);
 
-
-
-  if (netname != NULL) GEDA_FREE(netname);
+  GEDA_FREE(netname);
   GEDA_FREE(properties);
+
   return string;
 }
 
@@ -393,7 +398,7 @@ x_dnd_send_string_text (GschemToplevel *w_current, GedaObject *object)
 /******************* Begin Handlers by Data Catagory ******************/
 
 /*! \brief Route Request for String Data to type Specific Sub-Handlers */
-const char*
+static const char*
 x_dnd_send_string (GschemToplevel *w_current, GdkDragContext   *context,
                    GtkSelectionData *selection)
 {
@@ -438,6 +443,7 @@ x_dnd_send_string (GschemToplevel *w_current, GdkDragContext   *context,
 
 }
 
+static
 const char *x_dnd_send_objects (GschemToplevel   *w_current,
                                 GdkDragContext   *context,
                                 GtkSelectionData *selection)
@@ -637,7 +643,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *string
 }
 
 /*! \brief Process Object Data Received from Drag & Drop Source */
-bool
+static bool
 x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buffer, int who)
 {
   bool result;

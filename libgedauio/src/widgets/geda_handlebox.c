@@ -542,10 +542,13 @@ static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
       width  = child_requisition.width  + border_2x;
       height = child_requisition.height + border_2x;
 
-      if (handle_position == GTK_POS_LEFT || handle_position == GTK_POS_RIGHT)
+      if (handle_position == GTK_POS_LEFT ||
+          handle_position == GTK_POS_RIGHT) {
         width += handlebox->handle_size;
-      else
+      }
+      else {
         height += handlebox->handle_size;
+      }
 
       gdk_window_move_resize (handlebox->float_window, new_x, new_y, width, height);
       gdk_window_reparent (handlebox->bin_window, handlebox->float_window, 0, 0);
@@ -645,6 +648,7 @@ static void geda_handle_box_reattach (GedaHandleBox *handlebox)
                        0, child);
       }
     }
+
     handlebox->float_window_mapped = FALSE;
   }
 
@@ -659,7 +663,7 @@ static void geda_handle_box_reattach (GedaHandleBox *handlebox)
   * @{
   */
 
-/* container_class->add */
+/*! \internal container_class->add */
 static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
 {
   if (GEDA_IS_HANDLE_BOX(container)) {
@@ -675,7 +679,7 @@ static void geda_handle_box_add (GtkContainer *container, GtkWidget *widget)
   }
 }
 
-/* container_class->remove */
+/*! \internal container_class->remove */
 static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
 {
   ((GtkContainerClass*)geda_handle_box_parent_class)->remove (container, widget);
@@ -688,7 +692,7 @@ static void geda_handle_box_remove (GtkContainer *container, GtkWidget *widget)
   * @{
   */
 
-/* widget_class->button_press == callback for mouse button press event */
+/*! \internal widget_class->button_press == callback for mouse button press event */
 static bool geda_handle_box_button_press (GtkWidget      *widget,
                                           GdkEventButton *event)
 {
@@ -701,8 +705,9 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
     GedaHandleBox *handlebox;
     handlebox = (GedaHandleBox*)widget;
 
-    if (event->window != handlebox->bin_window)
+    if (event->window != handlebox->bin_window) {
       return FALSE;
+    }
 
     child = geda_get_child_widget(handlebox);
 
@@ -833,7 +838,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
   return event_handled;
 }
 
-/* widget_class->delete_event */
+/*! \internal widget_class->delete_event */
 static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 {
   GedaHandleBox *handlebox = (GedaHandleBox*)widget;
@@ -842,6 +847,7 @@ static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
       geda_handle_box_reattach (handlebox);
       return TRUE;
   }
+
   return FALSE;
 }
 
@@ -1019,7 +1025,7 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
   }
 }
 
-/* widget_class->expose_event */
+/*! \internal widget_class->expose_event */
 static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   if (gtk_widget_is_drawable (widget)) {
@@ -1183,6 +1189,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
 
   /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
   GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
+
   gdk_window_set_transient_for (handlebox->float_window, (GdkWindow*)topwindow->window);
 
   widget->style = gtk_style_attach (widget->style, widget->window);
@@ -1758,7 +1765,7 @@ static void geda_handle_box_instance_init(GTypeInstance *instance, void *g_class
  * \par Function Description
  *  Function to retrieve a #GedaHandleBox Type identifier. When
  *  first called, the function registers a #GedaHandleBox in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaHandleBox and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -1917,7 +1924,9 @@ void geda_handle_box_set_shadow_type (GedaHandleBox *handlebox, GtkShadowType ty
   if ((GtkShadowType) handlebox->shadow_type != type) {
 
     handlebox->shadow_type = type;
+
     GEDA_OBJECT_NOTIFY (handlebox, "shadow-type");
+
     gtk_widget_queue_resize ((GtkWidget*)handlebox);
   }
 }
@@ -1987,7 +1996,7 @@ void geda_handle_box_set_shrink_on_detach (GedaHandleBox *handlebox, bool shrink
  * the handle position. If the handle position is %GTK_POS_RIGHT or %GTK_POS_LEFT,
  * then the snap edge will be %GTK_POS_TOP, otherwise it will be %GTK_POS_LEFT.
  *
- * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  * \param [in] edge       Enumerated GtkPositionType, can be:
  *
  *  <DL>
@@ -2018,7 +2027,7 @@ void geda_handle_box_set_snap_edge (GedaHandleBox *handlebox, GtkPositionType ed
  *  Gets the edge used for determining reattachment of the handle box. See
  *  geda_handle_box_set_snap_edge().
  *
- * \param [in] handlebox    The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  *
  * \returns the edge used for determining reattachment, or (GtkPositionType)-1
  *          if this is determined (as per default) from the handle position.
@@ -2090,7 +2099,7 @@ void geda_handle_box_set_toolbar (GedaHandleBox *handlebox, GtkWidget *toolbar)
  * \par Function Description
  *  Sets the side of the handlebox where the handle is drawn.
  *
- * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  * \param [in] position   Side of the handlebox where the handle should
  *                        be drawn.
  *
@@ -2107,7 +2116,7 @@ void geda_handle_widget_set_handle_position (GtkWidget       *handlebox,
  * \par Function Description
  *  Widget version of geda_handle_box_set_shadow_type.
  *
- * \param [in] handlebox The #GedaHandleBox object
+ * \param [in] handlebox  The #GedaHandleBox object
  * \param [in] type       Enumerated ShadowType
  *
  * \see geda_handle_box_set_shadow_type

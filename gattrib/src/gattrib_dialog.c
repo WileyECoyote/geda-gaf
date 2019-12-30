@@ -51,7 +51,9 @@ GtkWidget *create_pixmap (const char *filename)
   }
 
   pixmap = gtk_image_new_from_file (pathname);
+
   GEDA_FREE (pathname);
+
   return pixmap;
 }
 
@@ -68,10 +70,12 @@ GtkWidget *get_geda_switch_image (bool WhichState)
 {
    GtkWidget *image;
 
-   if (WhichState)
+   if (WhichState) {
      image = create_pixmap (SWITCH_ON_IMAGE);
-   else
+   }
+   else {
      image = create_pixmap (SWITCH_OFF_IMAGE);
+   }
 
    return image;
 }
@@ -82,15 +86,17 @@ GtkWidget *get_geda_switch_image (bool WhichState)
  *  This function creates a Check Box widget using an image, the checkbox
  *  indicator is disabled so only the images is displayed. This creates a
  *  control similar to a GTK3 Switch, using standard GTK2 controls. The
- *  On or Off images is controlled by the istate variable.
+ *  On or Off images is controlled by the istate parameter.
  *
- * \returns: Newly created switch widget
+ * \returns Newly created switch widget
  */
 GtkWidget*
-create_geda_switch(GtkWidget *parent, GtkWidget *widget,
-                   GtkWidget *SwitchImage, bool istate)
+create_geda_switch(GtkWidget *parent, GtkWidget *SwitchImage, bool istate)
 {
+  GtkWidget *widget;
+
   widget = gtk_check_button_new ();
+
   gtk_widget_show (widget);
   geda_container_add (parent, widget);
   gtk_widget_set_size_request (widget, -1, 30);
@@ -448,7 +454,7 @@ static void gattrib_dialog_class_init(void *klass, void *class_data)
  * \brief Function to retrieve GattribDialog's GedaType identifier
  * \par Function Description
  *  Function to retrieve GattribDialog's Type identifier. On first call,
- *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  this registers the GattribDialog in the GType system. Subsequently
  *  the function returns the saved value from its first execution.
  *
  * \return GedaType identifier associated with GattribDialog.

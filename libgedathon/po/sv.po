@@ -43,10 +43,10 @@ msgstr "Få eller Ange standard symbol för motstånd\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Få eller Ange standard titelbladsymbol\n"
 
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Få eller Ange standard titelbladsymbol\n"
+msgstr "Hämta eller ställa in standardtransformatorsymbolen\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."
@@ -398,9 +398,10 @@ msgstr "Stift"
 msgid "Text"
 msgstr "Text"
 
+# Error initializing new Arc object
 #: libgedathon/module/objects/geda_py_arc.c:110
 msgid "Error initializing new Arc object"
-msgstr ""
+msgstr "Hämta eller ställa in standardtransformatorsymbolen"
 
 #: libgedathon/module/objects/geda_py_arc.c:188
 #: libgedathon/module/objects/geda_py_box.c:204
@@ -415,7 +416,7 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_text.c:235
 #, c-format
 msgid "Cannot delete the %s attribute"
-msgstr ""
+msgstr "Det går inte att ta bort attributet %s"
 
 #: libgedathon/module/objects/geda_py_arc.c:213
 #: libgedathon/module/objects/geda_py_box.c:227
@@ -423,23 +424,24 @@ msgstr ""
 #: libgedathon/module/objects/geda_py_circle.c:224
 #, c-format
 msgid "The %s attribute must be an integer value"
-msgstr ""
+msgstr "Attributet %s måste vara ett heltal"
 
 #: libgedathon/module/objects/geda_py_arc.c:229
 #: libgedathon/module/objects/geda_py_box.c:243
 #: libgedathon/module/objects/geda_py_bus.c:218
 #: libgedathon/module/objects/geda_py_circle.c:240
 msgid "Python integer too large to convert to C integer"
-msgstr ""
+msgstr "Python-heltal för stort för att konvertera till C-heltal"
 
 # Creates an Arc object extension type
 #: libgedathon/module/objects/geda_py_arc.c:323
 msgid "Creates an Arc object extension type."
 msgstr "Skapar en Arc-objektförlängningstyp."
 
+# Error initializing new Box object
 #: libgedathon/module/objects/geda_py_box.c:117
 msgid "Error initializing new Box object"
-msgstr ""
+msgstr "Fel vid initiering av nytt Box-objekt"
 
 # Creates a Box object type
 #: libgedathon/module/objects/geda_py_box.c:337
@@ -448,11 +450,11 @@ msgstr "Skapar en ruttypsobjekt."
 
 #: libgedathon/module/objects/geda_py_bus.c:113
 msgid "Error initializing new Bus object"
-msgstr ""
+msgstr "Fel vid initiering av nytt bussobjekt"
 
 #: libgedathon/module/objects/geda_py_bus.c:265
 msgid "The bus name attribute value must be a string"
-msgstr ""
+msgstr "Attributvärdet för bussnamnet måste vara en sträng"
 
 # Creates a Bus object type
 #: libgedathon/module/objects/geda_py_bus.c:348

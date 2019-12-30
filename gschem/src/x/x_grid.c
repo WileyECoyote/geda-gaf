@@ -194,10 +194,12 @@ draw_dots (GschemToplevel *w_current,
 
       WORLDtoSCREEN (w_current, i,j, &dot_x, &dot_y);
 
-      cairo_new_sub_path(w_current->cr);
+      //cairo_new_sub_path(w_current->cr);
 
-      /* Aka cairo_turtle_arc */
-      cairo_arc (w_current->cr, dot_x, dot_y, dot_size, 0, 2 * M_PI);
+      /* Aka cairo_turtle_arc
+        cairo_arc (w_current->cr, dot_x, dot_y, dot_size, 0, 2 * M_PI); */
+
+      cairo_rectangle (w_current->cr, dot_x, dot_y, dot_size, dot_size);
     }
   }
 }
@@ -532,7 +534,7 @@ void x_grid_configure_variables (GschemToplevel *w_current)
 
     w_current->grid_major_color.a  = w_current->dots_grid_major_alpha * 0.01;
 
-    w_current->grid_size_factor    = w_current->dots_grid_dot_size / 2.0;
+    w_current->grid_size_factor    = w_current->dots_grid_dot_size / 1.5;
   }
 
 #if DEBUG_GRID

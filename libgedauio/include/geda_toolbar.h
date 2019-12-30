@@ -36,6 +36,15 @@
 #define GEDA_IS_TOOLBAR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_TOOLBAR))
 #define GEDA_TOOLBAR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_TOOLBAR, GedaToolbarClass))
 
+typedef enum
+{
+  GEDA_TOOLBAR_CHILD_SPACE,
+  GEDA_TOOLBAR_CHILD_BUTTON,
+  GEDA_TOOLBAR_CHILD_TOGGLEBUTTON,
+  GEDA_TOOLBAR_CHILD_RADIOBUTTON,
+  GEDA_TOOLBAR_CHILD_WIDGET
+} GedaToolbarChildType;
+
 typedef struct _GedaToolbar       GedaToolbar;
 typedef struct _GedaToolbarClass  GedaToolbarClass;
 
@@ -63,15 +72,15 @@ bool            is_a_geda_toolbar                (GedaToolbar *toolbar);
 GtkWidget      *geda_toolbar_new                 (int orientation);
 
 /* Any element type */
-GtkWidget      *geda_toolbar_append_element      (GedaToolbar        *toolbar,
-                                                  GtkToolbarChildType type,
-                                                  GtkWidget          *widget,
-                                                  const char         *text,
-                                                  const char         *tooltip_text,
-                                                  const char         *tooltip_private_text,
-                                                  GtkWidget          *icon,
-                                                  GCallback           callback,
-                                                  void               *user_data);
+GtkWidget      *geda_toolbar_append_element      (GedaToolbar         *toolbar,
+                                                  GedaToolbarChildType type,
+                                                  GtkWidget           *widget,
+                                                  const char          *text,
+                                                  const char          *tooltip_text,
+                                                  const char          *tooltip_private_text,
+                                                  GtkWidget           *icon,
+                                                  GCallback            callback,
+                                                  void                *user_data);
 
 /* Simple button items */
 GtkWidget      *geda_toolbar_append_item         (GedaToolbar     *toolbar,

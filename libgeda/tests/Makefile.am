@@ -24,6 +24,7 @@ check_geda = \
 	test_toplevel
 
 check_math = \
+	test_math \
 	test_arc_math
 
 check_object = \

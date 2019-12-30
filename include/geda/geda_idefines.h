@@ -40,7 +40,7 @@
 #endif
 
 #ifndef NO_ERROR
-#  define NO_ERROR    0
+#  define NO_ERROR  0
 #endif
 
 #define BITS_BYTE   8
@@ -48,9 +48,9 @@
 #define BITS_DWORD  32
 
 /* These are for where status information goes */
-#define CONSOLE_WINDOW		0
-#define STDOUT_TTY			1
-#define BOTH_CONWIN_STDOUT	2
+#define CONSOLE_WINDOW     0
+#define STDOUT_TTY         1
+#define BOTH_CONWIN_STDOUT 2
 
 /*! \def DEFAULT_TEXT_SIZE  Default text size */
 #define DEFAULT_TEXT_SIZE   10

@@ -22,6 +22,11 @@
  * \brief Functions for working with angles
  */
 
+/** \defgroup math-angle-proc Math Procedures for Angles
+ * @{
+ * \brief Math Related Procedures for Angles
+ */
+
 #include "../../../config.h"
 
 #include <math.h>
@@ -87,3 +92,5 @@ int geda_math_angle_normalize (int angle)
 
   return angle;
 }
+
+/** @} endgroup math-angle-proc */

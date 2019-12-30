@@ -16,6 +16,171 @@
 
     * po/kh.po: Update Khmer translations.
 
+2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_picture.h: Add height and width to retain the as
+      loaded dimensions of pictures;
+
+    * src/geda/geda_picture.c: Add getters and setters functions:
+
+          * geda_picture_get_height
+          * geda_picture_set_height
+          * geda_picture_get_width
+          * geda_picture_set_width
+
+    * src/object/o_picture_object.c: Reverse terms in geda_picture_object_new
+      so that picture->ratio is not the quotient of two negative factor, and
+      set the new height and width members.
+
+2019-12-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math: Add Doxygen group:
+
+          * src/math/m_angle.c math-angle-proc
+          * src/math/m_arc.c   math-arc-proc
+          * src/math/m_box.c   math-box-proc
+
+    * src/math/m_bounds.c: Add brief Doxygen file tag.
+
+    * src/math/m_line.c: Update function wrapping.
+
+    * src/object/o_embed.c: Reformat documentation block.
+
+    * src/object/o_list.c: Add missing punctuations in documentation,
+      update geda_object_list_rotate parameter documentation.
+
+2019-11-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_arc_math.c: Add random checks for geda_math_arc_shortest_distance.
+      This should complete the tests for this module.
+
+    * tests/test_line_object.c: Add for loop to check_methods and random
+      starting points.
+
+    * tests/test_math.c: Add skelton module to check m_math.c.
+
+    * tests/test_object_list.c: Fix incorrect object reference in checks for
+      check_object_list_scale: object3 -> object6, and add check with for
+      scaling net object.
+
+2019-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_circle_object.c: Add Doxygen group geda-circle-object-proc.
+
+    * src/object/o_pin_object.c: Add Doxygen group geda-pin-object-proc.
+
+2019-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Revise geda_toplevel_remove_page to set
+      page_current to NULL if the page being removed was also page_current.
+
+2019-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Add function documentation.
+
+    * src/struct/s_page.c: Revise geda_struct_page_new to utilize
+      geda_toplevel_get_untitled_name.
+
+2019-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_toplevel.c: Add function geda_toplevel_get_untitled_name.
+
+2019-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/unit-tests/t0101-object-box.scm: Enhance check for object-ids.
+
+    * src/scheme/edascmhookproxy.c: Add is_a_edascm_hook_proxy documentation.
+
+    * src/scheme/edascmvaluetypes.c: Reformat documentation blocks.
+
+    * src/scheme/scheme_init.c: Call edascm_init_version in edascm_init_impl.
+
+    * src/scheme/scheme_make.c: Update edascm_init_make_object documentation.
+
+  ** src/scheme/scheme_object.c: Fix object-id SCM_ASSERT subr argument.
+
+    * src/scheme/scheme_version.c: Revise edascm_init_version to declare the
+      module as the "geda core version" module instead of "libgeda", which is
+      inconsistence with all other libgeda modules.
+
+2019-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/geda/object.scm: Add scheme interface:
+
+          * object-selectable?
+          * set-object-selectable!
+
+    * scheme/unit-tests/t0101-object-box.scm: Add check for object-id.
+
+    * scheme/unit-tests/t0102-object-circle.scm: Add check for object-id.
+
+    * src/scheme/scheme_object.c: Replace SCM_DEFINE macro with EDA_SCM_DEFINE
+      and export scheme_object_id during module initialization. Move function
+      object_line_info before object_set_line_x. Add API routines:
+
+          * scheme_object_selectable
+          * object_set_selectable_x
+
+2019-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/geda/object.scm: Reorder object types using alphabetical order.
+      Add public API object-id.
+
+    * src/scheme/edascmhookproxy.c: Add internal Doxygen tags for documented
+      static functions and reformat documentation blocks.
+
+    * src/scheme/scheme_deprecated.c: Include derivative line types in
+      validation list since these type do have valid pointer to line options.
+
+    * src/scheme/scheme_object.c: Add Scheme API "%object-id" implementation
+      procedure.
+
+2019-08-26 Wiley E. Hill <wileyhill@gmail.com
+
+    * scheme/geda/deprecated.scm: Remove re-exporting object character types.
+
+    * scheme/geda/object.scm: Re-export object character types.
+
+    * src/geda/geda_box.c: Add geda_box_get_position documentation.
+
+    * src/geda/geda_bus.c: Add function geda_bus_object_get_position.
+
+    * src/scheme/scheme_deprecated.c: Remove exporting definitions of object
+      character types.
+
+    * src/scheme/scheme_object.c: Export definitions of object character
+      types, they are still used in c code so why not use in scheme.
+
+    * tests/test_bus.c: Add check for geda_bus_get_position.
+
+2019-08-20 Wiley E. Hill <wileyhill@gmail.com
+
+    * include/libgeda/geda_page.h: Add attribute warn unused to function
+      geda_page_get_changed_refdes.
+
+    * src/geda/geda_box.c: Add function geda_box_object_get_position.
+
+    * src/scheme/scheme_deprecated.c: Validate the object type in scheme
+      API procedure get_line_width.
+
+    * tests/test_arc_math.c: Extend checks for geda_math_arc_includes_point.
+
+    * tests/test_box.c: Add check for geda_box_get_position.
+
+    * tests/test_net_object.c: Add check for geda_net_object_is_fully_
+      connected.
+
+    * tests/test_object_list.c: Check scaling line objects in list.
+
+    * tests/test_picture_object.c: Add check for geda_picture_object_get_
+      effective_ratio.
+
+2019-08-15 Wiley E. Hill <wileyhill@gmail.com
+
+    * tests/test_arc_math.c: Add checks for geda_math_arc_includes_point.
+
+    * tests/test_object_list.c: Check scaling circle objects in list.
+
 2019-08-06 Wiley E. Hill <wileyhill@gmail.com
 
     * src/scheme/edascmvaluetypes.c: Remove useless Doxygen \since tags,

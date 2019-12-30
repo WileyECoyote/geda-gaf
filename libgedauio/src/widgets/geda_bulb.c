@@ -215,9 +215,10 @@ static void geda_bulb_finalize (GObject *object)
   if (old_group_singleton) {
     g_signal_emit (old_group_singleton, group_changed_signal, 0);
   }
-
-  if (was_in_group) {
-    g_signal_emit (bulb, group_changed_signal, 0);
+  else {
+    if (was_in_group) {
+      g_signal_emit (bulb, group_changed_signal, 0);
+    }
   }
 
   g_object_unref (off_pixbuf);
@@ -828,7 +829,7 @@ static void geda_bulb_instance_init (GTypeInstance *instance, void *class)
  *  \par Function Description
  *  Function to retrieve a #GedaBulb Type identifier. When
  *  first called, the function registers a #GedaBulb in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaBulb and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -1106,9 +1107,9 @@ GtkWidget *geda_bulb_new_with_label_from_widget (GtkWidget  *group_member,
 /*!
  * \brief Create a New GedaBulb with a Mnemonic Label from group Member
  * \par Function Description
- *  Creates a new #GedaBulb object with a mnemonic label, the bulb is added to
- *  same group as \a group_member. The \a label can, and should, include an
- *  underscores in indicate the mnemonic for the widget.
+ *  Creates a new #GedaBulb object with a mnemonic label, the bulb is added
+ *  to same group as \a group_member. The \a label can, and should, include
+ *  an underscores in indicate the mnemonic for the widget.
  *
  * \param [in] group_member The group to use for the new #GedaBulb
  * \param [in] label        String with mnemonic to use use for the label
@@ -1161,9 +1162,9 @@ GSList *geda_bulb_get_group (GtkWidget *bulb)
  * \par Function Description
  *  Sets the group of the #GedaBulb object.
  *
- *  \note Setting the group does not change the interface layout in any way,
- *  if groups are changed the layout may need to be rearranged to reflect the
- *  changes.
+ * \note Setting the group does not change the interface layout in any way,
+ *       if groups are changed the layout may need to be rearranged to reflect
+ *       the changes.
  *
  * \param [in] widget The #GedaBulb is group is to be set
  * \param [in] group  The bulb group \a bulb is to join
@@ -1177,8 +1178,9 @@ void geda_bulb_set_group (GtkWidget *widget, GSList *group)
 
   g_return_if_fail (GEDA_IS_BULB (widget));
 
-  if (g_slist_find (group, widget))
+  if (g_slist_find (group, widget)) {
     return;
+  }
 
   bulb = (GedaBulb*)widget;
 
@@ -1255,7 +1257,7 @@ void geda_bulb_set_group (GtkWidget *widget, GSList *group)
  * \param [in] group_source The bulb whose group \a bulb is to join
  *
  *  example:
- *
+ * \code{.c}
  *   GedaBulb *bulb;
  *   GedaBulb *last_button;
  *
@@ -1266,6 +1268,7 @@ void geda_bulb_set_group (GtkWidget *widget, GSList *group)
  *        geda_bulb_join_group (bulb, last_button);
  *        last_button = bulb;
  *   }
+ * \endcode
  */
 void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
 {
@@ -1275,11 +1278,12 @@ void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
   if (group_source) {
 
     GSList *group;
+
     group = geda_bulb_get_group (group_source);
 
     if (!group) {
 
-      /* if we are not already part of a group we need to set up
+      /* if we are not already part of a group we need to setup
        * a new group and then get the newly created group */
       geda_bulb_set_group (group_source, NULL);
       group = geda_bulb_get_group (group_source);
@@ -1300,7 +1304,7 @@ void geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
  *  in other words, the bulb that is turned-on.
  *
  *  \note Group list are Zero based single-linked list, so the
- *  first bulb is 0 and the last is group length minus 1.
+ *        first bulb is 0 and the last is group length minus 1.
  *
  * \param [in] group_list The bulb group to be queried
  *
@@ -1322,14 +1326,16 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
 
     button = (GtkToggleButton*)g_slist_nth_data (group_list, index);
 
-    if (button == NULL)
+    if (button == NULL) {
       return -1;
+    }
 
     if (gtk_toggle_button_get_active (button) == TRUE) {
       active = index;
       break;
     }
   }
+
   /* new buttons are *prepended* to the list, so buttons added first
    * in the last positions in the list and using glist reverse
    * confuses gtk */
@@ -1374,6 +1380,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
       gtk_toggle_button_set_active (button, TRUE);
     }
   }
+
   return;
 }
 

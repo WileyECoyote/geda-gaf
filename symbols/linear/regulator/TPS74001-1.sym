@@ -1,0 +1,104 @@
+v 20150401 3
+B 300 300 1000 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1100 1200 8 10 1 1 0 0 1
+refdes=U?
+T 1100 1800 5 10 0 0 0 0 1
+device=TPS74001
+T 1100 2000 5 10 0 0 0 0 1
+description=Adjustable LDO Regulator with Dual Input Voltages, 1.5A
+P 1300 600 1600 600 1 0 1
+{
+T 1400 650 5 8 1 1 0 0 1
+pinnumber=1
+T 1400 650 5 8 0 1 0 0 1
+pinseq=1
+T 1245 595 3 8 1 1 0 6 1
+pinlabel=FB
+T 1395 495 5 8 0 1 0 0 1
+pintype=pas
+}
+P 0 600 300 600 1 0 0
+{
+T 150 650 5 8 1 1 0 6 1
+pinnumber=2
+T 150 650 5 8 0 1 180 2 1
+pinseq=2
+T 355 545 3 8 1 1 0 0 1
+pinlabel=BIAS
+T 255 495 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 0 900 300 900 1 0 0
+{
+T 150 950 5 8 1 1 0 6 1
+pinnumber=3
+T 150 950 5 8 0 1 180 2 1
+pinseq=3
+T 355 895 3 8 1 1 0 0 1
+pinlabel=IN
+T 345 795 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 1300 900 1600 900 1 0 1
+{
+T 1400 950 5 8 1 1 0 0 1
+pinnumber=4
+T 1400 950 5 8 0 1 0 0 1
+pinseq=4
+T 1245 895 3 8 1 1 0 6 1
+pinlabel=OUT
+T 1395 795 5 8 0 1 0 0 1
+pintype=out
+}
+P 500 300 500 0 1 0 1
+{
+T 450 100 5 8 1 1 0 6 1
+pinnumber=5
+T 450 100 5 8 0 1 0 6 1
+pinseq=5
+T 795 350 3 8 1 1 180 5 1
+pinlabel=GND
+T 605 350 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 700 300 700 0 1 0 1
+{
+T 650 100 5 8 1 1 0 6 1
+pinnumber=6
+T 650 100 5 8 0 1 0 6 1
+pinseq=6
+T 795 350 3 8 1 1 180 5 1
+pinlabel=GND
+T 605 350 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 900 300 900 0 1 0 1
+{
+T 850 100 5 8 1 1 0 6 1
+pinnumber=7
+T 850 100 5 8 0 1 0 6 1
+pinseq=7
+T 795 350 3 8 1 1 180 5 1
+pinlabel=GND
+T 1205 350 5 8 0 1 0 6 1
+pintype=pwr
+}
+P 1100 300 1100 0 1 0 1
+{
+T 1050 100 5 8 1 1 0 6 1
+pinnumber=8
+T 1050 100 5 8 0 1 0 6 1
+pinseq=8
+T 795 350 3 8 1 1 180 5 1
+pinlabel=GND
+T 1205 350 5 8 0 1 0 6 1
+pintype=pwr
+}
+T 1100 2400 9 10 0 0 0 0 1
+numslots=0
+T 1100 1400 5 10 0 0 0 0 1
+value=TPS74001
+T 1100 1600 5 10 0 0 0 0 1
+footprint=VSSOP-8
+T 1100 2200 5 10 0 0 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/tps740.pdf

@@ -50,7 +50,7 @@ enum {
   PROP_GROUP
 };
 
-static void geda_radio_menu_item_destroy        (GtkObject      *object);
+//static void geda_radio_menu_item_destroy        (GtkObject      *object);
 static void geda_radio_menu_item_activate       (GedaMenuItem   *menu_item);
 static void geda_radio_menu_item_set_property   (GObject        *object,
                                                  unsigned int    prop_id,
@@ -95,8 +95,9 @@ static void geda_radio_menu_item_activate (GedaMenuItem *menu_item)
       tmp_menu_item = tmp_list->data;
       tmp_list = tmp_list->next;
 
-      if (tmp_menu_item->active && (tmp_menu_item != check_menu_item))
+      if (tmp_menu_item->active && (tmp_menu_item != check_menu_item)) {
         break;
+      }
 
       tmp_menu_item = NULL;
     }
@@ -113,6 +114,7 @@ static void geda_radio_menu_item_activate (GedaMenuItem *menu_item)
     check_menu_item->active = !check_menu_item->active;
 
     tmp_list = radio_menu_item->group;
+
     while (tmp_list) {
 
       tmp_menu_item = tmp_list->data;
@@ -154,6 +156,7 @@ static void geda_radio_menu_item_set_property (GObject      *object,
         slist = NULL;
       geda_radio_menu_item_set_group (radio_menu_item, slist);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -184,8 +187,10 @@ static void geda_radio_menu_item_destroy (GtkObject *object)
 
   radio_menu_item->group = g_slist_remove (radio_menu_item->group,
                                            radio_menu_item);
-  if (radio_menu_item->group && !radio_menu_item->group->next)
+
+  if (radio_menu_item->group && !radio_menu_item->group->next) {
     old_group_singleton = radio_menu_item->group->data;
+  }
 
   tmp_list = radio_menu_item->group;
 
@@ -209,7 +214,15 @@ static void geda_radio_menu_item_destroy (GtkObject *object)
     g_signal_emit (radio_menu_item, group_changed_signal, 0);
   }
 
+#if GTK_MAJOR_VERSION < 3
+
   GTK_OBJECT_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
+
+#else
+
+  GTK_WIDGET_CLASS (geda_radio_menu_item_parent_class)->destroy (object);
+
+#endif
 }
 
 static void geda_radio_menu_item_finalize (GObject *object)
@@ -239,17 +252,33 @@ static void geda_radio_menu_item_finalize (GObject *object)
 static void geda_radio_menu_item_class_init(void *class, void *class_data)
 {
   GObjectClass      *gobject_class;
-  GtkObjectClass    *object_class;
   GedaMenuItemClass *menu_item_class;
   GParamSpec        *params;
 
   gobject_class   = G_OBJECT_CLASS (class);
-  object_class    = GTK_OBJECT_CLASS (class);
   menu_item_class = GEDA_MENU_ITEM_CLASS (class);
 
   gobject_class->finalize     = geda_radio_menu_item_finalize;
   gobject_class->set_property = geda_radio_menu_item_set_property;
   gobject_class->get_property = geda_radio_menu_item_get_property;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *object_class;
+
+  object_class = (GtkObjectClass*)class;
+
+  object_class->destroy = geda_radio_menu_item_destroy;
+
+#else
+
+  GtkWidgetClass *widget_class;
+
+  widget_class = (GtkWidgetClass*)class;
+
+  widget_class->destroy = geda_radio_menu_item_destroy;
+
+#endif
 
   /*!
    * property GedaRadioMenuItem::group
@@ -262,8 +291,6 @@ static void geda_radio_menu_item_class_init(void *class, void *class_data)
                                  G_PARAM_WRITABLE);
 
   g_object_class_install_property (gobject_class, PROP_GROUP, params);
-
-  object_class->destroy = geda_radio_menu_item_destroy;
 
   menu_item_class->activate = geda_radio_menu_item_activate;
 
@@ -316,7 +343,7 @@ static void geda_radio_menu_item_instance_init(GTypeInstance *instance, void *cl
  * \par Function Description
  *  Function to retrieve a GedaRadioMenuItemType identifier. When
  *  first called, the function registers a #GedaRadioMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaRadioMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -365,6 +392,7 @@ bool is_a_geda_radio_menu_item (GedaRadioMenuItem *radio_menu_item)
   if ((radio_menu_item != NULL) && (radio_menu_hash != NULL)) {
     return g_hash_table_lookup(radio_menu_hash, radio_menu_item) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -564,8 +592,9 @@ void geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
     /* remove and update the old group */
     old_group = g_slist_remove (radio_menu_item->group, radio_menu_item);
 
-    if (old_group && !old_group->next)
+    if (old_group && !old_group->next) {
       old_group_singleton = g_object_ref (old_group->data);
+    }
 
     for (iter = old_group; iter; iter = iter->next) {
 
@@ -610,7 +639,6 @@ void geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
   g_signal_emit (radio_menu_item, group_changed_signal, 0);
 
   if (old_group_singleton) {
-
     g_signal_emit (old_group_singleton, group_changed_signal, 0);
     g_object_unref (old_group_singleton);
   }

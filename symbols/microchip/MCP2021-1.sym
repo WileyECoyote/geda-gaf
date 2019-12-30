@@ -105,7 +105,7 @@ symversion=0.4
 T 400 2300 5 10 1 1 0 0 1
 value=MCP2021A
 T 400 3100 5 10 0 1 0 0 1
-mfr=microchip
+manufacturer=microchip
 T 400 3500 5 10 0 0 0 0 1
 dist-license=GPLv2
 T 400 3300 5 10 0 0 0 0 1

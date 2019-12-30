@@ -67,7 +67,7 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
 
   eda_cairo_line (cr, flags, END_NONE, wwidth, x1, y1, x1 + rdx, y1 + rdy);
 
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);;
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
 }
 
 /*!
@@ -108,9 +108,9 @@ static void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
  * \brief Ends the process of arc input.
  * \par Function Description
  *  The #o_arc_end4() function ends the process of the input of an arc.
- *  <B>start_angle</B> and <B>arc_sweep</B> are the start and end angle of the
- *  arc in degrees. The partial internal representation of the arc, i.e.
- *  the center and the radius of the arc, are converted in world units.
+ *  <B>start_angle</B> and <B>arc_sweep</B> are the start and end angle
+ *  of the arc in degrees. The partial internal representation of the arc,
+ *  i.e. the center and the radius of the arc, are converted in world units.
  *  A new object is created and linked to the object list.
  *
  * \param [in] w_current    The GschemToplevel object.

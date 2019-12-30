@@ -134,7 +134,7 @@ SCM edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
  * \brief Initialize the C closure procedures.
  * \par Function Description
  * Creates some Scheme values used for creating and working with C
- * closures.  Should only be called by edascm_init().
+ * closures, called by edascm_init().
  */
 void edascm_init_closure (void)
 {

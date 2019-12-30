@@ -81,7 +81,7 @@ int geda_circle_bounds(GedaObject *object)
 
   halfwidth = object->circle->line_options.line_width >> 1; /* divide by 2 */
 
-  /* This isn't strictly correct, but a 1st order approximation */
+  /* This is not strictly correct, but a 1st order approximation */
   object->left   = object->circle->center_x - object->circle->radius - halfwidth;
   object->top    = object->circle->center_y - object->circle->radius - halfwidth;
   object->right  = object->circle->center_x + object->circle->radius + halfwidth;
@@ -470,7 +470,7 @@ static void geda_circle_class_init(void *klass, void *class_data)
  * \brief Function to retrieve GedaCircle's Type identifier.
  * \par Function Description
  *  Function to retrieve a #GedaCircle Type identifier. When first called,
- *  the function registers a #GedaCircle in the GedaType system to obtain
+ *  the function registers a #GedaCircle in the GType system to obtain
  *  an identifier that uniquely itentifies a GedaCircle and returns the
  *  unsigned integer value. The retained value is returned on all
  *  Subsequent calls.

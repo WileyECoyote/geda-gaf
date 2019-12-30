@@ -38,7 +38,7 @@ symversion=0.1
 T 500 0 9 10 0 1 0 0 1
 footprint=0402
 T 500 1200 5 10 0 1 0 0 1
-mfr=Murata
+manufacturer=Murata
 T 500 400 5 10 1 1 0 0 1
 value=15nF
 T 500 1400 5 10 0 1 0 0 1

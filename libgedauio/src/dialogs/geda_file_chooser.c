@@ -44,7 +44,7 @@
 
 #include <geda_debug.h>
 
-#define ChooseClass GedaFileChooserClass
+#define ChooserClass GedaFileChooserClass
 
 /**
  * \brief GedaFileChooser - A File Chooser Dialog
@@ -109,10 +109,13 @@ static void FixGtkCrap(GtkWidget *widget, void *self)
 
 static void get_filter_button(GedaFileChooser *chooser)
 {
-  GList *children, *iter;
+  GList     *children, *iter;
+  GtkWidget *vbox;
+
+  vbox = gtk_dialog_get_content_area(GTK_DIALOG(chooser));
 
   /* Get all object inside the contents area of the dialog */
-  children = geda_container_get_children (GTK_DIALOG (chooser)->vbox);
+  children = geda_container_get_children (vbox);
 
   /* For each container in the contents area to call look for combo box */
   for (iter = children; iter; iter = iter->next) {
@@ -437,7 +440,7 @@ geda_file_chooser_class_init (void *class, void *data)
   GParamSpec     *params;
   GedaType        type;
 
-  ChooseClass    *chooser_class   = (ChooseClass*) class;
+  ChooserClass   *chooser_class   = (ChooserClass*) class;
   GObjectClass   *gobject_class   = (GObjectClass*) class;
   GtkWidgetClass *widget_class    = (GtkWidgetClass*) class;
 
@@ -545,16 +548,16 @@ geda_file_chooser_instance_init (GTypeInstance *instance, void *class)
   list_of_choosers = g_list_append(list_of_choosers, instance);
 }
 
-    /*! \brief Function to retrieve GedaFileChooser's Type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Function to retrieve GedaFileChooser's Type identifier
+ * \par Function Description
  *  Function to retrieve a #GedaFileChooser Type identifier. When
  *  first called, the function registers a #GedaFileChooser in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaFileChooser and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
- *  \return GedaType identifier associated with GedaFileChooser.
+ * \return GedaType identifier associated with GedaFileChooser.
  */
 GedaType geda_file_chooser_get_type (void)
 {
@@ -605,17 +608,15 @@ is_a_geda_file_chooser (GedaFileChooser *chooser)
   return FALSE;
 }
 
-/*! \brief Instantiate a New Geda File Chooser Dialog
- *  to provide a GedaFileChooser equivelant of the convenience function
- *  gtk_file_chooser_dialog_new(...)
- *
- *  \par Function Description
+/*!
+ * \brief Instantiate a New Geda File Chooser Dialog
+ * \par Function Description
  *  Convenience function which creates a GedaFileChooser with buttons and options.
  *
- *  \param [in]  parent         The GtkWindow Widget which will parent this dialog
- *  \param [in]  chooser_action The #FileChooserAction to use when setting up the dialog
+ * \param [in]  parent         The GtkWindow Widget which will parent this dialog
+ * \param [in]  chooser_action The #FileChooserAction to use when setting up the dialog
  *
- *  \return  The GedaFileChooser created.
+ * \return  The GedaFileChooser created.
  */
 GtkWidget*
 geda_file_chooser_new (void *parent, FileChooserAction chooser_action)
@@ -863,6 +864,7 @@ char *geda_file_chooser_get_filename(GtkWidget *widget)
     BUG_MSG ("Operative is not a GtkFileChooser");
     name = NULL;
   }
+
   return name;
 }
 
@@ -950,6 +952,7 @@ char *geda_file_chooser_get_current_folder(GtkWidget *widget)
     BUG_MSG ("Operative is not a GtkFileChooser");
     folder = NULL;
   }
+
   return folder;
 }
 
@@ -1015,6 +1018,7 @@ GtkWidget *geda_file_chooser_get_extra_widget(GtkWidget *hideous)
     BUG_MSG ("Operative is not a GtkFileChooser");
     extra = NULL;
   }
+
   return extra;
 }
 
@@ -1050,6 +1054,6 @@ void geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
   }
 }
 
-#undef ChooseClass
+#undef ChooserClass
 
 /** @} end group GedaFileChooser */

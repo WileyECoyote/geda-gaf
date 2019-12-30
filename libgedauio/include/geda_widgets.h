@@ -28,6 +28,8 @@
 #ifndef __GEDA_WIDGETS_H__
 #define __GEDA_WIDGETS_H__
 
+#include "geda_gtk_compat.h"
+
 #include "geda_accel_label.h"
 #include "geda_action.h"
 #include "geda_bulb.h"

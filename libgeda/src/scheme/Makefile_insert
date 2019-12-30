@@ -10,8 +10,8 @@ libgeda_la_SOURCES += \
 	scheme/scheme_complex.c \
 	scheme/scheme_config.c \
 	scheme/scheme_deprecated.c \
-	scheme/scheme_log.c \
 	scheme/scheme_init.c \
+	scheme/scheme_log.c \
 	scheme/scheme_make.c \
 	scheme/scheme_object.c \
 	scheme/scheme_os.c \

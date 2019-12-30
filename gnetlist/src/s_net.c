@@ -479,8 +479,11 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
             }
             else {
               if (!quiet_mode) {
+
+                const char *msg = _("Found Duplicate net names, renaming");
+
                 fprintf(stderr,
-                      _("\nFound Duplicate net names, renaming [%s] to [%s]\n"), name, net_name);
+                        "\n%s <%s> %s <%s>\n", msg, name, _("to"), net_name);
               }
             }
           }
@@ -488,8 +491,10 @@ char *s_net_name_search(GedaToplevel *pr_current, NET *net_head)
           if (!s_rename_search (net_name, name, TRUE)) {
 
             if (verbose_mode) {
-              const char *msg = _("Add rename record for [%s] to [%s]\n");
-              printf(msg, net_name, name);
+
+              const char *msg = _("Add rename record for");
+
+              printf("%s <%s> %s <%s>\n", msg, net_name, _("to"), name);
             }
             s_rename_add(net_name, name);
           }
@@ -626,10 +631,9 @@ char *s_net_name (GedaToplevel *pr_current, NETLIST *netlist_head,
     }
   }
   else {
-    fprintf(stderr, _("Increase number of unnamed nets (s_net.c)\n"));
+    fprintf(stderr, "Increase the number of unnamed nets (s_net.c)\n");
     return NULL;
   }
 
   return string;
-
 }

@@ -100,10 +100,10 @@ EDA_SCM_DEFINE (os_sys_config_dirs, "%sys-config-dirs", 0, 0, 0, (),
 /*!
  * \brief Get System Data directory directories.
  * \par Function Description
- * Returns a list of directories to be searched for system data.
+ *  Returns a list of directories to be searched for system data.
  *
  * \note Scheme API: Implements the %sys-data-dirs procedure in the
- * (geda core os) module.
+ *       (geda core os) module.
  *
  * \return a Scheme list of strings.
  */
@@ -120,10 +120,10 @@ EDA_SCM_DEFINE (os_sys_data_dirs, "%sys-data-dirs", 0, 0, 0, (),
 /*!
  * \brief Get User Configuration directory.
  * \par Function Description
- * Returns a list of directories to be searched for user configuration.
+ *  Returns a list of directories to be searched for user configuration.
  *
  * \note Scheme API: Implements the %user-config-dir procedure in the
- * (geda core os) module.
+ *       (geda core os) module.
  *
  * \return a Scheme list of 1 string.
  */
@@ -143,7 +143,7 @@ EDA_SCM_DEFINE (os_user_config_dir, "%user-config-dir", 0, 0, 0, (),
  * \note gEDA stores user data in the same directory as user config
  *
  * \note Scheme API: Implements the %user-data-dir procedure in the
- * (geda core os) module.
+ *      (geda core os) module.
  *
  * \return a Scheme list of 1 string.
  */
@@ -158,8 +158,8 @@ EDA_SCM_DEFINE (os_user_data_dir, "%user-data-dir", 0, 0, 0, (),
 /*!
  * \brief Create the (geda core os) Scheme module.
  * \par Function Description
- * Defines procedures in the (geda core os) module. The module can be
- * accessed using (use-modules (geda core os)).
+ *  Defines procedures in the (geda core os) module. The module can be
+ *  accessed using (use-modules (geda core os)).
  */
 static void
 init_module_geda_core_os (void *nothing)
@@ -178,8 +178,8 @@ init_module_geda_core_os (void *nothing)
 /*!
  * \brief Initialize the host platform support procedures.
  * \par Function Description
- * Registers some Scheme procedures that provide cross-platform
- * support. Should only be called by edascm_init().
+ *  Registers some Scheme procedures that provide cross-platform
+ *  support. Should only be called by edascm_init().
  */
 void
 edascm_init_os (void)

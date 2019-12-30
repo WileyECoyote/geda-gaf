@@ -45,6 +45,7 @@ void geda_tree_copy_iter(GtkTreeIter *source, GtkTreeIter *target)
   target->user_data   = source->user_data;
   target->user_data2  = source->user_data2;
   target->user_data3  = source->user_data3;
+
   return;
 }
 
@@ -59,10 +60,13 @@ bool geda_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
     bool ret;
 
     path = gtk_tree_model_get_path (tree_model, iter);
-    ret = gtk_tree_path_prev (path);
-    if (ret != FALSE)
+    ret  = gtk_tree_path_prev (path);
+
+    if (ret != FALSE) {
       gtk_tree_model_get_iter (tree_model, iter, path);
+    }
 
     gtk_tree_path_free (path);
+
     return ret;
 }

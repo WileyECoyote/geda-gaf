@@ -41,10 +41,10 @@ msgstr "Obter ou definir o símbolo padrão para resistores\n"
 msgid "Get or Set the default titleblock symbol\n"
 msgstr "Obter ou definir o símbolo de bloco de título padrão\n"
 
+# Get or Set the default transformer symbol
 #: libgedathon/include/functions.h:61
-#, fuzzy
 msgid "Get or Set the default transformer symbol\n"
-msgstr "Obter ou definir o símbolo de bloco de título padrão\n"
+msgstr "Obter ou definir o símbolo do transformador padrão\n"
 
 #: libgedathon/include/geda_module.h:53
 msgid "Close all files and deinitialize the library."

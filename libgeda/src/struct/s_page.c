@@ -178,7 +178,7 @@ Page *geda_struct_page_new (GedaToplevel *toplevel, const char *filename)
     }
   }
   else {
-    page->filename = geda_utility_string_strdup (toplevel->untitled_name);
+    page->filename = geda_toplevel_get_untitled_name (toplevel);
   }
 
   return geda_struct_page_new_common(toplevel, page);
@@ -568,7 +568,7 @@ const char *geda_struct_page_get_file_extension (Page *page)
  *
  * \returns Pointer to selection GedaList of the page
  *
- * \sa geda_page_get_selection_list
+ * \sa geda_page_get_selection_list geda_toplevel_struct_get_selection
  */
 SELECTION *geda_struct_page_get_selection (Page *page)
 {

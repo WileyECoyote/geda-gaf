@@ -32,9 +32,16 @@
   ; Optional arguments
   #:use-module (ice-9 optargs)
 
-  #:use-module (srfi srfi-1))
+  #:use-module (srfi srfi-1)
+
+
+  #:re-export (OBJ_ARC OBJ_BOX OBJ_BUS OBJ_CIRCLE OBJ_COMPLEX
+               OBJ_LINE OBJ_NET OBJ_PATH OBJ_PICTURE OBJ_PIN
+               OBJ_PLACEHOLDER OBJ_TEXT)
+)
 
 (define-public object-type %object-type)
+(define-public object-id %object-id)
 (define-public object? %object?)
 
 (define-public (object-type? x type)
@@ -50,6 +57,10 @@
 (define-public object-connections %object-connections)
 
 (define-public object-component %object-complex)
+
+(define-public object-selectable? %object-selectable?)
+
+(define-public set-object-selectable! %set-object-selectable!)
 
 ;;;; Lines
 
@@ -273,6 +284,7 @@
 )
 
 ;;; Pictures
+
 (define-public (picture? x)
   (object-type? x 'picture))
 
@@ -440,6 +452,7 @@
 (define-public set-object-fill! %set-object-fill!)
 
 ;;;; GedaObject bounds
+
 ;;The bounds is returned in the form ((left . top) . (right . bottom))
 (define-public object-bounds %object-bounds)
 
@@ -457,7 +470,7 @@
                (cons (max (cadr a) (cadr b))    ; right
                      (min (cddr a) (cddr b)))) ; bottom
 
-         ;; return whichever isn't #f
+         ;; return whichever is not #f
          (or a b)))
    #f ;; default
    bounds))

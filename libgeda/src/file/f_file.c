@@ -370,7 +370,7 @@ int geda_file_open(GedaToplevel *toplevel, Page *page, const char *filename, GEr
 }
 
 /*!
- * \brief Retreive the File Open Flags from Toplevel
+ * \brief Retrieve the File Open Flags from Toplevel
  * \par Function Description
  *  Returns the open_flags without checking toplevel.
  *

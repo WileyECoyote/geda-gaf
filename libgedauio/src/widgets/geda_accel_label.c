@@ -118,31 +118,6 @@ static void *geda_accel_label_parent_class = NULL;
 
 static GHashTable *accel_label_hash = NULL;
 
-
-bool geda_accel_label_refetch (GedaAccelLabel *accel_label)
-{
-  bool enable_accels;
-
-  g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), FALSE);
-
-  g_object_get (gtk_widget_get_settings ((GtkWidget*)accel_label),
-                "gtk-enable-accels", &enable_accels,
-                NULL);
-
-  if (!enable_accels || accel_label->accel_string == NULL) {
-
-    if (accel_label->accel_string != NULL) {
-      g_free (accel_label->accel_string);
-    }
-
-    accel_label->accel_string = geda_strdup ("");
-  }
-
-  gtk_widget_queue_resize ((GtkWidget*)accel_label);
-
-  return FALSE;
-}
-
 static void geda_accel_label_reset (GedaAccelLabel *accel_label)
 {
   if (accel_label->accel_string) {
@@ -250,6 +225,7 @@ static void geda_accel_label_get_property (GObject      *object,
     }
 }
 
+/*! \internal gobject_class->dispose */
 static void geda_accel_label_dispose (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
@@ -261,6 +237,7 @@ static void geda_accel_label_dispose (GObject *object)
   ((GObjectClass*)geda_accel_label_parent_class)->dispose (object);
 }
 
+/*! \internal gobject_class->finalize */
 static void geda_accel_label_finalize (GObject *object)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (object);
@@ -306,16 +283,7 @@ static void geda_accel_label_set_accel_string_width (GedaAccelLabel *accel_label
 #endif
 }
 
-unsigned int geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
-{
-  g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), 0);
-
-  geda_accel_label_set_accel_string_width (accel_label);
-
-  return (accel_label->accel_string_width +
-         (accel_label->accel_string_width ? accel_label->accel_padding : 0));
-}
-
+/*! \internal widget_class->size_request */
 static void geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GedaAccelLabel *accel_label = GEDA_ACCEL_LABEL (widget);
@@ -325,6 +293,10 @@ static void geda_accel_label_size_request (GtkWidget *widget, GtkRequisition *re
   geda_accel_label_set_accel_string_width (accel_label);
 }
 
+/* Common to:
+ * (Gtk-2) geda_accel_label_expose_event
+ * (Gtk-3) geda_accel_label_draw
+ */
 static int get_first_baseline (PangoLayout *layout)
 {
   PangoLayoutIter *iter;
@@ -444,74 +416,74 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
   if (allocation->width >= requisition.width + ac_width) {
 
-      GtkTextDirection direction;
-      GtkStyleContext *context;
-      PangoLayout     *label_layout;
-      PangoLayout     *accel_layout;
+    GtkTextDirection direction;
+    GtkStyleContext *context;
+    PangoLayout     *label_layout;
+    PangoLayout     *accel_layout;
 
-      int x;
-      int y;
-      int xpad;
+    int x;
+    int y;
+    int xpad;
 
-      context      = gtk_widget_get_style_context (widget);
-      direction    = gtk_widget_get_direction (widget);
-      label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
+    context      = gtk_widget_get_style_context (widget);
+    direction    = gtk_widget_get_direction (widget);
+    label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
 
-      cairo_save (cr);
+    cairo_save (cr);
 
-      /* XXX: Mad hack: We modify the label's width so it renders
-       * properly in its draw function that we chain to. */
-      if (direction == GTK_TEXT_DIR_RTL) {
-        cairo_translate (cr, ac_width, 0);
-      }
+    /* XXX: Mad hack: We modify the label's width so it renders
+     * properly in its draw function that we chain to. */
+    if (direction == GTK_TEXT_DIR_RTL) {
+      cairo_translate (cr, ac_width, 0);
+    }
 
-      if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
-        int width = pango_layout_get_width (label_layout);
-        pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
-      }
+    if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
+      int width = pango_layout_get_width (label_layout);
+      pango_layout_set_width (label_layout, width - ac_width * PANGO_SCALE);
+    }
 
-      allocation->width -= ac_width;
+    allocation->width -= ac_width;
 
-      gtk_widget_set_allocation (widget, &allocation);
+    gtk_widget_set_allocation (widget, &allocation);
 
-      if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
-        ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
-      }
+    if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
+      ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
+    }
 
-      allocation->width += ac_width;
-      gtk_widget_set_allocation (widget, &allocation);
+    allocation->width += ac_width;
+    gtk_widget_set_allocation (widget, &allocation);
 
-      if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
-        int width = pango_layout_get_width (label_layout);
-        pango_layout_set_width (label_layout, width + ac_width * PANGO_SCALE);
-      }
+    if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
+      int width = pango_layout_get_width (label_layout);
+      pango_layout_set_width (label_layout, width + ac_width * PANGO_SCALE);
+    }
 
-      cairo_restore (cr);
+    cairo_restore (cr);
 
-      gtk_misc_get_padding ((GtkMisc*)accel_label, &xpad, NULL);
+    gtk_misc_get_padding ((GtkMisc*)accel_label, &xpad, NULL);
 
-      if (direction == GTK_TEXT_DIR_RTL) {
-        x = xpad;
-      }
-      else {
-        x = gtk_widget_get_allocated_width (widget) - xpad - ac_width;
-      }
+    if (direction == GTK_TEXT_DIR_RTL) {
+      x = xpad;
+    }
+    else {
+      x = gtk_widget_get_allocated_width (widget) - xpad - ac_width;
+    }
 
-      geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
+    geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
 
-      const char *string = geda_accel_label_get_string (accel_label);
+    const char *string = geda_accel_label_get_string (accel_label);
 
-      accel_layout = gtk_widget_create_pango_layout (widget, string);
+    accel_layout = gtk_widget_create_pango_layout (widget, string);
 
-      y += get_first_baseline (label_layout) - get_first_baseline (accel_layout);
+    y += get_first_baseline (label_layout) - get_first_baseline (accel_layout);
 
-      gtk_style_context_save (context);
-      gtk_style_context_add_class (context, GTK_STYLE_CLASS_ACCELERATOR);
+    gtk_style_context_save (context);
+    gtk_style_context_add_class (context, GTK_STYLE_CLASS_ACCELERATOR);
 
-      gtk_render_layout (context, cr, x, y, accel_layout);
-      gtk_style_context_restore (context);
+    gtk_render_layout (context, cr, x, y, accel_layout);
+    gtk_style_context_restore (context);
 
-      g_object_unref (accel_layout);
+    g_object_unref (accel_layout);
   }
   else if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
     ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
@@ -519,64 +491,8 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
   return FALSE;
 }
+
 #endif
-
-/* Underscores in key names are better displayed as spaces
- * E.g., Page_Up should be "Page Up"
- */
-static void substitute_underscores (char *str)
-{
-  char *p;
-
-  for (p = str; *p; p++)
-    if (*p == '_')
-      *p = ' ';
-}
-
-/*!
- * \brief Get the Accelerator String from a GedaAccelLabel
- * \par Function Description
- *  This function returns the accelerator string for the
- *  accelerator label.
- *
- * \param accel_label  A #GedaAccelLabel object
- *
- * \returns pointer accelerator string.
- */
-const char *geda_accel_label_get_accel_string (GedaAccelLabel *accel_label)
-{
-  g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), NULL);
-
-  return accel_label->accel_string;
-}
-
-/*!
- * \brief Set Accelerator String for a GedaAccelLabel
- * \par Function Description
- *  This function Sets the accelerator string for this accelerator label.
- *
- * \param accel_label  A #GedaAccelLabel object
- * \param accel_string Pointer accelerator string.
- */
-void geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
-                                        const char     *accel_string)
-{
-  g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
-
-  if (accel_label->accel_string) {
-    g_free (accel_label->accel_string);
-  }
-
-  if (accel_string) {
-    accel_label->accel_string = geda_strdup (accel_string);
-    substitute_underscores (accel_label->accel_string);
-  }
-  else {
-    accel_label->accel_string = NULL;
-  }
-
-  GEDA_OBJECT_NOTIFY (accel_label, "accel-string");
-}
 
 /*!
  * \brief GedaAccelLabel Type Class Initializer
@@ -659,7 +575,7 @@ static void geda_accel_label_instance_init (GTypeInstance *instance, void *g_cla
  * \par Function Description
  *  Function to retrieve a #GedaAccelLabel Type identifier. When
  *  first called, the function registers a #GedaAccelLabel in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaAccelLabel and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -734,52 +650,6 @@ GtkWidget *geda_accel_label_new (const char *string)
 }
 
 /*!
- * \brief Set the GedaAccelLabel Closure.
- * \par Function Description
- *  Sets the closure to be monitored by this accelerator label. The closure
- *  must be connected to an accelerator group; see gtk_accel_group_connect().
- *
- * \param [in] accel_label   a GedaAccelLabel
- * \param [in] accel_closure the closure to monitor for accelerator changes.
- */
-void geda_accel_label_set_accel_closure (GedaAccelLabel *accel_label,
-                                         GClosure       *accel_closure)
-{
-  g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
-
-  if (accel_closure) {
-    g_return_if_fail (gtk_accel_group_from_accel_closure (accel_closure) != NULL);
-  }
-
-  if (accel_closure != accel_label->accel_closure) {
-
-    if (accel_label->accel_closure) {
-
-      g_signal_handlers_disconnect_by_func (accel_label->accel_group,
-                                            check_accel_changed,
-                                            accel_label);
-      accel_label->accel_group = NULL;
-      g_closure_unref (accel_label->accel_closure);
-    }
-
-    accel_label->accel_closure = accel_closure;
-
-    if (accel_closure) {
-
-      g_closure_ref (accel_closure);
-      accel_label->accel_group = gtk_accel_group_from_accel_closure (accel_closure);
-      g_signal_connect_object (accel_label->accel_group, "accel-changed",
-                               G_CALLBACK (check_accel_changed),
-                               accel_label, 0);
-    }
-
-    geda_accel_label_reset (accel_label);
-
-    GEDA_OBJECT_NOTIFY (accel_label, "accel-closure");
-  }
-}
-
-/*!
  * \brief Retrieve the GedaAccelLabel widget
  * \par Function Description
  *  Returns the widget monitored by the accelerator label.
@@ -837,6 +707,160 @@ void geda_accel_label_set_accel_widget (GedaAccelLabel *accel_label,
     }
 
     GEDA_OBJECT_NOTIFY (accel_label, "accel-widget");
+  }
+}
+
+/*!
+ * \brief Get the Width of a GedaAccelLabel
+ * \par Function Description
+ *  Returns the width of the accel_label string in pixels + padding or
+ *  zero if the string is has no width, e.g. an empty string.
+ */
+unsigned int geda_accel_label_get_accel_width (GedaAccelLabel *accel_label)
+{
+  g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), 0);
+
+  geda_accel_label_set_accel_string_width (accel_label);
+
+  return (accel_label->accel_string_width +
+         (accel_label->accel_string_width ? accel_label->accel_padding : 0));
+}
+
+/* Underscores in key names are better displayed as spaces
+ * E.g., Page_Up should be "Page Up"
+ */
+static void substitute_underscores (char *str)
+{
+  char *p;
+
+  for (p = str; *p; p++)
+    if (*p == '_')
+      *p = ' ';
+}
+
+/*!
+ * \brief Get the Accelerator String from a GedaAccelLabel
+ * \par Function Description
+ *  This function returns the accelerator string for the
+ *  accelerator label.
+ *
+ * \param accel_label  A #GedaAccelLabel object
+ *
+ * \returns pointer accelerator string.
+ */
+const char *geda_accel_label_get_accel_string (GedaAccelLabel *accel_label)
+{
+  g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), NULL);
+
+  return accel_label->accel_string;
+}
+
+/*!
+ * \brief Set Accelerator String for a GedaAccelLabel
+ * \par Function Description
+ *  This function Sets the accelerator string for this accelerator label.
+ *
+ * \param accel_label  A #GedaAccelLabel object
+ * \param accel_string Pointer accelerator string.
+ */
+void geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
+                                        const char     *accel_string)
+{
+  g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
+
+  if (accel_label->accel_string) {
+    g_free (accel_label->accel_string);
+  }
+
+  if (accel_string) {
+    accel_label->accel_string = geda_strdup (accel_string);
+    substitute_underscores (accel_label->accel_string);
+  }
+  else {
+    accel_label->accel_string = NULL;
+  }
+
+  GEDA_OBJECT_NOTIFY (accel_label, "accel-string");
+}
+
+/*!
+ * \brief Reset Accelerator String if not enabled
+ * \par Function Description
+ *  Ensures the string representing the accelerator keys is an empty
+ *  string if enable-accels is not set. If enable-accels are enabled
+ *  then this function does virtually nothing.
+ *
+ * \param accel_label  A #GedaAccelLabel object
+ *
+ * \retval FALSE
+ */
+bool geda_accel_label_refetch (GedaAccelLabel *accel_label)
+{
+  bool enable_accels;
+
+  g_return_val_if_fail (GEDA_IS_ACCEL_LABEL (accel_label), FALSE);
+
+  g_object_get (gtk_widget_get_settings ((GtkWidget*)accel_label),
+                "gtk-enable-accels", &enable_accels,
+                NULL);
+
+  if (!enable_accels || accel_label->accel_string == NULL) {
+
+    if (accel_label->accel_string != NULL) {
+      g_free (accel_label->accel_string);
+    }
+
+    accel_label->accel_string = geda_strdup ("");
+  }
+
+  gtk_widget_queue_resize ((GtkWidget*)accel_label);
+
+  return FALSE;
+}
+
+/*!
+ * \brief Set the GedaAccelLabel Closure.
+ * \par Function Description
+ *  Sets the closure to be monitored by this accelerator label. The closure
+ *  must be connected to an accelerator group; see gtk_accel_group_connect().
+ *
+ * \param [in] accel_label   a GedaAccelLabel
+ * \param [in] accel_closure the closure to monitor for accelerator changes.
+ */
+void geda_accel_label_set_accel_closure (GedaAccelLabel *accel_label,
+                                         GClosure       *accel_closure)
+{
+  g_return_if_fail (GEDA_IS_ACCEL_LABEL (accel_label));
+
+  if (accel_closure) {
+    g_return_if_fail (gtk_accel_group_from_accel_closure (accel_closure) != NULL);
+  }
+
+  if (accel_closure != accel_label->accel_closure) {
+
+    if (accel_label->accel_closure) {
+
+      g_signal_handlers_disconnect_by_func (accel_label->accel_group,
+                                            check_accel_changed,
+                                            accel_label);
+      accel_label->accel_group = NULL;
+      g_closure_unref (accel_label->accel_closure);
+    }
+
+    accel_label->accel_closure = accel_closure;
+
+    if (accel_closure) {
+
+      g_closure_ref (accel_closure);
+      accel_label->accel_group = gtk_accel_group_from_accel_closure (accel_closure);
+      g_signal_connect_object (accel_label->accel_group, "accel-changed",
+                               G_CALLBACK (check_accel_changed),
+                               accel_label, 0);
+    }
+
+    geda_accel_label_reset (accel_label);
+
+    GEDA_OBJECT_NOTIFY (accel_label, "accel-closure");
   }
 }
 

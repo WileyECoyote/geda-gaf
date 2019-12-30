@@ -32,7 +32,7 @@
 #include <geda_debug.h>
 
 /** \defgroup scrollbars-module Scrollbars Module
- *  @{\brief This group contains functions to the scrollbars
+ *  @{\brief This group contains functions for the scrollbars
  *    \ingroup main-window
  */
 
@@ -70,29 +70,24 @@ x_hscrollbar_idle_update(GschemToplevel *w_current)
 
   if (w_current->h_scrollbar) {
 
-  hadjustment = gtk_range_get_adjustment (GTK_RANGE (w_current->h_scrollbar));
+    hadjustment = gtk_range_get_adjustment (GTK_RANGE (w_current->h_scrollbar));
 
-  hadjustment->value = toplevel->page_current->left;
+    hadjustment->value = toplevel->page_current->left;
 
-  hadjustment->page_size = fabs(toplevel->page_current->right -
-                                toplevel->page_current->left);
+    hadjustment->page_size = fabs(toplevel->page_current->right -
+    toplevel->page_current->left);
 
-  hadjustment->page_increment = hadjustment->page_size - 100.0;
-
-#if DEBUG
-  printf("H %f %f\n", hadjustment->lower, hadjustment->upper);
-  printf("Hp %f\n", hadjustment->page_size);
-#endif
-
-  g_signal_emit_by_name(G_OBJECT(hadjustment), "changed");
-  g_signal_emit_by_name(G_OBJECT(hadjustment), "value_changed");
-  }
+    hadjustment->page_increment = hadjustment->page_size - 100.0;
 
 #if DEBUG
-  else {
-    BUG_MSG("Bad pointer, w_current->h_scrollbar == NULL");
-  }
+    printf("H %f %f\n", hadjustment->lower, hadjustment->upper);
+    printf("Hp %f\n", hadjustment->page_size);
 #endif
+
+    g_signal_emit_by_name(G_OBJECT(hadjustment), "changed");
+    g_signal_emit_by_name(G_OBJECT(hadjustment), "value_changed");
+  }
+
 
   return FALSE;
 }
@@ -161,11 +156,7 @@ x_vscrollbar_idle_update(GschemToplevel *w_current)
     g_signal_emit_by_name(G_OBJECT(vadjustment), "changed");
     g_signal_emit_by_name(G_OBJECT(vadjustment), "value_changed");
   }
-#if DEBUG
-  else {
-    BUG_MSG("Bad pointer, w_current->v_scrollbar = NULL");
-  }
-#endif
+
   return FALSE;
 }
 

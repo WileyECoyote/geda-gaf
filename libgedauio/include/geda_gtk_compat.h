@@ -42,6 +42,18 @@
 /*! \def geda_adjustment_new Gtk < 3 oddly returns a GtkObject */
 #define geda_adjustment_new (void*)gtk_adjustment_new
 
+#ifndef GtkTooltips
+#define GtkTooltips void
+#endif
+
+#ifndef GtkNotebookPage
+#define GtkNotebookPage GtkWidget
+#endif
+
+#ifndef gdk_cursor_destroy
+#define gdk_cursor_destroy gdk_cursor_unref
+#endif
+
 #if !GTK_CHECK_VERSION(3, 0, 0)
 
 /* Map GtkStateFlags to GtkStateType */
@@ -150,20 +162,25 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def gtk_widget_get_allocated_width Not in Gtk < 3 */
 #define gtk_widget_get_allocated_width(widget) (((GtkWidget*) (widget))->allocation.width)
 
+/*! \def gtk_dialog_get_content_area Not in Gtk < 3 */
+#define gtk_dialog_get_content_area(dialog) (GTK_DIALOG(dialog)->vbox)
+
 /*! \def gtk_widget_reset_style Not in Gtk < 3 */
 #define gtk_widget_reset_style gtk_widget_reset_rc_styles
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
-/*! \def geda_get_widget_allocation Get Pointer to Allocation */
+/*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk < 3 */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
 
 /*! \def geda_get_widget_parent Get parent from widget Gtk < 3 */
 #define geda_get_widget_parent(w) (void*)((GtkWidget*)w)->parent
 
+/*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk < 3 */
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
+/*! \def geda_get_widget_window Get Pointer to window  Gtk < 3 */
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
 
 #define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
@@ -172,17 +189,23 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #else /* GTK >= 3 */
 
+#define GtkObject GtkWidget
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
 
+/*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk >= 3 */
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
 
+/*! \def geda_get_widget_parent Get parent from widget Gtk >= 3 */
 #define geda_get_widget_parent(w) gtk_widget_get_parent (GTK_WIDGET(w))
 
+/*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk >= 3 */
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
 
+/*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
 #define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))
 
 /* Gtk[VH]Box */

@@ -1,3 +1,79 @@
+2019-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edapangorenderer.c: Replace g_new with g_malloc in
+      eda_pango_attr_overbar_new. Revise eda_is_pango_attr_overbar
+      to validate that the argument pointer is not NULL. Add
+      function documentation for:
+
+            * eda_is_pango_attr_overbar
+            * eda_pango_parse_overbars
+
+    * src/edarenderer.c: Revise eda_renderer_default_get_user_bounds
+      to returns the bounds of non-text object by calling their internal
+      virtual bound functions and transferring the results, and update
+      the function documentation. Also update the documentation for
+
+            * eda_renderer_get_text_marker_size
+            * eda_renderer_set_text_marker_size
+
+2019-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacairo.1.in: Add documentation for properties:
+
+            * "grips-stroke"
+            * "grips-fill"
+            * "circle-grip-quadrant"
+
+    * src/edarenderer.c: Add function documentation:
+
+            * eda_renderer_get_user_bounds
+            * eda_renderer_draw_cues
+
+2019-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/libgedacairo.1.in: Add documentation for properties:
+
+            * "junction-color"
+            * "junction-size"
+            * "net-endpoint-color"
+            * "text-marker-color"
+            * "text-marker-size"
+            * "text-marker-threshold"
+            * "draw-grip"
+
+2019-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edapangorenderer.c: Add internal function documentation:
+
+            * eda_pango_attr_overbar_copy
+            * eda_pango_attr_overbar_compare
+
+2019-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edapangorenderer.c: Add function documentation:
+
+            * eda_pango_renderer_new
+            * eda_pango_renderer_update
+
+2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Reformat Doxygen documentation.
+
+    * src/edarenderer.c: Add function documentation:
+
+            * eda_renderer_default_get_user_bounds
+            * eda_renderer_get_text_user_bounds
+
+2019-08-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Add Doxygen templates as todos.
+
+2019-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Document eda_cairo_arc parameters.
+
+    * src/edarenderer.c: Reformat Doxygen documentation.
+
 2019-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c: Add function:

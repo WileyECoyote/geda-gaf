@@ -295,7 +295,7 @@ void i_command_get_action_list(GList** list)
 {
   int i;
 
-  for (i = 1; i < LAST_ACTION; i++)
+  for (i = 1; i <= LAST_ACTION; i++)
     *list = g_list_prepend(*list, command_struc[i].name);
   return;
 }
@@ -307,10 +307,10 @@ const char *i_command_get_action_icon (const char *command)
 
   /* Hack for buffer */
   if (strstr(command, "buffer-copy") != 0) {
-    icon_id = command_struc[cmd_do_cut_clip].icon_id;
-  }
-  if (strstr(command, "buffer-cut") != 0) {
     icon_id = command_struc[cmd_do_copy_clip].icon_id;
+  }
+  else if (strstr(command, "buffer-cut") != 0) {
+    icon_id = command_struc[cmd_do_cut_clip].icon_id;
   }
   else if (strstr(command, "buffer-paste") != 0) {
     icon_id = command_struc[cmd_do_paste_clip].icon_id;
@@ -319,7 +319,7 @@ const char *i_command_get_action_icon (const char *command)
 
     int  index;
 
-    for (index = icache; index < LAST_ACTION; index++) {
+    for (index = icache; index <= LAST_ACTION; index++) {
 
       if (geda_strequal(command_struc[index].name, command)) {
         if (command_struc[index].icon_id) {
@@ -329,6 +329,7 @@ const char *i_command_get_action_icon (const char *command)
         }
       }
     }
+
     if (!icon_id) {
       icache = index;
       for (index = 1; index < icache; index++) {
@@ -372,7 +373,8 @@ bool i_command_map_icon  (const char *command, const char *icon)
 {
   int i;
   bool result = FALSE;
-  for (i = 1; i < LAST_ACTION; i++) {
+
+  for (i = 1; i <= LAST_ACTION; i++) {
     if (geda_strequal(command_struc[i].name, command)) {
       if (command_struc[i].icon_id) {
         GEDA_FREE(command_struc[i].icon_id);
@@ -387,6 +389,20 @@ bool i_command_map_icon  (const char *command, const char *icon)
       break;
     }
   }
+
+  if (!result){
+    /* Hack for buffer */
+    if (strstr(command, "buffer-copy") != 0) {
+      result = TRUE;
+    }
+    else if (strstr(command, "buffer-cut") != 0) {
+      result = TRUE;
+    }
+    else if (strstr(command, "buffer-paste") != 0) {
+      result = TRUE;
+    }
+  }
+
   return result;
 }
 
@@ -814,7 +830,7 @@ COMMAND (do_file_new_window)
  *  @{\par This group contains functions to open documents
  *    \ingroup i_command_File_Actions
  */
-/* This does not do anything productive, is a delay, the destroy
+/* This does not do anything productive, is a delay. The destroy
  * notifier; open_command_idle_notify, does all the work. This is
  * a low priority main-loop task, instigated after higher priority
  * main-loop task were delegated to opening files. If the loader is
@@ -861,7 +877,9 @@ open_command_idle_notify (void *data)
   }
 
   GSource *source;
+
   source = g_main_context_find_source_by_id (NULL, packet->source_id);
+
   if (source) {
     /* TODO: Does this happen everytime? */
     g_source_destroy (source);
@@ -925,6 +943,7 @@ COMMAND (do_open) {
   }
   EXIT_COMMAND(do_open);
 }
+
 /** @} endgroup open-files-command */
 
 /** @brief i_cmd_do_save in i_command_File_Actions */
@@ -2034,13 +2053,15 @@ COMMAND (do_select_invert)
 
   GedaToplevel *toplevel  = w_current->toplevel;
   SELECTION    *selection = toplevel->page_current->selection_list;
+  GList        *list      = g_list_copy (geda_list_get_glist(selection));
 
-  GList *list = g_list_copy (geda_list_get_glist(selection));
   o_select_visible_unlocked (w_current);
+
   while(list != NULL) {
-    geda_object_selection_remove (selection, (GedaObject*) list->data);
+    geda_object_selection_remove (selection, (GedaObject*)list->data);
     NEXT(list);
   }
+
   g_list_free (list);
 
   EXIT_COMMAND(do_select_invert);
@@ -2322,21 +2343,30 @@ COMMAND (do_documentation)
 
       if (attrib_doc) {
 
-        GError *error = NULL;
-        bool    result;
+        bool result;
 
 #if 1
         result = x_show_uri (attrib_doc);
 
+        if (!result) {
+
+          geda_log("%s \"%s\"\n", _("Check path:"), attrib_doc);
+
+        }
+
 #else
+        GError *error;
+
         /* Use this instead until debian-gnome work out thier iceweasel issue */
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
-#endif
 
         if (!result) {
           geda_log("%s: %s\n", _("error"), error->message);
           g_error_free (error);
         }
+
+#endif
+
         GEDA_FREE(attrib_doc);
       }
     }
@@ -3730,11 +3760,9 @@ COMMAND (do_attach)
 {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
 
  /* Do Not modify attributes while inside an action */
   BEGIN_NO_ACTION(do_attach);
-
 
   w_current->which_object = NULL;
 
@@ -3744,8 +3772,8 @@ COMMAND (do_attach)
     GList  *selected;
     int     count;
 
-    selected = geda_list_get_glist(Current_Selection);
     count    = o_select_get_count(w_current);
+    selected = geda_toplevel_struct_get_selection(w_current->toplevel);
 
     if (count == 1) {
       geda_log("Feature not implemented\n");
@@ -3757,13 +3785,12 @@ COMMAND (do_attach)
       bool    first_is_an_attribute;
       bool    second_is_an_attribute;
 
-      first_object  = (GedaObject*) selected->data;
+      first_object  = (GedaObject*)selected->data;
       next          = selected->next;
-      second_object = (GedaObject*) next->data;
+      second_object = (GedaObject*)next->data;
 
-      w_current->which_object = NULL;
-      first_is_an_attribute   = geda_object_get_is_valid_attribute(first_object);
-      second_is_an_attribute  = geda_object_get_is_valid_attribute(second_object);
+      first_is_an_attribute  = geda_object_get_is_valid_attribute(first_object);
+      second_is_an_attribute = geda_object_get_is_valid_attribute(second_object);
 
       /* Ensure 1 and only 1 is a valid attribute */
       if (1 == first_is_an_attribute + second_is_an_attribute) {
@@ -3796,12 +3823,10 @@ COMMAND (do_attach)
         /* Find first object that is NOT an attribute */
         if (!geda_object_get_is_valid_attribute(iter->data)) {
           w_current->which_object = iter->data;
-        }
-
-        if (!(NEXT(iter))) {
           break;
         }
-      } while (!w_current->which_object);
+
+      } while ((NEXT(iter)) != NULL);
 
       if (w_current->which_object) {
         o_attrib_attach_list_2_object(w_current, selected);
@@ -3821,27 +3846,36 @@ COMMAND (do_attach)
 /** @brief i_cmd_do_detach in i_command_Attribute_Actions */
 COMMAND (do_detach)
 {
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+
  /* Do Not modify attributes while inside an action */
   BEGIN_NO_ACTION(do_detach);
 
   GList *s_current;
   GList *detached_attribs = NULL;
 
-  s_current = geda_list_get_glist(Current_Selection);
+  s_current = geda_toplevel_struct_get_selection(w_current->toplevel);
 
   while (s_current != NULL) {
 
-    GedaObject *o_current = (GedaObject*) s_current->data;
+    GedaObject *o_current = (GedaObject*)s_current->data;
 
     if (o_current) {
+
       if (o_current->attribs) {
+
         detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                           detached_attribs);
+
         geda_attrib_object_detach_all (o_current);
       }
       else {
+
         if (o_current->attached_to) {
+
           geda_attrib_object_detach (o_current);
+
           detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                             detached_attribs);
         }
@@ -4195,7 +4229,7 @@ COMMAND (do_embed)
 
     while (s_current != NULL) {
 
-      GedaObject *o_current = (GedaObject*) s_current->data;
+      GedaObject *o_current = (GedaObject*)s_current->data;
 
       if (o_current != NULL) {
         if ( (o_current->type == OBJ_COMPLEX) ||
@@ -4230,7 +4264,7 @@ COMMAND (do_unembed)
 
     while (s_current != NULL) {
 
-      GedaObject *o_current = (GedaObject*) s_current->data;
+      GedaObject *o_current = (GedaObject*)s_current->data;
 
       if (o_current != NULL) {
         if ((o_current->type == OBJ_COMPLEX) ||
@@ -4616,6 +4650,7 @@ COMMAND (do_show_manual)
       geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
+
     GEDA_FREE(pathname);
   }
 
@@ -4645,6 +4680,7 @@ COMMAND (do_show_faq)
       geda_log("%s \"%s\"\n", _("Check path:"), pathname);
 
     }
+
     GEDA_FREE(pathname);
   }
   EXIT_COMMAND(do_show_faq);

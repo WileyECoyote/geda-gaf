@@ -84,7 +84,7 @@ static int geda_box_bounds(GedaObject *object)
 
   halfwidth = object->line_options->line_width / 2;
 
-  /* This isn't strictly correct, but a 1st order approximation */
+  /* This is not strictly correct, but a 1st order approximation */
   object->left   = min(object->box->upper_x, object->box->lower_x) - halfwidth;
   object->top    = min(object->box->upper_y, object->box->lower_y) - halfwidth;
   object->right  = max(object->box->upper_x, object->box->lower_x) + halfwidth;
@@ -787,6 +787,26 @@ int geda_box_get_lower_y (const GedaBox *box) {
   return -0;
 }
 
+/*!
+ * \brief get the position of the Box
+ * \par Function Description
+ *  This function returns the lower left corner of a box object.
+ *
+ * \param [in]  box  Pointer to a GedaBox object
+ * \param [out] x    pointer to hold the x-position
+ * \param [out] y    pointer to hold the y-position
+ *
+ * \return TRUE if successfully determined the position, FALSE otherwise
+ */
+bool geda_box_get_position (const GedaBox *box, int *x, int *y)
+{
+  if (is_a_geda_box(box)) {
+    *x = min(box->lower_x, box->upper_x);
+    *y = min(box->lower_y, box->upper_y);
+    return TRUE;
+  }
+  return -0;
+}
 /*!
  * \brief Retrieve Upper ordinate value of the Box
  * \par Function Description

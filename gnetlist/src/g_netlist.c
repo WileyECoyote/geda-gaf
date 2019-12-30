@@ -968,12 +968,18 @@ SCM g_get_backend_arguments(void)
  */
 SCM g_get_input_files(void)
 {
-  SCM list = SCM_EOL;
-  GSList *current = input_files;
+  GedaToplevel *toplevel;
+  GList        *p_iter;
+  SCM           list;
 
-  while (current != NULL) {
-    list = scm_cons (scm_from_locale_string (current->data), list);
-    current = g_slist_next(current);
+  list     = SCM_EOL;
+  toplevel = edascm_c_current_toplevel ();
+  p_iter   = geda_toplevel_get_pages (toplevel);
+
+  while (p_iter != NULL) {
+    const char *filename = p_iter->data;
+    list = scm_cons (scm_from_locale_string (filename), list);
+    NEXT(p_iter);
   }
 
   return scm_reverse_x (list, SCM_EOL);
@@ -983,8 +989,14 @@ SCM g_get_input_files(void)
  * \brief Get graphical objects connected to given net
  * \par Function Description
  *  given a net name, an attribute, and a wanted attribute, return all
- *  the given attribute of all the graphical objects connected to that
- *  net name
+ *  the given attributes of all the graphical objects connected to that
+ *  net name.
+ *
+ * \param [in] scm_netname          Name of the net to search which
+ * \param [in] scm_has_attribute    Must possess this attribute
+ * \param [in] scm_wanted_attribute Attribute to search for
+ *
+ * \returns list of values from wanted attributes if found
  */
 SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has_attribute, SCM scm_wanted_attribute)
 {
@@ -998,14 +1010,14 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
   scm_dynwind_begin (0);
 
   SCM_ASSERT(scm_is_string (scm_netname), scm_netname, SCM_ARG1,
-             "gnetlist:graphical-net-objs-attrib");
-
-  SCM_ASSERT(scm_is_string (scm_wanted_attribute),
-             scm_wanted_attribute, SCM_ARG3,
-             "gnetlist:graphical-net-objs-attrib");
+             "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
   SCM_ASSERT(scm_is_string (scm_has_attribute),
              scm_has_attribute, SCM_ARG2,
+             "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
+
+  SCM_ASSERT(scm_is_string (scm_wanted_attribute),
+             scm_wanted_attribute, SCM_ARG3,
              "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
   net_name      = scm_to_utf8_string (scm_netname);
@@ -1034,8 +1046,8 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
 
         if (strcmp(current_name, net_name) == 0) {
 
-          char *has_attrib_value = NULL;
-          char *has_attrib_name  = NULL;
+          char *has_attrib_name;
+          char *has_attrib_value;
 
           if (geda_attrib_string_get_name_value (has_attrib, &has_attrib_name, &has_attrib_value) != 0)
           {
@@ -1047,16 +1059,17 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
                 ((has_attrib_value != NULL) && (attrib_value != NULL) &&
                  (strcmp(attrib_value, has_attrib_value) == 0)))
             {
-              GEDA_FREE (attrib_value);
-              attrib_value =
+              char *wanted_value =
+
               geda_attrib_search_object_by_name (nl_current->object_ptr,
                                                  wanted_attrib, 0);
-              if (attrib_value) {
-
-                list = scm_cons (scm_from_utf8_string (attrib_value), list);
+              if (wanted_value) {
+                list = scm_cons (scm_from_utf8_string (wanted_value), list);
               }
-              GEDA_FREE (attrib_value);
+              GEDA_FREE (wanted_value);
             }
+
+            GEDA_FREE (attrib_value);
             GEDA_FREE (has_attrib_name);
             GEDA_FREE (has_attrib_value);
           }

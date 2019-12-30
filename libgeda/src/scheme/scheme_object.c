@@ -166,13 +166,14 @@ edascm_from_object_glist (const GList *objs)
  *
  * \return non-zero if \a smob is an GedaObject smob of \a type.
  */
-int
-edascm_is_object_type (SCM smob, int type)
+int edascm_is_object_type (SCM smob, int type)
 {
-  if (!EDASCM_OBJECTP(smob))
+  if (!EDASCM_OBJECTP(smob)) {
     return 0;
+  }
 
   GedaObject *obj = edascm_to_object (smob);
+
   return (obj->type == type);
 }
 
@@ -644,6 +645,111 @@ EDA_SCM_DEFINE (object_set_color_x, "%set-object-color!", 2, 0, 0,
 }
 
 /*!
+ * \brief Check Whether an Object is Locked.
+ * \par Function Description
+ *  Check the state of an object's selectable flag: if it is set, the
+ *  object is considered to be unlocked, otherwise it is locked.
+ *
+ *  \note Scheme API: Implements the %object-selectable? procedure in
+ *        the (geda core object) module.
+ *
+ * param obj_s  #GedaObject smob to inspect.
+ *
+ * \return Boolean value indicating whether \a obj_s is selectable.
+ */
+EDA_SCM_DEFINE (object_selectable, "%object-selectable?", 1, 0, 0,
+               (SCM obj_s), "Check whether an object is locked.")
+{
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
+              SCM_ARG1, scheme_object_selectable);
+
+  GedaObject *obj = edascm_to_object (obj_s);
+
+  return scm_from_bool (obj->selectable);
+}
+
+/*!
+ * \brief Lock or Unlock an Object
+ * \par Function Description
+ *  Sets the object's selectable flag: locked objects cannot be selected.
+ *
+ * \note Scheme API: Implements the %set-object-selectable! procedure
+ *       in the (geda core object) module.
+ *
+ * param obj_s         #GedaObject smob to modify.
+ * param selectable_s  boolean: object's selectable flag.
+ *
+ * \return the object (\a obj_s).
+ */
+EDA_SCM_DEFINE (object_set_selectable_x, "%set-object-selectable!", 2, 0, 0,
+               (SCM obj_s, SCM selectable_s), "Lock or unlock an object.")
+{
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
+              SCM_ARG1, scheme_object_set_selectable_x);
+  SCM_ASSERT (scm_is_bool (selectable_s), selectable_s,
+              SCM_ARG2, scheme_object_set_selectable_x);
+
+  GedaObject *obj = edascm_to_object (obj_s);
+
+  int selectable = scm_is_true (selectable_s);
+
+  if (obj->selectable != selectable) {
+
+    obj->selectable = selectable;
+
+    geda_struct_object_set_page_changed (obj);
+  }
+
+  return obj_s;
+}
+
+/*!
+ * \brief Get line parameters.
+ * \par Function Description
+ *  Retrieves the parameters of a line object. The return value is a
+ *  list of parameters:
+ *
+ * -# X-coordinate of start of line
+ * -# Y-coordinate of start of line
+ * -# X-coordinate of end of line
+ * -# Y-coordinate of end of line
+ * -# Colormap index of color to be used for drawing the line
+ *
+ *  This function also works on net, bus and pin objects.  For pins,
+ *  the start is the connectable point on the pin.
+ *
+ *  param line_s the line object to inspect.
+ *
+ * \return a list of line parameters.
+ */
+EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
+               (SCM line_s), "Get line parameters.")
+{
+  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE) ||
+               edascm_is_object_type (line_s, OBJ_NET)  ||
+               edascm_is_object_type (line_s, OBJ_BUS)  ||
+               edascm_is_object_type (line_s, OBJ_PIN)),
+               line_s, SCM_ARG1, scheme_object_line_info);
+
+  GedaObject *obj = edascm_to_object (line_s);
+
+  SCM      x1 = scm_from_int (obj->line->x[0]);
+  SCM      y1 = scm_from_int (obj->line->y[0]);
+  SCM      x2 = scm_from_int (obj->line->x[1]);
+  SCM      y2 = scm_from_int (obj->line->y[1]);
+  SCM   color = scm_from_int (obj->color);
+
+  /* Swap ends according to pin's whichend flag. */
+  if ((obj->type == OBJ_PIN) && obj->pin->whichend) {
+    SCM s;
+    s = x1; x1 = x2; x2 = s;
+    s = y1; y1 = y2; y2 = s;
+  }
+
+  return scm_list_n (x1, y1, x2, y2, color, SCM_UNDEFINED);
+}
+
+/*!
  * \brief Set line parameters.
  * \par Function Description
  *  Modifies a line object by setting its parameters to new values.
@@ -724,54 +830,9 @@ EDA_SCM_DEFINE (object_set_line_x, "%set-line!", 6, 0, 0,
   geda_set_object_color (obj, scm_to_int (color_s));
   geda_object_notify_emit_change (obj);
 
-  geda_struct_object_set_page_changed ( obj);
+  geda_struct_object_set_page_changed (obj);
 
   return line_s;
-}
-
-/*!
- * \brief Get line parameters.
- * \par Function Description
- *  Retrieves the parameters of a line object. The return value is a
- *  list of parameters:
- *
- * -# X-coordinate of start of line
- * -# Y-coordinate of start of line
- * -# X-coordinate of end of line
- * -# Y-coordinate of end of line
- * -# Colormap index of color to be used for drawing the line
- *
- *  This function also works on net, bus and pin objects.  For pins,
- *  the start is the connectable point on the pin.
- *
- *  param line_s the line object to inspect.
- *
- * \return a list of line parameters.
- */
-EDA_SCM_DEFINE (object_line_info, "%line-info", 1, 0, 0,
-               (SCM line_s), "Get line parameters.")
-{
-  SCM_ASSERT ((edascm_is_object_type (line_s, OBJ_LINE) ||
-               edascm_is_object_type (line_s, OBJ_NET)  ||
-               edascm_is_object_type (line_s, OBJ_BUS)  ||
-               edascm_is_object_type (line_s, OBJ_PIN)),
-               line_s, SCM_ARG1, scheme_object_line_info);
-
-  GedaObject *obj = edascm_to_object (line_s);
-  SCM      x1 = scm_from_int (obj->line->x[0]);
-  SCM      y1 = scm_from_int (obj->line->y[0]);
-  SCM      x2 = scm_from_int (obj->line->x[1]);
-  SCM      y2 = scm_from_int (obj->line->y[1]);
-  SCM   color = scm_from_int (obj->color);
-
-  /* Swap ends according to pin's whichend flag. */
-  if ((obj->type == OBJ_PIN) && obj->pin->whichend) {
-    SCM s;
-    s = x1; x1 = x2; x2 = s;
-    s = y1; y1 = y2; y2 = s;
-  }
-
-  return scm_list_n (x1, y1, x2, y2, color, SCM_UNDEFINED);
 }
 
 /*!
@@ -1471,6 +1532,30 @@ EDA_SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
   return result;
 }
 
+
+/*!
+ * \brief Get the internal id of an object.
+ * \par Function Description
+ *  Returns an internal id number of the #GedaObject smob \a obj_s.
+ *
+ * \note Scheme API: Implements the %object-id procedure in the
+ *       (geda core object) module.
+ *
+ * param [in] obj_s an #OBJECT smob.
+ *
+ * \return a Scheme symbol representing the object type.
+ */
+EDA_SCM_DEFINE (object_id, "%object-id", 1, 0, 0,
+               (SCM obj_s), "Get an object smob's id")
+{
+  SCM_ASSERT (EDASCM_OBJECTP (obj_s), obj_s,
+              SCM_ARG1, scheme_object_id);
+
+  GedaObject *obj = edascm_to_object (obj_s);
+
+  return scm_from_int (obj->sid);
+}
+
 /*!
  * \brief Get the number of elements in a path.
  * \par Function Description
@@ -2049,12 +2134,33 @@ init_module_geda_core_object (void *nothing)
   /* Register the functions and symbols */
   #include "scheme_object.x"
 
+  /* Define object character types */
+  scm_c_define("OBJ_ARC",         SCM_MAKE_CHAR((unsigned char) OBJ_ARC));
+  scm_c_define("OBJ_BOX",         SCM_MAKE_CHAR((unsigned char) OBJ_BOX));
+  scm_c_define("OBJ_BUS",         SCM_MAKE_CHAR((unsigned char) OBJ_BUS));
+  scm_c_define("OBJ_CIRCLE",      SCM_MAKE_CHAR((unsigned char) OBJ_CIRCLE));
+  scm_c_define("OBJ_COMPLEX",     SCM_MAKE_CHAR((unsigned char) OBJ_COMPLEX));
+  scm_c_define("OBJ_LINE",        SCM_MAKE_CHAR((unsigned char) OBJ_LINE));
+  scm_c_define("OBJ_NET",         SCM_MAKE_CHAR((unsigned char) OBJ_NET));
+  scm_c_define("OBJ_PATH",        SCM_MAKE_CHAR((unsigned char) OBJ_PATH));
+  scm_c_define("OBJ_PICTURE",     SCM_MAKE_CHAR((unsigned char) OBJ_PICTURE));
+  scm_c_define("OBJ_PIN",         SCM_MAKE_CHAR((unsigned char) OBJ_PIN));
+  scm_c_define("OBJ_PLACEHOLDER", SCM_MAKE_CHAR((unsigned char) OBJ_PLACEHOLDER));
+  scm_c_define("OBJ_TEXT",        SCM_MAKE_CHAR((unsigned char) OBJ_TEXT));
+
   /* Add them to the module's public definitions. */
+  scm_c_export ("OBJ_ARC", "OBJ_BOX", "OBJ_BUS", "OBJ_CIRCLE",
+                "OBJ_COMPLEX", "OBJ_LINE",  "OBJ_NET", "OBJ_PATH",
+                "OBJ_PICTURE", "OBJ_PIN", "OBJ_PLACEHOLDER", "OBJ_TEXT",
+                 NULL);
+
+  /* Add the modules routines to public definitions. */
   scm_c_export (scheme_object_copy,
                 scheme_object_mirror_x,
                 scheme_object_rotate_x,
                 scheme_object_translate_x,
                 scheme_object_type,
+                scheme_object_id,
                 scheme_object_connections,
                 scheme_object_complex,
                 scheme_object_bounds,
@@ -2070,6 +2176,8 @@ init_module_geda_core_object (void *nothing)
                 scheme_object_set_box_x,
                 scheme_object_circle_info,
                 scheme_object_set_circle_x,
+                scheme_object_selectable,
+                scheme_object_set_selectable_x,
                 scheme_object_line_info,
                 scheme_object_set_line_x,
                 scheme_object_path_length,

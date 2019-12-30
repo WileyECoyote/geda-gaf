@@ -102,15 +102,66 @@ void x_stroke_record (GschemToplevel *w_current, int x, int y)
 
     if (stroke_points->len < STROKE_MAX_POINTS) {
 
-      GdkGC      *gc;
-      StrokePoint point = { x, y };
+      GdkColor *color;
+      cairo_t  *cr;
+
+      StrokePoint *last_point;
+      StrokePoint  point = { x, y };
+
+      cairo_matrix_t render_mtx;
+
+      double x0, y0;
+      double x1, y1;
 
       g_array_append_val (stroke_points, point);
 
-      gc = gschem_page_view_get_gc(w_current);
+      if (stroke_points->len == 1) {
+        return;
+      }
 
-      gdk_gc_set_foreground (gc, geda_color_x11_color_from_index (STROKE_COLOR));
-      gdk_draw_point (w_current->window, gc, x, y);
+      last_point = &g_array_index (stroke_points, StrokePoint,
+                                   stroke_points->len - 2);
+
+      cr = gdk_cairo_create (w_current->window);
+
+      color = geda_color_x11_color_from_index (STROKE_COLOR);
+
+      cairo_set_source_rgb (cr,
+                            color->red   / 65535.0,
+                            color->green / 65535.0,
+                            color->blue  / 65535.0);
+
+      /* Transform the cairo context to world coordinates */
+      cairo_matrix_init (&render_mtx,
+                        (double) Current_Page->to_screen_x_constant, 0, 0,
+                       -(double) Current_Page->to_screen_y_constant,
+                       -(double) Current_Page->to_screen_x_constant * Current_Page->left,
+                        (double) Current_Page->to_screen_y_constant * Current_Page->top +
+                                 w_current->screen_height);
+
+      cairo_set_matrix (cr, &render_mtx);
+
+      x0 = last_point->x;
+      y0 = last_point->y;
+      x1 = x;
+      y1 = y;
+
+      cairo_device_to_user (cr, &x0, &y0);
+      cairo_device_to_user (cr, &x1, &y1);
+
+      cairo_get_matrix (cr, &render_mtx);
+
+      cairo_identity_matrix (cr);
+
+      cairo_matrix_transform_point (&render_mtx, &x0, &y0);
+      cairo_matrix_transform_point (&render_mtx, &x1, &y1);
+
+      cairo_move_to (cr, x0, y0);
+      cairo_line_to (cr, x1, y1);
+
+      cairo_stroke (cr);
+
+      cairo_destroy (cr);
     }
   }
 }

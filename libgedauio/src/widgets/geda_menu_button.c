@@ -1045,7 +1045,16 @@ static void geda_menu_button_destroy (GtkObject *object)
 
   }
 
+#if GTK_MAJOR_VERSION < 3
+
   GTK_OBJECT_CLASS (geda_menu_button_parent_class)->destroy (object);
+
+#else
+
+  GTK_WIDGET_CLASS (geda_menu_button_parent_class)->destroy (object);
+
+#endif
+
 }
 
 /* END -------------------------- Destructors ------------------------------ */
@@ -1128,16 +1137,12 @@ static void geda_menu_button_init (GTypeInstance *instance, void *class)
 static void geda_menu_button_class_init (void *class, void *class_data)
 {
   GedaMenuButtonClass *menu_button_class;
-  GtkObjectClass      *gtk_object_class;
   GObjectClass        *object_class;
   GtkWidgetClass      *widget_class;
 
   menu_button_class = (GedaMenuButtonClass*)class;
-  gtk_object_class  = (GtkObjectClass*)class;
   object_class      = (GObjectClass*)class;
   widget_class      = (GtkWidgetClass*)class;
-
-  gtk_object_class->destroy        = geda_menu_button_destroy;
 
   object_class->finalize           = geda_menu_button_finalize;
   object_class->dispose            = geda_menu_button_dispose;
@@ -1158,6 +1163,19 @@ static void geda_menu_button_class_init (void *class, void *class_data)
   menu_button_class->enter         = geda_menu_button_update_state;
   menu_button_class->leave         = geda_menu_button_update_state;
   menu_button_class->activate      = geda_menu_button_activate;
+
+#if GTK_MAJOR_VERSION < 3
+
+  GtkObjectClass *gtk_object_class;
+
+  gtk_object_class                 = (GtkObjectClass*)class;
+  gtk_object_class->destroy        = geda_menu_button_destroy;
+
+#else
+
+  widget_class->destroy            = geda_menu_button_destroy;
+
+#endif
 
   geda_menu_button_parent_class    = g_type_class_peek_parent (class);
 
@@ -1229,8 +1247,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                       GTK_POS_LEFT,
                                                       G_PARAM_READWRITE));
 
- /*! default-border:
-  *
+ /*! GtkButton::default-border:
+   * \par
   * The "default-border" style property defines the extra space to add
   * around a button that can become the default widget of its window.
   * For more information about default widgets, see gtk_widget_grab_default().
@@ -1355,9 +1373,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
 
   widget_class->activate_signal = signals[ACTIVATE];
 
-  /* GedaMenuButton::show-menu:
-   * button: the object on which the signal is emitted
-   *
+  /*! GedaMenuButton::show-menu:
+   * \par
    * The ::show-menu signal is emitted before the menu is shown.
    *
    * It can be used to populate the menu on demand, using
@@ -1366,6 +1383,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
    * Note that even if you populate the menu dynamically in this way,
    * you must set an empty menu on the #GedaMenuButton beforehand,
    * since the arrow is made insensitive if the menu is not set.
+   *
+   * param button: the object on which the signal is emitted.
    */
   signals[SHOW_MENU] = g_signal_new ("show-menu", type,
                          G_SIGNAL_RUN_FIRST,
@@ -1380,7 +1399,7 @@ static void geda_menu_button_class_init (void *class, void *class_data)
  * \par Function Description
  *  Function to retrieve a #GedaMenuButton Type identifier. When
  *  first called, the function registers a #GedaMenuButton in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaMenuButton and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -1444,9 +1463,9 @@ bool is_a_geda_menu_button (GedaMenuButton *menu_button)
 
 /* BEGIN ------+-------+-------^    Sub-Menu   ^-------+-------+-------+-----*/
 
-/* Callback for the "deactivate" signal on the pop-up menu.
- * This is used so that we unset the state of the toggle button
- * when the pop-up menu disappears.
+/*! \internal Callback for the "deactivate" signal on the pop-up menu.
+ *  This is used to unset the state of the toggle button when the pop-up
+ *  menu disappears.
  */
 static int geda_menu_deactivate_cb (GedaMenuShell *menu_shell, GedaMenuButton *button)
 {
@@ -1466,7 +1485,7 @@ static void menu_detacher (GtkWidget *widget, GedaMenu *menu)
   priv->menu = NULL;
 }
 
-/* Helper call by:
+/*! \internal Helper call by:
  *   arrow_button_toggled_cb
  *   arrow_button_press_event_cb
  */
@@ -1529,14 +1548,13 @@ static bool arrow_button_press_event_cb (GtkWidget      *widget,
 {
   if (event->button == 1) {
 
-      popup_menu_under_arrow (button, event);
-      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(widget), TRUE);
+    popup_menu_under_arrow (button, event);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(widget), TRUE);
 
-      return TRUE;
+    return TRUE;
   }
-  else  {
-      return FALSE;
-  }
+
+  return FALSE;
 }
 
 /*!
@@ -1706,7 +1724,7 @@ GtkWidget *geda_menu_button_new(GtkWidget *icon_widget, const char *label)
  * \brief New GedaMenuButton with Icon Image
  * \par Function Description
  * Creates a new Menu Button containing an icon from the current icon
- * theme. If the icon name isn’t known, a “broken image” icon will be
+ * theme. If the icon name is not known, a "broken image" icon will be
  * displayed instead. If the current icon theme is changed, the icon
  * will be updated appropriately.
  *
@@ -1731,8 +1749,8 @@ GtkWidget *geda_menu_button_new_from_icon_name (const char *icon_name)
 /*!
  * \brief New GedaMenuButton from Stock Id
  * \par Function Description
- * Creates a new GedaMenuButton. The new GedaMenuButton will contain
- * an icon and label from the stock item indicated by \a stock_id.
+ *  Creates a new GedaMenuButton. The new GedaMenuButton will contain
+ *  an icon and label from the stock item indicated by \a stock_id.
  *
  * \param [in] stock_id  Name of a stock item
  *

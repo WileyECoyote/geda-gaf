@@ -51,77 +51,91 @@
 #include <geda_debug.h>
 
 /*----------------------------------------------------------------*/
-/*! \brief Compare values of string data
+/*!
+ * \brief Compare values of string data
+ * \par Function Description
+ *  Comparison function -- compare values of string data.
  *
- * Comparison function -- compare values of string data.
  * \param al pointer to first STRING_LIST item to be compared
  * \param bl pointer to second STRING_LIST item to be compared
+ *
  * \returns +ve if al > bl, -ve if al < bl, 0 if al = bl
  */
-/*----------------------------------------------------------------*/
 int cmp(STRING_LIST *al, STRING_LIST *bl) {
+
   char *a = al->data;
   char *b = bl->data;
 
-  if (al->pos != bl->pos)
+  if (al->pos != bl->pos) {
     return al->pos - bl->pos;
+  }
 
-  while (*a && *b)
-    {
-      if (isdigit ((int) *a) && isdigit ((int) *b))
-	{
-	  int ia = atoi (a);
-	  int ib = atoi (b);
-	  if (ia != ib)
-	    return ia - ib;
-	  while (isdigit ((int) *a))
-	    a++;
-	  while (isdigit ((int) *b))
-	    b++;
-	}
-      else if (tolower ((int) *a) != tolower ((int) *b))
-	return tolower ((int) *a) - tolower ((int) *b);
-      a++;
-      b++;
+  while (*a && *b) {
+
+    if (isdigit ((int) *a) && isdigit ((int) *b)) {
+
+      int ia = atoi (a);
+      int ib = atoi (b);
+
+      if (ia != ib) {
+        return ia - ib;
+      }
+
+      while (isdigit ((int) *a)) a++;
+
+      while (isdigit ((int) *b)) b++;
+
     }
-  if (*a)
+    else if (tolower ((int) *a) != tolower ((int) *b)) {
+      return tolower ((int) *a) - tolower ((int) *b);
+    }
+
+    a++;
+    b++;
+  }
+
+  if (*a) {
     return 1;
-  if (*b)
+  }
+
+  if (*b) {
     return -1;
+  }
+
   return 0;
 }
 
 /*----------------------------------------------------------------*/
-/*! \brief Sort the linked list
+/*!
+ * \brief Sort the linked list
+ * \par Function Description
+ *  This is the actual sort function. Notice that it returns the new
+ *  head of the list. (It has to, because the head will not
+ *  generally be the same element after the sort.) So unlike sorting
+ *  an array, where you can do
  *
- * This is the actual sort function. Notice that it returns the new
- * head of the list. (It has to, because the head will not
- * generally be the same element after the sort.) So unlike sorting
- * an array, where you can do
+ *  - sort(myarray);
  *
- * - sort(myarray);
+ *  you now have to do
  *
- * you now have to do
- *
- * - list = listsort(mylist);
+ *  - list = listsort(mylist);
  *
  * \param list The linked STRING_LIST to be sorted
  * \param is_circular TRUE if this is a circularly linked list
  * \param is_double TRUE if this is a doubly-linked list
+ *
  * \returns a pointer to the new head of the list
  */
-/*----------------------------------------------------------------*/
 STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
 {
   STRING_LIST *p, *q, *e, *tail;
   int insize, psize, qsize, i;
 
-  /*
-   * Silly special case: if `list' was passed in as NULL, return
-   * NULL immediately.
-   */
-  if (!list)
+  /* Silly special case: if `list' was passed in as NULL, return
+   * NULL immediately. */
+  if (!list) {
     return NULL;
+  }
 
   insize = 1;
 
@@ -131,23 +145,31 @@ STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
     int nmerges;
 
     p       = list;
-    oldhead = list;		       /* only used for circular linkage */
+    oldhead = list;     /* only used for circular linkage */
     list    = NULL;
     tail    = NULL;
 
-    nmerges = 0;  /* count number of merges we do in this pass */
+    nmerges = 0;        /* count number of merges we do in this pass */
 
     while (p) {
-      nmerges++;  /* there exists a merge to be done */
+
+      nmerges++;        /* there exists a merge to be done */
+
       /* step `insize' places along from p */
       q = p;
       psize = 0;
+
       for (i = 0; i < insize; i++) {
+
         psize++;
-        if (is_circular)
+
+        if (is_circular) {
           q = (q->next == oldhead ? NULL : q->next);
-        else
+        }
+        else {
           q = q->next;
+        }
+
         if (!q) break;
       }
 
@@ -180,16 +202,18 @@ STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
            * e must come from p. */
           e = p; p = p->next; psize--;
 
-          if (is_circular && p == oldhead)
+          if (is_circular && p == oldhead) {
             p = NULL;
+          }
         }
         else {
 
           /* First element of q is lower; e must come from q. */
           e = q; q = q->next; qsize--;
 
-          if (is_circular && q == oldhead)
+          if (is_circular && q == oldhead) {
             q = NULL;
+          }
         }
 
         /* add the next element to the merged list */
@@ -199,6 +223,7 @@ STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
         else {
           list = e;
         }
+
         if (is_double) {
           /* Maintain reverse pointers in a doubly linked list. */
           e->prev = tail;
@@ -215,8 +240,9 @@ STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
 
         tail->next = list;
 
-        if (is_double)
+        if (is_double) {
           list->prev = tail;
+        }
       }
       else {
         tail->next = NULL;
@@ -224,12 +250,14 @@ STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double)
     }
 
     /* If we have done only one merge, we're finished. */
-    if (nmerges <= 1)   /* allow for nmerges==0, the empty list case */
+    if (nmerges <= 1) {  /* allow for nmerges==0, the empty list case */
       return list;
+    }
 
     /* Otherwise repeat, merging lists twice the size */
     insize *= 2;
   }
+
   return NULL; /* unlikely */
 }
 

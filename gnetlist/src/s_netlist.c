@@ -227,7 +227,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
   NET     *n_current;
 
   if (verbose_mode) {
-    printf("\n- %s\n", _("Staring post processing"));
+    printf("\n- %s\n", _("Starting post processing"));
     printf("- %s:\n", _("Naming nets of graphical objects"));
   }
 
@@ -480,10 +480,8 @@ void s_netlist_print(NETLIST *nl_current)
  */
 NETLIST *s_netlist_return_head(NETLIST *tail)
 {
-  NETLIST *nl_current = NULL;
+  NETLIST *nl_current = tail;
   NETLIST *ret_struct = NULL;
-
-  nl_current = tail;
 
   while (nl_current != NULL) {  /* goto end of list */
     ret_struct = nl_current;

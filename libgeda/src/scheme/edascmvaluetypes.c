@@ -168,15 +168,15 @@ value_lcopy_scm (const GValue *value,
 /* ---------------------------------------------------------------- */
 /* Public functions related to low-level GedaType / GValue support. */
 
-/*! \brief Retrieve edascm scm value type identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve edascm scm value type identifier.
+ * \par Function Description
  *  Function to retrieve edascm scm value type identifier. Upon first
  *  call, this registers the edascm scm value type in the Type system.
  *  The saved value from the first execution is returned on subsequent
  *  calls.
  *
- *  \return the GedaType identifier associated with edascm scm values.
+ * \return the GedaType identifier associated with edascm scm values.
  */
 GedaType
 edascm_scm_get_type (void)
@@ -227,9 +227,11 @@ edascm_scm_get_type (void)
   return edascm_scm_type;
 }
 
-/*! \brief Set the contents of a SCM GValue.
+/*!
+ * \brief Set the contents of a SCM GValue.
  * \ingroup guile_c_iface
- * Set the contents of a SCM GValue to \a v_scm.
+ * \par Function Description
+ *  Set the contents of a SCM GValue to \a v_scm.
  *
  * \param value a valid GValue of #EDASCM_TYPE_SCM type.
  * \param v_scm SCM value to set.
@@ -254,11 +256,14 @@ edascm_value_set_scm (GValue *value, SCM v_scm)
     scm_gc_unprotect_object (old);
 }
 
-/*! \brief Get the contents of a SCM GValue.
+/*!
+ * \brief Get the contents of a SCM GValue.
  * \ingroup guile_c_iface
- * Get the contents of a SCM GValue.
+ * \par Function Description
+ *  Get the contents of a SCM GValue.
  *
  * \param value a valid GValue of #EDASCM_TYPE_SCM type.
+ *
  * \return SCM value contents of \a value.
  */
 SCM
@@ -287,15 +292,15 @@ param_scm_values_cmp (GParamSpec *pspec,
 /* ---------------------------------------------------------------- */
 /* Public functions related to GParamSpec support. */
 
-/*! \brief Retrieve EdascmParamSpecSCM GedaType identifier.
- *
- *  \par Function Description
+/*!
+ * \brief Retrieve EdascmParamSpecSCM GedaType identifier.
+ * \par Function Description
  *  Function to retrieve EdascmParamSpecSCM GedaType identifier. Upon
  *  first call, this registers the EdascmParamSpecSCM in the Type system.
  *  The saved value from the first execution is returned on subsequent
  *  calls.
  *
- *  \return the GedaType identifier associated with EdascmParamSpecSCM.
+ * \return the GedaType identifier associated with EdascmParamSpecSCM.
  */
 GedaType
 edascm_param_spec_scm_get_type (void)
@@ -326,15 +331,17 @@ edascm_param_spec_scm_get_type (void)
   return edascm_param_spec_scm_type;
 }
 
-/*! \brief Create a new #EdascmParamSpecSCM.
+/*!
+ * \brief Create a new #EdascmParamSpecSCM.
  * \public \memberof EdascmParamSCM
- * Create a new #EdascmParamSpecSCM instance specifying a
- * #EDASCM_TYPE_SCM property.
+ *  Create a new #EdascmParamSpecSCM instance specifying a
+ *  #EDASCM_TYPE_SCM property.
  *
  * \param name canonical name of the property specified.
  * \param nick nick name for the property specified.
  * \param blurb description of the property specified.
  * \param flags flags for the property specified.
+ *
  * \return a newly created parameter specification.
  */
 GParamSpec *edascm_param_spec_scm (const char *name,

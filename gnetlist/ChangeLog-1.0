@@ -15,6 +15,43 @@
 
     * src/s_traverse.c: Wrap callgrind.h> in conditional  PERFORMANCE directive.
 
+2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Eliminate unnecessary initialization of name value
+      targets in g_graphical_objs_in_net_with_attrib_get_attrib.
+
+    * src/g_register.c: Add structure documentation for gnetlist_funcs.
+
+2019-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Revise g_graphical_objs_in_net_with_attrib_get_attrib;
+      add pointer to wanted_value to ensure attrib_value is released properly,
+      add parameter documentation.
+
+2019-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/g_netlist.c: Revise g_get_input_files to return the list of pages
+      in the toplevel rather than using global input_files list.
+
+    * gnetlist/src/gnetlist.c: Revise main to check for pages in the top level
+      rather than checking input_files list.
+
+    * src/globals.c: Remove global input_files GSList.
+
+    * src/s_netlist.c: Revise s_netlist_return_head to eliminate unnecessary
+      initialization of nl_current to NULL.
+
+    * src/s_traverse.c: Eliminate unused argument to s_traverse_clear_all_visited.
+
+2019-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/nl.po: Update Dutch translations.
+
+    * po/ru.po: Update Russian translations.
+
+    * src/s_net.c: Revise translatable message output to reduce format specifiers
+      in translations string.
+
 2019-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/common/inputs/powersupply.sch: Update capacitor-2.sym symversion=0.2.

@@ -210,30 +210,30 @@ static void geda_image_menu_item_sync_action (GtkActivatable *activatable,
 
   g_object_get (activatable, "use-action-appearance", &use_appearance, NULL);
 
-  if (!use_appearance)
-    return;
+  if (use_appearance) {
 
-  image = geda_image_menu_item_get_image (image_menu_item);
+    image = geda_image_menu_item_get_image (image_menu_item);
 
-  if (image && !GTK_IS_IMAGE (image)) {
-    geda_image_menu_item_set_image (image_menu_item, NULL);
-    image = NULL;
-  }
+    if (image && !GTK_IS_IMAGE (image)) {
+      geda_image_menu_item_set_image (image_menu_item, NULL);
+      image = NULL;
+    }
 
-  if (!image) {
-    image = gtk_image_new ();
-    gtk_widget_show (image);
-    geda_image_menu_item_set_image (image_menu_item, image);
-  }
+    if (!image) {
+      image = gtk_image_new ();
+      gtk_widget_show (image);
+      geda_image_menu_item_set_image (image_menu_item, image);
+    }
 
-  if (!activatable_update_stock_id (image_menu_item, action) &&
+    if (!activatable_update_stock_id (image_menu_item, action) &&
       !activatable_update_gicon (image_menu_item, action))
-  {
-    activatable_update_icon_name (image_menu_item, action);
-  }
+    {
+      activatable_update_icon_name (image_menu_item, action);
+    }
 
-  geda_image_menu_item_set_show_image (image_menu_item,
-                                       gtk_action_get_always_show_image (action));
+    geda_image_menu_item_set_show_image (image_menu_item,
+                                         gtk_action_get_always_show_image (action));
+  }
 }
 
 /*! \internal iface->update */
@@ -253,12 +253,15 @@ static void geda_image_menu_item_update (GtkActivatable *activatable,
 
     image_menu_item = (GedaImageMenuItem*)activatable;
 
-    if (strcmp (property_name, "stock-id") == 0)
+    if (strcmp (property_name, "stock-id") == 0) {
       activatable_update_stock_id (image_menu_item, action);
-    else if (strcmp (property_name, "gicon") == 0)
+    }
+    else if (strcmp (property_name, "gicon") == 0) {
       activatable_update_gicon (image_menu_item, action);
-    else if (strcmp (property_name, "icon-name") == 0)
+    }
+    else if (strcmp (property_name, "icon-name") == 0) {
       activatable_update_icon_name (image_menu_item, action);
+    }
   }
 }
 
@@ -499,7 +502,7 @@ static void geda_image_menu_item_init (GTypeInstance *instance, void *g_class)
  * \par Function Description
  *  Function to retrieve a #GedaImageMenuItem Type identifier. When
  *  first called, the function registers a #GedaImageMenuItem in the
- *  GedaType system to obtain an identifier that uniquely itentifies
+ *  GType system to obtain an identifier that uniquely itentifies
  *  a GedaImageMenuItem and returns the unsigned integer value.
  *  The retained value is returned on all Subsequent calls.
  *
@@ -873,10 +876,40 @@ static void geda_image_menu_item_forall (GtkContainer *container,
   }
 }
 
+/*!
+ * \brief Remove the image object attached to the menu item
+ * \par Function Description
+ *  GtkContainerClass->remove virtual over-ride
+ */
+static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
+{
+  GedaImageMenuItem *image_menu_item;
+
+  image_menu_item = (GedaImageMenuItem*)container;
+
+  if (child == image_menu_item->image) {
+
+    bool was_visible;
+
+    was_visible = gtk_widget_get_visible (child);
+
+    gtk_widget_unparent (child);
+    image_menu_item->image = NULL;
+
+    if (was_visible && gtk_widget_get_visible ((GtkWidget*)container))
+    {
+      gtk_widget_queue_resize ((GtkWidget*)container);
+    }
+
+    GEDA_OBJECT_NOTIFY (image_menu_item, "image");
+  }
+  else {
+    ((GtkContainerClass*)geda_image_menu_item_parent_class)->remove (container, child);
+  }
+}
 
 /*!
  * \brief Create a New GedaImageMenuItem Object
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem with an empty label.
  *
@@ -891,11 +924,10 @@ GtkWidget *geda_image_menu_item_new (void)
 
 /*!
  * \brief Create a New GedaImageMenuItem Object with a Plain Label
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem containing a label.
  *
- * \param [in] label: the text of the menu item.
+ * \param [in] label the text of the menu item.
  *
  * \returns a new #GedaImageMenuItem.
  *
@@ -912,7 +944,6 @@ GtkWidget *geda_image_menu_item_new_with_label (const char *label)
 
 /*!
  * \brief Create a New GedaImageMenuItem Object with a Mnemonic Label
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem containing a label and setting
  *  use-underline proptery to TRUE, so an underscore in the label
@@ -935,7 +966,6 @@ GtkWidget *geda_image_menu_item_new_with_mnemonic (const char *label)
 
 /*!
  * \brief Create a New GedaImageMenuItem Object with a Stock Image
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Creates a new #GedaImageMenuItem containing the image and text from a
  *  stock item. Some stock ids have preprocessor macros like GTK_STOCK_OK
@@ -963,109 +993,22 @@ GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
                        NULL);
 }
 
-/*!
- * \brief Set GedaImageMenuItem Use-Stock Property
- * \ingroup GedaImageMenuItem
- * \par Function Description
- *  If %TRUE, the label set in the menuitem is used as a stock id to select
- *  the stock item for the item.
- *
- * \param [in] image_menu_item  a #GedaImageMenuItem
- * \param [in] use_stock        set value
- */
-void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
-                                                      bool  use_stock)
+GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_menu_item)
 {
-  g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
+  GtkWidget *widget;
 
-  if (image_menu_item->use_stock != use_stock) {
+  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), NULL);
 
-    image_menu_item->use_stock = use_stock;
+  widget = geda_get_widget_parent(image_menu_item);
 
-    geda_image_menu_item_recalculate (image_menu_item);
-
-    GEDA_OBJECT_NOTIFY (image_menu_item, str_use_stock);
+  if (GEDA_IS_MENU(widget)) {
+    return geda_menu_widget_get_accel_group(widget);
   }
+  return NULL;
 }
-
-/*!
- * \brief Get GedaImageMenuItem Use-Stock Property
- * \ingroup GedaImageMenuItem
- * \par Function Description
- *  Checks whether the label set in the menuitem is used as a stock id to
- *  select the stock item for the item.
- *
- * \returns %TRUE if the label set in the menuitem is used as a
- *          stock id to select the stock item for the item
- *
- * \param [in] image_menu_item: a #GedaImageMenuItem
- */
-bool geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
-{
-  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), FALSE);
-
-  return image_menu_item->use_stock;
-}
-
-/*!
- * \brief Set GedaImageMenuItem Show-Image Property
- * \ingroup GedaImageMenuItem
- * \par Function Description
- *  If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
- *  setting and always show the image, if available.
- *
- *  Use this property if the menuitem would be useless or hard to use
- *  without the image.
- *
- * \param [in] image_menu_item  a #GedaImageMenuItem
- * \param [in] always_show      desired state
- */
-void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
-                                                       bool  always_show)
-{
-  g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
-
-  if (image_menu_item->show_image != always_show) {
-
-    image_menu_item->show_image  = always_show;
-
-    if (image_menu_item->image) {
-
-      if (show_image (image_menu_item)) {
-        gtk_widget_show (image_menu_item->image);
-      }
-      else {
-        gtk_widget_hide (image_menu_item->image);
-      }
-    }
-
-    GEDA_OBJECT_NOTIFY (image_menu_item, "show-image");
-  }
-}
-
-/*!
- * \brief Get GedaImageMenuItem Show-Image Property
- * \ingroup GedaImageMenuItem
- * \par Function Description
- *  Returns whether the menu item will ignore the GtkSettings:
- *  gtk-menu-images setting and always show the image, if available.
- *
- * \param [in] image_menu_item: a #GedaImageMenuItem
- *
- * \retval %TRUE if the menu item will always show the image
- *
- */
-bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
-{
-  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), FALSE);
-
-  return image_menu_item->show_image;
-}
-
 
 /*!
  * \brief Add Accel group to a GedaImageMenuItem object
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *  Specify the accel_group to add the menu items accelerator to
  *  (this only applies to stock items so a stock item must already
@@ -1075,9 +1018,15 @@ bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
  *  If you want this menu item to have changeable accelerators then
  *  you should not need this, see geda_image_menu_item_new_from_stock().
  *
+ *  If \a accel_group is NULL, then image_menu_item is removed from
+ *  any group of which it is a member.
+ *
  * \param [in] image_menu_item a #GedaImageMenuItem
  * \param [in] accel_group     the GtkAccelGroup
  *
+ *  \todo Why does this only apply to stock items? Should this not
+ *  apply to any item with an accelerator whose parent menu has a
+ *  group?
  */
 void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
                                            GtkAccelGroup     *accel_group)
@@ -1107,25 +1056,55 @@ void geda_image_menu_item_set_accel_group (GedaImageMenuItem *image_menu_item,
       }
     }
   }
+  else {
+
+    GtkWidget *parent;
+
+    parent = geda_get_widget_parent(image_menu_item);
+
+    if (GEDA_IS_MENU(parent)) {
+
+      GtkAccelGroup *accel_group;
+
+      accel_group = geda_menu_widget_get_accel_group (parent);
+
+      if (accel_group) {
+
+        char accel;
+        unsigned int keyval;
+        GdkModifierType mods;
+
+        accel = geda_menu_item_get_mnemonic ((GedaMenuItem*)image_menu_item);
+
+        gtk_accelerator_parse (&accel, &keyval, &mods);
+        gtk_widget_remove_accelerator ((GtkWidget*)image_menu_item, accel_group, keyval, mods);
+      }
+    }
+  }
 }
 
-GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_menu_item)
+/*!
+ * \brief Get the image object associated with the menu item
+ * \par Function Description
+ *
+ * \param [in] image_menu_item a #GedaImageMenuItem
+ *
+ * Gets the widget that is currently set as the image of
+ * image_menu_item.
+ *
+ * \sa geda_image_menu_item_set_image().
+ *
+ * \returns the widget set as image of the GedaImageMenuItem
+ */
+GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
 {
-  GtkWidget *widget;
-
   g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), NULL);
 
-  widget = geda_get_widget_parent(image_menu_item);
-
-  if (GEDA_IS_MENU(widget)) {
-    return geda_menu_widget_get_accel_group(widget);
-  }
-  return NULL;
+  return image_menu_item->image;
 }
 
 /*!
  * \brief Set/Attach an image object to the menu item
- * \ingroup GedaImageMenuItem
  * \par Function Description
  *
  * \param [in] image_menu_item a #GedaImageMenuItem.
@@ -1166,122 +1145,98 @@ void geda_image_menu_item_set_image (GedaImageMenuItem *image_menu_item,
 }
 
 /*!
- * \brief Get the image object associated with the menu item
- * \ingroup GedaImageMenuItem
+ * \brief Get GedaImageMenuItem Show-Image Property
  * \par Function Description
+ *  Returns whether the menu item will ignore the GtkSettings:
+ *  gtk-menu-images setting and always show the image, if available.
  *
  * \param [in] image_menu_item a #GedaImageMenuItem
  *
- * Gets the widget that is currently set as the image of
- * image_menu_item.
+ * \retval %TRUE if the menu item will always show the image
  *
- * \sa geda_image_menu_item_set_image().
- *
- * \returns the widget set as image of the GedaImageMenuItem
  */
-GtkWidget *geda_image_menu_item_get_image (GedaImageMenuItem *image_menu_item)
+bool geda_image_menu_item_get_show_image (GedaImageMenuItem *image_menu_item)
 {
-  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), NULL);
+  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), FALSE);
 
-  return image_menu_item->image;
+  return image_menu_item->show_image;
 }
 
 /*!
- * \brief Remove the image object attached to the menu item
- * \ingroup GedaImageMenuItem
+ * \brief Set GedaImageMenuItem Show-Image Property
  * \par Function Description
- *  GtkContainerClass->remove virtual over-ride
+ *  If %TRUE, the menu item will ignore the GtkSettings:gtk-menu-images
+ *  setting and always show the image, if available.
+ *
+ *  Use this property if the menuitem would be useless or hard to use
+ *  without the image.
+ *
+ * \param [in] image_menu_item  a #GedaImageMenuItem
+ * \param [in] always_show      desired state
  */
-static void geda_image_menu_item_remove (GtkContainer *container, GtkWidget *child)
+void geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
+                                                       bool  always_show)
 {
-  GedaImageMenuItem *image_menu_item;
+  g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
 
-  image_menu_item = (GedaImageMenuItem*)container;
+  if (image_menu_item->show_image != always_show) {
 
-  if (child == image_menu_item->image) {
+    image_menu_item->show_image  = always_show;
 
-    bool was_visible;
+    if (image_menu_item->image) {
 
-    was_visible = gtk_widget_get_visible (child);
-
-    gtk_widget_unparent (child);
-    image_menu_item->image = NULL;
-
-    if (was_visible && gtk_widget_get_visible ((GtkWidget*)container))
-    {
-      gtk_widget_queue_resize ((GtkWidget*)container);
+      if (show_image (image_menu_item)) {
+        gtk_widget_show (image_menu_item->image);
+      }
+      else {
+        gtk_widget_hide (image_menu_item->image);
+      }
     }
 
-    GEDA_OBJECT_NOTIFY (image_menu_item, "image");
-  }
-  else {
-    ((GtkContainerClass*)geda_image_menu_item_parent_class)->remove (container, child);
+    GEDA_OBJECT_NOTIFY (image_menu_item, "show-image");
   }
 }
 
-/*
-static void show_image_change_notify (GedaImageMenuItem *image_menu_item)
+/*!
+ * \brief Get GedaImageMenuItem Use-Stock Property
+ * \par Function Description
+ *  Checks whether the label set in the menuitem is used as a stock id to
+ *  select the stock item for the item.
+ *
+ * \returns %TRUE if the label set in the menuitem is used as a
+ *          stock id to select the stock item for the item
+ *
+ * \param [in] image_menu_item: a #GedaImageMenuItem
+ */
+bool geda_image_menu_item_get_use_stock (GedaImageMenuItem *image_menu_item)
 {
-  if (image_menu_item->image){
-    if (show_image (image_menu_item)) {
-      gtk_widget_show (image_menu_item->image);
-    }
-    else {
-      gtk_widget_hide (image_menu_item->image);
-    }
-  }
+  g_return_val_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item), FALSE);
+
+  return image_menu_item->use_stock;
 }
 
-static void traverse_container (GtkWidget *widget, void *data)
+/*!
+ * \brief Set GedaImageMenuItem Use-Stock Property
+ * \par Function Description
+ *  If %TRUE, the label set in the menuitem is used as a stock id to select
+ *  the stock item for the item.
+ *
+ * \param [in] image_menu_item  a #GedaImageMenuItem
+ * \param [in] use_stock        set value
+ */
+void geda_image_menu_item_set_use_stock (GedaImageMenuItem *image_menu_item,
+                                                      bool  use_stock)
 {
-  if (GEDA_IS_IMAGE_MENU_ITEM (widget)) {
-    show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
-  }
-  else if (GTK_IS_CONTAINER (widget)) {
-    geda_container_forall (widget, traverse_container, NULL);
+  g_return_if_fail (GEDA_IS_IMAGE_MENU_ITEM (image_menu_item));
+
+  if (image_menu_item->use_stock != use_stock) {
+
+    image_menu_item->use_stock = use_stock;
+
+    geda_image_menu_item_recalculate (image_menu_item);
+
+    GEDA_OBJECT_NOTIFY (image_menu_item, str_use_stock);
   }
 }
 
-
-static void geda_image_menu_item_setting_changed (GtkSettings *settings)
-{
-  GList *list, *l;
-
-  list = gtk_window_list_toplevels ();
-
-  for (l = list; l; l = l->next) {
-    geda_container_forall (l->data, traverse_container, NULL);
-  }
-
-  g_list_free (list);
-}
-
-static void geda_image_menu_item_screen_changed (GtkWidget *widget,
-                                                 GdkScreen *previous_screen)
-{
-  GtkSettings *settings;
-  unsigned int show_image_connection;
-
-  if (!gtk_widget_has_screen (widget))
-    return;
-
-  settings = gtk_widget_get_settings (widget);
-
-  show_image_connection =
-  (void*)(long) (GEDA_OBJECT_GET_DATA(settings,
-                                       "gtk-image-menu-item-connection"));
-
-  if (show_image_connection)
-    return;
-
-  show_image_connection =
-  g_signal_connect (settings, "notify::gtk-menu-images",
-                    G_CALLBACK (geda_image_menu_item_setting_changed), NULL);
-  g_object_set_data ((GObject*)settings,
-                     _("gtk-image-menu-item-connection"),
-                                       UINT_TO_POINTER(show_image_connection));
-
-  show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
-}
-*/
 /** @} end group GedaImageMenuItem */

@@ -815,6 +815,7 @@ x_toolbars_finalize (GschemToplevel *w_current) {
     g_signal_emit_by_name(w_current->zoom_handlebox,      "child-attached");
   }
 
+  /* Hide the toolbar_none radio button */
   gtk_widget_hide(bar_widgets->toolbar_none);
 
   x_toolbars_update(w_current);

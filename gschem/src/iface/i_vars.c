@@ -83,8 +83,10 @@ int     default_warp_cursor               = TRUE;
 int     default_zoom_gain                 = DEFAULT_ZOOM_GAIN;
 int     default_zoom_with_pan             = TRUE;
 
+int     default_world_left                = 0;
 int     default_world_right               = WIDTH_C;
 int     default_world_bottom              = HEIGHT_C;
+int     default_world_top                 = 0;
 
 /* Image Related */
 int     default_image_color               = RC_NIL;
@@ -600,8 +602,10 @@ void i_vars_set(GschemToplevel *w_current)
 
   i_vars_recall_user_settings (w_current);
 
+  w_current->world_left                = default_world_left;
   w_current->world_right               = default_world_right;
   w_current->world_bottom              = default_world_bottom;
+  w_current->world_top                 = default_world_top;
 
   i_set_rc (&w_current->action_color,    default_action_color);
   i_set_rc (&w_current->anti_aliasing,   default_anti_aliasing);

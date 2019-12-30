@@ -216,6 +216,13 @@ int check_construction (void)
   return result;
 }
 
+static void callback_toggled (GtkToggleButton *checkbox, void *user_data)
+{
+  int *index  = (int*)user_data;
+
+  *index = 2;
+}
+
 int
 check_accessors ()
 {
@@ -277,6 +284,38 @@ check_accessors ()
 
     if (count != 4) {
       fprintf(stderr, "FAILED: line <%d> %s join_group <%d>\n", __LINE__, TWIDGET, count);
+      result++;
+    }
+
+    int index;
+
+    /* Check geda_bulb_group_get_active_index */
+    index = geda_bulb_group_get_active_index(group);
+
+    if (index != 0) {
+      fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
+      index = 0;
+      result++;
+    }
+
+    /* dual purpose index is used here to indicate the callback occured */
+    g_signal_connect (widget2, "toggled", G_CALLBACK (callback_toggled), &index);
+
+    index = 0;
+
+    /* Check geda_bulb_group_set_active_index */
+    geda_bulb_group_set_active_index(group, 1);
+
+    /* The callback should set the index = 2 */
+    if (index != 2) {
+      fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
+      result++;
+    }
+
+    index = geda_bulb_group_get_active_index(group);
+
+    if (index != 1) {
+      fprintf(stderr, "FAILED: line <%d> %s get_active_index <%d>\n", __LINE__, TWIDGET, index);
       result++;
     }
 
@@ -352,13 +391,13 @@ check_overides ()
     result++;
   }
 
-  g_object_ref_sink(widget1); /* Sink reference to entry widget */
-  //g_object_ref_sink(widget2); /* Sink reference to entry widget */
-  //g_object_ref_sink(widget3); /* Sink reference to entry widget */
+  g_object_ref_sink(widget1); /* Sink reference to widget 1*/
+  g_object_ref_sink(widget2); /* Sink reference to widget 2 */
+  g_object_ref_sink(widget3); /* Sink reference to widget 3 */
 
-  g_object_unref(widget1);    /* Destroy widget1 */
-  //g_object_unref(widget2);    /* Destroy widget2 */
- // g_object_unref(widget3);    /* Destroy widget3 */
+  g_object_unref(widget1);    /* Destroy widget 1 */
+  g_object_unref(widget2);    /* Destroy widget 2 */
+  g_object_unref(widget3);    /* Destroy widget 3 */
 
   return result;
 }

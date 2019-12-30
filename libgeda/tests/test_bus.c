@@ -236,6 +236,10 @@ check_accessors ()
   int count;
   int result = 0;
 
+  if (geda_bus_get_position(NULL, NULL, NULL)) {
+    fprintf(stderr, "FAILED: geda_bus_get_position NULL\n");
+  }
+
   count = geda_bus_get_ripper_direction(NULL);
   count = geda_bus_get_x0(NULL);
   count = geda_bus_get_x1(NULL);
@@ -264,6 +268,25 @@ check_accessors ()
     int fail;
 
     fail = 0;
+
+    /* === Function: geda_bus_get_position  === */
+
+    int tx, ty;;
+
+    if (!geda_bus_get_position(bus, &tx, &ty)) {
+      fprintf(stderr, "FAILED: geda_bus_get_position\n");
+      fail++;
+    }
+    else {
+      if (tx != x1) {
+        fprintf(stderr, "FAILED: geda_bus_get_position left != <%d>\n", tx);
+        fail++;
+      }
+      if (ty != y1) {
+        fprintf(stderr, "FAILED: geda_bus_get_position lower != <%d>\n", ty);
+        fail++;
+      }
+    }
 
     /* === Function: geda_bus_get_ripper_direction  === */
 

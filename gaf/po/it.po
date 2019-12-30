@@ -53,7 +53,6 @@ msgstr ""
 "Segnalare eventuali difetti a %s.\n"
 
 #: gaf/src/gaf.c:96
-#, fuzzy
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -62,12 +61,12 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
-"gEDA/gaf %s (%s) (g%.7s)\n"
 "Copyright (C) 1998-2017 gli sviluppatori di gEDA\n"
-"Questo è software libero, e siete invitati a redistribuirlo sotto\n"
-"certe condizioni. Per i dettagli, vedere il file \"COPYING\", incluso\n"
-"nella distribuzione di gEDA.\n"
-"NON C'È ALCUNA GARANZIA, nei limiti della legislazione vigente.\n"
+"Questo è un software gratuito e sei libero di ridistribuirlo in\n"
+"certe condizioni. Per i dettagli, consultare il file 'COPYING', ovvero\n"
+"incluso nella distribuzione gEDA. Non c'è GARANZIA; nemmeno \n"
+"per COMMERCIABILITÀ o IDONEITÀ A UNO SCOPO PARTICOLARE, nella misura\n"
+"consentito dalla legge.\n"
 
 #: gaf/src/gaf.c:110
 msgid "Run `gaf --help' for more information"
@@ -213,7 +212,7 @@ msgid "ERROR: No document is available to export.\n"
 msgstr ""
 
 #: gaf/src/export.c:1107
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
 "\n"
@@ -253,7 +252,7 @@ msgstr ""
 "                         imposta l'allineamento dei disegni nella pagina\n"
 "  -d, --dpi=DPI          pixel-per-pollice per risultati raster\n"
 "  -c, --color            abilita il colore nei risultati\n"
-"  --no-color             disabilita il colore nei risultati\n"
+"  -n, --no-color         disabilita il colore nei risultati\n"
 "  -F, --font=NAME        imposta il font family per la stampa del testo\n"
 "  -h, --help             mostra le informazioni sull'uso ed esce\n"
 "\n"

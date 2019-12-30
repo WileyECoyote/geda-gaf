@@ -105,36 +105,46 @@ bool x_dialog_generic_confirm_dialog (const char *msg, int type)
 char *x_dialog_new_attrib()
 {
   GtkDialog *dialog;
+  GtkWidget *container;
   GtkWidget *widget;
   GtkWidget *label;
   GtkWidget *attrib_entry;
-  char *entry_text;
+  char      *entry_text;
 
   /* Create the dialog */
   widget = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
                                        GTK_DIALOG_MODAL,
-                                       GTK_STOCK_OK, GEDA_RESPONSE_OK,
                                        GTK_STOCK_CANCEL, GEDA_RESPONSE_CANCEL,
+                                       GTK_STOCK_OK, GEDA_RESPONSE_OK,
                                        NULL);
 
   dialog = (GtkDialog*)widget;
+
+  container = gtk_dialog_get_content_area(dialog);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(dialog,
+                                          GEDA_RESPONSE_OK,
+                                          GEDA_RESPONSE_CANCEL,
+                                          -1);
 
   gtk_dialog_set_default_response(dialog, GEDA_RESPONSE_OK);
 
   /*  Create a text label for the dialog window */
   label = geda_label_new (_("Enter new attribute name"));
-  geda_container_add(dialog->vbox, label);
+  geda_container_add(container, label);
 
   /*  Create the "attrib" text entry area */
   attrib_entry = geda_entry_new_with_max_length(48);
   geda_entry_widget_set_activates_default(attrib_entry, TRUE);
 
-  geda_container_add(dialog->vbox, attrib_entry);
+  geda_container_add(container, attrib_entry);
   gtk_widget_set_size_request (widget, 300, 140);
+  gtk_widget_show(attrib_entry);
 
-  gtk_widget_show_all(widget);
+  gtk_widget_grab_focus(attrib_entry);
 
-  switch(gtk_dialog_run(dialog)) {
+  switch (gtk_dialog_run(dialog)) {
     case GEDA_RESPONSE_OK:
       entry_text = geda_utility_string_strdup(GetEntryText(attrib_entry) );
       break;
@@ -146,6 +156,7 @@ char *x_dialog_new_attrib()
   }
 
   gtk_widget_destroy(widget);
+
   return entry_text;
 }
 
@@ -182,8 +193,7 @@ x_dialog_column_visibility_toggled (GtkCellRendererToggle *cell_renderer,
 
   model = GTK_TREE_MODEL (store);
 
-  /* Removed conditional but don't know why, can not find documentation
-   * supporting change so re-instating the conditional to "see what happens" */
+  /* Abort if tree path not found */
   if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
     return;
   }
@@ -236,8 +246,6 @@ bool x_dialog_column_visibility (GList *list)
                                            GEDA_RESPONSE_APPLY,
                                            GEDA_RESPONSE_REJECT,
                                            -1);
-
-  gtk_window_position(GTK_WINDOW(dialog), GTK_WIN_POS_MOUSE);
 
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GEDA_RESPONSE_APPLY);
 
@@ -346,57 +354,6 @@ bool x_dialog_column_visibility (GList *list)
 /****************** End of Column Visibility dialog box ******************/
 
 /*!
- * \brief Delete Attribute dialog
- * \par Function Description
- *  This function throws up the "Delete foo, are you sure?" dialog box.
- *  The dialog offers two buttons: "yes" and "cancel".
- */
-void x_dialog_delete_attrib()
-{
-  GtkWidget  *dialog;
-  GtkSheet   *sheet;
-  int mincol, maxcol;
-  int cur_page;
-
-  /* First verify that exactly one column is selected.  */
-  cur_page = gtk_notebook_get_current_page((GtkNotebook*)notebook);
-  sheet    = (GtkSheet*)sheets[cur_page];
-
-  if (sheet == NULL) {
-    return;
-  }
-
-  mincol = x_gtksheet_get_min_col(sheet);
-  maxcol = x_gtksheet_get_max_col(sheet);
-
-  if ((mincol != maxcol) || (mincol == -1) || (maxcol == -1)) {
-    /* Improper selection -- maybe throw up error box? */
-    return;
-  }
-
-  /* Create the dialog */
-  dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
-                                         GTK_MESSAGE_QUESTION,
-                                         GTK_BUTTONS_YES_NO,
-                                      _("Are you sure you want to delete this attribute?"));
-
-  gtk_window_set_title((GtkWindow*)dialog, _("Delete attribute"));
-
-  switch(gtk_dialog_run((GtkDialog*)dialog)) {
-    case GEDA_RESPONSE_YES:
-      /* call the fcn to actually delete the attrib column.  */
-      s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
-                                        * which col to delete. */
-      break;
-
-    default:
-      break;
-  }
-
-  gtk_widget_destroy(dialog);
-}
-
-/*!
  * \brief Missing Symbol dialog
  * \par Function Description
  *  This is the "missing symbol file found on object" dialog, which
@@ -483,7 +440,9 @@ int x_dialog_file_not_saved()
   gtk_dialog_set_default_response (dialog, GEDA_RESPONSE_YES);
 
   result = gtk_dialog_run (dialog);
+
   gtk_widget_destroy ((GtkWidget*)dialog);
+
   return result;
 }
 
@@ -511,6 +470,7 @@ void x_dialog_unsaved_data()
     default:
        break;
   }
+
   return;
 }
 
@@ -615,7 +575,7 @@ void x_dialog_export_file()
   geda_file_chooser_set_current_folder (dialog, cwd);
   free (cwd);
 
-  switch(gtk_dialog_run((GtkDialog*)dialog)) {
+  switch (gtk_dialog_run((GtkDialog*)dialog)) {
     case GEDA_RESPONSE_ACCEPT:
       filename = geda_file_chooser_get_filename (dialog);
       if (filename != NULL) {

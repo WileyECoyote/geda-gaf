@@ -28,8 +28,6 @@
 
  ;; Import C procedures
  #:use-module (geda core deprecated)
- #:re-export (OBJ_LINE OBJ_PATH OBJ_BOX OBJ_PICTURE OBJ_CIRCLE OBJ_NET
-              OBJ_BUS OBJ_COMPLEX OBJ_TEXT OBJ_PIN OBJ_ARC)
 )
 
 (define-public get-line-width %get-line-width)

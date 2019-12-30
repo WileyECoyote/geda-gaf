@@ -102,6 +102,9 @@ static void geda_picture_instance_init(GTypeInstance *instance, void *g_class)
   picture->lower_x      = 0;
   picture->lower_y      = 0;
 
+  picture->height       = 0;
+  picture->width        = 0;
+
   object->picture       = picture;
 }
 
@@ -251,6 +254,22 @@ int geda_picture_get_angle (const GedaPicture *pic)
 }
 
 /*!
+ * \brief Retrieve the As Loaded Height of a GedaPicture
+ * \par Function Description
+ *  Returns the value of the height member or -0 if \a pic
+ *  is not a valid GedaPicture object.
+ *
+ * \return integer height.
+ */
+int geda_picture_get_height (const GedaPicture *pic)
+{
+  if (is_a_geda_picture(pic)) {
+    return pic->height;
+  }
+  return -0;
+}
+
+/*!
  * \brief Get if Picture is Embedded
  * \par Function Description
  *  Returns the value of the is_embedded flag or -0 if \a pic
@@ -260,6 +279,22 @@ bool geda_picture_get_is_embedded (const GedaPicture *pic)
 {
   if (is_a_geda_picture(pic)) {
     return pic->is_embedded;
+  }
+  return -0;
+}
+
+/*!
+ * \brief Retrieve the As Loaded Width of a GedaPicture
+ * \par Function Description
+ *  Returns the value of the width member or -0 if \a pic
+ *  is not a valid GedaPicture object.
+ *
+ * \return integer width.
+ */
+int geda_picture_get_width (const GedaPicture *pic)
+{
+  if (is_a_geda_picture(pic)) {
+    return pic->width;
   }
   return -0;
 }
@@ -278,6 +313,13 @@ void geda_picture_set_angle (GedaPicture *pic, int angle)
   }
 }
 
+void geda_picture_set_height (GedaPicture *pic, int height)
+{
+  if (is_a_geda_picture(pic)) {
+    pic->height = height;
+  }
+}
+
 /*!
  * \brief Set GedaPicture is_embedded Flag
  * \par Function Description
@@ -292,6 +334,13 @@ void geda_picture_set_is_embedded (GedaPicture *pic, bool is_embedded)
 {
   if (is_a_geda_picture(pic)) {
     pic->is_embedded = is_embedded;
+  }
+}
+
+void geda_picture_set_width (GedaPicture *pic, int width)
+{
+  if (is_a_geda_picture(pic)) {
+    pic->width = width;
   }
 }
 

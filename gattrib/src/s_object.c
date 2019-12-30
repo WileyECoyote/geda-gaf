@@ -57,12 +57,12 @@
  * \param show_name_value  Control visibility of name and value.
  */
 void
-s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
-                                    GedaObject   *o_current,
-                                    char         *new_attrib_name,
-                                    char         *new_attrib_value,
-                                    int           visibility,
-                                    int           show_name_value)
+s_object_add_attrib_to_object (GedaToplevel *toplevel,
+                               GedaObject   *o_current,
+                               char         *new_attrib_name,
+                               char         *new_attrib_value,
+                               int           visibility,
+                               int           show_name_value)
 {
   /* One last sanity check, then add attrib */
   if (strlen(new_attrib_value) != 0) {
@@ -83,20 +83,6 @@ s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
 }
 
 /*------------------------------------------------------------------*/
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- */
-void
-s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
-                                   GedaObject   *o_current,
-                                   char         *new_attrib_name,
-                                   char         *new_attrib_value)
-{
-  /* TBD */
-}
-
-/*------------------------------------------------------------------*/
 /*!
  * \brief Add a new attribute to an pin Object
  * \par Function Description
@@ -108,8 +94,6 @@ s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
  * \param o_current        Pointer to pin object
  * \param new_attrib_name  Name of attribute to add
  * \param new_attrib_value Value of attribute to add
- *
- * \todo Do I really need separate fcns for comps, nets, and pins???
  */
 void
 s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
@@ -176,8 +160,6 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
                                   int           show_name_value)
 {
   GList *a_iter;
-  char  *old_attrib_text;
-  char  *old_attrib_name;
 
   a_iter = o_current->attribs;
 
@@ -189,9 +171,14 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
 
       /* found an attribute? */
 
+      char  *old_attrib_text;
+      char  *old_attrib_name;
+
       /* may need to check more thoroughly here. . . . */
       old_attrib_text = geda_strdup(a_current->text->string);
       old_attrib_name = geda_strsplit(old_attrib_text, '=', 0);
+
+      GEDA_FREE(old_attrib_text);
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
 
@@ -204,12 +191,10 @@ s_object_replace_attrib_in_object(GedaToplevel *toplevel,
         if (show_name_value != LEAVE_NAME_VALUE_ALONE)
           a_current->show_name_value = show_name_value;
 
-        GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
         return;     /* we are done -- leave. */
       }
       else {
-        GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
       }  /* if (strcmp . . . . */
     } /* if (a_current . . . . */
@@ -265,7 +250,7 @@ s_object_release_attrib_in_object (GedaToplevel *toplevel,
         printf("%s: removing attrib with name = %s\n", __func__, old_attrib_name);
 #endif
 
-        s_object_delete_text_object_in_object (toplevel, a_current);
+        s_object_delete_text_object (toplevel, a_current);
 
         GEDA_FREE(old_attrib_text);
         GEDA_FREE(old_attrib_name);
@@ -446,28 +431,14 @@ s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
 /*!
  * \brief Delete text object
  * \par Function Description
- *  Delete the text object pointed to by text_object.
+ *  Delete the text object pointed to by \a text_object.
  *
  * \param toplevel    GedaToplevel to be operated on
  * \param text_object text object to be deleted
  */
 void
-s_object_delete_text_object_in_object (GedaToplevel *toplevel,
-                                       GedaObject   *text_object)
+s_object_delete_text_object (GedaToplevel *toplevel, GedaObject *text_object)
 {
   geda_struct_page_remove_object (toplevel->page_current, text_object);
   geda_struct_object_release (text_object);
-}
-
-/*------------------------------------------------------------------*/
-/*!
- * \brief Ensure object has a symbol file
- * \par Function Description
- *  This verifies that the object has a non-null symbol filename.
- *
- * \returns 0 = valid symbol file, 1 = no symbol file found.
- */
-int s_object_has_sym_file(GedaObject *object)
-{
-  return geda_complex_get_filename(object->complex) ? 0 : 1;
 }

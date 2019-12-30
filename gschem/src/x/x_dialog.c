@@ -204,10 +204,12 @@ GtkWidget *get_geda_switch_image (bool WhichState)
  *  \returns Newly created widget
  */
 GtkWidget*
-create_geda_switch(GtkWidget *parent, GtkWidget *widget,
-                   GtkWidget *SwitchImage, bool istate)
+create_geda_switch(GtkWidget *parent, GtkWidget *SwitchImage, bool istate)
 {
+  GtkWidget *widget;
+
   widget = gtk_check_button_new ();
+
   gtk_widget_show (widget);
   PACK_START (parent, widget, FALSE, FALSE, 0);
   gtk_widget_set_size_request (widget, -1, 30);
@@ -222,6 +224,7 @@ create_geda_switch(GtkWidget *parent, GtkWidget *widget,
   gtk_widget_set_name (widget, "GedaToggleSwitch");
 
   SwitchImage = get_geda_switch_image (istate);
+
   gtk_widget_show (SwitchImage);
   geda_container_add (widget, SwitchImage);
 
@@ -3342,12 +3345,12 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
 /*! \brief Fix up displaying icons in list of hotkeys.
  * gschem incorporates both GTK's stock and theme icons. Each is identified
  * by a single icon name, which could be either a GTK stock icon or a theme
- * icon.  To determine which icon to show, we first check if there's a
- * matching stock icon, and if one doesn't exist, we fall back to looking
+ * icon.  To determine which icon to show, we first check if there is a
+ * matching stock icon, and if one does not exist, we fall back to looking
  * in the theme.
  *
- * The GtkCellRendererPixbuf doesn't provide this capability.  If its
- * "icon-name" property is set, it doesn't look at stock items, but if
+ * The GtkCellRendererPixbuf does not provide this capability.  If its
+ * "icon-name" property is set, it does not look at stock items, but if
  * its "stock-id" property is set, it ignores the "icon-name" even if
  * no matching stock item exists.
  *
@@ -3484,6 +3487,7 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
       GtkTreeViewColumn *column;
 
       do {
+
         GtkTreeIter iter2;
         const char *icon_id;
         char *action;
@@ -3523,7 +3527,9 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
                                              3, binding,
                                              -1);
         }
+
         GEDA_FREE(action);
+
       } while (gtk_tree_model_iter_next ((GtkTreeModel*)key_store, &iter));
 
       g_object_unref(key_store);
@@ -3952,7 +3958,7 @@ void x_dialog_symbol_changed(GschemToplevel *w_current)
 
 /*! \brief Validate the input attribute
  *  \par Function Description
- *  This function validates the attribute and if it isn't valid
+ *  This function validates the attribute and if it is not valid
  *  pops up an error message box. The function is used by both
  *  the single and the multi-attribute editors to validate text
  *  input.

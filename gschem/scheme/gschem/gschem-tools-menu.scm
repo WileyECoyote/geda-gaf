@@ -7,11 +7,10 @@
 ;; File:  gschem-tools-menu.scm  by Paul Tan
 ;;
 ;; (1) Put this file in /usr/share/gEDA/scheme/ directory.
-;; (2) Add the following line (without the semi-colon) at the end of
+;; (2) Add the following line (without the semi-colon) to the file
 ;;     system-gschemrc file, normally under /usr/share/gEDA/ folder:
 ;;
 ;     (load-from-path "gschem/gschem-tools-menu.scm")
-;;
 
 
 (use-modules (geda page)
@@ -231,30 +230,35 @@
         (tools:open-editor? fout)
 ))))
 
+(map-keys "T E"    "tools:open-editor")
 (map-keys "T S"    "tools:check-symbol")
 (map-keys "T T"    "tools-translate")
+(map-keys "T V"    "tools:open-gitclient")
+
+(map-icon "geda-text-editor" "tools:open-editor")
 
 ;; ==================================================================
 (define tools:menu-items
 ;;
-;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
+;;    menu item name             menu action             menu stock icon menu    Menu Item Tooltip
 ;;
-  '(
-    ("_Symbols"                 #f                     "geda-component"     "Tool for symbol files")
+  `(
+    (,(N_ "_Symbols")            #f                          "geda-component"     "Tool for symbol files")
     ("SEPARATOR"                #f                     #f)
-    ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
-    ("Run DRC 1"            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
-    ("Run DRC 2"            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
-    ("Version Control"      tools:open-gitclient       "git-logo"           "Launch version system")
-    ("Bill of Materials"    tools:run-bom              "gaf-bom"            "Generate a BOM")
+    (,(N_ "_Open Editor")         tools:open-editor          "geda-text-editor"   "Open text editor")
+
+    (,(N_ "Run DRC 1")            tools:run-drc              "geda-check-grn"     "Launch design rule checker 1")
+    (,(N_ "Run DRC 2")            tools:run-drc2             "geda-check-org"     "Launch design rule checker 2")
+    (,(N_ "Version Control")      tools:open-gitclient       "git-logo"           "Launch version system")
+    (,(N_ "Bill of Materials")    tools:run-bom              "gaf-bom"            "Generate a BOM")
 
     ("SEPARATOR"                #f                     #f)
-    ("gEDA netlist"         tools:geda-netlist         "gschem-net")
-    ("S_pice netlist"           #f                     "geda-wave"          "Generate spice netlists")
+    (,(N_ "gEDA netlist")         tools:geda-netlist         "gschem-net")
+    (,(N_ "S_pice netlist")      #f                          "geda-wave"          "Generate spice netlists")
     ("SEPARATOR"                #f                     #f)
-    ("VHDL netlist"         tools:vhdl-sch-netlist     "geda-simulate")
-    ("Verilog netlist"      tools:verilog-netlist      "geda-verilog-blue")
-    ("hierarchy Verilog"    tools:gnet_hier_verilog    "geda-verilog-grn")
+    (,(N_ "VHDL netlist")         tools:vhdl-sch-netlist     "geda-simulate")
+    (,(N_ "Verilog netlist")      tools:verilog-netlist      "geda-verilog-blue")
+    (,(N_ "hierarchy Verilog")    tools:gnet_hier_verilog    "geda-verilog-grn")
   )
 )
 
@@ -263,7 +267,7 @@
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(
+  `(
     ("Symbol _Translate..."  tools-translate           "gtk-convert"       "Reset the X-Y Zero point")
     ("Check Symbol"          tools:check-symbol        "geda-inspect-grn"  "Run gsymcheck")
   )
@@ -273,16 +277,16 @@
 ;;
 ;;    menu item name       menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-  '(
-    ("Spice netlist"        tools:spice-netlist        "geda-spectrum")
-    ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave")
+  `(
+    ("Spice netlist"        tools:spice-netlist        "geda-spectrum"    "Generate spice netlists")
+    ("SDB netlist"          tools:spice-sdb-netlist    "geda-wave"        "Generate spice netlists using SDB backend")
     ("Anise netlist"        tools:spice-anise-netlist  "geda-waves")
     ("NoSqi netlist"        tools:spice-noqsi-netlist  "geda-sinx")
   )
 )
 
-(add-menu "_Tools" tools:menu-items)
-(add-menu "_Tools/_Symbols" tools:symbol-items)
-(add-menu "_Tools/S_pice netlist" tools:spice-items)
+(add-menu (N_ "_Tools") tools:menu-items)
+(add-menu (N_ "_Tools/_Symbols") tools:symbol-items)
+(add-menu (N_ "_Tools/S_pice netlist") tools:spice-items)
 
 ;; ==================================================================
