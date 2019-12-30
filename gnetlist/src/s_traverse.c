@@ -35,7 +35,10 @@
 #include <geda_debug.h>
 #include <geda_diagnostics.h>
 
+#if PERFORMANCE
 #include <valgrind/callgrind.h>
+#endif
+
 
 /*! Tracks which Objects have been visited so far, and how many times.
  *

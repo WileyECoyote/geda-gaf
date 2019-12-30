@@ -1,3 +1,7 @@
+2019-12-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_traverse.c: Wrap callgrind.h> in conditional  PERFORMANCE directive.
+
 2019-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/g_netlist.c: Eliminate unnecessary initialization of name value

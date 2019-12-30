@@ -4281,6 +4281,7 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
   gtk_widget_destroy (dialog);
 }
 
+#if 0
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -4338,6 +4339,7 @@ GList *x_dialog_sym_not_embedded(GschemToplevel *w_current, GList *syms)
 
   return NULL;
 }
+#endif
 
 /******************* End of General message dialogs **********************/
 
