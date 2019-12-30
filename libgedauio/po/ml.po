@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-11-09 11:45-0600\n"
+"POT-Creation-Date: 2019-12-18 22:29-0600\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -77,27 +77,27 @@ msgstr "പ്രിവ്യൂ"
 msgid "Active to enable the preview pane"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:614
+#: libgedauio/src/widgets/geda_accel_label.c:530
 msgid "Accelerator Closure"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:615
+#: libgedauio/src/widgets/geda_accel_label.c:531
 msgid "The closure to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:621
+#: libgedauio/src/widgets/geda_accel_label.c:537
 msgid "Accelerator Widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:622
+#: libgedauio/src/widgets/geda_accel_label.c:538
 msgid "The widget to be monitored for accelerator changes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:628
+#: libgedauio/src/widgets/geda_accel_label.c:544
 msgid "Accelerator String"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_accel_label.c:629
+#: libgedauio/src/widgets/geda_accel_label.c:545
 msgid "The accelerator string to be displayed"
 msgstr ""
 
@@ -150,227 +150,227 @@ msgid "Spacing around check or radio indicator"
 msgstr ""
 
 # ComboBox model
-#: libgedauio/src/widgets/geda_combobox.c:2036
+#: libgedauio/src/widgets/geda_combobox.c:2040
 msgid "ComboBox model"
 msgstr "കോംബോബോക്സ് മോഡൽ"
 
-#: libgedauio/src/widgets/geda_combobox.c:2037
+#: libgedauio/src/widgets/geda_combobox.c:2041
 msgid "The model for the combo box"
 msgstr ""
 
 # Wrap width
-#: libgedauio/src/widgets/geda_combobox.c:2051
+#: libgedauio/src/widgets/geda_combobox.c:2055
 msgid "Wrap width"
 msgstr "വീതി വീതി"
 
-#: libgedauio/src/widgets/geda_combobox.c:2052
+#: libgedauio/src/widgets/geda_combobox.c:2056
 msgid "Wrap width for laying out the items in a grid"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2070
+#: libgedauio/src/widgets/geda_combobox.c:2074
 msgid "Row span column"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2071
+#: libgedauio/src/widgets/geda_combobox.c:2075
 msgid "TreeModel column containing the row span values"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2089
+#: libgedauio/src/widgets/geda_combobox.c:2093
 msgid "Column span column"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2090
+#: libgedauio/src/widgets/geda_combobox.c:2094
 msgid "TreeModel column containing the column span values"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2109
+#: libgedauio/src/widgets/geda_combobox.c:2113
 msgid "Active item"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2110
+#: libgedauio/src/widgets/geda_combobox.c:2114
 msgid "The item which is currently active"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2127
+#: libgedauio/src/widgets/geda_combobox.c:2131
 msgid "Add tearoffs to menus"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2128
+#: libgedauio/src/widgets/geda_combobox.c:2132
 msgid "Whether dropdowns should have a tearoff menu item"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2141
+#: libgedauio/src/widgets/geda_combobox.c:2145
 msgid "Has Frame"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2142
+#: libgedauio/src/widgets/geda_combobox.c:2146
 msgid "Whether the combo box draws a frame around the child"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2155
+#: libgedauio/src/widgets/geda_combobox.c:2159
 #: libgedauio/src/widgets/geda_menu_button.c:1208
 msgid "Focus on click"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2156
+#: libgedauio/src/widgets/geda_combobox.c:2160
 msgid "Whether the combo box grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2171
+#: libgedauio/src/widgets/geda_combobox.c:2175
 msgid "Tearoff Title"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2172
+#: libgedauio/src/widgets/geda_combobox.c:2176
 msgid ""
 "A title that may be displayed by the window manager when the popup is torn-"
 "off"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2186
+#: libgedauio/src/widgets/geda_combobox.c:2190
 msgid "Popup shown"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2187
+#: libgedauio/src/widgets/geda_combobox.c:2191
 msgid "Whether the combo's dropdown is shown"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2200
+#: libgedauio/src/widgets/geda_combobox.c:2204
 msgid "Button Sensitivity"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2201
+#: libgedauio/src/widgets/geda_combobox.c:2205
 msgid "Whether the dropdown button is sensitive when the model is empty"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2214
+#: libgedauio/src/widgets/geda_combobox.c:2218
 msgid "Has Entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2215
+#: libgedauio/src/widgets/geda_combobox.c:2219
 msgid "Whether combo box has an entry"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2227
+#: libgedauio/src/widgets/geda_combobox.c:2231
 msgid "Appear as list"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2228
+#: libgedauio/src/widgets/geda_combobox.c:2232
 msgid "Whether popup should look like lists rather than menus"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2243
+#: libgedauio/src/widgets/geda_combobox.c:2247
 msgid "Entry Text Column"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2244
+#: libgedauio/src/widgets/geda_combobox.c:2248
 msgid ""
 "The column in the combo box's model to associate with strings from the entry "
 "if the combo was created with #GedaComboBox:has-entry = %TRUE"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2263
+#: libgedauio/src/widgets/geda_combobox.c:2267
 msgid "Arrow Size"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2264
+#: libgedauio/src/widgets/geda_combobox.c:2268
 msgid "The minimum size of the arrow in the combo box"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2276
+#: libgedauio/src/widgets/geda_combobox.c:2280
 msgid "List View"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2277
+#: libgedauio/src/widgets/geda_combobox.c:2281
 msgid ""
 "When true, the drop-down appears as a list view, otherwise an ugly menus"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2289
+#: libgedauio/src/widgets/geda_combobox.c:2293
 msgid "Shadow type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:2290
+#: libgedauio/src/widgets/geda_combobox.c:2294
 msgid "Which kind of shadow to draw around the combo box"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3910
+#: libgedauio/src/widgets/geda_combobox.c:3914
 msgid "Auto view"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3917
+#: libgedauio/src/widgets/geda_combobox.c:3921
 msgid "view as Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_combobox.c:3924
+#: libgedauio/src/widgets/geda_combobox.c:3928
 msgid "view as List"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:660
+#: libgedauio/src/widgets/geda_entry.c:678
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:661
+#: libgedauio/src/widgets/geda_entry.c:679
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:668
+#: libgedauio/src/widgets/geda_entry.c:686
 #: libgedauio/src/widgets/geda_label.c:1405
 msgid "Attributes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:669
+#: libgedauio/src/widgets/geda_entry.c:687
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:676
+#: libgedauio/src/widgets/geda_entry.c:694
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:677
+#: libgedauio/src/widgets/geda_entry.c:695
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:684
+#: libgedauio/src/widgets/geda_entry.c:702
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:685
+#: libgedauio/src/widgets/geda_entry.c:703
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:692
+#: libgedauio/src/widgets/geda_entry.c:710
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:693
+#: libgedauio/src/widgets/geda_entry.c:711
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:702
+#: libgedauio/src/widgets/geda_entry.c:720
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:703
+#: libgedauio/src/widgets/geda_entry.c:721
 msgid "maximum length of history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:712
+#: libgedauio/src/widgets/geda_entry.c:730
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:713
+#: libgedauio/src/widgets/geda_entry.c:731
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1351
+#: libgedauio/src/widgets/geda_entry.c:1371
 msgid "Auto Complete"
 msgstr "സ്വയം പൂർത്തിയാക്കുക"
 
-#: libgedauio/src/widgets/geda_entry.c:1359
+#: libgedauio/src/widgets/geda_entry.c:1379
 msgid "On"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1364
+#: libgedauio/src/widgets/geda_entry.c:1384
 msgid "Off"
 msgstr ""
 

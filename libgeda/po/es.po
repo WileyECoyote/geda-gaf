@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-11-09 11:45-0600\n"
+"POT-Creation-Date: 2019-12-18 22:29-0600\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1328,7 +1328,7 @@ msgid "Found a component with an invalid rotation"
 msgstr "Se ha encontrado un componente con un ángulo de rotación no válido"
 
 #: libgeda/src/object/o_complex_object.c:1194
-#: libgeda/src/object/o_picture_object.c:1495
+#: libgeda/src/object/o_picture_object.c:1498
 msgid "Setting angle to 0\n"
 msgstr "Cambiando el parámetro 'ángulo' a 0\n"
 
@@ -1344,12 +1344,12 @@ msgstr "Estableciendo espejo en 0\n"
 msgid "Invalid complex object"
 msgstr "Objeto complejo no válido"
 
-#: libgeda/src/object/o_embed.c:50
+#: libgeda/src/object/o_embed.c:51
 #, c-format
 msgid "Component [%s] has been embedded\n"
 msgstr "Se ha incrustado el componente [%s]\n"
 
-#: libgeda/src/object/o_embed.c:100
+#: libgeda/src/object/o_embed.c:102
 #, c-format
 msgid ""
 "Could not find component [%s], while trying to unembed. Component is still "
@@ -1358,7 +1358,7 @@ msgstr ""
 "No se puede encontrar el componente [%s], al intentar desincrustarlo.El "
 "componente permanece todavía incrustado\n"
 
-#: libgeda/src/object/o_embed.c:109
+#: libgeda/src/object/o_embed.c:111
 #, c-format
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Se ha desincrustado satisfactoriamente el componente [%s]\n"
@@ -1413,93 +1413,93 @@ msgstr ""
 msgid "Failed to export"
 msgstr "No se puede exportar"
 
-#: libgeda/src/object/o_picture_object.c:1249
+#: libgeda/src/object/o_picture_object.c:1252
 msgid "Invalid; picture has no height\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1250
+#: libgeda/src/object/o_picture_object.c:1253
 msgid "Setting aspect to 1.0\n"
 msgstr "Cambiando el parámetro 'ángulo' a 0\n"
 
 # Failed to load buffer image
-#: libgeda/src/object/o_picture_object.c:1265
+#: libgeda/src/object/o_picture_object.c:1268
 msgid "Failed to load buffer image"
 msgstr "Falló la carga de imagen de buffer"
 
 # Failed to load image from
-#: libgeda/src/object/o_picture_object.c:1282
+#: libgeda/src/object/o_picture_object.c:1285
 msgid "Failed to load image from"
 msgstr "Falló la carga de imagen desde"
 
-#: libgeda/src/object/o_picture_object.c:1453
+#: libgeda/src/object/o_picture_object.c:1456
 msgid "Failed to parse picture definition"
 msgstr "Falló el procesamiento de la definición de imagen"
 
-#: libgeda/src/object/o_picture_object.c:1459
+#: libgeda/src/object/o_picture_object.c:1462
 msgid "Found a picture with zero width/height"
 msgstr "Se ha encontrado un rectángulo con altura o anchura cero"
 
-#: libgeda/src/object/o_picture_object.c:1468
+#: libgeda/src/object/o_picture_object.c:1471
 msgid "Found a picture with an invalid 'mirrored' parameter"
 msgstr "Se encontró una imagen con un valor erróneo en el parámetro 'mirrored'"
 
-#: libgeda/src/object/o_picture_object.c:1474
+#: libgeda/src/object/o_picture_object.c:1477
 msgid "Setting mirrored to 0\n"
 msgstr "Cambiando el parámetro 'volteado' a 0\n"
 
-#: libgeda/src/object/o_picture_object.c:1480
+#: libgeda/src/object/o_picture_object.c:1483
 msgid "Found a picture with an invalid 'embedded' parameter"
 msgstr "Se encontró una imagen con un valor erróneo en el parámetro 'embedded'"
 
-#: libgeda/src/object/o_picture_object.c:1486
+#: libgeda/src/object/o_picture_object.c:1489
 msgid "Setting embedded to 0\n"
 msgstr "Cambiando el parámetro 'incrustado' a 0\n"
 
-#: libgeda/src/object/o_picture_object.c:1491
+#: libgeda/src/object/o_picture_object.c:1494
 msgid "Found an unsupported picture angle"
 msgstr "Se ha encontrado una imagen con un ángulo de rotación no válido"
 
-#: libgeda/src/object/o_picture_object.c:1518
+#: libgeda/src/object/o_picture_object.c:1521
 msgid "Error"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1530
+#: libgeda/src/object/o_picture_object.c:1533
 msgid "Image filename is missing."
 msgstr ""
 
 # Failed to load image from embedded data
-#: libgeda/src/object/o_picture_object.c:1591
+#: libgeda/src/object/o_picture_object.c:1594
 msgid "Failed to load image from embedded data"
 msgstr "Error al cargar imagen desde los datos embebidos"
 
-#: libgeda/src/object/o_picture_object.c:1592
+#: libgeda/src/object/o_picture_object.c:1595
 msgid "Base64 decoding failed."
 msgstr "Ha fallado la decodificación Base64."
 
-#: libgeda/src/object/o_picture_object.c:1593
+#: libgeda/src/object/o_picture_object.c:1596
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Volviendo al modo de carga de archivo. Imagen desincrustada.\n"
 
 # ERROR: unable to encode the picture
-#: libgeda/src/object/o_picture_object.c:1716
+#: libgeda/src/object/o_picture_object.c:1719
 msgid "ERROR: unable to encode the picture.\n"
 msgstr "ERROR: imposible codificar la imagen.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1796
+#: libgeda/src/object/o_picture_object.c:1799
 msgid "Error processing image"
 msgstr "Error al procesar la imagen"
 
 # Failed to load image from file
-#: libgeda/src/object/o_picture_object.c:1971
+#: libgeda/src/object/o_picture_object.c:1974
 msgid "Failed to load image from file"
 msgstr "Falló la carga de imagen desde"
 
-#: libgeda/src/object/o_picture_object.c:1973
+#: libgeda/src/object/o_picture_object.c:1976
 msgid "Picture is still embedded.\n"
 msgstr "Imagen aún está empotrada.\n"
 
-#: libgeda/src/object/o_picture_object.c:1982
+#: libgeda/src/object/o_picture_object.c:1985
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Se ha desincrustado la imagen [%s]\n"

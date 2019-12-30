@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gschem\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-11-09 11:45-0600\n"
+"POT-Creation-Date: 2019-12-18 22:29-0600\n"
 "PO-Revision-Date: 2010-02-14 01:03+0000\n"
 "Last-Translator: Bernd Jendrissek <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -614,11 +614,11 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "gevind ongeldig gschem venster smob ~S"
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5209
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5212
 msgid "current value of"
 msgstr "huidige waarde van"
 
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5210
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5213
 msgid "is"
 msgstr "is"
 
@@ -634,7 +634,7 @@ msgstr "kan nie"
 msgid "while inside an action!\n"
 msgstr "terwyl in 'n aksie!\n"
 
-#: gschem/src/iface/i_command.c:792 gschem/src/iface/i_command.c:2838
+#: gschem/src/iface/i_command.c:792 gschem/src/iface/i_command.c:2841
 msgid "New page created"
 msgstr "Nuwe bladsy geskep"
 
@@ -642,131 +642,131 @@ msgstr "Nuwe bladsy geskep"
 msgid "New Window created"
 msgstr "Nuwe Venster geskep"
 
-#: gschem/src/iface/i_command.c:1031
+#: gschem/src/iface/i_command.c:1034
 msgid "Failed to Save All"
 msgstr "Misluk om alles te bewaar"
 
-#: gschem/src/iface/i_command.c:1034 gschem/src/iface/i_command.c:1051
+#: gschem/src/iface/i_command.c:1037 gschem/src/iface/i_command.c:1054
 msgid "Saved All"
 msgstr "Alles Bewaar"
 
-#: gschem/src/iface/i_command.c:1048
+#: gschem/src/iface/i_command.c:1051
 msgid "Error encountered, Save Failed"
 msgstr "Fout plaasgevind, Slaan Kon"
 
-#: gschem/src/iface/i_command.c:1118 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1121 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Skryf afbeelding"
 
-#: gschem/src/iface/i_command.c:1140
+#: gschem/src/iface/i_command.c:1143
 msgid "Write PDF"
 msgstr "Skryf PDF"
 
-#: gschem/src/iface/i_command.c:1236
+#: gschem/src/iface/i_command.c:1239
 msgid "Canceled close all\n"
 msgstr "Gekanselleer naby alle\n"
 
-#: gschem/src/iface/i_command.c:1245 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1248 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Sluit Bladsy\n"
 
-#: gschem/src/iface/i_command.c:1268
+#: gschem/src/iface/i_command.c:1271
 msgid "starting shut-down"
 msgstr "begin afsluit"
 
-#: gschem/src/iface/i_command.c:1282
+#: gschem/src/iface/i_command.c:1285
 msgid "Symbol is not embedded, export anyway?"
 msgstr "Simbool is nie ingebed nie, uitvoer in elk geval?"
 
-#: gschem/src/iface/i_command.c:1306
+#: gschem/src/iface/i_command.c:1309
 msgid "Picture is not embedded, export anyway?"
 msgstr "Foto is nie ingebed nie, uitvoer in elk geval?"
 
-#: gschem/src/iface/i_command.c:1453
+#: gschem/src/iface/i_command.c:1456
 msgid "Empty buffer"
 msgstr "Maak buffer leeg"
 
-#: gschem/src/iface/i_command.c:1718
+#: gschem/src/iface/i_command.c:1721
 msgid "Offset Mode"
 msgstr "Netmodus"
 
-#: gschem/src/iface/i_command.c:1719
+#: gschem/src/iface/i_command.c:1722
 msgid "Specify offset distance:"
 msgstr "Spesifiseer geneutraliseer afstand:"
 
-#: gschem/src/iface/i_command.c:2315
+#: gschem/src/iface/i_command.c:2318
 msgid "Zoom Magnification"
 msgstr "Stel Vergroting"
 
-#: gschem/src/iface/i_command.c:2315
+#: gschem/src/iface/i_command.c:2318
 msgid "Specify new zoom:"
 msgstr "Spesifiseer nuwe vergroting:"
 
-#: gschem/src/iface/i_command.c:2357 gschem/src/iface/i_command.c:4697
-#: gschem/src/iface/i_command.c:4727 gschem/src/iface/i_command.c:4748
-#: gschem/src/iface/i_command.c:4768
+#: gschem/src/iface/i_command.c:2360 gschem/src/iface/i_command.c:4700
+#: gschem/src/iface/i_command.c:4730 gschem/src/iface/i_command.c:4751
+#: gschem/src/iface/i_command.c:4771
 msgid "Check path:"
 msgstr "Gaan pad:"
 
 # error
-#: gschem/src/iface/i_command.c:2368
+#: gschem/src/iface/i_command.c:2371
 msgid "error"
 msgstr "fout"
 
-#: gschem/src/iface/i_command.c:2379
+#: gschem/src/iface/i_command.c:2382
 msgid "No component selected\n"
 msgstr "Geen komponent gekies\n"
 
-#: gschem/src/iface/i_command.c:2924
+#: gschem/src/iface/i_command.c:2927
 msgid "Confirm revert ALL documents"
 msgstr "Bevestig oplaai ALLE dokumente"
 
-#: gschem/src/iface/i_command.c:3106
+#: gschem/src/iface/i_command.c:3109
 msgid "Searching for source"
 msgstr "Soek vir bron"
 
-#: gschem/src/iface/i_command.c:3141
+#: gschem/src/iface/i_command.c:3144
 msgid "Failed to descend into"
 msgstr "Kon nie afbeelding laai nie"
 
-#: gschem/src/iface/i_command.c:3150
+#: gschem/src/iface/i_command.c:3153
 msgid "Hierarchy Error"
 msgstr "Hierargie"
 
-#: gschem/src/iface/i_command.c:3227
+#: gschem/src/iface/i_command.c:3230
 msgid "Searching for symbol"
 msgstr "Soek vir simbool"
 
-#: gschem/src/iface/i_command.c:3237
+#: gschem/src/iface/i_command.c:3240
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Simbool is nie 'n ware lêer. Simbool kan nie gelaai word nie.\n"
 
-#: gschem/src/iface/i_command.c:3284
+#: gschem/src/iface/i_command.c:3287
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "Daar is geen stroombaandiagram Bo die aktiewe bladsy!\n"
 
 # Object is attached to something
-#: gschem/src/iface/i_command.c:3414
+#: gschem/src/iface/i_command.c:3417
 msgid "Object is attached to something\n"
 msgstr "Voorwerp is aan iets verbonde\n"
 
-#: gschem/src/iface/i_command.c:3817
+#: gschem/src/iface/i_command.c:3820
 msgid "Attribute is already attached\n"
 msgstr "Eienskappe is reeds aangeheg\n"
 
-#: gschem/src/iface/i_command.c:4231
+#: gschem/src/iface/i_command.c:4234
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "WAARSKUWING: Moenie vertaal met snap af!\n"
 
-#: gschem/src/iface/i_command.c:4232
+#: gschem/src/iface/i_command.c:4235
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "WAARSKUWING: Draai snap op en voort te gaan met vertaal.\n"
 
-#: gschem/src/iface/i_command.c:4238
+#: gschem/src/iface/i_command.c:4241
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "WAARSKUWING: Snap rooster grootte is nie gelyk aan 100!\n"
 
-#: gschem/src/iface/i_command.c:4239
+#: gschem/src/iface/i_command.c:4242
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -774,73 +774,73 @@ msgstr ""
 "WAARSKUWING: As jy die vertaling van 'n simbool aan die oorsprong, moet die "
 "grootte snap rooster opgestel word tot 100\n"
 
-#: gschem/src/iface/i_command.c:4444
+#: gschem/src/iface/i_command.c:4447
 msgid "Grid OFF\n"
 msgstr "Rooster AF\n"
 
-#: gschem/src/iface/i_command.c:4445
+#: gschem/src/iface/i_command.c:4448
 msgid "Dot grid activated\n"
 msgstr "Dot rooster geaktiveer\n"
 
-#: gschem/src/iface/i_command.c:4446
+#: gschem/src/iface/i_command.c:4449
 msgid "Mesh grid activated\n"
 msgstr "Mesh rooster geaktiveer\n"
 
-#: gschem/src/iface/i_command.c:4525
+#: gschem/src/iface/i_command.c:4528
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Snap AF (VERSIGTIG!)\n"
 
-#: gschem/src/iface/i_command.c:4531
+#: gschem/src/iface/i_command.c:4534
 msgid "Snap ON\n"
 msgstr "Snap Op\n"
 
-#: gschem/src/iface/i_command.c:4536
+#: gschem/src/iface/i_command.c:4539
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Snap terug na die rooster (VERSIGTIG!)\n"
 
-#: gschem/src/iface/i_command.c:4561
+#: gschem/src/iface/i_command.c:4564
 msgid "Rubber band mode is OFF\n"
 msgstr "Rekkie is AF\n"
 
-#: gschem/src/iface/i_command.c:4565
+#: gschem/src/iface/i_command.c:4568
 msgid "Rubber band mode is ON\n"
 msgstr "Rekkie is AAN\n"
 
-#: gschem/src/iface/i_command.c:4576
+#: gschem/src/iface/i_command.c:4579
 msgid "Magnetic net mode is ON\n"
 msgstr "Magnetiese netto modus is OP\n"
 
-#: gschem/src/iface/i_command.c:4579
+#: gschem/src/iface/i_command.c:4582
 msgid "Magnetic net mode is OFF\n"
 msgstr "Magnetiese netto modus is off\n"
 
-#: gschem/src/iface/i_command.c:4596 gschem/src/iface/i_command.c:4639
+#: gschem/src/iface/i_command.c:4599 gschem/src/iface/i_command.c:4642
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr "af"
 
-#: gschem/src/iface/i_command.c:4600 gschem/src/iface/i_command.c:4643
+#: gschem/src/iface/i_command.c:4603 gschem/src/iface/i_command.c:4646
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "op"
 
-#: gschem/src/iface/i_command.c:4602
+#: gschem/src/iface/i_command.c:4605
 msgid "Drag-Can-Move is now"
 msgstr "Sleep-Can-Move is nou"
 
-#: gschem/src/iface/i_command.c:4614
+#: gschem/src/iface/i_command.c:4617
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Handelingsterugvoermodus na SKETS gestel\n"
 
-#: gschem/src/iface/i_command.c:4618
+#: gschem/src/iface/i_command.c:4621
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Handelingsterugvoermodus na OMTREKREGHOEK\n"
 
-#: gschem/src/iface/i_command.c:4645
+#: gschem/src/iface/i_command.c:4648
 msgid "Auto-Pan is now"
 msgstr "Outomatiese pan is nou"
 
-#: gschem/src/iface/i_command.c:4868
+#: gschem/src/iface/i_command.c:4871
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(Lees net) width =%d, hoogte =%d\n"
@@ -2238,27 +2238,27 @@ msgstr "Zoem Uitmate"
 msgid "Hotkeys"
 msgstr "Hotkeys"
 
-#: gschem/src/x/x_dialog.c:3546
+#: gschem/src/x/x_dialog.c:3549
 msgid "Icon"
 msgstr "ikoon"
 
-#: gschem/src/x/x_dialog.c:3560
+#: gschem/src/x/x_dialog.c:3563
 msgid "Action"
 msgstr "Handeling"
 
-#: gschem/src/x/x_dialog.c:3570
+#: gschem/src/x/x_dialog.c:3573
 msgid "Keystroke(s)"
 msgstr "Sleutelslae"
 
-#: gschem/src/x/x_dialog.c:3580
+#: gschem/src/x/x_dialog.c:3583
 msgid "Command"
 msgstr "Opdrag:"
 
-#: gschem/src/x/x_dialog.c:3814
+#: gschem/src/x/x_dialog.c:3817
 msgid "Major symbol changes detected."
 msgstr "Belangrike simbool veranderinge word opgespoor."
 
-#: gschem/src/x/x_dialog.c:3841
+#: gschem/src/x/x_dialog.c:3844
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
@@ -2268,26 +2268,26 @@ msgstr ""
 "\n"
 "Maak seker dat jy al hierdie simbole verifieer."
 
-#: gschem/src/x/x_dialog.c:3883
+#: gschem/src/x/x_dialog.c:3886
 msgid "Symbol"
 msgstr "Simbole"
 
 # Dismiss this dialog
-#: gschem/src/x/x_dialog.c:3933
+#: gschem/src/x/x_dialog.c:3936
 msgid "Dismiss this dialog"
 msgstr "Skakel hierdie dialoog af"
 
 # invalid attribute value
-#: gschem/src/x/x_dialog.c:3974
+#: gschem/src/x/x_dialog.c:3977
 msgid "invalid attribute value"
 msgstr "ongeldige eienskap waarde"
 
 # Please correct in order to continue
-#: gschem/src/x/x_dialog.c:3975
+#: gschem/src/x/x_dialog.c:3978
 msgid "Please correct in order to continue"
 msgstr "Korrigeer asseblief om voort te gaan"
 
-#: gschem/src/x/x_dialog.c:3976
+#: gschem/src/x/x_dialog.c:3979
 msgid ""
 "The name and value must be non-empty.\n"
 "The name cannot end with a space.\n"
@@ -2297,7 +2297,7 @@ msgstr ""
 "Die naam mag nie met 'n spasie eindig nie.\n"
 "Die waarde mag nie met 'n spasie begin nie."
 
-#: gschem/src/x/x_dialog.c:3984
+#: gschem/src/x/x_dialog.c:3987
 msgid "Invalid Attribute"
 msgstr "Ongeldige Eienskap"
 
@@ -2502,96 +2502,96 @@ msgid "entry for array vertical pitch"
 msgstr ""
 
 # invalid show option; failed to show both
-#: gschem/src/x/x_edit_attrib.c:219
+#: gschem/src/x/x_edit_attrib.c:218
 #, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr "ongeldig show opsie; in gebreke om beide te wys\n"
 
-#: gschem/src/x/x_edit_attrib.c:340
+#: gschem/src/x/x_edit_attrib.c:339
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:341
+#: gschem/src/x/x_edit_attrib.c:340
 msgid "Show only the name of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:342
+#: gschem/src/x/x_edit_attrib.c:341
 msgid "Show only the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:343
+#: gschem/src/x/x_edit_attrib.c:342
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:351
+#: gschem/src/x/x_edit_attrib.c:350
 msgid "Show Value Only"
 msgstr "Toon Slegs Waarde"
 
-#: gschem/src/x/x_edit_attrib.c:355
+#: gschem/src/x/x_edit_attrib.c:354
 msgid "Show Name Only"
 msgstr "Toon Slegs Naam"
 
-#: gschem/src/x/x_edit_attrib.c:359 gschem/src/x/x_multiattrib.c:1706
+#: gschem/src/x/x_edit_attrib.c:358 gschem/src/x/x_multiattrib.c:1706
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Toon Naam & Waarde"
 
-#: gschem/src/x/x_edit_attrib.c:424
+#: gschem/src/x/x_edit_attrib.c:423
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:425 gschem/src/x/x_multiattrib.c:2276
+#: gschem/src/x/x_edit_attrib.c:424 gschem/src/x/x_multiattrib.c:2276
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Voeg Eienskap By"
 
 # Edit Attribute
-#: gschem/src/x/x_edit_attrib.c:426
+#: gschem/src/x/x_edit_attrib.c:425
 msgid "Edit Attribute"
 msgstr "Wysig kenmerk"
 
-#: gschem/src/x/x_edit_attrib.c:428
+#: gschem/src/x/x_edit_attrib.c:427
 msgid "Select the name of the attribute to add"
 msgstr "Kies kenmerk te voeg"
 
-#: gschem/src/x/x_edit_attrib.c:429
+#: gschem/src/x/x_edit_attrib.c:428
 msgid "Select the name of the attribute to edit"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:431
+#: gschem/src/x/x_edit_attrib.c:430
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:432
+#: gschem/src/x/x_edit_attrib.c:431
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:434
+#: gschem/src/x/x_edit_attrib.c:433
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:451
+#: gschem/src/x/x_edit_attrib.c:450
 msgid "Single Attribute Editor"
 msgstr "Enkeleienskap-Bewerker"
 
-#: gschem/src/x/x_edit_attrib.c:479 gschem/src/x/x_multiattrib.c:2293
+#: gschem/src/x/x_edit_attrib.c:478 gschem/src/x/x_multiattrib.c:2293
 msgid "Name:"
 msgstr "Naam:"
 
-#: gschem/src/x/x_edit_attrib.c:496 gschem/src/x/x_multiattrib.c:2312
+#: gschem/src/x/x_edit_attrib.c:495 gschem/src/x/x_multiattrib.c:2312
 msgid "Value:"
 msgstr "Waarde:"
 
-#: gschem/src/x/x_edit_attrib.c:510 gschem/src/x/x_multiattrib.c:2091
+#: gschem/src/x/x_edit_attrib.c:509 gschem/src/x/x_multiattrib.c:2091
 #: gschem/src/x/x_multiattrib.c:2367
 msgid "Visible"
 msgstr "Sigbaar"
 
-#: gschem/src/x/x_edit_attrib.c:539
+#: gschem/src/x/x_edit_attrib.c:538
 msgid "Attribute Name List"
 msgstr "Eienskappe"
 
-#: gschem/src/x/x_edit_attrib.c:543
+#: gschem/src/x/x_edit_attrib.c:542
 msgid "Attribute Value Entry"
 msgstr "Eienskap"
 
@@ -3865,16 +3865,16 @@ msgstr ""
 msgid "Recent menu items restore from"
 msgstr ""
 
-#: gschem/src/x/x_misc.c:73
+#: gschem/src/x/x_misc.c:74
 msgid "The operating system is out of memory or resources."
 msgstr "Die bedryfstelsel is uit die geheue of hulpbronne."
 
-#: gschem/src/x/x_misc.c:127 gschem/src/x/x_misc.c:145
-#: gschem/src/x/x_misc.c:159 gschem/src/x/x_settings.c:426
+#: gschem/src/x/x_misc.c:129 gschem/src/x/x_misc.c:147
+#: gschem/src/x/x_misc.c:161 gschem/src/x/x_settings.c:426
 msgid "Failed to open"
 msgstr "Kon nie open"
 
-#: gschem/src/x/x_misc.c:174
+#: gschem/src/x/x_misc.c:176
 msgid "falling back to"
 msgstr "val terug na"
 
