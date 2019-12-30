@@ -40,8 +40,8 @@
 #endif
 
 
-/*! Tracks which Objects have been visited so far, and how many times.
- *
+/*!
+ * Tracks which Objects have been visited so far, and how many times.
  * The keys of the table are the Object pointers, and the visit count
  * is stored directly in the value pointers.
  */
@@ -63,8 +63,8 @@ static bool returns_true (void * key, void * value, void * user_data)
 /*!
  * \brief Get if Object has been Visited
  * \par Function Description
- *  Retrieve the current visit count for a particular Object,
- *  which would be 0 if \a obj is not in the hash table.
+ *  Retrieve the current visit count for a particular Object, which would
+ *  be 0 if \a obj is not in the hash table.
  */
 static inline int is_visited(GedaObject *obj)
 {
@@ -325,24 +325,22 @@ void s_traverse_sheet (GedaToplevel *pr_current, const GList *obj_list)
 /*!
  * \brief Traverse Hierarchy Sheet
  * \par Function Description
- *  Called from s_hierarchy_traverse, possibly recursively.
- *  hierarchy_tag is the refdes of the source symbols, which
- *  can be combined using the hierarchy-uref-separator, such
- *  as "S1/S2", for nested hierarchies. This function is not
- *  called when net-listing flat schematics.
+ *  Called from s_hierarchy_traverse, possibly recursively. hierarchy_tag
+ *  is the refdes of the source symbols, which can be combined using the
+ *  hierarchy-uref-separator, such as "S1/S2", for nested hierarchies.
+ *  This function is not called when net-listing flat schematics.
  *
- *  All objects on the sheet with a "graphical" attribute are
- *  appended to graphical_netlist_head, components with refdes
- *  value "none" are skipped, connected pins are stored to the
- *  netlist->cpins for every non-graphical component with a
- *  refdes value other than "none" and the component is appended
- *  netlist->component_uref along with the hierarchy_tag, which
- *  is either perpended or appended depending on the setting of
- *  hierarchy-uref-order.
+ *  All objects on the sheet with a "graphical" attribute are appended
+ *  to graphical_netlist_head, components with refdes value "none" are
+ *  skipped, connected pins are stored to the netlist->cpins for every
+ *  non-graphical component with a refdes value other than "none" and
+ *  the component is appended netlist->component_uref along with the
+ *  hierarchy_tag, which is either perpended or appended depending on
+ *  the setting of hierarchy-uref-order.
  *
- *  Additionally, s_hierarchy_traverse is called to traverse
- *  any components with a "source" attribute, which could result
- *  in this function being called recursively.
+ *  Additionally, s_hierarchy_traverse is called to traverse any components
+ *  with a "source" attribute, which could result in this function being
+ *  called recursively.
  *
  *  \param [in] pr_current Current GedaToplevel structure; toplevel,
  *  \param [in] netlist    List of all object on This sheet
