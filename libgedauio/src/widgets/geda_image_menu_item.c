@@ -993,6 +993,11 @@ GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
                        NULL);
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_menu_item)
 {
   GtkWidget *widget;

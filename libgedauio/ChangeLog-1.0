@@ -1,5 +1,7 @@
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: add todo documentation template.
+
     * src/widgets/geda_radio_menu_item.c: Update Doxygen group description.
 
 2019-12-18 Wiley E. Hill <wileyhill@gmail.com>
