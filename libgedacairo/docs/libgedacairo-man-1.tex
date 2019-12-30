@@ -1,4 +1,4 @@
-Libgedacairo(1)                 1.6.1-20180521                 Libgedacairo(1)
+Libgedacairo(1)                 1.6.1-20190401                 Libgedacairo(1)
 
 
 
@@ -77,16 +77,46 @@ USAGE
               derer
                     is destroyed.
 
-                "override-color"  [int] Index of a colour to force all drawing
-              to
-                    take place with. This can be used e.g. when highlighting a
-              set
-                    of objects in a particular colour.  If "override-color" is
-              set
-                    to -1, color override is disabled.
+                "override-color"  [int]
+                    Index of a color to force all drawing to take place  with.
+              This
+                    can  be  used e.g. when highlighting a set of objects in a
+              particular
+                    color. If "override-color" is set to -1, color override is
+              disabled.
+
+                "junction-color"  [GDK_TYPE_COLOR]
+                    GDK color to use when rendering Junctions.
+
+                "junction-size"  [interger]
+                    Size to draw junction cue points.
+
+                "net-endpoint-color"  [GDK_TYPE_COLOR]
+                    GDK color to use when rendering Net and Pin endpoints.
+
+                "text-marker-color"  [GDK_TYPE_COLOR]
+                    GDK color to use when rendering text markers.
+
+                "text-marker-size"  [interger]
+                    Size to draw text markers.
+
+                "text-marker-threshold"  [double]
+                    The threshold to draw text markers.
+
+                "draw-grip"  [Boolean]
+                    Controls if grips should be drawn.
 
                 "grip-size"  [double]
                     Size to draw grips, in *user* coordinates.
+
+                "grips-stroke"  [GDK_TYPE_COLOR]
+                    GDK color to use when rendering strokes for grips.
+
+                "grips-fill"  [GDK_TYPE_COLOR]
+                    GDK color to use when rendering background of grips.
+
+                "circle-grip-quadrant"  [GDK_TYPE_COLOR]
+                    Controls where grips are drawn on circles.
 
                 "render-flags"  [EdaRendererFlags]
                     Flags that control various rendering options.
@@ -157,7 +187,7 @@ AUTHORS
        See the "AUTHORS" file included with this program.
 
 COPYRIGHT
-       Copyright (C) 2018 gEDA Contributors. License GPLv2+: GNU GPL
+       Copyright (C) 2019 gEDA Contributors. License GPLv2+: GNU GPL
        version 2 or later. Please see the `COPYING' file included with this
        program for full details.
 
@@ -172,4 +202,4 @@ SEE ALSO
 
 
 
-gEDA Project                     May 21, 2018                  Libgedacairo(1)
+gEDA Project                     April 1, 2019                 Libgedacairo(1)
