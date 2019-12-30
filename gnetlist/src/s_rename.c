@@ -372,15 +372,15 @@ void s_rename_add(char *src, char *dest)
  *
  *     src "Sheets_18/DIM_SCLKA" renamed to dest "DIM_SCLKA"
  *
- * TODO consider revising to a two pass approach, with the first pass
- *      only detecting and collecting the pins and then renaming after
- *      all pins have been identified. The reason for this is that each
- *      pin net_name must be allocated separately so that the strings
- *      are not freed everywhere on the first encounter in the single
- *      pass approach. Previously the strings were not freed in this
- *      routine prior to re-assignment and the last reference to the
- *      pointers were lost after the routine so the memory could not
- *      be freed later, WEH.
+ * \todo consider revising to a two pass approach, with the first pass
+ *       only detecting and collecting the pins and then renaming after
+ *       all pins have been identified. The reason for this is that each
+ *       pin net_name must be allocated separately so that the strings
+ *       are not freed everywhere on the first encounter in the single
+ *       pass approach. Previously the strings were not freed in this
+ *       routine prior to re-assignment and the last reference to the
+ *       pointers were lost after the routine so the memory could not
+ *       be freed later, WEH.
  */
 static void s_rename_all_lowlevel(NETLIST *netlist_head, char *src, char *dest)
 {
