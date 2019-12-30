@@ -21,7 +21,7 @@
  *  \brief GedaRadioMenuItem Class Module
  */
 
-/** \defgroup geda-radio-menu-item GedaRadioMenuItem Object
+/** \defgroup geda-radio-menu-item Geda Radio Menu Item
  * @{
  * \brief Implmentation of GedaRadioMenuItem Class
  *
