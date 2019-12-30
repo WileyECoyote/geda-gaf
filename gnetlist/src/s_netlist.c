@@ -106,6 +106,11 @@ void s_netlist_destroy_or_report(NETLIST *netlist, GedaList *strings)
   }
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
 {
   if (netlist && uref) {
@@ -133,6 +138,11 @@ GedaObject *s_netlist_find_object (NETLIST *netlist, const char *uref)
   return NULL;
 }
 
+/*! \todo Finish function documentation
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int s_netlist_length (NETLIST *netlist)
 {
   if (netlist) {
