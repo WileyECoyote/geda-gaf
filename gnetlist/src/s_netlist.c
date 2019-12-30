@@ -67,8 +67,7 @@ NETLIST *s_netlist_add(NETLIST *ptr)
   }
   else {
     new_node->prev = ptr;	/* setup previous link */
-    ptr->next = new_node;
-    return (ptr->next);
+    return (ptr->next = new_node);
   }
 }
 

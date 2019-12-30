@@ -1,5 +1,9 @@
 2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/s_netlist.c: Revise s_netlist_add to return assignment directly.
+
+2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * docs/gnetlist.1.in: Update man page; document command-line option "r".
 
     * src/gnetlist.c: Remove message output to strerr in main_prog.
