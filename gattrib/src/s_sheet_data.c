@@ -495,7 +495,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 
 #ifdef DEBUG
         fprintf (stderr, "In s_sheet_data_add_master_pin_list_items, found component with no refdes.\n");
-        fprintf (stderr, ". . . . filename = %s.\n", o_current->filename);
+        fprintf (stderr, ". . . . filename = %s.\n", o_current->name);
 #endif
 
       }
