@@ -6571,99 +6571,99 @@ gtk_sheet_draw_tooltip_marker(GtkSheet *sheet,
                               GtkSheetArea area,
                               const int row, const int col)
 {
-    switch(area)
-    {
-	case ON_CELL_AREA:
-	    if (row <= sheet->maxallocrow && col <= sheet->maxalloccol
-		&& sheet->data[row] && sheet->data[row][col])
-	    {
-		GtkSheetCell *cell = sheet->data[row][col];
+  switch(area) {
 
-		if (cell->tooltip_markup || cell->tooltip_text)
-		{
-		    GdkPoint p[3];
+    case ON_CELL_AREA:
+      if (row <= sheet->maxallocrow && col <= sheet->maxalloccol
+        && sheet->data[row] && sheet->data[row][col])
+      {
+        GtkSheetCell *cell = sheet->data[row][col];
 
-		    gdk_gc_set_foreground(sheet->bg_gc, &sheet->tm_color);
+        if (cell->tooltip_markup || cell->tooltip_text) {
 
-		    p[0].x = _gtk_sheet_column_left_xpixel(sheet, col) + COLPTR(sheet, col)->width
-			- GTK_SHEET_DEFAULT_TM_SIZE;
-		    p[0].y = _gtk_sheet_row_top_ypixel(sheet, row) + 1;
+          GdkPoint p[3];
 
-		    p[1].x = p[0].x + GTK_SHEET_DEFAULT_TM_SIZE;
-		    p[1].y = p[0].y;
+          gdk_gc_set_foreground(sheet->bg_gc, &sheet->tm_color);
 
-		    p[2].x = p[1].x;
-		    p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
+          p[0].x = _gtk_sheet_column_left_xpixel(sheet, col) + COLPTR(sheet, col)->width
+          - GTK_SHEET_DEFAULT_TM_SIZE;
+          p[0].y = _gtk_sheet_row_top_ypixel(sheet, row) + 1;
 
-		    /* draw cell tooltip marker */
-		    gdk_draw_polygon(sheet->pixmap, sheet->bg_gc, TRUE, p, 3);
-		}
-	    }
-	    break;
+          p[1].x = p[0].x + GTK_SHEET_DEFAULT_TM_SIZE;
+          p[1].y = p[0].y;
 
-	case ON_ROW_TITLES_AREA:
-	    if (0 <= row && row <= sheet->maxrow)
-	    {
-		GtkSheetRow *rowp = ROWPTR(sheet, row);
-		GdkWindow *window = sheet->row_title_window;
+          p[2].x = p[1].x;
+          p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
 
-		if (rowp->tooltip_markup || rowp->tooltip_text)
-		{
-		    GdkPoint p[3];
+          /* draw cell tooltip marker */
+          gdk_draw_polygon(sheet->pixmap, sheet->bg_gc, TRUE, p, 3);
+        }
+      }
+      break;
 
-		    gdk_gc_set_foreground(sheet->bg_gc, &sheet->tm_color);
+    case ON_ROW_TITLES_AREA:
+      if (0 <= row && row <= sheet->maxrow) {
 
-		    p[0].x = sheet->row_title_area.width - 1
-			- GTK_SHEET_DEFAULT_TM_SIZE;
-		    p[0].y = _gtk_sheet_row_top_ypixel(sheet, row) + 1;
-		    if (sheet->column_titles_visible)
-			p[0].y -= sheet->column_title_area.height;
+        GtkSheetRow *rowp = ROWPTR(sheet, row);
+        GdkWindow *window = sheet->row_title_window;
 
-		    p[1].x = p[0].x + GTK_SHEET_DEFAULT_TM_SIZE;
-		    p[1].y = p[0].y;
+        if (rowp->tooltip_markup || rowp->tooltip_text) {
 
-		    p[2].x = p[1].x;
-		    p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
+          GdkPoint p[3];
 
-		    /* draw cell tooltip marker */
-		    gdk_draw_polygon(window, sheet->bg_gc, TRUE, p, 3);
-		}
-	    }
-	    break;
+          gdk_gc_set_foreground(sheet->bg_gc, &sheet->tm_color);
 
-	case ON_COLUMN_TITLES_AREA:
-	    if (0 <= col && col <= sheet->maxcol)
-	    {
-		GtkSheetColumn *column = COLPTR(sheet, col);
-		GdkWindow *window = sheet->column_title_window;
+          p[0].x = sheet->row_title_area.width - 1
+          - GTK_SHEET_DEFAULT_TM_SIZE;
+          p[0].y = _gtk_sheet_row_top_ypixel(sheet, row) + 1;
+          if (sheet->column_titles_visible)
+            p[0].y -= sheet->column_title_area.height;
 
-		if (gtk_widget_get_has_tooltip(GTK_WIDGET(column)))
-		{
-		    GdkPoint p[3];
+          p[1].x = p[0].x + GTK_SHEET_DEFAULT_TM_SIZE;
+          p[1].y = p[0].y;
 
-		    gdk_gc_set_foreground(sheet->bg_gc, &sheet->tm_color);
+          p[2].x = p[1].x;
+          p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
 
-		    p[0].x = _gtk_sheet_column_right_xpixel(sheet, col) + CELL_SPACING - 1
-			- GTK_SHEET_DEFAULT_TM_SIZE;
-		    if (sheet->row_titles_visible)
-			p[0].x -= sheet->row_title_area.width;
-		    p[0].y = 0;
+          /* draw cell tooltip marker */
+          gdk_draw_polygon(window, sheet->bg_gc, TRUE, p, 3);
+        }
+      }
+      break;
 
-		    p[1].x = p[0].x + GTK_SHEET_DEFAULT_TM_SIZE;
-		    p[1].y = p[0].y;
+    case ON_COLUMN_TITLES_AREA:
+      if (0 <= col && col <= sheet->maxcol) {
 
-		    p[2].x = p[1].x;
-		    p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
+        GtkSheetColumn *column = COLPTR(sheet, col);
+        GdkWindow *window = sheet->column_title_window;
 
-		    /* draw cell tooltip marker */
-		    gdk_draw_polygon(window, sheet->bg_gc, TRUE, p, 3);
-		}
-	    }
-	    break;
+        if (gtk_widget_get_has_tooltip(GTK_WIDGET(column))) {
 
-	default:
-	    return;
-    }
+          GdkPoint p[3];
+
+          gdk_gc_set_foreground(sheet->bg_gc, &sheet->tm_color);
+
+          p[0].x = _gtk_sheet_column_right_xpixel(sheet, col) + CELL_SPACING - 1
+          - GTK_SHEET_DEFAULT_TM_SIZE;
+          if (sheet->row_titles_visible)
+            p[0].x -= sheet->row_title_area.width;
+          p[0].y = 0;
+
+          p[1].x = p[0].x + GTK_SHEET_DEFAULT_TM_SIZE;
+          p[1].y = p[0].y;
+
+          p[2].x = p[1].x;
+          p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
+
+          /* draw cell tooltip marker */
+          gdk_draw_polygon(window, sheet->bg_gc, TRUE, p, 3);
+        }
+      }
+      break;
+
+    default:
+      return;
+  }
 }
 
 static void
