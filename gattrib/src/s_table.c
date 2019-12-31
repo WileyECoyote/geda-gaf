@@ -224,7 +224,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
     iter = iter->next;
   }
 
-  return(-1);  /* return code when string is not in master_list  */
+  return(-1);  /* return code when string is not in local_list  */
 }
 
 /*------------------------------------------------------------------*/
