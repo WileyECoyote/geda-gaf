@@ -6750,7 +6750,7 @@ static void
 _cell_draw_border(GtkSheet *sheet, int row, int col, int mask)
 {
     //GtkWidget *widget;
-    //GdkGC * fg_gc, *bg_gc;
+    GdkGC *fg_gc, *bg_gc;
     GdkRectangle area;
     unsigned int width;
 
@@ -6772,12 +6772,12 @@ _cell_draw_border(GtkSheet *sheet, int row, int col, int mask)
     GtkSheetCellAttr attributes;
     gtk_sheet_get_attributes(sheet, row, col, &attributes);
 
-    /* select GC for background rectangle */
-    gdk_gc_set_foreground(sheet->fg_gc, &attributes.border.color);
-    gdk_gc_set_foreground(sheet->bg_gc, &attributes.background);
+    fg_gc = sheet->fg_gc;
+    bg_gc = sheet->bg_gc;
 
-    //fg_gc = sheet->fg_gc;
-    //bg_gc = sheet->bg_gc;
+    /* select GC for background rectangle */
+    gdk_gc_set_foreground(fg_gc, &attributes.border.color);
+    gdk_gc_set_foreground(bg_gc, &attributes.background);
 
     area.x      = _gtk_sheet_column_left_xpixel(sheet, col);
     area.y      = _gtk_sheet_row_top_ypixel(sheet, row);
@@ -6785,32 +6785,32 @@ _cell_draw_border(GtkSheet *sheet, int row, int col, int mask)
     area.height = sheet->row[row].height;
     width       = attributes.border.width;
 
-    gdk_gc_set_line_attributes(sheet->fg_gc, attributes.border.width,
-	attributes.border.line_style,
-	attributes.border.cap_style,
-	attributes.border.join_style);
+    gdk_gc_set_line_attributes(fg_gc, attributes.border.width,
+                               attributes.border.line_style,
+                               attributes.border.cap_style,
+                               attributes.border.join_style);
 
     if (width > 0) {
 
       if (attributes.border.mask & GTK_SHEET_LEFT_BORDER & mask)
-        gdk_draw_line(sheet->pixmap, sheet->fg_gc,
+        gdk_draw_line(sheet->pixmap, fg_gc,
                       area.x, area.y - width / 2,
                       area.x, area.y + area.height + width / 2 + 1);
 
       if (attributes.border.mask & GTK_SHEET_RIGHT_BORDER & mask)
-        gdk_draw_line(sheet->pixmap, sheet->fg_gc,
+        gdk_draw_line(sheet->pixmap, fg_gc,
                       area.x + area.width, area.y - width / 2,
                       area.x + area.width,
                       area.y + area.height + width / 2 + 1);
 
       if (attributes.border.mask & GTK_SHEET_TOP_BORDER & mask)
-        gdk_draw_line(sheet->pixmap, sheet->fg_gc,
+        gdk_draw_line(sheet->pixmap, fg_gc,
                       area.x - width / 2, area.y,
                       area.x + area.width + width / 2 + 1,
                       area.y);
 
       if (attributes.border.mask & GTK_SHEET_BOTTOM_BORDER & mask)
-        gdk_draw_line(sheet->pixmap, sheet->fg_gc,
+        gdk_draw_line(sheet->pixmap, fg_gc,
                       area.x - width / 2, area.y + area.height,
                       area.x + area.width + width / 2 + 1,
                       area.y + area.height);
