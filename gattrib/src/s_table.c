@@ -203,6 +203,7 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
  * \returns the index of the string
  */
 int s_table_get_index(STRING_LIST *local_list, char *local_string) {
+
   int count = 0;
   STRING_LIST *list_element;
 
@@ -211,6 +212,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
 #endif
 
   list_element = local_list;
+
   while (list_element != NULL) {
     if (strcmp(list_element->data, local_string) == 0) {
       return count;
@@ -218,6 +220,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
     count++;
     list_element = list_element->next;
   }
+
   return(-1);  /* return code when string is not in master_list  */
 }
 
