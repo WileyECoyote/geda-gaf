@@ -6596,9 +6596,7 @@ gtk_sheet_draw_tooltip_marker(GtkSheet *sheet,
 		    p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
 
 		    /* draw cell tooltip marker */
-		    gdk_draw_polygon(sheet->pixmap,
-			sheet->bg_gc,
-			TRUE, p, 3);
+		    gdk_draw_polygon(sheet->pixmap, sheet->bg_gc, TRUE, p, 3);
 		}
 	    }
 	    break;
@@ -6628,9 +6626,7 @@ gtk_sheet_draw_tooltip_marker(GtkSheet *sheet,
 		    p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
 
 		    /* draw cell tooltip marker */
-		    gdk_draw_polygon(window,
-			sheet->bg_gc,
-			TRUE, p, 3);
+		    gdk_draw_polygon(window, sheet->bg_gc, TRUE, p, 3);
 		}
 	    }
 	    break;
@@ -6660,9 +6656,7 @@ gtk_sheet_draw_tooltip_marker(GtkSheet *sheet,
 		    p[2].y = p[1].y + GTK_SHEET_DEFAULT_TM_SIZE;
 
 		    /* draw cell tooltip marker */
-		    gdk_draw_polygon(window,
-			sheet->bg_gc,
-			TRUE, p, 3);
+		    gdk_draw_polygon(window, sheet->bg_gc, TRUE, p, 3);
 		}
 	    }
 	    break;
