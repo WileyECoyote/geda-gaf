@@ -9,7 +9,7 @@
 
 2019-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
-	* src/iface/i_sessions.c: Add function i_sessions_list_sessions.
+    * src/iface/i_sessions.c: Add function i_sessions_list_sessions.
 
     * src/x/x_dialog.c: Deactivate undeveloped x_dialog_sym_not_embedded.
 

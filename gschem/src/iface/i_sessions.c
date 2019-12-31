@@ -40,7 +40,7 @@
  *         i_sessions_init calls i_sessions_update_menus so i_sessions_init
  *         should only be called after the main menu is contructed.
  *
- *     4.) i_session_is_enabled, which return TRUE is at least one session
+ *     4.) i_session_is_enabled, which returns TRUE if at least one session
  *         is defined, should be used in conjuction with the configuration
  *         variable sessions-at-startup, along with other factors, to
  *         determine is the Sessions Open dialog should be presented
