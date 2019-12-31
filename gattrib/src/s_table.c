@@ -205,20 +205,23 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
 int s_table_get_index(STRING_LIST *local_list, char *local_string) {
 
   int count = 0;
-  STRING_LIST *list_element;
+  STRING_LIST *iter;
 
 #ifdef DEBUG
   printf("%s: looking for %s in %p.\n", __func__, local_string, local_list);
 #endif
 
-  list_element = local_list;
+  iter = local_list;
 
-  while (list_element != NULL) {
-    if (strcmp(list_element->data, local_string) == 0) {
+  while (iter != NULL) {
+
+    if (strcmp(iter->data, local_string) == 0) {
       return count;
     }
+
     count++;
-    list_element = list_element->next;
+
+    iter = iter->next;
   }
 
   return(-1);  /* return code when string is not in master_list  */

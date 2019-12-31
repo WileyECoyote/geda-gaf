@@ -1,15 +1,15 @@
+2019-12-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_table.c: Rename STRING_LIST pointer list_element iter in
+      s_table_get_index.
+
 2019-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
-
     * po/oc.po: Update Occitan translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/uk.po: Update Ukrainian translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2019-12-13 Wiley E. Hill <wileyhill@gmail.com>
