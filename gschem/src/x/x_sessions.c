@@ -59,14 +59,15 @@ enum {
   NUM_COLUMNS
 };
 
-/*! \brief Populate tree model of <B>Session</B>'s treeview.
- *  \par Function Description
+/*!
+ * \brief Populate tree model of <B>Session</B>'s treeview.
+ * \par Function Description
  *  This function updates the tree model of <B>Session</B>\'s
  *  treeview by getting a pointer to the main Session GArray
  *  and appends a row to the tree-store for each record in the
  *  the array.
  *
- *  \param [in] dialog  This Dialog object.
+ * \param [in] dialog  This Dialog object.
  */
 static void session_tree_update (GtkWidget *dialog)
 {
@@ -102,7 +103,8 @@ static void session_tree_update (GtkWidget *dialog)
   }
 }
 
-/*! \par Session Dialog helper to return the current selection
+/*!
+ * \par Session Dialog helper to return the current selection
  *  in a sessions tree-view, used by both the Open Session and
  *  Manage Sessions dialogs
  */
@@ -115,18 +117,19 @@ static GtkTreeSelection *session_dialog_get_selection(GschemDialog *dialog)
   return gtk_tree_view_get_selection (treeview);
 }
 
-/*! \brief Callback for the Rename Button on Manage Sessions dialog
- *  \par Function Description
+/*!
+ * \brief Callback for the Rename Button on Manage Sessions dialog
+ * \par Function Description
  *  Displays a simple dialog with a test entry field to accept a
  *  new name for the session. If the dialog is not canceled then
  *  the current session name is extracted from the tree selection
  *  and both strings are passed to i_sessions_rename_session. If
  *  successful, then the tree-view is updated.
  *
- *  \param [in]   button    ptr to the button widget, not used
- *  \param [in]   user_data ptr to the dialog object
+ * \param [in]   button    ptr to the button widget, not used
+ * \param [in]   user_data ptr to the dialog object
  *
- *  \sa on_delete_butt_clicked, on_export_butt_clicked
+ * \sa on_delete_butt_clicked, on_export_butt_clicked
  */
 static void on_rename_butt_clicked (GtkWidget *button, void *user_data)
 {
@@ -161,18 +164,19 @@ static void on_rename_butt_clicked (GtkWidget *button, void *user_data)
   }
 }
 
-/*! \brief Callback for the Delete Button on Manage Sessions dialog
- *  \par Function Description
+/*!
+ * \brief Callback for the Delete Button on Manage Sessions dialog
+ * \par Function Description
  *  This is function called when the user activates the Export
  *  on the Manage Dialog. The function extracts the session name
  *  from the selection and displays a "Save As" dialog. If the
  *  user continues, the string returned from the dialog and the
  *  session named are passed to i_sessions_export_session.
  *
- *  \param [in]   button    ptr to the button widget, not used
- *  \param [in]   user_data ptr to the dialog object
+ * \param [in]   button    ptr to the button widget, not used
+ * \param [in]   user_data ptr to the dialog object
  *
- *  \sa on_delete_butt_clicked, on_rename_butt_clicked
+ * \sa on_delete_butt_clicked, on_rename_butt_clicked
  */
 static void on_delete_butt_clicked (GtkWidget *button, void *user_data)
 {
@@ -194,18 +198,19 @@ static void on_delete_butt_clicked (GtkWidget *button, void *user_data)
   }
 }
 
-/*! \brief Callback for Export Button on Manage Sessions dialog
- *  \par Function Description
+/*!
+ * \brief Callback for Export Button on Manage Sessions dialog
+ * \par Function Description
  *  This is function called when the user activates the Export
  *  on the Manage Dialog. The function extracts the session name
  *  from the selection and displays a "Save As" dialog. If the
  *  user continues, the string returned from the dialog and the
  *  session named are passed to i_sessions_export_session.
  *
- *  \param [in]   button    ptr to the button widget, not used
- *  \param [in]   user_data ptr to the dialog object
+ * \param [in]   button    ptr to the button widget, not used
+ * \param [in]   user_data ptr to the dialog object
  *
- *  \sa on_rename_butt_clicked, on_export_butt_clicked
+ * \sa on_rename_butt_clicked, on_export_butt_clicked
  */
 static void on_export_butt_clicked (GtkWidget *button, void *user_data)
 {
@@ -233,8 +238,9 @@ static void on_export_butt_clicked (GtkWidget *button, void *user_data)
   }
 }
 
-/*! \brief Callback for Open Button on Session dialogs
- *  \par Function Description
+/*!
+ * \brief Callback for Open Button on Session dialogs
+ * \par Function Description
  *  This is function called when the user activates the Open
  *  button or double click on a tree row on the Open Dialog.
  *  The function extracts the session name from the selected
@@ -242,11 +248,11 @@ static void on_export_butt_clicked (GtkWidget *button, void *user_data)
  *  This function is shared by both the Manage Sessions and
  *  the Open Session dialogs.
  *
- *  \note The Manage Session is not setup to respond to double
- *        click events.
+ * \note The Manage Session is not setup to respond to double
+ *       click events.
  *
- *  \param [in]   button    ptr to the button widget, not used
- *  \param [in]   user_data ptr to the dialog object
+ * \param [in]   button    ptr to the button widget, not used
+ * \param [in]   user_data ptr to the dialog object
  */
 static void on_open_butt_clicked(GtkButton *button, void *user_data)
 {
@@ -271,13 +277,14 @@ static void on_open_butt_clicked(GtkButton *button, void *user_data)
   }
 }
 
-/*! \brief Page Manager Dialog Tree View Page Selected
- *  \par Function Description
+/*!
+ * \brief Page Manager Dialog Tree View Page Selected
+ * \par Function Description
  *  This function is called whenever a row is selected in the
  *  treeview. Buttons are are not active, buttons are enabled
  *  and signals connected.
  *
- *  \note This function is not used by the Open-Session dialog
+ * \note This function is not used by the Open-Session dialog
  */
 static void manage_session_selection_changed (GtkTreeSelection *selection,
                                                           void *user_data)
@@ -327,17 +334,18 @@ static void manage_session_selection_changed (GtkTreeSelection *selection,
  *        and Open Session dialogs.
  */
 
-/*! \brief Response function for Session dialogs
- *  \ingroup Open-Session-Dialog
- *  \par Function Description
+/*!
+ * \brief Response function for Session dialogs
+ * \ingroup Open-Session-Dialog
+ * \par Function Description
  *  This is a response function called when the used selects one
  *  of the action bottons, either CLOSE or APPLY. This function
  *  is shared by both the Manage Sessions and the Open Session
  *  dialogs.
  *
- *  \param [in] Dialog    ptr to the dialog widget
- *  \param [in] response  int signal indicating which button
- *  \param [in] nothing   Not used
+ * \param [in] Dialog    ptr to the dialog widget
+ * \param [in] response  int signal indicating which button
+ * \param [in] nothing   Not used
  */
 void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 {
@@ -360,9 +368,10 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
 
 }
 
-/*! \brief Emit GEDA_RESPONSE_REJECT response signal
- *  \ingroup Open-Session-Dialog
- *  \par Function Description
+/*!
+ * \brief Emit GEDA_RESPONSE_REJECT response signal
+ * \ingroup Open-Session-Dialog
+ * \par Function Description
  *  This function is common to both the Manage Sessions and the
  *  Open Session dialogs.
  */
@@ -373,11 +382,12 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Manage Sessions dialog "Display at Startup" check button Toggled.
- *  \par Function Description
- *   Executes whenever the check-button changes state. The function
- *   passes the state to i_sessions_set_show_at_startup function to
- *   update the configuration setting with the new value.
+/*!
+ * \brief Manage Sessions dialog "Display at Startup" check button Toggled.
+ * \par Function Description
+ *  Executes whenever the check-button changes state. The function
+ *  passes the state to i_sessions_set_show_at_startup function to
+ *  update the configuration setting with the new value.
  */
 static void callback_session_startup_toggled(GtkToggleButton *button,
                                                         void *nothing)
@@ -389,11 +399,12 @@ static void callback_session_startup_toggled(GtkToggleButton *button,
 }
 
 
-/*! \brief Manage Sessions Auto Update check button Toggled.
- *  \par Function Description
- *   Executes whenever the check-button changes state. The function
- *   passes set the toplevel variable to the value of the state of
- *   the widget, either enabled or disabled.
+/*!
+ * \brief Manage Sessions Auto Update check button Toggled.
+ * \par Function Description
+ *  Executes whenever the check-button changes state. The function
+ *  passes set the toplevel variable to the value of the state of
+ *  the widget, either enabled or disabled.
  */
 static void callback_session_auto_toggled (GtkToggleButton *button, void *data)
 {
@@ -402,11 +413,12 @@ static void callback_session_auto_toggled (GtkToggleButton *button, void *data)
   w_current->auto_sessions =  gtk_toggle_button_get_active(button);
 }
 
-/*! \brief Creates Action Area for the  for Manage Sessions dialog.
- *  \par Function Description
+/*!
+ * \brief Creates Action Area for the  for Manage Sessions dialog.
+ * \par Function Description
  *  We create our own "Action Area", because; 1.) GTK's entire
- * concept of an action area is more of a hindrance then it is
- * useful, and 2.) We need access to the apply button widget.
+ *  concept of an action area is more of a hindrance then it is
+ *  useful, and 2.) We need access to the apply button widget.
  */
 static GtkWidget *create_action_area (GschemDialog *ThisDialog,
                                          GtkWidget *parent)
@@ -492,16 +504,17 @@ static GtkWidget *create_action_area (GschemDialog *ThisDialog,
   return action_hbox;
 }
 
-/*! \brief Returns a Session treeview for the  Manage Sessions dialog.
- *  \par Function Description
+/*!
+ * \brief Returns a Session treeview for the  Manage Sessions dialog.
+ * \par Function Description
  *  This function adds a treeview and caption to display the content
  *  of the dialog model of pages with unsaved changes.
  *
  *  The treeview displays the page names with check boxes.
  *
- *  \param [in] Dialog The dialog.
+ * \param [in] Dialog The dialog.
  *
- *  \returns A pointer on the GtkVBox to add to dialog.
+ * \returns A pointer on the GtkVBox to add to dialog.
  */
 static GtkWidget *x_sessions_get_treeview (GtkWidget *Dialog)
 {
@@ -577,16 +590,17 @@ static GtkWidget *x_sessions_get_treeview (GtkWidget *Dialog)
   return scrolled_window;
 }
 
-/*! \brief Manage Sessions Dialog
- *  \par Function Description
+/*!
+ * \brief Manage Sessions Dialog
+ * \par Function Description
  *  Creates and displays the Manage Sessions Dialog.
  *
- *  \note This function shares the reponse callback and other
- *        routines with the Open Session dialog
+ * \note This function shares the reponse callback and other
+ *       routines with the Open Session dialog
  *
- *  \sa x_sessions_open_dialog
+ * \sa x_sessions_open_dialog
  *
- *  \param w_current Pointer to GschemToplevel object
+ * \param w_current Pointer to GschemToplevel object
  */
 void x_sessions_manage_dialog(GschemToplevel *w_current)
 {
@@ -699,13 +713,14 @@ void x_sessions_manage_dialog(GschemToplevel *w_current)
  *        Sessions dialog.
  */
 
-/*! \brief Open Session Dialog Treeview button Press Event
- *  \par Function Description
+/*!
+ * \brief Open Session Dialog Treeview button Press Event
+ * \par Function Description
  *  This function is called when the user clicks a mouse button while
  *  over a treeview row. If the event was a "double-click" then a
  *  on_open_butt_clicked is called.
  *
- *  \note This function is not used by the Manage-Sessions dialog
+ * \note This function is not used by the Manage-Sessions dialog
  */
 static bool callback_treeview_button_pressed (GtkWidget      *widget,
                                               GdkEventButton *event,
@@ -758,8 +773,9 @@ static void open_session_selection_changed (GtkTreeSelection *selection,
   }
 }
 
-/*! \brief Open Session Dialog
- *  \par Function Description
+/*!
+ * \brief Open Session Dialog
+ * \par Function Description
  *  Creates and displays the Manage Sessions Dialog. If no file
  *  names are provided on the command-line, and the configuration
  *  variable sessions-at-startup is TRUE, and data exist for a least
@@ -767,12 +783,12 @@ static void open_session_selection_changed (GtkTreeSelection *selection,
  *  up to give user a change to select a session from a list of saved
  *  sessions. A Session is just a collection of opened documents.
  *
- *  \note This function shares the reponse callback and other
- *        routines with the Manage Session dialog
+ * \note This function shares the reponse callback and other
+ *       routines with the Manage Session dialog
  *
- *  \sa x_sessions_open_dialog
+ * \sa x_sessions_open_dialog
  *
- *  \param w_current Pointer to GschemToplevel object
+ * \param w_current Pointer to GschemToplevel object
  */
 void x_sessions_open_dialog(GschemToplevel *w_current)
 {
@@ -838,16 +854,17 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
  *   This group contains a single function for the New Session Dialog.
  */
 
-/*! \brief Create a New Session Dialog
- *  \par Function Description
+/*!
+ * \brief Create a New Session Dialog
+ * \par Function Description
  *  Displays a simple dialog with a test entry field to accept
  *  a name for the new session. If the dialog is not canceled
  *  then i_sessions_new_session is called to create the session
  *  passing the text from the entry widget.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  *
- *  \sa x_sessions_save_as_dialog
+ * \sa x_sessions_save_as_dialog
  */
 void x_sessions_new_dialog (GschemToplevel *w_current)
 {
@@ -871,16 +888,17 @@ void x_sessions_new_dialog (GschemToplevel *w_current)
  *   This group contains a single function for the Save-As Session Dialog.
  */
 
-/*! \brief Save As Session Dialog
- *  \par Function Description
+/*!
+ * \brief Save As Session Dialog
+ * \par Function Description
  *  Displays a simple dialog with a test entry field to accept
  *  a name for the session. If the dialog is not canceled then
  *  i_sessions_save_session is called to create the session
  *  passing the text from the entry widget.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  *
- *  \sa i_sessions_save_session, x_sessions_save_as_dialog
+ * \sa i_sessions_save_session, x_sessions_save_as_dialog
  */
 void x_sessions_save_as_dialog (GschemToplevel *w_current)
 {
@@ -896,16 +914,17 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
 
 /** @} end group Save-As-Session-Dialog */
 
-/*! \brief Save Session Configuration Settings and Auto Session
- *  \par Function Description
+/*!
+ * \brief Save Session Configuration Settings and Auto Session
+ * \par Function Description
  *  This function is called at shutdown to preserve the state of
  *  the auto_sessions variable to the configuration system. The
  *  function first saves the current session if appropriate.
  *  The auto_sessions variable is restored by #i_sessions_init.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ * \param w_current Pointer to #GschemToplevel Object
  *
- *  \sa i_sessions_init
+ * \sa i_sessions_init
  */
 void x_sessions_save_settings (GschemToplevel *w_current)
 {
