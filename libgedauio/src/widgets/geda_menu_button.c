@@ -495,7 +495,6 @@ GdkWindow *geda_menu_button_get_event_window (GedaMenuButton *button)
 
   g_return_val_if_fail (GEDA_IS_MENU_BUTTON (button), NULL);
 
-  //window =  gtk_button_get_event_window (GTK_BUTTON (button->priv->button));
   window = gtk_widget_get_window(GTK_WIDGET(button->priv->button));
 
   return window;
