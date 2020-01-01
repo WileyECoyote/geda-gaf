@@ -1,3 +1,7 @@
+2020-01-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_button.c: Convert and update signal documentation.
+
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: add todo documentation template.

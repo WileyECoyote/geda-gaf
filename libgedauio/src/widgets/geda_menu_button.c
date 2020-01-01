@@ -1295,11 +1295,12 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                              _("Border between button edges and child."),
                                                                GTK_TYPE_BORDER,
                                                                G_PARAM_READABLE));
-  /* signals */
+  /* -==- signals -==- */
 
   GedaType type = geda_menu_button_get_type();
 
-  /* Button::pressed:
+   /*!
+   * GedaMenuButton::pressed:
    * button: the object that received the signal
    *
    * Emitted when the button is pressed.
@@ -1312,7 +1313,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                     geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
-  /* Button::released:
+  /*!
+   * GedaMenuButton::released:
    * button: the object that received the signal
    *
    * Emitted when the button is released.
@@ -1325,7 +1327,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                     geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
-  /* Button::clicked:
+  /*!
+   * GedaMenuButton::clicked:
    * button: the object that received the signal
    *
    * Emitted when the button is pressed.
@@ -1338,7 +1341,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                     geda_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
-  /* Button::enter:
+  /*!
+   * GedaMenuButton::enter:
    * button: the object that received the signal
    *
    * Emitted when the pointer enters the button.
@@ -1351,7 +1355,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                  geda_marshal_VOID__VOID,
                                  G_TYPE_NONE, 0);
 
-  /* Button::leave:
+  /*!
+   * GedaMenuButton::leave:
    * button: the object that received the signal
    *
    * Emitted when the pointer leaves the button.
