@@ -1211,7 +1211,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                        _("If set, the label is used to pick a stock item instead of being displayed"),
                                                         FALSE,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-  /* set whether to grab focus when it is clicked with the mouse.*/
+
+  /* Set whether to grab focus when it is clicked with the mouse. */
   g_object_class_install_property (object_class,
                                    PROP_FOCUS_ON_CLICK,
                                    g_param_spec_boolean ("focus-on-click",
