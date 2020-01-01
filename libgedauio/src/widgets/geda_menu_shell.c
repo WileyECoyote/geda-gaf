@@ -1477,7 +1477,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * menushell: the object which received the signal
    * direction: the direction to move
    *
-   * An keybinding signal which moves the current menu item
+   * A keybinding signal which moves the current menu item
    * in the direction specified by direction.
    */
   menu_shell_signals[MOVE_CURRENT] =
