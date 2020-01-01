@@ -1366,9 +1366,9 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                  G_TYPE_NONE, 0);
 
   /*!
-   * GtkButton::activate:
+   * GedaMenuButton::activate:
    * \par
-   * The activate signal from GtkButton is an action signal and
+   * The activate signal from GedaMenuButton is an action signal and
    * emitting it causes the button to animate press then release.
    * Applications should never connect to this signal, but use the
    * GedaMenuButton::clicked signal.
