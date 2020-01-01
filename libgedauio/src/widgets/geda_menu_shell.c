@@ -1526,6 +1526,8 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
                   geda_marshal_VOID__VOID,
                   G_TYPE_NONE, 0);
 
+  /* -==- key bindings -==- */
+
   binding_set = gtk_binding_set_by_class (menu_shell_class);
 
   gtk_binding_entry_add_signal (binding_set,
