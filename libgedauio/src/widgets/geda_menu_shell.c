@@ -1406,6 +1406,10 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
+  /* -==- signals -==- */
+
+  GedaType type = GEDA_TYPE_MENU_SHELL;
+
   /*!
    * GedaMenuShell::activate-current:
    * menushell: the object which received the signal
@@ -1415,8 +1419,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * the menu shell.
    */
   menu_shell_signals[ACTIVATE_CURRENT] =
-    g_signal_new ("activate-current",
-                  GEDA_TYPE_MENU_SHELL,
+    g_signal_new ("activate-current", type,
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, activate_current),
                   NULL, NULL,
@@ -1432,8 +1435,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * Causes the GedaMenuShell::selection-done signal to be emitted.
    */
   menu_shell_signals[CANCEL] =
-    g_signal_new ("cancel",
-                  GEDA_TYPE_MENU_SHELL,
+    g_signal_new ("cancel", type,
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, cancel),
                   NULL, NULL,
@@ -1448,8 +1450,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * A keybinding signal which moves the focus in the given direction.
    */
   menu_shell_signals[CYCLE_FOCUS] =
-    g_signal_new_class_handler ("cycle-focus",
-                                GEDA_TYPE_MENU_SHELL,
+    g_signal_new_class_handler ("cycle-focus", type,
                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                 G_CALLBACK (geda_real_menu_shell_cycle_focus),
                                 NULL, NULL,
@@ -1464,8 +1465,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * This signal is emitted when a menu shell is deactivated.
    */
   menu_shell_signals[DEACTIVATE] =
-    g_signal_new ("deactivate",
-                  GEDA_TYPE_MENU_SHELL,
+    g_signal_new ("deactivate", type,
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuShellClass, deactivate),
                   NULL, NULL,
@@ -1481,8 +1481,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * in the direction specified by direction.
    */
   menu_shell_signals[MOVE_CURRENT] =
-    g_signal_new ("move-current",
-                  GEDA_TYPE_MENU_SHELL,
+    g_signal_new ("move-current", type,
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (GedaMenuShellClass, move_current),
                   NULL, NULL,
@@ -1501,8 +1500,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * Returns: %TRUE to stop the signal emission, %FALSE to continue
    */
   menu_shell_signals[MOVE_SELECTED] =
-    g_signal_new ("move-selected",
-                  GEDA_TYPE_MENU_SHELL,
+    g_signal_new ("move-selected", type,
                   G_SIGNAL_RUN_LAST,
                   G_STRUCT_OFFSET (GedaMenuShellClass, move_selected),
                   geda_boolean_handled_accumulator, NULL,
@@ -1518,8 +1516,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * within a menu shell.
    */
   menu_shell_signals[SELECTION_DONE] =
-    g_signal_new ("selection-done",
-                  GEDA_TYPE_MENU_SHELL,
+    g_signal_new ("selection-done", type,
                   G_SIGNAL_RUN_FIRST,
                   G_STRUCT_OFFSET (GedaMenuShellClass, selection_done),
                   NULL, NULL,

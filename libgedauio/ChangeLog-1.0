@@ -2,6 +2,9 @@
 
     * src/widgets/geda_menu_button.c: Convert and update signal documentation.
 
+    * src/widgets/geda_menu_shell.c: Add ancillary type = GEDA_TYPE_MENU_SHELL,
+      so that geda_menu_shell_get_type for each new signal.
+
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: add todo documentation template.
