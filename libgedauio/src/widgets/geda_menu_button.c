@@ -810,6 +810,7 @@ static void geda_menu_button_finish_activate (GedaMenuButton *button, bool do_it
   GtkWidget          *widget = GTK_WIDGET (button);
 
   g_source_remove (button->activate_timeout);
+
   button->activate_timeout = 0;
 
   if (priv->has_grab) {
@@ -1456,6 +1457,7 @@ bool is_a_geda_menu_button (GedaMenuButton *menu_button)
   if ((menu_button != NULL) && (menu_button_hash != NULL)) {
     return g_hash_table_lookup(menu_button_hash, menu_button) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -1656,6 +1658,7 @@ void geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
                                          const char     *tip_private)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
+
   gtk_tooltips_set_tip (tooltips, button->priv->arrow_button, tip_text,
                         tip_private);
 }
@@ -1689,6 +1692,7 @@ void geda_menu_button_set_arrow_tooltip_markup (GedaMenuButton *button,
                                                 const char     *markup)
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
+
   gtk_widget_set_tooltip_markup (button->priv->arrow_button, markup);
 }
 
