@@ -725,15 +725,19 @@ static void geda_menu_button_update_state (GedaMenuButton *button)
   bool depressed;
   GtkStateType new_state;
 
-  if (button->activate_timeout)
+  if (button->activate_timeout) {
     depressed = button->depress_on_activate;
-  else
+  }
+  else {
     depressed = button->in_button && button->button_down;
+  }
 
-  if (button->in_button && (!button->button_down || !depressed))
+  if (button->in_button && (!button->button_down || !depressed)) {
     new_state = GTK_STATE_PRELIGHT;
-  else
+  }
+  else {
     new_state = depressed ? GTK_STATE_ACTIVE : GTK_STATE_NORMAL;
+  }
 
   gtk_widget_set_state (GTK_WIDGET (button), new_state);
 }
@@ -877,11 +881,13 @@ static bool geda_menu_button_button_press_event (GtkWidget *widget,
 
     button = GEDA_MENU_BUTTON (widget);
 
-    if (button->focus_on_click && !gtk_widget_has_focus (widget))
+    if (button->focus_on_click && !gtk_widget_has_focus (widget)) {
       gtk_widget_grab_focus (widget);
+    }
 
-    if (event->button == 1)
+    if (event->button == 1) {
       geda_menu_button_released (button);
+    }
   }
 
   return TRUE;
@@ -915,15 +921,18 @@ static bool geda_menu_button_key_release_event (GtkWidget *widget, GdkEventKey *
 {
   GedaMenuButton *button = GEDA_MENU_BUTTON (widget);
 
-  if (button->activate_timeout) {
-
+  if (button->activate_timeout)
+  {
       geda_menu_button_finish_activate (button, TRUE);
       return TRUE;
   }
   else if (GTK_WIDGET_CLASS (geda_menu_button_parent_class)->key_release_event)
+  {
     return GTK_WIDGET_CLASS (geda_menu_button_parent_class)->key_release_event (widget, event);
-  else
-    return FALSE;
+  }
+
+  return FALSE;
+
 }
 
 static bool geda_menu_button_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
