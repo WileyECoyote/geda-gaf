@@ -1447,7 +1447,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * menushell: the object which received the signal
    * direction: the direction to cycle in
    *
-   * A keybinding signal which moves the focus in the given direction.
+   * A key binding signal which moves the focus in the given direction.
    */
   menu_shell_signals[CYCLE_FOCUS] =
     g_signal_new_class_handler ("cycle-focus", type,
@@ -1477,7 +1477,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
    * menushell: the object which received the signal
    * direction: the direction to move
    *
-   * A keybinding signal which moves the current menu item
+   * A key binding signal which moves the current menu item
    * in the direction specified by direction.
    */
   menu_shell_signals[MOVE_CURRENT] =
