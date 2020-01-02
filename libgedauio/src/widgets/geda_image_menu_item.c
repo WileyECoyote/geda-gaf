@@ -1011,6 +1011,7 @@ GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_me
   if (GEDA_IS_MENU(widget)) {
     return geda_menu_widget_get_accel_group(widget);
   }
+
   return NULL;
 }
 
