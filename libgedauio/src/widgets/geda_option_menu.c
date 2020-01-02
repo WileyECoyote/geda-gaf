@@ -198,6 +198,10 @@ geda_option_menu_class_init(void *class, void *class_data)
 
   geda_option_menu_parent_class    = g_type_class_peek_parent (class);
 
+  /*!
+   * property "menu": GedaOptionMenu::menu
+   * The menu object of options.
+   */
   params = g_param_spec_object ("menu",
                               _("Menu"),
                               _("The menu of options"),
