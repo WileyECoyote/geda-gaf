@@ -993,10 +993,12 @@ GtkWidget *geda_image_menu_item_new_from_stock (const char    *stock_id,
                        NULL);
 }
 
-/*! \todo Finish function documentation
- *  \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
+ *  Retrieves and returns the accelerator group of the parent menu widget.
  *
+ * \returns a pointer to a GtkAccelGroup or NULL.
  */
 GtkAccelGroup *geda_image_menu_item_get_accel_group (GedaImageMenuItem *image_menu_item)
 {

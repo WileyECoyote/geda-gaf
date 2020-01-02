@@ -1,5 +1,9 @@
 2020-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_image_menu_item.c: Update function documentation:
+
+          * geda_image_menu_item_get_accel_group
+
     * src/widgets/geda_menu_shell.c: Revise/update signal documentation format.
 
 2020-01-01 Wiley E. Hill <wileyhill@gmail.com>
