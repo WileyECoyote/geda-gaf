@@ -1412,11 +1412,11 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::activate-current:
-   * menushell: the object which received the signal
-   * force_hide: if %TRUE, hide the menu after activating the menu item
-   *
    * An action signal that activates the current menu item within
    * the menu shell.
+   *
+   * param: menushell   the object which received the signal
+   * param: force_hide  if %TRUE, hide the menu after activating the menu item
    */
   menu_shell_signals[ACTIVATE_CURRENT] =
     g_signal_new ("activate-current", type,
@@ -1429,10 +1429,10 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::cancel:
-   * menushell: the object which received the signal
-   *
    * An action signal which cancels the selection within the menu shell.
    * Causes the GedaMenuShell::selection-done signal to be emitted.
+   *
+   * param: menushell  the object which received the signal
    */
   menu_shell_signals[CANCEL] =
     g_signal_new ("cancel", type,
@@ -1444,10 +1444,10 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::cycle-focus:
-   * menushell: the object which received the signal
-   * direction: the direction to cycle in
-   *
    * A key binding signal which moves the focus in the given direction.
+   *
+   * param: menushell  the object which received the signal
+   * param: direction  the direction to cycle in
    */
   menu_shell_signals[CYCLE_FOCUS] =
     g_signal_new_class_handler ("cycle-focus", type,
@@ -1460,9 +1460,9 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::deactivate:
-   * menushell: the object which received the signal
-   *
    * This signal is emitted when a menu shell is deactivated.
+   *
+   * param: menushell the object which received the signal
    */
   menu_shell_signals[DEACTIVATE] =
     g_signal_new ("deactivate", type,
@@ -1474,11 +1474,11 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::move-current:
-   * menushell: the object which received the signal
-   * direction: the direction to move
-   *
    * A key binding signal which moves the current menu item
    * in the direction specified by direction.
+   *
+   * param: menushell the object which received the signal
+   * param: direction the direction to move
    */
   menu_shell_signals[MOVE_CURRENT] =
     g_signal_new ("move-current", type,
@@ -1491,13 +1491,13 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::move-selected:
-   * param: menu_shell the object on which the signal is emitted
-   * param: distance +1 to move to the next item, -1 to move to the previous
-   *
    * The move-selected signal is emitted to move the selection to
    * another item.
    *
-   * Returns: %TRUE to stop the signal emission, %FALSE to continue
+   * param: menu_shell the object on which the signal is emitted
+   * param: distance +1 to move to the next item, -1 to move to the previous
+   *
+   * returns: %TRUE to stop the signal emission, %FALSE to continue
    */
   menu_shell_signals[MOVE_SELECTED] =
     g_signal_new ("move-selected", type,
@@ -1510,10 +1510,10 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::selection-done:
-   * menushell: the object which received the signal
-   *
    * This signal is emitted when a selection has been completed
    * within a menu shell.
+   *
+   * param: menushell  the object which received the signal
    */
   menu_shell_signals[SELECTION_DONE] =
     g_signal_new ("selection-done", type,

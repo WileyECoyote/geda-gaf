@@ -1,3 +1,7 @@
+2020-01-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise/update signal documentation format.
+
 2020-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_button.c: Convert and update signal documentation.
