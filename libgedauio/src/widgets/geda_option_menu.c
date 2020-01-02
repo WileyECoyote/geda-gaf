@@ -166,15 +166,6 @@ geda_option_menu_class_init(void *class, void *class_data)
   widget_class     = (GtkWidgetClass*)class;
   container_class  = (GtkContainerClass*)class;
 
-  signals[CHANGED] =
-    g_signal_new ("changed",
-                  GEDA_TYPE_OPTION_MENU,
-                  G_SIGNAL_RUN_LAST,
-                  G_STRUCT_OFFSET (GedaOptionMenuClass, changed),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-
   gobject_class->finalize          = geda_option_menu_item_finalize;
   gobject_class->set_property      = geda_option_menu_set_property;
   gobject_class->get_property      = geda_option_menu_get_property;
@@ -231,6 +222,15 @@ geda_option_menu_class_init(void *class, void *class_data)
                                 G_PARAM_READABLE);
 
   gtk_widget_class_install_style_property (widget_class, params);
+
+  signals[CHANGED] =
+    g_signal_new ("changed",
+                  GEDA_TYPE_OPTION_MENU,
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GedaOptionMenuClass, changed),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 /*!
