@@ -1662,6 +1662,7 @@ bool is_a_geda_menu_shell (GedaMenuShell *menu_shell)
   if ((menu_shell != NULL) && (shell_hash != NULL)) {
     return g_hash_table_lookup(shell_hash, menu_shell) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -1740,7 +1741,6 @@ void geda_menu_shell_activate_item (GedaMenuShell *menu_shell,
   gtk_widget_activate (menu_item);
 
   for (slist = shells; slist; slist = slist->next) {
-
     g_signal_emit (slist->data, menu_shell_signals[SELECTION_DONE], 0);
     g_object_unref (slist->data);
   }
@@ -1844,6 +1844,7 @@ void geda_menu_shell_deselect (GedaMenuShell *menu_shell)
 const GList *geda_menu_shell_get_children (GedaMenuShell *menu_shell)
 {
   g_return_val_if_fail (GEDA_IS_MENU_SHELL(menu_shell), NULL);
+
   return menu_shell->children;
 }
 

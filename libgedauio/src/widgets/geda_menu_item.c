@@ -3769,7 +3769,6 @@ GtkWidget *geda_menu_item_get_label_widget (GedaMenuItem *menu_item)
   }
 
   return NULL;
-
 }
 
 /*!
