@@ -95,7 +95,7 @@ static void geda_option_menu_selection_done  (GedaMenuShell      *menu_shell,
 static void geda_option_menu_update_contents (GedaOptionMenu     *option_menu);
 static void geda_option_menu_remove_contents (GedaOptionMenu     *option_menu);
 static void geda_option_menu_calc_size       (GedaOptionMenu     *option_menu);
-static void geda_option_menu_position        (GedaMenu            *menu,
+static void geda_option_menu_position        (GedaMenu           *menu,
                                               int                *x,
                                               int                *y,
                                               int                *scroll_offet,
