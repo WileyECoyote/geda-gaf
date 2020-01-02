@@ -1927,10 +1927,15 @@ bool geda_menu_shell_get_take_focus (GedaMenuShell *menu_shell)
   return priv->take_focus;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Insert a Menu Item into a GedaMenuShell
+ * \par Function Description
+ *  Inserts \a child widget into the menu given by \a menu_shell
+ *  at the \a position specified.
  *
+ * \param [in] menu_shell a #GedaMenuShell
+ * \param [in] child      a #GedaMenuItem
+ * \param [in] position   Index of the position to insert the item
  */
 void geda_menu_shell_insert (GedaMenuShell *menu_shell,
                              GtkWidget     *child,

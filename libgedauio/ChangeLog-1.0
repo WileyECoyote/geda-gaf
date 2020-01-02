@@ -5,6 +5,9 @@
           * geda_image_menu_item_get_accel_group
 
     * src/widgets/geda_menu_shell.c: Revise/update signal documentation format.
+      Update function documentation:
+
+          * geda_menu_shell_insert
 
 2020-01-01 Wiley E. Hill <wileyhill@gmail.com>
 
