@@ -1,3 +1,8 @@
+2020-01-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/dialogs/generic_confirmation_dialog.png: Add image of generic
+      confirmation dialog, x_dialog_confirmation.
+
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Declare i_sessions_destroy_sessions non-static.

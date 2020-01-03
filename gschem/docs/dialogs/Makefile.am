@@ -12,6 +12,7 @@ dialogimages_DATA = about_dialog.png \
 					console_dialog.png \
 					error_dialog.png \
 					fileselect_dialog.png \
+					generic_confirmation_dialog.png \
 					image_chooser_dialog.png \
 					load_backup.png \
 					manage_sessions_dialog.png \
