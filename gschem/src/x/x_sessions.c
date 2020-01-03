@@ -271,9 +271,7 @@ static void on_open_butt_clicked(GtkButton *button, void *user_data)
 
     if (i_sessions_open_session(w_current, name)) {
 
-      g_signal_emit_by_name (Dialog, "response",
-                             GEDA_RESPONSE_REJECT,
-                             NULL);
+      g_signal_emit_by_name (Dialog, "response", GEDA_RESPONSE_REJECT, NULL);
     }
   }
 }
@@ -321,7 +319,6 @@ static void manage_session_selection_changed (GtkTreeSelection *selection,
                       Dialog);
   }
 }
-
 
 /** \defgroup Manage-Session-Dialog Manage Session Dialog
  *  @{
@@ -375,11 +372,9 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
  *  This function is common to both the Manage Sessions and the
  *  Open Session dialogs.
  */
-static void on_close_butt_clicked(GtkButton *button, void *user_data)
+static void on_close_butt_clicked(GtkButton *button, void *data)
 {
-    g_signal_emit_by_name (user_data, "response",
-                           GEDA_RESPONSE_REJECT,
-                           user_data);
+  g_signal_emit_by_name (user_data, "response", GEDA_RESPONSE_REJECT, data);
 }
 
 /*!
