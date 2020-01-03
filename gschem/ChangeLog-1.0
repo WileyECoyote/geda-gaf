@@ -9,6 +9,9 @@
     * src/x/x_dialog.c: Add references to generic_confirmation_dialog.png
       in x_dialog_confirmation function documentation.
 
+    * src/x/x_sessions.c: Revise on_delete_butt_clicked to display a
+      confirmation dialog before deleting the session.
+
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Declare i_sessions_destroy_sessions non-static.

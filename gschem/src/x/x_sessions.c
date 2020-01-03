@@ -191,10 +191,17 @@ static void on_delete_butt_clicked (GtkWidget *button, void *user_data)
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
+    const char *msg = _("Confirm delete session");
+    int response;
+
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
 
-    i_sessions_delete_session(w_current, name);
-    gtk_tree_store_remove ((GtkTreeStore*)model, &iter);
+    response = x_dialog_confirmation (title, GTK_MESSAGE_QUESTION, FALSE);
+
+    if (response == GEDA_RESPONSE_YES) {
+      i_sessions_delete_session(w_current, name);
+      gtk_tree_store_remove ((GtkTreeStore*)model, &iter);
+    }
   }
 }
 
@@ -374,7 +381,7 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
  */
 static void on_close_butt_clicked(GtkButton *button, void *data)
 {
-  g_signal_emit_by_name (user_data, "response", GEDA_RESPONSE_REJECT, data);
+  g_signal_emit_by_name (data, "response", GEDA_RESPONSE_REJECT, data);
 }
 
 /*!
