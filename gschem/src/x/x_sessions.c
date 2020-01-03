@@ -268,6 +268,7 @@ static void on_open_butt_clicked(GtkButton *button, void *user_data)
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
+
     if (i_sessions_open_session(w_current, name)) {
 
       g_signal_emit_by_name (Dialog, "response",
@@ -365,7 +366,6 @@ void x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
   }
 
   i_status_set_state (w_current, SELECT);
-
 }
 
 /*!
@@ -395,9 +395,9 @@ static void callback_session_startup_toggled(GtkToggleButton *button,
   bool state;
 
   state = gtk_toggle_button_get_active(button);
+
   i_sessions_set_show_at_startup(state);
 }
-
 
 /*!
  * \brief Manage Sessions Auto Update check button Toggled.
