@@ -1215,6 +1215,9 @@ bool i_sessions_is_enabled(void)
  * \brief Get Show Open Session at Starup Setting
  * \par Function Documentation
  *  Returns the value of the "sessions-at-startup" configuration variable.
+ *  When "sessions-at-startup" is set, the Sessions Open dialog should be
+ *  presented after program startup if filenames were not present on the
+ *  command-line.
  *
  * \sa i_sessions_show_at_startup
  *
