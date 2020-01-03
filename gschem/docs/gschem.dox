@@ -1097,6 +1097,7 @@ HTML_EXTRA_FILES       = \
                          dialogs/console_dialog.png \
                          dialogs/error_dialog.png \
                          dialogs/fileselect_dialog.png \
+                         dialogs/generic_confirmation_dialog.png \
                          dialogs/image_chooser_dialog.png \
                          dialogs/load_backup.png \
                          dialogs/manage_sessions_dialog.png \
@@ -1669,6 +1670,7 @@ LATEX_EXTRA_FILES      = what-is-geda.tex \
                          dialogs/console_dialog.png \
                          dialogs/error_dialog.png \
                          dialogs/fileselect_dialog.png \
+                         dialogs/generic_confirmation_dialog.png \
                          dialogs/image_chooser_dialog.png \
                          dialogs/load_backup.png \
                          dialogs/manage_sessions_dialog.png \

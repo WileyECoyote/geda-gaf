@@ -4007,6 +4007,8 @@ int x_dialog_validate_attribute(GtkWindow *parent, char *attribute)
 */
 
 /*! \brief General Purpose Confirmation Dialog
+ *  \image html generic_confirmation_dialog.png
+ *  \image latex generic_confirmation_dialog.png
  *  \todo: derive this from gschem dialog class
  */
 int x_dialog_confirmation (const char *msg, IDE_MESSAGE_TYPE context, bool thread)

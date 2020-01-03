@@ -1,7 +1,13 @@
 2020-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/gschem.dox: Revise DOxygen configuration file to include dialogs/
+      generic_confirmation_dialog.png for both HTML and Latex builds.
+
     * docs/dialogs/generic_confirmation_dialog.png: Add image of generic
       confirmation dialog, x_dialog_confirmation.
+
+    * src/x/x_dialog.c: Add references to generic_confirmation_dialog.png
+      in x_dialog_confirmation function documentation.
 
 2019-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
