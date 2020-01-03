@@ -230,7 +230,7 @@ static void on_export_butt_clicked (GtkWidget *button, void *user_data)
 
     filename = x_dialog_select_file(NULL, _("Select export file"), name, FSB_SAVE);
 
-    if(filename != NULL) { /* if user did not cancel */
+    if (filename != NULL) { /* if user did not cancel */
       i_sessions_export_session(name, filename);
       geda_log_q("%s %s %s %s\n", _("Session"), name, _("exported to"), filename);
       GEDA_FREE(filename);
@@ -294,7 +294,7 @@ static void manage_session_selection_changed (GtkTreeSelection *selection,
 
   button = GEDA_OBJECT_GET_DATA (Dialog, "rename-butt");
 
-  if(!gtk_widget_get_sensitive (button)) {
+  if (!gtk_widget_get_sensitive (button)) {
 
     gtk_widget_set_sensitive (button, TRUE);
     g_signal_connect (button, "clicked",
@@ -764,7 +764,7 @@ static void open_session_selection_changed (GtkTreeSelection *selection,
   button = GEDA_OBJECT_GET_DATA (Dialog, "open-butt");
 
   /* If not already,  then enable the open button */
-  if(!gtk_widget_get_sensitive (button)) {
+  if (!gtk_widget_get_sensitive (button)) {
 
     gtk_widget_set_sensitive (button, TRUE);
     g_signal_connect (button, "clicked",
