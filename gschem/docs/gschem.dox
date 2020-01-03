@@ -1105,6 +1105,9 @@ HTML_EXTRA_FILES       = \
                          dialogs/page_man_dialog.png \
                          dialogs/pin_dialog.png \
                          dialogs/preferences_dialog.png \
+                         dialogs/single_attribute_add.png \
+                         dialogs/single_attribute_dialog.png \
+                         dialogs/single_attribute_edit.png \
                          dialogs/slot_dialog.png \
                          dialogs/text_properties_dialog.png \
                          dialogs/write_image_dialog.png
@@ -1678,6 +1681,9 @@ LATEX_EXTRA_FILES      = what-is-geda.tex \
                          dialogs/page_man_dialog.png \
                          dialogs/pin_dialog.png \
                          dialogs/preferences_dialog.png \
+                         dialogs/single_attribute_add.png \
+                         dialogs/single_attribute_dialog.png \
+                         dialogs/single_attribute_edit.png \
                          dialogs/slot_dialog.png \
                          dialogs/write_image_dialog.png
 

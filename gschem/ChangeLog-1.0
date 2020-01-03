@@ -1,7 +1,12 @@
 2020-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * docs/gschem.dox: Revise DOxygen configuration file to include dialogs/
-      generic_confirmation_dialog.png for both HTML and Latex builds.
+    * docs/gschem.dox: Revise DOxygen configuration file to include dialog
+      images for both HTML and Latex builds:
+
+        * generic_confirmation_dialog.png
+        * single_attribute_add.png \
+        * single_attribute_dialog.png \
+        * single_attribute_edit.png
 
     * docs/dialogs/generic_confirmation_dialog.png: Add image of generic
       confirmation dialog, x_dialog_confirmation.
@@ -30,21 +35,13 @@
 2019-11-16 Wiley E. Hill <wileyhill@gmail.com
 
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/sl.po: Update Slovenian translations.
-
     * po/sr.po: Update Serbian translations.
-
     * po/tr.po: Update Turkish translations.
 
 2019-11-08 Wiley E. Hill <wileyhill@gmail.com

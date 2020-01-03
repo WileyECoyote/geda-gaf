@@ -20,6 +20,9 @@ dialogimages_DATA = about_dialog.png \
 					page_man_dialog.png \
 					pin_dialog.png \
 					preferences_dialog.png \
+					single_attribute_add.png \
+					single_attribute_dialog.png \
+					single_attribute_edit.png \
 					slot_dialog.png \
 					text_properties_dialog.png \
 					write_image_dialog.png
