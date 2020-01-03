@@ -196,7 +196,7 @@ static void on_delete_butt_clicked (GtkWidget *button, void *user_data)
 
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
 
-    response = x_dialog_confirmation (title, GTK_MESSAGE_QUESTION, FALSE);
+    response = x_dialog_confirmation (msg, GTK_MESSAGE_QUESTION, FALSE);
 
     if (response == GEDA_RESPONSE_YES) {
       i_sessions_delete_session(w_current, name);
