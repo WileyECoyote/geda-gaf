@@ -1,19 +1,16 @@
+2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * data/x-geda-gsch2pcb-project.desktop.in: Use lower case "project".
+
 2019-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
 
 2019-12-17 Wiley E. Hill <wileyhill@gmail.com>
