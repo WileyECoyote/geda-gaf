@@ -243,6 +243,7 @@ msgstr ""
 "довереник).\n"
 "  -f, --font <NAME>          зададете име на шрифт семейство\n"
 "  -h, --help                 Помогне; това съобщение.\n"
+"  -l, --list                 Списък на запаметените имена на сесията.\n"
 "  -m, --safe-mode            Безопасен режим.\n"
 "  -n, --no-auto              Не авто натоварване последния документ.\n"
 "  -o, --output <FILE>        продукция името на файла (за печат и на изхода "
@@ -946,10 +947,11 @@ msgstr "Неуспешно премахване на сесията"
 msgid "<b>Could not remove session</b>"
 msgstr "<b>не можа да се премахне сесия</b>"
 
+# There are no saved sessions; Nyama zapazeni sesi
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
+#, c-format
 msgid "There are no saved sessions"
-msgstr "Създаден на сесията"
+msgstr "Няма запазени сесии"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4158,10 +4160,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session; Potvŭrdete iztrivaneto na sesiya
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Създаден на сесията"
+msgstr "Потвърдете изтриването на сесия"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
