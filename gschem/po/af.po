@@ -168,7 +168,7 @@ msgid "Vertical adjustment"
 msgstr "Vertikale aanpassing"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -217,6 +217,7 @@ msgstr ""
 "  -g, --guile <DIR>          Voeg DIR om die Guile pad (pre-config).\n"
 "  -f, --font <NAME>          stel font familie naam\n"
 "  -h, --help                 help; hierdie boodskap.\n"
+"  -l, --list                 Lys gestoorde sessiename.\n"
 "  -m, --safe-mode            Veilige modus.\n"
 "  -n, --no-auto              Geen motor vrag laaste dokument.\n"
 "  -o, --output <FILE>        Uitset lêernaam (vir die druk en beeld "
@@ -906,9 +907,9 @@ msgid "<b>Could not remove session</b>"
 msgstr "<b>Kan sessie nie verwyder</b>"
 
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
+#, c-format
 msgid "There are no saved sessions"
-msgstr "Huidige Venster"
+msgstr "Daar is geen gestoorde sessies nie"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4153,9 +4154,8 @@ msgid "Specify new name for Session:"
 msgstr "Spesifiseer nuwe naam vir Sessie:"
 
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Huidige Venster"
+msgstr "Bevestig die uitvee-sessie"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
