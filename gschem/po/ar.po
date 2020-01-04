@@ -857,10 +857,11 @@ msgstr "عدم إزالة الدورة"
 msgid "<b>Could not remove session</b>"
 msgstr "<b>لا يمكن إزالة الجلسة</b>"
 
+# There are no saved sessions; la tujad jalasat mahfuza
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
+#, c-format
 msgid "There are no saved sessions"
-msgstr "النافذة الحالية"
+msgstr "لا توجد جلسات محفوظة"
 
 # created with
 #: gschem/src/iface/i_sessions.c:968
@@ -4144,10 +4145,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session; takid hadhaf aljalsa
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "النافذة الحالية"
+msgstr "تأكيد حذف الجلسة"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"

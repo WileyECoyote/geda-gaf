@@ -2,6 +2,8 @@
 
     * po/af.po: Update Afrikaans translations.
 
+    * po/ar.po: Update Arabic translations.
+
 2020-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.dox: Revise DOxygen configuration file to include dialog
