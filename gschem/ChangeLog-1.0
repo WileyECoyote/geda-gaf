@@ -6,6 +6,8 @@
 
     * po/bg.po: Update Bulgarian translations.
 
+    * po/bs.po: Update Bosnian translations.
+
 2020-01-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * docs/gschem.dox: Revise DOxygen configuration file to include dialog

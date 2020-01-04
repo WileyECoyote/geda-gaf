@@ -887,11 +887,11 @@ msgstr ""
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-# Created session
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
+#, c-format
 msgid "There are no saved sessions"
-msgstr "Stvorio sjednica"
+msgstr "Nema spremljenih sesija"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4180,11 +4180,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
-# Created session
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Stvorio sjednica"
+msgstr "Potvrdite brisanje sesije"
 
 # Select export file
 #: gschem/src/x/x_sessions.c:238
@@ -6292,10 +6291,3 @@ msgstr ""
 #, scheme-format
 msgid "~S is not a prefix key sequence."
 msgstr ""
-
-# Input attribute is invalid
-#~ msgid "Input attribute is invalid"
-#~ msgstr "Ulazni atribut je nevažeća"
-
-#~ msgid "Deselect moda"
-#~ msgstr "un-odabrati moda"
