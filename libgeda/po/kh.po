@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libgeda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:10-0600\n"
+"POT-Creation-Date: 2020-01-04 12:30-0600\n"
 "PO-Revision-Date: 2015-07-29 00:24-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,12 +29,8 @@ msgid "gEDA schematic symbol"
 msgstr "gEDA nimittasanhnhea krongkar"
 
 #: libgeda/data/libgeda.xml.in:5
-msgid "gEDA gsch2pcb project"
-msgstr "gEDA komrong gsch2pcb"
-
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
-#, fuzzy
-msgid "gEDA gsch2pcb Project"
+msgid "gEDA gsch2pcb project"
 msgstr "gEDA komrong gsch2pcb"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
@@ -1834,6 +1830,3 @@ msgstr ""
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
-#~ msgid "gEDA Gsch2pcb Project"
-#~ msgstr "gEDA komrong gsch2pcb"

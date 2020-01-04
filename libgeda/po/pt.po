@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:10-0600\n"
+"POT-Creation-Date: 2020-01-04 12:30-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -27,12 +27,8 @@ msgid "gEDA schematic symbol"
 msgstr "símbolo de esquema gEDA"
 
 #: libgeda/data/libgeda.xml.in:5
-msgid "gEDA gsch2pcb project"
-msgstr "projecto gEDA gsch2pcb"
-
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
-#, fuzzy
-msgid "gEDA gsch2pcb Project"
+msgid "gEDA gsch2pcb project"
 msgstr "projecto gEDA gsch2pcb"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
@@ -1952,6 +1948,3 @@ msgstr "Não foi possível criar o ficheiro de log em"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Objeto ~A não é parte de uma página"
-
-#~ msgid "gEDA Gsch2pcb Project"
-#~ msgstr "Projecto gEDA Gsch2pcb"

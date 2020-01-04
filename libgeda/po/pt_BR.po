@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:10-0600\n"
+"POT-Creation-Date: 2020-01-04 12:30-0600\n"
 "PO-Revision-Date: 2012-01-27 14:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -27,11 +27,8 @@ msgid "gEDA schematic symbol"
 msgstr ""
 
 #: libgeda/data/libgeda.xml.in:5
-msgid "gEDA gsch2pcb project"
-msgstr ""
-
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
-msgid "gEDA gsch2pcb Project"
+msgid "gEDA gsch2pcb project"
 msgstr ""
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
