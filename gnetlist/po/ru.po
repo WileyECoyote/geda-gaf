@@ -135,7 +135,7 @@ msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
 #: gnetlist/src/parsecmd.c:74
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
 "\n"
@@ -182,6 +182,7 @@ msgstr ""
 "  -c <ВЫРАЖЕНИЕ>  Выполнить выражение Scheme при запуске.\n"
 "  -i              После загрузки войти в интерактивный цикл Scheme (REPL).\n"
 "  --list-backends Вывести список доступных драйверов списков соединений.\n"
+"  -r <filename>   Имя файла RC, по умолчанию gnetlistrc.\n"
 "  -h, --help      Данная справка.\n"
 "  -V, --version   Информация о версии.\n"
 "  --              Считать все последующие аргументы именами файлов.\n"
