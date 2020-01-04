@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-09-14 21:36-0500\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2014-05-20 08:55+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA Developers\n"
@@ -67,57 +67,57 @@ msgstr ""
 "условия; Более подробную информацию см. В файле COPYING.\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:280 gnetlist/src/gnetlist.c:281
+#: gnetlist/src/gnetlist.c:280
 msgid "Loading schematic"
 msgstr "Загрузка схемы"
 
 # load failed
-#: gnetlist/src/gnetlist.c:287
+#: gnetlist/src/gnetlist.c:286
 msgid "load failed"
 msgstr "Ошибка загрузки"
 
 # System could not change to directory
-#: gnetlist/src/gnetlist.c:303 gnetlist/src/gnetlist.c:366
+#: gnetlist/src/gnetlist.c:302 gnetlist/src/gnetlist.c:365
 msgid "System could not change to directory"
 msgstr "Система не может быть изменена в каталог"
 
-#: gnetlist/src/gnetlist.c:329
+#: gnetlist/src/gnetlist.c:328
 msgid "ERROR: Could not find backend"
 msgstr "ОШИБКА: не удалось найти драйвер в пути загрузки"
 
-#: gnetlist/src/gnetlist.c:330
+#: gnetlist/src/gnetlist.c:329
 msgid "for a full list of available backends"
 msgstr "для полного списка доступных бэкэндов"
 
 # in load path
-#: gnetlist/src/gnetlist.c:332
+#: gnetlist/src/gnetlist.c:331
 msgid "in load path"
 msgstr "В пути загрузки"
 
-#: gnetlist/src/gnetlist.c:333
+#: gnetlist/src/gnetlist.c:332
 msgid "Run"
 msgstr "Выполнить"
 
-#: gnetlist/src/gnetlist.c:401 gnetlist/src/gnetlist.c:429
+#: gnetlist/src/gnetlist.c:400 gnetlist/src/gnetlist.c:427
 msgid "Path"
 msgstr "Путь к файлу"
 
 # is not accessible
-#: gnetlist/src/gnetlist.c:402 gnetlist/src/gnetlist.c:430
+#: gnetlist/src/gnetlist.c:401 gnetlist/src/gnetlist.c:428
 msgid "is not accessible"
 msgstr "Недоступен"
 
 # file
-#: gnetlist/src/gnetlist.c:413 gnetlist/src/g_rc.c:75
+#: gnetlist/src/gnetlist.c:412 gnetlist/src/g_rc.c:75
 msgid "file"
 msgstr "файл"
 
 # Could not create
-#: gnetlist/src/gnetlist.c:452
+#: gnetlist/src/gnetlist.c:450
 msgid "Could not create"
 msgstr "Не удалось создать"
 
-#: gnetlist/src/gnetlist.c:478
+#: gnetlist/src/gnetlist.c:476
 #, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "Не задан ни драйвер для работы, ни интерактивный режим!\n"
@@ -135,7 +135,7 @@ msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
 #: gnetlist/src/parsecmd.c:74
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
 "\n"
@@ -152,6 +152,7 @@ msgid ""
 "  -m <file.scm>   Load Scheme file after loading backend.\n"
 "  -c <expresion>  Evaluate Scheme expression at startup.\n"
 "  -i              Enter interactive Scheme REPL after loading.\n"
+"  -r <filename>   RC Filename, default is gnetlistrc.\n"
 "  --list-backends Print a list of available netlist backends.\n"
 "  -h, --help      Display usage and parameter information.\n"
 "  -V, --version   Show gnetlist or a backend version information.\n"
@@ -193,7 +194,7 @@ msgstr ""
 "Домашняя страница gEDA/gaf: <http://www.geda-project.org/>\n"
 " Домашняя страница PCB: <http://pcb.geda-project.org>\n"
 
-#: gnetlist/src/parsecmd.c:114
+#: gnetlist/src/parsecmd.c:115
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -210,15 +211,15 @@ msgstr ""
 "для УДАРНЫХ И ФИТНЕС ДЛЯ ОСОБЫХ ЦЕЛЕЙ, в той степени, в которой\n"
 "разрешено законом.\n"
 
-#: gnetlist/src/parsecmd.c:132
+#: gnetlist/src/parsecmd.c:133
 msgid "Received an error; tag is"
 msgstr "Получил ошибку; Тег"
 
-#: gnetlist/src/parsecmd.c:229
+#: gnetlist/src/parsecmd.c:192 gnetlist/src/parsecmd.c:238
 msgid "WARNING: output already specified"
 msgstr "ПРЕДУПРЕЖДЕНИЕ: уже указанный результат"
 
-#: gnetlist/src/parsecmd.c:272
+#: gnetlist/src/parsecmd.c:281
 #, c-format
 msgid ""
 "ERROR: -%c option requires an argument.\n"
@@ -227,7 +228,7 @@ msgstr ""
 "ОШИБКА: для опции -%c необходим аргумент.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:276
+#: gnetlist/src/parsecmd.c:285
 #, c-format
 msgid ""
 "ERROR: Unknown option -%c.\n"
@@ -236,7 +237,7 @@ msgstr ""
 "ОШИБКА: Неизвестная опция -%c.\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:279
+#: gnetlist/src/parsecmd.c:288
 #, c-format
 msgid ""
 "ERROR: Unknown option character `\\x%x'.\n"
@@ -245,7 +246,7 @@ msgstr ""
 "ОШИБКА: Неизвестный символ опции «\\x%x».\n"
 "\n"
 
-#: gnetlist/src/parsecmd.c:283
+#: gnetlist/src/parsecmd.c:292
 #, c-format
 msgid ""
 "\n"
@@ -254,7 +255,7 @@ msgstr ""
 "\n"
 "Подробности см. в выводе команды «%s --help».\n"
 
-#: gnetlist/src/s_hierarchy.c:90
+#: gnetlist/src/s_hierarchy.c:91
 msgid "Commence traversing source"
 msgstr "Переход к обработке источника данных"
 
@@ -267,17 +268,17 @@ msgstr "ОШИБКА: Не удалось загрузить подсхему «
 msgid "DONE"
 msgstr ""
 
-#: gnetlist/src/s_netattrib.c:113
+#: gnetlist/src/s_netattrib.c:112
 #, c-format
 msgid "Found malformed net attribute\n"
 msgstr "Обнаружен атрибут соединения в недопустимом формате\n"
 
-#: gnetlist/src/s_netattrib.c:184
+#: gnetlist/src/s_netattrib.c:183
 #, c-format
 msgid "Found a cpinlist head with a netname! [%s]\n"
 msgstr "Найдено начало списка выводов компонента с именем соединения! «%s»\n"
 
-#: gnetlist/src/s_netattrib.c:333 gnetlist/src/s_netattrib.c:376
+#: gnetlist/src/s_netattrib.c:331 gnetlist/src/s_netattrib.c:374
 #, c-format
 msgid ""
 "Got an invalid net= attrib [net=%s]\n"
@@ -286,59 +287,59 @@ msgstr ""
 "Недопустимый атрибут «net» («net=%s»)\n"
 "В атрибуте «net» отсутствует символ «:»\n"
 
-#: gnetlist/src/s_net.c:270
+#: gnetlist/src/s_net.c:272
 msgid "Missing pin number attribute"
 msgstr ""
 
-#: gnetlist/src/s_net.c:481
+#: gnetlist/src/s_net.c:483
 msgid "Found Duplicate net names, renaming"
 msgstr "Найдены дубликаты сетевых имен, переименование"
 
-#: gnetlist/src/s_net.c:484 gnetlist/src/s_net.c:495
+#: gnetlist/src/s_net.c:486 gnetlist/src/s_net.c:497
 msgid "to"
 msgstr "в"
 
-#: gnetlist/src/s_net.c:493
+#: gnetlist/src/s_net.c:495
 msgid "Add rename record for"
 msgstr "Добавить запись переименования для"
 
-#: gnetlist/src/s_netlist.c:220
+#: gnetlist/src/s_netlist.c:230
 msgid "Starting post processing"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:221
+#: gnetlist/src/s_netlist.c:231
 msgid "Naming nets of graphical objects"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:338
+#: gnetlist/src/s_netlist.c:347
 msgid "Staring post processing"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:339
+#: gnetlist/src/s_netlist.c:348
 msgid "Naming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:394
+#: gnetlist/src/s_netlist.c:403
 msgid "Renaming nets"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:401
+#: gnetlist/src/s_netlist.c:410
 msgid "Resolving hierarchy"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:411
+#: gnetlist/src/s_netlist.c:420
 msgid "Removing refdes mangling"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:436
+#: gnetlist/src/s_netlist.c:445
 msgid "component"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:442
+#: gnetlist/src/s_netlist.c:451
 msgid "SPECIAL"
 msgstr ""
 
-#: gnetlist/src/s_netlist.c:447
+#: gnetlist/src/s_netlist.c:456
 msgid "Hierarchy tag"
 msgstr ""
 
@@ -364,7 +365,7 @@ msgid "This warning is okay if there multiple levels of hierarchy!\n"
 msgstr ""
 "Это предупреждение несущественно, если имеется несколько уровней иерархии!\n"
 
-#: gnetlist/src/s_traverse.c:125
+#: gnetlist/src/s_traverse.c:128
 #, c-format
 msgid ""
 "Verbose mode legend\n"
@@ -373,90 +374,90 @@ msgstr ""
 "Претензионная легенда режима\n"
 "\n"
 
-#: gnetlist/src/s_traverse.c:126
+#: gnetlist/src/s_traverse.c:129
 #, c-format
 msgid "n : Found net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:127
+#: gnetlist/src/s_traverse.c:130
 #, c-format
 msgid "C : Found component (starting to traverse component)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:128
+#: gnetlist/src/s_traverse.c:131
 #, c-format
 msgid "p : Found pin (starting to traverse or examine pin)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:129
+#: gnetlist/src/s_traverse.c:132
 #, c-format
 msgid "P : Found ending pin connection (end of this net)\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:130
+#: gnetlist/src/s_traverse.c:133
 #, c-format
 msgid "R : Starting to rename a net\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:131
+#: gnetlist/src/s_traverse.c:134
 #, c-format
 msgid "v : Found source attribute, traversing down\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:132
+#: gnetlist/src/s_traverse.c:135
 #, c-format
 msgid "^ : Finished underlying source, going back up\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:133
+#: gnetlist/src/s_traverse.c:136
 #, c-format
 msgid "u : Found a refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:134
+#: gnetlist/src/s_traverse.c:137
 #, c-format
 msgid "U : Found a connected_to refdes which needs to be demangle\n"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:177
+#: gnetlist/src/s_traverse.c:180
 msgid "Internal netlist representation:"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:210
+#: gnetlist/src/s_traverse.c:213
 msgid "Starting internal netlist creation"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:222 gnetlist/src/s_traverse.c:371
+#: gnetlist/src/s_traverse.c:225 gnetlist/src/s_traverse.c:372
 msgid "WARNING: Found a placeholder/missing component, is symbol file missing"
 msgstr ""
 "ПРЕДУПРЕЖДЕНИЕ: Найден временный/отсутствующий компонент, может быть нет "
 "файла символа для"
 
-#: gnetlist/src/s_traverse.c:285
+#: gnetlist/src/s_traverse.c:288
 msgid "Did not find refdes or any special attributes on component!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:446
+#: gnetlist/src/s_traverse.c:447
 msgid "Could not find refdes on component or any special attributes!"
 msgstr ""
 "Не удалось обнаружить ни позиционное обозначение компонента, ни каких-либо "
 "специальных атрибутов!"
 
-#: gnetlist/src/s_traverse.c:563
+#: gnetlist/src/s_traverse.c:564
 msgid "Non-connectable object being queried for connection type\n"
 msgstr "Запрос типа соединения для неприсоединяемого объекта.\n"
 
-#: gnetlist/src/s_traverse.c:623
+#: gnetlist/src/s_traverse.c:624
 msgid "WARNING: Found label"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:624
+#: gnetlist/src/s_traverse.c:625
 msgid "label= is deprecated, please use netname"
 msgstr ""
 
-#: gnetlist/src/s_traverse.c:688
+#: gnetlist/src/s_traverse.c:689
 #, c-format
 msgid "Found a possible net/pin infinite connection\n"
 msgstr ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-18 22:29-0600\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2014-12-29 20:06+0300\n"
 "Last-Translator: Marco Ciampa <ciampix@libero.it>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -181,8 +181,8 @@ msgstr "Geometria pagina"
 msgid "Vertical adjustment"
 msgstr "regolazione verticale"
 
-#: gschem/src/base/gschem_parsecmd.c:85
-#, c-format
+#: gschem/src/base/gschem_parsecmd.c:86
+#, fuzzy, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -197,6 +197,7 @@ msgid ""
 "  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
 "  -f, --font <NAME>          set font family name\n"
 "  -h, --help                 Help; this message.\n"
+"  -l, --list                 List saved session names.\n"
 "  -m, --safe-mode            Safe Mode.\n"
 "  -n, --no-auto              No auto load last document.\n"
 "  -o, --output <FILE>        Output filename (for printing and image "
@@ -253,7 +254,7 @@ msgstr ""
 "Riportare eventuali difetti su <https://bugs.launchpad.net/geda>\n"
 "Homepage di gEDA/gaf: <http://www.geda-project.org/>\n"
 
-#: gschem/src/base/gschem_parsecmd.c:128
+#: gschem/src/base/gschem_parsecmd.c:130
 msgid ""
 "Copyright (C) 1998-2017 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
@@ -269,35 +270,35 @@ msgstr ""
 "Non c'è ALCUNA GARANZIA, nei limiti di legge.\n"
 
 # error parsing
-#: gschem/src/base/gschem_parsecmd.c:248
+#: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
 msgstr "errore durante l'analisi"
 
-#: gschem/src/base/gschem_parsecmd.c:284 gschem/src/x/x_rc.c:100
+#: gschem/src/base/gschem_parsecmd.c:291 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
 msgstr "ERRORE"
 
 # option requires an argument
-#: gschem/src/base/gschem_parsecmd.c:288
+#: gschem/src/base/gschem_parsecmd.c:295
 msgid "option requires an argument"
 msgstr "l'opzione richiede un argomento"
 
 # Unknown option
-#: gschem/src/base/gschem_parsecmd.c:294
+#: gschem/src/base/gschem_parsecmd.c:301
 msgid "Unknown option"
 msgstr "Opzione sconosciuta"
 
 # Unknown option character
-#: gschem/src/base/gschem_parsecmd.c:300
+#: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
 msgstr "Carattere opzionale sconosciuto"
 
-#: gschem/src/base/gschem_parsecmd.c:306
+#: gschem/src/base/gschem_parsecmd.c:313
 msgid "help for more information"
 msgstr "help per maggiori informazioni"
 
-#: gschem/src/base/gschem_parsecmd.c:308
+#: gschem/src/base/gschem_parsecmd.c:315
 msgid "Run"
 msgstr "Eseguire"
 
@@ -870,7 +871,7 @@ msgid "Warning relative file names detected in session"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:347 gschem/src/iface/i_sessions.c:360
-#: gschem/src/iface/i_sessions.c:937 gschem/src/x/x_sessions.c:230
+#: gschem/src/iface/i_sessions.c:967 gschem/src/x/x_sessions.c:242
 msgid "Session"
 msgstr "Mostra _Nome"
 
@@ -882,8 +883,8 @@ msgstr ""
 msgid "of"
 msgstr "di"
 
-#: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:939
-#: gschem/src/iface/i_sessions.c:1113
+#: gschem/src/iface/i_sessions.c:350 gschem/src/iface/i_sessions.c:969
+#: gschem/src/iface/i_sessions.c:1143
 msgid "documents"
 msgstr "documenti"
 
@@ -907,76 +908,81 @@ msgstr "Impossibile rimuovere sessione"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:938
+#: gschem/src/iface/i_sessions.c:940
+#, fuzzy, c-format
+msgid "There are no saved sessions"
+msgstr "Salva come"
+
+#: gschem/src/iface/i_sessions.c:968
 msgid "created with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:946
+#: gschem/src/iface/i_sessions.c:976
 msgid "An error occurred attempting to create session"
 msgstr "Errore durante il tentativo di creare la sessione"
 
-#: gschem/src/iface/i_sessions.c:956 gschem/src/iface/i_sessions.c:1140
+#: gschem/src/iface/i_sessions.c:986 gschem/src/iface/i_sessions.c:1170
 msgid "<b>Session Error</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:956
+#: gschem/src/iface/i_sessions.c:986
 msgid "Creation failed"
 msgstr "Inserimento appunti fallito"
 
-#: gschem/src/iface/i_sessions.c:1000
+#: gschem/src/iface/i_sessions.c:1030
 msgid "Opened session"
 msgstr "Salva come"
 
-#: gschem/src/iface/i_sessions.c:1049
+#: gschem/src/iface/i_sessions.c:1079
 msgid "Renaming session"
 msgstr "Rinominare sessione"
 
-#: gschem/src/iface/i_sessions.c:1050 gschem/src/object/o_attrib.c:178
+#: gschem/src/iface/i_sessions.c:1080 gschem/src/object/o_attrib.c:178
 msgid "to"
 msgstr "a"
 
-#: gschem/src/iface/i_sessions.c:1074
+#: gschem/src/iface/i_sessions.c:1104
 msgid "Failed to rename session"
 msgstr "Impossibile rinominare la sessione"
 
-#: gschem/src/iface/i_sessions.c:1077
+#: gschem/src/iface/i_sessions.c:1107
 msgid "<b>Could not rename session</b>"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1111
+#: gschem/src/iface/i_sessions.c:1141
 msgid "Created session"
 msgstr "Salva come"
 
-#: gschem/src/iface/i_sessions.c:1112
+#: gschem/src/iface/i_sessions.c:1142
 msgid "with"
 msgstr "con"
 
-#: gschem/src/iface/i_sessions.c:1122 gschem/src/x/x_window.c:1244
+#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1244
 #: gschem/src/x/x_window.c:1247
 msgid "Saved"
 msgstr "Salvato"
 
-#: gschem/src/iface/i_sessions.c:1123
+#: gschem/src/iface/i_sessions.c:1153
 msgid "documents to session"
 msgstr "documenti a sessione"
 
-#: gschem/src/iface/i_sessions.c:1133
+#: gschem/src/iface/i_sessions.c:1163
 msgid "An error occurred attempting to save session"
 msgstr "Verificato un errore durante il tentativo di salvare la sessione"
 
-#: gschem/src/iface/i_sessions.c:1141
+#: gschem/src/iface/i_sessions.c:1171
 msgid "Save session failed"
 msgstr "Salva file"
 
-#: gschem/src/iface/i_sessions.c:1232
+#: gschem/src/iface/i_sessions.c:1265
 msgid "Show Sessions at startup is now ENABLED\n"
 msgstr "Mostra sessioni all'avvio è ora abilitata\n"
 
-#: gschem/src/iface/i_sessions.c:1235
+#: gschem/src/iface/i_sessions.c:1268
 msgid "Show Sessions at startup is now DISABLED\n"
 msgstr "Mostra sessioni all'avvio è disabilitata\n"
 
-#: gschem/src/iface/i_sessions.c:1305
+#: gschem/src/iface/i_sessions.c:1338
 msgid "Session system initialized!\n"
 msgstr ""
 
@@ -2501,96 +2507,96 @@ msgstr ""
 msgid "entry for array vertical pitch"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:218
+#: gschem/src/x/x_edit_attrib.c:221
 #, c-format
 msgid "invalid show option; defaulting to show both\n"
 msgstr "opzione mostra non valida; ritorno a mostra entrambi\n"
 
-#: gschem/src/x/x_edit_attrib.c:339
+#: gschem/src/x/x_edit_attrib.c:342
 msgid "Select to choose an attribute visibility options"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:340
+#: gschem/src/x/x_edit_attrib.c:343
 msgid "Show only the name of the attribute"
 msgstr "Mostra gli attributi ereditati"
 
-#: gschem/src/x/x_edit_attrib.c:341
+#: gschem/src/x/x_edit_attrib.c:344
 msgid "Show only the value of the attribute"
 msgstr "Mostra gli attributi ereditati"
 
-#: gschem/src/x/x_edit_attrib.c:342
+#: gschem/src/x/x_edit_attrib.c:345
 msgid "Show both the name and the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:350
+#: gschem/src/x/x_edit_attrib.c:353
 msgid "Show Value Only"
 msgstr "Mostra Solo il Valore"
 
-#: gschem/src/x/x_edit_attrib.c:354
+#: gschem/src/x/x_edit_attrib.c:357
 msgid "Show Name Only"
 msgstr "Mostra Solo il Nome"
 
-#: gschem/src/x/x_edit_attrib.c:358 gschem/src/x/x_multiattrib.c:1706
+#: gschem/src/x/x_edit_attrib.c:361 gschem/src/x/x_multiattrib.c:1706
 #: gschem/scheme/gschem/builtins.scm:413
 msgid "Show Name & Value"
 msgstr "Mostra Nome & Valore"
 
-#: gschem/src/x/x_edit_attrib.c:423
+#: gschem/src/x/x_edit_attrib.c:426
 msgid "Enter or type an attribute name"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:424 gschem/src/x/x_multiattrib.c:2276
+#: gschem/src/x/x_edit_attrib.c:427 gschem/src/x/x_multiattrib.c:2276
 #: gschem/scheme/gschem/builtins.scm:350
 msgid "Add Attribute"
 msgstr "Aggiungi attributo"
 
 # Edit Attribute
-#: gschem/src/x/x_edit_attrib.c:425
+#: gschem/src/x/x_edit_attrib.c:428
 msgid "Edit Attribute"
 msgstr "Modifica attributo"
 
-#: gschem/src/x/x_edit_attrib.c:427
+#: gschem/src/x/x_edit_attrib.c:430
 msgid "Select the name of the attribute to add"
 msgstr "Selezionare il nome dell'attributo da aggiungere"
 
-#: gschem/src/x/x_edit_attrib.c:428
+#: gschem/src/x/x_edit_attrib.c:431
 msgid "Select the name of the attribute to edit"
 msgstr "Selezionare il nome dell'attributo da modificare"
 
-#: gschem/src/x/x_edit_attrib.c:430
+#: gschem/src/x/x_edit_attrib.c:433
 msgid "Input a value for the new attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:431
+#: gschem/src/x/x_edit_attrib.c:434
 msgid "Input or edit the value of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:433
+#: gschem/src/x/x_edit_attrib.c:436
 msgid "Enable or disable visibility of the attribute"
 msgstr ""
 
-#: gschem/src/x/x_edit_attrib.c:450
+#: gschem/src/x/x_edit_attrib.c:453
 msgid "Single Attribute Editor"
 msgstr "Editor Singola Caratteristica"
 
-#: gschem/src/x/x_edit_attrib.c:478 gschem/src/x/x_multiattrib.c:2293
+#: gschem/src/x/x_edit_attrib.c:481 gschem/src/x/x_multiattrib.c:2293
 msgid "Name:"
 msgstr "Nome:"
 
-#: gschem/src/x/x_edit_attrib.c:495 gschem/src/x/x_multiattrib.c:2312
+#: gschem/src/x/x_edit_attrib.c:498 gschem/src/x/x_multiattrib.c:2312
 msgid "Value:"
 msgstr "Valore:"
 
-#: gschem/src/x/x_edit_attrib.c:509 gschem/src/x/x_multiattrib.c:2091
+#: gschem/src/x/x_edit_attrib.c:512 gschem/src/x/x_multiattrib.c:2091
 #: gschem/src/x/x_multiattrib.c:2367
 msgid "Visible"
 msgstr "Visibile"
 
-#: gschem/src/x/x_edit_attrib.c:538
+#: gschem/src/x/x_edit_attrib.c:541
 msgid "Attribute Name List"
 msgstr "Mostra il nome dell'attributo"
 
-#: gschem/src/x/x_edit_attrib.c:542
+#: gschem/src/x/x_edit_attrib.c:545
 msgid "Attribute Value Entry"
 msgstr "Mostra il valore dell'attributo"
 
@@ -4140,89 +4146,94 @@ msgstr ""
 "Si è verificato un errore sconosciuto durante l'analisi dei file di "
 "configurazione."
 
-#: gschem/src/x/x_sessions.c:147
+#: gschem/src/x/x_sessions.c:150
 msgid "Rename Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:148 gschem/src/x/x_sessions.c:857
-#: gschem/src/x/x_sessions.c:889
+#: gschem/src/x/x_sessions.c:151 gschem/src/x/x_sessions.c:876
+#: gschem/src/x/x_sessions.c:909
 msgid "Specify new name for Session:"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:226
+#: gschem/src/x/x_sessions.c:194
+#, fuzzy
+msgid "Confirm delete session"
+msgstr "Salva come"
+
+#: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
 msgstr "Seleziona un file disegno"
 
-#: gschem/src/x/x_sessions.c:230
+#: gschem/src/x/x_sessions.c:242
 msgid "exported to"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:425
+#: gschem/src/x/x_sessions.c:439
 msgid "Load the selected session"
 msgstr "Oggetti selezionati"
 
-#: gschem/src/x/x_sessions.c:426
+#: gschem/src/x/x_sessions.c:440
 msgid ""
 "Show the Open Session dialog at start-up, over-rides auto-load-last feature"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:427
+#: gschem/src/x/x_sessions.c:441
 msgid "Automatically add and remove files from sessions"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:432
+#: gschem/src/x/x_sessions.c:446
 msgid "Show at start-up"
 msgstr "Mostra allo start-up"
 
-#: gschem/src/x/x_sessions.c:439
+#: gschem/src/x/x_sessions.c:453
 msgid "Auto update"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:543
+#: gschem/src/x/x_sessions.c:558
 msgid "Session Name"
 msgstr "Mostra _Nome"
 
-#: gschem/src/x/x_sessions.c:558
+#: gschem/src/x/x_sessions.c:573
 msgid "File Count"
 msgstr "Sequenza dei file"
 
-#: gschem/src/x/x_sessions.c:607
+#: gschem/src/x/x_sessions.c:623
 msgid "Rename the selected session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:608
+#: gschem/src/x/x_sessions.c:624
 msgid "Delete the selected session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:609
+#: gschem/src/x/x_sessions.c:625
 msgid "Export the selected session to a project file"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:611 gschem/scheme/gschem/builtins.scm:392
+#: gschem/src/x/x_sessions.c:627 gschem/scheme/gschem/builtins.scm:392
 msgid "Manage Sessions"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:646
+#: gschem/src/x/x_sessions.c:662
 msgid "_Rename"
 msgstr "Nome file"
 
-#: gschem/src/x/x_sessions.c:653 gschem/etc/system-gschemrc.scm:2114
+#: gschem/src/x/x_sessions.c:669 gschem/etc/system-gschemrc.scm:2114
 msgid "_Delete"
 msgstr "_Elimina"
 
-#: gschem/src/x/x_sessions.c:660 gschem/etc/system-gschemrc.scm:2089
+#: gschem/src/x/x_sessions.c:676 gschem/etc/system-gschemrc.scm:2089
 msgid "_Export"
 msgstr "Esporta immagine"
 
-#: gschem/src/x/x_sessions.c:786
+#: gschem/src/x/x_sessions.c:804
 msgid "Open Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:856
+#: gschem/src/x/x_sessions.c:875
 msgid "New Session"
 msgstr ""
 
-#: gschem/src/x/x_sessions.c:889 gschem/scheme/gschem/builtins.scm:389
+#: gschem/src/x/x_sessions.c:909 gschem/scheme/gschem/builtins.scm:389
 msgid "Save Session As"
 msgstr "Salva come"
 

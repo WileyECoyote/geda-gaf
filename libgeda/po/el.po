@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-18 22:29-0600\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -31,8 +31,9 @@ msgid "gEDA gsch2pcb project"
 msgstr "Έργο gEDA gsch2pcb"
 
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
-msgid "gEDA Gsch2pcb Project"
-msgstr "Έργο gEDA Gsch2pcb"
+#, fuzzy
+msgid "gEDA gsch2pcb Project"
+msgstr "Έργο gEDA gsch2pcb"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
 msgid "gEDA Circuit Schematic"
@@ -1939,3 +1940,6 @@ msgstr "Could not create log file in"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr "Το αντικείμενο ~A δεν είναι μέρος καμίας σελίδας"
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "Έργο gEDA Gsch2pcb"

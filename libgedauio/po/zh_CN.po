@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-18 22:29-0600\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2010-02-11 03:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -206,7 +206,7 @@ msgid "Whether the combo box draws a frame around the child"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_combobox.c:2159
-#: libgedauio/src/widgets/geda_menu_button.c:1208
+#: libgedauio/src/widgets/geda_menu_button.c:1218
 msgid "Focus on click"
 msgstr ""
 
@@ -597,7 +597,7 @@ msgstr ""
 
 # Image widget
 #: libgedauio/src/widgets/geda_image_menu_item.c:425
-#: libgedauio/src/widgets/geda_menu_button.c:1235
+#: libgedauio/src/widgets/geda_menu_button.c:1245
 msgid "Image widget"
 msgstr "图像小部件"
 
@@ -606,7 +606,7 @@ msgid "Child widget to appear next to the menu text"
 msgstr ""
 
 #: libgedauio/src/widgets/geda_image_menu_item.c:438
-#: libgedauio/src/widgets/geda_menu_button.c:1200
+#: libgedauio/src/widgets/geda_menu_button.c:1209
 msgid "Use stock"
 msgstr ""
 
@@ -633,7 +633,7 @@ msgstr ""
 
 #: libgedauio/src/widgets/geda_label.c:1398
 #: libgedauio/src/widgets/geda_label.c:1772
-#: libgedauio/src/widgets/geda_menu_button.c:1192
+#: libgedauio/src/widgets/geda_menu_button.c:1201
 msgid "Label"
 msgstr ""
 
@@ -803,90 +803,90 @@ msgstr "打开链接"
 msgid "Copy _Link Address"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1185
+#: libgedauio/src/widgets/geda_menu_button.c:1194
 msgid "Menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1186
+#: libgedauio/src/widgets/geda_menu_button.c:1195
 msgid "The drop-down menu"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1193
+#: libgedauio/src/widgets/geda_menu_button.c:1202
 msgid ""
 "Text of the label widget inside the button, if the button contains a label "
 "widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1201
+#: libgedauio/src/widgets/geda_menu_button.c:1210
 msgid ""
 "If set, the label is used to pick a stock item instead of being displayed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1209
+#: libgedauio/src/widgets/geda_menu_button.c:1219
 msgid "Whether the button grabs focus when it is clicked with the mouse"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1216
+#: libgedauio/src/widgets/geda_menu_button.c:1226
 msgid "Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1217
+#: libgedauio/src/widgets/geda_menu_button.c:1227
 msgid "The border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1225
+#: libgedauio/src/widgets/geda_menu_button.c:1235
 msgid "Arrow Border relief"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1226
+#: libgedauio/src/widgets/geda_menu_button.c:1236
 msgid "The arrow border relief style"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1236
+#: libgedauio/src/widgets/geda_menu_button.c:1246
 msgid "Child widget to appear next to the button text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1244
+#: libgedauio/src/widgets/geda_menu_button.c:1254
 msgid "Image position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1245
+#: libgedauio/src/widgets/geda_menu_button.c:1255
 msgid "The position of the image relative to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1259
+#: libgedauio/src/widgets/geda_menu_button.c:1269
 msgid "Default Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1260
+#: libgedauio/src/widgets/geda_menu_button.c:1270
 msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1273
+#: libgedauio/src/widgets/geda_menu_button.c:1283
 msgid "Default Outside Spacing"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1274
+#: libgedauio/src/widgets/geda_menu_button.c:1284
 msgid ""
 "Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
 "the border"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1284
+#: libgedauio/src/widgets/geda_menu_button.c:1294
 msgid "Inner Border"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_menu_button.c:1285
+#: libgedauio/src/widgets/geda_menu_button.c:1295
 msgid "Border between button edges and child."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_swatch_renderer.c:263
-#: libgedauio/src/widgets/geda_swatch_renderer.c:264
+#: libgedauio/src/widgets/geda_swatch_renderer.c:266
+#: libgedauio/src/widgets/geda_swatch_renderer.c:267
 msgid "Swatch Color"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_swatch_renderer.c:271
-#: libgedauio/src/widgets/geda_swatch_renderer.c:272
+#: libgedauio/src/widgets/geda_swatch_renderer.c:274
+#: libgedauio/src/widgets/geda_swatch_renderer.c:275
 msgid "Swatch Enabled"
 msgstr ""
 

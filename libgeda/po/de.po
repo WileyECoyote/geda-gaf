@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-18 22:29-0600\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2010-01-31 13:00+0000\n"
 "Last-Translator: Werner Hoch <werner.ho@gmx.de>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -32,8 +32,9 @@ msgid "gEDA gsch2pcb project"
 msgstr "gEDA gsch2pcb Projekt"
 
 #: libgeda/data/x-geda-gsch2pcb-project.desktop.in:3
-msgid "gEDA Gsch2pcb Project"
-msgstr "gEDA Gsch2pcb Projekt"
+#, fuzzy
+msgid "gEDA gsch2pcb Project"
+msgstr "gEDA gsch2pcb Projekt"
 
 #: libgeda/data/x-geda-schematic.desktop.in:3
 msgid "gEDA Circuit Schematic"
@@ -1930,6 +1931,9 @@ msgstr "Kunne ikke oprette logfil i"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
+
+#~ msgid "gEDA Gsch2pcb Project"
+#~ msgstr "gEDA Gsch2pcb Projekt"
 
 # Failed to load image from
 #~ msgid "Failed to load fallback image %s: %s.\n"

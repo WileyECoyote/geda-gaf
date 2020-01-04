@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:48-0600\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -202,26 +202,26 @@ msgid "could not delete item"
 msgstr "не удалось удалить элемент"
 
 # Component Error looking for row reference
-#: gattrib/src/s_table.c:363 gattrib/src/s_table.c:426
+#: gattrib/src/s_table.c:369 gattrib/src/s_table.c:432
 msgid "Component Error looking for row ref"
 msgstr "Ошибка компонента поиска ссылки на строку"
 
 # Component Error looking for column
-#: gattrib/src/s_table.c:367 gattrib/src/s_table.c:431
+#: gattrib/src/s_table.c:373 gattrib/src/s_table.c:437
 msgid "Component Error looking for column"
 msgstr "Ошибка компонента для столбца"
 
 # Creating a pin-table
-#: gattrib/src/s_table.c:584
+#: gattrib/src/s_table.c:590
 msgid "Creating pin table"
 msgstr "Создание пин-таблицы"
 
 # Pin Error looking for row reference
-#: gattrib/src/s_table.c:655
+#: gattrib/src/s_table.c:661
 msgid "Pin Error looking for row ref"
 msgstr "Ошибка вывода в поисках ссылки на строку"
 
-#: gattrib/src/s_table.c:660
+#: gattrib/src/s_table.c:666
 msgid "Pin Error looking for column"
 msgstr "Ошибка вывода столбца"
 

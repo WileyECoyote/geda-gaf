@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2019-12-14 19:48-0600\n"
+"POT-Creation-Date: 2020-01-04 12:10-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Afrikaans <af@li.org>\n"
@@ -220,23 +220,23 @@ msgstr "Poging om item uit 'n leë lys te verwyder\n"
 msgid "could not delete item"
 msgstr ""
 
-#: gattrib/src/s_table.c:363 gattrib/src/s_table.c:426
+#: gattrib/src/s_table.c:369 gattrib/src/s_table.c:432
 msgid "Component Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:367 gattrib/src/s_table.c:431
+#: gattrib/src/s_table.c:373 gattrib/src/s_table.c:437
 msgid "Component Error looking for column"
 msgstr ""
 
-#: gattrib/src/s_table.c:584
+#: gattrib/src/s_table.c:590
 msgid "Creating pin table"
 msgstr ""
 
-#: gattrib/src/s_table.c:655
+#: gattrib/src/s_table.c:661
 msgid "Pin Error looking for row ref"
 msgstr ""
 
-#: gattrib/src/s_table.c:660
+#: gattrib/src/s_table.c:666
 msgid "Pin Error looking for column"
 msgstr ""
 
