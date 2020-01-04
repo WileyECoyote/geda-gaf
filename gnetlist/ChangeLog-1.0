@@ -1,3 +1,7 @@
+2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/nl.po: Update Dutch translations.
+
 2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/s_netlist.c: Revise s_netlist_add eliminate separate returns.

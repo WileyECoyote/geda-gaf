@@ -124,7 +124,7 @@ msgid "Please be sure that you have the latest rc file"
 msgstr ""
 
 #: gnetlist/src/parsecmd.c:74
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [-g BACKEND] [ help | version ] [--] FILE ...\n"
 "\n"
@@ -170,6 +170,7 @@ msgstr ""
 "  -m <BESTAND>    Laad Scheme bestand na het laden van de backend.\n"
 "  -c <EXPR>       Evalueer de Scheme expressie tijdens opstarten.\n"
 "  -i              Ga in interactieve Scheme REPL na het laden.\n"
+"  -r <filename>   RC-bestandsnaam, standaard is gnetlistrc.\n"
 "  --list-backends Druk een lijst met beschikbare netlijst backends.\n"
 "  -h, --help      Help; dit bericht.\n"
 "  -V, --version   Toon versie informatie.\n"
