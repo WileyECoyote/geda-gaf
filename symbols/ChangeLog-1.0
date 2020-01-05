@@ -1,3 +1,10 @@
+2020-01-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute order and positions, add
+      description attribute:
+
+            * simulation/verilog/or8-1.sym
+
 2019-12-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * exar: Add symbol for XR76115 Synchronous Step Down COT Regulator, 15A:
@@ -29,10 +36,10 @@
     * apex/PA73-1.sym: Add new symbol; Power operational amplifier, +/130V, 5A.
 
     * apex/PA92-1.sym: Add new symbol; High voltage power operational
-	  amplifier, +/- 200 Volts.
+      amplifier, +/- 200 Volts.
 
     * apex/PA94-1.sym: Add new symbol; High voltage power operational
-	  amplifier, +/- 430 Volts.
+      amplifier, +/- 430 Volts.
 
     * dallas/DS1230Y-1.sym: Add new symbol; Nonvolatile SRAM, 256k.
 
@@ -74,16 +81,16 @@
 
     * symbols/allegro/A3910-1.sym: Add new symbol; dual half bridge motor driver.
 
-	* symbols/ti/battery: Add new symbol for BQ2980xy series battery protection
-	  systems:
+    * symbols/ti/battery: Add new symbol for BQ2980xy series battery protection
+      systems:
 
             * symbols/ti/battery/BQ298010-1.sym
             * symbols/ti/battery/BQ298012-1.sym
             * symbols/ti/battery/BQ298015-1.sym
 
-	* symbols/ti/switchreg/LM5001-1.sym: Add new symbol; high-voltage switch-mode regulator.
+    * symbols/ti/switchreg/LM5001-1.sym: Add new symbol; high-voltage switch-mode regulator.
 
-	* symbols/ti/switchreg: Resequence attributes, add value.
+    * symbols/ti/switchreg: Resequence attributes, add value.
 
             * symbols/ti/switchreg/LM5022-1.sym
             * symbols/ti/switchreg/LM5022-2.sym
@@ -91,7 +98,7 @@
 2019-12-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/ti/battery: Add new symbol for BQ2980xy series battery protection
-	  systems:
+      systems:
 
             * symbols/ti/battery/BQ298000-1.sym
             * symbols/ti/battery/BQ298006-1.sym
