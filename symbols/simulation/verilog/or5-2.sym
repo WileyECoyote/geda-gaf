@@ -77,6 +77,8 @@ pinlabel=n_a
 T 300 900 5 8 0 0 0 0 1
 pintype=io
 }
+T 200 1100 5 10 0 0 0 0 1
+device=or
 T 750 450 5 10 1 1 0 6 1
 refdes=U?
 T 200 1500 5 10 0 1 0 0 1
@@ -87,5 +89,3 @@ T 200 1300 9 10 0 0 0 0 1
 footprint=unknown
 T 200 1700 5 10 0 1 0 0 1
 description=5 input OR gate
-T 200 1100 5 10 0 0 0 0 1
-device=or
