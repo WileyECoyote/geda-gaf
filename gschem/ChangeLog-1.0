@@ -9,6 +9,9 @@
     * src/x/x_image.c: Translate file format descriptions in create_type_menu,
       the format is referenced by index and not strings.
 
+    * src/x/x_toolbars.c: Replace gtk_container_foreach with macro
+      geda_container_foreach.
+
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

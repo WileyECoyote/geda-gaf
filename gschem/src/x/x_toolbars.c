@@ -840,7 +840,7 @@ x_toolbars_free_window(GschemToplevel *w_current)
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
   lambda (GtkWidget *bar) {
-    gtk_container_foreach ((GtkContainer*)bar, x_toolbars_free_foreach, NULL);
+    geda_container_foreach (bar, x_toolbars_free_foreach, NULL);
     gtk_widget_destroy (bar);
     return FALSE;
   }
