@@ -208,7 +208,7 @@ static void on_delete_butt_clicked (GtkWidget *button, void *user_data)
 /*!
  * \brief Callback for Export Button on Manage Sessions dialog
  * \par Function Description
- *  This is function called when the user activates the Export
+ *  This function is called when the user activates the Export
  *  on the Manage Dialog. The function extracts the session name
  *  from the selection and displays a "Save As" dialog. If the
  *  user continues, the string returned from the dialog and the
