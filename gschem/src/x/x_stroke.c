@@ -169,23 +169,22 @@ void x_stroke_record (GschemToplevel *w_current, int x, int y)
 /*!
  * \brief Evaluates the stroke.
  * \par Function Description
- *  This function transforms the stroke input so far in an action.
+ *  This function transforms the stroke input in an action the function
+ *  makes use of the guile procedure <B>eval-stroke</B> to evaluate the
+ *  stroke sequence into a possible action. The mouse footprint is erased
+ *  in this function.
  *
- *  It makes use of the guile procedure <B>eval-stroke</B> to evaluate
- *  the stroke sequence into a possible action. The mouse footprint is
- *  erased in this function.
- *
- *  It returns 1 if the stroke has been successfully evaluated as an
- *  action. It returns 0 if libstroke failed to transform the stroke
- *  or there is no action attached to the stroke.
+ *  Returns 1 if the stroke has been successfully evaluated as an action
+ *  or 0 if libstroke failed to transform the stroke or there is no action
+ *  attached to the stroke.
  *
  * \param [in] w_current The GschemToplevel object.
  * \returns 1 on success, 0 otherwise, or -1 if error.
  *
- * \note WEH: Revised eval-stroke so as to return the action rather
- *  than the stroke, we already knew what the stoke was because we
- *  passed it to eval-stroke. This new version evaluates the action
- *  rather than the stroke.
+ * \note WEH: Revised eval-stroke so as to return the action rather than
+ *       the stroke, we already knew what the stoke was because we passed
+ *       it to eval-stroke. This new version evaluates the action rather
+ *       than the stroke.
  */
 int x_stroke_translate_and_execute (GschemToplevel *w_current)
 {
