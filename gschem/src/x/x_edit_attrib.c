@@ -632,6 +632,9 @@ attrib_edit_dialog (GschemToplevel *w_current, GedaObject *object, int flag)
  *
  * \param [in] w_current Pointer to a GschemToplevel object
  * \param [in] object    Pointer to a selected object or NULL
+ *
+ * \image html single_attribute_add.png
+ * \image latex single_attribute_add.png
  */
 void x_attrib_add_dialog (GschemToplevel *w_current, GedaObject *object)
 {

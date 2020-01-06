@@ -1,6 +1,9 @@
 2020-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_attrib.c: Add Doxygen tags to reference images for group
+      and function documentation:
+
+        * x_attrib_add_dialog
 
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
