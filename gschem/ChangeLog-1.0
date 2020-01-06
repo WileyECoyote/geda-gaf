@@ -4,15 +4,13 @@
       and function documentation:
 
         * x_attrib_add_dialog
+        * x_attrib_edit_dialog
 
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
-
     * po/ar.po: Update Arabic translations.
-
     * po/bg.po: Update Bulgarian translations.
-
     * po/bs.po: Update Bosnian translations.
 
 2020-01-03 Wiley E. Hill <wileyhill@gmail.com>
