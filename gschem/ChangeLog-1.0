@@ -6,6 +6,9 @@
         * x_attrib_add_dialog
         * x_attrib_edit_dialog
 
+    * src/x/x_image.c: Translate file format descriptions in create_type_menu,
+      the format is referenced by index and not strings.
+
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.

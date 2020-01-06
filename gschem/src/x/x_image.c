@@ -179,8 +179,8 @@ static GtkWidget *create_type_menu(IMAGE_TYPES default_type)
     g_slist_free (formats); /* Free the list, not the formats */
   }
 
-  geda_combo_box_text_widget_append(combo, "Encapsulated Postscript");
-  geda_combo_box_text_widget_append(combo, "Portable Document Format");
+  geda_combo_box_text_widget_append(combo, _("Encapsulated Postscript"));
+  geda_combo_box_text_widget_append(combo, _("Portable Document Format"));
 
   if (default_index < 0) default_index = 4;
 
