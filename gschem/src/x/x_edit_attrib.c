@@ -42,6 +42,9 @@
  *
  *  \remarks The Single Attribute dialog doubles as the Add Attribute Dialog
  *           based on a flag passed to the constructor.
+ *
+ *  \image html single_attribute_dialog.png
+ *  \image latex single_attribute_dialog.png
  */
 
 typedef enum
