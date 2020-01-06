@@ -764,14 +764,13 @@ int visible (GschemToplevel *w_current,
  *                1235 rounds to 1000
  *                 670 rounds to  500
  *               0.234 rounds to  0.2
- *  integer values would be enough if there are no numbers smaller than 1 (hw)
+ *
+ *  integer values would be enough if there are no numbers smaller than 1 (hw).
  *
  * \param [in] unrounded  The number to be rounded.
  *
  * \return The rounded number.
  */
-/* rounds for example 1235 to 1000, 670 to 500, 0.234 to 0.2 ...
-int would be enough if there are no numbers smaller 1 (hw)*/
 double m_round_5_2_1(double unrounded)
 {
   int digits;
