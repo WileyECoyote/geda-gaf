@@ -3342,10 +3342,10 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
 #endif /* else !GTK_MAJOR_VERSION < 3*/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve the GedaMenuItem mnemonic char
+ * \par Function Description
+ *  Returns the mnemonic char of the menu item.
  */
 char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
 {
