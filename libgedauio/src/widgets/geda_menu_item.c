@@ -3362,6 +3362,8 @@ char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
  */
 void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
 {
+  g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
+
   menu_item->priv->mnemonic = mnemonic;
 }
 
