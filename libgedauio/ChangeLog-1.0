@@ -9,6 +9,10 @@
           * geda_menu_item_get_mnemonic
           * geda_menu_item_set_mnemonic
 
+    * src/widgets/geda_radio_menu_item.c: Revise geda_radio_menu_item_set_group
+      to not validate the radio_menu_item is not already in the group if group
+      is NULL, and thus allowing the group argument to be NULL.
+
 2020-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Update function documentation:

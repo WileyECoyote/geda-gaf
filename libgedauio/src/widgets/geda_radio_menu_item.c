@@ -581,7 +581,10 @@ void geda_radio_menu_item_set_group (GedaRadioMenuItem *radio_menu_item,
   GtkWidget *new_group_singleton = NULL;
 
   g_return_if_fail (GEDA_IS_RADIO_MENU_ITEM (radio_menu_item));
-  g_return_if_fail (!g_slist_find (group, radio_menu_item));
+
+  if (group) {
+    g_return_if_fail (!g_slist_find (group, radio_menu_item));
+  }
 
   /* if item is currently in a group */
   if (radio_menu_item->group) {
