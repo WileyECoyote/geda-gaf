@@ -3355,10 +3355,11 @@ char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief  Set the GedaMenuItem mnemonic char
+ * \par Function Description
+ *  Sets the mnemonic char of the menu item. The char is not checked
+ *  and must a validate mnemonic char.
  */
 void geda_menu_item_set_mnemonic (GedaMenuItem *menu_item, char mnemonic)
 {
