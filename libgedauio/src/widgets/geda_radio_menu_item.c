@@ -317,7 +317,7 @@ static void geda_radio_menu_item_class_init(void *class, void *class_data)
 /*!
  * \brief Initialize new GedaRadioMenuItem data structure instance.
  * \par Function Description
- *  This function is call after the GedaRadioMenuItemClass is created
+ *  This function is called after the GedaRadioMenuItemClass is created
  *  to initialize the data structure.
  *
  * \param [in] instance  A GedaRadioMenuItem data structure
