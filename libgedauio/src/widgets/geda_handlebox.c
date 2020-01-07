@@ -1124,7 +1124,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   attributes.wclass      = GDK_INPUT_OUTPUT;
   attributes.visual      = gtk_widget_get_visual (widget);
   attributes.colormap    = gtk_widget_get_colormap (widget);
-  attributes.event_mask  = (gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK);
+  attributes.event_mask  = gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK;
   attributes_mask        = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
   widget->window         = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
 
