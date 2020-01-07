@@ -1107,6 +1107,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   GtkAllocation *allocation;
   GedaHandleBox *handlebox;
   GtkWidget     *child;
+  GdkWindow     *parent;
   GtkStateType   state;
   int            attributes_mask;
 
@@ -1115,6 +1116,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   gtk_widget_set_realized (widget, TRUE);
 
   allocation = geda_get_widget_allocation (widget);
+  parent     = gtk_widget_get_parent_window (widget);
 
   attributes.x           = allocation->x;
   attributes.y           = allocation->y;
@@ -1126,7 +1128,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   attributes.colormap    = gtk_widget_get_colormap (widget);
   attributes.event_mask  = gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK;
   attributes_mask        = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  widget->window         = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+  widget->window         = gdk_window_new (parent, &attributes, attributes_mask);
 
   gdk_window_set_user_data (widget->window, widget);
 
@@ -1198,6 +1200,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   gtk_style_set_background (widget->style, widget->window, state);
   gtk_style_set_background (widget->style, handlebox->bin_window, state);
   gtk_style_set_background (widget->style, handlebox->float_window, state);
+
   gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
 
   connect_settings_signal(handlebox);
