@@ -3349,6 +3349,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
  */
 char geda_menu_item_get_mnemonic (GedaMenuItem *menu_item)
 {
+  g_return_val_if_fail (GEDA_IS_MENU_ITEM(menu_item), '0');
+
   return menu_item->priv->mnemonic;
 }
 

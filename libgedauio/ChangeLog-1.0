@@ -3,6 +3,9 @@
     * src/widgets/geda_handlebox.c: Use ancillary pointer to parent window in
       function geda_handle_box_realize.
 
+    * src/widgets/geda_menu_item.c: Validate the menu item argument in function
+      geda_menu_item_get_mnemonic.
+
 2020-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Update function documentation:
