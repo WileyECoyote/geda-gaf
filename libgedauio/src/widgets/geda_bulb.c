@@ -238,6 +238,7 @@ static void geda_bulb_finalize (GObject *object)
   ((GObjectClass*)geda_bulb_parent_class)->finalize (object);
 }
 
+/*! \internal used by left_right_compare and  up_down_compare */
 static void get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, int *y)
 {
   GtkAllocation *allocation;
