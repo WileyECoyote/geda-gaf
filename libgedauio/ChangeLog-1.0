@@ -1,3 +1,12 @@
+2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: add internal source documentation:
+
+          * get_coordinates
+          * left_right_compare
+          * up_down_compare
+          * geda_bulb_focus
+
 2020-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Use ancillary pointer to parent window in

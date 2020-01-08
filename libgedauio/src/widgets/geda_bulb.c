@@ -283,6 +283,7 @@ static int up_down_compare (const void *a, const void * b, void *data)
   }
 }
 
+/*! \internal widget_class->focus */
 static bool geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
 {
   GedaBulb *bulb = (GedaBulb*)widget;
