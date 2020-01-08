@@ -267,6 +267,7 @@ static int left_right_compare (const void * a, const void * b, void *data)
   }
 }
 
+/*! \internal helper function for geda_bulb_focus */
 static int up_down_compare (const void *a, const void * b, void *data)
 {
   int x1, y1, x2, y2;
