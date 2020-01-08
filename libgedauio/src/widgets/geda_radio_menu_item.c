@@ -495,7 +495,7 @@ GtkWidget *geda_radio_menu_item_new_with_mnemonic (GSList *group, const char *la
 }
 
 /*!
- * \brief Create a New GedaRadioMenuItem Object with a given Mnemonic Label from widget
+ * \brief Create a New GedaRadioMenuItem with a given Mnemonic Label from widget
  * \par Function Description
  * Creates a new GedaRadioMenuItem containing a label. The label will be
  * created using geda_label_new_with_mnemonic(), so underscores in label
