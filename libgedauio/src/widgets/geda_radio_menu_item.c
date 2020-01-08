@@ -530,7 +530,7 @@ GtkWidget *geda_radio_menu_item_new_with_mnemonic_from_widget (GtkWidget  *group
  * The new #GedaRadioMenuItem is added to the same group as \a group.
  *
  * \param[in] group group the radio menu item is to be a member of
- * \param[in] label: the text for the label
+ * \param[in] label the text for the label
  *
  * \returns The new #GedaRadioMenuItem
  */
