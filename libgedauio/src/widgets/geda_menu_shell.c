@@ -1406,6 +1406,21 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
+  /*!
+   * GedaMenuShell::take-focus:
+   *
+   * A boolean that determines whether the menu and its submenus grab
+   * the keyboard focus. See geda_menu_shell_set_take_focus() and
+   * geda_menu_shell_get_take_focus().
+   */
+  g_object_class_install_property (object_class,
+                                   PROP_TAKE_FOCUS,
+                                   g_param_spec_boolean ("take-focus",
+                                                       _("Take Focus"),
+                                                       _("A boolean that determines whether the menu grabs the keyboard focus"),
+                                   TRUE,
+                                   G_PARAM_READWRITE));
+
   /* -==- signals -==- */
 
   GedaType type = GEDA_TYPE_MENU_SHELL;
@@ -1563,21 +1578,6 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
                                 GDK_F10, GDK_SHIFT_MASK,
                                 "cycle-focus", 1,
                                 GTK_TYPE_DIRECTION_TYPE, GTK_DIR_TAB_BACKWARD);
-
-  /*!
-   * GedaMenuShell::take-focus:
-   *
-   * A boolean that determines whether the menu and its submenus grab
-   * the keyboard focus. See geda_menu_shell_set_take_focus() and
-   * geda_menu_shell_get_take_focus().
-   */
-  g_object_class_install_property (object_class,
-                                   PROP_TAKE_FOCUS,
-                                   g_param_spec_boolean ("take-focus",
-                                                       _("Take Focus"),
-                                                       _("A boolean that determines whether the menu grabs the keyboard focus"),
-                                   TRUE,
-                                   G_PARAM_READWRITE));
 }
 
 /*!
