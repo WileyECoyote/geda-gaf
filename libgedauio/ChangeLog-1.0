@@ -7,6 +7,10 @@
           * up_down_compare
           * geda_bulb_focus
 
+    * src/widgets/geda_radio_menu_item.c: Revise geda_radio_menu_item_new_with_
+      label_from_widget to only validate the group argument is a GedaRadioMenuItem
+      when group is nun NULL.
+
 2020-01-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Use ancillary pointer to parent window in

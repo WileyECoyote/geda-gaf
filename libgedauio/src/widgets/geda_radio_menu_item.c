@@ -539,9 +539,10 @@ GtkWidget *geda_radio_menu_item_new_with_label_from_widget (GtkWidget  *group,
 {
   GSList *list = NULL;
 
-  g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
-
   if (group) {
+
+    g_return_val_if_fail (GEDA_IS_RADIO_MENU_ITEM (group), NULL);
+
     list = geda_radio_menu_item_get_group ((GedaRadioMenuItem*)group);
   }
 
