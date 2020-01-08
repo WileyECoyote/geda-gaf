@@ -227,6 +227,13 @@ geda_option_menu_class_init(void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class, params);
 
+  /*!
+   * GedaOptionMenu::changed:
+   * \par
+   * Emitted when the active item is changed.
+   *
+   * param menu the object that received the signal.
+   */
   signals[CHANGED] =
     g_signal_new ("changed",
                   GEDA_TYPE_OPTION_MENU,
