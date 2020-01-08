@@ -251,6 +251,7 @@ static void get_coordinates (GtkWidget *widget, GtkWidget *reference, int *x, in
   gtk_widget_translate_coordinates (widget, reference, *x, *y, x, y);
 }
 
+/*! \internal helper function for geda_bulb_focus */
 static int left_right_compare (const void * a, const void * b, void *data)
 {
   int x1, y1, x2, y2;
