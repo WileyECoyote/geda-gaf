@@ -1271,8 +1271,9 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                                GTK_TYPE_BORDER,
                                                                G_PARAM_READABLE));
 
-  /* default-outside-border:
-   *
+  /*!
+   * property "default-outside-border": GtkButton::default-outside-border:
+   * \par
    * The "default-outside-border" style property defines the extra outside
    * space to add around a button that can become the default widget of its
    * window. Extra outside space is always drawn outside the button border.
