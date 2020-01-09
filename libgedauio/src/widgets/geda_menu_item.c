@@ -843,8 +843,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
   geda_menu_item_parent_class           = g_type_class_peek_parent(class);
 
   /*!
-  /*!
-   * GedaMenuItem::right-justified
+   * property "right-justified": GedaMenuItem::right-justified
    * \par
    * Sets whether the menu item appears justified
    * at the right side of a menu bar.
@@ -858,7 +857,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
                                                          G_PARAM_READWRITE));
 
   /*!
-   * GedaMenuItem::submenu
+   * property "submenu": GedaMenuItem::submenu
    * \par
    * The submenu attached to the menu item, or %NULL if it has none.
    */
@@ -871,7 +870,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
                                                         G_PARAM_READWRITE));
 
   /*!
-   * GedaMenuItem::accel-path
+   * property "accel-path": GedaMenuItem::accel-path
    * \par
    * Sets the accelerator path of the menu item, through which runtime
    * changes of the menu item's accelerator caused by the user can be
@@ -886,7 +885,7 @@ static void geda_menu_item_class_init (void *class, void *class_data)
                                                         G_PARAM_READWRITE));
 
   /*!
-   * GedaMenuItem::label
+   * property "label": GedaMenuItem::label
    * \par
    * The text for the child label.
    */

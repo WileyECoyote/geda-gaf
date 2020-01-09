@@ -1,7 +1,8 @@
 2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Reorganizing geda_menu_item_class_init;
-      replocate properties before signals.
+      replocate properties before signals. Update existing property documentation
+      format.
 
 2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
