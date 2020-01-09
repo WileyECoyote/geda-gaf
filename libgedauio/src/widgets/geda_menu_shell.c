@@ -1407,7 +1407,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
   /*!
-   * GedaMenuShell::take-focus:
+   * property "take-focus": GedaMenuShell::take-focus:
    * A boolean that determines whether the menu and its submenus grab
    * the keyboard focus. See geda_menu_shell_set_take_focus() and
    * geda_menu_shell_get_take_focus().
