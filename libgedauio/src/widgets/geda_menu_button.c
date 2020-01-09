@@ -1286,8 +1286,9 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                                GTK_TYPE_BORDER,
                                                                G_PARAM_READABLE));
 
-  /* inner-border:
-   *
+   /*!
+   * property "inner-border": GtkButton::inner-border:
+   * \par
    * Sets the border between the button edges and child.
    */
   gtk_widget_class_install_style_property (widget_class,
