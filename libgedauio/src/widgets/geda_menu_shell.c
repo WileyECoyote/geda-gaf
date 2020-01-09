@@ -1408,7 +1408,6 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
 
   /*!
    * GedaMenuShell::take-focus:
-   *
    * A boolean that determines whether the menu and its submenus grab
    * the keyboard focus. See geda_menu_shell_set_take_focus() and
    * geda_menu_shell_get_take_focus().
