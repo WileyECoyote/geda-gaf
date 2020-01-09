@@ -1,11 +1,18 @@
 2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_bulb.c: add internal source documentation:
+    * src/widgets/geda_menu_item.c: Reorganizing geda_menu_item_class_init;
+      replocate properties before signals.
+
+2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Add internal source documentation:
 
           * get_coordinates
           * left_right_compare
           * up_down_compare
           * geda_bulb_focus
+
+    * src/widgets/geda_option_menu.c: Add "changed" signal documentation.
 
     * src/widgets/geda_radio_menu_item.c: Revise geda_radio_menu_item_new_with_
       label_from_widget to only validate the group argument is a GedaRadioMenuItem

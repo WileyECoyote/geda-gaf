@@ -843,78 +843,6 @@ static void geda_menu_item_class_init (void *class, void *class_data)
   geda_menu_item_parent_class           = g_type_class_peek_parent(class);
 
   /*!
-   * GedaMenuItem::activate:
-   * \par
-   * Emitted when the item is activated.
-   *
-   * menuitem: the object which received the signal.
-   */
-  menu_item_signals[ACTIVATE] =
-    g_signal_new ("activate",
-                  GEDA_TYPE_MENU_ITEM,
-                  G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
-                  G_STRUCT_OFFSET (GedaMenuItemClass, activate),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-  widget_class->activate_signal = menu_item_signals[ACTIVATE];
-
-  /*!
-   * GedaMenuItem::activate-item:
-   * \par
-   * Emitted when the item is activated, but also if the menu item has a
-   * submenu. For normal applications, the relevant signal is
-   * GedaMenuItem::activate.
-   *
-   * param menuitem the object which received the signal.
-   */
-  menu_item_signals[ACTIVATE_ITEM] =
-    g_signal_new ("activate-item",
-                  GEDA_TYPE_MENU_ITEM,
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuItemClass, activate_item),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-
-  menu_item_signals[TOGGLE_SIZE_REQUEST] =
-    g_signal_new ("toggle-size-request",
-                  GEDA_TYPE_MENU_ITEM,
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuItemClass, toggle_size_request),
-                  NULL, NULL,
-                  geda_marshal_VOID__POINTER,
-                  G_TYPE_NONE, 1,
-                  G_TYPE_POINTER);
-
-  menu_item_signals[TOGGLE_SIZE_ALLOCATE] =
-    g_signal_new ("toggle-size-allocate",
-                  GEDA_TYPE_MENU_ITEM,
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuItemClass, toggle_size_allocate),
-                  NULL, NULL,
-                  geda_marshal_VOID__INT,
-                  G_TYPE_NONE, 1,
-                  G_TYPE_INT);
-
-  menu_item_signals[SELECT] =
-    g_signal_new ("select",
-                  GEDA_TYPE_MENU_ITEM,
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuItemClass, select),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-
-  menu_item_signals[DESELECT] =
-    g_signal_new ("deselect",
-                  GEDA_TYPE_MENU_ITEM,
-                  G_SIGNAL_RUN_FIRST,
-                  G_STRUCT_OFFSET (GedaMenuItemClass, deselect),
-                  NULL, NULL,
-                  geda_marshal_VOID__VOID,
-                  G_TYPE_NONE, 0);
-
   /*!
    * GedaMenuItem::right-justified
    * \par
@@ -1081,6 +1009,80 @@ static void geda_menu_item_class_init (void *class, void *class_data)
                                                            _("The minimum desired width of the menu item in characters"),
                                                              0, INT_MAX, 12,
                                                              G_PARAM_READABLE));
+  /* -==- signals -==- */
+
+  /*!
+   * GedaMenuItem::activate:
+   * \par
+   * Emitted when the item is activated.
+   *
+   * menuitem: the object which received the signal.
+   */
+  menu_item_signals[ACTIVATE] =
+    g_signal_new ("activate",
+                  GEDA_TYPE_MENU_ITEM,
+                  G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
+                  G_STRUCT_OFFSET (GedaMenuItemClass, activate),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+  widget_class->activate_signal = menu_item_signals[ACTIVATE];
+
+  /*!
+   * GedaMenuItem::activate-item:
+   * \par
+   * Emitted when the item is activated, but also if the menu item has a
+   * submenu. For normal applications, the relevant signal is
+   * GedaMenuItem::activate.
+   *
+   * param menuitem the object which received the signal.
+   */
+  menu_item_signals[ACTIVATE_ITEM] =
+    g_signal_new ("activate-item",
+                  GEDA_TYPE_MENU_ITEM,
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuItemClass, activate_item),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  menu_item_signals[TOGGLE_SIZE_REQUEST] =
+    g_signal_new ("toggle-size-request",
+                  GEDA_TYPE_MENU_ITEM,
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuItemClass, toggle_size_request),
+                  NULL, NULL,
+                  geda_marshal_VOID__POINTER,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_POINTER);
+
+  menu_item_signals[TOGGLE_SIZE_ALLOCATE] =
+    g_signal_new ("toggle-size-allocate",
+                  GEDA_TYPE_MENU_ITEM,
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuItemClass, toggle_size_allocate),
+                  NULL, NULL,
+                  geda_marshal_VOID__INT,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_INT);
+
+  menu_item_signals[SELECT] =
+    g_signal_new ("select",
+                  GEDA_TYPE_MENU_ITEM,
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuItemClass, select),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  menu_item_signals[DESELECT] =
+    g_signal_new ("deselect",
+                  GEDA_TYPE_MENU_ITEM,
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaMenuItemClass, deselect),
+                  NULL, NULL,
+                  geda_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 /*!
