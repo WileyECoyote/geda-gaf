@@ -1257,13 +1257,13 @@ static void geda_menu_button_class_init (void *class, void *class_data)
                                                       GTK_POS_LEFT,
                                                       G_PARAM_READWRITE));
 
- /*! GtkButton::default-border:
-  * \par
-  * The "default-border" style property defines the extra space to add
-  * around a button that can become the default widget of its window.
-  * For more information about default widgets, see gtk_widget_grab_default().
-  */
-
+  /*!
+   * property "default-border": GtkButton::default-border:
+   * \par
+   * The "default-border" style property defines the extra space to add
+   * around a button that can become the default widget of its window.
+   * For more information about default widgets, see gtk_widget_grab_default().
+   */
   gtk_widget_class_install_style_property (widget_class,
                                            g_param_spec_boxed ("default-border",
                                                              _("Default Spacing"),
