@@ -10,6 +10,10 @@
       replocate properties before signals. Update existing property documentation
       format.
 
+    * src/widgets/geda_option_menu.c: Add property documentation:
+
+          * "indicator-size"
+
 2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_bulb.c: Add internal source documentation:

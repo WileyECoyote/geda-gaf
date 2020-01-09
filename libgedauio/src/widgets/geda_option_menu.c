@@ -211,6 +211,11 @@ geda_option_menu_class_init(void *class, void *class_data)
   g_object_class_install_property (gobject_class,
                                    PROP_MENU, params);
 
+  /*!
+   * property "indicator-size": GedaToolbar::indicator-size
+   * \brief
+   *  Controls the point size of the dropdown indicator.
+   */
   params = g_param_spec_boxed ("indicator-size",
                              _("Indicator Size"),
                              _("Size of dropdown indicator"),
