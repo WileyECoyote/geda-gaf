@@ -74,9 +74,9 @@ find_old_focus (GtkContainer *container, GList *children)
       widget = parent;
     }
 
+next:
     return child;
 
-    next:
     tmp_list = tmp_list->next;
   }
 
