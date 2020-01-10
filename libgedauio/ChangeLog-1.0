@@ -1,3 +1,8 @@
+2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_container.c: Revise get_allocation_coords to utilize
+      gtk_widget_get_allocation.
+
 2020-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_button.c: Convert plain source documentation to Doxygen
