@@ -68,14 +68,16 @@ find_old_focus (GtkContainer *container, GList *children)
         focus_child = gtk_container_get_focus_child ((GtkContainer*)parent);
 
         if (focus_child != widget) {
-          goto next;
+          child = NULL;
+          break;
         }
       }
       widget = parent;
     }
 
-next:
-    return child;
+    if (child) {
+      return child;
+    }
 
     tmp_list = tmp_list->next;
   }
