@@ -61,9 +61,16 @@ find_old_focus (GtkContainer *container, GList *children)
 
       GtkWidget *parent = geda_get_widget_parent(widget);
 
-      if (parent && ((GtkContainer *)parent)->focus_child != widget)
-        goto next;
+      if (parent) {
 
+        GtkWidget *focus_child;
+
+        focus_child = gtk_container_get_focus_child ((GtkContainer*)parent);
+
+        if (focus_child != widget) {
+          goto next;
+        }
+      }
       widget = parent;
     }
 

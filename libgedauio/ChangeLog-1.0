@@ -1,7 +1,8 @@
 2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/functions/geda_container.c: Revise get_allocation_coords to utilize
-      gtk_widget_get_allocation.
+      gtk_widget_get_allocation. Revise function find_old_focus to utilize
+      accessor gtk_container_get_focus_child.
 
 2020-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
