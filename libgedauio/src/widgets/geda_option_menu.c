@@ -224,6 +224,11 @@ geda_option_menu_class_init(void *class, void *class_data)
 
   gtk_widget_class_install_style_property (widget_class, params);
 
+  /*!
+   * property "indicator-spacing": GedaToolbar::indicator-size
+   * \brief
+   *  Controls the point spacing around the dropdown indicator.
+   */
   params = g_param_spec_boxed ("indicator-spacing",
                              _("Indicator Spacing"),
                              _("Spacing around indicator"),

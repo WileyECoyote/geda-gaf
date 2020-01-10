@@ -13,6 +13,7 @@
     * src/widgets/geda_option_menu.c: Add property documentation:
 
           * "indicator-size"
+          * "indicator-spacing"
 
 2020-01-08 Wiley E. Hill <wileyhill@gmail.com>
 
