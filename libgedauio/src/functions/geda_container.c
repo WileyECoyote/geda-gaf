@@ -126,9 +126,8 @@ old_focus_coords (GtkContainer *container, GdkRectangle *old_focus_rect)
 
       return get_allocation_coords (container, old_focus, old_focus_rect);
   }
-  else {
-    return FALSE;
-  }
+
+  return FALSE;
 }
 
 static GList*
