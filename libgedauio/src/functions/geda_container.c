@@ -120,11 +120,17 @@ old_focus_coords (GtkContainer *container, GdkRectangle *old_focus_rect)
   GtkWidget *widget   = GTK_WIDGET (container);
   GtkWidget *toplevel = gtk_widget_get_toplevel (widget);
 
-  if (GTK_IS_WINDOW (toplevel) && GTK_WINDOW (toplevel)->focus_widget) {
+  if (GTK_IS_WINDOW (toplevel)) {
 
-      GtkWidget *old_focus = GTK_WINDOW (toplevel)->focus_widget;
+    if (gtk_window_has_toplevel_focus((GtkWindow*)toplevel)) {
 
-      return get_allocation_coords (container, old_focus, old_focus_rect);
+      if (GTK_WINDOW (toplevel)->focus_widget) {
+
+        GtkWidget *old_focus = GTK_WINDOW (toplevel)->focus_widget;
+
+        return get_allocation_coords (container, old_focus, old_focus_rect);
+      }
+    }
   }
 
   return FALSE;
