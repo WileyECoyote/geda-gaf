@@ -168,7 +168,7 @@ msgid "Vertical adjustment"
 msgstr "Ajuste vertical"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -212,17 +212,27 @@ msgstr ""
 "se crea un esquema nuevo en blanco.\n"
 "\n"
 "Opciones:\n"
-"  -q, --quiet Modo silencioso.\n"
-"  -v, --verbose Modo comunicativo\n"
-"  -r, --config-file=FICHERO Archivo de configuración adicional para cargar.\n"
-"  -L DIR Agrega DIR a las rutas de búsqueda de Scheme.\n"
-"  -c EXPR Expresión de Scheme para ejecutar al inicio.\n"
-"  -s FICHERO Script de Scheme para ejecutar al inicio.\n"
-"  -o, --output=FICHERO Nombre de fichero de salida (para imprimir).\n"
-"  -p Posicionar la ventana en forma automática.\n"
-"  -V, --version Muestra información de la versión del programa.\n"
-"  -h, --help Mensaje de ayuda (este mensaje).\n"
-"  -- Trata todos los argumentos siguientes como nombres de archivos.\n"
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file <FICHERO> Archivo de configuración adicional para cargar.\n"
+"  -g, --guile <DIR>           Agregar directorio a la ruta Guile (preconfiguración).\n"
+"  -f, --font <NAME>           establecer el nombre de familia de la fuente.\n"
+"  -h, --help                  Mensaje de ayuda (este mensaje).\n"
+"  -l, --list                  Lista de nombres de sesión guardados.\n"
+"  -m, --safe-mode             Modo seguro.\n"
+"  -n, --no-auto               Sin carga automática del último documento.\n"
+"  -o, --output <FICHERO>      Nombre de fichero de salida (para imprimir).\n"
+"  -p, --place                 Posicionar la ventana en forma automática.\n"
+"  -q, --quiet                 Modo silencioso.\n"
+"  -r, --run <FICHERO>         Script de esquema para ejecutar al inicio.\n"
+"  -s, --start <name>          Inicio usando el nombre de sesión dado.\n"
+"  -t, --title-block <FICHERO> Comience un nuevo dibujo usando el bloque de título especificado.\n"
+"  -u, --undo-dir <DIR>        Especifique un directorio temporal para deshacer archivos.\n"
+"  -v, --verbose               Modo comunicativo\n"
+"  -V, --version               Muestra información de la versión del programa.\n"
+"  -x (EXPR)                   Expresión de Scheme para ejecutar al inicio..\n"
+"  -z, --minimized             Ocultar la ventana principal, utilizada para la secuencia de comandos\n"
+"  --                          Trata todos los argumentos siguientes como nombres de archivos.\n"
 "\n"
 "Reportar errores a <https://bugs.launchpad.net/geda>\n"
 "Sitio Web de gEDA/gaf: <http://www.geda-project.org/>\n"
@@ -887,10 +897,10 @@ msgstr "Error al eliminar el período de sesiones"
 msgid "<b>Could not remove session</b>"
 msgstr "<b>No pudo eliminar la sesión</b>"
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Sesión creada"
+msgstr "No hay sesiones guardadas"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4133,10 +4143,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Sesión creada"
+msgstr "Confirmar eliminar sesión"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"

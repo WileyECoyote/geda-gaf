@@ -6,6 +6,8 @@
 
     * po/en_GB.po: Update Great Britain.
 
+    * po/es.po: Update Spanish translations.
+
 2020-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Remove old plain text source notes.
