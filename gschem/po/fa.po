@@ -190,7 +190,7 @@ msgid "Vertical adjustment"
 msgstr "تنظیم عمودی"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -235,27 +235,25 @@ msgstr ""
 "schematic.\n"
 "\n"
 "Options:\n"
-"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
-"X11.\n"
-"  -c, --config-file <FILE>   Additional configuration file to load.\n"
-"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
-"  -f, --font <NAME>          set font family name\n"
-"  -h, --help                 Help; this message.\n"
-"  -m, --safe-mode            Safe Mode.\n"
-"  -n, --no-auto              No auto load last document.\n"
-"  -o, --output <FILE>        Output filename (for printing and image "
-"output).\n"
-"  -p, --place                Automatically place the window.\n"
-"  -q, --quiet                Quiet mode.\n"
-"  -r, --run <FILE>           Scheme script to run at startup.\n"
-"  -s, --start <name>         Startup using the given session name.\n"
-"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
-"block.\n"
-"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
-"  -v, --verbose              Verbose mode.\n"
-"  -V, --version              Show version information.\n"
-"  -x (EXPR)                  Scheme expression to run at startup.\n"
-"  -z, --minimized            Hide the main window, used for scripting\n"
+"  -a, --render-adaptor <DRV> مشخص کنید کدام آداپتور را برای استفاده ، Cario یا X11 استفاده می کنید.\n"
+"  -c, --config-file <FILE>   پرونده پیکربندی اضافی برای بارگیری.\n"
+"  -g, --guile <DIR>          اضافه کردن DIR به مسیر Guile (پیش تنظیم).\n"
+"  -f, --font <NAME>          نام فونت را تنظیم کنید\n"
+"  -h, --help                 کمک؛ این پیام.\n"
+"  -l, --list                 نام جلسه ذخیره شده را لیست کنید.\n"
+"  -m, --safe-mode            حالت امن.\n"
+"  -n, --no-auto              آخرین سند بارگیری خودکار ندارد.\n"
+"  -o, --output <FILE>        نام پرونده خروجی (برای چاپ و خروجی تصویر).\n"
+"  -p, --place                پنجره را بطور خودکار قرار دهید.\n"
+"  -q, --quiet                حالت آرام.\n"
+"  -r, --run <FILE>           اسکریپت طرح برای اجرا در هنگام راه اندازی.\n"
+"  -s, --start <name>         با استفاده از نام جلسه داده شده راه اندازی کنید.\n"
+"  -t, --title-block <FILE>   با استفاده از بلوک عنوان مشخص شده ، یک نقشه جدید را شروع کنید.\n"
+"  -u, --undo-dir <DIR>       فهرست پرونده موقت را برای پرونده های واگرد مشخص کنید.\n"
+"  -v, --verbose              حالت فعل گذاری.\n"
+"  -V, --version              نمایش اطلاعات نسخه.\n"
+"  -x (EXPR)                  بیان طرح برای شروع در هنگام اجرا.\n"
+"  -z, --minimized            پنجره اصلی را که برای اسکریپت استفاده می شود مخفی کنید\n"
 "  --                         Treat all remaining arguments as filenames.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
@@ -935,10 +933,10 @@ msgstr "به حذف جلسه شکست خورده"
 msgid "<b>Could not remove session</b>"
 msgstr "<b>می تواند جلسه را حذف کنید</b>"
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "جلسه ایجاد"
+msgstr "هیچ جلسه ذخیره ای وجود ندارد"
 
 # created with
 #: gschem/src/iface/i_sessions.c:968
@@ -4175,10 +4173,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "جلسه ایجاد"
+msgstr "جلسه حذف را تأیید کنید"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
