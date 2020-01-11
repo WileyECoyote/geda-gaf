@@ -187,7 +187,7 @@ msgid "Vertical adjustment"
 msgstr "Pystysuuntainen säätö"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -237,6 +237,7 @@ msgstr ""
 "  -g, --guile <DIR>          Lisää DIR Guile-polulle (pre-config).\n"
 "  -f, --font <NAME>          aseta kirjasinperheen nimi\n"
 "  -h, --help                 Auta; Tämä viesti.\n"
+"  -l, --list                 Luettelo tallennetuista istuntojen nimistä.\n"
 "  -m, --safe-mode            Turva tila.\n"
 "  -n, --no-auto              Ei automaattista viimeistä asiakirjaa.\n"
 "  -o, --output <FILE>        Output-tiedostonimi (tulostusta ja kuvaa varten "
@@ -902,10 +903,10 @@ msgstr ""
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Tallenna _kaikki"
+msgstr "Ei tallennettuja istuntoja"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4108,10 +4109,10 @@ msgstr "Nimeä Session"
 msgid "Specify new name for Session:"
 msgstr "Määritä uusi nimi Session:"
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Tallenna _kaikki"
+msgstr "Vahvista istunnon poistaminen"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
