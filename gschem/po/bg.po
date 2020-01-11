@@ -190,7 +190,7 @@ msgid "Vertical adjustment"
 msgstr "Вертикална корекция"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
