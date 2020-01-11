@@ -163,7 +163,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -206,20 +206,32 @@ msgstr ""
 "schematic.\n"
 "\n"
 "Options:\n"
-"  -q, --quiet              Quiet mode.\n"
-"  -v, --verbose            Verbose mode.\n"
-"  -r, --config-file=FILE   Additional configuration file to load.\n"
-"  -L DIR                   Add DIR to Scheme search path.\n"
-"  -c EXPR                  Scheme expression to run at startup.\n"
-"  -s FILE                  Scheme script to run at startup.\n"
-"  -o, --output=FILE        Output filename (for printing).\n"
-"  -p                       Automatically place the window.\n"
-"  -V, --version            Show version information.\n"
-"  -h, --help               Help; this message.\n"
-"  --                       Treat all remaining arguments as filenames.\n"
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file <FILE>   Additional configuration file to load.\n"
+"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+"  -f, --font <NAME>          set font family name\n"
+"  -h, --help                 Help; this message.\n"
+"  -l, --list                 List saved session names.\n"
+"  -m, --safe-mode            Safe Mode.\n"
+"  -n, --no-auto              No auto load last document.\n"
+"  -o, --output <FILE>        Output filename (for printing and image "
+"output).\n"
+"  -p, --place                Automatically place the window.\n"
+"  -q, --quiet                Quiet mode.\n"
+"  -r, --run <FILE>           Scheme script to run at startup.\n"
+"  -s, --start <name>         Startup using the given session name.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+"  -v, --verbose              Verbose mode.\n"
+"  -V, --version              Show version information.\n"
+"  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Treat all remaining arguments as filenames.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
-"gEDA/gaf homepage: <http://www.geda-project.org/>\n"
+"gEDA homepage: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:130
 msgid ""
@@ -860,9 +872,8 @@ msgid "<b>Could not remove session</b>"
 msgstr ""
 
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Rename the selected session"
+msgstr "There are no saved sessions"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4029,9 +4040,8 @@ msgid "Specify new name for Session:"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Rename the selected session"
+msgstr "Confirm delete session"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"

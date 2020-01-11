@@ -4,6 +4,8 @@
 
     * po/el.po: Update Greek translations.
 
+    * po/en_GB.po: Update Great Britain.
+
 2020-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Remove old plain text source notes.
