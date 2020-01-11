@@ -124,9 +124,11 @@ old_focus_coords (GtkContainer *container, GdkRectangle *old_focus_rect)
 
     if (gtk_window_has_toplevel_focus((GtkWindow*)toplevel)) {
 
-      if (GTK_WINDOW (toplevel)->focus_widget) {
+      GtkWidget *old_focus;
 
-        GtkWidget *old_focus = GTK_WINDOW (toplevel)->focus_widget;
+      old_focus = geda_get_focus_widget(toplevel);
+
+      if (old_focus) {
 
         return get_allocation_coords (container, old_focus, old_focus_rect);
       }

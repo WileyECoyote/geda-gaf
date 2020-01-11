@@ -6,7 +6,7 @@
       gtk_widget_get_allocation. Revise function find_old_focus to utilize
       accessor gtk_container_get_focus_child and eliminate use of goto. Revise
       old_focus_coords to verify the toplevel has focus, otherwise focus_widget
-      is not valid.
+      is not valid, and utilize geda_get_focus_widget.
 
 2020-01-09 Wiley E. Hill <wileyhill@gmail.com>
 
