@@ -1,5 +1,7 @@
 2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macros geda_get_focus_widget.
+
     * src/functions/geda_container.c: Revise get_allocation_coords to utilize
       gtk_widget_get_allocation. Revise function find_old_focus to utilize
       accessor gtk_container_get_focus_child and eliminate use of goto. Revise
