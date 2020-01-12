@@ -1,3 +1,10 @@
+2020-01-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute order and positions, add
+      description attribute:
+
+            * simulation/verilog/xnor7-1.sym
+
 2020-01-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute order and positions, add
