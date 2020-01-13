@@ -171,6 +171,9 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def gtk_widget_reset_style Not in Gtk < 3 */
 #define gtk_widget_reset_style gtk_widget_reset_rc_styles
 
+/*! \def geda_get_accel_group_is_locked Get GtkAccelGroup lock_count > 0 Gtk < 3*/
+#define geda_get_accel_group_is_locked(grp) ((grp)->lock_count > 0)
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
@@ -196,6 +199,9 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #else /* GTK >= 3 */
 
 #define GtkObject GtkWidget
+
+/*! \def geda_get_accel_group_is_locked Get GtkAccelGroup lock_count > 0 Gtk >= 3*/
+#define geda_get_accel_group_is_locked(g) gtk_accel_group_get_is_locked ((GtkAccelGroup*)g)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
