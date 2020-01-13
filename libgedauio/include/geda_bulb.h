@@ -29,7 +29,15 @@
 #ifndef __GEDA_BULB_H__
 #define __GEDA_BULB_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtkcheckbutton.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
 
 /*! \class GedaBulb geda_bulb.h "geda_bulb.h"
  *  \brief A toggle type button widget
