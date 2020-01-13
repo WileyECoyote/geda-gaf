@@ -3,7 +3,9 @@
     * include/geda_bulb.h: Conditionally include all gtk.h.
 
     * include/geda_gtk_compat.h: Revise Conditional directive to use Gtk+-3 macros
-      if GSEAL_ENABLE is defined.
+      if GSEAL_ENABLE is defined, add macros:
+
+          * gtk_dialog_get_action_area (When Gtk<3)
 
 2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
