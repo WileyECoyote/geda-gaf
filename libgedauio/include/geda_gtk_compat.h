@@ -196,6 +196,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_container_border_width(w) ((GtkContainer*)w)->border_width
 
+#define geda_toggle_button_get_active(tb) GTK_TOGGLE_BUTTON(tb)->active
+
 #else /* GTK >= 3 */
 
 #define GtkObject GtkWidget
@@ -250,6 +252,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define gtk_hscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 
 #   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
+
+#define geda_toggle_button_get_active(tb) gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tb))
 
 #endif
 

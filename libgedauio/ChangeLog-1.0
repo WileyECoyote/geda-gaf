@@ -11,6 +11,7 @@
 
           * gtk_dialog_get_action_area (When Gtk<3)
           * geda_get_accel_group_is_locked (Gtk 2 & 3)
+          * geda_toggle_button_get_active (Gtk 2 & 3)
 
 2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
