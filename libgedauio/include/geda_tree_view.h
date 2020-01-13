@@ -29,8 +29,16 @@
 #ifndef __GEDA_TREE_VIEW_H__
 #define __GEDA_TREE_VIEW_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreemodel.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
 
 #include "geda_tree.h"
 
