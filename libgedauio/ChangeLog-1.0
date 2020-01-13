@@ -8,6 +8,8 @@
           * gtk_dialog_get_action_area (When Gtk<3)
           * geda_get_accel_group_is_locked (Gtk 2 & 3)
 
+    * include/geda_menu_item.h: Conditionally include all gtk.h.
+
 2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros geda_get_focus_widget.

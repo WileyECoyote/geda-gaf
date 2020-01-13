@@ -34,7 +34,16 @@
 #ifndef __GEDA_MENU_ITEM_H__
 #define __GEDA_MENU_ITEM_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtkbin.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
+
 #include "geda_menu.h"
 #include "geda_menu_enum.h"
 
