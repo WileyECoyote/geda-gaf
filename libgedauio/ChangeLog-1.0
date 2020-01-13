@@ -1,14 +1,16 @@
 2020-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_bulb.h: Conditionally include all gtk.h.
+    * include/: relutently include all gtk.h:
+
+          * include/geda_bulb.h
+          * include/geda_menu_item.h
+          * include/geda_toggle_action.h
 
     * include/geda_gtk_compat.h: Revise Conditional directive to use Gtk+-3 macros
       if GSEAL_ENABLE is defined, add macros:
 
           * gtk_dialog_get_action_area (When Gtk<3)
           * geda_get_accel_group_is_locked (Gtk 2 & 3)
-
-    * include/geda_menu_item.h: Conditionally include all gtk.h.
 
 2020-01-10 Wiley E. Hill <wileyhill@gmail.com>
 

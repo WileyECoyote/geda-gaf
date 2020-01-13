@@ -28,7 +28,16 @@
 #ifndef __GEDA_TOGGLE_ACTION_H__
 #define __GEDA_TOGGLE_ACTION_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtkaction.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
+
 #include "geda_action.h"       /* only because is current dir, otherwise inclusion belongs in src */
 
 #define GEDA_TYPE_TOGGLE_ACTION            (geda_toggle_action_get_type ())
