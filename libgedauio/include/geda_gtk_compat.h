@@ -101,7 +101,7 @@
                      NULL)
 
 
-#if GTK_MAJOR_VERSION < 3
+#if (GTK_MAJOR_VERSION < 3) && !defined GSEAL_ENABLE
 
 #ifndef HAVE_GTK_WINDOW_GROUP_GET_CURRENT_GRAB
 #  ifndef __MINGW32__
