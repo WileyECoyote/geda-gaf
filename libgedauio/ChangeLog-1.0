@@ -1,10 +1,11 @@
 2020-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/: relutently include all gtk.h:
+    * include/: Relutently include all gtk.h:
 
           * include/geda_bulb.h
           * include/geda_menu_item.h
           * include/geda_toggle_action.h
+          * include/geda_tree.h
 
     * include/geda_gtk_compat.h: Revise Conditional directive to use Gtk+-3 macros
       if GSEAL_ENABLE is defined, add macros:

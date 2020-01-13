@@ -28,8 +28,16 @@
 #ifndef __GEDA_TREE_H__
 #define __GEDA_TREE_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtktreeview.h>
 #include <gtk/gtktreemodel.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
 
 /* Utility functions */
 void          geda_tree_copy_iter                (GtkTreeIter *iter1, GtkTreeIter *iter2);
