@@ -198,6 +198,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_toggle_button_get_active(tb) GTK_TOGGLE_BUTTON(tb)->active
 
+#define geda_toggle_button_set_active(tb, a) GTK_TOGGLE_BUTTON(tb)->active = a
+
 #else /* GTK >= 3 */
 
 #define GtkObject GtkWidget
@@ -254,6 +256,10 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
 
 #define geda_toggle_button_get_active(tb) gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tb))
+
+#define geda_toggle_button_set_active(tb, a) \
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tb), a)
+
 
 #endif
 

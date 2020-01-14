@@ -1,5 +1,7 @@
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macros geda_toggle_button_set_active.
+
     * src/dialogs/geda_file_chooser.c: Include geda_gtk_compat.h.
 
     * src/dialogs/geda_image_chooser.c: Include geda_gtk_compat.h, utilize
