@@ -413,13 +413,19 @@ tab_compare (const void*a, const void*b, void*data)
   const GtkWidget *child2 = b;
   GtkTextDirection text_direction = GPOINTER_TO_INT (data);
 
-  int y1 = child1->allocation.y + child1->allocation.height / 2;
-  int y2 = child2->allocation.y + child2->allocation.height / 2;
+  GtkAllocation  *allocation1;
+  GtkAllocation  *allocation2;
+
+  allocation1 = geda_get_widget_allocation(child1);
+  allocation2 = geda_get_widget_allocation(child2);
+
+  int y1 = allocation1->y + allocation1->height / 2;
+  int y2 = allocation2->y + allocation2->height / 2;
 
   if (y1 == y2) {
 
-    int x1 = child1->allocation.x + child1->allocation.width / 2;
-    int x2 = child2->allocation.x + child2->allocation.width / 2;
+    int x1 = allocation1->x + allocation1->width / 2;
+    int x2 = allocation2->x + allocation2->width / 2;
 
     if (text_direction == GTK_TEXT_DIR_RTL) {
       return (x1 < x2) ? 1 : ((x1 == x2) ? 0 : -1);

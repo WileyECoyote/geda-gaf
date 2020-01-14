@@ -14,6 +14,7 @@
 
     * src/functions/geda_container.c: Revise the conditional directive in
       get_allocation_coords to handle the case when GSEAL_ENABLE is defined.
+      Revise tab_compare() to utilize geda_get_widget_allocation macro.
 
 2020-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
