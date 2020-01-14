@@ -28,13 +28,20 @@ get_allocation_coords (GtkContainer  *container,
                        GtkWidget     *widget,
                        GdkRectangle  *allocation)
 {
-#if GTK_MAJOR_VERSION < 3
+#if (GTK_MAJOR_VERSION < 3) && !defined GSEAL_ENABLE
 
   *allocation = widget->allocation;
 
 #else
 
-  *allocation = gtk_widget_get_allocation(widget);
+  GdkRectangle alloc;
+
+  gtk_widget_get_allocation(widget, &alloc);
+
+  allocation->x      = alloc.x;
+  allocation->y      = alloc.y;
+  allocation->width  = alloc.width;
+  allocation->height = alloc.height;
 
 #endif
 

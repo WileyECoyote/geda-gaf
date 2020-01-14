@@ -12,6 +12,9 @@
       directives to skip calling gtk_range_set_update_policy if Gtk+3 or
       if GTK_DISABLE_DEPRECATED is defined.
 
+    * src/functions/geda_container.c: Revise the conditional directive in
+      get_allocation_coords to handle the case when GSEAL_ENABLE is defined.
+
 2020-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Reluctantly include all gtk.h:
