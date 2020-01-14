@@ -248,7 +248,12 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
 
         /* chooser->previous_size is initialized to -1 */
         if (chooser->previous_size < 0) {
-          chooser->previous_size = ((GtkWidget*)preview)->allocation.width;
+
+          GtkAllocation *allocation;
+
+          allocation = geda_get_widget_allocation(preview);
+
+          chooser->previous_size = allocation->width;
         }
 
         if (size < chooser->previous_size) {
