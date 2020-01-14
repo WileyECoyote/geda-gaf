@@ -260,11 +260,19 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
           if (!chooser->mouse_down) {
             gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
           }
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
           gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_DISCONTINUOUS);
+#endif
+
         }
         else {
+
            gtk_widget_set_size_request ((GtkWidget*)preview, size, -1);
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
            gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
+#endif
         }
         chooser->previous_size = size;
       }

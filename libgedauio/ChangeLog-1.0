@@ -8,7 +8,9 @@
     * src/dialogs/geda_file_chooser.c: Include geda_gtk_compat.h.
 
     * src/dialogs/geda_image_chooser.c: Include geda_gtk_compat.h, utilize
-      geda_get_widget_allocation in chooser_adjust_size.
+      geda_get_widget_allocation in chooser_adjust_size. Add conditional
+      directives to skip calling gtk_range_set_update_policy if Gtk+3 or
+      if GTK_DISABLE_DEPRECATED is defined.
 
 2020-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
