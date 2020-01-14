@@ -43,6 +43,7 @@
 #include "../../include/geda_menu.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_menu_shell.h"
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>

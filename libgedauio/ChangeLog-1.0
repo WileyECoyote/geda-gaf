@@ -2,6 +2,8 @@
 
     * src/dialogs/geda_file_chooser.c: Include geda_gtk_compat.h.
 
+    * src/dialogs/geda_image_chooser.c: Include geda_gtk_compat.h.
+
 2020-01-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Reluctantly include all gtk.h:
