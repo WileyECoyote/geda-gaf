@@ -234,7 +234,6 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define gtk_hbox_new(homogeneous, spacing) \
         geda_compat_box_new(GTK_ORIENTATION_HORIZONTAL, (homogeneous), (spacing))
 
-
 #   define geda_device_grab_remove(w,p) gtk_device_grab_remove(GTK_WIDGET(w),p)
 
 /* Gtk[VH]ButtonBox */
@@ -254,6 +253,10 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define gtk_hscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 
 #   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
+
+#if !defined gtk_dialog_set_has_separator
+#   define gtk_dialog_set_has_separator(obj, setting);
+#endif
 
 #define geda_toggle_button_get_active(tb) gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tb))
 

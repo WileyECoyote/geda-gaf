@@ -1,6 +1,9 @@
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macros geda_toggle_button_set_active.
+    * include/geda_gtk_compat.h: Add macros:
+
+          * gtk_dialog_set_has_separator (When Gtk>2)
+          * geda_toggle_button_set_active (Gtk 2 & 3)
 
     * src/dialogs/geda_file_chooser.c: Include geda_gtk_compat.h.
 
