@@ -40,6 +40,7 @@
 #include <geda_file_filter.h>
 #include "../../include/geda_container.h"
 #include "../../include/geda_marshal.h"
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/gettext.h"
 
 #include <geda_debug.h>
