@@ -283,8 +283,12 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
           /* the first time the adjustment is change in zoom mode we
            * fix the preview pane size to the current allocation */
 
-          int width  = ((GtkWidget*)preview)->allocation.width;
-          int height = ((GtkWidget*)preview)->allocation.height;
+          GtkAllocation *allocation;
+
+          allocation = geda_get_widget_allocation(preview);
+
+          int width  = allocation->width;
+          int height = allocation->height;
 
           gtk_widget_set_size_request ((GtkWidget*)preview, width, height);
           chooser->zoom_mode = -1;
