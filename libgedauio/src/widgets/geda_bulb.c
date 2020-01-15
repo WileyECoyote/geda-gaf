@@ -427,7 +427,7 @@ geda_bulb_clicked (GtkButton *button)
 
   g_object_ref (button);
 
-  if (toggle_button->active) {
+  if (geda_toggle_button_get_active(toggle_button)) {
 
     tmp_button = NULL;
     tmp_list = bulb->group;
@@ -437,7 +437,8 @@ geda_bulb_clicked (GtkButton *button)
       tmp_button = tmp_list->data;
       tmp_list = tmp_list->next;
 
-      if (tmp_button->active && tmp_button != toggle_button) {
+      if (geda_toggle_button_get_active(tmp_button) &&
+          tmp_button != toggle_button) {
         break;
       }
 

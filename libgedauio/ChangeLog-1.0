@@ -5,7 +5,8 @@
       and GSEAL_ENABLE is defined.
 
     * src/widgets/geda_bulb.c: Remove function button_set_depressed and related
-      cruft, the widget is a light bulb and never gets depressed.
+      cruft, the widget is a light bulb and never gets depressed. Revise
+      geda_bulb_clicked to utilize macro geda_toggle_button_get_active.
 
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
