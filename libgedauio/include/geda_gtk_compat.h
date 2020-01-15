@@ -221,8 +221,14 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_widget_parent(w) gtk_widget_get_parent (GTK_WIDGET(w))
 
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk >= 3 */
+#if defined (gtk_widget_get_preferred_size)
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
+#else
+/* Handle the Gtk == 2 and GSEAL_ENABLE is defined */
+#define geda_get_widget_requisition(w) \
+  ({ GtkRequisition r; gtk_widget_get_requisition (GTK_WIDGET(w), &r); &r; })
+#endif
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
 #define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))

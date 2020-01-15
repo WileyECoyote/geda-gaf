@@ -1,3 +1,9 @@
+2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add macro geda_get_widget_requisition when
+      gtk_widget_get_preferred_size is not defined, as be the case for Gtk2
+      and GSEAL_ENABLE is defined.
+
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
