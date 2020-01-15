@@ -368,6 +368,9 @@ static char *popup_items[]={ "Zoom mode",
                              "Min size",
                              "Preview Off",
 };
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
+
 static char *popup_tips[]={  "Set silder to zoom mode",
                              "Set silder to size mode",
                              "Set image size to the default size",
@@ -375,6 +378,8 @@ static char *popup_tips[]={  "Set silder to zoom mode",
                              "Set image size to minimum",
                              "Turn the preview pane off",
 };
+
+#endif
 
 /*! \brief Callback Handler for Popup Mouse Context Menu
  *
