@@ -274,6 +274,7 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
            gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
 #endif
         }
+
         chooser->previous_size = size;
       }
       else { /* is zoom mode */
@@ -291,6 +292,7 @@ chooser_adjust_size (GtkAdjustment *adjustment, void *user_data)
           int height = allocation->height;
 
           gtk_widget_set_size_request ((GtkWidget*)preview, width, height);
+
           chooser->zoom_mode = -1;
         }
 
@@ -472,36 +474,43 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
         break;
+
       case SizeMode:
         if (!chooser->zoom_mode) { /* Disable is already active */
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
         break;
+
       case MidSize:
         if (chooser->preview_size == chooser->default_preview_size) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
         break;
+
       case MinSize:
         if (chooser->preview_size == chooser->min_preview_size) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
         break;
+
       case MaxSize:
          if (chooser->preview_size == chooser->max_preview_size) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
         }
         break;
+
       case PreviewOff:
         break;
       }
+
       g_object_set (item, "visible", TRUE, NULL);
       geda_menu_append (menu, item);
     }
+
     return (menu);
 }
 
