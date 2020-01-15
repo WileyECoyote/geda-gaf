@@ -8,6 +8,10 @@
       cruft, the widget is a light bulb and never gets depressed. Revise
       geda_bulb_clicked to utilize macro geda_toggle_button_get_active.
 
+    * src/dialogs/geda_image_chooser.c: Revise popup_activated to skip calling
+      gtk_range_set_update_policy for case ZoomMode and SizeMode when Gtk3 or
+      GTK_DISABLE_DEPRECATED is defined.
+
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:

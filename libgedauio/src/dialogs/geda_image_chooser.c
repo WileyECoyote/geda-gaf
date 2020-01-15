@@ -397,7 +397,10 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
       case ZoomMode:
         chooser->zoom_save = chooser->preview_size;
         chooser->zoom_mode = TRUE;
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
         gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_CONTINUOUS);
+#endif
         break;
 
       case SizeMode:
@@ -405,7 +408,10 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
         chooser->zoom_mode    = FALSE;
         gtk_adjustment_set_value(chooser->adjustment, chooser->preview_size);
         gtk_window_set_resizable (GTK_WINDOW(chooser), TRUE);
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
         gtk_range_set_update_policy (GTK_RANGE (chooser->slider), GTK_UPDATE_DISCONTINUOUS);
+#endif
         break;
 
       case MidSize:
