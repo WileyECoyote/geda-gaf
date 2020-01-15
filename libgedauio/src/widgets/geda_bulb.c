@@ -413,18 +413,6 @@ static bool geda_bulb_focus (GtkWidget *widget, GtkDirectionType direction)
   return result;
 }
 
-static void button_set_depressed (GtkButton *button, bool depressed)
-{
-  GtkWidget *widget = (GtkWidget*)button;
-
-  depressed = depressed != FALSE;
-
-  if (depressed != button->depressed) {
-    button->depressed = depressed;
-    gtk_widget_queue_resize (widget);
-  }
-}
-
 static void
 geda_bulb_clicked (GtkButton *button)
 {
@@ -516,8 +504,6 @@ geda_bulb_clicked (GtkButton *button)
 
     GEDA_OBJECT_NOTIFY (toggle_button, "active");
   }
-
-  button_set_depressed (button, depressed);
 
   gtk_widget_queue_draw ((GtkWidget*)button);
 

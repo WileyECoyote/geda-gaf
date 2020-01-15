@@ -4,6 +4,8 @@
       gtk_widget_get_preferred_size is not defined, as be the case for Gtk2
       and GSEAL_ENABLE is defined.
 
+    * src/widgets/geda_bulb.c: Remove function button_set_depressed.
+
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
