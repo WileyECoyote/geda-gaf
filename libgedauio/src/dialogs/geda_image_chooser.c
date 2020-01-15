@@ -451,19 +451,28 @@ static int popup_activated(GtkWidget *widget, IDS_PV_Popup_items *selection)
  */
 static GtkWidget *build_menu(GedaImageChooser *chooser)
 {
-  GtkWidget   *menu;
-  GtkTooltips *tooltips;
-
+  GtkWidget *menu;
   int i;
 
+  menu = geda_menu_new();
+
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
+
+  GtkTooltips *tooltips;
   tooltips = gtk_tooltips_new ();
-  menu     = geda_menu_new();
+
+#endif
 
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++) {
 
     GtkWidget *item = geda_menu_item_new_with_label(_(popup_items[i]));
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
+
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
+
+#endif
+
     g_object_set_data((GObject*)item, "chooser", chooser);
 
     g_signal_connect(item,"activate",
