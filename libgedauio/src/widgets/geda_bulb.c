@@ -422,7 +422,6 @@ geda_bulb_clicked (GtkButton *button)
   GtkStateType     new_state;
   GSList          *tmp_list;
   int toggled;
-  bool depressed;
 
   toggled = FALSE;
 
@@ -484,14 +483,6 @@ geda_bulb_clicked (GtkButton *button)
     new_state = (button->in_button ? GTK_STATE_PRELIGHT : GTK_STATE_ACTIVE);
   }
 
-  if (toggle_button->inconsistent) {
-    depressed = FALSE;
-  }
-  else if (button->in_button && button->button_down) {
-    depressed = !toggle_button->active;
-  }
-  else {
-    depressed = toggle_button->active;
   }
 
   if (gtk_widget_get_state ((GtkWidget*)button) != new_state) {
