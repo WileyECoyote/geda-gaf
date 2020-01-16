@@ -10,6 +10,8 @@
       geda_get_widget_window in geda_widget_set_pointer_position.
 
     * src/widgets/geda_accel_label.c: Utilize geda_get_widget_requisition macro.
+      Revise geda_accel_label_expose_event to skip adding miscellaneous xpad if
+      GTK_DISABLE_DEPRECATED.
 
 2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
 

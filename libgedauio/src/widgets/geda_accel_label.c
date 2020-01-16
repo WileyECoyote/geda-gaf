@@ -333,12 +333,10 @@ static bool geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *ev
       PangoLayout      *label_layout;
       PangoLayout      *accel_layout;
       GedaLabel        *label;
-      GtkMisc          *misc;
 
       int x;
       int y;
 
-      misc         = (GtkMisc*)accel_label;
       label        = (GedaLabel*)widget;
       label_layout = geda_label_get_layout ((GedaLabel*)accel_label);
       direction    = gtk_widget_get_direction (widget);
@@ -369,12 +367,29 @@ static bool geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *ev
         pango_layout_set_width (label_layout, width + ac_width * PANGO_SCALE);
       }
 
+#if !defined GTK_DISABLE_DEPRECATED
+
+      GtkMisc *misc;
+
+      misc         = (GtkMisc*)accel_label;
+
       if (direction == GTK_TEXT_DIR_RTL) {
         x = allocation->x + misc->xpad;
       }
       else {
         x = allocation->x + allocation->width - misc->xpad - ac_width;
       }
+
+#else
+
+      if (direction == GTK_TEXT_DIR_RTL) {
+        x = allocation->x + 2;
+      }
+      else {
+        x = allocation->x + allocation->width - 2 - ac_width;
+      }
+
+#endif
 
       geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
 
