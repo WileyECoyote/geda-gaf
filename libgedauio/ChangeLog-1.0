@@ -6,7 +6,8 @@
       geda_get_widget_window macro.
 
     * src/functions/geda_widget.c: Include geda_gtk_compat.h and utilize macro
-      geda_get_accel_group_is_locked in geda_widget_get_accel_path.
+      geda_get_accel_group_is_locked in geda_widget_get_accel_path and macro
+      geda_get_widget_window in geda_widget_set_pointer_position.
 
 2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
 

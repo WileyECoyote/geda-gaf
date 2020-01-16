@@ -405,9 +405,12 @@ geda_widget_set_pointer_position(GtkWidget *widget, int x, int y)
 
     GdkScreen    *screen;
     GdkDisplay   *display;
+    GdkWindow    *window;
     int window_x, window_y;
 
-    gdk_window_get_origin (widget->window, &window_x, &window_y);
+    window = geda_get_widget_window (widget);
+
+    gdk_window_get_origin (window, &window_x, &window_y);
 
     screen  = gtk_widget_get_screen (widget);
     display = gdk_screen_get_display (screen);
