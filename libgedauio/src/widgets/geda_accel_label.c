@@ -319,13 +319,15 @@ static bool geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *ev
 
   if (gtk_widget_is_drawable (widget)) {
 
-    unsigned int   ac_width;
-    GtkAllocation *allocation;
+    unsigned int    ac_width;
+    GtkAllocation  *allocation;
+    GtkRequisition *requisition;
 
-    ac_width   = geda_accel_label_get_accel_width (accel_label);
-    allocation = geda_get_widget_allocation (widget);
+    ac_width    = geda_accel_label_get_accel_width (accel_label);
+    allocation  = geda_get_widget_allocation (widget);
+    requisition = geda_get_widget_requisition (widget);
 
-    if (allocation->width >= widget->requisition.width + ac_width) {
+    if (allocation->width >= requisition->width + ac_width) {
 
       GtkTextDirection  direction;
       PangoLayout      *label_layout;
