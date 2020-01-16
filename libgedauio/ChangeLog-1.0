@@ -5,7 +5,8 @@
     * src/functions/geda_mnemonic_hash.c: Include geda_gtk_compat.h and utilize
       geda_get_widget_window macro.
 
-    * src/functions/geda_widget.c: Include geda_gtk_compat.h.
+    * src/functions/geda_widget.c: Include geda_gtk_compat.h and utilize macro
+      geda_get_accel_group_is_locked in geda_widget_get_accel_path.
 
 2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -80,7 +80,13 @@ geda_widget_get_accel_path (GtkWidget *widget, bool *locked)
   apath = g_object_get_qdata (G_OBJECT (widget), quark_accel_path);
 
   if (locked) {
-    *locked = apath ? apath->accel_group->lock_count > 0 : TRUE;
+
+    if (GTK_IS_ACCEL_GROUP (apath)) {
+      *locked = geda_get_accel_group_is_locked(apath->accel_group);
+    }
+    else {
+      *locked = TRUE;
+    }
   }
 
   return apath ? g_quark_to_string (apath->path_quark) : NULL;
