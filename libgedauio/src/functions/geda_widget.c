@@ -13,6 +13,7 @@
 
 #include "../../include/geda_container.h"
 #include "../../include/geda_widget.h"
+#include "../../include/geda_gtk_compat.h"
 
 /*! \todo Finish function documentation!!!
  *  \brief

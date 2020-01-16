@@ -5,6 +5,8 @@
     * src/functions/geda_mnemonic_hash.c: Include geda_gtk_compat.h and utilize
       geda_get_widget_window macro.
 
+    * src/functions/geda_widget.c: Include geda_gtk_compat.h.
+
 2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macro geda_get_widget_requisition when
