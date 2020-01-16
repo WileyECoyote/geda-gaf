@@ -4,7 +4,9 @@
 #endif
 
 #include <geda/geda.h>
-#include <gdk/gdkkeys.h>
+
+#include <gdk/gdk.h>
+
 #include "../../include/geda_keyboard.h"
 
 bool

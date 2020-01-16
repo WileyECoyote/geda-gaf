@@ -1,3 +1,7 @@
+2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/functions/geda_keyboard.c: Include gdk.h instead of only gdkkeys.h.
+
 2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macro geda_get_widget_requisition when
@@ -10,7 +14,8 @@
 
     * src/dialogs/geda_image_chooser.c: Revise popup_activated to skip calling
       gtk_range_set_update_policy for case ZoomMode and SizeMode when Gtk3 or
-      GTK_DISABLE_DEPRECATED is defined.
+      GTK_DISABLE_DEPRECATED is defined. Revise build_menu to not implement
+      tooltips when Gtk3 or GTK_DISABLE_DEPRECATED is defined.
 
 2020-01-14 Wiley E. Hill <wileyhill@gmail.com>
 
