@@ -13,6 +13,9 @@
       Revise geda_accel_label_expose_event to skip adding miscellaneous xpad if
       GTK_DISABLE_DEPRECATED.
 
+    * src/widgets/geda_bulb.c: Revise geda_bulb_clicked to set new_state to
+      GTK_STATE_ACTIVE when GSEAL_ENABLE is defined.
+
 2020-01-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macro geda_get_widget_requisition when
