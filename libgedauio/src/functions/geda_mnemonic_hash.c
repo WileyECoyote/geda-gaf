@@ -32,6 +32,7 @@
 #include <gtk/gtk.h>
 
 #include "../../include/geda_mnemonic_hash.h"
+#include "../../include/geda_gtk_compat.h"
 
 struct _GedaMnemonicHash
 {
