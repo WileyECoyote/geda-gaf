@@ -501,7 +501,8 @@ geda_bulb_clicked (GtkButton *button)
          * which generates both a "clicked" and a "toggled" event and is
          * technically wrong, and also annoying, the other widget was not
          * clicked", instead we do this ... */
-        tmp_button->active = FALSE;
+        geda_toggle_button_set_active (tmp_button, FALSE);
+
         gtk_toggle_button_toggled ((GtkToggleButton*)tmp_button);
         gtk_widget_queue_draw((GtkWidget*)tmp_button);
         /* which only generates a "toggled" event for the other widget */
