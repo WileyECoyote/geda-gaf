@@ -399,9 +399,20 @@ static bool geda_accel_label_expose_event (GtkWidget *widget, GdkEventExpose *ev
 
       GtkStateType state = gtk_widget_get_state (widget);
 
+#if !defined GSEAL_ENABLE
+
       gtk_paint_layout (widget->style, widget->window, state, FALSE,
                         &event->area, widget, "accellabel", x, y,
                         accel_layout);
+
+#else
+
+      gtk_paint_layout (gtk_widget_get_style(widget),
+                        geda_get_widget_window(widget), state, FALSE,
+                        &event->area, widget, "accellabel", x, y,
+                        accel_layout);
+
+#endif
 
       g_object_unref (accel_layout);
     }

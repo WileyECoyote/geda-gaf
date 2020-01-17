@@ -1,5 +1,11 @@
 2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_accel_label.c: Revise geda_accel_label_expose_event to
+      use gtk_widget_get_style and geda_get_widget_window when GSEAL_ENABLE is
+      defined.
+
+2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/functions/geda_keyboard.c: Include gdk.h instead of only gdkkeys.h.
 
     * src/functions/geda_mnemonic_hash.c: Include geda_gtk_compat.h and utilize
