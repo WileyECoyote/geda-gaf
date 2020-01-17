@@ -486,7 +486,7 @@ geda_bulb_clicked (GtkButton *button)
     state   = geda_toggle_button_get_active (toggle_button);
     toggled = TRUE;
 
-    toggle_button->active = !state;
+    geda_toggle_button_set_active (toggle_button, !state);
 
     tmp_list = bulb->group;
 
