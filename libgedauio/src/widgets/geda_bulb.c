@@ -466,7 +466,17 @@ geda_bulb_clicked (GtkButton *button)
       toggled = TRUE;
 
       geda_toggle_button_set_active (toggle_button, !state);
+
+#if !defined GSEAL_ENABLE
+
       new_state = (button->in_button ? GTK_STATE_PRELIGHT : GTK_STATE_NORMAL);
+
+#else
+
+      new_state = GTK_STATE_NORMAL;
+
+#endif
+
     }
   }
   else {
