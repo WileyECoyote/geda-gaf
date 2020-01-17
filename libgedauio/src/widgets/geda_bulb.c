@@ -495,9 +495,9 @@ geda_bulb_clicked (GtkButton *button)
       tmp_button = tmp_list->data;
       tmp_list = tmp_list->next;
 
-      if (tmp_button->active && (tmp_button != toggle_button)) {
-        /* WEH: Gtk does this ...
-         * gtk_button_clicked (GTK_BUTTON (tmp_button));
+      if (geda_toggle_button_get_active(tmp_button) &&
+          (tmp_button != toggle_button)) {
+        /* WEH: Gtk does this: gtk_button_clicked (GTK_BUTTON (tmp_button));
          * which generates both a "clicked" and a "toggled" event and is
          * technically wrong, and also annoying, the other widget was not
          * clicked", instead we do this ... */
