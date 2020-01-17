@@ -465,7 +465,7 @@ geda_bulb_clicked (GtkButton *button)
       state   = geda_toggle_button_get_active (toggle_button);
       toggled = TRUE;
 
-      toggle_button->active = !state;
+      geda_toggle_button_set_active (toggle_button, !state);
       new_state = (button->in_button ? GTK_STATE_PRELIGHT : GTK_STATE_NORMAL);
     }
   }

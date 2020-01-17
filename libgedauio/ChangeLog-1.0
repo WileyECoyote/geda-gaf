@@ -4,7 +4,8 @@
       use gtk_widget_get_style and geda_get_widget_window when GSEAL_ENABLE is
       defined.
 
-    * src/widgets/geda_bulb.c: Utilize geda_toggle_button_get_active macro.
+    * src/widgets/geda_bulb.c: Utilize geda_toggle_button_get_active and
+      geda_toggle_button_set_active macros.
 
 2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
