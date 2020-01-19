@@ -169,7 +169,7 @@ msgid "Vertical adjustment"
 msgstr "Lei tamrouv banhchhor"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -220,6 +220,7 @@ msgstr ""
 "phtok.\n"
 "  -h, --help               saum chuoy; bangheanh sar nih.\n"
 "  -L DIR                   banthem DIR daembi svengork Scheme phlauv.\n"
+"  -l, --list               banhchi chhmoh samy del ban roksaatouk.\n"
 "  -m, --safe-mode          baek rbieb sovotthephap.\n"
 "  -n, --no-auto            min phtok eksar chongokraoy nih daoy "
 "svyobravotte.\n"
@@ -921,10 +922,10 @@ msgstr "breachy knong kar yk samyobrachoum"
 msgid "<b>Could not remove session</b>"
 msgstr "<b>min achy k samyobrachoum</b>"
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "ban baek samyobrachoum"
+msgstr "min mean vokk del ban roksaatouk te"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4301,10 +4302,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "ban baek samyobrachoum"
+msgstr "banhcheak kar loub samy"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
