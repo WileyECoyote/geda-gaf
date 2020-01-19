@@ -172,7 +172,7 @@ msgid "Vertical adjustment"
 msgstr "התאמה אנכית"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -187,8 +187,8 @@ msgid ""
 "  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
 "  -f, --font <NAME>          set font family name\n"
 "  -h, --help                 Help; this message.\n"
-"  -l, --list                 List saved session names.\n"
 "  -m, --safe-mode            Safe Mode.\n"
+"  -l, --list                 רשימת שמות הפעלה שנשמרו.\n"
 "  -n, --no-auto              No auto load last document.\n"
 "  -o, --output <FILE>        Output filename (for printing and image "
 "output).\n"
@@ -207,39 +207,38 @@ msgid ""
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
+
 msgstr ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
-"Interactively edit gEDA schematics or symbols. If one or more FILEs\n"
-"are specified, open them for editing; otherwise, create a new, empty\n"
-"schematic.\n"
+"ערוך באופן אינטראקטיבי סכמות או סמלים של GEDA. אם קובץ אחד או יותר\n"
+"מוגדרים, פתח אותם לעריכה; אחרת, צור חדש, ריק\n"
+"סכמטי.\n"
 "\n"
 "Options:\n"
-"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
-"X11.\n"
-"  -c, --config-file <FILE>   Additional configuration file to load.\n"
-"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
-"  -f, --font <NAME>          set font family name\n"
-"  -h, --help                 Help; this message.\n"
-"  -m, --safe-mode            Safe Mode.\n"
-"  -n, --no-auto              No auto load last document.\n"
-"  -o, --output <FILE>        Output filename (for printing and image "
-"output).\n"
-"  -p, --place                Automatically place the window.\n"
-"  -q, --quiet                Quiet mode.\n"
-"  -r, --run <FILE>           Scheme script to run at startup.\n"
-"  -s, --start <name>         Startup using the given session name.\n"
-"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
-"block.\n"
-"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
-"  -v, --verbose              Verbose mode.\n"
-"  -V, --version              Show version information.\n"
-"  -x (EXPR)                  Scheme expression to run at startup.\n"
-"  -z, --minimized            Hide the main window, used for scripting\n"
-"  --                         Treat all remaining arguments as filenames.\n"
+"  -a, --render-adaptor <DRV> ציין באיזה מתאם לעבד להשתמש, Cario או X11.\n"
+"  -c, --config-file <FILE>   קובץ תצורה נוסף לטעינה.\n"
+"  -g, --guile <DIR>          הוסף DIR לשביל Guile (קביעת תצורה מראש).\n"
+"  -f, --font <NAME>          הגדר שם משפחה גופן\n"
+"  -h, --help                 עזרה; ההודעה הזו.\n"
+"  -l, --list                 רשימת שמות הפעלה שנשמרו.\n"
+"  -m, --safe-mode            מצב בטוח.\n"
+"  -n, --no-auto              אין טעינה אוטומטית של המסמך האחרון.\n"
+"  -o, --output <FILE>        שם קובץ פלט (להדפסה ולפלט תמונות).\n"
+"  -p, --place                מקם את החלון באופן אוטומטי.\n"
+"  -q, --quiet                מצב שקט.\n"
+"  -r, --run <FILE>           סקריפט ערכה להפעלה בעת ההפעלה.\n"
+"  -s, --start <name>         הפעלה באמצעות שם ההפעלה הנתון.\n"
+"  -t, --title-block <FILE>   התחל רישום חדש באמצעות כותרת החסימה שצוינה.\n"
+"  -u, --undo-dir <DIR>       ציין ספרייה זמנית עבור ביטול קבצים.\n"
+"  -v, --verbose              מצב מילולי.\n"
+"  -V, --version              הצג מידע על הגרסאות.\n"
+"  -x (EXPR)                  ביטוי סכימה להפעלה בעת ההפעלה.\n"
+"  -z, --minimized            הסתר את החלון הראשי המשמש לתסריטים\n"
+"  --                         התייחס לכל שאר הארגומנטים כאל שמות קבצים.\n"
 "\n"
-"Report bugs at <https://bugs.launchpad.net/geda>\n"
-"gEDA homepage: <http://www.geda-project.org>\n"
+"דווח על באגים בשעה <https://bugs.launchpad.net/geda>\n"
+"gEDA דף הבית: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:130
 msgid ""
@@ -915,11 +914,10 @@ msgstr ""
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-# Created session
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "הפגישה שנוצרה"
+msgstr "אין פעילויות שמורות"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4192,11 +4190,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
-# Created session
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "הפגישה שנוצרה"
+msgstr "אשר את הפעלת המחיקה"
 
 # Select export file
 #: gschem/src/x/x_sessions.c:238
