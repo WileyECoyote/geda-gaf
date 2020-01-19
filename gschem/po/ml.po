@@ -185,7 +185,7 @@ msgid "Vertical adjustment"
 msgstr "ലംബ അഡ്ജസ്റ്റ്മെന്റ്"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -235,6 +235,7 @@ msgstr ""
 "  -g, --guile <DIR>          ഗൈൽ പാളിയിലേക്ക് DIR ചേർക്കുക (പ്രീ-കോൺഫിഗറേഷൻ).\n"
 "  -f, --font <NAME>          ഫോണ്ട് കുടുംബത്തിന്റെ പേര് സജ്ജമാക്കുക\n"
 "  -h, --help                 സഹായിക്കൂ; ഈ സന്ദേശം.\n"
+"  -l, --list                 സംരക്ഷിച്ച സെഷൻ പേരുകൾ പട്ടികപ്പെടുത്തുക.\n"
 "  -m, --safe-mode            സുരക്ഷിത മോഡ്.\n"
 "  -n, --no-auto              അവസാന പ്രമാണം ഓട്ടോമാറ്റിക്കല്ല.\n"
 "  -o, --output <FILE>        ഔട്ട്പുട്ട് ഫയൽനാമം (പ്രിന്റുചെയ്യലും ചിത്രവും ഔട്ട്പുട്ട്).\n"
@@ -4320,11 +4321,10 @@ msgstr "സെഷൻ പുനർനാമകരണം"
 msgid "Specify new name for Session:"
 msgstr "സെഷൻ പുതിയ പേര് വ്യക്തമാക്കുക:"
 
-# Load the selected session
+# Load the selected session; tiraññeṭutta seṣan lēāḍuceyyuka
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "തിരഞ്ഞെടുത്ത സെഷൻ ലോഡ്"
+msgstr "തിരഞ്ഞെടുത്ത സെഷൻ ലോഡുചെയ്യുക"
 
 # Select export file
 #: gschem/src/x/x_sessions.c:238
