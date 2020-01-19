@@ -182,7 +182,7 @@ msgid "Vertical adjustment"
 msgstr "regolazione verticale"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -231,6 +231,7 @@ msgstr ""
 "  -g, --guile <DIR>          Aggiunge DIR ai percorsi di ricerca Scheme.\n"
 "  -f, --font <NAME>          impostare il nome famiglia di caratteri\n"
 "  -h, --help                 Aiuto; questo messaggio.\n"
+"  -l, --list                 Elenca i nomi delle sessioni salvate.\n"
 "  -m, --safe-mode            Modalità sicura.\n"
 "  -n, --no-auto              No caricamento automatico ultimo documento.\n"
 "  -o, --output <FILE>        il nome del file di output (per la stampa e "
@@ -908,10 +909,10 @@ msgstr "Impossibile rimuovere sessione"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Salva come"
+msgstr "Non ci sono sessioni salvate"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4155,10 +4156,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Salva come"
+msgstr "Conferma l'eliminazione della sessione"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
