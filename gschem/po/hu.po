@@ -843,10 +843,10 @@ msgstr "Nem sikerült eltávolítani a munkamenet"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Jelenlegi nézet"
+msgstr "Nincsenek mentett munkamenetek"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4085,10 +4085,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Jelenlegi nézet"
+msgstr "Erősítse meg a munkamenet törlését"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
