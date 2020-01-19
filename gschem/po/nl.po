@@ -169,7 +169,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -219,6 +219,7 @@ msgstr ""
 "  -g, --guile <DIR>          Voeg DIR toe aan Scheme zoekpad (pre-config).\n"
 "  -f, --font <NAME>          set lettertype familienaam\n"
 "  -h, --help                 Help; dit bericht.\n"
+"  -l, --list                 Lijst met opgeslagen sessienamen.\n"
 "  -m, --safe-mode            Veilige modus.\n"
 "  -n, --no-auto              Geen automatische load laatste document.\n"
 "  -o, --output <FILE>        Uitvoer bestandsnaam (voor afdrukken).\n"
@@ -922,10 +923,10 @@ msgstr "Mislukt sessie verwijderen"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Gemaakt sessie"
+msgstr "Laad de geselecteerde sessie"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4283,9 +4284,8 @@ msgid "Specify new name for Session:"
 msgstr ""
 
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Gemaakt sessie"
+msgstr "Bevestig verwijder sessie"
 
 # Choose an export file
 #: gschem/src/x/x_sessions.c:238
