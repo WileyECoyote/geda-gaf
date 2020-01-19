@@ -171,7 +171,7 @@ msgid "Vertical adjustment"
 msgstr "Ajustement vertical"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -214,18 +214,29 @@ msgstr ""
 "sinon, créer un nouveau schéma vide.\n"
 "\n"
 "Options:\n"
-"  -q, --quiet              Mode silencieux.\n"
-"  -v, --verbose            Mode bavard.\n"
-"  -r, --config-file=FICHIER   Fichier de configuration additionnelle à "
+"  -a, --render-adaptor <DRV> Specify which render adaptor to use, Cario or "
+"X11.\n"
+"  -c, --config-file FICHIER  Fichier de configuration additionnelle à "
 "charger.\n"
-"  -L RÉP                   Ajouter RÉP au chemin de recherche du schéma.\n"
-"  -c EXPR                  Expression de schéma à charger au démarrage.\n"
-"  -s FICHIER                  Script de schéma à lancer au démarrage.\n"
-"  -o, --output=FICHIER        Fichier de résultat (pour impression).\n"
-"  -p                       Placer la fenêtre automatiquement.\n"
-"  -V, --version            Afficher la version.\n"
-"  -h, --help               Aide; ce message.\n"
-"  --                       Traiter les arguments restants comme des noms de "
+"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+"  -f, --font <NAME>          set font family name\n"
+"  -h, --help                 Aide; ce message.\n"
+"  -l, --list                 Liste des noms de session enregistrés.\n"
+"  -m, --safe-mode            Safe Mode.\n"
+"  -n, --no-auto              No auto load last document.\n"
+"  -o, --output <FILE>        Fichier de résultat (pour impression).\n"
+"  -p, --place                Placer la fenêtre automatiquement.\n"
+"  -q, --quiet                Mode silencieux.\n"
+"  -r, --run <FILE>           Scheme script to run at startup.\n"
+"  -s, --start <name>         Startup using the given session name.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+"  -v, --verbose              Mode bavard.\n"
+"  -V, --version              Afficher la version.\n"
+"  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Traiter les arguments restants comme des noms de "
 "fichier.\n"
 "\n"
 "En cas de bug, prévenir <https://bugs.launchpad.net/geda>\n"
@@ -888,10 +899,10 @@ msgstr "Échec de la suppression de la session"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Vue en cours"
+msgstr "Aucune session enregistrée"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4155,10 +4166,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Vue en cours"
+msgstr "Confirmer la suppression de la session"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
