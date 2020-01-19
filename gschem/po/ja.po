@@ -896,10 +896,10 @@ msgstr "セッションの削除に失敗しました"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+# There are no saved sessions; Hozon sa reta sesshon wa arimasen
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "現在のウィンドウ"
+msgstr "保存されたセッションはありません"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4126,10 +4126,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session; Sakujo sesshon o kakunin
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "現在のウィンドウ"
+msgstr "削除セッションを確認"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
