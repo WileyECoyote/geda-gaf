@@ -10,6 +10,7 @@
       update, make device upper case, reposition attributes:
 
             * simulation/verilog/and2-2.sym
+            * simulation/verilog/and3-2.sym
 
 2020-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
