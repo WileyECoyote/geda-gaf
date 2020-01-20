@@ -564,7 +564,6 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     GtkAllocation   *allocation;
     GtkWidget       *child;
     GedaBulb        *bulb;
-    GtkButton       *button;
     GtkToggleButton *toggle_button;
     GtkStateType     state_type;
 
@@ -582,7 +581,6 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
 
     allocation    = geda_get_widget_allocation(widget);
     bulb          = (GedaBulb*)check_button;
-    button        = (GtkButton*)check_button;
     toggle_button = (GtkToggleButton*)check_button;
 
     /* --------------- Retrieve Dimensional Factors --------------- */
@@ -835,13 +833,10 @@ static void geda_bulb_instance_init (GTypeInstance *instance, void *class)
 
   gtk_toggle_button_set_active ((GtkToggleButton*)bulb, TRUE);
 
-  button->depress_on_activate = FALSE;
-
   ((GtkContainer*)bulb)->border_width = 1;
 
   bulb->group = g_slist_prepend (NULL, bulb);
 
-  button_set_depressed (button, TRUE);
   gtk_widget_set_state (widget, GTK_STATE_ACTIVE);
 }
 
