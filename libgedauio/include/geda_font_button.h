@@ -27,7 +27,15 @@
 #ifndef __GEDA_FONT_BUTTON_H__
 #define __GEDA_FONT_BUTTON_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtkbutton.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
 
 #ifndef DEFAULT_FONT_NAME
 #define DEFAULT_FONT_NAME "ARIAL 10"

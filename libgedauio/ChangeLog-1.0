@@ -3,6 +3,7 @@
     * include/: Reluctantly include all of gtk.h:
 
           * include/geda_dockbox.h
+          * include/geda_font_button.h
 
     * src/widgets/geda_bulb.c: Revise geda_bulb_clicked to set new_state
       to GTK_STATE_ACTIVE when GSEAL_ENABLE is defined, Eliminate pointer
