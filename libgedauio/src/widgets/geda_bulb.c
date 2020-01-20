@@ -513,8 +513,15 @@ geda_bulb_clicked (GtkButton *button)
 
     }
 
-    new_state = (button->in_button ? GTK_STATE_PRELIGHT : GTK_STATE_ACTIVE);
-  }
+#if !defined GSEAL_ENABLE
+
+      new_state = (button->in_button ? GTK_STATE_PRELIGHT : GTK_STATE_ACTIVE);
+
+#else
+
+      new_state = GTK_STATE_ACTIVE;
+
+#endif
 
   }
 

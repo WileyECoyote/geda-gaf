@@ -1,3 +1,8 @@
+2020-01-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Revise geda_bulb_clicked to set new_state
+      to GTK_STATE_ACTIVE when GSEAL_ENABLE is defined.
+
 2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_expose_event to
