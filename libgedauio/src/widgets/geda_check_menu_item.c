@@ -190,8 +190,9 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
        (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT))
     {
 
-      GtkStateType  state_type;
-      GtkShadowType shadow_type;
+      GtkStateType   state_type;
+      GtkShadowType  shadow_type;
+      GdkWindow     *window;
 
       if (gtk_widget_is_sensitive (widget)) {
         state_type = gtk_widget_get_state (widget);
@@ -207,15 +208,17 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
       else
         shadow_type = GTK_SHADOW_OUT;
 
+      window = geda_get_widget_window(widget);
+
       if (check_menu_item->draw_as_radio) {
 
-        gtk_paint_option (style, widget->window,
+        gtk_paint_option (style, window,
                           state_type, shadow_type,
                           area, widget, "option",
                           x, y, indicator_size, indicator_size);
       }
       else {
-        gtk_paint_check (style, widget->window,
+        gtk_paint_check (style, window,
                          state_type, shadow_type,
                          area, widget, "check",
                          x, y, indicator_size, indicator_size);

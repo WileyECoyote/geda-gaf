@@ -13,8 +13,8 @@
           * geda_toggle_button_get_active
           * geda_toggle_button_set_active
 
-    * src/widgets/geda_check_menu_item.c: Revise geda_real_check_menu_item_
-      draw_indicator to utilize unsigned int border_width.
+    * src/widgets/geda_check_menu_item.c: Utilize geda_get_widget_window
+      unsigned border_width in geda_real_check_menu_item_draw_indicator.
 
 2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
