@@ -12,6 +12,7 @@
             * simulation/verilog/and2-2.sym
             * simulation/verilog/and3-2.sym
             * simulation/verilog/and4-2.sym
+            * simulation/verilog/and5-2.sym
 
     * simulation/verilog: Update pintype out and reposition attributes
       set  visibility's:
