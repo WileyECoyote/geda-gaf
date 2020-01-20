@@ -20,6 +20,10 @@
             * simulation/verilog/and5-1.sym
             * simulation/verilog/and6-1.sym
 
+    * simulation/verilog: Set pinlabel attribute color=text:
+
+            * simulation/verilog/and7-1.sym
+
 2020-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute order and positions, add
