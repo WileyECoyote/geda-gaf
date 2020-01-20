@@ -1442,7 +1442,7 @@ void geda_bulb_group_quietly_set_active (GSList *group_list, int which_bulb)
     button = (GtkToggleButton*)g_slist_nth_data (group_list, index);
 
     if (button != NULL) {
-      button->active = index == target;
+      gtk_toggle_button_set_active(button, index == target);
       gtk_widget_queue_draw((GtkWidget*)button);
     }
   }

@@ -3,8 +3,9 @@
     * src/widgets/geda_bulb.c: Revise geda_bulb_clicked to set new_state
       to GTK_STATE_ACTIVE when GSEAL_ENABLE is defined, and utilize macros:
 
-          * geda_get_container_border_width.
+          * geda_get_container_border_width
           * geda_toggle_button_get_active
+          * geda_toggle_button_set_active
 
 2020-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
