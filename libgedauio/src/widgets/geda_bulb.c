@@ -663,7 +663,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
 
     cr = gdk_cairo_create( widget->window );
 
-    if (toggle_button->active) {
+    if (geda_toggle_button_get_active(toggle_button)) {
       gdk_cairo_set_source_pixbuf (cr, on_pixbuf, x, y);
     }
     else {
