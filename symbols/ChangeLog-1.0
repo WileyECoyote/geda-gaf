@@ -1,9 +1,10 @@
 2020-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * simulation/verilog/and2-1.sym: Fix output pinlabel attribute
+    * simulation/verilog/and[2,3]-1.sym: Fix output pinlabel attribute
       and reposition attributes:
 
             * simulation/verilog/and2-1.sym
+            * simulation/verilog/and3-1.sym
 
 2020-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
