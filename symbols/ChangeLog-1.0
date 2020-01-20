@@ -13,6 +13,11 @@
             * simulation/verilog/and3-2.sym
             * simulation/verilog/and4-2.sym
 
+    * simulation/verilog: Update pintype out and reposition attributes
+      set  visibility's:
+
+            * simulation/verilog/and5-1.sym
+
 2020-01-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute order and positions, add
