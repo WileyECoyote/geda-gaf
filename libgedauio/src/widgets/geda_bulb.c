@@ -595,7 +595,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
                           "focus-padding",    &focus_pad,
                           NULL);
 
-    border_width = ((GtkContainer*)widget)->border_width;
+    border_width = geda_get_container_border_width(widget);
 
     /* --------------- Calculate Indicator Position --------------- */
 
