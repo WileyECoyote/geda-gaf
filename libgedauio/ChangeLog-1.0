@@ -1,5 +1,9 @@
 2020-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/: Reluctantly include all of gtk.h:
+
+          * include/geda_dockbox.h
+
     * src/widgets/geda_bulb.c: Revise geda_bulb_clicked to set new_state
       to GTK_STATE_ACTIVE when GSEAL_ENABLE is defined, Eliminate pointer
       to GtkButton, and utilize macros:

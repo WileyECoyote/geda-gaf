@@ -26,7 +26,15 @@
 #ifndef __GEDA_DOCK_BOX_H__
 #define __GEDA_DOCK_BOX_H__
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_SINGLE_INCLUDES
+
 #include <gtk/gtkbox.h>
+
+#else
+
+#include <gtk/gtk.h>
+
+#endif
 
 #define GEDA_TYPE_DOCK_BOX            (geda_dock_box_get_type ())
 #define GEDA_DOCK_BOX(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_DOCK_BOX, GedaDockBox))
