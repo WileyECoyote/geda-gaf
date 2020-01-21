@@ -159,6 +159,7 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
     unsigned int toggle_spacing;
     unsigned int horizontal_padding;
     unsigned int indicator_size;
+    unsigned int x_thickness;
     int x, y;
 
     gtk_widget_style_get (widget,
@@ -167,9 +168,16 @@ geda_real_check_menu_item_draw_indicator (GedaCheckMenuItem *check_menu_item,
                           "indicator-size",     &indicator_size,
                           NULL);
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GSEAL_ENABLE
     style        = widget->style;
+    x_thickness  = style->xthickness;
+#else
+    style        = geda_get_widget_style(widget);
+    x_thickness  = 2; /* This value is hard coded in gtkstyle.c */
+#endif
+
     border_width = geda_get_container_border_width(check_menu_item);
-    offset       = border_width + style->xthickness + 2;
+    offset       = border_width + x_thickness + 2;
     toggle_size  = geda_menu_item_get_toggle_size((GedaMenuItem*)check_menu_item);
 
     /* This is always added to x, even when direction is RTL */

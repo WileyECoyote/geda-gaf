@@ -9,6 +9,9 @@
       GTK_STATE_INSENSITIVE. Revise geda_bulb_instance_init to utilize
       g_object_set to set the "border_width" property.
 
+    * src/widgets/geda_check_menu_item.c Add x_thickness and revise
+      geda_real_check_menu_item_draw_indicator to compile when GSEAL_ENABLE.
+
 2020-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Reluctantly include all of gtk.h:
