@@ -498,7 +498,7 @@ geda_action_activate (GedaAction *action)
 /*!
  * \brief GedaAction Get Action Name
  * \par Function Description
- *  Returns the name of the action asociated with the GedaAction object.
+ *  Returns the name of the action associated with the GedaAction object.
  *
  * \param [in] action A GedaAction object
  *
