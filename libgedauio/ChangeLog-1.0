@@ -1,3 +1,10 @@
+2020-01-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Revise geda_bulb_draw_indicator to not
+      bother checking and setting state_type to GTK_STATE_ACTIVE or
+      GTK_STATE_PRELIGHT since alpha is only varied if state_type is
+      GTK_STATE_INSENSITIVE.
+
 2020-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Reluctantly include all of gtk.h:

@@ -624,11 +624,7 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
 
     /* -------------------- Setup Widget State -------------------- */
 
-    if (button->activate_timeout || (button->button_down && button->in_button))
-      state_type = GTK_STATE_ACTIVE;
-    else if (button->in_button)
-      state_type = GTK_STATE_PRELIGHT;
-    else if (!gtk_widget_is_sensitive (widget))
+    if (!gtk_widget_is_sensitive (widget))
       state_type = GTK_STATE_INSENSITIVE;
     else
       state_type = GTK_STATE_NORMAL;
