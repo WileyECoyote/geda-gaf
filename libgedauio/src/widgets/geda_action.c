@@ -373,6 +373,7 @@ is_a_geda_action (GedaAction *action)
   if ((action != NULL) && (action_hash_table != NULL)) {
     return g_hash_table_lookup(action_hash_table, action) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -508,6 +509,7 @@ const char*
 geda_action_get_action_name (GedaAction *action)
 {
   g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
+
   return action->action_name;
 }
 
@@ -524,6 +526,7 @@ const char*
 geda_action_get_icon_name (GedaAction *action)
 {
   g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
+
   return action->icon_name;
 }
 
