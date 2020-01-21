@@ -829,7 +829,7 @@ static void geda_bulb_instance_init (GTypeInstance *instance, void *class)
 
   gtk_toggle_button_set_active ((GtkToggleButton*)bulb, TRUE);
 
-  ((GtkContainer*)bulb)->border_width = 1;
+  g_object_set (bulb, "border_width", 1, NULL);   /* set the value */
 
   bulb->group = g_slist_prepend (NULL, bulb);
 

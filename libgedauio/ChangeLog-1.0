@@ -6,7 +6,8 @@
     * src/widgets/geda_bulb.c: Revise geda_bulb_draw_indicator to not
       bother checking and setting state_type to GTK_STATE_ACTIVE or
       GTK_STATE_PRELIGHT since alpha is only varied if state_type is
-      GTK_STATE_INSENSITIVE.
+      GTK_STATE_INSENSITIVE. Revise geda_bulb_instance_init to utilize
+      g_object_set to set the "border_width" property.
 
 2020-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
