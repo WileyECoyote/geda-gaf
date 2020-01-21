@@ -228,7 +228,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_preferred_size (GTK_WIDGET(w), NULL, &r); &r; })
 #else
-/* Handle the Gtk == 2 and GSEAL_ENABLE is defined */
+/* Handle Gtk == 2 and GSEAL_ENABLE is defined */
 #define geda_get_widget_requisition(w) \
   ({ GtkRequisition r; gtk_widget_get_requisition (GTK_WIDGET(w), &r); &r; })
 #endif
