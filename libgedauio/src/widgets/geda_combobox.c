@@ -571,7 +571,7 @@ static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
   if (priv->has_entry) {
 
       /* this flag is a hack to tell the entry to fill its allocation. */
-      ((GtkEntry*)widget)->is_cell_renderer = TRUE;
+      //((GtkEntry*)widget)->is_cell_renderer = TRUE;
 
       g_signal_connect (widget, "changed",
                         G_CALLBACK (geda_combo_box_entry_contents_changed),
