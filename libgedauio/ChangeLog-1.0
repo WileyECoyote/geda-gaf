@@ -12,6 +12,9 @@
     * src/widgets/geda_check_menu_item.c Add x_thickness and revise
       geda_real_check_menu_item_draw_indicator to compile when GSEAL_ENABLE.
 
+    * src/widgets/geda_combobox.c: Add ancillary parent and utilize
+      geda_get_widget_parent macro in geda_combo_box_add.
+
 2020-01-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Reluctantly include all of gtk.h:

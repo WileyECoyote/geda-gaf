@@ -550,7 +550,9 @@ static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 
     if (!priv->tree_view && priv->separator) {
 
-      geda_container_remove (priv->separator->parent, priv->separator);
+      GtkWidget *parent = geda_get_widget_parent(priv->separator);
+
+      geda_container_remove (parent, priv->separator);
 
       priv->separator = NULL;
 
