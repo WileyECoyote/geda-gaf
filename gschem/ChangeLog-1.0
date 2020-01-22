@@ -1,35 +1,28 @@
+2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_menus.c: Revise x_menu_execute to check that
+      geda_action_get_action_name returned a pointer and
+      send an error message to stderr if action name is NULL.
+
 2020-01-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
 
 2020-01-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/de.po: Update German translations.
-
     * po/el.po: Update Greek translations.
-
     * po/en_GB.po: Update Great Britain.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
 
 2020-01-06 Wiley E. Hill <wileyhill@gmail.com>

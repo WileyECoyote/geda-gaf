@@ -211,32 +211,37 @@ static void x_menu_execute(GedaAction *action, void *user_data)
   const char     *action_name  = geda_action_get_action_name(action);
   char           *menu_action  = NULL;
 
-  if (i_command_is_valid(action_name)) {
+  if (action_name) {
+
+    if (i_command_is_valid(action_name)) {
 
 #if DEBUG
-    fprintf(stderr, "Bypassing, guile for menu action %s\n",action_name);
+      fprintf(stderr, "Bypassing, guile for menu action %s\n", action_name);
 #endif
 
-    i_command_process(w_current, action_name, 0, NULL, ID_ORIGIN_MENU);
-  }
-  else {
-
-    if (strncmp (action_name, "buffer-", 7) == 0 ) {
-
-      /* Append the string with -menu, like "buffer-copy2-menu" */
-      menu_action = geda_strconcat (action_name, "-menu", NULL);
-
-      g_action_eval_by_name (w_current, menu_action);
-      GEDA_FREE(menu_action);
+      i_command_process(w_current, action_name, 0, NULL, ID_ORIGIN_MENU);
     }
     else {
 
-#if DEBUG
-      fprintf(stderr, "passing action to guile %s\n", action_name);
-#endif
+      if (strncmp (action_name, "buffer-", 7) == 0 ) {
 
-      g_action_eval_by_name (w_current, action_name);
+        /* Append the string with -menu, like "buffer-copy2-menu" */
+        menu_action = geda_strconcat (action_name, "-menu", NULL);
+
+        g_action_eval_by_name (w_current, menu_action);
+        GEDA_FREE(menu_action);
+      }
+      else {
+
+#if DEBUG
+        fprintf(stderr, "passing action to guile %s\n", action_name);
+#endif
+        g_action_eval_by_name (w_current, action_name);
+      }
     }
+  }
+  else {
+      fprintf(stderr, "Error detected: menu action has no name.\n");
   }
 }
 
