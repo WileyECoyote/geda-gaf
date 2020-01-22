@@ -508,9 +508,15 @@ geda_action_activate (GedaAction *action)
 const char*
 geda_action_get_action_name (GedaAction *action)
 {
-  g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
+  if (GEDA_IS_ACTION (action)) {
+    return action->action_name;
+  }
 
-  return action->action_name;
+  if (GEDA_IS_TOGGLE_ACTION (action)) {
+    return ((GedaToggleAction*)action)->action_name;
+  }
+
+  return NULL;
 }
 
 /*!

@@ -3,6 +3,9 @@
     * include/geda_toggle_action.h: Add pointer to action_name to the
       _GedaToggleAction structure.
 
+    * src/widgets/geda_action.c: Revise geda_action_get_action_name to
+      handle the case the actions is a GedaToggleAction.
+
     * src/widgets/geda_bulb.c: Revise geda_bulb_draw_indicator to handle
       the case when GSEAL_ENABLE is defined by utilizing macros, specifically
       geda_get_widget_style and geda_get_widget_window and use gtk_render_frame
