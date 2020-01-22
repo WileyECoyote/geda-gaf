@@ -645,7 +645,9 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
         /* ----------------- Draw Backing Button Area ----------------- */
         if (gdk_rectangle_intersect (area, &restrict_area, &new_area)) {
 
-          gtk_paint_flat_box (widget->style, widget->window, GTK_STATE_PRELIGHT,
+          gtk_paint_flat_box (geda_get_widget_style(widget),
+                              geda_get_widget_window(widget),
+                              GTK_STATE_PRELIGHT,
                               GTK_SHADOW_ETCHED_OUT,
                               area, widget, "checkbutton",
                               new_area.x, new_area.y,

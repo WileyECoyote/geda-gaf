@@ -1,3 +1,9 @@
+2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_bulb.c: Revise geda_bulb_draw_indicator to handle
+      the case when GSEAL_ENABLE is defined by utilizing macros, specifically
+      geda_get_widget_style and geda_get_widget_window.
+
 2020-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macro geda_get_widget_style to handle
