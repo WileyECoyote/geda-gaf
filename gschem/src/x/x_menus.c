@@ -202,7 +202,7 @@ static void x_menu_update_recent_files (void);
  *  to g_action_eval_by_name for evaluation with guile.
  *
  * \remarks The process evaluated all of the action string with
- *  guile, resulting in c=>scheme=>c. This in efficiency and
+ *  guile, resulting in c=>scheme=>c. This is inefficient and
  *  proved to be unstable.
  */
 static void x_menu_execute(GedaAction *action, void *user_data)
