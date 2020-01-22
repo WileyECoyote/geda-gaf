@@ -622,6 +622,8 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     /* Calculate vertical position widget height and indicator size */
     y = allocation->y + (allocation->height - indicator_size) / 2;
 
+    cr = gdk_cairo_create (geda_get_widget_window(widget));
+
     /* -------------------- Setup Widget State -------------------- */
 
     if (!gtk_widget_is_sensitive (widget))
@@ -645,6 +647,8 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
         /* ----------------- Draw Backing Button Area ----------------- */
         if (gdk_rectangle_intersect (area, &restrict_area, &new_area)) {
 
+#if GTK_MAJOR_VERSION < 3
+
           gtk_paint_flat_box (geda_get_widget_style(widget),
                               geda_get_widget_window(widget),
                               GTK_STATE_PRELIGHT,
@@ -652,12 +656,28 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
                               area, widget, "checkbutton",
                               new_area.x, new_area.y,
                               new_area.width, new_area.height);
+
+#else /* GTK_MAJOR_VERSION > 2 */
+
+          GtkStyleContext *context;
+
+          context = gtk_widget_get_style_context (widget);
+
+          gtk_render_frame (context, cr,
+                            new_area.x, new_area.y,
+                            new_area.width, new_area.height);
+
+          gtk_render_background(context, cr,
+                                new_area.x, new_area.y,
+                                new_area.width, new_area.height);
+
+#endif
+
         }
       }
     }
-    /* ----------------- Draw the Indicator Bulb ------------------ */
 
-    cr = gdk_cairo_create( widget->window );
+    /* ----------------- Draw the Indicator Bulb ------------------ */
 
     if (geda_toggle_button_get_active(toggle_button)) {
       gdk_cairo_set_source_pixbuf (cr, on_pixbuf, x, y);

@@ -2,7 +2,8 @@
 
     * src/widgets/geda_bulb.c: Revise geda_bulb_draw_indicator to handle
       the case when GSEAL_ENABLE is defined by utilizing macros, specifically
-      geda_get_widget_style and geda_get_widget_window.
+      geda_get_widget_style and geda_get_widget_window and use gtk_render_frame
+      and gtk_render_background instead of gtk_paint_flat_box when Gtk > 2.
 
 2020-01-21 Wiley E. Hill <wileyhill@gmail.com>
 
