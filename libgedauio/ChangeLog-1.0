@@ -1,5 +1,8 @@
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_toggle_action.h: Add pointer to action_name to the
+      _GedaToggleAction structure.
+
     * src/widgets/geda_bulb.c: Revise geda_bulb_draw_indicator to handle
       the case when GSEAL_ENABLE is defined by utilizing macros, specifically
       geda_get_widget_style and geda_get_widget_window and use gtk_render_frame
@@ -7,6 +10,9 @@
 
     * src/widgets/geda_check_menu_item.c: Revise geda_real_check_menu_item_
       draw_indicator to utilize geda_get_widget_allocation.
+
+    * src/widgets/geda_toggle_action.c: Revise geda_toggle_action_new to
+      make a copy of the action_name.
 
 2020-01-21 Wiley E. Hill <wileyhill@gmail.com>
 

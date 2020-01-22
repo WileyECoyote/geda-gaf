@@ -36,7 +36,9 @@
 #include "../../../config.h"
 #endif
 
-#include <geda/geda.h>
+#define WITHOUT_GUILE 1
+#include <libgeda/libgeda.h>
+#include <geda/geda_standard.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -46,6 +48,7 @@
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/gettext.h"
+
 #include <geda_debug.h>
 
 /**
@@ -354,6 +357,8 @@ geda_toggle_action_new (const char *name,
                                                     "stock-id", icon_id,
                                                     NULL);
   }
+
+  action->action_name = geda_strdup (name);
 
   return action;
 }
