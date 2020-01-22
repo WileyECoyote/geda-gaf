@@ -311,6 +311,7 @@ bool is_a_geda_toggle_action (GedaToggleAction *action)
   if ((action != NULL) && (toggle_action_hash != NULL)) {
     return g_hash_table_lookup(toggle_action_hash, action) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
@@ -353,6 +354,7 @@ geda_toggle_action_new (const char *name,
                                                     "stock-id", icon_id,
                                                     NULL);
   }
+
   return action;
 }
 
