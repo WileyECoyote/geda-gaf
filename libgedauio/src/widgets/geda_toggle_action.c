@@ -69,7 +69,6 @@ enum {
   PROP_MULTIKEY_ACCEL
 };
 
-//static char *ptr_multikey_accel = NULL;
 static GObjectClass *geda_toggle_action_parent_class = NULL;
 
 static GHashTable *toggle_action_hash = NULL;
