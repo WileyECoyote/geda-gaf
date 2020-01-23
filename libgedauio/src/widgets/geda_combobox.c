@@ -536,12 +536,12 @@ static void geda_combo_box_add (GtkContainer *container, GtkWidget *widget)
 
   if (priv->cell_view && gtk_widget_get_parent (priv->cell_view)) {
     gtk_widget_unparent (priv->cell_view);
-    GTK_BIN (container)->child = NULL;
+    geda_set_bin_child (container, NULL);
     gtk_widget_queue_resize ((GtkWidget*)container);
   }
 
   gtk_widget_set_parent (widget, (GtkWidget*)container);
-  GTK_BIN (container)->child = widget;
+  geda_set_bin_child (container, widget);
 
   if (priv->cell_view && widget != priv->cell_view) {
 

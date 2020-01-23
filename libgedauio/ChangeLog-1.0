@@ -5,6 +5,9 @@
           * geda_get_widget_in_destruction
           * geda_set_bin_child
 
+    * src/widgets/geda_combobox.c: Utilize geda_set_bin_child macro in
+      geda_combo_box_add.
+
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_toggle_action.h: Add pointer to action_name to the
