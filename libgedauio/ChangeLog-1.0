@@ -6,7 +6,10 @@
           * geda_set_bin_child
 
     * src/widgets/geda_combobox.c: Utilize geda_set_bin_child macro in
-      geda_combo_box_add.
+      functions:
+
+          * geda_combo_box_add
+          * geda_combo_box_remove
 
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
