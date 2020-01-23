@@ -201,6 +201,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_container_border_width(w) ((GtkContainer*)w)->border_width
 
+#define geda_set_bin_child(b,c) GTK_BIN (b)->child = c
+
 #define geda_toggle_button_get_active(tb) GTK_TOGGLE_BUTTON(tb)->active
 
 #define geda_toggle_button_set_active(tb, a) GTK_TOGGLE_BUTTON(tb)->active = a
@@ -276,6 +278,10 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #   define gtk_hscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
 
 #   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
+
+#define geda_set_bin_child(b,c) \
+void _gtk_bin_set_child (GtkBin *bin, GtkWidget *widget); \
+     _gtk_bin_set_child ((GtkBin*)b, (GtkWidget*)c)
 
 #if !defined gtk_dialog_set_has_separator
 #   define gtk_dialog_set_has_separator(obj, setting);

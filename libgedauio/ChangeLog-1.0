@@ -1,6 +1,9 @@
 2020-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macro geda_get_widget_in_destruction.
+    * include/geda_gtk_compat.h: Add macros:
+
+          * geda_get_widget_in_destruction
+          * geda_set_bin_child
 
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
