@@ -539,7 +539,7 @@ geda_action_get_icon_name (GedaAction *action)
 /*!
  * \brief GedaAction Set Icon Name
  * \par Function Description
- *  Set the name of the icon asociated with the GedaAction
+ *  Set the name of the icon associated with the GedaAction
  *  object.
  *
  * \param [in] action    A GedaAction object
