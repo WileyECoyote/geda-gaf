@@ -183,6 +183,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk < 3 */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
 
+#define geda_get_widget_in_destruction(w) GTK_OBJECT_FLAGS (w) & GTK_IN_DESTRUCTION
+
 /*! \def geda_get_widget_parent Get parent from widget Gtk < 3 */
 #define geda_get_widget_parent(w) (void*)((GtkWidget*)w)->parent
 
@@ -219,6 +221,12 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk >= 3 */
 #define geda_get_widget_allocation(w) \
   ({ GtkAllocation a; gtk_widget_get_allocation (GTK_WIDGET(w), &a); &a; })
+
+#if defined (gtk_widget_in_destruction)
+#define geda_get_widget_in_destruction(w) gtk_widget_in_destruction(GTK_WIDGET(w))
+#else
+#define geda_get_widget_in_destruction(w) FALSE
+#endif
 
 /*! \def geda_get_widget_parent Get parent from widget Gtk >= 3 */
 #define geda_get_widget_parent(w) gtk_widget_get_parent (GTK_WIDGET(w))

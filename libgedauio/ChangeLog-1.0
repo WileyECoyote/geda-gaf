@@ -1,3 +1,7 @@
+2020-01-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Add macro geda_get_widget_in_destruction.
+
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_toggle_action.h: Add pointer to action_name to the
