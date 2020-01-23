@@ -12,6 +12,9 @@
           * geda_combo_box_remove
           * geda_combo_box_instance_init
 
+    * src/widgets/geda_toggle_action.c: Release action_name allocation in
+      geda_toggle_action_finalize.
+
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_toggle_action.h: Add pointer to action_name to the

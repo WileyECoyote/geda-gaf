@@ -103,6 +103,11 @@ geda_toggle_action_finalize (GObject *object)
     }
   }
 
+  if (action->action_name) {
+    g_free (action->action_name);
+    action->action_name = NULL;
+  }
+
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
   }
