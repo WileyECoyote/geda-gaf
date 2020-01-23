@@ -2350,7 +2350,7 @@ static void geda_combo_box_instance_init(GTypeInstance *instance, void *class)
 
   gtk_widget_set_parent (priv->cell_view, GTK_WIDGET (combo_box));
 
-  GTK_BIN (combo_box)->child = priv->cell_view;
+  geda_set_bin_child (combo_box, priv->cell_view);
 
   gtk_widget_show (priv->cell_view);
 

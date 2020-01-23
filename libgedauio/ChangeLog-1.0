@@ -10,6 +10,7 @@
 
           * geda_combo_box_add
           * geda_combo_box_remove
+          * geda_combo_box_instance_init
 
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
