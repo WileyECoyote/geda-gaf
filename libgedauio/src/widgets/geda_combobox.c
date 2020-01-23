@@ -662,7 +662,7 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
   if (!priv->cell_view) {
     priv->cell_view = gtk_cell_view_new ();
     gtk_widget_set_parent (priv->cell_view, GTK_WIDGET (container));
-    GTK_BIN (container)->child = priv->cell_view;
+    geda_set_bin_child (container, priv->cell_view);
 
     gtk_widget_show (priv->cell_view);
     gtk_cell_view_set_model ((GtkCellView*)priv->cell_view, priv->model);
