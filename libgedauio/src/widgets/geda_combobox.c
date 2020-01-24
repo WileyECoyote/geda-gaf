@@ -1697,7 +1697,7 @@ static void geda_combo_box_set_property (GObject      *object,
 
         GtkWidget *child;
 
-        child = gtk_bin_get_child ((GtkBin*)combo_box);
+        child = geda_get_child_widget (combo_box);
 
         gtk_entry_set_has_frame ((GtkEntry*)child, combo_box->priv->has_frame);
       }
