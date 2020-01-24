@@ -1,3 +1,8 @@
+2020-01-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Utilize geda_get_child_widget macro in
+      functions geda_combo_box_remove.
+
 2020-01-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:

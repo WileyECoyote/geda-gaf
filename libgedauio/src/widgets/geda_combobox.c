@@ -621,7 +621,8 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
 
     GtkWidget *child_widget;
 
-    child_widget = gtk_bin_get_child (GTK_BIN (container));
+    child_widget = geda_get_child_widget (container);
+
     if (widget && widget == child_widget) {
       g_signal_handlers_disconnect_by_func (widget,
                                             geda_combo_box_entry_contents_changed,
