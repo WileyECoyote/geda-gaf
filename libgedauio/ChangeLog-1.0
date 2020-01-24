@@ -10,6 +10,7 @@
           * geda_combo_box_buildable_get_internal_child
           * geda_combo_box_menu_item_activate
           * geda_combo_box_entry_active_changed
+          * geda_combo_box_start_editing
 
 2020-01-23 Wiley E. Hill <wileyhill@gmail.com>
 

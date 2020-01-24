@@ -6353,7 +6353,11 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
   }
   else {
 
-    g_signal_connect_object (GTK_BIN (combo_box)->child, "key-press-event",
+    GtkWidget *child;
+
+    child = geda_get_child_widget(combo_box);
+
+    g_signal_connect_object (child, "key-press-event",
                              G_CALLBACK (gtk_cell_editable_key_press),
                              cell_editable, 0);
 
