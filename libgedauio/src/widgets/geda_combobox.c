@@ -4017,7 +4017,7 @@ static void geda_combo_box_menu_item_activate (GtkWidget *item,
   GtkTreePath  *path;
   GtkTreeIter   iter;
 
-  cell_view = gtk_bin_get_child ((GtkBin*)item);
+  cell_view = geda_get_child_widget (item);
 
   g_return_if_fail (GTK_IS_CELL_VIEW (cell_view));
 
