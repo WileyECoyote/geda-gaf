@@ -7,6 +7,7 @@
           * geda_combo_box_grab_focus
           * geda_combo_box_mnemonic_activate
           * geda_combo_box_set_property
+          * geda_combo_box_buildable_get_internal_child
 
 2020-01-23 Wiley E. Hill <wileyhill@gmail.com>
 

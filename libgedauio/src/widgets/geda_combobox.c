@@ -1780,7 +1780,7 @@ static GObject *geda_combo_box_buildable_get_internal_child (GtkBuildable *build
   GObject      *object;
 
   if (combo_box->priv->has_entry && strcmp (childname, "entry") == 0) {
-    object = (GObject*)gtk_bin_get_child ((GtkBin*)buildable);
+    object = (GObject*)geda_get_child_widget (buildable);
   }
   else {
     object = parent_buildable_iface->get_internal_child (buildable, builder, childname);
