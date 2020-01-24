@@ -7369,7 +7369,7 @@ GtkWidget *geda_combo_widget_get_entry_widget (GtkWidget *combo_box)
 {
   if (GEDA_IS_COMBO_BOX (combo_box)) {
     if (((GedaComboBox*)combo_box)->priv->has_entry) {
-      return gtk_bin_get_child(GTK_BIN(combo_box));
+      return geda_get_child_widget(combo_box);
     }
   }
   else {
