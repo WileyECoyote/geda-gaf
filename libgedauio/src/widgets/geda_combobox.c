@@ -4241,7 +4241,7 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
         continue;
       }
 
-      //GtkCellView *child = (GtkCellView*)gtk_bin_get_child ((GtkBin*)menu_item);
+      //GtkCellView *child = (GtkCellView*)geda_get_child_widget (menu_item);
 
       mpath =
       gtk_cell_view_get_displayed_row((GtkCellView*)((GtkBin*)menu_item)->child);
@@ -5971,7 +5971,7 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
  * If \a #GedaComboBox was constructed with geda_combo_box_new_text() then use
  * #GedaComboBoxText and geda_combo_box_text_get_active_text() instead. Or if
  * used with a #GedaEntry then use #GedaComboBox with #GedaComboBox:has-entry
- * as %TRUE and use geda_entry_get_text (GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combobox))).
+ * as %TRUE and use geda_entry_get_text (GEDA_ENTRY (geda_get_child_widget (combobox)).
  */
 char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
 {
@@ -6229,7 +6229,7 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
 
   if (geda_combo_box_get_active_iter (combo_box, &iter)) {
 
-    GedaEntry *entry = GEDA_ENTRY (gtk_bin_get_child (GTK_BIN (combo_box)));
+    GedaEntry *entry = GEDA_ENTRY (geda_get_child_widget (combo_box));
 
     if (entry) {
 
