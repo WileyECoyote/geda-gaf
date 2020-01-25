@@ -4,6 +4,8 @@
 
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
+    * po/ru.po: Update Russian translations.
+
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Revise x_menu_execute to check that

@@ -178,7 +178,7 @@ msgid "Vertical adjustment"
 msgstr ""
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -227,6 +227,7 @@ msgstr ""
 "  -g, --guile <DIR>          Добавьте DIR в путь Guile (pre-config).\n"
 "  -f, --font <NAME>          Установить фамилию шрифта\n"
 "  -h, --help                 Помогите; это сообщение.\n"
+"  -l, --list                 Список сохраненных имен сеансов.\n"
 "  -m, --safe-mode            Безопасный режим.\n"
 "  -n, --no-auto              Нет автоматического загрузки последнего "
 "документа.\n"
@@ -978,11 +979,10 @@ msgstr "Не удалось удалить сессии"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-# Created session
+# There are no saved sessions; Net sokhranennykh sessiy
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Дата создания сеанса"
+msgstr "Нет сохраненных сессий"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4293,10 +4293,10 @@ msgstr "Закрыть страницу"
 msgid "Discard Page"
 msgstr "Выбросьте страницу"
 
+# Revert Page; Vernut' stranitsu
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Отменить все изменения"
+msgstr "Вернуть страницу"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4433,11 +4433,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
-# Created session
+# Confirm delete session; Podtverdite udaleniye sessii
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Дата создания сеанса"
+msgstr "Подтвердите удаление сессии"
 
 # Select export file
 #: gschem/src/x/x_sessions.c:238
@@ -5230,10 +5229,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "_Предыдущая"
 
+# View previous; Posmotret' predydushchiy
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Предыдущая"
+msgstr "Посмотреть предыдущий"
 
 # Zoom All
 #: gschem/etc/system-gschemrc.scm:2207
