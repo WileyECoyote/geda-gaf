@@ -1924,4 +1924,3 @@ msgstr "No s'ha pogut crear el fitxer de registre a"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-

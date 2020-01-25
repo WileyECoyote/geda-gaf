@@ -1931,4 +1931,3 @@ msgstr "Не вдалося створити файл увійти"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
