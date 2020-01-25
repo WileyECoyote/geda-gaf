@@ -178,7 +178,7 @@ msgid "Vertical adjustment"
 msgstr "Ajuste vertical"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -228,6 +228,7 @@ msgstr ""
 "  -g, --guile <DIR>          adiciona DIR ao caminho de procura de Scheme.\n"
 "  -f, --font <NAME>          Definir o nome de família da fonte\n"
 "  -h, --help                 Ajuda; esta messagem.\n"
+"  -l, --list                 Listar nomes de sessão salvos.\n"
 "  -m, --safe-mode            Modo de segurança.\n"
 "  -n, --no-auto              Nenhum último documento de carregamento "
 "automático.\n"
@@ -933,10 +934,10 @@ msgstr "Falha ao remover a sessão"
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "Sessão Criada"
+msgstr "Não há sessões salvas"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4163,11 +4164,10 @@ msgstr "Fechar Página"
 msgid "Discard Page"
 msgstr "Anular Pagina"
 
-# Revert Changes
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Reverter as mudanças"
+msgstr "Reverter página"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4299,10 +4299,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "Sessão Criada"
+msgstr "Confirmar exclusão da sessão"
 
 # Select export file
 #: gschem/src/x/x_sessions.c:238
@@ -5102,10 +5102,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "_Anterior"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Anterior"
+msgstr "Ver anterior"
 
 # Zoom All
 #: gschem/etc/system-gschemrc.scm:2207
