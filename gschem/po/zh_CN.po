@@ -877,11 +877,10 @@ msgstr ""
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-# Created session
+# There are no saved sessions; Liè chū bǎocún de huìhuà míngchēng
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "创建会话"
+msgstr "列出保存的会话名称"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4110,11 +4109,10 @@ msgstr "关闭页面"
 msgid "Discard Page"
 msgstr "舍弃页"
 
-# Undo changes
+# Revert Page; Huányuán yèmiàn
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "撤消更改"
+msgstr "还原页面"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4242,11 +4240,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
-# Created session
+# Confirm delete session; Quèrèn shānchú huìhuà
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "创建会话"
+msgstr "确认删除会话"
 
 # Select export file
 #: gschem/src/x/x_sessions.c:238
@@ -5042,11 +5039,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "上一个"
 
-# Previous
+# View previous; Chákàn shàng yīgè
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "上一个"
+msgstr "查看上一个"
 
 # Zoom All
 #: gschem/etc/system-gschemrc.scm:2207

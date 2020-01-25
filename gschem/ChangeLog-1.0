@@ -12,6 +12,8 @@
 
     * po/tr.po: Update Turkish translations.
 
+    * po/zh_CN.po: Update Chinese simplified translations.
+
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_menus.c: Revise x_menu_execute to check that
