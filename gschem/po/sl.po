@@ -180,7 +180,7 @@ msgid "Vertical adjustment"
 msgstr "Navpična nastavitev"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -229,6 +229,7 @@ msgstr ""
 "  -g, --guile <DIR>          Dodaj DIR na pot Guile (pred-konfiguracijo).\n"
 "  -f, --font <NAME>          Nastavite ime družine pisave\n"
 "  -h, --help                 Pomoč; To sporočilo.\n"
+"  -l, --list                 Seznam shranjenih imen sej.\n"
 "  -m, --safe-mode            Varni način.\n"
 "  -n, --no-auto              Ni zadnjega dokumenta za samodejno nalaganje.\n"
 "  -o, --output <FILE>        Izhodno ime datoteke (za tiskanje in izpis "
@@ -973,11 +974,10 @@ msgstr ""
 msgid "<b>Could not remove session</b>"
 msgstr ""
 
-# Created session
+# There are no saved sessions
 #: gschem/src/iface/i_sessions.c:940
-#, fuzzy, c-format
 msgid "There are no saved sessions"
-msgstr "ustvaril seje"
+msgstr "Seznam shranjenih imen sej"
 
 #: gschem/src/iface/i_sessions.c:968
 msgid "created with"
@@ -4092,11 +4092,10 @@ msgstr ""
 msgid "Discard Page"
 msgstr ""
 
-# Revert Changes
+# Revert Page; Врати страницу
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Povrni spremembe"
+msgstr "Vrati stranicu"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4222,11 +4221,10 @@ msgstr ""
 msgid "Specify new name for Session:"
 msgstr ""
 
-# Created session
+# Confirm delete session
 #: gschem/src/x/x_sessions.c:194
-#, fuzzy
 msgid "Confirm delete session"
-msgstr "ustvaril seje"
+msgstr "Potrdite brisanje seje"
 
 #: gschem/src/x/x_sessions.c:238
 msgid "Select export file"
