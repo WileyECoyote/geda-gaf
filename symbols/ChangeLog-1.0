@@ -8,6 +8,11 @@
             * simulation/verilog/and4-1.sym
             * simulation/verilog/and4-2.sym
 
+    * simulation/verilog: Swap pinnumber and pinlabel attribute values,
+      make device upper case, reposition attributes:
+
+            * simulation/verilog/and7-2.sym
+
 2020-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/and[2,3]-1.sym: Fix output pinlabel attribute
