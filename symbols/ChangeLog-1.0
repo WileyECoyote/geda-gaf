@@ -15,6 +15,9 @@
             * simulation/verilog/and8-2.sym
             * simulation/verilog/and9-2.sym
 
+    * simulation/verilog/and9-1.sym: Update position and visibility of the
+      numslots attribute.
+
 2020-01-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog/and[2,3]-1.sym: Fix output pinlabel attribute
@@ -24,7 +27,7 @@
             * simulation/verilog/and3-1.sym
 
     * simulation/verilog: Swap pinnumber and pinlabel attribute values,
-      update, make device upper case, reposition attributes:
+      make device upper case, reposition attributes:
 
             * simulation/verilog/and2-2.sym
             * simulation/verilog/and3-2.sym

@@ -121,7 +121,7 @@ T 600 850 5 8 0 1 0 0 1
 device=AND
 T 300 1950 5 8 0 1 0 0 1
 description=VERILOG_PORTS=POSITIONAL
-T 1950 2250 9 10 0 1 0 0 1
+T 300 2250 9 10 0 0 0 0 1
 numslots=0
 T 300 2100 9 10 0 0 0 0 1
 footprint=unknown
