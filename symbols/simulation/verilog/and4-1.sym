@@ -25,7 +25,7 @@ pinseq=2
 T 0 150 9 8 0 1 0 0 1
 pinlabel=IN0
 T 450 150 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 P 300 300 0 300 1 0 1
 {
@@ -36,7 +36,7 @@ pinseq=3
 T 0 350 9 8 0 1 0 0 1
 pinlabel=IN1
 T 450 300 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 P 300 500 0 500 1 0 1
 {
@@ -47,7 +47,7 @@ pinseq=4
 T 0 550 9 8 0 1 0 0 1
 pinlabel=IN2
 T 450 500 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 P 300 700 0 700 1 0 1
 {
@@ -58,7 +58,7 @@ pinseq=5
 T 0 750 9 8 0 1 0 0 1
 pinlabel=IN3
 T 450 750 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 T 1000 800 8 10 1 1 0 6 1
 refdes=U?
