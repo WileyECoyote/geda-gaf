@@ -1106,8 +1106,8 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
 
       /* set some things ready */
       border_width       = geda_get_container_border_width(priv->button);
-      xthickness         = priv->button->style->xthickness;
-      ythickness   = priv->button->style->ythickness;
+      xthickness         = geda_get_widget_style(priv->button)->xthickness;
+      ythickness         = geda_get_widget_style(priv->button)->ythickness;
 
       child_alloc.x      = allocation->x;
       child_alloc.y      = allocation->y;
