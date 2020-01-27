@@ -1209,9 +1209,11 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
 
     /* list mode */
 
+    border_width = geda_get_container_border_width(widget);
+
     /* Combobox thickness + border-width */
-    int delta_x = shadow_width  + ((GtkContainer*)widget)->border_width;
-    int delta_y = shadow_height + ((GtkContainer*)widget)->border_width;
+    int delta_x = shadow_width  + border_width;
+    int delta_y = shadow_height + border_width;
 
     /* button */
     GEDA_COMBO_BOX_SIZE_ALLOCATE_BUTTON
