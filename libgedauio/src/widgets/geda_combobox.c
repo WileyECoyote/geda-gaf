@@ -1066,6 +1066,9 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
   int shadow_height;
   int focus_width;
   int focus_pad;
+  int border_width;
+  int xthickness;
+  int ythickness;
 
   bool is_rtl;
 
@@ -1079,8 +1082,8 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
                         NULL);
 
   if (GTK_SHADOW_NONE != priv->shadow_type) {
-    shadow_width  = widget->style->xthickness;
-    shadow_height = widget->style->ythickness;
+    shadow_width  = geda_get_widget_style(widget)->xthickness;
+    shadow_height = geda_get_widget_style(widget)->ythickness;
   }
   else {
     shadow_width  = 0;
@@ -1091,7 +1094,6 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
 
     if (priv->cell_view) {
 
-      int border_width, xthickness, ythickness;
       int width;
 
       /* menu mode */
