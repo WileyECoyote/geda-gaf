@@ -3,6 +3,7 @@
     * src/widgets/geda_combobox.c: Utilize macros:
 
           * geda_get_widget_in_destruction
+          * geda_get_widget_style
 
 2020-01-24 Wiley E. Hill <wileyhill@gmail.com>
 

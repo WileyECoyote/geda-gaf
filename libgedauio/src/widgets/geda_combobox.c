@@ -706,7 +706,7 @@ static bool geda_combo_box_expose_event (GtkWidget      *widget,
 
     allocation = geda_get_widget_allocation (widget);
 
-    gtk_paint_shadow (widget->style, widget->window,
+    gtk_paint_shadow (geda_get_widget_style(widget), widget->window,
                       GTK_STATE_NORMAL, priv->shadow_type,
                       NULL, widget, "combobox",
                       allocation->x, allocation->y,
