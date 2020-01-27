@@ -1071,7 +1071,7 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
 
   is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;
 
-  widget->allocation = *allocation;
+  geda_set_widget_allocation(widget, allocation);
 
   gtk_widget_style_get ((GtkWidget*)widget,
                         "focus-line-width", &focus_width,

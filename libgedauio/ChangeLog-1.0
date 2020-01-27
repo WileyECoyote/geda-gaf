@@ -5,6 +5,7 @@
           * geda_get_widget_in_destruction
           * geda_get_widget_style
           * geda_get_widget_window
+          * geda_set_widget_allocation
 
 2020-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
