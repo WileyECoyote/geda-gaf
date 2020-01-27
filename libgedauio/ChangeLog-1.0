@@ -1,3 +1,9 @@
+2020-01-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Utilize macros:
+
+          * geda_get_widget_in_destruction
+
 2020-01-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Utilize geda_get_child_widget macro in

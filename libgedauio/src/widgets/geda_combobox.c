@@ -638,7 +638,7 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
   gtk_widget_unparent (widget);
   geda_set_bin_child (container, NULL);
 
-  if (GTK_OBJECT_FLAGS (combo_box) & GTK_IN_DESTRUCTION) {
+  if (geda_get_widget_in_destruction(combo_box)) {
     return;
   }
 
