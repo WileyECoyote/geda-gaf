@@ -1241,10 +1241,12 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
       /* the widget */
       if (priv->has_frame) {
 
-        delta_x = ((GtkContainer*)priv->cell_view_frame)->border_width +
-                  ((GtkWidget*)   priv->cell_view_frame)->style->xthickness;
-        delta_y = ((GtkContainer*)priv->cell_view_frame)->border_width +
-                  ((GtkWidget*)   priv->cell_view_frame)->style->ythickness;
+        border_width = geda_get_container_border_width(priv->cell_view_frame);
+        xthickness   = geda_get_widget_style(priv->cell_view_frame)->xthickness;
+        ythickness   = geda_get_widget_style(priv->cell_view_frame)->ythickness;
+
+        delta_x = border_width + xthickness;
+        delta_y = border_width + ythickness;
 
         child_alloc.x      += delta_x;
         child_alloc.y      += delta_y;
