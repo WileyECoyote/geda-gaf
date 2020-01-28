@@ -165,8 +165,7 @@ geda_widget_modify_bg (GtkWidget      *widget,
                        GtkStateType    state,
                        const GdkColor *color)
 {
-  geda_widget_modify_color (GTK_WIDGET(widget),
-                            GTK_RC_BG, state, color);
+  geda_widget_modify_color (GTK_WIDGET(widget), GTK_RC_BG, state, color);
 }
 
 /*!
