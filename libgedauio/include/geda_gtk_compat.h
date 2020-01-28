@@ -176,6 +176,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_adjustment_lower(a) ((GtkAdjustment*)a)->lower
 
+#define geda_get_adjustment_page_size(a) ((GtkAdjustment*)a)->page_size
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
@@ -217,6 +219,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_accel_group_is_locked(g) gtk_accel_group_get_is_locked ((GtkAccelGroup*)g)
 
 #define geda_get_adjustment_lower(a) gtk_adjustment_get_lower((GtkAdjustment*)a)
+
+#define geda_get_adjustment_page_size(a) gtk_adjustment_get_lower((GtkAdjustment*)a)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)

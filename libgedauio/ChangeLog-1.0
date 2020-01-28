@@ -1,8 +1,9 @@
 2020-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macro:
+    * include/geda_gtk_compat.h: Add macros:
 
           * geda_get_adjustment_lower
+          * geda_get_adjustment_page_size
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_remove to not
       bother setting is_cell_renderer to FALSE.
