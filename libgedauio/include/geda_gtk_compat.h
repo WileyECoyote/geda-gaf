@@ -174,6 +174,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_accel_group_is_locked Get GtkAccelGroup lock_count > 0 Gtk < 3*/
 #define geda_get_accel_group_is_locked(grp) ((grp)->lock_count > 0)
 
+#define geda_get_adjustment_lower(a) ((GtkAdjustment*)a)->lower
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
@@ -213,6 +215,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 /*! \def geda_get_accel_group_is_locked Get GtkAccelGroup lock_count > 0 Gtk >= 3*/
 #define geda_get_accel_group_is_locked(g) gtk_accel_group_get_is_locked ((GtkAccelGroup*)g)
+
+#define geda_get_adjustment_lower(a) gtk_adjustment_get_lower((GtkAdjustment*)a)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
