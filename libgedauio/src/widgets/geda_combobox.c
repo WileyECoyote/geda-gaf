@@ -1315,8 +1315,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
                         "arrow-size", &arrow_size,
                         NULL);
 
-
-  font_desc = child->style->font_desc;
+  font_desc = geda_get_widget_style(child)->font_desc;
   context   = gtk_widget_get_pango_context (widget);
   metrics   = pango_context_get_metrics (context, font_desc,
                                          pango_context_get_language (context));
