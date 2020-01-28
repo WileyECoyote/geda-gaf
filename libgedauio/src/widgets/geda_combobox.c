@@ -627,7 +627,7 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
       g_signal_handlers_disconnect_by_func (widget,
                                             geda_combo_box_entry_contents_changed,
                                             container);
-      GTK_ENTRY (widget)->is_cell_renderer = FALSE;
+      //GTK_ENTRY (widget)->is_cell_renderer = FALSE;
     }
   }
 

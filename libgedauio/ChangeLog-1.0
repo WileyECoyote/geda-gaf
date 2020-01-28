@@ -1,3 +1,8 @@
+2020-01-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_remove to not
+      bother setting is_cell_renderer to FALSE.
+
 2020-01-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Utilize macros:
