@@ -211,6 +211,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_set_bin_child(b,c) GTK_BIN (b)->child = c
 
+#define geda_set_widget_allocation(w,a) w->allocation = *a
+
 #define geda_toggle_button_get_active(tb) GTK_TOGGLE_BUTTON(tb)->active
 
 #define geda_toggle_button_set_active(tb, a) GTK_TOGGLE_BUTTON(tb)->active = a
@@ -302,6 +304,8 @@ void _gtk_bin_set_child (GtkBin *bin, GtkWidget *widget); \
 #if !defined gtk_dialog_set_has_separator
 #   define gtk_dialog_set_has_separator(obj, setting);
 #endif
+
+#define geda_set_widget_allocation(w,a) gtk_widget_set_allocation (w, a)
 
 #define geda_toggle_button_get_active(tb) gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tb))
 
