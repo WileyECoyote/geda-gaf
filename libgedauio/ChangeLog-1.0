@@ -4,6 +4,7 @@
 
           * geda_get_adjustment_lower
           * geda_get_adjustment_page_size
+          * geda_get_adjustment_upper
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_remove to not
       bother setting is_cell_renderer to FALSE.
