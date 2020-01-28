@@ -7,6 +7,7 @@
           * geda_get_widget_window
           * geda_set_widget_allocation
           * geda_get_container_border_width
+          * geda_get_child_widget
 
 2020-01-24 Wiley E. Hill <wileyhill@gmail.com>
 

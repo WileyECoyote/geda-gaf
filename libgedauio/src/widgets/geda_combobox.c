@@ -1275,7 +1275,7 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
     child_alloc.width  = MAX (1, child_alloc.width);
     child_alloc.height = MAX (1, child_alloc.height);
 
-    gtk_widget_size_allocate (((GtkBin*)combo_box)->child, &child_alloc);
+    gtk_widget_size_allocate (geda_get_child_widget(combo_box), &child_alloc);
   }
 }
 
