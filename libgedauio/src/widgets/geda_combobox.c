@@ -1386,7 +1386,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
 
         GtkWidget    *cell  = (GtkWidget*)priv->cell_view_frame;
         GtkContainer *frame = ((GtkContainer*)priv->cell_view_frame);
-        int           fbw   = frame->border_width;
+        unsigned int  fbw   = geda_get_container_border_width(frame);
 
         requisition->width  += (fbw + cell->style->xthickness) << 1;
         requisition->height += (fbw + cell->style->ythickness) << 1;
