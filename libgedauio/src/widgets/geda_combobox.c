@@ -1339,8 +1339,8 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
       gtk_widget_size_request (priv->button, &button_req);
 
       border_width   = geda_get_container_border_width(combo_box);
-      xthickness     = priv->button->style->xthickness;
-      ythickness     = priv->button->style->ythickness;
+      xthickness     = geda_get_widget_style(priv->button)->xthickness;
+      ythickness     = geda_get_widget_style(priv->button)->ythickness;
 
       bin_req.width  = MAX (bin_req.width, priv->width);
       bin_req.height = MAX (bin_req.height, priv->height);
