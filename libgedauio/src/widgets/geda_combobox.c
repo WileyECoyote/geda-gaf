@@ -624,6 +624,7 @@ static void geda_combo_box_remove (GtkContainer *container, GtkWidget *widget)
     child_widget = geda_get_child_widget (container);
 
     if (widget && widget == child_widget) {
+
       g_signal_handlers_disconnect_by_func (widget,
                                             geda_combo_box_entry_contents_changed,
                                             container);
@@ -1121,7 +1122,6 @@ static void geda_combo_box_size_allocate (GtkWidget     *widget,
         child_alloc.height -= (child_alloc.y - allocation->y) << 1;
       }
 
-
       /* handle the children */
       gtk_widget_size_request (priv->arrow, &req);
       child_alloc.width = req.width;
@@ -1360,6 +1360,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
       requisition->height = height;
     }
     else {
+
       GtkRequisition but_req;
 
       gtk_widget_size_request (priv->button, &but_req);
