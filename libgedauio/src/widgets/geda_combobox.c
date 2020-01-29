@@ -1292,9 +1292,9 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
   GtkRequisition        bin_req;
   GtkWidget            *child;
 
-  int focus_width, focus_pad;
-  int font_size;
-  int arrow_size;
+  unsigned int focus_width, focus_pad;
+  unsigned int font_size;
+  unsigned int arrow_size;
 
   combo_box = (GedaComboBox*)widget;
   priv      = combo_box->priv;

@@ -5,6 +5,10 @@
 
     * include/geda_toggle_action.h: Remove const qualifier from action_name.
 
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_size_request; change
+      int specifier to unsigned for focus_width, focus_pad, font_size and
+      int arrow_size;
+
 2020-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
