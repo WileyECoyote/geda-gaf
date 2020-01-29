@@ -55,8 +55,8 @@ struct _GedaToggleAction
 {
   GtkToggleAction parent_instance;
 
-  const char *action_name;
-        char *multikey_accel;
+  char *action_name;
+  char *multikey_accel;
 };
 
 struct _GedaToggleActionClass

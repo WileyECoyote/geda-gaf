@@ -3,6 +3,8 @@
     * include/geda_gtk_compat.h: Remove cast to void pointer from
       geda_get_widget_style macro.
 
+    * include/geda_toggle_action.h: Remove const qualifier from action_name.
+
 2020-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
