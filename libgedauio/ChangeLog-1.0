@@ -1,3 +1,8 @@
+2020-01-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Remove cast to void pointer from
+      geda_get_widget_style macro.
+
 2020-01-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:

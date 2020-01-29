@@ -200,7 +200,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
-#define geda_get_widget_style(w) (void*)((GtkWidget*)w)->style
+#define geda_get_widget_style(w) ((GtkWidget*)w)->style
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk < 3 */
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
@@ -264,7 +264,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #if (GTK_MAJOR_VERSION < 3)
 /* Handle Gtk == 2 and GSEAL_ENABLE is defined */
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
-#define geda_get_widget_style(w) (void*)gtk_widget_get_style((GtkWidget*)w)
+#define geda_get_widget_style(w) gtk_widget_get_style((GtkWidget*)w)
 #endif
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
