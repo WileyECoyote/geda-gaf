@@ -1295,6 +1295,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
   unsigned int focus_width, focus_pad;
   unsigned int font_size;
   unsigned int arrow_size;
+  unsigned int xthickness, ythickness;
 
   combo_box = (GedaComboBox*)widget;
   priv      = combo_box->priv;
@@ -1334,7 +1335,7 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
       int width, height;
 
       GtkRequisition button_req, sep_req, arrow_req;
-      int border_width, xthickness, ythickness;
+      int border_width;
 
       gtk_widget_size_request (priv->button, &button_req);
 
@@ -1388,8 +1389,11 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
         GtkContainer *frame = ((GtkContainer*)priv->cell_view_frame);
         unsigned int  fbw   = geda_get_container_border_width(frame);
 
-        requisition->width  += (fbw + cell->style->xthickness) << 1;
-        requisition->height += (fbw + cell->style->ythickness) << 1;
+        xthickness = geda_get_widget_style(cell)->xthickness;
+        ythickness = geda_get_widget_style(cell)->ythickness;
+
+        requisition->width  += (fbw + xthickness) << 1;
+        requisition->height += (fbw + ythickness) << 1;
       }
     }
 
