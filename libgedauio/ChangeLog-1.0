@@ -1,7 +1,8 @@
 2020-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add geda_combo_box_set_background_color
-      and call from geda_combo_box_state_changed
+      and call from geda_combo_box_state_changed and reduce geda_combo_box_
+      set_background_color.
 
 2020-01-29 Wiley E. Hill <wileyhill@gmail.com>
 

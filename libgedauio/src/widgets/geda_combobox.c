@@ -1449,18 +1449,18 @@ static void geda_combo_box_state_changed (GtkWidget   *widget,
 /*! \internal widget_class->style_set */
 static void geda_combo_box_style_set (GtkWidget *widget, GtkStyle *previous)
 {
-  GedaComboBox *combo_box = (GedaComboBox*)widget;
-  GedaComboBoxData *priv  = combo_box->priv;
+  GedaComboBox     *combo_box = (GedaComboBox*)widget;
+  GedaComboBoxData *priv      = combo_box->priv;
+  GtkWidget        *child;
 
   geda_combo_box_check_appearance (combo_box);
 
-  if (priv->tree_view && priv->cell_view) {
-    gtk_cell_view_set_background_color ((GtkCellView*)priv->cell_view,
-                                        &widget->style->base[gtk_widget_get_state (widget)]);
-  }
+  geda_combo_box_set_background_color(widget);
 
-  if (GEDA_IS_ENTRY (((GtkBin*)combo_box)->child)) {
-    g_object_set (((GtkBin*)combo_box)->child, "shadow-type",
+  child = geda_get_child_widget(combo_box);
+
+  if (GEDA_IS_ENTRY (child)) {
+    g_object_set (child, "shadow-type",
                   GTK_SHADOW_NONE == priv->shadow_type ?
                   GTK_SHADOW_IN : GTK_SHADOW_NONE, NULL);
   }
