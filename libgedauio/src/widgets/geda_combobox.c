@@ -1405,8 +1405,8 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
   }
 
   if (GTK_SHADOW_NONE != priv->shadow_type) {
-    requisition->height += widget->style->ythickness << 1;
-    requisition->width  += widget->style->xthickness << 1;
+    requisition->height += geda_get_widget_style(widget)->ythickness << 1;
+    requisition->width  += geda_get_widget_style(widget)->xthickness << 1;
   }
 }
 
