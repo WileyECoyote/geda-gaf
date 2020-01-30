@@ -2868,7 +2868,8 @@ static void geda_combo_box_menu_position_over (GtkWidget *menu_widget, /* GedaMe
     menu_xpos = menu_xpos + allocation->width - menu_width;
   }
 
-  gdk_window_get_root_coords (combo_widget->window, menu_xpos, menu_ypos,
+  gdk_window_get_root_coords (geda_get_widget_window(combo_widget),
+                              menu_xpos, menu_ypos,
                               &menu_xpos, &menu_ypos);
 
   /* Clamp the position on screen */
