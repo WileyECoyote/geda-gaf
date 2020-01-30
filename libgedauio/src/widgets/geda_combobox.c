@@ -6268,10 +6268,12 @@ static void geda_combo_box_entry_contents_changed (GedaEntry *entry,
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
 
-  if (geda_combo_box_get_active(combo_box) == -1)
+  if (geda_combo_box_get_active(combo_box) == -1) {
     g_signal_emit_by_name (combo_box, "changed");
-  else
+  }
+  else {
     geda_combo_box_set_active (combo_box, -1);
+  }
 }
 
 static void
