@@ -2766,7 +2766,7 @@ static void geda_combo_box_menu_position_below (GtkWidget *menu,      /* GedaMen
   gdk_window_get_root_coords (window, sx, sy, &sx, &sy);
 
   if (GTK_SHADOW_NONE != combo_box->priv->shadow_type) {
-    sx -=  combo_widget->style->xthickness;
+    sx -= geda_get_widget_style(combo_widget)->xthickness;
   }
 
   gtk_widget_size_request (menu, &req);
