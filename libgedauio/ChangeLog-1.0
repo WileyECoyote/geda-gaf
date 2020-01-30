@@ -3,7 +3,12 @@
     * src/widgets/geda_combobox.c: Add geda_combo_box_set_background_color
       and call from geda_combo_box_state_changed and reduce geda_combo_box_
       set_background_color. Replace dynamic cast with static class cast in
-      geda_combo_box_destroy.
+      geda_combo_box_destroy. Revise geda_combo_box_list_auto_scroll to
+      utilize macros:
+
+          * geda_get_adjustment_upper
+          * geda_get_adjustment_lower
+          * geda_get_adjustment_page_size
 
 2020-01-29 Wiley E. Hill <wileyhill@gmail.com>
 

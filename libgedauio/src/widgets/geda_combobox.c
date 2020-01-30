@@ -4847,41 +4847,66 @@ static void geda_combo_box_list_auto_scroll (GedaComboBox *combo_box, int x, int
   GtkWidget     *tree_view = combo_box->priv->tree_view;
   GtkAdjustment *adj;
   GtkAllocation *allocation;
+  double lower;
+  double page_size;
+  double upper;
   double value;
 
   adj = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (combo_box->priv->scrolled_window));
 
   allocation = geda_get_widget_allocation (tree_view);
 
-  if (adj && adj->upper - adj->lower > adj->page_size) {
+  if (adj) {
 
-    if (x <= allocation->x && adj->lower < adj->value) {
+    upper     = geda_get_adjustment_upper(adj);
+    lower     = geda_get_adjustment_lower(adj);
+    page_size = geda_get_adjustment_page_size(adj);
 
-      value = adj->value - (allocation->x - x + 1);
-      gtk_adjustment_set_value (adj, CLAMP (value, adj->lower, adj->upper - adj->page_size));
-    }
-    else if (x >= allocation->x + allocation->width &&
-             adj->upper - adj->page_size > adj->value)
-    {
-      value = adj->value + (x - allocation->x - allocation->width + 1);
-      gtk_adjustment_set_value (adj, CLAMP (value, 0.0, adj->upper - adj->page_size));
+    if (upper - lower > page_size) {
+
+      value = geda_get_adjustment_value(adj);
+
+      if (x <= allocation->x && lower < value) {
+
+        value = value - (allocation->x - x + 1);
+
+        gtk_adjustment_set_value (adj, CLAMP (value, lower, upper - page_size));
+      }
+      else if (x >= allocation->x + allocation->width &&
+               upper - page_size > value)
+      {
+        value = value + (x - allocation->x - allocation->width + 1);
+
+        gtk_adjustment_set_value (adj, CLAMP (value, 0.0, upper - page_size));
+      }
     }
   }
 
   adj = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (combo_box->priv->scrolled_window));
 
-  if (adj && adj->upper - adj->lower > adj->page_size) {
+  if (adj) {
 
-    if (y <= allocation->y && adj->lower < adj->value) {
+    upper     = geda_get_adjustment_upper(adj);
+    lower     = geda_get_adjustment_lower(adj);
+    page_size = geda_get_adjustment_page_size(adj);
 
-      value = adj->value - (allocation->y - y + 1);
-      gtk_adjustment_set_value (adj, CLAMP (value, adj->lower, adj->upper - adj->page_size));
-    }
-    else if (y >= allocation->height &&
-             adj->upper - adj->page_size > adj->value)
-    {
-      value = adj->value + (y - allocation->height + 1);
-      gtk_adjustment_set_value (adj, CLAMP (value, 0.0, adj->upper - adj->page_size));
+    if (upper - lower > page_size) {
+
+      value = geda_get_adjustment_value(adj);
+
+      if (y <= allocation->y && lower < value) {
+
+        value = value - (allocation->y - y + 1);
+
+        gtk_adjustment_set_value (adj, CLAMP (value, lower, upper - page_size));
+      }
+      else if (y >= allocation->height &&
+               upper - page_size > value)
+      {
+        value = value + (y - allocation->height + 1);
+
+        gtk_adjustment_set_value (adj, CLAMP (value, 0.0, upper - page_size));
+      }
     }
   }
 }
