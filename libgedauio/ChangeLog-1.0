@@ -1,3 +1,8 @@
+2020-01-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Add geda_combo_box_set_background_color
+      and call from geda_combo_box_state_changed
+
 2020-01-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Remove cast to void pointer from
@@ -7,7 +12,11 @@
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_size_request; change
       int specifier to unsigned for focus_width, focus_pad, font_size and
-      int arrow_size;
+      int arrow_size; all of these are pixels and cannot be less than zero.
+      Increase scope of xthickness, ythickness and utilize macros:
+
+          * geda_get_widget_style
+          * geda_get_container_border_width
 
 2020-01-28 Wiley E. Hill <wileyhill@gmail.com>
 

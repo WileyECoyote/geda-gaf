@@ -1410,19 +1410,37 @@ static void geda_combo_box_size_request (GtkWidget      *widget,
   }
 }
 
-/*! \internal widget_class->state_changed */
-static void geda_combo_box_state_changed (GtkWidget   *widget,
-                                          GtkStateType previous)
+static void geda_combo_box_set_background_color (GtkWidget *widget)
 {
   GedaComboBox *combo_box = (GedaComboBox*)widget;
   GedaComboBoxData *priv  = combo_box->priv;
 
-  if (gtk_widget_get_realized (widget)) {
+  if (priv->tree_view && priv->cell_view) {
 
-    if (priv->tree_view && priv->cell_view) {
-      gtk_cell_view_set_background_color ((GtkCellView*)priv->cell_view,
-                                          &widget->style->base[gtk_widget_get_state (widget)]);
-    }
+    GdkColor     *color;
+    GtkCellView  *cell_view;
+    GtkStateType  state;
+
+    cell_view = (GtkCellView*)priv->cell_view;
+
+    state = gtk_widget_get_state (widget);
+    color = GEDA_MEM_ALLOC0 (sizeof(GdkColor));
+
+    color->pixel  = geda_get_widget_style(widget)->base[state].pixel;
+    color->red    = geda_get_widget_style(widget)->base[state].red;
+    color->green  = geda_get_widget_style(widget)->base[state].green;
+    color->blue   = geda_get_widget_style(widget)->base[state].blue;
+
+    gtk_cell_view_set_background_color (cell_view, color);
+  }
+}
+
+/*! \internal widget_class->state_changed */
+static void geda_combo_box_state_changed (GtkWidget   *widget,
+                                          GtkStateType previous)
+{
+  if (gtk_widget_get_realized (widget)) {
+    geda_combo_box_set_background_color(widget);
   }
 
   gtk_widget_queue_draw (widget);
