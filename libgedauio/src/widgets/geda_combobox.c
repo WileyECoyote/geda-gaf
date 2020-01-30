@@ -6416,7 +6416,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable,
                              G_CALLBACK (gtk_cell_editable_key_press),
                              cell_editable, 0);
 
-    gtk_widget_grab_focus (GTK_WIDGET (GTK_BIN (combo_box)->child));
+    gtk_widget_grab_focus (child);
     gtk_widget_set_can_focus (combo_box->priv->button, FALSE);
   }
 
