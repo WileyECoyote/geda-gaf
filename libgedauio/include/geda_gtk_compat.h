@@ -219,7 +219,9 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #else /* GTK >= 3 */
 
+#if GTK_MAJOR_VERSION > 2
 #define GtkObject GtkWidget
+#endif
 
 /*! \def geda_get_accel_group_is_locked Get GtkAccelGroup lock_count > 0 Gtk >= 3*/
 #define geda_get_accel_group_is_locked(g) gtk_accel_group_get_is_locked ((GtkAccelGroup*)g)
