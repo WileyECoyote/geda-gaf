@@ -92,6 +92,23 @@ geda_widget_get_accel_path (GtkWidget *widget, bool *locked)
   return apath ? g_quark_to_string (apath->path_quark) : NULL;
 }
 
+unsigned int geda_widget_get_allocated_width (GtkWidget *widget)
+{
+#if (GTK_MAJOR_VERSION < 3)
+
+    GtkAllocation *allocation;
+
+    allocation  = geda_get_widget_allocation(widget);
+
+    return allocation->width;
+
+#else
+
+  return gtk_widget_get_allocated_width(widget);
+
+#endif
+}
+
 static GQuark quark_aux_info = 0;
 
 

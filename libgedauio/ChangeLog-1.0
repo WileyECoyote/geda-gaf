@@ -2,6 +2,8 @@
 
     * include/geda_gtk_compat.h: Only define GtkObject as GtkWidget if Gtk > 2.
 
+    * src/functions/geda_widget.c: Add function geda_widget_get_allocated_width.
+
 2020-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add geda_combo_box_set_background_color
