@@ -4265,7 +4265,7 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
         mpath = gtk_tree_row_reference_get_path (mref);
       }
     }
-    else if (GTK_IS_CELL_VIEW (((GtkBin*)menu_item)->child)) {
+    else if (GTK_IS_CELL_VIEW (geda_get_child_widget(menu_item))) {
 
       if (skip) {
         skip = FALSE;
