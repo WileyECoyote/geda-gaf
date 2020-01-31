@@ -542,8 +542,8 @@ geda_bulb_clicked (GtkButton *button)
 }
 
 static void
-button_get_props (GtkCheckButton *check_button, int *indicator_size,
-                                                int *indicator_spacing)
+button_get_props (GtkCheckButton *check_button, unsigned int *indicator_size,
+                                                unsigned int *indicator_spacing)
 {
   GtkWidget *widget = (GtkWidget*)check_button;
 
@@ -569,12 +569,12 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
     GtkToggleButton *toggle_button;
     GtkStateType     state_type;
 
-    int  x, y;
-    int  border_width;
-    int  indicator_size;
-    int  indicator_spacing;
-    int  focus_width;
-    int  focus_pad;
+    unsigned int x, y;
+    unsigned int border_width;
+    unsigned int indicator_size;
+    unsigned int indicator_spacing;
+    unsigned int focus_width;
+    unsigned int focus_pad;
 
     bool interior_focus;
     cairo_t *cr;
