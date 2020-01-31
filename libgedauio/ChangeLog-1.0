@@ -8,7 +8,9 @@
       button_get_props to use type unsigned int.
 
     * src/widgets/geda_combobox.c: Replace gtk_widget_get_allocated_width with
-      geda_widget_get_allocated_width in geda_combo_box_real_popup.
+      geda_widget_get_allocated_width in geda_combo_box_real_popup. Add
+      ancillary pointer to cell_view in geda_combo_box_menu_row_inserted and
+      utilize geda_get_child_widget macro.
 
 2020-01-30 Wiley E. Hill <wileyhill@gmail.com>
 

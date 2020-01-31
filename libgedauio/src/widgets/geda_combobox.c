@@ -4347,7 +4347,8 @@ static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
 
       if (!menu) {
 
-        GtkWidget *separator;
+        GtkCellView *cell_view;
+        GtkWidget   *separator;
 
         menu = geda_menu_new ();
 
@@ -4369,7 +4370,10 @@ static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
                           combo_box);
         geda_menu_append (menu, item);
         geda_menu_append (menu, separator);
-        if (cell_view_is_sensitive ((GtkCellView*)(((GtkBin*)item)->child))) {
+
+        cell_view = (GtkCellView*)geda_get_child_widget (item);
+
+        if (cell_view_is_sensitive (cell_view)) {
 
           gtk_widget_show (item);
           gtk_widget_show (separator);
