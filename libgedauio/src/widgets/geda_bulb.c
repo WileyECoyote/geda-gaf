@@ -547,11 +547,13 @@ button_get_props (GtkCheckButton *check_button, int *indicator_size,
 {
   GtkWidget *widget = (GtkWidget*)check_button;
 
-  if (indicator_size)
+  if (indicator_size) {
     gtk_widget_style_get (widget, "indicator-size", indicator_size, NULL);
+  }
 
-  if (indicator_spacing)
+  if (indicator_spacing) {
     gtk_widget_style_get (widget, "indicator-spacing", indicator_spacing, NULL);
+  }
 }
 
 static void
