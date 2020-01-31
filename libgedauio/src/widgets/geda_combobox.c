@@ -3262,7 +3262,7 @@ static void geda_combo_box_real_popup (GedaComboBox *combo_box)
     gtk_widget_grab_focus ((GtkWidget*)view);
   }
 
-  if (!popup_grab_on_window(widget->window, GDK_CURRENT_TIME, TRUE))
+  if (!popup_grab_on_window(geda_get_widget_window(widget), GDK_CURRENT_TIME, TRUE))
   {
     gtk_widget_hide (widget);
     return;
