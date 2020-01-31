@@ -1489,11 +1489,11 @@ static void geda_combo_box_destroy (GtkObject *object)
 
 #if GTK_MAJOR_VERSION < 3
 
-  ((GtkObjectClass *)geda_combo_box_parent_class)->destroy (object);
+  ((GtkObjectClass*)geda_combo_box_parent_class)->destroy (object);
 
 #else
 
-  GTK_WIDGET_CLASS(geda_combo_box_parent_class)->destroy (object);
+  ((GtkWidgetClass*)geda_combo_box_parent_class)->destroy (object);
 
 #endif
 
