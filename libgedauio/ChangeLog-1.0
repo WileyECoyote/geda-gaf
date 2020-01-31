@@ -7,6 +7,9 @@
     * src/widgets/geda_bulb.c: Revise functions geda_bulb_draw_indicator and
       button_get_props to use type unsigned int.
 
+    * src/widgets/geda_combobox.c: Replace gtk_widget_get_allocated_width with
+      geda_widget_get_allocated_width in geda_combo_box_real_popup.
+
 2020-01-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Add geda_combo_box_set_background_color

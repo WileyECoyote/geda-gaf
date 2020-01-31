@@ -3123,7 +3123,9 @@ static void geda_combo_box_menu_popup (GedaComboBox *combo_box,
 
     GtkRequisition requisition;
 
-    int width = gtk_widget_get_allocated_width (combo_box);
+    unsigned int width;
+
+    width = geda_widget_get_allocated_width ((GtkWidget*)combo_box);
 
     gtk_widget_set_size_request (priv->popup_widget, -1, -1);
     gtk_widget_size_request     (priv->popup_widget, &requisition);
