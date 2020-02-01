@@ -4035,10 +4035,10 @@ msgstr "Sluit Bladsy"
 msgid "Discard Page"
 msgstr "Werp Bladsy Weg"
 
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Gaan Bladsy Terug"
+msgstr "Keer terug na bladsy"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4891,10 +4891,10 @@ msgstr "aktiveer Aansigskuifmodus"
 msgid "_Previous"
 msgstr "_Vorige"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Vorige"
+msgstr "Kyk na vorige"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
