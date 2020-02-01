@@ -4033,10 +4033,10 @@ msgstr "Cerrar página"
 msgid "Discard Page"
 msgstr "Descartar página"
 
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "¿Seguro que quiere recargar la página?"
+msgstr "Revertir página"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4895,10 +4895,10 @@ msgstr "Activar Panning"
 msgid "_Previous"
 msgstr "_Anterior"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Anterior"
+msgstr "Ver anterior"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
