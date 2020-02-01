@@ -4022,10 +4022,10 @@ msgstr "أغلق الصفحة"
 msgid "Discard Page"
 msgstr "أهمل الصفحة"
 
+# Revert Page; aleawdat 'iilaa alsafha
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "أعد الصفحة"
+msgstr "العودة إلى الصفحة"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4883,10 +4883,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "ال_سّابقة"
 
+# View previous; eard alssabiq
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "ال_سّابقة"
+msgstr "عرض السابق"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
