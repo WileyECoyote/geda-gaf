@@ -3924,9 +3924,8 @@ msgid "Discard Page"
 msgstr "Discard Page"
 
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Revert failed"
+msgstr "Revert Page"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4773,9 +4772,8 @@ msgid "_Previous"
 msgstr "_Previous"
 
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Previous"
+msgstr "View previous"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
