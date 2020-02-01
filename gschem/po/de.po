@@ -3999,10 +3999,10 @@ msgstr "Seite schließen"
 msgid "Discard Page"
 msgstr "Seite ablegen"
 
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Seite wirklich wiederherstellen?"
+msgstr "Seite zurücksetzen"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4859,10 +4859,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "_Vorherige"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Vorherige"
+msgstr "Vorherige anzeigen"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
