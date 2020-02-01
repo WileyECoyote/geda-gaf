@@ -4060,11 +4060,10 @@ msgstr ""
 msgid "Discard Page"
 msgstr ""
 
-# Revert failed
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Vrati nije"
+msgstr "Vrati stranicu"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4949,10 +4948,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "_Prethodna"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Prethodna"
+msgstr "Pogledajte prethodni"
 
 # Zoom All
 #: gschem/etc/system-gschemrc.scm:2207
