@@ -3990,10 +3990,10 @@ msgstr "Κλείσιμο σελίδας"
 msgid "Discard Page"
 msgstr ""
 
+# Revert Page; Epanaforá selídas
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Επαναφορά αλλαγών"
+msgstr "Επαναφορά σελίδας"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4851,10 +4851,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "_Προηγούμενο"
 
+# View previous; Provolí proigoúmenon
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Προηγούμενο"
+msgstr "Προβολή προηγούμενων"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
