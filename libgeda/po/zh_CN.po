@@ -1912,4 +1912,3 @@ msgstr "无法在中创建日志文件"
 #, scheme-format
 msgid "Object ~A is not part of a page"
 msgstr ""
-
