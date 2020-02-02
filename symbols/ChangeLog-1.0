@@ -1,3 +1,9 @@
+2020-02-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update input pin types:
+
+            * simulation/verilog/and5-1.sym
+
 2020-01-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update input pin types:
