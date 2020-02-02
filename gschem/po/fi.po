@@ -3993,10 +3993,10 @@ msgstr "Close Sivu"
 msgid "Discard Page"
 msgstr "_Hylkää"
 
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "_Hylkää muutokset"
+msgstr "Palauta sivu"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4848,10 +4848,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "_Edellinen"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "_Edellinen"
+msgstr "Näytä edellinen"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"

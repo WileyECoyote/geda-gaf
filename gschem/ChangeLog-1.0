@@ -2,6 +2,8 @@
 
     * po/fa.po: Update Persian translations.
 
+    * po/fi.po: Update Finnish translations.
+
 2020-02-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/af.po: Update Afrikaans translations.
@@ -21,19 +23,12 @@
 2020-01-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/ru.po: Update Russian translations.
-
     * po/sl.po: Update Slovenian translations.
-
     * po/sr.po: Update Serbian translations.
-
     * po/tr.po: Update Turkish translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2020-01-22 Wiley E. Hill <wileyhill@gmail.com>
