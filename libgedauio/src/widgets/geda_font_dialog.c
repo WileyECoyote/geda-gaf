@@ -146,7 +146,8 @@ static void geda_font_dialog_update_preview (GedaFontDialog *dialog)
 
   if (gtk_widget_has_screen (preview_entry)) {
 
-    GtkRequisition old_requisition;
+    GtkRequisition  old_requisition;
+    GtkRequisition *requisition;
 
     const char *text;
     int new_height;
@@ -156,8 +157,10 @@ static void geda_font_dialog_update_preview (GedaFontDialog *dialog)
     gtk_widget_size_request (preview_entry, NULL);
     gtk_widget_get_child_requisition (preview_entry, &old_requisition);
 
+    requisition = geda_get_widget_requisition(preview_entry);
+
     /* We don't ever want to be over MAX_PREVIEW_HEIGHT pixels high. */
-    new_height = CLAMP (preview_entry->requisition.height, INITIAL_PREVIEW_HEIGHT, MAX_PREVIEW_HEIGHT);
+    new_height = CLAMP (requisition->height, INITIAL_PREVIEW_HEIGHT, MAX_PREVIEW_HEIGHT);
 
     if (new_height > old_requisition.height || new_height < old_requisition.height - 30)
       gtk_widget_set_size_request (preview_entry, -1, new_height);
