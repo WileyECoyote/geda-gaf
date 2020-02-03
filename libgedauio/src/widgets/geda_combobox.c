@@ -4498,6 +4498,7 @@ static void geda_combo_box_list_setup (GedaComboBox *combo_box)
 
   if (priv->cell_view) {
 
+    GtkWidget   *child;
     GtkStyle    *style;
     GtkStateType state;
 
@@ -4520,8 +4521,9 @@ static void geda_combo_box_list_setup (GedaComboBox *combo_box)
                                          FALSE);
     }
 
-    gtk_widget_set_parent (priv->cell_view_frame,
-                          ((GtkBin*)combo_box)->child->parent);
+    child  = geda_get_child_widget (combo_box);
+
+    gtk_widget_set_parent (priv->cell_view_frame, geda_get_widget_parent(child));
 
     geda_container_add (priv->cell_view_frame, priv->box);
     gtk_widget_show_all (priv->cell_view_frame);
