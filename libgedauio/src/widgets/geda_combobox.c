@@ -4929,9 +4929,13 @@ static bool geda_combo_box_list_scroll_timeout (GedaComboBox *combo_box)
 
   if (priv->auto_scroll) {
 
-      gdk_window_get_pointer (priv->tree_view->window, &x, &y, NULL);
-      geda_combo_box_list_auto_scroll (combo_box, x, y);
-    }
+    GdkWindow *window;
+
+    window = geda_get_widget_window(priv->tree_view);
+
+    gdk_window_get_pointer (window, &x, &y, NULL);
+    geda_combo_box_list_auto_scroll (combo_box, x, y);
+  }
 
   return TRUE;
 }
