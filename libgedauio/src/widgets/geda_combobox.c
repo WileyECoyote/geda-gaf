@@ -4473,12 +4473,14 @@ static void geda_combo_box_list_setup (GedaComboBox *combo_box)
 {
   GedaComboBoxData *priv = combo_box->priv;
   GtkWidget        *button;
+  GtkWidget        *child;
   GtkTreeSelection *sel;
   GtkTreeView      *tree_view;
 
   button = gtk_toggle_button_new ();
+  child  = geda_get_child_widget (combo_box);
 
-  gtk_widget_set_parent (button, ((GtkBin*)combo_box)->child->parent);
+  gtk_widget_set_parent (button, geda_get_widget_parent(child));
 
   g_signal_connect (button, "button-press-event",
                     G_CALLBACK (geda_combo_box_list_button_pressed), combo_box);
