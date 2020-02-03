@@ -4272,10 +4272,9 @@ static GtkWidget *find_menu_by_path (GtkWidget *menu, GtkTreePath *path, bool sk
         continue;
       }
 
-      //GtkCellView *child = (GtkCellView*)geda_get_child_widget (menu_item);
+      GtkCellView *child = (GtkCellView*)geda_get_child_widget (menu_item);
 
-      mpath =
-      gtk_cell_view_get_displayed_row((GtkCellView*)((GtkBin*)menu_item)->child);
+      mpath = gtk_cell_view_get_displayed_row(child);
     }
     else {
       continue;
