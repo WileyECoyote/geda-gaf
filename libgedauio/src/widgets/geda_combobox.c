@@ -4367,6 +4367,7 @@ static void geda_combo_box_menu_row_inserted (GtkTreeModel *model,
         g_signal_connect (item, "activate",
                           G_CALLBACK (geda_combo_box_menu_item_activate),
                           combo_box);
+
         geda_menu_append (menu, item);
         geda_menu_append (menu, separator);
 
