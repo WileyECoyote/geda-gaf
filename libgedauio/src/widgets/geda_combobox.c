@@ -1872,7 +1872,7 @@ static void geda_combo_box_class_init(void *class, void *class_data)
 
 #else
 
-  widget_class->destroy = geda_combo_box_destroy;
+  widget_class->destroy           = geda_combo_box_destroy;
 
 #endif
 
