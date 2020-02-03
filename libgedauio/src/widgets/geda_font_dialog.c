@@ -162,8 +162,10 @@ static void geda_font_dialog_update_preview (GedaFontDialog *dialog)
     /* We don't ever want to be over MAX_PREVIEW_HEIGHT pixels high. */
     new_height = CLAMP (requisition->height, INITIAL_PREVIEW_HEIGHT, MAX_PREVIEW_HEIGHT);
 
-    if (new_height > old_requisition.height || new_height < old_requisition.height - 30)
+    if (new_height > old_requisition.height ||
+        new_height < old_requisition.height - 30) {
       gtk_widget_set_size_request (preview_entry, -1, new_height);
+    }
 
     /* This sets the preview text, if it hasn't been set already. */
     text = gtk_entry_get_text ((GtkEntry*)preview_entry);
