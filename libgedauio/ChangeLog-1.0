@@ -1,3 +1,8 @@
+2020-02-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Reduce the scope of GtkRequisition in
+      geda_font_dialog_update_preview.
+
 2020-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Only define GtkObject as GtkWidget if Gtk > 2.

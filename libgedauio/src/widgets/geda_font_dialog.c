@@ -142,12 +142,11 @@ geda_font_dialog_change_entry_map (GedaFontDialog *dialog, GtkWidget *widget)
 */
 static void geda_font_dialog_update_preview (GedaFontDialog *dialog)
 {
-  GtkRequisition old_requisition;
-  GtkWidget     *preview_entry;
-
-  preview_entry = dialog->preview_entry;
+  GtkWidget *preview_entry = dialog->preview_entry;
 
   if (gtk_widget_has_screen (preview_entry)) {
+
+    GtkRequisition old_requisition;
 
     const char *text;
     int new_height;
