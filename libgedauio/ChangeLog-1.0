@@ -1,6 +1,7 @@
 2020-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macros geda_get_default_widget..
+    * include/geda_gtk_compat.h: Add macros geda_get_default_widget and
+      add declaration for gdk_font_unref.
 
     * src/widgets/geda_font_dialog.c: Revise list_row_activated; remove
       unneeded cast, reverse logic of first conditional and eliminate

@@ -223,6 +223,15 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #if GTK_MAJOR_VERSION > 2
 #define GtkObject GtkWidget
+
+#else
+
+#ifdef GTK_DISABLE_DEPRECATED
+
+void gdk_font_unref (GdkFont *font);
+
+#endif
+
 #endif
 
 /*! \def geda_get_accel_group_is_locked Get GtkAccelGroup lock_count > 0 Gtk >= 3*/
