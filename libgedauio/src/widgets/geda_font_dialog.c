@@ -1037,9 +1037,11 @@ static bool list_row_activated (GtkWidget *widget)
 
   if (gtk_widget_is_toplevel (GTK_WIDGET (window))) {
 
-  if (widget != window->default_widget &&
-    !(widget == window->focus_widget &&
-    (!window->default_widget || !gtk_widget_get_sensitive (window->default_widget))))
+    GtkWidget *default_widget = geda_get_default_widget(window);
+
+    if (widget != default_widget &&
+      !(widget == window->focus_widget &&
+      (!default_widget|| !gtk_widget_get_sensitive (default_widget))))
     {
       gtk_window_activate_default (window);
     }
