@@ -1637,7 +1637,7 @@ static void geda_font_dialog_instance_init(GTypeInstance *instance, void *g_clas
 
   gtk_widget_push_composite_child ();
 
-  dialog->main_vbox = (GtkBox*)Dialog->vbox;
+  dialog->main_vbox = (GtkBox*)gtk_dialog_get_content_area(Dialog);
 
   /* Create the main content area */
   geda_set_container_border_width (Dialog, 5);

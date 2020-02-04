@@ -5,11 +5,12 @@
 
     * src/widgets/geda_font_dialog.c: Revise list_row_activated; remove
       unneeded cast, reverse logic of first conditional and eliminate
-      setting window to NULL, andd ancillary default_widget and utilize
+      setting window to NULL, and ancillary default_widget and utilize
       macros:
 
           * geda_get_default_widget
           * geda_get_focus_widget
+          * gtk_dialog_get_content_area
 
 2020-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
