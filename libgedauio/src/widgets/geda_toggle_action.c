@@ -110,6 +110,7 @@ geda_toggle_action_finalize (GObject *object)
 
   if (action->multikey_accel) {
     g_free (action->multikey_accel);
+    action->multikey_accel = NULL;
   }
 
   ((GObjectClass*)geda_toggle_action_parent_class)->finalize (object);

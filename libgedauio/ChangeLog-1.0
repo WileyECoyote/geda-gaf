@@ -15,6 +15,9 @@
       Replace gdk_drawable_get_display with gtk_widget_get_display in
       geda_font_dialog_get_font and eliminate ancillary GdkWindow.
 
+    * src/widgets/geda_toggle_action.c: Set multikey_accel to NULL after
+      releasing in geda_toggle_action_finalize.
+
 2020-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Reduce the scope of GtkRequisition in
