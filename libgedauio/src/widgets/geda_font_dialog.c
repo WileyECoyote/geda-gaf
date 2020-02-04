@@ -1040,7 +1040,7 @@ static bool list_row_activated (GtkWidget *widget)
     GtkWidget *default_widget = geda_get_default_widget(window);
 
     if (widget != default_widget &&
-      !(widget == window->focus_widget &&
+      !(widget == geda_get_focus_widget(window) &&
       (!default_widget|| !gtk_widget_get_sensitive (default_widget))))
     {
       gtk_window_activate_default (window);
