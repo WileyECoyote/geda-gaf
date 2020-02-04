@@ -1,3 +1,8 @@
+2020-02-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_font_dialog.c: Revise list_row_activated; remove
+      unneeded cast.
+
 2020-02-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_font_dialog.c: Reduce the scope of GtkRequisition in

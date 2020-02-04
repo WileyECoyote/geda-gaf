@@ -1033,7 +1033,7 @@ static bool list_row_activated (GtkWidget *widget)
 {
   GtkWindow *window;
 
-  window = GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (widget)));
+  window = GTK_WINDOW (gtk_widget_get_toplevel (widget));
   if (!gtk_widget_is_toplevel (GTK_WIDGET (window)))
     window = NULL;
 
