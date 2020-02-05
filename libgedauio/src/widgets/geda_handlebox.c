@@ -856,8 +856,10 @@ static int geda_handle_box_delete_event (GtkWidget *widget, GdkEventAny  *event)
 /*! \internal helper for geda_handle_box_expose */
 static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 {
-  GtkWidget   *widget;
-  GtkStateType state;
+  GtkWidget     *widget;
+  GtkStateType   state;
+  GtkAllocation *allocation;
+
   unsigned int x;
   unsigned int y;
   unsigned int width;
@@ -868,19 +870,21 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 
   handle_position = effective_handle_position (handlebox);
 
+  allocation = geda_get_widget_allocation(widget);
+
   if (handle_position == GTK_POS_LEFT ||
       handle_position == GTK_POS_RIGHT)
   {
-    x = handle_position == GTK_POS_LEFT ? 0 : widget->allocation.width - handlebox->handle_size;
+    x = handle_position == GTK_POS_LEFT ? 0 : allocation->width - handlebox->handle_size;
     y = 0;
     width = handlebox->handle_size;
-    height = widget->allocation.height;
+    height = allocation->height;
   }
   else
   {
     x = 0;
-    y = handle_position == GTK_POS_TOP ? 0 : widget->allocation.height - handlebox->handle_size;
-    width = widget->allocation.width;
+    y = handle_position == GTK_POS_TOP ? 0 : allocation->height - handlebox->handle_size;
+    width  = allocation->width;
     height = handlebox->handle_size;
   }
 
@@ -903,17 +907,17 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 
     if (handle_position == GTK_POS_LEFT) {
       x1 = handlebox->handle_size;
-      x2 = widget->allocation.width;
+      x2 = allocation->width;
     }
     else {
       x1 = 0;
-      x2 = widget->allocation.width - handlebox->handle_size;
+      x2 = allocation->width - handlebox->handle_size;
     }
 
     gtk_paint_hline (geda_get_widget_style(widget),
                      widget->window, state,
                      NULL, widget, "handlebox", x1, x2,
-                     widget->allocation.height >> 1);
+                     allocation->height >> 1);
   }
   else {
 
@@ -922,16 +926,16 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 
     if (handle_position == GTK_POS_TOP) {
       y1 = handlebox->handle_size;
-      y2 = widget->allocation.height;
+      y2 = allocation->height;
     }
     else {
       y1 = 0;
-      y2 = widget->allocation.height - handlebox->handle_size;
+      y2 = allocation->height - handlebox->handle_size;
     }
 
     gtk_paint_vline (widget->style, widget->window, state,
                      NULL, widget, "handlebox", y1, y2,
-                     widget->allocation.width >> 1);
+                     allocation->width >> 1);
   }
 }
 

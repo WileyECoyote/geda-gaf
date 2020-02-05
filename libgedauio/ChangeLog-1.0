@@ -8,6 +8,7 @@
 
           * geda_get_widget_style
           * geda_get_widget_window
+          * geda_get_widget_allocation
 
 2020-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
