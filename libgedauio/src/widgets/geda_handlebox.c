@@ -910,7 +910,8 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
       x2 = widget->allocation.width - handlebox->handle_size;
     }
 
-    gtk_paint_hline (widget->style, widget->window, state,
+    gtk_paint_hline (geda_get_widget_style(widget),
+                     widget->window, state,
                      NULL, widget, "handlebox", x1, x2,
                      widget->allocation.height >> 1);
   }

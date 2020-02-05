@@ -6,6 +6,7 @@
 
     * src/widgets/geda_handlebox.c: Utilize macros:
 
+          * geda_get_widget_style
           * geda_get_widget_window
 
 2020-02-04 Wiley E. Hill <wileyhill@gmail.com>
