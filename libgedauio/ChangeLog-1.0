@@ -4,6 +4,10 @@
 
           * include/geda_handlebox.h
 
+    * src/widgets/geda_handlebox.c: Utilize macros:
+
+          * geda_get_widget_window
+
 2020-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros geda_get_default_widget and

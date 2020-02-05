@@ -468,11 +468,13 @@ static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
     if (handlebox->child_detached) {
 
       GtkWidget *child = geda_get_child_widget(handlebox);
+      GdkWindow *window;
 
       handlebox->child_detached = FALSE;
       gdk_window_hide (handlebox->float_window);
       g_object_set (child, "orientation", handlebox->dock_orientation, NULL);
-      gdk_window_reparent (handlebox->bin_window, widget->window, 0, 0);
+      window = geda_get_widget_window(widget);
+      gdk_window_reparent (handlebox->bin_window, window, 0, 0);
       handlebox->float_window_mapped = FALSE;
       g_signal_emit (handlebox, handle_box_signals[SIGNAL_CHILD_ATTACHED], 0, child);
       gtk_widget_queue_resize (widget);
