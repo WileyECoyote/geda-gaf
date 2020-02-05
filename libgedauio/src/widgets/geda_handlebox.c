@@ -754,6 +754,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
 
       GedaHandleBoxData *priv;
       GdkCursor         *fleur;
+      GdkWindow         *window;
       GtkWidget         *invisible;
 
       int desk_x, desk_y;
@@ -786,15 +787,17 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       handlebox->deskoff_x = desk_x - root_x;
       handlebox->deskoff_y = desk_y - root_y;
 
-      if (gdk_window_is_viewable (widget->window)) {
+      window = geda_get_widget_window(widget);
 
-        gdk_window_get_origin (widget->window, &root_x, &root_y);
+      if (gdk_window_is_viewable (window)) {
+
+        gdk_window_get_origin (window, &root_x, &root_y);
 
 #if (HAVE_GDK_WINDOW_GET_WIDTH)
-        width  = gdk_window_get_width (widget->window);
-        height = gdk_window_get_height (widget->window);
+        width  = gdk_window_get_width (window);
+        height = gdk_window_get_height (window);
 #else
-        gdk_drawable_get_size(widget->window, &width, &height);
+        gdk_drawable_get_size(window, &width, &height);
 #endif
 
         handlebox->attach_allocation.x      = root_x;
