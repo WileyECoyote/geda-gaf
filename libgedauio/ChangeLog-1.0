@@ -1,3 +1,9 @@
+2020-02-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/: Reluctantly include all of gtk.h:
+
+          * include/geda_handlebox.h
+
 2020-02-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros geda_get_default_widget and
