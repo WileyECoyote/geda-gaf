@@ -815,7 +815,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       fleur = gdk_cursor_new_for_display (gtk_widget_get_display (widget),
                                           GDK_FLEUR);
 
-      if (gdk_pointer_grab (invisible->window,
+      if (gdk_pointer_grab (geda_get_widget_window(invisible),
                             FALSE,
                            (GDK_BUTTON1_MOTION_MASK |
                             GDK_POINTER_MOTION_HINT_MASK |
