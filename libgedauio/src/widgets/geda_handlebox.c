@@ -1122,6 +1122,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   GedaHandleBox *handlebox;
   GtkWidget     *child;
   GdkWindow     *parent;
+  GdkWindow     *window;
   GtkStateType   state;
   int            attributes_mask;
 
@@ -1142,8 +1143,9 @@ static void geda_handle_box_realize (GtkWidget *widget)
   attributes.colormap    = gtk_widget_get_colormap (widget);
   attributes.event_mask  = gtk_widget_get_events (widget) | GDK_EXPOSURE_MASK;
   attributes_mask        = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  widget->window         = gdk_window_new (parent, &attributes, attributes_mask);
+  window                 = gdk_window_new (parent, &attributes, attributes_mask);
 
+  geda_set_widget_window (widget, window);
   gdk_window_set_user_data (widget->window, widget);
 
   attributes.x           = 0;

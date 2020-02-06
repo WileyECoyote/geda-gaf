@@ -5,6 +5,9 @@
           * geda_set_widget_style
           * geda_set_widget_window
 
+    * src/widgets/geda_handlebox.c: Revise geda_handle_box_realize to use
+      ancillary GdkWindow pointer to utilize geda_set_widget_window.
+
 2020-02-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/: Reluctantly include all of gtk.h:
