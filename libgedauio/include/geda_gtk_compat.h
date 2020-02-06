@@ -204,6 +204,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
 #define geda_get_widget_style(w) ((GtkWidget*)w)->style
 
+#define geda_set_widget_style(w,s) ((GtkWidget*)w)->style = s
+
 /*! \def geda_get_widget_window Get Pointer to window  Gtk < 3 */
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
 
@@ -280,6 +282,9 @@ void gdk_font_unref (GdkFont *font);
 /* Handle Gtk == 2 and GSEAL_ENABLE is defined */
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
 #define geda_get_widget_style(w) gtk_widget_get_style((GtkWidget*)w)
+
+#define geda_set_widget_style(w,s) gtk_widget_set_style((GtkWidget*)w, s)
+
 #endif
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
