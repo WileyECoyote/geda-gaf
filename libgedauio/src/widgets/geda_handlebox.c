@@ -1146,7 +1146,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
   window                 = gdk_window_new (parent, &attributes, attributes_mask);
 
   geda_set_widget_window (widget, window);
-  gdk_window_set_user_data (widget->window, widget);
+  gdk_window_set_user_data (window, widget);
 
   attributes.x           = 0;
   attributes.y           = 0;
