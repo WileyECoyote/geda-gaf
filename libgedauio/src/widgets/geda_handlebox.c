@@ -893,7 +893,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 
   state = gtk_widget_get_state (widget);
 
-  gtk_paint_shadow (widget->style, widget->window, state,
+  gtk_paint_shadow (geda_get_widget_style(widget),
                     GTK_SHADOW_ETCHED_IN,
                     NULL, widget, "handle",
                     x,
