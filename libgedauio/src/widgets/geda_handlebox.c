@@ -967,7 +967,8 @@ static void geda_handle_box_paint (GtkWidget *widget, GdkEventExpose *event)
 #endif
 
   /* First draw the exterior box */
-  gtk_paint_box (widget->style, handlebox->bin_window,
+  gtk_paint_box (geda_get_widget_style(widget),
+                 handlebox->bin_window,
                  gtk_widget_get_state (widget),
                  handlebox->shadow_type,
                  &event->area, widget, "box",
