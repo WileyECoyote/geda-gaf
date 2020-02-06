@@ -1045,7 +1045,7 @@ static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 
     GtkWidget *child;
 
-    if (event->window == widget->window) {
+    if (event->window == geda_get_widget_window(widget)) {
 
       GedaHandleBox *handlebox = (GedaHandleBox*)widget;
 
