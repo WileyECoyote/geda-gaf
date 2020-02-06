@@ -3,6 +3,7 @@
     * include/geda_gtk_compat.h: Add macro:
 
           * geda_set_widget_style
+          * geda_set_widget_window
 
 2020-02-05 Wiley E. Hill <wileyhill@gmail.com>
 

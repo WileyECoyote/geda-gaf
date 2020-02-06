@@ -209,6 +209,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_widget_window Get Pointer to window  Gtk < 3 */
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
 
+#define geda_set_widget_window(w, win) GTK_WIDGET(w)->window = win;
+
 #define geda_device_grab_remove(w,p) gtk_grab_remove(GTK_WIDGET(w))
 
 #define geda_get_container_border_width(w) ((GtkContainer*)w)->border_width
@@ -289,6 +291,8 @@ void gdk_font_unref (GdkFont *font);
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
 #define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))
+
+#define geda_set_widget_window(w, win) gtk_widget_set_window(w, win)
 
 /* Gtk[VH]Box */
 #   define gtk_vbox_new(homogeneous, spacing) \
