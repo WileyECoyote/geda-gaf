@@ -1210,7 +1210,11 @@ static void geda_handle_box_realize (GtkWidget *widget)
 
   gdk_window_set_transient_for (handlebox->float_window, (GdkWindow*)topwindow->window);
 
-  widget->style = gtk_style_attach (widget->style, widget->window);
+  GtkStyle *style;
+
+  style = geda_get_widget_style (widget);
+
+  style = gtk_style_attach (style, widget->window);
   state = gtk_widget_get_state (widget);
 
   gtk_style_set_background (widget->style, widget->window, state);
