@@ -1,7 +1,8 @@
 2020-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_handlebox.c: Revise geda_handle_box_realize to utilize
-      geda_set_widget_style.
+      geda_set_widget_style. Revise geda_handle_box_map to use an ancillary
+      GtkWidget pointer and utilize geda_get_child_widget.
 
 2020-02-06 Wiley E. Hill <wileyhill@gmail.com>
 
