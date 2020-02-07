@@ -1081,7 +1081,7 @@ static void geda_handle_box_map (GtkWidget *widget)
 
   if (child &&
       gtk_widget_get_visible (child) &&
-     !gtk_widget_get_mapped (bin->child))
+     !gtk_widget_get_mapped (child))
   {
     gtk_widget_map (bin->child);
   }
