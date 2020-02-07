@@ -1215,6 +1215,9 @@ static void geda_handle_box_realize (GtkWidget *widget)
   style = geda_get_widget_style (widget);
 
   style = gtk_style_attach (style, widget->window);
+
+  geda_set_widget_style (widget, style);
+
   state = gtk_widget_get_state (widget);
 
   gtk_style_set_background (widget->style, widget->window, state);
