@@ -1083,7 +1083,7 @@ static void geda_handle_box_map (GtkWidget *widget)
       gtk_widget_get_visible (child) &&
      !gtk_widget_get_mapped (child))
   {
-    gtk_widget_map (bin->child);
+    gtk_widget_map (child);
   }
 
   if (handlebox->child_detached && !handlebox->float_window_mapped) {
