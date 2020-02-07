@@ -1222,7 +1222,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
 
   gtk_style_set_background (style, widget->window, state);
   gtk_style_set_background (style, handlebox->bin_window, state);
-  gtk_style_set_background (widget->style, handlebox->float_window, state);
+  gtk_style_set_background (style, handlebox->float_window, state);
 
   gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
 
