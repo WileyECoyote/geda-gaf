@@ -1079,7 +1079,8 @@ static void geda_handle_box_map (GtkWidget *widget)
   child     = geda_get_child_widget(bin);
   handlebox = (GedaHandleBox*)widget;
 
-      gtk_widget_get_visible (bin->child) &&
+  if (child &&
+      gtk_widget_get_visible (child) &&
      !gtk_widget_get_mapped (bin->child))
   {
     gtk_widget_map (bin->child);
