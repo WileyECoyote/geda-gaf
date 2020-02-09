@@ -172,7 +172,7 @@ msgid "Vertical adjustment"
 msgstr "התאמה אנכית"
 
 #: gschem/src/base/gschem_parsecmd.c:86
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Usage: %s [OPTION ...] [--] [FILE ...]\n"
 "\n"
@@ -4072,11 +4072,10 @@ msgstr "סגור דף"
 msgid "Discard Page"
 msgstr ""
 
-# Next Page
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "עמוד הבא"
+msgstr "חזור לדף"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
