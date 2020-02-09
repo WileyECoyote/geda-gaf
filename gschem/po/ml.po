@@ -4188,11 +4188,10 @@ msgstr "പേജ് അടയ്ക്കുക"
 msgid "Discard Page"
 msgstr "നിരാകരിക്കുക പേജ്"
 
-# Revert failed
+# Revert Page; pēj paḻayapaṭiyākkuka
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "പഴയപടിയാക്കൽ പരാജയപ്പെട്ടു"
+msgstr "പേജ് പഴയപടിയാക്കുക"
 
 # Page Manager
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
