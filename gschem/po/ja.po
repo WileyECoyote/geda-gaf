@@ -4010,10 +4010,10 @@ msgstr "閉じる"
 msgid "Discard Page"
 msgstr "破棄"
 
+# Revert Page; Pēji o motonimodosu
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "復帰に失敗しました"
+msgstr "ページを元に戻す"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4860,10 +4860,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "前のページ(_P)"
 
+# View previous; Mae o miru
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "前のページ(_P)"
+msgstr "前を見る"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
