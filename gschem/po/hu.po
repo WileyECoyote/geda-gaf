@@ -3968,10 +3968,10 @@ msgstr "Lap bezárása"
 msgid "Discard Page"
 msgstr "Rajz eldobása"
 
+# Revert Page
 #: gschem/src/x/x_pagesel.c:605
-#, fuzzy
 msgid "Revert Page"
-msgstr "Biztosan újratöltsem az oldalt?"
+msgstr "Vissza az oldal"
 
 #: gschem/src/x/x_pagesel.c:1087 gschem/scheme/gschem/builtins.scm:287
 msgid "Page Manager"
@@ -4823,10 +4823,10 @@ msgstr ""
 msgid "_Previous"
 msgstr "Előző"
 
+# View previous
 #: gschem/etc/system-gschemrc.scm:2205
-#, fuzzy
 msgid "View previous"
-msgstr "Előző"
+msgstr "Előző megtekintése"
 
 #: gschem/etc/system-gschemrc.scm:2207
 msgid "Zoom _All"
