@@ -13,6 +13,7 @@
     * simulation/verilog: Capitalize output pin label:
 
             * simulation/verilog/nand2-1.sym
+            * simulation/verilog/nand3-1.sym
 
 2020-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
