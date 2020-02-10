@@ -1,6 +1,7 @@
 2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * tests/test_line_object.c: Add checks for:
+    * tests/test_line_object.c: Revise check_line_object_mirror to restore
+      the coordinates of the line and add checks for:
 
           * geda_line_object_modify
 

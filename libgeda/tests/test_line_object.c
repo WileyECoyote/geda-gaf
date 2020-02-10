@@ -1132,6 +1132,11 @@ check_line_object_mirror(GedaObject *object, int x1, int y1, int x2, int y2)
     result++;
   }
 
+  /* Mirroring the line again about the same point should restore the
+   * line to the original coordinates */
+
+  geda_line_object_mirror(object, x1 + 500, y2 - y1);
+
   return result;
 }
 
