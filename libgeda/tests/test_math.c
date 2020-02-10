@@ -76,6 +76,17 @@ int check_math_degrees_to_radians ()
     result++;
   }
 
+  value = geda_math_degrees_to_radians(90.0);
+
+  value = round(value * 100) / 100;
+
+  if (abs (value - 1.570) > .001) {
+    fprintf(stderr, "FAILED: (M010101-90) value (%f)\n", value);
+    result++;
+  }
+
+  return result;
+}
 
 int check_math_distance ()
 {
