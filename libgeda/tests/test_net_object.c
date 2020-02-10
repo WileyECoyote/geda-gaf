@@ -350,8 +350,8 @@ int check_serialization (void)
 
     GedaObject *object0 = geda_net_object_new(c, x1, y1, x2, y2);
 
-
     char *buffer0 = geda_net_object_to_buffer (object0);
+
     g_object_unref (object0);
 
     if (!buffer0) {
