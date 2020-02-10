@@ -4,6 +4,10 @@
 
             * simulation/verilog/and6-2.sym
 
+    * simulation/verilog: Update pin type attributes:
+
+            * simulation/verilog/and9-1.sym
+
 2020-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update input pin types:
