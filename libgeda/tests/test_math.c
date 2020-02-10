@@ -61,6 +61,25 @@
  *      M0107    geda_math_rotate_point_90
  */
 
+int check_math_degrees_to_radians ()
+{
+  int result = 0;
+
+  double value;
+
+  /* === Function 01:  geda_math_degrees_to_radians === */
+
+  value = geda_math_degrees_to_radians(0.0);
+
+  if (value != 0.0) {
+    fprintf(stderr, "FAILED: (M010101-0.0) value (%f)\n", value);
+    result++;
+  }
+
+
+  return result;
+}
+
 int main (int argc, char *argv[])
 {
   int result = 0;
@@ -72,15 +91,14 @@ int main (int argc, char *argv[])
   g_type_init();
 #endif
 
-/*
+
   if (setjmp(point) == 0) {
-    result += geda_math_degrees_to_radians();
+    result += check_math_degrees_to_radians();
   }
   else {
     fprintf(stderr, "Caught signal checking degrees_to_radians in %s\n\n", MUT);
     return 1;
   }
-*/
 
   return result;
 }

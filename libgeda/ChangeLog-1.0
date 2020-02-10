@@ -1,3 +1,9 @@
+2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_math.c: Add checks for:
+
+          * geda_math_degrees_to_radians
+
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * data/x-geda-gsch2pcb-project.desktop.in: Use lower case "project".
