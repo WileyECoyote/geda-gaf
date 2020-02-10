@@ -10,7 +10,7 @@ pinnumber=1
 T 1175 250 5 8 0 1 0 0 1
 pinseq=1
 T 1125 450 5 8 0 1 0 0 1
-pinlabel=out
+pinlabel=OUT
 T 1125 450 5 8 0 1 0 0 1
 pintype=out
 }
