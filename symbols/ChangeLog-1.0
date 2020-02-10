@@ -9,6 +9,10 @@
             * simulation/verilog/and9-1.sym
             * simulation/verilog/and9-2.sym
 
+    * simulation/verilog: Capitalize output pin label:
+
+            * simulation/verilog/nand2-1.sym
+
 2020-02-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update input pin types:
