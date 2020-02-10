@@ -77,6 +77,21 @@ int check_math_degrees_to_radians ()
   }
 
 
+int check_math_distance ()
+{
+  int result = 0;
+
+  double distance;
+
+  /* === Function 02:  geda_math_distance === */
+
+  distance = geda_math_distance(0, 3, 4, 0);
+
+  if (distance != 5.0) {
+    fprintf(stderr, "FAILED: (M010201-A) distance (%f)\n", distance);
+    result++;
+  }
+
   return result;
 }
 
@@ -91,12 +106,19 @@ int main (int argc, char *argv[])
   g_type_init();
 #endif
 
-
   if (setjmp(point) == 0) {
     result += check_math_degrees_to_radians();
   }
   else {
     fprintf(stderr, "Caught signal checking degrees_to_radians in %s\n\n", MUT);
+    return 1;
+  }
+
+  if (setjmp(point) == 0) {
+    result += check_math_distance();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking math_distance in %s\n\n", MUT);
     return 1;
   }
 

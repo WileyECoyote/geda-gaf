@@ -3,6 +3,7 @@
     * tests/test_math.c: Add checks for:
 
           * geda_math_degrees_to_radians
+          * geda_math_distance
 
 2020-01-04 Wiley E. Hill <wileyhill@gmail.com>
 
