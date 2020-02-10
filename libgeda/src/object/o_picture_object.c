@@ -778,7 +778,7 @@ GdkPixbuf *geda_picture_object_get_pixbuf (GedaObject *object)
  *  of speed and quality.
  *
  * \param [in] object  The picture #GedaObject to inspect.
- * \param [in] interp  GdkInterpType flag passed to gdk_pixbuf_scale
+ * \param [in] interp  GdkInterpType flag passed to gdk_pixbuf_scale_simple
  *
  *  <B>interp</B> can be one of the following values:
  * \par
