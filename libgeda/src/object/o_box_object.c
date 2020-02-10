@@ -1736,7 +1736,7 @@ void geda_box_object_scale (GedaObject *object, int x_scale, int y_scale)
       offset = ((height * y_scale) - height) >> 1;
 
       object->box->lower_y = object->box->lower_y - offset;
-      object->box->upper_x = object->box->upper_y + offset;
+      object->box->upper_y = object->box->upper_y + offset;
     }
 
     /* recalc boundings and world coords */

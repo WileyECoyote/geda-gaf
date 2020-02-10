@@ -1,5 +1,8 @@
 2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_box_object.c: Fix incorrect assignment in geda_box_
+      object_scale; upper_x should have been upper_y.
+
     * tests/test_line_object.c: Revise check_line_object_mirror to restore
       the coordinates of the line and add checks for:
 
