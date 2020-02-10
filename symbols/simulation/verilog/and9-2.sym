@@ -31,7 +31,7 @@ pinseq=2
 T 0 150 5 8 0 1 0 0 1
 pinlabel=IN0
 T 400 100 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 300 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 300 0 300 1 0 1
@@ -43,7 +43,7 @@ pinseq=3
 T 450 300 5 8 0 1 0 0 1
 pinlabel=IN1
 T 0 350 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 500 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 500 0 500 1 0 1
@@ -55,7 +55,7 @@ pinseq=4
 T 0 550 5 8 0 1 0 0 1
 pinlabel=IN2
 T 450 475 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 700 0 700 1 0 1
@@ -67,7 +67,7 @@ pinseq=5
 T 0 750 5 8 0 1 0 0 1
 pinlabel=IN3
 T 450 725 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 900 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 900 0 900 1 0 1
@@ -79,7 +79,7 @@ pinseq=6
 T 0 950 5 8 0 1 0 0 1
 pinlabel=IN4
 T 450 925 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 1100 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 1100 0 1100 1 0 1
@@ -91,7 +91,7 @@ pinseq=7
 T 0 1150 5 8 0 1 0 0 1
 pinlabel=IN5
 T 525 1075 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 1300 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 1300 0 1300 1 0 1
@@ -103,7 +103,7 @@ pinseq=8
 T 0 1350 5 8 0 1 0 0 1
 pinlabel=IN6
 T 450 1300 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 1500 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 1500 0 1500 1 0 1
@@ -115,7 +115,7 @@ pinseq=9
 T 0 1550 5 8 0 1 0 0 1
 pinlabel=IN7
 T 450 1500 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 V 250 1700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 1700 0 1700 1 0 1
@@ -127,7 +127,7 @@ pinseq=10
 T 0 1750 5 8 0 1 0 0 1
 pinlabel=IN8
 T 550 1700 5 8 0 1 0 0 1
-pintype=io
+pintype=in
 }
 T 850 850 8 10 1 1 0 6 1
 refdes=U?
