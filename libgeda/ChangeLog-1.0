@@ -1,5 +1,9 @@
 2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * tests/test_line_object.c: Add checks for:
+
+          * geda_line_object_modify
+
     * tests/test_math.c: Add checks for:
 
           * geda_math_degrees_to_radians

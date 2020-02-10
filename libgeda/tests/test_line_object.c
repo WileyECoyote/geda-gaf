@@ -1135,6 +1135,35 @@ check_line_object_mirror(GedaObject *object, int x1, int y1, int x2, int y2)
   return result;
 }
 
+int
+check_line_object_modify(GedaObject *object, int x1, int y1, int x2, int y2)
+{
+  int mx1, my1, mx2, my2;
+  int result = 0;
+
+  /* === Function 20: geda_line_object_modify  === */
+
+  geda_line_object_modify(object, x1 + 100, y1 + 100, 0);
+
+  mx1 = geda_line_object_get_x1 (object);
+  my1 = geda_line_object_get_y1 (object);
+
+  mx2 = geda_line_object_get_x2 (object);
+  my2 = geda_line_object_get_y2 (object);
+
+  if (mx1 != x1 + 100) {
+    fprintf(stderr, "FAILED: (O112001X1) %s line_object_modify %d\n", TOBJECT, mx1);
+    result++;
+  }
+
+  if (my1 != y1 + 100) {
+    fprintf(stderr, "FAILED: (O112001Y1) %s line_object_modify %d\n", TOBJECT, my1);
+    result++;
+  }
+
+  return result;
+}
+
 int check_methods (void)
 {
   int index;
@@ -1154,9 +1183,13 @@ int check_methods (void)
 
     int fail = 0;
 
+    /* === Function 19: geda_line_object_mirror  === */
+
     fail += check_line_object_mirror(object, x1, y1, x2, y2);
 
     /* === Function 20: geda_line_object_modify  === */
+
+    fail += check_line_object_modify(object, x1, y1, x2, y2);
 
     /* === Function 29: geda_line_object_rotate  === */
     /* === Function 39: geda_line_object_scale  === */
