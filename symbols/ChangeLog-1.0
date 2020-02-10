@@ -4,6 +4,7 @@
 
             * simulation/verilog/and6-2.sym
             * simulation/verilog/nand2-2.sym
+            * simulation/verilog/nand3-2.sym
 
     * simulation/verilog: Update pin type attributes:
 
