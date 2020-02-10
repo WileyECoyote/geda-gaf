@@ -1166,6 +1166,18 @@ check_line_object_modify(GedaObject *object, int x1, int y1, int x2, int y2)
     result++;
   }
 
+  /* object->line->x,y[1] should not be modified */
+
+  if (mx2 != x2) {
+    fprintf(stderr, "FAILED: (O112001X2) %s line_object_modify %d != %d\n", TOBJECT, mx2, x2);
+    result++;
+  }
+
+  if (my2 != y2) {
+    fprintf(stderr, "FAILED: (O112001Y2) %s line_object_modify %d != %d\n", TOBJECT, my2, y2);
+    result++;
+  }
+
   return result;
 }
 
