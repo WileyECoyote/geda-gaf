@@ -899,6 +899,10 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object8->path === */
+
+  /* geda_object_list_scale does not yet scale path objects. */
+
   return result;
 }
 
