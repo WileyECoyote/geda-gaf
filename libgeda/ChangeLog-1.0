@@ -1,7 +1,7 @@
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_line_object.c: Revise geda_line_object_modify to validate
-      whichone.
+      whichone and eliminate the switch case.
 
 2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
 

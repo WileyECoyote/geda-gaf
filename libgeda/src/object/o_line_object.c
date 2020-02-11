@@ -762,21 +762,8 @@ void geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
   g_return_if_fail(GEDA_IS_LINE(object));
   g_return_if_fail(whichone == LINE_END1 || whichone == LINE_END2);
 
-  /* change one of the end of the line */
-  switch (whichone) {
-    case LINE_END1:
-      object->line->x[0] = x;
-      object->line->y[0] = y;
-      break;
-
-    case LINE_END2:
-      object->line->x[1] = x;
-      object->line->y[1] = y;
-      break;
-
-    default:
-      return;
-  }
+  object->line->x[whichone] = x;
+  object->line->y[whichone] = y;
 
   /* recalculate the bounding line */
   object->bounds_valid = FALSE;
