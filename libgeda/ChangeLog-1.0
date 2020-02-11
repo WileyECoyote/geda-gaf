@@ -1,3 +1,8 @@
+2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_line_object.c: Revise geda_line_object_modify to validate
+      whichone.
+
 2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Fix incorrect assignment in geda_box_

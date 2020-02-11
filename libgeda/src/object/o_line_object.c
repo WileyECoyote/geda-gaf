@@ -760,6 +760,7 @@ void geda_line_object_mirror(GedaObject *object, int center_x, int center_y)
 void geda_line_object_modify(GedaObject *object, int x, int y, int whichone)
 {
   g_return_if_fail(GEDA_IS_LINE(object));
+  g_return_if_fail(whichone == LINE_END1 || whichone == LINE_END2);
 
   /* change one of the end of the line */
   switch (whichone) {
