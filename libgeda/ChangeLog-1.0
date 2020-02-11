@@ -1,5 +1,7 @@
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/libgeda/s_struct.h: Reorganize; move define LINE_END[1,2].
+
     * src/object/o_line_object.c: Revise geda_line_object_modify to validate
       whichone and eliminate the switch case.
 
