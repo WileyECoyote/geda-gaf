@@ -1174,7 +1174,7 @@ void geda_picture_object_modify(GedaObject *object, int x, int y, int whichone)
  */
 void geda_picture_object_modify_all (GedaObject *object, int x1, int y1, int x2, int y2)
 {
-  /* Normalise the requested rectangle. */
+  /* Normalize the requested rectangle. */
   object->picture->lower_x = (x1 > x2) ? x1 : x2;
   object->picture->lower_y = (y1 > y2) ? y2 : y1;
   object->picture->upper_x = (x1 > x2) ? x2 : x1;
