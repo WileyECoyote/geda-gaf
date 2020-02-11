@@ -7,6 +7,9 @@
 
     * src/object/o_picture_object.c: Add function geda_picture_object_scale.
 
+    * tests/test_object_list.c: Fix incorrect y-value for test O120602Y,
+      the upper_y member was being incorrectly assigned to upper_x.
+
 2020-02-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_box_object.c: Fix incorrect assignment in geda_box_

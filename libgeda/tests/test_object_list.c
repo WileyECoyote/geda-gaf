@@ -823,7 +823,7 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
-  if (sy1 + 350 || sy2 - 200) {
+  if (sy1 + 350 || sy2 - 650) {
     fprintf(stderr, "FAILED: (O120602Y) geda_object_list_scale: ");
     fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
     result++;
