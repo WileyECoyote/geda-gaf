@@ -95,11 +95,12 @@
  *      O1625     geda_picture_object_read
  *      O1626     geda_picture_object_rotate
  *      O1627     geda_picture_object_save
- *      O1628     geda_picture_object_set_from_buffer
- *      O1629     geda_picture_object_set_from_file
- *      O1630     geda_picture_object_shortest_distance
- *      O1631     geda_picture_object_translate
- *      O1632     geda_picture_object_unembed
+ *      O1628     geda_picture_object_scale
+ *      O1629     geda_picture_object_set_from_buffer
+ *      O1630     geda_picture_object_set_from_file
+ *      O1631     geda_picture_object_shortest_distance
+ *      O1632     geda_picture_object_translate
+ *      O1633     geda_picture_object_unembed
  */
 
 static int remove_file = 0;
