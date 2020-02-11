@@ -491,7 +491,7 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
          void    geda_picture_object_print                 (GedaToplevel *toplevel, FILE *fp, GedaObject *o_current, int origin_x, int origin_y);
 
          void    geda_picture_object_rotate                (GedaObject *object, int center_x, int center_y, int angle);
-
+         void    geda_picture_object_scale                 (GedaObject *object, int x_scale, int y_scale);
          bool    geda_picture_object_set_from_buffer       (GedaObject *object, const char *filename, const char *data, unsigned int length, GError **error);
          bool    geda_picture_object_set_from_file         (GedaObject *object, const char *filename, GError **error);
 
