@@ -1112,14 +1112,15 @@ static void geda_handle_box_unmap (GtkWidget *widget)
 /*! \internal widget_class->realize */
 static void geda_handle_box_realize (GtkWidget *widget)
 {
-  GdkWindowAttr  attributes;
-  GtkAllocation *allocation;
-  GedaHandleBox *handlebox;
-  GtkWidget     *child;
-  GdkWindow     *parent;
-  GdkWindow     *window;
-  GtkStateType   state;
-  int            attributes_mask;
+  GdkWindowAttr   attributes;
+  GtkAllocation  *allocation;
+  GtkRequisition *requisition;
+  GedaHandleBox  *handlebox;
+  GtkWidget      *child;
+  GdkWindow      *parent;
+  GdkWindow      *window;
+  GtkStateType    state;
+  int             attributes_mask;
 
   handlebox = (GedaHandleBox*)widget;
 
@@ -1165,10 +1166,12 @@ static void geda_handle_box_realize (GtkWidget *widget)
     gtk_widget_set_parent_window (child, handlebox->bin_window);
   }
 
+  requisition = geda_get_widget_requisition(widget);
+
   attributes.x           = 0;
   attributes.y           = 0;
-  attributes.width       = widget->requisition.width;
-  attributes.height      = widget->requisition.height;
+  attributes.width       = requisition->width;
+  attributes.height      = requisition->height;
   attributes.window_type = GDK_WINDOW_TOPLEVEL;
   attributes.wclass      = GDK_INPUT_OUTPUT;
   attributes.visual      = gtk_widget_get_visual (widget);

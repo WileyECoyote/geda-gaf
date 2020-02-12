@@ -9,6 +9,7 @@
       deprecated gdk_window_get_deskrelative_origin. Utilize macros:
 
           * geda_get_widget_window
+          * geda_get_widget_requisition
 
 2020-02-07 Wiley E. Hill <wileyhill@gmail.com>
 
