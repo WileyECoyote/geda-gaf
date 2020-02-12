@@ -1204,9 +1204,10 @@ static void geda_handle_box_realize (GtkWidget *widget)
 #endif
 
   /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
-  GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
+  GtkWidget *topwidget = gtk_widget_get_toplevel (widget);
+  GdkWindow *topwindow = geda_get_widget_window (topwidget);
 
-  gdk_window_set_transient_for (handlebox->float_window, (GdkWindow*)topwindow->window);
+  gdk_window_set_transient_for (handlebox->float_window, topwindow);
 
   GtkStyle *style;
 
