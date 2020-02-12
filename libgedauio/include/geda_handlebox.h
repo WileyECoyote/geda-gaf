@@ -63,11 +63,6 @@ struct _GedaHandleBox
 
   signed int     snap_edge : 3; /* -1 == unset */
 
-  /* Variables used during a drag
-   */
-  int            deskoff_x; /* Offset between root relative coords */
-  int            deskoff_y; /* and deskrelative coords             */
-
   GtkOrientation dock_orientation;
 
   GtkAllocation  attach_allocation;

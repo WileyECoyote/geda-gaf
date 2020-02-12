@@ -491,9 +491,6 @@ static bool geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
     gdk_drawable_get_size(handlebox->float_window, &width, &height);
 #endif
 
-    new_x += handlebox->deskoff_x;
-    new_y += handlebox->deskoff_y;
-
     switch (handle_position) {
 
       case GTK_POS_LEFT:
@@ -783,9 +780,6 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       handlebox->float_allocation.y      = root_y - event->y_root;
       handlebox->float_allocation.width  = width;
       handlebox->float_allocation.height = height;
-
-      handlebox->deskoff_x = desk_x - root_x;
-      handlebox->deskoff_y = desk_y - root_y;
 
       window = geda_get_widget_window(widget);
 
