@@ -1099,7 +1099,7 @@ static void geda_handle_box_unmap (GtkWidget *widget)
 
   handlebox = (GedaHandleBox*)widget;
 
-  gdk_window_hide (widget->window);
+  gdk_window_hide (geda_get_widget_window(widget));
 
   if (handlebox->float_window_mapped) {
       gdk_window_hide (handlebox->float_window);
