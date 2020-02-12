@@ -754,7 +754,6 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
       GdkWindow         *window;
       GtkWidget         *invisible;
 
-      int desk_x, desk_y;
       int root_x, root_y;
       int width, height;
 
@@ -763,7 +762,7 @@ static bool geda_handle_box_button_press (GtkWidget      *widget,
 
       geda_invisible_set_screen ((GedaInvisible*)invisible,
                                   gtk_widget_get_screen (widget));
-      gdk_window_get_deskrelative_origin (handlebox->bin_window, &desk_x, &desk_y);
+
       gdk_window_get_origin (handlebox->bin_window, &root_x, &root_y);
 
 #if (HAVE_GDK_WINDOW_GET_WIDTH)
