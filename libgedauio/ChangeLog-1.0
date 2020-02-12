@@ -6,7 +6,9 @@
     * src/widgets/geda_handlebox.c: Eliminate the relative offset between the
       the desktop and the root window; deskoff_x and deskoff_y. Eliminate
       desk_x and desk_y in geda_handle_box_button_press and the call to
-      deprecated gdk_window_get_deskrelative_origin.
+      deprecated gdk_window_get_deskrelative_origin. Utilize macros:
+
+          * geda_get_widget_window
 
 2020-02-07 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -1087,7 +1087,7 @@ static void geda_handle_box_map (GtkWidget *widget)
   }
 
   gdk_window_show (handlebox->bin_window);
-  gdk_window_show (widget->window);
+  gdk_window_show (geda_get_widget_window(widget));
 }
 
 /*! \internal widget_class->unmap */
