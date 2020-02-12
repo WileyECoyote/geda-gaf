@@ -1155,7 +1155,7 @@ static void geda_handle_box_realize (GtkWidget *widget)
                             GDK_BUTTON_PRESS_MASK |
                             GDK_BUTTON_RELEASE_MASK);
   attributes_mask        = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  handlebox->bin_window  = gdk_window_new (widget->window, &attributes, attributes_mask);
+  handlebox->bin_window  = gdk_window_new (window, &attributes, attributes_mask);
 
   gdk_window_set_user_data (handlebox->bin_window, widget);
 
