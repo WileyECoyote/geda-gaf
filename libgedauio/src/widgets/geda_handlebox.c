@@ -1374,6 +1374,7 @@ static void geda_handle_box_size_request (GtkWidget      *widget,
                                           GtkRequisition *requisition)
 {
   GtkBin        *bin;
+  GtkWidget     *child;
   GedaHandleBox *handlebox;
   GtkRequisition child_requisition;
   int            handle_position;
@@ -1394,11 +1395,14 @@ static void geda_handle_box_size_request (GtkWidget      *widget,
     requisition->height = handlebox->handle_size;
   }
 
-  /* if our child is not visible, we still request its size, since we
-   * won't have any useful hint for our size otherwise.
+  /* if our child is not visible, we still request its size, since
+   * we won't have any useful hint for our size otherwise.
    */
-  if (bin->child) {
-    gtk_widget_size_request (bin->child, &child_requisition);
+
+  child = geda_get_child_widget(bin);
+
+  if (child) {
+    gtk_widget_size_request (child, &child_requisition);
   }
   else {
     child_requisition.width  = 0;
