@@ -1445,7 +1445,7 @@ static void geda_handle_box_size_request (GtkWidget      *widget,
     requisition->width  += border_widthx2;
     requisition->height += border_widthx2;
 
-    if (bin->child) {
+    if (child) {
       requisition->width  += child_requisition.width;
       requisition->height += child_requisition.height;
     }
