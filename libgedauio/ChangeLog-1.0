@@ -1,5 +1,7 @@
 2020-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Cast gtk_widget_get_parent return pointer
+    * to void for geda_get_widget_parent Gtk >= 3.
     * src/widgets/geda_handlebox.c: Utilize macros:
 
           * geda_get_widget_style

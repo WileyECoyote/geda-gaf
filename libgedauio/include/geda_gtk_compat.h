@@ -268,7 +268,7 @@ void gdk_font_unref (GdkFont *font);
 #endif
 
 /*! \def geda_get_widget_parent Get parent from widget Gtk >= 3 */
-#define geda_get_widget_parent(w) gtk_widget_get_parent (GTK_WIDGET(w))
+#define geda_get_widget_parent(w) (void*)gtk_widget_get_parent (GTK_WIDGET(w))
 
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk >= 3 */
 #if defined (gtk_widget_get_preferred_size)
