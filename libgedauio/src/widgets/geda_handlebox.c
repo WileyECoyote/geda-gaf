@@ -1466,11 +1466,15 @@ static void geda_handle_box_style_set (GtkWidget *widget, GtkStyle *previous_sty
   {
     GtkStyle     *style;
     GdkWindow    *window;
-    gtk_style_set_background (widget->style, handlebox->float_window, widget->state);
+    GtkStateType  state;
+
     style  = geda_get_widget_style (widget);
     window = geda_get_widget_window (widget);
+    state  = geda_get_widget_state (widget);
+
     gtk_style_set_background (style, window, state);
     gtk_style_set_background (style, handlebox->bin_window, state);
+    gtk_style_set_background (style, handlebox->float_window, state);
   }
 
   change_handle_size(handlebox);
