@@ -1,3 +1,9 @@
+2020-02-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_handlebox.c: Utilize macros:
+
+          * geda_get_widget_style
+
 2020-02-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_handlebox.h: Remove GedaHandleBox members deskoff_x and
