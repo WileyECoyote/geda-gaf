@@ -548,6 +548,18 @@
 ;(enforce-hierarchy "enabled")
 ;(enforce-hierarchy "disabled")
 
+;  hierarchy-up-close string
+;
+;  Controls if documents are closed during ascension of hierarchy levels.
+;  If set to "both", the underlying schematic and symbols will be closed
+;  during ascension. If set to "sym", only symbols will be closed during
+;  ascension.  If set to "none", no douments will be closed when ascending
+;  hierarchy levels.
+;
+(hierarchy-up-close "none")
+;(hierarchy-up-close "sym")
+;(hierarchy-up-close "both")
+
 ; force-boundingbox string
 ;
 ; Controls if the entire bounding box of a symbol is used when figuring out
