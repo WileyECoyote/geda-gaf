@@ -4910,6 +4910,12 @@ COMMAND (enforce_hierarchy) {
   SHOW_VARIABLE(enforce_hierarchy, W);
 }
 
+/** @brief i_cmd_hierarchy_up_close in i_command_Variable_Handlers */
+COMMAND (hierarchy_up_close) {
+
+  SHOW_VARIABLE(hierarchy_up_close, W);
+}
+
 /** @brief i_cmdfile_preview in i_command_Variable_Handlers */
 COMMAND (file_preview) {
 

@@ -8,12 +8,16 @@
 
     * include/gschem_toplevel.h: Add GschemToplevel int member hierarchy_up_close.
 
+    * include/i_command.h: Declare i_cmd_hierarchy_up_close.
+
     * src/iface/i_vars.c: Add int default_hierarchy_up_close.
 
     * src/guile/g_rc.c: Add function g_rc_hierarchy_up_close to handle
       keyword hierarchy-up-close.
 
     * src/guile/g_register.c: Register hierarchy-up-close.
+
+    * src/iface/i_command.c: Add handler i_cmd_hierarchy_up_close.
 
 2020-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
