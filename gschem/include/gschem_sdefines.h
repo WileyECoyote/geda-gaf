@@ -149,7 +149,9 @@
 /* -----------------  Strings for RC Read/Write ----------------- */
 
 /* Generic Strings for RC code */
+#define RC_STR_BOTH            "both"
 #define RC_STR_NONE            "none"
+#define RC_STR_SYM             "sym"
 
 /* Renderer Options */
 #define RC_RENDERER_OPTION_CAIRO  "Cario"

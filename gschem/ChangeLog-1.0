@@ -2,6 +2,8 @@
 
     * include/gschem_idefines.h: Define flags for hierarchy-close-up.
 
+    * include/gschem_sdefines.h: Define strings for hierarchy-close-up.
+
 2020-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.
