@@ -1188,6 +1188,17 @@ SCM g_rc_enforce_hierarchy(SCM mode)
   RETURN_G_RC_MODE("enforce-hierarchy", default_enforce_hierarchy, mode_table);
 }
 
+SCM g_rc_hierarchy_up_close(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {CLOSE_NONE, RC_STR_NONE},
+    {CLOSE_SYM , RC_STR_SYM },
+    {CLOSE_BOTH, RC_STR_BOTH },
+  };
+
+  RETURN_G_RC_MODE("hierarchy-up-close", default_hierarchy_up_close, mode_table);
+}
+
 /*! \brief Process force_boundingbox RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while

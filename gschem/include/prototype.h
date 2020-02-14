@@ -170,6 +170,7 @@ SCM   g_rc_scroll_wheel                (SCM mode);
 SCM   g_rc_pointer_hscroll             (SCM mode);
 SCM   g_rc_net_consolidate             (SCM mode);
 SCM   g_rc_enforce_hierarchy           (SCM mode);
+SCM   g_rc_hierarchy_up_close          (SCM mode);
 SCM   g_rc_text_origin_marker          (SCM mode);
 SCM   g_rc_text_marker_size            (SCM mode);
 SCM   g_rc_text_marker_threshold       (SCM mode);

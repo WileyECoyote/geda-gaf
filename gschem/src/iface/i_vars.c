@@ -114,6 +114,7 @@ GList  *default_component_select_attrlist = NULL;
 int     default_continue_component_place  = RC_NIL;
 int     default_embed_components          = RC_NIL;
 int     default_enforce_hierarchy         = RC_NIL;
+int     default_hierarchy_up_close        = RC_NIL;
 int     default_force_boundingbox         = RC_NIL;
 //int     default_include_complex           = FALSE;
 int     default_keyboardpan_gain          = RC_NIL;

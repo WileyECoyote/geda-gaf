@@ -105,6 +105,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "map-keys",                  2, 0, 0, g_rc_map_keys },
   { "net-consolidate",           1, 0, 0, g_rc_net_consolidate },
   { "enforce-hierarchy",         1, 0, 0, g_rc_enforce_hierarchy },
+  { "hierarchy-up-close",        1, 0, 0, g_rc_hierarchy_up_close },
   { "continue-component-place",  1, 0, 0, g_rc_continue_component_place },
   { "netconn-rubberband",        1, 0, 0, g_rc_netconn_rubberband },
   { "magnetic-net-mode",         1, 0, 0, g_rc_magnetic_net_mode },

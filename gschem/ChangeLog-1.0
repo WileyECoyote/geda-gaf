@@ -4,24 +4,23 @@
 
     * include/gschem_sdefines.h: Define strings for hierarchy-close-up.
 
+    * src/iface/i_vars.c: Add int default_hierarchy_up_close.
+
+    * src/guile/g_rc.c: Add function g_rc_hierarchy_up_close to handle
+      keyword hierarchy-up-close.
+
+    * src/guile/g_register.c: Register hierarchy-up-close.
+
 2020-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/ja.po: Update Japanese translations.
-
     * po/kh.po: Update Khmer translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pl.po: Update Polish translations.
 
 2020-02-02 Wiley E. Hill <wileyhill@gmail.com>
