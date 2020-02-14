@@ -697,6 +697,7 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->continue_component_place, default_continue_component_place);
   i_set_rc (&w_current->embed_components,         default_embed_components);
   i_set_rc (&w_current->enforce_hierarchy,        default_enforce_hierarchy);
+  i_set_rc (&w_current->hierarchy_up_close,       default_hierarchy_up_close);
   i_set_rc (&w_current->force_boundingbox,        default_force_boundingbox);
   i_set_rc (&w_current->keyboardpan_gain,         default_keyboardpan_gain);
   i_set_rc (&w_current->netconn_rubberband,       default_netconn_rubberband);

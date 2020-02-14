@@ -66,6 +66,7 @@ extern GList *default_component_select_attrlist;
 extern int default_continue_component_place;
 extern int default_embed_components;
 extern int default_enforce_hierarchy;
+extern int default_hierarchy_up_close;
 extern int default_force_boundingbox;
 extern int default_include_complex;
 extern int default_keyboardpan_gain;
