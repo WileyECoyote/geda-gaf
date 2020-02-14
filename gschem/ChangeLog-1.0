@@ -4,7 +4,8 @@
 
     * include/gschem_idefines.h: Define flags for hierarchy-close-up.
 
-    * include/gschem_sdefines.h: Define strings for hierarchy-close-up.
+    * include/gschem_sdefines.h: Define strings for hierarchy-close-up and
+      define RC_STR_DESTINY_BOTH as RC_STR_BOTH.
 
     * include/gschem_toplevel.h: Add GschemToplevel int member hierarchy_up_close.
 

@@ -196,7 +196,7 @@
 /* Log Destiny Strings for RC code */
 #define RC_STR_DESTINY_WINDOW     "console_window"
 #define RC_STR_DESTINY_TTY        "tty"
-#define RC_STR_DESTINY_BOTH       "both"
+#define RC_STR_DESTINY_BOTH       RC_STR_BOTH
 
 /* Console Window Type Strings for RC code */
 #define RC_STR_CONWIN_DECORATED   "decorated"
