@@ -1,3 +1,7 @@
+2020-02-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_idefines.h: Define flags for hierarchy-close-up.
+
 2020-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.

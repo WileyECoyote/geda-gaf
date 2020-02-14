@@ -159,6 +159,12 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DECORATED       0
 #define TRANSIENT       1
 
+/*----------- Hierarchy -----------*/
+
+#define CLOSE_NONE              0
+#define CLOSE_SYM               1
+#define CLOSE_BOTH              2
+
 /*--------- Miscellaneous ----------*/
 
 /*! \def DEFAULT_TAB_SIZE Size of a tab in characters */
