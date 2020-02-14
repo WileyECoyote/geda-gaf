@@ -6,6 +6,8 @@
 
     * include/gschem_sdefines.h: Define strings for hierarchy-close-up.
 
+    * include/gschem_toplevel.h: Add GschemToplevel int member hierarchy_up_close.
+
     * src/iface/i_vars.c: Add int default_hierarchy_up_close.
 
     * src/guile/g_rc.c: Add function g_rc_hierarchy_up_close to handle

@@ -289,6 +289,7 @@ struct _GschemToplevel {
   int continue_component_place;
   int embed_components;   /* controls if complex objects are embedded */
   int enforce_hierarchy;  /* controls how much freedom user has when traversing the hierarchy */
+  int hierarchy_up_close; /* Control if documents are closed during ascension */
   /* controls if the whole bounding box is used in the auto whichend code */
   int force_boundingbox;
   int include_complex;    /* controls if complex objects are included */
