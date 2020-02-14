@@ -573,6 +573,7 @@ DEFINE_POPUP_CALLBACK (open_page,    ACTION(FILE_OPEN))
 DEFINE_POPUP_CALLBACK (save_page,    ACTION(FILE_SAVE))
 DEFINE_POPUP_CALLBACK (close_page,   ACTION(PAGE_CLOSE))
 DEFINE_POPUP_CALLBACK (discard_page, ACTION(PAGE_DISCARD))
+DEFINE_POPUP_CALLBACK (revert_page,  ACTION(PAGE_REVERT))
 
 /*!
  * \internal Creates the context pop-up menu displayed when the
@@ -601,6 +602,7 @@ static GtkWidget *pagesel_create_popup_menu (Pagesel *pagesel)
     { N_("Save Page"),    G_CALLBACK (pagesel_callback_popup_save_page)    },
     { N_("Close Page"),   G_CALLBACK (pagesel_callback_popup_close_page)   },
     { N_("Discard Page"), G_CALLBACK (pagesel_callback_popup_discard_page) },
+    { N_("Revert Page"),  G_CALLBACK (pagesel_callback_popup_revert_page)  },
     { NULL,               NULL                                             }};
 
   struct menuitem_t *tmp;

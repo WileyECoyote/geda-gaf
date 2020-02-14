@@ -20,6 +20,8 @@
 
     * src/iface/i_command.c: Add handler i_cmd_hierarchy_up_close.
 
+    * src/x/x_pagesel.c: Add "Revert Page" to the page manager popup menu.
+
 2020-02-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/fr.po: Update French translations.
