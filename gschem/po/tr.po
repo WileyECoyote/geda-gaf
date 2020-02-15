@@ -86,31 +86,35 @@ msgstr ""
 msgid "Exiting normal\n"
 msgstr ""
 
+# FAILED:
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "BAŞARISIZ OLDU:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
 msgstr "Ebeveyn Pencere"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Bu iletişim kutusu için üst pencere"
 
+# Title
 #: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
-msgstr ""
+msgstr "Başlık"
 
 # Dialog window title
 #: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
 msgstr "İletişim penceresi başlığı"
 
+# Label Text
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "Etiket Metni"
 
 # Text to be displayed for the Macro label
 #: gschem/src/base/gschem_macro_widget.c:233
@@ -137,9 +141,10 @@ msgstr "Değerlendirmek"
 msgid "Retrieving main window position.\n"
 msgstr "Ana pencere konumunu alma.\n"
 
+# Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Ana pencere geometrisini alma.\n"
 
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
