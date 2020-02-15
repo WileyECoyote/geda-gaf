@@ -92,6 +92,7 @@ msgstr "Greška: Nije bilo moguće učitati ili procijeniti početnu skriptu.\n"
 msgid "Exiting normal\n"
 msgstr "Izlazak iz normalnog\n"
 
+# FAILED
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
 msgstr "Pali"

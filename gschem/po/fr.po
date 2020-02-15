@@ -86,28 +86,31 @@ msgstr "ERREUR: Impossible de charger ou d'évaluer le script de démarrage\n"
 
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Sortie normale\n"
 
+# FAILED
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "ÉCHOUÉ:"
 
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
 msgstr "Vue en cours"
 
+# Parent window for this dialog
 #: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
-msgstr ""
+msgstr "Fenêtre parent de cette boîte de dialogue"
 
 # Title
 #: gschem/src/base/gschem_dialog.c:618
 msgid "Title"
 msgstr "Titre"
 
+# Dialog window title
 #: gschem/src/base/gschem_dialog.c:619
 msgid "Dialog window title"
-msgstr ""
+msgstr "Titre de la fenêtre de dialogue"
 
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
@@ -258,9 +261,10 @@ msgstr ""
 "inclus dans la distribution gEDA.\n"
 "Il n'y a AUCUNE GARANTIE autre que celles prévues par la loi.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
-msgstr ""
+msgstr "analyse d'erreur"
 
 #: gschem/src/base/gschem_parsecmd.c:291 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
