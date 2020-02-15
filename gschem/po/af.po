@@ -89,9 +89,10 @@ msgstr "Fout: kon nie laai of te evalueer opstart script.\n"
 msgid "Exiting normal\n"
 msgstr "normale beëindiging\n"
 
+# FAILED
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "misluk:"
 
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
@@ -140,7 +141,7 @@ msgstr "Herwinning hoof venster meetkunde.\n"
 
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Auto-herstel"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:422
@@ -156,7 +157,7 @@ msgstr "Horisontale aanpassing"
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
 msgstr "Bladsy"
-
+Retrieving mai
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
