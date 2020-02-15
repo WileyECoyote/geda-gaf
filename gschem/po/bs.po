@@ -129,24 +129,24 @@ msgstr "Tekst koji će se prikazati za oznaku makroa"
 
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "Makro:"
 
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "Makro string"
 
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "Procijenite"
 
 #: gschem/src/base/gschem_main_window.c:242
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "Dohvaćanje položaja glavnog prozora.\n"
 
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Dobivanje geometrije glavnog prozora.\n"
 
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
