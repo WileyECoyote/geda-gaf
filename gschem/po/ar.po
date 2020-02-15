@@ -86,9 +86,10 @@ msgstr "خطأ: فشل في تحميل أو تقييم النصي لبدء ال�
 msgid "Exiting normal\n"
 msgstr "تخرج الطبيعي\n"
 
+# FAILED: fashil
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr ""
+msgstr "فشل"
 
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
@@ -127,21 +128,28 @@ msgstr "سلسلة الكلية"
 msgid "Evaluate"
 msgstr "تقييم"
 
+# Retrieving main window position
+# aistirdad mawqif alnnafidhat alrayiysia
 #: gschem/src/base/gschem_main_window.c:242
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "استرداد موقف النافذة الرئيسية.\n"
 
+# Retrieving main window geometry
+# aistieadat alrayiysiat nafidhat alhindasa
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "استعادة الرئيسية نافذة الهندسة.\n"
 
+# Auto-Restore; lisinaeat alsayarat fi aistieada
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "لصناعة السيارات في استعادة"
 
+# Automatically restore the main window geometry
+# aistieadat tilqayiyaan nafidhat alhindasat alrayiysia
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "استعادة تلقائيا نافذة الهندسة الرئيسية"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
