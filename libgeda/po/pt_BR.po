@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:30-0600\n"
+"POT-Creation-Date: 2020-02-15 10:55-0600\n"
 "PO-Revision-Date: 2012-01-27 14:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -1137,7 +1137,7 @@ msgstr ""
 #: libgeda/src/object/o_box_object.c:1586
 #: libgeda/src/object/o_bus_object.c:586
 #: libgeda/src/object/o_circle_object.c:1362
-#: libgeda/src/object/o_line_object.c:1571
+#: libgeda/src/object/o_line_object.c:1559
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:580
 #: libgeda/src/object/o_pin_object.c:202
@@ -1149,7 +1149,7 @@ msgstr ""
 #: libgeda/src/object/o_box_object.c:1590
 #: libgeda/src/object/o_bus_object.c:590
 #: libgeda/src/object/o_circle_object.c:1366
-#: libgeda/src/object/o_line_object.c:1575
+#: libgeda/src/object/o_line_object.c:1563
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:584
 #: libgeda/src/object/o_pin_object.c:206
@@ -1366,12 +1366,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1531
-#: libgeda/src/object/o_line_object.c:1551
+#: libgeda/src/object/o_line_object.c:1519
+#: libgeda/src/object/o_line_object.c:1539
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_object.c:1564
+#: libgeda/src/object/o_line_object.c:1552
 msgid "Found a line with zero length"
 msgstr ""
 
@@ -1490,20 +1490,20 @@ msgid "ERROR: unable to encode the picture.\n"
 msgstr "ERRO: não é possível codificar a imagem.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1799
+#: libgeda/src/object/o_picture_object.c:1851
 msgid "Error processing image"
 msgstr "Erro no processamento de imagem"
 
 # Failed to load symbol from file
-#: libgeda/src/object/o_picture_object.c:1974
+#: libgeda/src/object/o_picture_object.c:2026
 msgid "Failed to load image from file"
 msgstr "Falhou ao carregar símbolo a partir do arquivo"
 
-#: libgeda/src/object/o_picture_object.c:1976
+#: libgeda/src/object/o_picture_object.c:2028
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1985
+#: libgeda/src/object/o_picture_object.c:2037
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr ""
@@ -1741,15 +1741,15 @@ msgstr ""
 msgid "Object ~A has bad type '~A'"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1654
+#: libgeda/src/scheme/scheme_object.c:1653
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1783
+#: libgeda/src/scheme/scheme_object.c:1782
 msgid "Invalid path element type ~A."
 msgstr ""
 
-#: libgeda/src/scheme/scheme_object.c:1941
+#: libgeda/src/scheme/scheme_object.c:1940
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 

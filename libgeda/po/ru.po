@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:30-0600\n"
+"POT-Creation-Date: 2020-02-15 10:55-0600\n"
 "PO-Revision-Date: 2014-06-06 16:40+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -1162,7 +1162,7 @@ msgstr "Установка радиуса в 1000\n"
 #: libgeda/src/object/o_box_object.c:1586
 #: libgeda/src/object/o_bus_object.c:586
 #: libgeda/src/object/o_circle_object.c:1362
-#: libgeda/src/object/o_line_object.c:1571
+#: libgeda/src/object/o_line_object.c:1559
 #: libgeda/src/object/o_net_object.c:718
 #: libgeda/src/object/o_path_object.c:580
 #: libgeda/src/object/o_pin_object.c:202
@@ -1174,7 +1174,7 @@ msgstr "Недопустимое значение цветового индек�
 #: libgeda/src/object/o_box_object.c:1590
 #: libgeda/src/object/o_bus_object.c:590
 #: libgeda/src/object/o_circle_object.c:1366
-#: libgeda/src/object/o_line_object.c:1575
+#: libgeda/src/object/o_line_object.c:1563
 #: libgeda/src/object/o_net_object.c:722
 #: libgeda/src/object/o_path_object.c:584
 #: libgeda/src/object/o_pin_object.c:206
@@ -1392,12 +1392,12 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонент «%s» успешно исключён\n"
 
-#: libgeda/src/object/o_line_object.c:1531
-#: libgeda/src/object/o_line_object.c:1551
+#: libgeda/src/object/o_line_object.c:1519
+#: libgeda/src/object/o_line_object.c:1539
 msgid "Failed to parse line object"
 msgstr "Ошибка в определении линии"
 
-#: libgeda/src/object/o_line_object.c:1564
+#: libgeda/src/object/o_line_object.c:1552
 msgid "Found a line with zero length"
 msgstr "Шина нулевой длины"
 
@@ -1516,20 +1516,20 @@ msgid "ERROR: unable to encode the picture.\n"
 msgstr "ОШИБКА: невозможно закодировать изображение.\n"
 
 # Error processing image
-#: libgeda/src/object/o_picture_object.c:1799
+#: libgeda/src/object/o_picture_object.c:1851
 msgid "Error processing image"
 msgstr "Ошибка обработки изображения"
 
 # Failed to load image from file
-#: libgeda/src/object/o_picture_object.c:1974
+#: libgeda/src/object/o_picture_object.c:2026
 msgid "Failed to load image from file"
 msgstr "Не удалось загрузить изображение из файла"
 
-#: libgeda/src/object/o_picture_object.c:1976
+#: libgeda/src/object/o_picture_object.c:2028
 msgid "Picture is still embedded.\n"
 msgstr "Изображение всё ещё внедрено.\n"
 
-#: libgeda/src/object/o_picture_object.c:1985
+#: libgeda/src/object/o_picture_object.c:2037
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Изображение «%s» исключено\n"
@@ -1778,15 +1778,15 @@ msgstr "Отсутствует поле «dashspace» (тип линии): ~A."
 msgid "Object ~A has bad type '~A'"
 msgstr "Недопустимый тип объекта ~A: «~A»"
 
-#: libgeda/src/scheme/scheme_object.c:1654
+#: libgeda/src/scheme/scheme_object.c:1653
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr "Контур ~A имеет недопустимое значение типа элемента ~A с индексом ~A"
 
-#: libgeda/src/scheme/scheme_object.c:1783
+#: libgeda/src/scheme/scheme_object.c:1782
 msgid "Invalid path element type ~A."
 msgstr "Недопустимое значение типа элемента контура: ~A."
 
-#: libgeda/src/scheme/scheme_object.c:1941
+#: libgeda/src/scheme/scheme_object.c:1940
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 "Недопустимое значение угла поворота изображения ~A. Угол должен быть равен  "
