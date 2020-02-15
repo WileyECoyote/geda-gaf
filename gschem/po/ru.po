@@ -93,9 +93,10 @@ msgstr "ОШИБКА: не удалось загрузить или выполн
 msgid "Exiting normal\n"
 msgstr "Выход из нормального\n"
 
+# FAILED; NE UDALOS'
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr "FAILED:"
+msgstr "НЕ УДАЛОСЬ:"
 
 #: gschem/src/base/gschem_dialog.c:597
 msgid "Parent Window"
@@ -145,9 +146,11 @@ msgstr "Выполнить"
 msgid "Retrieving main window position.\n"
 msgstr "Получение положения главного окна.\n"
 
+# Retrieving main window geometry
+# Polucheniye geometrii glavnogo okna
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
-msgstr ""
+msgstr "Получение геометрии главного окна.\n"
 
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
