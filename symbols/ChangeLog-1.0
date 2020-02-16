@@ -3,6 +3,7 @@
     * simulation/verilog: Swap pinnumber and pinlabel attribute values:
 
             * simulation/verilog/nand5-2.sym
+            * simulation/verilog/nand6-1.sym
 
 2020-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
