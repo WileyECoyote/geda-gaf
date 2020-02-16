@@ -1,3 +1,9 @@
+2020-02-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Swap pinnumber and pinlabel attribute values:
+
+            * simulation/verilog/nand5-2.sym
+
 2020-02-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Swap pinnumber and pinlabel attribute values:
