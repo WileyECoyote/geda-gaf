@@ -1,3 +1,7 @@
+2020-02-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_circle.c: Add Doxygen group math-circle-proc.
+
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/s_struct.h: Reorganize; move define LINE_END[1,2].

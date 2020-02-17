@@ -33,6 +33,11 @@
 
 #include <geda_debug.h>
 
+/** \defgroup math-circle-proc Math Procedures for Circles
+ * @{
+ * \brief Math Related Procedures for Circles
+ */
+
 double
 geda_math_circle_circumference (int radius)
 {
@@ -123,3 +128,5 @@ geda_math_circle_shortest_distance (GedaCircle *circle, int x, int y, int solid)
 
   return shortest_distance;
 }
+
+/** @} endgroup math-circle-proc */
