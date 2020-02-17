@@ -357,7 +357,7 @@ int geda_box_object_get_lower_y (const GedaObject *object) {
  *
  * \returns TRUE is the results are valid, FALSE if \a object was not a GedaBox.
  */
-bool geda_box_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_box_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaBox *box;
   bool result;

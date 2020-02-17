@@ -237,7 +237,7 @@ extern "C" {
           int    geda_box_object_get_line_width       (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_lower_x          (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_lower_y          (const GedaObject *object) WARN_UNUSED;
-         bool    geda_box_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_box_object_get_nearest_point    (const GedaObject *object, int x, int y, int *nx, int *ny);
           int    geda_box_object_get_upper_x          (const GedaObject *object) WARN_UNUSED;
           int    geda_box_object_get_upper_y          (const GedaObject *object) WARN_UNUSED;
          void    geda_box_object_modify               (GedaObject *object, int x, int y, int whichone);
