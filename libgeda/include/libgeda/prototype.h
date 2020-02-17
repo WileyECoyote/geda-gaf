@@ -389,7 +389,7 @@ extern "C" {
           int    geda_line_object_get_line_type            (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_line_width           (const GedaObject *object) WARN_UNUSED;
          bool    geda_line_object_get_midpoint             (GedaObject *object, GedaPoint *point);
-         bool    geda_line_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_line_object_get_nearest_point        (const GedaObject *object, int x, int y, int *nx, int *ny);
          bool    geda_line_object_get_slope                (GedaObject *object, double *anwser);
           int    geda_line_object_get_x1                   (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_x2                   (const GedaObject *object) WARN_UNUSED;

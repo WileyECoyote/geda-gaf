@@ -12,6 +12,7 @@
           * geda_circle_object_get_nearest_point
           * geda_complex_object_get_nearest_point
           * geda_line_object_get_closest_endpoint
+          * geda_line_object_get_nearest_point
 
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 

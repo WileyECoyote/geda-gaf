@@ -397,7 +397,7 @@ bool geda_line_object_get_midpoint(GedaObject *object, GedaPoint *point)
  *
  * \returns TRUE is the results are valid, FALSE if \a object was not a Line.
  */
-bool geda_line_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_line_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool      result;
   int       ax, ay;
