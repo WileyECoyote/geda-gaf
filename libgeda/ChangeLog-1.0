@@ -3,6 +3,8 @@
     * src/math/m_circle.c: Eliminate unnecessary function line wrapping and
       add Doxygen group math-circle-proc.
 
+    * libgeda/src/math/m_hatch.c: Add Doxygen group math-hatch-proc.
+
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/s_struct.h: Reorganize; move define LINE_END[1,2].

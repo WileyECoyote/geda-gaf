@@ -25,6 +25,11 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup math-hatch-proc Math Procedures for Hatching
+ * @{
+ * \brief Math Related Procedures for Hatching
+ */
+
 typedef struct st_sweep_event SWEEP_EVENT;
 typedef struct st_sweep_status SWEEP_STATUS;
 
@@ -525,3 +530,5 @@ geda_math_hatch_object (GedaObject *object)
 
   return fill_lines;
 }
+
+/** @} endgroup math-hatch-proc */
