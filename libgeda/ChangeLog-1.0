@@ -3,7 +3,11 @@
     * src/math/m_circle.c: Eliminate unnecessary function line wrapping and
       add Doxygen group math-circle-proc.
 
-    * libgeda/src/math/m_hatch.c: Add Doxygen group math-hatch-proc.
+    * src/math/m_hatch.c: Add Doxygen group math-hatch-proc.
+
+    * src/object/o_*_object.c: Declare GedaObject argument a const:
+
+          * geda_arc_object_get_nearest_point
 
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 

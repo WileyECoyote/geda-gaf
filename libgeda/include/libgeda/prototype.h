@@ -157,7 +157,7 @@ extern "C" {
           int    geda_arc_object_get_line_space       (const GedaObject *object);
           int    geda_arc_object_get_line_type        (const GedaObject *object);
           int    geda_arc_object_get_line_width       (const GedaObject *object);
-         bool    geda_arc_object_get_nearest_point    (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_arc_object_get_nearest_point    (const GedaObject *object, int x, int y, int *nx, int *ny);
 
           int    geda_arc_object_get_radius           (const GedaObject *object);
           int    geda_arc_object_get_start_angle      (const GedaObject *object);

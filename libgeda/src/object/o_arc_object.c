@@ -372,7 +372,7 @@ int geda_arc_object_get_line_width (const GedaObject *object)
  * \returns TRUE if the results are valid, FALSE if \a object was not an
  *          GedaArc object, or if (<B>dx</B>,<B>dy</B>) is the centerpoint of the arc.
  */
-bool geda_arc_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_arc_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaArc *arc;
   bool result;
