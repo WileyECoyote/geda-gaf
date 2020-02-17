@@ -328,7 +328,7 @@ extern "C" {
    GedaObject   *geda_complex_object_copy                  (GedaObject *o_current);
          void    geda_complex_object_check_symbol_version  (GedaToplevel *toplevel, GedaObject *object);
    const char   *geda_complex_object_get_filename          (GedaObject *object);
-         bool    geda_complex_object_get_nearest_point     (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_complex_object_get_nearest_point     (const GedaObject *object, int x, int y, int *nx, int *ny);
         GList   *geda_complex_object_get_pin_objs          (GedaObject *object);
 
         GList   *geda_complex_object_get_prim_objs         (GedaObject *object);

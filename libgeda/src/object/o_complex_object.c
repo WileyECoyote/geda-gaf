@@ -507,7 +507,7 @@ const char *geda_complex_object_get_filename (GedaObject *object)
  * \returns TRUE is the results are valid or
  *          FALSE if \a object was not a GedaComplex.
  */
-bool geda_complex_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_complex_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool result;
   GedaObject *closest = NULL;
