@@ -8,6 +8,8 @@
     * src/object/o_*_object.c: Declare GedaObject argument a const:
 
           * geda_arc_object_get_nearest_point
+          * geda_box_object_get_nearest_point
+          * geda_circle_object_get_nearest_point
 
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 

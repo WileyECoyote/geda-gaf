@@ -379,7 +379,7 @@ geda_circle_object_get_line_width (const GedaObject *object)
  *          of the circle.
  */
 bool
-geda_circle_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+geda_circle_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool    result;
 
