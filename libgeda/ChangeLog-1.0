@@ -1,6 +1,7 @@
 2020-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/math/m_circle.c: Add Doxygen group math-circle-proc.
+    * src/math/m_circle.c: Eliminate unnecessary function line wrapping and
+      add Doxygen group math-circle-proc.
 
 2020-02-11 Wiley E. Hill <wileyhill@gmail.com>
 
