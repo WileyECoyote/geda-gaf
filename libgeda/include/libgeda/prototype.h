@@ -381,7 +381,7 @@ extern "C" {
 /* o_line_object.c */
    GedaObject   *geda_line_object_copy                     (GedaObject *object) WARN_UNUSED;
          bool    geda_line_object_is_endpoint              (GedaObject *object, GedaPoint *point);
-         int     geda_line_object_get_closest_endpoint     (GedaObject *object, int x, int y);
+         int     geda_line_object_get_closest_endpoint     (const GedaObject *object, int x, int y);
          bool    geda_line_object_get_intersection         (GedaObject *object1, GedaObject *object2, GedaPoint *point);
           int    geda_line_object_get_end_cap              (const GedaObject *object) WARN_UNUSED;
           int    geda_line_object_get_line_length          (const GedaObject *object) WARN_UNUSED;

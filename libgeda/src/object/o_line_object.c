@@ -95,7 +95,7 @@ GedaObject *geda_line_object_copy(GedaObject *o_current)
  *
  * \returns 0 or 1 or -1 if object is not a line
  */
-int geda_line_object_get_closest_endpoint(GedaObject *object, int x, int y)
+int geda_line_object_get_closest_endpoint(const GedaObject *object, int x, int y)
 {
   int anwser;
 
