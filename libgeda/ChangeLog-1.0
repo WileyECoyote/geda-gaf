@@ -4,6 +4,8 @@
 
     * src/math/m_line.c: Add Doxygen group math-line-proc.
 
+    * libgeda/src/math/m_math.c: Add Doxygen group math-general-proc.
+
     * src/object/o_*_object.c: Declare GedaObject argument a const:
 
           * geda_path_object_get_nearest_point

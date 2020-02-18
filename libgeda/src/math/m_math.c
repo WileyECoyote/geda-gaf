@@ -26,6 +26,11 @@
 
 #include <libgeda_priv.h>
 
+/** \defgroup math-general-proc General Math Procedures
+ * @{
+ * \brief General Math Related Procedures
+ */
+
 /*!
  * \brief Convert Degrees to Radian
  * \par Function Description
@@ -252,3 +257,5 @@ void geda_math_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
   *newx = x * costheta - y * sintheta;
   *newy = x * sintheta + y * costheta;
 }
+
+/** @} endgroup math-general-proc */
