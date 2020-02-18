@@ -3,6 +3,7 @@
     * src/object/o_*_object.c: Declare GedaObject argument a const:
 
           * geda_path_object_get_nearest_point
+          * geda_text_object_get_nearest_point
 
 2020-02-17 Wiley E. Hill <wileyhill@gmail.com>
 

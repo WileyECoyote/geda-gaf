@@ -173,7 +173,7 @@ int geda_text_object_get_angle (const GedaObject *object)
  * \returns TRUE is the results are valid, FALSE if \a object was not a
  *          GedaText object or if the bounds is not set on the Text.
  */
-bool geda_text_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_text_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   bool result;
 

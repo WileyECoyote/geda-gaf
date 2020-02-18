@@ -568,7 +568,7 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
    GedaObject   *geda_text_object_copy                     (const GedaObject *object) WARN_UNUSED;
           int    geda_text_object_get_alignment            (const GedaObject *object) WARN_UNUSED;
           int    geda_text_object_get_angle                (const GedaObject *object) WARN_UNUSED;
-         bool    geda_text_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_text_object_get_nearest_point        (const GedaObject *object, int x, int y, int *nx, int *ny);
           int    geda_text_object_get_size                 (const GedaObject *object) WARN_UNUSED;
        double    geda_text_object_get_size_in_points       (const GedaObject *object) WARN_UNUSED;
    const char   *geda_text_object_get_string               (const GedaObject *object);
