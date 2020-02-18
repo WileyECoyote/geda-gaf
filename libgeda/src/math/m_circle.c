@@ -45,10 +45,10 @@ double geda_math_circle_circumference (int radius)
 
 /*!
  * \brief Determine if a Circle includes a Point
- *  Compares distance from point to the center of the Circle to the radius
- *  of the Circle returns True if there is no difference.
+ *  Compares distance from point to the center of the circle to the
+ *  radius of the circle returns True if there is no difference.
  *
- * \param [in] circle The circle object.
+ * \param [in] circle The Circle object.
  * \param [in] point  Point to test for inclusion.
  *
  * \return True if \a circle includes \a point.
