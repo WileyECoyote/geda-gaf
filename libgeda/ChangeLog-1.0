@@ -2,6 +2,8 @@
 
     * src/math/m_hatch.c: Add todo documentation template.
 
+    * src/math/m_line.c: Add Doxygen group math-line-proc.
+
     * src/object/o_*_object.c: Declare GedaObject argument a const:
 
           * geda_path_object_get_nearest_point

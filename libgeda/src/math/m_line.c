@@ -40,6 +40,11 @@
 
 #include <geda_debug.h>
 
+/** \defgroup math-line-proc Math Procedures for Lines
+ * @{
+ * \brief Math Related Procedures for Lines
+ */
+
 /*!
  * \brief Determine the Intersection of two lines
  * \par Function Description
@@ -321,3 +326,5 @@ double geda_math_line_shortest_distance (GedaLine *line, int x, int y)
 
   return sqrt ((dx * dx) + (dy * dy));
 }
+
+/** @} endgroup math-line-proc */
