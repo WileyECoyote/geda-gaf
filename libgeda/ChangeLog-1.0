@@ -1,5 +1,7 @@
 2020-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_hatch.c: Add todo documentation template.
+
     * src/object/o_*_object.c: Declare GedaObject argument a const:
 
           * geda_path_object_get_nearest_point

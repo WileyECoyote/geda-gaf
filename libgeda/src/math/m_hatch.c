@@ -114,6 +114,11 @@ compare_status(const void *a, const void *b)
   return (status_b->x - status_a->x);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void
 geda_math_hatch_arc(GedaArc *arc, int angle, int pitch, GArray *lines)
 {
