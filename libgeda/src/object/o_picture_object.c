@@ -712,7 +712,7 @@ uint8 *geda_picture_object_get_mask_data(GedaObject *object)
  * \returns TRUE is the results are valid or
  *          FALSE if \a object was not a Picture.
  */
-bool geda_picture_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_picture_object_get_nearest_point(const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaPicture *picture;
   bool result;
