@@ -8,6 +8,9 @@
           * geda_picture_object_get_nearest_point
           * geda_text_object_get_nearest_point
 
+    * src/object/o_picture_object.c: Fix function geda_picture_object_scale;
+      copy/paste error; box->picture.
+
 2020-02-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_circle.c: Eliminate unnecessary function line wrapping and

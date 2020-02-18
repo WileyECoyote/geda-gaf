@@ -1757,32 +1757,32 @@ void geda_picture_object_scale (GedaObject *object, int x_scale, int y_scale)
 
       int width;
 
-      width = object->box->upper_x - object->box->lower_x;
+      width = object->picture->upper_x - object->picture->lower_x;
 
       offset = ((width * x_scale) - width) >> 1;
 
-      lower_x = object->box->lower_x - offset;
-      upper_x = object->box->upper_x + offset;
+      lower_x = object->picture->lower_x - offset;
+      upper_x = object->picture->upper_x + offset;
     }
     else {
-      lower_x = object->box->lower_x;
-      upper_x = object->box->upper_x;
+      lower_x = object->picture->lower_x;
+      upper_x = object->picture->upper_x;
     }
 
     if (y_scale) {
 
       int height;
 
-      height = (object->box->upper_y - object->box->lower_y);
+      height = (object->picture->upper_y - object->picture->lower_y);
 
       offset = ((height * y_scale) - height) >> 1;
 
-      lower_y = object->box->lower_y - offset;
-      upper_y = object->box->upper_y + offset;
+      lower_y = object->picture->lower_y - offset;
+      upper_y = object->picture->upper_y + offset;
     }
     else {
-      lower_y = object->box->lower_y;
-      upper_y = object->box->upper_y;
+      lower_y = object->picture->lower_y;
+      upper_y = object->picture->upper_y;
     }
 
     geda_picture_object_modify_all (object, upper_x, upper_y, lower_x, lower_y);
