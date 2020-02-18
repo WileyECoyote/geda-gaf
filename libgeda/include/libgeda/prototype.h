@@ -454,7 +454,7 @@ extern "C" {
 
 /* o_path_object.c */
    GedaObject   *geda_path_object_copy                     (const GedaObject *o_current);
-         bool    geda_path_object_get_nearest_point        (GedaObject *object, int x, int y, int *nx, int *ny);
+         bool    geda_path_object_get_nearest_point        (const GedaObject *object, int x, int y, int *nx, int *ny);
 
          void    geda_path_object_modify                   (GedaObject *object, int x, int y, int whichone);
          void    geda_path_object_mirror                   (GedaObject *object, int center_x, int center_y);

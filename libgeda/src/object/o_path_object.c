@@ -73,7 +73,7 @@ geda_path_object_error(const char *func, const void *object)
  *
  * \returns TRUE is the results are valid, FALSE if \a object was not a GedaPath.
  */
-bool geda_path_object_get_nearest_point (GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_path_object_get_nearest_point (const GedaObject *object, int x, int y, int *nx, int *ny)
 {
   GedaPoint target;
   bool result;
