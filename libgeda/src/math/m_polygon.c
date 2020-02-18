@@ -23,6 +23,11 @@
 #include <math.h>
 #include <libgeda_priv.h>
 
+/** \defgroup math-polygon-proc Math Procedures for Polygons
+ * @{
+ * \brief Math Related Procedures for Polygons
+ */
+
 /*!
  * \brief Appends a bezier curve to the polygon
  * \par Function Description
@@ -205,3 +210,5 @@ double geda_math_polygon_shortest_distance (GArray *points, int x, int y, int cl
 
   return shortest;
 }
+
+/** @} endgroup math-polygon-proc */

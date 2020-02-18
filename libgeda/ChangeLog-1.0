@@ -6,6 +6,8 @@
 
     * libgeda/src/math/m_math.c: Add Doxygen group math-general-proc.
 
+    * libgeda/src/math/m_polygon.c: Add Doxygen group math-polygon-proc.
+
     * src/object/o_*_object.c: Declare GedaObject argument a const:
 
           * geda_path_object_get_nearest_point
