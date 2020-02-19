@@ -1,3 +1,7 @@
+2020-02-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Rename eda_cairo_arc argument width -> line_width.
+
 2019-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edapangorenderer.c: Replace g_new with g_malloc in

@@ -105,7 +105,7 @@ do_arc (cairo_t *cr, double x, double y, double radius,
  */
 void
 eda_cairo_arc (cairo_t *cr, int flags,
-               double width, double x, double y,
+               double line_width, double x, double y,
                double radius, double start_angle, double arc_sweep)
 {
   int s_width;
@@ -121,7 +121,7 @@ eda_cairo_arc (cairo_t *cr, int flags,
   WORLDtoSCREEN (cr, x - radius, y + radius, &x1, &y1);
   WORLDtoSCREEN (cr, x + radius, y - radius, &x2, &y2);
 
-  s_width  = screen_width (cr, width);
+  s_width  = screen_width (cr, line_width);
   offset   = ((s_width % 2) == 0) ? 0 : 0.5;
 
   s_x      = (double)(x1 + x2) / 2.0;
