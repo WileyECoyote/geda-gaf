@@ -626,7 +626,7 @@ const char *geda_picture_object_get_filename (const GedaObject *object)
  *
  * \param [in] object   The object to get the position.
  */
-int geda_picture_object_get_height (GedaObject *object)
+int geda_picture_object_get_height (const GedaObject *object)
 {
   return object->picture->upper_y - object->picture->lower_y;
 }

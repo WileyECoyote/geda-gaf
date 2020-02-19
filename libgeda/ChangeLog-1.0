@@ -4,6 +4,11 @@
 
           * geda_object_get_nearest_point
 
+    * src/object/o_picture_object.c: Declare GedaObject argument a const:
+
+          * geda_picture_object_get_filename
+          * geda_picture_object_get_height
+
 2020-02-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_hatch.c: Add todo documentation template.
