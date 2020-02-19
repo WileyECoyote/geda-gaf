@@ -366,6 +366,7 @@ bool i_command_is_valid(const char *command)
       break;
     }
   }
+
   return result;
 }
 
