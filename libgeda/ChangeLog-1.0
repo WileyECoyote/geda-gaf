@@ -8,6 +8,7 @@
 
           * geda_picture_object_get_filename
           * geda_picture_object_get_height
+          * geda_picture_object_get_mask_data
 
 2020-02-18 Wiley E. Hill <wileyhill@gmail.com>
 

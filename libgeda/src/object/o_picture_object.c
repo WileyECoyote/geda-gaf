@@ -682,7 +682,7 @@ static uint8 *geda_picture_object_mask_data(GdkPixbuf *image)
  *
  * \sa geda_picture_object_mask_data geda_picture_object_get_rgb_data
  */
-uint8 *geda_picture_object_get_mask_data(GedaObject *object)
+uint8 *geda_picture_object_get_mask_data(const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE (object), NULL);
 

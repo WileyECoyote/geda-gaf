@@ -475,7 +475,7 @@ extern "C" {
 
    const char   *geda_picture_object_get_filename          (const GedaObject *object);
           int    geda_picture_object_get_height            (const GedaObject *object);
-        uint8   *geda_picture_object_get_mask_data         (GedaObject *object) WARN_UNUSED;
+        uint8   *geda_picture_object_get_mask_data         (const GedaObject *object) WARN_UNUSED;
          bool    geda_picture_object_get_nearest_point     (const GedaObject *object, int x, int y, int *nx, int *ny);
 
        double    geda_picture_object_get_ratio             (GedaObject *object);
