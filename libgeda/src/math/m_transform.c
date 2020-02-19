@@ -23,6 +23,11 @@
 #include <math.h>
 #include <libgeda_priv.h>
 
+/** \defgroup math-transform-proc Math Procedures for Transforms
+ * @{
+ * \brief Math Related Procedures for Transforms
+ */
+
 /*!
  * \brief Combines two transformations
  * \par Function Description
@@ -228,3 +233,5 @@ void m_transform_translate(TRANSFORM *transform, double dx, double dy)
   transform->m[0][2] += dx;
   transform->m[1][2] += dy;
 }
+
+/** @} endgroup math-transform-proc */

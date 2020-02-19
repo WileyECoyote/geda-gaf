@@ -1,5 +1,7 @@
 2020-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_transform.c: Add Doxygen group math-transform-proc.
+
     * src/object/o_get.c: Declare GedaObject argument a const:
 
           * geda_object_get_nearest_point
