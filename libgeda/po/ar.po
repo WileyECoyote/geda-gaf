@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-15 10:55-0600\n"
+"POT-Creation-Date: 2020-02-17 22:43-0600\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1328,7 +1328,7 @@ msgid "Found a component with an invalid rotation"
 msgstr "عثر على مكون باستدارة غير صالحة"
 
 #: libgeda/src/object/o_complex_object.c:1194
-#: libgeda/src/object/o_picture_object.c:1498
+#: libgeda/src/object/o_picture_object.c:1558
 msgid "Setting angle to 0\n"
 msgstr "تعيين 'زاوية' إلى 0\n"
 
@@ -1413,94 +1413,94 @@ msgstr ""
 msgid "Failed to export"
 msgstr "غير قادر على تصدير"
 
-#: libgeda/src/object/o_picture_object.c:1252
+#: libgeda/src/object/o_picture_object.c:1312
 msgid "Invalid; picture has no height\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1253
+#: libgeda/src/object/o_picture_object.c:1313
 msgid "Setting aspect to 1.0\n"
 msgstr "تعيين 'زاوية' إلى 0\n"
 
 # Failed to load buffer image
-#: libgeda/src/object/o_picture_object.c:1268
+#: libgeda/src/object/o_picture_object.c:1328
 msgid "Failed to load buffer image"
 msgstr "‏تعذر تحميل الرمز من الملف"
 
 # Failed to load image from
-#: libgeda/src/object/o_picture_object.c:1285
+#: libgeda/src/object/o_picture_object.c:1345
 msgid "Failed to load image from"
 msgstr "‏تعذر تحميل الصورة من الملف‬"
 
-#: libgeda/src/object/o_picture_object.c:1456
+#: libgeda/src/object/o_picture_object.c:1516
 msgid "Failed to parse picture definition"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1462
+#: libgeda/src/object/o_picture_object.c:1522
 msgid "Found a picture with zero width/height"
 msgstr "عثر على إطار صفر العرض/الارتفاع"
 
-#: libgeda/src/object/o_picture_object.c:1471
+#: libgeda/src/object/o_picture_object.c:1531
 msgid "Found a picture with an invalid 'mirrored' parameter"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1477
+#: libgeda/src/object/o_picture_object.c:1537
 msgid "Setting mirrored to 0\n"
 msgstr "تعيين 'معكوس' إلى 0\n"
 
-#: libgeda/src/object/o_picture_object.c:1483
+#: libgeda/src/object/o_picture_object.c:1543
 msgid "Found a picture with an invalid 'embedded' parameter"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:1489
+#: libgeda/src/object/o_picture_object.c:1549
 msgid "Setting embedded to 0\n"
 msgstr "تعيين 'مضمّن' إلى 0\n"
 
 # Found an unsupported picture angle
-#: libgeda/src/object/o_picture_object.c:1494
+#: libgeda/src/object/o_picture_object.c:1554
 msgid "Found an unsupported picture angle"
 msgstr "عثر على زاوية صورة غير مدعومة"
 
-#: libgeda/src/object/o_picture_object.c:1521
+#: libgeda/src/object/o_picture_object.c:1581
 msgid "Error"
 msgstr "خطأ"
 
-#: libgeda/src/object/o_picture_object.c:1533
+#: libgeda/src/object/o_picture_object.c:1593
 msgid "Image filename is missing."
 msgstr ""
 
 # Unable to load the image from the embedded data
-#: libgeda/src/object/o_picture_object.c:1594
+#: libgeda/src/object/o_picture_object.c:1654
 msgid "Failed to load image from embedded data"
 msgstr "‏تعذر تحميل الصورة من البيانات المضمنّة"
 
-#: libgeda/src/object/o_picture_object.c:1595
+#: libgeda/src/object/o_picture_object.c:1655
 msgid "Base64 decoding failed."
 msgstr "فشل ترميز Base64."
 
-#: libgeda/src/object/o_picture_object.c:1596
+#: libgeda/src/object/o_picture_object.c:1656
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "التراجع لتحميل الملف. ألغي تضمين الصورة.\n"
 
 # Unable to encode the image
-#: libgeda/src/object/o_picture_object.c:1719
+#: libgeda/src/object/o_picture_object.c:1779
 msgid "ERROR: unable to encode the picture.\n"
 msgstr "غير قادر على ترميز الصورة.\n"
 
 # Image processing error
-#: libgeda/src/object/o_picture_object.c:1851
+#: libgeda/src/object/o_picture_object.c:1911
 msgid "Error processing image"
 msgstr "صورة خطأ في معالجة‬"
 
 # Failed to load image from file
-#: libgeda/src/object/o_picture_object.c:2026
+#: libgeda/src/object/o_picture_object.c:2086
 msgid "Failed to load image from file"
 msgstr "‏تعذر تحميل الصورة من الملف‬"
 
-#: libgeda/src/object/o_picture_object.c:2028
+#: libgeda/src/object/o_picture_object.c:2088
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture_object.c:2037
+#: libgeda/src/object/o_picture_object.c:2097
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "تم إلغاء تضمين الصورة [‪[%s‬\n"
