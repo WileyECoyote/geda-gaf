@@ -473,9 +473,9 @@ bool geda_object_get_line_options(GedaObject *object,
  * \param [out] nx      Integer pointer to resulting x value
  * \param [out] ny      Integer pointer to resulting y value
  */
-bool geda_object_get_nearest_point(GedaObject *object, int x, int y, int *nx, int *ny)
+bool geda_object_get_nearest_point(const GedaObject *object, int x, int y, int *nx, int *ny)
 {
-  bool (*getter) (GedaObject *, int, int, int *, int *);
+  bool (*getter) (const GedaObject *, int, int, int *, int *);
 
   switch (object->type) {
     case OBJ_NET:

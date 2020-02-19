@@ -368,7 +368,7 @@ extern "C" {
          bool    geda_object_get_is_visible                (const GedaObject *object);
      LINE_END    geda_object_get_line_cap_style            (int          capstyle);
          bool    geda_object_get_line_options              (GedaObject  *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
-         bool    geda_object_get_nearest_point             (GedaObject  *object, int x, int y, int *nx, int *ny);
+         bool    geda_object_get_nearest_point             (const GedaObject  *object, int x, int y, int *nx, int *ny);
           int    geda_object_get_num_text_lines            (const char  *string);
    const char   *geda_object_get_attrib_value              (GedaObject  *object, const char *name);
         GList   *geda_object_get_objects_by_type           (const GList *object_list, int type);
