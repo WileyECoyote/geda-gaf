@@ -611,7 +611,7 @@ GdkPixbuf *geda_picture_object_get_fallback_pixbuf (void)
  *
  * \return the filename associated with \a object
  */
-const char *geda_picture_object_get_filename (GedaObject *object)
+const char *geda_picture_object_get_filename (const GedaObject *object)
 {
   g_return_val_if_fail (GEDA_IS_PICTURE(object), NULL);
 
