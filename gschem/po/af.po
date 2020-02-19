@@ -157,7 +157,7 @@ msgstr "Horisontale aanpassing"
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
 msgstr "Bladsy"
-Retrieving mai
+
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
