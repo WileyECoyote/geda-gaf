@@ -97,6 +97,7 @@ do_arc (cairo_t *cr, double x, double y, double radius,
  *
  * \param [in]  cr           EdaRenderer Cairo Context
  * \param [in]  flags        EdaRenderer Cairo Flags
+ * \param [in]  line_width   Thickness of the arc line
  * \param [in]  x            Arc center X
  * \param [in]  y            Arc center Y
  * \param [in]  radius       Radius of the arc

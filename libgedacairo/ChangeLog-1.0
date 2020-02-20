@@ -1,3 +1,7 @@
+2020-02-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Add missing eda_cairo_arc parameter documentation.
+
 2020-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Rename eda_cairo_arc argument width -> line_width.
