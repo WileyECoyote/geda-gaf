@@ -344,6 +344,10 @@ void geda_object_list_scale (const GList *list, int x_scale, int y_scale)
         case(OBJ_NET):
           geda_line_object_scale(o_current, x_scale, y_scale);
           break;
+
+        case(OBJ_PICTURE):
+          geda_picture_object_scale(o_current, x_scale, y_scale);
+          break;
       }
       iter = iter->next;
     }
