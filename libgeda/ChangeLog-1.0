@@ -12,6 +12,8 @@
           * geda_picture_object_get_upper_x
           * geda_picture_object_get_upper_y
 
+    * tests/test_object_list.c: Check scale picture in list.
+
 2020-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_transform.c: Add Doxygen group math-transform-proc.

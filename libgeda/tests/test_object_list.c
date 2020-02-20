@@ -903,6 +903,26 @@ check_object_list_scale (GedaToplevel *toplevel)
 
   /* geda_object_list_scale does not yet scale path objects. */
 
+  /* === object9->picture === */
+
+  sx1 = geda_picture_object_get_lower_x(object9);
+  sy1 = geda_picture_object_get_lower_y(object9);
+  sx2 = geda_picture_object_get_upper_x(object9);
+  sy2 = geda_picture_object_get_upper_y(object9);
+
+  /* (650, -350), (-350, 650) */
+  if (sx1 - 650 || sx2 + 350) {
+    fprintf(stderr, "FAILED: (O120609X) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 + 350 || sy2 - 650) {
+    fprintf(stderr, "FAILED: (O120609Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
   return result;
 }
 
