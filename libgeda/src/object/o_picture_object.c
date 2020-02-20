@@ -1014,6 +1014,20 @@ unsigned char *geda_picture_object_get_rgb_data (GedaObject *object)
 }
 
 /*!
+ * \brief Get Width of a Picture
+ * \par Function Description
+ *  This function returns current height if picture \a object
+ *  in world units. No checking is performed.
+ *
+ * \param [in] object   The object to get the position.
+ */
+int geda_picture_object_get_upper_x (const GedaObject *object)
+{
+  g_return_val_if_fail (GEDA_IS_PICTURE(object), -0);
+
+  return object->picture->upper_x;
+}
+/*!
  * \brief Get Height of a Picture
  * \par Function Description
  *  This function returns current height if picture \a object

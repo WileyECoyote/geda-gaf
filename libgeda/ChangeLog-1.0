@@ -5,6 +5,7 @@
 
           * geda_picture_object_get_lower_x
           * geda_picture_object_get_lower_y
+          * geda_picture_object_get_upper_x
 
 2020-02-19 Wiley E. Hill <wileyhill@gmail.com>
 
