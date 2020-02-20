@@ -483,6 +483,7 @@ extern "C" {
        double    geda_picture_object_get_ratio             (GedaObject *object);
 unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) WARN_UNUSED;
           int    geda_picture_object_get_upper_x           (const GedaObject *object) WARN_UNUSED;
+          int    geda_picture_object_get_upper_y           (const GedaObject *object) WARN_UNUSED;
           int    geda_picture_object_get_width             (GedaObject *object);
          bool    geda_picture_object_is_embedded           (GedaObject *object);
          void    geda_picture_object_mirror                (GedaObject *object, int center_x, int center_y);
