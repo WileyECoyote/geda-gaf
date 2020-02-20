@@ -1,7 +1,8 @@
 2020-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_picture_object.c: Validate GedaObject in function
-      geda_picture_object_get_height. Add functions:
+      geda_picture_object_get_height. Add todo documentation template.
+      Add functions:
 
           * geda_picture_object_get_lower_x
           * geda_picture_object_get_lower_y

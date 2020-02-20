@@ -1805,7 +1805,11 @@ char *geda_picture_object_save(GedaObject *object)
   return(out);
 }
 
-
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 void geda_picture_object_scale (GedaObject *object, int x_scale, int y_scale)
 {
   if (GEDA_IS_PICTURE(object)) {
