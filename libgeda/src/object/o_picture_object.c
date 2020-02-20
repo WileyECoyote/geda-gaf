@@ -628,6 +628,8 @@ const char *geda_picture_object_get_filename (const GedaObject *object)
  */
 int geda_picture_object_get_height (const GedaObject *object)
 {
+  g_return_val_if_fail (GEDA_IS_PICTURE(object), -0);
+
   return object->picture->upper_y - object->picture->lower_y;
 }
 
