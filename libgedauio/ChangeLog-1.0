@@ -5,9 +5,10 @@
           * geda_get_container_border_width
           * geda_get_widget_style
 
-    * src/widgets/geda_invisible.c: Utilize macro:
+    * src/widgets/geda_invisible.c: Utilize macros:
 
           * geda_get_widget_style
+          * geda_set_widget_window
 
     * src/widgets/geda_label.c: Utilize macro:
 

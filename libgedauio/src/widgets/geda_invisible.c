@@ -181,6 +181,7 @@ static void
 geda_invisible_realize (GtkWidget *widget)
 {
   GdkWindow     *parent;
+  GdkWindow     *window;
   GdkWindowAttr  attributes;
   int attributes_mask;
 
@@ -202,7 +203,9 @@ geda_invisible_realize (GtkWidget *widget)
 
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR;
 
-  widget->window = gdk_window_new (parent, &attributes, attributes_mask);
+  window = gdk_window_new (parent, &attributes, attributes_mask);
+
+  geda_set_widget_window (widget, window);
 
 #if GTK_MAJOR_VERSION < 3
 
