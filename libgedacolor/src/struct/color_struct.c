@@ -77,7 +77,8 @@ static COLOR default_colors[] = {
   RGB_ENDMAP
 };
 
-/*! \struct stdcolors Standard Color Name Table
+/*! \struct stdcolors
+ *  \brief Standard Color Name Table
  *  \par
  *  The following table represents mostly standardized color names,
  *  many of which correspond to names in the X.org file X11/rgb.txt.
