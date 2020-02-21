@@ -1,3 +1,9 @@
+2020-02-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_image_menu_item.c: Utilize macros:
+
+          * geda_get_container_border_width
+
 2020-02-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Cast gtk_widget_get_parent return pointer

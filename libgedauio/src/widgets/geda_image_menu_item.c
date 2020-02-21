@@ -791,6 +791,7 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
     GtkAllocation  *allocation;
     GtkRequisition  child_requisition;
     GtkAllocation   child_allocation;
+    unsigned int    border_width;
     unsigned int    horizontal_padding;
     unsigned int    toggle_spacing;
     unsigned short  toggle_size;
@@ -809,12 +810,12 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
     gtk_widget_get_child_requisition (image_menu_item->image,
                                       &child_requisition);
 
-    toggle_size = geda_menu_item_get_toggle_size((GedaMenuItem*)image_menu_item);
+    toggle_size  = geda_menu_item_get_toggle_size((GedaMenuItem*)image_menu_item);
+    border_width = geda_get_container_border_width (widget);
 
     if (pack_dir == PACK_DIRECTION_LTR ||
         pack_dir == PACK_DIRECTION_RTL)
     {
-      offset = ((GtkContainer*)image_menu_item)->border_width +
                                                  widget->style->xthickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
