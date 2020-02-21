@@ -1392,9 +1392,8 @@ static void geda_menu_button_class_init (void *class, void *class_data)
 
   /*! GedaMenuButton::show-menu:
    * \par
-   * The ::show-menu signal is emitted before the menu is shown.
-   *
-   * It can be used to populate the menu on demand, using
+   * The GedaMenuButton::show-menu signal is emitted before the menu
+   * is shown. It can be used to populate the menu on demand, using
    * geda_menu_button_get_menu().
 
    * Note that even if you populate the menu dynamically in this way,
