@@ -366,13 +366,17 @@ add_move_binding (GtkBindingSet  *binding_set, unsigned int keyval,
 static int get_label_char_width (GedaLabel *label)
 {
   PangoContext *context;
-
   PangoFontMetrics *metrics;
+
   int char_width, digit_width, char_pixels, w;
 
   context = pango_layout_get_context (label->layout);
 
-  metrics = pango_context_get_metrics (context, ((GtkWidget*)label)->style->font_desc, pango_context_get_language (context));
+  GtkStyle *style;
+
+  style   = geda_get_widget_style ((GtkWidget*)label);
+
+  metrics = pango_context_get_metrics (context, (style->font_desc, pango_context_get_language (context));
 
   char_width  =  pango_font_metrics_get_approximate_char_width (metrics);
   digit_width = pango_font_metrics_get_approximate_digit_width (metrics);
