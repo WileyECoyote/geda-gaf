@@ -789,6 +789,7 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
   if (image_menu_item->image && gtk_widget_get_visible (image_menu_item->image))
   {
     GtkAllocation  *allocation;
+    GtkStyle       *style;
     GtkRequisition  child_requisition;
     GtkAllocation   child_allocation;
     unsigned int    border_width;
@@ -812,11 +813,13 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
 
     toggle_size  = geda_menu_item_get_toggle_size((GedaMenuItem*)image_menu_item);
     border_width = geda_get_container_border_width (widget);
+    style        = geda_get_widget_style (widget);
 
     if (pack_dir == PACK_DIRECTION_LTR ||
         pack_dir == PACK_DIRECTION_RTL)
     {
-                                                 widget->style->xthickness;
+
+      offset = border_width + style->xthickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
           (pack_dir == PACK_DIRECTION_LTR))
@@ -834,8 +837,7 @@ static void geda_image_menu_item_size_allocate (GtkWidget     *widget,
     }
     else {
 
-      offset = ((GtkContainer*)image_menu_item)->border_width +
-                                                 widget->style->ythickness;
+      offset = border_width + style->ythickness;
 
       if ((gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) ==
           (pack_dir == PACK_DIRECTION_TTB))
