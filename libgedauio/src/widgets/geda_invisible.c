@@ -211,11 +211,11 @@ geda_invisible_realize (GtkWidget *widget)
 
   GtkStyle *style;
 
-  gdk_window_set_user_data (widget->window, widget);
+  gdk_window_set_user_data (window, widget);
 
   style = geda_get_widget_style(widget);
 
-  widget->style = gtk_style_attach (style, widget->window);
+  widget->style = gtk_style_attach (style, window);
 
 #else
 
