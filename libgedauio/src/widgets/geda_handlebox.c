@@ -1872,7 +1872,13 @@ GtkWidget *geda_handle_box_new (void)
 void geda_handle_box_dock (GedaHandleBox *handlebox)
 {
   if (GEDA_IS_HANDLE_BOX(handlebox)) {
-    g_object_set (((GtkBin*)handlebox)->child, "orientation", handlebox->dock_orientation, NULL);
+
+    GtkWidget *child;
+
+    child = geda_get_child_widget(handlebox);
+
+    g_object_set (child, "orientation", handlebox->dock_orientation, NULL);
+
     geda_handle_box_reattach (handlebox);
   }
 }
