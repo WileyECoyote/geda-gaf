@@ -206,9 +206,13 @@ geda_invisible_realize (GtkWidget *widget)
 
 #if GTK_MAJOR_VERSION < 3
 
+  GtkStyle *style;
+
   gdk_window_set_user_data (widget->window, widget);
 
-  widget->style = gtk_style_attach (widget->style, widget->window);
+  style = geda_get_widget_style(widget);
+
+  widget->style = gtk_style_attach (style, widget->window);
 
 #else
 
