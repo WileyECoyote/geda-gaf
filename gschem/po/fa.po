@@ -232,9 +232,9 @@ msgstr ""
 "داشته باشید\n"
 "مشخص شده اند، آنها را برای ویرایش باز کنید در غیر این صورت، ایجاد یک جدید، "
 "خالی\n"
-"schematic.\n"
+"شماتیک.\n"
 "\n"
-"Options:\n"
+"گزینه ها:\n"
 "  -a, --render-adaptor <DRV> مشخص کنید کدام آداپتور را برای استفاده ، Cario "
 "یا X11 استفاده می کنید.\n"
 "  -c, --config-file <FILE>   پرونده پیکربندی اضافی برای بارگیری.\n"
@@ -259,7 +259,7 @@ msgstr ""
 "  -x (EXPR)                  بیان طرح برای شروع در هنگام اجرا.\n"
 "  -z, --minimized            پنجره اصلی را که برای اسکریپت استفاده می شود "
 "مخفی کنید\n"
-"  --                         Treat all remaining arguments as filenames.\n"
+"  --                         با همه استدلال های باقی مانده به عنوان نام پرونده ها رفتار کنید.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
@@ -460,17 +460,20 @@ msgstr "نوار وضعیت ارتفاع"
 msgid "Set or get the height of the status bar"
 msgstr "گرفتن یا اینکه تنظیم، نوار وضعیت"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "صفحه نمایش مختصات ، کلیک راست برای گزینه های قالب"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "تکلیف دکمه اشاره گر سمت چپ"
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "انتساب دکمه اشاره گر میانه ، روی گزینه های راست کلیک راست کنید"
 
 # Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
@@ -537,45 +540,55 @@ msgstr "ورود به فایل rc"
 msgid "Bad Value"
 msgstr "ارزش بد"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "بررسی"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "یا طرح ، ادامه با"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "مقدار حداکثر"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "حداقل مقدار"
 
+# default value
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "مقدار پیش فرض"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "تکلیف نوع نامعتبر است ، بررسی کنید"
 
+# This is gEDA/gschem version
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "این نسخه gEDA / gschem است"
 
+# but you have a version
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "اما شما یک نسخه دارید"
 
+# Please be sure that you have the latest rc file
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "لطفاً مطمئن شوید که آخرین پرونده rc را دارید"
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "فایل"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
