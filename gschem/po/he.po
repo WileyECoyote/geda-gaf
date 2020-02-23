@@ -248,6 +248,12 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"זכויות יוצרים (C) מפתחי GEDA 1998-2017\n"
+"זו תוכנה חינמית, ואתם מוזמנים להפיץ אותה מחדש תחת\n"
+"תנאים מסויימים. לפרטים, עיין בקובץ 'COPYING', שהוא\n"
+"כלול בהפצת ה- GEDA. אין אחריות; אפילו לא \n"
+"לסחירות או התאמה למטרה מסוימת, במידה\n"
+"מותר בחוק.\n"
 
 #: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
@@ -439,42 +445,49 @@ msgstr "גובה שורת המצב"
 msgid "Set or get the height of the status bar"
 msgstr "הגדר או קבל את גובה שורת המצב"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "תיאום לתצוגה, לחץ לחיצה ימנית על אפשרויות פורמט"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "הקצאת כפתור המצביע השמאלי"
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "הקצאת כפתור המצביע האמצעי, לחץ לחיצה ימנית על אפשרויות"
 
+# Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "הקצאת כפתור המצביע הימני, לחץ לחיצה ימנית על אפשרויות"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "מציין את הצמד הנוכחי, יחידות הרשת או המצב"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "מציין את מצב הפקודה הנוכחי"
 
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "סרגל המצב של Gschem"
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
-msgstr "Grid"
+msgstr "רשת"
 
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "כבוי"
 
 # Error
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
@@ -482,9 +495,10 @@ msgstr ""
 msgid "Error"
 msgstr "שְׁגִיאָה"
 
+# NONE
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "אף אחד"
 
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current gschem page."
