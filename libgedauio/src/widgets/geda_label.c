@@ -403,8 +403,7 @@ static int get_label_char_width (GedaLabel *label)
 }
 
 /*! \internal widget_class->style_set */
-static void
-geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
+static void geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
 {
   GedaLabel *label = (GedaLabel*)widget;
 
@@ -420,8 +419,7 @@ geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
  *            layout_to_window_coords
  *            geda_label_get_layout_offsets
  */
-static void
-get_layout_location (GedaLabel *label, int *xp, int *yp)
+static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 {
   GtkAllocation *allocation;
   GtkMisc       *misc;
@@ -560,12 +558,11 @@ get_layout_index (GedaLabel *label, int x, int y, int *index)
 }
 
 /* widget_class->query_tooltip */
-static bool
-geda_label_query_tooltip (GtkWidget  *widget,
-                          int         x,
-                          int         y,
-                          bool        keyboard_tip,
-                          GtkTooltip *tooltip)
+static bool geda_label_query_tooltip (GtkWidget  *widget,
+                                      int         x,
+                                      int         y,
+                                      bool        keyboard_tip,
+                                      GtkTooltip *tooltip)
 {
   GedaLabel     *label;
   SelectionInfo *info;
@@ -631,8 +628,7 @@ geda_label_direction_changed (GtkWidget *widget, GtkTextDirection direction)
  * GtkMisc that takes into account both css padding and border
  * and the padding specified with the GtkMisc properties.
  */
-void
-geda_misc_get_padding_and_border (GtkMisc *misc, GtkBorder *border)
+void geda_misc_get_padding_and_border (GtkMisc *misc, GtkBorder *border)
 {
   int xpad, ypad;
   float xalign;
@@ -657,8 +653,7 @@ geda_misc_get_padding_and_border (GtkMisc *misc, GtkBorder *border)
   border->left   += xalign;
 }
 
-static void
-geda_label_update_layout_width (GedaLabel *label)
+static void geda_label_update_layout_width (GedaLabel *label)
 {
   GedaLabelData *priv;
 
@@ -762,12 +757,12 @@ geda_label_update_layout_width (GedaLabel *label)
   }
 }
 
-static bool
-pango_attribute_merge_filter (PangoAttribute *attribute, void * list)
+static bool pango_attribute_merge_filter (PangoAttribute *attribute, void *list)
 {
   pango_attr_list_change (list, pango_attribute_copy (attribute));
   return FALSE;
 }
+
 /* called by: geda_label_ensure_layout (to merge attributes using above
  *            filter function, there has got to be a better way.)
  */
