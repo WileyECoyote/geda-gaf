@@ -215,7 +215,7 @@ geda_invisible_realize (GtkWidget *widget)
 
   style = geda_get_widget_style(widget);
 
-  widget->style = gtk_style_attach (style, window);
+  geda_set_widget_style (widget, gtk_style_attach (style, window));
 
 #else
 
