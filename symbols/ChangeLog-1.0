@@ -1,3 +1,9 @@
+2020-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update position and visibility of attributes:
+
+            * simulation/verilog/nor2-1.sym
+
 2020-02-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Swap pinnumber and pinlabel attribute values:
