@@ -493,11 +493,13 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
            0));
   }
 
-  if (xp)
+  if (xp) {
     *xp = x;
+  }
 
-  if (yp)
+  if (yp) {
     *yp = y;
+  }
 }
 
 static void window_to_layout_coords (GedaLabel *label, int *x, int *y)
