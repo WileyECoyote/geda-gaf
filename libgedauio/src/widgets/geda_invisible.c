@@ -246,7 +246,7 @@ geda_invisible_style_set (GtkWidget *widget)
 static void
 geda_invisible_show (GtkWidget *widget)
 {
-  GTK_WIDGET_SET_FLAGS (widget, GTK_VISIBLE);
+  gtk_widget_set_visible (widget, TRUE);
   gtk_widget_map (widget);
 }
 

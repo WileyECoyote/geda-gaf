@@ -1,6 +1,7 @@
 2020-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_invisible.c: Utilize macros:
+    * src/widgets/geda_invisible.c: Replace GTK_WIDGET_SET_FLAGS with
+      gtk_widget_set_visible. Utilize macros:
 
           * geda_set_widget_style
 
