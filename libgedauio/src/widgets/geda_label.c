@@ -433,10 +433,10 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
   widget = (GtkWidget*)label;
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
-    xalign = misc->xalign;
+    xalign = geda_get_misc_xalign(misc);
   }
   else {
-    xalign = 1.0 - misc->xalign;
+    xalign = 1.0 - geda_get_misc_xalign(misc);
   }
 
   pango_layout_get_pixel_extents (label->layout, NULL, &logical);

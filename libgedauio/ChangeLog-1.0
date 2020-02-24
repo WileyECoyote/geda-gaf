@@ -5,6 +5,10 @@
 
           * geda_set_widget_style
 
+    * src/widgets/geda_label.c: Utilize macro:
+
+          * geda_get_misc_xalign
+
 2020-02-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_image_menu_item.c: Utilize macros:
