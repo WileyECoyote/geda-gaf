@@ -376,7 +376,7 @@ static int get_label_char_width (GedaLabel *label)
 
   style   = geda_get_widget_style ((GtkWidget*)label);
 
-  metrics = pango_context_get_metrics (context, (style->font_desc, pango_context_get_language (context));
+  metrics = pango_context_get_metrics (context, style->font_desc, pango_context_get_language (context));
 
   char_width  =  pango_font_metrics_get_approximate_char_width (metrics);
   digit_width = pango_font_metrics_get_approximate_digit_width (metrics);
