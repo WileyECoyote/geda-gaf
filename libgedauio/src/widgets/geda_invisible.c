@@ -105,8 +105,7 @@ geda_invisible_constructor (GedaType               type,
   return object;
 }
 
-static void
-geda_invisible_destroy (GtkObject *widget)
+static void geda_invisible_destroy (GtkObject *widget)
 {
   GedaInvisible *invisible = GEDA_INVISIBLE (widget);
   GedaInvisibleData *priv = invisible->priv;
@@ -126,8 +125,7 @@ geda_invisible_destroy (GtkObject *widget)
  *  The object should not be referenced after this function is
  *  executed.
  */
-static void
-geda_invisible_finalize (GObject *object)
+static void geda_invisible_finalize (GObject *object)
 {
   if (g_hash_table_remove (invisible_hash_table, object)) {
     if (!g_hash_table_size (invisible_hash_table)) {
@@ -138,11 +136,10 @@ geda_invisible_finalize (GObject *object)
   G_OBJECT_CLASS (geda_invisible_parent_class)->finalize (object);
 }
 
-static void
-geda_invisible_set_property  (GObject      *object,
-                              unsigned int  prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
+static void geda_invisible_set_property  (GObject      *object,
+                                          unsigned int  prop_id,
+                                          const GValue *value,
+                                          GParamSpec   *pspec)
 {
   GedaInvisible *invisible = GEDA_INVISIBLE (object);
 
@@ -157,11 +154,10 @@ geda_invisible_set_property  (GObject      *object,
   }
 }
 
-static void
-geda_invisible_get_property  (GObject      *object,
-                              unsigned int  prop_id,
-                              GValue       *value,
-                              GParamSpec   *pspec)
+static void geda_invisible_get_property  (GObject      *object,
+                                          unsigned int  prop_id,
+                                          GValue       *value,
+                                          GParamSpec   *pspec)
 {
   GedaInvisible *invisible = GEDA_INVISIBLE (object);
   GedaInvisibleData *priv = invisible->priv;
@@ -177,8 +173,7 @@ geda_invisible_get_property  (GObject      *object,
   }
 }
 
-static void
-geda_invisible_realize (GtkWidget *widget)
+static void geda_invisible_realize (GtkWidget *widget)
 {
   GdkWindow     *parent;
   GdkWindow     *window;
@@ -235,30 +230,26 @@ geda_invisible_style_set (GtkWidget *widget, GtkStyle  *previous_style)
 
 #else
 
-static void
-geda_invisible_style_set (GtkWidget *widget)
+static void geda_invisible_style_set (GtkWidget *widget)
 {
   /* Do not chain up to parent implementation */
 }
 
 #endif
 
-static void
-geda_invisible_show (GtkWidget *widget)
+static void geda_invisible_show (GtkWidget *widget)
 {
   gtk_widget_set_visible (widget, TRUE);
   gtk_widget_map (widget);
 }
 
 static void
-geda_invisible_size_allocate (GtkWidget     *widget,
-                             GtkAllocation *allocation)
+geda_invisible_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
   gtk_widget_set_allocation (widget, allocation);
 }
 
-static void
-geda_invisible_class_init (void *class, void *data)
+static void geda_invisible_class_init (void *class, void *data)
 {
   GObjectClass   *object_class;
   GtkObjectClass *gtkobj_class;
@@ -334,8 +325,7 @@ geda_invisible_instance_init(GTypeInstance *instance, void *class)
  *
  * \return GedaType identifier associated with GedaInvisible.
  */
-GedaType
-geda_invisible_get_type (void)
+GedaType geda_invisible_get_type (void)
 {
   static volatile GedaType geda_invisible_type = 0;
 
@@ -373,8 +363,7 @@ geda_invisible_get_type (void)
  *
  * \returns TRUE if \a invisible is a valid GedaInvisible
  */
-bool
-is_a_geda_invisible (GedaInvisible *invisible)
+bool is_a_geda_invisible (GedaInvisible *invisible)
 {
   if ((invisible != NULL) && (invisible_hash_table != NULL)) {
     return g_hash_table_lookup(invisible_hash_table, invisible) ? TRUE : FALSE;
@@ -389,8 +378,7 @@ is_a_geda_invisible (GedaInvisible *invisible)
  *
  * \returns a new #GedaInvisible.
  */
-GtkWidget*
-geda_invisible_new (void)
+GtkWidget *geda_invisible_new (void)
 {
   return g_object_new (GEDA_TYPE_INVISIBLE, NULL);
 }
@@ -404,8 +392,7 @@ geda_invisible_new (void)
  *
  * \returns a new #GedaInvisible object.
  */
-GtkWidget*
-geda_invisible_new_for_screen (GdkScreen *screen)
+GtkWidget *geda_invisible_new_for_screen (GdkScreen *screen)
 {
   g_return_val_if_fail (GDK_IS_SCREEN (screen), NULL);
 
@@ -421,8 +408,7 @@ geda_invisible_new_for_screen (GdkScreen *screen)
  * \param[in] invisible Pointer to a #GedaInvisible
  * \param[in] screen    A GdkScreen
  */
-void
-geda_invisible_set_screen (GedaInvisible *invisible, GdkScreen *screen)
+void geda_invisible_set_screen (GedaInvisible *invisible, GdkScreen *screen)
 {
   GedaInvisibleData *priv;
   GtkWidget *widget;
@@ -466,8 +452,7 @@ geda_invisible_set_screen (GedaInvisible *invisible, GdkScreen *screen)
  *
  * \returns the GdkScreen object associated with \a invisible
  */
-GdkScreen *
-geda_invisible_get_screen (GedaInvisible *invisible)
+GdkScreen *geda_invisible_get_screen (GedaInvisible *invisible)
 {
   g_return_val_if_fail (GEDA_IS_INVISIBLE (invisible), NULL);
 
