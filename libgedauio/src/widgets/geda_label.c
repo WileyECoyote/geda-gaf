@@ -802,7 +802,6 @@ static void geda_label_ensure_layout (GedaLabel *label)
     priv   = label->priv;
     widget = (GtkWidget*)label;
 
-    //context = pango_context_new (PANGO_TYPE_CONTEXT);
     context = gtk_widget_get_pango_context (widget);
 
     /* We Specify our own map to avoid memory leak in FontConfig */
@@ -831,7 +830,6 @@ static void geda_label_ensure_layout (GedaLabel *label)
     }
 
     label->layout = pango_layout_new (context);
-    //g_object_unref (context);
 
     if ( label->text ) {
       pango_layout_set_text (label->layout, label->text, -1);
