@@ -1,5 +1,9 @@
 2020-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Add macro:
+
+          * geda_get_misc_xalign
+
     * src/widgets/geda_invisible.c: Replace GTK_WIDGET_SET_FLAGS with
       gtk_widget_set_visible. Utilize macros:
 
