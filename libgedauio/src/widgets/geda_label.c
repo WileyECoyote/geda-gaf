@@ -466,7 +466,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
   x = floor (allocation->x + xpad + xalign * (allocation->width - req_width));
 
   if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR) {
-    x = MAX (x, allocation->x + misc->xpad);
+    x = MAX (x, allocation->x + xpad);
   }
   else {
     x = MIN (x, allocation->x + allocation->width - misc->xpad);
