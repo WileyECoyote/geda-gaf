@@ -1,8 +1,9 @@
 2020-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macro:
+    * include/geda_gtk_compat.h: Add macros:
 
           * geda_get_misc_xpad
+          * geda_get_misc_ypad
 
     * src/widgets/geda_label.c: Utilize macro:
 

@@ -194,6 +194,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_misc_xpad(m) ((GtkMisc*)m)->xpad
 
+#define geda_get_misc_ypad(m) ((GtkMisc*)m)->ypad
+
 /*! \def geda_get_widget_allocation Get Pointer to Allocation  Gtk < 3 */
 #define geda_get_widget_allocation(w) &(GTK_WIDGET(w)->allocation)
 
@@ -266,6 +268,9 @@ void gdk_font_unref (GdkFont *font);
 
 #define geda_get_misc_xpad(m) \
   ({ int xp; gtk_misc_get_padding ((GtkMisc*)m, &xp, NULL); xp; })
+
+  #define geda_get_misc_ypad(m) \
+  ({ int yp; gtk_misc_get_padding ((GtkMisc*)m, NULL, &yp); yp; })
 
 /*! \def geda_get_focus_widget Get Child Focus widget Gtk >= 3*/
 #define geda_get_focus_widget(w) (void*)gtk_window_get_focus ((GtkWindow*)w)
