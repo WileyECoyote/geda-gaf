@@ -469,7 +469,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
     x = MAX (x, allocation->x + xpad);
   }
   else {
-    x = MIN (x, allocation->x + allocation->width - misc->xpad);
+    x = MIN (x, allocation->x + allocation->width - xpad);
   }
 
   x -= logical.x;
