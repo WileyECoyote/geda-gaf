@@ -301,7 +301,7 @@ void gdk_font_unref (GdkFont *font);
 #if (GTK_MAJOR_VERSION < 3)
 /* Handle Gtk == 2 and GSEAL_ENABLE is defined */
 
-/*! \def geda_get_widget_state Get style from widget Gtk < 3 */
+/*! \def geda_get_widget_state Get state from widget Gtk < 3 */
 #define geda_get_widget_state(w) gtk_widget_get_state((GtkWidget*)w)
 
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
