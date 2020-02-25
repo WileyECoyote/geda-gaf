@@ -4,6 +4,10 @@
 
           * geda_get_misc_xpad
 
+    * src/widgets/geda_label.c: Utilize macro:
+
+          * geda_get_widget_requisition
+
 2020-02-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macro:

@@ -421,9 +421,10 @@ static void geda_label_style_set (GtkWidget *widget, GtkStyle *previous_style)
  */
 static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 {
-  GtkAllocation *allocation;
-  GtkMisc       *misc;
-  GtkWidget     *widget;
+  GtkAllocation  *allocation;
+  GtkMisc        *misc;
+  GtkRequisition *requisition;
+  GtkWidget      *widget;
 
   float xalign;
   int req_width, x, y;
@@ -445,6 +446,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 
   xpad = geda_get_misc_xpad(misc);
 
+  requisition = geda_get_widget_requisition(widget);
+
   if (label->priv->ellipsize || label->width_chars > 0) {
 
     int width = pango_layout_get_width (label->layout);
@@ -458,7 +461,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
     req_width += 2 * xpad;
   }
   else {
-    req_width = widget->requisition.width;
+    req_width = requisition->width;
   }
 
   allocation = geda_get_widget_allocation (widget);
