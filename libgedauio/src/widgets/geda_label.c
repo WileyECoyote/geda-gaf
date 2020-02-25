@@ -427,6 +427,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 
   float xalign;
   int req_width, x, y;
+  int xpad;
+
   PangoRectangle logical;
 
   misc   = (GtkMisc*)label;
@@ -441,6 +443,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 
   pango_layout_get_pixel_extents (label->layout, NULL, &logical);
 
+  xpad = geda_get_misc_xpad(misc);
+
   if (label->priv->ellipsize || label->width_chars > 0) {
 
     int width = pango_layout_get_width (label->layout);
@@ -451,7 +455,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
       req_width = MIN(PANGO_PIXELS (width), req_width);
     }
 
-    req_width += 2 * misc->xpad;
+    req_width += 2 * xpad;
   }
   else {
     req_width = widget->requisition.width;
