@@ -428,7 +428,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 
   float xalign;
   int req_width, x, y;
-  int xpad;
+  int xpad, ypad;
 
   PangoRectangle logical;
 
@@ -445,6 +445,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
   pango_layout_get_pixel_extents (label->layout, NULL, &logical);
 
   xpad = geda_get_misc_xpad(misc);
+  ypad = geda_get_misc_ypad(misc);
 
   requisition = geda_get_widget_requisition(widget);
 
@@ -491,7 +492,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
    *   middle".  You want to read the first line, at least, to get some context.
    */
   if (pango_layout_get_line_count (label->layout) == 1) {
-    y = floor (allocation->y + (int)misc->ypad
+    y = floor (allocation->y + ypad
     + (allocation->height - widget->requisition.height) * misc->yalign);
   }
   else {
