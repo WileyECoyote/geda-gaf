@@ -492,8 +492,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
    *   middle".  You want to read the first line, at least, to get some context.
    */
   if (pango_layout_get_line_count (label->layout) == 1) {
-    y = floor (allocation->y + ypad
-    + (allocation->height - widget->requisition.height) * misc->yalign);
+    y = floor (allocation->y + ypad +
+        (allocation->height - requisition->height) * misc->yalign);
   }
   else {
     y = floor (allocation->y + (int)misc->ypad
