@@ -426,7 +426,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
   GtkRequisition *requisition;
   GtkWidget      *widget;
 
-  float xalign;
+  float xalign, yalign;
+
   int req_width, x, y;
   int xpad, ypad;
 
@@ -478,6 +479,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
 
   x -= logical.x;
 
+  yalign = geda_get_misc_yalign(misc);
+
   /* bgo#315462 - For single-line labels, *do* align the requisition with
    * respect to the allocation, even if we are under-allocated.  For multi-line
    * labels, always show the top of the text when they are under-allocated.  The
@@ -493,7 +496,7 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
    */
   if (pango_layout_get_line_count (label->layout) == 1) {
     y = floor (allocation->y + ypad +
-        (allocation->height - requisition->height) * misc->yalign);
+        (allocation->height - requisition->height) * yalign);
   }
   else {
     y = floor (allocation->y + ypad +
