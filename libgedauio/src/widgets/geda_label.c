@@ -806,18 +806,20 @@ static void geda_label_ensure_layout (GedaLabel *label)
     PangoAttrList *attrs;
     PangoContext  *context;
     GedaLabelData *priv;
+    GtkStyle      *style;
     GtkWidget     *widget;
     bool           R2L;
 
-    priv   = label->priv;
-    widget = (GtkWidget*)label;
+    priv    = label->priv;
+    widget  = (GtkWidget*)label;
 
     context = gtk_widget_get_pango_context (widget);
+    style   = geda_get_widget_style(widget);
 
     /* We Specify our own map to avoid memory leak in FontConfig */
     pango_context_set_font_map (context, label->priv->font_map);
 
-    pango_context_set_font_description (context, widget->style->font_desc);
+    pango_context_set_font_description (context, style->font_desc);
 
     if (label->angle != 0.0 && !priv->select_info) {
 

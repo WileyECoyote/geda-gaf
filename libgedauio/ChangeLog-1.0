@@ -7,6 +7,7 @@
     * src/widgets/geda_label.c: Utilize macro:
 
           * geda_get_misc_yalign
+          * geda_get_widget_style
 
 2020-02-25 Wiley E. Hill <wileyhill@gmail.com>
 
