@@ -192,6 +192,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_misc_xalign(m) ((GtkMisc*)m)->xalign
 
+#define geda_get_misc_yalign(m) ((GtkMisc*)m)->yalign
+
 #define geda_get_misc_xpad(m) ((GtkMisc*)m)->xpad
 
 #define geda_get_misc_ypad(m) ((GtkMisc*)m)->ypad
@@ -265,6 +267,9 @@ void gdk_font_unref (GdkFont *font);
 
 #define geda_get_misc_xalign(m) \
   ({ float xa; gtk_misc_get_alignment ((GtkMisc*)m, &xa, NULL); xa; })
+
+#define geda_get_misc_yalign(m) \
+  ({ float ya; gtk_misc_get_alignment ((GtkMisc*)m, NULL, &ya); ya; })
 
 #define geda_get_misc_xpad(m) \
   ({ int xp; gtk_misc_get_padding ((GtkMisc*)m, &xp, NULL); xp; })
