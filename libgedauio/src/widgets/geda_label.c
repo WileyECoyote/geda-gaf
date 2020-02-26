@@ -3373,12 +3373,14 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
       PangoContext     *context;
       PangoFontMetrics *metrics;
+      GtkStyle         *style;
 
       int ascent, descent;
 
+      style   = geda_get_widget_style(widget);
+
       context = pango_layout_get_context (label->layout);
-      metrics = pango_context_get_metrics (context,
-                                           widget->style->font_desc,
+      metrics = pango_context_get_metrics (context, style->font_desc,
                                            pango_context_get_language (context));
 
       ascent  = pango_font_metrics_get_ascent (metrics);
