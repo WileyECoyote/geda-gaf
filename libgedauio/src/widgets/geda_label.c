@@ -496,9 +496,8 @@ static void get_layout_location (GedaLabel *label, int *xp, int *yp)
         (allocation->height - requisition->height) * misc->yalign);
   }
   else {
-    y = floor (allocation->y + (int)misc->ypad
-    + MAX (((allocation->height - widget->requisition.height) * misc->yalign),
-           0));
+    y = floor (allocation->y + ypad +
+        MAX (((allocation->height - requisition->height) * misc->yalign), 0));
   }
 
   if (xp) {
