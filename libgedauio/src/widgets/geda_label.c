@@ -3320,10 +3320,10 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   geda_label_ensure_layout (label);
 
-  height = label->misc.ypad * 2;
   gtk_misc_get_padding ((GtkMisc*)label, &xpad, &ypad);
 
   width  = xpad * 2;
+  height = ypad * 2;
 
   if (priv->have_transform) {
 
