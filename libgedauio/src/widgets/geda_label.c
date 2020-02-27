@@ -3516,13 +3516,12 @@ static PangoDirection get_cursor_direction (GedaLabel *label)
 }
 
 static void
-draw_insertion_cursor (GedaLabel      *label,
+draw_insertion_cursor (GtkWidget      *label,
                        GdkRectangle   *cursor_location,
                        bool            is_primary,
                        PangoDirection  direction,
                        bool            draw_arrow)
 {
-  GtkWidget       *widget = (GtkWidget*)label;
   GtkAllocation   *allocation;
   GtkTextDirection text_dir;
 
@@ -3534,9 +3533,9 @@ draw_insertion_cursor (GedaLabel      *label,
     text_dir = GTK_TEXT_DIR_RTL;
   }
 
-  allocation = geda_get_widget_allocation(widget);
+  allocation = geda_get_widget_allocation(label);
 
-  gtk_draw_insertion_cursor (widget, geda_get_widget_window(widget),
+  gtk_draw_insertion_cursor (label, geda_get_widget_window(label),
                              allocation, cursor_location,
                              is_primary, text_dir, draw_arrow);
 }
@@ -3600,7 +3599,7 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
     cursor_location.width = 0;
     cursor_location.height = PANGO_PIXELS (cursor1->height);
 
-    draw_insertion_cursor (label,
+    draw_insertion_cursor (widget,
                            &cursor_location, TRUE, dir1,
                            dir2 != PANGO_DIRECTION_NEUTRAL);
 
@@ -3611,7 +3610,7 @@ geda_label_draw_cursor (GedaLabel  *label, int xoffset, int yoffset)
       cursor_location.width = 0;
       cursor_location.height = PANGO_PIXELS (cursor2->height);
 
-      draw_insertion_cursor (label, &cursor_location, FALSE, dir2, TRUE);
+      draw_insertion_cursor (widget, &cursor_location, FALSE, dir2, TRUE);
     }
   }
 }

@@ -1,6 +1,8 @@
 2020-02-27 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_label.c: Utilize macro:
+    * src/widgets/geda_label.c: Change first argument to draw_insertion_cursor
+      to be a pointer to a GtkWidget and eliminate ancillary widget pointer.
+      Utilize macros:
 
           * geda_get_widget_window
           * geda_get_widget_allocation
