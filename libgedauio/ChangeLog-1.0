@@ -1,3 +1,9 @@
+2020-02-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_label.c: Utilize macro:
+
+          * geda_get_widget_window
+
 2020-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macro:

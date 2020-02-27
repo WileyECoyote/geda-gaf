@@ -3532,8 +3532,8 @@ draw_insertion_cursor (GedaLabel      *label,
     text_dir = GTK_TEXT_DIR_RTL;
   }
 
-  gtk_draw_insertion_cursor (widget, widget->window, &(widget->allocation),
-                             cursor_location,
+  gtk_draw_insertion_cursor (widget, geda_get_widget_window(widget),
+                             allocation, cursor_location,
                              is_primary, text_dir, draw_arrow);
 }
 
