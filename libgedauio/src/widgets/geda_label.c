@@ -3522,8 +3522,10 @@ draw_insertion_cursor (GedaLabel      *label,
                        PangoDirection  direction,
                        bool            draw_arrow)
 {
-  GtkWidget *widget = (GtkWidget*)label;
+  GtkWidget       *widget = (GtkWidget*)label;
+  GtkAllocation   *allocation;
   GtkTextDirection text_dir;
+
 
   if (direction == PANGO_DIRECTION_LTR) {
     text_dir = GTK_TEXT_DIR_LTR;
@@ -3531,6 +3533,8 @@ draw_insertion_cursor (GedaLabel      *label,
   else {
     text_dir = GTK_TEXT_DIR_RTL;
   }
+
+  allocation = geda_get_widget_allocation(widget);
 
   gtk_draw_insertion_cursor (widget, geda_get_widget_window(widget),
                              allocation, cursor_location,
