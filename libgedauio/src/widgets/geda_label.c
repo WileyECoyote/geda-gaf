@@ -3656,8 +3656,8 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
     int x, y, range[2];
 
     cr    = gdk_cairo_create (event->window);
-    style = widget->style;
     state = gtk_widget_get_state (widget);
+    style  = geda_get_widget_style(widget);
 
     get_layout_location (label, &x, &y);
 
