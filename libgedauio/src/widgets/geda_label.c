@@ -3760,7 +3760,7 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
 
         gdk_region_get_clipbox (clip, &rect);
 
-        gtk_paint_focus (widget->style, window, state,
+        gtk_paint_focus (style, window, state,
                          &event->area, widget, "label",
                          rect.x, rect.y, rect.width, rect.height);
         gdk_region_destroy (clip);
