@@ -3734,7 +3734,7 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
           text_color = &link_color;
 
         if (info->link_clicked)
-          base_color = &widget->style->base[GTK_STATE_ACTIVE];
+          base_color = &style->base[GTK_STATE_ACTIVE];
         else
           base_color = &widget->style->base[GTK_STATE_PRELIGHT];
 
