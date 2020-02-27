@@ -3652,16 +3652,18 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
     cairo_t      *cr;
     GtkStyle     *style;
     GtkStateType  state;
+    GdkWindow    *window;
 
     int x, y, range[2];
 
-    cr    = gdk_cairo_create (event->window);
-    state = gtk_widget_get_state (widget);
+    cr     = gdk_cairo_create (event->window);
     style  = geda_get_widget_style(widget);
+    state  = gtk_widget_get_state (widget);
+    window = geda_get_widget_window (widget);
 
     get_layout_location (label, &x, &y);
 
-    gtk_paint_layout (style, widget->window, state, FALSE, &event->area,
+    gtk_paint_layout (style, window, state, FALSE, &event->area,
                       widget, "label", x, y, label->layout);
 
     if (info && (info->selection_anchor != info->selection_end)) {
