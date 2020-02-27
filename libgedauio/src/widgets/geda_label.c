@@ -3736,7 +3736,7 @@ geda_label_expose (GtkWidget *widget, GdkEventExpose *event)
         if (info->link_clicked)
           base_color = &style->base[GTK_STATE_ACTIVE];
         else
-          base_color = &widget->style->base[GTK_STATE_PRELIGHT];
+          base_color = &style->base[GTK_STATE_PRELIGHT];
 
         gdk_cairo_set_source_color (cr, base_color);
         cairo_paint (cr);
