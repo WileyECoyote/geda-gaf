@@ -4338,7 +4338,7 @@ static void limit_layout_lines (PangoLayout *layout)
 static GdkPixmap *
 geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
 {
-  GdkDrawable  *drawable = NULL;
+  GdkDrawable  *drawable;
   PangoContext *context;
   PangoLayout  *layout;
   cairo_t      *cr;
