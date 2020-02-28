@@ -841,7 +841,9 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
 
         priv->upper_arrow_state = arrow_state;
 
-        gdk_window_invalidate_rect (((GtkWidget*)menu)->window, &rect, FALSE);
+        window = geda_get_widget_window(menu);
+
+        gdk_window_invalidate_rect (window, &rect, FALSE);
       }
     }
   }
