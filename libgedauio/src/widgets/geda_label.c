@@ -4376,7 +4376,7 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
   gdk_cairo_set_source_color (cr, &style->base [gtk_widget_get_state (widget)]);
   cairo_paint (cr);
 
-  gdk_cairo_set_source_color (cr, &widget->style->text [gtk_widget_get_state (widget)]);
+  gdk_cairo_set_source_color (cr, &style->text [gtk_widget_get_state (widget)]);
   cairo_move_to (cr, 1 + DRAG_ICON_LAYOUT_BORDER, 1 + DRAG_ICON_LAYOUT_BORDER);
   pango_cairo_show_layout (cr, layout);
 
