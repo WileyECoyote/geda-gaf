@@ -3,6 +3,7 @@
     * src/widgets/geda_menu.c: Utilize macro:
 
           * geda_get_container_border_width
+          * geda_get_widget_style
 
 2020-02-27 Wiley E. Hill <wileyhill@gmail.com>
 

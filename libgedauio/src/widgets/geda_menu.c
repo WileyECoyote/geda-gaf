@@ -630,6 +630,7 @@ static void get_arrows_sensitive_area (GedaMenu     *menu,
 {
   GtkWidget   *widget = (GtkWidget*)menu;
   GdkWindow   *window;
+  GtkStyle    *style;
   unsigned int vertical_padding;
 
   int  border, bwidth;
@@ -659,7 +660,8 @@ static void get_arrows_sensitive_area (GedaMenu     *menu,
                         NULL);
 
   bwidth = geda_get_container_border_width (menu);
-  border = bwidth + widget->style->ythickness + vertical_padding;
+  style  = geda_get_widget_style (widget);
+  border = bwidth + style->ythickness + vertical_padding;
 
   gdk_window_get_position (window, &win_x, &win_y);
 
