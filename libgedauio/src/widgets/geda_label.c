@@ -4339,6 +4339,7 @@ static GdkPixmap *
 geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
 {
   GdkDrawable  *drawable;
+  GdkWindow    *window;
   PangoContext *context;
   PangoLayout  *layout;
   cairo_t      *cr;
@@ -4366,11 +4367,9 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
   pixmap_width  = layout_width  / PANGO_SCALE + DRAG_ICON_LAYOUT_BORDER * 2;
   pixmap_height = layout_height / PANGO_SCALE + DRAG_ICON_LAYOUT_BORDER * 2;
 
-  drawable = gdk_pixmap_new (widget->window,
-                             pixmap_width  + 2,
-                             pixmap_height + 2,
-                             -1);
-  cr = gdk_cairo_create (drawable);
+  window   = geda_get_widget_window (widget);
+  drawable = gdk_pixmap_new (window, pixmap_width  + 2, pixmap_height + 2, -1);
+  cr       = gdk_cairo_create (drawable);
 
   gdk_cairo_set_source_color (cr, &widget->style->base [gtk_widget_get_state (widget)]);
   cairo_paint (cr);
