@@ -724,6 +724,7 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
 {
   GedaMenuShell *menu_shell;
   GedaMenuPriv  *priv;
+  GdkWindow     *window;
   GdkRectangle   rect;
 
   bool  in_arrow;
@@ -737,7 +738,10 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
 
   touchscreen_mode = priv->touchscreen_mode;
 
-  gdk_window_get_position (menu->toplevel->window, &top_x, &top_y);
+  window = geda_get_widget_window (menu->toplevel);
+
+  gdk_window_get_position (window, &top_x, &top_y);
+
   x -= top_x;
   y -= top_y;
 
