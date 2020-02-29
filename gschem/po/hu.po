@@ -143,25 +143,28 @@ msgstr "Automatikus visszaállítás"
 msgid "Automatically restore the main window geometry"
 msgstr "A főablak geometriájának automatikus visszaállítása"
 
+# Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Vízszintes beállítás"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
 msgstr "Oldal"
 
+# Page Geometry
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Oldalgeometria"
 
+# Vertical adjustment
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Függőleges beállítás"
 
 #: gschem/src/base/gschem_parsecmd.c:86
 #, c-format
@@ -210,23 +213,32 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"szerzői jog (C) 1998-2017 gEDA fejlesztők\n"
+"Ez egy ingyenes szoftver, és szívesen terjesztjük a alatt\n"
+"bizonyos feltételek. A részleteket lásd a MÁSOLÁS fájlban, amely az\n"
+"beletartozik a gEDA disztribúcióba. NINCS GARANCIA; még csak nem is\n"
+"A KERESKEDELEMESSÉGHEZ vagy A KÜLÖNLEGES CÉLKITŰZÉSHEZ\n"
+"törvény által megengedett.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
-msgstr ""
+msgstr "hiba elemzéskor"
 
 #: gschem/src/base/gschem_parsecmd.c:291 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "HIBA"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:295
 msgid "option requires an argument"
-msgstr ""
+msgstr "opció érvelést igényel"
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:301
 msgid "Unknown option"
-msgstr ""
+msgstr "Ismeretlen opció"
 
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
@@ -372,7 +384,9 @@ msgstr ""
 # Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr "Koordináta kijelző, kattintson a jobb gombbal a formázási lehetőségek megtekintéséhez"
+msgstr ""
+"Koordináta kijelző, kattintson a jobb gombbal a formázási lehetőségek "
+"megtekintéséhez"
 
 # Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
@@ -382,12 +396,15 @@ msgstr "Bal oldali mutatógomb hozzárendelése"
 # Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr "A középső mutatógomb hozzárendelése, kattintson a jobb gombbal a lehetőségek megtekintéséhez"
+msgstr ""
+"A középső mutatógomb hozzárendelése, kattintson a jobb gombbal a lehetőségek "
+"megtekintéséhez"
 
 # Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr "A jobb egérgombbal való hozzárendelés, a jobb egérgombbal a lehetőségekhez"
+msgstr ""
+"A jobb egérgombbal való hozzárendelés, a jobb egérgombbal a lehetőségekhez"
 
 # Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
@@ -424,7 +441,7 @@ msgid "NONE"
 msgstr "EGYIK SEM"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "A ~A objektum nem tálható a jelen gschem lapon."
 
 #: gschem/src/guile/g_attrib.c:121
