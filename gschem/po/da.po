@@ -37,11 +37,11 @@ msgstr "Forudsat symbolfil suffiks for"
 
 #: gschem/src/base/gschem.c:266
 msgid "An error was encountered loading requested session"
-msgstr "Der opstod en fejl under indlæsning af den ønskede session"
+msgstr "Der opstod en fejl under indlÃ¦sning af den Ã¸nskede session"
 
 #: gschem/src/base/gschem.c:296
 msgid "Auto Load"
-msgstr "Automatisk indlæsning"
+msgstr "Automatisk indlÃ¦sning"
 
 #: gschem/src/base/gschem.c:354
 msgid ""
@@ -50,10 +50,10 @@ msgid ""
 "gschem cannot locate some data files. Please ensure the GEDADATA\n"
 "environment variable points to the correct location.\n"
 msgstr ""
-"GEDADATA miljøvariablen skal indstilles!\n"
+"GEDADATA miljÃ¸variablen skal indstilles!\n"
 "\n"
-"gschem kan ikke finde nogle datafiler. Vær venlig at sikre GEDADATA\n"
-"miljøvariabel peger på den rigtige placering.\n"
+"gschem kan ikke finde nogle datafiler. VÃ¦r venlig at sikre GEDADATA\n"
+"miljÃ¸variabel peger pÃ¥ den rigtige placering.\n"
 
 #: gschem/src/base/gschem.c:388
 msgid "Unable to locate scheme initialization file"
@@ -61,11 +61,11 @@ msgstr "Kan ikke finde system initialisering fil"
 
 #: gschem/src/base/gschem.c:395
 msgid "Read scheme initialization file"
-msgstr "Læs skema initialisering fil"
+msgstr "LÃ¦s skema initialisering fil"
 
 #: gschem/src/base/gschem.c:398
 msgid "Failed to read scheme initialization file"
-msgstr "Læs skema initialisering fil"
+msgstr "LÃ¦s skema initialisering fil"
 
 #: gschem/src/base/gschem.c:422
 msgid "version"
@@ -96,7 +96,7 @@ msgstr "Vindue ejer"
 # Primary window for this dialog
 #: gschem/src/base/gschem_dialog.c:598
 msgid "Parent window for this dialog"
-msgstr "Primær vindue til denne dialog"
+msgstr "PrimÃ¦r vindue til denne dialog"
 
 # Title
 #: gschem/src/base/gschem_dialog.c:618
@@ -212,19 +212,22 @@ msgstr ""
 "Anvendelse: %s [MULIGHED ...] [--] [FIL ...]\n"
 "\n"
 "Rediger interaktivt gEDA-skemaer eller symboler. Hvis en eller flere FIL\n"
-"er specificeret, �bn dem til redigering; Ellers skal du oprette et nyt, tomt\n"
+"er specificeret, åbn dem til redigering; Ellers skal du oprette et nyt, "
+"tomt\n"
 "skematisk.\n"
 "\n"
 "Muligheder:\n"
 "  -a, --render-adaptor <DRV> Specificer, hvilken adapter der skal bruges, "
 "Cario eller X11.\n"
-"  -c, --config-file <FILE>   Yderligere konfigurationsfil, der skal indl�ses.\n"
-"  -g, --guile <DIR>          F�j DIR til Guile-stien (pre-config).\n"
+"  -c, --config-file <FILE>   Yderligere konfigurationsfil, der skal "
+"indlæses.\n"
+"  -g, --guile <DIR>          Føj DIR til Guile-stien (pre-config).\n"
 "  -f, --font <NAME>          indstil skrifttypenavn\n"
-"  -h, --help                 Hj�lp; denne meddelelse.\n"
+"  -h, --help                 Hjælp; denne meddelelse.\n"
 "  -l, --list                 Liste gemte session navne.\n"
 "  -m, --safe-mode            Sikker tilstand.\n"
-"  -n, --no-auto              Intet automatisk indl�sning af det sidste dokument.\n"
+"  -n, --no-auto              Intet automatisk indlæsning af det sidste "
+"dokument.\n"
 "  -o, --output <FILE>        Output filnavn (til udskrivning og "
 "billedudgang).\n"
 "  -p, --place                Automatically place the window.\n"
@@ -252,23 +255,33 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"ophavsret (C) 1998-2017 gEDA udviklere\n"
+"Dette er gratis software, og du er velkommen til at omfordele den under\n"
+"visse betingelser. For detaljer, se filen COPYING, som er\n"
+"inkluderet i gEDA-distributionen. Der er INGEN GARANTI; ikke engang \n"
+"for MERCHANTABILITY eller FITNESS TIL ET SÆRLIGT FORMÅL, i det omfang\n"
+"tilladt ved lov.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
-msgstr ""
+msgstr "fejl ved parsning"
 
+# ERROR
 #: gschem/src/base/gschem_parsecmd.c:291 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "FEJL"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:295
 msgid "option requires an argument"
-msgstr ""
+msgstr "indstilling kræver et argument"
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:301
 msgid "Unknown option"
-msgstr ""
+msgstr "Ukendt mulighed"
 
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
@@ -458,7 +471,7 @@ msgid "NONE"
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:121
