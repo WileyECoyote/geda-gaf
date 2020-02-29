@@ -518,7 +518,7 @@ msgid "NONE"
 msgstr "нито един"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "Обект, ~А не е включена в текущата страница gschem."
 
 #: gschem/src/guile/g_attrib.c:121
@@ -601,6 +601,7 @@ msgid "Continuing with default value"
 msgstr "Продължаване с стойността по подразбиране"
 
 #: gschem/src/guile/g_rc.c:819
+#, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
 msgstr ""
 "Невалидно присвояване на тип, проверете влизането в регистрацията в rc "
@@ -609,33 +610,46 @@ msgstr ""
 # Invalid value, snap-size cannot be zero, check entry rc file
 # Nevalidna stoĭnost, razmer na shtraka ne mozhe da bŭde nula, proverete rc file entry
 #: gschem/src/guile/g_rc.c:1292
+#, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr "Невалидна стойност, размер на щрака не може да бъде нула, проверете rc file entry\n"
+msgstr ""
+"Невалидна стойност, размер на щрака не може да бъде нула, проверете rc file "
+"entry\n"
 
 # Invalid type assignment, check snap-size entry in rc file
 # Nevalidno zadavane na tip, proverete zapis na razmer na shtrakvane v rc faĭl
 #: gschem/src/guile/g_rc.c:1297
+#, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr "Невалидно задаване на тип, проверете запис на размер на щракване в rc файл\n"
+msgstr ""
+"Невалидно задаване на тип, проверете запис на размер на щракване в rc файл\n"
 
 # Invalid value, bus-ripper-size cannot be zero, check entry rc file
 # Nevalidna stoĭnost, razmer na shinata-ripper ne mozhe da bŭde nula, proverete vkhodniya rc faĭl
 #: gschem/src/guile/g_rc.c:1438
+#, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr "Невалидна стойност, размер на шината-ripper не може да бъде нула, проверете входния rc файл\n"
+msgstr ""
+"Невалидна стойност, размер на шината-ripper не може да бъде нула, проверете "
+"входния rc файл\n"
 
 # Invalid type assignment, check bus-ripper-size entry in rc file
 # Nevalidno zadavane na tip, proverete zapisa za razmer na shinata-riper v rc faĭla
 #: gschem/src/guile/g_rc.c:1443
+#, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr "Невалидно задаване на тип, проверете записа за размер на шината-рипер в rc файла\n"
+msgstr ""
+"Невалидно задаване на тип, проверете записа за размер на шината-рипер в rc "
+"файла\n"
 
 #: gschem/src/guile/g_rc.c:2034
+#, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
 msgstr ""
 
 #: gschem/src/guile/g_rc.c:2039
+#, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
 msgstr ""
 
