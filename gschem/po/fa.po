@@ -259,7 +259,8 @@ msgstr ""
 "  -x (EXPR)                  بیان طرح برای شروع در هنگام اجرا.\n"
 "  -z, --minimized            پنجره اصلی را که برای اسکریپت استفاده می شود "
 "مخفی کنید\n"
-"  --                         با همه استدلال های باقی مانده به عنوان نام پرونده ها رفتار کنید.\n"
+"  --                         با همه استدلال های باقی مانده به عنوان نام "
+"پرونده ها رفتار کنید.\n"
 "\n"
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
@@ -273,6 +274,12 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"حق چاپ (C) 1998-2017 gEDA توسعه دهندگان\n"
+"این نرم افزار رایگان است ، و شما از توزیع مجدد آن در زیر استقبال می کنید\n"
+"این نرم افزار رایگان است و شما از شرایط استقبال می کنید. برای جزئیات ، به پرونده COPYING ، که توزیع مجدد آن در زیر است ، مراجعه کنید\n"
+"در توزیع GEDA گنجانده شده است. هیچ تضمینی وجود ندارد. حتی \n"
+"برای قابلیت دستیابی یا تناسب برای یک هدف خاص ، تا حدی\n"
+"مجاز توسط قانون.\n"
 
 # error parsing
 #: gschem/src/base/gschem_parsecmd.c:255
@@ -512,9 +519,9 @@ msgstr "خطا"
 msgid "NONE"
 msgstr "هیچ یک"
 
-# Object ~A is not included in the current gschem page
+# Object ~A is not included in the current page
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "شی ~A در صفحه فعلی gschem گنجانده نشده است"
 
 # Invalid text name/value visibility ~A
@@ -590,30 +597,31 @@ msgstr "لطفاً مطمئن شوید که آخرین پرونده rc را دا
 msgid "file"
 msgstr "فایل"
 
+# Invalid value, zoom-gain cannot be zero, check entry in rc file
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "مقدار نامعتبر است ، افزایش زوم نمی تواند صفر باشد ، ورود به پرونده rc را بررسی کنید\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "تکلیف نوع نامعتبر است ، ورود بزرگنمایی را در پرونده rc بررسی کنید\n"
 
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "ادامه با مقدار پیش فرض"
 
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "تکلیف نوع نامعتبر است ، ورود به سیستم ورود به سیستم rc را بررسی کنید\n"
 
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "مقدار نامعتبر است ، اندازه ضربه محکم و ناگهانی نمی تواند صفر باشد ، پرونده ورودی rc را بررسی کنید\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
