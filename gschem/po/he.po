@@ -500,49 +500,60 @@ msgstr "שְׁגִיאָה"
 msgid "NONE"
 msgstr "אף אחד"
 
+# Object ~A is not included in the current page
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
-msgstr ""
+msgid "Object ~A is not included in the current page."
+msgstr "אובייקט ~A אינו כלול בדף הנוכחי."
 
+# Invalid text name/value visibility
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "נראות שם/ערך של טקסט לא חוקי ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "מעבד"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "מדלג"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "ערך בקובץ rc"
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "ערך גרוע"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "חשבון"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "או תוכנית, ממשיכים עם"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "ערך מקסימאלי"
 
+# minimum value
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "ערך מינימלי"
 
+# default value
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "ערך ברירת מחדל"
 
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
