@@ -214,20 +214,23 @@ msgid ""
 msgstr ""
 "Ús: %s [OPCIÓ ...] [--] [DOSSIER ...]\n"
 "\n"
-"Edita de manera interactiva els esquemes o símbols de gEDA. Si un o més fitxers\n"
+"Edita de manera interactiva els esquemes o símbols de gEDA. Si un o més "
+"fitxers\n"
 "s'especifiquen, obriu-les per a l'edició; en cas contrari, creeu un esquema\n"
 "nou buit.\n"
 "\n"
 "Opcions:\n"
 "  -a, --render-adaptor <DRV> Especifiqueu quin adaptador utilitzar, Cario o "
 "X11.\n"
-"  -c, --config-file <FILE>   Fitxer de configuració addicional per carregar.\n"
+"  -c, --config-file <FILE>   Fitxer de configuració addicional per "
+"carregar.\n"
 "  -g, --guile <DIR>          Afegir DIR a la ruta Guile (preconfigurada).\n"
 "  -f, --font <NAME>          definiu el nom de la lletrae\n"
 "  -h, --help                 Ajuda; aquest missatge.\n"
 "  -l, --list                 Llista els noms de sessió desats.\n"
 "  -m, --safe-mode            Mode segur.\n"
-"  -n, --no-auto              No hi ha darrer document de càrrega automàtica.\n"
+"  -n, --no-auto              No hi ha darrer document de càrrega "
+"automàtica.\n"
 "  -o, --output <FILE>        Nom del fitxer de sortida (per a la impressió i "
 "la sortida d'imatges).\n"
 "  -p, --place                Automatically place the window.\n"
@@ -255,23 +258,32 @@ msgid ""
 "for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, to the extent\n"
 "permitted by law.\n"
 msgstr ""
+"Copyright (C) 1998-2017 gEDA developers\n"
+"Aquest és un programari gratuït i us convé redistribuir-lo a sota\n"
+"determinades condicions. Per a més detalls, consulteu el fitxer COPYING, que és\n"
+"inclòs a la distribució gEDA. No hi ha cap garantia; ni tan sols \n"
+"per a la COMERCIABILITAT o l'adequació per a un propòsit PARTICULAR, en la mesura\n"
+"permès per la llei.\n"
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
-msgstr ""
+msgstr "error al analitzar"
 
 #: gschem/src/base/gschem_parsecmd.c:291 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "ERROR"
 
+# option requires an argument
 #: gschem/src/base/gschem_parsecmd.c:295
 msgid "option requires an argument"
-msgstr ""
+msgstr "opció requereix un argument"
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:301
 msgid "Unknown option"
-msgstr ""
+msgstr "Opció desconeguda"
 
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
@@ -461,7 +473,7 @@ msgid "NONE"
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:121
