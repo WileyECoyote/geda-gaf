@@ -28,7 +28,8 @@ msgstr "Увага: <%s> не розширювався\n"
 # Pomylka komandnoho ryadka: vidklyuchennya ostannʹoho avtomatychnoho zavantazhennya
 #: gschem/src/base/gschem.c:193
 msgid "Command-line error: disabling auto load last\n"
-msgstr "Помилка командного рядка: відключення останнього автоматичного завантаження\n"
+msgstr ""
+"Помилка командного рядка: відключення останнього автоматичного завантаження\n"
 
 # Assuming schematic file suffix for;
 # Prypushchennya skhematychnoho sufiksa faylu dlya
@@ -61,7 +62,8 @@ msgid ""
 msgstr ""
 "Необхідно встановити змінну середовища GEDADATA!\n"
 "\n"
-"gschem не може знайти деякі файли даних. Будь ласка, переконайтеся, що GEDADATA\n"
+"gschem не може знайти деякі файли даних. Будь ласка, переконайтеся, що "
+"GEDADATA\n"
 "змінна середовище вказує на правильне розташування.\n"
 
 # Unable to locate scheme initialization file
@@ -70,30 +72,39 @@ msgstr ""
 msgid "Unable to locate scheme initialization file"
 msgstr "Неможливо знайти файл ініціалізації схеми"
 
+# Read scheme initialization file
+# Prochytayte fayl initsializatsiyi skhemy
 #: gschem/src/base/gschem.c:395
 msgid "Read scheme initialization file"
-msgstr ""
+msgstr "Прочитайте файл ініціалізації схеми"
 
+# Failed to read scheme initialization file
+# Ne vdalosya prochytaty fayl initsializatsiyi skhemy
 #: gschem/src/base/gschem.c:398
 msgid "Failed to read scheme initialization file"
-msgstr ""
+msgstr "Не вдалося прочитати файл ініціалізації схеми"
 
+# version; versiya
 #: gschem/src/base/gschem.c:422
 msgid "version"
-msgstr ""
+msgstr "версія"
 
+# Logging system is disabled; Systema zhurnalu vymknena
 #: gschem/src/base/gschem.c:427
 msgid "Logging system is disabled\n"
-msgstr ""
+msgstr "Система журналу вимкнена\n"
 
+# ERROR: Failed to load or evaluate startup script
+# POMYLKA: Ne vdalosya zavantazhyty abo otsinyty stsenariy zapusku
 #: gschem/src/base/gschem.c:460
 #, c-format
 msgid "ERROR: Failed to load or evaluate startup script.\n"
-msgstr ""
+msgstr "ПОМИЛКА: Не вдалося завантажити або оцінити сценарій запуску.\n"
 
+# Exiting normal; Vykhid iz normy
 #: gschem/src/base/gschem.c:555
 msgid "Exiting normal\n"
-msgstr ""
+msgstr "Вихід із норми\n"
 
 # FAILED; NEPRAVYLYY
 #: gschem/src/base/gschem.c:558
@@ -441,7 +452,7 @@ msgid "NONE"
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:121
