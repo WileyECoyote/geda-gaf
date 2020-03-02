@@ -1,3 +1,9 @@
+2020-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Utilize macro:
+
+          * geda_get_widget_allocation
+
 2020-02-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Utilize macro:
