@@ -394,16 +394,17 @@ GtkWidget *geda_action_create_menu_item (GedaAction *action)
 {
   GtkWidget *menu_item;
 
-  if (GEDA_IS_ACTION (action)) {
-
-    menu_item = geda_image_menu_item_new ();
-
-  }
-  else if (GEDA_IS_TOGGLE_ACTION(action)) {
+  if (GEDA_IS_TOGGLE_ACTION(action)) {
 
     menu_item = geda_check_menu_item_new ();
 
   }
+  else if (GEDA_IS_ACTION (action)) {
+
+    menu_item = geda_image_menu_item_new ();
+
+  }
+
   else {
     fprintf(stderr, "%s: Error: invalid action\n",__func__);
     menu_item = NULL;
