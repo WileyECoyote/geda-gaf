@@ -938,10 +938,12 @@ static void geda_menu_handle_scrolling (GedaMenu *menu,
 
       GtkStateType arrow_state = GTK_STATE_NORMAL;
 
-      if (arrow_pressed)
+      if (arrow_pressed) {
         arrow_state = GTK_STATE_ACTIVE;
-      else if (menu->lower_arrow_prelight)
+      }
+      else if (menu->lower_arrow_prelight) {
         arrow_state = GTK_STATE_PRELIGHT;
+      }
 
       if (arrow_state != priv->lower_arrow_state) {
 
