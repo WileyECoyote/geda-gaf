@@ -3270,12 +3270,13 @@ COMMAND (do_hierarchy_up)
 
   BEGIN_NO_ARGUMENT(do_hierarchy_up);
 
-  Page *child;
-  Page *up_page;
+  Page     *child;
+  Page     *up_page;
+  PageList *page_list;
 
-  child = gschem_toplevel_get_current_page (w_current);
-
-  up_page = geda_hierarchy_find_up_page (w_current->toplevel->pages, child);
+  child     = gschem_toplevel_get_current_page (w_current);
+  page_list = geda_toplevel_get_page_list(w_current->toplevel);
+  up_page   = geda_hierarchy_find_up_page (page_list, child);
 
   if (up_page == NULL) {
     geda_log(_("Cannot find any schematics above the current one!\n"));

@@ -2,6 +2,9 @@
 
     * src/guile/g_attrib.c: Remove "gschem" from message output.
 
+    * src/iface/i_command.c: Revise i_cmd_do_hierarchy_up to utilize accessor
+      geda_toplevel_get_page_list.
+
 2020-02-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
