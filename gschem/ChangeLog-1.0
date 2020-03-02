@@ -1,19 +1,16 @@
+2020-03-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_attrib.c: Remove "gschem" from message output.
+
 2020-02-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/bg.po: Update Bulgarian translations.
-
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/sv.po: Update Swedish translations.
-
     * po/uk.po: Update Ukrainian translations.
 
 2020-02-22 Wiley E. Hill <wileyhill@gmail.com>

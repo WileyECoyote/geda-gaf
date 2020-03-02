@@ -97,7 +97,7 @@ SCM_DEFINE (add_attrib_x, "%add-attrib!", 6, 0, 0,
     if (geda_object_get_page (obj) != toplevel->page_current) {
       scm_error (object_state_sym,
                  s_add_attrib_x,
-                 _("Object ~A is not included in the current gschem page."),
+                 _("Object ~A is not included in the current page."),
                  scm_list_1 (target_s), SCM_EOL);
     }
   }
