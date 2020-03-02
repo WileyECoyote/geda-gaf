@@ -972,10 +972,10 @@ static bool pointer_in_menu_window (GtkWidget *widget, double x_root, double y_r
 
     gdk_window_get_position (window, &window_x, &window_y);
 
-        y_root >= window_y && y_root < window_y + widget->allocation.height)
     allocation = geda_get_widget_allocation (widget);
 
     if (x_root >= window_x && x_root < window_x + allocation->width &&
+        y_root >= window_y && y_root < window_y + allocation->height)
       return TRUE;
 
     menu_shell = (GedaMenuShell*)widget;
