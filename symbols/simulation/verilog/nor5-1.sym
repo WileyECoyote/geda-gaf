@@ -13,7 +13,7 @@ A 600 400 400 14 76 3 0 0 0 -1 -1
 P 1100 500 1300 500 1 0 1
 {
 T 1100 400 5 8 0 1 0 0 1
-pinnumber=OUT
+pinnumber=1
 T 1100 400 5 8 0 1 0 0 1
 pinseq=1
 T 1100 550 5 8 0 1 0 0 1
@@ -24,7 +24,7 @@ pintype=out
 P 300 100 0 100 1 0 1
 {
 T 0 50 5 8 0 1 0 0 1
-pinnumber=IN0
+pinnumber=2
 T 0 50 5 8 0 1 0 0 1
 pinseq=2
 T 0 150 5 8 0 1 0 0 1
@@ -35,7 +35,7 @@ pintype=in
 P 300 300 0 300 1 0 1
 {
 T 0 250 5 8 0 1 0 0 1
-pinnumber=IN1
+pinnumber=3
 T 0 250 5 8 0 1 0 0 1
 pinseq=3
 T 0 350 5 8 0 1 0 0 1
@@ -46,7 +46,7 @@ pintype=in
 P 300 500 0 500 1 0 1
 {
 T 0 450 5 8 0 1 0 0 1
-pinnumber=IN2
+pinnumber=4
 T 0 450 5 8 0 1 0 0 1
 pinseq=4
 T 0 550 5 8 0 1 0 0 1
@@ -57,7 +57,7 @@ pintype=in
 P 300 700 0 700 1 0 1
 {
 T 0 650 5 8 0 1 0 0 1
-pinnumber=IN3
+pinnumber=5
 T 0 650 5 8 0 1 0 0 1
 pinseq=5
 T 0 750 5 8 0 1 0 0 1
@@ -68,7 +68,7 @@ pintype=in
 P 300 900 0 900 1 0 1
 {
 T 0 850 5 8 0 1 0 0 1
-pinnumber=IN4
+pinnumber=6
 T 0 850 5 8 0 1 0 0 1
 pinseq=6
 T 0 950 5 8 0 1 0 0 1
