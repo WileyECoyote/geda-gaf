@@ -465,7 +465,7 @@ msgid "NONE"
 msgstr "BRAK"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "Obiekt ~A nie występuje w bieżącym arkuszu."
 
 #: gschem/src/guile/g_attrib.c:121

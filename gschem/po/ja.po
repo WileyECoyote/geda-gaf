@@ -428,9 +428,9 @@ msgstr "反転"
 msgid "NONE"
 msgstr "なし"
 
-# Object ~ A is not included in the current gschem page.
+# Object ~ A is not included in the current page.
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "Object ~A は、現在のgschemページには含まれていません."
 
 # Invalid text name/value visibility ~ A.

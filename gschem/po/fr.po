@@ -467,7 +467,7 @@ msgid "NONE"
 msgstr "AUCUN"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "L'objet ~A n'est pas inclus dans la page gschem courante."
 
 #: gschem/src/guile/g_attrib.c:121

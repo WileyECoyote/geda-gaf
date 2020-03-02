@@ -474,7 +474,7 @@ msgid "NONE"
 msgstr "KMEAN"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr ""
 "vottho ~A min trauv ban ruomobanhchoul nowknong tompr gschem bachchobban."
 

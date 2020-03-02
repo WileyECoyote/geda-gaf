@@ -434,7 +434,7 @@ msgid "NONE"
 msgstr "ΚΑΝΕΝΑ"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "Το αντικείμενο ~A δεν περιλαμβάνεται στην τρέχουσα gschem."
 
 #: gschem/src/guile/g_attrib.c:121

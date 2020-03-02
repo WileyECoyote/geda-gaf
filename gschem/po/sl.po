@@ -510,7 +510,7 @@ msgid "NONE"
 msgstr "Nihče"
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "Objekt ~A ni vključen na trenutno stran gschem."
 
 # Invalid visibility of text name or value

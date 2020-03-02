@@ -483,7 +483,7 @@ msgid "NONE"
 msgstr ""
 
 #: gschem/src/guile/g_attrib.c:100
-msgid "Object ~A is not included in the current gschem page."
+msgid "Object ~A is not included in the current page."
 msgstr "L'oggetto ~A non è incluso nella pagina di gschem corrente."
 
 #: gschem/src/guile/g_attrib.c:121
