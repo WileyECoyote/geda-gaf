@@ -1,6 +1,7 @@
 2020-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu.c: Utilize macro:
+    * src/widgets/geda_menu.c: Simplify conditionals in geda_menu_enter_notify.
+      Utilize macro:
 
           * geda_get_widget_parent
 
