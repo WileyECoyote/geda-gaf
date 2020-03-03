@@ -1354,8 +1354,8 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
 
     arrow_size = arrow_scaling * arrow_space;
 
-                   widget->window,
     gtk_paint_box (style,
+                   window,
                    GTK_STATE_NORMAL,
                    GTK_SHADOW_OUT,
                    &event->area, widget, "menu",
