@@ -1374,7 +1374,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
                      upper.height);
 
       gtk_paint_arrow (widget->style,
-                       widget->window,
+                       window,
                        priv->upper_arrow_state,
                        GTK_SHADOW_OUT,
                        &event->area, widget, "menu_scroll_arrow_up",
