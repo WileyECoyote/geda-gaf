@@ -1159,13 +1159,13 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
     if (!touchscreen_mode) {
 
-      GtkWidget *menu;
+      GedaMenu *menu;
 
       menu = geda_get_widget_parent (menu_item);
 
       if (GEDA_IS_MENU (menu)) {
 
-        GedaMenuPriv  *priv       = ((GedaMenu*)menu)->priv;
+        GedaMenuPriv  *priv       = menu->priv;
         GedaMenuShell *menu_shell = (GedaMenuShell*)menu;
 
         if (priv->seen_item_enter) {
