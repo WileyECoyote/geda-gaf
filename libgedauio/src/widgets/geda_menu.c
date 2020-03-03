@@ -1388,7 +1388,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
     if (menu->lower_arrow_visible && !menu->tearoff_active) {
 
       gtk_paint_box (widget->style,
-                     widget->window,
+                     window,
                      priv->lower_arrow_state,
                      GTK_SHADOW_OUT,
                      &event->area, widget, "menu_scroll_arrow_down",
