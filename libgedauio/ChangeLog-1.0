@@ -1,3 +1,9 @@
+2020-03-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Utilize macro:
+
+          * geda_get_widget_parent
+
 2020-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Revise geda_action_create_menu_item to
