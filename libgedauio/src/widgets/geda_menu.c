@@ -1197,10 +1197,8 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
      * will not correspond to the event widget's parent.  Check to see
      * if we are in the parent's navigation region.
      */
-    GedaMenu *parent = (GedaMenu*)menu_item->parent;
-
-    if (GEDA_IS_MENU (parent) &&
-      geda_menu_navigating_submenu (parent, event->x_root, event->y_root))
+    if (GEDA_IS_MENU (menu) &&
+        geda_menu_navigating_submenu (menu, event->x_root, event->y_root))
     {
       return TRUE;
     }
