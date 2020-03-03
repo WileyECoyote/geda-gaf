@@ -4,6 +4,7 @@
       Utilize macro:
 
           * geda_get_widget_parent
+          * geda_get_widget_style
 
 2020-03-02 Wiley E. Hill <wileyhill@gmail.com>
 

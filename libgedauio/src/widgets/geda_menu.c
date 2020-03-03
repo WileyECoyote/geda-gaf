@@ -1333,6 +1333,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
   GedaMenu     *menu;
   GedaMenuPriv *priv;
   GdkWindow    *window;
+  GtkStyle     *style;
   GdkRectangle  border;
   GdkRectangle  upper;
   GdkRectangle  lower;
@@ -1343,6 +1344,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
 
   get_arrows_visible_area (menu, &border, &upper, &lower, &arrow_space);
 
+  style  = geda_get_widget_style(widget);
   window = geda_get_widget_window(widget);
 
   if (event->window == window) {
@@ -1351,10 +1353,11 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
     int   arrow_size;
 
     gtk_widget_style_get (widget, "arrow-scaling", &arrow_scaling, NULL);
+
     arrow_size = arrow_scaling * arrow_space;
 
-    gtk_paint_box (widget->style,
                    widget->window,
+    gtk_paint_box (style,
                    GTK_STATE_NORMAL,
                    GTK_SHADOW_OUT,
                    &event->area, widget, "menu",
