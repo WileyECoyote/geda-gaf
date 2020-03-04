@@ -81,6 +81,9 @@ GedaToggleAction *geda_toggle_action_new         (const char *name,
 
 void geda_toggle_action_toggled           (GedaToggleAction *action);
 bool geda_toggle_action_get_active        (GedaToggleAction *action);
+void geda_toggle_action_set_active        (GedaToggleAction *action,
+                                           bool              is_active);
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

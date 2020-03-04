@@ -9,6 +9,7 @@
 
           * geda_toggle_action_toggled
           * geda_toggle_action_get_active
+          * geda_toggle_action_set_active
 
 2020-03-03 Wiley E. Hill <wileyhill@gmail.com>
 

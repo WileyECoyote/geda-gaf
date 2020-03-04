@@ -475,6 +475,26 @@ geda_toggle_action_get_active (GedaToggleAction *action)
   return action->active;
 }
 
+/*!
+ * \brief Set GedaToggleAction active status
+ * \par Function Description
+ *  Sets the checked state on the toggle action.
+ *
+ * \param [in] action     the action object
+ * \param [in] is_active  whether the action should be checked or not
+ */
+void
+geda_toggle_action_set_active (GedaToggleAction *action, bool is_active)
+{
+  g_return_if_fail (GEDA_IS_TOGGLE_ACTION (action));
+
+  is_active = is_active != FALSE;
+
+  if (action->active != is_active) {
+    gtk_action_activate ((GtkAction*)action);
+  }
+}
+
 
 }
 
