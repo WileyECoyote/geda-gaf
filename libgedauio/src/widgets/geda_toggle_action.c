@@ -36,9 +36,7 @@
 #include "../../../config.h"
 #endif
 
-#define WITHOUT_GUILE 1
-#include <libgeda/libgeda.h>
-#include <geda/geda_standard.h>
+#include <geda/geda.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -47,14 +45,14 @@
 #include "../../include/geda_accel_label.h"
 #include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_menu_item.h"
+#include "../../include/geda_check_menu_item.h"
 #include "../../include/gettext.h"
-
 #include <geda_debug.h>
 
 /**
  * \brief GedaToggleAction - A Button Widget for Menus
  * \par
- * A GedaToggleAction is a variant of GtkToggleAction, similar to GedaAction
+ * A GedaToggleAction is a variant of GtkAction, similar to GedaAction
  * objects. GedaToggleAction and GedaAction allow menu items with multi-key
  * assignments, their Gtk counterparts do not.
  *
@@ -62,16 +60,19 @@
  * @{
  */
 
+enum
+{
+  TOGGLED,
+  LAST_SIGNAL
+};
+
 enum {
   PROP_0,
   PROP_DRAW_AS_RADIO,
-  PROP_ACTIVE,
-  PROP_MULTIKEY_ACCEL
+  PROP_ACTIVE
 };
 
-static GObjectClass *geda_toggle_action_parent_class = NULL;
-
-static GHashTable *toggle_action_hash = NULL;
+static void geda_toggle_action_activate     (GtkAction       *action);
 
 static void geda_toggle_action_set_property (GObject      *object,
                                              unsigned int  property_id,
@@ -82,6 +83,12 @@ static void geda_toggle_action_get_property (GObject      *object,
                                              unsigned int  property_id,
                                              GValue       *value,
                                              GParamSpec   *pspec);
+
+static GObjectClass *geda_toggle_action_parent_class = NULL;
+
+static GHashTable *toggle_action_hash = NULL;
+
+static unsigned int action_signals[LAST_SIGNAL] = { 0 };
 
 /*!
  * \brief GObject finalise handler
@@ -94,23 +101,13 @@ static void geda_toggle_action_get_property (GObject      *object,
 static void
 geda_toggle_action_finalize (GObject *object)
 {
-  GedaToggleAction *action = (GedaToggleAction*)object;
+  //GedaToggleAction *action = (GedaToggleAction*)object;
 
   if (g_hash_table_remove (toggle_action_hash, object)) {
     if (!g_hash_table_size (toggle_action_hash)) {
       g_hash_table_destroy (toggle_action_hash);
       toggle_action_hash = NULL;
     }
-  }
-
-  if (action->action_name) {
-    g_free (action->action_name);
-    action->action_name = NULL;
-  }
-
-  if (action->multikey_accel) {
-    g_free (action->multikey_accel);
-    action->multikey_accel = NULL;
   }
 
   ((GObjectClass*)geda_toggle_action_parent_class)->finalize (object);
@@ -135,11 +132,19 @@ geda_toggle_action_set_property (GObject *object,
 {
   GedaToggleAction *action = (GedaToggleAction*)object;
 
-  if (property_id == PROP_MULTIKEY_ACCEL) {
-    if (action->multikey_accel != NULL) {
-      g_free (action->multikey_accel);
-    }
-    action->multikey_accel = g_value_dup_string (value);
+  switch (property_id) {
+
+    case PROP_DRAW_AS_RADIO:
+      g_value_set_boolean (value, geda_toggle_action_get_draw_as_radio (action));
+      break;
+
+    case PROP_ACTIVE:
+      g_value_set_boolean (value, geda_toggle_action_get_active (action));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
   }
 }
 
@@ -161,15 +166,48 @@ geda_toggle_action_get_property (GObject *object, unsigned int property_id,
 {
   GedaToggleAction *action = (GedaToggleAction*)object;
 
-  if (property_id == PROP_MULTIKEY_ACCEL) {
-    g_value_set_string (value, action->multikey_accel);
+  switch (property_id) {
+
+    case PROP_DRAW_AS_RADIO:
+      geda_toggle_action_set_draw_as_radio (action, g_value_get_boolean (value));
+      break;
+
+    case PROP_ACTIVE:
+      geda_toggle_action_set_active (action, g_value_get_boolean (value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
   }
+}
+
+static void
+geda_toggle_action_activate (GtkAction *action)
+{
+  GedaToggleAction *toggle_action = (GedaToggleAction*)action;
+
+  toggle_action->active = !toggle_action->active;
+
+  g_object_notify (G_OBJECT (action), "active");
+
+  geda_toggle_action_toggled (toggle_action);
+}
+
+static GtkWidget *
+geda_toggle_action_create_menu_item (GtkAction *action)
+{
+  GedaToggleAction *toggle_action = (GedaToggleAction*)action;
+
+  return g_object_new (GEDA_TYPE_CHECK_MENU_ITEM,
+                       "draw-as-radio", toggle_action->draw_as_radio,
+                       NULL);
 }
 
 static void
 geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 {
-  GedaToggleAction *toggler = (GedaToggleAction*)action;
+  GedaAction *toggler = (GedaAction*)action;
 
   /* Override the type of label widget used with the menu item */
   if (GEDA_IS_MENU_ITEM (proxy)) {
@@ -215,6 +253,7 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   ((GtkActionClass*)geda_toggle_action_parent_class)->connect_proxy (action, proxy);
 }
 
+
 /*!
  * \brief GedaToggleAction Class Initializer
  * \par Function Description
@@ -239,20 +278,54 @@ geda_toggle_action_class_init (void *class, void *data)
   object_class = (GObjectClass*)class;
   action_class = (GtkActionClass*)class;
 
-  action_class->connect_proxy = geda_toggle_action_connect_proxy;
-
   object_class->finalize     = geda_toggle_action_finalize;
   object_class->set_property = geda_toggle_action_set_property;
   object_class->get_property = geda_toggle_action_get_property;
 
-  params = g_param_spec_string ("multikey-accel",
-                              _("Multikey Accelerator"),
-                              _("Multikey Accelerator"),
-                                 NULL,
-                                 G_PARAM_READWRITE);
+  action_class->activate          = geda_toggle_action_activate;
+  action_class->menu_item_type    = GEDA_TYPE_CHECK_MENU_ITEM;
+  action_class->toolbar_item_type = GTK_TYPE_TOGGLE_TOOL_BUTTON;
+  action_class->connect_proxy     = geda_toggle_action_connect_proxy;
+  action_class->create_menu_item  = geda_toggle_action_create_menu_item;
 
-  g_object_class_install_property(object_class, PROP_MULTIKEY_ACCEL, params);
+  /**
+   * GedaToggleAction:draw-as-radio:
+   *
+   * Whether the proxies for this action look like radio action proxies.
+   *
+   * This is an appearance property and thus only applies if
+   * GtkActivatable:use-action-appearance is %TRUE.
+   */
 
+  params = g_param_spec_boolean ("draw-as-radio",
+                               _("Create the same proxies as a radio action"),
+                               _("Whether the proxies for this action look like radio action proxies"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_DRAW_AS_RADIO, params);
+
+  /**
+   * GedaToggleAction:active:
+   *
+   * If the toggle action should be active in or not.
+   */
+  params = g_param_spec_boolean ("active",
+                               _("Active"),
+                               _("If the toggle action should be active in or not"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (object_class, PROP_ACTIVE, params);
+
+  action_signals[TOGGLED] =
+    g_signal_new ("toggled",
+                  G_OBJECT_CLASS_TYPE (class),
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GedaToggleActionClass, toggled),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 /*!
@@ -267,9 +340,14 @@ geda_toggle_action_class_init (void *class, void *data)
 static void
 geda_toggle_action_instance_init (GTypeInstance *instance, void *class)
 {
+  GedaToggleAction *action = (GedaToggleAction*)instance;
+
   if (!toggle_action_hash) {
     toggle_action_hash = g_hash_table_new (g_direct_hash, NULL);
   }
+
+  action->active = FALSE;
+  action->draw_as_radio = FALSE;
 
   g_hash_table_replace (toggle_action_hash, instance, instance);
 }
@@ -305,7 +383,7 @@ GedaType geda_toggle_action_get_type (void)
     GedaType    type;
 
     string = g_intern_static_string ("GedaToggleAction");
-    type   = g_type_register_static (GTK_TYPE_TOGGLE_ACTION, string,
+    type   = g_type_register_static (GEDA_TYPE_ACTION, string,
                                     &geda_toggle_action_info, 0);
 
     g_once_init_leave (&toggle_action_type, type);
@@ -363,9 +441,7 @@ geda_toggle_action_new (const char *name,
                                                     NULL);
   }
 
-  action->action_name = geda_strdup (name);
 
-  return action;
 }
 
 /** @} end group GedaToggleAction */

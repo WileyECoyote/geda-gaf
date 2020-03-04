@@ -1,3 +1,12 @@
+2020-03-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_toggle_action.h: Derive GedaToggleAction from GedaAction
+      instead of GtkToggleAction, remove members action_name and multikey_accel,
+      add active and draw_as_radio.
+
+    * src/widgets/geda_toggle_action.c: Redo module in oder to derive GedaToggleAction
+      from GedaAction.
+
 2020-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Simplify conditionals in geda_menu_enter_notify

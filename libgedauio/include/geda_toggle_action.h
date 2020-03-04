@@ -53,15 +53,17 @@ typedef struct _GedaToggleActionClass   GedaToggleActionClass;
 
 struct _GedaToggleAction
 {
-  GtkToggleAction parent_instance;
+  GedaAction parent_instance;
 
-  char *action_name;
-  char *multikey_accel;
+  unsigned int active : 1;
+  unsigned int draw_as_radio : 1;
 };
 
 struct _GedaToggleActionClass
 {
-  GtkToggleActionClass parent_class;
+  GedaActionClass parent_class;
+
+  void (* toggled) (GedaToggleAction *action);
 };
 
 #ifdef __cplusplus
