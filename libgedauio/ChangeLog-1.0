@@ -5,9 +5,10 @@
       add active and draw_as_radio.
 
     * src/widgets/geda_toggle_action.c: Redo module in oder to derive GedaToggleAction
-      from GedaAction; add function:
+      from GedaAction; add functions:
 
           * geda_toggle_action_toggled
+          * geda_toggle_action_get_active
 
 2020-03-03 Wiley E. Hill <wileyhill@gmail.com>
 

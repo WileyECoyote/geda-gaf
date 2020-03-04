@@ -458,6 +458,23 @@ geda_toggle_action_toggled (GedaToggleAction *action)
   g_signal_emit (action, action_signals[TOGGLED], 0);
 }
 
+/*!
+ * \brief Retrieve the active status from a GedaToggleAction
+ * \par Function Description
+ *  Returns the checked state of the toggle action.
+ *
+ * \param [in] action the action object
+ *
+ * \returns the checked state of the toggle action
+ */
+bool
+geda_toggle_action_get_active (GedaToggleAction *action)
+{
+  g_return_val_if_fail (GEDA_IS_TOGGLE_ACTION (action), FALSE);
+
+  return action->active;
+}
+
 
 }
 
