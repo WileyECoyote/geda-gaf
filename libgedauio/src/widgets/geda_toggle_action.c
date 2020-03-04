@@ -512,6 +512,28 @@ geda_toggle_action_get_draw_as_radio (GedaToggleAction *action)
   return action->draw_as_radio;
 }
 
+/**
+ * geda_toggle_action_set_draw_as_radio:
+ *
+ * \param [in] action         the action object
+ * \param [in] draw_as_radio  whether the action should have proxies like a radio
+ *    action
+ *
+ * Sets whether the action should have proxies like a radio action.
+ */
+void
+geda_toggle_action_set_draw_as_radio (GedaToggleAction *action, bool draw_as_radio)
+{
+  g_return_if_fail (GEDA_IS_TOGGLE_ACTION (action));
+
+  draw_as_radio = draw_as_radio != FALSE;
+
+  if (action->draw_as_radio != draw_as_radio) {
+
+    action->draw_as_radio = draw_as_radio;
+
+    g_object_notify (G_OBJECT (action), "draw-as-radio");
+  }
 }
 
 /** @} end group GedaToggleAction */
