@@ -79,6 +79,7 @@ GedaToggleAction *geda_toggle_action_new         (const char *name,
                                                   const char *stock_id,
                                                   const char *multikey_accel);
 
+void geda_toggle_action_toggled           (GedaToggleAction *action);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

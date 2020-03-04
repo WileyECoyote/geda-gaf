@@ -440,6 +440,23 @@ geda_toggle_action_new (const char *name,
                                                     "stock-id", icon_id,
                                                     NULL);
   }
+  return action;
+}
+
+/*!
+ * \brief Emit "toggled" on a GedaToggleAction object
+ * \par Function Description
+ *  Emits the "toggled" signal on the toggle action.
+ *
+ * \param [in] action  the action object
+ */
+void
+geda_toggle_action_toggled (GedaToggleAction *action)
+{
+  g_return_if_fail (GEDA_IS_TOGGLE_ACTION (action));
+
+  g_signal_emit (action, action_signals[TOGGLED], 0);
+}
 
 
 }
