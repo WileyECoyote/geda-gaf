@@ -52,9 +52,9 @@
 /**
  * \brief GedaToggleAction - A Button Widget for Menus
  * \par
- * A GedaToggleAction is a variant of GtkAction, similar to GedaAction
- * objects. GedaToggleAction and GedaAction allow menu items with multi-key
- * assignments, their Gtk counterparts do not.
+ * A GedaToggleAction is a variant of GedaAction. GedaToggleAction and
+ * GedaAction objects allow menu items with multi-key assignments, their
+ * Gtk counterparts do not.
  *
  * \defgroup GedaToggleAction Menu Toggle Button
  * @{
@@ -114,21 +114,20 @@ geda_toggle_action_finalize (GObject *object)
 }
 
 /*!
- * \brief GObject property setter function
+ * \brief GObject property getter function
  * \par Function Description
- *  Setter function for GedaToggleAction's GObject properties,
+ *  Getter function for GedaToggleAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- * \param [in]  object       The GObject whose properties we are setting
+ * \param [in]  object       The GObject whose properties we are getting
  * \param [in]  property_id  The numeric id. under which the property was
  *                           registered with g_object_class_install_property()
- * \param [in]  value        The GValue the property is being set from
- * \param [in]  pspec        A GParamSpec describing the property being set
+ * \param [out] value        The GValue in which to return the value of the property
+ * \param [in]  pspec        A GParamSpec describing the property being got
  */
 static void
-geda_toggle_action_set_property (GObject *object,
-                                 unsigned int property_id,
-                                 const GValue *value, GParamSpec *pspec)
+geda_toggle_action_get_property (GObject *object, unsigned int property_id,
+                                 GValue  *value,  GParamSpec  *pspec)
 {
   GedaToggleAction *action = (GedaToggleAction*)object;
 
@@ -149,20 +148,21 @@ geda_toggle_action_set_property (GObject *object,
 }
 
 /*!
- * \brief GObject property getter function
+ * \brief GObject property setter function
  * \par Function Description
- *  Getter function for GedaToggleAction's GObject properties,
+ *  Setter function for GedaToggleAction's GObject properties,
  *  "settings-name" and "toplevel".
  *
- * \param [in]  object       The GObject whose properties we are getting
+ * \param [in]  object       The GObject whose properties we are setting
  * \param [in]  property_id  The numeric id. under which the property was
  *                           registered with g_object_class_install_property()
- * \param [out] value        The GValue in which to return the value of the property
- * \param [in]  pspec        A GParamSpec describing the property being got
+ * \param [in]  value        The GValue the property is being set from
+ * \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
-geda_toggle_action_get_property (GObject *object, unsigned int property_id,
-                                 GValue  *value,  GParamSpec  *pspec)
+geda_toggle_action_set_property (GObject *object,
+                                 unsigned int property_id,
+                                 const GValue *value, GParamSpec *pspec)
 {
   GedaToggleAction *action = (GedaToggleAction*)object;
 
