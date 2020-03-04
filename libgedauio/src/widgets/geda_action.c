@@ -502,7 +502,7 @@ geda_action_activate (GedaAction *action)
  * \par Function Description
  *  Returns the name of the action associated with the GedaAction object.
  *
- * \param [in] action A GedaAction object
+ * \param [in] action A GedaAction object, which could be a GedaToggleAction
  *
  * \returns const char * to the action name;
  */
