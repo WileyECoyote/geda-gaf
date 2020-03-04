@@ -495,6 +495,22 @@ geda_toggle_action_set_active (GedaToggleAction *action, bool is_active)
   }
 }
 
+/**
+ * geda_toggle_action_get_draw_as_radio:
+ *
+ * \param [in] action  the action object
+ *
+ * Returns whether the action should have proxies like a radio action.
+ *
+ * Returns: whether the action should have proxies like a radio action.
+ */
+bool
+geda_toggle_action_get_draw_as_radio (GedaToggleAction *action)
+{
+  g_return_val_if_fail (GEDA_IS_TOGGLE_ACTION (action), FALSE);
+
+  return action->draw_as_radio;
+}
 
 }
 

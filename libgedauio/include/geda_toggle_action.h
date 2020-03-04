@@ -84,6 +84,8 @@ bool geda_toggle_action_get_active        (GedaToggleAction *action);
 void geda_toggle_action_set_active        (GedaToggleAction *action,
                                            bool              is_active);
 
+
+bool geda_toggle_action_get_draw_as_radio (GedaToggleAction *action);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
