@@ -288,6 +288,8 @@ geda_toggle_action_class_init (void *class, void *data)
   action_class->connect_proxy     = geda_toggle_action_connect_proxy;
   action_class->create_menu_item  = geda_toggle_action_create_menu_item;
 
+  ((GedaToggleActionClass*)class)->toggled = NULL;
+
   /**
    * GedaToggleAction:draw-as-radio:
    *
