@@ -184,8 +184,9 @@ static void geda_invisible_realize (GtkWidget *widget)
 
   parent = gtk_widget_get_parent_window (widget);
 
-  if (parent == NULL)
+  if (parent == NULL) {
     parent = gdk_screen_get_root_window (gtk_widget_get_screen (widget));
+  }
 
   attributes.x = -100;
   attributes.y = -100;
