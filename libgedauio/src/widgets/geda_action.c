@@ -512,10 +512,6 @@ const char *geda_action_get_action_name (GedaAction *action)
     return action->action_name;
   }
 
-  if (GEDA_IS_TOGGLE_ACTION (action)) {
-    return ((GedaToggleAction*)action)->action_name;
-  }
-
   return NULL;
 }
 

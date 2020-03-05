@@ -1,5 +1,9 @@
 2020-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_action.c: Remove unnecessary check for GEDA_IS_TOGGLE_ACTION
+      in geda_action_get_action_name since GedaToggleAction is now derived from
+      GedaAction.
+
     * src/widgets/geda_menu.c: Fix increase scope of menu pointer in function
       geda_menu_enter_notify.
 
