@@ -78,7 +78,7 @@
 
 struct _GedaHandleBoxData
 {
-  GtkWidget      *invisible;
+  GtkWidget   *invisible;
   unsigned int settings_signal_id;
   int orig_x;
   int orig_y;
@@ -854,6 +854,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 {
   GtkWidget     *widget;
   GtkStateType   state;
+  GtkStyle      *style;
   GtkAllocation *allocation;
 
   unsigned int x;
@@ -884,9 +885,10 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
     height = handlebox->handle_size;
   }
 
-  state = gtk_widget_get_state (widget);
+  state  = gtk_widget_get_state (widget);
+  style  = geda_get_widget_style (widget);
 
-  gtk_paint_shadow (geda_get_widget_style(widget),
+  gtk_paint_shadow (style,
                     geda_get_widget_window(widget), state,
                     GTK_SHADOW_ETCHED_IN,
                     NULL, widget, "handle",
@@ -911,7 +913,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
       x2 = allocation->width - handlebox->handle_size;
     }
 
-    gtk_paint_hline (geda_get_widget_style(widget),
+    gtk_paint_hline (style,
                      geda_get_widget_window(widget), state,
                      NULL, widget, "handlebox", x1, x2,
                      allocation->height >> 1);
@@ -930,7 +932,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
       y2 = allocation->height - handlebox->handle_size;
     }
 
-    gtk_paint_vline (geda_get_widget_style(widget),
+    gtk_paint_vline (style,
                      geda_get_widget_window(widget), state,
                      NULL, widget, "handlebox", y1, y2,
                      allocation->width >> 1);

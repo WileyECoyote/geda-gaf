@@ -4,8 +4,12 @@
       in geda_action_get_action_name since GedaToggleAction is now derived from
       GedaAction.
 
+    * src/widgets/geda_handlebox.c: Utilize macro:
+
+          * geda_get_widget_style
+
     * src/widgets/geda_menu.c: Fix increase scope of menu pointer in function
-      geda_menu_enter_notify. Utilize macro:
+      geda_menu_enter_notify. Utilize macros:
 
           * geda_get_container_border_width
           * geda_get_widget_style
