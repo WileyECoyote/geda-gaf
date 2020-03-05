@@ -1157,11 +1157,11 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
   if (GEDA_IS_MENU_ITEM (menu_item)) {
 
+    GedaMenu *menu;
+
+    menu = geda_get_widget_parent (menu_item);
+
     if (!touchscreen_mode) {
-
-      GedaMenu *menu;
-
-      menu = geda_get_widget_parent (menu_item);
 
       if (GEDA_IS_MENU (menu)) {
 

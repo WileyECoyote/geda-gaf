@@ -1,3 +1,8 @@
+2020-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Fix increase scope of menu pointer in function
+      geda_menu_enter_notify.
+
 2020-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_toggle_action.h: Derive GedaToggleAction from GedaAction
