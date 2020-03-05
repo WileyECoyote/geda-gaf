@@ -506,8 +506,7 @@ geda_action_activate (GedaAction *action)
  *
  * \returns const char * to the action name;
  */
-const char*
-geda_action_get_action_name (GedaAction *action)
+const char *geda_action_get_action_name (GedaAction *action)
 {
   if (GEDA_IS_ACTION (action)) {
     return action->action_name;
@@ -529,8 +528,7 @@ geda_action_get_action_name (GedaAction *action)
  *
  * \returns const char* to the icon name;
  */
-const char*
-geda_action_get_icon_name (GedaAction *action)
+const char *geda_action_get_icon_name (GedaAction *action)
 {
   g_return_val_if_fail (GEDA_IS_ACTION (action), NULL);
 
@@ -548,8 +546,7 @@ geda_action_get_icon_name (GedaAction *action)
  *
  * \returns const char* to the icon name;
  */
-void
-geda_action_set_icon_name (GedaAction *action, const char *icon_name)
+void geda_action_set_icon_name (GedaAction *action, const char *icon_name)
 {
   GtkStockItem stock_info;
   GtkAction   *parent_action;
@@ -586,8 +583,7 @@ geda_action_set_icon_name (GedaAction *action, const char *icon_name)
  *
  * \param [in] action A GedaAction object
  */
-void
-geda_action_disconnect_accelerator (GedaAction *action)
+void geda_action_disconnect_accelerator (GedaAction *action)
 {
   g_return_if_fail (GTK_IS_ACTION(action));
   gtk_action_disconnect_accelerator((GtkAction*)action);
