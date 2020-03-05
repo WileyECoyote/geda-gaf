@@ -8,6 +8,7 @@
       geda_menu_enter_notify. Utilize macro:
 
           * geda_get_container_border_width
+          * geda_get_widget_style
 
 2020-03-04 Wiley E. Hill <wileyhill@gmail.com>
 

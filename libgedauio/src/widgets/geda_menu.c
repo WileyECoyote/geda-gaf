@@ -1214,6 +1214,7 @@ static inline void get_arrows_visible_area (GedaMenu     *menu,
                                             GdkRectangle *lower,
                                             int          *arrow_space)
 {
+  GtkStyle         *style;
   GtkWidget        *widget = (GtkWidget*)menu;
   GdkWindow        *window;
   unsigned int      vertical_padding;
@@ -1230,9 +1231,10 @@ static inline void get_arrows_visible_area (GedaMenu     *menu,
                         NULL);
 
   border_width = geda_get_container_border_width (widget);
+  style        = geda_get_widget_style  (widget);
 
-  border->x = border_width + widget->style->xthickness + horizontal_padding;
-  border->y = border_width + widget->style->ythickness + vertical_padding;
+  border->x = border_width + style->xthickness + horizontal_padding;
+  border->y = border_width + style->ythickness + vertical_padding;
 
   window = geda_get_widget_window(menu);
 
@@ -1293,7 +1295,7 @@ static inline void get_arrows_visible_area (GedaMenu     *menu,
        lower->x = lower->y = lower->width = lower->height = 0;
   }
 
-  *arrow_space = scroll_arrow_height - (widget->style->ythickness << 1);
+  *arrow_space = scroll_arrow_height - (style->ythickness << 1);
 }
 
 static void get_arrows_border (GedaMenu *menu, GtkBorder *border)
