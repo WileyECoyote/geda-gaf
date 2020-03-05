@@ -5,7 +5,9 @@
       GedaAction.
 
     * src/widgets/geda_menu.c: Fix increase scope of menu pointer in function
-      geda_menu_enter_notify.
+      geda_menu_enter_notify. Utilize macro:
+
+          * geda_get_container_border_width
 
 2020-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -25,7 +27,7 @@
 2020-03-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Simplify conditionals in geda_menu_enter_notify
-      and eliminate unneeded cast. Utilize macro:
+      and eliminate unneeded cast. Utilize macros:
 
           * geda_get_widget_parent
           * geda_get_widget_style

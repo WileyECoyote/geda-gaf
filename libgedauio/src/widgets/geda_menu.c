@@ -1219,6 +1219,7 @@ static inline void get_arrows_visible_area (GedaMenu     *menu,
   unsigned int      vertical_padding;
   unsigned int      horizontal_padding;
   int               scroll_arrow_height;
+  int               border_width;
   GtkArrowPlacement arrow_placement;
 
   gtk_widget_style_get (widget,
@@ -1228,8 +1229,10 @@ static inline void get_arrows_visible_area (GedaMenu     *menu,
                         "arrow-placement",      &arrow_placement,
                         NULL);
 
-  border->x = ((GtkContainer*)widget)->border_width + widget->style->xthickness + horizontal_padding;
-  border->y = ((GtkContainer*)widget)->border_width + widget->style->ythickness + vertical_padding;
+  border_width = geda_get_container_border_width (widget);
+
+  border->x = border_width + widget->style->xthickness + horizontal_padding;
+  border->y = border_width + widget->style->ythickness + vertical_padding;
 
   window = geda_get_widget_window(menu);
 
