@@ -428,8 +428,9 @@ void geda_invisible_set_screen (GedaInvisible *invisible, GdkScreen *screen)
   previous_screen = priv->screen;
   was_realized = gtk_widget_get_realized (widget);
 
-  if (was_realized)
+  if (was_realized) {
     gtk_widget_unrealize (widget);
+  }
 
   priv->screen = screen;
 
