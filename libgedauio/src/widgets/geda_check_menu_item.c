@@ -43,6 +43,7 @@
 #include "../../include/geda_menu_enum.h"
 #include "../../include/geda_menu_item.h"
 #include "../../include/geda_check_menu_item.h"
+#include "../../include/geda_toggle_action.h"
 #include "../../include/gettext.h"
 
 enum {
@@ -498,7 +499,7 @@ static void geda_check_menu_item_update (GtkActivatable *activatable,
 
     bool active;
 
-    active = gtk_toggle_action_get_active ((GtkToggleAction*)action);
+    active = geda_toggle_action_get_active ((GedaToggleAction*)action);
 
     gtk_action_block_activate (action);
     geda_check_menu_item_set_active (check_menu_item, active);
@@ -513,7 +514,7 @@ static void geda_check_menu_item_update (GtkActivatable *activatable,
 
       bool draw_as_radio;
 
-      draw_as_radio = gtk_toggle_action_get_draw_as_radio ((GtkToggleAction*)action);
+      draw_as_radio = geda_toggle_action_get_draw_as_radio ((GedaToggleAction*)action);
 
       geda_check_menu_item_set_draw_as_radio (check_menu_item, draw_as_radio);
     }
@@ -530,12 +531,12 @@ static void geda_check_menu_item_sync_action_properties (GtkActivatable *activat
 
   parent_activatable_iface->sync_action_properties (activatable, action);
 
-  if (GTK_IS_TOGGLE_ACTION (action)) {
+  if (GEDA_IS_TOGGLE_ACTION (action)) {
 
     bool active;
     bool use_appearance;
 
-    active = gtk_toggle_action_get_active ((GtkToggleAction*)action);
+    active = geda_toggle_action_get_active ((GedaToggleAction*)action);
 
     gtk_action_block_activate (action);
 
@@ -549,7 +550,7 @@ static void geda_check_menu_item_sync_action_properties (GtkActivatable *activat
 
       bool draw_as_radio;
 
-      draw_as_radio = gtk_toggle_action_get_draw_as_radio ((GtkToggleAction*)action);
+      draw_as_radio = geda_toggle_action_get_draw_as_radio ((GedaToggleAction*)action);
 
       geda_check_menu_item_set_draw_as_radio (check_menu_item, draw_as_radio);
     }
