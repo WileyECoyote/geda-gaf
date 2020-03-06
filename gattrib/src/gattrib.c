@@ -195,7 +195,7 @@ void gattrib_save_user_config (void)
  *
  * \param return_code Value to pass to the exit() system call.
  */
-int gattrib_quit(int return_code)
+void gattrib_quit(int return_code)
 {
   GList *list;
 
@@ -249,7 +249,6 @@ int gattrib_quit(int return_code)
   geda_label_report_instances();
 #endif
 
-  exit(return_code);
 }
 
 /*------------------------------------------------------------------*/

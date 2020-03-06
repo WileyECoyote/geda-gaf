@@ -1,7 +1,8 @@
 2020-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Revise main to replace gtk_main with g_main_loop_run.
-      Eliminate calling gtk_main_quit in gattrib_quit.
+      Eliminate calling gtk_main_quit in gattrib_quit. Revise gattrib_quit
+      to not exit with a return code and return nothing.
 
 2019-12-31 Wiley E. Hill <wileyhill@gmail.com>
 
