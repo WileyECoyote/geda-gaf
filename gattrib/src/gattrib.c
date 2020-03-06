@@ -139,7 +139,8 @@ typedef struct {
   void* arg;
 } geda_atexit_struct;
 
-static GList *exit_functions = NULL;
+static GList     *exit_functions  = NULL; /* To be before loop ends */
+static GMainLoop *main_loop       = NULL;
 
 /*!
  * \brief Register a function to be called on program exit
@@ -242,7 +243,6 @@ int gattrib_quit(int return_code)
   printf("In gattrib_quit, calling gtk_main_quit()\n");
 #endif
 
-  gtk_main_quit();
 
 #if DEBUG_GEDA_LABEL
   /* This can be helpful in identifying unreleased resources */
@@ -462,9 +462,25 @@ void gattrib_main(void *closure, int argc, char *argv[])
   }
   else {
 
-      /* enter main loop */
-      gtk_main();
+    if (gtk_init_check(&argc, &argv)) {
 
+      /* Create a main loop using the default context */
+      main_loop  = g_main_loop_new (NULL, TRUE);
+
+      if (g_main_loop_is_running (main_loop)) {
+
+        gdk_threads_leave ();
+
+        /* enter main loop */
+        g_main_loop_run(main_loop);
+
+        gdk_threads_enter ();
+
+        gdk_flush ();
+      }
+
+      g_main_loop_unref(main_loop);
+    }
   }
 
   exit(0);
