@@ -64,7 +64,6 @@ enum {
 
 static void geda_invisible_destroy       (GtkObject         *widget);
 static void geda_invisible_realize       (GtkWidget         *widget);
-static void geda_invisible_show          (GtkWidget         *widget);
 static void geda_invisible_size_allocate (GtkWidget         *widget,
                                           GtkAllocation     *allocation);
 static void geda_invisible_set_property  (GObject           *object,
@@ -238,12 +237,6 @@ static void geda_invisible_style_set (GtkWidget *widget)
 
 #endif
 
-static void geda_invisible_show (GtkWidget *widget)
-{
-  gtk_widget_set_visible (widget, TRUE);
-  gtk_widget_map (widget);
-}
-
 static void
 geda_invisible_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
@@ -275,7 +268,6 @@ static void geda_invisible_class_init (void *class, void *data)
   widget_class->style_updated = geda_invisible_style_set;
 #endif
 
-  widget_class->show          = geda_invisible_show;
   widget_class->size_allocate = geda_invisible_size_allocate;
 
   geda_invisible_parent_class = g_type_class_peek_parent(class);
