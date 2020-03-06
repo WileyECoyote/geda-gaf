@@ -4,6 +4,9 @@
       operations with GedaToggleAction counterparts because later is no longer
       derived from the former.
 
+    * src/widgets/geda_handlebox.c: Eliminate ancillary GtkBin from function
+      geda_handle_box_map.
+
 2020-03-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_action.c: Remove unnecessary check for GEDA_IS_TOGGLE_ACTION

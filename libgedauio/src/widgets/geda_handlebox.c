@@ -1063,14 +1063,12 @@ static bool geda_handle_box_expose (GtkWidget *widget, GdkEventExpose *event)
 /*! \internal widget_class->map */
 static void geda_handle_box_map (GtkWidget *widget)
 {
-  GtkBin        *bin;
   GtkWidget     *child;
   GedaHandleBox *handlebox;
 
   gtk_widget_set_mapped (widget, TRUE);
 
-  bin       = (GtkBin*)widget;
-  child     = geda_get_child_widget(bin);
+  child     = geda_get_child_widget(widget);
   handlebox = (GedaHandleBox*)widget;
 
   if (child &&
