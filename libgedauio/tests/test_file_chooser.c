@@ -210,7 +210,7 @@ my_new_from_file_at_size (const char *filename,
     int              info[2];
     struct stat st;
 
-    guchar buffer [4096];
+    unsigned char buffer [4096];
     int length;
     FILE *f;
 
