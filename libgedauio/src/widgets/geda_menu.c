@@ -1215,13 +1215,15 @@ static inline void get_arrows_visible_area (GedaMenu     *menu,
                                             int          *arrow_space)
 {
   GtkStyle         *style;
-  GtkWidget        *widget = (GtkWidget*)menu;
+  GtkWidget        *widget;
   GdkWindow        *window;
   unsigned int      vertical_padding;
   unsigned int      horizontal_padding;
   int               scroll_arrow_height;
   int               border_width;
   GtkArrowPlacement arrow_placement;
+
+  widget = (GtkWidget*)menu;
 
   gtk_widget_style_get (widget,
                         "vertical-padding",     &vertical_padding,
@@ -1368,7 +1370,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
 
     if (menu->upper_arrow_visible && !menu->tearoff_active) {
 
-      gtk_paint_box (widget->style,
+      gtk_paint_box (style,
                      window,
                      priv->upper_arrow_state,
                      GTK_SHADOW_OUT,
