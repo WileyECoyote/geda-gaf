@@ -1575,6 +1575,7 @@ geda_handle_box_constructed (GObject *object)
   GedaHandleBoxData *priv = handlebox->priv;
 
   priv->invisible = geda_invisible_new ();
+
   gtk_widget_show (priv->invisible);
 }
 
@@ -1852,6 +1853,7 @@ bool is_a_geda_handle_box (GedaHandleBox *handlebox)
   if ((handlebox != NULL) && (handlebox_hash != NULL)) {
     return g_hash_table_lookup(handlebox_hash, handlebox) ? TRUE : FALSE;
   }
+
   return FALSE;
 }
 
