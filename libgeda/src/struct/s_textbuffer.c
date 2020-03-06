@@ -68,7 +68,7 @@ int geda_struct_textbuffer_get_line_count (TextBuffer *tb)
 /*!
  * \brief Create a new managed text buffer.
  * \par Function description
- *  Allocates and initialises a new TextBuffer to manage the given
+ *  Allocates and initializes a new TextBuffer to manage the given
  *  data buffer.
  *
  *  If the size argument is negative, assumes that data is
