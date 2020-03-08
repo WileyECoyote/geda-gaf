@@ -283,45 +283,55 @@ msgstr "indstilling kræver et argument"
 msgid "Unknown option"
 msgstr "Ukendt mulighed"
 
+# Unknown option character
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
-msgstr ""
+msgstr "Ukendt valgmulighedstegn"
 
+# help for more information
 #: gschem/src/base/gschem_parsecmd.c:313
 msgid "help for more information"
-msgstr ""
+msgstr "hjælp til mere information"
 
+# Run
 #: gschem/src/base/gschem_parsecmd.c:315
 msgid "Run"
-msgstr ""
+msgstr "Løb"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Eksempelbuffer"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:529 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
-msgstr ""
+msgstr "Filnavn"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "navn på den fil, der skal vises"
 
+# Object List
 #: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
-msgstr ""
+msgstr "Objektliste"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Liste over objekter, der skal vises"
 
+# Active
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Om preview-widget'en er aktiveret eller deaktiveret"
 
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
