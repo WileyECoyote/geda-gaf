@@ -156,33 +156,39 @@ msgstr "Hämtar huvudfönsterpositionen.\n"
 msgid "Retrieving main window geometry.\n"
 msgstr "Hämtar huvudfönstergeometri.\n"
 
+# Auto-Restore
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Auto-återställning"
 
+# Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "Återställ automatiskt huvudfönstergeometri"
 
+# Horizontal adjustment
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Horisontell justering"
 
+# Page
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
-msgstr ""
+msgstr "Sida"
 
+# Page Geometry
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Sidgeometri"
 
+# Vertical adjustment
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Vertikal justering"
 
 #: gschem/src/base/gschem_parsecmd.c:86
 #, c-format
@@ -232,22 +238,26 @@ msgid ""
 "permitted by law.\n"
 msgstr ""
 
+# error parsing
 #: gschem/src/base/gschem_parsecmd.c:255
 msgid "error parsing"
-msgstr ""
+msgstr "fel parsing"
 
+# ERROR
 #: gschem/src/base/gschem_parsecmd.c:291 gschem/src/x/x_rc.c:100
 #: gschem/src/x/x_rc.c:145
 msgid "ERROR"
-msgstr ""
+msgstr "FEL"
 
+# option requires an argument; alternativet kräver ett argument
 #: gschem/src/base/gschem_parsecmd.c:295
 msgid "option requires an argument"
 msgstr ""
 
+# Unknown option
 #: gschem/src/base/gschem_parsecmd.c:301
 msgid "Unknown option"
-msgstr ""
+msgstr "Okänt alternativ"
 
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
