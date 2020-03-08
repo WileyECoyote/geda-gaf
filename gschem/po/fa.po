@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-15 10:55-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: Sasan Jafarnejad <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -276,7 +276,8 @@ msgid ""
 msgstr ""
 "حق چاپ (C) 1998-2017 gEDA توسعه دهندگان\n"
 "این نرم افزار رایگان است ، و شما از توزیع مجدد آن در زیر استقبال می کنید\n"
-"این نرم افزار رایگان است و شما از شرایط استقبال می کنید. برای جزئیات ، به پرونده COPYING ، که توزیع مجدد آن در زیر است ، مراجعه کنید\n"
+"این نرم افزار رایگان است و شما از شرایط استقبال می کنید. برای جزئیات ، به "
+"پرونده COPYING ، که توزیع مجدد آن در زیر است ، مراجعه کنید\n"
 "در توزیع GEDA گنجانده شده است. هیچ تضمینی وجود ندارد. حتی \n"
 "برای قابلیت دستیابی یا تناسب برای یک هدف خاص ، تا حدی\n"
 "مجاز توسط قانون.\n"
@@ -601,7 +602,9 @@ msgstr "فایل"
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr "مقدار نامعتبر است ، افزایش زوم نمی تواند صفر باشد ، ورود به پرونده rc را بررسی کنید\n"
+msgstr ""
+"مقدار نامعتبر است ، افزایش زوم نمی تواند صفر باشد ، ورود به پرونده rc را "
+"بررسی کنید\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
@@ -621,7 +624,9 @@ msgstr "تکلیف نوع نامعتبر است ، ورود به سیستم ور
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr "مقدار نامعتبر است ، اندازه ضربه محکم و ناگهانی نمی تواند صفر باشد ، پرونده ورودی rc را بررسی کنید\n"
+msgstr ""
+"مقدار نامعتبر است ، اندازه ضربه محکم و ناگهانی نمی تواند صفر باشد ، پرونده "
+"ورودی rc را بررسی کنید\n"
 
 # Invalid type assignment, check snap-size entry in rc file
 #: gschem/src/guile/g_rc.c:1297
@@ -633,20 +638,26 @@ msgstr "تکلیف نوع نامعتبر است ، ورود اندازه فور�
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr "مقدار نامعتبر ، اندازه اتوبوس-چاک دهنده نمی تواند صفر باشد ، پرونده ورودی rc را بررسی کنید\n"
+msgstr ""
+"مقدار نامعتبر ، اندازه اتوبوس-چاک دهنده نمی تواند صفر باشد ، پرونده ورودی rc "
+"را بررسی کنید\n"
 
 # Invalid type assignment, check bus-ripper-size entry in rc file
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr "تکلیف نوع نامعتبر است ، ورودی پرونده اندازه سنج اتوبوس را در پرونده rc بررسی کنید\n"
+msgstr ""
+"تکلیف نوع نامعتبر است ، ورودی پرونده اندازه سنج اتوبوس را در پرونده rc بررسی "
+"کنید\n"
 
 # Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr "نمی توانید 0 مرحله ، مراحل پیمایش نامعتبر را پیمایش کنید ، ورود به پرونده rc را بررسی کنید\n"
+msgstr ""
+"نمی توانید 0 مرحله ، مراحل پیمایش نامعتبر را پیمایش کنید ، ورود به پرونده rc "
+"را بررسی کنید\n"
 
 # Invalid type assignment, check scrollpan-steps entry in rc file
 #: gschem/src/guile/g_rc.c:2039
@@ -912,7 +923,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1020
+#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1021
 msgid "is not accessible"
 msgstr ""
 
@@ -1024,8 +1035,8 @@ msgstr "جلسه ایجاد"
 msgid "with"
 msgstr "با"
 
-#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1244
-#: gschem/src/x/x_window.c:1247
+#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1245
+#: gschem/src/x/x_window.c:1248
 msgid "Saved"
 msgstr "ذخیره"
 
@@ -1604,7 +1615,7 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr ""
 
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2407
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2410
 msgid "Open"
 msgstr ""
 
@@ -3709,7 +3720,7 @@ msgstr "باطل کردن"
 msgid "Undo the last path segment"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2549
+#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2552
 msgid "Clear"
 msgstr ""
 
@@ -3893,27 +3904,27 @@ msgstr ""
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2161 gschem/src/x/x_menus.c:2195
+#: gschem/src/x/x_menus.c:2164 gschem/src/x/x_menus.c:2198
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2304
+#: gschem/src/x/x_menus.c:2307
 msgid "Could not open file"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2414
+#: gschem/src/x/x_menus.c:2417
 msgid "Remove"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2421
+#: gschem/src/x/x_menus.c:2424
 msgid "_Show path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2662
+#: gschem/src/x/x_menus.c:2665
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2715
+#: gschem/src/x/x_menus.c:2718
 msgid "Recent menu items restore from"
 msgstr ""
 
@@ -4447,61 +4458,61 @@ msgstr ""
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:678 gschem/src/x/x_window.c:1112
+#: gschem/src/x/x_window.c:679 gschem/src/x/x_window.c:1113
 msgid "Aborting action\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:684
+#: gschem/src/x/x_window.c:685
 msgid "Close Window canceled\n"
 msgstr "Close Window canceled\n"
 
-#: gschem/src/x/x_window.c:708
+#: gschem/src/x/x_window.c:709
 msgid "Shutdown schematic editor\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:773
+#: gschem/src/x/x_window.c:774
 msgid "Loading file"
 msgstr ""
 
-#: gschem/src/x/x_window.c:920
+#: gschem/src/x/x_window.c:921
 msgid "New file"
 msgstr "New Page"
 
-#: gschem/src/x/x_window.c:968
+#: gschem/src/x/x_window.c:969
 msgid "Failed to load file"
 msgstr ""
 
-#: gschem/src/x/x_window.c:998
+#: gschem/src/x/x_window.c:999
 msgid "Creating new file"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1011
+#: gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Rotate 90 Mode"
 
-#: gschem/src/x/x_window.c:1014
+#: gschem/src/x/x_window.c:1015
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1161
 msgid "Discarding page"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1161
+#: gschem/src/x/x_window.c:1162
 msgid "Closing"
 msgstr "Close Page"
 
-#: gschem/src/x/x_window.c:1225
+#: gschem/src/x/x_window.c:1226
 msgid "Could NOT save page"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1227
+#: gschem/src/x/x_window.c:1228
 msgid "Error while trying to save"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1241
+#: gschem/src/x/x_window.c:1242
 msgid "Saved as"
 msgstr "Save All"
 
@@ -5411,7 +5422,7 @@ msgid "Cycle _grid styles"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2351
-msgid "Toggle grid between Dot, Mesh and Off"
+msgid "Cycle grid between Dot, Mesh and Off"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2352

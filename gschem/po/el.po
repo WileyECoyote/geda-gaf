@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-15 10:55-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -807,7 +807,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr "Δεν θα μπορούσε να ανοίξει το αρχείο συνόδου"
 
-#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1020
+#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1021
 msgid "is not accessible"
 msgstr ""
 
@@ -908,8 +908,8 @@ msgstr "Τρέχον παράθυρο"
 msgid "with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1244
-#: gschem/src/x/x_window.c:1247
+#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1245
+#: gschem/src/x/x_window.c:1248
 msgid "Saved"
 msgstr "Αποθηκεύτηκε"
 
@@ -1477,7 +1477,7 @@ msgstr "Συνέβη ένα σφάλμα κατά τη διάρκεια εισα
 msgid "Clipboard Insertion Failed"
 msgstr "Η εισαγωγή από το πρόχειρο απέτυχε"
 
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2407
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2410
 msgid "Open"
 msgstr "Άνοιγμα"
 
@@ -3622,7 +3622,7 @@ msgstr "Αναίρεση"
 msgid "Undo the last path segment"
 msgstr "Αναίρεση του τελευταίου τμήματος πολυγώνου"
 
-#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2549
+#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2552
 msgid "Clear"
 msgstr ""
 
@@ -3806,27 +3806,27 @@ msgstr ""
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2161 gschem/src/x/x_menus.c:2195
+#: gschem/src/x/x_menus.c:2164 gschem/src/x/x_menus.c:2198
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2304
+#: gschem/src/x/x_menus.c:2307
 msgid "Could not open file"
 msgstr "Δεν ήταν δυνατό το άνοιγμα του αρχείου"
 
-#: gschem/src/x/x_menus.c:2414
+#: gschem/src/x/x_menus.c:2417
 msgid "Remove"
 msgstr "Αφαίρεση αριθμών"
 
-#: gschem/src/x/x_menus.c:2421
+#: gschem/src/x/x_menus.c:2424
 msgid "_Show path"
 msgstr "Εμφάνιση _και των δύο"
 
-#: gschem/src/x/x_menus.c:2662
+#: gschem/src/x/x_menus.c:2665
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2715
+#: gschem/src/x/x_menus.c:2718
 msgid "Recent menu items restore from"
 msgstr ""
 
@@ -4346,43 +4346,43 @@ msgstr "Αποθηκεύστε τις κύριες ρυθμίσεις παραθ
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:678 gschem/src/x/x_window.c:1112
+#: gschem/src/x/x_window.c:679 gschem/src/x/x_window.c:1113
 msgid "Aborting action\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:684
+#: gschem/src/x/x_window.c:685
 msgid "Close Window canceled\n"
 msgstr "Κλείσιμο παραθύρου ακυρώθηκε\n"
 
 # Shutdown schematic editor
-#: gschem/src/x/x_window.c:708
+#: gschem/src/x/x_window.c:709
 msgid "Shutdown schematic editor\n"
 msgstr "Εκτέλεση σχηματικού επεξεργαστή τερματισμού\n"
 
-#: gschem/src/x/x_window.c:773
+#: gschem/src/x/x_window.c:774
 msgid "Loading file"
 msgstr "φόρτωση του αρχείου"
 
-#: gschem/src/x/x_window.c:920
+#: gschem/src/x/x_window.c:921
 msgid "New file"
 msgstr "Νέο αρχείο"
 
-#: gschem/src/x/x_window.c:968
+#: gschem/src/x/x_window.c:969
 msgid "Failed to load file"
 msgstr "Απέτυχε η φόρτωση του αρχείου"
 
 # Create a new file
-#: gschem/src/x/x_window.c:998
+#: gschem/src/x/x_window.c:999
 msgid "Creating new file"
 msgstr "Δημιουργία νέου αρχείου"
 
 # Path to
-#: gschem/src/x/x_window.c:1011
+#: gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "διαδρομή προς"
 
 # did not exist\n successfully created
-#: gschem/src/x/x_window.c:1014
+#: gschem/src/x/x_window.c:1015
 msgid ""
 "did not exist\n"
 "successfully created"
@@ -4391,24 +4391,24 @@ msgstr ""
 "δημιουργήθηκε με επιτυχία"
 
 # purging page
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1161
 msgid "Discarding page"
 msgstr "σελίδα καθαρισμού"
 
 # Close page
-#: gschem/src/x/x_window.c:1161
+#: gschem/src/x/x_window.c:1162
 msgid "Closing"
 msgstr "Κλείσιμο σελίδας"
 
-#: gschem/src/x/x_window.c:1225
+#: gschem/src/x/x_window.c:1226
 msgid "Could NOT save page"
 msgstr "Δεν ήταν δυνατή η αποθήκευση της σελίδας"
 
-#: gschem/src/x/x_window.c:1227
+#: gschem/src/x/x_window.c:1228
 msgid "Error while trying to save"
 msgstr "Σφάλμα κατά την προσπάθεια αποθήκευσης"
 
-#: gschem/src/x/x_window.c:1241
+#: gschem/src/x/x_window.c:1242
 msgid "Saved as"
 msgstr "Αποθήκευση όλων"
 
@@ -5312,7 +5312,7 @@ msgid "Cycle _grid styles"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2351
-msgid "Toggle grid between Dot, Mesh and Off"
+msgid "Cycle grid between Dot, Mesh and Off"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2352

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-15 10:55-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2016-12-28 19:57-0600\n"
 "Last-Translator: Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -853,7 +853,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr "Impossible d'ouvrir le fichier de session"
 
-#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1020
+#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1021
 msgid "is not accessible"
 msgstr ""
 
@@ -954,8 +954,8 @@ msgstr "Vue en cours"
 msgid "with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1244
-#: gschem/src/x/x_window.c:1247
+#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1245
+#: gschem/src/x/x_window.c:1248
 msgid "Saved"
 msgstr "Enregistrer"
 
@@ -1528,7 +1528,7 @@ msgstr ""
 msgid "Clipboard Insertion Failed"
 msgstr "Échec de l'insertion du contenu copié"
 
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2407
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2410
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -3684,7 +3684,7 @@ msgstr "Défaire"
 msgid "Undo the last path segment"
 msgstr "Annuler le dernier segment de chemin"
 
-#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2549
+#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2552
 msgid "Clear"
 msgstr ""
 
@@ -3868,27 +3868,27 @@ msgstr ""
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2161 gschem/src/x/x_menus.c:2195
+#: gschem/src/x/x_menus.c:2164 gschem/src/x/x_menus.c:2198
 msgid "Error: did not find path"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2304
+#: gschem/src/x/x_menus.c:2307
 msgid "Could not open file"
 msgstr "Impossible d'ouvrir le fichier"
 
-#: gschem/src/x/x_menus.c:2414
+#: gschem/src/x/x_menus.c:2417
 msgid "Remove"
 msgstr "Dissiper"
 
-#: gschem/src/x/x_menus.c:2421
+#: gschem/src/x/x_menus.c:2424
 msgid "_Show path"
 msgstr "Afficher les _deux"
 
-#: gschem/src/x/x_menus.c:2662
+#: gschem/src/x/x_menus.c:2665
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2715
+#: gschem/src/x/x_menus.c:2718
 msgid "Recent menu items restore from"
 msgstr ""
 
@@ -4412,62 +4412,62 @@ msgstr "Enregistrement des paramètres pour la fenêtre principale.\n"
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:678 gschem/src/x/x_window.c:1112
+#: gschem/src/x/x_window.c:679 gschem/src/x/x_window.c:1113
 msgid "Aborting action\n"
 msgstr "Abandonner l'action\n"
 
-#: gschem/src/x/x_window.c:684
+#: gschem/src/x/x_window.c:685
 msgid "Close Window canceled\n"
 msgstr "_Fermer la fenêtre\n"
 
-#: gschem/src/x/x_window.c:708
+#: gschem/src/x/x_window.c:709
 msgid "Shutdown schematic editor\n"
 msgstr "Éditeur de schéma d'arrêt\n"
 
-#: gschem/src/x/x_window.c:773
+#: gschem/src/x/x_window.c:774
 msgid "Loading file"
 msgstr "Chargement du fichier"
 
-#: gschem/src/x/x_window.c:920
+#: gschem/src/x/x_window.c:921
 msgid "New file"
 msgstr "Nouveau fichier"
 
-#: gschem/src/x/x_window.c:968
+#: gschem/src/x/x_window.c:969
 msgid "Failed to load file"
 msgstr "Impossible de charger le fichier"
 
 # Creating a new file
-#: gschem/src/x/x_window.c:998
+#: gschem/src/x/x_window.c:999
 msgid "Creating new file"
 msgstr "Création d'un nouveau fichier"
 
-#: gschem/src/x/x_window.c:1011
+#: gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "Ajouter une piste"
 
-#: gschem/src/x/x_window.c:1014
+#: gschem/src/x/x_window.c:1015
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
 
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1161
 msgid "Discarding page"
 msgstr "Abandonne page"
 
-#: gschem/src/x/x_window.c:1161
+#: gschem/src/x/x_window.c:1162
 msgid "Closing"
 msgstr "Fermer la page"
 
-#: gschem/src/x/x_window.c:1225
+#: gschem/src/x/x_window.c:1226
 msgid "Could NOT save page"
 msgstr "Impossible de sauver la page"
 
-#: gschem/src/x/x_window.c:1227
+#: gschem/src/x/x_window.c:1228
 msgid "Error while trying to save"
 msgstr "Erreur lors de la tentative de sauvegarde"
 
-#: gschem/src/x/x_window.c:1241
+#: gschem/src/x/x_window.c:1242
 msgid "Saved as"
 msgstr "Enregistrer toutes les pages"
 
@@ -5374,7 +5374,8 @@ msgstr "Cycle styles de _grilles"
 
 # Toggle grid between Dot, Mesh and Off
 #: gschem/etc/system-gschemrc.scm:2351
-msgid "Toggle grid between Dot, Mesh and Off"
+#, fuzzy
+msgid "Cycle grid between Dot, Mesh and Off"
 msgstr "Toggle grid entre Dot, Mesh et Off"
 
 #: gschem/etc/system-gschemrc.scm:2352

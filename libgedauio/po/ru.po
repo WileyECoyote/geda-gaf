@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-29 19:55-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2012-12-04 01:55+0400\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -564,45 +564,45 @@ msgstr ""
 msgid "_Select"
 msgstr "Выбрать"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1631
-#: libgedauio/src/widgets/geda_handlebox.c:1640
+#: libgedauio/src/widgets/geda_handlebox.c:1629
+#: libgedauio/src/widgets/geda_handlebox.c:1638
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1649
+#: libgedauio/src/widgets/geda_handlebox.c:1647
 msgid "Position of the handle relative to the child toolbar"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1657
+#: libgedauio/src/widgets/geda_handlebox.c:1655
 msgid "Shrink"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1658
+#: libgedauio/src/widgets/geda_handlebox.c:1656
 msgid "Shrink when toolbar is detached."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1666
+#: libgedauio/src/widgets/geda_handlebox.c:1664
 msgid ""
 "Side of the handlebox that is lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1675
+#: libgedauio/src/widgets/geda_handlebox.c:1673
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:1683
+#: libgedauio/src/widgets/geda_handlebox.c:1681
 msgid "Boolean value indicating whether the toolbar is attached or detached."
 msgstr ""
 
 # Handle Size
-#: libgedauio/src/widgets/geda_handlebox.c:1745
+#: libgedauio/src/widgets/geda_handlebox.c:1743
 msgid "Handle Size"
 msgstr "Размер ручки"
 
-#: libgedauio/src/widgets/geda_handlebox.c:1746
+#: libgedauio/src/widgets/geda_handlebox.c:1744
 msgid "Size of the drag handle in pixels."
 msgstr ""
 
@@ -905,9 +905,20 @@ msgstr "Цвет образца"
 msgid "Swatch Enabled"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_toggle_action.c:249
-#: libgedauio/src/widgets/geda_toggle_action.c:250
-msgid "Multikey Accelerator"
+#: libgedauio/src/widgets/geda_toggle_action.c:303
+msgid "Create the same proxies as a radio action"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_toggle_action.c:304
+msgid "Whether the proxies for this action look like radio action proxies"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_toggle_action.c:316
+msgid "Active"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_toggle_action.c:317
+msgid "If the toggle action should be active in or not"
 msgstr ""
 
 # Font Size

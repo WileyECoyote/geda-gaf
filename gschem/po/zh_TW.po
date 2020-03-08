@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-15 10:55-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -827,7 +827,7 @@ msgstr ""
 msgid "Could not open the session file"
 msgstr "無法打開會話文件"
 
-#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1020
+#: gschem/src/iface/i_sessions.c:269 gschem/src/x/x_window.c:1021
 msgid "is not accessible"
 msgstr ""
 
@@ -937,8 +937,8 @@ msgstr "創建會話"
 msgid "with"
 msgstr ""
 
-#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1244
-#: gschem/src/x/x_window.c:1247
+#: gschem/src/iface/i_sessions.c:1152 gschem/src/x/x_window.c:1245
+#: gschem/src/x/x_window.c:1248
 msgid "Saved"
 msgstr "儲存"
 
@@ -1524,7 +1524,7 @@ msgid "Clipboard Insertion Failed"
 msgstr ""
 
 # Open
-#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2407
+#: gschem/src/x/x_compselect.c:127 gschem/src/x/x_menus.c:2410
 msgid "Open"
 msgstr "打開"
 
@@ -3740,7 +3740,7 @@ msgstr "復原"
 msgid "Undo the last path segment"
 msgstr "撤消最後一個多邊形線段"
 
-#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2549
+#: gschem/src/x/x_menus.c:491 gschem/src/x/x_menus.c:2552
 msgid "Clear"
 msgstr ""
 
@@ -3924,29 +3924,29 @@ msgstr ""
 msgid "Menu path not found"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2161 gschem/src/x/x_menus.c:2195
+#: gschem/src/x/x_menus.c:2164 gschem/src/x/x_menus.c:2198
 msgid "Error: did not find path"
 msgstr ""
 
 # Unable to open file
-#: gschem/src/x/x_menus.c:2304
+#: gschem/src/x/x_menus.c:2307
 msgid "Could not open file"
 msgstr "無法打開文件"
 
-#: gschem/src/x/x_menus.c:2414
+#: gschem/src/x/x_menus.c:2417
 msgid "Remove"
 msgstr ""
 
 # Show path
-#: gschem/src/x/x_menus.c:2421
+#: gschem/src/x/x_menus.c:2424
 msgid "_Show path"
 msgstr "顯示路徑"
 
-#: gschem/src/x/x_menus.c:2662
+#: gschem/src/x/x_menus.c:2665
 msgid "Recent menu items saved to"
 msgstr ""
 
-#: gschem/src/x/x_menus.c:2715
+#: gschem/src/x/x_menus.c:2718
 msgid "Recent menu items restore from"
 msgstr ""
 
@@ -4511,72 +4511,72 @@ msgstr "保存主窗口設置\n"
 msgid "Retrieving main Window settings.\n"
 msgstr ""
 
-#: gschem/src/x/x_window.c:678 gschem/src/x/x_window.c:1112
+#: gschem/src/x/x_window.c:679 gschem/src/x/x_window.c:1113
 msgid "Aborting action\n"
 msgstr ""
 
 # The close window has been canceled
-#: gschem/src/x/x_window.c:684
+#: gschem/src/x/x_window.c:685
 msgid "Close Window canceled\n"
 msgstr "關閉窗口已取消\n"
 
 # Shutdown schematic editor, Guānbì yuánlǐ tú biānjí qì
-#: gschem/src/x/x_window.c:708
+#: gschem/src/x/x_window.c:709
 msgid "Shutdown schematic editor\n"
 msgstr "關閉原理圖編輯器\n"
 
 # The file is being loaded
-#: gschem/src/x/x_window.c:773
+#: gschem/src/x/x_window.c:774
 msgid "Loading file"
 msgstr "正在加載文件"
 
 # New file
-#: gschem/src/x/x_window.c:920
+#: gschem/src/x/x_window.c:921
 msgid "New file"
 msgstr "新文件"
 
 # Failed to load file
-#: gschem/src/x/x_window.c:968
+#: gschem/src/x/x_window.c:969
 msgid "Failed to load file"
 msgstr "無法加載文件"
 
 # Create a new file
-#: gschem/src/x/x_window.c:998
+#: gschem/src/x/x_window.c:999
 msgid "Creating new file"
 msgstr "創建新文件"
 
 # file path
-#: gschem/src/x/x_window.c:1011
+#: gschem/src/x/x_window.c:1012
 msgid "Path"
 msgstr "文件路徑"
 
-#: gschem/src/x/x_window.c:1014
+#: gschem/src/x/x_window.c:1015
 msgid ""
 "did not exist\n"
 "successfully created"
 msgstr ""
 
 # Discarding page
-#: gschem/src/x/x_window.c:1160
+#: gschem/src/x/x_window.c:1161
 msgid "Discarding page"
 msgstr "丟棄頁面"
 
 # Closing
-#: gschem/src/x/x_window.c:1161
+#: gschem/src/x/x_window.c:1162
 msgid "Closing"
 msgstr "閉幕"
 
 # Could NOT save page
-#: gschem/src/x/x_window.c:1225
+#: gschem/src/x/x_window.c:1226
 msgid "Could NOT save page"
 msgstr "無法保存頁面"
 
-#: gschem/src/x/x_window.c:1227
+#: gschem/src/x/x_window.c:1228
 msgid "Error while trying to save"
 msgstr "儲存檔案時發生錯誤"
 
 # Saved as
-#: gschem/src/x/x_window.c:1241
+#: gschem/src/x/x_window.c:1242
 msgid "Saved as"
 msgstr "保存為"
 
@@ -5566,7 +5566,7 @@ msgid "Cycle _grid styles"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2351
-msgid "Toggle grid between Dot, Mesh and Off"
+msgid "Cycle grid between Dot, Mesh and Off"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2352

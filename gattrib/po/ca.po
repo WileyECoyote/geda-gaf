@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:10-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2012-01-27 14:17+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -32,17 +32,17 @@ msgid "Could not open"
 msgstr "No s'ha pogut obrir"
 
 # Failed to save user configuration to
-#: gattrib/src/gattrib.c:180
+#: gattrib/src/gattrib.c:181
 msgid "Failed to save user configuration to"
 msgstr "No s'ha pogut desar la configuració de l'usuari a"
 
 # Could not find file
-#: gattrib/src/gattrib.c:409
+#: gattrib/src/gattrib.c:408
 msgid "Could not find file"
 msgstr "No s'ha pogut trobar el fitxer"
 
 # Exported schematic to
-#: gattrib/src/gattrib.c:458
+#: gattrib/src/gattrib.c:457
 msgid "Exported schematic to"
 msgstr "S'ha exportat esquemàticament a"
 

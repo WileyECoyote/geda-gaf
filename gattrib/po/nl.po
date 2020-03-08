@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-01-04 12:10-0600\n"
+"POT-Creation-Date: 2020-03-07 20:14-0600\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -33,16 +33,16 @@ msgstr "Manipuleer componenten attributen met gattrib"
 msgid "Could not open"
 msgstr "Kan niet openen"
 
-#: gattrib/src/gattrib.c:180
+#: gattrib/src/gattrib.c:181
 msgid "Failed to save user configuration to"
 msgstr ""
 
 # Can not find file
-#: gattrib/src/gattrib.c:409
+#: gattrib/src/gattrib.c:408
 msgid "Could not find file"
 msgstr "Kan bestand niet vinden"
 
-#: gattrib/src/gattrib.c:458
+#: gattrib/src/gattrib.c:457
 msgid "Exported schematic to"
 msgstr ""
 
