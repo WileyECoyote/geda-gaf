@@ -308,33 +308,40 @@ msgstr "apua lisätietoja"
 msgid "Run"
 msgstr "Suorita"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
 msgstr "Esikatselupuskuri"
 
+# Filename
 #: gschem/src/base/gschem_preview.c:529 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
-msgstr ""
+msgstr "Tiedoston nimi"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "esikatseltavan tiedoston nimi"
 
+# Object List
 #: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
-msgstr "Valintatila"
+msgstr "Objektiluettelo"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Luettelo esikatseltavista kohteista"
 
+# Active
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
 msgstr "Lähennä"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Onko esikatseluwidget käytössä tai pois käytöstä"
 
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
