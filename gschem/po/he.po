@@ -555,50 +555,55 @@ msgstr "ערך מינימלי"
 msgid "default value"
 msgstr "ערך ברירת מחדל"
 
+# Invalid type assignment, check
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "הקצאת סוג לא חוקית, בדוק"
 
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "זוהי גרסת GEDA/gschem"
 
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "אבל יש לך גרסה"
 
+# Please be sure that you have the latest rc file
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "אנא וודא שיש לך את קובץ ה- rc האחרון"
 
+# file
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
-msgstr ""
+msgstr "קובץ"
 
 #: gschem/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid value, zoom-gain cannot be zero, check entry in rc file\n"
-msgstr ""
+msgstr "ערך לא חוקי, רווח זום לא יכול להיות אפס, בדוק את הכניסה בקובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:738
 #, c-format
 msgid "Invalid type assignment, check zoom-gain entry in rc file\n"
-msgstr ""
+msgstr "הקצאת סוג לא חוקית, בדוק את הזנת השגת זום בקובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:739 gschem/src/guile/g_rc.c:1298
 #: gschem/src/guile/g_rc.c:1444 gschem/src/guile/g_rc.c:2040
 msgid "Continuing with default value"
-msgstr ""
+msgstr "ממשיך עם ערך ברירת המחדל"
 
+# Invalid type assignment, check logging entry in rc file
 #: gschem/src/guile/g_rc.c:819
 #, c-format
 msgid "Invalid type assignment, check logging entry in rc file\n"
-msgstr ""
+msgstr "הקצאת סוג לא חוקית, בדוק את כניסת הרישום בקובץ rc\n"
 
+# Invalid value, snap-size cannot be zero, check entry rc file
 #: gschem/src/guile/g_rc.c:1292
 #, c-format
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "ערך לא חוקי, גודל הצמד לא יכול להיות אפס, בדוק את קובץ rc\n"
 
 #: gschem/src/guile/g_rc.c:1297
 #, c-format

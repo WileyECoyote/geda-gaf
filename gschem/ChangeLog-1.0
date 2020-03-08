@@ -10,6 +10,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/he.po: Update Hebrew translations.
+
 2020-03-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_attrib.c: Remove "gschem" from message output.
