@@ -623,52 +623,60 @@ msgstr "تکلیف نوع نامعتبر است ، ورود به سیستم ور
 msgid "Invalid value, snap-size cannot be zero, check entry rc file\n"
 msgstr "مقدار نامعتبر است ، اندازه ضربه محکم و ناگهانی نمی تواند صفر باشد ، پرونده ورودی rc را بررسی کنید\n"
 
+# Invalid type assignment, check snap-size entry in rc file
 #: gschem/src/guile/g_rc.c:1297
 #, c-format
 msgid "Invalid type assignment, check snap-size entry in rc file\n"
-msgstr ""
+msgstr "تکلیف نوع نامعتبر است ، ورود اندازه فوری را در پرونده rc بررسی کنید\n"
 
+# Invalid value, bus-ripper-size cannot be zero, check entry rc file
 #: gschem/src/guile/g_rc.c:1438
 #, c-format
 msgid "Invalid value, bus-ripper-size cannot be zero, check entry rc file\n"
-msgstr ""
+msgstr "مقدار نامعتبر ، اندازه اتوبوس-چاک دهنده نمی تواند صفر باشد ، پرونده ورودی rc را بررسی کنید\n"
 
+# Invalid type assignment, check bus-ripper-size entry in rc file
 #: gschem/src/guile/g_rc.c:1443
 #, c-format
 msgid "Invalid type assignment, check bus-ripper-size entry in rc file\n"
-msgstr ""
+msgstr "تکلیف نوع نامعتبر است ، ورودی پرونده اندازه سنج اتوبوس را در پرونده rc بررسی کنید\n"
 
+# Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "نمی توانید 0 مرحله ، مراحل پیمایش نامعتبر را پیمایش کنید ، ورود به پرونده rc را بررسی کنید\n"
 
+# Invalid type assignment, check scrollpan-steps entry in rc file
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "تکلیف نوع نامعتبر است ، ورود مراحل پیمایش در پرونده rc را بررسی کنید\n"
 
+# Invalid zoom factor
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "ضریب زوم نامعتبر است"
 
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "هدف - شی ~A مستقیماً در یک صفحه درج نمی شود"
 
+# Could not launch address
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "نشانی راه اندازی نشد"
 
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "صافی پنجره gschem نامعتبر یافت ~S"
 
+# current value of
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5220
 msgid "current value of"
-msgstr ""
+msgstr "مقدار فعلی"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5221
 msgid "is"
