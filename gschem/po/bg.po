@@ -642,49 +642,61 @@ msgstr ""
 "Невалидно задаване на тип, проверете записа за размер на шината-рипер в rc "
 "файла\n"
 
+# Ne mozhete da prevŭrtite 0 stŭpki, nevalidni stŭpki za prevŭrtane,
+# proverete zapisa v rc faĭl
 #: gschem/src/guile/g_rc.c:2034
 #, c-format
 msgid ""
 "Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"
-msgstr ""
+msgstr "Не можете да превъртите 0 стъпки, невалидни стъпки за превъртане, "
+"проверете записа в rc файл\n"
 
+# Nevalidno zadavane na tip, proverete zapisa na stŭpki za prevŭrtane v rc faĭl
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Невалидно задаване на тип, проверете записа на стъпки за превъртане "
+"в rc файл\n"
 
+# Invalid zoom factor; Nevaliden koefitsient na uvelichenie
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
-msgstr ""
+msgstr "Невалиден коефициент на увеличение"
 
 #: gschem/src/guile/g_select.c:93 gschem/src/guile/g_select.c:130
 #: gschem/src/guile/g_select.c:166
 msgid "Object ~A is not directly included in a page."
-msgstr ""
+msgstr "Обект ~A не е пряко включен в дадена страница."
 
+# Could not launch URI; URI ne mozha da se startira
 #: gschem/src/guile/g_util.c:70
 msgid "Could not launch URI"
-msgstr ""
+msgstr "URI не можа да се стартира"
 
+# Nameren nevaliden sms prozorets gschem
 #: gschem/src/guile/g_window.c:146
 msgid "Found invalid gschem window smob ~S"
-msgstr ""
+msgstr "Намерен невалиден sms прозорец gschem ~S"
 
+# current value of; tekushta stoĭnost na
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5220
 msgid "current value of"
-msgstr ""
+msgstr "текуща стойност на"
 
+# is
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5221
 msgid "is"
-msgstr "is"
+msgstr "е"
 
+# Processing Action; Deĭstvie za obrabotka
 #: gschem/src/iface/i_command.c:427
 msgid "Processing Action"
-msgstr ""
+msgstr "Действие за обработка"
 
+# Cannot; Ne moga
 #: gschem/src/iface/i_command.c:538
 msgid "Cannot"
-msgstr ""
+msgstr "Не мога"
 
 #: gschem/src/iface/i_command.c:538
 msgid "while inside an action!\n"
