@@ -1238,6 +1238,7 @@ static void geda_handle_box_unrealize (GtkWidget *widget)
   gdk_window_set_user_data (handlebox->bin_window, NULL);
   gdk_window_destroy (handlebox->bin_window);
   handlebox->bin_window = NULL;
+
   gdk_window_set_user_data (handlebox->float_window, NULL);
   gdk_window_destroy (handlebox->float_window);
   handlebox->float_window = NULL;
@@ -1919,8 +1920,11 @@ void geda_handle_box_set_handle_position (GedaHandleBox   *handlebox,
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handlebox));
 
   if ((GtkPositionType) handlebox->handle_position != position) {
+
     handlebox->handle_position = position;
+
     GEDA_OBJECT_NOTIFY (handlebox, "handle-position");
+
     gtk_widget_queue_resize ((GtkWidget*)handlebox);
   }
 }
