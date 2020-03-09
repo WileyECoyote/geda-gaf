@@ -49,8 +49,8 @@ pinnumber=4
 T 0 450 5 8 0 1 0 0 1
 pinseq=4
 T 0 550 5 8 0 1 0 0 1
-pinlabel=nIN2
 T 450 500 5 8 0 1 0 0 1
+pinlabel=IN2
 pintype=in
 }
 P 300 700 0 700 1 0 1
