@@ -1324,8 +1324,9 @@ static void geda_handle_box_size_allocate (GtkWidget     *widget,
       if (gtk_widget_get_realized (widget)) {
 
         gdk_window_resize (handlebox->float_window,
-                           float_width,
-                           float_height);
+                                      float_width,
+                                      float_height);
+
         gdk_window_move_resize (handlebox->bin_window,
                                 0,
                                 0,
@@ -1356,11 +1357,7 @@ static void geda_handle_box_size_allocate (GtkWidget     *widget,
       }
 
       if (gtk_widget_get_realized (widget)) {
-        gdk_window_move_resize (handlebox->bin_window,
-                                0,
-                                0,
-                                width,
-                                height);
+        gdk_window_move_resize (handlebox->bin_window, 0, 0, width, height);
       }
     }
 
