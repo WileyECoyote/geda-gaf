@@ -189,11 +189,8 @@ void gattrib_save_user_config (void)
 /*!
  * \brief Quit the program.
  * \par Function Description
- *  Unconditionally quit gattrib. Flushes caches and I/O channels,
- *  calls the GTK function to quit the application then calls exit()
- *  with the appropriate return code.
- *
- * \param return_code Value to pass to the exit() system call.
+ *  Quit attrib. Flushes caches and I/O channels, main resumes after
+ *  the call to g_main_loop_run.
  */
 void gattrib_quit(int return_code)
 {
