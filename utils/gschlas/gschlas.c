@@ -54,7 +54,7 @@ void gschlas_quit(void)
  * function is passed to scm_boot_guile() at startup.
  *
  * This function:
- * - initialises libgeda;
+ * - initializes libgeda;
  * - parses the command line;
  * - starts logging;
  * - registers the Scheme functions with Guile;
