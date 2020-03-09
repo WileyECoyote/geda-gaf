@@ -8,7 +8,7 @@ typedef void (*geda_atexit_func)(void* data);
 void geda_atexit(geda_atexit_func func, void* data);
 
 bool gattrib_really_quit(void);
-int  gattrib_quit(int return_code);
+void gattrib_quit(int return_code);
 
 /* -------------- parsecmd.c ----------------- */
 void usage(char *cmd);
