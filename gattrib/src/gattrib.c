@@ -286,16 +286,16 @@ bool gattrib_really_quit(void)
  *  function is passed to scm_boot_guile() at startup.
  *
  *  This function:
- *  - initialises threading, if the underlying GTK library is threaded.
+ *  - initializes threading, if the underlying GTK library is threaded.
  *    However, gattrib itself is not threaded.
- *  - initialises libgeda;
+ *  - initializes libgeda;
  *  - parses the command line;
  *  - starts logging;
  *  - registers the Scheme functions with Guile;
  *  - parses the RC files;
- *  - initialises the GTK UI;
+ *  - initializes the GTK UI;
  *  - populates the spreadsheet data structure;
- *  - calls gtk_main() to start the event loop.
+ *  - calls g_main_loop_run() to start the event loop .
  *
  * \param closure
  * \param argc Number of command line arguments
