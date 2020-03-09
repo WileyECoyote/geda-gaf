@@ -3,6 +3,7 @@
       attribute color text:
 
             * simulation/verilog/nor2-1.sym
+            * simulation/verilog/nor2-2.sym
 
 2020-03-01 Wiley E. Hill <wileyhill@gmail.com>
 
