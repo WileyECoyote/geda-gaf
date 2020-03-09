@@ -1,3 +1,8 @@
+2020-03-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/gattrib.c: Call g_main_loop_quit before exiting gattrib_quit
+      in order to return to the main proceedure.
+
 2020-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Revise main to replace gtk_main with g_main_loop_run.

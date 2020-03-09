@@ -240,9 +240,12 @@ void gattrib_quit(int return_code)
 #ifdef DEBUG
   fflush(stderr);
   fflush(stdout);
-  printf("In gattrib_quit, calling gtk_main_quit()\n");
+  printf("In gattrib_quit, calling g_main_loop_quit()\n");
 #endif
 
+  if (main_loop && g_main_loop_is_running (main_loop)) {
+    g_main_loop_quit(main_loop);
+  }
 
 #if DEBUG_GEDA_LABEL
   /* This can be helpful in identifying unreleased resources */
