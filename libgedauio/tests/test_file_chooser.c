@@ -67,8 +67,7 @@ static GtkWidget *preview_label;
 static GtkWidget *preview_image;
 static GtkFileChooserAction action;
 
-static void
-print_current_folder (GtkFileChooser *chooser)
+static void print_current_folder (GtkFileChooser *chooser)
 {
   char *uri;
 
@@ -78,8 +77,7 @@ print_current_folder (GtkFileChooser *chooser)
   g_free (uri);
 }
 
-static void
-print_selected (GtkFileChooser *chooser)
+static void print_selected (GtkFileChooser *chooser)
 {
   GSList *uris = gtk_file_chooser_get_uris (chooser);
   GSList *tmp_list;
@@ -96,8 +94,7 @@ print_selected (GtkFileChooser *chooser)
   g_slist_free (uris);
 }
 
-static void
-response_cb (GtkDialog *dialog, int response_id)
+static void response_cb (GtkDialog *dialog, int response_id)
 {
   if (response_id == GEDA_RESPONSE_OK) {
 
@@ -128,14 +125,12 @@ response_cb (GtkDialog *dialog, int response_id)
   gtk_main_quit ();
 }
 
-static void
-filter_changed (GtkFileChooserDialog *dialog, void *data)
+static void filter_changed (GtkFileChooserDialog *dialog, void *data)
 {
   printf ("file filter changed\n");
 }
 
-static char *
-format_time (time_t t)
+static char *format_time (time_t t)
 {
   char   buf[128];
   struct tm tm_buf;
@@ -159,8 +154,7 @@ format_time (time_t t)
   }
 }
 
-static char *
-format_size (int64_t size)
+static char *format_size (int64_t size)
 {
   if (size < (int64_t)1024) {
     return g_strdup_printf ("%d bytes", (gint)size);
@@ -175,11 +169,10 @@ format_size (int64_t size)
   return g_strdup_printf ("%.1f G", size / (1024.*1024.*1024.));
 }
 
-static void
-size_prepared_cb (GdkPixbufLoader *loader,
-                  int              width,
-                  int              height,
-                  int             *data)
+static void size_prepared_cb (GdkPixbufLoader *loader,
+                              int              width,
+                              int              height,
+                              int             *data)
 {
     int des_width = data[0];
     int des_height = data[1];
@@ -199,11 +192,10 @@ size_prepared_cb (GdkPixbufLoader *loader,
     gdk_pixbuf_loader_set_size (loader, width, height);
 }
 
-GdkPixbuf *
-my_new_from_file_at_size (const char *filename,
-                          int         width,
-                          int         height,
-                          GError    **error)
+GdkPixbuf *my_new_from_file_at_size (const char *filename,
+                                     int         width,
+                                     int         height,
+                                     GError    **error)
 {
     GdkPixbufLoader *loader;
     GdkPixbuf       *pixbuf;
