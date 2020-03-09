@@ -1380,7 +1380,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
                      upper.width,
                      upper.height);
 
-      gtk_paint_arrow (widget->style,
+      gtk_paint_arrow (style,
                        window,
                        priv->upper_arrow_state,
                        GTK_SHADOW_OUT,
@@ -1388,7 +1388,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
                        GTK_ARROW_UP,
                        TRUE,
                        upper.x + ((upper.width - arrow_size) >> 1),
-                       upper.y + widget->style->ythickness + ((arrow_space - arrow_size) >> 1),
+                       upper.y + style->ythickness + ((arrow_space - arrow_size) >> 1),
                        arrow_size, arrow_size);
     }
 
