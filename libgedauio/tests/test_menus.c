@@ -38,8 +38,7 @@
 
 #include <stdio.h>
 
-static GtkWidget *
-create_menu (int depth, bool tearoff)
+static GtkWidget *create_menu (int depth, bool tearoff)
 {
   GtkWidget *menu;
   GtkWidget *menuitem;
@@ -85,8 +84,7 @@ create_menu (int depth, bool tearoff)
   return menu;
 }
 
-static bool
-change_item (void *user_data)
+static bool change_item (void *user_data)
 {
   GtkWidget     *widget;
   GedaMenuShell *shell = GEDA_MENU_SHELL (user_data);
@@ -115,8 +113,7 @@ change_item (void *user_data)
   return TRUE;
 }
 
-int
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
   static GtkWidget *window = NULL;
          GtkWidget *box1;
