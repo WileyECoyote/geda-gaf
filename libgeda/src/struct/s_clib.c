@@ -224,7 +224,7 @@ void geda_struct_clib_flush_cache (void)
 
 /*! \brief Initialize the component library.
  *  \par Function Description
- *  Resets and initialises the component library.
+ *  Resets and initializes the component library.
  *
  *  \warning This function must be called before any other functions
  *  from s_clib.c.
