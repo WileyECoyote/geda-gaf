@@ -1404,15 +1404,15 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
                      lower.width,
                      lower.height);
 
-      gtk_paint_arrow (widget->style,
-                       widget->window,
+      gtk_paint_arrow (style,
+                       window,
                        priv->lower_arrow_state,
                        GTK_SHADOW_OUT,
                        &event->area, widget, "menu_scroll_arrow_down",
                        GTK_ARROW_DOWN,
                        TRUE,
                        lower.x + ((lower.width - arrow_size) >> 1),
-                       lower.y + widget->style->ythickness + ((arrow_space - arrow_size) >> 1),
+                       lower.y + style->ythickness + ((arrow_space - arrow_size) >> 1),
                        arrow_size, arrow_size);
     }
   }
