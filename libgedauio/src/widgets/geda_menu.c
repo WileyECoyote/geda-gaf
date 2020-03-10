@@ -1428,7 +1428,7 @@ static void geda_menu_paint (GtkWidget *widget, GdkEventExpose *event)
       y -= arrow_border.top;
     }
 
-    gtk_paint_box (widget->style,
+    gtk_paint_box (style,
                    menu->bin_window,
                    GTK_STATE_NORMAL,
                    GTK_SHADOW_OUT,
