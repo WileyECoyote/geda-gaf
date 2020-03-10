@@ -1790,6 +1790,7 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
     GdkWindow   *window;
     unsigned int vertical_padding;
     bool         double_arrows;
+    int          border_width;
     int          height;
     int          scroll_offset;
 
@@ -1812,7 +1813,9 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
 
     double_arrows = get_double_arrows (menu);
 
-    height -= (((GtkContainer*)menu)->border_width +
+    border_width = geda_get_container_border_width (menu);
+
+    height -= (border_width +
                ((GtkWidget*)menu)->style->ythickness +
                vertical_padding) << 1;
 

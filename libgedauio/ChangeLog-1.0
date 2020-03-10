@@ -1,8 +1,9 @@
 2020-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu.c: Utilize macro:
+    * src/widgets/geda_menu.c: Utilize macros:
 
           * geda_get_widget_parent
+          * geda_get_container_border_width
 
     * tests/test_file_chooser.c: Revise main to replace gtk_main functions;
       add quit().
