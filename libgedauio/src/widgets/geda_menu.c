@@ -1608,12 +1608,16 @@ static bool geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
    */
   menu_item = gtk_get_event_widget ((GdkEvent*) event);
 
-  if (!GEDA_IS_MENU_ITEM (menu_item) || !GEDA_IS_MENU (menu_item->parent)) {
+  if (!GEDA_IS_MENU_ITEM (menu_item)) {
     return FALSE;
   }
 
-  menu_shell = (GedaMenuShell*)menu_item->parent;
+  menu_shell = (GedaMenuShell*)geda_get_widget_parent(menu_item);
   menu       = (GedaMenu*)menu_shell;
+
+  if (!GEDA_IS_MENU (menu)) {
+    return FALSE;
+  }
 
   if (definitely_within_item (menu_item, event->x, event->y)) {
     menu_shell->activate_time = 0;
