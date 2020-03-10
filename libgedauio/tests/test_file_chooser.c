@@ -234,7 +234,7 @@ GdkPixbuf *my_new_from_file_at_size (const char *filename,
                    g_file_error_from_errno (errsv),
                    _("Failed to open file '%s': %s"),
                      filename, g_strerror (errsv));
-                   return NULL;
+      return NULL;
     }
 
     loader = gdk_pixbuf_loader_new ();
@@ -638,8 +638,7 @@ main (int argc, char **argv)
 
   button = gtk_button_new_with_label ("Unmap and remap");
   gtk_container_add (GTK_CONTAINER (vbbox), button);
-  g_signal_connect (button, "clicked",
-            G_CALLBACK (unmap_and_remap_cb), dialog);
+  g_signal_connect (button, "clicked", G_CALLBACK(unmap_and_remap_cb), dialog);
 
   gtk_widget_show_all (control_window);
 
