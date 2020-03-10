@@ -63,6 +63,8 @@
 
 #include "prop-editor.h"
 
+static GMainLoop *main_loop = NULL;
+
 static GtkWidget *preview_label;
 static GtkWidget *preview_image;
 static GtkFileChooserAction action;
@@ -122,7 +124,9 @@ static void response_cb (GtkDialog *dialog, int response_id)
   else
     printf ("Dialog was closed\n");
 
-  gtk_main_quit ();
+  if (main_loop && g_main_loop_is_running (main_loop)) {
+    g_main_loop_quit(main_loop);
+  }
 }
 
 static void filter_changed (GtkFileChooserDialog *dialog, void *data)
@@ -650,7 +654,24 @@ main (int argc, char **argv)
    * someone else destroys them.  We explicitly destroy windows to catch leaks.
    */
   g_object_ref (dialog);
-  gtk_main ();
+
+  /* Create a main loop using the default context */
+  main_loop  = g_main_loop_new (NULL, TRUE);
+
+  if (g_main_loop_is_running (main_loop)) {
+
+    gdk_threads_leave ();
+
+    /* enter main loop */
+    g_main_loop_run(main_loop);
+
+    gdk_threads_enter ();
+
+    gdk_flush ();
+  }
+
+  g_main_loop_unref(main_loop);
+
   gtk_widget_destroy (dialog);
   g_object_unref (dialog);
 

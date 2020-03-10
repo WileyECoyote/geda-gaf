@@ -1,3 +1,8 @@
+2020-03-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * tests/test_file_chooser.c: Revise main to replace gtk_main functions;
+      add quit().
+
 2020-03-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_check_menu_item.c: Replace GtkToggleAction related
