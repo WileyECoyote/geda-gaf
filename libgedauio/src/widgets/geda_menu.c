@@ -1869,6 +1869,7 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
 static void geda_menu_realize (GtkWidget *widget)
 {
   GdkWindowAttr attributes;
+  GdkWindow    *window;
   GedaMenu     *menu;
   GList        *children;
   unsigned int  attributes_mask;
@@ -1896,7 +1897,8 @@ static void geda_menu_realize (GtkWidget *widget)
                             GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK);
 
   attributes_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP;
-  widget->window = gdk_window_new (gtk_widget_get_parent_window (widget), &attributes, attributes_mask);
+  window          = gtk_widget_get_parent_window (widget);
+  widget->window  = gdk_window_new (window, &attributes, attributes_mask);
 
   gdk_window_set_user_data (widget->window, widget);
 
