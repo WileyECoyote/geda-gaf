@@ -1793,6 +1793,7 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
     int          border_width;
     int          height;
     int          scroll_offset;
+    int          ythickness;
 
     scroll_offset = menu->scroll_offset;
 
@@ -1814,10 +1815,9 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
     double_arrows = get_double_arrows (menu);
 
     border_width = geda_get_container_border_width (menu);
+    ythickness   = geda_get_widget_style (menu)->ythickness;
 
-    height -= (border_width +
-               ((GtkWidget*)menu)->style->ythickness +
-               vertical_padding) << 1;
+    height -= (border_width + ythickness + vertical_padding) << 1;
 
     if (child_offset < scroll_offset) {
 
