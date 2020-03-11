@@ -1880,8 +1880,6 @@ static void geda_menu_realize (GtkWidget *widget)
 
   GtkBorder arrow_border;
 
-  menu = (GedaMenu*)widget;
-
   gtk_widget_set_realized (widget, TRUE);
 
   allocation = geda_get_widget_allocation (widget);
@@ -1907,8 +1905,6 @@ static void geda_menu_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (window, widget);
 
-  border_width = geda_get_container_border_width(widget);
-
   gtk_widget_style_get (GTK_WIDGET (menu),
                         "vertical-padding", &vertical_padding,
                         "horizontal-padding", &horizontal_padding,
@@ -1916,15 +1912,19 @@ static void geda_menu_realize (GtkWidget *widget)
 
   GtkStyle *style;
 
-  style = geda_get_widget_style(widget);
+  border_width = geda_get_container_border_width(widget);
+  style        = geda_get_widget_style(widget);
 
   attributes.x = border_width + style->xthickness + horizontal_padding;
   attributes.y = border_width + style->ythickness + vertical_padding;
   attributes.width  = MAX (1, widget->allocation.width - attributes.x * 2);
   attributes.height = MAX (1, widget->allocation.height - attributes.y * 2);
 
+  menu = (GedaMenu*)widget;
+
   get_arrows_border (menu, &arrow_border);
-  attributes.y += arrow_border.top;
+
+  attributes.y      += arrow_border.top;
   attributes.height -= arrow_border.top;
   attributes.height -= arrow_border.bottom;
 
