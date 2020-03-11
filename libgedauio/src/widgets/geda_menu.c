@@ -1868,14 +1868,15 @@ static void geda_menu_scroll_item_visible (GedaMenuShell *menu_shell,
 /*! \internal widget_class->realize */
 static void geda_menu_realize (GtkWidget *widget)
 {
-  GdkWindowAttr attributes;
-  GdkWindow    *window;
-  GedaMenu     *menu;
-  GList        *children;
-  unsigned int  attributes_mask;
-  unsigned      border_width;
-  unsigned int  vertical_padding;
-  unsigned int  horizontal_padding;
+  GdkWindowAttr  attributes;
+  GdkWindow     *window;
+  GedaMenu      *menu;
+  GList         *children;
+  GtkAllocation *allocation;
+  unsigned int   attributes_mask;
+  unsigned       border_width;
+  unsigned int   vertical_padding;
+  unsigned int   horizontal_padding;
 
   GtkBorder arrow_border;
 
@@ -1883,11 +1884,13 @@ static void geda_menu_realize (GtkWidget *widget)
 
   gtk_widget_set_realized (widget, TRUE);
 
+  allocation = geda_get_widget_allocation (widget);
+
   attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.x           = widget->allocation.x;
-  attributes.y           = widget->allocation.y;
-  attributes.width       = widget->allocation.width;
-  attributes.height      = widget->allocation.height;
+  attributes.x           = allocation->x;
+  attributes.y           = allocation->y;
+  attributes.width       = allocation->width;
+  attributes.height      = allocation->height;
   attributes.wclass      = GDK_INPUT_OUTPUT;
   attributes.visual      = gtk_widget_get_visual (widget);
   attributes.colormap    = gtk_widget_get_colormap (widget);
