@@ -1,8 +1,8 @@
 2020-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Remove unneeded cast to GedaMenuShell.
-      Revise geda_menu_realize to utilize an ancillary GdkWindow pointer.
-      Utilize macro:
+      Revise geda_menu_realize to utilize an ancillary GdkWindow pointer,
+      use widget pointer and remove dynamic cast. Utilize macro:
 
           * geda_set_widget_window
           * geda_get_widget_style

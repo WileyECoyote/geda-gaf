@@ -1905,7 +1905,7 @@ static void geda_menu_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (window, widget);
 
-  gtk_widget_style_get (GTK_WIDGET (menu),
+  gtk_widget_style_get (widget,
                         "vertical-padding", &vertical_padding,
                         "horizontal-padding", &horizontal_padding,
                         NULL);
