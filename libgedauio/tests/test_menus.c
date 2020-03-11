@@ -38,6 +38,8 @@
 
 #include <stdio.h>
 
+static GMainLoop *main_loop = NULL;
+
 static GtkWidget *create_menu (int depth, bool tearoff)
 {
   GtkWidget *menu;
@@ -113,6 +115,13 @@ static bool change_item (void *user_data)
   return TRUE;
 }
 
+static void quit()
+{
+  if (main_loop && g_main_loop_is_running (main_loop)) {
+    g_main_loop_quit(main_loop);
+  }
+}
+
 int main (int argc, char **argv)
 {
   static GtkWidget *window = NULL;
@@ -134,7 +143,7 @@ int main (int argc, char **argv)
 
     window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
-    g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect (window, "destroy", G_CALLBACK(quit), NULL);
 
     g_signal_connect (window, "delete-event", G_CALLBACK (gtk_true), NULL);
 
@@ -252,7 +261,23 @@ int main (int argc, char **argv)
       window = NULL;
   }
 
-  gtk_main ();
+
+  /* Create a main loop using the default context */
+  main_loop  = g_main_loop_new (NULL, TRUE);
+
+  if (g_main_loop_is_running (main_loop)) {
+
+    gdk_threads_leave ();
+
+    /* enter main loop */
+    g_main_loop_run(main_loop);
+
+    gdk_threads_enter ();
+
+    gdk_flush ();
+  }
+
+  g_main_loop_unref(main_loop);
 
   return 0;
 }

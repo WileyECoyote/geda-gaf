@@ -8,6 +8,8 @@
           * geda_get_widget_style
           * geda_get_widget_allocation
 
+    * tests/test_menus.c: Replace gtk_main functions; add callback quit().
+
 2020-03-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Utilize macros:
