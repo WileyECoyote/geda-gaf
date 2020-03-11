@@ -1612,7 +1612,7 @@ static bool geda_menu_motion_notify (GtkWidget *widget, GdkEventMotion *event)
     return FALSE;
   }
 
-  menu_shell = (GedaMenuShell*)geda_get_widget_parent(menu_item);
+  menu_shell = geda_get_widget_parent(menu_item);
   menu       = (GedaMenu*)menu_shell;
 
   if (!GEDA_IS_MENU (menu)) {
