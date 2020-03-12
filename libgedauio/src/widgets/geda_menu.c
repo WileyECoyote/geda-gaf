@@ -1929,7 +1929,7 @@ static void geda_menu_realize (GtkWidget *widget)
   attributes.height -= arrow_border.top;
   attributes.height -= arrow_border.bottom;
 
-  menu->view_window = gdk_window_new (widget->window, &attributes, attributes_mask);
+  menu->view_window = gdk_window_new (window, &attributes, attributes_mask);
   gdk_window_set_user_data (menu->view_window, menu);
 
   attributes.x = 0;
