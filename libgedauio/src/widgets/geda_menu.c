@@ -1917,8 +1917,9 @@ static void geda_menu_realize (GtkWidget *widget)
 
   attributes.x = border_width + style->xthickness + horizontal_padding;
   attributes.y = border_width + style->ythickness + vertical_padding;
-  attributes.height = MAX (1, widget->allocation.height - attributes.y * 2);
+
   attributes.width  = MAX (1, attributes.width - attributes.x * 2);
+  attributes.height = MAX (1, attributes.height - attributes.y * 2);
 
   menu = (GedaMenu*)widget;
 
