@@ -1939,7 +1939,7 @@ static void geda_menu_realize (GtkWidget *widget)
 
   requisition = geda_get_widget_requisition(widget);
 
-  attributes.width  = MAX (1, allocation->width - (border_width + widget->style->xthickness + horizontal_padding) * 2);
+  attributes.width  = MAX (1, allocation->width - (border_width + style->xthickness + horizontal_padding) * 2);
   attributes.height = MAX (1, requisition->height - (border_width + widget->style->ythickness + vertical_padding) * 2);
 
   menu->bin_window = gdk_window_new (menu->view_window, &attributes, attributes_mask);
