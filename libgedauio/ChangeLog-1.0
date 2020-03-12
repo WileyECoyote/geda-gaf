@@ -1,3 +1,9 @@
+2020-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Utilize macro:
+
+          * geda_get_widget_requisition
+
 2020-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Remove unneeded cast to GedaMenuShell.
