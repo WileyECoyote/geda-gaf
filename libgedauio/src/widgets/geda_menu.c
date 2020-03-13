@@ -1957,7 +1957,9 @@ static void geda_menu_realize (GtkWidget *widget)
       gtk_widget_set_parent_window (child, menu->bin_window);
   }
 
-  widget->style = gtk_style_attach (widget->style, widget->window);
+  style = gtk_style_attach (style, window);
+
+  geda_set_widget_style (widget, style);
 
   gtk_style_set_background (widget->style, menu->bin_window,  GTK_STATE_NORMAL);
   gtk_style_set_background (widget->style, menu->view_window, GTK_STATE_NORMAL);

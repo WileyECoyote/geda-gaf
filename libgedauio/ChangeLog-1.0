@@ -1,3 +1,9 @@
+2020-03-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Utilize macro:
+
+          * geda_set_widget_style
+
 2020-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Utilize macro:
