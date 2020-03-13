@@ -1963,7 +1963,7 @@ static void geda_menu_realize (GtkWidget *widget)
 
   gtk_style_set_background (style, menu->bin_window,  GTK_STATE_NORMAL);
   gtk_style_set_background (style, menu->view_window, GTK_STATE_NORMAL);
-  gtk_style_set_background (widget->style, widget->window,    GTK_STATE_NORMAL);
+  gtk_style_set_background (style, window,            GTK_STATE_NORMAL);
 
   if (((GedaMenuShell*)widget)->active_menu_item) {
     geda_menu_scroll_item_visible ((GedaMenuShell*)widget,
