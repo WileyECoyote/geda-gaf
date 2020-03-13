@@ -2036,9 +2036,9 @@ static void geda_menu_scroll_by (GedaMenu *menu, int step)
   if (double_arrows)
     view_height -= arrow_border.bottom;
 
-  if ((menu->scroll_offset + view_height <= widget->requisition.height) &&
-      (offset + view_height > widget->requisition.height)) {
-    offset = widget->requisition.height - view_height;
+  if ((menu->scroll_offset + view_height <= requisition->height) &&
+      (offset + view_height > requisition->height)) {
+    offset = requisition->height - view_height;
   }
 
   if (offset != menu->scroll_offset) {
