@@ -317,7 +317,7 @@ void gdk_font_unref (GdkFont *font);
 #endif
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk >= 3 */
-#define geda_get_widget_window(w) gtk_widget_get_window (GTK_WIDGET(w))
+#define geda_get_widget_window(w) gtk_widget_get_window ((GtkWidget*)w)
 
 #define geda_set_widget_window(w, win) gtk_widget_set_window(w, win)
 
@@ -328,7 +328,7 @@ void gdk_font_unref (GdkFont *font);
 #   define gtk_hbox_new(homogeneous, spacing) \
         geda_compat_box_new(GTK_ORIENTATION_HORIZONTAL, (homogeneous), (spacing))
 
-#   define geda_device_grab_remove(w,p) gtk_device_grab_remove(GTK_WIDGET(w),p)
+#   define geda_device_grab_remove(w,p) gtk_device_grab_remove((GtkWidget*)w,p)
 
 /* Gtk[VH]ButtonBox */
 #   define gtk_vbutton_box_new() gtk_button_box_new(GTK_ORIENTATION_VERTICAL)

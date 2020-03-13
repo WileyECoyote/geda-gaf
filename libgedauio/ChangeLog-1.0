@@ -1,9 +1,13 @@
 2020-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/geda_gtk_compat.h: Replace dynamic cast with static cast
+      since Gtk is going to validate the widgets.
+
     * src/widgets/geda_menu.c: Utilize macro:
 
           * geda_set_widget_style
           * geda_get_widget_window
+          * geda_get_widget_requisition
 
 2020-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
