@@ -1995,13 +1995,17 @@ static void geda_menu_scroll_by (GedaMenu *menu, int step)
    * the scroll arrow it would be pretty stupid to show the arrow and
    * taking more screen space than just scrolling to the top.
    */
-  if (!double_arrows)
-    if ((step < 0) && (offset < arrow_border.top))
+  if (!double_arrows) {
+    if ((step < 0) && (offset < arrow_border.top)) {
       offset = 0;
+    }
+  }
 
   /* Don't scroll over the top if we weren't before: */
-  if ((menu->scroll_offset >= 0) && (offset < 0))
+  if ((menu->scroll_offset >= 0) && (offset < 0)) {
     offset = 0;
+  }
+
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
