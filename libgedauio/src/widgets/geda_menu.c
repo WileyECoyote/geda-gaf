@@ -1979,11 +1979,12 @@ static void geda_menu_realize (GtkWidget *widget)
 static void geda_menu_scroll_by (GedaMenu *menu, int step)
 {
   GdkWindow      *window;
-  GtkWidget *widget;
-  GtkBorder  arrow_border;
-  bool       double_arrows;
-  int        offset;
-  int        view_height;
+  GtkWidget      *widget;
+  GtkRequisition *requisition;
+  GtkBorder       arrow_border;
+  bool            double_arrows;
+  int             offset;
+  int             view_height;
 
   widget = GTK_WIDGET (menu);
   offset = menu->scroll_offset + step;
@@ -2020,7 +2021,9 @@ static void geda_menu_scroll_by (GedaMenu *menu, int step)
 
 #endif
 
-  if (menu->scroll_offset == 0 && view_height >= widget->requisition.height)
+  requisition = geda_get_widget_requisition(widget);
+
+  if (menu->scroll_offset == 0 && view_height >= requisition->height)
     return;
 
   /* Don't scroll past the bottom if we weren't before: */
