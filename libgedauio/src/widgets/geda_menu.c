@@ -1978,6 +1978,7 @@ static void geda_menu_realize (GtkWidget *widget)
 
 static void geda_menu_scroll_by (GedaMenu *menu, int step)
 {
+  GdkWindow      *window;
   GtkWidget *widget;
   GtkBorder  arrow_border;
   bool       double_arrows;
@@ -2006,15 +2007,16 @@ static void geda_menu_scroll_by (GedaMenu *menu, int step)
     offset = 0;
   }
 
+  window = geda_get_widget_window (widget);
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
-  view_height = gdk_window_get_height (widget->window);
+  view_height = gdk_window_get_height (window);
 
 #else
 
   int width;
-  gdk_drawable_get_size(widget->window, &width, &view_height);
+  gdk_drawable_get_size(window, &width, &view_height);
 
 #endif
 

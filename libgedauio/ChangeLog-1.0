@@ -3,6 +3,7 @@
     * src/widgets/geda_menu.c: Utilize macro:
 
           * geda_set_widget_style
+          * geda_get_widget_window
 
 2020-03-12 Wiley E. Hill <wileyhill@gmail.com>
 
