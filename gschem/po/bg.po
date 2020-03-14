@@ -700,9 +700,10 @@ msgstr "Действие за обработка"
 msgid "Cannot"
 msgstr "Не мога"
 
+# while inside an action, dokato e v deĭstvie
 #: gschem/src/iface/i_command.c:538
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "докато е в действие!\n"
 
 # New page created
 #: gschem/src/iface/i_command.c:793 gschem/src/iface/i_command.c:2842
@@ -714,17 +715,20 @@ msgstr "Нова страница, създадена"
 msgid "New Window created"
 msgstr "Нов Прозорец създаден"
 
+# Failed to Save All; Zapazvaneto na vsichki ne be uspeshno
 #: gschem/src/iface/i_command.c:1035
 msgid "Failed to Save All"
-msgstr ""
+msgstr "Запазването на всички не бе успешно"
 
+# Saved All; Zapazeni vsichki
 #: gschem/src/iface/i_command.c:1038 gschem/src/iface/i_command.c:1055
 msgid "Saved All"
-msgstr ""
+msgstr "Запазени всички"
 
+# Error encountered, Save Failed; Vŭznikna greshka. Zapazvane ne be uspeshno
 #: gschem/src/iface/i_command.c:1052
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Възникна грешка. Запазване не бе успешно"
 
 #: gschem/src/iface/i_command.c:1122 gschem/src/x/x_image.c:545
 msgid "Write Image"
