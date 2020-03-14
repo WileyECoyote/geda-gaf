@@ -343,13 +343,15 @@ msgstr "Lähennä"
 msgid "Whether the preview widget is enabled or disabled"
 msgstr "Onko esikatseluwidget käytössä tai pois käytöstä"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Suuri koko"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Olipa esikatseluruudun oltava iso tai pieni"
 
 # Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
@@ -358,31 +360,36 @@ msgstr "koordinaatit tila"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Asettaa muotoilutilan, jota käytetään koordinaattien näyttämiseen tilarivillä"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
 msgstr "grid tila"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Asettaa ruudukotilan näkymään tilarivillä"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Ristikon koko"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Asettaa ruudukon koon näytettäväksi tilarivillä"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "korkeus"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Asettaa tilarivin korkeuden"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
