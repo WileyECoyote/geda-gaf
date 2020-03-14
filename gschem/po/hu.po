@@ -240,29 +240,33 @@ msgstr "opció érvelést igényel"
 msgid "Unknown option"
 msgstr "Ismeretlen opció"
 
+# Unknown option character
 #: gschem/src/base/gschem_parsecmd.c:307
 msgid "Unknown option character"
-msgstr ""
+msgstr "Ismeretlen opciós karakter"
 
 #: gschem/src/base/gschem_parsecmd.c:313
 msgid "help for more information"
 msgstr "további információkért forduljon segítségé"
 
+# Run
 #: gschem/src/base/gschem_parsecmd.c:315
 msgid "Run"
-msgstr ""
+msgstr "Fuss"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Előnézet puffer"
 
 #: gschem/src/base/gschem_preview.c:529 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
 msgstr "Fájlnév"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "az előnézett fájl neve"
 
 #: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
@@ -270,7 +274,7 @@ msgstr "Kiválasztás"
 
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Az előnézett objektumok listája"
 
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
@@ -278,23 +282,25 @@ msgstr "Művelet"
 
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Az előnézeti widget engedélyezve vagy letiltva"
 
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Nagy méret"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Legyen az előnézeti widget nagy vagy kicsi"
 
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
 msgstr "Alkatrész mód"
 
+# Sets the Format Mode used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Beállítja a formátum módot, amellyel a koordinátákat megjelenik az állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
@@ -302,15 +308,17 @@ msgstr "Ív üzemmód"
 
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Beállítja a Rács mód megjelenítését az állapotsoron"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Rácsméret"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Beállítja a rácsméret megjelenítését az állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
