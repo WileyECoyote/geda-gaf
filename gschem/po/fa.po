@@ -691,44 +691,51 @@ msgstr "مقدار فعلی"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5221
 msgid "is"
-msgstr ""
+msgstr "است"
 
+# Processing Action
 #: gschem/src/iface/i_command.c:427
 msgid "Processing Action"
-msgstr ""
+msgstr "عمل پردازش"
 
+# Cannot
 #: gschem/src/iface/i_command.c:538
 msgid "Cannot"
-msgstr ""
+msgstr "نمی توان"
 
 #: gschem/src/iface/i_command.c:538
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "در حالی که درون یک عمل است!\n"
 
+# New page created
 #: gschem/src/iface/i_command.c:793 gschem/src/iface/i_command.c:2842
 msgid "New page created"
-msgstr ""
+msgstr "صفحه جدید ایجاد شد"
 
 # Created new window
 #: gschem/src/iface/i_command.c:833
 msgid "New Window created"
 msgstr "پنجره جدید ایجاد شده"
 
+# Failed to Save All
 #: gschem/src/iface/i_command.c:1035
 msgid "Failed to Save All"
-msgstr ""
+msgstr "ذخیره همه ذخیره نشد"
 
+# Saved All
 #: gschem/src/iface/i_command.c:1038 gschem/src/iface/i_command.c:1055
 msgid "Saved All"
-msgstr ""
+msgstr "ذخیره همه"
 
+# Error encountered, Save Failed
 #: gschem/src/iface/i_command.c:1052
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "خطایی روی داد ، ذخیره نشد"
 
+# Write Image
 #: gschem/src/iface/i_command.c:1122 gschem/src/x/x_image.c:545
 msgid "Write Image"
-msgstr "Write image..."
+msgstr "نوشتن تصویر"
 
 #: gschem/src/iface/i_command.c:1144
 msgid "Write PDF"
