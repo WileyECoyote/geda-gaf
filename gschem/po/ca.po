@@ -339,45 +339,54 @@ msgstr ""
 "Tant si el widget de la previsualització està habilitat com si està "
 "desactivat"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "De mida gran"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Si el widget de la vista prèvia ha de ser petit o petit"
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
-msgstr ""
+msgstr "Mode de coordenades"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Configura el mode de format que s'utilitza per mostrar les coordenades a la barra d'estat"
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr ""
+msgstr "Mode de quadrícula"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Configura el mode de graella que es mostrarà a la barra d'estat"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Mida de la graella"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Configura la mida de la graella que es mostrarà a la barra d'estat"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "alçada"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Defineix l'alçada de la barra d'estat"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
