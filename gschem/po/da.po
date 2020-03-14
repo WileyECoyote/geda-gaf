@@ -333,45 +333,54 @@ msgstr "Aktiv"
 msgid "Whether the preview widget is enabled or disabled"
 msgstr "Om preview-widget'en er aktiveret eller deaktiveret"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Stor størrelse"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Om preview-widget'en skal være stor eller lille"
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
-msgstr ""
+msgstr "Koordinats tilstand"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Indstiller formattilstand, der bruges til at vise koordinater på statuslinjen"
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr ""
+msgstr "Tavetilstand"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Indstiller ristetilstand til visning på statuslinjen"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Tavlestørrelse"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Indstiller ristestørrelse, der skal vises på statuslinjen"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "højde"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Indstiller højden på statuslinjen"
 
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
