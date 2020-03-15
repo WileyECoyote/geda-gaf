@@ -12,6 +12,7 @@
     * simulation/verilog: Update pinnumber and pinlabel attributes:
 
             * simulation/verilog/nor7-2.sym
+            * simulation/verilog/nor8-1.sym
 
 2020-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
