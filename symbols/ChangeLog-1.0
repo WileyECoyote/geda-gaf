@@ -7,6 +7,8 @@
             * simulation/verilog/nor5-1.sym
             * simulation/verilog/nor6-2.sym
 
+    * simulation/verilog/nor7-1.sym: Update attribute positions.
+
 2020-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute positions, make pin label
