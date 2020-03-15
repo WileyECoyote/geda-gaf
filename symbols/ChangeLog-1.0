@@ -1,3 +1,11 @@
+2020-03-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute positions, make pin label
+      attribute color text:
+
+            * simulation/verilog/nor4-2.sym
+
+2020-03-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute positions, make pin label
       attribute color text:
