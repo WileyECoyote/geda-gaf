@@ -5,6 +5,7 @@
       geda_line_object_rotate.
 
     * tests/test_math.c: Check geda_math_degrees_to_radians with 180 degrees.
+      Add additional checks for geda_math_distance.
 
 2020-02-20 Wiley E. Hill <wileyhill@gmail.com>
 

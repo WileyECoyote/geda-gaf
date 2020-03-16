@@ -112,6 +112,13 @@ int check_math_distance ()
     result++;
   }
 
+  distance = geda_math_distance(0, 4, 3, 0);
+
+  if (distance != 5.0) {
+    fprintf(stderr, "FAILED: (M010201-B) distance (%f)\n", distance);
+    result++;
+  }
+
   return result;
 }
 
