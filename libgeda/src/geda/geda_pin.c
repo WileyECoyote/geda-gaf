@@ -424,8 +424,7 @@ GedaObject *geda_pin_new (void)
   return GEDA_OBJECT(pin);
 }
 
-const char*
-geda_pin_get_electrical(GedaPin *pin)
+const char *geda_pin_get_electrical(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->electrical;
