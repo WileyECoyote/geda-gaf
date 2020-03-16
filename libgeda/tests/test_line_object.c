@@ -1183,6 +1183,53 @@ check_line_object_modify(GedaObject *object, int x1, int y1, int x2, int y2)
   return result;
 }
 
+int
+check_line_object_rotate(GedaObject *object, int x1, int y1, int x2, int y2)
+{
+  int rx1, ry1, rx2, ry2;
+  int result = 0;
+  int center_x;
+  int center_y;
+
+  /* Calculate the mid point of the line */
+  center_x = (x1 + x2) / 2;
+  center_y = (y1 + y2) / 2;
+
+  /* === Function 29: geda_line_object_rotate  === */
+
+  geda_line_object_rotate(object, center_x, center_y, 0);
+
+  rx1 = geda_line_object_get_x1 (object);
+  ry1 = geda_line_object_get_y1 (object);
+
+  rx2 = geda_line_object_get_x2 (object);
+  ry2 = geda_line_object_get_y2 (object);
+
+  if (rx1 != x1) {
+    fprintf(stderr, "FAILED: (O112201X1) %s line_object_rotate %d != %d\n", TOBJECT, rx1, x1);
+    result++;
+  }
+
+  if (ry1 != y1) {
+    fprintf(stderr, "FAILED: (O112901Y1) %s line_object_modify %d != %d\n", TOBJECT, ry1, y1);
+    result++;
+  }
+
+  /* object->line->x,y[1] should not be modified */
+
+  if (rx2 != x2) {
+    fprintf(stderr, "FAILED: (O112901X2) %s line_object_modify %d != %d\n", TOBJECT, rx2, x2);
+    result++;
+  }
+
+  if (ry2 != y2) {
+    fprintf(stderr, "FAILED: (O112901Y2) %s line_object_modify %d != %d\n", TOBJECT, ry2, y2);
+    result++;
+  }
+
+  return result;
+}
+
 int check_methods (void)
 {
   int index;
@@ -1211,6 +1258,9 @@ int check_methods (void)
     fail += check_line_object_modify(object, x1, y1, x2, y2);
 
     /* === Function 29: geda_line_object_rotate  === */
+
+    fail += check_line_object_rotate(object, x1, y1, x2, y2);
+
     /* === Function 39: geda_line_object_scale  === */
     /* === Function 42: geda_line_object_translate  === */
 

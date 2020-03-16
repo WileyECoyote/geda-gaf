@@ -1,7 +1,8 @@
 2020-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * tests/test_line_object.c: Revise check_line_object_modify to modify
-      the line to the on-entry position before returning.
+      the line to the on-entry position before returning. Add checks for
+      geda_line_object_rotate.
 
 2020-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
