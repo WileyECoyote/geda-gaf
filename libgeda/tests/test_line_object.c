@@ -82,8 +82,8 @@
  *      O1116    geda_line_object_get_y2
  *      O1117    geda_line_object_is_endpoint
  *      O1118    geda_line_object_length
- *               geda_line_object_mirror
- *               geda_line_object_modify
+ *      O1119    geda_line_object_mirror
+ *      O1120    geda_line_object_modify
  *      O1121    geda_line_object_new
  *               geda_line_object_print
  *               geda_line_object_print_center
