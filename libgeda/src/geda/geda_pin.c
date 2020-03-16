@@ -431,6 +431,18 @@ geda_pin_get_electrical(GedaPin *pin)
   return pin->electrical;
 }
 
+const char *geda_pin_get_label(GedaPin *pin)
+{
+  g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
+  return pin->label;
+}
+
+const char *geda_pin_get_mechanical(GedaPin *pin)
+{
+  g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
+  return pin->mechanical;
+}
+
 /*! \brief Set Pin Electrical String
  *  \par Function Description
  *  Sets the electrical description property for \a pin to the value
@@ -475,12 +487,6 @@ bool geda_pin_set_electrical(GedaPin *pin, const char *electrical)
   return changed;
 }
 
-const char *geda_pin_get_label(GedaPin *pin)
-{
-  g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
-  return pin->label;
-}
-
 bool geda_pin_set_label(GedaPin *pin, const char *label)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
@@ -510,12 +516,6 @@ bool geda_pin_set_label(GedaPin *pin, const char *label)
   }
 
   return changed;
-}
-
-const char *geda_pin_get_mechanical(GedaPin *pin)
-{
-  g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
-  return pin->mechanical;
 }
 
 /*! \brief Set Pin Mechanical String

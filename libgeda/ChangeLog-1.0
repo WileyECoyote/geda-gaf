@@ -1,5 +1,8 @@
 2020-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_pin.c: Reoganize module; arrange function in alphabetical
+      order.
+
     * tests/test_line_object.c: Revise check_line_object_modify to modify
       the line to the on-entry position before returning. Add checks for
       geda_line_object_rotate.

@@ -82,10 +82,11 @@ bool         is_a_geda_pin               (const GedaPin *pin);
 
 GedaObject *geda_pin_new                 (void);
 const char *geda_pin_get_electrical      (GedaPin *pin);
-bool        geda_pin_set_electrical      (GedaPin *pin, const char *electrical);
 const char *geda_pin_get_label           (GedaPin *pin);
-bool        geda_pin_set_label           (GedaPin *pin, const char *label);
 const char *geda_pin_get_mechanical      (GedaPin *pin);
+
+bool        geda_pin_set_electrical      (GedaPin *pin, const char *electrical);
+bool        geda_pin_set_label           (GedaPin *pin, const char *label);
 bool        geda_pin_set_mechanical      (GedaPin *pin, const char *mechanical);
 bool        geda_pin_set_number          (GedaPin *pin, const char *number);
 bool        geda_pin_set_sequence        (GedaPin *pin, const char *sequence);
