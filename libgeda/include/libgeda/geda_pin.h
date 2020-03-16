@@ -84,6 +84,7 @@ GedaObject *geda_pin_new                 (void);
 const char *geda_pin_get_electrical      (GedaPin *pin);
 const char *geda_pin_get_label           (GedaPin *pin);
 const char *geda_pin_get_mechanical      (GedaPin *pin);
+const char *geda_pin_get_number          (GedaPin *pin);
 
 PIN_ELECT   geda_pin_lookup_etype        (const char *e_str);
 const char *geda_pin_lookup_estring      (PIN_ELECT   e_type);

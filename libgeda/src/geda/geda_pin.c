@@ -391,6 +391,13 @@ const char *geda_pin_get_mechanical(GedaPin *pin)
   return pin->mechanical;
 }
 
+const char *geda_pin_get_number(GedaPin *pin)
+{
+  g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
+
+  return pin->number;
+}
+
 /*!
  * \brief Look up Pin Electrical Type from String Code
  * \par Function Description
