@@ -1178,6 +1178,8 @@ check_line_object_modify(GedaObject *object, int x1, int y1, int x2, int y2)
     result++;
   }
 
+  geda_line_object_modify(object, mx1 - 100, my1 - 100, 0);
+
   return result;
 }
 
