@@ -68,72 +68,6 @@ static char *e_strings[] = { "in",  "out", "io",  "oc", "oe", "pas", "tp",
 static char *m_strings[] = { "lead", "body",  "pad", "bump",
                              "ball", "wedge", "ribbon", NULL };
 
-/*!
- * \brief Look up Pin Electrical Type from String Code
- * \par Function Description
- *  Compares e_str to each entry in e_strings and returns the index,
- *  if found. The index is the PIN_ELECT associated with e_str or
- *  PIN_ELECT_VOID if e_str was not found in e_strings.
- *
- * \note e_strings must always be in the same order as the PIN_ELECT
- *       enumeration found in "geda_enum.h"
- *
- * \param [in]  e_str Pointer to pin-type string to lookup.
- *
- * \retval PIN_ELECT
- *
- * \remarks Libgeda does not treat pin-type PIN_ELECT_VOID as an
- *          error.
- */
-PIN_ELECT geda_pin_lookup_etype(const char *e_str) {
-
-  PIN_ELECT index;
-
-  for (index = PIN_ELECT_IN; e_strings[index] != NULL; index++) {
-    if (strcmp(e_str, e_strings[index]) == 0)
-      break;
-  }
-
-  if (e_strings[index] == NULL ) index = PIN_ELECT_VOID;
-
-  return index;
-}
-
-const char *geda_pin_lookup_estring(PIN_ELECT e_type) {
-
-  char *str   = NULL;
-  int   index = (int)e_type;
-
-  if (index > -1 && index <= PIN_ELECT_VOID) {
-    str = e_strings[index];
-  }
-
-  return str;
-}
-
-PIN_MECH geda_pin_lookup_mtype(const char *m_str) {
-
-  PIN_MECH index;
-  for (index = PIN_MECH_LEAD; m_strings[index] != NULL; index++) {
-    if (strcmp(m_str, m_strings[index]) == 0)
-      break;
-  }
-  if(m_strings[index] == NULL ) index = PIN_MECH_VOID;
-  return index;
-}
-
-const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
-
-  char *str   = NULL;
-  int   index = (int)m_type;
-
-  if (index > -1 && index < PIN_MECH_VOID + 1) {
-    str = m_strings[index];
-  }
-
-  return str;
-}
-
 static void geda_pin_set_property (GObject *object,     unsigned int  prop_id,
                                    const GValue *value, GParamSpec   *pspec)
 {
@@ -424,22 +358,118 @@ GedaObject *geda_pin_new (void)
   return GEDA_OBJECT(pin);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *geda_pin_get_electrical(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->electrical;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *geda_pin_get_label(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->label;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *geda_pin_get_mechanical(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->mechanical;
+}
+
+/*!
+ * \brief Look up Pin Electrical Type from String Code
+ * \par Function Description
+ *  Compares e_str to each entry in e_strings and returns the index,
+ *  if found. The index is the PIN_ELECT associated with e_str or
+ *  PIN_ELECT_VOID if e_str was not found in e_strings.
+ *
+ * \note e_strings must always be in the same order as the PIN_ELECT
+ *       enumeration found in "geda_enum.h"
+ *
+ * \param [in]  e_str Pointer to pin-type string to lookup.
+ *
+ * \retval PIN_ELECT
+ *
+ * \remarks Libgeda does not treat pin-type PIN_ELECT_VOID as an
+ *          error.
+ */
+PIN_ELECT geda_pin_lookup_etype(const char *e_str) {
+
+  PIN_ELECT index;
+
+  for (index = PIN_ELECT_IN; e_strings[index] != NULL; index++) {
+    if (strcmp(e_str, e_strings[index]) == 0)
+      break;
+  }
+
+  if (e_strings[index] == NULL ) index = PIN_ELECT_VOID;
+
+  return index;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+const char *geda_pin_lookup_estring(PIN_ELECT e_type) {
+
+  char *str   = NULL;
+  int   index = (int)e_type;
+
+  if (index > -1 && index <= PIN_ELECT_VOID) {
+    str = e_strings[index];
+  }
+
+  return str;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+PIN_MECH geda_pin_lookup_mtype(const char *m_str) {
+
+  PIN_MECH index;
+  for (index = PIN_MECH_LEAD; m_strings[index] != NULL; index++) {
+    if (strcmp(m_str, m_strings[index]) == 0)
+      break;
+  }
+  if(m_strings[index] == NULL ) index = PIN_MECH_VOID;
+  return index;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+const char *geda_pin_lookup_mstring(PIN_MECH m_type) {
+
+  char *str   = NULL;
+  int   index = (int)m_type;
+
+  if (index > -1 && index < PIN_MECH_VOID + 1) {
+    str = m_strings[index];
+  }
+
+  return str;
 }
 
 /*! \brief Set Pin Electrical String
@@ -486,6 +516,11 @@ bool geda_pin_set_electrical(GedaPin *pin, const char *electrical)
   return changed;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_pin_set_label(GedaPin *pin, const char *label)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
@@ -562,6 +597,11 @@ bool geda_pin_set_mechanical(GedaPin *pin, const char *mechanical)
   return changed;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_pin_set_number(GedaPin *pin, const char *number)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
@@ -587,6 +627,11 @@ bool geda_pin_set_number(GedaPin *pin, const char *number)
   return changed;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
 {
   const char *ptr     = sequence;
@@ -615,10 +660,16 @@ bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
   return changed;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 bool geda_pin_set_whichend(GedaPin *pin, int whichend)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
   pin->whichend = whichend;
   return TRUE;
 }
+
 /** @} endgroup geda-pin-object */

@@ -85,17 +85,17 @@ const char *geda_pin_get_electrical      (GedaPin *pin);
 const char *geda_pin_get_label           (GedaPin *pin);
 const char *geda_pin_get_mechanical      (GedaPin *pin);
 
+PIN_ELECT   geda_pin_lookup_etype        (const char *e_str);
+const char *geda_pin_lookup_estring      (PIN_ELECT   e_type);
+PIN_MECH    geda_pin_lookup_mtype        (const char *m_str);
+const char *geda_pin_lookup_mstring      (PIN_MECH    m_type);
+
 bool        geda_pin_set_electrical      (GedaPin *pin, const char *electrical);
 bool        geda_pin_set_label           (GedaPin *pin, const char *label);
 bool        geda_pin_set_mechanical      (GedaPin *pin, const char *mechanical);
 bool        geda_pin_set_number          (GedaPin *pin, const char *number);
 bool        geda_pin_set_sequence        (GedaPin *pin, const char *sequence);
 bool        geda_pin_set_whichend        (GedaPin *pin, int   whichend);
-
-PIN_ELECT   geda_pin_lookup_etype     (const char *e_str);
-const char *geda_pin_lookup_estring   (PIN_ELECT   e_type);
-PIN_MECH    geda_pin_lookup_mtype     (const char *m_str);
-const char *geda_pin_lookup_mstring   (PIN_MECH    m_type);
 
 #ifdef __cplusplus
 }
