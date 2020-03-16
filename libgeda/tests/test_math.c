@@ -85,6 +85,15 @@ int check_math_degrees_to_radians ()
     result++;
   }
 
+  value = geda_math_degrees_to_radians(180.0);
+
+  value = round(value * 100) / 100;
+
+  if (abs (value - 3.140) > .001) {
+    fprintf(stderr, "FAILED: (M010101-180) value (%f)\n", value);
+    result++;
+  }
+
   return result;
 }
 

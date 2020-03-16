@@ -4,6 +4,8 @@
       the line to the on-entry position before returning. Add checks for
       geda_line_object_rotate.
 
+    * tests/test_math.c: Check geda_math_degrees_to_radians with 180 degrees.
+
 2020-02-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_list.c: Revise geda_object_list_scale to handle the
