@@ -98,7 +98,7 @@ bool        geda_pin_set_label           (GedaPin *pin, const char *label);
 bool        geda_pin_set_mechanical      (GedaPin *pin, const char *mechanical);
 bool        geda_pin_set_number          (GedaPin *pin, const char *number);
 bool        geda_pin_set_sequence        (GedaPin *pin, const char *sequence);
-bool        geda_pin_set_whichend        (GedaPin *pin, int   whichend);
+bool        geda_pin_set_whichend        (GedaPin *pin, int whichend);
 
 #ifdef __cplusplus
 }
