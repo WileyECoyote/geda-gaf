@@ -405,6 +405,13 @@ int geda_pin_get_sequence(GedaPin *pin)
   return pin->sequence;
 }
 
+int geda_pin_get_whichend(GedaPin *pin)
+{
+  g_return_val_if_fail(GEDA_IS_PIN(pin), -1);
+
+  return pin->whichend;
+}
+
 /*!
  * \brief Look up Pin Electrical Type from String Code
  * \par Function Description
