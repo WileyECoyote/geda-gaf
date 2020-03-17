@@ -398,6 +398,13 @@ const char *geda_pin_get_number(GedaPin *pin)
   return pin->number;
 }
 
+int geda_pin_get_sequence(GedaPin *pin)
+{
+  g_return_val_if_fail(GEDA_IS_PIN(pin), -1);
+
+  return pin->sequence;
+}
+
 /*!
  * \brief Look up Pin Electrical Type from String Code
  * \par Function Description

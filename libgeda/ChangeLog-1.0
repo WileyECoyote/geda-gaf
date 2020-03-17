@@ -1,3 +1,9 @@
+2020-03-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_pin.c: Add function:
+
+          * geda_pin_get_sequence
+
 2020-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Reoganize module; arrange function in alphabetical
