@@ -415,6 +415,11 @@ int geda_pin_get_sequence(GedaPin *pin)
   return pin->sequence;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 int geda_pin_get_whichend(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), -1);
