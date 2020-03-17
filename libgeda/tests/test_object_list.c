@@ -923,6 +923,25 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object10->pin === */
+
+  sx1 = geda_line_object_get_x1(object3);
+  sy1 = geda_line_object_get_y1(object3);
+  sx2 = geda_line_object_get_x2(object3);
+  sy2 = geda_line_object_get_y2(object3);
+
+  if (sx1 - 1000 || sx2 - 2000) {
+    fprintf(stderr, "FAILED: (O120610X) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
+  if (sy1 - 1000 || sy2 - 2000) {
+    fprintf(stderr, "FAILED: (O120610Y) geda_object_list_scale: ");
+    fprintf(stderr, "(%d, %d),(%d, %d)\n", sx1, sy1, sx2, sy2);
+    result++;
+  }
+
   return result;
 }
 

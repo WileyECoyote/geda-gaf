@@ -5,6 +5,8 @@
           * geda_pin_get_sequence
           * geda_pin_get_whichend
 
+    * tests/test_object_list.c: Check scale pin in list.
+
 2020-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Reoganize module; arrange function in alphabetical
