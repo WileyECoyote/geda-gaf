@@ -221,6 +221,117 @@ int test_pin_properties (void)
   return result;
 }
 
+int check_accessors ()
+{
+  int result = 0;
+
+  GedaObject *object = geda_pin_new();
+
+  if (!GEDA_IS_PIN(object->pin)) {
+    fprintf(stderr, "is a %s Failed line <%d>\n", TOBJECT, __LINE__);
+    result++;
+  }
+  else {
+
+    GedaPin  *pin  = object->pin;
+    GedaLine *line = object->line;
+
+    int count;
+    int fail;
+    int value;
+
+    fail = 0;
+    for (count = 0; count < 100; count++) {
+
+      int x1 = geda_random_number (0, 120000);
+      int y1 = geda_random_number (0, 80000);
+
+      int x2 = x1 + geda_random_number (0, 1000);
+      int y2 = y1 + geda_random_number (0, 1000);
+
+      geda_line_set_x1(line, x1);
+      geda_line_set_y1(line, y1);
+      geda_line_set_x2(line, x2);
+      geda_line_set_y2(line, y2);
+
+      value = line->x[0];
+      if (value - x1) {
+        fprintf(stderr, "FAILED: pin x1 %d != %d\n", value, x1);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_x1(line);
+        if (value - x1) {
+          fprintf(stderr, "FAILED: pin %d != %d\n", value, x2);
+          fail++;
+        }
+      }
+
+      value = line->x[1];
+      if (value - x2) {
+        fprintf(stderr, "FAILED: pin %d != %d\n", value, x2);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_x2(line);
+
+        if (value - x2) {
+          fprintf(stderr, "FAILED: pin %d != %d\n", value, x2);
+          fail++;
+        }
+      }
+
+      value = line->y[0];
+      if (value - y1) {
+        fprintf(stderr, "FAILED: pin %d != %d\n", value, y1);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_y1(line);
+
+        if (value - y1) {
+          fprintf(stderr, "FAILED: pin %d != %d\n", value, y1);
+          fail++;
+        }
+      }
+
+      value = line->y[1];
+      if (value - y2) {
+        fprintf(stderr, "FAILED: pin %d != %d\n", value, y2);
+        fail++;
+      }
+      else {
+
+        value = geda_line_get_y2(line);
+
+        if (value - y2) {
+          fprintf(stderr, "FAILED: pin %d != %d\n", value, y2);
+          fail++;
+        }
+      }
+
+      if (fail) {
+
+        fprintf(stderr, "FAILED: to get or set %d %s propert%s\n", fail, TOBJECT,
+                fail > 1 ? "ies" : "y");
+        fprintf(stderr, "Conditions:\n");
+        fprintf(stderr, "\t          x1: %d\n", x1);
+        fprintf(stderr, "\t          y1: %d\n", y1);
+        fprintf(stderr, "\t          x2: %d\n", x2);
+        fprintf(stderr, "\t          y2: %d\n", y2);
+
+        result = result + fail;
+        break;
+      }
+    }
+  }
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -233,8 +344,12 @@ main (int argc, char *argv[])
 
   result = test_pin();
 
-  if (!result)
+  if (!result) {
+
     result = test_pin_properties();
+
+    result += check_accessors();
+  }
 
   return result;
 }

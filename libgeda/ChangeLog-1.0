@@ -7,6 +7,9 @@
 
     * tests/test_object_list.c: Check scale pin in list.
 
+    * tests/test_pin.c: Add function check_accessors and setup random
+      coordinate assignments.
+
 2020-03-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_pin.c: Reoganize module; arrange function in alphabetical
