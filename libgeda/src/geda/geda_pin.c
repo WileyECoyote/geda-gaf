@@ -391,6 +391,11 @@ const char *geda_pin_get_mechanical(GedaPin *pin)
   return pin->mechanical;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 const char *geda_pin_get_number(GedaPin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
@@ -678,6 +683,7 @@ bool geda_pin_set_sequence(GedaPin *pin, const char *sequence)
       changed = TRUE;
     }
   }
+
   return changed;
 }
 
