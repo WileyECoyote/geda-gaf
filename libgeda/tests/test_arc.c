@@ -729,7 +729,9 @@ int check_accessors ()
       }
     }
   }
+
   g_object_unref(object);
+
   return result;
 }
 
