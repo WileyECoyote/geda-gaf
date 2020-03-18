@@ -1,3 +1,9 @@
+2020-03-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Utilize macro:
+
+          * geda_set_widget_allocation
+
 2020-03-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Replace dynamic cast with static cast

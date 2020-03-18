@@ -2104,7 +2104,8 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
   menu_shell = (GedaMenuShell*)widget;
   priv       = menu->priv;
 
-  widget->allocation = *allocation;
+  geda_set_widget_allocation (widget, allocation);
+
   gtk_widget_get_child_requisition (widget, &child_requisition);
 
   gtk_widget_style_get (widget,
