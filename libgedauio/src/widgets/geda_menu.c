@@ -2116,10 +2116,10 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 
   border_width = geda_get_container_border_width(menu);
 
-  y  = border_width + widget->style->ythickness + vertical_padding;
   GtkStyle *style = geda_get_widget_style (widget);
 
   x  = border_width + style->xthickness + horizontal_padding;
+  y  = border_width + style->ythickness + vertical_padding;
 
   x2 = x << 1;
   y2 = y << 1;
