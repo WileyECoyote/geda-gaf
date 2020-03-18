@@ -3,6 +3,7 @@
     * src/widgets/geda_menu.c: Utilize macro:
 
           * geda_set_widget_allocation
+          * geda_get_container_border_width
 
 2020-03-13 Wiley E. Hill <wileyhill@gmail.com>
 

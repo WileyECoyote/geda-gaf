@@ -2097,6 +2097,7 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
   int  x, y, x2, y2;
   int  width, height;
 
+  unsigned int border_width;
   unsigned int vertical_padding;
   unsigned int horizontal_padding;
 
@@ -2113,8 +2114,10 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
                         "horizontal-padding", &horizontal_padding,
                         NULL);
 
-  x  = ((GtkContainer*)menu)->border_width + widget->style->xthickness + horizontal_padding;
-  y  = ((GtkContainer*)menu)->border_width + widget->style->ythickness + vertical_padding;
+  border_width = geda_get_container_border_width(menu);
+
+  x  = border_width + widget->style->xthickness + horizontal_padding;
+  y  = border_width + widget->style->ythickness + vertical_padding;
 
   x2 = x << 1;
   y2 = y << 1;
