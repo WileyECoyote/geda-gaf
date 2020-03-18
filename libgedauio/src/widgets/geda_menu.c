@@ -2228,7 +2228,11 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 
     if (menu->tearoff_active) {
 
-      if (allocation->height >= widget->requisition.height) {
+      GtkRequisition *requisition;
+
+      requisition = geda_get_widget_requisition(widget);
+
+      if (allocation->height >= requisition->height) {
 
         if (gtk_widget_get_visible (menu->tearoff_scrollbar)) {
 
