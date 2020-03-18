@@ -2216,11 +2216,13 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
       int  width, height;
 
       height = 0;
+
       for (i = 0; i < geda_menu_get_n_rows (menu); i++) {
         height += priv->heights[i];
       }
 
       width = geda_menu_get_n_columns (menu) * base_width;
+
       gdk_window_resize (menu->bin_window, width, height);
     }
 
@@ -2232,7 +2234,6 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 
           gtk_widget_hide (menu->tearoff_scrollbar);
           geda_menu_set_tearoff_hints (menu, allocation->width);
-
           geda_menu_scroll_to (menu, 0);
         }
       }
