@@ -2193,10 +2193,12 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 
         for (i = 0; i < b; i++) {
 
-          if (i < t)
+          if (i < t) {
             child_allocation.y += priv->heights[i];
-          else
+          }
+          else {
             child_allocation.height += priv->heights[i];
+          }
         }
 
         geda_menu_item_toggle_size_allocate ((GedaMenuItem*)child,
