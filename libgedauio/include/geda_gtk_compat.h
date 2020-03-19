@@ -209,7 +209,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk < 3 */
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
-/*! \def geda_get_widget_state Get style from widget Gtk < 3 */
+/*! \def geda_get_widget_state Get state from widget Gtk < 3 */
 #define geda_get_widget_state(w) ((GtkWidget*)w)->state
 
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
