@@ -182,6 +182,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_adjustment_value(a) ((GtkAdjustment*)a)->value
 
+#define geda_set_adjustment_lower(a,l) GTK_ADJUSTMENT(a)->lower=l
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
@@ -259,6 +261,8 @@ void gdk_font_unref (GdkFont *font);
 #define geda_get_adjustment_upper(a) gtk_adjustment_get_upper((GtkAdjustment*)a)
 
 #define geda_get_adjustment_value(a) gtk_adjustment_get_value((GtkAdjustment*)a)
+
+#define geda_set_adjustment_lower(a,l) gtk_adjustment_set_lower((GtkAdjustment*)a, l)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
