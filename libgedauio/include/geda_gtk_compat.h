@@ -186,6 +186,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_set_adjustment_page_size(a,ps) GTK_ADJUSTMENT(a)->page_size=pa
 
+#define geda_set_adjustment_upper(a,u) GTK_ADJUSTMENT(a)->upper=u
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
@@ -267,6 +269,8 @@ void gdk_font_unref (GdkFont *font);
 #define geda_set_adjustment_lower(a,l) gtk_adjustment_set_lower((GtkAdjustment*)a, l)
 
 #define geda_set_adjustment_page_size(a,ps) gtk_adjustment_set_page_size((GtkAdjustment*)a,ps)
+
+#define geda_set_adjustment_upper(a,u) gtk_adjustment_set_upper((GtkAdjustment*)a,u)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
