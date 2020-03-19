@@ -9,6 +9,7 @@
       Add macros:
 
           * geda_set_adjustment_lower
+          * geda_set_adjustment_page_size
 
 2020-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
