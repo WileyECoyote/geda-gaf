@@ -4,6 +4,8 @@
 
           * geda_get_adjustment_page_size
           * geda_get_adjustment_upper
+          * geda_get_adjustment_value
+
 
 2020-03-18 Wiley E. Hill <wileyhill@gmail.com>
 

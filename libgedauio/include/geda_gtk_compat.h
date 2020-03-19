@@ -258,7 +258,7 @@ void gdk_font_unref (GdkFont *font);
 
 #define geda_get_adjustment_upper(a) gtk_adjustment_get_upper((GtkAdjustment*)a)
 
-#define geda_get_adjustment_value(a) gtk_adjustment_get_lower((GtkAdjustment*)a)
+#define geda_get_adjustment_value(a) gtk_adjustment_get_value((GtkAdjustment*)a)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)
