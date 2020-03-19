@@ -13,6 +13,10 @@
           * geda_set_adjustment_upper
           * geda_set_adjustment_value
 
+    * src/widgets/geda_menu.c: Utilize macro:
+
+          * geda_set_widget_allocation
+
 2020-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Utilize macro:

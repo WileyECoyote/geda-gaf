@@ -2245,8 +2245,12 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 
         menu->tearoff_adjustment->upper     = requisition->height;
         menu->tearoff_adjustment->page_size = allocation->height;
+        double value;
 
-        if (menu->tearoff_adjustment->value + menu->tearoff_adjustment->page_size >
+
+        value = geda_get_adjustment_value (menu->tearoff_adjustment);
+
+        if (value + menu->tearoff_adjustment->page_size >
             menu->tearoff_adjustment->upper)
         {
           int value;
