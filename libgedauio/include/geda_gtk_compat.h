@@ -256,7 +256,7 @@ void gdk_font_unref (GdkFont *font);
 
 #define geda_get_adjustment_page_size(a) gtk_adjustment_get_page_size((GtkAdjustment*)a)
 
-#define geda_get_adjustment_upper(a) gtk_adjustment_get_lower((GtkAdjustment*)a)
+#define geda_get_adjustment_upper(a) gtk_adjustment_get_upper((GtkAdjustment*)a)
 
 #define geda_get_adjustment_value(a) gtk_adjustment_get_lower((GtkAdjustment*)a)
 
