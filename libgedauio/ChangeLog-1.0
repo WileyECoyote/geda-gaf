@@ -1,3 +1,9 @@
+2020-03-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Fix Gtk > 2 macro:
+
+          * geda_get_adjustment_page_size
+
 2020-03-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Utilize macro:
