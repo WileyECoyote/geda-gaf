@@ -2281,6 +2281,7 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 /*! \internal widget_class->size_request */
 static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
+  GtkStyle      *style;
   int  i;
   GedaMenu      *menu;
   GedaMenuShell *menu_shell;
@@ -2350,6 +2351,7 @@ static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisiti
     priv->heights[t] = MAX (priv->heights[t], part);
   }
 
+    style = geda_get_widget_style(widget);
 
   /* If the menu doesn't include any images or check items then
    * reserve the space so that all menus are consistent. We only
@@ -2363,7 +2365,7 @@ static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisiti
       unsigned int toggle_spacing;
       unsigned int indicator_size;
 
-      gtk_style_get (widget->style,
+      gtk_style_get (style,
                      GTK_TYPE_CHECK_MENU_ITEM,
                      "toggle-spacing", &toggle_spacing,
                      "indicator-size", &indicator_size,
