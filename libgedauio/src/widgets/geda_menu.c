@@ -2315,40 +2315,41 @@ static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisiti
 
   while (children) {
 
-      GtkWidget *child;
-      int  part;
-      int  toggle_size;
-      int  l, r, t, b;
-      unsigned short accelerator_width;
+    GtkWidget *child;
+    int  part;
+    int  toggle_size;
+    int  l, r, t, b;
+    unsigned short accelerator_width;
 
-      child = children->data;
-      children = children->next;
+    child = children->data;
+    children = children->next;
 
-      if (!gtk_widget_get_visible (child)) {
-        continue;
-      }
-
-      get_effective_child_attach (child, &l, &r, &t, &b);
-
-      /* It's important to size_request the child
-       * before doing the toggle size request, in
-       * case the toggle size request depends on the size
-       * request of a child of the child (e.g. for ImageMenuItem)
-       */
-       geda_menu_item_set_show_submenu_indicator(GEDA_MENU_ITEM (child), TRUE);
-       gtk_widget_size_request (child, &child_requisition);
-
-       geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child), &toggle_size);
-       max_toggle_size = MAX (max_toggle_size, toggle_size);
-       accelerator_width = geda_menu_item_get_accel_width(GEDA_MENU_ITEM (child));
-       max_accel_width = MAX (max_accel_width, accelerator_width);
-
-       part               = child_requisition.width / (r - l);
-       requisition->width = MAX (requisition->width, part);
-
-       part             = MAX (child_requisition.height, toggle_size) / (b - t);
-       priv->heights[t] = MAX (priv->heights[t], part);
+    if (!gtk_widget_get_visible (child)) {
+      continue;
     }
+
+    get_effective_child_attach (child, &l, &r, &t, &b);
+
+    /* It's important to size_request the child
+     * before doing the toggle size request, in
+     * case the toggle size request depends on the size
+     * request of a child of the child (e.g. for ImageMenuItem)
+     */
+    geda_menu_item_set_show_submenu_indicator(GEDA_MENU_ITEM (child), TRUE);
+    gtk_widget_size_request (child, &child_requisition);
+
+    geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child), &toggle_size);
+    max_toggle_size = MAX (max_toggle_size, toggle_size);
+    accelerator_width = geda_menu_item_get_accel_width(GEDA_MENU_ITEM (child));
+    max_accel_width = MAX (max_accel_width, accelerator_width);
+
+    part               = child_requisition.width / (r - l);
+    requisition->width = MAX (requisition->width, part);
+
+    part             = MAX (child_requisition.height, toggle_size) / (b - t);
+    priv->heights[t] = MAX (priv->heights[t], part);
+  }
+
 
   /* If the menu doesn't include any images or check items then
    * reserve the space so that all menus are consistent. We only
