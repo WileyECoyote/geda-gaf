@@ -1,3 +1,8 @@
+2020-03-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu.c: Add ancillary variable page_size and upper
+      in function geda_menu_size_allocate.
+
 2020-03-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Fix Gtk > 2 macros:
