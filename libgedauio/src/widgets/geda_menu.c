@@ -2160,6 +2160,7 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
   if (menu_shell->children) {
 
     int base_width;
+    int i;
 
     base_width = width / geda_menu_get_n_columns (menu);
     children   = menu_shell->children;
@@ -2173,7 +2174,6 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 
       if (gtk_widget_get_visible (child)) {
 
-        int  i;
         int  l, r, t, b;
 
         get_effective_child_attach (child, &l, &r, &t, &b);
@@ -2212,7 +2212,6 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
     /* Resize the item window */
     if (gtk_widget_get_realized (widget)) {
 
-      int  i;
       int  width, height;
 
       height = 0;
