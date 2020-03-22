@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-02-17 22:43-0600\n"
+"POT-Creation-Date: 2020-03-21 22:07-0500\n"
 "PO-Revision-Date: 2012-01-31 12:15+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -774,59 +774,59 @@ msgstr ""
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:272
+#: libgeda/src/geda/geda_pin.c:206
 msgid "Electrical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:273
+#: libgeda/src/geda/geda_pin.c:207
 msgid "Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:279
+#: libgeda/src/geda/geda_pin.c:213
 msgid "Label"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:280
+#: libgeda/src/geda/geda_pin.c:214
 msgid "A Label for the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:286
+#: libgeda/src/geda/geda_pin.c:220
 msgid "Number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:287
+#: libgeda/src/geda/geda_pin.c:221
 msgid "The pin number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:293
+#: libgeda/src/geda/geda_pin.c:227
 msgid "Mechanical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:294
+#: libgeda/src/geda/geda_pin.c:228
 msgid "Mechanical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:300
+#: libgeda/src/geda/geda_pin.c:234
 msgid "Sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:301
+#: libgeda/src/geda/geda_pin.c:235
 msgid "The pin sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:307
+#: libgeda/src/geda/geda_pin.c:241
 msgid "Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:308
+#: libgeda/src/geda/geda_pin.c:242
 msgid "Either Mechanical or Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:314
+#: libgeda/src/geda/geda_pin.c:248
 msgid "Which End"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:315
+#: libgeda/src/geda/geda_pin.c:249
 msgid "Which end of the pin gets connected"
 msgstr ""
 

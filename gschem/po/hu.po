@@ -300,7 +300,9 @@ msgstr "Alkatrész mód"
 # Sets the Format Mode used to display coordinates on the status bar
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr "Beállítja a formátum módot, amellyel a koordinátákat megjelenik az állapotsoron"
+msgstr ""
+"Beállítja a formátum módot, amellyel a koordinátákat megjelenik az "
+"állapotsoron"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"

@@ -360,7 +360,8 @@ msgstr "koordinaatit tila"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr "Asettaa muotoilutilan, jota käytetään koordinaattien näyttämiseen tilarivillä"
+msgstr ""
+"Asettaa muotoilutilan, jota käytetään koordinaattien näyttämiseen tilarivillä"
 
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
