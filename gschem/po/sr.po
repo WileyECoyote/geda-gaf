@@ -1389,45 +1389,58 @@ msgstr[0] "Избришите %u закључане објекте?"
 msgstr[1] "Избрисати %u закључана предмета?"
 msgstr[2] "Избрисати %u закључана објекта?"
 
+# attributes were hidden; atributi su bili sakriveni
 #: gschem/src/object/o_edit.c:587
 msgid "attributes were hidden"
-msgstr ""
+msgstr "атрибути су били сакривени"
 
+# hidden attributes were revealed; otkriveni su skriveni atributi
 #: gschem/src/object/o_edit.c:591
 msgid "hidden attributes were revealed"
-msgstr ""
+msgstr "откривени су скривени атрибути"
 
+# Hidden text is now visible; Skriveni tekst je sada vidljiv
 #: gschem/src/object/o_edit.c:806
 msgid "Hidden text is now visible\n"
-msgstr ""
+msgstr "Скривени текст је сада видљив\n"
 
+# Hidden text is now invisible; Skriveni tekst je sada nevidljiv
 #: gschem/src/object/o_edit.c:809
 msgid "Hidden text is now invisible\n"
-msgstr ""
+msgstr "Скривени текст је сада невидљив\n"
 
+# Could not find symbol; Nije moguće pronaći simbol
 #: gschem/src/object/o_edit.c:1244 gschem/src/x/x_edit_cprop.c:389
 msgid "Could not find symbol"
-msgstr ""
+msgstr "Није могуће пронаћи симбол"
 
+# in library. Update failed; u biblioteci. Ažuriranje nije uspelo
 #: gschem/src/object/o_edit.c:1245 gschem/src/x/x_edit_cprop.c:390
 msgid "in library. Update failed"
-msgstr ""
+msgstr "у библиотеци. Ажурирање није успело"
 
+# Updating symbol; Simbol za ažuriranje
 #: gschem/src/object/o_edit.c:1250
 msgid "Updating symbol"
-msgstr ""
+msgstr "Симбол за ажурирање"
 
+# Could not resolve which end of pin to connect
+# Nije moguće rešiti koji kraj pina za povezivanje
 #: gschem/src/object/o_move.c:515
 msgid "Could not resolve which end of pin to connect\n"
-msgstr ""
+msgstr "Није могуће решити који крај пина за повезивање\n"
 
+# Warning: Starting net off grid coordinate
+# Upozorenje: Pokretanje mreže sa koordinate mreže
 #: gschem/src/object/o_net.c:76
 msgid "Warning: Starting net off grid coordinate\n"
-msgstr ""
+msgstr "Упозорење: Покретање мреже са координате мреже\n"
 
+# Warning: Ending net off grid coordinate
+# Upozorenje: Završetak mreže sa koordinatnom mrežom
 #: gschem/src/object/o_net.c:499
 msgid "Warning: Ending net off grid coordinate\n"
-msgstr ""
+msgstr "Упозорење: Завршетак мреже са координатном мрежом\n"
 
 #: gschem/src/object/o_net.c:1111
 msgid "Bus ripper symbol was not found in any component library"
