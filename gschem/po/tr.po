@@ -148,16 +148,16 @@ msgstr "Ana pencere geometrisini alma.\n"
 
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Otomatik olarak geri yükle"
 
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "Ana pencere geometrisini otomatik olarak geri yükle"
 
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Yatay ayar"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
@@ -167,12 +167,12 @@ msgstr "Sayfa"
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Sayfa Geometrisi"
 
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Dikey ayar"
 
 #: gschem/src/base/gschem_parsecmd.c:86
 #, c-format
@@ -211,6 +211,40 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
+"kullanım: %s [SEÇENEĞİ ...] [--] [DOSYA ...]\n"
+"\n"
+"GEDA şemalarını veya sembollerini etkileşimli olarak düzenleme. Bir veya "
+"daha fazla DOSYA varsa\n"
+"belirtildi, düzenlemek için onları açın; aksi takdirde yeni, boş bir\n"
+"şematik.\n"
+"\n"
+"Seçenekler:\n"
+"  -a, --render-adaptor <DRV> Hangi render adaptörünün kullanılacağını "
+"belirtin, Cario veya X11.\n"
+"  -c, --config-file <FILE>   Additional configuration file to load.\n"
+"  -g, --guile <DIR>          Add DIR to the Guile path (pre-config).\n"
+"  -f, --font <NAME>          set font family name\n"
+"  -h, --help                 Help; this message.\n"
+"  -l, --list                 List saved session names.\n"
+"  -m, --safe-mode            Safe Mode.\n"
+"  -n, --no-auto              No auto load last document.\n"
+"  -o, --output <FILE>        Output filename (for printing and image "
+"output).\n"
+"  -p, --place                Automatically place the window.\n"
+"  -q, --quiet                Quiet mode.\n"
+"  -r, --run <FILE>           Scheme script to run at startup.\n"
+"  -s, --start <name>         Startup using the given session name.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+"  -v, --verbose              Verbose mode.\n"
+"  -V, --version              Show version information.\n"
+"  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Treat all remaining arguments as filenames.\n"
+"\n"
+"Report bugs at <https://bugs.launchpad.net/geda>\n"
+"gEDA homepage: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:130
 msgid ""
