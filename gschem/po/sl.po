@@ -770,7 +770,7 @@ msgstr "Določite novo povečavo:"
 #: gschem/src/iface/i_command.c:4732 gschem/src/iface/i_command.c:4753
 #: gschem/src/iface/i_command.c:4773
 msgid "Check path:"
-msgstr ""
+msgstr "Preverite pot:"
 
 # error
 #: gschem/src/iface/i_command.c:2372
@@ -849,39 +849,39 @@ msgstr "Сетка выключена\n"
 
 #: gschem/src/iface/i_command.c:4450
 msgid "Dot grid activated\n"
-msgstr ""
+msgstr "Tačka je aktivirana\n"
 
 #: gschem/src/iface/i_command.c:4451
 msgid "Mesh grid activated\n"
-msgstr ""
+msgstr "Mrežna mreža je aktivirana\n"
 
 #: gschem/src/iface/i_command.c:4530
 msgid "Snap OFF (CAUTION!)\n"
-msgstr ""
+msgstr "Kratek izklop (POZOR!)\n"
 
 #: gschem/src/iface/i_command.c:4536
 msgid "Snap ON\n"
-msgstr ""
+msgstr "Snap ON\n"
 
 #: gschem/src/iface/i_command.c:4541
 msgid "Snap back to the grid (CAUTION!)\n"
-msgstr ""
+msgstr "Vrnite se nazaj na mrežo (POZOR!)\n"
 
 #: gschem/src/iface/i_command.c:4566
 msgid "Rubber band mode is OFF\n"
-msgstr ""
+msgstr "Način gumijastega traku je izklopljen\n"
 
 #: gschem/src/iface/i_command.c:4570
 msgid "Rubber band mode is ON\n"
-msgstr ""
+msgstr "Način gumijastega traku je ON\n"
 
 #: gschem/src/iface/i_command.c:4581
 msgid "Magnetic net mode is ON\n"
-msgstr ""
+msgstr "Način magnetne mreže je VKLJUČEN\n"
 
 #: gschem/src/iface/i_command.c:4584
 msgid "Magnetic net mode is OFF\n"
-msgstr ""
+msgstr "Način magnetne mreže je izklopljen\n"
 
 #: gschem/src/iface/i_command.c:4601 gschem/src/iface/i_command.c:4644
 #: gschem/src/x/x_compselect.c:135
