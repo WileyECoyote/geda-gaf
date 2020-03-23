@@ -184,7 +184,7 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_set_adjustment_lower(a,l) GTK_ADJUSTMENT(a)->lower=l
 
-#define geda_set_adjustment_page_size(a,ps) GTK_ADJUSTMENT(a)->page_size=pa
+#define geda_set_adjustment_page_size(a,ps) GTK_ADJUSTMENT(a)->page_size=ps
 
 #define geda_set_adjustment_upper(a,u) GTK_ADJUSTMENT(a)->upper=u
 
