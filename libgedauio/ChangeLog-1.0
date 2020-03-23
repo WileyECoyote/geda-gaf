@@ -3,8 +3,10 @@
     * tests/test_image_menu_item.c: Add check for function
       geda_image_menu_item_set_accel_group.
 
-    * tests/test_menu_item.c: Add check for function
-      geda_menu_item_get_toggle_size.
+    * tests/test_menu_item.c: Add checks for functions:
+
+          * geda_menu_item_get_toggle_size
+          * geda_menu_item_get_from_menubar
 
 2020-03-20 Wiley E. Hill <wileyhill@gmail.com>
 

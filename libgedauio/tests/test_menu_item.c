@@ -299,6 +299,13 @@ check_accessors ()
       result++;
     }
 
+    /* geda_menu_item_get_from_menubar */
+
+    if (!geda_menu_item_get_from_menubar(menu_item)) {
+      fprintf(stderr, "FAILED: line <%d> get_from_menubar %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
