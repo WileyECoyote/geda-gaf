@@ -306,6 +306,21 @@ check_accessors ()
       result++;
     }
 
+    /* geda_menu_item_get_label */
+
+    const char *text;
+
+    text =  geda_menu_item_get_label  (menu_item);
+
+    if (!text) {
+      fprintf(stderr, "FAILED: line <%d> get_label %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+    else if (strcmp(text, "_Pie")) {
+      fprintf(stderr, "FAILED: %s line <%d> text <%s>\n", TWIDGET, __LINE__, text);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
