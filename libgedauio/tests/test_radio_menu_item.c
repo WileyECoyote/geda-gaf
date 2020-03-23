@@ -237,8 +237,8 @@ check_accessors ()
 
   GSList *group = NULL;
 
-  GtkWidget *widget1 = geda_radio_menu_item_new(NULL);
-  GtkWidget *widget2 = geda_radio_menu_item_new(NULL);
+  GtkWidget *widget1 = geda_radio_menu_item_new_with_label (NULL, "_Moschata");
+  GtkWidget *widget2 = geda_radio_menu_item_new_with_label (NULL, "_Pepo");
 
   group = geda_radio_menu_item_get_group(GEDA_RADIO_MENU_ITEM(widget1));
 
@@ -254,6 +254,27 @@ check_accessors ()
 
   if (g_slist_length(group) != 2) {
     fprintf(stderr, "FAILED: line <%d> group length=%d\n", __LINE__, len);
+    result++;
+  }
+
+  /* Base Class */
+
+  GedaMenuItem *menu_item;
+
+  menu_item = GEDA_MENU_ITEM(widget2);
+
+  /* geda_menu_item_get_label */
+
+  const char *text;
+
+  text =  geda_menu_item_get_label  (menu_item);
+
+  if (!text) {
+    fprintf(stderr, "FAILED: line <%d> get_label %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else if (strcmp(text, "_Pepo")) {
+    fprintf(stderr, "FAILED: %s line <%d> text <%s>\n", TWIDGET, __LINE__, text);
     result++;
   }
 
