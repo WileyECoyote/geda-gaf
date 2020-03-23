@@ -147,16 +147,27 @@ check_accessors ()
 
     /* geda_image_menu_item_get_accel_group */
 
-    GtkAccelGroup *group;
+    GtkAccelGroup *grp_1, *grp_2;
 
-    group = geda_image_menu_item_get_accel_group (image_menu_item);
+    grp_1 = geda_image_menu_item_get_accel_group (image_menu_item);
 
-    if (group) {
+    if (grp_1) {
       fprintf(stderr, "FAILED: line <%d> get_accel_group %s\n", __LINE__, TWIDGET);
       result++;
     }
 
     /* geda_image_menu_item_set_accel_group */
+
+    grp_1 = gtk_accel_group_new();
+
+    geda_image_menu_item_set_accel_group (image_menu_item, grp_1);
+
+    grp_2 = geda_image_menu_item_get_accel_group (image_menu_item);
+
+    if (grp_2 != grp_1) {
+      fprintf(stderr, "FAILED: line <%d> set_accel_group %s\n", __LINE__, TWIDGET);
+      result++;
+    }
 
     /* geda_image_menu_item_get_show_image */
 
