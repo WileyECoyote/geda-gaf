@@ -35,7 +35,10 @@
 #include <gtk/gtk.h>
 
 #include <geda/geda.h>
-#include <geda_radio_menu_item.h>
+#include <../include/geda_menu.h>
+#include <../include/geda_menu_bar.h>
+#include <../include/geda_menu_item.h>
+#include <../include/geda_radio_menu_item.h>
 
 #include "test-suite.h"
 
@@ -229,6 +232,35 @@ int check_construction (void)
   return result;
 }
 
+static  GtkAccelGroup *accel_group;
+
+GtkWidget *main_window()
+{
+  GtkWidget *vbox;
+  GtkWidget *window;
+  GtkWidget *menubar;
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+
+  /* Create a GtkAccelGroup and add it to the window. */
+  accel_group = gtk_accel_group_new();
+  gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (window), vbox);
+  gtk_widget_show (vbox);
+
+  menubar = geda_menu_bar_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, TRUE, 0);
+
+  gtk_widget_show (menubar);
+  gtk_widget_show (window);
+
+  gtk_window_resize (GTK_WINDOW (window), 250, 150);
+
+  return menubar;
+}
+
 int
 check_accessors ()
 {
@@ -281,6 +313,50 @@ check_accessors ()
   return result;
 }
 
+int check_query()
+{
+  int result = 0;
+
+  GtkWidget *widget = geda_radio_menu_item_new_with_label(NULL, "_Texana");
+
+  if (!GEDA_IS_MENU_ITEM(widget)) {
+    fprintf(stderr, "FAILED: line <%d> is a %s\n", __LINE__, TWIDGET);
+    result++;
+  }
+  else {
+
+    GtkWidget    *menu;
+    GtkWidget    *menu_bar;
+    GedaMenuItem *menu_item;
+
+    menu      = geda_menu_new ();
+    menu_bar  = main_window();
+    menu_item = GEDA_MENU_ITEM(widget);
+
+    geda_menu_append (menu_bar, widget);
+
+    geda_menu_item_set_submenu_widget (menu_item, menu);
+
+    gtk_widget_show (widget);
+    gtk_widget_show (menu);
+
+    /* geda_menu_item_get_toggle_size */
+
+    unsigned short toggle_size;
+
+    toggle_size = geda_menu_item_get_toggle_size (menu_item);
+
+    if (toggle_size) {
+      fprintf(stderr, "FAILED: line <%d> get_toggle_size %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    gtk_widget_destroy(gtk_widget_get_toplevel(widget));
+  }
+
+  return result;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -310,6 +386,14 @@ main (int argc, char *argv[])
       }
       else {
         fprintf(stderr, "Caught signal checking accessors in %s\n\n", MUT);
+        return 1;
+      }
+
+      if (setjmp(point) == 0) {
+        result = check_query();
+      }
+      else {
+        fprintf(stderr, "Caught signal in query in %s\n\n", MUT);
         return 1;
       }
     }

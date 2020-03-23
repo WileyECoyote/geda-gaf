@@ -9,7 +9,7 @@
           * geda_menu_item_get_from_menubar
 
     * tests/test_radio_menu_item.c: Add check for function
-      geda_menu_item_get_label.
+      geda_menu_item_get_label. Add functions main_window and check_query.
 
 2020-03-20 Wiley E. Hill <wileyhill@gmail.com>
 
