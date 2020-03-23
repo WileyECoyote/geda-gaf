@@ -172,9 +172,9 @@ check_accessors ()
     widget01 = geda_menu_item_new_with_label("_Cherry");
     geda_menu_append (menu, widget01);
 
-    label = geda_menu_item_get_label_widget(GEDA_MENU_ITEM(widget01));
+    label = geda_menu_item_get_label_widget (GEDA_MENU_ITEM(widget01));
 
-    geda_accel_label_set_accel_string((GedaAccelLabel*)label, "C_P");
+    geda_accel_label_set_accel_string ((GedaAccelLabel*)label, "C_P");
 
     /* geda_menu_item_set_submenu_widget */
 
@@ -193,7 +193,7 @@ check_accessors ()
 
     /* geda_menu_item_get_submenu_widget */
 
-    sub_widget = geda_menu_item_get_submenu_widget(menu_item);
+    sub_widget = geda_menu_item_get_submenu_widget (menu_item);
 
     if (sub_widget != menu) {
       fprintf(stderr, "FAILED: line <%d> get submenu widget %s\n", __LINE__, TWIDGET);
@@ -204,7 +204,7 @@ check_accessors ()
 
     /* geda_menu_item_get_accel_path */
 
-    accel_path = geda_menu_item_get_accel_path(menu_item);
+    accel_path = geda_menu_item_get_accel_path (menu_item);
 
     if (accel_path) {
       fprintf(stderr, "FAILED: line <%d> get accel path not set %s\n", __LINE__, TWIDGET);
@@ -215,7 +215,7 @@ check_accessors ()
 
     geda_menu_item_set_accel_path(menu_item, "<favorite>/Pie");
 
-    accel_path = geda_menu_item_get_accel_path(menu_item);
+    accel_path = geda_menu_item_get_accel_path (menu_item);
 
     if (!accel_path) {
       fprintf(stderr, "FAILED: line <%d> set accel path %s\n", __LINE__, TWIDGET);
@@ -228,7 +228,7 @@ check_accessors ()
 
     unsigned short width;
 
-    width = geda_menu_item_get_accel_width(GEDA_MENU_ITEM(widget01));
+    width = geda_menu_item_get_accel_width (GEDA_MENU_ITEM(widget01));
 
     if (!width) {
       fprintf(stderr, "FAILED: line <%d> get accel width %s, %u\n", __LINE__, TWIDGET, width);
@@ -239,7 +239,7 @@ check_accessors ()
 
     char mnemonic;
 
-    mnemonic = geda_menu_item_get_mnemonic(menu_item);
+    mnemonic = geda_menu_item_get_mnemonic (menu_item);
 
     if (mnemonic != 'P') {
       fprintf(stderr, "FAILED: line <%d> get mnemonic %s, %c\n", __LINE__, TWIDGET, mnemonic);
@@ -250,7 +250,7 @@ check_accessors ()
 
     geda_menu_item_set_mnemonic (menu_item, 'p');
 
-    mnemonic = geda_menu_item_get_mnemonic(menu_item);
+    mnemonic = geda_menu_item_get_mnemonic (menu_item);
 
     if (mnemonic != 'p') {
       fprintf(stderr, "FAILED: line <%d> set mnemonic %s, %c\n", __LINE__, TWIDGET, mnemonic);
@@ -261,7 +261,7 @@ check_accessors ()
 
     int justify;
 
-    justify = geda_menu_item_get_right_justified(menu_item);
+    justify = geda_menu_item_get_right_justified (menu_item);
 
     if (justify) {
       fprintf(stderr, "FAILED: line <%d> get_right_justified %s\n", __LINE__, TWIDGET);
@@ -272,7 +272,7 @@ check_accessors ()
 
     geda_menu_item_set_right_justified (menu_item, FALSE);
 
-    justify = geda_menu_item_get_right_justified(menu_item);
+    justify = geda_menu_item_get_right_justified (menu_item);
 
     if (justify) {
       fprintf(stderr, "FAILED: line <%d> set_right_justified %s\n", __LINE__, TWIDGET);
@@ -281,7 +281,7 @@ check_accessors ()
 
     geda_menu_item_set_right_justified (menu_item, TRUE);
 
-    justify = geda_menu_item_get_right_justified(menu_item);
+    justify = geda_menu_item_get_right_justified (menu_item);
 
     if (!justify) {
       fprintf(stderr, "FAILED: line <%d> set_right_justified %s\n", __LINE__, TWIDGET);
