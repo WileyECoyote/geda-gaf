@@ -1,3 +1,9 @@
+2020-03-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update attribute positions:
+
+            * simulation/verilog/nor5-2.sym
+
 2020-03-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update attribute positions, make pin label
