@@ -288,6 +288,17 @@ check_accessors ()
       result++;
     }
 
+    /* geda_menu_item_get_toggle_size */
+
+    unsigned short toggle_size;
+
+    toggle_size = geda_menu_item_get_toggle_size (menu_item);
+
+    if (toggle_size) {
+      fprintf(stderr, "FAILED: line <%d> get_toggle_size %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
     gtk_widget_destroy(gtk_widget_get_toplevel(widget));
   }
 
