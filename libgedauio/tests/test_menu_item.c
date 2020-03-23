@@ -321,7 +321,18 @@ check_accessors ()
       result++;
     }
 
-    gtk_widget_destroy(gtk_widget_get_toplevel(widget));
+    /* geda_menu_item_get_label_widget */
+
+    GtkWidget *label_widget;
+
+    label_widget = geda_menu_item_get_label_widget (menu_item);
+
+    if (!label_widget) {
+      fprintf(stderr, "FAILED: line <%d> get_label_widget %s\n", __LINE__, TWIDGET);
+      result++;
+    }
+
+    gtk_widget_destroy (gtk_widget_get_toplevel(widget));
   }
 
   return result;

@@ -8,6 +8,7 @@
           * geda_menu_item_get_toggle_size
           * geda_menu_item_get_from_menubar
           * geda_menu_item_get_label
+          * geda_menu_item_get_label_widget
 
     * tests/test_radio_menu_item.c: Add check for function
       geda_menu_item_get_label. Add functions main_window and check_query.
