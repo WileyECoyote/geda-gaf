@@ -92,9 +92,9 @@ T 850 550 8 10 1 1 0 6 1
 refdes=U?
 T 200 1300 5 8 0 0 0 0 1
 device=nor
-T 200 1700 5 8 0 0 0 0 1
+T 200 1650 5 8 0 0 0 0 1
 description=VERILOG_PORTS=POSITIONAL
-T 200 1900 9 10 0 0 0 0 1
+T 200 1800 9 10 0 0 0 0 1
 numslots=0
-T 200 1500 9 10 0 0 0 0 1
+T 200 1450 9 10 0 0 0 0 1
 footprint=unknown
