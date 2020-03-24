@@ -2353,7 +2353,7 @@ static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisiti
 
     style = geda_get_widget_style(widget);
 
-  /* If the menu doesn't include any images or check items then
+  /* If the menu does not include any images or check items then
    * reserve the space so that all menus are consistent. We only
    * do this for 'ordinary' menus, not for combobox  menus or
    * multi-column menus.
