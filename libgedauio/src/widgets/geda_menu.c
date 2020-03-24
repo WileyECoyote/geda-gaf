@@ -2407,7 +2407,6 @@ static void geda_menu_style_set (GtkWidget *widget, GtkStyle *previous_style)
   GedaMenu *menu = GEDA_MENU (widget);
 
   if (gtk_widget_get_realized (widget)) {
-      gtk_style_set_background (widget->style, menu->view_window, GTK_STATE_NORMAL);
       gtk_style_set_background (widget->style, widget->window, GTK_STATE_NORMAL);
 
     GtkStyle *style;
@@ -2415,6 +2414,7 @@ static void geda_menu_style_set (GtkWidget *widget, GtkStyle *previous_style)
     style = geda_get_widget_style(widget);
 
     gtk_style_set_background (style, menu->bin_window, GTK_STATE_NORMAL);
+    gtk_style_set_background (style, menu->view_window, GTK_STATE_NORMAL);
   }
 
   change_touchscreen_mode(menu);
