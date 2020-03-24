@@ -2952,6 +2952,7 @@ static void geda_menu_select_item (GedaMenuShell *menu_shell, GtkWidget *menu_it
  */
 static int get_visible_size (GedaMenu *menu)
 {
+  GtkStyle  *style;
   GtkWidget *widget = (GtkWidget*)menu;
   GtkContainer *container = (GtkContainer*)widget;
   GtkAllocation  *allocation;
@@ -2961,7 +2962,9 @@ static int get_visible_size (GedaMenu *menu)
 
   allocation   = geda_get_widget_allocation (widget);
   border_width = geda_get_container_border_width (widget);
-  menu_height  = (allocation->height - 2 * (border_width + widget->style->ythickness));
+  style        = geda_get_widget_style (widget);
+
+  menu_height  = (allocation->height - 2 * (border_width + style->ythickness));
 
   if (!menu->tearoff_active) {
 
