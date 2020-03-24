@@ -2282,17 +2282,17 @@ static void geda_menu_size_allocate (GtkWidget *widget, GtkAllocation *allocatio
 static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisition)
 {
   GtkStyle      *style;
-  int  i;
   GedaMenu      *menu;
   GedaMenuShell *menu_shell;
   GList         *children;
   GedaMenuPriv  *priv;
-
+  GtkRequisition child_requisition;
   unsigned int   max_toggle_size;
   unsigned int   max_accel_width;
   unsigned int   vertical_padding;
   unsigned int   horizontal_padding;
-  GtkRequisition child_requisition;
+  unsigned int   border_width;
+  int  i;
 
   g_return_if_fail (GEDA_IS_MENU (widget));
   g_return_if_fail (requisition != NULL);
@@ -2386,10 +2386,10 @@ static void geda_menu_size_request (GtkWidget *widget, GtkRequisition *requisiti
                         "horizontal-padding", &horizontal_padding,
                         NULL);
 
-  requisition->width += (((GtkContainer*)menu)->border_width + horizontal_padding +
-                         widget->style->xthickness) * 2;
-  requisition->height += (((GtkContainer*)menu)->border_width + vertical_padding +
-                          widget->style->ythickness) * 2;
+  border_width = geda_get_container_border_width(menu);
+
+  requisition->width += (border_width + horizontal_padding +  style->xthickness) * 2;
+  requisition->height += (border_width + vertical_padding + style->ythickness) * 2;
 
   menu->toggle_size = max_toggle_size;
 
