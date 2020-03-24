@@ -2408,13 +2408,15 @@ static void geda_menu_style_set (GtkWidget *widget, GtkStyle *previous_style)
 
   if (gtk_widget_get_realized (widget)) {
 
-    GtkStyle *style;
+    GtkStyle  *style;
+    GdkWindow *window;
 
-    style = geda_get_widget_style(widget);
+    style  = geda_get_widget_style (widget);
+    window = geda_get_widget_window (widget);
 
     gtk_style_set_background (style, menu->bin_window, GTK_STATE_NORMAL);
     gtk_style_set_background (style, menu->view_window, GTK_STATE_NORMAL);
-    gtk_style_set_background (style, widget->window, GTK_STATE_NORMAL);
+    gtk_style_set_background (style, window, GTK_STATE_NORMAL);
   }
 
   change_touchscreen_mode(menu);
