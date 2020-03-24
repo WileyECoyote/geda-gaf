@@ -2954,13 +2954,14 @@ static int get_visible_size (GedaMenu *menu)
 {
   GtkWidget *widget = (GtkWidget*)menu;
   GtkContainer *container = (GtkContainer*)widget;
+  GtkAllocation  *allocation;
 
   unsigned int border_width;
            int menu_height;
 
+  allocation   = geda_get_widget_allocation (widget);
   border_width = geda_get_container_border_width (widget);
-  menu_height  = (widget->allocation.height - 2 * (border_width
-                                                + widget->style->ythickness));
+  menu_height  = (allocation->height - 2 * (border_width + widget->style->ythickness));
 
   if (!menu->tearoff_active) {
 
