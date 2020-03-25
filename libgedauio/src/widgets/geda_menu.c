@@ -2982,8 +2982,10 @@ static int get_menu_height (GedaMenu *menu)
 {
   int  height;
   GtkWidget *widget = (GtkWidget*)menu;
+  GtkRequisition *requisition;
+  requisition = geda_get_widget_requisition (menu);
 
-  height  = widget->requisition.height;
+  height  = requisition->height;
   height -= (((GtkContainer*)widget)->border_width + widget->style->ythickness) * 2;
 
   if (!menu->tearoff_active) {
