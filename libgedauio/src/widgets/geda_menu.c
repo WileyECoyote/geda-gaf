@@ -2954,7 +2954,6 @@ static int get_visible_size (GedaMenu *menu)
 {
   GtkStyle  *style;
   GtkWidget *widget = (GtkWidget*)menu;
-  GtkContainer *container = (GtkContainer*)widget;
   GtkAllocation  *allocation;
 
   unsigned int border_width;
