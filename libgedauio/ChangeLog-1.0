@@ -1,7 +1,7 @@
 2020-03-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Eliminate unused GtkContainer in function
-      get_visible_size. Utilize macro:
+      get_visible_size and GtkWidget in get_menu_height. Utilize macro:
 
           * geda_get_widget_requisition
           * geda_get_container_border_width
