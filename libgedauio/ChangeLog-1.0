@@ -4,6 +4,7 @@
       get_visible_size. Utilize macro:
 
           * geda_get_widget_requisition
+          * geda_get_container_border_width
 
 2020-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
