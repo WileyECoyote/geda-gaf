@@ -3950,7 +3950,7 @@ static void geda_menu_tearoff_bg_copy (GedaMenu *menu)
 
     gtk_widget_set_size_request (menu->tearoff_window, width, height);
 
-    gdk_window_set_back_pixmap (menu->tearoff_window->window, pixmap, FALSE);
+    gdk_window_set_back_pixmap (window, pixmap, FALSE);
     g_object_unref (pixmap);
   }
 }
