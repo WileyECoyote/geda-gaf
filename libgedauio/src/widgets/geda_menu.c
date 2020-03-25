@@ -3944,7 +3944,7 @@ static void geda_menu_tearoff_bg_copy (GedaMenu *menu)
 
     cr = gdk_cairo_create (pixmap);
     /* Let's hope that function never notices we're not passing it a pixmap */
-    gdk_cairo_set_source_pixmap (cr, menu->tearoff_window->window, 0, 0);
+    gdk_cairo_set_source_pixmap (cr, window, 0, 0);
     cairo_paint (cr);
     cairo_destroy (cr);
 
