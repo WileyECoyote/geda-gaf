@@ -148,10 +148,6 @@ void f_export_components(const char *filename)
       fprintf(fp, "\n");
     }
 
-#ifdef DEBUG
-    printf("In f_export_components, Go to next row.\n");
-#endif
-
   }  /* close of for loop over rows */
 
   fclose(fp);
