@@ -121,9 +121,6 @@ void f_export_components(const char *filename)
         /* make a copy of the text, escaping any special chars, like " */
         text = (char*)g_strescape(str, "" );
 
-#ifdef DEBUG
-        printf("In f_export_components, output attribute %s.\n", text);
-#endif
         print_quote_if_comma(fp, text);
         fprintf(fp, ", ");
 
