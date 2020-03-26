@@ -105,7 +105,7 @@ bool x_fileselect (char *filename)
  */
 bool x_fileselect_load_file (char *filename) {
 
-  const GList *Objects;
+  const GList *objects;
          char *uri;
 
   if (!quiet_mode) {
@@ -119,20 +119,20 @@ bool x_fileselect_load_file (char *filename) {
     return FALSE;
   }
 
-  Objects = geda_struct_page_get_objects (pr_current->page_current);
+  objects = geda_struct_page_get_objects (pr_current->page_current);
 
   /* Now add all items found to the master lists */
-  s_sheet_data_add_master_comp_list_items (Objects);
-  s_sheet_data_add_master_comp_attrib_list_items (Objects);
+  s_sheet_data_add_master_comp_list_items (objects);
+  s_sheet_data_add_master_comp_attrib_list_items (objects);
 
   /* Note that this must be changed.  We need to input the entire project
    * before doing anything with the nets because we need to first
    * determine where they are all connected!   */
-  s_sheet_data_add_master_net_list_items (Objects);
-  s_sheet_data_add_master_net_attrib_list_items (Objects);
+  s_sheet_data_add_master_net_list_items (objects);
+  s_sheet_data_add_master_net_attrib_list_items (objects);
 
-  s_sheet_data_add_master_pin_list_items (Objects);
-  s_sheet_data_add_master_pin_attrib_list_items (Objects);
+  s_sheet_data_add_master_pin_list_items (objects);
+  s_sheet_data_add_master_pin_attrib_list_items (objects);
 
   uri = g_filename_to_uri(filename, NULL, NULL);
 
