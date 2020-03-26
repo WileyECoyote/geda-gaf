@@ -145,10 +145,6 @@ void f_export_components(const char *filename)
     }
     else {                                                  /* no attrib string */
 
-#ifdef DEBUG
-      printf("In f_export_components, output blank at end of line.\n");
-#endif
-
       fprintf(fp, "\n");
     }
 
