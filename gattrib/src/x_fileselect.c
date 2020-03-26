@@ -68,10 +68,6 @@ bool x_fileselect (char *filename)
     cwd = geda_utility_string_strdup(pr_current->page_current->filename);
     geda_file_chooser_set_filename (dialog, cwd);
 
-#ifdef DEBUG
-    fprintf(stderr, "Going to use file name=%s\n", cwd);
-#endif
-
   }
 
   gtk_widget_show (dialog);
