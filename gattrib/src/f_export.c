@@ -71,10 +71,6 @@ void f_export_components(const char *filename)
 
   /* -----  First try to open file for writing ----- */
 
-#ifdef DEBUG
-  printf("In f_export_components, trying to open %s.\n", filename);
-#endif
-
   fp = fopen(filename, "wb");
 
   if (fp == NULL) {
