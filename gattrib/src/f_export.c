@@ -138,10 +138,6 @@ void f_export_components(const char *filename)
       /* make a copy of the text, escaping any special chars, like " */
       text = (char*)g_strescape((sheet_head->component_table)[i][j].attrib_value, "" );
 
-#ifdef DEBUG
-      printf("In f_export_components, output final attribute %s.\n", text);
-#endif
-
       print_quote_if_comma(fp, text);
       fprintf(fp, "\n");
 
