@@ -128,10 +128,6 @@ void f_export_components(const char *filename)
       }
       else {                                                  /* no attrib string */
 
-#ifdef DEBUG
-        printf("In f_export_components, output blank attrib space\n");
-#endif
-
         fprintf(fp, ", ");
       }
     }  /* end of for loop over cols  */
