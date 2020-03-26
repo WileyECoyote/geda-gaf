@@ -129,8 +129,8 @@ SCM g_rc_hide_columns(SCM stringlist)
 /*!
  * \brief This function processes the sort-components RC entry.
  * \par Function Description
- *  C function to dynamically convert lisp variable while
- *  processing configuration data for the sort-components RC entry.
+ *  C function to capture lisp variable while processing
+ *  configuration data for the sort-components RC entry.
  */
 SCM g_rc_sort_components(SCM mode)
 {
