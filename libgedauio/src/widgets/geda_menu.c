@@ -4100,7 +4100,6 @@ void geda_menu_popup (GedaMenu         *menu,
         viewable = FALSE;
         break;
       }
-      tmp = tmp->parent;
       tmp = geda_get_widget_parent(tmp);
     }
 
