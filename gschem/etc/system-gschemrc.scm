@@ -2347,7 +2347,7 @@
 ;;
 ;;      menu item name                    menu action             menu icon name             Menu Item Tooltip
 ;;
-     `( (,(N_ "Cycle _grid styles")       options-cycle-grid       #f ,(N_ "Toggle grid between Dot, Mesh and Off"))
+     `( (,(N_ "Cycle _grid styles")       options-cycle-grid       #f ,(N_ "Cycle grid between Dot, Mesh and Off"))
         (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size       #f ,(N_ "Increase the snap size"))
         (,(N_ "Scale _down Grid Spacing") scale-down-snap-size     #f ,(N_ "Decrease the snap size"))
         (,(N_ "S_nap Grid Spacing...")    options-snap-size        #f ,(N_ "Adjust snap size"))
