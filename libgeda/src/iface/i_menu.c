@@ -125,10 +125,10 @@ int geda_iface_menu_add_entry(char *menu_name, SCM menu_items)
   return index;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Print All Menu Records
+ * \par Function Description
+ *  Utility function used for debugging menu routines.
  */
 void geda_iface_menu_print(void)
 {
