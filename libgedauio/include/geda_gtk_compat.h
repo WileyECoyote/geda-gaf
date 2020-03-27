@@ -212,18 +212,18 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 #define geda_get_widget_in_destruction(w) GTK_OBJECT_FLAGS (w) & GTK_IN_DESTRUCTION
 
 /*! \def geda_get_widget_parent Get parent from widget Gtk < 3 */
-#define geda_get_widget_parent(w) (void*)((GtkWidget*)w)->parent
+#define geda_get_widget_parent(w) (void*)GTK_WIDGET(w)->parent
 
 /*! \def geda_get_widget_requisition Get Pointer to requisition  Gtk < 3 */
 #define geda_get_widget_requisition(w) &(GTK_WIDGET(w)->requisition)
 
 /*! \def geda_get_widget_state Get state from widget Gtk < 3 */
-#define geda_get_widget_state(w) ((GtkWidget*)w)->state
+#define geda_get_widget_state(w) GTK_WIDGET(w)->state
 
 /*! \def geda_get_widget_style Get style from widget Gtk < 3 */
-#define geda_get_widget_style(w) ((GtkWidget*)w)->style
+#define geda_get_widget_style(w) GTK_WIDGET(w)->style
 
-#define geda_set_widget_style(w,s) ((GtkWidget*)w)->style = s
+#define geda_set_widget_style(w,s) GTK_WIDGET(w)->style = s
 
 /*! \def geda_get_widget_window Get Pointer to window  Gtk < 3 */
 #define geda_get_widget_window(w) GTK_WIDGET(w)->window
