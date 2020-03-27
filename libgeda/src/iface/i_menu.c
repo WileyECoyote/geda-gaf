@@ -47,10 +47,13 @@ int geda_iface_menu_return_num(void)
   return(menu_index);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Retrieve Top Level Menu and Submenu Items given an Index
+ * \par Function Description
+ *  Sets menu_name to a pointer to the raw menu name for the
+ *  toplevel menu container at the given \a index. The sub menu
+ *  items associated with toplevel menu container is returned
+ *  on the stack in Scheme form.
  */
 SCM geda_iface_menu_return_entry(int index, char **menu_name)
 {
