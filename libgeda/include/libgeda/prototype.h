@@ -74,6 +74,7 @@ extern "C" {
 /* i_menu.c */
           int    geda_iface_menu_return_num      (void);
           SCM    geda_iface_menu_return_entry    (int index, char **menu_name);
+         char   *geda_iface_menu_return_tooltip  (const char *action);
           int    geda_iface_menu_add_entry       (char *new_menu, SCM menu_items);
          void    geda_iface_menu_print           (void);
          void    geda_iface_menu_free            (void);

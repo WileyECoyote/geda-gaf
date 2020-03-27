@@ -71,6 +71,75 @@ SCM geda_iface_menu_return_entry(int index, char **menu_name)
   return(menu[index].menu_items);
 }
 
+char *geda_iface_menu_return_tooltip(const char *action_name)
+{
+  char *tooltip = NULL;
+
+  if (action_name) {
+
+    unsigned int menu_count = geda_iface_menu_return_num();
+    unsigned int i;
+
+    /* Loop through all top-level menu container */
+    for (i = 0 ; i < menu_count; i++) {
+
+      unsigned int scm_items_len;
+      unsigned int j;
+
+      SCM scm_items;
+
+      scm_items = menu[i].menu_items;
+
+      /* Loop through all items subordinate to the top-level menu container */
+      scm_items_len = (int) scm_ilength (scm_items);
+
+      for (j = 0 ; j < scm_items_len; j++) {
+
+        SCM scm_index    = scm_from_int (j);
+
+        SCM scm_item     = scm_list_ref (scm_items, scm_index);
+
+        int scm_item_len = scm_ilength  (scm_item);
+
+        /* Check for a 4th parameter = tooltip string */
+        if (scm_item_len == 4) {
+
+          SCM scm_item_func  = SCM_CADR (scm_item);
+
+          if (scm_is_true (scm_item_func)) {
+
+            char *action;
+
+            action = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
+
+            if (strcmp(action, action_name) == 0) {
+
+              /* Extract tooltip string */
+              SCM scm_item_tip = SCM_CAR (scm_cdddr (scm_item));
+
+              /* Validate tip is really a string */
+              if (scm_is_string(scm_item_tip)) {
+
+                /* if valid, convert to c string */
+                tooltip = scm_to_utf8_string (scm_item_tip);
+                break;
+              }
+            }
+
+            free(action);
+          }
+        }
+      }
+
+      if (tooltip) {
+        break;
+      }
+    }
+  }
+
+  return tooltip;
+}
+
 /*! \brief Add Menu Record Entry
  *  \par Function Description
  *  This function checks the static menu array and appends
