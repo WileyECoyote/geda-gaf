@@ -72,13 +72,13 @@ extern "C" {
           SCM    g_rc_parse_rc_config            (void);
 
 /* i_menu.c */
-          int    geda_iface_menu_return_num      (void);
-          SCM    geda_iface_menu_return_entry    (int index, char **menu_name);
-         char   *geda_iface_menu_return_tooltip  (const char *action);
           int    geda_iface_menu_add_entry       (char *new_menu, SCM menu_items);
-         void    geda_iface_menu_print           (void);
          void    geda_iface_menu_free            (void);
          void    geda_iface_menu_init            (void);
+         void    geda_iface_menu_print           (void);
+          SCM    geda_iface_menu_return_entry    (int index, char **menu_name);
+          int    geda_iface_menu_return_num      (void);
+         char   *geda_iface_menu_return_tooltip  (const char *action);
 
 /* i_vars.c */
          void    geda_iface_vars_set             (GedaToplevel *toplevel);
