@@ -4103,8 +4103,9 @@ void geda_menu_popup (GedaMenu         *menu,
       tmp = geda_get_widget_parent(tmp);
     }
 
-    if (viewable)
+    if (viewable) {
       xgrab_shell = parent;
+    }
 
     parent = ((GedaMenuShell*)parent)->parent_menu_shell;
   }
