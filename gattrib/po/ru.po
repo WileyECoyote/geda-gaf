@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gattrib\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-07 20:14-0600\n"
+"POT-Creation-Date: 2020-03-28 15:59-0500\n"
 "PO-Revision-Date: 2014-03-08 20:49+0400\n"
 "Last-Translator: Vladimir Zhbanov <vzhbanov@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,7 +29,7 @@ msgid "Manipulate component attributes with gattrib"
 msgstr "Управление атрибутами компонента с помощью gattrib"
 
 # Could not open
-#: gattrib/src/f_export.c:81
+#: gattrib/src/f_export.c:77
 msgid "Could not open"
 msgstr "Не удалось открыть"
 
@@ -470,12 +470,12 @@ msgid "Find next"
 msgstr ""
 
 # Download file
-#: gattrib/src/x_fileselect.c:116
+#: gattrib/src/x_fileselect.c:112
 msgid "Loading file"
 msgstr "Загрузка файла"
 
 # Failed to load schematic
-#: gattrib/src/x_fileselect.c:122
+#: gattrib/src/x_fileselect.c:118
 msgid "Could not load schematic"
 msgstr "Не удалось загрузить схему"
 

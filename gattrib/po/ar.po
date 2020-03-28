@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-07 20:14-0600\n"
+"POT-Creation-Date: 2020-03-28 15:59-0500\n"
 "PO-Revision-Date: 2010-02-08 18:58+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -26,7 +26,7 @@ msgid "Manipulate component attributes with gattrib"
 msgstr "عالج سمات المكوّن ب‍ gattrib"
 
 # Could not open
-#: gattrib/src/f_export.c:81
+#: gattrib/src/f_export.c:77
 msgid "Could not open"
 msgstr "تعذر فتح"
 
@@ -450,11 +450,11 @@ msgstr ""
 msgid "Find next"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:116
+#: gattrib/src/x_fileselect.c:112
 msgid "Loading file"
 msgstr ""
 
-#: gattrib/src/x_fileselect.c:122
+#: gattrib/src/x_fileselect.c:118
 msgid "Could not load schematic"
 msgstr ""
 

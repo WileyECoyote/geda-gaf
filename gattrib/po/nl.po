@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-03-07 20:14-0600\n"
+"POT-Creation-Date: 2020-03-28 15:59-0500\n"
 "PO-Revision-Date: 2014-08-31 20:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -29,7 +29,7 @@ msgid "Manipulate component attributes with gattrib"
 msgstr "Manipuleer componenten attributen met gattrib"
 
 # Unable to open
-#: gattrib/src/f_export.c:81
+#: gattrib/src/f_export.c:77
 msgid "Could not open"
 msgstr "Kan niet openen"
 
@@ -474,12 +474,12 @@ msgid "Find next"
 msgstr ""
 
 # Loading file
-#: gattrib/src/x_fileselect.c:116
+#: gattrib/src/x_fileselect.c:112
 msgid "Loading file"
 msgstr "Laad bestand"
 
 # Could not load schematic
-#: gattrib/src/x_fileselect.c:122
+#: gattrib/src/x_fileselect.c:118
 msgid "Could not load schematic"
 msgstr "Kon niet schematische laden"
 
