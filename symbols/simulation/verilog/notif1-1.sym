@@ -11,9 +11,9 @@ pinnumber=OUTW
 T 915 600 5 8 0 0 0 0 1
 pinseq=1
 T 915 600 5 8 0 1 0 0 1
-pintype=io
-T 915 600 5 8 0 1 0 0 1
 pinlabel=OUTW
+T 915 600 5 8 0 1 0 0 1
+pintype=out
 }
 P 300 500 0 500 1 0 1
 {
@@ -22,9 +22,9 @@ pinnumber=INW
 T 0 600 5 8 0 0 0 0 1
 pinseq=2
 T 0 600 5 8 0 1 0 0 1
-pintype=io
-T 0 600 5 8 0 1 0 0 1
 pinlabel=INW
+T 0 600 5 8 0 1 0 0 1
+pintype=in
 }
 P 0 900 300 900 1 0 0
 {
@@ -33,15 +33,17 @@ pinnumber=CONTROLW
 T 50 950 5 10 0 0 0 0 1
 pinseq=3
 T 50 950 5 10 0 1 0 0 1
-pintype=io
-T 50 950 5 10 0 1 0 0 1
 pinlabel=CONTROLW
+T 50 950 5 10 0 1 0 0 1
+pintype=in
 }
 L 600 900 600 625 3 0 0 0 -1 -1
 T 700 750 2 10 0 0 0 0 1
 comment=VERILOG_PORTS=POSITIONAL
 T 650 250 2 10 0 1 0 0 1
 device=notif1
+T 50 1325 5 10 0 1 0 0 1
+description=Verilog notif1
 T 500 300 5 10 1 1 0 2 1
 refdes=U?
 T 600 100 9 10 0 0 0 0 1
