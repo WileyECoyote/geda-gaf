@@ -8,6 +8,7 @@
             * simulation/verilog/nor8-2.sym
             * simulation/verilog/nor9-1.sym
             * simulation/verilog/nor9-2.sym
+            * simulation/verilog/not-1.sym
 
 2020-03-22 Wiley E. Hill <wileyhill@gmail.com>
 
