@@ -4413,14 +4413,18 @@ GtkWidget *geda_menu_get_active (GedaMenu *menu)
       child = children->data;
       children = children->next;
 
-      if (GTK_BIN (child)->child)
+      if (GTK_BIN (child)->child) {
         break;
+      }
+
       child = NULL;
     }
 
     menu->old_active_menu_item = child;
-    if (menu->old_active_menu_item)
+
+    if (menu->old_active_menu_item) {
       g_object_ref (menu->old_active_menu_item);
+    }
   }
 
   return menu->old_active_menu_item;
