@@ -43,7 +43,6 @@
 #define GEDA_IS_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_MENU))
 #define GEDA_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GEDA_TYPE_MENU, GedaMenuClass))
 
-
 typedef struct _GedaMenu        GedaMenu;
 typedef struct _GedaMenuClass   GedaMenuClass;
 typedef struct _GedaMenuPriv    GedaMenuPriv;
