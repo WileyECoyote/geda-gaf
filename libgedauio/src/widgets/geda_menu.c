@@ -4328,7 +4328,7 @@ void geda_menu_popdown (GedaMenu *menu)
 
     gtk_widget_set_size_request (menu->tearoff_window, -1, -1);
 
-    if (GTK_BIN (menu->toplevel)->child) {
+    if (geda_get_child_widget (menu->toplevel)) {
 
       geda_menu_reparent (menu, menu->tearoff_hbox, TRUE);
     }
