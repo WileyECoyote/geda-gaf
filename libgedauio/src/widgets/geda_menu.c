@@ -4253,7 +4253,12 @@ void geda_menu_popup (GedaMenu         *menu,
   gtk_widget_show (menu->toplevel);
 
   if (xgrab_shell == widget) {
-    popup_grab_on_window (widget->window, activate_time, grab_keyboard); /* Should always succeed */
+
+    GdkWindow *window;
+
+    window = geda_get_widget_window (widget);
+
+    popup_grab_on_window (window, activate_time, grab_keyboard); /* Should always succeed */
   }
 
   gtk_grab_add ((GtkWidget*)menu);
