@@ -4410,10 +4410,10 @@ GtkWidget *geda_menu_get_active (GedaMenu *menu)
 
     while (children) {
 
-      child = children->data;
+      child    = children->data;
       children = children->next;
 
-      if (GTK_BIN (child)->child) {
+      if (geda_get_child_widget (child)) {
         break;
       }
 
