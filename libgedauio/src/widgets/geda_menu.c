@@ -4451,7 +4451,7 @@ void geda_menu_set_active (GedaMenu *menu, unsigned int index)
 
     child = tmp_list->data;
 
-    if (GTK_BIN (child)->child) {
+    if (geda_get_child_widget(child)) {
 
       if (menu->old_active_menu_item) {
         g_object_unref (menu->old_active_menu_item);
