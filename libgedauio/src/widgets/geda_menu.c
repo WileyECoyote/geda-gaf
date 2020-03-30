@@ -4353,6 +4353,7 @@ void geda_menu_popdown (GedaMenu *menu)
     if (!menu->tearoff_active) {
       geda_menu_scroll_to (menu, menu->saved_scroll_offset);
     }
+
     menu->tearoff_active = TRUE;
   }
   else {
@@ -4404,7 +4405,7 @@ GtkWidget *geda_menu_get_active (GedaMenu *menu)
 
   if (!menu->old_active_menu_item) {
 
-    child = NULL;
+    child    = NULL;
     children = ((GedaMenuShell*)menu)->children;
 
     while (children) {
