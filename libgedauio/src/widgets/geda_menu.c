@@ -3187,7 +3187,7 @@ static void geda_menu_class_init  (void *class, void *class_data)
   shell_class->insert                 = geda_menu_real_insert;
   shell_class->move_current           = geda_menu_move_current;
   shell_class->select_item            = geda_menu_select_item;
-  shell_class->submenu_placement      = GTK_LEFT_RIGHT;
+  shell_class->submenu_placement      = MENU_LEFT_RIGHT;
 
   geda_menu_parent_class = g_type_class_peek_parent (class);
 
