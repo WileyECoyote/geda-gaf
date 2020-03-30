@@ -4131,8 +4131,13 @@ void geda_menu_popup (GedaMenu         *menu,
   gtk_window_set_accept_focus (GTK_WINDOW (menu->toplevel), grab_keyboard);
 
   if (xgrab_shell && xgrab_shell != widget) {
+
+    GdkWindow *window;
+
+    window = geda_get_widget_window (xgrab_shell);
+
     ((GedaMenuShell*)xgrab_shell)->have_xgrab =
-      popup_grab_on_window (xgrab_shell->window, activate_time, grab_keyboard);
+    popup_grab_on_window (window, activate_time, grab_keyboard);
   }
   else {
 
