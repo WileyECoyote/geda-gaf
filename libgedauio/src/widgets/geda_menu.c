@@ -4312,8 +4312,8 @@ void geda_menu_popdown (GedaMenu *menu)
     }
 
     menu->old_active_menu_item = menu_shell->active_menu_item;
-    g_object_ref (menu->old_active_menu_item);
 
+    g_object_ref (menu->old_active_menu_item);
     geda_menu_shell_deselect (menu_shell);
   }
 
@@ -4456,7 +4456,9 @@ void geda_menu_set_active (GedaMenu *menu, unsigned int index)
       if (menu->old_active_menu_item) {
         g_object_unref (menu->old_active_menu_item);
       }
+
       menu->old_active_menu_item = child;
+
       g_object_ref (menu->old_active_menu_item);
     }
   }
