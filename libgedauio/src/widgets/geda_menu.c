@@ -4732,11 +4732,13 @@ static void geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
     width += requisition -> width;
   }
 
+  requisition = geda_get_widget_requisition (menu);
+
   geometry_hints.min_width = width;
   geometry_hints.max_width = width;
 
   geometry_hints.min_height = 0;
-  geometry_hints.max_height = ((GtkWidget*)menu)->requisition.height;
+  geometry_hints.max_height = requisition -> height;
 
   gtk_window_set_geometry_hints ((GtkWindow*)menu->tearoff_window,
                                  NULL,
