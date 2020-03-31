@@ -1,3 +1,8 @@
+2020-03-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/geda_gtk_compat.h: Do not define gtk_[h,v]scrollbar_new
+      unless Gtk > 2.
+
 2020-03-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Replace GTK_LEFT_RIGHT with MENU_LEFT_RIGHT.

@@ -359,8 +359,10 @@ void gdk_font_unref (GdkFont *font);
 #   define gtk_hpaned_new() gtk_paned_new(GTK_ORIENTATION_HORIZONTAL)
 
 /* Gtk[VH]Scrollbar */
+#if (GTK_MAJOR_VERSION > 2)
 #   define gtk_vscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, (adj))
 #   define gtk_hscrollbar_new(adj) gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, (adj))
+#endif
 
 #   define geda_get_container_border_width(w) gtk_container_get_border_width((GtkContainer*)w)
 
