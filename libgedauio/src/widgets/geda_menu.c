@@ -4717,16 +4717,19 @@ static void geda_menu_scrollbar_changed (GtkAdjustment *adjustment, GedaMenu *me
 
 static void geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
 {
-  GdkGeometry geometry_hints;
+  GdkGeometry     geometry_hints;
+  GtkRequisition *requisition;
 
   if (!menu->tearoff_window) {
     return;
   }
 
+  requisition = geda_get_widget_requisition (menu->tearoff_scrollbar);
+
   if (gtk_widget_get_visible (menu->tearoff_scrollbar)) {
 
     gtk_widget_size_request (menu->tearoff_scrollbar, NULL);
-    width += menu->tearoff_scrollbar->requisition.width;
+    width += requisition -> width;
   }
 
   geometry_hints.min_width = width;
