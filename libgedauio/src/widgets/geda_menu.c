@@ -4829,6 +4829,7 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
       if (!menu->tearoff_window) {
 
+        GtkRequisition *requisition;
         GtkWidget *toplevel;
 
         menu->tearoff_window = g_object_new (GTK_TYPE_WINDOW,
@@ -4861,7 +4862,9 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         menu->tearoff_hbox = gtk_hbox_new (FALSE, FALSE);
         geda_container_add (menu->tearoff_window, menu->tearoff_hbox);
 
-        window = geda_get_widget_window(menu);
+
+        requisition = geda_get_widget_requisition (menu);
+        window      = geda_get_widget_window (menu);
 
         if (window) {
 
@@ -4876,7 +4879,7 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 #endif
         }
         else {
-          height = ((GtkWidget*)menu)->requisition.height;
+          height = requisition->height;
         }
 
         menu->tearoff_adjustment =
