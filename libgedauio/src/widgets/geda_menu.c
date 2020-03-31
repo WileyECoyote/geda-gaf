@@ -4704,10 +4704,14 @@ static void geda_menu_refresh_accel_paths (GedaMenu *menu, bool group_changed)
 
 static void geda_menu_scrollbar_changed (GtkAdjustment *adjustment, GedaMenu *menu)
 {
+  int value;
+
   g_return_if_fail (GEDA_IS_MENU (menu));
 
-  if (adjustment->value != menu->scroll_offset) {
-    geda_menu_scroll_to (menu, adjustment->value);
+  value = geda_get_adjustment_value (adjustment);
+
+  if (value != menu->scroll_offset) {
+    geda_menu_scroll_to (menu, value);
   }
 }
 
