@@ -4777,7 +4777,7 @@ static void geda_menu_update_title (GedaMenu *menu)
 
       if (GEDA_IS_MENU_ITEM (attach_widget)) {
 
-        GtkWidget *child = GTK_BIN (attach_widget)->child;
+        GtkWidget *child = geda_get_child_widget (attach_widget);
 
         if (GTK_IS_LABEL (child)) {
           title = gtk_label_get_text ((GtkLabel*)child);
