@@ -4831,6 +4831,7 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
         GtkRequisition *requisition;
         GtkWidget *toplevel;
+        int upper;
 
         menu->tearoff_window = g_object_new (GTK_TYPE_WINDOW,
                                              "type", GTK_WINDOW_TOPLEVEL,
@@ -4900,7 +4901,9 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
                           menu->tearoff_scrollbar,
                           FALSE, FALSE, 0);
 
-        if (menu->tearoff_adjustment->upper > height) {
+        upper = geda_get_adjustment_upper (menu->tearoff_adjustment);
+
+        if (upper > height) {
           gtk_widget_show (menu->tearoff_scrollbar);
         }
 
