@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2 tab-width: 4 -*- */
 /* vi: set et ts=4 sw=2 sts=2: */
 /*
- * File: geda_threads.h
+ * File: geda_tree.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgedauio - gEDA's library for User Interface Objects
