@@ -4944,9 +4944,11 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
       gtk_widget_hide ((GtkWidget*)menu);
       gtk_widget_hide (menu->tearoff_window);
+
       if (GTK_IS_CONTAINER (menu->toplevel)) {
         geda_menu_reparent (menu, menu->toplevel, FALSE);
       }
+
       gtk_widget_destroy (menu->tearoff_window);
 
       menu->tearoff_window     = NULL;
