@@ -69,7 +69,7 @@ geda_main_context_invoke_full (GMainContext *context, int priority, GSourceFunc 
       g_main_context_release (context);
 
       if (notify != NULL) {
-	notify (data);
+        notify (data);
       }
     }
     else {
