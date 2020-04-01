@@ -4886,7 +4886,7 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
         menu->tearoff_adjustment =
                  geda_adjustment_new (0,
                                       0,
-                                      ((GtkWidget*)menu)->requisition.height,
+                                      requisition->height,
                                       MENU_SCROLL_STEP2,
                                       height >> 1, /* divide by 2 */
                                       height);
