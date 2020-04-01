@@ -45,9 +45,12 @@ geda_main_context_invoke_full (GMainContext *context, int priority, GSourceFunc 
   }
 
   if (g_main_context_is_owner (context)) {
+
     while (function (data));
-    if (notify != NULL)
+
+    if (notify != NULL) {
       notify (data);
+    }
   }
   else {
 
