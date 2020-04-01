@@ -4920,6 +4920,7 @@ void geda_menu_set_tearoff_state (GedaMenu *menu, bool torn_off)
 
 #else
 
+      /* The returned height value is not used here */
       gdk_drawable_get_size(window, &width, &height);
 
 #endif
