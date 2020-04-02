@@ -5332,7 +5332,7 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
      */
     submenu_direction = geda_menu_item_get_submenu_direction(menu_item);
 
-    if (submenu_direction == GTK_DIRECTION_RIGHT) {
+    if (submenu_direction == SUBMENU_DIR_RIGHT) {
 
       /* right */
       priv->navigation_x     = submenu_left;

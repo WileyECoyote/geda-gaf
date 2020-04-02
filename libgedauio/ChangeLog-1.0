@@ -2,6 +2,8 @@
 
     * include/geda_menu_enum.h: Define type SubmenuDirection enumeration.
 
+    * src/widgets/geda_menu.c: Replace GTK_DIRECTION_RIGHT with SUBMENU_DIR_RIGHT.
+
     * src/widgets/geda_menu_shell.c: Replace GTK_LEFT_RIGHT with MENU_LEFT_RIGHT.
 
 2020-03-31 Wiley E. Hill <wileyhill@gmail.com>
