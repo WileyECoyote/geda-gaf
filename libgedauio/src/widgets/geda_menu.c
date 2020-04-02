@@ -5283,8 +5283,9 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
   submenu = geda_menu_item_get_submenu_widget(menu_item);
 
-  if (!submenu)
+  if (!submenu) {
     return;
+  }
 
   priv         = menu->priv;
   event_widget = gtk_get_event_widget ((GdkEvent*) event);
