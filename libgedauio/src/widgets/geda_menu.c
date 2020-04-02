@@ -5281,15 +5281,14 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
   g_return_if_fail (event != NULL);
 
-  submenu = geda_menu_item_get_submenu_widget(menu_item);
+  submenu = geda_menu_item_get_submenu_widget (menu_item);
 
   if (!submenu) {
     return;
   }
 
-  priv         = menu->priv;
-  event_widget = gtk_get_event_widget ((GdkEvent*) event);
-  window       = geda_get_widget_window(submenu);
+  priv   = menu->priv;
+  window = geda_get_widget_window (submenu);
 
   gdk_window_get_origin (window, &submenu_left, &submenu_top);
 
@@ -5300,14 +5299,15 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
 #else
 
-  gdk_drawable_get_size(window, &width, &height);
+  gdk_drawable_get_size (window, &width, &height);
 
 #endif
 
   submenu_right  = submenu_left + width;
   submenu_bottom = submenu_top + height;
 
-  window =  geda_get_widget_window(event_widget);
+  event_widget = gtk_get_event_widget ((GdkEvent*) event);
+  window       = geda_get_widget_window (event_widget);
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
@@ -5315,7 +5315,7 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
 #else
 
-  gdk_drawable_get_size(window, &width, &height);
+  gdk_drawable_get_size (window, &width, &height);
 
 #endif
 
