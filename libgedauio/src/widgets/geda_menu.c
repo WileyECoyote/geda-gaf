@@ -5028,7 +5028,7 @@ GtkWidget *geda_menu_get_toplevel (GedaMenu *menu)
   attach = geda_menu_get_attach_widget (GEDA_MENU (menu));
 
   if (GEDA_IS_MENU_ITEM (attach)) {
-    attach = attach->parent;
+    attach = geda_get_widget_parent(attach);
   }
 
   if (GEDA_IS_MENU (attach)) {
