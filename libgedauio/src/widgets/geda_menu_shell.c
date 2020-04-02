@@ -702,7 +702,7 @@ static void geda_menu_shell_real_select_item (GedaMenuShell *menu_shell,
   pack_dir = PACK_DIRECTION (menu_shell);
 
   if (pack_dir == PACK_DIRECTION_TTB || pack_dir == PACK_DIRECTION_BTT) {
-    geda_menu_item_set_submenu_placement (active_menu_item, GTK_LEFT_RIGHT);
+    geda_menu_item_set_submenu_placement (active_menu_item, MENU_LEFT_RIGHT);
   }
   else {
     geda_menu_item_set_submenu_placement (active_menu_item,
