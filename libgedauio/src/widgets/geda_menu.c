@@ -5289,10 +5289,9 @@ geda_menu_set_submenu_navigation_region (GedaMenu         *menu,
 
   priv         = menu->priv;
   event_widget = gtk_get_event_widget ((GdkEvent*) event);
+  window       = geda_get_widget_window(submenu);
 
-  gdk_window_get_origin (submenu->window, &submenu_left, &submenu_top);
-
-  window =  geda_get_widget_window(submenu);
+  gdk_window_get_origin (window, &submenu_left, &submenu_top);
 
 #ifdef HAVE_GDK_WINDOW_GET_WIDTH
 
