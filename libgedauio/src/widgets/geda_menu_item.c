@@ -1108,11 +1108,11 @@ static void geda_menu_item_instance_init(GTypeInstance *instance, void *class)
 
   if (gtk_widget_get_direction ((GtkWidget*)menu_item) == GTK_TEXT_DIR_RTL)
   {
-    priv->submenu_direction = GTK_DIRECTION_LEFT;
+    priv->submenu_direction = SUBMENU_DIR_LEFT;
   }
   else
   {
-    priv->submenu_direction = GTK_DIRECTION_RIGHT;
+    priv->submenu_direction = SUBMENU_DIR_RIGHT;
   }
 
 #if (GTK_MAJOR_VERSION == 3)
