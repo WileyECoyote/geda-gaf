@@ -1771,6 +1771,7 @@
 (map-keys "V R"           "view-redraw")
 (map-keys "V D"           "view-documentation")
 (map-keys "V H"           "view-show-hidden")
+(map-keys "V T"           "view-show-inherited")
 (map-keys "V M"           "view-zoom-to-mag")
 (map-keys "V N"           "view-show-nets")
 (map-keys "V K"           "view-dark-colors")

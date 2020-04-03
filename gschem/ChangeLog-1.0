@@ -1,7 +1,7 @@
 2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add action "view-show-inherited" to the main
-      menu and assign "show-inherited" icon.
+      menu and assign "show-inherited" icon with hotkey sequence "V T".
 
 2020-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
