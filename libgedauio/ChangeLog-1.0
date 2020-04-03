@@ -1,3 +1,8 @@
+2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Remove validating GtkTreeModel in function
+      geda_combo_box_new_with_model and revise documentation to stipulate why.
+
 2020-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_menu_enum.h: Define type SubmenuDirection enumeration.

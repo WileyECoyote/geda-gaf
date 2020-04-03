@@ -5551,17 +5551,17 @@ GtkWidget *geda_combo_box_new_with_entry (void)
 }
 
 /*!
- * \brief Creates a new #GedaComboBox with GtkTreeModel
+ * \brief Creates a new #GedaComboBox with a given GtkTreeModel
  * \par Function Description
  *  Creates a new #GedaComboBox with the model initialized to model.
+ *  Note that the \a model object type is specified by the gobject
+ *  property parameter specifications.
  *
  * \returns a new #GedaComboBox.
  */
 GtkWidget *geda_combo_box_new_with_model (GtkTreeModel *model)
 {
   GedaComboBox *combo_box;
-
-  g_return_val_if_fail (GTK_IS_TREE_MODEL (model), NULL);
 
   combo_box = g_object_new (GEDA_TYPE_COMBO_BOX, "model", model, NULL);
 
