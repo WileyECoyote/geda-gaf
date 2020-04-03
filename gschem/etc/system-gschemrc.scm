@@ -1940,6 +1940,7 @@
 (map-icon "gaf-see-notes"              "view-documentation")
 ;;(map-icon "gtk-index"                  "view-documentation")
 (map-icon "show-hidden"                "view-show-hidden")
+(map-icon "show-inherited"             "view-show-inherited")
 (map-icon "geda-show-nets"             "view-show-nets")
 ;(map-icon "show-netnames"              "view-show-nets")
 
