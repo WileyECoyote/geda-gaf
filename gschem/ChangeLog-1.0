@@ -1,19 +1,17 @@
+2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Add action "view-show-inherited" to the main
+      menu.
+
 2020-03-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/de.po: Update German translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fa.po: Update Persian translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/sv.po: Update Swedish translations.
-
     * po/uk.po: Update Ukrainian translations.
 
 2020-03-21 Wiley E. Hill <wileyhill@gmail.com>

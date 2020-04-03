@@ -2212,26 +2212,27 @@
 ;;      menu item name               menu action             menu icon name              Menu Item Tooltip
 ;;
      `(
-        (,(N_ "_Redraw")             view-redraw            #f               ,(N_ "Redraw the current window"))
-        (,(N_ "_Pan")                view-pan               #f               ,(N_ "Activate Panning"))
+        (,(N_ "_Redraw")              view-redraw           #f               ,(N_ "Redraw the current window"))
+        (,(N_ "_Pan")                 view-pan              #f               ,(N_ "Activate Panning"))
 
-        (,(N_ "Zoom _All")           view-zoom-all          #f               ,(N_ "Zoom to the limits of the drawing area"))
-        (,(N_ "Zoom _Box")           view-zoom-box          #f               ,(N_ "Zoom to a Windowed region"))
-        (,(N_ "Zoom _Extents")       view-zoom-extents      #f               ,(N_ "Zoom to the extents of the drawing"))
-        (,(N_ "Zoom _In")            view-zoom-in           #f               ,(N_ "Increase the Zoom magnification"))
-        (,(N_ "Zoom _Out")           view-zoom-out          #f               ,(N_ "Decrease the Zoom magnification"))
-        (,(N_ "Zoom _Mag")           view-zoom-to-mag       #f               ,(N_ "Zoom to a specified level"))
-        (,(N_ "Zoom _Selection")     view-zoom-selected     #f               ,(N_ "Zoom to selected objects"))
-
-        ("SEPARATOR"                #f                      #f)
-        (,(N_ "D_ocumentation...")   view-documentation     #f               ,(N_ "View component documentation"))
-        (,(N_ "Show/Hide Inv Text")  view-show-hidden       #f               ,(N_ "Toggle hidden text attributes"))
-        (,(N_ "Show/Hide Net Names") view-show-nets         #f               ,(N_ "Toggle hidden net name attributes"))
+        (,(N_ "Zoom _All")            view-zoom-all         #f               ,(N_ "Zoom to the limits of the drawing area"))
+        (,(N_ "Zoom _Box")            view-zoom-box         #f               ,(N_ "Zoom to a Windowed region"))
+        (,(N_ "Zoom _Extents")        view-zoom-extents     #f               ,(N_ "Zoom to the extents of the drawing"))
+        (,(N_ "Zoom _In")             view-zoom-in          #f               ,(N_ "Increase the Zoom magnification"))
+        (,(N_ "Zoom _Out")            view-zoom-out         #f               ,(N_ "Decrease the Zoom magnification"))
+        (,(N_ "Zoom _Mag")            view-zoom-to-mag      #f               ,(N_ "Zoom to a specified level"))
+        (,(N_ "Zoom _Selection")      view-zoom-selected    #f               ,(N_ "Zoom to selected objects"))
 
         ("SEPARATOR"                #f                      #f)
-        (,(N_ "_Dark color scheme")  view-dark-colors       #f               ,(N_ "Set the color map to the Dark set"))
-        (,(N_ "_Light color scheme") view-light-colors      #f               ,(N_ "Set the color map to the Light set"))
-        (,(N_ "B_W color scheme")    view-bw-colors         #f               ,(N_ "Set the color map to Black and White"))
+        (,(N_ "D_ocumentation...")    view-documentation    #f               ,(N_ "View component documentation"))
+        (,(N_ "Show/Hide Inv Text")   view-show-hidden      #f               ,(N_ "Toggle hidden text attributes"))
+        (,(N_ "Show/Hide Inheri_ted") view-show-inherited   #f               ,(N_ "Toggle inherited text attributes"))
+        (,(N_ "Show/Hide Net Names")  view-show-nets        #f               ,(N_ "Toggle hidden net name attributes"))
+
+        ("SEPARATOR"                #f                      #f)
+        (,(N_ "_Dark color scheme")   view-dark-colors      #f               ,(N_ "Set the color map to the Dark set"))
+        (,(N_ "_Light color scheme")  view-light-colors     #f               ,(N_ "Set the color map to the Light set"))
+        (,(N_ "B_W color scheme")     view-bw-colors        #f               ,(N_ "Set the color map to Black and White"))
       )
 )
 
