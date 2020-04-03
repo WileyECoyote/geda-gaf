@@ -119,8 +119,8 @@ char *geda_utility_string_concat (const char *string1, ...)
  * \brief Get Valid UTF8 string from string
  * \par Function Description
  *  Returns a new allocated utf8 encoding string containing valid
- *  chars from the array pointed to by \a instr. Chars following
- *  an invalid char are omitted.
+ *  characters from the array pointed to by \a instr. Characters
+ *  following an invalid char are omitted.
  *  This function provides the same functionality as g_utf8_make_valid
  *  which is not avaliable until glib 2.52.
  */
