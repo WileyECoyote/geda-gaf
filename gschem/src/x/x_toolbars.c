@@ -1240,6 +1240,7 @@ x_toolbars_get_box_container(GschemToplevel *w_current)
   else {
     widget = gtk_hbox_new (FALSE, 0);
   }
+
   return widget;
 }
 
@@ -1275,12 +1276,14 @@ x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   /* ---------------------- Create Top ToolBox ------------------ */
   GtkWidget *toolbox_DT = geda_dock_box_new (GTK_ORIENTATION_HORIZONTAL);
+
   GEDA_PACK_TOOLBOX (parent_container, toolbox_DT)
 
   /* --------- Create and Populate the Standard Toolbar -------- */
 
   /* Standard Toolbar*/
   w_current->standard_handlebox = x_toolbars_get_box_container(w_current);
+
   GEDA_PACK_DOCKBOX(toolbox_DT, w_current->standard_handlebox, 0);
 
   /* toolbar will be horizontal, with both icons and text, and with

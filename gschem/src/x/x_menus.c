@@ -985,7 +985,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
     g_signal_connect(menu_item, "torn-off", G_CALLBACK(x_menu_torn), w_current);
 
-
     /* Loop through all items subordinate to this top-level menu container */
     scm_items_len = (int) scm_ilength (scm_items);
 
@@ -2079,6 +2078,7 @@ static void x_menu_set_toggler(ToggleMenuData *toggler_data, bool state)
   else {
     BUG_MSG("invalid pointer [menubar]");
   }
+
   return;
 }
 
@@ -2103,7 +2103,9 @@ void x_menu_set_togglable(GschemToplevel *w_current, int toggle_id, bool state)
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
   void set_toggler(int index, bool value) {
+
     toggler_data = (ToggleMenuData*)g_slist_nth_data (TOGGLERS_LIST, index);
+
     if(toggler_data) {
       x_menu_set_toggler(toggler_data, value);
     }

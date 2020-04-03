@@ -468,6 +468,7 @@ void x_window_create_main(GschemToplevel *w_current)
   x_menu_set_togglable(w_current, RESET_TOGGLERS, 0);
 
   gtk_widget_realize (MainWidget);
+
   /* End Main Menu */
 
   if (w_current->toolbars) {
