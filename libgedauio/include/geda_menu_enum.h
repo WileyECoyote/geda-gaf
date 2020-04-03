@@ -30,7 +30,9 @@ typedef enum
   MENU_DIR_PREV
 } MenuDirection;
 
-/* Directions for submenus */
+/*!
+ * \typedef SubmenuDirection
+ * Directions for submenus */
 typedef enum
 {
   SUBMENU_DIR_LEFT,
