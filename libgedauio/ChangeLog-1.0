@@ -2,6 +2,7 @@
 
     * src/widgets/geda_combobox.c: Remove validating GtkTreeModel in function
       geda_combo_box_new_with_model and revise documentation to stipulate why.
+      Eliminate checking for NULL model in geda_combo_box_set_model.
 
 2020-04-02 Wiley E. Hill <wileyhill@gmail.com>
 
