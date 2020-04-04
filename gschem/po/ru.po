@@ -152,33 +152,39 @@ msgstr "Получение положения главного окна.\n"
 msgid "Retrieving main window geometry.\n"
 msgstr "Получение геометрии главного окна.\n"
 
+# Automatically restore; Avtomaticheski vosstanavlivat'
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "Автоматически восстанавливать"
 
+# Automatically restore the main window geometry
+# Avtomaticheski vosstanavlivat' geometriyu glavnogo okna
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
-msgstr ""
+msgstr "Автоматически восстанавливать геометрию главного окна"
 
+# Horizontal adjustment; Gorizontal'naya regulirovka
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "Горизонтальная регулировка"
 
 #: gschem/src/base/gschem_page_view.c:258
 #: gschem/src/base/gschem_page_view.c:259
 msgid "Page"
 msgstr "Страница"
 
+# Page Geometry; Geometriya stranitsy
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "Геометрия страницы"
 
+# Vertical adjustment; Vertikal'naya regulirovka
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "Вертикальная регулировка"
 
 #: gschem/src/base/gschem_parsecmd.c:86
 #, c-format
@@ -364,10 +370,10 @@ msgstr ""
 "Устанавливает режим форматирования, используемый для отображения координат в "
 "строке состояния"
 
-# Grid Mode
+# Grid Mode; Rezhim setki
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr "Сетка режиме:"
+msgstr "Режим сетки"
 
 # Sets the Grid Mode to display on the status bar
 # Ustanavlivayet rezhim setki dlya otobrazheniya v stroke sostoyaniya
@@ -375,10 +381,10 @@ msgstr "Сетка режиме:"
 msgid "Sets the Grid Mode to display on the status bar"
 msgstr "Устанавливает режим сетки для отображения в строке состояния"
 
-# Grid
+# Grid Size; Razmer setki
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr "Сетка:"
+msgstr "Размер сетки"
 
 # Sets the Grid Size to display on the status bar
 # Ustanavlivayet razmer setki dlya otobrazheniya v stroke sostoyaniya
@@ -538,9 +544,10 @@ msgstr "Закрытие"
 msgid "Skipping"
 msgstr "Пропуская"
 
+# entry in rc file; zapis' v fayle rc
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "запись в файле rc"
 
 # Bad Value
 #: gschem/src/guile/g_rc.c:123
