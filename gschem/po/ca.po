@@ -443,26 +443,31 @@ msgstr "Mida de captura"
 msgid "Sets the Snap Size to display on the status bar"
 msgstr "Estableix la mida de l’enganxada a mostrar a la barra d’estat"
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "Text d'estat"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Definiu la cadena per al text a la barra d'estat"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "Estat de l’estat"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Alçada de la barra d'estat"
 
+# Set or get the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Definiu o obteniu l'alçada de la barra d'estat"
 
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
