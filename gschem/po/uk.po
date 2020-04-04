@@ -336,45 +336,58 @@ msgstr "допомога для отримання додаткової інфо
 msgid "Run"
 msgstr "Запустіть"
 
+# Preview Buffer; Poperedniy perehlyad bufera
 #: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Попередній перегляд буфера"
 
+# Filename; Im'ya faylu
 #: gschem/src/base/gschem_preview.c:529 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
-msgstr ""
+msgstr "Ім'я файлу"
 
+# name of file to be previewed; nazva faylu dlya poperednʹoho perehlyadu
 #: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "назва файлу для попереднього перегляду"
 
+# Object List; Spysok ob'yektiv
 #: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
-msgstr ""
+msgstr "Список об'єктів"
 
+# List of objects to be previewed
+# Spysok ob'yektiv dlya poperednʹoho perehlyadu
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Список об'єктів для попереднього перегляду"
 
+# Active; Aktyvnyy
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
-msgstr ""
+msgstr "Активний"
 
+# Whether the preview widget is enabled or disabled
+# Uvimkneno abo vidklyucheno vidzhet dlya poperednʹoho perehlyadu
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Увімкнено або відключено віджет для попереднього перегляду"
 
+# Large size; Velykyy rozmir
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Великий розмір"
 
+# Whether the preview widget should be large or small
+# Budʹ vidzhet dlya poperednʹoho perehlyadu maye buty velykym chy malym
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Будь віджет для попереднього перегляду має бути великим чи малим"
 
+# Coordinates Mode; Rezhym koordynat
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
-msgstr ""
+msgstr "Режим координат"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
