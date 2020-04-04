@@ -734,33 +734,41 @@ msgstr "Възникна грешка. Запазване не бе успешн
 msgid "Write Image"
 msgstr "Запиши Снимката"
 
+# Write PDF; Napishete PDF
 #: gschem/src/iface/i_command.c:1145
 msgid "Write PDF"
-msgstr ""
+msgstr "Напишете PDF"
 
+# Canceled close all; Otmeneno zatvaryane na vsichki
 #: gschem/src/iface/i_command.c:1241
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Отменено затваряне на всички\n"
 
 #: gschem/src/iface/i_command.c:1250 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Затваряне на всички документи\n"
 
+# starting shut-down; zapochvane na izklyuchvane
 #: gschem/src/iface/i_command.c:1273
 msgid "starting shut-down"
-msgstr ""
+msgstr "започване на изключване"
 
+# Symbol is not embedded, export anyway
+# Simvolŭt ne e vgraden, eksportŭt vse pak?
 #: gschem/src/iface/i_command.c:1287
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "Символът не е вграден, експортът все пак?"
 
+# Picture is not embedded, export anyway?
+# Kartinata ne e vgradena, eksportŭt vse pak?
 #: gschem/src/iface/i_command.c:1311
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "Картината не е вградена, експортът все пак?"
 
+# Empty buffer; Prazen bufer
 #: gschem/src/iface/i_command.c:1458
 msgid "Empty buffer"
-msgstr ""
+msgstr "Празен буфер"
 
 # offset mode
 #: gschem/src/iface/i_command.c:1723
@@ -777,36 +785,42 @@ msgstr "Посочете компенсира разстояние:"
 msgid "Zoom Magnification"
 msgstr "варио увеличение"
 
+# Specify new zoom; Posochete novo uvelichenie
 #: gschem/src/iface/i_command.c:2320
 msgid "Specify new zoom:"
-msgstr ""
+msgstr "Посочете ново увеличение:"
 
+# Check path; Proverete pŭtya
 #: gschem/src/iface/i_command.c:2362 gschem/src/iface/i_command.c:4703
 #: gschem/src/iface/i_command.c:4733 gschem/src/iface/i_command.c:4754
 #: gschem/src/iface/i_command.c:4774
 msgid "Check path:"
-msgstr ""
+msgstr "Проверете пътя:"
 
 # error
 #: gschem/src/iface/i_command.c:2373
 msgid "error"
 msgstr "грешка"
 
+# No component selected; Ne e izbran komponent
 #: gschem/src/iface/i_command.c:2384
 msgid "No component selected\n"
-msgstr ""
+msgstr "Не е избран компонент\n"
 
+# Confirm revert ALL documents; Potvŭrdete vŭzstanovyavane na VSICHKI dokumenti
 #: gschem/src/iface/i_command.c:2929
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "Потвърдете възстановяване на ВСИЧКИ документи"
 
+# Searching for source; Tŭrsene na iztochnik
 #: gschem/src/iface/i_command.c:3111
 msgid "Searching for source"
-msgstr ""
+msgstr "Търсене на източник"
 
+# Failed to descend into; Ne uspya da sleze v
 #: gschem/src/iface/i_command.c:3146
 msgid "Failed to descend into"
-msgstr ""
+msgstr "Не успя да слезе в"
 
 #: gschem/src/iface/i_command.c:3155
 msgid "Hierarchy Error"

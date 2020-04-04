@@ -1,3 +1,7 @@
+2020-04-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/bg.po: Update Bulgarian translations.
+
 2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add action "view-show-inherited" to the main
