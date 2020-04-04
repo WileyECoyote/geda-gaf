@@ -439,26 +439,31 @@ msgstr "Snap-koko"
 msgid "Sets the Snap Size to display on the status bar"
 msgstr "Asettaa napsautuskoon näytettäväksi tilarivillä"
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "Tilateksti"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Aseta tekstijono tilariville"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "Tilatila"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Tilarivin korkeus"
 
+# Set or get the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Aseta tai saat tilarivin korkeus"
 
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
