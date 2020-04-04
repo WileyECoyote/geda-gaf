@@ -313,45 +313,53 @@ msgstr "hjälp för mer information"
 msgid "Run"
 msgstr "Kör"
 
+# Preview Buffer
 #: gschem/src/base/gschem_preview.c:295
 msgid "Preview Buffer"
-msgstr ""
+msgstr "Förhandsgranska buffert"
 
 #: gschem/src/base/gschem_preview.c:529 gschem/src/x/x_pagesel.c:1145
 msgid "Filename"
-msgstr ""
+msgstr "Filnamn"
 
+# name of file to be previewed
 #: gschem/src/base/gschem_preview.c:530
 msgid "name of file to be previewed"
-msgstr ""
+msgstr "namnet på filen som ska förhandsgranskas"
 
+# Object List
 #: gschem/src/base/gschem_preview.c:537
 msgid "Object List"
-msgstr ""
+msgstr "Objektlista"
 
+# List of objects to be previewed
 #: gschem/src/base/gschem_preview.c:538
 msgid "List of objects to be previewed"
-msgstr ""
+msgstr "Lista med objekt som ska förhandsgranskas"
 
 #: gschem/src/base/gschem_preview.c:545
 msgid "Active"
-msgstr ""
+msgstr "Aktiva"
 
+# Whether the preview widget is enabled or disabled
 #: gschem/src/base/gschem_preview.c:546
 msgid "Whether the preview widget is enabled or disabled"
-msgstr ""
+msgstr "Oavsett om förhandsgranskningswidget är aktiverad eller inaktiverad"
 
+# Large size
 #: gschem/src/base/gschem_preview.c:553
 msgid "Large size"
-msgstr ""
+msgstr "Stor storlek"
 
+# Whether the preview widget should be large or small
 #: gschem/src/base/gschem_preview.c:554
 msgid "Whether the preview widget should be large or small"
-msgstr ""
+msgstr "Oavsett om förhandsgranskningswidgeten ska vara stor eller liten"
 
+# Coordinates Mode
 #: gschem/src/base/gschem_status_bar.c:584
 msgid "Coordinates Mode"
-msgstr ""
+msgstr "Koordinatsläge"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
