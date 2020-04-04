@@ -6,6 +6,8 @@
 
     * po/da.po: Update Danish translations.
 
+    * po/fa.po: Update Persian translations.
+
 2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add action "view-show-inherited" to the main

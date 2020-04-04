@@ -768,7 +768,7 @@ msgstr "بافر خالی"
 
 #: gschem/src/iface/i_command.c:1723
 msgid "Offset Mode"
-msgstr "Select Mode"
+msgstr "حالت را انتخاب کنید"
 
 #: gschem/src/iface/i_command.c:1724
 msgid "Specify offset distance:"
@@ -798,17 +798,20 @@ msgstr "خطا"
 msgid "No component selected\n"
 msgstr "هیچ مؤلفه ای انتخاب نشده است\n"
 
+# Confirm revert ALL documents
 #: gschem/src/iface/i_command.c:2929
 msgid "Confirm revert ALL documents"
-msgstr ""
+msgstr "برگرداندن همه اسناد را تأیید کنید"
 
+# Searching for source
 #: gschem/src/iface/i_command.c:3111
 msgid "Searching for source"
-msgstr ""
+msgstr "در جستجوی منبع"
 
+# Failed to descend into
 #: gschem/src/iface/i_command.c:3146
 msgid "Failed to descend into"
-msgstr ""
+msgstr "فرود در نشد"
 
 #: gschem/src/iface/i_command.c:3155
 msgid "Hierarchy Error"
