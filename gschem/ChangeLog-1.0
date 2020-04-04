@@ -14,6 +14,8 @@
 
     * po/sv.po: Update Swedish translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/system-gschemrc.scm: Add action "view-show-inherited" to the main
