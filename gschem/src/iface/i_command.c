@@ -153,6 +153,10 @@ static int get_action_status(int index)
   return ret_val;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static void set_action_status(int index, int state)
 {
   g_mutex_lock((GMutex*)&i_lock_action_status);
@@ -160,6 +164,10 @@ static void set_action_status(int index, int state)
   g_mutex_unlock((GMutex*)&i_lock_action_status);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static int get_last_command()
 {
   int ret_val;
@@ -169,6 +177,10 @@ static int get_last_command()
   return ret_val;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static void set_last_command(int value)
 {
   g_mutex_lock((GMutex*)&i_lock_last_command);
@@ -176,6 +188,10 @@ static void set_last_command(int value)
   g_mutex_unlock((GMutex*)&i_lock_last_command);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static bool i_command_dispatch(gschem_task *task)
 {
   scm_dynwind_begin (0);
@@ -187,6 +203,10 @@ static bool i_command_dispatch(gschem_task *task)
   return FALSE;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static
 void i_command_router(char *command, GschemToplevel *w_current)
 {
@@ -248,7 +268,10 @@ void i_command_router(char *command, GschemToplevel *w_current)
   return;
 }
 
-/*! Enable multitasking mode */
+/*! \todo Finish function documentation!!!
+ *  \brief Enable multitasking mode
+ *  \par Function Description
+ */
 void i_command_engage(GschemToplevel *w_current)
 {
   GError *err = NULL;
@@ -270,7 +293,10 @@ void i_command_engage(GschemToplevel *w_current)
   return;
 }
 
-/*! Disable multitasking mode */
+/*! \todo Finish function documentation!!!
+ *  \brief Disable multitasking mode
+ *  \par Function Description
+ */
 void i_command_disengage(bool immediate, bool wait_return)
 {
   if (CommandPool) {
@@ -300,6 +326,10 @@ void i_command_get_action_list(GList** list)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 const char *i_command_get_action_icon (const char *command)
 {
   const char *icon_id = NULL;
@@ -346,6 +376,10 @@ const char *i_command_get_action_icon (const char *command)
   return icon_id;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void i_command_get_command_list(GList** list)
 {
   int i;
@@ -355,6 +389,10 @@ void i_command_get_command_list(GList** list)
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 bool i_command_is_valid(const char *command)
 {
   int i;
@@ -370,6 +408,10 @@ bool i_command_is_valid(const char *command)
   return result;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 bool i_command_map_icon  (const char *command, const char *icon)
 {
   int i;
@@ -407,7 +449,11 @@ bool i_command_map_icon  (const char *command, const char *icon)
   return result;
 }
 
-/* Main Command Processor */
+/*! \todo Finish function documentation!!!
+ *  \brief Main Command Processor
+ *  \par Function Description
+ *
+ */
 void i_command_process(GschemToplevel *w_current, const char *command,
                        int narg, char *arg, EID_ACTION_ORIGIN who)
 {
@@ -507,6 +553,10 @@ void i_command_process(GschemToplevel *w_current, const char *command,
   return;
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 void i_command_shutdown(void)
 {
   int i;
@@ -523,12 +573,20 @@ void i_command_shutdown(void)
   gschem_threads_leave();
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static inline void msg_need_select_1st(GschemToplevel *w_current)
 {
   char *message = MSG_SELECT_Object_1ST;
   i_status_set_state_msg(w_current, SELECT, message);
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static inline void action_err(char *var)
 {
   geda_log_v("%s %s %s!\n", _("Cannot"), var, _("while inside an action!\n"));
@@ -537,6 +595,10 @@ static inline void action_err(char *var)
 #define NO_ACTION(symbol) if (w_current->inside_action) \
                           return action_err(command_struc[cmd_##symbol].repeat)
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static inline void null_err(char *var)
 {
   geda_log("internal error, i_command: variable <%s> can not be NULL\n", var);
@@ -544,6 +606,10 @@ static inline void null_err(char *var)
 
 #define NOT_NULL(symbol) if (!symbol) return null_err(#symbol)
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static inline void BlockThread (int index)
 {
   int deadman = 0;
@@ -558,6 +624,10 @@ static inline void BlockThread (int index)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ */
 static inline char *tokenizer( int index, int *argc, char **argv[])
 {
   char *arg;
