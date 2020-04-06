@@ -1,6 +1,7 @@
 2020-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_command.c: Add todo documentation templates.
+    * src/iface/i_command.c: Add todo documentation templates and update
+      documentation for function: get_action_status.
 
 2020-04-04 Wiley E. Hill <wileyhill@gmail.com>
 

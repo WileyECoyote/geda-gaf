@@ -144,6 +144,19 @@ static GThreadPool  *CommandPool     = NULL;
 static int           is_engaged      = -1;
 static int           last_command    =  0;
 
+/*!
+ * \brief Retrieve command_struc[i].status value
+ * \par Function Description
+ *  All action commands accepting arguments utilize macros such
+ *  as BEGIN_COMMAND, which call BlockThread() to set the status
+ *  flag. Subsequent threads will be blocked from executing the
+ *  action command until the status flag is cleared by calling
+ *  set_action_status, which in incorporated in the EXIT_COMMAND
+ *  macro. This function retrieves the current status utilizing
+ *  mutex blocking.
+ *
+ * \see BlockThread
+ */
 static int get_action_status(int index)
 {
   int ret_val;
