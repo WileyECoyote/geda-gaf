@@ -14,6 +14,8 @@
 
             * simulation/verilog/nand6-2.sym
 
+            * simulation/verilog/nand7-1.sym
+
 2020-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update pin type attributes:
