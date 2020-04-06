@@ -57,9 +57,10 @@ STRING_LIST *s_string_list_new() {
   return local_string_list;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Replease STRING_LIST resources
+ * \par Function Description
+ *  Repleases STRING_LIST \a strlist and all string records
  */
 void s_string_list_free(STRING_LIST *strlist)
 {
