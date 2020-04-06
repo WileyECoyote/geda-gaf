@@ -97,7 +97,7 @@ typedef struct {
 static struct {
    char *name;                               /* name = command = action str */
    char *repeat;                             /* if repeatable, then - str for status */
-   unsigned char status;                     /* set inside hander, used for blocking */
+   unsigned char status;                     /* set inside handler, used for blocking */
    unsigned char aflag;                      /* see note #1 in i_command.h */
    void (*func) (GschemToplevel *w_current); /* ptr to action handler function */
    int   who;                                /* enumerated caller */
