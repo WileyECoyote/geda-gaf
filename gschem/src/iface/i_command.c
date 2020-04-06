@@ -214,11 +214,15 @@ static void set_last_command(int value)
 static bool i_command_dispatch(gschem_task *task)
 {
   scm_dynwind_begin (0);
+
   g_dynwind_window (task->arg1); /* w_current */
-  if (task->arg2) task->func.F2(task->arg1,task->arg2);
-  else task->func.F1(task->arg1);
+
+  if (task->arg2) { task->func.F2(task->arg1,task->arg2); }
+  else { task->func.F1(task->arg1); }
+
   scm_dynwind_end ();
   GEDA_FREE(task);
+
   return FALSE;
 }
 
