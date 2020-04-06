@@ -4290,12 +4290,12 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
  */
 GList *x_dialog_sym_not_embedded(GschemToplevel *w_current, GList *syms)
 {
-  GList     *items;
-  GList     *iter;
-
-  items = NULL;
-
   if (syms && (g_list_length(syms) > 1)) {
+
+    GList *items;
+    GList *iter;
+
+    items = NULL;
 
     for (iter = syms; iter; iter = iter->next) {
 
@@ -4303,9 +4303,7 @@ GList *x_dialog_sym_not_embedded(GschemToplevel *w_current, GList *syms)
 
       if (object != NULL) {
 
-        const char *filename;
-
-        filename = NULL;
+        const char *filename = NULL;
 
         if (object->type == OBJ_COMPLEX) {
           filename = geda_complex_object_get_filename(object);
