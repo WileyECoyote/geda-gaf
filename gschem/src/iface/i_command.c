@@ -244,7 +244,8 @@ void i_command_router(char *command, GschemToplevel *w_current)
       task->func.F1 = (void*)command_struc[i].func;
       task->arg1 = command_struc[i].w_current;
       task->arg2 = NULL;
-      geda_main_context_invoke (NULL, (void*) i_command_dispatch, task);
+
+      geda_main_context_invoke (NULL, (void*)i_command_dispatch, task);
     }
     else /* USE_WORKER_THREAD */ {
       gschem_threads_enter();
@@ -548,7 +549,7 @@ void i_command_process(GschemToplevel *w_current, const char *command,
       /* Fill in parameter arguments for this task */
       command_struc[i].narg      = narg;
       command_struc[i].who       = who;
-      command_struc[i].sarg      = (unsigned char *) geda_strdup(arg);
+      command_struc[i].sarg      = (unsigned char*)geda_strdup(arg);
       command_struc[i].w_current = w_current;
 
 #ifdef PERFORMANCE
