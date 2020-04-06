@@ -166,9 +166,15 @@ static int get_action_status(int index)
   return ret_val;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Set command_struc[i].status value
+ * \par Function Description
+ *  This function sets the status flag in the command_struc
+ *  at the given \a index to the given \a state.
+ *
+ * \see BEGIN_COMMAND and EXIT_COMMAND
+ *
+ * \sa get_action_status
  */
 static void set_action_status(int index, int state)
 {
