@@ -1,3 +1,9 @@
+2020-04-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update pin type attributes:
+
+            * simulation/verilog/and6-2.sym
+
 2020-03-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update pin type attributes:
