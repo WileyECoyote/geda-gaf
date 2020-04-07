@@ -5563,7 +5563,9 @@ static void geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
 
   if (private->initially_pushed_in) {
 
-    int menu_height = ((GtkWidget*)menu)->requisition.height;
+    int menu_height;
+
+    gtk_widget_get_size_request (widget, NULL, &menu_height);
 
     if (y + menu_height > monitor.y + monitor.height) {
       scroll_offset -= y + menu_height - (monitor.y + monitor.height);
