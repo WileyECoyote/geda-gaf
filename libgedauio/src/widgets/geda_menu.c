@@ -5648,20 +5648,32 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
   int          border_width;
   int          menu_height;
   int          view_width, view_height;
+
   int          x, y;
   bool         double_arrows;
   GtkBorder    arrow_border;
 
   widget = (GtkWidget*)menu;
 
-  if (menu->tearoff_active &&
-      menu->tearoff_adjustment &&
-     (menu->tearoff_adjustment->value != offset))
-  {
-    menu->tearoff_adjustment->value =
-      CLAMP (offset, 0, menu->tearoff_adjustment->upper -
-                        menu->tearoff_adjustment->page_size);
-    gtk_adjustment_value_changed (menu->tearoff_adjustment);
+  if (menu->tearoff_active && menu->tearoff_adjustment) {
+
+    int value = geda_get_adjustment_value (menu->tearoff_adjustment);
+
+    if (value != offset) {
+
+      double new_value;
+      double page_size;
+      double upper;
+
+      upper     = geda_get_adjustment_upper (menu->tearoff_adjustment);
+      page_size = geda_get_adjustment_page_size (menu->tearoff_adjustment);
+
+      new_value = CLAMP (offset, 0, upper - page_size);
+
+      geda_set_adjustment_value (menu->tearoff_adjustment, new_value);
+
+      gtk_adjustment_value_changed (menu->tearoff_adjustment);
+    }
   }
 
   /* Move/resize the viewport according to arrows: */

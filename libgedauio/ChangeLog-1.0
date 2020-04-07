@@ -1,7 +1,13 @@
 2020-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_position to use accessor
-      gtk_widget_get_size_request.
+      gtk_widget_get_size_request. Utilize macro:
+
+          * geda_get_adjustment_value
+          * geda_get_adjustment_upper
+          * geda_get_adjustment_page_size
+          * geda_set_adjustment_value
+
 
 2020-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
