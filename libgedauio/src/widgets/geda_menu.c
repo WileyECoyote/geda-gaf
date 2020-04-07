@@ -5444,7 +5444,7 @@ static void geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
     int  ythickness;
     bool rtl;
 
-    xthickness = widget->style->xthickness;
+    xthickness = geda_get_widget_style(widget)->xthickness;
     ythickness = widget->style->ythickness;
     rtl        = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
 
