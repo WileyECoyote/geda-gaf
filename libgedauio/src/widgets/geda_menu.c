@@ -5445,7 +5445,7 @@ static void geda_menu_position (GedaMenu *menu, bool set_scroll_offset)
     bool rtl;
 
     xthickness = geda_get_widget_style(widget)->xthickness;
-    ythickness = widget->style->ythickness;
+    ythickness = geda_get_widget_style(widget)->ythickness;
     rtl        = (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL);
 
     /* The placement of popup menus horizontally works like this (with
