@@ -213,7 +213,7 @@ int check_accessors(void)
 
     int direct = geda_menu_item_get_submenu_direction (menu_item);
 
-    if (direct != GTK_DIRECTION_RIGHT) {
+    if (direct != SUBMENU_DIR_RIGHT) {
       fprintf(stderr, "FAILED: line <%d> %s; submenu direction <%d>\n", __LINE__, TWIDGET, direct);
       result++;
     }

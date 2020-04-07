@@ -3052,7 +3052,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         priv->submenu_direction = SUBMENU_DIR_RIGHT;
       }
       else {
-        priv->submenu_direction = SUBMENU_DIR_LEFT;
+        priv->submenu_direction = GTK_DIRECTION_LEFT;
         tx += widget->allocation.width - twidth;
       }
 
