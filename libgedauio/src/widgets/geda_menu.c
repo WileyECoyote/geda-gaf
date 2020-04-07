@@ -5642,16 +5642,16 @@ static void geda_menu_stop_scrolling (GedaMenu *menu)
 
 static void geda_menu_scroll_to (GedaMenu *menu, int offset)
 {
-  GtkWidget   *widget;
-  unsigned int vertical_padding;
-  unsigned int horizontal_padding;
-  int          border_width;
-  int          menu_height;
-  int          view_width, view_height;
-
-  int          x, y;
-  bool         double_arrows;
-  GtkBorder    arrow_border;
+  GtkWidget     *widget;
+  GtkAllocation *allocation;
+   unsigned int  vertical_padding;
+   unsigned int  horizontal_padding;
+            int  border_width;
+            int  menu_height;
+            int  view_width, view_height;
+            int  x, y;
+           bool  double_arrows;
+      GtkBorder  arrow_border;
 
   widget = (GtkWidget*)menu;
 
@@ -5676,9 +5676,11 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
     }
   }
 
+ allocation = geda_get_widget_allocation(widget);
+
   /* Move/resize the viewport according to arrows: */
-  view_width  = widget->allocation.width;
   view_height = widget->allocation.height;
+  view_width  = allocation->width;
 
   gtk_widget_style_get (widget,
                         "vertical-padding", &vertical_padding,
