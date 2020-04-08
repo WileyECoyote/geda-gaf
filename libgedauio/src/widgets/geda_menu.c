@@ -5679,8 +5679,8 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
  allocation = geda_get_widget_allocation(widget);
 
   /* Move/resize the viewport according to arrows: */
-  view_height = widget->allocation.height;
   view_width  = allocation->width;
+  view_height = allocation->height;
 
   gtk_widget_style_get (widget,
                         "vertical-padding", &vertical_padding,
