@@ -5642,17 +5642,18 @@ static void geda_menu_stop_scrolling (GedaMenu *menu)
 
 static void geda_menu_scroll_to (GedaMenu *menu, int offset)
 {
-  GtkWidget     *widget;
-  GtkStyle      *style;
-  GtkAllocation *allocation;
-   unsigned int  vertical_padding;
-   unsigned int  horizontal_padding;
-            int  border_width;
-            int  menu_height;
-            int  view_width, view_height;
-            int  x, y;
-           bool  double_arrows;
-      GtkBorder  arrow_border;
+  GtkWidget      *widget;
+  GtkStyle       *style;
+  GtkAllocation  *allocation;
+  GtkRequisition *requisition
+    unsigned int  vertical_padding;
+    unsigned int  horizontal_padding;
+             int  border_width;
+             int  menu_height;
+             int  view_width, view_height;
+             int  x, y;
+            bool  double_arrows;
+       GtkBorder  arrow_border;
 
   widget = (GtkWidget*)menu;
 
@@ -5677,7 +5678,7 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
     }
   }
 
- allocation = geda_get_widget_allocation(widget);
+  allocation = geda_get_widget_allocation(widget);
 
   /* Move/resize the viewport according to arrows: */
   view_width  = allocation->width;
@@ -5691,11 +5692,11 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
   double_arrows = get_double_arrows (menu);
   border_width  = geda_get_container_border_width (menu);
   style         = geda_get_widget_style (menu);
+  requisition   = geda_get_widget_requisition (menu);
 
   view_width  -= (border_width + style->xthickness + horizontal_padding) * 2;
   view_height -= (border_width + style->ythickness + vertical_padding) * 2;
-  menu_height  = widget->requisition.height -
-                 (border_width + style->ythickness + vertical_padding) * 2;
+  menu_height  = requisition->height - (border_width + style->ythickness + vertical_padding) * 2;
 
   x = border_width + widget->style->xthickness + horizontal_padding;
   y = border_width + widget->style->ythickness + vertical_padding;
