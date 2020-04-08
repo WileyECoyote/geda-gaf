@@ -3095,7 +3095,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         if (direction == GTK_TEXT_DIR_LTR)
           priv->submenu_direction = GTK_DIRECTION_RIGHT;
         else
-          priv->submenu_direction = GTK_DIRECTION_LEFT;
+          priv->submenu_direction = SUBMENU_DIR_LEFT;
       }
 
       switch (priv->submenu_direction) {
