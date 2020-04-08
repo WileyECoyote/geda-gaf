@@ -5688,8 +5688,8 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
                         NULL);
 
   double_arrows = get_double_arrows (menu);
+  border_width  = geda_get_container_border_width (menu);
 
-  border_width = ((GtkContainer*)menu)->border_width;
   view_width  -= (border_width + widget->style->xthickness + horizontal_padding) * 2;
   view_height -= (border_width + widget->style->ythickness + vertical_padding) * 2;
   menu_height  = widget->requisition.height -
