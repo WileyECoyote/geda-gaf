@@ -5695,7 +5695,7 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
   view_width  -= (border_width + style->xthickness + horizontal_padding) * 2;
   view_height -= (border_width + style->ythickness + vertical_padding) * 2;
   menu_height  = widget->requisition.height -
-                 (border_width + widget->style->ythickness + vertical_padding) * 2;
+                 (border_width + style->ythickness + vertical_padding) * 2;
 
   x = border_width + widget->style->xthickness + horizontal_padding;
   y = border_width + widget->style->ythickness + vertical_padding;
