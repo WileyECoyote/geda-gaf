@@ -5949,6 +5949,7 @@ GtkWidget *geda_combo_box_new_text (void)
   g_object_unref (store);
 
   cell = gtk_cell_renderer_text_new ();
+
   gtk_cell_layout_pack_start ((GtkCellLayout*)combo_box, cell, TRUE);
   gtk_cell_layout_set_attributes ((GtkCellLayout*)combo_box, cell,
                                   "text", 0,  NULL);
@@ -5987,6 +5988,7 @@ GtkWidget *geda_combo_box_new_text_with_entry (void)
 
   model     = GTK_TREE_MODEL(gtk_list_store_new (1, G_TYPE_STRING));
   entry_box = geda_combo_box_new_with_model_and_entry (model);
+
   g_object_unref (model);
 
   return entry_box;
@@ -6050,6 +6052,7 @@ char *geda_combo_box_get_active_text (GedaComboBox *combo_box)
   if (class->get_active_text) {
     return class->get_active_text (combo_box);
   }
+
   return NULL;
 }
 
