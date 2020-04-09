@@ -5571,8 +5571,8 @@ GtkWidget *geda_combo_box_new_with_model (GtkTreeModel *model)
 /*!
  * \brief Creates a new #GedaComboBox with Entry and GtkTreeModel
  * \par Function Description
- *  Creates a new empty #GedaComboBox with an entry
- *  and with the model initialized to model.
+ *  Creates a new empty #GedaComboBox with an entry and with the
+ *  model initialized to \a model.
  *
  * \returns a new #GedaComboBox
  */
@@ -5587,7 +5587,7 @@ GtkWidget *geda_combo_box_new_with_model_and_entry (GtkTreeModel *model)
 /*!
  * \brief Get Active #GedaComboBox item
  * \par Function Description
- *  Returns the index of the currently active item, or -1 if there's no
+ *  Returns the index of the currently active item, or -1 if there is no
  *  active item. If the model is a non-flat treemodel, and the active item
  *  is not an immediate child of the root of the tree, this function returns
  *  <b>gtk_tree_path_get_indices (path)[0]</b>, where
@@ -6033,8 +6033,8 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
  *
  * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
  *
- * \returns: a newly allocated string containing the currently active text,
- *           which should be release when no longer needed.
+ * \returns a newly allocated string containing the currently active text,
+ *          which should be release when no longer needed.
  *
  * If \a #GedaComboBox was constructed with geda_combo_box_new_text() then use
  * #GedaComboBoxText and geda_combo_box_text_get_active_text() instead. Or if
@@ -6163,8 +6163,9 @@ void geda_combo_box_prepend_text (GedaComboBox *combo_box, const char *text)
 /*!
  * \brief Remove Text from a GedaComboBox
  * \par Function Description
- *  Removes the string at \a position from \a combo_box. Note that you can only use
- *  this function with combo boxes constructed with geda_combo_box_new_text().
+ *  Removes the string at \a position from \a combo_box. Note that
+ *  this function can only used with combo boxes constructed with
+ *  geda_combo_box_new_text().
  *
  * \param [in] combo_box A #GedaComboBox constructed with geda_combo_box_new_text()
  * \param [in] position  Index of the item to remove
