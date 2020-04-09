@@ -6294,8 +6294,7 @@ static void geda_combo_box_entry_contents_changed (GedaEntry *entry,
 }
 
 static void
-geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
-                                     void         *nothing)
+geda_combo_box_entry_active_changed (GedaComboBox *combo_box, void *nothing)
 {
   GtkTreeIter iter;
 
@@ -6408,8 +6407,7 @@ static bool popup_idle (void * data)
 }
 
 static void
-geda_combo_box_start_editing (GtkCellEditable *cell_editable,
-                              GdkEvent        *event)
+geda_combo_box_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (cell_editable);
 
