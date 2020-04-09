@@ -6013,7 +6013,7 @@ void geda_combo_box_append_text (GedaComboBox *combo_box, const char *text)
   g_return_if_fail (GTK_IS_LIST_STORE (combo_box->priv->model));
   g_return_if_fail (gtk_tree_model_get_column_type (combo_box->priv->model, 0)
                     == G_TYPE_STRING);
-  g_return_if_fail (text != NULL);
+  g_return_if_fail (g_utf8_validate(text, -1, NULL));
 
   store = GTK_LIST_STORE (combo_box->priv->model);
 

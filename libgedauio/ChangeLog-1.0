@@ -1,3 +1,10 @@
+2020-04-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise/update function documentation,
+      Revise geda_combo_box_set_model to utilize the pointer returned from
+      g_object_ref, revise geda_combo_box_append_text to validate the text
+      is utf8.
+
 2020-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_position to use accessor
