@@ -5869,9 +5869,7 @@ void geda_combo_box_set_model (GedaComboBox *combo_box, GtkTreeModel *model)
 
   if (model != NULL) {
 
-    g_object_ref (model);
-
-    combo_box->priv->model = model;
+    combo_box->priv->model = g_object_ref (model);
 
     combo_box->priv->inserted_id =
     g_signal_connect (model, "row-inserted",
