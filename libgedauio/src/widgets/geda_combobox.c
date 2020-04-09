@@ -6083,6 +6083,8 @@ void geda_combo_box_insert_text (GedaComboBox *combo_box,
     GtkTreeIter   iter;
     GtkListStore *store;
 
+    g_return_if_fail (g_utf8_validate(text, -1, NULL));
+
     store = GTK_LIST_STORE (combo_box->priv->model);
 
     if (position >= 0) {
