@@ -5873,10 +5873,16 @@ static void geda_menu_reparent (GedaMenu *menu, GtkWidget *new_parent, bool unre
 
   if (unrealize) {
 
-      g_object_ref (menu);
-      geda_container_remove (widget->parent, widget);
-      geda_container_add    (new_parent, widget);
-      g_object_unref (menu);
+    GtkWidget *parent;
+
+    g_object_ref (menu);
+
+    parent = geda_get_widget_parent (menu);
+
+    geda_container_remove (parent, widget);
+    geda_container_add    (new_parent, widget);
+
+    g_object_unref (menu);
   }
   else {
     gtk_widget_reparent (widget, new_parent);
