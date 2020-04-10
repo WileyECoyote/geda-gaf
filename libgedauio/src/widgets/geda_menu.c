@@ -5645,7 +5645,7 @@ static void geda_menu_scroll_to (GedaMenu *menu, int offset)
   GtkWidget      *widget;
   GtkStyle       *style;
   GtkAllocation  *allocation;
-  GtkRequisition *requisition
+  GtkRequisition *requisition;
     unsigned int  vertical_padding;
     unsigned int  horizontal_padding;
              int  border_width;
