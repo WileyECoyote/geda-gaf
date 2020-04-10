@@ -5,6 +5,9 @@
       g_object_ref, revise geda_combo_box_append_text to validate the text
       is utf8.
 
+    * src/widgets/geda_menu.c: Revise geda_menu_reparent to eliminate
+      ancillary widget and use ancillary parent.
+
 2020-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_position to use accessor
