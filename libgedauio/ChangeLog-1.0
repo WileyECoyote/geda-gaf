@@ -10,9 +10,10 @@
       not validate parent is not NULL, otherwise the then clause of the
       conditional would be pointless.
 
-    * src/widgets/geda_menu_bar.c: Utilize macro:
+    * src/widgets/geda_menu_bar.c: Utilize macros:
 
           * geda_set_widget_allocation
+          * geda_get_widget_window
 
 2020-04-07 Wiley E. Hill <wileyhill@gmail.com>
 

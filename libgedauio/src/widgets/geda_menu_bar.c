@@ -257,7 +257,8 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
   geda_set_widget_allocation (widget, allocation);
 
   if (gtk_widget_get_realized (widget)) {
-    gdk_window_move_resize (widget->window,
+
+    gdk_window_move_resize (geda_get_widget_window(widget),
                             allocation->x, allocation->y,
                             allocation->width, allocation->height);
   }
