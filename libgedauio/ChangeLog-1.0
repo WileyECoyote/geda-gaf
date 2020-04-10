@@ -6,7 +6,9 @@
       is utf8.
 
     * src/widgets/geda_menu.c: Revise geda_menu_reparent to eliminate
-      ancillary widget and use ancillary parent.
+      ancillary widget and use ancillary parent. Revise geda_menu_attach to
+      not validate parent is not NULL, otherwise the then clause of the
+      conditional would be pointless.
 
 2020-04-07 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -5958,7 +5958,7 @@ void geda_menu_attach (GedaMenu    *menu,
 
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (GEDA_IS_MENU_ITEM (child));
-  g_return_if_fail (parent == NULL || parent == (GtkWidget*)menu);
+  g_return_if_fail (parent == (GtkWidget*)menu);
   g_return_if_fail (left_attach < right_attach);
   g_return_if_fail (top_attach < bottom_attach);
 
