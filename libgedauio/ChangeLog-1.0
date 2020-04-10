@@ -10,10 +10,14 @@
       not validate parent is not NULL, otherwise the then clause of the
       conditional would be pointless.
 
+    * src/widgets/geda_menu_bar.c: Utilize macro:
+
+          * geda_set_widget_allocation
+
 2020-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Revise geda_menu_position to use accessor
-      gtk_widget_get_size_request. Utilize macro:
+      gtk_widget_get_size_request. Utilize macros:
 
           * geda_get_adjustment_value
           * geda_get_adjustment_upper
