@@ -5952,17 +5952,19 @@ void geda_menu_attach (GedaMenu    *menu,
                        unsigned int bottom_attach)
 {
   GedaMenuShell *menu_shell;
+  GtkWidget     *parent;
+
+  parent = geda_get_widget_parent (child);
 
   g_return_if_fail (GEDA_IS_MENU (menu));
   g_return_if_fail (GEDA_IS_MENU_ITEM (child));
-  g_return_if_fail (child->parent == NULL ||
-                    child->parent == (GtkWidget*)menu);
+  g_return_if_fail (parent == NULL || parent == (GtkWidget*)menu);
   g_return_if_fail (left_attach < right_attach);
   g_return_if_fail (top_attach < bottom_attach);
 
   menu_shell = (GedaMenuShell*)menu;
 
-  if (!child->parent) {
+  if (!parent) {
 
       AttachInfo *ai = get_attach_info (child);
 
@@ -5979,7 +5981,7 @@ void geda_menu_attach (GedaMenu    *menu,
   }
   else {
 
-      gtk_container_child_set ((GtkContainer*)child->parent, child,
+      gtk_container_child_set ((GtkContainer*)  parent, child,
                                "left-attach",   left_attach,
                                "right-attach",  right_attach,
                                "top-attach",    top_attach,
