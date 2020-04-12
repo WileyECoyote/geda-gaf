@@ -363,43 +363,52 @@ msgstr "Koordinatsläge"
 
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Ställer in formatläget som används för att visa koordinater på statusfältet"
 
+# Grid Mode
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr ""
+msgstr "Rutnätläge"
 
+# Sets the Grid Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Ställer in rutnätläget som ska visas på statusfältet"
 
+# Grid Size
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Rasterstorlek"
 
+# Sets the Grid Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Ställer in rutstorlek som ska visas på statusfältet"
 
+# height
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "höjd"
 
+# Sets the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Ställer in höjden på statusfältet"
 
+# Left Button Text
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "Vänster knapp text"
 
+# Set the string for the Left Button Text
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Ställ in strängen för den vänstra knapptexten"
 
+# Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Mittknapptext"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
