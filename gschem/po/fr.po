@@ -3553,7 +3553,7 @@ msgstr "Copier"
 
 #: gschem/src/x/x_menus.c:126 gschem/etc/system-gschemrc.scm:2132
 msgid "Make multiple copies of selection"
-msgstr ""
+msgstr "Faire plusieurs copies de la sélection"
 
 #: gschem/src/x/x_menus.c:127
 msgid "Move"
@@ -3569,7 +3569,7 @@ msgstr "Miroir"
 
 #: gschem/src/x/x_menus.c:128 gschem/etc/system-gschemrc.scm:2133
 msgid "Mirror an object about a point"
-msgstr ""
+msgstr "Symétrie d'un objet autour d'un point"
 
 #: gschem/src/x/x_menus.c:129
 msgid "Rotate"
@@ -3577,7 +3577,7 @@ msgstr "Pivoter"
 
 #: gschem/src/x/x_menus.c:129 gschem/etc/system-gschemrc.scm:2136
 msgid "Rotate the current selection about a point"
-msgstr ""
+msgstr "Faire pivoter la sélection actuelle autour d'un point"
 
 #: gschem/src/x/x_menus.c:130
 msgid "Snap"
@@ -3597,7 +3597,7 @@ msgstr "Editer les propriétés du texte"
 
 #: gschem/src/x/x_menus.c:137 gschem/scheme/gschem/builtins.scm:329
 msgid "Down Schematic"
-msgstr "/Descendre dans le schéma"
+msgstr "Descendre dans le schéma"
 
 #: gschem/src/x/x_menus.c:137 gschem/etc/system-gschemrc.scm:2266
 msgid "Descend down in the schematic hierarchy"
@@ -3605,7 +3605,7 @@ msgstr "descendre dans la hiérarchie"
 
 #: gschem/src/x/x_menus.c:138 gschem/scheme/gschem/builtins.scm:332
 msgid "Down Symbol"
-msgstr "/Descendre dans le symbole"
+msgstr "Descendre dans le symbole"
 
 #: gschem/src/x/x_menus.c:138 gschem/etc/system-gschemrc.scm:2267
 msgid "Descend down in the symbol hierarchy"
@@ -3613,7 +3613,7 @@ msgstr "descendre dans la hiérarchie"
 
 #: gschem/src/x/x_menus.c:139
 msgid "Up"
-msgstr "/Remonter"
+msgstr "En haut"
 
 #: gschem/src/x/x_menus.c:139 gschem/etc/system-gschemrc.scm:2268
 msgid "ascend up in the schematic hierarchy"
@@ -3625,7 +3625,7 @@ msgstr "Coupe la sélection dans le presse-papier"
 
 #: gschem/src/x/x_menus.c:144 gschem/etc/system-gschemrc.scm:2125
 msgid "Cut the current selection to the system clipboard"
-msgstr ""
+msgstr "Couper la sélection actuelle dans le presse-papiers du système"
 
 #: gschem/src/x/x_menus.c:145
 msgid "Copy to Clipboard"
@@ -3633,7 +3633,7 @@ msgstr "Copier vers le presse-papier"
 
 #: gschem/src/x/x_menus.c:145 gschem/etc/system-gschemrc.scm:2126
 msgid "Copy the current selection to the system clipboard"
-msgstr ""
+msgstr "Copiez la sélection actuelle dans le presse-papiers du système"
 
 #: gschem/src/x/x_menus.c:146
 msgid "Paste Clipboard"
@@ -5481,11 +5481,11 @@ msgstr "Taille de _texte..."
 
 #: gschem/etc/system-gschemrc.scm:2368
 msgid "Open the Text Size settings"
-msgstr ""
+msgstr "Ouvrez les paramètres de taille du texte"
 
 #: gschem/etc/system-gschemrc.scm:2369
 msgid "_Preferences..."
-msgstr ""
+msgstr "_Préférences..."
 
 #: gschem/etc/system-gschemrc.scm:2369
 msgid "Open the Preferences dialog"
