@@ -15,7 +15,7 @@ pinseq=1
 T 1000 600 5 8 0 0 0 0 1
 pinlabel=n_a
 T 1000 600 5 8 0 0 0 0 1
-pintype=io
+pintype=out
 }
 V 250 100 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 100 0 100 1 0 1
@@ -27,7 +27,7 @@ pinseq=2
 T 300 100 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 100 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 V 250 300 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 300 0 300 1 0 1
@@ -39,7 +39,7 @@ pinseq=3
 T 300 300 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 300 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 V 250 500 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 500 0 500 1 0 1
@@ -51,7 +51,7 @@ pinseq=4
 T 300 500 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 500 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 V 250 700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 700 0 700 1 0 1
@@ -63,7 +63,7 @@ pinseq=5
 T 300 700 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 700 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 V 250 900 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 900 0 900 1 0 1
@@ -75,7 +75,7 @@ pinseq=6
 T 300 900 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 900 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 V 250 1100 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 1100 0 1100 1 0 1
@@ -87,7 +87,7 @@ pinseq=7
 T 300 1100 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 1100 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 T 200 1300 5 10 0 0 0 0 1
 device=or
