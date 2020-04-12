@@ -16,6 +16,8 @@
 
             * simulation/verilog/or7-2.sym
 
+            * simulation/verilog/or8-2.sym
+
 2020-04-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update pin type attributes:
