@@ -465,43 +465,54 @@ msgstr "Tilarivin korkeus"
 msgid "Set or get the height of the status bar"
 msgstr "Aseta tai saat tilarivin korkeus"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Koordinaattinäyttö, napsauta hiiren oikealla painikkeella "
+"saadaksesi muotoiluasetukset"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
 msgstr ""
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Keskimmäisen osoittimen painike, napsauta hiiren kakkospainikkeella vaihtoehtoja"
 
+# Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Oikean osoittimen painikkeen osoittaminen, napsauta hiiren "
+"oikealla painikkeella saadaksesi vaihtoehtoja"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Osoittaa nykyisen napsautuksen, ruudukkoyksiköt tai tilan"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Ilmaisee nykyisen komennotilan"
 
+# Gschem status bar
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem-tilarivi"
 
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
 msgstr "Ristikko"
 
+# OFF
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "VINOSSA"
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
