@@ -14,6 +14,8 @@
 
     * po/sv.po: Update Swedish translations.
 
+    * po/tr.po: Update Turkish translations.
+
 2020-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add todo documentation templates and update
