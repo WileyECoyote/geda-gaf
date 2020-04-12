@@ -6,6 +6,8 @@
 
     * po/en_GB.po: Update Great Britain.
 
+    * po/es.po: Update Spanish translations.
+
 2020-04-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add todo documentation templates and update

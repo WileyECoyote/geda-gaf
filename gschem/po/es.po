@@ -600,7 +600,8 @@ msgstr ""
 #: gschem/src/guile/g_rc.c:2039
 #, c-format
 msgid "Invalid type assignment, check scrollpan-steps entry in rc file\n"
-msgstr ""
+msgstr "Asignación de tipo no válida, verifique la entrada bandeja de "
+"desplazamiento-pasos en el archivo rc\n"
 
 #: gschem/src/guile/g_rc.c:2086
 msgid "Invalid zoom factor"
@@ -626,7 +627,7 @@ msgstr "valor actual de"
 
 #: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5222
 msgid "is"
-msgstr ""
+msgstr "es"
 
 # Processing Action
 #: gschem/src/iface/i_command.c:428
@@ -635,11 +636,11 @@ msgstr "Acción de procesamiento"
 
 #: gschem/src/iface/i_command.c:539
 msgid "Cannot"
-msgstr ""
+msgstr "No puedo"
 
 #: gschem/src/iface/i_command.c:539
 msgid "while inside an action!\n"
-msgstr ""
+msgstr "mientras dentro de una acción!\n"
 
 # New page created
 #: gschem/src/iface/i_command.c:794 gschem/src/iface/i_command.c:2843
@@ -661,7 +662,7 @@ msgstr "Guardado todo"
 
 #: gschem/src/iface/i_command.c:1053
 msgid "Error encountered, Save Failed"
-msgstr ""
+msgstr "Error encontrado, error al guardar"
 
 #: gschem/src/iface/i_command.c:1123 gschem/src/x/x_image.c:545
 msgid "Write Image"
@@ -669,11 +670,11 @@ msgstr "Guardar imagen..."
 
 #: gschem/src/iface/i_command.c:1145
 msgid "Write PDF"
-msgstr ""
+msgstr "Escribir PDF"
 
 #: gschem/src/iface/i_command.c:1241
 msgid "Canceled close all\n"
-msgstr ""
+msgstr "Cancelada cerrar todo\n"
 
 #: gschem/src/iface/i_command.c:1250 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
@@ -681,15 +682,15 @@ msgstr "Cierre de todos los documentos\n"
 
 #: gschem/src/iface/i_command.c:1273
 msgid "starting shut-down"
-msgstr ""
+msgstr "inicio de apagado"
 
 #: gschem/src/iface/i_command.c:1287
 msgid "Symbol is not embedded, export anyway?"
-msgstr ""
+msgstr "El símbolo no está incrustado, ¿exportar de todos modos?"
 
 #: gschem/src/iface/i_command.c:1311
 msgid "Picture is not embedded, export anyway?"
-msgstr ""
+msgstr "La imagen no está incrustada, ¿exportar de todos modos?"
 
 #: gschem/src/iface/i_command.c:1458
 msgid "Empty buffer"
