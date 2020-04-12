@@ -389,45 +389,58 @@ msgstr "Будь віджет для попереднього перегляду
 msgid "Coordinates Mode"
 msgstr "Режим координат"
 
+# Vstanovlyuye rezhym formatuvannya, yakyy vykorystovuyetʹsya dlya vidobrazhennya koordynat na paneli stanu
 #: gschem/src/base/gschem_status_bar.c:585
 msgid "Sets the Format Mode used to display coordinates on the status bar"
-msgstr ""
+msgstr "Встановлює режим форматування, який використовується для відображення координат на панелі стану"
 
+# Grid Mode; Rezhym sitky
 #: gschem/src/base/gschem_status_bar.c:594
 msgid "Grid Mode"
-msgstr ""
+msgstr "Режим сітки"
 
+# Sets the Grid Mode to display on the status bar
+# Vstanovlyuye rezhym sitky dlya vidobrazhennya na paneli stanu
 #: gschem/src/base/gschem_status_bar.c:595
 msgid "Sets the Grid Mode to display on the status bar"
-msgstr ""
+msgstr "Встановлює режим сітки для відображення на панелі стану"
 
+# Grid Size; Rozmir sitky
 #: gschem/src/base/gschem_status_bar.c:604
 msgid "Grid Size"
-msgstr ""
+msgstr "Розмір сітки"
 
+# Sets the Grid Size to display on the status bar
+# Vstanovlyuye rozmir sitky dlya vidobrazhennya na paneli stanu
 #: gschem/src/base/gschem_status_bar.c:605
 msgid "Sets the Grid Size to display on the status bar"
-msgstr ""
+msgstr "Встановлює розмір сітки для відображення на панелі стану"
 
+# height; vysota
 #: gschem/src/base/gschem_status_bar.c:614
 msgid "height"
-msgstr ""
+msgstr "висота"
 
+# Sets the height of the status bar; Vstanovlyuye vysotu ryadka stanu
 #: gschem/src/base/gschem_status_bar.c:615
 msgid "Sets the height of the status bar"
-msgstr ""
+msgstr "Встановлює висоту рядка стану"
 
+# Left Button Text; Tekst livoyi knopky
 #: gschem/src/base/gschem_status_bar.c:624
 msgid "Left Button Text"
-msgstr ""
+msgstr "Текст лівої кнопки"
 
+# Set the string for the Left Button Text
+# Vstanovitʹ ryadok dlya tekstu livoyi knopky
 #: gschem/src/base/gschem_status_bar.c:625
 msgid "Set the string for the Left Button Text"
-msgstr ""
+msgstr "Встановіть рядок для тексту лівої кнопки"
 
+# Middle Button Text; Tekst serednʹoyi knopky
 #: gschem/src/base/gschem_status_bar.c:631
 msgid "Middle Button Text"
-msgstr ""
+msgstr "Текст середньої кнопки"
 
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
