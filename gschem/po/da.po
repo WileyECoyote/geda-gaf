@@ -459,47 +459,56 @@ msgstr "Statuslinjens højde"
 msgid "Set or get the height of the status bar"
 msgstr "Indstil eller få højden på statuslinjen"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Koordinatvisning, højreklik for formatindstillinger"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Venstre markørknappetildeling"
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Midt-pointer knap tildeling, højreklik på indstillinger"
 
+# Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Højre markørknappetildeling, højreklik på indstillinger"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Angiver den aktuelle snap, gitterenheder eller tilstand"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Angiver den aktuelle kommandotilstand"
 
+# Gschem status bar
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem statuslinje"
 
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
-msgstr ""
+msgstr "Gitter"
 
+# OFF
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "AF"
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
-msgstr ""
+msgstr "Fejl"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
