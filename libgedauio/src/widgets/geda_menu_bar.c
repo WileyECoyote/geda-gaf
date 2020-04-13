@@ -469,13 +469,13 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
     requisition->height += (border_width + ipadding + BORDER_SPACING) * 2;
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
-      requisition->height += widget->style->ythickness * 2;
 
       GtkStyle *style;
 
       style = geda_get_widget_style (widget);
 
       requisition->width  += style->xthickness * 2;
+      requisition->height += style->ythickness * 2;
     }
   }
 }
