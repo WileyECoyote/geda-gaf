@@ -466,7 +466,7 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
     border_width = geda_get_container_border_width (menu_bar);
 
     requisition->width += (border_width + ipadding + BORDER_SPACING) * 2;
-    requisition->height += (((GtkContainer*)menu_bar)->border_width + ipadding + BORDER_SPACING) * 2;
+    requisition->height += (border_width + ipadding + BORDER_SPACING) * 2;
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
       requisition->width += widget->style->xthickness * 2;
