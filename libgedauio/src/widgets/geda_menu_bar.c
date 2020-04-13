@@ -274,10 +274,9 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     border_width = geda_get_container_border_width (menu_bar);
 
     child_allocation.x = border_width + ipadding + BORDER_SPACING;
-    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE)
-    {
     child_allocation.y = border_width + BORDER_SPACING;
 
+    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
       child_allocation.x += widget->style->xthickness;
       child_allocation.y += widget->style->ythickness;
     }
@@ -465,8 +464,7 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
     requisition->width += (((GtkContainer*)menu_bar)->border_width + ipadding + BORDER_SPACING) * 2;
     requisition->height += (((GtkContainer*)menu_bar)->border_width + ipadding + BORDER_SPACING) * 2;
 
-    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE)
-    {
+    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
       requisition->width += widget->style->xthickness * 2;
       requisition->height += widget->style->ythickness * 2;
     }
