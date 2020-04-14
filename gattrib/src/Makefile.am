@@ -54,7 +54,7 @@ gattrib_CFLAGS   = $(AM_CFLAGS) $(GCC_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS) \
 				   $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) $(MINGW_CFLAGS)
 
 gattrib_LDFLAGS  = $(GLIB_LIBS)  $(GTK_LIBS) $(GTHREAD_LIBS) \
-				   $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+		   $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) "-Wl,--copy-dt-needed-entries"
 
 gattrib_LDADD	 = $(LIB_GTKSHEET)/libgtksheet.a \
 				   $(top_builddir)/libgedauio/src/libgedauio.la \

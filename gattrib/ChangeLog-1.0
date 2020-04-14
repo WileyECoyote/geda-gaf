@@ -1,3 +1,11 @@
+2020-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/Makefile.am: Add "copy-dt-needed-entries" flag to LDFLAGS
+      to resolve bizzar linker error where the linker fails to resolve the
+      symbol "cairo_destroy" in a shared object, X11.so, when linking the
+      dynamic convenience library to the static application binary. This
+      was observed on Ubuntu 14.0x x64 platforms.
+
 2020-03-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/gattrib.c: Call g_main_loop_quit before exiting gattrib_quit
