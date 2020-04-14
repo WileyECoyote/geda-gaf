@@ -609,7 +609,8 @@ void i_command_shutdown(void)
  */
 static inline void msg_need_select_1st(GschemToplevel *w_current)
 {
-  char *message = MSG_SELECT_Object_1ST;
+  char *message = _("Select object first");
+
   i_status_set_state_msg(w_current, SELECT, message);
 }
 
