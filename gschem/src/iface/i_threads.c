@@ -60,7 +60,7 @@ static void (*gschem_threads_unlock)(void) = NULL;
  *  This function marks the beginning of a critical section in which
  *  GDK and GTK+ functions can be called safely and without causing
  *  race conditions. Only one thread at a time can be in such a
- *  critial section.
+ *  critical section.
  */
 void gschem_threads_enter (void)
 {
