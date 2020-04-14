@@ -286,9 +286,11 @@ void i_command_router(char *command, GschemToplevel *w_current)
         }
       }
     }
+
 #if PERFORMANCE
   }
 #endif
+
   return;
 }
 
@@ -4367,6 +4369,7 @@ COMMAND (do_unembed)
       GedaObject *o_current = (GedaObject*)s_current->data;
 
       if (o_current != NULL) {
+
         if ((o_current->type == OBJ_COMPLEX) ||
             (o_current->type == OBJ_PICTURE)) {
 
