@@ -5993,12 +5993,12 @@ void geda_menu_attach (GedaMenu    *menu,
 /*!
  * \brief Get number of monitors
  * \par Function Description
- * Retrieves the number of the monitor on which to show the menu.
+ *  Retrieves the monitor number on which to show the menu.
  *
  * \param[in] menu  GedaMenu object
  *
- * \returns number of the monitor on which the menu should
- *          be popped up or -1, if no monitor has been set
+ * \returns the monitor number on which the menu should
+ *          be shown or -1, if no monitor has been set
  */
 int geda_menu_get_monitor (GedaMenu *menu)
 {
@@ -6011,11 +6011,11 @@ int geda_menu_get_monitor (GedaMenu *menu)
 }
 
 /*!
- * \brief Set the number of monitors
+ * \brief Set the Monitor number on which to show the menu
  * \par Function Description
  * This function should be called from a #MenuPositionFunc if the
  * menu should not appear on the same monitor as the pointer. This
- * information can't be reliably inferred from the coordinates returned
+ * information cannot be reliably inferred from the coordinates returned
  * by a #MenuPositionFunc, since, for very long menus, these coordinates
  * may extend beyond the monitor boundaries or even the screen boundaries.
  *
