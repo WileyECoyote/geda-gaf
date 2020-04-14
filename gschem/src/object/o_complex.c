@@ -88,7 +88,7 @@ static void o_complex_end (GschemToplevel *w_current)
 }
 
 /*!
- * \brief Invalidate Temporary drawing artifacts for complex object
+ * \brief Invalidate Temporary drawing artifacts for a complex object
  * \par Function Description
  *  Get coordinates from top-level and invalidate the bounding
  *  region of a complex object.
