@@ -577,9 +577,13 @@ void i_command_process(GschemToplevel *w_current, const char *command,
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Shutdown the gschem Central Command Processor
+ * \par Function Description
+ * Calls i_command_disengage to ensure all threads have completed
+ * and releases all string resources associated with the icon_id
+ * in the central command structure. The function exits with threads
+ * unlocked.
  */
 void i_command_shutdown(void)
 {
