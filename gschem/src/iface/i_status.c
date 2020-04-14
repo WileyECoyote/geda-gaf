@@ -74,7 +74,6 @@ void i_status_set_state_msg(GschemToplevel *w_current,
   }
 
   i_status_show_state(w_current, message);
-
 }
 
 /*!
@@ -104,8 +103,9 @@ void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
 static void i_status_update_status(GschemToplevel *w_current,
                                    const char     *string)
 {
-  if (!StatusBar->status_label)
+  if (!StatusBar->status_label) {
     return;
+  }
 
   if (string) {
     if (strcmp(geda_label_widget_get_text(StatusBar->status_label), string) != 0) {
@@ -251,12 +251,12 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
   else if (w_current->snap == SNAP_RESNAP)
     array[i--] = _("Resnap Active");
 
-  if (message && message[0])
+  if (message && message[0]) {
     array[i] = message;
+  }
 
   /* Skip over NULLs */
-  while (array[i] == NULL)
-    i++;
+  while (array[i] == NULL) i++;
 
   what_to_say = g_strjoinv(" - ", (char **) array + i);
 
@@ -271,6 +271,7 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
   }
 
   i_status_update_status(w_current, what_to_say);
+
   GEDA_FREE(what_to_say);
 }
 
