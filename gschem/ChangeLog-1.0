@@ -4,6 +4,7 @@
       update documentation for function:
 
         * i_command_shutdown
+        * msg_need_select_1st
 
 2020-04-11 Wiley E. Hill <wileyhill@gmail.com>
 

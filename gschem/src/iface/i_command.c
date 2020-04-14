@@ -603,9 +603,11 @@ void i_command_shutdown(void)
   gschem_threads_leave();
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief
+ * \par Function Description
+ * Common helper called to display a message on the status bar to inform
+ * the user an object must be selected for initiating the command.
  */
 static inline void msg_need_select_1st(GschemToplevel *w_current)
 {
