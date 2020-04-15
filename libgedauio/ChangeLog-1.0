@@ -1,7 +1,8 @@
 2020-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_bar.c: Revise geda_menu_bar_size_request;
-      explicitly shift left to multiply by 2.
+    * src/widgets/geda_menu_bar.c: Change get_shadow_type argument type to a
+      pointer to a GtkWidget, revise geda_menu_bar_size_request to explicitly
+      shift left to multiply by 2.
 
 2020-04-08 Wiley E. Hill <wileyhill@gmail.com>
 

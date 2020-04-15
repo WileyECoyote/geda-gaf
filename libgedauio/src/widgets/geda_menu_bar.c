@@ -126,7 +126,7 @@ static void geda_menu_bar_hierarchy_changed           (GtkWidget      *widget,
 static int  geda_menu_bar_get_popup_delay             (GedaMenuShell  *menu_shell);
 static void geda_menu_bar_move_current                (GedaMenuShell  *menu_shell,
                                                        MenuDirection   direction);
-static GtkShadowType get_shadow_type                  (GedaMenuBar    *menubar);
+static GtkShadowType get_shadow_type                  (GtkWidget      *menubar);
 
 static const char menu_bar_list_key[] = "menu-bar-list";
 static const char menu_bar_accel_key[] = "gtk-menu-bar-accel";
@@ -222,12 +222,14 @@ remove_settings_signal (GedaMenuBar *menubar, GdkScreen *screen)
  * geda_menu_bar_size_request
  * geda_menu_bar_expose
  * geda_menu_bar_draw
+ *
+ * \param [in] menubar a GedaMenuBar widget
  */
-static GtkShadowType get_shadow_type (GedaMenuBar *menubar)
+static GtkShadowType get_shadow_type (GtkWidget *menubar)
 {
   GtkShadowType shadow_type = GTK_SHADOW_OUT;
 
-  gtk_widget_style_get ((GtkWidget*)menubar, "shadow-type", &shadow_type, NULL);
+  gtk_widget_style_get (menubar, "shadow-type", &shadow_type, NULL);
 
   return shadow_type;
 }
@@ -276,7 +278,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     child_allocation.x = border_width + ipadding + BORDER_SPACING;
     child_allocation.y = border_width + BORDER_SPACING;
 
-    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
+    if (get_shadow_type (widget) != GTK_SHADOW_NONE) {
 
       GtkStyle *style;
 
@@ -473,7 +475,7 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
     requisition->width  += (border_width + ipadding + BORDER_SPACING) << 1;
     requisition->height += (border_width + ipadding + BORDER_SPACING) * 2;
 
-    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
+    if (get_shadow_type (widget) != GTK_SHADOW_NONE) {
 
       GtkStyle *style;
 
@@ -497,7 +499,7 @@ geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
 
     gtk_paint_box (widget->style, widget->window,
                    gtk_widget_get_state (widget),
-                   get_shadow_type ((GedaMenuBar*)widget),
+                   get_shadow_type (widget),
                    &event->area, widget, "menubar",
                    border, border,
                    widget->allocation.width - border * 2,
@@ -558,7 +560,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     remaining_space.width  = allocation->width - border_widthx2 - border.left - border.right;
     remaining_space.height = allocation->height - border_widthx2 - border.top - border.bottom;
 
-    if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
+    if (get_shadow_type (widget) != GTK_SHADOW_NONE) {
 
       gtk_style_context_get_border (context, flags, &border);
 
@@ -803,7 +805,7 @@ geda_menu_bar_size_request (GtkWidget      *widget,
   *minimum += border_widthx2;
   *natural += border_widthx2;
 
-  if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
+  if (get_shadow_type (widget) != GTK_SHADOW_NONE) {
 
     gtk_style_context_get_border (context, flags, &border);
 
@@ -878,7 +880,7 @@ static int geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
                          gtk_widget_get_allocated_width (widget) - borderx2,
                          gtk_widget_get_allocated_height (widget) - borderx2);
 
-  if (get_shadow_type ((GedaMenuBar*)widget) != GTK_SHADOW_NONE) {
+  if (get_shadow_type (widget) != GTK_SHADOW_NONE) {
     gtk_render_frame (context, cr,
                       border, border,
                       gtk_widget_get_allocated_width (widget) - borderx2,
