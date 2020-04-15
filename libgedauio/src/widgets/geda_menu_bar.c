@@ -409,21 +409,21 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 static void
 geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
 {
-  GedaMenuBar        *menu_bar;
-  GedaMenuBarPrivate *priv;
-  GedaMenuShell      *menu_shell;
-  GtkWidget          *child;
-  GList              *children;
-  GtkRequisition      child_requisition;
-
-  int border_width;
-  int ipadding;
-  int nchildren;
-
   requisition->width = 0;
   requisition->height = 0;
 
   if (gtk_widget_get_visible (widget)) {
+
+    GedaMenuBar        *menu_bar;
+    GedaMenuBarPrivate *priv;
+    GedaMenuShell      *menu_shell;
+    GtkWidget          *child;
+    GList              *children;
+    GtkRequisition      child_requisition;
+
+    int border_width;
+    int ipadding;
+    int nchildren;
 
     menu_bar   = (GedaMenuBar*)widget;
     menu_shell = (GedaMenuShell*)widget;
