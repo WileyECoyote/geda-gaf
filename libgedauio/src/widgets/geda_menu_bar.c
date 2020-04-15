@@ -277,8 +277,12 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     child_allocation.y = border_width + BORDER_SPACING;
 
     if (get_shadow_type (menu_bar) != GTK_SHADOW_NONE) {
-      child_allocation.x += widget->style->xthickness;
       child_allocation.y += widget->style->ythickness;
+      GtkStyle *style;
+
+      style = geda_get_widget_style (widget);
+
+      child_allocation.x += style->xthickness;
     }
 
     children = menu_shell->children;
