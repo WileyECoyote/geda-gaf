@@ -6028,6 +6028,7 @@ int geda_menu_get_monitor (GedaMenu *menu)
 void geda_menu_set_monitor (GedaMenu *menu, int monitor_num)
 {
   GedaMenuPriv *priv;
+
   g_return_if_fail (GEDA_IS_MENU (menu));
 
   priv = menu->priv;

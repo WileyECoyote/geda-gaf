@@ -420,7 +420,6 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
   int ipadding;
   int nchildren;
 
-
   requisition->width = 0;
   requisition->height = 0;
 
@@ -586,6 +585,7 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
       for (iter = list; children; children = children->next) {
 
         GtkRequestedSize request;
+
         child = iter->data;
 
         if (!gtk_widget_get_visible (child))
@@ -787,6 +787,7 @@ geda_menu_bar_size_request (GtkWidget      *widget,
 
   context = gtk_widget_get_style_context (widget);
   flags   = gtk_widget_get_state_flags (widget);
+
   gtk_style_context_get_padding (context, flags, &border);
 
   if (orientation == GTK_ORIENTATION_HORIZONTAL) {
