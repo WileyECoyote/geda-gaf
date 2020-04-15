@@ -492,17 +492,18 @@ geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
 {
   if (gtk_widget_is_drawable (widget)) {
 
-    int border;
+    unsigned int border_width;
 
-    border = ((GtkContainer*)widget)->border_width;
+    border_width = geda_get_container_border_width (widget);
 
-    gtk_paint_box (widget->style, widget->window,
+    gtk_paint_box (widget->style,
+                   widget->window,
                    gtk_widget_get_state (widget),
                    get_shadow_type (widget),
                    &event->area, widget, "menubar",
-                   border, border,
-                   widget->allocation.width - border * 2,
-                   widget->allocation.height - border * 2);
+                   border_width, border_width,
+                   widget->allocation.width - border_width * 2,
+                   widget->allocation.height - border_width * 2);
 
     GTK_WIDGET_CLASS (geda_menu_bar_parent_class)->expose_event (widget, event);
   }
