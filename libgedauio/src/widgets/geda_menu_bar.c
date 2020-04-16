@@ -480,7 +480,7 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
 
       style = geda_get_widget_style (widget);
 
-      requisition->width  += style->xthickness * 2;
+      requisition->width  += style->xthickness << 1; /* Multiply by 2 */
       requisition->height += style->ythickness * 2;
     }
   }
