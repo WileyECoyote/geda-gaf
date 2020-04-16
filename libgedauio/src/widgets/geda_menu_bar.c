@@ -641,24 +641,28 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
       for (iter = children; children; children = children->next) {
 
+        GedaMenuItem *child_menu_item;
         GtkRequestedSize request;
+
         child = iter->data;
 
         if (!gtk_widget_get_visible (child)) {
           continue;
         }
 
-        request.data = child;
+        child_menu_item = (GedaMenuItem*)request.data = child;
+
         gtk_widget_get_preferred_height_for_width (child,
                                                    remaining_space.width,
                                                    &request.minimum_size,
                                                    &request.natural_size);
-        geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child),
-                                           &toggle_size);
+
+        geda_menu_item_toggle_size_request (child_menu_item, &toggle_size);
+
         request.minimum_size += toggle_size;
         request.natural_size += toggle_size;
 
-        geda_menu_item_toggle_size_allocate (GEDA_MENU_ITEM(child), toggle_size);
+        geda_menu_item_toggle_size_allocate (child_menu_item, toggle_size);
 
         g_array_append_val (requested_sizes, request);
 

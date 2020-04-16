@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu_bar.c: Reduce the scope of variables in
       geda_menu_bar_size_allocate. Replace gtk_container_get_border_width
-      with geda_get_container_border_width.
+      with geda_get_container_border_width. Add ancillary child_menu_item
+      in geda_menu_bar_size_allocate.
 
 2020-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
