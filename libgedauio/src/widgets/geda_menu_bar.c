@@ -644,8 +644,9 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
         GtkRequestedSize request;
         child = iter->data;
 
-        if (!gtk_widget_get_visible (child))
+        if (!gtk_widget_get_visible (child)) {
           continue;
+        }
 
         request.data = child;
         gtk_widget_get_preferred_height_for_width (child,
