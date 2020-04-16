@@ -548,11 +548,10 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
     context  = gtk_widget_get_style_context (widget);
     flags    = gtk_widget_get_state_flags (widget);
 
+    border_width   = geda_get_container_border_width (menu_bar);
+    border_widthx2 = border_width << 1;
 
     gtk_style_context_get_padding (context, flags, &border);
-
-    border_width   = gtk_container_get_border_width ((GtkContainer*)menu_bar);
-    border_widthx2 = border_width << 1;
 
     remaining_space.x      = (border_width + border.left);
     remaining_space.y      = (border_width + border.top);
