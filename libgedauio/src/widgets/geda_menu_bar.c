@@ -743,7 +743,7 @@ geda_menu_bar_size_request (GtkWidget      *widget,
   }
 
   if (priv->pack_direction == PACK_DIRECTION_LTR ||
-    priv->pack_direction == PACK_DIRECTION_RTL)
+      priv->pack_direction == PACK_DIRECTION_RTL)
   {
     use_maximize = (orientation == GTK_ORIENTATION_VERTICAL);
   }
