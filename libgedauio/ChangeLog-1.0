@@ -1,3 +1,8 @@
+2020-04-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_bar.c: Reduce the scope of variables in
+      geda_menu_bar_size_allocate.
+
 2020-04-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_bar.c: Change get_shadow_type argument type to a

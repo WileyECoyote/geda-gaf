@@ -517,14 +517,7 @@ geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
 static void
 geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 {
-  GedaMenuBar        *menu_bar;
-  GedaMenuShell      *menu_shell;
-  GedaMenuBarPrivate *priv;
-  int                 toggle_size;
-
-  menu_bar   = GEDA_MENU_BAR (widget);
-  menu_shell = GEDA_MENU_SHELL (widget);
-  priv       = menu_bar->priv;
+  GedaMenuShell *menu_shell = GEDA_MENU_SHELL (widget);
 
   gtk_widget_set_allocation (widget, allocation);
 
@@ -536,19 +529,25 @@ geda_menu_bar_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
 
   if (menu_shell->children) {
 
-    Glist           *children;
-    GList           *iter;
-    GtkWidget       *child;
-    GtkStyleContext *context;
-    GArray          *requested_sizes;
-    GtkBorder        border;
-    GtkStateFlags    flags;
-    GtkAllocation    remaining_space;
-    unsigned int     border_width;
-    unsigned int     border_widthx2;
+    GedaMenuBar        *menu_bar;
+    GedaMenuBarPrivate *priv;
+    Glist              *children;
+    GList              *iter;
+    GtkWidget          *child;
+    GtkStyleContext    *context;
+    GArray             *requested_sizes;
+    GtkBorder           border;
+    GtkStateFlags       flags;
+    GtkAllocation       remaining_space;
+    unsigned int        border_width;
+    unsigned int        border_widthx2;
+    unsigned int        toggle_size;
 
-    context = gtk_widget_get_style_context (widget);
-    flags   = gtk_widget_get_state_flags (widget);
+    menu_bar = GEDA_MENU_BAR (widget);
+    priv     = menu_bar->priv;
+    context  = gtk_widget_get_style_context (widget);
+    flags    = gtk_widget_get_state_flags (widget);
+
 
     gtk_style_context_get_padding (context, flags, &border);
 
