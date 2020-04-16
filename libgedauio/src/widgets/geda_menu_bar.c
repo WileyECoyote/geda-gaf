@@ -116,9 +116,9 @@ static int geda_menu_bar_draw                         (GtkWidget      *widget,
 
 static bool geda_menu_bar_button_press                (GtkWidget      *widget,
                                                        GdkEventButton *event);
-static bool geda_menu_bar_window_key_press_handler    (GtkWidget   *widget,
-                                                       GdkEventKey *event,
-                                                       void        *data);
+static bool geda_menu_bar_window_key_press_handler    (GtkWidget      *widget,
+                                                       GdkEventKey    *event,
+                                                       void           *data);
 static bool geda_menu_bar_key_press                   (GtkWidget      *widget,
                                                        GdkEventKey    *event);
 static void geda_menu_bar_hierarchy_changed           (GtkWidget      *widget,
