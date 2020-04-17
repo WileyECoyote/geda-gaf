@@ -3,7 +3,8 @@
     * src/widgets/geda_menu.c: Refactor conditionals in geda_menu_enter_notify
       to eliminate redundant check for GedaMenu.
 
-    * src/widgets/geda_menu_bar.c: Utilize macro:
+    * src/widgets/geda_menu_bar.c: Replace GTK_WIDGET_TOPLEVEL with function
+      gtk_widget_is_toplevel in geda_menu_bar_button_press. Utilize macros:
 
           * geda_get_widget_allocation
           * geda_get_widget_style

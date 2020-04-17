@@ -1404,26 +1404,30 @@ geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
 
     GtkWidget *toplevel_widget = gtk_widget_get_toplevel (widget);
 
-    if (GTK_WIDGET_TOPLEVEL (toplevel_widget)) {
+    if (toplevel_widget != NULL) {
 
-      GdkWindow *toplevel;
+      if (gtk_widget_is_toplevel(toplevel_widget)) {
+
+        GdkWindow *toplevel;
         GdkWindow *window;
 
-      /* Toplevel to the toplevel should be main application window */
         window = geda_get_widget_window (toplevel_widget);
 
+        /* Toplevel to the toplevel should be main application window */
         toplevel = gdk_window_get_toplevel(window);
 
         if (toplevel != NULL) {
-        gdk_window_begin_move_drag (toplevel, event->button,
-                                    event->x_root,
-                                    event->y_root,
-                                    event->time);
-        return TRUE;
+
+          gdk_window_begin_move_drag (toplevel, event->button,
+                                      event->x_root,
+                                      event->y_root,
+                                      event->time);
+          return TRUE;
+        }
       }
-    }
-    else {
-      g_warning ("Root window of GedaMenuBar is not a top level window");
+      else {
+        g_warning ("Root window of GedaMenuBar is not a top level window");
+      }
     }
   }
 
