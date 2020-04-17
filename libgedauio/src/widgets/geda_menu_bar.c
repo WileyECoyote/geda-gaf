@@ -498,7 +498,7 @@ geda_menu_bar_expose (GtkWidget *widget, GdkEventExpose *event)
     allocation   = geda_get_widget_allocation (widget);
     border_width = geda_get_container_border_width (widget);
 
-    gtk_paint_box (widget->style,
+    gtk_paint_box (geda_get_widget_style (widget),
                    widget->window,
                    gtk_widget_get_state (widget),
                    get_shadow_type (widget),
