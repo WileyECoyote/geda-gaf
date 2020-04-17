@@ -7,6 +7,7 @@
 
           * geda_get_widget_allocation
           * geda_get_widget_style
+          * geda_get_widget_window
 
     * src/widgets/geda_menu_item.c: Replace gtk_container_get_border_width
       with geda_get_container_border_width.
