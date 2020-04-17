@@ -805,7 +805,7 @@ geda_menu_bar_size_request (GtkWidget      *widget,
     *natural += border.top + border.bottom;
   }
 
-  border_widthx2 = gtk_container_get_border_width ((GtkContainer*)menu_bar) << 1;
+  border_widthx2 = geda_get_container_border_width (menu_bar) << 1;
 
   *minimum += border_widthx2;
   *natural += border_widthx2;
