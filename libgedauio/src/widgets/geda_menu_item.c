@@ -2236,7 +2236,7 @@ static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   GtkWidget           *child, *parent;
   int x, y, w, h, width, height;
 
-  unsigned int border_width = gtk_container_get_border_width ((GtkContainer*)widget);
+  unsigned int border_width = geda_get_container_border_width (widget);
 
   state   = gtk_widget_get_state_flags (widget);
   context = gtk_widget_get_style_context (widget);
