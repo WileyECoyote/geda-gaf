@@ -1394,8 +1394,9 @@ geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
   parent_response = ((GtkWidgetClass*)geda_menu_bar_parent_class)->
                                       button_press_event (widget, event);
 
-  if (parent_response)
+  if (parent_response) {
     return TRUE;
+  }
 
   /* The shell did not handle the event */
 
