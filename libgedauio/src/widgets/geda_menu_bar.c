@@ -1406,12 +1406,14 @@ geda_menu_bar_button_press (GtkWidget *widget, GdkEventButton *event)
     if (GTK_WIDGET_TOPLEVEL (toplevel_widget)) {
 
       GdkWindow *toplevel;
+        GdkWindow *window;
 
       /* Toplevel to the toplevel should be main application window */
-      toplevel = gdk_window_get_toplevel(toplevel_widget->window);
+        window = geda_get_widget_window (toplevel_widget);
 
-      if (toplevel != NULL) {
+        toplevel = gdk_window_get_toplevel(window);
 
+        if (toplevel != NULL) {
         gdk_window_begin_move_drag (toplevel, event->button,
                                     event->x_root,
                                     event->y_root,
