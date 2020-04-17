@@ -1,5 +1,8 @@
 2020-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/widgets/geda_menu.c: Refactor conditionals in geda_menu_enter_notify
+      to eliminate redundant check for GedaMenu.
+
     * src/widgets/geda_menu_item.c: Replace gtk_container_get_border_width
       with geda_get_container_border_width.
 

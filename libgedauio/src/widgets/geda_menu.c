@@ -1161,9 +1161,9 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
     menu = geda_get_widget_parent (menu_item);
 
-    if (!touchscreen_mode) {
+    if (GEDA_IS_MENU (menu)) {
 
-      if (GEDA_IS_MENU (menu)) {
+      if (!touchscreen_mode) {
 
         GedaMenuPriv  *priv       = menu->priv;
         GedaMenuShell *menu_shell = (GedaMenuShell*)menu;
@@ -1176,7 +1176,7 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
           menu_shell->activate_time = 0;
         }
         else if ((event->detail != GDK_NOTIFY_NONLINEAR &&
-          event->detail != GDK_NOTIFY_NONLINEAR_VIRTUAL))
+                  event->detail != GDK_NOTIFY_NONLINEAR_VIRTUAL))
         {
           if (definitely_within_item (menu_item, event->x, event->y)) {
 
@@ -1191,16 +1191,15 @@ static bool geda_menu_enter_notify (GtkWidget *widget, GdkEventCrossing *event)
 
         priv->seen_item_enter = TRUE;
       }
-    }
 
-    /* If this is a faked enter (see geda_menu_motion_notify), 'widget'
-     * will not correspond to the event widget's parent.  Check to see
-     * if we are in the parent's navigation region.
-     */
-    if (GEDA_IS_MENU (menu) &&
-        geda_menu_navigating_submenu (menu, event->x_root, event->y_root))
-    {
-      return TRUE;
+      /* If this is a faked enter (see geda_menu_motion_notify), 'widget'
+       * will not correspond to the event widget's parent.  Check to see
+       * if we are in the parent's navigation region.
+       */
+      if (geda_menu_navigating_submenu (menu, event->x_root, event->y_root))
+      {
+        return TRUE;
+      }
     }
   }
 
