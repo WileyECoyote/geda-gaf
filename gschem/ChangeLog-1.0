@@ -10,6 +10,8 @@
 
     * po/ml.po: Updated Malayalam translations.
 
+    * po/pt.po: Update Portuguese translations.
+
 2020-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Translate message in msg_need_select_1st, update
