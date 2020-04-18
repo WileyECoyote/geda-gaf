@@ -474,7 +474,7 @@ msgstr "Koordinaattinäyttö, napsauta hiiren oikealla painikkeella "
 # Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Vasemman osoittimen painikkeen määritys"
 
 # Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
@@ -520,43 +520,49 @@ msgstr "Virhe"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "EI MITÄÄN"
 
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current page."
-msgstr ""
+msgstr "Objekti ~A ei sisälly nykyiselle sivulle."
 
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Virheellinen tekstinimi/arvon näkyvyys ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "käsittely"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "käsittely"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "merkintä rc-tiedostoon"
 
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
 msgstr "Näytä Arvo"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "tarkistaa"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "tai Scheme, jatkamalla"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "maksimiarvo"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
@@ -1437,7 +1443,7 @@ msgid "Set the starting number for the current scan"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
-msgid "    Remove numbers:"
+msgid "Remove numbers:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
