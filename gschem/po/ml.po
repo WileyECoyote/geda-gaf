@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
 "POT-Creation-Date: 2020-04-06 11:27-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: ml\n"
 "MIME-Version: 1.0\n"
@@ -563,45 +563,55 @@ msgstr "ഒഴിവാക്കുന്നു"
 msgid "entry in rc file"
 msgstr "ആർ‌സി ഫയലിലെ എൻ‌ട്രി"
 
+# Bad Value; mēāśaṁ mūlyaṁ
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "മോശം മൂല്യം"
 
+# check; cekk
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "ചെക്ക്"
 
+# or Scheme, continuing with; alleṅkil skīṁ, tuṭarunnu
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "അല്ലെങ്കിൽ സ്കീം, തുടരുന്നു"
 
+# maximum value; paramāvadhi mūlyaṁ
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "പരമാവധി മൂല്യം"
 
+# minimum value; kuṟañña mūlyaṁ
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
-msgstr ""
+msgstr "കുറഞ്ഞ മൂല്യം"
 
+# default value; sthira mūlyaṁ
 #: gschem/src/guile/g_rc.c:141
 msgid "default value"
-msgstr ""
+msgstr "സ്ഥിര മൂല്യം"
 
+# Invalid type assignment, check; asādhuvāya taraṁ asainmenṟ, pariśēādhikkuka
 #: gschem/src/guile/g_rc.c:155
 msgid "Invalid type assignment, check"
-msgstr ""
+msgstr "അസാധുവായ തരം അസൈൻമെന്റ്, പരിശോധിക്കുക"
 
 #: gschem/src/guile/g_rc.c:196
 msgid "This is gEDA/gschem version"
-msgstr ""
+msgstr "ഇത് gEDA/gschem പതിപ്പാണ്"
 
+# but you have a version; pakṣē niṅṅaḷkk oru patippuṇṭ
 #: gschem/src/guile/g_rc.c:197
 msgid "but you have a version"
-msgstr ""
+msgstr "പക്ഷേ നിങ്ങൾക്ക് ഒരു പതിപ്പുണ്ട്"
 
+# Please be sure that you have the latest rc file
+# niṅṅaḷkk ēṟṟavuṁ putiya rc phayal uṇṭenn uṟappākkuka
 #: gschem/src/guile/g_rc.c:198
 msgid "Please be sure that you have the latest rc file"
-msgstr ""
+msgstr "നിങ്ങൾക്ക് ഏറ്റവും പുതിയ rc ഫയൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക"
 
 #: gschem/src/guile/g_rc.c:205 gschem/src/x/x_image.c:537
 msgid "file"
@@ -1486,7 +1496,7 @@ msgid "Set the starting number for the current scan"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
-msgid "    Remove numbers:"
+msgid "Remove numbers:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
