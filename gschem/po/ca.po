@@ -524,43 +524,50 @@ msgstr "Error"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "NINGÚ"
 
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current page."
-msgstr ""
+msgstr "L’objecte ~A no està inclòs a la pàgina actual."
 
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Nom de text/visibilitat de valor no vàlids ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "Processament"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "Saltar"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "entrada al fitxer rc"
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "Valor dolent"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "comprovar"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "o Esquema, continuant amb"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "valor màxim"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
@@ -1429,7 +1436,7 @@ msgid "Set the starting number for the current scan"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
-msgid "    Remove numbers:"
+msgid "Remove numbers:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
