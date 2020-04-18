@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
 "POT-Creation-Date: 2020-04-06 11:27-0500\n"
 "PO-Revision-Date: 2012-01-27 14:22+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -124,49 +124,57 @@ msgstr "標題"
 msgid "Dialog window title"
 msgstr "對話窗口標題"
 
+# Label Text; Biāoqiān wénzì
 #: gschem/src/base/gschem_macro_widget.c:232
 msgid "Label Text"
-msgstr ""
+msgstr "標籤文字"
 
+# Text to be displayed for the Macro label; Hóng biāoqiān yào xiǎnshì de wénběn
 #: gschem/src/base/gschem_macro_widget.c:233
 msgid "Text to be displayed for the Macro label"
-msgstr ""
+msgstr "宏標籤要顯示的文本"
 
+# Macro; Jù jí
 #: gschem/src/base/gschem_macro_widget.c:234
 msgid "Macro:"
-msgstr ""
+msgstr "巨集:"
 
+# Macro String; Hóng zìfú chuàn
 #: gschem/src/base/gschem_macro_widget.c:240
 #: gschem/src/base/gschem_macro_widget.c:241
 msgid "Macro String"
-msgstr ""
+msgstr "宏字符串"
 
+# Evaluate; Pínggū
 #: gschem/src/base/gschem_macro_widget.c:352
 msgid "Evaluate"
-msgstr ""
+msgstr "評估"
 
+# Retrieving main window position; Jiǎnsuǒ zhǔ chuāngkǒu wèizhì
 #: gschem/src/base/gschem_main_window.c:242
 msgid "Retrieving main window position.\n"
-msgstr ""
+msgstr "檢索主窗口位置.\n"
 
 # Retrieving main window geometry
 #: gschem/src/base/gschem_main_window.c:298
 msgid "Retrieving main window geometry.\n"
 msgstr "檢索主窗口幾何.\n"
 
+# Auto-Restore; Zìdòng huányuán
 #: gschem/src/base/gschem_main_window.c:421
 msgid "Auto-Restore"
-msgstr ""
+msgstr "自動還原"
 
 # Automatically restore the main window geometry
 #: gschem/src/base/gschem_main_window.c:422
 msgid "Automatically restore the main window geometry"
 msgstr "自動恢復主窗口幾何"
 
+# Horizontal adjustment; Shuǐpíng tiáozhěng
 #: gschem/src/base/gschem_page_view.c:250
 #: gschem/src/base/gschem_page_view.c:251
 msgid "Horizontal adjustment"
-msgstr ""
+msgstr "水平調整"
 
 # Page
 #: gschem/src/base/gschem_page_view.c:258
@@ -174,15 +182,17 @@ msgstr ""
 msgid "Page"
 msgstr "頁"
 
+# Page Geometry; Yèmiàn jǐhé
 #: gschem/src/base/gschem_page_view.c:265
 #: gschem/src/base/gschem_page_view.c:266
 msgid "Page Geometry"
-msgstr ""
+msgstr "頁面幾何"
 
+# Vertical adjustment; Chuízhí tiáozhěng
 #: gschem/src/base/gschem_page_view.c:273
 #: gschem/src/base/gschem_page_view.c:274
 msgid "Vertical adjustment"
-msgstr ""
+msgstr "垂直調整"
 
 #: gschem/src/base/gschem_parsecmd.c:86
 #, c-format
