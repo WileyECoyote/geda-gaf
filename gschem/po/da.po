@@ -512,43 +512,50 @@ msgstr "Fejl"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
-msgstr ""
+msgstr "INGEN"
 
 #: gschem/src/guile/g_attrib.c:100
 msgid "Object ~A is not included in the current page."
-msgstr ""
+msgstr "Objekt ~A er ikke inkluderet på den aktuelle side."
 
 #: gschem/src/guile/g_attrib.c:121
 msgid "Invalid text name/value visibility ~A."
-msgstr ""
+msgstr "Ugyldigt tekstnavn/værdisynlighed ~A."
 
+# Processing
 #: gschem/src/guile/g_rc.c:83 gschem/src/guile/g_rc.c:95
 msgid "Processing"
-msgstr ""
+msgstr "Forarbejdning"
 
+# Skipping
 #: gschem/src/guile/g_rc.c:87 gschem/src/guile/g_rc.c:99
 msgid "Skipping"
-msgstr ""
+msgstr "skipping"
 
+# entry in rc file
 #: gschem/src/guile/g_rc.c:119
 msgid "entry in rc file"
-msgstr ""
+msgstr "post i rc-fil"
 
+# Bad Value
 #: gschem/src/guile/g_rc.c:123
 msgid "Bad Value"
-msgstr ""
+msgstr "Dårlig værdi"
 
+# check
 #: gschem/src/guile/g_rc.c:124 gschem/src/guile/g_rc.c:2088
 msgid "check"
-msgstr ""
+msgstr "kontrollere"
 
+# or Scheme, continuing with
 #: gschem/src/guile/g_rc.c:125
 msgid "or Scheme, continuing with"
-msgstr ""
+msgstr "eller ordning, fortsætter med"
 
+# maximum value
 #: gschem/src/guile/g_rc.c:133
 msgid "maximum value"
-msgstr ""
+msgstr "maksimal værdi"
 
 #: gschem/src/guile/g_rc.c:137
 msgid "minimum value"
@@ -1417,7 +1424,7 @@ msgid "Set the starting number for the current scan"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
-msgid "    Remove numbers:"
+msgid "Remove numbers:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
