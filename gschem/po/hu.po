@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
 "POT-Creation-Date: 2020-04-06 11:27-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
-"Last-Translator: kop <Unknown>\n"
+"Last-Translator:  Wiley E. Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -1284,24 +1284,24 @@ msgstr "numslots attribútum hiányzik.\n"
 
 #: gschem/src/object/o_slot.c:118
 msgid "Slotting not allowed for this component\n"
-msgstr ""
+msgstr "A rés nem engedélyezett ehhez az összetevőhöz\n"
 
 #: gschem/src/object/o_slot.c:133
 #, c-format
 msgid "New slot number [%d], is out of range\n"
-msgstr ""
+msgstr "Az új slot szám [%d], a tartományon kívül esik\n"
 
 #: gschem/src/object/o_undo.c:78
 msgid "Undo: using temporary directory specified on command-line"
-msgstr ""
+msgstr "Visszavonás: a parancssorban megadott ideiglenes könyvtár használata"
 
 #: gschem/src/object/o_undo.c:121
 msgid "Directory is not read/writable, check permissions"
-msgstr ""
+msgstr "A könyvtár nem olvasható / írható, ellenőrizze az engedélyeket"
 
 #: gschem/src/object/o_undo.c:122
 msgid "Auto switching Undo system to type Memory"
-msgstr ""
+msgstr "Automatikus váltás A rendszer visszavonása a Memória beírásához"
 
 #: gschem/src/object/o_undo.c:127
 msgid "Gschem Undo System"
@@ -1309,15 +1309,15 @@ msgstr "gschem Undo rendszer"
 
 #: gschem/src/object/o_undo.c:265
 msgid "Undo: encountered an error, file"
-msgstr ""
+msgstr "Visszavonás: hibát talált, fájl"
 
 #: gschem/src/object/o_undo.c:266
 msgid "Undo: system error"
-msgstr ""
+msgstr "Visszavonás: rendszerhiba"
 
 #: gschem/src/object/o_undo.c:267
 msgid "switching to MEMORY mode"
-msgstr ""
+msgstr "átváltás MEMÓRIA módba"
 
 #: gschem/src/object/o_undo.c:473
 msgid "An error occurred during an UNDO disk operation"
@@ -1352,11 +1352,12 @@ msgstr "Autonumber szöveg in:"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Set the context of the search scope"
-msgstr ""
+msgstr "Állítsa be a keresési kör összefüggéseit"
 
+# Skip numbers found in
 #: gschem/src/x/x_autonumber.c:121
 msgid "Skip numbers found in:"
-msgstr ""
+msgstr "Ugrás a talált számokra:"
 
 # Set where NOT to look for numbers
 #: gschem/src/x/x_autonumber.c:121
@@ -1365,7 +1366,7 @@ msgstr "Állítsa be, ahol NEM keres számokat"
 
 #: gschem/src/x/x_autonumber.c:122
 msgid "Sort order:"
-msgstr ""
+msgstr "Sorrend:"
 
 # Select the orientation of the Scan method
 #: gschem/src/x/x_autonumber.c:122
@@ -1382,7 +1383,7 @@ msgid "Set the starting number for the current scan"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
-msgid "    Remove numbers:"
+msgid "Remove numbers:"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124

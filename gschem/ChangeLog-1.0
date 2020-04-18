@@ -6,6 +6,8 @@
 
     * po/fi.po: Update Finnish translations.
 
+    * po/hu.po: Update Hungarian translations.
+
 2020-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Translate message in msg_need_select_1st, update
