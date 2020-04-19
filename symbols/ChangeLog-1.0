@@ -3,6 +3,7 @@
     * simulation/verilog: Update pin type attributes:
 
             * simulation/verilog/or6-1.sym
+            * simulation/verilog/xnor2-1.sym
 
 2020-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
