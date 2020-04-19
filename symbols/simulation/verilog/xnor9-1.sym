@@ -20,7 +20,7 @@ pinseq=1
 T 1000 900 5 8 0 0 0 0 1
 pinlabel=n_a
 T 1000 900 5 8 0 0 0 0 1
-pintype=io
+pintype=out
 }
 P 300 100 0 100 1 0 1
 {
@@ -31,7 +31,7 @@ pinseq=2
 T 300 100 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 100 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 300 0 300 1 0 1
 {
@@ -42,7 +42,7 @@ pinseq=3
 T 300 300 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 300 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 500 0 500 1 0 1
 {
@@ -53,7 +53,7 @@ pinseq=4
 T 300 500 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 500 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 700 0 700 1 0 1
 {
@@ -64,7 +64,7 @@ pinseq=5
 T 300 700 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 700 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 900 0 900 1 0 1
 {
@@ -75,7 +75,7 @@ pinseq=6
 T 300 900 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 900 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 1100 0 1100 1 0 1
 {
@@ -86,7 +86,7 @@ pinseq=7
 T 300 1100 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 1100 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 1300 0 1300 1 0 1
 {
@@ -97,7 +97,7 @@ pinseq=8
 T 300 1300 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 1300 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 1500 0 1500 1 0 1
 {
@@ -108,7 +108,7 @@ pinseq=9
 T 300 1500 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 1500 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 P 300 1700 0 1700 1 0 1
 {
@@ -119,7 +119,7 @@ pinseq=10
 T 300 1700 5 8 0 0 0 0 1
 pinlabel=n_a
 T 300 1700 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 }
 T 850 850 5 10 1 1 0 6 1
 refdes=U?

@@ -10,27 +10,20 @@
             * simulation/verilog/xnor6-1.sym
             * simulation/verilog/xnor7-1.sym
             * simulation/verilog/xnor8-1.sym
+            * simulation/verilog/xnor9-1.sym
 
 2020-04-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update pin type attributes:
 
             * simulation/verilog/or2-2.sym
-
             * simulation/verilog/or3-2.sym
-
             * simulation/verilog/or4-2.sym
-
             * simulation/verilog/or5-1.sym
-
             * simulation/verilog/or5-2.sym
-
             * simulation/verilog/or6-2.sym
-
             * simulation/verilog/or7-2.sym
-
             * simulation/verilog/or8-2.sym
-
             * simulation/verilog/or9-2.sym
 
 2020-04-05 Wiley E. Hill <wileyhill@gmail.com>
@@ -38,21 +31,13 @@
     * simulation/verilog: Update pin type attributes:
 
             * simulation/verilog/and6-2.sym
-
             * simulation/verilog/nand2-2.sym
-
             * simulation/verilog/nand3-2.sym
-
             * simulation/verilog/nand4-2.sym
-
             * simulation/verilog/nand5-2.sym
-
             * simulation/verilog/nand6-2.sym
-
             * simulation/verilog/nand7-1.sym
-
             * simulation/verilog/nand7-2.sym
-
             * simulation/verilog/nand8-1.sym
 
 2020-03-29 Wiley E. Hill <wileyhill@gmail.com>
