@@ -2,7 +2,9 @@
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
 
-    * src/iface/i_command.c: Update documentation for function:
+    * src/iface/i_command.c: Revise i_command_get_action_icon to extend
+      search for the action icon using geda_iface_menu_return_icon. Update
+      documentation for function:
 
         * i_command_get_action_icon
 

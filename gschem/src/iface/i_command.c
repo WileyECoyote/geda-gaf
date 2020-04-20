@@ -405,7 +405,12 @@ const char *i_command_get_action_icon (const char *command)
         }
       }
     }
+
+    if (!icon_id) {
+      icon_id = geda_iface_menu_return_icon (command);
+    }
   }
+
   return icon_id;
 }
 
