@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2020-04-06 11:27-0500\n"
+"POT-Creation-Date: 2020-04-20 13:00-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator:  Wiley Edward Hill <wileyhill@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -676,190 +676,196 @@ msgid "Found invalid gschem window smob ~S"
 msgstr "Пронађени неважећи гсцхем прозор смоб ~S"
 
 # current value of
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5221
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5337
 msgid "current value of"
 msgstr "тренутна вредност од"
 
 # verb to be
-#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5222
+#: gschem/src/iface/i_command.c:137 gschem/src/iface/i_command.c:5338
 msgid "is"
 msgstr "је"
 
 # processing Action
-#: gschem/src/iface/i_command.c:428
+#: gschem/src/iface/i_command.c:506
 msgid "Processing Action"
 msgstr "обрада Акција"
 
+# Select Projectiles
+#: gschem/src/iface/i_command.c:625
+#, fuzzy
+msgid "Select object first"
+msgstr "Избор пројектила"
+
 # Cannot
-#: gschem/src/iface/i_command.c:539
+#: gschem/src/iface/i_command.c:636
 msgid "Cannot"
 msgstr "не могу"
 
 # while in action!
-#: gschem/src/iface/i_command.c:539
+#: gschem/src/iface/i_command.c:636
 msgid "while inside an action!\n"
 msgstr "док у акцији!\n"
 
 # New page created
-#: gschem/src/iface/i_command.c:794 gschem/src/iface/i_command.c:2843
+#: gschem/src/iface/i_command.c:903 gschem/src/iface/i_command.c:2952
 msgid "New page created"
 msgstr "Нова страница направљена"
 
 # New Window created
-#: gschem/src/iface/i_command.c:834
+#: gschem/src/iface/i_command.c:943
 msgid "New Window created"
 msgstr "Нови прозор направљена"
 
 # Failed to save all
-#: gschem/src/iface/i_command.c:1036
+#: gschem/src/iface/i_command.c:1145
 msgid "Failed to Save All"
 msgstr "Није успела да спаси све"
 
 # All Saved
-#: gschem/src/iface/i_command.c:1039 gschem/src/iface/i_command.c:1056
+#: gschem/src/iface/i_command.c:1148 gschem/src/iface/i_command.c:1165
 msgid "Saved All"
 msgstr "Сви Савед"
 
 # Error encountered, Save Failed
-#: gschem/src/iface/i_command.c:1053
+#: gschem/src/iface/i_command.c:1162
 msgid "Error encountered, Save Failed"
 msgstr "Дошло је до грешке, Саве Фаилед"
 
 # Write Image
-#: gschem/src/iface/i_command.c:1123 gschem/src/x/x_image.c:545
+#: gschem/src/iface/i_command.c:1232 gschem/src/x/x_image.c:545
 msgid "Write Image"
 msgstr "Напиши Слика"
 
 # Write PDF
-#: gschem/src/iface/i_command.c:1145
+#: gschem/src/iface/i_command.c:1254
 msgid "Write PDF"
 msgstr "Напиши пдф"
 
 # Canceled close all
-#: gschem/src/iface/i_command.c:1241
+#: gschem/src/iface/i_command.c:1350
 msgid "Canceled close all\n"
 msgstr "Отказан затворите све\n"
 
 # Closing all documents
-#: gschem/src/iface/i_command.c:1250 gschem/src/iface/i_sessions.c:193
+#: gschem/src/iface/i_command.c:1359 gschem/src/iface/i_sessions.c:193
 msgid "Closing all documents\n"
 msgstr "Затварање све документе\n"
 
 # gschem: starting shut-down
-#: gschem/src/iface/i_command.c:1273
+#: gschem/src/iface/i_command.c:1382
 msgid "starting shut-down"
 msgstr "почевши искључивања"
 
 # symbol is not embeded, export anyway?
-#: gschem/src/iface/i_command.c:1287
+#: gschem/src/iface/i_command.c:1396
 msgid "Symbol is not embedded, export anyway?"
 msgstr "Симбол није уграђен, ипак извоз?"
 
 # Picture is not embeded, export anyway?
-#: gschem/src/iface/i_command.c:1311
+#: gschem/src/iface/i_command.c:1420
 msgid "Picture is not embedded, export anyway?"
 msgstr "Слика није уграђена, ипак извоз?"
 
 # buffer is empty
-#: gschem/src/iface/i_command.c:1458
+#: gschem/src/iface/i_command.c:1567
 msgid "Empty buffer"
 msgstr "бафер је празна"
 
 # Offset Mode
-#: gschem/src/iface/i_command.c:1723
+#: gschem/src/iface/i_command.c:1832
 msgid "Offset Mode"
 msgstr "оффсет режим"
 
 # Specify offset distance:
-#: gschem/src/iface/i_command.c:1724
+#: gschem/src/iface/i_command.c:1833
 msgid "Specify offset distance:"
 msgstr "Наведите растојању:"
 
 # Zoom Magnification
-#: gschem/src/iface/i_command.c:2320
+#: gschem/src/iface/i_command.c:2429
 msgid "Zoom Magnification"
 msgstr "степен увећања"
 
 # Specify new Magnification => Give the new Zoom
-#: gschem/src/iface/i_command.c:2320
+#: gschem/src/iface/i_command.c:2429
 msgid "Specify new zoom:"
 msgstr "Наведите нови Увећање:"
 
 # Check path
-#: gschem/src/iface/i_command.c:2362 gschem/src/iface/i_command.c:4703
-#: gschem/src/iface/i_command.c:4733 gschem/src/iface/i_command.c:4754
-#: gschem/src/iface/i_command.c:4774
+#: gschem/src/iface/i_command.c:2471 gschem/src/iface/i_command.c:4819
+#: gschem/src/iface/i_command.c:4849 gschem/src/iface/i_command.c:4870
+#: gschem/src/iface/i_command.c:4890
 msgid "Check path:"
 msgstr "Провери пут:"
 
 # Error
-#: gschem/src/iface/i_command.c:2373
+#: gschem/src/iface/i_command.c:2482
 msgid "error"
 msgstr "greška"
 
 # No component selected
-#: gschem/src/iface/i_command.c:2384
+#: gschem/src/iface/i_command.c:2493
 msgid "No component selected\n"
 msgstr "Нема изабраних компонента\n"
 
 # Confirm reload ALL documents
-#: gschem/src/iface/i_command.c:2929
+#: gschem/src/iface/i_command.c:3038
 msgid "Confirm revert ALL documents"
 msgstr "Потврда релоад Сви документи"
 
 # Searching for source
-#: gschem/src/iface/i_command.c:3111
+#: gschem/src/iface/i_command.c:3220
 msgid "Searching for source"
 msgstr "Сеарцхинг фор соурце"
 
 # failed to descend into
-#: gschem/src/iface/i_command.c:3146
+#: gschem/src/iface/i_command.c:3255
 msgid "Failed to descend into"
 msgstr "није успео да спустити се у"
 
 # hierarchy Error
-#: gschem/src/iface/i_command.c:3155
+#: gschem/src/iface/i_command.c:3264
 msgid "Hierarchy Error"
 msgstr "hijerarhija Грешка"
 
 # Searching for symbol
-#: gschem/src/iface/i_command.c:3232
+#: gschem/src/iface/i_command.c:3341
 msgid "Searching for symbol"
 msgstr "Сеарцхинг фор симбол"
 
 # Symbol is not a file. The symbol can not load.
-#: gschem/src/iface/i_command.c:3242
+#: gschem/src/iface/i_command.c:3351
 msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
 msgstr "Симбол није датотека. Симбол не може учитати.\n"
 
 # Cannot find any schematics above the current one!
-#: gschem/src/iface/i_command.c:3290
+#: gschem/src/iface/i_command.c:3399
 msgid "Cannot find any schematics above the current one!\n"
 msgstr "могу да нађем шему изнад тренутне један!\n"
 
-#: gschem/src/iface/i_command.c:3420
+#: gschem/src/iface/i_command.c:3529
 msgid "Object is attached to something\n"
 msgstr "Објект је повезан са нечим\n"
 
 # This attribute is already attached
-#: gschem/src/iface/i_command.c:3823
+#: gschem/src/iface/i_command.c:3932
 msgid "Attribute is already attached\n"
 msgstr "Атрибут је већ у прилогу\n"
 
 # WARNING: Do not translate with snap disabled
-#: gschem/src/iface/i_command.c:4237
+#: gschem/src/iface/i_command.c:4346
 msgid "WARNING: Do not translate with snap off!\n"
 msgstr "УПОЗОРЕЊЕ: До нот транслате са снап онемогућен!\n"
 
-#: gschem/src/iface/i_command.c:4238
+#: gschem/src/iface/i_command.c:4347
 msgid "WARNING: Turning snap on and continuing with translate.\n"
 msgstr "УПОЗОРЕЊЕ: Окретање Снап Он и наставља са транслате.\n"
 
-#: gschem/src/iface/i_command.c:4244
+#: gschem/src/iface/i_command.c:4353
 msgid "WARNING: Snap grid size is not equal to 100!\n"
 msgstr "УПОЗОРЕЊЕ: Снап величина мрежа није једнак 100!\n"
 
-#: gschem/src/iface/i_command.c:4245
+#: gschem/src/iface/i_command.c:4354
 msgid ""
 "WARNING: If you are translating a symbol to the origin, the snap grid size "
 "should be set to 100\n"
@@ -868,87 +874,87 @@ msgstr ""
 "треба да буде подешена на 100\n"
 
 # Grid is off
-#: gschem/src/iface/i_command.c:4450
+#: gschem/src/iface/i_command.c:4566
 msgid "Grid OFF\n"
 msgstr "Грид је искључен\n"
 
 # Dot grid activated
-#: gschem/src/iface/i_command.c:4451
+#: gschem/src/iface/i_command.c:4567
 msgid "Dot grid activated\n"
 msgstr "Дот Грид активиран\n"
 
-#: gschem/src/iface/i_command.c:4452
+#: gschem/src/iface/i_command.c:4568
 msgid "Mesh grid activated\n"
 msgstr "Месх Грид активира\n"
 
 # Snap is OFF (CAUTION!)
-#: gschem/src/iface/i_command.c:4531
+#: gschem/src/iface/i_command.c:4647
 msgid "Snap OFF (CAUTION!)\n"
 msgstr "Снап ис ОФФ (ОПРЕЗ!)\n"
 
 # Snap ON
-#: gschem/src/iface/i_command.c:4537
+#: gschem/src/iface/i_command.c:4653
 msgid "Snap ON\n"
 msgstr "snap Он\n"
 
 # Snap back to the grid (CAUTION!)
-#: gschem/src/iface/i_command.c:4542
+#: gschem/src/iface/i_command.c:4658
 msgid "Snap back to the grid (CAUTION!)\n"
 msgstr "Снап назад на мрежу (ОПРЕЗ!)\n"
 
 # Rubber mode connections is disabled
-#: gschem/src/iface/i_command.c:4567
+#: gschem/src/iface/i_command.c:4683
 msgid "Rubber band mode is OFF\n"
 msgstr "Гума режим везе је онемогућено\n"
 
 # "Rubber" mode connections enabled
-#: gschem/src/iface/i_command.c:4571
+#: gschem/src/iface/i_command.c:4687
 msgid "Rubber band mode is ON\n"
 msgstr "Гума режим везе омогућено\n"
 
 # "Magnetic" mode connections enabled
-#: gschem/src/iface/i_command.c:4582
+#: gschem/src/iface/i_command.c:4698
 msgid "Magnetic net mode is ON\n"
 msgstr "Магнетиц режим везе омогућено\n"
 
 # "Magnetic" mode connections is disabled
-#: gschem/src/iface/i_command.c:4585
+#: gschem/src/iface/i_command.c:4701
 msgid "Magnetic net mode is OFF\n"
 msgstr "Магнетиц режим везе је онемогућено\n"
 
 # Off
-#: gschem/src/iface/i_command.c:4602 gschem/src/iface/i_command.c:4645
+#: gschem/src/iface/i_command.c:4718 gschem/src/iface/i_command.c:4761
 #: gschem/src/x/x_compselect.c:135
 msgid "Off"
 msgstr "Ван"
 
 # On
-#: gschem/src/iface/i_command.c:4606 gschem/src/iface/i_command.c:4649
+#: gschem/src/iface/i_command.c:4722 gschem/src/iface/i_command.c:4765
 #: gschem/src/x/x_compselect.c:134
 msgid "On"
 msgstr "на"
 
 # Drag mode is now
-#: gschem/src/iface/i_command.c:4608
+#: gschem/src/iface/i_command.c:4724
 msgid "Drag-Can-Move is now"
 msgstr "Драг режим је сада"
 
 # Action feedback mode is OUT-LINE
-#: gschem/src/iface/i_command.c:4620
+#: gschem/src/iface/i_command.c:4736
 msgid "Action feedback mode set to OUTLINE\n"
 msgstr "Ацтион повратна информација Моде је ОУТ-ЛИНЕ\n"
 
 # Action feedback mode is BOUNDING-BOX =>BORDER FRAME
-#: gschem/src/iface/i_command.c:4624
+#: gschem/src/iface/i_command.c:4740
 msgid "Action feedback mode set to BOUNDINGBOX\n"
 msgstr "Ацтион повратна информација Моде је ГРАНИЧНИ ОКВИР\n"
 
 # Auto-Pan is now
-#: gschem/src/iface/i_command.c:4651
+#: gschem/src/iface/i_command.c:4767
 msgid "Auto-Pan is now"
 msgstr "Сада је Ауто-Пан"
 
-#: gschem/src/iface/i_command.c:4874
+#: gschem/src/iface/i_command.c:4990
 #, c-format
 msgid "(read only) width=%d, height=%d\n"
 msgstr "(Само за читање) ширина=%d, висина=%d\n"
@@ -1593,9 +1599,11 @@ msgstr "Почетни број:"
 msgid "Set the starting number for the current scan"
 msgstr "Подесите почетни број за тренутни скенирање"
 
+# Slot number
 #: gschem/src/x/x_autonumber.c:124
-msgid "    Remove numbers:"
-msgstr ""
+#, fuzzy
+msgid "Remove numbers:"
+msgstr "slot број:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
