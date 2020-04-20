@@ -2,7 +2,8 @@
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
 
-    * src/x/x_autonumber.c: Remove extra spaces preceeding "Remove numbers" string.
+    * src/x/x_autonumber.c: Remove extra spaces preceeding "Remove numbers" string,
+      and revise function documentation.
 
 2020-04-18 Wiley E. Hill <wileyhill@gmail.com>
 

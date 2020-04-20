@@ -876,8 +876,8 @@ static void autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
  *  This function is the main routine for the autonumber code. The function
  *  retrieves options from the \a autotext structure. First it collects all
  *  pages of a hierarchical schematic, even if hierarchy info is not used.
- *  The function retrieves all matching text elements for the searchtext and
- *  then renumbers text elements based on options from the dialog.
+ *  The function retrieves all matching text elements for the search text
+ *  and then renumbers text elements based on options from the dialog.
  *
  * \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
  */
