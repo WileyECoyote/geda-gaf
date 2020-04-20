@@ -410,8 +410,10 @@ void i_command_get_command_list(GList** list)
 {
   int i;
 
-  for (i = 1; i < COMMAND_COUNT; i++)
+  for (i = 1; i < COMMAND_COUNT; i++) {
     *list = g_list_prepend(*list, (char*)command_struc[i].name);
+  }
+
   return;
 }
 
