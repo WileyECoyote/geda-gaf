@@ -78,6 +78,7 @@ extern "C" {
          void    geda_iface_menu_print           (void);
           SCM    geda_iface_menu_return_entry    (int index, char **menu_name);
           int    geda_iface_menu_return_num      (void);
+         char   *geda_iface_menu_return_icon     (const char *action);
          char   *geda_iface_menu_return_tooltip  (const char *action);
 
 /* i_vars.c */

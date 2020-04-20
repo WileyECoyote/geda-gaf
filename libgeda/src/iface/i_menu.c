@@ -174,6 +174,68 @@ int geda_iface_menu_return_num(void)
   return(menu_index);
 }
 
+char *geda_iface_menu_return_icon(const char *action_name)
+{
+  char *icon = NULL;
+
+  if (action_name) {
+
+    unsigned int menu_count = geda_iface_menu_return_num();
+    unsigned int i;
+
+    /* Loop through all top-level menu container */
+    for (i = 0 ; i < menu_count; i++) {
+
+      unsigned int scm_items_len;
+      unsigned int j;
+
+      SCM scm_items;
+
+      scm_items = menu[i].menu_items;
+
+      /* Loop through all items subordinate to the top-level menu container */
+      scm_items_len = (int) scm_ilength (scm_items);
+
+      for (j = 0 ; j < scm_items_len; j++) {
+
+        SCM scm_index     = scm_from_int (j);
+        SCM scm_item      = scm_list_ref (scm_items, scm_index);
+        SCM scm_item_func = SCM_CADR (scm_item);
+
+        if (scm_is_true (scm_item_func)) {
+
+          char *action;
+
+          action = scm_to_utf8_string (scm_symbol_to_string (scm_item_func));
+
+          if (strcmp(action, action_name) == 0) {
+
+           SCM scm_item_stock;
+
+           scm_item_stock = scm_is_pair  (SCM_CDDR (scm_item)) ? SCM_CADDR (scm_item) : SCM_BOOL_F;
+
+            if (!scm_is_false (scm_item_stock)) {
+
+              /* Extract icon string */
+              icon = scm_to_utf8_string (scm_item_stock);
+            }
+
+            break;
+          }
+
+          free(action);
+        }
+      }
+
+      if (icon) {
+        break;
+      }
+    }
+  }
+
+  return icon;
+}
+
 char *geda_iface_menu_return_tooltip(const char *action_name)
 {
   char *tooltip = NULL;
