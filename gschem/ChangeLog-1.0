@@ -2,33 +2,29 @@
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
 
+    * src/iface/i_command.c: Update documentation for function:
+
+        * i_command_get_action_icon
+
     * src/x/x_autonumber.c: Remove extra spaces preceeding "Remove numbers" string,
       and revise function documentation.
 
 2020-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
-
     * po/da.po: Update Danish translations.
-
     * po/fi.po: Update Finnish translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/ml.po: Updated Malayalam translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
-
     * po/zh_CN.po: Update Chinese simplified translations.
-
     * po/zh_TW.po: Update Chinese traditional translations.
 
 2020-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Translate message in msg_need_select_1st, update
-      update documentation for function:
+      documentation for functions:
 
         * i_command_shutdown
         * msg_need_select_1st

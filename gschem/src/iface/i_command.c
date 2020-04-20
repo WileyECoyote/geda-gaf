@@ -347,14 +347,21 @@ void i_command_get_action_list(GList** list)
 {
   int i;
 
-  for (i = 1; i <= LAST_ACTION; i++)
+  for (i = 1; i <= LAST_ACTION; i++) {
     *list = g_list_prepend(*list, command_struc[i].name);
+  }
+
   return;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*!
+ * \brief Get Icon for Action
+ * \par Function Description
+ *  Returns command_struc[?].icon_id associated with \a command
+ *  action string or NULL if the action string is not found or
+ *  the icon_id has not been set. The static member icache is
+ *  set to the index of the last found icon_id in command_struc
+ *  in anticipation of subsequent calls.
  */
 const char *i_command_get_action_icon (const char *command)
 {
