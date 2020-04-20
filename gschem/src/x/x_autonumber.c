@@ -121,7 +121,7 @@ static WidgetStringData DialogStrings[] = {
   { "scope_skip",      N_("Skip numbers found in:"),      N_("Set where NOT to look for numbers")},
   { "sort_order",      N_("Sort order:"),                 N_("Select the orientation of the Scan method")},
   { "opt_startnum",    N_("Starting number:"),            N_("Set the starting number for the current scan")},
-  { "opt_removenum",   N_("    Remove numbers:"),         N_("Remove existing reference numbers")},
+  { "opt_removenum",   N_("Remove numbers:"),             N_("Remove existing reference numbers")},
   { "opt_slotting",    N_("Automatic slotting:"),         N_("Automatic slotting")},
   { "scope_overwrite", N_("Overwrite existing numbers:"), N_("Overwrite existing numbers")},
   { NULL, NULL, NULL},

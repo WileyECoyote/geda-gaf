@@ -2,6 +2,8 @@
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
 
+    * src/x/x_autonumber.c: Remove extra spaces preceeding "Remove numbers" string.
+
 2020-04-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/ca.po: Update Catalan translations.
