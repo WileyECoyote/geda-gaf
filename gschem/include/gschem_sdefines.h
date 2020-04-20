@@ -102,8 +102,6 @@
 /* For x_icons.c */
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
 
-#define MSG_SELECT_Object_1ST      "Select object first"
-
 #define COORD_DISPLAY_OFF          "OFF"
 #define COORD_DISPLAY_VEC180       "Vector 180"
 #define COORD_DISPLAY_VEC360       "Vector 360"
