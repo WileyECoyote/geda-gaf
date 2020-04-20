@@ -111,10 +111,10 @@ void geda_iface_menu_free(void)
   menu_index=0;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*!
+ * \brief Initialize menu interface module
+ * \par Function Description
+ * Set all pointer to menu names in menu[] to NULL.
  */
 void geda_iface_menu_init(void)
 {

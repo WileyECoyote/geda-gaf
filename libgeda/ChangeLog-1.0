@@ -1,6 +1,7 @@
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_menu.c: Add function geda_iface_menu_return_icon.
+    * src/iface/i_menu.c: Add function geda_iface_menu_return_icon,
+      update geda_iface_menu_init documentation.
 
 2020-03-27 Wiley E. Hill <wileyhill@gmail.com>
 
