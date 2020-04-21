@@ -192,6 +192,8 @@ gtk_window_group_get_current_grab (GtkWindowGroup *window_group)
 
 #define geda_get_button_focus_on_click(b) ((GtkButton*)b)->focus_on_click
 
+#define geda_get_button_label_text(b) ((GtkButton*)b)->label_text
+
 /*! \def geda_get_child_widget Get Child Bin widget Gtk < 3 */
 #define geda_get_child_widget(w) (void*)((GtkBin*)w)->child
 
@@ -279,6 +281,8 @@ void gdk_font_unref (GdkFont *font);
 #define geda_set_adjustment_value(a,v) gtk_adjustment_set_value((GtkAdjustment*)a,v)
 
 #define geda_get_button_focus_on_click(b) gtk_button_get_focus_on_click((GtkButton*)b)
+
+#define geda_get_button_label_text(b) gtk_button_get_label((GtkButton*)b)
 
 /*! \def geda_get_child_widget Get Child Bin widget Gtk >= 3*/
 #define geda_get_child_widget(w) (void*)gtk_bin_get_child ((GtkBin*)w)

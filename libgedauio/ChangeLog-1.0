@@ -1,8 +1,9 @@
 2020-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/geda_gtk_compat.h: Add macro:
+    * include/geda_gtk_compat.h: Add macros:
 
           * geda_get_button_focus_on_click
+          * geda_get_button_label_text
 
 2020-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
