@@ -617,7 +617,7 @@ static void geda_menu_button_get_property (GObject     *object,
       break;
 
     case PROP_USE_UNDERLINE:
-      g_value_set_boolean (value, butt->use_underline);
+      g_value_set_boolean (value, geda_get_button_use_underline(butt));
       break;
 
     case PROP_USE_STOCK:
