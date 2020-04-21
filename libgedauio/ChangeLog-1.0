@@ -4,6 +4,7 @@
 
           * geda_get_button_focus_on_click
           * geda_get_button_label_text
+          * geda_get_button_use_stock
 
 2020-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
