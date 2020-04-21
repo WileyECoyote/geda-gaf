@@ -601,7 +601,7 @@ static void geda_menu_button_get_property (GObject     *object,
       break;
 
     case PROP_LABEL:
-      g_value_set_string (value, butt->label_text);
+      g_value_set_string (value, geda_get_button_label_text(butt));
       break;
 
     case PROP_MENU:
