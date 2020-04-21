@@ -57,6 +57,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include "../../include/geda_gtk_compat.h"
 #include "../../include/geda_container.h"
 #include "../../include/geda_marshal.h"
 #include "../../include/geda_menu.h"
@@ -588,7 +589,7 @@ static void geda_menu_button_get_property (GObject     *object,
   switch (prop_id) {
 
     case PROP_FOCUS_ON_CLICK:
-      g_value_set_boolean (value, butt->focus_on_click);
+      g_value_set_boolean (value, geda_get_button_focus_on_click(butt));
       break;
 
     case PROP_IMAGE:

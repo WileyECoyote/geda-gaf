@@ -7,6 +7,10 @@
           * geda_get_button_use_stock
           * geda_get_button_use_underline
 
+    * src/widgets/geda_menu_button.c: Utilize macro:
+
+          *  geda_get_button_focus_on_click
+
 2020-04-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu.c: Refactor conditionals in geda_menu_enter_notify
