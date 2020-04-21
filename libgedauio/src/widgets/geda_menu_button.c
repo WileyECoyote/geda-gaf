@@ -621,7 +621,7 @@ static void geda_menu_button_get_property (GObject     *object,
       break;
 
     case PROP_USE_STOCK:
-      g_value_set_boolean (value, butt->use_stock);
+      g_value_set_boolean (value, geda_get_button_use_stock(butt));
       break;
 
     default:
