@@ -7,7 +7,8 @@
           * geda_get_button_use_stock
           * geda_get_button_use_underline
 
-    * src/widgets/geda_menu_button.c: Utilize macros:
+    * src/widgets/geda_menu_button.c: Replace dynamic cast with static cast
+      in geda_menu_button_set_property. Utilize macros:
 
           * geda_get_button_focus_on_click
           * geda_get_button_label_text

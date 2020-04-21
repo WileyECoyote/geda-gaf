@@ -518,7 +518,7 @@ static void geda_menu_button_set_property (GObject      *object,
 {
   GedaMenuButton     *button = GEDA_MENU_BUTTON (object);
   GedaMenuButtonData *priv   = button->priv;
-  GtkButton          *butt   = GTK_BUTTON(priv->button);
+  GtkButton          *butt   = (GtkButton*)priv->button;
 
   switch (prop_id) {
     case PROP_FOCUS_ON_CLICK:
