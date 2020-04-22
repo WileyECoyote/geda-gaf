@@ -2408,7 +2408,7 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   parent = gtk_widget_get_parent (widget);
 
-  border_widthx2 = gtk_container_get_border_width ((GtkContainer*)widget) << 1;
+  border_widthx2 = geda_get_container_border_width (widget) << 1;
   min_height     = border_widthx2 + padding.top + padding.bottom;
 
   if (for_size != -1) {
