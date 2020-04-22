@@ -593,7 +593,7 @@ static void geda_menu_button_get_property (GObject     *object,
       break;
 
     case PROP_IMAGE:
-      g_value_set_object (value, (GObject*) gtk_button_get_image(butt));
+      g_value_set_object (value, gtk_button_get_image(butt));
       break;
 
     case PROP_IMAGE_POSITION:

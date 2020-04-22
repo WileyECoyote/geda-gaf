@@ -4,6 +4,9 @@
       for popup_tips and add else directive in build_menu and utilize
       gtk_widget_set_tooltip_text to set the tooltip text when Gtk>2.
 
+    * src/widgets/geda_menu_button.c: Eliminate unneeded GObject cast
+      in geda_menu_button_get_property.
+
 2020-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
