@@ -369,8 +369,6 @@ static char *popup_items[]={ "Zoom mode",
                              "Preview Off",
 };
 
-#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
-
 static char *popup_tips[]={  "Set silder to zoom mode",
                              "Set silder to size mode",
                              "Set image size to the default size",
@@ -378,8 +376,6 @@ static char *popup_tips[]={  "Set silder to zoom mode",
                              "Set image size to minimum",
                              "Turn the preview pane off",
 };
-
-#endif
 
 /*! \brief Callback Handler for Popup Mouse Context Menu
  *
@@ -475,6 +471,10 @@ static GtkWidget *build_menu(GedaImageChooser *chooser)
 #if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
 
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
+
+#else
+
+    gtk_widget_set_tooltip_text (item, _(popup_tips[i]));
 
 #endif
 

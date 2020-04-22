@@ -1,3 +1,9 @@
+2020-04-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/dialogs/geda_image_chooser.c: Remove conditional directives
+      for popup_tips and add else directive in build_menu and utilize
+      gtk_widget_set_tooltip_text to set the tooltip text when Gtk>2.
+
 2020-04-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/geda_gtk_compat.h: Add macros:
