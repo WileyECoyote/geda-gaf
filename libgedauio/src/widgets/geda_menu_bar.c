@@ -878,7 +878,7 @@ static int geda_menu_bar_draw (GtkWidget *widget, cairo_t *cr)
   int border;
   int borderx2;
 
-  border   = gtk_container_get_border_width ((GtkContainer*)widget);
+  border   = geda_get_container_border_width (widget);
   borderx2 = border << 1;
   context  = gtk_widget_get_style_context (widget);
 
