@@ -5,7 +5,9 @@
       gtk_widget_set_tooltip_text to set the tooltip text when Gtk>2.
 
     * src/widgets/geda_menu_button.c: Eliminate unneeded GObject cast
-      in geda_menu_button_get_property.
+      in geda_menu_button_get_property. Revise geda_menu_button_set_
+      arrow_tooltip to compile using gtk_widget_set_tooltip_text when
+      when Gtk>2.
 
 2020-04-21 Wiley E. Hill <wileyhill@gmail.com>
 

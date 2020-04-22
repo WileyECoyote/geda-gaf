@@ -1675,8 +1675,17 @@ void geda_menu_button_set_arrow_tooltip (GedaMenuButton *button,
 {
   g_return_if_fail (GEDA_IS_MENU_BUTTON (button));
 
+#if (GTK_MAJOR_VERSION < 3) && !defined GTK_DISABLE_DEPRECATED
+
   gtk_tooltips_set_tip (tooltips, button->priv->arrow_button, tip_text,
                         tip_private);
+
+#else
+
+  gtk_widget_set_tooltip_text (button->priv->arrow_button, tip_text);
+
+#endif
+
 }
 
 /*!
