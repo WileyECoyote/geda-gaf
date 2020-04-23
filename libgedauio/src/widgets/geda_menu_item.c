@@ -3299,7 +3299,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
       switch (priv->submenu_direction) {
 
-        case GTK_DIRECTION_LEFT:
+        case SUBMENU_DIR_LEFT:
           if (tx - twidth - parent_padding.left - horizontal_offset >= monitor.x ||
               available_left >= available_right)
           {
