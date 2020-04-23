@@ -3106,9 +3106,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         }
       }
 
-      switch (priv->submenu_direction) {
+      if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
 
-        case SUBMENU_DIR_LEFT:
           if (tx - twidth - parent_xthickness - horizontal_offset >= monitor.x ||
               available_left >= available_right)
           {
@@ -3119,9 +3118,11 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
             priv->submenu_direction = SUBMENU_DIR_RIGHT;
             tx += widget->allocation.width + parent_xthickness + horizontal_offset;
           }
-          break;
 
-        case SUBMENU_DIR_RIGHT:
+
+      }
+      else /* priv->submenu_direction == SUBMENU_DIR_RIGHT*/ {
+
           if (tx + widget->allocation.width + parent_xthickness + horizontal_offset +
               twidth <= monitor.x + monitor.width || available_right >= available_left)
           {
@@ -3132,7 +3133,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
             priv->submenu_direction = SUBMENU_DIR_LEFT;
             tx -= twidth + parent_xthickness + horizontal_offset;
           }
-          break;
       }
 
       ty += vertical_offset;
