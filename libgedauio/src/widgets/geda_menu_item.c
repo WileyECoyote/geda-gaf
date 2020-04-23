@@ -3032,7 +3032,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   get_offsets (menu, &horizontal_offset, &vertical_offset);
 
   available_left  = tx - monitor.x;
-  available_right = monitor.x + monitor.width - (tx + widget->allocation.width);
+  available_right = monitor.x + monitor.width - (tx + allocation.width);
 
   if (GEDA_IS_MENU_BAR(widget->parent)) {
       priv->from_menubar = TRUE;
