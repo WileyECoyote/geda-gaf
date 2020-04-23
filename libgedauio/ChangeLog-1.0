@@ -1,6 +1,7 @@
 2020-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c Replace switch case with if/else.
+      Compound last conditional in geda_menu_item_position_menu.
 
 2020-04-22 Wiley E. Hill <wileyhill@gmail.com>
 

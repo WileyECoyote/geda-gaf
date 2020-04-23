@@ -3152,11 +3152,11 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
   GtkWidget *toplevel = geda_menu_get_toplevel(menu);
 
-  if (toplevel) {
-    if (!gtk_widget_get_visible (toplevel)) {
-      gtk_window_set_type_hint ((GtkWindow*)toplevel, priv->from_menubar?
-      GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU : GDK_WINDOW_TYPE_HINT_POPUP_MENU);
-    }
+  if (toplevel && !gtk_widget_get_visible (toplevel)) {
+
+    gtk_window_set_type_hint ((GtkWindow*)toplevel, priv->from_menubar?
+    GDK_WINDOW_TYPE_HINT_DROPDOWN_MENU : GDK_WINDOW_TYPE_HINT_POPUP_MENU);
+
   }
 }
 
