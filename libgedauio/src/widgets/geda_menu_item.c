@@ -2556,7 +2556,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
     state   = gtk_widget_get_state_flags (widget);
     gtk_style_context_get_padding (context, state, &padding);
 
-    border_width       = gtk_container_get_border_width ((GtkContainer*)widget);
+    border_width       = geda_get_container_border_width (widget);
     child_allocation.x = border_width + padding.left;
     child_allocation.y = border_width + padding.top;
 
