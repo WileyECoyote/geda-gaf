@@ -2981,6 +2981,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   GedaMenu            *parent_menu;
   GedaMenuItem        *parent_menu_item;
   GdkScreen           *screen;
+  GtkAllocation        allocation;
   GtkTextDirection     direction;
   GdkRectangle         monitor;
 
@@ -3023,8 +3024,10 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
     return;
   }
 
-  tx += widget->allocation.x;
-  ty += widget->allocation.y;
+  gtk_widget_get_allocation (widget, &allocation);
+
+  tx += allocation.x;
+  ty += allocation.y;
 
   get_offsets (menu, &horizontal_offset, &vertical_offset);
 

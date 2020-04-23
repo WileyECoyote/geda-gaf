@@ -2,6 +2,9 @@
 
     * src/widgets/geda_menu_item.c Replace switch case with if/else.
       Compound last conditional in geda_menu_item_position_menu.
+      Utilize:
+
+          * gtk_widget_get_allocation
 
 2020-04-22 Wiley E. Hill <wileyhill@gmail.com>
 
