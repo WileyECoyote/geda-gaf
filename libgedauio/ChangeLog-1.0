@@ -2,7 +2,7 @@
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_draw to not
       call gtk_widget_set_allocation since the allocation being manipulated
-      is by reference.
+      is by reference and utilize local reference to allocation.
 
 2020-04-23 Wiley E. Hill <wileyhill@gmail.com>
 

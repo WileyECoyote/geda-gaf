@@ -476,7 +476,7 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
       x = xpad;
     }
     else {
-      x = gtk_widget_get_allocated_width (widget) - xpad - ac_width;
+      x = allocation->width - xpad - ac_width;
     }
 
     geda_label_get_layout_offsets ((GedaLabel*)accel_label, NULL, &y);
