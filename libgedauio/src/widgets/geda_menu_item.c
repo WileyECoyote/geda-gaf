@@ -3329,12 +3329,12 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
       ty += vertical_offset;
 
-      /* If the height of the menu doesn't fit we move it upward. */
+      /* If the height of the menu does not fit we move it upward. */
       ty = CLAMP (ty, monitor.y, MAX (monitor.y, monitor.y + monitor.height - theight));
     }
   }
 
-  /* If we have negative, tx, here it is because we can't get
+  /* If we have negative, tx, here it is because we cannot get
    * the menu all the way on screen. Favor the left portion.
    */
   *x = CLAMP (tx, monitor.x, MAX (monitor.x, monitor.x + monitor.width - twidth));
