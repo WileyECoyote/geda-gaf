@@ -3068,8 +3068,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         ty += allocation.height;
       else if ((ty - theight) >= monitor.y)
         ty -= theight;
-      else if (monitor.y + monitor.height - (ty + widget->allocation.height) > ty)
-        ty += widget->allocation.height;
+      else if (monitor.y + monitor.height - (ty + allocation.height) > ty)
+        ty += allocation.height;
       else
         ty -= theight;
       break;
