@@ -3061,7 +3061,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
       }
       else {
         priv->submenu_direction = SUBMENU_DIR_LEFT;
-        tx += widget->allocation.width - twidth;
+        tx += allocation.width - twidth;
       }
 
       if ((ty + widget->allocation.height + theight) <= monitor.y + monitor.height)
