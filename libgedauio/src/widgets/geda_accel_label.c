@@ -462,7 +462,6 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
     }
 
     allocation->width += ac_width;
-    gtk_widget_set_allocation (widget, &allocation);
 
     if (geda_label_get_ellipsize ((GedaLabel*)widget)) {
       int width = pango_layout_get_width (label_layout);
