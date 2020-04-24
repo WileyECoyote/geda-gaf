@@ -457,8 +457,6 @@ static int geda_accel_label_draw (GtkWidget *widget, cairo_t *cr)
 
     allocation->width -= ac_width;
 
-    gtk_widget_set_allocation (widget, &allocation);
-
     if (((GtkWidgetClass*)geda_accel_label_parent_class)->draw) {
       ((GtkWidgetClass*)geda_accel_label_parent_class)->draw (widget, cr);
     }
