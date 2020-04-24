@@ -3253,9 +3253,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   parent = gtk_widget_get_parent (widget);
   priv->from_menubar = GEDA_IS_MENU_BAR(parent);
 
-  switch (priv->submenu_placement) {
-
-    case MENU_TOP_BOTTOM:
+  if (priv->submenu_placement == MENU_TOP_BOTTOM) {
 
       if (direction == GTK_TEXT_DIR_LTR) {
         priv->submenu_direction = SUBMENU_DIR_RIGHT;
@@ -3273,9 +3271,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         ty += allocation.height;
       else
         ty -= theight;
-      break;
-
-    case MENU_LEFT_RIGHT:
+  }
+  else /* (priv->submenu_placement == MENU_LEFT_RIGHT) */ {
 
       if (GEDA_IS_MENU(parent)) {
         parent_menu_item = GEDA_MENU_ITEM(((GedaMenu*)parent)->priv->parent_menu_item);
@@ -3334,7 +3331,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
       /* If the height of the menu doesn't fit we move it upward. */
       ty = CLAMP (ty, monitor.y, MAX (monitor.y, monitor.y + monitor.height - theight));
-      break;
+    }
   }
 
   /* If we have negative, tx, here it is because we can't get

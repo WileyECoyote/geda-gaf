@@ -2,14 +2,15 @@
 
     * src/widgets/geda_accel_label.c: Revise geda_accel_label_draw to not
       call gtk_widget_set_allocation since the allocation being manipulated
-      is by reference and utilize local reference to allocation.
+      is by reference and utilize local reference to allocation. Replace
+      switch case with if/else.
 
 2020-04-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_accel_label.c: Eliminate conditional GSEAL_ENABLE
       directive; use geda_get_misc_xpad instead.
 
-    * src/widgets/geda_menu_item.c Replace switch case with if/else.
+    * src/widgets/geda_menu_item.c: Replace switch case with if/else.
       Compound last conditional in geda_menu_item_position_menu.
       Utilize:
 
