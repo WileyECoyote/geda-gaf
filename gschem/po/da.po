@@ -665,11 +665,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
-# Object List
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Objektliste"
+msgstr "Vælg objekt først"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
