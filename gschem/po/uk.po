@@ -444,46 +444,61 @@ msgstr "Встановіть рядок для тексту лівої кноп�
 msgid "Middle Button Text"
 msgstr "Текст середньої кнопки"
 
+# Set the string for the Middle Button Text
+# Vstanovitʹ ryadok dlya tekstu serednʹoyi knopky
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Встановіть рядок для тексту середньої кнопки"
 
+# Right Button Text; Tekst pravoyi knopky
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "Текст правої кнопки"
 
+# Set the string for the Right Button Text
+# Vstanovitʹ ryadok dlya tekstu pravoyi knopky
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Встановіть рядок для тексту правої кнопки"
 
+# Snap Mode; Rezhym osnashchennya
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
-msgstr ""
+msgstr "Режим оснащення"
 
+# Sets the Snap Mode to display on the status bar
+# Vstanovlyuye rezhym Snap dlya vidobrazhennya na paneli stanu
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Встановлює режим Snap для відображення на панелі стану"
 
+# Snap Size; Rozmir osnashchennya
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
-msgstr ""
+msgstr "Розмір оснащення"
 
+# Sets the Snap Size to display on the status bar
+# Vstanovlyuye rozmir osnashchennya dlya vidobrazhennya na paneli stanu
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Встановлює розмір оснащення для відображення на панелі стану"
 
+# Status Text; Tekst statusu
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "Текст статусу"
 
+# Set the string for the text on the Status Bar
+# Vstanovitʹ ryadok dlya tekstu v ryadku stanu
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Встановіть рядок для тексту в рядку стану"
 
+# Status State; Stan statusu
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "Стан статусу"
 
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
@@ -683,11 +698,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
-# Object List; Spysok ob'yektiv
+# Select object first; Vyberitʹ spochatku ob'yekt
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Список об'єктів"
+msgstr "Виберіть спочатку об'єкт"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
