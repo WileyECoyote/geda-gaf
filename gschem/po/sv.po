@@ -411,46 +411,56 @@ msgstr "Ställ in strängen för den vänstra knapptexten"
 msgid "Middle Button Text"
 msgstr "Mittknapptext"
 
+# Set the string for the Middle Button Text
 #: gschem/src/base/gschem_status_bar.c:632
 msgid "Set the string for the Middle Button Text"
-msgstr ""
+msgstr "Ställ in strängen för mellanknapptexten"
 
+# Right Button Text
 #: gschem/src/base/gschem_status_bar.c:638
 msgid "Right Button Text"
-msgstr ""
+msgstr "Text med höger knapp"
 
+# Set the string for the Right Button Text
 #: gschem/src/base/gschem_status_bar.c:639
 msgid "Set the string for the Right Button Text"
-msgstr ""
+msgstr "Ställ in strängen för högerknappstext"
 
+# Snap Mode
 #: gschem/src/base/gschem_status_bar.c:645
 msgid "Snap Mode"
-msgstr ""
+msgstr "Snäppläge"
 
+# Sets the Snap Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Ställer in snäppläget som ska visas på statusfältet"
 
+# Snap Size
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
-msgstr ""
+msgstr "Snapstorlek"
 
+# Sets the Snap Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Ställer in Snap Size för att visas på statusfältet"
 
+# Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
-msgstr ""
+msgstr "Statustext"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
-msgstr ""
+msgstr "Ställ in strängen för texten på statusfältet"
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
-msgstr ""
+msgstr "Statusstatus"
 
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
@@ -650,11 +660,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
-# Object List
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Objektlista"
+msgstr "Välj objekt först"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
