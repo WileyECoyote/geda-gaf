@@ -676,10 +676,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Valitse kaikki objektit"
+msgstr "Valitse ensin kohde"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -4897,10 +4897,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "_Edellinen"
+msgstr "Edellinen"
 
 # View previous
 #: gschem/etc/system-gschemrc.scm:2219
@@ -4956,19 +4956,19 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr ""
 
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Näytä _Nimi"
+msgstr "Näytä/piilota peritty"
 
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Näytä _Nimi"
+msgstr "Vaihtaa perinnölliset tekstimääritteet"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
-msgstr "Näytä _Nimi"
+msgstr "Näytä/piilota verkkonimet"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Toggle hidden net name attributes"
