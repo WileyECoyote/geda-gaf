@@ -684,9 +684,8 @@ msgstr ""
 
 # Object List
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Llista d'objectes"
+msgstr "Seleccioneu primer l'objecte"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"

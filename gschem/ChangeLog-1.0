@@ -4,6 +4,8 @@
 
     * po/ar.po: Update Arabic translations.
 
+    * po/ca.po: Update Catalan translations.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
