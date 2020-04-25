@@ -406,27 +406,32 @@ msgstr "Sağ Düğme Metninin dizesini ayarlayın"
 msgid "Snap Mode"
 msgstr "Snap Modu"
 
+# Sets the Snap Mode to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:646
 msgid "Sets the Snap Mode to display on the status bar"
-msgstr ""
+msgstr "Snap Modunu durum çubuğunda görüntülenecek şekilde ayarlar"
 
+# Snap Size
 #: gschem/src/base/gschem_status_bar.c:655 gschem/src/x/x_dialog.c:639
 msgid "Snap Size"
-msgstr ""
+msgstr "Snap Boyutu"
 
+# Sets the Snap Size to display on the status bar
 #: gschem/src/base/gschem_status_bar.c:656
 msgid "Sets the Snap Size to display on the status bar"
-msgstr ""
+msgstr "Snap Boyutu'nu durum çubuğunda görüntülenecek şekilde ayarlar"
 
 # Status Text
 #: gschem/src/base/gschem_status_bar.c:665
 msgid "Status Text"
 msgstr "Durum Metni"
 
+# Set the string for the text on the Status Bar
 #: gschem/src/base/gschem_status_bar.c:666
 msgid "Set the string for the text on the Status Bar"
 msgstr ""
 
+# Status State
 #: gschem/src/base/gschem_status_bar.c:672
 #: gschem/src/base/gschem_status_bar.c:673
 msgid "Status State"
@@ -633,11 +638,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
-# Select all objects
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Tüm nesneleri seçin"
+msgstr "Önce nesneyi seç"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1440,11 +1444,10 @@ msgstr "Başlangıç ​​numarası:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove number
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "Slot numarası:"
+msgstr "Numaraları kaldır:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -5030,11 +5033,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
-# Previous Page
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "Önceki sayfa"
+msgstr "Önceki"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
@@ -5088,17 +5090,15 @@ msgstr "Metni Göster/Gizle"
 msgid "Toggle hidden text attributes"
 msgstr ""
 
-# Show/Hide Inherited Attributes
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Devralınan Nitelikleri Göster/Gizle"
+msgstr "Miras Alınanları Göster/Gizle"
 
-# Show/Hide Inherited Attributes
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Devralınan Nitelikleri Göster/Gizle"
+msgstr "Devralınan metin niteliklerini aç / kapat"
 
 # Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2233
