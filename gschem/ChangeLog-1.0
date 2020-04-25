@@ -1,3 +1,7 @@
+2020-04-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * po/af.po: Update Afrikaans translations.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
