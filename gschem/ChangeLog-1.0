@@ -8,6 +8,8 @@
 
     * po/da.po: Update Danish translations.
 
+    * po/de.po: Update German translations.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_sdefines.h: Remove old string define; MSG_SELECT_Object_1ST.
