@@ -580,10 +580,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr "القيادة المعالجة"
 
+# Select object first; hadad alkayin awlaan
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "الكائنات المنتقاة"
+msgstr "حدد الكائن أولاً"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1394,11 +1394,10 @@ msgstr "رقم البدء:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove numbers; 'iizalat al'arqam
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "رقم الفتحة:"
+msgstr "إزالة الأرقام:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -4894,10 +4893,10 @@ msgstr "ا_نتقل"
 msgid "Activate Panning"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "ال_سّابقة"
+msgstr "السابق"
 
 # View previous; eard alssabiq
 #: gschem/etc/system-gschemrc.scm:2219
@@ -4953,15 +4952,15 @@ msgstr "أظهر/أخف النص الخفي"
 msgid "Toggle hidden text attributes"
 msgstr "أظهر السمات الموروثة"
 
+# Show/Hide Inherited; 'iizhar / 'iikhfa' almawrutha
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "سمة مفصولة"
+msgstr "إظهار/إخفاء الموروثة"
 
+# Toggle inherited text attributes; tabdil simat alnasi almawrutha
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "أظهر السمات الموروثة"
+msgstr "تبديل سمات النص الموروثة"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
