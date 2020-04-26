@@ -12,6 +12,7 @@
     * simulation/verilog: Update pinnumber and pinlabel attributes:
 
             * simulation/verilog/xnor2-1.sym
+            * simulation/verilog/xnor3-1.sym
 
 2020-04-19 Wiley E. Hill <wileyhill@gmail.com>
 
