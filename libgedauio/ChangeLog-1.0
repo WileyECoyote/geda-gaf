@@ -1,7 +1,8 @@
 2020-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Replace gtk_widget_hide_all with
-      gtk_widget_hide in geda_menu_item_hide_all.
+      gtk_widget_hide in geda_menu_item_hide_all. Replace switch case
+      with if/else.
 
 2020-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
