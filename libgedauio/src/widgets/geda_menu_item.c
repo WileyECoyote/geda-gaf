@@ -3119,7 +3119,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
           else
           {
             priv->submenu_direction = SUBMENU_DIR_RIGHT;
-            tx += widget->allocation.width + parent_xthickness + horizontal_offset;
+            tx += allocation.width + parent_xthickness + horizontal_offset;
           }
 
 
