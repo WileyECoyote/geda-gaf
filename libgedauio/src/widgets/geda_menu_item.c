@@ -3321,7 +3321,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
             tx += allocation.width + parent_padding.right + horizontal_offset;
           else
           {
-            priv->submenu_direction = GTK_DIRECTION_LEFT;
+            priv->submenu_direction = SUBMENU_DIR_LEFT;
             tx -= twidth + parent_padding.left + horizontal_offset;
           }
           break;
