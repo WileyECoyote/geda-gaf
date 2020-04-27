@@ -614,10 +614,10 @@ static void geda_menu_item_hide_all (GtkWidget *widget)
   gtk_widget_hide (widget);
 
   /* hide children including submenu */
-  geda_container_foreach (widget, gtk_widget_hide_all, NULL);
+  geda_container_foreach (widget, gtk_widget_hide, NULL);
 
   if (priv->submenu) {
-    gtk_widget_hide_all (priv->submenu);
+    gtk_widget_hide (priv->submenu);
   }
 }
 
