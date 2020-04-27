@@ -737,9 +737,10 @@ geda_menu_item_realize (GtkWidget *widget)
 
   gdk_window_set_user_data (priv->event_window, widget);
 
-  style = geda_get_widget_style (widget);
+  style  = geda_get_widget_style (widget);
+  window = geda_get_widget_window (widget);
 
-  widget->style = gtk_style_attach (style, widget->window);
+  widget->style = gtk_style_attach (style, window);
 
 #else
 
