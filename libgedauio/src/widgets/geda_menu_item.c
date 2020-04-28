@@ -740,7 +740,7 @@ geda_menu_item_realize (GtkWidget *widget)
   style  = geda_get_widget_style (widget);
   window = geda_get_widget_window (widget);
 
-  widget->style = gtk_style_attach (style, window);
+  geda_set_widget_style (widget, gtk_style_attach (style, window));
 
 #else
 

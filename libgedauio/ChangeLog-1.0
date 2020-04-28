@@ -5,6 +5,7 @@
       with if/else. Utilize macro:
 
           * geda_get_widget_window
+          * geda_set_widget_style
 
 2020-04-24 Wiley E. Hill <wileyhill@gmail.com>
 
