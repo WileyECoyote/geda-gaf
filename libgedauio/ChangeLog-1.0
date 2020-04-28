@@ -6,7 +6,8 @@
       as this result in nested signal emission and geda_combo_box_popup
       and consequently geda_combo_box_real_popup being called twice. Revise
       geda_combo_box_popdown; to not set the pointer to priv until after
-      the combo_box is validated.
+      the combo_box is validated, and only call gtk_toggle_button_get_active
+      if priv->button is active.
 
 2020-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
