@@ -128,6 +128,7 @@ struct _GedaComboBoxData
   unsigned int activate_button;
   unsigned int activate_time;
   unsigned int scroll_timer;
+  unsigned int toggled_id;
   unsigned int resize_idle_id;
 
   int width;
@@ -3315,7 +3316,9 @@ void geda_combo_box_popdown (GedaComboBox *combo_box)
     active = gtk_toggle_button_get_active ((GtkToggleButton*)priv->button);
 
     if (active) {
+      g_signal_handler_block (priv->button, priv->toggled_id);
       gtk_toggle_button_set_active ((GtkToggleButton*)priv->button, FALSE);
+      g_signal_handler_unblock (priv->button, priv->toggled_id);
     }
   }
 }
@@ -3519,8 +3522,9 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
 
   gtk_widget_show_all (priv->button);
 
-  g_signal_connect (priv->button, "toggled",
-                    G_CALLBACK (geda_combo_box_button_toggled), combo_box);
+  priv->toggled_id = g_signal_connect (priv->button, "toggled",
+                                       G_CALLBACK (geda_combo_box_button_toggled),
+                                       combo_box);
 
   g_signal_connect (priv->button, "button-press-event",
                     G_CALLBACK (geda_combo_box_menu_button_press),
@@ -4498,8 +4502,9 @@ static void geda_combo_box_list_setup (GedaComboBox *combo_box)
   g_signal_connect (button, "button-press-event",
                     G_CALLBACK (geda_combo_box_list_button_pressed), combo_box);
 
-  g_signal_connect (button, "toggled",
-                    G_CALLBACK (geda_combo_box_button_toggled), combo_box);
+  priv->toggled_id = g_signal_connect (button, "toggled",
+                                       G_CALLBACK (geda_combo_box_button_toggled),
+                                       combo_box);
 
   priv->arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
   geda_container_add (button, priv->arrow);
