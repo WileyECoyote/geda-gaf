@@ -1740,10 +1740,12 @@ static void geda_combo_box_set_property (GObject      *object,
       break;
 
     case PROP_POPUP_SHOWN:
-      if (g_value_get_boolean (value))
+      if (g_value_get_boolean (value)) {
         geda_combo_box_popup (combo_box);
-      else
+      }
+      else {
         geda_combo_box_popdown (combo_box);
+      }
       break;
 
     case PROP_BUTTON_SENSITIVITY:
