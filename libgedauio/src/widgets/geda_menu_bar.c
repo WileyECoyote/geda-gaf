@@ -447,13 +447,17 @@ geda_menu_bar_size_request (GtkWidget *widget,  GtkRequisition *requisition)
         geda_menu_item_toggle_size_request (GEDA_MENU_ITEM (child), &toggle_size);
 
         if (priv->child_pack_direction == PACK_DIRECTION_LTR ||
-          priv->child_pack_direction == PACK_DIRECTION_RTL)
+            priv->child_pack_direction == PACK_DIRECTION_RTL)
+        {
           child_requisition.width += toggle_size;
+        }
         else
+        {
           child_requisition.height += toggle_size;
+        }
 
         if (priv->pack_direction == PACK_DIRECTION_LTR ||
-          priv->pack_direction == PACK_DIRECTION_RTL)
+            priv->pack_direction == PACK_DIRECTION_RTL)
         {
           requisition->width += child_requisition.width;
           requisition->height = MAX (requisition->height, child_requisition.height);
