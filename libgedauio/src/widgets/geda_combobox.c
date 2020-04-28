@@ -1476,7 +1476,10 @@ static void geda_combo_box_destroy (GtkObject *object)
     combo_box->priv->popup_idle_id = 0;
   }
 
-  geda_combo_box_popdown (combo_box);
+  if (combo_box->priv->popup_in_progress) {
+    geda_combo_box_popdown (combo_box);
+    combo_box->priv->popup_in_progress = FALSE;
+  }
 
   if (combo_box->priv->row_separator_destroy) {
     combo_box->priv->row_separator_destroy (combo_box->priv->row_separator_data);

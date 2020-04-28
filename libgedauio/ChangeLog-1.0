@@ -1,3 +1,8 @@
+2020-04-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_destroy to only
+      call geda_combo_box_popdown when popup_in_progress is set.
+
 2020-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Replace gtk_widget_hide_all with
