@@ -3493,7 +3493,8 @@ static void geda_combo_box_menu_setup (GedaComboBox *combo_box, bool add_childre
 
   priv->button =  gtk_toggle_button_new ();
 
-  gtk_button_set_focus_on_click ((GtkButton*)priv->button, priv->focus_on_click);
+  gtk_button_set_focus_on_click ((GtkButton*)priv->button,
+                                             priv->focus_on_click);
 
   gtk_widget_set_parent (priv->button, gtk_widget_get_parent(child));
 
