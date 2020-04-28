@@ -3293,9 +3293,11 @@ static bool geda_combo_box_real_popdown (GedaComboBox *combo_box)
  */
 void geda_combo_box_popdown (GedaComboBox *combo_box)
 {
-  GedaComboBoxData *priv = combo_box->priv;
+  GedaComboBoxData *priv;
 
   g_return_if_fail (GEDA_IS_COMBO_BOX (combo_box));
+
+  priv = combo_box->priv;
 
   if (GEDA_IS_MENU (priv->popup_widget)) {
     geda_menu_popdown ((GedaMenu*)priv->popup_widget);
