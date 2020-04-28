@@ -1472,7 +1472,6 @@ static void geda_combo_box_destroy (GtkObject *object)
   GedaComboBox *combo_box = (GedaComboBox*)object;
 
   if (combo_box->priv->popup_idle_id > 0) {
-
     g_source_remove (combo_box->priv->popup_idle_id);
     combo_box->priv->popup_idle_id = 0;
   }
@@ -4767,9 +4766,7 @@ static bool geda_combo_box_list_button_released (GtkWidget      *widget,
 
     /* released outside treeview */
     if (ewidget != priv->button && ewidget != priv->box) {
-
       geda_combo_box_popdown (combo_box);
-
       return TRUE;
     }
 
@@ -4793,6 +4790,7 @@ static bool geda_combo_box_list_button_released (GtkWidget      *widget,
       geda_combo_box_set_active_iter (combo_box, &iter);
     }
   }
+
   return TRUE;
 }
 
@@ -4830,6 +4828,7 @@ static bool geda_combo_box_list_key_press (GtkWidget   *widget,
       event->keyval == GDK_space     ||
       event->keyval == GDK_KP_Space)
   {
+
     geda_combo_box_popdown (combo_box);
 
     if (combo_box->priv->model) {
