@@ -6416,7 +6416,7 @@ static bool popup_idle (void * data)
                              combo_box, 0);
   }
 
-  /* we unset this if a menu item is activated */
+  /* Unset this if a menu item is activated */
   g_object_set (combo_box, "editing-canceled", TRUE, NULL);
 
   geda_combo_box_popup (combo_box);
@@ -6457,7 +6457,7 @@ geda_combo_box_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
     gtk_widget_set_can_focus (combo_box->priv->button, FALSE);
   }
 
-  /* we do the immediate popup only for the optionmenu-like appearance */
+  /* Do the immediate popup only for the optionmenu-like appearance */
   if (combo_box->priv->is_cell_renderer &&
       combo_box->priv->cell_view && !combo_box->priv->tree_view)
   {
