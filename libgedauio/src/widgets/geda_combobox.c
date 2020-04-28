@@ -3260,7 +3260,7 @@ static void geda_combo_box_real_popup (GedaComboBox *combo_box)
 
   gtk_widget_grab_focus (widget);
 
-  gtk_toggle_button_set_active ((GtkToggleButton*)priv->button, TRUE);
+  //gtk_toggle_button_set_active ((GtkToggleButton*)priv->button, TRUE);
 
   if (!gtk_widget_has_focus ((GtkWidget*)view)) {
     gtk_widget_grab_focus ((GtkWidget*)view);

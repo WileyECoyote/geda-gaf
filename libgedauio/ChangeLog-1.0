@@ -1,7 +1,10 @@
 2020-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_destroy to only
-      call geda_combo_box_popdown when popup_in_progress is set.
+      call geda_combo_box_popdown when popup_in_progress is set. Revise
+      geda_combo_box_real_popup to not call gtk_toggle_button_set_active
+      as this result in nested signal emission and geda_combo_box_popup
+      and consequently geda_combo_box_real_popup being called twice.
 
 2020-04-27 Wiley E. Hill <wileyhill@gmail.com>
 
