@@ -6,6 +6,7 @@
 
           * geda_get_widget_window
           * geda_set_widget_style
+          * geda_get_widget_parent
 
 2020-04-24 Wiley E. Hill <wileyhill@gmail.com>
 

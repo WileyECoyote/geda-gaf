@@ -1718,13 +1718,15 @@ void geda_menu_item_select (GedaMenuItem *menu_item)
  */
 void geda_menu_item_deselect (GedaMenuItem *menu_item)
 {
+  GedaMenu *menu;
+
   g_return_if_fail (GEDA_IS_MENU_ITEM(menu_item));
 
   g_signal_emit (menu_item, menu_item_signals[DESELECT], 0);
 
-  if (GEDA_IS_MENU (((GtkWidget*)menu_item)->parent)) {
+  menu = geda_get_widget_parent (menu_item);
 
-    GedaMenu *menu = (GedaMenu*)((GtkWidget*)menu_item)->parent;
+  if (GEDA_IS_MENU(menu)) {
 
     if (menu->parent_menu_item) {
       gtk_widget_queue_draw ((GtkWidget*)menu->parent_menu_item);
