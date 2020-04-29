@@ -3309,7 +3309,7 @@ void geda_combo_box_popdown (GedaComboBox *combo_box)
 
     gtk_grab_remove (priv->popup_window);
 
-    geda_widget_hide_all (priv->popup_window);
+    gtk_widget_hide (priv->popup_window);
 
     active = gtk_toggle_button_get_active ((GtkToggleButton*)priv->button);
 
