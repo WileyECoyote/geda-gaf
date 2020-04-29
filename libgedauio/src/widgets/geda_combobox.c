@@ -4727,6 +4727,7 @@ static bool geda_combo_box_list_button_pressed (GtkWidget      *widget,
       gtk_widget_grab_focus (priv->button);
     }
 
+    /* This will trigger a "toggled" signal to pop open the combo */;
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button), TRUE);
 
     priv->auto_scroll = FALSE;
