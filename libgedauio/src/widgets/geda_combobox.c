@@ -3287,8 +3287,8 @@ static bool geda_combo_box_real_popdown (GedaComboBox *combo_box)
 /*!
  * \brief Hides the menu or dropdown list of #GedaComboBox
  * \par Function Description
- * This function is mostly intended for use by accessibility technologies;
- * applications should have little use for it.
+ * This function is primarily intended for use by accessibility
+ * technologies; applications should have little use for it.
  */
 void geda_combo_box_popdown (GedaComboBox *combo_box)
 {
