@@ -3200,7 +3200,7 @@ static void geda_combo_box_real_popup (GedaComboBox *combo_box)
     return;
   }
 
-  if (gtk_widget_get_mapped (priv->popup_widget)) {
+  if (priv->popup_shown) {
     return;
   }
 

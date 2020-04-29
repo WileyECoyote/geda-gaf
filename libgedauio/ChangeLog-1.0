@@ -1,3 +1,10 @@
+2020-04-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_combobox.c: Revise geda_combo_box_real_popup to not
+      return if popup_widget is mapped, since this will be true if only the
+      top level window is hidden in geda_combo_box_popdown, check that the
+      popup window is not shown instead.
+
 2020-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_destroy to only
