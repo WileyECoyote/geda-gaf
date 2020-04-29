@@ -5,7 +5,9 @@
       top level window is hidden in geda_combo_box_popdown, check that the
       popup window is not shown instead. Replace geda_widget_hide_all with
       gtk_widget_hide in geda_combo_box_popdown; if the popup window is
-      hidden then the entire menu is hidden.
+      hidden then the entire menu is hidden. Remove calling geda_combo_box_
+      popup in geda_combo_box_list_button_pressed because setting the toggle
+      button active will trigger an event (thats calls geda_combo_box_popup).
 
 2020-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
