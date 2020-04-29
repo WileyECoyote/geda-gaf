@@ -2624,7 +2624,7 @@ static void geda_combo_box_detacher (GtkWidget *widget, GedaMenu *menu)
   GedaComboBox *combo_box = GEDA_COMBO_BOX (widget);
   GedaComboBoxData *priv  = combo_box->priv;
 
-  g_return_if_fail (priv->popup_widget == (GtkWidget *) menu);
+  g_return_if_fail (priv->popup_widget == (GtkWidget*) menu);
 
   g_signal_handlers_disconnect_by_func (menu->toplevel,
                                         geda_combo_box_menu_show,
