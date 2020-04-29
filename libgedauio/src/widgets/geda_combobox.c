@@ -5460,14 +5460,17 @@ geda_combo_box_cell_layout_clear_attributes (GtkCellLayout   *layout,
   g_slist_free (info->attributes);
   info->attributes = NULL;
 
-  if (priv->cell_view)
+  if (priv->cell_view) {
     gtk_cell_layout_clear_attributes ((GtkCellLayout*)priv->cell_view, cell);
+  }
 
-  if (priv->column)
+  if (priv->column) {
     gtk_cell_layout_clear_attributes ((GtkCellLayout*)priv->column, cell);
+  }
 
-  if (GEDA_IS_MENU (priv->popup_widget))
+  if (GEDA_IS_MENU (priv->popup_widget)) {
     clear_attributes_recurse (priv->popup_widget, cell);
+  }
 
   gtk_widget_queue_resize ((GtkWidget*)combo_box);
 }
