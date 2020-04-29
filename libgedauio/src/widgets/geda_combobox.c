@@ -4777,37 +4777,39 @@ static bool geda_combo_box_list_button_released (GtkWidget      *widget,
          gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (priv->button)))
     {
       geda_combo_box_popdown (combo_box);
-      return TRUE;
+      ret = TRUE;
     }
-
-    /* released outside treeview */
-    if (ewidget != priv->button && ewidget != priv->box) {
+    else if (ewidget != priv->button && ewidget != priv->box) {
+      /* released outside treeview */
       geda_combo_box_popdown (combo_box);
-      return TRUE;
+      ret = TRUE;
     }
-
-    return FALSE;
-  }
-
-  /* select something cool */
-  ret = gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (priv->tree_view),
-                                       event->x, event->y,
-                                       &path,
-                                       NULL, NULL, NULL);
-
-  if (ret) { /* clicked inside window? */
-
-    gtk_tree_model_get_iter (priv->model, &iter, path);
-    gtk_tree_path_free (path);
-
-    geda_combo_box_popdown (combo_box);
-
-    if (tree_column_row_is_sensitive (combo_box, &iter)) {
-      geda_combo_box_set_active_iter (combo_box, &iter);
+    else {
+      ret = FALSE;
     }
   }
+  else {
 
-  return TRUE;
+    /* select something cool */
+    ret = gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (priv->tree_view),
+                                         event->x, event->y,
+                                         &path,
+                                         NULL, NULL, NULL);
+
+    if (ret) { /* clicked inside window? */
+
+      gtk_tree_model_get_iter (priv->model, &iter, path);
+      gtk_tree_path_free (path);
+
+      geda_combo_box_popdown (combo_box);
+
+      if (tree_column_row_is_sensitive (combo_box, &iter)) {
+        geda_combo_box_set_active_iter (combo_box, &iter);
+      }
+    }
+  }
+
+  return ret;
 }
 
 /*!

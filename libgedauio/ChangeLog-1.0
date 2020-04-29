@@ -8,6 +8,7 @@
       hidden then the entire menu is hidden. Remove calling geda_combo_box_
       popup in geda_combo_box_list_button_pressed because setting the toggle
       button active will trigger an event (thats calls geda_combo_box_popup).
+      Revise geda_combo_box_list_button_released to eliminate early returns.
 
 2020-04-28 Wiley E. Hill <wileyhill@gmail.com>
 
