@@ -1876,7 +1876,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   menu_item = (GedaMenuItem*)widget;
   priv      = menu_item->priv;
 
-  border_width = ((GtkContainer*)widget)->border_width;
+  border_width = geda_get_container_border_width (widget);
 
   x      = widget->allocation.x + border_width;
   y      = widget->allocation.y + border_width;

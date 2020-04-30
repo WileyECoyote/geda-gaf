@@ -1,7 +1,9 @@
 2020-04-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Replace switch case with if/else in
-      geda_menu_item_position_menu.
+      geda_menu_item_position_menu. Utilize macro:
+
+          * geda_get_container_border_width
 
 2020-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -32,7 +34,7 @@
 
     * src/widgets/geda_menu_item.c: Replace gtk_widget_hide_all with
       gtk_widget_hide in geda_menu_item_hide_all. Replace switch case
-      with if/else. Utilize macro:
+      with if/else. Utilize macros:
 
           * geda_get_widget_window
           * geda_set_widget_style
