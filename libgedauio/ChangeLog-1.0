@@ -1,3 +1,8 @@
+2020-04-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Replace switch case with if/else in
+      geda_menu_item_position_menu.
+
 2020-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_combobox.c: Revise geda_combo_box_real_popup to not

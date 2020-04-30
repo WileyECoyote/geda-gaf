@@ -3304,32 +3304,31 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
       }
     }
 
-    switch (priv->submenu_direction) {
+    if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
 
-      case SUBMENU_DIR_LEFT:
-        if (tx - twidth - parent_padding.left - horizontal_offset >= monitor.x ||
-          available_left >= available_right)
-        {
-          tx -= twidth + parent_padding.left + horizontal_offset;
-        }
-        else {
-          priv->submenu_direction = SUBMENU_DIR_RIGHT;
-          tx += allocation.width + parent_padding.right + horizontal_offset;
-        }
-        break;
+      if (tx - twidth - parent_padding.left - horizontal_offset >= monitor.x ||
+        available_left >= available_right)
+      {
+        tx -= twidth + parent_padding.left + horizontal_offset;
+      }
+      else {
+        priv->submenu_direction = SUBMENU_DIR_RIGHT;
+        tx += allocation.width + parent_padding.right + horizontal_offset;
+      }
+    }
+    else /* submenu_direction == SUBMENU_DIR_RIGHT */ {
 
-      case SUBMENU_DIR_RIGHT:
-        if (tx + allocation.width + parent_padding.right + horizontal_offset + twidth <= monitor.x + monitor.width ||
-          available_right >= available_left)
-        {
-          tx += allocation.width + parent_padding.right + horizontal_offset;
-        }
-        else
-        {
-          priv->submenu_direction = SUBMENU_DIR_LEFT;
-          tx -= twidth + parent_padding.left + horizontal_offset;
-        }
-        break;
+      if (tx + allocation.width + parent_padding.right + horizontal_offset + twidth <= monitor.x + monitor.width ||
+        available_right >= available_left)
+      {
+        tx += allocation.width + parent_padding.right + horizontal_offset;
+      }
+      else
+      {
+        priv->submenu_direction = SUBMENU_DIR_LEFT;
+        tx -= twidth + parent_padding.left + horizontal_offset;
+      }
+      break;
     }
 
     ty += vertical_offset;
