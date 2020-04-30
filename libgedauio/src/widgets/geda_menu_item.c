@@ -1865,6 +1865,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
+  GtkAllocation       *allocation;
 
   GtkStateType  state_type;
   GtkShadowType selected_shadow_type;
@@ -1873,15 +1874,15 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   int x, y;
   int border_width;
 
-  menu_item = (GedaMenuItem*)widget;
-  priv      = menu_item->priv;
-
+  menu_item    = (GedaMenuItem*)widget;
+  priv         = menu_item->priv;
+  allocation   = geda_get_widget_allocation (widget);
   border_width = geda_get_container_border_width (widget);
 
-  x      = widget->allocation.x + border_width;
   y      = widget->allocation.y + border_width;
   width  = widget->allocation.width  - border_width * 2;
   height = widget->allocation.height - border_width * 2;
+  x      = allocation->x + border_width;
 
   state_type = widget->state;
 
