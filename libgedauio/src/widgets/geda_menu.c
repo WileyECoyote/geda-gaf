@@ -3835,7 +3835,7 @@ geda_menu_attach_to_widget (GedaMenu       *menu,
  * \par Function Description
  * Returns the GtkWidget that the menu is attached to.
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  *
  * \returns GtkWidget that the menu is attached to
  */
@@ -3859,7 +3859,7 @@ GtkWidget *geda_menu_get_attach_widget (GedaMenu *menu)
  * This function will call the callback function, \a detacher, if provided
  * when the geda_menu_attach_to_widget() function was called.
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  */
 void geda_menu_detach (GedaMenu *menu)
 {
@@ -4267,6 +4267,7 @@ void geda_menu_popup (GedaMenu         *menu,
     bool  keyboard_mode;
 
     keyboard_mode = geda_menu_shell_get_keyboard_mode ((GedaMenuShell*)parent_menu_shell);
+
     geda_menu_shell_set_keyboard_mode (menu_shell, keyboard_mode);
   }
   else if (menu_shell->button == 0) { /* a keynav-activated context menu */
@@ -4281,7 +4282,7 @@ void geda_menu_popup (GedaMenu         *menu,
  * \par Function Description
  * Removes the menu from the screen.
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  */
 void geda_menu_popdown (GedaMenu *menu)
 {
@@ -4390,9 +4391,9 @@ void geda_menu_reposition (GedaMenu *menu)
  *  Returns the selected menu item from the menu. This is used by
  *  the #GedaOptionMenu.
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  *
- * \returns GedaMenuItem that was last selected in the menu. If a selection
+ * \returns Last GedaMenuItem selected in the menu. If a selection
  *          has not yet been made, the first menu item is selected.
  */
 GtkWidget *geda_menu_get_active (GedaMenu *menu)
@@ -4469,7 +4470,7 @@ void geda_menu_set_active (GedaMenu *menu, unsigned int index)
  *  Wrapper for geda_menu_get_active that cast menu to a
  *  GedaMenu object.
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  *
  * \returns GedaMenuItem that was last selected in the menu. If a selection
  *          has not yet been made, the first menu item is selected.
@@ -4582,7 +4583,7 @@ void geda_menu_widget_set_accel_group (GtkWidget *menu, GtkAccelGroup *accel_gro
  * \par Function Description
  *  Retrieves the accelerator path set on the menu widget.
  *
- * \param[in] menu: a valid #GedaMenu
+ * \param[in] menu a valid #GedaMenu
  *
  * \returns accelerator path set on the menu.
  */
@@ -4611,7 +4612,7 @@ void geda_menu_widget_set_accel_path (GtkWidget *menu, const char *accel_path)
  * \par Function Description
  *  Retrieves the accelerator path set on the menu.
  *
- * \param[in] menu: a valid #GedaMenu
+ * \param[in] menu a valid #GedaMenu
  *
  * \returns accelerator path set on the menu.
  */
@@ -4751,7 +4752,7 @@ static void geda_menu_set_tearoff_hints (GedaMenu *menu, int width)
  *  Returns whether the menu is torn off.
  * \sa  geda_menu_set_tearoff_state ().
  *
- * \param[in] menu: a #GedaMenu
+ * \param[in] menu a #GedaMenu
  *
  * \retval %TRUE if the menu is currently torn off.
  */
