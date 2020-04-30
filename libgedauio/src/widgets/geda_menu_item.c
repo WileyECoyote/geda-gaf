@@ -1879,10 +1879,10 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   allocation   = geda_get_widget_allocation (widget);
   border_width = geda_get_container_border_width (widget);
 
-  width  = widget->allocation.width  - border_width * 2;
   height = widget->allocation.height - border_width * 2;
   x      = allocation->x + border_width;
   y      = allocation->y + border_width;
+  width  = allocation->width  - border_width * 2;
 
   state_type = widget->state;
 
