@@ -1884,7 +1884,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   width  = allocation->width  - border_width * 2;
   height = allocation->height - border_width * 2;
 
-  state_type = widget->state;
+  state_type = geda_get_widget_state (widget);
 
   if ((state_type == GTK_STATE_PRELIGHT) && (((GtkBin*)menu_item)->child))
   {

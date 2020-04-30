@@ -5,6 +5,7 @@
 
           * geda_get_widget_allocation
           * geda_get_container_border_width
+          * geda_get_widget_state
 
 2020-04-29 Wiley E. Hill <wileyhill@gmail.com>
 
