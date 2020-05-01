@@ -1935,7 +1935,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 
     context = gtk_widget_get_pango_context (child);
     metrics = pango_context_get_metrics (context,
-                                         ((GtkWidget*)child)->style->font_desc,
+                                         geda_get_widget_style(child)->font_desc,
                                          pango_context_get_language (context));
 
     arrow_size = (PANGO_PIXELS (pango_font_metrics_get_ascent (metrics) +
