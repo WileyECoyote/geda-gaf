@@ -886,7 +886,7 @@ static void geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
     height = handlebox->handle_size;
   }
 
-  state  = gtk_widget_get_state (widget);
+  state  = geda_get_widget_state (widget);
   style  = geda_get_widget_style (widget);
   window = geda_get_widget_window (widget);
 
