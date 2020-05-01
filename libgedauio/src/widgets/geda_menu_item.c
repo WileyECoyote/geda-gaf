@@ -1866,6 +1866,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
   GtkAllocation       *allocation;
+  GtkWidget           *child;
 
   GtkStateType  state_type;
   GtkShadowType selected_shadow_type;
@@ -1884,10 +1885,12 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   width  = allocation->width  - border_width * 2;
   height = allocation->height - border_width * 2;
 
+  child      = geda_get_child_widget (widget);
   state_type = geda_get_widget_state (widget);
 
-  if ((state_type == GTK_STATE_PRELIGHT) && (((GtkBin*)menu_item)->child))
-  {
+
+  if ((state_type == GTK_STATE_PRELIGHT) && child) {
+
     gtk_widget_style_get (widget,
                           "selected-shadow-type", &selected_shadow_type,
                           NULL);
@@ -1927,9 +1930,9 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                           "arrow-scaling", &arrow_scaling,
                           NULL);
 
-    context = gtk_widget_get_pango_context (((GtkBin*)menu_item)->child);
+    context = gtk_widget_get_pango_context (child);
     metrics = pango_context_get_metrics (context,
-                                         ((GtkWidget*)((GtkBin*)menu_item)->child)->style->font_desc,
+                                         ((GtkWidget*)child)->style->font_desc,
                                          pango_context_get_language (context));
 
     arrow_size = (PANGO_PIXELS (pango_font_metrics_get_ascent (metrics) +
@@ -1957,7 +1960,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                      arrow_x, arrow_y,
                      arrow_extent, arrow_extent);
   }
-  else if (! ((GtkBin*)menu_item)->child ) {
+  else if (!child) {
 
     bool     wide_separators;
     int      separator_height;
