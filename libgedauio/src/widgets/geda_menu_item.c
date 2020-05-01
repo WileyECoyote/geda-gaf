@@ -1867,6 +1867,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
   GedaMenuItemPrivate *priv;
   GtkAllocation       *allocation;
   GtkWidget           *child;
+  GtkStyle            *style;
 
   GtkStateType  state_type;
   GtkShadowType selected_shadow_type;
@@ -1887,14 +1888,14 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 
   child      = geda_get_child_widget (widget);
   state_type = geda_get_widget_state (widget);
-
+  style      = geda_get_widget_style (widget);
 
   if ((state_type == GTK_STATE_PRELIGHT) && child) {
 
     gtk_widget_style_get (widget,
                           "selected-shadow-type", &selected_shadow_type,
                           NULL);
-    gtk_paint_box (widget->style,
+    gtk_paint_box (style,
                    widget->window,
                    GTK_STATE_PRELIGHT,
                    selected_shadow_type,
