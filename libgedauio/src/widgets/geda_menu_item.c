@@ -1976,7 +1976,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                           NULL);
 
     if (wide_separators) {
-      gtk_paint_box (widget->style, widget->window,
+      gtk_paint_box (style, widget->window,
                      GTK_STATE_NORMAL, GTK_SHADOW_ETCHED_OUT,
                      area, widget, "hseparator",
                      widget->allocation.x + horizontal_padding + widget->style->xthickness,
