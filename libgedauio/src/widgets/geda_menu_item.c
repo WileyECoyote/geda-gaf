@@ -1956,7 +1956,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
 
     arrow_y = y + (height - arrow_extent) / 2;
 
-    gtk_paint_arrow (style, widget->window,
+    gtk_paint_arrow (style, window,
                      state_type, shadow_type,
                      area, widget, "menuitem",
                      arrow_type, TRUE,
