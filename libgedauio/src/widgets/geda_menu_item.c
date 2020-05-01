@@ -1988,7 +1988,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                      separator_height);
     }
     else {
-      gtk_paint_hline (widget->style, widget->window,
+      gtk_paint_hline (style, widget->window,
                        GTK_STATE_NORMAL, area, widget, "menuitem",
                        widget->allocation.x + horizontal_padding + widget->style->xthickness,
                        widget->allocation.x + widget->allocation.width - horizontal_padding - widget->style->xthickness - 1,
