@@ -1412,7 +1412,7 @@ msgstr "Arama ölçütlerini ayarlayın"
 # Autonumber text in
 #: gschem/src/x/x_autonumber.c:120
 msgid "Autonumber text in:"
-msgstr "Içinde otomatik olarak metin girişi yap"
+msgstr "Içinde otomatik olarak metin girişi yap:"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Set the context of the search scope"
@@ -2797,7 +2797,7 @@ msgstr ""
 # Simulation Type
 #: gschem/src/x/x_edit_cprop.c:1537
 msgid "Spice Type:"
-msgstr "Benzetim Türü"
+msgstr "Benzetim Türü:"
 
 # Model Name
 #: gschem/src/x/x_edit_cprop.c:1548
@@ -6269,7 +6269,7 @@ msgstr ""
 
 #: gschem/scheme/gschem/builtins.scm:549
 msgid "View the gschem User Guide in a browser."
-msgstr "gschem Kullanıcı Kılavuzu"
+msgstr "gschem Kullanıcı Kılavuzu."
 
 #: gschem/scheme/gschem/builtins.scm:554
 msgid "gschem FAQ"
