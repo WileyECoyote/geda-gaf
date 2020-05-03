@@ -95,7 +95,7 @@ msgstr "Izlazak iz normalnog\n"
 # FAILED
 #: gschem/src/base/gschem.c:558
 msgid "FAILED:"
-msgstr "Pali"
+msgstr "Pali:"
 
 # Parent Window
 #: gschem/src/base/gschem_dialog.c:597
@@ -219,6 +219,39 @@ msgid ""
 "Report bugs at <https://bugs.launchpad.net/geda>\n"
 "gEDA homepage: <http://www.geda-project.org>\n"
 msgstr ""
+"употреба: %s [ОПЦИЯ ...] [--] [ФАЙЛ ...]\n"
+"\n"
+"Interactively edit gEDA schematics or symbols. Ако са посочени един или \n"
+"повече ФАЙЛОВЕ, отворете ги за редактиране; в противен случай, създайте \n"
+"нова, празна схема.\n"
+"\n"
+"Опции:\n"
+"  -a, --render-adaptor <DRV> Посочете кой рендер да използвате, Cario или "
+"X11.\n"
+"  -c, --config-file <FILE>   Допълнителен конфигурационен файл за зареждане.\n"
+"  -g, --guile <DIR>          Добавете DIR към пътя на Guile (предварително конфигуриране).\n"
+"  -f, --font <NAME>          задайте име на шрифта\n"
+"  -h, --help                 Помощ; това съобщение.\n"
+"  -l, --list                 Списък на запаметените имена на сесията.\n"
+"  -m, --safe-mode            Безопасен режим.\n"
+"  -n, --no-auto              Няма автоматично зареждане на последния документ.\n"
+"  -o, --output <FILE>        Име на изходния файл (за печат и извеждане на "
+"изображения).\n"
+"  -p, --place                Автоматично поставете прозореца.\n"
+"  -q, --quiet                Тих режим.\n"
+"  -r, --run <FILE>           Scheme script to run at startup.\n"
+"  -s, --start <name>         Startup using the given session name.\n"
+"  -t, --title-block <FILE>   Start a new drawing using the specified title-"
+"block.\n"
+"  -u, --undo-dir <DIR>       Specify a temporary directory for Undo files.\n"
+"  -v, --verbose              Verbose mode.\n"
+"  -V, --version              Show version information.\n"
+"  -x (EXPR)                  Scheme expression to run at startup.\n"
+"  -z, --minimized            Hide the main window, used for scripting\n"
+"  --                         Treat all remaining arguments as filenames.\n"
+"\n"
+"Report bugs at <https://bugs.launchpad.net/geda>\n"
+"gEDA homepage: <http://www.geda-project.org>\n"
 
 #: gschem/src/base/gschem_parsecmd.c:130
 msgid ""
@@ -615,11 +648,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
-# Select all objects
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Odaberite sve objekte"
+msgstr "Prvo odaberite objekt"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1376,7 +1408,7 @@ msgstr ""
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Search for:"
-msgstr "Tražim izvor"
+msgstr "Tražim izvor:"
 
 #: gschem/src/x/x_autonumber.c:119
 msgid "Set the search criteria"
@@ -1385,7 +1417,7 @@ msgstr ""
 # Autonumber text in
 #: gschem/src/x/x_autonumber.c:120
 msgid "Autonumber text in:"
-msgstr "Automatski broj Tekst"
+msgstr "Automatski broj Tekst:"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Set the context of the search scope"
@@ -1417,11 +1449,10 @@ msgstr "Početni broj:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove number
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "Slot broj:"
+msgstr "Uklonite broj:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -4964,10 +4995,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
-#: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
+# Previous
+#: gschem/etc/system-gschemrcscm:2219
 msgid "Pre_vious"
-msgstr "_Prethodna"
+msgstr "_Prethodni"
 
 # View previous
 #: gschem/etc/system-gschemrc.scm:2219
@@ -5024,17 +5055,15 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr ""
 
-# Show/hide attributes from symbol file
+# Show/hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Pokaži/sakrij atribute od simbola datoteke"
+msgstr "Pokaži/sakrij naslijeđeno"
 
 # Show/hide attributes from symbol file
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Pokaži/sakrij atribute od simbola datoteke"
+msgstr "Prikaži/sakrij atribute iz datoteke simbola"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
