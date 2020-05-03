@@ -611,10 +611,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr "処理アクション"
 
+# Select object first; Saisho ni obujekuto o sentaku
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "まずオブジェクトを選択してください。"
+msgstr "最初にオブジェクトを選択"
 
 # Can not
 #: gschem/src/iface/i_command.c:636
@@ -1352,7 +1352,7 @@ msgstr "取り消しに失敗しました"
 # Search for:
 #: gschem/src/x/x_autonumber.c:119
 msgid "Search for:"
-msgstr "検索する："
+msgstr "検索する:"
 
 # Set the search criteria
 #: gschem/src/x/x_autonumber.c:119
@@ -1362,7 +1362,7 @@ msgstr "検索条件を設定する"
 # Autonumber text in:
 #: gschem/src/x/x_autonumber.c:120
 msgid "Autonumber text in:"
-msgstr "オートナンバーのテキスト："
+msgstr "オートナンバーのテキスト:"
 
 #: gschem/src/x/x_autonumber.c:120
 msgid "Set the context of the search scope"
@@ -1395,11 +1395,10 @@ msgstr "開始番号:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove numbers; Bangō o sakujo
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "スロット番号編集:"
+msgstr "番号を削除:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -2680,7 +2679,7 @@ msgstr "部品 (C):"
 
 #: gschem/src/x/x_edit_cprop.c:1357
 msgid "Options:"
-msgstr "オプション："
+msgstr "オプション:"
 
 # Embedded
 #: gschem/src/x/x_edit_cprop.c:1392
@@ -4863,10 +4862,10 @@ msgstr "パン"
 msgid "Activate Panning"
 msgstr ""
 
+# Previous; Mae
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "前のページ(_P)"
+msgstr "前"
 
 # View previous; Mae o miru
 #: gschem/etc/system-gschemrc.scm:2219
@@ -4921,15 +4920,16 @@ msgstr "テキスト表示/非表示"
 msgid "Toggle hidden text attributes"
 msgstr ""
 
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "アトリビュート編集"
+msgstr "Keishō o hyōji/ hi hyōji"
 
+# Toggle inherited text attributes
+# Keishō sa reta tekisuto zokusei o kirikaeru
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "アトリビュート編集"
+msgstr "継承されたテキスト属性を切り替える"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
