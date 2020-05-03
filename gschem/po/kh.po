@@ -639,10 +639,10 @@ msgstr "ku"
 msgid "Processing Action"
 msgstr "sarachr damnaerkar"
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Vottho del ban chreus"
+msgstr "chreusareusa vottho cheamoun sen"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1438,10 +1438,10 @@ msgstr "chabphtaem lekh​:"
 msgid "Set the starting number for the current scan"
 msgstr "kamnt lekh chabphtaem samreab sken bachchobban"
 
+# Remove numbers
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "loub lekh:"
+msgstr "yk lekh chenh:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -1760,7 +1760,7 @@ msgstr ""
 
 #: gschem/src/x/x_confirm_close.c:335
 msgid "S_elect the schematics you want to save:"
-msgstr "chreusa krongkar del anak chng roksaatouk"
+msgstr "chreusa krongkar del anak chng roksaatouk:"
 
 #: gschem/src/x/x_confirm_close.c:510
 #, c-format
@@ -5062,11 +5062,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
-# previous page
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "tompr moun"
+msgstr "moun"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
@@ -5121,17 +5120,15 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr ""
 
-# Show/hide attributes from symbol file
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "bangheanh/leak kounalokkhan pi eksar chea"
+msgstr "bangheanh/leak morotak"
 
-# Show/hide attributes from symbol file
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "bangheanh/leak kounalokkhan pi eksar chea"
+msgstr "bet baek kounalokkhan atthabt del ban ttuol"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
