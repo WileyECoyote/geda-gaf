@@ -597,9 +597,8 @@ msgid "Processing Action"
 msgstr "Processing Action"
 
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Selected objects"
+msgstr "First select an object"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1362,9 +1361,8 @@ msgid "Set the starting number for the current scan"
 msgstr ""
 
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "Edit slot number:"
+msgstr "Remove numbers:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -1431,7 +1429,7 @@ msgstr "File order"
 
 #: gschem/src/x/x_autonumber.c:1668
 msgid "Filter:"
-msgstr "Filter"
+msgstr "Filter:"
 
 #: gschem/src/x/x_autonumber.c:1673
 msgid "_History"
@@ -4774,9 +4772,8 @@ msgid "Activate Panning"
 msgstr ""
 
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "_Previous"
+msgstr "Pre_vious"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
@@ -4831,14 +4828,12 @@ msgid "Toggle hidden text attributes"
 msgstr "Show inherited attributes"
 
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Show/Hide Inv Text"
+msgstr "Show/Hide Inheri_ted"
 
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Show inherited attributes"
+msgstr "Toggle inherited text attributes"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
