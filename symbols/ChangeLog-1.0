@@ -1,3 +1,9 @@
+2020-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/verilog: Update pinnumber and pinlabel attributes:
+
+            * simulation/verilog/xnor5-1.sym
+
 2020-04-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update pin type attributes:
