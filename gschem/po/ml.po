@@ -697,11 +697,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
-# Select all objects
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "എല്ലാ വസ്തുക്കൾ തിരഞ്ഞെടുക്കുക"
+msgstr "ആദ്യം ഒബ്‌ജക്റ്റ് തിരഞ്ഞെടുക്കുക"
 
 # Cannot
 #: gschem/src/iface/i_command.c:636
@@ -5098,11 +5097,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
-# Previous Page
+# Previous; mumpatte
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "മുൻപത്തെ താൾ"
+msgstr "മുമ്പത്തെ"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
@@ -6362,7 +6360,7 @@ msgstr ""
 # Edit design rules; ḍisain niyamaṅṅaḷ eḍiṟṟuceyyuka
 #: gschem/scheme/gschem/gschem-tools-menu.scm:254
 msgid "Edit DRC rules..."
-msgstr "ഡിസൈൻ നിയമങ്ങൾ എഡിറ്റുചെയ്യുക"
+msgstr "ഡിസൈൻ നിയമങ്ങൾ എഡിറ്റുചെയ്യുക..."
 
 #: gschem/scheme/gschem/gschem-tools-menu.scm:255
 msgid "Run DRC 1"
