@@ -614,10 +614,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr "Processing Action"
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Wybrane obiekty"
+msgstr "Najpierw wybierz obiekt"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1462,11 +1462,10 @@ msgstr "Numer początkowy:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove numbers
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "numer gniazda:"
+msgstr "Usuń liczby:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -2715,7 +2714,7 @@ msgstr "Wybierz kolor dla wybranych obiektów."
 # Set preloaded reference designators
 #: gschem/src/x/x_edit_cprop.c:77
 msgid "Set preloaded reference designators."
-msgstr "Ustaw wstępnie oznaczone symbole"
+msgstr "Ustaw wstępnie oznaczone symbole."
 
 #: gschem/src/x/x_edit_cprop.c:78
 msgid "Standard"
@@ -5146,10 +5145,10 @@ msgstr "_Przesuń"
 msgid "Activate Panning"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "_Poprzedni"
+msgstr "Poprzedni"
 
 # View previous
 #: gschem/etc/system-gschemrc.scm:2219
@@ -5210,17 +5209,15 @@ msgstr "Wyświetlaj/ukryj niewidoczny tekst"
 msgid "Toggle hidden text attributes"
 msgstr "Przełącz atrybuty ukrytych tekstów"
 
-# Show/Hide Inherited Attributes
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Wyświetlaj/ukryj Dziedziczone Atrybuty"
+msgstr "Wyświe_tlaj/ukryj Dziedziczny"
 
-# Toggle hidden text attributes
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Przełącz atrybuty ukrytych tekstów"
+msgstr "Przełącz odziedziczone atrybuty tekstu"
 
 # Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2233
