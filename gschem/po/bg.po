@@ -695,11 +695,10 @@ msgstr "е"
 msgid "Processing Action"
 msgstr "Действие за обработка"
 
-# Select all objects
+# Select object first; Pŭrvo izberete obekt
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Изберете всички предмети"
+msgstr "Първо изберете обект"
 
 # Cannot; Ne moga
 #: gschem/src/iface/i_command.c:636
@@ -2387,7 +2386,7 @@ msgstr ""
 # Error; greshka
 #: gschem/src/x/x_dnd.c:248
 msgid "Error:"
-msgstr "грешка"
+msgstr "грешка:"
 
 #: gschem/src/x/x_dnd.c:249
 msgid "unidentified complex object"
@@ -4982,10 +4981,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Previous; predishen
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "Предишна страница"
+msgstr "Предишен"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
