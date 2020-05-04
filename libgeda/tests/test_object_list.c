@@ -942,6 +942,18 @@ check_object_list_scale (GedaToplevel *toplevel)
     result++;
   }
 
+  /* === object11->text === */
+
+  int size;
+
+  size = geda_text_object_get_size (object11);
+
+  if (size / 10 != DEFAULT_TEXT_SIZE) {
+    fprintf(stderr, "FAILED: (O120611) geda_object_list_scale: ");
+    fprintf(stderr, "size=%d\n", size);
+    result++;
+  }
+
   return result;
 }
 
