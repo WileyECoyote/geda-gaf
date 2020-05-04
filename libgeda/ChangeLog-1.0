@@ -8,6 +8,8 @@
 
     * src/object/o_text_object.c: Add function geda_text_object_scale.
 
+    * tests/test_line_object.c: Add check for geda_line_object_scale.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Add function geda_iface_menu_return_icon,
