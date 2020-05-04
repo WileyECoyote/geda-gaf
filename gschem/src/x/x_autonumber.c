@@ -1186,8 +1186,10 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
     error  = NULL;
     path   = geda_file_get_bitmap_filespec(filenames[i]);
     pixbuf = gdk_pixbuf_new_from_file(path, &error);
+
     gtk_list_store_append(store, &iter);
     gtk_list_store_set(store, &iter, 0, _(names[i]), 1, pixbuf, -1);
+
     GEDA_FREE(path);
   }
 
