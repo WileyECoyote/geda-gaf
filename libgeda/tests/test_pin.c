@@ -233,7 +233,6 @@ int check_accessors ()
   }
   else {
 
-    GedaPin  *pin  = object->pin;
     GedaLine *line = object->line;
 
     int count;
