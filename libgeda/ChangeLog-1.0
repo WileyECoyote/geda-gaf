@@ -14,6 +14,9 @@
 
     * tests/test_object_list.c: Check scale text in list.
 
+    * tests/test_picture_object.c: Check geda_picture_object_get_fall
+      back_pixbuf returns a non NULL pointer.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Add function geda_iface_menu_return_icon,

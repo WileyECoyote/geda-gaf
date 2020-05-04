@@ -26,6 +26,8 @@
 
 #include "../../config.h"
 
+#include <gdk/gdk.h>
+
 #include <libgeda.h>
 #include <prototype_priv.h>
 #include <version.h>
@@ -283,6 +285,17 @@ int check_accessors (void)
 
   if (abs((ratio - (IMAGE_WIDTH / IMAGE_HEIGHT))) > 0.000001) {
     fprintf(stderr, "FAILED: (O160701) get_effective_ratio <%f>\n", ratio);
+    result++;
+  }
+
+  /* === Function 07: geda_picture_object_get_fallback_pixbuf  === */
+
+  GdkPixbuf *pixbuf;
+
+  pixbuf = geda_picture_object_get_fallback_pixbuf ();
+
+  if (!pixbuf) {
+    fprintf(stderr, "FAILED: (O160701) get_fallback_pixbuf NULL\n");
     result++;
   }
 
