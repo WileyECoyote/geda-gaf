@@ -122,6 +122,36 @@ int check_math_distance ()
   return result;
 }
 
+int check_math_papersize_to_world ()
+{
+  int result = 0;
+
+  int right;
+  int bottom;
+
+  int width, height, border;
+
+  /* === Function 03:  geda_math_papersize_to_world === */
+
+  width  = 120000;
+  height = 90000;
+  border = 1000;
+
+  geda_math_papersize_to_world(width, height, border, &right, &bottom);
+
+  if (right != 121000) {
+    fprintf(stderr, "FAILED: (M010301) right (%d)\n", right);
+    result++;
+  }
+
+  if (bottom != 90750) {
+    fprintf(stderr, "FAILED: (M010302) bottom (%d)\n", bottom);
+    result++;
+  }
+
+  return result;
+}
+
 int main (int argc, char *argv[])
 {
   int result = 0;
@@ -146,6 +176,14 @@ int main (int argc, char *argv[])
   }
   else {
     fprintf(stderr, "Caught signal checking math_distance in %s\n\n", MUT);
+    return 1;
+  }
+
+  if (setjmp(point) == 0) {
+    result += check_math_papersize_to_world();
+  }
+  else {
+    fprintf(stderr, "Caught signal checking papersize_to_world in %s\n\n", MUT);
     return 1;
   }
 

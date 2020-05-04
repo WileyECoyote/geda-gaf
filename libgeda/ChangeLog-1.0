@@ -10,6 +10,8 @@
 
     * tests/test_line_object.c: Add check for geda_line_object_scale.
 
+    * tests/test_math.c: Add check for geda_math_papersize_to_world.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Add function geda_iface_menu_return_icon,
