@@ -990,6 +990,28 @@ char *geda_text_object_save(GedaObject *object)
   return(buf);
 }
 
+void geda_text_object_scale (GedaObject *object, int scale)
+{
+  if (GEDA_IS_TEXT(object)) {
+
+    int new_size;
+
+    new_size = object->text->size * scale;
+
+    if (new_size < MINIMUM_TEXT_SIZE) {
+      object->text->size = MINIMUM_TEXT_SIZE;
+    }
+    else {
+      object->text->size = new_size;
+    }
+
+    object->bounds_valid = FALSE;
+  }
+  else {
+    BUG_MSG("GEDA_IS TEXT failed");
+  }
+}
+
 /*!
  * \brief Set the text alignment
  * \par Function Description

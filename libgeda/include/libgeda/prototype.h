@@ -585,6 +585,7 @@ unsigned char   *geda_picture_object_get_rgb_data          (GedaObject *object) 
                                                             int size, int visibility, int show_name_value, const char *string);
          void    geda_text_object_recreate                 (GedaObject *o_current);
          void    geda_text_object_rotate                   (GedaObject *object, int center_x, int center_y, int angle);
+         void    geda_text_object_scale                    (GedaObject *object, int scale);
          void    geda_text_object_set_alignment            (GedaObject *object, int alignment);
          void    geda_text_object_set_angle                (GedaObject *object, int angle);
          void    geda_text_object_set_rendered_bounds_func (GedaObject *object, RenderedBoundsFunc func, void *user_data);
