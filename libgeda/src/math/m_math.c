@@ -74,7 +74,8 @@ double geda_math_distance(int x1, int y1, int x2, int y2)
  * \brief Convert Paper size to World coordinates.
  * \par Function Description
  *  This function takes the paper size and converts it to
- *  world coordinates. It supports landscape with a fixed aspect ratio.
+ *  world coordinates. It supports landscape with a fixed
+ *  aspect ratio.
  *
  * \param [in]  width   Paper width. (units?)
  * \param [in]  height  Paper height. (units?)
@@ -96,25 +97,39 @@ void geda_math_papersize_to_world(int width, int height, int border, int *right,
 
   if (aspect < 1.333333333) {
 
+    float xf;
+
+    xf = (height + border) * 1.33333333 - (width + border);
+
     /* is this lrint really needed? */
 #ifdef HAVE_LRINT
-    *right = lrint (width+border + ((height+border)*1.33333333 - (width+border)));
+
+    *right = lrint (width + border + xf);
+
 #else
-    *right = (int) width+border + ((height+border)*1.33333333 - (width+border));
+
+    *right = (int) width + border + xf;
+
 #endif
 
-    *bottom = height+border;
+    *bottom = height + border;
   }
   else {
-    *right = (int) width+border;
-    *bottom = (int) height+border + ((width+border)/1.33333333 - (height+border));
+
+    float yf;
+
+    yf = (width + border) / 1.33333333 - (height + border);
+
+    *right = (int) width + border;
+    *bottom = (int) height + border + yf;
   }
 
 #if DEBUG
+
   aspect = (float) *right / (float) *bottom;
   printf("%f\n", aspect);
-#endif
 
+#endif
 }
 
 /*!

@@ -1,3 +1,8 @@
+2020-05-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_math.c: Revise geda_math_papersize_to_world to use
+      ancillary variables to compute adjustment factors.
+
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_menu.c: Add function geda_iface_menu_return_icon,
