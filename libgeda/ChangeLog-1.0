@@ -3,6 +3,9 @@
     * src/math/m_math.c: Revise geda_math_papersize_to_world to use
       ancillary variables to compute adjustment factors.
 
+    * src/object/o_list.c: Revise geda_object_list_scale to handle the
+      case of text object types.
+
     * src/object/o_text_object.c: Add function geda_text_object_scale.
 
 2020-04-20 Wiley E. Hill <wileyhill@gmail.com>
