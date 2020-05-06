@@ -1968,8 +1968,8 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
     bool     wide_separators;
     int      separator_height;
     unsigned int horizontal_padding;
-    unsigned int ythickness;
     unsigned int x_hp_p_thk;
+    unsigned int y_ah_m_thk;
 
     gtk_widget_style_get (widget,
                           "wide-separators",    &wide_separators,
@@ -1978,22 +1978,23 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                           NULL);
 
     x_hp_p_thk = horizontal_padding + style->xthickness;
+    y_ah_m_thk = allocation->height - ythickness;
 
     if (wide_separators) {
       gtk_paint_box (style, window,
                      GTK_STATE_NORMAL, GTK_SHADOW_ETCHED_OUT,
                      area, widget, "hseparator",
-                     allocation->y + (allocation->height - separator_height - ythickness) / 2,
                      allocation->x + x_hp_p_thk,
+                     allocation->y + (y_ah_m_thk - separator_height) / 2,
                      allocation->width - 2 * (x_hp_p_thk,
                      separator_height);
     }
     else {
       gtk_paint_hline (style, window,
                        GTK_STATE_NORMAL, area, widget, "menuitem",
-                       allocation->y + (allocation->height - ythickness) / 2);
                        allocation->x + x_hp_p_thk,
                        allocation->x + allocation->width - x_hp_p_thk - 1,
+                       allocation->y + (y_ah_m_thk) / 2);
     }
   }
 }
