@@ -1991,8 +1991,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                        GTK_STATE_NORMAL, area, widget, "menuitem",
                        allocation.x + horizontal_padding + style->xthickness,
                        allocation.x + allocation->width - horizontal_padding - widget->style->xthickness - 1,
-                       widget->allocation.y + (widget->allocation.height -
-                       style->ythickness) / 2);
+                       allocation.y + (allocation->height - style->ythickness) / 2);
     }
   }
 }
