@@ -1990,7 +1990,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
       gtk_paint_hline (style, window,
                        GTK_STATE_NORMAL, area, widget, "menuitem",
                        allocation.x + horizontal_padding + style->xthickness,
-                       widget->allocation.x + widget->allocation.width - horizontal_padding - widget->style->xthickness - 1,
+                       allocation.x + allocation->width - horizontal_padding - widget->style->xthickness - 1,
                        widget->allocation.y + (widget->allocation.height -
                        style->ythickness) / 2);
     }
