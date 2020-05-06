@@ -1979,19 +1979,19 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
       gtk_paint_box (style, window,
                      GTK_STATE_NORMAL, GTK_SHADOW_ETCHED_OUT,
                      area, widget, "hseparator",
-                     allocation.x + horizontal_padding + style->xthickness,
-                     allocation.y + (allocation->height -
+                     allocation->x + horizontal_padding + style->xthickness,
+                     allocation->y + (allocation->height -
                      separator_height - style->ythickness) / 2,
-                     allocation.width -
+                     allocation->width -
                      2 * (horizontal_padding + style->xthickness),
                      separator_height);
     }
     else {
       gtk_paint_hline (style, window,
                        GTK_STATE_NORMAL, area, widget, "menuitem",
-                       allocation.x + horizontal_padding + style->xthickness,
-                       allocation.x + allocation->width - horizontal_padding - style->xthickness - 1,
-                       allocation.y + (allocation->height - style->ythickness) / 2);
+                       allocation->x + horizontal_padding + style->xthickness,
+                       allocation->x + allocation->width - horizontal_padding - style->xthickness - 1,
+                       allocation->y + (allocation->height - style->ythickness) / 2);
     }
   }
 }
