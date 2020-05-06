@@ -1980,7 +1980,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                      GTK_STATE_NORMAL, GTK_SHADOW_ETCHED_OUT,
                      area, widget, "hseparator",
                      allocation.x + horizontal_padding + style->xthickness,
-                     widget->allocation.y + (widget->allocation.height -
+                     allocation.y + (allocation->height -
                      separator_height - style->ythickness) / 2,
                      widget->allocation.width -
                      2 * (horizontal_padding + style->xthickness),
