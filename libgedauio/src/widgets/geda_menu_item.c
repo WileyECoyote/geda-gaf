@@ -2069,7 +2069,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
 
     GtkRequisition child_requisition;
 
-    gtk_widget_size_request (bin->child, &child_requisition);
+    gtk_widget_size_request (child, &child_requisition);
 
     requisition->width  += child_requisition.width;
     requisition->height += child_requisition.height;
