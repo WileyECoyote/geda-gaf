@@ -1986,7 +1986,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                      area, widget, "hseparator",
                      allocation->x + x_hp_p_thk,
                      allocation->y + (y_ah_m_thk - separator_height) / 2,
-                     allocation->width - 2 * (x_hp_p_thk,
+                     allocation->width - 2 * x_hp_p_thk,
                      separator_height);
     }
     else {
