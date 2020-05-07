@@ -2016,6 +2016,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
+  GedaMenuBar         *parent_bar;
   GtkWidget           *child;
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
@@ -2025,11 +2026,12 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
 
   gtk_widget_style_get (widget, "horizontal-padding", &horizontal_padding, NULL);
 
-  menu_item = (GedaMenuItem*)widget;
-  priv      = menu_item->priv;
+  menu_item  = (GedaMenuItem*)widget;
+  priv       = menu_item->priv;
+  parent_bar = geda_get_widget_parent (widget);
 
   /* If an item on a bar use the parent style */
-  if (GEDA_IS_MENU_BAR(widget->parent)) {
+  if (GEDA_IS_MENU_BAR(parent_bar)) {
 
     pack_dir         = geda_menu_bar_get_pack_direction ((GedaMenuBar*)widget->parent);
     child_pack_dir   = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)widget->parent);

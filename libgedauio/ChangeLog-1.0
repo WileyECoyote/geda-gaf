@@ -1,7 +1,7 @@
 2020-05-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Replace ancillary bin and add pointer
-      to child in geda_menu_item_size_request.
+      to child in geda_menu_item_size_request, add ancillary parent_bar.
 
 2020-05-06 Wiley E. Hill <wileyhill@gmail.com>
 
