@@ -2078,7 +2078,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
 
       int arrow_spacing, arrow_size;
 
-      get_arrow_size (widget, bin->child, &arrow_size, &arrow_spacing);
+      get_arrow_size (widget, child, &arrow_size, &arrow_spacing);
 
       requisition->width += child_requisition.height;
       requisition->width += arrow_spacing + arrow_size;
