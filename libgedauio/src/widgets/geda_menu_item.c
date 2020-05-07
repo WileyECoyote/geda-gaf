@@ -1978,7 +1978,7 @@ static void geda_menu_item_paint (GtkWidget *widget, GdkRectangle *area)
                           NULL);
 
     x_hp_p_thk = horizontal_padding + style->xthickness;
-    y_ah_m_thk = allocation->height - ythickness;
+    y_ah_m_thk = allocation->height - style->ythickness;
 
     if (wide_separators) {
       gtk_paint_box (style, window,
