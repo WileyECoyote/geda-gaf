@@ -2016,7 +2016,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
-  GtkBin              *bin;
+  GtkWidget           *child;
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
   unsigned int         accel_width;
@@ -2025,7 +2025,6 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
 
   gtk_widget_style_get (widget, "horizontal-padding", &horizontal_padding, NULL);
 
-  bin       = (GtkBin*)widget;
   menu_item = (GedaMenuItem*)widget;
   priv      = menu_item->priv;
 
@@ -2064,7 +2063,9 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
     requisition->height += horizontal_padding << 1;
   }
 
-  if (bin->child && gtk_widget_get_visible (bin->child)) {
+  child = geda_get_child_widget (widget);
+
+  if (child && gtk_widget_get_visible (child)) {
 
     GtkRequisition child_requisition;
 
