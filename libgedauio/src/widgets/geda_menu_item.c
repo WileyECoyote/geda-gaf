@@ -2105,7 +2105,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
       requisition->height += separator_height + style->ythickness;
     }
     else {
-      requisition->height += widget->style->ythickness << 1;
+      requisition->height += style->ythickness << 1;
     }
   }
 
