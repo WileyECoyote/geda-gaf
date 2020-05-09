@@ -2121,18 +2121,20 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
+  GedaMenuBar         *parent_bar;
   GtkBin              *bin;
   GtkAllocation        child_allocation;
   GtkTextDirection     direction;
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
 
-  menu_item = (GedaMenuItem*)widget;
-  bin       = (GtkBin*)widget;
-  priv      = menu_item->priv;
-  direction = gtk_widget_get_direction (widget);
+  menu_item  = (GedaMenuItem*)widget;
+  bin        = (GtkBin*)widget;
+  priv       = menu_item->priv;
+  direction  = gtk_widget_get_direction (widget);
+  parent_bar = geda_get_widget_parent (widget);
 
-  if (GEDA_IS_MENU_BAR(widget->parent)) {
+  if (GEDA_IS_MENU_BAR(parent_bar)) {
     pack_dir       = geda_menu_bar_get_pack_direction ((GedaMenuBar*)widget->parent);
     child_pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)widget->parent);
   }
