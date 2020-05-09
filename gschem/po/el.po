@@ -579,10 +579,10 @@ msgstr "είναι"
 msgid "Processing Action"
 msgstr "επεξεργασία Δράση"
 
+# Select object first; Epiléxte próta to antikeímeno
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Επιλεγμένα αντικείμενα"
+msgstr "Επιλέξτε πρώτα το αντικείμενο"
 
 # Cannot
 #: gschem/src/iface/i_command.c:636
@@ -1363,11 +1363,10 @@ msgstr "Starting number:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# element number
+# element number; Afairéste arithmoús
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "στοιχείο αριθμός:"
+msgstr "Αφαιρέστε αριθμούς:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -4854,10 +4853,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "_Προηγούμενο"
+msgstr "Προηγούμε_νος"
 
 # View previous; Provolí proigoúmenon
 #: gschem/etc/system-gschemrc.scm:2219
@@ -4914,16 +4913,16 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr "Εναλλαγή χαρακτηριστικών κρυφών κειμένου"
 
+# Show/Hide Inherited; Emfánisi/Apókrypsi klironomikón
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Αποσυνδεδεμένο γνώρισμα"
+msgstr "Εμφάνιση/Απόκρυψη κληρονομικών"
 
-# Toggle hidden text attributes
+# Toggle inherited text attributes
+# Enallagí charaktiristikón keiménou pou klironomíthikan
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Εναλλαγή χαρακτηριστικών κρυφών κειμένου"
+msgstr "Εναλλαγή χαρακτηριστικών κειμένου που κληρονομήθηκαν"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
