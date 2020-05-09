@@ -2135,7 +2135,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
   parent_bar = geda_get_widget_parent (widget);
 
   if (GEDA_IS_MENU_BAR(parent_bar)) {
-    pack_dir       = geda_menu_bar_get_pack_direction ((GedaMenuBar*)widget->parent);
+    pack_dir       = geda_menu_bar_get_pack_direction (parent_bar);
     child_pack_dir = geda_menu_bar_get_child_pack_direction ((GedaMenuBar*)widget->parent);
   }
   else {
