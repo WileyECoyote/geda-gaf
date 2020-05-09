@@ -2017,6 +2017,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
   GedaMenuBar         *parent_bar;
+  GtkStyle            *style;
   GtkWidget           *child;
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
@@ -2048,8 +2049,9 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   }
 
   border_width = geda_get_container_border_width (widget);
+  style        = geda_get_widget_style (widget);
 
-  requisition->width  = (border_width + widget->style->xthickness) << 1;
+  requisition->width  = (border_width + style->xthickness) << 1;
   requisition->height = (border_width + widget->style->ythickness) << 1;
 
   if ((pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) &&
