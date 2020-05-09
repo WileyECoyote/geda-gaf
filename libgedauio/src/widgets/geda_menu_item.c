@@ -2021,6 +2021,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   PackDirection        pack_dir;
   PackDirection        child_pack_dir;
   unsigned int         accel_width;
+  unsigned int         border_width;
   unsigned int         horizontal_padding;
   unsigned int         vertical_padding;
 
@@ -2046,8 +2047,9 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
     gtk_widget_style_get (widget, "vertical-padding", &vertical_padding, NULL);
   }
 
-  requisition->width  = (((GtkContainer*)widget)->border_width +
-                                         widget->style->xthickness) << 1;
+  border_width = geda_get_container_border_width (widget);
+
+  requisition->width  = (border_width + widget->style->xthickness) << 1;
   requisition->height = (((GtkContainer*)widget)->border_width +
                                          widget->style->ythickness) << 1;
 
