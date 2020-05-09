@@ -2052,7 +2052,7 @@ static void geda_menu_item_size_request (GtkWidget *widget, GtkRequisition *requ
   style        = geda_get_widget_style (widget);
 
   requisition->width  = (border_width + style->xthickness) << 1;
-  requisition->height = (border_width + widget->style->ythickness) << 1;
+  requisition->height = (border_width + style->ythickness) << 1;
 
   if ((pack_dir == PACK_DIRECTION_LTR || pack_dir == PACK_DIRECTION_RTL) &&
     (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL))
