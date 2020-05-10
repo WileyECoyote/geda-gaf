@@ -639,10 +639,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr "Verwerkingsactie"
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Geselecteerde objecten"
+msgstr "Selecteer eerst het object"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1462,11 +1462,10 @@ msgstr "Beginnummer:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove numbers
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "slot nummer:"
+msgstr "Nummers verwijderen:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -5076,8 +5075,8 @@ msgstr "_Schuif"
 msgid "Activate Panning"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
 msgstr "_Vorige"
 
@@ -5137,17 +5136,15 @@ msgstr "Zichtbaar/Verborgen Onzichtbare Tekst"
 msgid "Toggle hidden text attributes"
 msgstr "Wissel verborgen tekstkenmerken wisselen"
 
-# Visible/Hidden Inherited Attributes
+# Visible/Hidden Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Zichtbaar/Verborgen Erfelijke Attributen"
+msgstr "Overerfd weergeven/verbergen"
 
-# Toggle hidden text attributes
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Wissel verborgen tekstkenmerken wisselen"
+msgstr "Overgenomen tekstkenmerken in- of uitschakelen"
 
 # Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2233
@@ -5583,9 +5580,8 @@ msgstr "Schakel r_aster stijlen"
 
 # Toggle grid between dot, mesh and off
 #: gschem/etc/system-gschemrc.scm:2354
-#, fuzzy
 msgid "Cycle grid between Dot, Mesh and Off"
-msgstr "Schakelen rooster tussen dot, gaas en off"
+msgstr "Cyclusraster tussen Dot, Mesh en Off"
 
 #: gschem/etc/system-gschemrc.scm:2355
 msgid "Scale _up Grid Spacing"
