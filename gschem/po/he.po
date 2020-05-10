@@ -660,10 +660,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr ""
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "בחר את כל הפריטים"
+msgstr "בחר תחילה אובייקט"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -5006,11 +5006,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
-# Previous Page
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "עמוד קודם"
+msgstr "קודם"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
@@ -5067,17 +5066,15 @@ msgstr "הראה/הסתר טקסט חבוי"
 msgid "Toggle hidden text attributes"
 msgstr ""
 
-# Show/Hide Inherited Attributes
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "הצג / הסתר תכונות בירושה"
+msgstr "הצג/הסתר בירושה"
 
-# Show/Hide Inherited Attributes
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "הצג / הסתר תכונות בירושה"
+msgstr "החלף בין תכונות טקסט בירושה"
 
 # Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2233
