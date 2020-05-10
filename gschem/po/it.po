@@ -627,10 +627,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr "Azione Processing"
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Oggetti selezionati"
+msgstr "Seleziona prima l'oggetto"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1416,11 +1416,10 @@ msgstr "Numero iniziale:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove numbers
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "numero slot:"
+msgstr "Rimuovi numeri:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -4895,10 +4894,10 @@ msgstr "_Scorri"
 msgid "Activate Panning"
 msgstr ""
 
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "_Precedente"
+msgstr "Precedente"
 
 # View previous
 #: gschem/etc/system-gschemrc.scm:2219
@@ -4953,15 +4952,15 @@ msgstr "Mostra/Nascondi testo invisibile"
 msgid "Toggle hidden text attributes"
 msgstr "Mostra gli attributi ereditati"
 
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "%i attributo"
+msgstr "Mostra/Nascondi ereditato"
 
+# Toggle inherited text attributes
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Mostra gli attributi ereditati"
+msgstr "Attiva / disattiva gli attributi di testo ereditati"
 
 #: gschem/etc/system-gschemrc.scm:2233
 msgid "Show/Hide Net Names"
