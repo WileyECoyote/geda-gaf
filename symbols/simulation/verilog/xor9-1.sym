@@ -19,7 +19,7 @@ pinnumber=OUT
 T 1000 900 5 8 0 0 0 0 1
 pinseq=1
 T 1000 900 5 8 0 0 0 0 1
-pintype=io
+pintype=out
 T 1000 900 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -30,7 +30,7 @@ pinnumber=IN0
 T 300 100 5 8 0 0 0 0 1
 pinseq=2
 T 300 100 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 100 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -41,7 +41,7 @@ pinnumber=IN1
 T 300 300 5 8 0 0 0 0 1
 pinseq=3
 T 300 300 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 300 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -52,7 +52,7 @@ pinnumber=IN2
 T 300 500 5 8 0 0 0 0 1
 pinseq=4
 T 300 500 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 500 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -63,7 +63,7 @@ pinnumber=IN3
 T 300 700 5 8 0 0 0 0 1
 pinseq=5
 T 300 700 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 700 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -74,7 +74,7 @@ pinnumber=IN4
 T 300 900 5 8 0 0 0 0 1
 pinseq=6
 T 300 900 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 900 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -85,7 +85,7 @@ pinnumber=IN5
 T 300 1100 5 8 0 0 0 0 1
 pinseq=7
 T 300 1100 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 1100 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -96,7 +96,7 @@ pinnumber=IN6
 T 300 1300 5 8 0 0 0 0 1
 pinseq=8
 T 300 1300 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 1300 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -107,7 +107,7 @@ pinnumber=IN7
 T 300 1500 5 8 0 0 0 0 1
 pinseq=9
 T 300 1500 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 1500 5 8 0 0 0 0 1
 pinlabel=n_a
 }
@@ -118,7 +118,7 @@ pinnumber=IN8
 T 300 1700 5 8 0 0 0 0 1
 pinseq=10
 T 300 1700 5 8 0 0 0 0 1
-pintype=io
+pintype=in
 T 300 1700 5 8 0 0 0 0 1
 pinlabel=n_a
 }
