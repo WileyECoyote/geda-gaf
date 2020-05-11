@@ -2143,7 +2143,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
     child_pack_dir = PACK_DIRECTION_LTR;
   }
 
-  widget->allocation = *allocation;
+  geda_set_widget_allocation (widget, allocation);
 
   if (bin->child) {
 
