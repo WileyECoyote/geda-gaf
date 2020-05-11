@@ -2190,7 +2190,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
     child_allocation.x += widget->allocation.x;
     child_allocation.y += widget->allocation.y;
 
-    gtk_widget_get_child_requisition (bin->child, &child_requisition);
+    gtk_widget_get_child_requisition (child, &child_requisition);
 
     if (priv->submenu && priv->show_submenu_indicator) {
       if (direction == GTK_TEXT_DIR_RTL) {
