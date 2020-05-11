@@ -2192,7 +2192,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
       child_allocation.height -= menu_item->priv->toggle_size;
     }
 
-    child_allocation.x += widget->allocation.x;
+    child_allocation.x += allocation->x;
     child_allocation.y += widget->allocation.y;
 
     gtk_widget_get_child_requisition (child, &child_requisition);
