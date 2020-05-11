@@ -2203,7 +2203,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
       child_allocation.width = 1;
     }
 
-    gtk_widget_size_allocate (bin->child, &child_allocation);
+    gtk_widget_size_allocate (child, &child_allocation);
   }
 
   if (gtk_widget_get_realized (widget)) {
