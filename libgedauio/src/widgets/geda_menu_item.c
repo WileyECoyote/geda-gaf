@@ -2154,10 +2154,10 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
 
     gtk_widget_style_get (widget, "horizontal-padding", &horizontal_padding, NULL);
 
-    child_allocation.y = ((GtkContainer*)widget)->border_width + widget->style->ythickness;
     border_width = geda_get_container_border_width (widget);
 
     child_allocation.x = border_width + widget->style->xthickness;
+    child_allocation.y = border_width + widget->style->ythickness;
 
     if ((pack_dir       == PACK_DIRECTION_LTR || pack_dir       == PACK_DIRECTION_RTL) &&
         (child_pack_dir == PACK_DIRECTION_LTR || child_pack_dir == PACK_DIRECTION_RTL))
