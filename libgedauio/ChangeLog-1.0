@@ -1,6 +1,7 @@
 2020-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_item.c: Utilize macro:
+    * src/widgets/geda_menu_item.c: Replace ancillary bin and add pointer
+      to child in geda_menu_item_size_allocate. Utilize macro:
 
           * geda_set_widget_allocation
 
