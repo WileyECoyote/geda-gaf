@@ -2193,7 +2193,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
     }
 
     child_allocation.x += allocation->x;
-    child_allocation.y += widget->allocation.y;
+    child_allocation.y += allocation->y;
 
     gtk_widget_get_child_requisition (child, &child_requisition);
 
