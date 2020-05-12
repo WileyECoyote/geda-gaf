@@ -2423,7 +2423,6 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   GtkStyleContext *context;
   GtkWidget       *child;
-  GtkWidget       *parent;
   GtkBorder        padding;
   GtkStateFlags    state;
 
@@ -2434,9 +2433,8 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   context = gtk_widget_get_style_context (widget);
   state   = gtk_widget_get_state_flags (widget);
-  gtk_style_context_get_padding (context, state, &padding);
 
-  parent = gtk_widget_get_parent (widget);
+  gtk_style_context_get_padding (context, state, &padding);
 
   border_widthx2 = geda_get_container_border_width (widget) << 1;
   min_height     = border_widthx2 + padding.top + padding.bottom;
@@ -2452,9 +2450,13 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   if (child != NULL && gtk_widget_get_visible (child)) {
 
+    GtkWidget *parent;
+
     int child_min, child_nat;
     int arrow_size = 0;
     int arrow_spacing = 0;
+
+    parent = gtk_widget_get_parent (widget);
 
     if ((priv->submenu && !GEDA_IS_MENU_BAR(parent)) || priv->reserve_indicator)
       get_arrow_size (widget, child, &arrow_size, &arrow_spacing);
