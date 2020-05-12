@@ -3016,6 +3016,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   GdkScreen           *screen;
   GdkWindow           *window;
   GtkWidget           *widget;
+  GtkRequisition      *requisition;
   GtkAllocation        allocation;
   GtkTextDirection     direction;
   GdkRectangle         monitor;
@@ -3041,9 +3042,10 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   }
 
   direction   = gtk_widget_get_direction (widget);
+  requisition = geda_get_widget_requisition (widget);
 
-  twidth      = ((GtkWidget*)menu)->requisition.width;
   theight     = ((GtkWidget*)menu)->requisition.height;
+  twidth      = requisition->width;
 
   screen      = gtk_widget_get_screen ((GtkWidget*)menu);
   monitor_num = gdk_screen_get_monitor_at_window (screen, priv->event_window);
