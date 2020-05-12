@@ -2998,7 +2998,9 @@ static void get_offsets (GedaMenu *menu, int *horizontal_offset, int *vertical_o
                         "vertical-padding",   &vertical_padding,
                         NULL);
 
-  *vertical_offset   -= ((GtkWidget*)menu)->style->ythickness;
+  GtkStyle *style = geda_get_widget_style (menu);
+
+  *vertical_offset   -= style->ythickness;
   *vertical_offset   -= vertical_padding;
   *horizontal_offset += horizontal_padding;
 }

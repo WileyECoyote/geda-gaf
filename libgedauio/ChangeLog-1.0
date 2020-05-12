@@ -5,6 +5,7 @@
       function geda_menu_item_position_menu. Utilize macro:
 
           * geda_get_widget_requisition
+          * geda_get_widget_style
 
 2020-05-11 Wiley E. Hill <wileyhill@gmail.com>
 
