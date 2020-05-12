@@ -2,7 +2,8 @@
 
     * src/widgets/geda_menu_item.c: Reduce scope of parent in function
       geda_menu_item_real_get_height. Add ancillary GdkWindow pointer in
-      function geda_menu_item_position_menu. Utilize macro:
+      function geda_menu_item_position_menu. Replace gtk_widget_get_parent
+      with geda_get_widget_parent. Utilize macro:
 
           * geda_get_widget_requisition
           * geda_get_widget_style
