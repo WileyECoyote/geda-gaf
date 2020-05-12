@@ -2501,10 +2501,13 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
       /* force odd, so that we can have the same space above and
        * below the line.
        */
-      if (min_height % 2 == 0)
+      if (min_height % 2 == 0) {
         min_height += 1;
-      if (nat_height % 2 == 0)
+      }
+
+      if (nat_height % 2 == 0) {
         nat_height += 1;
+      }
     }
 
     gtk_style_context_restore (context);
@@ -2518,11 +2521,13 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
 
   priv->accelerator_width = accel_width;
 
-  if (minimum_size)
+  if (minimum_size) {
     *minimum_size = min_height;
+  }
 
-  if (natural_size)
+  if (natural_size) {
     *natural_size = nat_height;
+  }
 }
 
 /*! \internal Gtk3 widget_class->get_preferred_height */
