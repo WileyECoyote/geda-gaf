@@ -2586,6 +2586,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
 
     context = gtk_widget_get_style_context (widget);
     state   = gtk_widget_get_state_flags (widget);
+
     gtk_style_context_get_padding (context, state, &padding);
 
     border_width       = geda_get_container_border_width (widget);
@@ -2629,8 +2630,9 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
       child_allocation.width -= arrow_size + arrow_spacing;
     }
 
-    if (child_allocation.width < 1)
+    if (child_allocation.width < 1) {
       child_allocation.width = 1;
+    }
 
     gtk_widget_size_allocate (child, &child_allocation);
   }
@@ -3097,14 +3099,18 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         tx += allocation.width - twidth;
       }
 
-      if ((ty + allocation.height + theight) <= monitor.y + monitor.height)
+      if ((ty + allocation.height + theight) <= monitor.y + monitor.height) {
         ty += allocation.height;
-      else if ((ty - theight) >= monitor.y)
+      }
+      else if ((ty - theight) >= monitor.y) {
         ty -= theight;
-      else if (monitor.y + monitor.height - (ty + allocation.height) > ty)
+      }
+      else if (monitor.y + monitor.height - (ty + allocation.height) > ty) {
         ty += allocation.height;
-      else
+      }
+      else {
         ty -= theight;
+      }
   }
 
   else /* submenu_placement == MENU_LEFT_RIGHT */ {
@@ -3185,7 +3191,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
   geda_menu_set_monitor (menu, monitor_num);
 
-  GtkWidget *toplevel = geda_menu_get_toplevel(menu);
+  GtkWidget *toplevel = geda_menu_get_toplevel (menu);
 
   if (toplevel && !gtk_widget_get_visible (toplevel)) {
 
