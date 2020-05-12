@@ -1,7 +1,8 @@
 2020-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Reduce scope of parent in function
-      geda_menu_item_real_get_height.
+      geda_menu_item_real_get_height. Add ancillary GdkWindow pointer in
+      function geda_menu_item_position_menu.
 
 2020-05-11 Wiley E. Hill <wileyhill@gmail.com>
 

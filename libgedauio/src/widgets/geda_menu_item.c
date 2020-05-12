@@ -3009,10 +3009,11 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 {
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
-  GtkWidget           *widget;
   GedaMenu            *parent_menu;
   GedaMenuItem        *parent_menu_item;
   GdkScreen           *screen;
+  GdkWindow           *window;
+  GtkWidget           *widget;
   GtkAllocation        allocation;
   GtkTextDirection     direction;
   GdkRectangle         monitor;
@@ -3051,7 +3052,9 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
-  if (!gdk_window_get_origin (widget->window, &tx, &ty)) {
+  window = geda_get_widget_window (widget);
+
+  if (!gdk_window_get_origin (window, &tx, &ty)) {
     g_warning ("Menu not on screen");
     return;
   }
