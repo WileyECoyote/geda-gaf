@@ -1273,7 +1273,7 @@ static void geda_menu_item_buildable_custom_finished (GtkBuildable *buildable,
     GedaMenuShell *menu_shell;
     GtkWidget     *toplevel;
 
-    menu_shell = (GedaMenuShell*)gtk_widget_get_parent ((GtkWidget*)buildable);
+    menu_shell = (GedaMenuShell*)geda_get_widget_parent ((GtkWidget*)buildable);
 
     if (menu_shell) {
 
