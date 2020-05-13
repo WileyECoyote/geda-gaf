@@ -1559,7 +1559,7 @@ void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GedaMenu *submenu)
 
     priv->submenu = menu_widget;
 
-    if (gtk_widget_get_parent (widget)) {
+    if (geda_get_widget_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
 
