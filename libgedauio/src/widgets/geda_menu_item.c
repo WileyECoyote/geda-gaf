@@ -679,7 +679,7 @@ static void geda_menu_item_parent_set (GtkWidget *widget,
   GedaMenu     *menu;
   GtkWidget    *parent;
 
-  parent = gtk_widget_get_parent (widget);
+  parent = geda_get_widget_parent (widget);
   menu   = GEDA_IS_MENU(parent) ? GEDA_MENU(parent) : NULL;
 
   if (menu) {
