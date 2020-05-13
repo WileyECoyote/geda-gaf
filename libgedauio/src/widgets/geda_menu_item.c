@@ -580,7 +580,7 @@ static bool geda_menu_item_leave (GtkWidget *widget, GdkEventCrossing *event)
 {
   g_return_val_if_fail (event != NULL, FALSE);
 
-  return gtk_widget_event (gtk_widget_get_parent (widget), (GdkEvent*) event);
+  return gtk_widget_event (geda_get_widget_parent (widget), (GdkEvent*) event);
 }
 
 /*! \internal widget_class->map */
