@@ -1608,7 +1608,7 @@ void geda_menu_item_set_submenu_widget (GedaMenuItem *menu_item, GtkWidget *subm
                               menu_item);
     }
 
-    if (gtk_widget_get_parent (widget)) {
+    if (geda_get_widget_parent (widget)) {
       gtk_widget_queue_resize (widget);
     }
 
