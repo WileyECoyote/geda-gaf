@@ -2279,7 +2279,7 @@ static bool geda_menu_item_draw (GtkWidget *widget, cairo_t *cr)
   h       = height - border_width * 2;
 
   child   = geda_get_child_widget (menu_item);
-  parent  = gtk_widget_get_parent (widget);
+  parent  = geda_get_widget_parent (widget);
 
   gtk_style_context_get_padding (context, state, &padding);
 
