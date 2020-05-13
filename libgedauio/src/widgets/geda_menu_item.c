@@ -642,7 +642,7 @@ static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
 {
   GtkWidget *parent;
 
-  parent = gtk_widget_get_parent (widget);
+  parent = geda_get_widget_parent (widget);
 
   /* Chain to the parent GedaMenu for further checks */
   return (gtk_widget_is_sensitive (widget) &&
@@ -653,7 +653,7 @@ static bool geda_menu_item_can_activate_accel (GtkWidget   *widget,
 /*! \internal widget_class->mnemonic_activate */
 static bool geda_menu_item_mnemonic_activate (GtkWidget *widget, bool group_cycling)
 {
-  GtkWidget *parent = gtk_widget_get_parent (widget);
+  GtkWidget *parent = geda_get_widget_parent (widget);
 
   if (GEDA_IS_MENU_SHELL (parent)) {
 
