@@ -1695,7 +1695,7 @@ void geda_menu_item_select (GedaMenuItem *menu_item)
   /* Enable themeing of the parent menu item depending on whether
    * something is selected in its submenu - test this? */
 
-  parent = gtk_widget_get_parent((GtkWidget*)menu_item);
+  parent = geda_get_widget_parent((GtkWidget*)menu_item);
 
   if (GEDA_IS_MENU (parent)) {
 
