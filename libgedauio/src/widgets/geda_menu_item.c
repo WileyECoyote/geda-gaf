@@ -2360,7 +2360,7 @@ static void geda_menu_item_get_preferred_width (GtkWidget *widget,
   GtkStateFlags state;
   GtkBorder padding;
 
-  parent       = gtk_widget_get_parent (widget);
+  parent       = geda_get_widget_parent (widget);
 
   border_width = geda_get_container_border_width (widget);
 
