@@ -1377,7 +1377,7 @@ static void geda_menu_item_update (GtkActivatable *activatable,
 
     bool is_empty;
 
-    is_empty = geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item));
+    is_empty = geda_menu_is_empty (priv->submenu);
 
     geda_action_sync_menu_visible ((GedaAction*)action, (GtkWidget*)menu_item, is_empty);
 
