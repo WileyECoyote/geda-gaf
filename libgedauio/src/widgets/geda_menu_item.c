@@ -519,7 +519,7 @@ static void geda_menu_item_get_property (GObject     *object,
 
   switch (prop_id) {
     case PROP_RIGHT_JUSTIFIED:
-      g_value_set_boolean (value, menu_item->priv->right_justify);
+      g_value_set_boolean (value, priv->right_justify);
       break;
 
     case PROP_SUBMENU:
