@@ -1529,9 +1529,8 @@ GdkWindow *geda_menu_item_get_event_window (GedaMenuItem *menu_item)
 /*!
  * \brief Set GedaMenuItem submenu
  * \par Function Description
- *  Sets or replaces the submenu of menu item, or removes it when a %NULL
+ *  Sets or replaces the submenu of a menu item, or removes it when a %NULL
  *  submenu is passed. This function does not call geda_menu_attach_to_widget.
- *  geda_menu_attach_to_widget
  *
  * \param [in] menu_item a #GedaMenuItem
  * \param [in] submenu   A GedaMenu menu, or %NULL
