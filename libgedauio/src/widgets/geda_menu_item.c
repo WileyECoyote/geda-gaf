@@ -1548,6 +1548,7 @@ void geda_menu_item_set_submenu (GedaMenuItem *menu_item, GedaMenu *submenu)
 
   priv = menu_item->priv;
 
+  /* Check that the passed submenu is not already the current submenu */
   if (priv->submenu != menu_widget) {
 
     GtkWidget *widget = (GtkWidget*)menu_item;
