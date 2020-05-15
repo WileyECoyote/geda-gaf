@@ -3601,7 +3601,7 @@ void geda_menu_item_set_accel_path (GedaMenuItem *menu_item,
   gtk_widget_set_accel_path (widget, NULL, NULL);
 
   /* install accelerators associated with new path */
-  parent = gtk_widget_get_parent (widget);
+  parent = geda_get_widget_parent (widget);
 
   if (GEDA_IS_MENU(parent)) {
 
