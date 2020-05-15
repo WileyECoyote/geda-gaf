@@ -1427,7 +1427,7 @@ static void geda_menu_item_sync_action_properties (GtkActivatable *activatable,
   }
 
   geda_action_sync_menu_visible ((GedaAction*)action, widget,
-    geda_menu_is_empty (geda_menu_item_get_submenu_widget (menu_item)));
+                                  geda_menu_is_empty (priv->submenu));
 
   gtk_widget_set_sensitive (widget, gtk_action_is_sensitive (action));
 
