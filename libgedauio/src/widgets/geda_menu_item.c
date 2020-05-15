@@ -2456,7 +2456,7 @@ static void geda_menu_item_real_get_height (GtkWidget *widget,
     int arrow_size = 0;
     int arrow_spacing = 0;
 
-    parent = gtk_widget_get_parent (widget);
+    parent = geda_get_widget_parent (widget);
 
     if ((priv->submenu && !GEDA_IS_MENU_BAR(parent)) || priv->reserve_indicator)
       get_arrow_size (widget, child, &arrow_size, &arrow_spacing);
