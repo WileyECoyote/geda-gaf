@@ -3017,6 +3017,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   GedaMenuItem        *parent_menu_item;
   GdkScreen           *screen;
   GdkWindow           *window;
+  GtkWidget           *parent;
   GtkWidget           *widget;
   GtkRequisition      *requisition;
   GtkAllocation        allocation;
@@ -3075,7 +3076,9 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   available_left  = tx - monitor.x;
   available_right = monitor.x + monitor.width - (tx + allocation.width);
 
-  if (GEDA_IS_MENU_BAR(widget->parent)) {
+  parent = geda_get_widget_parent (widget);
+
+  if (GEDA_IS_MENU_BAR(parent)) {
       priv->from_menubar = TRUE;
   }
   else if (GEDA_IS_MENU(widget->parent)) {
