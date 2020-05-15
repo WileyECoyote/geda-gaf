@@ -1495,9 +1495,9 @@ GtkWidget *geda_menu_item_new_with_label (const char *label)
 /*!
  * \brief Creates a new GedaMenuItem with mnemonic
  * \par Function Description
- *  Creates a new #GedaMenuItem containing a mnemonic label.
- *  The label will be created using geda_label_new_with_mnemonic(),
- *  so underscores in \a label indicate the mnemonic for the menu item.
+ *  Creates a new #GedaMenuItem containing a mnemonic label. The label
+ *  will be created using geda_label_new_with_mnemonic(), so underscores
+ *  in \a label indicate the mnemonic for the menu item.
  *
  * \param label The text of the button, with an underscore in front of the
  *              mnemonic character
