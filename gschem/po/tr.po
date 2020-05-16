@@ -442,37 +442,45 @@ msgstr "Durum Durumu"
 msgid "Status Bar Height"
 msgstr "Durum Çubuğu Yüksekliği"
 
+# Set or get the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Durum çubuğunun yüksekliğini ayarlama veya alma"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Koordinat ekranı, format seçenekleri için sağ tıklayın"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Sol işaretçi düğmesi ataması"
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Orta işaretçi düğme ataması, seçenekler için sağ tıklayın"
 
+# Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Sağ işaretçi düğmesi ataması, seçenekler için sağ tıklama"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Geçerli ek, ızgara birimlerini veya durumunu gösterir"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Geçerli komut durumunu gösterir"
 
+# Gschem status bar
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem durum çubuğu"
 
 # Grid
 #: gschem/src/base/gschem_status_bar.c:1878
