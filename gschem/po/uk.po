@@ -500,55 +500,72 @@ msgstr "Встановіть рядок для тексту в рядку ста
 msgid "Status State"
 msgstr "Стан статусу"
 
+# Status Bar Height; Vysota ryadka stanu
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Висота рядка стану"
 
+# Set or get the height of the status bar
+# Vstanovitʹ abo otrymayte vysotu ryadka stanu
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Встановіть або отримайте висоту рядка стану"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Відображення координат, клацніть правою кнопкою миші параметри формату"
 
+# Left pointer button assignment
+# Prysvoyennya livoyi knopky vkazivnyka
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Присвоєння лівої кнопки вказівника"
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Призначення кнопки середнього вказівника, клацніть правою кнопкою миші опції"
 
+# Right pointer button assignment, right click for options
+# Pryznachennya knopky pravoho vkazivnyka, klatsnitʹ pravoyu knopkoyu myshi dlya optsiy
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Призначення кнопки правого вказівника, клацніть правою кнопкою миші для опцій"
 
+# Indicates the current snap, grid units or state
+# Poznachaye potochne osnashchennya, bloky sitky abo stan
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Позначає поточне оснащення, блоки сітки або стан"
 
+# Indicates the current command state
+# Vkazuye potochnyy stan komandy
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Вказує поточний стан команди"
 
+# Gschem status bar; Ryadok stanu Gschem
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Рядок стану Gschem"
 
+# Grid; Sitka
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
-msgstr ""
+msgstr "Сітка"
 
+# OFF; VYKL
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "ВИКЛ"
 
+# Error; Pomylka
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
-msgstr ""
+msgstr "Помилка"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
