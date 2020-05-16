@@ -462,55 +462,67 @@ msgstr "Ställ in strängen för texten på statusfältet"
 msgid "Status State"
 msgstr "Statusstatus"
 
+# Status Bar Height
 #: gschem/src/base/gschem_status_bar.c:686
 msgid "Status Bar Height"
-msgstr ""
+msgstr "Statuslisthöjd"
 
+# Set or get the height of the status bar
 #: gschem/src/base/gschem_status_bar.c:687
 msgid "Set or get the height of the status bar"
-msgstr ""
+msgstr "Ställ in eller få höjden på statusfältet"
 
+# Coordinate display, right click for format options
 #: gschem/src/base/gschem_status_bar.c:1193
 msgid "Coordinate display, right click for format options"
-msgstr ""
+msgstr "Koordinatvisning, högerklicka för formatalternativ"
 
+# Left pointer button assignment
 #: gschem/src/base/gschem_status_bar.c:1194
 msgid "Left pointer button assignment"
-msgstr ""
+msgstr "Vänster pekarknapptilldelning"
 
+# Middle pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1195
 msgid "Middle pointer button assignment, right click for options"
-msgstr ""
+msgstr "Mittpekarknapptilldelning, högerklicka för alternativ"
 
+# Right pointer button assignment, right click for options
 #: gschem/src/base/gschem_status_bar.c:1196
 msgid "Right pointer button assignment, right click for options"
-msgstr ""
+msgstr "Högerpekarknapptilldelning, högerklicka för alternativ"
 
+# Indicates the current snap, grid units or state
 #: gschem/src/base/gschem_status_bar.c:1197
 msgid "Indicates the current snap, grid units or state"
-msgstr ""
+msgstr "Indikerar aktuell snäppning, rutnät eller enhet"
 
+# Indicates the current command state
 #: gschem/src/base/gschem_status_bar.c:1198
 msgid "Indicates the current command state"
-msgstr ""
+msgstr "Anger det aktuella kommandotillståndet"
 
+# Gschem status bar
 #: gschem/src/base/gschem_status_bar.c:1199
 msgid "Gschem status bar"
-msgstr ""
+msgstr "Gschem statusfält"
 
+# Grid
 #: gschem/src/base/gschem_status_bar.c:1878
 msgid "Grid"
-msgstr ""
+msgstr "Rutnät"
 
+# OFF
 #: gschem/src/base/gschem_status_bar.c:1884
 #: gschem/src/base/gschem_status_bar.c:1905
 msgid "OFF"
-msgstr ""
+msgstr "AV"
 
+# Error
 #: gschem/src/base/gschem_status_bar.c:1897 gschem/src/object/o_picture.c:615
 #: gschem/src/object/o_picture.c:619
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: gschem/src/base/gschem_status_bar.c:1909
 msgid "NONE"
