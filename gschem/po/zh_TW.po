@@ -605,10 +605,10 @@ msgstr ""
 msgid "Processing Action"
 msgstr "處理操作"
 
+# Select object first; Shǒuxiān xuǎnzé duìxiàng
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "選擇物件"
+msgstr "首先選擇對象"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -2729,7 +2729,7 @@ msgstr "評論:"
 # Options
 #: gschem/src/x/x_edit_cprop.c:1357
 msgid "Options:"
-msgstr "選項"
+msgstr "選項:"
 
 # Embedded
 #: gschem/src/x/x_edit_cprop.c:1392
@@ -5068,10 +5068,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
+# Previous; Yǐqián
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "上一個分頁"
+msgstr "以前"
 
 # View previous; Chákàn shàng yīgè
 #: gschem/etc/system-gschemrc.scm:2219
@@ -5134,17 +5134,15 @@ msgstr ""
 msgid "Toggle hidden text attributes"
 msgstr ""
 
-# Show/Hide Inherited Attributes
+# Show/Hide Inherited; Xiǎnshì/yǐncáng jìchéng
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "顯示/隱藏繼承的屬性"
+msgstr "顯示/隱藏繼承"
 
-# Show/Hide Inherited Attributes
+# Toggle inherited text attributes; Qiēhuàn jìchéng de wénběn shǔxìng
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "顯示/隱藏繼承的屬性"
+msgstr "切換繼承的文本屬性"
 
 # Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2233

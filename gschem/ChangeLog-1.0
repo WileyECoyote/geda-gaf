@@ -16,24 +16,18 @@
 
     * po/zh_CN.po: Update Chinese simplified translations.
 
+    * po/zh_TW.po: Update Chinese traditional translations.
+
 2020-05-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/el.po: Update Greek translations.
-
     * po/es.po: Update Spanish translations.
-
     * po/fr.po: Update French translations.
-
     * po/he.po: Update Hebrew translations.
-
     * po/hu.po: Update Hungarian translations.
-
     * po/it.po: Update Italian translations.
-
     * po/nl.po: Update Dutch translations.
-
     * po/pt.po: Update Portuguese translations.
-
     * po/pt_BR.po: Update Brazilian Portuguese translations.
 
 2020-05-02 Wiley E. Hill <wileyhill@gmail.com>
