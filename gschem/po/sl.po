@@ -675,10 +675,10 @@ msgstr "je"
 msgid "Processing Action"
 msgstr "Ukrep obdelava"
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Zoom na izbranih predmetov"
+msgstr "Najprej izberite predmet"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1479,11 +1479,10 @@ msgstr "Začetna številka:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
-# Slot number
+# Remove numbers
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "številka slot:"
+msgstr "Odstranite številke:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -5028,11 +5027,10 @@ msgstr ""
 msgid "Activate Panning"
 msgstr ""
 
-# Previous Page
+# Previous
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "Prejšnja stran"
+msgstr "Prejšnja"
 
 #: gschem/etc/system-gschemrc.scm:2219
 msgid "View previous"
