@@ -686,10 +686,10 @@ msgstr "Является"
 msgid "Processing Action"
 msgstr "Обработка действий"
 
+# Select object first
 #: gschem/src/iface/i_command.c:625
-#, fuzzy
 msgid "Select object first"
-msgstr "Выделенные объекты"
+msgstr "Сначала выберите объект"
 
 #: gschem/src/iface/i_command.c:636
 msgid "Cannot"
@@ -1536,10 +1536,10 @@ msgstr "Начальный номер:"
 msgid "Set the starting number for the current scan"
 msgstr ""
 
+# Remove numbers; Udalit' nomera
 #: gschem/src/x/x_autonumber.c:124
-#, fuzzy
 msgid "Remove numbers:"
-msgstr "Номер секции:"
+msgstr "Удалить номера:"
 
 #: gschem/src/x/x_autonumber.c:124
 msgid "Remove existing reference numbers"
@@ -5242,10 +5242,10 @@ msgstr "_Центрировать"
 msgid "Activate Panning"
 msgstr ""
 
+# Previous Predydushchaya
 #: gschem/etc/system-gschemrc.scm:2219
-#, fuzzy
 msgid "Pre_vious"
-msgstr "_Предыдущая"
+msgstr "Предыдущая"
 
 # View previous; Posmotret' predydushchiy
 #: gschem/etc/system-gschemrc.scm:2219
@@ -5305,17 +5305,16 @@ msgstr "Показать/скрыть невидимый текст"
 msgid "Toggle hidden text attributes"
 msgstr "Переключить скрытых текстовых атрибутов"
 
-# Show/Hide Inherited Attributes
+# Show/Hide Inherited
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Show/Hide Inheri_ted"
-msgstr "Показать / скрыть унаследованные атрибуты"
+msgstr "Показать/скрыть наследство"
 
-# Toggle hidden text attributes
+# Toggle inherited text attributes
+# Pereklyuchit' unasledovannyye tekstovyye atributy
 #: gschem/etc/system-gschemrc.scm:2232
-#, fuzzy
 msgid "Toggle inherited text attributes"
-msgstr "Переключить скрытых текстовых атрибутов"
+msgstr "Переключить унаследованные текстовые атрибуты"
 
 # Show/Hide Net Names
 #: gschem/etc/system-gschemrc.scm:2233
