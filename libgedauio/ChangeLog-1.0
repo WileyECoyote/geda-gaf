@@ -1,3 +1,8 @@
+2020-05-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_item.c: Reduce scope of parent_menu_item in
+      function geda_menu_item_position_menu.
+
 2020-05-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Remove unnecessary cast to GedaMenuShell

@@ -3015,7 +3015,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   GedaMenuItem        *menu_item;
   GedaMenuItemPrivate *priv;
   GedaMenu            *parent_menu;
-  GedaMenuItem        *parent_menu_item;
   GdkScreen           *screen;
   GdkWindow           *window;
   GtkWidget           *parent;
@@ -3122,6 +3121,8 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   }
 
   else /* submenu_placement == MENU_LEFT_RIGHT */ {
+
+    GedaMenuItem *parent_menu_item;
 
     if (GEDA_IS_MENU(parent)) {
 
