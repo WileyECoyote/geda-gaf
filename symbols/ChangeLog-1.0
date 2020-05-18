@@ -3,6 +3,9 @@
     * simulation/verilog/pulldown-1.sym: Update pin type attribute, convert
       comment to description.
 
+    * simulation/verilog/pullup-1.sym: Update pin type attribute, add line,
+      convert comment to description.
+
 2020-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/verilog: Update pin type attributes:
