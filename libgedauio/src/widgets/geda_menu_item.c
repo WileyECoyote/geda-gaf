@@ -2563,7 +2563,7 @@ static void geda_menu_item_size_allocate (GtkWidget *widget, GtkAllocation *allo
 
   direction = gtk_widget_get_direction (widget);
 
-  parent    = gtk_widget_get_parent (widget);
+  parent    = geda_get_widget_parent (widget);
 
   if (GEDA_IS_MENU_BAR(parent)) {
 
