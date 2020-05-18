@@ -2816,7 +2816,7 @@ static void geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_
   GedaMenuItemPrivate *priv      = menu_item->priv;
   GtkWidget           *parent;
 
-  parent = gtk_widget_get_parent (widget);
+  parent = geda_get_widget_parent (widget);
 
   if (gtk_widget_is_sensitive (priv->submenu) && parent) {
 
