@@ -2875,7 +2875,7 @@ static int geda_menu_item_popup_timeout (void *data)
   GedaMenuItemPrivate *priv      = menu_item->priv;
   GtkWidget           *parent;
 
-  parent = gtk_widget_get_parent ((GtkWidget*)menu_item);
+  parent = geda_get_widget_parent ((GtkWidget*)menu_item);
 
   if ((GEDA_IS_MENU_SHELL (parent) && GEDA_MENU_SHELL(parent)->active) ||
       (GEDA_IS_MENU(parent) && GEDA_MENU(parent)->torn_off))
