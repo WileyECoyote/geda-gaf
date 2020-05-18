@@ -2742,7 +2742,7 @@ static void geda_real_menu_item_deselect (GedaMenuItem *menu_item)
 
   gtk_widget_queue_draw (widget);
 
-  widget = gtk_widget_get_parent(widget);
+  widget = geda_get_widget_parent(widget);
 
   if (GEDA_IS_MENU (widget)) {
 
