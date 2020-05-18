@@ -3123,72 +3123,71 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
 
   else /* submenu_placement == MENU_LEFT_RIGHT */ {
 
-      if (GEDA_IS_MENU(widget->parent)) {
+    if (GEDA_IS_MENU(parent)) {
 
-        GtkWidget  *menu_parent;
+      GtkWidget  *menu_parent;
 
-        parent_menu = (GedaMenu*)widget->parent;
-        menu_parent = geda_menu_get_parent_item (parent_menu);
+      parent_menu = (GedaMenu*)parent;
+      menu_parent = geda_menu_get_parent_item (parent_menu);
 
-        if (GEDA_IS_MENU_ITEM(menu_parent)) {
-          parent_menu_item = (GedaMenuItem*)menu_parent;
-        }
-        else {
-          parent_menu_item = NULL;
-        }
+      if (GEDA_IS_MENU_ITEM(menu_parent)) {
+        parent_menu_item = (GedaMenuItem*)menu_parent;
       }
       else {
         parent_menu_item = NULL;
       }
+    }
+    else {
+      parent_menu_item = NULL;
+    }
 
-      parent_xthickness = geda_get_widget_style(parent)->xthickness;
+    parent_xthickness = geda_get_widget_style(parent)->xthickness;
 
-      if (parent_menu_item && !geda_tearoff_menu_is_torn(widget->parent)) {
-        priv->submenu_direction = parent_menu_item->priv->submenu_direction;
+    if (parent_menu_item && !geda_tearoff_menu_is_torn(parent)) {
+      priv->submenu_direction = parent_menu_item->priv->submenu_direction;
+    }
+    else {
+
+      if (direction == GTK_TEXT_DIR_LTR) {
+        priv->submenu_direction = SUBMENU_DIR_RIGHT;
       }
       else {
 
-        if (direction == GTK_TEXT_DIR_LTR) {
-          priv->submenu_direction = SUBMENU_DIR_RIGHT;
-        }
-        else {
-          priv->submenu_direction = SUBMENU_DIR_LEFT;
-        }
+        priv->submenu_direction = SUBMENU_DIR_LEFT;
       }
+    }
 
-      if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
+    if (priv->submenu_direction == SUBMENU_DIR_LEFT) {
 
-          if (tx - twidth - parent_xthickness - horizontal_offset >= monitor.x ||
-              available_left >= available_right)
-          {
-            tx -= twidth + parent_xthickness + horizontal_offset;
-          }
-          else
-          {
-            priv->submenu_direction = SUBMENU_DIR_RIGHT;
-            tx += allocation.width + parent_xthickness + horizontal_offset;
-          }
-
-
+      if (tx - twidth - parent_xthickness - horizontal_offset >= monitor.x ||
+        available_left >= available_right)
+      {
+        tx -= twidth + parent_xthickness + horizontal_offset;
       }
-      else /* priv->submenu_direction == SUBMENU_DIR_RIGHT*/ {
-
-          if (tx + allocation.width + parent_xthickness + horizontal_offset +
-              twidth <= monitor.x + monitor.width || available_right >= available_left)
-          {
-            tx += allocation.width + parent_xthickness + horizontal_offset;
-          }
-          else
-          {
-            priv->submenu_direction = SUBMENU_DIR_LEFT;
-            tx -= twidth + parent_xthickness + horizontal_offset;
-          }
+      else
+      {
+        priv->submenu_direction = SUBMENU_DIR_RIGHT;
+        tx += allocation.width + parent_xthickness + horizontal_offset;
       }
+    }
+    else /* priv->submenu_direction == SUBMENU_DIR_RIGHT*/ {
 
-      ty += vertical_offset;
+      if (tx + allocation.width + parent_xthickness + horizontal_offset +
+          twidth <= monitor.x + monitor.width || available_right >= available_left)
+      {
+        tx += allocation.width + parent_xthickness + horizontal_offset;
+      }
+      else
+      {
+        priv->submenu_direction = SUBMENU_DIR_LEFT;
+        tx -= twidth + parent_xthickness + horizontal_offset;
+      }
+    }
 
-      /* If the height of the menu doesn't fit we move it upward. */
-      ty = CLAMP (ty, monitor.y, MAX (monitor.y, monitor.y + monitor.height - theight));
+    ty += vertical_offset;
+
+    /* If the height of the menu doesn't fit we move it upward. */
+    ty = CLAMP (ty, monitor.y, MAX (monitor.y, monitor.y + monitor.height - theight));
   }
 
   /* If we have negative, tx, here it is because we can't get
