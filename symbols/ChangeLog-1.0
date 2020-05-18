@@ -6,13 +6,16 @@
     * simulation/verilog/pullup-1.sym: Update pin type attribute, add line,
       convert comment to description.
 
-    * simulation/verilog: Reposition attributes
+    * simulation/verilog: Reposition attributes:
 
             * simulation/verilog/xnor2-1.sym
             * simulation/verilog/xnor3-1.sym
             * simulation/verilog/xnor4-1.sym
             * simulation/verilog/xnor5-1.sym
             * simulation/verilog/xnor6-1.sym
+
+    * simulation/verilog/xor8-1.sym: Update description and attribute
+      sequence.
 
 2020-05-10 Wiley E. Hill <wileyhill@gmail.com>
 
