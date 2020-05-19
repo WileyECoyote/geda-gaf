@@ -3294,7 +3294,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   available_left  = tx - monitor.x;
   available_right = monitor.x + monitor.width - (tx + allocation.width);
 
-  parent = gtk_widget_get_parent (widget);
+  parent = geda_get_widget_parent (widget);
   priv->from_menubar = GEDA_IS_MENU_BAR(parent);
 
   if (priv->submenu_placement == MENU_TOP_BOTTOM) {
