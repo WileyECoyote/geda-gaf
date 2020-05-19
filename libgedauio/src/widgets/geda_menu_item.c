@@ -3119,7 +3119,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         ty -= theight;
       }
   }
-
   else /* submenu_placement == MENU_LEFT_RIGHT */ {
 
     GedaMenuItem *parent_menu_item;
@@ -3153,7 +3152,6 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
         priv->submenu_direction = SUBMENU_DIR_RIGHT;
       }
       else {
-
         priv->submenu_direction = SUBMENU_DIR_LEFT;
       }
     }
