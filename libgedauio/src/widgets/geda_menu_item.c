@@ -3083,7 +3083,7 @@ static void geda_menu_item_position_menu (GedaMenu  *menu,
   }
   else if (GEDA_IS_MENU(parent)) {
 
-    parent_menu = (GedaMenu*)widget->parent;
+    parent_menu = (GedaMenu*)parent;
 
     if (parent_menu->parent_menu_item) {
       priv->from_menubar = GEDA_MENU_ITEM(parent_menu->parent_menu_item)->priv->from_menubar;
