@@ -816,7 +816,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
        *  menu item also fixes up the state as if enter_notify() would
        *  have run before (which normally selects the item).
        */
-      if (GEDA_MENU_SHELL_GET_CLASS (parent)->submenu_placement != GTK_TOP_BOTTOM)
+      if (GEDA_MENU_SHELL_GET_CLASS (parent)->submenu_placement != MENU_TOP_BOTTOM)
       {
         geda_menu_shell_select_item (parent, menu_item);
       }

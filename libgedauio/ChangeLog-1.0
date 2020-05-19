@@ -1,6 +1,7 @@
 2020-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/widgets/geda_menu_shell.c: Utilize macro:
+    * src/widgets/geda_menu_shell.c: Replace GTK_TOP_BOTTOM with
+      MENU_TOP_BOTTOM. Utilize macro:
 
           * geda_get_widget_parent
 
