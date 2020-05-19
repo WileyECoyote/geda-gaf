@@ -1,3 +1,9 @@
+2020-05-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Utilize macro:
+
+          * geda_get_widget_parent
+
 2020-05-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Reduce scope of parent_menu_item in

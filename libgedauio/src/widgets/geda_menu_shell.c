@@ -327,7 +327,7 @@ geda_menu_shell_get_item (GtkWidget *menu_shell, GdkEventButton *event)
   menu_item = gtk_get_event_widget ((GdkEvent*)event);
 
   while (menu_item && !GEDA_IS_MENU_ITEM (menu_item)) {
-    menu_item = menu_item->parent;
+    menu_item = geda_get_widget_parent(menu_item);
   }
 
   if (menu_item && geda_menu_shell_is_item (menu_shell, menu_item)) {
