@@ -790,8 +790,9 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
   GedaMenuShell *parent;
   GtkWidget     *menu_item;
 
-  if (event->type != GDK_BUTTON_PRESS)
+  if (event->type != GDK_BUTTON_PRESS) {
     return FALSE;
+  }
 
   menu_shell = (GedaMenuShell*)widget;
 
