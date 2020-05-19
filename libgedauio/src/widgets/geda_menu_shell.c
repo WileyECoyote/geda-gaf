@@ -804,7 +804,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
 
   if (menu_item) {
 
-    parent = (GedaMenuShell*)menu_item->parent;
+    parent = (GedaMenuShell*)geda_get_widget_parent(menu_item);
 
     if (geda_menu_item_is_widget_selectable (menu_item) &&
         menu_item != parent->active_menu_item)
