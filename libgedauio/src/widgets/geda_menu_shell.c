@@ -994,7 +994,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
       /* If we ended up on an item with a submenu, leave the menu up. */
       if (deactivate) {
         if (menu_item && (menu_shell->active_menu_item == menu_item) &&
-          GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
+          GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != MENU_TOP_BOTTOM)
         {
           deactivate = FALSE;
         }
