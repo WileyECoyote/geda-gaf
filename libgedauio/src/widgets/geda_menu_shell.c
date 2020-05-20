@@ -929,7 +929,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
 
           deactivate = FALSE;
         }
-        else if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM ||
+        else if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != MENU_TOP_BOTTOM ||
                  priv->activated_submenu)
         {
           GTimeVal *popup_time;
