@@ -1404,7 +1404,7 @@ static void geda_menu_shell_class_init(void *class, void *class_data)
   menu_shell_class->selection_done    = NULL;
   menu_shell_class->select_item       = geda_menu_shell_real_select_item;
 
-  menu_shell_class->submenu_placement = GTK_TOP_BOTTOM;
+  menu_shell_class->submenu_placement = MENU_TOP_BOTTOM;
 
   geda_menu_shell_parent_class = g_type_class_peek_parent (class);
 
