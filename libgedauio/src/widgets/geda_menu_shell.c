@@ -333,6 +333,7 @@ geda_menu_shell_get_item (GtkWidget *menu_shell, GdkEventButton *event)
   if (menu_item && geda_menu_shell_is_item (menu_shell, menu_item)) {
     return menu_item;
   }
+
   return NULL;
 }
 
