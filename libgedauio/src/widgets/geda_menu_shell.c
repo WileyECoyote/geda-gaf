@@ -834,7 +834,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
         menu_item->parent == widget &&
         menu_item != menu_shell->active_menu_item)
     {
-      if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == GTK_TOP_BOTTOM)
+      if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == MENU_TOP_BOTTOM)
       {
         menu_shell->activate_time = event->time;
         geda_menu_shell_select_item (menu_shell, menu_item);
