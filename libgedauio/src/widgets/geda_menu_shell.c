@@ -980,7 +980,7 @@ static int geda_menu_shell_button_release (GtkWidget *widget, GdkEventButton *ev
       }
       else if (menu_item &&
               !geda_menu_item_is_widget_selectable (menu_item) &&
-               GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != GTK_TOP_BOTTOM)
+               GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement != MENU_TOP_BOTTOM)
       {
         deactivate = FALSE;
       }
