@@ -861,7 +861,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
 
       geda_menu_item_popup_submenu (GEDA_MENU_ITEM (menu_item), FALSE);
 
-      parent = GEDA_MENU_SHELL (menu_item->parent);
+      //parent = GEDA_MENU_SHELL (menu_item->parent);
 
       priv = parent->priv;
       priv->activated_submenu = TRUE;

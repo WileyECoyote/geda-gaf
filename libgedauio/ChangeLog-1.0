@@ -1,3 +1,8 @@
+2020-05-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/widgets/geda_menu_shell.c: Revise geda_menu_shell_button_press to
+      not redundantly reassign parent in the third conditional.
+
 2020-05-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_shell.c: Replace GTK_TOP_BOTTOM with
