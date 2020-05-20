@@ -831,7 +831,7 @@ static int geda_menu_shell_button_press (GtkWidget *widget, GdkEventButton *even
     menu_shell->button = event->button;
 
     if (menu_item && geda_menu_item_is_widget_selectable (menu_item) &&
-        menu_item->parent == widget &&
+        parent == (GedaMenuShell*)widget &&
         menu_item != menu_shell->active_menu_item)
     {
       if (GEDA_MENU_SHELL_GET_CLASS (menu_shell)->submenu_placement == MENU_TOP_BOTTOM)
