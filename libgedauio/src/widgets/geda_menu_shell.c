@@ -1038,6 +1038,7 @@ static int geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *ev
   if (menu_shell->active) {
 
     GtkWidget *menu_item;
+    GtkWidget *parent;
 
     menu_item = gtk_get_event_widget ((GdkEvent*) event);
 
@@ -1055,7 +1056,9 @@ static int geda_menu_shell_enter_notify (GtkWidget *widget, GdkEventCrossing *ev
       return TRUE;
     }
 
-    if (menu_item->parent == widget && GEDA_IS_MENU_ITEM (menu_item)) {
+    parent = geda_get_widget_parent(menu_item);
+
+    if (parent == widget && GEDA_IS_MENU_ITEM (menu_item)) {
 
       if (menu_shell->ignore_enter)
         return TRUE;
