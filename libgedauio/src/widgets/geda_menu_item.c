@@ -2842,7 +2842,7 @@ static void geda_menu_item_real_popup_submenu (GtkWidget *widget, bool remember_
     }
 
     /* geda_menu_item_position_menu positions the submenu from the
-     * menuitems position. If the menuitem does not have a window,
+     * position of the menuitem. If the menuitem does not have a window,
      * that does not work. In that case we use the default
      * positioning function instead which places the submenu at the
      * mouse cursor.
