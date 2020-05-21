@@ -1,7 +1,9 @@
 2020-05-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/widgets/geda_menu_item.c: Defer calling get_offsets and reduce the
-      scope of offset integers in geda_menu_item_position_menu.
+      scope of offset integers in geda_menu_item_position_menu. Revise
+      geda_menu_item_popup_timeout to use ancillary Booleans parent_is_menu
+      and parent_is_menushell.
 
 2020-05-20 Wiley E. Hill <wileyhill@gmail.com>
 
